@@ -215,11 +215,7 @@ function url2json(url){
         for(var i=0;i<aImg.length;i++){
             var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
             //滚动的时候如果图片的后缀名是png说明是这张图片是预定好图片
-            if(aImg[i].offsetTop<clienH){
-                alert(i);
-            }
             if(aImg[i].offsetTop<clienH&&str=='png'){
-                alert(i);
                 aImg[i].src=aImg[i].dataset.src;
             }
             //这样能够判断错误也能够换成想要的图片，但是会一直报错，报404页面错误
