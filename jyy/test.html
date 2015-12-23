@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no,initial-scale=1.0,maximum-scale=1.0 minimal-ui"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="green">
+<meta name="Keywords" content="亚洲旅行网">
+<meta name="Description" content="境外专业旅行服务提供机构">
+<title>选择地点</title>
+
+</head>
+
+<body>
+<div class="all-elements">
+	<!-- head Content-->
+	<div class="header" id="vlm-h-1">
+		<a href="javascript:window.location.href='./';" class="icons header-back"> </a>
+		<h3>Datalist</h3>
+	</div>
+	
+	<div class="footer-menu-three-icons footer-sel">
+		<a href="javascript:void(0);" class="foot-sort"><i> </i>推荐</a>
+		<a href="javascript:void(0);" class="foot-sel"><i> </i>筛选</a>
+		<a href="javascript:void(0);" class="foot-pos"><i> </i>位置</a>
+	</div>
+	<div class="selbox-wrapper">
+		
+	</div>
+	<div class="share-bottom">
+        <h3>分享给朋友</h3>
+        <div class="share-socials-bottom">
+            
+            <a href="">
+                <i class="fa fa-google-plus google-color"></i>
+                Google
+            </a>
+
+            <a href="">
+                <i class="fa fa-pinterest-p pinterest-color"></i>
+                微信
+            </a>
+            <a href="sms:">
+                <i class="fa fa-comment-o sms-color"></i>
+                短信
+            </a>
+            <a href="">
+                <i class="fa fa-envelope-o mail-color"></i>
+                邮件
+            </a>
+        </div>
+        <a href="#" class="close-share-bottom">Close</a>
+    </div>
+</div>
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/vcm.js"></script>
+<script>
+var c = new vcm();
+console.log(c.setMd5("dskljklsjdfljsdlfjsdklfj"));
+function gg(d){
+	this.name = d;
+	return false;
+	alert();
+	return this.name;
+}
+	$('.open-sharebox').click(function() {
+		$('.sharebox-wrapper').fadeIn(200);
+	});
+	
+	$('.close-sharebox').click(function() {
+		$('.sharebox-wrapper').fadeOut(200);
+	});
+	
+	$('.open-loginbox').click(function() {
+		$('.loginbox-wrapper').fadeIn(200);
+	});
+	
+	$('.close-loginbox').click(function() {
+		$('.loginbox-wrapper').fadeOut(200);
+	});
+	$('.show-share-bottom').click(function(){
+       $('.share-bottom').toggleClass('active-share-bottom');
+    });    
+    
+    $('.close-share-bottom, #content, .open-menu, .open-more').click(function(){
+       $('.share-bottom').removeClass('active-share-bottom');
+    });
+</script>
+</body>
+</html>

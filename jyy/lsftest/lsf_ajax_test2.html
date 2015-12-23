@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="green">
+<meta name="Keywords" content="亚洲旅行网">
+<meta name="Description" content="境外专业旅行服务提供机构">
+
+<title>无标题文档</title>
+<link rel="stylesheet" href="styles/lsf_base.css" />
+<style>
+</style>
+<script src="js/lsf_ajax.js"></script>
+<script>
+ajax({url:"http://10.2.22.237:8087/api/GetServiceApiResult",type:"post",data:{
+	"Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\"Singapore\",\"CheckInDate\":\"2015-12-13T00:00:00\",\"CheckOutDate\":\"2015-12-21T00:00:00\",\"NumRoom\":1,\"NumAdult\":1,\"NumChild\":1,\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20}",
+	"Code": "0007",
+	"ForeEndType": 3
+},success:function(str){
+	alert(str);
+},error:function(){
+	alert('交互失败');
+}});
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
