@@ -149,7 +149,7 @@
     border-bottom: 1px solid #dedede;
 }
 .nav2-center input{
-    width: 80px;
+    width: 85px;
     /*border: 1px solid red;*/
     line-height: 45px;
     margin-left: 10px;
@@ -320,6 +320,7 @@
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     width: 100%;
     color: #fff;
+    font-size: 18px;
     height: 44px;
     line-height: 44px;
     min-width: 60px;
@@ -452,7 +453,7 @@
     /*border: 1px solid black;*/
 }
 .ull .sss1 span{
-    font-size: 16.5px
+    font-size: 15px
 }
 .sss1 span b{
     font-size: 10px;
@@ -461,10 +462,11 @@
 }
 .sss2{
     line-height: 25px;
-    font-size: 11px;
+    font-size: 12px;
     color: #000;
 }
 .sss3{
+    /*border: 1px solid red;*/
     line-height: 15px;
     font-size: 11px;
     color: #999;
@@ -474,8 +476,42 @@
     color: #999;
     line-height: 15px;
 }
-
-
+.ww{
+    width: 65px;
+    height: 25px;
+    border: 1px solid #FFB413;
+    border-radius: 4px;
+    background-color: #FFF;
+    line-height: 25px;
+    text-align: center;
+    font-size: 12px;
+    color: #FFB413;
+    position: absolute;
+    right: 0px;
+    top: 30px;
+    padding-left: 0px!important;
+}
+.span3{
+    float: right;
+    line-height: 15px;
+    color: #fe6a00;
+    font-size: 12px;
+}
+.www{
+    width: 65px;
+    height: 25px;
+    border: 1px solid #FFB413;
+    background: #FFB413;
+    border-radius: 4px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 12px;
+    color: #FFFFFF;
+    position: absolute;
+    right: 0px;
+    top: 30px;
+    padding-left: 0px!important;
+}
 /*hotel-details*/
 
 
@@ -681,7 +717,7 @@
     color: #484848;
 }
 .bookinfo2-2 span{
-    color: #000;
+    color: #484848;
     display: block;
     font-size: 11px;
 }
@@ -768,14 +804,3 @@
     margin-left: 11px;
     float: left;
 }
-
-
-
-#cd_date{
-	display:none;
-}
-
-
-
-
-
