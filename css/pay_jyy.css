@@ -1,4 +1,4 @@
-*{margin:0px;padding:0px;}
+*{margin:0;padding:0;}
 html{
     font-size: 62.5%;
 }
@@ -7,15 +7,15 @@ a{
 }
 .top{
     width:100%;height:45px;
-    display: flex;
     padding:1px;
+    position: fixed;
     background-color:#19415e;}
 .top h3{
-    color:#ffffff;
-    margin: 0 auto;
-    text-align:center;
-    line-height:45px;
-    margin-bottom:0;
+    color: #ffffff;
+    font-size:17px;
+    text-align: center;
+    line-height: 45px;
+    margin-bottom: 0;
 }
 .icons{
     background-image: url(../images/ui/icons.png);
@@ -24,20 +24,16 @@ a{
     display:inline-block;
 }
 .header-back{
+    position: absolute;
     width:12px;
     height:22px;
     margin-left:15px;
     margin-top:10px;
 }
-h3{
-    font-size:17px;
-    margin-bottom:10px;
-    font-weight:700;
-    color:#212935
-}
 .p-price{
     width: 100%;
     height:61px;
+    margin-top: 45px;
     padding: 1px;
     background-color: #55bfb7;
     color:white;
@@ -65,7 +61,7 @@ h3{
 .p-ul1{
     width: 100%;
     margin-top: 15px;
-    list-style-type: none;
+
 }
 .p-p2{
     width:25%;
@@ -75,6 +71,7 @@ h3{
 }
 .p-li2{
     width: 25%;
+    list-style-type: none;
     float: left;
     margin-left: 20px;
     margin-bottom: 10px;
@@ -154,6 +151,7 @@ h3{
     margin-top: 25px;
     background-color: #fdb330;
     text-align: center;
+    line-height: 45px;
     color: white;
     font-size: 1.8em;
 }
