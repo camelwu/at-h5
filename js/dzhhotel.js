@@ -22,9 +22,24 @@ function Yes(){
 
 
 function fun1(num){
-    num.parentNode.children[0].value++;
+    if( num.parentNode.children[0].value<10){
+        num.parentNode.children[0].value++;
+    }else{
+        return false;
+    }
 }
 function fun2(num){
+    if(num.parentNode.children[0].value>1){
+        num.parentNode.children[0].value--;
+    }else{
+        return false;
+    }
+}
+
+function fun7(num){
+    num.parentNode.children[0].value++;
+}
+function fun6(num){
     if(num.parentNode.children[0].value>1){
         num.parentNode.children[0].value--;
     }else{
