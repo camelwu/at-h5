@@ -27,24 +27,32 @@
 (function(){
     //最大字数设置
     function maxWord(str){
-        var arr=str.split(' ');
-        var arr2=[];
-        if(arr.length>=67){
-            for(var i=0;i<67;i++){
-                arr2.push(arr[i]);
-                if(i==66){
-                    arr2.push('...');
-                }
-            }
-            return arr2.join(' ');
+        var n=count(str).n;
+        var a=count(str).a;
+        var len=n;
+        if(len>=110){
+            return str.substring(0,a)+'...';
         }else{
             return str;
         }
     }
     //统计字数
     function count(str){
-        var arr=str.split(' ');
-        return arr.length;
+        var result={};
+        var adress=110;
+        var num=0;
+        for(var i=0;i<str.length;i++){
+            if(str.charCodeAt(i)>=0x4e00&&str.charCodeAt(i)<=0x9fa5){
+                num+=3;
+            }else{
+                num+=1;
+            }
+            if(num<=adress){
+                result.a=i;
+            }
+        }
+        result.n=num;
+        return result;
     }
     //交互部分
     function M(json){
@@ -69,7 +77,7 @@
     function V(data){
         if(!data)return;
         var comments=data[0].ReviewCommentsList;
-        console.log(data);
+        //console.log(data);
         var str1='<section>'+
             '<p>设施<i>'+data[0].ReviewRatingsList[0].ScoringScaleID+'</i>分</p>'+
             '<p class="lsf_gra_p2">客房<i>'+data[0].ReviewRatingsList[1].ScoringScaleID+'</i>分</p>'+
@@ -101,11 +109,11 @@
                 '<ol class="clearfix fr lsf_reSta">'+str3+
                 '</ol>'+
                 '</div>'+
-                '<p class="clearfix comments">'+maxWord(comments[i].Comments)+
+                '<p class="clearfix comments"><span>'+maxWord(comments[i].Comments)+'</span>'+
                 '<i class="fr drop_down"></i>'+
                 '</p>'+
                 '<div class="lsf_reUser">'+
-                '<span class="clearfix"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl"><img src="images/i_34-03.jpg" /></i></span>'+
+                '<span class="clearfix"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
                 '<span class="clearfix"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
                 '</div>'+
                 '</div>';
@@ -114,11 +122,13 @@
         lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
         var coms=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'comments');
         var drop_downs=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'drop_down');
-        if(count(coms[coms.length-1].innerHTML)<=67){
+        if(count(coms[coms.length-1].innerHTML).n<=110){
             drop_downs[drop_downs.length-1].style.display='none';
         }
     }
 })();
+
+
 (function(){
     $(window).load(function () {
         //$("#status").fadeOut();

@@ -4,8 +4,6 @@ html {
 body{
     overflow-x:hidden;
 }
-
-
 #preloader {
     position:fixed;
     z-index:2500;
@@ -66,15 +64,15 @@ header,section,footer{
 }
 header{
     width:100%;
-    height:4.4rem;background:#163852;line-height:4.4rem;padding:0 1.5rem;	font-size:1.75rem;color:#fff;text-align:center;
+    height:45px;background:#163852;line-height:45px;padding:0 1.5rem;	font-size:1.75rem;color:#fff;text-align:center;
 
 }
 header i{
-    width:1.25rem;height:2rem;	background:url(../images/icons.png) 0 0;background-size:24.3rem 16rem;margin-top:1.2rem;
+    width:1.25rem;height:2rem;	background:url(../images/icons.png) 0 0;background-size:24.3rem 16rem;margin-top:1rem;
 
 }
 .lsf_reAll_grade{
-    width:100%;height:4.5rem;border-bottom:1px dashed #dedede;line-height:4.5rem;padding:0 1.5rem;font-size:1.2rem;color:#999999;
+    width:100%;height:45px;border-bottom:1px dashed #dedede;line-height:45px;padding:0 1.5rem;font-size:1.2rem;color:#999999;
 }
 .lsf_reAll_grade .lsf_grade1{
     font-size:1.5rem;color:#55bfb7;
@@ -97,7 +95,7 @@ header i{
     flex:1;
 
     border-right:1px dashed #dedede;
-    font-size:1.1rem;
+    font-size:1.2rem;
     color:#484848;
     padding:0 1.5rem;
 }
@@ -125,7 +123,7 @@ header i{
     margin-left:0.8rem;font-weight:bold;
 }
 .lsf_reSta{
-    width: 7rem;height:1.4rem;
+    width: 85px;height:14px;margin-top:3px;
 }
 .lsf_reSta li{
     width:1.2rem;height:1.2rem;line-height:1.1rem;margin:0px 1px;background:url(../images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;
@@ -135,10 +133,31 @@ header i{
 }
 .lsf_reDiscuss p{
     font-size:1.2rem;line-height:1.5rem;
-    padding-top: 1rem;;color:#999999;
+    padding-top:1rem;color:#999999;
+}
+.comments{
+    display:-webkit-box;
+    display:-moz-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    position:relative;
+}
+.comments span {
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    -webkit-flex:1;
+    -ms-flex:1;
+    flex:1;
+    display:block;
+    margin-right:1.5rem;
+}
+.comments i{
+
 }
 .lsf_reDiscuss p i{
     width:1.5rem;height:1.5rem;background:url(../images/ui/icons.png) -16.9rem -0.5rem;background-size:24.3rem 16rem;margin-bottom:0;cursor:pointer;
+    position:absolute;bottom:0;right:0;
 }
 .lsf_reUser{
     width:100%;
@@ -146,6 +165,7 @@ header i{
     display:-moz-box;
     display:-ms-flexbox;
     display:flex;
+    margin-top:0.6rem;
 }
 .lsf_reUser span{
     -webkit-box-flex:1;
@@ -155,11 +175,10 @@ header i{
     flex:1;
     font-size:1.1rem;
     color:#484848;
-    line-height:2rem;
+
 }
 .lsf_reUser span i{
-    width: 1rem;height:1rem;border-radius:50%;margin-top:0.3rem;
-    margin-left: 0.4rem;overflow:hidden;
+    margin-left: 0.4rem;
 }
 .lsf_reUser span i img{
     width:1rem;height:1rem;
