@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -7,135 +7,21 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="green">
 <meta name="Keywords" content="亚洲旅行网">
 <meta name="Description" content="境外专业旅行服务提供机构">
-<link href="styles/lsf_base.css"	rel="stylesheet" type="text/css">
-<style>
-	html {
-		font-size:62.5%;
-	}
-	body{
-		overflow-x:hidden;		
-	}
-	.all_elements{
-		position:absolute;
-		overflow-x:hidden!important;
-		width:100%;
-		height:100%;
-		min-height:100%;
-		max-height:100%;
-	}
-	header,section,footer{
-		-webkit-box-sizing:border-box;
-		-moz-box-sizing:border-box;
-		-ms-box-sizing:border-box;
-		-o-box-sizing:border-box;
-		box-sizing:border-box;
-	}
-	header{
-		width:100%;
-		height:4.4rem;background:#163852;line-height:4.4rem;padding:0 1.5rem;	font-size:1.75rem;color:#fff;text-align:center;
-
-	}
-	header i{
-		width:1.25rem;height:2rem;	background:url(images/icons.png) 0 0;background-size:24.3rem 16rem;margin-top:1.2rem;
-
-	}
-	.lsf_reAll_grade{
-		width:100%;height:4.5rem;border-bottom:1px dashed #dedede;line-height:4.5rem;padding:0 1.5rem;font-size:1.2rem;color:#999999;
-	}
-	.lsf_reAll_grade .lsf_grade1{
-		font-size:1.5rem;color:#55bfb7;		
-	}
-	.lsf_reDetail_grade{
-		width:100%;
-		display:-webkit-box;
-		display:-moz-box;
-		display:-ms-flexbox;
-		display:-webkit-flex;
-		display:flex;
-		border-bottom:1px solid #dedede;
-		padding:1rem 0;
-	}
-	.lsf_reDetail_grade section{
-		-webkit-box-flex:1;
-		-moz-box-flex:1;
-		-webkit-flex:1;
-		-ms-flex:1;
-		flex:1;
-
-		border-right:1px dashed #dedede;
-		font-size:1.1rem;
-		color:#484848;
-		padding:0 1.5rem;
-	}
-	.lsf_reDetail_grade section p{
-		line-height:1.3rem;
-	}
-	.lsf_reDetail_grade .last_sec{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		border:0;
-	}
-	.lsf_reDiscuss{
-		width:100%;
-	}
-	.lsf_reDiscuss .reBox{
-		border-bottom:1px solid #dedede;	
-		padding:1rem 1.5rem 0.5rem;
-	}
-	.lsf_reDetail_grade span{
-		-webkit-box-flex:1;
-		flex:1;
-	}
-	.lsf_reDetail_grade span i{
-		margin-left:0.8rem;font-weight:bold;
-	}
-	.lsf_reSta{
-		width: 7rem;height:1.4rem;
-	}
-	.lsf_reSta li{
-		width:1.2rem;height:1.2rem;line-height:1.1rem;margin:0px 1px;background:url(images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;
-	}
-	.lsf_reTitle h2{
-		height: 1.5rem;font-size:1.4rem;color:black;	font-weight:normal;
-	}
-	.lsf_reDiscuss p{
-		max-height:5.5rem;font-size:1.2rem;line-height:1.5rem;
-		padding-top: 0.75rem;;color:#999999;
-	}
-	.lsf_reDiscuss p i{
-		width:1.5rem;height:1.5rem;background:url(images/ui/icons.png) -16.9rem -0.5rem;background-size:24.3rem 16rem;margin-bottom:0;cursor:pointer;
-	}
-	.lsf_reUser{
-		width:100%;
-		display:-webkit-box;
-		display:-moz-box;
-		display:-ms-flexbox;
-		display:flex;
-	}
-	.lsf_reUser span{
-		-webkit-box-flex:1;
-		-moz-box-flex:1;
-		-mz-flex:1;
-		-webkit-flex:1;
-		flex:1;
-		font-size:1.1rem;
-		color:#484848;
-		line-height:2rem;
-	}
-	.lsf_reUser span i{
-		width: 1rem;height:1rem;border-radius:50%;margin-top:0.3rem;
-		margin-left: 0.4rem;overflow:hidden;
-	}
-	.lsf_reUser span i img{
-		width:1rem;height:1rem;
-	}
-</style>
-<script>
-
-</script>
+<link href="styles/lsf_base.css"	rel="stylesheet" type="text/css" />
+	<link href="styles/lsf_hotelReviews.css" rel="stylesheet" type="text/css" />
 <title>首页 - 亚洲旅行网</title>
 
 
 </head>
 <body>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            Loading ...
+            <em>Loading depends on your connection speed!</em>
+        </p>
+    </div>
+</div>
 <div class="all_elements">
 <header class="clearfix"><i class="fl"></i>酒店点评</header>
 <section class="lsf_reAll_grade clearfix">
@@ -143,22 +29,22 @@
     <i class="fl">分/</i>
     <span class="fl">835人点评</span>
 </section>
-<section class="lsf_reDetail_grade">
-	<section>
+<section class="lsf_reDetail_grade" id="lsf_reDetail_grade">
+	<!--<section>
     	<p>设施<i>3.7</i>分</p>
-    	<p>客房<i>3.7</i>分</p>
+    	<p class="lsf_gra_p2">客房<i>3.7</i>分</p>
     </section>
 	<section>
     	<p>地点<i>3.7</i>分</p>
-    	<p>服务<i>3.7</i>分</p>
+    	<p class="lsf_gra_p2">服务<i>3.7</i>分</p>
     </section>
     <section class="last_sec">
     	<p>清洁度<i>3.7</i>分</p>
-    	<p>物有值<i>3.7</i>分</p>
-    </section>
+    	<p class="lsf_gra_p2">物有值<i>3.7</i>分</p>
+    </section>-->
 </section>
 <section class="lsf_reDiscuss" id="lsf_reDiscuss">
-	<div class="reBox">
+	<!--<div class="reBox">
         <div class="clearfix lsf_reTitle">
             <h2 class="fl">床品蛮不错，睡得很舒服</h2>
             <ol class="clearfix fr lsf_reSta">
@@ -169,75 +55,19 @@
                 <li class="fl"></li>
             </ol>
         </div>
-        <p class="clearfix">
+        <p class="clearfix comments">
             房间不是很大，行李箱打开就没地方可以走了，但是整体环境很干净简洁。浴室是干湿分离的，而且除了牙膏牙刷其他盥洗用品都有提供。房间还附有...
-            <i class="fr"></i>
+            <i class="fr" class="drop_down"></i>
         </p>
         <div class="lsf_reUser">
         	<span class="clearfix"><b class="fl">TimorTravels</b><i class="fl"><img src="images/i_34-03.jpg" /></i></span>
             <span class="clearfix"><em class="fr">2015-12-01</em></span>
         </div>
-    </div>
-    <div class="reBox">
-        <div class="clearfix lsf_reTitle">
-            <h2 class="fl">床品蛮不错，睡得很舒服</h2>
-            <ol class="clearfix fr lsf_reSta">
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-            </ol>
-        </div>
-        <p class="clearfix">
-            房间不是很大，行李箱打开就没地方可以走了，但是整体环境很干净简洁。浴室是干湿分离的，而且除了牙膏牙刷其他盥洗用品都有提供。房间还附有...
-            <i class="fr"></i>
-        </p>
-        <div class="lsf_reUser">
-        	<span class="clearfix"><b class="fl">TimorTravels</b><i class="fl"><img src="images/i_34-03.jpg" /></i></span>
-            <span class="clearfix"><em class="fr">2015-12-01</em></span>
-        </div>
-    </div><div class="reBox">
-        <div class="clearfix lsf_reTitle">
-            <h2 class="fl">床品蛮不错，睡得很舒服</h2>
-            <ol class="clearfix fr lsf_reSta">
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-            </ol>
-        </div>
-        <p class="clearfix">
-            房间不是很大，行李箱打开就没地方可以走了，但是整体环境很干净简洁。浴室是干湿分离的，而且除了牙膏牙刷其他盥洗用品都有提供。房间还附有...
-            <i class="fr"></i>
-        </p>
-        <div class="lsf_reUser">
-        	<span class="clearfix"><b class="fl">TimorTravels</b><i class="fl"><img src="images/i_34-03.jpg" /></i></span>
-            <span class="clearfix"><em class="fr">2015-12-01</em></span>
-        </div>
-    </div>
-    <div class="reBox">
-        <div class="clearfix lsf_reTitle">
-            <h2 class="fl">床品蛮不错，睡得很舒服</h2>
-            <ol class="clearfix fr lsf_reSta">
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-                <li class="fl"></li>
-            </ol>
-        </div>
-        <p class="clearfix">
-            房间不是很大，行李箱打开就没地方可以走了，但是整体环境很干净简洁。浴室是干湿分离的，而且除了牙膏牙刷其他盥洗用品都有提供。房间还附有...
-            <i class="fr"></i>
-        </p>
-        <div class="lsf_reUser">
-        	<span class="clearfix"><b class="fl">TimorTravels</b><i class="fl"><img src="images/i_34-03.jpg" /></i></span>
-            <span class="clearfix"><em class="fr">2015-12-01</em></span>
-        </div>
-    </div>
+    </div>-->
 </section>
 </div>
 </body>
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/vcm.js"></script>
+<script src="js/lsf_hotelReviews.js"></script>
 </html>
