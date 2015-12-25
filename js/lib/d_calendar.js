@@ -294,6 +294,7 @@ Calender.prototype = {
     	}
 		tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
     	that.removeDate();
+    	that.header.parentNode.removeChild(that.header);
     },
 	linkReset:function(ele){
 		var that = this,
@@ -339,7 +340,6 @@ Calender.prototype = {
             event = event || window.event;
             var target = event.target || event.srcElement;
             if(target.className.indexOf("header-back")>-1){
-            	that.header.parentNode.removeChild(that.header);
             	that.removeDate();
             }
         });
