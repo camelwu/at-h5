@@ -4,6 +4,7 @@ function h_l_s(){
         sli1 = [],
         sli2 = [],
         lb = [];
+    var mb;
     function _(s){
         return document.getElementById(s);
     }
@@ -16,21 +17,62 @@ function h_l_s(){
     var s_but = _("s_but");
     var l_but = _("l_but");
     function show(obj){
-        var mb=document.getElementById("r-mb");
+        mb=document.getElementById("r-mb");
         mb.style.display="block";
         obj.style.bottom="0";
         obj.style.transition="all 350ms";
     }
     function close(obj){
-        var mb=document.getElementById("r-mb");
+        mb=document.getElementById("r-mb");
         mb.style.display="none";
         obj.style.bottom=-350+'px';
         obj.style.transition="all 350ms";
     }
-    /*   �Ƶ�ɸѡ   */
-    function select(){
+    function mb_close(){
+        mb=document.getElementById("r-mb");
+        mb.style.display="none";
+        if(rank.style.display==""||rank.style.display=="block"){
+            rank.style.bottom=-350+'px';
+            rank.style.transition="all 350ms";
+        }if(screen.style.display==""||screen.style.display=="block"){
+            screen.style.bottom=-350+'px';
+            screen.style.transition="all 350ms";
+        }if(location.style.display==""||location.style.display=="block"){
+            location.style.bottom=-350+'px';
+            location.style.transition="all 350ms";
+        }
+    }
+    /*   酒店筛选  */
+    function selectType(){
         var obj = window.event.srcElement;
         var oName = obj.className;
+        var array = [];
+        if(obj.innerHTML == "不限"){
+            array = document.getElementById("h-type").childNodes;
+            for(var i=1;i<array.length;i++){
+                array[i].className = "s-li";
+            }
+        }if(obj.innerHTML != "不限"){
+            document.getElementById("h-type").firstElementChild.className = "s-li";
+        }
+        if(oName == "s-li"){
+            obj.className = "s-li1";
+        }else{
+            obj.className = "s-li";
+        }
+    }
+    function selectLevel(){
+        var obj = window.event.srcElement;
+        var oName = obj.className;
+        var array = [];
+        if(obj.innerHTML == "不限"){
+            array = document.getElementById("h-level").childNodes;
+            for(var i=1;i<array.length;i++){
+                array[i].className = "s-li";
+            }
+        }if(obj.innerHTML != "不限"){
+            document.getElementById("h-level").firstElementChild.className = "s-li";
+        }
         if(oName == "s-li"){
             obj.className = "s-li1";
         }else{
@@ -40,6 +82,7 @@ function h_l_s(){
     function openClick(obj1,obj2){
         obj1.onclick = function(){
             show(obj2);
+            mb.addEventListener("click",mb_close);
         }
     }
     function closeClick(obj1,obj2){
@@ -48,15 +91,14 @@ function h_l_s(){
         }
     }
     this.init=function(s){
-
         //insert
         sli1 = document.getElementById("h-level").childNodes;
         for(var j=0;j < sli1.length;j++){
-            sli1[j].addEventListener("click",select);
+            sli1[j].addEventListener("click",selectLevel);
         }
         sli2 = document.getElementById("h-type").childNodes;
         for(var k=0;k < sli2.length;k++){
-            sli2[k].addEventListener("click",select);
+            sli2[k].addEventListener("click",selectType);
         }
         rli = document.getElementsByClassName("r-li");
         for(var i=0;i < rli.length;i++){
@@ -73,7 +115,7 @@ function h_l_s(){
     openClick(fo_lo,location);
     closeClick(s_but,screen);
     closeClick(l_but,location);
-    /*   ����ѡ��   */
+    /*   排序筛选   */
     function selectRank(){
         var obj = window.event.srcElement;
         var rank=document.getElementById("rank");
@@ -100,10 +142,20 @@ function h_l_s(){
             rank.style.transition="all 350ms";
         }
     }
-    /*   λ��ѡ��   */
+    /*   位置筛选  */
     function selectLocation(){
         var obj = window.event.srcElement;
+        var p = obj.firstElementChild;
         var b = obj.lastElementChild;
+        var array = [];
+        array = document.getElementsByClassName("l-li");
+        if(p.innerHTML == "不限"){
+            for(var i=1;i < array.length;i++){
+                array[i].lastElementChild.className = "l-icon";
+            }
+        }if(p.innerHTML != "不限"){
+            document.getElementById("l-ul").firstElementChild.lastElementChild.className = "l-icon";
+        }
         if(b.className == "l-icon"){
             b.className = "l-icon1";
         }else{
@@ -111,78 +163,6 @@ function h_l_s(){
         }
     }
 }
-
-//window.onload = function(){
-//    sli1 = document.getElementById("h-level").childNodes;
-//    for(var j=0;j < sli1.length;j++){
-//        sli1[j].addEventListener("click",selectLevel);
-//    }
-//    sli2 = document.getElementById("h-type").childNodes;
-//    for(var k=0;k < sli2.length;k++){
-//        sli2[k].addEventListener("click",selectType);
-//    }
-//    rli = document.getElementsByClassName("r-li");
-//    for(var i=0;i < rli.length;i++){
-//        rli[i].addEventListener("click",selectRank);
-//    }
-//    lb = document.getElementById("l-ul").getElementsByTagName("b");
-//    for(var r=0;r < lb.length;r++){
-//        lb[r].addEventListener("click",selectLocation);
-//    }
-//    function show(obj){
-//        var mb=document.getElementById("r-mb");
-//        mb.style.display="block";
-//        obj.style.bottom="0";
-//        obj.style.transition="all 1s";
-//    }
-//    function close(obj){
-//        var mb=document.getElementById("r-mb");
-//        mb.style.display="none";
-//        obj.style.bottom=-350+'px';
-//        obj.style.transition="all 1s";
-//    }
-//    function select(obj){
-//        var obj1 = window.event.srcElement;
-//        var oName = obj1.className;
-//        if(oName == "s-li"){
-//            for(var i=0;i<obj.length;i++){
-//                if(obj[i].className == "s-li1"){
-//                    obj[i].className = "s-li";
-//                }
-//            }
-//            obj1.className = "s-li1";
-//        }
-//    }
-//    function openClick(obj1,obj2){
-//        obj1.onclick = function(){
-//            show(obj2);
-//        }
-//    }
-//    function closeClick(obj1,obj2){
-//        obj1.onclick = function(){
-//            close(obj2);
-//        }
-//    }
-//    function selectLevel(){
-//        select(sli1);
-//    }
-//    function selectType(){
-//        select(sli2);
-//    }
-//    var rank=document.getElementById("rank");
-//    var screen=document.getElementById("screen");
-//    var location=document.getElementById("location");
-//    var fo_ra = document.getElementById("fo_ra");
-//    var fo_sc = document.getElementById("fo_sc");
-//    var fo_lo = document.getElementById("fo_lo");
-//    var s_but = document.getElementById("s_but");
-//    var l_but = document.getElementById("l_but");
-//    openClick(fo_ra,rank);
-//    openClick(fo_sc,screen);
-//    openClick(fo_lo,location);
-//    closeClick(s_but,screen);
-//    closeClick(l_but,location);
-//};
 
 
 

@@ -4,8 +4,6 @@ html {
 body{
     overflow-x:hidden;
 }
-
-
 #preloader {
     position:fixed;
     z-index:2500;
