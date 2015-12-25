@@ -36,7 +36,16 @@ _CalF = {
         var scrollx = document.documentElement.scrollLeft || document.body.scrollLeft,
                 scrollt = document.documentElement.scrollTop || document.body.scrollTop;
         pos = node.getBoundingClientRect();
-        return {top:0, right:0, bottom:0, left:0 }
+        return {top:pos.top + scrollt, right:pos.right + scrollx, bottom:pos.bottom + scrollt, left:pos.left + scrollx }
+    },
+    // 添加样式名
+    addClass:function(c,node){
+        node.className = node.className + ' ' + c;
+    },
+    // 移除样式名
+    removeClass:function(c,node){
+        var reg = new RegExp("(^|\\s+)" + c + "(\\s+|$)","g");
+        node.className = node.className.replace(reg, '');
     },
     // 阻止冒泡
     stopPropagation:function(event){
@@ -44,7 +53,11 @@ _CalF = {
         event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
     }
 };
-
+/**
+ * @name Calender
+ * @constructor
+ * @created by wusong
+ * */
 function Calender() {
 	if(!arguments.length)return;
     this.initialize.apply(this, arguments);
@@ -61,11 +74,8 @@ Calender.prototype = {
         '<span class="prevmonth">prevmonth</span>',
         '<span class="nextmonth">nextmonth</span>',
     ],
-    // 模板数组
-    _template :[
+    _tempweek:[
         '<dl>',
-        '<dt class="title-date">',
-        '</dt>',
         '<dt class="date_title">日</dt>',
         '<dt class="date_title">一</dt>',
         '<dt class="date_title">二</dt>',
@@ -73,6 +83,13 @@ Calender.prototype = {
         '<dt class="date_title">四</dt>',
         '<dt class="date_title">五</dt>',
         '<dt class="date_title">六</dt>',
+        '</dl>'
+    ],
+    // 模板数组
+    _template :[
+        '<dl>',
+        '<dt class="title-date">',
+        '</dt>',
         '<dd></dd>',
         '</dl>'],
     // 初始化对象
@@ -83,43 +100,54 @@ Calender.prototype = {
         this.op = 0;//已操作次数
         this.input = _CalF.$('#'+ this.id); // 获取INPUT元素
 		this.inputEvent(); // input的事件绑定，获取焦点事件
+        this.outClick(); // 区域外事件绑定
     },
     // 创建日期最外层盒子，并设置盒子的绝对定位
     createContainer:function(odate){
-        var pdiv = _CalF.$('#'+ this.id);
-        var odiv = _CalF.$('#'+ this.id +'-date');
+        // 如果存在，则移除整个日期层Container
+        var odiv = _CalF.$('#'+ this.id + '-date');
         if(!!odiv) odiv.parentNode.removeChild(odiv);
         var container = this.container = document.createElement('div');
         container.id = this.id + '-date';
+        container.style.position = "absolute";
+        container.style.zIndex = 98;
         if(this.input.tagName === 'input'){
 	        //PC输入框
-	        container.style.position = "relative";
-	        container.zIndex = 999;
 	        var inputPos = _CalF.getPos(this.input);
 	        // 根据input的位置设置container高度
 	        container.style.left = inputPos.left + 'px';
 	        container.style.top = inputPos.bottom - 1 + 'px';
         	// 设置日期层上的单击事件，仅供阻止冒泡，用途在日期层外单击关闭日期层
-        	_CalF.bind(container, 'click', _CalF.stopPropagation);
-        	document.body.appendChild(container);
+        	_CalF.bind(container, 'click', this.stopPropagation);
+        	
         }else{
 			//M站层
-			container.style.marginTop = '45px';
-			container.style.marginBottom = '68px';
-			pdiv.style.zIndex = 999;
-	        pdiv.style.overflow = 'auto';
-	        pdiv.style.width = pdiv.style.height = '100%';
-	        pdiv.style.left = '0';
-	        pdiv.style.top = '0';
-	        pdiv.appendChild(container);
+			container.style.background = "#f5f4f9";
+	        container.style.overflow = 'auto';
+	        container.style.width = container.style.height = '100%';
+	        container.style.left = '0';
+	        container.style.top = '0';
+			container.style.paddingBottom = '118px';
+	        //
+	        var header = this.header = document.createElement('div');
+	        header.id = this.id+"-header";
+	        header.className = 'header';
+	        header.innerHTML = '<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3>';
+	        document.body.appendChild(header);
+	        
+	        var weeker = document.createElement('div');
+        	weeker.className = 'calendar';
+        	weeker.style.marginTop = '45px';
+        	weeker.innerHTML = this._tempweek.join('');
+	        container.appendChild(weeker);
+	        
 	        var tiper = this.tiper = document.createElement('div');
 	        tiper.id = this.id + '-tiper';
 	        tiper.className = 'tipers';
-	        
 	        tiper.innerHTML = "请选择入住日期";
 	        container.appendChild(tiper);
         }
-        //
+        document.body.appendChild(container);
     },
     // 渲染日期
     drawDate:function (odate) { // 参数 odate 为日期对象格式
@@ -128,47 +156,17 @@ Calender.prototype = {
         this.dateWarp = dateWarp = document.createElement('div');
         dateWarp.className = 'calendar';
         dateWarp.innerHTML = this._template.join('');
-        
         this.year = year = odate.getFullYear();
         this.month = month = odate.getMonth()+1;
         this.date = date = odate.getDate();
         this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
-        //price = this.price;
 		tims = this.time;
-		// 是否显示SELECT
-        if(this.isSelect){
-            var selectHtmls =[];
-            selectHtmls.push('<select>');
-            for(i = 2020;i>1970;i--){
-                if(i != this.year){
-                    selectHtmls.push('<option value ="'+ i +'">'+ i +'</option>');
-                }else{
-                    selectHtmls.push('<option value ="'+ i +'" selected>'+ i +'</option>');
-                }
-            }
-            selectHtmls.push('</select>');
-            selectHtmls.push('年');
-            selectHtmls.push('<select>');
-            for(i = 1;i<13;i++){
-                if(i != this.month){
-                    selectHtmls.push('<option value ="'+ i +'">'+ i +'</option>');
-                }else{
-                    selectHtmls.push('<option value ="'+ i +'" selected>'+ i +'</option>');
-                }
-            }
-            selectHtmls.push('</select>');
-            selectHtmls.push('月');
-            titleDate.innerHTML = selectHtmls.join('');
-            // 绑定change事件
-            this.selectChange();
-        }else{
-            textNode = document.createTextNode(year + '年' + month + '月');
-            titleDate.appendChild(textNode);
-            //this.btnEvent();
-        }
+		textNode = document.createTextNode(year + '年' + month + '月');
+		titleDate.appendChild(textNode);
+		//this.btnEvent();
 
         // 获取模板中唯一的DD元素
-        this.dd = dd = _CalF.$('dd',dateWarp)[0];
+        dd = _CalF.$('dd',dateWarp)[0];
         // 获取本月天数
         days = new Date(year, month, 0).getDate();
         // 获取本月第一天是星期几
@@ -180,7 +178,7 @@ Calender.prototype = {
         // 循环显示日期
         for (i = 1; i <= days; i++) {
             if (year < nowyear) {
-                ddHtml.push('<a class="live disabled">' + i + '</a>');
+                ddHtml.push('<a class="disabled">' + i + '</a>');
             } else if (year == nowyear) {
                 if (month < nowmonth + 1) {
                     ddHtml.push('<a class="live disabled">' + i + '</a>');
@@ -195,7 +193,7 @@ Calender.prototype = {
 						}else{
 							pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
 						}
-						i == nowdate?ddHtml.push('<a class="live">今天</a>'):ddHtml.push(pstr);
+						i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
 					}
                 } else if (month == nowmonth + 2) {
 					m=month<10?'0'+month:month;
@@ -214,49 +212,15 @@ Calender.prototype = {
             }
         }
         dd.innerHTML = ddHtml.join('');
-        if(!this.num==1){
-        	// 如果存在，则先移除
-        	this.removeDate();
-        }
+        
         // 添加
         this.container.appendChild(dateWarp);
         //IE6 select遮罩
         var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
         if(ie6) dateWarp.appendChild(this.createIframe());
-
         // A link事件绑定
         this.linkOn();
-        // 区域外事件绑定
-       
     },
-	in_Obj:function(needle,array,bool){
-		if(typeof needle=="string"||typeof needle=="number"){  
-			var len=array.length;  
-			for(var i=0;i<len;i++){  
-				if(needle==array[i]){  
-					if(bool){  
-						return i;  
-					}  
-					return true;  
-				}  
-			}  
-			return false;
-		}
-	},
-	in_Array:function(needle,array,bool){
-		if(typeof needle=="string"||typeof needle=="number"){  
-			var len=array.length;  
-			for(var i=0;i<len;i++){  
-				if(needle==array[i]){  
-					if(bool){  
-						return i;  
-					}  
-					return true;  
-				}  
-			}  
-			return false;  
-		}
-	},
     createIframe:function(){
         var myIframe =  document.createElement('iframe');
         myIframe.src = 'about:blank';
@@ -269,100 +233,88 @@ Calender.prototype = {
         myIframe.style.width = this.container.offsetWidth + 'px';
         myIframe.style.height = this.container.offsetHeight + 'px';
         return myIframe;
-
-    },
-	// SELECT CHANGE 事件
-    selectChange:function(){
-        var selects,yearSelect,monthSelect,that = this;
-        selects = _CalF.$('select',this.titleDate);
-        yearSelect = selects[0];
-        monthSelect = selects[1];
-        _CalF.bind(yearSelect, 'change',function(){
-            var year = yearSelect.value;
-            var month = monthSelect.value;
-            that.drawDate(new Date(year, month-1, that.date));
-        });
-        _CalF.bind(monthSelect, 'change',function(){
-            var year = yearSelect.value;
-            var month = monthSelect.value;
-            that.drawDate(new Date(year, month-1, that.date));
-        })
     },
     // 移除日期DIV.calendar
     removeDate:function(){
-        var odiv = _CalF.$('.calendar',this.container)[0];
-        if(!!odiv) this.container.removeChild(odiv);
+        var odiv = _CalF.$('#'+ this.id + '-date');
+        if(!!odiv) odiv.parentNode.removeChild(odiv);
     },
     // 上一月，下一月按钮事件
     btnEvent:function(){
-        var prevyear = _CalF.$('.prevyear',this.dateWarp)[0],
-                prevmonth = _CalF.$('.prevmonth',this.dateWarp)[0],
-                nextyear = _CalF.$('.nextyear',this.dateWarp)[0],
-                nextmonth = _CalF.$('.nextmonth',this.dateWarp)[0],
-                that = this;
-        prevyear.onclick = function(){
-            var idate = new Date(that.year-1, that.month-1, that.date);
-            that.drawDate(idate);
-        };
+        var that = this,
+        prevmonth = _CalF.$('.prevmonth',this.dateWarp)[0],
+		nextmonth = _CalF.$('.nextmonth',this.dateWarp)[0];
         prevmonth.onclick = function(){
             var idate = new Date(that.year, that.month-2,that.date);
-            that.drawDate(idate);
-        };
-        nextyear.onclick = function(){
-            var idate = new Date(that.year + 1,that.month - 1, that.date);
             that.drawDate(idate);
         };
         nextmonth.onclick = function(){
             var idate = new Date(that.year , that.month, that.date);
             that.drawDate(idate);
-        }
+        };
     },
     // A 的事件
     linkOn:function(){
         var links = _CalF.$('.live',this.dd),i,l=links.length,that=this;
         for(i = 0;i<l;i++){
             links[i].index = i;
-            links[i].onmouseover = function(){
-                $(this).addClass("on");
-            };
-            links[i].onmouseout = function(){
-                $(this).removeClass("on");
-            };
+            // links[i].onmouseover = function(){
+                // $(this).addClass("on");
+            // };
+            // links[i].onmouseout = function(){
+                // $(this).removeClass("on");
+            // };
             links[i].onclick = function(){
                 if(that.input.tagName === 'input'){
                 	$(this).css("border","1px solid #ff6a2f").css("z-index","9999999");
 					$(this).siblings().css("border","").css("z-index","");
 				}else{
-					if(that.op==0){
-						that.tiper.innerHTML = '请选择'+that._word.h[1]+'日期';
-						that.linkReset();$(this).html('<span class="live_circle">'+(this.index+1)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');
-						that.op++;
-					}else{
-						$(this).html('<span class="live_circle">'+(this.index+1)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');that.op>=1?that.op=0:null;
-						that.linkOver();
+					if(!(this.className.indexOf("disabled")>-1)){
+						if(that.op==0){
+							that.tiper.innerHTML = '请选择'+that._word.h[1]+'日期';
+							that.linkReset(this.index);
+							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');
+							that.op++;
+						}else{
+							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');that.op>=1?that.op=0:null;
+							that.linkOver();
+						}
 					}
 				}
-            }
+           };
         }
     },
     linkOver:function(){
     	var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
-    	for(i = 0;i<l;i++){
+		var out = _CalF.$('input',that.input);
+		var tal = _CalF.$('#total_day',that.input);
+    	for(i = 0;i<2;i++){
     		arr.push(sels[i].parentNode.getAttribute("data-day"));
+    		out[i].value = sels[i].parentNode.getAttribute("data-day");
     	}
-		this.result=arr;
-    	//alert(arr);
+		tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
+    	that.removeDate();
     },
-	linkReset:function(){
-		var that = this,ospan = $('#'+ that.id +'-date .live_circle'),l=ospan.length;
-		console.log(l);
-		if(that.op==0){  
+	linkReset:function(ele){
+		var that = this,
+		ospan = $('.live_circle'),
+		l=ospan.length,
+		links = _CalF.$('.live',this.dd),
+		len=links.length;
+		//console.log(ospan[1].parentNode);
+		if(that.op==0){
 			for(var i=0;i<l;i++){
 				var v = ospan[i].parentNode.getAttribute("data-day");
 				var a = v.split("-");
 				ospan[i].parentNode.innerHTML = a[a.length-1];
-			}  
-			return false;  
+			}
+			for(i=0;i<ele;i++){
+				_CalF.addClass("disabled",links[i]);
+			}
+			for(i=ele+30;i<len;i++){
+				_CalF.addClass("disabled",links[i]);
+			}
+			return false;
 		}
 	},
     // 表单的事件
@@ -372,11 +324,26 @@ Calender.prototype = {
         var nowY = date.getFullYear();
         var nowM = date.getMonth();
         var nowD = date.getDate();
-		that.createContainer();
-        for(var i=0;i<that.num;i++){
-        	var idate = new Date(nowY , nowM+i, nowD);
-        	that.drawDate(idate);
-        }
-		//that.createTips();
-    }   
+		_CalF.bind(this.input, 'click',function(){
+            that.createContainer();
+	        for(var i=0;i<that.num;i++){
+	        	var idate = new Date(nowY , nowM+i, nowD);
+	        	that.drawDate(idate);
+	        }
+		});
+    },
+    // 鼠标在对象区域外点击，移除日期层
+    outClick:function(){
+        var that = this;
+        _CalF.bind(document, 'click',function(event){
+            event = event || window.event;
+            var target = event.target || event.srcElement;
+            if(target.className.indexOf("header-back")>-1){
+            	that.header.parentNode.removeChild(that.header);
+            	that.removeDate();
+            }
+        });
+    }
 };
+
+// var myDate1 = new Calender({id:'j_Date1'});

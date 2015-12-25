@@ -182,7 +182,7 @@
                     break;
             };
         }
-        var cdDate=lsf_myweb.getbyid('cd_date');
+        //var cdDate=lsf_myweb.getbyid('cd_date');
         var checkIn=lsf_myweb.getbyid('CheckInDate');
         var checkOut=lsf_myweb.getbyid('CheckOutDate');
         var content2=lsf_myweb.getbyid('content2');
@@ -194,10 +194,14 @@
         var leaveDate=y+'-'+m+'-'+(d+4);
         checkIn.value=beginDate;
         checkOut.value=leaveDate;
-        content2.onclick=function() {
+var obj={};
+obj[beginDate]="入住";
+            obj[leaveDate]="离店";
+var myDate1 = new Calender({id: 'content2', num: 13, time: obj});
+        /*content2.onclick=function() {
             var obj={};
-            cdDate.style.display = 'block';
-            cdDate.style.background = '#fff';
+            // cdDate.style.display = 'block';
+            // cdDate.style.background = '#fff';
             obj[beginDate]="入住";
             obj[leaveDate]="离店";
             //var obj={"2015-12-24":"入住","2015-12-26":"离店"};
@@ -233,7 +237,7 @@
                     return;
                 }
                 lsf_myweb.getbyid('total_day').innerHTML=oDay;
-                cdDate.style.display = 'none';
+                //cdDate.style.display = 'none';
                 //if(spl(this.result[1])[2]<spl(this.result[0])[2]){
                 //    if(spl(this.result[1])[1]<spl(this.result[0])[1]){
                 //        if(spl(this.result[1])[0]<spl(this.result[0])[0]){
@@ -243,8 +247,8 @@
                 //}
 
             }
-            var arr = new calender2({id: 'cd_date', num: 13, time: obj});
-        };
+            var arr = new calender2({id: 'content2', num: 13, time: obj});
+        };*/
     })();
 
 </script>
