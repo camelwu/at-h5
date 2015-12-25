@@ -58,6 +58,38 @@ function fun4(num){
     }
 }
 
+function focus1(){
+    var input1=document.getElementById("input1");
+    input1.focus();
+    var input2=document.getElementById("input2");
+    input2.focus();
+}
+
+function focus2(){
+    var input3=document.getElementById("CheckInDate");
+    input3.focus();
+}
+function focus3(){
+    var input4=document.getElementById("CheckOutDate");
+    input4.focus();
+}
+function focus4(){
+   var count1=document.getElementById("count1");
+    count1.focus()
+}
+function focus5(){
+    var count2=document.getElementById("count2");
+    count2.focus()
+}
+function focus6(){
+    var count3=document.getElementById("count3");
+    count3.focus()
+}
+function focus7(){
+    var hotelname=document.getElementById("hotelname");
+    hotelname.focus()
+}
+
 window.onload=fun5()
 function fun5(){
     var input2=document.getElementById("input2");
