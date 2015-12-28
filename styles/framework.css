@@ -238,7 +238,7 @@ a{
 	width:100%;
 	height:100%;
 	background-color:rgba(0,0,0,0.5);
-	z-index:9999;
+	z-index:999;
 }
 
 .contenter{
@@ -3486,7 +3486,7 @@ a{
 .header{
 	position:fixed;
 	pointer-events:all;
-	z-index:999999;
+	z-index:99;
 	background: -webkit-linear-gradient(#16364f,#194361);
 	background: -o-linear-gradient(#16364f,#194361);
 	background: -moz-linear-gradient(#16364f,#194361);
@@ -4287,151 +4287,125 @@ ul.s_lists{
 
 /*Calendar*/
 
-.calendar{
-    margin-bottom:30px;
+.calendar {
+	font-family: Tahoma;
+	position: relative;
+	margin-bottom:0;
 }
 
-.calendar-titles a{
-    width:14.28%;
-    float:left;
-    text-align:center;
-    height:40px;
-    line-height:40px;
-    font-size:10px;
-    color:#1f1f1f;
-    font-weight:800;
+.calendar dt {
+	float: left;
+	width: 14.2%;
+	height:30px;
+	line-height:30px;
+	color:#484848;
+	text-align: center;
+}
+	.calendar dt.title-date {
+		display: block;
+		width: 100%;
+		font-size:1.3rem;
+		position: relative;
+	}
+	.calendar dt.date_title {
+		background:#e9e9e9;
+	}
+.calendar dd {
+	display:inline-block;
+	clear: both;
+	background:#fff;
+	border-top:1px solid #dedede;border-bottom:1px solid #dedede;
+	margin: 0;
+	width:100%;
+	padding-top:6px;
 }
 
-.calendar-titles .light-titles{
-    opacity:0.5;
+.prevyear,.nextyear,.prevmonth,.nextmonth {
+	cursor: pointer;
+	height: 9px;
+	background: url(../images/index_icon.png) no-repeat;
+	background-position: -406px -466px;
+	overflow: hidden;
+	position: absolute;
+	top: 8px;
+	text-indent: -999px;
 }
 
-.calendar-days{
-    margin-top:-10px;
-    font-size:1.4rem;
-    margin-bottom:30px;
+.prevyear {
+	left: 4px;
+	width: 9px;
 }
 
-.calendar-days a{
-    width:14.28%;
-    float:left;
-    height:60px;
-    line-height:60px;
-    text-align:center;
-    color:#1f1f1f;
-    font-weight:700;
+.prevmonth {
+	width: 5px;
+	background-position: -406px -466px;
+	left: 20px;
 }
 
-.calendar-days a:hover{
-    color:rgba(41, 128, 185,1.0);
+.nextyear {
+	width: 9px;
+	background-position: -425px -466px;
+	right: 5px;
 }
 
-.calendar-day .light-day{
-    opacity:0.3;
+.nextmonth {
+	width: 5px;
+	background-position: -429px -466px;
+	right: 20px;
 }
 
-.calendar-days i{
-    position:absolute;
-    font-size:35px;
-    margin-top:12px;
-    margin-left:-7px;
-    z-index:-1;
+.calendar dd a {
+	float: left;
+	width: 14.2%;
+	height: 45px;
+	overflow: hidden;
+	text-decoration: none;
+	text-align: center;
 }
 
-.clear-day i{
-    opacity:0;
+.calendar dd a.disabled {
+	color: #999;
+	display:inline-block;
 }
 
-.light-day{
-    opacity:0.3;
+.calendar dd a.tody {
+	color: red;
 }
-
-.light-day i{
-    display:none;
+.calendar dd a span {
+	display:block;
 }
-
-.taken-day{
-    color:#FFFFFF!important;
+.calendar dd a.on {
+	background: #59c895;
+	color: #fff;
 }
-
-.taken-day i{
-    color:#27ae60;
+.calendar dd a.live {
+	cursor: pointer
 }
-
-.close-day{
-    color:#FFFFFF!important;
+.calendar dd a span.live_circle{
+	width:24px;
+	height:24px;
+	border-radius:50%;
+	margin:0 auto;
+	background:#FFB413;color: #fff;
 }
-
-.close-day i{
-    color:#c0392b;
+.calendar dd a span.live_txt {
+	color:#FFB413;
+	font-size:12px;
+	line-height:21px;
 }
-
-.calendar-hours{
-    border-top:solid 1px rgba(0,0,0,0.1);
-}
-
-.calendar-hour{
-    height:80px;
-    border-bottom:solid 1px rgba(0,0,0,0.1);
-}
-
-.calendar-hour-clear:hover{
-    background-color: rgba(39, 174, 96, 0.1);  
-}
-
-.calendar-hour-taken:hover{
-    background-color: rgba(192, 57, 43,0.1);   
-}
-
-.calendar-hour strong{
-    color:#666666;
-    opacity:0.7;
-}
-
-.calendar-hours a:last-child{
-    border-bottom:none;
-}
-
-.calendar-hour .cal-time{
-    position:absolute;
-    margin-top:30px;
-    font-weight:400;
-    font-size:11px;
-    padding-left:20px;
-}
-
-.calendar-hour .cal-from{
-    position:absolute;
-    margin-top:18px;
-    font-size:11px;
-    font-weight:400;
-    padding-left:20px;
-}
-
-.calendar-hour .cal-to{
-    position:absolute;
-    margin-top:40px;
-    font-size:11px;
-    font-weight:400;
-    padding-left:20px;
-}
-
-.calendar-hour h4{
-    font-size:1.4rem;
-    padding-left:100px;
-    padding-top:17px;
-    margin-bottom:2px;
-}
-
-.calendar-hour em{
-    font-style:normal;
-    font-size:11px;
-    padding-left:100px;
-    color:#666666;
-}
-
-.calendar-hour em i{
-    margin-right:10px;
+.tipers{
+	width:163px;
+	height:50px;
+	line-height:50px;
+	color: #fff;
+	background:rgba(0,0,0,0.6);
+	position:fixed;
+	left:50%;
+	margin-left:-81px;
+	z-index: 4;
+	text-align:center;
+	border-radius:3px;
+	bottom:58px;
 }
 
 /*定位城市*/

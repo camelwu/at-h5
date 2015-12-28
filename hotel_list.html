@@ -8,9 +8,7 @@
     <meta name="Keywords" content="亚洲旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
     <link href="styles/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/hotel_jyy.css">
-    <link href="styles/lsf_base.css" rel="stylesheet" />
-    <link href="css/lsf_hotelList.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/hotel_jyy2.css">
     <title>首页 - 亚洲旅行网</title>
 </head>
 <body onload="h_l_s()">
@@ -39,20 +37,40 @@
                 <img src="images/1_02.jpg" class="ho_img" />
             </div>
             <div class="ho_infor">
-                <h2>东京湾洲际酒店（123）</h2>
-                <div class="ho_grade clearfix">
-                    <span class="fl"><em>4.3</em><i>分/385人点评</i></span><span class="fr ho_price"><b>￥</b><strong>168</strong>起</span>
+                <p class="hname">
+                    东京(银座)花店（Hotel...
+                </p>
+                <div class="h-score">
+                    <span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">4.3</span>
+                    <span style="color:#999999;font-size:0.8em;">分/385人点评</span>
+                    <p class="price">
+                        <span style="font-size:0.8em;color:#fe4716;">￥</span>
+                        <span style="font-size:2em;font-weight: 600;color:#fe4716;">848</span>
+                        <span style="font-size:0.8em;color:#999999;">起</span>
+                    </p>
                 </div>
-                <div class="ho_star clearfix">
-                    <span class="fl">五星级</span>
-                    <i class="fl ho_i1"></i><i class="fl ho_i2"></i>
-                    <b class="fr ho_b1">现金奖励</b><b class="fr ho_b2">免费景点</b>
+                <div class="h-grade">
+                    <span style="color:#999999;font-size:1em;">三星级</span>
+                    <b class="hl-icon1"></b>
+                    <b class="hl-icon2"></b>
+                    <div class="h-div1">免费景点</div>
+                    <div class="h-div1" style="margin-right: 3px;background-color: #ffb412">现金奖励</div>
                 </div>
-                <div class="ho_adress">
-                    东京（品川区）
-                </div>
+                <p class="h-address">东京（品川区）</p>
             </div>
         </li>-->
+                <!--<div class="ho_grade clearfix">-->
+                    <!--<span class="fl"><em>4.3</em><i>分/385人点评</i></span><span class="fr ho_price"><b>￥</b><strong>168</strong>起</span>-->
+                <!--</div>-->
+                <!--<div class="ho_star clearfix">-->
+                    <!--<span class="fl">五星级</span>-->
+                    <!--<i class="fl ho_i1"></i><i class="fl ho_i2"></i>-->
+                    <!--<b class="fr ho_b1">现金奖励</b><b class="fr ho_b2">免费景点</b>-->
+                <!--</div>-->
+                <!--<div class="ho_adress">-->
+                    <!--东京（品川区）-->
+                <!--</div>-->
+
     </ul>
     <!--   底部   -->
     <footer class="hl-bottom">
@@ -103,7 +121,7 @@
             <li class="s-li">公寓式</li>
             <li class="s-li">长住型</li>
         </ul>
-        <input type="button" class="s-but" id="s_but" value="确定">
+        <div class="s-but" id="s_but">确定</div>
     </div>
     <!--   位置块   -->
     <div class="r-div" id="l-mb"></div>
@@ -114,12 +132,13 @@
                 <b class="l-icon1"></b>
             </li>
         </ul>
-        <input type="button" class="s-but" id="l_but" value="确定">
+        <div class="s-but" id="l_but">确定</div>
     </div>
 </div>
 <script type="text/javascript" src="js/hotel_jyy.js"></script>
 </body>
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vcm.js"></script>
-<script src="js/lsf_hotelList.js" charset="GB2312"></script>
+<script src="js/lib/lazyLoad.js"></script>
+<script src="js/lsf_hotelList.js"></script>
 </html>

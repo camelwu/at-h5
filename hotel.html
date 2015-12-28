@@ -23,8 +23,7 @@
         <form action="hotel_list.html" method="get">
             <div class="content1">
 
-                <div  id="arr1" class="nav1">
-                    <!--<div class="nav11">-->
+                <div  id="arr1" class="nav1" onclick="focus1()">
                     <div class="nav111">
                         目的地
                     </div>
@@ -34,12 +33,10 @@
                             <i class="icons open-arw"></i>
                         </div>
                     </div>
-                    <!--</div>-->
                 </div>
 
 
-                <div  id="arr2" class="nav1">
-                    <!--<div class="nav11">-->
+                <div  id="arr2" class="nav1" onclick="focus1()">
                     <div class="nav111">
                         目的地
                     </div>
@@ -50,31 +47,28 @@
                             <i class="position"></i>
                         </div>
                     </div>
-                    <!--</div>-->
                 </div>
 
-                <div class="content2">
-                    <!--<div class="nav2">-->
+                <div class="content2" id="content2">
                     <div class="nav2-left">
                         <span class="nav2-lefttop">日期</span>
-                        <span class="nav2-leftbottom">共 <span>3</span> 晚</span>
+                        <span class="nav2-leftbottom">共 <span id="total_day">3</span> 晚</span>
                     </div>
                     <div class="nav2-center">
-                        <div class="nav2-centertop">
-                            <p><input name="CheckInDate" id="CheckInDate"   value="2015-11-03">周二 入住</p>
+                        <div class="nav2-centertop" onclick="focus2()">
+                            <p><input name="CheckInDate" id="CheckInDate"   value="2015-11-03"><span id="week_span1">周二 入住</span></p>
 
                         </div>
-                        <div class="nav2-centerbottom">
-                            <p><input name="CheckOutDate" id="CheckOutDate" value="2015-11-06">周五 离店</p>
+                        <div class="nav2-centerbottom" onclick="focus3()">
+                            <p><input name="CheckOutDate" id="CheckOutDate" value="2015-11-06"><span id="week_span2">周五 离店</span></p>
                         </div>
                     </div>
                     <div class="nav2-centerright">
                         <i></i>
                     </div>
-                    <!--</div>-->
                 </div>
 
-                <div id="room" class="content3">
+                <div id="room" class="content3" onclick="focus4()">
                     <div class="nav3-left">
                         房间
                     </div>
@@ -93,14 +87,14 @@
                             人数
                         </div>
                         <div class="nav4-center">
-                            <div class="nav4-centertop">
+                            <div class="nav4-centertop" onclick="focus5()">
                                 <p>
                                     <input type="text" value="1" name="NumAdult" id="count2"><span>成人</span>
                                     <i class="icons1 add1" onclick="fun7(this)"></i>
                                     <i class="icons1 minus1" onclick="fun6(this)"></i>
                                 </p>
                             </div>
-                            <div class="nav4-centerbottom">
+                            <div class="nav4-centerbottom" onclick="focus6()">
                                 <p>
                                     <input type="text" value="0" name="NumChild" id="count3"><span>儿童</span>
                                     <i class="icons1 add1" onclick="fun3(this)"></i>
@@ -112,8 +106,8 @@
                 </div>
 
 
-                <div class="content5">
-                    <input class="HotelName" name="HotelName" type="text"  value="酒店名">
+                <div class="content5" onclick="focus7()">
+                    <input class="HotelName" name="HotelName" type="text"  value="酒店名" id="hotelname">
                 </div>
             </div>
 
@@ -136,30 +130,126 @@
 <script src="js/lib/d_calendar.js"></script>
 <script src="js/dzhhotel.js"></script>
 <script>
-    var cdDate=document.getElementById('cd_date');
-    var checkIn=document.getElementById('CheckInDate');
-    var checkOut=document.getElementById('CheckOutDate');
-    checkIn.onclick=checkOut.onclick=function(){
-        cdDate.style.display='block';
-        cdDate.style.background='#fff';
-        var obj={"2015-12-22":"入住","2015-12-24":"离店"};
-        //var arr=new Calender({id:'cd_date',num:4,time:obj});
-        function calender2(){
-            Calender.apply(this,arguments);
+    var lsf_myweb={
+        "getbyid":function(id){
+            return document.getElementById(id);
+        },
+        "getbytag":function(obj,tag){
+            return obj.getElementsByTagName(tag);
+        },
+        "getbyclass":function(obj,sClass){
+            if(obj.getElementsByClassName){
+                return obj.getElementsByClassName(sClass);
+            }else{
+                var aResult=[];
+                var aEle=obj.getElementsByTagName('*');
+                var reg=new RegExp('\\b'+sClass+'\\b','g');
+                for(var i=0;i<aEle.length;i++){
+                    if(aEle[i].className.search(reg)!=-1){
+                        aResult.push(aEle[i]);
+                    }
+                }
+                return aResult;
+            }
+        },
+        bind:function(obj,sEv,fn){
+            obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
         }
-        calender2.prototype=new Calender();
-        //console.log(calender2.prototype);
-        var oldLinkover=calender2.prototype.linkOver;
-        //alert(oldLinkover);
-        calender2.prototype.linkOver=function(){
-            oldLinkover.apply(this,arguments);
-            checkIn.value=this.result[0];
-            checkOut.value=this.result[1];
-            cdDate.style.display='none';
-        }
-        var arr=new calender2({id:'cd_date',num:4,time:obj});
     };
+    (function(){
+        function n2c(num){
+            switch (parseInt(num)){
+                case 1:
+                    return '一';
+                    break;
+                case 2:
+                    return '二';
+                    break;
+                case 3:
+                    return '三';
+                    break;
+                case 4:
+                    return '四';
+                    break;
+                case 5:
+                    return '五';
+                    break;
+                case 6:
+                    return '六';
+                    break;
+                case 0:
+                    return '七';
+                    break;
+            };
+        }
+        //var cdDate=lsf_myweb.getbyid('cd_date');
+        var checkIn=lsf_myweb.getbyid('CheckInDate');
+        var checkOut=lsf_myweb.getbyid('CheckOutDate');
+        var content2=lsf_myweb.getbyid('content2');
+        var oDate=new Date();
+        var y=oDate.getFullYear();
+        var m=oDate.getMonth()+1;
+        var d=oDate.getDate();
+        var beginDate=y+'-'+m+'-'+(d+2);
+        var leaveDate=y+'-'+m+'-'+(d+4);
+        checkIn.value=beginDate;
+        checkOut.value=leaveDate;
+var obj={};
+obj[beginDate]="入住";
+            obj[leaveDate]="离店";
+var myDate1 = new Calender({id: 'content2', num: 13, time: obj});
+        /*content2.onclick=function() {
+            var obj={};
+            // cdDate.style.display = 'block';
+            // cdDate.style.background = '#fff';
+            obj[beginDate]="入住";
+            obj[leaveDate]="离店";
+            //var obj={"2015-12-24":"入住","2015-12-26":"离店"};
+            //var arr=new Calender({id:'cd_date',num:4,time:obj});
+            function calender2() {
+                Calender.apply(this, arguments);
+            }
+            calender2.prototype = new Calender();
+            //console.log(calender2.prototype);
+            var oldLinkover = calender2.prototype.linkOver;
+            //alert(oldLinkover);
+            calender2.prototype.linkOver = function () {
+                oldLinkover.apply(this, arguments);
+                var oDate=new Date();
+                var span1=lsf_myweb.getbyid('week_span1');
+                var span2=lsf_myweb.getbyid('week_span2');
+                var oDate1=new Date();
+                var oDate2=new Date();
+                checkIn.value = this.result[0]
+                checkOut.value = this.result[1];
+                function spl(str){
+                    return str.split('-');
+                }
+                oDate1.setFullYear(spl(this.result[0])[0],(spl(this.result[0])[1]-1),spl(this.result[0])[2]);
+                var week1=oDate1.getDay();
+                span1.innerHTML='周'+n2c(week1)+' 入住';
+                oDate2.setFullYear(spl(this.result[1])[0],(spl(this.result[1])[1]-1),spl(this.result[1])[2]);
+                var week2=oDate2.getDay();
+                span2.innerHTML='周'+n2c(week2)+' 离店';
+                var oDay=((oDate2-oDate1)/(1000*60*60*24))+1;
+                if(oDay>=30){
+                    alert('住店时间不可超过30天，请重新选择');
+                    return;
+                }
+                lsf_myweb.getbyid('total_day').innerHTML=oDay;
+                //cdDate.style.display = 'none';
+                //if(spl(this.result[1])[2]<spl(this.result[0])[2]){
+                //    if(spl(this.result[1])[1]<spl(this.result[0])[1]){
+                //        if(spl(this.result[1])[0]<spl(this.result[0])[0]){
+                //            alert('离店日期不能比住店日期提前');
+                //        }
+                //    }
+                //}
 
+            }
+            var arr = new calender2({id: 'content2', num: 13, time: obj});
+        };*/
+    })();
 
 </script>
 </html>

@@ -56,19 +56,6 @@
     height: 45px;
     position: relative;
 }
-/*.nav11{*/
-/*display: -moz-box;  /!* Firefox *!/*/
-/*display: -ms-flexbox;    /!* IE10 *!/*/
-/*display: -webkit-box;    /!* Safari *!/*/
-/*display: -webkit-flex;    /!* Chrome, WebKit *!/*/
-/*display: box;*/
-/*display: flexbox;*/
-/*display: flex;*/
-/*margin: 14px 15px;*/
-/*flex-flow: row;*/
-/*position: relative;*/
-/*border: 1px solid red;*/
-/*}*/
 .nav111{
     width: 88px;
     line-height: 45px;
@@ -276,7 +263,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     margin: 0 15px 0 0;
     font-size: 12px;
     color: #000;
-    width: 20px;
+    width: 30px;
 }
 .add1{
     position: absolute;
@@ -339,7 +326,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     position: fixed;
     bottom: 0;
     text-align: center;
-    z-index: 9999998;
+    z-index: 98;
     margin-top: -10px;
 }
 .footer span{
