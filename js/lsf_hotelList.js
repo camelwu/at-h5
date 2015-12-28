@@ -128,6 +128,8 @@ function url2json(url){
     //数据展示部分
     function V(data){
         if(!data)return;
+        var timer=null;
+        var oUl=lsf_myweb.getbyid('lsf_list');
         console.log(data);
         list_oUl.innerHTML='';
         for(var i=0;i<data.length;i++){
@@ -151,7 +153,7 @@ function url2json(url){
 
             var str='<li class="ho_list">'+
                 '<div class="ho_pic">'+
-                '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'"  class="ho_img" />'+
+                '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'" class="ho_img" />'+
                 '</div>'+
                 '<div class="ho_infor">'+
                 '<p class="hname"  style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+
@@ -175,12 +177,31 @@ function url2json(url){
                 '<p class="h-address">'+data[i].City+'('+data[i].Location+')'+'</p>'+
             '</div>'+
             '</li>';
-
-
-
-
             list_oUl.innerHTML+=str;
         }
+        //懒加载
+        function lazyLoad2(){
+            lazyLoad.apply(this,arguments);
+        }
+        lazyLoad2.prototype=new lazyLoad();
+        lazyLoad2.prototype.update=function(){
+            //如图片都加载完成，返回
+            if(!this.imgs.length){return;}
+            var i = this.imgs.length;
+            for(--i;i>=0;i--){
+                if(this.shouldShow(i)){
+                    //加载图片
+                    var osrc=this.imgs[i].src;
+                    this.imgs[i].src = this.imgs[i].getAttribute("data-src");
+                    this.imgs[i].onerror=function(){
+                        this.src=osrc;
+                    };
+                    //清理缓存
+                    this.imgs.splice(i,1);
+                }
+            }
+        }
+        var c=new lazyLoad2('lsf_list');
     }
 
 
@@ -232,7 +253,7 @@ function url2json(url){
         };
     })();*/
 //懒加载
-    (function(){
+    /*(function(){
         var timer=null;
         var oUl=lsf_myweb.getbyid('lsf_list');
         function lazyLoad2(){
@@ -245,5 +266,5 @@ function url2json(url){
                 clearInterval(timer);
             }
         },30);
-    })();
+    })();*/
 })();

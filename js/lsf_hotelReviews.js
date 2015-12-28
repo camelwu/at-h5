@@ -110,7 +110,7 @@
                 '<ol class="clearfix fr lsf_reSta">'+str3+
                 '</ol>'+
                 '</div>'+
-                '<p class="clearfix comments"><span>'+maxWord(comments[i].Comments)+'</span>'+
+                '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].Comments)+'</span>'+
                 '<i class="fr drop_down"></i>'+
                 '</p>'+
                 '<div class="lsf_reUser">'+
@@ -121,10 +121,28 @@
         }
         lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
         lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
+        var com_cont=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'com_cont');
         var coms=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'comments');
-        var drop_downs=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'drop_down');
-        if(count(coms[coms.length-1].innerHTML).n<=110){
-            drop_downs[drop_downs.length-1].style.display='none';
+        var reBox=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'reBox');
+        //对评论下拉做点击事件，点击显示全部评论内容
+        for(var i=0;i<reBox.length;i++){
+            (function(index){
+                var oP=lsf_myweb.getbyclass(reBox[index],'comments')[0];
+                reBox[index].onclick=function(ev){
+                    var oEvent=ev||event;
+                    var reg=new RegExp('\\b'+'drop_down'+'\\b','g');
+                    var oSrc=oEvent.srcElement||oEvent.target;
+                    if(oSrc.className.search(reg)!=-1){
+                        oP.innerHTML='<span>'+comments[index].Comments+'</span>';
+                    }
+                };
+            })(i);
+        }
+        //评论数小于110字节的，不显示下拉按钮
+        for(var i=0;i<com_cont.length;i++){
+            if(count(com_cont[i].innerHTML).n<=110){
+                coms[i].innerHTML='<span class="com_cont">'+comments[i].Comments+'</span>';
+            }
         }
     }
 })();
