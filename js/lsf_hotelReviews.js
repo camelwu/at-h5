@@ -122,7 +122,7 @@
         lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
         lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
         var com_cont=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'com_cont');
-        var comments=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'comments');
+        var coms=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'comments');
         var reBox=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'reBox');
         //对评论下拉做点击事件，点击显示全部评论内容
         for(var i=0;i<reBox.length;i++){
@@ -141,7 +141,7 @@
         //评论数小于110字节的，不显示下拉按钮
         for(var i=0;i<com_cont.length;i++){
             if(count(com_cont[i].innerHTML).n<=110){
-                comments[i].innerHTML='<span class="com_cont">'+comments[i].Comments+'</span>';
+                coms[i].innerHTML='<span class="com_cont">'+comments[i].Comments+'</span>';
             }
         }
     }
