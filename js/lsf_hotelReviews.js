@@ -39,6 +39,7 @@
     //统计字数
     function count(str){
         var result={};
+        result.comments=str;
         var adress=110;
         var num=0;
         for(var i=0;i<str.length;i++){

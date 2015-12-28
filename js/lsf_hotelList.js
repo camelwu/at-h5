@@ -180,13 +180,6 @@ function url2json(url){
 
 
             list_oUl.innerHTML+=str;
-            var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
-            var lastLi=list_oUl.children[list_oUl.children.length-1];
-            var oImg=lastLi.getElementsByClassName('ho_img')[0];
-            console.log(oImg.offsetTop+'+++'+clienH);
-            if(oImg.offsetTop<=clienH){
-                oImg.src=oImg.dataset.src;
-            }
         }
     }
 
@@ -238,5 +231,19 @@ function url2json(url){
             }
         };
     })();*/
-
+//懒加载
+    (function(){
+        var timer=null;
+        var oUl=lsf_myweb.getbyid('lsf_list');
+        function lazyLoad2(){
+            lazyLoad.apply(this,arguments);
+        }
+        lazyLoad2.prototype=new lazyLoad();
+        timer=setInterval(function(){
+            if(oUl.getElementsByTagName('img').length){
+                var c=new lazyLoad2('lsf_list');
+                clearInterval(timer);
+            }
+        },30);
+    })();
 })();

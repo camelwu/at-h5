@@ -94,6 +94,7 @@ function throttle(){
 
 function lazyLoad(id){
 	//确认操作容器
+	if(!id)return;
 	this.container = document.getElementById(id);
 	//获取图片列表
 	this.imgs = this.getImgs();
@@ -130,7 +131,7 @@ lazyLoad.prototype = {
 	},
 	shouldShow:function(i){
 		//获取当前图片
-		var img = this.img[i],
+		var img = this.imgs[i],
 		//可视范围内顶部高度
 		scrollTop = document.documentElement.scrollTop||document.body.scrollTop,
 		//可视范围内底部高度
