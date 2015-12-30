@@ -1,10 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>个人中心(已登录) - 亚洲旅行网</title>
+    <link href="styles/framework.css"	rel="stylesheet" type="text/css">
+    <link href="styles/style.css"		rel="stylesheet" type="text/css">
+    <link href="css/user.css"	rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            Loading ...
+            <em>Loading depends on your connection speed!</em>
+        </p>
+    </div>
+</div>
+<div class="all-elements">
+    <!-- Page Content-->
+    <div id="content" class="snap-content">
+        <div class="user-top half-bottom">
+            <div class="user-header" id="showMessage">
+                <a href="javascript:window.history.go(-1);" class="icons header-back"> </a>
+                <a href="javascript:void(0);" class="icon header-msg"><div class="info-circle1">2</div></a>
+            </div>
+            <div class="user-info">
+                <img id="userIcon" src="images/ui/user-heads.png">
+                <a href="##"><p class="user-name">Yellow<b class="icon open-sexw"></b></p></a>
+                <div id="loginShow">
+                </div>
+                <div class="unl_div">
+                    <ul class="user-menu">
+                        <li>全部订单</li>
+                        <li>待付款<div class="info-circle2">12</div></li>
+                        <li>未出行</li>
+                        <li>待评价</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="s_lists">
+            <li id="bindCard">
+                <b class="icons open-info"></b><a href="user-infolist.html">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
+            </li>
+            <li id="setPwd">
+                <b class="icons open-fav"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">我的收藏<b class="icons open-arw"></b></a>
+            </li>
+            <li id="browsHis">
+                <b class="icon open-his"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">浏览历史<b class="icons open-arw"></b></a>
+            </li>
+            <li id="setting">
+                <b class="icon open-set"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">设置<b class="icons open-arw"></b></a>
+            </li>
+            <li id="verifyName">
+                <b class="icons open-msg"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">联系我们<b class="icons open-arw"></b></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script data-main="js/main.js" src="js/require.js"></script>
 </body>
 </html>
