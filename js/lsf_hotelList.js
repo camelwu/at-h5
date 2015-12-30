@@ -235,7 +235,6 @@ function url2json(url){
     };
     //获取酒店详情
     function getDetail(data){
-        console.log(data)
         var hotelRefers = document.getElementsByClassName('ho_img');
         var toDetail= function(that){
             var paraObj= new Object();
@@ -264,7 +263,6 @@ function url2json(url){
 
 
         for(var i = 0;i<hotelRefers.length;i++){
-            console.log(data)
             hotelRefers[i].index = i;
             hotelRefers[i].onclick=function(){
                 var that=this;

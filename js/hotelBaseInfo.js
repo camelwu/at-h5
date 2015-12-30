@@ -25,7 +25,6 @@
     var c = new vcm();
     c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), myCallback);
 
-
     function myCallback(d) {
         document.querySelector('#preloader').style.display = "none";
         var d = JSON.parse(d);
@@ -37,7 +36,7 @@
         var htmlStr = '';
         htmlStr += ' <div class="imageContainer" onclick="hideZone.call(this)"><h5></h5><div class="showZone"><div class="innerContainer" style="left: 0px; width: 0%;"> ' +
         '<div class="noImage" style="width: 100%;height: 100%;text-align: center;">' + getImages(d.Data[0].HotelGenInfo.HotelImage) + '</div>' +
-        '</div></div></div><div class="top" id="vlm-login"><a href="hotel_list.html" class="d-icons"></a>' +
+        '</div></div></div><div class="top" style="position: absolute;z-index: 3"id="vlm-login"><a href="hotel_list.html" class="d-icons"></a>' +
         '<p class="d-p1">' + hotelName(d.Data[0].HotelGenInfo.HotelName) + '</p><a href="#" class="d-icon d1"></a></div>' +
         '<div class="d-div1"><img class="hotelPic" onclick="locationA();"  src="' + FrontPgImage + '" />' +
         '<div class="d-div2" onclick="showImage.call(this)"><div class="d-p4">' + d.Data[0].HotelGenInfo.HotelImage.length + '张</div></div>' +
@@ -50,7 +49,7 @@
         '<div class="d-p2">地图</div></li><li class="d-li1"><div class="d-score2">' + star + '</div><b class="d-icon2"></b><a href="#" class="d-icon1"></a></li>' +
         '<li class="d-li1"><div class="d-p3">' + getDates(startDate)[1] + '-' + getDates(startDate)[2] + '入住</div> ' +
         '<div class="d-p3" style="margin-left: 5px;">' + getDates(endDate)[1] + '-' + getDates(endDate)[2] + '离店</div><a href="#" class="d-icon1"></a> ' +
-        '<div class="d-p2">共' + (new Date(endDate).getDate() - new Date(startDate).getDate() + 1) + '晚</div></li>'
+        '<div class="d-p2">共' + (new Date(endDate).getDate() - new Date(startDate).getDate()) + '晚</div></li>'
 
         for (var i = 0; i < d.Data[0].HotelRoomsList.length; i++) {
             htmlStr += '<li class="d-li1"><div class="d-div3 roomEvent" style="max-width: 60%" onclick="test2.call(this)"><div class="d-p5">' + d.Data[0].HotelRoomsList[i].RoomName + '</div><b class="d-icon3"' +
@@ -95,9 +94,7 @@
 
         }
 
-
         changeShow();
-
     }
 
     function getImages(arg) {
@@ -140,6 +137,7 @@
 
         }
     };
+
     function getDates(arg) {
         return /^\d{4}\-(\d{1,2})\-(\d{1,2})/g.exec(arg)
     }
@@ -186,7 +184,7 @@
         if (totalNum == 0) {
             return false;
         } else {
-            init();
+             init();
         }
         function init() {
             titleIndex.indexNum = 1;
@@ -208,8 +206,6 @@
         function changeEnd() {
             this.isTransitionEnd = true;
             // this.previousSibling.innerText=this.previousSibling.indexNum+"/"+totalNum;
-
-
         }
 
 
@@ -218,7 +214,6 @@
             var changePos = moveX - this.startX;
             if (this.innerContainer.isTransitionEnd) {
                 this.innerContainer.isTransitionEnd = false;
-                console.log(changePos)
                 if (changePos > 0) {
                     if (titleIndex.indexNum - 1 <= 0) {
                         this.innerContainer.style.left = 0 + "px";
@@ -247,8 +242,6 @@
 
                 }
             }
-
-
         }
 
         function end(e) {
@@ -257,42 +250,11 @@
 
     }
 
-
 })()
-
-
-function showDetail() {
-    var str = window.location.href, data = str.slice(str.indexOf('?') + 1).split('&'), json = {}, startDate, endDate;
-
-    var json = {HotelID: 1, CultureName: "en - US"}
-
-    var data = {
-        Parameters: {"HotelID": 1, "CultureName": "en - US"},
-        ForeEndType: 3,
-        Code: "0010"
-    }
-
-    console.log(JSON.stringify(data))
-
-    var c = new vcm();
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), myCallback);
-
-
-    var room = document.getElementById("room");
-    var roomAll = document.getElementById("roomAll");
-    var mb = document.getElementById("r-mb");
-    room.style.display = "block";
-    roomAll.style.display = "block";
-    mb.style.display = "block";
-
-}
-
 
 function showImage() {
     var imageContainer = document.querySelector('.imageContainer');
     imageContainer.style.display = 'block';
-    // document.querySelector('.all-elements>ul').style.display='none';
-
 }
 
 function closeRoom() {
@@ -328,7 +290,7 @@ function toggleStatus() {
 }
 
 function locationA() {
-    window.location.href = "jyy_hotelSummary.html";
+     window.location.href = "jyy_hotelSummary.html";
 }
 
 function changeImage(e) {
@@ -339,7 +301,7 @@ function getRoomE(arg) {
     var str_ = '';
     for (var k = 0; k < arg.HotelRoomAmenitiesList.length; k++) {
         if (arg.HotelRoomAmenitiesList[k].RmTypeCode == 0) {
-            str_ += '<li class="r-li"><b class="r-icon2"></b>' +
+            str_ += '<li style="display: flex;float: left;list-style-type: none;width: 50%;margin-bottom: 10px"><b class="r-icon2"></b>' +
             '<p class="r-p3">' + arg.HotelRoomAmenitiesList[k].FeatureDesc + '</p></li>';
         }
     }
@@ -357,10 +319,8 @@ function getRoomInfor(HotelID, indexInfo) {
     function myCallbackRoom(result) {
         var result = JSON.parse(result)
         var str = '';
-        str += ' <div class="room" id="room"><header class="r-top"><p class="r-p1">' + indexInfo.RoomName + '</p><b class="r-icon1" onclick="closeRoom()"></b></header>' +
-        '<div class="r-div1"><img class="hotelPic2" src="' + getRoomImage(result) + '"></div>' +
-        '<article class="r-ar">最多' + indexInfo.MaxOccupancy + '成人<br>儿童10岁或以上按照成人算。&nbsp;&nbsp;10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费' +
-        '</article><hr size="1px" width="100%" color="#ececec"><p class="r-p2" style="">房间描述</p>' +
+        str += ' <div class="room" id="room"><header class="r-top"><p class="r-p1">' + indexInfo.RoomName + '</p><b class="r-icon1" onclick="closeRoom()"></b></header>'+ getRoomImage(result)+''
+        + getRoomArticle(result)+'<hr size="1px" width="100%" color="#ececec"><p class="r-p2" style="">房间描述</p>' +
         '<article class="r-ar">Newly refurbished Deluxe Rooms are a unique expression of stylish comfort.Featuring' +
         'plenty of naturallight,contemporary designs with rich wood furnishings,refreshing touches of colour' +
         'high qualitfinishes,these spacious and energy-efficient rooms include a thoughtfullly appointed' +
@@ -369,10 +329,8 @@ function getRoomInfor(HotelID, indexInfo) {
         '</article><hr size="1px" width="100%" color="#ececec"><p class="r-p2" style="">房间设施</p>' +
         '<ul class="r-ul">' + getRoomE(result.Data[0]) + '</ul></div>';
 
-
         document.getElementById('roomAll').innerHTML = str;
         document.getElementById('roomAll').style.display = 'block';
-        document.getElementById('roomAll').style.zIndex = 1000;
         document.getElementById('r-mb').style.display = 'block';
     }
 }
@@ -390,11 +348,20 @@ function getRoomImage(arg) {
         }
     }
 
-    if (realImage.length) {
-        return realImage[0].ImageFileName;
-    }
+    return (realImage.length!=0)?'<div class="r-div1"><img class="hotelPic2" src="' + realImage[0].ImageFileName + '"></div>':'';
 }
 
+function getRoomArticle(arg) {
+    var realImageDesc = new Array();
+    var ImageDescData = arg.Data[0].HotelRoomFeaturesList;
+    for (var n = 0; n < ImageDescData.length; n++) {
+        if (ImageDescData[n].ImageDesc != null) {
+            realImageDesc.push(ImageDescData[n])
+        }
+    }
+    return (realImageDesc.length!=0)? '<article class="r-ar">最多2成人<br>'+realImageDesc[0].ImageDesc+
+    '</article>':'<article class="r-p2">图片描述</article>';
+}
 
 
 

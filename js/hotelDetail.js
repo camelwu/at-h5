@@ -1,10 +1,11 @@
 /**
- * Created by Andy on 2015/12/28.
+ * Created by heyong on 2015/12/28.
  */
 
 window.onload=function(){
     if(window.localStorage){
         var hotelMessage = window.localStorage.getItem('hotelMessage');
+        window.localStorage.removeItem('hotelMessage');
     };
     addContent(hotelMessage);
     function addContent(hotelMessage){
@@ -25,10 +26,10 @@ window.onload=function(){
          }
 
 
-        function getFeature(arg){
+         function getFeature(arg){
             var str = '<ul class="s-ul2">';
             for(var i=0;i<arg.length;i++){
-                str+='<li class="ul2-li"><b class="s-icon3"></b><p class="s-p4">arg['featureIndex']</p></li>';
+                str+='<li class="ul2-li"><b class="s-icon3" style="margin-bottom:0px"></b><p class="s-p4">arg['featureIndex']</p></li>';
             }
             str+=' </ul>';
             return str;
