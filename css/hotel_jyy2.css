@@ -230,7 +230,7 @@ html {
     width: 100%;
     background-color: white;
     position: fixed;
-    bottom:-350px;
+    bottom:-450px;
     z-index: 2000000;
 }
 .r-li{
@@ -271,7 +271,7 @@ html {
     padding: 1px;
     background-color: white;
     position: fixed;
-    bottom:-350px;
+    bottom:-450px;
     z-index: 2000000;
 }
 .screen h4{
@@ -332,7 +332,7 @@ html {
     padding: 1px;
     background-color: white;
     position: fixed;
-    bottom:0;
+    bottom:-450px;
     z-index: 2000000;
 }
 .l-ul{
