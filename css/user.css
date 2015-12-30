@@ -170,9 +170,60 @@
     width:8px;height:14px;
     background-position:65% 3%;
 }
-.user-name{
+.info-name{
     float:right;
     margin-right: 15px;
     font-size:13px;
     color:#FFB413;
+}
+.info-quit{
+    width: 94%;
+    height: 42px;
+    margin-top: 15px;
+    margin-left: 3%;
+    border-radius: 5px;
+    border:1px solid #ffb413;
+    background-color: white;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffb413;
+    text-align: center;
+    line-height: 42px;
+}
+.info-sex{
+    position: absolute;
+    top:8px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    right: 15px;
+    width:68px;height:27px;
+    border:1px solid #ffb413;
+    border-radius:3px;
+    overflow: hidden;
+}
+.sex-left{
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    width:34px;height:27px;
+    text-align: center;
+    color:#ffb413;
+    line-height: 25px;
+}
+.sex-right{
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    width:34px;height:27px;
+    background-color:#ffb413;
+    text-align: center;
+    color:white;
+    line-height: 25px;
 }
