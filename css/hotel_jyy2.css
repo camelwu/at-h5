@@ -271,7 +271,7 @@ html {
     padding: 1px;
     background-color: white;
     position: fixed;
-    bottom:-350px;
+    bottom:-450px;
     z-index: 2000000;
 }
 .screen h4{
