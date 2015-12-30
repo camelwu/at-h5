@@ -1,6 +1,6 @@
 
 /*
-         ÕÒ»ØÃÜÂëÒ³css
+         æ‰¾å›å¯†ç é¡µcss
 */
 .f_key{
     width:94%;
@@ -54,7 +54,7 @@
     display: inline-block;
 }
 /*
-         ¸öÈËÖĞĞÄÎ´µÇÂ¼Ò³css
+         ä¸ªäººä¸­å¿ƒæœªç™»å½•é¡µcss
 */
 .unl_div{
     width: 94%;
@@ -86,4 +86,93 @@
 }
 .user-menu li:first-child{
     border: none;
+}
+.icon{
+    background-image: url(../images/ui/icon.png);
+    background-repeat: no-repeat;
+    background-size: 393px 118px;
+    display:inline-block;
+}
+.open-his{
+    position:absolute;
+    width:22px;
+    height:22px;
+    top:10px;
+    background-position: 0 65%;
+}
+.open-set{
+    position:absolute;
+    width:22px;
+    height:22px;
+    top:10px;
+    background-position: 6.5% 65%;
+}
+.header-msg{
+    position:absolute;
+    overflow: visible;
+    width:23px;
+    height:23px;
+    right:15px;
+    top:10px;
+    background-position: 41% 2%;
+}
+/*
+         ä¸ªäººä¸­å¿ƒå·²ç™»å½•é¡µcss
+*/
+.user-name{
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: white;
+}
+.open-sexw{
+    width:12px;
+    height:12px;
+    margin-left: 5px;
+    background-position: 36% 65%;
+}
+.open-sexm{
+    width:12px;
+    height:12px;
+    margin-left: 5px;
+    background-position: 40% 65%;
+}
+.info-circle1{
+    position: relative;
+    margin-top: -5px;
+    margin-left: 15px;
+    width: 14px;height: 14px;
+    border-radius: 7px;
+    background-color:#ffb413;
+    text-align: center;
+    line-height: 1.2;
+    font-size:1rem;
+    color: white;
+}
+.info-circle2{
+    position: relative;
+    margin-top: -25px;
+    margin-left:70%;
+    width: 23px;height: 14px;
+    border-radius: 7px;
+    background-color:#ffb413;
+    text-align: center;
+    line-height: 1.2;
+    font-size:1rem;
+    color: white;
+}
+/*
+         ä¸ªäººèµ„æ–™é¡µcss
+*/
+.open-rg{
+    position: absolute;
+    right: 15px;
+    margin-top: 2px;
+    width:8px;height:14px;
+    background-position:65% 3%;
+}
+.user-name{
+    float:right;
+    margin-right: 15px;
+    font-size:13px;
+    color:#FFB413;
 }
