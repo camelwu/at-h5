@@ -25,20 +25,20 @@ function h_l_s(){
     function close(obj){
         mb=document.getElementById("r-mb");
         mb.style.display="none";
-        obj.style.bottom=-350+'px';
+        obj.style.bottom=-450+'px';
         obj.style.transition="all 350ms";
     }
     function mb_close(){
         mb=document.getElementById("r-mb");
         mb.style.display="none";
         if(rank.style.display==""||rank.style.display=="block"){
-            rank.style.bottom=-350+'px';
+            rank.style.bottom=-450+'px';
             rank.style.transition="all 350ms";
         }if(screen.style.display==""||screen.style.display=="block"){
-            screen.style.bottom=-350+'px';
+            screen.style.bottom=-450+'px';
             screen.style.transition="all 350ms";
         }if(location.style.display==""||location.style.display=="block"){
-            location.style.bottom=-350+'px';
+            location.style.bottom=-450+'px';
             location.style.transition="all 350ms";
         }
     }
@@ -123,7 +123,7 @@ function h_l_s(){
         var color = obj.style.color;
         if(color == "rgb(252, 148, 100)"){
             mb.style.display="none";
-            rank.style.bottom=-350+'px';
+            rank.style.bottom=-450+'px';
             rank.style.transition="all 350ms";
         }else{
             for(var i=0;i < rli.length;i++){
@@ -138,7 +138,7 @@ function h_l_s(){
             b.className = "hl-icon5";
             obj.appendChild(b);
             mb.style.display="none";
-            rank.style.bottom=-350+'px';
+            rank.style.bottom=-450+'px';
             rank.style.transition="all 350ms";
         }
     }

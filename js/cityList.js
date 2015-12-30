@@ -51,6 +51,18 @@ function cityList(json_city,word,obj,obj2){
         obj.innerHTML='';
     }else{
         obj.innerHTML=str;
+        var obj_chil=obj.children;
+        lsf_myweb.bind(obj,'click',function(ev){
+            var oEvent=ev||event;
+            var oSrc=oEvent.srcElement||oEvent.target;
+            if(oSrc.tagName=='LI'){
+                for(var i=0;i<obj.children.length;i++){
+                    obj.children[i].style.color='rgb(27,27,27)';
+                }
+                oSrc.style.color='rgb(255,180,19)';
+                localStorage.cl_city_local=oSrc.innerHTML;
+            }
+        });
     }
 }
 function hotCity(id){
@@ -74,21 +86,21 @@ function hotCity(id){
     var aLi=oOl.children;
     var aDiv=oOl.getElementsByTagName('div');
     var json_word={};
-    oOl.onclick=function(ev){
+    lsf_myweb.bind(oOl,'click',function(ev){
         var oEvent=ev||event;
         var oSrc=oEvent.srcElement||oEvent.target;
         var oUl=oSrc.nextElementSibling||oSrc.nextSibling;
         cityList(json_citys,oSrc.innerHTML,oUl,aUl);
-    };
+    });
     //侧边列表部分；
     var oSide=document.getElementById('cl_side');
     var side_Li=oSide.children;
     for(var i=0;i<side_Li.length;i++){
         (function(index){
-            side_Li[index].onclick=function(){
+            lsf_myweb.bind(side_Li[index],'click',function(){
                 var oUl=aDiv[index].nextElementSibling||oSrc.nextSibling;
                 cityList(json_citys,aDiv[index].innerHTML,oUl,aUl);
-            };
+            });
         })(i);
     }
 })();
