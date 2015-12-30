@@ -44,16 +44,28 @@
             <b class="icons open-rg" style="margin-top: 25px;"></b>
         </div>
         <ul class="s_lists">
-            <li>昵称 <b class="icons open-rg"></b><span class="user-name">Yellow</span><b class="icons open-rg"></b></li>
+            <li>昵称 <b class="icons open-rg"></b><span class="info-name">Yellow</span><b class="icons open-rg"></b></li>
             <li>姓名 <b class="icons open-rg"></b></li>
-            <li>性别 </li>
+            <li>性别
+                <div class="info-sex" id="sex" onclick="changeSex()">
+                    <div class="sex-left">男</div>
+                    <div class="sex-right">女</div>
+                </div></li>
             <li>出生年月 <b class="icons open-rg"></b></li>
             <li>手机 <b class="icons open-rg"></b></li>
             <li>邮箱 <b class="icons open-rg"></b></li>
             <li>修改密码<b class="icons open-rg"></b></li>
         </ul>
+        <div class="info-quit">退出</div>
     </div>
 </div>
+<script type="text/javascript">
+    function changeSex(){
+        var sex = document.getElementById("sex");
+        sex.firstElementChild.innerHTML = sex.firstElementChild.innerHTML == "男"?"女":"男";
+        sex.lastElementChild.innerHTML = sex.firstElementChild.innerHTML == "男"?"女":"男";
+    }
+</script>
 <script data-main="js/main.js" src="js/require.js"></script>
 </body>
-</html
+</html>
