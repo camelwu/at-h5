@@ -98,6 +98,7 @@ function url2json(url){
 
     //交互部分
     function M(json){
+        console.log(json);
         json=json||{};
         json.rank=json.rank||'priceasc';
         json.CityName=json.CityName||'Singapore';
@@ -218,7 +219,7 @@ function url2json(url){
         getDetail(data);
     }
 
-    oBody.onclick=function(ev){
+    lsf_myweb.bind(oBody,'click',function(ev){
         var oEvent=ev||event;
         var oSrc=oEvent.srcElement||oEvent.target;
         if(oSrc.className=='r-li'){
@@ -232,7 +233,79 @@ function url2json(url){
             }
             M(url_json);
         }
-    };
+    });
+    lsf_myweb.bind(lsf_myweb.getbyid('s_but'),'click',function(ev){
+        var hl_star_str='';
+        var hl_type_str='';
+        var hl_star_type=lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'),'s-li1');
+        for(var i=0;i<hl_star_type.length;i++){
+            switch(hl_star_type[i].innerHTML){
+                case '二星级以下':
+                    hl_star_str+='2$';
+                    break;
+                case '三星':
+                    hl_star_str+='3$';
+                    break;
+                case '四星':
+                    hl_star_str+='4$';
+                    break;
+                case '五星':
+                    hl_star_str+='5$';
+                    break;
+                case '酒店':
+                    hl_type_str+='1$';
+                    break;
+                case '汽车旅馆':
+                    hl_type_str+='2$';
+                    break;
+                case '酒店式公寓':
+                    hl_type_str+='3$';
+                    break;
+                case '家庭旅馆':
+                    hl_type_str+='4$';
+                    break;
+                case '背包客栈':
+                    hl_type_str+='5$';
+                    break;
+                case '宾馆/招待所':
+                    hl_type_str+='6$';
+                    break;
+                case '精品酒店':
+                    hl_type_str+='7$';
+                    break;
+                case '度假类酒店':
+                    hl_type_str+='8$';
+                    break;
+                case '游轮度假酒店':
+                    hl_type_str+='9$';
+                    break;
+                case '别墅型酒店':
+                    hl_type_str+='10$';
+                    break;
+                case '乡村平房酒店':
+                    hl_type_str+='11$';
+                    break;
+                case '家庭寄宿':
+                    hl_type_str+='12$';
+                    break;
+                case '农舍式房子':
+                    hl_type_str+='13$';
+                    break;
+                case '豪华露营地':
+                    hl_type_str+='14$';
+                    break;
+                case '标准露营地':
+                    hl_type_str+='15$';
+                    break;
+            };
+        }
+        hl_star_str=hl_star_str.substring(0,(hl_star_str.length-1));
+        hl_type_str=hl_type_str.substring(0,(hl_type_str.length-1));
+        url_json.StarRating=hl_star_str;
+        url_json.Category=hl_type_str;
+        M(url_json);
+        //alert(hl_star_str+'---'+hl_type_str);
+    });
     //获取酒店详情
     function getDetail(data){
         var hotelRefers = document.getElementsByClassName('ho_img');
