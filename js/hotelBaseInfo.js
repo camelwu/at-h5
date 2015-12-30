@@ -4,7 +4,7 @@
 (function () {
     "use strict";
     var innerWidth = window.innerWidth, innerHeight = window.innerHeight;
-    var str = window.location.href, data = str.slice(str.indexOf('?') + 1).split('&'), json = {}, startDate, endDate, FrontPgImage;
+    var str = window.location.href, data = str.slice(str.indexOf('?') + 1).split('&'), json = {}, startDate, endDate, FrontPgImage,hotelID;
     for (var i = 0; i < data.length; i++) {
         json[data[i].split('=')[0]] = data[i].split('=')[1] == "true" || data[i].split('=')[1] == "false" ? JSON.parse(data[i].split('=')[1]) : data[i].split('=')[1];
     }
@@ -15,6 +15,8 @@
     startDate = json.CheckInDate;
     endDate = json.CheckOutDate;
     FrontPgImage = json.FrontPgImage;
+    hotelID=json.HotelID;
+    console.log(json);
     var data =
     {
         Parameters: JSON.stringify(json),
@@ -43,7 +45,7 @@
         '</div>';
 
 
-        htmlStr += '<ul class="d-ul1"><li class="d-li1"><div class="d-score"><span' +
+        htmlStr += '<ul class="d-ul1"><li class="d-li1" id="d-li1-reviews"><div class="d-score"><span' +
         'style="color:#8ed1cc;font-size:15px;font-weight: 600;">' + d.Data[0].HotelGenInfo.TAAvgRating + '</span><span>分/' + d.Data[0].HotelGenInfo.TAReviewCount + '人点评</span></div> <a href="#" class="d-icon1"></a></li> ' +
         '<li class="d-li1"><div class="d-score">' + d.Data[0].HotelGenInfo.HotelAddress + '</div><a href="#" class="d-icon1"></a> ' +
         '<div class="d-p2">地图</div></li><li class="d-li1"><div class="d-score2">' + star + '</div><b class="d-icon2"></b><a href="#" class="d-icon1"></a></li>' +
@@ -75,7 +77,11 @@
 
         htmlStr += '</ul><div class="r-div" id="r-mb"></div><div class="roomAll" id="roomAll"></div>'
         allContent.innerHTML = htmlStr;
-
+        //点评点击事件
+        var oReviews=document.getElementById('d-li1-reviews');
+        oReviews.onclick=function(){
+            window.location.href='hotel_reviews.html?'+'HotelID='+hotelID;
+        };
 
         document.querySelectorAll('.innerContainer')[0].style.width = d.Data[0].HotelGenInfo.HotelImage.length != 0 ? (100 * d.Data[0].HotelGenInfo.HotelImage.length) + "%" : "100%";
         if (document.querySelectorAll('.innerContainer>img').length) {
