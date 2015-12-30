@@ -182,6 +182,9 @@
                     break;
             };
         }
+        function toDou(num){
+            return num<10?'0'+num:''+num;
+        }
         //var cdDate=lsf_myweb.getbyid('cd_date');
         var checkIn=lsf_myweb.getbyid('CheckInDate');
         var checkOut=lsf_myweb.getbyid('CheckOutDate');
@@ -190,14 +193,40 @@
         var y=oDate.getFullYear();
         var m=oDate.getMonth()+1;
         var d=oDate.getDate();
-        var beginDate=y+'-'+m+'-'+(d+2);
-        var leaveDate=y+'-'+m+'-'+(d+4);
+        var oDate1=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+2);
+        var oDate2=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+5);
+        var beginDate=oDate1.getFullYear()+'-'+toDou(oDate1.getMonth()+1)+'-'+toDou(oDate1.getDate());
+        var leaveDate=oDate2.getFullYear()+'-'+toDou(oDate2.getMonth()+1)+'-'+toDou(oDate2.getDate());
         checkIn.value=beginDate;
         checkOut.value=leaveDate;
-var obj={};
-obj[beginDate]="入住";
-            obj[leaveDate]="离店";
-var myDate1 = new Calender({id: 'content2', num: 13, time: obj});
+        var obj={};
+        obj[beginDate]="入住";
+        obj[leaveDate]="离店";
+        function Calender2(){
+            Calender.apply(this,arguments);
+        }
+        Calender2.prototype=new Calender();
+        var oldlinkover=Calender.prototype.linkOver;
+        Calender2.prototype.linkOver=function(){
+            var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
+            var out = _CalF.$('input',that.input);
+            var tal = _CalF.$('#total_day',that.input);
+            for(i = 0;i<2;i++){
+                arr.push(sels[i].parentNode.getAttribute("data-day"));
+                out[i].value = sels[i].parentNode.getAttribute("data-day");
+            }
+            tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
+            that.removeDate();
+            that.header.parentNode.removeChild(that.header);
+            var oDate1=new Date(arr[0].split('-')[0],(arr[0].split('-')[1]-1),arr[0].split('-')[2]);
+            var oday1=oDate1.getDay();
+            var oDate2=new Date(arr[1].split('-')[0],(arr[1].split('-')[1]-1),arr[1].split('-')[2]);
+            var oday2=oDate2.getDay();
+            //alert(oDate1+'---'+oDate2);
+            lsf_myweb.getbyid('week_span1').innerHTML='周'+n2c(oday1)+' 入住';
+            lsf_myweb.getbyid('week_span2').innerHTML='周'+n2c(oday2)+' 离店';
+        }
+        var myDate1 = new Calender2({id: 'content2', num: 13, time: obj});
         /*content2.onclick=function() {
             var obj={};
             // cdDate.style.display = 'block';
