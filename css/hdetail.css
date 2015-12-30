@@ -7,6 +7,10 @@ html{
 }
 .top{
     width:100%;height:45px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
     padding:1px;
     background-color:#19415e;}
@@ -62,8 +66,7 @@ html{
     width:100%;height: 50px;
     position: absolute;
     margin-top: -52px;
-    background-color: black;
-    opacity: 0.5;
+    background:rgba(0,0,0,0.5) ;
 }
 .d-p4{
     float: right;
@@ -79,17 +82,29 @@ html{
     margin-right: 3%;
 }
 .d-li1{
-    height: 50px;
+    min-height: 50px;
     border-bottom:1px solid #dfdfdd;
+    position: relative;
 }
 .d-score{
+    float: left;
+    width: 75%;
+    margin-top: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color:#484848;
+    font-size:0.8em;
+}
+.d-score2{
     float: left;
     margin-top: 20px;
     color:#484848;
     font-size:0.8em;
 }
 .d-icon1{
-    float: right;
+    position:absolute;
+    right:0;
     margin-top:20px;
     display: block;
     width:8px;height:14px;
@@ -111,7 +126,7 @@ html{
 .d-p2{
     float: right;
     margin-top: 20px;
-    margin-right: 5px;
+    margin-right: 15px;
     color:#ffbf4b;
     font-size:0.8em;
 }
@@ -124,9 +139,18 @@ html{
 .d-div3{
     float: left;
     margin-top: 10px;
+    width:60%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .d-p5{
     display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width:75% ;
+    min-width:5% ;
     color:#484848;
     font-size:1.3em;
 }
@@ -141,6 +165,7 @@ html{
 }
 .d-p6{
     margin-top: 4px;
+    max-width: 90%;
     color:#a1a1a1;
     font-size:1em;
 }
@@ -156,11 +181,32 @@ html{
 }
 .price{
     float: right;
+    margin-right: 25px;
+    margin-top:15px;
+}
+.price2{
+    float: right;
     margin-right: 10px;
     margin-top:15px;
+    position: absolute;
+    right:73px;
+    top:-2px
+}
+.roomUl{
+    width: 106%;
+    list-style-type: none;
+    position: relative;
+    clear: both;
+    display: none;
+    margin-left: -3%;
+    top:7px;
+    padding-left: 3%;
+    background: rgb(223, 223, 221);
+    overflow: hidden;
 }
 .d-p7{
     margin-top: 4px;
+    max-width: 80%;
     color:#484848;
     font-size:1em;
 }
@@ -178,7 +224,8 @@ html{
 }
 .d-icon5{
     display: block;
-    float: right;
+    position:absolute;
+    right:0;
     width:18px;
     height:18px;
     margin-top:20px;
@@ -190,7 +237,7 @@ html{
     房间信息块
 */
 .roomAll{
-    position:fixed;
+    position:absolute;
     overflow-x:hidden!important;
     width:100%;
     height:100%;
@@ -198,14 +245,17 @@ html{
     max-height:100%;
     top:50px;
     display: none;
+    z-index: 11;
 }
 .r-div{
-    width: 100%;height:100%;
+    width: 100%;
+    height:100%;
     top:0;
     left:0;
     position:fixed;
     background:rgba(0,0,0,0.5) ;
     display: none;
+    z-index: 7;
 }
 .room{
     width: 94%;
@@ -216,9 +266,9 @@ html{
     position: absolute;
     left:3%;
     right:3%;
-    z-index: 200000;
+    z-index: 50;
     color: #484848;
-    display: none;
+    display: block;
 }
 .r-top{
     width: 100%;height:40px;
@@ -237,9 +287,9 @@ html{
     float: right;
     margin-right: 12px;
     margin-top: 10px;
-    background-image:url(../images/ui/icon-h.png);
-    background-position:47.6% 81%;
-    background-size: 201px 87px;
+    background-image:url(../images/ui/icon.png);
+    background-position:22% 33%;
+    background-size: 397px 118px;
 }
 .r-div1{
     width: 100%;
@@ -285,4 +335,353 @@ html{
     margin-left: 8px;
     font-size: 10px;
     color: #484848;
+}
+
+.roomMore{
+    width:106%;
+    height:100px;
+    background: #dfdfdd;
+    position: absolute;
+    bottom:-200%;
+    opacity: 0;
+    display: none;
+    margin:0px  -3%;
+}
+.roomMore .first,.roomMore .second{
+    width:100%;
+    height:50%;
+}
+
+
+.endStyle{
+    display: block;
+    position: absolute;
+    z-index: 21;
+    bottom:-200%;
+    opacity: 0;
+    animation:myMove 0.8s 1;
+    -moz-animation:myMove 0.8s 1; /* Firefox */
+    -webkit-animation:myMove 0.8s 1; /* Safari and Chrome */
+    -o-animation:myMove 0.8s 1; /* Opera */
+    animation-fill-mode : forwards;
+}
+
+@keyframes myMove
+{
+    from {bottom:-200%;
+         opacity: 0;
+    }
+    to {bottom:100%;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes myMove /* Firefox */
+{
+    from {bottom:-200%;
+        opacity: 0;
+    }
+    to {bottom:100%;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes myMove /* Safari and Chrome */
+{
+    from {bottom:-200%;
+        opacity: 0;
+    }
+    to {bottom:100%;
+        opacity: 1;
+    }
+}
+
+@-o-keyframes myMove /* Opera */
+{
+    from {bottom:-200%;
+        opacity: 0;
+    }
+    to {bottom:100%;
+        opacity: 1;
+    }
+}
+
+
+.roomMore .first .left,.roomMore .second .left{
+     display: inline-block;
+     float: left;
+     margin-top: 8px;
+
+
+}
+
+.roomMore .first .left .title,.roomMore .second .left .title{
+    display: inline-block;
+    color: #484848;
+    font-size: 1.3em;
+}
+
+
+
+.roomMore .first .left .more span,.roomMore .second .left .more span{
+    margin-top: 4px;
+    color: #484848;
+    font-size: 0.8em;
+}
+
+
+.roomMore .first .left .more span.lastRoom,.roomMore .second .left .more span.lastRoom{
+    color: #fe4716;
+}
+
+
+
+.roomMore .first .middle{
+    position: absolute;
+    right: 86px;
+    top: 15%;
+}
+
+
+.roomMore .second .middle{
+    position: absolute;
+    right: 86px;
+    bottom: 8%;
+}
+
+
+/*
+
+.roomMore .first .middle span.mTag,.roomMore .second .middle span.mTag,{
+    font-size: 0.8em; !important;
+    color: #fe4716; !important;
+}
+*/
+
+.roomMore .first .middle .num,.roomMore .second .middle .num{
+    font-size: 2em;
+    font-weight: 600;
+    color: #fe4716;
+}
+
+
+.roomMore .first .right,.roomMore .second .right{
+    width: 79px;
+    height: 33px;
+    float: right;
+    border-radius: 5px;
+    margin-top: 8px;
+    text-align: center;
+    line-height: 33px;
+    background-color: #ffb412;
+    color: white;
+    font-size: 1.5em;
+}
+
+.roomMore .first,.roomMore .second{
+    width:100%;
+    height:50%;
+}
+
+.d-div1 .image{
+    width:100%;
+    height:62.5%;
+    max-height: 50px;
+}
+
+
+/*hotelImage*/
+
+.all-elements .imageContainer{
+    display: none;
+    z-index: 999;
+    width:100%;
+    height:100%;
+    background-color:#000;
+    position: fixed;
+    bottom:0%;
+    left:0%;
+}
+
+.all-elements .imageContainer h5{
+    width:100%;
+    position: absolute;
+    top:20%;
+    font-size: 1.2em;
+    color: #FFF;
+    text-align: center;
+}
+.all-elements .imageContainer .showZone{
+    width: 100%;
+    height: 33%;
+    position: absolute;
+    top: 28%;
+    left: 0%;
+    background: white;
+}
+
+.all-elements .imageContainer .showZone .innerContainer{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: #000;
+    -webkit-transition: 1s ease-in-out;
+}
+
+.all-elements .imageContainer .showZone .innerContainer img{
+    float: left;
+}
+
+/*.all-elements .imageContainer figure{
+    width: 100%;
+    height: 38%;
+    position: absolute;
+    top: 28%;
+    left: 0%;
+    background: white;
+}
+
+.all-elements .imageContainer figure figcaption{
+    width:100%;
+    position: absolute;
+    top:-28%;
+    font-size: 1.2em;
+    color: #FFF;
+    text-align: center;
+}*/
+
+
+.to-none{
+    display: block;
+    opacity: 1;
+    height:100px;
+    animation:myMoveA 0.8s 1;
+    -moz-animation:myMoveA 0.8s 1; /* Firefox */
+    -webkit-animation:myMoveA 0.8s 1; /* Safari and Chrome */
+    -o-animation:myMoveA 0.8s 1; /* Opera */
+    animation-fill-mode : forwards;
+}
+
+@keyframes myMoveA
+{
+    from { height:100px;
+        opacity: 1;
+    }
+    to { height:0px;
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes myMoveA /* Firefox */
+{
+    from { height:100px;
+        opacity: 1;
+    }
+    to { height:0px;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes myMoveA /* Safari and Chrome */
+{
+    from { height:100px;
+        opacity: 1;
+    }
+    to { height:0px;
+        opacity: 0;
+    }
+}
+
+@-o-keyframes myMoveA /* Opera */
+{
+    from { height:100px;
+        opacity: 1;
+    }
+    to { height:0px;
+        opacity: 0;
+    }
+}
+
+.to-block{
+    display: block;
+    opacity: 0;
+    height:0px;
+    animation:myMoveB 0.8s 1;
+    -moz-animation:myMoveB 0.8s 1; /* Firefox */
+    -webkit-animation:myMoveB 0.8s 1; /* Safari and Chrome */
+    -o-animation:myMoveB 0.8s 1; /* Opera */
+    animation-fill-mode : forwards;
+}
+
+@keyframes myMoveB
+{
+    from { height:0px;
+        opacity: 0;
+    }
+    to { height:100px;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes myMoveB /* Firefox */
+{
+    from { height:0px;
+        opacity: 0;
+    }
+    to { height:100px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes myMoveB /* Safari and Chrome */
+{
+    from { height:0px;
+        opacity: 0;
+    }
+    to { height:100px;
+        opacity: 1;
+    }
+}
+
+@-o-keyframes myMoveB /* Opera */
+{
+    from { height:0px;
+        opacity: 0;
+    }
+    to { height:100px;
+        opacity: 1;
+    }
+}
+
+
+.hide{
+    display: block;
+    height:103px;
+    -webkit-animation: myMoveHide 0.6s ease-in-out 1;
+    -webkit-animation-fill-mode : forwards;
+}
+
+@-webkit-keyframes myMoveHide {
+    from{
+        height:103px;
+    }
+    to{
+        height:0;
+    }
+}
+
+.show{
+    display: block;
+    height:0px;
+    -webkit-animation: myMoveShow 0.6s ease-in-out 1;
+    -webkit-animation-fill-mode :forwards;
+}
+
+@-webkit-keyframes myMoveShow {
+    from{
+        height:0px;
+    }
+    to{
+        height:103px;
+    }
 }

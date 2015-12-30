@@ -130,7 +130,6 @@ function url2json(url){
         if(!data)return;
         var timer=null;
         var oUl=lsf_myweb.getbyid('lsf_list');
-        console.log(data);
         list_oUl.innerHTML='';
         for(var i=0;i<data.length;i++){
             var  str1=data[i].StarRating.substring(0,1);
@@ -153,16 +152,16 @@ function url2json(url){
 
             var str='<li class="ho_list">'+
                 '<div class="ho_pic">'+
-                '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'" class="ho_img" />'+
+                '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
                 '</div>'+
                 '<div class="ho_infor">'+
                 '<p class="hname"  style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+
                 data[i].HotelNameLocale+'('+data[i].HotelName+')'+
             '</p>'+
-            '<div class="h-score">'+
+                '<div class="h-score">'+
                 '<span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">'+data[i].HotelReviewScore+'</span>'+
                 '<span style="color:#999999;font-size:0.8em;">分/'+data[i].HotelReviewCount+'人点评</span>'+
-            '<p class="price">'+
+                '<p class="price">'+
                 '<span style="font-size:0.8em;color:#fe4716;">￥</span>'+
                 '<span style="font-size:2em;font-weight: 600;color:#fe4716;">'+data[i].AvgPrice+'</span>'+
                 '<span style="font-size:0.8em;color:#999999;">起</span>'+
@@ -175,8 +174,8 @@ function url2json(url){
                 str4+
                 '</div>'+
                 '<p class="h-address">'+data[i].City+'('+data[i].Location+')'+'</p>'+
-            '</div>'+
-            '</li>';
+                '</div>'+
+                '</li>';
             list_oUl.innerHTML+=str;
         }
         //懒加载
@@ -202,6 +201,8 @@ function url2json(url){
             }
         }
         var c=new lazyLoad2('lsf_list');
+        //绑定图片src
+        document.getElementsByClassName('hotelcontent')[0].getElementsByClassName('ho_img');
     }
 
 
@@ -213,6 +214,8 @@ function url2json(url){
         var data=arr.Data;
         //console.log(data);
         V(data);
+        //绑定跳转事件
+        getDetail(data);
     }
 
     oBody.onclick=function(ev){
@@ -230,41 +233,84 @@ function url2json(url){
             M(url_json);
         }
     };
-//懒加载
-    /*(function(){
-        window.onscroll=window.onresize=function(){
-            var oUl=document.getElementById('lsf_list');
-            var aImg=document.getElementsByClassName('ho_img');
-            var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
-            //console.log(document.documentElement.clientHeight);
-            //console.log(document.documentElement.scrollTop||document.body.scrollTop)
-            //console.log(clienH);
-            for(var i=0;i<aImg.length;i++){
-                var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
-                //滚动的时候如果图片的后缀名是png说明是这张图片是预定好图片
-                if(aImg[i].offsetTop<clienH&&str=='png'){
-                    aImg[i].src=aImg[i].dataset.src;
-                }
-                //这样能够判断错误也能够换成想要的图片，但是会一直报错，报404页面错误
-                aImg[i].onerror=function(){
-                    this.src='images/cars.png';
-                }
+    //获取酒店详情
+    function getDetail(data){
+        console.log(data)
+        var hotelRefers = document.getElementsByClassName('ho_img');
+        var toDetail= function(that){
+            var paraObj= new Object();
+            paraObj.HotelID=data[that.index].HotelCode;
+            paraObj.HotelCode=data[that.index].HotelCode;
+
+            // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
+            paraObj.InstantConfirmation=data[that.index].InstantConfirmation!=undefined?data[that.index].InstantConfirmation:false;
+            paraObj.AllOccupancy=data[that.index].AllOccupancy!=undefined?data[that.index].AllOccupancy:true;
+
+            paraObj.CheckInDate=url_json.CheckInDate;
+            paraObj.CheckOutDate=url_json.CheckOutDate;
+            paraObj.NumRoom=url_json.NumRoom;
+            paraObj.NumAdult=url_json.NumAdult;
+            paraObj.NumChild=url_json.NumChild;
+            paraObj.FrontPgImage=that.getAttribute('data-src');
+
+            var paramStr = "";
+            for(var attr in paraObj){
+                paramStr+="&"+attr+"="+paraObj[attr];
             }
-        };
-    })();*/
-//懒加载
-    /*(function(){
-        var timer=null;
-        var oUl=lsf_myweb.getbyid('lsf_list');
-        function lazyLoad2(){
-            lazyLoad.apply(this,arguments);
+            paramStr=paramStr.slice(1);
+            console.log(paramStr)  //HotelID=3283&HotelCode=3283&InstantConfirmation=false&AllOccupancy=true&CheckInDate=2015-12-31&CheckOutDate=2016-1-1&NumRoom=1&NumAdult=1&NumChild=0&FrontPgImage=http://images.asiatravel.com/Hotel/3283/3283front.jpg
+            window.location.href='jyy_hotelDetail.html?'+paramStr;
         }
-        lazyLoad2.prototype=new lazyLoad();
-        timer=setInterval(function(){
-            if(oUl.getElementsByTagName('img').length){
-                var c=new lazyLoad2('lsf_list');
-                clearInterval(timer);
+
+
+        for(var i = 0;i<hotelRefers.length;i++){
+            console.log(data)
+            hotelRefers[i].index = i;
+            hotelRefers[i].onclick=function(){
+                var that=this;
+                toDetail(that);
             }
-        },30);
-    })();*/
+
+        }
+    }
+
+
+
+//懒加载
+    /*(function(){
+     window.onscroll=window.onresize=function(){
+     var oUl=document.getElementById('lsf_list');
+     var aImg=document.getElementsByClassName('ho_img');
+     var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
+     //console.log(document.documentElement.clientHeight);
+     //console.log(document.documentElement.scrollTop||document.body.scrollTop)
+     //console.log(clienH);
+     for(var i=0;i<aImg.length;i++){
+     var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
+     //滚动的时候如果图片的后缀名是png说明是这张图片是预定好图片
+     if(aImg[i].offsetTop<clienH&&str=='png'){
+     aImg[i].src=aImg[i].dataset.src;
+     }
+     //这样能够判断错误也能够换成想要的图片，但是会一直报错，报404页面错误
+     aImg[i].onerror=function(){
+     this.src='images/cars.png';
+     }
+     }
+     };
+     })();*/
+//懒加载
+    /*(function(){
+     var timer=null;
+     var oUl=lsf_myweb.getbyid('lsf_list');
+     function lazyLoad2(){
+     lazyLoad.apply(this,arguments);
+     }
+     lazyLoad2.prototype=new lazyLoad();
+     timer=setInterval(function(){
+     if(oUl.getElementsByTagName('img').length){
+     var c=new lazyLoad2('lsf_list');
+     clearInterval(timer);
+     }
+     },30);
+     })();*/
 })();
