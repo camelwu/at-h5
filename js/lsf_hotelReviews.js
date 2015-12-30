@@ -22,9 +22,23 @@
     },
     bind:function(obj,sEv,fn){
         obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    },
+    url2json:function(url){
+        if(!url)return;
+        var json={};
+        var arr=url.split('?');
+        var arr2=arr[1].split('&');
+        for(var i=0;i<arr2.length;i++){
+            var arr3=arr2[i].split('=');
+            json[arr3[0]]=arr3[1];
+        }
+        return json;
     }
 };
 (function(){
+    var url=window.location.href;
+    var HotelID=lsf_myweb.url2json(url).HotelID;
+    //alert(HotelID);
     //最大字数设置
     function maxWord(str){
         var n=count(str).n;
@@ -67,7 +81,7 @@
         };
         return c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
     }
-    M({"HotelID":1});
+    M({"HotelID":HotelID});
     //callback函数
     function mycallback(d){
         var json=eval('('+d+')');
