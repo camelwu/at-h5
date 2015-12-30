@@ -4,176 +4,29 @@
     <meta charset="UTF-8">
     <title>酒店详情</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <link href="styles/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/hotel_jyy.css">
+    <link href="styles/lsf_base.css" rel="stylesheet" />
     <link type="text/css" href="styles/style.css" rel="stylesheet">
     <link type="text/css" href="css/hdetail.css" rel="stylesheet">
 </head>
 <body>
-    <div class="all-elements">
-        <!--  顶部   -->
-        <div class="top" id="vlm-login">
-            <a href="#" class="d-icons"></a>
-            <p class="d-p1">东京东急涩谷卓越大酒店<br>(Shibuya Excel Hotel Tokyu Tokyo)</p>
-            <a href="#" class="d-icon d1"></a>
-        </div>
-        <div class="d-div1" onclick="showDetail()">
-            <img class="hotelPic" src="images/03-1_02.jpg">
-            <div class="d-div2">
-                <p class="d-p4">36张</p>
-            </div>
-        </div>
-        <ul class="d-ul1">
-            <li class="d-li1">
-                <div class="d-score">
-                    <span style="color:#8ed1cc;font-size:15px;font-weight: 600;">4.3</span>
-                    <span>分/385人点评</span>
-                </div>
-                <a href="#" class="d-icon1" ></a>
-            </li>
-            <li class="d-li1">
-                <p class="d-score">1-12-2 Dougenzaka shibuya-ku</p>
-                <a href="#" class="d-icon1" ></a>
-                <p class="d-p2">地图</p>
-            </li>
-            <li class="d-li1">
-                <p class="d-score">三星级</p>
-                <b class="d-icon2"></b>
-                <a href="#" class="d-icon1" ></a>
-            </li>
-            <li class="d-li1">
-                <p class="d-p3">12月22入住</p>
-                <p class="d-p3" style="margin-left: 5px;">12月30离店</p>
-                <a href="#" class="d-icon1" ></a>
-                <p class="d-p2">共9晚</p>
-            </li>
-            <li class="d-li1">
-                <div class="d-div3">
-                    <p class="d-p5">高级客房</p>
-                    <b class="d-icon3"></b>
-                    <p class="d-p6">32-38㎡ 大/双床</p>
-                </div>
-                <a href="#" class="d-icon4"></a>
-                <p class="price">
-                    <span style="font-size:0.8em;color:#fe4716;">￥</span>
-                    <span style="font-size:2em;font-weight: 600;color:#fe4716;">848</span>
-                    <span style="font-size:0.8em;color:#999999;">起</span>
-                </p>
-            </li>
-            <li class="d-li1">
-                <div class="d-div3">
-                    <p class="d-p5">标准价</p>
-                    <p class="d-p7">
-                        <span>无早 大床 不可取消</span><span style="color: #fe4716"> 仅剩2间</span>
-                    </p>
-                </div>
-                <div class="d-but">预订</div>
-                <!--<input type="button" class="d-but" value="预订"/>-->
-                <p class="price">
-                    <span style="font-size:0.8em;color:#fe4716;">￥</span>
-                    <span style="font-size:2em;font-weight: 600;color:#fe4716;">848</span>
-                </p>
-            </li>
-            <li class="d-li1">
-                <div class="d-div3">
-                    <p class="d-p5">含早</p>
-                    <p class="d-p7">
-                        <span>无早 大/双床 免费取消</span>
-                    </p>
-                </div>
-                <div class="d-but">预订</div>
-                <!--<input type="button" class="d-but" value="预订"/>-->
-                <p class="price">
-                    <span style="font-size:0.8em;color:#fe4716;">￥</span>
-                    <span style="font-size:2em;font-weight: 600;color:#fe4716;">908</span>
-                </p>
-            </li>
-            <li class="d-li1">
-                <div class="d-div3">
-                    <p class="d-p5">豪华房</p>
-                    <p class="d-p6">32-38㎡ 大/双床</p>
-                </div>
-                <a href="#" class="d-icon5"></a>
-                <p class="price">
-                    <span style="font-size:0.8em;color:#fe4716;">￥</span>
-                    <span style="font-size:2em;font-weight: 600;color:#fe4716;">1288</span>
-                    <span style="font-size:0.8em;color:#999999;">起</span>
-                </p>
-            </li>
-            <li class="d-li1">
-                <div class="d-div3">
-                    <p class="d-p5">梅菲尔豪华客房</p>
-                    <p class="d-p6">32-38㎡ 大/双床</p>
-                </div>
-                <a href="#" class="d-icon5"></a>
-                <p class="price">
-                    <span style="font-size:0.8em;color:#fe4716;">￥</span>
-                    <span style="font-size:2em;font-weight: 600;color:#fe4716;">1353</span>
-                    <span style="font-size:0.8em;color:#999999;">起</span>
-                </p>
-            </li>
-        </ul>
-        <!--   房间信息块   -->
-        <div class="r-div" id="r-mb"></div>
-        <div class="roomAll" id="roomAll">
-            <div class="room" id="room">
-                <header class="r-top">
-                    <p class="r-p1">高级客房</p>
-                    <b class="r-icon1" onclick="closeRoom()"></b>
-                </header>
-                <div class="r-div1">
-                    <img class="hotelPic2" src="images/03-3_03.jpg">
-                </div>
-                <article class="r-ar">
-                    最多 2成人<br/>儿童10岁或以上按照成人算。&nbsp;&nbsp;10岁以下的儿童按照酒店的具体规定一般免费
-                    （但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床
-                    可能有额外收费。
-                </article>
-                <hr size="1px" width="100%" color="#ececec"/>
-                <p class="r-p2" style="">房间描述</p>
-                <article class="r-ar">
-                    Newly refurbished Deluxe Rooms are a unique expression of stylish comfort.Featuring plenty of natural
-                    light,contemporary designs with rich wood furnishings,refreshing touches of colour and high quality
-                    finishes,these spacious and energy-efficient rooms include a thoughtfullly appointed workspace,a wide
-                    selection of channels for in-room entertainment,as well as comlplimentary Internet access.
-                </article>
-                <hr size="1px" width="100%" color="#ececec"/>
-                <p class="r-p2" style="">房间设施</p>
-                <ul class="r-ul">
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">无线上网服务(免费)</p>
-                    </li>
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">双人床/两张单人床</p>
-                    </li>
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">个人温度调节器</p>
-                    </li>
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">有线/卫星电视</p>
-                    </li>
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">热水喝冷水淋浴</p>
-                    </li>
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">AM/FM收音机</p>
-                    </li>
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">24小时商务中心</p>
-                    </li>
-                    <li class="r-li">
-                        <b class="r-icon2"></b>
-                        <p class="r-p3">SPA浴盆</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            Loading ...
+            <em>Loading depends on your connection speed!</em>
+        </p>
     </div>
-    <script type="text/javascript" src="js/hdetail.js"></script>
+</div>
+
+<div class="all-elements">
+</div>
+
+<script type="text/javascript" src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/vcm.js"></script>
+<script type="text/javascript" src="js/hotelBaseInfo.js"></script>
+
 </body>
 </html>
