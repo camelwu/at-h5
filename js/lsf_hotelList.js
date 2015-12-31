@@ -84,8 +84,7 @@ function url2json(url){
         },30);
 
     });
-})();
-(function(){
+
     var list_oUl=lsf_myweb.getbyid('lsf_list');
     var pWidth=list_oUl.offsetWidth-140;
     var str=window.location.href;
