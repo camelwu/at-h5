@@ -167,7 +167,7 @@ header i{
     display:flex;
     margin-top:0.6rem;
 }
-.lsf_reUser span{
+.lsf_reUser .reu_span1{
     -webkit-box-flex:1;
     -moz-box-flex:1;
     -mz-flex:1;
@@ -176,6 +176,9 @@ header i{
     font-size:1.1rem;
     color:#484848;
 
+}
+.lsf_reUser .reu_span2{
+    width:70px;
 }
 .lsf_reUser span i{
     margin-left: 0.4rem;

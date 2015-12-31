@@ -80,7 +80,7 @@
         //点评点击事件
         var oReviews=document.getElementById('d-li1-reviews');
         oReviews.onclick=function(){
-            window.location.href='hotel_reviews.html?'+'HotelID='+hotelID;
+            window.location.href='hotel_reviews.html?'+'HotelID='+hotelID+'&'+'TAAvgRating='+d.Data[0].HotelGenInfo.TAAvgRating+'&'+'TAReviewCount='+d.Data[0].HotelGenInfo.TAReviewCount;
         };
 
         document.querySelectorAll('.innerContainer')[0].style.width = d.Data[0].HotelGenInfo.HotelImage.length != 0 ? (100 * d.Data[0].HotelGenInfo.HotelImage.length) + "%" : "100%";

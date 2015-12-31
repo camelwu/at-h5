@@ -36,8 +36,30 @@
     }
 };
 (function(){
+
+    //页面加载小动画
+    $(window).load(function () {
+        //$("#status").fadeOut();
+        //$("#preloader").delay(400).fadeOut("medium");
+        var timer=null;
+        timer=setInterval(function(){
+            if($('#lsf_reDetail_grade').children().length){
+                $("#status").fadeOut();
+                $("#preloader").delay(400).fadeOut("medium");
+                clearInterval(timer);
+            }
+            //console.log($('#lsf_list').children().length);
+        },30);
+
+    });
+
+
+
+
     var url=window.location.href;
     var HotelID=lsf_myweb.url2json(url).HotelID;
+    lsf_myweb.getbyid('TAAvgRating').innerHTML=lsf_myweb.url2json(url).TAAvgRating;
+    lsf_myweb.getbyid('TAReviewCount').innerHTML=lsf_myweb.url2json(url).TAReviewCount+'人点评';
     //alert(HotelID);
     //最大字数设置
     function maxWord(str){
@@ -128,8 +150,8 @@
                 '<i class="fr drop_down"></i>'+
                 '</p>'+
                 '<div class="lsf_reUser">'+
-                '<span class="clearfix"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
-                '<span class="clearfix"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
+                '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
+                '<span class="clearfix reu_span2"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
                 '</div>'+
                 '</div>';
         }
@@ -159,24 +181,8 @@
             }
         }
     }
-})();
 
 
-(function(){
-    $(window).load(function () {
-        //$("#status").fadeOut();
-        //$("#preloader").delay(400).fadeOut("medium");
-        var timer=null;
-        timer=setInterval(function(){
-            if($('#lsf_reDetail_grade').children().length){
-                $("#status").fadeOut();
-                $("#preloader").delay(400).fadeOut("medium");
-                clearInterval(timer);
-            }
-            //console.log($('#lsf_list').children().length);
-        },30);
-
-    });
 })();
 
 
