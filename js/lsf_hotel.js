@@ -1,7 +1,149 @@
 /**
  * Created by Asiatravel on 2015/12/31.
  */
+//董振昊js代码
+/**
+ * Created by changlv on 2015/12/11.
+ */
+function fun11(){
+    var choose=document.getElementById("choose");
+    var show=document.getElementById("show");
+    choose.style.display="block";
+    show.style.display="block";
+}
+function No(){
+    var choose=document.getElementById("choose");
+    var show=document.getElementById("show");
+    choose.style.display="none";
+    show.style.display="none";
+}
+function Yes(){
+    var choose=document.getElementById("choose");
+    var show=document.getElementById("show");
+    choose.style.display="none";
+    show.style.display="none";
+}
 
+
+function fun1(num){
+    if( num.parentNode.children[0].value<10){
+        num.parentNode.children[0].value++;
+    }else{
+        return false;
+    }
+}
+function fun2(num){
+    if(num.parentNode.children[0].value>1){
+        num.parentNode.children[0].value--;
+    }else{
+        return false;
+    }
+}
+
+function fun7(num){
+    num.parentNode.children[0].value++;
+}
+function fun6(num){
+    if(num.parentNode.children[0].value>1){
+        num.parentNode.children[0].value--;
+    }else{
+        return false;
+    }
+}
+
+function fun3(num){
+    num.parentNode.children[0].value++;
+}
+function fun4(num){
+    if(num.parentNode.children[0].value>0){
+        num.parentNode.children[0].value--;
+    }else{
+        return false;
+    }
+}
+
+function focus1(){
+    var input1=document.getElementById("input1");
+    input1.focus();
+    var input2=document.getElementById("input2");
+    input2.focus();
+}
+
+function focus2(){
+    var input3=document.getElementById("CheckInDate");
+    input3.focus();
+}
+function focus3(){
+    var input4=document.getElementById("CheckOutDate");
+    input4.focus();
+}
+function focus4(){
+    var count1=document.getElementById("count1");
+    count1.focus()
+}
+function focus5(){
+    var count2=document.getElementById("count2");
+    count2.focus()
+}
+function focus6(){
+    var count3=document.getElementById("count3");
+    count3.focus()
+}
+function focus7(){
+    var hotelname=document.getElementById("hotelname");
+    hotelname.focus()
+}
+
+window.onload=fun5()
+function fun5(){
+    var input2=document.getElementById("input2");
+    if(!input2)return;
+    input2.name="";
+}
+
+
+function Dom(){
+    var Dom=document.getElementById("Dom");
+    var Inter=document.getElementById("Inter");
+    var room=document.getElementById("room");
+    var people=document.getElementById("people");
+    var arr1=document.getElementById("arr1");
+    var arr2=document.getElementById("arr2");
+    var count1=document.getElementById("count1");
+    var count2=document.getElementById("count2");
+    var count3=document.getElementById("count3");
+    var input1=document.getElementById("input1");
+    input1.name="";
+    var input2=document.getElementById("input2");
+    input2.name="CityName";
+    count1.value=1;
+    count2.value=1;
+    count3.value=0;
+    room.style.display="none";
+    people.style.display="none";
+    arr1.style.display="none";
+    arr2.style.display="block";
+    Dom.className="on";
+    Inter.className="off";
+}
+function Inter(){
+    var Dom=document.getElementById("Dom");
+    var Inter=document.getElementById("Inter");
+    var room=document.getElementById("room");
+    var people=document.getElementById("people");
+    var arr1=document.getElementById("arr1");
+    var arr2=document.getElementById("arr2");
+
+    room.style.display="block";
+    people.style.display="block";
+    arr1.style.display="block";
+    arr2.style.display="none";
+    Dom.className="off";
+    Inter.className="on";
+}
+    //董振昊js代码结束
+
+//刘少飞js代码
 var lsf_myweb={
     "getbyid":function(id){
         return document.getElementById(id);
@@ -29,6 +171,7 @@ var lsf_myweb={
     }
 };
 (function(){
+    //日历
     function n2c(num){
         switch (parseInt(num)){
             case 1:
@@ -154,5 +297,13 @@ var lsf_myweb={
      }
      var arr = new calender2({id: 'content2', num: 13, time: obj});
      };*/
+
+
+    //城市
+    var target_place=document.getElementById('arr1');
+    var target_city=document.getElementById('input1');
+    lsf_myweb.bind(target_place,'click',function(){
+        var citys=new myCityList();
+    })
 })();
 
