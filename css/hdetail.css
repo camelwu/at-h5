@@ -475,193 +475,66 @@ html {
     max-height: 50px;
 }
 
-/*hotelImage*/
-
-.all-elements .imageContainer {
+#imageContainer{
+    width:100%;
+    height:100%;
+    background: #000000;
+    overflow: hidden;
     display: none;
-    z-index: 999;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
     position: fixed;
-    bottom: 0%;
-    left: 0%;
+    z-index: 109;
+    top:0;
+    left:0
 }
 
-.all-elements .imageContainer h5 {
-    width: 100%;
-    position: absolute;
-    top: 20%;
+#imageContainer .indexShow{
+    height:40px;
+    line-height: 40px;
+    text-align: center;
     font-size: 1.2em;
-    color: #FFF;
+    color: #ffffff;
+    position: absolute;
+    top:21%;
+    background: #000000;
+    width: 100%;
     text-align: center;
 }
 
-.all-elements .imageContainer .showZone {
+#imageContainer .showZone{
+    height:38.5%;
     width: 100%;
-    height: 33%;
+    overflow: hidden;
+    position: fixed;
+    top:28%;
+    background: #000000;
+}
+#imageContainer .showZone .imgUl{
+    height:100%;
+    width: 100%;
+    overflow: hidden;
     position: absolute;
-    top: 28%;
-    left: 0%;
-    background: white;
+    display: block;
+    background: #000000;
+    list-style: none;
 }
 
-.all-elements .imageContainer .showZone .innerContainer {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    background: #000;
-    -webkit-transition: 1s ease-in-out;
-}
-
-.all-elements .imageContainer .showZone .innerContainer img {
+#imageContainer .showZone .imgUl li{
+    display: inline-block;
+    height:100%;
+    width: 100%;
     float: left;
+    overflow: hidden;
+    list-style: none;
 }
 
-.to-none {
-    display: block;
-    opacity: 1;
-    height: 100px;
-    animation: myMoveA 0.8s 1;
-    -moz-animation: myMoveA 0.8s 1; /* Firefox */
-    -webkit-animation: myMoveA 0.8s 1; /* Safari and Chrome */
-    -o-animation: myMoveA 0.8s 1; /* Opera */
-    animation-fill-mode: forwards;
+#imageContainer .showZone .imgUl li.noImage{
+     height:100%;
+     width: 100%;
+    line-height: 100%;
+    text-align: center;
+    font-size: 1.2em;
 }
-
-@keyframes myMoveA {
-    from {
-        height: 100px;
-        opacity: 1;
-    }
-    to {
-        height: 0px;
-        opacity: 0;
-    }
-}
-
-@-moz-keyframes myMoveA /* Firefox */
-{
-    from {
-        height: 100px;
-        opacity: 1;
-    }
-    to {
-        height: 0px;
-        opacity: 0;
-    }
-}
-
-@-webkit-keyframes myMoveA /* Safari and Chrome */
-{
-    from {
-        height: 100px;
-        opacity: 1;
-    }
-    to {
-        height: 0px;
-        opacity: 0;
-    }
-}
-
-@-o-keyframes myMoveA /* Opera */
-{
-    from {
-        height: 100px;
-        opacity: 1;
-    }
-    to {
-        height: 0px;
-        opacity: 0;
-    }
-}
-
-.to-block {
-    display: block;
-    opacity: 0;
-    height: 0px;
-    animation: myMoveB 0.8s 1;
-    -moz-animation: myMoveB 0.8s 1; /* Firefox */
-    -webkit-animation: myMoveB 0.8s 1; /* Safari and Chrome */
-    -o-animation: myMoveB 0.8s 1; /* Opera */
-    animation-fill-mode: forwards;
-}
-
-@keyframes myMoveB {
-    from {
-        height: 0px;
-        opacity: 0;
-    }
-    to {
-        height: 100px;
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes myMoveB /* Firefox */
-{
-    from {
-        height: 0px;
-        opacity: 0;
-    }
-    to {
-        height: 100px;
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes myMoveB /* Safari and Chrome */
-{
-    from {
-        height: 0px;
-        opacity: 0;
-    }
-    to {
-        height: 100px;
-        opacity: 1;
-    }
-}
-
-@-o-keyframes myMoveB /* Opera */
-{
-    from {
-        height: 0px;
-        opacity: 0;
-    }
-    to {
-        height: 100px;
-        opacity: 1;
-    }
-}
-
-.hide {
-    display: block;
-    height: 103px;
-    -webkit-animation: myMoveHide 0.6s ease-in-out 1;
-    -webkit-animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes myMoveHide {
-    from {
-        height: 103px;
-    }
-    to {
-        height: 0;
-    }
-}
-
-.show {
-    display: block;
-    height: 0px;
-    -webkit-animation: myMoveShow 0.6s ease-in-out 1;
-    -webkit-animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes myMoveShow {
-    from {
-        height: 0px;
-    }
-    to {
-        height: 103px;
-    }
+#imageContainer .showZone .imgUl li img{
+    height:100%;
+    width: 100%;
 }
