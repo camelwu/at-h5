@@ -10,164 +10,8 @@
     <title>首页 - 亚洲旅行网</title>
     <link href="styles/framework.css" rel="stylesheet" />
     <link href="styles/style.css" rel="stylesheet" />
+    <link href="styles/user_order.css" rel="stylesheet" />
 
-    <style>
-        .uo_box{
-            position:absolute;top:0;right:0;left:0;bottom:0;overflow:auto;
-        }
-        em,b,i{
-            font-weight:normal;
-            font-style:normal;
-        }
-        .uo_con1{
-            width:100%;
-            margin-top:45px;padding:0 15px;
-            font-size:1.2rem;color:#fff;
-            background:#fad485;
-        }
-        .uo_con1 div{
-            display:-webkit-box;
-            display:-moz-box;
-            display:-ms-flexbox;
-            display:flex;
-            display:-webkit-flex;
-        }
-        .uo_con1 p{
-            margin:0;padding:0;
-        }
-        .uo_con1 div p{
-            margin:0;padding:0;
-            -webkit-box-flex:1;
-            -moz-box-flex:1;
-            -ms-flex:1;
-            -webkit-flex:1;
-            flex:1;
-        }
-        .uo_c1_info{
-            white-space:nowrap;
-            text-overflow:ellipsis;overflow:hidden;
-            -webkit-text-overflow:ellipsis;
-        }
-        .uo_con1 div i{
-            display:inline-block;
-            width:20px;height:18px;background:url("images/lsf_down1.png") no-repeat right center;
-            background-size:11px 6px;
-        }
-        .uo_con2{
-            padding:0 15px;
-            border-bottom:1px solid #dedede;
-        }
-        .uo_con2 h3,.uo_con2 p{
-            margin:0;padding:0;
-        }
-        .uo_con2 h3{
-            font-size:1.5rem;
-        }
-        .uo_con2 p{
-            color:rgb(153,153,153);
-        }
-        .uo_house{
-            border-bottom:1px solid #dedede;
-        }
-        .uo_con2 .uo_c2_infor{
-            font-size:1.3rem;color:rgb(72,72,72);
-        }
-        .uo_con2 div{
-            overflow:hidden;height:40px;
-        }
-        .uo_con2 div p{
-            line-height:4rem;
-        }
-        .uo_con2 div em{
-            font-size:1.3rem;color:#000;
-            line-height:4rem;margin-left:54px;
-        }
-        .uo_con2 div i{
-            width:24px;height:24px;
-            margin-top:8px;
-        }
-        .uo_c2_i1{
-            background:url("images/ui/icons1.png") -35px 0;
-            background-size:400px 120px;    margin-left:10px;
-        }
-        .uo_c2_i2{
-            background:url("images/ui/icons1.png") -3px 0;
-            background-size:400px 120px;
-        }
-        .uo_con3{
-            width:100%;
-            font-size:1.2rem;
-            background:#fff;
-        }
-        .uo_c3_peo{
-            padding:0 15px;
-            border-bottom:1px solid #dfe0db;
-        }
-        .uo_c3_infor{
-            display:-webkit-box;
-            display:-moz-box;
-            display:-ms-flexbox;
-            display:-webkit-flex;
-            display:flex;
-        }
-        .uo_c3_infor input{
-            -webkit-box-flex:1;
-            -moz-flex-flex:1;
-            -ms-flex:1;
-            -webkit-flex:1;
-            flex:1;
-            background:none;
-        }
-        .uo_c3_peo div{
-            height:40px;line-height:40px;
-        }
-        .uo_c3_div1{
-            color:#484848;border-bottom:1px solid #dfe0db;
-        }
-        .uo_c3_teBox{
-            display:-webkit-box;
-            display:-moz-box;
-            display:-ms-flexbox;
-            display:-webkit-flex;
-            display:flex;
-            height:40px;line-height:40px;
-            padding:0 15px;
-            font-size:1.2rem;
-        }
-        .uo_c3_teBox p{
-            width:92px;
-            height:100%;line-height:40px;
-        }
-        .uo_c3_teBox input{
-            -webkit-box-flex:1;
-            -moz-box-flex:1;
-            -ms-flex: 1;
-            -webkit-flex:1;
-            flex:1;
-            background:none;
-        }
-        .uo_con4{
-            padding:15px 40px;
-            font-size:10px;color:rgb(117,117,117);
-            overflow:hidden;
-            text-align:center;
-        }
-        .uo_con4 i{
-            width:17px;height:17px;background:url(images/ui/icons1.png) -266px -4px;
-            background-size:400px 120px;margin-top:2px;
-        }
-        .uo_con4 a{
-            display:inline;
-            font-size:10px;color:#feb932;
-        }
-        .uo_con5 {
-            padding:0 15px;font-size:10px;color:rgb(117,117,117);
-            margin-bottom:25px;
-        }
-        .uo_con5 p{
-            margin:0;padding:0;line-height:1.6rem;
-        }
-    </style>
 </head>
 <body>
     <div class="all-elements">
@@ -188,9 +32,9 @@
                 <p class="uo_c2_infor">11月25日-11日26日 共1晚（目的地时间为准）</p>
                 <p class="uo_house">房型：经济大床房</p>
                 <div>
-                    <p class="fl">房间数</p><em class="fl"><b>2</b>间</em>
-                    <i class="fr uo_c2_i1"></i>
-                    <i class="fr uo_c2_i2"></i>
+                    <p class="fl">房间数</p><em class="fl"><b id="uo_c2_num">2</b>间</em>
+                    <i class="fr uo_c2_i1" id="uo_c2_i1"></i>
+                    <i class="fr uo_c2_i2" id="uo_c2_i2"></i>
                 </div>
             </div>
             <form class="uo_con3">
@@ -212,21 +56,49 @@
                     <p>手机号</p>
                     <input type="text" placeholder="用于接收短信通知" />
                 </div>
+                <div class="uo_con4">
+                    <i class="fl" id="uo_c4_conf"></i>
+                    通过选择完成预订我承认我已经阅读并接受如下免责声明，<a href="javascript:;">条款及条件</a>和<a href="javascript:;">用户协议</a>
+                </div>
+                <div class="uo_con5">
+                    <p>温馨提示</p>
+                    <p>
+                        请您在15分钟内完成订单填写，以免酒店房间被他人订完，
+                    </p>
+                    <p>
+                        如您在14：00前到点，可能需要等待方能入住，具体以酒店安排为准。
+                    </p>
+                </div>
+                <div class="uo_hid" id="uo_hid">
+                    <p class="uo_hid_shadow"></p>
+                    <div class="uo_hid_con" id="uo_hid_con">
+                        <div class="uo_hid_det">
+                            <p class="fl uo_hid_p1">费用明细</p>
+                            <p class="fr uo_hid_p2">1间×1晚</p>
+                        </div>
+                        <div class="uo_hid_price">
+                            <p>
+                                <span class="fl uo_hid_span1">房费</span>
+                                <span class="fr uo_hid_span2">￥1134</span>
+                            </p>
+                            <p>
+                                <span class="fl uo_hid_span1">税和服务费</span>
+                                <span class="fr uo_hid_span2">￥159</span>
+                            </p>
+                        </div>
+                        <div class="uo_hid_met">
+                            付款方式：预付
+                        </div>
+                    </div>
+                </div>
+                <div class="uo_footer">
+                    <p class="uo_or_sum"><em class="fl">订单总额：</em><span class="fl">￥<b>1,293</b></span></p>
+                    <p class="uo_or_infor" id="uo_or_infor"><span class="fl">明细</span><i class="fl"></i></p>
+                    <input type="submit" value="确认订单" />
+                </div>
             </form>
-            <div class="uo_con4">
-                <i class="fl"></i>
-                通过选择完成预订我承认我已经阅读并接受如下免责声明，<a href="javascript:;">条款及条件</a>和<a href="javascript:;">用户协议</a>
-            </div>
-            <div class="uo_con5">
-                <p>温馨提示</p>
-                <p>
-                    请您在15分钟内完成订单填写，以免酒店房间被他人订完，
-                </p>
-                <p>
-                    如您在14：00前到点，可能需要等待方能入住，具体以酒店安排为准。
-                </p>
-            </div>
         </div>
     </div>
 </body>
+<script src="js/user_order.js"></script>
 </html>
