@@ -85,6 +85,34 @@
     font-size: 2rem;
 }
 
+.d-ul2 {
+    background-color: #fff;
+    border-bottom: 1px solid #dfdfdd;
+}
+.d-ul2 li{
+	list-style: none;
+    font-size: 1.4rem;
+    padding:15px 12px;
+    border-bottom: 1px #dfdfdd solid;
+    margin-bottom: 0;
+    position: relative;
+}
+.d-ul2 li .open-arg{
+	right:12px;
+}
+.d-ul2 li:first-child{
+	padding-right:24px;
+}
+.d-ul1 li:last-child,.d-ul2 li:last-child{
+	border-bottom: 0;
+}
+.d-ul1 li em,.d-ul2 li em{
+	font-style: normal;
+    float: right;
+    font-size: 1.2rem;
+    color: #ffb413;
+}
+
 .d-ul1 {
     background-color: #fff;
     border-bottom: 1px solid #dfdfdd;
@@ -215,6 +243,7 @@
     background-image: url(../images/ui/icons1.png);
     background-position: 12.6% 33%;
     background-size: 400px 120px;
+    transition: none!important;
 }
 
 .price {
@@ -275,6 +304,7 @@
     background-image: url(../images/ui/icons1.png);
     background-position: 19% 33%;
     background-size: 400px 120px;
+    transition:none!important;
 }
 
 .roomAll {
@@ -782,8 +812,8 @@
             var dateInitObj= {};
             dateInitObj[this.gdataInfo.CheckInDate]='入住';
             dateInitObj[this.gdataInfo.CheckOutDate]='离店';
-            roomList.className="d-ul1";
-            roomList.innerHTML='<li id="chooseDate"> <div class="d-p3 enterDate">'+this.gdataInfo.CheckInDate+'</div><div class="d-p3">入住</div><div class="d-p3 enterDate" style="margin-left: 5px;">'+this.gdataInfo.CheckOutDate+'</div><div class="d-p3">离店</div> <b class="icons open-arg"></b><div class="d-p2">共</div><div class="d-p2" id="nightNum">'+ this.sTools.getTotalNights(this.gdataInfo.CheckOutDate,this.gdataInfo.CheckInDate)+ '</div><div class="d-p2">晚</div></li>';
+            roomList.className="d-ul2";
+            roomList.innerHTML='<li id="chooseDate"> <span class="enterDate">'+this.gdataInfo.CheckInDate+'</span>入住<span class="enterDate" style="margin-left: 5px;">'+this.gdataInfo.CheckOutDate+'</span>离店 <em>共<span id="nightNum">'+ this.sTools.getTotalNights(this.gdataInfo.CheckOutDate,this.gdataInfo.CheckInDate)+ '</span>晚</em><b class="icons open-arg"></b></li>';
             this.$Id('content').appendChild(roomList);
             var myDate2=new Calender({id:'chooseDate',num:13,time:dateInitObj,sClass1:'enterDate',id2:'nightNum'});
         },
@@ -805,7 +835,7 @@
                 oli.innerHTML='<div class="d-div3 roomEvent" style="max-width: 60%" onclick="hotelDetail.toggleRoomModals.call(this)"  room-type-code='+tempArray[i].RoomTypeCode+'><div class="d-p5">'+tempArray[i].RoomTypeName+'</div><b class="d-icon3"></b><div class="d-p6">32-38㎡ 大/双床</div></div><a href="#" class="at d-icon4" onclick="hotelDetail.toggleStatus.call(this)"></a> <div class="price"><span style="font-size:0.8em;color:#fe4716;">￥</span><spanstyle="font-size:2em;font-weight: 600;color:#fe4716;"="">'+tempArray[i].MinPrice+'<spanstyle="font-size:0.8em;color:#999999;">起</spanstyle="font-size:0.8em;color:#999999;"></spanstyle="font-size:2em;font-weight:></div>'+this.subRoomList(tempArray[i].RoomList);
                 oFragment.appendChild(oli);
             }
-            this.$CN('d-ul1')[0].appendChild(oFragment);
+            this.$CN('d-ul2')[0].appendChild(oFragment);
         },
 
         subRoomList:function(arg){
