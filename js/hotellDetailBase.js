@@ -200,13 +200,18 @@
             dateInitObj[this.gdataInfo.CheckInDate]='入住';
             dateInitObj[this.gdataInfo.CheckOutDate]='离店';
             titleList.className="d-ul1";
-            titleList.innerHTML='<li class="d-li1"><div class="d-score"><span style ="color:#8ed1cc;font-size:15px;font-weight: 600;"="">'+result.Data[0].HotelGenInfo.TAAvgRating+'<span>分/'+result.Data[0].HotelGenInfo.TAReviewCount+'人点评</span></spanstyle ="color:#8ed1cc;font-size:15px;font-weight:></div> <a href="#" class="d-icon1"></a></li>' +
+            titleList.innerHTML='<li class="d-li1" onclick="hotelDetail.h_reviews()"><div class="d-score"><span style ="color:#8ed1cc;font-size:15px;font-weight: 600;"="">'+result.Data[0].HotelGenInfo.TAAvgRating+'<span>分/'+result.Data[0].HotelGenInfo.TAReviewCount+'人点评</span></spanstyle ="color:#8ed1cc;font-size:15px;font-weight:></div> <a href="#" class="d-icon1"></a></li>' +
             '<li class="d-li1"><div class="d-score">'+result.Data[0].HotelGenInfo.HotelAddress+'</div><a href="#" class="d-icon1"></a><div class="d-p2">地图</div></li><li class="d-li1"><div class="d-score2">'+this.sTools.StarRatingName(result.Data[0].HotelGenInfo.StarRatingName)+'星级</div>'+this.sTools.getHotelTip(result)+'<a href="#" class="d-icon1"></a></li>' +
             '<li class="d-li1" id="chooseDate"> <div class="d-p3 enterDate">'+this.gdataInfo.CheckInDate+'</div><div class="d-p3">入住</div><div class="d-p3 enterDate" style="margin-left: 5px;">'+this.gdataInfo.CheckOutDate+'</div><div class="d-p3">离店</div> <a href="#" class="d-icon1"></a>  <div class="d-p2">共</div><div class="d-p2" id="nightNum">'+ this.sTools.getTotalNights(this.gdataInfo.CheckOutDate,this.gdataInfo.CheckInDate)+ '</div><div class="d-p2">晚</div></li>';
             this.$CN('all-elements')[0].appendChild(titleList);
             var myDate2=new Calender({id:'chooseDate',num:13,time:dateInitObj,sClass1:'enterDate',id2:'nightNum'});
-        },
 
+
+        },
+        //点评点击事件
+        h_reviews:function (){
+           window.location.href='hotel_reviews.html?'+'HotelID='+hotelDetail.gdataInfo.HotelID+'&'+'TAAvgRating='+hotelDetail.sourceData.Data[0].HotelGenInfo.TAAvgRating+'&'+'TAReviewCount='+hotelDetail.sourceData.Data[0].HotelGenInfo.TAReviewCount;
+        },
         mask:function(){
             var mask = document.createElement('div');
             mask.className="r-div";
@@ -284,7 +289,6 @@
 
             hotelDetail.subRoomModal(result);
             hotelDetail.roomDetailInfo(result);
-
         },
 
         indexEvent:function(result,item){
