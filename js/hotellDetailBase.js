@@ -11,7 +11,7 @@
         $CN:function(className){
             return document.getElementsByClassName(className)
         },
-        
+
         storageUtil:{
             set:function(key,v){
                 var curTime = new Date().getTime();
@@ -105,9 +105,9 @@
                 var str = "";
                 for (var i = 0; i < arg.length; i++) {
                     str += '<li class="imageLi"><img class="freeImage" src="images/cars.png" real-src="'+arg[i].ImageFileName+'"/></li>'
-                 }
+                }
 
-                 return str;
+                return str;
 
             },
             StarRatingName: function(starStr) {
@@ -172,7 +172,7 @@
         },
 
         showUpper:function(result){
-             console.log(result)
+            console.log(result)
             var nameDiv = document.createElement('div');
             nameDiv.className="top name";
             nameDiv.id="vlm-login";
@@ -288,11 +288,11 @@
         },
 
         indexEvent:function(result,item){
-               if(!result.Data[0].HotelImagesList.length>0){
-                      document.querySelectorAll('.indexShow')[0].innerHTML=""
-               }else{
-                   document.querySelectorAll('.indexShow')[0].innerHTML=item+"/"+result.Data[0].HotelImagesList.length;
-              }
+            if(!result.Data[0].HotelImagesList.length>0){
+                document.querySelectorAll('.indexShow')[0].innerHTML=""
+            }else{
+                document.querySelectorAll('.indexShow')[0].innerHTML=item+"/"+result.Data[0].HotelImagesList.length;
+            }
 
         },
         widthCorrecting:function(result){
@@ -314,20 +314,20 @@
 
 
         imageTouchEvent:function(){
-             var outerDiv=document.getElementById('imageContainer');
-             var innerDiv=document.getElementsByClassName('showZone')[0];
-             var totalNum=document.getElementsByClassName('totalNum')[0];
+            var outerDiv=document.getElementById('imageContainer');
+            var innerDiv=document.getElementsByClassName('showZone')[0];
+            var totalNum=document.getElementsByClassName('totalNum')[0];
 
-             outerDiv.onclick=function(event){
-                 var e =event ||window.event;
-                 var tar =event.target ||event.srcElement;
-                 if(tar.id=='imageContainer'){
-                     tar.style.display = 'none'
-                 }
-             };
+            outerDiv.onclick=function(event){
+                var e =event ||window.event;
+                var tar =event.target ||event.srcElement;
+                if(tar.id=='imageContainer'){
+                    tar.style.display = 'none'
+                }
+            };
             totalNum.onclick=function(event){
-                  document.getElementById('imageContainer').style.display='block';
-             };
+                document.getElementById('imageContainer').style.display='block';
+            };
             innerDiv.addEventListener('touchstart', this.startHandler,false)
             innerDiv.addEventListener('touchmove', this.moveHandler,false)
             innerDiv.addEventListener('touchend', this.endHandler,false)
@@ -344,10 +344,10 @@
 
         },
         moveHandler:function(e){
-             e.preventDefault();
-             var imgUl=document.getElementsByClassName('imgUl')[0];
-             imgUl.style.left=parseFloat(imgUl.style.left)+e.targetTouches[0].pageX-hotelDetail.tempStart+'px';
-             hotelDetail.tempStart=e.targetTouches[0].pageX;
+            e.preventDefault();
+            var imgUl=document.getElementsByClassName('imgUl')[0];
+            imgUl.style.left=parseFloat(imgUl.style.left)+e.targetTouches[0].pageX-hotelDetail.tempStart+'px';
+            hotelDetail.tempStart=e.targetTouches[0].pageX;
 
         },
         endHandler:function(e){
@@ -358,10 +358,10 @@
             if(distance<0&&Math.abs(distance)>=window.innerWidth/3){
                 targetLeft=hotelDetail.tempCurLeft-window.innerWidth;
             }else if(distance>0&&Math.abs(distance)>=window.innerWidth/3){
-                        targetLeft = hotelDetail.tempCurLeft+window.innerWidth;
-               }else{
-                 targetLeft = hotelDetail.tempCurLeft;
-             }
+                targetLeft = hotelDetail.tempCurLeft+window.innerWidth;
+            }else{
+                targetLeft = hotelDetail.tempCurLeft;
+            }
 
             if(targetLeft >= 0){//过界处理
                 targetLeft = 0;
@@ -382,8 +382,8 @@
         },
 
         delayLoadImage:function(item){
-           var images= document.getElementsByClassName('freeImage');
-           var re_url=images[item-1].getAttribute('real-src');
+            var images= document.getElementsByClassName('freeImage');
+            var re_url=images[item-1].getAttribute('real-src');
             loadImage(re_url,function(){
                 images[item-1].setAttribute('src',re_url)
             })
@@ -451,51 +451,51 @@
         },
 
         toggleStatus:function() {
-        $(this.parentNode.parentNode).find('ul.roomUl').hide();
-        $(this.parentNode.parentNode).find('a.at').each(function(){
-            $(this).attr('class', 'at d-icon5');
-        })
-        if (this.isOpen) {
-            $(this.parentNode).find('ul.roomUl').slideUp("400");
-            $(this).attr('class', 'at d-icon5');
-            this.isOpen = false;
-        } else {
-            $(this.parentNode).find('ul.roomUl').slideDown("400");
-            this.isOpen = true;
-            $(this).attr('class', 'at d-icon4');
-        }
-    },
+            $(this.parentNode.parentNode).find('ul.roomUl').hide();
+            $(this.parentNode.parentNode).find('a.at').each(function(){
+                $(this).attr('class', 'at d-icon5');
+            })
+            if (this.isOpen) {
+                $(this.parentNode).find('ul.roomUl').slideUp("400");
+                $(this).attr('class', 'at d-icon5');
+                this.isOpen = false;
+            } else {
+                $(this.parentNode).find('ul.roomUl').slideDown("400");
+                this.isOpen = true;
+                $(this).attr('class', 'at d-icon4');
+            }
+        },
 
         toggleSubModals:function(){
-        var  info = this.getAttribute('room-code'),tempInfo;
-        var compareData =  hotelDetail.sourceData.Data[0].HotelRoomsList;
-        for(var i = 0; i< compareData.length;i++){
-              for(var j = 0,teList=compareData[i].RoomList;j<teList.length;j++){
-                  console.log(teList[j])
-                   if(teList[j].RoomCode==info){
-                       tempInfo=teList[j];
-                       break;
-                   }
-              }
-        }
+            var  info = this.getAttribute('room-code'),tempInfo;
+            var compareData =  hotelDetail.sourceData.Data[0].HotelRoomsList;
+            for(var i = 0; i< compareData.length;i++){
+                for(var j = 0,teList=compareData[i].RoomList;j<teList.length;j++){
+                    console.log(teList[j])
+                    if(teList[j].RoomCode==info){
+                        tempInfo=teList[j];
+                        break;
+                    }
+                }
+            }
 
-        hotelDetail.updateSubRoomModal(tempInfo);
-        hotelDetail.$Id('infoAll').style.display = 'block';
-        hotelDetail.$Id('r-mb').style.display = 'block';
+            hotelDetail.updateSubRoomModal(tempInfo);
+            hotelDetail.$Id('infoAll').style.display = 'block';
+            hotelDetail.$Id('r-mb').style.display = 'block';
 
-    },
+        },
 
         toggleModals:function(reslut){
             console.log(reslut);
             hotelDetail.updateBigModal(reslut)
-            },
+        },
 
         toggleRoomModals:function(){
             var  roomTypeCode = this.getAttribute('room-type-code');
             var roomInfo={HotelID:hotelDetail.gdataInfo.HotelID,CultureName:hotelDetail.CultureName,RoomTypeCode:roomTypeCode};
             hotelDetail.jAjax("http://10.2.22.239:8888/api/GetServiceApiResult",roomInfo,"0010",3,hotelDetail.toggleModals);
         },
-            eventHandle:function(){
+        eventHandle:function(){
             var frontImage = this.$CN('hotelPic')[0];
             var totalNum = this.$CN('totalNum')[0];
             var imageContainer = this.$Id('imageContainer');
@@ -536,7 +536,7 @@
         }
     };
 
-     hotelDetail.init();
+    hotelDetail.init();
 })(window,document);
 
 
