@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .open-arg {
     position: absolute;
     width: 10px;
@@ -5,8 +10,41 @@
     right: 0;
     background-position: 65% 3%;
 }
+
+
+
+a {
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.top {
+    width: 100%;
+    height: 45px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    padding: 1px;
+    background-color: #19415e;
+}
+
+
+
+
+.icons {
+    background-image: url(../images/ui/icons.png);
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    display: inline-block;
+}
+
 .d-icon {
-    background-image: url(images/ui/icons.png);
+    background-image: url(../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display: inline-block;
@@ -18,7 +56,7 @@
     position: absolute;
     left: 15px;
     top: 10px;
-    background-image: url(images/ui/icons.png);
+    background-image: url(../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display: inline-block;
@@ -40,6 +78,7 @@
     color: #ffffff;
     line-height: 22px;
     text-align: center;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 
 .d-div1 {
@@ -69,7 +108,7 @@
     margin-right: 3%;
     margin-top: 12px;
     color: white;
-    font-size: 2rem;
+    font-size: 2em;
 }
 
 .d-ul2 {
@@ -102,11 +141,13 @@
     color: #ffb413;
 }
 
+
+
+
 .d-ul1 {
     background-color: #fff;
     border-bottom: 1px solid #dfdfdd;
 }
-
 .d-ul1 span.address-text {
     min-width: 10%;
     max-width: 85%;
@@ -138,17 +179,18 @@
     font-size: 1.2rem;
     color: #ffb413;
 }
+
+
 .d-li1 {
     min-height: 50px;
     border-bottom: 1px solid #dfdfdd;
-
-
+//position: relative;
 }
 
 .d-score {
+    /* float: left;*/
     width: 75%;
-    /*float: left;
-    margin-top: 20px;*/
+    /* margin-top: 20px;*/
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -170,7 +212,7 @@
     display: block;
     width: 8px;
     height: 14px;
-    background-image: url(images/ui/icons.png);
+    background-image: url(../images/ui/icons.png);
     background-position: 65% 3%;
     background-size: 243px 160px;
 }
@@ -182,7 +224,7 @@
     float: left;
     margin-left: 10px;
     margin-top: 20px;
-    background-image: url(images/ui/icon-h.png);
+    background-image: url(../images/ui/icon-h.png);
     background-size: 402px 174px;
     background-position: 20% 9%;
 }
@@ -227,7 +269,7 @@
     width: 15px;
     height: 15px;
     margin-left: 5px;
-    background-image: url(images/ui/icons1.png);
+    background-image: url(../images/ui/icons1.png);
     background-position: 27% 33.5%;
     background-size: 400px 120px;
 }
@@ -245,7 +287,7 @@
     width: 18px;
     height: 18px;
     margin-top: 16px;
-    background-image: url(images/ui/icons1.png);
+    background-image: url(../images/ui/icons1.png);
     background-position: 12.6% 33%;
     background-size: 400px 120px;
     transition: none!important;
@@ -257,6 +299,7 @@
     position: absolute;
     right: 20px;
 }
+
 .price span.money{
     font-size: 0.8rem;
     color: #fe4716;
@@ -292,7 +335,6 @@
     background: #dfdfdd;
     overflow: hidden;
 }
-
 .roomUl li{
     border:1px solid white
 }
@@ -300,7 +342,6 @@
 .roomUl li:first-child{
     border-top:1px solid #dfdfdd;
 }
-
 
 .d-p7 {
     margin-top: 4px;
@@ -349,7 +390,6 @@
     z-index: 11;
     border-radius: 4px;
 }
-
 .roomAll .r-top .r-p1 {
     float: left;
     color: white;
@@ -357,13 +397,15 @@
     line-height: 2.0rem;
     letter-spacing: 0;
     margin: 10px 0px 0px 15px;
+    width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .roomAll .r-ul .r-li p.r-p3{
     margin-bottom: 0
 }
-
-
 
 .r-div {
     width: 100%;
@@ -410,7 +452,7 @@
     float: right;
     margin-right: 12px;
     margin-top: 10px;
-    background-image: url(images/ui/icon.png);
+    background-image: url(../images/ui/icon.png);
     background-position: 22% 33%;
     background-size: 397px 118px;
 }
@@ -458,7 +500,7 @@
     width: 14px;
     height: 14px;
     display: block;
-    background-image: url(images/ui/icon-h.png);
+    background-image: url(../images/ui/icon-h.png);
     background-size: 402px 174px;
     background-position: 84% 10%;
 }
@@ -468,6 +510,7 @@
     font-size: 10px;
     color: #484848;
 }
+
 
 .d-div1 .image {
     width: 100%;
@@ -538,7 +581,6 @@
     height:100%;
     width: 100%;
 }
-
 .d-ul2 .roomDetailList{
     width: 106%;
     list-style-type: none;

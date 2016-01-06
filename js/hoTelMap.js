@@ -30,14 +30,15 @@ window.onload=function init() {
     }
 
     function hotelName (arg){
+
         return arg.indexOf('(') != -1 ? '<p class="d-p1">' + arg.slice(0, arg.indexOf(' (')) + '<br/>' + arg.slice(arg.indexOf(' (') + 1)+'</p>' : '<p class="d-p1" style="line-height: 44px">' + arg + '</p>';
     }
 
     function CreateHeader(){
-          var top=document.getElementById('vlm-login');
-          var str='<a href="javascript:window.history.go(-1);" class="d-icons"></a>'+hotelName(infoObj.HotelName);
-          top.innerHTML =str;
-     }
+        var top=document.getElementById('vlm-login');
+        var str='<a href="javascript:window.history.go(-1);" class="d-icons"></a>'+hotelName(infoObj.HotelName);
+        top.innerHTML =str;
+    }
 
     function getPoint(x, y) {
         point = new BMap.Point(x, y);
