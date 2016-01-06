@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>个人中心常用信息 - 亚洲旅行网</title>
+    <link href="styles/framework.css"	rel="stylesheet" type="text/css">
+    <link href="styles/style.css"		rel="stylesheet" type="text/css">
+    <link href="css/user.css"	rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                Loading the content...
+                <em>Loading depends on your connection speed!</em>
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <div class="header" id="vlm-login">
+            <a href="user-logined.html" class="icons header-back"></a>
+            <h3>常用信息</h3>
+        </div>
+        <!-- Page Content-->
+        <div id="content" class="snap-content">
+            <div class="f_btn button-yellow" style="margin-top: 10px" onclick="showAdd_page()">
+                <b class="icons user-add"></b>新增常旅客户信息
+            </div>
+            <ul class="often-traveler">
+                <li class="eve-traveler" style="border-top:1px solid #dedede;">
+                    <b class="icon user-edit"></b>
+                    <ul class="often_user">
+                        <li>陈玉宝CHEN/YUBAO</li>
+                        <li>身份证 <span>11023319880358765</span></li>
+                        <li>护照 <span>E000000000</span></li>
+                        <li>手机号 <span>1588776655</span></li>
+                    </ul>
+                </li>
+                <li class="eve-traveler">
+                    <b class="icon user-edit"></b>
+                    <ul class="often_user">
+                        <li>陈玉宝CHEN/YUBAO</li>
+                        <li>身份证 <span>11023319880358765</span></li>
+                        <li>手机号 <span>1588776655</span></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="traveler-text">没有更多结果了</div>
+        </div>
+    </div>
+    <!--    新增常用旅客页   -->
+    <div class="addtra-page" id="addtra-page">
+        <div class="all-elements">
+            <div class="header">
+                <div class="header-quit" onclick="closeAdd_page()">取消</div>
+                <h3>新增常用旅客</h3>
+                <div class="header-finish">完成</div>
+            </div>
+            <!-- Page Content-->
+            <div class="snap-content" style="padding-top: 45px;background-color: white;">
+                <div class="addtra-title">旅客姓名<b class="icon user-must"></b></div>
+                <ul class="addtra-info">
+                    <li>
+                        <div>中文姓名</div>
+                        <input type="text" placeholder="确保与证件保持一致">
+                    </li>
+                    <li style="border: none;padding-bottom: 0;">
+                        <div>英文姓</div>
+                        <input type="text" placeholder="Surname,如Li"><br/>
+                    </li>
+                    <li>
+                        <div>英文名</div>
+                        <input type="text" placeholder="Given name,如Shimin">
+                    </li>
+                </ul>
+                <div class="addtra-title">证件</div>
+                <ul class="addtra-info">
+                    <li>
+                        <b class="icons open-pho"></b>
+                        <div>证件类型</div>
+                        <div>护照</div>
+                    </li>
+                    <li>
+                        <div>证件号</div>
+                        <input type="text" placeholder="确保与证件保持一致">
+                    </li>
+                </ul>
+                <div class="addtra-title">其他信息</div>
+                <ul class="addtra-info">
+                    <li>
+                        <b class="icons open-pho"></b>
+                        <div>国籍</div>
+                        <div>中国</div>
+                    </li>
+                    <li>
+                        <div>性别</div>
+                        <div>
+                            <span style="margin-right:15%" onclick="choseSex()"><b id="man" class="icon-h traveler-sex1"></b>男士</span>
+                            <span onclick="choseSex()"><b id="woman" class="icon-h traveler-sex2"></b>女士</span>
+                        </div>
+                    </li>
+                    <li>
+                        <b class="icons open-pho"></b>
+                        <div>出生日期</div>
+                    </li>
+                </ul>
+                <div class="addtra-title">联系方式</div>
+                <ul class="traveler-contect">
+                    <li>
+                        <div class="con-phone">
+                            手机号
+                            <div style="float:right;margin-right:10px;">+86</div>
+                        </div>
+                        <input type="text" placeholder="请确保手机号无误">
+                    </li>
+                    <li>
+                        <div class="">邮箱</div>
+                        <input type="text" placeholder="常用邮箱">
+                    </li>
+                </ul>
+                <div class="con-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+            </div>
+        </div>
+    </div>
+    <!--    选择乘机人页   -->
+    <div class="choiceAir-page" id="choiceAir-page">
+        <div class="all-elements">
+            <div class="header">
+                <a href="#" class="icons header-back"></a>
+                <h3>已选：<span>1</span>人</h3>
+                <div class="header-finish">完成</div>
+            </div>
+            <!-- Page Content-->
+            <div class="snap-content" style="padding-top: 45px;background-color: white;">
+                <div class="f_btn button-yellow" style="margin-top: 10px" onclick="showAdd_page()">
+                    <b class="icons user-add"></b>新增乘机人
+                </div>
+                <ul class="often-traveler">
+                    <li class="eve-traveler" style="border-top:1px solid #dedede;">
+                        <b class="icon user-edit"></b>
+                        <b class="icon user-choice1"></b>
+                        <ul class="often_user">
+                            <li>陈玉宝CHEN/YUBAO</li>
+                            <li>身份证 <span>11023319880358765</span></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="name-text" style="margin-bottom: 0;margin-top: -15px;">首字母排序</div>
+                <ul class="often-traveler">
+                    <li class="eve-traveler" style="border-top:1px solid #dedede;">
+                        <b class="icon user-edit"></b>
+                        <b class="icon user-choice2"></b>
+                        <ul class="often_user">
+                            <li>姓/名 BOB/SMITH<div class="ifbaby">婴儿</div></li>
+                            <li>台胞证 <span>eta12132</span></li>
+                        </ul>
+                    </li>
+                    <li class="eve-traveler">
+                        <b class="icon user-edit"></b>
+                        <b class="icon user-choice2"></b>
+                        <ul class="often_user">
+                            <li>姓/名 BOB/SMITH</li>
+                            <li>台胞证 <span>eta12132</span></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="con-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script data-main="js/main.js" src="js/require.js"></script>
+    <script type="text/javascript">
+        function showAdd_page(){
+            var addtra_page = document.getElementById("addtra-page");
+            addtra_page.style.display = "block";
+        }
+        function closeAdd_page(){
+            var addtra_page = document.getElementById("addtra-page");
+            addtra_page.style.display = "none";
+        }
+        function choseSex(){
+            var span = window.event.srcElement;
+            var man = document.getElementById("man");
+            var woman = document.getElementById("woman");
+            var b = span.firstChild;
+            if(b.className == "icon-h traveler-sex1"){
+                b.className = "icon-h traveler-sex2";
+            }else{
+                man.className = "icon-h traveler-sex2";
+                woman.className = "icon-h traveler-sex2";
+                b.className = "icon-h traveler-sex1";
+            }
+        }
+    </script>
+</body>
+</html>
