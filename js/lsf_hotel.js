@@ -303,7 +303,8 @@ var lsf_myweb={
     var target_place=document.getElementById('arr1');
     var target_city=document.getElementById('input1');
     lsf_myweb.bind(target_place,'click',function(){
-        var citys=new myCityList();
+        var citys=new myCityList('input1','hotel.html');
+        //alert(citys.city);
     })
 })();
 

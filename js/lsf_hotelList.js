@@ -330,7 +330,7 @@ function url2json(url){
             }
             paramStr=paramStr.slice(1);
             //console.log(paramStr)  //HotelID=3283&HotelCode=3283&InstantConfirmation=false&AllOccupancy=true&CheckInDate=2015-12-31&CheckOutDate=2016-1-1&NumRoom=1&NumAdult=1&NumChild=0&FrontPgImage=http://images.asiatravel.com/Hotel/3283/3283front.jpg
-            window.location.href='jyy_hotelDetail.html?'+paramStr;
+            window.location.href='hotel_detail.html?'+paramStr;
         }
 
 
