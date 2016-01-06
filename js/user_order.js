@@ -97,6 +97,14 @@ var lsf_myweb={
     }
 };
 (function(){
+    /*页面跳转动画*/
+    $(window).load(function(){
+        $("#status").fadeOut();
+        $("#preloader").delay(400).fadeOut("medium");
+    });
+
+
+
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
     var uo_c2_num=document.getElementById('uo_c2_num');
@@ -127,7 +135,7 @@ var lsf_myweb={
         oId2.innerHTML='￥'+parseInt(json.NumOfRoom)*parseInt(json.totalNight)*json.housePrice;
         oId3.innerHTML='￥159(没有给)';
         price1+=159;
-        oId4.innerHTML='付款方式：预付（没有给）';
+        oId4.innerHTML='付款方式：前台现付';
         oId5.innerHTML=price1;
     }
     uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum',user_order_storage);
