@@ -4,6 +4,8 @@
     //我需要的数据：RoomCode/user_order_storage2/fake_data.totalNight/CheckInTime/CheckOutTime
     var RoomCode=56625;
     var fake_data={};
+    //默认房间数量
+    fake_data.NumOfRoom=2;
     var user_order_storage2=localStorage.getItem('hotelDetailData');
     console.log(JSON.parse(user_order_storage2));
     //console.log(JSON.parse(user_order_storage2).data);
@@ -27,7 +29,7 @@
         }
     }
     console.log(fake_data);
-    fake_data.NumOfRoom=2;
+
     /*var user_order_storage={
         "CultureName":"",
         "PartnerCode":"",
@@ -131,7 +133,7 @@ var lsf_myweb={
     });
 
 
-
+    var uo_back=document.getElementById('uo_back');
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
     var uo_c2_num=document.getElementById('uo_c2_num');
@@ -144,11 +146,29 @@ var lsf_myweb={
     var bOk=true;
     var bOk2=true;
 
+    //返回按钮
+    uo_back.onclick=function(){
+        window.history.go(-1);
+    };
+
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
     uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.HotelName+'</h3>'+
         '<p class="uo_c2_infor">'+fake_data.dateInfo.CheckInDate.split('-')[0]+'年'+fake_data.dateInfo.CheckInDate.split('-')[1]+'月'+fake_data.dateInfo.CheckInDate.split('-')[2]+'日'+'-'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+' -'+fake_data.dateInfo.totalNight+'晚（目的地时间为准）</p>'+
         '<p class="uo_house">房型：'+fake_data.RoomTypeName+'</p>';
+
+    //房间数列表
+    uo_c2_num.innerHTML=fake_data.NumOfRoom;
+    for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
+        uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
+            '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+            '<div class="uo_c3_infor">'+
+            '<input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />'+
+            '<input type="text" placeholder="名（如：Justin）" class="uo_firstname" />'+
+            '</div>'+
+            '</div>';
+    }
+
     // 明细
     function uo_detail(id1,id2,id3,id4,id5,id6,json){
         //console.log(json);
@@ -171,7 +191,7 @@ var lsf_myweb={
     }
     uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2',fake_data);
 
-
+    //减少房间
     lsf_myweb.bind(uo_c2_i1,'click',function(){
         var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
         uo_c2_num.innerHTML=parseInt(uo_c2_num.innerHTML)-1;
@@ -199,6 +219,7 @@ var lsf_myweb={
         }
 
     });
+    //增加房间
     lsf_myweb.bind(uo_c2_i2,'click',function(){
         var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
         uo_c2_num.innerHTML=parseInt(uo_c2_num.innerHTML)+1;
