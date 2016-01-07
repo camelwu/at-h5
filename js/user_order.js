@@ -202,8 +202,8 @@ var lsf_myweb={
         //console.log(localStorage.getItem('user_order_storage12345'));
 
 
-        if(parseInt(uo_c2_num.innerHTML)<0){
-            uo_c2_num.innerHTML=0;
+        if(parseInt(uo_c2_num.innerHTML)<1){
+            uo_c2_num.innerHTML=1;
         }else{
             uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2',fake_data);
             uo_c3_peoBox.innerHTML='';

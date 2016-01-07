@@ -201,6 +201,13 @@ var lsf_myweb={
         return num<10?'0'+num:''+num;
     }
     //var cdDate=lsf_myweb.getbyid('cd_date');
+    //返回按钮
+    var ho_back=document.getElementById('ho_back');
+    ho_back.onclick=function(){
+        window.history.go(-1);
+    };
+
+
     var checkIn=lsf_myweb.getbyid('CheckInDate');
     var checkOut=lsf_myweb.getbyid('CheckOutDate');
     var content2=lsf_myweb.getbyid('content2');
