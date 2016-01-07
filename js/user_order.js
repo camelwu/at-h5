@@ -272,6 +272,15 @@ var lsf_myweb={
             oI.style.backgroundSize='400px 120px';
             lsf_myweb.getbyid('uo_hid').style.height='100%';
             lsf_myweb.getbyid('uo_hid_con').style.marginBottom='38px';
+            //点击阴影区域
+            var uo_hid_shadow=document.getElementById('uo_hid_shadow');
+            lsf_myweb.bind(uo_hid_shadow,'click',function(){
+                oI.style.background='url(images/ui/icons1.png) -51px -38px ';
+                oI.style.backgroundSize='400px 120px';
+                lsf_myweb.getbyid('uo_hid').style.height='0';
+                lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-320px';
+                bOk2=true;
+            });
         }else{
             oI.style.background='url(images/ui/icons1.png) -51px -38px ';
             oI.style.backgroundSize='400px 120px';
@@ -280,6 +289,7 @@ var lsf_myweb={
         }
         bOk2=!bOk2;
     });
+
     lsf_myweb.bind(uo_confirm,'click',function(){
         //验证是否勾选协议
         if(bOk){
