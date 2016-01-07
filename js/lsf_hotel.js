@@ -24,39 +24,50 @@ function Yes(){
     show.style.display="none";
 }
 
-
-function fun1(num){
-    if( num.parentNode.children[0].value<10){
-        num.parentNode.children[0].value++;
+var ho_i1=document.getElementById('ho_i1');
+var ho_i2=document.getElementById('ho_i2');
+var ho_i3=document.getElementById('ho_i3');
+var ho_i4=document.getElementById('ho_i4');
+var ho_i7=document.getElementById('ho_i7');
+var ho_i6=document.getElementById('ho_i6');
+ho_i1.onclick=function fun1(ev){
+    lsf_myweb.stopPropagation(ev);
+    if( this.parentNode.children[0].value<10){
+        this.parentNode.children[0].value++;
     }else{
         return false;
     }
 }
-function fun2(num){
-    if(num.parentNode.children[0].value>1){
-        num.parentNode.children[0].value--;
-    }else{
-        return false;
-    }
-}
-
-function fun7(num){
-    num.parentNode.children[0].value++;
-}
-function fun6(num){
-    if(num.parentNode.children[0].value>1){
-        num.parentNode.children[0].value--;
+ho_i2.onclick=function fun2(ev){
+    lsf_myweb.stopPropagation(ev);
+    if(this.parentNode.children[0].value>1){
+        this.parentNode.children[0].value--;
     }else{
         return false;
     }
 }
 
-function fun3(num){
-    num.parentNode.children[0].value++;
+ho_i7.onclick=function fun7(ev){
+    lsf_myweb.stopPropagation(ev);
+    this.parentNode.children[0].value++;
 }
-function fun4(num){
-    if(num.parentNode.children[0].value>0){
-        num.parentNode.children[0].value--;
+ho_i6.onclick=function fun6(ev){
+    lsf_myweb.stopPropagation(ev);
+    if(this.parentNode.children[0].value>1){
+        this.parentNode.children[0].value--;
+    }else{
+        return false;
+    }
+}
+
+ho_i3.onclick=function fun3(ev){
+    lsf_myweb.stopPropagation(ev);
+    this.parentNode.children[0].value++;
+}
+ho_i4.onclick=function fun4(ev){
+    lsf_myweb.stopPropagation(ev);
+    if(this.parentNode.children[0].value>0){
+        this.parentNode.children[0].value--;
     }else{
         return false;
     }
@@ -166,8 +177,12 @@ var lsf_myweb={
             return aResult;
         }
     },
-    bind:function(obj,sEv,fn){
+    "bind":function(obj,sEv,fn){
         obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    },
+    "stopPropagation":function(event){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     }
 };
 (function(){
