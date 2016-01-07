@@ -537,7 +537,6 @@
             var roomInfo={HotelID:gInfo.HotelID,CultureName:hotelDetail.CultureName,RoomTypeCode:roomTypeCode};
             hotelDetail.jAjax(hotelDetail.requestUrl,roomInfo,"0010",3,hotelDetail.showRoomModals);
         },
-
         init:function(arg){
 
             var dataObj = arg||this.parseUrlPara(document.location.search,true);
