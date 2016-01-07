@@ -31,7 +31,8 @@ var ho_i4=document.getElementById('ho_i4');
 var ho_i7=document.getElementById('ho_i7');
 var ho_i6=document.getElementById('ho_i6');
 ho_i1.onclick=function fun1(ev){
-    lsf_myweb.stopPropagation(ev);
+    var oEvent=ev||event;
+    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     if( this.parentNode.children[0].value<10){
         this.parentNode.children[0].value++;
     }else{
@@ -39,7 +40,8 @@ ho_i1.onclick=function fun1(ev){
     }
 }
 ho_i2.onclick=function fun2(ev){
-    lsf_myweb.stopPropagation(ev);
+    var oEvent=ev||event;
+    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     if(this.parentNode.children[0].value>1){
         this.parentNode.children[0].value--;
     }else{
@@ -48,11 +50,13 @@ ho_i2.onclick=function fun2(ev){
 }
 
 ho_i7.onclick=function fun7(ev){
-    lsf_myweb.stopPropagation(ev);
+    var oEvent=ev||event;
+    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     this.parentNode.children[0].value++;
 }
 ho_i6.onclick=function fun6(ev){
-    lsf_myweb.stopPropagation(ev);
+    var oEvent=ev||event;
+    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     if(this.parentNode.children[0].value>1){
         this.parentNode.children[0].value--;
     }else{
@@ -61,11 +65,13 @@ ho_i6.onclick=function fun6(ev){
 }
 
 ho_i3.onclick=function fun3(ev){
-    lsf_myweb.stopPropagation(ev);
+    var oEvent=ev||event;
+    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     this.parentNode.children[0].value++;
 }
 ho_i4.onclick=function fun4(ev){
-    lsf_myweb.stopPropagation(ev);
+    var oEvent=ev||event;
+    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     if(this.parentNode.children[0].value>0){
         this.parentNode.children[0].value--;
     }else{
