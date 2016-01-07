@@ -377,17 +377,17 @@ html {
 
 
 .roomAll {
-    position: absolute;
+    position: fixed;
     overflow-x: hidden !important;
     overflow-y: scroll;
     width: 90%;
-    height: 92%;
-    min-height: 92%;
-    max-height: 92%;
+    height: 75%;
+    min-height: 75%;
+    max-height: 75%;
     top: 10%;
-    left:5%;
+    left: 5%;
     display: block;
-    z-index: 11;
+    z-index: 60;
     border-radius: 4px;
 }
 .roomAll .r-top .r-p1 {
@@ -626,6 +626,12 @@ html {
     display:inline-block
 }
 
+.d-ul2 .roomDetailList .d-li1 .moneyTip .moneyNum span{
+    font-size: 1.0rem;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+}
+
 .d-ul2 .roomDetailList .d-li1 .moneyTip span.money{
     font-size: 0.8rem;
     color: #fe4716;
@@ -651,4 +657,46 @@ html {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+
+.showListTrigger{
+    width: 83px;
+    float: right;
+    height: 50px;
+    line-height: 50px;
+}
+.showListTrigger .priceNum{
+    width: 62px;
+    float: left;
+}
+.showListTrigger .priceNum .money{
+    font-size: 0.8rem;
+    color: #fe4716;!important;
+}
+.showListTrigger .priceNum .moneyNum{
+    font-size: 1.6rem;
+    color: #fe4716;!important
+}
+.showListTrigger .priceNum .moneyNum span{
+    font-size: 1.0rem;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+}
+
+.footer{
+    width: 100%;
+    height: 44px;
+    background: linear-gradient(#16364f,#194361);
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    z-index: 98;
+    margin-top: -10px;
+}
+
+.footer span {
+    font-size: 9px;
+    color: #f5f4f9;
+    line-height: 44px
 }

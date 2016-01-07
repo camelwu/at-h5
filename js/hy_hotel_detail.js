@@ -213,7 +213,9 @@
             var str='';
             var tempArray=result.Data[0].HotelRoomsList;
             for(var i= 0; i<tempArray.length;i++){
-                str='<li class="d-li1 super"><div class="d-div3 roomEvent" style="max-width: 60%"  room-type-code='+tempArray[i].RoomTypeCode+'> <div class="d-p5">'+tempArray[i].RoomTypeName+'</div> <b class="d-icon3"></b> <div class="d-p6">32-38㎡ 大/双床</div> </div> <a href="#" class="at d-icon5"></a> <div class="price"><span class="money">￥</span><span class="moneyNum">'+tempArray[i].MinAvgPrice+'<span>起</span></span></div>'+hotelDetail.subRoomList(tempArray[i].RoomList)+'</li>';
+                str+='<li class="d-li1 super">' +
+                '<div class="d-div3 roomEvent" style="max-width: 60%" room-type-code='+tempArray[i].RoomTypeCode+'> ' +
+                '<div class="d-p5">'+tempArray[i].RoomTypeName+'</div><b class="d-icon3"></b><div class="d-p6">32-38㎡ 大/双床</div></div><div class="showListTrigger"><div class="priceNum"><span class="money">￥</span><span class="moneyNum">'+tempArray[i].MinAvgPrice+'<span>起</span></span></div><a href="#" class="at d-icon5"></a></div>'+hotelDetail.subRoomList(tempArray[i].RoomList)+'</li>';
             }
             return str;
         },
@@ -221,8 +223,9 @@
         subRoomList:function(arg){
             var str='<ul class="roomDetailList">';
             for(var i=0;i<arg.length;i++){
-                str+='<li class="d-li1"><div class="roomName subRoomEvent" room-code="'+arg[i].RoomCode+'"> <div class="d-p5">'+arg[i].RoomName+'</div> <div class="d-p6">无早 大/双床 不可取消</div> </div> <div class="moneyTip"><span class="money">￥</span><span class="moneyNum">'+arg[i].AvgPrice+'<span>起</span></span></div> <button type="button" class="reserve">预定</button> </li>'
+                str+='<li class="d-li1"><div class="roomName subRoomEvent" room-code="'+arg[i].RoomCode+'"> <div class="d-p5">'+arg[i].RoomName+'</div> <div class="d-p6">无早 大/双床 不可取消</div> </div> <div class="moneyTip"><span class="money">￥</span><span class="moneyNum">'+arg[i].AvgPrice+'<span>起</span></span></div><button type="button" class="reserve" room-code="'+arg[i].RoomCode+'">预定</button></li>';
             }
+            str+='</ul>';
             return str;
         },
 
@@ -233,17 +236,17 @@
         },
 
         eventHandle:function(){
-            var frontImage = this.$CN('hotelPic')[0]
+
             var totalNum = this.$CN('totalNum')[0];
+            var toHotelDetail = this.$CN('toHotelDetail')[0];
+            var reserves = this.$CN('reserve');
             var imageContainer = this.$Id('imageContainer');
-            var aLink = this.$CN('at');
+            var showListTrigger = this.$CN('showListTrigger');
             var subRooms = this.$CN('subRoomEvent');
             var Rooms = this.$CN('roomEvent');
-            var toMap =  this.$Id('toMap')
+            var toMap =  this.$Id('toMap');
 
-
-
-            frontImage.onclick=function() {
+            toHotelDetail.onclick=function() {
                 document.location.href = 'jyy_hotelSummary.html'
             };
 
@@ -269,12 +272,15 @@
                 document.location.href='jyy_hd_map.html?'+paramStr;
             };
 
-            for(var i=0;i<aLink.length;i++){
-                aLink[i].onclick = function(){
-                    hotelDetail.toggleStatus.call(this)
+
+            for(var i=0;i<showListTrigger.length;i++){
+                showListTrigger[i].onclick = function(){
+                    hotelDetail.toggleSlider.call(this);
                 }
 
             }
+
+
 
             for(var j=0;j<Rooms.length;j++){
                 Rooms[j].onclick = function(){
@@ -283,15 +289,45 @@
 
             }
 
+
             for(var k=0;k<subRooms.length;k++){
                 hotelDetail.addHandler(subRooms[k],'click',hotelDetail.toggleSubModals);
             }
 
+            for(var l=0;l<reserves.length;l++){
+                hotelDetail.addHandler(reserves[l],'click',hotelDetail.reserveHandler);
+            }
+
+
             hotelDetail.addHandler(window, 'resize',function(){
-                hotelDetail.widthCorrecting(hotelDetail.sourceData);
+                hotelDetail.widthCorrecting(hotelDetail.reserveHandler);
             })
 
         },
+
+        //alert roomCode
+        reserveHandler:function(event){
+            alert(this.getAttribute('room-code'))
+        },
+
+
+        toggleSlider:function() {
+            $(this.parentNode.parentNode).find('ul.roomDetailList').hide();
+            $(this.parentNode.parentNode).find('a.at').each(function(){
+                $(this).attr('class', 'at d-icon5');
+            });
+
+            if (this.isOpen) {
+                $(this.parentNode).find('ul.roomDetailList').slideUp("400");
+                $(this).find('a.at').attr('class', 'at d-icon5');
+                this.isOpen = false;
+            } else {
+                $(this.parentNode).find('ul.roomDetailList').slideDown("400");
+                $(this).find('a.at').attr('class', 'at d-icon4');
+                this.isOpen = true;
+            }
+        },
+
 
         imageHandler:function(result){
             hotelDetail.widthCorrecting(result);
@@ -311,39 +347,38 @@
 
         createAll:function(result){
             result=JSON.parse(result);
-            console.log(result)
             if(result.Success==true){
                 hotelDetail.$Id('preloader')?document.body.removeChild(hotelDetail.$Id('preloader')):'';
             }else{
                 return false;
             }
 
-            var allStr = '',headerStr='',frontImgStr='',imgContainer='',firstUl='',secondUl='',contentStr='',iDiv;
+            var allStr = '',headerStr='',frontImgStr='',imgContainer='',firstUl='',secondUl='',contentStr='',footer='',iDiv;
 
             hotelDetail.sourceData=result;
 
             headerStr+='<div class="header detailHeader" id="vlm-h-1"><a href="javascript:alert(1);" class="icons header-back"></a><h3>'+hotelDetail.sTools.hotelName(result.Data[0].HotelGenInfo.HotelName)+'</h3></div>';
 
 
-            frontImgStr+='<div class="d-div1"><img class="hotelPic" src="'+hotelDetail.sTools.frontImage(result.Data[0].HotelImagesList)+'" /> <div class="d-div2 totalNum"><div class="d-p4">'+hotelDetail.sTools.imageNum(result.Data[0].HotelImagesList)+'张</div></div></div>';
+            frontImgStr+='<div class="d-div1 faceImg"><img class="hotelPic" src="'+hotelDetail.sTools.frontImage(result.Data[0].HotelImagesList)+'" /> <div class="d-div2 totalNum"><div class="d-p4">'+hotelDetail.sTools.imageNum(result.Data[0].HotelImagesList)+'张</div></div></div>';
 
 
             firstUl+='<ul class="d-ul1"><li  onclick="hotelDetail.h_reviews()"><span class="rateScore" style="color:#8ed1cc;font-size:15px;font-weight:600;">'+result.Data[0].HotelGenInfo.TAAvgRating+'</span>分/'+result.Data[0].HotelGenInfo.TAReviewCount+'人点评<b class="icons open-arg"></b></li>' +
-            '<li><span class="address-text">'+result.Data[0].HotelGenInfo.HotelAddress+'</span><em id="toMap">地图</em><b class="icons open-arg"></b></li>' +
-            '<li>'+hotelDetail.sTools.StarRatingName(result.Data[0].HotelGenInfo.StarRatingName)+'星级<b class="CrazyRate"></b><b class="icons open-arg"></b></li></ul>';
-
+            '<li id="toMap"><span class="address-text">'+result.Data[0].HotelGenInfo.HotelAddress+'</span><em>地图</em><b class="icons open-arg"></b></li>' +
+            '<li class="toHotelDetail">'+hotelDetail.sTools.StarRatingName(result.Data[0].HotelGenInfo.StarRatingName)+'星级<b class="CrazyRate"></b><b class="icons open-arg"></b></li></ul>';
 
             secondUl+='<ul class="d-ul2">' +
             '<li id="chooseDate"><span class="enterDate">'+hotelDetail.gdataInfo.CheckInDate+'</span>入住<span class="enterDate" style="margin-left: 5px;">'+hotelDetail.gdataInfo.CheckOutDate+'</span>离店<em>共<span id="nightNum">'+hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate,hotelDetail.gdataInfo.CheckInDate)+'</span>晚</em><b class="icons open-arg"></b></li>'+hotelDetail.showRoomList(result)+'</ul>';
 
             contentStr+='<div id="content" class="snap-content" style="padding-top: 45px;">'+frontImgStr+firstUl+secondUl+'</div>';
 
-            allStr+=headerStr+contentStr;
+            footer+='<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>'
+
+            allStr+=headerStr+contentStr+footer;
 
             hotelDetail.$CN('all-elements')[0].innerHTML='';
 
             hotelDetail.$Id('imageContainer')?document.body.removeChild(hotelDetail.$Id('imageContainer')):"";
-
             hotelDetail.$CN('all-elements')[0].innerHTML=allStr;
 
             //图片单独生成
@@ -387,6 +422,7 @@
             var outerDiv=document.getElementById('imageContainer');
             var innerDiv=document.getElementsByClassName('showZone')[0];
             var totalNum=document.getElementsByClassName('totalNum')[0];
+            var faceImg=document.getElementsByClassName('faceImg')[0];
 
             outerDiv.onclick=function(event){
                 var e =event ||window.event;
@@ -395,7 +431,7 @@
                     tar.style.display = 'none'
                 }
             };
-            totalNum.onclick=function(event){
+            faceImg.onclick=function(event){
                 document.getElementById('imageContainer').style.display='block';
             };
 
@@ -493,22 +529,6 @@
 
         },
 
-        toggleStatus:function() {
-            $(this.parentNode.parentNode).find('ul.roomDetailList').hide();
-            $(this.parentNode.parentNode).find('a.at').each(function(){
-                $(this).attr('class', 'at d-icon5');
-            })
-            if (this.isOpen) {
-                $(this.parentNode).find('ul.roomDetailList').slideUp("400");
-                $(this).attr('class', 'at d-icon5');
-                this.isOpen = false;
-            } else {
-                $(this.parentNode).find('ul.roomDetailList').slideDown("400");
-                this.isOpen = true;
-                $(this).attr('class', 'at d-icon4');
-            }
-        },
-
         toggleSubModals:function(){
             var  info = this.getAttribute('room-code'),tempInfo;
             var compareData =  hotelDetail.sourceData.Data[0].HotelRoomsList;
@@ -538,7 +558,7 @@
         },
 
         toggleRoomModals:function(gInfo){
-            console.log(gInfo)
+
             var  roomTypeCode = this.getAttribute('room-type-code');
             var roomInfo={HotelID:gInfo.HotelID,CultureName:hotelDetail.CultureName,RoomTypeCode:roomTypeCode};
             hotelDetail.jAjax(hotelDetail.requestUrl,roomInfo,"0010",3,hotelDetail.showRoomModals);
