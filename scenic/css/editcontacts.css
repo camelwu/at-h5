@@ -1,0 +1,149 @@
+.fl{ float: left; }
+.fr{
+    float: right;
+}
+
+.clearFix:after{ content:''; clear: both; display: block; }
+
+/*编辑联系人开始*/
+.edit-tit{
+    font-weight: normal;
+
+}
+.msg-rel{
+    height: 37px;
+    background: #f0eeee;
+    padding: 0 20px;
+    line-height: 37px;
+}
+.msg-rel-text{
+    font-size: 12px;
+}
+
+ /*联系人信息*/
+.country-cont{
+    margin-top: 12px;
+}
+
+.edit-contact-wrap{
+    margin: 13px 14px;
+    border: 1px solid #dedede;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+.edit-contact-box{
+    padding: 0 12px;
+    background-color: #fff;
+    margin-bottom: -1px;
+}
+.edit-contact-box li{
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    min-width: 250px;
+    border-bottom: 1px solid #ddd;
+}
+
+.fl-name{
+    display: inline-block;
+
+    font-size: 12px;
+    padding-left: 10%;
+}
+
+.name-tip{
+    display: inline-block;
+    width: 11%;
+    min-width: 70px;
+}
+
+.save-btn-wrap{
+    padding: 0 14px;
+}
+.save-btn{
+    display: block;
+    height: 40px;
+    line-height:40px;
+    background-color: #fdb330;
+    text-align: center;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+.save-btn:hover{
+    background-color: #ff9313;
+}
+
+.right-choi-btn{
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 14px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 63% 4%;
+    background-size: 400px 190px;
+    margin-top: 12px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/*编辑联系人结束*/
+
+/*联系人列表开始*/
+.contact-list-box{
+    padding: 0 12px;
+    background-color: #fff;
+    margin-bottom: -1px;
+}
+
+.contact-list-box li{
+    padding:10px 0;
+}
+.contact-list-box li p{
+    margin-bottom: 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+.cell-suc-btn{
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 63% 100%;
+    background-size: 400px 120px;
+}
+
+.cont-zd-ctrl{
+    width: 58%;
+    display: inline-block;
+    vertical-align: middle;
+    padding-bottom: 4px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #d1d1d1;
+}
+
+.name-pal{
+    margin-left: 40px;
+}
+
+.con-msg-lside{
+    display: inline-block;
+    min-width: 40px;
+    color: #484848;
+}
+
+.con-msg-rside{
+    display: inline-block;
+    min-width: 40px;
+}
+
+.choi-mt{
+    margin-top: 7px;
+}
+/*联系人列表结束*/
