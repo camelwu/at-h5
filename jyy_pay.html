@@ -42,13 +42,13 @@
         <div id="content" class="snap-content">
             <!--   总价   -->
             <div class="p-price">
-                <p class="p-p1">订单总价：￥838.00</p>
+                <p class="p-p1" id="jp_price_sum">订单总价：￥838.00</p>
             </div>
             <!--   酒店信息   -->
             <ul class="p-hotelinfo">
-                <li>东京东急涩谷卓越大酒店</li>
-                <li>11月25日 - 11月26日 共1晚（当地时间为准）</li>
-                <li>房型：经济大床房 房间数：2间</li>
+                <li id="jp_hotel_name">东京东急涩谷卓越大酒店</li>
+                <li id="jp_date">11月25日 - 11月26日 共1晚（当地时间为准）</li>
+                <li id="jp_house_type">房型：经济大床房 房间数：2间</li>
             </ul>
             <!--   支付方式   -->
             <div class="p-pay">
@@ -80,39 +80,40 @@
             <ul class="p-ul2">
                 <li>
                     <div>信用卡卡号</div>
-                    <input type="text" value placeholder="输入银行卡号">
+                    <input type="text" value placeholder="输入银行卡号" id="jp_bank">
                 </li>
                 <li>
                     <div>持卡人姓名</div>
-                    <input type="text" value placeholder="姓名">
+                    <input type="text" value placeholder="姓名" id="jp_guest_name">
                 </li>
                 <li>
                     <div>有效期</div>
-                    <input type="text" value placeholder="月/年，如：09/12">
+                    <input type="text" value placeholder="月/年，如：09/12" id="jp_limit_time">
                 </li>
                 <li>
                     <div>安全码</div>
-                    <input type="text" value placeholder="签名栏末尾最后3位">
+                    <input type="text" value placeholder="签名栏末尾最后3位" id="jp_safe_code">
                 </li>
                 <li>
 
                     <div>发卡银行</div>
                     <a href="#" class="icons open-pho" ></a>
-                    <div class="second-div">招商银行</div>
+                    <div class="second-div" id="jp_bank_name">招商银行</div>
 
                 </li>
                 <li>
 
                     <div>发卡国家</div>
                     <a href="#" class="icons open-pho" ></a>
-                    <div>中国</div>
+                    <div id="jp_bank_country">中国</div>
 
                 </li>
             </ul>
             <hr width="100%" size="1px" color="#dddddd">
-            <div class="p-but">支付</div>
+            <div class="p-but" id="p-but">支付</div>
         </div>
     </div>
+    <script src="js/lib/vcm.js"></script>
     <script data-main="js/main.js" src="js/require.js"></script>
     <script type="text/javascript" src="js/pay_jyy.js"></script>
 </body>
