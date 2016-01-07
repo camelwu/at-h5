@@ -74,6 +74,31 @@
             return obj;
         },
 
+
+        addHandler:function(target,eventType,handle,arguments){
+            console.log(arguments)
+
+            if(document.addEventListener){
+                Event.addEvent = function(target,eventType,handle,arguments){
+                    target.addEventListener(eventType,function(arguments){
+                        handle.call(target,arguments);
+                    },false);
+
+                }
+            }else if(document.attachEvent){
+                Event.addEvent = function(target,eventType,handle){
+                    target.attachEvent('on'+eventType,function(){
+                        handle.call(target,arguments);
+                    });
+                }
+            }else{
+                Event.addEvent = function(target,eventType,handle){
+                    target['on'+eventType] = handle;
+                }
+            }
+            Event.addEvent (target,eventType,handle);
+        },
+
         jAjax:function(questUrl, data,Code,ForeEndType,Callback){
             var dataObj =
             {
@@ -201,7 +226,7 @@
             var str='';
             var tempArray=result.Data[0].HotelRoomsList;
             for(var i= 0; i<tempArray.length;i++){
-                str='<li class="d-li1 super"><div class="d-div3 roomEvent" style="max-width: 60%"  room-type-code='+tempArray[i].RoomTypeCode+'> <div class="d-p5">'+tempArray[i].RoomTypeName+'</div> <b class="d-icon3"></b> <div class="d-p6">32-38㎡ 大/双床</div> </div> <a href="#" class="at d-icon4"></a> <div class="price"><span class="money">￥</span><span class="moneyNum">'+tempArray[i].MinAvgPrice+'<span>起</span></span></div>'+hotelDetail.subRoomList(tempArray[i].RoomList)+'</li>';
+                str='<li class="d-li1 super"><div class="d-div3 roomEvent" style="max-width: 60%"  room-type-code='+tempArray[i].RoomTypeCode+'> <div class="d-p5">'+tempArray[i].RoomTypeName+'</div> <b class="d-icon3"></b> <div class="d-p6">32-38㎡ 大/双床</div> </div> <a href="#" class="at d-icon5"></a> <div class="price"><span class="money">￥</span><span class="moneyNum">'+tempArray[i].MinAvgPrice+'<span>起</span></span></div>'+hotelDetail.subRoomList(tempArray[i].RoomList)+'</li>';
             }
             return str;
         },
@@ -228,7 +253,6 @@
             var subRooms = this.$CN('subRoomEvent');
             var Rooms = this.$CN('roomEvent');
             var toMap =  this.$Id('toMap')
-
 
             frontImage.onclick=function() {
                 document.location.href = 'jyy_hotelSummary.html'
@@ -293,9 +317,9 @@
 
         createAll:function(result){
             result=JSON.parse(result);
+            console.log(result)
             if(result.Success==true){
                 hotelDetail.$Id('preloader')?document.body.removeChild(hotelDetail.$Id('preloader')):'';
-                hotelDetail.storageUtil.set("hotelDetailData",result);
             }else{
                 return false;
             }
@@ -322,6 +346,9 @@
 
             allStr+=headerStr+contentStr;
             hotelDetail.$CN('all-elements')[0].innerHTML='';
+
+            hotelDetail.$Id('imageContainer')?document.body.removeChild(hotelDetail.$Id('imageContainer')):"";
+            
             hotelDetail.$CN('all-elements')[0].innerHTML=allStr;
 
             //图片单独生成
@@ -329,11 +356,13 @@
             iDiv.id = "imageContainer";
             iDiv.innerHTML = '<h5 class="indexShow"></h5><div class="showZone">' +
             '<ul class="imgUl" style="left: 0px; width: 1400%;">'+hotelDetail.sTools.getImages(result.Data[0].HotelImagesList)+'</ul></div>'
+
+
             document.body.appendChild(iDiv);
 
             hotelDetail.imageHandler(result)
 
-            hotelDetail.initDate()    //初始化日期
+            hotelDetail.initDate(result)    //初始化日期
         },
 
         upDateContent:function(){
@@ -342,11 +371,17 @@
             hotelDetail.init( hotelDetail.gdataInfo);
         },
 
-        initDate:function(){
+        initDate:function(result){
             var dateInitObj=new Object();
             dateInitObj[this.gdataInfo.CheckInDate]='入住';
             dateInitObj[this.gdataInfo.CheckOutDate]='离店';
             var myDate2=new Calender({id:'chooseDate',num:13,time:dateInitObj,sClass1:'enterDate',id2:'nightNum',fn:hotelDetail.upDateContent});
+
+            console.log(result)
+            result.Data[0].dateInfo = {CheckInDate:hotelDetail.gdataInfo.CheckInDate,CheckOutDate:hotelDetail.gdataInfo.CheckOutDate,totalNight:Math.abs(hotelDetail.$Id('nightNum').innerHTML)};
+
+            hotelDetail.storageUtil.set("hotelDetailData",result);
+            console.log(JSON.parse(window.localStorage.getItem("hotelDetailData")));
         },
 
         imageTouchEvent:function(){
@@ -503,6 +538,7 @@
         },
 
         toggleRoomModals:function(gInfo){
+            console.log(gInfo)
             var  roomTypeCode = this.getAttribute('room-type-code');
             var roomInfo={HotelID:gInfo.HotelID,CultureName:hotelDetail.CultureName,RoomTypeCode:roomTypeCode};
             hotelDetail.jAjax(hotelDetail.requestUrl,roomInfo,"0010",3,hotelDetail.showRoomModals);
