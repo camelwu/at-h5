@@ -26,6 +26,12 @@ function addBind(obj,sEv,fn){
     return obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
 }
 ;(function(){
+    //返回按钮
+    var jp_back=document.getElementById('jp_back');
+    addBind(jp_back,'click',function(){
+        window.history.go(-1);
+    });
+
     var myData=JSON.parse(localStorage.getItem('user_order_storage12345'));
     console.log(myData);
     var jp_price_sum=document.getElementById('jp_price_sum');
