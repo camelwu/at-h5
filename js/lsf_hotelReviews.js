@@ -36,6 +36,10 @@
     }
 };
 (function(){
+    var goBack=document.getElementById('hr_back');
+    goBack.onclick=function(){
+        window.history.go(-1);
+    };
 
     //页面加载小动画
     $(window).load(function () {
