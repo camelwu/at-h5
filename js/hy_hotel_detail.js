@@ -328,7 +328,7 @@
             frontImgStr+='<div class="d-div1"><img class="hotelPic" src="'+hotelDetail.sTools.frontImage(result.Data[0].HotelImagesList)+'" /> <div class="d-div2 totalNum"><div class="d-p4">'+hotelDetail.sTools.imageNum(result.Data[0].HotelImagesList)+'张</div></div></div>';
 
 
-            firstUl+='<ul class="d-ul1"><li><span class="rateScore" style="color:#8ed1cc;font-size:15px;font-weight:600;">'+result.Data[0].HotelGenInfo.TAAvgRating+'</span>分/'+result.Data[0].HotelGenInfo.TAReviewCount+'人点评<b class="icons open-arg"></b></li>' +
+            firstUl+='<ul class="d-ul1"><li  onclick="hotelDetail.h_reviews()"><span class="rateScore" style="color:#8ed1cc;font-size:15px;font-weight:600;">'+result.Data[0].HotelGenInfo.TAAvgRating+'</span>分/'+result.Data[0].HotelGenInfo.TAReviewCount+'人点评<b class="icons open-arg"></b></li>' +
             '<li><span class="address-text">'+result.Data[0].HotelGenInfo.HotelAddress+'</span><em id="toMap">地图</em><b class="icons open-arg"></b></li>' +
             '<li>'+hotelDetail.sTools.StarRatingName(result.Data[0].HotelGenInfo.StarRatingName)+'星级<b class="CrazyRate"></b><b class="icons open-arg"></b></li></ul>';
 
@@ -358,6 +358,12 @@
             hotelDetail.imageHandler(result)
 
             hotelDetail.initDate(result)    //初始化日期
+        },
+
+        //点评点击事件
+        h_reviews:function (){
+
+            window.location.href='hotel_reviews.html?'+'HotelID='+hotelDetail.gdataInfo.HotelID+'&'+'TAAvgRating='+hotelDetail.sourceData.Data[0].HotelGenInfo.TAAvgRating+'&'+'TAReviewCount='+hotelDetail.sourceData.Data[0].HotelGenInfo.TAReviewCount;
         },
 
         upDateContent:function(){
