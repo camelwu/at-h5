@@ -64,52 +64,6 @@
             }
         },
 
-        parseUrlPara:function (url,isEncode){
-            var isEncode=isEncode||false;
-            var reg=/([^=&?]+)=([^=&?]+)/g,obj={};
-            url.replace(reg,function(){
-                var arg=arguments;
-                obj[arg[1]]=isEncode?decodeURIComponent(arg[2]):arg[2];
-            });
-            return obj;
-        },
-
-
-        addHandler:function(target,eventType,handle,arguments){
-            console.log(arguments)
-
-            if(document.addEventListener){
-                Event.addEvent = function(target,eventType,handle,arguments){
-                    target.addEventListener(eventType,function(arguments){
-                        handle.call(target,arguments);
-                    },false);
-
-                }
-            }else if(document.attachEvent){
-                Event.addEvent = function(target,eventType,handle){
-                    target.attachEvent('on'+eventType,function(){
-                        handle.call(target,arguments);
-                    });
-                }
-            }else{
-                Event.addEvent = function(target,eventType,handle){
-                    target['on'+eventType] = handle;
-                }
-            }
-            Event.addEvent (target,eventType,handle);
-        },
-
-        jAjax:function(questUrl, data,Code,ForeEndType,Callback){
-            var dataObj =
-            {
-                Parameters: JSON.stringify(data),
-                Code: Code,
-                ForeEndType: ForeEndType
-            };
-            var c = new vcm();
-            c.loadJson(questUrl, JSON.stringify(dataObj), Callback);
-        },
-
         sTools:{
             hotelName:function(arg) {
                 return arg.indexOf('(') != -1 ? '<p class="d-p1">' + arg.slice(0, arg.indexOf(' (')) + '<br/>' + arg.slice(arg.indexOf(' (') + 1)+'</p>' : '<p class="d-p1" style="line-height: 44px">' + arg + '</p>';
@@ -207,19 +161,52 @@
 
         },
 
+        parseUrlPara:function (url,isEncode){
+            var isEncode=isEncode||false;
+            var reg=/([^=&?]+)=([^=&?]+)/g,obj={};
+            url.replace(reg,function(){
+                var arg=arguments;
+                obj[arg[1]]=isEncode?decodeURIComponent(arg[2]):arg[2];
+            });
+            return obj;
+        },
+
+        addHandler:function(target,eventType,handle){
+
+            if(document.addEventListener){
+                Event.addEvent = function(target,eventType,handle){
+                    target.addEventListener(eventType,handle,false);
+                }
+            }else if(document.attachEvent){
+                Event.addEvent = function(target,eventType,handle){
+                    target.attachEvent('on'+eventType,function(){
+                        handle.call(target);
+                    });
+                }
+            }else{
+                Event.addEvent = function(target,eventType,handle){
+                    target['on'+eventType] = handle;
+                }
+            }
+            Event.addEvent (target,eventType,handle);
+        },
+
+        jAjax:function(questUrl, data,Code,ForeEndType,Callback){
+            var dataObj =
+            {
+                Parameters: JSON.stringify(data),
+                Code: Code,
+                ForeEndType: ForeEndType
+            };
+            var c = new vcm();
+            c.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+        },
+
         showImages:function(result){
             var picOuter = document.createElement('div');
             picOuter.id="imageContainer";
             picOuter.innerHTML='<h5 class="indexShow">123</h5><div class="showZone"><ul class="imgUl" style="left:0px;width:100%">'+this.sTools.getImages(result.Data[0].HotelImagesList)+'</ul></div>';
             this.$Id('content').insertBefore(picOuter,this.$CN('top')[0]);
-        },
-
-        mask:function(){
-            var mask = document.createElement('div');
-            mask.className="r-div";
-            mask.id="r-mb";
-            this.$Id('content').appendChild(mask);
-
         },
 
         showRoomList:function(result){
@@ -253,6 +240,8 @@
             var subRooms = this.$CN('subRoomEvent');
             var Rooms = this.$CN('roomEvent');
             var toMap =  this.$Id('toMap')
+
+
 
             frontImage.onclick=function() {
                 document.location.href = 'jyy_hotelSummary.html'
@@ -295,8 +284,13 @@
             }
 
             for(var k=0;k<subRooms.length;k++){
-                subRooms[k].addEventListener('click', hotelDetail.toggleSubModals,false)
+                hotelDetail.addHandler(subRooms[k],'click',hotelDetail.toggleSubModals);
             }
+
+            hotelDetail.addHandler(window, 'resize',function(){
+                hotelDetail.widthCorrecting(hotelDetail.sourceData);
+            })
+
         },
 
         imageHandler:function(result){
@@ -340,22 +334,23 @@
 
 
             secondUl+='<ul class="d-ul2">' +
-            '<li id="chooseDate"><span class="enterDate">'+hotelDetail.gdataInfo.CheckInDate+'</span>入住<span class="enterDate" style="margin-left: 5px;">'+hotelDetail.gdataInfo.CheckOutDate+'</span>离店<em>共<span id="nightNum">'+hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckInDate,hotelDetail.gdataInfo.CheckOutDate)+'</span>晚</em><b class="icons open-arg"></b></li>'+hotelDetail.showRoomList(result)+'</ul>';
+            '<li id="chooseDate"><span class="enterDate">'+hotelDetail.gdataInfo.CheckInDate+'</span>入住<span class="enterDate" style="margin-left: 5px;">'+hotelDetail.gdataInfo.CheckOutDate+'</span>离店<em>共<span id="nightNum">'+hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate,hotelDetail.gdataInfo.CheckInDate)+'</span>晚</em><b class="icons open-arg"></b></li>'+hotelDetail.showRoomList(result)+'</ul>';
 
             contentStr+='<div id="content" class="snap-content" style="padding-top: 45px;">'+frontImgStr+firstUl+secondUl+'</div>';
 
             allStr+=headerStr+contentStr;
+
             hotelDetail.$CN('all-elements')[0].innerHTML='';
 
             hotelDetail.$Id('imageContainer')?document.body.removeChild(hotelDetail.$Id('imageContainer')):"";
-            
+
             hotelDetail.$CN('all-elements')[0].innerHTML=allStr;
 
             //图片单独生成
             iDiv = document.createElement('div');
             iDiv.id = "imageContainer";
-            iDiv.innerHTML = '<h5 class="indexShow"></h5><div class="showZone">' +
-            '<ul class="imgUl" style="left: 0px; width: 1400%;">'+hotelDetail.sTools.getImages(result.Data[0].HotelImagesList)+'</ul></div>'
+            iDiv.innerHTML = '<h5 class="indexShow">1/'+result.Data[0].HotelImagesList.length+'</h5><div class="showZone">' +
+            '<ul class="imgUl" style="left: 0px; width: 100%;">'+hotelDetail.sTools.getImages(result.Data[0].HotelImagesList)+'</ul></div>'
 
 
             document.body.appendChild(iDiv);
@@ -377,11 +372,9 @@
             dateInitObj[this.gdataInfo.CheckOutDate]='离店';
             var myDate2=new Calender({id:'chooseDate',num:13,time:dateInitObj,sClass1:'enterDate',id2:'nightNum',fn:hotelDetail.upDateContent});
 
-            console.log(result)
-            result.Data[0].dateInfo = {CheckInDate:hotelDetail.gdataInfo.CheckInDate,CheckOutDate:hotelDetail.gdataInfo.CheckOutDate,totalNight:Math.abs(hotelDetail.$Id('nightNum').innerHTML)};
+            result.Data[0].dateInfo = {CheckOutDate:hotelDetail.gdataInfo.CheckOutDate,CheckInDate:hotelDetail.gdataInfo.CheckInDate,totalNight:Math.abs(hotelDetail.$Id('nightNum').innerHTML)};
 
             hotelDetail.storageUtil.set("hotelDetailData",result);
-            console.log(JSON.parse(window.localStorage.getItem("hotelDetailData")));
         },
 
         imageTouchEvent:function(){
@@ -399,9 +392,10 @@
             totalNum.onclick=function(event){
                 document.getElementById('imageContainer').style.display='block';
             };
-            innerDiv.addEventListener('touchstart', this.startHandler,false)
-            innerDiv.addEventListener('touchmove', this.moveHandler,false)
-            innerDiv.addEventListener('touchend', this.endHandler,false)
+
+            hotelDetail.addHandler(innerDiv,'touchstart',hotelDetail.startHandler)
+            hotelDetail.addHandler(innerDiv,'touchmove',hotelDetail.moveHandler)
+            hotelDetail.addHandler(innerDiv,'touchend',hotelDetail.endHandler)
         },
 
         startHandler:function(e){
@@ -428,9 +422,9 @@
             var minLeftValue = (document.querySelectorAll('.imageLi').length-1)*window.innerWidth;
             var endLeftValue = parseFloat(document.getElementsByClassName('imgUl')[0].style.left);
             var distance = endLeftValue-hotelDetail.tempCurLeft,time=1000,targetLeft,indexNUm;
-            if(distance<0&&Math.abs(distance)>=window.innerWidth/3){
+            if(distance<0&&Math.abs(distance)>=window.innerWidth/4){
                 targetLeft=hotelDetail.tempCurLeft-window.innerWidth;
-            }else if(distance>0&&Math.abs(distance)>=window.innerWidth/3){
+            }else if(distance>0&&Math.abs(distance)>=window.innerWidth/4){
                 targetLeft = hotelDetail.tempCurLeft+window.innerWidth;
             }else{
                 targetLeft = hotelDetail.tempCurLeft;
@@ -441,7 +435,7 @@
             }else if (targetLeft <= -minLeftValue){
                 targetLeft =-minLeftValue;
             }
-            indexNUm = Math.abs(targetLeft/window.innerWidth)+1;
+            indexNUm = Math.abs(Math.floor(targetLeft/window.innerWidth))+1;
             time = Math.abs((targetLeft-parseFloat(document.getElementsByClassName('imgUl')[0].style.left))/window.innerWidth)*time;
             hotelDetail.tempCurLeft=targetLeft;
             $('.imgUl').animate({'left': targetLeft},time);
@@ -544,7 +538,6 @@
             hotelDetail.jAjax(hotelDetail.requestUrl,roomInfo,"0010",3,hotelDetail.showRoomModals);
         },
 
-
         init:function(arg){
 
             var dataObj = arg||this.parseUrlPara(document.location.search,true);
@@ -558,4 +551,5 @@
     };
 
     hotelDetail.init();
+
 })(window,document);
