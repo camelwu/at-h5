@@ -233,7 +233,7 @@
             var toMap = this.$Id('toMap');
 
             toHotelDetail.onclick = function () {
-                document.location.href = 'hotel_summary.html'
+                document.location.href = 'hotel_summary.html';
             };
 
             totalNum.onclick = function () {
@@ -516,7 +516,6 @@
         },
 
         updateSubRoomModal: function (arg) {
-
             var oDiv = document.createElement('div'), modalStr = '';
             oDiv.className = "roomAll";
             oDiv.id = "infoAll";
