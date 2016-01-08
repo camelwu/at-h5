@@ -1,7 +1,36 @@
 /**
  * Created by Asiatravel on 2016/1/4.
  */
-    var user_order_storage={
+    //我需要的数据：RoomCode/user_order_storage2/fake_data.totalNight/CheckInTime/CheckOutTime
+    var RoomCode=56625;
+    var fake_data={};
+    //默认房间数量
+    fake_data.NumOfRoom=2;
+    var user_order_storage2=localStorage.getItem('hotelDetailData');
+    console.log(JSON.parse(user_order_storage2));
+    //console.log(JSON.parse(user_order_storage2).data);
+    //console.log(JSON.parse(user_order_storage2).data.Data);
+    //console.log(JSON.parse(user_order_storage2).data.Data[0].HotelGenInfo);
+    fake_data.HotelGenInfo=JSON.parse(user_order_storage2).data.Data[0].HotelGenInfo;
+    fake_data.dateInfo=JSON.parse(user_order_storage2).data.Data[0].dateInfo;
+    //console.log(JSON.parse(user_order_storage2).data.Data[0].HotelRoomsList);
+    var HotelRoomsList=JSON.parse(user_order_storage2).data.Data[0].HotelRoomsList;
+    for(var i=0;i<HotelRoomsList.length;i++){
+        for(var j=0;j<HotelRoomsList[i].RoomList.length;j++){
+            if(HotelRoomsList[i].RoomList[j].RoomCode==RoomCode){
+                //console.log(HotelRoomsList[i].RoomList[j]);
+                fake_data.MinAvgPrice=HotelRoomsList[i].MinAvgPrice;
+                fake_data.RoomTypeCode=HotelRoomsList[i].RoomTypeCode;
+                fake_data.RoomTypeName=HotelRoomsList[i].RoomTypeName;
+                for(var name in HotelRoomsList[i].RoomList[j]){
+                    fake_data[name]=HotelRoomsList[i].RoomList[j][name];
+                }
+            }
+        }
+    }
+    console.log(fake_data);
+
+    /*var user_order_storage={
         "CultureName":"",
         "PartnerCode":"",
         "HotelCode":"8016",
@@ -42,9 +71,9 @@
         "totalNight":3,
         "houseType":"大床房",
         "housePrice":"398"
-};
+};*/
 //本地存储数据
-localStorage.setItem('user_order_storage12345',JSON.stringify(user_order_storage));
+localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 var lsf_myweb={
     "getbyid":function(id){
         return document.getElementById(id);
@@ -104,7 +133,7 @@ var lsf_myweb={
     });
 
 
-
+    var uo_back=document.getElementById('uo_back');
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
     var uo_c2_num=document.getElementById('uo_c2_num');
@@ -117,44 +146,66 @@ var lsf_myweb={
     var bOk=true;
     var bOk2=true;
 
+    //返回按钮
+    uo_back.onclick=function(){
+        window.history.go(-1);
+    };
+
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
-    uo_con2_chil1.innerHTML='<h3>'+user_order_storage.HotelName+'</h3>'+
-        '<p class="uo_c2_infor">'+user_order_storage.CheckInTime+'-'+user_order_storage.CheckOutTime+' -'+user_order_storage.totalNight+'晚（目的地时间为准）</p>'+
-        '<p class="uo_house">房型：'+user_order_storage.houseType+'</p>';
+    uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.HotelName+'</h3>'+
+        '<p class="uo_c2_infor">'+fake_data.dateInfo.CheckInDate.split('-')[0]+'年'+fake_data.dateInfo.CheckInDate.split('-')[1]+'月'+fake_data.dateInfo.CheckInDate.split('-')[2]+'日'+'-'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+' -'+fake_data.dateInfo.totalNight+'晚（目的地时间为准）</p>'+
+        '<p class="uo_house">房型：'+fake_data.RoomTypeName+'</p>';
+
+    //房间数列表
+    uo_c2_num.innerHTML=fake_data.NumOfRoom;
+    for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
+        uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
+            '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+            '<div class="uo_c3_infor">'+
+            '<input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />'+
+            '<input type="text" placeholder="名（如：Justin）" class="uo_firstname" />'+
+            '</div>'+
+            '</div>';
+    }
+
     // 明细
-    function uo_detail(id1,id2,id3,id4,id5,json){
+    function uo_detail(id1,id2,id3,id4,id5,id6,json){
+        //console.log(json);
         var oId1=document.getElementById(id1);
         var oId2=document.getElementById(id2);
         var oId3=document.getElementById(id3);
         var oId4=document.getElementById(id4);
         var oId5=document.getElementById(id5);
+        var oId6=document.getElementById(id6);
         var price1=0;
-        oId1.innerHTML=json.NumOfRoom+'间×'+json.totalNight+'晚';
-        price1=parseInt(json.NumOfRoom)*parseInt(json.totalNight)*json.housePrice;
-        oId2.innerHTML='￥'+parseInt(json.NumOfRoom)*parseInt(json.totalNight)*json.housePrice;
-        oId3.innerHTML='￥159(没有给)';
-        price1+=159;
-        oId4.innerHTML='付款方式：前台现付';
+        oId1.innerHTML=json.NumOfRoom+'间×'+json.dateInfo.totalNight+'晚';
+        price1=parseFloat(json.NumOfRoom)*parseFloat(json.TotalPrice);
+        oId3.innerHTML='SGD'+json.TaxCharges;
+        oId4.innerHTML='付款方式：'+json.PaymentModeID;
+        oId2.innerHTML='SGD'+(price1-json.TaxCharges).toFixed(2);
         oId5.innerHTML=price1;
+        fake_data.calcuTotalPrice=price1;
+        oId6.innerHTML=parseFloat(json.TotalPriceCNY)*parseFloat(json.NumOfRoom);
+        fake_data.calcuTotalPriceCNY=parseFloat(json.TotalPriceCNY)*parseFloat(json.NumOfRoom);
     }
-    uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum',user_order_storage);
+    uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2',fake_data);
 
-
+    //减少房间
     lsf_myweb.bind(uo_c2_i1,'click',function(){
         var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
         uo_c2_num.innerHTML=parseInt(uo_c2_num.innerHTML)-1;
 
         //修改数据并存储数据
-        user_order_storage.NumOfRoom=parseInt(uo_c2_num.innerHTML);
-        localStorage.setItem('user_order_storage12345',JSON.stringify(user_order_storage));
+        fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
+        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         //console.log(localStorage.getItem('user_order_storage12345'));
 
 
-        if(parseInt(uo_c2_num.innerHTML)<0){
-            uo_c2_num.innerHTML=0;
+        if(parseInt(uo_c2_num.innerHTML)<1){
+            uo_c2_num.innerHTML=1;
         }else{
-            uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum',user_order_storage);
+            uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2',fake_data);
             uo_c3_peoBox.innerHTML='';
             for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
                 uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
@@ -168,20 +219,21 @@ var lsf_myweb={
         }
 
     });
+    //增加房间
     lsf_myweb.bind(uo_c2_i2,'click',function(){
         var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
         uo_c2_num.innerHTML=parseInt(uo_c2_num.innerHTML)+1;
 
         //修改数据并存储数据
-        user_order_storage.NumOfRoom=parseInt(uo_c2_num.innerHTML);
-        localStorage.setItem('user_order_storage12345',JSON.stringify(user_order_storage));
+        fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
+        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         //console.log(localStorage.getItem('user_order_storage12345'));
 
 
         if(parseInt(uo_c2_num.innerHTML)>10){
             uo_c2_num.innerHTML=10;
         }else{
-            uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum',user_order_storage);
+            uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2',fake_data);
             uo_c3_peoBox.innerHTML='';
             for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
                 uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
@@ -220,6 +272,15 @@ var lsf_myweb={
             oI.style.backgroundSize='400px 120px';
             lsf_myweb.getbyid('uo_hid').style.height='100%';
             lsf_myweb.getbyid('uo_hid_con').style.marginBottom='38px';
+            //点击阴影区域
+            var uo_hid_shadow=document.getElementById('uo_hid_shadow');
+            lsf_myweb.bind(uo_hid_shadow,'click',function(){
+                oI.style.background='url(images/ui/icons1.png) -51px -38px ';
+                oI.style.backgroundSize='400px 120px';
+                lsf_myweb.getbyid('uo_hid').style.height='0';
+                lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-320px';
+                bOk2=true;
+            });
         }else{
             oI.style.background='url(images/ui/icons1.png) -51px -38px ';
             oI.style.backgroundSize='400px 120px';
@@ -228,6 +289,7 @@ var lsf_myweb={
         }
         bOk2=!bOk2;
     });
+
     lsf_myweb.bind(uo_confirm,'click',function(){
         //验证是否勾选协议
         if(bOk){
@@ -237,7 +299,7 @@ var lsf_myweb={
         var aUo_lastname=lsf_myweb.getbyclass(uo_form,'uo_lastname');
         var aUo_firstname=lsf_myweb.getbyclass(uo_form,'uo_firstname');
         var uo_c3_tele=document.getElementById('uo_c3_tele');
-        user_order_storage.fullName={};
+        fake_data.fullName={};
         //验证名字
         for(var i=0;i<aUo_firstname.length;i++){
             if(!aUo_firstname[i].value){
@@ -251,8 +313,8 @@ var lsf_myweb={
 
             var GuestFirstName="GuestFirstName"+i;
             var GuestLastName="GuestLastName"+i;
-            user_order_storage.fullName[GuestFirstName]=aUo_firstname[i].value;
-            user_order_storage.fullName[GuestLastName]=aUo_lastname[i].value;
+            fake_data.fullName[GuestFirstName]=aUo_firstname[i].value;
+            fake_data.fullName[GuestLastName]=aUo_lastname[i].value;
         }
         //验证手机号
         if(!uo_c3_tele.value){
@@ -265,10 +327,10 @@ var lsf_myweb={
                 uo_c3_tele.value='';
                 return;
             }else{
-                user_order_storage.GuestContactNo=uo_c3_tele.value;
+                fake_data.GuestContactNo=uo_c3_tele.value;
             }
         }
-        localStorage.setItem('user_order_storage12345',JSON.stringify(user_order_storage));
+        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
         uo_form.submit();
     })

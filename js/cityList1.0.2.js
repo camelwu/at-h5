@@ -279,7 +279,7 @@ myCityList.prototype={
         oDiv.className='cl_box_box';
         oDiv.style.zIndex=100;
         oDiv.innerHTML=str;
-        lsf_myweb.setStyle(oDiv,{"position":"absolute","overflowX":"hidden!important","width":"100%","height":"100%","min-height":"100%","max-height":"100%","left":0,"top":0,"background":"#fff"});
+        lsf_myweb.setStyle(oDiv,{"position":"absolute","overflowX":"hidden!important","width":"100%","height":"100%","min-height":"100%","max-height":"100%","left":0,"top":0,"background":"#fff","zIndex":"120"});
         document.body.appendChild(oDiv);
         _this.oDiv=oDiv;
     },

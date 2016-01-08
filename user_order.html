@@ -26,7 +26,7 @@
     <div class="all-elements">
         <div class="uo_box">
             <div class="header" id="vlm-login">
-                <a href="user-infolist.html" class="icons header-back"></a>
+                <a href="javascript:;" class="icons header-back" id="uo_back"></a>
                 <h3>填写订单</h3>
             </div>
             <div class="uo_con1">
@@ -50,7 +50,7 @@
             </div>
             <form class="uo_con3" id="uo_con3" action="jyy_pay.html" method="get">
                 <div class="uo_c3_peoBox" id="uo_c3_peoBox">
-                    <div class="uo_c3_peo">
+                    <!--<div class="uo_c3_peo">
                         <div class="uo_c3_div1">房间1入住人</div>
                         <div class="uo_c3_infor">
                             <input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />
@@ -63,7 +63,7 @@
                             <input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />
                             <input type="text" placeholder="名（如：Justin）" class="uo_firstname"  />
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="uo_c3_teBox">
                     <p>手机号</p>
@@ -85,40 +85,31 @@
                         Asiatrave不提供发票，如需消费凭证，请向酒店前台索取。
                     </p>
                 </div>
-                <div class="uo_hid" id="uo_hid">
-                    <p class="uo_hid_shadow"></p>
-                    <div class="uo_hid_con" id="uo_hid_con">
-                        <div class="uo_hid_det">
-                            <p class="fl uo_hid_p1">费用明细</p>
-                            <p class="fr uo_hid_p2" id="uo_hid_p2">1间×1晚</p>
-                        </div>
-                        <div class="uo_hid_price">
-                            <p>
-                                <span class="fl uo_hid_span1">房费</span>
-                                <span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
-                            </p>
-                            <p>
-                                <span class="fl uo_hid_span1">税和服务费</span>
-                                <span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
-                            </p>
-                        </div>
-                        <div class="uo_hid_met" id="uo_hid_met">
-                            付款方式：前台现付
-                        </div>
-                    </div>
-                </div>
-                <div class="uo_footer">
-                    <div class="uo_or_sum">
-                        <em class="fl" class="uo_or_assure">担保：</em>
-                        <div class="uo_or_pr">
-                            <p>S$<b id="uo_or_sum" class="uo_or_sum1">14062</b></p>
-                            <p>约￥<b class="uo_or_sum2">64430</b></p>
-                        </div>
-                    </div>
-                    <p class="uo_or_infor" id="uo_or_infor"><span class="fl">明细</span><i class="fl"></i></p>
-                    <input type="button" value="确认订单" id="uo_confirm" />
-                </div>
+
+
             </form>
+        </div>
+        <div class="uo_hid" id="uo_hid">
+            <p class="uo_hid_shadow" id="uo_hid_shadow"></p>
+            <div class="uo_hid_con" id="uo_hid_con">
+                <div class="uo_hid_det">
+                    <p class="fl uo_hid_p1">费用明细</p>
+                    <p class="fr uo_hid_p2" id="uo_hid_p2">1间×1晚</p>
+                </div>
+                <div class="uo_hid_price">
+                    <p>
+                        <span class="fl uo_hid_span1">房费</span>
+                        <span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
+                    </p>
+                    <p>
+                        <span class="fl uo_hid_span1">税和服务费</span>
+                        <span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
+                    </p>
+                </div>
+                <div class="uo_hid_met" id="uo_hid_met">
+                    付款方式：前台现付
+                </div>
+            </div>
         </div>
         <p class="uo_shadow" id="uo_shadow"></p>
         <div class="uo_hid_con6" id="uo_hid_con6">
@@ -136,6 +127,17 @@
                 <p>在此网站上酒店为住客提供的价格通常比酒店在自己的网站上提供的价格低，并且此价格也只属于Asiatravel.com的网站或是电话预订中心。</p>
                 <p>Asiatrave.com提供的大多数价格已经包括了所有的税（商品和服务税），服务费用和政府税。如果所提供的价格不包括税，服务费用和政府税将会明确出示在我们的预订网页上。</p>
             </div>
+        </div>
+        <div class="uo_footer">
+            <div class="uo_or_sum">
+                <em class="fl" class="uo_or_assure">担保：</em>
+                <div class="uo_or_pr">
+                    <p>S$<b id="uo_or_sum" class="uo_or_sum1">14062</b></p>
+                    <p>约￥<b id="uo_or_sum2" class="uo_or_sum2">64430</b></p>
+                </div>
+            </div>
+            <p class="uo_or_infor" id="uo_or_infor"><span class="fl">明细</span><i class="fl"></i></p>
+            <input type="button" value="确认订单" id="uo_confirm" />
         </div>
     </div>
 </body>

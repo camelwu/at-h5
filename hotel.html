@@ -12,7 +12,7 @@
 <body>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:;" class="icons header-back"></a>
+        <a href="javascript:;" class="icons header-back" id="ho_back"></a>
         <h3>酒店</h3>
     </div>
     <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
@@ -75,8 +75,8 @@
                     <div class="nav3-right">
                         <div>
                             <input type="text" id="count1" name="NumRoom" value="1">
-                            <i class="icons1 add" onclick="fun1(this)"></i>
-                            <i class="icons1 minus" onclick="fun2(this)"></i>
+                            <i class="icons1 add" id="ho_i1"></i>
+                            <i class="icons1 minus" id="ho_i2"></i>
                         </div>
                     </div>
                 </div>
@@ -90,15 +90,15 @@
                             <div class="nav4-centertop" onclick="focus5()">
                                 <p>
                                     <input type="text" value="1" name="NumAdult" id="count2"><span>成人</span>
-                                    <i class="icons1 add1" onclick="fun7(this)"></i>
-                                    <i class="icons1 minus1" onclick="fun6(this)"></i>
+                                    <i class="icons1 add1" id="ho_i7"></i>
+                                    <i class="icons1 minus1" id="ho_i6"></i>
                                 </p>
                             </div>
                             <div class="nav4-centerbottom" onclick="focus6()">
                                 <p>
                                     <input type="text" value="0" name="NumChild" id="count3"><span>儿童</span>
-                                    <i class="icons1 add1" onclick="fun3(this)"></i>
-                                    <i class="icons1 minus1" onclick="fun4(this)"></i>
+                                    <i class="icons1 add1" id="ho_i3"></i>
+                                    <i class="icons1 minus1" id="ho_i4"></i>
                                 </p>
                             </div>
                         </div>

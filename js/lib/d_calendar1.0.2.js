@@ -98,6 +98,7 @@ Calender.prototype = {
         this.num = options.num;//显示数量
         this.sClass1=options.sClass1;
         this.id2=options.id2;
+        this.fn = options.fn;
         this.time = options.time;//已有时间
         this.op = 0;//已操作次数
         this.input = _CalF.$('#'+ this.id); // 获取INPUT元素
@@ -309,7 +310,9 @@ Calender.prototype = {
         }
     	that.removeDate();
     	that.header.parentNode.removeChild(that.header);
-
+        if(typeof that.fn==='function'){
+            that.fn();
+        }
     },
 	linkReset:function(ele){
 		var that = this,

@@ -3,6 +3,16 @@
     padding: 0;
 }
 
+.open-arg {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    right: 0;
+    background-position: 65% 3%;
+}
+
+
+
 a {
     text-decoration: none;
 }
@@ -22,6 +32,9 @@ html {
     padding: 1px;
     background-color: #19415e;
 }
+
+
+
 
 .icons {
     background-image: url(../images/ui/icons.png);
@@ -65,6 +78,7 @@ html {
     color: #ffffff;
     line-height: 22px;
     text-align: center;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 
 .d-div1 {
@@ -94,38 +108,101 @@ html {
     margin-right: 3%;
     margin-top: 12px;
     color: white;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
-.d-ul1 {
-    width: 94%;
-    list-style-type: none;
-    margin-left: 3%;
-    margin-right: 3%;
-}
-
-.d-li1 {
-    min-height: 50px;
+.d-ul2 {
+    background-color: #fff;
     border-bottom: 1px solid #dfdfdd;
+    margin-bottom: 0;
+}
+.d-ul2 li{
+    list-style: none;
+    font-size: 1.4rem;
+    padding:0px 12px;
+    border-bottom: 1px #dfdfdd solid;
+    margin-bottom: 0;
     position: relative;
 }
+.d-ul2 li .open-arg{
+    right:12px;
+}
+.d-ul2 li:first-child{
+    padding:14px 24px 14px 12px;
+    border-bottom: 2px solid #F5F4F9;
+}
+.d-ul1 li:last-child,.d-ul2 li:last-child{
+    border-bottom: 0;
+}
+.d-ul1 li em,.d-ul2 li em{
+    font-style: normal;
+    float: right;
+    font-size: 1.2rem;
+    color: #ffb413;
+}
 
-.d-score {
-    float: left;
-    width: 75%;
-    margin-top: 20px;
+
+
+
+.d-ul1 {
+    background-color: #fff;
+    border-bottom: 1px solid #dfdfdd;
+}
+.d-ul1 span.address-text {
+    min-width: 10%;
+    max-width: 85%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     color: #484848;
-    font-size: 0.8em;
+    font-size: 1.2rem;
+    display: inline-block;
+}
+
+
+
+.d-ul1 li{
+    list-style: none;
+    font-size: 1.4rem;
+    padding:15px 12px 15px 0;
+    margin:0 1.2rem;
+    border-bottom: 1px #dfdfdd solid;
+    margin-bottom: 0;
+    position: relative;
+}
+.d-ul1 li:last-child{
+    border-bottom: 0;
+}
+.d-ul1 li em{
+    font-style: normal;
+    float: right;
+    font-size: 1.2rem;
+    color: #ffb413;
+}
+
+
+.d-li1 {
+    min-height: 50px;
+    border-bottom: 1px solid #dfdfdd;
+//position: relative;
+}
+
+.d-score {
+    /* float: left;*/
+    width: 75%;
+    /* margin-top: 20px;*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #484848;
+    font-size: 0.8rem;
 }
 
 .d-score2 {
     float: left;
     margin-top: 20px;
     color: #484848;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 .d-icon1 {
@@ -154,26 +231,26 @@ html {
 
 .d-p2 {
     float: right;
-    margin-top: 20px;
     margin-right: 15px;
     color: #ffbf4b;
-    font-size: 0.8em;
+    font-size: 1.2rem;
 }
 
 .d-p3 {
     float: left;
     margin-top: 20px;
     color: #484848;
-    font-size: 1.3em;
+    font-size: 1.3rem;
 }
 
 .d-div3 {
     float: left;
-    margin-top: 10px;
+    margin-top: 4px;
     width: 60%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    max-width: 60%
 }
 
 .d-p5 {
@@ -184,7 +261,7 @@ html {
     max-width: 75%;
     min-width: 5%;
     color: #484848;
-    font-size: 1.3em;
+    font-size: 1.3rem;
 }
 
 .d-icon3 {
@@ -198,10 +275,10 @@ html {
 }
 
 .d-p6 {
-    margin-top: 4px;
+    margin-top: 2px;
     max-width: 90%;
     color: #a1a1a1;
-    font-size: 1em;
+    font-size: 1.0rem;
 }
 
 .d-icon4 {
@@ -209,18 +286,35 @@ html {
     float: right;
     width: 18px;
     height: 18px;
-    margin-top: 20px;
+    margin-top: 16px;
     background-image: url(../images/ui/icons1.png);
     background-position: 12.6% 33%;
     background-size: 400px 120px;
+    transition: none!important;
 }
 
 .price {
-    float: right;
     margin-right: 25px;
     margin-top: 15px;
+    position: absolute;
+    right: 20px;
 }
 
+.price span.money{
+    font-size: 0.8rem;
+    color: #fe4716;
+}
+
+.price span.moneyNum{
+    font-size: 1.6rem;
+    color: #fe4716;
+}
+
+.price span.moneyNum span{
+    font-size: 1.0rem;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+}
 .price2 {
     float: right;
     margin-right: 10px;
@@ -235,19 +329,25 @@ html {
     list-style-type: none;
     position: relative;
     clear: both;
-    display: none;
+    display: block;
     margin-left: -3%;
-    top: 7px;
     padding-left: 3%;
-    background: rgb(223, 223, 221);
+    background: #dfdfdd;
     overflow: hidden;
+}
+.roomUl li{
+    border:1px solid white
+}
+
+.roomUl li:first-child{
+    border-top:1px solid #dfdfdd;
 }
 
 .d-p7 {
     margin-top: 4px;
     max-width: 80%;
     color: #484848;
-    font-size: 1em;
+    font-size: 1.0rem;
 }
 
 .d-but {
@@ -260,34 +360,51 @@ html {
     line-height: 35px;
     background-color: #ffb412;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 .d-icon5 {
     display: block;
-    position: absolute;
-    right: 0;
+    float: right;
     width: 18px;
     height: 18px;
-    margin-top: 20px;
+    margin-top: 16px;
     background-image: url(../images/ui/icons1.png);
     background-position: 19% 33%;
     background-size: 400px 120px;
+    transition: none!important;
 }
 
+
 .roomAll {
-    position: absolute;
+    position: fixed;
     overflow-x: hidden !important;
     overflow-y: scroll;
     width: 90%;
-    height: 92%;
-    min-height: 92%;
-    max-height: 92%;
-    top: 10%;;
-    left:5%;
-    display: none;
-    z-index: 11;
+    height: 75%;
+    min-height: 75%;
+    max-height: 75%;
+    top: 10%;
+    left: 5%;
+    display: block;
+    z-index: 60;
     border-radius: 4px;
+}
+.roomAll .r-top .r-p1 {
+    float: left;
+    color: white;
+    font-size: 1.4rem;
+    line-height: 2.0rem;
+    letter-spacing: 0;
+    margin: 10px 0px 0px 15px;
+    width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.roomAll .r-ul .r-li p.r-p3{
+    margin-bottom: 0
 }
 
 .r-div {
@@ -326,7 +443,7 @@ html {
     margin-top: 12px;
     margin-left: 15px;
     color: white;
-    font-size: 1.4em;
+    font-size: 1.4rem;
 }
 
 .r-icon1 {
@@ -349,12 +466,12 @@ html {
     margin-left: 15px;
     margin-right: 20px;
     margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 .r-p2 {
     margin-left: 15px;
-    font-size: 1.4em;
+    font-size: 1.4rem;
     color: #484848;
     margin-top: 10px
 }
@@ -394,80 +511,6 @@ html {
     color: #484848;
 }
 
-.roomMore {
-    width: 106%;
-    height: 100px;
-    background: #dfdfdd;
-    position: absolute;
-    bottom: -200%;
-    opacity: 0;
-    display: none;
-    margin: 0px -3%;
-}
-
-.roomMore .first, .roomMore .second {
-    width: 100%;
-    height: 50%;
-}
-
-.roomMore .first .left, .roomMore .second .left {
-    display: inline-block;
-    float: left;
-    margin-top: 8px;
-
-}
-
-.roomMore .first .left .title, .roomMore .second .left .title {
-    display: inline-block;
-    color: #484848;
-    font-size: 1.3em;
-}
-
-.roomMore .first .left .more span, .roomMore .second .left .more span {
-    margin-top: 4px;
-    color: #484848;
-    font-size: 0.8em;
-}
-
-.roomMore .first .left .more span.lastRoom, .roomMore .second .left .more span.lastRoom {
-    color: #fe4716;
-}
-
-.roomMore .first .middle {
-    position: absolute;
-    right: 86px;
-    top: 15%;
-}
-
-.roomMore .second .middle {
-    position: absolute;
-    right: 86px;
-    bottom: 8%;
-}
-
-.roomMore .first .middle .num, .roomMore .second .middle .num {
-    font-size: 2em;
-    font-weight: 600;
-    color: #fe4716;
-}
-
-.roomMore .first .right, .roomMore .second .right {
-    width: 79px;
-    height: 33px;
-    float: right;
-    border-radius: 5px;
-    margin-top: 8px;
-    text-align: center;
-    line-height: 33px;
-    background-color: #ffb412;
-    color: white;
-    font-size: 1.5em;
-}
-
-.roomMore .first, .roomMore .second {
-    width: 100%;
-    height: 50%;
-}
 
 .d-div1 .image {
     width: 100%;
@@ -491,7 +534,7 @@ html {
     height:40px;
     line-height: 40px;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     color: #ffffff;
     position: absolute;
     top:21%;
@@ -528,13 +571,132 @@ html {
 }
 
 #imageContainer .showZone .imgUl li.noImage{
-     height:100%;
-     width: 100%;
+    height:100%;
+    width: 100%;
     line-height: 100%;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 #imageContainer .showZone .imgUl li img{
     height:100%;
     width: 100%;
+}
+.d-ul2 .roomDetailList{
+    width: 106%;
+    list-style-type: none;
+    position: relative;
+    clear: both;
+    display: none;
+    margin-left: -3%;
+    padding:0 3%;
+    background: #F5F4F9;;
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+
+
+.d-ul2 .roomDetailList .d-li1{
+    list-style: none;
+    font-size: 1.4rem;
+    padding: 0px 0px;
+    border-bottom: 1px #dfdfdd solid;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.d-ul2 .roomDetailList li:last-child{
+    border-bottom: none;
+}
+
+
+.d-ul2 .roomDetailList .d-li1 .roomName{
+    float: left;
+    margin-top: 4px;
+    width: 46%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 60%;
+}
+
+.d-ul2 .roomDetailList .d-li1 .moneyTip{
+    float: right;
+    margin-right: 80px;
+    margin-top: 15px;
+    display:inline-block
+}
+
+.d-ul2 .roomDetailList .d-li1 .moneyTip .moneyNum span{
+    font-size: 1.0rem;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+}
+
+.d-ul2 .roomDetailList .d-li1 .moneyTip span.money{
+    font-size: 0.8rem;
+    color: #fe4716;
+}
+.d-ul2 .roomDetailList .d-li1 .moneyTip span.moneyNum{
+    font-size: 1.6rem;
+    color: #fe4716;
+}
+
+.d-ul2 .roomDetailList .d-li1 .reserve {
+    padding: 8px 16px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: #ffb413;
+    position: absolute;
+    top:9px;
+    right: 0px;
+    border-radius: 3px;
+
+}
+
+.detailHeader{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.showListTrigger{
+    width: 83px;
+    float: right;
+    height: 50px;
+    line-height: 50px;
+}
+.showListTrigger .priceNum{
+    width: 62px;
+    float: left;
+}
+.showListTrigger .priceNum .money{
+    font-size: 0.8rem;
+    color: #fe4716;!important;
+}
+.showListTrigger .priceNum .moneyNum{
+    font-size: 1.6rem;
+    color: #fe4716;!important
+}
+.showListTrigger .priceNum .moneyNum span{
+    font-size: 1.0rem;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+}
+
+.footer{
+    width: 100%;
+    height: 44px;
+    background: linear-gradient(#16364f,#194361);
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    z-index: 98;
+    margin-top: -10px;
+}
+
+.footer span {
+    font-size: 9px;
+    color: #f5f4f9;
+    line-height: 44px
 }

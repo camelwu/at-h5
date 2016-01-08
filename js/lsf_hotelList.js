@@ -322,14 +322,12 @@ function url2json(url){
             paraObj.NumRoom=url_json.NumRoom;
             paraObj.NumAdult=url_json.NumAdult;
             paraObj.NumChild=url_json.NumChild;
-            paraObj.FrontPgImage=that.getAttribute('data-src');
 
             var paramStr = "";
             for(var attr in paraObj){
                 paramStr+="&"+attr+"="+paraObj[attr];
             }
             paramStr=paramStr.slice(1);
-            //console.log(paramStr)  //HotelID=3283&HotelCode=3283&InstantConfirmation=false&AllOccupancy=true&CheckInDate=2015-12-31&CheckOutDate=2016-1-1&NumRoom=1&NumAdult=1&NumChild=0&FrontPgImage=http://images.asiatravel.com/Hotel/3283/3283front.jpg
             window.location.href='hotel_detail.html?'+paramStr;
         }
 
