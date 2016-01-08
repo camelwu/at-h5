@@ -344,7 +344,7 @@
             }
 
             if(document.getElementsByClassName('enterDate')[0]&&document.getElementsByClassName('enterDate')[0].innerHTML!=''){
-                hotelDetail.initDate(result)
+                hotelDetail.initDate(result) //解决日期滞后问题
             }
 
 
@@ -403,7 +403,6 @@
 
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
-            console.log(hotelDetail.gdataInfo);
             hotelDetail.init(hotelDetail.gdataInfo);
 
         },
@@ -412,8 +411,8 @@
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             var dateInitObj = new Object();
-            dateInitObj[this.gdataInfo.CheckInDate] = '入住';
-            dateInitObj[this.gdataInfo.CheckOutDate] = '离店';
+            dateInitObj[hotelDetail.gdataInfo.CheckInDate] = '入住';
+            dateInitObj[hotelDetail.gdataInfo.CheckOutDate] = '离店';
             var myDate2 = new Calender({
                 id: 'chooseDate',
                 num: 13,
@@ -424,8 +423,8 @@
             });
 
             result.Data[0].dateInfo = {
-                CheckOutDate: hotelDetail.gdataInfo.CheckOutDate,
                 CheckInDate: hotelDetail.gdataInfo.CheckInDate,
+                CheckOutDate: hotelDetail.gdataInfo.CheckOutDate,
                 totalNight: Math.abs(hotelDetail.$Id('nightNum').innerHTML)
             };
 
@@ -568,7 +567,6 @@
         },
 
         showRoomModals: function (reslut) {
-            console.log(reslut)
             var oDiv = document.createElement('div');
             oDiv.className = 'roomAll';
             oDiv.id = 'roomAll';
@@ -592,7 +590,7 @@
             var dataObj = arg || this.parseUrlPara(document.location.search, true);
 
             this.gdataInfo = dataObj;
-            console.log(this.gdataInfo)
+
             this.jAjax(this.requestUrl, dataObj, "0008", 3, this.createAll);
 
             window.hotelDetail = hotelDetail;
