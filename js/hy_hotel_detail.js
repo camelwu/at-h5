@@ -200,7 +200,7 @@
         subRoomListHasService:function(arg) {
 
             var str = '<li class="d-li1"><div class="roomName subRoomEvent" room-code="' + arg.RoomCode + '"><div class="d-p5">';
-            str += arg.IsABD ?  arg.RoomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>':arg.RoomName + '无早</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
+            str += arg.IsABD ?  arg.RoomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>':arg.RoomName + '(无早)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
             str += '<div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.TotalPriceCNY + '</span></span><span class="TaxChange">另附税费￥' + arg.TaxCharge + '</span></div> <div class="reserve" room-code="' + arg.RoomCode + '"><span>预订</span><span>在线付</span></div></li>';
             return str;
 
@@ -343,6 +343,12 @@
                 return false;
             }
 
+            if(document.getElementsByClassName('enterDate')[0]&&document.getElementsByClassName('enterDate')[0].innerHTML!=''){
+                hotelDetail.initDate(result)
+            }
+
+
+
             var allStr = '', headerStr = '', frontImgStr = '', imgContainer = '', firstUl = '', secondUl = '', contentStr = '', footer = '', iDiv;
 
             hotelDetail.sourceData = result;
@@ -384,6 +390,7 @@
             hotelDetail.imageHandler(result);
 
             hotelDetail.initDate(result);   //初始化日期
+
         },
 
         //点评点击事件
@@ -393,12 +400,17 @@
         },
 
         upDateContent: function () {
+
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
+            console.log(hotelDetail.gdataInfo);
             hotelDetail.init(hotelDetail.gdataInfo);
+
         },
 
         initDate: function (result) {
+            hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
+            hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             var dateInitObj = new Object();
             dateInitObj[this.gdataInfo.CheckInDate] = '入住';
             dateInitObj[this.gdataInfo.CheckOutDate] = '离店';
@@ -580,7 +592,7 @@
             var dataObj = arg || this.parseUrlPara(document.location.search, true);
 
             this.gdataInfo = dataObj;
-
+            console.log(this.gdataInfo)
             this.jAjax(this.requestUrl, dataObj, "0008", 3, this.createAll);
 
             window.hotelDetail = hotelDetail;
