@@ -69,6 +69,11 @@ function url2json(url){
 
 
 (function(){
+    //返回按钮事件
+    var hl_back=document.getElementById('hl_back');
+    lsf_myweb.bind(hl_back,'click',function(){
+        window.history.go(-1);
+    });
     var oUl=document.getElementById('lsf_list');
     $(window).load(function () {
         //$("#status").fadeOut();
