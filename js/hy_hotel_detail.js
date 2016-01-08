@@ -233,7 +233,7 @@
             var toMap = this.$Id('toMap');
 
             toHotelDetail.onclick = function () {
-                document.location.href = 'jyy_hotelSummary.html'
+                document.location.href = 'hotel_summary.html'
             };
 
             totalNum.onclick = function () {
