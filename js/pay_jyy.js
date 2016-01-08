@@ -50,29 +50,55 @@ function addBind(obj,sEv,fn){
     jp_date.innerHTML=myData.dateInfo.CheckInDate.split('-')[0]+'年'+myData.dateInfo.CheckInDate.split('-')[1]+'月'+myData.dateInfo.CheckInDate.split('-')[2]+'日'+' - '+myData.dateInfo.CheckOutDate.split('-')[0]+'年'+myData.dateInfo.CheckOutDate.split('-')[1]+'月'+myData.dateInfo.CheckOutDate.split('-')[2]+'日'+' 共1晚（当地时间为准）';
     jp_house_type.innerHTML='房型：'+myData.RoomTypeName+' 房间数：'+myData.NumOfRoom+'间';
     addBind(oBtn,'click',function(){
+        //信用卡验证
         if(!jp_bank.value){
-            alert('请输入银行卡号');
+            alert('请输入信用卡卡号');
             return;
         }else{
-            myData.CreditCardNumber=jp_bank.value;
+            var reg=/^\d+$/g;
+            if(!reg.test(jp_bank.value)){
+                alert('信用卡卡号必须是数字');
+                return;
+            }else{
+                if(jp_bank.value.length==16){
+                    myData.CreditCardNumber=jp_bank.value;
+                }else{
+                    alert('信用卡卡号位数不对');
+                    return;
+                }
+            }
         }
+        //姓名验证
         if(!jp_guest_name.value){
             alert('请输入持卡人姓名');
             return;
         }else{
             myData.CardHolderName=jp_guest_name.value;
         }
+        //有效期验证
         if(!jp_limit_time.value){
             alert('请输入有效期');
             return;
         }else{
             myData.CreditCardExpiryDate=jp_limit_time.value;
         }
+        //安全码验证
         if(!jp_safe_code.value){
-            alert('请输入安全码');
+            alert('请输入信用卡安全码');
             return;
         }else{
-            myData.CardSecurityCode=jp_safe_code.value;
+            var reg=/^\d+$/g;
+            if(!reg.test(jp_safe_code.value)){
+                alert('信用卡安全码必须是数字');
+                return;
+            }else{
+                if(jp_safe_code.value.length==3){
+                    myData.CardSecurityCode=jp_safe_code.value;
+                }else{
+                    alert('信用卡安全码必须是3位数字');
+                    return;
+                }
+            }
         }
         myData.BankName=jp_bank_name.value;
         myData.CardIssuanceCountry=jp_bank_country.value;
