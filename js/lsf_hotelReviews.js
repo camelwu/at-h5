@@ -170,6 +170,7 @@
                 var oP=lsf_myweb.getbyclass(reBox[index],'comments')[0];
                 reBox[index].onclick=function(ev){
                     var oEvent=ev||event;
+                    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
                     var reg=new RegExp('\\b'+'drop_down'+'\\b','g');
                     var oSrc=oEvent.srcElement||oEvent.target;
                     if(oSrc.className.search(reg)!=-1){
