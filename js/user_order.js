@@ -2,7 +2,25 @@
  * Created by Asiatravel on 2016/1/4.
  */
     //我需要的数据：RoomCode/user_order_storage2/fake_data.totalNight/CheckInTime/CheckOutTime
-    var RoomCode=56625;
+function url2json(url){
+    if(!url)return;
+    var json={};
+    var arr=url.split('?');
+    var arr2=arr[1].split('&');
+    for(var i=0;i<arr2.length;i++){
+        var arr3=arr2[i].split('=');
+        json[arr3[0]]=arr3[1];
+    }
+    return json;
+}
+    var myUrl=window.location.href;
+    for(var name in url2json(myUrl)){
+        if(name=='roomCode'){
+            RoomCode=url2json(myUrl)[name];
+            //alert(RoomCode);
+        }
+    }
+    var RoomCode;
     var fake_data={};
     //默认房间数量
     fake_data.NumOfRoom=2;
