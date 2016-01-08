@@ -74,7 +74,7 @@ html {
     flex:1;
 }
 .hname{
-    margin-top: 0.8rem;
+    margin-top: 1rem;
     font-size:1.5rem;
     color:#484848;
 }
@@ -109,6 +109,7 @@ html {
     float: right;
     width:54px;
     height:15px;
+    line-height:15px;
     color: white;
     text-align: center;
     font-size: 1rem;
@@ -118,7 +119,7 @@ html {
     margin-top: 0.6rem;
     color:#999999;
     font-size:1em;
-    margin-bottom: 0.6rem;
+    /*margin-bottom: 0.6rem;*/
 }
 .hl-bottom{
     width:100%;
@@ -159,6 +160,8 @@ html {
     -ms-flex:1;
     -webkit-flex:1;
     flex:1;
+
+    overflow:hidden;
 }
 .hl-icon3{
     display:block;
@@ -194,6 +197,7 @@ html {
     -ms-flex:1;
     -webkit-flex:1;
     flex:1;
+    overflow:hidden;
 }
 .ho_infor h2{
     font-size:1.2rem;color:#484848;

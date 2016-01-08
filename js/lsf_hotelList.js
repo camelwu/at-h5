@@ -160,7 +160,7 @@ function url2json(url){
                 '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
                 '</div>'+
                 '<div class="ho_infor">'+
-                '<p class="hname"  style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+
+                '<p class="hname"  style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
                 data[i].HotelNameLocale+'('+data[i].HotelName+')'+
             '</p>'+
                 '<div class="h-score">'+
