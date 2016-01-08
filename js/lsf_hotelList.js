@@ -183,13 +183,13 @@ function url2json(url){
                 '</li>';
             list_oUl.innerHTML+=str;
         }
-        //懒加载
+        //懒加�?
         function lazyLoad2(){
             lazyLoad.apply(this,arguments);
         }
         lazyLoad2.prototype=new lazyLoad();
         lazyLoad2.prototype.update=function(){
-            //如图片都加载完成，返回
+            //如图片都加载完成，返�?
             if(!this.imgs.length){return;}
             var i = this.imgs.length;
             for(--i;i>=0;i--){
@@ -312,7 +312,7 @@ function url2json(url){
     });
     //获取酒店详情
     function getDetail(data){
-        var hotelRefers = document.getElementsByClassName('ho_img');
+        var hotelRefers = document.getElementsByClassName('ho_list');
         var toDetail= function(that){
             var paraObj= new Object();
             paraObj.HotelID=data[that.index].HotelCode;
@@ -349,7 +349,7 @@ function url2json(url){
 
 
 
-//懒加载
+//懒加�?
     /*(function(){
      window.onscroll=window.onresize=function(){
      var oUl=document.getElementById('lsf_list');
@@ -360,18 +360,18 @@ function url2json(url){
      //console.log(clienH);
      for(var i=0;i<aImg.length;i++){
      var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
-     //滚动的时候如果图片的后缀名是png说明是这张图片是预定好图片
+     //滚动的时候如果图片的后缀名是png说明是这张图片是预定好图�?
      if(aImg[i].offsetTop<clienH&&str=='png'){
      aImg[i].src=aImg[i].dataset.src;
      }
-     //这样能够判断错误也能够换成想要的图片，但是会一直报错，报404页面错误
+     //这样能够判断错误也能够换成想要的图片，但是会�?直报错，�?404页面错误
      aImg[i].onerror=function(){
      this.src='images/cars.png';
      }
      }
      };
      })();*/
-//懒加载
+//懒加�?
     /*(function(){
      var timer=null;
      var oUl=lsf_myweb.getbyid('lsf_list');
