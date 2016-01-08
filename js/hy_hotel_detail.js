@@ -200,7 +200,7 @@
         subRoomListHasService:function(arg) {
 
             var str = '<li class="d-li1"><div class="roomName subRoomEvent" room-code="' + arg.RoomCode + '"><div class="d-p5">';
-            str += arg.IsABD ?  arg.RoomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>':arg.RoomName + '无早</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
+            str += arg.IsABD ?  arg.RoomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>':arg.RoomName + '(无早)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
             str += '<div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.TotalPriceCNY + '</span></span><span class="TaxChange">另附税费￥' + arg.TaxCharge + '</span></div> <div class="reserve" room-code="' + arg.RoomCode + '"><span>预订</span><span>在线付</span></div></li>';
             return str;
 
@@ -233,7 +233,7 @@
             var toMap = this.$Id('toMap');
 
             toHotelDetail.onclick = function () {
-                document.location.href = 'jyy_hotelSummary.html'
+                document.location.href = 'hotel_summary.html';
             };
 
             totalNum.onclick = function () {
@@ -343,6 +343,12 @@
                 return false;
             }
 
+            if(document.getElementsByClassName('enterDate')[0]&&document.getElementsByClassName('enterDate')[0].innerHTML!=''){
+                hotelDetail.initDate(result) //解决日期滞后问题
+            }
+
+
+
             var allStr = '', headerStr = '', frontImgStr = '', imgContainer = '', firstUl = '', secondUl = '', contentStr = '', footer = '', iDiv;
 
             hotelDetail.sourceData = result;
@@ -362,10 +368,10 @@
 
             footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
 
-            contentStr += '<div id="content" class="snap-content" style="padding-top: 45px;">' + frontImgStr + firstUl + secondUl + footer + '</div>';
+            contentStr += '<div id="content" class="snap-content" style="padding-top: 45px; padding-bottom: 50px;">' + frontImgStr + firstUl + secondUl +'</div>';
 
 
-            allStr += headerStr + contentStr;
+            allStr += headerStr + contentStr+footer;
 
             hotelDetail.$CN('all-elements')[0].innerHTML = '';
 
@@ -384,6 +390,7 @@
             hotelDetail.imageHandler(result);
 
             hotelDetail.initDate(result);   //初始化日期
+
         },
 
         //点评点击事件
@@ -393,15 +400,19 @@
         },
 
         upDateContent: function () {
+
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             hotelDetail.init(hotelDetail.gdataInfo);
+
         },
 
         initDate: function (result) {
+            hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
+            hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             var dateInitObj = new Object();
-            dateInitObj[this.gdataInfo.CheckInDate] = '入住';
-            dateInitObj[this.gdataInfo.CheckOutDate] = '离店';
+            dateInitObj[hotelDetail.gdataInfo.CheckInDate] = '入住';
+            dateInitObj[hotelDetail.gdataInfo.CheckOutDate] = '离店';
             var myDate2 = new Calender({
                 id: 'chooseDate',
                 num: 13,
@@ -412,8 +423,8 @@
             });
 
             result.Data[0].dateInfo = {
-                CheckOutDate: hotelDetail.gdataInfo.CheckOutDate,
                 CheckInDate: hotelDetail.gdataInfo.CheckInDate,
+                CheckOutDate: hotelDetail.gdataInfo.CheckOutDate,
                 totalNight: Math.abs(hotelDetail.$Id('nightNum').innerHTML)
             };
 
@@ -516,7 +527,6 @@
         },
 
         updateSubRoomModal: function (arg) {
-
             var oDiv = document.createElement('div'), modalStr = '';
             oDiv.className = "roomAll";
             oDiv.id = "infoAll";
@@ -557,7 +567,6 @@
         },
 
         showRoomModals: function (reslut) {
-            console.log(reslut)
             var oDiv = document.createElement('div');
             oDiv.className = 'roomAll';
             oDiv.id = 'roomAll';
