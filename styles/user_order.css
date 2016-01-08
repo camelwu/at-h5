@@ -1,5 +1,6 @@
 .uo_box{
     position:absolute;top:0;right:0;left:0;bottom:0;overflow:auto;
+    margin-bottom:47px;
 }
 em,b,i{
     font-weight:normal;
@@ -155,7 +156,6 @@ em,b,i{
 .uo_con5 {
     padding:0 15px;font-size:10px;color:rgb(117,117,117);
     background:#f5f4f9;
-    margin-bottom:47px;
 }
 .uo_con5 p{
     margin:0;padding:0;line-height:1.6rem;
