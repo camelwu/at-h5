@@ -1796,7 +1796,7 @@ a{
 }
 .promotions em{
 	font-style:normal;
-	font-size:1.2rem;
+	font-size:1rem;
 	color:#F66107;
 	float: right;
 }
@@ -3463,6 +3463,7 @@ a{
     width:100%;
     height:27px;
     padding: 0 30px;
+	font-size:1.4rem;
 }
 .toper-tel{
     display:table-cell;
