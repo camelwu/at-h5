@@ -138,6 +138,12 @@
     height: 46px;
     border-bottom: 1px solid #dedede;
 }
+.nav2-centertop p span{
+    font-size:1.6rem;
+}
+.nav2-centerbottom p span{
+    font-size:1.6rem;
+}
 .nav2-center input{
     width: 85px;
     color: #484848;
@@ -195,6 +201,7 @@
     line-height: 45px;
     color: #484848;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    font-size:1.6rem;
 }
 .icons1{
     background-image: url(../images/icons1.png);
@@ -257,13 +264,14 @@
 .nav4-center span{
     margin-left: -5px;
     color:#484848;
+    font-size:1.6rem;
 }
 .nav4-center input{
     padding-left: 14px;
     display: inline;
     line-height: 45px;
     margin: 0 15px 0 0;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: #484848;
     width: 30px;
 }
