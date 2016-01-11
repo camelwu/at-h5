@@ -67,6 +67,23 @@ function url2json(url){
 }
 
 
+function styleChange(id,mytext){
+    var oInp=document.getElementById(id);
+    oInp.onfocus=function(){
+        if(this.value==mytext){
+            this.value='';
+            this.style.color='#484848';
+        }
+    };
+    oInp.onblur=function(){
+        if(!this.value){
+            this.value=mytext;
+            this.style.color='#d1d1d1';
+        }
+    };
+}
+
+
 
 (function(){
     //返回按钮事件
@@ -89,6 +106,9 @@ function url2json(url){
         },30);
 
     });
+    //输入框样式改变
+    styleChange('sousou','酒店名/位置')
+
 
     var list_oUl=lsf_myweb.getbyid('lsf_list');
     var pWidth=list_oUl.offsetWidth-140;
@@ -164,16 +184,16 @@ function url2json(url){
                 data[i].HotelNameLocale+'('+data[i].HotelName+')'+
             '</p>'+
                 '<div class="h-score">'+
-                '<span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">'+data[i].HotelReviewScore+'</span>'+
-                '<span style="color:#999999;font-size:0.8em;">分/'+data[i].HotelReviewCount+'人点评</span>'+
+                '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+data[i].HotelReviewScore+'</span>'+
+                '<span style="color:#999999;font-size:1rem;">分/'+data[i].HotelReviewCount+'人点评</span>'+
                 '<p class="price">'+
-                '<span style="font-size:0.8em;color:#fe4716;">￥</span>'+
-                '<span style="font-size:2em;font-weight: 600;color:#fe4716;">'+data[i].AvgPrice+'</span>'+
-                '<span style="font-size:0.8em;color:#999999;">起</span>'+
+                '<span style="font-size:0.8rem;color:#fe4716;">￥</span>'+
+                '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+data[i].AvgPrice+'</span>'+
+                '<span style="font-size:1.2rem;color:#999999;">起</span>'+
                 '</p>'+
                 '</div>'+
                 '<div class="h-grade">'+
-                '<span style="color:#999999;font-size:1em;">'+num2chin(str1)+'星级</span>'+
+                '<span style="color:#999999;font-size:1rem;">'+num2chin(str1)+'星级</span>'+
                 str2+
                 str3+
                 str4+
@@ -213,14 +233,21 @@ function url2json(url){
 
     M(url_json);
     function mycallback(d){
-        //console.log(d);
+        console.log(d);
         var arr=eval('('+d+')');
-        //console.log(arr.Data);
-        var data=arr.Data;
-        //console.log(data);
-        V(data);
-        //绑定跳转事件
-        getDetail(data);
+        console.log(arr);
+        //alert(arr.Success);
+        if(arr.Success=='true'){
+            console.log(arr.Data);
+            var data=arr.Data;
+            //console.log(data);
+            V(data);
+            //绑定跳转事件
+            getDetail(data);
+        }else{
+            alert(arr.Message);
+        }
+
     }
 
     lsf_myweb.bind(oBody,'click',function(ev){
