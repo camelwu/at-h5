@@ -12,7 +12,7 @@ require.config({
         // js/lib/jquery-1.9.0.js, relative to
         jquery: 'jquery',
         vcm: 'vcm',
-       // controller: 'controller',
+        vlm: 'vlm',
         plugins: 'plugins',
         custom: 'custom'
     },
@@ -38,11 +38,11 @@ require.config({
     	'vcm':{
     		deps: ['jquery'],
     		exports: 'vcm'
+        },
+        'vlm':{
+    		deps: ['jquery'],
+    		exports: 'vlm'
         }//,
-        //'module':{
-    		//deps: ['jquery'],
-    		//exports: 'module'
-        //},
         //'controller':{
     		//deps: ['jquery','module'],
     		//exports: 'controller'
@@ -54,16 +54,12 @@ require.config({
 	urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','custom','vlm'], function($,custom,vlm) {
-	//console.log("dataReady="+vlm);
+require(['jquery','custom','vcm','vlm'], function($,custom,vcm,vlm) {
+	//console.log("dataReady="+vcm);
 	var viewer = new vlm();
-    viewer._init();
-    
+	viewer._init();
+	function sub_frm(frm){
+		ss.val==""
+	}
 });
-
-
-
-function sub_frm(frm){
-	ss.val==""
-	
-}
+//define

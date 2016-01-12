@@ -2,37 +2,57 @@
  * Created by changlv on 2016/1/7.
  */
 window.onload = function(){
-    function _(s){
-        return document.getElementById(s);
-    }
-    var phone_login = _("phone_login");
-    var email_login = _("email_login");
-    var phone = _("phone");
-    var email = _("email");
-    var p_clear = _("p_clear");
-    var e_clear = _("e_clear");
-    var change_phone = _("change_phone");
-    var change_email = _("change_email");
-    var header_email = _("header_email");
-    var header_phone = _("header_phone");
-    var phone_register = _("phone_register");
-    var email_register = _("email_register");
-    var register = _("register");
-    var register_page = _("register_page");
-    var close_register = _("close_register");
-    email_login.style.display = "none";
-    function showPage(obj1,obj2){
-        obj1.onclick = function(){
-            obj2.style.display = "block";
+    var check = function chk(type){
+        if(type=="tel"){
+            v.utils.validate.mobileNo();
         }
-    }
-    function closePage(obj1,obj2){
+    };
+    var phone_login = $("#phone_login")[0];
+    var email_login = $("#email_login")[0];
+    var phone = $("#phone")[0];
+    var email = $("#email")[0];
+    var p_clear = $("#p_clear")[0];
+    var e_clear = $("#e_clear")[0];
+    var change_phone = $("#change_phone")[0];
+    var change_email = $("#change_email")[0];
+    var header_email = $("#header_email")[0];
+    var header_phone = $("#header_phone")[0];
+    var phone_register = $("#phone_register")[0];
+    var email_register = $("#email_register")[0];
+    var register = $("#register")[0];
+    var register_page = $("#register_page")[0];
+    var login_page = $("#login_page")[0];
+    var close_register = $("#close_register")[0];
+    var register_btn = $("#register_btn")[0];
+    var login_btn = $("#login_btn")[0];
+
+
+    email_login.style.display = "none";
+    change_phone.style.display = "none";
+    function showRegister(obj1,obj2,obj3){
         obj1.onclick = function(){
             obj2.style.display = "none";
+            obj3.style.display = "block";
         }
     }
-    showPage(register,register_page);
-    closePage(close_register,register_page);
+    showRegister(register,login_page,register_page);
+    function closeRegister(obj1,obj2,obj3){
+        obj1.onclick = function(){
+            obj2.style.display = "none";
+            obj3.style.display = "block";
+        }
+    }
+    closeRegister(close_register,register_page,login_page);
+    //function showPage(obj1,obj2){
+    //    obj1.onclick = function(){
+    //        obj2.style.display = "block";
+    //    }
+    //}
+    //function closePage(obj1,obj2){
+    //    obj1.onclick = function(){
+    //        obj2.style.display = "none";
+    //    }
+    //}
     function inputting(obj1,obj2){
         obj1.onkeydown = function(){
             obj2.style.display = "block";
@@ -47,15 +67,7 @@ window.onload = function(){
     }
     clear(p_clear,phone);
     clear(e_clear,email);
-    function changeLogin(obj1,obj2,obj3){
-        obj1.onclick = function(){
-            obj2.style.display = "none";
-            obj3.style.display = "block";
-        }
-    }
-    changeLogin(change_email,phone_login,email_login);
-    changeLogin(change_phone,email_login,phone_login);
-    function changeRegister(obj1,obj2,obj3,obj4){
+    function changeWay(obj1,obj2,obj3,obj4){
         obj1.onclick = function(){
             obj1.style.display = "none";
             obj2.style.display = "block";
@@ -63,6 +75,79 @@ window.onload = function(){
             obj4.style.display = "block";
         }
     }
-    changeRegister(header_email,header_phone,phone_register,email_register);
-    changeRegister(header_phone,header_email,email_register,phone_register);
+    //更换登录方式
+    changeWay(change_email,change_phone,phone_login,email_login);
+    changeWay(change_phone,change_email,email_login,phone_login);
+    //更换注册方式
+    changeWay(header_email,header_phone,phone_register,email_register);
+    changeWay(header_phone,header_email,email_register,phone_register);
+
+    var p_password = $("#p_password")[0];
+    var e_password = $("#e_password")[0];
+    var r_phone = $("#r_phone")[0];
+    var r_p_password = $("#r_p_password")[0];
+    var r_email = $("#r_email")[0];
+    var wrapper = $("#r_e_password")[0];
+    var c = new vcm();
+    // 会员注册
+    function user_register(obj){
+        obj.onclick = function(){
+            var input = document.getElementsByTagName('input');
+            //for(?){
+            //    if(input[i].style.display!=="none"){}
+            //
+            //}
+            var password;
+            if(header_email.style.display == "none"){
+                password = r_e_password;
+            }else{
+                password = r_p_password;
+            }
+            var Parameters= {
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+r_email.value+"\",\"Password\":\""+password.value+"\",\"Mobile\":\""+r_phone.value+"\"}",
+                "ForeEndType": 3,
+                "Code": "0051"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
+        }
+    }
+    user_register(register_btn);
+    // 会员登录
+    function user_login(obj){
+        obj.onclick = function(){
+            var password;
+            if(change_email.style.display == "none"){
+                password = e_password;
+            }else{
+                password = p_password;
+            }
+            var Parameters= {
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email.value+"\",\"Password\":\""+password.value+"\",\"Mobile\":\""+phone.value+"\"}",
+                "ForeEndType": 3,
+                "Code": "0052"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
+        }
+    }
+    user_login(login_btn);
 };
+function mycallback_register(ret){
+    console.log(ret);
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success){
+        document.getElementById("register_page").style.display = "none";
+    }else{
+        alert(myJson.Message);
+    }
+}
+function mycallback_login(ret){
+    console.log(ret);
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success){
+        window.location.href = "user-logined.html";
+    }else{
+        alert(myJson.Message);
+    }
+}
