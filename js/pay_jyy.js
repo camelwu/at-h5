@@ -25,7 +25,28 @@ function selectThis(){
 function addBind(obj,sEv,fn){
     return obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
 }
+function styleChange(id,mytext){
+    var oInp=document.getElementById(id);
+    oInp.onfocus=function(){
+        if(this.value==mytext){
+            this.value='';
+            this.style.color='#484848';
+        }
+    };
+    oInp.onblur=function(){
+        if(!this.value){
+            this.value=mytext;
+            this.style.color='#d1d1d1';
+        }
+    };
+}
 ;(function(){
+    //输入框
+    styleChange('jp_bank','输入银行卡号');
+    styleChange('jp_guest_name','姓名');
+    styleChange('jp_limit_time','月/年，如：09/12');
+    styleChange('jp_safe_code','签名栏末尾最后3位');
+
     //返回按钮
     var jp_back=document.getElementById('jp_back');
     addBind(jp_back,'click',function(){
