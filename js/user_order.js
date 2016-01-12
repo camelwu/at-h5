@@ -13,6 +13,110 @@ function url2json(url){
     }
     return json;
 }
+
+
+
+var lsf_myweb={
+    "getbyid":function(id){
+        return document.getElementById(id);
+    },
+    "getbytag":function(obj,tag){
+        return obj.getElementsByTagName(tag);
+    },
+    "getbyclass":function(obj,sClass){
+        if(obj.getElementsByClassName){
+            return obj.getElementsByClassName(sClass);
+        }else{
+            var aResult=[];
+            var aEle=obj.getElementsByTagName('*');
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            for(var i=0;i<aEle.length;i++){
+                if(aEle[i].className.search(reg)!=-1){
+                    aResult.push(aEle[i]);
+                }
+            }
+            return aResult;
+        }
+    },
+    "bind":function(obj,sEv,fn){
+        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    },
+    "stopPropagation":function(event){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+    },
+    "addClass":function(obj,sClass){
+        if(obj.className){
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            if(obj.className.search(reg)==-1){
+                obj.className+=' '+sClass;
+            }
+        }else{
+            obj.className=sClass;
+        }
+    },
+    "removeClass":function(obj,sClass){
+        if(obj.className){
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            if(obj.className.search(reg)!=-1){
+                obj.className=obj.className.replace(reg,'').replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
+                if(!obj.className){
+                    obj.removeAttribute('class');
+                }
+            }
+        }
+    }
+};
+
+
+
+
+
+//输入框默认字体设置
+function styleChange(id,mytext){
+    var oInp=document.getElementById(id);
+    oInp.onfocus=function(){
+        if(this.value==mytext){
+            this.value='';
+            this.style.color='#484848';
+        }
+    };
+    oInp.onblur=function(){
+        if(!this.value){
+            this.value=mytext;
+            this.style.color='#d1d1d1';
+        }
+    };
+}
+function styleChange2(parentid,sClass,mytext){
+    var oBox=document.getElementById(parentid);
+    //alert(oBox);
+    var aChil=lsf_myweb.getbyclass(oBox,sClass);
+    //alert(aChil);
+    for(var i=0;i<aChil.length;i++){
+        aChil[i].onfocus=function(){
+            if(this.value==mytext){
+                this.value='';
+                this.style.color='#484848';
+            }
+        };
+        aChil[i].onblur=function(){
+            if(!this.value){
+                this.value=mytext;
+                this.style.color='#d1d1d1';
+            }
+        };
+    }
+};
+
+
+
+
+//输入框默认字体设置
+styleChange('uo_c3_tele','用于接收短信通知');
+styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
+styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
+
     var myUrl=window.location.href;
     for(var name in url2json(myUrl)){
         if(name=='roomCode'){
@@ -92,57 +196,7 @@ function url2json(url){
 };*/
 //本地存储数据
 localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
-var lsf_myweb={
-    "getbyid":function(id){
-        return document.getElementById(id);
-    },
-    "getbytag":function(obj,tag){
-        return obj.getElementsByTagName(tag);
-    },
-    "getbyclass":function(obj,sClass){
-        if(obj.getElementsByClassName){
-            return obj.getElementsByClassName(sClass);
-        }else{
-            var aResult=[];
-            var aEle=obj.getElementsByTagName('*');
-            var reg=new RegExp('\\b'+sClass+'\\b','g');
-            for(var i=0;i<aEle.length;i++){
-                if(aEle[i].className.search(reg)!=-1){
-                    aResult.push(aEle[i]);
-                }
-            }
-            return aResult;
-        }
-    },
-    "bind":function(obj,sEv,fn){
-        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
-    },
-    "stopPropagation":function(event){
-        var oEvent=ev||event;
-        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    },
-    "addClass":function(obj,sClass){
-        if(obj.className){
-            var reg=new RegExp('\\b'+sClass+'\\b','g');
-            if(obj.className.search(reg)==-1){
-                obj.className+=' '+sClass;
-            }
-        }else{
-            obj.className=sClass;
-        }
-    },
-    "removeClass":function(obj,sClass){
-        if(obj.className){
-            var reg=new RegExp('\\b'+sClass+'\\b','g');
-            if(obj.className.search(reg)!=-1){
-                obj.className=obj.className.replace(reg,'').replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
-                if(!obj.className){
-                    obj.removeAttribute('class');
-                }
-            }
-        }
-    }
-};
+
 (function(){
     /*页面跳转动画*/
     $(window).load(function(){
@@ -169,6 +223,9 @@ var lsf_myweb={
         window.history.go(-1);
     };
 
+
+
+
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
     uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.HotelName+'</h3>'+
@@ -181,11 +238,16 @@ var lsf_myweb={
         uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
             '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
             '<div class="uo_c3_infor">'+
-            '<input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />'+
-            '<input type="text" placeholder="名（如：Justin）" class="uo_firstname" />'+
+            '<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />'+
+            '<input type="text" value="名（如：Justin）" class="uo_firstname"  />'+
             '</div>'+
             '</div>';
     }
+
+    //输入框默认字体设置
+    styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
+    styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
+
 
     // 明细
     function uo_detail(id1,id2,id3,id4,id5,id6,json){
@@ -229,11 +291,17 @@ var lsf_myweb={
                 uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
                     '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
                     '<div class="uo_c3_infor">'+
-                    '<input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />'+
-                    '<input type="text" placeholder="名（如：Justin）" class="uo_firstname" />'+
+                    '<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />'+
+                    '<input type="text" value="名（如：Justin）" class="uo_firstname"  />'+
                     '</div>'+
                     '</div>';
             }
+
+            //输入框默认字体设置
+            styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
+            styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
+
+
         }
 
     });
@@ -257,11 +325,18 @@ var lsf_myweb={
                 uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
                     '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
                     '<div class="uo_c3_infor">'+
-                    '<input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />'+
-                    '<input type="text" placeholder="名（如：Justin）" class="uo_firstname" />'+
+                    '<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />'+
+                    '<input type="text" value="名（如：Justin）" class="uo_firstname"  />'+
                     '</div>'+
                     '</div>';
             }
+
+
+            //输入框默认字体设置
+            styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
+            styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
+
+
         }
     });
     lsf_myweb.bind(uo_c4_conf,'click',function(){
