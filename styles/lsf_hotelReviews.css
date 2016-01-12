@@ -77,10 +77,10 @@ header i{
 
 }
 .lsf_reAll_grade{
-    width:100%;height:45px;border-bottom:1px dashed #dedede;line-height:45px;padding:0 1.5rem;font-size:1.2rem;color:#999999;
+    width:100%;height:45px;border-bottom:1px dashed #dedede;line-height:45px;padding:0 1.5rem;font-size:1.4rem;color:#999999;
 }
 .lsf_reAll_grade .lsf_grade1{
-    font-size:1.5rem;color:#55bfb7;
+    font-size:1.8rem;color:#55bfb7;
 }
 .lsf_reDetail_grade{
     width:100%;
@@ -100,12 +100,12 @@ header i{
     flex:1;
 
     border-right:1px dashed #dedede;
-    font-size:1.2rem;
     color:#484848;
     padding:0 1.5rem;
 }
 .lsf_reDetail_grade section p{
-    line-height:1.3rem;
+    line-height:normal;
+    font-size:1.4rem;
 }
 .lsf_reDetail_grade section .lsf_gra_p2{
     margin-top:1rem;
@@ -134,7 +134,7 @@ header i{
     width:1.2rem;height:1.2rem;line-height:1.1rem;margin:0px 1px;background:url(../images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;
 }
 .lsf_reTitle h2{
-    height: 1.5rem;font-size:1.4rem;color:black;	font-weight:normal;
+    font-size:1.6rem;color:black;	font-weight:normal;
 }
 .lsf_reDiscuss p{
     font-size:1.2rem;line-height:1.5rem;
@@ -156,6 +156,7 @@ header i{
     flex:1;
     display:block;
     margin-right:1.5rem;
+    font-size:1.4rem;
 }
 .comments i{
 
@@ -178,15 +179,15 @@ header i{
     -mz-flex:1;
     -webkit-flex:1;
     flex:1;
-    font-size:1.1rem;
+    font-size:1.3rem;
     color:#484848;
 
 }
 .lsf_reUser .reu_span1 b{
-    font-size:1.2rem;
+    font-size:1.3rem;
 }
 .lsf_reUser .reu_span2{
-    width:70px;font-size:1.1rem;
+    width:85px;font-size:1.3rem;
 }
 .lsf_reUser span i{
     margin-left: 0.4rem;

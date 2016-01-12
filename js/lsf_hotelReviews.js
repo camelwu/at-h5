@@ -111,6 +111,7 @@
     //callback函数
     function mycallback(d){
         var json=eval('('+d+')');
+        //console.log(json);
         var data=json.Data;
         V(data);
     }
