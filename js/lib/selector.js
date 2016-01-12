@@ -141,7 +141,7 @@
 				dom['on' + type] = function(e) {
 					fn.call(dom, e, data);
 				};
-			}
+			};
 		}
 	})();
 	//
@@ -214,6 +214,55 @@
 			}
 			return this;
 		},
+		//设置or获取元素内容
+		html : function() {
+			var args = [].slice.call(arguments), len = args.length;
+			//无元素立即返回
+			if (this.lenght < 1) {
+				return this;
+			}
+			//1个参数
+			if (len === 0) {
+				//参数是字符串，返回获取到的第一个元素样式
+				return this[0].innerHTML;
+			} else if ( len === 1) {
+				for (var i in args[0]) {
+					this[j].style[S.camelCase(i)] = args[0][i];
+				}
+				//2个参数
+			} else if (len === 2) {
+				for (var j = this.length - 1; j >= 0; j--) {
+					this[j].style[S.camelCase(args[0])] = args[1];
+				}
+			}
+			return this;
+		},
+	    // 获取元素位置
+	    getPos:function () {
+	        var args = [].slice.call(arguments), len = args.length;
+	        //无元素立即返回
+			if (this.lenght < 1) {
+				return this;
+			}
+	        var scrollx = document.documentElement.scrollLeft || document.body.scrollLeft,
+	                scrollt = document.documentElement.scrollTop || document.body.scrollTop;
+	        pos = this[0].getBoundingClientRect();
+	        return {top:pos.top + scrollt, right:pos.right + scrollx, bottom:pos.bottom + scrollt, left:pos.left + scrollx }
+	    },
+	    // 添加样式名
+	    addClass:function(c,node){
+	        node.className = node.className + ' ' + c;
+	    },
+	    // 移除样式名
+	    removeClass:function(c,node){
+	        var reg = new RegExp("(^|\\s+)" + c + "(\\s+|$)","g");
+	        node.className = node.className.replace(reg, '');
+	    },
+	    // 阻止冒泡
+	    stopPropagation:function(event){
+	        event = event || window.event;
+	        event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
+	    }
 	});
 	S.fn.extend({});
 	S.noConflict = function(lib){
