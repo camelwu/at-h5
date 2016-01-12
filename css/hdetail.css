@@ -138,7 +138,7 @@ html {
 .d-ul1 li em,.d-ul2 li em{
     font-style: normal;
     float: right;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #ffb413;
 }
 
@@ -157,7 +157,7 @@ html {
     white-space: nowrap;
     text-overflow: ellipsis;
     color: #484848;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     display: inline-block;
 }
 
@@ -181,7 +181,7 @@ html {
 .d-ul1 li em{
     font-style: normal;
     float: right;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #ffb413;
 }
 
@@ -266,7 +266,7 @@ html {
     max-width: 75%;
     min-width: 5%;
     color: #484848;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .d-icon3 {
@@ -282,8 +282,11 @@ html {
 .d-p6 {
     margin-top: 6px;
     max-width: 90%;
-    color: #a1a1a1;
-    font-size: 1.0rem;
+    color: #999999;
+    font-size: 1.2rem;
+}
+.d-p6 span{
+    color:#484848;
 }
 
 .d-icon4 {
@@ -406,6 +409,8 @@ html {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    font-size:1.6rem;
 }
 
 .roomAll .r-ul .r-li p.r-p3{
@@ -471,7 +476,7 @@ html {
     margin-left: 15px;
     margin-right: 20px;
     margin-bottom: 10px;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
 }
 
 .r-p2 {
