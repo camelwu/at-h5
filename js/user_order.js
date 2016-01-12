@@ -349,10 +349,14 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         }
         bOk=!bOk;
     });
+    //用户协议点击事件
     lsf_myweb.bind(uo_agree,'click',function(){
         document.getElementById('uo_shadow').style.display='block';
         document.getElementById('uo_hid_con6').style.display='block';
         var uo_c6_close=document.getElementById('uo_c6_close');
+
+
+        //用户协议隐藏事件
         lsf_myweb.bind(uo_c6_close,'click',function(){
             document.getElementById('uo_shadow').style.display='none';
             document.getElementById('uo_hid_con6').style.display='none';
