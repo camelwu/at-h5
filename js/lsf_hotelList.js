@@ -168,7 +168,7 @@ function styleChange(id,mytext){
                 str2+='<b class="hl-icon2"></b>';
             }
             if(data[i].IsCashReward){
-                str3='<div class="h-div1" style="margin-right: 3px;background-color: #ffb412">现金奖励</div>';
+                str3='<div class="h-div1" style="background-color: #ffb412">现金奖励</div>';
             }
             if(data[i].IsFreeCityTour){
                 str4='<div class="h-div1">免费景点</div>';
@@ -180,7 +180,7 @@ function styleChange(id,mytext){
                 '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
                 '</div>'+
                 '<div class="ho_infor">'+
-                '<p class="hname"  style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
+                '<p class="hname"  style="font-size:1.6rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
                 data[i].HotelNameLocale+'('+data[i].HotelName+')'+
             '</p>'+
                 '<div class="h-score">'+
@@ -237,7 +237,7 @@ function styleChange(id,mytext){
         var arr=eval('('+d+')');
         console.log(arr);
         //alert(arr.Success);
-        if(arr.Success=='true'){
+        if(arr.Success){
             console.log(arr.Data);
             var data=arr.Data;
             //console.log(data);
