@@ -678,7 +678,7 @@
     float: right;
     margin-right: 15px;
     color:#ffb401;
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 .bookinfo{
     height: 147px;
@@ -691,7 +691,7 @@
     margin: 0 15px;
     line-height: 31px;
     color: #484848;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 .bookinfo2{
     height: 115px;
@@ -706,7 +706,7 @@
     color: #999999;
 }
 .bookinfo2-1 span{
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     display: block;
 }
 .bookinfo2-2{
@@ -716,7 +716,7 @@
 .bookinfo2-2 span{
     color: #484848;
     display: block;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
 }
 .hotelInter2{
     font-size: 1.2rem;
