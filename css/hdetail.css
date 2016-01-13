@@ -655,7 +655,7 @@ html {
 }
 
 .d-ul2 .roomDetailList .d-li1 .moneyTip span.TaxChange{
-    font-size: 0.4rem;
+    font-size: 1rem;
     color:#a1a1a1;
     position: absolute;
     top:30px;
@@ -793,7 +793,7 @@ html {
 
 .subRoomEvent .d-p6 span{
     margin-right: 0.2rem;
-    font-size: 8px;
+    font-size: 1rem;
 }
 
 .subRoomEvent .d-p6 span.only-num{
