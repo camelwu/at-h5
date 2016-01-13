@@ -75,7 +75,7 @@ html {
     flex:1;
 }
 .hname{
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     font-size:1.6rem;
     font-weight:bold;
     color:#484848;
@@ -408,7 +408,7 @@ html {
     margin-bottom:44px;
 }
 .hotelcontent .h-grade, .hotelcontent .h-address{
-    margin-top:1rem;
+    margin-top:0.8rem;
 }
 #preloader {
     position:fixed;
