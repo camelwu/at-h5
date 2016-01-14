@@ -307,8 +307,14 @@ Calender.prototype = {
             out[0].innerHTML=sels[0].parentNode.getAttribute("data-day");
             out[1].innerHTML=sels[1].parentNode.getAttribute("data-day");
         }
+        var live_y=arr[0].split('-')[0];
+        var live_m=arr[0].split('-')[1];
+        var live_d=arr[0].split('-')[2];
+        var leave_y=arr[1].split('-')[0];
+        var leave_m=arr[1].split('-')[1];
+        var leave_d=arr[1].split('-')[2];
         if(tal){
-            tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
+            tal.innerHTML = (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
         }
     	that.removeDate();
     	//that.header.parentNode.removeChild(that.header);
