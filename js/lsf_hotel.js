@@ -191,6 +191,25 @@ var lsf_myweb={
         oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     }
 };
+
+function inpChange(id,myText){
+    var oInp=document.getElementById(id);
+    oInp.onfocus=function(){
+        if(this.value==myText){
+            this.value='';
+            this.style.color='#484848';
+        }
+    };
+    oInp.onblur=function(){
+        if(!this.value){
+            this.value='酒店名';
+            this.style.color='#d1d1d1';
+        }
+    };
+}
+//酒店输入框
+inpChange('hotelname','酒店名');
+
 (function(){
     //日历
     function n2c(num){
@@ -262,7 +281,9 @@ var lsf_myweb={
             arr3[2]=toDou(arr3[2]);
             out[i].value = arr3.join('-');
         }
-        tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
+        //console.log(arr);
+        //console.log(new Date(arr[1]));
+        tal.innerHTML = (Math.round((new Date(arr[1]).getTime()-new Date(arr[0]).getTime())/(1000*60*60*24)));
         that.removeDate();
         that.header.parentNode.removeChild(that.header);
         var oDate1=new Date(arr[0].split('-')[0],(arr[0].split('-')[1]-1),arr[0].split('-')[2]);

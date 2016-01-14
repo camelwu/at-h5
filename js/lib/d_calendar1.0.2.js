@@ -239,8 +239,10 @@ Calender.prototype = {
     },
     // 移除日期DIV.calendar
     removeDate:function(){
+        var that=this;
         var odiv = _CalF.$('#'+ this.id + '-date');
         if(!!odiv) odiv.parentNode.removeChild(odiv);
+        that.header.parentNode.removeChild(that.header);
     },
     // 上一月，下一月按钮事件
     btnEvent:function(){
@@ -309,7 +311,7 @@ Calender.prototype = {
             tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
         }
     	that.removeDate();
-    	that.header.parentNode.removeChild(that.header);
+    	//that.header.parentNode.removeChild(that.header);
         if(typeof that.fn==='function'){
             that.fn();
         }
