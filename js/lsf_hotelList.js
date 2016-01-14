@@ -122,13 +122,15 @@ function styleChange(id,mytext){
 
     //交互部分
     function M(json){
-        //console.log(json);
+        console.log(json);
         json=json||{};
         json.rank=json.rank||'priceasc';
         json.CityName=json.CityName||'Singapore';
         json.NumRoom=json.NumRoom||'1';
         json.NumChild=json.NumChild||'1';
         json.NumAdult=json.NumAdult||'1';
+        json.Category=json.Category||'';
+        json.StarRating=json.StarRating||'';
         var oDate=new Date();
         var y=oDate.getFullYear();
         var m=oDate.getMonth()+1;
@@ -139,7 +141,7 @@ function styleChange(id,mytext){
         //alert(url_json.NumRoom);
         var data =
         {
-            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.CityName+"\",\"CheckInDate\":\""+json.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.CheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\"}",
+            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.CityName+"\",\"CheckInDate\":\""+json.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.CheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\"}",
             "Code": "0007",
             "ForeEndType": 3
         };
