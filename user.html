@@ -22,9 +22,9 @@
 
 		<title>个人中心 - 亚洲旅行网</title>
 
-		<link href="styles/framework.css" 		 rel="stylesheet" type="text/css">
-		<link href="styles/style.css"     		 rel="stylesheet" type="text/css">
-
+		<link href="styles/framework.css" 		 rel="stylesheet">
+		<link href="styles/style.css"     		 rel="stylesheet">
+		<link href="css/user.css"	rel="stylesheet">
 	</head>
 	<body>
 		<div id="preloader">
@@ -36,43 +36,46 @@
 			</div>
 		</div>
 		<div class="all-elements">
-			<!-- Page Content-->
-			<div id="content" class="snap-content">
-				<div class="user-top half-bottom">
-					<div class="user-header" id="showMessage">
-						<a href="javascript:window.history.go(-1);" class="icons header-back"> </a>
-						<a href="javascript:void(0);" class="icons header-menu"> </a>
-					</div>
-					<div class="user-info">
-						<img id="userIcon" src="images/ui/user-heads.png">
-						<a href="user-login.html" id="unloginShow">点击登录，体验更多</a><!--a href="user-login.html" class="button button-red">注册</a-->
-						<div id="loginShow">
-
-						</div>
-					</div>
-				</div>
-
-				<div class="userWallet">
-					<div>
-						<b class="icons open-pack"></b><span>我的钱包</span>
-					</div>
-					<div>
-						<a>代金券<em>0张</em></a><a>返现<em>0元</em></a>
-					</div>
-				</div>
-				<ul class="s_lists">
-					<li id="verifyName">
-						<b class="icons open-msg"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">我的消息<b class="icons open-arw"></b></a>
-					</li>
-					<li id="bindCard">
-						<b class="icons open-info"></b><a href="user-infolist.html">资料管家 <em>个人资料、常旅资料</em><b class="icons open-arw"></b></a>
-					</li>
-					<li id="setPwd">
-						<b class="icons open-fav"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">我的收藏<b class="icons open-arw"></b></a>
-					</li>
-				</ul>
-			</div>
-
+<!-- Page Content-->
+    <div id="content" class="snap-content">
+        <div class="user-top half-bottom">
+            <div class="user-header" id="showMessage">
+                <a href="javascript:window.history.go(-1);" class="icons header-back"> </a>
+                <!-- <a href="javascript:void(0);" class="icon header-msg"></a> -->
+            </div>
+            <div class="user-info">
+                <img id="userIcon" src="images/ui/user-heads.png">
+                <a href="user-login.html" id="u_info" class="user-name">点击登录，体验更多</a>
+                <div id="loginShow">
+                </div>
+                <div class="unl_div">
+                    <ul class="user-menu">
+                        <li>全部订单</li>
+                        <li>待付款</li>
+                        <li>未出行</li>
+                        <li>待评价</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="s_lists">
+            <li id="bindCard">
+                <b class="icons open-info"></b><a href="javascript:void(0);">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
+            </li>
+            <!-- <li id="setPwd">
+                <b class="icons open-fav"></b><a href="javascript:void(0);">我的收藏<b class="icons open-arw"></b></a>
+            </li>
+            <li id="browsHis">
+                <b class="icon open-his"></b><a href="javascript:void(0);">浏览历史<b class="icons open-arw"></b></a>
+            </li>
+            <li id="setting">
+                <b class="icon open-set"></b><a href="javascript:void(0);">设置<b class="icons open-arw"></b></a>
+            </li> -->
+            <li id="verifyName">
+                <b class="icons open-msg"></b><a href="user-amendInfo.html">联系我们<b class="icons open-arw"></b></a>
+            </li>
+        </ul>
+    </div>
 		</div>
 		<script data-main="js/main.js" src="js/require.js"></script>
 		<div id="menu"></div>
