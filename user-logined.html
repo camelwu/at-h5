@@ -25,7 +25,7 @@
     <link href="styles/style.css"		rel="stylesheet" type="text/css">
     <link href="css/user.css"	rel="stylesheet" type="text/css">
 </head>
-<body>
+<body onload="u_logined()">
 <div id="preloader">
     <div id="status">
         <p class="center-text">
@@ -44,7 +44,7 @@
             </div>
             <div class="user-info">
                 <img id="userIcon" src="images/ui/user-heads.png">
-                <a href="user-perInfo.html"><p class="user-name">Yellow<b class="icon open-sexw"></b></p></a>
+                <a href="##" id="u_info"><p class="user-name">Yellow<b class="icon open-sexw"></b></p></a>
                 <div id="loginShow">
                 </div>
                 <div class="unl_div">
@@ -76,6 +76,9 @@
         </ul>
     </div>
 </div>
-<script data-main="js/main.js" src="js/require.js"></script>
+<script src="js/require.js" data-main="js/user.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/vcm.js"></script>
+<script type="text/javascript" src="js/user-logined.js"></script>
 </body>
 </html>

@@ -4,13 +4,12 @@
 */
 .f_key{
     width:94%;
-    height:177px;
     margin: 0 auto;
     margin-top: 10px;
     border:1px solid #dfdfdd;
     border-radius: 5px;
 }
-.fk_li{
+.f_key li{
     list-style:none;
     font-size: 1.4rem;
     padding:12px 15px;
@@ -18,7 +17,7 @@
     margin-bottom:0;
     position:relative;
 }
-.fk_li:last-child{
+.f_key li:last-child{
     border: none;
 }
 .f_btn{
@@ -203,28 +202,38 @@
     border:1px solid #ffb413;
     border-radius:3px;
     overflow: hidden;
+    background-color:#ffb413;;
 }
-.sex-left{
+.sex-div{
     -webkit-box-felx:1;
-    -moz-box-flex:1;
+    -moz-box-flex:1
     -ms-flex:1;
     -webkit-flex:1;
     flex:1;
     width:34px;height:27px;
-    text-align: center;
-    color:#ffb413;
-    line-height: 25px;
-}
-.sex-right{
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
-    width:34px;height:27px;
-    background-color:#ffb413;
     text-align: center;
     color:white;
+    line-height: 25px;
+}
+/*.sex-right{*/
+    /*-webkit-box-felx:1;*/
+    /*-moz-box-flex:1;*/
+    /*-ms-flex:1;*/
+    /*-webkit-flex:1;*/
+    /*flex:1;*/
+    /*width:34px;height:27px;*/
+    /*background-color:#ffb413;*/
+    /*text-align: center;*/
+    /*color:white;*/
+    /*line-height: 25px;*/
+/*}*/
+.white-div{
+    position: absolute;
+    z-index: 2;
+    width:34px;height:27px;
+    background-color: white;
+    color:#ffb413;
+    text-align: center;
     line-height: 25px;
 }
 .user-mb{
@@ -269,6 +278,27 @@
     font-size: 1.8rem;
     font-weight: bold;
     color:#1190e0;
+}
+#info_content{
+    position: absolute;
+    top:45px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: white;
+}
+#info_content li{
+    list-style-type: none;
 }
 /*
          修改昵称页css
@@ -906,7 +936,7 @@
 }
 .in-phone{
     display: inline-block;
-    top:-8px;
+    top:-2px;
 }
 .forgotkey{
     float: left;

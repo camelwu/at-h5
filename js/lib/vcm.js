@@ -10,12 +10,13 @@
 (function(e, t) {"use strict";
 	var c = c ||
 	function(c) {
-		var basePath = basePath == undefined ? "http://" + window.location.host : basePath
+		var basePath = basePath == undefined ? "http://10.2.22.239:8888/api/GetServiceApiResult" : basePath
+			,baseUrl = basePath == undefined ? "http://" + window.location.host : basePath
 		, menus = {
-			home : ['首页', basePath],
-			order : ['订单', basePath + '/order.html'],
-			service : ['客服', basePath + '/service.html'],
-			user : ['我的', basePath + '/user.html']
+			home : ['首页', baseUrl],
+			order : ['订单', baseUrl + '/order.html'],
+			service : ['客服', baseUrl + '/service.html'],
+			user : ['我的', baseUrl + '/user.html']
 		}, lStorage=window.localStorage
 		, sStorage=window.sessionStorageterms
 		,terms = {
@@ -978,7 +979,7 @@
 				$.ajax({
 					type : 'get',
 					async : false,
-					url : basePath + '/validate/check_mcode1',
+					url : basePath,
 					dataType : 'json',
 					data : paramsObj,
 					success : function(jsondata) {
@@ -993,7 +994,7 @@
 				$.ajax({
 					type : 'get',
 					async : false,
-					url : basePath + '/validate/send_mcode1',
+					url : basePath,
 					dataType : 'json',
 					data : paramsObj,
 					success : function(jsondata) {
@@ -1008,7 +1009,7 @@
 				$.ajax({
 					type : 'post',
 					async : false,
-					url : basePath + '/validate/send_email1',
+					url : basePath,
 					dataType : 'json',
 					data : paramsObj,
 					success : function(jsondata) {
