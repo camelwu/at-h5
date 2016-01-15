@@ -5,6 +5,39 @@
 /**
  * Created by changlv on 2015/12/11.
  */
+
+var lsf_myweb={
+    "getbyid":function(id){
+        return document.getElementById(id);
+    },
+    "getbytag":function(obj,tag){
+        return obj.getElementsByTagName(tag);
+    },
+    "getbyclass":function(obj,sClass){
+        if(obj.getElementsByClassName){
+            return obj.getElementsByClassName(sClass);
+        }else{
+            var aResult=[];
+            var aEle=obj.getElementsByTagName('*');
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            for(var i=0;i<aEle.length;i++){
+                if(aEle[i].className.search(reg)!=-1){
+                    aResult.push(aEle[i]);
+                }
+            }
+            return aResult;
+        }
+    },
+    "bind":function(obj,sEv,fn){
+        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    },
+    "stopPropagation":function(event){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+    }
+};
+
+//董振昊代码
 function fun11(){
     var choose=document.getElementById("choose");
     var show=document.getElementById("show");
@@ -30,26 +63,81 @@ var ho_i3=document.getElementById('ho_i3');
 var ho_i4=document.getElementById('ho_i4');
 var ho_i7=document.getElementById('ho_i7');
 var ho_i6=document.getElementById('ho_i6');
-ho_i1.onclick=function fun1(ev){
+function oUp(obj1,obj2,start,end){
+    lsf_myweb.bind(obj1,'click',function(ev){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+        if(parseInt(this.parentNode.children[0].value)<end){
+            this.parentNode.children[0].value++;
+        }
+        if( parseInt(this.parentNode.children[0].value)<end){
+            if(parseInt(this.parentNode.children[0].value)>start){
+                obj2.style.background='url("images/down1.png") no-repeat';
+                obj2.style.backgroundSize='23px 23px';
+            }
+        }else{
+            this.style.background='url("images/up2.png") no-repeat';
+            this.style.backgroundSize='23px 23px';
+        }
+    });
+};
+function oDown(obj1,obj2,start,end){
+    lsf_myweb.bind(obj1,'click',function(ev){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+        if(parseInt(this.parentNode.children[0].value)>start){
+            //console.log(parseInt(this.parentNode.children[0].value));
+            this.parentNode.children[0].value--;
+        }
+        if(parseInt(this.parentNode.children[0].value)>start){
+            if(parseInt(this.parentNode.children[0].value)<end){
+                obj2.style.background='url("images/up1.png") no-repeat';
+                obj2.style.backgroundSize='23px 23px';
+            }
+        }else{
+            this.style.background='url("images/down2.png") no-repeat';
+            this.style.backgroundSize='23px 23px';
+        }
+    });
+}
+oUp(ho_i1,ho_i2,1,10);
+oDown(ho_i2,ho_i1,1,10);
+oUp(ho_i7,ho_i6,1,1000);
+oDown(ho_i6,ho_i7,1,1000);
+oUp(ho_i3,ho_i4,1,1000);
+oDown(ho_i4,ho_i3,1,1000);
+/*ho_i1.onclick=function fun1(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    if( this.parentNode.children[0].value<10){
-        this.parentNode.children[0].value++;
+    this.parentNode.children[0].value++;
+    if( parseInt(this.parentNode.children[0].value)<10){
+        if(parseInt(this.parentNode.children[0].value)>1){
+            ho_i2.style.background='url("images/down1.png") no-repeat';
+            ho_i2.style.backgroundSize='23px 23px';
+        }
     }else{
+        this.style.background='url("images/up2.png") no-repeat';
+        this.style.backgroundSize='23px 23px';
         return false;
     }
-}
-ho_i2.onclick=function fun2(ev){
+}*/
+/*ho_i2.onclick=function fun2(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    if(this.parentNode.children[0].value>1){
-        this.parentNode.children[0].value--;
+    this.parentNode.children[0].value--;
+    if(parseInt(this.parentNode.children[0].value)>1){
+        if(parseInt(this.parentNode.children[0].value)<10){
+            ho_i1.style.background='url("images/up1.png") no-repeat';
+            ho_i1.style.backgroundSize='23px 23px';
+        }
     }else{
+        ho_i2.style.background='url("images/down2.png") no-repeat';
+        ho_i2.style.backgroundSize='23px 23px';
         return false;
     }
-}
+}*/
 
-ho_i7.onclick=function fun7(ev){
+/*ho_i7.onclick=function fun7(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     this.parentNode.children[0].value++;
@@ -62,9 +150,9 @@ ho_i6.onclick=function fun6(ev){
     }else{
         return false;
     }
-}
+}*/
 
-ho_i3.onclick=function fun3(ev){
+/*ho_i3.onclick=function fun3(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     this.parentNode.children[0].value++;
@@ -77,7 +165,7 @@ ho_i4.onclick=function fun4(ev){
     }else{
         return false;
     }
-}
+}*/
 
 function focus1(){
     var input1=document.getElementById("input1");
@@ -161,36 +249,7 @@ function Inter(){
     //董振昊js代码结束
 
 //刘少飞js代码
-var lsf_myweb={
-    "getbyid":function(id){
-        return document.getElementById(id);
-    },
-    "getbytag":function(obj,tag){
-        return obj.getElementsByTagName(tag);
-    },
-    "getbyclass":function(obj,sClass){
-        if(obj.getElementsByClassName){
-            return obj.getElementsByClassName(sClass);
-        }else{
-            var aResult=[];
-            var aEle=obj.getElementsByTagName('*');
-            var reg=new RegExp('\\b'+sClass+'\\b','g');
-            for(var i=0;i<aEle.length;i++){
-                if(aEle[i].className.search(reg)!=-1){
-                    aResult.push(aEle[i]);
-                }
-            }
-            return aResult;
-        }
-    },
-    "bind":function(obj,sEv,fn){
-        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
-    },
-    "stopPropagation":function(event){
-        var oEvent=ev||event;
-        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    }
-};
+
 
 function inpChange(id,myText){
     var oInp=document.getElementById(id);
