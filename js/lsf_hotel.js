@@ -422,12 +422,12 @@ inpChange('hotelname','酒店名');
     var abroad_target_place=document.getElementById('arr1');
     var abroad_target_city=document.getElementById('input1');
     //国内城市
-    lsf_myweb.bind(domestic_target_place,'click',function(){
+    lsf_myweb.bind(abroad_target_city,'click',function(){
         var citys=new myCityList('input1','hotel.html');
         //alert(citys.city);
     });
     //国际城市
-    lsf_myweb.bind(abroad_target_place,'click',function(){
+    lsf_myweb.bind(domestic_target_city,'click',function(){
         var citys=new myCityList('input2','hotel.html');
         //alert(citys.city);
     })
