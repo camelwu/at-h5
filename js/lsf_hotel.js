@@ -358,10 +358,18 @@ inpChange('hotelname','酒店名');
 
 
     //城市
-    var target_place=document.getElementById('arr1');
-    var target_city=document.getElementById('input1');
-    lsf_myweb.bind(target_place,'click',function(){
+    var domestic_target_place=document.getElementById('arr2');
+    var domestic_target_city=document.getElementById('input2');
+    var abroad_target_place=document.getElementById('arr1');
+    var abroad_target_city=document.getElementById('input1');
+    //国内城市
+    lsf_myweb.bind(domestic_target_place,'click',function(){
         var citys=new myCityList('input1','hotel.html');
+        //alert(citys.city);
+    });
+    //国际城市
+    lsf_myweb.bind(abroad_target_place,'click',function(){
+        var citys=new myCityList('input2','hotel.html');
         //alert(citys.city);
     })
 })();
