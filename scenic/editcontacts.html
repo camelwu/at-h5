@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <title>编辑联系人</title>
     <link href="styles/style.css" rel="stylesheet"/>
-    <link href="styles/reset.css" rel="stylesheet"/>
     <link href="styles/framework.css" rel="stylesheet"/>
     <link href="css/editcontacts.css" rel="stylesheet"/>
 </head>
 <body>
-<div>
+<div class="all-elements">
     <div class="header">
         <a href="javascript:;" class="icons header-back"></a>
         <h3 class="edit-tit">编辑联系人</h3>
@@ -26,7 +25,7 @@
                     <li><span class="name-tip">名</span><input type="text" placeholder="必须" name="" class="fl-name"/></li>
                     <li class="clearFix">
                         <span class="name-tip fl">国家和区号</span>
-                        <input type="text" placeholder="必须" name="" class="fl-name fl country-cont"/>
+                        <input type="text" placeholder="+86" name="" class="fl-name fl country-cont"/>
                         <i class="right-choi-btn fr"></i>
                     </li>
                     <li><span class="name-tip">手机</span><input type="text" placeholder="必须" name="" class="fl-name"/></li>
@@ -35,12 +34,13 @@
                 </ul>
             </div>
             <div class="save-btn-wrap">
-                <span class="save-btn">保存</span>
+                <input type="submit" value="保存" class="save-btn">
             </div>
         </form>
 
     </div>
 
+    <script src="js/head_back.js"></script>
 </div>
 </body>
 </html>

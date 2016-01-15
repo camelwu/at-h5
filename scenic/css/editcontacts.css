@@ -17,7 +17,7 @@
     line-height: 37px;
 }
 .msg-rel-text{
-    font-size: 12px;
+    font-size: 1.2rem;
 }
 
  /*联系人信息*/
@@ -61,22 +61,28 @@
 .save-btn-wrap{
     padding: 0 14px;
 }
+
 .save-btn{
     display: block;
-    height: 40px;
-    line-height:40px;
-    background-color: #fdb330;
-    text-align: center;
-    border-radius: 5px;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    width: 100%;
     color: #fff;
-    cursor: pointer;
+    font-size: 18px;
+    height: 44px;
+    line-height: 44px;
+    min-width: 60px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #FFB413;
 }
 .save-btn:hover{
     background-color: #ff9313;
 }
 
+li{
+    list-style: none;
+}
 .right-choi-btn{
-    display: inline-block;
     position: absolute;
     right: 0;
     width: 40px;

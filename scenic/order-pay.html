@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <title>订单支付</title>
-    <link href="../styles/style.css" rel="stylesheet"/>
-    <link href="../styles/framework.css" rel="stylesheet"/>
+    <link href="styles/style.css" rel="stylesheet"/>
+    <link href="styles/framework.css" rel="stylesheet"/>
     <link href="css/order_pay.css" rel="stylesheet"/>
 </head>
 <body>
-<div>
+<div class="all-elements">
     <div class="header">
         <a href="javascript:;" class="icons header-back"></a>
         <h3 class="edit-tit">订单支付</h3>
@@ -20,13 +20,13 @@
                 <ul class="per-pay-msg">
                     <li>
                         <span class="order-num">订单号: <i>237812</i></span>
-                        <p class="order-tot-dol">总计：<span>¥<i>143</i>元</span></p>
+                        <p class="order-tot-dol"><span class="order-tot-dol-tit">总计：</span><span>¥<i>143</i>元</span></p>
                     </li>
                     <li>
                         <span class="order-num">票务信息：<i>迪士尼门票一张</i></span>
                     </li>
                     <li>
-                        <span class="order-num">剩余支付时间: <i class="count-time">29分30秒</i></span>
+                        <span class="order-num">剩余支付时间: <i class="count-time" id="countdown"></i></span>
 
                     </li>
                 </ul>
@@ -42,6 +42,35 @@
 
     </div>
 
+<script>
+    /*倒计时*/
+    window.onload=function(){
+        sec('countdown',1800);
+        function sec(sName,time){
+            var oSpan=document.getElementById(sName);
+            var n=time;
+            tick1();
+            var timer=setInterval(tick1,1000);
+            function tick1()
+            {
+                n--;
+                var m=parseInt(n/60);
+                var s=n%60;
+                oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
+                if (n<0) {
+                    clearInterval(timer)
+                    oSpan.innerHTML="结束"
+                }
+            }
+        }
+
+        function toDub(a){
+            return a<10 ? '0'+a : ''+a;
+        }
+    };
+</script>
+
+    <script src="js/head_back.js"></script>
 </div>
 </body>
 </html>

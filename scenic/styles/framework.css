@@ -531,6 +531,7 @@ a{
 }
 .btn{
 	display:inline-block;
+	width: 100%;
 	padding:10px 20px;
 	min-width:60px;
 }
