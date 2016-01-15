@@ -4302,6 +4302,9 @@ ul.s_lists{
 	color:#484848;
 	text-align: center;
 }
+.calendar dt:last-child{
+	width:14.8%;
+}
 	.calendar dt.title-date {
 		display: block;
 		width: 100%;

@@ -75,7 +75,7 @@ Calender.prototype = {
         '<span class="nextmonth">nextmonth</span>',
     ],
     _tempweek:[
-        '<dl>',
+        '<dl style="overflow:hidden;width:100%;">',
         '<dt class="date_title">日</dt>',
         '<dt class="date_title">一</dt>',
         '<dt class="date_title">二</dt>',
