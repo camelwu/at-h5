@@ -189,7 +189,7 @@
     text-align: center;
     line-height: 42px;
 }
-.info-sex{
+.info-sex, .info-sex-on{
     position: absolute;
     top:8px;
     display: -moz-box;
@@ -235,6 +235,14 @@
     color:#ffb413;
     text-align: center;
     line-height: 25px;
+    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+    transition: all 200ms ease;
+}
+.info-sex-on .white-div {
+    transform: translateX(34px);
+    -webkit-transform: translateX(34px);
+    transition: all 200ms ease;
 }
 .user-mb{
     display: none;
