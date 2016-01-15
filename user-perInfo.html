@@ -47,8 +47,8 @@
             <li id="a_nick">昵称 <b class="icons open-rg"></b><span id="nickname" class="info-name"></span><b class="icons open-rg"></b></li>
             <li id="a_name">姓名 <b class="icons open-rg"></b></li>
             <li>性别
-                <div class="info-sex" id="sex" onclick="changeSex()">
-                    <div class="white-div">男</div>
+                <div class="info-sex" id="sex">
+                    <div id="block" class="white-div"></div>
                     <div class="sex-div">男</div>
                     <div class="sex-div">女</div>
                 </div></li>
@@ -68,69 +68,65 @@
     </div>
     <ul id="info_content">
         <li id="changename" style="display: none;">
-            <div class="u_name">
-                <input type="text" value="Yellow" id="name"/>
-                <b class="icon name-close" onclick="clearname()"></b>
-            </div>
-            <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
-            <input class="f_btn button-yellow" type="submit"/>保存
+            <form id="nickForm" action="user-perInfo.html" method="post">
+                <div class="u_name">
+                    <input id="name" name="name" type="text" value=""/>
+                    <b class="icon name-close" onclick="clearname()"></b>
+                </div>
+                <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
+                <input id="nick_btn" class="f_btn button-yellow" type="button" value="保存"/>
+            </form>
         </li>
-        <li id="fillname" style="display: none;">
-            <div class="u_name">
-                <input type="text" style="color:#d1d1d1;font-size: 1.4rem" placeholder="请填写真实姓名">
-            </div>
-            <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
-            <div class="f_btn button-yellow">保存</div>
-        </li>
-        <li id="phoneverify" style="display: none;">
-            <ul class="f_key">
-                <li>
-                    <input class="fk_put" type="text" value placeholder="请输入手机号" onkeydown="putting()">
-                </li>
-                <li>
-                    <input class="fk_put" type="text" value placeholder="请输入验证码" onkeydown="putting()">
-                    <div class="fk_div">发送验证码</div>
-                </li>
-            </ul>
-            <a href="#" class="f_btn button-yellow">保存</a>
-        </li>
-        <li id="useremail" style="display: none;">
-            <div class="u_name">
-                <input type="text" style="color:#d1d1d1;font-size: 1.4rem" placeholder="请输入邮箱">
-            </div>
-            <div class="f_btn button-yellow">保存</div>
-        </li>
+        <form id="infoForm" action="user-perInfo.html" method="post">
+            <li id="fillname" style="display: none;">
+                <div class="u_name">
+                    <input type="text" style="color:#d1d1d1;font-size: 1.4rem" placeholder="请填写真实姓名" data-type="code">
+                </div>
+                <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
+            </li>
+            <li id="phoneverify" style="display: none;">
+                <ul class="f_key">
+                    <li>
+                        <input class="fk_put" type="text" value placeholder="请输入手机号" onkeydown="putting()" data-type="tel">
+                    </li>
+                    <li>
+                        <input class="fk_put" type="text" value placeholder="请输入验证码" onkeydown="putting()" data-type="code">
+                        <div class="fk_div" id="phone_ver">发送验证码</div>
+                    </li>
+                </ul>
+            </li>
+            <li id="useremail" style="display: none;">
+                <div class="u_name">
+                    <input type="text" style="color:#d1d1d1;font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
+                </div>
+            </li>
+                <input id="amend_btn" class="f_btn button-yellow" type="button" value="保存"/>
+        </form>
         <li id="amendkey" style="display: none;">
-            <ul class="f_key">
-                <li>
-                    <input class="fk_put" type="text" value placeholder="原密码" onkeydown="putting()">
-                </li>
-                <li>
-                    <input class="fk_put" type="text" value placeholder="新密码" onkeydown="putting()">
-                </li>
-                <li>
-                    <input class="fk_put" type="text" value placeholder="确认新密码" onkeydown="putting()">
-                </li>
-            </ul>
-            <div class="f_btn button-yellow">保存</div>
+            <form id="keyForm" action="user-perInfo.html" method="post">
+                <ul class="f_key">
+                    <li>
+                        <input class="fk_put" type="text" value placeholder="请输入手机号" onkeydown="putting()" data-type="tel">
+                    </li>
+                    <li>
+                        <input class="fk_put" type="text" value placeholder="请输入验证码" onkeydown="putting()" data-type="code">
+                        <div class="fk_div" id="newkey_ver">发送验证码</div>
+                    </li>
+                    <li>
+                        <input class="fk_put" type="text" value placeholder="原密码" onkeydown="putting()" data-type="pass">
+                    </li>
+                    <li>
+                        <input class="fk_put" type="text" value placeholder="新密码" onkeydown="putting()" data-type="pass">
+                    </li>
+                    <li>
+                        <input class="fk_put" type="text" value placeholder="确认新密码" onkeydown="putting()" data-type="pass">
+                    </li>
+                </ul>
+                <input id="newkey_btn" class="f_btn button-yellow" type="button" value="保存"/>
+            </form>
         </li>
     </ul>
 </div>
-<script type="text/javascript">
-   function changeSex(){
-        var sex = document.getElementById("sex");
-        var block = document.getElementsByClassName("white-div")[0];
-        if(block.style.left != "34px"){
-            block.style.left = "34px";
-            block.innerHTML = "女";
-        }else{
-            block.style.left = 0;
-            block.innerHTML = "男"
-        }
-//        sex.firstElementChild.innerHTML = sex.firstElementChild.innerHTML == "男"?"女":"男";
-//        sex.lastElementChild.innerHTML = sex.firstElementChild.innerHTML == "男"?"女":"男";
-    }
-</script>
 <script src="js/require.js" data-main="js/user.js"></script>
 <script type="text/javascript" src="js/lib/jquery.js"></script>
 <script type="text/javascript" src="js/lib/vcm.js"></script>

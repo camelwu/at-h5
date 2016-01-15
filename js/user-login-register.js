@@ -86,9 +86,6 @@ window.onload = function(){
         if(type == "pass"){
             c.Utils.validate.password(num);
         }
-        if(type == "code"){
-            c.Utils.validate.sendMobileCode(num);
-        }
     };
     // 会员注册
     function user_register(obj){
@@ -122,6 +119,7 @@ window.onload = function(){
         }
     }
     user_register(register_btn);
+    //  获取注册验证码
     function get_verify(obj){
         obj.onclick = function() {
             var Parameters = {

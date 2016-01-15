@@ -1,10 +1,23 @@
 /**
  * Created by changlv on 2016/1/13.
  */
+var infoJson;
+var MemberId;
 function u_perInfo(){
-    var data = JSON.parse(sessionStorage.data);
-    console.log(data);
-    var nickname = $("#nickname")[0];
+    var c = new vcm;
+    var email = sessionStorage.email;
+    var phone = sessionStorage.phone;
+    var password = sessionStorage.password;
+    //var data = JSON.parse(sessionStorage.data);
+    //console.log(data);
+    var Parameters= {
+        "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Password\":\""+password+"\",\"Mobile\":\""+phone+"\"}",
+        "ForeEndType": 3,
+        "Code": "0053"
+    };
+    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+
+
     var close_page = $("#close_page")[0];
     var amend_info = $("#amend_info")[0];
     var title = $("#title")[0];
@@ -19,17 +32,21 @@ function u_perInfo(){
     var phoneverify = $("#phoneverify")[0];
     var useremail = $("#useremail")[0];
     var amendkey = $("#amendkey")[0];
+    var sex = $("#sex")[0];
+    var block = $("#block")[0];
+
+
     var array = title.innerHTML;
     var head = array.split("/");
-    nickname.innerHTML = data.NickName;
 
-    var c = new vcm;
+
     function closeAmend(obj){
         obj.onclick = function(){
             amend_info.style.display = "none";
         }
     }
     closeAmend(close_page);
+    //  点击链接页面跳转
     function amendInfo(obj1,obj2,obj3){
         obj1.onclick = function(){
             changename.style.display = "none";
@@ -37,6 +54,11 @@ function u_perInfo(){
             phoneverify.style.display = "none";
             useremail.style.display = "none";
             amendkey.style.display = "none";
+            if(obj1 == a_nick || obj1 == a_key){
+                amend_btn.style.display = "none";
+            }else{
+                amend_btn.style.display = "block";
+            }
             title.innerHTML = obj2;
             obj3.style.display = "block";
             var li = info_content.getElementsByTagName("li");
@@ -48,8 +70,184 @@ function u_perInfo(){
     amendInfo(a_phone,head[2],phoneverify);
     amendInfo(a_email,head[3],useremail);
     amendInfo(a_key,head[4],amendkey);
+    //  性别选择
+    function changeSex(obj){
+        obj.onclick = function() {
+            if(sex.className != "info-sex-on"){
+                sex.className="info-sex-on";
+                block.innerHTML = "女";
+            }else{
+                sex.className="info-sex";
+                block.innerHTML = "男"
+            }
+        };
+    }
+    changeSex(sex);
+    //  修改昵称
+    var nick_btn = $("#nick_btn")[0];
+    function amendNick(obj){
+        obj.onclick = function() {
+            var input = document.getElementById("nickForm").getElementsByTagName("input");
+            var Parameters = {
+                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"NickName\":\""+input[0].value+"\"}",
+                "ForeEndType": 3,
+                "Code": "0059"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
+        }
+    }
+    amendNick(nick_btn);
+    //  验证输入
+    var check = function (type,num){
+        if(type == "tel"){
+            c.Utils.validate.mobileNo(num);
+        }
+        if(type == "email"){
+            c.Utils.validate.email(num);
+        }
+        if(type == "pass"){
+            c.Utils.validate.password(num);
+        }
+    };
+    //   修改信息
+    var amend_btn = $("#amend_btn")[0];
+    function changeInfo(obj){
+        obj.onclick = function(){
+            var input = document.getElementById("infoForm").getElementsByTagName("input");
+            var UserSex;
+            if(sex.className="info-sex-on"){
+                UserSex = "26";
+            }else{
+                UserSex = "27";
+            }
+            for(var i= 0;i < input.length;i++){
+                if(input[i].type !="button" && input[i].value !="") {
+                    console.log(input[i].getAttribute('data-type'));
+                    if(input[i].getAttribute('data-type') !="code") {
+                        if (check(input[i].getAttribute('data-type'), input[i].value)) {
+                            alert("输入不正确");
+                            return;
+                        }
+                    }
+                }
+            }
+            localStorage.info_email = input[3].value;
+            localStorage.info_realname = input[0].value;
+            localStorage.info_phone = input[1].value;
+            var Parameters={
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input[3].value+"\",\"FirstName\":\""+input[0].value+"\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+input[1].value+"\",\"Phone\":\""+input[1].value+"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\""+UserSex+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0056"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+        }
+    }
+    changeInfo(amend_btn);
+     //  获取手机绑定验证码
+    var phone_ver = $("#phone_ver")[0];
+    function phone_veri(obj){
+        obj.onclick = function(){
+            var Parameters = {
+                "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":4}",
+                "ForeEndType": 3,
+                "Code": "0058"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
+        }
+    }
+    phone_veri(phone_ver);
+    //  修改密码
+    var key_btn = $("#key_btn")[0];
+    function changeKey(obj){
+        obj.onclick = function(){
+            var input = document.getElementById("keyForm").getElementsByTagName("input");
+            for(var i= 0;i < input.length;i++){
+                if(input[i].type !="button" && input[i].value !="") {
+                    console.log(input[i].getAttribute('data-type'));
+                    if(input[i].getAttribute('data-type') !="code") {
+                        if (check(input[i].getAttribute('data-type'), input[i].value)) {
+                            alert("输入不正确");
+                            return;
+                        }
+                    }
+                    if(input[3].value != input[3].value){
+                        alert("输入不正确");
+                        return;
+                    }
+                }
+            }
+            var Parameters= {
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\""+input[0].value+"\",\"NewPassword\":\""+input[3].value+"\",\"Code\":\""+input[1].value+"\"}",
+                "ForeEndType": 3,
+                "Code": "0054"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_newKey);
+        }
+    }
+    changeKey(key_btn);
+    //  修改密码获取验证
+    var newkey_btn = $("#newkey_btn")[0];
+
 }
 function clearname(){
     var name = document.getElementById("name");
     name.value = "";
+}
+function mycallback(ret){
+    infoJson = eval('('+ret+')');
+    console.log(infoJson);
+    var nickname = $("#nickname")[0];
+    var name = $("#name")[0];
+    var sex = $("#sex")[0];
+    var block = $("#block")[0];
+    nickname.innerHTML = infoJson.Data[0].NickName;
+    name.value = infoJson.Data[0].NickName;
+    MemberId = infoJson.Data[0].MemberId;
+    if(infoJson.Data[0].Salutation == "26"){
+        sex.className="info-sex-on";
+        block.innerHTML = "女";
+    }else{
+        sex.className="info-sex";
+        block.innerHTML = "男"
+    }
+}
+function mycallback_nick(ret){
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success) {
+        //window.location.href = "user-perInfo.html";
+        document.getElementById("nickForm").submit();
+    }else{
+        alert(myJson.Message);
+    }
+}
+function mycallback_info(ret){
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success){
+        document.getElementById("infoForm").submit();
+    }else{
+        alert(myJson.Message);
+    }
+}
+function mycallback_phoneVeri(ret){
+    var c = new vcm();
+    var phone_ver = $("#phone_ver")[0];
+    console.log(ret);
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success){
+        c.Utils.sendMobileCode(phone_ver.value);
+    }else{
+        alert(myJson.Message);
+    }
+}
+function mycallback_newKey(ret){
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success){
+        document.getElementById("keyForm").submit();
+    }else{
+        alert(myJson.Message);
+    }
 }
