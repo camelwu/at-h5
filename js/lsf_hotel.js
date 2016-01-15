@@ -104,8 +104,8 @@ oUp(ho_i1,ho_i2,1,10);
 oDown(ho_i2,ho_i1,1,10);
 oUp(ho_i7,ho_i6,1,1000);
 oDown(ho_i6,ho_i7,1,1000);
-oUp(ho_i3,ho_i4,1,1000);
-oDown(ho_i4,ho_i3,1,1000);
+oUp(ho_i3,ho_i4,0,1000);
+oDown(ho_i4,ho_i3,0,1000);
 /*ho_i1.onclick=function fun1(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
