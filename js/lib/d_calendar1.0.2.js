@@ -224,6 +224,49 @@ Calender.prototype = {
         // A link事件绑定
         this.linkOn();
     },
+    drawLastDate:function (odate) { // 参数 odate 为日期对象格式
+        var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+        var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+        this.dateWarp = dateWarp = document.createElement('div');
+        dateWarp.className = 'calendar';
+        dateWarp.innerHTML = this._template.join('');
+        this.year = year = odate.getFullYear();
+        this.month = month = odate.getMonth()+1;
+        this.date = date = odate.getDate();
+        this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+        tims = this.time;
+        textNode = document.createTextNode(year + '年' + month + '月');
+        titleDate.appendChild(textNode);
+        //this.btnEvent();
+
+        // 获取模板中唯一的DD元素
+        dd = _CalF.$('dd',dateWarp)[0];
+        // 获取本月天数
+        days = new Date(year, month, 0).getDate();
+        // 获取本月第一天是星期几
+        weekStart = new Date(year, month-1,1).getDay();
+        // 开头显示空白段
+        for (i = 0; i < weekStart; i++) {
+            ddHtml.push('<a>&nbsp;</a>');
+        }
+        // 循环显示日期
+        for (i = 1; i <= days; i++) {
+            if(i<=nowdate){
+                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+            }else{
+                ddHtml.push('<a class="disabled">' + i + '</a>');
+            }
+        }
+        dd.innerHTML = ddHtml.join('');
+
+        // 添加
+        this.container.appendChild(dateWarp);
+        //IE6 select遮罩
+        var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+        if(ie6) dateWarp.appendChild(this.createIframe());
+        // A link事件绑定
+        this.linkOn();
+    },
     createIframe:function(){
         var myIframe =  document.createElement('iframe');
         myIframe.src = 'about:blank';
@@ -354,8 +397,13 @@ Calender.prototype = {
 		_CalF.bind(this.input, 'click',function(){
             that.createContainer();
 	        for(var i=0;i<that.num;i++){
-	        	var idate = new Date(nowY , nowM+i, nowD);
-	        	that.drawDate(idate);
+                if(i==(that.num-1)){
+                    var idate=new Date(nowY, nowM+i ,nowD);
+                    that.drawLastDate(idate);
+                }else{
+                    var idate = new Date(nowY , nowM+i, nowD);
+                    that.drawDate(idate);
+                }
 	        }
 		});
     },
