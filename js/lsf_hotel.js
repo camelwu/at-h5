@@ -270,6 +270,15 @@ function inpChange(id,myText){
 inpChange('hotelname','酒店名');
 
 (function(){
+//目的地输入框去掉光标
+    var address_broad=document.getElementById('input1');
+    var address_demosic=document.getElementById('input2');
+    lsf_myweb.bind(address_broad,'focus',function(){
+        this.blur();
+    });
+    lsf_myweb.bind(address_demosic,'focus',function(){
+        this.blur();
+    });
     //日历
     function n2c(num){
         switch (parseInt(num)){
@@ -363,6 +372,8 @@ inpChange('hotelname','酒店名');
         lsf_myweb.getbyid('week_span2').innerHTML='周'+n2c(oday2)+' 离店';
     }
     var myDate1 = new Calender2({id: 'content2', num: 13, time: obj});
+
+
     /*content2.onclick=function() {
      var obj={};
      // cdDate.style.display = 'block';
