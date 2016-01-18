@@ -308,10 +308,10 @@ Calender.prototype = {
             out[1].innerHTML=sels[1].parentNode.getAttribute("data-day");
         }
         var live_y=arr[0].split('-')[0];
-        var live_m=arr[0].split('-')[1];
+        var live_m=arr[0].split('-')[1]-1;
         var live_d=arr[0].split('-')[2];
         var leave_y=arr[1].split('-')[0];
-        var leave_m=arr[1].split('-')[1];
+        var leave_m=arr[1].split('-')[1]-1;
         var leave_d=arr[1].split('-')[2];
         if(tal){
             tal.innerHTML = (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
