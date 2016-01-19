@@ -39,6 +39,7 @@
     flex: 1.0;
     text-align: center;
     line-height: 40px;
+    color:rgb(153,153,153);
 }
 #h-Tab .on{
     color: #ffb413;
