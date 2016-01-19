@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <title>国际酒店</title>
-    <link href="styles/style.css" rel="stylesheet">
     <link href="styles/framework.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/owl.theme.css" rel="stylesheet">
     <link href="styles/dzh.css" rel="stylesheet">
-    <link href="styles/cityList.css" rel="stylesheet" />
+    <link href="styles/cityList.css" rel="stylesheet">
 </head>
 <body>
 <div class="all-elements">
@@ -21,7 +22,8 @@
             <a id="Dom" onclick="Dom()">国内</a>
         </div>
         <form action="hotel_list.html" method="get">
-            <div class="content1">
+            <div class="quote-slider full-bottom" data-snap-ignore="true">
+            	<div class="content1">
 
                 <div  id="arr1" class="nav1" onclick="focus1()">
                     <div class="nav111">
@@ -111,8 +113,10 @@
                     <input class="HotelName" name="HotelName" type="text" value="酒店名" onfocus="if(this.value=='酒店名'){this.value='';this.style.color='#484848'} " onblur="if(!this.value){this.value='酒店名';this.style.color='#d1d1d1'}" id="hotelname">
                 </div>
             </div>
-
-            <!--<a href="#" class=" button-yellow hotelInter" >查询</a>-->
+				<div class="content1">
+					guonei
+				</div>
+            </div>
             <div class="aa">
                 <div>
                     <input type="submit" value="查询" class="button-yellow hotelInter">
@@ -127,8 +131,36 @@
 </div>
 </body>
 <script src="js/lib/jquery.js"></script>
+<script src="js/lib/plugins.js"></script>
 <script src="js/lib/vcm.js"></script>
 <script src="js/lib/d_calendar1.0.2.js"></script>
 <script src="js/lsf_hotel.js"></script>
 <script src="js/cityList1.0.2.js"></script>
+<script>
+var owlQuoteSlider = $(".quote-slider");
+	owlQuoteSlider.owlCarousel({
+		items : 1,
+		itemsDesktop : [1199,1],
+		itemsDesktopSmall : [980,1],
+		itemsTablet: [768,1],
+		itemsTabletSmall: [480,1],
+		itemsMobile : [370,1],
+		singleItem : false,
+		itemsScaleUp : false,
+		slideSpeed : 800,
+		paginationSpeed : 300,
+		rewindSpeed : 250,
+		pagination:false,
+		autoPlay : false,
+	});
+	
+	$("#Dom").click(function() {
+	  owlQuoteSlider.trigger('owl.next');
+	  return false;
+	});
+	$("#Inter").click(function() {
+	  owlQuoteSlider.trigger('owl.prev');
+	  return false;
+	});
+</script>
 </html>
