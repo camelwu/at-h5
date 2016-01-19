@@ -24,6 +24,25 @@
     <link href="styles/framework.css"	rel="stylesheet" type="text/css">
     <link href="styles/style.css"		rel="stylesheet" type="text/css">
     <link href="css/user.css"	rel="stylesheet" type="text/css">
+    <style>
+    .selbox-footer {
+	    position: fixed;
+	    z-index: 1000;
+	    width: 100%;
+	    bottom: 0px;
+	    background-color: white;
+	    font-size:24px;
+	}
+	.selbox-ul {
+		position:relative;
+	    margin:5px 40px;
+	}
+	.selbox-ul li{
+		list-style: none;
+		float:left;
+		padding:10px;
+	}
+	</style>
 </head>
 <body>
     <div id="preloader">
@@ -68,14 +87,60 @@
                     <b class="icon open-his"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">浏览历史<b class="icons open-arw"></b></a>
                 </li>
                 <li id="setting">
-                    <b class="icon open-set"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">设置<b class="icons open-arw"></b></a>
+                    <b class="icon open-set"></b><a id="setdata" href="javascript:void1();">设置<b class="icons open-arw"></b></a>
                 </li>
                 <li id="verifyName">
                     <b class="icons open-msg"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">联系我们<b class="icons open-arw"></b></a>
                 </li>
             </ul>
         </div>
+        <div class="overlay"></div>
+        <div class="selbox-footer" id="sel">
+		    <div id="opeater" style="height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl" style="margin-left: 10px;color:#999;">取消</span><span class="fr" style="margin-right: 10px;color: #ffb413;">确定</span></div>
+		    <ul class="selbox-ul" id="rank">
+		        <li>
+					<ul class="sel-time" id="year">
+				        <li>1900年</li>
+				        <li>1901年</li>
+				        <li>1902年</li>
+				    </ul>
+				</li>
+		        <li>
+					<ul class="sel-time" id="year">
+				        <li>1月</li>
+				        <li>2月</li>
+				        <li>3月</li>
+				    </ul>
+				</li>
+		        <li>
+					<ul class="sel-time" id="year">
+				        <li>1号</li>
+				        <li>2号</li>
+				        <li>3号</li>
+				    </ul>
+				</li>
+		    </ul>
+	    </div>
     </div>
-    <script data-main="js/main.js" src="js/require.js"></script>
+    <script src="js/require.js" data-main="js/user.js"></script>
+    <script>
+    	function void1(){
+    		var odiv = document.createElement('div');
+    			odiv.className = "overlay";
+				//odiv.style.height = "5.1rem";
+				//document.body.appendChild(odiv);
+    		//增加遮罩和设置层
+    		if (document.getElementById("bhd")) {
+				var bhder = document.getElementById("bhd");
+				bhder.className = "";
+			} else {
+				var bhder = document.createElement('div');
+				bhder.id = "bhd";
+				bhder.className = "";
+				document.body.appendChild(bhder);
+				
+			}
+    	}
+    </script>
 </body>
 </html>
