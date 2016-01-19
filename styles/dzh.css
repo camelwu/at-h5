@@ -39,6 +39,7 @@
     flex: 1.0;
     text-align: center;
     line-height: 40px;
+    color:rgb(153,153,153);
 }
 #h-Tab .on{
     color: #ffb413;
@@ -50,9 +51,8 @@
 }
 .content1{
     height:auto;
-    background: #FFFFFF;
     margin: 10px 0;
-    border-bottom: 1px solid #dedede;
+
 }
 .nav1{
     height: 45px;
@@ -302,6 +302,7 @@
 }
 .content5{
     height: 45px;
+    border-bottom: 1px solid #dedede;
 }
 .content5 input{
     line-height: 25px;
@@ -353,9 +354,6 @@
 /*hotel-Dom*/
 
 
-#arr2{
-    display:none;
-}
 
 .choose-aim1{
     line-height: 45px;
@@ -807,4 +805,7 @@
     color: #FFFFFF;
     margin-left: 11px;
     float: left;
+}
+.nav1,.content2,.content3,.content4,.content5 {
+    background:#fff;
 }

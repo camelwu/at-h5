@@ -18,10 +18,11 @@ ul,ol{
     padding-left:24px;
 }
 .cl_search i{
-    position:absolute;left:47px;top:10px;display:block;
-    background:url("../images/city_search.png");
-    background-size:11px 11px;
-    width:11px;height:11px;
+    position:absolute;left:47px;top:8px;display:block;
+    width:14px;height:14px;
+    background:url("../images/1.png");
+    background-size:14px 14px;
+
 }
 .cl_curr{
     margin-top:45px;

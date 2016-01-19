@@ -44,6 +44,9 @@ var lsf_myweb={
         }else{
             arguments[0].style[arguments[1]]=arguments[2];
         }
+    },
+    "getStyle":function(obj,sName){
+        return (obj.currentStyle?obj.currentStyle:getComputedStyle(obj,false))[sName];
     }
 };
 function myCityList(id,url){
