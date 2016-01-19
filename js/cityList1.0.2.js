@@ -303,7 +303,7 @@ myCityList.prototype={
                     hotUl.children[i].style.color='#666';
                 }
                 oSrc.style.color='rgb(255,180,19)';
-                localStorage[_this.city]=oSrc.innerHTML;
+                sessionStorage[_this.city]=oSrc.innerHTML;
                 document.getElementById(_this.id).value=oSrc.innerHTML;
                 //删除城市列表
                 document.body.removeChild(_this.oDiv);
@@ -341,7 +341,7 @@ myCityList.prototype={
                         obj.children[i].style.color='rgb(27,27,27)';
                     }
                     oSrc.style.color='rgb(255,180,19)';
-                    localStorage[_this.city]=oSrc.innerHTML;
+                    sessionStorage[_this.city]=oSrc.innerHTML;
                     document.getElementById(_this.id).value=oSrc.innerHTML;
                     //删除城市列表
                     document.body.removeChild(_this.oDiv);

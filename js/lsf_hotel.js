@@ -5,6 +5,39 @@
 /**
  * Created by changlv on 2015/12/11.
  */
+
+var lsf_myweb={
+    "getbyid":function(id){
+        return document.getElementById(id);
+    },
+    "getbytag":function(obj,tag){
+        return obj.getElementsByTagName(tag);
+    },
+    "getbyclass":function(obj,sClass){
+        if(obj.getElementsByClassName){
+            return obj.getElementsByClassName(sClass);
+        }else{
+            var aResult=[];
+            var aEle=obj.getElementsByTagName('*');
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            for(var i=0;i<aEle.length;i++){
+                if(aEle[i].className.search(reg)!=-1){
+                    aResult.push(aEle[i]);
+                }
+            }
+            return aResult;
+        }
+    },
+    "bind":function(obj,sEv,fn){
+        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    },
+    "stopPropagation":function(event){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+    }
+};
+
+//董振昊代码
 function fun11(){
     var choose=document.getElementById("choose");
     var show=document.getElementById("show");
@@ -30,26 +63,81 @@ var ho_i3=document.getElementById('ho_i3');
 var ho_i4=document.getElementById('ho_i4');
 var ho_i7=document.getElementById('ho_i7');
 var ho_i6=document.getElementById('ho_i6');
-ho_i1.onclick=function fun1(ev){
+function oUp(obj1,obj2,start,end){
+    lsf_myweb.bind(obj1,'click',function(ev){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+        if(parseInt(this.parentNode.children[0].value)<end){
+            this.parentNode.children[0].value++;
+        }
+        if( parseInt(this.parentNode.children[0].value)<end){
+            if(parseInt(this.parentNode.children[0].value)>start){
+                obj2.style.background='url("images/down1.png") no-repeat';
+                obj2.style.backgroundSize='23px 23px';
+            }
+        }else{
+            this.style.background='url("images/up2.png") no-repeat';
+            this.style.backgroundSize='23px 23px';
+        }
+    });
+};
+function oDown(obj1,obj2,start,end){
+    lsf_myweb.bind(obj1,'click',function(ev){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+        if(parseInt(this.parentNode.children[0].value)>start){
+            //console.log(parseInt(this.parentNode.children[0].value));
+            this.parentNode.children[0].value--;
+        }
+        if(parseInt(this.parentNode.children[0].value)>start){
+            if(parseInt(this.parentNode.children[0].value)<end){
+                obj2.style.background='url("images/up1.png") no-repeat';
+                obj2.style.backgroundSize='23px 23px';
+            }
+        }else{
+            this.style.background='url("images/down2.png") no-repeat';
+            this.style.backgroundSize='23px 23px';
+        }
+    });
+}
+oUp(ho_i1,ho_i2,1,10);
+oDown(ho_i2,ho_i1,1,10);
+oUp(ho_i7,ho_i6,1,1000);
+oDown(ho_i6,ho_i7,1,1000);
+oUp(ho_i3,ho_i4,0,1000);
+oDown(ho_i4,ho_i3,0,1000);
+/*ho_i1.onclick=function fun1(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    if( this.parentNode.children[0].value<10){
-        this.parentNode.children[0].value++;
+    this.parentNode.children[0].value++;
+    if( parseInt(this.parentNode.children[0].value)<10){
+        if(parseInt(this.parentNode.children[0].value)>1){
+            ho_i2.style.background='url("images/down1.png") no-repeat';
+            ho_i2.style.backgroundSize='23px 23px';
+        }
     }else{
+        this.style.background='url("images/up2.png") no-repeat';
+        this.style.backgroundSize='23px 23px';
         return false;
     }
-}
-ho_i2.onclick=function fun2(ev){
+}*/
+/*ho_i2.onclick=function fun2(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    if(this.parentNode.children[0].value>1){
-        this.parentNode.children[0].value--;
+    this.parentNode.children[0].value--;
+    if(parseInt(this.parentNode.children[0].value)>1){
+        if(parseInt(this.parentNode.children[0].value)<10){
+            ho_i1.style.background='url("images/up1.png") no-repeat';
+            ho_i1.style.backgroundSize='23px 23px';
+        }
     }else{
+        ho_i2.style.background='url("images/down2.png") no-repeat';
+        ho_i2.style.backgroundSize='23px 23px';
         return false;
     }
-}
+}*/
 
-ho_i7.onclick=function fun7(ev){
+/*ho_i7.onclick=function fun7(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     this.parentNode.children[0].value++;
@@ -62,9 +150,9 @@ ho_i6.onclick=function fun6(ev){
     }else{
         return false;
     }
-}
+}*/
 
-ho_i3.onclick=function fun3(ev){
+/*ho_i3.onclick=function fun3(ev){
     var oEvent=ev||event;
     oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
     this.parentNode.children[0].value++;
@@ -77,7 +165,7 @@ ho_i4.onclick=function fun4(ev){
     }else{
         return false;
     }
-}
+}*/
 
 function focus1(){
     var input1=document.getElementById("input1");
@@ -161,37 +249,36 @@ function Inter(){
     //董振昊js代码结束
 
 //刘少飞js代码
-var lsf_myweb={
-    "getbyid":function(id){
-        return document.getElementById(id);
-    },
-    "getbytag":function(obj,tag){
-        return obj.getElementsByTagName(tag);
-    },
-    "getbyclass":function(obj,sClass){
-        if(obj.getElementsByClassName){
-            return obj.getElementsByClassName(sClass);
-        }else{
-            var aResult=[];
-            var aEle=obj.getElementsByTagName('*');
-            var reg=new RegExp('\\b'+sClass+'\\b','g');
-            for(var i=0;i<aEle.length;i++){
-                if(aEle[i].className.search(reg)!=-1){
-                    aResult.push(aEle[i]);
-                }
-            }
-            return aResult;
+
+
+function inpChange(id,myText){
+    var oInp=document.getElementById(id);
+    oInp.onfocus=function(){
+        if(this.value==myText){
+            this.value='';
+            this.style.color='#484848';
         }
-    },
-    "bind":function(obj,sEv,fn){
-        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
-    },
-    "stopPropagation":function(event){
-        var oEvent=ev||event;
-        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    }
-};
+    };
+    oInp.onblur=function(){
+        if(!this.value){
+            this.value='酒店名';
+            this.style.color='#d1d1d1';
+        }
+    };
+}
+//酒店输入框
+inpChange('hotelname','酒店名');
+
 (function(){
+//目的地输入框去掉光标
+    var address_broad=document.getElementById('input1');
+    var address_demosic=document.getElementById('input2');
+    lsf_myweb.bind(address_broad,'focus',function(){
+        this.blur();
+    });
+    lsf_myweb.bind(address_demosic,'focus',function(){
+        this.blur();
+    });
     //日历
     function n2c(num){
         switch (parseInt(num)){
@@ -214,7 +301,7 @@ var lsf_myweb={
                 return '六';
                 break;
             case 0:
-                return '七';
+                return '日';
                 break;
         };
     }
@@ -232,16 +319,20 @@ var lsf_myweb={
     var checkIn=lsf_myweb.getbyid('CheckInDate');
     var checkOut=lsf_myweb.getbyid('CheckOutDate');
     var content2=lsf_myweb.getbyid('content2');
+    var week_span1=lsf_myweb.getbyid('week_span1');
+    var week_span2=lsf_myweb.getbyid('week_span2');
     var oDate=new Date();
     var y=oDate.getFullYear();
     var m=oDate.getMonth()+1;
     var d=oDate.getDate();
     var oDate1=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+2);
-    var oDate2=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+5);
+    var oDate2=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+3);
     var beginDate=oDate1.getFullYear()+'-'+toDou(oDate1.getMonth()+1)+'-'+toDou(oDate1.getDate());
     var leaveDate=oDate2.getFullYear()+'-'+toDou(oDate2.getMonth()+1)+'-'+toDou(oDate2.getDate());
     checkIn.value=beginDate;
     checkOut.value=leaveDate;
+    week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
     var obj={};
     obj[beginDate]="入住";
     obj[leaveDate]="离店";
@@ -254,17 +345,48 @@ var lsf_myweb={
         var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
         var out = _CalF.$('input',that.input);
         var tal = _CalF.$('#total_day',that.input);
-        for(i = 0;i<2;i++){
-            var arr3=[];
-            arr.push(sels[i].parentNode.getAttribute("data-day"));
-            arr3=sels[i].parentNode.getAttribute("data-day").split('-');
-            arr3[1]=toDou(arr3[1]);
-            arr3[2]=toDou(arr3[2]);
-            out[i].value = arr3.join('-');
+        beginDate=sels[0].parentNode.getAttribute("data-day").split('-').join('-');
+        leaveDate=sels[1].parentNode.getAttribute("data-day").split('-').join('-');
+        //console.log(this.time);
+
+        //console.log(myDate1);
+        //console.log(obj);
+        //console.log(sels[0].parentNode.getAttribute("data-day"));
+        //console.log(sels[1].parentNode.getAttribute("data-day"));
+        var liveDate=sels[0].parentNode.getAttribute("data-day").split('-');
+        var leaveDate=sels[1].parentNode.getAttribute("data-day").split('-');
+        for(var i=0;i<liveDate.length;i++){
+            liveDate[i]=liveDate[i]<10?'0'+liveDate[i]:liveDate[i];
         }
-        tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
+        for(var i=0;i<leaveDate.length;i++){
+            leaveDate[i]=leaveDate[i]<10?'0'+leaveDate[i]:leaveDate[i];
+        }
+        //console.log(liveDate);
+        liveDate=liveDate.join('-');
+        leaveDate=leaveDate.join('-');
+        //console.log(liveDate);
+        out[0].value=liveDate;
+        out[1].value=leaveDate;
+        arr.push(liveDate);
+        arr.push(leaveDate);
+        //console.log(arr);
+        //修改calendar传入的参数obj的值
+        obj={};
+        console.log(out[0].value+':'+out[1].value);
+        obj[out[0].value]="入住";
+        obj[out[1].value]="离店";
+        this.time=obj;
+        //console.log(this.time);
+        //console.log(arr);
+        //console.log(new Date(arr[1]));
+        var live_y=arr[0].split('-')[0];
+        var live_m=arr[0].split('-')[1]-1;
+        var live_d=arr[0].split('-')[2];
+        var leave_y=arr[1].split('-')[0];
+        var leave_m=arr[1].split('-')[1]-1;
+        var leave_d=arr[1].split('-')[2];
+        tal.innerHTML = (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
         that.removeDate();
-        that.header.parentNode.removeChild(that.header);
         var oDate1=new Date(arr[0].split('-')[0],(arr[0].split('-')[1]-1),arr[0].split('-')[2]);
         var oday1=oDate1.getDay();
         var oDate2=new Date(arr[1].split('-')[0],(arr[1].split('-')[1]-1),arr[1].split('-')[2]);
@@ -274,6 +396,8 @@ var lsf_myweb={
         lsf_myweb.getbyid('week_span2').innerHTML='周'+n2c(oday2)+' 离店';
     }
     var myDate1 = new Calender2({id: 'content2', num: 13, time: obj});
+
+
     /*content2.onclick=function() {
      var obj={};
      // cdDate.style.display = 'block';
@@ -328,10 +452,18 @@ var lsf_myweb={
 
 
     //城市
-    var target_place=document.getElementById('arr1');
-    var target_city=document.getElementById('input1');
-    lsf_myweb.bind(target_place,'click',function(){
+    var domestic_target_place=document.getElementById('arr2');
+    var domestic_target_city=document.getElementById('input2');
+    var abroad_target_place=document.getElementById('arr1');
+    var abroad_target_city=document.getElementById('input1');
+    //国内城市
+    lsf_myweb.bind(abroad_target_city,'click',function(){
         var citys=new myCityList('input1','hotel.html');
+        //alert(citys.city);
+    });
+    //国际城市
+    lsf_myweb.bind(domestic_target_city,'click',function(){
+        var citys=new myCityList('input2','hotel.html');
         //alert(citys.city);
     })
 })();

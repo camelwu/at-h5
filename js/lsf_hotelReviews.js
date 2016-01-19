@@ -20,6 +20,16 @@
             return aResult;
         }
     },
+    "addClass":function(obj,sClass){
+        if(obj.className){
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            if(obj.className.search(reg)==-1){
+                obj.className+=' '+sClass;
+            }
+        }else{
+            obj.className=sClass;
+        }
+    },
     bind:function(obj,sEv,fn){
         obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
     },
@@ -119,7 +129,7 @@
     function V(data){
         if(!data)return;
         var comments=data[0].ReviewCommentsList;
-        //console.log(data);
+        console.log(data);
         var str1='<section>'+
             '<p>设施<i>'+data[0].ReviewRatingsList[0].ScoringScaleID+'</i>分</p>'+
             '<p class="lsf_gra_p2">客房<i>'+data[0].ReviewRatingsList[1].ScoringScaleID+'</i>分</p>'+
@@ -133,59 +143,129 @@
             '<p class="lsf_gra_p2">物有值<i>'+data[0].ReviewRatingsList[5].ScoringScaleID+'</i>分</p>'+
             '</section';
         var str2='';
-        for(var i=0;i<comments.length;i++){
-            var star=parseFloat(comments[i].AvgReviewerRating);
-            var str3='';
-            for(var j=0;j<5;j++){
-                if((j+1)<=star){
-                    str3+='<li class="fl" style="background:url(images/ui/icons1.png) -0.3rem -3.8rem;background-size:40rem 12rem;"></li>';
-                }else if(star>j&&star<(j+1)){
-                    str3+='<li class="fl" style="background:url(images/ui/icons1.png) -1.4rem -3.8rem;background-size:40rem 12rem;"></li>';
-                }else{
-                    str3+='<li class="fl" style="background:url(images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;"></li>';
+        //评论分页设置
+        function num_show(start,end){
+            var myStart=start;
+            var myEnd=end;
+            //dis是每次显示的评论条数
+            var dis=myEnd-myStart;
+            //console.log(comments.length);
+            //console.log(dis);
+            if(myEnd<comments.length){
+                for(var i=myStart;i<myEnd;i++){
+                    var star=parseFloat(comments[i].AvgReviewerRating);
+                    var str3='';
+                    for(var j=0;j<5;j++){
+                        if((j+1)<=star){
+                            str3+='<li class="fl" style="background:url(images/ui/icons1.png) -0.3rem -3.8rem;background-size:40rem 12rem;"></li>';
+                        }else if(star>j&&star<(j+1)){
+                            str3+='<li class="fl" style="background:url(images/ui/icons1.png) -1.4rem -3.8rem;background-size:40rem 12rem;"></li>';
+                        }else{
+                            str3+='<li class="fl" style="background:url(images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;"></li>';
+                        }
+                    }
+                    str2+='<div class="reBox">'+
+                        '<div class="clearfix lsf_reTitle">'+
+                        '<h2 class="fl">'+comments[i].Title+'</h2>'+
+                        '<ol class="clearfix fr lsf_reSta">'+str3+
+                        '</ol>'+
+                        '</div>'+
+                        '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].Comments)+'</span>'+
+                        '<i class="fr drop_down"></i>'+
+                        '</p>'+
+                        '<div class="lsf_reUser">'+
+                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
+                        '<span class="clearfix reu_span2"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
+                        '</div>'+
+                        '</div>';
+                }
+                lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
+                lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
+                notShow();
+                myDown();
+                str1='';
+                str2='';
+                var oMore=document.createElement('div');
+                oMore.innerHTML='加载更多';
+                lsf_myweb.addClass(oMore,'hr_more');
+                lsf_myweb.getbyid('lsf_reDiscuss').appendChild(oMore);
+                lsf_myweb.bind(oMore,'click',function(){
+                    this.style.display='none';
+                    myStart=myEnd;
+                    myEnd=myStart+dis;
+                    //console.log(myStart+'--'+myEnd)
+                    num_show(myStart,myEnd);
+                })
+            }else{
+                for(var i=myStart;i<comments.length;i++){
+                    var star=parseFloat(comments[i].AvgReviewerRating);
+                    var str3='';
+                    for(var j=0;j<5;j++){
+                        if((j+1)<=star){
+                            str3+='<li class="fl" style="background:url(images/ui/icons1.png) -0.3rem -3.8rem;background-size:40rem 12rem;"></li>';
+                        }else if(star>j&&star<(j+1)){
+                            str3+='<li class="fl" style="background:url(images/ui/icons1.png) -1.4rem -3.8rem;background-size:40rem 12rem;"></li>';
+                        }else{
+                            str3+='<li class="fl" style="background:url(images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;"></li>';
+                        }
+                    }
+                    str2+='<div class="reBox">'+
+                        '<div class="clearfix lsf_reTitle">'+
+                        '<h2 class="fl">'+comments[i].Title+'</h2>'+
+                        '<ol class="clearfix fr lsf_reSta">'+str3+
+                        '</ol>'+
+                        '</div>'+
+                        '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].Comments)+'</span>'+
+                        '<i class="fr drop_down"></i>'+
+                        '</p>'+
+                        '<div class="lsf_reUser">'+
+                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
+                        '<span class="clearfix reu_span2"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
+                        '</div>'+
+                        '</div>';
+                }
+                lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
+                lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
+                notShow();
+                myDown();
+            }
+
+        }
+        num_show(0,10);
+        function notShow(){
+            var com_cont=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'com_cont');
+            var coms=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'comments');
+            //评论数小于110字节的，不显示下拉按钮
+            for(var i=0;i<com_cont.length;i++){
+                if(count(com_cont[i].innerHTML).n<=110){
+                    coms[i].innerHTML='<span class="com_cont">'+comments[i].Comments+'</span>';
                 }
             }
-            str2+='<div class="reBox">'+
-                '<div class="clearfix lsf_reTitle">'+
-                '<h2 class="fl">'+comments[i].Title+'</h2>'+
-                '<ol class="clearfix fr lsf_reSta">'+str3+
-                '</ol>'+
-                '</div>'+
-                '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].Comments)+'</span>'+
-                '<i class="fr drop_down"></i>'+
-                '</p>'+
-                '<div class="lsf_reUser">'+
-                '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
-                '<span class="clearfix reu_span2"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
-                '</div>'+
-                '</div>';
         }
-        lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
-        lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
-        var com_cont=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'com_cont');
-        var coms=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'comments');
-        var reBox=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'reBox');
-        //对评论下拉做点击事件，点击显示全部评论内容
-        for(var i=0;i<reBox.length;i++){
-            (function(index){
-                var oP=lsf_myweb.getbyclass(reBox[index],'comments')[0];
-                reBox[index].onclick=function(ev){
-                    var oEvent=ev||event;
-                    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-                    var reg=new RegExp('\\b'+'drop_down'+'\\b','g');
-                    var oSrc=oEvent.srcElement||oEvent.target;
-                    if(oSrc.className.search(reg)!=-1){
-                        oP.innerHTML='<span>'+comments[index].Comments+'</span>';
-                    }
-                };
-            })(i);
-        }
-        //评论数小于110字节的，不显示下拉按钮
-        for(var i=0;i<com_cont.length;i++){
-            if(count(com_cont[i].innerHTML).n<=110){
-                coms[i].innerHTML='<span class="com_cont">'+comments[i].Comments+'</span>';
+        function myDown(){
+            var reBox=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'reBox');
+            //对评论下拉做点击事件，点击显示全部评论内容
+            for(var i=0;i<reBox.length;i++){
+                (function(index){
+                    var oP=lsf_myweb.getbyclass(reBox[index],'comments')[0];
+                    reBox[index].onclick=function(ev){
+                        var oEvent=ev||event;
+                        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+                        var reg=new RegExp('\\b'+'drop_down'+'\\b','g');
+                        var oSrc=oEvent.srcElement||oEvent.target;
+                        if(oSrc.className.search(reg)!=-1){
+                            oSrc.style.display='none';
+                            var oSpan=oSrc.parentNode.firstElementChild||oSrc.parentNode.firstChild;
+                            oSpan.innerHTML=comments[index].Comments;
+                            //alert(1);
+                            //oP.innerHTML='<span>'+comments[index].Comments+'</span>';
+                        }
+                    };
+                })(i);
             }
-        }
+
+        };
+
     }
 
 
