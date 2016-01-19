@@ -34,12 +34,39 @@ var lsf_myweb={
     "stopPropagation":function(event){
         var oEvent=ev||event;
         oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+    },
+    "pageY":function(node){
+        if(node.offsetParent){
+            return node.offsetTop+lsf_myweb.pageY(node.offsetParent);
+        }else{
+            return node.offsetTop;
+        }
+    },
+    "pageX":function(node){
+        if(node.offsetParent){
+            return node.offsetLeft+lsf_myweb.pageX(node.offsetParent);
+        }else{
+            return node.offsetLeft;
+        }
+    },
+    "getStyle":function(obj,sName){
+        return (obj.currentStyle?obj.currentStyle:getComputedStyle(obj,false))[sName];
+    },
+    "setStyle":function(){
+        if(arguments.length==2){
+            for(var name in arguments[1]){
+                arguments[0].style[arguments[1][name]]=arguments[1][name];
+            }
+        }else{
+            arguments[0].style[arguments[1]]=arguments[2];
+        }
     }
 };
 
 
 //国际国内切换实现滑动效果
 var owlQuoteSlider = $(".quote-slider");
+var changebOk=true;
 owlQuoteSlider.owlCarousel({
     items : 1,
     itemsDesktop : [1199,1],
@@ -53,16 +80,35 @@ owlQuoteSlider.owlCarousel({
     paginationSpeed : 300,
     rewindSpeed : 250,
     pagination:false,
-    autoPlay : false
+    autoPlay : false,
+    afterMove:countryChange
 });
-
+function countryChange(){
+    var Inter=document.getElementById('Inter');
+    var Dom=document.getElementById('Dom');
+    var content1=document.getElementById('content1');
+    console.log(lsf_myweb.getStyle(content1.parentNode.parentNode,"transform"));
+    //console.log(lsf_myweb.getStyle(content1.parentNode.parentNode,"left"));
+    if(!changebOk){
+        Dom.className='';
+        Inter.className='on';
+    }else{
+        Dom.className='on';
+        Inter.className='';
+    }
+    changebOk=!changebOk;
+}
 $("#Dom").click(function() {
-    owlQuoteSlider.trigger('owl.next');
-    return false;
+    if(changebOk){
+        owlQuoteSlider.trigger('owl.next');
+        return false;
+    }
 });
 $("#Inter").click(function() {
-    owlQuoteSlider.trigger('owl.prev');
-    return false;
+    if(!changebOk){
+        owlQuoteSlider.trigger('owl.prev');
+        return false;
+    }
 });
 
 
