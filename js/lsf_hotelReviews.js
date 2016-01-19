@@ -174,16 +174,14 @@
                         '<i class="fr drop_down"></i>'+
                         '</p>'+
                         '<div class="lsf_reUser">'+
-                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
+                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl hr_city">'+comments[i].CountryName+'</i></span>'+
                         '<span class="clearfix reu_span2"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
                         '</div>'+
                         '</div>';
                 }
-                lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
                 lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
                 notShow();
                 myDown();
-                str1='';
                 str2='';
                 var oMore=document.createElement('div');
                 oMore.innerHTML='加载更多';
@@ -224,13 +222,14 @@
                         '</div>'+
                         '</div>';
                 }
-                lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
+
                 lsf_myweb.getbyid('lsf_reDiscuss').innerHTML+=str2;
                 notShow();
                 myDown();
             }
 
         }
+        lsf_myweb.getbyid('lsf_reDetail_grade').innerHTML=str1;
         num_show(0,10);
         function notShow(){
             var com_cont=lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'),'com_cont');
