@@ -202,7 +202,7 @@ Calender.prototype = {
 					m=month<10?'0'+month:month;
 					d=i<10?'0'+i:i;
 					if(tims[year+'-'+m+'-'+d]){
-						pstr = '<a class="live data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
+						pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
 					}else{
 						pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
 					}
@@ -350,6 +350,7 @@ Calender.prototype = {
             out[0].innerHTML=sels[0].parentNode.getAttribute("data-day");
             out[1].innerHTML=sels[1].parentNode.getAttribute("data-day");
         }
+        console.log(out[0]+':'+out[1]);
         var live_y=arr[0].split('-')[0];
         var live_m=arr[0].split('-')[1]-1;
         var live_d=arr[0].split('-')[2];
@@ -371,10 +372,11 @@ Calender.prototype = {
 		l=ospan.length,
 		links = _CalF.$('.live',this.dd),
 		len=links.length;
-		//console.log(ospan[1].parentNode);
+		console.log(ospan[1].parentNode.outerHTML+ospan.length);
 		if(that.op==0){
 			for(var i=0;i<l;i++){
 				var v = ospan[i].parentNode.getAttribute("data-day");
+                //alert(v);
 				var a = v.split("-");
 				ospan[i].parentNode.innerHTML = a[a.length-1];
 			}

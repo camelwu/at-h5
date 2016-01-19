@@ -345,15 +345,39 @@ inpChange('hotelname','酒店名');
         var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
         var out = _CalF.$('input',that.input);
         var tal = _CalF.$('#total_day',that.input);
-        for(i = 0;i<2;i++){
-            var arr3=[];
-            arr.push(sels[i].parentNode.getAttribute("data-day"));
-            arr3=sels[i].parentNode.getAttribute("data-day").split('-');
-            arr3[1]=toDou(arr3[1]);
-            arr3[2]=toDou(arr3[2]);
-            out[i].value = arr3.join('-');
+        beginDate=sels[0].parentNode.getAttribute("data-day").split('-').join('-');
+        leaveDate=sels[1].parentNode.getAttribute("data-day").split('-').join('-');
+        //console.log(this.time);
+
+        //console.log(myDate1);
+        //console.log(obj);
+        //console.log(sels[0].parentNode.getAttribute("data-day"));
+        //console.log(sels[1].parentNode.getAttribute("data-day"));
+        var liveDate=sels[0].parentNode.getAttribute("data-day").split('-');
+        var leaveDate=sels[1].parentNode.getAttribute("data-day").split('-');
+        for(var i=0;i<liveDate.length;i++){
+            liveDate[i]=liveDate[i]<10?'0'+liveDate[i]:liveDate[i];
         }
-        console.log(arr);
+        for(var i=0;i<leaveDate.length;i++){
+            leaveDate[i]=leaveDate[i]<10?'0'+leaveDate[i]:leaveDate[i];
+        }
+        //console.log(liveDate);
+        liveDate=liveDate.join('-');
+        leaveDate=leaveDate.join('-');
+        //console.log(liveDate);
+        out[0].value=liveDate;
+        out[1].value=leaveDate;
+        arr.push(liveDate);
+        arr.push(leaveDate);
+        //console.log(arr);
+        //修改calendar传入的参数obj的值
+        obj={};
+        console.log(out[0].value+':'+out[1].value);
+        obj[out[0].value]="入住";
+        obj[out[1].value]="离店";
+        this.time=obj;
+        //console.log(this.time);
+        //console.log(arr);
         //console.log(new Date(arr[1]));
         var live_y=arr[0].split('-')[0];
         var live_m=arr[0].split('-')[1]-1;
