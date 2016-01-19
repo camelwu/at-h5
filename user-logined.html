@@ -25,60 +25,122 @@
     <link href="styles/style.css"		rel="stylesheet" type="text/css">
     <link href="css/user.css"	rel="stylesheet" type="text/css">
 </head>
-<body onload="u_logined()">
-<div id="preloader">
-    <div id="status">
-        <p class="center-text">
-            Loading ...
-            <em>Loading depends on your connection speed!</em>
-        </p>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                Loading ...
+                <em>Loading depends on your connection speed!</em>
+            </p>
+        </div>
     </div>
-</div>
-<div class="all-elements">
-    <!-- Page Content-->
-    <div id="content" class="snap-content">
-        <div class="user-top half-bottom">
-            <div class="user-header" id="showMessage">
-                <a href="javascript:window.history.go(-1);" class="icons header-back"> </a>
-                <a href="javascript:void(0);" class="icon header-msg"><div class="info-circle1">2</div></a>
-            </div>
-            <div class="user-info">
-                <img id="userIcon" src="images/ui/user-heads.png">
-                <a href="user-perInfo.html" id="u_info"><div class="user-name"><span id="user_name"></span><b id="user_sex"></b></div></a>
-                <div id="loginShow">
+    <div class="all-elements">
+        <!-- Page Content-->
+        <div id="content" class="snap-content">
+            <div class="user-top half-bottom">
+                <div class="user-header" id="showMessage">
+                    <!--<a href="javascript:window.history.go(-1);" class="icons header-back"> </a>-->
+                    <!--<a href="javascript:void(0);" class="icon header-msg"><div class="info-circle1">2</div></a>-->
                 </div>
-                <div class="unl_div">
-                    <ul class="user-menu">
-                        <li>全部订单</li>
-                        <li>待付款<div class="info-circle2">12</div></li>
-                        <li>未出行</li>
-                        <li>待评价</li>
+                <div class="user-info">
+                    <img id="userIcon" src="images/ui/photo-man.png">
+                    <a href="user-perInfo.html" id="u_info"><div class="user-name"><span id="user_name"></span><b id="user_sex"></b></div></a>
+                    <div id="loginShow">
+                    </div>
+                    <div class="unl_div">
+                        <ul id="user_order" class="user-menu">
+                            <li>全部订单</li>
+                            <li>待付款<div class="info-circle2">12</div></li>
+                            <li>未出行</li>
+                            <li>待评价</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="s_lists">
+                <li id="bindCard">
+                    <b class="icons open-info"></b><a href="user-oftenInfo.html">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
+                </li>
+                <li id="setPwd">
+                    <b class="icons open-fav"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">我的收藏<b class="icons open-arw"></b></a>
+                </li>
+                <li id="browsHis">
+                    <b class="icon open-his"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">浏览历史<b class="icons open-arw"></b></a>
+                </li>
+                <li id="setting">
+                    <b class="icon open-set"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">设置<b class="icons open-arw"></b></a>
+                </li>
+                <li id="verifyName">
+                    <b class="icons open-msg"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">联系我们<b class="icons open-arw"></b></a>
+                </li>
+            </ul>
+        </div>
+        <!-- 链接页-->
+        <div id="link_page" class="all-elements" style="display: none">
+            <div class="header" id="vlm-login">
+                <a id="close_page" class="icons header-back"></a>
+                <h3 id="title">我的收藏/浏览历史/设置/联系我们</h3>
+            </div>
+            <div class="user-content">
+                <div id="noSignal">
+                    <div class="black-con">
+                        <div class="bu_icon wifi"></div><br/>
+                        网络不给力，点击页面再试试吧
+                    </div>
+                </div>
+                <div id="myCollege">
+                    <div class="black-con">
+                        <div class="bu_icon college"></div><br/>
+                        没有收藏
+                    </div>
+                </div>
+
+                <div id="u_setting">
+                    <div class="u_name">新消息通知
+                        <b class="icon set-chose1" onclick="ifOpen()"></b>
+                    </div>
+                    <div class="name-text" style="margin-bottom:10px">可在IPHONE“设置-亚洲旅游-通知”中修改</div>
+                    <div class="u_name">促销信息
+                        <b class="icon set-chose2" onclick="ifOpen()"></b>
+                    </div>
+                    <div class="u_name" style="text-align: center;color:#ffb413">清除缓存（3.16M）
+                    </div>
+                </div>
+
+                <div id="contactus">
+                    <ul class="u_remark">
+                        <li>
+                            <b class="icon user-wechat"></b>
+                            <div class="con-info">
+                                <p class="con-title1">微信公众号</p>
+                                <div>周一至周日 9:00-19:00</div>
+                            </div>
+                        </li>
+                        <li>
+                            <b class="icon user-service"></b>
+                            <div class="con-info">
+                                <p class="con-title2">客服邮箱</p>
+                            </div>
+                        </li>
+                        <li>
+                            <b class="icon service-phone"></b>
+                            <div class="con-info">
+                                <p class="con-title2">客服电话</p>
+                            </div>
+                        </li>
+                        <li>
+                            <b class="icon user-us"></b>
+                            <div class="con-info">
+                                <p class="con-title2">关于我们</p>
+                            </div>
+                        </li>
                     </ul>
+                    <div class="con-text">亚洲旅游是一家专注于一站式东南亚出境游的旅行客户端</div>
                 </div>
             </div>
         </div>
-        <ul class="s_lists">
-            <li id="bindCard">
-                <b class="icons open-info"></b><a href="user-infolist.html">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
-            </li>
-            <li id="setPwd">
-                <b class="icons open-fav"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">我的收藏<b class="icons open-arw"></b></a>
-            </li>
-            <li id="browsHis">
-                <b class="icon open-his"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">浏览历史<b class="icons open-arw"></b></a>
-            </li>
-            <li id="setting">
-                <b class="icon open-set"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">设置<b class="icons open-arw"></b></a>
-            </li>
-            <li id="verifyName">
-                <b class="icons open-msg"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">联系我们<b class="icons open-arw"></b></a>
-            </li>
-        </ul>
     </div>
-</div>
+    <div id="menu"></div>
 <script src="js/require.js" data-main="js/user.js"></script>
-<script type="text/javascript" src="js/lib/jquery.js"></script>
-<script type="text/javascript" src="js/lib/vcm.js"></script>
-<script type="text/javascript" src="js/user-logined.js"></script>
 </body>
 </html>

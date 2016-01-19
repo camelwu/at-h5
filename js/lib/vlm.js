@@ -11,9 +11,10 @@
 	function(n) {
 		/*page view layout*/
 		var basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
-			home : ['首页', basePath],
-			order : ['订单', basePath + '/order.html'],
-			service : ['客服', basePath + '/service.html'],
+			home : ['首页', basePath + '/index.html'],
+			//order : ['订单', basePath + '/order.html'],
+			//service : ['客服', basePath + '/service.html'],
+			find :	['发现', basePath],
 			user : ['我的', basePath + '/user.html']
 		}, lStorage=window.localStorage
 		, sStorage=window.sessionStorage
@@ -26,9 +27,18 @@
 			var _k = _s.substring(0,_p);
 			_k = _k==""?"home":_k;
 			var _initPage = function(key) {
-				if(menus.hasOwnProperty(key)){
+			/*	if(menus.hasOwnProperty(key)){
 					_initMenu();
+				}*/
+				for(var temp in menus){
+					console.log(temp.indexOf(key));
+					if(key.indexOf(temp) != -1){
+
+						_initMenu();
+					}
+
 				}
+
 				if($(".header").length > 0){
 					$("#content").css("padding-top","45px");
 				}
@@ -70,25 +80,31 @@
 			function _initMenu() {
 				if (document.getElementById("menu")) {
 					var menuer = document.getElementById("menu");
-					menuer.className = "footer-menu-four-icons footer-menu";
+					menuer.className = "footer-menu-three-icons footer-menu";
 				} else {
 					var menuer = document.createElement('div');
 					menuer.id = "menu";
-					menuer.className = "footer-menu-four-icons footer-menu";
+					menuer.className = "footer-menu-three-icons footer-menu";
 					document.body.appendChild(menuer);
 					// var odiv = document.createElement('div');
 					// odiv.style.height = "5.1rem";
 					// document.getElementById("content").appendChild(odiv);
 				}
+
+
 				var _str = "";
 				for (var k in menus) {
-					var cn = k==_k ? "foot-"+k+"s":"foot-"+k;
+					var cn = _k.indexOf(k) != -1?"foot-"+k+"s":"foot-"+k;
 					_str += "<a href='" + menus[k][1] + "' class='" + cn + "'><i></i>" + menus[k][0] + "</a>";
 				}
 				menuer.innerHTML = _str;
 				$("#content").css("padding-bottom","51px");
 			};
+
+
 			_initPage(_k);
+
+
 		}, _loading = function() {
 			if ($("#preloader").css('dislay') == 'none') {
 				$("#status").fadeIn();

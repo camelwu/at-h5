@@ -41,8 +41,11 @@
         </div>
         <!-- Page Content-->
         <div id="content" class="snap-content">
-            <div class="f_btn button-yellow" style="margin-top: 10px" onclick="showAdd_page()">
+            <div class="f_btn button-orange" style="margin-top: 10px" onclick="showAdd_page()">
                 <b class="icons user-add"></b>新增常旅客户信息
+            </div>
+            <div class="black-con" style="display: none;">
+                您还没有设置常旅客，快添加吧！
             </div>
             <ul class="often-traveler">
                 <li class="eve-traveler" style="border-top:1px solid #dedede;">
@@ -66,6 +69,42 @@
             <div class="traveler-text">没有更多结果了</div>
         </div>
     </div>
+    <!--    编辑联系人页   -->
+    <div class="addtra-page" id="contact_page">
+        <div class="all-elements">
+            <div class="header">
+                <div class="header-quit" onclick="closeAdd_page()">取消</div>
+                <h3>新增常用旅客</h3>
+                <div class="header-finish">完成</div>
+            </div>
+            <!-- Page Content-->
+            <div class="user-content">
+                <div class="statement">以下信息必须真实有效</div>
+                <ul class="addtra-info">
+                    <li>
+                        <div>姓</div>
+                        <input type="text" placeholder="必须">
+                    </li>
+                    <li>
+                        <div>名</div>
+                        <input type="text" placeholder="必须">
+                    </li>
+                    <li>
+                        <div>国家和区号</div>
+                        <div>+86</div>
+                    </li>
+                    <li>
+                        <div>手机</div>
+                        <input type="text" placeholder="必须">
+                    </li>
+                    <li>
+                        <div>电子邮件</div>
+                        <input type="text" placeholder="必须">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <!--    新增常用旅客页   -->
     <div class="addtra-page" id="addtra-page">
         <div class="all-elements">
@@ -75,7 +114,7 @@
                 <div class="header-finish">完成</div>
             </div>
             <!-- Page Content-->
-            <div class="snap-content" style="padding-top: 45px;background-color: white;">
+            <div class="user-content">
                 <div class="addtra-title">旅客姓名<b class="icon user-must"></b></div>
                 <ul class="addtra-info">
                     <li>
@@ -149,8 +188,8 @@
                 <div class="header-finish">完成</div>
             </div>
             <!-- Page Content-->
-            <div class="snap-content" style="padding-top: 45px;background-color: white;">
-                <div class="f_btn button-yellow" style="margin-top: 10px" onclick="showAdd_page()">
+            <div class="user-content">
+                <div class="f_btn button-orange" style="margin-top: 10px" onclick="showAdd_page()">
                     <b class="icons user-add"></b>新增乘机人
                 </div>
                 <ul class="often-traveler">

@@ -8,15 +8,12 @@ function u_perInfo(){
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
     var password = sessionStorage.password;
-    //var data = JSON.parse(sessionStorage.data);
-    //console.log(data);
     var Parameters= {
         "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Password\":\""+password+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
         "Code": "0053"
     };
     c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
-
 
     var close_page = $("#close_page")[0];
     var amend_info = $("#amend_info")[0];
@@ -34,11 +31,13 @@ function u_perInfo(){
     var amendkey = $("#amendkey")[0];
     var sex = $("#sex")[0];
     var block = $("#block")[0];
-
-
     var array = title.innerHTML;
     var head = array.split("/");
 
+    function clearname(){
+        var name = document.getElementById("name");
+        name.value = "";
+    }
 
     function closeAmend(obj){
         obj.onclick = function(){
@@ -61,7 +60,6 @@ function u_perInfo(){
             }
             title.innerHTML = obj2;
             obj3.style.display = "block";
-            var li = info_content.getElementsByTagName("li");
             amend_info.style.display = "block";
         }
     }
@@ -157,7 +155,7 @@ function u_perInfo(){
     }
     phone_veri(phone_ver);
     //  修改密码
-    var key_btn = $("#key_btn")[0];
+    var newkey_btn = $("#newkey_btn")[0];
     function changeKey(obj){
         obj.onclick = function(){
             var input = document.getElementById("keyForm").getElementsByTagName("input");
@@ -184,14 +182,20 @@ function u_perInfo(){
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_newKey);
         }
     }
-    changeKey(key_btn);
+    changeKey(newkey_btn);
     //  修改密码获取验证
-    var newkey_btn = $("#newkey_btn")[0];
-
-}
-function clearname(){
-    var name = document.getElementById("name");
-    name.value = "";
+    var newkey_ver = $("#newkey_ver")[0];
+    function key_veri(obj){
+        obj.onclick = function(){
+            var Parameters = {
+                "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":3}",
+                "ForeEndType": 3,
+                "Code": "0058"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_keyVeri);
+        }
+    }
+    key_veri(newkey_ver);
 }
 function mycallback(ret){
     infoJson = eval('('+ret+')');
@@ -250,4 +254,20 @@ function mycallback_newKey(ret){
     }else{
         alert(myJson.Message);
     }
+}
+function mycallback_keyVeri(ret){
+    var c = new vcm();
+    var phone_ver = $("#phone_ver")[0];
+    console.log(ret);
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success){
+        c.Utils.sendMobileCode(phone_ver.value);
+    }else{
+        alert(myJson.Message);
+    }
+}
+function putting(){
+    var put = window.event.srcElement;
+    put.style.color = "484848";
 }

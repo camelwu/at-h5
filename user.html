@@ -26,7 +26,7 @@
 		<link href="styles/style.css"     		 rel="stylesheet">
 		<link href="css/user.css"	rel="stylesheet">
 	</head>
-	<body>
+	<body onload="init()">
 		<div id="preloader">
 			<div id="status">
 				<p class="center-text">
@@ -36,48 +36,145 @@
 			</div>
 		</div>
 		<div class="all-elements">
-<!-- Page Content-->
-    <div id="content" class="snap-content">
-        <div class="user-top half-bottom">
-            <div class="user-header" id="showMessage">
-                <a href="javascript:window.history.go(-1);" class="icons header-back"> </a>
-                <!-- <a href="javascript:void(0);" class="icon header-msg"></a> -->
-            </div>
-            <div class="user-info">
-                <img id="userIcon" src="images/ui/user-heads.png">
-                <a href="user-login.html" id="unloginShow">点击登录，体验更多</a>
-                <div id="loginShow">
+            <!-- Page Content-->
+            <div id="content" class="snap-content">
+                <div class="user-top half-bottom">
+                    <div class="user-header" id="showMessage">
+                        <!--<a href="#" class="icons header-back"> </a>-->
+                    </div>
+                    <div class="user-info">
+                        <img id="userIcon" src="images/ui/photo-man.png">
+                        <a href="user-login.html" id="unloginShow">点击登录，体验更多</a>
+                        <div id="loginShow">
+                        </div>
+                        <div class="unl_div">
+                            <ul class="user-menu">
+                                <li><a href="user-login.html" style="color:white">全部订单</a></li>
+                                <li><a href="user-login.html" style="color:white">待付款</a></li>
+                                <li><a href="user-login.html" style="color:white">未出行</a></li>
+                                <li><a href="user-login.html" style="color:white">待评价</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="unl_div">
-                    <ul class="user-menu">
-                        <li>全部订单</li>
-                        <li>待付款</li>
-                        <li>未出行</li>
-                        <li>待评价</li>
-                    </ul>
+                <ul class="s_lists">
+                    <li id="bindCard">
+                        <b class="icons open-info"></b><a href="user-login.html">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
+                    </li>
+                    <li id="setPwd">
+                        <b class="icons open-fav"></b><a href="user-login.html">我的收藏<b class="icons open-arw"></b></a>
+                    </li>
+                    <li id="browsHis">
+                        <b class="icon open-his"></b><a href="user-login.html">浏览历史<b class="icons open-arw"></b></a>
+                    </li>
+                    <li id="setting">
+                        <b class="icon open-set"></b><a id="a_set">设置<b class="icons open-arw"></b></a>
+                    </li>
+                    <li id="verifyName">
+                        <b class="icons open-msg"></b><a id="a_contact">联系我们<b class="icons open-arw"></b></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 链接页-->
+            <div id="link_page" class="all-elements" style="display: none;">
+                <div class="header" id="vlm-login">
+                    <a id="close_page" class="icons header-back"></a>
+                     <h3 id="title">设置/联系我们</h3>
+                </div>
+                <div class="user-content">
+                    <div id="u_setting">
+                        <div class="u_name">新消息通知
+                            <b class="icon set-chose1" onclick="ifOpen()"></b>
+                        </div>
+                        <div class="name-text" style="margin-bottom:10px">可在IPHONE“设置-亚洲旅游-通知”中修改</div>
+                        <div class="u_name">促销信息
+                            <b class="icon set-chose2" onclick="ifOpen()"></b>
+                        </div>
+                        <div class="u_name" style="text-align: center;color:#ffb413">清除缓存（3.16M）
+                        </div>
+                    </div>
+
+                    <div id="contactus">
+                        <ul class="u_remark">
+                            <li>
+                                <b class="icon user-wechat"></b>
+                                <div class="con-info">
+                                    <p class="con-title1">微信公众号</p>
+                                    <div>周一至周日 9:00-19:00</div>
+                                </div>
+                            </li>
+                            <li>
+                                <b class="icon user-service"></b>
+                                <div class="con-info">
+                                    <p class="con-title2">客服邮箱</p>
+                                </div>
+                            </li>
+                            <li>
+                                <b class="icon service-phone"></b>
+                                <div class="con-info">
+                                    <p class="con-title2">客服电话</p>
+                                </div>
+                            </li>
+                            <li>
+                                <b class="icon user-us"></b>
+                                <div class="con-info">
+                                    <p class="con-title2">关于我们</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="con-text">亚洲旅游是一家专注于一站式东南亚出境游的旅行客户端</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <ul class="s_lists">
-            <li id="bindCard">
-                <b class="icons open-info"></b><a href="javascript:void(0);">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
-            </li>
-            <!-- <li id="setPwd">
-                <b class="icons open-fav"></b><a href="javascript:void(0);">我的收藏<b class="icons open-arw"></b></a>
-            </li>
-            <li id="browsHis">
-                <b class="icon open-his"></b><a href="javascript:void(0);">浏览历史<b class="icons open-arw"></b></a>
-            </li>
-            <li id="setting">
-                <b class="icon open-set"></b><a href="javascript:void(0);">设置<b class="icons open-arw"></b></a>
-            </li> -->
-            <li id="verifyName">
-                <b class="icons open-msg"></b><a href="user-amendInfo.html">联系我们<b class="icons open-arw"></b></a>
-            </li>
-        </ul>
-    </div>
-		</div>
-		<script data-main="js/main.js" src="js/require.js"></script>
 		<div id="menu"></div>
+        <script src="js/require.js" data-main="js/user.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.js"></script>
+        <script type="text/javascript">
+            function init(){
+                var a_set = $("#a_set")[0];
+                var a_contact = $("#a_contact")[0];
+                var title = $("#title")[0];
+                var u_setting = $("#u_setting")[0];
+                var contactus = $("#contactus")[0];
+                var link_page = $("#link_page")[0];
+                var close_page = $("#close_page")[0];
+                var menu = $("#menu")[0];
+                var array = title.innerHTML;
+                var head = array.split("/");
+                function link(obj1,obj2){
+                    obj1.onclick = function(){
+                        menu.style.display = "none";
+                        if(obj1 == a_set){
+                            contactus.style.display = "none";
+                            u_setting.style.display = "block";
+                        }else{
+                            u_setting.style.display = "none";
+                            contactus.style.display = "block";
+                        }
+                        title.innerHTML = obj2;
+//                        obj3.style.display = "block";
+                        link_page.style.display = "block";
+                    }
+                }
+                link(a_set,head[0]);
+                link(a_contact,head[1]);
+                function close(obj){
+                    obj.onclick = function(){
+                        link_page.style.display = "none";
+                        menu.style.display = "block";
+                    }
+                }
+                close(close_page);
+            }
+            function ifOpen(){
+                var b = window.event.srcElement;
+                if(b.className == "icon set-chose1"){
+                    b.className = "icon set-chose2";
+                }else{
+                    b.className = "icon set-chose1";
+                }
+            }
+        </script>
 	</body>
 </html>

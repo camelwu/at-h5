@@ -51,15 +51,13 @@ require.config({
 		//	deps: ['jquery']
 		//}
 	},
-	urlArgs: "bust=" +  (new Date()).getTime()
+	//urlArgs: "bust=" +  (new Date()).getTime()
 });
 
 require(['jquery','custom','vcm','vlm'], function($,custom,vcm,vlm) {
-	//console.log("dataReady="+vcm);
+	//console.log("dataReady="+vlm);
 	var viewer = new vlm();
 	viewer._init();
-	function sub_frm(frm){
-		ss.val==""
-	}
+
 });
 //define

@@ -40,7 +40,7 @@
     <!-- Page Content-->
     <div id="content" class="snap-content">
         <div id="infolist" class="user-info-top">
-            头像<img src="images/ui/user-heads.png" class="user-it"/>
+            头像<img id="userIcon" src="images/ui/photo-man.png" class="user-it"/>
             <b class="icons open-rg" style="margin-top: 25px;"></b>
         </div>
         <ul class="s_lists">
@@ -74,7 +74,7 @@
                     <b class="icon name-close" onclick="clearname()"></b>
                 </div>
                 <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
-                <input id="nick_btn" class="f_btn button-yellow" type="button" value="保存"/>
+                <input id="nick_btn" class="f_btn button-orange" type="button" value="保存"/>
             </form>
         </li>
         <form id="infoForm" action="user-perInfo.html" method="post">
@@ -100,7 +100,7 @@
                     <input type="text" style="color:#d1d1d1;font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
                 </div>
             </li>
-                <input id="amend_btn" class="f_btn button-yellow" type="button" value="保存"/>
+                <input id="amend_btn" class="f_btn button-yorange" type="button" value="保存"/>
         </form>
         <li id="amendkey" style="display: none;">
             <form id="keyForm" action="user-perInfo.html" method="post">
@@ -122,7 +122,7 @@
                         <input class="fk_put" type="text" value placeholder="确认新密码" onkeydown="putting()" data-type="pass">
                     </li>
                 </ul>
-                <input id="newkey_btn" class="f_btn button-yellow" type="button" value="保存"/>
+                <input id="newkey_btn" class="f_btn button-orange" type="button" value="保存"/>
             </form>
         </li>
     </ul>

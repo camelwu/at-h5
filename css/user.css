@@ -29,8 +29,7 @@
     text-align: center;
     color: #fff;
     padding: 10px 20px;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
 }
 .open-pho{
     position: absolute;
@@ -60,7 +59,7 @@
 .unl_div{
     width: 94%;
     margin-left: 3%;
-    border-top:1px solid white;
+    border-top:1px solid rgba(255, 255, 255, 0.5);
 }
 .user-menu{
     height: 20px;
@@ -80,7 +79,8 @@
     -webkit-flex:1;
     flex:1;
     list-style-type: none;
-    border-left: 1px solid white;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: initial;
     text-align: center;
     line-height: 20px;
     color: white;
@@ -108,18 +108,60 @@
     top:10px;
     background-position: 6.5% 65%;
 }
-.header-msg{
-    position:absolute;
+.header-msg {
+    position: absolute;
     overflow: visible;
-    width:23px;
-    height:23px;
-    right:15px;
-    top:10px;
+    width: 23px;
+    height: 23px;
+    right: 15px;
+    top: 10px;
     background-position: 41% 2%;
+}
+.bu_icon{
+    background-image: url(../images/ui/bu.png);
+    background-repeat: no-repeat;
+    background-size: 159px 245px;
+    display:inline-block;
+}
+.college{
+    width: 84px;height: 81px;
+    background-position: 97% 51%;
+}
+.wifi{
+    width: 105px;height: 76px;
+    background-position: 9% 101%;
+}
+.order{
+    width: 67px;height: 80px;
+    background-position: 4% 51%;
+}
+.black-con{
+    margin: 0 auto;
+    margin-top: 30%;
+    text-align: center;
+    color:#999999;
 }
 /*
          个人中心已登录页css
 */
+.user-content{
+    position: absolute;
+    background-color: white;
+    top:45px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    z-index: 99;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
 .user-name{
     margin-bottom: 15px;
     font-size: 1.4rem;
@@ -520,7 +562,7 @@
     width: 21px;height: 20px;
     position: relative;
     margin-right:12px;
-    top: 5px;
+    top: 4px;
     background-position:54.4% -139px;
 }
 .often-traveler{
@@ -555,6 +597,10 @@
     width: 22px;height: 22px;
     float: right;
     background-position:49% 0.5%;
+}
+.statement{
+    padding:8px 15px;
+    color:#484848;
 }
 /*
          新增常旅页css
@@ -923,6 +969,9 @@
 */
 .login-phone{
     background-position:-24px -35px;
+}
+.login-mail{
+    background-position:-46px -35px;
 }
 .p_86{
     display: inline-block;
