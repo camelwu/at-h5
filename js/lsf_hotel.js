@@ -37,6 +37,35 @@ var lsf_myweb={
     }
 };
 
+
+//国际国内切换实现滑动效果
+var owlQuoteSlider = $(".quote-slider");
+owlQuoteSlider.owlCarousel({
+    items : 1,
+    itemsDesktop : [1199,1],
+    itemsDesktopSmall : [980,1],
+    itemsTablet: [768,1],
+    itemsTabletSmall: [480,1],
+    itemsMobile : [370,1],
+    singleItem : false,
+    itemsScaleUp : false,
+    slideSpeed : 800,
+    paginationSpeed : 300,
+    rewindSpeed : 250,
+    pagination:false,
+    autoPlay : false
+});
+
+$("#Dom").click(function() {
+    owlQuoteSlider.trigger('owl.next');
+    return false;
+});
+$("#Inter").click(function() {
+    owlQuoteSlider.trigger('owl.prev');
+    return false;
+});
+
+
 //董振昊代码
 function fun11(){
     var choose=document.getElementById("choose");
@@ -56,7 +85,12 @@ function Yes(){
     choose.style.display="none";
     show.style.display="none";
 }
-
+//预加载的图片
+$(window).load(function () {
+    $("#status").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
+});
+//房间数/人数/儿童数按钮事件
 var ho_i1=document.getElementById('ho_i1');
 var ho_i2=document.getElementById('ho_i2');
 var ho_i3=document.getElementById('ho_i3');
@@ -106,106 +140,15 @@ oUp(ho_i7,ho_i6,1,1000);
 oDown(ho_i6,ho_i7,1,1000);
 oUp(ho_i3,ho_i4,0,1000);
 oDown(ho_i4,ho_i3,0,1000);
-/*ho_i1.onclick=function fun1(ev){
-    var oEvent=ev||event;
-    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    this.parentNode.children[0].value++;
-    if( parseInt(this.parentNode.children[0].value)<10){
-        if(parseInt(this.parentNode.children[0].value)>1){
-            ho_i2.style.background='url("images/down1.png") no-repeat';
-            ho_i2.style.backgroundSize='23px 23px';
-        }
-    }else{
-        this.style.background='url("images/up2.png") no-repeat';
-        this.style.backgroundSize='23px 23px';
-        return false;
-    }
-}*/
-/*ho_i2.onclick=function fun2(ev){
-    var oEvent=ev||event;
-    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    this.parentNode.children[0].value--;
-    if(parseInt(this.parentNode.children[0].value)>1){
-        if(parseInt(this.parentNode.children[0].value)<10){
-            ho_i1.style.background='url("images/up1.png") no-repeat';
-            ho_i1.style.backgroundSize='23px 23px';
-        }
-    }else{
-        ho_i2.style.background='url("images/down2.png") no-repeat';
-        ho_i2.style.backgroundSize='23px 23px';
-        return false;
-    }
-}*/
-
-/*ho_i7.onclick=function fun7(ev){
-    var oEvent=ev||event;
-    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    this.parentNode.children[0].value++;
-}
-ho_i6.onclick=function fun6(ev){
-    var oEvent=ev||event;
-    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    if(this.parentNode.children[0].value>1){
-        this.parentNode.children[0].value--;
-    }else{
-        return false;
-    }
-}*/
-
-/*ho_i3.onclick=function fun3(ev){
-    var oEvent=ev||event;
-    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    this.parentNode.children[0].value++;
-}
-ho_i4.onclick=function fun4(ev){
-    var oEvent=ev||event;
-    oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-    if(this.parentNode.children[0].value>0){
-        this.parentNode.children[0].value--;
-    }else{
-        return false;
-    }
-}*/
-
-function focus1(){
-    var input1=document.getElementById("input1");
-    input1.focus();
-    var input2=document.getElementById("input2");
-    input2.focus();
-}
-
-function focus2(){
-    var input3=document.getElementById("CheckInDate");
-    input3.focus();
-}
-function focus3(){
-    var input4=document.getElementById("CheckOutDate");
-    input4.focus();
-}
-function focus4(){
-    var count1=document.getElementById("count1");
-    count1.focus()
-}
-function focus5(){
-    var count2=document.getElementById("count2");
-    count2.focus()
-}
-function focus6(){
-    var count3=document.getElementById("count3");
-    count3.focus()
-}
-function focus7(){
-    var hotelname=document.getElementById("hotelname");
-    hotelname.focus()
-}
-
-window.onload=fun5()
-function fun5(){
-    var input2=document.getElementById("input2");
-    if(!input2)return;
-    input2.name="";
-}
-
+lsf_myweb.bind(lsf_myweb.getbyid('room'),'click',function(){
+    lsf_myweb.getbyid('count1').focus();
+});
+lsf_myweb.bind(lsf_myweb.getbyid('nav4-centertop'),'click',function(){
+    lsf_myweb.getbyid('count2').focus();
+});
+lsf_myweb.bind(lsf_myweb.getbyid('nav4-centerbottom'),'click',function(){
+    lsf_myweb.getbyid('count3').focus();
+});
 
 function Dom(){
     var Dom=document.getElementById("Dom");
@@ -338,13 +281,17 @@ inpChange('hotelname','酒店名');
     obj[leaveDate]="离店";
     function Calender2(){
         Calender.apply(this,arguments);
+        this.idTotal=arguments[0].idTotal;
+        this.idLive=arguments[0].idLive;
+        this.idLeave=arguments[0].idLeave;
+        console.log(arguments[0]);
     }
     Calender2.prototype=new Calender();
     var oldlinkover=Calender.prototype.linkOver;
     Calender2.prototype.linkOver=function(){
         var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
         var out = _CalF.$('input',that.input);
-        var tal = _CalF.$('#total_day',that.input);
+        var tal = _CalF.$('#'+that.idTotal,that.input);
         beginDate=sels[0].parentNode.getAttribute("data-day").split('-').join('-');
         leaveDate=sels[1].parentNode.getAttribute("data-day").split('-').join('-');
         //console.log(this.time);
@@ -392,63 +339,12 @@ inpChange('hotelname','酒店名');
         var oDate2=new Date(arr[1].split('-')[0],(arr[1].split('-')[1]-1),arr[1].split('-')[2]);
         var oday2=oDate2.getDay();
         //alert(oDate1+'---'+oDate2);
-        lsf_myweb.getbyid('week_span1').innerHTML='周'+n2c(oday1)+' 入住';
-        lsf_myweb.getbyid('week_span2').innerHTML='周'+n2c(oday2)+' 离店';
+        lsf_myweb.getbyid(that.idLive).innerHTML='周'+n2c(oday1)+' 入住';
+        lsf_myweb.getbyid(that.idLeave).innerHTML='周'+n2c(oday2)+' 离店';
     }
-    var myDate1 = new Calender2({id: 'content2', num: 13, time: obj});
+    var myDate1 = new Calender2({id: "content2", num: 13, time: obj,idTotal:"total_day",idLive:"week_span1",idLeave:"week_span2"});
+    var domestic_calender=new Calender2({id:"domesticCalender",num:13,time:obj,idTotal:"domeTotalDay",idLive:"weekSpan3",idLeave:"weekSpan4"});
 
-
-    /*content2.onclick=function() {
-     var obj={};
-     // cdDate.style.display = 'block';
-     // cdDate.style.background = '#fff';
-     obj[beginDate]="入住";
-     obj[leaveDate]="离店";
-     //var obj={"2015-12-24":"入住","2015-12-26":"离店"};
-     //var arr=new Calender({id:'cd_date',num:4,time:obj});
-     function calender2() {
-     Calender.apply(this, arguments);
-     }
-     calender2.prototype = new Calender();
-     //console.log(calender2.prototype);
-     var oldLinkover = calender2.prototype.linkOver;
-     //alert(oldLinkover);
-     calender2.prototype.linkOver = function () {
-     oldLinkover.apply(this, arguments);
-     var oDate=new Date();
-     var span1=lsf_myweb.getbyid('week_span1');
-     var span2=lsf_myweb.getbyid('week_span2');
-     var oDate1=new Date();
-     var oDate2=new Date();
-     checkIn.value = this.result[0]
-     checkOut.value = this.result[1];
-     function spl(str){
-     return str.split('-');
-     }
-     oDate1.setFullYear(spl(this.result[0])[0],(spl(this.result[0])[1]-1),spl(this.result[0])[2]);
-     var week1=oDate1.getDay();
-     span1.innerHTML='周'+n2c(week1)+' 入住';
-     oDate2.setFullYear(spl(this.result[1])[0],(spl(this.result[1])[1]-1),spl(this.result[1])[2]);
-     var week2=oDate2.getDay();
-     span2.innerHTML='周'+n2c(week2)+' 离店';
-     var oDay=((oDate2-oDate1)/(1000*60*60*24))+1;
-     if(oDay>=30){
-     alert('住店时间不可超过30天，请重新选择');
-     return;
-     }
-     lsf_myweb.getbyid('total_day').innerHTML=oDay;
-     //cdDate.style.display = 'none';
-     //if(spl(this.result[1])[2]<spl(this.result[0])[2]){
-     //    if(spl(this.result[1])[1]<spl(this.result[0])[1]){
-     //        if(spl(this.result[1])[0]<spl(this.result[0])[0]){
-     //            alert('离店日期不能比住店日期提前');
-     //        }
-     //    }
-     //}
-
-     }
-     var arr = new calender2({id: 'content2', num: 13, time: obj});
-     };*/
 
 
     //城市
