@@ -14,7 +14,7 @@ require.config({
         vcm: 'vcm',
         vlm: 'vlm',
         plugins: 'plugins',
-        custom: 'custom'
+        //custom: 'custom'
     },
     $:['jquery'],
     shim: {
@@ -32,9 +32,9 @@ require.config({
     			}
     		}
     	},
-    	'custom':{
-    		deps: ['jquery','plugins']
-    	},
+    	//'custom':{
+    	//	deps: ['jquery','plugins']
+    	//},
     	'vcm':{
     		deps: ['jquery'],
     		exports: 'vcm'
@@ -54,7 +54,7 @@ require.config({
 	//urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','custom','vcm','vlm'], function($,custom,vcm,vlm) {
+require(['jquery','vcm','vlm'], function($,vcm,vlm) {
 	//console.log("dataReady="+vlm);
 	var viewer = new vlm();
 	viewer._init();

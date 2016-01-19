@@ -11,11 +11,11 @@
 	function(n) {
 		/*page view layout*/
 		var basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
-			home : ['首页', basePath + '/index.html'],
+			home : ['首页', './index.html'],
 			//order : ['订单', basePath + '/order.html'],
 			//service : ['客服', basePath + '/service.html'],
-			find :	['发现', basePath],
-			user : ['我的', basePath + '/user.html']
+			find :	['发现', '#here'],
+			user : ['我的', './user.html']
 		}, lStorage=window.localStorage
 		, sStorage=window.sessionStorage
 		, init = function(k) {
@@ -31,15 +31,12 @@
 					_initMenu();
 				}*/
 				for(var temp in menus){
-					console.log(temp.indexOf(key));
 					if(key.indexOf(temp) != -1){
-
 						_initMenu();
 					}
-
 				}
 
-				if($(".header").length > 0){
+				if($(".header").length > 0&&$(".header")[0].parentNode.style.display !== "none"){
 					$("#content").css("padding-top","45px");
 				}
 				switch(key) {
