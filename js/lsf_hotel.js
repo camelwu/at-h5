@@ -66,49 +66,35 @@ var lsf_myweb={
 
 //国际国内切换实现滑动效果
 var owlQuoteSlider = $(".quote-slider");
-var changebOk=true;
+
 owlQuoteSlider.owlCarousel({
-    items : 1,
-    itemsDesktop : [1199,1],
-    itemsDesktopSmall : [980,1],
-    itemsTablet: [768,1],
-    itemsTabletSmall: [480,1],
-    itemsMobile : [370,1],
-    singleItem : false,
-    itemsScaleUp : false,
-    slideSpeed : 800,
-    paginationSpeed : 300,
-    rewindSpeed : 250,
-    pagination:false,
-    autoPlay : false,
-    afterMove:countryChange
+    items:1,
+      
+});
+owlQuoteSlider.on('changed.owl.carousel', function(event) {
+    countryChange();
 });
 function countryChange(){
     var Inter=document.getElementById('Inter');
     var Dom=document.getElementById('Dom');
-    var content1=document.getElementById('content1');
-    console.log(lsf_myweb.getStyle(content1.parentNode.parentNode,"transform"));
-    //console.log(lsf_myweb.getStyle(content1.parentNode.parentNode,"left"));
-    if(!changebOk){
+    //var content1=document.getElementById('content1');
+    //console.log(lsf_myweb.getStyle(content1.parentNode.parentNode,"transform"));
+    console.log('haschanged');
+    if(Dom.className=='on'){
         Dom.className='';
         Inter.className='on';
     }else{
         Dom.className='on';
         Inter.className='';
     }
-    changebOk=!changebOk;
 }
 $("#Dom").click(function() {
-    if(changebOk){
-        owlQuoteSlider.trigger('owl.next');
+        owlQuoteSlider.trigger('next.owl.carousel');
         return false;
-    }
 });
 $("#Inter").click(function() {
-    if(!changebOk){
-        owlQuoteSlider.trigger('owl.prev');
+        owlQuoteSlider.trigger('prev.owl.carousel');
         return false;
-    }
 });
 
 
