@@ -1,3 +1,8 @@
+
+
+
+
+
 var lsf_myweb={
     "getbyid":function(id){
         return document.getElementById(id);
@@ -20,8 +25,29 @@ var lsf_myweb={
             return aResult;
         }
     },
-    bind:function(obj,sEv,fn){
-        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    "addClass":function(obj,sClass){
+        if(obj.className){
+            var reg=RegExp('\\b'+sClass+'\\b','g');
+            if(obj.className.search(reg)==-1){
+                obj.className+=' '+sClass;
+            }
+        }else{
+            obj.className=sClass;
+        }
+    },
+    "bind":function(obj,sEv,fn){
+        if(obj.addEventListener){
+            obj.addEventListener(sEv,fn,false);
+        }else{
+            obj.attachEvent('on'+sEv,fn);
+        }
+    },
+    "removeBind":function(obj,sEv,fn){
+        if(obj.removeEventListener){
+            obj.removeEventListener(sEv,fn,false);
+        }else{
+            obj.detachEvent('on'+sEv,fn);
+        }
     }
 };
 
@@ -86,6 +112,180 @@ function styleChange(id,mytext){
 
 
 (function(){
+    //贾燕云的js
+
+
+    function h_l_s(){
+        var rli = [],
+            sli1 = [],
+            sli2 = [],
+            lb = [];
+        var mb;
+        function _(s){
+            return document.getElementById(s);
+        }
+        var rank=_("rank");
+        var screen=_("screen");
+        var location=_("location");
+        var fo_ra = _("fo_ra");
+        var fo_sc = _("fo_sc");
+        var fo_lo =_("fo_lo");
+        var s_but = _("s_but");
+        var l_but = _("l_but");
+        function show(obj){
+            mb=document.getElementById("r-mb");
+            mb.style.display="block";
+            obj.style.bottom="0";
+            obj.style.transition="all 350ms";
+        }
+        function close(obj){
+            mb=document.getElementById("r-mb");
+            mb.style.display="none";
+            obj.style.bottom=-550+'px';
+            obj.style.transition="all 350ms";
+        }
+        function mb_close(){
+            mb=document.getElementById("r-mb");
+            mb.style.display="none";
+            if(rank.style.display==""||rank.style.display=="block"){
+                rank.style.bottom=-550+'px';
+                rank.style.transition="all 350ms";
+            }if(screen.style.display==""||screen.style.display=="block"){
+                screen.style.bottom=-550+'px';
+                screen.style.transition="all 350ms";
+            }if(location.style.display==""||location.style.display=="block"){
+                location.style.bottom=-550+'px';
+                location.style.transition="all 350ms";
+            }
+        }
+        /*   酒店筛选  */
+        function selectType(){
+            var obj = window.event.srcElement;
+            var oName = obj.className;
+            var array = [];
+            if(obj.innerHTML == "不限"){
+                array = document.getElementById("h-type").childNodes;
+                for(var i=1;i<array.length;i++){
+                    array[i].className = "s-li";
+                }
+            }if(obj.innerHTML != "不限"){
+                document.getElementById("h-type").firstElementChild.className = "s-li";
+            }
+            if(oName == "s-li"){
+                obj.className = "s-li1";
+            }else{
+                obj.className = "s-li";
+            }
+        }
+        function selectLevel(){
+            var obj = window.event.srcElement;
+            var oName = obj.className;
+            var array = [];
+            if(obj.innerHTML == "不限"){
+                array = document.getElementById("h-level").childNodes;
+                for(var i=1;i<array.length;i++){
+                    array[i].className = "s-li";
+                }
+            }if(obj.innerHTML != "不限"){
+                document.getElementById("h-level").firstElementChild.className = "s-li";
+            }
+            if(oName == "s-li"){
+                obj.className = "s-li1";
+            }else{
+                obj.className = "s-li";
+            }
+        }
+        function openClick(obj1,obj2){
+            obj1.onclick = function(){
+                show(obj2);
+                mb.addEventListener("click",mb_close);
+            }
+        }
+        function closeClick(obj1,obj2){
+            obj1.onclick = function(){
+                close(obj2);
+            }
+        }
+        this.init=function(s){
+            //insert
+            sli1 = document.getElementById("h-level").childNodes;
+            for(var j=0;j < sli1.length;j++){
+                sli1[j].addEventListener("click",selectLevel);
+            }
+            sli2 = document.getElementById("h-type").childNodes;
+            for(var k=0;k < sli2.length;k++){
+                sli2[k].addEventListener("click",selectType);
+            }
+            rli = document.getElementsByClassName("r-li");
+            for(var i=0;i < rli.length;i++){
+                rli[i].addEventListener("click",selectRank);
+            }
+            /*lli = document.getElementsByClassName("l-li");
+             for(var r=0;r < lli.length;r++){
+             lli[r].addEventListener("click",selectLocation);
+             }*/
+        };
+        init();
+        openClick(fo_ra,rank);
+        openClick(fo_sc,screen);
+        openClick(fo_lo,location);
+        closeClick(s_but,screen);
+        closeClick(l_but,location);
+        /*   排序筛选   */
+        function selectRank(){
+            var obj = window.event.srcElement;
+            var rank=document.getElementById("rank");
+            var mb=document.getElementById("r-mb");
+            var color = obj.style.color;
+            if(color == "rgb(252, 148, 100)"){
+                mb.style.display="none";
+                rank.style.bottom=-550+'px';
+                rank.style.transition="all 350ms";
+            }else{
+                for(var i=0;i < rli.length;i++){
+                    if(rli[i].style.color == "rgb(252, 148, 100)"){
+                        var bb = rli[i].getElementsByTagName("b")[0];
+                        rli[i].removeChild(bb);
+                    }
+                    rli[i].style.color="#b3b2b4";
+                }
+                obj.style.color="#fc9464";
+                var b = document.createElement("b");
+                b.className = "hl-icon5";
+                obj.appendChild(b);
+                mb.style.display="none";
+                rank.style.bottom=-550+'px';
+                rank.style.transition="all 350ms";
+            }
+        }
+        /*   位置筛选  */
+        /*function selectLocation(){
+         var obj = window.event.srcElement;
+         var p = obj.firstElementChild;
+         var b = obj.lastElementChild;
+         var array = [];
+         array = document.getElementsByClassName("l-li");
+         if(p.innerHTML == "不限"){
+         for(var i=1;i < array.length;i++){
+         array[i].lastElementChild.className = "l-icon";
+         }
+         }if(p.innerHTML != "不限"){
+         document.getElementById("l-ul").firstElementChild.lastElementChild.className = "l-icon";
+         }
+         if(b.className == "l-icon"){
+         b.className = "l-icon1";
+         }else{
+         b.className = "l-icon";
+         }
+         }
+         */
+    }
+    h_l_s();
+    //贾燕云的js结束
+
+
+
+
     //返回按钮事件
     var hl_back=document.getElementById('hl_back');
     lsf_myweb.bind(hl_back,'click',function(){
@@ -116,8 +316,7 @@ function styleChange(id,mytext){
     var url_json=url2json(str);
     var oBody=document.getElementsByTagName('body')[0];
     var oBtn=document.getElementById('s_but');
-    //console.log(url_json);
-
+    console.log(url_json);
 
 
     //交互部分
@@ -141,7 +340,7 @@ function styleChange(id,mytext){
         //alert(url_json.NumRoom);
         var data =
         {
-            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.CityName+"\",\"CheckInDate\":\""+json.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.CheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\"}",
+            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\"}",
             "Code": "0007",
             "ForeEndType": 3
         };
@@ -155,8 +354,14 @@ function styleChange(id,mytext){
     //数据展示部分
     function V(data){
         if(!data)return;
+        //console.log(data);
+        var data_address=data.LocationList;
+        var data=data.HotelList;
+        //console.log(data_address);
         var timer=null;
         var oUl=lsf_myweb.getbyid('lsf_list');
+
+        var liTem=document.getElementById('l-liTem');
         list_oUl.innerHTML='';
         for(var i=0;i<data.length;i++){
             var  str1=data[i].StarRating.substring(0,1);
@@ -205,6 +410,97 @@ function styleChange(id,mytext){
                 '</li>';
             list_oUl.innerHTML+=str;
         }
+
+        //位置交互部分
+        function hlAddress(){
+            var oUl=document.getElementById('l-ul');
+            var liFirst=lsf_myweb.getbyclass(oUl,'l-liFirst')[0];
+            var aLi=lsf_myweb.getbyclass(oUl,'l-li');
+            var aB=lsf_myweb.getbyclass(oUl,'l-icon1');
+            var oB=lsf_myweb.getbyclass(oUl,'l-icon1First')[0];
+            var bOk=true;
+            var aOk={};
+            //模板添加内容
+            for(var i=0;i<data_address.length;i++){
+                var str=liTem.innerHTML;
+                var oLi=document.createElement('li');
+                str=str.replace(/\{\$\w+\$\}/g,function(s){
+                    return data_address[i];
+                });
+                oLi.innerHTML=str;
+                oLi.removeAttribute('id');
+                lsf_myweb.addClass(oLi,'l-li');
+                liTem.parentNode.appendChild(oLi);
+            }
+            for(var i=2;i<aLi.length;i++){
+                aOk[i]=true;
+            }
+            //联动选项
+            //“不限”点击事件
+            lsf_myweb.bind(liFirst,'click',function(){
+                if(!bOk){
+                    oB.style.background='url(images/ui/icons1.png) -236px -6px';
+                    oB.style.backgroundSize='400px 120px';
+                    for(var i=1;i<aB.length;i++){
+                        aB[i].style.background='url(images/ui/icons1.png) -265px -6px';
+                        aB[i].style.backgroundSize='400px 120px';
+                    }
+                    for(var i=2;i<aLi.length;i++){
+                        aOk[i]=true;
+                    }
+                }else{
+                    oB.style.background='url(images/ui/icons1.png) -265px -6px';
+                    oB.style.backgroundSize='400px 120px';
+                    for(var i=1;i<aB.length;i++){
+                        aB[i].style.background='url(images/ui/icons1.png) -236px -6px';
+                        aB[i].style.backgroundSize='400px 120px';
+                    }
+                    for(var i=2;i<aLi.length;i++){
+                        aOk[i]=false;
+                    }
+                }
+                bOk=!bOk;
+            });
+            //每个地区的点击事件
+            for(var i=2;i<aLi.length;i++){
+                (function(index){
+                    lsf_myweb.bind(aLi[index],'click',function(){
+                        if(aOk[index]){
+                            aB[index].style.background='url(images/ui/icons1.png) -236px -6px';
+                            aB[index].style.backgroundSize='400px 120px';
+                        }else{
+                            aB[index].style.background='url(images/ui/icons1.png) -265px -6px';
+                            aB[index].style.backgroundSize='400px 120px';
+                        }
+                        aOk[index]=!aOk[index];
+                        console.log(1);
+                        console.log(aOk);
+                        console.log(bOk);
+                        console.log(1);
+                        var n=0;
+                        for(var j=2;j<aLi.length;j++){
+                            if(!aOk[j]){
+                                oB.style.background='url(images/ui/icons1.png) -265px -6px';
+                                oB.style.backgroundSize='400px 120px';
+                                bOk=false;
+                            }else{
+                                n++;
+                            }
+                        }
+                        if(n==aLi.length-2){
+                            oB.style.background='url(images/ui/icons1.png) -236px -6px';
+                            oB.style.backgroundSize='400px 120px';
+                            bOk=true;
+                        }
+                        console.log(2);
+                        console.log(aOk);
+                        console.log(bOk);
+                        console.log(2);
+                    });
+                })(i);
+            }
+        }
+        hlAddress();
         //懒加�?
         function lazyLoad2(){
             lazyLoad.apply(this,arguments);
@@ -235,14 +531,16 @@ function styleChange(id,mytext){
 
     M(url_json);
     function mycallback(d){
-        console.log(d);
-        var arr=eval('('+d+')');
-        console.log(arr);
+        //console.log(d);
+        var json=eval('('+d+')');
+        console.log(json);
+        console.log(1);
         //alert(arr.Success);
-        if(arr.Success){
-            console.log(arr.Data);
-            var data=arr.Data;
-            //console.log(data);
+        if(json.Success){
+            //console.log(json.Data);
+            var data=json.Data[0];
+            console.log(data);
+            //console.log(data.HotelList);
             V(data);
             //绑定跳转事件
             getDetail(data);
@@ -341,6 +639,7 @@ function styleChange(id,mytext){
     });
     //获取酒店详情
     function getDetail(data){
+        data=data.HotelList;
         var hotelRefers = document.getElementsByClassName('ho_list');
         var toDetail= function(that){
             var paraObj= new Object();

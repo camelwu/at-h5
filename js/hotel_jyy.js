@@ -104,10 +104,10 @@ function h_l_s(){
         for(var i=0;i < rli.length;i++){
             rli[i].addEventListener("click",selectRank);
         }
-        lli = document.getElementsByClassName("l-li");
+        /*lli = document.getElementsByClassName("l-li");
         for(var r=0;r < lli.length;r++){
             lli[r].addEventListener("click",selectLocation);
-        }
+        }*/
     };
     init();
     openClick(fo_ra,rank);
@@ -143,7 +143,7 @@ function h_l_s(){
         }
     }
     /*   位置筛选  */
-    function selectLocation(){
+    /*function selectLocation(){
         var obj = window.event.srcElement;
         var p = obj.firstElementChild;
         var b = obj.lastElementChild;
@@ -162,6 +162,7 @@ function h_l_s(){
             b.className = "l-icon";
         }
     }
+    */
 }
 
 

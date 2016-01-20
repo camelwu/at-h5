@@ -358,6 +358,13 @@ html {
 .l-li{
     width: 100%;height:44px;
     border-bottom: 1px solid #d0d0d3;
+    overflow:hidden;
+}
+.l-liFirst p {
+    color:#000;
+}
+#l-liTem {
+    display:none;
 }
 .l-p{
     float: left;
@@ -379,11 +386,17 @@ html {
     display: block;
     margin-top: 15px;
     width: 17px;height:17px;
-    background-image: url(../images/ui/icons1.png);
+    background: url(../images/ui/icons1.png) -265px -6px;
     background-size: 400px 120px;
-    background-position: 62% 4.5%;
 }
-
+.l-icon1First{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;height:17px;
+    background: url(../images/ui/icons1.png) -236px -6px;
+    background-size: 400px 120px;
+}
 
 
 
