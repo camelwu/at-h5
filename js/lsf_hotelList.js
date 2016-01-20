@@ -360,7 +360,6 @@ function styleChange(id,mytext){
         //console.log(data_address);
         var timer=null;
         var oUl=lsf_myweb.getbyid('lsf_list');
-
         var liTem=document.getElementById('l-liTem');
         list_oUl.innerHTML='';
         for(var i=0;i<data.length;i++){
@@ -430,7 +429,7 @@ function styleChange(id,mytext){
                 oLi.innerHTML=str;
                 oLi.removeAttribute('id');
                 lsf_myweb.addClass(oLi,'l-li');
-                liTem.parentNode.appendChild(oLi);
+                oUl.appendChild(oLi);
             }
             for(var i=2;i<aLi.length;i++){
                 aOk[i]=true;

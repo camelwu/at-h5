@@ -75,21 +75,21 @@ html {
     flex:1;
 }
 .hname{
-    margin-top: 1.2rem;
+    margin-top: 1rem;
     font-size:1.6rem;
     font-weight:bold;
     color:#484848;
 }
 .h-score{
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
 }
 .price{
     float: right;
-    margin-right: 5%;
+    margin-right: 15px;
 }
 .h-grade{
-    margin-top: 0.6rem;
-    margin-right: 5%;
+    margin-top: 0.7rem;
+    margin-right: 15px;
 }
 .hl-icon1{
     display: inline-block;
@@ -119,7 +119,7 @@ html {
     margin-right:4px;
 }
 .h-address{
-    margin-top: 0.6rem;
+    margin-top: 0.9rem;
     color:#999999;
     font-size:1em;
     /*margin-bottom: 0.6rem;*/
@@ -193,7 +193,7 @@ html {
     border-bottom: 1px solid #CCCCCC;
 }
 .ho_pic{
-    width:82px;height:115px;
+    width:82px;height:105px;
     position: relative;
 }
 .ho_pic img{
@@ -419,9 +419,6 @@ html {
 */
 .hotelcontent li:last-child{
     margin-bottom:44px;
-}
-.hotelcontent .h-grade, .hotelcontent .h-address{
-    margin-top:0.8rem;
 }
 #preloader {
     position:fixed;
