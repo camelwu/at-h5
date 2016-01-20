@@ -402,7 +402,6 @@ html {
 .roomAll .r-top .r-p1 {
     float: left;
     color: white;
-    font-size: 1.8rem;
     line-height: 2.0rem;
     letter-spacing: 0;
     margin: 10px 0px 0px 15px;
@@ -463,9 +462,8 @@ html {
     float: right;
     margin-right: 12px;
     margin-top: 10px;
-    background-image: url(../images/ui/icon.png);
-    background-position: 22% 33%;
-    background-size: 397px 118px;
+    background: url(../images/close.png) no-repeat;
+    background-size: 21px 21px;
 }
 
 .r-div1 {
@@ -768,11 +766,14 @@ html {
     border-bottom: 1px solid rgba(121, 111, 121, 0.39)
 }
 
-.info-div .rate-rule{font-weight: bold;font-size: 1.6rem;}
+.info-div .rate-rule{font-weight: bold;font-size: 1.4rem;}
 
-.info-div .info-text{font-size: 1.0rem;margin-bottom: 0rem;}
+.info-div .info-text{font-size: 1.4rem;margin-bottom: 0rem;}
 .info-div .info-text span{ background: #ffb413; padding: 0px 2px;color: white}
-
+.info-div .info-text .infoTxtCan {
+    color:#666;
+    background:#fff;
+}
 .info-div ul.ro-info{
     list-style: none;
     width: 100%;
@@ -782,13 +783,17 @@ html {
     width: 100%;
     list-style: none;
     text-align: left;
+    font-size:1.4rem;
 }
-
+.hdStandard{
+    position:absolute;
+    left:0;right:0;top:40px;bottom:0;
+}
 .info-div ul,.info-div li.ro-info-item span.item-name{
     display: inline-block;
     width: 30%;
     text-align: left;
-    font-size: 1.0rem;
+    font-size: 1.4rem;
 }
 
 .subRoomEvent .d-p6 span{

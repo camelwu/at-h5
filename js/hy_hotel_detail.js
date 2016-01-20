@@ -546,8 +546,7 @@
             var oDiv = document.createElement('div'), modalStr = '';
             oDiv.className = "roomAll";
             oDiv.id = "infoAll";
-            modalStr += arg.IsABD ? '<header class="r-top"><p class="r-p1">' + arg.RoomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.RoomName + '</p><b class="r-icon1 closeTag"></b></header>';
-            modalStr += '<div class="info-div"><ul class="ro-info">';
+            modalStr += '<div class="hdStandard"><div class="info-div"><ul class="ro-info">';
             modalStr += arg.roomSize ? '<li class="ro-info-item"><span class="item-name">房屋面积</span><span class="item-content">' + arg.roomSize + '</span></li>' : '';
             modalStr += arg.bedType ? '<li class="ro-info-item"><span class="item-name">床型</span><span class="item-content">' + arg.bedType + '</span></li>' : '';
             modalStr += arg.IsFreeWifi ? '<li class="ro-info-item"><span class="item-name">wifi</span><span class="item-content">有</span></li>' : '';
@@ -557,7 +556,8 @@
             modalStr += arg.MaxChildOccupancy ? '<li class="ro-info-item"><span class="item-name">最多孩子数</span><span class="item-content">' + arg.MaxChildOccupancy + '人</span></li>' : '';
             modalStr += arg.MinNight ? '<li class="ro-info-item"><span class="item-name">最少居住晚数</span><span class="item-content">' + arg.MinNight + '晚</span></li>' : '';
             modalStr += arg.IsCashRebate ? '</div><div class="info-div"><div class="rate-rule">优惠政策</div><p class="info-text"><span>现金奖励</span>优惠政策内容</p></div>' : '';
-            modalStr += arg.cancelWord ? '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text">取消说明规则</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text">暂无取消说明内容</p></div>';
+            modalStr += arg.cancelWord ? '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text">取消说明规则</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text"><span class="infoTxtCan">暂无取消说明内容</span></p></div></div>';
+            modalStr += arg.IsABD ? '<header class="r-top"><p class="r-p1">' + arg.RoomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.RoomName + '</p><b class="r-icon1 closeTag"></b></header>';
             oDiv.innerHTML = modalStr;
             document.body.appendChild(oDiv);
             hotelDetail.$Id('r-mb').style.display = 'block';
