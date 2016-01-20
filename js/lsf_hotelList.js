@@ -360,7 +360,7 @@ function styleChange(id,mytext){
         //console.log(data_address);
         var timer=null;
         var oUl=lsf_myweb.getbyid('lsf_list');
-        var liTem=document.getElementById('l-liTem');
+
         list_oUl.innerHTML='';
         for(var i=0;i<data.length;i++){
             var  str1=data[i].StarRating.substring(0,1);
@@ -380,6 +380,10 @@ function styleChange(id,mytext){
                 str4='<div class="h-div1">免费景点</div>';
             }
 
+            //有地区地址就给地址加括号，没有就不加
+            if(data[i].Location){
+                data[i].Location='('+data[i].Location+')';
+            }
 
             var str='<li class="ho_list">'+
                 '<div class="ho_pic">'+
@@ -404,7 +408,7 @@ function styleChange(id,mytext){
                 str3+
                 str4+
                 '</div>'+
-                '<p class="h-address">'+data[i].City+'('+data[i].Location+')'+'</p>'+
+                '<p class="h-address">'+data[i].City+data[i].Location+'</p>'+
                 '</div>'+
                 '</li>';
             list_oUl.innerHTML+=str;
@@ -413,25 +417,30 @@ function styleChange(id,mytext){
         //位置交互部分
         function hlAddress(){
             var oUl=document.getElementById('l-ul');
+            //模板添加内容
+            console.log(data_address);
+            oUl.innerHTML='<li class="l-li l-liFirst">'+
+                '<p class="l-p">不限</p>'+
+                '<b class="l-icon1 l-icon1First"></b>'+
+                '</li>';
+
+            for(var i=0;i<data_address.length;i++){
+                var str='<li class="l-li">'+
+                    '<p class="l-p">{$adress$}</p>'+
+                    '<b class="l-icon1"></b>'+
+                    '</li>';
+                str=str.replace(/\{\$\w+\$\}/g,function(s){
+                    return data_address[i];
+                });
+                oUl.innerHTML+=str;
+            }
             var liFirst=lsf_myweb.getbyclass(oUl,'l-liFirst')[0];
             var aLi=lsf_myweb.getbyclass(oUl,'l-li');
             var aB=lsf_myweb.getbyclass(oUl,'l-icon1');
             var oB=lsf_myweb.getbyclass(oUl,'l-icon1First')[0];
             var bOk=true;
             var aOk={};
-            //模板添加内容
-            for(var i=0;i<data_address.length;i++){
-                var str=liTem.innerHTML;
-                var oLi=document.createElement('li');
-                str=str.replace(/\{\$\w+\$\}/g,function(s){
-                    return data_address[i];
-                });
-                oLi.innerHTML=str;
-                oLi.removeAttribute('id');
-                lsf_myweb.addClass(oLi,'l-li');
-                oUl.appendChild(oLi);
-            }
-            for(var i=2;i<aLi.length;i++){
+            for(var i=1;i<aLi.length;i++){
                 aOk[i]=true;
             }
             //联动选项
@@ -444,7 +453,7 @@ function styleChange(id,mytext){
                         aB[i].style.background='url(images/ui/icons1.png) -265px -6px';
                         aB[i].style.backgroundSize='400px 120px';
                     }
-                    for(var i=2;i<aLi.length;i++){
+                    for(var i=1;i<aLi.length;i++){
                         aOk[i]=true;
                     }
                 }else{
@@ -454,14 +463,14 @@ function styleChange(id,mytext){
                         aB[i].style.background='url(images/ui/icons1.png) -236px -6px';
                         aB[i].style.backgroundSize='400px 120px';
                     }
-                    for(var i=2;i<aLi.length;i++){
+                    for(var i=1;i<aLi.length;i++){
                         aOk[i]=false;
                     }
                 }
                 bOk=!bOk;
             });
             //每个地区的点击事件
-            for(var i=2;i<aLi.length;i++){
+            for(var i=1;i<aLi.length;i++){
                 (function(index){
                     lsf_myweb.bind(aLi[index],'click',function(){
                         if(aOk[index]){
@@ -472,12 +481,8 @@ function styleChange(id,mytext){
                             aB[index].style.backgroundSize='400px 120px';
                         }
                         aOk[index]=!aOk[index];
-                        console.log(1);
-                        console.log(aOk);
-                        console.log(bOk);
-                        console.log(1);
                         var n=0;
-                        for(var j=2;j<aLi.length;j++){
+                        for(var j=1;j<aLi.length;j++){
                             if(!aOk[j]){
                                 oB.style.background='url(images/ui/icons1.png) -265px -6px';
                                 oB.style.backgroundSize='400px 120px';
@@ -486,15 +491,11 @@ function styleChange(id,mytext){
                                 n++;
                             }
                         }
-                        if(n==aLi.length-2){
+                        if(n==aLi.length-1){
                             oB.style.background='url(images/ui/icons1.png) -236px -6px';
                             oB.style.backgroundSize='400px 120px';
                             bOk=true;
                         }
-                        console.log(2);
-                        console.log(aOk);
-                        console.log(bOk);
-                        console.log(2);
                     });
                 })(i);
             }
