@@ -545,7 +545,7 @@ function styleChange(id,mytext){
             //绑定跳转事件
             getDetail(data);
         }else{
-            alert(arr.Message);
+            alert(json.Message);
         }
 
     }
