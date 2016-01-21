@@ -6,6 +6,7 @@ function init(){
     var ul = document.getElementById("p-ul1");
     array = ul.getElementsByTagName("b");
 }
+/*
 function selectThis(){
     var obj = window.event.srcElement;
     var cname = obj.className;
@@ -20,41 +21,93 @@ function selectThis(){
         obj.className = "p-icon2";
     }
 }
-
+*/
 //lsf 刘少飞的js
-function addBind(obj,sEv,fn){
-    return obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
-}
-function styleChange(id,mytext){
-    var oInp=document.getElementById(id);
-    oInp.onfocus=function(){
-        if(this.value==mytext){
-            this.value='';
-            this.style.color='#484848';
+
+var lsf_myweb={
+    "getbyid":function(id){
+        return document.getElementById(id);
+    },
+    "getbytag":function(obj,tag){
+        return obj.getElementsByTagName(tag);
+    },
+    "getbyclass":function(obj,sClass){
+        if(obj.getElementsByClassName){
+            return obj.getElementsByClassName(sClass);
+        }else{
+            var aResult=[];
+            var aEle=obj.getElementsByTagName('*');
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            for(var i=0;i<aEle.length;i++){
+                if(aEle[i].className.search(reg)!=-1){
+                    aResult.push(aEle[i]);
+                }
+            }
+            return aResult;
         }
-    };
-    oInp.onblur=function(){
-        if(!this.value){
-            this.value=mytext;
-            this.style.color='#d1d1d1';
+    },
+    "bind":function(obj,sEv,fn){
+        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    },
+    "stopPropagation":function(event){
+        var oEvent=ev||event;
+        oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+    },
+    "addClass":function(obj,sClass){
+        if(obj.className){
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            if(obj.className.search(reg)==-1){
+                obj.className+=' '+sClass;
+            }
+        }else{
+            obj.className=sClass;
         }
-    };
-}
+    },
+    "removeClass":function(obj,sClass){
+        if(obj.className){
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            if(obj.className.search(reg)!=-1){
+                obj.className=obj.className.replace(reg,'').replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
+                if(!obj.className){
+                    obj.removeAttribute('class');
+                }
+            }
+        }
+    },
+    "styleChange":function(id,mytext){
+        var oInp=document.getElementById(id);
+        oInp.onfocus=function(){
+            if(this.value==mytext){
+                this.value='';
+                this.style.color='#484848';
+            }
+        };
+        oInp.onblur=function(){
+            if(!this.value){
+                this.value=mytext;
+                this.style.color='#d1d1d1';
+            }
+        };
+    }
+};
 ;(function(){
+    //从上一页得到的数据
+    var myData=JSON.parse(localStorage.getItem('user_order_storage12345'));
+    console.log(myData);
+    //支付类型：1-Visa, 20-MasterCard(万事达卡), 21-Paypal
+    var myPayType=0;
+
     //输入框
-    styleChange('jp_bank','输入银行卡号');
-    styleChange('jp_guest_name','姓名');
-    styleChange('jp_limit_time','月/年，如：09/12');
-    styleChange('jp_safe_code','签名栏末尾最后3位');
+    lsf_myweb.styleChange('jp_bank','输入银行卡号');
+    lsf_myweb.styleChange('jp_guest_name','姓名');
+    lsf_myweb.styleChange('jp_limit_time','月/年，如：09/12');
+    lsf_myweb.styleChange('jp_safe_code','签名栏末尾最后3位');
 
     //返回按钮
     var jp_back=document.getElementById('jp_back');
-    addBind(jp_back,'click',function(){
+    lsf_myweb.bind(jp_back,'click',function(){
         window.history.go(-1);
     });
-
-    var myData=JSON.parse(localStorage.getItem('user_order_storage12345'));
-    console.log(myData);
     var jp_price_sum=document.getElementById('jp_price_sum');
     var jp_hotel_name=document.getElementById('jp_hotel_name');
     var jp_date=document.getElementById('jp_date');
@@ -64,13 +117,42 @@ function styleChange(id,mytext){
     var jp_guest_name=document.getElementById('jp_guest_name');
     var jp_limit_time=document.getElementById('jp_limit_time');
     var jp_safe_code=document.getElementById('jp_safe_code');
-    var jp_bank_name=document.getElementById('jp_bank_name');
-    var jp_bank_country=document.getElementById('jp_bank_country');
+    var jpBankName=document.getElementById('jp_bank_name');
+    var jpBankCountry=document.getElementById('jp_bank_country');
     jp_price_sum.innerHTML='订单总价：SGD'+myData.TotalPriceCNY;
     jp_hotel_name.innerHTML=myData.HotelGenInfo.HotelName;
     jp_date.innerHTML=myData.dateInfo.CheckInDate.split('-')[0]+'年'+myData.dateInfo.CheckInDate.split('-')[1]+'月'+myData.dateInfo.CheckInDate.split('-')[2]+'日'+' - '+myData.dateInfo.CheckOutDate.split('-')[0]+'年'+myData.dateInfo.CheckOutDate.split('-')[1]+'月'+myData.dateInfo.CheckOutDate.split('-')[2]+'日'+' 共'+myData.dateInfo.totalNight+'晚（当地时间为准）';
     jp_house_type.innerHTML='房型：'+myData.RoomTypeName+' 房间数：'+myData.NumOfRoom+'间';
-    addBind(oBtn,'click',function(){
+
+    //付款方式点击事件
+    function payType(id){
+        var oBox=document.getElementById(id);
+        var oBoxChildren=oBox.children;
+        var aB=oBox.getElementsByTagName('b');
+        for(var i=0;i<oBoxChildren.length;i++){
+            lsf_myweb.bind(oBoxChildren[i],'click',function(){
+                var oB=this.getElementsByTagName('b')[0];
+                var oSpan=this.getElementsByTagName('span')[0];
+                for(var i=0;i<aB.length;i++){
+                    aB[i].className='p-icon2';
+                }
+                oB.className='p-icon1';
+                if(oSpan.innerHTML=='维萨信用卡'){
+                    myPayType=1;
+                }else if(oSpan.innerHTML=='万事达卡'){
+                    myPayType=20;
+                }
+                //alert(myPayType)
+                myData.CreditCardType=myPayType;
+            });
+        }
+    }
+    payType('p-ul1');
+    lsf_myweb.bind(oBtn,'click',function(){
+        if(myPayType==0){
+            alert('请选择支付类型');
+            return;
+        }
         //信用卡验证
         if(!jp_bank.value){
             alert('请输入信用卡卡号');
@@ -121,39 +203,35 @@ function styleChange(id,mytext){
                 }
             }
         }
-        myData.BankName=jp_bank_name.value;
-        myData.CardIssuanceCountry=jp_bank_country.value;
+        myData.BankName=jpBankName.innerHTML;
+        myData.CardIssuanceCountry=jp_bank_country.innerHTML;
         localStorage.setItem('user_order_storage12345',JSON.stringify(myData));
+        console.log(myData);
         //window.location.href='trade_details.html';
 
-        /*//  交互部分
+        //  交互部分
         function M(json){
             var c=new vcm();
             var data={
-                "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\"8016\",\"RoomCode\":56625,\"CheckInDate\":\"2016-01-25T00:00:00\",\"CheckOutDate\":\"2016-01-26T00:00:00\",\"NumOfRoom\":1,\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\"12345\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\"Test\",\"CreditCardNumber\":\"4544152000000004\",\"CreditCardType\":21,\"CreditCardExpiryDate\":\"2020-01-01T00:00:00\",\"CardSecurityCode\":\"123\",\"BankName\":\"CitiBank\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\"SG\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"}",
+                "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.HotelCode+"\",\"RoomCode\":"+json.RoomCode+",\"HotelName\":\""+json.HotelGenInfo.HotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.RoomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"T00:00:00\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"}",
                 "ForeEndType": 3,
                 "Code": "0012"
             };
             return c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
         }
         //数据展示部分
-        function V(){
-
+        function V(data){
+            if(data.Success){
+                window.location.href='trade_details.html';
+            }else{
+                alert(data.Message);
+            }
         }
         M(myData);
         function mycallback(str){
+            console.log(str);
             var data_json=eval('('+str+')');
-            console.log(data_json);
-        }*/
-        var c=new vcm();
-        var data={
-            "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\"8016\",\"RoomCode\":56625,\"CheckInDate\":\"2016-01-25T00:00:00\",\"CheckOutDate\":\"2016-01-26T00:00:00\",\"NumOfRoom\":1,\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\"12345\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\"Test\",\"CreditCardNumber\":\"4544152000000004\",\"CreditCardType\":21,\"CreditCardExpiryDate\":\"2020-01-01T00:00:00\",\"CardSecurityCode\":\"123\",\"BankName\":\"CitiBank\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\"SG\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"}",
-            "ForeEndType": 3,
-            "Code": "0012"
+            V(data_json);
         }
-        c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
-        function mycallback(str){
-            alert(str);
-        };
     });
 })();
