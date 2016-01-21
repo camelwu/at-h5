@@ -65,58 +65,8 @@ var lsf_myweb={
                 }
             }
         }
-    },
-    "oUp":function (obj1,obj2,start,end){
-        lsf_myweb.bind(obj1,'click',function(ev){
-            var oEvent=ev||event;
-            oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-            if(parseInt(this.parentNode.children[0].value)<end){
-                this.parentNode.children[0].value++;
-            }
-            if( parseInt(this.parentNode.children[0].value)<end){
-                if(parseInt(this.parentNode.children[0].value)>start){
-                    obj2.style.background='url("images/down1.png") no-repeat';
-                    obj2.style.backgroundSize='23px 23px';
-                }
-            }else{
-                this.style.background='url("images/up2.png") no-repeat';
-                this.style.backgroundSize='23px 23px';
-            }
-        });
-    },
-    "oDown":function oDown(obj1,obj2,start,end){
-        lsf_myweb.bind(obj1,'click',function(ev){
-            var oEvent=ev||event;
-            oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
-            if(parseInt(this.parentNode.children[0].value)>start){
-                //console.log(parseInt(this.parentNode.children[0].value));
-                this.parentNode.children[0].value--;
-            }
-            if(parseInt(this.parentNode.children[0].value)>start){
-                if(parseInt(this.parentNode.children[0].value)<end){
-                    obj2.style.background='url("images/up1.png") no-repeat';
-                    obj2.style.backgroundSize='23px 23px';
-                }
-            }else{
-                this.style.background='url("images/down2.png") no-repeat';
-                this.style.backgroundSize='23px 23px';
-            }
-        });
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 //输入框默认字体设置
 function styleChange(id,mytext){
     var oInp=document.getElementById(id);
@@ -154,9 +104,6 @@ function styleChange2(parentid,sClass,mytext){
     }
 };
 
-
-
-
 //输入框默认字体设置
 styleChange('uo_c3_tele','用于接收短信通知');
 styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
@@ -174,7 +121,7 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
     //默认房间数量
     fake_data.NumOfRoom=2;
     var user_order_storage2=localStorage.getItem('hotelDetailData');
-    console.log(JSON.parse(user_order_storage2));
+    //console.log(JSON.parse(user_order_storage2));
     //console.log(JSON.parse(user_order_storage2).data);
     //console.log(JSON.parse(user_order_storage2).data.Data);
     //console.log(JSON.parse(user_order_storage2).data.Data[0].HotelGenInfo);
@@ -195,7 +142,7 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
             }
         }
     }
-    console.log(fake_data);
+    //console.log(fake_data);
 
     /*var user_order_storage={
         "CultureName":"",
@@ -320,13 +267,6 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
     lsf_myweb.bind(uo_c2_i1,'click',function(){
         var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
         uo_c2_num.innerHTML=parseInt(uo_c2_num.innerHTML)-1;
-
-        //修改数据并存储数据
-        fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
-        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
-        //console.log(localStorage.getItem('user_order_storage12345'));
-
-
         if(parseInt(uo_c2_num.innerHTML)<1){
             uo_c2_num.innerHTML=1;
         }else{
@@ -353,6 +293,10 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
             uo_c2_i2.style.background='url("images/up1.png") no-repeat';
             uo_c2_i2.style.backgroundSize='23px 23px';
         }
+        //修改数据并存储数据
+        fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
+        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
+        //console.log(localStorage.getItem('user_order_storage12345'));
     });
     //增加房间
     lsf_myweb.bind(uo_c2_i2,'click',function(){
@@ -481,6 +425,7 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
             }
         }
         localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
+        console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
         uo_form.submit();
     })
