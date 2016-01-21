@@ -83,12 +83,13 @@ em,b,i{
     margin-top:8px;
 }
 .uo_c2_i1{
-    background:url("../images/ui/icons1.png") -35px 0;
-    background-size:23px 23px;    margin-left:10px;
+    background:url("../images/down2.png") no-repeat;
+    background-size:23px 23px;
+    margin-left:20px;
 }
 .uo_c2_i2{
-    background:url("../images/ui/icons1.png") -3px 0;
-    background-size:400px 120px;
+    background:url("../images/up1.png") no-repeat;
+    background-size:23px 23px;
 }
 .uo_con3{
     width:100%;
@@ -353,9 +354,9 @@ em,b,i{
     line-height:40px;font-weight:normal;
 }
 .uo_c6_header i{
-    width:18px;height:18px;
-    background:url("../images/ui/icon.png") -86px -35px ;
-    background-size:396px 118px;
+    width:21px;height:21px;
+    background:url("../images/close.png") no-repeat ;
+    background-size:21px 21px;
     margin-top:11px;
 }
 .uo_hid_con6 h4{

@@ -65,8 +65,53 @@ var lsf_myweb={
                 }
             }
         }
+    },
+    "oUp":function (obj1,obj2,start,end){
+        lsf_myweb.bind(obj1,'click',function(ev){
+            var oEvent=ev||event;
+            oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+            if(parseInt(this.parentNode.children[0].value)<end){
+                this.parentNode.children[0].value++;
+            }
+            if( parseInt(this.parentNode.children[0].value)<end){
+                if(parseInt(this.parentNode.children[0].value)>start){
+                    obj2.style.background='url("images/down1.png") no-repeat';
+                    obj2.style.backgroundSize='23px 23px';
+                }
+            }else{
+                this.style.background='url("images/up2.png") no-repeat';
+                this.style.backgroundSize='23px 23px';
+            }
+        });
+    },
+    "oDown":function oDown(obj1,obj2,start,end){
+        lsf_myweb.bind(obj1,'click',function(ev){
+            var oEvent=ev||event;
+            oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+            if(parseInt(this.parentNode.children[0].value)>start){
+                //console.log(parseInt(this.parentNode.children[0].value));
+                this.parentNode.children[0].value--;
+            }
+            if(parseInt(this.parentNode.children[0].value)>start){
+                if(parseInt(this.parentNode.children[0].value)<end){
+                    obj2.style.background='url("images/up1.png") no-repeat';
+                    obj2.style.backgroundSize='23px 23px';
+                }
+            }else{
+                this.style.background='url("images/down2.png") no-repeat';
+                this.style.backgroundSize='23px 23px';
+            }
+        });
     }
 };
+
+
+
+
+
+
+
+
 
 
 
@@ -296,14 +341,18 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
                     '</div>'+
                     '</div>';
             }
-
             //输入框默认字体设置
             styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
             styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
-
-
         }
-
+        if(parseInt(uo_c2_num.innerHTML)<=1){
+            uo_c2_i1.style.background='url("images/down2.png") no-repeat';
+            uo_c2_i1.style.backgroundSize='23px 23px';
+        }
+        if(parseInt(uo_c2_num.innerHTML)<10){
+            uo_c2_i2.style.background='url("images/up1.png") no-repeat';
+            uo_c2_i2.style.backgroundSize='23px 23px';
+        }
     });
     //增加房间
     lsf_myweb.bind(uo_c2_i2,'click',function(){
@@ -330,13 +379,17 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
                     '</div>'+
                     '</div>';
             }
-
-
             //输入框默认字体设置
             styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
             styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
-
-
+        }
+        if(parseInt(uo_c2_num.innerHTML)>1){
+            uo_c2_i1.style.background='url("images/down1.png") no-repeat';
+            uo_c2_i1.style.backgroundSize='23px 23px';
+        }
+        if(parseInt(uo_c2_num.innerHTML)>=10){
+            uo_c2_i2.style.background='url("images/up2.png") no-repeat';
+            uo_c2_i2.style.backgroundSize='23px 23px';
         }
     });
     lsf_myweb.bind(uo_c4_conf,'click',function(){
