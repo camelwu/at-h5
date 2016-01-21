@@ -58,13 +58,16 @@ function myCityList(id,url){
     this.init();
 }
 myCityList.prototype={
-    init:function(){
+    init:function() {
         this.container();
         //热门城市
         this.hotCity('cl_citysHot');
         //字母城市
         this.show();
-    },
+        //返回按钮点击事件
+        this.oBack('cl_back');
+    }
+    ,
     container:function(){
         var _this=this;
         var str= '<div class="cl_box">'+
@@ -73,7 +76,7 @@ myCityList.prototype={
             '                    <input type="text" placeholder="北京/beijing/bj/bjs/中国" />'+
             '                    <i></i>'+
             '                </div>'+
-            '                <a href="'+this.url+'" class="icons header-back" id="cl_back"></a>'+
+            '                <a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
             '            </div>'+
             '            <div class="cl_curr cl_con"  >'+
             '                <a name="cl_curr" class="cl_on">&nbsp;</a>'+
@@ -378,5 +381,12 @@ myCityList.prototype={
                 });
             })(i);
         }
+    },
+    oBack:function(id){
+        var _this=this;
+        var oBack=document.getElementById(id);
+        lsf_myweb.bind(oBack,'click',function(){
+            document.body.removeChild(_this.oDiv);
+        })
     }
 };
