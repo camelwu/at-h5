@@ -327,7 +327,7 @@ function styleChange(id,mytext){
     var url_json=url2json(str);
     var oBody=document.getElementsByTagName('body')[0];
     var oBtn=document.getElementById('s_but');
-    console.log(url_json);
+    //console.log(url_json);
 
 
     //交互部分
@@ -346,8 +346,8 @@ function styleChange(id,mytext){
         var y=oDate.getFullYear();
         var m=oDate.getMonth()+1;
         var d=oDate.getDate();
-        json.CheckInDate=json.CheckInDate||y+'-'+m+'-'+d;
-        json.CheckOutDate=json.CheckOutDate||y+'-'+m+'-'+(d+1);
+        json.InterCheckInDate=json.InterCheckInDate||y+'-'+m+'-'+d;
+        json.InterCheckOutDate=json.InterCheckOutDate||y+'-'+m+'-'+(d+1);
         var c = new vcm();
         //alert(url_json.NumRoom);
         var data =
@@ -537,13 +537,14 @@ function styleChange(id,mytext){
     function mycallback(d){
         //console.log(d);
         var json=eval('('+d+')');
-        console.log(json);
-        console.log(1);
+        //console.log(json);
+        //console.log(1);
         //alert(arr.Success);
         if(json.Success){
             //console.log(json.Data);
             var data=json.Data[0];
             console.log(data);
+            console.log(2);
             //console.log(data.HotelList);
             V(data);
             //绑定跳转事件
@@ -680,6 +681,8 @@ function styleChange(id,mytext){
     })
     //获取酒店详情
     function getDetail(data){
+        console.log(url_json);
+        console.log(4);
         data=data.HotelList;
         var hotelRefers = document.getElementsByClassName('ho_list');
         var toDetail= function(that){
@@ -691,8 +694,8 @@ function styleChange(id,mytext){
             paraObj.InstantConfirmation=data[that.index].InstantConfirmation!=undefined?data[that.index].InstantConfirmation:false;
             paraObj.AllOccupancy=data[that.index].AllOccupancy!=undefined?data[that.index].AllOccupancy:true;
 
-            paraObj.CheckInDate=url_json.CheckInDate;
-            paraObj.CheckOutDate=url_json.CheckOutDate;
+            paraObj.CheckInDate=url_json.InterCheckInDate;
+            paraObj.CheckOutDate=url_json.InterCheckOutDate;
             paraObj.NumRoom=url_json.NumRoom;
             paraObj.NumAdult=url_json.NumAdult;
             paraObj.NumChild=url_json.NumChild;

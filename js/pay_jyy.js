@@ -149,6 +149,7 @@ var lsf_myweb={
     }
     payType('p-ul1');
     lsf_myweb.bind(oBtn,'click',function(){
+
         if(myPayType==0){
             alert('请选择支付类型');
             return;
@@ -203,6 +204,7 @@ var lsf_myweb={
                 }
             }
         }
+
         myData.BankName=jpBankName.innerHTML;
         myData.CardIssuanceCountry=jp_bank_country.innerHTML;
         localStorage.setItem('user_order_storage12345',JSON.stringify(myData));
@@ -212,11 +214,19 @@ var lsf_myweb={
         //  交互部分
         function M(json){
             var c=new vcm();
+
             var data={
                 "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.HotelCode+"\",\"RoomCode\":"+json.RoomCode+",\"HotelName\":\""+json.HotelGenInfo.HotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.RoomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"T00:00:00\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"}",
                 "ForeEndType": 3,
                 "Code": "0012"
             };
+            /*
+            var data={
+                "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\"8016\",\"RoomCode\":56625,\"HotelName\":\"Hotel Grand Chancellor (Hotel Grand Chancellor)\",   \"RoomTypeCode\": 31647, \"RoomTypeName\":\"Standard (Podium Block)\",\"RoomName\": \"高级房\",\"CheckInDate\":\"2016-01-23T00:00:00\",\"CheckOutDate\":\"2016-01-24T00:00:00\",\"NumOfRoom\":1,\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\"12345\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\"Test\",\"CreditCardNumber\":\"4544152000000004\",\"CreditCardType\":21,\"CreditCardExpiryDate\":\"2020-01-01T00:00:00\",\"CardSecurityCode\":\"123\",\"BankName\":\"CitiBank\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\"SG\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"}",
+                "ForeEndType": 3,
+                "Code": "0012"
+            };
+            */
             return c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
         }
         //数据展示部分
