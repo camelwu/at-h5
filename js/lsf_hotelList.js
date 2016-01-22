@@ -35,6 +35,17 @@ var lsf_myweb={
             obj.className=sClass;
         }
     },
+    "removeClass":function(obj,sClass){
+        if(obj.className){
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            if(obj.className.search(reg)!=-1){
+                obj.className=obj.className.replace(reg,'').replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
+                if(!obj.className){
+                    obj.removeAttribute('class');
+                }
+            }
+        }
+    },
     "bind":function(obj,sEv,fn){
         if(obj.addEventListener){
             obj.addEventListener(sEv,fn,false);
@@ -330,6 +341,7 @@ function styleChange(id,mytext){
         json.NumAdult=json.NumAdult||'1';
         json.Category=json.Category||'';
         json.StarRating=json.StarRating||'';
+        json.LocationList=json.LocationList||'';
         var oDate=new Date();
         var y=oDate.getFullYear();
         var m=oDate.getMonth()+1;
@@ -340,7 +352,7 @@ function styleChange(id,mytext){
         //alert(url_json.NumRoom);
         var data =
         {
-            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\"}",
+            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
             "Code": "0007",
             "ForeEndType": 3
         };
@@ -447,21 +459,17 @@ function styleChange(id,mytext){
             //“不限”点击事件
             lsf_myweb.bind(liFirst,'click',function(){
                 if(!bOk){
-                    oB.style.background='url(images/ui/icons1.png) -236px -6px';
-                    oB.style.backgroundSize='400px 120px';
-                    for(var i=1;i<aB.length;i++){
-                        aB[i].style.background='url(images/ui/icons1.png) -265px -6px';
-                        aB[i].style.backgroundSize='400px 120px';
+                    for(var i=1;i<aLi.length;i++){
+                        lsf_myweb.removeClass(aLi[i],'l-li2')
                     }
+                    lsf_myweb.removeClass(liFirst,'l-li3')
                     for(var i=1;i<aLi.length;i++){
                         aOk[i]=true;
                     }
                 }else{
-                    oB.style.background='url(images/ui/icons1.png) -265px -6px';
-                    oB.style.backgroundSize='400px 120px';
-                    for(var i=1;i<aB.length;i++){
-                        aB[i].style.background='url(images/ui/icons1.png) -236px -6px';
-                        aB[i].style.backgroundSize='400px 120px';
+                    lsf_myweb.addClass(liFirst,'l-li3');
+                    for(var i=1;i<aLi.length;i++){
+                        lsf_myweb.addClass(aLi[i],'l-li2');
                     }
                     for(var i=1;i<aLi.length;i++){
                         aOk[i]=false;
@@ -474,26 +482,22 @@ function styleChange(id,mytext){
                 (function(index){
                     lsf_myweb.bind(aLi[index],'click',function(){
                         if(aOk[index]){
-                            aB[index].style.background='url(images/ui/icons1.png) -236px -6px';
-                            aB[index].style.backgroundSize='400px 120px';
+                            lsf_myweb.addClass(aLi[index],'l-li2');
                         }else{
-                            aB[index].style.background='url(images/ui/icons1.png) -265px -6px';
-                            aB[index].style.backgroundSize='400px 120px';
+                            lsf_myweb.removeClass(aLi[index],'l-li2');
                         }
                         aOk[index]=!aOk[index];
                         var n=0;
                         for(var j=1;j<aLi.length;j++){
                             if(!aOk[j]){
-                                oB.style.background='url(images/ui/icons1.png) -265px -6px';
-                                oB.style.backgroundSize='400px 120px';
+                                lsf_myweb.addClass(liFirst,'l-li3');
                                 bOk=false;
                             }else{
                                 n++;
                             }
                         }
                         if(n==aLi.length-1){
-                            oB.style.background='url(images/ui/icons1.png) -236px -6px';
-                            oB.style.backgroundSize='400px 120px';
+                            lsf_myweb.removeClass(liFirst,'l-li3');
                             bOk=true;
                         }
                     });
@@ -565,78 +569,99 @@ function styleChange(id,mytext){
             M(url_json);
         }
     });
-    lsf_myweb.bind(lsf_myweb.getbyid('s_but'),'click',function(ev){
-        var hl_star_str='';
-        var hl_type_str='';
-        var hl_star_type=lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'),'s-li1');
-        for(var i=0;i<hl_star_type.length;i++){
-            switch(hl_star_type[i].innerHTML){
-                case '二星级以下':
-                    hl_star_str+='2$';
-                    break;
-                case '三星':
-                    hl_star_str+='3$';
-                    break;
-                case '四星':
-                    hl_star_str+='4$';
-                    break;
-                case '五星':
-                    hl_star_str+='5$';
-                    break;
-                case '酒店':
-                    hl_type_str+='1$';
-                    break;
-                case '汽车旅馆':
-                    hl_type_str+='2$';
-                    break;
-                case '酒店式公寓':
-                    hl_type_str+='3$';
-                    break;
-                case '家庭旅馆':
-                    hl_type_str+='4$';
-                    break;
-                case '背包客栈':
-                    hl_type_str+='5$';
-                    break;
-                case '宾馆/招待所':
-                    hl_type_str+='6$';
-                    break;
-                case '精品酒店':
-                    hl_type_str+='7$';
-                    break;
-                case '度假类酒店':
-                    hl_type_str+='8$';
-                    break;
-                case '游轮度假酒店':
-                    hl_type_str+='9$';
-                    break;
-                case '别墅型酒店':
-                    hl_type_str+='10$';
-                    break;
-                case '乡村平房酒店':
-                    hl_type_str+='11$';
-                    break;
-                case '家庭寄宿':
-                    hl_type_str+='12$';
-                    break;
-                case '农舍式房子':
-                    hl_type_str+='13$';
-                    break;
-                case '豪华露营地':
-                    hl_type_str+='14$';
-                    break;
-                case '标准露营地':
-                    hl_type_str+='15$';
-                    break;
-            };
+    lsf_myweb.bind(oBody,'click',function(ev){
+        var oEvent=ev||event;
+        var oSrc=oEvent.srcElement||oEvent.target;
+        if(oSrc.getAttribute('id')=='s_but'){
+            var hl_star_str='';
+            var hl_type_str='';
+            var hl_star_type=lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'),'s-li1');
+            for(var i=0;i<hl_star_type.length;i++){
+                switch(hl_star_type[i].innerHTML){
+                    case '二星级以下':
+                        hl_star_str+='2$';
+                        break;
+                    case '三星':
+                        hl_star_str+='3$';
+                        break;
+                    case '四星':
+                        hl_star_str+='4$';
+                        break;
+                    case '五星':
+                        hl_star_str+='5$';
+                        break;
+                    case '酒店':
+                        hl_type_str+='1$';
+                        break;
+                    case '汽车旅馆':
+                        hl_type_str+='2$';
+                        break;
+                    case '酒店式公寓':
+                        hl_type_str+='3$';
+                        break;
+                    case '家庭旅馆':
+                        hl_type_str+='4$';
+                        break;
+                    case '背包客栈':
+                        hl_type_str+='5$';
+                        break;
+                    case '宾馆/招待所':
+                        hl_type_str+='6$';
+                        break;
+                    case '精品酒店':
+                        hl_type_str+='7$';
+                        break;
+                    case '度假类酒店':
+                        hl_type_str+='8$';
+                        break;
+                    case '游轮度假酒店':
+                        hl_type_str+='9$';
+                        break;
+                    case '别墅型酒店':
+                        hl_type_str+='10$';
+                        break;
+                    case '乡村平房酒店':
+                        hl_type_str+='11$';
+                        break;
+                    case '家庭寄宿':
+                        hl_type_str+='12$';
+                        break;
+                    case '农舍式房子':
+                        hl_type_str+='13$';
+                        break;
+                    case '豪华露营地':
+                        hl_type_str+='14$';
+                        break;
+                    case '标准露营地':
+                        hl_type_str+='15$';
+                        break;
+                };
+            }
+            hl_star_str=hl_star_str.substring(0,(hl_star_str.length-1));
+            hl_type_str=hl_type_str.substring(0,(hl_type_str.length-1));
+            url_json.StarRating=hl_star_str;
+            url_json.Category=hl_type_str;
+            M(url_json);
+            //alert(hl_star_str+'---'+hl_type_str);
         }
-        hl_star_str=hl_star_str.substring(0,(hl_star_str.length-1));
-        hl_type_str=hl_type_str.substring(0,(hl_type_str.length-1));
-        url_json.StarRating=hl_star_str;
-        url_json.Category=hl_type_str;
-        M(url_json);
-        //alert(hl_star_str+'---'+hl_type_str);
     });
+    lsf_myweb.bind(oBody,'click',function(ev){
+        var oEvent=ev||event;
+        var oSrc=oEvent.srcElement||oEvent.target;
+        var locationList='';
+        if(oSrc.getAttribute('id')=='l_but'){
+            var targetLi=lsf_myweb.getbyclass(lsf_myweb.getbyid('l-ul'),'l-li2');
+            for(var i=0;i<targetLi.length;i++){
+                var cityName=targetLi[i].children[0];
+                locationList+=cityName.innerHTML+'$';
+                if(i==targetLi.length-1){
+                    locationList+=cityName.innerHTML;
+                }
+            }
+            url_json.LocationList=locationList;
+            M(url_json);
+        }
+    })
     //获取酒店详情
     function getDetail(data){
         data=data.HotelList;
