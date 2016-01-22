@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="all-elements">
-    <div class="header" id="vlm-login">
+    <div class="header">
         <a href="javascript:window.history.go(-1);" class="icons header-back"></a>
         <h3>个人资料</h3>
     </div>
@@ -105,25 +105,23 @@
         <li id="amendkey" style="display: none;">
             <form id="keyForm" action="user-perInfo.html" method="post">
                 <ul class="f_key">
-                    <li>
-                        <input class="fk_put" type="text" value placeholder="请输入手机号" data-type="tel">
+                    <li class = "amendkey">
+                        <div>当前密码</div>
+                        <input type="password" placeholder="6-20位字符" data-type="pass"/>
                     </li>
-                    <li style="padding-right: 0;">
-                        <input class="fk_put" type="text" value placeholder="请输入验证码" data-type="code">
-                        <div class="fk_div" id="newkey_ver">发送验证码</div>
+                    <li class = "amendkey">
+                        <div>新密码</div>
+                        <input type="password" placeholder="6-20位字符" data-type="pass"/>
                     </li>
-                    <li>
-                        <input class="fk_put" type="text" value placeholder="原密码" data-type="pass">
-                    </li>
-                    <li>
-                        <input class="fk_put" type="text" value placeholder="新密码" data-type="pass">
-                    </li>
-                    <li>
-                        <input class="fk_put" type="text" value placeholder="确认新密码"  data-type="pass">
+                    <li class = "amendkey">
+                        <div>确认密码</div>
+                        <input type="password" placeholder="6-20位字符" data-type="pass"/>
                     </li>
                 </ul>
-                <input id="newkey_btn" class="f_btn button-orange" type="button" value="保存"/>
             </form>
+            <div id="ifshowkey" class="showkey"><b class="icon show-keys"></b>显示密码</div>
+            <input id="newkey_btn" class="f_btn button-orange" type="button" value="完成"/>
+            <div class="con-text" style="margin-top: 15px;">注意：密码需要填写6-20位字符，可由英文字母，数字和符号组成，不能含空格</div>
         </li>
     </ul>
 </div>

@@ -38,7 +38,7 @@
     <!-- Page Content-->
     <div id="content" class="snap-content">
         <div class="login-page">
-            <div class="login-page-wrapper" id="login_page">
+            <div id="login_page" class="login-page-wrapper">
                 <div class="login-header" id="vlm-login">
                     <a href="user.html" class="icons header-close"></a>
                     <h3>登录</h3>
@@ -54,10 +54,10 @@
                     <div class="login-input"><b class="icons login-pass"></b><input id="e_password" type="password" value="" placeholder="密码" data-type="pass"></div>
                 </div>
                 <div class="clear"></div>
-                <a class="forgotkey" href="#">忘记密码？</a>
+                <a class="forgotkey" href="#" onclick="show_keypage()">忘记密码？</a>
                 <a class="changelogin" href="#" id="change_email">切换邮箱登录<b class="icon login-change"></b></a>
                 <a class="changelogin" href="#" id="change_phone">切换手机登录<b class="icon login-change"></b></a>
-                <input id="login_btn" type="submit" class="btn full-button button-orange" value="登录"/>
+                <input id="login_btn" type="button" class="btn full-button button-orange" value="登录"/>
             </div>
             <!--   注册页   -->
             <div class="login-page-wrapper" id="register_page" style="display:none;">
@@ -82,6 +82,38 @@
                 </div>
                 <a href="#" class="btn full-button button-orange" style="margin-top: 44px;" id="register_btn">注册</a>
             </div>
+        </div>
+    </div>
+    <!--   找回密码页   -->
+    <div id="fkey_page" class="all-elements" style="display: none">
+        <div class="header">
+            <a class="icons header-back" onclick="close_keypage()"></a>
+            <h3 id="find_title">手机找回</h3>
+            <div id="cha_email" class="header-finish">邮箱找回</div>
+            <div id="cha_phone" class="header-finish" style="display: none">手机找回</div>
+        </div>
+        <div class="user-content">
+             <div id="phone_find">
+                <ul class="f_key">
+                    <li>中国+86
+                        <b class="icons open-pho"></b>
+                    </li>
+                    <li>
+                        <input id="find_phone" class="fk_put" type="text" value placeholder="输入有效手机号" data-type="tel">
+                    </li>
+                    <li style="padding-right: 0;">
+                        <input id="find_veri" class="fk_put" type="text" value placeholder="输入验证码" data-type="code">
+                        <div class="fk_div" id="find_verify">获取验证码</div>
+                    </li>
+                    <li>
+                        <input class="fk_put"  type="text" value placeholder="输入6-18位新密码" data-type="pass">
+                    </li>
+                </ul>
+            </div>
+            <div id="email_find" class="u_name" style="display: none">
+                <input id="find_email" type="text" style="font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
+            </div>
+            <a id="findkey_btn" href="#" class="f_btn button-orange">完成</a>
         </div>
     </div>
 </div>

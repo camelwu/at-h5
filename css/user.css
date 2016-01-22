@@ -34,6 +34,7 @@
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
+    font-weight: 600;
 }
 .open-pho{
     position: absolute;
@@ -139,7 +140,8 @@
     width: 67px;height: 80px;
     background-position: 4% 51%;
 }
-.black-con{
+.blank-con{
+    display: none;
     margin: 0 auto;
     margin-top: 30%;
     text-align: center;
@@ -364,6 +366,54 @@
 }
 #info_content li{
     list-style-type: none;
+}
+.amendkey{
+    list-style-type: none;
+    padding-top:16px;
+    padding-bottom:16px;
+    font-size:14px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid #dedede;
+}
+.amendkey div{
+    font-size:15px;
+    color:#484848;
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+}
+.amendkey input{
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
+}
+.showkey{
+    float:right;
+    margin-right: 3%;
+    margin-top: 10px;
+}
+.show-key{
+    position: relative;
+    width: 16px; height: 16px;
+    margin-right: 7px;
+    top:2px;
+    background-position: -323px 95%;
+}
+.show-keys{
+    position: relative;
+    width: 16px; height: 16px;
+    margin-right: 7px;
+    top:2px;
+    background-position: 91.2% 95%;
 }
 /*
          修改昵称页css
@@ -593,7 +643,11 @@
 .often-traveler{
     width:100%;
     margin-bottom:15px;
+
 }
+/*.often-traveler li:first-child{*/
+    /*border-top:1px solid #dedede;*/
+/*}*/
 .eve-traveler{
     list-style-type: none;
     padding: 12px 15px;
@@ -626,7 +680,7 @@
 .user-edits{
     width: 22px;height: 22px;
     float: right;
-    background-position:53% 27.5%;
+    background-position:53.2% 27.5%;
 }
 .statement{
     padding:8px 15px;

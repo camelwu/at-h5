@@ -1,7 +1,7 @@
 /**
  * Created by changlv on 2016/1/7.
  */
-var login_pass;
+var newkey;
 window.onload = function(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
@@ -23,6 +23,11 @@ window.onload = function(){
     var close_register = $("#close_register")[0];
     var register_btn = $("#register_btn")[0];
     var login_btn = $("#login_btn")[0];
+    var find_title = $("#find_title")[0];
+    var cha_email = $("#cha_email")[0];
+    var cha_phone = $("#cha_phone")[0];
+    var phone_find = $("#phone_find")[0];
+    var email_find = $("#email_find")[0];
     email_login.style.display = "none";
     change_phone.style.display = "none";
     function showRegister(obj1,obj2,obj3){
@@ -67,7 +72,19 @@ window.onload = function(){
     //更换注册方式
     changeWay(header_email,header_phone,phone_register,email_register);
     changeWay(header_phone,header_email,email_register,phone_register);
-
+    function changeFind(obj1,obj2,obj3,obj4){
+        obj1.onclick = function(){
+            phone_find.style.display = "none";
+            email_find.style.display = "none";
+            obj1.style.display = "none";
+            obj2.style.display = "block";
+            find_title.innerHTML = obj3;
+            obj4.style.display = "block";
+        }
+    }
+    //更换找回密码方式
+    changeFind(cha_email,cha_phone,"邮箱找回",email_find);
+    changeFind(cha_phone,cha_email,"手机找回",phone_find);
     var p_password = $("#p_password")[0];
     var e_password = $("#e_password")[0];
     var r_phone = $("#r_phone")[0];
@@ -80,13 +97,13 @@ window.onload = function(){
     var c = new vcm();
     var check = function (type,num){
         if(type == "tel"){
-            c.Utils.validate.mobileNo(num);
+           return c.Utils.validate.mobileNo(num);
         }
         if(type == "email"){
-            c.Utils.validate.email(num);
+           return c.Utils.validate.email(num);
         }
         if(type == "pass"){
-            c.Utils.validate.password(num);
+           return c.Utils.validate.password(num);
         }
     };
     // 会员注册
@@ -105,7 +122,7 @@ window.onload = function(){
                 if(input[i].style.display!=="none" && input[i].value !="") {
                     console.log(input[i].getAttribute('data-type'));
                     if(input[i].getAttribute('data-type') !="code") {
-                        if (check(input[i].getAttribute('data-type'), input[i].value)) {
+                        if (!check(input[i].getAttribute('data-type'), input[i].value)) {
                             alert("输入不正确");
                             return;
                         }
@@ -144,10 +161,11 @@ window.onload = function(){
                 login_pass = p_password;
                 input = phone_login.getElementsByTagName('input');
             }
+
             for (var i = 0; i < input.length; i++) {
                 if (input[i].style.display != "none" && input[i].value != "") {
                     console.log(input[i].getAttribute('data-type'));
-                    if(check(input[i].getAttribute('data-type'),input[i].value)){
+                    if(!check(input[i].getAttribute('data-type'),input[i].value)){
                         alert("输入不正确");
                         return;
                     }
@@ -162,7 +180,61 @@ window.onload = function(){
         }
     }
     user_login(login_btn);
+    //找回密码
+    var findkey_btn = $("#findkey_btn")[0];
+    function findkey(obj){
+        obj.onclick = function(){
+            var input;
+            var find_phone = $("#find_phone")[0];
+            var find_email = $("#find_email")[0];
+            if(find_title.innerHTML = "手机找回"){
+                input = phone_find.getElementsByTagName('input');
+            }else{
+                input = email_find.getElementsByTagName('input');
+            }
+            for(var i= 0;i < input.length;i++){
+                if(input[i].value !="") {
+                    console.log(input[i].getAttribute('data-type'));
+                    if(input[i].getAttribute('data-type') !="code") {
+                        if (!check(input[i].getAttribute('data-type'), input[i].value)) {
+                            alert("输入不正确");
+                            return;
+                        }
+                    }
+                }
+            }
+            var Parameters= {
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+find_email.value+"\",\"Mobile\":\""+find_phone.value+"\",\"NewPassword\":\""+input[2].value+"\",\"Code\":\""+input[1].value+"\"}",
+                "ForeEndType": 3,
+                "Code": "0054"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
+        }
+    }
+    findkey(findkey_btn);
+    //找回密码获取手机验证码
+    var find_verify = $("#find_verify")[0];
+    function get_fver(obj){
+        obj.onclick = function(){
+            var find_phone = $("#find_phone")[0];
+            var Parameters = {
+                "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":3}",
+                "ForeEndType": 3,
+                "Code": "0058"
+            };
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
+        }
+    }
+    get_fver(find_verify);
 };
+function show_keypage(){
+    var fkey_page = $("#fkey_page")[0];
+    fkey_page.style.display = "block";
+}
+function close_keypage(){
+    var fkey_page = $("#fkey_page")[0];
+    fkey_page.style.display = "none";
+}
 function mycallback_register(ret){
     console.log(ret);
     var myJson = eval('('+ret+')');
@@ -178,17 +250,17 @@ function mycallback_login(ret) {
     console.log(ret);
     var myJson = eval('(' + ret + ')');
     console.log(myJson);
-    var phone = $("#phone")[0];
-    var email = $("#email")[0];
     if (myJson.Success) {
+        sessionStorage.email = myJson.Data[0].Email;
+        sessionStorage.phone = myJson.Data[0].Mobile;
+        sessionStorage.password = myJson.Data[0].Password;
+        sessionStorage.memberid = myJson.Data[0].MemberID;
         window.location.href = "user-logined.html";
-        sessionStorage.email = email.value;
-        sessionStorage.phone = phone.value;
-        sessionStorage.password = login_pass.value;
     } else {
         alert(myJson.Message);
     }
 }
+//注册验证码回调
 function mycallback_verify(ret){
     var c = new vcm();
     var verify = $("#verify")[0];
@@ -197,6 +269,27 @@ function mycallback_verify(ret){
     console.log(myJson);
     if(myJson.Success){
         c.Utils.sendMobileCode(verify.value);
+    }else{
+        alert(myJson.Message);
+    }
+}
+function mycallback_findkey(ret){
+    var myJson = eval('(' + ret + ')');
+    console.log(myJson);
+    if(myJson.Success){
+        window.location.href = "user-login.html";
+    }else{
+        alert(myJson.Message);
+    }
+}
+//找回密码验证码回调
+function mycallback_findver(ret){
+    var c = new vcm();
+    var find_veri = $("#find_veri")[0];
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.Success){
+        c.Utils.sendMobileCode(find_veri.value);
     }else{
         alert(myJson.Message);
     }

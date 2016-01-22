@@ -41,18 +41,18 @@
         </div>
         <!-- Page Content-->
         <div id="content" class="snap-content">
-            <div class="f_btn button-orange" style="margin-top: 10px" onclick="showAdd_page()">
+            <div id="addUser" class="f_btn button-orange" style="margin-top: 10px;font-weight: 100;">
                 <b class="icons user-add"></b>新增常旅客户信息
             </div>
-            <div id="black" class="black-con">
+            <div id="blank" class="blank-con">
                 您还没有设置常旅客，快添加吧！
             </div>
-            <!--<ul class="often-traveler">-->
+            <!--<ul id="oftenTrav" class="often-traveler">-->
                 <!--<li class="eve-traveler" style="border-top:1px solid #dedede;">-->
                     <!--<b class="bu_icon user-edits"></b>-->
                     <!--<ul class="often_user">-->
                         <!--<li>陈玉宝CHEN/YUBAO</li>-->
-                        <!--<li>身份证 <span>11023319880358765</span></li>-->
+                        <!--<li>身份证11023319880358765</li>-->
                         <!--<li>护照 <span>E000000000</span></li>-->
                         <!--<li>手机号 <span>1588776655</span></li>-->
                     <!--</ul>-->
@@ -73,8 +73,8 @@
     <div class="addtra-page" id="contact_page">
         <div class="all-elements">
             <div class="header">
-                <div class="header-quit" onclick="closeAdd_page()">取消</div>
-                <h3>新增常用旅客</h3>
+                <div id="edit_quit" class="header-quit">取消</div>
+                <h3>编辑联系人</h3>
                 <div class="header-finish">完成</div>
             </div>
             <!-- Page Content-->
@@ -106,76 +106,155 @@
         </div>
     </div>
     <!--    新增常用旅客页   -->
-    <div class="addtra-page" id="addtra-page">
+    <div class="addtra-page" id="addtra_page">
         <div class="all-elements">
             <div class="header">
-                <div class="header-quit" onclick="closeAdd_page()">取消</div>
+                <div id="add_quit" class="header-quit">取消</div>
                 <h3>新增常用旅客</h3>
-                <div class="header-finish">完成</div>
+                <div id="add_finish" class="header-finish">完成</div>
             </div>
             <!-- Page Content-->
             <div class="user-content">
-                <div class="addtra-title">旅客姓名<b class="icon user-must"></b></div>
-                <ul class="addtra-info">
-                    <li>
-                        <div>中文姓名</div>
-                        <input type="text" placeholder="确保与证件保持一致">
-                    </li>
-                    <li style="border: none;padding-bottom: 0;">
-                        <div>英文姓</div>
-                        <input type="text" placeholder="Surname,如Li"><br/>
-                    </li>
-                    <li>
-                        <div>英文名</div>
-                        <input type="text" placeholder="Given name,如Shimin">
-                    </li>
-                </ul>
-                <div class="addtra-title">证件</div>
-                <ul class="addtra-info">
-                    <li>
-                        <b class="icons open-pho"></b>
-                        <div>证件类型</div>
-                        <div>护照</div>
-                    </li>
-                    <li>
-                        <div>证件号</div>
-                        <input type="text" placeholder="确保与证件保持一致">
-                    </li>
-                </ul>
-                <div class="addtra-title">其他信息</div>
-                <ul class="addtra-info">
-                    <li>
-                        <b class="icons open-pho"></b>
-                        <div>国籍</div>
-                        <div>中国</div>
-                    </li>
-                    <li>
-                        <div>性别</div>
-                        <div>
-                            <span style="margin-right:15%" onclick="choseSex()"><b id="man" class="icon-h traveler-sex1"></b>男士</span>
-                            <span onclick="choseSex()"><b id="woman" class="icon-h traveler-sex2"></b>女士</span>
-                        </div>
-                    </li>
-                    <li>
-                        <b class="icons open-pho"></b>
-                        <div>出生日期</div>
-                    </li>
-                </ul>
-                <div class="addtra-title">联系方式</div>
-                <ul class="traveler-contect">
-                    <li>
-                        <div class="con-phone">
-                            手机号
-                            <div style="float:right;margin-right:10px;">+86</div>
-                        </div>
-                        <input type="text" placeholder="请确保手机号无误">
-                    </li>
-                    <li>
-                        <div class="">邮箱</div>
-                        <input type="text" placeholder="常用邮箱">
-                    </li>
-                </ul>
+                <div class="addtra-title">旅客姓名<b id="aname_state" class="icon user-must"></b></div>
+                <form id="addForm" action="user-oftenInfo.html" method="post">
+                    <ul class="addtra-info">
+                        <li>
+                            <div>中文姓名</div>
+                            <input type="text" placeholder="确保与证件保持一致">
+                        </li>
+                        <li style="border: none;padding-bottom: 0;">
+                            <div>英文姓</div>
+                            <input type="text" placeholder="Surname,如Li(中文姓拼音)"><br/>
+                        </li>
+                        <li>
+                            <div>英文名</div>
+                            <input type="text" placeholder="Given name,如Shimin(中文名拼音)">
+                        </li>
+                    </ul>
+                    <div class="addtra-title">证件</div>
+                    <ul class="addtra-info">
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>证件类型</div>
+                            <div id="postCard">护照</div>
+                        </li>
+                        <li>
+                            <div>证件号</div>
+                            <input type="text" placeholder="确保与证件保持一致">
+                        </li>
+                    </ul>
+                    <div class="addtra-title">其他信息</div>
+                    <ul class="addtra-info">
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>国籍</div>
+                            <div>中国</div>
+                        </li>
+                        <li>
+                            <div>性别</div>
+                            <div>
+                                <span style="margin-right:15%" onclick="choseSex()"><b id="man" class="icon-h traveler-sex1"></b>男士</span>
+                                <span onclick="choseSex()"><b id="woman" class="icon-h traveler-sex2"></b>女士</span>
+                            </div>
+                        </li>
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>出生日期</div>
+                        </li>
+                    </ul>
+                    <div class="addtra-title">联系方式</div>
+                    <ul class="traveler-contect">
+                        <li>
+                            <div class="con-phone">
+                                手机号
+                                <div style="float:right;margin-right:10px;">+86</div>
+                            </div>
+                            <input type="text" placeholder="请确保手机号无误">
+                        </li>
+                        <li>
+                            <div class="">邮箱</div>
+                            <input type="text" placeholder="常用邮箱">
+                        </li>
+                    </ul>
+                </form>
                 <div class="con-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+            </div>
+        </div>
+    </div>
+    <!--    更新常用旅客页   -->
+    <div class="addtra-page" id="uptra_page">
+        <div class="all-elements">
+            <div class="header">
+                <div id="update_quit" class="header-quit">取消</div>
+                <h3>编辑常用旅客</h3>
+                <div id="upadate_finish" class="header-finish">完成</div>
+            </div>
+            <!-- Page Content-->
+            <div class="user-content">
+                <div class="addtra-title">旅客姓名<b id="name_state" class="icon user-must"></b></div>
+                <form id="updateForm" action="user-oftenInfo.html" method="post">
+                    <ul class="addtra-info">
+                        <li>
+                            <div>中文姓名</div>
+                            <input type="text" placeholder="确保与证件保持一致">
+                        </li>
+                        <li style="border: none;padding-bottom: 0;">
+                            <div>英文姓</div>
+                            <input type="text" placeholder="Surname,如Li(中文姓拼音)"><br/>
+                        </li>
+                        <li>
+                            <div>英文名</div>
+                            <input type="text" placeholder="Given name,如Shimin(中文名拼音)">
+                        </li>
+                    </ul>
+                    <div class="addtra-title">证件</div>
+                    <ul class="addtra-info">
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>证件类型</div>
+                            <div id="cardType"></div>
+                        </li>
+                        <li>
+                            <div>证件号</div>
+                            <input type="text" placeholder="确保与证件保持一致">
+                        </li>
+                    </ul>
+                    <div class="addtra-title">其他信息</div>
+                    <ul class="addtra-info">
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>国籍</div>
+                            <div id="countryName"></div>
+                        </li>
+                        <li>
+                            <div>性别</div>
+                            <div>
+                                <span style="margin-right:15%" onclick="choseSex2()"><b id="man2" class="icon-h traveler-sex1"></b>男士</span>
+                                <span onclick="choseSex2()"><b id="woman2" class="icon-h traveler-sex2"></b>女士</span>
+                            </div>
+                        </li>
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>出生日期</div>
+                        </li>
+                    </ul>
+                    <div class="addtra-title">联系方式</div>
+                    <ul class="traveler-contect">
+                        <li>
+                            <div class="con-phone">
+                                手机号
+                                <div style="float:right;margin-right:10px;">+86</div>
+                            </div>
+                            <input type="text" placeholder="请确保手机号无误">
+                        </li>
+                        <li>
+                            <div class="">邮箱</div>
+                            <input type="text" placeholder="常用邮箱">
+                        </li>
+                    </ul>
+                </form>
+                <div class="con-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+                <div id="delTra" class="f_btn button-grey" style="width:40%;margin-top: 20px;margin-left: 30%">删除常旅客</div>
             </div>
         </div>
     </div>
@@ -193,7 +272,7 @@
                     <b class="icons user-add"></b>新增乘机人
                 </div>
                 <ul class="often-traveler">
-                    <li class="eve-traveler" style="border-top:1px solid #dedede;">
+                    <li class="eve-traveler">
                         <b class="bu_icon user-edits"></b>
                         <b class="icon user-choice1"></b>
                         <ul class="often_user">
@@ -204,7 +283,7 @@
                 </ul>
                 <div class="name-text" style="margin-bottom: 0;margin-top: -15px;">首字母排序</div>
                 <ul class="often-traveler">
-                    <li class="eve-traveler" style="border-top:1px solid #dedede;">
+                    <li class="eve-traveler">
                         <b class="bu_icon user-edits"></b>
                         <b class="icon user-choice2"></b>
                         <ul class="often_user">
@@ -222,6 +301,89 @@
                     </li>
                 </ul>
                 <div class="con-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+            </div>
+        </div>
+    </div>
+    <!-- 填写姓名说明页-->
+    <!-- 中文姓名-->
+    <div class="fillName-page" id="fillName_page">
+        <div class="all-elements">
+            <div class="header">
+                <a id="close_name" href="#" class="icons header-back"></a>
+                <h3>填写姓名说明</h3>
+            </div>
+            <div class="user-content">
+                <ol class="ch_account" id="ch_account" style="display: none;">
+                    <li>姓名要与所持证件的姓名一致</li>
+                    <li>中文姓名
+                        <ul class="name_ul">
+                            <li>若持护照乘机，必须确认护照上有中文姓名<br/>
+                                生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”
+                                <div class="name-example">
+                                    <div>中文姓名</div>
+                                    <div>王ben</div>
+                                </div>
+                            </li>
+                            <li>
+                                姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”
+                                <div class="name-example">
+                                    <div>中文姓名</div>
+                                    <div>汉族然买买提</div>
+                                </div>
+                            </li>
+                            <li>
+                                香港、台湾、澳门的护照不支持国内航班，请改用其他证件。
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+                <!-- 英文姓名-->
+                <ol class="ch_account" id="en_account">
+                    <li>必须用英文字母填写，并确保与所持证件的姓名一致</li>
+                    <li>中文姓名
+                        <ul class="name_ul">
+                            <li style="list-style-type: none;">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming
+                                <div class="name-example">
+                                    <div>Surname</div>
+                                    <div>Zhuge</div>
+                                </div>
+                                <div class="name-example2" >
+                                    <div>Given name</div>
+                                    <div>Kongming</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>英文姓名
+                        <ul class="name_ul">
+                            <li>若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
+                                例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad
+                                <div class="name-example">
+                                    <div>Surname</div>
+                                    <div>Potter</div>
+                                </div>
+                                <div class="name-example2" >
+                                    <div>Given nam</div>
+                                    <div>joerad</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="name_ul">
+                            <li>姓与名总长度小于26个字符，若过程请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
+                                在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
+                                jame M C
+                                <div class="name-example">
+                                    <div>Surname</div>
+                                    <div>BlackSA</div>
+                                </div>
+                                <div class="name-example2" >
+                                    <div>Given nam</div>
+                                    <div>jame M C</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
             </div>
         </div>
     </div>

@@ -5,6 +5,8 @@ function init(){
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
     var password = sessionStorage.password;
+    sessionStorage.news = "true";
+    sessionStorage.promotion = "true";
     var c = new vcm();
     var Parameters= {
         "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
@@ -53,10 +55,18 @@ function init(){
 }
 function ifOpen(){
     var b = window.event.srcElement;
+    var newsLetter = $("#newsLetter")[0];
+    var rcvPromotion = $("#rcvPromotion")[0];
     if(b.className == "icon set-chose1"){
         b.className = "icon set-chose2";
     }else{
         b.className = "icon set-chose1";
+    }
+    if(newsLetter.className == "icon set-chose2"){
+        sessionStorage.news = "false";
+    }
+    if(rcvPromotion.className == "icon set-chose2"){
+        sessionStorage.promotion = "false";
     }
 }
 function mycallback(ret){
@@ -64,10 +74,13 @@ function mycallback(ret){
     console.log(myJson);
     var user_name = $("#user_name")[0];
     var user_sex = $("#user_sex")[0];
+    var userIcon = $("#userIcon")[0];
     user_name.innerHTML = myJson.Data[0].NickName;
     if(myJson.Data[0].Salutation == "26"){
         user_sex.className = "icon open-sexm";
+        userIcon.src = "images/ui/photo-man.png";
     }else{
         user_sex.className = "icon open-sexw";
+        userIcon.src = "images/ui/photo-woman.png";
     }
 }
