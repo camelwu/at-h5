@@ -283,9 +283,10 @@ Calender.prototype = {
     // 移除日期DIV.calendar
     removeDate:function(){
         var that=this;
+        var ov = _CalF.$('#'+ this.id + '-header');
+        if(!!ov) ov.parentNode.removeChild(ov);
         var odiv = _CalF.$('#'+ this.id + '-date');
         if(!!odiv) odiv.parentNode.removeChild(odiv);
-        that.header.parentNode.removeChild(that.header);
     },
     // 上一月，下一月按钮事件
     btnEvent:function(){
@@ -322,6 +323,7 @@ Calender.prototype = {
 							that.tiper.innerHTML = '请选择'+that._word.h[1]+'日期';
 							that.linkReset(this.index);
 							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');
+                            $(this).addClass("disabled");
 							that.op++;
 						}else{
 							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');that.op>=1?that.op=0:null;
