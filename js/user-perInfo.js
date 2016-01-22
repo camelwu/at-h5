@@ -13,8 +13,9 @@ function u_perInfo(){
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
     var password = sessionStorage.password;
+    var memberid = sessionStorage.memberid;
     var Parameters= {
-        "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Password\":\""+password+"\",\"Mobile\":\""+phone+"\"}",
+        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
         "Code": "0053"
     };
@@ -171,11 +172,17 @@ function u_perInfo(){
             u_email = input[3].value;
             u_realname = input[0].value;
             u_phone = input[1].value;
+            //var Parameters={
+            //    "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input[3].value+"\",\"FirstName\":\""+input[0].value+"\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+input[1].value+"\",\"Phone\":\""+input[1].value+"\",\"NewsLetter\":"+news+",\"Promotion\":"+promotion+",\"Salutation\":\""+UserSex+"\"}",
+            //        "ForeEndType": 3,
+            //        "Code": "0056"
+            //};
             var Parameters={
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input[3].value+"\",\"FirstName\":\""+input[0].value+"\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+input[1].value+"\",\"Phone\":\""+input[1].value+"\",\"NewsLetter\":"+news+",\"Promotion\":"+promotion+",\"Salutation\":\""+UserSex+"\"}",
-                    "ForeEndType": 3,
-                    "Code": "0056"
+                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"Email\":\"\",\"FirstName\":\"chonghuan\",\"LastName\":\"yuan\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\"15210091056\",\"Phone\":\"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\"\"}",
+                "ForeEndType": 3,
+                "Code": "0056"
             };
+
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
         }
     }
@@ -210,8 +217,13 @@ function u_perInfo(){
                     }
                 }
             }
+            //var Parameters= {
+            //    "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\""+input[0].value+"\",\"NewPassword\":\""+input[1].value+"\"}",
+            //    "ForeEndType": 3,
+            //    "Code": "0054"
+            //};
             var Parameters= {
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\""+input[0].value+"\",\"NewPassword\":\""+input[1].value+"\"}",
+                "Parameters": "{\"CultureName\":492189,\"MemberID\":\""+MemberId+"\",\"NewPassword\":\""+input[1].value+"\"}",
                 "ForeEndType": 3,
                 "Code": "0054"
             };
@@ -252,6 +264,7 @@ function mycallback(ret){
         user_email.value = sessionStorage.email;
     }
     realName.value = sessionStorage.realname;
+    MemberId = sessionStorage.memberid;
     //MemberId = infoJson.Data[0].MemberId;
     //sessionStorage.MemberId = MemberId;
     if(infoJson.Data[0].Salutation == "26"){

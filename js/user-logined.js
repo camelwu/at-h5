@@ -5,11 +5,12 @@ function init(){
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
     var password = sessionStorage.password;
+    var memberid = sessionStorage.memberid;
     sessionStorage.news = "true";
     sessionStorage.promotion = "true";
     var c = new vcm();
     var Parameters= {
-        "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
+        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
         "Code": "0053"
     };
@@ -69,18 +70,22 @@ function ifOpen(){
         sessionStorage.promotion = "false";
     }
 }
-function mycallback(ret){
-    var myJson = eval('('+ret+')');
+function mycallback(ret) {
+    var myJson = eval('(' + ret + ')');
     console.log(myJson);
-    var user_name = $("#user_name")[0];
-    var user_sex = $("#user_sex")[0];
-    var userIcon = $("#userIcon")[0];
-    user_name.innerHTML = myJson.Data[0].NickName;
-    if(myJson.Data[0].Salutation == "26"){
-        user_sex.className = "icon open-sexm";
-        userIcon.src = "images/ui/photo-man.png";
+    if (myJson.Success) {
+        var user_name = $("#user_name")[0];
+        var user_sex = $("#user_sex")[0];
+        var userIcon = $("#userIcon")[0];
+        user_name.innerHTML = myJson.Data[0].NickName;
+        if (myJson.Data[0].Salutation == "26") {
+            user_sex.className = "icon open-sexm";
+            userIcon.src = "images/ui/photo-man.png";
+        } else {
+            user_sex.className = "icon open-sexw";
+            userIcon.src = "images/ui/photo-woman.png";
+        }
     }else{
-        user_sex.className = "icon open-sexw";
-        userIcon.src = "images/ui/photo-woman.png";
+        alert(myJson.Message);
     }
 }

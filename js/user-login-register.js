@@ -171,11 +171,12 @@ window.onload = function(){
                     }
                 }
             }
-            var Parameters = {
+            var Parameters= {
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\"" + email.value + "\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value + "\"}",
                 "ForeEndType": 3,
                 "Code": "0052"
             };
+
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
         }
     }
@@ -184,6 +185,7 @@ window.onload = function(){
     var findkey_btn = $("#findkey_btn")[0];
     function findkey(obj){
         obj.onclick = function(){
+            debugger;
             var input;
             var find_phone = $("#find_phone")[0];
             var find_email = $("#find_email")[0];
@@ -206,7 +208,7 @@ window.onload = function(){
             var Parameters= {
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\""+find_email.value+"\",\"Mobile\":\""+find_phone.value+"\",\"NewPassword\":\""+input[2].value+"\",\"Code\":\""+input[1].value+"\"}",
                 "ForeEndType": 3,
-                "Code": "0054"
+                "Code": "0055"
             };
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
         }

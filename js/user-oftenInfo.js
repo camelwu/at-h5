@@ -3,6 +3,7 @@
  */
 var index;
 var array = [];
+var arrayId = [];
 var travJson;
 window.onload = function(){
     var menu = $("#menu")[0];
@@ -85,10 +86,11 @@ window.onload = function(){
                 sexName = "女";
             }
             var Parameters= {
-                "Parameters": "{\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"IdType\":\"2\",\"IdNumber\":\""+input[3].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"2016-01-12\",\"Email\":\""+input[5].value+"\",\"MemberId\":"+memberId+"}",
+                "Parameters": "{\"Traveller\":{\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\""+input[5].value+"\",\"MemberId\":\""+memberId+"\",\"MobilePhone\":\""+input[4].value+"\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\""+input[3].value+"\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
                 "ForeEndType": 3,
                 "Code": "0071"
             };
+
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
         }
     }
@@ -99,6 +101,7 @@ window.onload = function(){
         obj.onclick = function(){
             debugger;
             var travelId = array[index];
+            var id = arrayId[index];
             var input  = document.getElementById("updateForm").getElementsByTagName("input");
             var cardType = document.getElementById("cardType").innerHTML;
             var cardId;
@@ -139,10 +142,11 @@ window.onload = function(){
                 cardId = "9";
             }
             var Parameters= {
-                "Parameters": "{\"TravellerId\":"+travelId+",\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"IdType\":\"2\",\"IdNumber\":\""+input[3].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\""+countryName+"\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"2016-01-12\",\"Email\":\""+input[5].value+"\",\"MemberId\":"+memberId+"}",
+                "Parameters": "{\"Traveller\":{\"TravellerId\":"+travelId+",\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\""+input[5].value+"\",\"MemberId\":\""+memberId+"\",\"MobilePhone\":\""+input[4].value+"\"},\"ListTravellerIdInfo\":[{\"Id\":"+id+",\"TravellerId\":"+travelId+",\"IdType\":2,\"IdNumber\":\""+input[3].value+"\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
                 "ForeEndType": 3,
                 "Code": "0072"
             };
+
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
         }
     }
@@ -152,6 +156,7 @@ window.onload = function(){
     function deleteTra(obj){
         obj.onclick = function(){
             var travelId = array[index];
+            var id = arrayId[index];
             var Parameters={
                 "Parameters": "{\"travellerId\":"+travelId+"}",
                 "ForeEndType": 3,
@@ -206,11 +211,12 @@ function mycallback(ret){
             UL.style.marginTop = "10px";
             for(var i=0;i < travJson.Data.length;i++){
                 array[i] = travJson.Data[i].traveller.travellerId;
+                arrayId[i] = travJson.Data[i].traveller.Id;
                 var li = document.createElement("li");
                 li.className = "eve-traveler";
                 var b = document.createElement("b");
                 b.className = "bu_icon user-edits";
-                b.style.marginTop = li.clientHeight/2 + 10 + 'px';
+                b.style.marginTop = li.clientHeight + 20+ 'px';
                 b.addEventListener("click",updateTra);
                 li.appendChild(b);
                 var ul = document.createElement("ul");
@@ -219,29 +225,29 @@ function mycallback(ret){
                 ul_li1.innerHTML = travJson.Data[i].traveller.idName + travJson.Data[i].traveller.lastName + "/" + travJson.Data[i].traveller.firstName;
                 ul.appendChild(ul_li1);
                 var ul_li2 = document.createElement("li");
-                if(travJson.Data[i].traveller.idType == "1"){
-                    ul_li2.innerHTML = "护照" +" "+ travJson.Data[i].traveller.idNumber;
-                }else if(travJson.Data[i].traveller.idType == "2"){
-                    ul_li2.innerHTML = "身份证" +" "+ travJson.Data[i].traveller.idNumber;
-                }else if(travJson.Data[i].traveller.idType == "3"){
-                    ul_li2.innerHTML = "出生证明" +" "+ travJson.Data[i].traveller.idNumber;
-                }else if(travJson.Data[i].traveller.idType == "4"){
-                    ul_li2.innerHTML = "港澳通行证" +" "+ travJson.Data[i].traveller.idNumber;
-                }else if(travJson.Data[i].traveller.idType == "5"){
-                    ul_li2.innerHTML = "军官证" +" "+ travJson.Data[i].traveller.idNumber;
-                }else if(travJson.Data[i].traveller.idType == "6"){
-                    ul_li2.innerHTML = "驾驶证" +" "+ travJson.Data[i].traveller.idNumber;
-                }else if(travJson.Data[i].traveller.idType == "7"){
-                    ul_li2.innerHTML = "台胞证" +" "+ travJson.Data[i].traveller.idNumber;
-                }else if(travJson.Data[i].traveller.idType == "8"){
-                    ul_li2.innerHTML = "回乡证" +" "+ travJson.Data[i].traveller.idNumber;
+                if(travJson.Data[i].listTravellerIdInfo.idType == "1"){
+                    ul_li2.innerHTML = "护照" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
+                }else if(travJson.Data[i].listTravellerIdInfo.idType == "2"){
+                    ul_li2.innerHTML = "身份证" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
+                }else if(travJson.Data[i].listTravellerIdInfo.idType == "3"){
+                    ul_li2.innerHTML = "出生证明" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
+                }else if(travJson.Data[i].listTravellerIdInfo.idType == "4"){
+                    ul_li2.innerHTML = "港澳通行证" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
+                }else if(travJson.Data[i].listTravellerIdInfo.idType == "5"){
+                    ul_li2.innerHTML = "军官证" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
+                }else if(travJson.Data[i].listTravellerIdInfo.idType == "6"){
+                    ul_li2.innerHTML = "驾驶证" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
+                }else if(travJson.Data[i].listTravellerIdInfo.idType == "7"){
+                    ul_li2.innerHTML = "台胞证" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
+                }else if(travJson.Data[i].listTravellerIdInfo.idType == "8"){
+                    ul_li2.innerHTML = "回乡证" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
                 }else{
-                    ul_li2.innerHTML = "其他" +" "+ travJson.Data[i].traveller.idNumber;
+                    ul_li2.innerHTML = "其他" +" "+ travJson.Data[i].listTravellerIdInfo[0].idNumber;
                 }
                 ul.appendChild(ul_li2);
-                //var ul_li3 = document.createElement("li");
-                //ul_li2.innerHTML = "手机号" +" "+ travJson.Data[i].traveller.MobilePhone;
-                //ul.appendChild(ul_li3);
+                var ul_li3 = document.createElement("li");
+                ul_li3.innerHTML = "手机号" +" "+ travJson.Data[i].traveller.mobilePhone;
+                ul.appendChild(ul_li3);
                 li.appendChild(ul);
                 li.setAttribute("index",i);
                 UL.appendChild(li);
@@ -296,21 +302,21 @@ function updateTra(){
     input[2].value = travJson.Data[index].traveller.firstName;
     input[3].value = travJson.Data[index].traveller.idNumber;
     input[5].value = travJson.Data[index].traveller.email;
-    if(travJson.Data[index].traveller.idType == "1"){
+    if(travJson.Data[index].listTravellerIdInfo[0].idType == "1"){
         cardType.innerHTML = "护照";
-    }else if(travJson.Data[index].traveller.idType == "2"){
+    }else if(travJson.Data[index].listTravellerIdInfo[0].idType == "2"){
         cardType.innerHTML = "身份证";
-    }else if(travJson.Data[index].traveller.idType == "3"){
+    }else if(travJson.Data[index].listTravellerIdInfo[0].idType == "3"){
         cardType.innerHTML = "出生证明";
-    }else if(travJson.Data[index].traveller.idType == "4"){
+    }else if(travJson.Data[index].listTravellerIdInfo[0].idType == "4"){
         cardType.innerHTML = "港澳通行证";
-    }else if(travJson.Data[index].traveller.idType == "5"){
+    }else if(travJson.Data[index].listTravellerIdInfo[0].idType == "5"){
         cardType.innerHTML = "军官证";
-    }else if(travJson.Data[index].traveller.idType == "6"){
+    }else if(travJson.Data[index].listTravellerIdInfo[0].idType == "6"){
         cardType.innerHTML = "驾驶证";
-    }else if(travJson.Data[index].traveller.idType == "7"){
+    }else if(travJson.Data[index].listTravellerIdInfo[0].idType == "7"){
         cardType.innerHTML = "台胞证";
-    }else if(travJson.Data[index].traveller.idType == "8"){
+    }else if(travJson.Data[index].listTravellerIdInfo[0].idType == "8"){
         cardType.innerHTML = "回乡证";
     }else{
         cardType.innerHTML = "其他";

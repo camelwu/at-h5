@@ -1,7 +1,7 @@
 // JavaScript Document
 
 require.config({
-    baseUrl: 'jsb',
+    baseUrl: 'js/lib',
     paths: {
         // the left side is the module ID,
         // the right side is the path to
@@ -61,7 +61,7 @@ require(['jquery','vcm','vlm'], function($,vcm,vlm) {
 	var special = jQuery.event.special,
         uid1 = 'D' + (+new Date()),
         uid2 = 'D' + (+new Date() + 1);
- 
+
     special.scrollstart = {
         setup: function() {
  
@@ -123,6 +123,7 @@ require(['jquery','vcm','vlm'], function($,vcm,vlm) {
             jQuery(this).unbind( 'scroll', jQuery(this).data(uid2) );
         }
     };
+
     $(".sel-time").bind("scrollstart",function(e){
     	
     });
@@ -137,7 +138,7 @@ require(['jquery','vcm','vlm'], function($,vcm,vlm) {
 		console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
 		$(this).animate({scrollTop:h} ,300);
 		$(this).children("span").removeAttr("style");
-		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"2.0rem"});
+		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"});
 	});
 });
 //define
