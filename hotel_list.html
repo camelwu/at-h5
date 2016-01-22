@@ -101,42 +101,48 @@
     <!--   筛选块   -->
     <div class="r-div" id="s-mb"></div>
     <div class="screen" id="screen">
-        <h4>星级档次</h4>
-        <ul class="s-ul" id="h-level">
-            <li class="s-li1">不限</li>
-            <li class="s-li">二星级以下</li>
-            <li class="s-li">三星</li>
-            <li class="s-li">四星</li>
-            <li class="s-li">五星</li>
-        </ul>
-        <h4>酒店类型</h4>
-        <ul class="s-ul" id="h-type">
-            <li class="s-li1">不限</li>
-            <li class="s-li">酒店</li>
-            <li class="s-li">汽车旅馆</li>
-            <li class="s-li">酒店式公寓</li>
-            <li class="s-li">家庭旅馆</li>
-            <li class="s-li">背包客栈</li>
-            <li class="s-li">宾馆/招待所</li>
-            <li class="s-li">精品酒店</li>
-            <li class="s-li">度假类酒店</li>
-            <li class="s-li">游轮度假酒店</li>
-            <li class="s-li">别墅型酒店</li>
-            <li class="s-li">乡村平房酒店</li>
-            <li class="s-li">家庭寄宿</li>
-            <li class="s-li">农舍式房子</li>
-            <li class="s-li">豪华露营地</li>
-            <li class="s-li">标准露营地</li>
-        </ul>
-        <div class="s-but" id="s_but">确定</div>
+        <div class="hl_sc_chil">
+            <h4>星级档次</h4>
+            <ul class="s-ul" id="h-level">
+                <li class="s-li1">不限</li>
+                <li class="s-li">二星级以下</li>
+                <li class="s-li">三星</li>
+                <li class="s-li">四星</li>
+                <li class="s-li">五星</li>
+            </ul>
+            <h4>酒店类型</h4>
+            <ul class="s-ul" id="h-type">
+                <li class="s-li1">不限</li>
+                <li class="s-li">酒店</li>
+                <li class="s-li">汽车旅馆</li>
+                <li class="s-li">酒店式公寓</li>
+                <li class="s-li">家庭旅馆</li>
+                <li class="s-li">背包客栈</li>
+                <li class="s-li">宾馆/招待所</li>
+                <li class="s-li">精品酒店</li>
+                <li class="s-li">度假类酒店</li>
+                <li class="s-li">游轮度假酒店</li>
+                <li class="s-li">别墅型酒店</li>
+                <li class="s-li">乡村平房酒店</li>
+                <li class="s-li">家庭寄宿</li>
+                <li class="s-li">农舍式房子</li>
+                <li class="s-li">豪华露营地</li>
+                <li class="s-li">标准露营地</li>
+            </ul>
+            <div class="s-but" id="s_but">确定</div>
+        </div>
     </div>
     <!--   位置块   -->
     <div class="r-div" id="l-mb"></div>
-    <div class="screen" id="location">
-        <ul class="l-ul" id="l-ul">
+    <div class="location" id="location">
+        <!--loca_con脱离文档流，p的作用是为了撑开父级-->
+        <p id="loca_conBro"></p>
+        <div class="loca_con" id="loca_con">
+            <ul class="l-ul" id="l-ul">
 
-        </ul>
-        <div class="s-but" id="l_but">确定</div>
+            </ul>
+            <div class="s-but" id="l_but">确定</div>
+        </div>
     </div>
 </div>
 </body>

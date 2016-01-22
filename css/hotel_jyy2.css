@@ -287,6 +287,12 @@ html {
     position: fixed;
     bottom:-550px;
     z-index: 2000000;
+    height:490px;
+}
+.hl_sc_chil{
+    position:absolute;
+    left:0;top:0;right:0;bottom:0;
+    overflow:auto;
 }
 .screen h4{
     margin-top: 13px;
@@ -349,6 +355,13 @@ html {
     bottom:-550px;
     z-index: 2000000;
 }
+.loca_con{
+    position:absolute;
+    left:0;top:0;
+    right: 0;
+    overflow:auto;
+
+}
 .l-ul{
     width: 94%;
     margin-left: 3%;
@@ -389,6 +402,14 @@ html {
     background: url(../images/ui/icons1.png) -265px -6px;
     background-size: 400px 120px;
 }
+.l-li2 .l-icon1{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;height:17px;
+    background:url(../images/ui/icons1.png) -236px -6px;
+    background-size:400px 120px;
+}
 .l-icon1First{
     float: right;
     display: block;
@@ -397,7 +418,14 @@ html {
     background: url(../images/ui/icons1.png) -236px -6px;
     background-size: 400px 120px;
 }
-
+.l-li3 .l-icon1First{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;height:17px;
+    background: url(../images/ui/icons1.png) -265px -6px;
+    background-size: 400px 120px;
+}
 
 
 

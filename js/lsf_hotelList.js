@@ -571,7 +571,13 @@ function styleChange(id,mytext){
     });
     lsf_myweb.bind(oBody,'click',function(ev){
         var oEvent=ev||event;
+        var oFilter=document.getElementById('screen');
         var oSrc=oEvent.srcElement||oEvent.target;
+        //设置弹出框的最大高度
+        var clienH=document.documentElement.clientHeight;
+        oFilter.style.maxHeight=(clienH-45)+'px';
+
+        //确定按钮点击事件
         if(oSrc.getAttribute('id')=='s_but'){
             var hl_star_str='';
             var hl_type_str='';
@@ -645,8 +651,18 @@ function styleChange(id,mytext){
             //alert(hl_star_str+'---'+hl_type_str);
         }
     });
+    //位置按钮里面的城市实现筛选交互
     lsf_myweb.bind(oBody,'click',function(ev){
         var oEvent=ev||event;
+        var oLocation=document.getElementById('location');
+        var loca_con=document.getElementById('loca_con');
+        var loca_conBro=document.getElementById('loca_conBro');
+        //设置弹出框的最大高度
+        var clienH=document.documentElement.clientHeight;
+        loca_conBro.style.height=loca_con.offsetHeight+'px';
+        //bottom:0为了实现滑动效果
+        loca_con.style.bottom='0';
+        oLocation.style.maxHeight=(clienH-45)+'px';
         var oSrc=oEvent.srcElement||oEvent.target;
         var locationList='';
         if(oSrc.getAttribute('id')=='l_but'){
