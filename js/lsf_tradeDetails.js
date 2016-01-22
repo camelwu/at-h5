@@ -53,6 +53,10 @@
             }
         }
     };
+    var td_back=document.getElementById('td_back');
+    lsf_myweb.bind(td_back,'click',function(){
+        window.history.go(-1);
+    })
     var mydata=JSON.parse(localStorage.getItem('user_order_storage12345'));
     console.log(mydata);
     console.log(mydata.TotalPrice);
