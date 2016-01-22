@@ -17,6 +17,10 @@
     margin-bottom:0;
     position:relative;
 }
+.f_key li>input{
+    color:#484848;
+    font-size: 1.4rem;
+}
 .f_key li:last-child{
     border: none;
 }
@@ -202,6 +206,27 @@
     line-height: 1.2;
     font-size:1rem;
     color: white;
+}
+.open-favs {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 10px;
+    background-position: 87% 76%;
+}
+.open-hiss{
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 10px;
+    background-position: 94.5% 76%;
+}
+.open-gray{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    right: 0;
+    background-position: 98.5% 76%;
 }
 /*
          个人资料页css
@@ -489,7 +514,7 @@
     margin: 10px 15px;
     float: left;
     width: 70px;height:70px;
-    background-position:98% 43%;
+    background-position:99% 4%;
 }
 /*
          设置页css
@@ -597,6 +622,11 @@
     width: 22px;height: 22px;
     float: right;
     background-position:49% 0.5%;
+}
+.user-edits{
+    width: 22px;height: 22px;
+    float: right;
+    background-position:53% 27.5%;
 }
 .statement{
     padding:8px 15px;

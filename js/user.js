@@ -1,7 +1,7 @@
 // JavaScript Document
 
 require.config({
-    baseUrl: 'js/lib',
+    baseUrl: 'jsb',
     paths: {
         // the left side is the module ID,
         // the right side is the path to
@@ -9,12 +9,12 @@ require.config({
         // Also, the path should NOT include
         // the '.js' file extension. This example
         // is using jQuery 1.9.0 located at
-        // js/lib/jquery-1.9.0.js, relative to
+        // jsb/jquery-1.9.0.js, relative to
         jquery: 'jquery',
         vcm: 'vcm',
         vlm: 'vlm',
         plugins: 'plugins',
-        custom: 'custom'
+        //custom: 'custom'
     },
     $:['jquery'],
     shim: {
@@ -32,9 +32,9 @@ require.config({
     			}
     		}
     	},
-    	'custom':{
-    		deps: ['jquery','plugins']
-    	},
+    	//'custom':{
+    	//	deps: ['jquery','plugins']
+    	//},
     	'vcm':{
     		deps: ['jquery'],
     		exports: 'vcm'
@@ -54,12 +54,11 @@ require.config({
 	//urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','custom','vcm','vlm'], function($,custom,vcm,vlm) {
-	console.log($);
+require(['jquery','vcm','vlm'], function($,vcm,vlm) {
+	//console.log("dataReady="+vlm);
 	var viewer = new vlm();
 	viewer._init();
-	
-	 var special = jQuery.event.special,
+	var special = jQuery.event.special,
         uid1 = 'D' + (+new Date()),
         uid2 = 'D' + (+new Date() + 1);
  
@@ -142,5 +141,3 @@ require(['jquery','custom','vcm','vlm'], function($,custom,vcm,vlm) {
 	});
 });
 //define
-
-//AMD CMD

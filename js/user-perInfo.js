@@ -3,7 +3,13 @@
  */
 var infoJson;
 var MemberId;
+var u_phone;
+var u_email;
+var u_realname;
+var u_key;
 function u_perInfo(){
+    var menu = $("#menu")[0];
+    menu.style.display = "none";
     var c = new vcm;
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
@@ -127,11 +133,22 @@ function u_perInfo(){
                             return;
                         }
                     }
+                    if(sessionStorage.phone != ""){
+                        if(input[1].value != phone){
+                            alert("用户已绑定信息不能修改");
+                            return;
+                        }
+                    }else{
+                        if(input[3].value != email){
+                            alert("用户已绑定信息不能修改");
+                            return;
+                        }
+                    }
                 }
             }
-            localStorage.info_email = input[3].value;
-            localStorage.info_realname = input[0].value;
-            localStorage.info_phone = input[1].value;
+            u_email = input[3].value;
+            u_realname = input[0].value;
+            u_phone = input[1].value;
             var Parameters={
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input[3].value+"\",\"FirstName\":\""+input[0].value+"\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+input[1].value+"\",\"Phone\":\""+input[1].value+"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\""+UserSex+"\"}",
                     "ForeEndType": 3,
@@ -174,6 +191,7 @@ function u_perInfo(){
                     }
                 }
             }
+            u_key = input[3].value;
             var Parameters= {
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\""+input[0].value+"\",\"NewPassword\":\""+input[3].value+"\",\"Code\":\""+input[1].value+"\"}",
                 "ForeEndType": 3,
@@ -202,11 +220,21 @@ function mycallback(ret){
     console.log(infoJson);
     var nickname = $("#nickname")[0];
     var name = $("#name")[0];
+    var user_email = $("#email")[0];
+    var user_phone = $("#phone")[0];
+    var realName = $("#realName")[0];
     var sex = $("#sex")[0];
     var block = $("#block")[0];
     nickname.innerHTML = infoJson.Data[0].NickName;
     name.value = infoJson.Data[0].NickName;
+    if(sessionStorage.phone != ""){
+        user_phone.value = infoJson.Data[0].UserName;
+    }else{
+        user_email.value = infoJson.Data[0].UserName;
+    }
+    realName.value = sessionStorage.realname;
     MemberId = infoJson.Data[0].MemberId;
+    sessionStorage.MemberId = MemberId;
     if(infoJson.Data[0].Salutation == "26"){
         sex.className="info-sex-on";
         block.innerHTML = "女";
@@ -229,6 +257,9 @@ function mycallback_info(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.Success){
+        sessionStorage.realname = u_realname;
+        sessionStorage.email = u_email;
+        sessionStorage.phone = u_phone;
         document.getElementById("infoForm").submit();
     }else{
         alert(myJson.Message);
@@ -250,6 +281,7 @@ function mycallback_newKey(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.Success){
+        sessionStorage.password = u_key;
         document.getElementById("keyForm").submit();
     }else{
         alert(myJson.Message);
@@ -266,8 +298,4 @@ function mycallback_keyVeri(ret){
     }else{
         alert(myJson.Message);
     }
-}
-function putting(){
-    var put = window.event.srcElement;
-    put.style.color = "484848";
 }

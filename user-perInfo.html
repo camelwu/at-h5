@@ -57,7 +57,7 @@
             <li id="a_email">邮箱 <b class="icons open-rg"></b></li>
             <li id="a_key">修改密码<b class="icons open-rg"></b></li>
         </ul>
-        <div class="info-quit">退出</div>
+        <a href="user.html" class="info-quit">退出</a>
     </div>
 </div>
 <!--     修改信息浮层     -->
@@ -80,46 +80,46 @@
         <form id="infoForm" action="user-perInfo.html" method="post">
             <li id="fillname" style="display: none;">
                 <div class="u_name">
-                    <input type="text" style="color:#d1d1d1;font-size: 1.4rem" placeholder="请填写真实姓名" data-type="code">
+                    <input id="realName" type="text" style="font-size: 1.4rem" placeholder="请填写真实姓名" data-type="code">
                 </div>
                 <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
             </li>
             <li id="phoneverify" style="display: none;">
                 <ul class="f_key">
                     <li>
-                        <input class="fk_put" type="text" value placeholder="请输入手机号" onkeydown="putting()" data-type="tel">
+                        <input id="phone" class="fk_put" type="text" value placeholder="请输入手机号" data-type="tel">
                     </li>
-                    <li>
-                        <input class="fk_put" type="text" value placeholder="请输入验证码" onkeydown="putting()" data-type="code">
+                    <li style="padding-right: 0;">
+                        <input class="fk_put" type="text" value placeholder="请输入验证码" data-type="code">
                         <div class="fk_div" id="phone_ver">发送验证码</div>
                     </li>
                 </ul>
             </li>
             <li id="useremail" style="display: none;">
                 <div class="u_name">
-                    <input type="text" style="color:#d1d1d1;font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
+                    <input id="email" type="text" style="font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
                 </div>
             </li>
-                <input id="amend_btn" class="f_btn button-yorange" type="button" value="保存"/>
+                <input id="amend_btn" class="f_btn button-orange" type="button" value="保存"/>
         </form>
         <li id="amendkey" style="display: none;">
             <form id="keyForm" action="user-perInfo.html" method="post">
                 <ul class="f_key">
                     <li>
-                        <input class="fk_put" type="text" value placeholder="请输入手机号" onkeydown="putting()" data-type="tel">
+                        <input class="fk_put" type="text" value placeholder="请输入手机号" data-type="tel">
                     </li>
-                    <li>
-                        <input class="fk_put" type="text" value placeholder="请输入验证码" onkeydown="putting()" data-type="code">
+                    <li style="padding-right: 0;">
+                        <input class="fk_put" type="text" value placeholder="请输入验证码" data-type="code">
                         <div class="fk_div" id="newkey_ver">发送验证码</div>
                     </li>
                     <li>
-                        <input class="fk_put" type="text" value placeholder="原密码" onkeydown="putting()" data-type="pass">
+                        <input class="fk_put" type="text" value placeholder="原密码" data-type="pass">
                     </li>
                     <li>
-                        <input class="fk_put" type="text" value placeholder="新密码" onkeydown="putting()" data-type="pass">
+                        <input class="fk_put" type="text" value placeholder="新密码" data-type="pass">
                     </li>
                     <li>
-                        <input class="fk_put" type="text" value placeholder="确认新密码" onkeydown="putting()" data-type="pass">
+                        <input class="fk_put" type="text" value placeholder="确认新密码"  data-type="pass">
                     </li>
                 </ul>
                 <input id="newkey_btn" class="f_btn button-orange" type="button" value="保存"/>
@@ -127,6 +127,7 @@
         </li>
     </ul>
 </div>
+<div id="menu"></div>
 <script src="js/require.js" data-main="js/user.js"></script>
 <script type="text/javascript" src="js/lib/jquery.js"></script>
 <script type="text/javascript" src="js/lib/vcm.js"></script>

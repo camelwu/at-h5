@@ -3,6 +3,8 @@
  */
 var login_pass;
 window.onload = function(){
+    var menu = $("#menu")[0];
+    menu.style.display = "none";
     var phone_login = $("#phone_login")[0];
     var email_login = $("#email_login")[0];
     var phone = $("#phone")[0];

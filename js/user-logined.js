@@ -5,8 +5,13 @@ function init(){
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
     var password = sessionStorage.password;
-    var u_info = $("#u_info")[0];
-    //var user_order = $("user_order")[0];
+    var c = new vcm();
+    var Parameters= {
+        "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
+        "ForeEndType": 3,
+        "Code": "0053"
+    };
+    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
     function order(obj){
         obj.onclick = function(){
@@ -17,14 +22,42 @@ function init(){
     order(li[1]);
     order(li[2]);
     order(li[3]);
-    var c = new vcm();
-    var Parameters= {
-        "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
-        "ForeEndType": 3,
-        "Code": "0053"
-    };
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
-
+    //  点击链接页面跳转
+    var link_page = $("#link_page")[0];
+    var setting = $("#setting")[0];
+    var verifyName = $("#verifyName")[0];
+    var noSignal = $("noSignal")[0];
+    var u_setting = $("#u_setting")[0];
+    var contactus = $("#contactus")[0];
+    var close_page = $("#close_page")[0];
+    var title = $("#title")[0];
+    var array = title.innerHTML;
+    var head = array.split("/");
+    function link(obj1,obj2,obj3){
+        obj1.onclick = function(){
+            link_page.style.display = "block";
+            u_setting.style.display = "none";
+            contactus.style.display = "none";
+            title.innerHTML = obj2;
+            obj3.style.display = "block";
+        }
+    }
+    link(setting,head[0],u_setting);
+    link(verifyName,head[1],contactus);
+    function close(obj){
+        obj.onclick = function(){
+            link_page.style.display = "none";
+        }
+    }
+    close(close_page);
+}
+function ifOpen(){
+    var b = window.event.srcElement;
+    if(b.className == "icon set-chose1"){
+        b.className = "icon set-chose2";
+    }else{
+        b.className = "icon set-chose1";
+    }
 }
 function mycallback(ret){
     var myJson = eval('('+ret+')');

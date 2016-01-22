@@ -44,29 +44,29 @@
             <div class="f_btn button-orange" style="margin-top: 10px" onclick="showAdd_page()">
                 <b class="icons user-add"></b>新增常旅客户信息
             </div>
-            <div class="black-con" style="display: none;">
+            <div id="black" class="black-con">
                 您还没有设置常旅客，快添加吧！
             </div>
-            <ul class="often-traveler">
-                <li class="eve-traveler" style="border-top:1px solid #dedede;">
-                    <b class="icon user-edit"></b>
-                    <ul class="often_user">
-                        <li>陈玉宝CHEN/YUBAO</li>
-                        <li>身份证 <span>11023319880358765</span></li>
-                        <li>护照 <span>E000000000</span></li>
-                        <li>手机号 <span>1588776655</span></li>
-                    </ul>
-                </li>
-                <li class="eve-traveler">
-                    <b class="icon user-edit"></b>
-                    <ul class="often_user">
-                        <li>陈玉宝CHEN/YUBAO</li>
-                        <li>身份证 <span>11023319880358765</span></li>
-                        <li>手机号 <span>1588776655</span></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="traveler-text">没有更多结果了</div>
+            <!--<ul class="often-traveler">-->
+                <!--<li class="eve-traveler" style="border-top:1px solid #dedede;">-->
+                    <!--<b class="bu_icon user-edits"></b>-->
+                    <!--<ul class="often_user">-->
+                        <!--<li>陈玉宝CHEN/YUBAO</li>-->
+                        <!--<li>身份证 <span>11023319880358765</span></li>-->
+                        <!--<li>护照 <span>E000000000</span></li>-->
+                        <!--<li>手机号 <span>1588776655</span></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="eve-traveler">-->
+                    <!--<b class="bu_icon user-edits"></b>-->
+                    <!--<ul class="often_user">-->
+                        <!--<li>陈玉宝CHEN/YUBAO</li>-->
+                        <!--<li>身份证 <span>11023319880358765</span></li>-->
+                        <!--<li>手机号 <span>1588776655</span></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="traveler-text">没有更多结果了</div>-->
         </div>
     </div>
     <!--    编辑联系人页   -->
@@ -194,7 +194,7 @@
                 </div>
                 <ul class="often-traveler">
                     <li class="eve-traveler" style="border-top:1px solid #dedede;">
-                        <b class="icon user-edit"></b>
+                        <b class="bu_icon user-edits"></b>
                         <b class="icon user-choice1"></b>
                         <ul class="often_user">
                             <li>陈玉宝CHEN/YUBAO</li>
@@ -205,7 +205,7 @@
                 <div class="name-text" style="margin-bottom: 0;margin-top: -15px;">首字母排序</div>
                 <ul class="often-traveler">
                     <li class="eve-traveler" style="border-top:1px solid #dedede;">
-                        <b class="icon user-edit"></b>
+                        <b class="bu_icon user-edits"></b>
                         <b class="icon user-choice2"></b>
                         <ul class="often_user">
                             <li>姓/名 BOB/SMITH<div class="ifbaby">婴儿</div></li>
@@ -213,7 +213,7 @@
                         </ul>
                     </li>
                     <li class="eve-traveler">
-                        <b class="icon user-edit"></b>
+                        <b class="bu_icon user-edits"></b>
                         <b class="icon user-choice2"></b>
                         <ul class="often_user">
                             <li>姓/名 BOB/SMITH</li>
@@ -225,31 +225,10 @@
             </div>
         </div>
     </div>
-
-
-    <script data-main="js/main.js" src="js/require.js"></script>
-    <script type="text/javascript">
-        function showAdd_page(){
-            var addtra_page = document.getElementById("addtra-page");
-            addtra_page.style.display = "block";
-        }
-        function closeAdd_page(){
-            var addtra_page = document.getElementById("addtra-page");
-            addtra_page.style.display = "none";
-        }
-        function choseSex(){
-            var span = window.event.srcElement;
-            var man = document.getElementById("man");
-            var woman = document.getElementById("woman");
-            var b = span.firstChild;
-            if(b.className == "icon-h traveler-sex1"){
-                b.className = "icon-h traveler-sex2";
-            }else{
-                man.className = "icon-h traveler-sex2";
-                woman.className = "icon-h traveler-sex2";
-                b.className = "icon-h traveler-sex1";
-            }
-        }
-    </script>
+    <div id="menu"></div>
+    <script src="js/require.js" data-main="js/user.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.js"></script>
+    <script type="text/javascript" src="js/lib/vcm.js"></script>
+    <script type="text/javascript" src="js/user-oftenInfo.js"></script>
 </body>
 </html>
