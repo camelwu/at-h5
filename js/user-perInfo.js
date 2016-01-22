@@ -6,7 +6,6 @@ var MemberId;
 var u_phone;
 var u_email;
 var u_realname;
-var u_key;
 function u_perInfo(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
@@ -37,6 +36,7 @@ function u_perInfo(){
     var amendkey = $("#amendkey")[0];
     var sex = $("#sex")[0];
     var block = $("#block")[0];
+    var ifshowkey = $("#ifshowkey")[0];
     var array = title.innerHTML;
     var head = array.split("/");
 
@@ -44,13 +44,33 @@ function u_perInfo(){
         var name = document.getElementById("name");
         name.value = "";
     }
-
     function closeAmend(obj){
         obj.onclick = function(){
             amend_info.style.display = "none";
         }
     }
     closeAmend(close_page);
+    //  是否显示密码
+    function ifShowkey(obj){
+        obj.onclick = function(){
+            var b = ifshowkey.firstElementChild;
+            var input;
+            if(b.className == "icon show-keys"){
+                b.className = "icon show-key";
+                input = document.getElementById("keyForm").getElementsByTagName("input");
+                for(var i = 0;i < input.length;i++){
+                    input[i].type = "text";
+                }
+            }else{
+                b.className = "icon show-keys";
+                input = document.getElementById("keyForm").getElementsByTagName("input");
+                for(var j = 0;j < input.length;j++){
+                    input[j].type = "password";
+                }
+            }
+        }
+    }
+    ifShowkey(ifshowkey);
     //  点击链接页面跳转
     function amendInfo(obj1,obj2,obj3){
         obj1.onclick = function(){
@@ -104,13 +124,13 @@ function u_perInfo(){
     //  验证输入
     var check = function (type,num){
         if(type == "tel"){
-            c.Utils.validate.mobileNo(num);
+            return c.Utils.validate.mobileNo(num);
         }
         if(type == "email"){
-            c.Utils.validate.email(num);
+            return c.Utils.validate.email(num);
         }
         if(type == "pass"){
-            c.Utils.validate.password(num);
+            return c.Utils.validate.password(num);
         }
     };
     //   修改信息
@@ -124,11 +144,13 @@ function u_perInfo(){
             }else{
                 UserSex = "27";
             }
+            var news = sessionStorage.news;
+            var promotion = sessionStorage.promotion;
             for(var i= 0;i < input.length;i++){
                 if(input[i].type !="button" && input[i].value !="") {
                     console.log(input[i].getAttribute('data-type'));
                     if(input[i].getAttribute('data-type') !="code") {
-                        if (check(input[i].getAttribute('data-type'), input[i].value)) {
+                        if (!check(input[i].getAttribute('data-type'), input[i].value)) {
                             alert("输入不正确");
                             return;
                         }
@@ -150,7 +172,7 @@ function u_perInfo(){
             u_realname = input[0].value;
             u_phone = input[1].value;
             var Parameters={
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input[3].value+"\",\"FirstName\":\""+input[0].value+"\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+input[1].value+"\",\"Phone\":\""+input[1].value+"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\""+UserSex+"\"}",
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input[3].value+"\",\"FirstName\":\""+input[0].value+"\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+input[1].value+"\",\"Phone\":\""+input[1].value+"\",\"NewsLetter\":"+news+",\"Promotion\":"+promotion+",\"Salutation\":\""+UserSex+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
             };
@@ -178,22 +200,18 @@ function u_perInfo(){
             var input = document.getElementById("keyForm").getElementsByTagName("input");
             for(var i= 0;i < input.length;i++){
                 if(input[i].type !="button" && input[i].value !="") {
-                    console.log(input[i].getAttribute('data-type'));
-                    if(input[i].getAttribute('data-type') !="code") {
-                        if (check(input[i].getAttribute('data-type'), input[i].value)) {
-                            alert("输入不正确");
-                            return;
-                        }
+                    if (!check(input[i].getAttribute('data-type'), input[i].value)) {
+                        alert("输入不正确");
+                        return;
                     }
-                    if(input[3].value != input[3].value){
+                    if(input[1].value != input[2].value){
                         alert("输入不正确");
                         return;
                     }
                 }
             }
-            u_key = input[3].value;
             var Parameters= {
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\""+input[0].value+"\",\"NewPassword\":\""+input[3].value+"\",\"Code\":\""+input[1].value+"\"}",
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\""+input[0].value+"\",\"NewPassword\":\""+input[1].value+"\"}",
                 "ForeEndType": 3,
                 "Code": "0054"
             };
@@ -201,19 +219,19 @@ function u_perInfo(){
         }
     }
     changeKey(newkey_btn);
-    //  修改密码获取验证
-    var newkey_ver = $("#newkey_ver")[0];
-    function key_veri(obj){
-        obj.onclick = function(){
-            var Parameters = {
-                "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":3}",
-                "ForeEndType": 3,
-                "Code": "0058"
-            };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_keyVeri);
-        }
-    }
-    key_veri(newkey_ver);
+    ////  修改密码获取验证
+    //var newkey_ver = $("#newkey_ver")[0];
+    //function key_veri(obj){
+    //    obj.onclick = function(){
+    //        var Parameters = {
+    //            "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":3}",
+    //            "ForeEndType": 3,
+    //            "Code": "0058"
+    //        };
+    //        c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_keyVeri);
+    //    }
+    //}
+    //key_veri(newkey_ver);
 }
 function mycallback(ret){
     infoJson = eval('('+ret+')');
@@ -225,22 +243,25 @@ function mycallback(ret){
     var realName = $("#realName")[0];
     var sex = $("#sex")[0];
     var block = $("#block")[0];
+    var userIcon = $("#userIcon")[0];
     nickname.innerHTML = infoJson.Data[0].NickName;
     name.value = infoJson.Data[0].NickName;
     if(sessionStorage.phone != ""){
-        user_phone.value = infoJson.Data[0].UserName;
+        user_phone.value = sessionStorage.phone;
     }else{
-        user_email.value = infoJson.Data[0].UserName;
+        user_email.value = sessionStorage.email;
     }
     realName.value = sessionStorage.realname;
-    MemberId = infoJson.Data[0].MemberId;
-    sessionStorage.MemberId = MemberId;
+    //MemberId = infoJson.Data[0].MemberId;
+    //sessionStorage.MemberId = MemberId;
     if(infoJson.Data[0].Salutation == "26"){
         sex.className="info-sex-on";
         block.innerHTML = "女";
+        userIcon.src = "images/ui/photo-man.png";
     }else{
         sex.className="info-sex";
-        block.innerHTML = "男"
+        block.innerHTML = "男";
+        userIcon.src = "images/ui/photo-woman.png";
     }
 }
 function mycallback_nick(ret){
@@ -281,21 +302,20 @@ function mycallback_newKey(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.Success){
-        sessionStorage.password = u_key;
         document.getElementById("keyForm").submit();
     }else{
         alert(myJson.Message);
     }
 }
-function mycallback_keyVeri(ret){
-    var c = new vcm();
-    var phone_ver = $("#phone_ver")[0];
-    console.log(ret);
-    var myJson = eval('('+ret+')');
-    console.log(myJson);
-    if(myJson.Success){
-        c.Utils.sendMobileCode(phone_ver.value);
-    }else{
-        alert(myJson.Message);
-    }
-}
+//function mycallback_keyVeri(ret){
+//    var c = new vcm();
+//    var phone_ver = $("#phone_ver")[0];
+//    console.log(ret);
+//    var myJson = eval('('+ret+')');
+//    console.log(myJson);
+//    if(myJson.Success){
+//        c.Utils.sendMobileCode(phone_ver.value);
+//    }else{
+//        alert(myJson.Message);
+//    }
+//}
