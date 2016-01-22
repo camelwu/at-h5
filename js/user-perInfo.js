@@ -137,7 +137,6 @@ function u_perInfo(){
     var amend_btn = $("#amend_btn")[0];
     function changeInfo(obj){
         obj.onclick = function(){
-            debugger;
             var input = document.getElementById("infoForm").getElementsByTagName("input");
             var UserSex;
             if(sex.className="info-sex-on"){
