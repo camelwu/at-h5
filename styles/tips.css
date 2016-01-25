@@ -20,7 +20,7 @@
 	padding-bottom:5px;
 }
 #popup_more {
-	width:100%;
+	min-width:300px;
 	font-size:12px;
 	line-height:16px;
 	color:#484848;
@@ -57,7 +57,7 @@
 		border-left:1px #dedede solid;
 	}
 	.d-close{
-		float: right;
+		/*float: right;
 		width:16px;
 		height:16px;
 		display:inline-block;
@@ -67,5 +67,14 @@
 		border-radius:50%;
 		color:#fff;
 		font-family:Arial, Helvetica, sans-serif;
-		text-align: center;
+		text-align: center;*/
+		      position: absolute;
+    right: 12px;
+    top: 8px;display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 22% 33%;
+    background-size: 397px 118px;
+
 	}

@@ -196,7 +196,7 @@
 					$("#popup_prompt").focus().select();
 					break;
 				case 'layer':
-					$("#popup_title").append('<a class="d-close" id="popup_cancel">X</a>');
+					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
 					$("#popup_ok").click(function() {
 						$.alerts._hide();
 						if (callback)
@@ -257,7 +257,7 @@
 		_reposition : function() {
 			var top = (($(window).height() / 2) - ($("#popup_container").outerHeight() / 2)) + $.alerts.verticalOffset
 			,left = (($(window).width() / 2) - ($("#popup_container").outerWidth() / 2)) + $.alerts.horizontalOffset
-			,h = $(document).height()-122;
+			,h = $(document).height()-200;
 			if (top < 0)
 				top = 0;
 			if (left < 0)
@@ -267,15 +267,25 @@
 			if ('undefined' == typeof (document.body.style.maxHeight))
 				top = top + $(window).scrollTop();
 
-			$("#popup_container").css({
-				top : top + 'px',
-				left : left + 'px'
-			});
-			
-			$("#popup_more").css({
-				height : h + 'px',
-				max-height : h + 'px'
-			});
+			if($("#popup_more")){
+				$("#popup_more").css({
+					height : h + 'px',
+					maxHeight : h + 'px'
+				});
+				$("#popup_container").css({
+					top : '50%',
+					left : '50%',
+					marginTop: '-'+$("#popup_container").outerHeight() / 2+'px',
+					marginLeft: '-'+$("#popup_container").outerWidth() / 2+'px'
+				});
+				
+				
+			}else{
+				$("#popup_container").css({
+					top : top + 'px',
+					left : left + 'px'
+				});
+			}
 		},
 		_maintainPosition : function(status) {
 			if ($.alerts.repositionOnResize) {
