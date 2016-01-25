@@ -1,278 +1,654 @@
-*{margin:0px;padding:0px;}
-a{
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.open-arg {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    right: 0;
+    background-position: 65% 3%;
+}
+
+
+
+a {
     text-decoration: none;
 }
-html{
+
+html {
     font-size: 62.5%;
 }
-.top{
-    width:100%;height:45px;
+
+.top {
+    width: 100%;
+    height: 45px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
-    padding:1px;
-    background-color:#19415e;}
-.icons{
+    padding: 1px;
+    background-color: #19415e;
+}
+
+
+
+
+.icons {
     background-image: url(../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
-    display:inline-block;
+    display: inline-block;
 }
-.d-icon{
-    background-image: url(../images/ui/icon1.png);
+
+.d-icon {
+    background-image: url(../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display: inline-block;
 }
-.d-icons{
-    width:12px;
-    height:22px;
+
+.d-icons {
+    width: 12px;
+    height: 22px;
     position: absolute;
-    left:15px;
-    top:10px;
-    background-image: url(../images/ui/icon1.png);
+    left: 15px;
+    top: 10px;
+    background-image: url(../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display: inline-block;
 }
-.d1{
+
+.d1 {
     position: absolute;
     width: 21px;
     height: 22px;
     right: 15px;
     top: 10px;
-    background-position:59% 77%;
+    background-position: 59% 77%;
 }
-.d-p1{
+
+.d-p1 {
     font-size: 14px;
     font-weight: bold;
     margin: 0 auto;
     color: #ffffff;
     line-height: 22px;
     text-align: center;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
-.d-div1{
-    width:100%;
+
+.d-div1 {
+    width: 100%;
 }
-.hotelPic{
-    width:100%;height: 100%;
+
+.hotelPic {
+    width: 100%;
+    height: 62.5%;
 }
-.d-div2{
-    width:100%;height: 50px;
+
+.hotelPic2 {
+    width: 100%;
+    height: 160px;
+}
+
+.d-div2 {
+    width: 100%;
+    height: 50px;
     position: absolute;
     margin-top: -52px;
-    background-color: black;
-    opacity: 0.5;
+    background: rgba(0, 0, 0, 0.5);
 }
-.d-p4{
+
+.d-p4 {
     float: right;
-    margin-right:3% ;
+    margin-right: 3%;
     margin-top: 12px;
     color: white;
     font-size: 2em;
 }
-.d-ul1{
-    width: 94%;
-    list-style-type: none;
-    margin-left: 3%;
-    margin-right: 3%;
+
+.d-ul2 {
+    background-color: #fff;
+    border-bottom: 1px solid #dfdfdd;
+    margin-bottom: 0;
 }
-.d-li1{
-    height: 50px;
-    border-bottom:1px solid #dfdfdd;
+.d-ul2 li{
+    list-style: none;
+    font-size: 1.4rem;
+    padding:0px 12px;
+    border-bottom: 1px #dfdfdd solid;
+    margin-bottom: 0;
+    position: relative;
 }
-.d-score{
+.d-ul2 li .open-arg{
+    right:12px;
+}
+.d-ul2 li:first-child{
+    padding:14px 24px 14px 12px;
+    border-bottom: 2px solid #F5F4F9;
+}
+.d-ul1 li:last-child,.d-ul2 li:last-child{
+    border-bottom: 0;
+}
+.d-ul1 li em,.d-ul2 li em{
+    font-style: normal;
+    float: right;
+    font-size: 1.2rem;
+    color: #ffb413;
+}
+
+
+
+
+.d-ul1 {
+    background-color: #fff;
+    border-bottom: 1px solid #dfdfdd;
+}
+.d-ul1 span.address-text {
+    min-width: 10%;
+    max-width: 85%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #484848;
+    font-size: 1.2rem;
+    display: inline-block;
+}
+
+
+
+.d-ul1 li{
+    list-style: none;
+    font-size: 1.4rem;
+    padding:15px 12px 15px 0;
+    margin:0 1.2rem;
+    border-bottom: 1px #dfdfdd solid;
+    margin-bottom: 0;
+    position: relative;
+}
+.d-ul1 li:last-child{
+    border-bottom: 0;
+}
+.d-ul1 li em{
+    font-style: normal;
+    float: right;
+    font-size: 1.2rem;
+    color: #ffb413;
+}
+
+
+.d-li1 {
+    min-height: 50px;
+    border-bottom: 1px solid #dfdfdd;
+//position: relative;
+}
+
+.d-score {
+    /* float: left;*/
+    width: 75%;
+    /* margin-top: 20px;*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #484848;
+    font-size: 0.8rem;
+}
+
+.d-score2 {
     float: left;
     margin-top: 20px;
-    color:#484848;
-    font-size:0.8em;
+    color: #484848;
+    font-size: 0.8em;
 }
-.d-icon1{
-    float: right;
-    margin-top:20px;
+
+.d-icon1 {
+    position: absolute;
+    right: 0;
+    margin-top: 20px;
     display: block;
-    width:8px;height:14px;
-    background-image:url(../images/ui/icon1.png);
-    background-position:65% 3%;
+    width: 8px;
+    height: 14px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 65% 3%;
     background-size: 243px 160px;
 }
-.d-icon2{
+
+.d-icon2 {
     display: inline-block;
-    width:15px;
-    height:10px;
+    width: 15px;
+    height: 10px;
     float: left;
     margin-left: 10px;
-    margin-top:20px;
+    margin-top: 20px;
     background-image: url(../images/ui/icon-h.png);
     background-size: 402px 174px;
-    background-position:20% 9%;
+    background-position: 20% 9%;
 }
-.d-p2{
+
+.d-p2 {
     float: right;
-    margin-top: 20px;
-    margin-right: 5px;
-    color:#ffbf4b;
-    font-size:0.8em;
+    margin-right: 15px;
+    color: #ffbf4b;
+    font-size: 1.2rem;
 }
-.d-p3{
+
+.d-p3 {
     float: left;
     margin-top: 20px;
-    color:#484848;
-    font-size:1.3em;
+    color: #484848;
+    font-size: 1.3rem;
 }
-.d-div3{
+
+.d-div3 {
     float: left;
-    margin-top: 10px;
+    margin-top: 4px;
+    width: 60%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 60%
 }
-.d-p5{
+
+.d-p5 {
     display: inline-block;
-    color:#484848;
-    font-size:1.3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 75%;
+    min-width: 5%;
+    color: #484848;
+    font-size: 1.3rem;
 }
-.d-icon3{
+
+.d-icon3 {
     display: inline-block;
-    width:15px;
-    height:15px;
+    width: 15px;
+    height: 15px;
     margin-left: 5px;
-    background-image:url(../images/ui/icons1.png);
-    background-position:27% 33%;
+    background-image: url(../images/ui/icons1.png);
+    background-position: 27% 33.5%;
     background-size: 400px 120px;
 }
-.d-p6{
-    margin-top: 4px;
-    color:#a1a1a1;
-    font-size:1em;
+
+.d-p6 {
+    margin-top: 2px;
+    max-width: 90%;
+    color: #a1a1a1;
+    font-size: 1.0rem;
 }
-.d-icon4{
+
+.d-icon4 {
     display: block;
     float: right;
-    width:18px;
-    height:18px;
-    margin-top:20px;
-    background-image:url(../images/ui/icons1.png);
-    background-position:12.6% 33%;
+    width: 18px;
+    height: 18px;
+    margin-top: 16px;
+    background-image: url(../images/ui/icons1.png);
+    background-position: 12.6% 33%;
     background-size: 400px 120px;
+    transition: none!important;
 }
-.price{
+
+.price {
+    margin-right: 25px;
+    margin-top: 15px;
+    position: absolute;
+    right: 20px;
+}
+
+.price span.money{
+    font-size: 0.8rem;
+    color: #fe4716;
+}
+
+.price span.moneyNum{
+    font-size: 1.6rem;
+    color: #fe4716;
+}
+
+.price span.moneyNum span{
+    font-size: 1.0rem;
+    color: rgb(102, 102, 102);
+    font-weight: normal;
+}
+.price2 {
     float: right;
     margin-right: 10px;
-    margin-top:15px;
+    margin-top: 15px;
+    position: absolute;
+    right: 73px;
+    top: -2px
 }
-.d-p7{
+
+.roomUl {
+    width: 106%;
+    list-style-type: none;
+    position: relative;
+    clear: both;
+    display: block;
+    margin-left: -3%;
+    padding-left: 3%;
+    background: #dfdfdd;
+    overflow: hidden;
+}
+.roomUl li{
+    border:1px solid white
+}
+
+.roomUl li:first-child{
+    border-top:1px solid #dfdfdd;
+}
+
+.d-p7 {
     margin-top: 4px;
-    color:#484848;
-    font-size:1em;
+    max-width: 80%;
+    color: #484848;
+    font-size: 1.0rem;
 }
-.d-but{
-    width:79px;
-    height:33px;
+
+.d-but {
+    width: 79px;
+    height: 33px;
     float: right;
     border-radius: 5px;
     margin-top: 8px;
     text-align: center;
-    background-color:#ffb412 ;
+    line-height: 35px;
+    background-color: #ffb412;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
-.d-icon5{
+
+.d-icon5 {
     display: block;
     float: right;
-    width:18px;
-    height:18px;
-    margin-top:20px;
-    background-image:url(../images/ui/icons1.png);
-    background-position:19% 33%;
+    width: 18px;
+    height: 18px;
+    margin-top: 16px;
+    background-image: url(images/ui/icons1.png);
+    background-position: 19% 33%;
     background-size: 400px 120px;
+    transition: none!important;
 }
-/*
-    房间信息块
-*/
-.roomAll{
-    position:fixed;
-    overflow-x:hidden!important;
-    width:100%;
-    height:100%;
-    min-height:100%;
-    max-height:100%;
-    top:50px;
-    display: none;
+
+
+.roomAll {
+    position: absolute;
+    overflow-x: hidden !important;
+    overflow-y: scroll;
+    width: 90%;
+    height: 92%;
+    min-height: 92%;
+    max-height: 92%;
+    top: 10%;
+    left:5%;
+    display: block;
+    z-index: 11;
+    border-radius: 4px;
 }
-.r-div{
-    width: 100%;height:100%;
-    top:0;
-    left:0;
-    position:fixed;
-    background:rgba(0,0,0,0.5) ;
-    display: none;
-}
-.room{
-    width: 94%;
-    height: 690px;
-    border-radius: 5px;
+.roomAll .r-top .r-p1 {
+    float: left;
+    color: white;
+    font-size: 1.4rem;
+    line-height: 2.0rem;
+    letter-spacing: 0;
+    margin: 10px 0px 0px 15px;
+    width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.roomAll .r-ul .r-li p.r-p3{
+    margin-bottom: 0
+}
+
+.r-div {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 7;
+}
+
+.room {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden !important;
+    overflow-y: scroll;
     background-color: white;
     position: absolute;
-    left:3%;
-    right:3%;
-    z-index: 200000;
+    left: 0;
+    right: 0;
     color: #484848;
-    display: none;
+    display: block;
 }
-.r-top{
-    width: 100%;height:40px;
+
+.r-top {
+    width: 100%;
+    height: 40px;
     padding: 1px;
     background-color: #ffb412;
 }
-.r-p1{
+
+.r-p1 {
     float: left;
     margin-top: 12px;
     margin-left: 15px;
-    color:white;
-    font-size: 1.4em;
+    color: white;
+    font-size: 1.4rem;
 }
-.r-icon1{
-    width: 22px;height: 22px;
+
+.r-icon1 {
+    width: 22px;
+    height: 22px;
     float: right;
     margin-right: 12px;
     margin-top: 10px;
-    background-image:url(../images/ui/icon-h.png);
-    background-position:47.6% 81%;
-    background-size: 201px 87px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 22% 33%;
+    background-size: 397px 118px;
 }
-.r-div1{
+
+.r-div1 {
     width: 100%;
 }
-.r-ar{
+
+.r-ar {
     margin-top: 10px;
-    margin-left: 15px;margin-right: 20px;
-    margin-bottom: 10px;
-    font-size: 1.1em;
-}
-.r-p2{
     margin-left: 15px;
-    font-size: 1.4em;
-    color:#484848;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.r-p2 {
+    margin-left: 15px;
+    font-size: 1.4rem;
+    color: #484848;
     margin-top: 10px
 }
-.r-ul{
+
+.r-ul {
     width: 94%;
     height: 110px;
-    list-style-type: none;
+
     margin-top: 10px;
     margin-left: 20px;
 }
-.r-li{
+
+.r-li {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
     float: left;
+    list-style-type: none;
     width: 50%;
     margin-bottom: 10px;
 }
-.r-icon2{
-    width: 14px;height:14px;
+
+.r-icon2 {
+    width: 14px;
+    height: 14px;
+    display: block;
     background-image: url(../images/ui/icon-h.png);
     background-size: 402px 174px;
-    background-position:84% 10% ;
+    background-position: 84% 10%;
 }
-.r-p3{
+
+.r-p3 {
     margin-left: 8px;
     font-size: 10px;
     color: #484848;
+}
+
+
+.d-div1 .image {
+    width: 100%;
+    height: 62.5%;
+    max-height: 50px;
+}
+
+#imageContainer{
+    width:100%;
+    height:100%;
+    background: #000000;
+    overflow: hidden;
+    display: none;
+    position: fixed;
+    z-index: 109;
+    top:0;
+    left:0
+}
+
+#imageContainer .indexShow{
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ffffff;
+    position: absolute;
+    top:21%;
+    background: #000000;
+    width: 100%;
+    text-align: center;
+}
+
+#imageContainer .showZone{
+    height:38.5%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top:28%;
+    background: #000000;
+}
+#imageContainer .showZone .imgUl{
+    height:100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    display: block;
+    background: #000000;
+    list-style: none;
+}
+
+#imageContainer .showZone .imgUl li{
+    display: inline-block;
+    height:100%;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    list-style: none;
+}
+
+#imageContainer .showZone .imgUl li.noImage{
+    height:100%;
+    width: 100%;
+    line-height: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+}
+#imageContainer .showZone .imgUl li img{
+    height:100%;
+    width: 100%;
+}
+.d-ul2 .roomDetailList{
+    width: 106%;
+    list-style-type: none;
+    position: relative;
+    clear: both;
+    display: block;
+    margin-left: -3%;
+    padding:0 3%;
+    background: #F5F4F9;;
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+
+
+.d-ul2 .roomDetailList .d-li1{
+    list-style: none;
+    font-size: 1.4rem;
+    padding: 0px 0px;
+    border-bottom: 1px #dfdfdd solid;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.d-ul2 .roomDetailList li:last-child{
+    border-bottom: none;
+}
+
+
+.d-ul2 .roomDetailList .d-li1 .roomName{
+    float: left;
+    margin-top: 4px;
+    width: 46%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 60%;
+}
+
+.d-ul2 .roomDetailList .d-li1 .moneyTip{
+    float: right;
+    margin-right: 80px;
+    margin-top: 15px;
+    display:inline-block
+}
+
+.d-ul2 .roomDetailList .d-li1 .moneyTip span.money{
+    font-size: 0.8rem;
+    color: #fe4716;
+}
+.d-ul2 .roomDetailList .d-li1 .moneyTip span.moneyNum{
+    font-size: 1.6rem;
+    color: #fe4716;
+}
+
+.d-ul2 .roomDetailList .d-li1 .reserve {
+    padding: 8px 16px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: #ffb413;
+    position: absolute;
+    top:9px;
+    right: 0px;
+    border-radius: 3px;
+
+}
+
+.detailHeader{
+    position: absolute;
+    top: 0;
+    left: 0;
 }

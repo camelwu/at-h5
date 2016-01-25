@@ -7,116 +7,109 @@
     <link href="styles/style.css" rel="stylesheet">
     <link href="styles/framework.css" rel="stylesheet">
     <link href="styles/dzh.css" rel="stylesheet">
-    <script src="js/dzhhotel.js"></script>
+    <link href="styles/cityList.css" rel="stylesheet" />
 </head>
 <body>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:void(0);" class="icons header-back"></a>
+        <a href="javascript:;" class="icons header-back"></a>
         <h3>酒店</h3>
     </div>
     <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
         <div id="h-Tab">
-            <a class="on Inter" id="Inter" onclick="Inter()">国际</a>
-            <a class="Dom" id="Dom" onclick="Dom()">国内</a>
+            <a class="on" id="Inter" onclick="Inter()">国际</a>
+            <a id="Dom" onclick="Dom()">国内</a>
         </div>
         <form action="hotel_list.html" method="get">
-        <div class="content1">
-            <div  id="arr1" class="nav1">
-                <div class="nav11">
+            <div class="content1">
+
+                <div  id="arr1" class="nav1" onclick="focus1()">
                     <div class="nav111">
-                        <div class="aim">目的地</div>
+                        目的地
                     </div>
                     <div class="nav112">
                         <div class="choose-aim">
-                            <input type="text" placeholder="选择目的地" id="input1" name="CityName">
-                            <a href="#" class="icons open-arw"></a>
+                            <input type="text" value="Singapore" id="input1" name="CityName">
+                            <i class="icons open-arw"></i>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-                <div  id="arr2" class="nav1">
-                    <div class="nav11">
-                        <div class="nav111">
-                            <div class="aim1">目的地</div>
+                <div  id="arr2" class="nav1" onclick="focus1()">
+                    <div class="nav111">
+                        目的地
+                    </div>
+                    <div class="nav112">
+                        <div class="choose-aim1" >
+                            <input type="text"  value="北京" id="input2" >
+                            <i class="icons right1"></i>
+                            <i class="position"></i>
                         </div>
-                        <div class="nav112">
-                            <div class="choose-aim1" >
-                                <input type="text"  value="选择目的地" id="input2" >
-                                <a href="#" class="icons right1"></a>
-                                <a href="#" class="position"></a>
+                    </div>
+                </div>
+
+                <div class="content2" id="content2">
+                    <div class="nav2-left">
+                        <span class="nav2-lefttop">日期</span>
+                        <span class="nav2-leftbottom">共 <span id="total_day">3</span> 晚</span>
+                    </div>
+                    <div class="nav2-center">
+                        <div class="nav2-centertop" onclick="focus2()">
+                            <p><input name="CheckInDate" id="CheckInDate"   value="2015-11-03"><span id="week_span1">周二 入住</span></p>
+
+                        </div>
+                        <div class="nav2-centerbottom" onclick="focus3()">
+                            <p><input name="CheckOutDate" id="CheckOutDate" value="2015-11-06"><span id="week_span2">周五 离店</span></p>
+                        </div>
+                    </div>
+                    <div class="nav2-centerright">
+                        <i></i>
+                    </div>
+                </div>
+
+                <div id="room" class="content3" onclick="focus4()">
+                    <div class="nav3-left">
+                        房间
+                    </div>
+                    <div class="nav3-right">
+                        <div>
+                            <input type="text" id="count1" name="NumRoom" value="1">
+                            <i class="icons1 add" onclick="fun1(this)"></i>
+                            <i class="icons1 minus" onclick="fun2(this)"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="people" class="content4">
+                    <div class="nav4">
+                        <div class="nav4-left">
+                            人数
+                        </div>
+                        <div class="nav4-center">
+                            <div class="nav4-centertop" onclick="focus5()">
+                                <p>
+                                    <input type="text" value="1" name="NumAdult" id="count2"><span>成人</span>
+                                    <i class="icons1 add1" onclick="fun7(this)"></i>
+                                    <i class="icons1 minus1" onclick="fun6(this)"></i>
+                                </p>
+                            </div>
+                            <div class="nav4-centerbottom" onclick="focus6()">
+                                <p>
+                                    <input type="text" value="0" name="NumChild" id="count3"><span>儿童</span>
+                                    <i class="icons1 add1" onclick="fun3(this)"></i>
+                                    <i class="icons1 minus1" onclick="fun4(this)"></i>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-            <div class="content2">
-                <div class="nav2">
-                    <div class="nav2-left">
-                        <div class="nav2-lefttop">日期</div>
-                        <div class="nav2-leftbottom">共 <span>3</span> 晚</div>
-                    </div>
-                    <div class="nav2-center">
-                        <div class="nav2-centertop">
-                            <p><input name="CheckInDate" id="CheckInDate" placeholder="2015-11-03">周二 入住</p>
 
-                        </div>
-                        <div class="nav2-centerbottom">
-                            <p><input name="CheckOutDate" id="CheckOutDate" placeholder="2015-11-06">周五 离店</p>
-                        </div>
-                    </div>
-                    <div class="nav2-centerright">
-                        <a href="#"></a>
-                    </div>
+                <div class="content5" onclick="focus7()">
+                    <input class="HotelName" name="HotelName" type="text"  value="酒店名" id="hotelname">
                 </div>
             </div>
-
-            <div id="room" class="content3">
-                <div class="nav3">
-                    <div class="nav3-left">
-                        <div>房间</div>
-                    </div>
-                    <div class="nav3-right">
-                        <div>
-                            <input type="text" id="count1" name="NumRoom" placeholder="1">
-                            <a href="#" class="icons1 add" onclick="fun1(this)"></a>
-                            <a href="#" class="icons1 minus" onclick="fun2(this)"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="people" class="content4">
-                <div class="nav4">
-                    <div class="nav4-left">
-                        <div>人数</div>
-                    </div>
-                    <div class="nav4-center">
-                        <div class="nav4-centertop">
-                            <p>
-                                <input type="text" placeholder="1" name="NumAdult" id="count2"><span>成人</span>
-                                <a href="#" class="icons1 add" onclick="fun1(this)"></a>
-                                <a href="#" class="icons1 minus" onclick="fun2(this)"></a>
-                            </p>
-                        </div>
-                        <div class="nav4-centerbottom">
-                            <p>
-                                <input type="text" placeholder="0" name="NumChild" id="count3"><span>儿童</span>
-                                <a href="#" class="icons1 add" onclick="fun3(this)"></a>
-                                <a href="#" class="icons1 minus" onclick="fun4(this)"></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="content5">
-                    <input class="HotelName" name="HotelName" type="text"  placeholder="酒店名">
-            </div>
-        </div>
 
             <!--<a href="#" class=" button-yellow hotelInter" >查询</a>-->
             <div class="aa">
@@ -134,33 +127,7 @@
 </body>
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vcm.js"></script>
-<script src="js/lib/d_calendar.js"></script>
-<script>
-	var cdDate=document.getElementById('cd_date');
-	var checkIn=document.getElementById('CheckInDate');
-	var checkOut=document.getElementById('CheckOutDate');
-    checkIn.onclick=checkOut.onclick=function(){
-		cdDate.style.display='block';
-        cdDate.style.background='#fff';
-		var obj={"2015-12-22":"入住","2015-12-24":"离店"};
-		//var arr=new Calender({id:'cd_date',num:4,time:obj});
-		function calender2(){
-			Calender.apply(this,arguments);
-		}
-		calender2.prototype=new Calender();
-		//console.log(calender2.prototype);
-		var oldLinkover=calender2.prototype.linkOver;
-		//alert(oldLinkover);
-		calender2.prototype.linkOver=function(){
-			oldLinkover.apply(this,arguments);
-			checkIn.value=this.result[0];
-			checkOut.value=this.result[1];
-			cdDate.style.display='none';
-		}
-		var arr=new calender2({id:'cd_date',num:4,time:obj});
-	};
-    
-	
-</script>
+<script src="js/lib/d_calendar1.0.2.js"></script>
+<script src="js/lsf_hotel.js"></script>
+<script src="js/cityList1.0.2.js"></script>
 </html>
-

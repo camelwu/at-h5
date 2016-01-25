@@ -1,406 +1,144 @@
 <!DOCTYPE html>
-<html class="no-js">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="green">
-<meta name="Keywords" content="亚洲旅行网">
-<meta name="Description" content="境外专业旅行服务提供机构">
-<link rel="stylesheet" href="styles/lsf_base.css" />
-<style>
-	html {
-		font-size:62.5%;
-	}
-	body{
-		overflow-x:hidden;
-	}
-	.all_elements{
-		position:absolute;
-		overflow-x:hidden!important;
-		width:100%;
-		height:100%;
-		min-height:100%;
-		max-height:100%;		
-	}
-	header,section,footer{
-		-webkit-box-sizing:border-box;
-		-moz-box-sizing:border-box;
-		-mz-box-sizing:border-box;
-		-o-box-sizing:border-box;
-		box-sizing:border-box;
-	}
-	header{
-		width:100%;
-		height:4.4rem;background:#163852;line-height:4.4rem;padding:0 1.5rem;	font-size:1.75rem;color:#fff;text-align:center;
-	}
-	header i{
-		width:1.25rem;height:2rem;background:url(images/icons.png) 0 0;background-size:243px 160px;margin-top:1.2rem;
-	}
-	.lsf_orExp{
-		width:100%;height:5rem;background:#fad485;
-		padding:1rem 0;
-	}
-	.lsf_orExp p{
-		color:#fff;line-height:1.8rem;
-		font-size:1.1rem;	padding:0 1.5rem;
-	}
-	.lsf_orExp p i{
-		width:1.2rem;height:0.7rem;margin-top:0.6rem;background:url("images/lsf_down1.png");background-size:1.1rem 0.6rem;
-	}
-	.lsf_uo_hotel{
-		width:100%;
-		padding:1rem 1.5rem;	border-bottom:1px solid #dedede;line-height:2rem;	
-	}
-	.uo_hotel_name h2{
-		font-size:1.5rem;font-weight:bold;color:#000;
-	}
-	.uo_hotel_name p{
-		font-size:1.3rem;color:#484848;		
-	}
-	.uo_hotel_name .hotType{
-		color:#999999;	
-	}
-	.uo_hotel_num{
-		display:-webkit-box;
-		display:-moz-box;
-		display:-ms-flexbox;
-		display:-webkit-flex;
-		display:flex;
-		border-top:1px solid #dedede;
-		padding-top:1rem;	
-	}
-	.uo_hot_num_ibox{
-		min-width:6rem;
-	}
-	.uo_hotel_num div{
-		-webkit-box-flex:1;
-		-moz-box-flex:1;
-		-ms-flex:1;
-		-webkit-flex:1;
-		flex-grow:1;	
-	}
-	.uo_hotel_num .sp2{
-		margin-left:5.3rem;
-	}
-	.uo_hot_num_i1{
-		width:2.3rem;height:2.3rem;background:url(images/ui/icons1.png) -6.5rem 0;background-size:40rem 12rem;
-	}
-	.uo_hot_num_i2{
-		width:2.3rem;height:2.3rem;background:url(images/ui/icons1.png) -0.3rem 0;background-size:40rem 12rem;margin-right:1rem;
-	}
-	.lsf_userName{
-		width:100%;
-		padding:0 1.5rem;border-bottom:1px solid #dedede;
-	}
-	.lsf_un_in{
-		font-size:1.2rem;color:#484848;line-height:4rem;border-bottom:1px solid #dfe0db;		
-	}
-	.lsf_un_infor{
-		display:-webkit-box;
-		display:-moz-box;
-		display:-ms-flexbox;
-		display:-webkit-flex;
-		display:flex;
-		flex-direction:row;
-		-webkit-flex-direction:row;
-		font-size:1.2rem;color:#a9a9a9;padding:1.3rem 0;		
-	}
-	.lsf_un_infor input{
-		-webkit-box-flex:1;
-		-moz-box-flex:1;
-		-ms-flex:1;
-		-webkit-flex:1;
-		flex:1;					border:none;
-	}
-	.lsf_lastName{
-		border-right:1px solid #dfe0db;		
-	}
-	.lsf_firstName{
-		padding-left:1.1rem;		
-	}
-	.lsf_tele{
-		width:100%;
-		font-size:1.3rem;color:#484848;line-height:3.9rem;border-bottom:1px solid #dfe0db;		
-		padding:0 1.5rem;
-	}
-	.lsf_tele .lsf_tele_sp1{
-		font-size:1.3rem;color:#484848;
-	}
-	.lsf_tele .lsf_tele_sp2{
-		margin-left:5.3rem;
-		margin-top:1.2rem;
-		font-size:1.1rem;
-		color:#999999;				border:none;
-	}
-	.lsf_argee{
-		width:100%;
-		text-align:center;	padding:1.5rem 4rem;line-height:1.7rem;font-size:0.9rem;
-		color:#757575;
-	}
-	.lsf_argee i{
-		width:1.7rem;height:1.7rem;background:url(images/ui/icons1.png) -26.6rem -0.4rem;background-size:40rem 12rem;
-		margin-top:-0.2rem;
-	}
-	.lsf_argee  a{
-		text-decoration:underline;
-		color:#feb932;		
-	}
-	.lsf_point{
-		width:100%;
-		padding:0 1.5rem 1rem;
-		font-size:1rem;
-		color:#757575;
-		margin-bottom:4rem;
-	}
-	.lsf_point p{
-		line-height:1.7rem;		
-	}
-	footer{
-		width:100%;
-		height:4rem;
-		position:fixed;
-		left:0;
-		bottom:0;
-		background:#fff;
-		display:-webkit-box;
-		display:-moz-box;
-		display:-ms-flexbox;
-		display:-webkit-flex;
-		display:flex;
-		-webkit-flex-direction:row;
-		flex-direction:row;		
-		line-height:4rem;	
-		padding-left:1.5rem;	
-		border-top:1px solid #dedede;
-	}
-	.lsf_sum{
-		-webkit-box-flex:4;
-		-moz-box-flex:4;
-		-ms-flex:4;
-		-webkit-flex:4;
-		flex:4;
-		height:4rem;line-height:4rem;
-		font-size:1.25rem;color:#484848;
-	}
-	.lsf_sum em{
-		color:#fe6a03;		
-	}
-	.lsf_sum em strong{
-		font-size:2rem;	
-	}
-	.lsf_detail{
-		-webkit-box-flex:2;
-		-moz-box-flex:2;
-		-ms-flex:2;
-		-webkit-flex:2;
-		flex:2;
-		color:#ffb412;
-	}
-	.lsf_detail i{
-		width:1.2rem;height:1rem;background:url(images/ui/icons1.png) -5.1rem -3.8rem;background-size:40rem 12rem;	
-	margin-top:1.5rem;
-	}
-	.lsf_confirm{
-		-webkit-box-flex:3;
-		-moz-box-flex:3;
-		-mz-flex:3;
-		-webkie-flex:3;
-		flex:3;
-		background:#ffb413;
-		text-align:center;
-		line-height:4rem;
-		font-size:1.4rem;color:#fff;font-weight:bold;
-	}
-	.lsf_hid{
-		position:fixed;left:0;top:0;width:100%;height:0;overflow:hidden;
-	}
-	.lsf_hid_p{
-		background:rgba(0,0,0,0.5);width:100%;height:100%;
-	}
-	.lsf_hid .lsf_hid_div1{
-		position:absolute;left:0;bottom:-320px;width:100%;background:#fff;transition:all 350ms ease;
-		height:13.5rem;
-	}
-	.lsf_feeDetail{
-		height:15rem;padding:0 1.5rem;		
-	}
-	.lsf_feeDetail section{
-		display:-webkit-box;
-		display:-webkit-flex;
-		display:-moz-box;
-		display:-ms-flexbox;
-		display:flex;
-		
-	}
-	.lsf_feeDetail section span{
-		-webkit-box-flex:1;
-		-moz-box-flex:1;
-		-ms-flex:1;
-		-webkit-flex:1;
-		flex:1;
-	}
-	.lsf_fd_sec1{
-		line-height:3.7rem;border-bottom:1px solid #d6d6d6;	font-size:1.3rem;	
-	}
-	.lsf_fd_sec1 span i{
-		font-size:1.2rem;color:#a9a9a9;		
-	}
-	.lsf_fd_sec2{
-		height:3rem;line-height:3rem;font-size:1.3rem;color:#fe4716;	
-	}
-	.lsf_fd_sec3{
-		border-bottom:1px solid #d6d6d6;			
-	}
-	.lsf_fd_sec4{
-		font-size:1.3rem;color:#999999;line-height:3.7rem;
-		height:3.7rem;
-	}
-</style>
-<script>
-	window.onload=function(){
-		function toUp(id1,id2){
-			var oNum=document.getElementById(id1);
-			var oBtn=document.getElementById(id2);
-			oBtn.onclick=function(){
-				var str=oNum.innerHTML;
-				str=Number(str);
-				str=str+1;
-				oNum.innerHTML=str;
-			};
-		}
-		function toDown(id1,id2){
-			var oNum=document.getElementById(id1);
-			var oBtn=document.getElementById(id2);
-
-			oBtn.onclick=function(){
-				var str=oNum.innerHTML;
-				str=Number(str);
-				if(str<=0){
-					alert('房间数不能小于0');
-				}else{
-					str=str-1;
-					oNum.innerHTML=str;
-				}
-			};
-		}
-		toUp('uo_hotNum','uo_hotUp');
-		toDown('uo_hotNum','uo_hotDown');
-
-		(function(){
-			var detaBtn=document.getElementById('lsf_details');
-			var detaBtnI=detaBtn.getElementsByTagName('i')[0];
-			var oHid=document.getElementById('lsf_hid');
-			var hidDiv1=document.getElementById('lsf_hid_div1');
-			var bOk=true;
-			detaBtn.onclick=function(){
-				if(bOk){
-					oHid.style.height='100%';
-					hidDiv1.style.bottom='3.5rem';
-					detaBtnI.style.background='url(images/ui/icons1.png) -7.6rem -3.8rem';
-					detaBtnI.style.backgroundSize='40rem 12rem';
-					bOk=false;
-				}else{
-					oHid.style.height=0;
-					hidDiv1.style.bottom='-320px';
-					detaBtnI.style.background='url(images/ui/icons1.png) -5.1rem -3.8rem';
-					detaBtnI.style.backgroundSize='40rem 12rem';
-					bOk=true;
-				}
-			};
-		})();
-		(function(){
-			var oAgree=document.getElementById('lsf_agree');
-			var bOk=true;
-			oAgree.onclick=function(){
-				if(bOk){
-					oAgree.style.background='url(images/ui/icons1.png) -23.7rem -0.4rem';
-					oAgree.style.backgroundSize='40rem 12rem';
-					bOk=false;
-				}else{
-					oAgree.style.background='url(images/ui/icons1.png) -26.6rem -0.4rem';
-					oAgree.style.backgroundSize='40rem 12rem';
-					bOk=true;
-				}
-
-			};
-		})();
-	};
-</script>
-<title>首页 - 亚洲旅行网</title>
-
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>首页 - 亚洲旅行网</title>
+    <link href="styles/framework.css" rel="stylesheet" />
+    <link href="styles/style.css" rel="stylesheet" />
+    <link href="styles/user_order.css" rel="stylesheet" />
 
 </head>
 <body>
-<div class="all_elements">
-	<header class="clearfix"><i class="fl"></i>填写订单</header>
-	<section class="lsf_orExp">
-		<p>取消说明</p>
-		<p class="clearfix">如果您在2016年1月11日晚1时(目的地时间)之...<i class="fr"></i></p>
-	</section>
-	<section class="lsf_uo_hotel">
-		<div class="uo_hotel_name">
-			<h2>东京东急涩谷卓越大酒店</h2>
-			<p><span>11月25日-11月26日<span>共<span>1</span>晚（目的地时间为准）</p>
-			<p class="hotType">房型：<span>经济大床房</span></p>
-		</div>
-		<div class="uo_hotel_num">
-			<div class="clearfix">
-				<span class="fl">房间数</span>
-				<span class="sp2 fl"><em id="uo_hotNum">2</em>间</span>
-			</div>
-			<div class="clearfix uo_hot_num_ibox"><i class="uo_hot_num_i1 fr" id="uo_hotDown"></i><i class="uo_hot_num_i2 fr" id="uo_hotUp"></i></div>
-		</div>
-	</section>
-	<section class="lsf_userName">
-		<div class="lsf_un_in">房间1入住人</div>
-		<div class="lsf_un_infor">
-			<input class="lsf_lastName" placeholder="姓（如：Timberlake）">
-			<input class="lsf_firstName" placeholder="名（如：Justin）">
-		</div>
-	</section>
-	<section class="lsf_tele clearfix">
-		<p class="lsf_tele_sp1 fl">手机号</p>
-		<input class="lsf_tele_sp2 fl" placeholder="用于接收短信通知">
-	</section>
-	<section class="lsf_argee clearfix">
-		<i class="fl" id="lsf_agree"></i>通过选择完成预定我承认我已经阅读并接收如下免责声明，<a href="javascript:;">条款及条件</a>
-	和<a href="javascript">用户协议</a>
-	</section>
-	<section class="lsf_point">
-		<p>温馨提示</p>
-		<p>请您在15分钟内完成订单填写，以免酒店房间被他人定完。</p>
-		<p>如您在14:00前到点，可能需要等待方能入住，具体以酒店安排为准</p>
-	</section>
-	<section class="lsf_hid" id="lsf_hid">
-		<p class="lsf_hid_p"></p>
-		<div id="lsf_hid_div1" class="lsf_hid_div1">
-			<section class="lsf_feeDetail" id="lsf_feeDetail">
-				<section class="lsf_fd_sec1">
-					<span>费用明细</span>
-					<span class="clearfix"><i class="fr">1间×1晚</i></span>
-				</section>
-				<section class="lsf_fd_sec2">
-					<span>房费</span>
-					<span class="clearfix"><i class="fr">¥1134</i></span>
-				</section>
-				<section class="lsf_fd_sec2 lsf_fd_sec3">
-					<span>税和服务费</span>
-					<span class="clearfix"><i class="fr">¥159</i></span>
-				</section>
-				<section  class="lsf_fd_sec4">
-					付款方式：预付
-				</section>
-			</section>
-
-		</div>
-	</section>
-	<footer>
-		<p class="lsf_sum">订单总额：<em>￥<strong>1,293</strong></em></p>
-		<p class="lsf_detail clearfix"><span class="fl" id="lsf_details">明细<span><i class="fr"></i></p>
-		<p class="lsf_confirm"><span>确认预定</span></p>
-	</footer>
-</div>
-
+    <!--页面跳转动画-->
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                Loading ...
+                <em>Loading depends on your connection speed!</em>
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <div class="uo_box">
+            <div class="header" id="vlm-login">
+                <a href="user-infolist.html" class="icons header-back"></a>
+                <h3>填写订单</h3>
+            </div>
+            <div class="uo_con1">
+                <p>取消说明：</p>
+                <div>
+                    <p class="uo_c1_info">如果您在2016年1月11日晚12时（目的地时间）之hahhahahahhaahah</p>
+                    <i></i>
+                </div>
+            </div>
+            <div class="uo_con2">
+                <div id="uo_con2_chil1">
+                    <h3>东京东急涩谷卓越大酒店</h3>
+                    <p class="uo_c2_infor">11月25日-11日26日 共1晚（目的地时间为准）</p>
+                    <p class="uo_house">房型：经济大床房</p>
+                </div>
+                <div class="uo_con2_chil2">
+                    <p class="fl">房间数</p><em class="fl"><b id="uo_c2_num">2</b>间</em>
+                    <i class="fr uo_c2_i1" id="uo_c2_i1"></i>
+                    <i class="fr uo_c2_i2" id="uo_c2_i2"></i>
+                </div>
+            </div>
+            <form class="uo_con3" id="uo_con3" action="jyy_pay.html" method="get">
+                <div class="uo_c3_peoBox" id="uo_c3_peoBox">
+                    <div class="uo_c3_peo">
+                        <div class="uo_c3_div1">房间1入住人</div>
+                        <div class="uo_c3_infor">
+                            <input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />
+                            <input type="text" placeholder="名（如：Justin）" class="uo_firstname" />
+                        </div>
+                    </div>
+                    <div class="uo_c3_peo">
+                        <div class="uo_c3_div1">房间2入住人</div>
+                        <div class="uo_c3_infor">
+                            <input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />
+                            <input type="text" placeholder="名（如：Justin）" class="uo_firstname"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="uo_c3_teBox">
+                    <p>手机号</p>
+                    <input type="text" placeholder="用于接收短信通知" id="uo_c3_tele" />
+                </div>
+                <div class="uo_con4">
+                    <i class="fl" id="uo_c4_conf"></i>
+                    通过选择完成预订我承认我已经阅读并接受如下免责声明，<a href="javascript:;">条款及条件</a>和<a href="javascript:;" id="uo_agree">用户协议</a>
+                </div>
+                <div class="uo_con5">
+                    <p>温馨提示</p>
+                    <p>
+                        如您在14：00前到点，可能需要等待方能入住，具体以酒店安排为准。
+                    </p>
+                    <p>
+                        您将根据付款当天的汇率以酒店当地的货币付费给酒店。
+                    </p>
+                    <p>
+                        Asiatrave不提供发票，如需消费凭证，请向酒店前台索取。
+                    </p>
+                </div>
+                <div class="uo_hid" id="uo_hid">
+                    <p class="uo_hid_shadow"></p>
+                    <div class="uo_hid_con" id="uo_hid_con">
+                        <div class="uo_hid_det">
+                            <p class="fl uo_hid_p1">费用明细</p>
+                            <p class="fr uo_hid_p2" id="uo_hid_p2">1间×1晚</p>
+                        </div>
+                        <div class="uo_hid_price">
+                            <p>
+                                <span class="fl uo_hid_span1">房费</span>
+                                <span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
+                            </p>
+                            <p>
+                                <span class="fl uo_hid_span1">税和服务费</span>
+                                <span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
+                            </p>
+                        </div>
+                        <div class="uo_hid_met" id="uo_hid_met">
+                            付款方式：前台现付
+                        </div>
+                    </div>
+                </div>
+                <div class="uo_footer">
+                    <div class="uo_or_sum">
+                        <em class="fl" class="uo_or_assure">担保：</em>
+                        <div class="uo_or_pr">
+                            <p>S$<b id="uo_or_sum" class="uo_or_sum1">14062</b></p>
+                            <p>约￥<b id="uo_or_sum2" class="uo_or_sum2">64430</b></p>
+                        </div>
+                    </div>
+                    <p class="uo_or_infor" id="uo_or_infor"><span class="fl">明细</span><i class="fl"></i></p>
+                    <input type="button" value="确认订单" id="uo_confirm" />
+                </div>
+            </form>
+        </div>
+        <p class="uo_shadow" id="uo_shadow"></p>
+        <div class="uo_hid_con6" id="uo_hid_con6">
+            <div class="uo_c6_header">
+                <h3 class="fl">用户协议 - 酒店预订</h3>
+                <i class="fr" id="uo_c6_close"></i>
+            </div>
+            <div class="uo_c6_text">
+                <p>预订相关条款解释权归asiatravel.com. 该网站由在新加坡上市公司Asiatravel.com Holdings Limited所有。</p>
+                <h4>网站内容</h4>
+                <p>Asiatravel.com 尽其所能以确保所有出现在网站上的信息是准确和及时的。但是，Asiatravel.com不对任何信息错误和遗漏负责任。并且保留可以任何时候在不通知各方的情况下更改信息的权利。</p>
+                <h4>酒店信息</h4>
+                <p>Asiatravel.com 会尽可能参观与我们合作的酒店并确保所有酒店提供的酒店信息，酒店描述和照片的准确性。然而，Asiatravel.com不对酒店的设施和其他描述信息的准确性负责，因为有时可能由于酒店改造或维护装修，导致某些设施暂时不可用。同样Asiatravel.com既不对住客在入住酒店期间出现任何的事故及损失负责，也不会对由酒店方面或是员工所造成的不便和困扰负责。</p>
+                <h4>利率价格</h4>
+                <p>在此网站上酒店为住客提供的价格通常比酒店在自己的网站上提供的价格低，并且此价格也只属于Asiatravel.com的网站或是电话预订中心。</p>
+                <p>Asiatrave.com提供的大多数价格已经包括了所有的税（商品和服务税），服务费用和政府税。如果所提供的价格不包括税，服务费用和政府税将会明确出示在我们的预订网页上。</p>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="js/lib/jquery.js"></script>
+<script src="js/user_order.js"></script>
 </html>

@@ -1,8 +1,73 @@
-"use strict";
-    //$(window).load(function(){
-    //    $('#status').fadeOut();
-    //    $('#preloader').delay(400).fadeOut('medium');
-    //});
+var lsf_myweb={
+    "getbyid":function(id){
+        return document.getElementById(id);
+    },
+    "getbytag":function(obj,tag){
+        return obj.getElementsByTagName(tag);
+    },
+    "getbyclass":function(obj,sClass){
+        if(obj.getElementsByClassName){
+            return obj.getElementsByClassName(sClass);
+        }else{
+            var aResult=[];
+            var aEle=obj.getElementsByTagName('*');
+            var reg=new RegExp('\\b'+sClass+'\\b','g');
+            for(var i=0;i<aEle.length;i++){
+                if(aEle[i].className.search(reg)!=-1){
+                    aResult.push(aEle[i]);
+                }
+            }
+            return aResult;
+        }
+    },
+    bind:function(obj,sEv,fn){
+        obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+    }
+};
+
+//ÊääÊòüÁ∫ßËã±ÊñáÊï∞Â≠óÊç¢ÊàêÊ±âÂ≠ó
+function num2chin(num){
+    switch(num){
+        case '0':
+            return 'Èõ∂';
+            break;
+        case '1':
+            return '‰∏Ä';
+            break;
+        case '2':
+            return '‰∫å';
+            break;
+        case '3':
+            return '‰∏â';
+            break;
+        case '4':
+            return 'Âõõ';
+            break;
+        case '5':
+            return '‰∫î';
+            break;
+        default:
+            return 'Êó†';
+            break;
+    };
+}
+
+
+//ÊääurlÂ≠óÁ¨¶‰∏≤ÂèòÊàêjson
+function url2json(url){
+    if(!url)return;
+    var json={};
+    var arr=url.split('?');
+    var arr2=arr[1].split('&');
+    for(var i=0;i<arr2.length;i++){
+        var arr3=arr2[i].split('=');
+        json[arr3[0]]=arr3[1];
+    }
+    return json;
+}
+
+
+
 (function(){
     var oUl=document.getElementById('lsf_list');
     $(window).load(function () {
@@ -19,57 +84,20 @@
         },30);
 
     });
-})();
-//∞—–«º∂”¢Œƒ ˝◊÷ªª≥…∫∫◊÷
-function num2chin(num){
-    switch(num){
-        case '0':
-            return '¡„';
-            break;
-        case '1':
-            return '“ª';
-            break;
-        case '2':
-            return '∂˛';
-            break;
-        case '3':
-            return '»˝';
-            break;
-        case '4':
-            return 'Àƒ';
-            break;
-        case '5':
-            return 'ŒÂ';
-            break;
-        default:
-            return 'Œﬁ';
-            break;
-    };
-}
-//∞—url◊÷∑˚¥Æ±‰≥…json
-function url2json(url){
-    if(!url)return;
-    var json={};
-    var arr=url.split('?');
-    var arr2=arr[1].split('&');
-    for(var i=0;i<arr2.length;i++){
-        var arr3=arr2[i].split('=');
-        json[arr3[0]]=arr3[1];
-    }
-    return json;
-}
-(function(){
-    var list_oUl=document.getElementById('lsf_list');
+
+    var list_oUl=lsf_myweb.getbyid('lsf_list');
     var pWidth=list_oUl.offsetWidth-140;
     var str=window.location.href;
-    //∞—µ√µΩµƒurl”√url2jsonΩ¯––¥¶¿Ì£¨»ª∫Û∏≥∏¯url_json
     var url_json=url2json(str);
     var oBody=document.getElementsByTagName('body')[0];
     var oBtn=document.getElementById('s_but');
     //console.log(url_json);
 
-    //Ωªª•≤ø∑÷
+
+
+    //‰∫§‰∫íÈÉ®ÂàÜ
     function M(json){
+        //console.log(json);
         json=json||{};
         json.rank=json.rank||'priceasc';
         json.CityName=json.CityName||'Singapore';
@@ -93,9 +121,15 @@ function url2json(url){
         //alert(data.Parameters);
         return  c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
     }
-    // ˝æ›’π æ≤ø∑÷
+
+
+
+
+    //Êï∞ÊçÆÂ±ïÁ§∫ÈÉ®ÂàÜ
     function V(data){
         if(!data)return;
+        var timer=null;
+        var oUl=lsf_myweb.getbyid('lsf_list');
         list_oUl.innerHTML='';
         for(var i=0;i<data.length;i++){
             var  str1=data[i].StarRating.substring(0,1);
@@ -103,73 +137,75 @@ function url2json(url){
             var str3='';
             var str4='';
             if(data[i].IsFreeWifi){
-                str2+='<i class="fl ho_i1">';
+                str2+='<b class="hl-icon1"></b>';
             }
             if(data[i].IsFreeTransfer){
-                str2+='<i class="fl ho_i2"></i>';
+                str2+='<b class="hl-icon2"></b>';
             }
             if(data[i].IsCashReward){
-                str3='<b class="fr ho_b1">œ÷ΩΩ±¿¯</b>';
+                str3='<div class="h-div1" style="margin-right: 3px;background-color: #ffb412">Áé∞ÈáëÂ•ñÂä±</div>';
             }
             if(data[i].IsFreeCityTour){
-                str4='<b class="fr ho_b2">√‚∑—æ∞µ„</b>';
+                str4='<div class="h-div1">ÂÖçË¥πÊôØÁÇπ</div>';
             }
 
-            /* var str='<li class="h-li" style="border-bottom:1px solid #dfdfdd">'+
-             '<div class="hdiv"><img class="hotelPic" src="images/cars.png" data-src="'+data[i].FrontPgImage+'"></div>'+
-             '<div class="detail" >'+
-             '<p class="hname" style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+
-             data[i].HotelNameLocale+'('+data[i].HotelName+')'+
-             '</p>'+
-             '<div class="h-score">'+
-             '<span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">'+data[i].HotelReviewScore+'</span>'+
-             '<span style="color:#999999;font-size:0.8em;">∑÷/'+data[i].HotelReviewCount+'»Àµ„∆¿</span>'+
-             '<p class="price">'+
-             '<span style="font-size:0.8em;color:#fe4716;">£§</span>'+
-             '<span style="font-size:2em;font-weight: 600;color:#fe4716;">'+data[i].AvgPrice+'</span>'+
-             '<span style="font-size:0.8em;color:#999999;">∆</span>'+
-             '</p>'+
-             '</div>'+
-             '<div class="h-grade">'+
-             '<span style="color:#999999;font-size:1em;">'+num2chin(str1)+'–«º∂</span>'+
-             str2+
-             str4+
-             str3+
-             '</div>'+
-             '<p class="h-address">'+data[i].City+'('+data[i].Location+')</p>'+
-             '</div>'+
-             '</li>';*/
 
             var str='<li class="ho_list">'+
                 '<div class="ho_pic">'+
-                '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'"  class="ho_img">'+
+                '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
                 '</div>'+
                 '<div class="ho_infor">'+
-                '<h2 style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+data[i].HotelNameLocale+'('+data[i].HotelName+')'+'</h2>'+
-                '<div class="ho_grade clearfix">'+
-                '<span class="fl"><em>'+data[i].HotelReviewScore+'</em><i>∑÷/'+data[i].HotelReviewCount+'»Àµ„∆¿</i></span><span class="fr ho_price"><b>£§</b><strong>'+data[i].AvgPrice+'</strong>∆</span>'+
+                '<p class="hname"  style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+
+                data[i].HotelNameLocale+'('+data[i].HotelName+')'+
+            '</p>'+
+                '<div class="h-score">'+
+                '<span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">'+data[i].HotelReviewScore+'</span>'+
+                '<span style="color:#999999;font-size:0.8em;">ÂàÜ/'+data[i].HotelReviewCount+'‰∫∫ÁÇπËØÑ</span>'+
+                '<p class="price">'+
+                '<span style="font-size:0.8em;color:#fe4716;">Ôø•</span>'+
+                '<span style="font-size:2em;font-weight: 600;color:#fe4716;">'+data[i].AvgPrice+'</span>'+
+                '<span style="font-size:0.8em;color:#999999;">Ëµ∑</span>'+
+                '</p>'+
                 '</div>'+
-                '<div class="ho_star clearfix">'+
-                '<span class="fl">'+num2chin(str1)+'–«º∂</span>'+
+                '<div class="h-grade">'+
+                '<span style="color:#999999;font-size:1em;">'+num2chin(str1)+'ÊòüÁ∫ß</span>'+
                 str2+
                 str3+
                 str4+
                 '</div>'+
-                '<div class="ho_adress">'+data[i].City+'('+data[i].Location+')'+
-                '</div>'+
+                '<p class="h-address">'+data[i].City+'('+data[i].Location+')'+'</p>'+
                 '</div>'+
                 '</li>';
             list_oUl.innerHTML+=str;
-            var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
-            var lastLi=list_oUl.children[list_oUl.children.length-1];
-            var oImg=lastLi.getElementsByClassName('ho_img')[0];
-            console.log(oImg.offsetTop+'+++'+clienH);
-            if(oImg.offsetTop<=clienH){
-                oImg.src=oImg.dataset.src;
+        }
+        //ÊáíÂä†ËΩΩ
+        function lazyLoad2(){
+            lazyLoad.apply(this,arguments);
+        }
+        lazyLoad2.prototype=new lazyLoad();
+        lazyLoad2.prototype.update=function(){
+            //Â¶ÇÂõæÁâáÈÉΩÂä†ËΩΩÂÆåÊàêÔºåËøîÂõû
+            if(!this.imgs.length){return;}
+            var i = this.imgs.length;
+            for(--i;i>=0;i--){
+                if(this.shouldShow(i)){
+                    //Âä†ËΩΩÂõæÁâá
+                    var osrc=this.imgs[i].src;
+                    this.imgs[i].src = this.imgs[i].getAttribute("data-src");
+                    this.imgs[i].onerror=function(){
+                        this.src=osrc;
+                    };
+                    //Ê∏ÖÁêÜÁºìÂ≠ò
+                    this.imgs.splice(i,1);
+                }
             }
         }
+        var c=new lazyLoad2('lsf_list');
+        //ÁªëÂÆöÂõæÁâásrc
+        document.getElementsByClassName('hotelcontent')[0].getElementsByClassName('ho_img');
     }
-    //µ˜”√…œ√Ê∂®“ÂµƒΩªª•≤ø∑÷
+
+
     M(url_json);
     function mycallback(d){
         //console.log(d);
@@ -178,54 +214,171 @@ function url2json(url){
         var data=arr.Data;
         //console.log(data);
         V(data);
+        //ÁªëÂÆöË∑≥ËΩ¨‰∫ã‰ª∂
+        getDetail(data);
     }
 
-    oBody.onclick=function(ev){
+    lsf_myweb.bind(oBody,'click',function(ev){
         var oEvent=ev||event;
         var oSrc=oEvent.srcElement||oEvent.target;
         if(oSrc.className=='r-li'){
             var oSrc_str=oSrc.innerHTML;
-            if(oSrc_str.indexOf('º€∏Ò…˝–Ú')!=-1){
+            if(oSrc_str.indexOf('‰ª∑Ê†ºÂçáÂ∫è')!=-1){
                 url_json.rank='PriceASC';
-            }else if(oSrc_str.indexOf('º€∏ÒΩµ–Ú')!=-1){
+            }else if(oSrc_str.indexOf('‰ª∑Ê†ºÈôçÂ∫è')!=-1){
                 url_json.rank='PriceDESC';
-            }else if(oSrc_str.indexOf('∫√∆¿”≈œ»')!=-1){
+            }else if(oSrc_str.indexOf('Â•ΩËØÑ‰ºòÂÖà')!=-1){
                 url_json.rank='ReviewscoreDESC';
             }
             M(url_json);
         }
-    };
-
-})();
-//¿¡º”‘ÿ
-(function(){
-    //alert(window.innerHeight);
-    //var oUl=document.getElementById('lsf_list');
-    //var myAll=document.getElementsByClassName('all_elements')[0];
-    //alert(window.innerHeight);
-    //alert(document.documentElement.clientHeight);
-    //”√window.onscroll∫œ  ¬£ø£ø£ø£ø£ø
-    window.onscroll=window.onresize=function(){
-        var oUl=document.getElementById('lsf_list');
-        var aImg=document.getElementsByClassName('ho_img');
-        var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
-        //console.log(document.documentElement.clientHeight);
-        //console.log(document.documentElement.scrollTop||document.body.scrollTop)
-        //console.log(clienH);
-        for(var i=0;i<aImg.length;i++){
-            var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
-            //πˆ∂Øµƒ ±∫Ú»Áπ˚Õº∆¨µƒ∫Û◊∫√˚ «pngÀµ√˜ «’‚’≈Õº∆¨ «‘§∂®∫√Õº∆¨
-            if(aImg[i].offsetTop<clienH){
-                alert(i);
-            }
-            if(aImg[i].offsetTop<clienH&&str=='png'){
-                alert(i);
-                aImg[i].src=aImg[i].dataset.src;
-            }
-            //’‚—˘ƒ‹πª≈–∂œ¥ÌŒÛ“≤ƒ‹πªªª≥…œÎ“™µƒÕº∆¨£¨µ´ «ª·“ª÷±±®¥Ì£¨±®404“≥√Ê¥ÌŒÛ
-            aImg[i].onerror=function(){
-                this.src='images/cars.png';
-            }
+    });
+    lsf_myweb.bind(lsf_myweb.getbyid('s_but'),'click',function(ev){
+        var hl_star_str='';
+        var hl_type_str='';
+        var hl_star_type=lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'),'s-li1');
+        for(var i=0;i<hl_star_type.length;i++){
+            switch(hl_star_type[i].innerHTML){
+                case '‰∫åÊòüÁ∫ß‰ª•‰∏ã':
+                    hl_star_str+='2$';
+                    break;
+                case '‰∏âÊòü':
+                    hl_star_str+='3$';
+                    break;
+                case 'ÂõõÊòü':
+                    hl_star_str+='4$';
+                    break;
+                case '‰∫îÊòü':
+                    hl_star_str+='5$';
+                    break;
+                case 'ÈÖíÂ∫ó':
+                    hl_type_str+='1$';
+                    break;
+                case 'Ê±ΩËΩ¶ÊóÖÈ¶Ü':
+                    hl_type_str+='2$';
+                    break;
+                case 'ÈÖíÂ∫óÂºèÂÖ¨ÂØì':
+                    hl_type_str+='3$';
+                    break;
+                case 'ÂÆ∂Â∫≠ÊóÖÈ¶Ü':
+                    hl_type_str+='4$';
+                    break;
+                case 'ËÉåÂåÖÂÆ¢Ê†à':
+                    hl_type_str+='5$';
+                    break;
+                case 'ÂÆæÈ¶Ü/ÊãõÂæÖÊâÄ':
+                    hl_type_str+='6$';
+                    break;
+                case 'Á≤æÂìÅÈÖíÂ∫ó':
+                    hl_type_str+='7$';
+                    break;
+                case 'Â∫¶ÂÅáÁ±ªÈÖíÂ∫ó':
+                    hl_type_str+='8$';
+                    break;
+                case 'Ê∏∏ËΩÆÂ∫¶ÂÅáÈÖíÂ∫ó':
+                    hl_type_str+='9$';
+                    break;
+                case 'Âà´Â¢ÖÂûãÈÖíÂ∫ó':
+                    hl_type_str+='10$';
+                    break;
+                case '‰π°ÊùëÂπ≥ÊàøÈÖíÂ∫ó':
+                    hl_type_str+='11$';
+                    break;
+                case 'ÂÆ∂Â∫≠ÂØÑÂÆø':
+                    hl_type_str+='12$';
+                    break;
+                case 'ÂÜúËàçÂºèÊàøÂ≠ê':
+                    hl_type_str+='13$';
+                    break;
+                case 'Ë±™ÂçéÈú≤Ëê•Âú∞':
+                    hl_type_str+='14$';
+                    break;
+                case 'Ê†áÂáÜÈú≤Ëê•Âú∞':
+                    hl_type_str+='15$';
+                    break;
+            };
         }
-    };
+        hl_star_str=hl_star_str.substring(0,(hl_star_str.length-1));
+        hl_type_str=hl_type_str.substring(0,(hl_type_str.length-1));
+        url_json.StarRating=hl_star_str;
+        url_json.Category=hl_type_str;
+        M(url_json);
+        //alert(hl_star_str+'---'+hl_type_str);
+    });
+    //Ëé∑ÂèñÈÖíÂ∫óËØ¶ÊÉÖ
+    function getDetail(data){
+        var hotelRefers = document.getElementsByClassName('ho_img');
+        var toDetail= function(that){
+            var paraObj= new Object();
+            paraObj.HotelID=data[that.index].HotelCode;
+            paraObj.HotelCode=data[that.index].HotelCode;
+
+            // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
+            paraObj.InstantConfirmation=data[that.index].InstantConfirmation!=undefined?data[that.index].InstantConfirmation:false;
+            paraObj.AllOccupancy=data[that.index].AllOccupancy!=undefined?data[that.index].AllOccupancy:true;
+
+            paraObj.CheckInDate=url_json.CheckInDate;
+            paraObj.CheckOutDate=url_json.CheckOutDate;
+            paraObj.NumRoom=url_json.NumRoom;
+            paraObj.NumAdult=url_json.NumAdult;
+            paraObj.NumChild=url_json.NumChild;
+
+            var paramStr = "";
+            for(var attr in paraObj){
+                paramStr+="&"+attr+"="+paraObj[attr];
+            }
+            paramStr=paramStr.slice(1);
+            window.location.href='hotel_detail.html?'+paramStr;
+        }
+
+
+        for(var i = 0;i<hotelRefers.length;i++){
+            hotelRefers[i].index = i;
+            hotelRefers[i].onclick=function(){
+                var that=this;
+                toDetail(that);
+            }
+
+        }
+    }
+
+
+
+//ÊáíÂä†ËΩΩ
+    /*(function(){
+     window.onscroll=window.onresize=function(){
+     var oUl=document.getElementById('lsf_list');
+     var aImg=document.getElementsByClassName('ho_img');
+     var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
+     //console.log(document.documentElement.clientHeight);
+     //console.log(document.documentElement.scrollTop||document.body.scrollTop)
+     //console.log(clienH);
+     for(var i=0;i<aImg.length;i++){
+     var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
+     //ÊªöÂä®ÁöÑÊó∂ÂÄôÂ¶ÇÊûúÂõæÁâáÁöÑÂêéÁºÄÂêçÊòØpngËØ¥ÊòéÊòØËøôÂº†ÂõæÁâáÊòØÈ¢ÑÂÆöÂ•ΩÂõæÁâá
+     if(aImg[i].offsetTop<clienH&&str=='png'){
+     aImg[i].src=aImg[i].dataset.src;
+     }
+     //ËøôÊ†∑ËÉΩÂ§üÂà§Êñ≠ÈîôËØØ‰πüËÉΩÂ§üÊç¢ÊàêÊÉ≥Ë¶ÅÁöÑÂõæÁâáÔºå‰ΩÜÊòØ‰ºö‰∏ÄÁõ¥Êä•ÈîôÔºåÊä•404È°µÈù¢ÈîôËØØ
+     aImg[i].onerror=function(){
+     this.src='images/cars.png';
+     }
+     }
+     };
+     })();*/
+//ÊáíÂä†ËΩΩ
+    /*(function(){
+     var timer=null;
+     var oUl=lsf_myweb.getbyid('lsf_list');
+     function lazyLoad2(){
+     lazyLoad.apply(this,arguments);
+     }
+     lazyLoad2.prototype=new lazyLoad();
+     timer=setInterval(function(){
+     if(oUl.getElementsByTagName('img').length){
+     var c=new lazyLoad2('lsf_list');
+     clearInterval(timer);
+     }
+     },30);
+     })();*/
 })();

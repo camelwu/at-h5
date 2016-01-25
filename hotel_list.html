@@ -8,10 +8,8 @@
     <meta name="Keywords" content="亚洲旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
     <link href="styles/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/hotel_jyy.css">
-    <link href="styles/lsf_base.css" rel="stylesheet" />
-    <link href="css/lsf_hotelList.css" rel="stylesheet" />
-    <title>首页 - 亚洲旅行网</title>
+    <link rel="stylesheet" type="text/css" href="css/hotel_jyy2.css">
+    <title>酒店查询结果 - 亚洲旅行网</title>
 </head>
 <body onload="h_l_s()">
 <!--   顶部   -->
@@ -39,20 +37,40 @@
                 <img src="images/1_02.jpg" class="ho_img" />
             </div>
             <div class="ho_infor">
-                <h2>东京湾洲际酒店</h2>
-                <div class="ho_grade clearfix">
-                    <span class="fl"><em>4.3</em><i>分/385人点评</i></span><span class="fr ho_price"><b>￥</b><strong>168</strong>起</span>
+                <p class="hname">
+                    东京(银座)花店（Hotel...
+                </p>
+                <div class="h-score">
+                    <span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">4.3</span>
+                    <span style="color:#999999;font-size:0.8em;">分/385人点评</span>
+                    <p class="price">
+                        <span style="font-size:0.8em;color:#fe4716;">￥</span>
+                        <span style="font-size:2em;font-weight: 600;color:#fe4716;">848</span>
+                        <span style="font-size:0.8em;color:#999999;">起</span>
+                    </p>
                 </div>
-                <div class="ho_star clearfix">
-                    <span class="fl">五星级</span>
-                    <i class="fl ho_i1"></i><i class="fl ho_i2"></i>
-                    <b class="fr ho_b1">现金奖励</b><b class="fr ho_b2">免费景点</b>
+                <div class="h-grade">
+                    <span style="color:#999999;font-size:1em;">三星级</span>
+                    <b class="hl-icon1"></b>
+                    <b class="hl-icon2"></b>
+                    <div class="h-div1">免费景点</div>
+                    <div class="h-div1" style="margin-right: 3px;background-color: #ffb412">现金奖励</div>
                 </div>
-                <div class="ho_adress">
-                    东京（品川区）
-                </div>
+                <p class="h-address">东京（品川区）</p>
             </div>
         </li>-->
+                <!--<div class="ho_grade clearfix">-->
+                    <!--<span class="fl"><em>4.3</em><i>分/385人点评</i></span><span class="fr ho_price"><b>￥</b><strong>168</strong>起</span>-->
+                <!--</div>-->
+                <!--<div class="ho_star clearfix">-->
+                    <!--<span class="fl">五星级</span>-->
+                    <!--<i class="fl ho_i1"></i><i class="fl ho_i2"></i>-->
+                    <!--<b class="fr ho_b1">现金奖励</b><b class="fr ho_b2">免费景点</b>-->
+                <!--</div>-->
+                <!--<div class="ho_adress">-->
+                    <!--东京（品川区）-->
+                <!--</div>-->
+
     </ul>
     <!--   底部   -->
     <footer class="hl-bottom">
@@ -94,16 +112,23 @@
         <h4>酒店类型</h4>
         <ul class="s-ul" id="h-type">
             <li class="s-li1">不限</li>
-            <li class="s-li">商务型</li>
-            <li class="s-li">度假型</li>
-            <li class="s-li">会议型</li>
-            <li class="s-li">观光型</li>
-            <li class="s-li">经济型</li>
-            <li class="s-li">连锁型</li>
-            <li class="s-li">公寓式</li>
-            <li class="s-li">长住型</li>
+            <li class="s-li">酒店</li>
+            <li class="s-li">汽车旅馆</li>
+            <li class="s-li">酒店式公寓</li>
+            <li class="s-li">家庭旅馆</li>
+            <li class="s-li">背包客栈</li>
+            <li class="s-li">宾馆/招待所</li>
+            <li class="s-li">精品酒店</li>
+            <li class="s-li">度假类酒店</li>
+            <li class="s-li">游轮度假酒店</li>
+            <li class="s-li">别墅型酒店</li>
+            <li class="s-li">乡村平房酒店</li>
+            <li class="s-li">家庭寄宿</li>
+            <li class="s-li">农舍式房子</li>
+            <li class="s-li">豪华露营地</li>
+            <li class="s-li">标准露营地</li>
         </ul>
-        <input type="button" class="s-but" id="s_but" value="确定">
+        <div class="s-but" id="s_but">确定</div>
     </div>
     <!--   位置块   -->
     <div class="r-div" id="l-mb"></div>
@@ -114,234 +139,13 @@
                 <b class="l-icon1"></b>
             </li>
         </ul>
-        <input type="button" class="s-but" id="l_but" value="确定">
+        <div class="s-but" id="l_but">确定</div>
     </div>
 </div>
 <script type="text/javascript" src="js/hotel_jyy.js"></script>
 </body>
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vcm.js"></script>
-<script src="js/lsf_hotelList.js" charset="GB2312"></script>
-<!--<script>
-    //$(window).load(function(){
-    //    $('#status').fadeOut();
-    //    $('#preloader').delay(400).fadeOut('medium');
-    //});
-    (function(){
-        var oUl=document.getElementById('lsf_list');
-        $(window).load(function () {
-            //$("#status").fadeOut();
-            //$("#preloader").delay(400).fadeOut("medium");
-            var timer=null;
-            timer=setInterval(function(){
-                if($('#lsf_list').children().length){
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
-                    clearInterval(timer);
-                }
-                //console.log($('#lsf_list').children().length);
-            },30);
-
-        });
-    })();
-    //把星级英文数字换成汉字
-    function num2chin(num){
-        switch(num){
-            case '0':
-                return '零';
-                break;
-            case '1':
-                return '一';
-                break;
-            case '2':
-                return '二';
-                break;
-            case '3':
-                return '三';
-                break;
-            case '4':
-                return '四';
-                break;
-            case '5':
-                return '五';
-                break;
-            default:
-                return '无';
-                break;
-        };
-    }
-    //把url字符串变成json
-    function url2json(url){
-        if(!url)return;
-        var json={};
-        var arr=url.split('?');
-        var arr2=arr[1].split('&');
-        for(var i=0;i<arr2.length;i++){
-            var arr3=arr2[i].split('=');;
-            json[arr3[0]]=arr3[1];
-        }
-        return json;
-    }
-    (function(){
-        var list_oUl=document.getElementById('lsf_list');
-        //var aP=list_oUl.getElementsByClassName('hname');
-        var pWidth=list_oUl.offsetWidth-140;
-        var str=window.location.href;
-        //把得到的url用url2json进行处理，然后赋给url_json
-        var url_json=url2json(str);
-        var oBody=document.getElementsByTagName('body')[0];
-        var oBtn=document.getElementById('s_but');
-        console.log(url_json);
-
-        //交互部分
-        function M(json){
-            var c = new vcm();
-            //alert(url_json.NumRoom);
-            json=json||{};
-            json.rank=json.rank||'priceasc';
-            var data =
-            {
-                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+url_json.CityName+"\",\"CheckInDate\":\"2015-12-22T00:00:00\",\"CheckOutDate\":\"2015-12-25T00:00:00\",\"NumRoom\":"+url_json.NumRoom+",\"NumAdult\":"+url_json.NumAdult+",\"NumChild\":"+url_json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\"}",
-                "Code": "0007",
-                "ForeEndType": 3
-            };
-            //alert(data.Parameters);
-            return  c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
-        }
-        //数据展示部分
-        function V(data){
-            if(!data)return;
-            list_oUl.innerHTML='';
-            for(var i=0;i<data.length;i++){
-                var  str1=data[i].StarRating.substring(0,1);
-                var str2='';
-                var str3='';
-                var str4='';
-                if(data[i].IsFreeWifi){
-                    str2+='<i class="fl ho_i1">';
-                }
-                if(data[i].IsFreeTransfer){
-                    str2+='<i class="fl ho_i2"></i>';
-                }
-                if(data[i].IsCashReward){
-                    str3='<b class="fr ho_b1">现金奖励</b>';
-                }
-                if(data[i].IsFreeCityTour){
-                    str4='<b class="fr ho_b2">免费景点</b>';
-                }
-
-                /* var str='<li class="h-li" style="border-bottom:1px solid #dfdfdd">'+
-                 '<div class="hdiv"><img class="hotelPic" src="images/cars.png" data-src="'+data[i].FrontPgImage+'"></div>'+
-                 '<div class="detail" >'+
-                 '<p class="hname" style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+
-                 data[i].HotelNameLocale+'('+data[i].HotelName+')'+
-                 '</p>'+
-                 '<div class="h-score">'+
-                 '<span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">'+data[i].HotelReviewScore+'</span>'+
-                 '<span style="color:#999999;font-size:0.8em;">分/'+data[i].HotelReviewCount+'人点评</span>'+
-                 '<p class="price">'+
-                 '<span style="font-size:0.8em;color:#fe4716;">￥</span>'+
-                 '<span style="font-size:2em;font-weight: 600;color:#fe4716;">'+data[i].AvgPrice+'</span>'+
-                 '<span style="font-size:0.8em;color:#999999;">起</span>'+
-                 '</p>'+
-                 '</div>'+
-                 '<div class="h-grade">'+
-                 '<span style="color:#999999;font-size:1em;">'+num2chin(str1)+'星级</span>'+
-                 str2+
-                 str4+
-                 str3+
-                 '</div>'+
-                 '<p class="h-address">'+data[i].City+'('+data[i].Location+')</p>'+
-                 '</div>'+
-                 '</li>';*/
-
-                var str='<li class="ho_list">'+
-                        '<div class="ho_pic">'+
-                        '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'"  class="ho_img">'+
-                        '</div>'+
-                        '<div class="ho_infor">'+
-                        '<h2 style="font-size:1.4rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-ellipsis:ellipsis">'+data[i].HotelNameLocale+'('+data[i].HotelName+')'+'</h2>'+
-                        '<div class="ho_grade clearfix">'+
-                        '<span class="fl"><em>'+data[i].HotelReviewScore+'</em><i>分/'+data[i].HotelReviewCount+'人点评</i></span><span class="fr ho_price"><b>￥</b><strong>'+data[i].AvgPrice+'</strong>起</span>'+
-                        '</div>'+
-                        '<div class="ho_star clearfix">'+
-                        '<span class="fl">'+num2chin(str1)+'星级</span>'+
-                        str2+
-                        str3+
-                        str4+
-                        '</div>'+
-                        '<div class="ho_adress">'+data[i].City+'('+data[i].Location+')'+
-                        '</div>'+
-                        '</div>'+
-                        '</li>';
-                list_oUl.innerHTML+=str;
-                var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
-                var lastLi=list_oUl.children[list_oUl.children.length-1];
-                var oImg=lastLi.getElementsByClassName('ho_img')[0];
-                //console.log(oImg.offsetTop+'+++'+clienH);
-                if(oImg.offsetTop<=clienH){
-                    oImg.src=oImg.dataset.src;
-                    oImg.onerror=function(){
-                        this.src='images/cars.png';
-                    };
-                }
-            }
-        }
-        //调用上面定义的交互部分
-        M();
-        function mycallback(d){
-            console.log(d);
-            var arr=eval('('+d+')');
-            console.log(arr.Data);
-            var data=arr.Data;
-            //console.log(data);
-            V(data);
-        }
-
-        oBody.onclick=function(ev){
-            var oEvent=ev||event;
-            var oSrc=oEvent.srcElement||oEvent.target;
-            if(oSrc.className=='r-li'){
-                var oSrc_str=oSrc.innerHTML;
-                if(oSrc_str.indexOf('价格升序')!=-1){
-                    M();
-                }else if(oSrc_str.indexOf('价格降序')!=-1){
-                    M({"rank":"PriceDESC"});
-                }else if(oSrc_str.indexOf('好评优先')!=-1){
-                    M({"rank":"ReviewscoreASC"});
-                }
-            }
-        };
-
-    })();
-    //懒加载
-    (function(){
-        //alert(window.innerHeight);
-        //var oUl=document.getElementById('lsf_list');
-        //var myAll=document.getElementsByClassName('all_elements')[0];
-        //alert(window.innerHeight);
-        //alert(document.documentElement.clientHeight);
-
-        //用window.onscroll合适吗？？？？？
-        window.onscroll=window.onresize=function(){
-            var oUl=document.getElementById('lsf_list');
-            var aImg=document.getElementsByClassName('hotelPic');
-            var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
-            //console.log(document.documentElement.clientHeight);
-            //console.log(document.documentElement.scrollTop||document.body.scrollTop)
-            //console.log(clienH);
-            for(var i=0;i<aImg.length;i++){
-                var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
-                //滚动的时候如果图片的后缀名是png说明是这张图片是预定好图片
-                if(aImg[i].offsetTop<clienH&&str=='png'){
-                    aImg[i].src=aImg[i].dataset.src;
-                }
-                //这样能够判断错误也能够换成想要的图片，但是会一直报错，报404页面错误
-                aImg[i].onerror=function(){
-                    this.src='images/cars.png';
-                }
-            }
-        };
-    })();
-</script>-->
+<script src="js/lib/lazyLoad.js"></script>
+<script src="js/lsf_hotelList.js"></script>
 </html>

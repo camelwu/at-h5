@@ -1,47 +1,11 @@
-*{margin:0px;padding:0px;}
-html{
-    font-size: 62.5%;
-}
-a{
-    text-decoration: none;
-}
-.top{
-    width:100%;height:45px;
-    display: flex;
-    padding:1px;
-    background-color:#19415e;}
-.top h3{
-    color:#ffffff;
-    margin: 0 auto;
-    text-align:center;
-    line-height:45px;
-    margin-bottom:0;
-}
-.icons{
-    background-image: url(../images/ui/icons.png);
-    background-repeat: no-repeat;
-    background-size: 243px 160px;
-    display:inline-block;
-}
-.header-back{
-    width:12px;
-    height:22px;
-    margin-left:15px;
-    margin-top:10px;
-}
-h3{
-    font-size:17px;
-    margin-bottom:10px;
-    font-weight:700;
-    color:#212935
-}
+*{margin:0;padding:0;}
 .p-price{
     width: 100%;
     height:61px;
     padding: 1px;
     background-color: #55bfb7;
     color:white;
-    font-weight: 600;
+    font-weight: 500;
 }
 .p-p1{
     margin-top: 20px;
@@ -49,13 +13,19 @@ h3{
     font-size:21px;
 }
 .p-hotelinfo{
-    list-style-type: none;
     margin-top: 20px;
     margin-left: 15px;
 }
-.p-li1{
+.p-hotelinfo li{
+    list-style-type: none;
     margin-bottom: 10px;
     font-size: 15px;
+}
+.p-hotelinfo li:first-child{
+     font-weight: 600;
+ }
+.p-hotelinfo li:last-child{
+    font-size: 13px;
 }
 .p-pay{
     width: 100%;height: 100px;
@@ -65,15 +35,15 @@ h3{
 .p-ul1{
     width: 100%;
     margin-top: 15px;
-    list-style-type: none;
 }
 .p-p2{
     width:25%;
     float: left;
-    font-size: 1.5em;
+    font-size: 15px;
     margin-left: 20px;
 }
-.p-li2{
+.p-ul1 li{
+    list-style-type: none;
     width: 25%;
     float: left;
     margin-left: 20px;
@@ -82,6 +52,8 @@ h3{
 .p-icon1{
     display: inline-block;
     width: 11px;height:11px;
+    position: relative;
+    top: -12px;
     background-image: url(../images/ui/icon-h.png);
     background-size: 402px 174px;
     background-position:10% 38% ;
@@ -103,47 +75,71 @@ h3{
     background-position:17% 38% ;
 }
 .p-ul2{
-    width: 94%;
-    list-style-type: none;
-    margin-left: 20px;
-    margin-right: 10px;
+    width: 100%;
+    border-bottom: 1px solid #dddddd;
+    background:#fff;
 }
-.p-li3{
-    height: 40px;
-    padding: 1px;
+.p-ul2 li{
+    list-style-type: none;
+    width: 90%;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    padding-top: 13px;
+    padding-bottom: 13px;
     border-bottom: 1px solid #dddddd;
 }
-.p-p3{
-    width: 90px;
-    margin-top: 14px;
-    float: left;
-    font-size: 14px;
-    color: #484848;
+.p-ul2 li:last-child{
+    border:none;
 }
-.intext{
-    width: 60%;height:15px;
-    margin-top: 14px;
-    border: none;
-    font-size: 12px;
-    color: #999999;
+.p-ul2 li div:first-child{
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
 }
-.p-p4{
-    width: 100px;
-    margin-top: 15px;
-    float: left;
-    font-size: 12px;
-    color: #484848;
+.p-ul2 li div:last-child{
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
+}
+.second-div{
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
+}
+.p-ul2 li input{
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
 }
 .p-icon4{
-    float: right;
     position: absolute;
     right:4%;
     margin-top:12px;
     display: block;
     width:8px;height:14px;
-    background-image:url(../images/ui/icon1.png);
+    background-image:url(../images/ui/icons1.png);
     background-position:65% 3%;
     background-size: 243px 160px;
+}
+.open-pho{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    right: 5%;
+    background-position: 65% 3%;
 }
 .p-but{
     width: 94%;height:45px;
@@ -153,5 +149,6 @@ h3{
     background-color: #fdb330;
     text-align: center;
     color: white;
-    font-size: 1.8em;
+    font-size: 18px;
+    line-height: 45px;
 }
