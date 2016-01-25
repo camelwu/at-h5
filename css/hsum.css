@@ -26,14 +26,14 @@ a{
     float: left;
     margin-left: 20px;
     margin-top: 4px;
-    font-size: 12px;
+    font-size: 1.6rem;
     color: #484848;
 }
 .s-p2{
     float: right;
     margin-right: 4%;
     margin-top: 4px;
-    font-size: 10px;
+    font-size: 1.6rem;
 }
 .s-icon1{
     float: right;
@@ -50,7 +50,7 @@ a{
     margin-top: 10px;
     margin-left: 20px;
     margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 1.4rem;
     color: #484848;
 }
 .s-icon2{
@@ -67,14 +67,14 @@ a{
     width: 92%;
     margin-top: 10px;
     margin-left: 20px;
-    font-size: 12px;
+    font-size: 1.4rem;
     color: #484848;
 }
 .s-ul1{
     width: 92%;
     margin-left: 20px;
     margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #484848;
 }
 .ul1-li{
@@ -88,6 +88,9 @@ a{
     /*display: flex;*/
     margin-top: 10px;
     /*justify-content: space-between;*/
+}
+.ul1-li p{
+    font-size:1.4rem;
 }
 .f-l{
     float: left;
@@ -123,7 +126,7 @@ a{
 }
 .s-p4{
     margin-left: 8px;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #484848;
 }
 .s-bottom{
@@ -134,7 +137,7 @@ a{
     position:fixed;
     bottom: 0;
     text-align: center;
-    font-size: 0.6em;
+    font-size: 0.6rem;
     color:#9ba4ae;
     line-height: 50px;
 }

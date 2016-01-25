@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/hotel_jyy2.css">
     <title>酒店查询结果 - 亚洲旅行网</title>
 </head>
-<body onload="h_l_s()">
+<body>
 <!--   顶部   -->
 <div id="preloader">
     <div id="status">
@@ -21,12 +21,12 @@
         </p>
     </div>
 </div>
-<div class="all_elements">
+<div class="all-elements">
     <header class="top" id="vlm-login">
-        <a href="#" class="icons header-back"></a>
+        <a href="javascript:;" class="icons header-back" id="hl_back"></a>
         <div class="search">
             <img class="fdj" src="images/1.png">
-            <input type="text" class="sousuo" value placeholder="酒店名/位置">
+            <input type="text" class="sousuo" id="sousou" value="酒店名/位置">
         </div>
         <b class="local"></b>
     </header>
@@ -41,16 +41,16 @@
                     东京(银座)花店（Hotel...
                 </p>
                 <div class="h-score">
-                    <span style="color:#8ed1cc;font-size:1.5em;font-weight: 600;">4.3</span>
-                    <span style="color:#999999;font-size:0.8em;">分/385人点评</span>
+                    <span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">4.3</span>
+                    <span style="color:#999999;font-size:0.8rem;">分/385人点评</span>
                     <p class="price">
                         <span style="font-size:0.8em;color:#fe4716;">￥</span>
-                        <span style="font-size:2em;font-weight: 600;color:#fe4716;">848</span>
-                        <span style="font-size:0.8em;color:#999999;">起</span>
+                        <span style="font-size:2rem;font-weight: 600;color:#fe4716;">848</span>
+                        <span style="font-size:1.2em;color:#999999;">起</span>
                     </p>
                 </div>
                 <div class="h-grade">
-                    <span style="color:#999999;font-size:1em;">三星级</span>
+                    <span style="color:#999999;font-size:1rem;">三星级</span>
                     <b class="hl-icon1"></b>
                     <b class="hl-icon2"></b>
                     <div class="h-div1">免费景点</div>
@@ -79,11 +79,11 @@
             推荐顺序
         </div>
         <div class="fo-div" id="fo_sc">
-            <b class="hl-icon3" style="background-position:47% 8%;"></b>
+            <b class="hl-icon3 hl-icon-4"></b>
             筛选
         </div>
         <div class="fo-div" id="fo_lo">
-            <b class="hl-icon3" style="background-position:54% 7%;"></b>
+            <b class="hl-icon3 hl-icon-5"></b>
             位置
         </div>
     </footer>
@@ -101,48 +101,50 @@
     <!--   筛选块   -->
     <div class="r-div" id="s-mb"></div>
     <div class="screen" id="screen">
-        <h4>星级档次</h4>
-        <ul class="s-ul" id="h-level">
-            <li class="s-li1">不限</li>
-            <li class="s-li">二星级以下</li>
-            <li class="s-li">三星</li>
-            <li class="s-li">四星</li>
-            <li class="s-li">五星</li>
-        </ul>
-        <h4>酒店类型</h4>
-        <ul class="s-ul" id="h-type">
-            <li class="s-li1">不限</li>
-            <li class="s-li">酒店</li>
-            <li class="s-li">汽车旅馆</li>
-            <li class="s-li">酒店式公寓</li>
-            <li class="s-li">家庭旅馆</li>
-            <li class="s-li">背包客栈</li>
-            <li class="s-li">宾馆/招待所</li>
-            <li class="s-li">精品酒店</li>
-            <li class="s-li">度假类酒店</li>
-            <li class="s-li">游轮度假酒店</li>
-            <li class="s-li">别墅型酒店</li>
-            <li class="s-li">乡村平房酒店</li>
-            <li class="s-li">家庭寄宿</li>
-            <li class="s-li">农舍式房子</li>
-            <li class="s-li">豪华露营地</li>
-            <li class="s-li">标准露营地</li>
-        </ul>
-        <div class="s-but" id="s_but">确定</div>
+        <div class="hl_sc_chil">
+            <h4>星级档次</h4>
+            <ul class="s-ul" id="h-level">
+                <li class="s-li1">不限</li>
+                <li class="s-li">二星级以下</li>
+                <li class="s-li">三星</li>
+                <li class="s-li">四星</li>
+                <li class="s-li">五星</li>
+            </ul>
+            <h4>酒店类型</h4>
+            <ul class="s-ul" id="h-type">
+                <li class="s-li1">不限</li>
+                <li class="s-li">酒店</li>
+                <li class="s-li">汽车旅馆</li>
+                <li class="s-li">酒店式公寓</li>
+                <li class="s-li">家庭旅馆</li>
+                <li class="s-li">背包客栈</li>
+                <li class="s-li">宾馆/招待所</li>
+                <li class="s-li">精品酒店</li>
+                <li class="s-li">度假类酒店</li>
+                <li class="s-li">游轮度假酒店</li>
+                <li class="s-li">别墅型酒店</li>
+                <li class="s-li">乡村平房酒店</li>
+                <li class="s-li">家庭寄宿</li>
+                <li class="s-li">农舍式房子</li>
+                <li class="s-li">豪华露营地</li>
+                <li class="s-li">标准露营地</li>
+            </ul>
+            <div class="s-but" id="s_but">确定</div>
+        </div>
     </div>
     <!--   位置块   -->
     <div class="r-div" id="l-mb"></div>
-    <div class="screen" id="location">
-        <ul class="l-ul" id="l-ul">
-            <li class="l-li">
-                <p class="l-p">不限</p>
-                <b class="l-icon1"></b>
-            </li>
-        </ul>
-        <div class="s-but" id="l_but">确定</div>
+    <div class="location" id="location">
+        <!--loca_con脱离文档流，p的作用是为了撑开父级-->
+        <p id="loca_conBro"></p>
+        <div class="loca_con" id="loca_con">
+            <ul class="l-ul" id="l-ul">
+
+            </ul>
+            <div class="s-but" id="l_but">确定</div>
+        </div>
     </div>
 </div>
-<script type="text/javascript" src="js/hotel_jyy.js"></script>
 </body>
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vcm.js"></script>

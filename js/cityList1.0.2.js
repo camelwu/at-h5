@@ -44,6 +44,9 @@ var lsf_myweb={
         }else{
             arguments[0].style[arguments[1]]=arguments[2];
         }
+    },
+    "getStyle":function(obj,sName){
+        return (obj.currentStyle?obj.currentStyle:getComputedStyle(obj,false))[sName];
     }
 };
 function myCityList(id,url){
@@ -55,13 +58,16 @@ function myCityList(id,url){
     this.init();
 }
 myCityList.prototype={
-    init:function(){
+    init:function() {
         this.container();
         //热门城市
         this.hotCity('cl_citysHot');
         //字母城市
         this.show();
-    },
+        //返回按钮点击事件
+        this.oBack('cl_back');
+    }
+    ,
     container:function(){
         var _this=this;
         var str= '<div class="cl_box">'+
@@ -70,7 +76,7 @@ myCityList.prototype={
             '                    <input type="text" placeholder="北京/beijing/bj/bjs/中国" />'+
             '                    <i></i>'+
             '                </div>'+
-            '                <a href="'+this.url+'" class="icons header-back" id="cl_back"></a>'+
+            '                <a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
             '            </div>'+
             '            <div class="cl_curr cl_con"  >'+
             '                <a name="cl_curr" class="cl_on">&nbsp;</a>'+
@@ -279,7 +285,7 @@ myCityList.prototype={
         oDiv.className='cl_box_box';
         oDiv.style.zIndex=100;
         oDiv.innerHTML=str;
-        lsf_myweb.setStyle(oDiv,{"position":"absolute","overflowX":"hidden!important","width":"100%","height":"100%","min-height":"100%","max-height":"100%","left":0,"top":0,"background":"#fff"});
+        lsf_myweb.setStyle(oDiv,{"position":"absolute","overflowX":"hidden!important","width":"100%","height":"100%","min-height":"100%","max-height":"100%","left":0,"top":0,"background":"#fff","zIndex":"120"});
         document.body.appendChild(oDiv);
         _this.oDiv=oDiv;
     },
@@ -303,7 +309,7 @@ myCityList.prototype={
                     hotUl.children[i].style.color='#666';
                 }
                 oSrc.style.color='rgb(255,180,19)';
-                localStorage[_this.city]=oSrc.innerHTML;
+                sessionStorage[_this.city]=oSrc.innerHTML;
                 document.getElementById(_this.id).value=oSrc.innerHTML;
                 //删除城市列表
                 document.body.removeChild(_this.oDiv);
@@ -341,7 +347,7 @@ myCityList.prototype={
                         obj.children[i].style.color='rgb(27,27,27)';
                     }
                     oSrc.style.color='rgb(255,180,19)';
-                    localStorage[_this.city]=oSrc.innerHTML;
+                    sessionStorage[_this.city]=oSrc.innerHTML;
                     document.getElementById(_this.id).value=oSrc.innerHTML;
                     //删除城市列表
                     document.body.removeChild(_this.oDiv);
@@ -375,5 +381,12 @@ myCityList.prototype={
                 });
             })(i);
         }
+    },
+    oBack:function(id){
+        var _this=this;
+        var oBack=document.getElementById(id);
+        lsf_myweb.bind(oBack,'click',function(){
+            document.body.removeChild(_this.oDiv);
+        })
     }
 };

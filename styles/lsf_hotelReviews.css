@@ -1,32 +1,37 @@
-html {
-    font-size:62.5%;
-}
 body{
-    overflow-x:hidden;
+  line-height:normal;
 }
-#preloader {
-    position:fixed;
-    z-index:2500;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color:#FFF;
-    z-index:99999999;
+ul li,ol li{
+    list-style:none;margin:0;padding:0;
 }
-#status {
-    position:fixed;
-    z-index:99999999;
-    width:250px;
-    height:250px;
-    position:absolute;
-    left:50%;
-    top:50%;
-    background-image:url(../images/status.gif);
-    background-size:64px 64px;
-    background-repeat:no-repeat;
-    background-position:center;
-    margin:-125px 0 0 -125px;
+
+.all-elements i{
+    font-style:normal;
+}
+.all-elements em{
+    font-style:normal;
+}
+b{
+    font-weight:normal;
+}
+h1,h2,h3,h4,h5,h6{
+    margin:0;padding:0;
+}
+ol,ul{
+    margin:0;padding:0;
+}
+div{
+    line-height:normal;
+    font-weight:normal;
+    margin:0;padding:0;
+}
+.hr_con_box p{
+    margin:0;padding:0;line-height:normal;
+    font-weight:normal;
+}
+.hr_con_box{
+    position:absolute;top:0;right:0;left:0;bottom:0;overflow:auto;
+    margin-top:45px;
 }
 .center-text{
     display:block;
@@ -68,14 +73,14 @@ header{
 
 }
 header i{
-    width:1.25rem;height:2rem;	background:url(../images/icons.png) 0 0;background-size:24.3rem 16rem;margin-top:1rem;
+    width:1.25rem;height:2rem;	background:url(../images/icons.png) 0 0;background-size:24.3rem 16rem;margin-top:8px
 
 }
 .lsf_reAll_grade{
-    width:100%;height:45px;border-bottom:1px dashed #dedede;line-height:45px;padding:0 1.5rem;font-size:1.2rem;color:#999999;
+    width:100%;height:45px;border-bottom:1px dashed #dedede;line-height:45px;padding:0 1.5rem;font-size:1.4rem;color:#999999;
 }
 .lsf_reAll_grade .lsf_grade1{
-    font-size:1.5rem;color:#55bfb7;
+    font-size:1.8rem;color:#55bfb7;
 }
 .lsf_reDetail_grade{
     width:100%;
@@ -95,12 +100,12 @@ header i{
     flex:1;
 
     border-right:1px dashed #dedede;
-    font-size:1.2rem;
     color:#484848;
     padding:0 1.5rem;
 }
 .lsf_reDetail_grade section p{
-    line-height:1.3rem;
+    line-height:normal;
+    font-size:1.4rem;
 }
 .lsf_reDetail_grade section .lsf_gra_p2{
     margin-top:1rem;
@@ -129,7 +134,7 @@ header i{
     width:1.2rem;height:1.2rem;line-height:1.1rem;margin:0px 1px;background:url(../images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;
 }
 .lsf_reTitle h2{
-    height: 1.5rem;font-size:1.4rem;color:black;	font-weight:normal;
+    font-size:1.6rem;color:black;	font-weight:normal;
 }
 .lsf_reDiscuss p{
     font-size:1.2rem;line-height:1.5rem;
@@ -151,6 +156,7 @@ header i{
     flex:1;
     display:block;
     margin-right:1.5rem;
+    font-size:1.4rem;
 }
 .comments i{
 
@@ -173,16 +179,33 @@ header i{
     -mz-flex:1;
     -webkit-flex:1;
     flex:1;
-    font-size:1.1rem;
+    font-size:1.3rem;
     color:#484848;
 
 }
+.lsf_reUser .reu_span1 b{
+    font-size:1.3rem;
+}
 .lsf_reUser .reu_span2{
-    width:70px;
+    width:85px;font-size:1.3rem;
 }
 .lsf_reUser span i{
     margin-left: 0.4rem;
 }
 .lsf_reUser span i img{
     width:1rem;height:1rem;
+}
+
+.hr_more{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-bottom: 1px solid #dedede;
+    font-size: 1.6rem;
+}
+.hr_city{
+    background:#55bfb7;
+    font-size:1.2rem;
+    padding-left:4px;padding-right:4px;
 }

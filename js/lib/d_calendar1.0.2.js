@@ -75,7 +75,7 @@ Calender.prototype = {
         '<span class="nextmonth">nextmonth</span>',
     ],
     _tempweek:[
-        '<dl>',
+        '<dl class="ca_week">',
         '<dt class="date_title">日</dt>',
         '<dt class="date_title">一</dt>',
         '<dt class="date_title">二</dt>',
@@ -98,6 +98,7 @@ Calender.prototype = {
         this.num = options.num;//显示数量
         this.sClass1=options.sClass1;
         this.id2=options.id2;
+        this.fn = options.fn;
         this.time = options.time;//已有时间
         this.op = 0;//已操作次数
         this.input = _CalF.$('#'+ this.id); // 获取INPUT元素
@@ -201,7 +202,7 @@ Calender.prototype = {
 					m=month<10?'0'+month:month;
 					d=i<10?'0'+i:i;
 					if(tims[year+'-'+m+'-'+d]){
-						pstr = '<a class="live data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
+						pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
 					}else{
 						pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
 					}
@@ -215,6 +216,49 @@ Calender.prototype = {
         }
         dd.innerHTML = ddHtml.join('');
         
+        // 添加
+        this.container.appendChild(dateWarp);
+        //IE6 select遮罩
+        var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+        if(ie6) dateWarp.appendChild(this.createIframe());
+        // A link事件绑定
+        this.linkOn();
+    },
+    drawLastDate:function (odate) { // 参数 odate 为日期对象格式
+        var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+        var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+        this.dateWarp = dateWarp = document.createElement('div');
+        dateWarp.className = 'calendar';
+        dateWarp.innerHTML = this._template.join('');
+        this.year = year = odate.getFullYear();
+        this.month = month = odate.getMonth()+1;
+        this.date = date = odate.getDate();
+        this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+        tims = this.time;
+        textNode = document.createTextNode(year + '年' + month + '月');
+        titleDate.appendChild(textNode);
+        //this.btnEvent();
+
+        // 获取模板中唯一的DD元素
+        dd = _CalF.$('dd',dateWarp)[0];
+        // 获取本月天数
+        days = new Date(year, month, 0).getDate();
+        // 获取本月第一天是星期几
+        weekStart = new Date(year, month-1,1).getDay();
+        // 开头显示空白段
+        for (i = 0; i < weekStart; i++) {
+            ddHtml.push('<a>&nbsp;</a>');
+        }
+        // 循环显示日期
+        for (i = 1; i <= days; i++) {
+            if(i<=nowdate){
+                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+            }else{
+                ddHtml.push('<a class="disabled">' + i + '</a>');
+            }
+        }
+        dd.innerHTML = ddHtml.join('');
+
         // 添加
         this.container.appendChild(dateWarp);
         //IE6 select遮罩
@@ -238,6 +282,9 @@ Calender.prototype = {
     },
     // 移除日期DIV.calendar
     removeDate:function(){
+        var that=this;
+        var ov = _CalF.$('#'+ this.id + '-header');
+        if(!!ov) ov.parentNode.removeChild(ov);
         var odiv = _CalF.$('#'+ this.id + '-date');
         if(!!odiv) odiv.parentNode.removeChild(odiv);
     },
@@ -276,6 +323,7 @@ Calender.prototype = {
 							that.tiper.innerHTML = '请选择'+that._word.h[1]+'日期';
 							that.linkReset(this.index);
 							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');
+                            $(this).addClass("disabled");
 							that.op++;
 						}else{
 							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');that.op>=1?that.op=0:null;
@@ -304,12 +352,21 @@ Calender.prototype = {
             out[0].innerHTML=sels[0].parentNode.getAttribute("data-day");
             out[1].innerHTML=sels[1].parentNode.getAttribute("data-day");
         }
+        console.log(out[0]+':'+out[1]);
+        var live_y=arr[0].split('-')[0];
+        var live_m=arr[0].split('-')[1]-1;
+        var live_d=arr[0].split('-')[2];
+        var leave_y=arr[1].split('-')[0];
+        var leave_m=arr[1].split('-')[1]-1;
+        var leave_d=arr[1].split('-')[2];
         if(tal){
-            tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
+            tal.innerHTML = (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
         }
     	that.removeDate();
-    	that.header.parentNode.removeChild(that.header);
-
+    	//that.header.parentNode.removeChild(that.header);
+        if(typeof that.fn==='function'){
+            that.fn();
+        }
     },
 	linkReset:function(ele){
 		var that = this,
@@ -317,10 +374,11 @@ Calender.prototype = {
 		l=ospan.length,
 		links = _CalF.$('.live',this.dd),
 		len=links.length;
-		//console.log(ospan[1].parentNode);
+		console.log(ospan[1].parentNode.outerHTML+ospan.length);
 		if(that.op==0){
 			for(var i=0;i<l;i++){
 				var v = ospan[i].parentNode.getAttribute("data-day");
+                //alert(v);
 				var a = v.split("-");
 				ospan[i].parentNode.innerHTML = a[a.length-1];
 			}
@@ -343,8 +401,13 @@ Calender.prototype = {
 		_CalF.bind(this.input, 'click',function(){
             that.createContainer();
 	        for(var i=0;i<that.num;i++){
-	        	var idate = new Date(nowY , nowM+i, nowD);
-	        	that.drawDate(idate);
+                if(i==(that.num-1)){
+                    var idate=new Date(nowY, nowM+i ,nowD);
+                    that.drawLastDate(idate);
+                }else{
+                    var idate = new Date(nowY , nowM+i, nowD);
+                    that.drawDate(idate);
+                }
 	        }
 		});
     },

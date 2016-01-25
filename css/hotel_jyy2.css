@@ -34,17 +34,18 @@ html {
 }
 .fdj{
     width:1.4rem;height: 1.4rem;
-    margin-left: 1rem;
-    margin-top:1rem;
+    margin-left: 10px;
+    margin-top:10px;
 }
 .sousuo{
     height:24px ;
-    font-size: 1rem;
+    font-size: 1.4rem;
     position: absolute;
     margin:0.5rem 0 0 1rem;
     border:none;
+    outline:none;
     background: none;
-    color: #999999;
+    color: #d1d1d1;
 }
 .hotelcontent{
     position: absolute;
@@ -74,20 +75,21 @@ html {
     flex:1;
 }
 .hname{
-    margin-top: 0.8rem;
-    font-size:1.5rem;
+    margin-top: 1rem;
+    font-size:1.6rem;
+    font-weight:bold;
     color:#484848;
 }
 .h-score{
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
 }
 .price{
     float: right;
-    margin-right: 5%;
+    margin-right: 15px;
 }
 .h-grade{
-    margin-top: 0.6rem;
-    margin-right: 5%;
+    margin-top: 0.7rem;
+    margin-right: 15px;
 }
 .hl-icon1{
     display: inline-block;
@@ -109,16 +111,18 @@ html {
     float: right;
     width:54px;
     height:15px;
+    line-height:15px;
     color: white;
     text-align: center;
     font-size: 1rem;
     background-color: #55bfb7;
+    margin-right:4px;
 }
 .h-address{
-    margin-top: 0.6rem;
+    margin-top: 0.9rem;
     color:#999999;
     font-size:1em;
-    margin-bottom: 0.6rem;
+    /*margin-bottom: 0.6rem;*/
 }
 .hl-bottom{
     width:100%;
@@ -159,17 +163,26 @@ html {
     -ms-flex:1;
     -webkit-flex:1;
     flex:1;
+
+    overflow:hidden;
 }
 .hl-icon3{
     display:block;
-    width:13px;
-    height:13px;
+    width:15px;
+    height:15px;
     margin:0 auto;
     margin-top: 6px;
     margin-bottom: 5px;
-    background-image: url(../images/ui/icons1.png);
-    background-size: 400px 120px;
-    background-position:41% 8%;
+    background:url("../images/ui/sort.png");
+    background-size: 15px 15px;
+}
+.hl-icon-4{
+    background:url("../images/ui/filter.png");
+    background-size: 15px 15px;
+}
+.hl-icon-5{
+    background:url("../images/ui/location.png");
+    background-size: 15px 15px;
 }
 .ho_list{
     display: -moz-box;
@@ -180,7 +193,7 @@ html {
     border-bottom: 1px solid #CCCCCC;
 }
 .ho_pic{
-    width:82px;height:115px;
+    width:82px;height:105px;
     position: relative;
 }
 .ho_pic img{
@@ -194,6 +207,7 @@ html {
     -ms-flex:1;
     -webkit-flex:1;
     flex:1;
+    overflow:hidden;
 }
 .ho_infor h2{
     font-size:1.2rem;color:#484848;
@@ -230,16 +244,16 @@ html {
     width: 100%;
     background-color: white;
     position: fixed;
-    bottom:-450px;
+    bottom:-550px;
     z-index: 2000000;
 }
 .r-li{
-    width: 100%;height:40px;
+    width: 100%;height:44px;
     border-bottom: 1px solid #d0d0d3;
     text-align: center;
     font-size: 1.4em;
     color:#b3b2b4;
-    line-height: 40px;
+    line-height: 44px;
 }
 .hl-icon4{
     display:inline-block;
@@ -271,8 +285,14 @@ html {
     padding: 1px;
     background-color: white;
     position: fixed;
-    bottom:-450px;
+    bottom:-550px;
     z-index: 2000000;
+    height:490px;
+}
+.hl_sc_chil{
+    position:absolute;
+    left:0;top:0;right:0;bottom:0;
+    overflow:auto;
 }
 .screen h4{
     margin-top: 13px;
@@ -289,27 +309,27 @@ html {
 }
 .s-li{
     float: left;
-    width:29%;height: 24px;
+    width:29%;height: 30px;
     margin-bottom: 10px;
     margin-right: 10px;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #d0d0d3;
-    font-size: 1.1em;
+    font-size: 1.4em;
     color: #686869;
-    line-height: 25px;
+    line-height: 30px;
 }
 .s-li1{
     float: left;
-    width:29%;height: 24px;
+    width:29%;height: 30px;
     margin-bottom: 10px;
     margin-right: 10px;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #ffb412;
-    font-size: 1.1em;
+    font-size: 1.4em;
     color: #ffb412;
-    line-height: 25px;
+    line-height: 30px;
 }
 .s-but{
     width: 94%;height: 36px;
@@ -329,11 +349,17 @@ html {
 */
 .location{
     width: 100%;
-    padding: 1px;
     background-color: white;
     position: fixed;
-    bottom:-450px;
+    bottom:-550px;
     z-index: 2000000;
+}
+.loca_con{
+    position:absolute;
+    left:0;top:0;
+    right: 0;
+    overflow:auto;
+
 }
 .l-ul{
     width: 94%;
@@ -342,8 +368,15 @@ html {
     list-style-type: none;
 }
 .l-li{
-    width: 100%;height:40px;
+    width: 100%;height:44px;
     border-bottom: 1px solid #d0d0d3;
+    overflow:hidden;
+}
+.l-liFirst p {
+    color:#000;
+}
+#l-liTem {
+    display:none;
 }
 .l-p{
     float: left;
@@ -365,12 +398,33 @@ html {
     display: block;
     margin-top: 15px;
     width: 17px;height:17px;
-    background-image: url(../images/ui/icons1.png);
+    background: url(../images/ui/icons1.png) -265px -6px;
     background-size: 400px 120px;
-    background-position: 62% 4.5%;
 }
-
-
+.l-li2 .l-icon1{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;height:17px;
+    background:url(../images/ui/icons1.png) -236px -6px;
+    background-size:400px 120px;
+}
+.l-icon1First{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;height:17px;
+    background: url(../images/ui/icons1.png) -236px -6px;
+    background-size: 400px 120px;
+}
+.l-li3 .l-icon1First{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;height:17px;
+    background: url(../images/ui/icons1.png) -265px -6px;
+    background-size: 400px 120px;
+}
 
 
 
@@ -392,9 +446,6 @@ html {
 */
 .hotelcontent li:last-child{
     margin-bottom:44px;
-}
-.hotelcontent .h-grade, .hotelcontent .h-address{
-    margin-top:1rem;
 }
 #preloader {
     position:fixed;

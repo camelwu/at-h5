@@ -15,7 +15,7 @@
 </head>
 <body>
     <!--页面跳转动画-->
-    <div id="preloader">
+    <div id="preloader" style="display:none;">
         <div id="status">
             <p class="center-text">
                 Loading ...
@@ -26,7 +26,7 @@
     <div class="all-elements">
         <div class="uo_box">
             <div class="header" id="vlm-login">
-                <a href="user-infolist.html" class="icons header-back"></a>
+                <a href="javascript:;" class="icons header-back" id="uo_back"></a>
                 <h3>填写订单</h3>
             </div>
             <div class="uo_con1">
@@ -50,24 +50,24 @@
             </div>
             <form class="uo_con3" id="uo_con3" action="jyy_pay.html" method="get">
                 <div class="uo_c3_peoBox" id="uo_c3_peoBox">
-                    <div class="uo_c3_peo">
+                    <!--<div class="uo_c3_peo">
                         <div class="uo_c3_div1">房间1入住人</div>
                         <div class="uo_c3_infor">
-                            <input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />
-                            <input type="text" placeholder="名（如：Justin）" class="uo_firstname" />
+                            <input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />
+                            <input type="text" value="名（如：Justin）" class="uo_firstname"  />
                         </div>
                     </div>
                     <div class="uo_c3_peo">
                         <div class="uo_c3_div1">房间2入住人</div>
                         <div class="uo_c3_infor">
-                            <input type="text" placeholder="姓（如：Timberlake）" class="uo_lastname" />
-                            <input type="text" placeholder="名（如：Justin）" class="uo_firstname"  />
+                            <input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />
+                            <input type="text" value="名（如：Justin）" class="uo_firstname"  />
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="uo_c3_teBox">
                     <p>手机号</p>
-                    <input type="text" placeholder="用于接收短信通知" id="uo_c3_tele" />
+                    <input type="text" value="用于接收短信通知" id="uo_c3_tele" />
                 </div>
                 <div class="uo_con4">
                     <i class="fl" id="uo_c4_conf"></i>
@@ -85,48 +85,48 @@
                         Asiatrave不提供发票，如需消费凭证，请向酒店前台索取。
                     </p>
                 </div>
-                <div class="uo_hid" id="uo_hid">
-                    <p class="uo_hid_shadow"></p>
-                    <div class="uo_hid_con" id="uo_hid_con">
-                        <div class="uo_hid_det">
-                            <p class="fl uo_hid_p1">费用明细</p>
-                            <p class="fr uo_hid_p2" id="uo_hid_p2">1间×1晚</p>
-                        </div>
-                        <div class="uo_hid_price">
-                            <p>
-                                <span class="fl uo_hid_span1">房费</span>
-                                <span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
-                            </p>
-                            <p>
-                                <span class="fl uo_hid_span1">税和服务费</span>
-                                <span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
-                            </p>
-                        </div>
-                        <div class="uo_hid_met" id="uo_hid_met">
-                            付款方式：前台现付
-                        </div>
-                    </div>
-                </div>
-                <div class="uo_footer">
-                    <div class="uo_or_sum">
-                        <em class="fl" class="uo_or_assure">担保：</em>
-                        <div class="uo_or_pr">
-                            <p>S$<b id="uo_or_sum" class="uo_or_sum1">14062</b></p>
-                            <p>约￥<b id="uo_or_sum2" class="uo_or_sum2">64430</b></p>
-                        </div>
-                    </div>
-                    <p class="uo_or_infor" id="uo_or_infor"><span class="fl">明细</span><i class="fl"></i></p>
-                    <input type="button" value="确认订单" id="uo_confirm" />
-                </div>
+
+
             </form>
         </div>
-        <p class="uo_shadow" id="uo_shadow"></p>
-        <div class="uo_hid_con6" id="uo_hid_con6">
-            <div class="uo_c6_header">
-                <h3 class="fl">用户协议 - 酒店预订</h3>
-                <i class="fr" id="uo_c6_close"></i>
+        <div class="uo_hid" id="uo_hid">
+            <p class="uo_hid_shadow" id="uo_hid_shadow"></p>
+            <div class="uo_hid_con" id="uo_hid_con">
+                <div class="uo_hid_det">
+                    <p class="fl uo_hid_p1">费用明细</p>
+                    <p class="fr uo_hid_p2" id="uo_hid_p2">1间×1晚</p>
+                </div>
+                <div class="uo_hid_price">
+                    <p>
+                        <span class="fl uo_hid_span1">房费</span>
+                        <span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
+                    </p>
+                    <p>
+                        <span class="fl uo_hid_span1">税和服务费</span>
+                        <span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
+                    </p>
+                </div>
+                <div class="uo_hid_met" id="uo_hid_met">
+                    付款方式：前台现付
+                </div>
             </div>
-            <div class="uo_c6_text">
+        </div>
+        <div class="uo_footer">
+            <div class="uo_or_sum">
+                <em class="fl" class="uo_or_assure">担保：</em>
+                <div class="uo_or_pr">
+                    <p>S$<b id="uo_or_sum" class="uo_or_sum1">14062</b></p>
+                    <p>约￥<b id="uo_or_sum2" class="uo_or_sum2">64430</b></p>
+                </div>
+            </div>
+            <p class="uo_or_infor" id="uo_or_infor"><span class="fl">明细</span><i class="fl"></i></p>
+            <input type="button" value="确认订单" id="uo_confirm" />
+        </div>
+    </div>
+    <div class="uo_shadow" id="uo_shadow"></div>
+    <div class="uo_hid_con6" id="uo_hid_con6">
+        <div class="uo_c6_text">
+            <div class="uo_c6_text_con">
                 <p>预订相关条款解释权归asiatravel.com. 该网站由在新加坡上市公司Asiatravel.com Holdings Limited所有。</p>
                 <h4>网站内容</h4>
                 <p>Asiatravel.com 尽其所能以确保所有出现在网站上的信息是准确和及时的。但是，Asiatravel.com不对任何信息错误和遗漏负责任。并且保留可以任何时候在不通知各方的情况下更改信息的权利。</p>
@@ -136,6 +136,10 @@
                 <p>在此网站上酒店为住客提供的价格通常比酒店在自己的网站上提供的价格低，并且此价格也只属于Asiatravel.com的网站或是电话预订中心。</p>
                 <p>Asiatrave.com提供的大多数价格已经包括了所有的税（商品和服务税），服务费用和政府税。如果所提供的价格不包括税，服务费用和政府税将会明确出示在我们的预订网页上。</p>
             </div>
+        </div>
+        <div class="uo_c6_header" id="uo_c6_header">
+            <h3 class="fl">用户协议 - 酒店预订</h3>
+            <i class="fr" id="uo_c6_close"></i>
         </div>
     </div>
 </body>

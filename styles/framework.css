@@ -1796,7 +1796,7 @@ a{
 }
 .promotions em{
 	font-style:normal;
-	font-size:1.2rem;
+	font-size:1rem;
 	color:#F66107;
 	float: right;
 }
@@ -3463,6 +3463,7 @@ a{
     width:100%;
     height:27px;
     padding: 0 30px;
+	font-size:1.4rem;
 }
 .toper-tel{
     display:table-cell;
@@ -4291,8 +4292,12 @@ ul.s_lists{
 	font-family: Tahoma;
 	position: relative;
 	margin-bottom:0;
+	width:100%;
 }
-
+.calendar .ca_week{
+	background:#e9e9e9;
+	overflow:hidden;width:100%;
+}
 .calendar dt {
 	float: left;
 	width: 14.2%;
@@ -4300,6 +4305,9 @@ ul.s_lists{
 	line-height:30px;
 	color:#484848;
 	text-align: center;
+}
+.calendar dt:last-child{
+	width:14.8%;
 }
 	.calendar dt.title-date {
 		display: block;
@@ -4384,6 +4392,8 @@ ul.s_lists{
 .calendar dd a span.live_circle{
 	width:24px;
 	height:24px;
+	line-height:24px;
+	text-align:center;
 	border-radius:50%;
 	margin:0 auto;
 	background:#FFB413;color: #fff;

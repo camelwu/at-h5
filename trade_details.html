@@ -10,115 +10,13 @@
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
     <link href="styles/framework.css" rel="stylesheet" type="text/css" />
     <title>首页 - 亚洲旅行网</title>
-    <style>
-        .tra_con1{
-            margin-top:45px;text-align:center;
-			overflow:hidden;
-        }
-        .tra_con1 i{
-            display:inline-block;width:22px;height:22px;background:url("images/lsf_icon1.png");
-            -webkit-background-size: 22px 22px;
-            background-size: 22px 22px;
-			vertical-align:middle;
-        }
-        .tra_c1_inbox{
-            width:100%;
-            line-height:32px;
-            margin-top:25px;
-        }
-		.tra_c1_inbox span{
-			font-size:1.8rem;
-			vertical-align:middle;
-		}
-        .tra_con2{
-            padding:0 8px;
-        }
-        .tra_c2_inbox{
-            width:100%;height:170px;margin-top:30px;        border:16px;
-            -webkit-border-image: url(images/lsf_bg1.png) 27;
-            -moz-border-image: url(images/lsf_bg1.png) 27;
-            -o-border-image: url(images/lsf_bg1.png) 27;
-            border-image: url(images/lsf_bg1.png) 27;
-            background:#fff;
-            padding:0 35px;
-
-        }
-        .tra_c2_inbox p,.tra_c2_inbox h3   {
-            margin:0;padding:0;
-            line-height:2.8rem;
-            font-size:1.3rem;
-        }
-        .tra_c2_inbox h3{
-            color:#000;
-            font-weight:normal;
-            border-bottom:1px dashed #e9e9e9;
-            font-size:1.4rem;
-        }
-        .tra_live{
-            color:#000;
-            border-bottom:1px dashed #e9e9e9;
-        }
-        .tra_house{
-            color:rgb(153,153,153);
-            border-bottom:1px solid #dfe0db;
-        }
-        .tra_c2_inbox .tra_price{
-            font-size:3rem;color:rgb(255,180,19);
-        }
-        .tra_btn{
-            display:-webkit-box;
-            display:-moz-box;
-            display:-ms-flexbox;
-            display:-webkit-flex;
-            display:flex;
-            margin-top:25px;
-            padding:0 15px;
-            margin-bottom:45px;
-        }
-        .tra_btn div{
-            -webkit-box-flex:1;
-            -moz-box-flex:1;
-            -ms-flex:1;
-            -webkit-flex:1;
-            flex:1;
-            height:37px;
-            overflow:hidden;
-        }
-        .tra_btn div input{
-            width:80%;
-            height:100%;
-            background:none;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-            border:1px solid #ffb413;
-            font-size:1.6rem;color:rgb(255,180,19);
-        }
-        .tra_btn .tra_btn_div2 input{
-            background:#ffb413;
-            color:#fff;
-        }
-        .tra_footer{
-            width:100%;height:45px;background:#19415e;
-            text-align:center;
-            padding:0 1.5rem;
-            position:fixed;
-            left:0;bottom:0;
-        }
-        .tra_footer p{
-            width:100%;
-            font-size:0.8rem;
-            margin-top:0.5rem;
-            line-height:1.5rem;
-            color:#bbc1c7;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/trade_details.css" />
 
 </head>
 <body>
     <div class="all-elements">
         <div class="header" id="vlm-login">
-            <a href="user-infolist.html" class="icons header-back"></a>
+            <a href="javascript:;" class="icons header-back" id="td_back"></a>
             <h3>交易详情</h3>
         </div>
         <div class="tra_con1">
@@ -129,10 +27,10 @@
         </div>
         <div class="tra_con2">
             <div class="tra_c2_inbox">
-                <h3>东京东急涩谷卓越大酒店</h3>
-                <p class="tra_live">入住：<span>11月25日</span>&nbsp;&nbsp;离店：<span>11月26日</span></p>
-                <p class="tra_house">房型：<span>经济大床房</span>X<em>2</em></p>
-                <p class="tra_price">￥838</p>
+                <h3 id="tdHoteName">东京东急涩谷卓越大酒店</h3>
+                <p class="tra_live">入住：<span id="tdCheckInDate">11月25日</span>&nbsp;&nbsp;离店：<span id="tdCheckOutDate">11月26日</span></p>
+                <p class="tra_house">房型：<span id="tdRoomType">经济大床房</span>X<em id="tdNoomRoom">2</em></p>
+                <p class="tra_price" id="tdPrice">￥838</p>
             </div>
         </div>
         <div class="tra_btn">
@@ -148,4 +46,5 @@
         </div>
     </div>
 </body>
+<script src="js/lsf_tradeDetails.js"></script>
 </html>

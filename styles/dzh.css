@@ -1,4 +1,7 @@
 /*all-order*/
+.box{
+    position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;
+}
 #idul li{
     height: 55px;
     padding: 5px 15px;
@@ -24,10 +27,9 @@
     display: -ms-flexbox;    /* IE10 */
     display: -webkit-box;    /* Safari */
     display: -webkit-flex;    /* Chrome, WebKit */
-    display: box;
-    display: flexbox;
     display: flex;
     background: #FFF none repeat scroll 0% 0%;
+    font-size:1.6rem;
 }
 #h-Tab a{
     -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
@@ -37,6 +39,7 @@
     flex: 1.0;
     text-align: center;
     line-height: 40px;
+    color:rgb(153,153,153);
 }
 #h-Tab .on{
     color: #ffb413;
@@ -48,9 +51,8 @@
 }
 .content1{
     height:auto;
-    background: #FFFFFF;
     margin: 10px 0;
-    border-bottom: 1px solid #dedede;
+
 }
 .nav1{
     height: 45px;
@@ -61,20 +63,22 @@
     line-height: 45px;
     padding-left: 15px;
     position: absolute;
+    font-size:1.6rem;
+    color:#484848;
 }
 .nav112{
     padding-left: 100px;
 }
 .choose-aim{
     line-height: 45px;
-    font-size: 8px;
+    font-size: 0.8rem;
 }
 .choose-aim input{
     display: inline;
-    font-size: 12px;
+    font-size: 1.4rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     padding-left: 14px;
-    color: #000;
+    color: #484848;
 }
 .open-arw{
     position: absolute;
@@ -89,8 +93,6 @@
     display: -ms-flexbox;    /* IE10 */
     display: -webkit-box;    /* Safari */
     display: -webkit-flex;    /* Chrome, WebKit */
-    display: box;
-    display: flexbox;
     display: flex;
     /*height: 91px;*/
     flex-flow: row;
@@ -109,18 +111,21 @@
 .nav2-left{
     width: 60px;
     margin: 9px 15px 9px 15px;
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #484848;
 }
 .nav2-lefttop{
     display: block;
     height: 36px;
     line-height: 40px;
+    font-size:1.6rem;
+    color:#484848;
 }
 .nav2-leftbottom{
     display: block;
     height: 36px;
     line-height: 20px;
+    font-size:1.4rem;
 }
 .nav2-leftbottom span{
     color: #FFB413
@@ -136,12 +141,18 @@
     height: 46px;
     border-bottom: 1px solid #dedede;
 }
+.nav2-centertop p span{
+    font-size:1.6rem;
+}
+.nav2-centerbottom p span{
+    font-size:1.6rem;
+}
 .nav2-center input{
     width: 85px;
-    color: #000;
+    color: #484848;
     line-height: 45px;
     margin-left: 10px;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .nav2-center p{
@@ -177,6 +188,8 @@
     position: absolute;
     line-height: 45px;
     padding-left: 15px;
+    font-size:1.6rem;
+    color:#484848;
 }
 .nav3-right{
     padding-left: 100px;
@@ -189,32 +202,29 @@
 .nav3-right input{
     padding-left: 14px;
     line-height: 45px;
-    color: #000
-font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
-}
-.icons1{
-    background-image: url(../images/icons1.png);
-    background-repeat: no-repeat;
-    background-size: 400px 120px;
-    display: inline-block;
+    color: #484848;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    font-size:1.6rem;
 }
 .add{
     position: absolute;
-    width: 25px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     top: 50%;
     margin-top: -11px;
-    background-position: 0 0 ;
-    right: 45px;
+    right: 60px;
+    background:url("../images/up1.png") no-repeat;
+    background-size:23px 23px;
 }
 .minus{
     position: absolute;
-    width: 25px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     top: 50%;
     margin-top: -11px;
-    background-position: -32px 0 ;
     right: 15px;
+    background:url("../images/down2.png") no-repeat;
+    background-size:23px 23px;
 }
 .content4{
     height: 91px;
@@ -226,8 +236,6 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     display: -ms-flexbox;    /* IE10 */
     display: -webkit-box;    /* Safari */
     display: -webkit-flex;    /* Chrome, WebKit */
-    display: box;
-    display: flexbox;
     height: 91px;
     display: flex;
     flex-flow: row;
@@ -235,10 +243,9 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 .nav4-left{
     width: 60px;
     margin: 9px 15px 9px 15px;
-}
-.nav4-left{
     line-height: 25px;
-    font-size: 14px;
+    font-size:1.6rem;
+    color:#484848;
 }
 .nav4-center{
     -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
@@ -255,33 +262,36 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .nav4-center span{
     margin-left: -5px;
+    color:#484848;
+    font-size:1.6rem;
 }
 .nav4-center input{
     padding-left: 14px;
     display: inline;
-    line-height: 45px;
     margin: 0 15px 0 0;
-    font-size: 12px;
-    color: #000;
-    width: 30px;
+    font-size: 1.6rem;
+    color: #484848;
+    width: 45px
 }
 .add1{
     position: absolute;
-    width: 25px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     top: 50%;
     margin-top: -11px;
-    background-position: 0 0 ;
-    right: 30px;
+    right: 45px;
+    background:url("../images/up1.png") no-repeat;
+    background-size:23px 23px;
 }
 .minus1{
     position: absolute;
-    width: 25px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     top: 50%;
     margin-top: -11px;
-    background-position: -32px 0 ;
     right: 0;
+    background:url("../images/down2.png") no-repeat;
+    background-size:23px 23px;
 }
 .nav4-centertop{
     height: 46px;
@@ -292,13 +302,13 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .content5{
     height: 45px;
+    border-bottom: 1px solid #dedede;
 }
 .content5 input{
-    line-height: 45px;
-    margin: 0 0 17px 15px;
-    font-size: 12px;
-    color: #000;
-    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    line-height: 25px;
+    margin: 10px 0 17px 15px;
+    color: #d1d1d1;
+    font-size:1.6rem;
 }
 .aa{
     height: 44px;
@@ -311,7 +321,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     width: 100%;
     color: #fff;
-    font-size: 18px;
+    font-size: 1.8rem;
     height: 44px;
     line-height: 44px;
     min-width: 60px;
@@ -319,6 +329,8 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     text-align: center;
     background-color: #FFB413;
 }
+
+
 .footer{
     width: 100%;
     height: 44px;
@@ -327,30 +339,32 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     bottom: 0;
     text-align: center;
     z-index: 98;
-    margin-top: -10px;
 }
 .footer span{
-    font-size: 9px;
+    font-size: 0.9rem;
     color: #f5f4f9;
     line-height: 44px;
+}
+@media all and (max-height:550px) {
+    .footer{
+        position:static;
+        margin-top:30px;
+    }
 }
 /*hotel-Dom*/
 
 
-#arr2{
-    display:none;
-}
 
 .choose-aim1{
     line-height: 45px;
-    font-size: 8px;
+    font-size: 0.8rem;
 }
 .choose-aim1 input{
     display: inline;
-    font-size: 12px;
+    font-size: 1.4rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     padding-left: 14px;
-    color: #000;
+    color: #484848;
 }
 .right1{
     background-position: -100px -44px;
@@ -408,7 +422,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     float: right;
     line-height: 15px;
     color: #FBB00E;
-    font-size: 12px;
+    font-size: 1.2rem;
 }
 .div1{
     margin: 10px 15px 10px 15px;
@@ -416,7 +430,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .div1 a{
     color: #484848;
-    font-size: 13px;
+    font-size: 1.3rem;
     line-height: 15px;
 }
 #hotelul a{
@@ -441,26 +455,26 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     /*border: 1px solid black;*/
 }
 .ull .sss1 span{
-    font-size: 15px
+    font-size: 1.5rem;
 }
 .sss1 span b{
-    font-size: 10px;
+    font-size: 1rem;
     /*display: inline;*/
     font-weight: normal;
 }
 .sss2{
     line-height: 25px;
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #000;
 }
 .sss3{
     /*border: 1px solid red;*/
     line-height: 15px;
-    font-size: 11px;
+    font-size: 1.1rem;
     color: #999;
 }
 .span2{
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #999;
     line-height: 15px;
 }
@@ -472,7 +486,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     background-color: #FFF;
     line-height: 25px;
     text-align: center;
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #FFB413;
     position: absolute;
     right: 0px;
@@ -483,7 +497,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     float: right;
     line-height: 15px;
     color: #fe6a00;
-    font-size: 12px;
+    font-size: 1.2rem;
 }
 .www{
     width: 65px;
@@ -493,7 +507,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     border-radius: 4px;
     line-height: 25px;
     text-align: center;
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #FFFFFF;
     position: absolute;
     right: 0px;
@@ -525,7 +539,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 .sure1{
     line-height: 35px;
     text-align: center;
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight:bold;
     color: #ffb413;
     border-bottom: 1px solid #dedede;
@@ -595,7 +609,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     overflow: visible;
 }
 .q1 p{
-    font-size: 11px;
+    font-size: 1.1rem;
     margin-left: 15px;
     padding: 0;
     position: absolute;
@@ -616,12 +630,12 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .reserve-top1{
     font-weight:bold;
-    font-size: 15px;
+    font-size: 1.5rem;
     color: #000;
     line-height: 35px;
 }
 .reserve-top2{
-    font-size: 11px;
+    font-size: 1.1rem;
     color: #999999;
     line-height: 15px;
 }
@@ -632,17 +646,17 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .reserve-bottom1{
     font-weight:bold;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #000;
     line-height: 33px;
 }
 .reserve-bottom2{
-    font-size: 11px;
+    font-size: 1.1rem;
     color: #999;
     line-height: 13px;
 }
 .reserve-bottom3{
-    font-size: 11px;
+    font-size: 1.1rem;
     color: #999;
     line-height: 28px;
 }
@@ -652,24 +666,24 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     background: #fff;
 }
 .pay1{
-    font-size: 15px;
+    font-size: 1.5rem;
     color: #000;
     line-height: 36px;
     margin-left: 15px;
 }
 .a1-1{
-    font-size: 18px;
+    font-size: 1.8rem;
     color:#fe6a03;
 }
 .a1-1 b{
-    font-size: 12px;
+    font-size: 1.2rem;
     font-weight: normal;
 }
 .a1-2{
     float: right;
     margin-right: 15px;
     color:#ffb401;
-    font-size: 10px;
+    font-size: 1.4rem;
 }
 .bookinfo{
     height: 147px;
@@ -682,7 +696,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     margin: 0 15px;
     line-height: 31px;
     color: #484848;
-    font-size: 12px;
+    font-size: 1.4rem;
 }
 .bookinfo2{
     height: 115px;
@@ -697,7 +711,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     color: #999999;
 }
 .bookinfo2-1 span{
-    font-size: 11px;
+    font-size: 1.4rem;
     display: block;
 }
 .bookinfo2-2{
@@ -707,10 +721,10 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 .bookinfo2-2 span{
     color: #484848;
     display: block;
-    font-size: 11px;
+    font-size: 1.4rem;
 }
 .hotelInter2{
-    font-size: 12px;
+    font-size: 1.2rem;
     margin: 15px auto;
     color:#fe6a03;
     width: 115px;
@@ -756,11 +770,11 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     line-height: 23px;
 }
 .choose-content11{
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #484848;
 }
 .choose-content12{
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #000;
 }
 .choose-content2{
@@ -775,7 +789,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     background-color: #FFF;
     line-height: 37px;
     text-align: center;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #FFB413;
     float: left;
 }
@@ -787,8 +801,11 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     background-color: #FFB413;
     line-height: 37px;
     text-align: center;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #FFFFFF;
     margin-left: 11px;
     float: left;
+}
+.nav1,.content2,.content3,.content4,.content5 {
+    background:#fff;
 }

@@ -25,20 +25,20 @@ function h_l_s(){
     function close(obj){
         mb=document.getElementById("r-mb");
         mb.style.display="none";
-        obj.style.bottom=-450+'px';
+        obj.style.bottom=-550+'px';
         obj.style.transition="all 350ms";
     }
     function mb_close(){
         mb=document.getElementById("r-mb");
         mb.style.display="none";
         if(rank.style.display==""||rank.style.display=="block"){
-            rank.style.bottom=-450+'px';
+            rank.style.bottom=-550+'px';
             rank.style.transition="all 350ms";
         }if(screen.style.display==""||screen.style.display=="block"){
-            screen.style.bottom=-450+'px';
+            screen.style.bottom=-550+'px';
             screen.style.transition="all 350ms";
         }if(location.style.display==""||location.style.display=="block"){
-            location.style.bottom=-450+'px';
+            location.style.bottom=-550+'px';
             location.style.transition="all 350ms";
         }
     }
@@ -104,10 +104,10 @@ function h_l_s(){
         for(var i=0;i < rli.length;i++){
             rli[i].addEventListener("click",selectRank);
         }
-        lli = document.getElementsByClassName("l-li");
+        /*lli = document.getElementsByClassName("l-li");
         for(var r=0;r < lli.length;r++){
             lli[r].addEventListener("click",selectLocation);
-        }
+        }*/
     };
     init();
     openClick(fo_ra,rank);
@@ -123,7 +123,7 @@ function h_l_s(){
         var color = obj.style.color;
         if(color == "rgb(252, 148, 100)"){
             mb.style.display="none";
-            rank.style.bottom=-450+'px';
+            rank.style.bottom=-550+'px';
             rank.style.transition="all 350ms";
         }else{
             for(var i=0;i < rli.length;i++){
@@ -138,12 +138,12 @@ function h_l_s(){
             b.className = "hl-icon5";
             obj.appendChild(b);
             mb.style.display="none";
-            rank.style.bottom=-450+'px';
+            rank.style.bottom=-550+'px';
             rank.style.transition="all 350ms";
         }
     }
     /*   位置筛选  */
-    function selectLocation(){
+    /*function selectLocation(){
         var obj = window.event.srcElement;
         var p = obj.firstElementChild;
         var b = obj.lastElementChild;
@@ -162,6 +162,7 @@ function h_l_s(){
             b.className = "l-icon";
         }
     }
+    */
 }
 
 
