@@ -23,17 +23,25 @@
         (function(index){
             aBtn[i].onclick=function(){
                 oDiv.style.right='0';
+                var oWid=document.documentElement.clientWidth;
+                var aa=document.querySelector('.country-hidden');
+                aa.onclick=function(){
+                    oDiv.style.right='-'+oWid+'px';
+                };
 
                 var oCont=document.querySelectorAll('.country-btn')[index];
                 var oTab=document.querySelector('.country-list');
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
-                    var oWid=document.documentElement.clientWidth;
-
                     oCont.innerHTML=oInp.value=e.target.innerHTML;
-                    oDiv.style.right='-'+oWid+'px';
-
                 };
+
+                oInp.addEventListener('input',function(){
+                    if(oInp.value.indexOf('a') != -1 )
+                    {
+                        alert(1);
+                    }
+                })
             };
         })(i);
     }
