@@ -103,11 +103,11 @@
                     <li>产品名称最多显示20个字超出省略号</li>
                     <li>总体
                         <div class="u_score">
-                            <b class="icon user-empty"></b>
-                            <b class="icon user-empty"></b>
-                            <b class="icon user-empty"></b>
-                            <b class="icon user-empty"></b>
-                            <b class="icon user-empty"></b>
+                            <b class="icon-star-val user-empty"></b>
+                            <b class="icon-star-val user-empty"></b>
+                            <b class="icon-star-val user-empty"></b>
+                            <b class="icon-star-val user-empty"></b>
+                            <b class="icon-star-val user-empty"></b>
                         </div>
                     </li>
                 </ul>
@@ -181,6 +181,28 @@
             }
         }
 
+        /*评分*/
+        (function(){
+            var oBox=document.querySelector('.u_score');
+
+            var aBtn=oBox.children;
+            for(var i=0;i<aBtn.length; i++)
+            {
+
+                (function(index){
+                    aBtn[i].onclick=function(){
+                        var n=index;
+                        for(var i=0;i<n+1; i++)
+                        {
+                            aBtn[i].style.backgroundPosition='3% 29%';
+                        }
+                    };
+                })(i);
+            }
+
+
+
+        })();
     </script>
 </body>
 </html>

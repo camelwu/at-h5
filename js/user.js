@@ -127,6 +127,7 @@ require(['jquery','vcm','vlm'], function($,vcm,vlm) {
     $(".sel-time").bind("scrollstart",function(e){
     	
     });
+
     $(".sel-time").bind("scrollstop",function(e){
 		var that = this,obj=$(this),
 		posY = this.scrollTop,
