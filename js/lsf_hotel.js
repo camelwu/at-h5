@@ -91,9 +91,7 @@ owlQuoteSlider.on('changed.owl.carousel', function(event) {
 function countryChange(){
     var Inter=document.getElementById('Inter');
     var Dom=document.getElementById('Dom');
-    //var content1=document.getElementById('content1');
-    //console.log(lsf_myweb.getStyle(content1.parentNode.parentNode,"transform"));
-    console.log('haschanged');
+
     if(Dom.className=='on'){
         Dom.className='';
         Inter.className='on';
@@ -113,12 +111,6 @@ $("#Inter").click(function() {
 
 
 //董振昊代码
-function fun11(){
-    var choose=document.getElementById("choose");
-    var show=document.getElementById("show");
-    choose.style.display="block";
-    show.style.display="block";
-}
 function No(){
     var choose=document.getElementById("choose");
     var show=document.getElementById("show");
@@ -457,8 +449,8 @@ inpChange('DomHotelName','酒店名/位置');
     lsf_myweb.bind(lsf_myweb.getbyid('InterBtn'),'click',function(){
         var hotelStorage12345={
             //现在只有Singapore可以查询到数据，所以先默认城市是Singapore
-            //"InterDes":lsf_myweb.getbyid('input1').value,
-            "InterDes":"Singapore",
+            "InterDes":lsf_myweb.getbyid('input1').value,
+            //"InterDes":"Singapore",
             "InterBeginDate":lsf_myweb.getbyid('CheckInDate').value,
             "InterLeaveDate":lsf_myweb.getbyid('CheckOutDate').value,
             "NumRoom":lsf_myweb.getbyid('count1').value,
