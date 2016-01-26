@@ -1,31 +1,34 @@
-
 /*
          找回密码页css
 */
-.f_key{
-    width:94%;
+.f_key {
+    width: 94%;
     margin: 0 auto;
     margin-top: 10px;
-    border:1px solid #dfdfdd;
+    border: 1px solid #dfdfdd;
     border-radius: 5px;
 }
-.f_key li{
-    list-style:none;
+
+.f_key li {
+    list-style: none;
     font-size: 1.4rem;
-    padding:12px 15px;
+    padding: 12px 15px;
     border-bottom: 1px solid #dfdfdd;
-    margin-bottom:0;
-    position:relative;
+    margin-bottom: 0;
+    position: relative;
 }
-.f_key li>input{
-    color:#484848;
+
+.f_key li > input {
+    color: #484848;
     font-size: 1.4rem;
 }
-.f_key li:last-child{
+
+.f_key li:last-child {
     border: none;
 }
-.f_btn{
-    width:94%;
+
+.f_btn {
+    width: 94%;
     margin-left: 3%;
     margin-top: 20px;
     border-radius: 5px;
@@ -36,21 +39,25 @@
     font-size: 16px;
     font-weight: 600;
 }
-.open-pho{
+
+.open-pho {
     position: absolute;
-    width: 10px;height: 20px;
+    width: 10px;
+    height: 20px;
     right: 10px;
     background-position: 65% 3%;
 }
-.fk_put{
+
+.fk_put {
     font-size: 1.4rem;
-    color:#d1d1d1;
+    color: #d1d1d1;
     background-color: transparent;
 }
-.fk_div{
+
+.fk_div {
     float: right;
     min-width: 107px;
-    height:42px;
+    height: 42px;
     margin-top: -30px;
     border-left: 1px solid #dfdfdd;
     text-align: center;
@@ -58,15 +65,17 @@
     color: #ffb413;
     display: inline-block;
 }
+
 /*
          个人中心未登录页css
 */
-.unl_div{
+.unl_div {
     width: 94%;
     margin-left: 3%;
-    border-top:1px solid rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
-.user-menu{
+
+.user-menu {
     height: 20px;
     width: 100%;
     margin-top: 10px;
@@ -77,12 +86,13 @@
     display: flex;
     margin-bottom: 10px;
 }
-.user-menu li{
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+
+.user-menu li {
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
     list-style-type: none;
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     margin-bottom: initial;
@@ -90,29 +100,34 @@
     line-height: 20px;
     color: white;
 }
-.user-menu li:first-child{
+
+.user-menu li:first-child {
     border: none;
 }
-.icon{
+
+.icon {
     background-image: url(../images/ui/icon.png);
     background-repeat: no-repeat;
     background-size: 393px 118px;
-    display:inline-block;
+    display: inline-block;
 }
-.open-his{
-    position:absolute;
-    width:22px;
-    height:22px;
-    top:10px;
+
+.open-his {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 10px;
     background-position: 0 65%;
 }
-.open-set{
-    position:absolute;
-    width:22px;
-    height:22px;
-    top:10px;
+
+.open-set {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 10px;
     background-position: 6.5% 65%;
 }
+
 .header-msg {
     position: absolute;
     overflow: visible;
@@ -122,38 +137,47 @@
     top: 10px;
     background-position: 41% 2%;
 }
-.bu_icon{
+
+.bu_icon {
     background-image: url(../images/ui/bu.png);
     background-repeat: no-repeat;
     background-size: 159px 245px;
-    display:inline-block;
+    display: inline-block;
 }
-.college{
-    width: 84px;height: 81px;
+
+.college {
+    width: 84px;
+    height: 81px;
     background-position: 97% 51%;
 }
-.wifi{
-    width: 105px;height: 76px;
+
+.wifi {
+    width: 105px;
+    height: 76px;
     background-position: 9% 101%;
 }
-.order{
-    width: 67px;height: 80px;
+
+.order {
+    width: 67px;
+    height: 80px;
     background-position: 4% 51%;
 }
-.blank-con{
+
+.blank-con {
     display: none;
     margin: 0 auto;
     margin-top: 30%;
     text-align: center;
-    color:#999999;
+    color: #999999;
 }
+
 /*
          个人中心已登录页css
 */
-.user-content{
+.user-content {
     position: absolute;
     background-color: white;
-    top:45px;
+    top: 45px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -168,47 +192,55 @@
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
-.user-name{
+
+.user-name {
     margin-bottom: 15px;
     font-size: 1.4rem;
     color: white;
 }
-.open-sexw{
-    width:12px;
-    height:12px;
+
+.open-sexw {
+    width: 12px;
+    height: 12px;
     margin-left: 5px;
     background-position: 36% 65%;
 }
-.open-sexm{
-    width:12px;
-    height:12px;
+
+.open-sexm {
+    width: 12px;
+    height: 12px;
     margin-left: 5px;
     background-position: 40% 65%;
 }
-.info-circle1{
+
+.info-circle1 {
     position: relative;
     margin-top: -5px;
     margin-left: 15px;
-    width: 14px;height: 14px;
+    width: 14px;
+    height: 14px;
     border-radius: 7px;
-    background-color:#ffb413;
+    background-color: #ffb413;
     text-align: center;
     line-height: 1.2;
-    font-size:1rem;
+    font-size: 1rem;
     color: white;
 }
-.info-circle2{
+
+.info-circle2 {
     position: relative;
     margin-top: -25px;
-    margin-left:70%;
-    width: 23px;height: 14px;
+    margin-left: 70%;
+    width: 23px;
+    height: 14px;
     border-radius: 7px;
-    background-color:#ffb413;
+    background-color: #ffb413;
     text-align: center;
     line-height: 1.2;
-    font-size:1rem;
+    font-size: 1rem;
     color: white;
 }
+
 .open-favs {
     position: absolute;
     width: 22px;
@@ -216,43 +248,49 @@
     top: 10px;
     background-position: 87% 76%;
 }
-.open-hiss{
+
+.open-hiss {
     position: absolute;
     width: 22px;
     height: 22px;
     top: 10px;
     background-position: 94.5% 76%;
 }
-.open-gray{
+
+.open-gray {
     position: absolute;
     width: 10px;
     height: 20px;
     right: 0;
     background-position: 98.5% 76%;
 }
+
 /*
          个人资料页css
 */
-.open-rg{
+.open-rg {
     position: absolute;
     right: 15px;
     margin-top: 2px;
-    width:8px;height:14px;
-    background-position:65% 3%;
+    width: 8px;
+    height: 14px;
+    background-position: 65% 3%;
 }
-.info-name{
-    float:right;
+
+.info-name {
+    float: right;
     margin-right: 15px;
-    font-size:13px;
-    color:#FFB413;
+    font-size: 13px;
+    color: #FFB413;
 }
-.info-quit{
+
+.info-quit {
     width: 94%;
     height: 42px;
     margin-top: 15px;
     margin-left: 3%;
     border-radius: 5px;
-    border:1px solid #ffb413;
+    border: 1px solid #ffb413;
     background-color: white;
     font-size: 16px;
     font-weight: 600;
@@ -260,59 +298,68 @@
     text-align: center;
     line-height: 42px;
 }
-.info-sex, .info-sex-on{
+
+.info-sex, .info-sex-on {
     position: absolute;
-    top:8px;
+    top: 8px;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
     right: 15px;
-    width:68px;height:27px;
-    border:1px solid #ffb413;
-    border-radius:3px;
+    width: 68px;
+    height: 27px;
+    border: 1px solid #ffb413;
+    border-radius: 3px;
     overflow: hidden;
-    background-color:#ffb413;;
+    background-color: #ffb413;;
 }
-.sex-div{
-    -webkit-box-felx:1;
-    -moz-box-flex:1
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
-    width:34px;height:27px;
+
+.sex-div {
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1 -ms-flex : 1;
+    -webkit-flex: 1;
+    flex: 1;
+    width: 34px;
+    height: 27px;
     text-align: center;
-    color:white;
+    color: white;
     line-height: 25px;
 }
-.white-div{
+
+.white-div {
     position: absolute;
     z-index: 2;
-    width:34px;height:27px;
+    width: 34px;
+    height: 27px;
     background-color: white;
-    color:#ffb413;
+    color: #ffb413;
     text-align: center;
     line-height: 25px;
     transform: translateX(0px);
     -webkit-transform: translateX(0px);
     transition: all 200ms ease;
 }
+
 .info-sex-on .white-div {
     transform: translateX(34px);
     -webkit-transform: translateX(34px);
     transition: all 200ms ease;
 }
-.user-mb{
+
+.user-mb {
     display: none;
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: 2;
-    top:0;left: 0;
-    background-color: rgba(0,0,0,0.3);
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
 }
-.u_photo{
+
+.u_photo {
     display: none;
     position: absolute;
     z-index: 3;
@@ -320,35 +367,40 @@
     margin-left: 4%;
     bottom: 15px;
 }
-.u_photo1{
+
+.u_photo1 {
     background-color: white;
     border-radius: 10px;
     margin-bottom: 10px;
 }
-.u_photo1 li{
+
+.u_photo1 li {
     list-style-type: none;
     text-align: center;
-    padding-top:15px;
-    padding-bottom:15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 1.8rem;
-    color:#1190e0;
+    color: #1190e0;
 }
-.u_photo1 li:first-child{
+
+.u_photo1 li:first-child {
     border-bottom: 1px solid #dedede;
 }
-.u_photo2{
+
+.u_photo2 {
     background-color: white;
     border-radius: 10px;
     text-align: center;
-    padding-top:15px;
-    padding-bottom:15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 1.8rem;
     font-weight: bold;
-    color:#1190e0;
+    color: #1190e0;
 }
-#info_content{
+
+#info_content {
     position: absolute;
-    top:45px;
+    top: 45px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -364,519 +416,623 @@
     transform: translate3d(0, 0, 0);
     background-color: white;
 }
-#info_content li{
+
+#info_content li {
     list-style-type: none;
 }
-.amendkey{
+
+.amendkey {
     list-style-type: none;
-    padding-top:16px;
-    padding-bottom:16px;
-    font-size:14px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 14px;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
     justify-content: space-between;
-    border-bottom:1px solid #dedede;
+    border-bottom: 1px solid #dedede;
 }
-.amendkey div{
-    font-size:15px;
-    color:#484848;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+
+.amendkey div {
+    font-size: 15px;
+    color: #484848;
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
 }
-.amendkey input{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+
+.amendkey input {
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
-.showkey{
-    float:right;
+
+.showkey {
+    float: right;
     margin-right: 3%;
     margin-top: 10px;
 }
-.show-key{
+
+.show-key {
     position: relative;
-    width: 16px; height: 16px;
+    width: 16px;
+    height: 16px;
     margin-right: 7px;
-    top:2px;
+    top: 2px;
     background-position: -323px 95%;
 }
-.show-keys{
+
+.show-keys {
     position: relative;
-    width: 16px; height: 16px;
+    width: 16px;
+    height: 16px;
     margin-right: 7px;
-    top:2px;
+    top: 2px;
     background-position: 91.2% 95%;
 }
+
 /*
          修改昵称页css
 */
-.u_name{
+.u_name {
     font-size: 1.4rem;
     margin-top: 10px;
-    padding:12px 15px;
+    padding: 12px 15px;
     border-top: 1px #dedede solid;
     border-bottom: 1px #dedede solid;
     background-color: #fff;
-    position:relative;
+    position: relative;
 }
-.name-close{
-    position:absolute;
-    width:22px;
-    height:22px;
-    top:10px;
-    right:10px;
+
+.name-close {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 10px;
+    right: 10px;
     background-position: 40% 35%;
 }
-.name-text{
-    padding:5px 15px;
+
+.name-text {
+    padding: 5px 15px;
     font-size: 1rem;
     color: #999999;
     margin-bottom: -12px;
 }
+
 /*
          全部订单页css
 */
-.order-div{
-    width:94%;
+.order-div {
+    width: 94%;
     margin: 0 auto;
     margin-top: 10px;
-    border:1px solid #dfdfdd;
+    border: 1px solid #dfdfdd;
     border-radius: 5px;
 }
-.user-air{
+
+.user-air {
     float: left;
-    margin:8px;
-    width:25px;height:25px;
-    background-position:0.2% 99%;
+    margin: 8px;
+    width: 25px;
+    height: 25px;
+    background-position: 0.2% 99%;
 }
-.order-title{
+
+.order-title {
     float: left;
-    padding-top:10px;
+    padding-top: 10px;
 }
-.if_pay{
+
+.if_pay {
     float: right;
-    padding-top:10px;
-    padding-right:10px;
+    padding-top: 10px;
+    padding-right: 10px;
 }
-.info-title{
-    padding-right:10px;
+
+.info-title {
+    padding-right: 10px;
     font-size: 1.4rem;
     font-weight: bold;
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 5px;
 }
-.air-date{
+
+.air-date {
     margin-left: 10px;
-    padding-right:10px;
+    padding-right: 10px;
     margin-bottom: 15px;
 }
-.air-date li{
+
+.air-date li {
     list-style-type: none;
     margin-top: 10px;
 }
-.paybtn{
+
+.paybtn {
     float: right;
     margin-right: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    width:76px;height:31px;
-    color:white;
+    width: 76px;
+    height: 31px;
+    color: white;
     text-align: center;
     line-height: 31px;
     border-radius: 5px;
 }
-.quitbtn{
+
+.quitbtn {
     float: right;
     margin-right: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    width:76px;height:31px;
-    color:#ffb413;
+    width: 76px;
+    height: 31px;
+    color: #ffb413;
     text-align: center;
     line-height: 31px;
     border-radius: 5px;
-    border:1px solid #ffb413;
+    border: 1px solid #ffb413;
 }
-.user-spot{
+
+.user-spot {
     float: left;
-    margin:8px;
-    width:25px;height:25px;
-    background-position:8.5% 99%;
+    margin: 8px;
+    width: 25px;
+    height: 25px;
+    background-position: 8.5% 99%;
 }
-.user-hotel1{
+
+.user-hotel1 {
     float: left;
-    margin:8px;
-    width:25px;height:25px;
-    background-position:16.3% 99%;
+    margin: 8px;
+    width: 25px;
+    height: 25px;
+    background-position: 16.3% 99%;
 }
-.user-hotel2{
+
+.user-hotel2 {
     float: left;
-    margin:8px;
-    width:25px;height:25px;
-    background-position:32.3% 99%;
+    margin: 8px;
+    width: 25px;
+    height: 25px;
+    background-position: 32.3% 99%;
 }
+
 /*
          点评页css
 */
-.u_remark{
-    width:100%;
-    margin-bottom:15px;
+.u_remark {
+    width: 100%;
+    margin-bottom: 15px;
 }
-.u_remark li{
+
+.u_remark li {
     list-style-type: none;
     padding: 12px 15px;
-    border-bottom:1px solid #dedede;
+    border-bottom: 1px solid #dedede;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.u_score{
+
+.u_score {
     position: absolute;
-    right:33px;
-    top:60px;
+    right: 33px;
+    top: 60px;
 }
 
-.icon-star-val{
+.icon-star-val {
     background-image: url(../images/ui/bu.png);
     background-repeat: no-repeat;
     background-size: 140px 240px;
-    display:inline-block;
+    display: inline-block;
 }
-.user-empty{
-    margin-right:20px;
-    width:18px;height:18px;
-    background-position:19% 29%;
+
+.user-empty {
+    margin-right: 20px;
+    width: 18px;
+    height: 18px;
+    background-position: 19% 29%;
 }
-.re_text{
-    width:100%;
+
+.re_text {
+    width: 100%;
     height: 80px;
     padding-left: 15px;
     color: #d1d1d1;
     border-bottom: 1px solid #dedede;
 }
-.u_pic{
+
+.u_pic {
     border-bottom: 1px solid #dedede;
     line-height: 90px;
 }
-.send_pic{
+
+.send_pic {
     margin: 10px 15px;
     float: left;
-    width: 70px;height:70px;
-    background-position:99% 4%;
+    width: 70px;
+    height: 70px;
+    background-position: 99% 4%;
 }
+
 /*
          设置页css
 */
-.set-chose1{
-    width: 52px;height: 30px;
+.set-chose1 {
+    width: 52px;
+    height: 30px;
     position: absolute;
-    top:10px;right:10px;
-    background-position:51% 32%;
+    top: 10px;
+    right: 10px;
+    background-position: 51% 32%;
 }
-.set-chose2{
-    width: 52px;height: 31px;
+
+.set-chose2 {
+    width: 52px;
+    height: 31px;
     position: absolute;
-    top:10px;right:10px;
-    background-position:51% 69.8%;
+    top: 10px;
+    right: 10px;
+    background-position: 51% 69.8%;
 }
+
 /*
          联系我们页css
 */
-.user-wechat{
-    width: 40px;height: 40px;
+.user-wechat {
+    width: 40px;
+    height: 40px;
     float: left;
-    background-position:65.5% 4%;
+    background-position: 65.5% 4%;
 }
-.user-service{
-    width: 40px;height: 40px;
+
+.user-service {
+    width: 40px;
+    height: 40px;
     float: left;
-    background-position:65.5% 61%;
+    background-position: 65.5% 61%;
 }
-.service-phone{
-    width: 40px;height: 40px;
+
+.service-phone {
+    width: 40px;
+    height: 40px;
     float: left;
-    background-position:78.2% 4%;
+    background-position: 78.2% 4%;
 }
-.user-us{
-    width: 40px;height: 40px;
+
+.user-us {
+    width: 40px;
+    height: 40px;
     float: left;
-    background-position:78.2% 61%;
+    background-position: 78.2% 61%;
 }
-.con-info{
+
+.con-info {
     padding: 1px;
     float: left;
     margin-left: 13px;
 }
-.con-info div{
+
+.con-info div {
     font-size: 14px;
     color: #999999;
 }
-.con-title1{
+
+.con-title1 {
     margin-bottom: 5px;
     font-size: 16px;
     line-height: normal;
 }
-.con-title2{
+
+.con-title2 {
     font-size: 16px;
-    margin-top:6px;
+    margin-top: 6px;
     line-height: normal;
     margin-bottom: 0;
 }
-.con-text{
+
+.con-text {
     padding: 0 15px;
     font-size: 1rem;
     color: #999999;
-    margin-bottom:0;
+    margin-bottom: 0;
 }
+
 /*
          常用信息页css
 */
-.user-add{
-    width: 21px;height: 20px;
+.user-add {
+    width: 21px;
+    height: 20px;
     position: relative;
-    margin-right:12px;
+    margin-right: 12px;
     top: 4px;
-    background-position:54.4% -139px;
+    background-position: 54.4% -139px;
 }
-.often-traveler{
-    width:100%;
-    margin-bottom:15px;
+
+.often-traveler {
+    width: 100%;
+    margin-bottom: 15px;
 
 }
+
 /*.often-traveler li:first-child{*/
-    /*border-top:1px solid #dedede;*/
+/*border-top:1px solid #dedede;*/
 /*}*/
-.eve-traveler{
+.eve-traveler {
     list-style-type: none;
     padding: 12px 15px;
-    border-bottom:1px solid #dedede;
+    border-bottom: 1px solid #dedede;
 }
-.often_user{
-    margin-bottom:0;
+
+.often_user {
+    margin-bottom: 0;
 }
-.often_user li{
+
+.often_user li {
     list-style-type: none;
     border: none;
     font-size: 12px;
-    color:#999999;
+    color: #999999;
 }
-.often_user li:first-child{
+
+.often_user li:first-child {
     font-size: 14px;
     color: #484848;
 }
-.traveler-text{
+
+.traveler-text {
     text-align: center;
     font-size: 12px;
-    color:#999999;
+    color: #999999;
     line-height: normal;
 }
-.user-edit{
-    width: 22px;height: 22px;
+
+.user-edit {
+    width: 22px;
+    height: 22px;
     float: right;
-    background-position:49% 0.5%;
+    background-position: 49% 0.5%;
 }
-.user-edits{
-    width: 22px;height: 22px;
+
+.user-edits {
+    width: 22px;
+    height: 22px;
     float: right;
-    background-position:53.2% 27.5%;
+    background-position: 53.2% 27.5%;
 }
-.statement{
-    padding:8px 15px;
-    color:#484848;
+
+.statement {
+    padding: 8px 15px;
+    color: #484848;
 }
+
 /*
          新增常旅页css
 */
-.addtra-page{
+.addtra-page {
     display: none;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
-.header-quit{
+
+.header-quit {
     position: absolute;
     left: 15px;
-    top:10px;
+    top: 10px;
     font-size: 17px;
     color: white;
 }
-.header-finish{
+
+.header-finish {
     position: absolute;
     right: 15px;
-    top:10px;
+    top: 10px;
     font-size: 17px;
     color: white;
 }
-.addtra-title{
+
+.addtra-title {
     width: 100%;
     padding: 10px 15px;
     font-size: 12px;
-    background-color:#e9e9e9;
+    background-color: #e9e9e9;
 }
-.user-must{
-    width:22px;
-    height:22px;
+
+.user-must {
+    width: 22px;
+    height: 22px;
     position: absolute;
-    top:13px;
+    top: 13px;
     margin-left: 5px;
     background-position: 28% 35%;
 }
-.user-must2{
-    width:22px;
-    height:22px;
+
+.user-must2 {
+    width: 22px;
+    height: 22px;
     position: absolute;
-    right:5px;
+    right: 5px;
     background-position: 28% 35%;
 }
-.addtra-info{
-    border-bottom:1px solid #dedede;
+
+.addtra-info {
+    border-bottom: 1px solid #dedede;
     margin-bottom: 10px;
 }
-.addtra-info li{
+
+.addtra-info li {
     list-style-type: none;
-    padding-top:16px;
-    padding-bottom:16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     margin-left: 15px;
-    font-size:14px;
+    font-size: 14px;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
     justify-content: space-between;
-    border-bottom:1px solid #dedede;
+    border-bottom: 1px solid #dedede;
 }
-.addtra-info li:last-child{
+
+.addtra-info li:last-child {
     border: none;
 }
-.addtra-info div{
-    font-size:15px;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+
+.addtra-info div {
+    font-size: 15px;
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
 }
-.addtra-info li div:last-child{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+
+.addtra-info li div:last-child {
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
-.addtra-info input{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+
+.addtra-info input {
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
-.icon-h{
+
+.icon-h {
     background-image: url(../images/ui/icon-h.png);
     background-repeat: no-repeat;
     background-size: 402px 174px;
-    display:inline-block;
+    display: inline-block;
 }
-.traveler-sex1{
-    width: 11px;height:11px;
+
+.traveler-sex1 {
+    width: 11px;
+    height: 11px;
     margin-right: 5px;
-    background-position:10% 38% ;
+    background-position: 10% 38%;
 }
-.traveler-sex2{
-    width: 11px;height:11px;
+
+.traveler-sex2 {
+    width: 11px;
+    height: 11px;
     margin-right: 5px;
-    background-position:4.8% 38% ;
+    background-position: 4.8% 38%;
 }
-.traveler-contect{
-    border-bottom:1px solid #dedede;
+
+.traveler-contect {
+    border-bottom: 1px solid #dedede;
     margin-bottom: 10px;
 }
-.traveler-contect li{
+
+.traveler-contect li {
     list-style-type: none;
     margin-left: 15px;
-    font-size:14px;
-    border-bottom:1px solid #dedede;
+    font-size: 14px;
+    border-bottom: 1px solid #dedede;
 }
-.traveler-contect li{
+
+.traveler-contect li {
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    border-bottom:1px solid #dedede;
+    border-bottom: 1px solid #dedede;
 }
-.traveler-contect li:first-child input{
+
+.traveler-contect li:first-child input {
     margin-left: 15px;
 }
-.traveler-contect li:last-child{
-    padding-top:16px;
-    padding-bottom:16px;
+
+.traveler-contect li:last-child {
+    padding-top: 16px;
+    padding-bottom: 16px;
     margin-left: 15px;
-    font-size:14px;
+    font-size: 14px;
     justify-content: space-between;
-    border:none;
+    border: none;
 }
-.traveler-contect li:last-child div{
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+
+.traveler-contect li:last-child div {
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
 }
-.traveler-contect li:last-child input{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+
+.traveler-contect li:last-child input {
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
-.con-phone{
+
+.con-phone {
     width: 50%;
     line-height: 50px;
-    border-right:1px solid #dedede;
+    border-right: 1px solid #dedede;
 }
-.phonenum{
+
+.phonenum {
     float: right;
     background-color: #0b84fe;
 }
+
 /*
          选择乘机人页css
 */
-.choiceAir-page{
+.choiceAir-page {
     display: none;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
-.user-choice1{
-    width:21px;height:21px;
+
+.user-choice1 {
+    width: 21px;
+    height: 21px;
     float: left;
     margin-top: 10px;
     margin-right: 10px;
-    background-position:62.8% 97.2% ;
+    background-position: 62.8% 97.2%;
 }
-.user-choice2{
-    width:21px;height:21px;
+
+.user-choice2 {
+    width: 21px;
+    height: 21px;
     float: left;
     margin-top: 10px;
     margin-right: 10px;
-    background-position:56% 97.5% ;
+    background-position: 56% 97.5%;
 }
-.ifbaby{
-    width: 35px;height: 17px;
+
+.ifbaby {
+    width: 35px;
+    height: 17px;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     display: inline-block;
@@ -886,226 +1042,259 @@
     font-size: 10px;
     line-height: 15px;
 }
+
 /*
          新增乘机人页css
 */
-.addAir-page{
+.addAir-page {
     display: none;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
-.addAir-info{
-    border-top:1px solid #dedede;
-    border-bottom:1px solid #dedede;
+
+.addAir-info {
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
     margin-top: 12px;
     margin-bottom: 0;
 }
-.addAir-info li{
+
+.addAir-info li {
     list-style-type: none;
-    padding-top:16px;
-    padding-bottom:16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     margin-left: 15px;
-    font-size:14px;
+    font-size: 14px;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
     justify-content: space-between;
-    border-bottom:1px solid #dedede;
+    border-bottom: 1px solid #dedede;
 }
-.addAir-info li:last-child{
+
+.addAir-info li:last-child {
     border: none;
 }
-.addAir-info div{
-    font-size:15px;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+
+.addAir-info div {
+    font-size: 15px;
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
 }
-.addAir-info li div:last-child{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+
+.addAir-info li div:last-child {
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
-.addAir-info input{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+
+.addAir-info input {
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
-.user-account{
+
+.user-account {
     float: right;
     margin-right: 15px;
     margin-top: 10px;
     color: #ffb413;
     font-size: 10px;
 }
+
 /*
          填写姓名说明页css
 */
-.fillName-page{
+.fillName-page {
     display: none;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
-.ch_account{
-    width:100%;
+
+.ch_account {
+    width: 100%;
     height: auto;
 }
-.ch_account li{
-    list-style:none;
-    list-style-type:decimal;
+
+.ch_account li {
+    list-style: none;
+    list-style-type: decimal;
     margin-top: 15px;
     margin-left: 30px;
     padding-right: 10px;
 }
-.name_ul{
-    font-size:12px;
-    color:#999999;
+
+.name_ul {
+    font-size: 12px;
+    color: #999999;
 }
-.name_ul li{
-    list-style:none;
+
+.name_ul li {
+    list-style: none;
     list-style-type: disc;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 0;
     padding-left: 0;
 }
-.name-example{
-    width: 100%;height:40px;
+
+.name-example {
+    width: 100%;
+    height: 40px;
     padding: 10px 15px;
     border: 1px solid #dedede;
     border-radius: 3px;
     margin-top: 10px;
-    font-size:10px;
+    font-size: 10px;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
 }
-.name-example2{
-    width: 100%;height:40px;
+
+.name-example2 {
+    width: 100%;
+    height: 40px;
     padding: 10px 15px;
     border: 1px solid #dedede;
     border-top: none;
-    font-size:10px;
+    font-size: 10px;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
 }
-.name-example div:first-child{
+
+.name-example div:first-child {
     color: #a0a0a0;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
 }
-.name-example div:last-child{
+
+.name-example div:last-child {
     color: #484848;
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
-.name-example2 div:first-child{
+
+.name-example2 div:first-child {
     color: #a0a0a0;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
 }
-.name-example2 div:last-child{
+
+.name-example2 div:last-child {
     color: #484848;
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
+    -webkit-box-felx: 2;
+    -moz-box-flex: 2;
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
+
 /*
          儿童购票说明页css
 */
-.childen-page{
+.childen-page {
     display: none;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
-.child_detail{
+
+.child_detail {
     font-size: 12px;
     color: #999999;
 }
+
 /*
          登录页css
 */
-.login-phone{
-    background-position:-24px -35px;
+.login-phone {
+    background-position: -24px -35px;
 }
-.login-mail{
-    background-position:-46px -35px;
+
+.login-mail {
+    background-position: -46px -35px;
 }
-.p_86{
+
+.p_86 {
     display: inline-block;
     color: white;
     margin-left: 29px;
     margin-top: 13px;
-    border-right: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
     padding-right: 15px;
 }
-.in-phone{
+
+.in-phone {
     display: inline-block;
-    top:-2px;
+    top: -2px;
 }
-.forgotkey{
+
+.forgotkey {
     float: left;
-    margin:15px 12px 15px;
-    color: rgba(255,255,255,255);
+    margin: 15px 12px 15px;
+    color: rgba(255, 255, 255, 255);
 }
-.changelogin{
+
+.changelogin {
     float: right;
     margin: 15px 12px 30px 0;
-    color: rgba(255,255,255,255);
+    color: rgba(255, 255, 255, 255);
 }
-.login-change{
-    width: 17px;height: 17px;
-    background-position:-2px -35px;
+
+.login-change {
+    width: 17px;
+    height: 17px;
+    background-position: -2px -35px;
     position: relative;
-    top:3px;
+    top: 3px;
     margin-left: 3px;
 }
-.login-clear{
+
+.login-clear {
     display: none;
     position: absolute;
-    right:13px;
-    background-position:-85px -35px;
+    right: 13px;
+    background-position: -85px -35px;
 }
-.regist-code{
+
+.regist-code {
     display: inline-block;
     position: absolute;
     right: 0;
-    top:0;
-    width:107px;
-    border-left:1px solid rgba(255,255,255,0.5);
+    top: 0;
+    width: 107px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
     text-align: center;
     color: white;
     margin-top: 13px;
@@ -1118,10 +1307,11 @@
     width: 100%;
     height: 100%;
     background-color: #000;
-    opacity:0.5;
+    opacity: 0.5;
     z-index: 999;
     display: none;
 }
+
 .selbox-footer {
     position: fixed;
     z-index: 1000;
@@ -1132,67 +1322,77 @@
 }
 
 .selbox-opeater {
-    height:40px;
-    line-height:40px;
+    height: 40px;
+    line-height: 40px;
     background-color: #f5f4f9;
     font-size: 1.6rem;
 }
+
 .selbox-ul {
-    margin:5px 40px;
-    display: -moz-box;  /* Firefox */
-    display: -ms-flexbox;    /* IE10 */
-    display: -webkit-box;    /* Safari */
-    display: -webkit-flex;    /* Chrome, WebKit */
+    margin: 5px 40px;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE10 */
+    display: -webkit-box; /* Safari */
+    display: -webkit-flex; /* Chrome, WebKit */
     display: flex;
-    height:195px;
-    overflow:hidden;
-    flex-direction: row ;justify-content:center;
+    height: 195px;
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: center;
 }
-.selbox-ul li{
-    position:relative;
+
+.selbox-ul li {
+    position: relative;
     list-style: none;
-    margin-right:34px;margin-bottom:0;
+    margin-right: 34px;
+    margin-bottom: 0;
     /*padding:10px 1px;*/
-    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-flex: 1;         /* OLD - Firefox 19- */
-    -webkit-flex: 1;          /* Chrome */
-    -ms-flex: 1;              /* IE 10 */
+    -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1; /* OLD - Firefox 19- */
+    -webkit-flex: 1; /* Chrome */
+    -ms-flex: 1; /* IE 10 */
     flex: 1.0;
 }
+
 .selbox-ul li:first-child {
-    -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-flex: 2;         /* OLD - Firefox 19- */
-    -webkit-flex: 2;          /* Chrome */
-    -ms-flex: 2;              /* IE 10 */
+    -webkit-box-flex: 2; /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 2; /* OLD - Firefox 19- */
+    -webkit-flex: 2; /* Chrome */
+    -ms-flex: 2; /* IE 10 */
     flex: 2.0;
 }
+
 .selbox-ul li:last-child {
-    margin-right:0;
+    margin-right: 0;
 }
+
 .sel-time {
-    height:195px;
+    height: 195px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
+
 .sel-time span {
-    display:block;
-    font-size:1.8rem;
-    line-height:39px;
-    text-align:center;
-    color:#999;
+    display: block;
+    font-size: 1.8rem;
+    line-height: 39px;
+    text-align: center;
+    color: #999;
 }
+
 .sel-box {
-    position:absolute;
-    top:80px;width:100%;
-    pointer-events:none;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    pointer-events: none;
     box-sizing: border-content;
-    height:35px;
-    border-top:2px solid #FFB413;
-    border-bottom:2px solid #FFB413;
+    height: 35px;
+    border-top: 2px solid #FFB413;
+    border-bottom: 2px solid #FFB413;
 }
 
 /*证件选择窗*/
-.selbox-card{
+.selbox-card {
     position: fixed;
     z-index: 1000;
     width: 100%;
@@ -1201,14 +1401,14 @@
     transition: 0.3s all ease;
 }
 
-
 /*国籍选择*/
-.country-cho-wrap{
+.country-cho-wrap {
     position: absolute;
     right: -1000px;
     z-index: 1000;
     transition: 0.3s all ease;
 }
+
 li {
     list-style: none;
     margin: 0;
@@ -1249,17 +1449,17 @@ ul, ol {
     height: 11px;
 }
 
-.country-list{
+.country-list {
     background-color: #fff;
 }
 
-.country-list li{
+.country-list li {
     padding-left: 35px;
     height: 36px;
     line-height: 36px;
     border-bottom: 1px solid #dfdfdd;
 }
 
-.country-hidden{
+.country-hidden {
     z-index: 100;
 }

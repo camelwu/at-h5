@@ -168,32 +168,46 @@ window.onload = function(){
     deleteTra(delTra);
 };
 //   性别选择
-function choseSex(){
-    var span = window.event.srcElement;
-    var man = document.getElementById("man");
-    var woman = document.getElementById("woman");
-    var b = span.firstChild;
-    if(b.className == "icon-h traveler-sex1"){
-        b.className = "icon-h traveler-sex2";
-    }else{
-        man.className = "icon-h traveler-sex2";
-        woman.className = "icon-h traveler-sex2";
-        b.className = "icon-h traveler-sex1";
+//function choseSex(){
+//    var span = window.event.srcElement;
+//    var man = document.getElementById("man");
+//    var woman = document.getElementById("woman");
+//    var b = span.firstChild;
+//    alert(b);
+//    if(b.className == "icon-h traveler-sex1"){
+//        b.className = "icon-h traveler-sex2";
+//    }else{
+//        man.className = "icon-h traveler-sex2";
+//        woman.className = "icon-h traveler-sex2";
+//        b.className = "icon-h traveler-sex1";
+//    }
+//}
+
+(function(){
+    var aSel=document.querySelectorAll('.sex-cho-wrap');
+
+    for(var i=0;i<aSel.length; i++)
+    {
+        (function(index){
+            var aSpan=aSel[index].querySelectorAll('b');
+            for(j=0;j<aSpan.length; j++)
+            {
+                aSpan[j].onclick=function(){
+                    for(i=0;i<aSpan.length; i++)
+                    {
+                        aSpan[i].className='icon-h traveler-sex2';
+                    }
+                    this.className='icon-h traveler-sex1';
+                }
+            }
+        })(i);
+
     }
-}
-function choseSex2(){
-    var span = window.event.srcElement;
-    var man = document.getElementById("man2");
-    var woman = document.getElementById("woman2");
-    var b = span.firstChild;
-    if(b.className == "icon-h traveler-sex1"){
-        b.className = "icon-h traveler-sex2";
-    }else{
-        man.className = "icon-h traveler-sex2";
-        woman.className = "icon-h traveler-sex2";
-        b.className = "icon-h traveler-sex1";
-    }
-}
+
+})();
+
+
+
 //  页面初始获取常旅客
 function mycallback(ret){
     travJson = eval('('+ret+')');

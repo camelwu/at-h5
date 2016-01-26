@@ -152,9 +152,9 @@
                         </li>
                         <li>
                             <div>性别</div>
-                            <div>
-                                <span style="margin-right:15%" onclick="choseSex()"><b id="man" class="icon-h traveler-sex1"></b>男士</span>
-                                <span onclick="choseSex()"><b id="woman" class="icon-h traveler-sex2"></b>女士</span>
+                            <div class="sex-cho-wrap">
+                                <span style="margin-right:15%" ><b class="icon-h traveler-sex1"></b>男士</span>
+                                <span><b class="icon-h traveler-sex2"></b>女士</span>
                             </div>
                         </li>
                         <li>
@@ -228,9 +228,9 @@
                         </li>
                         <li>
                             <div>性别</div>
-                            <div>
-                                <span style="margin-right:15%" onclick="choseSex2()"><b id="man2" class="icon-h traveler-sex1"></b>男士</span>
-                                <span onclick="choseSex2()"><b id="woman2" class="icon-h traveler-sex2"></b>女士</span>
+                            <div class="sex-cho-wrap">
+                                <span style="margin-right:15%" ><b class="icon-h traveler-sex1"></b>男士</span>
+                                <span><b class="icon-h traveler-sex2"></b>女士</span>
                             </div>
                         </li>
                         <li>
@@ -463,9 +463,9 @@
     <div class="mask" id="overlay"></div>
     <div class="selbox-card" >
         <div id="opeater" style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span><span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span></div>
-        <ul class="selbox-ul" id="rank">
+        <ul class="selbox-ul" id="card-lists">
             <li>
-                <div class="sel-time" id="year">
+                <div class="sel-time">
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>
                     <span>台胞证</span>
@@ -521,8 +521,7 @@
                         _this.innerHTML='';
                         oCbox.style.bottom ='-260px';
                         oAir.style.display='none';
-                        var aSpan=$('.sel-time span');
-
+                        var aSpan=document.querySelector('#rank').querySelectorAll('.sel-time span');
                         for(var i=0;i<aSpan.length; i++)
                         {
                             if(aSpan[i].style.fontSize == '1.9rem')
@@ -560,7 +559,7 @@
                         _this.innerHTML='';
                         oCbox.style.bottom ='-260px';
                         oAir.style.display='none';
-                        var aSpan=$('.sel-time span');
+                        var aSpan=document.querySelector('#card-lists').querySelectorAll('.sel-time span');
 
                         for(var i=0;i<aSpan.length; i++)
                         {
