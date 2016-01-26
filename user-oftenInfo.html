@@ -142,6 +142,15 @@
                             <div>证件号</div>
                             <input type="text" placeholder="确保与证件保持一致">
                         </li>
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div class="birth-date">证件有效期</div><div class="birth-cont">1990-1-9</div>
+                        </li>
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>发证国家</div>
+                            <div class="country-btn" >中国</div>
+                        </li>
                     </ul>
                     <div class="addtra-title">其他信息</div>
                     <ul class="addtra-info">
@@ -153,8 +162,8 @@
                         <li>
                             <div>性别</div>
                             <div class="sex-cho-wrap">
-                                <span style="margin-right:15%" ><b class="icon-h traveler-sex1"></b>男士</span>
-                                <span><b class="icon-h traveler-sex2"></b>女士</span>
+                                <span style="margin-right:15%" ><b class="icon-h traveler-sex1" id="man"></b>男士</span>
+                                <span><b class="icon-h traveler-sex2" id="woman"></b>女士</span>
                             </div>
                         </li>
                         <li>
@@ -218,6 +227,15 @@
                             <div>证件号</div>
                             <input type="text" placeholder="确保与证件保持一致">
                         </li>
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div class="birth-date">证件有效期</div><div class="birth-cont">1990-1-9</div>
+                        </li>
+                        <li>
+                            <b class="icons open-pho"></b>
+                            <div>发证国家</div>
+                            <div class="country-btn" >中国</div>
+                        </li>
                     </ul>
                     <div class="addtra-title">其他信息</div>
                     <ul class="addtra-info">
@@ -229,13 +247,13 @@
                         <li>
                             <div>性别</div>
                             <div class="sex-cho-wrap">
-                                <span style="margin-right:15%" ><b class="icon-h traveler-sex1"></b>男士</span>
-                                <span><b class="icon-h traveler-sex2"></b>女士</span>
+                                <span style="margin-right:15%" ><b class="icon-h traveler-sex1" id="man2"></b>男士</span>
+                                <span><b class="icon-h traveler-sex2" id="woman2"></b>女士</span>
                             </div>
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">出生日期</div><div class="birth-cont">1990-1-9</div>
+                            <div class="birth-date">出生日期</div><div class="birth-cont">1990年1月10日</div>
                         </li>
                     </ul>
                     <div class="addtra-title">联系方式</div>
@@ -468,6 +486,7 @@
                 <div class="sel-time">
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>
+                    <span>护照</span>
                     <span>台胞证</span>
                     <span>回乡证</span>
                     <span>港澳通行证</span>
@@ -487,10 +506,15 @@
         <div class="header" id="vlm-login">
             <a href="javascript:;" class="icons header-back country-hidden"></a>
             <div class="cl_search">
-                <input type="text" placeholder="北京/beijing/bj/bjs/中国" autofocus="autofocus" />
+                <input type="text" placeholder="北京/beijing/bj/bjs/中国" autofocus="autofocus" id="country-input-zone"/>
                 <i></i>
             </div>
         </div>
+
+        <!--国籍弹窗开始-->
+        <ul class="country-list-searched"></ul>
+        <!--国籍弹窗结束-->
+
         <div id="content" class="snap-content" style="padding-bottom: 51px;padding-top: 45px;">
             <div class="country-wrap" id="country-wrap">
                 <!--<ul class="country-list">-->
@@ -522,12 +546,21 @@
                         oCbox.style.bottom ='-260px';
                         oAir.style.display='none';
                         var aSpan=document.querySelector('#rank').querySelectorAll('.sel-time span');
+                        var oContent='';
                         for(var i=0;i<aSpan.length; i++)
                         {
                             if(aSpan[i].style.fontSize == '1.9rem')
                             {
-                                _this.innerHTML+=aSpan[i].innerHTML;
+                                oContent+=aSpan[i].innerHTML;
                             }
+                        }
+                        if(! oContent )
+                        {
+                            _this.innerHTML='1990年1月10日';
+                        }
+                        else
+                        {
+                            _this.innerHTML=oContent;
                         }
 
                     });
@@ -560,15 +593,22 @@
                         oCbox.style.bottom ='-260px';
                         oAir.style.display='none';
                         var aSpan=document.querySelector('#card-lists').querySelectorAll('.sel-time span');
-
+                        var oContent='';
                         for(var i=0;i<aSpan.length; i++)
                         {
                             if(aSpan[i].style.fontSize == '1.9rem')
                             {
-                                _this.innerHTML+=aSpan[i].innerHTML;
+                                oContent+=aSpan[i].innerHTML;
                             }
                         }
-
+                        if(! oContent )
+                        {
+                            _this.innerHTML='护照';
+                        }
+                        else
+                        {
+                            _this.innerHTML=oContent;
+                        }
                     });
 
                     oCbox.querySelector('.cabin-cancel').addEventListener('click',function(){
