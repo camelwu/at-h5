@@ -14,11 +14,15 @@ function u_perInfo(){
     var phone = sessionStorage.phone;
     var password = sessionStorage.password;
     var memberid = sessionStorage.memberid;
+
+
     var Parameters= {
-        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
+        "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Password\":\"11111\",\"Mobile\":\"15210091056\",\"Code\":\"380998\"}",
         "ForeEndType": 3,
-        "Code": "0053"
-    };
+        "Code": "0051"
+    }
+
+
     c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
     var close_page = $("#close_page")[0];
@@ -256,8 +260,8 @@ function mycallback(ret){
     var sex = $("#sex")[0];
     var block = $("#block")[0];
     var userIcon = $("#userIcon")[0];
-    nickname.innerHTML = infoJson.Data[0].NickName;
-    name.value = infoJson.Data[0].NickName;
+    nickname.innerHTML = infoJson.data[0].NickName;
+    name.value = infoJson.data[0].NickName;
     if(sessionStorage.phone != ""){
         user_phone.value = sessionStorage.phone;
     }else{
@@ -267,7 +271,7 @@ function mycallback(ret){
     MemberId = sessionStorage.memberid;
     //MemberId = infoJson.Data[0].MemberId;
     //sessionStorage.MemberId = MemberId;
-    if(infoJson.Data[0].Salutation == "26"){
+    if(infoJson.data[0].Salutation == "26"){
         sex.className="info-sex-on";
         block.innerHTML = "女";
         userIcon.src = "images/ui/photo-man.png";
@@ -280,7 +284,7 @@ function mycallback(ret){
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success) {
+    if(myJson.success) {
         //window.location.href = "user-perInfo.html";
         document.getElementById("nickForm").submit();
     }else{
@@ -290,7 +294,7 @@ function mycallback_nick(ret){
 function mycallback_info(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         sessionStorage.realname = u_realname;
         sessionStorage.email = u_email;
         sessionStorage.phone = u_phone;
@@ -305,7 +309,7 @@ function mycallback_phoneVeri(ret){
     console.log(ret);
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         c.Utils.sendMobileCode(phone_ver.value);
     }else{
         alert(myJson.Message);

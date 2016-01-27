@@ -185,7 +185,7 @@ window.onload = function(){
     var findkey_btn = $("#findkey_btn")[0];
     function findkey(obj){
         obj.onclick = function(){
-            debugger;
+            //debugger;
             var input;
             var find_phone = $("#find_phone")[0];
             var find_email = $("#find_email")[0];
@@ -196,6 +196,7 @@ window.onload = function(){
             }
             for(var i= 0;i < input.length;i++){
                 if(input[i].value !="") {
+
                     console.log(input[i].getAttribute('data-type'));
                     if(input[i].getAttribute('data-type') !="code") {
                         if (!check(input[i].getAttribute('data-type'), input[i].value)) {
@@ -228,6 +229,58 @@ window.onload = function(){
         }
     }
     get_fver(find_verify);
+
+    //邮箱找回密码
+
+    var findkey_btn = $("#findkey_btn")[0];
+    function findkeybyemail(obj){
+        obj.onclick = function(){
+            //debugger;
+            var input;
+            var find_email = $("#find_email")[0];
+            input = email_find.getElementsByTagName('input')[0];
+            if(input.value !="") {
+                console.log(input.getAttribute('data-type'));
+                if(input.getAttribute('data-type') !="code") {
+                    if (!check(input.getAttribute('data-type'), input.value)) {
+                        alert("输入不正确");
+                        return;
+                    }
+                }
+            }
+            var Parameters= {
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\"1136328136@qq.com\",\"Mobile\":\"\",\"NewPassword\":\"22222\",\"Code\":\"284665\"}",
+                "ForeEndType": 3,
+                "Code": "0055"
+            }
+
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
+        }
+    }
+    findkeybyemail(findkey_btn);
+
+    //获取机器码后再发请求
+   function mycallback_forgotpass(ret){
+       var myJson=eval('('+ret+')');
+       if(myJson.success)
+       {
+           var Parameters={
+               "Parameters": "{\"SerialNumber\":\"B0A90DEE-3A74-463E-9A31-94BD8AA30036\",\"NewPassword\":\"11111\"}",
+               "ForeEndType": 3,
+               "Code": "0061"
+           }
+           c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
+       }
+       else
+       {
+           alert(myJson.Message);
+       }
+
+   }
+
+
+
+
 };
 function show_keypage(){
     var fkey_page = $("#fkey_page")[0];
@@ -241,7 +294,7 @@ function mycallback_register(ret){
     console.log(ret);
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         document.getElementById("register_page").style.display = "none";
         document.getElementById("login_page").style.display = "block";
     }else{
@@ -252,11 +305,12 @@ function mycallback_login(ret) {
     console.log(ret);
     var myJson = eval('(' + ret + ')');
     console.log(myJson);
-    if (myJson.Success) {
-        sessionStorage.email = myJson.Data[0].Email;
-        sessionStorage.phone = myJson.Data[0].Mobile;
-        sessionStorage.password = myJson.Data[0].Password;
-        sessionStorage.memberid = myJson.Data[0].MemberID;
+    if (myJson.success) {
+        sessionStorage.email = myJson.data[0].Email;
+        sessionStorage.phone = myJson.data[0].Mobile;
+        sessionStorage.password = myJson.data[0].Password;
+        sessionStorage.memberid = myJson.data[0].MemberID;
+        localStorage.setItem('login',1);
         window.location.href = "user-logined.html";
     } else {
         alert(myJson.Message);
@@ -269,7 +323,7 @@ function mycallback_verify(ret){
     console.log(ret);
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         c.Utils.sendMobileCode(verify.value);
     }else{
         alert(myJson.Message);
@@ -277,9 +331,9 @@ function mycallback_verify(ret){
 }
 function mycallback_findkey(ret){
     var myJson = eval('(' + ret + ')');
-    console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         window.location.href = "user-login.html";
+
     }else{
         alert(myJson.Message);
     }
@@ -290,7 +344,7 @@ function mycallback_findver(ret){
     var find_veri = $("#find_veri")[0];
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         c.Utils.sendMobileCode(find_veri.value);
     }else{
         alert(myJson.Message);

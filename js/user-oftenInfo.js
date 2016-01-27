@@ -262,7 +262,7 @@ function mycallback(ret){
 function mycallback_addtrav(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         document.getElementById("addForm").submit();
     }else{
         alert(myJson.Message);
@@ -271,7 +271,7 @@ function mycallback_addtrav(ret){
 function mycallback_deltrav(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         window.location.href = "user-oftenInfo.html";
     }else{
         alert(myJson.Message);
@@ -280,7 +280,7 @@ function mycallback_deltrav(ret){
 function  mycallback_uptrav(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         document.getElementById("updateForm").submit();
     }else{
         alert(myJson.Message);

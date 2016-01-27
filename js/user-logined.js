@@ -9,11 +9,12 @@ function init(){
     sessionStorage.news = "true";
     sessionStorage.promotion = "true";
     var c = new vcm();
-    var Parameters= {
-        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
+    var Parameters={
+        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\"492189\",\"Email\":\"\",\"Mobile\":\"15210091056\"}",
         "ForeEndType": 3,
         "Code": "0053"
     };
+    console.log("1111"+Parameters['Parameters'])
     c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
     function order(obj){
@@ -73,12 +74,12 @@ function ifOpen(){
 function mycallback(ret) {
     var myJson = eval('(' + ret + ')');
     console.log(myJson);
-    if (myJson.Success) {
+    if (myJson.success) {
         var user_name = $("#user_name")[0];
         var user_sex = $("#user_sex")[0];
         var userIcon = $("#userIcon")[0];
-        user_name.innerHTML = myJson.Data[0].NickName;
-        if (myJson.Data[0].Salutation == "26") {
+        user_name.innerHTML = myJson.data[0].NickName;
+        if (myJson.data[0].Salutation == "26") {
             user_sex.className = "icon open-sexm";
             userIcon.src = "images/ui/photo-man.png";
         } else {
