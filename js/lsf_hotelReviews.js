@@ -121,26 +121,26 @@
     //callback函数
     function mycallback(d){
         var json=eval('('+d+')');
-        //console.log(json);
-        var data=json.Data;
+        console.log(json);
+        var data=json.data;
         V(data);
     }
     //展示部分
     function V(data){
         if(!data)return;
-        var comments=data[0].ReviewCommentsList;
+        var comments=data[0].reviewCommentsList;
         console.log(data);
         var str1='<section>'+
-            '<p>设施<i>'+data[0].ReviewRatingsList[0].ScoringScaleID+'</i>分</p>'+
-            '<p class="lsf_gra_p2">客房<i>'+data[0].ReviewRatingsList[1].ScoringScaleID+'</i>分</p>'+
+            '<p>设施<i>'+data[0].reviewRatingsList[0].scoringScaleID+'</i>分</p>'+
+            '<p class="lsf_gra_p2">客房<i>'+data[0].reviewRatingsList[1].scoringScaleID+'</i>分</p>'+
             '</section>'+
             '<section>'+
-            '<p>地点<i>'+data[0].ReviewRatingsList[3].ScoringScaleID+'</i>分</p>'+
-            '<p class="lsf_gra_p2">服务<i>'+data[0].ReviewRatingsList[4].ScoringScaleID+'</i>分</p>'+
+            '<p>地点<i>'+data[0].reviewRatingsList[3].scoringScaleID+'</i>分</p>'+
+            '<p class="lsf_gra_p2">服务<i>'+data[0].reviewRatingsList[4].scoringScaleID+'</i>分</p>'+
             '</section>'+
             '<section class="last_sec">'+
-            '<p>清洁度<i>'+data[0].ReviewRatingsList[2].ScoringScaleID+'</i>分</p>'+
-            '<p class="lsf_gra_p2">物有值<i>'+data[0].ReviewRatingsList[5].ScoringScaleID+'</i>分</p>'+
+            '<p>清洁度<i>'+data[0].reviewRatingsList[2].scoringScaleID+'</i>分</p>'+
+            '<p class="lsf_gra_p2">物有值<i>'+data[0].reviewRatingsList[5].scoringScaleID+'</i>分</p>'+
             '</section';
         var str2='';
         //评论分页设置
@@ -153,7 +153,7 @@
             //console.log(dis);
             if(myEnd<comments.length){
                 for(var i=myStart;i<myEnd;i++){
-                    var star=parseFloat(comments[i].AvgReviewerRating);
+                    var star=parseFloat(comments[i].avgReviewerRating);
                     var str3='';
                     for(var j=0;j<5;j++){
                         if((j+1)<=star){
@@ -166,16 +166,16 @@
                     }
                     str2+='<div class="reBox">'+
                         '<div class="clearfix lsf_reTitle">'+
-                        '<h2 class="fl">'+comments[i].Title+'</h2>'+
+                        '<h2 class="fl">'+comments[i].title+'</h2>'+
                         '<ol class="clearfix fr lsf_reSta">'+str3+
                         '</ol>'+
                         '</div>'+
-                        '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].Comments)+'</span>'+
+                        '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].comments)+'</span>'+
                         '<i class="fr drop_down"></i>'+
                         '</p>'+
                         '<div class="lsf_reUser">'+
-                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl hr_city">'+comments[i].CountryName+'</i></span>'+
-                        '<span class="clearfix reu_span2"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
+                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].reviewerName+'</b><i class="fl hr_city">'+comments[i].countryName+'</i></span>'+
+                        '<span class="clearfix reu_span2"><em class="fr">'+comments[i].createdDate.substring(0,comments[i].createdDate.indexOf('T'))+'</em></span>'+
                         '</div>'+
                         '</div>';
                 }
@@ -196,7 +196,7 @@
                 })
             }else{
                 for(var i=myStart;i<comments.length;i++){
-                    var star=parseFloat(comments[i].AvgReviewerRating);
+                    var star=parseFloat(comments[i].avgReviewerRating);
                     var str3='';
                     for(var j=0;j<5;j++){
                         if((j+1)<=star){
@@ -209,16 +209,16 @@
                     }
                     str2+='<div class="reBox">'+
                         '<div class="clearfix lsf_reTitle">'+
-                        '<h2 class="fl">'+comments[i].Title+'</h2>'+
+                        '<h2 class="fl">'+comments[i].title+'</h2>'+
                         '<ol class="clearfix fr lsf_reSta">'+str3+
                         '</ol>'+
                         '</div>'+
-                        '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].Comments)+'</span>'+
+                        '<p class="clearfix comments"><span class="com_cont">'+maxWord(comments[i].comments)+'</span>'+
                         '<i class="fr drop_down"></i>'+
                         '</p>'+
                         '<div class="lsf_reUser">'+
-                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].ReviewerName+'</b><i class="fl">'+comments[i].CountryName+'</i></span>'+
-                        '<span class="clearfix reu_span2"><em class="fr">'+comments[i].CreatedDate.substring(0,comments[i].CreatedDate.indexOf('T'))+'</em></span>'+
+                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].reviewerName+'</b><i class="fl">'+comments[i].countryName+'</i></span>'+
+                        '<span class="clearfix reu_span2"><em class="fr">'+comments[i].createdDate.substring(0,comments[i].createdDate.indexOf('T'))+'</em></span>'+
                         '</div>'+
                         '</div>';
                 }
@@ -237,7 +237,7 @@
             //评论数小于110字节的，不显示下拉按钮
             for(var i=0;i<com_cont.length;i++){
                 if(count(com_cont[i].innerHTML).n<=110){
-                    coms[i].innerHTML='<span class="com_cont">'+comments[i].Comments+'</span>';
+                    coms[i].innerHTML='<span class="com_cont">'+comments[i].comments+'</span>';
                 }
             }
         }
@@ -255,7 +255,7 @@
                         if(oSrc.className.search(reg)!=-1){
                             oSrc.style.display='none';
                             var oSpan=oSrc.parentNode.firstElementChild||oSrc.parentNode.firstChild;
-                            oSpan.innerHTML=comments[index].Comments;
+                            oSpan.innerHTML=comments[index].comments;
                             //alert(1);
                             //oP.innerHTML='<span>'+comments[index].Comments+'</span>';
                         }
