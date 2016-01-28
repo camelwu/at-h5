@@ -367,50 +367,51 @@ function styleChange(id,mytext){
     function V(data){
         if(!data)return;
         //console.log(data);
-        var data_address=data.LocationList;
-        var data=data.HotelList;
+        var data_address=data.locationList;
+        var data=data.hotelList;
         //console.log(data_address);
+        console.log(data);
         var timer=null;
         var oUl=lsf_myweb.getbyid('lsf_list');
 
         list_oUl.innerHTML='';
         for(var i=0;i<data.length;i++){
-            var  str1=data[i].StarRating.substring(0,1);
+            var  str1=data[i].starRating.substring(0,1);
             var str2='';
             var str3='';
             var str4='';
-            if(data[i].IsFreeWifi){
+            if(data[i].isFreeWifi){
                 str2+='<b class="hl-icon1"></b>';
             }
-            if(data[i].IsFreeTransfer){
+            if(data[i].isFreeTransfer){
                 str2+='<b class="hl-icon2"></b>';
             }
-            if(data[i].IsCashReward){
+            if(data[i].isCashReward){
                 str3='<div class="h-div1" style="background-color: #ffb412">现金奖励</div>';
             }
-            if(data[i].IsFreeCityTour){
+            if(data[i].isFreeCityTour){
                 str4='<div class="h-div1">免费景点</div>';
             }
 
             //有地区地址就给地址加括号，没有就不加
-            if(data[i].Location){
-                data[i].Location='('+data[i].Location+')';
+            if(data[i].location){
+                data[i].location='('+data[i].location+')';
             }
 
             var str='<li class="ho_list">'+
                 '<div class="ho_pic">'+
-                '<img  src="images/cars.png" data-src="'+data[i].FrontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
+                '<img  src="images/cars.png" data-src="'+data[i].frontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
                 '</div>'+
                 '<div class="ho_infor">'+
                 '<p class="hname"  style="font-size:1.6rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
-                data[i].HotelNameLocale+'('+data[i].HotelName+')'+
+                data[i].hotelNameLocale+'('+data[i].hotelName+')'+
             '</p>'+
                 '<div class="h-score">'+
-                '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+data[i].HotelReviewScore+'</span>'+
-                '<span style="color:#999999;font-size:1rem;">分/'+data[i].HotelReviewCount+'人点评</span>'+
+                '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+data[i].hotelReviewScore+'</span>'+
+                '<span style="color:#999999;font-size:1rem;">分/'+data[i].hotelReviewCount+'人点评</span>'+
                 '<p class="price">'+
                 '<span style="font-size:0.8rem;color:#fe4716;">￥</span>'+
-                '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+parseFloat(data[i].AvgPrice).toFixed(2)+'</span>'+
+                '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+parseFloat(data[i].avgPrice).toFixed(2)+'</span>'+
                 '<span style="font-size:1.2rem;color:#999999;">起</span>'+
                 '</p>'+
                 '</div>'+
@@ -420,7 +421,7 @@ function styleChange(id,mytext){
                 str3+
                 str4+
                 '</div>'+
-                '<p class="h-address">'+data[i].City+data[i].Location+'</p>'+
+                '<p class="h-address">'+data[i].city+data[i].location+'</p>'+
                 '</div>'+
                 '</li>';
             list_oUl.innerHTML+=str;
@@ -537,12 +538,12 @@ function styleChange(id,mytext){
     function mycallback(d){
         //console.log(d);
         var json=eval('('+d+')');
-        //console.log(json);
+        console.log(json);
         //console.log(1);
         //alert(arr.Success);
-        if(json.Success){
+        if(json.success){
             //console.log(json.Data);
-            var data=json.Data[0];
+            var data=json.data[0];
             console.log(data);
             console.log(2);
             //console.log(data.HotelList);
@@ -550,7 +551,7 @@ function styleChange(id,mytext){
             //绑定跳转事件
             getDetail(data);
         }else{
-            alert(json.Message);
+            alert(json.message);
         }
 
     }
@@ -682,13 +683,14 @@ function styleChange(id,mytext){
     //获取酒店详情
     function getDetail(data){
         console.log(url_json);
+        console.log(data);
         console.log(4);
-        data=data.HotelList;
+        data=data.hotelList;
         var hotelRefers = document.getElementsByClassName('ho_list');
         var toDetail= function(that){
             var paraObj= new Object();
-            paraObj.HotelID=data[that.index].HotelCode;
-            paraObj.HotelCode=data[that.index].HotelCode;
+            paraObj.HotelID=data[that.index].hotelCode;
+            paraObj.HotelCode=data[that.index].hotelCode;
 
             // paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
             paraObj.InstantConfirmation=data[that.index].InstantConfirmation!=undefined?data[that.index].InstantConfirmation:false;
