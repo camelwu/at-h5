@@ -55,7 +55,7 @@
 				$("#status").fadeOut();
 				$("#preloader").delay(400).fadeOut("medium");
 			}
-		},Utils = {
+		},_Utils = {
 			//转化数字为现金格式
 			format_number : function(number) {
 				if ( typeof number != 'number') {
@@ -629,8 +629,8 @@
 			api : _api,
 			loading : _loading,
 			loadend : _loadend,
-			_init : _init,
-			Utils: Utils
+			init : _init,
+			Utils: _Utils
 		};
 	};
 	if ( typeof module !== "undefined" && module.exports) {
