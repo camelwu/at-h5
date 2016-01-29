@@ -65,6 +65,19 @@ var lsf_myweb={
                 }
             }
         }
+    },
+    "payment":function(type){
+        switch (type){
+            case '1':
+                return '预付';
+                break;
+            case '2':
+                return '到付';
+                break;
+            default:
+                return '请选择支付方式';
+                break;
+        };
     }
 };
 //输入框默认字体设置
@@ -119,31 +132,31 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
     var RoomCode;
     var fake_data={};
     //默认房间数量
-    fake_data.NumOfRoom=2;
+    fake_data.NumOfRoom=1;
     var user_order_storage2=localStorage.getItem('hotelDetailData');
-    //console.log(JSON.parse(user_order_storage2));
+    console.log(JSON.parse(user_order_storage2));
     //console.log(JSON.parse(user_order_storage2).data);
     //console.log(JSON.parse(user_order_storage2).data.Data);
     //console.log(JSON.parse(user_order_storage2).data.Data[0].HotelGenInfo);
-    fake_data.HotelGenInfo=JSON.parse(user_order_storage2).data.Data[0].HotelGenInfo;
-    fake_data.dateInfo=JSON.parse(user_order_storage2).data.Data[0].dateInfo;
+    fake_data.HotelGenInfo=JSON.parse(user_order_storage2).data.data[0].hotelGenInfo;
+    fake_data.dateInfo=JSON.parse(user_order_storage2).data.data[0].dateInfo;
     //console.log(JSON.parse(user_order_storage2).data.Data[0].HotelRoomsList);
-    var HotelRoomsList=JSON.parse(user_order_storage2).data.Data[0].HotelRoomsList;
+    var HotelRoomsList=JSON.parse(user_order_storage2).data.data[0].hotelRoomsList;
     for(var i=0;i<HotelRoomsList.length;i++){
-        for(var j=0;j<HotelRoomsList[i].RoomList.length;j++){
-            if(HotelRoomsList[i].RoomList[j].RoomCode==RoomCode){
+        for(var j=0;j<HotelRoomsList[i].roomList.length;j++){
+            if(HotelRoomsList[i].roomList[j].roomCode==RoomCode){
                 //console.log(HotelRoomsList[i].RoomList[j]);
-                fake_data.MinAvgPrice=HotelRoomsList[i].MinAvgPrice;
-                fake_data.RoomTypeCode=HotelRoomsList[i].RoomTypeCode;
-                fake_data.RoomTypeName=HotelRoomsList[i].RoomTypeName;
-                for(var name in HotelRoomsList[i].RoomList[j]){
-                    fake_data[name]=HotelRoomsList[i].RoomList[j][name];
+                fake_data.MinAvgPrice=HotelRoomsList[i].minAvgPrice;
+                fake_data.RoomTypeCode=HotelRoomsList[i].roomTypeCode;
+                fake_data.RoomTypeName=HotelRoomsList[i].roomTypeName;
+                for(var name in HotelRoomsList[i].roomList[j]){
+                    fake_data[name]=HotelRoomsList[i].roomList[j][name];
                 }
             }
         }
     }
-    //console.log(fake_data);
-
+    console.log(fake_data);
+    console.log(1);
     /*var user_order_storage={
         "CultureName":"",
         "PartnerCode":"",
@@ -220,7 +233,7 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
-    uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.HotelName+'</h3>'+
+    uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.hotelName+'</h3>'+
         '<p class="uo_c2_infor">'+fake_data.dateInfo.CheckInDate.split('-')[0]+'年'+fake_data.dateInfo.CheckInDate.split('-')[1]+'月'+fake_data.dateInfo.CheckInDate.split('-')[2]+'日'+'-'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+' -'+fake_data.dateInfo.totalNight+'晚（目的地时间为准）</p>'+
         '<p class="uo_house">房型：'+fake_data.RoomTypeName+'</p>';
 
@@ -252,14 +265,14 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         var oId6=document.getElementById(id6);
         var price1=0;
         oId1.innerHTML=json.NumOfRoom+'间×'+json.dateInfo.totalNight+'晚';
-        price1=parseFloat(json.NumOfRoom)*parseFloat(json.TotalPrice);
-        oId3.innerHTML='SGD'+json.TaxCharges;
-        oId4.innerHTML='付款方式：'+json.PaymentModeID;
-        oId2.innerHTML='SGD'+(price1-json.TaxCharges).toFixed(2);
+        price1=parseFloat(json.NumOfRoom)*parseFloat(json.totalPrice);
+        oId3.innerHTML='SGD'+json.taxCharges;
+        oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
+        oId2.innerHTML='SGD'+(price1-json.taxCharges).toFixed(2);
         oId5.innerHTML=price1;
         fake_data.calcuTotalPrice=price1;
-        oId6.innerHTML=parseFloat(json.TotalPriceCNY)*parseFloat(json.NumOfRoom);
-        fake_data.calcuTotalPriceCNY=parseFloat(json.TotalPriceCNY)*parseFloat(json.NumOfRoom);
+        oId6.innerHTML=parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
+        fake_data.calcuTotalPriceCNY=parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
     }
     uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2',fake_data);
 

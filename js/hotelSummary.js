@@ -1,7 +1,7 @@
 window.onload = function () {
 
     var hotelMessage = window.localStorage.getItem('hotelDetailData');
-
+    //console.log(JSON.parse(hotelMessage));
     if (!hotelMessage) {return false;}
      else{
         document.body.removeChild(document.getElementById('preloader'));
@@ -13,8 +13,9 @@ window.onload = function () {
             var scenicSpot = document.querySelectorAll('.s-ul1')[0];
             var hotelFeature = document.querySelectorAll('.s-ul2')[0];
 
-            hotelMessage = JSON.parse(hotelMessage).data.Data[0].HotelGenInfo;
-            hotelDesc.innerText = hotelMessage.HotelDesc;
+            hotelMessage = JSON.parse(hotelMessage).data.data[0].hotelGenInfo;
+            console.log(hotelMessage);
+            hotelDesc.innerText = hotelMessage.hotelDesc;
             scenicSpot.innerHTML = getAllSpot(hotelMessage);
             hotelFeature.innerHTML = getFeature(hotelMessage);
 

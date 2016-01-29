@@ -1,8 +1,3 @@
-
-
-
-
-
 var lsf_myweb={
     "getbyid":function(id){
         return document.getElementById(id);
@@ -59,9 +54,17 @@ var lsf_myweb={
         }else{
             obj.detachEvent('on'+sEv,fn);
         }
+    },
+    "setSession":function(name,json){
+        window.sessionStorage.setItem(name,JSON.stringify(json));
+    },
+    "getSession":function(name){
+        return JSON.parse(window.sessionStorage.getItem(name));
     }
 };
-
+//storage存储
+var hlHis=lsf_myweb.getSession('asiaHlHistory')||{};
+lsf_myweb.setSession('asiaHlHistory',hlHis);
 //把星级英文数字换成汉字
 function num2chin(num){
     switch(num){
@@ -89,7 +92,6 @@ function num2chin(num){
     };
 }
 
-
 //把url字符串变成json
 function url2json(url){
     if(!url)return;
@@ -102,7 +104,6 @@ function url2json(url){
     }
     return json;
 }
-
 
 function styleChange(id,mytext){
     var oInp=document.getElementById(id);
@@ -124,8 +125,6 @@ function styleChange(id,mytext){
 
 (function(){
     //贾燕云的js
-
-
     function h_l_s(){
         var rli = [],
             sli1 = [],
@@ -294,9 +293,6 @@ function styleChange(id,mytext){
     h_l_s();
     //贾燕云的js结束
 
-
-
-
     //返回按钮事件
     var hl_back=document.getElementById('hl_back');
     lsf_myweb.bind(hl_back,'click',function(){
@@ -320,15 +316,14 @@ function styleChange(id,mytext){
     //输入框样式改变
     styleChange('sousou','酒店名/位置')
 
-
     var list_oUl=lsf_myweb.getbyid('lsf_list');
     var pWidth=list_oUl.offsetWidth-140;
     var str=window.location.href;
     var url_json=url2json(str);
     var oBody=document.getElementsByTagName('body')[0];
     var oBtn=document.getElementById('s_but');
+    var addressBok=true;
     //console.log(url_json);
-
 
     //交互部分
     function M(json){
@@ -359,9 +354,6 @@ function styleChange(id,mytext){
         //alert(data.Parameters);
         return  c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
     }
-
-
-
 
     //数据展示部分
     function V(data){
@@ -505,14 +497,30 @@ function styleChange(id,mytext){
                 })(i);
             }
         }
-        hlAddress();
-        //懒加�?
+        if(addressBok){
+            hlAddress();
+        }
+        addressBok=false;
+        //懒加载
         function lazyLoad2(){
             lazyLoad.apply(this,arguments);
         }
         lazyLoad2.prototype=new lazyLoad();
+        /*lazyLoad2.prototype.shouldShow=function(i){
+            var img=this.imgs[i],
+                scrollTop=document.documentElement.scrollTop||window.pageYOffset||document.body.scrollTop,
+                clientH=document.documentElement.clientHeight,
+                imgTop=this.pageY(img),
+                imgBottom=this.pageY(img)+img.offsetHeight;
+            if((imgTop-scrollTop)>0&&(imgTop-scrollTop)<clientH||(imgBottom-scrollTop)>0&&(imgBottom-scrollTop)<clientH){
+                return true;
+            }else{
+                return false;
+            }
+        };*/
         lazyLoad2.prototype.update=function(){
             //如图片都加载完成，返�?
+            //alert(this.imgs.length);
             if(!this.imgs.length){return;}
             var i = this.imgs.length;
             for(--i;i>=0;i--){
@@ -520,6 +528,7 @@ function styleChange(id,mytext){
                     //加载图片
                     var osrc=this.imgs[i].src;
                     this.imgs[i].src = this.imgs[i].getAttribute("data-src");
+                    console.log(2);
                     this.imgs[i].onerror=function(){
                         this.src=osrc;
                     };
@@ -527,11 +536,81 @@ function styleChange(id,mytext){
                     this.imgs.splice(i,1);
                 }
             }
-        }
+        };
+        lazyLoad2.prototype.bindEvent=function(){
+            var that = this;
+            //节流处理，绑定Window 滑动和屏幕大小改变，也可替换成其它元素
+            this.on(window,'scroll',function(){
+                throttle(that.update,{context : that});
+            });
+            this.on(document,'touchmove',function(){
+                throttle(that.update,{context : that});
+            });
+            this.on(window,'resize',function(){
+                throttle(that.update,{context : that});
+            });
+
+        };
         var c=new lazyLoad2('lsf_list');
         //绑定图片src
         document.getElementsByClassName('hotelcontent')[0].getElementsByClassName('ho_img');
     }
+    //历史记忆功能
+    //推荐排序实现记忆功能
+    function sortHistory(){
+        var hlSortLi=lsf_myweb.getbyid('rank').children;
+        var myAsiaHlHistory=JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+        console.log(myAsiaHlHistory);
+        if(!myAsiaHlHistory.hlSort)return;
+        for(var i=0;i<hlSortLi.length;i++){
+            if(hlSortLi[i].innerHTML.indexOf(myAsiaHlHistory.hlSort)!=-1){
+                if(myAsiaHlHistory.hlSort=='价格升序'){
+                    url_json.rank='PriceASC';
+                }else if(myAsiaHlHistory.hlSort=='价格降序'){
+                    url_json.rank='PriceDESC';
+                }else if(myAsiaHlHistory.hlSort=='好评优先'){
+                    url_json.rank='ReviewscoreDESC';
+                }
+                for(var j=0;j<hlSortLi.length;j++){
+                    hlSortLi[j].style.color='#b3b2b4';
+                    var oB=hlSortLi[j].getElementsByTagName('b');
+                    if(oB.length){
+                        hlSortLi[j].removeChild(oB[0]);
+                    }
+                }
+                hlSortLi[i].style.color='#fc9464';
+                var b = document.createElement("b");
+                b.className = "hl-icon5";
+                hlSortLi[i].appendChild(b);
+            }
+        }
+    }
+    sortHistory();
+    //筛选实现记忆功能
+    function filterHistory(){
+        var myAsiaHlHistory=JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+        console.log(myAsiaHlHistory.hlFilter);
+        if(!myAsiaHlHistory.hlFilter)return;
+        var arrHistory=myAsiaHlHistory.hlFilter.split('$');
+        //alert(arrHistory);
+        var hLevel=document.getElementById('h-level');
+        var hType=document.getElementById('h-type');
+        var hLevelLi=hLevel.children;
+        var hTypeLi=hType.children;
+        function filterAli(obj){
+            for(var i=0;i<obj.length;i++){
+                if(myAsiaHlHistory.hlFilter.indexOf(obj[i].innerHTML)!=-1){
+                    for(var j=0;j<obj.length;j++){
+                        obj[j].className='s-li';
+                    }
+                    obj[i].className='s-li1';
+                }
+            }
+        }
+        filterAli(hLevelLi);
+        filterAli(hTypeLi);
+    }
+    filterHistory();
 
 
     M(url_json);
@@ -555,7 +634,7 @@ function styleChange(id,mytext){
         }
 
     }
-
+    //推荐排序里面的点击事件（交互）
     lsf_myweb.bind(oBody,'click',function(ev){
         var oEvent=ev||event;
         var oSrc=oEvent.srcElement||oEvent.target;
@@ -563,14 +642,19 @@ function styleChange(id,mytext){
             var oSrc_str=oSrc.innerHTML;
             if(oSrc_str.indexOf('价格升序')!=-1){
                 url_json.rank='PriceASC';
+                hlHis.hlSort='价格升序';
             }else if(oSrc_str.indexOf('价格降序')!=-1){
                 url_json.rank='PriceDESC';
+                hlHis.hlSort='价格降序';
             }else if(oSrc_str.indexOf('好评优先')!=-1){
                 url_json.rank='ReviewscoreDESC';
+                hlHis.hlSort='好评优先';
             }
+            lsf_myweb.setSession('asiaHlHistory',hlHis);
             M(url_json);
         }
     });
+    //筛选里面确定按钮的点击事件（交互）
     lsf_myweb.bind(oBody,'click',function(ev){
         var oEvent=ev||event;
         var oFilter=document.getElementById('screen');
@@ -584,66 +668,87 @@ function styleChange(id,mytext){
             var hl_star_str='';
             var hl_type_str='';
             var hl_star_type=lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'),'s-li1');
+            hlHis.hlFilter='';
             for(var i=0;i<hl_star_type.length;i++){
                 switch(hl_star_type[i].innerHTML){
                     case '二星级以下':
                         hl_star_str+='2$';
+                        hlHis.hlFilter+='二星级以下$';
                         break;
                     case '三星':
                         hl_star_str+='3$';
+                        hlHis.hlFilter+='三星$';
                         break;
                     case '四星':
                         hl_star_str+='4$';
+                        hlHis.hlFilter+='四星$';
                         break;
                     case '五星':
                         hl_star_str+='5$';
+                        hlHis.hlFilter+='五星$';
                         break;
                     case '酒店':
                         hl_type_str+='1$';
+                        hlHis.hlFilter+='酒店$';
                         break;
                     case '汽车旅馆':
                         hl_type_str+='2$';
+                        hlHis.hlFilter+='汽车旅馆$';
                         break;
                     case '酒店式公寓':
                         hl_type_str+='3$';
+                        hlHis.hlFilter+='酒店式公寓$';
                         break;
                     case '家庭旅馆':
                         hl_type_str+='4$';
+                        hlHis.hlFilter+='家庭旅馆$';
                         break;
                     case '背包客栈':
                         hl_type_str+='5$';
+                        hlHis.hlFilter+='背包客栈$';
                         break;
                     case '宾馆/招待所':
                         hl_type_str+='6$';
+                        hlHis.hlFilter+='宾馆/招待所$';
                         break;
                     case '精品酒店':
                         hl_type_str+='7$';
+                        hlHis.hlFilter+='精品酒店$';
                         break;
                     case '度假类酒店':
                         hl_type_str+='8$';
+                        hlHis.hlFilter+='度假类酒店$';
                         break;
                     case '游轮度假酒店':
                         hl_type_str+='9$';
+                        hlHis.hlFilter+='游轮度假酒店$';
                         break;
                     case '别墅型酒店':
                         hl_type_str+='10$';
+                        hlHis.hlFilter+='别墅型酒店$';
                         break;
                     case '乡村平房酒店':
                         hl_type_str+='11$';
+                        hlHis.hlFilter+='乡村平房酒店$';
                         break;
                     case '家庭寄宿':
                         hl_type_str+='12$';
+                        hlHis.hlFilter+='家庭寄宿$';
                         break;
                     case '农舍式房子':
                         hl_type_str+='13$';
+                        hlHis.hlFilter+='农舍式房子$';
                         break;
                     case '豪华露营地':
                         hl_type_str+='14$';
+                        hlHis.hlFilter+='豪华露营地$';
                         break;
                     case '标准露营地':
                         hl_type_str+='15$';
+                        hlHis.hlFilter+='标准露营地$';
                         break;
                 };
+                lsf_myweb.setSession('asiaHlHistory',hlHis);
             }
             hl_star_str=hl_star_str.substring(0,(hl_star_str.length-1));
             hl_type_str=hl_type_str.substring(0,(hl_type_str.length-1));
@@ -679,7 +784,7 @@ function styleChange(id,mytext){
             url_json.LocationList=locationList;
             M(url_json);
         }
-    })
+    });
     //获取酒店详情
     function getDetail(data){
         console.log(url_json);
@@ -721,43 +826,4 @@ function styleChange(id,mytext){
         }
     }
 
-
-
-//懒加�?
-    /*(function(){
-     window.onscroll=window.onresize=function(){
-     var oUl=document.getElementById('lsf_list');
-     var aImg=document.getElementsByClassName('ho_img');
-     var clienH=document.documentElement.scrollTop||document.body.scrollTop+document.documentElement.clientHeight;
-     //console.log(document.documentElement.clientHeight);
-     //console.log(document.documentElement.scrollTop||document.body.scrollTop)
-     //console.log(clienH);
-     for(var i=0;i<aImg.length;i++){
-     var str=aImg[i].src.substring(aImg[i].src.lastIndexOf('.')+1);
-     //滚动的时候如果图片的后缀名是png说明是这张图片是预定好图�?
-     if(aImg[i].offsetTop<clienH&&str=='png'){
-     aImg[i].src=aImg[i].dataset.src;
-     }
-     //这样能够判断错误也能够换成想要的图片，但是会�?直报错，�?404页面错误
-     aImg[i].onerror=function(){
-     this.src='images/cars.png';
-     }
-     }
-     };
-     })();*/
-//懒加�?
-    /*(function(){
-     var timer=null;
-     var oUl=lsf_myweb.getbyid('lsf_list');
-     function lazyLoad2(){
-     lazyLoad.apply(this,arguments);
-     }
-     lazyLoad2.prototype=new lazyLoad();
-     timer=setInterval(function(){
-     if(oUl.getElementsByTagName('img').length){
-     var c=new lazyLoad2('lsf_list');
-     clearInterval(timer);
-     }
-     },30);
-     })();*/
 })();
