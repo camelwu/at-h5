@@ -322,6 +322,7 @@ function styleChange(id,mytext){
     var url_json=url2json(str);
     var oBody=document.getElementsByTagName('body')[0];
     var oBtn=document.getElementById('s_but');
+    var addressBok=true;
     //console.log(url_json);
 
     //交互部分
@@ -496,7 +497,10 @@ function styleChange(id,mytext){
                 })(i);
             }
         }
-        hlAddress();
+        if(addressBok){
+            hlAddress();
+        }
+        addressBok=false;
         //懒加载
         function lazyLoad2(){
             lazyLoad.apply(this,arguments);
@@ -557,6 +561,7 @@ function styleChange(id,mytext){
         var hlSortLi=lsf_myweb.getbyid('rank').children;
         var myAsiaHlHistory=JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
         console.log(myAsiaHlHistory);
+        if(!myAsiaHlHistory.hlSort)return;
         for(var i=0;i<hlSortLi.length;i++){
             if(hlSortLi[i].innerHTML.indexOf(myAsiaHlHistory.hlSort)!=-1){
                 if(myAsiaHlHistory.hlSort=='价格升序'){
@@ -584,6 +589,8 @@ function styleChange(id,mytext){
     //筛选实现记忆功能
     function filterHistory(){
         var myAsiaHlHistory=JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+        console.log(myAsiaHlHistory.hlFilter);
+        if(!myAsiaHlHistory.hlFilter)return;
         var arrHistory=myAsiaHlHistory.hlFilter.split('$');
         //alert(arrHistory);
         var hLevel=document.getElementById('h-level');
@@ -777,7 +784,7 @@ function styleChange(id,mytext){
             url_json.LocationList=locationList;
             M(url_json);
         }
-    })
+    });
     //获取酒店详情
     function getDetail(data){
         console.log(url_json);
