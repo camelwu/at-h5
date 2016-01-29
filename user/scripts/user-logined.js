@@ -19,7 +19,7 @@ function init(){
     var li = document.getElementById("user_order").getElementsByTagName("li");
     function order(obj){
         obj.onclick = function(){
-            window.location.href = "user-allorder.html";
+            window.location.href = "../user-allorder.html";
         }
     }
     order(li[0]);

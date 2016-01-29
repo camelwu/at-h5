@@ -1,7 +1,7 @@
 // JavaScript Document
 
 require.config({
-    baseUrl: 'js/lib',
+    baseUrl: '../js/lib',
     paths: {
         // the left side is the module ID,
         // the right side is the path to
@@ -54,7 +54,7 @@ require.config({
 	//urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','vcm','vlm'], function($,vcm,vlm) {
+require(['jquery','vlm'], function($,vlm) {
 	//console.log("dataReady="+vlm);
 	var viewer = new vlm();
 	viewer._init();
@@ -124,11 +124,14 @@ require(['jquery','vcm','vlm'], function($,vcm,vlm) {
         }
     };
 
+    //初始插入年
+    crateYear(setYears());
     $(".sel-time").bind("scrollstart",function(e){
-    	
+
     });
 
     $(".sel-time").bind("scrollstop",function(e){
+
 		var that = this,obj=$(this),
 		posY = this.scrollTop,
 		p = parseInt(posY/39),
@@ -136,10 +139,130 @@ require(['jquery','vcm','vlm'], function($,vcm,vlm) {
 		if(posY/39 - p >0.5){
 			p++;
 		}
-		console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
+		//console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
 		$(this).animate({scrollTop:h} ,300);
-		$(this).children("span").removeAttr("style");
-		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"});
-	});
+		$(this).children("span").removeAttr("style").removeClass('selected');
+		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"}).addClass('selected');
+
+        var daylen = document.querySelector('#day');
+        //年滑动时
+        if(obj.parent().index() == 0) {
+            var oNewYear= parseInt(obj.children('span').eq((p+2)).html());
+            var month = parseInt($('#mon').children(".selected").html());
+            showday(month,p);
+        }
+
+        //月滑动时
+        if(obj.parent().index() == 1) {
+            var month = parseInt(obj.children("span").eq(p+2).html());
+            showday(month,p);
+        }
+  });
+
+
 });
+
+//根据月份判断天数
+    function showday(mon, p){
+        switch (mon) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            createDay(31);
+            tab_correct()
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            createDay(30);
+            tab_correct()
+            break;
+        case 2:
+            oNewYear = parseInt($('#year').children().eq((p + 2)).html());
+
+            if (getYearmsg(oNewYear)) {
+                createDay(29);
+                tab_correct()
+            } else {
+                createDay(28);
+                tab_correct()
+            }
+            break;
+        default:;
+    }
+}
+
+//初始插入年份
+    function setYears(){
+        var Y= [],years= new Date().getFullYear();
+        for(var i=1900;i<=years;i++){
+            Y.push(i);
+        }
+        return Y.length;
+
+    }
+
+    function crateYear(year){
+        var oLi=document.querySelector('#mt-year'),arr2=[];
+        for(var i=(year+1899);i>1900; i--)
+        {
+            arr2.push('<span>'+i+'年</span>');
+        }
+        var str=arr2.join(' ');
+        oLi.innerHTML='<div class="sel-time" id="year"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box y"></div>';
+
+   }
+
+//判断闰年
+    function getYearmsg(year)
+    {
+        if((year%4==0 && year%100!=0) || year%400==0)
+        {
+            //是闰年;
+            return true;
+        }
+        else {
+            //不是闰年;
+            return false;
+        }
+    }
+
+
+//插入天数
+    function createDay(day){
+        var oLi=document.querySelector('#mt-day'),arr3=[];
+        for(var i=1;i<day+1; i++)
+        {
+            arr3.push('<span>'+i+'号</span>');
+        }
+        var str=arr3.join(' ');
+        oLi.innerHTML='<div class="sel-time" id="day"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box d"></div>';
+
+    }
+
+
+//绑定偏移矫正函数
+function tab_correct(){
+    $(".sel-time").bind("scrollstop",function(e) {
+
+        var that = this, obj = $(this),
+            posY = this.scrollTop,
+            p = parseInt(posY / 39),
+            h = posY / 39 - p <= 0.5 ? p * 39 : (p + 1) * 39;
+        if (posY / 39 - p > 0.5) {
+            p++;
+        }
+        //console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
+        $(this).animate({scrollTop: h}, 300);
+        $(this).children("span").removeAttr("style").removeClass('selected');
+        $(this).children("span").eq((p + 2)).css({"color": "#484848", "font-size": "1.9rem"}).addClass('selected');
+    });
+}
+
+
 //define

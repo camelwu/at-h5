@@ -1321,6 +1321,16 @@
     transition: 0.3s all ease;
 }
 
+.selbox-footer-exp{
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    bottom: -260px;
+    background-color: white;
+    transition: 0.3s all ease;
+}
+
+
 .selbox-opeater {
     height: 40px;
     line-height: 40px;
@@ -1483,6 +1493,10 @@ ul, ol {
     flex: 1;
 }
 
+.birth-cont{
+    font-size: 1.5rem;
+    color: #666;
+}
 /*国籍模糊搜索*/
 .country-list-searched {
     width: 100%;

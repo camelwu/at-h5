@@ -197,9 +197,9 @@ window.onload = function(){
 //  页面初始获取常旅客
 function mycallback(ret){
     travJson = eval('('+ret+')');
-    console.log(travJson);
+    //console.log(travJson);
     var blank = $("#blank")[0];
-    console.log(travJson.data)
+    //console.log(travJson.data)
     if(travJson.success){
         if(travJson.data.length == 0){
             blank.style.display = "block";
@@ -272,7 +272,7 @@ function mycallback_deltrav(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success){
-        window.location.href = "user-oftenInfo.html";
+        window.location.href = "../user-oftenInfo.html";
     }else{
         alert(myJson.Message);
     }
