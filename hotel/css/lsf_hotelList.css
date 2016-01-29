@@ -1,0 +1,58 @@
+.ho_list{
+    height:9rem;
+    position:relative;
+    border-bottom:1px solid #dfdfdd;
+}
+.ho_pic{
+    height:100%;
+    width:8.2rem;
+}
+.ho_pic img{
+    width:100%;height:100%;
+}
+.ho_infor{
+    position:absolute;
+    left:9.2rem;right:0;top:0;bottom:0;
+    font-size:1rem;color:#999999;
+    padding-right:1.5rem;
+}
+.ho_infor h2{
+    font-size:1.2rem;color:#484848;
+    margin-top:0.8rem;font-weight:normal;
+}
+.ho_grade{
+    margin-top:0.4rem;width:100%;
+}
+.ho_grade em{
+    font-size:1.5rem;
+}
+.ho_grade strong{
+    font-size:2rem;
+}
+.ho_price b,.ho_price strong{
+    color:#fe4716;
+}
+.ho_star{
+    margin-top:0.2rem;
+}
+.ho_adress{
+    margin-top:0.6rem;
+}
+.ho_star i{
+    width:1.3rem;height:1.2rem;
+}
+.ho_i1{
+    background:url("../../css/images/ui/icons1.png") -10.6rem -0.8rem no-repeat;background-size:40rem 12rem;
+}
+.ho_i2{
+    background:url("../../css/images/ui/icons1.png") -12.8rem -0.8rem no-repeat;background-size:40rem 12rem;
+}
+.ho_star b{
+    width:4.5rem;height:1.5rem;font-size:1rem;color:#fff;margin-left:0.3rem;text-align:center;line-height:1.5rem;
+}
+.ho_b1{
+    background:#ffb412;
+}
+.ho_b2{
+    background:#55bfb7;
+}
