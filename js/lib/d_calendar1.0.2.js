@@ -192,11 +192,20 @@ Calender.prototype = {
 						m=month<10?'0'+month:month;
 						d=i<10?'0'+i:i;
 						if(tims[year+'-'+m+'-'+d]){
-							pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                            if(i == nowdate){
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">今天</span><span class="live_txt"><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                            }else{
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                            }
 						}else{
-							pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+                            if(i == nowdate){
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>';
+                            }else{
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+                            }
 						}
-						i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
+						//i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
+                        ddHtml.push(pstr);
 					}
                 } else if (month == nowmonth + 2) {
 					m=month<10?'0'+month:month;

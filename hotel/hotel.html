@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>国际酒店</title>
+    <link href="../styles/style.css" rel="stylesheet">
+    <link href="../styles/framework.css" rel="stylesheet">
+    <link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/dzh.css" rel="stylesheet">
+    <link href="css/cityList.css" rel="stylesheet">
+</head>
+<body>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            Loading ...
+            <em>Loading depends on your connection speed!</em>
+        </p>
+    </div>
+</div>
+<div class="all-elements">
+    <div class="box">
+        <div class="header">
+            <a href="javascript:;" class="icons header-back" id="ho_back"></a>
+            <h3>酒店</h3>
+        </div>
+        <div id="content ddd" class="snap-content" style="padding-top: 45px;">
+            <div id="h-Tab">
+                <a class="on" id="Inter">国际</a>
+                <a id="Dom">国内</a>
+            </div>
+            <form action="hotel_list.html" method="get">
+                <div class="quote-slider full-bottom" data-snap-ignore="true">
+                    <div class="content1" id="content1">
+
+                        <div  id="arr1" class="nav1">
+                            <div class="nav111">
+                                目的地
+                            </div>
+                            <div class="nav112">
+                                <div class="choose-aim">
+                                    <input type="text" value="Singapore" id="input1" name="InterCityName" readonly />
+                                    <i class="icons open-arw"></i>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="content2" id="content2">
+                            <div class="nav2-left">
+                                <span class="nav2-lefttop">日期</span>
+                                <span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
+                            </div>
+                            <div class="nav2-center">
+                                <div class="nav2-centertop">
+                                    <p><input name="InterCheckInDate" id="CheckInDate"  readonly="readonly"   value="2015-11-03"><span id="week_span1">周二 入住</span></p>
+
+                                </div>
+                                <div class="nav2-centerbottom">
+                                    <p><input name="InterCheckOutDate" id="CheckOutDate"  readonly="readonly" value="2015-11-06"><span id="week_span2">周五 离店</span></p>
+                                </div>
+                            </div>
+                            <div class="nav2-centerright">
+                                <i></i>
+                            </div>
+                        </div>
+
+                        <div id="room" class="content3">
+                            <div class="nav3-left">
+                                房间
+                            </div>
+                            <div class="nav3-right">
+                                <div>
+                                    <input type="text" id="count1" name="NumRoom" value="1">
+                                    <i class="icons1 add" id="ho_i1"></i>
+                                    <i class="icons1 minus" id="ho_i2"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="people" class="content4">
+                            <div class="nav4">
+                                <div class="nav4-left">
+                                    人数
+                                </div>
+                                <div class="nav4-center">
+                                    <div class="nav4-centertop" id="nav4-centertop">
+                                        <p>
+                                            <input type="text" value="1" name="NumAdult" id="count2"><span>成人</span>
+                                            <i class="icons1 add1" id="ho_i7"></i>
+                                            <i class="icons1 minus1" id="ho_i6"></i>
+                                        </p>
+                                    </div>
+                                    <div class="nav4-centerbottom" id="nav4-centerbottom">
+                                        <p>
+                                            <input type="text" value="0" name="NumChild" id="count3"><span>儿童</span>
+                                            <i class="icons1 add1" id="ho_i3"></i>
+                                            <i class="icons1 minus1" id="ho_i4"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="content5">
+                            <input class="HotelName" name="InterHotelName" type="text" value="酒店名/位置"  id="InterHotelname">
+                        </div>
+
+                        <div class="aa">
+                            <div>
+                                <input type="submit"  id="InterBtn" value="查询" class="button-yellow hotelInter">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="content1">
+                        <div  id="arr2" class="nav1">
+                            <div class="nav111">
+                                目的地
+                            </div>
+                            <div class="nav112">
+                                <div class="choose-aim1" >
+                                    <input type="text"  value="北京" id="input2" name="DomCityName"  readonly="readonly" />
+                                    <i class="icons right1"></i>
+                                    <i class="position"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content2" id="domesticCalender">
+                            <div class="nav2-left">
+                                <span class="nav2-lefttop">日期</span>
+                                <span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
+                            </div>
+                            <div class="nav2-center">
+                                <div class="nav2-centertop">
+                                    <p><input name="DomCheckInDate" id="DomCheckInDate"  readonly="readonly"   value="2015-11-03"><span id="weekSpan3">周二 入住</span></p>
+
+                                </div>
+                                <div class="nav2-centerbottom" onclick="focus3()">
+                                    <p><input name="DomCheckOutDate" id="DomCheckOutDate"  readonly="readonly" value="2015-11-06"><span id="weekSpan4">周五 离店</span></p>
+                                </div>
+                            </div>
+                            <div class="nav2-centerright">
+                                <i></i>
+                            </div>
+                        </div>
+
+                        <div class="content5">
+                            <input class="HotelName" name="DomHotelName" type="text" value="酒店名/位置" id="DomHotelName">
+                        </div>
+
+                        <div class="aa">
+                            <div>
+                                <input type="submit" value="查询" class="button-yellow hotelInter">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>
+            <div id="cd_date"></div>
+        </div>
+
+
+    </div>
+</div>
+</body>
+<script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../owlcarousel/owl.carousel.min.js"></script>
+<script src="../js/lib/vcm.js"></script>
+<script src="../js/lib/d_calendar1.0.2.js"></script>
+<script src="js/lsf_hotel.js"></script>
+<script src="js/cityList1.0.2.js"></script>
+</html>
