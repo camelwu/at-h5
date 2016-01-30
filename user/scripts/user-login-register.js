@@ -311,7 +311,7 @@ function mycallback_login(ret) {
         sessionStorage.password = myJson.data[0].Password;
         sessionStorage.memberid = myJson.data[0].MemberID;
         localStorage.setItem('login',1);
-        window.location.href = "../user-logined.html";
+        window.location.href = "user-logined.html";
     } else {
         alert(myJson.Message);
     }

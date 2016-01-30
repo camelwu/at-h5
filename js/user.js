@@ -125,28 +125,31 @@ require(['jquery','vlm'], function($,vlm) {
     };
 
     //初始插入年
-    crateYear(setYears());
-    $(".sel-time").bind("scrollstart",function(e){
 
+    crateYear(setYears());
+
+    $(".sel-time").bind("scrollstart",function(e){
+        p='';
     });
 
     $(".sel-time").bind("scrollstop",function(e){
 
 		var that = this,obj=$(this),
-		posY = this.scrollTop,
-		p = parseInt(posY/39),
-		h = posY/39 - p <=0.5?p*39:(p+1)*39;
-		if(posY/39 - p >0.5){
-			p++;
-		}
-		//console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
+            posY = this.scrollTop,
+            p = parseInt(posY/39),
+            h = posY/39 - p <=0.5?p*39:(p+1)*39;
+        if(posY/39 - p >0.5){
+            p++;
+        }
+		console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
 		$(this).animate({scrollTop:h} ,300);
 		$(this).children("span").removeAttr("style").removeClass('selected');
 		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"}).addClass('selected');
-
+        console.log("p="+(p+2));
         var daylen = document.querySelector('#day');
         //年滑动时
         if(obj.parent().index() == 0) {
+
             var oNewYear= parseInt(obj.children('span').eq((p+2)).html());
             var month = parseInt($('#mon').children(".selected").html());
             showday(month,p);
@@ -155,6 +158,7 @@ require(['jquery','vlm'], function($,vlm) {
         //月滑动时
         if(obj.parent().index() == 1) {
             var month = parseInt(obj.children("span").eq(p+2).html());
+            var p='';
             showday(month,p);
         }
   });
@@ -183,7 +187,7 @@ require(['jquery','vlm'], function($,vlm) {
             tab_correct()
             break;
         case 2:
-            oNewYear = parseInt($('#year').children().eq((p + 2)).html());
+            var oNewYear = parseInt($('#year').children().eq((p + 2)).html());
 
             if (getYearmsg(oNewYear)) {
                 createDay(29);
@@ -197,26 +201,6 @@ require(['jquery','vlm'], function($,vlm) {
     }
 }
 
-//初始插入年份
-    function setYears(){
-        var Y= [],years= new Date().getFullYear();
-        for(var i=1900;i<=years;i++){
-            Y.push(i);
-        }
-        return Y.length;
-
-    }
-
-    function crateYear(year){
-        var oLi=document.querySelector('#mt-year'),arr2=[];
-        for(var i=(year+1899);i>1900; i--)
-        {
-            arr2.push('<span>'+i+'年</span>');
-        }
-        var str=arr2.join(' ');
-        oLi.innerHTML='<div class="sel-time" id="year"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box y"></div>';
-
-   }
 
 //判断闰年
     function getYearmsg(year)
@@ -264,5 +248,28 @@ function tab_correct(){
     });
 }
 
+//初始插入年份
+function setYears(){
+    var Y= [],years= new Date().getFullYear();
+    for(var i=1900;i<=years;i++){
+        Y.push(i);
+    }
+    return Y.length;
 
+}
+
+function crateYear(year){
+    var oLi=document.querySelector('#mt-year'),arr2=[];
+    for(var i=(year+1899);i>1900; i--)
+    {
+        arr2.push('<span>'+i+'年</span>');
+    }
+    var str=arr2.join(' ');
+    if(oLi)
+    {
+        oLi.innerHTML='<div class="sel-time" id="year"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box y"></div>';
+    }
+
+
+}
 //define

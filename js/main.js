@@ -1,7 +1,7 @@
 // JavaScript Document
 
 require.config({
-    baseUrl: 'js/lib',
+    baseUrl: '../js/lib',
     paths: {
         // the left side is the module ID,
         // the right side is the path to

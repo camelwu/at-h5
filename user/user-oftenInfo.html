@@ -495,7 +495,7 @@
     <!--证件选择控件开始-->
     <div class="mask"></div>
     <div class="selbox-card" >
-        <div id="opeater" style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span><span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span></div>
+        <div style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span><span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span></div>
         <ul class="selbox-ul" id="card-lists">
             <li>
                 <div class="sel-time">
@@ -566,7 +566,7 @@
 
     <!--国籍选择开始-->
     <div class="all-elements country-cho-wrap">
-        <div class="header" id="vlm-login">
+        <div class="header">
             <a href="javascript:;" class="icons header-back country-hidden"></a>
             <div class="cl_search">
                 <input type="text" placeholder="北京/beijing/bj/bjs/中国" autofocus="autofocus" id="country-input-zone"/>
@@ -578,7 +578,7 @@
         <ul class="country-list-searched"></ul>
         <!--国籍弹窗结束-->
 
-        <div id="content" class="snap-content" style="padding-bottom: 51px;padding-top: 45px;">
+        <div class="snap-content" style="padding-bottom: 51px;padding-top: 45px;">
             <div class="country-wrap" id="country-wrap">
                 <!--<ul class="country-list">-->
                 <!--<li></li>-->
@@ -591,7 +591,11 @@
     <script src="../js/require.js" data-main="../js/user.js"></script>
 
     <!--年月日选择-->
+
     <script>
+
+
+
         (function(){
             var aCab=document.querySelectorAll('.birth-cont');
             var oCbox=document.querySelector('.selbox-footer');
