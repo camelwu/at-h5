@@ -144,7 +144,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">证件有效期</div><input type="text" class="birth-cont" value="1990-1-9" readonly />
+                            <div class="birth-date">证件有效期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
@@ -168,7 +168,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">出生日期</div><input type="text" class="birth-cont" value="1990-1-9" readonly />
+                            <div class="birth-date">出生日期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                     </ul>
                     <div class="addtra-title">联系方式</div>
@@ -229,7 +229,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">证件有效期</div><input type="text" class="birth-cont" value="1990-1-9" readonly />
+                            <div class="birth-date">证件有效期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
@@ -253,7 +253,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">出生日期</div><input type="text" class="birth-cont" value="1990-1-9" readonly />
+                            <div class="birth-date">出生日期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                     </ul>
                     <div class="addtra-title">联系方式</div>
@@ -412,28 +412,11 @@
     <div class="selbox-footer" id="selbox">
         <div id="opeater" style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span><span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span></div>
         <ul class="selbox-ul" id="rank">
-            <li id="mt-year">
-                <div class="sel-time" id="year">
-                    <span>&nbsp;</span>
-                    <span>&nbsp;</span>
-                    <span>1900年</span>
-                    <span>2016年</span>
-                    <span>1902年</span>
-                    <span>1903年</span>
-                    <span>1904年</span>
-                    <span>1905年</span>
-                    <span>1906年</span>
-                    <span>1907年</span>
-                    <span>1908年</span>
-
-                    <span>&nbsp;</span><span>&nbsp;</span>
-                </div>
-                <div class="sel-box y"></div>
-            </li>
+            <li id="mt-year"></li>
             <li id="mt-mon">
                 <div class="sel-time" id="mon">
                     <span>&nbsp;</span><span>&nbsp;</span>
-                    <span class="selected">1月</span>
+                    <span class="date-selected">1月</span>
                     <span>2月</span>
                     <span>3月</span>
                     <span>4月</span>
@@ -453,7 +436,7 @@
                 <div class="sel-time" id="day">
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>
-                    <span>1号</span>
+                    <span class="date-selected">1号</span>
                     <span>2号</span>
                     <span>3号</span>
                     <span>4号</span>
@@ -593,9 +576,6 @@
     <!--年月日选择-->
 
     <script>
-
-
-
         (function(){
             var aCab=document.querySelectorAll('.birth-cont');
             var oCbox=document.querySelector('.selbox-footer');
@@ -608,27 +588,33 @@
                         oCbox.style.bottom = 0;
                         oAir.style.display='block';
                         var _this=this;Bflag=index;
-                        console.log(Bflag);
                     }
                 })(i);
             }
 
             oCbox.querySelector('.cabin-sure').addEventListener('click',function(){
-                //_this.innerHTML='';
+
                 oCbox.style.bottom ='-260px';
                 oAir.style.display='none';
-                var aSpan=document.querySelector('#rank').querySelectorAll('.sel-time span');
+                var aSpan=document.querySelector('#rank').querySelectorAll('span');
+
                 var oContent='';
                 for(var i=0;i<aSpan.length; i++)
                 {
                     if(aSpan[i].style.fontSize == '1.9rem')
                     {
+
                         oContent+=aSpan[i].innerHTML;
+                        console.log(aSpan[i].innerHTML);
                     }
                 }
-                if(! oContent )
+                if(oContent == '2016年')
                 {
-                    aCab[Bflag].value='1990年1月10日';
+                    aCab[Bflag].value='2016年1月1号';
+                }
+                else if(oContent.indexOf('月') == -1)
+                {
+                    alert('请选择月份');
                 }
                 else
                 {

@@ -128,11 +128,11 @@ require(['jquery','vlm'], function($,vlm) {
 
     crateYear(setYears());
 
-    $(".sel-time").bind("scrollstart",function(e){
-        p='';
+    $(".sel-time").bind("scrollstart",function(){
+
     });
 
-    $(".sel-time").bind("scrollstop",function(e){
+    $(".sel-time").bind("scrollstop",function(){
 
 		var that = this,obj=$(this),
             posY = this.scrollTop,
@@ -143,20 +143,18 @@ require(['jquery','vlm'], function($,vlm) {
         }
 		console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
 		$(this).animate({scrollTop:h} ,300);
-		$(this).children("span").removeAttr("style").removeClass('selected');
-		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"}).addClass('selected');
-        console.log("p="+(p+2));
-        var daylen = document.querySelector('#day');
+		$(this).children("span").removeAttr("style").removeClass('date-selected');
+		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"}).addClass('date-selected');
+
         //年滑动时
         if(obj.parent().index() == 0) {
 
             var oNewYear= parseInt(obj.children('span').eq((p+2)).html());
-            var month = parseInt($('#mon').children(".selected").html());
+            var month = parseInt($('#mon').children(".date-selected").html());
             showday(month,p);
         }
-
         //月滑动时
-        if(obj.parent().index() == 1) {
+        else if(obj.parent().index() == 1) {
             var month = parseInt(obj.children("span").eq(p+2).html());
             var p='';
             showday(month,p);
@@ -177,24 +175,24 @@ require(['jquery','vlm'], function($,vlm) {
         case 10:
         case 12:
             createDay(31);
-            tab_correct()
+            tab_correct($('#day'));
             break;
         case 4:
         case 6:
         case 9:
         case 11:
             createDay(30);
-            tab_correct()
+            tab_correct($('#day'));
             break;
         case 2:
             var oNewYear = parseInt($('#year').children().eq((p + 2)).html());
 
             if (getYearmsg(oNewYear)) {
                 createDay(29);
-                tab_correct()
+                tab_correct($('#day'));
             } else {
                 createDay(28);
-                tab_correct()
+                tab_correct($('#day'));
             }
             break;
         default:;
@@ -219,20 +217,21 @@ require(['jquery','vlm'], function($,vlm) {
 
 //插入天数
     function createDay(day){
-        var oLi=document.querySelector('#mt-day'),arr3=[];
+        var oLiDay=document.querySelector('#mt-day'),arr3=[];
         for(var i=1;i<day+1; i++)
         {
             arr3.push('<span>'+i+'号</span>');
         }
         var str=arr3.join(' ');
-        oLi.innerHTML='<div class="sel-time" id="day"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box d"></div>';
-
+        oLiDay.innerHTML='<div class="sel-time" id="day"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box d"></div>';
+        oLiDay.children[0].children[2].style.fontSize='1.9rem';
+        oLiDay.children[0].children[2].style.color='#484848';
     }
 
 
 //绑定偏移矫正函数
-function tab_correct(){
-    $(".sel-time").bind("scrollstop",function(e) {
+function tab_correct(obj1){
+    $(obj1).bind("scrollstop",function() {
 
         var that = this, obj = $(this),
             posY = this.scrollTop,
@@ -243,8 +242,8 @@ function tab_correct(){
         }
         //console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
         $(this).animate({scrollTop: h}, 300);
-        $(this).children("span").removeAttr("style").removeClass('selected');
-        $(this).children("span").eq((p + 2)).css({"color": "#484848", "font-size": "1.9rem"}).addClass('selected');
+        $(this).children("span").removeAttr("style").removeClass('date-selected');
+        $(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"}).addClass('date-selected');
     });
 }
 
@@ -268,6 +267,8 @@ function crateYear(year){
     if(oLi)
     {
         oLi.innerHTML='<div class="sel-time" id="year"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box y"></div>';
+        oLi.children[0].children[2].style.fontSize='1.9rem';
+        oLi.children[0].children[2].style.color='#484848';
     }
 
 

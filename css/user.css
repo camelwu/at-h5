@@ -1475,6 +1475,10 @@ ul, ol {
     z-index: 100;
 }
 
+.sel-time .date-selected{
+    font-size: 1.9rem;
+    color: #484848;
+}
 /*个人信息页出生日期*/
 .s_lists li.sex-alter{
     display: -moz-box;  /* Firefox */
@@ -1497,6 +1501,7 @@ ul, ol {
     font-size: 1.5rem;
     color: #666;
 }
+
 /*国籍模糊搜索*/
 .country-list-searched {
     width: 100%;
