@@ -2,9 +2,9 @@
  * @name MVC
  * 简单MVC控件
  * */
-$(function() {
+(function(e, t) {"use strict";
 	// 初始化MVC对象
-	var MVC = MVC || {};
+	var apiUrl="http://10.2.22.239:8888/api/GetServiceApiResult",MVC = MVC || {};
 	// 初始化MVC数据模型
 	MVC.model = function() {
 		//内部对象
@@ -36,11 +36,29 @@ $(function() {
 		//模型数据层对象操作方法引用
 		var M = MVC.model;
 		//内部视图创建方法对象
-		var V = {};
+		var V = {
+			formateString : function(str, data) {
+				var html = '';
+				if ( data instanceof Array) {
+					for (var i = 0, len = data.length; i < len; i++) {
+						html += arguments.callee(str, data[i]);
+					}
+					return html;
+				} else {
+					return str.replace(/\{#(\w+)#}/g, function(match, key) {
+						return typeof data === 'string' ? data : ( typeof data[key] === 'undefined' ? '' : data[key]);
+					});
+				}
+			}
+		};
 		//获取视图接口方法
 		return function(v) {
-			//根据视图名称返回视图，
-			V[v]();
+			if(V[v]){
+				//根据视图名称返回视图
+				V[v]();
+			}else{
+				
+			}
 		};
 	}();
 	// 初始化MVC控制器
@@ -50,11 +68,20 @@ $(function() {
 		//视图数据层对象操作方法引用
 		var V = MVC.view;
 		//控制器创建方法对象
-		var C = {};
+		var C = {
+			
+		};
 	}();
+	//console.log("mvc=11111"+MVC.view);
+	if ( typeof module !== "undefined" && module.exports) {
+		module.exports = MVC;
+	}
+	if ( typeof ender === "undefined") {
+		this.MVC = MVC;
+	}
 	if ( typeof define === "function" && define.amd) {
-		define("mvc", ['jquery'], function($) {
+		define("mvc", [], function() {
 			return MVC;
 		});
 	}
-});
+}).call(this, window, document);

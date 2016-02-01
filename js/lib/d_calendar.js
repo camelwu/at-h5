@@ -1,6 +1,7 @@
 /**
  * @namespace _CalF
  * 日历控件所用便捷函数
+ * @version 1.0.2
  * */
 _CalF = {
     // 选择元素
