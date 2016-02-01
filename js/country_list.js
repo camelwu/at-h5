@@ -21,8 +21,6 @@ var arrCountry= [{"CountryName":"中国","CountryEN":"China","CountryCode":"CN"}
     var oTc=document.querySelector('.country-list-searched');
     var countryListSearched = document.querySelector('.country-list-searched');
     var countryInputZone = document.querySelector('#country-input-zone');
-    var oWid=document.documentElement.clientWidth;
-    oDiv.style.right='-'+oWid+'px';
     for(var i=0;i<aBtn.length; i++)
     {
         (function(index){
@@ -33,11 +31,10 @@ var arrCountry= [{"CountryName":"中国","CountryEN":"China","CountryCode":"CN"}
                     this.style.display='none';
                 };
 
-                oDiv.style.right='0';
-
+                oDiv.style.display='block';
                 var oShut=document.querySelector('.country-hidden');
                 oShut.onclick=function(){
-                    oDiv.style.right='-'+oWid+'px';
+                    oDiv.style.display='none';
                     oTc.style.display='none';
                     oInput.value='';
                 };
