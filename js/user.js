@@ -148,7 +148,6 @@ require(['jquery','vlm'], function($,vlm) {
 
         //年滑动时
         if(obj.parent().index() == 0) {
-
             var oNewYear= parseInt(obj.children('span').eq((p+2)).html());
             var month = parseInt($('#mon').children(".date-selected").html());
             showday(month,p);

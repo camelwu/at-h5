@@ -522,19 +522,12 @@
                         var oContent='';
                         for(var i=0;i<aSpan.length; i++)
                         {
-                            if(aSpan[i].style.fontSize == '1.9rem')
+                            if(aSpan[i].className== 'date-selected')
                             {
                                 oContent+=aSpan[i].innerHTML;
                             }
                         }
-                        if(! oContent )
-                        {
-                            _this.innerHTML='护照';
-                        }
-                        else
-                        {
-                            _this.innerHTML=oContent;
-                        }
+                        _this.innerHTML=oContent;
                     });
 
                     oCbox.querySelector('.cabin-cancel').addEventListener('click',function(){
@@ -552,7 +545,7 @@
         <div class="header">
             <a href="javascript:;" class="icons header-back country-hidden"></a>
             <div class="cl_search">
-                <input type="text" placeholder="北京/beijing/bj/bjs/中国" autofocus="autofocus" id="country-input-zone"/>
+                <input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
                 <i></i>
             </div>
         </div>
