@@ -99,7 +99,7 @@ window.onload = function(){
     var upadate_finish = $("#upadate_finish")[0];
     function upTraveler(obj){
         obj.onclick = function(){
-            debugger;
+            //debugger;
             var travelId = array[index];
             var id = arrayId[index];
             var input  = document.getElementById("updateForm").getElementsByTagName("input");

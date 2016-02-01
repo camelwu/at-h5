@@ -134,7 +134,7 @@ require(['jquery','vlm'], function($,vlm) {
 
     $(".sel-time").bind("scrollstop",function(){
 
-		var that = this,obj=$(this),
+		var obj=$(this),
             posY = this.scrollTop,
             p = parseInt(posY/39),
             h = posY/39 - p <=0.5?p*39:(p+1)*39;
@@ -143,20 +143,19 @@ require(['jquery','vlm'], function($,vlm) {
         }
 		console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
 		$(this).animate({scrollTop:h} ,300);
-		$(this).children("span").removeAttr("style").removeClass('date-selected');
-		$(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"}).addClass('date-selected');
+		$(this).children("span").removeClass('date-selected');
+		$(this).children("span").eq((p+2)).addClass('date-selected');
 
         //年滑动时
         if(obj.parent().index() == 0) {
 
             var oNewYear= parseInt(obj.children('span').eq((p+2)).html());
-            var month = parseInt($('#mon').children(".date-selected").html());
+            var month = parseInt(obj.children(".date-selected").html());
             showday(month,p);
         }
         //月滑动时
         else if(obj.parent().index() == 1) {
             var month = parseInt(obj.children("span").eq(p+2).html());
-            var p='';
             showday(month,p);
         }
   });
@@ -224,8 +223,7 @@ require(['jquery','vlm'], function($,vlm) {
         }
         var str=arr3.join(' ');
         oLiDay.innerHTML='<div class="sel-time" id="day"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box d"></div>';
-        oLiDay.children[0].children[2].style.fontSize='1.9rem';
-        oLiDay.children[0].children[2].style.color='#484848';
+        oLiDay.children[0].children[2].className='date-selected';
     }
 
 
@@ -267,8 +265,7 @@ function crateYear(year){
     if(oLi)
     {
         oLi.innerHTML='<div class="sel-time" id="year"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box y"></div>';
-        oLi.children[0].children[2].style.fontSize='1.9rem';
-        oLi.children[0].children[2].style.color='#484848';
+        oLi.children[0].children[2].className='date-selected';
     }
 
 

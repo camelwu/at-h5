@@ -1502,6 +1502,11 @@ ul, ol {
     color: #666;
 }
 
+.selbox-ul li span.date-selected{
+    font-size: 1.9rem;
+    color: #484848;
+}
+
 /*国籍模糊搜索*/
 .country-list-searched {
     width: 100%;

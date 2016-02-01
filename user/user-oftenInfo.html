@@ -561,7 +561,7 @@
         <ul class="country-list-searched"></ul>
         <!--国籍弹窗结束-->
 
-        <div class="snap-content" style="padding-bottom: 51px;padding-top: 45px;">
+        <div class="snap-content" style="padding-top: 45px;">
             <div class="country-wrap" id="country-wrap">
                 <!--<ul class="country-list">-->
                 <!--<li></li>-->
@@ -573,7 +573,7 @@
     <script src="../js/country_list.js"></script>
     <script src="../js/require.js" data-main="../js/user.js"></script>
 
-    <!--年月日选择-->
+    <!--年月日选择以及证件有效期-->
 
     <script>
         (function(){
@@ -601,25 +601,12 @@
                 var oContent='';
                 for(var i=0;i<aSpan.length; i++)
                 {
-                    if(aSpan[i].style.fontSize == '1.9rem')
+                    if(aSpan[i].className == 'date-selected')
                     {
-
                         oContent+=aSpan[i].innerHTML;
-                        console.log(aSpan[i].innerHTML);
                     }
                 }
-                if(oContent == '2016年')
-                {
-                    aCab[Bflag].value='2016年1月1号';
-                }
-                else if(oContent.indexOf('月') == -1)
-                {
-                    alert('请选择月份');
-                }
-                else
-                {
-                    aCab[Bflag].value=oContent;
-                }
+                aCab[Bflag].value=oContent;
 
             });
             oCbox.querySelector('.cabin-cancel').addEventListener('click',function(){
