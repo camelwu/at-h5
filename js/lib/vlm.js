@@ -564,8 +564,8 @@
 					callback(page_id);
 				}
 			}
-		};
-		this.loadJson = function(data, mycallback, async, encryption) {
+		},
+		loadJson = function(data, mycallback, async, encryption) {
 			if (async != undefined && async == true) {
 				$.ajaxSetup({
 					async : false
@@ -595,9 +595,9 @@
 			$.ajaxSetup({
 				async : true
 			});
-		};
+		},
 		//loadJsonp("yy","package.js",callbackFunction);
-		this.loadJsonp = function(sid, jsurl, callback) {
+		loadJsonp = function(sid, jsurl, callback) {
 			//function loadJs(sid,jsurl,callback){
 			var nodeHead = document.getElementsByTagName('head')[0];
 			var nodeScript = null;
@@ -630,6 +630,8 @@
 			loading : _loading,
 			loadend : _loadend,
 			init : _init,
+			loadJson : loadJson,
+			loadJsonp : loadJsonp,
 			Utils: _Utils
 		};
 	};
