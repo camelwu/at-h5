@@ -1415,7 +1415,7 @@
 .country-cho-wrap {
     position: absolute;
     z-index: 1000;
-    transition: 0.3s all ease;
+    display: none;
 }
 
 li {
