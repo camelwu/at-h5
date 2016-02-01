@@ -92,10 +92,11 @@ function throttle(){
  * url:data-src=realurl
  */
 
-function lazyLoad(id){
+function lazyLoad(id,boxId){
 	//确认操作容器
 	if(!id)return;
 	this.container = document.getElementById(id);
+	this.box=document.getElementById(boxId);
 	//获取图片列表
 	this.imgs = this.getImgs();
 	//执行初始化
@@ -134,18 +135,19 @@ lazyLoad.prototype = {
 		var img = this.imgs[i],
 		//网页可视范围内顶部高度
 		//scrollTop = document.documentElement.scrollTop||document.body.scrollTop,
-		scrollTop = this.container?this.container.scrollTop:document.documentElement.scrollTop||document.body.scrollTop,
+		scrollTop = this.box?this.box.scrollTop:document.documentElement.scrollTop||document.body.scrollTop,
 		//可视范围内底部高度
 		scrollBottom = scrollTop + document.documentElement.clientHeight,
 		//图片顶部
 		imgTop = this.pageY(img),
 		//图片底部
 		imgBottom = imgTop + img.offsetHeight;
-		console.log(scrollTop);
 		//成立条件：1、图片底部高度大于可视试图顶部高度，并图片底部高度小于可视视图底部高度；2、 图片顶部高度大于可视视图顶部高度，并图片顶部高度小于可视视图底部高度
 		if(imgBottom > scrollTop && imgBottom < scrollBottom || (imgTop > scrollTop && imgTop < scrollBottom)){
+			console.log(true);
 			return true;
 		}else{
+			console.log(false);
 			return false;
 		}
 		

@@ -362,8 +362,9 @@ function styleChange(id,mytext){
         //console.log(data);
         var data_address=data.locationList;
         var data=data.hotelList;
-        //console.log(data_address);
+        console.log(data_address);
         console.log(data);
+        console.log('hajshdj');
         var timer=null;
         var oUl=lsf_myweb.getbyid('lsf_list');
         list_oUl.innerHTML='';
@@ -393,7 +394,7 @@ function styleChange(id,mytext){
 
                 var str='<li class="ho_list">'+
                     '<div class="ho_pic">'+
-                    '<img  src="../images/cars.png" data-src="'+data[i].frontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
+                    '<img  src="../images/loading-hotel.gif" data-src="'+data[i].frontPgImage+'" class="ho_img"/ data-all="'+data[i]+'">'+
                     '</div>'+
                     '<div class="ho_infor">'+
                     '<p class="hname"  style="font-size:1.6rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
@@ -437,7 +438,7 @@ function styleChange(id,mytext){
                         var osrc=this.imgs[i].src;
                         this.imgs[i].src = this.imgs[i].getAttribute("data-src");
                         this.imgs[i].onerror=function(){
-                            this.src=osrc;
+                            this.src='../images/hotelListerrorpic.png';
                         };
                         //清理缓存
                         this.imgs.splice(i,1);
@@ -458,9 +459,7 @@ function styleChange(id,mytext){
                 });
 
             };
-            var c=new lazyLoad2('lsf_list');
-            //绑定图片src
-            document.getElementsByClassName('hotelcontent')[0].getElementsByClassName('ho_img');
+            var c=new lazyLoad2('lsf_list','allElements');
         }else{
             var oLi=document.createElement('li');
             oLi.innerHTML='<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
@@ -624,7 +623,13 @@ function styleChange(id,mytext){
             //绑定跳转事件
             getDetail(data);
         }else{
-            alert(json.message);
+            if(json.message=='There is no hotel on the selected destination.'){
+                var data={'hotelList':[],'locationList':[]};
+                V(data);
+            }else{
+                alert(json.message);
+                console.log(json.message);
+            }
             //window.history.go(-1);
         }
 
