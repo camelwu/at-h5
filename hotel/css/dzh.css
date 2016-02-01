@@ -5,7 +5,7 @@
 #idul li{
     height: 55px;
     padding: 5px 15px;
-    line-height: 42px;
+    line-height: 42pxicons1;
 }
 #idul li a{
     padding-left: 18px;
@@ -223,7 +223,7 @@
     height: 24px;
     top: 50%;
     margin-top: -11px;
-    right: 80px;
+    right: 0px;
     background:url("../../images/up1.png") no-repeat;
     background-size:23px 23px;
 }
@@ -233,7 +233,7 @@
     height: 24px;
     top: 50%;
     margin-top: -11px;
-    right: 0px;
+    right: 80px;
     background:url("../../images/down2.png") no-repeat;
     background-size:23px 23px;
 }
@@ -292,7 +292,7 @@
     height: 24px;
     top: 50%;
     margin-top: -11px;
-    right: 80px;
+    right: 0;
     background:url("../../images/up1.png") no-repeat;
     background-size:23px 23px;
 }
@@ -302,7 +302,7 @@
     height: 24px;
     top: 50%;
     margin-top: -11px;
-    right: 0;
+    right: 80px;
     background:url("../../images/down2.png") no-repeat;
     background-size:23px 23px;
 }

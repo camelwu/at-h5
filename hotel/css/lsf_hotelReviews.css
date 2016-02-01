@@ -78,6 +78,7 @@ header i{
 }
 .lsf_reAll_grade{
     width:100%;height:45px;border-bottom:1px dashed #dedede;line-height:45px;padding:0 1.5rem;font-size:1.4rem;color:#999999;
+    background:#fff;
 }
 .lsf_reAll_grade .lsf_grade1{
     font-size:1.8rem;color:#55bfb7;
@@ -91,6 +92,7 @@ header i{
     display:flex;
     border-bottom:1px solid #dedede;
     padding:1rem 0;
+    background:#fff;
 }
 .lsf_reDetail_grade section{
     -webkit-box-flex:1;
@@ -115,6 +117,8 @@ header i{
 }
 .lsf_reDiscuss{
     width:100%;
+    background:#fff;
+    margin-top:8px;
 }
 .lsf_reDiscuss .reBox{
     border-bottom:1px solid #dedede;

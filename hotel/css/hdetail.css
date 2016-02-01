@@ -38,14 +38,14 @@ html {
 
 
 .icons {
-    background-image: url(../images/ui/icons.png);
+    background-image: url(../../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display: inline-block;
 }
 
 .d-icon {
-    background-image: url(../images/ui/icons.png);
+    background-image: url(../../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display: inline-block;
@@ -57,7 +57,7 @@ html {
     position: absolute;
     left: 15px;
     top: 10px;
-    background-image: url(../images/ui/icons.png);
+    background-image: url(../../images/ui/icons.png);
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display: inline-block;
@@ -217,7 +217,7 @@ html {
     display: block;
     width: 8px;
     height: 14px;
-    background-image: url(../images/ui/icons.png);
+    background-image: url(../../images/ui/icons.png);
     background-position: 65% 3%;
     background-size: 243px 160px;
 }
@@ -229,7 +229,7 @@ html {
     float: left;
     margin-left: 10px;
     margin-top: 20px;
-    background-image: url(../images/ui/icon-h.png);
+    background-image: url(../../images/ui/icon-h.png);
     background-size: 402px 174px;
     background-position: 20% 9%;
 }
@@ -274,7 +274,7 @@ html {
     width: 15px;
     height: 15px;
     margin-left: 5px;
-    background-image: url(../images/ui/icons1.png);
+    background-image: url(../../images/ui/icons1.png);
     background-position: 27% 33.5%;
     background-size: 400px 120px;
 }
@@ -295,7 +295,7 @@ html {
     width: 18px;
     height: 18px;
     margin-top: 16px;
-    background-image: url(../images/ui/icons1.png);
+    background-image: url(../../images/ui/icons1.png);
     background-position: 12.6% 33%;
     background-size: 400px 120px;
     transition: none!important;
@@ -377,7 +377,7 @@ html {
     width: 18px;
     height: 18px;
     margin-top: 16px;
-    background-image: url(../images/ui/icons1.png);
+    background-image: url(../../images/ui/icons1.png);
     background-position: 19% 33%;
     background-size: 400px 120px;
     transition: none!important;
@@ -462,7 +462,7 @@ html {
     float: right;
     margin-right: 12px;
     margin-top: 10px;
-    background: url(../images/close.png) no-repeat;
+    background: url(../../images/close.png) no-repeat;
     background-size: 21px 21px;
 }
 
@@ -509,7 +509,7 @@ html {
     width: 14px;
     height: 14px;
     display: block;
-    background-image: url(../images/ui/icon-h.png);
+    background-image: url(../../images/ui/icon-h.png);
     background-size: 402px 174px;
     background-position: 84% 10%;
 }
