@@ -14,7 +14,7 @@
 			home : ['首页', basePath],
 			order : ['订单', basePath + '/order.html'],
 			service : ['客服', basePath + '/service.html'],
-			user : ['我的', basePath + '/user.html']
+			user : ['我的', basePath + '/user/user.html']
 		}, lStorage=window.localStorage
 		, sStorage=window.sessionStorage
 		, init = function(k) {
