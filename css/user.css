@@ -1414,7 +1414,6 @@
 /*国籍选择*/
 .country-cho-wrap {
     position: absolute;
-    right: -1000px;
     z-index: 1000;
     transition: 0.3s all ease;
 }

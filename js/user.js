@@ -150,7 +150,7 @@ require(['jquery','vlm'], function($,vlm) {
         if(obj.parent().index() == 0) {
 
             var oNewYear= parseInt(obj.children('span').eq((p+2)).html());
-            var month = parseInt(obj.children(".date-selected").html());
+            var month = parseInt($('#mon').children(".date-selected").html());
             showday(month,p);
         }
         //月滑动时
