@@ -30,8 +30,10 @@
 				</p>
 			</nav>
 
-			<div id="issue">
-
+			<div id="">
+<ul id="issue" class="hotelcontent">
+	<li class="ho_list"><div class="ho_pic"><img src="{#frontPgImage#}" data-src="http://images.asiatravel.com/Hotel/8016/8016facade.jpg" class="ho_img"></div><div class="ho_infor"><p class="hname" style="font-size:1.6rem;width:988px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">{#hotelName#}</p><div class="h-score"><span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">{#hotelReviewScore#}</span><span style="color:#999999;font-size:1rem;">分/{#hotelReviewCount#}人点评</span><p class="price"><span style="font-size:0.8rem;color:#fe4716;">￥</span><span style="font-size:2rem;font-weight: 600;color:#fe4716;">{#avgPrice#}</span><span style="font-size:1.2rem;color:#999999;">起</span></p></div><div class="h-grade"><span style="color:#999999;font-size:1rem;">{#starRating#}</span><div class="h-div1" style="background-color: #ffb412">现金奖励</div><div class="h-div1">免费景点</div></div><p class="h-address">{#city#}(Little India)</p></div></li>
+</ul>
 			</div>
 
 			<footer>
@@ -42,7 +44,6 @@
 		</div>
 	</body>
 <script src="js/lib/jquery.js"></script>
-<script src="js/lib/vcm.js"></script>
 <script src="js/lib/vlm.js"></script>
 <script src="js/lib/lazyLoad.js"></script>
 <script>
@@ -59,7 +60,151 @@ MVC.prototype = {
 		//内部对象
 		var M = {};
 		//服务器端获取数据，通常Ajax方式并存储，直接作为同步数据并写在页面中，减少服务器端异步请求操作
-		M.data = {};
+		M.data = {
+			hotelList:{
+  "success": true,
+  "message": "",
+  "data": [
+    {
+      "hotelList": [
+        {
+          "hotelCode": "8016",
+          "hotelName": "Grand mid rest",
+          "hotelNameLocale": "Hotel Grand Chancellor",
+          "starRating": "3 stars",
+          "location": "Little India",
+          "city": "新加坡",
+          "currency": "SGD",
+          "avgPrice": "32.91",
+          "avgPriceCNY": 168.0,
+          "priority": "7",
+          "frontPgImage": "http://images.asiatravel.com/Hotel/8016/8016facade.jpg",
+          "isCashRebate": true,
+          "isCashReward": true,
+          "hotelReviewCount": "52",
+          "hotelReviewScore": "3.7",
+          "isFreeTransfer": false,
+          "isFreeCityTour": true,
+          "isFreeWifi": false,
+          "category": "酒店"
+        },
+        {
+          "hotelCode": "8830",
+          "hotelName": "haibo test hotel",
+          "hotelNameLocale": "距离圣费尔南多镇5公里，定期航班线路由马尼拉直飞圣费尔南多国际机场，卡胡纳海滩度假酒店提供机场接送服务。",
+          "starRating": "4 stars",
+          "location": "Chinatown",
+          "city": "新加坡",
+          "currency": "SGD",
+          "avgPrice": "81.27",
+          "avgPriceCNY": 416.0,
+          "priority": "1",
+          "frontPgImage": "http://images.asiatravel.com/Hotel/8830/facade-kahuna.jpg",
+          "isCashRebate": true,
+          "isCashReward": true,
+          "hotelReviewCount": "0",
+          "hotelReviewScore": "0",
+          "isFreeTransfer": false,
+          "isFreeCityTour": true,
+          "isFreeWifi": false,
+          "category": "酒店"
+        },
+        {
+          "hotelCode": "3283",
+          "hotelName": "Fragrance Hotel Selegie",
+          "hotelNameLocale": "新加坡飞龙酒店-实利基",
+          "starRating": "2 stars",
+          "location": "city",
+          "city": "新加坡",
+          "currency": "SGD",
+          "avgPrice": "116.21",
+          "avgPriceCNY": 595.0,
+          "priority": "78",
+          "frontPgImage": "http://images.asiatravel.com/Hotel/3283/3283front.jpg",
+          "isCashRebate": true,
+          "isCashReward": true,
+          "hotelReviewCount": "7",
+          "hotelReviewScore": "3.2",
+          "isFreeTransfer": false,
+          "isFreeCityTour": true,
+          "isFreeWifi": false,
+          "category": "酒店"
+        },
+        {
+          "hotelCode": "25",
+          "hotelName": "Hotel Grand Central",
+          "hotelNameLocale": "新加坡大中酒店",
+          "starRating": "3 stars",
+          "location": "city",
+          "city": "新加坡",
+          "currency": "SGD",
+          "avgPrice": "162.54",
+          "avgPriceCNY": 832.0,
+          "priority": "30",
+          "frontPgImage": "http://images.asiatravel.com/Hotel/25/25exterior.jpg",
+          "isCashRebate": true,
+          "isCashReward": true,
+          "hotelReviewCount": "20",
+          "hotelReviewScore": "3.4",
+          "isFreeTransfer": false,
+          "isFreeCityTour": false,
+          "isFreeWifi": false,
+          "category": "酒店"
+        },
+        {
+          "hotelCode": "30",
+          "hotelName": "Gallery Hotel",
+          "hotelNameLocale": "Gallery Hotel",
+          "starRating": "4 stars",
+          "location": "River Valley",
+          "city": "新加坡",
+          "currency": "SGD",
+          "avgPrice": "162.54",
+          "avgPriceCNY": 832.0,
+          "priority": "80",
+          "frontPgImage": "http://images.asiatravel.com/Hotel/30/30facade.jpg",
+          "isCashRebate": true,
+          "isCashReward": true,
+          "hotelReviewCount": "8",
+          "hotelReviewScore": "3.4",
+          "isFreeTransfer": false,
+          "isFreeCityTour": false,
+          "isFreeWifi": false,
+          "category": "酒店"
+        },
+        {
+          "hotelCode": "50",
+          "hotelName": "Orchard Hotel",
+          "hotelNameLocale": "新加坡乌节大酒店",
+          "starRating": "4 stars",
+          "location": "Orchard",
+          "city": "新加坡",
+          "currency": "SGD",
+          "avgPrice": "162.54",
+          "avgPriceCNY": 832.0,
+          "priority": "117",
+          "frontPgImage": "http://images.asiatravel.com/Hotel/50/50new_facade.jpg",
+          "isCashRebate": true,
+          "isCashReward": true,
+          "hotelReviewCount": "4",
+          "hotelReviewScore": "3.8",
+          "isFreeTransfer": false,
+          "isFreeCityTour": false,
+          "isFreeWifi": false,
+          "category": "酒店"
+        }
+      ],
+      "locationList": [
+        "Chinatown",
+        "Little India",
+        "city",
+        "River Valley",
+        "Orchard"
+      ]
+    }
+  ]
+}
+		};
 		//配置数据，页面加载时即提供
 		M.conf = {};
 		//返回操作方法
@@ -133,7 +278,7 @@ MVC.prototype = {
 };
 
 
-	var c = new vcm(),
+	var c = new vlm(),
 	json=json||function(){
 		var oDate=new Date(),y=oDate.getFullYear(),m=oDate.getMonth()+1,d=oDate.getDate(),
 		//把url字符串变成json
@@ -158,17 +303,14 @@ MVC.prototype = {
 	};
 	//c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
 	var obj={
-		api:"http://10.2.22.239:8888/api/GetServiceApiResult",
-		conf:{
-			name:"hotelList",
-			id:"issue",
-			data:{
-            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
-            "Code": "0007",
-            "ForeEndType": 3
-        	},
-        	operater:"c.loadJson"
-        }
+		name:"hotelList",
+		id:"issue",
+		data:{
+        "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
+        "Code": "0007",
+        "ForeEndType": 3
+    	},
+    	operater:"c.loadJson"
 	}
 	,d = new MVC(obj);
 	console.log("mvc="+d.model);

@@ -20,17 +20,12 @@ require.config({
     				countdown:countdown,
     				swipebox:swipebox,
     				ScrollIt:ScrollIt,
-    				Snap:Snap
     			}
     		}
     	},
     	'vlm':{
     		deps: ['jquery'],
     		//exports: 'vlm'
-    	},
-    	'mvc':{
-    		//deps: ['jquery'],
-    		exports: 'mvc'
     	}
 	},
 	//urlArgs: "bust=" +  (new Date()).getTime()
@@ -38,8 +33,44 @@ require.config({
 
 require(['jquery','vlm','mvc','plugins'], function($,vlm,mvc) {
 	var viewer = new vlm();
-    viewer.init();
-	console.log(mvc);
+    viewer.init();mvc.model.setData("list",[1,2,3,4,6]);
+	console.log(mvc.model.getData("list"));
+	var json=json||function(){
+		var oDate=new Date(),y=oDate.getFullYear(),m=oDate.getMonth()+1,d=oDate.getDate(),
+		//把url字符串变成json
+			json={},url=window.location.href,arr=url.split('?'),arr2=arr[1].split('&');
+	    for(var i=0;i<arr2.length;i++){
+	        var arr3=arr2[i].split('=');
+	        json[arr3[0]]=arr3[1];
+	    }
+	    //添加额外json数据
+        json.rank=json.rank||'priceasc';
+        json.CityName=json.CityName||'Singapore';
+        json.NumRoom=json.NumRoom||'1';
+        json.NumChild=json.NumChild||'1';
+        json.NumAdult=json.NumAdult||'1';
+        json.Category=json.Category||'';
+        json.StarRating=json.StarRating||'';
+        json.LocationList=json.LocationList||'';
+        json.InterCheckInDate=json.InterCheckInDate||y+'-'+m+'-'+d;
+        json.InterCheckOutDate=json.InterCheckOutDate||y+'-'+m+'-'+(d+1);
+        //
+	    return json;
+	};
+	//c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+	var obj={
+		api:"http://10.2.22.239:8888/api/GetServiceApiResult",
+		conf:{
+			name:"hotelList",
+			id:"issue",
+			data:{
+            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
+            "Code": "0007",
+            "ForeEndType": 3
+        	},
+        	operater:"c.loadJson"
+        }
+	}
 	$(document).ready(function() {
 
 		window.addEventListener('load', function() {
