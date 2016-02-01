@@ -1523,6 +1523,7 @@ ul, ol {
     background: #f5f4f9;
     margin-bottom: 0;
     overflow-y: scroll;
+    padding-top: 1rem;
 }
 
 .country-list-searched li.country-list-searched-item {
@@ -1531,10 +1532,13 @@ ul, ol {
     list-style: none;
     height: 3.4rem;
     line-height: 3.4rem;
-    padding-left: 1.0rem;
     text-align: left;
     border-bottom: 0.1rem solid #dfdfdd;
     margin-bottom: 0;
-    padding-left: 2rem;
+    padding-left: 4rem;
 
+}
+
+#unloginShow{
+    width: 150px;
 }
