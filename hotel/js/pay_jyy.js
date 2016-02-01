@@ -91,6 +91,11 @@ var lsf_myweb={
     }
 };
 ;(function(){
+    //预加载的图片
+    $(window).load(function () {
+        $("#status").fadeOut();
+        $("#preloader").delay(400).fadeOut("medium");
+    });
     //从上一页得到的数据
     var myData=JSON.parse(localStorage.getItem('user_order_storage12345'));
     console.log(myData);
@@ -155,7 +160,7 @@ var lsf_myweb={
             return;
         }
         //信用卡验证
-        if(!jp_bank.value){
+        if(jp_bank.value=='输入银行卡号'){
             alert('请输入信用卡卡号');
             return;
         }else{
@@ -163,31 +168,31 @@ var lsf_myweb={
             if(!reg.test(jp_bank.value)){
                 alert('信用卡卡号必须是数字');
                 return;
-            }else{
+            }/*else{
                 if(jp_bank.value.length==16){
                     myData.CreditCardNumber=jp_bank.value;
                 }else{
                     alert('信用卡卡号位数不对');
                     return;
                 }
-            }
+            }*/
         }
         //姓名验证
-        if(!jp_guest_name.value){
+        if(jp_guest_name.value=='姓名'){
             alert('请输入持卡人姓名');
             return;
         }else{
             myData.CardHolderName=jp_guest_name.value;
         }
         //有效期验证
-        if(!jp_limit_time.value){
+        if(jp_limit_time.value=='月/年，如：09/12'){
             alert('请输入有效期');
             return;
         }else{
             myData.CreditCardExpiryDate=jp_limit_time.value;
         }
         //安全码验证
-        if(!jp_safe_code.value){
+        if(jp_safe_code.value=='签名栏末尾最后3位'){
             alert('请输入信用卡安全码');
             return;
         }else{
