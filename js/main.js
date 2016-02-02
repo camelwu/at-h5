@@ -5,8 +5,8 @@ require.config({
     paths: {
         jquery: 'jquery',
         vlm: 'vlm',
-        plugins: 'plugins'
-        
+        plugins: 'plugins',
+        alerts: 'jquery.alert'
     },
     $:['jquery'],
     shim: {
@@ -23,6 +23,9 @@ require.config({
     			}
     		}
     	},
+    	'alerts':{
+    		deps: ['jquery'],
+    	},
     	'vlm':{
     		deps: ['jquery'],
     		//exports: 'vlm'
@@ -31,8 +34,8 @@ require.config({
 	//urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','vlm','mvc','plugins'], function($,vlm,mvc) {
-	var viewer = new vlm();
+require(['jquery','vlm','mvc','plugins','alerts'], function($,vlm,mvc) {
+	var viewer = new vlm();jLayer("ff","title");
     viewer.init();mvc.model.setData("list",[1,2,3,4,6]);
 	console.log(mvc.model.getData("list"));
 	var json=json||function(){
