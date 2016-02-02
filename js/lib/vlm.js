@@ -21,7 +21,7 @@
 			if (menus.hasOwnProperty(_k)) {
 				_initMenu();
 			}
-			if ($(".header").length >= 1&&$(".header").parent().display!="none") {
+			if ($(".header").length >= 1&&$(".header").is(":visible")) {
 				$("#content").css("padding-top","45px");
 			}
 			function _initMenu() {
@@ -55,7 +55,14 @@
 				$("#status").fadeOut();
 				$("#preloader").delay(400).fadeOut("medium");
 			}
-		},_Utils = {
+		}, _checklogin = function() {
+			if (!lStorage.memberid || lStorage.memberid == '') {//need login
+				l_login();
+				return false;
+			}else{
+				return true;
+			}
+		}, _Utils = {
 			//转化数字为现金格式
 			format_number : function(number) {
 				if ( typeof number != 'number') {
@@ -565,7 +572,7 @@
 				}
 			}
 		},
-		loadJson = function(data, mycallback, async, encryption) {
+		loadJson = function(url, data, mycallback, async, encryption) {
 			if (async != undefined && async == true) {
 				$.ajaxSetup({
 					async : false
@@ -624,12 +631,66 @@
 				}
 			}
 		};
+		function l_login(){
+			var html = [
+            '<div id="login_page" class="login-page-wrapper">',
+                '<div class="login-header">',
+                    '<a href="user.html" class="icons header-close"></a>',
+                    '<h3>登录</h3>',
+                    '<div class="header-finish" id="register">注册</div>',
+                '</div>',
+                '<div id="phone_login">',
+                    '<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div>',
+                        '<input id="phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel"><b class="icon login-clear" id="p_clear"></b></div>',
+                    '<div class="login-input"><b class="icons login-pass"></b><input id="p_password" type="password" value="" placeholder="密码" data-type="pass"></div>',
+                '</div>',
+                '<div id="email_login" style="display: none;">',
+                    '<div class="login-input"><b class="icon login-mail"></b><input id="email" type="text" value="" placeholder="邮箱" data-type="email"><b class="icon login-clear" id="e_clear"></b></div>',
+                    '<div class="login-input"><b class="icons login-pass"></b><input id="e_password" type="password" value="" placeholder="密码" data-type="pass"></div>',
+                '</div>',
+                '<div class="clear"></div>',
+                '<a class="forgotkey" href="#" onclick="show_keypage()">忘记密码？</a>',
+                '<a class="changelogin" href="#" id="change_email">切换邮箱登录<b class="icon login-change"></b></a>',
+                '<a class="changelogin" href="#" id="change_phone" style="display: none;">切换手机登录<b class="icon login-change"></b></a>',
+                '<input id="login_btn" type="button" class="btn full-button button-orange" value="登录">',
+            '</div>',
+            '<div class="login-page-wrapper" id="register_page" style="display:none;">',
+                '<div class="login-header">',
+                    '<a href="#" id="close_register" class="icons header-back"></a>',
+                    '<h3>注册</h3>',
+                    '<div class="header-finish" id="header_email">邮箱注册</div>',
+                    '<div class="header-finish" id="header_phone" style="display: none">手机注册</div>',
+                '</div>',
+                '<div id="phone_register">',
+                    '<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div>',
+                        '<input id="r_phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel"></div>',
+                    '<div class="login-input"><b class="icons login-pass"></b><input id="verify" type="password" value="" placeholder="输入验证码" data-type="code"><div id="get_code" class="regist-code">获取验证码</div></div>',
+                    '<div class="login-input"><b class="icons login-pass"></b><input id="r_p_password" type="password" value="" placeholder="输入6-18位密码" data-type="pass"></div>',
+                    '<div class="clear"></div>',
+                '</div>',
+                '<div id="email_register" style="display: none">',
+                    '<div class="login-input"><b class="icon login-mail"></b><input id="r_email" type="text" value="" placeholder="输入邮箱" data-type="email"></div>',
+                    '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="输入6-18位密码" data-type="pass"></div>',
+                    '<div class="login-input"><b class="icons login-pass"></b><input id="r_e_password" type="password" value="" placeholder="确认密码" data-type="pass"></div>',
+                    '<div class="clear"></div>',
+                '</div>',
+                '<a href="#" class="btn full-button button-orange" style="margin-top: 44px;" id="register_btn">注册</a>',
+            '</div>'
+			];
+			var loginer = document.createElement('div');
+	        loginer.id = "user-wrapper";
+	        loginer.className = 'login-page';
+	        //
+	        loginer.innerHTML = '<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3>';
+	        document.body.appendChild(header);
+		}
 		//out api
 		return {
 			api : _api,
 			loading : _loading,
 			loadend : _loadend,
 			init : _init,
+			checkLogin : _checklogin,
 			loadJson : loadJson,
 			loadJsonp : loadJsonp,
 			Utils: _Utils
