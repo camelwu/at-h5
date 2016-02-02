@@ -70,9 +70,10 @@ if(hotelStorage){
     lsf_myweb.getbyid('count1').value=hotelStorage.NumRoom;
     lsf_myweb.getbyid('count2').value=hotelStorage.NumAdult;
     lsf_myweb.getbyid('count3').value=hotelStorage.NumChild;
-    lsf_myweb.getbyid('InterHotelname').value=hotelStorage.InterHotelName;
     lsf_myweb.getbyid('input2').value=hotelStorage.DomDes;
-    lsf_myweb.getbyid('DomHotelName').value=hotelStorage.DomHotelName;
+    //lsf_myweb.getbyid('InterHotelname').value=hotelStorage.InterHotelName;
+    //已去掉城市模糊搜索
+    //lsf_myweb.getbyid('DomHotelName').value=hotelStorage.DomHotelName;
 }
 
 
@@ -253,9 +254,9 @@ function inpChange(id,myText){
     };
 }
 //酒店输入框
-inpChange('InterHotelname','酒店名/位置');
-
-inpChange('DomHotelName','酒店名/位置');
+//已去掉城市模糊搜索
+//inpChange('InterHotelname','酒店名/位置');
+//inpChange('DomHotelName','酒店名/位置');
 (function(){
 //目的地输入框去掉光标
     var address_broad=document.getElementById('input1');
@@ -458,14 +459,16 @@ inpChange('DomHotelName','酒店名/位置');
             "NumRoom":lsf_myweb.getbyid('count1').value,
             "NumAdult":lsf_myweb.getbyid('count2').value,
             "NumChild":lsf_myweb.getbyid('count3').value,
-            "InterHotelName":lsf_myweb.getbyid('InterHotelname').value,
+            //已去掉城市模糊搜索
+            //"InterHotelName":lsf_myweb.getbyid('InterHotelname').value,
             "InterTotalDay":lsf_myweb.getbyid('total_day').innerHTML,
             "InterBeginDateWeek":lsf_myweb.getbyid('week_span1').innerHTML,
             "InterLeaveDateWeek":lsf_myweb.getbyid('week_span2').innerHTML,
             "DomDes":lsf_myweb.getbyid('input2').value,
             "DomCheckInDate":lsf_myweb.getbyid('DomCheckInDate').value,
             "DomCheckOutDate":lsf_myweb.getbyid('DomCheckOutDate').value,
-            "DomHotelName":lsf_myweb.getbyid('DomHotelName').value,
+            //已去掉城市模糊搜索
+            //"DomHotelName":lsf_myweb.getbyid('DomHotelName').value,
             "DomeTotalDay":lsf_myweb.getbyid('domeTotalDay').innerHTML,
             "DomBeginDateWeek":lsf_myweb.getbyid('weekSpan3').innerHTML,
             "DomLeaveDateWeek":lsf_myweb.getbyid('weekSpan4').innerHTML
