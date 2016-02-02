@@ -126,6 +126,7 @@ a{
 }
 .s-p4{
     margin-left: 8px;
+    margin-bottom:0;
     font-size: 1.4rem;
     color: #484848;
 }
@@ -141,4 +142,7 @@ a{
     color:#9ba4ae;
     line-height: 50px;
 }
-
+.contentBox{
+     background:#fff;
+     padding-bottom: 45px;
+}

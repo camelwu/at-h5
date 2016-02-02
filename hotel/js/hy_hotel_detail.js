@@ -7,6 +7,10 @@
         isAnimation: false,
         requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
 
+        myData:{
+            "getByUrl":{},
+            "createAllback":{}
+        },
         $Id: function (id) {
             return document.getElementById(id);
         },
@@ -226,6 +230,8 @@
 
         subRoomList: function (arg) {
             var str = '<ul class="roomDetailList">';
+            console.log(arg);
+            console.log(44444444444444444);
             for (var i = 0; i < arg.length; i++) {
                 str += hotelDetail.subRoomListNoService(arg[i]) + hotelDetail.subRoomListHasService(arg[i]);
             }
@@ -248,7 +254,8 @@
             var showListTrigger = this.$CN('showListTrigger');
             var subRooms = this.$CN('subRoomEvent');
             var Rooms = this.$CN('roomEvent');
-            var toMap = this.$Id('toMap');
+            //地图暂时不用
+            //var toMap = this.$Id('toMap');
 
             toHotelDetail.onclick = function () {
                 document.location.href = 'hotel_summary.html';
@@ -265,7 +272,8 @@
                     target.style.display = 'none'
                 }
             };
-
+            //地图暂时不用
+            /*
             toMap.onclick = function () {
 
                 var dataObj = {
@@ -280,7 +288,7 @@
                 paramStr = paramStr.slice(1);
                 document.location.href = 'jyy_hd_map.html?' + paramStr;
             };
-
+            */
 
             for (var i = 0; i < showListTrigger.length; i++) {
                 showListTrigger[i].onclick = function () {
@@ -350,10 +358,10 @@
         },
 
         createAll: function (result) {
-
             result = JSON.parse(result);
             console.log('callback函数得到的数据');
-             console.log(result)
+            hotelDetail.myData.createAllback=result;
+            console.log(hotelDetail.myData);
             if (result.success == true) {
                 hotelDetail.$Id('preloader') ? document.body.removeChild(hotelDetail.$Id('preloader')) : '';
             } else {
@@ -378,7 +386,7 @@
 
 
             firstUl += '<ul class="d-ul1"><li  onclick="hotelDetail.h_reviews()"><span class="rateScore">' + result.data[0].hotelGenInfo.taAvgRating + '</span>分/' + result.data[0].hotelGenInfo.taReviewCount + '人点评<b class="icons open-arg"></b></li>' +
-            '<li id="toMap"><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span><em>地图</em><b class="icons open-arg"></b></li>' +
+            '<li id="toMap"><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' +
             '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate"></b><b class="icons open-arg"></b></li></ul>';
 
             secondUl += '<ul class="d-ul2">' +
@@ -587,11 +595,27 @@
             hotelDetail.updateSubRoomModal(tempInfo);
         },
 
-        showRoomModals: function (reslut) {
+        showRoomModals: function (d) {
             var oDiv = document.createElement('div');
+            var result=eval('('+d+')');
+            console.log(result);
+            console.log(result.data[0]);
+            console.log(777777777777777);
+            function showDesc(str){
+                if(!str){
+                    return '暂无描述';
+                }
+            }
+            function showFeature(arr){
+                var str='';
+                for(var i=0;i<arr.length;i++){
+                    str+='<li class="r-li"><b class="r-icon2"></b> <p class="r-p3">'+arr[i].featureDesc+'</p></li>';
+                }
+                return str;
+            }
             oDiv.className = 'roomAll';
             oDiv.id = 'roomAll';
-            oDiv.innerHTML = '<div class="room" id="room"> <div class="r-div1"><img class="hotelPic2" src="../images/03-3_03.jpg"></div> <article class="r-ar">最多 2成人<br>儿童10岁或以上按照成人算。  10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费 </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间描述</p> <article class="r-ar">Newly refurbished Deluxe Rooms are a unique expression of stylishcomfort.Featuring </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul"> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">无线上网服务(免费)</p></li> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">双人床/两张单人床</p></li> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">个人温度调节器</p></li> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">有线/卫星电视</p></li> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">热水喝冷水淋浴</p></li> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">AM/FM收音机</p></li> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">24小时商务中心</p></li> <li class="r-li"><b class="r-icon2"></b> <p class="r-p3">SPA浴盆</p></li> </ul> </div><header class="r-top"><p class="r-p1">高级客房</p><b class="r-icon1 closeTagAgain"></b></header>'
+            oDiv.innerHTML = '<div class="room" id="room"> <div class="r-div1"><img class="hotelPic2" src="../images/03-3_03.jpg"></div> <article class="r-ar">最多 2成人<br>儿童10岁或以上按照成人算。  10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费 </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间描述</p> <article class="r-ar">'+showDesc(result.data[0].hotelRoomFeaturesList[0].imageDesc)+' </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">'+showFeature(result.data[0].hotelRoomAmenitiesList)+'</ul> </div><header class="r-top"><p class="r-p1">高级客房</p><b class="r-icon1 closeTagAgain"></b></header>';
             document.body.appendChild(oDiv);
             hotelDetail.$Id('r-mb').style.display = 'block';
             document.getElementById('r-mb').onclick = hotelDetail.$CN('closeTagAgain')[0].onclick = function (event) {
@@ -612,6 +636,8 @@
 
             var dataObj = arg || this.parseUrlPara(document.location.search, true);
             this.gdataInfo = dataObj;
+            this.myData.getByUrl=dataObj;
+            console.log(this.myData);
             console.log('url得到的数据');
             console.log(this.gdataInfo);
             this.jAjax(this.requestUrl, dataObj, "0008", 3, this.createAll);
