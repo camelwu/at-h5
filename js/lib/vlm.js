@@ -11,8 +11,8 @@
 	function(n) {
 		var _api = "http://10.2.22.239:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 			home : ['首页', basePath],
-			discover : ['发现', _api + '/discover.html'],
-			user : ['我的', _api + '/user.html']
+			find : ['发现', basePath + '/find.html'],
+			user : ['我的', basePath + '/user/user.html']
 		}, _init = function() {
 			_loadend();
 			var hrefstr = window.location.href, _a = hrefstr.split("/"), _s = _a[_a.length - 1], _p = _s.indexOf("."), _k = _s.substring(0, _p);

@@ -3,7 +3,7 @@
 require.config({
     baseUrl: 'js/lib',
     paths: {
-        jquery: 'jquery-1.10.2.min',
+        jquery: 'jquery',
         vlm: 'vlm',
         plugins: 'plugins'
         
