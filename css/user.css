@@ -69,6 +69,11 @@
 /*
          个人中心未登录页css
 */
+#u_info{
+    width: 150px;
+    margin: 0 auto;
+}
+
 .unl_div {
     width: 94%;
     margin-left: 3%;

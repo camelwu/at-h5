@@ -32,8 +32,8 @@
 <div id="preloader">
 	<div id="status">
     	<p class="center-text">
-			Loading ...
-            <em>Loading depends on your connection speed!</em>
+			 <br>
+            <em>加载中……</em>
         </p>
     </div>
 </div>
@@ -59,33 +59,39 @@
         <div class="contenter half-bottom">
             <div class="portfolio-adaptive adaptive-four">
                 <div class="adaptive-item">
-                    <a href="hotel/hotel.html" title="Hotels Here">
-                        <img class="responsive-image" src="./images/hotels.png" alt="img">
-                        <div class="center-text">酒店</div>
-                    </a>
-                </div>
-                <div class="adaptive-item">
-                    <a href="javascript:void(0);" title="Flights Goes Here">
+                    <a href="./flight/index.html" title="Flights Goes Here">
                         <img class="responsive-image" src="./images/flights.png" alt="img">
                         <div class="center-text">机票</div>
                     </a>
                 </div>
                 <div class="adaptive-item">
-                    <a href="javascript:void(0);" title="Attractions Here">
+                    <a href="./hotel/index.html" title="Hotels Here">
+                        <img class="responsive-image" src="./images/hotels.png" alt="img">
+                        <div class="center-text">酒店</div>
+                    </a>
+                </div>
+                <div class="adaptive-item">
+                    <a href="./scenic/index.html" title="Attractions Here">
                         <img class="responsive-image" src="./images/tickets.png" alt="img">
                         <div class="center-text">景点</div>
+                    </a>
+                </div>
+                <div class="adaptive-item">
+                    <a href="./tour/index.html" title="Hotels attractions Here">
+                        <img class="responsive-image" src="./images/ht.png" alt="img">
+                        <div class="center-text">酒+景</div>
+                    </a>
+                </div>
+                <!-- <div class="adaptive-item">
+                    <a href="javascript:void(0);" title="Hotels flights attractions Here">
+                        <img class="responsive-image" src="./images/fht.png" alt="img">
+                        <div class="center-text">机+酒+景</div>
                     </a>
                 </div>
                 <div class="adaptive-item">
                     <a href="javascript:void(0);" title="Cars Here">
                         <img class="responsive-image" src="./images/cars.png" alt="img">
                         <div class="center-text">租车</div>
-                    </a>
-                </div>
-                <div class="adaptive-item">
-                    <a href="javascript:void(0);" title="Hotels flights attractions Here">
-                        <img class="responsive-image" src="./images/fht.png" alt="img">
-                        <div class="center-text">机+酒+景</div>
                     </a>
                 </div>
                 <div class="adaptive-item">
@@ -99,13 +105,7 @@
                         <img class="responsive-image" src="./images/transfers.png" alt="img">
                         <div class="center-text">接送服务</div>
                     </a>
-                </div>
-                <div class="adaptive-item">
-                    <a href="javascript:void(0);" title="Hotels attractions Here">
-                        <img class="responsive-image" src="./images/ht.png" alt="img">
-                        <div class="center-text">酒+景</div>
-                    </a>
-                </div>
+                </div> -->
             </div>
 		</div>
 		
@@ -163,13 +163,8 @@
 <div id="menu"></div>
 <script data-main="js/main.js" src="js/require.js"></script>
 <script>
-	var gps = document.getElementById("toper-gps");
-	if(localStorage.province){
-		gps.innerHTML = localStorage.province;
-	}else{
-		gps.innerHTML = '北京';
-	}
-	
+var gps = document.getElementById("toper-gps");
+gps.innerHTML = localStorage.province?localStorage.province:'北京';
 </script>
 </body>
 </html>
