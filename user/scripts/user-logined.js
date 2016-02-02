@@ -8,7 +8,7 @@ function init(){
     var memberid = sessionStorage.memberid;
     sessionStorage.news = "true";
     sessionStorage.promotion = "true";
-    var c = new vcm();
+    var c = new vlm();
     var Parameters={
         "Parameters": "{\"CultureName\":\"\",\"MemberId\":\"492189\",\"Email\":\"\",\"Mobile\":\"15210091056\"}",
         "ForeEndType": 3,

@@ -94,7 +94,7 @@ window.onload = function(){
     var verify = $("#verify")[0];
     var get_code = $("#get_code")[0];
     //var wrapper = $("#r_e_password")[0];
-    var c = new vcm();
+    var c = new vlm();
     var check = function (type,num){
         if(type == "tel"){
            return c.Utils.validate.mobileNo(num);
@@ -318,7 +318,7 @@ function mycallback_login(ret) {
 }
 //注册验证码回调
 function mycallback_verify(ret){
-    var c = new vcm();
+    var c = new vlm();
     var verify = $("#verify")[0];
     console.log(ret);
     var myJson = eval('('+ret+')');
@@ -340,7 +340,7 @@ function mycallback_findkey(ret){
 }
 //找回密码验证码回调
 function mycallback_findver(ret){
-    var c = new vcm();
+    var c = new vlm();
     var find_veri = $("#find_veri")[0];
     var myJson = eval('('+ret+')');
     console.log(myJson);

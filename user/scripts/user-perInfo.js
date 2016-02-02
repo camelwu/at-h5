@@ -9,7 +9,7 @@ var u_realname;
 function u_perInfo(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
-    var c = new vcm;
+    var c = new vlm;
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
     var password = sessionStorage.password;
@@ -304,7 +304,7 @@ function mycallback_info(ret){
     }
 }
 function mycallback_phoneVeri(ret){
-    var c = new vcm();
+    var c = new vlm();
     var phone_ver = $("#phone_ver")[0];
     console.log(ret);
     var myJson = eval('('+ret+')');
@@ -325,7 +325,7 @@ function mycallback_newKey(ret){
     }
 }
 //function mycallback_keyVeri(ret){
-//    var c = new vcm();
+//    var c = new vlm();
 //    var phone_ver = $("#phone_ver")[0];
 //    console.log(ret);
 //    var myJson = eval('('+ret+')');
