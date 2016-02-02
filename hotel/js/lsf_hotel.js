@@ -258,6 +258,7 @@ function inpChange(id,myText){
 //inpChange('InterHotelname','酒店名/位置');
 //inpChange('DomHotelName','酒店名/位置');
 (function(){
+    var hoPos='';
 //目的地输入框去掉光标
     var address_broad=document.getElementById('input1');
     var address_demosic=document.getElementById('input2');
@@ -448,8 +449,9 @@ function inpChange(id,myText){
         var citys=new myCityList('input2','hotel.html');
         //alert(citys.city);
     })
-    //查询按钮点击事件
-    lsf_myweb.bind(lsf_myweb.getbyid('InterBtn'),'click',function(){
+    function hoMemory(){
+        //用于记录用户历史选择
+
         var hotelStorage12345={
             //现在只有Singapore可以查询到数据，所以先默认城市是Singapore
             "InterDes":lsf_myweb.getbyid('input1').value,
@@ -474,6 +476,17 @@ function inpChange(id,myText){
             "DomLeaveDateWeek":lsf_myweb.getbyid('weekSpan4').innerHTML
         };
         sessionStorage.setItem('hotelStorage12345',JSON.stringify(hotelStorage12345));
+    }
+    //查询按钮点击事件
+    lsf_myweb.bind(lsf_myweb.getbyid('InterBtn'),'click',function(){
+        hoMemory();
+        hoPos='inter';
+        localStorage.setItem('hoPos',hoPos);
+    });
+    lsf_myweb.bind(lsf_myweb.getbyid('domBtn'),'click',function(){
+        hoMemory();
+        hoPos='dom';
+        localStorage.setItem('hoPos',hoPos);
     });
 })();
 

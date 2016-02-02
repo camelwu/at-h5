@@ -344,15 +344,27 @@ function styleChange(id,mytext){
         var d=oDate.getDate();
         json.InterCheckInDate=json.InterCheckInDate||y+'-'+m+'-'+d;
         json.InterCheckOutDate=json.InterCheckOutDate||y+'-'+m+'-'+(d+1);
+        var hoPos=localStorage.getItem('hoPos');
+        //alert(hoPos);
         var c = new vcm();
-        //alert(url_json.NumRoom);
-        var data =
-        {
-            "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
-            "Code": "0007",
-            "ForeEndType": 3
-        };
-        //alert(data.Parameters);
+        //alert(url_json.NumRoom);用来判断是国内搜索还是国际搜索
+        //
+        if(hoPos=='inter'){
+            var data =
+            {
+                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
+                "Code": "0007",
+                "ForeEndType": 3
+            };
+        }else if(hoPos='dom'){
+            var data =
+            {
+                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.DomCityName+"\",\"CheckInDate\":\""+json.DomCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.DomCheckOutDate+"T00:00:00\",\"NumRoom\":\"\",\"NumAdult\":\"\",\"NumChild\":\"\",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
+                "Code": "0007",
+                "ForeEndType": 3
+            };
+        }
+
         return  c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
     }
 
