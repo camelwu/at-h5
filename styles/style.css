@@ -419,14 +419,14 @@
     width: 23px;
     height: 23px;
     padding-bottom: 2px;
-    background-image: url(../images/ui/icons.png);
+    background-image: url(../images/ui/icon.png);/*icons*/
     background-repeat: no-repeat;
-    background-size: 243px 160px;
+    background-size: 397px 118px;/*243px 160px*/;
 }
-a.foot-homes, a.foot-orders, a.foot-services, a.foot-users{
+a.foot-homes, a.foot-orders, a.foot-finds, a.foot-services, a.foot-users{
 	color:#ffb413;
 }
-.foot-home i{
+/*.foot-home i{
     background-position:0 -74px;
 }
 .foot-homes i{
@@ -449,6 +449,31 @@ a.foot-homes, a.foot-orders, a.foot-services, a.foot-users{
 }
 .foot-users i{
     background-position:-192px -74px;
+}*/
+
+.foot-home i{
+    background-position:0 2px;
+}
+.foot-homes i{
+    background-position:-25px 2px;
+}
+.foot-order i{
+    background-position:-56px -74px;
+}
+.foot-orders i{
+    background-position:-83px -74px;
+}
+.foot-user i{
+    background-position:-102px 2px;
+}
+.foot-users i{
+    background-position:-126px 2px;
+}
+.foot-find i{
+    background-position:-50px 2px;
+}
+.foot-finds i{
+    background-position:-76px 2px;
 }
 .footer-menu-clear{
     height:60px;
