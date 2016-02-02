@@ -209,10 +209,13 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
     var uo_back=document.getElementById('uo_back');
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
+    var uo_c1_info=document.getElementById('uo_c1_info');
+    var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
     var uo_c2_num=document.getElementById('uo_c2_num');
     var uo_or_infor=document.getElementById('uo_or_infor');
     var uo_form=document.getElementById('uo_con3');
     var uo_confirm=document.getElementById('uo_confirm');
+    var downBok=true;
     var bOk2=true;
     //返回按钮
     uo_back.onclick=function(){
@@ -394,7 +397,6 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         }
         bOk2=!bOk2;
     });
-
     lsf_myweb.bind(uo_confirm,'click',function(){
         var aUo_lastname=lsf_myweb.getbyclass(uo_form,'uo_lastname');
         var aUo_firstname=lsf_myweb.getbyclass(uo_form,'uo_firstname');
@@ -451,5 +453,14 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
         uo_form.submit();
-    })
+    });
+    //取消说明点击事件
+    lsf_myweb.bind(uo_c1_infoDown,'click',function(){
+        if(downBok){
+            uo_c1_info.className='';
+        }else{
+            uo_c1_info.className='uo_c1_info';
+        }
+        downBok=!downBok;
+    });
 })();
