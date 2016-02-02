@@ -11,8 +11,8 @@ require.config({
         // is using jQuery 1.9.0 located at
         // js/lib/jquery-1.9.0.js, relative to
         jquery: 'jquery',
-        vcm: 'vcm',
-       // controller: 'controller',
+        vlm: 'vlm',
+        controller: 'controller',
         plugins: 'plugins',
         custom: 'custom'
     },
@@ -35,21 +35,21 @@ require.config({
     	'custom':{
     		deps: ['jquery','plugins']
     	},
-    	'vcm':{
+    	'vlm':{
     		deps: ['jquery'],
-    		exports: 'vcm'
-        }//,
-        //'module':{
-    		//deps: ['jquery'],
-    		//exports: 'module'
-        //},
-        //'controller':{
-    		//deps: ['jquery','module'],
-    		//exports: 'controller'
-        //},
-        //'jqueryui': {//定义必须先加载jquery,再加载easyui,否则会出错。
-		//	deps: ['jquery']
-		//}
+    		exports: 'vlm'
+    	},
+    	'module':{
+    		deps: ['jquery'],
+    		exports: 'module'
+    	},
+    	'controller':{
+    		deps: ['jquery','module'],
+    		exports: 'controller'
+    	},
+    	'jqueryui': {//定义必须先加载jquery,再加载easyui,否则会出错。
+			deps: ['jquery']
+		}
 	},
 	urlArgs: "bust=" +  (new Date()).getTime()
 });

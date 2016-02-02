@@ -1,22 +1,17 @@
 (function($) {
 
 	$.alerts = {
-
-		// These properties can be read/written by accessing $.alerts.propertyName from your scripts at any time
-
 		verticalOffset : -75, // vertical offset of the dialog from center screen, in pixels
 		horizontalOffset : 0, // horizontal offset of the dialog from center screen, in pixels/
 		repositionOnResize : true, // re-centers the dialog on window resize
 		overlayOpacity : 0.5, // transparency level of overlay
 		overlayColor : '#000', // base color of overlay
 		draggable : true, // make the dialogs draggable (requires UI Draggables plugin)
-		okButton : '确　　定', // text for the OK button
-		cancelButton : '取　　消', // text for the Cancel button
+		okButton : '确定', // text for the OK button
+		cancelButton : '取消', // text for the Cancel button
 		resetButton : '重新输入', // text for the esc button
 		dialogClass : null, // if specified, this class will be applied to all dialogs
-
 		// Public methods
-
 		alert : function(message, title, callback, okstr) {
 			if (title == null)
 				title = 'Alert';
@@ -53,73 +48,61 @@
 					callback(result);
 			});
 		},
-		layer : function(message, value, title, result, callback,moreMsg){
+		layer : function(message, title, callback, okstr){
 			if (title == null)
 				title = '1';
-			$.alerts._show(title, message, value, 'layer', function(result) {
+			$.alerts._show(title, message, null, 'layer', function(result) {
 				if (callback)
 					callback(result);
-			}, result,moreMsg);
+			});
 		},
-
 		// Private methods
+		_show : function(title, msg, value, type, callback) {
 
-		_show : function(title, msg, value, type, callback, result,moreMsg) {
-			if(typeof(moreMsg) == "undefined")
-				moreMsg="";
+			$.alerts._hide();
+			$.alerts._overlay('show');
 			if(type=="layer"){
-				$.alerts._remove();
-				$("BODY").append('<div id="popup-overlay" class="all-elements"><div id="popup-container" class="snap-content"></div></div>');
-				$("#popup-container").append('<div class="popup-'+result+'">' + '<a href="javascript:;" id="popup_cancel" class="popup-close"></a>' 
-						                   + '<div id="popup-content"></div>' 
-						                   + '<div class="popup-more">'+moreMsg+'</div>' 
-						                   + '<div id="popup-tips"></div><a href="javascript:;" class="popup-btns" id="popup_ok"></a>' + '</div>');
-				$("#popup-tips").append('<div id="popup-message"></div>');
-				//alert(moreMsg)
-				//$("#popup-more").html(moreMsg);//更多
-				$("#popup_ok").text(title);//按钮文字
-				$("#popup-message").html(msg);//框内文字
-				$("#popup-content").html(value);//红包区域文字
-			}else if(type!="error"){
-				$.alerts._hide();
-				$.alerts._overlay('show');
-				$("BODY").append('<div id="popup_container">' + '<div id="popup_title"></div>' 
-								+ '<div id="popup_content">'
-								+ '<div class="popup-more">'+moreMsg+'</div>' 
-								+ '<div id="popup_message"></div>' + '</div>' + '</div>');
-				if ($.alerts.dialogClass) $("#popup_container").addClass($.alerts.dialogClass);
-
-				// IE6 Fix var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
-				var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
-				$("#popup_container").css({
-					position : pos,
-					zIndex : 99999,
-					padding : 0,
-					margin : 0
-				});
-				//$("#popup-more").text(moreMsg);//更多
-				$("#popup_title").text(title);
-				$("#popup_content").addClass(type);
+				$("BODY").append('<div id="popup_container">'
+				+ '<div id="popup_title">'+title+'</div>'
+				+ '<div id="popup_content">'
+				+ '<div id="popup_more">'+msg+'</div>'
+				+ '</div>' + '</div>');console.log(title);
+				//$("#popup_title").text(title);$("#popup-more").text(moreMsg);
+			}else{
+				$("BODY").append('<div id="popup_container"><div id="popup_content"><div id="popup_message"></div></div></div>');
 				$("#popup_message").text(msg);
 				$("#popup_message").html($("#popup_message").text().replace(/\n/g, '<br />'));
-				$("#popup_container").css({
-					minWidth : $("#popup_container").outerWidth(),
-					maxWidth : $("#popup_container").outerWidth()
-				});
-
-				$.alerts._reposition();
-				$.alerts._maintainPosition(true);
 			}
+			if ($.alerts.dialogClass) $("#popup_container").addClass($.alerts.dialogClass);
+
+			// IE6 Fix var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
+			var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
+			$("#popup_container").css({
+				position : pos,
+				zIndex : 999,
+				padding : 0,
+				margin : 0
+			});
+			//
+			$("#popup_content").addClass(type);
+			$("#popup_container").css({
+				minWidth : $("#popup_container").outerWidth(),
+				maxWidth : $("#popup_container").outerWidth()
+			});
+
+			$.alerts._reposition();
+			$.alerts._maintainPosition(true);
+			
 			switch( type ) {
 				case 'alert':
-					$("#popup_message").after('<div id="popup_error"></div> <div id="popup_panel"><input type="button" class="button button-blue" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
+					$("#popup_message").after('<div id="popup_error"></div> <div id="popup_panel"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
 					$("#popup_ok").click(function() {
 						$.alerts._hide();
 						callback(true);
 					});
 					break;
 				case 'confirm':
-					$("#popup_message").after('<div id="popup_error"></div><div id="popup_panel"> <input type="button" class="button button-light mgr20" value="' + $.alerts.cancelButton + '" id="popup_cancel" /> <input type="button" class="button button-blue" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
+					$("#popup_message").after('<div id="popup_error"></div><div id="popup_panel"><div class="half"> <input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"></div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok" /></div></div>');
 					$("#popup_ok").click(function() {
 						$.alerts._hide();
 						if (callback)
@@ -134,11 +117,8 @@
 					break;
 				case 'code':
 					var imgsrc = basePath+"/validate/getImage?rnd="+Math.random();
-					$("#popup_message").append('<input type="text" id="popup_prompt" maxlength="4" placeholder="请输入图片中的验证码" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div style="display:inline-block;width:160px;margin-top:10px;"><img id="getImg" src="'+imgsrc+'" width="90" height="30" style="display:inline"> <a href="javascript:;" id="change" style="display:inline;margin-left:10px;">换一张</a></div><div id="popup_error"></div>').after('<div id="popup_panel"> <input type="button" class="button button-light mgr20" value="' + $.alerts.cancelButton + '" id="popup_cancel" /> <input type="button" class="button button-blue" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
-					//$("#popup_prompt").css("width","");
-					$("#change").click(function(){
-				         $("#getImg").attr("src",basePath+"/validate/getImage?rnd="+Math.random())
-				    })
+					$("#popup_message").append('<input type="text" id="popup_prompt" maxlength="4" placeholder="请输入图片中的验证码" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div style="display:inline-block;width:160px;margin-top:10px;"><img id="getImg" src="'+imgsrc+'" width="90" height="30" style="display:inline"> <a href="javascript:;" id="change" style="display:inline;margin-left:10px;">换一张</a></div><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"</div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok"></div></div>');
+					$("#change").click(function(){$("#getImg").attr("src",basePath+"/validate/getImage?rnd="+Math.random());});
 					$("#popup_prompt").keyup(function(e){
 						if($(this).val().length>0){
 							$("#reset-a").show();
@@ -175,13 +155,12 @@
 						$.alerts._hide();
 					});
 					
-					if (value)
-						$("#popup_prompt").val(value);
+					if (value) $("#popup_prompt").val(value);
 					$("#popup_prompt").focus().select();
 					break;
 
 				case 'prompt':
-					$("#popup_message").append('<input type="password" id="popup_prompt" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div id="popup_error"></div>').after('<div id="popup_panel"> <input type="button" class="button button-light mgr20" value="' + $.alerts.cancelButton + '" id="popup_cancel" /> <input type="button" class="button button-blue" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
+					$("#popup_message").append('<input type="password" id="popup_prompt" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"></div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok"></div></div>');
 					$("#popup_prompt").width($("#popup_message").width());
 					$("#popup_prompt").keyup(function(e){
 						if($(this).val().length>0){
@@ -217,20 +196,20 @@
 					$("#popup_prompt").focus().select();
 					break;
 				case 'layer':
-					var h = Math.max($(window).height(),$(document).height());
-					//$("#popup-overlay").css("height",h);
+					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
 					$("#popup_ok").click(function() {
-						$.alerts._remove();
+						$.alerts._hide();
 						if (callback)
 							callback(true);
 					});
 					$("#popup_cancel").click(function() {
-						$.alerts._remove();
-						
+						$.alerts._hide();
+						if (callback)
+							callback(false);
 					});
+					//$("#popup_ok").focus();
 					break;
 			}
-
 			// Make draggable
 			if ($.alerts.draggable) {
 				try {
@@ -244,7 +223,6 @@
 				}
 			}
 		},
-
 		_remove : function() {
 			$("#popup-overlay").remove();
 			//$.alerts._overlay('hide');
@@ -262,7 +240,7 @@
 					$("BODY").append('<div id="popup_overlay"></div>');
 					$("#popup_overlay").css({
 						position : 'absolute',
-						zIndex : 99998,
+						zIndex : 998,
 						top : '0',
 						left : '0',
 						width : '100%',
@@ -276,10 +254,10 @@
 					break;
 			}
 		},
-
 		_reposition : function() {
-			var top = (($(window).height() / 2) - ($("#popup_container").outerHeight() / 2)) + $.alerts.verticalOffset;
-			var left = (($(window).width() / 2) - ($("#popup_container").outerWidth() / 2)) + $.alerts.horizontalOffset;
+			var top = (($(window).height() / 2) - ($("#popup_container").outerHeight() / 2)) + $.alerts.verticalOffset
+			,left = (($(window).width() / 2) - ($("#popup_container").outerWidth() / 2)) + $.alerts.horizontalOffset
+			,h = $(document).height()-200;
 			if (top < 0)
 				top = 0;
 			if (left < 0)
@@ -289,13 +267,26 @@
 			if ('undefined' == typeof (document.body.style.maxHeight))
 				top = top + $(window).scrollTop();
 
-			$("#popup_container").css({
-				top : top + 'px',
-				left : left + 'px'
-			});
-			//$("#popup_overlay").height($(document).height());
+			if($("#popup_more")){
+				$("#popup_more").css({
+					height : h + 'px',
+					maxHeight : h + 'px'
+				});
+				$("#popup_container").css({
+					top : '50%',
+					left : '50%',
+					marginTop: '-'+$("#popup_container").outerHeight() / 2+'px',
+					marginLeft: '-'+$("#popup_container").outerWidth() / 2+'px'
+				});
+				
+				
+			}else{
+				$("#popup_container").css({
+					top : top + 'px',
+					left : left + 'px'
+				});
+			}
 		},
-
 		_maintainPosition : function(status) {
 			if ($.alerts.repositionOnResize) {
 				switch(status) {
@@ -310,12 +301,11 @@
 				}
 			}
 		}
-	}
-
+	};
 	// Shortuct functions
 	jAlert = function(message, title, callback, okstr) {
 		$.alerts.alert(message, title, callback, okstr);
-	}
+	};
 	jConfirm = function(message, title, callback, okstr, escstr) {
 		$.alerts.confirm(message, title, callback, okstr, escstr);
 	};

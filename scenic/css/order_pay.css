@@ -1,0 +1,125 @@
+body{
+    background-color: #fff;
+}
+
+li{
+    list-style: none;
+}
+
+i{
+    font-style: normal;
+}
+
+.edit-tit{
+    font-weight: normal;
+}
+.per-pay-msg-bg{
+    background-color: #f5f4f9;
+}
+.per-pay-msg{
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.per-pay-msg li{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dedede;
+}
+
+.per-pay-msg li:first-child{
+    margin-left: 10px;
+}
+
+.per-pay-msg li:first-child .order-num{
+    margin-left: 10px;
+}
+.order-num{
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    font-size: 1.6rem;
+    color: #333;
+    margin-left: 20px;
+}
+
+.order-tot-dol{
+    margin-bottom: 0;
+    font-size: 1.3rem;
+    vertical-align: middle;
+    position: absolute;
+    right: 20px;
+    top: 6px;
+
+}
+
+.order-tot-dol i{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.order-tot-dol span{
+    color: #ff6a00;
+}
+
+.count-time{
+    color: #ff6a00;
+}
+
+.pay-style{
+    height: 32px;
+    line-height: 32px;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    background-color: #e9e9e9;
+    font-size: 1.6rem;
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+.pay-style-list{
+    background-color: #fff;
+    height: 100%;
+}
+
+.pay-style-list li{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dedede;
+}
+
+.pay-style-list li:first-child{
+    margin-left: 10px;
+}
+
+.pay-style-list li:first-child .pay-card{
+    margin-left: 10px;
+}
+.pay-card{
+    display: inline-block;
+    width: 42px;height:30px;
+    background-image: url(../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position:17% 38% ;
+    margin-left: 20px;
+}
+
+.right-choi-btn{
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 14px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 63% 4%;
+    background-size: 400px 190px;
+    margin-top: 12px;
+    margin-right: 10px;
+    cursor: pointer;
+}

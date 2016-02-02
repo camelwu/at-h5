@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>个人资料 - 亚洲旅行网</title>
+    <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
+    <link href="../styles/style.css"		rel="stylesheet" type="text/css">
+    <link href="../css/user.css"	rel="stylesheet" type="text/css">
+</head>
+<body onload="u_perInfo()">
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            Loading the content...
+            <em>Loading depends on your connection speed!</em>
+        </p>
+    </div>
+</div>
+<div class="all-elements">
+    <div class="header">
+        <a href="javascript:window.history.go(-1);" class="icons header-back"></a>
+        <h3>个人资料</h3>
+    </div>
+    <!-- Page Content-->
+    <div id="content" class="snap-content">
+        <div id="infolist" class="user-info-top">
+            头像<img id="userIcon" src="../images/ui/photo-man.png" class="user-it"/>
+            <b class="icons open-rg" style="margin-top: 25px;"></b>
+        </div>
+        <ul class="s_lists">
+            <li id="a_nick">昵称 <b class="icons open-rg"></b><span id="nickname" class="info-name"></span><b class="icons open-rg"></b></li>
+            <li id="a_name">姓名 <b class="icons open-rg"></b></li>
+            <li>性别
+                <div class="info-sex" id="sex">
+                    <div id="block" class="white-div"></div>
+                    <div class="sex-div">男</div>
+                    <div class="sex-div">女</div>
+                </div></li>
+            <li  class="sex-alter"><div class="birth-date">出生日期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly /><b class="icons open-rg"></b></li>
+            <li id="a_phone">手机 <b class="icons open-rg"></b></li>
+            <li id="a_email">邮箱 <b class="icons open-rg"></b></li>
+            <li id="a_key">修改密码<b class="icons open-rg"></b></li>
+        </ul>
+        <a href="user.html" class="info-quit">退出</a>
+    </div>
+</div>
+<!--     修改信息浮层     -->
+<div id="amend_info" class="all-elements" style="display: none;">
+    <div class="header">
+        <a id="close_page" class="icons header-back"></a>
+        <h3 id="title">修改昵称/填写姓名/手机号验证/邮箱/修改密码</h3>
+    </div>
+    <ul id="info_content">
+        <li id="changename" style="display: none;">
+            <form id="nickForm" action="user-perInfo.html" method="post">
+                <div class="u_name">
+                    <input id="name" name="name" type="text" value=""/>
+                    <b class="icon name-close" onclick="clearname()"></b>
+                </div>
+                <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
+                <input id="nick_btn" class="f_btn button-orange" type="button" value="保存"/>
+            </form>
+        </li>
+        <form id="infoForm" action="user-perInfo.html" method="post">
+            <li id="fillname" style="display: none;">
+                <div class="u_name">
+                    <input id="realName" type="text" style="font-size: 1.4rem" placeholder="请填写真实姓名" data-type="code">
+                </div>
+                <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
+            </li>
+            <li id="phoneverify" style="display: none;">
+                <ul class="f_key">
+                    <li>
+                        <input id="phone" class="fk_put" type="text" value placeholder="请输入手机号" data-type="tel">
+                    </li>
+                    <li style="padding-right: 0;">
+                        <input class="fk_put" type="text" value placeholder="请输入验证码" data-type="code">
+                        <div class="fk_div" id="phone_ver">发送验证码</div>
+                    </li>
+                </ul>
+            </li>
+            <li id="useremail" style="display: none;">
+                <div class="u_name">
+                    <input id="email" type="text" style="font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
+                </div>
+            </li>
+                <input id="amend_btn" class="f_btn button-orange" type="button" value="保存"/>
+        </form>
+        <li id="amendkey" style="display: none;">
+            <form id="keyForm" action="user-perInfo.html" method="post">
+                <ul class="f_key">
+                    <li class = "amendkey">
+                        <div>当前密码</div>
+                        <input type="password" placeholder="6-20位字符" data-type="pass"/>
+                    </li>
+                    <li class = "amendkey">
+                        <div>新密码</div>
+                        <input type="password" placeholder="6-20位字符" data-type="pass"/>
+                    </li>
+                    <li class = "amendkey">
+                        <div>确认密码</div>
+                        <input type="password" placeholder="6-20位字符" data-type="pass"/>
+                    </li>
+                </ul>
+            </form>
+            <div id="ifshowkey" class="showkey"><b class="icon show-keys"></b>显示密码</div>
+            <input id="newkey_btn" class="f_btn button-orange" type="button" value="完成"/>
+            <div class="con-text" style="margin-top: 15px;">注意：密码需要填写6-20位字符，可由英文字母，数字和符号组成，不能含空格</div>
+        </li>
+    </ul>
+</div>
+<div id="menu"></div>
+
+<!--出生日期选择控件-->
+    <div class="mask" id="overlay"></div>
+    <div class="selbox-footer" id="selbox">
+        <div id="opeater" style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span><span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span></div>
+        <ul class="selbox-ul" id="rank">
+            <li id="mt-year"></li>
+            <li id="mt-mon">
+                <div class="sel-time" id="mon">
+                    <span>&nbsp;</span><span>&nbsp;</span>
+                    <span class="date-selected">1月</span>
+                    <span>2月</span>
+                    <span>3月</span>
+                    <span>4月</span>
+                    <span>5月</span>
+                    <span>6月</span>
+                    <span>7月</span>
+                    <span>8月</span>
+                    <span>9月</span>
+                    <span>10月</span>
+                    <span>11月</span>
+                    <span>12月</span>
+                    <span>&nbsp;</span><span>&nbsp;</span>
+                </div>
+                <div class="sel-box m"></div>
+            </li>
+            <li id="mt-day">
+                <div class="sel-time" id="day">
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                    <span class="date-selected">1号</span>
+                    <span>2号</span>
+                    <span>3号</span>
+                    <span>4号</span>
+                    <span>5号</span>
+                    <span>6号</span>
+                    <span>7号</span>
+                    <span>8号</span>
+                    <span>9号</span>
+                    <span>10号</span>
+                    <span>11号</span>
+                    <span>12号</span>
+                    <span>13号</span>
+                    <span>14号</span>
+                    <span>15号</span>
+                    <span>16号</span>
+                    <span>17号</span>
+                    <span>18号</span>
+                    <span>19号</span>
+                    <span>20号</span>
+                    <span>21号</span>
+                    <span>22号</span>
+                    <span>23号</span>
+                    <span>24号</span>
+                    <span>25号</span>
+                    <span>26号</span>
+                    <span>27号</span>
+                    <span>28号</span>
+                    <span>29号</span>
+                    <span>30号</span>
+                    <span>31号</span>
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                </div>
+                <div class="sel-box d"></div>
+            </li>
+        </ul>
+    </div>
+<script>
+    /*年月日选择*/
+    (function(){
+        var aCab=document.querySelectorAll('.birth-cont');
+        var oCbox=document.querySelector('.selbox-footer');
+        var oAir=document.querySelector('.mask'),Bflag=0;
+
+        for(var i=0;i<aCab.length; i++)
+        {
+            (function(index){
+                aCab[i].onclick=function(){
+                    oCbox.style.bottom = 0;
+                    oAir.style.display='block';
+                    var _this=this;Bflag=index;
+                }
+            })(i);
+        }
+
+        oCbox.querySelector('.cabin-sure').addEventListener('click',function(){
+
+            oCbox.style.bottom ='-260px';
+            oAir.style.display='none';
+            var aSpan=document.querySelector('#rank').querySelectorAll('span');
+
+            var oContent='';
+            for(var i=0;i<aSpan.length; i++)
+            {
+                if(aSpan[i].className == 'date-selected')
+                {
+                    oContent+=aSpan[i].innerHTML;
+                }
+            }
+            aCab[Bflag].value=oContent;
+
+        });
+        oCbox.querySelector('.cabin-cancel').addEventListener('click',function(){
+            oCbox.style.bottom ='-260px';
+            oAir.style.display='none';
+        });
+
+    })();
+</script>
+
+<script src="../js/require.js" data-main="../js/user.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/vcm.js"></script>
+<script type="text/javascript" src="scripts/user-perInfo.js"></script>
+</body>
+</html>
