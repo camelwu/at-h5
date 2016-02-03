@@ -272,7 +272,7 @@ function mycallback_deltrav(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success){
-        window.location.href = "../user-oftenInfo.html";
+        window.location.href = "user-oftenInfo.html";
     }else{
         alert(myJson.Message);
     }
