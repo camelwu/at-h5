@@ -16,6 +16,7 @@ window.onload = function(){
         "ForeEndType": 3,
         "Code": "0074"
     };
+    //console.log(Parameters);
     c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
     var addtra_page = $("#addtra_page")[0];
@@ -100,8 +101,13 @@ window.onload = function(){
     function upTraveler(obj){
         obj.onclick = function(){
             //debugger;
+            console.log(array);
             var travelId = array[index];
+            //console.log(travelId);
+
+
             var id = arrayId[index];
+            console.log(id);
             var input  = document.getElementById("updateForm").getElementsByTagName("input");
             var cardType = document.getElementById("cardType").innerHTML;
             var cardId;
@@ -146,7 +152,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0072"
             };
-
+            console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
         }
     }
@@ -199,7 +205,7 @@ function mycallback(ret){
     travJson = eval('('+ret+')');
     //console.log(travJson);
     var blank = $("#blank")[0];
-    //console.log(travJson.data)
+    console.log(travJson)
     if(travJson.success){
         if(travJson.data.length == 0){
             blank.style.display = "block";

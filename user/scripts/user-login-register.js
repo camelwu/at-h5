@@ -306,10 +306,10 @@ function mycallback_login(ret) {
     var myJson = eval('(' + ret + ')');
     console.log(myJson);
     if (myJson.success) {
-        sessionStorage.email = myJson.data[0].Email;
-        sessionStorage.phone = myJson.data[0].Mobile;
-        sessionStorage.password = myJson.data[0].Password;
-        sessionStorage.memberid = myJson.data[0].MemberID;
+        sessionStorage.email = myJson.data[0].email;
+        sessionStorage.phone = myJson.data[0].mobile;
+        sessionStorage.password = myJson.data[0].password;
+        sessionStorage.memberid = myJson.data[0].memberID;
         localStorage.setItem('login',1);
         window.location.href = "user-logined.html";
     } else {
