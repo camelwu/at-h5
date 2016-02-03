@@ -174,8 +174,8 @@
                         '<i class="fr drop_down"></i>'+
                         '</p>'+
                         '<div class="lsf_reUser">'+
-                        '<span class="clearfix reu_span1"><b class="fl">'+comments[i].reviewerName+'</b><i class="fl hr_city">'+comments[i].countryName+'</i></span>'+
-                        '<span class="clearfix reu_span2"><em class="fr">'+comments[i].createdDate.substring(0,comments[i].createdDate.indexOf('T'))+'</em></span>'+
+                        '<span class="reu_span1"><b class="fl">'+comments[i].reviewerName+'</b><i class="fl hr_city">'+comments[i].countryName+'</i></span>'+
+                        '<span class="reu_span2"><em class="fr">'+comments[i].createdDate.substring(0,comments[i].createdDate.indexOf('T'))+'</em></span>'+
                         '</div>'+
                         '</div>';
                 }

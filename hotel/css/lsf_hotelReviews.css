@@ -4,7 +4,12 @@ body{
 ul li,ol li{
     list-style:none;margin:0;padding:0;
 }
-
+.clearfix:after{
+    display:block;content:'';clear:both;
+}
+.clearfix{
+    zoom:1;
+}
 .all-elements i{
     font-style:normal;
 }
@@ -132,7 +137,7 @@ header i{
     margin-left:0.8rem;font-weight:bold;
 }
 .lsf_reSta{
-    width: 85px;height:14px;margin-top:3px;
+    height:14px;margin-top:3px;
 }
 .lsf_reSta li{
     width:1.2rem;height:1.2rem;line-height:1.1rem;margin:0px 1px;background:url(../../images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;
@@ -185,13 +190,16 @@ header i{
     flex:1;
     font-size:1.3rem;
     color:#484848;
-
+    overflow:hidden;
+    display:block;
 }
 .lsf_reUser .reu_span1 b{
     font-size:1.3rem;
 }
 .lsf_reUser .reu_span2{
     width:85px;font-size:1.3rem;
+    overflow:hidden;
+    display:block;
 }
 .lsf_reUser span i{
     margin-left: 0.4rem;
