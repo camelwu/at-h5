@@ -86,13 +86,25 @@ window.onload = function(){
                 sexCode = "Mrs";
                 sexName = "女";
             }
-            var Parameters= {
-                "Parameters": "{\"Traveller\":{\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\""+input[5].value+"\",\"MemberId\":\""+memberId+"\",\"MobilePhone\":\""+input[4].value+"\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\""+input[3].value+"\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
-                "ForeEndType": 3,
-                "Code": "0071"
-            };
 
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
+            var oCheck = new vlm();
+            var oMobile = $('#mobile-cell-add')[0].value;
+            var oEmail = $('#email-cell-add')[0].value;
+
+            if( oCheck.Utils.validate.mobileNo(oMobile) && oCheck.Utils.validate.email(oEmail)) {
+
+                var Parameters= {
+                    "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
+                    "ForeEndType": 3,
+                    "Code": "0071"
+                }
+
+                c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
+            }
+            else
+            {
+                alert('请输入正确的邮箱和电话号码');
+            }
         }
     }
     addTraveler(add_finish);
@@ -101,13 +113,13 @@ window.onload = function(){
     function upTraveler(obj){
         obj.onclick = function(){
             //debugger;
-            console.log(array);
+            //console.log(array);
             var travelId = array[index];
             //console.log(travelId);
 
 
             var id = arrayId[index];
-            console.log(id);
+            //console.log(id);
             var input  = document.getElementById("updateForm").getElementsByTagName("input");
             var cardType = document.getElementById("cardType").innerHTML;
             var cardId;
@@ -147,13 +159,27 @@ window.onload = function(){
             }else{
                 cardId = "9";
             }
-            var Parameters= {
-                "Parameters": "{\"Traveller\":{\"TravellerId\":"+travelId+",\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\""+input[5].value+"\",\"MemberId\":\""+memberId+"\",\"MobilePhone\":\""+input[4].value+"\"},\"ListTravellerIdInfo\":[{\"Id\":"+id+",\"TravellerId\":"+travelId+",\"IdType\":2,\"IdNumber\":\""+input[3].value+"\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
-                "ForeEndType": 3,
-                "Code": "0072"
-            };
-            console.log(Parameters);
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
+
+            var oCheck = new vlm();
+            var oMobile = $('#mobile-cell')[0].value;
+            var oEmail = $('#email-cell')[0].value;
+
+            if( oCheck.Utils.validate.mobileNo(oMobile) && oCheck.Utils.validate.email(oEmail))
+            {
+                var Parameters= {
+                    "Parameters": "{\"Traveller\":{\"TravellerId\":"+travelId+",\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\""+input[5].value+"\",\"MemberId\":\""+memberId+"\",\"MobilePhone\":\""+input[4].value+"\"},\"ListTravellerIdInfo\":[{\"Id\":"+id+",\"TravellerId\":"+travelId+",\"IdType\":2,\"IdNumber\":\""+input[3].value+"\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
+                    "ForeEndType": 3,
+                    "Code": "0072"
+                };
+                c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
+
+            }
+            else
+            {
+                alert('请输入正确的手机号和邮箱');
+            }
+            //console.log(Parameters);
+
         }
     }
     upTraveler(upadate_finish);

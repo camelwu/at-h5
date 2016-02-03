@@ -178,11 +178,11 @@
                                 手机号
                                 <div style="float:right;margin-right:10px;">+86</div>
                             </div>
-                            <input type="text" placeholder="请确保手机号无误">
+                            <input type="text" placeholder="请确保手机号无误" id="mobile-cell-add">
                         </li>
                         <li>
                             <div class="">邮箱</div>
-                            <input type="text" placeholder="常用邮箱">
+                            <input type="text" placeholder="常用邮箱" id="email-cell-add">
                         </li>
                     </ul>
                 </form>
@@ -263,11 +263,11 @@
                                 手机号
                                 <div style="float:right;margin-right:10px;">+86</div>
                             </div>
-                            <input type="text" placeholder="请确保手机号无误">
+                            <input type="text" placeholder="请确保手机号无误" id="mobile-cell">
                         </li>
                         <li>
                             <div class="">邮箱</div>
-                            <input type="text" placeholder="常用邮箱">
+                            <input type="text" placeholder="常用邮箱" id="email-cell">
                         </li>
                     </ul>
                 </form>
@@ -569,10 +569,12 @@
     <!--国籍选择结束-->
     <script src="../js/country_list.js"></script>
     <script src="../js/require.js" data-main="../js/user.js"></script>
-
+    <script type="text/javascript" src="../js/lib/jquery.js"></script>
+    <script type="text/javascript" src="../js/lib/vlm.js"></script>
+    <script type="text/javascript" src="scripts/user-oftenInfo.js"></script>
     <!--年月日选择以及证件有效期-->
-
     <script>
+
         (function(){
             var aCab=document.querySelectorAll('.birth-cont');
             var oCbox=document.querySelector('.selbox-footer');
@@ -613,10 +615,6 @@
 
         })();
     </script>
-
-    <script type="text/javascript" src="../js/lib/jquery.js"></script>
-    <script type="text/javascript" src="../js/lib/vlm.js"></script>
-    <script type="text/javascript" src="scripts/user-oftenInfo.js"></script>
 
 
 </body>

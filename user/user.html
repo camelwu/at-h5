@@ -50,10 +50,10 @@
                         <div id="loginShow">
                         </div>
                         <div class="unl_div">
-                            <ul class="user-menu">
+                            <ul class="user-menu" id="loginfo">
                                 <li><a href="user-login.html" style="color:white">全部订单</a></li>
-                                <li><a href="user-login.html" style="color:white">待付款</a></li>
-                                <li><a href="user-login.html" style="color:white">未出行</a></li>
+                                <li><a href="user-login.html" style="color:white">待付款</a>{%if (islogin){ %}<div class="info-circle2">12</div>{% }%}</li>
+                                <li><a href="user-login.html" style="color:white">未出行{%=name%}</a></li>
                                 <li><a href="user-login.html" style="color:white">待评价</a></li>
                             </ul>
                         </div>
@@ -132,7 +132,11 @@
 		<div id="menu"></div>
         <script src="../js/require.js" data-main="../js/user.js"></script>
         <script type="text/javascript" src="../js/lib/jquery.js"></script>
+        <script type="text/javascript" src="../js/lib/template.js"></script>
         <script type="text/javascript">
+            var ldata = {islogin:true,name:"测试姓名"};
+            var lstr = template("loginfo",ldata);
+            $("#loginfo").html(lstr);
             function init(){
                 var a_set = $("#a_set")[0];
                 var a_contact = $("#a_contact")[0];
