@@ -273,7 +273,7 @@ window.onload = function(){
        }
        else
        {
-           alert(myJson.Message);
+           alert(myJson.message);
        }
 
    }
@@ -291,20 +291,17 @@ function close_keypage(){
     fkey_page.style.display = "none";
 }
 function mycallback_register(ret){
-    console.log(ret);
     var myJson = eval('('+ret+')');
-    console.log(myJson);
     if(myJson.success){
         document.getElementById("register_page").style.display = "none";
         document.getElementById("login_page").style.display = "block";
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_login(ret) {
-    console.log(ret);
     var myJson = eval('(' + ret + ')');
-    console.log(myJson);
+    //console.log(myJson);
     if (myJson.success) {
         sessionStorage.email = myJson.data[0].email;
         sessionStorage.phone = myJson.data[0].mobile;
@@ -313,20 +310,19 @@ function mycallback_login(ret) {
         localStorage.setItem('login',1);
         window.location.href = "user-logined.html";
     } else {
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 //注册验证码回调
 function mycallback_verify(ret){
     var c = new vlm();
     var verify = $("#verify")[0];
-    console.log(ret);
     var myJson = eval('('+ret+')');
-    console.log(myJson);
+    //console.log(myJson);
     if(myJson.success){
         c.Utils.sendMobileCode(verify.value);
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_findkey(ret){
@@ -335,7 +331,7 @@ function mycallback_findkey(ret){
         window.location.href = "../user-login.html";
 
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 //找回密码验证码回调
@@ -343,7 +339,6 @@ function mycallback_findver(ret){
     var c = new vlm();
     var find_veri = $("#find_veri")[0];
     var myJson = eval('('+ret+')');
-    console.log(myJson);
     if(myJson.success){
         c.Utils.sendMobileCode(find_veri.value);
     }else{
