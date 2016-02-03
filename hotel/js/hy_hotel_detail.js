@@ -190,7 +190,7 @@
                 Code: Code,
                 ForeEndType: ForeEndType
             };
-            var c = new vcm();
+            var c = new vlm();
             c.loadJson(questUrl, JSON.stringify(dataObj), Callback);
         },
 

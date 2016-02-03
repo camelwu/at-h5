@@ -109,7 +109,7 @@
     function M(json){
         json=json||{};
         if(!json.HotelID)return;
-        var c=new vcm();
+        var c=new vlm();
         var data= {
             "Parameters": "{\"HotelID\":"+json.HotelID+",\"CultureName\":\"en - US\" }",
             "ForeEndType": 3,

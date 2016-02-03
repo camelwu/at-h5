@@ -6,7 +6,7 @@ window.onload = function () {
     var hotelCode=JSON.parse(hotelMessage).data.data[0].hotelGenInfo.hotelCode;
     console.log(JSON.parse(hotelMessage));
     //交互部分
-    var c = new vcm();
+    var c = new vlm();
     var data = {
         "Parameters": "{\"HotelID\":"+hotelCode+",\"CultureName\":\"en - US\" }",
         "ForeEndType": 3,
