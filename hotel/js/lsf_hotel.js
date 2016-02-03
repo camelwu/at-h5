@@ -342,8 +342,8 @@ function inpChange(id,myText){
     //国内城市
     var DomCheckInDate=document.getElementById('DomCheckInDate');
     var DomCheckOutDate=document.getElementById('DomCheckOutDate');
-    var oDate3=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+1);
-    var oDate4=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+2);
+    var oDate3=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+2);
+    var oDate4=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+3);
     var DomBeginDate=oDate3.getFullYear()+'-'+toDou(oDate3.getMonth()+1)+'-'+toDou(oDate3.getDate());
     var DomLeaveDate=oDate4.getFullYear()+'-'+toDou(oDate4.getMonth()+1)+'-'+toDou(oDate4.getDate());
     var week_span3=document.getElementById('weekSpan3');

@@ -94,7 +94,7 @@ window.onload = function(){
     var verify = $("#verify")[0];
     var get_code = $("#get_code")[0];
     //var wrapper = $("#r_e_password")[0];
-    var c = new vcm();
+    var c = new vlm();
     var check = function (type,num){
         if(type == "tel"){
            return c.Utils.validate.mobileNo(num);
@@ -176,7 +176,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0052"
             };
-
+            console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
         }
     }
@@ -249,11 +249,11 @@ window.onload = function(){
                 }
             }
             var Parameters= {
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\"1136328136@qq.com\",\"Mobile\":\"\",\"NewPassword\":\"22222\",\"Code\":\"284665\"}",
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input.value+"\",\"Mobile\":\"\",\"NewPassword\":\"\",\"Code\":\"284665\"}",
                 "ForeEndType": 3,
                 "Code": "0055"
             }
-
+            //console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
         }
     }
@@ -273,7 +273,7 @@ window.onload = function(){
        }
        else
        {
-           alert(myJson.Message);
+           alert(myJson.message);
        }
 
    }
@@ -291,59 +291,54 @@ function close_keypage(){
     fkey_page.style.display = "none";
 }
 function mycallback_register(ret){
-    console.log(ret);
     var myJson = eval('('+ret+')');
-    console.log(myJson);
     if(myJson.success){
         document.getElementById("register_page").style.display = "none";
         document.getElementById("login_page").style.display = "block";
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_login(ret) {
-    console.log(ret);
     var myJson = eval('(' + ret + ')');
-    console.log(myJson);
+    //console.log(myJson);
     if (myJson.success) {
-        sessionStorage.email = myJson.data[0].Email;
-        sessionStorage.phone = myJson.data[0].Mobile;
-        sessionStorage.password = myJson.data[0].Password;
-        sessionStorage.memberid = myJson.data[0].MemberID;
+        sessionStorage.email = myJson.data[0].email;
+        sessionStorage.phone = myJson.data[0].mobile;
+        sessionStorage.password = myJson.data[0].password;
+        sessionStorage.memberid = myJson.data[0].memberID;
         localStorage.setItem('login',1);
         window.location.href = "user-logined.html";
     } else {
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 //注册验证码回调
 function mycallback_verify(ret){
-    var c = new vcm();
+    var c = new vlm();
     var verify = $("#verify")[0];
-    console.log(ret);
     var myJson = eval('('+ret+')');
-    console.log(myJson);
+    //console.log(myJson);
     if(myJson.success){
         c.Utils.sendMobileCode(verify.value);
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_findkey(ret){
     var myJson = eval('(' + ret + ')');
     if(myJson.success){
-        window.location.href = "../user-login.html";
+        window.location.href = "user-login.html";
 
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 //找回密码验证码回调
 function mycallback_findver(ret){
-    var c = new vcm();
+    var c = new vlm();
     var find_veri = $("#find_veri")[0];
     var myJson = eval('('+ret+')');
-    console.log(myJson);
     if(myJson.success){
         c.Utils.sendMobileCode(find_veri.value);
     }else{

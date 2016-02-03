@@ -1253,16 +1253,18 @@
 
 .p_86 {
     display: inline-block;
+    vertical-align: top;
     color: white;
     margin-left: 29px;
-    margin-top: 13px;
+    margin-top: 16px;
     border-right: 1px solid rgba(255, 255, 255, 0.5);
     padding-right: 15px;
 }
 
 .in-phone {
     display: inline-block;
-    top: -2px;
+    padding-top: 2px;
+    font-size: 1.3rem;
 }
 
 .forgotkey {
