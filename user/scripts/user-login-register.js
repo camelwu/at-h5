@@ -249,11 +249,11 @@ window.onload = function(){
                 }
             }
             var Parameters= {
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\"1136328136@qq.com\",\"Mobile\":\"\",\"NewPassword\":\"22222\",\"Code\":\"284665\"}",
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input.value+"\",\"Mobile\":\"\",\"NewPassword\":\"\",\"Code\":\"284665\"}",
                 "ForeEndType": 3,
                 "Code": "0055"
             }
-
+            //console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
         }
     }
@@ -328,7 +328,7 @@ function mycallback_verify(ret){
 function mycallback_findkey(ret){
     var myJson = eval('(' + ret + ')');
     if(myJson.success){
-        window.location.href = "../user-login.html";
+        window.location.href = "user-login.html";
 
     }else{
         alert(myJson.message);

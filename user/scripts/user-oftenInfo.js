@@ -203,7 +203,6 @@ window.onload = function(){
 //  页面初始获取常旅客
 function mycallback(ret){
     travJson = eval('('+ret+')');
-    //console.log(travJson);
     var blank = $("#blank")[0];
     console.log(travJson)
     if(travJson.success){
