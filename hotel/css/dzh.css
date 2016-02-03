@@ -68,8 +68,10 @@
 }
 .nav112{
     padding-left: 100px;
+    height:45px;
 }
 .choose-aim{
+    height:45px;
     line-height: 45px;
     font-size: 0.8rem;
 }
@@ -84,6 +86,7 @@
     position: absolute;
     right: 15px;
     top: 15px;
+    width:12px;
 }
 .content2{
     height: 93px;
