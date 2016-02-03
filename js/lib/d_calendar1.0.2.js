@@ -411,10 +411,10 @@ Calender.prototype = {
             that.createContainer();
 	        for(var i=0;i<that.num;i++){
                 if(i==(that.num-1)){
-                    var idate=new Date(nowY, nowM+i ,nowD);
+                    var idate=new Date(nowY, nowM+i ,01);
                     that.drawLastDate(idate);
                 }else{
-                    var idate = new Date(nowY , nowM+i, nowD);
+                    var idate = new Date(nowY , nowM+i, 01);
                     that.drawDate(idate);
                 }
 	        }
