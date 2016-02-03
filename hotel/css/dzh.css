@@ -5,7 +5,7 @@
 #idul li{
     height: 55px;
     padding: 5px 15px;
-    line-height: 42pxicons1;
+    line-height: 42px;
 }
 #idul li a{
     padding-left: 18px;
@@ -200,11 +200,13 @@
     color:#484848;
 }
 .nav3-right{
+    position:relative;
     -webkit-box-flex:8;
     -moz-box-flex:8;
     -ms-flex:8;
     -webkit-flex:8;
     flex:8;
+    height:45px;
     overflow:hidden;
 }
 .nav3-right input{
@@ -221,9 +223,9 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 50%;
-    margin-top: -11px;
-    right: 0px;
+    top:50%;
+    right:0;
+    margin-top:-12px;
     background:url("../../images/up1.png") no-repeat;
     background-size:23px 23px;
 }
@@ -231,9 +233,9 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 50%;
-    margin-top: -11px;
     right: 80px;
+    top:50%;
+    margin-top:-12px;
     background:url("../../images/down2.png") no-repeat;
     background-size:23px 23px;
 }
@@ -307,7 +309,7 @@
     background-size:23px 23px;
 }
 .nav4-centertop{
-    height: 46px;
+    height: 45px;
     border-bottom: 1px solid #dedede;
 }
 .nav4-centerbottom{
