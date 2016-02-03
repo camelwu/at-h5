@@ -318,7 +318,7 @@ function mycallback_phoneVeri(ret){
 function mycallback_newKey(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
-    if(myJson.Success){
+    if(myJson.success){
         document.getElementById("keyForm").submit();
     }else{
         alert(myJson.Message);

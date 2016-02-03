@@ -176,7 +176,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0052"
             };
-
+            console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
         }
     }
