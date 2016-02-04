@@ -92,7 +92,7 @@
                 }
                 var str = "";
                 for (var i = 0; i < arg.length; i++) {
-                    str += '<li class="imageLi"><img class="freeImage" src="../images/cacheN.png" real-src="' + arg[i].imageFileName + '"/></li>'
+                    str += '<li class="imageLi"><img class="freeImage" src="../images/hotelDetailerrorpic.png" real-src="' + arg[i].imageFileName + '"/></li>'
                 }
 
                 return str;
