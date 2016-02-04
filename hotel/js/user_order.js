@@ -222,7 +222,7 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         window.history.go(-1);
     };
     //判断是担保还是在线支付
-    //fake_data.paymentModeID=2;//测试用的
+    fake_data.paymentModeID=2;//测试用的
     if(parseInt(fake_data.paymentModeID)==1){
         lsf_myweb.getbyid('uo_or_sumBox1').style.display='block';
         lsf_myweb.getbyid('uo_or_sumBox2').style.display='none';
@@ -281,6 +281,7 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         }
         fake_data.calcuTotalPrice=parseFloat(json.NumOfRoom)*parseFloat(json.totalPrice);
         fake_data.calcuTotalPriceCNY=parseFloat(json.NumOfRoom)*parseFloat(json.totalPriceCNY);
+        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
     }
     uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2','uo_or_sum2CNY',fake_data);
 
