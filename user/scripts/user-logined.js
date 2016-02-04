@@ -10,11 +10,11 @@ function init(){
     sessionStorage.promotion = "true";
     var c = new vlm();
     var Parameters={
-        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\"492189\",\"Email\":\"\",\"Mobile\":\"15210091056\"}",
+        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
         "Code": "0053"
     };
-     //console.log("1111"+Parameters['Parameters'])
+     //console.log(Parameters['Parameters'])
     c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
     function order(obj){
@@ -78,8 +78,8 @@ function mycallback(ret) {
         var user_name = $("#user_name")[0];
         var user_sex = $("#user_sex")[0];
         var userIcon = $("#userIcon")[0];
-        user_name.innerHTML = myJson.data[0].NickName;
-        if (myJson.data[0].Salutation == "26") {
+        user_name.innerHTML = myJson.data[0].nickName;
+        if (myJson.data[0].salutation == "0") {
             user_sex.className = "icon open-sexm";
             userIcon.src = "../images/ui/photo-man.png";
         } else {

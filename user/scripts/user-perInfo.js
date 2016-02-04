@@ -12,17 +12,21 @@ function u_perInfo(){
     var c = new vlm;
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
-    var password = sessionStorage.password;
+    var oPassword = sessionStorage.password;
     var memberid = sessionStorage.memberid;
 
 
     var Parameters= {
-        "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Password\":\"11111\",\"Mobile\":\"15210091056\",\"Code\":\"380998\"}",
+        //"Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Password\":\""+oPassword+"\",\"Mobile\":\""+phone+"\",\"Code\":\"380998\"}",
+        //"ForeEndType": 3,
+        //"Code": "0052"
+        "Parameters": "{\"MemberId\":\""+memberid+"\"}",
         "ForeEndType": 3,
-        "Code": "0051"
+        "Code": "0053"
+
     }
 
-
+    //console.log(Parameters);
     c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
     var close_page = $("#close_page")[0];
@@ -114,6 +118,7 @@ function u_perInfo(){
     changeSex(sex);
     //  修改昵称
     var nick_btn = $("#nick_btn")[0];
+    MemberId=sessionStorage.memberid;
     function amendNick(obj){
         obj.onclick = function() {
             var input = document.getElementById("nickForm").getElementsByTagName("input");
@@ -122,6 +127,7 @@ function u_perInfo(){
                 "ForeEndType": 3,
                 "Code": "0059"
             };
+            //console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
         }
     }
@@ -192,6 +198,7 @@ function u_perInfo(){
     }
     changeInfo(amend_btn);
      //  获取手机绑定验证码
+    var r_phone=$('#phone');
     var phone_ver = $("#phone_ver")[0];
     function phone_veri(obj){
         obj.onclick = function(){
@@ -260,8 +267,8 @@ function mycallback(ret){
     var sex = $("#sex")[0];
     var block = $("#block")[0];
     var userIcon = $("#userIcon")[0];
-    nickname.innerHTML = infoJson.data[0].NickName;
-    name.value = infoJson.data[0].NickName;
+    nickname.innerHTML = infoJson.data[0].nickName;
+    name.value = infoJson.data[0].nickName;
     if(sessionStorage.phone != ""){
         user_phone.value = sessionStorage.phone;
     }else{
@@ -271,24 +278,24 @@ function mycallback(ret){
     MemberId = sessionStorage.memberid;
     //MemberId = infoJson.Data[0].MemberId;
     //sessionStorage.MemberId = MemberId;
-    if(infoJson.data[0].Salutation == "26"){
-        sex.className="info-sex-on";
-        block.innerHTML = "女";
-        userIcon.src = "images/ui/photo-man.png";
-    }else{
+    if(infoJson.data[0].salutation == 0){
         sex.className="info-sex";
         block.innerHTML = "男";
-        userIcon.src = "images/ui/photo-woman.png";
+        userIcon.src = "../images/ui/photo-man.png";
+    }else{
+        sex.className="info-sex-on";
+        block.innerHTML = "女";
+        userIcon.src = "../images/ui/photo-woman.png";
     }
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success) {
-        //window.location.href = "user-perInfo.html";
+        window.location.href = "user-perInfo.html";
         document.getElementById("nickForm").submit();
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_info(ret){
@@ -300,7 +307,7 @@ function mycallback_info(ret){
         sessionStorage.phone = u_phone;
         document.getElementById("infoForm").submit();
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_phoneVeri(ret){
@@ -312,7 +319,7 @@ function mycallback_phoneVeri(ret){
     if(myJson.success){
         c.Utils.sendMobileCode(phone_ver.value);
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_newKey(ret){
@@ -321,7 +328,7 @@ function mycallback_newKey(ret){
     if(myJson.success){
         document.getElementById("keyForm").submit();
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 //function mycallback_keyVeri(ret){

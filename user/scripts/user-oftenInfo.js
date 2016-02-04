@@ -31,6 +31,7 @@ window.onload = function(){
     function showPage(obj1,obj2){
         obj1.onclick = function(){
             obj2.style.display = "block";
+
         }
     }
     showPage(addUser,addtra_page);
@@ -362,3 +363,5 @@ function updateTra(){
         woman2.className = "icon-h traveler-sex1";
     }
 }
+
+
