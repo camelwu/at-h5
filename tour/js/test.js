@@ -50,9 +50,9 @@
             })(filter,fns);
     }
 
-    A(fns);
+ A(fns);
 
-    function fns(arg,status,statusMsg){
+ function fns(arg,status,statusMsg){
             console.log("Error : "+status + " :"+ statusMsg);
             console.log(arg);
             //返回值 如果值查询某个城市如"上海",返回的对象是object.如:arg.cityChineseName,输出:上海.
@@ -62,220 +62,210 @@
      }
  *
  *
-**/
+ **/
 
 
 (function(win, doc) {
-    //var B = B|| function(B) {
-            var _prv = {
-                url: "http://10.2.22.239:8888/api/GetServiceApiResult",
-                localurl: "http://localhost:63342/Venson/package.json"
-            };
-            var _city = {
-                Parameters: {},
-                ForeEndType: 3,
-                Code: '3005'
-            };
 
-            Function.prototype.before = function (fn) {
-                var __self = this;
-                return function () {
-                    //this指向了调用的函数
-                    //fn.apply(this,arguments);
-                    if (fn.apply(this, arguments) == false) {
-                        return false;
+    var _prv = {
+        url: "http://10.2.22.239:8888/api/GetServiceApiResult",
+        localurl: "http://localhost:63342/Venson/package.json"
+    };
+    var _city = {
+        Parameters: {},
+        ForeEndType: 3,
+        Code: '3005'
+    };
+
+    Function.prototype.before = function (fn) {
+        var __self = this;
+        return function () {
+            //this指向了调用的函数
+            //fn.apply(this,arguments);
+            if (fn.apply(this, arguments) == false) {
+                return false;
+            }
+            //__self.apply(__self,arguments);
+            return __self.apply(this, arguments);
+        }
+
+    },
+        Function.prototype.after = function (fn) {
+            var __self = this;
+            return function () {
+                //__self.apply(__self,arguments);
+                var result = __self.apply(this, arguments);
+                if (result === false) {
+                    return false;
+                }
+                fn.apply(this, arguments);
+                return result;
+            }
+        },
+        Object.size = function (obj) {
+            var size = 0, key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            return size;
+        },
+        getNetCity = function (dataObj, callback) {
+            //alert("middle");
+
+            $.ajax({
+                url: _prv.url,
+                type: 'post',
+                data: JSON.stringify(_city),
+                contentType: 'application/json;charset=utf-8',
+                success: function (data) {
+                    var status = {};
+                    var p = JSON.parse(data);
+                    status = p;
+                    //console.log(p);
+                    if (!p.success) {
+
+                        return callback(cityresult, status.success, status.message);
                     }
-                    //__self.apply(__self,arguments);
-                    return __self.apply(this, arguments);
-                }
+                    //结果集合过滤器
+                    var cityresult = filterCity(p, dataObj);
 
-            },
-            Function.prototype.after = function (fn) {
-                var __self = this;
-                return function () {
-                    //__self.apply(__self,arguments);
-                    var result = __self.apply(this, arguments);
-                    if (result === false) {
-                        return false;
-                    }
-                    fn.apply(this, arguments);
-                    return result;
-                }
-            },
-            Object.size = function (obj) {
-                var size = 0, key;
-                for (key in obj) {
-                    if (obj.hasOwnProperty(key)) size++;
-                }
-                return size;
-            },
-            getNetCity = function (dataObj, callback) {
-                //alert("middle");
+                    //将结果返回callback
+                    return callback(cityresult, status.success, status.message);
+                },
+                error: function (data) {
 
-                $.ajax({
-                    url: _prv.url,
-                    type: 'post',
-                    data: JSON.stringify(_city),
-                    contentType: 'application/json;charset=utf-8',
-                    success: function (data) {
-                        var status = {};
-                        var p = JSON.parse(data);
+                    console.error(data.responseText);
+                    return false;
+                }
+            });
+        },
+        getLocalCity = function (dataObj, callback) {
+
+
+            $.ajax({
+                url: _prv.localurl,
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+
+                    var status = {};
+                    var p = data;
+
+                    if (!p.success) {
                         status = p;
-                        //console.log(p);
-                        if (!p.success) {
-
-                            return callback(cityresult, status.success, status.message);
-                        }
-                        //结果集合过滤器
-                        var cityresult = filterCity(p, dataObj);
-
-                        //将结果返回callback
                         return callback(cityresult, status.success, status.message);
-                    },
-                    error: function (data) {
-
-                        console.error(data.responseText);
-                        return false;
                     }
-                });
-            },
-            getLocalCity = function (dataObj, callback) {
+                    //结果集合过滤器
+                    var cityresult = filterCity(p, dataObj);
+                    //将结果返回callback
+
+                    return callback(cityresult, status.success, status.message);
+                },
+                error: function (data) {
+
+                    console.error(data.responseText);
+                    return false;
+                }
+            });
+        },
+        filterCity = function (data, rules) {
+
+            var result = [];
+            var citylength = data.data.cities.length;
+            var cCode;
+            //console.log(data);
+            if (rules.length < 2) {
+                return false;
+            }
 
 
-                $.ajax({
-                    url: _prv.localurl,
-                    type: 'get',
-                    dataType: 'json',
-                    success: function (data) {
+            for (var i = 0; i < citylength; i++) {
+                cCode = getcCode(data, rules.filterColumn, i);
 
-                        var status = {};
-                        var p = data;
-
-                        if (!p.success) {
-                            status = p;
-                            return callback(cityresult, status.success, status.message);
-                        }
-                        //结果集合过滤器
-                        var cityresult = filterCity(p, dataObj);
-                        //将结果返回callback
-
-                        return callback(cityresult, status.success, status.message);
-                    },
-                    error: function (data) {
-
-                        console.error(data.responseText);
-                        return false;
-                    }
-                });
-            },
-            filterCity = function (data, rules) {
-
-                var result = {};
-                var citylength = data.data.cities.length;
-                var cCode;
-                //console.log(data);
-                if (rules.length < 2) {
+                if (cCode == "NONE") {
                     return false;
                 }
 
+                if (rules.value == "NOTCN") {
 
-                for (var i = 0; i < citylength; i++) {
-                    cCode = getcCode(data, rules.filterColumn, i);
-
-                    if (cCode == "NONE") {
-                        return false;
+                    if (cCode != "CN") {
+                        result.push(data.data.cities[i]);
                     }
 
-                    if (rules.value == "NOTCN") {
+                } else {
 
-                        if (cCode != "CN") {
-                            result[i] = data.data.cities[i];
-                        }
-
-                    } else {
-
-                        if (cCode == rules.value) {
-                            result[i] = data.data.cities[i];
-                        }
+                    if (cCode == rules.value) {
+                        result.push(data.data.cities[i]);
                     }
-
-
-                }
-
-                if (Object.size(result) == 1) {
-                    return result[0];
-                }
-
-                return result;
-            },
-            getcCode = function (data, column, i) {
-                var cCode = column;
-                switch (cCode) {
-                    case 'cityChineseName':
-                        cCode = data.data.cities[i].cityChineseName;
-                        break;
-                    case 'cityCode':
-                        cCode = data.data.cities[i].cityCode;
-                        break;
-                    case 'cityEnglishName':
-                        cCode = data.data.cities[i].cityEnglishName;
-                        break;
-                    case 'countryChineseName':
-                        cCode = data.data.cities[i].countryChineseName;
-                        break;
-                    case 'countryCode':
-                        cCode = data.data.cities[i].countryCode;
-                        break;
-                    case 'countryEnglishName':
-                        cCode = data.data.cities[i].countryEnglishName;
-                        break;
-                    case 'fullSpellingName':
-                        cCode = data.data.cities[i].fullSpellingName;
-                        break;
-                    default:
-                        cCode = 'NONE';
-                        break;
                 }
 
 
-                return cCode;
             }
 
-    //window.B = B;
+
+            return result;
+        },
+        getcCode = function (data, column, i) {
+            var cCode = column;
+            switch (cCode) {
+                case 'cityChineseName':
+                    cCode = data.data.cities[i].cityChineseName;
+                    break;
+                case 'cityCode':
+                    cCode = data.data.cities[i].cityCode;
+                    break;
+                case 'cityEnglishName':
+                    cCode = data.data.cities[i].cityEnglishName;
+                    break;
+                case 'countryChineseName':
+                    cCode = data.data.cities[i].countryChineseName;
+                    break;
+                case 'countryCode':
+                    cCode = data.data.cities[i].countryCode;
+                    break;
+                case 'countryEnglishName':
+                    cCode = data.data.cities[i].countryEnglishName;
+                    break;
+                case 'fullSpellingName':
+                    cCode = data.data.cities[i].fullSpellingName;
+                    break;
+                default:
+                    cCode = 'NONE';
+                    break;
+            }
+
+
+            return cCode;
+        }
+
 
 }).call(this, window, document);
 
 
-function act(){
-    alert(123);
-}
-
 
 //调用
-/*function A(fns){
-    var filter ={};
-    //B.localurl="http://xxx";
+function A(fns){
+ var filter ={};
+ //B.localurl="http://xxx";
 
-    filter.filterColumn = "countryCode";
-    filter.value = "NOTCN";
+ filter.filterColumn = "countryCode";
+ filter.value = "NOTCN";
 
-    //filter.filterColumn ="cityChineseName";
-    //filter.value = "上海";
+ //filter.filterColumn ="cityChineseName";
+ //filter.value = "上海";
 
+ getNetCity.before(function(){
+     alert("before"+filter.filterColumn);
+ }).after(function(){
+     alert("after"+filter.filterColumn);
+ })(filter,fns);
+ }
 
-    //getNetCity.before(function(){
-    //    alert("before");
-    //}).after(function(){
-    //    alert("after");
-    //})(filter,fns);
-    getNetCity(filter,fns);
-}
+ A(fns);
 
-A(fns);
-
-function fns(arg,status,statusMsg){
-    console.log("Error : "+status + " :"+ statusMsg);
-    console.log(arg);
-}*/
+ function fns(arg,status,statusMsg){
+ console.log("Status : "+status + " :"+ statusMsg);
+ console.log(arg.length);
+ }
 
 
