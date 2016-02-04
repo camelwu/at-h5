@@ -45,6 +45,7 @@ window.onload = function(){
     closePage(add_quit,addtra_page);
     closePage(update_quit,uptra_page);
     closePage(close_name,fillName_page);
+
     //   增加常旅客
     var add_finish = $("#add_finish")[0];
     function addTraveler(obj){
@@ -160,7 +161,7 @@ window.onload = function(){
             }else{
                 cardId = "9";
             }
-
+            // 手机号邮箱检验
             var oCheck = new vlm();
             var oMobile = $('#mobile-cell')[0].value;
             var oEmail = $('#email-cell')[0].value;
