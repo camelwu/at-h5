@@ -489,8 +489,7 @@ html {
 
 .r-ul {
     width: 94%;
-    height: 110px;
-
+    overflow:hidden;
     margin-top: 10px;
     margin-left: 20px;
 }
