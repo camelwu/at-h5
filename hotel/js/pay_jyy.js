@@ -124,7 +124,11 @@ var lsf_myweb={
     var jp_safe_code=document.getElementById('jp_safe_code');
     var jpBankName=document.getElementById('jp_bank_name');
     var jpBankCountry=document.getElementById('jp_bank_country');
-    jp_price_sum.innerHTML='订单总价：SGD'+myData.totalPriceCNY;
+    if(myData.paymentModeID=='1'){
+        jp_price_sum.innerHTML='订单总价：￥'+myData.calcuTotalPriceCNY;
+    }else{
+        jp_price_sum.innerHTML='担保：SGD'+myData.calcuTotalPrice+'<span>约￥'+myData.calcuTotalPriceCNY+'</span>';
+    }
     jp_hotel_name.innerHTML=myData.HotelGenInfo.hotelName;
     jp_date.innerHTML=myData.dateInfo.CheckInDate.split('-')[0]+'年'+myData.dateInfo.CheckInDate.split('-')[1]+'月'+myData.dateInfo.CheckInDate.split('-')[2]+'日'+' - '+myData.dateInfo.CheckOutDate.split('-')[0]+'年'+myData.dateInfo.CheckOutDate.split('-')[1]+'月'+myData.dateInfo.CheckOutDate.split('-')[2]+'日'+' 共'+myData.dateInfo.totalNight+'晚（当地时间为准）';
     jp_house_type.innerHTML='房型：'+myData.RoomTypeName+' 房间数：'+myData.NumOfRoom+'间';
