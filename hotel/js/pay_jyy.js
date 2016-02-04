@@ -99,6 +99,7 @@ var lsf_myweb={
     //从上一页得到的数据
     var myData=JSON.parse(localStorage.getItem('user_order_storage12345'));
     console.log(myData);
+    console.log('上面是从localStorage上面得到的数据');
     //支付类型：1-Visa, 20-MasterCard(万事达卡), 21-Paypal
     var myPayType=0;
 
@@ -218,6 +219,7 @@ var lsf_myweb={
         myData.CardIssuanceCountry=jp_bank_country.innerHTML;
         localStorage.setItem('user_order_storage12345',JSON.stringify(myData));
         console.log(myData);
+        console.log('以上是更新的localStorage的数据');
         //window.location.href='trade_details.html';
 
         //  交互部分
