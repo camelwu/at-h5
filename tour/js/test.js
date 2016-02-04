@@ -66,13 +66,13 @@
 
 
 (function(win, doc) {
-    var B = B|| function(B) {
+    //var B = B|| function(B) {
             var _prv = {
                 url: "http://10.2.22.239:8888/api/GetServiceApiResult",
                 localurl: "http://localhost:63342/Venson/package.json"
             };
             var _city = {
-                Parameters: JSON.stringify({}),
+                Parameters: {},
                 ForeEndType: 3,
                 Code: '3005'
             };
@@ -110,7 +110,7 @@
                 return size;
             },
             getNetCity = function (dataObj, callback) {
-                alert("middle");
+                //alert("middle");
 
                 $.ajax({
                     url: _prv.url,
@@ -120,9 +120,10 @@
                     success: function (data) {
                         var status = {};
                         var p = JSON.parse(data);
+                        status = p;
                         //console.log(p);
                         if (!p.success) {
-                            status = p;
+
                             return callback(cityresult, status.success, status.message);
                         }
                         //结果集合过滤器
@@ -239,17 +240,19 @@
 
                 return cCode;
             }
-        };
-    window.B = B;
+
+    //window.B = B;
 
 }).call(this, window, document);
 
 
-
+function act(){
+    alert(123);
+}
 
 
 //调用
-function A(fns){
+/*function A(fns){
     var filter ={};
     //B.localurl="http://xxx";
 
@@ -259,18 +262,20 @@ function A(fns){
     //filter.filterColumn ="cityChineseName";
     //filter.value = "上海";
 
-    getNetCity.before(function(){
-        alert("before");
-    }).after(function(){
-        alert("after");
-    })(filter,fns);
+
+    //getNetCity.before(function(){
+    //    alert("before");
+    //}).after(function(){
+    //    alert("after");
+    //})(filter,fns);
+    getNetCity(filter,fns);
 }
 
-//A(fns);
+A(fns);
 
 function fns(arg,status,statusMsg){
     console.log("Error : "+status + " :"+ statusMsg);
     console.log(arg);
-}
+}*/
 
 
