@@ -83,6 +83,11 @@ var lsf_myweb={
 //输入框默认字体设置
 function styleChange(id,mytext){
     var oInp=document.getElementById(id);
+    if(oInp.value==mytext){
+        oInp.style.color='#d1d1d1';
+    }else{
+        oInp.style.color='#484848';
+    }
     oInp.onfocus=function(){
         if(this.value==mytext){
             this.value='';
@@ -102,6 +107,11 @@ function styleChange2(parentid,sClass,mytext){
     var aChil=lsf_myweb.getbyclass(oBox,sClass);
     //alert(aChil);
     for(var i=0;i<aChil.length;i++){
+        if(aChil[i].value==mytext){
+            aChil[i].style.color='#d1d1d1';
+        }else{
+            aChil[i].style.color='#484848';
+        }
         aChil[i].onfocus=function(){
             if(this.value==mytext){
                 this.value='';
@@ -117,12 +127,13 @@ function styleChange2(parentid,sClass,mytext){
     }
 };
 
+/*
 //输入框默认字体设置
 styleChange('uo_c3_tele','用于接收短信通知');
 styleChange('uo_c3_email','用于接收邮件通知');
-styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Timberlake）');
-styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
-
+styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
+styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
+*/
     var myUrl=window.location.href;
     for(var name in url2json(myUrl)){
         if(name=='roomCode'){
@@ -153,50 +164,24 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：Justin）');
     }
     console.log(fake_data);
     console.log(1);
-    /*var user_order_storage={
-        "CultureName":"",
-        "PartnerCode":"",
-        "HotelCode":"8016",
-        "RoomCode":"",
-        "HotelName":"Hotel Grand Chancellor (Hotel Grand Chancellor)",
-        "CheckInTime":"2016-01-07",
-        "CheckOutTime":"2016-01-10",
-        "NumOfRoom":"1",
-        "NumOfGuest":"",
-        "NumOfChild":"",
-        "GuestTitle":"",
-        "GuestLastName":"",
-        "GuestFirstName":"",
-        "GuestContactNo":"",
-        "GuestEmail":"ַ",
-        "TotalPrice":"",
-        "Availability":"",
-        "GuestRequest":"",
-        "MemberId":"",
-        "CardHolderName":"",
-        "CreditCardNumber":"",
-        "CreditCardType":"",
-        "CreditCardExpiryDate":"",
-        "CardSecurityCode":"",
-        "BankName":"",
-        "ResidenceCode":"",
-        "NationlityCode":"",
-        "CardBillingAddress":"ַ",
-        "CardIssuanceCountry":"",
-        "CashVoucherDetails":"",
-        "Trck":"",
-        "IPAddress":"",
-        "CookieID":"1",
-        "BrowserType":"",
-        "SessionID":"",
-
-
-        "totalNight":3,
-        "houseType":"大床房",
-        "housePrice":"398"
-};*/
 //本地存储数据
-localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
+//localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
+
+
+//获取user_order_storage12345,实现历史选择记忆功能
+function uoHisData(){
+    var localData=JSON.parse(window.localStorage.getItem('user_order_storage12345'));
+    console.log(localData);
+    console.log('上面是localStorage');
+    if(localData){
+        fake_data=localData;
+        return;
+    }else{
+        return;
+    }
+}
+uoHisData();
+
 
 (function(){
     /*页面跳转动画*/
@@ -240,6 +225,7 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
     //房间数列表
     uo_c2_num.innerHTML=fake_data.NumOfRoom;
+    var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
     for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
         uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
             '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
@@ -249,12 +235,33 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
             '</div>'+
             '</div>';
     }
-
+    //姓名手机号邮箱实现历史选择记忆功能
+    function uoHisFillIn(){
+        //实现历史记忆功能，把记忆的东西添加到value中
+        if(fake_data.guestName&&fake_data.guestName[0].GuestFirstName!=''){
+            var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
+            var uo_firstname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_firstname');
+            for(var j=0;j<uo_lastname.length;j++){
+                uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
+                uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
+            }
+        }
+        //手机号和邮箱实现历史记忆功能
+        var uo_c3_tele=document.getElementById('uo_c3_tele');
+        var uo_c3_email=document.getElementById('uo_c3_email');
+        if(fake_data.GuestContactNo&&fake_data.GuestContactNo!=''){
+            uo_c3_tele.value=fake_data.GuestContactNo;
+        }
+        if(fake_data.GuestEmail&&fake_data.GuestEmail!=''){
+            uo_c3_email.value=fake_data.GuestEmail;
+        }
+    }
+    uoHisFillIn();
     //输入框默认字体设置
+    styleChange('uo_c3_tele','用于接收短信通知');
+    styleChange('uo_c3_email','用于接收邮件通知');
     styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
     styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
-
-
     // 明细
     function uo_detail(id1,id2,id3,id4,id5,id6,id7,json){
         console.log(json);
@@ -281,6 +288,7 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         }
         fake_data.calcuTotalPrice=parseFloat(json.NumOfRoom)*parseFloat(json.totalPrice);
         fake_data.calcuTotalPriceCNY=parseFloat(json.NumOfRoom)*parseFloat(json.totalPriceCNY);
+        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
     }
     uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2','uo_or_sum2CNY',fake_data);
 
@@ -398,11 +406,12 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         bOk2=!bOk2;
     });
     lsf_myweb.bind(uo_confirm,'click',function(){
+        var uo_c3_infor=lsf_myweb.getbyclass(uo_form,'uo_c3_infor');
         var aUo_lastname=lsf_myweb.getbyclass(uo_form,'uo_lastname');
         var aUo_firstname=lsf_myweb.getbyclass(uo_form,'uo_firstname');
         var uo_c3_tele=document.getElementById('uo_c3_tele');
         var uo_c3_email=document.getElementById('uo_c3_email');
-        fake_data.fullName={};
+        fake_data.guestName=[];
         //验证名字
         for(var i=0;i<aUo_firstname.length;i++){
             if(aUo_lastname[i].value=='姓（如：Zhang）'){
@@ -416,8 +425,7 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
             }
             var GuestFirstName="GuestFirstName"+i;
             var GuestLastName="GuestLastName"+i;
-            fake_data.fullName[GuestFirstName]=aUo_firstname[i].value;
-            fake_data.fullName[GuestLastName]=aUo_lastname[i].value;
+            fake_data.guestName.push({"GuestFirstName":aUo_firstname[i].value,"GuestLastName":aUo_lastname[i].value});
         }
         //验证手机号
         /*if(uo_c3_tele.value=='用于接收短信通知'){
@@ -448,8 +456,10 @@ localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         if(uo_c3_email.value=='用于接收邮件通知'){
             alert('请输入邮箱');
             return;
+        }else{
+            fake_data.GuestEmail=uo_c3_email.value;
         }
-        localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
+        window.localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
         uo_form.submit();

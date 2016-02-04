@@ -92,7 +92,7 @@
                 }
                 var str = "";
                 for (var i = 0; i < arg.length; i++) {
-                    str += '<li class="imageLi"><img class="freeImage" src="../images/cacheN.png" real-src="' + arg[i].imageFileName + '"/></li>'
+                    str += '<li class="imageLi"><img class="freeImage" src="../images/hotelDetailerrorpic.png" real-src="' + arg[i].imageFileName + '"/></li>'
                 }
 
                 return str;
@@ -601,27 +601,68 @@
             console.log(result);
             console.log(result.data[0]);
             console.log(777777777777777);
-            function showDesc(str){
-                if(!str){
-                    return '暂无描述';
+            function showDesc(arr,num){
+                if(num){
+
+                }else{
+                    if(!arr.length) return '暂无描述';
+                    if(!arr.imageDesc){
+                        return '暂无描述';
+                    }
                 }
             }
+            //房间设施数据处理
             function showFeature(arr){
                 var str='';
+                if(!arr.length)return '暂无房间设施描述';
                 for(var i=0;i<arr.length;i++){
                     str+='<li class="r-li"><b class="r-icon2"></b> <p class="r-p3">'+arr[i].featureDesc+'</p></li>';
                 }
                 return str;
             }
+            //图片数据处理
+            function showPic(arr){
+                var oSrc='';
+                if(!arr.length){
+                    oSrc='<div class="hdItem"><img class="hotelPic2" src="../images/hotelDetailerrorpic.png"></div>';
+                }else{
+                    for(var i=0;i<arr.length;i++){
+                        oSrc+='<div class="hdItem"><img class="hotelPic2" src="'+arr[i].imageFileName+'"></div>';
+                    }
+                };
+                return oSrc;
+            }
             oDiv.className = 'roomAll';
             oDiv.id = 'roomAll';
-            oDiv.innerHTML = '<div class="room" id="room"> <div class="r-div1"><img class="hotelPic2" src="../images/03-3_03.jpg"></div> <article class="r-ar">最多 2成人<br>儿童10岁或以上按照成人算。  10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费 </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间描述</p> <article class="r-ar">'+showDesc(result.data[0].hotelRoomFeaturesList[0].imageDesc)+' </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">'+showFeature(result.data[0].hotelRoomAmenitiesList)+'</ul> </div><header class="r-top"><p class="r-p1">高级客房</p><b class="r-icon1 closeTagAgain"></b></header>';
+            oDiv.innerHTML = '<div class="room" id="room"> <div class="owl-carousel">'+showPic(result.data[0].hotelRoomFeaturesList)+'</div> <article class="r-ar">最多 2成人<br>儿童10岁或以上按照成人算。  10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费 </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间描述</p> <article class="r-ar" id="hdRoomDesc">'+showDesc(result.data[0].hotelRoomFeaturesList)+' </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">'+showFeature(result.data[0].hotelRoomAmenitiesList)+'</ul> </div><header class="r-top"><p class="r-p1">高级客房</p><b class="r-icon1 closeTagAgain"></b></header>';
             document.body.appendChild(oDiv);
             hotelDetail.$Id('r-mb').style.display = 'block';
             document.getElementById('r-mb').onclick = hotelDetail.$CN('closeTagAgain')[0].onclick = function (event) {
                 document.body.removeChild(hotelDetail.$Id('roomAll'))
                 hotelDetail.$Id('r-mb').style.display = 'none';
+            };
+            //如果图片没有加载出来就显示默认图片
+            var aImg=oDiv.getElementsByTagName('img');
+            var hdRoomDesc=document.getElementById('hdRoomDesc');
+            for(var i=0;i<aImg.length;i++){
+                aImg[i].onerror=function(){
+                    this.src='../images/hotelDetailerrorpic.png';
+                };
             }
+            //实现图片滑动
+            var owl=$('.owl-carousel');
+            owl.owlCarousel({
+                items:1,
+                dots:false
+            });
+            owl.on('changed.owl.carousel',function(ev){
+                console.log(ev);
+                if(result.data[0].hotelRoomFeaturesList[ev.item.index]){
+                    hdRoomDesc.innerHTML=result.data[0].hotelRoomFeaturesList[ev.item.index];
+                }else{
+                    hdRoomDesc.innerHTML='暂无描述'
+                }
+            });
         },
 
         toggleRoomModals: function (gInfo) {
