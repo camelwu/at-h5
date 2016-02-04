@@ -104,6 +104,8 @@
 			},
 			//格式化日期为2016-01-01
 			format_date : function(dtime, format) {
+				//2016-2-4因为麻痹的IOS，需要重写
+				dtime = dtime.replace("T"," ");
 				var newDate = new Date(dtime);
 				var year = newDate.getFullYear();
 				var month = newDate.getMonth() + 1;
@@ -113,13 +115,16 @@
 				var seconds = newDate.getSeconds();
 				month = month < 10 ? '0' + month : month;
 				day = day < 10 ? '0' + day : day;
-
+				hour = hour < 10 ? '0'+hour:hour;
+				minutes = minutes < 10 ? '0'+minutes:minutes;
 				var timeStr;
 				format = typeof format == 'undefined' ? 'Ymd' : format;
-				if (format == 'Ymd') {
-					timeStr = year + '-' + month + '-' + day;
+				if (format == 'YmdHi') {
+					timeStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes;
 				} else if (format == 'YmdHis') {
 					timeStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
+				} else {
+					timeStr = year + '-' + month + '-' + day;
 				}
 				return timeStr;
 			},
