@@ -6,13 +6,12 @@ window.onload = function () {
     var hotelCode=JSON.parse(hotelMessage).data.data[0].hotelGenInfo.hotelCode;
     console.log(JSON.parse(hotelMessage));
     //交互部分
-    var c = new vlm();
     var data = {
         "Parameters": "{\"HotelID\":"+hotelCode+",\"CultureName\":\"en - US\" }",
         "ForeEndType": 3,
         "Code": "0009"
     };
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
     function mycallback(d){
         var jsonBack=eval('('+d+')');
         var hoteFeatureDesc=jsonBack.data;

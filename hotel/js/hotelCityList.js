@@ -250,8 +250,7 @@
         },
         ajax:function(api,data){
             var self=this;
-            var c = new vlm();
-            c.loadJson(api,JSON.stringify(data), mycallback);
+            vlm.loadJson(api,JSON.stringify(data), mycallback);
             function mycallback(d){
                 var json=eval('('+d+')');
                 if(json.success){

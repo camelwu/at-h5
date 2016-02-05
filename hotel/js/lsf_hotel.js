@@ -331,7 +331,6 @@ function inpChange(id,myText){
             "Parameters": "",
             "ForeEndType": 1
         };
-        var c=new vlm();
         var dataCN=[];
         var dataIN=[];
         var dataWorCN={};
@@ -339,7 +338,7 @@ function inpChange(id,myText){
         var domBok=true;
         var interBok=true;
         //城市列表
-        c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
+        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
             var listJson=eval('('+d+')');
             if(!listJson.success){
                 alert(listJson.message);
