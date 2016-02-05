@@ -173,6 +173,7 @@ window.onload = function(){
                     "ForeEndType": 3,
                     "Code": "0072"
                 };
+                //console.log(Parameters);
                 c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
 
             }
@@ -289,7 +290,7 @@ function mycallback(ret){
             content.appendChild(UL);
         }
     }else{
-        alert(travJson.Message);
+        alert(travJson.message);
     }
 }
 function mycallback_addtrav(ret){
@@ -298,7 +299,7 @@ function mycallback_addtrav(ret){
     if(myJson.success){
         document.getElementById("addForm").submit();
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function mycallback_deltrav(ret){
@@ -307,7 +308,7 @@ function mycallback_deltrav(ret){
     if(myJson.success){
         window.location.href = "user-oftenInfo.html";
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 function  mycallback_uptrav(ret){
@@ -316,7 +317,7 @@ function  mycallback_uptrav(ret){
     if(myJson.success){
         document.getElementById("updateForm").submit();
     }else{
-        alert(myJson.Message);
+        alert(myJson.message);
     }
 }
 //  编辑常旅客页面

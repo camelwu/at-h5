@@ -188,11 +188,11 @@ function u_perInfo(){
             //        "Code": "0056"
             //};
             var Parameters={
-                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"Email\":\"\",\"FirstName\":\"chonghuan\",\"LastName\":\"yuan\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\"15210091056\",\"Phone\":\"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\"\"}",
+                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"Email\":\"\",\"FirstName\":\""+u_realname+"\",\"LastName\":\"yuan\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+u_phone+"\",\"Phone\":\"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\"\"}",
                 "ForeEndType": 3,
                 "Code": "0056"
             };
-
+            console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
         }
     }
@@ -305,7 +305,7 @@ function mycallback_info(ret){
         sessionStorage.realname = u_realname;
         sessionStorage.email = u_email;
         sessionStorage.phone = u_phone;
-        document.getElementById("infoForm").submit();
+         document.getElementById("infoForm").submit();
     }else{
         alert(myJson.message);
     }
