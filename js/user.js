@@ -41,8 +41,7 @@ require.config({
 
 require(['jquery','vlm'], function($,vlm) {
 	//console.log("dataReady="+vlm);
-	var viewer = new vlm();
-	viewer.init();
+	vlm.init();
 	var special = jQuery.event.special,
         uid1 = 'D' + (+new Date()),
         uid2 = 'D' + (+new Date() + 1);
