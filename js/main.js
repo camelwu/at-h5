@@ -4,7 +4,6 @@ require.config({
     baseUrl: '../js/lib',
     paths: {
         jquery: 'jquery',
-        vlm: 'vlm',
         plugins: 'plugins',
         custom: 'custom'
     },
@@ -26,18 +25,15 @@ require.config({
     	},
     	'custom':{
     		deps: ['jquery','plugins']
-    	},
-    	'vlm':{
-    		deps: ['jquery'],
-    		exports: 'vlm'
     	}
 	},
 	urlArgs: "bust=" +  (new Date()).getTime()
 });
 
 require(['jquery','custom','vlm'], function($,custom,vlm) {
-	//console.log("dataReady="+vlm);
-	var viewer = new vlm();
-    viewer.init();
-    
+	(function($){
+		$(window).load(function() {
+			vlm.init();
+		});
+    }(jQuery));
 });
