@@ -1,10 +1,6 @@
 // JavaScript Document
 
 (function($) {
-	$(window).load(function() {
-		$("#status").fadeOut();
-		$("#preloader").delay(400).fadeOut("medium");
-	});
 
 	$(document).ready(function() {
 
