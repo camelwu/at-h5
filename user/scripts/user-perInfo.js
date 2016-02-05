@@ -9,7 +9,6 @@ var u_realname;
 function u_perInfo(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
-    var c = new vlm;
     var email = sessionStorage.email;
     var phone = sessionStorage.phone;
     var oPassword = sessionStorage.password;
@@ -311,13 +310,12 @@ function mycallback_info(ret){
     }
 }
 function mycallback_phoneVeri(ret){
-    var c = new vlm();
     var phone_ver = $("#phone_ver")[0];
     console.log(ret);
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success){
-        c.Utils.sendMobileCode(phone_ver.value);
+        vlm.Utils.sendMobileCode(phone_ver.value);
     }else{
         alert(myJson.message);
     }

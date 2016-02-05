@@ -316,12 +316,11 @@ function mycallback_login(ret) {
 }
 //注册验证码回调
 function mycallback_verify(ret){
-    var c = new vlm();
     var verify = $("#verify")[0];
     var myJson = eval('('+ret+')');
     //console.log(myJson);
     if(myJson.success){
-        c.Utils.sendMobileCode(verify.value);
+        vlm.Utils.sendMobileCode(verify.value);
     }else{
         alert(myJson.message);
     }
@@ -337,11 +336,10 @@ function mycallback_findkey(ret){
 }
 //找回密码验证码回调
 function mycallback_findver(ret){
-    var c = new vlm();
     var find_veri = $("#find_veri")[0];
     var myJson = eval('('+ret+')');
     if(myJson.success){
-        c.Utils.sendMobileCode(find_veri.value);
+        vlm.Utils.sendMobileCode(find_veri.value);
     }else{
         alert(myJson.Message);
     }
