@@ -8,7 +8,6 @@ var travJson;
 window.onload = function(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
-    var c = new vlm;
     // 初始化常旅客
     var memberId = sessionStorage.memberid;
     var Parameters= {
@@ -17,7 +16,7 @@ window.onload = function(){
         "Code": "0074"
     };
     //console.log(Parameters);
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
     var addtra_page = $("#addtra_page")[0];
     var addUser = $("#addUser")[0];
@@ -89,11 +88,11 @@ window.onload = function(){
                 sexName = "女";
             }
 
-            var oCheck = new vlm();
+
             var oMobile = $('#mobile-cell-add')[0].value;
             var oEmail = $('#email-cell-add')[0].value;
 
-            if( oCheck.Utils.validate.mobileNo(oMobile) && oCheck.Utils.validate.email(oEmail)) {
+            if( vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
 
                 var Parameters= {
                     "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
@@ -101,7 +100,7 @@ window.onload = function(){
                     "Code": "0071"
                 }
 
-                c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
             }
             else
             {
@@ -162,11 +161,10 @@ window.onload = function(){
                 cardId = "9";
             }
             // 手机号邮箱检验
-            var oCheck = new vlm();
             var oMobile = $('#mobile-cell')[0].value;
             var oEmail = $('#email-cell')[0].value;
 
-            if( oCheck.Utils.validate.mobileNo(oMobile) && oCheck.Utils.validate.email(oEmail))
+            if( vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail))
             {
                 var Parameters= {
                     "Parameters": "{\"Traveller\":{\"TravellerId\":"+travelId+",\"IdName\":\""+input[0].value+"\",\"LastName\":\""+input[1].value+"\",\"FirstName\":\""+input[2].value+"\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\""+input[5].value+"\",\"MemberId\":\""+memberId+"\",\"MobilePhone\":\""+input[4].value+"\"},\"ListTravellerIdInfo\":[{\"Id\":"+id+",\"TravellerId\":"+travelId+",\"IdType\":2,\"IdNumber\":\""+input[3].value+"\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
@@ -174,7 +172,7 @@ window.onload = function(){
                     "Code": "0072"
                 };
                 //console.log(Parameters);
-                c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
 
             }
             else
@@ -197,7 +195,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0073"
             };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
         }
     }
     deleteTra(delTra);

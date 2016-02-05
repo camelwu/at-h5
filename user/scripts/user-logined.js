@@ -8,14 +8,13 @@ function init(){
     var memberid = sessionStorage.memberid;
     sessionStorage.news = "true";
     sessionStorage.promotion = "true";
-    var c = new vlm();
     var Parameters={
         "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
         "Code": "0053"
     };
      //console.log(Parameters['Parameters'])
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
     function order(obj){
         obj.onclick = function(){
@@ -86,8 +85,6 @@ function mycallback(ret) {
             user_sex.className = "icon open-sexw";
             userIcon.src = "../images/ui/photo-woman.png";
         }
-    }else{
-        alert(myJson.Message);
     }
 }
 
