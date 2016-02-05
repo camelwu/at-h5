@@ -8,7 +8,7 @@
  */
 (function(e, t) {"use strict";
 	var n = n ||
-	function(n) {
+	(function(n) {
 		var _api = "http://10.2.22.239:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 			home : ['首页', basePath],
 			find : ['发现', basePath + '/find.html'],
@@ -700,7 +700,7 @@
 			loadJsonp : loadJsonp,
 			Utils: _Utils
 		};
-	};
+	})();
 	if ( typeof module !== "undefined" && module.exports) {
 		module.exports = n;
 	}
