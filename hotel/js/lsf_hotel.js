@@ -63,7 +63,7 @@ var lsf_myweb={
     }
 };
 //网页还原用户上一次选择内容
-var hotelStorage=JSON.parse(sessionStorage.getItem('hotelStorage12345'));
+var hotelStorage=JSON.parse(localStorage.getItem('hotelStorage12345'));
 console.log(hotelStorage);
 if(hotelStorage){
     lsf_myweb.getbyid('input1').value=hotelStorage.InterDes;
@@ -75,6 +75,7 @@ if(hotelStorage){
     //已去掉城市模糊搜索
     //lsf_myweb.getbyid('DomHotelName').value=hotelStorage.DomHotelName;
 }
+
 
 
 
@@ -109,6 +110,9 @@ $("#Inter").click(function() {
         owlQuoteSlider.trigger('prev.owl.carousel');
         return false;
 });
+
+
+
 
 
 //董振昊代码
@@ -303,7 +307,166 @@ function inpChange(id,myText){
     ho_back.onclick=function(){
         window.history.go(-1);
     };
-
+    //城市列表
+    function cityList(){
+        var domestic_target_place=document.getElementById('arr2');
+        var domestic_target_city=document.getElementById('input2');
+        var abroad_target_place=document.getElementById('arr1');
+        var abroad_target_city=document.getElementById('input1');
+        var api='http://10.2.22.239:8888/api/GetServiceApiResult';
+        var cl_box_box=document.getElementById('cl_box_box');
+        var cl_back=document.getElementById('cl_back');
+        var domHotData= {
+            "Parameters": "",
+            "ForeEndType": 3,
+            "Code": "0082"
+        };
+        var interHotData= {
+            "Parameters": "",
+            "ForeEndType": 3,
+            "Code": "0081"
+        };
+        var cityListData={
+            "Code": "0083",
+            "Parameters": "",
+            "ForeEndType": 1
+        };
+        var c=new vlm();
+        var dataCN=[];
+        var dataIN=[];
+        var dataWorCN={};
+        var dataWorIN={};
+        var domBok=true;
+        var interBok=true;
+        //城市列表
+        c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
+            var listJson=eval('('+d+')');
+            if(!listJson.success){
+                alert(listJson.message);
+                return;
+            }
+            //城市列表
+            function sortBy(json){
+                var data=json.data;
+                data.sort(function(data1,data2){
+                    return data1.pingYin.charCodeAt(0)-data2.pingYin.charCodeAt(0);
+                });
+                for(var i=0;i<data.length;i++){
+                    if(data[i].countryName=='China'){
+                        dataCN.push(data[i]);
+                    }else{
+                        dataIN.push(data[i]);
+                    }
+                }
+                for(var i=0;i<dataCN.length;i++){
+                    if(dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()] instanceof Array){
+                        dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()].push(dataCN[i]);
+                    }else{
+                        dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()]=[];
+                        dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()].push(dataCN[i]);
+                    }
+                }
+                for(var i=0;i<dataIN.length;i++){
+                    if(dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()] instanceof Array){
+                        dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()].push(dataIN[i]);
+                    }else{
+                        dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()]=[];
+                        dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()].push(dataIN[i]);
+                    }
+                }
+            }
+            sortBy(listJson);
+        });
+        function cityShow(oData,cityJson){
+            //热门城市
+            cl_box_box.style.display='block';
+            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d){
+                var json=eval('('+d+')');
+                var str = template("cl_citysHot",json.data);
+                $("#cl_citysHot").html(str);
+            });
+            var strA=template("A",cityJson.A);
+            $("#A").html(strA);
+            var strB=template("B",cityJson.B);
+            $("#B").html(strB);
+            var strC=template("C",cityJson.C);
+            $("#C").html(strC);
+            var strD=template("D",cityJson.D);
+            $("#D").html(strD);
+            var strE=template("E",cityJson.E);
+            $("#E").html(strE);
+            var strF=template("F",cityJson.F);
+            $("#F").html(strF);
+            var strG=template("G",cityJson.G);
+            $("#G").html(strG);
+            var strH=template("H",cityJson.H);
+            $("#H").html(strH);
+            var strI=template("I",cityJson.I);
+            $("#I").html(strI);
+            var strJ=template("J",cityJson.J);
+            $("#J").html(strJ);
+            var strK=template("K",cityJson.K);
+            $("#K").html(strK);
+            var strL=template("L",cityJson.L);
+            $("#L").html(strL);
+            var strM=template("M",cityJson.M);
+            $("#M").html(strM);
+            var strN=template("N",cityJson.N);
+            $("#N").html(strN);
+            var strO=template("O",cityJson.O);
+            $("#O").html(strO);
+            var strP=template("P",cityJson.P);
+            $("#P").html(strP);
+            var strQ=template("Q",cityJson.Q);
+            $("#Q").html(strQ);
+            var strR=template("R",cityJson.R);
+            $("#R").html(strR);
+            var strS=template("S",cityJson.S);
+            $("#S").html(strS);
+            var strT=template("T",cityJson.T);
+            $("#T").html(strT);
+            var strU=template("U",cityJson.U);
+            $("#U").html(strU);
+            var strV=template("V",cityJson.V);
+            $("#V").html(strV);
+            var strW=template("W",cityJson.W);
+            $("#W").html(strW);
+            var strX=template("X",cityJson.X);
+            $("#X").html(strX);
+            var strY=template("Y",cityJson.Y);
+            $("#Y").html(strY);
+            var strZ=template("Z",cityJson.Z);
+            $("#Z").html(strZ);
+        }
+        //国际城市
+        lsf_myweb.bind(abroad_target_city,'click',function(){
+            if(domBok&&interBok){
+                cityShow(interHotData,dataWorIN);
+            }else{
+                cl_box_box.style.display='block';
+            }
+            interBok=false;
+        });
+        //国内城市
+        lsf_myweb.bind(domestic_target_city,'click',function(){
+            if(interBok&&domBok){
+                cityShow(domHotData,dataWorCN);
+            }else if(!interBok&&domBok){
+                alert(cl_box_box.innerHTML);
+            }else{
+                cl_box_box.style.display='block';
+            }
+            domBok=false;
+        });
+        lsf_myweb.bind(cl_back,'click',function(){
+            var arr1=document.getElementById('arr1');
+            var arr2=document.getElementById('arr2');
+            var inter=arr1.parentNode.parentNode;
+            var dom=arr2.parentNode.parentNode;
+            cl_box_box.style.display='none';
+        });
+    }
+    cityList();
 
     var checkIn=lsf_myweb.getbyid('CheckInDate');
     var checkOut=lsf_myweb.getbyid('CheckOutDate');
@@ -434,21 +597,7 @@ function inpChange(id,myText){
 
 
 
-    //城市
-    var domestic_target_place=document.getElementById('arr2');
-    var domestic_target_city=document.getElementById('input2');
-    var abroad_target_place=document.getElementById('arr1');
-    var abroad_target_city=document.getElementById('input1');
-    //国内城市
-    lsf_myweb.bind(abroad_target_city,'click',function(){
-        var citys=new myCityList('input1','hotel.html');
-        //alert(citys.city);
-    });
-    //国际城市
-    lsf_myweb.bind(domestic_target_city,'click',function(){
-        var citys=new myCityList('input2','hotel.html');
-        //alert(citys.city);
-    })
+
     function hoMemory(){
         //用于记录用户历史选择
 
@@ -475,8 +624,11 @@ function inpChange(id,myText){
             "DomBeginDateWeek":lsf_myweb.getbyid('weekSpan3').innerHTML,
             "DomLeaveDateWeek":lsf_myweb.getbyid('weekSpan4').innerHTML
         };
-        sessionStorage.setItem('hotelStorage12345',JSON.stringify(hotelStorage12345));
+        localStorage.setItem('hotelStorage12345',JSON.stringify(hotelStorage12345));
     }
+
+
+
     //查询按钮点击事件
     lsf_myweb.bind(lsf_myweb.getbyid('InterBtn'),'click',function(){
         hoMemory();
