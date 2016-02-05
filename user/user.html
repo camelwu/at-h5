@@ -42,18 +42,19 @@
                     <div class="user-header" id="showMessage">
                         <!--<a href="#" class="icons header-back"> </a>-->
                     </div>
-                    <div class="user-info">
+                    <div class="user-info" id="user-info">
                         <a href="user-login.html" id="unloginShow">
                             <img id="userIcon" src="../images/ui/photo-man.png">
-                            <span>点击登录，体验更多</span>
+                            <div class="user-name">{% if(unlogin){ %}<span id="user_name">{%=name%}</span><b id="user_sex"></b>{% }%}</div>
+                            <!--<span>点击登录，体验更多</span>-->
                         </a>
                         <div id="loginShow">
                         </div>
                         <div class="unl_div">
-                            <ul class="user-menu" id="loginfo">
+                            <ul class="user-menu" id="user_order">
                                 <li><a href="user-login.html" style="color:white">全部订单</a></li>
-                                <li><a href="user-login.html" style="color:white">待付款</a>{%if (islogin){ %}<div class="info-circle2">12</div>{% }%}</li>
-                                <li><a href="user-login.html" style="color:white">未出行{%=name%}</a></li>
+                                <li><a href="user-login.html" style="color:white">待付款</a>{% if(unlogin){ %}<div class="info-circle2">12</div>{% }%}</li>
+                                <li><a href="user-login.html" style="color:white">未出行</a></li>
                                 <li><a href="user-login.html" style="color:white">待评价</a></li>
                             </ul>
                         </div>
@@ -61,7 +62,7 @@
                 </div>
                 <ul class="s_lists">
                     <li id="bindCard">
-                        <b class="icons open-info"></b><a href="user-login.html">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
+                        <b class="icons open-info"></b><a href="user-login.html" id="common-msg">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
                     </li>
                     <li id="setPwd">
                         <b class="icons open-fav"></b><a href="user-login.html">我的收藏<b class="icons open-arw"></b></a>
@@ -134,9 +135,12 @@
         <script type="text/javascript" src="../js/lib/jquery.js"></script>
         <script type="text/javascript" src="../js/lib/template.js"></script>
         <script type="text/javascript">
-            var ldata = {islogin:true,name:""};
-            var lstr = template("loginfo",ldata);
-            $("#loginfo").html(lstr);
+
+            var ldata = {unlogin:true,name:"点击登录，体验更多"};
+            var lstr = template("user-info",ldata);
+            $("#user-info").html(lstr);
+
+
             function init(){
                 var a_set = $("#a_set")[0];
                 var a_contact = $("#a_contact")[0];
@@ -181,5 +185,10 @@
                 }
             }
         </script>
+
+        <script src="../js/require.js" data-main="../js/user.js"></script>
+        <script type="text/javascript" src="../js/lib/jquery.js"></script>
+        <script type="text/javascript" src="../js/lib/vlm.js"></script>
+        <script type="text/javascript" src="scripts/user-logined.js"></script>
 	</body>
 </html>

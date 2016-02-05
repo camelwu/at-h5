@@ -176,7 +176,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0052"
             };
-            console.log(Parameters);
+            //console.log(Parameters);
             c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
         }
     }
@@ -295,6 +295,7 @@ function mycallback_register(ret){
     if(myJson.success){
         document.getElementById("register_page").style.display = "none";
         document.getElementById("login_page").style.display = "block";
+        localStorage.setItem('login',0);
     }else{
         alert(myJson.message);
     }
@@ -308,7 +309,7 @@ function mycallback_login(ret) {
         sessionStorage.password = myJson.data[0].password;
         sessionStorage.memberid = myJson.data[0].memberID;
         localStorage.setItem('login',1);
-        window.location.href = "user-logined.html";
+        window.location.href = "user.html";
     } else {
         alert(myJson.message);
     }
