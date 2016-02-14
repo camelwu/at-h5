@@ -8,14 +8,13 @@ function init(){
     var memberid = sessionStorage.memberid;
     sessionStorage.news = "true";
     sessionStorage.promotion = "true";
-    var c = new vlm();
     var Parameters={
         "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
         "Code": "0053"
     };
      //console.log(Parameters['Parameters'])
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
     function order(obj){
         obj.onclick = function(){
@@ -73,7 +72,7 @@ function ifOpen(){
 }
 function mycallback(ret) {
     var myJson = eval('(' + ret + ')');
-    console.log(myJson);
+    //console.log(myJson);
     if (myJson.success) {
         var user_name = $("#user_name")[0];
         var user_sex = $("#user_sex")[0];
@@ -86,7 +85,85 @@ function mycallback(ret) {
             user_sex.className = "icon open-sexw";
             userIcon.src = "../images/ui/photo-woman.png";
         }
-    }else{
-        alert(myJson.Message);
     }
 }
+
+    //登录之后点击全部订单的链接会改变
+    (function(){
+        var oOrder=document.querySelector('#user_order');
+        var aBtn=oOrder.children;
+
+        aBtn[0].querySelector('a').onclick=function(){
+            if(localStorage.getItem('login') == 1)
+            {
+                this.href='user-allorder.html'
+            }
+        };
+        aBtn[1].querySelector('a').onclick=function(){
+            if(localStorage.getItem('login') == 1)
+            {
+                this.href='user-allorder.html'
+            }
+        };
+        aBtn[2].querySelector('a').onclick=function(){
+            if(localStorage.getItem('login') == 1)
+            {
+                this.href='user-allorder.html'
+            }
+        };
+        aBtn[3].querySelector('a').onclick=function(){
+            if(localStorage.getItem('login') == 1)
+            {
+                this.href='user-allorder.html'
+            }
+        };
+
+        document.querySelector('#common-msg').onclick=function(){
+            if(localStorage.getItem('login') == 1)
+            {
+                this.href='user-oftenInfo.html'
+            }
+        };
+
+        document.querySelector('#unloginShow').onclick=function(){
+            if(localStorage.getItem('login') == 1)
+            {
+                this.href='user-perInfo.html'
+            }
+        };
+
+
+    })();
+
+    //登录与不登录有无消息
+    (function(){
+        var oUs=document.querySelector('#user_order');
+        var aLi=oUs.children;
+        if(localStorage.getItem('login') == 1)
+        {
+            aLi[1].querySelector('.info-circle2').style.display='block';
+
+        }
+        else
+        {
+            aLi[1].querySelector('.info-circle2').style.display='none';
+        }
+
+    })()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

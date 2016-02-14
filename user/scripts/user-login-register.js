@@ -94,16 +94,16 @@ window.onload = function(){
     var verify = $("#verify")[0];
     var get_code = $("#get_code")[0];
     //var wrapper = $("#r_e_password")[0];
-    var c = new vlm();
+
     var check = function (type,num){
         if(type == "tel"){
-           return c.Utils.validate.mobileNo(num);
+           return vlm.Utils.validate.mobileNo(num);
         }
         if(type == "email"){
-           return c.Utils.validate.email(num);
+           return vlm.Utils.validate.email(num);
         }
         if(type == "pass"){
-           return c.Utils.validate.password(num);
+           return vlm.Utils.validate.password(num);
         }
     };
     // 会员注册
@@ -134,7 +134,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0051"
             };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
         }
     }
     user_register(register_btn);
@@ -146,7 +146,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0058"
             };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_verify);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_verify);
         }
     }
     get_verify(get_code);
@@ -176,8 +176,8 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0052"
             };
-            console.log(Parameters);
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
+            //console.log(Parameters);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
         }
     }
     user_login(login_btn);
@@ -211,7 +211,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0055"
             };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
         }
     }
     findkey(findkey_btn);
@@ -225,7 +225,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0058"
             };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
         }
     }
     get_fver(find_verify);
@@ -254,7 +254,7 @@ window.onload = function(){
                 "Code": "0055"
             }
             //console.log(Parameters);
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
         }
     }
     findkeybyemail(findkey_btn);
@@ -269,7 +269,7 @@ window.onload = function(){
                "ForeEndType": 3,
                "Code": "0061"
            }
-           c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
+           vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
        }
        else
        {
@@ -295,6 +295,7 @@ function mycallback_register(ret){
     if(myJson.success){
         document.getElementById("register_page").style.display = "none";
         document.getElementById("login_page").style.display = "block";
+        localStorage.setItem('login',0);
     }else{
         alert(myJson.message);
     }
@@ -308,19 +309,18 @@ function mycallback_login(ret) {
         sessionStorage.password = myJson.data[0].password;
         sessionStorage.memberid = myJson.data[0].memberID;
         localStorage.setItem('login',1);
-        window.location.href = "user-logined.html";
+        window.location.href = "user.html";
     } else {
         alert(myJson.message);
     }
 }
 //注册验证码回调
 function mycallback_verify(ret){
-    var c = new vlm();
     var verify = $("#verify")[0];
     var myJson = eval('('+ret+')');
     //console.log(myJson);
     if(myJson.success){
-        c.Utils.sendMobileCode(verify.value);
+        vlm.Utils.sendMobileCode(verify.value);
     }else{
         alert(myJson.message);
     }
@@ -336,11 +336,10 @@ function mycallback_findkey(ret){
 }
 //找回密码验证码回调
 function mycallback_findver(ret){
-    var c = new vlm();
     var find_veri = $("#find_veri")[0];
     var myJson = eval('('+ret+')');
     if(myJson.success){
-        c.Utils.sendMobileCode(find_veri.value);
+        vlm.Utils.sendMobileCode(find_veri.value);
     }else{
         alert(myJson.Message);
     }

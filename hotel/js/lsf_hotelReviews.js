@@ -109,13 +109,12 @@
     function M(json){
         json=json||{};
         if(!json.HotelID)return;
-        var c=new vlm();
         var data= {
             "Parameters": "{\"HotelID\":"+json.HotelID+",\"CultureName\":\"en - US\" }",
             "ForeEndType": 3,
             "Code": "0011"
         };
-        return c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+        return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
     }
     M({"HotelID":HotelID});
     //callback函数
