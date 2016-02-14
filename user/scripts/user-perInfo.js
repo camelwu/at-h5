@@ -26,7 +26,7 @@ function u_perInfo(){
     }
 
     //console.log(Parameters);
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
     var close_page = $("#close_page")[0];
     var amend_info = $("#amend_info")[0];
@@ -127,20 +127,20 @@ function u_perInfo(){
                 "Code": "0059"
             };
             //console.log(Parameters);
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
         }
     }
     amendNick(nick_btn);
     //  验证输入
     var check = function (type,num){
         if(type == "tel"){
-            return c.Utils.validate.mobileNo(num);
+            return vlm.Utils.validate.mobileNo(num);
         }
         if(type == "email"){
-            return c.Utils.validate.email(num);
+            return vlm.Utils.validate.email(num);
         }
         if(type == "pass"){
-            return c.Utils.validate.password(num);
+            return vlm.Utils.validate.password(num);
         }
     };
     //   修改信息
@@ -191,8 +191,8 @@ function u_perInfo(){
                 "ForeEndType": 3,
                 "Code": "0056"
             };
-            console.log(Parameters);
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+            //console.log(Parameters);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
         }
     }
     changeInfo(amend_btn);
@@ -206,7 +206,7 @@ function u_perInfo(){
                 "ForeEndType": 3,
                 "Code": "0058"
             };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
         }
     }
     phone_veri(phone_ver);
@@ -237,7 +237,7 @@ function u_perInfo(){
                 "ForeEndType": 3,
                 "Code": "0054"
             };
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_newKey);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_newKey);
         }
     }
     changeKey(newkey_btn);
@@ -257,7 +257,7 @@ function u_perInfo(){
 }
 function mycallback(ret){
     infoJson = eval('('+ret+')');
-    console.log(infoJson);
+    //console.log(infoJson);
     var nickname = $("#nickname")[0];
     var name = $("#name")[0];
     var user_email = $("#email")[0];

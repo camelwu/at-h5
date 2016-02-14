@@ -230,7 +230,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">证件有效期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
+                            <div class="birth-date">证件有效期</div><input type="text" id="time-cont-edit" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
@@ -254,7 +254,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">出生日期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
+                            <div class="birth-date">出生日期</div><input id="birth-cont-edit" type="text" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                     </ul>
                     <div class="addtra-title">联系方式</div>
@@ -407,47 +407,6 @@
         </div>
     </div>
     <div id="menu"></div>
-
-    <script>
-       /* (function(){
-
-            var aCab=document.querySelectorAll('.postCard');
-            var oCbox=document.querySelector('.selbox-card');
-            var oAir=document.querySelector('.mask');
-            for(var i=0;i<aCab.length; i++)
-            {
-                aCab[i].addEventListener('click',function(e){
-                    oCbox.style.bottom = 0;
-                    oAir.style.display='block';
-                    bFlag=false;
-                    var _this=this;
-
-                    oCbox.querySelector('.cabin-sure').addEventListener('click',function(){
-
-                        _this.innerHTML='';
-                        oCbox.style.bottom ='-260px';
-                        oAir.style.display='none';
-                        var aSpan=document.querySelector('#card-lists').querySelectorAll('.sel-time span');
-                        var oContent='';
-                        for(var i=0;i<aSpan.length; i++)
-                        {
-                            if(aSpan[i].className== 'date-selected')
-                            {
-                                oContent+=aSpan[i].innerHTML;
-                            }
-                        }
-                        _this.innerHTML=oContent;
-                    });
-
-                    oCbox.querySelector('.cabin-cancel').addEventListener('click',function(){
-                        oCbox.style.bottom ='-260px';
-                        oAir.style.display='none';
-                    });
-                })
-            }
-
-        })();*/
-    </script>
 
     <!--国籍选择开始-->
     <div class="all-elements country-cho-wrap">

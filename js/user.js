@@ -34,7 +34,7 @@ require.config({
 });
 
 require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
-    console.log("dataReady="+vlm);
+    //console.log("dataReady="+vlm);
     vlm.init();
     /**
      * Created by changlv on 2016/1/19.
@@ -44,6 +44,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     var arrayId = [];
     var travJson;
     $(function(){
+        var a=location.href;
+        if(a.indexOf('user-oftenInfo') == -1)
+        {
+            return;
+        }
         var menu = $("#menu")[0];
         menu.style.display = "none";
         // 初始化常旅客
@@ -413,4 +418,12 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"week_span2"});
     var myDate2 = new Scroller({id: "time-cont", type:"birth",cont:"week_span2"});
     var myDate2 = new Scroller({id: "postCard", type:"card",cont:"week_span2"});
+
+    var myDate3 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"week_span2"});
+    var myDate3 = new Scroller({id: "time-cont-edit", type:"birth",cont:"week_span2"});
+    var myDate3 = new Scroller({id: "cardType", type:"card",cont:"week_span2"});
+
+    var myDate4 = new Scroller({id: "birth-cont-per", type:"birth",cont:"week_span2"});
+
+
 });

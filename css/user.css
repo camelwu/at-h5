@@ -1308,17 +1308,6 @@
 }
 
 
-
-/*证件选择窗*/
-.selbox-card {
-    position: fixed;
-    z-index: 1000;
-    width: 100%;
-    bottom: -260px;
-    background-color: white;
-    transition: 0.3s all ease;
-}
-
 /*国籍选择*/
 .country-cho-wrap {
     position: absolute;
