@@ -6,7 +6,7 @@ require.config({
         jquery: 'jquery',
         vlm: 'vlm',
         plugins: 'plugins',
-        //custom: 'custom'
+        Scroller: 'scroller'
     },
     $:['jquery'],
     shim: {
@@ -24,233 +24,393 @@ require.config({
     			}
     		}
     	},
-    	//'custom':{
-    	//	deps: ['jquery','plugins']
-    	//},
-    	'vcm':{
-    		deps: ['jquery'],
-    		exports: 'vcm'
-        },
-        'vlm':{
-    		deps: ['jquery'],
-    		exports: 'vlm'
+    	'scroller':{
+    		deps: ['jquery','plugins'],
+
+    		exports: 'Scroller'
         }
 	}//,
 	//urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','vlm'], function($,vlm) {
-	//console.log("dataReady="+vlm);
-	vlm.init();
-	var special = jQuery.event.special,
-        uid1 = 'D' + (+new Date()),
-        uid2 = 'D' + (+new Date() + 1);
+require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
+    console.log("dataReady="+vlm);
+    vlm.init();
+    /**
+     * Created by changlv on 2016/1/19.
+     */
+    var index;
+    var array = [];
+    var arrayId = [];
+    var travJson;
+    $(function(){
+        var menu = $("#menu")[0];
+        menu.style.display = "none";
+        // 初始化常旅客
+        var memberId = sessionStorage.memberid;
+        var Parameters = {
+            "Parameters": "{\"memberId\":" + memberId + "}",
+            "ForeEndType": 3,
+            "Code": "0074"
+        };
+        //console.log(Parameters);
+        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
-    special.scrollstart = {
-        setup: function() {
- 
-            var timer,
-                handler =  function(evt) {
- 
-                    var _self = this,
-                        _args = arguments;
- 
-                    if (timer) {
-                        clearTimeout(timer);
-                    } else {
-                        evt.type = 'scrollstart';
-                        jQuery.event.handle.apply(_self, _args);
-                    }
- 
-                    timer = setTimeout( function(){
-                        timer = null;
-                    }, special.scrollstop.latency);
- 
-                };
- 
-            jQuery(this).bind('scroll', handler).data(uid1, handler);
- 
-        },
-        teardown: function(){
-            jQuery(this).unbind( 'scroll', jQuery(this).data(uid1) );
-        }
-    };
- 
-    special.scrollstop = {
-        latency: 300,
-        setup: function() {
- 
-            var timer,
-                    handler = function(evt) {
- 
-                    var _self = this,
-                        _args = arguments;
- 
-                    if (timer) {
-                        clearTimeout(timer);
-                    }
- 
-                    timer = setTimeout( function(){
- 
-                        timer = null;
-                        evt.type = 'scrollstop';
-                        jQuery.event.handle.apply(_self, _args);
- 
-                    }, special.scrollstop.latency);
- 
-                };
- 
-            jQuery(this).bind('scroll', handler).data(uid2, handler);
- 
-        },
-        teardown: function() {
-            jQuery(this).unbind( 'scroll', jQuery(this).data(uid2) );
-        }
-    };
+        var addtra_page = $("#addtra_page")[0];
+        var addUser = $("#addUser")[0];
+        var add_quit = $("#add_quit")[0];
+        var uptra_page = $("#uptra_page")[0];
+        var update_quit = $("#update_quit")[0];
+        var name_state = $("#name_state")[0];
+        var aname_state = $("#aname_state")[0];
+        var fillName_page = $("#fillName_page")[0];
+        var close_name = $("#close_name")[0];
 
-    //初始插入年
+        function showPage(obj1, obj2) {
+            obj1.onclick = function () {
+                obj2.style.display = "block";
 
-    crateYear(setYears());
-
-    $(".sel-time").bind("scrollstart",function(){
-
-    });
-
-    $(".sel-time").bind("scrollstop",function(){
-
-		var obj=$(this),
-            posY = this.scrollTop,
-            p = parseInt(posY/39),
-            h = posY/39 - p <=0.5?p*39:(p+1)*39;
-        if(posY/39 - p >0.5){
-            p++;
-        }
-		console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
-		$(this).animate({scrollTop:h} ,300);
-		$(this).children("span").removeClass('date-selected');
-		$(this).children("span").eq((p+2)).addClass('date-selected');
-
-        //年滑动时
-        if(obj.parent().index() == 0) {
-            var oNewYear= parseInt(obj.children('span').eq((p+2)).html());
-            var month = parseInt($('#mon').children(".date-selected").html());
-            showday(month,p);
-        }
-        //月滑动时
-        else if(obj.parent().index() == 1) {
-            var month = parseInt(obj.children("span").eq(p+2).html());
-            showday(month,p);
-        }
-  });
-
-
-});
-
-//根据月份判断天数
-    function showday(mon, p){
-        switch (mon) {
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            createDay(31);
-            tab_correct($('#day'));
-            break;
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            createDay(30);
-            tab_correct($('#day'));
-            break;
-        case 2:
-            var oNewYear = parseInt($('#year').children().eq((p + 2)).html());
-
-            if (getYearmsg(oNewYear)) {
-                createDay(29);
-                tab_correct($('#day'));
-            } else {
-                createDay(28);
-                tab_correct($('#day'));
             }
-            break;
-        default:;
-    }
-}
-
-
-//判断闰年
-    function getYearmsg(year)
-    {
-        if((year%4==0 && year%100!=0) || year%400==0)
-        {
-            //是闰年;
-            return true;
         }
-        else {
-            //不是闰年;
-            return false;
+
+        showPage(addUser, addtra_page);
+        showPage(name_state, fillName_page);
+        showPage(aname_state, fillName_page);
+        function closePage(obj1, obj2) {
+            obj1.onclick = function () {
+                obj2.style.display = "none";
+            }
         }
-    }
+
+        closePage(add_quit, addtra_page);
+        closePage(update_quit, uptra_page);
+        closePage(close_name, fillName_page);
+
+        //   增加常旅客
+        var add_finish = $("#add_finish")[0];
+
+        function addTraveler(obj) {
+            obj.onclick = function () {
+                var input = document.getElementById("addForm").getElementsByTagName("input");
+                var postCard = document.getElementById("postCard").innerHTML;
+                var cardId;
+                if (input[1].value == "" || input[2].value == "") {
+                    alert("英文姓名为必填信息");
+                    return;
+                }
+                //  判断证件类型
+                if (postCard == "护照") {
+                    cardId = "1";
+                } else if (postCard == "身份证") {
+                    cardId = "2";
+                } else if (postCard == "出生证明") {
+                    cardId = "3";
+                } else if (postCard == "港澳通行证") {
+                    cardId = "4";
+                } else if (postCard == "军人证") {
+                    cardId = "5";
+                } else if (postCard == "驾驶证") {
+                    cardId = "6";
+                } else if (postCard == "台胞证") {
+                    cardId = "7";
+                } else if (postCard == "回乡证") {
+                    cardId = "8";
+                } else {
+                    cardId = "9";
+                }
+                //  判断性别
+                var man = $("#man")[0];
+                var sexCode;
+                var sexName;
+                if (man.className == "icon-h traveler-sex1") {
+                    sexCode = "Mr";
+                    sexName = "男";
+                } else {
+                    sexCode = "Mrs";
+                    sexName = "女";
+                }
 
 
-//插入天数
-    function createDay(day){
-        var oLiDay=document.querySelector('#mt-day'),arr3=[];
-        for(var i=1;i<day+1; i++)
-        {
-            arr3.push('<span>'+i+'号</span>');
+                var oMobile = $('#mobile-cell-add')[0].value;
+                var oEmail = $('#email-cell-add')[0].value;
+
+                if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
+
+                    var Parameters = {
+                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
+                        "ForeEndType": 3,
+                        "Code": "0071"
+                    }
+
+                    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
+                }
+                else {
+                    alert('请输入正确的邮箱和电话号码');
+                }
+            }
         }
-        var str=arr3.join(' ');
-        oLiDay.innerHTML='<div class="sel-time" id="day"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box d"></div>';
-        oLiDay.children[0].children[2].className='date-selected';
-    }
+
+        addTraveler(add_finish);
+        //   编辑常旅客
+        var upadate_finish = $("#upadate_finish")[0];
+
+        function upTraveler(obj) {
+            obj.onclick = function () {
+                //debugger;
+                //console.log(array);
+                var travelId = array[index];
+                //console.log(travelId);
 
 
-//绑定偏移矫正函数
-function tab_correct(obj1){
-    $(obj1).bind("scrollstop",function() {
+                var id = arrayId[index];
+                //console.log(id);
+                var input = document.getElementById("updateForm").getElementsByTagName("input");
+                var cardType = document.getElementById("cardType").innerHTML;
+                var cardId;
+                var countryName = document.getElementById("countryName").innerHTML;
+                if (input[1].value == "" || input[2].value == "") {
+                    alert("英文姓名为必填信息");
+                    return;
+                }
+                //  判断性别
+                var man = $("#man2")[0];
+                var sexCode;
+                var sexName;
+                if (man.className == "icon-h traveler-sex1") {
+                    sexCode = "Mr";
+                    sexName = "男";
+                } else {
+                    sexCode = "Mrs";
+                    sexName = "女";
+                }
+                //  判断证件类型
+                if (cardType == "护照") {
+                    cardId = "1";
+                } else if (cardType == "身份证") {
+                    cardId = "2";
+                } else if (cardType == "出生证明") {
+                    cardId = "3";
+                } else if (cardType == "港澳通行证") {
+                    cardId = "4";
+                } else if (cardType == "军人证") {
+                    cardId = "5";
+                } else if (cardType == "驾驶证") {
+                    cardId = "6";
+                } else if (cardType == "台胞证") {
+                    cardId = "7";
+                } else if (cardType == "回乡证") {
+                    cardId = "8";
+                } else {
+                    cardId = "9";
+                }
+                // 手机号邮箱检验
+                var oMobile = $('#mobile-cell')[0].value;
+                var oEmail = $('#email-cell')[0].value;
 
-        var that = this, obj = $(this),
-            posY = this.scrollTop,
-            p = parseInt(posY / 39),
-            h = posY / 39 - p <= 0.5 ? p * 39 : (p + 1) * 39;
-        if (posY / 39 - p > 0.5) {
-            p++;
+                if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
+                    var Parameters = {
+                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
+                        "ForeEndType": 3,
+                        "Code": "0072"
+                    };
+                    //console.log(Parameters);
+                    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
+
+                }
+                else {
+                    alert('请输入正确的手机号和邮箱');
+                }
+                //console.log(Parameters);
+
+            }
         }
-        //console.log(posY+","+p+","+h+"=="+(posY/39 - p)+"="+(posY/39 - p<=0.5));
-        $(this).animate({scrollTop: h}, 300);
-        $(this).children("span").removeAttr("style").removeClass('date-selected');
-        $(this).children("span").eq((p+2)).css({"color":"#484848","font-size":"1.9rem"}).addClass('date-selected');
+
+        upTraveler(upadate_finish);
+        //   删除常旅客
+        var delTra = $("#delTra")[0];
+
+        function deleteTra(obj) {
+            obj.onclick = function () {
+                var travelId = array[index];
+                var id = arrayId[index];
+                var Parameters = {
+                    "Parameters": "{\"travellerId\":" + travelId + "}",
+                    "ForeEndType": 3,
+                    "Code": "0073"
+                };
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+            }
+        }
+
+        deleteTra(delTra);
     });
-}
 
-//初始插入年份
-function setYears(){
-    var Y= [],years= new Date().getFullYear();
-    for(var i=1900;i<=years;i++){
-        Y.push(i);
+
+    (function () {
+        var aSel = document.querySelectorAll('.sex-cho-wrap');
+
+        for (var i = 0; i < aSel.length; i++) {
+            (function (index) {
+                var aSpan = aSel[index].querySelectorAll('b');
+                for (j = 0; j < aSpan.length; j++) {
+                    aSpan[j].onclick = function () {
+                        for (i = 0; i < aSpan.length; i++) {
+                            aSpan[i].className = 'icon-h traveler-sex2';
+                        }
+                        this.className = 'icon-h traveler-sex1';
+                    }
+                }
+            })(i);
+
+        }
+
+    })();
+
+
+//  页面初始获取常旅客
+    function mycallback(ret) {
+        travJson = eval('(' + ret + ')');
+        var blank = $("#blank")[0];
+        //console.log(travJson)
+        if (travJson.success) {
+            if (travJson.data.length == 0) {
+                blank.style.display = "block";
+            } else {
+                blank.style.display = "none";
+                var content = $("#content")[0];
+                var UL = document.createElement("ul");
+                UL.className = "often-traveler";
+                UL.style.borderTop = "1px solid #dedede";
+                UL.style.marginTop = "10px";
+                for (var i = 0; i < travJson.data.length; i++) {
+                    array[i] = travJson.data[i].traveller.travellerId;
+                    arrayId[i] = travJson.data[i].traveller.Id;
+                    var li = document.createElement("li");
+                    li.className = "eve-traveler";
+                    var b = document.createElement("b");
+                    b.className = "bu_icon user-edits";
+                    b.style.marginTop = li.clientHeight + 20 + 'px';
+                    b.addEventListener("click", updateTra);
+                    li.appendChild(b);
+                    var ul = document.createElement("ul");
+                    ul.className = "often_user";
+                    var ul_li1 = document.createElement("li");
+                    ul_li1.innerHTML = travJson.data[i].traveller.idName + travJson.data[i].traveller.lastName + "/" + travJson.data[i].traveller.firstName;
+                    ul.appendChild(ul_li1);
+                    var ul_li2 = document.createElement("li");
+                    if (travJson.data[i].listTravellerIdInfo[0].idType == "1") {
+                        ul_li2.innerHTML = "护照" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "2") {
+                        ul_li2.innerHTML = "身份证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "3") {
+                        ul_li2.innerHTML = "出生证明" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "4") {
+                        ul_li2.innerHTML = "港澳通行证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "5") {
+                        ul_li2.innerHTML = "军官证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "6") {
+                        ul_li2.innerHTML = "驾驶证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "7") {
+                        ul_li2.innerHTML = "台胞证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "8") {
+                        ul_li2.innerHTML = "回乡证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else {
+                        ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    }
+                    ul.appendChild(ul_li2);
+                    var ul_li3 = document.createElement("li");
+                    ul_li3.innerHTML = "手机号" + " " + travJson.data[i].traveller.mobilePhone;
+                    ul.appendChild(ul_li3);
+                    li.appendChild(ul);
+                    li.setAttribute("index", i);
+                    UL.appendChild(li);
+                }
+                content.appendChild(UL);
+            }
+        } else {
+            alert(travJson.message);
+        }
     }
-    return Y.length;
 
-}
-
-function crateYear(year){
-    var oLi=document.querySelector('#mt-year'),arr2=[];
-    for(var i=(year+1899);i>1900; i--)
-    {
-        arr2.push('<span>'+i+'年</span>');
-    }
-    var str=arr2.join(' ');
-    if(oLi)
-    {
-        oLi.innerHTML='<div class="sel-time" id="year"><span>&nbsp;</span><span>&nbsp;</span>'+str+'<span>&nbsp;</span><span>&nbsp;</span></div><div class="sel-box y"></div>';
-        oLi.children[0].children[2].className='date-selected';
+    function mycallback_addtrav(ret) {
+        var myJson = eval('(' + ret + ')');
+        console.log(myJson);
+        if (myJson.success) {
+            document.getElementById("addForm").submit();
+        } else {
+            alert(myJson.message);
+        }
     }
 
+    function mycallback_deltrav(ret) {
+        var myJson = eval('(' + ret + ')');
+        console.log(myJson);
+        if (myJson.success) {
+            window.location.href = "user-oftenInfo.html";
+        } else {
+            alert(myJson.message);
+        }
+    }
 
-}
-//define
+    function mycallback_uptrav(ret) {
+        var myJson = eval('(' + ret + ')');
+        console.log(myJson);
+        if (myJson.success) {
+            document.getElementById("updateForm").submit();
+        } else {
+            alert(myJson.message);
+        }
+    }
+
+//  编辑常旅客页面
+    function updateTra() {
+        var b = window.event.srcElement;
+        var li = b.parentElement;
+        index = li.getAttribute("index");
+        var uptra_page = $("#uptra_page")[0];
+        uptra_page.style.display = "block";
+        var input = document.getElementById("updateForm").getElementsByTagName("input");
+        var cardType = $("#cardType")[0];
+        var countryName = $("#countryName")[0];
+        var man2 = $("#man2")[0];
+        var woman2 = $("#woman2")[0];
+        input[0].value = travJson.data[index].traveller.idName;
+        input[1].value = travJson.data[index].traveller.lastName;
+        input[2].value = travJson.data[index].traveller.firstName;
+        input[3].value = travJson.data[index].traveller.idNumber;
+        input[5].value = travJson.data[index].traveller.email;
+        if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
+            cardType.innerHTML = "护照";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "2") {
+            cardType.innerHTML = "身份证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "3") {
+            cardType.innerHTML = "出生证明";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "4") {
+            cardType.innerHTML = "港澳通行证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "5") {
+            cardType.innerHTML = "军官证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "6") {
+            cardType.innerHTML = "驾驶证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "7") {
+            cardType.innerHTML = "台胞证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "8") {
+            cardType.innerHTML = "回乡证";
+        } else {
+            cardType.innerHTML = "其他";
+        }
+        countryName.innerHTML = travJson.data[index].traveller.countryName;
+        if (travJson.data[index].traveller.sexCode == "Mr") {
+            man2.className = "icon-h traveler-sex1";
+            woman2.className = "icon-h traveler-sex2";
+        } else {
+            man2.className = "icon-h traveler-sex2";
+            woman2.className = "icon-h traveler-sex1";
+        }
+    }
+
+//    });
+
+    var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"week_span2"});
+    var myDate2 = new Scroller({id: "time-cont", type:"birth",cont:"week_span2"});
+    var myDate2 = new Scroller({id: "postCard", type:"card",cont:"week_span2"});
+});

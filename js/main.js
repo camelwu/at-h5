@@ -4,8 +4,7 @@ require.config({
     baseUrl: '../js/lib',
     paths: {
         jquery: 'jquery',
-        plugins: 'plugins',
-        custom: 'custom'
+        plugins: 'plugins'
     },
     $:['jquery'],
     shim: {
@@ -30,10 +29,9 @@ require.config({
 	urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','custom','vlm'], function($,custom,vlm) {
-	(function($){
-		$(window).load(function() {
+require(['jquery','vlm'], function($,vlm) {
+
+
 			vlm.init();
-		});
-    }(jQuery));
+
 });

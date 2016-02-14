@@ -24,6 +24,7 @@
     <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/date_select.css"	rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="preloader">
@@ -144,7 +145,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">证件有效期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
+                            <div class="birth-date">证件有效期</div><input id="time-cont" type="text" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
@@ -168,7 +169,7 @@
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
-                            <div class="birth-date">出生日期</div><input type="text" class="birth-cont" value="1990年1月9号" readonly />
+                            <div class="birth-date">出生日期</div><input id="birth-cont" type="text" class="birth-cont" value="1990年1月9号" readonly />
                         </li>
                     </ul>
                     <div class="addtra-title">联系方式</div>
@@ -407,104 +408,8 @@
     </div>
     <div id="menu"></div>
 
-    <!--出生日期选择控件-->
-    <div class="mask" id="overlay"></div>
-    <div class="selbox-footer" id="selbox">
-        <div id="opeater" style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span><span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span></div>
-        <ul class="selbox-ul" id="rank">
-            <li id="mt-year"></li>
-            <li id="mt-mon">
-                <div class="sel-time" id="mon">
-                    <span>&nbsp;</span><span>&nbsp;</span>
-                    <span class="date-selected">1月</span>
-                    <span>2月</span>
-                    <span>3月</span>
-                    <span>4月</span>
-                    <span>5月</span>
-                    <span>6月</span>
-                    <span>7月</span>
-                    <span>8月</span>
-                    <span>9月</span>
-                    <span>10月</span>
-                    <span>11月</span>
-                    <span>12月</span>
-                    <span>&nbsp;</span><span>&nbsp;</span>
-                </div>
-                <div class="sel-box m"></div>
-            </li>
-            <li id="mt-day">
-                <div class="sel-time" id="day">
-                    <span>&nbsp;</span>
-                    <span>&nbsp;</span>
-                    <span class="date-selected">1号</span>
-                    <span>2号</span>
-                    <span>3号</span>
-                    <span>4号</span>
-                    <span>5号</span>
-                    <span>6号</span>
-                    <span>7号</span>
-                    <span>8号</span>
-                    <span>9号</span>
-                    <span>10号</span>
-                    <span>11号</span>
-                    <span>12号</span>
-                    <span>13号</span>
-                    <span>14号</span>
-                    <span>15号</span>
-                    <span>16号</span>
-                    <span>17号</span>
-                    <span>18号</span>
-                    <span>19号</span>
-                    <span>20号</span>
-                    <span>21号</span>
-                    <span>22号</span>
-                    <span>23号</span>
-                    <span>24号</span>
-                    <span>25号</span>
-                    <span>26号</span>
-                    <span>27号</span>
-                    <span>28号</span>
-                    <span>29号</span>
-                    <span>30号</span>
-                    <span>31号</span>
-                    <span>&nbsp;</span>
-                    <span>&nbsp;</span>
-                </div>
-                <div class="sel-box d"></div>
-            </li>
-        </ul>
-    </div>
-
-    <!--证件选择控件开始-->
-    <div class="mask"></div>
-    <div class="selbox-card" >
-        <div style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span><span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span></div>
-        <ul class="selbox-ul" id="card-lists">
-            <li>
-                <div class="sel-time">
-                    <span>&nbsp;</span>
-                    <span>&nbsp;</span>
-                    <span>身份证</span>
-                    <span>护照</span>
-                    <span>港澳通行证</span>
-                    <span>军官证</span>
-                    <span>驾驶证</span>
-                    <span>台胞证</span>
-                    <span>回乡证</span>
-                    <span>户口本</span>
-                    <span>出生证明</span>
-                    <span>其他</span>
-                    <span>&nbsp;</span>
-                    <span>&nbsp;</span>
-                </div>
-                <div class="sel-box y"></div>
-            </li>
-
-        </ul>
-    </div>
-    <!--证件选择控件结束-->
     <script>
-        (function(){
+       /* (function(){
 
             var aCab=document.querySelectorAll('.postCard');
             var oCbox=document.querySelector('.selbox-card');
@@ -541,7 +446,7 @@
                 })
             }
 
-        })();
+        })();*/
     </script>
 
     <!--国籍选择开始-->
@@ -569,53 +474,5 @@
     <!--国籍选择结束-->
     <script src="../js/country_list.js"></script>
     <script src="../js/require.js" data-main="../js/user.js"></script>
-    <script type="text/javascript" src="../js/lib/jquery.js"></script>
-    <script type="text/javascript" src="../js/lib/vlm.js"></script>
-    <script type="text/javascript" src="scripts/user-oftenInfo.js"></script>
-    <!--年月日选择以及证件有效期-->
-    <script>
-
-        (function(){
-            var aCab=document.querySelectorAll('.birth-cont');
-            var oCbox=document.querySelector('.selbox-footer');
-            var oAir=document.querySelector('.mask'),Bflag=0;
-
-            for(var i=0;i<aCab.length; i++)
-            {
-                (function(index){
-                    aCab[i].onclick=function(){
-                        oCbox.style.bottom = 0;
-                        oAir.style.display='block';
-                        var _this=this;Bflag=index;
-                    }
-                })(i);
-            }
-
-            oCbox.querySelector('.cabin-sure').addEventListener('click',function(){
-
-                oCbox.style.bottom ='-260px';
-                oAir.style.display='none';
-                var aSpan=document.querySelector('#rank').querySelectorAll('span');
-
-                var oContent='';
-                for(var i=0;i<aSpan.length; i++)
-                {
-                    if(aSpan[i].className == 'date-selected')
-                    {
-                        oContent+=aSpan[i].innerHTML;
-                    }
-                }
-                aCab[Bflag].value=oContent;
-
-            });
-            oCbox.querySelector('.cabin-cancel').addEventListener('click',function(){
-                oCbox.style.bottom ='-260px';
-                oAir.style.display='none';
-            });
-
-        })();
-    </script>
-
-
 </body>
 </html>
