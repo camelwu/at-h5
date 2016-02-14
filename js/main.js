@@ -31,7 +31,5 @@ require.config({
 
 require(['jquery','vlm'], function($,vlm) {
 
-
-			vlm.init();
-
+	vlm.init();
 });

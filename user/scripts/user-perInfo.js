@@ -13,8 +13,7 @@ function u_perInfo(){
     var phone = sessionStorage.phone;
     var oPassword = sessionStorage.password;
     var memberid = sessionStorage.memberid;
-
-
+    var UserSex;
     var Parameters= {
         //"Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Password\":\""+oPassword+"\",\"Mobile\":\""+phone+"\",\"Code\":\"380998\"}",
         //"ForeEndType": 3,
@@ -107,10 +106,12 @@ function u_perInfo(){
         obj.onclick = function() {
             if(sex.className != "info-sex-on"){
                 sex.className="info-sex-on";
-                block.innerHTML = "女";
+                block.innerHTML = "女  ";
+                UserSex=26;
             }else{
                 sex.className="info-sex";
-                block.innerHTML = "男"
+                block.innerHTML = "男";
+                UserSex=27;
             }
         };
     }
@@ -147,13 +148,8 @@ function u_perInfo(){
     var amend_btn = $("#amend_btn")[0];
     function changeInfo(obj){
         obj.onclick = function(){
+
             var input = document.getElementById("infoForm").getElementsByTagName("input");
-            var UserSex;
-            if(sex.className="info-sex-on"){
-                UserSex = "26";
-            }else{
-                UserSex = "27";
-            }
             var news = sessionStorage.news;
             var promotion = sessionStorage.promotion;
             for(var i= 0;i < input.length;i++){
@@ -181,17 +177,13 @@ function u_perInfo(){
             u_email = input[3].value;
             u_realname = input[0].value;
             u_phone = input[1].value;
-            //var Parameters={
-            //    "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input[3].value+"\",\"FirstName\":\""+input[0].value+"\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+input[1].value+"\",\"Phone\":\""+input[1].value+"\",\"NewsLetter\":"+news+",\"Promotion\":"+promotion+",\"Salutation\":\""+UserSex+"\"}",
-            //        "ForeEndType": 3,
-            //        "Code": "0056"
-            //};
+
             var Parameters={
-                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"Email\":\"\",\"FirstName\":\""+u_realname+"\",\"LastName\":\"yuan\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+u_phone+"\",\"Phone\":\"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\"\"}",
+                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"Email\":\"\",\"FirstName\":\""+u_realname+"\",\"LastName\":\"yuan\",\"DOB\":\"1982-10-22\",\"Address\":\"beijingshi\",\"City\":\"beijingshi\",\"Postcode\":\"471023\",\"Country\":\"china\",\"Nationality\":\"\",\"Mobile\":\""+u_phone+"\",\"Phone\":\"\",\"NewsLetter\":true,\"Promotion\":true,\"Salutation\":\""+UserSex+"\"}",
                 "ForeEndType": 3,
                 "Code": "0056"
             };
-            //console.log(Parameters);
+            console.log(Parameters);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
         }
     }
@@ -266,8 +258,25 @@ function mycallback(ret){
     var sex = $("#sex")[0];
     var block = $("#block")[0];
     var userIcon = $("#userIcon")[0];
-    nickname.innerHTML = infoJson.data[0].nickName;
-    name.value = infoJson.data[0].nickName;
+    if(infoJson.data == null)
+    {
+        nickname.innerHTML ='';
+        name.value ='';
+    }
+    else
+    {
+        nickname.innerHTML = infoJson.data[0].nickName;
+        name.value = infoJson.data[0].nickName;
+        if(infoJson.data[0].salutation == 26){
+            sex.className="info-sex-on";
+            block.innerHTML = "女";
+            userIcon.src = "../images/ui/photo-man.png";
+        }else{
+            sex.className="info-sex";
+            block.innerHTML = "男";
+            userIcon.src = "../images/ui/photo-woman.png";
+        }
+    }
     if(sessionStorage.phone != ""){
         user_phone.value = sessionStorage.phone;
     }else{
@@ -277,15 +286,7 @@ function mycallback(ret){
     MemberId = sessionStorage.memberid;
     //MemberId = infoJson.Data[0].MemberId;
     //sessionStorage.MemberId = MemberId;
-    if(infoJson.data[0].salutation == 0){
-        sex.className="info-sex";
-        block.innerHTML = "男";
-        userIcon.src = "../images/ui/photo-man.png";
-    }else{
-        sex.className="info-sex-on";
-        block.innerHTML = "女";
-        userIcon.src = "../images/ui/photo-woman.png";
-    }
+
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
@@ -304,7 +305,7 @@ function mycallback_info(ret){
         sessionStorage.realname = u_realname;
         sessionStorage.email = u_email;
         sessionStorage.phone = u_phone;
-         document.getElementById("infoForm").submit();
+        document.getElementById("infoForm").submit();
     }else{
         alert(myJson.message);
     }

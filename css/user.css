@@ -1439,3 +1439,8 @@ ul, ol {
 #unloginShow{
     width: 150px;
 }
+
+/*历史和收藏*/
+#setPwd a, #browsHis a{
+    color: #999;
+}
