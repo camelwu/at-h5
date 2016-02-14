@@ -78,7 +78,7 @@ function mycallback(ret) {
         var user_sex = $("#user_sex")[0];
         var userIcon = $("#userIcon")[0];
         user_name.innerHTML = myJson.data[0].nickName;
-        if (myJson.data[0].salutation == "0") {
+        if (myJson.data[0].salutation == "26") {
             user_sex.className = "icon open-sexm";
             userIcon.src = "../images/ui/photo-man.png";
         } else {
