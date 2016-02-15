@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>支付</title>
+    <link href="styles/framework.css" rel="stylesheet"/>
+    <link href="styles/style.css" rel="stylesheet"/>
+    <link href="css/air_pay.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="all-elements scro-auto">
+        <div class="header">
+            <a href="javascript:;" class="icons header-back"></a>
+            <h3 class="edit-tit">支付</h3>
+            <i class="tel-icon"></i>
+        </div>
+        <div id="content ddd"  style="padding-top: 45px; padding-bottom: 51px;">
+            <form action="#" method="get">
+                <section class="payment-cutdown">
+                    <h3>订单总价：<span>¥838.00</span></h3>
+                    <span class="payment-tips">请在30分钟内进行支付，支付剩余时间：<i class="payment-cut-time" id="cou-down"></i></span>
+                </section>
+                <section class="round-trip-wrap">
+                    <p class="round-trip">往返 上海-伦敦</p>
+                    <p class="go-back-p">
+                        <span class="round-trip-go"><i class="round-go-tip"></i>2015-01-08 13:00</span>
+                        <span class="round-trip-back"><i class="round-back-tip"></i>2015-01-11 09:00</span>
+                    </p>
+                </section>
+                <ul class="passenger-msg">
+                    <li><span class="passenger-msg-tit">登机人</span><span class="passenger-msg-cont">BAI/LISA</span></li>
+                    <li><span class="passenger-msg-tit">护照</span><span class="passenger-msg-cont">1234567890</span></li>
+                    <li><span class="passenger-msg-tit">联系电话</span><span class="passenger-msg-cont">86-13868689890</span></li>
+                    <li><span class="passenger-msg-tit">邮箱</span><span class="passenger-msg-cont">aki_ban@qq.com</span></li>
+                </ul>
+                <section class="payment-type">
+                    <h3 class="payment-type-tit">付款方式：</h3>
+                    <ul class="clearFix credit-card-wrap" id="credit-card">
+                        <li class="credit-card fl">
+                            <b class="p-icon2"></b>
+                            <div class="p-icon3"></div>
+                            <span class="credit-card-name">维萨信用卡</span>
+                        </li>
+                        <li class="credit-card fl">
+                            <b class="p-icon2"></b>
+                            <div class="pay-icon02"></div>
+                            <span class="credit-card-name">万事达卡</span>
+                        </li>
+                       <!-- <li class="credit-card fl">
+                            <b class="p-icon2"></b>
+                            <div class="pay-icon03"></div>
+                            <span class="credit-card-name">美国运通卡</span>
+                        </li>-->
+                    </ul>
+                </section>
+                <ul class="credit-card-detail">
+                    <li><span class="credit-det-title">持卡人姓名</span><input type="text" placeholder="请输入持卡人姓名" class="credit-det-cont"/></li>
+                    <li><span class="credit-det-title">信用卡卡号</span><input type="text" placeholder="请输入信用卡卡号" class="credit-det-cont"/></li>
+                    <li><span class="credit-det-title">发卡银行</span><span>招商银行</span></li>
+                    <li><span class="credit-det-title">发卡国家</span><span>中国</span></li>
+                    <li><span class="credit-det-title">有效期</span><input type="text" placeholder="月/年，如09/12" class="credit-det-cont"/></li>
+                    <li><span class="credit-det-title">CVV2/CVC2</span><input type="text" placeholder="请输入签名栏末尾最后3位" class="credit-det-cont"/></li>
+                    <li class="tel-option">
+                        <div class="left">
+                            <span>手机号</span>
+                            <div class="center">
+                                <select name="sources" id="sources" class="custom-select sources" placeholder="+86">
+                                    <option value="+86">+86</option>
+                                    <option value="+87">+87</option>
+                                    <option value="+88">+88</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <input type="text" name="tel"  id="tel-num" placeholder="用于接收通知" />
+                        </div>
+                    </li>
+                    <li><span class="credit-det-title">账单地址</span><input type="text" placeholder="请输入持卡人账单地址" class="credit-det-cont"/></li>
+                    <li><span class="credit-det-title">邮政编码</span><input type="text" placeholder="请输入邮政编码" class="credit-det-cont"/></li>
+                    <li><span class="credit-det-title">账单地址</span><input type="text" placeholder="请输入持卡人账单地址" class="credit-det-cont"/></li>
+                    <li><span class="credit-det-title">邮政编码</span><input type="text" placeholder="请输入邮政编码" class="credit-det-cont"/></li>
+                    <li class="tel-option">
+                        <div class="nation">
+                            <span>持卡人国家</span>
+                            <div class="center">
+                                <select name="sources" id="nationSource" class="custom-select sources" placeholder="中国">
+                                    <option value="美国">美国</option>
+                                    <option value="日本">日本</option>
+                                    <option value="韩国">韩国</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="airticket-pay-box">
+                    <button type="button" class="air-ticket-pay-btn">支付</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+<script src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/pay_detail.js"></script>
+<script src="js/lib/vcm.js"></script>
+</html>

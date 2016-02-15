@@ -1,9 +1,8 @@
 ﻿// JavaScript Document
 
 require.config({
-    baseUrl: '../js/lib',
+    baseUrl: 'js/lib',
     paths: {
-        jquery: 'jquery',
         plugins: 'plugins'
     },
     $:['jquery'],
