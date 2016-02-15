@@ -346,7 +346,6 @@ function styleChange(id,mytext){
         json.InterCheckOutDate=json.InterCheckOutDate||y+'-'+m+'-'+(d+1);
         var hoPos=localStorage.getItem('hoPos');
         //alert(hoPos);
-        var c = new vlm();
         //alert(url_json.NumRoom);用来判断是国内搜索还是国际搜索
         //
         if(hoPos=='inter'){
@@ -365,7 +364,7 @@ function styleChange(id,mytext){
             };
         }
 
-        return  c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+        return  vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
     }
 
     //数据展示部分
