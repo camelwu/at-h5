@@ -586,60 +586,6 @@
            var aBox=document.querySelectorAll('.pas-num-cont');
            var  aCabs = document.querySelectorAll('.cabin-wrap');
            var oAir=document.querySelector('.mask');
-           var singleModal=document.querySelector('.single-modal');
-           var doubleModal=document.querySelector('.double-modal');
-
-           domesticCity.style.display='block';
-           internationalCity.style.display='none';
-
-           this.addHandler(aCabs[0],'click',function(event){
-                   singleModal.style.bottom = 0;
-                   oAir.style.display='block';
-               });
-           this.addHandler(aCabs[1],'click',function(event){
-                 doubleModal.style.bottom = 0;
-                   oAir.style.display='block';
-               });
-           this.addHandler(singleModal,'click',function(event){
-               var event = event || window.event;
-               var target = event.target || event.srcElement;
-               if(target.className.indexOf('cabin-cancel')>-1){
-                   this.style.bottom = '-260px';
-                   oAir.style.display='none';
-               }else if(target.className.indexOf('cabin-sure')>-1){
-                   var spans_ = this.querySelectorAll('.sel-time span');
-                   for(var h = 0;h<spans_.length; h++)
-                   {
-                       if(spans_[h].style.fontSize == '1.9rem')
-                       {
-                           document.querySelector('.single-cabin-choose').innerHTML = spans_[h].innerHTML;
-                           break;
-                       }
-                   }
-                   this.style.bottom = '-260px';
-                   oAir.style.display='none';
-               }
-           });
-           this.addHandler(doubleModal,'click',function(event){
-               var event = event || window.event;
-               var target = event.target || event.srcElement;
-               if(target.className.indexOf('cabin-cancel')>-1){
-                   this.style.bottom = '-260px';
-                   oAir.style.display='none';
-               }else if(target.className.indexOf('cabin-sure')>-1){
-                   var spans = this.querySelectorAll('.sel-time span');
-                   for(var g = 0;g<spans.length; g++)
-                   {
-                       if(spans[g].style.fontSize == '1.9rem')
-                       {
-                        document.querySelector('.double-cabin-choose').innerHTML = spans[g].innerHTML;
-                           break;
-                       }
-                   }
-                   this.style.bottom = '-260px';
-                   oAir.style.display='none';
-               }
-           });
             for(var f = 0;f<aBox.length;f++){
                 this.addHandler(aBox[f],'click',function(event){
                     var event = event || window.event;
@@ -701,6 +647,7 @@
                if(target.className=='singleTrip'){
                    target.className='singleTrip addFontStyle';
                    target.parentNode.querySelector('.doubleTrip').className ='doubleTrip';
+                   console.log(111111111)
                    domesticCity.style.display = 'block';
                    internationalCity.style.display = 'none'
                }else if(target.className=='doubleTrip'){
