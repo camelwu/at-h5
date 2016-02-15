@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 
 require.config({
     baseUrl: '../js/lib',
@@ -29,7 +29,7 @@ require.config({
 	urlArgs: "bust=" +  (new Date()).getTime()
 });
 
-require(['jquery','vlm'], function($,vlm) {
+require(['jquery','vlm','custom'], function($,vlm) {
 
 	vlm.init();
 });
