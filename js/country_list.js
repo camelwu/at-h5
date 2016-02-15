@@ -29,21 +29,25 @@ var arrCountry= [{"CountryName":"中国","CountryEN":"China","CountryCode":"CN"}
                 countryListSearched.onclick=function(e){
                     _this.innerHTML=countryInputZone.value=e.target.innerHTML;
                     this.style.display='none';
+                    setTimeout(function(){
+                        oDiv.style.display='none';
+                        oTc.style.display='none';
+                        oInput.value='';
+                    },500)
                 };
 
                 oDiv.style.display='block';
-                var oShut=document.querySelector('.country-hidden');
-                oShut.onclick=function(){
-                    oDiv.style.display='none';
-                    oTc.style.display='none';
-                    oInput.value='';
-                };
 
                 var oCont=document.querySelectorAll('.country-btn')[index];
                 var oTab=document.querySelector('.country-list');
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
                     oCont.innerHTML=oInp.value=e.target.innerHTML;
+                    setTimeout(function(){
+                        oDiv.style.display='none';
+                        oTc.style.display='none';
+                        oInput.value='';
+                    },500)
                 };
 
 
