@@ -1371,10 +1371,6 @@ ul, ol {
     z-index: 100;
 }
 
-.sel-time .date-selected{
-    font-size: 1.9rem;
-    color: #484848;
-}
 /*个人信息页出生日期*/
 .s_lists li.sex-alter{
     display: -moz-box;  /* Firefox */
