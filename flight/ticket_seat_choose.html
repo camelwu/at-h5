@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<head lang="zh-CN">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+
+    <title>选择舱位</title>
+    <link href="../styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
+   <!-- <link href="user_win/css/login_win.css"	rel="stylesheet" type="text/css">-->
+</head>
+<body>
+<div class="all-elements">
+    <header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i>
+        <span class="set-place">洛杉矶</span>
+        <i class="direction"></i>
+        <span class="to-place">上海</span>
+    </header>
+    <div class="air_content"  style="background:#f5f4f9;">
+        <ul class="air-tickets-detail berths">
+            <li class="air-tickets-detail-berths">
+                <div class="go-trip">
+                    <div class="top-line">
+                        <span class="icon-go"></span>
+                        <span class="month-day">01-08</span>
+                        <span class="week-day-item">周二</span>
+                        <span class="start">上海</span>
+                        <span class="line">-</span>
+                        <span class="end">洛杉矶</span>
+                        <span class="detail-word">详情<i></i></span>
+                    </div>
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">11h30m</span>
+                            <span class="arrow-time"></span>
+                            <span class="air-port-word">转莫斯科</span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <span>中国国航</span>
+                        <span>|</span>
+                        <span>CA983</span>
+                        <span>|</span>
+                        <span>波音787<span>(大)</span></span>
+                    </div>
+                </div>
+                <div class="back-trip">
+
+                    <div class="top-line">
+                        <span class="icon-back"></span>
+                        <span class="month-day">01-08</span>
+                        <span class="week-day-item">周二</span>
+                        <span class="start">上海</span>
+                        <span class="line">-</span>
+                        <span class="end">洛杉矶</span>
+                    </div>
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">11h30m</span>
+                            <span class="arrow-time"></span>
+                            <span class="air-port-word">转莫斯科</span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <div class="left">
+                            <span>中国国航</span>
+                            <span>|</span>
+                            <span>CA983</span>
+                            <span>|</span>
+                            <span>波音787<span>(大)</span></span>
+                        </div>
+                        <div class="right">
+                            <span>实际乘坐</span>
+                            <span>东方航空</span>
+                            <span>MU853</span>
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+        <div class="price-important">
+            <div class="left-part">
+                <h4>经济舱</h4>
+                <p>
+                    <span class="change" id="change-explain">退改签说明</span>
+                    <span>儿童不可定</span>
+                </p>
+            </div>
+
+
+            <div class="money-show-data">
+                <span class="tag-one"> ￥</span><span class="money-number">2200</span>
+                <p>税费￥1518</p>
+
+            </div>
+
+            <button type="button" id="reserve-button">预定</button>
+        </div>
+        <div class="bottom-word-more">
+            买单程票须持留学生转签证、移民签证，一年以上工作签证等证件类型，请您确认后购买，以免无法办理乘机和入境。
+        </div>
+    </div>
+
+    <!--遮罩-->
+    <div class="ticket-shadow" style="display: none"></div>
+    <div class="buy-ticket-notice back-meal" style="display: none">
+        <div class="header back-meal-close">
+            <span>退改签说明</span>
+            <span><i></i></span>
+        </div>
+        <div class="content-notice ">
+            <p>
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+            </p>
+
+        </div>
+
+    </div>
+    <!--模块详情模块内容-->
+    <div class="ticket-detail-modal" style="display: none;">
+        <ul class="detail-outer">
+
+            <li class="detail-start">
+                <div class="go-trip start">
+                    <div class="top-line">
+                        <span class="icon-go"></span>
+                        <span class="month-day">01-08</span>
+                        <span class="week-day-item">周二</span>
+                        <span class="start">上海</span>
+                        <span class="line">-</span>
+                        <span class="end">洛杉矶</span>
+                        <span class="detail-hour">14h</span>
+                    </div>
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">2h30m</span>
+                            <span class="arrow-time"></span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <span>中国国航</span>
+                        <span>|</span>
+                        <span>CA983</span>
+                        <span>|</span>
+                        <span>波音787<span>(大)</span></span>
+                    </div>
+                </div>
+                <div class="transit-city-hour">中转莫斯科 2h33m</div>
+                <div class="go-trip transit">
+
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">11h30m</span>
+                            <span class="arrow-time"></span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <span>中国国航</span>
+                        <span>|</span>
+                        <span>CA983</span>
+                        <span>|</span>
+                        <span>波音787<span>(大)</span></span>
+                    </div>
+                </div>
+            </li>
+            <li class="detail-back">
+                <div class="back-trip">
+
+                    <div class="top-line">
+                        <span class="icon-back"></span>
+                        <span class="month-day">01-08</span>
+                        <span class="week-day-item">周二</span>
+                        <span class="start">上海</span>
+                        <span class="line">-</span>
+                        <span class="end">洛杉矶</span>
+                        <span class="detail-hour">11h30m</span>
+                    </div>
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">11h30m</span>
+                            <span class="arrow-time"></span>
+                            <span class="air-port-word">经停西雅图2h30m</span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <div class="left">
+                            <span>中国国航</span>
+                            <span>|</span>
+                            <span>CA983</span>
+                            <span>|</span>
+                            <span>波音787<span>(大)</span></span>
+                        </div>
+                        <div class="right">
+                            <span>实际乘坐</span>
+                            <span>东方航空</span>
+                            <span>MU853</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--登录弹窗-->
+<!--<div id="preloader">
+    <div id="status">
+        &lt;!&ndash;<p class="center-text">
+            Loading the content...
+            <em>Loading depends on your connection speed!</em>
+        </p>&ndash;&gt;
+    </div>
+</div>-->
+<div class="mask-win"></div>
+<div class="all-elements" id="login-win-wrap">
+    <!-- Page Content-->
+    <!--<div id="content" class="snap-content">
+        <div class="login-page">
+            <div id="login_page" class="login-page-wrapper">
+                <div class="login-header" id="vlm-login">
+                    <a href="javascript:;" class="icons header-close" id="login-win-shut"></a>
+                    <h3>登录</h3>
+                    <div class="header-finish" id="register">注册</div>
+                </div>
+                <div id="phone_login">
+                    <div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div>
+                        <input id="phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel"><b class="icon login-clear" id="p_clear"></b></div>
+                    <div class="login-input"><b class="icons login-pass"></b><input id="p_password" type="password" value="" placeholder="密码" data-type="pass"></div>
+                </div>
+                <div id="email_login">
+                    <div class="login-input"><b class="icon login-mail"></b><input id="email" type="text" value="" placeholder="邮箱" data-type="email"><b class="icon login-clear" id="e_clear"></b></div>
+                    <div class="login-input"><b class="icons login-pass"></b><input id="e_password" type="password" value="" placeholder="密码" data-type="pass"></div>
+                </div>
+                <div class="clear"></div>
+                <a class="forgotkey" href="#" onclick="show_keypage()">忘记密码？</a>
+                <a class="changelogin" href="#" id="change_email">切换邮箱登录<b class="icon login-change"></b></a>
+                <a class="changelogin" href="#" id="change_phone">切换手机登录<b class="icon login-change"></b></a>
+                <input id="login_btn" type="button" class="btn full-button button-orange" value="登录"/>
+            </div>
+            &lt;!&ndash;   注册页   &ndash;&gt;
+            <div class="login-page-wrapper" id="register_page" style="display:none;">
+                <div class="login-header">
+                    <a href="#" id="close_register" class="icons header-back"></a>
+                    <h3>注册</h3>
+                    <div class="header-finish" id="header_email">邮箱注册</div>
+                    <div class="header-finish" id="header_phone" style="display: none">手机注册</div>
+                </div>
+                <div id="phone_register">
+                    <div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div>
+                        <input id="r_phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel"></div>
+                    <div class="login-input"><b class="icons login-pass"></b><input id="verify" type="password" value="" placeholder="输入验证码" data-type="code"><div id="get_code" class="regist-code">获取验证码</div></div>
+                    <div class="login-input"><b class="icons login-pass"></b><input id="r_p_password" type="password" value="" placeholder="输入6-18位密码" data-type="pass"></div>
+                    <div class="clear"></div>
+                </div>
+                <div id="email_register" style="display: none">
+                    <div class="login-input"><b class="icon login-mail"></b><input id="r_email" type="text" value="" placeholder="输入邮箱" data-type="email"></div>
+                    <div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="输入6-18位密码" data-type="pass"></div>
+                    <div class="login-input"><b class="icons login-pass"></b><input id="r_e_password" type="password" value="" placeholder="确认密码" data-type="pass"></div>
+                    <div class="clear"></div>
+                </div>
+                <a href="#" class="btn full-button button-orange" style="margin-top: 44px;" id="register_btn">注册</a>
+            </div>
+        </div>
+    </div>-->
+    <!--   找回密码页   -->
+    <!--<div id="fkey_page" class="all-elements" style="display: none">
+        <div class="header">
+            <a class="icons header-back" onclick="close_keypage()"></a>
+            <h3 id="find_title">手机找回</h3>
+            <div id="cha_email" class="header-finish">邮箱找回</div>
+            <div id="cha_phone" class="header-finish" style="display: none">手机找回</div>
+        </div>
+        <div class="user-content">
+            <div id="phone_find">
+                <ul class="f_key">
+                    <li>中国+86
+                        <b class="icons open-pho"></b>
+                    </li>
+                    <li>
+                        <input id="find_phone" class="fk_put" type="text" value placeholder="输入有效手机号" data-type="tel">
+                    </li>
+                    <li style="padding-right: 0;">
+                        <input id="find_veri" class="fk_put" type="text" value placeholder="输入验证码" data-type="code">
+                        <div class="fk_div" id="find_verify">获取验证码</div>
+                    </li>
+                    <li>
+                        <input class="fk_put"  type="password" value placeholder="输入6-18位新密码" data-type="pass">
+                    </li>
+                </ul>
+            </div>
+            <div id="email_find" class="u_name" style="display: none">
+                <input id="find_email" type="text" style="font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
+            </div>
+            <a id="findkey_btn" href="#" class="f_btn button-orange">完成</a>
+        </div>
+    </div>-->
+</div>
+</body>
+<!--<script src="user_win/js/require.js" data-main="user_win/js/user.js"></script>-->
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<!--<script type="text/javascript" src="user_win/js/lib/vlm.js"></script>-->
+<!--<script type="text/javascript" src="user_win/js/login-win.js"></script>-->
+<script type="text/javascript" src="js/hy_ticket_seat_choose.js"></script>
+</html>
