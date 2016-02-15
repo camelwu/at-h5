@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>机票首页</title>
+    <link href="../styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="preloader">
+    <div id="ticket-status"></div>
+</div>
+<div class="all-elements">
+    <header class="big-title"><i class="fl" onclick="window.history.go(-1);"></i>
+        <span class="set-place">上海</span>
+        <i class="direction"></i>
+        <span class="to-place">洛杉矶</span>
+    </header>
+    <div class="air_content">
+        <div class="date-place-info">
+            <div class="date-place-info-content">
+                <p class="week-day-info">去程&nbsp;<span class="ticket-double-date start-date"></span><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>回程&nbsp;<span class="ticket-double-date end-date"></span></p>
+                <p class="search-info-tip">查询日期为出发地日期</p>
+            </div>
+            <div class="date-icon" id="dateIcon"></div>
+        </div>
+        <ul class="air-tickets-detail">
+        </ul>
+    </div>
+    <div class="r-shadow" id="r-shadow"></div>
+</div>
+</body>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/d_calendar1.0.2.js"></script>
+<script src="js/ticket_pub.js"></script>
+<script src="js/flightInfoTestData.js"></script>
+<script src="js/h_y_ticket_double_list.js"></script>
+</html>

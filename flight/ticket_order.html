@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>订单填写</title>
+    <link href="styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="styles/tips.css" rel="stylesheet" type="text/css">
+    <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="all-elements">
+    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单填写<i class="tel-icon"></i></header>
+    <div class="air_content">
+
+        <div class="order-top">
+            <div class="go-line-outer">
+                <div class="go-line-outer-sub">
+                    <p class="go-line"><i class="icon-go"></i><span class="date">01-08</span> &nbsp;<span>周二&nbsp;</span> <span>浦东T2</span>&nbsp;-&nbsp;<span>洛杉矶</span> <i class="icon-clock"></i><span class="hour">11h30m</span></p>
+                    <p class="go-line back"><i class="icon-go"></i><span class="date">01-08</span> &nbsp;<span>周二&nbsp;</span> <span>洛杉矶</span>&nbsp;-&nbsp;<span>浦东</span> <i class="icon-clock"></i><span class="hour">11h30m</span></p>
+                </div>
+                <div class="go-line-outer-right"><i></i></div>
+
+            </div>
+            <div class="seat-condition">
+                <div class="left">
+                    <span>头等舱</span>
+                    <p><span>往返票价</span>&nbsp;￥<span>117785</span><span>&nbsp;税费</span>￥<span>1957</span></p>
+                </div>
+                <div class="right">
+                    <p><span class="tag">￥<strong>11942</strong></span>
+                    </p><p><span class="tip-word">退改签说明</span></p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="ride-user">
+            <div class="ride-user-first">
+                <span>乘机人</span>
+                <button type="button">添加乘机人</button>
+            </div>
+
+            <div class="ride-user-info">
+                <span  class="icon-add"><i></i></span>
+                <div class="middle">
+                    <p class="name">
+                        <span>姓/名</span><input type="text" name="input-zone" placeholder="BAI/LISA">
+                    </p>
+                    <div class="passport">
+                        <span>护照</span><input type="text" name="input-zone" placeholder="1234567890"><form class="passport-form"><select name="sex"><option value="男">男</option><option value="女" selected="selected">女</option></select></form>
+                    </div>
+                </div>
+                <span class="next-icon"><i></i></span>
+            </div>
+        </div>
+
+        <div class="ride-user contact">
+            <div class="ride-user-first">
+                <span>联系人</span>
+                <span class="icon" id="addPassenger"><i></i></span>
+            </div>
+
+            <div class="table">
+                <div class="unit name">
+                    <label for="name" class="name-label">姓/名</label><input type="text" name="name" id="name" placeholder="BAI/LISA" />
+                </div>
+                <div class="unit tel">
+                    <div class="left">
+                        <span>手机号</span>
+                        <div class="center">
+                            <select name="sources" id="sources" class="custom-select sources" placeholder="+86">
+                                <option value="+86">+86</option>
+                                <option value="+87">+87</option>
+                                <option value="+88">+88</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <input type="text" name="tel"  id="tel-num" placeholder="用于接收通知" />
+                    </div>
+                </div>
+
+                <div class="unit email">
+                    <label for="email-label">E-mail</label><input type="text" name="name" id= "email-label" placeholder="用于接收通知" />
+                </div>
+            </div>
+        </div>
+
+        <div class="read-tip" style="margin-bottom: 100px">
+            <i></i>我已阅读并同意<span id="buy-ticket-tip">购票须知</span>
+        </div>
+    </div>
+
+    <footer class="footer-filter">
+        <div class="sum">
+            <p class="total-price-number">订单总额：<span>￥<strong>1,293</strong></span></p>
+            <p class="total-person-price">5人总价</p>
+        </div>
+        <p class="detail clearfixs detail-tangle"><span id="details">明细</span><span class="icon-arrow"></span></p>
+        <p class="confirm"><span>确认预定</span></p>
+    </footer>
+
+    <!--遮罩-->
+    <div class="summary-cost-shadow-one" style="display: none"></div>
+    <div class="summary-cost-shadow-two" style="display: none"></div>
+
+    <div class="summary-cost-modal summary-cost-modal-hide">
+        <div class="first-line">费用明细</div>
+        <div class="second-line">
+            <p>成人票<span>￥<span>1134</span> x3 人</span></p>
+            <p>税费<span>￥<span>159</span> x3 人</span></p>
+            <p>儿童票<span>￥<span>10496</span> x2 人</span></p>
+            <p>税费<span>￥<span>159</span> x2 人</span></p>
+        </div>
+    </div>
+    <!--注意事项开始-->
+    <div class="buy-ticket-notice buy-tip" style="display: none">
+
+        <div class="header close-buy-tip">
+            <span>购票须知</span>
+            <span><i></i></span>
+        </div>
+        <div class="content-notice">
+            <p>
+                1.下单前务必核实乘客姓名与信息正确，如不正确导致无法乘机，本公司概不服负责
+            </p>
+            <p>
+                2.请确保证件的有效性，若因证件等原因产生的损失请自行承担
+            </p>
+            <p>
+                3.请确保旅行结束日期至少比证件有效期早6个月，若因证件有效期等原因产生的损失请自行承担
+            </p>
+            <p>
+                4.行李金额规定：根据航空公司规定执行
+            </p>
+            <p>
+                5.误机罚金：根据航空公司规定执行
+            </p>
+            <p>
+                6.不允许修改证件信息
+            </p>
+            <p>
+                7.团队签证无法单独购买机票，详情请咨询签证办理方
+            </p>
+            <p>
+                8.如需机票报销凭证，请致电客服
+            </p>
+            <p>
+                9.我已知晓航司乘机规定无异议
+            </p>
+        </div>
+
+    </div>
+    <!--注意事项结束-->
+    <!--退改签开始-->
+    <div class="buy-ticket-notice back-meal" style="display: none">
+        <div class="header back-meal-close">
+            <span>退改签说明</span>
+            <span><i></i></span>
+        </div>
+        <div class="content-notice ">
+            <p>
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
+            </p>
+
+        </div>
+
+    </div>
+    <!--退改签结束-->
+
+    <!--机票详情开始-->
+    <div class="ticket-detail-modal" style="display: none">
+        <ul class="detail-outer">
+
+            <li class="detail-start">
+                <div class="go-trip start">
+                    <div class="top-line">
+                        <span class="icon-go"></span>
+                        <span class="month-day">01-08</span>
+                        <span class="week-day-item">周二</span>
+                        <span class="start">上海</span>
+                        <span class="line">-</span>
+                        <span class="end">洛杉矶</span>
+                        <span class="detail-hour">14h</span>
+                    </div>
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">2h30m</span>
+                            <span class="arrow-time"></span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <span>中国国航</span>
+                        <span>|</span>
+                        <span>CA983</span>
+                        <span>|</span>
+                        <span>波音787<span>(大)</span></span>
+                    </div>
+                </div>
+                <div class="transit-city-hour">中转莫斯科 2h33m</div>
+                <div class="go-trip transit">
+
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">11h30m</span>
+                            <span class="arrow-time"></span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <span>中国国航</span>
+                        <span>|</span>
+                        <span>CA983</span>
+                        <span>|</span>
+                        <span>波音787<span>(大)</span></span>
+                    </div>
+                </div>
+            </li>
+            <li class="detail-back">
+                <div class="back-trip">
+
+                    <div class="top-line">
+                        <span class="icon-back"></span>
+                        <span class="month-day">01-08</span>
+                        <span class="week-day-item">周二</span>
+                        <span class="start">上海</span>
+                        <span class="line">-</span>
+                        <span class="end">洛杉矶</span>
+                        <span class="detail-hour">11h30m</span>
+                    </div>
+                    <div class="time-airport-info">
+                        <div class="start-time-info">
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word">浦东机场T2</span>
+                        </div>
+
+                        <div class="total-time-info">
+                            <span class="time-hour-minute">11h30m</span>
+                            <span class="arrow-time"></span>
+                            <span class="air-port-word">经停西雅图2h30m</span>
+                        </div>
+
+
+                        <div class="end-time-info">
+                            <span class="tip-add-days-seat">+1天</span>
+                            <span class="time-number">07:00</span>
+                            <span class="air-port-word-right">洛杉矶机场</span>
+                        </div>
+                    </div>
+                    <div class="bottom-word">
+                        <div class="left">
+                            <span>中国国航</span>
+                            <span>|</span>
+                            <span>CA983</span>
+                            <span>|</span>
+                            <span>波音787<span>(大)</span></span>
+                        </div>
+                        <div class="right">
+                            <span>实际乘坐</span>
+                            <span>东方航空</span>
+                            <span>MU853</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--机票详情结束-->
+</div>
+</body>
+<script src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/hy_ticket_order.js"></script>
+</html>

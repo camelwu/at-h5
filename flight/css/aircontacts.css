@@ -1,0 +1,229 @@
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clearFix:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+/*编辑联系人开始*/
+.edit-tit {
+    font-weight: normal;
+
+}
+
+.msg-rel {
+    height: 37px;
+    background: #f0eeee;
+    padding: 0 20px;
+    line-height: 37px;
+}
+
+.msg-rel-text {
+    font-size: 1.2rem;
+}
+
+/*联系人信息*/
+.country-cont {
+    margin-top: 12px;
+}
+
+.edit-contact-wrap {
+    border: 1px solid #dedede;
+}
+
+.edit-contact-box {
+    padding-left: 20px;
+    background-color: #fff;
+    margin-bottom: -1px;
+}
+
+.edit-contact-box li {
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    min-width: 250px;
+    border-bottom: 1px solid #ddd;
+}
+
+.fl-name {
+    display: inline-block;
+
+    font-size: 12px;
+    padding-left: 10%;
+}
+
+.name-tip {
+    display: inline-block;
+    width: 11%;
+    min-width: 70px;
+}
+
+.save-btn-wrap {
+    padding: 10px 14px;
+}
+
+.save-btn {
+    display: block;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+    height: 44px;
+    line-height: 44px;
+    min-width: 60px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #FFB413;
+}
+
+.save-btn:hover {
+    background-color: #ff9313;
+}
+
+li {
+    list-style: none;
+}
+
+.edit-button {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url(../images/ui/bu.png);
+    background-position: 55% 28%;
+    background-size: 200px 290px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.right-choi-btn{
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 14px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 63% 4%;
+    background-size: 400px 190px;
+    margin-top: 12px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+/*编辑联系人结束*/
+
+/*联系人列表开始*/
+.contact-list-box {
+    background-color: #fff;
+    margin-bottom: -1px;
+}
+
+.contact-list-box li {
+    border-bottom: 1px solid #dedede;
+    padding: 10px 12px;
+    position: relative;
+}
+
+.contact-list-box li p {
+    margin-bottom: 0;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1.4rem;
+}
+
+.cell-suc-btn {
+    position: absolute;
+    left: 15px;
+    top: 45px;
+    width: 28px;
+    height: 25px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 63% 100%;
+    background-size: 400px 120px;
+    z-index: 10;
+}
+
+.cont-zd-ctrl {
+    width: 58%;
+    display: inline-block;
+    vertical-align: middle;
+    padding-bottom: 4px;
+    overflow: hidden;
+    font-size: 1.4rem;
+    color: #d1d1d1;
+}
+
+.name-pal {
+    margin-left: 40px;
+}
+
+.con-msg-lside {
+    display: inline-block;
+    min-width: 40px;
+    color: #484848;
+}
+
+.con-msg-rside {
+    display: inline-block;
+    min-width: 40px;
+}
+
+.choi-mt {
+    margin-top: 7px;
+}
+
+/*联系人列表结束*/
+
+/*机票联系人列表*/
+.accomplish-tit {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    font-size: 1.7rem;
+    color: #fff;
+}
+
+.cell-fai-btn {
+    position: absolute;
+    left: 15px;
+    top: 45px;
+    width: 28px;
+    height: 25px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 56% 100%;
+    background-size: 400px 120px;
+    z-index: 10;
+}
+
+/*机票编辑联系人*/
+
+.cancel-edit {
+    position: absolute;
+    left: 20px;
+    top: 12px;
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+/*网络连接失败*/
+
+.wifi-none {
+    text-align: center;
+}
+
+.wifi-none-bg {
+    width: 100px;
+    height: 80px;
+    background:url(../images/ui/bu.png) no-repeat;
+    margin: 70px auto;
+    margin-bottom: 0;
+    background-position: 10% 110%;
+    background-size: 150px 220px;
+}
+
