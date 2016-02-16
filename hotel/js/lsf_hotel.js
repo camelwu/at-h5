@@ -384,6 +384,40 @@ function inpChange(id,myText){
                 var str = template("cl_citysHot",json.data);
                 $("#cl_citysHot").html(str);
             });
+            //历史选择
+            var cityHisArr=[];
+            var cl_citysHis=document.getElementById('cl_citysHis');
+            var cl_citysHisStr='';
+            if(obj.getAttribute('id')=='input1'){
+                var cityListHis=window.localStorage.getItem('interCityName');
+                if(cityListHis){
+                    cityHisArr=cityListHis.split(',');
+                    cityHisArr.shift();
+                }
+            }else if(obj.getAttribute('id')=='input2'){
+                var cityListHis=window.localStorage.getItem('domCityName');
+                if(cityListHis){
+                    cityHisArr=cityListHis.split(',');
+                    cityHisArr.shift();
+                }
+            }
+            //历史选择数组去重
+            var json={};
+            for(var i=0;i<cityHisArr.length;i++){
+                json[cityHisArr[i]]=1;
+            }
+            cityHisArr=[];
+            for(var name in json){
+                cityHisArr.push(name);
+            }
+            //把历史城市生成页面
+            cl_citysHis.innerHTML='';
+            for(var i=0;i<cityHisArr.length;i++){
+                cl_citysHisStr+='<li>'+cityHisArr[i]+'</li>';
+            }
+            cl_citysHis.innerHTML=cl_citysHisStr;
+
+            //字母城市
             var strA=template("A",cityJson.A);
             $("#A").html(strA);
             var strB=template("B",cityJson.B);
@@ -450,10 +484,26 @@ function inpChange(id,myText){
                         oSrc.className='selected';
                         cl_box_box.style.display='none';
                         obj.value=oSrc.innerHTML;
-                        window.localStorage.setItem('cityName',oSrc.innerHTML);
+
+                        if(obj.getAttribute('id')=='input1'){
+                            var cityNameStr=window.localStorage.getItem('interCityName');
+                            if(!cityNameStr){
+                                cityNameStr='';
+                            }
+                            cityNameStr+=','+oSrc.innerHTML;
+                            window.localStorage.setItem('interCityName',cityNameStr);
+                        }else if(obj.getAttribute('id')=='input2'){
+                            var cityNameStr=window.localStorage.getItem('domCityName');
+                            if(!cityNameStr){
+                                cityNameStr='';
+                            }
+                            cityNameStr+=','+oSrc.innerHTML;
+                            window.localStorage.setItem('domCityName',cityNameStr);
+                        }
                     }
                 };
             }
+            cityClick('cl_citysHis');
             cityClick('cl_citysHot');
             cityClick('A');
             cityClick('B');
