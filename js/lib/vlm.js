@@ -61,9 +61,9 @@
 				$("#status").fadeOut();
 				$("#preloader").delay(400).fadeOut("medium");
 			}
-		}, _checklogin = function() {
+		}, _checklogin = function(c) {
 			if (!lStorage.memberid || lStorage.memberid == '' || !lStorage.login || lStorage.login != 1) {//need login
-				l_login();
+				l_login(c);
 				return false;
 			}else{
 				return true;
@@ -642,7 +642,7 @@
 				}
 			}
 		},
-		l_login = function(){
+		l_login = function(c){
 			var _head = [
 				'<a href="javascript:;" class="icons header-close" id="close"></a>',
                 '<h3>登录</h3>',
@@ -814,10 +814,11 @@
 					        lStorage.password = myJson.data[0].password;
 					        lStorage.memberid = myJson.data[0].memberID;
 					        lStorage.setItem('login',1);
+					        
 					        if(getpara("redicturl")!=null)
 					        	window.location.href = getpara("redicturl");
 					        else
-					        	container.parentNode.removeChild(container);
+					        	(typeof c=="function")?c():container.parentNode.removeChild(container);
 					    } else {
 					        alert(myJson.message);
 					    }

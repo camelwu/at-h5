@@ -375,6 +375,8 @@ function inpChange(id,myText){
                 }
             }
             sortBy(listJson);
+            console.log(dataCN);
+            console.log(dataIN);
         });
         function cityShow(oData,cityJson,obj){
             //热门城市

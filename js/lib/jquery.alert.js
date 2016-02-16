@@ -210,6 +210,9 @@
 					//$("#popup_ok").focus();
 					break;
 			}
+			$("#popup_overlay").click(function(){
+				//$.alerts._hide();
+			});
 			// Make draggable
 			if ($.alerts.draggable) {
 				try {
