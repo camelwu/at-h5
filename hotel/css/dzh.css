@@ -900,7 +900,7 @@ ul,ol{
     margin-top:-180px;
     height:400px;width:100%;
 }
-.cityWord div{
+.cityWord div a{
     font-size:1.2rem;line-height:normal;
     color:#ffb413;
 }
