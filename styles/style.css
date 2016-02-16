@@ -62,7 +62,6 @@
 
 .recommends{
 	background: #fff;
-    margin-bottom: 10px;
 }
 
 .recommends h5, .promotions h5{
@@ -102,18 +101,17 @@
 }
 .recommends ul li:nth-child(2) {
     width: 49.9%;
-    border-bottom:1px solid #E0E0E0;
-    padding-left: 10px;
-    padding-bottom:20px;
-}
-.recommends ul li:nth-child(3) {
-    width: 49.9%;
-    
+    /*border-bottom:1px solid #E0E0E0;*/
     padding-left: 10px;
 }
-.recommends ul li:nth-child(2) img, .recommends ul li:nth-child(3) img{
-    width: 32.5%;
-}
+/*.recommends ul li:nth-child(3) {*/
+    /*width: 49.9%;*/
+    /**/
+    /*padding-left: 10px;*/
+/*}*/
+/*.recommends ul li:nth-child(2) img, .recommends ul li:nth-child(3) img{*/
+    /*width: 32.5%;*/
+/*}*/
 .promotions em{
 	font-style:normal;
 	font-size:1.2rem;
