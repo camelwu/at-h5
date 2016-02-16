@@ -62,7 +62,7 @@
 				$("#preloader").delay(400).fadeOut("medium");
 			}
 		}, _checklogin = function() {
-			if (!lStorage.memberid || lStorage.memberid == '') {//need login
+			if (!lStorage.memberid || lStorage.memberid == '' || !lStorage.login || lStorage.login != 1) {//need login
 				l_login();
 				return false;
 			}else{
@@ -326,7 +326,7 @@
 						var day = idCard15.substring(10, 12);
 						var temp_date = new Date(year, parseFloat(month) - 1, parseFloat(day));
 
-						// 对于老身份证中的你年龄则不需考虑千年虫问题而使用getYear()方法
+						// 对于老身份证中的年龄则不需考虑千年虫问题而使用getYear()方法
 						if (temp_date.getYear() != parseFloat(year) || temp_date.getMonth() != parseFloat(month) - 1 || temp_date.getDate() != parseFloat(day)) {
 							return false;
 						} else {
@@ -643,98 +643,141 @@
 			}
 		},
 		l_login = function(){
-			var _btn='<a href="javascript:;" class="btn full-button button-orange" style="margin-top: 44px;" id="u_btn">登录</a>',
-			_head = [
-				'<a href="javascript:;" class="icons header-close"></a>',
+			var _head = [
+				'<a href="javascript:;" class="icons header-close" id="close"></a>',
                 '<h3>登录</h3>',
-                '<div class="header-finish" id="register">注册</div>'//邮箱注册，手机注册
+                '<div class="header-finish" id="2reg">注册</div>'//邮箱注册，手机注册
 			],_login = [
-				'<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号"></div>',
-                '<div class="login-input"><b class="icon login-mail"></b><input type="email" value="" placeholder="邮箱"><b class="icon login-clear" id="e_clear"></b></div>',
-                '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="密码"></div>',
-                '<div class="clear"></div>',
-                '<a class="forgotkey" href="javascript:;" onclick="show_keypage()">忘记密码？</a>',
-                '<a class="changelogin" href="javascript:;" id="change_email">切换邮箱登录<b class="icon login-change"></b></a>',
-                '<a class="changelogin" href="javascript:;" id="change_phone" style="display: none;">切换手机登录<b class="icon login-change"></b></a>'
-			],
-			_reg = [
-            	[
-                '<div id="phone_register">',
-                    '<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号" data-type="mobile"></div>',
-                    '<div class="login-input"><b class="icons login-pass"></b><input type="number" value="" placeholder="输入验证码" data-type="code"><div id="get_code" class="regist-code">获取验证码</div></div>',
-                    '<div class="login-input"><b class="icons login-pass"></b><input id="r_p_password" type="password" value="" placeholder="输入6-18位密码" data-type="pass"></div>',
-                    '<div class="clear"></div>',
-                '</div>'
-	            ],
-	            [
-                '<div id="email_register" style="display: none">',
-                    '<div class="login-input"><b class="icon login-mail"></b><input id="r_email" type="text" value="" placeholder="输入邮箱" data-type="email"></div>',
-                    '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="输入6-18位密码" data-type="pass"></div>',
-                    '<div class="login-input"><b class="icons login-pass"></b><input id="r_e_password" type="password" value="" placeholder="确认密码" data-type="pass"></div>',
-                    '<div class="clear"></div>',
-                '</div>'
-            	]
+				'<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号" required data-type="mobile"></div>',
+                '<div class="login-input"><b class="icon login-mail"></b><input type="email" value="" placeholder="邮箱" required data-type="email"><b class="icon login-clear" id="e_clear"></b></div>',
+                '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="密码" required data-type="password"></div>'
+			], _reg = [
+                '<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号" required data-type="mobile"></div>',
+                '<div class="login-input"><b class="icons login-pass"></b><input type="number" value="" placeholder="输入验证码" required data-type="code"><div id="get_code" class="code">获取验证码</div></div>',
+                '<div class="login-input"><b class="icon login-mail"></b><input type="email" value="" placeholder="输入邮箱" required data-type="email"></div>',
+                '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="输入6-18位密码" required data-type="password"></div>',
+                '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="确认密码" required data-type="passc"></div>'
+			],_btn=[
+				'<a class="forgotkey" href="javascript:;" onclick="show_keypage()">忘记密码？</a><a class="changelogin" href="javascript:;" id="change_login">切换邮箱登录<b class="icon login-change"></b></a>'
+				,'<div class="btn full-button button-orange" id="u_btn">登录</div>'
 			];
+	        function _html(t,n){
+	        	if(t=="_login"){
+	        		if(n){
+	        			return _login[1]+_login[2];
+	        		}else{
+	        			return _login[0]+_login[2];
+	        		}
+	        	}else{
+	        		if(n){
+	        			return _reg[2]+_reg[3]+_reg[4]+'';
+	        		}else{
+	        			return _reg[0]+_reg[1]+_reg[3]+'';
+	        		}
+	        	}
+	        }
 	        // 头部
-	        var loginer = document.createElement('div');
-	        loginer.id = "user-header";
-	        loginer.className = 'login-header';
-	        // 默认插入
-	        loginer.innerHTML = '<a href="javascript:void(0);" class="icons header-close"></a><h3>登录</h3><div class="header-finish">注册</div>';
+	        var header = document.createElement('div'),loginer = document.createElement('div'),footer = document.createElement('div'),wrapper = document.createElement('div'),container = document.createElement('div');
+	        header.id = "user-header";
+	        header.className = 'login-header';
+	        header.innerHTML = _head.join('');
+	        // 内容
+	        loginer.id = "user-loginer";
+	        loginer.innerHTML = _html('_login',0);
+	        // 底部
+	        footer.id = "user-footer";
+	        footer.innerHTML = _btn.join('');
 	        // 容器
-	        var wrapper = document.createElement('div');
 	        wrapper.id = "user-wrapper";
 	        wrapper.className = 'login-page-wrapper';
-	        //wrapper.appendChild(loginer);
-	        wrapper.innerHTML = _html[0].join('');
+	        wrapper.appendChild(header);
+	        wrapper.appendChild(loginer);wrapper.appendChild(footer);
 			// 整体背景
-			var container = document.createElement('div');
 	        container.id = "user-container";
 	        container.className = 'login-page';
 	        container.appendChild(wrapper);
 	        document.body.appendChild(container);
 	        // 绑定事件
-	        $.getScript("user/scripts/user-login-register.js");
+	        //$.getScript("user/scripts/user-login-register.js");
 	        //头部右边切换
-	        var lr = document.getElementById("register"),chgl = document.getElementById("change_login"),btns = document.getElementById("u_btn");
+	        var tl=document.getElementById("close"),tr = document.getElementById("2reg"),chgl = document.getElementById("change_login"),btns = document.getElementById("u_btn");
+	        //头部左边切换
+	        tl.onclick = function(e){
+	        	var cn = this.className;
+	        	if(cn.indexOf("close")>-1){
+	        		document.body.removeChild(container);
+	        	}else{
+	        		this.className = 'icons header-back';
+	        		tr.innerHTML = '注册';
+	        		loginer.innerHTML = _html('_login',0);
+	        		//
+	        		var a=footer.getElementsByTagName("a");
+	        		for(var i=0;i<a.length;i++){
+	        			a[i].style.display = "";
+	        		}
+	        		btns.innerHTML = '登录';btns.style.marginTop = "0";
+	        	}
+	        };
 	        //头部右边切换
-	        lr.onclick = function(e){
+	        tr.onclick = function(e){
 	        	var that=this,word = this.innerHTML;
 	        	switch(word){
 	        		case "邮箱注册":
 	        			that.innerHTML = '手机注册';
-	        		
+	        			loginer.innerHTML = _html("_reg",1);
 	        		break;
 	        		case "手机注册":
 	        			that.innerHTML = '邮箱注册';
-	        		
+	        			loginer.innerHTML = _html("_reg",0);
 	        		break;
 	        		default://默认：注册
+	        			tl.className = 'icons header-back';
 	        			that.innerHTML = '邮箱注册';
-	        			wrapper.innerHTML = '';
+	        			loginer.innerHTML = _html("_reg",0);
+	        			//底部改变
+	        			var a=footer.getElementsByTagName("a");
+	        		for(var i=0;i<a.length;i++){
+	        			a[i].style.display = "none";
+	        		}
+	        			btns.innerHTML = '注册';
+	        			btns.style.marginTop = "40px";
 	        		break;
 	        	}
 	        };
 	        //底部切换登录方式
 	        chgl.onclick = function(e){
 	        	var that=this,word = this.innerHTML;
-	        	switch(word){
-	        		case "切换手机登录":
-	        			that.innerHTML = '切换邮箱登录';
-	        			wrapper.innerHTML = '';
-	        		break;
-	        		default://
-	        			that.innerHTML = '切换手机登录';
-	        			wrapper.innerHTML = '';
-	        		break;
+	        	if(word.indexOf("手机")>-1){
+	        		that.innerHTML = '切换邮箱登录<b class="icon login-change"></b>';
+        			loginer.innerHTML = _html("_login",0);
+	        	}else{
+        			that.innerHTML = '切换手机登录<b class="icon login-change"></b>';
+        			loginer.innerHTML = _html("_login",1);
 	        	}
 	        };
-	        btns.onclick = function(e){
+	        btns.onclick = function(e){console.log("tn");
 	        	var that = this,word = this.innerHTML,input = wrapper.getElementsByTagName("input"),para={},data={},mycallback;
-	        	var pass='';//密码缓存
+	        	var pass='',arp=[];
 	        	for(var i=0,l=input.length;i<l;i++){
 	        		//every checking
-	        		if(input[i].type=="tel"){
+	        		if(input[i].value!=""){
+	        			//_Utils.validate.
+	        			if(input[i].type=="password"){
+		        			para["Password"] = input[i].value;
+		        			if(pass==''){
+		        				pass = input[i].value;
+		        			}else{
+		        				if(pass!= input[i].value){
+		        					alert("两次密码不同！");
+		        				}
+		        			}
+		        		}else{
+	        			para[input[i].getAttribute("data-type")] = input[i].value;}
+	        		}else{
+	        			return false;
+	        			break;
+	        		}
+	        		/*if(input[i].type=="tel"){
 	        			para.Mobile = input[i].value;
 	        		}else if(input[i].type=="email"){
 	        			para.Email = input[i].value;
@@ -749,14 +792,17 @@
 	        			}
 	        		}else if(input[i].type=="number"){
 	        			para.Code = input[i].value;
-	        		}
+	        		}*/
+	        	}
+	        	para['CultureName']='';
+	        	for(var p in para){
+	        		arp.push('"'+p+'":"'+para[p]+'"');
 	        	}
 	        	if(that.innerHTML=="登录"){
-	        		para.CultureName='';
 	        		data = {
-	        			"Parameters":para,
-	        			"ForeEndType" : 3,
-	        			"Code" : "0052"
+	        			Parameters:"{"+arp.join(',')+"}",
+	        			ForeEndType:3,
+	        			Code:"0052"
 	        		};
 	        		
 	        		mycallback=function(json){
@@ -778,11 +824,10 @@
 	        		};
 	        		//{“Success”:true,”Message”:””,Data:””}
 	        	}else{//注册
-	        		para.CultureName='';
 	        		data= {
-		                "Parameters":para,
-		                "ForeEndType": 3,
-		                "Code": "0051"
+		                Parameters:para.join(''),
+		                ForeEndType: 3,
+		                Code: "0051"
 		            };
 	        		mycallback=function(json){
 	        			var myJson = eval('('+json+')');
@@ -799,7 +844,8 @@
 					    }
 	        		};
 	        	}
-	        	loadJson("url", data, mycallback);
+	        	console.log(data);
+	        	loadJson("url", JSON.stringify(data), mycallback);
 	        };
 		},
 		l_find = function(){
