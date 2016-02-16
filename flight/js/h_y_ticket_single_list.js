@@ -10,7 +10,7 @@ var ticketSingle = {
             id: 'dateIcon',
             num: 13,
             time: {},
-            sClass1: 'single-ticket-input',
+            sClass1: 'num-wrap',
             type:'single',
             fn:this.dateChangeRender
         });
@@ -37,8 +37,41 @@ var ticketSingle = {
     },
 
     dateChangeRender:function(){
-           var that = ticketSingle,dateStr = new Date().getFullYear()+'-'+document.querySelector('.single-ticket-input .dateNumber').innerHTML;
-           that.backParaObj.DepartDate = dateStr;
+           var that = ticketSingle,dateStr = document.querySelector('.num-wrap').innerHTML;
+           var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(dateStr);
+           var returnWeek  = function(arg){
+                   var index = new Date(new Date().getFullYear()+'/'+tStr[1]+'/'+tStr[2]).getDay(),week;
+                   switch (index){
+                   case 0 :
+                       week = '周日';
+                       break;
+                   case 1 :
+                       week = '周一';
+                       break;
+                   case 2 :
+                       week = '周二';
+                       break;
+                   case 3 :
+                       week = '周三';
+                       break;
+                   case 4 :
+                       week = '周四';
+                       break;
+                   case 5 :
+                       week = '周五';
+                       break;
+                   case 6 :
+                       week = '周六';
+                       break;
+                   default :
+                       void(0)
+                   }
+               return week
+               };
+           tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
+           tStr[2] = parseInt(tStr[2]) < 10?'0'+parseInt(tStr[2]):parseInt(tStr[2]);
+           document.querySelector('.single-ticket-input').innerHTML = tStr[1] + '-' + tStr[2] +'&nbsp;<span>'+ returnWeek(new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2])+'</span>';
+           that.backParaObj.DepartDate = new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2];
            that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
     },
 
@@ -66,7 +99,8 @@ var ticketSingle = {
     },
 
     returnWeek:function(arg){
-        var index = new Date(arg).getDay();
+        var index = new Date(arg.replace(/-/g, "/")).getDay(),week;
+        console.log(index)
         switch (index){
             case 0 :
                 week = '周日';
@@ -90,7 +124,7 @@ var ticketSingle = {
                 week = '周六';
                 break;
             default :
-                return ''
+                void(0)
         }
         array = arg.split('-');
         array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
@@ -107,14 +141,13 @@ var ticketSingle = {
         });
         return obj;
     },
-
     preAndNex:function(){
         var oDivs = document.querySelectorAll('.unit'),that = this;
         ticketSingle.addHandler(oDivs[0], 'click', function(){
             var str = document.querySelector('.single-ticket-input').innerHTML;
             var reg = /(\d{1,2}-\d{1,2})[\s\S]*/g;
             var dateCur = reg.exec(str)[1];
-            var dd = new Date((new Date().getFullYear()) +'-'+dateCur);
+            var dd = new Date(((new Date().getFullYear()) +'-'+dateCur).replace(/-/g, "/"));
             dd.setDate(dd.getDate()-1);
             var monthNum = (dd.getMonth()+1)<10?"0"+parseInt((dd.getMonth()+1)):dd.getMonth()+1;
             var dateNum = (dd.getDate())<10?"0"+parseInt(dd.getDate()):dd.getDate();
@@ -122,14 +155,13 @@ var ticketSingle = {
             var result = ticketSingle.returnWeek(arg);
             document.querySelector('.single-ticket-input').innerHTML = result;
             that.backParaObj.DepartDate = arg;
-            console.log(that.backParaObj)
             that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
         });
         ticketSingle.addHandler(oDivs[1], 'click', function(){
             var str = document.querySelector('.single-ticket-input').innerHTML;
             var reg = /(\d{1,2}-\d{1,2})[\s\S]*/g;
             var dateCur = reg.exec(str)[1];
-            var dd = new Date((new Date().getFullYear()) +'-'+dateCur);
+            var dd = new Date(((new Date().getFullYear()) +'-'+dateCur).replace(/-/g, "/"));
             dd.setDate(dd.getDate()+1);
             var monthNum = (dd.getMonth()+1)<10?"0"+parseInt((dd.getMonth()+1)):dd.getMonth()+1;
             var dateNum = (dd.getDate())<10?"0"+parseInt(dd.getDate()):dd.getDate();
@@ -267,38 +299,15 @@ var ticketSingle = {
             default :
                 paraObj.PriorityRule = 0;
         }
-       // paraObj.HasTax = arg.paraRight=='hasTax'?"true":"false";
-      /*  if(paraObj!=that.bottomInfoData){*/
 
            for(var tem in paraObj){
                that.backParaObj[tem] = paraObj[tem]
               }
-        console.log( that.backParaObj)
-        var temObj={
-            CabinClass: "All",
-            CityCodeFrom: "BJS",
-            CityCodeTo: "SIN",
-            DepartDate: "2016-02-23",
-            DepartEndHour: "24",
-            DepartStartHour: "00",
-            IsDesc: "true",
-            IsDirectFlight: "false",
-            IsHideSharedFlight: "true",
-            NumofAdult: 2,
-            NumofChild: 1,
-            PriorityRule: 0,
-            RouteType: "Oneway"
-        }
-
-               that.tAjax(this.requestUrl, temObj, "3001", 3, that.renderHandler);
-
-
-               var temObj = that.checkTip();
+              that.tAjax(this.requestUrl, temObj, "3001", 3, that.renderHandler);
+              var temObj = that.checkTip();
               that.initLeftState.left!=temObj.left?document.querySelector('#fo_sc i').className='red-tip':document.querySelector('#fo_sc i').className='';
               that.initLeftState.middle!=temObj.middle?document.querySelector('#fo_ra i').className='red-tip':document.querySelector('#fo_ra i').className='';
               that.initLeftState.right!=temObj.right?document.querySelector('#fo_lo i').className='red-tip':document.querySelector('#fo_lo i').className='';
-
-       /* }*/
     },
 
     eventHandler:function(){
@@ -365,22 +374,6 @@ var ticketSingle = {
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
         backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
         this.backParaObj = backParaObj;
-        /* backParaObj={
-            CabinClass: "All",
-            CityCodeFrom: "BJS",
-            CityCodeTo: "SIN",
-            DepartDate: "2016-02-23",
-            DepartEndHour: "24",
-            DepartStartHour: "00",
-            IsDesc: "true",
-            IsDirectFlight: "false",
-            IsHideSharedFlight: "true",
-            NumofAdult: 2,
-            NumofChild: 1,
-            PriorityRule: 0,
-            RouteType: "Oneway"
-        }*/
-
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.dateInit(backParaObj);
         this.preAndNex();
