@@ -6,23 +6,27 @@ var ticketDouble = {
 
     dateInit:function(arg){
         var spans = document.querySelectorAll('.ticket-double-date');
-        var dateInitObj = new Object();
+        var dateInitObj = {};
+        console.log(arg)
         spans[0].innerHTML = ticketDouble.returnWeek(arg.DepartDate);
         spans[1].innerHTML = ticketDouble.returnWeek(arg.ReturnDate);
+        console.log(spans[0])
+        console.log(spans[1])
         dateInitObj[arg.DepartDate] = '去程';
         dateInitObj[arg.ReturnDate] = '返程';
         var myDate= new TicketDate({
             id: 'dateIcon',
             num: 13,
             time: dateInitObj,
-            sClass1: 'ticket-double-date',
+            sClass1: 'date-wrap-double',
             type:'double',
             fn:this.dateChangeRender
         });
     },
 
     returnWeek:function(arg){
-    var week,array,index = new Date(arg).getDay();
+    var week,array,index = new Date(arg.replace(/-/g, "/")).getDay();
+
     switch (index){
         case 0 :
             week = '周日';
@@ -46,7 +50,7 @@ var ticketDouble = {
             week = '周六';
             break;
         default :
-            return ''
+           void(0)
     }
     array = arg.split('-');
     array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
@@ -85,12 +89,49 @@ var ticketDouble = {
         ticketDouble.addHandler(target, eventType, handle);
     },
 
+    reDate:function(arg){
+        var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(arg);
+          var returnWeek  = function(){
+            var index = new Date(new Date().getFullYear()+'/'+tStr[1]+'/'+tStr[2]).getDay(),week;
+            switch (index){
+                case 0 :
+                    week = '周日';
+                    break;
+                case 1 :
+                    week = '周一';
+                    break;
+                case 2 :
+                    week = '周二';
+                    break;
+                case 3 :
+                    week = '周三';
+                    break;
+                case 4 :
+                    week = '周四';
+                    break;
+                case 5 :
+                    week = '周五';
+                    break;
+                case 6 :
+                    week = '周六';
+                    break;
+                default :
+                    void(0)
+            }
+            return week
+        };
+        tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
+        tStr[2] = parseInt(tStr[2]) < 10?'0'+parseInt(tStr[2]):parseInt(tStr[2]);
+        return '<span>'+tStr[1]+'-'+tStr[2]+'</span>&nbsp;<span>'+returnWeek()+'</span>';
+    },
     dateChangeRender:function(){
-        console.log()
-        var that = ticketDouble,dateStr =document.querySelectorAll('.ticket-double-date');
-        that.backParaObj.DepartDate =new Date().getFullYear()+'-'+ dateStr[0].querySelector('span').innerHTML;
-        that.backParaObj.ReturnDate =new Date().getFullYear()+'-'+ dateStr[1].querySelector('span').innerHTML;
-        console.log( that.backParaObj)
+
+        var that = ticketDouble,dateEle =document.querySelectorAll('.date-wrap-double');
+        var start = dateEle[0].querySelector('.dateNumber').innerHTML,end = dateEle[1].querySelector('.dateNumber').innerHTML;
+        document.querySelector('.start-date').innerHTML = that.reDate(start);
+        document.querySelector('.end-date').innerHTML = that.reDate(end);
+        that.backParaObj.DepartDate =new Date().getFullYear()+'-'+ document.querySelector('.start-date').querySelectorAll('span')[0].innerHTML;
+        that.backParaObj.ReturnDate =new Date().getFullYear()+'-'+ document.querySelector('.end-date').querySelectorAll('span')[0].innerHTML;
         that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
     },
 

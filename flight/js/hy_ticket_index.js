@@ -1,11 +1,9 @@
        var  ticketIndexModal = {
-
        double:function(){
-           var dateStr = document.querySelectorAll('.double-date'),paramStr;
            var paraObj = {
-               start:this.reDate(dateStr[0].innerHTML),end:this.reDate(dateStr[1].innerHTML)};
-           var dateInitObj = {};
-
+               start:this.reDate(document.querySelector('.double-date-one').innerHTML),
+               end:this.reDate(document.querySelector('.double-date-two').innerHTML)};
+           var dateInitObj = {},paramStr;
            dateInitObj[paraObj.start] = '去程';
            dateInitObj[paraObj.end] = '返程';
            var myDate= new TicketDate({
@@ -28,8 +26,11 @@
        },
 
        reDate:function(arg){
-           var reg = /(\d{1,2}-\d{1,2})[\s\S]*/g;
-           return new Date().getFullYear()+'-'+reg.exec(arg)[1];},
+           var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(arg);
+           tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
+           tStr[2] = parseInt(tStr[2]) < 10?'0'+parseInt(tStr[2]):parseInt(tStr[2]);
+           return new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2];
+       },
 
        singleAndDoubleTangle:function(){
           var double = document.querySelector('#double');
@@ -146,19 +147,19 @@
            var ticketSearchButton = document.querySelector('#ticket-search-button');
            this.addHandler(ticketSearchButton,'click', function(){
                var oDiv = document.querySelector('#single').style.display == 'block'?document.querySelector('#single'):document.querySelector('#double');
-               var cityItems = oDiv.querySelectorAll('.city-search'),cityStrs ="", dateStrs = "",CityCodeFrom = "",CityCodeTo = "",startDate = "",endDate = "",adultNumber = "",childNumber = "",CabinStr = "",paraObj = new Object(),paramStr = "";
+               var cityItems = oDiv.querySelectorAll('.city-search'),cityStrs ="",CityCodeFrom = "",CityCodeTo = "",startDate = "",endDate = "",adultNumber = "",childNumber = "",CabinStr = "",paraObj = new Object(),paramStr = "";
                var NumofAdult = "",NumofChild ="";
                if(cityItems[0].innerHTML==cityItems[1].innerHTML){
                    jAlert('出发城市与到达城市不能为同一城市!', '', function(){})
                }else{
                    if(document.querySelector('#double').style.display == 'block'){
                        cityStrs = document.querySelectorAll('#double .city-search');
-                       dateStrs = document.querySelectorAll('#double .dateNumber');
                        CityCodeFrom = that.returnCityCode(cityStrs[0]);
                        CityCodeTo = that.returnCityCode(cityStrs[1]);
-                       startDate = new Date().getFullYear()+'-'+dateStrs[0].innerHTML;
-                       endDate = new Date().getFullYear()+'-'+dateStrs[1].innerHTML;
-                       NumofAdult = parseInt(document.querySelector('.adult-number.double').innerHTML),NumofChild = parseInt(document.querySelector('.child-number.double').innerHTML);
+                       startDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[0].innerHTML);
+                       endDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[1].innerHTML);
+                       NumofAdult = parseInt(document.querySelector('.adult-number.double').innerHTML);
+                       NumofChild = parseInt(document.querySelector('.child-number.double').innerHTML);
                        CabinStr = that.returnCabinClass(document.querySelector('#double .double-cabin-choose').innerHTML);
                        paraObj.CityCodeFrom = CityCodeFrom;
                        paraObj.CityCodeTo = CityCodeTo;
@@ -186,10 +187,10 @@
                        NumofAdult = parseInt(document.querySelector('.adult-number').innerHTML);
                        NumofChild = parseInt(document.querySelector('.child-number').innerHTML);
                        cityStrs = document.querySelectorAll('#single .city-search');
-                       dateStrs = document.querySelector('#single .dateNumber');
                        CityCodeFrom = that.returnCityCode(cityStrs[0]);
                        CityCodeTo = that.returnCityCode(cityStrs[1]);
-                       startDate = new Date().getFullYear()+'-'+dateStrs.innerHTML;
+                       startDate = that.reDate(document.querySelector('#chooseDate-single').querySelector('.dateNumber').innerHTML);
+                       console.log(startDate)
                        adultNumber = document.querySelector('#single span.adult-number').innerHTML;
                        childNumber = document.querySelector('#single span.child-number').innerHTML;
                        CabinStr = that.returnCabinClass(document.querySelector('#single .single-cabin-choose').innerHTML);
@@ -366,9 +367,12 @@
                   if(target.className.indexOf('span-target')!=-1){
                       var oSpan = this.querySelector('span');
                       oSpan.style.transition = '0.7s all ease';
-                      oSpan.style.transformOrigin = '22px ' + '23px';
+                      oSpan.style.webkitTransition = '0.7s all ease';
+                      oSpan.style.webkitTransformOrigin = '18px ' + '23px';
+                      oSpan.style.transformOrigin = '22px ' + '24px';
                       this.current = (this.current + 180);
                       oSpan.style.transform = 'rotate(' + this.current + 'deg)';
+                      oSpan.style.webkitTransform = 'rotate(' + this.current + 'deg)';
                       this.querySelector('.origin ').innerHTML=endStr;
                       this.querySelector('.destination ').innerHTML=startStr;
                   }
@@ -744,6 +748,53 @@
           }
       },
 
+       initDate:function(){
+           var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
+               r =new Date( d.setDate(d.getDate() + 3)),
+               startDay,endDay,startStrMonth = '',startStrDate = '',endStrMonth = '',endStrDate = '',
+           returnWeek = function(index){
+               var week = '';
+               switch (index){
+                   case 0 :
+                       week = '周日';
+                       break;
+                   case 1 :
+                       week = '周一';
+                       break;
+                   case 2 :
+                       week = '周二';
+                       break;
+                   case 3 :
+                       week = '周三';
+                       break;
+                   case 4 :
+                       week = '周四';
+                       break;
+                   case 5 :
+                       week = '周五';
+                       break;
+                   case 6 :
+                       week = '周六';
+                       break;
+                   default :void(0)
+               }
+               return week;
+           };
+
+           startStrMonth = parseInt(s.getMonth() +1) > 10 ?parseInt(s.getMonth() +1):'0'+parseInt(s.getMonth() +1);
+           startStrDate = parseInt(s.getDate()) > 10 ?parseInt(s.getDate()):'0'+parseInt(s.getDate());
+           endStrMonth = parseInt(r.getMonth() +1) > 10 ?parseInt(r.getMonth() +1):'0'+parseInt(r.getMonth() +1);
+           endStrDate = parseInt(r.getDate()) > 10 ?parseInt(r.getDate()):'0'+parseInt(r.getDate());
+           startDay = [startStrMonth +'月' + startStrDate +'日',returnWeek(s.getDay())];
+           endDay = [endStrMonth +'月' + endStrDate +'日',returnWeek(r.getDay())];
+           document.querySelector('.single-date').innerHTML = startDay[0];
+           document.querySelector('.single-week').innerHTML = startDay[1];
+           document.querySelector('.double-date-one').innerHTML = startDay[0];
+           document.querySelector('.double-week-one').innerHTML = startDay[1];
+           document.querySelector('.double-date-two').innerHTML = endDay[0];
+           document.querySelector('.double-week-two').innerHTML = endDay[1];
+       },
+
        init:function(){
           /*this.tempCurLeft = 0;*/
           /*this.isAnimation = false;*/
@@ -751,6 +802,7 @@
            this.getHotCity("CN");
            this.createWrap();
            this.addContent();
+           this.initDate();
            this.double();
            this.single();
            this.eventHandle2();
