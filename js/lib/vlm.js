@@ -62,7 +62,7 @@
 				$("#preloader").delay(400).fadeOut("medium");
 			}
 		}, _checklogin = function() {
-			if (!lStorage.memberid || lStorage.memberid == '') {//need login
+			if (!lStorage.memberid || lStorage.memberid == '' || !lStorage.login || lStorage.login != 1) {//need login
 				l_login();
 				return false;
 			}else{
