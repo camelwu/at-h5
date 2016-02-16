@@ -375,8 +375,8 @@ function inpChange(id,myText){
                 }
             }
             sortBy(listJson);
-            console.log(dataCN);
-            console.log(dataIN);
+            console.log(dataWorCN);
+            console.log(dataWorIN);
         });
         function cityShow(oData,cityJson,obj){
             //热门城市
@@ -389,18 +389,35 @@ function inpChange(id,myText){
             //历史选择
             var cityHisArr=[];
             var cl_citysHis=document.getElementById('cl_citysHis');
+            var searchCity=document.getElementById('searchCity');
             var cl_citysHisStr='';
+            function datalistClick(oParent){
+                lsf_myweb.bind(oParent,'click',function(ev){
+                    var oEvent=ev||event;
+                    var oSrc=oEvent.srcElement||oEvent.target;
+                    if(oSrc.tagName=='OPTION'){
+                        obj.value=oSrc.value;
+                    }
+                });
+            }
+            //datalistClick(searchCity);
             if(obj.getAttribute('id')=='input1'){
                 var cityListHis=window.localStorage.getItem('interCityName');
                 if(cityListHis){
                     cityHisArr=cityListHis.split(',');
                     cityHisArr.shift();
                 }
+                for(var i=0;i<dataIN.length;i++){
+                    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'"></option>';
+                }
             }else if(obj.getAttribute('id')=='input2'){
                 var cityListHis=window.localStorage.getItem('domCityName');
                 if(cityListHis){
                     cityHisArr=cityListHis.split(',');
                     cityHisArr.shift();
+                }
+                for(var i=0;i<dataCN.length;i++){
+                    searchCity.innerHTML+='<option value="'+dataCN[i].cityNameCN+'"></option>';
                 }
             }
             //历史选择数组去重
