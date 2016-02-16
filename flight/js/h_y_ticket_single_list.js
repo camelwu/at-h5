@@ -141,7 +141,6 @@ var ticketSingle = {
         });
         return obj;
     },
-
     preAndNex:function(){
         var oDivs = document.querySelectorAll('.unit'),that = this;
         ticketSingle.addHandler(oDivs[0], 'click', function(){
