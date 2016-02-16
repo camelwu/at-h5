@@ -12,12 +12,10 @@
 
 .cabin-cancel {
     font-size: 1.5rem;
-    margin-top: 0.6rem;
 }
 
 .cabin-sure {
     font-size: 1.5rem;
-    margin-top: 0.6rem;
 }
 
 .selbox-footer {
@@ -108,4 +106,14 @@
     border-bottom: 2px solid #FFB413;
 }
 
+.sel-time .date-selected{
+    font-size: 1.9rem;
+    color: #484848;
+}
+
+.selbox-footer #header{
+    background-color: #f5f4f9;
+    height: 40px;
+    line-height: 40px;
+}
 /*日期选择控件-出生日期结束*/

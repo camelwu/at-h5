@@ -13,7 +13,11 @@ function init(){
         "ForeEndType": 3,
         "Code": "0053"
     };
-     //console.log(Parameters['Parameters'])
+     //console.log(Parameters['Parameters']);
+    if(localStorage.getItem('login') != 1)
+    {
+        return;
+    }
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
     function order(obj){

@@ -376,10 +376,10 @@ function inpChange(id,myText){
             }
             sortBy(listJson);
         });
-        function cityShow(oData,cityJson){
+        function cityShow(oData,cityJson,obj){
             //热门城市
             cl_box_box.style.display='block';
-            c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d){
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d){
                 var json=eval('('+d+')');
                 var str = template("cl_citysHot",json.data);
                 $("#cl_citysHot").html(str);
@@ -436,26 +436,583 @@ function inpChange(id,myText){
             $("#Y").html(strY);
             var strZ=template("Z",cityJson.Z);
             $("#Z").html(strZ);
+            function cityClick(parentId){
+                var oParent=document.getElementById(parentId);
+                var aLi=oParent.children;
+                oParent.onclick=function(ev){
+                    var oEvent=ev||event;
+                    var oSrc=oEvent.srcElement||oEvent.target;
+                    if(oSrc.tagName='LI'){
+                        var aSelected=lsf_myweb.getbyclass(cl_box_box,'selected');
+                        for(var i=0;i<aSelected.length;i++){
+                            aSelected[i].className='';
+                        }
+                        oSrc.className='selected';
+                        cl_box_box.style.display='none';
+                        obj.value=oSrc.innerHTML;
+                        window.localStorage.setItem('cityName',oSrc.innerHTML);
+                    }
+                };
+            }
+            cityClick('cl_citysHot');
+            cityClick('A');
+            cityClick('B');
+            cityClick('C');
+            cityClick('D');
+            cityClick('E');
+            cityClick('F');
+            cityClick('G');
+            cityClick('H');
+            cityClick('I');
+            cityClick('J');
+            cityClick('K');
+            cityClick('L');
+            cityClick('M');
+            cityClick('N');
+            cityClick('O');
+            cityClick('P');
+            cityClick('Q');
+            cityClick('R');
+            cityClick('S');
+            cityClick('T');
+            cityClick('U');
+            cityClick('V');
+            cityClick('W');
+            cityClick('X');
+            cityClick('Y');
+            cityClick('Z');
         }
         //国际城市
         lsf_myweb.bind(abroad_target_city,'click',function(){
             if(domBok&&interBok){
-                cityShow(interHotData,dataWorIN);
+                cityShow(interHotData,dataWorIN,abroad_target_city);
+            }else if(!domBok&&interBok){
+                cl_box_box.innerHTML='<div class="cl_box">'+
+                    '<div class="header" id="vlm-login">'+
+                    '<div class="cl_search">'+
+                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" />'+
+                    '<i></i>'+
+                    '</div>'+
+                    '<a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
+                    '</div>'+
+                    '<div class="cl_curr cl_con"  >'+
+                    '<a name="cl_curr" class="cl_on">&nbsp;</a>'+
+                '<div>当前</div>'+
+                '<ul>'+
+                '<li class="fl beijing">北京</li>'+
+                    '</ul>'+
+                    '</div>'+
+                    '<div class="cl_con ">'+
+                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
+                '<div>历史选择</div>'+
+                '<ul class="cl_citysHis" id="cl_citysHis">'+
+                    '</ul>'+
+                    '</div>'+
+                    '<div class="cl_con ">'+
+                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
+                '<div>热门城市</div>'+
+                '<ul class="cl_citysHot" id="cl_citysHot">'+
+                '<li>{%=cityChineseName%}</li>'+
+                '</ul>'+
+                '</div>'+
+                '<div class="cityWordBox" id="cityWordBox">'+
+                    '<div class="cityWord">'+
+                    '<div>当前热门</div>'+
+                    '<ul class="cl_word" id="cl_side">'+
+                    '<li><a href="#a">A</a></li>'+
+                '<li><a href="#b">B</a></li>'+
+                '<li><a href="#c">C</a></li>'+
+                '<li><a href="#d">D</a></li>'+
+                '<li><a href="#e">E</a></li>'+
+                '<li><a href="#f">F</a></li>'+
+                '<li><a href="#g">G</a></li>'+
+                '<li><a href="#h">H</a></li>'+
+                '<li><a href="#i">I</a></li>'+
+                '<li><a href="#g">G</a></li>'+
+                '<li><a href="#k">K</a></li>'+
+                '<li><a href="#l">L</a></li>'+
+                '<li><a href="#m">M</a></li>'+
+                '<li><a href="#n">N</a></li>'+
+                '<li><a href="#o">O</a></li>'+
+                '<li><a href="#p">P</a></li>'+
+                '<li><a href="#q">Q</a></li>'+
+                '<li><a href="#r">R</a></li>'+
+                '<li><a href="#s">S</a></li>'+
+                '<li><a href="#t">T</a></li>'+
+                '<li><a href="#u">U</a></li>'+
+                '<li><a href="#v">V</a></li>'+
+                '<li><a href="#w">W</a></li>'+
+                '<li><a href="#x">X</a></li>'+
+                '<li><a href="#y">Y</a></li>'+
+                '<li><a href="#z">Z</a></li>'+
+                '</ul>'+
+                '</div>'+
+                '</div>'+
+                '<ol id="lsf_city_list" class="lsf_city_list">'+
+                    '<li class="cl_con ">'+
+                    '<a name="a" class="cl_on">&nbsp;</a>'+
+                '<div>A</div>'+
+                '<ul id="A">'+
+                '<li>{%=cityNameCN%}</li>'+
+           '</ul>'+
+            '</li>'+
+            '<li class="cl_con ">'+
+            '<a name="b" class="cl_on">&nbsp;</a>'+
+       '<div>B</div>'+
+        '<ul id="B">'+
+        '<li>{%=cityNameCN%}</li>'+
+    '</ul>'+
+    '</li>'+
+    '<li class="cl_con ">'+
+        '<a name="c" class="cl_on">&nbsp;</a>'+
+    '<div>C</div>'+
+    '<ul id="C">'+
+    '<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="d" class="cl_on">&nbsp;</a>'+
+'<div>D</div>'+
+'<ul id="D">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="e" class="cl_on">&nbsp;</a>'+
+'<div>E</div>'+
+'<ul id="E">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="f" class="cl_on">&nbsp;</a>'+
+'<div>F</div>'+
+'<ul id="F">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="g" class="cl_on">&nbsp;</a>'+
+'<div>G</div>'+
+'<ul id="G">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="h" class="cl_on">&nbsp;</a>'+
+'<div>H</div>'+
+'<ul id="H">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="i" class="cl_on">&nbsp;</a>'+
+'<div>I</div>'+
+'<ul id="I">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="j" class="cl_on">&nbsp;</a>'+
+'<div>J</div>'+
+'<ul id="J">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="k" class="cl_on">&nbsp;</a>'+
+'<div>K</div>'+
+'<ul id="K">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="l" class="cl_on">&nbsp;</a>'+
+'<div>L</div>'+
+'<ul id="L">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="m" class="cl_on">&nbsp;</a>'+
+'<div>M</div>'+
+'<ul id="M">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="n" class="cl_on">&nbsp;</a>'+
+'<div>N</div>'+
+'<ul id="N">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="o" class="cl_on">&nbsp;</a>'+
+'<div>O</div>'+
+'<ul id="O">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con ">'+
+    '<a name="p" class="cl_on">&nbsp;</a>'+
+'<div>P</div>'+
+'<ul id="P">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="q" class="cl_on">&nbsp;</a>'+
+'<div>Q</div>'+
+'<ul id="Q">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="r" class="cl_on">&nbsp;</a>'+
+'<div>R</div>'+
+'<ul id="R">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="s" class="cl_on">&nbsp;</a>'+
+'<div>S</div>'+
+'<ul id="S">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="t" class="cl_on">&nbsp;</a>'+
+'<div>T</div>'+
+'<ul id="T">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="u" class="cl_on">&nbsp;</a>'+
+'<div>U</div>'+
+'<ul id="U">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="v" class="cl_on">&nbsp;</a>'+
+'<div>V</div>'+
+'<ul id="V">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="w" class="cl_on">&nbsp;</a>'+
+'<div>W</div>'+
+'<ul id="W">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="x" class="cl_on">&nbsp;</a>'+
+'<div>X</div>'+
+'<ul id="X">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="y" class="cl_on">&nbsp;</a>'+
+'<div>Y</div>'+
+'<ul id="Y">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'<li class="cl_con">'+
+    '<a name="z" class="cl_on">&nbsp;</a>'+
+'<div>Z</div>'+
+'<ul id="Z">'+
+'<li>{%=cityNameCN%}</li>'+
+'</ul>'+
+'</li>'+
+'</ol>'+
+'</div>';
+                cl_back=document.getElementById('cl_back');
+                lsf_myweb.bind(cl_back,'click',function(){
+                    var arr1=document.getElementById('arr1');
+                    var arr2=document.getElementById('arr2');
+                    var inter=arr1.parentNode.parentNode;
+                    var dom=arr2.parentNode.parentNode;
+                    cl_box_box.style.display='none';
+                });
+                cityShow(interHotData,dataWorIN,abroad_target_city);
             }else{
                 cl_box_box.style.display='block';
             }
             interBok=false;
+            domBok=true;
         });
         //国内城市
         lsf_myweb.bind(domestic_target_city,'click',function(){
             if(interBok&&domBok){
-                cityShow(domHotData,dataWorCN);
+                cityShow(domHotData,dataWorCN,domestic_target_city);
             }else if(!interBok&&domBok){
-                alert(cl_box_box.innerHTML);
+                cl_box_box.innerHTML='<div class="cl_box">'+
+                    '<div class="header" id="vlm-login">'+
+                    '<div class="cl_search">'+
+                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" />'+
+                    '<i></i>'+
+                    '</div>'+
+                    '<a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
+                    '</div>'+
+                    '<div class="cl_curr cl_con"  >'+
+                    '<a name="cl_curr" class="cl_on">&nbsp;</a>'+
+                    '<div>当前</div>'+
+                    '<ul>'+
+                    '<li class="fl beijing">北京</li>'+
+                    '</ul>'+
+                    '</div>'+
+                    '<div class="cl_con ">'+
+                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
+                    '<div>历史选择</div>'+
+                    '<ul class="cl_citysHis" id="cl_citysHis">'+
+                    '</ul>'+
+                    '</div>'+
+                    '<div class="cl_con ">'+
+                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
+                    '<div>热门城市</div>'+
+                    '<ul class="cl_citysHot" id="cl_citysHot">'+
+                    '<li>{%=cityChineseName%}</li>'+
+                    '</ul>'+
+                    '</div>'+
+                    '<div class="cityWordBox" id="cityWordBox">'+
+                    '<div class="cityWord">'+
+                    '<div>当前热门</div>'+
+                    '<ul class="cl_word" id="cl_side">'+
+                    '<li><a href="#a">A</a></li>'+
+                    '<li><a href="#b">B</a></li>'+
+                    '<li><a href="#c">C</a></li>'+
+                    '<li><a href="#d">D</a></li>'+
+                    '<li><a href="#e">E</a></li>'+
+                    '<li><a href="#f">F</a></li>'+
+                    '<li><a href="#g">G</a></li>'+
+                    '<li><a href="#h">H</a></li>'+
+                    '<li><a href="#i">I</a></li>'+
+                    '<li><a href="#g">G</a></li>'+
+                    '<li><a href="#k">K</a></li>'+
+                    '<li><a href="#l">L</a></li>'+
+                    '<li><a href="#m">M</a></li>'+
+                    '<li><a href="#n">N</a></li>'+
+                    '<li><a href="#o">O</a></li>'+
+                    '<li><a href="#p">P</a></li>'+
+                    '<li><a href="#q">Q</a></li>'+
+                    '<li><a href="#r">R</a></li>'+
+                    '<li><a href="#s">S</a></li>'+
+                    '<li><a href="#t">T</a></li>'+
+                    '<li><a href="#u">U</a></li>'+
+                    '<li><a href="#v">V</a></li>'+
+                    '<li><a href="#w">W</a></li>'+
+                    '<li><a href="#x">X</a></li>'+
+                    '<li><a href="#y">Y</a></li>'+
+                    '<li><a href="#z">Z</a></li>'+
+                    '</ul>'+
+                    '</div>'+
+                    '</div>'+
+                    '<ol id="lsf_city_list" class="lsf_city_list">'+
+                    '<li class="cl_con ">'+
+                    '<a name="a" class="cl_on">&nbsp;</a>'+
+                    '<div>A</div>'+
+                    '<ul id="A">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="b" class="cl_on">&nbsp;</a>'+
+                    '<div>B</div>'+
+                    '<ul id="B">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="c" class="cl_on">&nbsp;</a>'+
+                    '<div>C</div>'+
+                    '<ul id="C">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="d" class="cl_on">&nbsp;</a>'+
+                    '<div>D</div>'+
+                    '<ul id="D">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="e" class="cl_on">&nbsp;</a>'+
+                    '<div>E</div>'+
+                    '<ul id="E">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="f" class="cl_on">&nbsp;</a>'+
+                    '<div>F</div>'+
+                    '<ul id="F">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="g" class="cl_on">&nbsp;</a>'+
+                    '<div>G</div>'+
+                    '<ul id="G">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="h" class="cl_on">&nbsp;</a>'+
+                    '<div>H</div>'+
+                    '<ul id="H">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="i" class="cl_on">&nbsp;</a>'+
+                    '<div>I</div>'+
+                    '<ul id="I">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="j" class="cl_on">&nbsp;</a>'+
+                    '<div>J</div>'+
+                    '<ul id="J">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="k" class="cl_on">&nbsp;</a>'+
+                    '<div>K</div>'+
+                    '<ul id="K">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="l" class="cl_on">&nbsp;</a>'+
+                    '<div>L</div>'+
+                    '<ul id="L">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="m" class="cl_on">&nbsp;</a>'+
+                    '<div>M</div>'+
+                    '<ul id="M">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="n" class="cl_on">&nbsp;</a>'+
+                    '<div>N</div>'+
+                    '<ul id="N">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="o" class="cl_on">&nbsp;</a>'+
+                    '<div>O</div>'+
+                    '<ul id="O">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con ">'+
+                    '<a name="p" class="cl_on">&nbsp;</a>'+
+                    '<div>P</div>'+
+                    '<ul id="P">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="q" class="cl_on">&nbsp;</a>'+
+                    '<div>Q</div>'+
+                    '<ul id="Q">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="r" class="cl_on">&nbsp;</a>'+
+                    '<div>R</div>'+
+                    '<ul id="R">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="s" class="cl_on">&nbsp;</a>'+
+                    '<div>S</div>'+
+                    '<ul id="S">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="t" class="cl_on">&nbsp;</a>'+
+                    '<div>T</div>'+
+                    '<ul id="T">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="u" class="cl_on">&nbsp;</a>'+
+                    '<div>U</div>'+
+                    '<ul id="U">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="v" class="cl_on">&nbsp;</a>'+
+                    '<div>V</div>'+
+                    '<ul id="V">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="w" class="cl_on">&nbsp;</a>'+
+                    '<div>W</div>'+
+                    '<ul id="W">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="x" class="cl_on">&nbsp;</a>'+
+                    '<div>X</div>'+
+                    '<ul id="X">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="y" class="cl_on">&nbsp;</a>'+
+                    '<div>Y</div>'+
+                    '<ul id="Y">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '<li class="cl_con">'+
+                    '<a name="z" class="cl_on">&nbsp;</a>'+
+                    '<div>Z</div>'+
+                    '<ul id="Z">'+
+                    '<li>{%=cityNameCN%}</li>'+
+                    '</ul>'+
+                    '</li>'+
+                    '</ol>'+
+                    '</div>';
+                cl_back=document.getElementById('cl_back');
+                lsf_myweb.bind(cl_back,'click',function(){
+                    var arr1=document.getElementById('arr1');
+                    var arr2=document.getElementById('arr2');
+                    var inter=arr1.parentNode.parentNode;
+                    var dom=arr2.parentNode.parentNode;
+                    cl_box_box.style.display='none';
+                });
+                cityShow(domHotData,dataWorCN,domestic_target_city);
             }else{
                 cl_box_box.style.display='block';
             }
             domBok=false;
+            interBok=true;
         });
         lsf_myweb.bind(cl_back,'click',function(){
             var arr1=document.getElementById('arr1');

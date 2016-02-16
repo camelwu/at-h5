@@ -20,11 +20,22 @@
 <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
-<title>个人中心_亚洲旅行网</title>
+<title>我的订单_亚洲旅行网</title>
 
-<link href="styles/framework.css" 		 rel="stylesheet" type="text/css">
-<link href="styles/style.css"     		 rel="stylesheet" type="text/css">
-
+<link href="styles/framework.css"	rel="stylesheet" type="text/css">
+<link href="styles/style.css"		rel="stylesheet" type="text/css">
+<style>
+.flexbox{
+	display:box;
+	display:-webkit-box
+}
+.flexbox div:first-child{
+	width:100px;
+}
+.flexbox div:last-child{
+	flex-box:1.0;-webkit-box-flex:1.0;
+}
+</style>
 </head>
 <body>
 <div id="preloader">
@@ -36,42 +47,41 @@
     </div>
 </div>
 <div class="all-elements">
+	<div class="header" id="vlm-login">
+		<a href="javascript:history.go(-1);" class="icons header-back"></a>
+		<h3>我的订单</h3>
+	</div>
 	<!-- Page Content-->
 	<div id="content" class="snap-content">
-		<div class="user-head user-bg">
-			<div class="user-top" id="showMessage"></div>
-			<div class="user-info">
-				<img id="userIcon" src="images/u_icon01.png">
-				<div id="unloginShow">
-					<a class="button button-red red">登录</a> <a class="button button-red">注册</a>
-				</div>
-				<div id="loginShow">
-					
-				</div>
-			</div>
-		</div>
-		<div id="userTab">
-			<a href="javascript:;">全部订单</a><a href="javascript:;">待付款</a>
+		<div id="h-Tab">
+			<a href="javascript:;" class="on">全部订单</a><a href="javascript:;">待付款</a>
 			<a href="javascript:;">未出行</a><a href="javascript:;">待评价</a>
 		</div>
-		<div class="userWallet">
-			<div>我的钱包</div>
-			<div><a>代金券<em>0张</em></a><a>返现<em>￥0</em></a></div>
-		</div>
-		<div class="line-bottom u01" id="verifyName">
-			<a href="/login/index?redirecturl=/invest/account/account_manager_index">我的消息</a>
-		</div>
-		<div class="line-bottom u02" id="bindCard">
-			<a href="/login/index?redirecturl=/invest/account/account_manager_index">资料管家 <em>个人资料、常旅资料</em></a>
-		</div>
-		<div class="line-bottom u03" id="setPwd">
-			<a href="/login/index?redirecturl=/invest/account/account_manager_index">我的收藏</a>
-		</div>
-		<!--div class="line-bottom u04" id="coupon">
-			<a href="/login/index?redirecturl=/invest/account/coupon_index">优惠红包</a>
-		</div-->
-		<div class="line-bottom u06" id="inviteActivity">
-			<a href="/invest/account/acitivity_invite_index">邀请好友</a>
+		<!-- <div class="flexbox">
+			<div>1</div>
+			<div>all</div>
+		</div> -->      
+		<div id="my_order">
+			<ul class="orderList">
+				<li>
+					<div><i class="icons i-p"></i>机票 <span class="state">|</span>已完成<span class="price fr">1190</span><span class="s-price fr">￥</span></div>
+					<div><i class="icons o-p"></i>北京<i class="icons o-t"></i>上海</div>
+					<div><i class="icons o-d"></i>出行日期：10-22 18:00至21:00<br>出行日期：10-22 18:00至21:00</div>
+					<div><a class="btn-r">支付</a></div>
+				</li>
+				<li>
+					<div><i class="icons i-h"></i>酒店 <span class="state">|</span>已完成<span class="price fr">1190</span><span class="s-price fr">￥</span></div>
+					<div><i class="icons o-p"></i>北京<i class="icons o-t"></i>上海</div>
+					<div><i class="icons o-d"></i>出行日期：10-22 18:00至21:00<br>出行日期：10-22 18:00至21:00</div>
+					<div><a class="btn-r">支付</a></div>
+				</li>
+				<li>
+					<div><i class="icons i-s"></i>景点 <span class="state">|</span>已完成<span class="price fr">1190</span><span class="s-price fr">￥</span></div>
+					<div><i class="icons o-p"></i>北京<i class="icons o-t"></i>上海</div>
+					<div><i class="icons o-d"></i>出行日期：10-22 18:00至21:00<br>出行日期：10-22 18:00至21:00</div>
+					<div><a class="btn-r">支付</a></div>
+				</li>
+			</ul>
 		</div>
 		<div class="clear"></div>
 	</div>
