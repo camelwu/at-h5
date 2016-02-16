@@ -220,7 +220,9 @@ TicketDate.prototype.linkOver = function(event){
 
     that.timer = window.setTimeout(function(){
         that.removeDate();
-        that.header.parentNode.removeChild(that.header);
+        if(that.header.parentNode){
+            that.header.parentNode.removeChild(that.header);
+        }
         if(typeof that.fn==='function'){
                 that.fn();
             window.clearTimeout(that.timer);
@@ -230,7 +232,7 @@ TicketDate.prototype.linkOver = function(event){
     },1000);
 
     function returnWeek(arg){
-        var week,array,index = new Date(arg).getDay();
+        var week,array,index = new Date(arg.replace(/-/g, "/")).getDay();
         switch (index){
             case 0 :
                 week = '周日';
@@ -254,12 +256,13 @@ TicketDate.prototype.linkOver = function(event){
                 week = '周六';
                 break;
             default :
-                return ''
+                void(0);
         }
         array = arg.split('-');
         array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
         array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
-        return '<span class="dateNumber">'+array[1]+'-'+array[2]+'</span>'+' '+'<span>'+week+'</span>';
+        return '<span class="dateNumber">'+array[1]+'月'+array[2]+'日'+'</span>'+' '+'<span>'+week+'</span>';
+
     }
 };
 

@@ -307,7 +307,7 @@ h1, h2, h3, h4, h5, h6 {
 .iconTip > div {
     margin: 0 auto;
     width: 3.6rem;
-    height: 85%;
+    height:100%;
     background-image: url(../../images/ui/air-icons.png);
     background-repeat: no-repeat;
     background-position: 38% 10.5%;
@@ -318,7 +318,7 @@ h1, h2, h3, h4, h5, h6 {
 .all-elements .air_content .realInfo .place .iconTip .active {
     display: inline-block;
     vertical-align: top;
-    margin-top: 8px;
+    margin-top: 6.8px;
     height: 100%;
     width: 100%;
     background-image: url(../../images/ui/air-icons.png);
@@ -1047,7 +1047,7 @@ ul.air-tickets-detail{
 
 .price-tax .price-info {
     position: absolute;
-    top: 3.8rem;
+    top: 4.6rem;
     right: 2%;
 }
 
@@ -1081,7 +1081,7 @@ ul.air-tickets-detail{
     font-size: 1.0rem;
     color: #fe6a00;
     position: absolute;
-    top: 6.0rem;
+    top: 6.6rem;
     right: 2%
 }
 
@@ -1479,7 +1479,7 @@ ul.air-tickets-detail{
     position: absolute;
     left: 30%;
     top: 0.9rem;
-    background-image: url(../images/ui/icons1.png);
+    background-image: url(../../images/ui/icons1.png);
     background-size: 400px 120px;
     background-position: 77% 4%;
 }
@@ -1546,7 +1546,7 @@ ul.air-tickets-detail{
 
 .date-search-line .top-search-zone span.date-icon {
     display: inline-block;
-    background-image: url(../images/ui/icon-t.png);
+    background-image: url(../../images/ui/icon-t.png);
     background-repeat: no-repeat;
     background-size: 233.5px 140.5px;
     background-position: 86% 52%;
@@ -1580,7 +1580,7 @@ ul.air-tickets-detail{
     right: 0;
     top: 1.6rem;
 }
-
+.num-wrap {display: none}
 .berths {
     padding-top: 0;
     list-style: none;
@@ -1921,7 +1921,7 @@ ul.air-tickets-detail{
 /*订单页面*/
 .clearfix i.tel-icon {
     display: block;
-    background-image: url(../images/ui/icons.png);
+    background-image: url(../../images/ui/icons.png);
     background-position: -218px -73px;
     background-repeat: no-repeat;
     background-size: 243px 160px;
@@ -1979,7 +1979,7 @@ ul.air-tickets-detail{
 .go-line-outer-right i{
     width: 2.0rem;
     height: 2.0rem;
-    background-image: url("../images/ui/icons.png");
+    background-image: url("../../images/ui/icons.png");
     background-repeat: no-repeat;
     background-size: 324.8px 214px;
     background-position: 65.4% 4%;
@@ -1988,7 +1988,7 @@ ul.air-tickets-detail{
 .go-line-outer-right-single i{
     width: 2.0rem;
     height: 2.0rem;
-    background-image: url("../images/ui/icons.png");
+    background-image: url("../../images/ui/icons.png");
     background-repeat: no-repeat;
     background-size: 324.8px 214px;
     background-position: 65.4% 4%;
@@ -2001,7 +2001,7 @@ ul.air-tickets-detail{
 
 .order-top p.go-line i.icon-go {
     display: inline-block;
-    background-image: url(../images/icon-h.png);
+    background-image: url(../../images/icon-h.png);
     background-repeat: no-repeat;
     background-size: 404px 173.9px;
     background-position: -316px -56px;
@@ -2014,7 +2014,7 @@ ul.air-tickets-detail{
 
 .icon-go-return{
     display: inline-block;
-    background-image: url(../images/icon-h.png);
+    background-image: url(../../images/icon-h.png);
     background-repeat: no-repeat;
     background-size: 404px 173.9px;
     background-position: -340px -60px;
@@ -2027,7 +2027,7 @@ ul.air-tickets-detail{
 
 .order-top p.go-line i.icon-back {
     display: inline-block;
-    background-image: url(../images/icon-h.png);
+    background-image: url(../../images/icon-h.png);
     background-repeat: no-repeat;
     background-size: 404px 173.9px;
     background-position: -316px -58px;
@@ -2081,7 +2081,7 @@ ul.air-tickets-detail{
 
 .order-top p.go-line i.icon-clock {
     display: inline-block;
-    background-image: url(../images/ui/icon-t.png);
+    background-image: url(../../images/ui/icon-t.png);
     background-repeat: no-repeat;
     background-size: 235.5px 140.5px;
     background-position: 11% 17%;
@@ -2102,7 +2102,7 @@ ul.air-tickets-detail{
     display: inline-block;
     width: 2.0rem;
     height: 2.0rem;
-    background-image: url("../images/ui/icons.png");
+    background-image: url("../../images/ui/icons.png");
     background-repeat: no-repeat;
     background-size: 324.8px 214px;
     background-position: 64.4% 2%;
@@ -2267,7 +2267,7 @@ ul.air-tickets-detail{
 .ride-user .ride-user-info span.icon-add i {
     width: 3.2rem;
     height: 3.2rem;
-    background-image: url("../images/ui/icon-t.png");
+    background-image: url("../../images/ui/icon-t.png");
     background-repeat: no-repeat;
     background-size: 311.8px 187.6px;
     background-position: 81% 17%;
@@ -2339,7 +2339,7 @@ ul.air-tickets-detail{
 .ride-user .ride-user-info span.next-icon i {
     width: 2.0rem;
     height: 2.0rem;
-    background-image: url("../images/ui/icons.png");
+    background-image: url("../../images/ui/icons.png");
     background-repeat: no-repeat;
     background-size: 324.8px 214px;
     background-position: 66.4% 2%;
@@ -2410,7 +2410,7 @@ ul.air-tickets-detail{
 .contact .ride-user-first span.icon i {
     width: 2.2rem;
     height: 2.1rem;
-    background-image: url("../images/ui/icon-t.png");
+    background-image: url("../../images/ui/icon-t.png");
     background-repeat: no-repeat;
     background-size: 235.8px 142.6px;
     background-position: 71% 50%;
@@ -2576,7 +2576,7 @@ ul.air-tickets-detail{
     display: inline-block;
     width: 1.7rem;
     height: 1.7rem;
-    background: url("../images/ui/icons1.png") -23.7rem -0.4rem / 40rem 12rem; /*background: url("images/ui/icons1.png") -23.7rem -0.4rem / 40rem 12rem;*/
+    background: url("../../images/ui/icons1.png") -23.7rem -0.4rem / 40rem 12rem; /*background: url("images/ui/icons1.png") -23.7rem -0.4rem / 40rem 12rem;*/
     background-size: 40rem 12rem;
     margin-top: -0.2rem;
 
@@ -2957,7 +2957,7 @@ ul.air-tickets-detail{
     display: inline-block;
     width: 22px;
     height: 22px;
-    background-image: url(../images/ui/icon.png);
+    background-image: url(../../images/ui/icon.png);
     background-position: 22% 33%;
     background-size: 397px 118px;
     position: relative;
@@ -3036,7 +3036,7 @@ ul.air-tickets-detail{
 
 .ticket-detail-information .set-start .rel-start .week-city-city span:first-child i {
     display: inline-block;
-    background-image: url(../images/ui/icon-t.png);
+    background-image: url(../../images/ui/icon-t.png);
     background-repeat: no-repeat;
     background-size: 237.5px 141.5px;
     background-position: 27% 34%;
@@ -3048,7 +3048,7 @@ ul.air-tickets-detail{
 
 .ticket-detail-information .set-start .rel-start .week-city-city span.rel-back i{
     display: inline-block;
-    background-image: url(../images/ui/icon-t.png);
+    background-image: url(../../images/ui/icon-t.png);
     background-repeat: no-repeat;
     background-size: 237.5px 141.5px;
     background-position: 27% 20%;
@@ -3105,7 +3105,7 @@ ul.air-tickets-detail{
 .time-arrow-time .time-arrow .icon-arrow {
     min-width: 7.0rem;
     min-height: 1.4rem;
-    background: url("../images/ui/icon-t.png") no-repeat;
+    background: url("../../images/ui/icon-t.png") no-repeat;
     background-size: 233.5px 140.5px;
     background-position: 9.8% 53.3%;
 }
@@ -3313,7 +3313,7 @@ ul.air-tickets-detail{
     color: #ffb413;
     width: 1.6rem;
     height: 1.6rem;
-    background: url("../images/ui/icons.png") no-repeat;
+    background: url("../../images/ui/icons.png") no-repeat;
     background-size: 243px 130px;
     background-position: 65.2% -0.4%;
     position: relative;
@@ -3377,7 +3377,7 @@ ul.air-tickets-detail{
     color: #ffb413;
     width: 1.6rem;
     height: 1.6rem;
-    background: url("../images/ui/icons.png") no-repeat;
+    background: url("../../images/ui/icons.png") no-repeat;
     background-size: 243px 130px;
     background-position: 65.2% -0.4%;
     position: absolute;
@@ -3544,15 +3544,15 @@ li{
 }
 .pas-num-cont{
     width: 80%;
-
+    margin-bottom: 0;
+    height:100%
 }
 .pas-num-cont li{
     width: 100%;
-    height: 46px;
+    height: 50%;
     line-height: 46px;
-    border-bottom: 1px solid #ddd;
     padding:0 1.0rem 0 3rem;
-
+    margin-bottom: 0;
     display: -moz-box;  /* Firefox */
     display: -ms-flexbox;    /* IE10 */
     display: -webkit-box;    /* Safari */
@@ -3560,6 +3560,10 @@ li{
     display: box;
     display: flexbox;
     display: flex;
+}
+
+.pas-num-cont li:first-child{
+    border-bottom: 1px solid #ddd;
 }
 
 .add-minus-per-box{
@@ -3619,6 +3623,8 @@ li{
 .cabin-wrap-level{
     width: 20%;
     padding-left: 1.2rem;
+    float: left;
+    min-width: 8rem;
 }
 
 .cabin-wrap-choice{
@@ -3627,11 +3633,8 @@ li{
     -webkit-flex: 2;          /!* Chrome *!/
     -ms-flex: 2;              /!* IE 10 *!/
     flex: 2;*/
-    display: block;
-    float: left;
-    width: 20%;
-    min-width: 84px;
-    padding-left: 1.0rem;
+    display: inline-block;
+    padding-left: 1rem;
 }
 /*仓位选择弹窗*/
 
