@@ -149,12 +149,12 @@ function oUp(obj1,obj2,start,end){
         }
         if( parseInt(this.parentNode.children[0].value)<end){
             if(parseInt(this.parentNode.children[0].value)>start){
-                obj2.style.background='url("../images/down1.png") no-repeat';
-                obj2.style.backgroundSize='23px 23px';
+                obj2.style.background='url("../images/hotelbtn.png") 0 0 no-repeat';
+                obj2.style.backgroundSize='23px 150px';
             }
         }else{
-            this.style.background='url("../images/up2.png") no-repeat';
-            this.style.backgroundSize='23px 23px';
+            this.style.background='url("../images/hotelbtn.png") 0 -84px no-repeat';
+            this.style.backgroundSize='23px 150px';
         }
     });
 };
@@ -168,21 +168,21 @@ function oDown(obj1,obj2,start,end){
         }
         if(parseInt(this.parentNode.children[0].value)>start){
             if(parseInt(this.parentNode.children[0].value)<end){
-                obj2.style.background='url("../images/up1.png") no-repeat';
-                obj2.style.backgroundSize='23px 23px';
+                obj2.style.background='url("../images/hotelbtn.png") 0 -56px no-repeat';
+                obj2.style.backgroundSize='23px 150px';
             }
         }else{
-            this.style.background='url("../images/down2.png") no-repeat';
-            this.style.backgroundSize='23px 23px';
+            this.style.background='url("../images/hotelbtn.png") 0 -28px no-repeat';
+            this.style.backgroundSize='23px 150px';
         }
     });
 }
 oUp(ho_i1,ho_i2,1,10);
 oDown(ho_i2,ho_i1,1,10);
-oUp(ho_i7,ho_i6,1,1000);
-oDown(ho_i6,ho_i7,1,1000);
-oUp(ho_i3,ho_i4,0,1000);
-oDown(ho_i4,ho_i3,0,1000);
+oUp(ho_i7,ho_i6,1,100000);
+oDown(ho_i6,ho_i7,1,100000);
+oUp(ho_i3,ho_i4,0,100000);
+oDown(ho_i4,ho_i3,0,100000);
 lsf_myweb.bind(lsf_myweb.getbyid('room'),'click',function(){
     lsf_myweb.getbyid('count1').focus();
 });
@@ -384,6 +384,40 @@ function inpChange(id,myText){
                 var str = template("cl_citysHot",json.data);
                 $("#cl_citysHot").html(str);
             });
+            //历史选择
+            var cityHisArr=[];
+            var cl_citysHis=document.getElementById('cl_citysHis');
+            var cl_citysHisStr='';
+            if(obj.getAttribute('id')=='input1'){
+                var cityListHis=window.localStorage.getItem('interCityName');
+                if(cityListHis){
+                    cityHisArr=cityListHis.split(',');
+                    cityHisArr.shift();
+                }
+            }else if(obj.getAttribute('id')=='input2'){
+                var cityListHis=window.localStorage.getItem('domCityName');
+                if(cityListHis){
+                    cityHisArr=cityListHis.split(',');
+                    cityHisArr.shift();
+                }
+            }
+            //历史选择数组去重
+            var json={};
+            for(var i=0;i<cityHisArr.length;i++){
+                json[cityHisArr[i]]=1;
+            }
+            cityHisArr=[];
+            for(var name in json){
+                cityHisArr.push(name);
+            }
+            //把历史城市生成页面
+            cl_citysHis.innerHTML='';
+            for(var i=0;i<cityHisArr.length;i++){
+                cl_citysHisStr+='<li>'+cityHisArr[i]+'</li>';
+            }
+            cl_citysHis.innerHTML=cl_citysHisStr;
+
+            //字母城市
             var strA=template("A",cityJson.A);
             $("#A").html(strA);
             var strB=template("B",cityJson.B);
@@ -450,10 +484,26 @@ function inpChange(id,myText){
                         oSrc.className='selected';
                         cl_box_box.style.display='none';
                         obj.value=oSrc.innerHTML;
-                        window.localStorage.setItem('cityName',oSrc.innerHTML);
+
+                        if(obj.getAttribute('id')=='input1'){
+                            var cityNameStr=window.localStorage.getItem('interCityName');
+                            if(!cityNameStr){
+                                cityNameStr='';
+                            }
+                            cityNameStr+=','+oSrc.innerHTML;
+                            window.localStorage.setItem('interCityName',cityNameStr);
+                        }else if(obj.getAttribute('id')=='input2'){
+                            var cityNameStr=window.localStorage.getItem('domCityName');
+                            if(!cityNameStr){
+                                cityNameStr='';
+                            }
+                            cityNameStr+=','+oSrc.innerHTML;
+                            window.localStorage.setItem('domCityName',cityNameStr);
+                        }
                     }
                 };
             }
+            cityClick('cl_citysHis');
             cityClick('cl_citysHot');
             cityClick('A');
             cityClick('B');

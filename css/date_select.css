@@ -105,15 +105,11 @@
     border-top: 2px solid #FFB413;
     border-bottom: 2px solid #FFB413;
 }
-
-.sel-time .date-selected{
-    font-size: 1.9rem;
-    color: #484848;
-}
-
-.selbox-footer #header{
-    background-color: #f5f4f9;
+#header{
     height: 40px;
     line-height: 40px;
+    background-color: #f5f4f9;
+    font-size: 1.6rem;
 }
+
 /*日期选择控件-出生日期结束*/
