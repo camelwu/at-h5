@@ -149,12 +149,12 @@ function oUp(obj1,obj2,start,end){
         }
         if( parseInt(this.parentNode.children[0].value)<end){
             if(parseInt(this.parentNode.children[0].value)>start){
-                obj2.style.background='url("../images/down1.png") no-repeat';
-                obj2.style.backgroundSize='23px 23px';
+                obj2.style.background='url("../images/hotelbtn.png") 0 0 no-repeat';
+                obj2.style.backgroundSize='23px 150px';
             }
         }else{
-            this.style.background='url("../images/up2.png") no-repeat';
-            this.style.backgroundSize='23px 23px';
+            this.style.background='url("../images/hotelbtn.png") 0 -84px no-repeat';
+            this.style.backgroundSize='23px 150px';
         }
     });
 };
@@ -168,21 +168,21 @@ function oDown(obj1,obj2,start,end){
         }
         if(parseInt(this.parentNode.children[0].value)>start){
             if(parseInt(this.parentNode.children[0].value)<end){
-                obj2.style.background='url("../images/up1.png") no-repeat';
-                obj2.style.backgroundSize='23px 23px';
+                obj2.style.background='url("../images/hotelbtn.png") 0 -56px no-repeat';
+                obj2.style.backgroundSize='23px 150px';
             }
         }else{
-            this.style.background='url("../images/down2.png") no-repeat';
-            this.style.backgroundSize='23px 23px';
+            this.style.background='url("../images/hotelbtn.png") 0 -28px no-repeat';
+            this.style.backgroundSize='23px 150px';
         }
     });
 }
 oUp(ho_i1,ho_i2,1,10);
 oDown(ho_i2,ho_i1,1,10);
-oUp(ho_i7,ho_i6,1,1000);
-oDown(ho_i6,ho_i7,1,1000);
-oUp(ho_i3,ho_i4,0,1000);
-oDown(ho_i4,ho_i3,0,1000);
+oUp(ho_i7,ho_i6,1,100000);
+oDown(ho_i6,ho_i7,1,100000);
+oUp(ho_i3,ho_i4,0,100000);
+oDown(ho_i4,ho_i3,0,100000);
 lsf_myweb.bind(lsf_myweb.getbyid('room'),'click',function(){
     lsf_myweb.getbyid('count1').focus();
 });

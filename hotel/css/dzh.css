@@ -229,8 +229,8 @@
     top:50%;
     right:0;
     margin-top:-12px;
-    background:url("../../images/up1.png") no-repeat;
-    background-size:23px 23px;
+    background:url("../../images/hotelbtn.png") 0 -56px no-repeat;
+    background-size:23px 150px;
 }
 .minus{
     position: absolute;
@@ -239,8 +239,8 @@
     right: 80px;
     top:50%;
     margin-top:-12px;
-    background:url("../../images/down2.png") no-repeat;
-    background-size:23px 23px;
+    background:url("../../images/hotelbtn.png") 0 -28px no-repeat;
+    background-size:23px 150px;
 }
 .content4{
     height: 91px;
@@ -298,8 +298,8 @@
     top: 50%;
     margin-top: -11px;
     right: 0;
-    background:url("../../images/up1.png") no-repeat;
-    background-size:23px 23px;
+    background:url("../../images/hotelbtn.png") 0 -56px no-repeat;
+    background-size:23px 150px;
 }
 .minus1{
     position: absolute;
@@ -308,8 +308,8 @@
     top: 50%;
     margin-top: -11px;
     right: 80px;
-    background:url("../../images/down2.png") no-repeat;
-    background-size:23px 23px;
+    background:url("../../images/hotelbtn.png") 0 -28px no-repeat;
+    background-size:23px 150px;
 }
 .nav4-centertop{
     height: 45px;
