@@ -31,4 +31,5 @@ require.config({
 require(['jquery','vlm','custom'], function($,vlm) {
 
 	vlm.init();
+	//vlm.checkLogin();
 });
