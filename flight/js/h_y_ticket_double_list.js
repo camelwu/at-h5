@@ -170,13 +170,30 @@ var ticketDouble = {
     },
 
     eventHandler:function(){
-        var oLis =  document.querySelectorAll('.seat-detail'),that = ticketDouble;
+        var oLis =  document.querySelectorAll('.seat-detail'),that = ticketDouble,shadowBox = document.querySelector('#r-shadow'),
+            filterModal=document.querySelector('#filter-modal'),timeModal = document.querySelector('#time-modal'),priceModal = document.querySelector('#price-modal');
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
                 '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild;
             })
         }
+        this.addHandler(shadowBox, 'click', function(){
+            if(filterModal.style.bottom == '0px'){
+                filterModal.style.transition = 'all 300ms ease-in';
+                filterModal.style.webkitTransition = 'all 300ms linear';
+                filterModal.style.bottom = '-126%';
+            }else if(timeModal.style.bottom == '0px'){
+                timeModal.style.transition = 'all 300ms ease-in';
+                timeModal.style.webkitTransition = 'all 300ms linear';
+                timeModal.style.bottom = '-126%';
+            }else if(priceModal.style.bottom == '0px'){
+                priceModal.style.transition = 'all 300ms ease-in';
+                priceModal.style.webkitTransition = 'all 300ms linear';
+                priceModal.style.bottom = '-126%';
+            }
+            this.style.display = 'none';
+        })
     },
     timeCut:function(arg){
         var reg = /\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g,result = reg.exec(arg);
@@ -261,7 +278,7 @@ var ticketDouble = {
 
             this.style.transition = 'all 300ms ease-in';
             this.style.webkitTransition = 'all 300ms linear';
-            this.style.bottom = '-50%';
+            this.style.bottom = '-126%';
             shadowBox.style.display = 'none';
         });
     },
@@ -336,7 +353,7 @@ var ticketDouble = {
         function rightPrice(arg){
             var str = '';
             str +='<div class="price-tax">'+
-            '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+arg.totalFareAmountExc+'</span><span class="word-tip">往返</span><br></div>'+
+            '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+parseInt(arg.totalFareAmountExc)+'</span><span class="word-tip">往返</span><br></div>'+
             '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+arg.totalTaxAmountADT+'</div>'+
             '        </div>';
             return str;
@@ -414,6 +431,7 @@ var ticketDouble = {
         var backParaObj = this.parseUrlPara(document.location.search, true);
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
+        this.tripType = "international"; //international backParaObj.tripType ,domestic
         this.backParaObj = backParaObj;
         this.dateInit(backParaObj);
         this.toSeatDetail();
