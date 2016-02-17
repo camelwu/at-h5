@@ -393,10 +393,10 @@
 
             footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
 
-            contentStr += '<div id="content" class="snap-content" style="padding-top: 45px; padding-bottom: 50px;">' + frontImgStr + firstUl + secondUl + '</div>';
+            contentStr += '<div id="content" class="snap-content" style="padding-top: 45px;">' + frontImgStr + firstUl + secondUl + footer + '</div>';
 
 
-            allStr += headerStr + contentStr + footer;
+            allStr += headerStr + contentStr;
 
             hotelDetail.$CN('all-elements')[0].innerHTML = '';
 
