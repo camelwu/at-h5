@@ -2,6 +2,8 @@
  * Created by changlv on 2016/1/7.
  */
 var newkey;
+var phone_verify=$('#get_code')[0];
+var regBflag=false;
 window.onload = function(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
@@ -141,11 +143,18 @@ window.onload = function(){
     //  获取注册验证码
     function get_verify(obj){
         obj.onclick = function() {
+            if(regBflag)
+            {
+                return;
+            }
+            regBflag=true;
             var Parameters = {
                 "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":1}",
                 "ForeEndType": 3,
                 "Code": "0058"
             };
+            console.log(Parameters.Parameters);
+            vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_verify);
         }
     }
@@ -176,7 +185,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0052"
             };
-            //console.log(Parameters);
+            console.log(Parameters);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
         }
     }
@@ -318,7 +327,7 @@ function mycallback_login(ret) {
 function mycallback_verify(ret){
     var verify = $("#verify")[0];
     var myJson = eval('('+ret+')');
-    //console.log(myJson);
+     console.log(myJson);
     if(myJson.success){
         vlm.Utils.sendMobileCode(verify.value);
     }else{
@@ -343,4 +352,18 @@ function mycallback_findver(ret){
     }else{
         alert(myJson.Message);
     }
+}
+
+//时间倒计时结束后
+function phone_timeout(){
+    console.log(phone_verify);
+    phone_verify.innerHTML='发送验证码';
+    phone_verify.style.color='#ffb413';
+    regBflag=false;
+}
+
+//时间倒计过程中
+function time_reciprocals(sec){
+    phone_verify.innerHTML=sec+'秒重新发送';
+    phone_verify.style.color='#ccc';
 }

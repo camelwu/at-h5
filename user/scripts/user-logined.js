@@ -13,7 +13,7 @@ function init(){
         "ForeEndType": 3,
         "Code": "0053"
     };
-     //console.log(Parameters['Parameters']);
+     //console.log(Parameters);
     if(localStorage.getItem('login') != 1)
     {
         return;
@@ -76,12 +76,13 @@ function ifOpen(){
 }
 function mycallback(ret) {
     var myJson = eval('(' + ret + ')');
-    //console.log(myJson);
+    console.log(myJson);
     if (myJson.success) {
         var user_name = $("#user_name")[0];
         var user_sex = $("#user_sex")[0];
         var userIcon = $("#userIcon")[0];
         user_name.innerHTML = myJson.data[0].nickName;
+        sessionStorage.sex=myJson.data[0].salutation;
         if (myJson.data[0].salutation == "26") {
             user_sex.className = "icon open-sexm";
             userIcon.src = "../images/ui/photo-man.png";

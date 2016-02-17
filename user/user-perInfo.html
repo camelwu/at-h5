@@ -5,7 +5,10 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
     <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
@@ -35,7 +38,7 @@
 </div>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:window.history.go(-1);" class="icons header-back"></a>
+        <a href="user.html" class="icons header-back" id="per-back"></a>
         <h3>个人资料</h3>
     </div>
     <!-- Page Content-->
@@ -81,7 +84,7 @@
         <form id="infoForm" action="user-perInfo.html" method="post">
             <li id="fillname" style="display: none;">
                 <div class="u_name">
-                    <input id="realName" type="text" style="font-size: 1.4rem" placeholder="请填写真实姓名" data-type="code">
+                    <input id="realName" type="text" style="font-size: 1.4rem" value placeholder="请填写真实姓名" data-type="code">
                 </div>
                 <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
             </li>
@@ -102,6 +105,8 @@
                 </div>
             </li>
                 <input id="amend_btn" class="f_btn button-orange" type="button" value="保存"/>
+                <input id="amend_btn_1" class="f_btn button-orange" type="button" value="保存"/>
+                <input id="amend_btn_2" class="f_btn button-orange" type="button" value="保存"/>
         </form>
         <li id="amendkey" style="display: none;">
             <form id="keyForm" action="user-perInfo.html" method="post">
