@@ -442,7 +442,7 @@ function styleChange(id,mytext){
                 lazyLoad.apply(this,arguments);
             }
             lazyLoad2.prototype=new lazyLoad();
-
+           
             lazyLoad2.prototype.update=function(){
                 //如图片都加载完成，返�?
                 //alert(this.imgs.length);
