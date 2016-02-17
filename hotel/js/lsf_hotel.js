@@ -392,11 +392,14 @@ function inpChange(id,myText){
             var searchCity=document.getElementById('searchCity');
             var citySearchBox=document.getElementById('citySearchBox');
             var cl_citysHisStr='';
+
+            //输入框输入内容事件
             citySearchBox.onchange=function(){
                 obj.value=citySearchBox.value;
                 cl_box_box.style.display='none';
             };
             if(obj.getAttribute('id')=='input1'){
+                citySearchBox.setAttribute('placeholder','Singapore');  //判断国际国内酒店改变placeholder
                 var cityListHis=window.localStorage.getItem('interCityName');
                 if(cityListHis){
                     cityHisArr=cityListHis.split(',');
@@ -406,6 +409,7 @@ function inpChange(id,myText){
                     searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'"></option>';
                 }
             }else if(obj.getAttribute('id')=='input2'){
+                citySearchBox.setAttribute('placeholder','北京/beijing/bj/bjs/中国');  //判断国际国内酒店改变placeholder
                 var cityListHis=window.localStorage.getItem('domCityName');
                 if(cityListHis){
                     cityHisArr=cityListHis.split(',');
