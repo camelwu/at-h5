@@ -223,7 +223,6 @@ h1, h2, h3, h4, h5, h6{
 
 #preloader {
 	position:fixed;
-	z-index:2500;
 	top:0;
 	left:0;
 	right:0;
@@ -233,7 +232,6 @@ h1, h2, h3, h4, h5, h6{
 }
 
 #status {
-	position:fixed;
 	z-index:99999999;
 	width:250px;
 	height:250px;
@@ -247,16 +245,41 @@ h1, h2, h3, h4, h5, h6{
 	margin:-125px 0 0 -125px; 
 }
 
-#status p{
+#preloader p{
 	top:60%;
 }
 
-#status em{
+#preloader em{
 	font-size:10px!important;
 	display:block;
 	font-style:normal;
 }
-
+#status-h{
+	z-index:99999999;
+	width:250px;
+	height:250px;
+	position:absolute;
+	left:50%; 
+	top:50%;
+	background-image:url(../images/loading-hotel.gif);
+	background-size:125px;
+	background-repeat:no-repeat;
+	background-position:center;
+	margin:-125px 0 0 -125px;
+}
+#status-f{
+	z-index:99999999;
+	width:250px;
+	height:250px;
+	position:absolute;
+	left:50%; 
+	top:50%;
+	background-image:url(../images/loading-flight.gif);
+	background-size:125px;
+	background-repeat:no-repeat;
+	background-position:center;
+	margin:-125px 0 0 -125px;
+}
 /*Typograhpy Features*/
 
 .center-icon{
