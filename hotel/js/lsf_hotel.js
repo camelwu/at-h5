@@ -390,17 +390,12 @@ function inpChange(id,myText){
             var cityHisArr=[];
             var cl_citysHis=document.getElementById('cl_citysHis');
             var searchCity=document.getElementById('searchCity');
+            var citySearchBox=document.getElementById('citySearchBox');
             var cl_citysHisStr='';
-            function datalistClick(oParent){
-                lsf_myweb.bind(oParent,'click',function(ev){
-                    var oEvent=ev||event;
-                    var oSrc=oEvent.srcElement||oEvent.target;
-                    if(oSrc.tagName=='OPTION'){
-                        obj.value=oSrc.value;
-                    }
-                });
-            }
-            //datalistClick(searchCity);
+            citySearchBox.onchange=function(){
+                obj.value=citySearchBox.value;
+                cl_box_box.style.display='none';
+            };
             if(obj.getAttribute('id')=='input1'){
                 var cityListHis=window.localStorage.getItem('interCityName');
                 if(cityListHis){
@@ -559,7 +554,9 @@ function inpChange(id,myText){
                 cl_box_box.innerHTML='<div class="cl_box">'+
                     '<div class="header" id="vlm-login">'+
                     '<div class="cl_search">'+
-                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" />'+
+                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />'+
+                    '<datalist id="searchCity">'+
+                    '</datalist>'+
                     '<i></i>'+
                     '</div>'+
                     '<a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
@@ -825,7 +822,9 @@ function inpChange(id,myText){
                 cl_box_box.innerHTML='<div class="cl_box">'+
                     '<div class="header" id="vlm-login">'+
                     '<div class="cl_search">'+
-                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" />'+
+                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />'+
+                    '<datalist id="searchCity">'+
+                    '</datalist>'+
                     '<i></i>'+
                     '</div>'+
                     '<a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
