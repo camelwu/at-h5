@@ -146,7 +146,6 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
     //默认房间数量
     fake_data.NumOfRoom=1;
     var user_order_storage2=localStorage.getItem('hotelDetailData');
-    console.log(JSON.parse(user_order_storage2));
     fake_data.HotelGenInfo=JSON.parse(user_order_storage2).data.data[0].hotelGenInfo;
     fake_data.dateInfo=JSON.parse(user_order_storage2).data.data[0].dateInfo;
     var HotelRoomsList=JSON.parse(user_order_storage2).data.data[0].hotelRoomsList;
@@ -174,7 +173,12 @@ function uoHisData(){
     console.log(localData);
     console.log('上面是localStorage');
     if(localData){
-        fake_data=localData;
+        //fake_data=localData;
+        fake_data.GuestContactNo=localData.GuestContactNo;
+        fake_data.GuestEmail=localData.GuestEmail;
+        fake_data.guestName=localData.guestName;
+        console.log(fake_data);
+        console.log('hahahahhahahahah');
         return;
     }else{
         return;
