@@ -30,7 +30,7 @@
 <link href="styles/style.css"		rel="stylesheet" type="text/css">
 <link href="styles/owl.theme.css"	rel="stylesheet" type="text/css">
 <!--<link href="css/user.css"	rel="stylesheet" type="text/css">-->
-<!--link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"	rel="stylesheet"-->
+<link href="styles/tips.css"	rel="stylesheet">
 </head>
 <body>
 <div id="preloader">
@@ -44,19 +44,19 @@
 <div class="all-elements">
     <div id="content" class="snap-content">
         <div class="slider-container half-bottom">
-            <div class="homepage-slider" data-snap-ignore="true">
-                <div>
-                    <img src="images/pictures/1.jpg" class="responsive-image" alt="img">
-                </div>
-                <div>
-                    <img src="images/pictures/2.jpg" class="responsive-image" alt="img">
-                </div>
-                <div>
-                    <img src="images/pictures/3.jpg" class="responsive-image" alt="img">
-                </div>
-                <div>
-                    <img src="images/pictures/4.jpg" class="responsive-image" alt="img">
-                </div>
+            <div class="homepage-slider" data-snap-ignore="true" id="banner">
+                <!--<a href = "{%=%}">-->
+                    <!--<img src="images/pictures/1.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
+                <!--<a>-->
+                    <!--<img src="images/pictures/2.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
+                <!--<a>-->
+                    <!--<img src="images/pictures/3.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
+                <!--<a>-->
+                    <!--<img src="images/pictures/4.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
             </div>
         </div>
         
@@ -115,25 +115,25 @@
 
         <div class="container half-bottom">
         	<div class="recommends" id="recommend">
-        		<ul class="list-length-3">
-        			<li>
-		        		<h5>当月热玩</h5>
-		            	<p>人少景更美最优之选</p>
-		            	<img src="images/i_29.jpg" class="fr" width="100%">
-            		</li>
-                    <li>
-                        <h5>海外门票</h5>
-                        <p>去感受异国风情</p>
-                        <img src="images/hhg_03.jpg" class="fr" width="100%">
-                    </li>
+        		<ul class="list-length-3" id="rewan">
+        			<!--<li>-->
+		        		<!--<h5>当月热玩</h5>-->
+		            	<!--<p>人少景更美最优之选</p>-->
+		            	<!--<img src="images/i_29.jpg" class="fr" width="100%">-->
+            		<!--</li>-->
+                    <!--<li>-->
+                        <!--<h5>海外门票</h5>-->
+                        <!--<p>去感受异国风情</p>-->
+                        <!--<img src="images/hhg_03.jpg" class="fr" width="100%">-->
+                    <!--</li>-->
 	            </ul>
         	</div>
         </div>
         <h5 class="index-title">玩家推荐</h5>
-		<div class="container" style="border-bottom: none;">
-			<div class="half-top"><div class="c-ad">今日<br>爆款</div><img src="images/i_62.jpg" alt="img" width="100%"></div>
-			<h5>上海－直飞夏威夷7- 8天游寻觅异国海底风情</h5>
-			<p class="">［双11特惠］开启异国浪漫之旅...</p>
+		<div class="container" style="border-bottom: none;" id="tuijian">
+			<!--<div class="half-top"><div class="c-ad">今日<br>爆款</div><img src="images/i_62.jpg" alt="img" width="100%"></div>-->
+			<!--<h5>上海－直飞夏威夷7- 8天游寻觅异国海底风情</h5>-->
+			<!--<p class="">［双11特惠］开启异国浪漫之旅...</p>-->
 		</div>
 	    <div class="toper">
 			<a id="toper-gps" class="toper-gps" href="gps.html">北京</a><div class="toper-in"><input type="text" class="s-in" placeholder="地点、酒店、景点、机票"></div><a href="tel:+4008018888" class="toper-tel"><i>&nbsp;</i></a>
@@ -141,12 +141,144 @@
     </div>
 </div>
 <div id="menu"></div>
-<script data-main="js/main.js" src="js/require.js"></script>
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/plugins.js"></script>
+<script src="js/lib/jquery.alert.js"></script>
 <script src="js/lib/vlm.js"></script>
 <script src="js/lib/template.js"></script>
-<script src="js/lib/plugins.js"></script>
 <script src="js/lib/custom.js"></script>
+<!--<script type="text/template" id="tt">-->
+
+    <!--<a href = "{%=productChangeLink%}">-->
+        <!--<img src="{%=productPicName%}" class="responsive-image" alt="img">-->
+        <!--</a>-->
+<!--</script>-->
+<script >
+    var tpl0 = [
+    '<a href = "{%=productChangeLink%}">',
+        '<img src="{%=productPicName%}" class="responsive-image" alt="img">',
+    '</a>'].join('');
+
+    var tpl1 = [
+    '<li>',
+        '<h5>{%=productName%}</h5>',
+        '<p>人少景更美最优之选</p>',
+        '<img src="{%=productPicName%}" class="fr" width="100%">',
+    '</li>'
+    ].join('');
+
+    var tpl2 = [
+    '<div class="half-top"><div class="c-ad">今日<br>爆款</div><img src="{%=productPicName%}" alt="img" width="100%"></div>',
+    '<h5>{%=productName%}</h5>',
+    '<p class="">［双11特惠］开启异国浪漫之旅...</p>'
+    ].join('');
+</script>
 <script>
+    vlm.init();
+    var tmp={
+        "Code":"3099",
+        "ForeEndType":3
+    };
+   vlm.loadJson("",JSON.stringify(tmp),input_back);
+   //input_back("yy");
+   /*{
+    "success": true,
+            "message": "获取成功",
+            "code": 200,
+            "data": {
+        "banner": [
+            {
+                "productID": 1,
+                "productName": "迪斯尼乐园\r\n",
+                "productPicName": "迪士尼乐园banner1.jpg\r\n",
+                "productSort": 1,
+                "productChangeLink": "http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&pid=504060&scode=ACX98110SG\r\n",
+                "productStartDate": "2016-02-15T10:30:00",
+                "productEndDate": "2016-03-15T10:30:00",
+                "productState": 1,
+                "productNo": "ACX98110SG\r\n",
+                "productType": 1
+            },
+            {
+                "productID": 5,
+                "productName": "乐高乐园\r\n",
+                "productPicName": "乐高2.jpg\r\n",
+                "productSort": 2,
+                "productChangeLink": "http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&pid=501939&scode=ACX98110SG",
+                "productStartDate": "2016-02-15T10:30:00",
+                "productEndDate": "2016-03-15T10:30:00",
+                "productState": 1,
+                "productNo": "ACX98110SG\r\n",
+                "productType": 1
+            },
+            {
+                "productID": 6,
+                "productName": "环球影城\r\n",
+                "productPicName": "新加坡环球影城.jpg\r\n",
+                "productSort": 3,
+                "productChangeLink": "http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&pid=492416&scode=ACX98110SG",
+                "productStartDate": "2016-02-15T10:30:00",
+                "productEndDate": "2016-03-15T10:30:00",
+                "productState": 1,
+                "productNo": "ACX98110SG\r\n",
+                "productType": 1
+            }
+        ],
+                "hotPlay": [
+            {
+                "productID": 2,
+                "productName": "当月热玩1\r\n",
+                "productPicName": "当月热玩1\r\n",
+                "productSort": 1,
+                "productChangeLink": "http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&pid=504060&scode=ACX98110SG",
+                "productStartDate": "2016-02-15T10:30:00",
+                "productEndDate": "2016-03-15T10:30:00",
+                "productState": 1,
+                "productNo": "ACX98110SG\r\n",
+                "productType": 2
+            },
+            {
+                "productID": 3,
+                "productName": "当月热玩1",
+                "productPicName": "当月热玩1\r\n",
+                "productSort": 2,
+                "productChangeLink": "http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&pid=504060&scode=ACX98110SG",
+                "productStartDate": "2016-02-15T10:30:00",
+                "productEndDate": "2016-03-15T10:30:00",
+                "productState": 1,
+                "productNo": "ACX98110SG\r\n",
+                "productType": 2
+            },
+            {
+                "productID": 4,
+                "productName": "当月热玩1",
+                "productPicName": "1\t\r\n\t\r\n\t\r\n\t当月热玩1",
+                "productSort": 3,
+                "productChangeLink": "http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&pid=504060&scode=ACX98110SG",
+                "productStartDate": "2016-02-15T10:30:00",
+                "productEndDate": "2016-03-15T10:30:00",
+                "productState": 1,
+                "productNo": "ACX98110SG\r\n",
+                "productType": 2
+            }
+        ],
+                "playerRecommend": []
+    }
+    }*/
+    function input_back(d){
+        var json=eval('('+d+')');
+        console.log(json);
+        if(json.success){
+            var data=json.data,html_b = template(tpl0,data.banner),html_rw = template(tpl1,data.hotPlay),html_tj = template(tpl2,data.playerRecommend);
+            console.log("b="+html_b);
+            $("#banner").html(html_b);
+            $("#rewan").html(html_rw);
+            $("#tuijian").html(html_tj);
+        }else {
+            console.log(json);
+           jAlert("数据格式错误","提示");
+        }
+    }
 var gps = document.getElementById("toper-gps");
 gps.innerHTML = localStorage.province?localStorage.province:'北京';
 </script>

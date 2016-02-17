@@ -115,11 +115,11 @@
 		}
 
 		window.onload = function() {
-			var pie_chart_1 = document.getElementById("generate-pie-chart").getContext("2d");
+			/*var pie_chart_1 = document.getElementById("generate-pie-chart").getContext("2d");
 			window.pie_chart_1 = new Chart(pie_chart_1).Pie(pieData);
 
 			var bar_chart_1 = document.getElementById("generate-bar-chart").getContext("2d");
-			window.pie_chart_1 = new Chart(bar_chart_1).Bar(barChartData);
+			window.pie_chart_1 = new Chart(bar_chart_1).Bar(barChartData);*/
 		};
 
 		//Animate.css scroll to begin animation //
