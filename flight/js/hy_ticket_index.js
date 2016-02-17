@@ -590,6 +590,7 @@
            var aBox=document.querySelectorAll('.pas-num-cont');
            var  aCabs = document.querySelectorAll('.cabin-wrap');
            var oAir=document.querySelector('.mask');
+           var header = document.querySelector('.clearfix');
             for(var f = 0;f<aBox.length;f++){
                 this.addHandler(aBox[f],'click',function(event){
                     var event = event || window.event;
@@ -662,6 +663,13 @@
                }
            });
 
+           this.addHandler(header,'click',function(event){
+               var event = event || window.event;
+               var target = event.target || event.srcElement;
+               if(target.className=='fl'){
+                   window.history.go(-1);
+               }
+           });
            this.addHandler(position,'click',function(event){
                var event = event || window.event;
                var target = event.target || event.srcElement;

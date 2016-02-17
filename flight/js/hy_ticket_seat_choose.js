@@ -144,15 +144,18 @@ var ticketSeatChoose = {
             };
 
 
-            if(localStorage.getItem('login') == 1 )
-             {
+           /* if(localStorage.getItem('login') != 1 )
+             {      alert(111)
                     that.storageUtil.set('reverseInformationCache',reverseInformationCache);
                     document.location.href = 'ticket_order.html';
              }
              else {
-                  document.querySelector('.mask-win').style.display = 'block';
-                  document.querySelector('.snap-content').style.display = 'block';
-             }
+                alert(222)
+                // 调用用户中心登录页面
+              }*/
+
+            that.storageUtil.set('reverseInformationCache',reverseInformationCache);
+            document.location.href = 'ticket_order.html';
 
         });
         this.addHandler(changeExplain,'click', function(){

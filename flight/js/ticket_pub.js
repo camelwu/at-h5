@@ -326,26 +326,34 @@ var bottomModal = {
             '    <li class="time-modal-item" data-i="shortTimeFirst"><b></b>耗时短优先</li>'+
             '    <li class="time-modal-item" data-i="setEarlyToLate active"><b></b>起飞早到晚</li>'+
             '    <li class="time-modal-item" data-i="setLateToEarly"><b></b>起飞晚到早</li>';
-            priceFilterStr = tripType=='domestic'?'<li class="price-modal-item active" data-i="priceHighToLow"><b></b>从高到低</li>'+
-            '<li class="price-modal-item" data-i="priceLowToHigh"><b></b>价从低到高</li>':'<li class="price-modal-item active" data-i="hasTax"><b></b>含税价</li>'+
-            '<li class="price-modal-item" data-i="noTax"><b></b>不含税</li>';
+
+            if(tripType=='domestic'){
+                priceFilterStr = '';
+            }else{
+                priceFilterStr = '<li class="price-modal-item active" data-i="hasTax"><b></b>含税价</li>'+
+                '<li class="price-modal-item" data-i="noTax"><b></b>不含税</li>';
+            }
         }else{
             slPortFilterStr = '<li class="filter-title clear-background" data-info="df">直飞/中转</li>'+
             '    <li class="filter-title" data-info="sh">共享航班</li>'+
             '    <li class="filter-title" data-info="se">舱位</li>';
 
-            timerFilterStr = '<li class="time-modal-item active" data-i="directFirst"><b></b>直飞优先</li>'+
+            timerFilterStr = '<li class="time-modal-item active" data-i="directFirst"><b></b>不限</li>'+
+            '    <li class="time-modal-item" data-i="directFirst"><b></b>直飞优先</li>'+
             '    <li class="time-modal-item" data-i="lowPriceFirst"><b></b>低价优先</li>'+
             '    <li class="time-modal-item" data-i="shortTimeFirst"><b></b>耗时短优先</li>';
-            priceFilterStr = tripType=='domestic'?'<li class="price-modal-item active" data-i="priceHighToLow"><b></b>从高到低</li>'+
-            '<li class="price-modal-item" data-i="priceLowToHigh"><b></b>从低到高</li>':'<li class="price-modal-item active" data-i="hasTax"><b></b>含税价</li>'+
-            '<li class="price-modal-item" data-i="noTax"><b></b>不含税</li>';
+            if(tripType=='domestic'){
+                priceFilterStr = '';
+            }else{
+                priceFilterStr = '<li class="price-modal-item active" data-i="hasTax"><b></b>含税价</li>'+
+                '<li class="price-modal-item" data-i="noTax"><b></b>不含税</li>'
+            }
         }
         filterStr+=''+
         '<div class="hl-bottom">'+
-        '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i>筛选</div>'+
-        '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i>时间</div>'+
-        '<div class="fo-div" id="fo_lo"><b class="hl-icon3 filter-price"></b><i class=""></i>价格</div></div>'+
+        '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span>筛选</span></div>'+
+        '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span>时间</span></div>'+
+        '<div class="fo-div" id="fo_lo"><b class="hl-icon3 filter-price"></b><i class=""></i><span>价格</span></div></div>'+
 
         '<div class="reset-action" id="filter-modal">'+
         '<div class="reset-action-wrap">'+
@@ -389,7 +397,22 @@ var bottomModal = {
         '<ul id="price-modal">'+ priceFilterStr+'</ul>';
         oDiv.innerHTML = filterStr;
         allDiv.appendChild(oDiv);
+        this.changeWordTip(sinOrDou,tripType)
     },
+
+    changeWordTip:function(sinOrDou,desOrInt){
+        var priceSpan = document.querySelectorAll('#fo_lo span')[0];
+        if(sinOrDou == 'single'){
+
+        }else{
+            if(desOrInt=='domestic'){
+                priceSpan.innerHTML = '从低到高'
+            }else{
+
+            }
+        }
+    },
+
     filterEvent:function(){
         var that = bottomModal;
         var filterButtons = document.querySelectorAll('.fo-div');
@@ -412,7 +435,6 @@ var bottomModal = {
                  that.fn(that.returnState());
                  closeFilterModal();
              }
-
         });
 
         this.addHandler(resetActionWrap, 'click', function(event){
@@ -431,7 +453,7 @@ var bottomModal = {
                     resetFunction(tempInfo);break;
                 case "确定" :
                     confirmFunction(tempInfo);break;
-                default :void 0;
+                default :void(0);
             }
              closeFilterModal()
         });
@@ -448,14 +470,12 @@ var bottomModal = {
             that.chooseInfo = tempInfo
             that.fn(that.chooseInfo)
         }
-
         function closeFilterModal(){
             filterModal.style.transition = 'all 300ms ease-in';
             filterModal.style.webkitTransition = 'all 300ms linear';
-            filterModal.style.bottom = '-50%';
+            filterModal.style.bottom = '-126%';
             shadowBox.style.display = 'none';
         }
-
 
         if(filterButtons&&rightUl&&shadowBox&&filterBottom&&detailListWrap&&timeModal){
             that.addHandler(detailListWrap, 'click', function(event){
@@ -496,7 +516,7 @@ var bottomModal = {
                 }
                 this.style.transition = 'all 300ms ease-in';
                 this.style.webkitTransition = 'all 300ms linear';
-                this.style.bottom = '-50%';
+                this.style.bottom = '-126%';
                 shadowBox.style.display = 'none';
             });
 
