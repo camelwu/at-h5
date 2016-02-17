@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
     <title>订单支付</title>
     <link href="../styles/style.css" rel="stylesheet"/>
     <link href="../styles/framework.css" rel="stylesheet"/>
-    <link href="css/order_pay.css" rel="stylesheet"/>
+    <link href="css/scenic.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="all-elements">
@@ -19,26 +27,19 @@
             <div class="per-pay-msg-bg">
                 <ul class="per-pay-msg">
                     <li>
-                        <span class="order-num">订单号: <i>237812</i></span>
-                        <!--<p class="order-tot-dol"><span class="order-tot-dol-tit">总计：</span><span>¥<i>143</i>元</span></p>-->
+                        <span>订单号: <i>237812</i></span>
                     </li>
                     <li>
-                        <div class="order-num">票务信息：<i>迪士尼门票1张；温泉门票1张</i></div>
-                        <div>总价：<span>￥</span><i>143</i></div>
-                        <!--<div>总计：</div><span>¥</span><i>143</i>元-->
+                        <div>票务信息：<i>迪士尼门票1张；温泉门票1张</i></div>
+                        <div class="pay-total">总价：<span style="color:#fe6a03">￥</span><i class="pay-num">143</i></div>
                     </li>
-                    <!--<li>-->
-                        <!--<span class="order-num">剩余支付时间: <i class="count-time" id="countdown"></i></span>-->
-
-                    <!--</li>-->
                 </ul>
             </div>
-
-                <ul class="pay-style-list">
-                    <li><span class="order-num">剩余支付时间: <i class="count-time" id="countdown"></i></span></li>
-                    <li><span class="pay-card"></span><span class="right-choi-btn"></span></li>
-                    <li><span class="pay-card"></span><span class="right-choi-btn"></span></li>
-                </ul>
+            <ul class="pay-style-list" id="pay_way">
+                 <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
+                 <li><span class="pay-card"></span><b class="icon circle-choi" id="payCard" onclick="choicePay()"></b></li>
+                 <li><span class="pay-card"></span><b class="icon circle-chois" id="zhifubao" onclick="choicePay()"></b></li>
+            </ul>
 
         </form>
 
@@ -60,18 +61,32 @@
                 var s=n%60;
                 oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
                 if (n<0) {
-                    clearInterval(timer)
+                    clearInterval(timer);
                     oSpan.innerHTML="结束"
                 }
             }
         }
-
         function toDub(a){
             return a<10 ? '0'+a : ''+a;
         }
     };
+    function choicePay(){
+        var circle = window.event.srcElement;
+        var card = $("#payCard")[0];
+        var bao = $("#zhifubao")[0];
+        if(circle.className == "icon circle-choi"){
+            circle.className = "icon circle-chois";
+        }else{
+            circle.className = "icon circle-choi";
+            if(circle.id == "payCard"){
+                bao.className = "icon circle-chois";
+            }else{
+                card.className = "icon circle-chois";
+            }
+        }
+    }
 </script>
-
+    <script src="../js/lib/jquery.js"></script>
     <script src="js/head_back.js"></script>
 </div>
 </body>

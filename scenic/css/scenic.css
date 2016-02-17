@@ -1,15 +1,12 @@
 body{
     background-color: #fff;
 }
-
 li{
     list-style: none;
 }
-
 i{
     font-style: normal;
 }
-
 .edit-tit{
     font-weight: normal;
 }
@@ -21,7 +18,6 @@ i{
     background-color: #fff;
     margin-bottom: 0;
 }
-
 .per-pay-msg li{
     padding:15px 15px;
     border-bottom: 1px solid #dedede;
@@ -43,22 +39,17 @@ i{
     position: absolute;
     right: 20px;
     top: 6px;
-
 }
-
 .order-tot-dol i{
     font-size: 1.8rem;
     font-weight: bold;
 }
-
 .order-tot-dol span{
     color: #ff6a00;
 }
-
 .count-time{
     color: #ff6a00;
 }
-
 .pay-style{
     height: 32px;
     line-height: 32px;
@@ -69,19 +60,16 @@ i{
     font-weight: normal;
     padding-left: 20px;
 }
-
 .pay-style-list{
     background-color: #fff;
     height: 100%;
 }
-
 .pay-style-list li{
     height: 40px;
     border-bottom: 1px solid #dedede;
     padding-top:5px;
     padding-bottom:5px;
 }
-
 .pay-style-list li:first-child{
     border-top: 1px solid #dedede;
     padding-left: 15px;
@@ -102,16 +90,41 @@ i{
     background-size: 402px 174px;
     background-position:17% 38% ;
 }
-
-.right-choi-btn{
-    position: absolute;
-    right: 0;
-    width: 40px;
-    height: 14px;
-    background-image: url(../images/ui/icons.png);
-    background-position: 63% 4%;
-    background-size: 400px 190px;
-    margin-top: 5px;
-    margin-right: 10px;
-    cursor: pointer;
+.icon {
+    background-image: url(../images/ui/icon.png);
+    background-repeat: no-repeat;
+    background-size: 393px 118px;
+    display: inline-block;
 }
+.jdicon{
+    background-image: url(../../images/ui/jd-icon.png);
+    background-repeat: no-repeat;
+    background-size: 393px 118px;
+    display: inline-block;
+}
+.circle-choi{
+    position: absolute;
+    right: 15px;
+    width: 22px;
+    height: 22px;
+    background-position: 62.5% 96.5%;
+}
+.circle-chois{
+    position: absolute;
+    right: 15px;
+    width: 22px;
+    height: 22px;
+    background-position: 55.7% 97.5%;
+}
+/*.right-choi-btn{*/
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*width: 40px;*/
+    /*height: 14px;*/
+    /*background-image: url(../images/ui/icons.png);*/
+    /*background-position: 63% 4%;*/
+    /*background-size: 400px 190px;*/
+    /*margin-top: 5px;*/
+    /*margin-right: 10px;*/
+    /*cursor: pointer;*/
+/*}*/

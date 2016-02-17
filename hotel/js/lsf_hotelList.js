@@ -325,10 +325,16 @@ function styleChange(id,mytext){
     var addressBok=true;
     //console.log(url_json);
 
+    var preloader=document.getElementById('preloader');
+    var status=document.getElementById('status');
     //交互部分
     function M(json){
         console.log('这是传入的数据');
         console.log(json);
+        preloader.style.display='block';
+        status.style.display='block';
+        var lsf_list=document.getElementById('lsf_list');
+        lsf_list.innerHTML='';
         json=json||{};
         json.rank=json.rank||'priceasc';
         json.CityName=json.CityName||'Singapore';
@@ -431,7 +437,6 @@ function styleChange(id,mytext){
                     '</li>';
                 list_oUl.innerHTML+=str;
             }
-
             //懒加载
             function lazyLoad2(){
                 lazyLoad.apply(this,arguments);
@@ -562,6 +567,22 @@ function styleChange(id,mytext){
             hlAddress();
         }
         addressBok=false;
+
+        $(function () {
+            //$("#status").fadeOut();
+            //$("#preloader").delay(400).fadeOut("medium");
+            var timer=null;
+            clearInterval(timer);
+            timer=setInterval(function(){
+                if($('#lsf_list').children().length){
+                    $("#status").fadeOut();
+                    $("#preloader").delay(400).fadeOut("medium");
+                    clearInterval(timer);
+                }
+                //console.log($('#lsf_list').children().length);
+            },30);
+        });
+
 
     }
     //历史记忆功能
