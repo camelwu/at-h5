@@ -163,6 +163,7 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
     }
     console.log(fake_data);
     console.log(1);
+    var hoPos=window.localStorage.getItem('hoPos');
 //本地存储数据
 //localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
@@ -417,20 +418,49 @@ uoHisData();
         var uo_c3_email=document.getElementById('uo_c3_email');
         fake_data.guestName=[];
         //验证名字
-        for(var i=0;i<aUo_firstname.length;i++){
-            if(aUo_lastname[i].value=='姓（如：Zhang）'){
-                alert('请输入姓');
-                return;
+        function checkCN(val){
+            for(var i=0;i<val.length;i++){
+                if(val[i].charCodeAt(0)>=0x4e00&&val[i].charCodeAt(0)<=0x9fa5){
+                    return true;
+                }else{
+                    return false;
+                }
             }
-
-            if(aUo_firstname[i].value=='名（如：San）'){
-                alert('请输入名');
-                return;
-            }
-            var GuestFirstName="GuestFirstName"+i;
-            var GuestLastName="GuestLastName"+i;
-            fake_data.guestName.push({"GuestFirstName":aUo_firstname[i].value,"GuestLastName":aUo_lastname[i].value});
         }
+        if(hoPos=='inter'){
+            for(var i=0;i<aUo_firstname.length;i++){
+                if(aUo_lastname[i].value=='姓（如：Zhang）'){
+                    alert('请输入姓');
+                    return;
+                }
+                if(checkCN(aUo_lastname[i].value)){
+                    alert('请输入英文姓或名');
+                    return;
+                }
+                if(checkCN(aUo_firstname[i].value)){
+                    alert('请输入英文姓或名');
+                    return;
+                }
+                if(aUo_firstname[i].value=='名（如：San）'){
+                    alert('请输入名');
+                    return;
+                }
+                fake_data.guestName.push({"GuestFirstName":aUo_firstname[i].value,"GuestLastName":aUo_lastname[i].value});
+            }
+        }else if(hoPos=='dom'){
+            for(var i=0;i<aUo_firstname.length;i++){
+                if(aUo_lastname[i].value=='姓（如：Zhang）'){
+                    alert('请输入姓');
+                    return;
+                }
+                if(aUo_firstname[i].value=='名（如：San）'){
+                    alert('请输入名');
+                    return;
+                }
+                fake_data.guestName.push({"GuestFirstName":aUo_firstname[i].value,"GuestLastName":aUo_lastname[i].value});
+            }
+        }
+
         //验证手机号
         /*if(uo_c3_tele.value=='用于接收短信通知'){
             alert('请输入手机号');
