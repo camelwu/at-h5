@@ -191,7 +191,7 @@ uoHisData();
 (function(){
     /*页面跳转动画*/
     $(window).load(function(){
-        $("#status").fadeOut();
+        $("#status-h").fadeOut();
         $("#preloader").delay(400).fadeOut("medium");
     });
 

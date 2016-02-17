@@ -130,7 +130,7 @@ function Yes(){
 }
 //预加载的图片
 $(window).load(function () {
-    $("#status").fadeOut();
+    $("#status-h").fadeOut();
     $("#preloader").delay(400).fadeOut("medium");
 });
 //房间数/人数/儿童数按钮事件

@@ -300,12 +300,12 @@ function styleChange(id,mytext){
     });
     var oUl=document.getElementById('lsf_list');
     $(window).load(function () {
-        //$("#status").fadeOut();
+        //$("#status-h").fadeOut();
         //$("#preloader").delay(400).fadeOut("medium");
         var timer=null;
         timer=setInterval(function(){
             if($('#lsf_list').children().length){
-                $("#status").fadeOut();
+                $("#status-h").fadeOut();
                 $("#preloader").delay(400).fadeOut("medium");
                 clearInterval(timer);
             }
@@ -326,13 +326,13 @@ function styleChange(id,mytext){
     //console.log(url_json);
 
     var preloader=document.getElementById('preloader');
-    var status=document.getElementById('status');
+    var status_h=document.getElementById('status-h');
     //交互部分
     function M(json){
         console.log('这是传入的数据');
         console.log(json);
         preloader.style.display='block';
-        status.style.display='block';
+        status_h.style.display='block';
         var lsf_list=document.getElementById('lsf_list');
         lsf_list.innerHTML='';
         json=json||{};
@@ -569,13 +569,13 @@ function styleChange(id,mytext){
         addressBok=false;
 
         $(function () {
-            //$("#status").fadeOut();
+            //$("#status-h").fadeOut();
             //$("#preloader").delay(400).fadeOut("medium");
             var timer=null;
             clearInterval(timer);
             timer=setInterval(function(){
                 if($('#lsf_list').children().length){
-                    $("#status").fadeOut();
+                    $("#status-h").fadeOut();
                     $("#preloader").delay(400).fadeOut("medium");
                     clearInterval(timer);
                 }
