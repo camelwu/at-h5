@@ -32,8 +32,6 @@ var ticketSeatChoose = {
         var reserveButton = document.querySelector('#reserve-button');
         var changeExplain = document.querySelector('#change-explain');
         var ticketShadow = document.querySelector('.ticket-shadow');
-        var backMeal = document.querySelector('.back-meal');
-        var backMealClose = document.querySelector('.back-meal-close');
         var detailWord = document.querySelector('.detail-word');
         var that = this;
 
@@ -159,17 +157,11 @@ var ticketSeatChoose = {
 
         });
         this.addHandler(changeExplain,'click', function(){
-            ticketShadow.style.display = 'block';
-            backMeal.style.display = 'block';
+            jLayer('<div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div>','退改签说明',function(){})
+
+
         });
-        this.addHandler(backMealClose,'click', function(event){
-            var event = event || window.event;
-            var target =event.target || event.srcElement;
-            if(target.tagName == 'I'){
-                ticketShadow.style.display = 'none';
-                backMeal.style.display = 'none';
-            }
-        });
+
         this.addHandler(detailWord,'click', function(event){
             ticketShadow.style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
@@ -390,7 +382,8 @@ var ticketSeatChoose = {
         }
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
-        var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="direction"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>'
+        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single'
+        var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>'
         var contentHtml ='<div class="air_content" style="background:#f5f4f9;">' +
             '<ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+that.createGoTripHtml(itemObj)+that.createBackTripHtml(itemObj)+'</li></ul>'+
             '<div class="price-important">' +
