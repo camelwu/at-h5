@@ -162,6 +162,7 @@
     padding-left: 14px;
     display: inline-flex;
     line-height: 45px;
+    overflow:hidden;
 }
 .nav2-leftbottom{
     height: 45px;
