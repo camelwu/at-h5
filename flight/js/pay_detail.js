@@ -117,8 +117,9 @@ var ticketPayDetail = {
     addEvent:function(){
         var payButton = document.querySelector('.air-ticket-pay-btn'),that = ticketPayDetail;
         this.addHandler(payButton,'click', function(){
-            var dataObj = {};
-            that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.resultFunction);
+           /* var dataObj = {};  //包含第一次调用de h5页面
+            that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.resultFunction);*/
+            document.location.href = 'ticket_order_detail.html'
         });
     },
     init:function(){
