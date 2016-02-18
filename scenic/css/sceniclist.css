@@ -20,60 +20,60 @@ li{
 i{
     font-style: normal;
 }
-.top {
-    width: 100%;
-    height: 45px;
-    padding: 1px;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    position: fixed;
-    z-index: 100;
-    background: linear-gradient(#16364f, #194361);
-}
+/*.top {*/
+    /*width: 100%;*/
+    /*height: 45px;*/
+    /*padding: 1px;*/
+    /*display: -moz-box;*/
+    /*display: -ms-flexbox;*/
+    /*display: -webkit-box;*/
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+    /*position: fixed;*/
+    /*z-index: 100;*/
+    /*background: linear-gradient(#16364f, #194361);*/
+/*}*/
 
-.icons {
-    background-image: url(../images/ui/icons.png);
-    background-repeat: no-repeat;
-    background-size: 243px 160px;
-    display: inline-block;
-}
+/*.icons {*/
+    /*background-image: url(../images/ui/icons.png);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 243px 160px;*/
+    /*display: inline-block;*/
+/*}*/
 
-.header-back {
-    width: 12px;
-    height: 22px;
-    margin-left: 1rem;
-}
+/*.header-back {*/
+    /*width: 12px;*/
+    /*height: 22px;*/
+    /*margin-left: 1rem;*/
+/*}*/
 
-.scro-container{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-.search {
-    width:62%;
-    height: 27px;
-    margin:0 auto;
-    margin-top: 0.7rem;
-    background-color: white;
-    border-radius: 0.5rem;
-}
+/*.scro-container{*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+/*}*/
+/*.search {*/
+    /*width:62%;*/
+    /*height: 27px;*/
+    /*margin:0 auto;*/
+    /*margin-top: 0.7rem;*/
+    /*background-color: white;*/
+    /*border-radius: 0.5rem;*/
+/*}*/
 
-.sousuo {
-    width: 80%;
-    height: 27px;
-    line-height: 27px;
-    font-size: 1.3rem;
-    margin-left: 1rem;
-    border: none;
-    background: none;
-    color: #999999;
-    padding-left: 28%;
-}
+/*.sousuo {*/
+    /*width: 80%;*/
+    /*height: 27px;*/
+    /*line-height: 27px;*/
+    /*font-size: 1.3rem;*/
+    /*margin-left: 1rem;*/
+    /*border: none;*/
+    /*background: none;*/
+    /*color: #999999;*/
+    /*padding-left: 28%;*/
+/*}*/
 
 /*景点css*/
 .search-tip {
@@ -90,7 +90,7 @@ i{
 
 .location-wrap {
     position: absolute;
-    right: 0;
+    right: 15px;
     top: 0;
     width: 4em;
     margin-top: 0.5rem;
@@ -121,10 +121,10 @@ i{
 
 }
 
-.cont-exhibition img {
-    width: 100%;
-    height: auto;
-}
+/*.cont-exhibition img {*/
+    /*width: 100%;*/
+    /*height: auto;*/
+/*}*/
 
 .scenic-list-box {
     background-color: #f5f4f9;
@@ -234,91 +234,91 @@ i{
 }
 
 /*底部筛选*/
-.sce-bottom {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 120;
-}
+/*.sce-bottom {*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*z-index: 120;*/
+/*}*/
 
-.sce-filter {
+/*.sce-filter {*/
 
-    height: 40px;
-    line-height: 40px;
-    background-color: #2e4a61;
-    opacity: 0.9;
-    filter: alpha(opacity:90);
-}
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    /*background-color: #2e4a61;*/
+    /*opacity: 0.9;*/
+    /*filter: alpha(opacity:90);*/
+/*}*/
 
-.sce-filter > a {
-    position: relative;
-    float: left;
-    width: 25%;
-    text-align: center;
-}
+/*.sce-filter > a {*/
+    /*position: relative;*/
+    /*float: left;*/
+    /*width: 25%;*/
+    /*text-align: center;*/
+/*}*/
 
-.sce-filter > a span {
-    color: #fff;
-    font-size: 1.4rem;
-}
+/*.sce-filter > a span {*/
+    /*color: #fff;*/
+    /*font-size: 1.4rem;*/
+/*}*/
 
-.cp-recommend {
-    -webkit-box-felx:2.8;
-    -moz-box-flex:2.8;
-    -ms-flex:2.8;
-    -webkit-flex:2.8;
-    flex: 2.8;
+/*.cp-recommend {*/
+    /*-webkit-box-felx:2.8;*/
+    /*-moz-box-flex:2.8;*/
+    /*-ms-flex:2.8;*/
+    /*-webkit-flex:2.8;*/
+    /*flex: 2.8;*/
 
-}
+/*}*/
 
-.well-rate {
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex: 2;
-}
+/*.well-rate {*/
+    /*-webkit-box-felx:2;*/
+    /*-moz-box-flex:2;*/
+    /*-ms-flex:2;*/
+    /*-webkit-flex:2;*/
+    /*flex: 2;*/
+/*}*/
 
-.price-sort {
-    -webkit-box-felx:2.3;
-    -moz-box-flex:2.3;
-    -ms-flex:2.3;
-    -webkit-flex:2.3;
-    flex: 2.3;
-}
+/*.price-sort {*/
+    /*-webkit-box-felx:2.3;*/
+    /*-moz-box-flex:2.3;*/
+    /*-ms-flex:2.3;*/
+    /*-webkit-flex:2.3;*/
+    /*flex: 2.3;*/
+/*}*/
 
-.gl-filter {
-    -webkit-box-felx:1.4;
-    -moz-box-flex:1.4;
-    -ms-flex:1.4;
-    -webkit-flex:1.4;
-    flex: 1.4;
-}
+/*.gl-filter {*/
+    /*-webkit-box-felx:1.4;*/
+    /*-moz-box-flex:1.4;*/
+    /*-ms-flex:1.4;*/
+    /*-webkit-flex:1.4;*/
+    /*flex: 1.4;*/
+/*}*/
 
-.price-sort-tip {
-    display: inline-block;
-    vertical-align: top;
-    width: 24px;
-    height: 16px;
-    background-image: url(../images/ui/icons1.png);
-    background-position: 40% 7%;
-    background-size: 400px 120px;
-    margin-top: 1.2rem;
+/*.price-sort-tip {*/
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    /*width: 24px;*/
+    /*height: 16px;*/
+    /*background-image: url(../images/ui/icons1.png);*/
+    /*background-position: 40% 7%;*/
+    /*background-size: 400px 120px;*/
+    /*margin-top: 1.2rem;*/
 
-}
+/*}*/
 
-.gl-filter-tip {
-    display: inline-block;
-    vertical-align: top;
-    width: 24px;
-    height: 16px;
-    background-image: url(../images/ui/icons1.png);
-    background-position: 46% 7%;
-    background-size: 400px 120px;
-    margin-top: 1.2rem;
+/*.gl-filter-tip {*/
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    /*width: 24px;*/
+    /*height: 16px;*/
+    /*background-image: url(../images/ui/icons1.png);*/
+    /*background-position: 46% 7%;*/
+    /*background-size: 400px 120px;*/
+    /*margin-top: 1.2rem;*/
 
-}
+/*}*/
 
 /*地区景点开始*/
 .sear-tab {
@@ -695,4 +695,36 @@ i{
     padding: 0 1.2rem;
     margin: 0.6rem;
     border-radius: 5px;
+}
+
+
+
+.sl-bottom{
+    width:100%;
+    height:44px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    background:#173c58;
+    opacity: 0.8;
+    position:fixed;
+    bottom: 0;
+    text-align: center;
+    font-size: 10em;
+    color:white;
+    z-index: 999999;
+}
+.sl-bottom div{
+    text-align: center;
+    /*width: 33.3%;*/
+    color: white;
+    font-size: 11px;
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    overflow:hidden;
 }

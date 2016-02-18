@@ -16,7 +16,7 @@
                 "ForeEndType": 3,
                 "Code": "0074"
             };
-            //console.log(Parameters);
+            console.log(Parameters);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
             var addtra_page = $("#addtra_page")[0];
