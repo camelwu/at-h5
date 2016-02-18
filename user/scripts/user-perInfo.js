@@ -101,6 +101,16 @@ function u_perInfo(){
     amendInfo(a_email,head[3],useremail);
     amendInfo(a_key,head[4],amendkey);
 
+    $('#a_nick').click(function(){
+        $('#amend_btn_0').hide();
+        $('#amend_btn_1').hide();
+        $('#amend_btn_2').hide();
+    });
+
+    $('#a_name').click(function(){
+        $('#amend_btn_0').show().siblings('input').hide();
+    });
+
     $('#a_phone').click(function(){
         $('#amend_btn_1').show().siblings('input').hide();
     });
@@ -115,6 +125,7 @@ function u_perInfo(){
     });
     //  性别选择
     function changeSex(obj){
+
         obj.onclick = function() {
             if(sex.className != "info-sex-on"){
                 sex.className="info-sex-on";
@@ -126,21 +137,22 @@ function u_perInfo(){
                 UserSex=27;
             }
 
-            //返回按钮保存性别
-            var oPerBack=$('#per-back')[0];
-            function closeSex(obj){
-                obj.onclick = function(){
-                    var Parameters={
-                        "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Salutation\":\""+UserSex+"\"}",
-                        "ForeEndType": 3,
-                        "Code": "0056"
-                    };
-                    console.log(Parameters);
-                    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_sex);
-                }
-            }
-            closeSex(oPerBack);
         };
+
+        //返回按钮保存性别
+        var oPerBack=$('#per-back')[0];
+        function closeSex(obj){
+            obj.onclick = function(){
+                var Parameters={
+                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Salutation\":\""+UserSex+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0056"
+                };
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_sex);
+            }
+        }
+        closeSex(oPerBack);
     }
     changeSex(sex);
     //  修改昵称
@@ -172,7 +184,7 @@ function u_perInfo(){
         }
     };
     //修改信息
-    var amend_btn = $("#amend_btn")[0];
+    var amend_btn = $("#amend_btn_0")[0];
     var amend_btn_1 = $("#amend_btn_1")[0];
     var amend_btn_2 = $("#amend_btn_2")[0];
     //修改姓名
@@ -203,7 +215,7 @@ function u_perInfo(){
                 "Code": "0056"
             };
             console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters));
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
         }
     }
     selDate(oPerBack);
@@ -330,13 +342,15 @@ function u_perInfo(){
 
 }
 
-////保存出生日期回调
-//function mycallback_birth(ret){
-//    var myJson=eval('('+ret+')');
-//    console.log(myJson);
-//}
-
-
+//保存出生日期回调
+function mycallback_birth(ret){
+    var myJson=eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.success)
+    {
+        window.location.href="user.html"
+    }
+}
 
 function mycallback(ret){
     infoJson = eval('('+ret+')');

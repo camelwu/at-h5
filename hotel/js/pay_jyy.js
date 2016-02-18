@@ -93,7 +93,7 @@ var lsf_myweb={
 ;(function(){
     //预加载的图片
     $(window).load(function () {
-        $("#status").fadeOut();
+        $("#status-h").fadeOut();
         $("#preloader").delay(400).fadeOut("medium");
     });
     //从上一页得到的数据

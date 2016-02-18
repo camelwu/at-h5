@@ -25,7 +25,6 @@
                 type:'single'
             });
         },
-
         reDate:function(arg){
             var reg = /(\d{1,2}-\d{1,2})[\s\S]*/g;
             return new Date().getFullYear()+'-'+reg.exec(arg)[1];},

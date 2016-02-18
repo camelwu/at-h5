@@ -213,7 +213,7 @@
 
         subRoomListNoService: function (arg) {
 
-            var str = arg.listNum ? '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span><span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另附税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另附税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
+            var str = arg.listNum ? '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span><span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
 
             return str;
         },
@@ -222,7 +222,7 @@
 
             var str = '<li class="d-li1"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">';
             str += arg.isabd ? arg.roomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>' : arg.roomName + '(无早)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
-            str += '<div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.totalPriceCNY + '</span></span><span class="TaxChange">另附税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
+            str += '<div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.totalPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
             return str;
 
         },
@@ -393,10 +393,10 @@
 
             footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
 
-            contentStr += '<div id="content" class="snap-content" style="padding-top: 45px; padding-bottom: 50px;">' + frontImgStr + firstUl + secondUl + '</div>';
+            contentStr += '<div id="content" class="snap-content" style="padding-top: 45px;">' + frontImgStr + firstUl + secondUl + footer + '</div>';
 
 
-            allStr += headerStr + contentStr + footer;
+            allStr += headerStr + contentStr;
 
             hotelDetail.$CN('all-elements')[0].innerHTML = '';
 
@@ -555,10 +555,10 @@
         updateSubRoomModal: function (arg) {
             console.log(arg);
             console.log(1);
-            var oDiv = document.createElement('div'), modalStr = '';
-            oDiv.className = "roomAll";
-            oDiv.id = "infoAll";
-            modalStr += '<div class="hdStandard"><div class="info-div"><ul class="ro-info">';
+            var modalStr = '';
+            //oDiv.className = "roomAll";
+            //oDiv.id = "infoAll";
+            modalStr += '<div class="info-div"><ul class="ro-info">';
             modalStr += arg.roomSize ? '<li class="ro-info-item"><span class="item-name">房屋面积</span><span class="item-content">' + arg.roomSize + '</span></li>' : '';
             modalStr += arg.bedType ? '<li class="ro-info-item"><span class="item-name">床型</span><span class="item-content">' + arg.bedType + '</span></li>' : '';
             modalStr += arg.isFreeWifi ? '<li class="ro-info-item"><span class="item-name">wifi</span><span class="item-content">有</span></li>' : '';
@@ -568,16 +568,16 @@
             modalStr += arg.maxChildOccupancy ? '<li class="ro-info-item"><span class="item-name">最多孩子数</span><span class="item-content">' + arg.maxChildOccupancy + '人</span></li>' : '';
             modalStr += arg.minNight ? '<li class="ro-info-item"><span class="item-name">最少居住晚数</span><span class="item-content">' + arg.minNight + '晚</span></li>' : '';
             modalStr += arg.isCashRebate ? '</div><div class="info-div"><div class="rate-rule">优惠政策</div><p class="info-text"><span>现金奖励</span>优惠政策内容</p></div>' : '';
-            modalStr += arg.cancelWord ? '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text">取消说明规则</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text"><span class="infoTxtCan">暂无取消说明内容</span></p></div></div>';
-            modalStr += arg.isabd ? '<header class="r-top"><p class="r-p1">' + arg.roomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.roomName + '</p><b class="r-icon1 closeTag"></b></header>';
-            oDiv.innerHTML = modalStr;
-            document.body.appendChild(oDiv);
-            hotelDetail.$Id('r-mb').style.display = 'block';
-            document.getElementById('r-mb').onclick =hotelDetail.$CN('closeTag')[0].onclick = function (event) {
-                document.body.removeChild(hotelDetail.$Id('infoAll'))
-                hotelDetail.$Id('r-mb').style.display = 'none';
-            }
-
+            modalStr += arg.cancelWord ? '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text">取消说明规则</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text"><span class="infoTxtCan">暂无取消说明内容</span></p></div>';
+            // modalStr += arg.isabd ? '<header class="r-top"><p class="r-p1">' + arg.roomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.roomName + '</p><b class="r-icon1 closeTag"></b></header>';          oDiv.innerHTML = modalStr;
+            //document.body.appendChild(oDiv);
+            //hotelDetail.$Id('r-mb').style.display = 'block';
+            //document.getElementById('r-mb').onclick =hotelDetail.$CN('closeTag')[0].onclick = function (event) {
+             //   document.body.removeChild(hotelDetail.$Id('infoAll'))
+             //   hotelDetail.$Id('r-mb').style.display = 'none';
+            //};
+			var title = arg.isabd ? arg.roomName + '(含早)' : arg.roomName;
+			jLayer(modalStr, title);
         },
 
         toggleSubModals: function () {
@@ -631,7 +631,7 @@
                 };
                 return oSrc;
             }
-            oDiv.className = 'roomAll';
+            /*oDiv.className = 'roomAll';
             oDiv.id = 'roomAll';
             oDiv.innerHTML = '<div class="room" id="room"> <div class="owl-carousel">'+showPic(result.data[0].hotelRoomFeaturesList)+'</div> <article class="r-ar">最多 2成人<br>儿童10岁或以上按照成人算。  10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费 </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间描述</p> <article class="r-ar" id="hdRoomDesc">'+showDesc(result.data[0].hotelRoomFeaturesList)+' </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">'+showFeature(result.data[0].hotelRoomAmenitiesList)+'</ul> </div><header class="r-top"><p class="r-p1">高级客房</p><b class="r-icon1 closeTagAgain"></b></header>';
             document.body.appendChild(oDiv);
@@ -639,7 +639,9 @@
             document.getElementById('r-mb').onclick = hotelDetail.$CN('closeTagAgain')[0].onclick = function (event) {
                 document.body.removeChild(hotelDetail.$Id('roomAll'))
                 hotelDetail.$Id('r-mb').style.display = 'none';
-            };
+            };*/
+           var message = '<div class="owl-carousel">'+showPic(result.data[0].hotelRoomFeaturesList)+'</div> <article class="r-ar">最多 2成人<br>儿童10岁或以上按照成人算。  10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费 </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间描述</p> <article class="r-ar" id="hdRoomDesc">'+showDesc(result.data[0].hotelRoomFeaturesList)+' </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">'+showFeature(result.data[0].hotelRoomAmenitiesList)+'</ul>';
+           jLayer(message, "房间信息");
             //如果图片没有加载出来就显示默认图片
             var aImg=oDiv.getElementsByTagName('img');
             var hdRoomDesc=document.getElementById('hdRoomDesc');

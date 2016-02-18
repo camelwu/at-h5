@@ -53,12 +53,12 @@
 
     //页面加载小动画
     $(window).load(function () {
-        //$("#status").fadeOut();
+        //$("#status-h").fadeOut();
         //$("#preloader").delay(400).fadeOut("medium");
         var timer=null;
         timer=setInterval(function(){
             if($('#lsf_reDetail_grade').children().length){
-                $("#status").fadeOut();
+                $("#status-h").fadeOut();
                 $("#preloader").delay(400).fadeOut("medium");
                 clearInterval(timer);
             }
