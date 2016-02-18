@@ -131,8 +131,6 @@ var ticketOrder = {
                 document.querySelector('.ticket-detail-modal').style.display = 'block';
             });
         }
-
-
         this.addHandler(summaryCostShadowTwo,'click', function(event){
                 this.style.display = 'none';
                 document.querySelector('.ticket-detail-modal').style.display = 'none';

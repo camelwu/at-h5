@@ -2937,7 +2937,7 @@ h1, h2, h3, h4, h5, h6 {
 .summary-cost-modal {
     padding: 0 1.0rem;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background: #FFFFFF;
     z-index: 9;

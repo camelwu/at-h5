@@ -1,7 +1,7 @@
 ﻿// JavaScript Document
 
 require.config({
-    baseUrl: 'js/lib',
+    baseUrl: '../js/lib',
     paths: {
         plugins: 'plugins'
     },
