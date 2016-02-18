@@ -185,12 +185,14 @@ var ticketSingle = {
         var that = ticketSingle;
         document.querySelector('#preloader').style.display='none';
         console.log(arg)
-        that.storageUtil.set('flightListData',arg['data']);
-        if(arg.success&&arg.code==200){
-            that.changeFlightList(arg);
-            that.eventHandler();
-            that.taxDeal(arg.data.flightInfos);
-        }
+        if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
+                that.storageUtil.set('flightListData',arg['data']);
+                that.changeFlightList(arg);
+                that.eventHandler();
+                that.taxDeal(arg.data.flightInfos);
+        }else{
+              jAlert('无航班信息，换种条件试试！', '', function(){});
+          }
     },
 
     taxDeal:function(arg){
@@ -310,7 +312,8 @@ var ticketSingle = {
            for(var tem in paraObj){
                that.backParaObj[tem] = paraObj[tem]
               }
-              that.tAjax(this.requestUrl, temObj, "3001", 3, that.renderHandler);
+        console.log(that.backParaObj)
+              that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
               var temObj = that.checkTip();
               that.initLeftState.left!=temObj.left?document.querySelector('#fo_sc i').className='red-tip':document.querySelector('#fo_sc i').className='';
               that.initLeftState.middle!=temObj.middle?document.querySelector('#fo_ra i').className='red-tip':document.querySelector('#fo_ra i').className='';
