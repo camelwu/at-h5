@@ -164,6 +164,12 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
     console.log(fake_data);
     console.log(1);
     var hoPos=window.localStorage.getItem('hoPos');
+    //hoPos='dom';
+    //国际酒店有邮箱，国内酒店没有邮箱
+    if(hoPos=='dom'){
+        var uo_con3=document.getElementById('uo_con3');
+        uo_con3.removeChild(uo_con3.children[2]);
+    }
 //本地存储数据
 //localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
@@ -232,13 +238,24 @@ uoHisData();
     uo_c2_num.innerHTML=fake_data.NumOfRoom;
     var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
     for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
-        uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
-            '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-            '<div class="uo_c3_infor">'+
-            '<input type="text" value="姓（如：Zhang）" class="uo_lastname"  />'+
-            '<input type="text" value="名（如：San）" class="uo_firstname"  />'+
-            '</div>'+
-            '</div>';
+        if(hoPos=='inter'){
+            uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
+                '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+                '<div class="uo_c3_infor">'+
+                '<input type="text" value="姓（如：Zhang）" class="uo_lastname"  />'+
+                '<input type="text" value="名（如：San）" class="uo_firstname"  />'+
+                '</div>'+
+                '</div>';
+        }else if(hoPos=='dom'){
+            uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
+                '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+                '<div class="uo_c3_infor">'+
+                '<input type="text" value="姓（如：张）" class="uo_lastname"  />'+
+                '<input type="text" value="名（如：三）" class="uo_firstname"  />'+
+                '</div>'+
+                '</div>';
+        }
+
     }
     //姓名手机号邮箱实现历史选择记忆功能
     function uoHisFillIn(){
@@ -264,9 +281,14 @@ uoHisData();
     uoHisFillIn();
     //输入框默认字体设置
     styleChange('uo_c3_tele','用于接收短信通知');
-    styleChange('uo_c3_email','用于接收邮件通知');
-    styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
-    styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
+    if(hoPos=='inter'){
+        styleChange('uo_c3_email','用于接收邮件通知');
+        styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
+        styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
+    }else if(hoPos=='dom'){
+        styleChange2('uo_c3_peoBox','uo_lastname','姓（如：张）');
+        styleChange2('uo_c3_peoBox','uo_firstname','名（如：三）');
+    }
     // 明细
     function uo_detail(id1,id2,id3,id4,id5,id6,id7,json){
         console.log(json);
@@ -316,8 +338,13 @@ uoHisData();
                     '</div>';
             }*/
             //输入框默认字体设置
-            styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
-            styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
+            if(hoPos=='inter'){
+                styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
+                styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
+            }else if(hoPos=='dom'){
+                styleChange2('uo_c3_peoBox','uo_lastname','姓（如：张）');
+                styleChange2('uo_c3_peoBox','uo_firstname','名（如：三）');
+            }
         }
         if(parseInt(uo_c2_num.innerHTML)<=1){
             uo_c2_i1.style.background='url("../images/down2.png") no-repeat';
@@ -347,11 +374,19 @@ uoHisData();
             for(var i=parseInt(myNum);i<parseInt(uo_c2_num.innerHTML);i++){
                 var oDiv=document.createElement('div');
                 oDiv.className='uo_c3_peo';
-                oDiv.innerHTML='<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-                '<div class="uo_c3_infor">'+
-                '<input type="text" value="姓（如：Zhang）" class="uo_lastname"  />'+
-                '<input type="text" value="名（如：San）" class="uo_firstname"  />'+
-                '</div>';
+                if(hoPos=='inter'){
+                    oDiv.innerHTML='<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+                        '<div class="uo_c3_infor">'+
+                        '<input type="text" value="姓（如：Zhang）" class="uo_lastname"  />'+
+                        '<input type="text" value="名（如：San）" class="uo_firstname"  />'+
+                        '</div>';
+                }else if(hoPos=='dom'){
+                    oDiv.innerHTML='<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
+                        '<div class="uo_c3_infor">'+
+                        '<input type="text" value="姓（如：张）" class="uo_lastname"  />'+
+                        '<input type="text" value="名（如：三）" class="uo_firstname"  />'+
+                        '</div>';
+                }
                 uo_c3_peoBox.appendChild(oDiv);
             }
 
@@ -366,8 +401,13 @@ uoHisData();
                     '</div>';
             }*/
             //输入框默认字体设置
-            styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
-            styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
+            if(hoPos=='inter'){
+                styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
+                styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
+            }else if(hoPos='dom'){
+                styleChange2('uo_c3_peoBox','uo_lastname','姓（如：张）');
+                styleChange2('uo_c3_peoBox','uo_firstname','名（如：三）');
+            }
         }
         if(parseInt(uo_c2_num.innerHTML)>1){
             uo_c2_i1.style.background='url("../images/down1.png") no-repeat';
@@ -449,11 +489,11 @@ uoHisData();
             }
         }else if(hoPos=='dom'){
             for(var i=0;i<aUo_firstname.length;i++){
-                if(aUo_lastname[i].value=='姓（如：Zhang）'){
+                if(aUo_lastname[i].value=='姓（如：张）'){
                     alert('请输入姓');
                     return;
                 }
-                if(aUo_firstname[i].value=='名（如：San）'){
+                if(aUo_firstname[i].value=='名（如：三）'){
                     alert('请输入名');
                     return;
                 }
@@ -487,11 +527,13 @@ uoHisData();
             }
         }
         console.log(fake_data);
-        if(uo_c3_email.value=='用于接收邮件通知'){
-            alert('请输入邮箱');
-            return;
-        }else{
-            fake_data.GuestEmail=uo_c3_email.value;
+        if(uo_c3_email){
+            if(uo_c3_email.value=='用于接收邮件通知'){
+                alert('请输入邮箱');
+                return;
+            }else{
+                fake_data.GuestEmail=uo_c3_email.value;
+            }
         }
         window.localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         console.log(fake_data);
