@@ -57,30 +57,4 @@
     lsf_myweb.bind(td_back,'click',function(){
         window.history.go(-1);
     })
-    var mydata=JSON.parse(localStorage.getItem('user_order_storage12345'));
-    console.log(mydata);
-    console.log(mydata.TotalPrice);
-    var tdHoteName=document.getElementById('tdHoteName');
-    var tdCheckInDate=document.getElementById('tdCheckInDate');
-    var tdCheckOutDate=document.getElementById('tdCheckOutDate');
-    var tdRoomType=document.getElementById('tdRoomType');
-    var tdNoomRoom=document.getElementById('tdNoomRoom');
-    var tdPrice=document.getElementById('tdPrice');
-    tdHoteName.innerHTML=mydata.HotelGenInfo.hotelName;
-    tdCheckInDate.innerHTML=mydata.dateInfo.CheckInDate;
-    tdCheckOutDate.innerHTML=mydata.dateInfo.CheckOutDate;
-    tdRoomType.innerHTML=mydata.RoomTypeName;
-    tdPrice.innerHTML='￥'+mydata.totalPriceCNY;
-
-    var homeUrl=document.getElementById('fl')
-    lsf_myweb.bind(homeUrl,'click',function(){
-        location.href="index.html";
-    })
-
-
-    var orderDetailUrl=document.getElementById('fr')
-    lsf_myweb.bind(orderDetailUrl,'click',function(){
-        location.href="order-details.html";
-    })
-
 })();
