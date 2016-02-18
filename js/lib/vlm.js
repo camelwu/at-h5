@@ -903,6 +903,18 @@
                 '<a href="javascript:;" class="btn full-button button-orange" style="margin-top: 44px;" id="register_btn">注册</a>',
             	]
 			];
+		},
+		f_choice = function(t){
+			var urls='',title='';
+			if(t==="concact"){
+				title='选择联系人';
+				urls='../user/cont-list.html';
+			}else{
+				title='选择乘机人';
+				urls='../user/user-choiceAir.html';
+			}
+			var choice=window.open('_blank',title,"fullscreen=1",yes);
+			choice.location = urls;
 		};
 		//out api
 		return {
