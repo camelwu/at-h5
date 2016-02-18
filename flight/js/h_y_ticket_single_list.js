@@ -100,7 +100,6 @@ var ticketSingle = {
 
     returnWeek:function(arg){
         var index = new Date(arg.replace(/-/g, "/")).getDay(),week;
-        console.log(index)
         switch (index){
             case 0 :
                 week = '周日';
@@ -152,10 +151,14 @@ var ticketSingle = {
             var monthNum = (dd.getMonth()+1)<10?"0"+parseInt((dd.getMonth()+1)):dd.getMonth()+1;
             var dateNum = (dd.getDate())<10?"0"+parseInt(dd.getDate()):dd.getDate();
             var arg = dd.getFullYear()+'-'+monthNum+'-'+dateNum;
-            var result = ticketSingle.returnWeek(arg);
-            document.querySelector('.single-ticket-input').innerHTML = result;
-            that.backParaObj.DepartDate = arg;
-            that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+            if(new Date(arg.replace(/-/g, "/"))-new Date()>0){
+                var result = ticketSingle.returnWeek(arg);
+                document.querySelector('.single-ticket-input').innerHTML = result;
+                that.backParaObj.DepartDate = arg;
+                that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+            }else {
+                oDivs[0].className = 'unit previous-day disabled-date-choose'
+            }
         });
         ticketSingle.addHandler(oDivs[1], 'click', function(){
             var str = document.querySelector('.single-ticket-input').innerHTML;
@@ -166,10 +169,14 @@ var ticketSingle = {
             var monthNum = (dd.getMonth()+1)<10?"0"+parseInt((dd.getMonth()+1)):dd.getMonth()+1;
             var dateNum = (dd.getDate())<10?"0"+parseInt(dd.getDate()):dd.getDate();
             var arg = dd.getFullYear()+'-'+monthNum+'-'+dateNum;
-            var result_ = ticketSingle.returnWeek(arg);
-            document.querySelector('.single-ticket-input').innerHTML = result_;
-            that.backParaObj.DepartDate = arg;
-            that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+            if(new Date(arg.replace(/-/g, "/"))-new Date()>0){
+                var result_ = ticketSingle.returnWeek(arg);
+                oDivs[0].className = 'unit previous-day';
+                document.querySelector('.single-ticket-input').innerHTML = result_;
+                that.backParaObj.DepartDate = arg;
+                that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+            }
+
         });
     },
 
@@ -178,12 +185,14 @@ var ticketSingle = {
         var that = ticketSingle;
         document.querySelector('#preloader').style.display='none';
         console.log(arg)
-        that.storageUtil.set('flightListData',arg['data']);
-        if(arg.success&&arg.code==200){
-            that.changeFlightList(arg);
-            that.eventHandler();
-            that.taxDeal(arg.data.flightInfos);
-        }
+        if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
+                that.storageUtil.set('flightListData',arg['data']);
+                that.changeFlightList(arg);
+                that.eventHandler();
+                that.taxDeal(arg.data.flightInfos);
+        }else{
+              jAlert('无航班信息，换种条件试试！', '', function(){});
+          }
     },
 
     taxDeal:function(arg){
@@ -271,7 +280,7 @@ var ticketSingle = {
             '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].airCorpName+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
             '</div ></div>' +
             '<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span ><span class = "price-num">'+arg.data.flightInfos[i].totalFareAmountExc+'</span>'+
-            '</div ></div></li >';
+            '</div ><div class="single-price-tax-info"><span class="tax-word">税</span>￥'+arg.data.flightInfos[i].totalTaxAmountADT+'</div></div></li >';
         }
         ticketDetailUl.innerHTML = '';
         ticketDetailUl.innerHTML = ticketListStr;
@@ -303,7 +312,8 @@ var ticketSingle = {
            for(var tem in paraObj){
                that.backParaObj[tem] = paraObj[tem]
               }
-              that.tAjax(this.requestUrl, temObj, "3001", 3, that.renderHandler);
+        console.log(that.backParaObj)
+              that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
               var temObj = that.checkTip();
               that.initLeftState.left!=temObj.left?document.querySelector('#fo_sc i').className='red-tip':document.querySelector('#fo_sc i').className='';
               that.initLeftState.middle!=temObj.middle?document.querySelector('#fo_ra i').className='red-tip':document.querySelector('#fo_ra i').className='';
@@ -311,13 +321,30 @@ var ticketSingle = {
     },
 
     eventHandler:function(){
-        var oLis =  document.querySelectorAll('.seat-detail'),that = ticketSingle;
+        var oLis =  document.querySelectorAll('.seat-detail'),that = ticketSingle,shadowBox = document.querySelector('#r-shadow'),
+            filterModal=document.querySelector('#filter-modal'),timeModal = document.querySelector('#time-modal'),priceModal = document.querySelector('#price-modal');
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
                 '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild;
             })
         }
+        this.addHandler(shadowBox, 'click', function(){
+            if(filterModal.style.bottom == '0px'){
+                filterModal.style.transition = 'all 300ms ease-in';
+                filterModal.style.webkitTransition = 'all 300ms linear';
+                filterModal.style.bottom = '-126%';
+            }else if(timeModal.style.bottom == '0px'){
+                timeModal.style.transition = 'all 300ms ease-in';
+                timeModal.style.webkitTransition = 'all 300ms linear';
+                timeModal.style.bottom = '-126%';
+            }else if(priceModal.style.bottom == '0px'){
+                priceModal.style.transition = 'all 300ms ease-in';
+                priceModal.style.webkitTransition = 'all 300ms linear';
+                priceModal.style.bottom = '-126%';
+            }
+            this.style.display = 'none';
+        })
     },
 
     taxHandler:function(){
@@ -327,7 +354,6 @@ var ticketSingle = {
             var event = event || window.event;
             var target =target||event.srcElement;
             var sibLis =target.parentNode.querySelectorAll('li'),temParaObject={data:{flightInfos:[]}};
-
             if(target.getAttribute('data-i')=='noTax'){
                 if(that.cacheTypeData.freeTaxData.length==0){
                     jAlert('当前航班均含税，换种条件试试!', '', function(){})
@@ -360,7 +386,7 @@ var ticketSingle = {
 
             this.style.transition = 'all 300ms ease-in';
             this.style.webkitTransition = 'all 300ms linear';
-            this.style.bottom = '-50%';
+            this.style.bottom = '-126%';
             shadowBox.style.display = 'none';
         });
     },
@@ -369,16 +395,17 @@ var ticketSingle = {
         var backParaObj = this.parseUrlPara(document.location.search, true);
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
-        this.tripType = "domestic"; //international backParaObj.tripType
+        this.tripType = "international"; //international backParaObj.tripType
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
         backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
         this.backParaObj = backParaObj;
+        console.log(this.backParaObj)
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.dateInit(backParaObj);
         this.preAndNex();
-        this.eventHandler();
         bottomModal.init('all-elements',this.tripType,"single",this.callRender);
+        this.eventHandler();
         this.taxHandler();
         this.initLeftState = this.checkTip();
     }

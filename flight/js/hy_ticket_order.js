@@ -1,4 +1,7 @@
 var ticketOrder = {
+
+    requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
+
     addHandler: function (target, eventType, handle) {
 
         if (document.addEventListener) {
@@ -88,11 +91,8 @@ var ticketOrder = {
         });
 
         this.addHandler(confirmButton,'click', function(){
-            document.location.href = 'pay_detail.html';
-        });
-
-        this.addHandler(confirmButton,'click', function(){
-            document.location.href = 'pay_detail.html';
+             console.log('dataCommit')
+             document.location.href = 'pay_detail.html';
         });
 
         this.addHandler(addPassenger,'click', function(){
@@ -156,10 +156,21 @@ var ticketOrder = {
 
     },
 
+    tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
+        var that=this,dataObj =
+        {
+            Parameters: data,
+            ForeEndType: ForeEndType,
+            Code: Code
+        };
+        questUrl = questUrl?questUrl:that.requestUrl;
+        vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    },
+
     returnDate:function(arg){
         var argArray = /(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(arg);
         var transferData = argArray[1]+'-'+argArray[2]+'-'+argArray[3];
-        var index = new Date(transferData).getDay(),week='';
+        var index = new Date(transferData.replace(/-/g, "/")).getDay(),week='';
         switch (index){
             case 0 :
                 week = '周日';
@@ -279,7 +290,7 @@ var ticketOrder = {
                 var str = '',transferStr='',dayStr='',that = ticketOrder;
                 for(var j = 0;j<arg.length;j++){
                     transferStr= arg[j+1]!=undefined?'<div class="transit-city-hour">中转'+arg[j].cityNameTo+'</div>':'';
-                    dayStr= Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)>=1?Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)+'天':'';
+                    dayStr= Math.floor((new Date(arg[j].arriveDate.replace(/-/g, "/")) - new Date(arg[j].departDate.replace(/-/g, "/")))/1000/60/60/24)>=1?Math.floor((new Date(arg[j].arriveDate.replace(/-/g, "/")) - new Date(arg[j].departDate.replace(/-/g, "/")))/1000/60/60/24)+'天':'';
                     str+='<div class="go-trip start">' +
                     '<div class="time-airport-info">'+
                     '<div class="start-time-info">'+

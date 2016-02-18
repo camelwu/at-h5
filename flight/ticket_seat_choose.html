@@ -4,7 +4,10 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
     <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
@@ -16,11 +19,10 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-
-
     <title>选择舱位</title>
     <link href="../styles/framework.css" rel="stylesheet" type="text/css">
     <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
     <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
    <!-- <link href="user_win/css/login_win.css"	rel="stylesheet" type="text/css">-->
 </head>
@@ -28,7 +30,7 @@
 <div class="all-elements">
     <header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i>
         <span class="set-place">洛杉矶</span>
-        <i class="direction"></i>
+        <i class="direction-double"></i>
         <span class="to-place">上海</span>
     </header>
     <div class="air_content"  style="background:#f5f4f9;">
@@ -143,33 +145,6 @@
 
     <!--遮罩-->
     <div class="ticket-shadow" style="display: none"></div>
-    <div class="buy-ticket-notice back-meal" style="display: none">
-        <div class="header back-meal-close">
-            <span>退改签说明</span>
-            <span><i></i></span>
-        </div>
-        <div class="content-notice ">
-            <p>
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-            </p>
-
-        </div>
-
-    </div>
     <!--模块详情模块内容-->
     <div class="ticket-detail-modal" style="display: none;">
         <ul class="detail-outer">
@@ -387,6 +362,7 @@
 </body>
 <!--<script src="user_win/js/require.js" data-main="user_win/js/user.js"></script>-->
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <!--<script type="text/javascript" src="user_win/js/lib/vlm.js"></script>-->
 <!--<script type="text/javascript" src="user_win/js/login-win.js"></script>-->
 <script type="text/javascript" src="js/hy_ticket_seat_choose.js"></script>

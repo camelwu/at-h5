@@ -42,10 +42,15 @@ var ticketOrderDetail = {
         var cancelButton = document.querySelector('.cancel');
         var callButton = document.querySelector('.call');
         var contactWrapOuter = document.querySelector('.contact-wrap-outer');
+        var payButton = document.querySelector('.pay-button');
 
         this.addHandler(topTel, 'click', function(){
             mb.style.display = 'block';
             contactWrap.style.display = 'block';
+        });
+
+        this.addHandler(payButton, 'click', function(){
+            document.location.href = 'pay_fail.html'
         });
 
         this.addHandler(coDiv, 'click', function(){

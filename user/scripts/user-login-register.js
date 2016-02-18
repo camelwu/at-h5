@@ -181,10 +181,12 @@ window.onload = function(){
                 }
             }
             var Parameters= {
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\"" + email.value + "\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value + "\"}",
+                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email.value+"\",\"Password\":\""+login_pass.value+"\",\"Mobile\":\""+phone.value+"\"}",
                 "ForeEndType": 3,
                 "Code": "0052"
+
             };
+
             console.log(Parameters);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
         }

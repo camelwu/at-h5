@@ -11,14 +11,22 @@
 	(function(n) {
 		var _api = "http://123.56.190.34:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 			home : ['首页', basePath],
-			find : ['发现', basePath + '/find.html'],
+			find : ['目的地', basePath + '/scenic/scenic_list.html'],
 			user : ['我的', basePath + '/user/user.html']
 		},getpara = function(str) {
-			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var reg = new RegExp("(^|&)"+ str +"=([^&]*)(&|$)");
      		var r = window.location.search.substr(1).match(reg);
      		if(r!=null) return unescape(r[2]);
      		return null;
-		},
+		},parseUrlPara = function (url, isEncode) {
+            var isEncode = isEncode || false;
+            var reg = /([^=&?]+)=([^=&?]+)/g, obj = {};
+            url.replace(reg, function () {
+                var arg = arguments;
+                obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
+            });
+            return obj;
+       },
 		_init = function() {
 			_loadend();
 			var hrefstr = window.location.href, _a = hrefstr.split("/"), _s = _a[_a.length - 1], _p = _s.indexOf("."), _k = _s.substring(0, _p);
@@ -899,6 +907,8 @@
 		//out api
 		return {
 			api : _api,
+			getpara : getpara,
+			parseUrlPara : parseUrlPara,
 			loading : _loading,
 			loadend : _loadend,
 			init : _init,

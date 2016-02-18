@@ -300,12 +300,12 @@ function styleChange(id,mytext){
     });
     var oUl=document.getElementById('lsf_list');
     $(window).load(function () {
-        //$("#status").fadeOut();
+        //$("#status-h").fadeOut();
         //$("#preloader").delay(400).fadeOut("medium");
         var timer=null;
         timer=setInterval(function(){
             if($('#lsf_list').children().length){
-                $("#status").fadeOut();
+                $("#status-h").fadeOut();
                 $("#preloader").delay(400).fadeOut("medium");
                 clearInterval(timer);
             }
@@ -326,13 +326,13 @@ function styleChange(id,mytext){
     //console.log(url_json);
 
     var preloader=document.getElementById('preloader');
-    var status=document.getElementById('status');
+    var status_h=document.getElementById('status-h');
     //交互部分
     function M(json){
         console.log('这是传入的数据');
         console.log(json);
         preloader.style.display='block';
-        status.style.display='block';
+        status_h.style.display='block';
         var lsf_list=document.getElementById('lsf_list');
         lsf_list.innerHTML='';
         json=json||{};
@@ -415,7 +415,7 @@ function styleChange(id,mytext){
                     '</div>'+
                     '<div class="ho_infor">'+
                     '<p class="hname"  style="font-size:1.6rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
-                    data[i].hotelNameLocale+'('+data[i].hotelName+')'+
+                    (data[i].hotelNameLocale||'')+'('+data[i].hotelName+')'+
                     '</p>'+
                     '<div class="h-score">'+
                     '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+data[i].hotelReviewScore+'</span>'+
@@ -442,7 +442,7 @@ function styleChange(id,mytext){
                 lazyLoad.apply(this,arguments);
             }
             lazyLoad2.prototype=new lazyLoad();
-           
+
             lazyLoad2.prototype.update=function(){
                 //如图片都加载完成，返�?
                 //alert(this.imgs.length);
@@ -569,13 +569,13 @@ function styleChange(id,mytext){
         addressBok=false;
 
         $(function () {
-            //$("#status").fadeOut();
+            //$("#status-h").fadeOut();
             //$("#preloader").delay(400).fadeOut("medium");
             var timer=null;
             clearInterval(timer);
             timer=setInterval(function(){
                 if($('#lsf_list').children().length){
-                    $("#status").fadeOut();
+                    $("#status-h").fadeOut();
                     $("#preloader").delay(400).fadeOut("medium");
                     clearInterval(timer);
                 }

@@ -48,12 +48,11 @@
 					callback(result);
 			});
 		},
-		layer : function(message, title, callback, okstr){
+		layer : function(message, title){
 			if (title == null)
 				title = '1';
 			$.alerts._show(title, message, null, 'layer', function(result) {
-				if (callback)
-					callback(result);
+				//if (callback) callback(result);
 			});
 		},
 		// Private methods
@@ -86,8 +85,8 @@
 			//
 			$("#popup_content").addClass(type);
 			$("#popup_container").css({
-				minWidth : $("#popup_container").outerWidth(),
-				maxWidth : $("#popup_container").outerWidth()
+				//minWidth : $("#popup_container").outerWidth(),
+				maxWidth : $("#popup_container").outerWidth()-24
 			});
 
 			$.alerts._reposition();
@@ -197,11 +196,11 @@
 					break;
 				case 'layer':
 					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
-					$("#popup_ok").click(function() {
+					/*$("#popup_ok").click(function() {
 						$.alerts._hide();
 						if (callback)
 							callback(true);
-					});
+					});*/
 					$("#popup_cancel").click(function() {
 						$.alerts._hide();
 						if (callback)
@@ -319,8 +318,8 @@
 	jCode = function(message, value, title, callback, okstr, escstr) {
 		$.alerts.code(message, value, title, callback, okstr, escstr);
 	};
-	jLayer = function(message, value, title, result, callback,moreMsg) {
-		$.alerts.layer(message, value, title, result, callback,moreMsg);
+	jLayer = function(message, title) {
+		$.alerts.layer(message, title);
 	};
 	
 })(jQuery); 
