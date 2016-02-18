@@ -1,0 +1,296 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: #f5f4f9;
+}
+
+li{
+    list-style: none;
+}
+
+i{
+    font-style: normal;
+}
+.top {
+    width: 100%;
+    height: 45px;
+    padding: 1px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    position: fixed;
+    z-index: 100;
+    background: linear-gradient(#16364f, #194361);
+}
+.top span.title{
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+}
+
+.icons {
+    background-image: url(../images/ui/icons.png);
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    display: inline-block;
+}
+
+.header-back {
+    width: 12px;
+    height: 22px;
+}
+
+
+
+.date-picker {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -15px;
+    background: url(../images/ui/icon-h.png) no-repeat;
+    background-size: 402px 174px;
+    background-position: -245px 0;
+    width: 34px;
+    height: 34px;
+}
+
+.sce-ticket-wrap {
+    color: #333;
+}
+
+
+.per-price-wrap {
+    padding:0 14px;
+    font-size:14px;
+}
+
+.sce-introduce {
+    padding: 0.8em 0;
+}
+
+.sce-introduce-txt {
+    font-size:14px;line-height:18px;margin:0;
+    padding:0 14px 14px 14px;
+}
+
+
+.contact-doc-tit{
+    color: #333;
+}
+
+.sce-ticket {
+    background-color: #fff;
+}
+
+
+.order-amount {
+    width: 100%;
+    height: 42px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    line-height: 42px;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 110;
+}
+
+.order-total-wrap {
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
+    font-size: 1.7rem;
+    padding-left: 20px;
+    position: relative;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.order-total-wrap span {
+    font-size: 1.7rem;
+}
+
+.order-total-btn {
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    text-align: center;
+    background-color: #ffb413;
+    color: #fff;
+    font-size: 1.7rem;
+    position: relative;
+    z-index: 100;
+}
+
+.order-total-btn:hover {
+    background-color: #ff9313;
+}
+
+.order-total-fare {
+    color: #fe6a03;
+    font-weight: bold;
+}
+
+.order-total-wrap i.itemized,.order-total-wrap i.itemized_d {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left:5px;
+    margin-top:-3px;
+    width:23px;
+    height:23px;
+    background: url(../images/icon_order_details.png) no-repeat;
+    background-size:23px auto;
+}
+.order-total-wrap i.itemized_d{
+    background-position:0 -24px;
+}
+.per-price-tit{line-height:38px;}
+.per-price-cont {
+    color: #fe6a03;font-size:18px;font-weight:normal;line-height:38px;
+}
+
+
+
+.add-tic-btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 2.3rem;
+    height: 2.3rem;
+    background: url(../images/ui/icons1.png) -0.2rem 0;
+    background-size: 33rem 10rem;
+}
+
+.add-tic-txt {
+    display: inline-block;
+    vertical-align: top;
+    color: #ffb413;
+    font-size: 1.3rem;
+}
+
+.order-notice {
+    padding-left: 20px;
+}
+
+.order-notice-btn {
+    display: inline-block;
+    width: 1.7rem;
+    height: 1.7rem;
+    background: url(../images/ui/icons1.png) -26.6rem -0.4rem;
+    background-size: 40rem 12rem;margin-top: 3px;
+}
+.order-notice-txt {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 3px;
+    color: #999;
+    font-size: 1.3rem;
+}
+.per-price-control {
+    float:right;background:#e9e9e9;padding:6px;
+}
+.per-price-control span {
+    display: inline-block;
+    width: 2.4rem;
+    height: 2rem;
+    line-height: 1.8rem;
+    text-align: center;color:#999;
+}
+.per-price-control i {
+    display: inline-block;color:#333;
+    border-right: 1px solid #f8f8f8;
+    border-left: 1px solid #f8f8f8;
+    width: 2.4rem;
+    height: 2rem;
+    line-height: 1.8rem;
+    text-align: center;
+}
+.per-price-control .ticket-num {
+    display: inline-block;
+    border-top: 1px solid #eeebeb;
+    border-bottom: 1px solid #eeebeb;
+    width: 2em;
+    height: 1.6em;
+    line-height: 1.6em;
+    text-align: center;
+}
+
+.personal_data_box{background:#fff;margin-bottom:10px;border-bottom:1px solid #ddd;}
+.personal_data{overflow:hidden;border-top:1px solid #ddd;}
+.personal_data span.title{
+    height:42px;line-height:42px;border-bottom:1px solid #ddd;display:block;
+    padding:0 12px 0 24px;position:relative;
+}
+.personal_data span.title:before{
+    content:'';width:3px;height:16px;position:absolute;left:12px;top:13px;background:#ffb413;display:block;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+}
+.personal_data span.title b{
+    position:absolute;right:15px;top:12px;width:18px;height:18px;
+    background:url(../images/icon_people_plus.png) no-repeat;background-size:100%;
+}
+.personal_data span.title b a{width:18px;height:18px;padding:0;margin:0;}
+.personal_data ul{
+    padding:0 0 0 12px;margin:0;
+}
+.personal_data ul li{
+    height:36px;line-height:36px;border-bottom:1px solid #ddd;margin:0;padding:0;font-size:14px;
+}
+.personal_data ul li span.list_tit{display:inline-block;width:62px;}
+.personal_data ul li span.list_con i{padding-right:5px;}
+.personal_data ul li:last-child{border:none;}
+
+/*????????ϸ??ʼ*/
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    opacity: 0.3;
+    filter: alpha(opacity:30);
+    z-index: 90;
+    display: none;
+
+}
+.detail_expenses{
+    width: 100%;
+    padding: 1px;
+    background-color: white;
+    position: fixed;
+    bottom:-100%;
+    border-bottom:1px solid #ddd;
+    transition: all 350ms;
+    z-index:109;
+}
+.detail_expenses ul{padding:0 10px;margin:0;}
+.detail_expenses ul li{
+    height:32px;line-height:32px;padding:0;margin:0;
+    border-bottom:1px solid #ddd;color:#333;position:relative;
+}
+.detail_expenses ul li i{
+    position:absolute;right:0;top:0;height:32px;
+}
+.detail_expenses ul li i:before{
+    content:attr(data-unit);
+}
+.detail_expenses ul li:last-child{border:none;}
