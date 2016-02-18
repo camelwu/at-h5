@@ -142,11 +142,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
 
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
+                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0071"
                     }
-
+                    //console.log(Parameters);
                     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
                 }
                 else {
@@ -165,8 +165,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 //console.log(array);
                 var travelId = array[index];
                 //console.log(travelId);
-
-
                 var id = arrayId[index];
                 //console.log(id);
                 var input = document.getElementById("updateForm").getElementsByTagName("input");
@@ -214,7 +212,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
+                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0072"
                     };
@@ -293,7 +291,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     var li = document.createElement("li");
                     li.className = "eve-traveler";
                     var b = document.createElement("b");
-                    b.className = "bu_icon user-edits";
+                    b.className = "user-edits";
                     b.style.marginTop = li.clientHeight + 20 + 'px';
                     b.addEventListener("click", updateTra);
                     li.appendChild(b);
@@ -361,7 +359,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var myJson = eval('(' + ret + ')');
         console.log(myJson);
         if (myJson.success) {
-            document.getElementById("updateForm").submit();
+           document.getElementById("updateForm").submit();
         } else {
             alert(myJson.message);
         }
@@ -382,8 +380,12 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         input[0].value = travJson.data[index].traveller.idName;
         input[1].value = travJson.data[index].traveller.lastName;
         input[2].value = travJson.data[index].traveller.firstName;
-        input[3].value = travJson.data[index].traveller.idNumber;
-        input[5].value = travJson.data[index].traveller.email;
+        input[3].value = travJson.data[index].listTravellerIdInfo[0].idNumber;
+        input[4].value = travJson.data[index].listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号';
+        input[5].value = travJson.data[index].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
+        input[6].value = travJson.data[index].traveller.mobilePhone;
+        input[7].value = travJson.data[index].traveller.email;
+
         if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
             cardType.innerHTML = "护照";
         } else if (travJson.data[index].listTravellerIdInfo[0].idType == "2") {

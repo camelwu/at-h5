@@ -777,6 +777,7 @@
     list-style-type: none;
     padding: 12px 15px;
     border-bottom: 1px solid #dedede;
+    background-color: #fff;
 }
 
 .often_user {
@@ -813,7 +814,9 @@
     width: 22px;
     height: 22px;
     float: right;
-    background-position: 53.2% 27.5%;
+    background: url(../images/ui/icon.png) no-repeat;
+    background-size: 370px 110px;
+    background-position: 49% 0%;
 }
 
 .statement {
@@ -917,20 +920,20 @@
 
 
 .traveler-contect #mobile-cell{
-    width: 120px;
+    width: 130px;
     height: 20px;
     margin-top: 15px;
     display: inline-block;
 }
 
 .traveler-contect #email-cell{
-    width: 120px;
+    width: 130px;
     float: left;
     margin-left: 26%;
 }
 
 .traveler-contect #mobile-cell-add{
-    width: 120px;
+    width: 130px;
     height: 20px;
     margin-top: 15px;
     display: inline-block;
@@ -938,7 +941,7 @@
 }
 
 .traveler-contect #email-cell-add{
-    width: 120px;
+    width: 130px;
     float: left;
     margin-left: 26%;
 }
@@ -1516,7 +1519,8 @@ i{
     height: 20px;
 }
 
-.chn-switch{
+.addtra-info .chn-switch{
+    width: 62px;
     height: 30px;
     border-radius: 2px;
     border:1px solid #ffb413;
@@ -1526,7 +1530,8 @@ i{
     color: #ffb413;
 }
 
-.eng-switch{
+.addtra-info .eng-switch{
+    width: 62px;
     height: 30px;
     border-radius: 2px;
     border:1px solid #ffb413;
