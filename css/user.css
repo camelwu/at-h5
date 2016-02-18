@@ -1440,3 +1440,150 @@ ul, ol {
 #setPwd a, #browsHis a{
     color: #999;
 }
+
+/*选择联系人*/
+.con-mobile-tip{
+    height: 36px;
+    line-height: 36px;
+    background-color: #f7e7cb;
+    color: #fe6a03;
+    font-size: 1.4rem;
+    font-weight: normal;
+    padding-left: 15px;
+    margin-bottom: 0;
+}
+
+.con-mobile-list{
+    border-top: 1px solid #dedede;
+    background-color: #fff;
+}
+
+i{
+    font-style: normal;
+}
+.con-mobile-list li{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #dedede;
+    padding-left: 15px;
+    display: -moz-box;  /* Firefox */
+    display: -ms-flexbox;    /* IE10 */
+    display: -webkit-box;    /* Safari */
+    display: -webkit-flex;    /* Chrome, WebKit */
+    display: box;
+    display: flexbox;
+    display: flex;
+}
+
+.con-mobile-list li span{
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;
+}
+
+.con-mobile-list li .con-mobile-name{
+    -webkit-box-flex: 0.5;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 0.5;         /* OLD - Firefox 19- */
+    -webkit-flex: 0.5;          /* Chrome */
+    -ms-flex: 0.5;              /* IE 10 */
+    flex: 0.5;
+}
+
+.white-eng{
+    word-wrap:break-word;
+    width: 50px;
+    display: inline-block;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+/*新增乘机人*/
+.bor-updown{
+    background-color: #f5f4f9;
+    height: 20px;
+}
+
+.chn-switch{
+    height: 30px;
+    border-radius: 2px;
+    border:1px solid #ffb413;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #ffb413;
+}
+
+.eng-switch{
+    height: 30px;
+    border-radius: 2px;
+    border:1px solid #ffb413;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #ffb413;
+}
+.chn{
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.foreign{
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.chn-switch .chn{
+    color: #fff;
+    height: 100%;
+    display: inline-block;
+    background-color: #ffb413;
+}
+
+.eng-switch .foreign{
+    color: #fff;
+    height: 100%;
+    display: inline-block;
+    background-color: #ffb413;
+}
+.mart-non{
+    margin-top: 0;
+}
+#eng-name{
+    display: none;
+}
+
+.nameche-wrap{
+    margin-bottom: 0;
+}
+
+.nameche-wrap li{
+    position: relative;
+}
+
+.nameche-wrap li:nth-child(2){
+    border-bottom: none;
+}
+
+.name-notes{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 0;
+    background-position: 28% 35%;
+}
+
+.name-eng-note{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-position: 28% 35%;
+}
+.chn-eng-wrap{
+    border-top: 1px solid #dedede;
+}
