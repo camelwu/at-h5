@@ -164,6 +164,10 @@ em,b,i{
     flex:1;
     background:none;
     font-size:1.4rem;
+    height:30px;
+    line-height:30px;
+    margin-top:5px;
+    margin-bottom:5px;
     color:#d1d1d1;
 }
 .uo_con4{
