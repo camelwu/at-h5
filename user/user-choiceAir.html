@@ -97,8 +97,7 @@
                                 <div>姓名<b class="icon name-notes"></b></div>
                                 <input type="text" placeholder="与乘机人姓名一致">
                                 <div class="chn-switch">
-                                    <span class="chn">中</span>
-                                    <span class="foreign">英</span>
+                                    <span class="chn">中</span><span class="foreign">英</span>
                                 </div>
                             </li>
                         </ul>
@@ -113,8 +112,7 @@
                                 <b class="icon name-eng-note"></b>
                             </li>
                             <div class="eng-switch">
-                                <span class="chn">中</span>
-                                <span class="foreign">英</span>
+                                <span class="chn">中</span><span class="foreign">英</span>
                             </div>
                         </ul>
                     </div>
@@ -168,7 +166,7 @@
         <div class="fillName-page" id="fillName-page">
             <div class="all-elements">
                 <div class="header">
-                    <a href="#" class="icons header-back"></a>
+                    <a href="#" class="icons header-back name-illustrate"></a>
                     <h3>填写姓名说明</h3>
                 </div>
                 <div class="snap-content" style="padding-top: 45px;background-color: white;">
@@ -361,6 +359,19 @@
         $('#eng-name .chn').click(function(){
             $('#chn-name').show();
             $('#eng-name').hide();
+        });
+
+        //姓名说明
+        $('.name-notes').click(function(){
+            $('.fillName-page').show();
+        });
+
+        $('.name-eng-note').click(function(){
+            $('.fillName-page').show();
+        });
+
+        $('.name-illustrate').click(function(){
+            $('#fillName-page').hide();
         });
     </script>
 </body>

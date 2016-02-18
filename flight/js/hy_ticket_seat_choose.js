@@ -159,7 +159,6 @@ var ticketSeatChoose = {
         this.addHandler(changeExplain,'click', function(){
             jLayer('<div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div>','退改签说明',function(){})
 
-
         });
 
         this.addHandler(detailWord,'click', function(event){
