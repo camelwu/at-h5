@@ -374,7 +374,7 @@ i{
     display: none;
 }
 .s-active{
-    display: block;
+    display: block!important;
 }
 .sin-title{
     padding-left:15px;
@@ -427,7 +427,7 @@ i{
     margin-top: -33px;
     width: 91.5%;
     height:32px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.4);
     color:white;
 }
 .s-location{
@@ -639,4 +639,218 @@ i{
     height:21px;
     margin:0 auto;
     background-position: -164px 2px;
+}
+/*
+        æ∞µ„œÍ«È
+*/
+.sce-detail-exhi img{
+    width: 100%;
+    height: auto;
+}
+.sce-detail-exhi h3{
+    position: absolute;
+    z-index: 1;
+    top: 12%;
+    left: 41%;
+    color: white;
+}
+.sd-time{
+    border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 0;
+}
+.sd-time li{
+    padding-left: 16px;
+}
+.sd-time li:first-child{
+    padding-top: 15px;
+}
+.sd-time li:last-child{
+    padding-bottom: 15px;
+}
+.s-ding{
+    position: relative;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    margin-right: 20px;
+    background-position: -34px -23px;
+}
+.s-you{
+    position: relative;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    margin-right: 20px;
+    background-position: -52px -23px;
+}
+.spot-info{
+    margin-top: 10px;
+    border-bottom: 1px solid #d1d1d1;
+}
+.spot-info li{
+    border-top: 1px solid #d1d1d1;
+    padding: 12px 15px;
+    font-size: 1.4rem;
+    color:#666666;
+}
+.spot-info li span{
+    position: relative;
+    display: inline-block;
+    top: -2px;
+    font-weight: 600;
+    text-decoration: line-through;
+    color:#999999;
+}
+.combo-name{
+    width: 80%;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.combo-price{
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fe6a03;
+    display: inline-block;
+}
+/*.spot-info li div:first-child{*/
+    /*font-size: 1.4rem;*/
+    /*margin-bottom: 10px;*/
+/*}*/
+/*.spot-info li div:last-child{*/
+    /*font-size: 1.8rem;*/
+    /*color: #fe6a03;*/
+/*}*/
+.spe-state{
+    float: right;
+    margin-top: 7px;
+}
+.s-special{
+    margin-bottom: 0;
+}
+.s-special li{
+    list-style-type: disc;
+    margin-bottom: 7px;
+    margin-left: 20px;
+    padding: 0;
+    border: none;
+}
+.s-special li:last-child{
+    margin-bottom: 0;
+}
+.s-spe{
+    position: relative;
+    top:4px;
+    width:21px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -3px -49px;
+}
+.s-open{
+    position: relative;
+    top:4px;
+    width:21px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -124px -49px;
+}
+.s-addr{
+    position: relative;
+    top:4px;
+    width:21px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -103px -49px;
+}
+.s-combo{
+    position: relative;
+    top:4px;
+    width:21px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -23px -49px;
+}
+.s-reserve{
+    float: right;
+    margin-top: -18px;
+    width:20%;
+    height:27px;
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 27px;
+    border-radius: 4px;
+}
+.s-up{
+    position: absolute;
+    margin-top: 10px;
+    right: 20px;
+    width:12px;
+    height:10px;
+    background-position: -49px -3px;
+}
+.s-down{
+    position: absolute;
+    margin-top: 10px;
+    right: 20px;
+    width:12px;
+    height:10px;
+    background-position: -36px -3px;
+}
+.state-detail{
+    margin: 0;
+    padding:0!important;
+    display: none;
+}
+.spe-detail{
+    margin-bottom: 0;
+    /*padding:0;*/
+    padding: 12px 15px;
+
+}
+.spe-detail li{
+    list-style-type: disc;
+    margin-bottom: 7px;
+    margin-left: 20px;
+    padding: 0;
+    border: none;
+}
+.spe-detail li:last-child{
+    margin-bottom: 0;
+}
+.sd-active{
+
+}
+.s-plan{
+    position: relative;
+    top:4px;
+    width:21px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -84px -49px;
+}
+.s-atten{
+    position: relative;
+    top:4px;
+    width:21px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -145px -49px;
+}
+.s-service{
+    position: relative;
+    top:4px;
+    width:20px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -43px -49px;
+}
+.s-spdet{
+    position: relative;
+    top:4px;
+    width:21px;
+    height:20px;
+    margin-right: 16px;
+    background-position: -63px -49px;
 }
