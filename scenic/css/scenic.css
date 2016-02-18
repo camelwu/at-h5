@@ -7,6 +7,24 @@ li{
 i{
     font-style: normal;
 }
+.sc-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 45px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
 /*
         订单支付
 */
@@ -66,6 +84,7 @@ i{
 .pay-style-list{
     background-color: #fff;
     height: 100%;
+    margin-bottom: 0;
 }
 .pay-style-list li{
     height: 40px;
@@ -88,22 +107,28 @@ i{
 }
 .pay-card{
     display: inline-block;
-    width: 42px;height:30px;
-    background-position:105% 18% ;
+    width: 32px;
+    height: 30px;
+    background-position: 84% 18%;
 }
 .pay-bao{
     display: inline-block;
-    width: 42px;height:30px;
-    background-position:105% 96% ;
+    width: 32px;height:30px;
+    background-position: 83.8% 96%;
+}
+.pay-visa{
+    display: inline-block;
+    width: 32px;height:30px;
+    background-position: 98.8% 96%;
+}
+.pay-master{
+    display: inline-block;
+    width: 32px;
+    height: 30px;
+    background-position: 99% 18%;
 }
 .icon {
     background-image: url(../images/ui/icon.png);
-    background-repeat: no-repeat;
-    background-size: 393px 118px;
-    display: inline-block;
-}
-.jdicon{
-    background-image: url(../../images/ui/jd-icon.png);
     background-repeat: no-repeat;
     background-size: 393px 118px;
     display: inline-block;
@@ -128,29 +153,143 @@ i{
     height: 22px;
     background-position: 55.7% 97.5%;
 }
+.state-agree{
+    margin-left: 15px;
+    color:#999999;
+}
 .s-agree{
     display:inline-block;
     width:17px;
     height:17px;
-    background-position: -2px 2px;
+    background-position: -237px -3px;
 }
-.mustknow{
+.s-agrees{
     display:inline-block;
-    color:#fb6a21;
-    text-underline:underline;
+    width:17px;
+    height:17px;
+    background-position: -266px -3px;
 }
-/*.right-choi-btn{*/
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*width: 40px;*/
-    /*height: 14px;*/
-    /*background-image: url(../images/ui/icons.png);*/
-    /*background-position: 63% 4%;*/
-    /*background-size: 400px 190px;*/
-    /*margin-top: 5px;*/
-    /*margin-right: 10px;*/
-    /*cursor: pointer;*/
+.state-agree a{
+    display:inline-block;
+    top: 7px;
+    color:#fb6a21;
+    text-decoration: underline;
+}
+.s-btn{
+    width: 94%;
+    height: 45px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 45px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+.s-call{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    right: 15px;
+    top: 13px;
+    background-position: 96.5% 53%;
+}
+/*
+        国外支付方式页
+*/
+.sp-total{
+    width:100%;
+    height:60px;
+    color:white;
+    font-size: 2rem;
+    padding: 18px 15px;
+    margin-bottom: 13px;
+    background-color: #55bfb7;
+}
+.fill-content{
+    width: 100%;
+    border-top:1px solid #dddddd;
+    border-bottom:1px solid #dddddd;
+}
+.fill-content li{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom:1px solid #dddddd;
+}
+.fill-content li:last-child{
+    border-bottom: none;
+}
+.fill-content li div:nth-child(1){
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+}
+.fill-content li div:nth-child(2){
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
+}
+.fill-content li input{
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
+}
+/*.fill-tel{*/
+    /*display: block;*/
 /*}*/
+/*.tel-div{*/
+    /*-webkit-box-felx:3;!important;*/
+    /*-moz-box-flex:3;!important;*/
+    /*-ms-flex:3;!important;*/
+    /*-webkit-flex:3;!important;*/
+    /*flex:3;!important;*/
+    /*border-right:1px solid #dddddd;*/
+/*}*/
+.fill-tel{
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 12px;
+    border-bottom:1px solid #dddddd;
+}
+.fill-tel div{
+    float: left;
+    width:45%;
+    border-right:1px solid #dddddd;
+}
+.fill-tel input{
+    width: 50%;
+    margin-top: 5px;
+    left: 20px;
+}
+.s-xiala1{
+    width: 13px;
+    height: 6px;
+    margin-left: 1px;
+    background-position: 73.5% 7%;
+}
+.s-xiala2{
+    position: absolute;
+    margin-top: 5px;
+    right: 20px;
+    width: 14px;
+    height: 9px;
+    background-position: 87.5% 5%;
+}
 /*
         景点主页
 */
@@ -470,34 +609,34 @@ i{
 .jd-icon{
     background-image: url(../../images/ui/jd-icon.png);
     background-repeat: no-repeat;
-    background-size: 198px 71px;
+    background-size: 256px 71px;
     display: inline-block;
 }
 .s-good{
     display:block;
-    width:15px;
-    height:17px;
-    margin:0 auto;
-    background-position: -47px 2px;
+    width:20px;
+    height: 21px;
+    margin: 0 auto;
+    background-position: -129px 2px;
 }
 .s-remark{
     display:block;
-    width:15px;
-    height:17px;
+    width:20px;
+    height:21px;
     margin:0 auto;
-    background-position: -17px 2px;
+    background-position: -166px -38px;
 }
 .s-rank{
     display:block;
-    width:15px;
-    height:17px;
+    width:20px;
+    height:21px;
     margin:0 auto;
-    background-position: -32px 2px;
+    background-position: -164px -19px;
 }
 .s-fil{
     display:block;
-    width:15px;
-    height:17px;
+    width:20px;
+    height:21px;
     margin:0 auto;
-    background-position: -2px 2px;
+    background-position: -164px 2px;
 }

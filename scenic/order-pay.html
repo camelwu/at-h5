@@ -17,12 +17,21 @@
     <link href="css/scenic.css" rel="stylesheet"/>
 </head>
 <body>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
 <div class="all-elements">
     <div class="header">
         <a href="javascript:void(0);" class="icons header-back"></a>
         <h3 class="edit-tit">订单支付</h3>
     </div>
-    <div id="content ddd"  style="padding-top: 45px;padding-bottom: 51px;">
+    <div id="content" class="snap-content" style="padding-top: 45px;">
+    <!--<div id="content ddd"  style="padding-top: 45px;padding-bottom: 51px;">-->
         <form action="#" method="get">
             <div class="per-pay-msg-bg">
                 <ul class="per-pay-msg">
@@ -39,17 +48,86 @@
                  <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
                  <li><span class="jd-icon pay-card"></span><b class="icon circle-choi"></b></li>
                  <li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>
-                <li><span class="pay-card"></span><b class="icon circle-chois"></b></li>
-                <li><span class="pay-card"></span><b class="icon circle-chois"></b></li>
+                <li><span class="jd-icon pay-visa"></span><b class="icon circle-chois"></b></li>
+                <li><span class="jd-icon pay-master"></span><b class="icon circle-chois"></b></li>
             </ul>
-            <div>
-                <b class="icon1 s-agree"></b>
-                我已阅读并同意<a class="mustknow">购票须知</a>
+            <div class="state-agree">
+                <b class="icon1 s-agree" id="agree"></b>
+                我已阅读并同意<a href="#">购票须知</a>
             </div>
+            <a href="#" class="s-btn button-orange">确认</a>
         </form>
     </div>
+    <!--     国外支付方式浮层     -->
+    <div id="out_pay" class="all-elements" style="display: none">
+        <div class="header">
+            <a id="close_page" class="icons header-back"></a>
+            <h3 id="title">支付</h3>
+            <b class="icons s-call"></b>
+        </div>
+        <!--     内容     -->
+        <div class="sc-content" style="background-color: white">
+            <div class="sp-total">
+                订单总价：￥<span>838.00</span>
+            </div>
+            <ul class="fill-content">
+                <li>
+                    <div>持卡人姓名</div>
+                    <input type="text" value placeholder="请输入持卡人姓名">
+                </li>
+                <li>
+                    <div>信用卡卡号</div>
+                    <input type="text" value placeholder="请输入信用卡卡号">
+                </li>
+                <li>
+                    <div>发卡银行</div>
+                    <div>招商银行</div>
+                </li>
+                <li>
+                    <div>发卡国家</div>
+                    <div>中国<b class="icons s-xiala2"></b></div>
+                </li>
+                <li>
+                    <div>有效期</div>
+                    <input type="text" value placeholder="月/年，如：09/12">
+                </li>
+                <li>
+                    <div>CVV2/CVC2号</div>
+                    <input type="text" value placeholder="请输入签名栏末尾最后3位">
+                </li>
+                <div class="fill-tel">
+                    <div class="tel-div">持卡人手机号  <span>+86<b class="icons s-xiala1"></b></span></div>
+                    <input type="text" value placeholder="用于接收通知">
+                </div>
+                <li>
+                    <div>账单地址</div>
+                    <input type="text" value placeholder="请输入持卡人订单地址">
+                </li>
+                <li>
+                    <div>邮政编码</div>
+                    <input type="text" value placeholder="请输入邮政编码">
+                </li>
+                <li>
+                    <div>持卡人国家</div>
+                    <div>中国<b class="icons s-xiala2"></b></div>
+                </li>
+            </ul>
+            <a href="#" class="s-btn button-orange">支付</a>
+        </div>
+    </div>
 
+
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/custom.js"></script>
 <script>
+    $(window).load(function () {
+        $("#status").fadeOut();
+        $("#preloader").delay(400).fadeOut("medium");
+    });
     /*倒计时*/
     window.onload=function(){
         sec('countdown',1800);
@@ -76,18 +154,33 @@
     };
     (function(){
         var b=document.getElementById('pay_way').getElementsByTagName("b");
+        var agree = $("#agree")[0];
+        var close_page = $("#close_page")[0];
+        var out_pay = $("#out_pay")[0];
         for(var i=0; i < b.length; i++){
             b[i].onclick = function(){
                 for(var i=0; i<b.length; i++){
                     b[i].className = "icon circle-chois";
                 }
                 this.className='icon circle-choi';
+                if(b[2].className == "icon circle-choi"||b[3].className == "icon circle-choi"){
+                    out_pay.style.display = "block";
+                }
             }
+        }
+        agree.onclick = function(){
+            if(agree.className == 'icon1 s-agree'){
+                agree.className = 'icon1 s-agrees';
+            }else{
+                agree.className = 'icon1 s-agree';
+            }
+        };
+        close_page.onclick = function(){
+            out_pay.style.display = "none";
         }
     })();
 </script>
-    <script src="../js/lib/jquery.js"></script>
-    <script src="js/head_back.js"></script>
+
 </div>
 </body>
 </html>
