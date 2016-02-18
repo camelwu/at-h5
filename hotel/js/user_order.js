@@ -542,11 +542,7 @@ uoHisData();
     });
     //取消说明点击事件
     lsf_myweb.bind(uo_c1_infoDown,'click',function(){
-        if(downBok){
-            uo_c1_info.className='';
-        }else{
-            uo_c1_info.className='uo_c1_info';
-        }
-        downBok=!downBok;
+        uo_c1_info.className='';
+        this.style.display='none';
     });
 })();
