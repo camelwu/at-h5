@@ -415,7 +415,7 @@ function styleChange(id,mytext){
                     '</div>'+
                     '<div class="ho_infor">'+
                     '<p class="hname"  style="font-size:1.6rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
-                    data[i].hotelNameLocale+'('+data[i].hotelName+')'+
+                    (data[i].hotelNameLocale||'')+'('+data[i].hotelName+')'+
                     '</p>'+
                     '<div class="h-score">'+
                     '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+data[i].hotelReviewScore+'</span>'+
