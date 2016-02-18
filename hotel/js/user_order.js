@@ -470,19 +470,20 @@ uoHisData();
         if(hoPos=='inter'){
             for(var i=0;i<aUo_firstname.length;i++){
                 if(aUo_lastname[i].value=='姓（如：Zhang）'){
-                    alert('请输入姓');
+                    jAlert('请输入英文姓或名');
+                    //alert('请输入姓');
                     return;
                 }
                 if(checkCN(aUo_lastname[i].value)){
-                    alert('请输入英文姓或名');
+                    jAlert('请输入英文姓或名');
                     return;
                 }
                 if(checkCN(aUo_firstname[i].value)){
-                    alert('请输入英文姓或名');
+                    jAlert('请输入英文姓或名');
                     return;
                 }
                 if(aUo_firstname[i].value=='名（如：San）'){
-                    alert('请输入名');
+                    jAlert('请输入英文姓或名');
                     return;
                 }
                 fake_data.guestName.push({"GuestFirstName":aUo_firstname[i].value,"GuestLastName":aUo_lastname[i].value});
@@ -490,11 +491,11 @@ uoHisData();
         }else if(hoPos=='dom'){
             for(var i=0;i<aUo_firstname.length;i++){
                 if(aUo_lastname[i].value=='姓（如：张）'){
-                    alert('请输入姓');
+                    jAlert('请输入姓');
                     return;
                 }
                 if(aUo_firstname[i].value=='名（如：三）'){
-                    alert('请输入名');
+                    jAlert('请输入名');
                     return;
                 }
                 fake_data.guestName.push({"GuestFirstName":aUo_firstname[i].value,"GuestLastName":aUo_lastname[i].value});
@@ -515,12 +516,12 @@ uoHisData();
             }
         }*/
         if(uo_c3_tele.value=='用于接收短信通知'){
-            alert('请输入手机号');
+            jAlert('请输入手机号');
             return;
         }else{
             var reg=/^\d+$/g;
             if(!reg.test(uo_c3_tele.value)){
-                alert('手机号必须是数字');
+                jAlert('手机号必须是数字');
                 return;
             }else{
                 fake_data.GuestContactNo=uo_c3_tele.value;
@@ -529,7 +530,7 @@ uoHisData();
         console.log(fake_data);
         if(uo_c3_email){
             if(uo_c3_email.value=='用于接收邮件通知'){
-                alert('请输入邮箱');
+                jAlert('请输入邮箱');
                 return;
             }else{
                 fake_data.GuestEmail=uo_c3_email.value;
@@ -542,11 +543,7 @@ uoHisData();
     });
     //取消说明点击事件
     lsf_myweb.bind(uo_c1_infoDown,'click',function(){
-        if(downBok){
-            uo_c1_info.className='';
-        }else{
-            uo_c1_info.className='uo_c1_info';
-        }
-        downBok=!downBok;
+        uo_c1_info.className='';
+        this.style.display='none';
     });
 })();

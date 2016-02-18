@@ -2,6 +2,54 @@
 html {
     font-size:62.5%;
 }
+
+
+#preloader {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#FFF;
+    z-index:99999999;
+}
+
+#status {
+    z-index:99999999;
+    width:250px;
+    height:250px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    background-image:url(../images/loading.gif);
+    background-size:64px 64px;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:-125px 0 0 -125px;
+}
+
+#preloader p{
+    top:60%;
+}
+
+#preloader em{
+    font-size:10px!important;
+    display:block;
+    font-style:normal;
+}
+#status-h{
+    z-index:99999999;
+    width:250px;
+    height:250px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    background-image:url(../../images/loading-hotel.gif);
+    background-size:125px;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:-125px 0 0 -125px;
+}
 .top {
     width: 100%;
     height: 45px;
@@ -104,13 +152,17 @@ html {
     font-size:1.6rem;
     font-weight:bold;
     color:#484848;
+    line-height:normal;
+    margin-bottom:0;
 }
 .h-score{
     margin-top: 0.5rem;
 }
-.price{
+.hl_price{
     float: right;
     margin-right: 15px;
+    line-height:normal;
+    margin-bottom:0;
 }
 .h-grade{
     margin-top: 0.7rem;
@@ -148,6 +200,7 @@ html {
     color:#999999;
     font-size:1em;
     /*margin-bottom: 0.6rem;*/
+    line-height:normal;
 }
 .hl-bottom{
     width:100%;

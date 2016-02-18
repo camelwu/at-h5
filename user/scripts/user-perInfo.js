@@ -130,29 +130,27 @@ function u_perInfo(){
             if(sex.className != "info-sex-on"){
                 sex.className="info-sex-on";
                 block.innerHTML = "女";
-                UserSex=26;
             }else{
                 sex.className="info-sex";
                 block.innerHTML = "男";
-                UserSex=27;
             }
+
+            //返回按钮保存性别
+            //var oPerBack=$('#per-back')[0];
+            //function closeSex(obj){
+            //    obj.onclick = function(){
+            //        var Parameters={
+            //            "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Salutation\":\""+UserSex+"\"}",
+            //            "ForeEndType": 3,
+            //            "Code": "0056"
+            //        };
+            //        console.log(Parameters);
+            //        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_sex);
+            //    }
+            //}
+            //closeSex(oPerBack);
 
         };
-
-        //返回按钮保存性别
-        var oPerBack=$('#per-back')[0];
-        function closeSex(obj){
-            obj.onclick = function(){
-                var Parameters={
-                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Salutation\":\""+UserSex+"\"}",
-                    "ForeEndType": 3,
-                    "Code": "0056"
-                };
-                console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_sex);
-            }
-        }
-        closeSex(oPerBack);
     }
     changeSex(sex);
     //  修改昵称
@@ -209,8 +207,16 @@ function u_perInfo(){
     function selDate(obj){
         obj.onclick = function(){
             var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('号','');
+            if($('#sex')[0].className == 'info-sex')
+            {
+                UserSex=27;
+            }
+            else
+            {
+                UserSex=26;
+            }
             var Parameters={
-                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"DOB\":\""+birthstr+"\"}",
+                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"DOB\":\""+birthstr+"\",\"Salutation\":\""+UserSex+"\"}",
                 "ForeEndType": 3,
                 "Code": "0056"
             };
@@ -348,7 +354,7 @@ function mycallback_birth(ret){
     console.log(myJson);
     if(myJson.success)
     {
-        window.location.href="user.html"
+        window.location.href="user.html";
     }
 }
 
@@ -374,6 +380,7 @@ function mycallback(ret){
         nickname.innerHTML = infoJson.data[0].nickName;
         name.value = infoJson.data[0].nickName;
         birthCont.value=infoJson.data[0].dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
+        realName.value = infoJson.data[0].firstName;
         if(infoJson.data[0].salutation == 26){
             sex.className="info-sex-on";
             block.innerHTML = "女";
@@ -389,7 +396,7 @@ function mycallback(ret){
     }else{
         user_email.value = sessionStorage.email;
     }
-    realName.value = sessionStorage.realname;
+    //realName.value = sessionStorage.realname;
     MemberId = sessionStorage.memberid;
 }
 function mycallback_nick(ret){
@@ -420,7 +427,8 @@ function mycallback_sex(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success){
-        sessionStorage.sex=UserSex;
+        window.location.href="user.html";
+
     }else{
         alert(myJson.message);
     }
