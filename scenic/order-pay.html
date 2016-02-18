@@ -37,12 +37,16 @@
             </div>
             <ul class="pay-style-list" id="pay_way">
                  <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
-                 <li><span class="pay-card"></span><b class="icon circle-choi" id="payCard" onclick="choicePay()"></b></li>
-                 <li><span class="pay-card"></span><b class="icon circle-chois" id="zhifubao" onclick="choicePay()"></b></li>
+                 <li><span class="jd-icon pay-card"></span><b class="icon circle-choi"></b></li>
+                 <li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>
+                <li><span class="pay-card"></span><b class="icon circle-chois"></b></li>
+                <li><span class="pay-card"></span><b class="icon circle-chois"></b></li>
             </ul>
-
+            <div>
+                <b class="icon1 s-agree"></b>
+                我已阅读并同意<a class="mustknow">购票须知</a>
+            </div>
         </form>
-
     </div>
 
 <script>
@@ -70,21 +74,17 @@
             return a<10 ? '0'+a : ''+a;
         }
     };
-    function choicePay(){
-        var circle = window.event.srcElement;
-        var card = $("#payCard")[0];
-        var bao = $("#zhifubao")[0];
-        if(circle.className == "icon circle-choi"){
-            circle.className = "icon circle-chois";
-        }else{
-            circle.className = "icon circle-choi";
-            if(circle.id == "payCard"){
-                bao.className = "icon circle-chois";
-            }else{
-                card.className = "icon circle-chois";
+    (function(){
+        var b=document.getElementById('pay_way').getElementsByTagName("b");
+        for(var i=0; i < b.length; i++){
+            b[i].onclick = function(){
+                for(var i=0; i<b.length; i++){
+                    b[i].className = "icon circle-chois";
+                }
+                this.className='icon circle-choi';
             }
         }
-    }
+    })();
 </script>
     <script src="../js/lib/jquery.js"></script>
     <script src="js/head_back.js"></script>
