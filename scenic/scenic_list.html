@@ -30,6 +30,14 @@
     <!--<link rel="stylesheet" type="text/css" href="css/sceniclist.css">-->
 </head>
 <body>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
     <div class="all-elements">
         <!--   顶部   -->
         <div class="header" id="vlm-login">
@@ -131,22 +139,6 @@
                             </a>
                         </li>
                     </ul>
-                    <!--<ul class="scenic-list-cont">-->
-                        <!--<li class="s-li">-->
-                            <!--<a href="javascript:;">-->
-                                <!--<div class="sce-img-box">-->
-                                    <!--<img src="images/water-cubic.jpg" alt="" class="sce-img"/ >-->
-                                <!--</div>-->
-                                <!--<div class="sce-detail">-->
-                                    <!--<p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>-->
-                                    <!--<div class="sce-det-fare">-->
-                                        <!--<span class="sale-fare"><i>168</i> 元起/人</span>-->
-                                        <!--<span class="old-fare">268元起/人</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
                 </div>
             </section>
         </div>
@@ -163,38 +155,98 @@
                 <b class="jd-icon s-rank"></b>
                 价格排序
             </div>
-            <div>
+            <div id="screen">
                 <b class="jd-icon s-fil"></b>
                 过滤
             </div>
         </footer>
+        <!--      筛选块      -->
+        <div id="screen_mb" class="qp-mengban"></div>
+        <div id="list_screen" class="list-screen">
+            <div id="quit_screen">取消</div>
+            <div id="clear_screen">清除筛选</div>
+            <div id="sure_screen">确定</div>
+            <ul class="scr-title">
+                <li class="sctit-active">景点主题</li>
+            </ul>
+            <ul class="spot-screen">
+                <li class="spot-slected">不限<b class="jd-icon scr-gou s-active"></b></li>
+                <li>博物馆<b class="jd-icon scr-gou"></b></li>
+                <li>场馆<b class="jd-icon scr-gou"></b></li>
+                <li>古迹遗址<b class="jd-icon scr-gou"></b></li>
+                <li>山水景观<b class="jd-icon scr-gou"></b></li>
+                <li>温泉<b class="jd-icon scr-gou"></b></li>
+            </ul>
+        </div>
     </div>
-
-
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/custom.js"></script>
     <script>
+        $(window).load(function () {
+            $("#status").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
+        (function(){
+            var screen = $("#screen")[0];
+            var mb = $("#screen_mb")[0];
+            var screenBlock = $("#list_screen")[0];
+            var quit = $("#quit_screen")[0];
+            var sure = $("#sure_screen")[0];
+            var clear = $("#clear_screen")[0];
+            //    点击筛选
+            screen.onclick = function(){
+                mb.style.display="block";
+                screenBlock.style.bottom=0;
+                screenBlock.style.transition="all 400ms";
+            };
+            //    关闭筛选
+            function closeblock(){
+                mb.style.display="none";
+                screenBlock.style.bottom=-500+'px';
+                screenBlock.style.transition="all 400ms";
+            }
+            quit.onclick = closeblock;
+            sure.onclick = closeblock;
 
-      /*景点选项卡*/
-//      (function(){
-//          var aBtn=document.getElementsByClassName('scenic-list-choi-wrap')[0].children;
-//          var aDiv=document.getElementsByClassName('scenic-list-cont');
-//          for(var i=0; i<aBtn.length; i++)
-//          {
-//              (function(index){
-//
-//                  aBtn[i].onclick=function(){
-//                      for(var i=0; i<aBtn.length; i++)
-//                      {
-//                          aBtn[i].className='';
-//                          aDiv[i].className='scenic-list-cont';
-//                      }
-//
-//                      this.className='active';
-//                      aDiv[index].className='active scenic-list-cont';
-//                  };
-//              })(i);
-//          }
-//      })();
-
+            //   筛选选择
+            var li  = document.getElementsByClassName('spot-screen')[0].getElementsByTagName('li');
+            var bb = li[0].getElementsByTagName('b')[0];
+            var b = document.getElementsByClassName('jd-icon scr-gou');
+            for(var i = 0;i < li.length;i++){
+                    {
+                        (function(index){
+                            li[i].onclick = function(){
+                                if(index==0){
+                                    for(var i = 1;i < li.length;i++){
+                                        li[i].className = '';
+                                        b[i].className = 'jd-icon scr-gou';
+                                    }
+                                    li[index].className = 'spot-slected';
+                                    b[index].className = 'jd-icon scr-gou s-active';
+                                }else{
+                                    li[0].className = '';
+                                    bb.className = 'jd-icon scr-gou';
+                                    li[index].className = 'spot-slected';
+                                    b[index].className = 'jd-icon scr-gou s-active';
+                                }
+                            };
+                        })(i);
+                }
+            }
+            //   清除筛选
+            clear.onclick = function(){
+                li[0].className = 'spot-slected';
+                b[0].className = 'jd-icon scr-gou s-active';
+                for(var i = 1;i < li.length;i++){
+                    li[i].className = '';
+                    b[i].className = 'jd-icon scr-gou';
+                }
+            };
+        })();
     </script>
 
     <script src="js/head_back.js"></script>
