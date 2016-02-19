@@ -221,7 +221,7 @@ var ticketSeatChoose = {
 
         });
         this.addHandler(changeExplain,'click', function(){
-            jLayer('<div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div>','退改签说明',function(){})
+            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
 
         });
 
@@ -323,6 +323,7 @@ var ticketSeatChoose = {
     },
     createBackTripHtml:function(arg){
         if(arg.segmentsReturn){
+            console.log(arg.segmentsReturn)
             var tipDay = arg.flightReturnSpacingDay>1?arg.flightReturnSpacingDay+'天':'',str='',that =this;
             str='<div class="back-trip">'+
             '<div class="top-line">'+

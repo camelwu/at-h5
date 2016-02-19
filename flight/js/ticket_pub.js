@@ -460,7 +460,6 @@ var bottomModal = {
 
         function cancelFunction(){
             that.cancelSetStyle(that.chooseInfo);
-            that.fn(that.chooseInfo)
         }
         function resetFunction(){
             that.resetStyle();

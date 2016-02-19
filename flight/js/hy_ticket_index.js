@@ -168,8 +168,7 @@
                        paraObj.CabinClass = CabinStr;
                        paraObj.RouteType = "Return";
                        paraObj.IsHideSharedFlight=false;
-                       paraObj.IsDirectFlight=true;
-                       paraObj.IsDirectFlight=true;
+                       paraObj.IsDirectFlight=false;
                        paraObj.NumofAdult= NumofAdult;
                        paraObj.NumofChild= NumofChild;
                        paraObj.DepartStartHour="00";
@@ -205,8 +204,8 @@
                        paraObj.DepartDate = startDate;
                        paraObj.CabinClass = CabinStr;
                        paraObj.RouteType = "Oneway";
-                       paraObj.IsHideSharedFlight="false";
-                       paraObj.IsDirectFlight=true;
+                       paraObj.IsHideSharedFlight=false;
+                       paraObj.IsDirectFlight=false;
                        paraObj.NumofAdult= NumofAdult;
                        paraObj.NumofChild= NumofChild;
                        paraObj.DepartStartHour="00";
