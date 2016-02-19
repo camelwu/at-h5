@@ -385,7 +385,7 @@
             frontImgStr += '<div class="d-div1 faceImg"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum"><div class="d-p4">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
 
 
-            firstUl += '<ul class="d-ul1"><li  onclick="hotelDetail.h_reviews()"><span class="rateScore">' + result.data[0].hotelGenInfo.taAvgRating + '</span>分/' + result.data[0].hotelGenInfo.taReviewCount + '人点评<b class="icons open-arg"></b></li>' +
+            firstUl += '<ul class="d-ul1"><li  onclick="hotelDetail.h_reviews()"><span class="rateScore">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg"></b></li>' +
             '<li id="toMap"><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' +
             '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate"></b><b class="icons open-arg"></b></li></ul>';
 
