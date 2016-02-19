@@ -101,7 +101,7 @@ var lsf_myweb={
     console.log(myData);
     console.log('上面是从localStorage上面得到的数据');
     //支付类型：1-Visa, 20-MasterCard(万事达卡), 21-Paypal
-    var myPayType=0;
+    var myPayType=1;
 
     //输入框
     lsf_myweb.styleChange('jp_bank','输入银行卡号');
@@ -152,7 +152,6 @@ var lsf_myweb={
                 }else if(oSpan.innerHTML=='万事达卡'){
                     myPayType=20;
                 }
-                //alert(myPayType)
                 myData.CreditCardType=myPayType;
             });
         }
@@ -189,7 +188,9 @@ var lsf_myweb={
             alert('请输入有效期');
             return;
         }else{
-            myData.CreditCardExpiryDate=jp_limit_time.value;
+            var y=jp_limit_time.value.split("/")[1];
+            var m=jp_limit_time.value.split("/")[0];
+            myData.CreditCardExpiryDate=new Date("20"+y,m,"00");
         }
         //安全码验证
         if(jp_safe_code.value=='签名栏末尾最后3位'){
@@ -216,23 +217,17 @@ var lsf_myweb={
         console.log(myData);
         console.log('以上是更新的localStorage的数据');
         //window.location.href='trade_details.html';
-
+        $("#status-h").fadeIn();
+        $("#preloader").delay(400).fadeIn("medium");
         //  交互部分
         function M(json){
-            console.log(json);
+            console.log(json.totalPriceCNY);
             var data={
-                "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\",\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"T00:00:00\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\",\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
+                "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\",\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":\""+json.totalPriceCNY+"\",\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"T00:00:00\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"CN\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\",\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
                 "ForeEndType": 3,
                 "Code": "0012"
             };
             console.log(data);
-            /*
-            var data={
-                "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\"8016\",\"RoomCode\":56625,\"HotelName\":\"Hotel Grand Chancellor (Hotel Grand Chancellor)\",   \"RoomTypeCode\": 31647, \"RoomTypeName\":\"Standard (Podium Block)\",\"RoomName\": \"高级房\",\"CheckInDate\":\"2016-01-23T00:00:00\",\"CheckOutDate\":\"2016-01-24T00:00:00\",\"NumOfRoom\":1,\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\"12345\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\"Test\",\"CreditCardNumber\":\"4544152000000004\",\"CreditCardType\":21,\"CreditCardExpiryDate\":\"2020-01-01T00:00:00\",\"CardSecurityCode\":\"123\",\"BankName\":\"CitiBank\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\"SG\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"}",
-                "ForeEndType": 3,
-                "Code": "0012"
-            };
-            */
             var payment=new paymentObj(data,mycallback);
             payment.handlePayment();
             //return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
@@ -240,9 +235,12 @@ var lsf_myweb={
         //数据展示部分
         function V(data){
             if(data.success){
+
                 window.location.href='trade_details.html';
             }else{
                 alert(data.message);
+                $("#status-h").fadeOut();
+                $("#preloader").delay(400).fadeOut("medium");
             }
         }
         M(myData);

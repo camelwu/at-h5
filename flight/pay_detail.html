@@ -10,6 +10,7 @@
     <title>支付</title>
     <link href="../styles/framework.css" rel="stylesheet"/>
     <link href="../styles/style.css" rel="stylesheet"/>
+    <link href="../styles/tips.css" rel="stylesheet"/>
     <link href="css/air_pay.css" rel="stylesheet"/>
 </head>
 <body>
@@ -23,7 +24,7 @@
 </div>-->
     <div class="all-elements scro-auto">
         <div class="header">
-            <a href="javascript:;" class="icons header-back"></a>
+            <a href="javascript:;" class="icons header-back" onclick="window.history.go(-1)"></a>
             <h3 class="edit-tit">支付</h3>
             <i class="tel-icon"></i>
         </div>
@@ -113,7 +114,10 @@
         </div>
     </div>
 </body>
+
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
-<script type="text/javascript" src="../js/lib/vcm.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script type="text/javascript" src="../js/payment.js"></script>
 <script type="text/javascript" src="js/pay_detail.js"></script>
 </html>
