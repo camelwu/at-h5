@@ -9,6 +9,7 @@ var u_realname;
 var phoneBflag=false;
 var r_phone=$('#phone')[0];
 var UserSex=sessionStorage.salutation;
+var phone_verify=$('#phone_ver')[0];
 function u_perInfo(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
@@ -287,7 +288,7 @@ function u_perInfo(){
                     "Code": "0056"
                 };
                 //console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_infoemail);
 
             };
 
@@ -391,11 +392,9 @@ function mycallback(ret){
             userIcon.src = "../images/ui/photo-woman.png";
         }
     }
-    if(sessionStorage.phone != ""){
-        user_phone.value = sessionStorage.phone;
-    }else{
+
         user_email.value = sessionStorage.email;
-    }
+        user_phone.value = '';
     //realName.value = sessionStorage.realname;
     MemberId = sessionStorage.memberid;
 }
@@ -414,8 +413,19 @@ function mycallback_info(ret){
     console.log(myJson);
     if(myJson.success){
         sessionStorage.realname = u_realname;
-        sessionStorage.email = u_email;
         sessionStorage.phone = u_phone;
+        console.log(sessionStorage);
+        document.getElementById("infoForm").submit();
+    }else{
+        alert(myJson.message);
+    }
+}
+
+function mycallback_infoemail(ret){
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.success){
+        sessionStorage.email = u_email;
         document.getElementById("infoForm").submit();
     }else{
         alert(myJson.message);
@@ -464,7 +474,19 @@ $('.info-quit').click(function(){
 });
 
 
+//时间倒计时结束后
+function phone_timeout(){
+    console.log(phone_verify);
+    phone_verify.innerHTML='发送验证码';
+    phone_verify.style.color='#ffb413';
+    regBflag=false;
+}
 
+//时间倒计过程中
+function time_reciprocals(sec){
+    phone_verify.innerHTML=sec+'秒重新发送';
+    phone_verify.style.color='#ccc';
+}
 
 
 
