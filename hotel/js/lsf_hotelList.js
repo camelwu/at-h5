@@ -374,10 +374,14 @@ function styleChange(id,mytext){
                 json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
             }
             if(json.DomCityName==hl_cityListInfo[i].cityNameCN){
-                json.DomCityName=hl_cityListInfo[i].cityNameCN;
+                json.DomCityName=hl_cityListInfo[i].cityNameEN;
+                json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
+            }
+            if((json.InterCityName==hl_cityListInfo[i].cityNameEN)||(json.DomCityName==hl_cityListInfo[i].cityNameEN)){
                 json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
             }
         }
+        alert(json.CountryISOCode);
         if(hoPos=='inter'){
             var data =
             {
