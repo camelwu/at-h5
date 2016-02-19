@@ -602,7 +602,8 @@ function inpChange(id,myText){
                 '</div>'+
                 '<div class="cityWordBox" id="cityWordBox">'+
                     '<div class="cityWord">'+
-                    '<div>当前热门</div>'+
+                    '<div><a href="#cl_curr">当前</a></div>'+
+                    '<div><a href="#cl_hot">热门</a></div>'+
                     '<ul class="cl_word" id="cl_side">'+
                     '<li><a href="#a">A</a></li>'+
                 '<li><a href="#b">B</a></li>'+
@@ -870,7 +871,8 @@ function inpChange(id,myText){
                     '</div>'+
                     '<div class="cityWordBox" id="cityWordBox">'+
                     '<div class="cityWord">'+
-                    '<div>当前热门</div>'+
+                    '<div><a href="#cl_curr">当前</a></div>'+
+                    '<div><a href="#cl_hot">热门</a></div>'+
                     '<ul class="cl_word" id="cl_side">'+
                     '<li><a href="#a">A</a></li>'+
                     '<li><a href="#b">B</a></li>'+
