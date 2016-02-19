@@ -549,6 +549,17 @@ function inpChange(id,myText){
             cityClick('X');
             cityClick('Y');
             cityClick('Z');
+            var lsf_city_list=document.getElementById('lsf_city_list');
+            var cityListWord=lsf_city_list.children;
+            for(var i=0;i<cityListWord.length;i++){
+                var oUl=cityListWord[i].getElementsByTagName('ul')[0];
+                var oDiv=cityListWord[i].getElementsByTagName('div')[0];
+                if(oUl.children.length==1&&oUl.children[0].innerHTML==''){
+                    cityListWord[i].style.display='none';
+                }else{
+                    cityListWord[i].style.display='block';
+                }
+            }
         }
         //国际城市
         lsf_myweb.bind(abroad_target_city,'click',function(){

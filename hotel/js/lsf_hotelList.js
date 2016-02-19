@@ -659,8 +659,10 @@ function styleChange(id,mytext){
                 var data={'hotelList':[],'locationList':[]};
                 V(data);
             }else{
-                alert(json.message);
-                console.log(json.message);
+                //alert(json.message);
+                //console.log(json.message);
+                var data={'hotelList':[],'locationList':[]};
+                V(data);
             }
             //window.history.go(-1);
         }
