@@ -907,9 +907,12 @@ ul,ol{
 .cityWord li{
     font-size:0.8rem;
     height:14px;
+    border:1px solid black;
+    line-height:normal;
 }
 .cityWord li a{
     color:#ffb413;
+    display:inline;
 }
 .lsf_city_list ul{
     padding:0;
