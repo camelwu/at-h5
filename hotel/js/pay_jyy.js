@@ -165,12 +165,12 @@ var lsf_myweb={
         }
         //信用卡验证
         if(jp_bank.value=='输入银行卡号'){
-            alert('请输入信用卡卡号');
+            $.alerts.alert('请输入信用卡卡号')
             return;
         }else{
             var reg=/^\d+$/g;
             if(!reg.test(jp_bank.value)){
-                alert('信用卡卡号必须是数字');
+                $.alerts.alert('信用卡卡号必须是数字');
                 return;
             }else{
                 myData.CreditCardNumber=jp_bank.value;
@@ -178,14 +178,14 @@ var lsf_myweb={
         }
         //姓名验证
         if(jp_guest_name.value=='姓名'){
-            alert('请输入持卡人姓名');
+            $.alerts.alert('请输入持卡人姓名');
             return;
         }else{
             myData.CardHolderName=jp_guest_name.value;
         }
         //有效期验证
         if(jp_limit_time.value=='月/年，如：09/12'){
-            alert('请输入有效期');
+            $.alerts.alert('请输入有效期');
             return;
         }else{
             var y=jp_limit_time.value.split("/")[1];
@@ -194,18 +194,18 @@ var lsf_myweb={
         }
         //安全码验证
         if(jp_safe_code.value=='签名栏末尾最后3位'){
-            alert('请输入信用卡安全码');
+            $.alerts.alert('请输入信用卡安全码');
             return;
         }else{
             var reg=/^\d+$/g;
             if(!reg.test(jp_safe_code.value)){
-                alert('信用卡安全码必须是数字');
+                $.alerts.alert('信用卡安全码必须是数字');
                 return;
             }else{
                 if(jp_safe_code.value.length==3){
                     myData.CardSecurityCode=jp_safe_code.value;
                 }else{
-                    alert('信用卡安全码必须是3位数字');
+                    $.alerts.alert('信用卡安全码必须是3位数字');
                     return;
                 }
             }
@@ -235,10 +235,10 @@ var lsf_myweb={
         //数据展示部分
         function V(data){
             if(data.success){
-
                 window.location.href='trade_details.html';
             }else{
-                alert(data.message);
+
+                $.alerts.alert(data.message);
                 $("#status-h").fadeOut();
                 $("#preloader").delay(400).fadeOut("medium");
             }
