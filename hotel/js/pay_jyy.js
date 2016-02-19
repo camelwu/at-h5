@@ -190,7 +190,7 @@ var lsf_myweb={
         }else{
             var y=jp_limit_time.value.split("/")[1];
             var m=jp_limit_time.value.split("/")[0];
-            myData.CreditCardExpiryDate=new Date("20"+y,m,"00");
+            myData.CreditCardExpiryDate="20"+y+"-"+m+"-01";
         }
         //安全码验证
         if(jp_safe_code.value=='签名栏末尾最后3位'){
