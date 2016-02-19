@@ -488,7 +488,11 @@ function time_reciprocals(sec){
     phone_verify.style.color='#ccc';
 }
 
-
+//清除昵称输入内容
+function clearname(){
+    var name = document.getElementById("name");
+    name.value = "";
+}
 
 //function mycallback_keyVeri(ret){
 //    var c = new vlm();
