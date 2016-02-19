@@ -381,7 +381,7 @@ function styleChange(id,mytext){
                 json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
             }
         }
-        alert(json.CountryISOCode);
+        //alert(json.CountryISOCode);
         if(hoPos=='inter'){
             var data =
             {
