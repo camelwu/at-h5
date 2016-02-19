@@ -23,26 +23,25 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-
     <title>个人中心选择乘机人 - 亚洲旅行网</title>
     <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css"		rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <link href="../css/date_select.css"	rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="preloader">
-        <div id="status">
+        <div id="status-f">
             <p class="center-text">
-                Loading the content...
-                <em>Loading depends on your connection speed!</em>
+                <em>加载中……</em>
             </p>
         </div>
     </div>
     <div class="all-elements">
         <div class="header">
             <a href="#" class="icons header-back"></a>
-            <h3>已选：<span>1</span>人</h3>
+            <h3>已选：<span class="adult-number">1</span>人</h3>
             <div class="header-finish">完成</div>
         </div>
         <!-- Page Content-->
@@ -50,7 +49,7 @@
             <div class="f_btn button-orange" style="margin-top: 10px" onclick="showAddAir_page()">
                 <b class="icons user-add"></b>新增乘机人
             </div>
-            <ul class="often-traveler">
+            <ul class="often-traveler choosed-traveler" id="">
                 <li class="eve-traveler">
                     <b class="icon user-choice1"></b>
                     <b class="icon user-edit"></b>
@@ -61,7 +60,7 @@
                 </li>
             </ul>
             <div class="name-text" style="margin-bottom: 0;margin-top: -15px;">首字母排序</div>
-            <ul class="often-traveler">
+            <ul class="often-traveler list-traveler" id="allList">
                 <li class="eve-traveler">
                     <b class="icon user-choice2"></b>
                     <b class="icon user-edit"></b>
@@ -295,84 +294,12 @@
     </div>
     <!--国籍选择结束-->
     <script src="../js/country_list.js"></script>
-    <script src="../js/require.js" data-main="../js/user.js"></script>
-    <script type="text/javascript">
-//        window.onload = function(){
-//            var traveler = [];
-//            traveler = document.getElementsByClassName("eve-traveler");
-//            for(var i=0;i < traveler.length;i++){
-//                traveler[i].onclick = choiseAir;
-//            }
-//        };
-//        function choiseAir(){
-//            debugger;
-//            var li = window.event.srcElement;
-//            var b = li.firstElementChild;
-//            if(b.className == "icon user-choice1"){
-//                b.className = "icon user-choice2";
-//            }else{
-//                b.className = "icon user-choice1";
-//            }
-//        }
-        function showAddAir_page(){
-            var addAir_page = document.getElementById("addAir-page");
-            addAir_page.style.display = "block";
-        }
-        function closeAddAir_page(){
-            var addAir_page = document.getElementById("addAir-page");
-            addAir_page.style.display = "none";
-        }
-        function showChild_page(){
-            var childen_page = document.getElementById("childen-page");
-            childen_page.style.display = "block";
-        }
-        function closeChild_page(){
-            var childen_page = document.getElementById("childen-page");
-            childen_page.style.display = "none";
-        }
-        function choseSex(){
-            //  判断性别
-            var man = $("#man")[0];
-            var sexCode;
-            var sexName;
-            if (man.className == "icon-h traveler-sex1") {
-                sexCode = "Mr";
-                sexName = "男";
-            } else {
-                sexCode = "Mrs";
-                sexName = "女";
-            }
-        }
-
-
-    </script>
-
     <script src="../js/lib/jquery.js"></script>
-    <script>
-        //中-英
-        $('#chn-name .foreign').click(function(){
-            $('#chn-name').hide();
-            $('#eng-name').show();
-        });
-
-        //英-中
-        $('#eng-name .chn').click(function(){
-            $('#chn-name').show();
-            $('#eng-name').hide();
-        });
-
-        //姓名说明
-        $('.name-notes').click(function(){
-            $('.fillName-page').show();
-        });
-
-        $('.name-eng-note').click(function(){
-            $('.fillName-page').show();
-        });
-
-        $('.name-illustrate').click(function(){
-            $('#fillName-page').hide();
-        });
-    </script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/scroller.js"></script>
+    <script src="scripts/userChoice.js"></script>
 </body>
 </html>

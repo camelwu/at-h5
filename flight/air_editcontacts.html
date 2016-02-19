@@ -52,4 +52,15 @@
 
 </div>
 </body>
+<script data-main="js/main.js" src="js/require.js"></script>
+<script>
+    (function($) {
+        $(document).ready(function() {
+            window.addEventListener('load', function() {
+                FastClick.attach(document.body);
+            }, false);
+        });
+    }(jQuery));
+</script>
+
 </html>

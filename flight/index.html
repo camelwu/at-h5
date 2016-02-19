@@ -154,5 +154,13 @@
 <script>
     var seat = new Scroller({id:"seats",type:"seat",cont:"test"});
     var seat0 = new Scroller({id:"seats0",type:"seat",cont:"test"});
+    (function($) {
+        $(document).ready(function() {
+            window.addEventListener('load', function() {
+                FastClick.attach(document.body);
+            }, false);
+        });
+    }(jQuery));
+
 </script>
 </html>

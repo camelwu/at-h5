@@ -143,7 +143,7 @@
        },
 
        toTicketList:function(){
-           var that = ticketIndexModal;
+           var that = ticketIndexModal,caCheContent = {};
            var ticketSearchButton = document.querySelector('#ticket-search-button');
            this.addHandler(ticketSearchButton,'click', function(){
                var oDiv = document.querySelector('#single').style.display == 'block'?document.querySelector('#single'):document.querySelector('#double');
@@ -178,6 +178,12 @@
                        paraObj.IsDesc= "false";
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
+                      /* caCheContent.CityCodeFromName = cityStrs[0];
+                       caCheContent.CityCodeToName = cityStrs[1];
+                       caCheContent.DepartDateData = document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[0].innerHTML;
+                       caCheContent.ReturnDateData = document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[1].innerHTML;
+                       caCheContent.NumofAdult = document.querySelector('.adult-number.double').innerHTML;
+                       caCheContent.NumofChild = document.querySelector('.child-number.double').innerHTML;*/
                        for(var attr in paraObj){
                            paramStr+="&"+attr+"="+paraObj[attr];
                        }

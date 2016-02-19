@@ -74,17 +74,43 @@ var ticketOrder = {
         var Button = document.querySelector('#buy-ticket-tip');
         var closeTag = document.querySelector('.close-buy-tip');
         var tipWord = document.querySelector('.tip-word');
-        var backMeal = document.querySelector('.back-meal');
         var backMealClose = document.querySelector('.back-meal-close');
         var goLineOuter = document.querySelector('.go-line-outer');
         var confirmButton = document.querySelector('.confirm');
         var summaryCostShadowTwo = document.querySelector('.summary-cost-shadow-two');
         var detailTangle = document.querySelector('.detail-tangle');
-        var addPassenger = document.querySelector('#addPassenger');
         var summaryCostModal = document.querySelector('.summary-cost-modal');
         var summaryCostShadowOne = document.querySelector('.summary-cost-shadow-one');
         var rightArrow = document.querySelector('.trigger-button ');
+        var addPassenger = document.querySelector('.add-Passenger');
+        var contactPerson = document.querySelector('.contact-person');
+        var passengerWrap = document.querySelector('.passenger-list-data');
+        var toEditPassengers = document.querySelectorAll('.next-icon');
+        var deletePassenger = document.querySelectorAll('.icon-add');
+        var that = this;
+        console.log(contactPerson)
+        this.addHandler(addPassenger,'click', function(){
+            document.location.href = '../user/user-choiceAir.html?type=add&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild
+        });
 
+        for(var i = 0;i<toEditPassengers.length;i++){
+            this.addHandler(toEditPassengers[i],'click', function(){
+                document.location.href = '../user/user-choiceAir.html?type=edit&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild;
+            });
+        }
+
+            this.addHandler(passengerWrap,'click', function(){
+               var event = event || window.event;
+               var target = event.target || event.srcElement;
+                console.log(target.className)
+                if(target.tagName =='I'){
+                    this.removeChild(target.parentNode.parentNode)
+                }
+        })
+
+       /* this.addHandler(contactPerson,'click', function(){
+            document.location.href = '../user/cont-list.html'
+        });*/
         this.addHandler(rightArrow,'click', function(){
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
@@ -95,9 +121,6 @@ var ticketOrder = {
              document.location.href = 'pay_detail.html';
         });
 
-        this.addHandler(addPassenger,'click', function(){
-            document.location.href = 'air_contacts.html';
-        });
 
         this.addHandler(Button,'click', function(){
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
@@ -112,17 +135,13 @@ var ticketOrder = {
             }
         });
         this.addHandler(tipWord,'click', function(event){
-            document.querySelector('.summary-cost-shadow-two').style.display = 'block';
-            backMeal.style.display = 'block';
+           /* document.querySelector('.summary-cost-shadow-two').style.display = 'block';
+            backMeal.style.display = 'block';*/
+            jLayer('<div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div>','退改签说明',function(){})
 
-        });
-        this.addHandler(backMealClose,'click', function(event){
-            var event = event || window.event;
-            var target =event.target || event.srcElement;
-            if(target.tagName == 'I'){
-                document.querySelector('.summary-cost-shadow-two').style.display = 'none';
-                backMeal.style.display = 'none';
-            }
+
+
+
         });
 
         if(goLineOuter){
@@ -203,15 +222,10 @@ var ticketOrder = {
     addContent:function(arg){
         var orderTop = document.querySelector('.order-top');
         var detailOuter = document.querySelector('.detail-outer');
-        var costTotal = document.querySelector('.second-line');
-        var totalCost = document.querySelector('.total-price-number strong');
-        var totalPerson = document.querySelector('.total-person-price');
         var goLineOuterHtml = '',seatConditionHtml ='', detailOuterHtml='',costStr='',that = this;
         var cacheInfo = this.storageUtil.get('reverseInformationCache');
         console.log(cacheInfo.TotalFlightPrice*parseInt(cacheInfo.WapOrder.NumofAdult))
-        totalCost.innerHTML = cacheInfo.TotalFlightPrice*parseInt(cacheInfo.WapOrder.NumofAdult)/*+cacheInfo.TotalFlightPrice*parseInt(cacheInfo.WapOrder.NumofAdult)+
-        cacheInfo.totalFareAmountCHD*parseInt(cacheInfo.WapOrder.NumofChild)+cacheInfo.TotalFlightPrice*parseInt(cacheInfo.WapOrder.NumofChild)*/
-        totalPerson.innerHTML = parseInt(cacheInfo.WapOrder.NumofAdult) + parseInt(cacheInfo.WapOrder.NumofChild)+'人总价'
+
         if(arg.segmentsReturn){
             goLineOuterHtml+= '<div class="go-line-outer-sub">' + createTopGo(arg)+'<p class="go-line go-line-return-middle"><span class="trigger-button right-arrow"></span></p>'+createTopBack(arg)+'</div>';
             seatConditionHtml += createSeatCondition(arg);
@@ -221,12 +235,6 @@ var ticketOrder = {
             seatConditionHtml += createSeatCondition(arg);
             orderTop.innerHTML = goLineOuterHtml + seatConditionHtml;
         }
-        costStr+= '<p>成人票<span>￥<span>'+cacheInfo.TotalFlightPrice+'</span> x'+parseInt(cacheInfo.WapOrder.NumofAdult)+' 人</span></p>';
-        costStr+= '<p>税费<span>￥<span>'+cacheInfo.TotalFlightPrice+'</span> x'+parseInt(cacheInfo.WapOrder.NumofAdult)+' 人</span></p>';
-        costStr+= cacheInfo.totalFareAmountCHD!=undefined?'<p>儿童票<span>￥<span>'+cacheInfo.totalFareAmountCHD+'</span> x'+parseInt(cacheInfo.WapOrder.NumofChild)+' 人</span></p>':'';
-        costStr+= cacheInfo.totalTaxAmountCHD!=undefined?'<p>税费<span>￥<span>'+cacheInfo.totalTaxAmountCHD+'</span> x'+parseInt(cacheInfo.WapOrder.NumofChild)+' 人</span></p>':'';
-        costTotal.innerHTML = costStr;
-
         detailOuter.innerHTML = detailGo(arg) + detailBack(arg);
         function createTopGo(arg){
                 var str = '',toCity = '';
@@ -261,7 +269,7 @@ var ticketOrder = {
             var tipStr = arg.segmentsReturn!=null?'往返票价':'单程票价';
             var str ='';
              str +='<div class="seat-condition"><div class="left">' +
-                   '<span>'+arg.segmentsLeave[0].cabinClassName+'</span><p><span>'+tipStr+'</span>&nbsp;￥<span>'+arg.totalFareAmountExc+'</span><span>&nbsp;税费</span>￥<span>'+arg.totalTaxAmountADT+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+(arg.totalFareAmountExc+arg.totalTaxAmountADT)+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>';
+                   '<span>'+arg.segmentsLeave[0].cabinClassName+'</span><p><span>'+tipStr+'</span>&nbsp;￥<span>'+arg.totalFareAmountADT+'</span><span>&nbsp;税费</span>￥<span>'+arg.totalTaxAmountADT+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+arg.totalFareAmountExc+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>';
             return str;
 
         }
@@ -318,10 +326,32 @@ var ticketOrder = {
             return str;
         }
     },
+   costFinaList:function(){
+       var that = this, costTotal = document.querySelector('.second-line'),temObj = {},totalCost = document.querySelector('.total-price-number strong');
+       var costStr = '',curFlightListData = this.storageUtil.get('curFlightListData'),reverseInformationCache = this.storageUtil.get('reverseInformationCache') ;
+       var totalPerson = document.querySelector('.total-person-price');
+       temObj.totalFareAmountADT = curFlightListData.totalFareAmountADT;
+       temObj.totalFareAmountCHD = curFlightListData.totalFareAmountCHD;
+       temObj.totalFareAmountExc = curFlightListData.totalFareAmountExc;
+       temObj.totalTaxAmountADT = curFlightListData.totalTaxAmountADT;
+       temObj.totalTaxAmountCHD = curFlightListData.totalTaxAmountCHD;
+       temObj.NumofAdult = parseInt(reverseInformationCache.WapOrder.NumofAdult);
+       temObj.NumofChild = parseInt(reverseInformationCache.WapOrder.NumofChild);
+       this.costFinaListData = temObj;
+       costStr+= '<p>成人票<span>￥<span>'+temObj.totalFareAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+       costStr+= '<p>税费<span>￥<span>'+temObj.totalTaxAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+       costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+temObj.totalFareAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+       costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+temObj.totalTaxAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+       costTotal.innerHTML = costStr;
+       totalCost.innerHTML = temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild
+       totalPerson.innerHTML = temObj.NumofAdult+temObj.NumofChild+'人总价';
+       console.log(this.costFinaListData)
+       console.log( totalCost.innerHTML)
+   },
 
     init:function(){
         console.log(this.storageUtil.get('reverseInformationCache'));
-        var reverseInformationCache = {
+        /*var reverseInformationCache = {
             WapOrder:{},
             TravellerInfo: [
                 {PassengerType: "ADULT",
@@ -357,13 +387,14 @@ var ticketOrder = {
             },
             CurrencyCode: "",
             TotalFlightPrice: ""
-        };
+        };*/
 
         this.telSlider()
         this.orderFlightData = this.storageUtil.get('curFlightListData');
         this.addContent(this.orderFlightData);
         console.log(this.storageUtil.get('curFlightListData'))
-        this.addEvent()
+        this.addEvent();
+        this.costFinaList();
     }
 };
 
