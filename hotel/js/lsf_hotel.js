@@ -609,7 +609,7 @@ function inpChange(id,myText){
                 '<li><a href="#g">G</a></li>'+
                 '<li><a href="#h">H</a></li>'+
                 '<li><a href="#i">I</a></li>'+
-                '<li><a href="#g">G</a></li>'+
+                '<li><a href="#j">J</a></li>'+
                 '<li><a href="#k">K</a></li>'+
                 '<li><a href="#l">L</a></li>'+
                 '<li><a href="#m">M</a></li>'+
@@ -877,7 +877,7 @@ function inpChange(id,myText){
                     '<li><a href="#g">G</a></li>'+
                     '<li><a href="#h">H</a></li>'+
                     '<li><a href="#i">I</a></li>'+
-                    '<li><a href="#g">G</a></li>'+
+                    '<li><a href="#j">J</a></li>'+
                     '<li><a href="#k">K</a></li>'+
                     '<li><a href="#l">L</a></li>'+
                     '<li><a href="#m">M</a></li>'+
