@@ -142,54 +142,8 @@
             var lstr = template("user_order",ldata);
             $("#user_order").html(lstr);
 
-
-            function init(){
-                var a_set = $("#a_set")[0];
-                var a_contact = $("#a_contact")[0];
-                var title = $("#title")[0];
-                var u_setting = $("#u_setting")[0];
-                var contactus = $("#contactus")[0];
-                var link_page = $("#link_page")[0];
-                var close_page = $("#close_page")[0];
-                var menu = $("#menu")[0];
-                var array = title.innerHTML;
-                var head = array.split("/");
-                function link(obj1,obj2){
-                    obj1.onclick = function(){
-                        menu.style.display = "none";
-                        if(obj1 == a_set){
-                            contactus.style.display = "none";
-                            u_setting.style.display = "block";
-                        }else{
-                            u_setting.style.display = "none";
-                            contactus.style.display = "block";
-                        }
-                        title.innerHTML = obj2;
-                        link_page.style.display = "block";
-                    }
-                }
-                link(a_set,head[0]);
-                link(a_contact,head[1]);
-                function close(obj){
-                    obj.onclick = function(){
-                        link_page.style.display = "none";
-                        menu.style.display = "block";
-                    }
-                }
-                close(close_page);
-            }
-            function ifOpen(){
-                var b = window.event.srcElement;
-                if(b.className == "icon set-chose1"){
-                    b.className = "icon set-chose2";
-                }else{
-                    b.className = "icon set-chose1";
-                }
-            }
         </script>
 
-        <script src="../js/require.js" data-main="../js/user.js"></script>
-        <script type="text/javascript" src="../js/lib/jquery.js"></script>
         <script type="text/javascript" src="../js/lib/vlm.js"></script>
         <script type="text/javascript" src="scripts/user-logined.js"></script>
 	</body>

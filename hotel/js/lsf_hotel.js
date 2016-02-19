@@ -308,6 +308,10 @@ function inpChange(id,myText){
         window.history.go(-1);
     };
     //城市列表
+    var dataCN=[];
+    var dataIN=[];
+    var dataWorCN={};
+    var dataWorIN={};
     function cityList(){
         var domestic_target_place=document.getElementById('arr2');
         var domestic_target_city=document.getElementById('input2');
@@ -331,10 +335,7 @@ function inpChange(id,myText){
             "Parameters": "",
             "ForeEndType": 1
         };
-        var dataCN=[];
-        var dataIN=[];
-        var dataWorCN={};
-        var dataWorIN={};
+
         var domBok=true;
         var interBok=true;
         //城市列表
@@ -344,6 +345,7 @@ function inpChange(id,myText){
                 alert(listJson.message);
                 return;
             }
+            window.localStorage.setItem('cityListInfo',JSON.stringify(listJson.data));
             //城市列表
             function sortBy(json){
                 var data=json.data;
@@ -374,6 +376,8 @@ function inpChange(id,myText){
                     }
                 }
             }
+            console.log(listJson);
+            console.log(33333333333333333);
             sortBy(listJson);
             console.log(dataWorCN);
             console.log(dataWorIN);
@@ -406,7 +410,7 @@ function inpChange(id,myText){
                     cityHisArr.shift();
                 }
                 for(var i=0;i<dataIN.length;i++){
-                    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'"></option>';
+                    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'('+dataIN[i].cityNameEN+')'+'"></option>';
                 }
             }else if(obj.getAttribute('id')=='input2'){
                 citySearchBox.setAttribute('placeholder','北京/beijing/bj/bjs/中国');  //判断国际国内酒店改变placeholder
