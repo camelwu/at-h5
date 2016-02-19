@@ -2,24 +2,50 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>北京周边</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link href="../styles/framework.css" type="text/css" rel="stylesheet">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>周边景点列表 - 亚洲旅行网</title>
+    <link href="../styles/framework.css" rel="stylesheet"/>
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/sceniclist.css">
+    <link href="css/scenic.css" rel="stylesheet"/>
 </head>
 <body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                <br>
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
     <div class="all-elements">
         <!--   顶部   -->
-        <header class="top min320">
-            <a href="#" class="icons header-back"></a>
-            <div class="city-tit">
-                <span class="location-msg">北京周边</span>
-                <i class="ellip-tip"></i>
-            </div>
-        </header>
+        <div class="header" id="vlm-login">
+            <a href="javascript:history.go(-1);" class="icons header-back"></a>
+            <h3><span>北京</span>周边</h3>
+        </div>
         <!--   内容   -->
-        <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 20px;">
+        <div id="content ddd" class="sc-content">
             <section class="sce-surround min320">
                 <div class="scenic-list-box">
                     <ul class="scenic-list-content">
@@ -31,12 +57,11 @@
                                 <div class="sce-detail">
                                     <p class="sce-detail-tit">八达岭长城+秋季采摘苹果一日游</p>
                                     <div class="gn-hot">
-                                        <i></i>
-                                        <span>国内热游</span>
+                                        国内热游
                                     </div>
                                     <div class="dis-price-wrap">
                                         <div class="pos-distance">
-                                            <i></i>
+                                            <b class="jd-icon s-locat"></b>
                                             <span>0.4公里</span>
                                         </div>
                                         <div class="price-sale">
@@ -147,17 +172,114 @@
                 </div>
             </section>
         </div>
-        <!--   底部   -->
-        <footer class="sce-bottom min320">
-            <div class="sce-filter">
-                <a href="javascript:;" class="cp-recommend"><span>产品经理推荐</span><i class="cp-recommend-tip"></i></a>
-                <a href="javascript:;" class="well-rate"><span>好评率</span><i class="well-rate-tip"></i></a>
-                <a href="javascript:;" class="price-sort"><span>价格排序</span><i class="price-sort-tip"></i></a>
-                <a href="javascript:;" class="gl-filter"><span>过滤</span><i class="gl-filter-tip"></i></a>
+        <footer class="sl-bottom">
+            <div>
+                <b class="jd-icon s-good"></b>
+                产品经理推荐
+            </div>
+            <div>
+                <b class="jd-icon s-remark"></b>
+                好评率
+            </div>
+            <div>
+                <b class="jd-icon s-rank"></b>
+                价格排序
+            </div>
+            <div id="screen">
+                <b class="jd-icon s-fil"></b>
+                过滤
             </div>
         </footer>
+        <!--      筛选块      -->
+        <div id="screen_mb" class="qp-mengban"></div>
+        <div id="list_screen" class="list-screen">
+            <div id="quit_screen">取消</div>
+            <div id="clear_screen">清除筛选</div>
+            <div id="sure_screen">确定</div>
+            <ul class="scr-title">
+                <li class="sctit-active">景点主题</li>
+            </ul>
+            <ul class="spot-screen">
+                <li class="spot-slected">不限<b class="jd-icon scr-gou s-active"></b></li>
+                <li>博物馆<b class="jd-icon scr-gou"></b></li>
+                <li>场馆<b class="jd-icon scr-gou"></b></li>
+                <li>古迹遗址<b class="jd-icon scr-gou"></b></li>
+                <li>山水景观<b class="jd-icon scr-gou"></b></li>
+                <li>温泉<b class="jd-icon scr-gou"></b></li>
+            </ul>
+        </div>
     </div>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/custom.js"></script>
+    <script>
+        $(window).load(function () {
+            $("#status").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
+        (function(){
+            var screen = $("#screen")[0];
+            var mb = $("#screen_mb")[0];
+            var screenBlock = $("#list_screen")[0];
+            var quit = $("#quit_screen")[0];
+            var sure = $("#sure_screen")[0];
+            var clear = $("#clear_screen")[0];
+            //    点击筛选
+            screen.onclick = function(){
+                mb.style.display="block";
+                screen.style.opacity = "1";
+                screenBlock.style.bottom=0;
+                screenBlock.style.transition="all 400ms";
+            };
+            //    关闭筛选
+            function closeblock(){
+                mb.style.display="none";
+                screen.style.opacity = "0.8";
+                screenBlock.style.bottom=-500+'px';
+                screenBlock.style.transition="all 400ms";
+            }
+            quit.onclick = closeblock;
+            sure.onclick = closeblock;
 
-    <script src="js/head_back.js"></script>
+            //   筛选选择
+            var li  = document.getElementsByClassName('spot-screen')[0].getElementsByTagName('li');
+            var bb = li[0].getElementsByTagName('b')[0];
+            var b = document.getElementsByClassName('jd-icon scr-gou');
+            for(var i = 0;i < li.length;i++){
+                {
+                    (function(index){
+                        li[i].onclick = function(){
+                            if(index==0){
+                                for(var i = 1;i < li.length;i++){
+                                    li[i].className = '';
+                                    b[i].className = 'jd-icon scr-gou';
+                                }
+                                li[index].className = 'spot-slected';
+                                b[index].className = 'jd-icon scr-gou s-active';
+                            }else{
+                                li[0].className = '';
+                                bb.className = 'jd-icon scr-gou';
+                                li[index].className = 'spot-slected';
+                                b[index].className = 'jd-icon scr-gou s-active';
+                            }
+                        };
+                    })(i);
+                }
+            }
+            //   清除筛选
+            clear.onclick = function(){
+                li[0].className = 'spot-slected';
+                b[0].className = 'jd-icon scr-gou s-active';
+                for(var i = 1;i < li.length;i++){
+                    li[i].className = '';
+                    b[i].className = 'jd-icon scr-gou';
+                }
+            };
+        })();
+    </script>
+    <!--<script src="js/head_back.js"></script>-->
 </body>
 </html>

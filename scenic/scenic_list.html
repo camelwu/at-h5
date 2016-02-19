@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>景点</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="green">
@@ -24,6 +23,8 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>景点列表 - 亚洲旅行网</title>
     <link href="../styles/framework.css" rel="stylesheet"/>
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
     <link href="css/scenic.css" rel="stylesheet"/>
@@ -41,11 +42,11 @@
     <div class="all-elements">
         <!--   顶部   -->
         <div class="header" id="vlm-login">
-            <a href="#" class="icons header-back"></a>
+            <a href="javascript:history.go(-1);" class="icons header-back"></a>
             <h3>特色当地游</h3>
-            <a href="javascript:;" class="location-wrap">
-            <span class="location-txt">北京</span>
-            <i class="location-tip"></i>
+            <a href="scenic_surround.html" class="location-wrap">
+                <span class="location-txt">北京</span>
+                <i class="location-tip"></i>
             </a>
         </div>
         <!--<header class="top">-->
@@ -57,7 +58,7 @@
             <!--</a>-->
         <!--</header>-->
         <!--   内容   -->
-        <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 20px;">
+        <div id="content ddd" class="sc-content">
             <section>
                 <!--<div class="cont-exhibition">-->
                     <!--<img src="images/palace.jpg" alt=""/>-->
@@ -200,12 +201,14 @@
             //    点击筛选
             screen.onclick = function(){
                 mb.style.display="block";
+                screen.style.opacity = "1";
                 screenBlock.style.bottom=0;
                 screenBlock.style.transition="all 400ms";
             };
             //    关闭筛选
             function closeblock(){
                 mb.style.display="none";
+                screen.style.opacity = "0.8";
                 screenBlock.style.bottom=-500+'px';
                 screenBlock.style.transition="all 400ms";
             }
