@@ -55,16 +55,16 @@ var ticketSeatChoose = {
         var that = this;
 
         this.addHandler(reserveButton,'click', function(){
-            var testPara = {
+           /* var testPara = {
                 WapOrder: {
-                    SetID: "30000080",
-                    CacheID: "3500553",
+                    SetID: "30000000",
+                    CacheID: "3502305",
                     CityCodeFrom: "BJS",
                     CityCodeTo: "SIN",
                     NumofAdult: 1,
                     NumofChild: 0,
                     RouteType: "Oneway",
-                    CabinClass: "First",
+                    CabinClass: "Economy",
                     IP: "",
                     DeviceID: "",
                     SourceType: "",
@@ -83,8 +83,8 @@ var ticketSeatChoose = {
                         IdNumber: "3412",
                         IdActivatedDate: "2016-12-31"
                     },
-                    AirCorpCode: "MF",
-                    FlightNo: "757"
+                    AirCorpCode: "SQ",
+                    FlightNo: "807"
                 }],
                 ContactDetail: {
                     SexCode: "Mr",
@@ -102,9 +102,9 @@ var ticketSeatChoose = {
                     CountryCode: "CNY "
                 },
                 CurrencyCode: "CNY",
-                TotalFlightPrice: "2710.00"
+                TotalFlightPrice: "3997"
             }
-            that.tAjax(that.requestUrl, testPara, "3002", 3, that.test);
+            that.tAjax(that.requestUrl, testPara, "3002", 3, that.test);*/
             var login;
      /*       var reverseInformation = {
                 WapOrder:{
@@ -210,9 +210,8 @@ var ticketSeatChoose = {
                 TotalFlightPrice: that.currentFlightData.totalFareAmountExc + that.currentFlightData.totalTaxAmountADT
             };
 
-             console.log(vlm.checkLogin())
             if(vlm.checkLogin())
-             {
+             {       console.log(reverseInformationCache)
                     that.storageUtil.set('reverseInformationCache',reverseInformationCache);
                     document.location.href = 'ticket_order.html';
              }

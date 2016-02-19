@@ -422,7 +422,7 @@ function styleChange(id,mytext){
                     '<span style="color:#999999;font-size:1rem;">分/'+data[i].hotelReviewCount+'人点评</span>'+
                     '<p class="hl_price">'+
                     '<span style="font-size:0.8rem;color:#fe4716;">￥</span>'+
-                    '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+parseFloat(data[i].avgPrice).toFixed(2)+'</span>'+
+                    '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+parseFloat(data[i].avgPriceCNY).toFixed(2)+'</span>'+
                     '<span style="font-size:1.2rem;color:#999999;">起</span>'+
                     '</p>'+
                     '</div>'+
@@ -659,8 +659,10 @@ function styleChange(id,mytext){
                 var data={'hotelList':[],'locationList':[]};
                 V(data);
             }else{
-                alert(json.message);
-                console.log(json.message);
+                //alert(json.message);
+                //console.log(json.message);
+                var data={'hotelList':[],'locationList':[]};
+                V(data);
             }
             //window.history.go(-1);
         }

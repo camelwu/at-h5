@@ -2253,7 +2253,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 1.0rem;
     background: #e9e9e9;
 }
-
+.passenger-list-data li{
+    border-bottom: 1px solid #E9E9E9;
+}
 .ride-user-first span {
     font-size: 1.4rem;
     position: absolute;
@@ -2368,30 +2370,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .passport span {
     width: 4.0rem;
-    height: 2.1rem;
-    line-height: 2.1rem;
     padding-left: 0.2rem;
-}
-
-.passport form {
-    width: 4.0rem;
-    display: inline-block;
-}
-
-.passport form.passport-form select {
-    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
-    height: 2.1rem;
-    line-height: 2.1rem;
-    font-size: 1.4rem;
-    background-color: #fff;
-    color: rgb(102,102,102);
-}
-
-.passport form.passport-form option{
-    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
-    background: #ffb413;
-    color: #FFFFFF;
-    border-radius: 1px;
 }
 
 .passport input {

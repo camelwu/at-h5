@@ -1,44 +1,4 @@
-// JavaScript Document
 
-require.config({
-    baseUrl: '../js/lib',
-    paths: {
-        jquery: 'jquery',
-        vlm: 'vlm',
-        plugins: 'plugins',
-        Scroller: 'scroller'
-    },
-    $:['jquery'],
-    shim: {
-    	'plugins':{
-    		deps: ['jquery'],
-    		init:function(){
-    			return{
-    				WOW:WOW,
-    				FastClick:FastClick,
-    				owlCarousel:owlCarousel,
-    				countdown:countdown,
-    				swipebox:swipebox,
-    				ScrollIt:ScrollIt,
-    				Snap:Snap
-    			}
-    		}
-    	},
-    	'scroller':{
-    		deps: ['jquery','plugins'],
-
-    		exports: 'Scroller'
-        }
-	}//,
-	//urlArgs: "bust=" +  (new Date()).getTime()
-});
-
-require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
-    //console.log("dataReady="+vlm);
-    vlm.init();
-    /**
-     * Created by changlv on 2016/1/19.
-     */
     var index;
     var array = [];
     var arrayId = [];
@@ -142,11 +102,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
 
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
                         "ForeEndType": 3,
                         "Code": "0071"
                     }
-                    //console.log(Parameters);
+
                     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
                 }
                 else {
@@ -165,6 +125,8 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 //console.log(array);
                 var travelId = array[index];
                 //console.log(travelId);
+
+
                 var id = arrayId[index];
                 //console.log(id);
                 var input = document.getElementById("updateForm").getElementsByTagName("input");
@@ -187,27 +149,24 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     sexName = "女";
                 }
                 //  判断证件类型
-                if (cardType == "身份证") {
+                if (cardType == "护照") {
                     cardId = "1";
-                } else if (cardType == "护照") {
+                } else if (cardType == "身份证") {
                     cardId = "2";
-                } else if (cardType == "港澳通行证") {
-                    cardId = "3";
-                } else if (cardType == "军官证") {
-                    cardId = "4";
-                } else if (cardType == "驾驶证") {
-                    cardId = "5";
-                } else if (cardType == "台胞证") {
-                    cardId = "6";
-                } else if (cardType == "回乡证") {
-                    cardId = "7";
-                } else if (cardType == "户口本") {
-                    cardId = "8";
                 } else if (cardType == "出生证明") {
+                    cardId = "3";
+                } else if (cardType == "港澳通行证") {
+                    cardId = "4";
+                } else if (cardType == "军人证") {
+                    cardId = "5";
+                } else if (cardType == "驾驶证") {
+                    cardId = "6";
+                } else if (cardType == "台胞证") {
+                    cardId = "7";
+                } else if (cardType == "回乡证") {
+                    cardId = "8";
+                } else {
                     cardId = "9";
-                }
-                else {
-                    cardId = "10";
                 }
                 // 手机号邮箱检验
                 var oMobile = $('#mobile-cell')[0].value;
@@ -215,7 +174,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\"1932-06-15\",\"Email\":\"" + input[5].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[4].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":2,\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\"2016-02-13\"}]}",
                         "ForeEndType": 3,
                         "Code": "0072"
                     };
@@ -251,7 +210,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         deleteTra(delTra);
     });
 
-
     (function () {
         var aSel = document.querySelectorAll('.sex-cho-wrap');
 
@@ -272,12 +230,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
     })();
 
-
 //  页面初始获取常旅客
     function mycallback(ret) {
         travJson = eval('(' + ret + ')');
         var blank = $("#blank")[0];
-        console.log(travJson)
+        //console.log(travJson)
         if (travJson.success) {
             if (travJson.data.length == 0) {
                 blank.style.display = "block";
@@ -294,7 +251,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     var li = document.createElement("li");
                     li.className = "eve-traveler";
                     var b = document.createElement("b");
-                    b.className = "user-edits";
+                    b.className = "bu_icon user-edits";
                     b.style.marginTop = li.clientHeight + 20 + 'px';
                     b.addEventListener("click", updateTra);
                     li.appendChild(b);
@@ -304,30 +261,24 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     ul_li1.innerHTML = travJson.data[i].traveller.idName + travJson.data[i].traveller.lastName + "/" + travJson.data[i].traveller.firstName;
                     ul.appendChild(ul_li1);
                     var ul_li2 = document.createElement("li");
-                    var idtype_num=travJson.data[i].listTravellerIdInfo.length;
-                    if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "1") {
-                        ul_li2.innerHTML = "身份证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "2") {
-                        ul_li2.innerHTML = "护照" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "3") {
-                        ul_li2.innerHTML = "港澳通行证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "4") {
-                        ul_li2.innerHTML = "军官证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "5") {
-                        ul_li2.innerHTML = "驾驶证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "6") {
-                        ul_li2.innerHTML = "台胞证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "7") {
-                        ul_li2.innerHTML = "回乡证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    }
-                    else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "8") {
-                        ul_li2.innerHTML = "户口本" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    }
-                    else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "9") {
-                        ul_li2.innerHTML = "出生证明" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    }
-                    else {
-                        ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                    if (travJson.data[i].listTravellerIdInfo[0].idType == "1") {
+                        ul_li2.innerHTML = "护照" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "2") {
+                        ul_li2.innerHTML = "身份证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "3") {
+                        ul_li2.innerHTML = "出生证明" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "4") {
+                        ul_li2.innerHTML = "港澳通行证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "5") {
+                        ul_li2.innerHTML = "军官证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "6") {
+                        ul_li2.innerHTML = "驾驶证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "7") {
+                        ul_li2.innerHTML = "台胞证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else if (travJson.data[i].listTravellerIdInfo[0].idType == "8") {
+                        ul_li2.innerHTML = "回乡证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
+                    } else {
+                        ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
                     }
                     ul.appendChild(ul_li2);
                     var ul_li3 = document.createElement("li");
@@ -368,7 +319,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var myJson = eval('(' + ret + ')');
         console.log(myJson);
         if (myJson.success) {
-           document.getElementById("updateForm").submit();
+            document.getElementById("updateForm").submit();
         } else {
             alert(myJson.message);
         }
@@ -386,34 +337,28 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var countryName = $("#countryName")[0];
         var man2 = $("#man2")[0];
         var woman2 = $("#woman2")[0];
-        var idtype_num=travJson.data[index].listTravellerIdInfo.length;
         input[0].value = travJson.data[index].traveller.idName;
         input[1].value = travJson.data[index].traveller.lastName;
         input[2].value = travJson.data[index].traveller.firstName;
-        input[3].value = travJson.data[index].listTravellerIdInfo[idtype_num-1].idNumber;
-        input[4].value = travJson.data[index].listTravellerIdInfo[idtype_num-1].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号';
-        input[5].value = travJson.data[index].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
-        input[6].value = travJson.data[index].traveller.mobilePhone;
-        input[7].value = travJson.data[index].traveller.email;
-        if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "1") {
-            cardType.innerHTML = "身份证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "2") {
+        input[3].value = travJson.data[index].traveller.idNumber;
+        input[5].value = travJson.data[index].traveller.email;
+        if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
             cardType.innerHTML = "护照";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "3") {
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "2") {
+            cardType.innerHTML = "身份证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "3") {
             cardType.innerHTML = "出生证明";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "4") {
-            cardType.innerHTML = "军官证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "5") {
-            cardType.innerHTML = "驾驶证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "6") {
-            cardType.innerHTML = "台胞证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "7") {
-            cardType.innerHTML = "回乡证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "8") {
-            cardType.innerHTML = "户口本";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "9") {
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "4") {
             cardType.innerHTML = "港澳通行证";
-        }else {
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "5") {
+            cardType.innerHTML = "军官证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "6") {
+            cardType.innerHTML = "驾驶证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "7") {
+            cardType.innerHTML = "台胞证";
+        } else if (travJson.data[index].listTravellerIdInfo[0].idType == "8") {
+            cardType.innerHTML = "回乡证";
+        } else {
             cardType.innerHTML = "其他";
         }
         countryName.innerHTML = travJson.data[index].traveller.countryName;
@@ -426,7 +371,175 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         }
     }
 
-//    });
+    vlm.init();
+
+//显示新增乘机人编辑页
+    function showAddAir_page(){
+        var addAir_page = document.getElementById("addAir-page");
+        addAir_page.style.display = "block";
+    }
+
+    function closeAddAir_page(){
+        var addAir_page = document.getElementById("addAir-page");
+        addAir_page.style.display = "none";
+    }
+
+    function showChild_page(){
+        var childen_page = document.getElementById("childen-page");
+        childen_page.style.display = "block";
+    }
+
+    function closeChild_page(){
+        var childen_page = document.getElementById("childen-page");
+        childen_page.style.display = "none";
+    }
+
+    function choseSex(){
+        //  判断性别
+        var man = $("#man")[0];
+        var sexCode;
+        var sexName;
+        if (man.className == "icon-h traveler-sex1") {
+            sexCode = "Mr";
+            sexName = "男";
+        } else {
+            sexCode = "Mrs";
+            sexName = "女";
+        }
+    }
+
+    localStorage.cc = "1364324823748234";
+//get user list
+    var tpl_u = [
+        '<li class="eve-traveler">',
+        '<b class="icon user-choice{% if(localStorage.cc==listTravellerIdInfo[0]["idNumber"]){ %}1{% }else{ %}2{% } %}"></b>',
+        '<b class="icon user-edit"></b>',
+        '<ul class="often_user">',
+        '<li>{%=traveller["idName"]%}{%=traveller["firstName"]%}</li>',
+        '<li>身份证 <span>{%=listTravellerIdInfo[0]["idNumber"]%}</span></li>',
+        '</ul>',
+        '</li>'
+    ].join(''),sdata = {
+        "Parameters": "{\"memberId\":'494258'}",
+        "ForeEndType": 3,
+        "Code": "0074"
+    }
+
+    function input_ulist(d){
+        console.log(d)
+        var json = JSON.parse(d);
+        /*  var json2 = {
+         "success": true,
+         "message": "",
+         "data": [
+         {
+         "traveller": {
+         "travellerId": 21,
+         "idName": "1231234124",
+         "lastName": "14",
+         "firstName": "134",
+         "countryCode": "CN",
+         "countryName": "中国",
+         "sexCode": "Mr",
+         "sexName": "男",
+         "dateOfBirth": "1932-06-15T00:00:00",
+         "email": "1136328136@qq.com",
+         "createTime": "2016-02-18T18:55:39.563",
+         "memberId": 494258,
+         "isDelete": false,
+         "mobilePhone": "13716410136",
+         "nationalityCode": null
+         },
+         "listTravellerIdInfo": [
+         {
+         "id": 22,
+         "travellerId": 21,
+         "idType": 2,
+         "idNumber": "134134",
+         "idCountry": "CN",
+         "idActivatedDate": "1990-01-09T00:00:00"
+         }
+         ]
+         },
+         {
+         "traveller": {
+         "travellerId": 22,
+         "idName": "齐真真",
+         "lastName": "1123",
+         "firstName": "dsds",
+         "countryCode": "CN",
+         "countryName": "中国",
+         "sexCode": "Mr",
+         "sexName": "男",
+         "dateOfBirth": "1932-06-15T00:00:00",
+         "email": "1136328136@qq.com",
+         "createTime": "2016-02-18T18:29:31.03",
+         "memberId": 494258,
+         "isDelete": false,
+         "mobilePhone": "13652525256",
+         "nationalityCode": null
+         },
+         "listTravellerIdInfo": [
+         {
+         "id": 23,
+         "travellerId": 22,
+         "idType": 2,
+         "idNumber": "1364324823748234",
+         "idCountry": "CN",
+         "idActivatedDate": "1990-01-09T00:00:00"
+         }
+         ]
+         }
+         ]
+         }*/
+        //console.log(json2.data)
+        var html = template(tpl_u,json.data);
+        $("#allList").html(html);
+    }
+    vlm.loadJson("",JSON.stringify(sdata),input_ulist);
+
+//中-英
+    $('#chn-name .foreign').click(function(){
+        $('#chn-name').hide();
+        $('#eng-name').show();
+    });
+
+//英-中
+    $('#eng-name .chn').click(function(){
+        $('#chn-name').show();
+        $('#eng-name').hide();
+    });
+
+//姓名说明
+    $('.name-notes').click(function(){
+        $('.fillName-page').show();
+    });
+
+    $('.name-eng-note').click(function(){
+        $('.fillName-page').show();
+    });
+
+    $('.name-illustrate').click(function(){
+        $('#fillName-page').hide();
+    });
+
+    function redicturl(){
+        if(window.opener) {
+            window.close();
+        }else{
+            window.history.go(-1);
+        }
+    }
+
+    $(".con-mobile-list li").click(function(){
+        //
+        console.log(1111);
+
+        redicturl();
+    });
+    document.querySelector('.header-back').onclick = function(){
+        redicturl();
+    }
 
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"week_span2"});
     var myDate2 = new Scroller({id: "time-cont", type:"birth",cont:"week_span2"});
@@ -439,6 +552,79 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     var myDate4 = new Scroller({id: "birth-cont-per", type:"birth",cont:"week_span2"});
 
 
-});
-
-
+    var userSub = {
+        state:"",
+        parseUrlPara: function (url, isEncode) {
+            var isEncode = isEncode || false;
+            var reg = /([^=&?]+)=([^=&?]+)/g, obj = {};
+            url.replace(reg, function () {
+                var arg = arguments;
+                obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
+            });
+            return obj;
+        },
+        addHandler: function (target, eventType, handle) {
+            if (document.addEventListener) {
+                this.addHandler = function (target, eventType, handle) {
+                    target.addEventListener(eventType, handle, false);
+                }
+            } else if (document.attachEvent) {
+                this.addHandler = function (target, eventType, handle) {
+                    target.attachEvent('on' + eventType, function () {
+                        handle.call(target);
+                    });
+                }
+            } else {
+                this.addHandler = function (target, eventType, handle) {
+                    target['on' + eventType] = handle;
+                }
+            }
+            this.addHandler(target, eventType, handle);
+            return this;
+        },
+        eventBind:function(){
+            var cancel = document.querySelector('.header-quit'), self = this;
+            var choPassengerUlList = document.querySelector('.often-traveler.list-traveler');
+            var choPassengerUlChoosed = document.querySelector('.often-traveler.choosed-traveler');
+            var adultNumber = document.querySelector('.adult-number'),that = this;
+            this.addHandler(cancel, 'click', function(){
+                  if(self.state == 'edit'){
+                      if(window.opener) {
+                          window.close();
+                      }else{
+                          window.history.go(-1);
+                      }
+                  }
+            }).addHandler(choPassengerUlList, 'click', function(){
+                var event = event || window.event;
+                var target = event.target || event.srcElement;
+                if(target.className=='icon user-edit'){
+                    document.querySelector("#addAir-page").style.display = "block";
+                }else if(target.className=='icon user-choice2'){
+                    target.className = 'icon user-choice1';
+                    choPassengerUlList.removeChild(target.parentNode);
+                    choPassengerUlChoosed.appendChild(target.parentNode);
+                    console.log(choPassengerUlChoosed.innerHTML)
+                    adultNumber.innerHTML = choPassengerUlChoosed.querySelectorAll('li').length+'/'+that.ruleNUmber.NumofAdult;
+                }}
+            );
+               this.addHandler(choPassengerUlChoosed, 'click', function(){
+                var event = event || window.event;
+                var target = event.target || event.srcElement;
+                if(target.className=='icon user-edit'){
+                    document.querySelector("#addAir-page").style.display = "block";
+                }
+            });
+        },
+        showBox:function(){},
+        init:function(){
+            var transferPara = this.parseUrlPara(document.location.search, true);
+            this.ruleNUmber = transferPara
+            this.state = transferPara.type;
+            if(this.state == 'edit'){
+                document.querySelector("#addAir-page").style.display = "block";
+            }
+            this.eventBind();
+        }
+    };
+    userSub.init();
