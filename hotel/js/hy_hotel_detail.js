@@ -325,10 +325,10 @@
         },
 
         toggleSlider: function () {
-            $(this.parentNode.parentNode).find('ul.roomDetailList').hide();
+            /*$(this.parentNode.parentNode).find('ul.roomDetailList').hide();
             $(this.parentNode.parentNode).find('a.at').each(function () {
                 $(this).attr('class', 'at d-icon5');
-            });
+            });*/
 
             if (this.isOpen) {
                 $(this.parentNode).find('ul.roomDetailList').slideUp("400");
