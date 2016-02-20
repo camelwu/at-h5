@@ -37,9 +37,8 @@ body {
 }
 
 .header {
-    height: 6.0rem;
+    height: 6.8rem;
 }
-
 .yellow {
     color: #FFB413
 }
@@ -133,6 +132,7 @@ body {
     color: #FFFFFF;
     margin-bottom: 0;
     text-align: center;
+    height: 2.0rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1920,6 +1920,8 @@ h1, h2, h3, h4, h5, h6 {
     top: 4.0rem;
     left: 0;
     z-index: 13;
+    max-height: 62%;
+    overflow-y: scroll;
 }
 
 .ticket-detail-modal .detail-outer {

@@ -130,7 +130,6 @@
                     var status = {};
                     var p = JSON.parse(data);
                     status = p;
-                    console.log(p.data);
                     if (!p.success) {
 
                         return callback(cityresult, status.success, status.message);

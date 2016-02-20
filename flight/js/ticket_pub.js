@@ -4,21 +4,31 @@ function TicketDate(argument){
 }
 TicketDate.prototype = new Calender();
 
-TicketDate.prototype.linkColor=function(){
-    var that = this,
-        links = _CalF.$('.live',this.dd),
-        startIndex,endIndex;
-    for(var st = 0;st < links.length;st++) {
-        if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='去程'){
-            startIndex=st;
+TicketDate.prototype.linkColor=function(type,date){
+    var that = this, links = _CalF.$('.live',this.dd), startIndex,endIndex;
+    if(type == 'double'&&date==undefined){
+        for(var st = 0;st < links.length;st++) {
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='去程'){
+                startIndex=st;
+            }
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='返程'){
+                endIndex=st;
+            }
         }
-        if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='返程'){
-            endIndex=st;
+        for(var t = startIndex; t < endIndex;t++){
+            _CalF.addClass("yellow",links[t]);
         }
-    }
-
-    for(var t = startIndex; t < endIndex;t++){
-        _CalF.addClass("yellow",links[t]);
+    }else{
+        for(var sn = 0;sn < links.length;sn++) {
+            var temStr = /(\d{1,2})/g.exec(links[sn].innerHTML);
+            if(links[sn].getAttribute('data-day') == date){
+                links[sn].innerHTML = '<span class="live_circle">'+temStr[0]+'</span>';
+            }else{
+               if(temStr){
+                   links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
+                  }
+            }
+        }
     }
     return false;
 };
@@ -74,7 +84,7 @@ TicketDate.prototype.createContainer = function(odate){
 
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop = '45px';
+        weeker.style.marginTop=this.type=='single'? '4.5rem':'6.8rem';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
@@ -175,18 +185,21 @@ TicketDate.prototype.linkOn = function(){
                             that.linkReset(this.index);
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.op++;
-                        }else{
+                            that.cache = this.getAttribute('data-day');
+                        }else if(that.op==1&&this.getAttribute('data-day')!=that.cache){
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');that.op>=1?that.op=0:null;
                             that.tiper.style.display = 'none';
                             that.linkOver();
-                            that.linkColor();
+                            that.linkColor('double');
+                        }else if(that.op==1&&this.getAttribute('data-day')==that.cache){
+                            that.tiper.innerHTML = '返程日期需大于去程日期';
                         }
                     }
                 }
             }
         };
     }
-    this.linkColor()
+    this.linkColor('double')
 };
 
 TicketDate.prototype.linkOver = function(event){
@@ -214,10 +227,17 @@ TicketDate.prototype.linkOver = function(event){
         }
     }else{
         var event = event || window.event;
-        var target = event.target || event.srcElement;
-        out[0].innerHTML=returnWeek(target.getAttribute("data-day"));
+        var target = event.target || event.srcElement,dateSTr='';
+        if(target.tagName == 'A'){
+            dateSTr = target.getAttribute('data-day');
+            that.linkColor('single',dateSTr);
+            out[0].innerHTML=returnWeek(dateSTr);
+        }else if(target.tagName == 'SPAN'){
+            dateSTr = target.parentNode.getAttribute('data-day');
+            that.linkColor('single',dateSTr);
+            out[0].innerHTML=returnWeek(dateSTr);
+        }
     }
-
     that.timer = window.setTimeout(function(){
         that.removeDate();
         if(that.header.parentNode){
@@ -228,41 +248,41 @@ TicketDate.prototype.linkOver = function(event){
             window.clearTimeout(that.timer);
             that.timer = null;
         }
-
     },1000);
 
     function returnWeek(arg){
-        var week,array,index = new Date(arg.replace(/-/g, "/")).getDay();
-        switch (index){
-            case 0 :
-                week = '周日';
-                break;
-            case 1 :
-                week = '周一';
-                break;
-            case 2 :
-                week = '周二';
-                break;
-            case 3 :
-                week = '周三';
-                break;
-            case 4 :
-                week = '周四';
-                break;
-            case 5 :
-                week = '周五';
-                break;
-            case 6 :
-                week = '周六';
-                break;
-            default :
-                void(0);
+        if(arg){
+            var week,array,index = new Date(arg.replace(/-/g, "/")).getDay();
+            switch (index){
+                case 0 :
+                    week = '周日';
+                    break;
+                case 1 :
+                    week = '周一';
+                    break;
+                case 2 :
+                    week = '周二';
+                    break;
+                case 3 :
+                    week = '周三';
+                    break;
+                case 4 :
+                    week = '周四';
+                    break;
+                case 5 :
+                    week = '周五';
+                    break;
+                case 6 :
+                    week = '周六';
+                    break;
+                default :
+                    void(0);
+            }
+            array = arg.split('-');
+            array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
+            array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
+            return '<span class="dateNumber">'+array[1]+'月'+array[2]+'日'+'</span>'+' '+'<span>'+week+'</span>';
         }
-        array = arg.split('-');
-        array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
-        array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
-        return '<span class="dateNumber">'+array[1]+'月'+array[2]+'日'+'</span>'+' '+'<span>'+week+'</span>';
-
     }
 };
 
