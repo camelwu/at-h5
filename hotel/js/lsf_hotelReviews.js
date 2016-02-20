@@ -72,7 +72,7 @@
 
     var url=window.location.href;
     var HotelID=lsf_myweb.url2json(url).HotelID;
-    lsf_myweb.getbyid('TAAvgRating').innerHTML=lsf_myweb.url2json(url).TAAvgRating;
+    lsf_myweb.getbyid('TAAvgRating').innerHTML=lsf_myweb.url2json(url).TAAvgRating.toFixed(1);
     lsf_myweb.getbyid('TAReviewCount').innerHTML=lsf_myweb.url2json(url).TAReviewCount+'人点评';
     //alert(HotelID);
     //最大字数设置
