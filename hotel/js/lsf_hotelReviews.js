@@ -71,8 +71,8 @@
 
 
     var url=window.location.href;
-    var HotelID=lsf_myweb.url2json(url).HotelID;
-    lsf_myweb.getbyid('TAAvgRating').innerHTML=lsf_myweb.url2json(url).TAAvgRating;
+    var HotelID=lsf_myweb.url2json(url).HotelID,Rating=new Number(lsf_myweb.url2json(url).TAAvgRating);
+    lsf_myweb.getbyid('TAAvgRating').innerHTML=Rating.toFixed(1);
     lsf_myweb.getbyid('TAReviewCount').innerHTML=lsf_myweb.url2json(url).TAReviewCount+'人点评';
     //alert(HotelID);
     //最大字数设置
@@ -119,10 +119,13 @@
     M({"HotelID":HotelID});
     //callback函数
     function mycallback(d){
-        var json=eval('('+d+')');
-        console.log(json);
-        var data=json.data;
-        V(data);
+        var json=JSON.parse(d);
+        if(json.success){
+        V(json.data);
+        }else{
+        	vlm.loadend();
+        jAlert(json.message);
+        }
     }
     //展示部分
     function V(data){

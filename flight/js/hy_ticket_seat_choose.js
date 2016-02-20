@@ -221,7 +221,7 @@ var ticketSeatChoose = {
 
         });
         this.addHandler(changeExplain,'click', function(){
-            jLayer('<div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div>','退改签说明',function(){})
+            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
 
         });
 
@@ -302,19 +302,19 @@ var ticketSeatChoose = {
         '<span class="detail-word">详情<i></i></span></div>' +
         '<div class="time-airport-info"><div class="start-time-info">' +
         '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
-        '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+'</span></div>' +
+        '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
         '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
         '<span class="arrow-time"></span>'+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
         '<div class="end-time-info">'+
         ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
         '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
-        '<span class="air-port-word-right">'+arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo+'</span>'+
+        '<span class="air-port-word-right">'+arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo+arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive+'</span>'+
         '</div>'+
         '</div>'+
         '<div class="bottom-word">'+
         '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
         '<span>|</span>'+
-        '<span>'+arg.segmentsLeave[0].flightNo+'</span>'+
+        '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
         '<span>|</span>'+
         '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+
         '</div>'+
@@ -323,6 +323,7 @@ var ticketSeatChoose = {
     },
     createBackTripHtml:function(arg){
         if(arg.segmentsReturn){
+            console.log(arg.segmentsReturn)
             var tipDay = arg.flightReturnSpacingDay>1?arg.flightReturnSpacingDay+'天':'',str='',that =this;
             str='<div class="back-trip">'+
             '<div class="top-line">'+
@@ -351,7 +352,7 @@ var ticketSeatChoose = {
             '<div class="left">'+
             '<span>'+arg.segmentsReturn[0].airCorpName+'</span>'+
             '<span>|</span>'+
-            '<span>'+arg.segmentsReturn[0].flightNo+'</span>'+
+            '<span>'+arg.segmentsReturn[0].airCorpCode+arg.segmentsReturn[0].flightNo+'</span>'+
             '<span>|</span>'+
             '<span>'+arg.segmentsReturn[0].planeName+'</span></span>'+
             '</div>'+
@@ -414,7 +415,7 @@ var ticketSeatChoose = {
                     '<div class="bottom-word">'+
                     '<span>'+arg[j].airCorpName+'</span>'+
                     '<span>|</span>'+
-                    '<span>'+arg[j].flightNo+'</span>'+
+                    '<span>'+arg[j].airCorpCode+arg[j].flightNo+'</span>'+
                     '<span>|</span>'+
                     '<span>'+arg[j].planeName+'</span>'+
                     '</div>'+

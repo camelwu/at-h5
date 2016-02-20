@@ -45,23 +45,23 @@
     <!--     banner     -->
     <div class="all-elements">
         <div id="content" class="snap-content">
-            <a href="#" class="icons top-back"> </a>
+            <a href="../" class="icons top-back"> </a>
             <div class="top-ban s-active">
                 <a href="#">
                     <!--<div class="ban-desc">-->
-                        <div>电影照进现实</div>
-                        <div>—— · 新加坡环球影城 · ——</div>
+                        <!--<div>电影照进现实</div>-->
+                        <!--<div>—— · 新加坡环球影城 · ——</div>-->
                     <!--</div>-->
-                    <img src="images/jdzhuye1_01.jpg" class="banner-image" alt="img">
+                    <img src="images/scenic_top1.png" class="banner-image" alt="img">
                 </a>
             </div>
             <div class="top-ban">
                 <a href="#">
 
-                        <div>任烟花几月,不辞扬州</div>
-                        <div>—— · 扬州悠闲两日游 · ——</div>
+                        <!--<div>任烟花几月,不辞扬州</div>-->
+                        <!--<div>—— · 扬州悠闲两日游 · ——</div>-->
 
-                    <img src="images/jdzhuye5_05.jpg" class="banner-image" alt="img">
+                    <img src="images/scenic_top2.png" class="banner-image" alt="img">
                 </a>
             </div>
 
@@ -84,21 +84,13 @@
                 <!--</a>-->
             <!--</div>-->
             <div class="s-type">
-                <div class="menu-active">处境游</div>
+                <div class="menu-active">出境游</div>
                 <div>国内游</div>
             </div>
             <div class="out-content s-active">
                 <div class="sin-title">国外热游地</div>
                 <ul id="out_place">
-                    <li class = "hotplace pl-active">新加坡</li>
-                    <li class = "hotplace">巴厘岛</li>
-                    <li class = "hotplace">悉尼</li>
-                    <li class = "hotplace">清迈</li>
-                    <li class = "hotplace">首尔</li>
-                    <li class = "hotplace">迪拜</li>
-                    <li class = "hotplace">日本</li>
-                    <li class = "hotplace">曼谷</li>
-                    <li class = "hotplace">更多</li>
+
                 </ul>
                 <div class = "sin-title">国外热景点</div>
                 <ul class = "hotspot">
@@ -134,15 +126,7 @@
             <div class="out-content">
                 <div class="sin-title">国内热游地</div>
                 <ul id="in_place">
-                    <li class = "hotplace pl-active">扬州</li>
-                    <li class = "hotplace">上海</li>
-                    <li class = "hotplace">广州</li>
-                    <li class = "hotplace">北京</li>
-                    <li class = "hotplace">天津</li>
-                    <li class = "hotplace">成都</li>
-                    <li class = "hotplace">苏州</li>
-                    <li class = "hotplace">桂林</li>
-                    <li class = "hotplace">更多</li>
+
                 </ul>
                 <div class = "sin-title">国内热景点</div>
                 <ul class = "hotspot">
@@ -184,57 +168,175 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
+    <script id="tpl_GetHotCity" type="text/template">
+        {% for(var i=0,len=8;i<len;i++){ %}
+            <li class = "hotplace {% if(i == 0){ %}pl-active{% } %}" title="{%=data[i].cityCode%}" >{%=data[i].cityChineseName%}</li>
+        {% } %}
+        <li class = "hotplace" title="more">更多</li>
+    </script>
     <script>
-        $(window).load(function () {
-            $("#status").fadeOut();
-            $("#preloader").delay(400).fadeOut("medium");
-        });
-        /*景点首页选项卡*/
+        /*景点首页MT*/
         (function(){
-            var aBtn=document.getElementsByClassName('s-type')[0].children;
-            var con=document.getElementsByClassName('out-content');
-            var ban=document.getElementsByClassName('top-ban');
-            for(var i=0; i<aBtn.length; i++)
-            {
-                (function(index){
-
-                    aBtn[i].onclick=function(){
-                        for(var i=0; i<aBtn.length; i++)
-                        {
-                            aBtn[i].className='';
-                            ban[i].className='top-ban';
-                            con[i].className='out-content';
+            var webkit = this;
+            var core = function(){
+                var apiurl="http://123.56.190.34:8888/api/GetServiceApiResult";
+                vlm.init();
+                //刷新热门城市并绑定事件
+                var CHotCity=function(){
+                    var outplace = $("#out_place")[0].getElementsByTagName("li");
+                    var inplace = $("#in_place")[0].getElementsByTagName("li");
+                    for(var i=0; i < outplace.length; i++){
+                        outplace[i].onclick = function(){
+                            for(var i=0; i<outplace.length; i++){
+                                outplace[i].className = "hotplace";
+                            }
+                            this.className='hotplace pl-active';
+                            MT.CurrentPageTolist(this.title);
                         }
-
-                        this.className='menu-active';
-                        ban[index].className='top-ban s-active';
-                        con[index].className='out-content s-active';
-                    };
-                })(i);
-            }
-
-        })();
-        (function(){
-            var aBtn=document.getElementsByClassName('s-type')[0].children;
-            var outplace = $("#out_place")[0].getElementsByTagName("li");
-            var inplace = $("#in_place")[0].getElementsByTagName("li");
-            for(var i=0; i < outplace.length; i++){
-                outplace[i].onclick = function(){
-                    for(var i=0; i<outplace.length; i++){
-                        outplace[i].className = "hotplace";
                     }
-                    this.className='hotplace pl-active';
-                }
-            }
-            for(var j=0; j < inplace.length; j++){
-                inplace[j].onclick = function(){
-                    for(var j=0; j<inplace.length; j++){
-                        inplace[j].className = "hotplace";
+                    for(var j=0; j < inplace.length; j++){
+                        inplace[j].onclick = function(){
+                            for(var j=0; j<inplace.length; j++){
+                                inplace[j].className = "hotplace";
+                            }
+                            this.className='hotplace pl-active';
+                            MT.CurrentPageTolist(this.title);
+                        }
                     }
-                    this.className='hotplace pl-active';
                 }
+                //热门城市跳转
+                var CindexTolist = function(cityCode){
+                    if(cityCode == "more"){
+                        return false;
+                    }
+                    window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
+                    //做预判用的
+//                    var SearchAvailableToursAttractions=
+//                    {
+//                        "Parameters": {
+//                            "DestCityCode": cityCode
+//                        },
+//                        "ForeEndType": 3,
+//                        "Code": "0087"
+//                    }
+//                    vlm.loadJson(apiurl,JSON.stringify(SearchAvailableToursAttractions),SearchAvailableToursAttractionsCallback);
+//                    function SearchAvailableToursAttractionsCallback(data){
+//                        var json=eval('('+data+')');
+////                        console.log(json);
+//                        if(json.success){
+//                              window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
+//
+//                        }else {
+//                            console.log(json);
+//                            jAlert("此城市暂无数据","提示");
+//                        }
+//                    }
+
+                }
+
+                //切换选项卡
+                var CTab = function(){
+                    var aBtn=document.getElementsByClassName('s-type')[0].children;
+                    var con=document.getElementsByClassName('out-content');
+                    var ban=document.getElementsByClassName('top-ban');
+                    for(var i=0; i<aBtn.length; i++)
+                    {
+                        (function(index){
+
+                            aBtn[i].onclick=function(){
+                                for(var i=0; i<aBtn.length; i++)
+                                {
+                                    aBtn[i].className='';
+                                    ban[i].className='top-ban';
+                                    con[i].className='out-content';
+                                }
+
+                                this.className='menu-active';
+                                ban[index].className='top-ban s-active';
+                                con[index].className='out-content s-active';
+                            };
+                        })(i);
+                    }
+                }
+                //首页加载动画
+                var CAnimload = function()
+                {
+                    $(window).load(function () {
+                        $("#status").fadeOut();
+                        $("#preloader").delay(400).fadeOut("medium");
+                    });
+                }
+                //加载国外热门城市
+                var CGetExHotCity = function(){
+                    var GetExHotCity=
+                    {
+                        "Parameters": "",
+                        "ForeEndType": 3,
+                        "Code": "0081"
+                    }
+                    vlm.loadJson(apiurl,JSON.stringify(GetExHotCity),GetExHotCityCallback);
+                    function GetExHotCityCallback(data){
+                        var json=eval('('+data+')');
+                        console.log(json);
+                        if(json.success){
+                            var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                            $("#out_place").html(tpl_GetExHotCity);
+                            MT.reloadHotCity();
+                        }else {
+                            console.log(json);
+                            jAlert("数据格式错误","提示");
+                        }
+                    }
+                }
+                //加载国内热门城市
+                var CGetInHotCity=function(){
+                    var GetInHotCity=
+                    {
+                        "Parameters": "",
+                        "ForeEndType": 3,
+                        "Code": "0082"
+                    }
+                    vlm.loadJson(apiurl,JSON.stringify(GetInHotCity),GetInHotCityyCallback);
+                    function GetInHotCityyCallback(data){
+                        var json=eval('('+data+')');
+                        console.log(json);
+                        if(json.success){
+                            var data=json,tpl_GetInHotCity = template("tpl_GetHotCity",data);
+                            $("#in_place").html(tpl_GetInHotCity);
+                            MT.reloadHotCity();
+                        }else {
+                            console.log(json);
+                            jAlert("数据格式错误","提示");
+                        }
+                    }
+                }
+
+                return {
+                    CreloadHotCity:CHotCity,
+                    Cloadtab:CTab,
+                    CAnimload:CAnimload,
+                    CGetInHotCity:CGetInHotCity,
+                    CGetExHotCity:CGetExHotCity,
+                    CindexTolist:CindexTolist
+                }
+
+            }();
+            webkit.MT = webkit.MT || {};
+
+            webkit.MT.load=function(){
+                core.CAnimload();//加载动画
+                core.CGetExHotCity();//加载境外热门城市
+                core.CGetInHotCity();//加载境内热门城市
+                core.Cloadtab();//加载tab选项卡
             }
-        })();
+            webkit.MT.reloadHotCity=function(){//刷新城市
+                core.CreloadHotCity();
+            }
+            webkit.MT.CurrentPageTolist = function(cityCode){
+                core.CindexTolist(cityCode);//跳转到目标城市
+            }
+            MT.load();
+        })(jQuery,window,document);
     </script>
 </body>
 </html>

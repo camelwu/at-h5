@@ -10,8 +10,6 @@ var ticketDouble = {
         console.log(arg)
         spans[0].innerHTML = ticketDouble.returnWeek(arg.DepartDate);
         spans[1].innerHTML = ticketDouble.returnWeek(arg.ReturnDate);
-        console.log(spans[0])
-        console.log(spans[1])
         dateInitObj[arg.DepartDate] = '去程';
         dateInitObj[arg.ReturnDate] = '返程';
         var myDate= new TicketDate({
@@ -132,6 +130,7 @@ var ticketDouble = {
         document.querySelector('.end-date').innerHTML = that.reDate(end);
         that.backParaObj.DepartDate =new Date().getFullYear()+'-'+ document.querySelector('.start-date').querySelectorAll('span')[0].innerHTML;
         that.backParaObj.ReturnDate =new Date().getFullYear()+'-'+ document.querySelector('.end-date').querySelectorAll('span')[0].innerHTML;
+        document.querySelector('#preloader').style.display='block';
         that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
     },
 
@@ -199,6 +198,27 @@ var ticketDouble = {
         var reg = /\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g,result = reg.exec(arg);
         return result[1]+':'+result[2];
     },
+
+    alertNoFlightNotice:function(citys,type){
+        var div = document.createElement('div'),allEleWrap = document.querySelector('.all-elements'),backButton,that = ticketDouble;
+        var arrowIcon = type =='single'?'direction-single':'direction-double';
+        div.className = 'no-flight-notice';
+        div.innerHTML = '<header class="big-title"><i class="fl close-no-flight"></i>'+
+        '<span class="set-place">'+citys.fromCity+'</span>'+
+        '<i class="'+arrowIcon+'"></i>'+
+        '<span class="to-place">'+citys.toCity+'</span>'+
+        '</header>'+
+        '<div class="tip-button-para">'+
+        '<p class="no-flight-word">没有找到符合条件的航班！ </p></div>'
+        allEleWrap.appendChild(div);
+        backButton = document.querySelector('.close-no-flight');
+        console.log(that)
+        that.addHandler(backButton,"click",function(){
+            allEleWrap.removeChild(div)
+        })
+
+    },
+
     returnTransferCity:function(arg){
         var str = '';
         if(arg.length<=2){
@@ -296,41 +316,44 @@ var ticketDouble = {
             var  transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
             var  tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>1?arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
             var  str = '';
-                    str+='<div class="go">'+
-                    '<div class="go-info">'+
-                    '<div class="start-time-info start-time-info-double">'+
-                    '<span class="start-icon"></span>'+
-                    '<span class="time-number">'+that.timeCut(data[0].departDate)+'</span>'+
-                    '<span class="air-port-word">'+data[0].airportNameFrom+'</span>'+
-                    '</div>'+
-                    '<div class="total-time-info">'+
-                    '<span class="time-hour-minute">'+parseInt(arg.data.flightInfos[i].segmentsLeaveTotalTravelTime/60)+'h'+arg.data.flightInfos[i].segmentsLeaveTotalTravelTime%60+'m</span>'+
-                    '<span class="arrow-time"></span>'+
-                    '<span class="air-port-word">'+transferCity+'</span>'+
-                    '</div>'+
-                    '<div class="end-time-info">'+
-                    '<span class="tip-add-days">'+tipDay+'</span>'+
-                    '<span class="time-number">'+that.timeCut(data[data.length-1].arriveDate)+'</span>'+
-                    '<span class="air-port-word">'+data[data.length-1].airportNameTo+'</span>'+
-                    '</div>'+
-                    '</div>'+
-                    '<p class="small-info-double ">南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱&nbsp;|&nbsp;<span class="green-tip">经停</span>&nbsp;|&nbsp;<span class="green-tip">共享</span>'+
-                    '</p>'+
-                    '</div>';
-
+            var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
+            var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
+            str+='<div class="go">'+
+            '<div class="go-info">'+
+            '<div class="start-time-info start-time-info-double">'+
+            '<span class="start-icon"></span>'+
+            '<span class="time-number">'+that.timeCut(data[0].departDate)+'</span>'+
+            '<span class="air-port-word">'+data[0].airportNameFrom+data[0].termDepart+'</span>'+
+            '</div>'+
+            '<div class="total-time-info">'+
+            '<span class="time-hour-minute">'+parseInt(arg.data.flightInfos[i].segmentsLeaveTotalTravelTime/60)+'h'+arg.data.flightInfos[i].segmentsLeaveTotalTravelTime%60+'m</span>'+
+            '<span class="arrow-time"></span>'+
+            '<span class="air-port-word">'+transferCity+'</span>'+
+            '</div>'+
+            '<div class="end-time-info">'+
+            '<span class="tip-add-days">'+tipDay+'</span>'+
+            '<span class="time-number">'+that.timeCut(data[data.length-1].arriveDate)+'</span>'+
+            '<span class="air-port-word">'+data[data.length-1].airportNameTo+data[data.length-1].termArrive+'</span>'+
+            '</div>'+
+            '</div>'+
+            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].airCorpCode+data[0].planeName+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
+            '</p>'+
+            '</div>';
             return str;
         }
         function backTrip(arg){
-            var data = arg.data.flightInfos[i].segmentsReturn
+            var data = arg.data.flightInfos[i].segmentsReturn;
             var transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsReturn);
             var  tipDay = arg.data.flightInfos[i].flightReturnSpacingDay>1?arg.data.flightInfos[i].flightReturnSpacingDay+'天':'';
             var str = '';
+            var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
+            var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
             str+='<div class="go">'+
             '<div class="go-info">'+
             '<div class="start-time-info start-time-info-double">'+
             '<span class="end-icon"></span>'+
             '<span class="time-number">'+that.timeCut(data[0].departDate)+'</span>'+
-            '<span class="air-port-word">'+data[0].airportNameFrom+'</span>'+
+            '<span class="air-port-word">'+data[0].airportNameFrom+data[0].termDepart+'</span>'+
             '</div>'+
 
             '<div class="total-time-info">'+
@@ -342,10 +365,10 @@ var ticketDouble = {
             '<div class="end-time-info">'+
             '<span class="tip-add-days">'+tipDay+'</span>'+
             '<span class="time-number">'+that.timeCut(data[data.length-1].arriveDate)+'</span>'+
-            '<span class="air-port-word">'+data[data.length-1].airportNameTo+'</span>'+
+            '<span class="air-port-word">'+data[data.length-1].airportNameTo+data[data.length-1].termArrive+'</span>'+
             '</div>'+
             '</div>'+
-            '<p class="small-info-double ">南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱&nbsp;|&nbsp;<span class="green-tip">经停</span>&nbsp;|&nbsp;<span class="green-tip">共享</span>'+
+            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].airCorpCode+data[0].planeName+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
             '</p>'+
             '</div>';
             return str;
@@ -363,11 +386,13 @@ var ticketDouble = {
 
 
     callRender:function(arg){
+        console.log(arg)
             var paraObj = {},that = ticketDouble;
             paraObj.IsDirectFlight = arg.directFly == 'unlimitedPlane'?'false':'true';
             paraObj.IsShareFlight = arg.shareFlight == 'hideShareFlight'?'false':'true';
             paraObj.DepartStartHour = arg.filterTime.substr(0,2);
             paraObj.DepartEndHour = arg.filterTime.substr(2,2);
+            paraObj.CabinClass = arg.CabinClass;
             switch(arg.paraMiddle){
                 case "directFirst":
                     paraObj.PriorityRule = 1;break;
@@ -383,9 +408,9 @@ var ticketDouble = {
             for(var tem in paraObj){
                 that.backParaObj[tem] = paraObj[tem]
             }
+            console.log(that.backParaObj)
+            document.querySelector('#preloader').style.display='block';
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
-            that.eventHandler();
-
             var temObj = that.checkTip();
             that.initLeftState.left!=temObj.left?document.querySelector('#fo_sc i').className='red-tip':document.querySelector('#fo_sc i').className='';
             that.initLeftState.middle!=temObj.middle?document.querySelector('#fo_ra i').className='red-tip':document.querySelector('#fo_ra i').className='';
@@ -424,6 +449,9 @@ var ticketDouble = {
             that.changeFlightList(arg);
             that.eventHandler();
             that.taxDeal(arg.data.flightInfos);
+        }else{
+            document.querySelector('#preloader').style.display='none';
+            that.alertNoFlightNotice(that.backParaObj,'double')
         }
     },
 
