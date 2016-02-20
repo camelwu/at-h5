@@ -634,10 +634,12 @@ i{
     bottom: -500px;
     left: 0;
     background:#fff;
-    z-index: 100;
+    z-index: 200;
     transition: 0.5s all ease;
 }
-
+.add-setmeal-list{
+    margin-bottom: 0;
+}
 .add-setmeal-hd{
     height: 40px;
     line-height: 40px;
