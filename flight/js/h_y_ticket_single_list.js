@@ -258,7 +258,7 @@ var ticketSingle = {
     changeFlightList:function(arg){
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail');
-        var ticketListStr = '',ShareFlightStr='',passByStrset='',transferCity='',tipDay='';
+        var ticketListStr = '',ShareFlightStr='',passByStr='',transferCity='',tipDay='';
         for(var i = 0; i < arg.data.flightInfos.length; i++){
             ShareFlightStr = arg.data.flightInfos[i].isReturnShareFlight==true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|':'';
             passByStr = arg.data.flightInfos[i].isLeaveStop==true?'&nbsp;<span class="green-tip">经停</span>':'';
@@ -280,7 +280,7 @@ var ticketSingle = {
             '<span class="time-number">'+that.timeCut(arg.data.flightInfos[i].flightLeaveEndDate)+'</span >' +
             '<span class= "air-port-word" >'+arg.data.flightInfos[i].segmentsLeave[arg.data.flightInfos[i].segmentsLeave.length-1].airportNameTo+arg.data.flightInfos[i].segmentsLeave[0].termArrive+'</span>' +
             '</div ></div>' +
-            '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].airCorpName+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
+            '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].airCorpName+arg.data.flightInfos[i].segmentsLeave[0].airCorpCode+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
             '</div ></div>' +
             '<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span ><span class = "price-num">'+arg.data.flightInfos[i].totalFareAmountExc+'</span>'+
             '</div ><div class="single-price-tax-info"><span class="tax-word">税</span>￥'+arg.data.flightInfos[i].totalTaxAmountADT+'</div></div></li >';
@@ -333,7 +333,7 @@ var ticketSingle = {
         '<span class="to-place">'+citys.toCity+'</span>'+
         '</header>'+
         '<div class="tip-button-para">'+
-        '<p class="no-flight-word">没有找到符合条件的航班！ </p></div>'
+        '<p class="no-flight-word">没有找到符合条件的航班</p></div>';
         allEleWrap.appendChild(div);
         backButton = document.querySelector('.close-no-flight');
         console.log(that)
@@ -422,9 +422,8 @@ var ticketSingle = {
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
         backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
         this.backParaObj = backParaObj;
-        console.log(this.backParaObj)
-      /* var testPara = {"CityCodeFrom":"BJS","CityCodeTo":"SIN","DepartDate":"2016-05-27","RouteType":"Oneway","IsDesc":"false","DepartStartHour":"00","DepartEndHour":"24" ,"IsHideSharedFlight":"false","IsDirectFlight":"true"};
-    */    this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
+        console.log(this.backParaObj);
+        this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.dateInit(backParaObj);
         this.preAndNex();
         bottomModal.init('all-elements',this.tripType,"single",this.callRender);
