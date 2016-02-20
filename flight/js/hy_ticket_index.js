@@ -145,12 +145,18 @@
        toTicketList:function(){
            var that = ticketIndexModal,caCheContent = {};
            var ticketSearchButton = document.querySelector('#ticket-search-button');
+           var tipBox = document.querySelector('.city-choose-tip');
            this.addHandler(ticketSearchButton,'click', function(){
                var oDiv = document.querySelector('#single').style.display == 'block'?document.querySelector('#single'):document.querySelector('#double');
                var cityItems = oDiv.querySelectorAll('.city-search'),cityStrs ="",CityCodeFrom = "",CityCodeTo = "",startDate = "",endDate = "",adultNumber = "",childNumber = "",CabinStr = "",paraObj = new Object(),paramStr = "";
                var NumofAdult = "",NumofChild ="";
                if(cityItems[0].innerHTML==cityItems[1].innerHTML){
-                   jAlert('出发城市与到达城市不能为同一城市!', '', function(){})
+                   tipBox.style.display = 'block';
+                   that.timer = window.setTimeout(function(){
+                           tipBox.style.display = 'none';
+                           window.clearTimeout(that.timer);
+                           that.timer = null;
+                   },5000);
                }else{
                    if(document.querySelector('#double').style.display == 'block'){
                        cityStrs = document.querySelectorAll('#double .city-search');

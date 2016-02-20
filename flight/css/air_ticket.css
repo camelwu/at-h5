@@ -439,6 +439,28 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 1.2rem
 }
 
+.city-choose-tip {
+    width: 194px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    left: 50%;
+    margin-left: -92px;
+    z-index: 102;
+    text-align: center;
+    border-radius: 3px;
+    bottom: 50%;
+    font-size: 1.2rem;
+    display: none;
+    -webkit-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
 .all-elements .air_content .search-button input {
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     width: 100%;
