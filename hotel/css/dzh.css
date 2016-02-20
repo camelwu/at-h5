@@ -162,6 +162,7 @@
     padding-left: 14px;
     display: inline-flex;
     line-height: 45px;
+    overflow:hidden;
 }
 .nav2-leftbottom{
     height: 45px;
@@ -890,7 +891,6 @@ ul,ol{
 .cityWordBox{
     position:fixed;right:0;top:0;
     width:26px;height:100%;
-    background:rgba(255,255,255,0.6);
     text-align:center;
     z-index:1;
 }
@@ -907,9 +907,11 @@ ul,ol{
 .cityWord li{
     font-size:0.8rem;
     height:14px;
+    line-height:normal;
 }
 .cityWord li a{
     color:#ffb413;
+    display:inline;
 }
 .lsf_city_list ul{
     padding:0;

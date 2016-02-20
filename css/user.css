@@ -1,6 +1,12 @@
 /*
          找回密码页css
 */
+.clearFix:after{
+    content:'';
+    clear: both;
+    display: block;
+}
+
 .f_key {
     width: 94%;
     margin: 0 auto;
@@ -83,21 +89,13 @@
 .user-menu {
     height: 20px;
     width: 100%;
-    margin-top: 10px;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    margin-bottom: 10px;
+    margin:10px 0 ;
 }
 
 .user-menu li {
-    -webkit-box-felx: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
+    position: relative;
+    float: left;
+    width: 25%;
     list-style-type: none;
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     margin-bottom: initial;
@@ -233,9 +231,9 @@
 }
 
 .info-circle2 {
-    position: relative;
-    margin-top: -25px;
-    margin-left: 70%;
+    position: absolute;
+    right: 0;
+    top: -8px;
     width: 23px;
     height: 14px;
     border-radius: 7px;
@@ -779,6 +777,7 @@
     list-style-type: none;
     padding: 12px 15px;
     border-bottom: 1px solid #dedede;
+    background-color: #fff;
 }
 
 .often_user {
@@ -815,7 +814,9 @@
     width: 22px;
     height: 22px;
     float: right;
-    background-position: 53.2% 27.5%;
+    background: url(../images/ui/icon.png) no-repeat;
+    background-size: 370px 110px;
+    background-position: 49% 0%;
 }
 
 .statement {
@@ -886,13 +887,8 @@
     padding-bottom: 16px;
     margin-left: 15px;
     font-size: 14px;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid #dedede;
+    overflow: hidden;
 }
 .addtra-info li:last-child {
     border: none;
@@ -900,27 +896,59 @@
 
 .addtra-info div {
     font-size: 15px;
-    -webkit-box-felx: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
+    float: left;
+    width: 80px;
 }
 
-.addtra-info li div:last-child {
-    -webkit-box-felx: 2;
-    -moz-box-flex: 2;
-    -ms-flex: 2;
-    -webkit-flex: 2;
-    flex: 2;
+.addtra-info .postCard{
+    width: 130px;
+    float: left;
+    margin-left: 12%;
+}
+
+.addtra-info .country-btn{
+    width: 130px;
+    float: left;
+    margin-left: 12%;
+}
+
+.addtra-info .sex-cho-wrap{
+    width: 130px;
+    float: left;
+    margin-left: 12%;
+}
+
+
+.traveler-contect #mobile-cell{
+    width: 130px;
+    height: 20px;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.traveler-contect #email-cell{
+    width: 140px;
+    float: left;
+    margin-left: 26%;
+}
+
+.traveler-contect #mobile-cell-add{
+    width: 130px;
+    height: 20px;
+    margin-top: 15px;
+    display: inline-block;
+
+}
+
+.traveler-contect #email-cell-add{
+    width: 130px;
+    float: left;
+    margin-left: 26%;
 }
 
 .addtra-info input {
-    -webkit-box-felx: 2;
-    -moz-box-flex: 2;
-    -ms-flex: 2;
-    -webkit-flex: 2;
-    flex: 2;
+    float: left;
+    margin-left: 12%;
 }
 
 .icon-h {
@@ -957,11 +985,6 @@
 }
 
 .traveler-contect li {
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
     border-bottom: 1px solid #dedede;
 }
 
@@ -978,26 +1001,16 @@
     border: none;
 }
 
-.traveler-contect li:last-child div {
-    -webkit-box-felx: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-}
-
-.traveler-contect li:last-child input {
-    -webkit-box-felx: 2;
-    -moz-box-flex: 2;
-    -ms-flex: 2;
-    -webkit-flex: 2;
-    flex: 2;
-}
 
 .con-phone {
-    width: 50%;
+    width: 45%;
     line-height: 50px;
     border-right: 1px solid #dedede;
+}
+
+.con-phone span{
+    float: right;
+    margin-right: 10px;
 }
 
 .phonenum {
@@ -1392,6 +1405,7 @@ ul, ol {
 .birth-cont{
     font-size: 1.5rem;
     color: #666;
+    width: 120px;
 }
 
 .selbox-ul li span.date-selected{
@@ -1505,7 +1519,8 @@ i{
     height: 20px;
 }
 
-.chn-switch{
+.addtra-info .chn-switch{
+    width: 62px;
     height: 30px;
     border-radius: 2px;
     border:1px solid #ffb413;
@@ -1515,7 +1530,8 @@ i{
     color: #ffb413;
 }
 
-.eng-switch{
+.addtra-info .eng-switch{
+    width: 62px;
     height: 30px;
     border-radius: 2px;
     border:1px solid #ffb413;

@@ -13,22 +13,8 @@ function init(){
         "ForeEndType": 3,
         "Code": "0053"
     };
-     //console.log(Parameters);
-    if(localStorage.getItem('login') != 1)
-    {
-        return;
-    }
-    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
-    var li = document.getElementById("user_order").getElementsByTagName("li");
-    function order(obj){
-        obj.onclick = function(){
-            window.location.href = "user-allorder.html";
-        }
-    }
-    order(li[0]);
-    order(li[1]);
-    order(li[2]);
-    order(li[3]);
+
+    //console.log(Parameters);
     //  点击链接页面跳转
     var link_page = $("#link_page")[0];
     var setting = $("#setting")[0];
@@ -57,23 +43,44 @@ function init(){
         }
     }
     close(close_page);
+
+    //设置里的消息开关
+    function ifOpen(){
+        var b = window.event.srcElement;
+        var newsLetter = $("#newsLetter")[0];
+        var rcvPromotion = $("#rcvPromotion")[0];
+        if(b.className == "icon set-chose1"){
+            b.className = "icon set-chose2";
+        }else{
+            b.className = "icon set-chose1";
+        }
+        if(newsLetter.className == "icon set-chose2"){
+            sessionStorage.news = "false";
+        }
+        if(rcvPromotion.className == "icon set-chose2"){
+            sessionStorage.promotion = "false";
+        }
+    }
+
+    if(localStorage.getItem('login') != 1)
+    {
+        return;
+    }
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    var li = document.getElementById("user_order").getElementsByTagName("li");
+    function order(obj){
+        obj.onclick = function(){
+            window.location.href = "user-allorder.html";
+        }
+    }
+    order(li[0]);
+    order(li[1]);
+    order(li[2]);
+    order(li[3]);
+
 }
-function ifOpen(){
-    var b = window.event.srcElement;
-    var newsLetter = $("#newsLetter")[0];
-    var rcvPromotion = $("#rcvPromotion")[0];
-    if(b.className == "icon set-chose1"){
-        b.className = "icon set-chose2";
-    }else{
-        b.className = "icon set-chose1";
-    }
-    if(newsLetter.className == "icon set-chose2"){
-        sessionStorage.news = "false";
-    }
-    if(rcvPromotion.className == "icon set-chose2"){
-        sessionStorage.promotion = "false";
-    }
-}
+
+
 function mycallback(ret) {
     var myJson = eval('(' + ret + ')');
     console.log(myJson);
@@ -93,68 +100,68 @@ function mycallback(ret) {
     }
 }
 
-    //登录之后点击全部订单的链接会改变
-    (function(){
-        var oOrder=document.querySelector('#user_order');
-        var aBtn=oOrder.children;
+//登录之后点击全部订单的链接会改变
+(function(){
+    var oOrder=document.querySelector('#user_order');
+    var aBtn=oOrder.children;
 
-        aBtn[0].querySelector('a').onclick=function(){
-            if(localStorage.getItem('login') == 1)
-            {
-                this.href='user-allorder.html'
-            }
-        };
-        aBtn[1].querySelector('a').onclick=function(){
-            if(localStorage.getItem('login') == 1)
-            {
-                this.href='user-allorder.html'
-            }
-        };
-        aBtn[2].querySelector('a').onclick=function(){
-            if(localStorage.getItem('login') == 1)
-            {
-                this.href='user-allorder.html'
-            }
-        };
-        aBtn[3].querySelector('a').onclick=function(){
-            if(localStorage.getItem('login') == 1)
-            {
-                this.href='user-allorder.html'
-            }
-        };
-
-        document.querySelector('#common-msg').onclick=function(){
-            if(localStorage.getItem('login') == 1)
-            {
-                this.href='user-oftenInfo.html'
-            }
-        };
-
-        document.querySelector('#unloginShow').onclick=function(){
-            if(localStorage.getItem('login') == 1)
-            {
-                this.href='user-perInfo.html'
-            }
-        };
-
-
-    })();
-
-    //登录与不登录有无消息
-    (function(){
-        var oUs=document.querySelector('#user_order');
-        var aLi=oUs.children;
+    aBtn[0].querySelector('a').onclick=function(){
         if(localStorage.getItem('login') == 1)
         {
-            aLi[1].querySelector('.info-circle2').style.display='block';
-
+            this.href='user-allorder.html'
         }
-        else
+    };
+    aBtn[1].querySelector('a').onclick=function(){
+        if(localStorage.getItem('login') == 1)
         {
-            aLi[1].querySelector('.info-circle2').style.display='none';
+            this.href='user-allorder.html'
         }
+    };
+    aBtn[2].querySelector('a').onclick=function(){
+        if(localStorage.getItem('login') == 1)
+        {
+            this.href='user-allorder.html'
+        }
+    };
+    aBtn[3].querySelector('a').onclick=function(){
+        if(localStorage.getItem('login') == 1)
+        {
+            this.href='user-allorder.html'
+        }
+    };
 
-    })()
+    document.querySelector('#common-msg').onclick=function(){
+        if(localStorage.getItem('login') == 1)
+        {
+            this.href='user-oftenInfo.html'
+        }
+    };
+
+    document.querySelector('#unloginShow').onclick=function(){
+        if(localStorage.getItem('login') == 1)
+        {
+            this.href='user-perInfo.html'
+        }
+    };
+
+
+})();
+
+//登录与不登录有无消息
+(function(){
+    var oUs=document.querySelector('#user_order');
+    var aLi=oUs.children;
+    if(localStorage.getItem('login') == 1)
+    {
+        aLi[1].querySelector('.info-circle2').style.display='block';
+
+    }
+    else
+    {
+        aLi[1].querySelector('.info-circle2').style.display='none';
+    }
+
+})()
 
 
 

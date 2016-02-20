@@ -337,13 +337,15 @@ function styleChange(id,mytext){
         lsf_list.innerHTML='';
         json=json||{};
         json.rank=json.rank||'priceasc';
-        json.CityName=json.CityName||'Singapore';
+        json.InterCityName=decodeURIComponent(json.InterCityName)||'Singapore';
+        json.DomCityName=decodeURIComponent(json.DomCityName)||'北京';
         json.NumRoom=json.NumRoom||'1';
         json.NumChild=json.NumChild||'1';
         json.NumAdult=json.NumAdult||'1';
         json.Category=json.Category||'';
         json.StarRating=json.StarRating||'';
         json.LocationList=json.LocationList||'';
+        json.CountryISOCode=json.CountryISOCode||'SG';
         var oDate=new Date();
         var y=oDate.getFullYear();
         var m=oDate.getMonth()+1;
@@ -352,19 +354,45 @@ function styleChange(id,mytext){
         json.InterCheckOutDate=json.InterCheckOutDate||y+'-'+m+'-'+(d+1);
         var hoPos=localStorage.getItem('hoPos');
         //alert(hoPos);
-        //alert(url_json.NumRoom);用来判断是国内搜索还是国际搜索
-        //
+        //获得的目的地名字在城市列表里面进行搜索，然后获得英文名字
+        var hl_cityListInfo=JSON.parse(window.localStorage.getItem('cityListInfo'));
+        console.log(hl_cityListInfo);
+        console.log('haksdhfkjahdsfkajhfdskajhfdsk');
+        //对获取的城市名字进行处理，得到汉字名字
+        function cityNameChange(cityName){
+            if(cityName.indexOf('(')!=-1){
+                cityName=cityName.substring(0,cityName.indexOf('('));
+            }
+            return cityName;
+        }
+        json.InterCityName=cityNameChange(json.InterCityName);
+        json.DomCityName=cityNameChange(json.DomCityName);
+        //对得到的汉字名字进行处理，得到英文名字和三字码
+        for(var i=0;i<hl_cityListInfo.length;i++){
+            if(json.InterCityName==hl_cityListInfo[i].cityNameCN){
+                json.InterCityName=hl_cityListInfo[i].cityNameEN;
+                json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
+            }
+            if(json.DomCityName==hl_cityListInfo[i].cityNameCN){
+                json.DomCityName=hl_cityListInfo[i].cityNameEN;
+                json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
+            }
+            if((json.InterCityName==hl_cityListInfo[i].cityNameEN)||(json.DomCityName==hl_cityListInfo[i].cityNameEN)){
+                json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
+            }
+        }
+        //alert(json.CountryISOCode);
         if(hoPos=='inter'){
             var data =
             {
-                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
+                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\""+json.CountryISOCode+"\",\"CityName\":\""+json.InterCityName+"\",\"CheckInDate\":\""+json.InterCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.InterCheckOutDate+"T00:00:00\",\"NumRoom\":"+json.NumRoom+",\"NumAdult\":"+json.NumAdult+",\"NumChild\":"+json.NumChild+",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
                 "Code": "0007",
                 "ForeEndType": 3
             };
         }else if(hoPos='dom'){
             var data =
             {
-                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"SG\",\"CityName\":\""+json.DomCityName+"\",\"CheckInDate\":\""+json.DomCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.DomCheckOutDate+"T00:00:00\",\"NumRoom\":\"\",\"NumAdult\":\"\",\"NumChild\":\"\",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
+                "Parameters": "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\""+json.CountryISOCode+"\",\"CityName\":\""+json.DomCityName+"\",\"CheckInDate\":\""+json.DomCheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.DomCheckOutDate+"T00:00:00\",\"NumRoom\":\"\",\"NumAdult\":\"\",\"NumChild\":\"\",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":1,\"PageSize\":20,\"sorttype\":\""+json.rank+"\",\"Category\":\""+json.Category+"\",\"StarRating\":\""+json.StarRating+"\",\"LocationList\":\""+json.LocationList+"\"}",
                 "Code": "0007",
                 "ForeEndType": 3
             };
@@ -391,11 +419,13 @@ function styleChange(id,mytext){
                 var str2='';
                 var str3='';
                 var str4='';
-                if(data[i].isFreeWifi){
-                    str2+='<b class="hl-icon1"></b>';
+                if(data[i].isFreeWiFi){
+                    //str2+='<b class="hl-icon1">免费wifi</b>';
+                    str2+='<div class="h-div1">免费wifi</div>';
                 }
                 if(data[i].isFreeTransfer){
-                    str2+='<b class="hl-icon2"></b>';
+                    //str2+='<b class="hl-icon2">免费接送</b>';
+                    str2+='<div class="h-div1">免费接送</div>';
                 }
                 if(data[i].isCashReward){
                     str3='<div class="h-div1" style="background-color: #ffb412">现金奖励</div>';
@@ -415,14 +445,14 @@ function styleChange(id,mytext){
                     '</div>'+
                     '<div class="ho_infor">'+
                     '<p class="hname"  style="font-size:1.6rem;width:'+pWidth+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+
-                    data[i].hotelNameLocale+'('+data[i].hotelName+')'+
+                    (data[i].hotelNameLocale||'')+'('+data[i].hotelName+')'+
                     '</p>'+
                     '<div class="h-score">'+
                     '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+data[i].hotelReviewScore+'</span>'+
                     '<span style="color:#999999;font-size:1rem;">分/'+data[i].hotelReviewCount+'人点评</span>'+
-                    '<p class="price">'+
+                    '<p class="hl_price">'+
                     '<span style="font-size:0.8rem;color:#fe4716;">￥</span>'+
-                    '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+parseFloat(data[i].avgPrice).toFixed(2)+'</span>'+
+                    '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+parseFloat(data[i].avgPriceCNY).toFixed(2)+'</span>'+
                     '<span style="font-size:1.2rem;color:#999999;">起</span>'+
                     '</p>'+
                     '</div>'+
@@ -659,8 +689,10 @@ function styleChange(id,mytext){
                 var data={'hotelList':[],'locationList':[]};
                 V(data);
             }else{
-                alert(json.message);
-                console.log(json.message);
+                //alert(json.message);
+                //console.log(json.message);
+                var data={'hotelList':[],'locationList':[]};
+                V(data);
             }
             //window.history.go(-1);
         }

@@ -90,7 +90,20 @@
 	</div>
 
 </div>
-<script data-main="js/main.js" src="js/require.js"></script>
 <div id="menu"></div>
 </body>
+<script data-main="js/main.js" src="js/require.js"></script>
+<script>
+	var seat = new Scroller({id:"seats",type:"seat",cont:"test"});
+	var seat0 = new Scroller({id:"seats0",type:"seat",cont:"test"});
+	(function($) {
+		$(document).ready(function() {
+			window.addEventListener('load', function() {
+				FastClick.attach(document.body);
+			}, false);
+		});
+	}(jQuery));
+
+</script>
+
 </html>

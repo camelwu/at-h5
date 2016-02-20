@@ -14,6 +14,7 @@
     <link href="../styles/framework.css" rel="stylesheet" type="text/css">
     <link href="../styles/style.css" rel="stylesheet" type="text/css">
     <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -54,27 +55,54 @@
         <div class="ride-user">
             <div class="ride-user-first">
                 <span>乘机人</span>
-                <button type="button">添加乘机人</button>
+                <button class="add-Passenger">添加乘机人</button>
             </div>
+          <ul class="passenger-list-data">
+              <li class="ride-user-info">
+                  <span  class="icon-add"><i></i></span>
+                  <div class="middle">
+                      <p class="name">
+                          <span>姓 / 名</span><input type="text" name="input-zone" placeholder="BAI/LISA" readonly="readonly" />
+                      </p>
+                      <div class="passport">
+                          <span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>
+                      </div>
+                  </div>
+                  <span class="next-icon"><i></i></span>
+              </li>
+              <li class="ride-user-info">
+                  <span  class="icon-add"><i></i></span>
+                  <div class="middle">
+                      <p class="name">
+                          <span>姓 / 名</span><input type="text" name="input-zone" placeholder="BAI/LISA" readonly="readonly" />
+                      </p>
+                      <div class="passport">
+                          <span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>
+                      </div>
+                  </div>
+                  <span class="next-icon"><i></i></span>
+              </li>
+              <li class="ride-user-info">
+                  <span  class="icon-add"><i></i></span>
+                  <div class="middle">
+                      <p class="name">
+                          <span>姓 / 名</span><input type="text" name="input-zone" placeholder="BAI/LISA" readonly="readonly" />
+                      </p>
+                      <div class="passport">
+                          <span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>
+                      </div>
+                  </div>
+                  <span class="next-icon"><i></i></span>
+              </li>
 
-            <div class="ride-user-info">
-                <span  class="icon-add"><i></i></span>
-                <div class="middle">
-                    <p class="name">
-                        <span>姓/名</span><input type="text" name="input-zone" placeholder="BAI/LISA">
-                    </p>
-                    <div class="passport">
-                        <span>护照</span><input type="text" name="input-zone" placeholder="1234567890"><form class="passport-form"><select name="sex"><option value="男">男</option><option value="女" selected="selected">女</option></select></form>
-                    </div>
-                </div>
-                <span class="next-icon"><i></i></span>
-            </div>
+          </ul>
+
         </div>
 
         <div class="ride-user contact">
             <div class="ride-user-first">
                 <span>联系人</span>
-                <i class="icon" id="addPassenger"></i>
+                <i class="icon contact-person" id="addPassenger"  onclick="vlm.f_choice('concact','flight');"></i>
             </div>
 
             <div class="table">
@@ -321,8 +349,11 @@
         </ul>
     </div>
     <!--机票详情结束-->
+    <!--弹出编辑页-->
 </div>
 </body>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="js/hy_ticket_order.js"></script>
 </html>

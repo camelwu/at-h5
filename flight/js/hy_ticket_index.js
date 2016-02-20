@@ -143,7 +143,7 @@
        },
 
        toTicketList:function(){
-           var that = ticketIndexModal;
+           var that = ticketIndexModal,caCheContent = {};
            var ticketSearchButton = document.querySelector('#ticket-search-button');
            this.addHandler(ticketSearchButton,'click', function(){
                var oDiv = document.querySelector('#single').style.display == 'block'?document.querySelector('#single'):document.querySelector('#double');
@@ -168,8 +168,7 @@
                        paraObj.CabinClass = CabinStr;
                        paraObj.RouteType = "Return";
                        paraObj.IsHideSharedFlight=false;
-                       paraObj.IsDirectFlight=true;
-                       paraObj.IsDirectFlight=true;
+                       paraObj.IsDirectFlight=false;
                        paraObj.NumofAdult= NumofAdult;
                        paraObj.NumofChild= NumofChild;
                        paraObj.DepartStartHour="00";
@@ -178,6 +177,12 @@
                        paraObj.IsDesc= "false";
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
+                      /* caCheContent.CityCodeFromName = cityStrs[0];
+                       caCheContent.CityCodeToName = cityStrs[1];
+                       caCheContent.DepartDateData = document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[0].innerHTML;
+                       caCheContent.ReturnDateData = document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[1].innerHTML;
+                       caCheContent.NumofAdult = document.querySelector('.adult-number.double').innerHTML;
+                       caCheContent.NumofChild = document.querySelector('.child-number.double').innerHTML;*/
                        for(var attr in paraObj){
                            paramStr+="&"+attr+"="+paraObj[attr];
                        }
@@ -199,8 +204,8 @@
                        paraObj.DepartDate = startDate;
                        paraObj.CabinClass = CabinStr;
                        paraObj.RouteType = "Oneway";
-                       paraObj.IsHideSharedFlight="false";
-                       paraObj.IsDirectFlight=true;
+                       paraObj.IsHideSharedFlight=false;
+                       paraObj.IsDirectFlight=false;
                        paraObj.NumofAdult= NumofAdult;
                        paraObj.NumofChild= NumofChild;
                        paraObj.DepartStartHour="00";

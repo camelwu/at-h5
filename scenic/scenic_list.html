@@ -4,161 +4,230 @@
     <meta charset="UTF-8">
     <title>景点</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
     <link href="../styles/framework.css" rel="stylesheet"/>
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/sceniclist.css">
+    <link href="css/scenic.css" rel="stylesheet"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/sceniclist.css">-->
+    <link href="../styles/owl.theme.css"	rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                <br>
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
     <div class="all-elements">
         <!--   顶部   -->
-        <header class="top">
-            <a href="javascript:;" class="icons header-back"></a>
-            <div class="search">
-                <i class="search-tip"></i>
-                <input type="text" class="sousuo" value placeholder="景点名/城市/主题">
-            </div>
+        <div class="header" id="vlm-login">
+            <a href="../scenic/index.html" class="icons header-back"></a>
+            <h3>特色当地游</h3>
             <a href="javascript:;" class="location-wrap">
-                <span class="location-txt">北京</span>
-                <i class="location-tip"></i>
+            <span class="location-txt">北京</span>
+            <i class="location-tip"></i>
             </a>
-        </header>
+        </div>
+        <!--<header class="top">-->
+            <!--<a href="javascript:;" class="icons header-back"></a>-->
+            <!--<h3>特色当地游</h3>-->
+            <!--<a href="javascript:;" class="location-wrap">-->
+                <!--<span class="location-txt">北京</span>-->
+                <!--<i class="location-tip"></i>-->
+            <!--</a>-->
+        <!--</header>-->
         <!--   内容   -->
         <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 20px;">
             <section>
-                <div class="cont-exhibition">
-                    <img src="images/palace.jpg" alt=""/>
-                </div>
+                <!--<div class="cont-exhibition">-->
+                    <!--<img src="images/palace.jpg" alt=""/>-->
+                <!--</div>-->
                 <div class="scenic-list-box">
-                    <div class="scenic-list-choi-wrap">
-                        <a class="active">北京景点</a>
-                        <a>周边景点</a>
-                    </div>
-                    <ul class="scenic-list-cont active">
-                        <li class="s-li">
-                            <a href="scenic_detail.html">
-                                <div class="sce-img-box">
-                                    <img src="images/water-cubic.jpg" alt="" class="sce-img"/ >
-                                </div>
-                                <div class="sce-detail">
-                                    <p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>
-                                    <div class="sce-det-fare">
-                                        <span class="sale-fare"><i>168</i> 元起/人</span>
-                                        <span class="old-fare">268元起/人</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="s-li">
-                            <a href="scenic_detail.html">
-                                <div class="sce-img-box">
-                                    <img src="images/water-cubic.jpg" alt="" class="sce-img"/ >
-                                </div>
-                                <div class="sce-detail">
-                                    <p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>
-                                    <div class="sce-det-fare">
-                                        <span class="sale-fare"><i>168</i> 元起/人</span>
-                                        <span class="old-fare">268元起/人</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="s-li">
-                            <a href="scenic_detail.html">
-                                <div class="sce-img-box">
-                                    <img src="images/water-cubic.jpg" alt="" class="sce-img"/ >
-                                </div>
-                                <div class="sce-detail">
-                                    <p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>
-                                    <div class="sce-det-fare">
-                                        <span class="sale-fare"><i>168</i> 元起/人</span>
-                                        <span class="old-fare">268元起/人</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="s-li">
-                            <a href="scenic_detail.html">
-                                <div class="sce-img-box">
-                                    <img src="images/water-cubic.jpg" alt="" class="sce-img"/ >
-                                </div>
-                                <div class="sce-detail">
-                                    <p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>
-                                    <div class="sce-det-fare">
-                                        <span class="sale-fare"><i>168</i> 元起/人</span>
-                                        <span class="old-fare">268元起/人</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="s-li">
-                            <a href="scenic_detail.html">
-                                <div class="sce-img-box">
-                                    <img src="images/water-cubic.jpg" alt="" class="sce-img"/ >
-                                </div>
-                                <div class="sce-detail">
-                                    <p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>
-                                    <div class="sce-det-fare">
-                                        <span class="sale-fare"><i>168</i> 元起/人</span>
-                                        <span class="old-fare">268元起/人</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                    <!--<div class="scenic-list-choi-wrap">-->
+                        <!--<a class="active">北京景点</a>-->
+                        <!--<a>周边景点</a>-->
+                    <!--</div>-->
+                    <ul id="scenic-list-cont" class="scenic-list-cont active">
+
                     </ul>
-                    <ul class="scenic-list-cont">
-                        <li class="s-li">
-                            <a href="javascript:;">
-                                <div class="sce-img-box">
-                                    <img src="images/water-cubic.jpg" alt="" class="sce-img"/ >
-                                </div>
-                                <div class="sce-detail">
-                                    <p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>
-                                    <div class="sce-det-fare">
-                                        <span class="sale-fare"><i>168</i> 元起/人</span>
-                                        <span class="old-fare">268元起/人</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                    <!--<ul class="scenic-list-cont">-->
+                        <!--<li class="s-li">-->
+                            <!--<a href="javascript:;">-->
+                                <!--<div class="sce-img-box">-->
+                                    <!--<img src="images/water-cubic.jpg" alt="" class="sce-img"/ >-->
+                                <!--</div>-->
+                                <!--<div class="sce-detail">-->
+                                    <!--<p class="sce-name-all">北京城市游：鸟巢水立方+军事博物馆一日游</p>-->
+                                    <!--<div class="sce-det-fare">-->
+                                        <!--<span class="sale-fare"><i>168</i> 元起/人</span>-->
+                                        <!--<span class="old-fare">268元起/人</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
                 </div>
             </section>
         </div>
         <!--   底部   -->
-        <footer class="sce-bottom">
-            <div class="sce-filter clearFix">
-                <a href="javascript:;" class="cp-recommend"><span>产品经理推荐</span><i class="cp-recommend-tip"></i></a>
-                <a href="javascript:;" class="well-rate"><span>好评率</span><i class="well-rate-tip"></i></a>
-                <a href="javascript:;" class="price-sort"><span>价格排序<i class="price-sort-tip"></i></span></a>
-                <a href="javascript:;" class="gl-filter"><span>过滤<i class="gl-filter-tip"></i></span></a>
+        <!--<footer class="sce-bottom">-->
+            <!--<div class="sce-filter clearFix">-->
+                <!--<a href="javascript:;" class="cp-recommend"><span>产品经理推荐</span><i class="cp-recommend-tip"></i></a>-->
+                <!--<a href="javascript:;" class="well-rate"><span>好评率</span><i class="well-rate-tip"></i></a>-->
+                <!--<a href="javascript:;" class="price-sort"><span>价格排序<i class="price-sort-tip"></i></span></a>-->
+                <!--<a href="javascript:;" class="gl-filter"><span>过滤<i class="gl-filter-tip"></i></span></a>-->
+            <!--</div>-->
+        <!--</footer>-->
+        <footer class="sl-bottom">
+            <div>
+                <b class="jd-icon s-good"></b>
+                产品经理推荐
+            </div>
+            <div>
+                <b class="jd-icon s-remark"></b>
+                好评率
+            </div>
+            <div>
+                <b class="jd-icon s-rank"></b>
+                价格排序
+            </div>
+            <div>
+                <b class="jd-icon s-fil"></b>
+                过滤
             </div>
         </footer>
     </div>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/custom.js"></script>
+
+    <script id="tpl_SearchAvailableToursAttractions" type="text/template">
+        <li class="s-li">
+            <a href="../scenic/scenic_detail.html?packageID={%=packageID%}">
+                <div class="sce-img-box">
+                    <img src="{%=pictureURL%}" alt="" class="sce-img">
+                </div>
+                <div class="sce-detail">
+                    <p class="sce-name-all">{%=packageName%}</p>
+                    <div class="sce-det-fare">
+                        <span class="sale-fare"><i>{%=leadinPrice%}</i> 元起/人</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </script>
+    <script>
+        /*景点 目标城市列表页MT*/
+        (function(){
+            var webkit = this;
+            var core = function(){
+                var apiurl="http://123.56.190.34:8888/api/GetServiceApiResult";
+
+                vlm.init();
+
+                var CLoadSearchAvailableToursAttractions = function(){
+
+                    var val = vlm.parseUrlPara(window.location.href);
+                    var SearchAvailableToursAttractions=
+                    {
+                        "Parameters": {
+                            "DestCityCode": val.DestCityCode
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0087"
+                    }
+                    vlm.loadJson(apiurl,JSON.stringify(SearchAvailableToursAttractions),SearchAvailableToursAttractionsCallback);
+                    function SearchAvailableToursAttractionsCallback(data){
+                        var json=eval('('+data+')');
+                        console.log(json);
+                        if(json.success){
+                            var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists);
+                            $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+
+                        }else {
+                            console.log(json);
+                            jAlert("数据格式错误","提示");
+                        }
+                    }
+
+                }
 
 
+                //加载动画
+                var CAnimload = function()
+                {
+                    $(window).load(function () {
+                        $("#status").fadeOut();
+                        $("#preloader").delay(400).fadeOut("medium");
+                    });
+                }
+
+
+
+
+                return {
+                    CLoadSearchAvailableToursAttractions:CLoadSearchAvailableToursAttractions,
+                    CAnimload:CAnimload
+                }
+
+            }();
+            webkit.MT = webkit.MT || {};
+            webkit.MT.load = function(){
+                core.CAnimload();
+                core.CLoadSearchAvailableToursAttractions();
+            }
+
+            MT.load();
+        })(jQuery,window,document);
+    </script>
     <script>
 
       /*景点选项卡*/
-      (function(){
-          var aBtn=document.getElementsByClassName('scenic-list-choi-wrap')[0].children;
-          var aDiv=document.getElementsByClassName('scenic-list-cont');
-          for(var i=0; i<aBtn.length; i++)
-          {
-              (function(index){
-
-                  aBtn[i].onclick=function(){
-                      for(var i=0; i<aBtn.length; i++)
-                      {
-                          aBtn[i].className='';
-                          aDiv[i].className='scenic-list-cont';
-                      }
-
-                      this.className='active';
-                      aDiv[index].className='active scenic-list-cont';
-                  };
-              })(i);
-          }
-      })();
+//      (function(){
+//          var aBtn=document.getElementsByClassName('scenic-list-choi-wrap')[0].children;
+//          var aDiv=document.getElementsByClassName('scenic-list-cont');
+//          for(var i=0; i<aBtn.length; i++)
+//          {
+//              (function(index){
+//
+//                  aBtn[i].onclick=function(){
+//                      for(var i=0; i<aBtn.length; i++)
+//                      {
+//                          aBtn[i].className='';
+//                          aDiv[i].className='scenic-list-cont';
+//                      }
+//
+//                      this.className='active';
+//                      aDiv[index].className='active scenic-list-cont';
+//                  };
+//              })(i);
+//          }
+//      })();
 
     </script>
 

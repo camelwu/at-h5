@@ -308,6 +308,10 @@ function inpChange(id,myText){
         window.history.go(-1);
     };
     //城市列表
+    var dataCN=[];
+    var dataIN=[];
+    var dataWorCN={};
+    var dataWorIN={};
     function cityList(){
         var domestic_target_place=document.getElementById('arr2');
         var domestic_target_city=document.getElementById('input2');
@@ -331,10 +335,7 @@ function inpChange(id,myText){
             "Parameters": "",
             "ForeEndType": 1
         };
-        var dataCN=[];
-        var dataIN=[];
-        var dataWorCN={};
-        var dataWorIN={};
+
         var domBok=true;
         var interBok=true;
         //城市列表
@@ -344,6 +345,7 @@ function inpChange(id,myText){
                 alert(listJson.message);
                 return;
             }
+            window.localStorage.setItem('cityListInfo',JSON.stringify(listJson.data));
             //城市列表
             function sortBy(json){
                 var data=json.data;
@@ -374,6 +376,8 @@ function inpChange(id,myText){
                     }
                 }
             }
+            console.log(listJson);
+            console.log(33333333333333333);
             sortBy(listJson);
             console.log(dataWorCN);
             console.log(dataWorIN);
@@ -406,7 +410,7 @@ function inpChange(id,myText){
                     cityHisArr.shift();
                 }
                 for(var i=0;i<dataIN.length;i++){
-                    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'"></option>';
+                    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'('+dataIN[i].cityNameEN+')'+'"></option>';
                 }
             }else if(obj.getAttribute('id')=='input2'){
                 citySearchBox.setAttribute('placeholder','北京/beijing/bj/bjs/中国');  //判断国际国内酒店改变placeholder
@@ -549,6 +553,17 @@ function inpChange(id,myText){
             cityClick('X');
             cityClick('Y');
             cityClick('Z');
+            var lsf_city_list=document.getElementById('lsf_city_list');
+            var cityListWord=lsf_city_list.children;
+            for(var i=0;i<cityListWord.length;i++){
+                var oUl=cityListWord[i].getElementsByTagName('ul')[0];
+                var oDiv=cityListWord[i].getElementsByTagName('div')[0];
+                if(oUl.children.length==1&&oUl.children[0].innerHTML==''){
+                    cityListWord[i].style.display='none';
+                }else{
+                    cityListWord[i].style.display='block';
+                }
+            }
         }
         //国际城市
         lsf_myweb.bind(abroad_target_city,'click',function(){
@@ -587,7 +602,8 @@ function inpChange(id,myText){
                 '</div>'+
                 '<div class="cityWordBox" id="cityWordBox">'+
                     '<div class="cityWord">'+
-                    '<div>当前热门</div>'+
+                    '<div><a href="#cl_curr">当前</a></div>'+
+                    '<div><a href="#cl_hot">热门</a></div>'+
                     '<ul class="cl_word" id="cl_side">'+
                     '<li><a href="#a">A</a></li>'+
                 '<li><a href="#b">B</a></li>'+
@@ -598,7 +614,7 @@ function inpChange(id,myText){
                 '<li><a href="#g">G</a></li>'+
                 '<li><a href="#h">H</a></li>'+
                 '<li><a href="#i">I</a></li>'+
-                '<li><a href="#g">G</a></li>'+
+                '<li><a href="#j">J</a></li>'+
                 '<li><a href="#k">K</a></li>'+
                 '<li><a href="#l">L</a></li>'+
                 '<li><a href="#m">M</a></li>'+
@@ -855,7 +871,8 @@ function inpChange(id,myText){
                     '</div>'+
                     '<div class="cityWordBox" id="cityWordBox">'+
                     '<div class="cityWord">'+
-                    '<div>当前热门</div>'+
+                    '<div><a href="#cl_curr">当前</a></div>'+
+                    '<div><a href="#cl_hot">热门</a></div>'+
                     '<ul class="cl_word" id="cl_side">'+
                     '<li><a href="#a">A</a></li>'+
                     '<li><a href="#b">B</a></li>'+
@@ -866,7 +883,7 @@ function inpChange(id,myText){
                     '<li><a href="#g">G</a></li>'+
                     '<li><a href="#h">H</a></li>'+
                     '<li><a href="#i">I</a></li>'+
-                    '<li><a href="#g">G</a></li>'+
+                    '<li><a href="#j">J</a></li>'+
                     '<li><a href="#k">K</a></li>'+
                     '<li><a href="#l">L</a></li>'+
                     '<li><a href="#m">M</a></li>'+

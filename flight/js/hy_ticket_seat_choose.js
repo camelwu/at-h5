@@ -1,5 +1,8 @@
 
 var ticketSeatChoose = {
+
+    requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
+
     addHandler: function (target, eventType, handle) {
         if (document.addEventListener) {
             ticketSeatChoose.addHandler = function (target, eventType, handle) {
@@ -18,6 +21,18 @@ var ticketSeatChoose = {
         }
         ticketSeatChoose.addHandler(target, eventType, handle);
     },
+
+    tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
+        var that=this,dataObj =
+        {
+            Parameters: data,
+            ForeEndType: ForeEndType,
+            Code: Code
+        };
+        questUrl = questUrl?questUrl:that.requestUrl;
+        vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    },
+
     storageUtil: {
         set: function (key, v) {
             var localStorage = window.localStorage;
@@ -28,6 +43,10 @@ var ticketSeatChoose = {
             return dataObj.data;
         }
     },
+
+    test:function(arg){
+        console.log(arg)
+    },
     addEvent:function(){
         var reserveButton = document.querySelector('#reserve-button');
         var changeExplain = document.querySelector('#change-explain');
@@ -36,6 +55,56 @@ var ticketSeatChoose = {
         var that = this;
 
         this.addHandler(reserveButton,'click', function(){
+           /* var testPara = {
+                WapOrder: {
+                    SetID: "30000000",
+                    CacheID: "3502305",
+                    CityCodeFrom: "BJS",
+                    CityCodeTo: "SIN",
+                    NumofAdult: 1,
+                    NumofChild: 0,
+                    RouteType: "Oneway",
+                    CabinClass: "Economy",
+                    IP: "",
+                    DeviceID: "",
+                    SourceType: "",
+                    Version: ""
+                },
+                TravellerInfo: [{
+                    PassengerType: "ADULT",
+                    SexCode: "Mr",
+                    FirstName: "sss",
+                    LastName: "ddd",
+                    DateOfBirth: "1900-12-24",
+                    FlightCertificateInfo: {
+                        IdType: 1,
+                        IdCountry: "SIN",
+                        NationalityCode: "123",
+                        IdNumber: "3412",
+                        IdActivatedDate: "2016-12-31"
+                    },
+                    AirCorpCode: "SQ",
+                    FlightNo: "807"
+                }],
+                ContactDetail: {
+                    SexCode: "Mr",
+                    FirstName: "dddd",
+                    LastName: "ssss",
+                    Email: "855@asiatravel.com",
+                    Email2: "",
+                    ContactNumber: "5689",
+                    MobilePhone: "13454345654",
+                    FaxNumber: "",
+                    DestContactNumber: "12356",
+                    Address: "kkkk",
+                    PostalCode: "123456",
+                    City: "SIN",
+                    CountryCode: "CNY "
+                },
+                CurrencyCode: "CNY",
+                TotalFlightPrice: "3997"
+            }
+            that.tAjax(that.requestUrl, testPara, "3002", 3, that.test);*/
             var login;
      /*       var reverseInformation = {
                 WapOrder:{
@@ -141,23 +210,18 @@ var ticketSeatChoose = {
                 TotalFlightPrice: that.currentFlightData.totalFareAmountExc + that.currentFlightData.totalTaxAmountADT
             };
 
-
-           /* if(localStorage.getItem('login') != 1 )
-             {      alert(111)
+            if(vlm.checkLogin())
+             {       console.log(reverseInformationCache)
                     that.storageUtil.set('reverseInformationCache',reverseInformationCache);
                     document.location.href = 'ticket_order.html';
              }
-             else {
-                alert(222)
-                // 调用用户中心登录页面
-              }*/
 
-            that.storageUtil.set('reverseInformationCache',reverseInformationCache);
-            document.location.href = 'ticket_order.html';
+            //that.storageUtil.set('reverseInformationCache',reverseInformationCache);
+            //document.location.href = 'ticket_order.html';
 
         });
         this.addHandler(changeExplain,'click', function(){
-            jLayer('<div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div>','退改签说明',function(){})
+            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
 
         });
 
@@ -259,6 +323,7 @@ var ticketSeatChoose = {
     },
     createBackTripHtml:function(arg){
         if(arg.segmentsReturn){
+            console.log(arg.segmentsReturn)
             var tipDay = arg.flightReturnSpacingDay>1?arg.flightReturnSpacingDay+'天':'',str='',that =this;
             str='<div class="back-trip">'+
             '<div class="top-line">'+
@@ -395,25 +460,7 @@ var ticketSeatChoose = {
             '</div></div>';
         backMeal ='<div class="ticket-shadow" style="display: none"></div><div class="buy-ticket-notice back-meal" style="display: none;">' +
         '<div class="header back-meal-close"><span>退改签说明</span><span><i></i></span></div><div class="content-notice ">' +
-        '<p>' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签' +
-        '</p>' +
+        '<p>退改签规则，以航司为准!</p>' +
         '</div>' +
         '</div>';
         allEle.innerHTML = headerHtml + contentHtml + backMeal + this.createDetailModal(itemObj);

@@ -9,6 +9,7 @@ var u_realname;
 var phoneBflag=false;
 var r_phone=$('#phone')[0];
 var UserSex=sessionStorage.salutation;
+var phone_verify=$('#phone_ver')[0];
 function u_perInfo(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
@@ -130,29 +131,27 @@ function u_perInfo(){
             if(sex.className != "info-sex-on"){
                 sex.className="info-sex-on";
                 block.innerHTML = "女";
-                UserSex=26;
             }else{
                 sex.className="info-sex";
                 block.innerHTML = "男";
-                UserSex=27;
             }
+
+            //返回按钮保存性别
+            //var oPerBack=$('#per-back')[0];
+            //function closeSex(obj){
+            //    obj.onclick = function(){
+            //        var Parameters={
+            //            "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Salutation\":\""+UserSex+"\"}",
+            //            "ForeEndType": 3,
+            //            "Code": "0056"
+            //        };
+            //        console.log(Parameters);
+            //        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_sex);
+            //    }
+            //}
+            //closeSex(oPerBack);
 
         };
-
-        //返回按钮保存性别
-        var oPerBack=$('#per-back')[0];
-        function closeSex(obj){
-            obj.onclick = function(){
-                var Parameters={
-                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Salutation\":\""+UserSex+"\"}",
-                    "ForeEndType": 3,
-                    "Code": "0056"
-                };
-                console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_sex);
-            }
-        }
-        closeSex(oPerBack);
     }
     changeSex(sex);
     //  修改昵称
@@ -209,8 +208,16 @@ function u_perInfo(){
     function selDate(obj){
         obj.onclick = function(){
             var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('号','');
+            if($('#sex')[0].className == 'info-sex')
+            {
+                UserSex=27;
+            }
+            else
+            {
+                UserSex=26;
+            }
             var Parameters={
-                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"DOB\":\""+birthstr+"\"}",
+                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"DOB\":\""+birthstr+"\",\"Salutation\":\""+UserSex+"\"}",
                 "ForeEndType": 3,
                 "Code": "0056"
             };
@@ -281,7 +288,7 @@ function u_perInfo(){
                     "Code": "0056"
                 };
                 //console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_infoemail);
 
             };
 
@@ -348,7 +355,7 @@ function mycallback_birth(ret){
     console.log(myJson);
     if(myJson.success)
     {
-        window.location.href="user.html"
+        window.location.href="user.html";
     }
 }
 
@@ -374,6 +381,7 @@ function mycallback(ret){
         nickname.innerHTML = infoJson.data[0].nickName;
         name.value = infoJson.data[0].nickName;
         birthCont.value=infoJson.data[0].dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
+        realName.value = infoJson.data[0].firstName;
         if(infoJson.data[0].salutation == 26){
             sex.className="info-sex-on";
             block.innerHTML = "女";
@@ -384,12 +392,10 @@ function mycallback(ret){
             userIcon.src = "../images/ui/photo-woman.png";
         }
     }
-    if(sessionStorage.phone != ""){
-        user_phone.value = sessionStorage.phone;
-    }else{
+
         user_email.value = sessionStorage.email;
-    }
-    realName.value = sessionStorage.realname;
+        user_phone.value = '';
+    //realName.value = sessionStorage.realname;
     MemberId = sessionStorage.memberid;
 }
 function mycallback_nick(ret){
@@ -407,8 +413,19 @@ function mycallback_info(ret){
     console.log(myJson);
     if(myJson.success){
         sessionStorage.realname = u_realname;
-        sessionStorage.email = u_email;
         sessionStorage.phone = u_phone;
+        console.log(sessionStorage);
+        document.getElementById("infoForm").submit();
+    }else{
+        alert(myJson.message);
+    }
+}
+
+function mycallback_infoemail(ret){
+    var myJson = eval('('+ret+')');
+    console.log(myJson);
+    if(myJson.success){
+        sessionStorage.email = u_email;
         document.getElementById("infoForm").submit();
     }else{
         alert(myJson.message);
@@ -420,7 +437,8 @@ function mycallback_sex(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success){
-        sessionStorage.sex=UserSex;
+        window.location.href="user.html";
+
     }else{
         alert(myJson.message);
     }
@@ -456,9 +474,25 @@ $('.info-quit').click(function(){
 });
 
 
+//时间倒计时结束后
+function phone_timeout(){
+    console.log(phone_verify);
+    phone_verify.innerHTML='发送验证码';
+    phone_verify.style.color='#ffb413';
+    regBflag=false;
+}
 
+//时间倒计过程中
+function time_reciprocals(sec){
+    phone_verify.innerHTML=sec+'秒重新发送';
+    phone_verify.style.color='#ccc';
+}
 
-
+//清除昵称输入内容
+function clearname(){
+    var name = document.getElementById("name");
+    name.value = "";
+}
 
 //function mycallback_keyVeri(ret){
 //    var c = new vlm();

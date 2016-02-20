@@ -289,9 +289,6 @@ window.onload = function(){
 
    }
 
-
-
-
 };
 function show_keypage(){
     var fkey_page = $("#fkey_page")[0];
