@@ -180,6 +180,8 @@
                        paraObj.DepartStartHour="00";
                        paraObj.DepartEndHour="24";
                        paraObj.PriorityRule= 0;
+                       paraObj.pageNo= 1;
+                       paraObj.pageSize= 10;
                        paraObj.IsDesc= "false";
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
@@ -218,6 +220,8 @@
                        paraObj.DepartEndHour="24";
                        paraObj.PriorityRule= 0;
                        paraObj.IsDesc= "false";
+                       paraObj.pageNo= 1;
+                       paraObj.pageSize= 10;
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
                        for(var attr_ in paraObj){
@@ -704,7 +708,6 @@
            });
             if(cityInputZone.addEventListener){
                 cityInputZone.addEventListener('focus',function(){
-
                     var oMask=$('<div class="city-choose-mask"></div>');
                     oMask.appendTo($('.city-content'));
 
@@ -781,7 +784,6 @@
               cityListSearched.style.display = 'none'
           }
       },
-
        initDate:function(){
            var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
                r =new Date( d.setDate(d.getDate() + 3)),
@@ -828,10 +830,16 @@
            document.querySelector('.double-date-two').innerHTML = endDay[0];
            document.querySelector('.double-week-two').innerHTML = endDay[1];
        },
-
+       loadingFade:function(){
+            $(window).load(function () {
+                   $("#status-f").fadeOut();
+                   $("#preloader").delay(400).fadeOut("medium");
+               });
+       },
        init:function(){
           /*this.tempCurLeft = 0;*/
           /*this.isAnimation = false;*/
+           this.loadingFade();
            this.getHotCity("NOTCN");
            this.getHotCity("CN");
            this.createWrap();
