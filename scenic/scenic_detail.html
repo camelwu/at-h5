@@ -33,7 +33,7 @@
             <a href="javascript:history.go(-1);" class="icons top-back"></a>
             <div class="sce-detail-exhi">
             <h3>景点详情</h3>
-            <img src="images/greatwall-sun.jpg" alt="img"/>
+            <img id="ScenicTopImg" src="images/greatwall-sun.jpg" alt="img"/>
             <div id="Title" class="black-block" style="padding-left: 14px;">
 
             </div>
@@ -64,74 +64,39 @@
                 <li>
                     <b class="jd-icon s-addr"></b>
                     营业地址
-                    <div class="spe-state">北京市丰台</div>
+                    <div id="BusinessAddress" class="spe-state"></div>
                 </li>
                 <li>
                     <b class="jd-icon s-combo"></b>
                     景点套餐
                 </li>
-                <li>
-                    <div class="combo-name">八达岭长城一日游【周一、周五使用】</div>
-                    <div class="combo-price">￥275</div><span>￥350</span>
-                    <a href="#" class="s-reserve button-orange">支付</a>
+                <li id="ScenicPackage" style="padding:0;margin:0;border:none;">
+
                 </li>
-                <li>
-                    <div class="combo-name">八达岭长城一日游【周一、周五使用】</div>
-                    <div class="combo-price">￥275</div><span>￥350</span>
-                    <a href="#" class="s-reserve button-orange">支付</a>
-                </li>
+
                 <li class="no-class">
                     <b class="jd-icon s-plan"></b>
                     行程安排
                     <b class="jd-icon s-up"></b>
                 </li>
-                <li id="tripPlan" class="state-detail s-active">
-                    <ul class="spe-detail">
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                        <li>05:00-06:30派专车到游客指定地点接（具体时间我社提前通知，五环内免费，）</li>
-                    </ul>
+                <li id="TripPlan" class="state-detail s-active">
+
                 </li>
                 <li class="no-class">
                     <b class="jd-icon s-atten"></b>
                     注意事项
                     <b class="jd-icon s-down"></b>
                 </li>
-                <li id="attention" class="state-detail">
-                    <ul class="spe-detail">
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                        <li>集合地点和接送时间将在参观日的三天前通过邮件通知您</li>
-                    </ul>
+                <li id="Attention" class="state-detail">
+
                 </li>
                 <li class="no-class">
                     <b class="jd-icon s-service"></b>
                     服务条款
                     <b class="jd-icon s-down"></b>
                 </li>
-                <li id="servTerm" class="state-detail">
-                    <ul class="spe-detail">
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                        <li>客人姓名需与护照姓名一致客人姓名需与护照姓名一致需与护照姓名一致</li>
-                    </ul>
+                <li id="ServTerm" class="state-detail">
+
                 </li>
                 <li class="no-class">
                     <b class="jd-icon s-spdet"></b>
@@ -172,13 +137,35 @@
 <script id="tpl_GetDetails_Package_Feature" type="text/template">
     {%=inclusiveItem%}
 </script>
+<script id="tpl_GetDetails_Package_BusinessAddress" type="text/template">
+    {%=country%} {%=destCity%}
+</script>
+<script id="tpl_GetDetails_Package_ScenicPackage" type="text/template">
+    {% for(var i=0,len=data.prices.length;i<len;i++){ %}
+    <li>
+        <div class="combo-name">{%=data.packageName%}{% if(data.prices[i].category=="ADULT"){ %}(ADULT){% }else{ %}(CHILD){% } %}</div>
+        <div class="combo-price">{%=data.prices[i].amountInCNY%}</div>
+        <a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>
+    </li>
+    {% } %}
+</script>
+<script id="tpl_GetDetails_Package_TripPlan" type="text/template">
+    {%=overview%}
+</script>
+<script id="tpl_GetDetails_Package_Attention" type="text/template">
+    {%=importantNotes%}
+</script>
+<script id="tpl_GetDetails_Package_ServTerm" type="text/template">
+    {%=termsConditions%}
+</script>
+
 <script>
     /*景点 目标城市列表页MT*/
     (function(){
         var webkit = this;
         var core = function(){
-            var apiurl="http://123.56.190.34:8888/api/GetServiceApiResult";
-
+            var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
+            var OnlyForAdult,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate;
             vlm.init();
 
             var CLoadGetDetails = function(){
@@ -202,15 +189,32 @@
                                 tpl_GetDetails_Package_ScheduledTimeTo = template("tpl_GetDetails_Package_ScheduledTimeTo",data),
                                 tpl_GetDetails_Package_ParadeTimeFrom = template("tpl_GetDetails_Package_ParadeTimeFrom",data),
                                 tpl_GetDetails_Package_ParadeTimeTo = template("tpl_GetDetails_Package_ParadeTimeTo",data),
-                                tpl_GetDetails_Package_Feature = template("tpl_GetDetails_Package_Feature",data);
+                                tpl_GetDetails_Package_BusinessAddress = template("tpl_GetDetails_Package_BusinessAddress",data),
+                                tpl_GetDetails_Package_Feature = template("tpl_GetDetails_Package_Feature",data),
+                                tpl_GetDetails_Package_TripPlan = template("tpl_GetDetails_Package_TripPlan",data.tours),
+                                tpl_GetDetails_Package_Attention = template("tpl_GetDetails_Package_Attention",data.tours),
+                                tpl_GetDetails_Package_ServTerm = template("tpl_GetDetails_Package_ServTerm",data);
 
+                        OnlyForAdult = data.onlyForAdult;
+                        MaxAdult = data.maxAdult;
+                        ChildAgeMax = data.childAgeMax;
+                        ChildAgeMin = data.childAgeMin;
+                        TourID = data.tours[0].tourID;
+                        TravelDate = data.salesFrom;
+
+                        $("#ScenicTopImg").attr("src",data.pictureURL);
                         $("#Title").html(tpl_GetDetails_Package_Title);
                         $("#ScheduledTimeFrom").html(tpl_GetDetails_Package_ScheduledTimeFrom);
                         $("#ScheduledTimeTo").html(tpl_GetDetails_Package_ScheduledTimeTo);
                         $("#ParadeTimeFrom").html(tpl_GetDetails_Package_ParadeTimeFrom);
                         $("#ParadeTimeTo").html(tpl_GetDetails_Package_ParadeTimeTo);
+                        $("#BusinessAddress").html(tpl_GetDetails_Package_BusinessAddress);
                         $("#Feature").html(tpl_GetDetails_Package_Feature).find("ul").addClass("s-special");
+                        $("#TripPlan").html(tpl_GetDetails_Package_TripPlan).find("ul").addClass("s-special");
+                        $("#Attention").html(tpl_GetDetails_Package_Attention).find("ul").addClass("s-special");
+                        $("#ServTerm").html(tpl_GetDetails_Package_ServTerm).find("ul").addClass("s-special");
 
+                        CLoadSearchPrice();
                     }else {
                         console.log(json);
                         jAlert("数据格式错误","提示");
@@ -219,6 +223,43 @@
 
             }
 
+            var CLoadSearchPrice = function(){
+                var val = vlm.parseUrlPara(window.location.href);
+                var SearchPrice=
+                {
+                    "Parameters": {
+                        "PackageID": val.packageID,
+                        "Adult": 1,
+                        "Child": [
+                            ChildAgeMin,
+                            ChildAgeMax
+                        ],
+                        "Tours": [
+                            {
+                                "TourID": TourID,
+//                                "TravelDate": TravelDate
+                                "TravelDate": "2016-02-26T00:00:00"
+                            }
+                        ]
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0091"
+
+                }
+                vlm.loadJson(apiurl,JSON.stringify(SearchPrice),SearchPriceCallback);
+                function SearchPriceCallback(data){
+                    var json=eval('('+data+')');
+                    console.log(json);
+                    if(json.success){
+                        var data=json.data,tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);
+                        $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
+                    }else {
+                        console.log(json);
+                        jAlert("数据格式错误","提示");
+                    }
+                }
+
+            }
 
             //加载动画
             var CAnimload = function()
@@ -229,7 +270,7 @@
                 });
             }
 
-            //
+
             var CrefreshTab=function(){
                 var li = document.getElementsByClassName('no-class');
                 var li_ul = document.getElementsByClassName('state-detail');
@@ -255,6 +296,7 @@
 
             return {
                 CLoadGetDetails:CLoadGetDetails,
+                CLoadSearchPrice:CLoadSearchPrice,
                 CAnimload:CAnimload,
                 CrefreshTab:CrefreshTab
             }

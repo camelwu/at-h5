@@ -25,6 +25,7 @@ i{
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
 }
 /*
         订单支付
@@ -295,6 +296,7 @@ i{
     width: 100%;
     border-top:1px solid #dddddd;
     border-bottom:1px solid #dddddd;
+    margin-bottom: 0;
 }
 .order-spot li{
     margin-left: 15px;
@@ -311,10 +313,74 @@ i{
     color:#999999;
 }
 .order-spot li div:first-child{
-
     color:#484848;
     font-size: 1.4rem;
     font-weight: bold;
+}
+.price-totle{
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px 15px;
+    border-top:1px solid #dddddd;
+    border-bottom:1px solid #dddddd;
+}
+.price-totle span{
+    color:#fe6a03;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.price-totle span:nth-child(2){
+    font-size: 1.5rem;
+}
+.price-totle a{
+    float: right;
+    margin-right: 7px;
+    font-size: 1.3rem;
+    color: #ffc45f;
+}
+.sc-right{
+    float: right;
+    width: 7px;
+    height: 13px;
+    margin-top: 7px;
+    background-position: 65.5% 5%;
+}
+.order-info{
+    width: 100%;
+    margin-top: 10px;
+    border-top:1px solid #dddddd;
+    border-bottom:1px solid #dddddd;
+}
+.oinfo-t{
+    font-size: 1.4rem;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom:1px solid #dddddd;
+}
+.so-info{
+    padding-bottom: 42px;
+}
+.so-info li{
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.so-info li:last-child{
+    margin-bottom:0;
+}
+.so-info li div:nth-child(1){
+    float: left;
+    width: 30%;
+    font-size: 1.4rem;
+    color: #999999;
+}
+.so-info li div:nth-child(2){
+    float: left;
+    width: 70%;
+    font-size: 1.4rem;
+    padding-right: 15px;
 }
 /*
         景点主页
@@ -837,10 +903,13 @@ i{
 }
 .sce-detail-exhi h3{
     position: absolute;
+    width: 80px;
     z-index: 1;
     top: 12%;
-    left: 41%;
+    left: 50%;
+    margin-left: -40px;
     color: white;
+    text-align: center;
 }
 .sd-time{
     border-bottom: 1px solid #d1d1d1;
@@ -903,14 +972,6 @@ i{
     color: #fe6a03;
     display: inline-block;
 }
-/*.spot-info li div:first-child{*/
-    /*font-size: 1.4rem;*/
-    /*margin-bottom: 10px;*/
-/*}*/
-/*.spot-info li div:last-child{*/
-    /*font-size: 1.8rem;*/
-    /*color: #fe6a03;*/
-/*}*/
 .spe-state{
     float: right;
     margin-top: 7px;
@@ -993,7 +1054,6 @@ i{
 }
 .spe-detail{
     margin-bottom: 0;
-    /*padding:0;*/
     padding: 12px 15px;
 
 }
@@ -1006,9 +1066,6 @@ i{
 }
 .spe-detail li:last-child{
     margin-bottom: 0;
-}
-.sd-active{
-
 }
 .s-plan{
     position: relative;
@@ -1041,4 +1098,288 @@ i{
     height:20px;
     margin-right: 16px;
     background-position: -63px -49px;
+}
+/*
+        景点评价
+*/
+.pj-block{
+    position: absolute;
+    margin-top: -60px;
+    padding: 10px 15px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    color:white;
+}
+.pj-block li:nth-child(1){
+    font-size: 1.5rem;
+}
+.pj-block li:nth-child(2){
+    font-size: 1rem;
+}
+.sce-score-wrap{
+    background-color: #fff;
+    padding-top: 15px;
+}
+.sce-score{
+    color: #fe6a03;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 28px;
+}
+.sce-score-tot-star{
+    margin-bottom: 0;
+}
+.sce-score-tot-star li{
+    float: left;
+    margin-right: 2px!important;
+}
+.star-all{
+    width: 13px;
+    height: 13px;
+    background-position: -16px -31px;
+}
+.star-empty{
+    width: 13px;
+    height: 13px;
+    background-position: -16px -17px;
+}
+.star-half{
+    width: 13px;
+    height: 13px;
+    background-position: -4px -31px;
+}
+.star-small{
+    width: 10px;
+    height: 10px;
+    background-position: -5px -17px;
+}
+.sce-score-tot{
+    float:left;
+    width: 40%;
+    padding-left: 15px;
+}
+.sce-score-tot h3{
+    font-size:1.4rem;
+    font-weight: normal;
+}
+.sce-score-per{
+    float:right;
+    width: 50%;
+    padding-right: 15px;
+    margin-bottom: 10px;
+}
+.sce-score-per li{
+    line-height: 0.6em;
+    text-align: right;
+    margin-right: 20px;
+}
+.percent-star{
+    line-height: 0.6em;
+    text-align: right;
+    margin-right: 20px;
+    clear: both;
+}
+.percent-star ul{
+    margin-bottom: 0;
+    float: left;
+}
+.percent-star ul li{
+    float: left;
+    margin-right: 2px!important;
+}
+.percent-star div{
+    float: right;
+    font-size: 1.4rem;
+    width: 3rem;
+    margin-right: 5%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.evaluate-list{
+    clear: both;
+}
+.evaluate-list ul li{
+    border-top: 1px solid #dedede;
+}
+.evaluate-list-tab{
+    padding:0 20px;
+}
+.evaluate-list-tab li{
+    padding: 10px 0;
+}
+.tour-name{
+    font-size: 1.4rem;
+    -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 2;         /* OLD - Firefox 19- */
+    -webkit-flex: 2;          /* Chrome */
+    -ms-flex: 2;              /* IE 10 */
+    flex: 2.0;
+}
+.tour-comment{
+    font-size: 1.5rem;
+    line-height: 3rem;
+    margin-bottom: 0;
+}
+.tour-comment-time{
+    color:#999999;
+    margin-bottom: 0;
+}
+.tour-comment-wrap{
+    display: -moz-box;  /* Firefox */
+    display: -ms-flexbox;    /* IE10 */
+    display: -webkit-box;    /* Safari */
+    display: -webkit-flex;    /* Chrome, WebKit */
+    display: box;
+    display: flexbox;
+    display: flex;
+}
+.tour-name-star{
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1.0;
+    text-align: right;
+}
+.tour-name-und{
+    float: right;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 0;
+}
+.tour-name-und li{
+    float: left;
+    margin-right: 2px!important;
+    border: none!important;
+    padding: 0;
+}
+.reply-block{
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e9e9e9;
+}
+/*
+        景点搜索
+*/
+.search-box {
+    box-sizing: border-box;
+    height: 54px;
+    padding-top: 10px;
+    width: 90%;
+    margin: 0 auto;
+}
+.search-box-s {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.search-box-s-tip {
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 28px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 34% 30%;
+    background-size: 400px 120px;
+    z-index: 1;
+}
+.search-logo{
+    position: absolute;
+    left: 30%;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    background-position: 8% 1%;
+}
+.sousuo-sear{
+    height: 34px;
+    line-height: 34px;
+    border: none;
+    vertical-align: top;
+    margin-left: 40%;
+    width: 80%;
+}
+.region-spot-search {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    margin-bottom: -2000px;
+    padding-bottom: 2000px;
+
+}
+
+.region-spot-choi {
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.region-spot-search > .cont{
+    -webkit-box-felx: 2.5;
+    -moz-box-flex: 2.5;
+    -ms-flex: 2.5;
+    -webkit-flex: 2.5;
+    flex: 2.5;
+    background-color: #fff;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    display: none;
+
+}
+
+.region-spot-search > .cont.active{
+    display: block;
+    margin-bottom: -2000px;
+    padding-bottom: 2000px;
+}
+
+.region-spot-choi li {
+    border-left: 2px solid #f5f4f9;
+    text-align: center;
+    line-height: 36px;
+    list-style: none;
+    font-size: 1.4rem;
+}
+
+.region-spot-choi li.active {
+    border-left: 2px solid #ffb413;
+    background-color: #fff;
+}
+
+.search-his {
+    text-align: center;
+    line-height: 30px;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+}
+.search-his span{
+    color:#b6b6b6;
+}
+.search-his > i {
+    font-style: normal;
+    padding: 0 0.4em;
+    color: #ffb932;
+}
+
+.search-his .yn-gren {
+    color: #55bfb7;
+}
+
+.region-spot-tab span {
+    font-size: 1.3rem;
+    display: inline-block;
+    border: 1px solid #dedede;
+    padding: 0 1.2rem;
+    margin: 0.6rem;
+    border-radius: 5px;
 }

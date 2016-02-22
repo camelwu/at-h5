@@ -191,7 +191,7 @@ html {
     line-height:15px;
     color: white;
     text-align: center;
-    font-size: 1rem;
+    -webkit-text-size-adjust:none;font-size: 1rem;
     background-color: #55bfb7;
     margin-right:4px;
 }
@@ -307,7 +307,7 @@ html {
 
 
 /*
-    ÅÅÐò¿é
+    ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 .r-div{
     width: 100%;height:100%;
@@ -355,7 +355,7 @@ html {
     background-position:77% 4%;
 }
 /*
-    É¸Ñ¡¿é
+    É¸Ñ¡ï¿½ï¿½
 */
 .screen{
     width: 100%;
@@ -422,7 +422,7 @@ html {
     background-color:#ffb413;
 }
 /*
-    Î»ÖÃ¿é
+    Î»ï¿½Ã¿ï¿½
 */
 .location{
     width: 100%;
@@ -519,7 +519,7 @@ html {
 
 
 /*
-    ÒÔÏÂÊÇÁõÉÙ·ÉÌí¼ÓµÄcss£¬ÓÐÒ»²¿·Ö¼Óµ½ÐÐ¼äÁË
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù·ï¿½ï¿½ï¿½Óµï¿½cssï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö¼Óµï¿½ï¿½Ð¼ï¿½ï¿½ï¿½
 */
 .hotelcontent li:last-child{
     margin-bottom:44px;
