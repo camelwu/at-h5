@@ -18,6 +18,8 @@
     <!--<link rel="stylesheet" type="text/css" href="css/sce_detail.css">-->
     <link href="css/scenic.css" rel="stylesheet"/>
     <link href="../styles/tips.css"	rel="stylesheet">
+    <link href="../css/user.css"	rel="stylesheet">
+
 </head>
 <body>
 <div id="preloader">
@@ -145,7 +147,9 @@
     <li>
         <div class="combo-name">{%=data.packageName%}{% if(data.prices[i].category=="ADULT"){ %}(ADULT){% }else{ %}(CHILD){% } %}</div>
         <div class="combo-price">{%=data.prices[i].amountInCNY%}</div>
-        <a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>
+        <a href="javascript:MT.CCheckLogin({%=packageID%});" class="s-reserve button-orange">预定</a>
+        <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
+        <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>-->
     </li>
     {% } %}
 </script>
@@ -261,6 +265,18 @@
 
             }
 
+            //判断是否登录
+            var CCheckLogin = function(packageId){
+                var islogin = vlm.checkLogin(localStorage.getItem("login"));
+//                console.log(vlm.checkLogin(localStorage.getItem("login")));
+                if(islogin == true){
+                    window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId;
+                }else{
+                    jAlert("登录失败","提示");
+                    return false;
+                }
+
+            }
             //加载动画
             var CAnimload = function()
             {
@@ -298,7 +314,8 @@
                 CLoadGetDetails:CLoadGetDetails,
                 CLoadSearchPrice:CLoadSearchPrice,
                 CAnimload:CAnimload,
-                CrefreshTab:CrefreshTab
+                CrefreshTab:CrefreshTab,
+                CCheckLogin:CCheckLogin
             }
 
         }();
@@ -307,6 +324,9 @@
             core.CAnimload();
             core.CLoadGetDetails();
             core.CrefreshTab();
+        }
+        webkit.MT.CCheckLogin=function(packageId){
+            core.CCheckLogin(packageId);
         }
 
         MT.load();
