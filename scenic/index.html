@@ -179,7 +179,7 @@
         (function(){
             var webkit = this;
             var core = function(){
-                var apiurl="http://123.56.190.34:8888/api/GetServiceApiResult";
+                var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
                 vlm.init();
                 //刷新热门城市并绑定事件
                 var CHotCity=function(){
@@ -294,7 +294,7 @@
                     {
                         "Parameters": "",
                         "ForeEndType": 3,
-                        "Code": "0082"
+                        "Code": "0086"
                     }
                     vlm.loadJson(apiurl,JSON.stringify(GetInHotCity),GetInHotCityyCallback);
                     function GetInHotCityyCallback(data){
@@ -326,7 +326,7 @@
             webkit.MT.load=function(){
                 core.CAnimload();//加载动画
                 core.CGetExHotCity();//加载境外热门城市
-                core.CGetInHotCity();//加载境内热门城市
+//                core.CGetInHotCity();//加载境内热门城市
                 core.Cloadtab();//加载tab选项卡
             }
             webkit.MT.reloadHotCity=function(){//刷新城市
