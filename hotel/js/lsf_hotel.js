@@ -403,7 +403,7 @@ function inpChange(id,myText){
                 cl_box_box.style.display='none';
             };
             if(obj.getAttribute('id')=='input1'){
-                citySearchBox.setAttribute('placeholder','Singapore');  //判断国际国内酒店改变placeholder
+                citySearchBox.setAttribute('placeholder','新加坡');  //判断国际国内酒店改变placeholder
                 var cityListHis=window.localStorage.getItem('interCityName');
                 if(cityListHis){
                     cityHisArr=cityListHis.split(',');
