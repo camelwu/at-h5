@@ -12,6 +12,16 @@
 			home : ['首页', basePath],
 			find : ['目的地', basePath + '/scenic/index.html'],
 			user : ['我的', basePath + '/user/user.html']
+		}, arr_t = {
+			1 : '护照',
+			2 : '身份证',
+			3 : '出生证明',
+			4 : '港澳通行证',
+			5 : '军官证',
+			6 : '驾驶证',
+			7 : '台胞证',
+			8 : '回乡证',
+			9 : '其他'
 		}, getpara = function(str) {
 			var reg = new RegExp("(^|&)" + str + "=([^&]*)(&|$)");
 			var r = window.location.search.substr(1).match(reg);
@@ -866,7 +876,7 @@
 			}
 		}, l_find = function() {
 
-		}, _choice = function(t,tid) {
+		}, _choice = function(t, tid) {
 			//根据TravellerId是否为空判定是新加还是编辑。
 			var type = '', title = '';
 			if (t === "concact") {
@@ -879,13 +889,14 @@
 			} else {
 				type = 'add';
 			}
-			var choice = window.open('../user/user-choiceAir.html?title='+title+'&type='+type+'&TravellerId='+tid+'', title, "fullscreen=1");
+			var choice = window.open('../user/user-choiceAir.html?title=' + title + '&type=' + type + '&TravellerId=' + tid + '', title, "fullscreen=1");
 			//choice.location = urls;
 		};
 		//out api
 		return {
 			api : _api,
 			getpara : getpara,
+			arr_t:arr_t,
 			parseUrlPara : parseUrlPara,
 			loading : _loading,
 			loadend : _loadend,
