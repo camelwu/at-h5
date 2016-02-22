@@ -52,7 +52,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var menu = $("#menu")[0];
         menu.style.display = "none";
         // 初始化常旅客
-        var memberId = sessionStorage.memberid;
+        var memberId = localStorage.memberid||sessionStorage.memberid;
         var Parameters = {
             "Parameters": "{\"memberId\":" + memberId + "}",
             "ForeEndType": 3,
@@ -429,7 +429,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 //    });
 
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"week_span2"});
-    var myDate2 = new Scroller({id: "time-cont", type:"birth",cont:"week_span2"});
+    var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"week_span2"});
     var myDate2 = new Scroller({id: "postCard", type:"card",cont:"week_span2"});
 
     var myDate3 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"week_span2"});
