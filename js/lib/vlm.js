@@ -12,11 +12,21 @@
 			home : ['首页', basePath],
 			find : ['目的地', basePath + '/scenic/index.html'],
 			user : ['我的', basePath + '/user/user.html']
+		}, arr_t = {
+			1 : '护照',
+			2 : '身份证',
+			3 : '出生证明',
+			4 : '港澳通行证',
+			5 : '军官证',
+			6 : '驾驶证',
+			7 : '台胞证',
+			8 : '回乡证',
+			9 : '其他'
 		}, getpara = function(str) {
 			var reg = new RegExp("(^|&)" + str + "=([^&]*)(&|$)");
 			var r = window.location.search.substr(1).match(reg);
 			if (r != null)
-				return unescape(r[2]);
+				return decodeURIComponent(r[2]);
 			return null;
 		}, parseUrlPara = function(url, isEncode) {
 			var isEncode = isEncode || false;
@@ -236,6 +246,26 @@
 					//var pattern = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;//3-16位 字母开头  字母数字下划线组合
 					var pattern = /^[a-zA-Z][a-zA-Z0-9_]*$/;
 					if (pattern.test(uname)) {
+						return true;
+					} else {
+						return false;
+					}
+				},
+
+				//姓名
+				guestName : function(name) {
+					var pattern = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;//3-16位 字母开头  字母数字下划线组合
+					if (pattern.test(uname)) {
+						return true;
+					} else {
+						return false;
+					}
+				},
+				//昵称
+				nickName : function(name) {
+					var pattern = /[a-zA-Z0-9-_]{4,30}/;//4-30个字符，可由中英文字母，数字、"-"、"_"组成
+
+					if (pattern.test(name)) {
 						return true;
 					} else {
 						return false;
@@ -572,7 +602,6 @@
 					});
 					callback(searchObj, false);
 				}
-
 			},
 			//前端静态分页
 			Jpage : function(containerId, pageObj) {
@@ -866,7 +895,7 @@
 			}
 		}, l_find = function() {
 
-		}, _choice = function(t,tid) {
+		}, _choice = function(t, tid) {
 			//根据TravellerId是否为空判定是新加还是编辑。
 			var type = '', title = '';
 			if (t === "concact") {
@@ -879,13 +908,14 @@
 			} else {
 				type = 'add';
 			}
-			var choice = window.open('../user/user-choiceAir.html?title='+title+'&type='+type+'&TravellerId='+tid+'', title, "fullscreen=1");
+			var choice = window.open('../user/user-choiceAir.html?title=' + title + '&type=' + type + '&TravellerId=' + tid + '', title, "fullscreen=1");
 			//choice.location = urls;
 		};
 		//out api
 		return {
 			api : _api,
 			getpara : getpara,
+			arr_t:arr_t,
 			parseUrlPara : parseUrlPara,
 			loading : _loading,
 			loadend : _loadend,

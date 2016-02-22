@@ -29,10 +29,9 @@
     font-size: 1.4rem;
 }
 
-#phone{
+.mob-cell{
     width: 100%;
 }
-
 #email{
     width: 100%;
 }
@@ -1292,10 +1291,34 @@
     padding-right: 15px;
 }
 
-.in-phone {
+.login-input .in-phone {
     display: inline-block;
     padding-top: 2px;
     font-size: 1.3rem;
+    width: 73%;
+}
+
+#p_password{
+    width: 100%;
+}
+
+#e_password{
+    width: 100%;
+}
+
+#r_p_password{
+    width: 100%;
+}
+
+#r_email{
+    width: 100%;
+}
+
+#r_e_password{
+    width: 100%;
+}
+#rs_e_password{
+    width: 100%;
 }
 
 .forgotkey {

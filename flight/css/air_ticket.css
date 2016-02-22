@@ -357,6 +357,61 @@ h1, h2, h3, h4, h5, h6 {
     color: #000000;
 }
 
+#wrapper {
+    position: absolute;
+    z-index: 1;
+    top: 106px;
+    bottom: 48px;
+   /* left: -9999px;*/
+    width: 100%;
+    background: #FFFFFF;
+    overflow: auto;
+}
+
+#scroller {
+    position: absolute;
+    z-index: 1;
+    /* -webkit-touch-callout: none; */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    padding: 0;
+}
+#pullDown, #pullUp {
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 14px;
+    color: #888;
+}
+.pullUp{
+    margin-bottom:0.6rem;
+}
+#pullDown .pullDownIcon {
+    -webkit-transform: rotate(0deg) translateZ(0);
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon {
+    display: block;
+    float: left;
+    width: 40px;
+    height: 40px;
+    background: url(../../images/pull-icon@2x.png) 0 0 no-repeat;
+    -webkit-background-size: 40px 80px;
+    background-size: 40px 80px;
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 250ms;
+}
+
+#scroller ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+}
+
 .title-p{
     margin-bottom: 0;
     overflow-y: hidden;
@@ -730,6 +785,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.3rem;
 }
 
+
 .all-elements .city-content .right-side span.letter {
     border-bottom: 0.005rem dashed #dfdfdd;
 }
@@ -861,7 +917,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     background: #FFFFFF;
     overflow: hidden;
-    margin-bottom: 0.6rem;
+    margin-bottom:0;
     border-top: 1px solid #dedede;
     border-bottom: 1px solid #dedede;
 }
@@ -3771,7 +3827,7 @@ li{
     text-align:center;
     color:#999;
 }
-.sel-box {
+ .sel-box {
     position:absolute;
     top:80px;width:100%;
     pointer-events:none;
@@ -3780,7 +3836,6 @@ li{
     border-top:2px solid #FFB413;
     border-bottom:2px solid #FFB413;
 }
-
 .city-choose-mask{
     position: fixed;
     left: 0;

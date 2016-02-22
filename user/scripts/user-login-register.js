@@ -11,8 +11,8 @@ window.onload = function(){
     var email_login = $("#email_login")[0];
     var phone = $("#phone")[0];
     var email = $("#email")[0];
-    var p_clear = $("#p_clear")[0];
-    var e_clear = $("#e_clear")[0];
+    //var p_clear = $("#p_clear")[0];
+    //var e_clear = $("#e_clear")[0];
     var change_phone = $("#change_phone")[0];
     var change_email = $("#change_email")[0];
     var header_email = $("#header_email")[0];
@@ -46,20 +46,20 @@ window.onload = function(){
         }
     }
     closeRegister(close_register,register_page,login_page);
-    function inputting(obj1,obj2){
-        obj1.onkeydown = function(){
-            obj2.style.display = "block";
-        }
-    }
-    inputting(phone,p_clear);
-    inputting(email,e_clear);
-    function clear(obj1,obj2){
-        obj1.onclick = function(){
-            obj2.value = "";
-        }
-    }
-    clear(p_clear,phone);
-    clear(e_clear,email);
+    //function inputting(obj1,obj2){
+    //    obj1.onkeydown = function(){
+    //        obj2.style.display = "block";
+    //    }
+    //}
+    //inputting(phone,p_clear);
+    //inputting(email,e_clear);
+    //function clear(obj1,obj2){
+    //    obj1.onclick = function(){
+    //        obj2.value = "";
+    //    }
+    //}
+    //clear(p_clear,phone);
+    //clear(e_clear,email);
     function changeWay(obj1,obj2,obj3,obj4){
         obj1.onclick = function(){
             obj1.style.display = "none";
@@ -312,10 +312,9 @@ function mycallback_login(ret) {
     var myJson = eval('(' + ret + ')');
     //console.log(myJson);
     if (myJson.success) {
-        sessionStorage.email = myJson.data[0].email;
-        sessionStorage.phone = myJson.data[0].mobile;
-        sessionStorage.password = myJson.data[0].password;
-        sessionStorage.memberid = myJson.data[0].memberID;
+        localStorage.email = myJson.data[0].email;
+        localStorage.phone = myJson.data[0].mobile;
+        localStorage.memberid = myJson.data[0].memberID;
         localStorage.setItem('login',1);
         window.location.href = "user.html";
     } else {
