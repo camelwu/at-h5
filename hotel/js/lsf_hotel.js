@@ -1164,22 +1164,28 @@ function inpChange(id,myText){
     var week_span4=document.getElementById('weekSpan4');
     var obj2={};
     //网页还原用户上一次选择内容
-    if(hotelStorage){
-        DomCheckInDate.value=hotelStorage.DomCheckInDate;
-        DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
-        lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
-        week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
-        week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
-        obj2[hotelStorage.DomCheckInDate]="入住";
-        obj2[hotelStorage.DomCheckOutDate]="离店";
-    }else{
-        DomCheckInDate.value=DomBeginDate;
-        DomCheckOutDate.value=DomLeaveDate;
-        week_span3.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
-        week_span4.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
-        obj2[DomBeginDate]="入住";
-        obj2[DomLeaveDate]="离店";
-    }
+    //if(hotelStorage){
+    //    DomCheckInDate.value=hotelStorage.DomCheckInDate;
+    //    DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
+    //    lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
+    //    week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
+    //    week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
+    //    obj2[hotelStorage.DomCheckInDate]="入住";
+    //    obj2[hotelStorage.DomCheckOutDate]="离店";
+    //}else{
+    //    DomCheckInDate.value=DomBeginDate;
+    //    DomCheckOutDate.value=DomLeaveDate;
+    //    week_span3.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    //    week_span4.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    //    obj2[DomBeginDate]="入住";
+    //    obj2[DomLeaveDate]="离店";
+    //}
+    DomCheckInDate.value=DomBeginDate;
+    DomCheckOutDate.value=DomLeaveDate;
+    week_span3.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    week_span4.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    obj2[DomBeginDate]="入住";
+    obj2[DomLeaveDate]="离店";
     function Calender2(){
         Calender.apply(this,arguments);
         this.idTotal=arguments[0].idTotal;
