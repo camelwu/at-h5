@@ -153,11 +153,26 @@ function M(json){
     console.log(creditName);
     var cardInfo=getCardInfo();
     console.log(cardInfo);
-    var data={
+    var data= {
         //"Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\",\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"T00:00:00\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\",\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
-        "Parameters": {"CardInfo": cardInfo, "BookingRefNo":"SGSINFT0012951"},
-        "ForeEndType": 3,
-        "Code": "3004"
+        //"Parameters": {"CardInfo": cardInfo, "BookingRefNo":"SGSINFT0012951"},
+        "Parameters": {
+            "CardInfo": {
+                "CardType": "Visa",
+                "CardHolderName": $(".CardHolderName").val(),
+                "BankName": $(".BankName").val(),
+                "CardCountryCode": $(".CardCountryCode").attr("data-code"),
+                "CardNumber":  $(".CardNumber").val(),
+                "CardSecurityCode": $(".CardSecurityCode").val(),
+                "CardExpiryDate":"2018-12-31",
+                "CardContactNumber": $(".CardContactNumber2").val()+$(".CardContactNumber2").val(),
+                "CardAddress": $(".CardAddress").val(),
+                "CardAddressPostalCode": "1234",
+                "CardAddressCountryCode":  $(".CardAddressCountryCode").attr("data-code")
+            },
+            "ForeEndType": 3,
+            "Code": "3004"
+        }
     };
     console.log(data);
     var payment=new paymentObj(data,mycallback);
