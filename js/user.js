@@ -142,7 +142,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
 
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0071"
                     }
