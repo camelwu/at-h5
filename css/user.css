@@ -29,6 +29,14 @@
     font-size: 1.4rem;
 }
 
+#phone{
+    width: 100%;
+}
+
+#email{
+    width: 100%;
+}
+
 .f_key li:last-child {
     border: none;
 }
@@ -493,6 +501,15 @@
     position: relative;
 }
 
+.u_name #name{
+    width: 100%;
+}
+
+.u_name #realName{
+    width: 100%;
+    font-size: 1.4rem;
+}
+
 .name-close {
     position: absolute;
     width: 22px;
@@ -901,39 +918,39 @@
 }
 
 .addtra-info .postCard{
-    width: 130px;
+    width: 60%;
     float: left;
     margin-left: 12%;
 }
 
 .addtra-info .country-btn{
-    width: 130px;
+    width: 60%;
     float: left;
     margin-left: 12%;
 }
 
 .addtra-info .sex-cho-wrap{
-    width: 130px;
+    width: 50%;
     float: left;
     margin-left: 12%;
 }
 
 
 .traveler-contect #mobile-cell{
-    width: 130px;
+    width: 50%;
     height: 20px;
     margin-top: 15px;
     display: inline-block;
 }
 
 .traveler-contect #email-cell{
-    width: 140px;
+    width: 60%;
     float: left;
     margin-left: 26%;
 }
 
 .traveler-contect #mobile-cell-add{
-    width: 130px;
+    width: 50%;
     height: 20px;
     margin-top: 15px;
     display: inline-block;
@@ -941,7 +958,7 @@
 }
 
 .traveler-contect #email-cell-add{
-    width: 130px;
+    width: 50%;
     float: left;
     margin-left: 26%;
 }
@@ -949,6 +966,7 @@
 .addtra-info input {
     float: left;
     margin-left: 12%;
+    width: 60%;
 }
 
 .icon-h {
