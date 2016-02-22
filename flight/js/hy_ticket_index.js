@@ -703,6 +703,17 @@
                }
            });
             if(cityInputZone.addEventListener){
+                cityInputZone.addEventListener('focus',function(){
+
+                    var oMask=$('<div class="city-choose-mask"></div>');
+                    oMask.appendTo($('.city-content'));
+
+                },false);
+                cityInputZone.addEventListener('blur',function(){
+
+                    $('.city-choose-mask').remove();
+
+                },false);
                 cityInputZone.addEventListener('input',that.searchHandler,false)
             }else{
                 cityInputZone.attachEvent('onpropertychange',that.searchHandler)
