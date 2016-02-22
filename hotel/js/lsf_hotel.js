@@ -1129,24 +1129,30 @@ function inpChange(id,myText){
     var leaveDate=oDate2.getFullYear()+'-'+toDou(oDate2.getMonth()+1)+'-'+toDou(oDate2.getDate());
     var obj={};
     //网页还原用户上一次选择内容
-    if(hotelStorage){
-        checkIn.value=hotelStorage.InterBeginDate;
-        checkOut.value=hotelStorage.InterLeaveDate;
-        lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
-        week_span1.innerHTML=hotelStorage.InterBeginDateWeek;
-        week_span2.innerHTML=hotelStorage.InterLeaveDateWeek;
-        obj[hotelStorage.InterBeginDate]="入住";
-        obj[hotelStorage.InterLeaveDate]="离店";
-    }else{
-        checkIn.value=beginDate;
-        checkOut.value=leaveDate;
-        week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
-        week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
-        obj[beginDate]="入住";
-        obj[leaveDate]="离店";
-        console.log('国际');
-        console.log(obj);
-    }
+    //if(hotelStorage){
+    //    checkIn.value=hotelStorage.InterBeginDate;
+    //    checkOut.value=hotelStorage.InterLeaveDate;
+    //    lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
+    //    week_span1.innerHTML=hotelStorage.InterBeginDateWeek;
+    //    week_span2.innerHTML=hotelStorage.InterLeaveDateWeek;
+    //    obj[hotelStorage.InterBeginDate]="入住";
+    //    obj[hotelStorage.InterLeaveDate]="离店";
+    //}else{
+    //    checkIn.value=beginDate;
+    //    checkOut.value=leaveDate;
+    //    week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    //    week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    //    obj[beginDate]="入住";
+    //    obj[leaveDate]="离店";
+    //    console.log('国际');
+    //    console.log(obj);
+    //}
+    checkIn.value=beginDate;
+    checkOut.value=leaveDate;
+    week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    obj[beginDate]="入住";
+    obj[leaveDate]="离店";
     //国内城市
     var DomCheckInDate=document.getElementById('DomCheckInDate');
     var DomCheckOutDate=document.getElementById('DomCheckOutDate');
