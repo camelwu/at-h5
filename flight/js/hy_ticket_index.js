@@ -468,8 +468,8 @@
            '</div>'+
            '<div class="right-side">'+
            '<div class="cur-word">'+
-           '<span class="cur-city">当前</span><span class="his-city">历史</span><span class="re-hot-city">热门</span>'+
-           '<span class="letter">A</span>'+
+           '<div class="special-tip"><span class="cur-city">当前</span><span class="his-city">历史</span><span class="re-hot-city">热门</span></div>'+
+           '<div class="city-pin-fir"><div>' + '<span class="letter">A</span>'+
            '<span class="letter">B</span>'+
            '<span class="letter">C</span>'+
            '<span class="letter">D</span>'+
@@ -494,7 +494,7 @@
            '<span class="letter">W</span>'+
            '<span class="letter">X</span>'+
            '<span class="letter">Y</span>'+
-           '<span class="letter">Z</span>'+
+           '<span class="letter">Z</span></div></div>'+
            '</div>'+
            '</div>'+
            '<ul class="city-list-searched" style="display: none;">'+
@@ -538,7 +538,6 @@
         dHotCity.innerHTML = dHotCityStr;
         iHotCity.innerHTML = iHotCityStr;
     },
-
        addContent:function(){
            var dCityList = document.querySelector('.domestic-city ul.city-list-details');
            var iCityList = document.querySelector('.international-city ul.city-list-details');
@@ -602,6 +601,8 @@
            var  aCabs = document.querySelectorAll('.cabin-wrap');
            var oAir=document.querySelector('.mask');
            var header = document.querySelector('.clearfix');
+           domesticCity.style.display='block';
+           internationalCity.style.display='none';
             for(var f = 0;f<aBox.length;f++){
                 this.addHandler(aBox[f],'click',function(event){
                     var event = event || window.event;
@@ -684,7 +685,10 @@
            this.addHandler(position,'click',function(event){
                var event = event || window.event;
                var target = event.target || event.srcElement;
+               console.log(domesticCity.style.display)
+               console.log(internationalCity.style.display)
                if(domesticCity.style.display=='block'&&internationalCity.style.display=='none'){
+
                    if(target.tagName=='SPAN'&&target.className.indexOf('letter')>-1&&document.querySelector(".d"+target.innerHTML+"-Link")){
                        document.querySelector(".d"+target.innerHTML+"-Link").scrollIntoView(false)
                    }else if(target.tagName=='SPAN'&&target.className.indexOf('city')>-1){

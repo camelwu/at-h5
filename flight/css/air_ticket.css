@@ -1,41 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/*html {*/
-    /*font-size: 10px;*/
-/*}*/
-
-/*body {*/
-    /*font-size: 1.4rem*/
-/*}*/
-
-/*/!* iphone 6 *!/*/
-/*@media (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {*/
-    /*html {*/
-        /*font-size: 11.71875px;*/
-    /*}*/
-/*}*/
-
-/*/!* iphone6 plus *!/*/
-/*@media (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {*/
-    /*html {*/
-        /*font-size: 12.9375px;*/
-    /*}*/
-/*}*/
-
-body {
-    line-height: 1.2rem;
-}
-
 .header {
     height: 6.8rem;
 }
@@ -45,14 +7,6 @@ body {
 
 .grey {
     color: #484848;
-}
-.all_elements {
-    position: absolute;
-    overflow-x: hidden;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    max-height: 100%;
 }
 
 #ticket-status{
@@ -171,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
     height: auto;
     z-index: 2;
     padding-bottom: 3rem;
-    padding-top: 4.0rem;
+    padding-top:4.0rem;
     background: rgb(245, 244, 249);
 }
 
@@ -730,8 +684,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.785rem;
     position: fixed;
     right: 0;
-    top: 98px;
-    width: 2.0rem;
+    top: 70px;
+    width: 4.0rem;
     overflow-x: hidden;
     overflow-y: visible;
     z-index: 5;
@@ -740,16 +694,40 @@ h1, h2, h3, h4, h5, h6 {
 
 .all-elements .city-content .right-side .cur-word {
     padding-top: 3.55rem;
+    height: 420px;
+    position: relative;
+}
+
+.city-pin-fir {
+    position: absolute;
+    left: 0;
+    top: 130px;
+    height: 278px;
+    overflow: scroll;
+}
+
+.rec-histor {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    z-index: 100;
 }
 
 .all-elements .city-content .right-side .cur-word span {
     display: inline-block;
     width: 100%;
-    height: 1.0rem;
-    line-height: 1.0rem !important;
+    height: 2rem;
+    line-height: 1.2rem !important;
     text-align: center;
     overflow: hidden;
-    font-size: 1.0rem;
+    font-size: 1.6rem;
+}
+
+.all-elements .city-content .right-side .cur-word .cur-city, .all-elements .city-content .right-side .cur-word .his-city, .all-elements .city-content .right-side .cur-word .re-hot-city {
+    padding-right: 5px;
+    font-size: 1.4rem;
+    padding-top: 5px;
+    line-height: 1.3rem;
 }
 
 .all-elements .city-content .right-side span.letter {
@@ -1298,14 +1276,17 @@ h1, h2, h3, h4, h5, h6 {
     height:4px;
     background: red;
     border-radius: 4px;
-    right:39%;
+    right:36%;
     top:15%;
 }
 
 .filter {
     background-position: 50% 74%;
 }
-
+.filter-select{
+    position: relative;
+    top: -0.76rem;
+}
 .direct-fly {
     background-position: 59% 74%;
 }
@@ -2935,6 +2916,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     background: rgba(0, 0, 0, .6);
     z-index: 11;
+    top: 0;
 }
 
 .summary-cost-modal {
