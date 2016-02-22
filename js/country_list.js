@@ -8,7 +8,7 @@ var arrCountry= [{"CountryName":"中国","CountryEN":"China","CountryCode":"CN"}
     var oUl=document.createElement('ul');
 
     for (var i=0; i<arrCountry.length; i++) {
-        str1+='<li>'+arrCountry[i].CountryName+'</li>';
+        str1+='<li data-code="'+arrCountry[i].CountryCode+'">'+arrCountry[i].CountryName+'</li>';
     }
     oUl.innerHTML=str1;
     oUl.className='country-list';
@@ -38,11 +38,14 @@ var arrCountry= [{"CountryName":"中国","CountryEN":"China","CountryCode":"CN"}
 
                 oDiv.style.display='block';
 
+
                 var oCont=document.querySelectorAll('.country-btn')[index];
                 var oTab=document.querySelector('.country-list');
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
                     oCont.innerHTML=oInp.value=e.target.innerHTML;
+                    $(oCont).attr("data-code", $(e.target).attr("data-code"))
+                    console.log(e.target);
                     setTimeout(function(){
                         oDiv.style.display='none';
                         oTc.style.display='none';

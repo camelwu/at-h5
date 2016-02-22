@@ -269,6 +269,7 @@ i {
     padding: 15px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 0;
+    background-color: white;
 }
 
 .passenger-msg li {
@@ -629,8 +630,9 @@ i {
 }
 
 .airticket-pay-box {
-    padding: 0 15px;
+    padding: 0 30px;
     width: 100%;
+    margin-top: 40px;
 }
 
 .air-ticket-pay-btn {
@@ -679,5 +681,45 @@ i {
 .lsf_tra_look .lsf_tra_lo_p2 span {
     background: #ffb413;
     color: #fff;
+}
+.passenger-detail{
+    margin-right: 8px;
+    float: right;
+    color: #fdb330;
+
+}
+.passenger-detail .icon-arrow{
+    margin-left: 3px;
+    display: inline-block;
+    right:0.2rem;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-bottom: 1px solid  #ffb412;
+    border-right: 1px solid  #ffb412;
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    -o-transform: rotate(45deg) translateY(-50%);
+    -moz-transform: rotate(45deg) translateY(-50%);
+    -ms-transform: rotate(45deg) translateY(-50%);
+    transform: rotate(45deg) translateY(-50%);
+    -webkit-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.passenger-detail.opened .icon-arrow{
+    margin-top: 5px;
+    -webkit-transform: rotate(-135deg) translateY(-50%);
+    -o-transform: rotate(-135deg) translateY(-50%);
+    -moz-transform: rotate(-135deg) translateY(-50%);
+    -ms-transform: rotate(-135deg) translateY(-50%);
+    transform: rotate(-135deg) translateY(-50%);
 }
 
