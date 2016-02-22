@@ -251,6 +251,26 @@
 						return false;
 					}
 				},
+
+				//姓名
+				guestName : function(name) {
+					var pattern = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;//3-16位 字母开头  字母数字下划线组合
+					if (pattern.test(uname)) {
+						return true;
+					} else {
+						return false;
+					}
+				},
+				//昵称
+				nickName : function(name) {
+					var pattern = /[a-zA-Z0-9-_]{4,30}/;//4-30个字符，可由中英文字母，数字、"-"、"_"组成
+
+					if (pattern.test(name)) {
+						return true;
+					} else {
+						return false;
+					}
+				},
 				//密码
 				password : function(password) {
 					var pattern = /^\w*.{6,16}$/;
@@ -582,7 +602,6 @@
 					});
 					callback(searchObj, false);
 				}
-
 			},
 			//前端静态分页
 			Jpage : function(containerId, pageObj) {

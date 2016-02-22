@@ -157,13 +157,22 @@ function u_perInfo(){
     function amendNick(obj){
         obj.onclick = function() {
             var input = document.getElementById("nickForm").getElementsByTagName("input");
-            var Parameters = {
-                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"NickName\":\""+input[0].value+"\"}",
-                "ForeEndType": 3,
-                "Code": "0059"
-            };
-            //console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
+            var oNickname=input[0].value;
+            if(vlm.Utils.validate.nickName(oNickname))
+            {
+                var Parameters = {
+                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"NickName\":\""+input[0].value+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0059"
+                };
+                //console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
+            }
+            else
+            {
+                alert('昵称需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+            }
+
         }
     }
     amendNick(nick_btn);
@@ -189,13 +198,21 @@ function u_perInfo(){
 
             var oInputName = document.getElementById("infoForm").getElementsByTagName("input")[0];
             u_realname = oInputName.value;
-            var Parameters={
-                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
-                "ForeEndType": 3,
-                "Code": "0056"
-            };
-            //console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+            if(vlm.Utils.validate.nickName(u_realname))
+            {
+                var Parameters={
+                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0056"
+                };
+                //console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+            }
+            else
+            {
+                alert('姓名需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+            }
+
         }
     }
     changeInfo_name(amend_btn);
