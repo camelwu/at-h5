@@ -102,7 +102,7 @@
         <div class="ride-user contact">
             <div class="ride-user-first">
                 <span>联系人</span>
-                <i class="icon contact-person" id="addPassenger"  onclick="vlm.f_choice('concact','flight');"></i>
+                <i class="icon contact-person" id="addPassenger"  onclick="vlm.f_choice('concact','');"></i>
             </div>
 
             <div class="table">
@@ -122,12 +122,12 @@
                     </div>
 
                     <div class="right">
-                        <input type="text" name="tel"  id="tel-num" placeholder="用于接收通知" />
+                        <input type="tel" name="tel"  id="tel-num" placeholder="用于接收通知" />
                     </div>
                 </div>
 
                 <div class="unit email">
-                    <label for="email-label">E-mail</label><input type="text" name="name" id= "email-label" placeholder="用于接收通知" />
+                    <label for="email-label">E-mail</label><input type="email" name="email" id="email-label" placeholder="用于接收通知" />
                 </div>
             </div>
         </div>
@@ -352,8 +352,11 @@
     <!--弹出编辑页-->
 </div>
 </body>
-<script type="text/javascript" src="../js/lib/jquery.js"></script>
-<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
-<script type="text/javascript" src="../js/lib/vlm.js"></script>
-<script type="text/javascript" src="js/hy_ticket_order.js"></script>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="js/hy_ticket_order.js"></script>
+<script>
+	vlm.l_contact();
+</script>
 </html>

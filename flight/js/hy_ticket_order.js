@@ -118,7 +118,7 @@ var ticketOrder = {
 
         this.addHandler(confirmButton,'click', function(){
              console.log('dataCommit')
-             document.location.href = 'pay_detail.html';
+             //document.location.href = 'pay_detail.html';
         });
 
 
