@@ -72,7 +72,7 @@
     </div>
     <ul id="info_content">
         <li id="changename" style="display: none;">
-            <form id="nickForm" action="user-perInfo.html" method="post">
+            <form id="nickForm" action="user-perInfo.html" method="get">
                 <div class="u_name">
                     <input id="name" name="name" type="text" value=""/>
                     <b class="icon name-close" onclick="clearname()"></b>
@@ -81,10 +81,10 @@
                 <input id="nick_btn" class="f_btn button-orange" type="button" value="保存"/>
             </form>
         </li>
-        <form id="infoForm" action="user-perInfo.html" method="post">
+        <form id="infoForm" action="user-perInfo.html" method="get">
             <li id="fillname" style="display: none;">
                 <div class="u_name">
-                    <input id="realName" type="text" style="font-size: 1.4rem" value placeholder="请填写真实姓名" data-type="code">
+                    <input id="realName" type="text" value placeholder="请填写真实姓名" data-type="code">
                 </div>
                 <div class="name-text">4-30个字符，可由中英文字母，数字、"-"、"_"组成</div>
             </li>
@@ -109,7 +109,7 @@
                 <input id="amend_btn_2" class="f_btn button-orange" type="button" value="保存"/>
         </form>
         <li id="amendkey" style="display: none;">
-            <form id="keyForm" action="user-perInfo.html" method="post">
+            <form id="keyForm" action="user-perInfo.html" method="get">
                 <ul class="f_key">
                     <li class = "amendkey">
                         <div>当前密码</div>

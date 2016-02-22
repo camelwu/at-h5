@@ -469,7 +469,7 @@
            '<div class="right-side">'+
            '<div class="cur-word">'+
            '<div class="special-tip"><span class="cur-city">当前</span><span class="his-city">历史</span><span class="re-hot-city">热门</span></div>'+
-           '<span class="letter">A</span>'+
+           '<div class="city-pin-fir"><div>' + '<span class="letter">A</span>'+
            '<span class="letter">B</span>'+
            '<span class="letter">C</span>'+
            '<span class="letter">D</span>'+
@@ -494,7 +494,7 @@
            '<span class="letter">W</span>'+
            '<span class="letter">X</span>'+
            '<span class="letter">Y</span>'+
-           '<span class="letter">Z</span>'+
+           '<span class="letter">Z</span></div></div>'+
            '</div>'+
            '</div>'+
            '<ul class="city-list-searched" style="display: none;">'+
@@ -703,6 +703,17 @@
                }
            });
             if(cityInputZone.addEventListener){
+                cityInputZone.addEventListener('focus',function(){
+
+                    var oMask=$('<div class="city-choose-mask"></div>');
+                    oMask.appendTo($('.city-content'));
+
+                },false);
+                cityInputZone.addEventListener('blur',function(){
+
+                    $('.city-choose-mask').remove();
+
+                },false);
                 cityInputZone.addEventListener('input',that.searchHandler,false)
             }else{
                 cityInputZone.attachEvent('onpropertychange',that.searchHandler)

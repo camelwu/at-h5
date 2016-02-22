@@ -684,8 +684,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.785rem;
     position: fixed;
     right: 0;
-    top: 98px;
-    width: 2.0rem;
+    top: 70px;
+    width: 4.0rem;
     overflow-x: hidden;
     overflow-y: visible;
     z-index: 5;
@@ -694,16 +694,40 @@ h1, h2, h3, h4, h5, h6 {
 
 .all-elements .city-content .right-side .cur-word {
     padding-top: 3.55rem;
+    height: 420px;
+    position: relative;
+}
+
+.city-pin-fir {
+    position: absolute;
+    left: 0;
+    top: 130px;
+    height: 278px;
+    overflow: scroll;
+}
+
+.rec-histor {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    z-index: 100;
 }
 
 .all-elements .city-content .right-side .cur-word span {
     display: inline-block;
     width: 100%;
-    height: 1.0rem;
-    line-height: 1.0rem !important;
+    height: 2rem;
+    line-height: 1.2rem !important;
     text-align: center;
     overflow: hidden;
-    font-size: 1.0rem;
+    font-size: 1.6rem;
+}
+
+.all-elements .city-content .right-side .cur-word .cur-city, .all-elements .city-content .right-side .cur-word .his-city, .all-elements .city-content .right-side .cur-word .re-hot-city {
+    padding-right: 5px;
+    font-size: 1.4rem;
+    padding-top: 5px;
+    line-height: 1.3rem;
 }
 
 .all-elements .city-content .right-side span.letter {
@@ -3755,4 +3779,16 @@ li{
     height:35px;
     border-top:2px solid #FFB413;
     border-bottom:2px solid #FFB413;
+}
+
+.city-choose-mask{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.1;
+    filter:alpha(opacity:10);
+    z-index: 5;
 }
