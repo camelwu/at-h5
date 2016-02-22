@@ -13,15 +13,12 @@ var phone_verify=$('#phone_ver')[0];
 function u_perInfo(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
-    var email = sessionStorage.email;
-    var phone = sessionStorage.phone;
-    var oPassword = sessionStorage.password;
-    var memberid = sessionStorage.memberid;
+    var email = localStorage.email||sessionStorage.email;
+    var phone = localStorage.phone||sessionStorage.phone;
+    var oPassword = localStorage.password||sessionStorage.password;
+    var memberid = localStorage.memberid||sessionStorage.memberid;
 
     var Parameters= {
-        //"Parameters": "{\"CultureName\":\"\",\"Email\":\""+email+"\",\"Password\":\""+oPassword+"\",\"Mobile\":\""+phone+"\",\"Code\":\"380998\"}",
-        //"ForeEndType": 3,
-        //"Code": "0052"
         "Parameters": "{\"MemberId\":\""+memberid+"\"}",
         "ForeEndType": 3,
         "Code": "0053"
