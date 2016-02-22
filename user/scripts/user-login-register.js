@@ -312,10 +312,9 @@ function mycallback_login(ret) {
     var myJson = eval('(' + ret + ')');
     //console.log(myJson);
     if (myJson.success) {
-        sessionStorage.email = myJson.data[0].email;
-        sessionStorage.phone = myJson.data[0].mobile;
-        sessionStorage.password = myJson.data[0].password;
-        sessionStorage.memberid = myJson.data[0].memberID;
+        localStorage.email = myJson.data[0].email;
+        localStorage.phone = myJson.data[0].mobile;
+        localStorage.memberid = myJson.data[0].memberID;
         localStorage.setItem('login',1);
         window.location.href = "user.html";
     } else {

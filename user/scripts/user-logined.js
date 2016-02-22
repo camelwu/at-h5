@@ -2,10 +2,10 @@
  * Created by changlv on 2016/1/13.
  */
 function init(){
-    var email = sessionStorage.email;
-    var phone = sessionStorage.phone;
-    var password = sessionStorage.password;
-    var memberid = sessionStorage.memberid;
+    var email = localStorage.email||sessionStorage.email;
+    var phone = localStorage.phone||sessionStorage.phone;
+    var password = localStorage.password||sessionStorage.password;
+    var memberid = localStorage.memberid||sessionStorage.memberid;
     sessionStorage.news = "true";
     sessionStorage.promotion = "true";
     var Parameters={

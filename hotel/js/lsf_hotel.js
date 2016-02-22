@@ -403,7 +403,7 @@ function inpChange(id,myText){
                 cl_box_box.style.display='none';
             };
             if(obj.getAttribute('id')=='input1'){
-                citySearchBox.setAttribute('placeholder','Singapore');  //判断国际国内酒店改变placeholder
+                citySearchBox.setAttribute('placeholder','新加坡');  //判断国际国内酒店改变placeholder
                 var cityListHis=window.localStorage.getItem('interCityName');
                 if(cityListHis){
                     cityHisArr=cityListHis.split(',');
@@ -1129,24 +1129,30 @@ function inpChange(id,myText){
     var leaveDate=oDate2.getFullYear()+'-'+toDou(oDate2.getMonth()+1)+'-'+toDou(oDate2.getDate());
     var obj={};
     //网页还原用户上一次选择内容
-    if(hotelStorage){
-        checkIn.value=hotelStorage.InterBeginDate;
-        checkOut.value=hotelStorage.InterLeaveDate;
-        lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
-        week_span1.innerHTML=hotelStorage.InterBeginDateWeek;
-        week_span2.innerHTML=hotelStorage.InterLeaveDateWeek;
-        obj[hotelStorage.InterBeginDate]="入住";
-        obj[hotelStorage.InterLeaveDate]="离店";
-    }else{
-        checkIn.value=beginDate;
-        checkOut.value=leaveDate;
-        week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
-        week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
-        obj[beginDate]="入住";
-        obj[leaveDate]="离店";
-        console.log('国际');
-        console.log(obj);
-    }
+    //if(hotelStorage){
+    //    checkIn.value=hotelStorage.InterBeginDate;
+    //    checkOut.value=hotelStorage.InterLeaveDate;
+    //    lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
+    //    week_span1.innerHTML=hotelStorage.InterBeginDateWeek;
+    //    week_span2.innerHTML=hotelStorage.InterLeaveDateWeek;
+    //    obj[hotelStorage.InterBeginDate]="入住";
+    //    obj[hotelStorage.InterLeaveDate]="离店";
+    //}else{
+    //    checkIn.value=beginDate;
+    //    checkOut.value=leaveDate;
+    //    week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    //    week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    //    obj[beginDate]="入住";
+    //    obj[leaveDate]="离店";
+    //    console.log('国际');
+    //    console.log(obj);
+    //}
+    checkIn.value=beginDate;
+    checkOut.value=leaveDate;
+    week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    obj[beginDate]="入住";
+    obj[leaveDate]="离店";
     //国内城市
     var DomCheckInDate=document.getElementById('DomCheckInDate');
     var DomCheckOutDate=document.getElementById('DomCheckOutDate');
@@ -1158,22 +1164,28 @@ function inpChange(id,myText){
     var week_span4=document.getElementById('weekSpan4');
     var obj2={};
     //网页还原用户上一次选择内容
-    if(hotelStorage){
-        DomCheckInDate.value=hotelStorage.DomCheckInDate;
-        DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
-        lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
-        week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
-        week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
-        obj2[hotelStorage.DomCheckInDate]="入住";
-        obj2[hotelStorage.DomCheckOutDate]="离店";
-    }else{
-        DomCheckInDate.value=DomBeginDate;
-        DomCheckOutDate.value=DomLeaveDate;
-        week_span3.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
-        week_span4.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
-        obj2[DomBeginDate]="入住";
-        obj2[DomLeaveDate]="离店";
-    }
+    //if(hotelStorage){
+    //    DomCheckInDate.value=hotelStorage.DomCheckInDate;
+    //    DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
+    //    lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
+    //    week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
+    //    week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
+    //    obj2[hotelStorage.DomCheckInDate]="入住";
+    //    obj2[hotelStorage.DomCheckOutDate]="离店";
+    //}else{
+    //    DomCheckInDate.value=DomBeginDate;
+    //    DomCheckOutDate.value=DomLeaveDate;
+    //    week_span3.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    //    week_span4.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    //    obj2[DomBeginDate]="入住";
+    //    obj2[DomLeaveDate]="离店";
+    //}
+    DomCheckInDate.value=DomBeginDate;
+    DomCheckOutDate.value=DomLeaveDate;
+    week_span3.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
+    week_span4.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
+    obj2[DomBeginDate]="入住";
+    obj2[DomLeaveDate]="离店";
     function Calender2(){
         Calender.apply(this,arguments);
         this.idTotal=arguments[0].idTotal;
