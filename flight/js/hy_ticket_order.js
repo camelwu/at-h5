@@ -117,6 +117,10 @@ var ticketOrder = {
             document.location.href = '../user/cont-list.html'
         });*/
         this.addHandler(rightArrow,'click', function(){
+            $("#preloader").show();
+            $("#status-f").show();
+            $("#status-f").delay(400).fadeOut("medium");
+            $("#preloader").delay(400).fadeOut("medium");
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         });
@@ -140,15 +144,29 @@ var ticketOrder = {
             }
         });
         this.addHandler(tipWord,'click', function(event){
-           /* document.querySelector('.summary-cost-shadow-two').style.display = 'block';
-            backMeal.style.display = 'block';*/
-            jLayer('<div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div><div>每程不得退改签</div>','退改签说明',function(){})
-
-
-
-
+            var event = event || window.event;
+            if (document.all) {
+                event.cancelBubble = true;
+            } else {
+                event.stopPropagation();
+            }
+            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
         });
 
+        this.addHandler(document,'click', function(event){
+            var event = event || window.event;
+            var target =event.target || event.srcElement;
+            if(target.id == 'popup_overlay'){
+                document.body.removeChild(target);
+                if(document.querySelector('#popup_container')){
+                    document.body.removeChild(document.querySelector('#popup_container'));
+                }
+            }else if(target.className == 'summary-cost-shadow-two'){
+                     target.style.display = 'none';
+                     document.querySelector('.buy-ticket-notice').style.display = 'none'
+            }
+
+        });
         if(goLineOuter){
             this.addHandler(goLineOuter,'click', function(event){
                 document.querySelector('.summary-cost-shadow-two').style.display = 'block';

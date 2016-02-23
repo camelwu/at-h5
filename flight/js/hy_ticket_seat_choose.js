@@ -338,11 +338,11 @@ var ticketSeatChoose = {
         '</div>'+
         '</div>'+
         '<div class="bottom-word">'+
-        '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
-        '<span>|</span>'+
-        '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
-        '<span>|</span>'+
-        '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+
+        '<span>'+arg.segmentsLeave[0].operatingCarrierName+'</span>'+
+        '<span> | </span>'+
+        '<span>'+arg.segmentsLeave[0].operatingCarrierCode+arg.segmentsLeave[0].flightNo+'</span>'+
+        '<span> | </span>'+
+        '<span>'+arg.segmentsLeave[0].planeName+arg.segmentsLeave[0].planeType+'</span></span>'+
         '</div>'+
         '</div>';
         return str
@@ -376,15 +376,15 @@ var ticketSeatChoose = {
             '</div>'+
             '<div class="bottom-word">'+
             '<div class="left">'+
-            '<span>'+arg.segmentsReturn[0].airCorpName+'</span>'+
-            '<span>|</span>'+
-            '<span>'+arg.segmentsReturn[0].airCorpCode+arg.segmentsReturn[0].flightNo+'</span>'+
-            '<span>|</span>'+
-            '<span>'+arg.segmentsReturn[0].planeName+'</span></span>'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierName+'</span>'+
+            '<span> | </span>'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierCode+arg.segmentsReturn[0].flightNo+'</span>'+
+            '<span> | </span>'+
+            '<span>'+arg.segmentsReturn[0].planeName+arg.segmentsReturn[0].planeType+'</span></span>'+
             '</div>'+
             '<div class="right">'+
             '<span>实际乘坐</span>'+
-            '<span>'+arg.segmentsReturn[0].airCorpName+'</span>'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierName+'</span>'+
             '<span>'+arg.segmentsReturn[0].planeName+'</span>'+
             '</div>'+
             '</div>'+
