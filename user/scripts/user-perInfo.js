@@ -2,7 +2,6 @@
  * Created by changlv on 2016/1/13.
  */
 var infoJson;
-var MemberId;
 var u_phone;
 var u_email;
 var u_realname;
@@ -128,32 +127,32 @@ function u_perInfo(){
             if(sex.className != "info-sex-on"){
                 sex.className="info-sex-on";
                 block.innerHTML = "女";
+                UserSex=26;
+                var Parameters={
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0056"
+                };
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
             }else{
                 sex.className="info-sex";
                 block.innerHTML = "男";
+                UserSex=27;
+                var Parameters={
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0056"
+                };
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
             }
-
-            //返回按钮保存性别
-            //var oPerBack=$('#per-back')[0];
-            //function closeSex(obj){
-            //    obj.onclick = function(){
-            //        var Parameters={
-            //            "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Salutation\":\""+UserSex+"\"}",
-            //            "ForeEndType": 3,
-            //            "Code": "0056"
-            //        };
-            //        console.log(Parameters);
-            //        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_sex);
-            //    }
-            //}
-            //closeSex(oPerBack);
 
         };
     }
     changeSex(sex);
     //  修改昵称
     var nick_btn = $("#nick_btn")[0];
-    MemberId=sessionStorage.memberid;
     function amendNick(obj){
         obj.onclick = function() {
             var input = document.getElementById("nickForm").getElementsByTagName("input");
@@ -161,11 +160,11 @@ function u_perInfo(){
             if(vlm.Utils.validate.nickName(oNickname))
             {
                 var Parameters = {
-                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"NickName\":\""+input[0].value+"\"}",
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"NickName\":\""+input[0].value+"\"}",
                     "ForeEndType": 3,
                     "Code": "0059"
                 };
-                //console.log(Parameters);
+                console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
             }
             else
@@ -201,7 +200,7 @@ function u_perInfo(){
             if(vlm.Utils.validate.nickName(u_realname))
             {
                 var Parameters={
-                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
@@ -217,59 +216,39 @@ function u_perInfo(){
     }
     changeInfo_name(amend_btn);
 
-    //修改出生日期
-    var oPerBack=$('#per-back')[0];
-    function selDate(obj){
-        obj.onclick = function(){
-            var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('号','');
-            if($('#sex')[0].className == 'info-sex')
-            {
-                UserSex=27;
-            }
-            else
-            {
-                UserSex=26;
-            }
-            var Parameters={
-                "Parameters": "{\"MemberId\":\""+MemberId+"\",\"DOB\":\""+birthstr+"\",\"Salutation\":\""+UserSex+"\"}",
-                "ForeEndType": 3,
-                "Code": "0056"
-            };
-            console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
-        }
-    }
-    selDate(oPerBack);
-
 
     //绑定新手机号
     function changeInfo_mobile(obj){
         obj.onclick = function(){
-
-            var oInputMobile = document.getElementById("infoForm").getElementsByTagName("input")[1];
+            var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob-cell")[0];
+            var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob-code")[0];
             u_phone = oInputMobile.value;
-            if(oInputMobile.value !="") {
-                if(oInputMobile.getAttribute('data-type') !="code") {
-                    if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value)) {
-                        alert("输入不正确");
-                        return;
-                    }
-                }
-                if(sessionStorage.phone != ""){
-                    if(oInputMobile.value == phone){
-                        alert("用户已绑定信息不能修改");
-                        return;
-                    }
-                }
+            if ( ! check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
+            {
+                alert("输入不正确");
+                return;
+            }
 
+            if(localStorage.phone != "")
+            {
+                if(oInputMobile.value == phone){
+                    alert("用户已绑定信息不能修改");
+                    return;
+                }
+            }
+            if(oInputCode.value =='' )
+            {
+                alert('请输入验证码');
+            }
+            else
+            {
                 var Parameters={
-                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Mobile\":\""+u_phone+"\"}",
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"Mobile\":\""+u_phone+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
                 //console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
-
             }
         }
     }
@@ -297,7 +276,7 @@ function u_perInfo(){
                 }
 
                 var Parameters={
-                    "Parameters": "{\"MemberId\":\""+MemberId+"\",\"Email\":\""+u_email+"\"}",
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"Email\":\""+u_email+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
@@ -314,6 +293,21 @@ function u_perInfo(){
     var phone_ver = $("#phone_ver")[0];
     function phone_veri(obj){
         obj.onclick = function(){
+            var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob-cell")[0];
+            var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob-code")[0];
+
+            if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
+            {
+                alert("输入不正确");
+                return;
+            }
+            if(localStorage.phone != "")
+            {
+                if(oInputMobile.value == phone){
+                    alert("用户已绑定信息不能修改");
+                    return;
+                }
+            }
             if(phoneBflag)
             {
                 return;
@@ -327,6 +321,7 @@ function u_perInfo(){
             console.log(Parameters.Parameters);
             vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
+
         }
     }
     phone_veri(phone_ver);
@@ -350,7 +345,7 @@ function u_perInfo(){
             }
 
             var Parameters= {
-                "Parameters": "{\"CultureName\":492189,\"MemberID\":\""+MemberId+"\",\"NewPassword\":\""+input[1].value+"\",\"Password\":\""+input[0].value+"\"}",
+                "Parameters": "{\"CultureName\":492189,\"MemberID\":\""+memberid+"\",\"NewPassword\":\""+input[1].value+"\",\"Password\":\""+input[0].value+"\"}",
                 "ForeEndType": 3,
                 "Code": "0054"
             };
@@ -363,19 +358,45 @@ function u_perInfo(){
 
 }
 
-//保存出生日期回调
+//修改出生日期
+$('#birth-cont').click(function(){
+    setTimeout(function(){
+        var oPerBack=$('.cabin-sure');
+        function selDate(obj){
+            obj.on('click', show)
+        }
+        function show(){
+            var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('号','');
+
+            var Parameters={
+                "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
+                "ForeEndType": 3,
+                "Code": "0056"
+            };
+            //console.log(Parameters);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+        }
+        selDate(oPerBack);
+    },1000)
+
+})
+
+
+
+
+//修改出生日期回调
 function mycallback_birth(ret){
     var myJson=eval('('+ret+')');
-    console.log(myJson);
+    console.log(myJson.data[0].dateOfBirth);
     if(myJson.success)
     {
-        window.location.href="user.html";
+        //window.location.href="user.html";
     }
 }
 
 function mycallback(ret){
     infoJson = eval('('+ret+')');
-    console.log(infoJson);
+    //console.log(infoJson);
     var nickname = $("#nickname")[0];
     var name = $("#name")[0];
     var user_email = $("#email")[0];
@@ -407,10 +428,10 @@ function mycallback(ret){
         }
     }
 
-        user_email.value = sessionStorage.email;
+        user_email.value = localStorage.email;
         user_phone.value = '';
     //realName.value = sessionStorage.realname;
-    MemberId = sessionStorage.memberid;
+    memberid = localStorage.memberid;
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
@@ -439,7 +460,7 @@ function mycallback_infoemail(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success){
-        sessionStorage.email = u_email;
+        localStorage.email = u_email;
         document.getElementById("infoForm").submit();
     }else{
         alert(myJson.message);

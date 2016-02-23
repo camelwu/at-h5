@@ -175,7 +175,7 @@ window.onload = function(){
                 if (input[i].style.display != "none" && input[i].value != "") {
                     console.log(input[i].getAttribute('data-type'));
                     if(!check(input[i].getAttribute('data-type'),input[i].value)){
-                        alert("输入不正确");
+                        alert("用户名或密码错误");
                         return;
                     }
                 }
