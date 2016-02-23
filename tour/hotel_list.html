@@ -40,7 +40,7 @@
 </div>
 <div class="all-elements" id="allElements">
     <div class="header">
-        <a href="javascript:void(0);" class="icons header-back"></a>
+        <a href="javascript:history.go(-1);" class="icons header-back"></a>
         <h3 class="head-h3">选择酒店</h3>
     </div>
     <!--   内容   -->
@@ -224,9 +224,7 @@
             <div class="s-but" id="l_but">确定</div>
         </div>
     </div>
-
 </div>
-</body>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
@@ -403,16 +401,17 @@
     (function(){
         var choose = document.getElementsByClassName('choose-no');
         for(var j = 0;j < choose.length;j++){
-                    choose[j].onclick = function () {
-                        for (var i = 0; i < choose.length; i++) {
-                            choose[i].className = 'choose-no';
-                            choose[i].innerHTML = '选择';
-                        }
+            choose[j].onclick = function () {
+                for (var i = 0; i < choose.length; i++) {
+                    choose[i].className = 'choose-no';
+                    choose[i].innerHTML = '选择';
+                }
 
-                        this.className = 'choose-no c-yes';
-                        this.innerHTML = '已选择';
-                    };
+                this.className = 'choose-no c-yes';
+                this.innerHTML = '已选择';
+            };
         }
     })();
 </script>
+</body>
 </html>
