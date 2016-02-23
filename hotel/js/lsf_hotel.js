@@ -444,7 +444,9 @@ function inpChange(id,myText){
             //历史选择数组去重
             var json={};
             for(var i=0;i<cityHisArr.length;i++){
-                json[cityHisArr[i]]=1;
+                if(cityHisArr[i]){
+                    json[cityHisArr[i]]=1;
+                }
             }
             cityHisArr=[];
             for(var name in json){
@@ -516,7 +518,7 @@ function inpChange(id,myText){
                 oParent.onclick=function(ev){
                     var oEvent=ev||event;
                     var oSrc=oEvent.srcElement||oEvent.target;
-                    if(oSrc.tagName='LI'){
+                    if(oSrc.tagName=='LI'){
                         var aSelected=lsf_myweb.getbyclass(cl_box_box,'selected');
                         for(var i=0;i<aSelected.length;i++){
                             aSelected[i].className='';
