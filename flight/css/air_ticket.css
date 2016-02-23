@@ -1716,6 +1716,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 2.8rem;
 }
 
+.top-pad-no{
+    padding-left: 0;
+}
+
 .top-line span {
     font-size: 1.6rem;
     color: #45494b;
