@@ -911,13 +911,13 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 4.8rem;
 }
 
-.air-tickets-detail .air-tickets-detail {
+.air-tickets-detail li{
     width: 100%;
     padding: 1.2rem 1.2rem 1.2rem 1.2rem;
     position: relative;
     background: #FFFFFF;
     overflow: hidden;
-    margin-bottom:0;
+    margin-bottom:0.8rem;
     border-top: 1px solid #dedede;
     border-bottom: 1px solid #dedede;
 }
