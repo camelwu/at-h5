@@ -305,8 +305,10 @@ var ticketDouble = {
 
     changeFlightList:function(arg){
         var that = this;
-        var ticketDetailUl = document.querySelector('.air-tickets-detail'),ticketListStr = '';
+        var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper'),ticketListStr = '',li;
+        ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         for(var i = 0; i<arg.data.flightInfos.length;i++ ){
+            ticketListStr = '';
             li = document.createElement('li');
             li.className = "air-tickets-detail seat-detail";
             li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
@@ -314,9 +316,9 @@ var ticketDouble = {
             li.innerHTML = ticketListStr;
             ticketDetailUl.insertBefore(li, ticketDetailUl.childNodes[0]);
             myScroll.refresh();
-            that.eventHandler();
-            return;
         }
+        that.eventHandler();
+        return;
         function goTrip(arg){
             var  data = arg.data.flightInfos[i].segmentsLeave;
             var  transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
@@ -388,8 +390,6 @@ var ticketDouble = {
             return str;
         }
     } ,
-
-
     callRender:function(arg){
         console.log(arg)
             var paraObj = {},that = ticketDouble;
@@ -398,6 +398,8 @@ var ticketDouble = {
             paraObj.DepartStartHour = arg.filterTime.substr(0,2);
             paraObj.DepartEndHour = arg.filterTime.substr(2,2);
             paraObj.CabinClass = arg.CabinClass;
+            paraObj.pageNo = 1;
+            paraObj.pageSize = 10;
             switch(arg.paraMiddle){
                 case "directFirst":
                     paraObj.PriorityRule = 1;break;
@@ -464,11 +466,11 @@ var ticketDouble = {
         var  that = ticketDouble;
         if(that.pageNo >= that.pageCount){
             console.log(11)
-            $('#pullUp').fadeOut(1000);
             myScroll.refresh()
             jAlert('没有更多航班信息了','',function(){})
         }else if(that.pageNo < that.pageCount){
             console.log(22)
+            that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
             console.log(that.backParaObj)
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
@@ -478,11 +480,11 @@ var ticketDouble = {
         var  that = ticketDouble;
         if(that.pageNo >= that.pageCount){
             console.log(33)
-            $('#pullUp').fadeOut(1000);
             myScroll.refresh()
             jAlert('没有更多航班信息了','',function(){})
         }else if(that.pageNo < that.pageCount){
             console.log(44)
+            that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
             console.log(that.backParaObj)
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
@@ -559,8 +561,12 @@ var ticketDouble = {
         this.dateInit(backParaObj);
         this.toSeatDetail();
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
+        if($.browser.webkit && !window.chrome){
+            document.querySelector('#wrapper').style.top = '88px';
+        }
         bottomModal.init('all-elements',this.tripType,"double",this.callRender);
         this.taxHandler();
+        this.isClearAll = true;
         this.flightResultArray = [];
         this.initLeftState = this.checkTip();
     }

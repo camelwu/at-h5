@@ -404,8 +404,7 @@ var bottomModal = {
         ' </ul>'+
 
         '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
-        '    <li class="tag-item active" data-i="All">不限<b></b></li>'+
-        '    <li class="tag-item" data-i="Economy">经济舱<b class=""></b></li>'+
+        '    <li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
         '    <li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
         '    <li class="tag-item" data-i="Business">公务舱<b class=""></b></li>'+
         '    <li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
