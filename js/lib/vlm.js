@@ -876,27 +876,38 @@
 			}
 		}, l_find = function() {
 
-		}, _choice = function(t, tid) {
-			//根据TravellerId是否为空判定是新加还是编辑。
+		}, _choice = function(f, t, tid) {
+			//type,from,travellerid
 			var type = '', title = '';
-			if (t === "concact") {
+			if (t === "contact") {
 				title = '选择联系人';
 			} else {
-				title = '选择乘机人';
+				switch(f.toLowerCase()){
+					case "h":
+						title = '选择入住人';
+					break;
+					case "t":
+						title = '选择取票人';
+					break;
+					default:
+						title = '选择乘机人';
+					break;
+				}
+				
 			}
 			if (tid) {
 				type = 'edit';
 			} else {
 				type = 'add';
 			}
-			var choice = window.open('../user/user-choiceAir.html?title=' + title + '&type=' + type + '&TravellerId=' + tid + '', title, "fullscreen=1");
+			var choice = window.open('../user/user-choiceAir.html?from=' + f + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '', title, "fullscreen=1");
 			//choice.location = urls;
 		};
 		//out api
 		return {
 			api : _api,
 			getpara : getpara,
-			arr_t:arr_t,
+			arr_t : arr_t,
 			parseUrlPara : parseUrlPara,
 			loading : _loading,
 			loadend : _loadend,

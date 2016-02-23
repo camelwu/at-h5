@@ -89,9 +89,9 @@ var ticketOrder = {
         var deletePassenger = document.querySelectorAll('.icon-add');
         var that = this;
         console.log(contactPerson)
-        this.addHandler(addPassenger,'click', function(){
+        /*this.addHandler(addPassenger,'click', function(){
             document.location.href = '../user/user-choiceAir.html?type=add&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild
-        });
+        });*/
 
         for(var i = 0;i<toEditPassengers.length;i++){
             this.addHandler(toEditPassengers[i],'click', function(){
