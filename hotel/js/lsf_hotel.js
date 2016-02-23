@@ -360,7 +360,7 @@ function inpChange(id,myText){
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
             var listJson=eval('('+d+')');
             if(!listJson.success){
-                alert(listJson.message);
+                jAlert(listJson.message);
                 return;
             }
             window.localStorage.setItem('cityListInfo',JSON.stringify(listJson.data));
