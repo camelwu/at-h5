@@ -183,15 +183,16 @@ oUp(ho_i7,ho_i6,1,100000);
 oDown(ho_i6,ho_i7,1,100000);
 oUp(ho_i3,ho_i4,0,100000);
 oDown(ho_i4,ho_i3,0,100000);
-lsf_myweb.bind(lsf_myweb.getbyid('room'),'click',function(){
-    lsf_myweb.getbyid('count1').focus();
-});
-lsf_myweb.bind(lsf_myweb.getbyid('nav4-centertop'),'click',function(){
-    lsf_myweb.getbyid('count2').focus();
-});
-lsf_myweb.bind(lsf_myweb.getbyid('nav4-centerbottom'),'click',function(){
-    lsf_myweb.getbyid('count3').focus();
-});
+//lsf_myweb.bind(lsf_myweb.getbyid('room'),'click',function(){
+//    lsf_myweb.getbyid('count1').focus();
+//});
+//lsf_myweb.bind(lsf_myweb.getbyid('nav4-centertop'),'click',function(){
+//    lsf_myweb.getbyid('count2').focus();
+//});
+//lsf_myweb.bind(lsf_myweb.getbyid('nav4-centerbottom'),'click',function(){
+//    lsf_myweb.getbyid('count3').focus();
+//});
+
 
 function Dom(){
     var Dom=document.getElementById("Dom");
@@ -270,6 +271,23 @@ function inpChange(id,myText){
         this.blur();
     });
     lsf_myweb.bind(address_demosic,'focus',function(){
+        this.blur();
+    });
+    //日期日历去掉光标
+    lsf_myweb.bind(lsf_myweb.getbyid('CheckInDate'),'focus',function(){
+        this.blur();
+    });
+    lsf_myweb.bind(lsf_myweb.getbyid('CheckOutDate'),'focus',function(){
+        this.blur();
+    });
+    //房间数，成人，儿童书去掉光标
+    lsf_myweb.bind(lsf_myweb.getbyid('count1'),'focus',function(){
+        this.blur();
+    });
+    lsf_myweb.bind(lsf_myweb.getbyid('count2'),'focus',function(){
+        this.blur();
+    });
+    lsf_myweb.bind(lsf_myweb.getbyid('count3'),'focus',function(){
         this.blur();
     });
     //日历
@@ -426,7 +444,9 @@ function inpChange(id,myText){
             //历史选择数组去重
             var json={};
             for(var i=0;i<cityHisArr.length;i++){
-                json[cityHisArr[i]]=1;
+                if(cityHisArr[i]){
+                    json[cityHisArr[i]]=1;
+                }
             }
             cityHisArr=[];
             for(var name in json){
@@ -498,7 +518,7 @@ function inpChange(id,myText){
                 oParent.onclick=function(ev){
                     var oEvent=ev||event;
                     var oSrc=oEvent.srcElement||oEvent.target;
-                    if(oSrc.tagName='LI'){
+                    if(oSrc.tagName=='LI'){
                         var aSelected=lsf_myweb.getbyclass(cl_box_box,'selected');
                         for(var i=0;i<aSelected.length;i++){
                             aSelected[i].className='';
