@@ -705,7 +705,11 @@ function styleChange(id,mytext){
         hlHis.hlSort={"chinese":'',"english":''};
         if(oSrc.className=='r-li'){
             var oSrc_str=oSrc.innerHTML;
-            if(oSrc_str.indexOf('价格升序')!=-1){
+            if(oSrc_str.indexOf('推荐排序')!=-1){
+                url_json.rank='PriorityDESC';
+                hlHis.hlSort.chinese='推荐排序';
+                hlHis.hlSort.english='PriorityDESC';
+            }else if(oSrc_str.indexOf('价格升序')!=-1){
                 url_json.rank='PriceASC';
                 hlHis.hlSort.chinese='价格升序';
                 hlHis.hlSort.english='PriceASC';
