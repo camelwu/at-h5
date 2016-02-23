@@ -1269,8 +1269,8 @@ function inpChange(id,myText){
         lsf_myweb.getbyid(that.idLive).innerHTML='周'+n2c(oday1)+' 入住';
         lsf_myweb.getbyid(that.idLeave).innerHTML='周'+n2c(oday2)+' 离店';
     }
-    var myDate1 = new Calender2({id: "content2", num: 13, time: obj,idTotal:"total_day",idLive:"week_span1",idLeave:"week_span2"});
-    var domestic_calender=new Calender2({id:"domesticCalender",num:13,time:obj2,idTotal:"domeTotalDay",idLive:"weekSpan3",idLeave:"weekSpan4"});
+    var myDate1 = new Calender2({id: "nav2-center1", num: 13, time: obj,idTotal:"total_day",idLive:"week_span1",idLeave:"week_span2"});
+    var domestic_calender=new Calender2({id:"nav2-center2",num:13,time:obj2,idTotal:"domeTotalDay",idLive:"weekSpan3",idLeave:"weekSpan4"});
 
 
 
