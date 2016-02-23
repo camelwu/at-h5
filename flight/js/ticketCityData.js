@@ -11462,6 +11462,15 @@ var domesticCities = [
         "CountryName": "中国",
         "EnglishEN": "China",
         "CountryCode": "CN",
+        "CityName": "张家口",
+        "CityEN": "Zhangjiakou",
+        "FullSpellingName": "zhangjiakou",
+        "CityCode": "ZQZ"
+    },
+    {
+        "CountryName": "中国",
+        "EnglishEN": "China",
+        "CountryCode": "CN",
         "CityName": "张掖",
         "CityEN": "ZHANGYE",
         "FullSpellingName": "zhangye",
@@ -11651,8 +11660,6 @@ for(var j = 0;j < domesticCities.length; j++){
 }
 
 delete domesticCitiesData[0];
-console.log(domesticCitiesData)
-
 for(var temd in domesticCitiesData){
     if(domesticCitiesData[temd].length==0){
         delete domesticCitiesData[temd];

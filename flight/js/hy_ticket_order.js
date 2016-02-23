@@ -21,7 +21,12 @@ var ticketOrder = {
         }
         ticketOrder.addHandler(target, eventType, handle);
     },
-
+    loadingFade:function(){
+        $(window).load(function () {
+            $("#status-f").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
+    },
     telSlider:function(){
         $(".custom-select").each(function() {
             var classes = $(this).attr("class"),
@@ -389,7 +394,8 @@ var ticketOrder = {
             TotalFlightPrice: ""
         };*/
 
-        this.telSlider()
+        this.telSlider();
+        this.loadingFade();
         this.orderFlightData = this.storageUtil.get('curFlightListData');
         this.addContent(this.orderFlightData);
         console.log(this.storageUtil.get('curFlightListData'))

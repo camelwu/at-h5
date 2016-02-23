@@ -417,17 +417,7 @@
 				"Parameters" : "{\"memberId\":" + memberId + "}",
 				"ForeEndType" : 3,
 				"Code" : "0074"
-			}, arr_t = {
-				1 : '护照',
-				2 : '身份证',
-				3 : '出生证明',
-				4 : '港澳通行证',
-				5 : '军官证',
-				6 : '驾驶证',
-				7 : '台胞证',
-				8 : '回乡证',
-				9 : '其他'
-			}, tpl_traveler = ['{% for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}', '<li class="eve-traveler">', '<b class="icon user-choice"></b>', '<b class="icon user-edit"></b>', '<ul class="often_user">', '<li>{%=dd.traveller.idName%}{%=dd.traveller.lastName%}/{%=dd.traveller.firstName%}</li>', '<li>{%=arr_t[dd.listTravellerIdInfo[0].idType]%} <span>{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>', '</ul>', '</li>', '{% } %}'].join('');
+			}, tpl_traveler = ['{% for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}', '<li class="eve-traveler">', '<b class="icon user-choice"></b>', '<b class="icon user-edit"></b>', '<ul class="often_user">', '<li>{%=dd.traveller.idName%}{%=dd.traveller.lastName%}/{%=dd.traveller.firstName%}</li>', '<li>{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%} <span>{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>', '</ul>', '</li>', '{% } %}'].join('');
 			function get_hisList() {
 				var from = urlobj.from, json = JSON.parse(localStorage.getItem(from));
 				if (json) {

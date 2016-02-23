@@ -52,7 +52,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var menu = $("#menu")[0];
         menu.style.display = "none";
         // 初始化常旅客
-        var memberId = sessionStorage.memberid;
+        var memberId = localStorage.memberid||sessionStorage.memberid;
         var Parameters = {
             "Parameters": "{\"memberId\":" + memberId + "}",
             "ForeEndType": 3,
@@ -142,7 +142,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
 
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0071"
                     }
@@ -429,7 +429,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 //    });
 
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"week_span2"});
-    var myDate2 = new Scroller({id: "time-cont", type:"birth",cont:"week_span2"});
+    var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"week_span2"});
     var myDate2 = new Scroller({id: "postCard", type:"card",cont:"week_span2"});
 
     var myDate3 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"week_span2"});
