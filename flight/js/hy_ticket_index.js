@@ -26,6 +26,7 @@
        },
 
        reDate:function(arg){
+           console.log(arg)
            var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(arg);
            tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
            tStr[2] = parseInt(tStr[2]) < 10?'0'+parseInt(tStr[2]):parseInt(tStr[2]);
@@ -40,14 +41,14 @@
            document.querySelector('.hTab').onclick = function(event){
                var event = event || window.event;
                var target = event.target || event.srcElement;
-               if(target.className == 'singleTrip'){
+               if(target.className.indexOf('singleTrip')>-1){
                    double.style.display = 'none';
                    single.style.display = 'block';
                    target.style.borderBottom = '0.2rem solid  rgb(255, 180, 19)';
                    target.style.color = 'rgb(255, 180, 19)';
                    document.querySelector('.doubleTrip').style.borderBottom = 'none';
                    document.querySelector('.doubleTrip').style.color = 'rgb(102, 102, 102)';
-               }else if(target.className == 'doubleTrip'){
+               }else if(target.className.indexOf('doubleTrip')>-1){
                    single.style.display = 'none';
                    double.style.display = 'block';
                    target.style.borderBottom = '0.2rem solid  rgb(255, 180, 19)';
@@ -185,12 +186,7 @@
                        paraObj.IsDesc= "false";
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
-                      /* caCheContent.CityCodeFromName = cityStrs[0];
-                       caCheContent.CityCodeToName = cityStrs[1];
-                       caCheContent.DepartDateData = document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[0].innerHTML;
-                       caCheContent.ReturnDateData = document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[1].innerHTML;
-                       caCheContent.NumofAdult = document.querySelector('.adult-number.double').innerHTML;
-                       caCheContent.NumofChild = document.querySelector('.child-number.double').innerHTML;*/
+                       that.storageUtil.set('ticketSearchedInfo',paraObj)
                        for(var attr in paraObj){
                            paramStr+="&"+attr+"="+paraObj[attr];
                        }
@@ -224,6 +220,7 @@
                        paraObj.pageSize= 10;
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
+                       that.storageUtil.set('ticketSearchedInfo',paraObj)
                        for(var attr_ in paraObj){
                            paramStr+="&"+attr_+"="+paraObj[attr_];
                        }
@@ -830,21 +827,125 @@
            document.querySelector('.double-date-two').innerHTML = endDay[0];
            document.querySelector('.double-week-two').innerHTML = endDay[1];
        },
+       initShowData:function(arg){
+           console.log(arg)
+              var outEleOpen,outEleClosed,singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
+              var returnDateAndWeek = function(arg){
+                    var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum; //"2016-02-24"
+                    var weekIndex = new Date(arg.replace('/-/g','/')).getDay();
+                    dateNum = reg.exec(arg);
+                    switch (weekIndex){
+                      case 0 :
+                          week = '周日';
+                          break;
+                      case 1 :
+                          week = '周一';
+                          break;
+                      case 2 :
+                          week = '周二';
+                          break;
+                      case 3 :
+                          week = '周三';
+                          break;
+                      case 4 :
+                          week = '周四';
+                          break;
+                      case 5 :
+                          week = '周五';
+                          break;
+                      case 6 :
+                          week = '周六';
+                          break;
+                      default :void(0)
+                  }
+               return {date:dateNum[1]+'月'+dateNum[2]+'日',weekWord:week}
+
+              };
+              var reFixedSeat = function(arg){
+                      var cabinStr="";
+                      switch(arg){
+                          case "Economy":
+                           cabinStr = "经济舱";
+                           break;
+                           case "Business":
+                           cabinStr = "商务舱";
+                           break;
+                           case "First":
+                           cabinStr = "头等舱";
+                           break;
+                           case "EconomyPremium":
+                           cabinStr = "豪华经济舱";
+                           break;
+                           default :
+                           void (0);
+                      }
+                      return cabinStr;
+              };
+              if(arg.RouteType == "Oneway"){
+                 outEleOpen = document.querySelector('#single');
+                 outEleClosed = document.querySelector('#double');
+                 outEleOpen.style.display = "block";
+                 outEleClosed.style.display = "none";
+                  singleTitle.className = "singleTrip light-title";
+                  doubleTitle.className = "doubleTrip grey-title";
+                   var cityNames = outEleOpen.querySelectorAll('.city-search');
+                   var singleDate = outEleOpen.querySelector('.single-date');
+                   var singleWeek = outEleOpen.querySelector('.single-week');
+                   var adultNumber = outEleOpen.querySelector('.add-minus-per-content.adult-number');
+                   var childNumber = outEleOpen.querySelector('.add-minus-per-content.child-number');
+                   var seatEle = outEleOpen.querySelector('.cabin-wrap-choice.single-cabin-choose');
+                   cityNames[0].innerHTML = arg.fromCity;
+                   cityNames[1].innerHTML = arg.toCity;
+                   singleDate.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
+                   singleWeek.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
+                   adultNumber.innerHTML = arg.NumofAdult;
+                   childNumber.innerHTML = arg.NumofChild;
+                   seatEle.innerHTML =reFixedSeat(arg.CabinClass);
+             }else if(arg.RouteType == "Return"){
+                  outEleOpen = document.querySelector('#double');
+                  outEleClosed = document.querySelector('#single');
+                  outEleOpen.style.display = "block";
+                  outEleClosed.style.display = "none";
+                  console.log(outEleOpen)
+                  singleTitle.className = "singleTrip grey-title";
+                  doubleTitle.className = "doubleTrip light-title";
+                   var cityNames = outEleOpen.querySelectorAll('.city-search');
+                   var doubleDateOne = outEleOpen.querySelector('.double-date-one');
+                   var doubleWeekOne = outEleOpen.querySelector('.double-week-one');
+                   var doubleDateTwo = outEleOpen.querySelector('.double-date-two');
+                   var doubleWeekTwo = outEleOpen.querySelector('.double-week-two');
+                   var adultNumber = outEleOpen.querySelector('.add-minus-per-content.adult-number');
+                   var childNumber = outEleOpen.querySelector('.add-minus-per-content.child-number');
+                   var seatEle = outEleOpen.querySelector('.cabin-wrap-choice.double-cabin-choose');
+                   cityNames[0].innerHTML = arg.fromCity;
+                   cityNames[1].innerHTML = arg.toCity;
+                   doubleDateOne.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
+                   doubleWeekOne.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
+                   doubleDateTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["date"];
+                   doubleWeekTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["weekWord"];
+                   adultNumber.innerHTML = arg.NumofAdult;
+                   childNumber.innerHTML = arg.NumofChild;
+                   seatEle.innerHTML =reFixedSeat(arg.CabinClass);
+              }
+       },
        loadingFade:function(){
             $(window).load(function () {
                    $("#status-f").fadeOut();
                    $("#preloader").delay(400).fadeOut("medium");
+
                });
        },
        init:function(){
           /*this.tempCurLeft = 0;*/
           /*this.isAnimation = false;*/
+           this.ticketSearchedInfo = this.storageUtil.get('ticketSearchedInfo') || "";
+           this.initDate();
+           this.initShowData(this.ticketSearchedInfo);
            this.loadingFade();
            this.getHotCity("NOTCN");
            this.getHotCity("CN");
            this.createWrap();
            this.addContent();
-           this.initDate();
            this.double();
            this.single();
            this.eventHandle2();

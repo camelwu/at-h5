@@ -208,22 +208,28 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1.0rem;
 }
 
-.all-elements .air_content .hTab .singleTrip {
+
+.light-title{
     width: 50%;
     height: 100%;
     font-size: 1.6rem;
-    float: left;
     text-align: center;
     color: rgb(255, 180, 19);
     border-bottom: 0.2rem solid rgb(255, 180, 19);
 }
-
-.all-elements .air_content .hTab .doubleTrip {
+.grey-title{
     width: 50%;
     height: 100%;
     font-size: 1.6rem;
-    float: right;
+    color: rgb(102, 102, 102);
     text-align: center;
+}
+
+.all-elements .air_content .hTab .singleTrip{
+    float: left;
+}
+.all-elements .air_content .hTab .doubleTrip {
+    float: right;
 }
 
 .all-elements .air_content .realInfo {
