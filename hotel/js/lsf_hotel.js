@@ -273,6 +273,13 @@ function inpChange(id,myText){
     lsf_myweb.bind(address_demosic,'focus',function(){
         this.blur();
     });
+    //日期日历去掉光标
+    lsf_myweb.bind(lsf_myweb.getbyid('CheckInDate'),'focus',function(){
+        this.blur();
+    });
+    lsf_myweb.bind(lsf_myweb.getbyid('CheckOutDate'),'focus',function(){
+        this.blur();
+    });
     //房间数，成人，儿童书去掉光标
     lsf_myweb.bind(lsf_myweb.getbyid('count1'),'focus',function(){
         this.blur();
