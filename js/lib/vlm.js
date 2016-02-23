@@ -254,7 +254,8 @@
 
 				//姓名
 				guestName : function(name) {
-					var pattern = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;//3-16位 字母开头  字母数字下划线组合
+					var pattern = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;
+					//3-16位 字母开头  字母数字下划线组合
 					if (pattern.test(uname)) {
 						return true;
 					} else {
@@ -263,7 +264,8 @@
 				},
 				//昵称
 				nickName : function(name) {
-					var pattern = /[a-zA-Z0-9-_]{4,30}/;//4-30个字符，可由中英文字母，数字、"-"、"_"组成
+					var pattern = /[a-zA-Z0-9-_]{4,30}/;
+					//4-30个字符，可由中英文字母，数字、"-"、"_"组成
 
 					if (pattern.test(name)) {
 						return true;
@@ -602,6 +604,7 @@
 					});
 					callback(searchObj, false);
 				}
+
 			},
 			//前端静态分页
 			Jpage : function(containerId, pageObj) {
@@ -895,31 +898,31 @@
 			}
 		}, l_find = function() {
 
-		}, _choice = function(f, t, tid) {
-			//type,from,travellerid
+		}, _choice = function(f, t, tid, is) {
+			//if(arguments.length<1){return ;}
+			//var arg = arguments.callee.slice(this);
 			var type = '', title = '';
 			if (t === "contact") {
 				title = '选择联系人';
 			} else {
-				switch(f.toLowerCase()){
+				switch(f.toLowerCase()) {
 					case "h":
 						title = '选择入住人';
-					break;
+						break;
 					case "t":
 						title = '选择取票人';
-					break;
+						break;
 					default:
 						title = '选择乘机人';
-					break;
+						break;
 				}
-				
 			}
 			if (tid) {
 				type = 'edit';
 			} else {
 				type = 'add';
 			}
-			var choice = window.open('../user/user-choiceAir.html?from=' + f + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '', title, "fullscreen=1");
+			var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isinter=' + is + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '', title, "fullscreen=1");
 			//choice.location = urls;
 		};
 		//out api
