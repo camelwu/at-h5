@@ -28,7 +28,7 @@ i{
     background-color: #F5F4F9;
 }
 /*
-        ����֧��
+        订单支付
 */
 .edit-tit{
     font-weight: normal;
@@ -198,7 +198,7 @@ i{
     background-position: 96.5% 53%;
 }
 /*
-        ����֧����ʽҳ
+        国外支付方式页
 */
 .sp-total{
     width:100%;
@@ -282,7 +282,7 @@ i{
     background-position: 87.5% 5%;
 }
 /*
-        ��������ҳ
+        订单详情页
 */
 .top-pay{
     width: 100%;
@@ -383,7 +383,7 @@ i{
     padding-right: 15px;
 }
 /*
-        ������ҳ
+        景点主页
 */
 .top-back{
     position: absolute;
@@ -408,11 +408,8 @@ i{
     font-size: 2.1rem;
     top: 36%;
     left: 33%;
-    /*margin-left: 9%;*/
-    /*margin-bottom: 10px;*/
 }
 .top-ban div:nth-child(2){
-    /*margin-left: 10%;*/
     top: 50%;
     left: 25%;
 }
@@ -530,7 +527,7 @@ i{
     background-position: 53.5% 6.5%;
 }
 /*
-        �����б�
+        景点列表
 */
 .clearFix:after{
     content:'';
@@ -678,8 +675,6 @@ i{
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-
-
     position:fixed;
     bottom: 0;
     text-align: center;
@@ -734,7 +729,7 @@ i{
     margin:0 auto;
     background-position: -164px 2px;
 }
-/* �б�ɸѡ��  */
+/* 列表筛选块  */
 .qp-mengban{
     width: 100%;height:100%;
     position: fixed;
@@ -823,7 +818,7 @@ i{
     color:#ffb413;
 }
 /*
-        �ܱ�
+        周边
 */
 .gn-hot {
     width: 57px;
@@ -898,7 +893,7 @@ i{
     text-overflow: ellipsis;
 }
 /*
-        ��������
+        景点详情
 */
 .sce-detail-exhi img{
     width: 100%;
@@ -1103,7 +1098,7 @@ i{
     background-position: -63px -49px;
 }
 /*
-        ��������
+        景点评价
 */
 .pj-block{
     position: absolute;
@@ -1265,7 +1260,7 @@ i{
     background-color: #e9e9e9;
 }
 /*
-        ��������
+        景点搜索
 */
 .search-box {
     box-sizing: border-box;

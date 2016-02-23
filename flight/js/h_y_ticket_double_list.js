@@ -305,12 +305,20 @@ var ticketDouble = {
 
     changeFlightList:function(arg){
         var that = this;
-        var ticketDetailUl = document.querySelector('.air-tickets-detail'),ticketListStr = '';
+        var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper'),ticketListStr = '',li;
+        ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         for(var i = 0; i<arg.data.flightInfos.length;i++ ){
-            ticketListStr += '<li class="air-tickets-detail seat-detail" data-set-id ="'+arg.data.flightInfos[i].setID+'">'+
-            '<div class="time-airport">'+goTrip(arg) + backTrip(arg) +'</div>' + rightPrice(arg.data.flightInfos[i])+
-            '</li>'
+            ticketListStr = '';
+            li = document.createElement('li');
+            li.className = "air-tickets-detail seat-detail";
+            li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
+            ticketListStr += '<div class="time-airport">'+goTrip(arg) + backTrip(arg) +'</div>' + rightPrice(arg.data.flightInfos[i]);
+            li.innerHTML = ticketListStr;
+            ticketDetailUl.insertBefore(li, ticketDetailUl.childNodes[0]);
+            myScroll.refresh();
         }
+        that.eventHandler();
+        return;
         function goTrip(arg){
             var  data = arg.data.flightInfos[i].segmentsLeave;
             var  transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
@@ -336,7 +344,7 @@ var ticketDouble = {
             '<span class="air-port-word">'+data[data.length-1].airportNameTo+data[data.length-1].termArrive+'</span>'+
             '</div>'+
             '</div>'+
-            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].airCorpCode+data[0].planeName+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
+            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].operatingCarrierCode+data[0].flightNo+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
             '</p>'+
             '</div>';
             return str;
@@ -368,7 +376,7 @@ var ticketDouble = {
             '<span class="air-port-word">'+data[data.length-1].airportNameTo+data[data.length-1].termArrive+'</span>'+
             '</div>'+
             '</div>'+
-            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].airCorpCode+data[0].planeName+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
+            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].operatingCarrierCode+data[0].flightNo+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
             '</p>'+
             '</div>';
             return str;
@@ -381,10 +389,7 @@ var ticketDouble = {
             '        </div>';
             return str;
         }
-        ticketDetailUl.innerHTML = ticketListStr;
     } ,
-
-
     callRender:function(arg){
         console.log(arg)
             var paraObj = {},that = ticketDouble;
@@ -393,6 +398,8 @@ var ticketDouble = {
             paraObj.DepartStartHour = arg.filterTime.substr(0,2);
             paraObj.DepartEndHour = arg.filterTime.substr(2,2);
             paraObj.CabinClass = arg.CabinClass;
+            paraObj.pageNo = 1;
+            paraObj.pageSize = 10;
             switch(arg.paraMiddle){
                 case "directFirst":
                     paraObj.PriorityRule = 1;break;
@@ -415,7 +422,6 @@ var ticketDouble = {
             that.initLeftState.left!=temObj.left?document.querySelector('#fo_sc i').className='red-tip':document.querySelector('#fo_sc i').className='';
             that.initLeftState.middle!=temObj.middle?document.querySelector('#fo_ra i').className='red-tip':document.querySelector('#fo_ra i').className='';
             that.initLeftState.right!=temObj.right?document.querySelector('#fo_lo i').className='red-tip':document.querySelector('#fo_lo i').className='';
-
             /* }*/
         },
 
@@ -443,29 +449,125 @@ var ticketDouble = {
         var that = ticketDouble;
         arg = JSON.parse(arg);
         console.log(arg)
-        if(arg.success&&arg.code==200){
-            that.storageUtil.set('flightListData',arg['data']);
-            document.querySelector('#preloader').style.display='none';
+        document.querySelector('#preloader').style.display='none';
+        if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
+            that.flightResultArray.push(arg["data"])
+            that.storageUtil.set('flightListData',that.flightResultArray);
+            that.pageNo = arg.data.pageNo;
+            that.pageCount = arg.data.pageCount;
             that.changeFlightList(arg);
-            that.eventHandler();
             that.taxDeal(arg.data.flightInfos);
         }else{
             document.querySelector('#preloader').style.display='none';
-            that.alertNoFlightNotice(that.backParaObj,'double')
+            that.alertNoFlightNotice(that.backParaObj,'single')
         }
     },
-
+    pullDownAction:function(){
+        var  that = ticketDouble;
+        if(that.pageNo >= that.pageCount){
+            console.log(11)
+            myScroll.refresh()
+            jAlert('没有更多航班信息了','',function(){})
+        }else if(that.pageNo < that.pageCount){
+            console.log(22)
+            that.isClearAll = false;
+            that.backParaObj["pageNo"] ++;
+            console.log(that.backParaObj)
+            that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        }
+    },
+    pullUpAction:function(){
+        var  that = ticketDouble;
+        if(that.pageNo >= that.pageCount){
+            console.log(33)
+            myScroll.refresh()
+            jAlert('没有更多航班信息了','',function(){})
+        }else if(that.pageNo < that.pageCount){
+            console.log(44)
+            that.isClearAll = false;
+            that.backParaObj["pageNo"] ++;
+            console.log(that.backParaObj)
+            that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        }
+    },
+    loaded:function(){
+        pullDownEl = document.getElementById('pullDown');
+        pullDownOffset = pullDownEl.offsetHeight;
+        pullUpEl = document.getElementById('pullUp');
+        pullUpOffset = pullUpEl.offsetHeight;
+        myScroll = new iScroll('wrapper', {
+            useTransition: true,
+            topOffset: pullDownOffset,
+            onRefresh: function () {
+                if (pullDownEl.className.match('loading')) {
+                    console.log(111)
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+                } else if (pullUpEl.className.match('loading')) {
+                    console.log(222)
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+                }
+            },
+            onScrollMove: function () {
+                console.log(55)
+                if (this.y > 5 && !pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'flip';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
+                    this.minScrollY = 0;
+                } else if (this.y < 5 && pullDownEl.className.match('flip')) {
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+                    this.minScrollY = -pullDownOffset;
+                } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'flip';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+                    this.maxScrollY = this.maxScrollY;
+                } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+                    this.maxScrollY = pullUpOffset;
+                }
+            },
+            onScrollEnd: function () {
+                if (pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'loading';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
+                    console.log(66)
+                    ticketDouble.pullDownAction();
+                } else if (pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'loading';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                    console.log(77)
+                    ticketDouble.pullUpAction();
+                }
+            }
+        });
+        /*}*/
+    },
     init:function(){
-        var backParaObj = this.parseUrlPara(document.location.search, true);
+        var backParaObj = this.parseUrlPara(document.location.search, true),that = ticketDouble;
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
         this.tripType = "international"; //international backParaObj.tripType ,domestic
+        backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
+        backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
+        backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
+        backParaObj.pageNo = parseInt(backParaObj.pageNo);
+        backParaObj.pageSize = parseInt(backParaObj.pageSize);
         this.backParaObj = backParaObj;
         this.dateInit(backParaObj);
         this.toSeatDetail();
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
+        if($.browser.webkit && !window.chrome){
+            document.querySelector('#wrapper').style.top = '88px';
+        }
         bottomModal.init('all-elements',this.tripType,"double",this.callRender);
         this.taxHandler();
+        this.isClearAll = true;
+        this.flightResultArray = [];
         this.initLeftState = this.checkTip();
     }
 };

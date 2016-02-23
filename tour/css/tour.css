@@ -2,55 +2,28 @@
 html {
     font-size:62.5%;
 }
-
-
-#preloader {
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color:#FFF;
-    z-index:99999999;
+.head-h3{
+    color: #ffffff;
+    text-align: center;
+    line-height: 45px;
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: 600;
 }
-
-#status {
-    z-index:99999999;
-    width:250px;
-    height:250px;
-    position:absolute;
-    left:50%;
-    top:50%;
-    background-image:url(../images/loading.gif);
-    background-size:64px 64px;
-    background-repeat:no-repeat;
-    background-position:center;
-    margin:-125px 0 0 -125px;
+.icons {
+    background-image: url(../../images/ui/icons.png);
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    display: inline-block;
 }
-
-#preloader p{
-    top:60%;
+.header-back {
+    position: absolute;
+    width: 12px;
+    height: 22px;
+    left: 15px;
+    top: 10px;
 }
-
-#preloader em{
-    font-size:10px!important;
-    display:block;
-    font-style:normal;
-}
-#status-h{
-    z-index:99999999;
-    width:250px;
-    height:250px;
-    position:absolute;
-    left:50%;
-    top:50%;
-    background-image:url(../../images/loading-hotel.gif);
-    background-size:125px;
-    background-repeat:no-repeat;
-    background-position:center;
-    margin:-125px 0 0 -125px;
-}
-.snap-content {
+.sc-content{
     position: absolute;
     top: 0;
     right: 0;
@@ -58,6 +31,8 @@ html {
     left: 0;
     width: auto;
     height: auto;
+    padding-top: 45px;
+    padding-bottom: 20px;
     z-index: 2;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -66,82 +41,12 @@ html {
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-}
-.top {
-    width: 100%;
-    height: 45px;
-    padding: 1px;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    position: fixed;
-    z-index: 100;
-    background: #173c58;
-}
-.icons{
-    background-image: url(../../images/ui/icons.png);
-    background-repeat: no-repeat;
-    background-size: 243px 160px;
-    display:inline-block;
-}
-.search{
-    width:86%;height:35px;
-    margin-left: 40px;
-    margin-top:0.5rem;
-    background-color: white;
-    border-radius: 0.5rem;
-}
-.fdj{
-    width:1.4rem;height: 1.4rem;
-    margin-left: 10px;
-    margin-top:10px;
-}
-.sousuo{
-    height:24px ;
-    font-size: 1.4rem;
-    position: absolute;
-    margin:0.5rem 0 0 1rem;
-    border:none;
-    outline:none;
-    background: none;
-    color: #d1d1d1;
+    background-color: #F5F4F9;
 }
 .hotelcontent{
-    position: absolute;
     width: 100%;
-    margin-top: 45px;
     list-style-type: none;
-}
-.hotelConNo{
-    position:relative;
-    width:100%;
-    height:100%;
-    background:#f5f4f9;
-}
-.hotelConNo div{
-    position:absolute;
-    left:50%;top:50%;
-    margin-left:-115px;margin-top:-100px;
-    overflow:hidden;
-    width:235px;height:120px;
-}
-.hotelConNo div img{
-    float:left;margin-left:85px;
-    width:69px;height:60px;
-}
-.hotelConNo div p{
-    float:left;
-    font-size:1.6rem;color:#a0a0a0;
-}
-.hotelConNo div .hotelConSorry1{
-    margin-top:16px;
-    margin-left:8px;
-}
-.hotelConNo div .hotelConSorry2{
-    margin-top:6px;
-    margin-left:40px;
+    padding-bottom: 70px;
 }
 .h-li{
     display: -moz-box;
@@ -165,25 +70,30 @@ html {
     flex:1;
 }
 .hname{
-    margin-top: 1rem;
-    font-size:1.6rem;
-    font-weight:bold;
+    margin-top: 0.8rem;
+    font-size:1.5rem;
     color:#484848;
-    line-height:normal;
-    margin-bottom:0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .h-score{
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
 }
-.hl_price{
+.price{
+    position: relative;
     float: right;
-    margin-right: 15px;
-    line-height:normal;
-    margin-bottom:0;
+    left: 38%;
+    margin-top: -36%;
+}
+.price-num{
+    font-size:2rem;
+    font-weight: 600;
+    color:#fe4716;
 }
 .h-grade{
-    margin-top: 0.7rem;
-    margin-right: 15px;
+    margin-top: 0.6rem;
+    margin-right: 5%;
 }
 .hl-icon1{
     display: inline-block;
@@ -205,21 +115,19 @@ html {
     float: right;
     width:54px;
     height:15px;
-    line-height:15px;
     color: white;
     text-align: center;
-    -webkit-text-size-adjust:none;font-size: 1rem;
+    font-size: 1rem;
     background-color: #55bfb7;
-    margin-right:4px;
 }
 .h-address{
-    margin-top: 0.9rem;
+    margin-top: 0.6rem;
     color:#999999;
     font-size:1em;
-    /*margin-bottom: 0.6rem;*/
-    line-height:normal;
+    margin-bottom: 0.6rem;
 }
 .hl-bottom{
+    position:fixed;
     width:100%;
     height:44px;
     display: -moz-box;
@@ -227,25 +135,13 @@ html {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    background:#173c58;
+    background: linear-gradient(#16364f,#194361);
     opacity: 0.8;
-    position:fixed;
     bottom: 0;
     text-align: center;
     font-size: 10em;
     color:white;
     z-index: 999999;
-}
-.icons{
-    background-image: url(../../images/ui/icons.png);
-    background-repeat: no-repeat;
-    background-size: 243px 160px;
-    display:inline-block;
-}
-.header-back{
-    width:12px;
-    height:22px;
-    margin-top: 4px;
 }
 .fo-div{
     text-align: center;
@@ -257,51 +153,40 @@ html {
     -ms-flex:1;
     -webkit-flex:1;
     flex:1;
-
-    overflow:hidden;
 }
 .hl-icon3{
     display:block;
-    width:15px;
-    height:15px;
+    width:13px;
+    height:13px;
     margin:0 auto;
     margin-top: 6px;
     margin-bottom: 5px;
-    background:url("../../images/ui/sort.png");
-    background-size: 15px 15px;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position:41% 8%;
 }
-.hl-icon-4{
-    background:url("../../images/ui/filter.png");
-    background-size: 15px 15px;
+.icon-scr{
+    background-position: 47% 8%;
 }
-.hl-icon-5{
-    background:url("../../images/ui/location.png");
-    background-size: 15px 15px;
+.icon-loc{
+    background-position: 54% 7%;
 }
 .ho_list{
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
     border-bottom: 1px solid #CCCCCC;
+    clear: both;
 }
 .ho_pic{
-    width:82px;height:105px;
+    float: left;
+    width:82px;height:115px;
     position: relative;
 }
 .ho_pic img{
     width:100%;height:100%;
 }
 .ho_infor{
-    width: 75%;
+    float: left;
+    width: 50%;
     margin-left: 1rem;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
-    overflow:hidden;
 }
 .ho_infor h2{
     font-size:1.2rem;color:#484848;
@@ -321,10 +206,27 @@ html {
     font-weight: 600;
     color:#fe4716;
 }
-
-
+.choose-no{
+    display: inline-block;
+    width:65px;
+    height: 34px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 34px;
+    background-color: #fdb330;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color:white;
+}
+.c-yes{
+    width:63px;
+    height: 32px;
+    border:1px solid #fdb330;
+    background-color:white;
+    color:#fdb330;
+}
 /*
-    �����
+    排序块
 */
 .r-div{
     width: 100%;height:100%;
@@ -342,12 +244,12 @@ html {
     z-index: 2000000;
 }
 .r-li{
-    width: 100%;height:44px;
+    width: 100%;height:40px;
     border-bottom: 1px solid #d0d0d3;
     text-align: center;
     font-size: 1.4em;
     color:#b3b2b4;
-    line-height: 44px;
+    line-height: 40px;
 }
 .hl-icon4{
     display:inline-block;
@@ -372,7 +274,7 @@ html {
     background-position:77% 4%;
 }
 /*
-    ɸѡ��
+    筛选块
 */
 .screen{
     width: 100%;
@@ -381,12 +283,6 @@ html {
     position: fixed;
     bottom:-550px;
     z-index: 2000000;
-    height:490px;
-}
-.hl_sc_chil{
-    position:absolute;
-    left:0;top:0;right:0;bottom:0;
-    overflow:auto;
 }
 .screen h4{
     margin-top: 13px;
@@ -403,27 +299,27 @@ html {
 }
 .s-li{
     float: left;
-    width:29%;height: 30px;
+    width:29%;height: 24px;
     margin-bottom: 10px;
     margin-right: 10px;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #d0d0d3;
-    font-size: 1.4em;
+    font-size: 1.1em;
     color: #686869;
-    line-height: 30px;
+    line-height: 25px;
 }
 .s-li1{
     float: left;
-    width:29%;height: 30px;
+    width:29%;height: 24px;
     margin-bottom: 10px;
     margin-right: 10px;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #ffb412;
-    font-size: 1.4em;
+    font-size: 1.1em;
     color: #ffb412;
-    line-height: 30px;
+    line-height: 25px;
 }
 .s-but{
     width: 94%;height: 36px;
@@ -438,22 +334,33 @@ html {
     border-radius: 5px;
     background-color:#ffb413;
 }
+.hs-next{
+    display: block;
+    width: 90%;height: 36px;
+    bottom:0;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    text-align: center;
+    line-height:35px;
+    font-size: 1.6em;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    background-color:#ffb413;
+}
 /*
-    λ�ÿ�
+    位置块
 */
 .location{
     width: 100%;
+    padding: 1px;
     background-color: white;
     position: fixed;
     bottom:-550px;
     z-index: 2000000;
-}
-.loca_con{
-    position:absolute;
-    left:0;top:0;
-    right: 0;
-    overflow:auto;
-
 }
 .l-ul{
     width: 94%;
@@ -462,15 +369,8 @@ html {
     list-style-type: none;
 }
 .l-li{
-    width: 100%;height:44px;
+    width: 100%;height:40px;
     border-bottom: 1px solid #d0d0d3;
-    overflow:hidden;
-}
-.l-liFirst p {
-    color:#000;
-}
-#l-liTem {
-    display:none;
 }
 .l-p{
     float: left;
@@ -492,58 +392,19 @@ html {
     display: block;
     margin-top: 15px;
     width: 17px;height:17px;
-    background: url(../../images/ui/icons1.png) -265px -6px;
+    background-image: url(../../images/ui/icons1.png);
     background-size: 400px 120px;
+    background-position: 62% 4.5%;
 }
-.l-li2 .l-icon1{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background:url(../../images/ui/icons1.png) -236px -6px;
-    background-size:400px 120px;
-}
-.l-icon1First{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background: url(../../images/ui/icons1.png) -236px -6px;
-    background-size: 400px 120px;
-}
-.l-li3 .l-icon1First{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background: url(../../images/ui/icons1.png) -265px -6px;
-    background-size: 400px 120px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    ���������ٷ���ӵ�css����һ���ּӵ��м���
-*/
+    /*  添加内容  */
 .hotelcontent li:last-child{
     margin-bottom:44px;
 }
+.hotelcontent .h-grade, .hotelcontent .h-address{
+    margin-top:1rem;
+}
 #preloader {
     position:fixed;
-    z-index:2500;
     top:0;
     left:0;
     right:0;
@@ -556,10 +417,10 @@ html {
     z-index:99999999;
     width:250px;
     height:250px;
-    position:absolute;
+    /*position:absolute;*/
     left:50%;
     top:50%;
-    background-image:url(../../images/status.gif);
+    background-image:url(../../images/loading.gif);
     background-size:64px 64px;
     background-repeat:no-repeat;
     background-position:center;
@@ -581,3 +442,6 @@ html {
     display:block;
     font-style:normal;
 }
+/*
+    房间升级页
+*/

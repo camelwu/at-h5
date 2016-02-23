@@ -47,6 +47,12 @@ var ticketSeatChoose = {
     test:function(arg){
         console.log(arg)
     },
+    loadingFade:function(){
+        $(window).load(function () {
+            $("#status-f").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
+    },
     addEvent:function(){
         var reserveButton = document.querySelector('#reserve-button');
         var changeExplain = document.querySelector('#change-explain');
@@ -220,12 +226,23 @@ var ticketSeatChoose = {
             //document.location.href = 'ticket_order.html';
 
         });
-        this.addHandler(changeExplain,'click', function(){
-            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
+        this.addHandler(changeExplain,'click', function(event){
+            var event = event || window.event;
+            if (document.all) {
+                event.cancelBubble = true;
+            } else {
+                event.stopPropagation();
+            }
 
+            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
         });
 
         this.addHandler(detailWord,'click', function(event){
+            console.log(22222222)
+            $("#preloader").show();
+            $("#status-f").show();
+            $("#status-f").delay(400).fadeOut("medium");
+            $("#preloader").delay(400).fadeOut("medium");
             ticketShadow.style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         });
@@ -235,6 +252,15 @@ var ticketSeatChoose = {
             if(target.className == 'ticket-shadow'){
                 ticketShadow.style.display = 'none';
                 document.querySelector('.ticket-detail-modal').style.display = 'none';
+            }
+        });
+        this.addHandler(document,'click', function(event){
+            var event = event || window.event;
+            var target =event.target || event.srcElement;
+            if(target.id == 'popup_overlay')
+                       document.body.removeChild(target);
+                    if(document.querySelector('#popup_container')){
+                    document.body.removeChild(document.querySelector('#popup_container'));
             }
         });
     },
@@ -312,11 +338,11 @@ var ticketSeatChoose = {
         '</div>'+
         '</div>'+
         '<div class="bottom-word">'+
-        '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
-        '<span>|</span>'+
-        '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
-        '<span>|</span>'+
-        '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+
+        '<span>'+arg.segmentsLeave[0].operatingCarrierName+'</span>'+
+        '<span> | </span>'+
+        '<span>'+arg.segmentsLeave[0].operatingCarrierCode+arg.segmentsLeave[0].flightNo+'</span>'+
+        '<span> | </span>'+
+        '<span>'+arg.segmentsLeave[0].planeName+arg.segmentsLeave[0].planeType+'</span></span>'+
         '</div>'+
         '</div>';
         return str
@@ -350,15 +376,15 @@ var ticketSeatChoose = {
             '</div>'+
             '<div class="bottom-word">'+
             '<div class="left">'+
-            '<span>'+arg.segmentsReturn[0].airCorpName+'</span>'+
-            '<span>|</span>'+
-            '<span>'+arg.segmentsReturn[0].airCorpCode+arg.segmentsReturn[0].flightNo+'</span>'+
-            '<span>|</span>'+
-            '<span>'+arg.segmentsReturn[0].planeName+'</span></span>'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierName+'</span>'+
+            '<span> | </span>'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierCode+arg.segmentsReturn[0].flightNo+'</span>'+
+            '<span> | </span>'+
+            '<span>'+arg.segmentsReturn[0].planeName+arg.segmentsReturn[0].planeType+'</span></span>'+
             '</div>'+
             '<div class="right">'+
             '<span>实际乘坐</span>'+
-            '<span>'+arg.segmentsReturn[0].airCorpName+'</span>'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierName+'</span>'+
             '<span>'+arg.segmentsReturn[0].planeName+'</span>'+
             '</div>'+
             '</div>'+
@@ -436,14 +462,17 @@ var ticketSeatChoose = {
         return obj;
     },
     createHtml:function(){
-        var flightListData = this.storageUtil.get('flightListData'),that = this,setID = this.assistInfo.setId,summaryHtml='';
+        var dataPools = this.storageUtil.get('flightListData'), resultData = {},that = this,setID = this.assistInfo.setId,summaryHtml='';
         var allEle = document.querySelector('.all-elements'),itemObj={},backMeal ='';
-        for(var i=0;i<flightListData.flightInfos.length;i++){
-            if(flightListData.flightInfos[i].setID == setID){
-                itemObj = flightListData.flightInfos[i];
-                break;
-            }
-        }
+             dataPools.forEach(function(obj){
+                 obj["flightInfos"].forEach(function(obj_){
+                     if(obj_.setID == setID){
+                         resultData = obj_;
+                         return;
+                     }
+                 })
+        });
+        itemObj = resultData;
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
         var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single'
@@ -469,6 +498,7 @@ var ticketSeatChoose = {
     init:function(){
         this.assistInfo = this.parseUrlPara(document.location.search, true);
         this.createHtml();
+        this.loadingFade();
         this.addEvent();
     }
 };

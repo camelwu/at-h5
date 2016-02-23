@@ -38,7 +38,7 @@
 </div>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:;" class="icons header-back" id="per-back"></a>
+        <a href="javascript:window.history.go(-1);" class="icons header-back" id="per-back"></a>
         <h3>个人资料</h3>
     </div>
     <!-- Page Content-->
@@ -91,10 +91,10 @@
             <li id="phoneverify" style="display: none;">
                 <ul class="f_key">
                     <li>
-                        <input id="phone" class="fk_put" type="text" value placeholder="请输入手机号" data-type="tel">
+                        <input id="phone" class="fk_put  mob-cell" type="text" value placeholder="请输入手机号" data-type="tel">
                     </li>
                     <li style="padding-right: 0;">
-                        <input class="fk_put" type="text" value placeholder="请输入验证码" data-type="code">
+                        <input class="fk_put mob-code" type="text" value placeholder="请输入验证码" data-type="code">
                         <div class="fk_div" id="phone_ver">发送验证码</div>
                     </li>
                 </ul>
@@ -132,8 +132,6 @@
     </ul>
 </div>
 <div id="menu"></div>
-
-
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="scripts/user-perInfo.js"></script>
