@@ -21,7 +21,8 @@
     <!--   内容   -->
     <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom:50px;">
         <section class="hot_tagBox">
-            <span class="current">国内游</span>
+            <!--<span class="current">国内游</span>-->
+            <span class="current"><a href="#">国内游</a></span>
             <span><a href="#">出境游</a></span>
         </section>
         <section class="conBox">
@@ -110,8 +111,6 @@
 <!--<li><a href="#">博物馆</a></li>-->
 <!--{% } %}-->
 <!--</script>-->
-<
-
 <script>
     //机+酒首页‘
     (function(){
@@ -162,13 +161,10 @@
                 }
                 vlm.loadJson(apiurl,JSON.stringify(GetTourCityId),GetTourCityCallBack);
                 function GetTourCityCallBack(data){
-
                     var json=JSON.parse(data);
                     console.log(json);
                     if(json.success){
-
                         var data=json.data.lists,strHtml="";
-
                         if(data.length>0) {
                             strHtml = template(tpl_tour_o, data);
                             var data=json.data.themes;
