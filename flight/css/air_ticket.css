@@ -1801,6 +1801,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .time-airport-info .total-time-info {
     text-align: center;
+    padding-top: 1.0rem;
+
 }
 
 .time-airport-info .end-time-info {
@@ -3709,25 +3711,29 @@ li{
 }
 
 .add-minus-per-more{
-    background-image: url(../../images/icons1.png);
+    background-image: url(../../images/hotelbtn.png);
     background-repeat: no-repeat;
-    background-size: 400px 120px;
+    background-size: 23px 150px;
     display: inline-block;
-    width: 25px;
-    height: 22px;
+    width: 23px;
+    height: 23px;
+    background-position: 0 44% ;
+}
+.add-minus-per-more-grey{
+    background-position: 0 66%
+}
+.add-minus-per-less{
+    background-image: url(../../images/hotelbtn.png);
+    background-repeat: no-repeat;
+    background-size: 23px 150px;
+    display: inline-block;
+    width: 23px;
+    height: 23px;
     background-position: 0 0 ;
 }
-
-.add-minus-per-less{
-    background: url(../../images/ui/icons1.png) no-repeat;
-    background-size: 400px 120px;
-    display: inline-block;
-    width: 25px;
-    height: 22px;
-    background-position: -32px 0 ;
-
+.add-minus-per-less-grey{
+    background-position: 0 21%
 }
-
 .add-minus-per-content{
     display: inline-block;
     vertical-align: top;

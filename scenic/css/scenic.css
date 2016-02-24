@@ -510,7 +510,6 @@ i{
     color:#ff6a00;
     font-size: 10px;
 }
-
 .black-block{
     position: absolute;
     margin-top: -33px;
@@ -545,7 +544,6 @@ i{
     background-size: 400px 120px;
     margin-left: 20%;
 }
-
 .location-wrap {
     position: absolute;
     right: 15px;
@@ -555,7 +553,6 @@ i{
     line-height: 35px;
     text-align: right;
 }
-
 .location-tip {
     position: absolute;
     right:0;
@@ -567,7 +564,6 @@ i{
     background-size: 250px 180px;
     margin-top: 1.2rem;
 }
-
 .location-txt {
     color: #fff;
     height: 35px;
@@ -579,7 +575,6 @@ i{
 .scenic-list-box {
     background-color: #f5f4f9;
     height: 100%;
-
 }
 .scenic-list-choi-wrap {
     display: -moz-box;  /* Firefox */
@@ -599,7 +594,6 @@ i{
     text-align: center;
     line-height: 40px;
     font-size: 1.4rem;
-
 }
 .scenic-list-choi-wrap .active {
     margin-bottom: -1px;
@@ -660,7 +654,6 @@ i{
 .sale-fare i {
     font-size: 1.8rem;
     color: #fe6a03;
-
 }
 .old-fare {
     text-decoration: line-through;
@@ -844,7 +837,6 @@ i{
     display: -webkit-flex;
     display: flex;
 }
-
 .pos-distance {
     -webkit-box-felx:2;
     -moz-box-flex:2;
@@ -864,27 +856,22 @@ i{
     -webkit-flex:3;
     flex:3;
 }
-
 .price-sale {
     margin-right: 0.4em;
 }
-
 .price-sale-pre {
     text-decoration: line-through;
     font-size: 1.3rem;
     color: #999;
 }
-
 .price-sale-bac {
     color: #fe6a03;
     font-size: 1.3rem;
 }
-
 .price-sale-bac i {
     color: #fe6a03;
     font-size: 1.8rem;
 }
-
 .sce-detail-tit {
     margin-bottom: 0;
     font-size: 1.4rem;
@@ -1311,9 +1298,7 @@ i{
     display: flex;
     margin-bottom: -2000px;
     padding-bottom: 2000px;
-
 }
-
 .region-spot-choi {
     -webkit-box-felx: 1;
     -moz-box-flex: 1;
@@ -1321,7 +1306,6 @@ i{
     -webkit-flex: 1;
     flex: 1;
 }
-
 .region-spot-search > .cont{
     -webkit-box-felx: 2.5;
     -moz-box-flex: 2.5;
@@ -1334,13 +1318,11 @@ i{
     display: none;
 
 }
-
 .region-spot-search > .cont.active{
     display: block;
     margin-bottom: -2000px;
     padding-bottom: 2000px;
 }
-
 .region-spot-choi li {
     border-left: 2px solid #f5f4f9;
     text-align: center;
@@ -1348,12 +1330,10 @@ i{
     list-style: none;
     font-size: 1.4rem;
 }
-
 .region-spot-choi li.active {
     border-left: 2px solid #ffb413;
     background-color: #fff;
 }
-
 .search-his {
     text-align: center;
     line-height: 30px;
@@ -1368,11 +1348,9 @@ i{
     padding: 0 0.4em;
     color: #ffb932;
 }
-
 .search-his .yn-gren {
     color: #55bfb7;
 }
-
 .region-spot-tab span {
     font-size: 1.3rem;
     display: inline-block;
@@ -1380,4 +1358,577 @@ i{
     padding: 0 1.2rem;
     margin: 0.6rem;
     border-radius: 5px;
+}
+/*
+     景点预定页
+*/
+/*游玩日期*/
+.travel-date {
+    height: 50px;
+    background-color: #fff;
+    padding-left: 20px;
+    font-size: 1.5rem;
+}
+.gray-block{
+    height: 15px;
+    background-color: #f5f4f9;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.travel-date-tit {
+    margin-top: 15px;
+}
+.travel-date-wrap {
+    width: 80%;
+    padding-left: 10px;
+}
+.travel-date-wrap-so{
+    width: 95px;
+    height: 40px;
+    padding-left: 5px;
+    margin-top: 5px;
+    padding-top: 3px;
+    border: 2px solid #ffb413;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    color: #ffb413;
+}
+.travel-date-wrap-so span{
+    display: block;
+}
+.travel-date-wrap-noon{
+    margin-top: 5px;
+}
+.travel-date-wrap-noon .fa-noon{
+    display: inline-block;
+    width: 48px;
+    height: 40px;
+    border: 2px solid #d1d1d1;
+    color: #d1d1d1;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px;
+    margin-left: 16px;
+}
+.travel-date-wrap-noon .fa-noon.on{
+    border: 2px solid #ffb413;
+    color: #ffb413;
+}
+.date-picker {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -15px;
+    background: url(../images/ui/icon-h.png) no-repeat;
+    background-size: 402px 174px;
+    background-position: -245px 0;
+    width: 34px;
+    height: 34px;
+}
+.sce-ticket-wrap {
+    color: #333;
+}
+.travel-date-cont {
+    color: #fdb330;
+}
+.per-price-wrap {
+    padding:0 15px 0 20px;
+    font-size: 1.8rem;
+}
+.per-price-tit {
+    font-size: 1.6rem;
+    margin-top: 8px;
+}
+.sce-introduce {
+    padding-left: 20px;
+    padding: 1rem 0;
+}
+.sce-introduce-txt {
+    font-size: 1.5rem;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+.contact-document {
+    padding-left: 20px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 30px;
+    line-height: 30px;
+    background-color: #f0eeee;
+}
+.contact-document > span {
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    font-size: 1.3rem;
+}
+.contact-doc-tit{
+    color: #333;
+}
+.sce-ticket {
+    background-color: #fff;
+}
+.tourist-ticket-box {
+    background-color: #fff;
+    margin-bottom: 0.6em;
+    border-bottom: 1px solid #ddd;
+}
+.tourist-ticket{
+    height: 45px;
+    line-height: 45px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.ticket-take-msg{
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 0;
+    margin-left: 20px;
+}
+.order-amount {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 110;
+}
+.order-total-wrap {
+    width: 100%;
+    font-size: 1.7rem;
+    padding-left: 20px;
+    position: relative;
+    z-index: 100;
+    background-color: #fff;
+}
+.order-total-wrap span {
+    font-size: 1.7rem;
+}
+.order-total-btn {
+    width: 30%;
+    text-align: center;
+    background-color: #ffb413;
+    color: #fff;
+    font-size: 1.7rem;
+    position: relative;
+    z-index: 100;
+}
+.order-total-btn:hover {
+    background-color: #ff9313;
+}
+.order-total-fare {
+    color: #fe6a03;
+    font-weight: bold;
+}
+.order-total-tip {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    margin-top: 1.3rem;
+    width: 1.9rem;
+    height: 1.9rem;
+    background: url(../images/ui/icon.png) 28% 33%;
+    background-size: 40rem 12rem;
+}
+.per-price-cont {
+    color: #fe6a03;
+    font-weight: bold;
+    font-size: 2.2rem;
+    margin-top: 8px;
+}
+.tourist-msg {
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+.tourist-msg li {
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+    height: 38px;
+    line-height: 38px;
+    position: relative;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+.tourist-msg li:last-child {
+    border-bottom: none;
+}
+.add-ticket {
+    box-sizing: border-box;
+    text-align: center;
+    height: 45px;
+    padding-top: 15px;
+    width: 140px;
+    margin: 0 auto;
+}
+.sce-introduce-child{
+    padding-top:1rem ;
+}
+.children-wrap{
+    margin-bottom: 0;
+    padding: 0 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+.children-wrap li{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ddd;
+}
+.children-wrap li:last-child{
+    border-bottom: none;
+}
+.child-age-cont span{
+    font-size: 1.5rem;
+}
+.child-age-cont input{
+    display: inline-block;
+    width: 30px;
+    font-size: 1.5rem;
+}
+.add-tic-btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 2.3rem;
+    height: 2.3rem;
+    background: url(../images/ui/icons1.png) -0.2rem 0;
+    background-size: 33rem 10rem;
+}
+.add-tic-txt {
+    display: inline-block;
+    vertical-align: top;
+    color: #ffb413;
+    font-size: 1.5rem;
+}
+.order-notice {
+    padding-left: 20px;
+    padding-bottom: 30px;
+}
+.hotel-choi-but{
+    padding: 0 20px;
+    height: 45px;
+    line-height: 45px;
+}
+.con-add-butto{
+    width: 30px;
+    height: 30px;
+    background: url(../../images/icon_people_plus.png) no-repeat;
+    background-size:20px 20px;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+.order-notice-btn {
+    display: inline-block;
+    width: 1.7rem;
+    height: 1.7rem;
+    background: url(../images/ui/icons1.png) -26.6rem -0.4rem;
+    background-size: 40rem 12rem;
+    font-size: 1.4rem;
+}
+.hot-arrow-rig{
+    display: inline-block;
+    float: right;
+    width: 10px;
+    height: 15px;
+    background: url(../../images/icon_arrow.png) no-repeat;
+    background-size: 10px 14px;
+    margin-top: 16px;
+    margin-left: 5px;
+}
+.order-notice-txt {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 3px;
+    color: #999;
+    font-size: 1.3rem;
+}
+.contact-select {
+    color: #fcbc20;
+    text-align: right;
+    padding-right: 40px;
+    position: relative;
+}
+.tourist-list-light {
+    color: #333;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+.tourist-name {
+    display: inline-block;
+    width: 26%;
+    font-size: 1.5rem;
+    color: #333;
+    vertical-align: middle;
+}
+.per-price-control {
+    background-color: #e9e9e9;
+}
+.per-price-control span {
+    display: inline-block;
+    border: 1px solid #eeebeb;
+    width: 3.5rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    text-align: center;
+    font-size: 2.2rem;
+}
+.per-price-control i {
+    display: inline-block;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    width: 3.5rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 2.2rem;
+    text-align: center;
+}
+.per-price-control .ticket-num {
+    display: inline-block;
+    border-top: 1px solid #eeebeb;
+    border-bottom: 1px solid #eeebeb;
+    width: 2em;
+    height: 1.6em;
+    line-height: 1.6em;
+    text-align: center;
+}
+.right-select {
+    background: url(../images/ui/icons.png) no-repeat;
+    background-size: 290px 177px;
+    background-position: 42% 30%;
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    right: 20px;
+    top: 0;
+}
+/*景点预订免登陆开始*/
+.sce-order-login {
+    color: #ffb500;
+    text-decoration: underline;
+}
+.contact-noact {
+    color: #999;
+}
+.free-login {
+    color: #333;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin:0.7rem 0 0.4rem;
+}
+.verification-get {
+    position: absolute;
+    right: 20px;
+    top: 7px;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    text-align: center;
+    color: #fff;
+    background-color: #ffb413;
+    border-radius: 4px;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}
+.tour-short {
+    width: 22%;
+}
+/*景点预订免登陆结束*/
+
+/*景点预订明细开始*/
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    opacity: 0.3;
+    filter: alpha(opacity:30);
+    z-index: 90;
+    display: none;
+}
+.price-tot-box {
+    position: fixed;
+    left: 0;
+    bottom: -240px;
+    background-color: #fff;
+    width: 100%;
+    padding-top: 1rem;
+    z-index: 100;
+    transition: 0.7s all ease;
+}
+.price-tot-list{
+    margin-bottom: 5px;
+}
+.price-tot-list li {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1.3rem;
+}
+.setmeal-tr.on{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-image: url(../../images/ui/icon.png);
+    background-position: 63% 100%;
+    background-size: 400px 120px;
+    margin-top: 20px;
+}
+.setmeal-tr{
+    display: inline-block;
+    width: 28px;
+    height: 26px;
+    background-image: url(../../images/ui/icon.png);
+    background-position: 56% 100%;
+    background-size: 400px 120px;
+    margin-top: 20px;
+}
+.price-tot-list li > span {
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+}
+.price-per-tot {
+    text-align: right;
+    margin-right: 20px;
+}
+.price-per-tit{
+    padding-left: 20px;
+}
+.add-tic-owner{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    padding: 0 10px 0 20px;
+    background-color: #f0eeee;
+    line-height: 40px;
+    height: 40px;
+    margin-top: -8px;
+}
+.add-tic-owner span{
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+}
+.add-tic-owner-wrap{
+    text-align: right;
+}
+.add-tic-owner-btn{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 4px;
+    width: 2.3rem;
+    height: 2.3rem;
+    background: url(../images/ui/icons1.png) -0.3rem 0.3em;
+    background-size: 33rem 10rem;
+}
+/*景点预订明细结束*/
+
+/*2016.2.19*/
+.add-setmeal{
+    position: absolute;
+    bottom: -500px;
+    left: 0;
+    background:#fff;
+    z-index: 200;
+    transition: 0.5s all ease;
+}
+.add-setmeal-list{
+    margin-bottom: 0;
+}
+.add-setmeal-hd{
+    height: 40px;
+    line-height: 40px;
+    background-color: #f5f4f9;
+    padding: 0 10px 0 20px;
+    font-size: 1.5rem;
+}
+.add-setmeal-sure{
+    color: #ffb413;
+    font-size: 1.6rem;
+    padding: 0 5px;
+}
+.add-setmeal-list li{
+    height: 90px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #dedede;
+}
+.setmeal-tit{
+    display: block;
+    width: 120px;
+    margin-top: 10px;
+}
+.setmeal-price-cont{
+    color: #fe6a03;
+    font-weight: bold;
+    font-size: 2.2rem;
+    margin-top: 8px;
+}
+.add-setmeal-list li >div{
+    width: 73%;
+}
+.add-setmeal-tit{
+    display: inline-block;
+    font-size: 1.5rem;
+}
+/*接送酒店列表页*/
+.sod-search{
+    width:60%;
+    height:30px;
+    margin:0 auto;
+    margin-top: 8px;
+    background-color: white;
+    border-radius: 5px;
+}
+.sod-fdj{
+    width:1.4rem;height: 1.4rem;
+    margin-left: 10px;
+    margin-top:10px;
+}
+.sod-search input{
+    width: 80%;
+    height: 24px;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 5px;
+    left: 35px;
+    border: none;
+    outline: none;
+    background: none;
+    color: #484848;
+}
+.hote-list{
+    width: 92%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.hote-list li{
+    border-bottom:1px solid #dedede;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

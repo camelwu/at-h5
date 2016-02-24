@@ -392,7 +392,7 @@ var ticketSeatChoose = {
             '<div class="time-airport-info">'+
             '<div class="start-time-info">'+
             '<span class="time-number">'+that.timeCut(arg.flightReturnStartDate)+'</span>'+
-            '<span class="air-port-word">'+arg.segmentsReturn[0].airportNameFrom+'</span>'+
+            '<span class="air-port-word">'+arg.segmentsReturn[0].airportNameFrom+arg.segmentsReturn[0].termDepart+'</span>'+
             '</div>'+
             '<div class="total-time-info">'+
             '<span class="time-hour-minute">'+parseInt(arg.segmentsReturnTotalTravelTime/60)+'h'+arg.segmentsReturnTotalTravelTime%60+'m</span>'+
@@ -402,7 +402,7 @@ var ticketSeatChoose = {
             '<div class="end-time-info">'+
             '<span class="tip-add-days-seat">'+tipDay+'</span>'+
             '<span class="time-number">'+that.timeCut(arg.flightReturnEndDate)+'</span>'+
-            '<span class="air-port-word-right">'+arg.segmentsReturn[arg.segmentsReturn.length-1].airportNameTo+'</span>'+
+            '<span class="air-port-word-right">'+arg.segmentsReturn[arg.segmentsReturn.length-1].airportNameTo+arg.segmentsReturn[arg.segmentsReturn.length-1].termArrive+'</span>'+
             '</div>'+
             '</div>'+
             '<div class="bottom-word">'+
@@ -460,13 +460,14 @@ var ticketSeatChoose = {
                var str = '',transferStr='',dayStr='',that = ticketSeatChoose;
             if(arg){
                 for(var j = 0;j<arg.length;j++){
+                    console.log(arg[j])
                     transferStr= arg[j+1]!=undefined?'<div class="transit-city-hour">中转'+arg[j].cityNameTo+'</div>':'';
                     dayStr= Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)>=1?Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)+'天':'';
                     str+='<div class="go-trip start">' +
                     '<div class="time-airport-info">'+
                     '<div class="start-time-info">'+
                     '<span class="time-number">'+that.timeCut(arg[j].departDate)+'</span>'+
-                    '<span class="air-port-word">'+arg[j].airportNameFrom+'</span>'+
+                    '<span class="air-port-word">'+arg[j].airportNameFrom+arg[j].termDepart+'</span>'+
                     '</div>'+
                     '<div class="total-time-info">'+
                     '<span class="time-hour-minute"></span>'+
@@ -475,7 +476,7 @@ var ticketSeatChoose = {
                     '<div class="end-time-info">'+
                     '<span class="tip-add-days-seat">'+dayStr+'</span>'+
                     '<span class="time-number">'+that.timeCut(arg[j].arriveDate)+'</span>'+
-                    '<span class="air-port-word-right">'+arg[j].airportNameTo+'</span>'+
+                    '<span class="air-port-word-right">'+arg[j].airportNameTo+arg[j].termArrive+'</span>'+
                     '</div>'+
                     '</div>'+
                     '<div class="bottom-word">'+

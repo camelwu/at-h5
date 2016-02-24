@@ -26,7 +26,6 @@
        },
 
        reDate:function(arg){
-           console.log(arg)
            var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(arg);
            tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
            tStr[2] = parseInt(tStr[2]) < 10?'0'+parseInt(tStr[2]):parseInt(tStr[2]);
@@ -36,8 +35,6 @@
        singleAndDoubleTangle:function(){
           var double = document.querySelector('#double');
           var single = document.querySelector('#single');
-           single.style.display = 'block';
-           double.style.display = 'none';
            document.querySelector('.hTab').onclick = function(event){
                var event = event || window.event;
                var target = event.target || event.srcElement;
@@ -66,12 +63,11 @@
         },
         get: function (key) {
             var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
-            if(dataObj !=null){
+            if(dataObj!=null){
                 return dataObj.data;
             }
         }
     },
-
        addHandler: function (target, eventType, handle) {
            if (document.addEventListener) {
                this.addHandler = function (target, eventType, handle) {
@@ -89,20 +85,6 @@
                }
            }
            this.addHandler(target, eventType, handle);
-       },
-
-       correctingFrontPic:function(){
-           var innerWidth = window.innerWidth, innerHeight = window.innerHeight;
-           var outerDiv = document.querySelector('.slider');
-           var innerUl = document.querySelector('.frontPicUl');
-           var oLis = document.querySelectorAll('.frontPicUl>li');
-           outerDiv.style.width = innerWidth + 'px';
-           outerDiv.style.height = innerHeight*0.325 + 'px';
-           innerUl.style.width = (100*oLis.length)+"%";
-           for(var i = 0; i< oLis.length;i++){
-               oLis[i].style.width = innerWidth + 'px';
-           }
-           innerUl.style.left = -innerWidth + 'px';
        },
 
        returnCityCode:function(arg){
@@ -245,13 +227,6 @@
 
        },
 
-       carousel:function(){
-           var innerUl = document.querySelector('.frontPicUl');
-           this.addHandler(innerUl, 'touchstart', this.startHandler);
-           this.addHandler(innerUl, 'touchmove', this.moveHandler);
-           this.addHandler(innerUl, 'touchend', this.endHandler);
-       },
-
        changeItem:function(itemNum){
           var oSpans = document.querySelectorAll('.item-span');
              for(var i = 0;i<oSpans.length; i++){
@@ -309,50 +284,6 @@
            ticketIndexModal.isAnimation = false;
            ticketIndexModal.autoMove();
        },
-
-       autoMove:function(){
-           var innerUl = document.querySelector('.frontPicUl');
-           var slider = document.querySelector('.slider');
-           var minLeftValue = -(document.querySelectorAll('.frontPicLi').length - 2) * window.innerWidth;
-           var maxLeftValue = -window.innerWidth;
-           var maxNum = document.querySelectorAll('.slider li').length-2;
-           function animate(offset){
-               ticketIndexModal.isAnimation = true;
-               var newLeft = parseInt(innerUl.style.left) + offset;
-               var time = 500,interval = 10,num;
-               var speed = offset/(time/interval);
-               function go(){
-                   window.clearTimeout(ticketIndexModal.autoTimerOut);
-                   ticketIndexModal.autoTimerOut = null;
-                   if( (speed < 0 && parseInt(innerUl.style.left) > newLeft) || (speed > 0 && parseInt(innerUl.style.left) < newLeft)){
-                       innerUl.style.left = parseInt(innerUl.style.left) + speed + 'px';
-                       ticketIndexModal.autoTimerOut = setTimeout(go,interval);
-                   }
-                   else{
-                       ticketIndexModal.isAnimation = false;
-                       innerUl.style.left = newLeft   +'px';
-                       if(newLeft > maxLeftValue ){
-                           innerUl.style.left = minLeftValue + 'px';
-                       }
-                       if(newLeft < minLeftValue){
-                           innerUl.style.left = maxLeftValue + 'px';
-                       }
-                   }
-                   num = Math.abs(Math.floor(parseFloat(innerUl.style.left)/ window.innerWidth));
-                   num = num >= maxNum?0:num;
-                   ticketIndexModal.changeItem(num);
-               }
-               go();
-           }
-
-           function tricter(){
-               if(!ticketIndexModal.isAnimation){
-                   animate(-window.innerWidth);
-               }
-           }
-           ticketIndexModal.autoTimerInt = setInterval(tricter,3000)
-       },
-
        preventDefault: function (event) {
            if (event.preventDefault) {
                event.preventDefault();
@@ -610,12 +541,98 @@
                 this.addHandler(aBox[f],'click',function(event){
                     var event = event || window.event;
                     var target = event.target || event.srcElement;
-                    if(target.className=='add-minus-per-more'){
-                        target.parentNode.querySelector('span').innerHTML = parseInt(target.parentNode.querySelector('span').innerHTML)+1;
-                        if(parseInt(target.parentNode.querySelector('span').innerHTML)>=10){target.parentNode.querySelector('span').innerHTML=10;}
-                    }else if(target.className=='add-minus-per-less'){
-                        target.parentNode.querySelector('span').innerHTML = parseInt(target.parentNode.querySelector('span').innerHTML)-1;
-                        if(parseInt(target.parentNode.querySelector('span').innerHTML)<=0){target.parentNode.querySelector('span').innerHTML=0;}
+                    var checkChildNum = function(arg){
+                        var num = '';
+                        switch (arg){
+                            case 0 :
+                                num = 0;
+                                break;
+                            case 1 :
+                                num = 2;
+                                break;
+                            case 2 :
+                                num = 4;
+                                break;
+                            case 3 :
+                                num = 6;
+                                break;
+                            case 4 :
+                                num = 5;
+                                break;
+                            case 5 :
+                                num = 4;
+                                break;
+                            case 6 :
+                                num = 3;
+                                break;
+                            case 7 :
+                                num = 2;
+                                break;
+                            case 8 :
+                                num = 1;
+                                break;
+                            case 9 :
+                                num = 0;
+                            default :void(0)
+                        }
+                        return num;
+                    },maxChild = 0,operaEle = target.parentNode.parentNode.parentNode;
+
+                    maxChild = checkChildNum(parseInt(operaEle.querySelector('span.adult-number').innerHTML))
+                    if(target.className.indexOf('add-minus-per-more')>-1){
+                        var tempEle = target.parentNode.querySelector('span');
+                          if(tempEle.className.indexOf('adult-number')>-1){
+                              if(parseInt(tempEle.innerHTML)+1 < 9){
+                                  tempEle.innerHTML = parseInt(tempEle.innerHTML)+1;
+                                  target.className = "add-minus-per-more adult";
+                              }else{
+                                  tempEle.innerHTML = 9;
+                                  target.className = "add-minus-per-more adult add-minus-per-more-grey"
+                              }
+                              console.log(operaEle)
+                               maxChild = checkChildNum(parseInt(tempEle.innerHTML))
+                              operaEle.querySelector('span.child-number').innerHTML = 0;
+                              console.log(operaEle.querySelectorAll('a.child'))
+                              operaEle.querySelectorAll('a.child')[0].className = "add-minus-per-less child add-minus-per-less-grey"
+                              operaEle.querySelectorAll('a.child')[1].className = "add-minus-per-more child"
+                              target.parentNode.querySelector('.add-minus-per-less').className = "add-minus-per-less";
+                          }else if(tempEle.className.indexOf('child-number')>-1){
+                              if(parseInt(tempEle.innerHTML)+1 <= maxChild){
+                                  tempEle.innerHTML = parseInt(tempEle.innerHTML)+1;
+                                  target.className = "add-minus-per-more child";
+                              }else{
+                                  tempEle.innerHTML = maxChild;
+                                  target.className = "add-minus-per-more child add-minus-per-more-grey"
+                              }
+                          }
+                    }else if(target.className.indexOf('add-minus-per-less')>-1){
+                        var tempEle = target.parentNode.querySelector('span');
+                        if(tempEle.className.indexOf('adult-number')>-1){
+                            if(parseInt(tempEle.innerHTML)-1 > 1){
+                                tempEle.innerHTML = parseInt(tempEle.innerHTML)-1;
+                                target.className = "add-minus-per-less adult";
+                            }else{
+                                tempEle.innerHTML = 0;
+                                target.className = "add-minus-per-less adult add-minus-per-less-grey"
+                            }
+                            target.parentNode.querySelector('.add-minus-per-more').className = "add-minus-per-more";
+                            maxChild = checkChildNum(parseInt(tempEle.innerHTML))
+                            operaEle.querySelector('span.child-number').innerHTML = 0;
+                            console.log(operaEle.querySelectorAll('a.child'))
+                            operaEle.querySelectorAll('a.child')[0].className = "add-minus-per-less child add-minus-per-less-grey"
+                            operaEle.querySelectorAll('a.child')[1].className = "add-minus-per-more child"
+                            target.parentNode.querySelector('.add-minus-per-less').className = "add-minus-per-less";
+                        }else if(tempEle.className.indexOf('child-number')>-1){
+                            if(parseInt(tempEle.innerHTML)-1 > 0){
+                                console.log(maxChild)
+                                tempEle.innerHTML = parseInt(tempEle.innerHTML)-1;
+                                target.className = "add-minus-per-less child";
+                            }else{
+                                tempEle.innerHTML = 0;
+                                target.className = "add-minus-per-less add-minus-per-less-grey child";
+                            }
+                        }
+                        target.parentNode.querySelector('.add-minus-per-more').className = "add-minus-per-more"
                     }
                 });
             }
@@ -936,8 +953,6 @@
                });
        },
        init:function(){
-          /*this.tempCurLeft = 0;*/
-          /*this.isAnimation = false;*/
            this.ticketSearchedInfo = this.storageUtil.get('ticketSearchedInfo') || "";
            this.initDate();
            if(this.ticketSearchedInfo){
@@ -952,15 +967,11 @@
            this.single();
            this.eventHandle2();
            this.singleAndDoubleTangle();
-          /*this.correctingFrontPic();*/
            this.toTicketList();
            this.toCitySearch();
-          /*this.carousel();*/
-          /*this.autoMove();*/
            this.tangleCity();
            this.dhisChoosePool = [];
            this.ihisChoosePool = [];
-          /*this.addHandler(window, 'resize',this.correctingFrontPic);*/
        }
    };
 

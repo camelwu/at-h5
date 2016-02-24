@@ -173,8 +173,8 @@
         <div class="header" id="vlm-login">
             <div class="cl_search">
                 <input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />
-                <datalist id="searchCity">
-                </datalist>
+                <!--<datalist id="searchCity">-->
+                <!--</datalist>-->
                 <i></i>
             </div>
             <a href="javascript:;" class="icons header-back" id="cl_back"></a>
@@ -420,8 +420,261 @@
         </ol>
     </div>
 </div>
+<div class="cl_box_box" id="dcl_box_box" style="display:none">
+    <div class="cl_box">
+        <div class="header" id="dvlm-login">
+            <div class="cl_search">
+                <input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="dcitySearchBox" />
+                <!--<datalist id="dsearchCity">-->
+                <!--</datalist>-->
+                <i></i>
+            </div>
+            <a href="javascript:;" class="icons header-back" id="dcl_back"></a>
+        </div>
+        <div class="cl_curr cl_con"  >
+            <a name="cl_curr" class="cl_on">&nbsp;</a>
+            <div>当前</div>
+            <ul>
+                <li class="fl beijing">北京</li>
+            </ul>
+        </div>
+        <div class="cl_con ">
+            <a class="cl_on">&nbsp;</a>
+            <div>历史选择</div>
+            <ul class="cl_citysHis" id="dcl_citysHis">
+
+            </ul>
+        </div>
+        <div class="cl_con ">
+            <a name="cl_hot" class="cl_on">&nbsp;</a>
+            <div>热门城市</div>
+            <ul class="cl_citysHot" id="dcl_citysHot">
+                <li>{%=cityChineseName%}</li>
+            </ul>
+        </div>
+        <div class="cityWordBox" id="dcityWordBox">
+            <div class="cityWord">
+                <div class="fr"><a href="#cl_curr">当前</a></div>
+                <div class="fr"><a href="#cl_hot">热门</a></div>
+                <ul class="cl_word fr" id="dcl_side">
+                    <li><a href="#da">A</a></li>
+                    <li><a href="#db">B</a></li>
+                    <li><a href="#dc">C</a></li>
+                    <li><a href="#dd">D</a></li>
+                    <li><a href="#de">E</a></li>
+                    <li><a href="#df">F</a></li>
+                    <li><a href="#dg">G</a></li>
+                    <li><a href="#dh">H</a></li>
+                    <li><a href="#di">I</a></li>
+                    <li><a href="#dj">J</a></li>
+                    <li><a href="#dk">K</a></li>
+                    <li><a href="#dl">L</a></li>
+                    <li><a href="#dm">M</a></li>
+                    <li><a href="#dn">N</a></li>
+                    <li><a href="#do">O</a></li>
+                    <li><a href="#dp">P</a></li>
+                    <li><a href="#dq">Q</a></li>
+                    <li><a href="#dr">R</a></li>
+                    <li><a href="#ds">S</a></li>
+                    <li><a href="#dt">T</a></li>
+                    <li><a href="#du">U</a></li>
+                    <li><a href="#dv">V</a></li>
+                    <li><a href="#dw">W</a></li>
+                    <li><a href="#dx">X</a></li>
+                    <li><a href="#dy">Y</a></li>
+                    <li><a href="#dz">Z</a></li>
+                </ul>
+            </div>
+        </div>
+        <ol id="dlsf_city_list" class="lsf_city_list">
+            <li class="cl_con ">
+                <a name="da" class="cl_on">&nbsp;</a>
+                <div>A</div>
+                <ul id="dA">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="db" class="cl_on">&nbsp;</a>
+                <div>B</div>
+                <ul id="dB">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dc" class="cl_on">&nbsp;</a>
+                <div>C</div>
+                <ul id="dC">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dd" class="cl_on">&nbsp;</a>
+                <div>D</div>
+                <ul id="dD">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="de" class="cl_on">&nbsp;</a>
+                <div>E</div>
+                <ul id="dE">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="df" class="cl_on">&nbsp;</a>
+                <div>F</div>
+                <ul id="dF">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dg" class="cl_on">&nbsp;</a>
+                <div>G</div>
+                <ul id="dG">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dh" class="cl_on">&nbsp;</a>
+                <div>H</div>
+                <ul id="dH">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="di" class="cl_on">&nbsp;</a>
+                <div>I</div>
+                <ul id="dI">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dj" class="cl_on">&nbsp;</a>
+                <div>J</div>
+                <ul id="dJ">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dk" class="cl_on">&nbsp;</a>
+                <div>K</div>
+                <ul id="dK">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dl" class="cl_on">&nbsp;</a>
+                <div>L</div>
+                <ul id="dL">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dm" class="cl_on">&nbsp;</a>
+                <div>M</div>
+                <ul id="dM">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dn" class="cl_on">&nbsp;</a>
+                <div>N</div>
+                <ul id="dN">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="do" class="cl_on">&nbsp;</a>
+                <div>O</div>
+                <ul id="dO">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con ">
+                <a name="dp" class="cl_on">&nbsp;</a>
+                <div>P</div>
+                <ul id="dP">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dq" class="cl_on">&nbsp;</a>
+                <div>Q</div>
+                <ul id="dQ">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dr" class="cl_on">&nbsp;</a>
+                <div>R</div>
+                <ul id="dR">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="ds" class="cl_on">&nbsp;</a>
+                <div>S</div>
+                <ul id="dS">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dt" class="cl_on">&nbsp;</a>
+                <div>T</div>
+                <ul id="dT">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="du" class="cl_on">&nbsp;</a>
+                <div>U</div>
+                <ul id="dU">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dv" class="cl_on">&nbsp;</a>
+                <div>V</div>
+                <ul id="dV">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dw" class="cl_on">&nbsp;</a>
+                <div>W</div>
+                <ul id="dW">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dx" class="cl_on">&nbsp;</a>
+                <div>X</div>
+                <ul id="dX">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dy" class="cl_on">&nbsp;</a>
+                <div>Y</div>
+                <ul id="dY">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+            <li class="cl_con">
+                <a name="dz" class="cl_on">&nbsp;</a>
+                <div>Z</div>
+                <ul id="dZ">
+                    <li>{%=cityNameCN%}</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</div>
 </body>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../js/lib/plugins.js"></script>
 <script src="../owlcarousel/owl.carousel.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/d_calendar1.0.2.js"></script>

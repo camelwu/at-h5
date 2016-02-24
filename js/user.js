@@ -96,9 +96,36 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
         function addTraveler(obj) {
             obj.onclick = function () {
+                var travelId = array[index];
+                //console.log(travelId);
+                var id = arrayId[index];
+                //console.log(id);
                 var input = document.getElementById("addForm").getElementsByTagName("input");
                 var postCard = document.getElementById("postCard").innerHTML;
                 var cardId;
+                //中文姓名验证
+                var sChiName=input[0].value;
+                if( ! vlm.Utils.validate.ChineseName(sChiName))
+                {
+                    alert('请输入正确的中文名');
+                    return;
+                }
+                //英文姓
+                var sEngfa=input[1].value;
+                if( ! vlm.Utils.validate.engName(sEngfa))
+                {
+                    alert('请输入正确的英文姓');
+                    return;
+                }
+
+                //英文名
+                var sEngfir=input[2].value;
+                if( ! vlm.Utils.validate.engName(sEngfir))
+                {
+                    alert('请输入正确的英文名');
+                    return;
+                }
+
                 if (input[1].value == "" || input[2].value == "") {
                     alert("英文姓名为必填信息");
                     return;
@@ -161,8 +188,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
         function upTraveler(obj) {
             obj.onclick = function () {
-                //debugger;
-                //console.log(array);
                 var travelId = array[index];
                 //console.log(travelId);
                 var id = arrayId[index];
@@ -171,6 +196,29 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var cardType = document.getElementById("cardType").innerHTML;
                 var cardId;
                 var countryName = document.getElementById("countryName").innerHTML;
+                //中文姓名验证
+                var sChiName=input[0].value;
+                if( ! vlm.Utils.validate.ChineseName(sChiName))
+                {
+                    alert('请输入正确的中文名');
+                    return;
+                }
+                //英文姓
+                var sEngfa=input[1].value;
+                if( ! vlm.Utils.validate.engName(sEngfa))
+                {
+                    alert('请输入正确的英文姓');
+                    return;
+                }
+
+                //英文名
+                var sEngfir=input[2].value;
+                if( ! vlm.Utils.validate.engName(sEngfir))
+                {
+                    alert('请输入正确的英文名');
+                    return;
+                }
+
                 if (input[1].value == "" || input[2].value == "") {
                     alert("英文姓名为必填信息");
                     return;
@@ -209,17 +257,25 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 else {
                     cardId = "10";
                 }
+
+                //出生日期校验
+                var oBirthday=input[5].value.replace('年','-').replace('月','-').replace('号','');
+                if( ! vlm.Utils.compareBirth(oBirthday))
+                {
+                    alert('你选择的出生日期不符合购票要求(建议年龄大于13周岁)');
+                    return;
+                }
                 // 手机号邮箱检验
                 var oMobile = $('#mobile-cell')[0].value;
                 var oEmail = $('#email-cell')[0].value;
 
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+oBirthday+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0072"
                     };
-                    //console.log(Parameters);
+                    console.log(Parameters);
                     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
 
                 }
@@ -288,9 +344,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 UL.className = "often-traveler";
                 UL.style.borderTop = "1px solid #dedede";
                 UL.style.marginTop = "10px";
+
                 for (var i = 0; i < travJson.data.length; i++) {
-                    array[i] = travJson.data[i].traveller.travellerId;
-                    arrayId[i] = travJson.data[i].traveller.Id;
+                    var idtype_num=travJson.data[i].listTravellerIdInfo.length;
+                    array[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].travellerId;
+                    arrayId[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].id;
                     var li = document.createElement("li");
                     li.className = "eve-traveler";
                     var b = document.createElement("b");
@@ -304,7 +362,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     ul_li1.innerHTML = travJson.data[i].traveller.idName + travJson.data[i].traveller.lastName + "/" + travJson.data[i].traveller.firstName;
                     ul.appendChild(ul_li1);
                     var ul_li2 = document.createElement("li");
-                    var idtype_num=travJson.data[i].listTravellerIdInfo.length;
                     if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "1") {
                         ul_li2.innerHTML = "身份证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
                     } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "2") {
@@ -400,7 +457,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "2") {
             cardType.innerHTML = "护照";
         } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "3") {
-            cardType.innerHTML = "出生证明";
+            cardType.innerHTML = "港澳通行证";
         } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "4") {
             cardType.innerHTML = "军官证";
         } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "5") {
@@ -412,7 +469,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "8") {
             cardType.innerHTML = "户口本";
         } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "9") {
-            cardType.innerHTML = "港澳通行证";
+            cardType.innerHTML = "出生证明";
         }else {
             cardType.innerHTML = "其他";
         }

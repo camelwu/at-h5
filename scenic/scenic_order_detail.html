@@ -6,19 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="../styles/framework.css" type="text/css" rel="stylesheet">
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/scenic_order.css">
+    <link rel="stylesheet" type="text/css" href="css/scenic.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
 </head>
 <body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                <br>
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
     <div class="all-elements">
         <!--   顶部   -->
-        <header class="top min320">
-            <a href="javascript:window.history.go(-1);" class="icons header-back"></a>
-            <div class="city-tit">
-                <span class="location-msg">景点预定</span>
-            </div>
-        </header>
+        <div class="header">
+            <a href="javascript:history.go(-1);" class="icons header-back"></a>
+            <h3>景点预订</h3>
+        </div>
         <!--   内容   -->
-        <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
+        <div class="sc-content">
             <section class="sce-ticket-wrap min320">
                 <div class="sce-ticket">
                     <section class="travel-date clearFix">
@@ -46,7 +53,6 @@
                     </section>
                 </div>
             </section>
-
             <!--联系人资料-->
             <section class="tourist-ticket-box min320">
                 <!--<div class="contact-document">-->
@@ -101,15 +107,36 @@
                 <div class="gray-block"></div>
                 <div class="clearFix hotel-choi-but">
                     <span class="fl">提供接送</span>
-                    <a href="javascript:;" class="fr">请选择酒店<b class="hot-arrow-rig"></b></a>
+                    <b class="hot-arrow-rig"></b>
+                    <a id="choHotel" class="fr">请选择酒店</a>
+
                 </div>
             </section>
             <div class="order-notice">
                 <i class="order-notice-btn on"></i>
                 <span class="order-notice-txt">已经阅读亚洲旅行网订票须知</span>
             </div>
+        </div>
 
-
+        <!--    接送酒店列表页     -->
+        <div id="holist_page" class="all-elements" style="display: none;">
+            <div class="header" style="z-index: 1000">
+                <a id="close_list" href="#" class="icons header-back"></a>
+                <div class="sod-search">
+                    <img class="sod-fdj" src="../images/1.png">
+                    <input type="text" value placeholder="搜索">
+                </div>
+            </div>
+            <div class="sc-content" style="z-index: 999">
+                <ul class="hote-list">
+                    <li>111</li>
+                    <li>331</li>
+                    <li>111</li>
+                    <li>331</li>
+                    <li>111</li>
+                    <li>331</li>
+                </ul>
+            </div>
         </div>
         <!--遮罩层-->
         <div class="mask"></div>
@@ -118,24 +145,19 @@
             <!--价格明细-->
             <div class="price-tot-box">
                 <ul class="price-tot-list">
-                    <li><span class="price-per-tit">八达岭长城一日游</span><span class="price-per-tot">¥56×2</spanclass></li>
+                    <li><span class="price-per-tit">八达岭长城一日游</span><span class="price-per-tot">¥56×2</span></li>
                     <li><span class="price-per-tit">鸟巢水立方一日游</span><span class="price-per-tot">¥56×4</span></li>
                     <li><span class="price-per-tit">桂林七日游</span><span class="price-per-tot">¥56×4</span></li>
                     <li><span class="price-per-tit">香港迪士尼一日游</span><span class="price-per-tot">¥56×2</span></li>
                 </ul>
             </div>
-
-
             <div class="order-total-wrap clearFix">
                 <span class="fl">订单金额：</span>
                 <span class="order-total-fare fl">¥56</span>
                 <i class="order-total-tip fl"></i>
                 <a href="order-pay.html" class="order-total-btn fr">预定</a>
             </div>
-
-
         </footer>
-
         <!--添加其他套餐-->
         <div class="add-setmeal">
             <div class="add-setmeal-hd">
@@ -164,13 +186,20 @@
                     </div>
                     <b class="setmeal-tr fr"></b>
                 </li>
-
             </ul>
         </div>
-
     </div>
-
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/custom.js"></script>
     <script>
+        $(window).load(function () {
+            $("#status").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
         //添加更多套餐弹窗
         var oSetBtn=document.querySelector('.add-ticket');
         var oAddwin=document.querySelector('.add-setmeal');
@@ -186,7 +215,7 @@
                 oMaskWin.style.display='none';
                 oAddwin.style.bottom='-500px';
             };
-        }
+        };
 
         for(var i=0;i<aMealBtn.length; i++)
         {
@@ -202,10 +231,8 @@
                     this.className='setmeal-tr fr';
                     this.flag=true;
                 }
-
             };
         }
-
 
         //选择上午下午
         var oTraBtn=document.querySelector('.travel-date-wrap-noon').querySelectorAll('a');
@@ -219,7 +246,6 @@
                 this.className='fa-noon on';
             };
         }
-
 
         /*票数加减*/
         (function(){
@@ -256,9 +282,7 @@
 
         })();
 
-
         /*同意条款*/
-
         (function(){
             var oAgree=document.getElementsByClassName('order-notice-btn')[0];
             var bOk=true;
@@ -294,8 +318,26 @@
             };
         })();
 
+
+        /*接送酒店页*/
+        (function(){
+            var choHotel = $('#choHotel')[0];
+            var close_list = $('#close_list')[0];
+            var holist_page = $('#holist_page')[0];
+            var list = document.getElementsByClassName('hote-list')[0].getElementsByTagName('li');
+            choHotel.onclick = function(){
+                holist_page.style.display = 'block';
+            };
+            close_list.onclick = function(){
+                holist_page.style.display = 'none';
+            };
+            for(var i = 0;i < list.length;i++){
+                list[i].onclick = function(){
+                    choHotel.innerHTML = this.innerHTML;
+                    holist_page.style.display = 'none';
+                }
+            }
+        })()
     </script>
-
-
 </body>
 </html>

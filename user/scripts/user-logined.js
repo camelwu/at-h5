@@ -68,15 +68,15 @@ function init(){
     }
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
-    function order(obj){
-        obj.onclick = function(){
-            window.location.href = "user-allorder.html";
-        }
-    }
-    order(li[0]);
-    order(li[1]);
-    order(li[2]);
-    order(li[3]);
+    //function order(obj){
+    //    obj.onclick = function(){
+    //        window.location.href = "user-allorder.html";
+    //    }
+    //}
+    //order(li[0]);
+    //order(li[1]);
+    //order(li[2]);
+    //order(li[3]);
 
 }
 
@@ -117,18 +117,18 @@ function mycallback(ret) {
             this.href='user-allorder.html'
         }
     };
-    aBtn[2].querySelector('a').onclick=function(){
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-allorder.html'
-        }
-    };
-    aBtn[3].querySelector('a').onclick=function(){
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-allorder.html'
-        }
-    };
+    //aBtn[2].querySelector('a').onclick=function(){
+    //    if(localStorage.getItem('login') == 1)
+    //    {
+    //        this.href='user-allorder.html'
+    //    }
+    //};
+    //aBtn[3].querySelector('a').onclick=function(){
+    //    if(localStorage.getItem('login') == 1)
+    //    {
+    //        this.href='user-allorder.html'
+    //    }
+    //};
 
     document.querySelector('#common-msg').onclick=function(){
         if(localStorage.getItem('login') == 1)
