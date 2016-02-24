@@ -360,7 +360,7 @@ function inpChange(id,myText){
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
             var listJson=eval('('+d+')');
             if(!listJson.success){
-                alert(listJson.message);
+                jAlert(listJson.message);
                 return;
             }
             window.localStorage.setItem('cityListInfo',JSON.stringify(listJson.data));
@@ -622,9 +622,9 @@ function inpChange(id,myText){
                 '</div>'+
                 '<div class="cityWordBox" id="cityWordBox">'+
                     '<div class="cityWord">'+
-                    '<div><a href="#cl_curr">当前</a></div>'+
-                    '<div><a href="#cl_hot">热门</a></div>'+
-                    '<ul class="cl_word" id="cl_side">'+
+                    '<div class="fr"><a href="#cl_curr">当前</a></div>'+
+                    '<div class="fr"><a href="#cl_hot">热门</a></div>'+
+                    '<ul class="cl_word fr" id="cl_side">'+
                     '<li><a href="#a">A</a></li>'+
                 '<li><a href="#b">B</a></li>'+
                 '<li><a href="#c">C</a></li>'+
@@ -891,9 +891,9 @@ function inpChange(id,myText){
                     '</div>'+
                     '<div class="cityWordBox" id="cityWordBox">'+
                     '<div class="cityWord">'+
-                    '<div><a href="#cl_curr">当前</a></div>'+
-                    '<div><a href="#cl_hot">热门</a></div>'+
-                    '<ul class="cl_word" id="cl_side">'+
+                    '<div class="fr"><a href="#cl_curr">当前</a></div>'+
+                    '<div class="fr"><a href="#cl_hot">热门</a></div>'+
+                    '<ul class="cl_word fr" id="cl_side">'+
                     '<li><a href="#a">A</a></li>'+
                     '<li><a href="#b">B</a></li>'+
                     '<li><a href="#c">C</a></li>'+
@@ -1269,8 +1269,8 @@ function inpChange(id,myText){
         lsf_myweb.getbyid(that.idLive).innerHTML='周'+n2c(oday1)+' 入住';
         lsf_myweb.getbyid(that.idLeave).innerHTML='周'+n2c(oday2)+' 离店';
     }
-    var myDate1 = new Calender2({id: "content2", num: 13, time: obj,idTotal:"total_day",idLive:"week_span1",idLeave:"week_span2"});
-    var domestic_calender=new Calender2({id:"domesticCalender",num:13,time:obj2,idTotal:"domeTotalDay",idLive:"weekSpan3",idLeave:"weekSpan4"});
+    var myDate1 = new Calender2({id: "nav2-center1", num: 13, time: obj,idTotal:"total_day",idLive:"week_span1",idLeave:"week_span2"});
+    var domestic_calender=new Calender2({id:"nav2-center2",num:13,time:obj2,idTotal:"domeTotalDay",idLive:"weekSpan3",idLeave:"weekSpan4"});
 
 
 

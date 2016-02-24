@@ -320,31 +320,62 @@ var ticketSeatChoose = {
     createGoTripHtml:function(arg){
         var that = ticketSeatChoose;
         var tipDay = arg.flightLeaveSpacingDay>1?arg.flightLeaveSpacingDay+'天':'',str='';
-        str = '<div class="go-trip">' +
-        '<div class="top-line">' +
-        '<span class="icon-go"></span>'+that.returnDate(arg.flightLeaveStartDate)+
-        '<span class="start">'+arg.cityNameFrom+'</span>'+
-        '<span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
-        '<span class="detail-word">详情<i></i></span></div>' +
-        '<div class="time-airport-info"><div class="start-time-info">' +
-        '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
-        '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
-        '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
-        '<span class="arrow-time"></span>'+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
-        '<div class="end-time-info">'+
-        ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
-        '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
-        '<span class="air-port-word-right">'+arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo+arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive+'</span>'+
-        '</div>'+
-        '</div>'+
-        '<div class="bottom-word">'+
-        '<span>'+arg.segmentsLeave[0].operatingCarrierName+'</span>'+
-        '<span> | </span>'+
-        '<span>'+arg.segmentsLeave[0].operatingCarrierCode+arg.segmentsLeave[0].flightNo+'</span>'+
-        '<span> | </span>'+
-        '<span>'+arg.segmentsLeave[0].planeName+arg.segmentsLeave[0].planeType+'</span></span>'+
-        '</div>'+
-        '</div>';
+        if(arg.segmentsReturn == null)
+        {
+            str = '<div class="go-trip">' +
+                '<div class="top-line top-pad-no"">' +
+                '</span>'+that.returnDate(arg.flightLeaveStartDate)+
+                '<span class="start">'+arg.cityNameFrom+'</span>'+
+                '<span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                '<span class="detail-word">详情<i></i></span></div>' +
+                '<div class="time-airport-info"><div class="start-time-info">' +
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
+                '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
+                '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
+                '<span class="arrow-time"></span>'+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
+                '<div class="end-time-info">'+
+                ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
+                '<span class="air-port-word-right">'+arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo+arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive+'</span>'+
+                '</div>'+
+                '</div>'+
+                '<div class="bottom-word">'+
+                '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
+                '<span>|</span>'+
+                '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
+                '<span>|</span>'+
+                '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+
+                '</div>'+
+                '</div>';
+        }
+        else
+        {
+            str = '<div class="go-trip">' +
+                '<div class="top-line">' +
+                '<span class="icon-go"></span>'+that.returnDate(arg.flightLeaveStartDate)+
+                '<span class="start">'+arg.cityNameFrom+'</span>'+
+                '<span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                '<span class="detail-word">详情<i></i></span></div>' +
+                '<div class="time-airport-info"><div class="start-time-info">' +
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
+                '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
+                '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
+                '<span class="arrow-time"></span>'+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
+                '<div class="end-time-info">'+
+                ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
+                '<span class="air-port-word-right">'+arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo+arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive+'</span>'+
+                '</div>'+
+                '</div>'+
+                '<div class="bottom-word">'+
+                '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
+                '<span>|</span>'+
+                '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
+                '<span>|</span>'+
+                '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+
+                '</div>'+
+                '</div>';
+        }
         return str
     },
     createBackTripHtml:function(arg){
@@ -399,13 +430,22 @@ var ticketSeatChoose = {
         var strModal='<div class="ticket-detail-modal" style="display: none;"><ul class="detail-outer">'+detailGo(arg)+detailBack(arg)+'</ul></div>';
         return strModal;
         function detailGo(arg){
-                var str = '';
+            var str = '';
+            if(arg.segmentsReturn == null)
+            {
                 str += '<li class="detail-start">' +
-                '<div class="top-line"><span class="icon-go"></span>'+that.returnDate(arg.flightLeaveStartDate)+'<span class="start">'+arg.cityNameFrom+'</span><span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
-                '<span class="detail-hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsLeave)+'</li>';
-                return str;
-
+                    '<div class="top-line top-pad-no">'+that.returnDate(arg.flightLeaveStartDate)+'<span class="start">'+arg.cityNameFrom+'</span><span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                    '<span class="detail-hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsLeave)+'</li>';
             }
+            else
+            {
+                str += '<li class="detail-start">' +
+                    '<div class="top-line"><span class="icon-go"></span>'+that.returnDate(arg.flightLeaveStartDate)+'<span class="start">'+arg.cityNameFrom+'</span><span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                    '<span class="detail-hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsLeave)+'</li>';
+            }
+            return str;
+
+        }
         function detailBack(arg){
             var str = '';
             if(arg.segmentsReturn){

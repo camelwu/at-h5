@@ -366,8 +366,8 @@ $('#birth-cont').click(function(){
             obj.on('click', show)
         }
         function show(){
-            var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('号','');
-
+            var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
+            //console.log(birthstr);
             var Parameters={
                 "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
                 "ForeEndType": 3,
@@ -396,7 +396,7 @@ function mycallback_birth(ret){
 
 function mycallback(ret){
     infoJson = eval('('+ret+')');
-    //console.log(infoJson);
+    console.log(infoJson);
     var nickname = $("#nickname")[0];
     var name = $("#name")[0];
     var user_email = $("#email")[0];
