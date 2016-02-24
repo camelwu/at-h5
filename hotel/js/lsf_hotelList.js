@@ -917,5 +917,9 @@ function styleChange(id,mytext){
 
         }
     }
-
+    var hl_hiddenBox=document.getElementById('hl_hiddenBox');
+    $('#hl_hiddenBox').bind("touchmove",function(ev){
+        //ev.preventDefault();
+        ev.stopPropagation?ev.stopPropagation():ev.cancelBubble=true;
+    });
 })();
