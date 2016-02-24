@@ -13,15 +13,16 @@
 			find : ['目的地', basePath + '/scenic/index.html'],
 			user : ['我的', basePath + '/user/user.html']
 		}, arr_t = {
-			1 : '护照',
-			2 : '身份证',
-			3 : '出生证明',
-			4 : '港澳通行证',
-			5 : '军官证',
-			6 : '驾驶证',
-			7 : '台胞证',
-			8 : '回乡证',
-			9 : '其他'
+			1 : '身份证',
+			2 : '护照',
+			3 : '出生证明港澳通行证',
+			4 : '军官证',
+			5 : '驾驶证',
+			6 : '台胞证',
+			7 : '回乡证',
+			8 : '户口本',
+			9 : '出生证明',
+			10 : '其他'
 		}, getpara = function(str) {
 			var reg = new RegExp("(^|&)" + str + "=([^&]*)(&|$)");
 			var r = window.location.search.substr(1).match(reg);
@@ -168,6 +169,24 @@
 					return false;
 				}
 			},
+
+			//比较时间串与当前时间的大小
+			compareBirth : function(timeStr) {
+				if (timeStr == '' || timeStr == null) {
+					return false;
+				}
+				var timeData = timeStr.toString().split('-');
+				var year = timeData[0];
+				var month = parseInt(timeData[1] - 1);
+				var day = parseInt(timeData[2]);
+				var dtime = new Date(year, month, day).getTime();
+				var nowtime = new Date().getTime();
+				if (dtime <= nowtime-410227200000) {
+					return true;
+				} else {
+					return false;
+				}
+			},
 			//问好
 			sayHello : function() {
 				var date = new Date();
@@ -270,6 +289,30 @@
 					if (pattern.test(name)) {
 						return true;
 					} else {
+						return false;
+					}
+				},
+				//中文姓名
+				ChineseName:function(name){
+					var pattern=/^([\u4e00-\u9fa5]){2,7}$/
+					//只能是中文，长度为2-7位
+					if(pattern.test(name)){
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				},
+				engName:function(name){
+					var pattern=/^[a-zA-Z][a-zA-Z/s]*[a-zA-Z]{1,25}$/;
+					//字符头尾是字母，中间由空格和字母组成，中间可以有多个空格;2-26字符
+					if(pattern.test(name))
+					{
+						return true;
+					}
+					else
+					{
 						return false;
 					}
 				},

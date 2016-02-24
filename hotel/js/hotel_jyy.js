@@ -163,6 +163,14 @@ function h_l_s(){
         }
     }
     */
+    //解决300毫秒延迟问题
+    (function($) {
+        $(document).ready(function() {
+            window.addEventListener('load', function() {
+                FastClick.attach(document.body);
+            }, false);
+        });
+    }(jQuery));
 }
 
 
