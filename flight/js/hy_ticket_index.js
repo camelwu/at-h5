@@ -742,7 +742,6 @@
 
            })
        },
-
        searchHandler:function(){
           var cityListSearched = document.querySelector('.city-list-searched');
           var cityInputZone = document.querySelector('#city-input-zone');
@@ -813,7 +812,6 @@
                }
                return week;
            };
-
            startStrMonth = parseInt(s.getMonth() +1) > 10 ?parseInt(s.getMonth() +1):'0'+parseInt(s.getMonth() +1);
            startStrDate = parseInt(s.getDate()) > 10 ?parseInt(s.getDate()):'0'+parseInt(s.getDate());
            endStrMonth = parseInt(r.getMonth() +1) > 10 ?parseInt(r.getMonth() +1):'0'+parseInt(r.getMonth() +1);
@@ -940,7 +938,9 @@
           /*this.isAnimation = false;*/
            this.ticketSearchedInfo = this.storageUtil.get('ticketSearchedInfo') || "";
            this.initDate();
-           this.initShowData(this.ticketSearchedInfo);
+           if(this.ticketSearchedInfo){
+               this.initShowData(this.ticketSearchedInfo);
+           }
            this.loadingFade();
            this.getHotCity("NOTCN");
            this.getHotCity("CN");
