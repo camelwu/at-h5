@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>订单确认等待页面</title>
+    <link href="styles/framework.css" rel="stylesheet"/>
+    <link href="styles/style.css" rel="stylesheet"/>
+    <link href="styles/tips.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="preloader">
+    <div id="status-f">
+        <p class="center-text">
+            <br>
+            <em>订单确认中，请稍等……</em>
+        </p>
+    </div>
+</div>
+
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/vlm.js"></script>
+<script type="text/javascript" src="js/payment.js"></script>
+<script type="application/javascript">
+$(document).ready()
+{
+    var data = {
+        "Parameters": {"BookingRefNo": "SGSINFT0012966"},
+        "ForeEndType": 3,
+        "Code": "3009"
+    }
+    console.log(data);
+    var payment = new paymentObj(data, mycallback);
+    payment.handlePayment();
+}
+function mycallback(str){
+    console.log(str);
+    var data=eval('('+str+')');
+    if(data.success){
+        window.location.href='flight/pay_success.html';
+    }else{
+       alert(data.message);
+    }
+}
+
+</script>
+</body>

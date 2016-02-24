@@ -84,7 +84,7 @@
 			$("#popup_content").addClass(type);
 			if (type=="layer") {
 				$("#popup_container").css({
-					minHeight : $("#popup_container").outerHeight(),
+					minHeight : $("#popup_container").outerHeight(true),
 					maxWidth : $("#popup_container").outerWidth() - 24
 				});
 			}
@@ -207,11 +207,9 @@
 					break;
 				case 'layer':
 					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
-					/*$("#popup_ok").click(function() {
-					 $.alerts._hide();
-					 if (callback)
-					 callback(true);
-					 });*/
+					$("#popup-overlay").click(function() {
+						$.alerts._hide();
+					});
 					$("#popup_cancel").click(function() {
 						$.alerts._hide();
 						if (callback)
@@ -266,7 +264,7 @@
 			}
 		},
 		_reposition : function() {
-			var top = (($(window).height() / 2) - ($("#popup_container").outerHeight() / 2)) + $.alerts.verticalOffset, left = (($(window).width() / 2) - ($("#popup_container").outerWidth() / 2)) + $.alerts.horizontalOffset, h = $(document).height() - 200;
+			var top = (($(window).height() / 2) - ($("#popup_container").outerHeight(true) / 2)) + $.alerts.verticalOffset, left = (($(window).width() / 2) - ($("#popup_container").outerWidth() / 2)) + $.alerts.horizontalOffset, h = $(document).height() - 200;
 			if (top < 0)
 				top = 0;
 			if (left < 0)
@@ -281,10 +279,11 @@
 					//height : h + 'px',
 					maxHeight : h + 'px'
 				});
+				console.log($("#popup_container").outerHeight(true)+",h="+$("#popup_container").offsetHeight);
 				$("#popup_container").css({
 					top : '50%',
 					left : '50%',
-					marginTop : '-' + $("#popup_container").outerHeight() / 2 + 'px',
+					marginTop : '-' + $("#popup_container").outerHeight(true) / 2 + 'px',
 					marginLeft : '-' + $("#popup_container").outerWidth() / 2 + 'px'
 				});
 

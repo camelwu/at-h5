@@ -208,22 +208,28 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1.0rem;
 }
 
-.all-elements .air_content .hTab .singleTrip {
+
+.light-title{
     width: 50%;
     height: 100%;
     font-size: 1.6rem;
-    float: left;
     text-align: center;
     color: rgb(255, 180, 19);
     border-bottom: 0.2rem solid rgb(255, 180, 19);
 }
-
-.all-elements .air_content .hTab .doubleTrip {
+.grey-title{
     width: 50%;
     height: 100%;
     font-size: 1.6rem;
-    float: right;
+    color: rgb(102, 102, 102);
     text-align: center;
+}
+
+.all-elements .air_content .hTab .singleTrip{
+    float: left;
+}
+.all-elements .air_content .hTab .doubleTrip {
+    float: right;
 }
 
 .all-elements .air_content .realInfo {
@@ -1716,6 +1722,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 2.8rem;
 }
 
+.top-pad-no{
+    padding-left: 0;
+}
+
 .top-line span {
     font-size: 1.6rem;
     color: #45494b;
@@ -2324,15 +2334,15 @@ h1, h2, h3, h4, h5, h6 {
     top: 33.3%;
 }
 
-.ride-user .ride-user-first button {
-    padding: 0.6rem 1.0rem;
+.add-Passenger {
+    padding: 0.4rem 1.0rem;
     background: #ffb413;
     color: #FFFFFF;
     font-size: 1.2rem;
     border-radius: 4px;
     position: absolute;
     right:1rem;
-    top: 18.3%;
+    top: 12%;
 }
 
 .ride-user .ride-user-info {

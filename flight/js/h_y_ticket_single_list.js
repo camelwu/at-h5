@@ -288,7 +288,7 @@ var ticketSingle = {
             '<span class="time-number">'+that.timeCut(arg.data.flightInfos[i].flightLeaveEndDate)+'</span >' +
             '<span class= "air-port-word" >'+arg.data.flightInfos[i].segmentsLeave[arg.data.flightInfos[i].segmentsLeave.length-1].airportNameTo+arg.data.flightInfos[i].segmentsLeave[0].termArrive+'</span>' +
             '</div ></div>' +
-            '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].airCorpName+arg.data.flightInfos[i].segmentsLeave[0].airCorpCode+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
+            '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierName+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierCode+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
             '</div ></div>' +
             '<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span ><span class = "price-num">'+arg.data.flightInfos[i].totalFareAmountExc+'</span>'+
             '</div ><div class="single-price-tax-info"><span class="tax-word">税</span>￥'+arg.data.flightInfos[i].totalTaxAmountADT+'</div></div>';

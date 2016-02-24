@@ -344,7 +344,7 @@ var ticketDouble = {
             '<span class="air-port-word">'+data[data.length-1].airportNameTo+data[data.length-1].termArrive+'</span>'+
             '</div>'+
             '</div>'+
-            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].airCorpCode+data[0].planeName+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
+            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].operatingCarrierCode+data[0].flightNo+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
             '</p>'+
             '</div>';
             return str;
@@ -376,7 +376,7 @@ var ticketDouble = {
             '<span class="air-port-word">'+data[data.length-1].airportNameTo+data[data.length-1].termArrive+'</span>'+
             '</div>'+
             '</div>'+
-            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].airCorpCode+data[0].planeName+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
+            '<p class="small-info-double ">'+data[0].operatingCarrierName+data[0].operatingCarrierCode+data[0].flightNo+'<span>&nbsp;|&nbsp;</span>'+data[0].cabinClassName+isStrop+isShareFlight+
             '</p>'+
             '</div>';
             return str;

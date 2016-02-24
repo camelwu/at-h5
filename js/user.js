@@ -428,14 +428,17 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
 //    });
 
+    //新增常旅
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"week_span2"});
     var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"week_span2"});
     var myDate2 = new Scroller({id: "postCard", type:"card",cont:"week_span2"});
 
+    //编辑常旅
     var myDate3 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"week_span2"});
-    var myDate3 = new Scroller({id: "time-cont-edit", type:"birth",cont:"week_span2"});
+    var myDate3 = new Scroller({id: "time-cont-edit", type:"validity",cont:"week_span2"});
     var myDate3 = new Scroller({id: "cardType", type:"card",cont:"week_span2"});
 
+    //个人信息修改页生日
     var myDate4 = new Scroller({id: "birth-cont-per", type:"birth",cont:"week_span2"});
 
 

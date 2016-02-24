@@ -56,7 +56,7 @@
                                 <span class="nav2-lefttop">日期</span>
                                 <span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
                             </div>
-                            <div class="nav2-center">
+                            <div class="nav2-center" id="nav2-center1">
                                 <div class="nav2-centertop">
                                     <p><input name="InterCheckInDate" id="CheckInDate"  readonly="readonly" class="fl"  value="2015-11-03"><span id="week_span1" class="fl">周二 入住</span></p>
                                 </div>
@@ -136,7 +136,7 @@
                                 <span class="nav2-lefttop">日期</span>
                                 <span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
                             </div>
-                            <div class="nav2-center">
+                            <div class="nav2-center" id="nav2-center2">
                                 <div class="nav2-centertop">
                                     <p><input name="DomCheckInDate" id="DomCheckInDate"  readonly="readonly"   value="2015-11-03" class="fl"><span id="weekSpan3" class="fl">周二 入住</span></p>
 
@@ -202,9 +202,9 @@
         </div>
         <div class="cityWordBox" id="cityWordBox">
             <div class="cityWord">
-                <div><a href="#cl_curr">当前</a></div>
-                <div><a href="#cl_hot">热门</a></div>
-                <ul class="cl_word" id="cl_side">
+                <div class="fr"><a href="#cl_curr">当前</a></div>
+                <div class="fr"><a href="#cl_hot">热门</a></div>
+                <ul class="cl_word fr" id="cl_side">
                     <li><a href="#a">A</a></li>
                     <li><a href="#b">B</a></li>
                     <li><a href="#c">C</a></li>
@@ -426,6 +426,7 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/d_calendar1.0.2.js"></script>
 <script src="../js/lib/template.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
 <script id="tpl_Name" type="text/template"></script>
 <script src="js/lsf_hotel.js"></script>
 </html>

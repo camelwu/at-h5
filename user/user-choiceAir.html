@@ -66,7 +66,7 @@
 					<b class="icons user-add"></b>新增乘机人
 				</div>
 				<ul class="often-traveler choosed-traveler" id="hisList">
-					<li class="eve-traveler">
+					<!-- <li class="eve-traveler">
 						<b class="icon user-choice"></b>
 						<b class="icon user-edit"></b>
 						<ul class="often_user">
@@ -77,7 +77,7 @@
 								身份证 <span>11023319880358765</span>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 				<div class="name-text" style="margin-bottom: 0;margin-top: -15px;">
 					首字母排序
@@ -407,9 +407,9 @@
 		<script src="../js/lib/plugins.js"></script>
 		<script src="../js/lib/template.js"></script>
 		<script src="../js/lib/scroller.js"></script>
-		<!--script src="scripts/userChoice.js"></script-->
+		<script src="scripts/userChoice.js"></script>
 		<script>
-			vlm.init();
+			/*vlm.init();
 			var urlobj = vlm.parseUrlPara(window.location.href);
 			console.log(vlm.getpara("title"));
 			$("#toper h3").html(vlm.getpara("title"));
@@ -417,7 +417,7 @@
 				"Parameters" : "{\"memberId\":" + memberId + "}",
 				"ForeEndType" : 3,
 				"Code" : "0074"
-			}, tpl_traveler = ['{% for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}', '<li class="eve-traveler">', '<b class="icon user-choice"></b>', '<b class="icon user-edit"></b>', '<ul class="often_user">', '<li>{%=dd.traveller.idName%}{%=dd.traveller.lastName%}/{%=dd.traveller.firstName%}</li>', '<li>{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%} <span>{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>', '</ul>', '</li>', '{% } %}'].join('');
+			}, tpl_traveler = ['{% for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}', '<li class="eve-traveler">', '<b class="icon user-choice" data-id={%=i%}></b>', '<b class="icon user-edit" data-id="{%=dd.traveller.travellerId%}"></b>', '<ul class="often_user">', '<li>{%=dd.traveller.idName%}{%=dd.traveller.lastName%}/{%=dd.traveller.firstName%}</li>', '<li>{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%} <span>{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>', '</ul>', '</li>', '{% } %}'].join('');
 			function get_hisList() {
 				var from = urlobj.from, json = JSON.parse(localStorage.getItem(from));
 				if (json) {
@@ -444,11 +444,25 @@
 			get_allList();
 			function check_box() {
 				$(".user-choice").click(function() {
-					$(".user-choice").removeClass("choiced");
-					this.className = "icon user-choice choiced";
+					//单选
+					//$(".user-choice").removeClass("choiced");
+					//this.className = "icon user-choice choiced";
+					//多选
+					if(this.className == "icon user-choice choiced"){
+						this.className = "icon user-choice";
+					}else{
+						this.className = "icon user-choice choiced";
+						$("#toper h3").html("已勾选"+$(".choiced").length+"人");
+					}
 				});
 			}
-
+			$(".header-back").click(function(){
+				if (window.opener) {
+					window.close();
+				} else {
+					window.history.go(-1);
+				}
+			});
 			function submit_t() {
 				if (window.opener) {
 					var seled = $(".choiced");
@@ -460,6 +474,40 @@
 			function traveller(){
 				
 			}
+			//显示新增乘机人编辑页
+function showAddAir_page() {
+	var addAir_page = document.getElementById("addAir-page");
+	addAir_page.style.display = "block";
+}
+
+function closeAddAir_page() {
+	var addAir_page = document.getElementById("addAir-page");
+	addAir_page.style.display = "none";
+}
+
+function showChild_page() {
+	var childen_page = document.getElementById("childen-page");
+	childen_page.style.display = "block";
+}
+
+function closeChild_page() {
+	var childen_page = document.getElementById("childen-page");
+	childen_page.style.display = "none";
+}
+
+function choseSex() {
+	//  判断性别
+	var man = $("#man")[0];
+	var sexCode;
+	var sexName;
+	if (man.className == "icon-h traveler-sex1") {
+		sexCode = "Mr";
+		sexName = "男";
+	} else {
+		sexCode = "Mrs";
+		sexName = "女";
+	}
+}*/
 		</script>
 	</body>
 </html>

@@ -441,9 +441,7 @@ var bottomModal = {
         var detailListWrap = document.querySelector('.detail-list');
         var timeModal = document.querySelector('#time-modal');
         var filterWrap = document.querySelector('.filter-wrap');
-
         var filterModal = document.querySelector('#filter-modal');
-
         var resetActionWrap =document.querySelector('.reset-action-wrap');
 
         this.addHandler(filterWrap, 'click', function(event){
@@ -499,16 +497,20 @@ var bottomModal = {
             that.addHandler(detailListWrap, 'click', function(event){
                 var event = event || window.event;
                 var target =target||event.srcElement;
-
-                if(target.tagName=='LI'){
-                        var lis = target.parentNode.querySelectorAll('li');
+                if(target.tagName=='DIV'){
+                        var lis = target.parentNode.querySelectorAll('div');
                         for(var m = 0,cd = lis.length;m<cd; m++){
                             lis[m].className = lis[m]==target?"tag-item active":"tag-item";
                         }
                 }else if(target.tagName=='B'){
-                    var lis_ = target.parentNode.parentNode.querySelectorAll('li');
+                    var lis_ = target.parentNode.parentNode.querySelectorAll('div');
                     for(var j = 0,length = lis_.length;j<length; j++){
                         lis_[j].className = lis_[j].querySelector('b')==target?"tag-item active":"tag-item";
+                    }
+                }else if(target.tagName=='SPAN'){
+                    var lis_ = target.parentNode.parentNode.querySelectorAll('div');
+                    for(var j = 0,length = lis_.length;j<length; j++){
+                        lis_[j].className = lis_[j].querySelector('span')==target?"tag-item active":"tag-item";
                     }
                 }
             });
@@ -582,6 +584,20 @@ var bottomModal = {
                         void(0);
                 }
             }else if(target.tagName=='B'){
+                switch (target.parentNode.id){
+                    case 'fo_sc':
+                        filterHandler();
+                        break;
+                    case 'fo_ra':
+                        dereFlyHandler();
+                        break;
+                    case 'fo_lo':
+                        TaxHandler();
+                        break;
+                    default :
+                        void(0);
+                }
+            }else if(target.tagName=='SPAN'){
                 switch (target.parentNode.id){
                     case 'fo_sc':
                         filterHandler();
