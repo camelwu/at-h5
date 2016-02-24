@@ -66,7 +66,7 @@
         },
         get: function (key) {
             var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
-            if(!dataObj){
+            if(dataObj !=null){
                 return dataObj.data;
             }
         }
