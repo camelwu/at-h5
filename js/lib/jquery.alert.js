@@ -207,7 +207,7 @@
 					break;
 				case 'layer':
 					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
-					$("#popup-overlay").click(function() {
+					$("#popup_overlay").click(function() {
 						$.alerts._hide();
 					});
 					$("#popup_cancel").click(function() {
