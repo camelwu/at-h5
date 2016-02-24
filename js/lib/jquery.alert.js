@@ -283,7 +283,7 @@
 				$("#popup_container").css({
 					top : '50%',
 					left : '50%',
-					marginTop : '-' + $("#popup_container").outerHeight(true) / 2 + 'px',
+					marginTop : '-' + ($("#popup_container").outerHeight() / 2 + 20)+'px',
 					marginLeft : '-' + $("#popup_container").outerWidth() / 2 + 'px'
 				});
 
