@@ -1801,6 +1801,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .time-airport-info .total-time-info {
     text-align: center;
+    padding-top: 1.0rem;
+
 }
 
 .time-airport-info .end-time-info {

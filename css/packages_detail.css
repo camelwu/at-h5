@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -57,9 +57,38 @@ i{
 /*头图*/
 .picBox{overflow:hidden;position:relative;}
 .picBox img{width:100%;height:auto;}
-.picBox span.text_number{
-    position:absolute;bottom:15px;left:13px;background:rgba(0,0,0,0.8);
-    display:block;height:22px;line-height:22px;padding:0 10px;color:#999;font-size:13px;
+/*.picBox span.text_number{*/
+    /*position:absolute;bottom:15px;left:13px;background:rgba(0,0,0,0.8);*/
+    /*display:block;height:22px;line-height:22px;padding:0 10px;color:#999;font-size:13px;*/
+/*}*/
+.pd-mb{
+    position: absolute;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 15px;
+    color: white;
+    margin-top: -68px;
+}
+.pd-mb div:nth-child(1){
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+.pd-mb div:nth-child(2){
+    font-size: 1rem;
+}
+.jd-icon {
+    background-image: url(../images/ui/jd-icon.png);
+    background-repeat: no-repeat;
+    background-size: 256px 71px;
+    display: inline-block;
+}
+.s-you {
+    position: relative;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    margin-right: 20px;
+    background-position: -52px -23px;
 }
 /*page tag*/
 .pageTag{

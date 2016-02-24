@@ -2,6 +2,13 @@
 html {
     font-size:62.5%;
 }
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x:hidden;
+    color:#666;
+    background:#f5f4f9;
+}
 .head-h3{
     color: #ffffff;
     text-align: center;
@@ -46,7 +53,6 @@ html {
 .hotelcontent{
     width: 100%;
     list-style-type: none;
-    padding-bottom: 70px;
 }
 .h-li{
     display: -moz-box;
@@ -80,11 +86,11 @@ html {
 .h-score{
     margin-top: 0.6rem;
 }
-.price{
+.l-price{
     position: relative;
     float: right;
     left: 38%;
-    margin-top: -36%;
+    bottom: 0;
 }
 .price-num{
     font-size:2rem;
@@ -94,6 +100,20 @@ html {
 .h-grade{
     margin-top: 0.6rem;
     margin-right: 5%;
+}
+.h-choose{
+    position:absolute;
+    right: 0;
+    display: none;
+}
+.hd-choose{
+    position:absolute;
+    width: 20px;
+    right: 0;
+    display: none;
+}
+.cho-active{
+    display: block;
 }
 .hl-icon1{
     display: inline-block;
@@ -172,6 +192,7 @@ html {
     background-position: 54% 7%;
 }
 .ho_list{
+    height: 114px;
     border-bottom: 1px solid #CCCCCC;
     clear: both;
 }
@@ -206,25 +227,25 @@ html {
     font-weight: 600;
     color:#fe4716;
 }
-.choose-no{
-    display: inline-block;
-    width:65px;
-    height: 34px;
-    border-radius: 5px;
-    text-align: center;
-    line-height: 34px;
-    background-color: #fdb330;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color:white;
-}
-.c-yes{
-    width:63px;
-    height: 32px;
-    border:1px solid #fdb330;
-    background-color:white;
-    color:#fdb330;
-}
+/*.choose-no{*/
+    /*display: inline-block;*/
+    /*width:65px;*/
+    /*height: 34px;*/
+    /*border-radius: 5px;*/
+    /*text-align: center;*/
+    /*line-height: 34px;*/
+    /*background-color: #fdb330;*/
+    /*font-size: 1.4rem;*/
+    /*font-weight: 600;*/
+    /*color:white;*/
+/*}*/
+/*.c-yes{*/
+    /*width:63px;*/
+    /*height: 32px;*/
+    /*border:1px solid #fdb330;*/
+    /*background-color:white;*/
+    /*color:#fdb330;*/
+/*}*/
 /*
     排序块
 */
@@ -445,3 +466,147 @@ html {
 /*
     房间升级页
 */
+.top-pic{
+    width:100%;
+}
+.d-list{
+    width: 94%;
+    list-style-type: none;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.d-list li{
+    height: 50px;
+    border-bottom:1px solid #dfdfdd;
+}
+.d-score{
+    float: left;
+    margin-top: 20px;
+    color:#484848;
+    font-size:0.8em;
+}
+.d-icon1{
+    float: right;
+    margin-right: 5px;
+    margin-top:20px;
+    display: block;
+    width:8px;height:14px;
+    background-image:url(../../images/ui/icons.png);
+    background-position:65% 3%;
+    background-size: 243px 160px;
+}
+.d-icon2{
+    display: inline-block;
+    width:15px;
+    height:10px;
+    float: left;
+    margin-left: 10px;
+    margin-top:20px;
+    background-image: url(../../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position:20% 9%;
+}
+.d-p2{
+    float: right;
+    margin-top: 20px;
+    margin-right: 5px;
+    color:#ffbf4b;
+    font-size:0.8em;
+}
+.d-p3{
+    float: left;
+    margin-top: 20px;
+    color:#484848;
+    font-size:1.3em;
+}
+.d-div3{
+    float: left;
+    margin-top: 10px;
+}
+.d-p5{
+    display: inline-block;
+    color:#484848;
+    font-size:1.3em;
+}
+.d-icon3{
+    display: inline-block;
+    width:15px;
+    height:15px;
+    margin-left: 5px;
+    background-image:url(../../images/ui/icons1.png);
+    background-position:27% 33.5%;
+    background-size: 400px 120px;
+}
+.d-p6{
+    margin-top: 4px;
+    color:#a1a1a1;
+    font-size:1em;
+}
+.d-icon4{
+    position: relative;
+    display: inline-block;
+    width: 19px;
+    height: 20px;
+    margin-top: -10px;
+    top: 5px;
+    background-image: url(../../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position: 84.6% 76%;
+}
+/*.d-icon4{*/
+    /*display: block;*/
+    /*float: right;*/
+    /*width:18px;*/
+    /*height:18px;*/
+    /*margin-top:20px;*/
+    /*background-image:url(../../images/ui/icons1.png);*/
+    /*background-position:12.6% 33%;*/
+    /*background-size: 400px 120px;*/
+/*}*/
+.hd-price{
+    float: right;
+    margin-right: 10px;
+    margin-top:15px;
+}
+.hd-price span:nth-child(1){
+    font-size:0.8em;
+    color:#fe4716;
+}
+.hd-price span:nth-child(2){
+    font-size:2em;
+    font-weight: 600;
+    color:#fe4716;
+}
+.d-p7{
+    margin-top: 4px;
+    color:#484848;
+    font-size:1em;
+}
+.d-but{
+    width:20%;
+    height:33px;
+    float: right;
+    border-radius: 5px;
+    margin-top: 8px;
+    text-align: center;
+    line-height: 35px;
+    background-color:#ffb412;
+    color: white;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+.but-choose{
+    background-color:white;
+    border:1px solid #ffb412;
+    color:#ffb412;
+}
+/*.d-icon5{*/
+    /*display: block;*/
+    /*float: right;*/
+    /*width:18px;*/
+    /*height:18px;*/
+    /*margin-top:20px;*/
+    /*background-image:url(../../images/ui/icons1.png);*/
+    /*background-position:19% 33%;*/
+    /*background-size: 400px 120px;*/
+/*}*/
