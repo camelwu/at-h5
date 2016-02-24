@@ -762,41 +762,53 @@
            })
        },
        searchHandler:function(){
+           //alert(1)
           var cityListSearched = document.querySelector('.city-list-searched');
           var cityInputZone = document.querySelector('#city-input-zone');
           var domesticCity = document.querySelector('.domestic-city');
           var internationalCity = document.querySelector('.international-city');
-          var valueStr = cityInputZone.value,resultStr = '';
-          var searchResult = [];
-          if(valueStr){
+          var valueStr = cityInputZone.value,resultStr = '',reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/;
+          var searchResult;
+
+          if(reg.test(valueStr)){
                if(domesticCity.style.display=='block'&&internationalCity.style.display=='none'){
+                   searchResult = [];
                      for(var k = 0; k < domesticCities.length;k++){
                            for(var t in domesticCities[k]){
                                if(domesticCities[k][t].indexOf(valueStr) > -1){
                                    searchResult.push(domesticCities[k])
+                                   console.log(domesticCities[k])
                                }
                            }
                      }
                }else{
+                   searchResult = [];
                    for(var p = 0; p < internationalCities.length; p++){
                        for(var te in internationalCities[p]){
                            if(internationalCities[p][te].indexOf(valueStr) > -1){
+                               console.log(internationalCities[p][te])
                                searchResult.push(internationalCities[p])
+                             }
+                            console.log(searchResult)
                            }
-                       }
                    }
                }
+              console.log(searchResult)
               if(!searchResult.length){
                   resultStr +='<li class="city-list-searched-item">无搜索结果</li>';
               }else{
                   for(var l = 0;l<searchResult.length;l++){
-                      resultStr += '<li class="city-list-searched-item">'+searchResult[l].CityName+'</li>'
+                      var operatingStr = searchResult[l].FullSpellingName, reg = /^(\w|[\u4E00-\u9FA5])*$/;
+                      var front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
+                      var middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                      var back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                      resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].CityName+'</span><span class="result-city-name-letter">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span></li>'
                   }
               }
               cityListSearched.innerHTML = resultStr;
               cityListSearched.style.display = 'block'
           }else{
-              cityListSearched.style.display = 'none'
+               cityListSearched.style.display = 'none'
           }
       },
        initDate:function(){

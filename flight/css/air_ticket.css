@@ -724,6 +724,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow-y: scroll;
 }
 
+
 .all-elements .city-content .city-list-searched li.city-list-searched-item {
     width: 100%;
     font-size: 1.4rem;
@@ -735,8 +736,22 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 0.1rem solid #dfdfdd;
     margin-bottom: 0;
     background: #ffffff;
-
 }
+
+.result-city-name{
+    display: block;
+    line-height: 1.9rem;
+    height: 1.9rem;
+}
+.result-city-name-letter{
+    display: block;
+    line-height: 1.1rem;
+    height: 1.1rem;
+}
+.high-light-letter{
+    color: #ffb413;
+}
+
 
 .all-elements .city-content .right-side {
     box-sizing: border-box;

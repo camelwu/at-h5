@@ -9160,7 +9160,7 @@ var domesticCities = [
         "CountryCode": "CN",
         "CityName": "蚌埠",
         "CityEN": "Bengbu",
-        "FullSpellingName": "bangbu",
+        "FullSpellingName": "bengbu",
         "CityCode": "BFU"
     },
     {
@@ -10872,15 +10872,6 @@ var domesticCities = [
         "CityEN": "Tianjin",
         "FullSpellingName": "tianjin",
         "CityCode": "TSN"
-    },
-    {
-        "CountryName": "中国",
-        "EnglishEN": "China",
-        "CountryCode": "CN",
-        "CityName": "天水",
-        "CityEN": "Tianshui",
-        "FullSpellingName": "tianshui",
-        "CityCode": "THQ"
     },
     {
         "CountryName": "中国",
