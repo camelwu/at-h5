@@ -169,7 +169,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
 
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\""+$('#country-name').attr('data-code')+"\",\"CountryName\":\""+$('#countryName').html()+"\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value.replace('年','-').replace('月','-').replace('号','')+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\""+$('#country-name').html()+"\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0071"
                     }
@@ -271,7 +271,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\"CN\",\"CountryName\":\"中国\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+oBirthday+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\""+$('#country-name').attr('data-code')+"\",\"CountryName\":\""+$('#countryName').html()+"\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+oBirthday+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\""+$('#country-name').html()+"\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0072"
                     };
@@ -294,12 +294,13 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         function deleteTra(obj) {
             obj.onclick = function () {
                 var travelId = array[index];
-                var id = arrayId[index];
+                console.log(travelId);
                 var Parameters = {
                     "Parameters": "{\"travellerId\":" + travelId + "}",
                     "ForeEndType": 3,
                     "Code": "0073"
                 };
+                //console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
             }
         }
@@ -349,6 +350,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     var idtype_num=travJson.data[i].listTravellerIdInfo.length;
                     array[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].travellerId;
                     arrayId[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].id;
+                    $('#countryName').html(travJson.data[i].traveller.countryName);
+                    $('#countryName').html(travJson.data[i].traveller.countryName);
+                    $('#country-name').html(travJson.data[i].listTravellerIdInfo[idtype_num-1].idCountry);
                     var li = document.createElement("li");
                     li.className = "eve-traveler";
                     var b = document.createElement("b");
@@ -403,9 +407,10 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
     function mycallback_addtrav(ret) {
         var myJson = eval('(' + ret + ')');
-        console.log(myJson);
+        //console.log(myJson);
         if (myJson.success) {
             document.getElementById("addForm").submit();
+
         } else {
             alert(myJson.message);
         }
