@@ -36,8 +36,6 @@
        singleAndDoubleTangle:function(){
           var double = document.querySelector('#double');
           var single = document.querySelector('#single');
-           single.style.display = 'block';
-           double.style.display = 'none';
            document.querySelector('.hTab').onclick = function(event){
                var event = event || window.event;
                var target = event.target || event.srcElement;
@@ -66,12 +64,11 @@
         },
         get: function (key) {
             var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
-            if(dataObj !=null){
+            if(dataObj!=null){
                 return dataObj.data;
             }
         }
     },
-
        addHandler: function (target, eventType, handle) {
            if (document.addEventListener) {
                this.addHandler = function (target, eventType, handle) {
@@ -89,20 +86,6 @@
                }
            }
            this.addHandler(target, eventType, handle);
-       },
-
-       correctingFrontPic:function(){
-           var innerWidth = window.innerWidth, innerHeight = window.innerHeight;
-           var outerDiv = document.querySelector('.slider');
-           var innerUl = document.querySelector('.frontPicUl');
-           var oLis = document.querySelectorAll('.frontPicUl>li');
-           outerDiv.style.width = innerWidth + 'px';
-           outerDiv.style.height = innerHeight*0.325 + 'px';
-           innerUl.style.width = (100*oLis.length)+"%";
-           for(var i = 0; i< oLis.length;i++){
-               oLis[i].style.width = innerWidth + 'px';
-           }
-           innerUl.style.left = -innerWidth + 'px';
        },
 
        returnCityCode:function(arg){
@@ -245,13 +228,6 @@
 
        },
 
-       carousel:function(){
-           var innerUl = document.querySelector('.frontPicUl');
-           this.addHandler(innerUl, 'touchstart', this.startHandler);
-           this.addHandler(innerUl, 'touchmove', this.moveHandler);
-           this.addHandler(innerUl, 'touchend', this.endHandler);
-       },
-
        changeItem:function(itemNum){
           var oSpans = document.querySelectorAll('.item-span');
              for(var i = 0;i<oSpans.length; i++){
@@ -309,50 +285,6 @@
            ticketIndexModal.isAnimation = false;
            ticketIndexModal.autoMove();
        },
-
-       autoMove:function(){
-           var innerUl = document.querySelector('.frontPicUl');
-           var slider = document.querySelector('.slider');
-           var minLeftValue = -(document.querySelectorAll('.frontPicLi').length - 2) * window.innerWidth;
-           var maxLeftValue = -window.innerWidth;
-           var maxNum = document.querySelectorAll('.slider li').length-2;
-           function animate(offset){
-               ticketIndexModal.isAnimation = true;
-               var newLeft = parseInt(innerUl.style.left) + offset;
-               var time = 500,interval = 10,num;
-               var speed = offset/(time/interval);
-               function go(){
-                   window.clearTimeout(ticketIndexModal.autoTimerOut);
-                   ticketIndexModal.autoTimerOut = null;
-                   if( (speed < 0 && parseInt(innerUl.style.left) > newLeft) || (speed > 0 && parseInt(innerUl.style.left) < newLeft)){
-                       innerUl.style.left = parseInt(innerUl.style.left) + speed + 'px';
-                       ticketIndexModal.autoTimerOut = setTimeout(go,interval);
-                   }
-                   else{
-                       ticketIndexModal.isAnimation = false;
-                       innerUl.style.left = newLeft   +'px';
-                       if(newLeft > maxLeftValue ){
-                           innerUl.style.left = minLeftValue + 'px';
-                       }
-                       if(newLeft < minLeftValue){
-                           innerUl.style.left = maxLeftValue + 'px';
-                       }
-                   }
-                   num = Math.abs(Math.floor(parseFloat(innerUl.style.left)/ window.innerWidth));
-                   num = num >= maxNum?0:num;
-                   ticketIndexModal.changeItem(num);
-               }
-               go();
-           }
-
-           function tricter(){
-               if(!ticketIndexModal.isAnimation){
-                   animate(-window.innerWidth);
-               }
-           }
-           ticketIndexModal.autoTimerInt = setInterval(tricter,3000)
-       },
-
        preventDefault: function (event) {
            if (event.preventDefault) {
                event.preventDefault();
@@ -936,8 +868,6 @@
                });
        },
        init:function(){
-          /*this.tempCurLeft = 0;*/
-          /*this.isAnimation = false;*/
            this.ticketSearchedInfo = this.storageUtil.get('ticketSearchedInfo') || "";
            this.initDate();
            if(this.ticketSearchedInfo){
@@ -952,15 +882,11 @@
            this.single();
            this.eventHandle2();
            this.singleAndDoubleTangle();
-          /*this.correctingFrontPic();*/
            this.toTicketList();
            this.toCitySearch();
-          /*this.carousel();*/
-          /*this.autoMove();*/
            this.tangleCity();
            this.dhisChoosePool = [];
            this.ihisChoosePool = [];
-          /*this.addHandler(window, 'resize',this.correctingFrontPic);*/
        }
    };
 
