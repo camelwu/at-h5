@@ -497,18 +497,18 @@ var bottomModal = {
             that.addHandler(detailListWrap, 'click', function(event){
                 var event = event || window.event;
                 var target =target||event.srcElement;
-                if(target.tagName=='DIV'){
-                        var lis = target.parentNode.querySelectorAll('div');
+                if(target.tagName=='LI'){
+                        var lis = target.parentNode.querySelectorAll('li');
                         for(var m = 0,cd = lis.length;m<cd; m++){
                             lis[m].className = lis[m]==target?"tag-item active":"tag-item";
                         }
                 }else if(target.tagName=='B'){
-                    var lis_ = target.parentNode.parentNode.querySelectorAll('div');
+                    var lis_ = target.parentNode.parentNode.querySelectorAll('li');
                     for(var j = 0,length = lis_.length;j<length; j++){
                         lis_[j].className = lis_[j].querySelector('b')==target?"tag-item active":"tag-item";
                     }
                 }else if(target.tagName=='SPAN'){
-                    var lis_ = target.parentNode.parentNode.querySelectorAll('div');
+                    var lis_ = target.parentNode.parentNode.querySelectorAll('li');
                     for(var j = 0,length = lis_.length;j<length; j++){
                         lis_[j].className = lis_[j].querySelector('span')==target?"tag-item active":"tag-item";
                     }
@@ -518,6 +518,9 @@ var bottomModal = {
             that.addHandler(filterBottom, 'click', function(event){
                 var event = event || window.event;
                 var target =target||event.srcElement;
+                if(target.id == "filter-bottom"){
+                    return;
+                }
                 var info =target.getAttribute('data-info');
                 var sibLis =target.parentNode.querySelectorAll('li');
                 for(var i= 0,len=sibLis.length;i<len;i++){

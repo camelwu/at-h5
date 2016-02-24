@@ -26,7 +26,6 @@
        },
 
        reDate:function(arg){
-           console.log(arg)
            var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(arg);
            tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
            tStr[2] = parseInt(tStr[2]) < 10?'0'+parseInt(tStr[2]):parseInt(tStr[2]);
@@ -542,12 +541,98 @@
                 this.addHandler(aBox[f],'click',function(event){
                     var event = event || window.event;
                     var target = event.target || event.srcElement;
-                    if(target.className=='add-minus-per-more'){
-                        target.parentNode.querySelector('span').innerHTML = parseInt(target.parentNode.querySelector('span').innerHTML)+1;
-                        if(parseInt(target.parentNode.querySelector('span').innerHTML)>=10){target.parentNode.querySelector('span').innerHTML=10;}
-                    }else if(target.className=='add-minus-per-less'){
-                        target.parentNode.querySelector('span').innerHTML = parseInt(target.parentNode.querySelector('span').innerHTML)-1;
-                        if(parseInt(target.parentNode.querySelector('span').innerHTML)<=0){target.parentNode.querySelector('span').innerHTML=0;}
+                    var checkChildNum = function(arg){
+                        var num = '';
+                        switch (arg){
+                            case 0 :
+                                num = 0;
+                                break;
+                            case 1 :
+                                num = 2;
+                                break;
+                            case 2 :
+                                num = 4;
+                                break;
+                            case 3 :
+                                num = 6;
+                                break;
+                            case 4 :
+                                num = 5;
+                                break;
+                            case 5 :
+                                num = 4;
+                                break;
+                            case 6 :
+                                num = 3;
+                                break;
+                            case 7 :
+                                num = 2;
+                                break;
+                            case 8 :
+                                num = 1;
+                                break;
+                            case 9 :
+                                num = 0;
+                            default :void(0)
+                        }
+                        return num;
+                    },maxChild = 0,operaEle = target.parentNode.parentNode.parentNode;
+
+                    maxChild = checkChildNum(parseInt(operaEle.querySelector('span.adult-number').innerHTML))
+                    if(target.className.indexOf('add-minus-per-more')>-1){
+                        var tempEle = target.parentNode.querySelector('span');
+                          if(tempEle.className.indexOf('adult-number')>-1){
+                              if(parseInt(tempEle.innerHTML)+1 < 9){
+                                  tempEle.innerHTML = parseInt(tempEle.innerHTML)+1;
+                                  target.className = "add-minus-per-more adult";
+                              }else{
+                                  tempEle.innerHTML = 9;
+                                  target.className = "add-minus-per-more adult add-minus-per-more-grey"
+                              }
+                              console.log(operaEle)
+                               maxChild = checkChildNum(parseInt(tempEle.innerHTML))
+                              operaEle.querySelector('span.child-number').innerHTML = 0;
+                              console.log(operaEle.querySelectorAll('a.child'))
+                              operaEle.querySelectorAll('a.child')[0].className = "add-minus-per-less child add-minus-per-less-grey"
+                              operaEle.querySelectorAll('a.child')[1].className = "add-minus-per-more child"
+                              target.parentNode.querySelector('.add-minus-per-less').className = "add-minus-per-less";
+                          }else if(tempEle.className.indexOf('child-number')>-1){
+                              if(parseInt(tempEle.innerHTML)+1 <= maxChild){
+                                  tempEle.innerHTML = parseInt(tempEle.innerHTML)+1;
+                                  target.className = "add-minus-per-more child";
+                              }else{
+                                  tempEle.innerHTML = maxChild;
+                                  target.className = "add-minus-per-more child add-minus-per-more-grey"
+                              }
+                          }
+                    }else if(target.className.indexOf('add-minus-per-less')>-1){
+                        var tempEle = target.parentNode.querySelector('span');
+                        if(tempEle.className.indexOf('adult-number')>-1){
+                            if(parseInt(tempEle.innerHTML)-1 > 1){
+                                tempEle.innerHTML = parseInt(tempEle.innerHTML)-1;
+                                target.className = "add-minus-per-less adult";
+                            }else{
+                                tempEle.innerHTML = 0;
+                                target.className = "add-minus-per-less adult add-minus-per-less-grey"
+                            }
+                            target.parentNode.querySelector('.add-minus-per-more').className = "add-minus-per-more";
+                            maxChild = checkChildNum(parseInt(tempEle.innerHTML))
+                            operaEle.querySelector('span.child-number').innerHTML = 0;
+                            console.log(operaEle.querySelectorAll('a.child'))
+                            operaEle.querySelectorAll('a.child')[0].className = "add-minus-per-less child add-minus-per-less-grey"
+                            operaEle.querySelectorAll('a.child')[1].className = "add-minus-per-more child"
+                            target.parentNode.querySelector('.add-minus-per-less').className = "add-minus-per-less";
+                        }else if(tempEle.className.indexOf('child-number')>-1){
+                            if(parseInt(tempEle.innerHTML)-1 > 0){
+                                console.log(maxChild)
+                                tempEle.innerHTML = parseInt(tempEle.innerHTML)-1;
+                                target.className = "add-minus-per-less child";
+                            }else{
+                                tempEle.innerHTML = 0;
+                                target.className = "add-minus-per-less add-minus-per-less-grey child";
+                            }
+                        }
+                        target.parentNode.querySelector('.add-minus-per-more').className = "add-minus-per-more"
                     }
                 });
             }
