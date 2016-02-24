@@ -27,11 +27,10 @@
 </div>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:void(0);" class="icons header-back"></a>
-        <h3 class="edit-tit">订单支付</h3>
+        <a href="javascript:history.go(-1);" class="icons header-back"></a>
+        <h3>订单支付</h3>
     </div>
-    <div id="content" class="snap-content" style="padding-top: 45px;">
-    <!--<div id="content ddd"  style="padding-top: 45px;padding-bottom: 51px;">-->
+    <div class="sc-content">
         <form action="#" method="get">
             <div class="per-pay-msg-bg">
                 <ul class="per-pay-msg">
@@ -47,7 +46,7 @@
             <ul class="pay-style-list" id="pay_way">
                  <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
                  <li><span class="jd-icon pay-card"></span><b class="icon circle-choi"></b></li>
-                 <li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>
+                 <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
                 <li><span class="jd-icon pay-visa"></span><b class="icon circle-chois"></b></li>
                 <li><span class="jd-icon pay-master"></span><b class="icon circle-chois"></b></li>
             </ul>
@@ -164,7 +163,7 @@
                     b[i].className = "icon circle-chois";
                 }
                 this.className='icon circle-choi';
-                if(b[2].className == "icon circle-choi"||b[3].className == "icon circle-choi"){
+                if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
                     out_pay.style.display = "block";
                 }
             }
