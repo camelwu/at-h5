@@ -9,6 +9,9 @@ body{
     color:#666;
     background:#f5f4f9;
 }
+i{
+    font-style: normal;
+}
 .head-h3{
     color: #ffffff;
     text-align: center;
@@ -16,6 +19,12 @@ body{
     margin-bottom: 0;
     font-size: 17px;
     font-weight: 600;
+}
+.icon{
+    background-image: url(../../images/ui/icon.png);
+    background-repeat: no-repeat;
+    background-size: 397px 118px;
+    display: inline-block;
 }
 .icons {
     background-image: url(../../images/ui/icons.png);
@@ -227,25 +236,6 @@ body{
     font-weight: 600;
     color:#fe4716;
 }
-/*.choose-no{*/
-    /*display: inline-block;*/
-    /*width:65px;*/
-    /*height: 34px;*/
-    /*border-radius: 5px;*/
-    /*text-align: center;*/
-    /*line-height: 34px;*/
-    /*background-color: #fdb330;*/
-    /*font-size: 1.4rem;*/
-    /*font-weight: 600;*/
-    /*color:white;*/
-/*}*/
-/*.c-yes{*/
-    /*width:63px;*/
-    /*height: 32px;*/
-    /*border:1px solid #fdb330;*/
-    /*background-color:white;*/
-    /*color:#fdb330;*/
-/*}*/
 /*
     排序块
 */
@@ -438,7 +428,6 @@ body{
     z-index:99999999;
     width:250px;
     height:250px;
-    /*position:absolute;*/
     left:50%;
     top:50%;
     background-image:url(../../images/loading.gif);
@@ -553,16 +542,6 @@ body{
     background-size: 402px 174px;
     background-position: 84.6% 76%;
 }
-/*.d-icon4{*/
-    /*display: block;*/
-    /*float: right;*/
-    /*width:18px;*/
-    /*height:18px;*/
-    /*margin-top:20px;*/
-    /*background-image:url(../../images/ui/icons1.png);*/
-    /*background-position:12.6% 33%;*/
-    /*background-size: 400px 120px;*/
-/*}*/
 .hd-price{
     float: right;
     margin-right: 10px;
@@ -600,13 +579,178 @@ body{
     border:1px solid #ffb412;
     color:#ffb412;
 }
-/*.d-icon5{*/
-    /*display: block;*/
-    /*float: right;*/
-    /*width:18px;*/
-    /*height:18px;*/
-    /*margin-top:20px;*/
-    /*background-image:url(../../images/ui/icons1.png);*/
-    /*background-position:19% 33%;*/
-    /*background-size: 400px 120px;*/
-/*}*/
+/*
+    资料输入页
+*/
+.all_title{
+    height:36px;line-height:36px;position:relative;border:1px solid #ededef;
+    border-left:none;border-right:none;
+}
+.all_title h3{
+    font-size:14px;color:#555;font-weight:normal;height:36px;padding-left:39px;overflow:hidden;
+    background-color: #e9e9e9;
+}
+.all_title h3:before{
+    content:'';background:url(../../images/icon1.png) no-repeat -31px -94px;
+    background-size:215px auto;display:block;height:23px;width:23px;
+    position:absolute;left:12px;top:6px;
+}
+.all_title h3.flight:before{
+    background-position:-1px -94px;
+}
+.all_title h3.hotel:before{
+    background-position:-60px -94px;
+}
+.all_title h3 i{color:#fdb330;padding-right:3px;}
+.all_title span.editBtn{
+    position:absolute;right:0;top:0;height:36px;width:83px;line-height:36px;font-size:13px;
+}
+.all_title span.editBtn a{color:#fdb330;display:block;}
+.all_title span.editBtn a:after{
+    content:'';background:url(../../images/icon1.png) no-repeat -88px -34px;
+    background-size:224px auto;padding:6px 10px;
+}
+
+.select_date{background:#fff;border-bottom:1px solid #ddd;overflow:hidden;}
+
+.select_date .content2{
+    border:none;
+}
+
+.per-price-control .ticket-num {
+    display: inline-block;
+    border-top: 1px solid #eeebeb;
+    border-bottom: 1px solid #eeebeb;
+    width: 2em;
+    height: 1.6em;
+    line-height: 1.6em;
+    text-align: center;
+}
+#content2-header,#content3-header{z-index:999;}
+#content2-date,#content3-date{z-index:998;}
+
+
+section[class^="hotelInfo_numb"]{
+    background:#fff;border-bottom:1px solid #ddd;overflow:hidden;position:relative;
+}
+section.hotelInfo_numb_people{border:none;}
+
+section[class^="hotelInfo_numb"] span.title{
+    display:block;position:absolute;width:70px;height:36px;line-height:36px;
+    left:10px;top:0;
+}
+
+section[class^="hotelInfo_numb"] .per-price-control{
+    float:right;padding:8px 6px;
+}
+section[class^="hotelInfo_numb"] .per-price-control span{
+    width:20px;height:20px;float:left;
+    background:url(../../images/icons1.png) no-repeat 0 2px;
+    background-size:320px auto;
+}
+section[class^="hotelInfo_numb"] .per-price-control span:first-child{
+    background-position:-26px 2px;
+}
+section[class^="hotelInfo_numb"] .per-price-control i{
+    width:25px;height:20px;line-height:20px;float:left;text-align:center;font-size:13px;
+}
+
+section[class^="hotelInfo_numb"] .numbList{
+    margin-left:70px;border-bottom:1px solid #ddd;overflow:hidden;
+}
+section[class^="hotelInfo_numb"] .numbList:last-child{
+    border:none;
+}
+section[class^="hotelInfo_numb"] .numbList span.n_tit{
+    float:left;
+    height:36px;line-height:36px;text-indent:16px;
+}
+section[class^="hotelInfo_numb"] .numbList span.child-age{
+    position: relative;
+    font-size: 1.4rem;
+    color: #999999;
+    top: 6px;
+}
+.bedList{
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 15px;
+    position: relative;
+}
+.childAge{
+    float: right;
+    width: 20%;
+    margin-top: 5px;
+}
+.inp-cage{
+    display: inline-block;
+    width: 60%;
+}
+.child-sui{
+    display: inline-block;
+}
+
+section[class^="hotelInfo_numb"] .extraChild{
+    overflow:hidden;
+    margin-left: 70px;
+    border-bottom: 1px solid #dddddd;
+}
+section[class^="hotelInfo_numb"] .extraChild span{
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 15px;
+    position: relative;
+    clear: both;
+}
+section[class^="hotelInfo_numb"] .extraChild span:last-child{border:none;}
+.noselect{
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 21px;
+    height: 21px;
+    background-position: -211px -95.9px;
+}
+.ico_select{
+    background-position: -236px -94.9px;
+}
+.tourTime{background:#fff;overflow:hidden;}
+.tourTime span.title{
+    float:left;width:89px;height:36px;line-height:36px;text-indent:10px;
+}
+.tourTime div.content2{
+    height:36px;border:none;
+    border-bottom: 1px solid #dedede;
+}
+.tourTime div.content2 .nav2-centerright{
+    margin:0 15px;
+}
+.tourTime div.content2 .nav2-centerright i{
+    left:0;top:0;background-position: -245px -5px;height: 36px;
+}
+
+.tourTime div.content2 .nav2-centertop{
+    height:36px;border:none;width:78.2%;
+}
+.tourTime div.content2 .nav2-center p{
+    margin:0;line-height:36px;height:36px;
+}
+.tourTime div.content2 .nav2-center input{
+    height:36px;line-height:36px;
+}
+.nav2-centertop>span{
+    margin-left: 15px;
+    color:#fdb330;
+}
+.orderBtn{
+    margin:20px 12px 0;
+}
+.orderBtn a{
+    background:#fdb330;color:#fff;text-align:center;height:36px;line-height:36px;font-size:16px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
