@@ -1736,7 +1736,12 @@ h1, h2, h3, h4, h5, h6 {
     color: #000000;
     padding-left: 2.8rem;
 }
-
+.top-line >span{
+    margin-left: 0.8rem;
+}
+.top-line >span:first-child{
+    margin-left: 0;
+}
 .top-pad-no{
     padding-left: 0;
 }
@@ -2133,6 +2138,14 @@ h1, h2, h3, h4, h5, h6 {
 .order-top p.go-line {
     margin-bottom: 0;
     height: 2.0rem;
+    padding-left: 2.0rem;
+}
+.order-top p.go-line >span {
+    margin-left: 0.8rem;
+}
+
+.order-top p.go-line >span:first-child {
+    margin-left: 0;
 }
 
 .order-top p.go-line i.icon-go {
@@ -2207,7 +2220,6 @@ h1, h2, h3, h4, h5, h6 {
     vertical-align: top;
 }
 .order-top p.go-line span.date {
-    margin-left: 2.0rem;
     display: inline-block;
     vertical-align: top;
 }

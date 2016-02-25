@@ -255,6 +255,7 @@ var ticketOrder = {
         array = arg.split('-');
         array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
         array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
+
         return '<span class="date">'+array[1]+'-'+array[2]+'</span>'+'<span class="order-week">'+week+'</span>';
 
     },
@@ -284,8 +285,8 @@ var ticketOrder = {
                    '</p>';
                }else{
                    toCity = arg.segmentsLeave.length>1?arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameFrom:arg.segmentsLeave[0].airportNameTo;
-                   str+='<p class="go-line">' +
-                   '<i class="icon-go"></i>'+that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><i class="icon-clock"></i><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span><span class="trigger-button right-arrow"></span>'+
+                   str+='<p class="go-line" style="padding-left:0;">' +
+                   that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><i class="icon-clock"></i><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span><span class="trigger-button right-arrow"></span>'+
                    '</p>';
                }
 
@@ -315,9 +316,16 @@ var ticketOrder = {
 
         function detailGo(arg){
             var str = '';
-            str += '<li class="detail-start">' +
-            '<div class="top-line"><span class="icon-go"></span>'+that.returnDate(arg.flightLeaveStartDate)+'<span class="start">'+arg.cityNameFrom+'</span><span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
-            '<span class="detail-hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsLeave)+'</div></li>';
+            if(arg.segmentsReturn) {
+                str += '<li class="detail-start">' +
+                '<div class="top-line"><span class="icon-go"></span>' + that.returnDate(arg.flightLeaveStartDate) + '<span class="start">' + arg.cityNameFrom + '</span><span class="line">-</span><span class="end">' + arg.cityNameTo + '</span>' +
+                '<span class="detail-hour">' + parseInt(arg.segmentsLeaveTotalTravelTime / 60) + 'h' + arg.segmentsLeaveTotalTravelTime % 60 + 'm</span></div>' + createFlightUnit(arg.segmentsLeave) + '</div></li>';
+            }else{
+                str += '<li class="detail-start">' +
+                '<div class="top-line top-pad-no">' + that.returnDate(arg.flightLeaveStartDate) + '<span class="start">' + arg.cityNameFrom + '</span><span class="line">-</span><span class="end">' + arg.cityNameTo + '</span>' +
+                '<span class="detail-hour">' + parseInt(arg.segmentsLeaveTotalTravelTime / 60) + 'h' + arg.segmentsLeaveTotalTravelTime % 60 + 'm</span></div>' + createFlightUnit(arg.segmentsLeave) + '</div></li>';
+
+            }
             return str;
 
         }
