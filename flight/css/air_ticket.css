@@ -1749,6 +1749,10 @@ h1, h2, h3, h4, h5, h6 {
 .top-line span {
     font-size: 1.6rem;
     color: #45494b;
+    margin-left: 0.8rem;
+}
+.top-line span:first-child{
+    margin-left: 0
 }
 
 .top-line span.icon-go {
@@ -3707,7 +3711,9 @@ li{
     overflow: hidden;
     height: 8rem;
 }
-
+.age-limit{
+    color: rgb(158, 155, 155);
+}
 .pas-num-tit{
     width: 20%;
     height:100%;

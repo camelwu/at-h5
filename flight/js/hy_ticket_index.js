@@ -589,10 +589,8 @@
                                   tempEle.innerHTML = 9;
                                   target.className = "add-minus-per-more adult add-minus-per-more-grey"
                               }
-                              console.log(operaEle)
                                maxChild = checkChildNum(parseInt(tempEle.innerHTML))
                               operaEle.querySelector('span.child-number').innerHTML = 0;
-                              console.log(operaEle.querySelectorAll('a.child'))
                               operaEle.querySelectorAll('a.child')[0].className = "add-minus-per-less child add-minus-per-less-grey"
                               operaEle.querySelectorAll('a.child')[1].className = "add-minus-per-more child"
                               target.parentNode.querySelector('.add-minus-per-less').className = "add-minus-per-less";

@@ -139,7 +139,6 @@ var ticketOrder = {
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         });
-        console.log(confirmButton)
         this.addHandler(confirmButton,'click', function(){
             var event = event || window.event;
             var target =event.target || event.srcElement;
@@ -264,8 +263,6 @@ var ticketOrder = {
         var detailOuter = document.querySelector('.detail-outer');
         var goLineOuterHtml = '',seatConditionHtml ='', detailOuterHtml='',costStr='',that = this;
         var cacheInfo = this.storageUtil.get('reverseInformationCache');
-        console.log(cacheInfo)
-
         if(arg.segmentsReturn){
             goLineOuterHtml+= '<div class="go-line-outer-sub">' + createTopGo(arg)+'<p class="go-line go-line-return-middle"><span class="trigger-button right-arrow"></span></p>'+createTopBack(arg)+'</div>';
             seatConditionHtml += createSeatCondition(arg);
