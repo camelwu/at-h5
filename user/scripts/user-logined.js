@@ -90,6 +90,7 @@ function mycallback(ret) {
         var userIcon = $("#userIcon")[0];
         user_name.innerHTML = myJson.data[0].nickName;
         sessionStorage.sex=myJson.data[0].salutation;
+        localStorage.email=myJson.data[0].emailAddress;
         if (myJson.data[0].salutation == "26") {
             user_sex.className = "icon open-sexm";
             userIcon.src = "../images/ui/photo-man.png";
