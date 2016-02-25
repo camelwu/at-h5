@@ -113,6 +113,11 @@ var arrCountry= [{"CountryName":"中国","CountryEN":"China","CountryCode":"CN"}
         })(i);
     }
 
+
+    document.querySelector('.country-hidden').onclick=function(){
+        document.querySelector('.country-cho-wrap').style.display='none';
+    };
+
 })();
 
 
