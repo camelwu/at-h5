@@ -10,7 +10,7 @@
             var menu = $("#menu")[0];
             menu.style.display = "none";
             // 初始化常旅客
-            var memberId = sessionStorage.memberid;
+            var memberId = localStorage.memberid;
             var Parameters = {
                 "Parameters": "{\"memberId\":" + memberId + "}",
                 "ForeEndType": 3,

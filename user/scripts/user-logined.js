@@ -6,8 +6,8 @@ function init(){
     var phone = localStorage.phone||sessionStorage.phone;
     var password = localStorage.password||sessionStorage.password;
     var memberid = localStorage.memberid||sessionStorage.memberid;
-    sessionStorage.news = "true";
-    sessionStorage.promotion = "true";
+    localStorage.news = "true";
+    localStorage.promotion = "true";
     var Parameters={
         "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
@@ -72,7 +72,7 @@ function mycallback(ret) {
         var user_sex = $("#user_sex")[0];
         var userIcon = $("#userIcon")[0];
         user_name.innerHTML = myJson.data[0].nickName;
-        sessionStorage.sex=myJson.data[0].salutation;
+        localStorage.sex=myJson.data[0].salutation;
         localStorage.email=myJson.data[0].emailAddress;
         if (myJson.data[0].salutation == "26") {
             user_sex.className = "icon open-sexm";
