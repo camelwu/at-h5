@@ -187,6 +187,7 @@ var ticketSingle = {
         console.log(arg);
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
+            console.log(that)
                 that.flightResultArray.push(arg["data"])
                 that.storageUtil.set('flightListData',that.flightResultArray);
                 that.pageNo = arg.data.pageNo;
@@ -538,6 +539,7 @@ var ticketSingle = {
         this.backParaObj = backParaObj;
         console.log(this.backParaObj);
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
+        this.flightResultArray = [];
         if($.browser.webkit && !window.chrome){
            document.querySelector('#wrapper').style.top = '88px';
         }
@@ -546,7 +548,6 @@ var ticketSingle = {
         bottomModal.init('all-elements',this.tripType,"single",this.callRender);
         this.eventHandler();
         this.taxHandler();
-        this.flightResultArray = [];
         this.isClearAll = true;
         this.initLeftState = this.checkTip();
     }

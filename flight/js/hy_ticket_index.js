@@ -149,8 +149,8 @@
                        CityCodeTo = that.returnCityCode(cityStrs[1]);
                        startDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[0].innerHTML);
                        endDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[1].innerHTML);
-                       NumofAdult = parseInt(document.querySelector('.adult-number.double').innerHTML);
-                       NumofChild = parseInt(document.querySelector('.child-number.double').innerHTML);
+                       adultNumber = document.querySelector('#double span.adult-number').innerHTML;
+                       childNumber = document.querySelector('#double span.child-number').innerHTML;
                        CabinStr = that.returnCabinClass(document.querySelector('#double .double-cabin-choose').innerHTML);
                        paraObj.CityCodeFrom = CityCodeFrom;
                        paraObj.CityCodeTo = CityCodeTo;
@@ -160,8 +160,8 @@
                        paraObj.RouteType = "Return";
                        paraObj.IsHideSharedFlight=false;
                        paraObj.IsDirectFlight=false;
-                       paraObj.NumofAdult= NumofAdult;
-                       paraObj.NumofChild= NumofChild;
+                       paraObj.NumofAdult= adultNumber;
+                       paraObj.NumofChild= childNumber;
                        paraObj.DepartStartHour="00";
                        paraObj.DepartEndHour="24";
                        paraObj.PriorityRule= 0;

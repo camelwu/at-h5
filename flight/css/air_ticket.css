@@ -2211,6 +2211,9 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     vertical-align: top;
 }
+.date-line-single{
+    margin-left: 0!important;
+}
 .order-top p.go-line span.order-city-end {
     margin-left: 0;
 }
@@ -2499,7 +2502,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact .table input {
-    width: 60%;
+    width: 33%;
     margin-left: 0.2rem;
     font-size: 1.35rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
@@ -2545,7 +2548,7 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     line-height: 3.3rem;
     height: 3.3rem;
-    margin-right: 4.0rem;
+    width: 3.3rem;
 }
 
 .contact .table .tel div.left {
@@ -2642,17 +2645,21 @@ h1, h2, h3, h4, h5, h6 {
     color: #757575;
 
 }
-
-.read-tip i {
+.choose-agree-info{
     position: relative;
     top: 0.2rem;
     display: inline-block;
     width: 1.7rem;
     height: 1.7rem;
     background: url("../../images/ui/icons1.png") -23.7rem -0.4rem;
-    background-size: 40rem 12rem;
     margin-top: -0.2rem;
-
+}
+.yep-agree-info{
+    background-size: 40rem 12rem;
+}
+.no-agree-info{
+    background-size: 36rem 12rem;
+    top: 0.2rem;
 }
 
 .read-tip a {
@@ -2799,7 +2806,7 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-flex: 3;          /* Chrome */
     -ms-flex: 3;              /* IE 10 */
     flex: 3;
-    background: #ffb413;
+    background:#BDB9B1;
     text-align: center;
     line-height: 5rem;
     font-size: 1.4rem;
@@ -2807,7 +2814,15 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     height: 5.0rem
 }
-
+#confirm-button{
+    background:#BDB9B1;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: normal;
+    height: 100%;
+    width: 100%;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+}
 .makesure-btn{
     color: #fff;
 }
