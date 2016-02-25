@@ -44,23 +44,6 @@ function init(){
     }
     close(close_page);
 
-    //设置里的消息开关
-    function ifOpen(){
-        var b = window.event.srcElement;
-        var newsLetter = $("#newsLetter")[0];
-        var rcvPromotion = $("#rcvPromotion")[0];
-        if(b.className == "icon set-chose1"){
-            b.className = "icon set-chose2";
-        }else{
-            b.className = "icon set-chose1";
-        }
-        if(newsLetter.className == "icon set-chose2"){
-            sessionStorage.news = "false";
-        }
-        if(rcvPromotion.className == "icon set-chose2"){
-            sessionStorage.promotion = "false";
-        }
-    }
 
     if(localStorage.getItem('login') != 1)
     {
@@ -163,6 +146,16 @@ function mycallback(ret) {
     }
 
 })()
+
+//设置里的消息开关
+function ifOpen(){
+    var b = window.event.srcElement;
+    if(b.className == "icon set-chose1"){
+        b.className = "icon set-chose2";
+    }else{
+        b.className = "icon set-chose1";
+    }
+}
 
 
 
