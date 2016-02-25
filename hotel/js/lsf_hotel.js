@@ -5,6 +5,14 @@
 /**
  * Created by changlv on 2015/12/11.
  */
+    //解决300毫秒延迟问题
+(function($) {
+    $(document).ready(function() {
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
+    });
+}(jQuery));
 
 var lsf_myweb={
     "getbyid":function(id){
@@ -393,6 +401,7 @@ function inpChange(id,myText){
             }
         }
         sortBy(listJson);
+        console.log(listJson);
         console.log(dataWorCN);
         console.log(dataWorIN);
         function cityShow(oData,doData,cityJson,dcityJson,obj,dobj){
@@ -422,9 +431,89 @@ function inpChange(id,myText){
             var dcl_citysHisStr='';
 
             //输入框输入内容事件
-            citySearchBox.onchange=function(){
-                obj.value=citySearchBox.value;
-                cl_box_box.style.display='none';
+            //国际酒店
+            citySearchBox.oninput=function(){
+                var interInpCity=[];
+                var domInpCity=[];
+                var cl_inp_citys=document.getElementById('cl_inp_citys');
+                cl_inp_citys.style.display='block';
+                function getInpCity(){
+                    for(var name in dataWorIN){
+                        if(citySearchBox.value){
+                            for(var j=0;j<dataWorIN[name].length;j++){
+                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))){
+                                    interInpCity.push(dataWorIN[name][j].cityNameCN);
+                                }
+                            }
+                        }else{
+                            cl_inp_citys.style.display='none';
+                        }
+                    }
+                    cl_inp_citys.innerHTML='';
+                    for(var i=0;i<interInpCity.length;i++){
+                        var oLi=document.createElement('li');
+                        oLi.innerHTML=interInpCity[i];
+                        cl_inp_citys.appendChild(oLi);
+                        oLi.onclick=function(){
+                            abroad_target_city.value=this.innerHTML;
+                            cl_box_box.style.display='none';
+                            cl_inp_citys.style.display='none';
+                        };
+                    }
+                }
+                //if(citySearchBox.value.charCodeAt(0)>=0x4e00&&citySearchBox.value.charCodeAt(i)<=0x9fa5){
+                //    getInpCity();
+                //}else{
+                //    if(citySearchBox.value.length>=2){
+                //        getInpCity();
+                //    }else{
+                //        cl_inp_citys.innerHTML='';
+                //    }
+                //}
+                getInpCity();
+            };
+            //国内酒店
+            dcitySearchBox.oninput=function(){
+                var interInpCity=[];
+                var domInpCity=[];
+                var dcl_inp_citys=document.getElementById('dcl_inp_citys');
+                dcl_inp_citys.style.display='block';
+                function dgetInpCity(){
+                    for(var name in dataWorCN){
+                        if(dcitySearchBox.value){
+                            console.log(dcitySearchBox.value);
+                            for(var j=0;j<dataWorCN[name].length;j++){
+                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))){
+                                    domInpCity.push(dataWorCN[name][j].cityNameCN);
+                                }
+                            }
+                        }else{
+                            dcl_inp_citys.style.display='none';
+                        }
+                    }
+                    dcl_inp_citys.innerHTML='';
+                    console.log(domInpCity);
+                    for(var i=0;i<domInpCity.length;i++){
+                        var oLi=document.createElement('li');
+                        oLi.innerHTML=domInpCity[i];
+                        dcl_inp_citys.appendChild(oLi);
+                        oLi.onclick=function(){
+                            domestic_target_city.value=this.innerHTML;
+                            dcl_box_box.style.display='none';
+                            dcl_inp_citys.style.display='none';
+                        };
+                    }
+                }
+                //if(dcitySearchBox.value.charCodeAt(0)>=0x4e00&&dcitySearchBox.value.charCodeAt(i)<=0x9fa5){
+                //    dgetInpCity();
+                //}else{
+                //    if(dcitySearchBox.value.length>=2){
+                //        dgetInpCity();
+                //    }else{
+                //        dcl_inp_citys.innerHTML='';
+                //    }
+                //}
+                dgetInpCity();
             };
             if(obj.getAttribute('id')=='input1'){
                 citySearchBox.setAttribute('placeholder','新加坡');  //判断国际国内酒店改变placeholder
@@ -718,15 +807,14 @@ function inpChange(id,myText){
                 }
             }
         }
+        cityShow(interHotData,domHotData,dataWorIN,dataWorCN,abroad_target_city,domestic_target_city);
         //国际城市
         console.log(dataWorIN);
         console.log(8888888888888888888);
-        cityShow(interHotData,domHotData,dataWorIN,dataWorCN,abroad_target_city,domestic_target_city);
         lsf_myweb.bind(abroad_target_city,'click',function(){
             cl_box_box.style.display='block';
         });
         //国内城市
-        //cityShow(domHotData,dataWorCN,domestic_target_city);
         lsf_myweb.bind(domestic_target_city,'click',function(){
             dcl_box_box.style.display='block';
         });
@@ -932,14 +1020,7 @@ function inpChange(id,myText){
         hoPos='dom';
         localStorage.setItem('hoPos',hoPos);
     });
-    //解决300毫秒延迟问题
-    (function($) {
-        $(document).ready(function() {
-            window.addEventListener('load', function() {
-                FastClick.attach(document.body);
-            }, false);
-        });
-    }(jQuery));
+
 
 })();
 
