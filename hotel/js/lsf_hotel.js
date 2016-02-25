@@ -347,6 +347,8 @@ function inpChange(id,myText){
     var dcl_box_box=document.getElementById('dcl_box_box');
     var cl_back=document.getElementById('cl_back');
     var dcl_back=document.getElementById('dcl_back');
+    var vlm_login=document.getElementById('vlm-login');
+    var dvlm_login=document.getElementById('dvlm-login');
     var domHotData= {
         "Parameters": "",
         "ForeEndType": 3,
@@ -458,6 +460,7 @@ function inpChange(id,myText){
                             abroad_target_city.value=this.innerHTML;
                             cl_box_box.style.display='none';
                             cl_inp_citys.style.display='none';
+                            vlm_login.style.display='none';
                         };
                     }
                 }
@@ -501,6 +504,7 @@ function inpChange(id,myText){
                             domestic_target_city.value=this.innerHTML;
                             dcl_box_box.style.display='none';
                             dcl_inp_citys.style.display='none';
+                            dvlm_login.style.display='none';
                         };
                     }
                 }
@@ -692,6 +696,7 @@ function inpChange(id,myText){
                             }
                             oSrc.className='selected';
                             cl_box_box.style.display='none';
+                            vlm_login.style.display='none';
                             obj.value=oSrc.innerHTML;
                             if(obj.getAttribute('id')=='input1'){
                                 var cityNameStr=window.localStorage.getItem('interCityName');
@@ -710,6 +715,7 @@ function inpChange(id,myText){
                             }
                             oSrc.className='selected';
                             dcl_box_box.style.display='none';
+                            dvlm_login.style.display='none';
                             dobj.value=oSrc.innerHTML;
                             if(dobj.getAttribute('id')=='input2'){
                                 var dcityNameStr=window.localStorage.getItem('domCityName');
@@ -813,10 +819,12 @@ function inpChange(id,myText){
         console.log(8888888888888888888);
         lsf_myweb.bind(abroad_target_city,'click',function(){
             cl_box_box.style.display='block';
+            vlm_login.style.display='block';
         });
         //国内城市
         lsf_myweb.bind(domestic_target_city,'click',function(){
             dcl_box_box.style.display='block';
+            dvlm_login.style.display='block';
         });
         lsf_myweb.bind(cl_back,'click',function(){
             var arr1=document.getElementById('arr1');
@@ -824,6 +832,7 @@ function inpChange(id,myText){
             var inter=arr1.parentNode.parentNode;
             var dom=arr2.parentNode.parentNode;
             cl_box_box.style.display='none';
+            vlm_login.style.display='none';
         });
         lsf_myweb.bind(dcl_back,'click',function(){
             var arr1=document.getElementById('arr1');
@@ -831,6 +840,7 @@ function inpChange(id,myText){
             var inter=arr1.parentNode.parentNode;
             var dom=arr2.parentNode.parentNode;
             dcl_box_box.style.display='none';
+            dvlm_login.style.display='none';
         });
     });
 
