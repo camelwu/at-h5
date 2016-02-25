@@ -504,9 +504,6 @@ function mycallback_newKey(ret){
 /*退出账户清除localStorage*/
 $('.info-quit').click(function(){
     localStorage.removeItem('login');
-    var ldata = {unlogin:true,name:"点击登录，体验更多"};
-    var lstr = template("user-info",ldata);
-    $("#user-info").html(lstr);
 });
 
 
