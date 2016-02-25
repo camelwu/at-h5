@@ -40,7 +40,9 @@ var ticketSeatChoose = {
         },
         get: function (key) {
             var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
-            return dataObj.data;
+            if(dataObj!=null){
+                return dataObj.data;
+            }
         }
     },
 
@@ -61,108 +63,10 @@ var ticketSeatChoose = {
         var that = this;
 
         this.addHandler(reserveButton,'click', function(){
-           /* var testPara = {
-                WapOrder: {
-                    SetID: "30000000",
-                    CacheID: "3502305",
-                    CityCodeFrom: "BJS",
-                    CityCodeTo: "SIN",
-                    NumofAdult: 1,
-                    NumofChild: 0,
-                    RouteType: "Oneway",
-                    CabinClass: "Economy",
-                    IP: "",
-                    DeviceID: "",
-                    SourceType: "",
-                    Version: ""
-                },
-                TravellerInfo: [{
-                    PassengerType: "ADULT",
-                    SexCode: "Mr",
-                    FirstName: "sss",
-                    LastName: "ddd",
-                    DateOfBirth: "1900-12-24",
-                    FlightCertificateInfo: {
-                        IdType: 1,
-                        IdCountry: "SIN",
-                        NationalityCode: "123",
-                        IdNumber: "3412",
-                        IdActivatedDate: "2016-12-31"
-                    },
-                    AirCorpCode: "SQ",
-                    FlightNo: "807"
-                }],
-                ContactDetail: {
-                    SexCode: "Mr",
-                    FirstName: "dddd",
-                    LastName: "ssss",
-                    Email: "855@asiatravel.com",
-                    Email2: "",
-                    ContactNumber: "5689",
-                    MobilePhone: "13454345654",
-                    FaxNumber: "",
-                    DestContactNumber: "12356",
-                    Address: "kkkk",
-                    PostalCode: "123456",
-                    City: "SIN",
-                    CountryCode: "CNY "
-                },
-                CurrencyCode: "CNY",
-                TotalFlightPrice: "3997"
-            }
-            that.tAjax(that.requestUrl, testPara, "3002", 3, that.test);*/
+            var that = ticketSeatChoose;
             var login;
-     /*       var reverseInformation = {
-                WapOrder:{
-                            SetID:"30000005", //产品id
-                            CacheID:"3500378",
-                            CityCodeFrom: "BJS",
-                            CityCodeTo: "SIN",
-                            NumofAdult: 1,
-                            NumofChild: 0,
-                            RouteType: "Oneway",
-                            CabinClass: "First",
-                            IP: "",   //非必需
-                            DeviceID: "", //非必需
-                            SourceType:"", //非必需
-                            Version: "" //非必需
-                        },
-              TravellerInfo: [
-                                {PassengerType: "ADULT",
-                                 SexCode: "Mr",
-                                 FirstName: "sss",
-                                 LastName: "ddd",
-                                 DateOfBirth: "1900-12-24",
-                                 FlightCertificateInfo: {
-                                                         IdType: "4",
-                                                         IdCountry: "SIN",
-                                                         NationalityCode: "123",
-                                                         IdNumber: "3412",
-                                                         IdActivatedDate: "2016-12-31"
-                                                         },
-                                 AirCorpCode: "MF",
-                                 FlightNo: "757"
-                                }
-                             ],
-                  ContactDetail:{
-                                SexCode: "Mr",
-                                FirstName: "dddd",
-                                LastName: "ssss",
-                                Email: "855@asiatravel.com",
-                                Email2: "",
-                                ContactNumber: "5689",
-                                MobilePhone: "",
-                                FaxNumber: "",
-                                DestContactNumber: "12356",
-                                Address: "kkkk",
-                                PostalCode: "123456",
-                                City: "SIN",
-                                CountryCode: "SG"
-                              },
-                 CurrencyCode: "CNY",
-                 TotalFlightPrice: "1617.00"
-               };*/
-
+            var totalCountCost = that.curFlightListData.totalTaxAmountADT ==0?that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult):
+            that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult) + (that.curFlightListData.totalFareAmountCHD+that.curFlightListData.totalTaxAmountCHD)*parseInt(that.assistInfo.NumofChild);
             var reverseInformationCache = {
                 WapOrder:{
                     SetID:that.currentFlightData.setID,
@@ -170,61 +74,25 @@ var ticketSeatChoose = {
                     CityCodeFrom: that.currentFlightData.cityCodeFrom,
                     CityCodeTo: that.currentFlightData.cityCodeTo,
                     NumofAdult: that.assistInfo.NumofAdult,
-                    NumofChild: that.assistInfo.NumofChild,
+                    NumofChild: that.curFlightListData.totalTaxAmountADT ==0?0:that.assistInfo.NumofChild,
                     RouteType: that.assistInfo.RouteType,
                     CabinClass: that.assistInfo.CabinClass,
                     IP: "",   //非必需
                     DeviceID: "", //非必需
-                    SourceType:"", //非必需
+                    SourceType:"H5", //非必需
                     Version: "" //非必需
                 },
                 TravellerInfo:[],
                 ContactDetail:{},
-              /*  TravellerInfo: [
-                    {PassengerType: "ADULT",
-                        SexCode: "Mr",
-                        FirstName: "sss",
-                        LastName: "ddd",
-                        DateOfBirth: "1900-12-24",
-                        FlightCertificateInfo: {
-                            IdType: "4",
-                            IdCountry: "SIN",
-                            NationalityCode: "123",
-                            IdNumber: "3412",
-                            IdActivatedDate: "2016-12-31"
-                        },
-                        AirCorpCode: "MF",
-                        FlightNo: "757"
-                    }
-                ],
-                ContactDetail:{
-                    SexCode: "Mr",
-                    FirstName: "dddd",
-                    LastName: "ssss",
-                    Email: "855@asiatravel.com",
-                    Email2: "",
-                    ContactNumber: "5689",
-                    MobilePhone: "",
-                    FaxNumber: "",
-                    DestContactNumber: "12356",
-                    Address: "kkkk",
-                    PostalCode: "123456",
-                    City: "SIN",
-                    CountryCode: "SG"
-                },*/
                 CurrencyCode: "CNY",
-                TotalFlightPrice: that.currentFlightData.totalFareAmountExc + that.currentFlightData.totalTaxAmountADT
+                TotalFlightPrice: totalCountCost
             };
-
-            if(vlm.checkLogin())
-             {       console.log(reverseInformationCache)
-                    that.storageUtil.set('reverseInformationCache',reverseInformationCache);
-                    document.location.href = 'ticket_order.html';
-             }
-
-            //that.storageUtil.set('reverseInformationCache',reverseInformationCache);
-            //document.location.href = 'ticket_order.html';
-
+            var loginResult = function(arg){
+                reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
+                that.storageUtil.set('reverseInformationCache',reverseInformationCache);
+                document.location.href = 'ticket_order.html';
+            };
+            vlm.checkLogin(loginResult)
         });
         this.addHandler(changeExplain,'click', function(event){
             var event = event || window.event;
@@ -254,21 +122,21 @@ var ticketSeatChoose = {
                 document.querySelector('.ticket-detail-modal').style.display = 'none';
             }
         });
-        this.addHandler(document,'click', function(event){
+      /*  this.addHandler(document,'click', function(event){
             var event = event || window.event;
             var target =event.target || event.srcElement;
             if(target.id == 'popup_overlay')
-                       document.body.removeChild(target);
+                    document.body.removeChild(document.querySelector('#popup_overlay'));
                     if(document.querySelector('#popup_container')){
                     document.body.removeChild(document.querySelector('#popup_container'));
             }
-        });
+        });*/
     },
 
     returnDate:function(arg){
         var argArray = /(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(arg);
         var transferData = argArray[1]+'-'+argArray[2]+'-'+argArray[3];
-        var index = new Date(transferData).getDay(),week='';
+        var index = new Date(transferData.replace(/-/g,'/')).getDay(),week='';
         switch (index){
             case 0 :
                 week = '周日';
@@ -489,8 +357,7 @@ var ticketSeatChoose = {
                     '</div>'+transferStr;
                 }
             }
-
-                return str;
+               return str;
            }
     },
     parseUrlPara: function (url, isEncode) {
@@ -514,18 +381,21 @@ var ticketSeatChoose = {
                  })
         });
         itemObj = resultData;
+
+        this.curFlightListData = itemObj;
+        console.log(this.curFlightListData)
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
-        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single'
+        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?'<span>儿童不可定</span>':'';
         var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>'
         var contentHtml ='<div class="air_content" style="background:#f5f4f9;">' +
             '<ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+that.createGoTripHtml(itemObj)+that.createBackTripHtml(itemObj)+'</li></ul>'+
             '<div class="price-important">' +
             '<div class="left-part"><h4>'+itemObj.segmentsLeave[0].cabinClassName+'</h4>' +
-            '<p><span class="change" id="change-explain">退改签说明</span><span>儿童不可定</span></p>' +
+            '<p><span class="change" id="change-explain">退改签说明</span>'+childOrderStr+'</p>' +
             '</div>'+
             '<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountExc+'</span> <p>税费￥'+itemObj.totalTaxAmountADT+'</p>' +
-            '</div><button type="button" id="reserve-button">预定</button></div>' +
+            '</div><button type="button" id="reserve-button">预订</button></div>' +
             '<div class="bottom-word-more">买单程票须持留学生转签证、移民签证，一年以上工作签证等证件类型，请您确认后购买，以免无法办理乘机和入境。'+
             '</div></div>';
         backMeal ='<div class="ticket-shadow" style="display: none"></div><div class="buy-ticket-notice back-meal" style="display: none;">' +

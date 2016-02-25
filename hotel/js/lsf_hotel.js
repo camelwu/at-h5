@@ -5,6 +5,14 @@
 /**
  * Created by changlv on 2015/12/11.
  */
+    //解决300毫秒延迟问题
+(function($) {
+    $(document).ready(function() {
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
+    });
+}(jQuery));
 
 var lsf_myweb={
     "getbyid":function(id){
@@ -330,95 +338,182 @@ function inpChange(id,myText){
     var dataIN=[];
     var dataWorCN={};
     var dataWorIN={};
-    function cityList(){
-        var domestic_target_place=document.getElementById('arr2');
-        var domestic_target_city=document.getElementById('input2');
-        var abroad_target_place=document.getElementById('arr1');
-        var abroad_target_city=document.getElementById('input1');
-        var api='http://10.2.22.239:8888/api/GetServiceApiResult';
-        var cl_box_box=document.getElementById('cl_box_box');
-        var cl_back=document.getElementById('cl_back');
-        var domHotData= {
-            "Parameters": "",
-            "ForeEndType": 3,
-            "Code": "0082"
-        };
-        var interHotData= {
-            "Parameters": "",
-            "ForeEndType": 3,
-            "Code": "0081"
-        };
-        var cityListData={
-            "Code": "0083",
-            "Parameters": "",
-            "ForeEndType": 1
-        };
-
-        var domBok=true;
-        var interBok=true;
+    var domestic_target_place=document.getElementById('arr2');
+    var domestic_target_city=document.getElementById('input2');
+    var abroad_target_place=document.getElementById('arr1');
+    var abroad_target_city=document.getElementById('input1');
+    var api='http://10.2.22.239:8888/api/GetServiceApiResult';
+    var cl_box_box=document.getElementById('cl_box_box');
+    var dcl_box_box=document.getElementById('dcl_box_box');
+    var cl_back=document.getElementById('cl_back');
+    var dcl_back=document.getElementById('dcl_back');
+    var domHotData= {
+        "Parameters": "",
+        "ForeEndType": 3,
+        "Code": "0082"
+    };
+    var interHotData= {
+        "Parameters": "",
+        "ForeEndType": 3,
+        "Code": "0081"
+    };
+    var cityListData={
+        "Code": "0083",
+        "Parameters": "",
+        "ForeEndType": 1
+    };
+    //城市列表
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
+        var listJson=eval('('+d+')');
+        if(!listJson.success){
+            jAlert(listJson.message);
+            return;
+        }
+        window.localStorage.setItem('cityListInfo',JSON.stringify(listJson.data));
         //城市列表
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
-            var listJson=eval('('+d+')');
-            if(!listJson.success){
-                jAlert(listJson.message);
-                return;
-            }
-            window.localStorage.setItem('cityListInfo',JSON.stringify(listJson.data));
-            //城市列表
-            function sortBy(json){
-                var data=json.data;
-                data.sort(function(data1,data2){
-                    return data1.pingYin.charCodeAt(0)-data2.pingYin.charCodeAt(0);
-                });
-                for(var i=0;i<data.length;i++){
-                    if(data[i].countryName=='China'){
-                        dataCN.push(data[i]);
-                    }else{
-                        dataIN.push(data[i]);
-                    }
-                }
-                for(var i=0;i<dataCN.length;i++){
-                    if(dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()] instanceof Array){
-                        dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()].push(dataCN[i]);
-                    }else{
-                        dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()]=[];
-                        dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()].push(dataCN[i]);
-                    }
-                }
-                for(var i=0;i<dataIN.length;i++){
-                    if(dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()] instanceof Array){
-                        dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()].push(dataIN[i]);
-                    }else{
-                        dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()]=[];
-                        dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()].push(dataIN[i]);
-                    }
+        function sortBy(json){
+            var data=json.data;
+            data.sort(function(data1,data2){
+                return data1.pingYin.charCodeAt(0)-data2.pingYin.charCodeAt(0);
+            });
+            for(var i=0;i<data.length;i++){
+                if(data[i].countryName=='China'){
+                    dataCN.push(data[i]);
+                }else{
+                    dataIN.push(data[i]);
                 }
             }
-            console.log(listJson);
-            console.log(33333333333333333);
-            sortBy(listJson);
-            console.log(dataWorCN);
-            console.log(dataWorIN);
-        });
-        function cityShow(oData,cityJson,obj){
+            for(var i=0;i<dataCN.length;i++){
+                if(dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()] instanceof Array){
+                    dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()].push(dataCN[i]);
+                }else{
+                    dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()]=[];
+                    dataWorCN[dataCN[i].pingYin.substring(0,1).toUpperCase()].push(dataCN[i]);
+                }
+            }
+            for(var i=0;i<dataIN.length;i++){
+                if(dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()] instanceof Array){
+                    dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()].push(dataIN[i]);
+                }else{
+                    dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()]=[];
+                    dataWorIN[dataIN[i].pingYin.substring(0,1).toUpperCase()].push(dataIN[i]);
+                }
+            }
+        }
+        sortBy(listJson);
+        console.log(listJson);
+        console.log(dataWorCN);
+        console.log(dataWorIN);
+        function cityShow(oData,doData,cityJson,dcityJson,obj,dobj){
             //热门城市
-            cl_box_box.style.display='block';
+            //国际
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d){
                 var json=eval('('+d+')');
                 var str = template("cl_citysHot",json.data);
                 $("#cl_citysHot").html(str);
             });
+            //国内
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(doData), function(d){
+                var json=eval('('+d+')');
+                var dstr = template("dcl_citysHot",json.data);
+                $("#dcl_citysHot").html(dstr);
+            });
             //历史选择
             var cityHisArr=[];
+            var dcityHisArr=[];
             var cl_citysHis=document.getElementById('cl_citysHis');
+            var dcl_citysHis=document.getElementById('dcl_citysHis');
             var searchCity=document.getElementById('searchCity');
+            var dsearchCity=document.getElementById('dsearchCity');
             var citySearchBox=document.getElementById('citySearchBox');
+            var dcitySearchBox=document.getElementById('dcitySearchBox');
             var cl_citysHisStr='';
+            var dcl_citysHisStr='';
 
             //输入框输入内容事件
-            citySearchBox.onchange=function(){
-                obj.value=citySearchBox.value;
-                cl_box_box.style.display='none';
+            //国际酒店
+            citySearchBox.oninput=function(){
+                var interInpCity=[];
+                var domInpCity=[];
+                var cl_inp_citys=document.getElementById('cl_inp_citys');
+                cl_inp_citys.style.display='block';
+                function getInpCity(){
+                    for(var name in dataWorIN){
+                        if(citySearchBox.value){
+                            for(var j=0;j<dataWorIN[name].length;j++){
+                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))){
+                                    interInpCity.push(dataWorIN[name][j].cityNameCN);
+                                }
+                            }
+                        }else{
+                            cl_inp_citys.style.display='none';
+                        }
+                    }
+                    cl_inp_citys.innerHTML='';
+                    for(var i=0;i<interInpCity.length;i++){
+                        var oLi=document.createElement('li');
+                        oLi.innerHTML=interInpCity[i];
+                        cl_inp_citys.appendChild(oLi);
+                        oLi.onclick=function(){
+                            abroad_target_city.value=this.innerHTML;
+                            cl_box_box.style.display='none';
+                            cl_inp_citys.style.display='none';
+                        };
+                    }
+                }
+                //if(citySearchBox.value.charCodeAt(0)>=0x4e00&&citySearchBox.value.charCodeAt(i)<=0x9fa5){
+                //    getInpCity();
+                //}else{
+                //    if(citySearchBox.value.length>=2){
+                //        getInpCity();
+                //    }else{
+                //        cl_inp_citys.innerHTML='';
+                //    }
+                //}
+                getInpCity();
+            };
+            //国内酒店
+            dcitySearchBox.oninput=function(){
+                var interInpCity=[];
+                var domInpCity=[];
+                var dcl_inp_citys=document.getElementById('dcl_inp_citys');
+                dcl_inp_citys.style.display='block';
+                function dgetInpCity(){
+                    for(var name in dataWorCN){
+                        if(dcitySearchBox.value){
+                            console.log(dcitySearchBox.value);
+                            for(var j=0;j<dataWorCN[name].length;j++){
+                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))){
+                                    domInpCity.push(dataWorCN[name][j].cityNameCN);
+                                }
+                            }
+                        }else{
+                            dcl_inp_citys.style.display='none';
+                        }
+                    }
+                    dcl_inp_citys.innerHTML='';
+                    console.log(domInpCity);
+                    for(var i=0;i<domInpCity.length;i++){
+                        var oLi=document.createElement('li');
+                        oLi.innerHTML=domInpCity[i];
+                        dcl_inp_citys.appendChild(oLi);
+                        oLi.onclick=function(){
+                            domestic_target_city.value=this.innerHTML;
+                            dcl_box_box.style.display='none';
+                            dcl_inp_citys.style.display='none';
+                        };
+                    }
+                }
+                //if(dcitySearchBox.value.charCodeAt(0)>=0x4e00&&dcitySearchBox.value.charCodeAt(i)<=0x9fa5){
+                //    dgetInpCity();
+                //}else{
+                //    if(dcitySearchBox.value.length>=2){
+                //        dgetInpCity();
+                //    }else{
+                //        dcl_inp_citys.innerHTML='';
+                //    }
+                //}
+                dgetInpCity();
             };
             if(obj.getAttribute('id')=='input1'){
                 citySearchBox.setAttribute('placeholder','新加坡');  //判断国际国内酒店改变placeholder
@@ -427,19 +522,20 @@ function inpChange(id,myText){
                     cityHisArr=cityListHis.split(',');
                     cityHisArr.shift();
                 }
-                for(var i=0;i<dataIN.length;i++){
-                    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'('+dataIN[i].cityNameEN+')'+'"></option>';
+                //for(var i=0;i<dataIN.length;i++){
+                //    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'('+dataIN[i].cityNameEN+')'+'"></option>';
+                //}
+            }
+            if(dobj.getAttribute('id')=='input2'){
+                dcitySearchBox.setAttribute('placeholder','北京/beijing/bj/bjs/中国');  //判断国际国内酒店改变placeholder
+                var dcityListHis=window.localStorage.getItem('domCityName');
+                if(dcityListHis){
+                    dcityHisArr=dcityListHis.split(',');
+                    dcityHisArr.shift();
                 }
-            }else if(obj.getAttribute('id')=='input2'){
-                citySearchBox.setAttribute('placeholder','北京/beijing/bj/bjs/中国');  //判断国际国内酒店改变placeholder
-                var cityListHis=window.localStorage.getItem('domCityName');
-                if(cityListHis){
-                    cityHisArr=cityListHis.split(',');
-                    cityHisArr.shift();
-                }
-                for(var i=0;i<dataCN.length;i++){
-                    searchCity.innerHTML+='<option value="'+dataCN[i].cityNameCN+'"></option>';
-                }
+                //for(var i=0;i<dataCN.length;i++){
+                //    dsearchCity.innerHTML+='<option value="'+dataCN[i].cityNameCN+'"></option>';
+                //}
             }
             //历史选择数组去重
             var json={};
@@ -452,6 +548,16 @@ function inpChange(id,myText){
             for(var name in json){
                 cityHisArr.push(name);
             }
+            var djson={};
+            for(var i=0;i<dcityHisArr.length;i++){
+                if(dcityHisArr[i]){
+                    djson[dcityHisArr[i]]=1;
+                }
+            }
+            dcityHisArr=[];
+            for(var name in djson){
+                dcityHisArr.push(name);
+            }
             //把历史城市生成页面
             cl_citysHis.innerHTML='';
             for(var i=0;i<cityHisArr.length;i++){
@@ -459,7 +565,66 @@ function inpChange(id,myText){
             }
             cl_citysHis.innerHTML=cl_citysHisStr;
 
+            dcl_citysHis.innerHTML='';
+            for(var i=0;i<dcityHisArr.length;i++){
+                dcl_citysHisStr+='<li>'+dcityHisArr[i]+'</li>';
+            }
+            dcl_citysHis.innerHTML=dcl_citysHisStr;
             //字母城市
+            //国内城市
+            var dstrA=template("dA",dcityJson.A);
+            $("#dA").html(dstrA);
+            var dstrB=template("dB",dcityJson.B);
+            $("#dB").html(dstrB);
+            var dstrC=template("C",dcityJson.C);
+            $("#dC").html(dstrC);
+            var dstrD=template("dD",dcityJson.D);
+            $("#dD").html(dstrD);
+            var dstrE=template("dE",dcityJson.E);
+            $("#dE").html(dstrE);
+            var dstrF=template("dF",dcityJson.F);
+            $("#dF").html(dstrF);
+            var dstrG=template("dG",dcityJson.G);
+            $("#dG").html(dstrG);
+            var dstrH=template("dH",dcityJson.H);
+            $("#dH").html(dstrH);
+            var dstrI=template("dI",dcityJson.I);
+            $("#dI").html(dstrI);
+            var dstrJ=template("dJ",dcityJson.J);
+            $("#dJ").html(dstrJ);
+            var dstrK=template("dK",dcityJson.K);
+            $("#dK").html(dstrK);
+            var dstrL=template("dL",dcityJson.L);
+            $("#dL").html(dstrL);
+            var dstrM=template("dM",dcityJson.M);
+            $("#dM").html(dstrM);
+            var dstrN=template("dN",dcityJson.N);
+            $("#dN").html(dstrN);
+            var dstrO=template("dO",dcityJson.O);
+            $("#dO").html(dstrO);
+            var dstrP=template("dP",dcityJson.P);
+            $("#dP").html(dstrP);
+            var dstrQ=template("dQ",dcityJson.Q);
+            $("#dQ").html(dstrQ);
+            var dstrR=template("dR",dcityJson.R);
+            $("#dR").html(dstrR);
+            var dstrS=template("dS",dcityJson.S);
+            $("#dS").html(dstrS);
+            var dstrT=template("dT",dcityJson.T);
+            $("#dT").html(dstrT);
+            var dstrU=template("dU",dcityJson.U);
+            $("#dU").html(dstrU);
+            var dstrV=template("dV",dcityJson.V);
+            $("#dV").html(dstrV);
+            var dstrW=template("dW",dcityJson.W);
+            $("#dW").html(dstrW);
+            var dstrX=template("dX",dcityJson.X);
+            $("#dX").html(dstrX);
+            var dstrY=template("dY",dcityJson.Y);
+            $("#dY").html(dstrY);
+            var dstrZ=template("dZ",dcityJson.Z);
+            $("#dZ").html(dstrZ);
+            //国际城市
             var strA=template("A",cityJson.A);
             $("#A").html(strA);
             var strB=template("B",cityJson.B);
@@ -512,39 +677,54 @@ function inpChange(id,myText){
             $("#Y").html(strY);
             var strZ=template("Z",cityJson.Z);
             $("#Z").html(strZ);
+            //城市的点击事件
             function cityClick(parentId){
                 var oParent=document.getElementById(parentId);
                 var aLi=oParent.children;
                 oParent.onclick=function(ev){
                     var oEvent=ev||event;
                     var oSrc=oEvent.srcElement||oEvent.target;
-                    if(oSrc.tagName=='LI'){
-                        var aSelected=lsf_myweb.getbyclass(cl_box_box,'selected');
-                        for(var i=0;i<aSelected.length;i++){
-                            aSelected[i].className='';
+                    if(oParent.parentNode.parentNode.parentNode.getAttribute('id')=='cl_box_box'||oParent.parentNode.parentNode.parentNode.parentNode.getAttribute('id')=='cl_box_box'){
+                        if(oSrc.tagName=='LI'){
+                            var aSelected=lsf_myweb.getbyclass(cl_box_box,'selected');
+                            for(var i=0;i<aSelected.length;i++){
+                                aSelected[i].className='';
+                            }
+                            oSrc.className='selected';
+                            cl_box_box.style.display='none';
+                            obj.value=oSrc.innerHTML;
+                            if(obj.getAttribute('id')=='input1'){
+                                var cityNameStr=window.localStorage.getItem('interCityName');
+                                if(!cityNameStr){
+                                    cityNameStr='';
+                                }
+                                cityNameStr+=','+oSrc.innerHTML;
+                                window.localStorage.setItem('interCityName',cityNameStr);
+                            }
                         }
-                        oSrc.className='selected';
-                        cl_box_box.style.display='none';
-                        obj.value=oSrc.innerHTML;
-
-                        if(obj.getAttribute('id')=='input1'){
-                            var cityNameStr=window.localStorage.getItem('interCityName');
-                            if(!cityNameStr){
-                                cityNameStr='';
+                    }else if(oParent.parentNode.parentNode.parentNode.getAttribute('id')=='dcl_box_box'||oParent.parentNode.parentNode.parentNode.parentNode.getAttribute('id')=='dcl_box_box'){
+                        if(oSrc.tagName=='LI'){
+                            var daSelected=lsf_myweb.getbyclass(dcl_box_box,'selected');
+                            for(var i=0;i<daSelected.length;i++){
+                                daSelected[i].className='';
                             }
-                            cityNameStr+=','+oSrc.innerHTML;
-                            window.localStorage.setItem('interCityName',cityNameStr);
-                        }else if(obj.getAttribute('id')=='input2'){
-                            var cityNameStr=window.localStorage.getItem('domCityName');
-                            if(!cityNameStr){
-                                cityNameStr='';
+                            oSrc.className='selected';
+                            dcl_box_box.style.display='none';
+                            dobj.value=oSrc.innerHTML;
+                            if(dobj.getAttribute('id')=='input2'){
+                                var dcityNameStr=window.localStorage.getItem('domCityName');
+                                if(!dcityNameStr){
+                                    dcityNameStr='';
+                                }
+                                dcityNameStr+=','+oSrc.innerHTML;
+                                window.localStorage.setItem('domCityName',dcityNameStr);
                             }
-                            cityNameStr+=','+oSrc.innerHTML;
-                            window.localStorage.setItem('domCityName',cityNameStr);
                         }
                     }
+
                 };
             }
+            //国际城市
             cityClick('cl_citysHis');
             cityClick('cl_citysHot');
             cityClick('A');
@@ -573,6 +753,36 @@ function inpChange(id,myText){
             cityClick('X');
             cityClick('Y');
             cityClick('Z');
+            //国内城市
+            cityClick('dcl_citysHis');
+            cityClick('dcl_citysHot');
+            cityClick('dA');
+            cityClick('dB');
+            cityClick('dC');
+            cityClick('dD');
+            cityClick('dE');
+            cityClick('dF');
+            cityClick('dG');
+            cityClick('dH');
+            cityClick('dI');
+            cityClick('dJ');
+            cityClick('dK');
+            cityClick('dL');
+            cityClick('dM');
+            cityClick('dN');
+            cityClick('dO');
+            cityClick('dP');
+            cityClick('dQ');
+            cityClick('dR');
+            cityClick('dS');
+            cityClick('dT');
+            cityClick('dU');
+            cityClick('dV');
+            cityClick('dW');
+            cityClick('dX');
+            cityClick('dY');
+            cityClick('dZ');
+            //判断字母下是否有城市，如果没有删掉改字母
             var lsf_city_list=document.getElementById('lsf_city_list');
             var cityListWord=lsf_city_list.children;
             for(var i=0;i<cityListWord.length;i++){
@@ -584,544 +794,29 @@ function inpChange(id,myText){
                     cityListWord[i].style.display='block';
                 }
             }
-        }
-        //国际城市
-        lsf_myweb.bind(abroad_target_city,'click',function(){
-            if(domBok&&interBok){
-                cityShow(interHotData,dataWorIN,abroad_target_city);
-            }else if(!domBok&&interBok){
-                cl_box_box.innerHTML='<div class="cl_box">'+
-                    '<div class="header" id="vlm-login">'+
-                    '<div class="cl_search">'+
-                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />'+
-                    '<datalist id="searchCity">'+
-                    '</datalist>'+
-                    '<i></i>'+
-                    '</div>'+
-                    '<a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
-                    '</div>'+
-                    '<div class="cl_curr cl_con"  >'+
-                    '<a name="cl_curr" class="cl_on">&nbsp;</a>'+
-                '<div>当前</div>'+
-                '<ul>'+
-                '<li class="fl beijing">北京</li>'+
-                    '</ul>'+
-                    '</div>'+
-                    '<div class="cl_con ">'+
-                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
-                '<div>历史选择</div>'+
-                '<ul class="cl_citysHis" id="cl_citysHis">'+
-                    '</ul>'+
-                    '</div>'+
-                    '<div class="cl_con ">'+
-                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
-                '<div>热门城市</div>'+
-                '<ul class="cl_citysHot" id="cl_citysHot">'+
-                '<li>{%=cityChineseName%}</li>'+
-                '</ul>'+
-                '</div>'+
-                '<div class="cityWordBox" id="cityWordBox">'+
-                    '<div class="cityWord">'+
-                    '<div class="fr"><a href="#cl_curr">当前</a></div>'+
-                    '<div class="fr"><a href="#cl_hot">热门</a></div>'+
-                    '<ul class="cl_word fr" id="cl_side">'+
-                    '<li><a href="#a">A</a></li>'+
-                '<li><a href="#b">B</a></li>'+
-                '<li><a href="#c">C</a></li>'+
-                '<li><a href="#d">D</a></li>'+
-                '<li><a href="#e">E</a></li>'+
-                '<li><a href="#f">F</a></li>'+
-                '<li><a href="#g">G</a></li>'+
-                '<li><a href="#h">H</a></li>'+
-                '<li><a href="#i">I</a></li>'+
-                '<li><a href="#j">J</a></li>'+
-                '<li><a href="#k">K</a></li>'+
-                '<li><a href="#l">L</a></li>'+
-                '<li><a href="#m">M</a></li>'+
-                '<li><a href="#n">N</a></li>'+
-                '<li><a href="#o">O</a></li>'+
-                '<li><a href="#p">P</a></li>'+
-                '<li><a href="#q">Q</a></li>'+
-                '<li><a href="#r">R</a></li>'+
-                '<li><a href="#s">S</a></li>'+
-                '<li><a href="#t">T</a></li>'+
-                '<li><a href="#u">U</a></li>'+
-                '<li><a href="#v">V</a></li>'+
-                '<li><a href="#w">W</a></li>'+
-                '<li><a href="#x">X</a></li>'+
-                '<li><a href="#y">Y</a></li>'+
-                '<li><a href="#z">Z</a></li>'+
-                '</ul>'+
-                '</div>'+
-                '</div>'+
-                '<ol id="lsf_city_list" class="lsf_city_list">'+
-                    '<li class="cl_con ">'+
-                    '<a name="a" class="cl_on">&nbsp;</a>'+
-                '<div>A</div>'+
-                '<ul id="A">'+
-                '<li>{%=cityNameCN%}</li>'+
-           '</ul>'+
-            '</li>'+
-            '<li class="cl_con ">'+
-            '<a name="b" class="cl_on">&nbsp;</a>'+
-       '<div>B</div>'+
-        '<ul id="B">'+
-        '<li>{%=cityNameCN%}</li>'+
-    '</ul>'+
-    '</li>'+
-    '<li class="cl_con ">'+
-        '<a name="c" class="cl_on">&nbsp;</a>'+
-    '<div>C</div>'+
-    '<ul id="C">'+
-    '<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="d" class="cl_on">&nbsp;</a>'+
-'<div>D</div>'+
-'<ul id="D">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="e" class="cl_on">&nbsp;</a>'+
-'<div>E</div>'+
-'<ul id="E">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="f" class="cl_on">&nbsp;</a>'+
-'<div>F</div>'+
-'<ul id="F">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="g" class="cl_on">&nbsp;</a>'+
-'<div>G</div>'+
-'<ul id="G">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="h" class="cl_on">&nbsp;</a>'+
-'<div>H</div>'+
-'<ul id="H">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="i" class="cl_on">&nbsp;</a>'+
-'<div>I</div>'+
-'<ul id="I">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="j" class="cl_on">&nbsp;</a>'+
-'<div>J</div>'+
-'<ul id="J">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="k" class="cl_on">&nbsp;</a>'+
-'<div>K</div>'+
-'<ul id="K">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="l" class="cl_on">&nbsp;</a>'+
-'<div>L</div>'+
-'<ul id="L">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="m" class="cl_on">&nbsp;</a>'+
-'<div>M</div>'+
-'<ul id="M">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="n" class="cl_on">&nbsp;</a>'+
-'<div>N</div>'+
-'<ul id="N">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="o" class="cl_on">&nbsp;</a>'+
-'<div>O</div>'+
-'<ul id="O">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con ">'+
-    '<a name="p" class="cl_on">&nbsp;</a>'+
-'<div>P</div>'+
-'<ul id="P">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="q" class="cl_on">&nbsp;</a>'+
-'<div>Q</div>'+
-'<ul id="Q">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="r" class="cl_on">&nbsp;</a>'+
-'<div>R</div>'+
-'<ul id="R">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="s" class="cl_on">&nbsp;</a>'+
-'<div>S</div>'+
-'<ul id="S">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="t" class="cl_on">&nbsp;</a>'+
-'<div>T</div>'+
-'<ul id="T">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="u" class="cl_on">&nbsp;</a>'+
-'<div>U</div>'+
-'<ul id="U">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="v" class="cl_on">&nbsp;</a>'+
-'<div>V</div>'+
-'<ul id="V">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="w" class="cl_on">&nbsp;</a>'+
-'<div>W</div>'+
-'<ul id="W">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="x" class="cl_on">&nbsp;</a>'+
-'<div>X</div>'+
-'<ul id="X">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="y" class="cl_on">&nbsp;</a>'+
-'<div>Y</div>'+
-'<ul id="Y">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'<li class="cl_con">'+
-    '<a name="z" class="cl_on">&nbsp;</a>'+
-'<div>Z</div>'+
-'<ul id="Z">'+
-'<li>{%=cityNameCN%}</li>'+
-'</ul>'+
-'</li>'+
-'</ol>'+
-'</div>';
-                cl_back=document.getElementById('cl_back');
-                lsf_myweb.bind(cl_back,'click',function(){
-                    var arr1=document.getElementById('arr1');
-                    var arr2=document.getElementById('arr2');
-                    var inter=arr1.parentNode.parentNode;
-                    var dom=arr2.parentNode.parentNode;
-                    cl_box_box.style.display='none';
-                });
-                cityShow(interHotData,dataWorIN,abroad_target_city);
-            }else{
-                cl_box_box.style.display='block';
+
+            var dlsf_city_list=document.getElementById('dlsf_city_list');
+            var dcityListWord=dlsf_city_list.children;
+            for(var i=0;i<dcityListWord.length;i++){
+                var doUl=dcityListWord[i].getElementsByTagName('ul')[0];
+                var doDiv=dcityListWord[i].getElementsByTagName('div')[0];
+                if(doUl.children.length==1&&doUl.children[0].innerHTML==''){
+                    dcityListWord[i].style.display='none';
+                }else{
+                    dcityListWord[i].style.display='block';
+                }
             }
-            interBok=false;
-            domBok=true;
+        }
+        cityShow(interHotData,domHotData,dataWorIN,dataWorCN,abroad_target_city,domestic_target_city);
+        //国际城市
+        console.log(dataWorIN);
+        console.log(8888888888888888888);
+        lsf_myweb.bind(abroad_target_city,'click',function(){
+            cl_box_box.style.display='block';
         });
         //国内城市
         lsf_myweb.bind(domestic_target_city,'click',function(){
-            if(interBok&&domBok){
-                cityShow(domHotData,dataWorCN,domestic_target_city);
-            }else if(!interBok&&domBok){
-                cl_box_box.innerHTML='<div class="cl_box">'+
-                    '<div class="header" id="vlm-login">'+
-                    '<div class="cl_search">'+
-                    '<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />'+
-                    '<datalist id="searchCity">'+
-                    '</datalist>'+
-                    '<i></i>'+
-                    '</div>'+
-                    '<a href="javascript:;" class="icons header-back" id="cl_back"></a>'+
-                    '</div>'+
-                    '<div class="cl_curr cl_con"  >'+
-                    '<a name="cl_curr" class="cl_on">&nbsp;</a>'+
-                    '<div>当前</div>'+
-                    '<ul>'+
-                    '<li class="fl beijing">北京</li>'+
-                    '</ul>'+
-                    '</div>'+
-                    '<div class="cl_con ">'+
-                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
-                    '<div>历史选择</div>'+
-                    '<ul class="cl_citysHis" id="cl_citysHis">'+
-                    '</ul>'+
-                    '</div>'+
-                    '<div class="cl_con ">'+
-                    '<a name="cl_hot" class="cl_on">&nbsp;</a>'+
-                    '<div>热门城市</div>'+
-                    '<ul class="cl_citysHot" id="cl_citysHot">'+
-                    '<li>{%=cityChineseName%}</li>'+
-                    '</ul>'+
-                    '</div>'+
-                    '<div class="cityWordBox" id="cityWordBox">'+
-                    '<div class="cityWord">'+
-                    '<div class="fr"><a href="#cl_curr">当前</a></div>'+
-                    '<div class="fr"><a href="#cl_hot">热门</a></div>'+
-                    '<ul class="cl_word fr" id="cl_side">'+
-                    '<li><a href="#a">A</a></li>'+
-                    '<li><a href="#b">B</a></li>'+
-                    '<li><a href="#c">C</a></li>'+
-                    '<li><a href="#d">D</a></li>'+
-                    '<li><a href="#e">E</a></li>'+
-                    '<li><a href="#f">F</a></li>'+
-                    '<li><a href="#g">G</a></li>'+
-                    '<li><a href="#h">H</a></li>'+
-                    '<li><a href="#i">I</a></li>'+
-                    '<li><a href="#j">J</a></li>'+
-                    '<li><a href="#k">K</a></li>'+
-                    '<li><a href="#l">L</a></li>'+
-                    '<li><a href="#m">M</a></li>'+
-                    '<li><a href="#n">N</a></li>'+
-                    '<li><a href="#o">O</a></li>'+
-                    '<li><a href="#p">P</a></li>'+
-                    '<li><a href="#q">Q</a></li>'+
-                    '<li><a href="#r">R</a></li>'+
-                    '<li><a href="#s">S</a></li>'+
-                    '<li><a href="#t">T</a></li>'+
-                    '<li><a href="#u">U</a></li>'+
-                    '<li><a href="#v">V</a></li>'+
-                    '<li><a href="#w">W</a></li>'+
-                    '<li><a href="#x">X</a></li>'+
-                    '<li><a href="#y">Y</a></li>'+
-                    '<li><a href="#z">Z</a></li>'+
-                    '</ul>'+
-                    '</div>'+
-                    '</div>'+
-                    '<ol id="lsf_city_list" class="lsf_city_list">'+
-                    '<li class="cl_con ">'+
-                    '<a name="a" class="cl_on">&nbsp;</a>'+
-                    '<div>A</div>'+
-                    '<ul id="A">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="b" class="cl_on">&nbsp;</a>'+
-                    '<div>B</div>'+
-                    '<ul id="B">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="c" class="cl_on">&nbsp;</a>'+
-                    '<div>C</div>'+
-                    '<ul id="C">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="d" class="cl_on">&nbsp;</a>'+
-                    '<div>D</div>'+
-                    '<ul id="D">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="e" class="cl_on">&nbsp;</a>'+
-                    '<div>E</div>'+
-                    '<ul id="E">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="f" class="cl_on">&nbsp;</a>'+
-                    '<div>F</div>'+
-                    '<ul id="F">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="g" class="cl_on">&nbsp;</a>'+
-                    '<div>G</div>'+
-                    '<ul id="G">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="h" class="cl_on">&nbsp;</a>'+
-                    '<div>H</div>'+
-                    '<ul id="H">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="i" class="cl_on">&nbsp;</a>'+
-                    '<div>I</div>'+
-                    '<ul id="I">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="j" class="cl_on">&nbsp;</a>'+
-                    '<div>J</div>'+
-                    '<ul id="J">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="k" class="cl_on">&nbsp;</a>'+
-                    '<div>K</div>'+
-                    '<ul id="K">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="l" class="cl_on">&nbsp;</a>'+
-                    '<div>L</div>'+
-                    '<ul id="L">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="m" class="cl_on">&nbsp;</a>'+
-                    '<div>M</div>'+
-                    '<ul id="M">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="n" class="cl_on">&nbsp;</a>'+
-                    '<div>N</div>'+
-                    '<ul id="N">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="o" class="cl_on">&nbsp;</a>'+
-                    '<div>O</div>'+
-                    '<ul id="O">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con ">'+
-                    '<a name="p" class="cl_on">&nbsp;</a>'+
-                    '<div>P</div>'+
-                    '<ul id="P">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="q" class="cl_on">&nbsp;</a>'+
-                    '<div>Q</div>'+
-                    '<ul id="Q">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="r" class="cl_on">&nbsp;</a>'+
-                    '<div>R</div>'+
-                    '<ul id="R">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="s" class="cl_on">&nbsp;</a>'+
-                    '<div>S</div>'+
-                    '<ul id="S">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="t" class="cl_on">&nbsp;</a>'+
-                    '<div>T</div>'+
-                    '<ul id="T">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="u" class="cl_on">&nbsp;</a>'+
-                    '<div>U</div>'+
-                    '<ul id="U">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="v" class="cl_on">&nbsp;</a>'+
-                    '<div>V</div>'+
-                    '<ul id="V">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="w" class="cl_on">&nbsp;</a>'+
-                    '<div>W</div>'+
-                    '<ul id="W">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="x" class="cl_on">&nbsp;</a>'+
-                    '<div>X</div>'+
-                    '<ul id="X">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="y" class="cl_on">&nbsp;</a>'+
-                    '<div>Y</div>'+
-                    '<ul id="Y">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '<li class="cl_con">'+
-                    '<a name="z" class="cl_on">&nbsp;</a>'+
-                    '<div>Z</div>'+
-                    '<ul id="Z">'+
-                    '<li>{%=cityNameCN%}</li>'+
-                    '</ul>'+
-                    '</li>'+
-                    '</ol>'+
-                    '</div>';
-                cl_back=document.getElementById('cl_back');
-                lsf_myweb.bind(cl_back,'click',function(){
-                    var arr1=document.getElementById('arr1');
-                    var arr2=document.getElementById('arr2');
-                    var inter=arr1.parentNode.parentNode;
-                    var dom=arr2.parentNode.parentNode;
-                    cl_box_box.style.display='none';
-                });
-                cityShow(domHotData,dataWorCN,domestic_target_city);
-            }else{
-                cl_box_box.style.display='block';
-            }
-            domBok=false;
-            interBok=true;
+            dcl_box_box.style.display='block';
         });
         lsf_myweb.bind(cl_back,'click',function(){
             var arr1=document.getElementById('arr1');
@@ -1130,8 +825,16 @@ function inpChange(id,myText){
             var dom=arr2.parentNode.parentNode;
             cl_box_box.style.display='none';
         });
-    }
-    cityList();
+        lsf_myweb.bind(dcl_back,'click',function(){
+            var arr1=document.getElementById('arr1');
+            var arr2=document.getElementById('arr2');
+            var inter=arr1.parentNode.parentNode;
+            var dom=arr2.parentNode.parentNode;
+            dcl_box_box.style.display='none';
+        });
+    });
+
+
 
     var checkIn=lsf_myweb.getbyid('CheckInDate');
     var checkOut=lsf_myweb.getbyid('CheckOutDate');
@@ -1317,5 +1020,7 @@ function inpChange(id,myText){
         hoPos='dom';
         localStorage.setItem('hoPos',hoPos);
     });
+
+
 })();
 

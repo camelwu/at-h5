@@ -783,6 +783,7 @@
 .often-traveler {
     width: 100%;
     margin-bottom: 15px;
+    overflow: scroll;
 
 }
 
@@ -925,6 +926,7 @@
 .addtra-info .country-btn{
     width: 60%;
     float: left;
+    height: 20px;
     margin-left: 12%;
 }
 

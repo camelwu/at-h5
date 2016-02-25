@@ -6,8 +6,8 @@ function init(){
     var phone = localStorage.phone||sessionStorage.phone;
     var password = localStorage.password||sessionStorage.password;
     var memberid = localStorage.memberid||sessionStorage.memberid;
-    sessionStorage.news = "true";
-    sessionStorage.promotion = "true";
+    localStorage.news = "true";
+    localStorage.promotion = "true";
     var Parameters={
         "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
@@ -44,23 +44,6 @@ function init(){
     }
     close(close_page);
 
-    //设置里的消息开关
-    function ifOpen(){
-        var b = window.event.srcElement;
-        var newsLetter = $("#newsLetter")[0];
-        var rcvPromotion = $("#rcvPromotion")[0];
-        if(b.className == "icon set-chose1"){
-            b.className = "icon set-chose2";
-        }else{
-            b.className = "icon set-chose1";
-        }
-        if(newsLetter.className == "icon set-chose2"){
-            sessionStorage.news = "false";
-        }
-        if(rcvPromotion.className == "icon set-chose2"){
-            sessionStorage.promotion = "false";
-        }
-    }
 
     if(localStorage.getItem('login') != 1)
     {
@@ -89,7 +72,8 @@ function mycallback(ret) {
         var user_sex = $("#user_sex")[0];
         var userIcon = $("#userIcon")[0];
         user_name.innerHTML = myJson.data[0].nickName;
-        sessionStorage.sex=myJson.data[0].salutation;
+        localStorage.sex=myJson.data[0].salutation;
+        localStorage.email=myJson.data[0].emailAddress;
         if (myJson.data[0].salutation == "26") {
             user_sex.className = "icon open-sexm";
             userIcon.src = "../images/ui/photo-man.png";
@@ -162,6 +146,16 @@ function mycallback(ret) {
     }
 
 })()
+
+//设置里的消息开关
+function ifOpen(){
+    var b = window.event.srcElement;
+    if(b.className == "icon set-chose1"){
+        b.className = "icon set-chose2";
+    }else{
+        b.className = "icon set-chose1";
+    }
+}
 
 
 

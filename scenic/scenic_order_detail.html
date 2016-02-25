@@ -32,7 +32,7 @@
                         <span class="travel-date-tit fl">游玩日期</span>
                         <div class="travel-date-wrap fr clearFix">
                             <div class="travel-date-wrap-so fl">
-                                <span class="tra-ymd">2015.11.14</span>
+                                <span class="tra-ymd" id="jdate">2015.11.14</span>
                                 <span class="tra-week">星期五</span>
                                 <b></b>
                             </div>
@@ -195,7 +195,12 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
+    <script src="../js/lib/d_calendar1.0.2.js"></script>
     <script>
+        //日期调用
+        var myDate1 = new Calender({id:'jdate',input:'jdate',num:2,time:[]});
+
+
         $(window).load(function () {
             $("#status").fadeOut();
             $("#preloader").delay(400).fadeOut("medium");

@@ -7,7 +7,7 @@ var u_email;
 var u_realname;
 var phoneBflag=false;
 var r_phone=$('#phone')[0];
-var UserSex=sessionStorage.salutation;
+var UserSex=localStorage.salutation;
 var phone_verify=$('#phone_ver')[0];
 function u_perInfo(){
     var menu = $("#menu")[0];
@@ -268,7 +268,7 @@ function u_perInfo(){
                         return;
                     }
                 }
-                if(sessionStorage.email != ""){
+                if(localStorage.email != ""){
                     if(oInputEmail.value == email){
                         alert("用户已绑定信息不能修改");
                         return;
@@ -428,10 +428,11 @@ function mycallback(ret){
         }
     }
 
-        user_email.value = localStorage.email;
-        user_phone.value = '';
+    user_email.value = localStorage.email;
+    user_phone.value = '';
     //realName.value = sessionStorage.realname;
     memberid = localStorage.memberid;
+    document.querySelector('.mob-cell').value=infoJson.data[0].mobileNo;
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
@@ -447,9 +448,9 @@ function mycallback_info(ret){
     var myJson = eval('('+ret+')');
     console.log(myJson);
     if(myJson.success){
-        sessionStorage.realname = u_realname;
-        sessionStorage.phone = u_phone;
-        console.log(sessionStorage);
+        localStorage.realname = u_realname;
+        localStorage.phone = u_phone;
+        //console.log(localStorage);
         document.getElementById("infoForm").submit();
     }else{
         alert(myJson.message);
