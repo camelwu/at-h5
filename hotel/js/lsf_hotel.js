@@ -289,14 +289,26 @@ function inpChange(id,myText){
         this.blur();
     });
     //房间数，成人，儿童书去掉光标
-    lsf_myweb.bind(lsf_myweb.getbyid('count1'),'focus',function(){
+    var count1=document.getElementById('count1');
+    var count2=document.getElementById('count2');
+    var count3=document.getElementById('count3');
+    lsf_myweb.bind(count1,'focus',function(){
         this.blur();
     });
-    lsf_myweb.bind(lsf_myweb.getbyid('count2'),'focus',function(){
+    lsf_myweb.bind(count2,'focus',function(){
         this.blur();
     });
-    lsf_myweb.bind(lsf_myweb.getbyid('count3'),'focus',function(){
+    lsf_myweb.bind(count3,'focus',function(){
         this.blur();
+    });
+    lsf_myweb.bind(count1,'dblclick',function(){
+        return false;
+    });
+    lsf_myweb.bind(count2,'dblclick',function(){
+        return false;
+    });
+    lsf_myweb.bind(count3,'dblclick',function(){
+        return false;
     });
     //日历
     function n2c(num){
