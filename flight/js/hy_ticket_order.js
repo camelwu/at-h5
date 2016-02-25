@@ -81,7 +81,7 @@ var ticketOrder = {
         var tipWord = document.querySelector('.tip-word');
         var backMealClose = document.querySelector('.back-meal-close');
         var goLineOuter = document.querySelector('.go-line-outer');
-        var confirmButton = document.querySelector('.confirm');
+        var confirmButton = document.querySelector('#confirm-button');
         var summaryCostShadowTwo = document.querySelector('.summary-cost-shadow-two');
         var detailTangle = document.querySelector('.detail-tangle');
         var summaryCostModal = document.querySelector('.summary-cost-modal');
@@ -92,8 +92,8 @@ var ticketOrder = {
         var passengerWrap = document.querySelector('.passenger-list-data');
         var toEditPassengers = document.querySelectorAll('.next-icon');
         var deletePassenger = document.querySelectorAll('.icon-add');
+        var chooseAgreeInfo = document.querySelector('.choose-agree-info');
         var that = this;
-        console.log(contactPerson)
         /*this.addHandler(addPassenger,'click', function(){
             document.location.href = '../user/user-choiceAir.html?type=add&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild
         });*/
@@ -104,14 +104,29 @@ var ticketOrder = {
             });
         }
 
-            this.addHandler(passengerWrap,'click', function(){
+            this.addHandler(chooseAgreeInfo,'click', function(){
                var event = event || window.event;
                var target = event.target || event.srcElement;
-                console.log(target.className)
-                if(target.tagName =='I'){
-                    this.removeChild(target.parentNode.parentNode)
+               var opEle = document.querySelector('#confirm-button');
+                if(target.className=="choose-agree-info yep-agree-info"){
+                    target.className = "choose-agree-info no-agree-info";
+                    opEle.style.background = "#BDB9B1";
+                    opEle.disabled = true;
+                }else{
+                    target.className = "choose-agree-info yep-agree-info";
+                    opEle.style.background = "#ffb413";
+                    opEle.disabled = false;
                 }
         })
+
+        this.addHandler(rightArrow,'click', function(){
+            $("#preloader").show();
+            $("#status-f").show();
+            $("#status-f").delay(400).fadeOut("medium");
+            $("#preloader").delay(400).fadeOut("medium");
+            document.querySelector('.summary-cost-shadow-two').style.display = 'block';
+            document.querySelector('.ticket-detail-modal').style.display = 'block';
+        });
 
        /* this.addHandler(contactPerson,'click', function(){
             document.location.href = '../user/cont-list.html'
@@ -124,10 +139,11 @@ var ticketOrder = {
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         });
-
+        console.log(confirmButton)
         this.addHandler(confirmButton,'click', function(){
-             console.log('dataCommit')
-             //document.location.href = 'pay_detail.html';
+            var event = event || window.event;
+            var target =event.target || event.srcElement;
+            document.location.href = 'pay_detail.html';
         });
 
 
@@ -247,7 +263,7 @@ var ticketOrder = {
         var detailOuter = document.querySelector('.detail-outer');
         var goLineOuterHtml = '',seatConditionHtml ='', detailOuterHtml='',costStr='',that = this;
         var cacheInfo = this.storageUtil.get('reverseInformationCache');
-        console.log(cacheInfo.TotalFlightPrice*parseInt(cacheInfo.WapOrder.NumofAdult))
+        console.log(cacheInfo)
 
         if(arg.segmentsReturn){
             goLineOuterHtml+= '<div class="go-line-outer-sub">' + createTopGo(arg)+'<p class="go-line go-line-return-middle"><span class="trigger-button right-arrow"></span></p>'+createTopBack(arg)+'</div>';
@@ -349,67 +365,102 @@ var ticketOrder = {
             return str;
         }
     },
-   costFinaList:function(){
+    costFinaList:function(){
        var that = this, costTotal = document.querySelector('.second-line'),temObj = {},totalCost = document.querySelector('.total-price-number strong');
-       var costStr = '',curFlightListData = this.storageUtil.get('curFlightListData'),reverseInformationCache = this.storageUtil.get('reverseInformationCache') ;
-       var totalPerson = document.querySelector('.total-person-price');
+       var costStr = '',curFlightListData = this.storageUtil.get('curFlightListData'),reverseInformation=this.reverseInformation ;
+       var totalPerson = document.querySelector('.total-person-price'),totalPersonNum = 0;
        temObj.totalFareAmountADT = curFlightListData.totalFareAmountADT;
        temObj.totalFareAmountCHD = curFlightListData.totalFareAmountCHD;
        temObj.totalFareAmountExc = curFlightListData.totalFareAmountExc;
        temObj.totalTaxAmountADT = curFlightListData.totalTaxAmountADT;
        temObj.totalTaxAmountCHD = curFlightListData.totalTaxAmountCHD;
-       temObj.NumofAdult = parseInt(reverseInformationCache.WapOrder.NumofAdult);
-       temObj.NumofChild = parseInt(reverseInformationCache.WapOrder.NumofChild);
+       temObj.NumofAdult = parseInt(reverseInformation.WapOrder.NumofAdult);
+       temObj.NumofChild = parseInt(reverseInformation.WapOrder.NumofChild);
        this.costFinaListData = temObj;
        costStr+= '<p>成人票<span>￥<span>'+temObj.totalFareAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
        costStr+= '<p>税费<span>￥<span>'+temObj.totalTaxAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
-       costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+temObj.totalFareAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
-       costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+temObj.totalTaxAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+        if(this.orderFlightData.totalFareAmountCHD){
+            costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+temObj.totalFareAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+temObj.totalTaxAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            totalPersonNum = temObj.NumofAdult+temObj.NumofChild
+        }else{
+            totalPersonNum = temObj.NumofAdult;
+        }
        costTotal.innerHTML = costStr;
        totalCost.innerHTML = temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild
-       totalPerson.innerHTML = temObj.NumofAdult+temObj.NumofChild+'人总价';
-       console.log(this.costFinaListData)
-       console.log( totalCost.innerHTML)
+       totalPerson.innerHTML = totalPersonNum+'人总价';
    },
-
     init:function(){
-        console.log(this.storageUtil.get('reverseInformationCache'));
+         var reverseInformation = this.storageUtil.get('reverseInformationCache');
+         this.reverseInformation = reverseInformation;
+         console.log(reverseInformation)
         /*var reverseInformationCache = {
-            WapOrder:{},
-            TravellerInfo: [
-                {PassengerType: "ADULT",
-                    SexCode: "Mr",
-                    FirstName: "sss",
-                    LastName: "ddd",
-                    DateOfBirth: "1900-12-24",
-                    FlightCertificateInfo: {
-                        IdType: "4",
-                        IdCountry: "SIN",
-                        NationalityCode: "123",
-                        IdNumber: "3412",
-                        IdActivatedDate: "2016-12-31"
+         WapOrder:{
+         SetID:"30000080",
+         CacheID:"3500553",
+         CityCodeFrom:"BJS", //出发地三字码
+         CityCodeTo:"BJS",  //到达地三字码
+         NumofAdult:2,
+         NumofChild:2,
+         RouteType:"Oneway",
+         CabinClass:"First",
+         SourceType:"H5" ,//,
+         MemberId:"123456"   //必须，用户编码，
+         },
+         CurrencyCode: "CNY",
+         TotalFlightPrice: 106255,
+         TravellerInfo:[],
+         ContactDetail:{}
+         };*/
+        //数据格式
+        /* var  reverseInformation = {
+            WapOrder:{//订单信息
+                     SetID:"30000080",
+                     CacheID:"3500553",
+                     CityCodeFrom:"BJS", //出发地三字码
+                     CityCodeTo:"BJS",  //到达地三字码
+                     NumofAdult:2,
+                     NumofChild:2,
+                     RouteType:"Oneway",
+                     CabinClass:"First",
+                     SourceType:"H5" ,//,
+                     MemberId:"123456"   //必须，用户编码，
+                  },
+
+            TravellerInfo: [   //乘客信息，是个数组
+                    {   PassengerType: "ADULT",  //乘客类型
+                        SexCode: "Mr",        //称呼
+                        FirstName: "sss",     //姓
+                        LastName: "ddd",       //名
+                        DateOfBirth: "1900-12-24", //出生日期
+                        FlightCertificateInfo: {    //证件信息
+                        IdType: "4",      //证件类型
+                        IdCountry: "SIN",  //证件发行国家
+                        NationalityCode: "123", //国籍代码
+                        IdNumber: "3412",      //证件号码
+                        IdActivatedDate: "2016-12-31"  //证件有效期
                     },
-                    AirCorpCode: "MF",
-                    FlightNo: "757"
+                    AirCorpCode: "MF",     //航空公司代码
+                    FlightNo: "757"       //航班号
                 }
             ],
-            ContactDetail:{
-                SexCode: "Mr",
-                FirstName: "dddd",
-                LastName: "ssss",
-                Email: "855@asiatravel.com",
+            ContactDetail:{ //联系人信息:唯一的
+                SexCode: "Mr",  //称呼
+                FirstName: "dddd", //姓
+                LastName: "ssss",  //名
+                Email: "855@asiatravel.com", //邮箱
                 Email2: "",
-                ContactNumber: "5689",
-                MobilePhone: "",
-                FaxNumber: "",
-                DestContactNumber: "12356",
-                Address: "kkkk",
+                ContactNumber: "5689",   //联系号码
+                MobilePhone: "",        //手机号
+                FaxNumber: "",           //传真
+                DestContactNumber: "12356",  //目的地联系号码
+                Address: "kkkk",    //地址
                 PostalCode: "123456",
                 City: "SIN",
                 CountryCode: "SG"
             },
-            CurrencyCode: "",
-            TotalFlightPrice: ""
+            CurrencyCode: "",   //货币种类代码
+            TotalFlightPrice: ""   //合计费用
         };*/
 
         this.telSlider();

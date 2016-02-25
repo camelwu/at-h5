@@ -118,7 +118,8 @@
 
             <div class="table">
                 <div class="unit name">
-                    <label for="name" class="name-label">姓/名</label><input type="text" name="name" id="name" placeholder="BAI/LISA" />
+                        <label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" />
+                        <label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" />
                 </div>
                 <div class="unit tel">
                     <div class="left">
@@ -144,7 +145,7 @@
         </div>
 
         <div class="read-tip" style="margin-bottom: 100px">
-            <i></i>我已阅读并同意<span id="buy-ticket-tip">购票须知</span>
+            <i class="choose-agree-info no-agree-info"></i>我已阅读并同意<span id="buy-ticket-tip">购票须知</span>
         </div>
     </div>
 
@@ -154,7 +155,7 @@
             <p class="total-person-price">5人总价</p>
         </div>
         <p class="detail clearfixs detail-tangle"><span id="details">明细</span><span class="icon-arrow"></span></p>
-        <p class="confirm"><span>确认预定</span></p>
+        <div class="confirm"><input type="button" id="confirm-button" value="确认预订" disabled/></div>
     </footer>
 
     <!--遮罩-->
@@ -164,10 +165,6 @@
     <div class="summary-cost-modal summary-cost-modal-hide">
         <div class="first-line">费用明细</div>
         <div class="second-line">
-            <p>成人票<span>￥<span>1134</span> x3 人</span></p>
-            <p>税费<span>￥<span>159</span> x3 人</span></p>
-            <p>儿童票<span>￥<span>10496</span> x2 人</span></p>
-            <p>税费<span>￥<span>159</span> x2 人</span></p>
         </div>
     </div>
     <!--注意事项开始-->
