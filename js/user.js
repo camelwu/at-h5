@@ -259,7 +259,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 }
 
                 //出生日期校验
-                var oBirthday=input[5].value.replace('年','-').replace('月','-').replace('号','');
+                var oBirthday=input[5].value.replace('年','-').replace('月','-').replace('号','').replace('日','');
                 if( ! vlm.Utils.compareBirth(oBirthday))
                 {
                     alert('你选择的出生日期不符合购票要求(建议年龄大于13周岁)');
@@ -271,7 +271,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
                 if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
                     var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\""+$('#country-name').attr('data-code')+"\",\"CountryName\":\""+$('#countryName').html()+"\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+oBirthday+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\""+$('#country-name').html()+"\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','')+"\"}]}",
+                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\""+$('#country-name').attr('data-code')+"\",\"CountryName\":\""+$('#countryName').html()+"\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+oBirthday+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\""+$('#country-name').html()+"\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"}]}",
                         "ForeEndType": 3,
                         "Code": "0072"
                     };
