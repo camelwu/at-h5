@@ -181,13 +181,26 @@ var ticketSingle = {
 
         });
     },
+
+    checkPullStatus:function(){
+        var lis =  document.querySelectorAll('.air-tickets-detail-wrapper li');
+        var pullDown = document.querySelector('#pullDown'),pullUp = document.querySelector('#pullUp');
+        if(lis!=null&&lis.length>0){
+            pullDown.style.display = "block";
+            pullUp.style.display = "block";
+        }else{
+            pullDown.style.display = "none";
+            pullUp.style.display = "none";
+        }
+    },
     renderHandler:function(arg){
         arg = JSON.parse(arg);
-        var that = ticketSingle;
-        console.log(arg);
+        console.log(arg)
+        var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
+        var tipEle = document.querySelector('.flight-result-tip');
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
-            console.log(that)
+                tipEle.style.display = 'none';
                 that.flightResultArray.push(arg["data"])
                 that.storageUtil.set('flightListData',that.flightResultArray);
                 that.pageNo = arg.data.pageNo;
@@ -195,11 +208,22 @@ var ticketSingle = {
                 that.changeFlightList(arg);
                 that.eventHandler();
                 that.taxDeal(arg.data.flightInfos);
+        }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
+            airTicketsListWrapper.innerHTML = "";
+            tipEle.style.display = 'block';
+            that.timer7 = window.setTimeout(function(){
+                tipEle.style.display = 'none';
+                window.clearTimeout(that.timer7);
+                that.timer7 = null;
+            },3000);
         }else{
+               tipEle.style.display = 'none';
                that.isClearAll = true;
+               airTicketsListWrapper.innerHTML = "";
                document.querySelector('#preloader').style.display='none';
-               that.alertNoFlightNotice(that.backParaObj,'single')
+               that.alertNoFlightNotice(that.backParaObj,'single');
           }
+        that.checkPullStatus()
     },
 
     taxDeal:function(arg){
@@ -263,7 +287,6 @@ var ticketSingle = {
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
-        console.log(arg.data.flightInfos)
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         for(var i = 0; i < arg.data.flightInfos.length; i++){
             ticketListStr = '';

@@ -417,7 +417,7 @@ var ticketOrder = {
          TravellerInfo:[],
          ContactDetail:{}
          };*/
-        //数据格式
+        //数据实例
         /* var  reverseInformation = {
             WapOrder:{//订单信息
                      SetID:"30000080",
