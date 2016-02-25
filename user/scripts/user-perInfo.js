@@ -428,10 +428,11 @@ function mycallback(ret){
         }
     }
 
-        user_email.value = localStorage.email;
-        user_phone.value = '';
+    user_email.value = localStorage.email;
+    user_phone.value = '';
     //realName.value = sessionStorage.realname;
     memberid = localStorage.memberid;
+    document.querySelector('.mob-cell').value=infoJson.data[0].mobileNo;
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
