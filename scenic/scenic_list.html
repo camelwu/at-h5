@@ -102,7 +102,7 @@
                 <b class="jd-icon s-remark"></b>
                 好评率
             </div>
-            <div>
+            <div id="priceSort">
                 <b class="jd-icon s-rank"></b>
                 价格排序
             </div>
@@ -162,7 +162,7 @@
             var webkit = this;
             var core = function(){
                 var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
-                var isPlayAnim = false;
+                var themeid = "";//因为主题也有价格排序
                 vlm.init();
 
                 /**
@@ -289,12 +289,77 @@
                         $("#SpotScreen").html(tpl_SpotScreen);
 
                         CBot_screen();
-
+                        if(data.lists.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
                     }else {
                         console.log(json);
                         jAlert(json.message,"提示");
                     }
                 }
+
+                /**
+                 * @价格排序
+                 * @constructor
+                 */
+                var CBindPriceSort = function(){
+                    $("#priceSort").toggle(function(){
+                        CLoadPriceSort("HighToLow");
+                    },function(){
+                        CLoadPriceSort("LowToHigh");
+                    },function(){
+                        CLoadPriceSort("");
+                    });
+                }
+                /**
+                 * @价格排序
+                 * @constructor
+                 */
+                var CLoadPriceSort = function(priceSort){
+
+                    var val = vlm.parseUrlPara(window.location.href);
+                    var PriceSort=
+                    {
+                        "Parameters": {
+                            "DestCityCode": val.DestCityCode,
+                            "PriceSortType" :priceSort
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0087"
+                    };
+                    CLoadJson(apiurl,JSON.stringify(PriceSort),PriceSortCallback,CAnimIn,CAnimOut);
+
+                }
+
+                /**
+                 * @价格排序 [CLoadSearchAvailableToursAttractions Callback]
+                 * @param data
+                 * @constructor
+                 */
+                var PriceSortCallback = function(data){
+                    var json=eval('('+data+')');
+                    console.log(json);
+                    if(json.success){
+                        var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
+                                tpl_Localtxt = template("tpl_Localtxt",data),
+                                tpl_SpotScreen = template("tpl_SpotScreen",data);
+                        $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                        $("#Localtxt").html(tpl_Localtxt);
+                        $("#SpotScreen").html(tpl_SpotScreen);
+
+                        CBot_screen();
+                        if(data.lists.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
+                    }else {
+                        console.log(json);
+                        jAlert(json.message,"提示");
+                    }
+                }
+
+
+
+
                 /**
                  * @根据主题筛选
                  * @param themeid
@@ -325,11 +390,16 @@
                     if(json.success){
                         var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists);
                         $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                        if(data.lists.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
+
                     }else {
                         console.log(json);
                         jAlert(json.message,"提示");
                     }
                 }
+
 
 
                 /**
@@ -359,7 +429,7 @@
 
                         if(this.title == "confirm"){
                             //获得themeid
-                            var themeid=$(".spot-slected").attr("title");
+                            themeid=$(".spot-slected").attr("title");
                             //调用主题方法
                             CLoadFilterTheme(themeid);
                         }
@@ -408,12 +478,14 @@
 
                 return {
                     CLoadSearchAvailableToursAttractions:CLoadSearchAvailableToursAttractions,
-                    CBot_screen:CBot_screen
+                    CBot_screen:CBot_screen,
+                    CBindPriceSort
                 }
 
             }();
             webkit.MT = webkit.MT || {};
             webkit.MT.load = function(){
+                core.CBindPriceSort();
                 core.CLoadSearchAvailableToursAttractions();
                 core.CBot_screen();
             };

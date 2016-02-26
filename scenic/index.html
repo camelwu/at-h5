@@ -361,6 +361,9 @@
                         var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
                         $("#out_place").html(tpl_GetExHotCity);
                         MT.reloadHotCity();
+                        if(data.data.destCities.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
                     }else {
                         console.log(json);
                         jAlert(json.message,"提示");
