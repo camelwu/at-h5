@@ -63,6 +63,7 @@ var ticketSeatChoose = {
         var that = this;
 
         this.addHandler(reserveButton,'click', function(){
+
             var that = ticketSeatChoose;
             var login;
             var totalCountCost = that.curFlightListData.totalTaxAmountADT ==0?that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult):

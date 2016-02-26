@@ -1039,6 +1039,9 @@
 						l_login(c);
 						return false;
 					} else {
+						if(typeof c == 'function'){
+							c();
+						}
 						return true;
 					}
 				}, _Utils = {
