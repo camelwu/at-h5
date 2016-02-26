@@ -1,4 +1,3 @@
-
 /*国籍选择*/
 var arrCountry= [{"CountryEN":"Angola",
     "CountryName":"安哥拉",
