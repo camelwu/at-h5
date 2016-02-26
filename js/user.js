@@ -378,29 +378,32 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     ul_li1.innerHTML = travJson.data[i].traveller.idName + travJson.data[i].traveller.lastName + "/" + travJson.data[i].traveller.firstName;
                     ul.appendChild(ul_li1);
                     var ul_li2 = document.createElement("li");
-                    if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "1") {
-                        ul_li2.innerHTML = "身份证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "2") {
-                        ul_li2.innerHTML = "护照" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "3") {
-                        ul_li2.innerHTML = "港澳通行证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "4") {
-                        ul_li2.innerHTML = "军官证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "5") {
-                        ul_li2.innerHTML = "驾驶证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "6") {
-                        ul_li2.innerHTML = "台胞证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "7") {
-                        ul_li2.innerHTML = "回乡证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    }
-                    else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "8") {
-                        ul_li2.innerHTML = "户口本" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    }
-                    else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "9") {
-                        ul_li2.innerHTML = "出生证明" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
-                    }
-                    else {
-                        ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                    if(travJson.data[i].listTravellerIdInfo.length != 0)
+                    {
+                        if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "1") {
+                            ul_li2.innerHTML = "身份证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "2") {
+                            ul_li2.innerHTML = "护照" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "3") {
+                            ul_li2.innerHTML = "港澳通行证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "4") {
+                            ul_li2.innerHTML = "军官证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "5") {
+                            ul_li2.innerHTML = "驾驶证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "6") {
+                            ul_li2.innerHTML = "台胞证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        } else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "7") {
+                            ul_li2.innerHTML = "回乡证" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        }
+                        else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "8") {
+                            ul_li2.innerHTML = "户口本" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        }
+                        else if (travJson.data[i].listTravellerIdInfo[idtype_num-1].idType == "9") {
+                            ul_li2.innerHTML = "出生证明" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        }
+                        else {
+                            ul_li2.innerHTML = "其他" + " " + travJson.data[i].listTravellerIdInfo[idtype_num-1].idNumber;
+                        }
                     }
                     ul.appendChild(ul_li2);
                     var ul_li3 = document.createElement("li");
