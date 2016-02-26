@@ -282,7 +282,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 else {
                     alert('请输入正确的手机号和邮箱');
                 }
-                //console.log(Parameters);
 
             }
         }
@@ -348,13 +347,26 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
                 for (var i = 0; i < travJson.data.length; i++) {
                     var idtype_num=travJson.data[i].listTravellerIdInfo.length;
-                    array[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].travellerId;
-                    arrayId[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].id;
+                    if(travJson.data[i].listTravellerIdInfo.length == 0)
+                    {
+                        array[i] = '';
+                        arrayId[i] = '';
+                        $('#country-name').html('');
+                    }
+                    else
+                    {
+                        array[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].travellerId;
+                        arrayId[i] = travJson.data[i].listTravellerIdInfo[idtype_num-1].id;
+                        $('#country-name').html(travJson.data[i].listTravellerIdInfo[idtype_num-1].idCountry);
+
+                    }
                     $('#countryName').html(travJson.data[i].traveller.countryName);
                     $('#countryName').html(travJson.data[i].traveller.countryName);
-                    $('#country-name').html(travJson.data[i].listTravellerIdInfo[idtype_num-1].idCountry);
+
                     var li = document.createElement("li");
                     li.className = "eve-traveler";
+                    //给li添加自定义属性
+                    li.setAttribute('idtype',array[i]);
                     var b = document.createElement("b");
                     b.className = "user-edits";
                     b.style.marginTop = li.clientHeight + 20 + 'px';
@@ -438,6 +450,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
 //  编辑常旅客页面
     function updateTra() {
+        console.log(this.parentNode.getAttribute('idtype'));
         var b = window.event.srcElement;
         var li = b.parentElement;
         index = li.getAttribute("index");
