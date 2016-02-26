@@ -133,7 +133,6 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
             }else{
                 sex.className="info-sex";
@@ -144,7 +143,6 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
             }
 
@@ -381,9 +379,6 @@ $('#birth-cont').click(function(){
 
 })
 
-
-
-
 //修改出生日期回调
 function mycallback_birth(ret){
     var myJson=eval('('+ret+')');
@@ -399,9 +394,9 @@ function mycallback(ret){
     console.log(infoJson);
     var nickname = $("#nickname")[0];
     var name = $("#name")[0];
+    var realName = $("#realName")[0];
     var user_email = $("#email")[0];
     var user_phone = $("#phone")[0];
-    var realName = $("#realName")[0];
     var sex = $("#sex")[0];
     var block = $("#block")[0];
     var userIcon = $("#userIcon")[0];
@@ -413,10 +408,12 @@ function mycallback(ret){
     }
     else
     {
-        nickname.innerHTML = infoJson.data[0].nickName;
-        name.value = infoJson.data[0].nickName;
+        name.value=nickname.innerHTML = infoJson.data[0].nickName;
+        $('#hostname')[0].innerHTML= realName.value= infoJson.data[0].firstName;
         birthCont.value=infoJson.data[0].dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
-        realName.value = infoJson.data[0].firstName;
+        $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
+        $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
+
         if(infoJson.data[0].salutation == 26){
             sex.className="info-sex-on";
             block.innerHTML = "女";
@@ -429,10 +426,7 @@ function mycallback(ret){
     }
 
     user_email.value = localStorage.email;
-    user_phone.value = '';
-    //realName.value = sessionStorage.realname;
     memberid = localStorage.memberid;
-    document.querySelector('.mob-cell').value=infoJson.data[0].mobileNo;
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
