@@ -174,39 +174,99 @@
             var core = function(){
                 var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
                 vlm.init();
-                //刷新热门城市并绑定事件
-                var CHotCity=function(){
-                    var outplace = $("#out_place")[0].getElementsByTagName("li");
-                    var inplace = $("#in_place")[0].getElementsByTagName("li");
-                    for(var i=0; i < outplace.length; i++){
-                        outplace[i].onclick = function(){
-                            for(var i=0; i<outplace.length; i++){
-                                outplace[i].className = "hotplace";
-                            }
-                            this.className='hotplace pl-active';
-                            MT.CurrentPageTolist(this.title);
-                        }
-                    }
-                    for(var j=0; j < inplace.length; j++){
-                        inplace[j].onclick = function(){
-                            for(var j=0; j<inplace.length; j++){
-                                inplace[j].className = "hotplace";
-                            }
-                            this.className='hotplace pl-active';
-                            MT.CurrentPageTolist(this.title);
-                        }
-                    }
+
+                /**
+                 * @动画模版
+                 * @constructor
+                 */
+                var CTmplAnim = function(){
+                    var _childhtml = '<div id="preloader"><div id="status"><p class="center-text"><br><em>加载中……</em></p></div></div>';
+                    var _roothtml = $(_childhtml)[0];
+
+                    return _roothtml;
                 }
 
-                //热门城市跳转
-                var CindexTolist = function(cityCode){
-                    if(cityCode == "more"){
-                        return false;
+                /**
+                 * @动画淡入
+                 * @constructor
+                 */
+                var CAnimIn = function(){
+                    if($("[id=preloader]").length < 1){
+                        document.body.appendChild(CTmplAnim());
                     }
-                    window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
+                    $("#preloader").ajaxStart(function(){
+                        $(this).show();
+                    });
+
                 }
 
-                //切换选项卡
+                /**
+                 * 动画淡出
+                 * @constructor
+                 */
+                var CAnimOut = function(){
+
+                    $("#preloader").ajaxStop(function(){
+                        $(this).delay(400).fadeOut();
+                    });
+
+                }
+
+                /**
+                 * @loadJson 增强方法 CLoadJson ,加入了两个参数 animin (淡入动画),animout(淡出动画)
+                 * @param url
+                 * @param data
+                 * @param mycallback
+                 * @param animin ,type function [new]
+                 * @param animout ,type function [new]
+                 * @param async
+                 * @param encryption
+                 * @constructor
+                 */
+                var CLoadJson = function(url, data, mycallback,animin,animout, async, encryption) {
+                    if (async != undefined && async == true) {
+                        $.ajaxSetup({
+                            async : false
+                        });
+                    }
+
+
+                    $.ajax({
+                        type : "post",
+                        url : url + '?rnd=' + Math.random(),
+                        data : data,
+                        contentType : 'application/json;charset=utf-8',
+                        beforeSend : function(xhr) {
+                            if(animin!=undefined && animin != ""){
+                                animin();
+                            }
+                            //后续开始加密，设置header
+                            //xhr.setRequestHeader('Content-Type','application/json');
+                            if (encryption != undefined && encryption == true) {
+                                var uid = md5("zhangfengming");
+                                var password = md5("");
+                                xhr.setRequestHeader('uid', user);
+                            }
+                        },complete( jqXHR, textStatus){
+                            if(animout!=undefined && animout != ""){
+                                animout();//动画淡出
+                            }
+                        },
+                        success : function(jsondata) {
+                            mycallback(jsondata);
+
+
+                        }
+                    });
+                    $.ajaxSetup({
+                        async : true
+                    });
+                }
+
+                /**
+                 * 切换选项卡
+                 * @constructor
+                 */
                 var CTab = function(){
                     var aBtn=document.getElementsByClassName('s-type')[0].children;
                     var con=document.getElementsByClassName('out-content');
@@ -231,30 +291,51 @@
                     }
                 }
 
-                //动画tmpl
-                var CTmplAnim = function(){
-                    var _childhtml = '<div id="preloader"><div id="status"><p class="center-text"><br><em>加载中……</em></p></div></div>';
-                    var _roothtml = $(_childhtml)[0];
 
-                    return _roothtml;
-                }
-
-                //动画淡入
-                var CAnimIn = function(){
-                    if($("[id=preloader]").length < 1){
-                        document.body.appendChild(CTmplAnim());
+                /**
+                 * 热门城市绑定事件
+                 * @constructor
+                 */
+                var CHotCity=function(){
+                    var outplace = $("#out_place")[0].getElementsByTagName("li");
+                    var inplace = $("#in_place")[0].getElementsByTagName("li");
+                    for(var i=0; i < outplace.length; i++){
+                        outplace[i].onclick = function(){
+                            for(var i=0; i<outplace.length; i++){
+                                outplace[i].className = "hotplace";
+                            }
+                            this.className='hotplace pl-active';
+                            MT.CurrentPageTolist(this.title);
+                        }
                     }
-                    $("#status").fadeIn();
-                    $("#preloader").delay(400).fadeIn("medium");
+                    for(var j=0; j < inplace.length; j++){
+                        inplace[j].onclick = function(){
+                            for(var j=0; j<inplace.length; j++){
+                                inplace[j].className = "hotplace";
+                            }
+                            this.className='hotplace pl-active';
+                            MT.CurrentPageTolist(this.title);
+                        }
+                    }
                 }
 
-                //动画淡出
-                var CAnimOut = function(){
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
+                /**
+                 * 热门城市跳转
+                 * @param cityCode
+                 * @returns {boolean}
+                 * @constructor
+                 */
+                var CindexTolist = function(cityCode){
+                    if(cityCode == "more"){
+                        return false;
+                    }
+                    window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
                 }
 
-                //加载国外热门城市
+                /**
+                 * 加载国外热门城市
+                 * @constructor
+                 */
                 var CGetExHotCity = function(){
                     var GetExHotCity=
                     {
@@ -266,67 +347,26 @@
                     }
 
                     CLoadJson(apiurl,JSON.stringify(GetExHotCity),GetExHotCityCallback,CAnimIn,CAnimOut);
-                    function GetExHotCityCallback(data){
-                        var json=eval('('+data+')');
-                        console.log(json);
-                        if(json.success){
-                            var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
-                            $("#out_place").html(tpl_GetExHotCity);
-                            MT.reloadHotCity();
-                        }else {
-                            console.log(json);
-                            jAlert(json.message,"提示");
-                        }
-                    }
                 }
 
                 /**
-                 * loadJson 增强方法 CLoadJson ,加入了两个参数 animin (淡入动画),animout(淡出动画)
-                 * @param url
+                 * 加载国外热门城市 [CGetExHotCity Callback]
                  * @param data
-                 * @param mycallback
-                 * @param animin ,type function [new]
-                 * @param animout ,type function [new]
-                 * @param async
-                 * @param encryption
                  * @constructor
                  */
-                var CLoadJson = function(url, data, mycallback,animin,animout, async, encryption) {
-                    if (async != undefined && async == true) {
-                        $.ajaxSetup({
-                            async : false
-                        });
+                var GetExHotCityCallback = function(data){
+                    var json=eval('('+data+')');
+                    console.log(json);
+                    if(json.success){
+                        var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                        $("#out_place").html(tpl_GetExHotCity);
+                        MT.reloadHotCity();
+                    }else {
+                        console.log(json);
+                        jAlert(json.message,"提示");
                     }
-
-                    $.ajax({
-                        type : "post",
-                        url : url + '?rnd=' + Math.random(),
-                        data : data,
-                        contentType : 'application/json;charset=utf-8',
-                        beforeSend : function(xhr) {
-                            if(animin != undefined || animin!= "" || animin!= null){
-                                animin();
-                            }
-                            //后续开始加密，设置header
-                            //xhr.setRequestHeader('Content-Type','application/json');
-                            if (encryption != undefined && encryption == true) {
-                                var uid = md5("zhangfengming");
-                                var password = md5("");
-                                xhr.setRequestHeader('uid', user);
-                            }
-                        },
-                        success : function(jsondata) {
-                            mycallback(jsondata);
-                            if(animout!=undefined || animin!= "" || animin!= null){
-                                animout();//动画淡出
-                            }
-
-                        }
-                    });
-                    $.ajaxSetup({
-                        async : true
-                    });
                 }
+
 
                 return {
                     CreloadHotCity:CHotCity,
@@ -351,7 +391,7 @@
                 core.CindexTolist(cityCode);//跳转到目标城市
             }
             MT.load();
-        })(jQuery,window,document);
+        })();
     </script>
 </body>
 </html>
