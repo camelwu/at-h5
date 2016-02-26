@@ -477,7 +477,6 @@
            var dHisELe = document.querySelector('.d-his-city-ele');
            var iHisELe = document.querySelector('.i-his-city-ele');
            var dCityListStr='',iCityListStr='';
-
            for(var temp in domesticCitiesData){
                if(tem != "0"){
                    dCityListStr += '<li class="city-list-details-info d'+temp.toUpperCase()+'-Link"><h4>'+temp.toUpperCase()+'</h4><ul class="city-list-details-content">';
@@ -487,7 +486,6 @@
                    dCityListStr +='</ul>';
                }
            }
-
            for(var t in internationalCitiesData){
                iCityListStr += '<li class="city-list-details-info i'+t.toUpperCase()+'-Link"><h4>'+t.toUpperCase()+'</h4><ul class="city-list-details-content">';
                for(var n = 0;n < internationalCitiesData[t].length; n++){
@@ -501,8 +499,8 @@
        },
 
        historyChooseHandler:function(arg){
-          var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul')
-          var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele')
+          var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
+          var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
           var n = [],liStr='';
           for(var i = 0; i < arg.length; i++)
           {

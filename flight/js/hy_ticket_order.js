@@ -68,7 +68,9 @@ var ticketOrder = {
         },
         get: function (key) {
             var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
-            return dataObj.data;
+            if(dataObj!=null){
+                return dataObj.data;
+            }
         }
     },
     timeCut:function(arg){
@@ -297,10 +299,8 @@ var ticketOrder = {
                    that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><i class="icon-clock"></i><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span><span class="trigger-button right-arrow"></span>'+
                    '</p>';
                }
-
                return str;
         }
-
 
         function createTopBack(arg){
              var str ='',toCity ='';
