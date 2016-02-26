@@ -170,10 +170,12 @@ function M(json){
                 "CardAddressPostalCode": "1234",
                 "CardAddressCountryCode":  $(".CardAddressCountryCode").attr("data-code")
             },
-            "ForeEndType": 3,
-            "Code": "3004"
-        }
+            "BookingRefNo":"SGSINFT0012951"
+        },
+        "ForeEndType": 3,
+        "Code": "3004"
     };
+    debugger;
     console.log(data);
     var payment=new paymentObj(data,mycallback);
     payment.handlePayment();
