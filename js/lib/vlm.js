@@ -867,7 +867,8 @@
 									if (getpara("redicturl") != null)
 										window.location.href = getpara("redicturl");
 									else
-										container.parentNode.removeChild(container);
+										$("close").trigger("click");// 切换登录
+										//container.parentNode.removeChild(container);
 								} else {
 									alert(myJson.message);
 								}
