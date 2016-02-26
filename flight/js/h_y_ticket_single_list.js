@@ -181,13 +181,26 @@ var ticketSingle = {
 
         });
     },
+
+    checkPullStatus:function(){
+        var lis =  document.querySelectorAll('.air-tickets-detail-wrapper li');
+        var pullDown = document.querySelector('#pullDown'),pullUp = document.querySelector('#pullUp');
+        if(lis!=null&&lis.length>0){
+            pullDown.style.display = "block";
+            pullUp.style.display = "block";
+        }else{
+            pullDown.style.display = "none";
+            pullUp.style.display = "none";
+        }
+    },
     renderHandler:function(arg){
         arg = JSON.parse(arg);
-        var that = ticketSingle;
-        console.log(arg);
+        console.log(arg)
+        var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
+        var tipEle = document.querySelector('.flight-result-tip');
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
-            console.log(that)
+                tipEle.style.display = 'none';
                 that.flightResultArray.push(arg["data"])
                 that.storageUtil.set('flightListData',that.flightResultArray);
                 that.pageNo = arg.data.pageNo;
@@ -195,11 +208,22 @@ var ticketSingle = {
                 that.changeFlightList(arg);
                 that.eventHandler();
                 that.taxDeal(arg.data.flightInfos);
+        }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
+            airTicketsListWrapper.innerHTML = "";
+            tipEle.style.display = 'block';
+            that.timer7 = window.setTimeout(function(){
+                tipEle.style.display = 'none';
+                window.clearTimeout(that.timer7);
+                that.timer7 = null;
+            },3000);
         }else{
+               tipEle.style.display = 'none';
                that.isClearAll = true;
+               airTicketsListWrapper.innerHTML = "";
                document.querySelector('#preloader').style.display='none';
-               that.alertNoFlightNotice(that.backParaObj,'single')
+               that.alertNoFlightNotice(that.backParaObj,'single');
           }
+        that.checkPullStatus()
     },
 
     taxDeal:function(arg){
@@ -263,8 +287,27 @@ var ticketSingle = {
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
-        console.log(arg.data.flightInfos)
+        var myFixed = function(arg){
+            if(String(arg).indexOf('.')>-1){
+                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                    return String(arg)+'0';
+                }
+                return String(arg).substring(0,String(arg).indexOf('.')+3)
+            }else{
+                return String(arg)+'.00';
+            }
+        }
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
+        var myFixed = function(arg){
+                  if(String(arg).indexOf('.')>-1){
+                      if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                        return String(arg)+'0';
+                       }
+                        return String(arg).substring(0,String(arg).indexOf('.')+3)
+                  }else{
+                      return String(arg)+'.00';
+                  }
+        };
         for(var i = 0; i < arg.data.flightInfos.length; i++){
             ticketListStr = '';
             li = document.createElement('li');
@@ -273,6 +316,7 @@ var ticketSingle = {
             ShareFlightStr = arg.data.flightInfos[i].isReturnShareFlight==true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|':'';
             passByStr = arg.data.flightInfos[i].isLeaveStop==true?'&nbsp;<span class="green-tip">经停</span>':'';
             tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>1?arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
+
             transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
             ticketListStr +='<div class="time-airport" >' +
             '<div class = "go" >' +
@@ -291,8 +335,8 @@ var ticketSingle = {
             '</div ></div>' +
             '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierName+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierCode+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
             '</div ></div>' +
-            '<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span ><span class = "price-num">'+arg.data.flightInfos[i].totalFareAmountExc+'</span>'+
-            '</div ><div class="single-price-tax-info"><span class="tax-word">税</span>￥'+arg.data.flightInfos[i].totalTaxAmountADT+'</div></div>';
+            '<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span ><span class = "price-num">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span>'+
+            '</div ><div class="single-price-tax-info"><span class="tax-word">税</span>￥'+myFixed(myFixed(arg.data.flightInfos[i].totalTaxAmountADT))+'</div></div>';
             li.innerHTML = ticketListStr;
             ticketDetailUl.insertBefore(li, ticketDetailUl.childNodes[0]);
             myScroll.refresh();

@@ -173,7 +173,7 @@ window.onload = function(){
 
             for (var i = 0; i < input.length; i++) {
                 if (input[i].style.display != "none" && input[i].value != "") {
-                    console.log(input[i].getAttribute('data-type'));
+                    //console.log(input[i].getAttribute('data-type'));
                     if(!check(input[i].getAttribute('data-type'),input[i].value)){
                         alert("用户名或密码错误");
                         return;
@@ -318,7 +318,7 @@ function mycallback_login(ret) {
         localStorage.setItem('login',1);
         window.location.href = "user.html";
     } else {
-        alert(myJson.message);
+        alert('密码错误，请重新输入');
     }
 }
 //注册验证码回调

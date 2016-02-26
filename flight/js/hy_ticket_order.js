@@ -68,7 +68,9 @@ var ticketOrder = {
         },
         get: function (key) {
             var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
-            return dataObj.data;
+            if(dataObj!=null){
+                return dataObj.data;
+            }
         }
     },
     timeCut:function(arg){
@@ -263,6 +265,17 @@ var ticketOrder = {
         var detailOuter = document.querySelector('.detail-outer');
         var goLineOuterHtml = '',seatConditionHtml ='', detailOuterHtml='',costStr='',that = this;
         var cacheInfo = this.storageUtil.get('reverseInformationCache');
+        var myFixed = function(arg){
+            if(String(arg).indexOf('.')>-1){
+                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                    return String(arg)+'0';
+                }
+                return String(arg).substring(0,String(arg).indexOf('.')+3)
+            }else{
+                return String(arg)+'.00';
+            }
+        };
+
         if(arg.segmentsReturn){
             goLineOuterHtml+= '<div class="go-line-outer-sub">' + createTopGo(arg)+'<p class="go-line go-line-return-middle"><span class="trigger-button right-arrow"></span></p>'+createTopBack(arg)+'</div>';
             seatConditionHtml += createSeatCondition(arg);
@@ -286,10 +299,8 @@ var ticketOrder = {
                    that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><i class="icon-clock"></i><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span><span class="trigger-button right-arrow"></span>'+
                    '</p>';
                }
-
                return str;
         }
-
 
         function createTopBack(arg){
              var str ='',toCity ='';
@@ -306,7 +317,7 @@ var ticketOrder = {
             var tipStr = arg.segmentsReturn!=null?'往返票价':'单程票价';
             var str ='';
              str +='<div class="seat-condition"><div class="left">' +
-                   '<span>'+arg.segmentsLeave[0].cabinClassName+'</span><p><span>'+tipStr+'</span>&nbsp;￥<span>'+arg.totalFareAmountADT+'</span><span>&nbsp;税费</span>￥<span>'+arg.totalTaxAmountADT+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+arg.totalFareAmountExc+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>';
+                   '<span>'+arg.segmentsLeave[0].cabinClassName+'</span><p><span>'+tipStr+'</span>&nbsp;￥<span>'+myFixed(arg.totalFareAmountADT)+'</span><span>&nbsp;税费</span>￥<span>'+myFixed(arg.totalTaxAmountADT)+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+myFixed(arg.totalFareAmountExc)+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>';
             return str;
 
         }
@@ -373,7 +384,17 @@ var ticketOrder = {
     costFinaList:function(){
        var that = this, costTotal = document.querySelector('.second-line'),temObj = {},totalCost = document.querySelector('.total-price-number strong');
        var costStr = '',curFlightListData = this.storageUtil.get('curFlightListData'),reverseInformation=this.reverseInformation ;
-       var totalPerson = document.querySelector('.total-person-price'),totalPersonNum = 0;
+       var myFixed = function(arg){
+            if(String(arg).indexOf('.')>-1){
+                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                    return String(arg)+'0';
+                }
+                return String(arg).substring(0,String(arg).indexOf('.')+3)
+            }else{
+                return String(arg)+'.00';
+            }
+        };
+        var totalPerson = document.querySelector('.total-person-price'),totalPersonNum = 0;
        temObj.totalFareAmountADT = curFlightListData.totalFareAmountADT;
        temObj.totalFareAmountCHD = curFlightListData.totalFareAmountCHD;
        temObj.totalFareAmountExc = curFlightListData.totalFareAmountExc;
@@ -382,17 +403,17 @@ var ticketOrder = {
        temObj.NumofAdult = parseInt(reverseInformation.WapOrder.NumofAdult);
        temObj.NumofChild = parseInt(reverseInformation.WapOrder.NumofChild);
        this.costFinaListData = temObj;
-       costStr+= '<p>成人票<span>￥<span>'+temObj.totalFareAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
-       costStr+= '<p>税费<span>￥<span>'+temObj.totalTaxAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+       costStr+= '<p>成人票<span>￥<span>'+myFixed(temObj.totalFareAmountADT)+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+       costStr+= '<p>税费<span>￥<span>'+myFixed(temObj.totalTaxAmountADT)+'</span> x'+temObj.NumofAdult+' 人</span></p>';
         if(this.orderFlightData.totalFareAmountCHD){
-            costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+temObj.totalFareAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
-            costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+temObj.totalTaxAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+myFixed(temObj.totalFareAmountCHD)+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+myFixed(temObj.totalTaxAmountCHD)+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
             totalPersonNum = temObj.NumofAdult+temObj.NumofChild
         }else{
             totalPersonNum = temObj.NumofAdult;
         }
        costTotal.innerHTML = costStr;
-       totalCost.innerHTML = temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild
+       totalCost.innerHTML = myFixed(temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild);
        totalPerson.innerHTML = totalPersonNum+'人总价';
    },
     init:function(){
@@ -417,7 +438,7 @@ var ticketOrder = {
          TravellerInfo:[],
          ContactDetail:{}
          };*/
-        //数据格式
+        //数据实例
         /* var  reverseInformation = {
             WapOrder:{//订单信息
                      SetID:"30000080",

@@ -63,6 +63,7 @@ var ticketSeatChoose = {
         var that = this;
 
         this.addHandler(reserveButton,'click', function(){
+
             var that = ticketSeatChoose;
             var login;
             var totalCountCost = that.curFlightListData.totalTaxAmountADT ==0?that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult):
@@ -371,6 +372,17 @@ var ticketSeatChoose = {
     },
     createHtml:function(){
         var dataPools = this.storageUtil.get('flightListData'), resultData = {},that = this,setID = this.assistInfo.setId,summaryHtml='';
+        var myFixed = function(arg){
+            if(String(arg).indexOf('.')>-1){
+                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                    return String(arg)+'0';
+                }
+                return String(arg).substring(0,String(arg).indexOf('.')+3)
+            }else{
+                return String(arg)+'.00';
+            }
+        };
+
         var allEle = document.querySelector('.all-elements'),itemObj={},backMeal ='';
              dataPools.forEach(function(obj){
                  obj["flightInfos"].forEach(function(obj_){
@@ -394,7 +406,7 @@ var ticketSeatChoose = {
             '<div class="left-part"><h4>'+itemObj.segmentsLeave[0].cabinClassName+'</h4>' +
             '<p><span class="change" id="change-explain">退改签说明</span>'+childOrderStr+'</p>' +
             '</div>'+
-            '<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountExc+'</span> <p>税费￥'+itemObj.totalTaxAmountADT+'</p>' +
+            '<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountExc)+'</span> <p>税费￥'+myFixed(itemObj.totalTaxAmountADT)+'</p>' +
             '</div><button type="button" id="reserve-button">预订</button></div>' +
             '<div class="bottom-word-more">买单程票须持留学生转签证、移民签证，一年以上工作签证等证件类型，请您确认后购买，以免无法办理乘机和入境。'+
             '</div></div>';

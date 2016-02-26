@@ -134,6 +134,8 @@ styleChange('uo_c3_email','用于接收邮件通知');
 styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
 styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 */
+    var RoomCode;
+    var fake_data={};
     var myUrl=window.location.href;
     for(var name in url2json(myUrl)){
         if(name=='roomCode'){
@@ -141,11 +143,11 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
             //alert(RoomCode);
         }
     }
-    var RoomCode;
-    var fake_data={};
     //默认房间数量
     fake_data.NumOfRoom=1;
     var user_order_storage2=localStorage.getItem('hotelDetailData');
+    console.log(JSON.parse(user_order_storage2));
+    console.log(999999999999);
     fake_data.HotelGenInfo=JSON.parse(user_order_storage2).data.data[0].hotelGenInfo;
     fake_data.dateInfo=JSON.parse(user_order_storage2).data.data[0].dateInfo;
     var HotelRoomsList=JSON.parse(user_order_storage2).data.data[0].hotelRoomsList;
@@ -228,6 +230,9 @@ uoHisData();
         lsf_myweb.getbyid('uo_or_sumBox2').style.display='block';
         lsf_myweb.getbyid('toPayExp').style.display='block';
     }
+    //取消说明时间展示
+    var uo_c1_info=document.getElementById('uo_c1_info');
+    uo_c1_info.innerHTML='如果您在'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+'晚12时（目的地时间）之前取消不收取任何费用';
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
     uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.hotelName+'</h3>'+
@@ -260,12 +265,23 @@ uoHisData();
     //姓名手机号邮箱实现历史选择记忆功能
     function uoHisFillIn(){
         //实现历史记忆功能，把记忆的东西添加到value中
-        if(fake_data.guestName&&fake_data.guestName[0].GuestFirstName!=''){
-            var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
-            var uo_firstname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_firstname');
-            for(var j=0;j<uo_lastname.length;j++){
-                uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
-                uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
+
+        //if(fake_data.guestName&&(fake_data.guestName[0].GuestFirstName!='')){
+        //    var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
+        //    var uo_firstname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_firstname');
+        //    for(var j=0;j<uo_lastname.length;j++){
+        //        uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
+        //        uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
+        //    }
+        //}
+        if(fake_data.guestName.length){
+            if(fake_data.guestName[0].GuestFirstName!=''){
+                var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
+                var uo_firstname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_firstname');
+                for(var j=0;j<uo_lastname.length;j++){
+                    uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
+                    uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
+                }
             }
         }
         //手机号和邮箱实现历史记忆功能

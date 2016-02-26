@@ -136,12 +136,13 @@
                var cityItems = oDiv.querySelectorAll('.city-search'),cityStrs ="",CityCodeFrom = "",CityCodeTo = "",startDate = "",endDate = "",adultNumber = "",childNumber = "",CabinStr = "",paraObj = new Object(),paramStr = "";
                var NumofAdult = "",NumofChild ="";
                if(cityItems[0].innerHTML==cityItems[1].innerHTML){
+                   tipBox.innerHTML = '请确保出发与到达为不同城市！';
                    tipBox.style.display = 'block';
                    that.timer = window.setTimeout(function(){
                            tipBox.style.display = 'none';
                            window.clearTimeout(that.timer);
                            that.timer = null;
-                   },5000);
+                   },3000);
                }else{
                    if(document.querySelector('#double').style.display == 'block'){
                        cityStrs = document.querySelectorAll('#double .city-search');
@@ -183,7 +184,6 @@
                        CityCodeFrom = that.returnCityCode(cityStrs[0]);
                        CityCodeTo = that.returnCityCode(cityStrs[1]);
                        startDate = that.reDate(document.querySelector('#chooseDate-single').querySelector('.dateNumber').innerHTML);
-                       console.log(startDate)
                        adultNumber = document.querySelector('#single span.adult-number').innerHTML;
                        childNumber = document.querySelector('#single span.child-number').innerHTML;
                        CabinStr = that.returnCabinClass(document.querySelector('#single .single-cabin-choose').innerHTML);
@@ -448,7 +448,6 @@
                getNetCity(filter,fns);
            }
            function fns(arg,status,statusMsg){
-              // console.log("Status : "+status + " :"+ statusMsg);
                if(type =="NOTCN"){
                    that.intHotCity = arg;
                }else{
@@ -478,7 +477,6 @@
            var dHisELe = document.querySelector('.d-his-city-ele');
            var iHisELe = document.querySelector('.i-his-city-ele');
            var dCityListStr='',iCityListStr='';
-
            for(var temp in domesticCitiesData){
                if(tem != "0"){
                    dCityListStr += '<li class="city-list-details-info d'+temp.toUpperCase()+'-Link"><h4>'+temp.toUpperCase()+'</h4><ul class="city-list-details-content">';
@@ -488,7 +486,6 @@
                    dCityListStr +='</ul>';
                }
            }
-
            for(var t in internationalCitiesData){
                iCityListStr += '<li class="city-list-details-info i'+t.toUpperCase()+'-Link"><h4>'+t.toUpperCase()+'</h4><ul class="city-list-details-content">';
                for(var n = 0;n < internationalCitiesData[t].length; n++){
@@ -502,8 +499,8 @@
        },
 
        historyChooseHandler:function(arg){
-          var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul')
-          var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele')
+          var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
+          var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
           var n = [],liStr='';
           for(var i = 0; i < arg.length; i++)
           {
@@ -520,7 +517,6 @@
           ul.innerHTML =liStr;
           outLi.style.display ='block';
        },
-
        eventHandle2:function(){
            var that = ticketIndexModal;
            var outDiv = document.querySelector('.city-list-choose');
@@ -531,109 +527,128 @@
            var domesticCity = document.querySelector('.domestic-city');
            var internationalCity = document.querySelector('.international-city');
            var cityListSearched = document.querySelector('.city-list-searched');
-           var aBox=document.querySelectorAll('.pas-num-cont');
+           var airContent=document.querySelector('.air_content');
            var  aCabs = document.querySelectorAll('.cabin-wrap');
            var oAir=document.querySelector('.mask');
            var header = document.querySelector('.clearfix');
            domesticCity.style.display='block';
            internationalCity.style.display='none';
-            for(var f = 0;f<aBox.length;f++){
-                this.addHandler(aBox[f],'click',function(event){
-                    var event = event || window.event;
-                    var target = event.target || event.srcElement;
-                    var checkChildNum = function(arg){
-                        var num = '';
-                        switch (arg){
-                            case 0 :
-                                num = 0;
-                                break;
-                            case 1 :
-                                num = 2;
-                                break;
-                            case 2 :
-                                num = 4;
-                                break;
-                            case 3 :
-                                num = 6;
-                                break;
-                            case 4 :
-                                num = 5;
-                                break;
-                            case 5 :
-                                num = 4;
-                                break;
-                            case 6 :
-                                num = 3;
-                                break;
-                            case 7 :
-                                num = 2;
-                                break;
-                            case 8 :
-                                num = 1;
-                                break;
-                            case 9 :
-                                num = 0;
-                            default :void(0)
-                        }
-                        return num;
-                    },maxChild = 0,operaEle = target.parentNode.parentNode.parentNode;
+           this.addHandler(airContent,'click',function(event){
+               var event = event || window.event;
+               var target = event.target || event.srcElement,that = this,eleUl,eleLi,opSpan,opSiteEle,childEle;
+               var showLine = document.querySelector('#show-result-tip');
+               if(target.className.indexOf("add-minus-per-more adult")>-1){
+                   eleUl = target.parentNode.parentNode.parentNode;
+                   eleLi = target.parentNode.parentNode;
+                   opSiteEle = target.parentNode.querySelector('.add-minus-per-less');
+                   opSpan = target.parentNode.querySelector('.add-minus-per-content.adult-number');
+                   var adultNum = parseInt(opSpan.innerHTML);
+                   var childNum = parseInt(eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-content.child-number').innerHTML);
+                   if(adultNum+1+childNum>9){
+                       target.className = "add-minus-per-more adult add-minus-per-more-grey";
+                       showLine.innerHTML = "乘客总数不能超过 9 人!";
+                       showLine.style.display = 'block';
+                       that.timer9 = window.setTimeout(function(){
+                           showLine.style.display = 'none';
+                           window.clearTimeout(that.timer9);
+                           that.timer9 = null;
+                       },3000);
+                       opSiteEle.className = "add-minus-per-less adult";
+                   }else{
+                       if(childNum!=0&&((adultNum+1)/childNum)<1/2){
+                           showLine.innerHTML = "1 位成人最多携带 2 名儿童!!";
+                           showLine.style.display = 'block';
+                           that.timer10 = window.setTimeout(function(){
+                               showLine.style.display = 'none';
+                               window.clearTimeout(that.timer10);
+                               that.timer10 = null;
+                           },3000);
+                           alert("")
+                       }else {
+                           opSpan.innerHTML = adultNum+1;
+                           opSiteEle.className = "add-minus-per-less adult";
+                       }
+                   }
+               }else if(target.className.indexOf("add-minus-per-less adult")>-1){
+                   eleUl = target.parentNode.parentNode.parentNode;
+                   eleLi = target.parentNode.parentNode;
+                   opSiteEle = target.parentNode.querySelector('.add-minus-per-more');
+                   opSpan = target.parentNode.querySelector('.add-minus-per-content.adult-number');
+                   childEle = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-content.child-number');
+                   var adultNum = parseInt(opSpan.innerHTML);
+                   var childNum = parseInt(childEle.innerHTML);
+                   if(adultNum<=1){
+                       opSpan.innerHTML = 1;
+                       target.className = "add-minus-per-less adult add-minus-per-less-grey";
+                       opSiteEle.className = "add-minus-per-more adult";
+                   }else{
+                       adultNum--;
+                       opSpan.innerHTML = adultNum;
+                       if (childNum != 0&&(adultNum/childNum<1/2)) {
+                           childEle.innerHTML = adultNum*2;
+                       }
+                       opSiteEle.className = "add-minus-per-more adult";
+                   }
+               }else if(target.className.indexOf("add-minus-per-more child")>-1){
+                   eleUl = target.parentNode.parentNode.parentNode;
+                   eleLi = target.parentNode.parentNode;
+                   opSiteEle = target.parentNode.querySelector('.add-minus-per-less');
+                   opSpan = target.parentNode.querySelector('.add-minus-per-content.child-number');
+                   var  childNum = parseInt(opSpan.innerHTML);
+                   var  adultNum = parseInt(eleUl.querySelectorAll('li')[0].querySelector('.add-minus-per-content.adult-number').innerHTML);
+                   if(adultNum+1+childNum>9){
+                       target.className = "add-minus-per-more child add-minus-per-more-grey";
+                       showLine.innerHTML = "乘客总数不能超过 9 人!";
+                       showLine.style.display = 'block';
+                       that.timer11 = window.setTimeout(function(){
+                           showLine.style.display = 'none';
+                           window.clearTimeout(that.timer11);
+                           that.timer11 = null;
+                       },3000);
+                       opSiteEle.className = "add-minus-per-less child";
+                   }else{
+                       if(childNum!=0&&adultNum/(childNum+1)<1/2){
+                           showLine.innerHTML = "1 位成人最多携带 2 名儿童!";
+                           showLine.style.display = 'block';
+                           that.timer13 = window.setTimeout(function(){
+                               showLine.style.display = 'none';
+                               window.clearTimeout(that.timer13);
+                               that.timer13 = null;
+                           },3000);
+                           target.className = "add-minus-per-more child add-minus-per-more-grey";
+                       }else {
+                           opSpan.innerHTML = childNum+1;
+                           opSiteEle.className = "add-minus-per-less child";
+                       }
+                   }
+               }else if(target.className.indexOf("add-minus-per-less child")>-1){
+                   eleUl = target.parentNode.parentNode.parentNode;
+                   eleLi = target.parentNode.parentNode;
+                   opSiteEle = target.parentNode.querySelector('.add-minus-per-more');
+                   opSpan = target.parentNode.querySelector('.add-minus-per-content.child-number');
+                   var childNum = parseInt(opSpan.innerHTML);
+                   var adultNum = parseInt(eleUl.querySelectorAll('li')[0].querySelector('.add-minus-per-content.adult-number').innerHTML);
+                   if(childNum-1<=0){
+                       opSpan.innerHTML = 0;
+                       target.className = "add-minus-per-less child add-minus-per-less-grey";
+                       opSiteEle.className = "add-minus-per-more child";
+                   }else {
+                       if (childNum!=0&&(adultNum/(childNum-1)<1/2)) {
+                           showLine.innerHTML = "1 位成人最多携带 2 名儿童!";
+                           showLine.style.display = 'block';
+                           that.timer12 = window.setTimeout(function(){
+                               showLine.style.display = 'none';
+                               window.clearTimeout(that.timer12);
+                               that.timer12 = null;
+                           },3000);
+                       } else {
+                           opSpan.innerHTML = childNum-1;
+                           opSiteEle.className = "add-minus-per-more child";
+                       }
+                   }
+               }
+           });
 
-                    maxChild = checkChildNum(parseInt(operaEle.querySelector('span.adult-number').innerHTML))
-                    if(target.className.indexOf('add-minus-per-more')>-1){
-                        var tempEle = target.parentNode.querySelector('span');
-                          if(tempEle.className.indexOf('adult-number')>-1){
-                              if(parseInt(tempEle.innerHTML)+1 < 9){
-                                  tempEle.innerHTML = parseInt(tempEle.innerHTML)+1;
-                                  target.className = "add-minus-per-more adult";
-                              }else{
-                                  tempEle.innerHTML = 9;
-                                  target.className = "add-minus-per-more adult add-minus-per-more-grey"
-                              }
-                               maxChild = checkChildNum(parseInt(tempEle.innerHTML))
-                              operaEle.querySelector('span.child-number').innerHTML = 0;
-                              operaEle.querySelectorAll('a.child')[0].className = "add-minus-per-less child add-minus-per-less-grey"
-                              operaEle.querySelectorAll('a.child')[1].className = "add-minus-per-more child"
-                              target.parentNode.querySelector('.add-minus-per-less').className = "add-minus-per-less";
-                          }else if(tempEle.className.indexOf('child-number')>-1){
-                              if(parseInt(tempEle.innerHTML)+1 <= maxChild){
-                                  tempEle.innerHTML = parseInt(tempEle.innerHTML)+1;
-                                  target.className = "add-minus-per-more child";
-                              }else{
-                                  tempEle.innerHTML = maxChild;
-                                  target.className = "add-minus-per-more child add-minus-per-more-grey"
-                              }
-                          }
-                    }else if(target.className.indexOf('add-minus-per-less')>-1){
-                        var tempEle = target.parentNode.querySelector('span');
-                        if(tempEle.className.indexOf('adult-number')>-1){
-                            if(parseInt(tempEle.innerHTML)-1 > 1){
-                                tempEle.innerHTML = parseInt(tempEle.innerHTML)-1;
-                                target.className = "add-minus-per-less adult";
-                            }else{
-                                tempEle.innerHTML = 0;
-                                target.className = "add-minus-per-less adult add-minus-per-less-grey"
-                            }
-                            target.parentNode.querySelector('.add-minus-per-more').className = "add-minus-per-more";
-                            maxChild = checkChildNum(parseInt(tempEle.innerHTML))
-                            operaEle.querySelector('span.child-number').innerHTML = 0;
-                            console.log(operaEle.querySelectorAll('a.child'))
-                            operaEle.querySelectorAll('a.child')[0].className = "add-minus-per-less child add-minus-per-less-grey"
-                            operaEle.querySelectorAll('a.child')[1].className = "add-minus-per-more child"
-                            target.parentNode.querySelector('.add-minus-per-less').className = "add-minus-per-less";
-                        }else if(tempEle.className.indexOf('child-number')>-1){
-                            if(parseInt(tempEle.innerHTML)-1 > 0){
-                                console.log(maxChild)
-                                tempEle.innerHTML = parseInt(tempEle.innerHTML)-1;
-                                target.className = "add-minus-per-less child";
-                            }else{
-                                tempEle.innerHTML = 0;
-                                target.className = "add-minus-per-less add-minus-per-less-grey child";
-                            }
-                        }
-                        target.parentNode.querySelector('.add-minus-per-more').className = "add-minus-per-more"
-                    }
-                });
-            }
            this.addHandler(cityListSearched,'click',function(event){
                var event = event || window.event;
                var target = event.target || event.srcElement;
@@ -682,7 +697,6 @@
                if(target.className=='singleTrip'){
                    target.className='singleTrip addFontStyle';
                    target.parentNode.querySelector('.doubleTrip').className ='doubleTrip';
-                   console.log(111111111)
                    domesticCity.style.display = 'block';
                    internationalCity.style.display = 'none'
                }else if(target.className=='doubleTrip'){
@@ -703,8 +717,6 @@
            this.addHandler(position,'click',function(event){
                var event = event || window.event;
                var target = event.target || event.srcElement;
-               console.log(domesticCity.style.display)
-               console.log(internationalCity.style.display)
                if(domesticCity.style.display=='block'&&internationalCity.style.display=='none'){
 
                    if(target.tagName=='SPAN'&&target.className.indexOf('letter')>-1&&document.querySelector(".d"+target.innerHTML+"-Link")){
@@ -775,7 +787,6 @@
                            for(var t in domesticCities[k]){
                                if(domesticCities[k][t].indexOf(valueStr) > -1){
                                    searchResult.push(domesticCities[k])
-                                   console.log(domesticCities[k])
                                }
                            }
                      }
@@ -784,14 +795,11 @@
                    for(var p = 0; p < internationalCities.length; p++){
                        for(var te in internationalCities[p]){
                            if(internationalCities[p][te].indexOf(valueStr) > -1){
-                               console.log(internationalCities[p][te])
                                searchResult.push(internationalCities[p])
                              }
-                            console.log(searchResult)
                            }
                    }
                }
-              console.log(searchResult)
               if(!searchResult.length){
                   resultStr +='<li class="city-list-searched-item">无搜索结果</li>';
               }else{
@@ -855,7 +863,6 @@
            document.querySelector('.double-week-two').innerHTML = endDay[1];
        },
        initShowData:function(arg){
-           console.log(arg)
               var outEleOpen,outEleClosed,singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
               var returnDateAndWeek = function(arg){
                     var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum; //"2016-02-24"
@@ -933,7 +940,6 @@
                   outEleClosed = document.querySelector('#single');
                   outEleOpen.style.display = "block";
                   outEleClosed.style.display = "none";
-                  console.log(outEleOpen)
                   singleTitle.className = "singleTrip grey-title";
                   doubleTitle.className = "doubleTrip light-title";
                    var cityNames = outEleOpen.querySelectorAll('.city-search');

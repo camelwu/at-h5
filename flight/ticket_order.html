@@ -36,7 +36,7 @@
             <em>加载中……</em>
         </p>
     </div>
-</div
+</div>
 <div class="all-elements">
     <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单填写<i class="tel-icon"></i></header>
     <div class="air_content">
@@ -66,46 +66,35 @@
         <div class="ride-user">
             <div class="ride-user-first">
                 <span>乘机人</span>
-                <a class="add-Passenger" href="javascript:void(0);" onclick="vlm.f_choice('f','traver','',true)">添加乘机人</a>
+                <a class="add-Passenger" href="javascript:void(0);" onclick="vlm.f_choice('f','traver','',true,true)">添加乘机人</a>
             </div>
           <ul class="passenger-list-data">
-              <li class="ride-user-info">
-                  <span  class="icon-add"><i></i></span>
-                  <div class="middle">
-                      <p class="name">
-                          <span>姓 / 名</span><input type="text" name="input-zone" placeholder="BAI/LISA" readonly="readonly" />
-                      </p>
-                      <div class="passport">
-                          <span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>
-                      </div>
-                  </div>
-                  <span class="next-icon"><i></i></span>
-              </li>
-              <li class="ride-user-info">
-                  <span  class="icon-add"><i></i></span>
-                  <div class="middle">
-                      <p class="name">
-                          <span>姓 / 名</span><input type="text" name="input-zone" placeholder="BAI/LISA" readonly="readonly" />
-                      </p>
-                      <div class="passport">
-                          <span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>
-                      </div>
-                  </div>
-                  <span class="next-icon"><i></i></span>
-              </li>
-              <li class="ride-user-info">
-                  <span  class="icon-add"><i></i></span>
-                  <div class="middle">
-                      <p class="name">
-                          <span>姓 / 名</span><input type="text" name="input-zone" placeholder="BAI/LISA" readonly="readonly" />
-                      </p>
-                      <div class="passport">
-                          <span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>
-                      </div>
-                  </div>
-                  <span class="next-icon"><i></i></span>
-              </li>
-
+              <!--<li class="ride-user-info">-->
+                  <!--<span  class="icon-add"><i></i></span>-->
+                  <!--<div class="middle">-->
+                       <!--<p class="name">-->
+                          <!--<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger" placeholder="Mack" readonly="readonly"/>-->
+                          <!--<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger" placeholder="Wilson" readonly="readonly"/>-->
+                      <!--</p>-->
+                      <!--<div class="passport">-->
+                          <!--<span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>-->
+                      <!--</div>-->
+                  <!--</div>-->
+                  <!--<i></i>-->
+              <!--</li>-->
+              <!--<li class="ride-user-info">-->
+                  <!--<span  class="icon-add"><i></i></span>-->
+                  <!--<div class="middle">-->
+                      <!--<p class="name">-->
+                          <!--<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger" placeholder="Mack" readonly="readonly"/>-->
+                          <!--<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger" placeholder="Wilson" readonly="readonly"/>-->
+                      <!--</p>-->
+                      <!--<div class="passport">-->
+                          <!--<span>护照</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" /><span class="passenger-sex">男</span>-->
+                      <!--</div>-->
+                  <!--</div>-->
+                  <!--<i></i>-->
+              <!--</li>-->
           </ul>
 
         </div>
@@ -113,11 +102,12 @@
         <div class="ride-user contact">
             <div class="ride-user-first">
                 <span>联系人</span>
-                <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('F','contact','',false);"></a>
+                <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('f','contact','',false,false);"></a>
             </div>
 
-            <div class="table">
+            <div class="table contact-table">
                 <div class="unit name">
+
                         <label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" />
                         <label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" />
                 </div>
@@ -366,5 +356,17 @@
 <script src="js/hy_ticket_order.js"></script>
 <script>
 	vlm.l_contact();
+    function SelectPersonInformation(html,isContact){
+        if(html !="") {
+            if (!isContact ) {
+                $(".passenger-list-data li").remove();
+                $(".passenger-list-data").append(html);
+            }
+            else {
+                $(".contact-table div").remove();
+                $(".contact-table").append(html);
+            }
+        }
+    }
 </script>
 </html>
