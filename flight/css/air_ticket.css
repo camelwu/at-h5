@@ -2492,7 +2492,12 @@ h1, h2, h3, h4, h5, h6 {
     flex-flow: row;
     justify-content: flex-start;
 }
-
+.name-label-passenger{
+    display: inline-block;
+    width: 3.0rem;
+    padding-left: 0.2rem;
+    font-size: 1.35rem;
+}
 .ride-user .ride-user-info div.middle p span {
     width: 4.0rem;
     height: 2.1rem;
@@ -2503,7 +2508,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ride-user .ride-user-info div.middle p input {
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
-     width: 38%;
+     width: 30%;
     margin-left: 0.2rem;
     font-size: 1.35rem;
 }
@@ -2541,7 +2546,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .passport span {
-    width: 4.0rem;
+    width: 3.0rem;
     padding-left: 0.2rem;
 }
 
