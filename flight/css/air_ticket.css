@@ -2472,7 +2472,7 @@ h1, h2, h3, h4, h5, h6 {
     float:right;
 }
 
-.ride-user .ride-user-info span.next-icon i {
+.ride-user .ride-user-info  i {
     display: inline-block;
     width: 2.0rem;
     height: 2.0rem;
