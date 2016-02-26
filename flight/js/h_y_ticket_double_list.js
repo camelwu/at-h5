@@ -307,6 +307,17 @@ var ticketDouble = {
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper'),ticketListStr = '',li;
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
+        var myFixed = function(arg){
+            if(String(arg).indexOf('.')>-1){
+                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                    return String(arg)+'0';
+                }
+                return String(arg).substring(0,String(arg).indexOf('.')+3)
+            }else{
+                return String(arg)+'.00';
+            }
+        };
+
         for(var i = 0; i<arg.data.flightInfos.length;i++ ){
             ticketListStr = '';
             li = document.createElement('li');
@@ -384,8 +395,8 @@ var ticketDouble = {
         function rightPrice(arg){
             var str = '';
             str +='<div class="price-tax">'+
-            '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+parseInt(arg.totalFareAmountExc)+'</span><span class="word-tip">往返</span><br></div>'+
-            '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+arg.totalTaxAmountADT+'</div>'+
+            '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
+            '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
             '        </div>';
             return str;
         }

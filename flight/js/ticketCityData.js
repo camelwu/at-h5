@@ -9466,7 +9466,7 @@ var domesticCities = [
         "CountryCode": "CN",
         "CityName": "鄂尔多斯",
         "CityEN": "Ordos",
-        "FullSpellingName": "dongdongdongsi",
+        "FullSpellingName": "eerduosi",
         "CityCode": "DSN"
     },
     {
@@ -9493,16 +9493,7 @@ var domesticCities = [
         "CountryCode": "CN",
         "CityName": "二连浩特",
         "CityEN": "Elianhaote",
-        "FullSpellingName": "donglianhaote",
-        "CityCode": "ERL"
-    },
-    {
-        "CountryName": "中国",
-        "EnglishEN": "China",
-        "CountryCode": "CN",
-        "CityName": "二连浩特",
-        "CityEN": "Erenhot",
-        "FullSpellingName": "donglianhaote",
+        "FullSpellingName": "erlianhaote",
         "CityCode": "ERL"
     },
     {
@@ -9520,7 +9511,7 @@ var domesticCities = [
         "CountryCode": "CN",
         "CityName": "恩施",
         "CityEN": "Enshi",
-        "FullSpellingName": "dongshi",
+        "FullSpellingName": "enshi",
         "CityCode": "ENH"
     },
     {
