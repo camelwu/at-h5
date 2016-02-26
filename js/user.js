@@ -295,7 +295,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var travelId = array[index];
                 console.log(travelId);
                 var Parameters = {
-                    "Parameters": "{\"travellerId\":" + travelId + "}",
+                    "Parameters": "{\"travellerId\":" +travelId+ "}",
                     "ForeEndType": 3,
                     "Code": "0073"
                 };
@@ -468,31 +468,37 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         input[0].value = travJson.data[index].traveller.idName;
         input[1].value = travJson.data[index].traveller.lastName;
         input[2].value = travJson.data[index].traveller.firstName;
-        input[3].value = travJson.data[index].listTravellerIdInfo[idtype_num-1].idNumber;
-        input[4].value = travJson.data[index].listTravellerIdInfo[idtype_num-1].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号';
+        if(travJson.data[index].listTravellerIdInfo.length != 0)
+        {
+            input[3].value = travJson.data[index].listTravellerIdInfo[idtype_num-1].idNumber;
+            input[4].value = travJson.data[index].listTravellerIdInfo[idtype_num-1].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号';
+
+        }
         input[5].value = travJson.data[index].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
         input[6].value = travJson.data[index].traveller.mobilePhone;
         input[7].value = travJson.data[index].traveller.email;
-        if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "1") {
-            cardType.innerHTML = "身份证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "2") {
-            cardType.innerHTML = "护照";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "3") {
-            cardType.innerHTML = "港澳通行证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "4") {
-            cardType.innerHTML = "军官证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "5") {
-            cardType.innerHTML = "驾驶证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "6") {
-            cardType.innerHTML = "台胞证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "7") {
-            cardType.innerHTML = "回乡证";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "8") {
-            cardType.innerHTML = "户口本";
-        } else if (travJson.data[index].listTravellerIdInfo[idtype_num-1].idType == "9") {
-            cardType.innerHTML = "出生证明";
-        }else {
-            cardType.innerHTML = "其他";
+        if(travJson.data[index].listTravellerIdInfo.length != 0) {
+            if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "1") {
+                cardType.innerHTML = "身份证";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "2") {
+                cardType.innerHTML = "护照";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "3") {
+                cardType.innerHTML = "港澳通行证";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "4") {
+                cardType.innerHTML = "军官证";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "5") {
+                cardType.innerHTML = "驾驶证";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "6") {
+                cardType.innerHTML = "台胞证";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "7") {
+                cardType.innerHTML = "回乡证";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "8") {
+                cardType.innerHTML = "户口本";
+            } else if (travJson.data[index].listTravellerIdInfo[idtype_num - 1].idType == "9") {
+                cardType.innerHTML = "出生证明";
+            } else {
+                cardType.innerHTML = "其他";
+            }
         }
         countryName.innerHTML = travJson.data[index].traveller.countryName;
         if (travJson.data[index].traveller.sexCode == "Mr") {
