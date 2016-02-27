@@ -177,6 +177,7 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 
 
 //获取user_order_storage12345,实现历史选择记忆功能
+
 function uoHisData(){
     var localData=JSON.parse(window.localStorage.getItem('user_order_storage12345'));
     console.log(localData);
@@ -190,6 +191,7 @@ function uoHisData(){
         console.log('hahahahhahahahah');
         return;
     }else{
+        fake_data.guestName=[];
         return;
     }
 }
@@ -220,7 +222,7 @@ uoHisData();
         window.history.go(-1);
     };
     //判断是担保还是在线支付
-    //fake_data.paymentModeID=2;//测试用的
+    fake_data.paymentModeID=2;//测试用的
     if(parseInt(fake_data.paymentModeID)==1){
         lsf_myweb.getbyid('uo_or_sumBox1').style.display='block';
         lsf_myweb.getbyid('uo_or_sumBox2').style.display='none';
@@ -275,6 +277,7 @@ uoHisData();
         //        uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
         //    }
         //}
+        console.log(fake_data.guestName);
         if(fake_data.guestName.length){
             if(fake_data.guestName[0].GuestFirstName!=''){
                 var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
