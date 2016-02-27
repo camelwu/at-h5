@@ -208,7 +208,7 @@ uoHisData();
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
     var uo_c1_info=document.getElementById('uo_c1_info');
-    var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
+    //var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
     var uo_c2_num=document.getElementById('uo_c2_num');
     var uo_or_infor=document.getElementById('uo_or_infor');
     var uo_form=document.getElementById('uo_con3');
@@ -232,7 +232,8 @@ uoHisData();
     }
     //取消说明时间展示
     var uo_c1_info=document.getElementById('uo_c1_info');
-    uo_c1_info.innerHTML='如果您在'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+'晚12时（目的地时间）之前取消不收取任何费用';
+    //uo_c1_info.innerHTML='如果您在'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+'晚12时（目的地时间）之前取消不收取任何费用';
+    uo_c1_info.innerHTML=fake_data.cancellationDesc;
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
     uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.hotelName+'</h3>'+
@@ -558,10 +559,10 @@ uoHisData();
         uo_form.submit();
     });
     //取消说明点击事件
-    lsf_myweb.bind(uo_c1_infoDown,'click',function(){
-        uo_c1_info.className='';
-        this.style.display='none';
-    });
+    //lsf_myweb.bind(uo_c1_infoDown,'click',function(){
+    //    uo_c1_info.className='';
+    //    this.style.display='none';
+    //});
     //解决300毫秒延迟问题
     (function($) {
         $(document).ready(function() {
