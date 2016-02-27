@@ -498,10 +498,10 @@
            iCityList.innerHTML = iCityListStr;
        },
 
-       historyChooseHandler:function(arg){
+       historyChooseHandler:function(arg,type){
           var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
-          var n = [],liStr='';
+          var n = [],liStr='',that = ticketIndexModal;
           for(var i = 0; i < arg.length; i++)
           {
               if (n.indexOf(arg[i]) == -1) n.push(arg[i]);
@@ -509,9 +509,11 @@
                   n = n.slice(1);
                }
           }
+           (type == "demestic")?that.storageUtil.set('demesCitys',n):that.storageUtil.set('interHisCitys',n)
+
           if(n.length>0){
               for(var m = 0; m < n.length; m++){
-                  liStr +='<li class="city-content-item">'+n[m]+'</li>'
+                  liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
               }
           }
           ul.innerHTML =liStr;
@@ -760,10 +762,10 @@
                }else if(target.className.indexOf('city-word')!=-1){
                    if(domesticCity.style.display=='block'){
                        that.dhisChoosePool.push(target.innerHTML);
-                       that.historyChooseHandler(that.dhisChoosePool);
+                       that.historyChooseHandler(that.dhisChoosePool,"demestic");
                    }else{
                        that.ihisChoosePool.push(target.innerHTML);
-                       that.historyChooseHandler(that.ihisChoosePool);
+                       that.historyChooseHandler(that.ihisChoosePool,"international");
                    }
                    cityInputZone.value = target.innerHTML;
                    that.timer2 = window.setTimeout(function(){
@@ -975,6 +977,7 @@
        },
        init:function(){
            this.ticketSearchedInfo = this.storageUtil.get('ticketSearchedInfo') || "";
+          // that.storageUtil.get('demesCitys')
            this.initDate();
            if(this.ticketSearchedInfo){
                this.initShowData(this.ticketSearchedInfo);
