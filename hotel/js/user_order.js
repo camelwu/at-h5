@@ -367,12 +367,12 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)<=1){
-            uo_c2_i1.style.background='url("../images/down2.png") no-repeat';
-            uo_c2_i1.style.backgroundSize='23px 23px';
+            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 -28px no-repeat';
+            uo_c2_i1.style.backgroundSize='23px 150px';
         }
         if(parseInt(uo_c2_num.innerHTML)<10){
-            uo_c2_i2.style.background='url("../images/up1.png") no-repeat';
-            uo_c2_i2.style.backgroundSize='23px 23px';
+            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -56px no-repeat';
+            uo_c2_i2.style.backgroundSize='23px 150px';
         }
         //修改数据并存储数据
         fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
@@ -430,12 +430,12 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)>1){
-            uo_c2_i1.style.background='url("../images/down1.png") no-repeat';
-            uo_c2_i1.style.backgroundSize='23px 23px';
+            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0 no-repeat';
+            uo_c2_i1.style.backgroundSize='23px 150px';
         }
         if(parseInt(uo_c2_num.innerHTML)>=10){
-            uo_c2_i2.style.background='url("../images/up2.png") no-repeat';
-            uo_c2_i2.style.backgroundSize='23px 23px';
+            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -84px no-repeat';
+            uo_c2_i2.style.backgroundSize='23px 150px';
         }
 
         //修改数据并存储数据
