@@ -444,7 +444,7 @@ function inpChange(id,myText){
             var cl_citysHisStr='';
             var dcl_citysHisStr='';
 
-            //输入框输入内容事件
+            //输入框输入内容事件，模糊搜索
             //国际酒店
             citySearchBox.oninput=function(){
                 var interInpCity=[];
@@ -455,7 +455,7 @@ function inpChange(id,myText){
                     for(var name in dataWorIN){
                         if(citySearchBox.value){
                             for(var j=0;j<dataWorIN[name].length;j++){
-                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))){
+                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))||citySearchBox.value==dataWorIN[name][j].pingYin.substring(0,(citySearchBox.value.length))){
                                     interInpCity.push(dataWorIN[name][j].cityNameCN);
                                 }
                             }
