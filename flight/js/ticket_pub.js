@@ -372,7 +372,7 @@ var bottomModal = {
         filterStr+=''+
         '<div class="hl-bottom">'+
         '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span class="filter-select">筛选</span></div>'+
-        '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span class="filter-select">时间</span></div>'+
+        '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span class="filter-select">优选</span></div>'+
         '<div class="fo-div" id="fo_lo"><b class="hl-icon3 filter-price"></b><i class=""></i><span class="filter-select">价格</span></div></div>'+
 
         '<div class="reset-action" id="filter-modal">'+

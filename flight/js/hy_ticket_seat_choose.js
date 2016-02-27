@@ -198,7 +198,7 @@ var ticketSeatChoose = {
 
     createGoTripHtml:function(arg){
         var that = ticketSeatChoose;
-        var tipDay = arg.flightLeaveSpacingDay>1?arg.flightLeaveSpacingDay+'天':'',str='';
+        var tipDay = arg.flightLeaveSpacingDay>=1?'+'+arg.flightLeaveSpacingDay+'天':'',str='';
         if(arg.segmentsReturn == null)
         {
             str = '<div class="go-trip">' +
@@ -259,7 +259,7 @@ var ticketSeatChoose = {
     },
     createBackTripHtml:function(arg){
         if(arg.segmentsReturn){
-            var tipDay = arg.flightReturnSpacingDay>1?arg.flightReturnSpacingDay+'天':'',str='',that =this;
+            var tipDay = arg.flightReturnSpacingDay>=1?'+'+arg.flightReturnSpacingDay+'天':'',str='',that =this;
             str='<div class="back-trip">'+
             '<div class="top-line">'+
             '<span class="icon-back"></span>'+that.returnDate(arg.flightReturnStartDate)+
