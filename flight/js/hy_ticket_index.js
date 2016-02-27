@@ -535,7 +535,7 @@
            internationalCity.style.display='none';
            this.addHandler(airContent,'click',function(event){
                var event = event || window.event;
-               var target = event.target || event.srcElement,that = this,eleUl,eleLi,opSpan,opSiteEle,childEle;
+               var target = event.target || event.srcElement,that = this,eleUl,eleLi,opSpan,opSiteEle,childEle, childAdd;
                var showLine = document.querySelector('#show-result-tip');
                if(target.className.indexOf("add-minus-per-more adult")>-1){
                    eleUl = target.parentNode.parentNode.parentNode;
@@ -544,6 +544,7 @@
                    opSpan = target.parentNode.querySelector('.add-minus-per-content.adult-number');
                    var adultNum = parseInt(opSpan.innerHTML);
                    var childNum = parseInt(eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-content.child-number').innerHTML);
+                      childAdd = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-more.child');
                    if(adultNum+1+childNum>9){
                        target.className = "add-minus-per-more adult add-minus-per-more-grey";
                        showLine.innerHTML = "乘客总数不能超过 9 人!";
@@ -565,8 +566,10 @@
                            },3000);
                            alert("")
                        }else {
+                           console.log(childAdd)
                            opSpan.innerHTML = adultNum+1;
                            opSiteEle.className = "add-minus-per-less adult";
+                           childAdd.className = "add-minus-per-more child";
                        }
                    }
                }else if(target.className.indexOf("add-minus-per-less adult")>-1){
@@ -575,6 +578,7 @@
                    opSiteEle = target.parentNode.querySelector('.add-minus-per-more');
                    opSpan = target.parentNode.querySelector('.add-minus-per-content.adult-number');
                    childEle = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-content.child-number');
+                   childAdd = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-more.child');
                    var adultNum = parseInt(opSpan.innerHTML);
                    var childNum = parseInt(childEle.innerHTML);
                    if(adultNum<=1){
@@ -586,6 +590,7 @@
                        opSpan.innerHTML = adultNum;
                        if (childNum != 0&&(adultNum/childNum<1/2)) {
                            childEle.innerHTML = adultNum*2;
+                           childAdd.className = 'add-minus-per-more child add-minus-per-more-grey'
                        }
                        opSiteEle.className = "add-minus-per-more adult";
                    }

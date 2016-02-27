@@ -210,13 +210,17 @@ var ticketOrder = {
                 $("#status-f").hide();
                 var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
                 arg = JSON.parse(arg)
+                console.log(that.reverseInformation)
+                console.log(that.orderFlightData)
                 if(arg.success&&arg.code==200){
-                    console.log(111)
+                    console.log(that.reverseInformation)
+                    console.log(that.orderFlightData)
                     var orderResultInfo = {};
                     orderResultInfo['TotalFlightPrice'] = that.reverseInformation['TotalFlightPrice'];
                     orderResultInfo['CurrencyCode'] = that.reverseInformation['CurrencyCode'];
                     orderResultInfo['NumofAdult'] = that.reverseInformation['WapOrder']['NumofAdult'];
                     orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];
+                    orderResultInfo['RouteType'] = that.reverseInformation['WapOrder']['RouteType'];
                     orderResultInfo['flightInfo'] = that.orderFlightData;
                     orderResultInfo['TravellerInfo'] = that.reverseInformation['TravellerInfo'];
                     orderResultInfo['ContactDetail'] = that.reverseInformation['ContactDetail'];
@@ -224,7 +228,7 @@ var ticketOrder = {
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     console.log(orderResultInfo)
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    document.location.href = 'pay_detail.html';
+                    //document.location.href = 'pay_detail.html';
                 }else{
                     orderResultTip.innerHTML = arg.message;
                     that.timer7 = window.setTimeout(function(){
@@ -233,9 +237,7 @@ var ticketOrder = {
                         that.timer7 = null;
                     },3000);
                 }
-
             });
-
 
         });
 
