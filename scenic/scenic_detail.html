@@ -35,11 +35,11 @@
             <ul class="sd-time">
                 <li>
                     <b class="jd-icon s-ding"></b>
-                    预定时间：<span id="ScheduledTimeFrom">2015.08.25 </span>至<span id="ScheduledTimeTo"> 2016.03.31</span>
+                    预定时间：<span id="ScheduledTimeFrom"> </span>至<span id="ScheduledTimeTo"> </span>
                 </li>
                 <li>
                     <b class="jd-icon s-you"></b>
-                    游行时间：<span id="ParadeTimeFrom">2015.08.25 </span>至<span id="ParadeTimeTo"> 2016.03.31</span>
+                    游行时间：<span id="ParadeTimeFrom"> </span>至<span id="ParadeTimeTo"> </span>
                 </li>
             </ul>
             <ul class="spot-info">
@@ -53,7 +53,7 @@
                 <li>
                     <b class="jd-icon s-open"></b>
                     营业时间
-                    <div class="spe-state">08:00-20:00</div>
+                    <div class="spe-state"> </div>
                 </li>
                 <li>
                     <b class="jd-icon s-addr"></b>
@@ -98,11 +98,11 @@
                     <b class="jd-icon s-down"></b>
                 </li>
                 <li id="spotDetail" class="state-detail">
-                    <ul class="spe-detail">
-                        <li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>
-                        <li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>
-                        <li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>
-                    </ul>
+                    <!--<ul class="spe-detail">-->
+                        <!--<li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>-->
+                        <!--<li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>-->
+                        <!--<li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>-->
+                    <!--</ul>-->
                 </li>
             </ul>
         </div>
@@ -160,15 +160,56 @@
     (function(){
         var webkit = this;
         var core = function(){
-            var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
-
-            var themeId = "";
+            var val = vlm.parseUrlPara(window.location.href);
+            var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult",
+                    themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate;
             var defineProperty = {
+                get apiurl (){
+                    return apiurl;
+                },
+                set apiurl (value){
+                    apiurl = value;
+                },
                 get themeId (){
                     return themeId;
                 },
                 set themeId (value){
                     themeId = value;
+                },get OnlyForAdult (){
+                    return OnlyForAdult;
+                },
+                set OnlyForAdult (value){
+                    OnlyForAdult = value;
+                },get MinPax (){
+                    return MinPax;
+                },
+                set MinPax (value){
+                    MinPax = value;
+                },get MaxAdult (){
+                    return MaxAdult;
+                },
+                set MaxAdult (value){
+                    MaxAdult = value;
+                },get ChildAgeMin (){
+                    return ChildAgeMin;
+                },
+                set ChildAgeMin (value){
+                    ChildAgeMin = value;
+                },get ChildAgeMax (){
+                    return ChildAgeMax;
+                },
+                set ChildAgeMax (value){
+                    ChildAgeMax = value;
+                },get TourID (){
+                    return TourID;
+                },
+                set TourID (value){
+                    TourID = value;
+                },get TravelDate (){
+                    return TravelDate;
+                },
+                set TravelDate (value){
+                    TravelDate = value;
                 }
             };
 
@@ -268,7 +309,7 @@
              */
             var CLoadGetDetails = function(){
 
-                var val = vlm.parseUrlPara(window.location.href);
+
                 var GetDetails=
                 {
                     "Parameters": {
@@ -277,7 +318,7 @@
                     "ForeEndType": 3,
                     "Code": "0088"
                 }
-                CLoadJson(apiurl,JSON.stringify(GetDetails),GetDetailsCallback,CAnimIn,CAnimOut);
+                CLoadJson(defineProperty.apiurl,JSON.stringify(GetDetails),GetDetailsCallback,CAnimIn,CAnimOut);
 
             }
 
@@ -301,12 +342,37 @@
                             tpl_GetDetails_Package_Attention = template("tpl_GetDetails_Package_Attention",data.tours),
                             tpl_GetDetails_Package_ServTerm = template("tpl_GetDetails_Package_ServTerm",data);
 
-//                    OnlyForAdult = data.onlyForAdult;
-//                    MaxAdult = data.maxAdult;
-//                    ChildAgeMax = data.childAgeMax;
-//                    ChildAgeMin = data.childAgeMin;
-//                    TourID = data.tours[0].tourID;
-//                    TravelDate = data.salesFrom;
+                    defineProperty.ChildAgeMin = data.childAgeMin;
+                    defineProperty.ChildAgeMax = data.childAgeMax;
+                    defineProperty.TravelDate = data.defaultDepartStartDate;
+                    defineProperty.TourID = data.tours;
+                    defineProperty.MinPax = data.minPax;
+
+
+                    var SearchPrice=
+                    {
+                        "Parameters": {
+                            "PackageID": val.packageID,
+                            "Adult": defineProperty.MinPax,
+                            "Child": [
+                                defineProperty.ChildAgeMin,
+                                defineProperty.ChildAgeMax
+                            ],
+                            "Tours": [
+
+                            ]
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0091"
+
+                    }
+
+                    for (var i = 0;i<data.tours.length;i++)
+                    {
+                        SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": defineProperty.TravelDate};
+                    }
+
+                    console.log(SearchPrice);
 
                     $("#ScenicTopImg").attr("src",data.pictureURL);
                     $("#Title").html(tpl_GetDetails_Package_Title);
@@ -320,37 +386,20 @@
                     $("#Attention").html(tpl_GetDetails_Package_Attention).find("ul").addClass("s-special");
                     $("#ServTerm").html(tpl_GetDetails_Package_ServTerm).find("ul").addClass("s-special");
 
-//                    CLoadSearchPrice();
+                    CLoadSearchPrice(SearchPrice);
                 }else {
                     console.log(json);
-                    jAlert("数据格式错误","提示");
+                    jAlert(json.message,"提示");
                 }
             }
+            /**
+             * 查询价格
+             * @constructor
+             */
+            var CLoadSearchPrice = function(SearchPrice){
 
-            var CLoadSearchPrice = function(){
-                var val = vlm.parseUrlPara(window.location.href);
-                var SearchPrice=
-                {
-                    "Parameters": {
-                        "PackageID": val.packageID,
-                        "Adult": 1,
-                        "Child": [
-                            ChildAgeMin,
-                            ChildAgeMax
-                        ],
-                        "Tours": [
-                            {
-                                "TourID": TourID,
-//                                "TravelDate": TravelDate
-                                "TravelDate": "2016-02-26T00:00:00"
-                            }
-                        ]
-                    },
-                    "ForeEndType": 3,
-                    "Code": "0091"
 
-                }
-                vlm.loadJson(apiurl,JSON.stringify(SearchPrice),SearchPriceCallback);
+                CLoadJson(defineProperty.apiurl,JSON.stringify(SearchPrice),SearchPriceCallback,CAnimIn,CAnimOut);
                 function SearchPriceCallback(data){
                     var json=eval('('+data+')');
                     console.log(json);
@@ -359,7 +408,7 @@
                         $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
                     }else {
                         console.log(json);
-                        jAlert("数据格式错误","提示");
+                        jAlert(json.message,"提示");
                     }
                 }
 
