@@ -383,3 +383,7 @@ em,b,i{
     padding:0 12px;
     font-size:1.1rem;color:rgb(72,72,72);
 }
+#popup_ok{
+    text-align:center;
+    width:100%;
+}
