@@ -177,6 +177,7 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 
 
 //获取user_order_storage12345,实现历史选择记忆功能
+
 function uoHisData(){
     var localData=JSON.parse(window.localStorage.getItem('user_order_storage12345'));
     console.log(localData);
@@ -190,6 +191,7 @@ function uoHisData(){
         console.log('hahahahhahahahah');
         return;
     }else{
+        fake_data.guestName=[];
         return;
     }
 }
@@ -208,7 +210,7 @@ uoHisData();
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
     var uo_c1_info=document.getElementById('uo_c1_info');
-    var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
+    //var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
     var uo_c2_num=document.getElementById('uo_c2_num');
     var uo_or_infor=document.getElementById('uo_or_infor');
     var uo_form=document.getElementById('uo_con3');
@@ -220,7 +222,7 @@ uoHisData();
         window.history.go(-1);
     };
     //判断是担保还是在线支付
-    //fake_data.paymentModeID=2;//测试用的
+    fake_data.paymentModeID=2;//测试用的
     if(parseInt(fake_data.paymentModeID)==1){
         lsf_myweb.getbyid('uo_or_sumBox1').style.display='block';
         lsf_myweb.getbyid('uo_or_sumBox2').style.display='none';
@@ -232,7 +234,8 @@ uoHisData();
     }
     //取消说明时间展示
     var uo_c1_info=document.getElementById('uo_c1_info');
-    uo_c1_info.innerHTML='如果您在'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+'晚12时（目的地时间）之前取消不收取任何费用';
+    //uo_c1_info.innerHTML='如果您在'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+'晚12时（目的地时间）之前取消不收取任何费用';
+    uo_c1_info.innerHTML=fake_data.cancellationDesc;
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
     uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.hotelName+'</h3>'+
@@ -274,6 +277,7 @@ uoHisData();
         //        uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
         //    }
         //}
+        console.log(fake_data.guestName);
         if(fake_data.guestName.length){
             if(fake_data.guestName[0].GuestFirstName!=''){
                 var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
@@ -558,10 +562,10 @@ uoHisData();
         uo_form.submit();
     });
     //取消说明点击事件
-    lsf_myweb.bind(uo_c1_infoDown,'click',function(){
-        uo_c1_info.className='';
-        this.style.display='none';
-    });
+    //lsf_myweb.bind(uo_c1_infoDown,'click',function(){
+    //    uo_c1_info.className='';
+    //    this.style.display='none';
+    //});
     //解决300毫秒延迟问题
     (function($) {
         $(document).ready(function() {

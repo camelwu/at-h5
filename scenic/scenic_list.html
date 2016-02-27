@@ -102,7 +102,7 @@
                 <b class="jd-icon s-remark"></b>
                 好评率
             </div>
-            <div>
+            <div id="priceSort">
                 <b class="jd-icon s-rank"></b>
                 价格排序
             </div>
@@ -160,10 +160,21 @@
         /*景点 目标城市列表页MT*/
         (function(){
             var webkit = this;
+
             var core = function(){
                 var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
-                var isPlayAnim = false;
+                var themeId = "";
+                var defineProperty = {
+                    get themeId (){
+                        return themeId;
+                    },
+                    set themeId (value){
+                        themeId = value;
+                    }
+                };
+
                 vlm.init();
+
 
                 /**
                  * @动画模版
@@ -289,12 +300,78 @@
                         $("#SpotScreen").html(tpl_SpotScreen);
 
                         CBot_screen();
-
+                        if(data.lists.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
                     }else {
                         console.log(json);
                         jAlert(json.message,"提示");
                     }
                 }
+
+                /**
+                 * @价格排序
+                 * @constructor
+                 */
+                var CBindPriceSort = function(){
+
+
+                    $("#priceSort").toggle(function(){
+                        console.log(defineProperty.themeId);
+                        CLoadPriceSort("HighToLow",defineProperty.themeId);
+                    },function(){
+                        CLoadPriceSort("LowToHigh",defineProperty.themeId);
+                    },function(){
+                        CLoadPriceSort("",defineProperty.themeId);
+                    });
+                }
+                /**
+                 * @价格排序
+                 * @constructor
+                 */
+                var CLoadPriceSort = function(priceSort,themeId){
+
+                    var val = vlm.parseUrlPara(window.location.href);
+                    var PriceSort=
+                    {
+                        "Parameters": {
+                            "DestCityCode": val.DestCityCode,
+                            "PriceSortType" :priceSort,
+                            "ThemeID":themeId
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0087"
+                    };
+                    CLoadJson(apiurl,JSON.stringify(PriceSort),PriceSortCallback,CAnimIn,CAnimOut);
+
+                }
+
+                /**
+                 * @价格排序 [CLoadSearchAvailableToursAttractions Callback]
+                 * @param data
+                 * @constructor
+                 */
+                var PriceSortCallback = function(data){
+                    var json=eval('('+data+')');
+                    console.log(json);
+                    if(json.success){
+                        var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
+                                tpl_Localtxt = template("tpl_Localtxt",data),
+                                tpl_SpotScreen = template("tpl_SpotScreen",data);
+                        $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                        $("#Localtxt").html(tpl_Localtxt);
+                        $("#SpotScreen").html(tpl_SpotScreen);
+
+                        CBot_screen();
+                        if(data.lists.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
+                    }else {
+                        console.log(json);
+                        jAlert(json.message,"提示");
+                    }
+                }
+
                 /**
                  * @根据主题筛选
                  * @param themeid
@@ -325,11 +402,16 @@
                     if(json.success){
                         var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists);
                         $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                        if(data.lists.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
+
                     }else {
                         console.log(json);
                         jAlert(json.message,"提示");
                     }
                 }
+
 
 
                 /**
@@ -343,6 +425,7 @@
                     var quit = $("#quit_screen")[0];
                     var sure = $("#sure_screen")[0];
                     var clear = $("#clear_screen")[0];
+
                     //    点击筛选
                     screen.onclick = function(){
                         mb.style.display="block";
@@ -359,13 +442,16 @@
 
                         if(this.title == "confirm"){
                             //获得themeid
-                            var themeid=$(".spot-slected").attr("title");
+                            themeid=$(".spot-slected").attr("title");
                             //调用主题方法
                             CLoadFilterTheme(themeid);
+                            defineProperty.themeId = themeid;
+                            console.log(defineProperty.themeId);
                         }
 
 
                     }
+
                     quit.onclick = closeblock;
                     sure.onclick = closeblock;
                     //   筛选选择
@@ -404,16 +490,19 @@
                             b[i].className = 'jd-icon scr-gou';
                         }
                     };
+
                 };
 
                 return {
                     CLoadSearchAvailableToursAttractions:CLoadSearchAvailableToursAttractions,
-                    CBot_screen:CBot_screen
+                    CBot_screen:CBot_screen,
+                    CBindPriceSort:CBindPriceSort
                 }
 
             }();
             webkit.MT = webkit.MT || {};
             webkit.MT.load = function(){
+                core.CBindPriceSort();
                 core.CLoadSearchAvailableToursAttractions();
                 core.CBot_screen();
             };

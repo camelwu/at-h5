@@ -38,7 +38,7 @@
     <!--     banner     -->
     <div class="all-elements">
         <div id="content" class="snap-content">
-            <a href="../" class="icons top-back"> </a>
+            <a href="javascript:history.go(-1);" class="icons top-back"> </a>
             <div class="top-ban s-active">
                 <a href="#">
                     <!--<div class="ban-desc">-->
@@ -361,6 +361,9 @@
                         var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
                         $("#out_place").html(tpl_GetExHotCity);
                         MT.reloadHotCity();
+                        if(data.data.destCities.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
                     }else {
                         console.log(json);
                         jAlert(json.message,"提示");

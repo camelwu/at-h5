@@ -45,6 +45,18 @@
     <div id="content" class="snap-content">
         <div class="slider-container half-bottom">
             <div class="homepage-slider" data-snap-ignore="true" id="banner">
+                <a href = "{%=%}">
+                <img src="images/pictures/1.jpg" class="responsive-image" alt="img">
+                </a>
+                <a>
+                <img src="images/pictures/2.jpg" class="responsive-image" alt="img">
+                </a>
+                <a>
+                <img src="images/pictures/3.jpg" class="responsive-image" alt="img">
+                </a>
+                <a>
+                <img src="images/pictures/4.jpg" class="responsive-image" alt="img">
+                </a>
             </div>
         </div>
         
@@ -104,11 +116,24 @@
         <div class="container half-bottom">
         	<div class="recommends" id="recommend">
         		<ul class="list-length-3" id="rewan">
+                    <li>
+                        <h5>当月热玩</h5>
+                        <p>人少景更美最优之选</p>
+                        <a href="index-hotplay.html"><img src="images/i_29.jpg" class="fr" width="100%"></a>
+                    </li>
+                    <li>
+                        <h5>海外门票</h5>
+                        <p>去感受异国风情</p>
+                        <a><img src="images/hhg_03.jpg" class="fr" width="100%"></a>
+                    </li>
 	            </ul>
         	</div>
         </div>
         <h5 class="index-title">玩家推荐</h5>
 		<div class="container" style="border-bottom: none;" id="tuijian">
+            <div class="half-top"><div class="c-ad">今日<br>爆款</div><img src="images/i_62.jpg" alt="img" width="100%"></div>
+            <h5>上海－直飞夏威夷7- 8天游寻觅异国海底风情</h5>
+            <p class="">［双11特惠］开启异国浪漫之旅...</p>
 		</div>
 	    <div class="toper">
 			<a id="toper-gps" class="toper-gps" href="gps.html">北京</a><div class="toper-in"><input type="text" class="s-in" placeholder="地点、酒店、景点、机票"></div><a href="tel:+4008018888" class="toper-tel"><i>&nbsp;</i></a>
@@ -122,49 +147,54 @@
 <script src="js/lib/vlm.js"></script>
 <script src="js/lib/template.js"></script>
 <script src="js/lib/custom.js"></script>
-<script >
-    var tpl0 = [
-    '<a href = "{%=productChangeLink%}">',
-        '<img src="{%=productPicUrl%}" class="responsive-image" alt="img">',
-    '</a>'].join('');
 
-    var tpl1 = [
-    '<li>',
-        '<h5>{%=productName%}</h5>',
-        '<p>{%=productDesc%}</p>',
-        '<a href = "{%=productChangeLink%}"><img src="{%=productPicUrl%}" class="fr" width="100%"></a>',
-    '</li>'
-    ].join('');
-
-    var tpl2 = [
-    '<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href = "{%=productChangeLink%}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>',
-    '<h5>{%=productName%}</h5>',
-    '<p>{%=productDesc%}</p>'
-    ].join('');
+<script>
+    $(window).load(function () {
+        $("#status").fadeOut();
+        $("#preloader").delay(400).fadeOut("medium");
+    });
+//    var tpl0 = [
+//    '<a href = "{%=productChangeLink%}">',
+//        '<img src="{%=productPicUrl%}" class="responsive-image" alt="img">',
+//    '</a>'].join('');
+//
+//    var tpl1 = [
+//    '<li>',
+//        '<h5>{%=productName%}</h5>',
+//        '<p>{%=productDesc%}</p>',
+//        '<a href = "{%=productChangeLink%}"><img src="{%=productPicUrl%}" class="fr" width="100%"></a>',
+//    '</li>'
+//    ].join('');
+//
+//    var tpl2 = [
+//    '<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href = "{%=productChangeLink%}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>',
+//    '<h5>{%=productName%}</h5>',
+//    '<p>{%=productDesc%}</p>'
+//    ].join('');
 </script>
 <script>
-    vlm.init();
-    var tmp={
-        "Code":"3099",
-        "ForeEndType":3
-    };
-   vlm.loadJson("",JSON.stringify(tmp),input_back);
-    function input_back(d){
-        var json=eval('('+d+')');
-        console.log(json);
-        if(json.success){
-            var data=json.data,html_b = template(tpl0,data.banner),html_rw = template(tpl1,data.hotPlay),html_tj = template(tpl2,data.playerRecommend);
-            console.log("b="+html_b);
-            $("#banner").html(html_b);
-            $("#rewan").html(html_rw);
-            $("#tuijian").html(html_tj);
-        }else {
-            console.log(json);
-           jAlert("数据格式错误","提示");
-        }
-    }
-var gps = document.getElementById("toper-gps");
-gps.innerHTML = localStorage.province?localStorage.province:'北京';
+//    vlm.init();
+//    var tmp={
+//        "Code":"3099",
+//        "ForeEndType":3
+//    };
+//   vlm.loadJson("",JSON.stringify(tmp),input_back);
+//    function input_back(d){
+//        var json=eval('('+d+')');
+//        console.log(json);
+//        if(json.success){
+//            var data=json.data,html_b = template(tpl0,data.banner),html_rw = template(tpl1,data.hotPlay),html_tj = template(tpl2,data.playerRecommend);
+//            console.log("b="+html_b);
+//            $("#banner").html(html_b);
+//            $("#rewan").html(html_rw);
+//            $("#tuijian").html(html_tj);
+//        }else {
+//            console.log(json);
+//           jAlert("数据格式错误","提示");
+//        }
+//    }
+//var gps = document.getElementById("toper-gps");
+//gps.innerHTML = localStorage.province?localStorage.province:'北京';
 </script>
 </body>
 </html>

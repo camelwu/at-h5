@@ -144,7 +144,99 @@ var ticketOrder = {
         this.addHandler(confirmButton,'click', function(){
             var event = event || window.event;
             var target =event.target || event.srcElement;
-            document.location.href = 'pay_detail.html';
+            var that = ticketOrder;
+            that.backParaObj = that.reverseInformation;
+            that.backParaObj.TravellerInfo = [
+                {
+                    PassengerType: "ADULT",  //乘客类
+                    SexCode: "Mr",        //称呼
+                    FirstName: "sss",     //姓
+                    LastName: "ddd",       //名
+                    DateOfBirth: "1978-12-24", //出生日期
+                    FlightCertificateInfo: {    //证件信息
+                        IdType: "4",      //证件类型
+                        IdCountry: "CN",  //证件发行国家
+                        IdNumber: "3412",      //证件号码
+                        IdActivatedDate: "2016-12-31"  //证件有效期
+                    },
+                    BaggageCode:"",//行李编码，一期不用,
+                    NationalityCode: "CHN" //国籍代码
+                },
+                {
+                    PassengerType: "ADULT",  //乘客类
+                    SexCode: "Mr",        //称呼
+                    FirstName: "sss",     //姓
+                    LastName: "ddd",       //名
+                    DateOfBirth: "1968-12-24", //出生日期
+                    FlightCertificateInfo: {    //证件信息
+                        IdType: "4",      //证件类型
+                        IdCountry: "CN",  //证件发行国家
+                        IdNumber: "3418",      //证件号码
+                        IdActivatedDate: "2016-12-31"  //证件有效期
+                    },
+                    BaggageCode:"",//行李编码，一期不用,
+                    NationalityCode: "CHN" //国籍代码
+                },
+            ];
+                that.backParaObj.ContactDetail={
+                      SexCode: "Mr",  //称呼
+                      FirstName: "Jack", //姓
+                      LastName: "Ma",  //名
+                      Email: "330@qq.com", //邮箱
+                      MobilePhone: "15123957486",        //手机号
+                      CountryNumber: "86"
+            }
+            /*var reverseInformationCache = {
+             WapOrder:{
+             SetID:"30000080",
+             CacheID:"3500553",
+             CityCodeFrom:"BJS", //出发地三字码
+             CityCodeTo:"BJS",  //到达地三字码
+             NumofAdult:2,
+             NumofChild:2,
+             RouteType:"Oneway",
+             CabinClass:"First",
+             MemberId:"123456"   //必须，用户编码，
+             },
+             CurrencyCode: "CNY",
+             TotalFlightPrice: 106255,
+             TravellerInfo:[],
+             ContactDetail:{}
+             };*/
+            $("#preloader").show();
+            $("#status-f").show();
+            that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
+                $("#preloader").hide();
+                $("#status-f").hide();
+                var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
+                arg = JSON.parse(arg)
+                if(arg.success&&arg.code==200){
+                    console.log(111)
+                    var orderResultInfo = {};
+                    orderResultInfo['TotalFlightPrice'] = that.reverseInformation['TotalFlightPrice'];
+                    orderResultInfo['CurrencyCode'] = that.reverseInformation['CurrencyCode'];
+                    orderResultInfo['NumofAdult'] = that.reverseInformation['WapOrder']['NumofAdult'];
+                    orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];
+                    orderResultInfo['flightInfo'] = that.orderFlightData;
+                    orderResultInfo['TravellerInfo'] = that.reverseInformation['TravellerInfo'];
+                    orderResultInfo['ContactDetail'] = that.reverseInformation['ContactDetail'];
+                    orderResultInfo['bookingID'] = arg['data']['bookingID'];
+                    orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
+                    console.log(orderResultInfo)
+                    that.storageUtil.set('orderResultInfo',orderResultInfo);
+                    document.location.href = 'pay_detail.html';
+                }else{
+                    orderResultTip.innerHTML = arg.message;
+                    that.timer7 = window.setTimeout(function(){
+                        orderResultTip.style.display = 'none';
+                        window.clearTimeout(that.timer7);
+                        that.timer7 = null;
+                    },3000);
+                }
+
+            });
+
+
         });
 
 
@@ -356,7 +448,7 @@ var ticketOrder = {
                     '<div class="time-airport-info">'+
                     '<div class="start-time-info">'+
                     '<span class="time-number">'+that.timeCut(arg[j].departDate)+'</span>'+
-                    '<span class="air-port-word">'+arg[j].airportNameFrom+'</span>'+
+                    '<span class="air-port-word">'+arg[j].airportNameFrom+arg[j].termDepart+'</span>'+
                     '</div>'+
                     '<div class="total-time-info">'+
                     '<span class="time-hour-minute"></span>'+
@@ -365,7 +457,7 @@ var ticketOrder = {
                     '<div class="end-time-info">'+
                     '<span class="tip-add-days-seat">'+dayStr+'</span>'+
                     '<span class="time-number">'+that.timeCut(arg[j].arriveDate)+'</span>'+
-                    '<span class="air-port-word-right">'+arg[j].airportNameTo+'</span>'+
+                    '<span class="air-port-word-right">'+arg[j].airportNameTo+arg[j].termArrive+'</span>'+
                     '</div>'+
                     '</div>'+
                     '<div class="bottom-word">'+
@@ -419,76 +511,6 @@ var ticketOrder = {
     init:function(){
          var reverseInformation = this.storageUtil.get('reverseInformationCache');
          this.reverseInformation = reverseInformation;
-         console.log(reverseInformation)
-        /*var reverseInformationCache = {
-         WapOrder:{
-         SetID:"30000080",
-         CacheID:"3500553",
-         CityCodeFrom:"BJS", //出发地三字码
-         CityCodeTo:"BJS",  //到达地三字码
-         NumofAdult:2,
-         NumofChild:2,
-         RouteType:"Oneway",
-         CabinClass:"First",
-         SourceType:"H5" ,//,
-         MemberId:"123456"   //必须，用户编码，
-         },
-         CurrencyCode: "CNY",
-         TotalFlightPrice: 106255,
-         TravellerInfo:[],
-         ContactDetail:{}
-         };*/
-        //数据实例
-        /* var  reverseInformation = {
-            WapOrder:{//订单信息
-                     SetID:"30000080",
-                     CacheID:"3500553",
-                     CityCodeFrom:"BJS", //出发地三字码
-                     CityCodeTo:"BJS",  //到达地三字码
-                     NumofAdult:2,
-                     NumofChild:2,
-                     RouteType:"Oneway",
-                     CabinClass:"First",
-                     SourceType:"H5" ,//,
-                     MemberId:"123456"   //必须，用户编码，
-                  },
-
-            TravellerInfo: [   //乘客信息，是个数组
-                    {   PassengerType: "ADULT",  //乘客类型
-                        SexCode: "Mr",        //称呼
-                        FirstName: "sss",     //姓
-                        LastName: "ddd",       //名
-                        DateOfBirth: "1900-12-24", //出生日期
-                        FlightCertificateInfo: {    //证件信息
-                        IdType: "4",      //证件类型
-                        IdCountry: "SIN",  //证件发行国家
-                        NationalityCode: "123", //国籍代码
-                        IdNumber: "3412",      //证件号码
-                        IdActivatedDate: "2016-12-31"  //证件有效期
-                    },
-                    AirCorpCode: "MF",     //航空公司代码
-                    FlightNo: "757"       //航班号
-                }
-            ],
-            ContactDetail:{ //联系人信息:唯一的
-                SexCode: "Mr",  //称呼
-                FirstName: "dddd", //姓
-                LastName: "ssss",  //名
-                Email: "855@asiatravel.com", //邮箱
-                Email2: "",
-                ContactNumber: "5689",   //联系号码
-                MobilePhone: "",        //手机号
-                FaxNumber: "",           //传真
-                DestContactNumber: "12356",  //目的地联系号码
-                Address: "kkkk",    //地址
-                PostalCode: "123456",
-                City: "SIN",
-                CountryCode: "SG"
-            },
-            CurrencyCode: "",   //货币种类代码
-            TotalFlightPrice: ""   //合计费用
-        };*/
-
         this.telSlider();
         this.loadingFade();
         this.orderFlightData = this.storageUtil.get('curFlightListData');

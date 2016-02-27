@@ -74,19 +74,34 @@ window.onload = function(){
     //更换注册方式
     changeWay(header_email,header_phone,phone_register,email_register);
     changeWay(header_phone,header_email,email_register,phone_register);
-    function changeFind(obj1,obj2,obj3,obj4){
+
+    function changeFind(obj1){
         obj1.onclick = function(){
-            phone_find.style.display = "none";
-            email_find.style.display = "none";
-            obj1.style.display = "none";
-            obj2.style.display = "block";
-            find_title.innerHTML = obj3;
-            obj4.style.display = "block";
+            if(find_title.innerHTML == '邮箱找回')
+            {
+                find_title.innerHTML = '手机找回';
+                cha_email.style.display='block';
+                cha_email.innerHTML='邮箱找回';
+                cha_phone.style.display='none';
+                phone_find.style.display='block';
+                email_find.style.display='none';
+            }
+            else if(find_title.innerHTML == '手机找回')
+            {
+                find_title.innerHTML = '邮箱找回';
+                cha_email.style.display='none';
+                cha_phone.style.display='block';
+                cha_phone.innerHTML = '手机找回';
+                phone_find.style.display='none';
+                email_find.style.display='block';
+            }
+
         }
     }
     //更换找回密码方式
-    changeFind(cha_email,cha_phone,"邮箱找回",email_find);
-    changeFind(cha_phone,cha_email,"手机找回",phone_find);
+    changeFind(cha_email);
+    changeFind(cha_phone);
+    
     var p_password = $("#p_password")[0];
     var e_password = $("#e_password")[0];
     var r_phone = $("#r_phone")[0];
@@ -293,6 +308,24 @@ window.onload = function(){
 function show_keypage(){
     var fkey_page = $("#fkey_page")[0];
     fkey_page.style.display = "block";
+    if($('#email_login').css('display') == 'none' )
+    {
+
+        $('#phone_find').show();
+        $('#email_find').hide();
+        $('#cha_email').show().html('邮箱找回');
+        $('#cha_phone').hide()
+        $("#find_title").html('手机找回');
+
+    }
+    else
+    {
+        $('#email_find').show();
+        $('#phone_find').hide();
+        $('#cha_phone').show().html('手机找回');
+        $('#cha_email').hide();
+        $("#find_title").html('邮箱找回');
+    }
 }
 function close_keypage(){
     var fkey_page = $("#fkey_page")[0];
