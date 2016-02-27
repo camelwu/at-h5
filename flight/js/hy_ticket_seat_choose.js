@@ -63,9 +63,17 @@ var ticketSeatChoose = {
         var that = this;
 
         this.addHandler(reserveButton,'click', function(){
-
-            var that = ticketSeatChoose;
-            var login;
+            var that = ticketSeatChoose,login;
+            var myFixed = function(arg){
+                if(String(arg).indexOf('.')>-1){
+                    if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                        return String(arg)+'0';
+                    }
+                    return String(arg).substring(0,String(arg).indexOf('.')+3)
+                }else{
+                    return String(arg)+'.00';
+                }
+            };
             var totalCountCost = that.curFlightListData.totalTaxAmountADT ==0?that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult):
             that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult) + (that.curFlightListData.totalFareAmountCHD+that.curFlightListData.totalTaxAmountCHD)*parseInt(that.assistInfo.NumofChild);
             var reverseInformationCache = {
@@ -78,15 +86,12 @@ var ticketSeatChoose = {
                     NumofChild: that.curFlightListData.totalTaxAmountADT ==0?0:that.assistInfo.NumofChild,
                     RouteType: that.assistInfo.RouteType,
                     CabinClass: that.assistInfo.CabinClass,
-                    IP: "",   //非必需
-                    DeviceID: "", //非必需
-                    SourceType:"H5", //非必需
-                    Version: "" //非必需
+                    SourceType:"H5" //非必需
                 },
                 TravellerInfo:[],
                 ContactDetail:{},
                 CurrencyCode: "CNY",
-                TotalFlightPrice: totalCountCost
+                TotalFlightPrice: myFixed(totalCountCost)
             };
             var loginResult = function(arg){
                 reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
@@ -113,7 +118,6 @@ var ticketSeatChoose = {
         });
 
         this.addHandler(detailWord,'click', function(event){
-            console.log(22222222)
             $("#preloader").show();
             $("#status-f").show();
             $("#status-f").delay(400).fadeOut("medium");
@@ -255,7 +259,6 @@ var ticketSeatChoose = {
     },
     createBackTripHtml:function(arg){
         if(arg.segmentsReturn){
-            console.log(arg.segmentsReturn)
             var tipDay = arg.flightReturnSpacingDay>1?arg.flightReturnSpacingDay+'天':'',str='',that =this;
             str='<div class="back-trip">'+
             '<div class="top-line">'+
@@ -335,7 +338,6 @@ var ticketSeatChoose = {
                var str = '',transferStr='',dayStr='',that = ticketSeatChoose;
             if(arg){
                 for(var j = 0;j<arg.length;j++){
-                    console.log(arg[j])
                     transferStr= arg[j+1]!=undefined?'<div class="transit-city-hour">中转'+arg[j].cityNameTo+'</div>':'';
                     dayStr= Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)>=1?Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)+'天':'';
                     str+='<div class="go-trip start">' +
