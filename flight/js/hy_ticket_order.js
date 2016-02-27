@@ -453,6 +453,54 @@ var ticketOrder = {
                      MemberId:"123456"   //必须，用户编码，
                   },
 
+{ TravellerInfo: [   //乘客信息，是个数组
+         {
+         PassengerType: "ADULT",  //乘客类型
+         NationalityCode: "123", //国籍代码
+         SexCode: "Mr",        //称呼
+         FirstName: "sss",     //姓
+         LastName: "ddd",       //名
+         DateOfBirth: "1900-12-24", //出生日期
+         FlightCertificateInfo: {    //证件信息
+         IdType: "4",      //证件类型
+         IdCountry: "SIN",  //证件发行国家
+         IdNumber: "3412",      //证件号码
+         IdActivatedDate: "2016-12-31"  //证件有效期
+         },
+         BaggageCode:""//行李编码，一期不用
+         },
+         {
+         PassengerType: "CHILD",  //乘客类型
+         NationalityCode: "123", //国籍代码
+         SexCode: "Mr",        //称呼
+         FirstName: "ccc",     //姓
+         LastName: "vvv",       //名
+         DateOfBirth: "2003-12-24", //出生日期
+         FlightCertificateInfo: {    //证件信息
+         IdType: "4",      //证件类型
+         IdCountry: "SIN",  //证件发行国家
+         IdNumber: "3412",      //证件号码
+         IdActivatedDate: "2016-12-31"  //证件有效期
+         },
+         BaggageCode:""//行李编码，一期不用
+         }
+         ],
+         ContactDetail:{ //联系人信息:唯一的
+         SexCode: "Mr",  //称呼
+         FirstName: "dddd", //姓
+         LastName: "ssss",  //名
+         Email: "855@asiatravel.com", //邮箱
+         Email2: "",
+         ContactNumber: "5689",   //联系号码
+         MobilePhone: "",        //手机号
+         FaxNumber: "",           //传真
+         DestContactNumber: "12356",  //目的地联系号码
+         Address: "kkkk",    //地址
+         PostalCode: "123456",
+         City: "SIN",
+         CountryCode: "SG"
+         }
+}
             TravellerInfo: [   //乘客信息，是个数组
                     {   PassengerType: "ADULT",  //乘客类型
                         SexCode: "Mr",        //称呼
@@ -470,21 +518,17 @@ var ticketOrder = {
                     FlightNo: "757"       //航班号
                 }
             ],
-            ContactDetail:{ //联系人信息:唯一的
-                SexCode: "Mr",  //称呼
-                FirstName: "dddd", //姓
-                LastName: "ssss",  //名
-                Email: "855@asiatravel.com", //邮箱
-                Email2: "",
-                ContactNumber: "5689",   //联系号码
-                MobilePhone: "",        //手机号
-                FaxNumber: "",           //传真
-                DestContactNumber: "12356",  //目的地联系号码
-                Address: "kkkk",    //地址
-                PostalCode: "123456",
-                City: "SIN",
-                CountryCode: "SG"
-            },
+         ContactDetail: { //联系人信息:唯一的
+         SexCode: "Mr",  //称呼
+         FirstName: "dddd", //姓
+         LastName: "ssss",  //名
+         Email: "855@asiatravel.com", //邮箱
+         Email2: "",
+         MobilePhone: "123456789",        //手机号
+         PostalCode: "123456",
+         City: "SIN",
+         CountryCode: "SG"
+         }
             CurrencyCode: "",   //货币种类代码
             TotalFlightPrice: ""   //合计费用
         };*/

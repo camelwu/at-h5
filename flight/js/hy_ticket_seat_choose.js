@@ -93,7 +93,13 @@ var ticketSeatChoose = {
                 that.storageUtil.set('reverseInformationCache',reverseInformationCache);
                 document.location.href = 'ticket_order.html';
             };
-            vlm.checkLogin(loginResult)
+            if(vlm.checkLogin(loginResult)){
+                reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
+                that.storageUtil.set('reverseInformationCache',reverseInformationCache);
+                document.location.href = 'ticket_order.html';
+            }else{
+                return;
+            }
         });
         this.addHandler(changeExplain,'click', function(event){
             var event = event || window.event;
