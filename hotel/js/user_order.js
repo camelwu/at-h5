@@ -309,6 +309,19 @@ uoHisData();
         styleChange2('uo_c3_peoBox','uo_lastname','姓（如：张）');
         styleChange2('uo_c3_peoBox','uo_firstname','名（如：三）');
     }
+    //$('#uo_c3_tele').bind('focus',function(){
+    //    $('#uo_footer').css({'position':'absolute','left':'0','top':$(document).height()});
+    //    $('#uo_box').css('margin-bottom','0px');
+    //});
+    //$('#uo_c3_tele').bind('blur',function(){
+    //    $('#uo_footer').css({'position':'fixed','left':'0','bottom':'0','top':'auto'});
+    //    $('#uo_box').css('margin-bottom','47px');
+    //});
+    //$('#uo_c3_tele').bind('focus',function(){
+    //    var uo_box=document.getElementById('uo_box');
+    //    alert(uo_box.scrollTop);
+    //    document.documentElement.scrollTop='800';
+    //});
     // 明细
     function uo_detail(id1,id2,id3,id4,id5,id6,id7,json){
         console.log(json);

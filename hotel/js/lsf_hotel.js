@@ -498,7 +498,7 @@ function inpChange(id,myText){
                         if(dcitySearchBox.value){
                             console.log(dcitySearchBox.value);
                             for(var j=0;j<dataWorCN[name].length;j++){
-                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))){
+                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))||dcitySearchBox.value==dataWorCN[name][j].pingYin.substring(0,(dcitySearchBox.value.length))){
                                     domInpCity.push(dataWorCN[name][j].cityNameCN);
                                 }
                             }
