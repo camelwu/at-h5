@@ -466,7 +466,25 @@ function styleChange(id,mytext){
                     '</div>'+
                     '</li>';
                 list_oUl.innerHTML+=str;
+
             }
+            //横屏竖屏时改变酒店名宽度
+            var hl_aLi=list_oUl.children;
+            var hl_hname=lsf_myweb.getbyclass(list_oUl,'hname');
+            function screenDir(){
+                if(window.orientation==180||window.orientation==0){
+                    //alert('竖屏状态');
+                    var hnameWidth=(list_oUl.offsetWidth-140);
+                }
+                if(window.orientation==90||window.orientation==-90){
+                    //alert('横屏状态');
+                    var hnameWidth=(list_oUl.offsetWidth-140);
+                }
+                for(var j=0;j<hl_hname.length;j++){
+                    hl_hname[j].style.width=hnameWidth+'px';
+                }
+            }
+            window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
             //懒加载
             function lazyLoad2(){
                 lazyLoad.apply(this,arguments);
