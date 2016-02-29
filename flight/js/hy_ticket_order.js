@@ -148,6 +148,7 @@ var ticketOrder = {
             that.backParaObj = that.reverseInformation;
             that.backParaObj.TravellerInfo = [
                 {
+                    chineseName:"刘德华",
                     PassengerType: "ADULT",  //乘客类
                     SexCode: "Mr",        //称呼
                     FirstName: "sss",     //姓
@@ -162,7 +163,7 @@ var ticketOrder = {
                     BaggageCode:"",//行李编码，一期不用,
                     NationalityCode: "CHN" //国籍代码
                 },
-                {
+                {   chineseName:"张学友",
                     PassengerType: "ADULT",  //乘客类
                     SexCode: "Mr",        //称呼
                     FirstName: "sss",     //姓
@@ -179,6 +180,7 @@ var ticketOrder = {
                 },
             ];
                 that.backParaObj.ContactDetail={
+                      chineseName:"郭富城",
                       SexCode: "Mr",  //称呼
                       FirstName: "Jack", //姓
                       LastName: "Ma",  //名
@@ -216,6 +218,7 @@ var ticketOrder = {
                     console.log(that.reverseInformation)
                     console.log(that.orderFlightData)
                     var orderResultInfo = {};
+                    orderResultInfo['orderTime'] = new Date();
                     orderResultInfo['TotalFlightPrice'] = that.reverseInformation['TotalFlightPrice'];
                     orderResultInfo['CurrencyCode'] = that.reverseInformation['CurrencyCode'];
                     orderResultInfo['NumofAdult'] = that.reverseInformation['WapOrder']['NumofAdult'];
@@ -227,7 +230,8 @@ var ticketOrder = {
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    document.location.href = 'pay_detail.html';
+                    console.log(orderResultInfo)
+                   // document.location.href = 'pay_detail.html';
                 }else{
                     orderResultTip.innerHTML = arg.message;
                     that.timer7 = window.setTimeout(function(){
