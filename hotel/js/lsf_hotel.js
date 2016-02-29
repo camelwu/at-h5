@@ -344,10 +344,10 @@ function inpChange(id,myText){
     }
     //var cdDate=lsf_myweb.getbyid('cd_date');
     //返回按钮
-    var ho_back=document.getElementById('ho_back');
-    ho_back.onclick=function(){
-        window.history.go(-1);
-    };
+    //var ho_back=document.getElementById('ho_back');
+    //ho_back.onclick=function(){
+    //    window.history.go(-1);
+    //};
     //城市列表
     var dataCN=[];
     var dataIN=[];

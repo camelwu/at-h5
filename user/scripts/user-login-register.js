@@ -343,8 +343,6 @@ function mycallback_register(ret){
     var myJson = eval('('+ret+')');
     if(myJson.success){
         jAlert('注册成功','',cb_register);
-        //document.getElementById("register_page").style.display = "none";
-        //document.getElementById("login_page").style.display = "block";
     }else{
         alert(myJson.message);
     }
@@ -352,13 +350,30 @@ function mycallback_register(ret){
 
 //注册成功，alert之后的回调函数
 function  cb_register(){
-    localStorage.setItem('login',1);
-    window.location.href = "user.html";
+    var r_email = $("#r_email")[0];
+    var r_phone = $("#r_phone")[0];
+    if($('#phone_register').css('display') == 'none')
+    {
+        var login_pass = $("#r_e_password")[0];
+    }
+    else{
+        var login_pass =$("#r_m_password")[0];
+    }
+
+    var Parameters= {
+        "Parameters": "{\"CultureName\":\"\",\"Email\":\""+r_email.value+"\",\"Password\":\""+login_pass.value+"\",\"Mobile\":\""+r_phone.value+"\"}",
+        "ForeEndType": 3,
+        "Code": "0052"
+
+    };
+
+    console.log(Parameters);
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
 }
 
 function mycallback_login(ret) {
     var myJson = eval('(' + ret + ')');
-    //console.log(myJson);
+    console.log(myJson);
     if (myJson.success) {
         localStorage.email = myJson.data[0].email;
         localStorage.phone = myJson.data[0].mobile;
@@ -366,7 +381,19 @@ function mycallback_login(ret) {
         localStorage.setItem('login',1);
         window.location.href = "user.html";
     } else {
-        alert('密码错误，请重新输入');
+
+        if(myJson.message == 'Invalid password')
+        {
+            alert('密码错误，请重新输入');
+        }
+        else if(myJson.message == '无此用户的相关信息')
+        {
+            alert('未注册用户');
+        }
+        else
+        {
+            alert(myJson.message);
+        }
     }
 }
 //注册验证码回调

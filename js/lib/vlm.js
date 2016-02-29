@@ -168,6 +168,23 @@
 							return false;
 						}
 					},
+					//比较出生日期
+					compareBirth : function(timeStr) {
+						if (timeStr == '' || timeStr == null) {
+							return false;
+						}
+						var timeData = timeStr.toString().split('-');
+						var year = timeData[0];
+						var month = parseInt(timeData[1] - 1);
+						var day = parseInt(timeData[2]);
+						var dtime = new Date(year, month, day).getTime();
+						var nowtime = new Date().getTime();
+						if (dtime <= nowtime-410227200000) {
+							return true;
+						} else {
+							return false;
+						}
+					},
 					//问好
 					sayHello : function() {
 						var date = new Date();
@@ -270,6 +287,30 @@
 							if (pattern.test(name)) {
 								return true;
 							} else {
+								return false;
+							}
+						},
+						//中文姓名
+						ChineseName:function(name){
+							var pattern=/^([\u4e00-\u9fa5]){2,7}$/
+							//只能是中文，长度为2-7位
+							if(pattern.test(name)){
+								return true;
+							}
+							else
+							{
+								return false;
+							}
+						},
+						engName:function(name){
+							var pattern=/^[a-zA-Z][a-zA-Z/s]*[a-zA-Z]{1,25}$/;
+							//字符头尾是字母，中间由空格和字母组成，中间可以有多个空格;2-26字符
+							if(pattern.test(name))
+							{
+								return true;
+							}
+							else
+							{
 								return false;
 							}
 						},

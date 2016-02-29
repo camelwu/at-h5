@@ -305,7 +305,7 @@ function styleChange(id,mytext){
     //返回按钮事件
     var hl_back=document.getElementById('hl_back');
     lsf_myweb.bind(hl_back,'click',function(){
-        window.history.go(-1);
+        window.location.href='index.html';
     });
     //页面没有展示前页面展示的页面
     var oUl=document.getElementById('lsf_list');
