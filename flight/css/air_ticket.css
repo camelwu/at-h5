@@ -774,7 +774,16 @@ h1, h2, h3, h4, h5, h6 {
 .high-light-letter{
     color: #ffb413;
 }
-
+.chinese-city-name-fix{
+    display: block;
+    line-height: 1.9rem;
+    height: 1.9rem;
+}
+.chinese-city-spellname-fix{
+    display: block;
+    line-height: 1.1rem;
+    height: 1.1rem;
+}
 
 .all-elements .city-content .right-side {
     box-sizing: border-box;
@@ -3882,6 +3891,8 @@ li{
     width: 81px;
     padding-left: 1.2rem;
     min-width: 8rem;
+    box-ordinal-group: 1;
+   -webkit-box-ordinal-group: 1;
 }
 
 .cabin-wrap-choice{

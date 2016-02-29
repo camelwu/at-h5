@@ -10,14 +10,7 @@
     <!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
 </head>
 <body>
-    <div id="preloader">
-        <div id="status">
-            <p class="center-text">
-                <br>
-                <em>加载中……</em>
-            </p>
-        </div>
-    </div>
+
     <div class="all-elements">
         <!--   顶部   -->
         <div class="header">
@@ -201,10 +194,7 @@
         var myDate1 = new Calender({id:'jdate',input:'jdate',num:2,time:[]});
 
 
-        $(window).load(function () {
-            $("#status").fadeOut();
-            $("#preloader").delay(400).fadeOut("medium");
-        });
+      
         //添加更多套餐弹窗
         var oSetBtn=document.querySelector('.add-ticket');
         var oAddwin=document.querySelector('.add-setmeal');
