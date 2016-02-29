@@ -45,18 +45,18 @@
     <div id="content" class="snap-content">
         <div class="slider-container half-bottom">
             <div class="homepage-slider" data-snap-ignore="true" id="banner">
-                <a href = "{%=%}">
-                <img src="images/pictures/1.jpg" class="responsive-image" alt="img">
-                </a>
-                <a>
-                <img src="images/pictures/2.jpg" class="responsive-image" alt="img">
-                </a>
-                <a>
-                <img src="images/pictures/3.jpg" class="responsive-image" alt="img">
-                </a>
-                <a>
-                <img src="images/pictures/4.jpg" class="responsive-image" alt="img">
-                </a>
+                <!--<a href = "{%=%}">-->
+                <!--<img src="images/pictures/1.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
+                <!--<a>-->
+                <!--<img src="images/pictures/2.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
+                <!--<a>-->
+                <!--<img src="images/pictures/3.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
+                <!--<a>-->
+                <!--<img src="images/pictures/4.jpg" class="responsive-image" alt="img">-->
+                <!--</a>-->
             </div>
         </div>
         
@@ -131,9 +131,9 @@
         </div>
         <h5 class="index-title">玩家推荐</h5>
 		<div class="container" style="border-bottom: none;" id="tuijian">
-            <div class="half-top"><div class="c-ad">今日<br>爆款</div><img src="images/i_62.jpg" alt="img" width="100%"></div>
-            <h5>上海－直飞夏威夷7- 8天游寻觅异国海底风情</h5>
-            <p class="">［双11特惠］开启异国浪漫之旅...</p>
+            <!--<div class="half-top"><div class="c-ad">今日<br>爆款</div><img src="images/i_62.jpg" alt="img" width="100%"></div>-->
+            <!--<h5>上海－直飞夏威夷7- 8天游寻觅异国海底风情</h5>-->
+            <!--<p class="">［双11特惠］开启异国浪漫之旅...</p>-->
 		</div>
 	    <div class="toper">
 			<a id="toper-gps" class="toper-gps" href="gps.html">北京</a><div class="toper-in"><input type="text" class="s-in" placeholder="地点、酒店、景点、机票"></div><a href="tel:+4008018888" class="toper-tel"><i>&nbsp;</i></a>
@@ -149,15 +149,87 @@
 <script src="js/lib/custom.js"></script>
 
 <script>
-    $(window).load(function () {
-        $("#status").fadeOut();
-        $("#preloader").delay(400).fadeOut("medium");
-    });
+    (function(){
+        var ww = this;
+        vlm.init();
+        var index = function(){
+            //加载动画
+            function Flashload() {
+                $(window).load(function () {
+                    $("#status").fadeOut();
+                    $("#preloader").delay(400).fadeOut("medium");
+                });
+            }
+            //banner
+            function LoadBanner(){
+                var tpl0 = [
+                '<a href = "{%=bannerChangeLink%}">',
+                    '<img src="{%=bannerPicUrl%}" class="responsive-image" alt="img">',
+                '</a>'].join('');
+                var tmp={
+                    "Parameters":{"BannerType":1},
+                    "ForeEndType":3,
+                    "Code":"001302"
+                };
+                vlm.loadJson("",JSON.stringify(tmp),banner_back);
+                function banner_back(ret){
+                    var json=eval('('+ret+')');
+                    console.log(json);
+                    if(json.success) {
+                        var data = json.data, html_b = template(tpl0, data.bannerList);
+                        $("#banner").html(html_b);
+                    }else{
+                        console.log(json);
+                        jAlert("数据格式错误","提示");
+                    }
+                }
+            }
+            //playerRecommend
+            function PlayerRecommend(){
+                var tpl1 = [
+                    '<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href = "#"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>',
+                    '<h5>{%=productName%}</h5>',
+                    '<p>{%=productDesc%}</p>'
+                ].join('');
+                var tmp={
+                    "Parameters":{"PageNo":1,"PageSize":10},
+                    "ForeEndType":3,
+                    "Code":"001303"
+                };
+                vlm.loadJson("",JSON.stringify(tmp),playerRecommend_back);
+                function playerRecommend_back(ret){
+                    var json=eval('('+ret+')');
+                    console.log(json);
+                    if(json.success) {
+                        var data = json.data, html_tj = template(tpl1,data.playerRecommendList);
+                        $("#tuijian").html(html_tj);
+                    }else{
+                        console.log(json);
+                        jAlert("数据格式错误","提示");
+                    }
+                }
+            }
+            return{
+                FlashLoad:Flashload,
+                LoadBanner:LoadBanner,
+                PlayerRecommend:PlayerRecommend
+            }
+        }();
+        ww.MT = ww.MT || {};
+        ww.MT.load = function(){
+            index.FlashLoad();
+            index.LoadBanner();
+            index.PlayerRecommend();
+        };
+        MT.load();
+    })();
+//    var gps = document.getElementById("toper-gps");
+//    gps.innerHTML = localStorage.province?localStorage.province:'北京';
 //    var tpl0 = [
-//    '<a href = "{%=productChangeLink%}">',
-//        '<img src="{%=productPicUrl%}" class="responsive-image" alt="img">',
+//    '<a href = "{%=BannerChangeLink%}">',
+//        '<img src="{%=BannerPicUrl%}" class="responsive-image" alt="img">',
 //    '</a>'].join('');
-//
+
 //    var tpl1 = [
 //    '<li>',
 //        '<h5>{%=productName%}</h5>',
@@ -171,30 +243,31 @@
 //    '<h5>{%=productName%}</h5>',
 //    '<p>{%=productDesc%}</p>'
 //    ].join('');
+    //    vlm.init();
+    //    var tmp={
+    //        "Code":"3099",
+    //        "ForeEndType":3
+    //    };
+    //   vlm.loadJson("",JSON.stringify(tmp),input_back);
+    //    function input_back(d){
+    //        var json=eval('('+d+')');
+    //        console.log(json);
+    //        if(json.success){
+    //            var data=json.data,html_b = template(tpl0,data.banner),html_rw = template(tpl1,data.hotPlay),html_tj = template(tpl2,data.playerRecommend);
+    //            console.log("b="+html_b);
+    //            $("#banner").html(html_b);
+    //            $("#rewan").html(html_rw);
+    //            $("#tuijian").html(html_tj);
+    //        }else {
+    //            console.log(json);
+    //           jAlert("数据格式错误","提示");
+    //        }
+    //    }
+    //var gps = document.getElementById("toper-gps");
+    //gps.innerHTML = localStorage.province?localStorage.province:'北京';
 </script>
-<script>
-//    vlm.init();
-//    var tmp={
-//        "Code":"3099",
-//        "ForeEndType":3
-//    };
-//   vlm.loadJson("",JSON.stringify(tmp),input_back);
-//    function input_back(d){
-//        var json=eval('('+d+')');
-//        console.log(json);
-//        if(json.success){
-//            var data=json.data,html_b = template(tpl0,data.banner),html_rw = template(tpl1,data.hotPlay),html_tj = template(tpl2,data.playerRecommend);
-//            console.log("b="+html_b);
-//            $("#banner").html(html_b);
-//            $("#rewan").html(html_rw);
-//            $("#tuijian").html(html_tj);
-//        }else {
-//            console.log(json);
-//           jAlert("数据格式错误","提示");
-//        }
-//    }
-//var gps = document.getElementById("toper-gps");
-//gps.innerHTML = localStorage.province?localStorage.province:'北京';
-</script>
+
+
+
 </body>
 </html>
