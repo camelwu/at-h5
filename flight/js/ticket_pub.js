@@ -135,8 +135,10 @@ TicketDate.prototype.drawDate = function (odate) {
                 }else{
                     m=month<10?'0'+month:month;
                     d=i<10?'0'+i:i;
-                    if(tims[year+'-'+m+'-'+d]){
+                    if(tims[year+'-'+m+'-'+d]&&this.type=="double"){
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                    }else if(tims[year+'-'+m+'-'+d]&&this.type=="single"){
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                     }else{
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
                     }
@@ -145,8 +147,10 @@ TicketDate.prototype.drawDate = function (odate) {
             } else if (month == nowmonth + 2) {
                 m=month<10?'0'+month:month;
                 d=i<10?'0'+i:i;
-                if(tims[year+'-'+m+'-'+d]){
+                if(tims[year+'-'+m+'-'+d]&&this.type=="double"){
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
+                }else if(tims[year+'-'+m+'-'+d]&&this.type=="single"){
+                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                 }else{
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
                 }
@@ -372,7 +376,7 @@ var bottomModal = {
         filterStr+=''+
         '<div class="hl-bottom">'+
         '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span class="filter-select">筛选</span></div>'+
-        '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span class="filter-select">时间</span></div>'+
+        '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span class="filter-select">优选</span></div>'+
         '<div class="fo-div" id="fo_lo"><b class="hl-icon3 filter-price"></b><i class=""></i><span class="filter-select">价格</span></div></div>'+
 
         '<div class="reset-action" id="filter-modal">'+

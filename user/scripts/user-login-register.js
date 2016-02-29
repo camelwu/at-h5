@@ -74,19 +74,34 @@ window.onload = function(){
     //更换注册方式
     changeWay(header_email,header_phone,phone_register,email_register);
     changeWay(header_phone,header_email,email_register,phone_register);
-    function changeFind(obj1,obj2,obj3,obj4){
+
+    function changeFind(obj1){
         obj1.onclick = function(){
-            phone_find.style.display = "none";
-            email_find.style.display = "none";
-            obj1.style.display = "none";
-            obj2.style.display = "block";
-            find_title.innerHTML = obj3;
-            obj4.style.display = "block";
+            if(find_title.innerHTML == '邮箱找回')
+            {
+                find_title.innerHTML = '手机找回';
+                cha_email.style.display='block';
+                cha_email.innerHTML='邮箱找回';
+                cha_phone.style.display='none';
+                phone_find.style.display='block';
+                email_find.style.display='none';
+            }
+            else if(find_title.innerHTML == '手机找回')
+            {
+                find_title.innerHTML = '邮箱找回';
+                cha_email.style.display='none';
+                cha_phone.style.display='block';
+                cha_phone.innerHTML = '手机找回';
+                phone_find.style.display='none';
+                email_find.style.display='block';
+            }
+
         }
     }
     //更换找回密码方式
-    changeFind(cha_email,cha_phone,"邮箱找回",email_find);
-    changeFind(cha_phone,cha_email,"手机找回",phone_find);
+    changeFind(cha_email);
+    changeFind(cha_phone);
+    
     var p_password = $("#p_password")[0];
     var e_password = $("#e_password")[0];
     var r_phone = $("#r_phone")[0];
@@ -129,7 +144,15 @@ window.onload = function(){
                             return;
                         }
                     }
+                }else if(input[i].value ==""){
+                    jAlert("请输入确认密码");
+                    return;
                 }
+            }
+            if($('#rs_e_password').val() !== $('#r_e_password').val())
+            {
+                jAlert('两次输入的密码不一致！');
+                return;
             }
             var Parameters= {
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\""+r_email.value+"\",\"Password\":\""+password.value+"\",\"Mobile\":\""+r_phone.value+"\",\"Code\":\""+verify.value+"\"}",
@@ -293,6 +316,24 @@ window.onload = function(){
 function show_keypage(){
     var fkey_page = $("#fkey_page")[0];
     fkey_page.style.display = "block";
+    if($('#email_login').css('display') == 'none' )
+    {
+
+        $('#phone_find').show();
+        $('#email_find').hide();
+        $('#cha_email').show().html('邮箱找回');
+        $('#cha_phone').hide()
+        $("#find_title").html('手机找回');
+
+    }
+    else
+    {
+        $('#email_find').show();
+        $('#phone_find').hide();
+        $('#cha_phone').show().html('手机找回');
+        $('#cha_email').hide();
+        $("#find_title").html('邮箱找回');
+    }
 }
 function close_keypage(){
     var fkey_page = $("#fkey_page")[0];
@@ -301,16 +342,38 @@ function close_keypage(){
 function mycallback_register(ret){
     var myJson = eval('('+ret+')');
     if(myJson.success){
-        document.getElementById("register_page").style.display = "none";
-        document.getElementById("login_page").style.display = "block";
-        localStorage.setItem('login',0);
+        jAlert('注册成功','',cb_register);
     }else{
         alert(myJson.message);
     }
 }
+
+//注册成功，alert之后的回调函数
+function  cb_register(){
+    var r_email = $("#r_email")[0];
+    var r_phone = $("#r_phone")[0];
+    if($('#phone_register').css('display') == 'none')
+    {
+        var login_pass = $("#r_e_password")[0];
+    }
+    else{
+        var login_pass =$("#r_m_password")[0];
+    }
+
+    var Parameters= {
+        "Parameters": "{\"CultureName\":\"\",\"Email\":\""+r_email.value+"\",\"Password\":\""+login_pass.value+"\",\"Mobile\":\""+r_phone.value+"\"}",
+        "ForeEndType": 3,
+        "Code": "0052"
+
+    };
+
+    console.log(Parameters);
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
+}
+
 function mycallback_login(ret) {
     var myJson = eval('(' + ret + ')');
-    //console.log(myJson);
+    console.log(myJson);
     if (myJson.success) {
         localStorage.email = myJson.data[0].email;
         localStorage.phone = myJson.data[0].mobile;
@@ -318,7 +381,19 @@ function mycallback_login(ret) {
         localStorage.setItem('login',1);
         window.location.href = "user.html";
     } else {
-        alert('密码错误，请重新输入');
+
+        if(myJson.message == 'Invalid password')
+        {
+            alert('密码错误，请重新输入');
+        }
+        else if(myJson.message == '无此用户的相关信息')
+        {
+            alert('未注册用户');
+        }
+        else
+        {
+            alert(myJson.message);
+        }
     }
 }
 //注册验证码回调

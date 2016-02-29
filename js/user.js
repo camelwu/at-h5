@@ -162,7 +162,13 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     sexName = "女";
                 }
 
-
+                //出生日期校验
+                var oBirthday=input[5].value.replace('年','-').replace('月','-').replace('号','').replace('日','');
+                if( ! vlm.Utils.compareBirth(oBirthday))
+                {
+                    alert('你选择的出生日期不符合购票要求(建议年龄大于13周岁)');
+                    return;
+                }
                 var oMobile = $('#mobile-cell-add')[0].value;
                 var oEmail = $('#email-cell-add')[0].value;
 

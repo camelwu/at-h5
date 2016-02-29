@@ -333,7 +333,7 @@ var ticketDouble = {
         function goTrip(arg){
             var  data = arg.data.flightInfos[i].segmentsLeave;
             var  transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
-            var  tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>1?arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
+            var  tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>=1?'+'+arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
             var  str = '';
             var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
             var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
@@ -363,7 +363,7 @@ var ticketDouble = {
         function backTrip(arg){
             var data = arg.data.flightInfos[i].segmentsReturn;
             var transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsReturn);
-            var  tipDay = arg.data.flightInfos[i].flightReturnSpacingDay>1?arg.data.flightInfos[i].flightReturnSpacingDay+'天':'';
+            var  tipDay = arg.data.flightInfos[i].flightReturnSpacingDay>=1?'+'+arg.data.flightInfos[i].flightReturnSpacingDay+'天':'';
             var str = '';
             var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
             var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
@@ -504,7 +504,7 @@ var ticketDouble = {
         if(that.pageNo >= that.pageCount){
             console.log(11)
             myScroll.refresh()
-            jAlert('没有更多航班信息了','',function(){})
+            jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
             console.log(22)
             that.isClearAll = false;
@@ -518,7 +518,7 @@ var ticketDouble = {
         if(that.pageNo >= that.pageCount){
             console.log(33)
             myScroll.refresh()
-            jAlert('没有更多航班信息了','',function(){})
+            jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
             console.log(44)
             that.isClearAll = false;

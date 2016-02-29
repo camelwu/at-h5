@@ -1,3 +1,12 @@
+//解决300毫秒延迟问题
+(function($) {
+    $(document).ready(function() {
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
+    });
+}(jQuery));
+
 var lsf_myweb={
     "getbyid":function(id){
         return document.getElementById(id);
@@ -104,7 +113,7 @@ function url2json(url){
     }
     return json;
 }
-
+//输入框获得焦点和失去焦点的变化
 function styleChange(id,mytext){
     var oInp=document.getElementById(id);
     oInp.onfocus=function(){
@@ -296,8 +305,9 @@ function styleChange(id,mytext){
     //返回按钮事件
     var hl_back=document.getElementById('hl_back');
     lsf_myweb.bind(hl_back,'click',function(){
-        window.history.go(-1);
+        window.location.href='index.html';
     });
+    //页面没有展示前页面展示的页面
     var oUl=document.getElementById('lsf_list');
     $(window).load(function () {
         //$("#status-h").fadeOut();
@@ -353,7 +363,6 @@ function styleChange(id,mytext){
         json.InterCheckInDate=json.InterCheckInDate||y+'-'+m+'-'+d;
         json.InterCheckOutDate=json.InterCheckOutDate||y+'-'+m+'-'+(d+1);
         var hoPos=localStorage.getItem('hoPos');
-        //alert(hoPos);
         //获得的目的地名字在城市列表里面进行搜索，然后获得英文名字
         var hl_cityListInfo=JSON.parse(window.localStorage.getItem('cityListInfo'));
         console.log(hl_cityListInfo);
@@ -381,7 +390,7 @@ function styleChange(id,mytext){
                 json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
             }
         }
-        //alert(json.CountryISOCode);
+        //判断点击的是国际酒店按钮还是国内酒店按钮
         if(hoPos=='inter'){
             var data =
             {
@@ -466,7 +475,25 @@ function styleChange(id,mytext){
                     '</div>'+
                     '</li>';
                 list_oUl.innerHTML+=str;
+
             }
+            //横屏竖屏时改变酒店名宽度
+            var hl_aLi=list_oUl.children;
+            var hl_hname=lsf_myweb.getbyclass(list_oUl,'hname');
+            function screenDir(){
+                if(window.orientation==180||window.orientation==0){
+                    //alert('竖屏状态');
+                    var hnameWidth=(list_oUl.offsetWidth-140);
+                }
+                if(window.orientation==90||window.orientation==-90){
+                    //alert('横屏状态');
+                    var hnameWidth=(list_oUl.offsetWidth-140);
+                }
+                for(var j=0;j<hl_hname.length;j++){
+                    hl_hname[j].style.width=hnameWidth+'px';
+                }
+            }
+            window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
             //懒加载
             function lazyLoad2(){
                 lazyLoad.apply(this,arguments);
@@ -917,6 +944,7 @@ function styleChange(id,mytext){
 
         }
     }
+    //为了阻止遮罩层下面的内容被滑动
     $('#hl_hiddenBox').bind("touchmove",function(ev){
         ev.preventDefault();
     });
