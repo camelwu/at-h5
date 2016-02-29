@@ -345,7 +345,6 @@ uoHisData();
     //});
     //$('#uo_c3_tele').bind('focus',function(){
     //    var uo_box=document.getElementById('uo_box');
-    //    alert(uo_box.scrollTop);
     //    document.documentElement.scrollTop='800';
     //});
     // 明细部分展示
