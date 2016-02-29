@@ -54,55 +54,25 @@
                 <div>日韩</div>
                 <div>欧美</div>
             </div>
-            <ul class = "hotspot">
-                <li>
-                    <div class="hp-atten"><span>199</span>人已关注</div>
-                    <img src="scenic/images/greatwall-sun.jpg" class="banner-image" alt="img">
-                    <div class="hp-block">
-                        八达岭长城+秋季采摘水果一日游
-                    </div>
-                    <div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>
-                    <div class="hp-sale">
-                        <img src="images/zhekou.png">
-                        <span>8.5折</span>
-                    </div>
-                    <div>
-                        <span>￥</span><span class="pay-num">168</span>
-                        <span class="old-num">268元</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="hp-atten"><span>199</span>人已关注</div>
-                    <img src="scenic/images/greatwall-sun.jpg" class="banner-image" alt="img">
-                    <div class="hp-block">
-                        八达岭长城+秋季采摘水果一日游
-                    </div>
-                    <div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>
-                    <div class="hp-sale">
-                        <img src="images/zhekou.png">
-                        <span>8.5折</span>
-                    </div>
-                    <div>
-                        <span>￥</span><span class="pay-num">168</span>
-                        <span class="old-num">268元</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="hp-atten"><span>199</span>人已关注</div>
-                    <img src="scenic/images/greatwall-sun.jpg" class="banner-image" alt="img">
-                    <div class="hp-block">
-                        八达岭长城+秋季采摘水果一日游
-                    </div>
-                    <div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>
-                    <div class="hp-sale">
-                        <img src="images/zhekou.png">
-                        <span>8.5折</span>
-                    </div>
-                    <div>
-                        <span>￥</span><span class="pay-num">168</span>
-                        <span class="old-num">268元</span>
-                    </div>
-                </li>
+            <ul class = "hotspot" id="hotspot">
+                <!--<li>-->
+                    <!--<div class="hp-atten"><span>199</span>人已关注</div>-->
+                    <!--<div>-->
+                        <!--<img src="scenic/images/greatwall-sun.jpg" class="banner-image" alt="img">-->
+                        <!--<div class="hp-block">-->
+                        <!--八达岭长城+秋季采摘水果一日游-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>-->
+                    <!--<div class="hp-sale">-->
+                        <!--<img src="images/zhekou.png">-->
+                        <!--<span>8.5折</span>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<span>￥</span><span class="pay-num">168</span>-->
+                        <!--<span class="old-num">268元</span>-->
+                    <!--</div>-->
+                <!--</li>-->
             </ul>
         </div>
     </div>
@@ -115,19 +85,8 @@
     <script>
         (function(){
             var ww = this;
+            vlm.init();
             var Hotplay = function(){
-                //   切换选项卡
-                var changeMenu = function(){
-                    var menu = document.getElementsByClassName('s-type-four')[0].children;
-                    for(var i = 0;i < menu.length;i++){
-                        menu[i].onclick = function(){
-                            for(var j = 0;j < menu.length;j++){
-                                menu[j].className = '';
-                            }
-                            this.className = 'menu-active';
-                        }
-                    }
-                };
                 //加载动画
                 function Flashload() {
                     $(window).load(function () {
@@ -135,15 +94,110 @@
                         $("#preloader").delay(400).fadeOut("medium");
                     });
                 }
+                //   初始数据
+                function sourthEastAsia(){
+                    var tmp={
+                        "Parameters":{"SiteType":1,"PageNo":1,"PageSize":10},
+                        "ForeEndType":3,
+                        "Code":"001304"
+                    };
+                    vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
+                    var tpl = [
+                        '<li>',
+                        '<div class="hp-atten"><span>{%=productAttentionNum%}</span>人已关注</div>',
+                        '<div>',
+                        '<img src="{%=productPicUrl%}" class="banner-image" alt="img">',
+                        '<div class="hp-block">{%=productName%}</div>',
+                        '</div>',
+                        '<div class="spotDesc">{%=productDesc%}</div>',
+                        '<div class="hp-sale">',
+                        '<img src="images/zhekou.png">',
+                        '<span>{%=discount%}折</span>',
+                        '</div>',
+                        '<div>',
+                        '<span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>',
+                        '<span class="old-num">{%=productPrice%}元</span>',
+                        '</div>',
+                        '</li>'].join('');
+                    function hotplay_back(ret){
+                        var json=eval('('+ret+')');
+                        console.log(json);
+                        if(json.success) {
+                            var data = json.data, html_hp = template(tpl,data.hotPlayList);
+                            $("#hotspot").html(html_hp);
+                        }else{
+                            console.log(json);
+                            jAlert("数据格式错误","提示");
+                        }
+                    }
+                }
+                //   切换选项卡
+                var changeMenu = function(){
+                    var ele =document.querySelector('.s-type-four') ;
+                    var menu = document.getElementsByClassName('s-type-four')[0].children;
+                    ele.onclick = function(event){
+                        var event = event||window.event;
+                        var target = event.target||event.srcElement,num;
+                        for(var j = 0;j < menu.length;j++){
+                             menu[j].className = '';
+                        }
+                        target.className = 'menu-active';
+                        console.log(target.innerHTML);
+                        if(target.innerHTML =="东南亚"){
+                            num = 1
+                        }else if(target.innerHTML =="港澳"){
+                            num = 2
+                        }else if(target.innerHTML =="日韩"){
+                            num = 3
+                        }else if(target.innerHTML =="欧美"){
+                            num = 4
+                        }
+                        var tmp={
+                            "Parameters":{"SiteType":num,"PageNo":1,"PageSize":10},
+                            "ForeEndType":3,
+                            "Code":"001304"
+                        };
+                        vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
+                        var tpl = [
+                            '<li>',
+                            '<div class="hp-atten"><span>{%=productAttentionNum%}</span>人已关注</div>',
+                            '<div>',
+                                '<img src="{%=productPicUrl%}" class="banner-image" alt="img">',
+                                '<div class="hp-block">{%=productName%}</div>',
+                             '</div>',
+                            '<div class="spotDesc">{%=productDesc%}</div>',
+                            '<div class="hp-sale">',
+                            '<img src="images/zhekou.png">',
+                            '<span>{%=discount%}折</span>',
+                            '</div>',
+                            '<div>',
+                            '<span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>',
+                            '<span class="old-num">{%=productPrice%}元</span>',
+                            '</div>',
+                            '</li>'].join('');
+                        function hotplay_back(ret){
+                            var json=eval('('+ret+')');
+                            console.log(json);
+                            if(json.success) {
+                                var data = json.data, html_hp = template(tpl,data.hotPlayList);
+                                $("#hotspot").html(html_hp);
+                            }else{
+                                console.log(json);
+                                jAlert("数据格式错误","提示");
+                            }
+                        }
+                    };
+                };
                 return{
                     FlashLoad:Flashload,
+                    SourthEastAsia:sourthEastAsia,
                     ChangeMenu:changeMenu
                 };
             }();
-
             ww.MT = ww.MT || {};
             ww.MT.load = function(){
                 Hotplay.FlashLoad();
+                Hotplay.SourthEastAsia();
                 Hotplay.ChangeMenu();
             };
             MT.load();

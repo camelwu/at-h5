@@ -16,10 +16,14 @@
        },
 
        single:function(){
+           var paraObj = {
+               start:this.reDate(document.querySelector('.single-date').innerHTML)};
+           var dateInitObj = {},paramStr;
+           dateInitObj[paraObj.start] = '已选';
            var myDate2= new TicketDate({
                id: 'chooseDate-single',
                num: 13,
-               time: {},
+               time: dateInitObj,
                sClass1: 'enterDate',
                type:'single'
            });

@@ -230,9 +230,9 @@ var ticketOrder = {
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    console.log(orderResultInfo)
-                   // document.location.href = 'pay_detail.html';
+                    document.location.href = 'pay_detail.html';
                 }else{
+                    orderResultTip.style.display = 'block';
                     orderResultTip.innerHTML = arg.message;
                     that.timer7 = window.setTimeout(function(){
                         orderResultTip.style.display = 'none';

@@ -144,7 +144,15 @@ window.onload = function(){
                             return;
                         }
                     }
+                }else if(input[i].value ==""){
+                    jAlert("请输入确认密码");
+                    return;
                 }
+            }
+            if($('#rs_e_password').val() !== $('#r_e_password').val())
+            {
+                jAlert('两次输入的密码不一致！');
+                return;
             }
             var Parameters= {
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\""+r_email.value+"\",\"Password\":\""+password.value+"\",\"Mobile\":\""+r_phone.value+"\",\"Code\":\""+verify.value+"\"}",
@@ -334,13 +342,20 @@ function close_keypage(){
 function mycallback_register(ret){
     var myJson = eval('('+ret+')');
     if(myJson.success){
-        document.getElementById("register_page").style.display = "none";
-        document.getElementById("login_page").style.display = "block";
-        localStorage.setItem('login',0);
+        jAlert('注册成功','',cb_register);
+        //document.getElementById("register_page").style.display = "none";
+        //document.getElementById("login_page").style.display = "block";
     }else{
         alert(myJson.message);
     }
 }
+
+//注册成功，alert之后的回调函数
+function  cb_register(){
+    localStorage.setItem('login',1);
+    window.location.href = "user.html";
+}
+
 function mycallback_login(ret) {
     var myJson = eval('(' + ret + ')');
     //console.log(myJson);
