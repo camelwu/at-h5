@@ -498,10 +498,10 @@
            iCityList.innerHTML = iCityListStr;
        },
 
-       historyChooseHandler:function(arg){
+       historyChooseHandler:function(arg,type){
           var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
-          var n = [],liStr='';
+          var n = [],liStr='',that = ticketIndexModal;
           for(var i = 0; i < arg.length; i++)
           {
               if (n.indexOf(arg[i]) == -1) n.push(arg[i]);
@@ -509,9 +509,11 @@
                   n = n.slice(1);
                }
           }
+           (type == "demestic")?that.storageUtil.set('demesCitys',n):that.storageUtil.set('interHisCitys',n)
+
           if(n.length>0){
               for(var m = 0; m < n.length; m++){
-                  liStr +='<li class="city-content-item">'+n[m]+'</li>'
+                  liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
               }
           }
           ul.innerHTML =liStr;
@@ -535,7 +537,7 @@
            internationalCity.style.display='none';
            this.addHandler(airContent,'click',function(event){
                var event = event || window.event;
-               var target = event.target || event.srcElement,that = this,eleUl,eleLi,opSpan,opSiteEle,childEle;
+               var target = event.target || event.srcElement,that = this,eleUl,eleLi,opSpan,opSiteEle,childEle, childAdd;
                var showLine = document.querySelector('#show-result-tip');
                if(target.className.indexOf("add-minus-per-more adult")>-1){
                    eleUl = target.parentNode.parentNode.parentNode;
@@ -544,6 +546,7 @@
                    opSpan = target.parentNode.querySelector('.add-minus-per-content.adult-number');
                    var adultNum = parseInt(opSpan.innerHTML);
                    var childNum = parseInt(eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-content.child-number').innerHTML);
+                      childAdd = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-more.child');
                    if(adultNum+1+childNum>9){
                        target.className = "add-minus-per-more adult add-minus-per-more-grey";
                        showLine.innerHTML = "乘客总数不能超过 9 人!";
@@ -565,8 +568,10 @@
                            },3000);
                            alert("")
                        }else {
+                           console.log(childAdd)
                            opSpan.innerHTML = adultNum+1;
                            opSiteEle.className = "add-minus-per-less adult";
+                           childAdd.className = "add-minus-per-more child";
                        }
                    }
                }else if(target.className.indexOf("add-minus-per-less adult")>-1){
@@ -575,6 +580,7 @@
                    opSiteEle = target.parentNode.querySelector('.add-minus-per-more');
                    opSpan = target.parentNode.querySelector('.add-minus-per-content.adult-number');
                    childEle = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-content.child-number');
+                   childAdd = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-more.child');
                    var adultNum = parseInt(opSpan.innerHTML);
                    var childNum = parseInt(childEle.innerHTML);
                    if(adultNum<=1){
@@ -586,6 +592,7 @@
                        opSpan.innerHTML = adultNum;
                        if (childNum != 0&&(adultNum/childNum<1/2)) {
                            childEle.innerHTML = adultNum*2;
+                           childAdd.className = 'add-minus-per-more child add-minus-per-more-grey'
                        }
                        opSiteEle.className = "add-minus-per-more adult";
                    }
@@ -755,10 +762,10 @@
                }else if(target.className.indexOf('city-word')!=-1){
                    if(domesticCity.style.display=='block'){
                        that.dhisChoosePool.push(target.innerHTML);
-                       that.historyChooseHandler(that.dhisChoosePool);
+                       that.historyChooseHandler(that.dhisChoosePool,"demestic");
                    }else{
                        that.ihisChoosePool.push(target.innerHTML);
-                       that.historyChooseHandler(that.ihisChoosePool);
+                       that.historyChooseHandler(that.ihisChoosePool,"international");
                    }
                    cityInputZone.value = target.innerHTML;
                    that.timer2 = window.setTimeout(function(){
@@ -970,6 +977,7 @@
        },
        init:function(){
            this.ticketSearchedInfo = this.storageUtil.get('ticketSearchedInfo') || "";
+          // that.storageUtil.get('demesCitys')
            this.initDate();
            if(this.ticketSearchedInfo){
                this.initShowData(this.ticketSearchedInfo);

@@ -148,6 +148,7 @@ var ho_i3=document.getElementById('ho_i3');
 var ho_i4=document.getElementById('ho_i4');
 var ho_i7=document.getElementById('ho_i7');
 var ho_i6=document.getElementById('ho_i6');
+//加按钮点击事件
 function oUp(obj1,obj2,start,end){
     lsf_myweb.bind(obj1,'click',function(ev){
         var oEvent=ev||event;
@@ -166,6 +167,7 @@ function oUp(obj1,obj2,start,end){
         }
     });
 };
+//减按钮点击事件
 function oDown(obj1,obj2,start,end){
     lsf_myweb.bind(obj1,'click',function(ev){
         var oEvent=ev||event;
@@ -245,7 +247,7 @@ function Inter(){
 
 //刘少飞js代码
 
-
+//输入框获得焦点和失去焦点事件
 function inpChange(id,myText){
     var oInp=document.getElementById(id);
     if(oInp.value!=myText){
@@ -275,6 +277,7 @@ function inpChange(id,myText){
 //目的地输入框去掉光标
     var address_broad=document.getElementById('input1');
     var address_demosic=document.getElementById('input2');
+    //目的地解决光标问题
     lsf_myweb.bind(address_broad,'focus',function(){
         this.blur();
     });
@@ -384,7 +387,7 @@ function inpChange(id,myText){
             return;
         }
         window.localStorage.setItem('cityListInfo',JSON.stringify(listJson.data));
-        //城市列表
+        //对得到的城市列表数据进行处理
         function sortBy(json){
             var data=json.data;
             data.sort(function(data1,data2){
@@ -444,7 +447,7 @@ function inpChange(id,myText){
             var cl_citysHisStr='';
             var dcl_citysHisStr='';
 
-            //输入框输入内容事件
+            //输入框输入内容事件，模糊搜索
             //国际酒店
             citySearchBox.oninput=function(){
                 var interInpCity=[];
@@ -455,7 +458,7 @@ function inpChange(id,myText){
                     for(var name in dataWorIN){
                         if(citySearchBox.value){
                             for(var j=0;j<dataWorIN[name].length;j++){
-                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))){
+                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))||citySearchBox.value==dataWorIN[name][j].pingYin.substring(0,(citySearchBox.value.length))){
                                     interInpCity.push(dataWorIN[name][j].cityNameCN);
                                 }
                             }
@@ -498,7 +501,7 @@ function inpChange(id,myText){
                         if(dcitySearchBox.value){
                             console.log(dcitySearchBox.value);
                             for(var j=0;j<dataWorCN[name].length;j++){
-                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))){
+                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))||dcitySearchBox.value==dataWorCN[name][j].pingYin.substring(0,(dcitySearchBox.value.length))){
                                     domInpCity.push(dataWorCN[name][j].cityNameCN);
                                 }
                             }
@@ -838,6 +841,7 @@ function inpChange(id,myText){
             dcl_box_box.style.display='block';
             dvlm_login.style.display='block';
         });
+        //国际城市列表返回按钮点击事件
         lsf_myweb.bind(cl_back,'click',function(){
             var arr1=document.getElementById('arr1');
             var arr2=document.getElementById('arr2');
@@ -846,6 +850,7 @@ function inpChange(id,myText){
             cl_box_box.style.display='none';
             vlm_login.style.display='none';
         });
+        //国内城市列表返回按钮点击事件
         lsf_myweb.bind(dcl_back,'click',function(){
             var arr1=document.getElementById('arr1');
             var arr2=document.getElementById('arr2');
@@ -947,7 +952,6 @@ function inpChange(id,myText){
         beginDate=sels[0].parentNode.getAttribute("data-day").split('-').join('-');
         leaveDate=sels[1].parentNode.getAttribute("data-day").split('-').join('-');
         //console.log(this.time);
-
         //console.log(myDate1);
         //console.log(obj);
         //console.log(sels[0].parentNode.getAttribute("data-day"));

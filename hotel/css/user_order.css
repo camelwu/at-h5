@@ -33,14 +33,14 @@ em,b,i{
     font-size:1.4rem;
     margin-bottom:4px;
 }
-.uo_c1_info{
-    white-space:nowrap;
-    text-overflow:ellipsis;overflow:hidden;
-    -webkit-text-overflow:ellipsis;
-}
+/*.uo_c1_info{*/
+    /*white-space:nowrap;*/
+    /*text-overflow:ellipsis;overflow:hidden;*/
+    /*-webkit-text-overflow:ellipsis;*/
+/*}*/
 .uo_con1 div i{
     display:inline-block;
-    width:20px;height:18px;background:url("../../images/lsf_down1.png") no-repeat right center;
+    width:30px;height:25px;background:url("../../images/lsf_down1.png") no-repeat right center;
     background-size:11px 6px;
 }
 .uo_con2{
@@ -84,12 +84,12 @@ em,b,i{
     margin-top:8px;
 }
 .uo_c2_i1{
-    background:url("../../images/down2.png") no-repeat;
-    background-size:23px 23px;
+    background:url("../../images/hotelbtn.png") 0 -28px no-repeat;
+    background-size:23px 150px;
 }
 .uo_c2_i2{
-    background:url("../../images/up1.png") no-repeat;
-    background-size:23px 23px;
+    background:url("../../images/hotelbtn.png") 0 -55px no-repeat;
+    background-size:23px 150px;
 }
 .uo_con3{
     width:100%;
@@ -164,10 +164,10 @@ em,b,i{
     flex:1;
     background:none;
     font-size:1.4rem;
-    height:30px;
-    line-height:30px;
-    margin-top:5px;
-    margin-bottom:5px;
+    height:20px;
+    line-height:20px;
+    margin-top:10px;
+    margin-bottom:10px;
     color:#d1d1d1;
 }
 .uo_con4{
@@ -382,4 +382,8 @@ em,b,i{
 .uo_hid_con6 p{
     padding:0 12px;
     font-size:1.1rem;color:rgb(72,72,72);
+}
+#popup_ok{
+    text-align:center;
+    width:100%;
 }

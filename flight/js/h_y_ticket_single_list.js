@@ -315,7 +315,7 @@ var ticketSingle = {
             li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
             ShareFlightStr = arg.data.flightInfos[i].isReturnShareFlight==true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|':'';
             passByStr = arg.data.flightInfos[i].isLeaveStop==true?'&nbsp;<span class="green-tip">经停</span>':'';
-            tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>1?arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
+            tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>=1?'+'+arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
 
             transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
             ticketListStr +='<div class="time-airport" >' +
@@ -477,7 +477,7 @@ var ticketSingle = {
                     console.log(11)
                      $('#pullUp').fadeOut(1000);
                      myScroll.refresh()
-                    jAlert('没有更多航班信息了','',function(){})
+                    jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
                 }else if(that.pageNo < that.pageCount){
                     console.log(22)
                     that.isClearAll = false;
@@ -492,7 +492,7 @@ var ticketSingle = {
                 console.log(33)
                 $('#pullUp').fadeOut(1000);
                 myScroll.refresh()
-                jAlert('没有更多航班信息了','',function(){})
+                jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
             }else if(that.pageNo < that.pageCount){
                 console.log(44)
                 that.isClearAll = false;
