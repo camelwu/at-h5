@@ -1,3 +1,12 @@
+//解决300毫秒延迟问题
+(function($) {
+    $(document).ready(function() {
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
+    });
+}(jQuery));
+
 var lsf_myweb={
     "getbyid":function(id){
         return document.getElementById(id);
