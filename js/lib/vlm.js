@@ -168,6 +168,23 @@
 							return false;
 						}
 					},
+					//比较出生日期
+					compareBirth : function(timeStr) {
+						if (timeStr == '' || timeStr == null) {
+							return false;
+						}
+						var timeData = timeStr.toString().split('-');
+						var year = timeData[0];
+						var month = parseInt(timeData[1] - 1);
+						var day = parseInt(timeData[2]);
+						var dtime = new Date(year, month, day).getTime();
+						var nowtime = new Date().getTime();
+						if (dtime <= nowtime-410227200000) {
+							return true;
+						} else {
+							return false;
+						}
+					},
 					//问好
 					sayHello : function() {
 						var date = new Date();
