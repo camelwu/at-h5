@@ -381,7 +381,7 @@ function mycallback_login(ret) {
         localStorage.setItem('login',1);
         window.location.href = "user.html";
     } else {
-        
+
         if(myJson.message == 'Invalid password')
         {
             alert('密码错误，请重新输入');
