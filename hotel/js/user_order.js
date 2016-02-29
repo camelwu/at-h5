@@ -1,7 +1,7 @@
 /**
  * Created by Asiatravel on 2016/1/4.
  */
-    //我需要的数据：RoomCode/user_order_storage2/fake_data.totalNight/CheckInTime/CheckOutTime
+//对得到的url进行处理
 function url2json(url){
     if(!url)return;
     var json={};
@@ -134,6 +134,8 @@ styleChange('uo_c3_email','用于接收邮件通知');
 styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
 styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 */
+
+//把得到的数据全部存入到fake_data里面
     var RoomCode;
     var fake_data={};
     var myUrl=window.location.href;
@@ -301,6 +303,7 @@ uoHisData();
     uoHisFillIn();
     //输入框默认字体设置
     styleChange('uo_c3_tele','用于接收短信通知');
+    //判断是国际酒店搜索还是国内酒店搜索
     if(hoPos=='inter'){
         styleChange('uo_c3_email','用于接收邮件通知');
         styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
@@ -322,7 +325,7 @@ uoHisData();
     //    alert(uo_box.scrollTop);
     //    document.documentElement.scrollTop='800';
     //});
-    // 明细
+    // 明细部分展示
     function uo_detail(id1,id2,id3,id4,id5,id6,id7,json){
         console.log(json);
         console.log(222);
@@ -399,14 +402,14 @@ uoHisData();
         var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
         var myNum=uo_c2_num.innerHTML;
         uo_c2_num.innerHTML=parseInt(uo_c2_num.innerHTML)+1;
-
-
+        //房间数不能超过10
         if(parseInt(uo_c2_num.innerHTML)>10){
             uo_c2_num.innerHTML=10;
         }else{
             for(var i=parseInt(myNum);i<parseInt(uo_c2_num.innerHTML);i++){
                 var oDiv=document.createElement('div');
                 oDiv.className='uo_c3_peo';
+                //判断是国际酒店搜索还是国内酒店搜索
                 if(hoPos=='inter'){
                     oDiv.innerHTML='<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
                         '<div class="uo_c3_infor">'+
@@ -483,6 +486,7 @@ uoHisData();
         }
         bOk2=!bOk2;
     });
+    //确定按钮点击事件
     lsf_myweb.bind(uo_confirm,'click',function(){
         var uo_c3_infor=lsf_myweb.getbyclass(uo_form,'uo_c3_infor');
         var aUo_lastname=lsf_myweb.getbyclass(uo_form,'uo_lastname');
@@ -500,6 +504,7 @@ uoHisData();
                 }
             }
         }
+        //判断是国内搜索还是国际搜索
         if(hoPos=='inter'){
             for(var i=0;i<aUo_firstname.length;i++){
                 if(aUo_lastname[i].value=='姓（如：Zhang）'){
