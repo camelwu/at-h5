@@ -516,9 +516,9 @@
                    outerEle.style.display = 'block';
                }
                };
-           if(dCityData){
+           if(dCityData!=null&&dCityData!=undefined){
                createEle(dCityData);}
-           if(iCityData!==null){
+           if(iCityData!==null&&iCityData!=undefined){
                createEle(iCityData);}
        },
        historyChooseHandler:function(arg,type){
