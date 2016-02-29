@@ -458,7 +458,7 @@ function inpChange(id,myText){
                     for(var name in dataWorIN){
                         if(citySearchBox.value){
                             for(var j=0;j<dataWorIN[name].length;j++){
-                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))||citySearchBox.value==dataWorIN[name][j].pingYin.substring(0,(citySearchBox.value.length))){
+                                if(citySearchBox.value==dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length))||citySearchBox.value.toLowerCase()==dataWorIN[name][j].pingYin.substring(0,(citySearchBox.value.length))||citySearchBox.value==dataWorIN[name][j].cityNameEN.substring(0,(citySearchBox.value.length))||citySearchBox.value==dataWorIN[name][j].acronym.substring(0,(citySearchBox.value.length))){
                                     interInpCity.push(dataWorIN[name][j].cityNameCN);
                                 }
                             }
@@ -501,7 +501,7 @@ function inpChange(id,myText){
                         if(dcitySearchBox.value){
                             console.log(dcitySearchBox.value);
                             for(var j=0;j<dataWorCN[name].length;j++){
-                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))||dcitySearchBox.value==dataWorCN[name][j].pingYin.substring(0,(dcitySearchBox.value.length))){
+                                if(dcitySearchBox.value==dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length))||dcitySearchBox.value.toLowerCase()==dataWorCN[name][j].pingYin.substring(0,(dcitySearchBox.value.length))||dcitySearchBox.value==dataWorCN[name][j].cityNameEN.substring(0,(dcitySearchBox.value.length))||dcitySearchBox.value==dataWorCN[name][j].acronym.substring(0,(dcitySearchBox.value.length))){
                                     domInpCity.push(dataWorCN[name][j].cityNameCN);
                                 }
                             }
