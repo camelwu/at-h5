@@ -80,6 +80,29 @@ var lsf_myweb={
         };
     }
 };
+
+
+//页面没有展示前页面展示的页面
+$(window).load(function () {
+    //$("#status-h").fadeOut();
+    //$("#preloader").delay(400).fadeOut("medium");
+    var oP=document.getElementById('uo_c1_info');
+    var timer=null;
+    timer=setInterval(function(){
+        if(oP.innerHTML!=''){
+            $("#status-h").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+            clearInterval(timer);
+        }
+        //console.log($('#lsf_list').children().length);
+    },30);
+
+});
+
+
+
+
+
 //输入框默认字体设置
 function styleChange(id,mytext){
     var oInp=document.getElementById(id);
