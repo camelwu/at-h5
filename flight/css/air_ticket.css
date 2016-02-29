@@ -3882,6 +3882,8 @@ li{
     width: 81px;
     padding-left: 1.2rem;
     min-width: 8rem;
+    box-ordinal-group: 1;
+   -webkit-box-ordinal-group: 1;
 }
 
 .cabin-wrap-choice{
