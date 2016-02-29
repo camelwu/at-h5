@@ -33,14 +33,14 @@ em,b,i{
     font-size:1.4rem;
     margin-bottom:4px;
 }
-.uo_c1_info{
-    white-space:nowrap;
-    text-overflow:ellipsis;overflow:hidden;
-    -webkit-text-overflow:ellipsis;
-}
+/*.uo_c1_info{*/
+    /*white-space:nowrap;*/
+    /*text-overflow:ellipsis;overflow:hidden;*/
+    /*-webkit-text-overflow:ellipsis;*/
+/*}*/
 .uo_con1 div i{
     display:inline-block;
-    width:20px;height:18px;background:url("../../images/lsf_down1.png") no-repeat right center;
+    width:30px;height:25px;background:url("../../images/lsf_down1.png") no-repeat right center;
     background-size:11px 6px;
 }
 .uo_con2{

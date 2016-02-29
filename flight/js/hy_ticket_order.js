@@ -226,9 +226,8 @@ var ticketOrder = {
                     orderResultInfo['ContactDetail'] = that.reverseInformation['ContactDetail'];
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
-                    console.log(orderResultInfo)
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    //document.location.href = 'pay_detail.html';
+                    document.location.href = 'pay_detail.html';
                 }else{
                     orderResultTip.innerHTML = arg.message;
                     that.timer7 = window.setTimeout(function(){

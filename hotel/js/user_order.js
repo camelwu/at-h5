@@ -222,7 +222,7 @@ uoHisData();
         window.history.go(-1);
     };
     //判断是担保还是在线支付
-    fake_data.paymentModeID=2;//测试用的
+    //fake_data.paymentModeID=2;//测试用的
     if(parseInt(fake_data.paymentModeID)==1){
         lsf_myweb.getbyid('uo_or_sumBox1').style.display='block';
         lsf_myweb.getbyid('uo_or_sumBox2').style.display='none';
@@ -309,6 +309,19 @@ uoHisData();
         styleChange2('uo_c3_peoBox','uo_lastname','姓（如：张）');
         styleChange2('uo_c3_peoBox','uo_firstname','名（如：三）');
     }
+    //$('#uo_c3_tele').bind('focus',function(){
+    //    $('#uo_footer').css({'position':'absolute','left':'0','top':$(document).height()});
+    //    $('#uo_box').css('margin-bottom','0px');
+    //});
+    //$('#uo_c3_tele').bind('blur',function(){
+    //    $('#uo_footer').css({'position':'fixed','left':'0','bottom':'0','top':'auto'});
+    //    $('#uo_box').css('margin-bottom','47px');
+    //});
+    //$('#uo_c3_tele').bind('focus',function(){
+    //    var uo_box=document.getElementById('uo_box');
+    //    alert(uo_box.scrollTop);
+    //    document.documentElement.scrollTop='800';
+    //});
     // 明细
     function uo_detail(id1,id2,id3,id4,id5,id6,id7,json){
         console.log(json);
@@ -321,14 +334,14 @@ uoHisData();
         oId1.innerHTML=json.NumOfRoom+'间×'+json.dateInfo.totalNight+'晚';
         if(parseInt(json.paymentModeID)==1){
             oId2.innerHTML='￥'+parseFloat(json.avgPriceCNY)*parseFloat(json.NumOfRoom);
-            oId3.innerHTML='￥'+parseFloat(json.taxChargesCNY)*parseFloat(json.NumOfRoom);
+            oId3.innerHTML='￥'+(parseFloat(json.taxChargesCNY)*1000*parseFloat(json.NumOfRoom))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
             oId5.innerHTML=parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
         }else if(parseInt(json.paymentModeID)==2){
             var oId6=document.getElementById(id6);
             var oId7=document.getElementById(id7);
             oId2.innerHTML='SGD'+parseFloat(json.avgPrice)*parseFloat(json.NumOfRoom);
-            oId3.innerHTML='SGD'+parseFloat(json.taxCharges)*parseFloat(json.NumOfRoom);
+            oId3.innerHTML='SGD'+(parseFloat(json.taxCharges)*1000*parseFloat(json.NumOfRoom))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
             oId6.innerHTML=parseFloat(json.totalPrice)*parseFloat(json.NumOfRoom);
             oId7.innerHTML='约￥'+parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
@@ -539,12 +552,11 @@ uoHisData();
             jAlert('请输入手机号');
             return;
         }else{
-            var reg=/^\d+$/g;
-            if(!reg.test(uo_c3_tele.value)){
-                jAlert('手机号必须是数字');
-                return;
-            }else{
+            if(vlm.Utils.validate.mobileNo(uo_c3_tele.value)){
                 fake_data.GuestContactNo=uo_c3_tele.value;
+            }else{
+                jAlert('手机号格式错误');
+                return;
             }
         }
         console.log(fake_data);
@@ -553,7 +565,12 @@ uoHisData();
                 jAlert('请输入邮箱');
                 return;
             }else{
-                fake_data.GuestEmail=uo_c3_email.value;
+                if(vlm.Utils.validate.email(uo_c3_email.value)){
+                    fake_data.GuestEmail=uo_c3_email.value;
+                }else{
+                    jAlert('邮箱格式错误');
+                    return;
+                }
             }
         }
         window.localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
