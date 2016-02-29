@@ -356,9 +356,8 @@ function  cb_register(){
     {
         var login_pass = $("#r_e_password")[0];
     }
-    else
-    {
-        var login_pass = $("#r_m_password")[0];
+    else{
+        var login_pass =$("#r_m_password")[0];
     }
 
     var Parameters= {
@@ -382,7 +381,19 @@ function mycallback_login(ret) {
         localStorage.setItem('login',1);
         window.location.href = "user.html";
     } else {
-        alert('密码错误，请重新输入');
+        
+        if(myJson.message == 'Invalid password')
+        {
+            alert('密码错误，请重新输入');
+        }
+        else if(myJson.message == '无此用户的相关信息')
+        {
+            alert('未注册用户');
+        }
+        else
+        {
+            alert(myJson.message);
+        }
     }
 }
 //注册验证码回调
