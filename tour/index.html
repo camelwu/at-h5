@@ -155,6 +155,12 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
+<script id="tpl_GetHotCity" type="text/template">
+   {% for(var i=0,len=data.destCities.length>=5?5:data.destCities.length;i<len;i++){ %}
+   <li class = "{% if(i==0){ %}jjin-active{% } %}" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
+   {% } %}
+     <li class = "" title="more">更多</li>
+</script>
 <script>
     (function(){
         var ww = this;
@@ -181,28 +187,31 @@
             };
             //   获取城市
             var getCity = function(){
-                var tpl = [
-                    '<li>{%=DestCities%}</li>'
-                ].join('');
                 var tmp={
                     "Parameters": {
                     },
                     "ForeEndType": 3,
                     "Code": "0201"
                 };
-                vlm.loadJson("",JSON.stringify(tmp),city_back);
-                function city_back(ret){
-                    var json=eval('('+ret+')');
-                    console.log(json);
-                    if(json.success) {
-                        var data = json.data, html_city = template(tpl, data.destCities);
-                        $("#hotPlace").html(html_city);
-                    }else{
-                        console.log(json);
-                        jAlert("数据格式错误","提示");
+                vlm.loadJson("",JSON.stringify(tmp),getCityCallback);
+            };
+            var getCityCallback = function(ret){
+                var json=eval('('+ret+')');
+                console.log(json);
+                if(json.success){
+                    var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                    console.log(data);
+                    $("#hotPlace").html(tpl_GetExHotCity);
+                    if(data.data.destCities.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
                     }
+                    MT.changeCity();
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
                 }
             };
+
             //   获取景点
             var getSpot = function(){
                 var tpl = [
@@ -230,7 +239,7 @@
                     var json=eval('('+ret+')');
                     console.log(json);
                     if(json.success) {
-                        var data = json.data, html_spot = template(tpl, data);
+                        var data = json.data, html_spot = template(tpl, data.lists);
                         $("#hotSpot").html(html_spot);
                     }else{
                         console.log(json);
@@ -248,9 +257,13 @@
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
             tour_index.FlashLoad();
-            tour_index.ChangeCity();
+//            tour_index.ChangeCity();
             tour_index.GetCity();
             tour_index.GetSpot()
+
+        };
+        ww.MT.changeCity = function(){
+            tour_index.ChangeCity();
         };
         MT.load();
     })()
