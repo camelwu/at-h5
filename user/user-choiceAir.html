@@ -559,7 +559,6 @@
 			var tpl=GetTpl(from,isContact)
 
 			var html = template(tpl,tralJsonObj[$(this).attr("data-id")]);
-			debugger;
 			SavaLocalStorge(selectUser,isContact)//报错LocalStorge
 			if(window.opener.SelectPersonInformation) {
 				window.opener.SelectPersonInformation(html,isContact);
@@ -578,7 +577,6 @@
 				TraInfo={};
 				CertificateInfo={}
 				TraInfo.PassengerType= "ADULT";  //乘客类型
-				TraInfo.NationalityCode= "CHN"; //国籍代码
 				TraInfo.SexCode= "Mr";       //称呼
 				TraInfo.FirstName="sss";     //姓
 				TraInfo.LastName= "ddd";       //名
@@ -586,10 +584,13 @@
 
 				//信用卡信息
 				CertificateInfo.IdType= "4";     //证件类型
-				CertificateInfo.IdCountry= "SIN";  //证件发行国家
+				CertificateInfo.IdCountry= "CN";  //证件发行国家
 				CertificateInfo.IdNumber= "3412";      //证件号码
 				CertificateInfo.IdActivatedDate= "2016-12-31" ; //证件有效期
-				TraInfo.FlightCertificateInfo=CertificateInfo
+				TraInfo.FlightCertificateInfo=CertificateInfo;
+
+				TraInfo.BaggageCode="",//行李编码，一期不用,
+				TraInfo.NationalityCode="CHN" //国籍代码
 				TravellerInfo.push(TraInfo)
 			}
 			localStorage.setItem('travellerInfo_selected',JSON.stringify(TravellerInfo));
