@@ -265,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .iconTip > div {
     margin: 0 auto;
-    width: 3.6rem;
+    width: 4.2rem;
     height:100%;
     background-image: url(../../images/ui/air-icons.png);
     background-repeat: no-repeat;
@@ -275,15 +275,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .all-elements .air_content .realInfo .place .iconTip .active {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 6.8px;
-    height: 100%;
-    width: 100%;
-    background-image: url(../../images/ui/air-icons.png);
-    background-repeat: no-repeat;
-    background-position: 53% 14%;
-    background-size: 302px 180px;
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    position: absolute;
+    top: 7px;
+    /*margin-top: 6.8px;*/
+    height: 42px;
+    width: 42px;
+    background: url(../../images/ui/fly-roll.png) no-repeat;
+    /*background-position: 53% 14%;*/
+    background-size: 42px 42px;
 }
 
 

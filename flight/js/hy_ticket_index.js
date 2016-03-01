@@ -316,9 +316,9 @@
                   if(target.className.indexOf('span-target')!=-1){
                       var oSpan = this.querySelector('span');
                       oSpan.style.transition = '0.7s all ease';
-                      oSpan.style.webkitTransition = '0.7s all ease';
-                      oSpan.style.webkitTransformOrigin = '18px ' + '23px';
-                      oSpan.style.transformOrigin = '22px ' + '24px';
+                      //oSpan.style.webkitTransition = '0.7s all ease';
+                      //oSpan.style.webkitTransformOrigin = '18px ' + '23px';
+                      //oSpan.style.transformOrigin = '22px ' + '24px';
                       this.current = (this.current + 180);
                       oSpan.style.transform = 'rotate(' + this.current + 'deg)';
                       oSpan.style.webkitTransform = 'rotate(' + this.current + 'deg)';
