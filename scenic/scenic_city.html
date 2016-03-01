@@ -16,6 +16,7 @@
     <link href="../styles/framework.css" rel="stylesheet">
     <link href="../styles/style.css" rel="stylesheet">
     <link href="../scenic/css/scenic_city.css" rel="stylesheet">
+    <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
 <div class="all-elements">
@@ -61,7 +62,7 @@
                 </li>
                 <li>
                     <span class="gui-city-t">热门城市</span>
-                    <ul class="city-tags">
+                    <ul id="js_InHotCity" class="city-tags">
                         <li>北京</li>
                         <li>北京</li>
                         <li>北京</li>
@@ -104,7 +105,7 @@
                 </li>
                 <li>
                     <span class="gui-city-t">热门城市</span>
-                    <ul class="city-tags">
+                    <ul id="js_ExHotCity" class="city-tags">
                         <li>北京</li>
                         <li>北京</li>
                         <li>北京</li>
@@ -330,11 +331,57 @@
 </div>
 <script src="../js/lib/jquery.js"></script>
 <script src="js/scenic_pub.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/template.js"></script>
+
+<script id="tpl_GetHotCity" type="text/template">
+    {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i<len;i++){ %}
+    <li>{%=data.destCities[i].cityName%}</li>
+    {% } %}
+</script>
+
+
 <script>
     (function(){
 
-        //tab滚动
+        //tab切换
         MT.tabScroll();
+
+        /**
+         * 获得国外热门城市
+         */
+        MT.getExHotCity = function(){
+            var Param=
+            {
+                "Parameters": {
+                    "SubProduct": "All"
+                },
+                "ForeEndType": 3,
+                "Code": "0096"
+            }
+
+            MT.ajaxJson("",JSON.stringify(Param),MT.CallbackExHotCity,MT.ajaxAnimIn,MT.ajaxAnimOut);
+        }
+        /**
+         * 获得国外热门城市的回调方法
+         * @param data
+         * @constructor
+         */
+        MT.CallbackExHotCity = function(data){
+            var json=eval('('+data+')');
+            console.log(json);
+            if(json.success){
+                var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                $("#js_ExHotCity").html(tpl_GetExHotCity);
+            }else {
+                console.log(json);
+                jAlert(json.message,"提示");
+            }
+
+        }
+
+        MT.getExHotCity();
+
 
     })();
 </script>

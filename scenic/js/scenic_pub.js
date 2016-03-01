@@ -5,15 +5,16 @@
     var webkit = this;
     var core = function(){
         var _url ="http://10.2.22.239:8888/api/GetServiceApiResult";
+
         /**
-         * [城市列表]tab初始化
+         * [private scenic_city]tab初始化
          * @constructor
          */
         var MTtabInit = function(){
             MTtabScroll1();
         }
         /**
-         * [城市列表]tab切换
+         * [private scenic_city]tab切换
          * @constructor
          */
         var MTtab = function(){
@@ -33,7 +34,7 @@
             });
         }
         /**
-         * [城市列表]tab1Totab2
+         * [private scenic_city]tab1Totab2
          * @constructor
          */
         var MTtabScroll1 = function(){
@@ -45,7 +46,7 @@
 
         }
         /**
-         * [城市列表]tab2Totab1
+         * [private scenic_city]tab2Totab1
          * @constructor
          */
         var MTtabScroll2 = function(){
@@ -58,7 +59,7 @@
 
 
         /**
-         * [ajax]动画模版
+         * [public ajax]动画模版
          * @constructor
          */
         var CTmplAnim = function(){
@@ -116,7 +117,7 @@
 
             $.ajax({
                 type : "post",
-                url : url + '?rnd=' + Math.random(),
+                url : _url + '?rnd=' + Math.random(),
                 data : data,
                 contentType : 'application/json;charset=utf-8',
                 beforeSend : function(xhr) {
@@ -147,15 +148,23 @@
         }
 
         return {
-            MTtabInit:MTtabInit,
-            MTtab:MTtab,
-            CLoadJson:CLoadJson
+            MTtabInit:MTtabInit,//[private scenic_city]
+            MTtab:MTtab,//[private scenic_city]
+            CLoadJson:CLoadJson,//[public ajax]
+            CAnimIn:CAnimIn,//[public ajax]
+            CAnimOut:CAnimOut//[public ajax]
         }
     }();
     webkit.MT = webkit.MT || {};
     webkit.MT.tabScroll = function(){
         core.MTtabInit();
         core.MTtab();
+    }
+    webkit.MT.ajaxAnimIn = function(){
+        core.CAnimIn();
+    }
+    webkit.MT.ajaxAnimOut = function(){
+        core.CAnimOut();
     }
     webkit.MT.ajaxJson = function(url, data, mycallback,animin,animout, async, encryption){
         core.CLoadJson(url, data, mycallback,animin,animout, async, encryption);
