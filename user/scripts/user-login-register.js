@@ -2,7 +2,7 @@
  * Created by changlv on 2016/1/7.
  */
 var newkey;
-var phone_verify=$('#get_code')[0];
+var phone_verify=$('#find_verify')[0];
 var regBflag=false;
 window.onload = function(){
     var menu = $("#menu")[0];
@@ -219,33 +219,75 @@ window.onload = function(){
     var findkey_btn = $("#findkey_btn")[0];
     function findkey(obj){
         obj.onclick = function(){
-            //debugger;
-            var input;
+
             var find_phone = $("#find_phone")[0];
             var find_email = $("#find_email")[0];
-            if(find_title.innerHTML = "手机找回"){
-                input = phone_find.getElementsByTagName('input');
-            }else{
-                input = email_find.getElementsByTagName('input');
-            }
-            for(var i= 0;i < input.length;i++){
-                if(input[i].value !="") {
 
-                    console.log(input[i].getAttribute('data-type'));
-                    if(input[i].getAttribute('data-type') !="code") {
-                        if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                            alert("输入不正确");
-                            return;
+            if(email_find.style.display == 'none'){
+                var input = phone_find.getElementsByTagName('input');
+                for(var i= 0;i < input.length;i++){
+                    if(input[i].value !="") {
+                        if(input[i].getAttribute('data-type') !="code") {
+                            if (!check(input[i].getAttribute('data-type'), input[i].value)) {
+                                alert("请输入有效的手机号");
+                                return;
+                            }
                         }
                     }
+
                 }
+                if(input[0].value == '')
+                {
+                    alert('请输入手机号');
+                    return;
+                }
+                if(input[1].value == '')
+                {
+                    alert('请输入验证码');
+                    return;
+                }
+                if(input[2].value == '')
+                {
+                    alert('请输入新密码');
+                    return;
+                }
+                var Parameters= {
+                    "Parameters": "{\"CultureName\":\"\",\"Email\":\"\",\"Mobile\":\""+find_phone.value+"\",\"NewPassword\":\""+input[2].value+"\",\"Code\":\""+input[1].value+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0055"
+                };
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
             }
-            var Parameters= {
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+find_email.value+"\",\"Mobile\":\""+find_phone.value+"\",\"NewPassword\":\""+input[2].value+"\",\"Code\":\""+input[1].value+"\"}",
-                "ForeEndType": 3,
-                "Code": "0055"
-            };
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
+            else{
+                var input = email_find.getElementsByTagName('input')[0];
+                if(input.value !="") {
+                    if (!check(input.getAttribute('data-type'), input.value)) {
+                        alert("请输入有效的邮箱");
+                        return;
+                    }
+                }
+                else
+                {
+                    alert('请输入邮箱');
+                    return;
+                }
+                var Parameters= {
+                    "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input.value+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0055"
+                };
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey_email);
+            }
+
+            //var Parameters= {
+            //    "Parameters": "{\"CultureName\":\"\",\"Email\":\""+find_email.value+"\",\"Mobile\":\""+find_phone.value+"\",\"NewPassword\":\""+input[2].value+"\",\"Code\":\""+input[1].value+"\"}",
+            //    "ForeEndType": 3,
+            //    "Code": "0055"
+            //};
+
+
         }
     }
     findkey(findkey_btn);
@@ -254,44 +296,57 @@ window.onload = function(){
     function get_fver(obj){
         obj.onclick = function(){
             var find_phone = $("#find_phone")[0];
+
+            if(find_phone.value !="") {
+                if(find_phone.getAttribute('data-type') !="code") {
+                    if (!check(find_phone.getAttribute('data-type'), find_phone.value)) {
+                        alert("请输入有效的手机号");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                alert('请输入手机号');
+                return;
+            }
             var Parameters = {
                 "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":3}",
                 "ForeEndType": 3,
                 "Code": "0058"
             };
+            vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
         }
     }
     get_fver(find_verify);
 
     //邮箱找回密码
-
-    var findkey_btn = $("#findkey_btn")[0];
-    function findkeybyemail(obj){
-        obj.onclick = function(){
-            //debugger;
-            var input;
-            var find_email = $("#find_email")[0];
-            input = email_find.getElementsByTagName('input')[0];
-            if(input.value !="") {
-                console.log(input.getAttribute('data-type'));
-                if(input.getAttribute('data-type') !="code") {
-                    if (!check(input.getAttribute('data-type'), input.value)) {
-                        alert("输入不正确");
-                        return;
-                    }
-                }
-            }
-            var Parameters= {
-                "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input.value+"\",\"Mobile\":\"\",\"NewPassword\":\"\",\"Code\":\"284665\"}",
-                "ForeEndType": 3,
-                "Code": "0055"
-            }
-            //console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
-        }
-    }
-    findkeybyemail(findkey_btn);
+    //function findkeybyemail(obj){
+    //    obj.onclick = function(){
+    //        //debugger;
+    //        var input;
+    //        var find_email = $("#find_email")[0];
+    //        input = email_find.getElementsByTagName('input')[0];
+    //        if(input.value !="") {
+    //            console.log(input.getAttribute('data-type'));
+    //            if(input.getAttribute('data-type') !="code") {
+    //                if (!check(input.getAttribute('data-type'), input.value)) {
+    //                    alert("输入不正确");
+    //                    return;
+    //                }
+    //            }
+    //        }
+    //        var Parameters= {
+    //            "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input.value+"\",\"Mobile\":\"\",\"NewPassword\":\"\",\"Code\":\"284665\"}",
+    //            "ForeEndType": 3,
+    //            "Code": "0055"
+    //        }
+    //        console.log(Parameters);
+    //        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
+    //    }
+    //}
+    //findkeybyemail(findkey_btn);
 
     //获取机器码后再发请求
    function mycallback_forgotpass(ret){
@@ -409,12 +464,31 @@ function mycallback_verify(ret){
 }
 function mycallback_findkey(ret){
     var myJson = eval('(' + ret + ')');
+    //console.log(myJson);
     if(myJson.success){
-        window.location.href = "user-login.html";
+        jAlert('重置密码成功','',call_pass);
+
 
     }else{
         alert(myJson.message);
     }
+}
+
+//邮箱找回密码回调
+function mycallback_findkey_email(ret){
+    var myJson = eval('(' + ret + ')');
+    //console.log(myJson);
+    if(myJson.success){
+        jAlert('已将重置密码的邮件发送到您的邮箱，请查收','',call_pass);
+
+    }else{
+        alert(myJson.message);
+    }
+}
+
+
+function call_pass(){
+    window.location.href = "user-login.html";
 }
 //找回密码验证码回调
 function mycallback_findver(ret){
