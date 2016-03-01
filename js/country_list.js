@@ -879,11 +879,10 @@ var arrCountry= [{"CountryEN":"Angola",
 
                     if (valueStr) {
                         for (var i = 0; i < arrCountry.length; i++) {
-                            for (var t in arrCountry[i]) {
-                                if (arrCountry[i][t].indexOf(valueStr) != -1) {
+
+                                if (arrCountry[i]['CountryName'].indexOf(valueStr)>-1||arrCountry[i]['CountryEN'].indexOf(valueStr)>-1) {
                                     searchResult.push(arrCountry[i])
                                 }
-                            }
                         }
 
                         if (!searchResult.length) {
