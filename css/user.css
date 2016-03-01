@@ -807,6 +807,9 @@
     font-size: 12px;
     color: #999999;
 }
+.often_user .passport-tips{
+    color: red;
+}
 
 .often_user li:first-child {
     font-size: 14px;

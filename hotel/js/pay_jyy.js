@@ -154,6 +154,7 @@ var lsf_myweb={
         var oBoxChildren=oBox.children;
         var aB=oBox.getElementsByTagName('b');
         for(var i=0;i<oBoxChildren.length;i++){
+            debugger;
             lsf_myweb.bind(oBoxChildren[i],'click',function(){
                 var oB=this.getElementsByTagName('b')[0];
                 var oSpan=this.getElementsByTagName('span')[0];
@@ -173,9 +174,13 @@ var lsf_myweb={
     payType('p-ul1');
     lsf_myweb.bind(oBtn,'click',function(){
 
+        debugger;
         if(myPayType==0){
             alert('请选择支付类型');
             return;
+        }
+        else{
+            myData.CreditCardType=myPayType;
         }
         //信用卡验证
         if(jp_bank.value=='输入银行卡号'){
@@ -245,6 +250,7 @@ var lsf_myweb={
 
         //  交互部分
         function M(json){
+            debugger;
             console.log(json.totalPriceCNY);
             var data={
                 "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\",\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":\""+json.totalPriceCNY+"\",\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"T00:00:00\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"CN\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\",\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
