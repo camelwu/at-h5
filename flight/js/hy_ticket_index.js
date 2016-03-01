@@ -532,30 +532,32 @@
                createEle(iCityData);}
        },
        historyChooseHandler:function(arg,type){
-           alert(arg)
-           alert(type)
           var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
           var dCityData = this.storageUtil.get('dHisCity');
           var iCityData = this.storageUtil.get('iHisCity');
-          var liStr='',that = ticketIndexModal;
-          var n = type == 'international'?iCityData.data:dCityData.data;
-          for(var i = 0; i < arg.length; i++)
-          {
-              if (n.indexOf(arg[i]) == -1) n.push(arg[i]);
-              if(n.length > 3){
-                  n = n.slice(1);
-               }
-          }
+          var liStr='',that = ticketIndexModal, n=[];
+          if(iCityData!=undefined&&dCityData!=undefined){
+               n = (type == 'international')?iCityData.data:dCityData.data;
+           }
 
-          if(n.length>0){
-              (type == "demestic")?that.storageUtil.set('dHisCity',{type:"demestic",data:n}):that.storageUtil.set('iHisCity',{type:"international",data:n});
-              for(var m = 0; m < n.length; m++){
-                  liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
-              }
-          }
-          ul.innerHTML =liStr;
-          outLi.style.display ='block';
+                for(var i = 0; i < arg.length; i++)
+                {
+                    if (n.indexOf(arg[i]) == -1) n.push(arg[i]);
+                    if(n.length > 3){
+                        n = n.slice(1);
+                    }
+                }
+
+                if(n.length>0){
+                    (type == "demestic")?that.storageUtil.set('dHisCity',{type:"demestic",data:n}):that.storageUtil.set('iHisCity',{type:"international",data:n});
+                    for(var m = 0; m < n.length; m++){
+                        liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
+                    }
+                }
+                ul.innerHTML =liStr;
+                outLi.style.display ='block';
+
        },
        eventHandle2:function(){
            var that = ticketIndexModal;
@@ -785,20 +787,14 @@
                if(target.className =='fl'){
                    outDiv.style.display = 'none';
                }else if(target.className.indexOf('city-word')!=-1){
-                   alert(target.innerHTML)
                    if(domesticCity.style.display=='block'){
-                       alert(1)
                        that.dhisChoosePool.push(target.innerHTML);
                        that.historyChooseHandler(that.dhisChoosePool,"domestic");
                    }else{
-                       alert(2)
                        that.ihisChoosePool.push(target.innerHTML);
                        that.historyChooseHandler(that.ihisChoosePool,"international");
                    }
-                   console.log('**************************')
-                   console.log(document.querySelector('#city-input-zone'))
-                   //cityInputZone.value = target.innerHTML;
-                   cityInputZone.value = 111;
+                   cityInputZone.value = target.innerHTML;
                    that.timer2 = window.setTimeout(function(){
                        outDiv.style.display = 'none';
                        that.celement.innerHTML= target.innerHTML;

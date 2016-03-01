@@ -90,6 +90,12 @@ body {
     z-index: 100;
     background: #173c58;
 }
+.header h3{
+    font-size:17px;
+    font-weight:700;
+    width:100%;height:100%;
+    font-family:'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+}
 .icons{
     background-image: url(../../images/ui/icons.png);
     background-repeat: no-repeat;
