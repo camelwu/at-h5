@@ -324,7 +324,7 @@ function styleChange(id,mytext){
 
     });
     //输入框样式改变
-    styleChange('sousou','酒店名/位置')
+    //styleChange('sousou','酒店名/位置')
 
     var list_oUl=lsf_myweb.getbyid('lsf_list');
     var pWidth=list_oUl.offsetWidth-140;
