@@ -3,7 +3,9 @@
  */
 var newkey;
 var phone_verify=$('#find_verify')[0];
+var phone_reg=$('#get_code')[0];
 var regBflag=false;
+var regBflag_t=false;
 window.onload = function(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
@@ -140,7 +142,7 @@ window.onload = function(){
                     console.log(input[i].getAttribute('data-type'));
                     if(input[i].getAttribute('data-type') !="code") {
                         if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                            alert("输入不正确");
+                            jAlert("输入不正确");
                             return;
                         }
                     }
@@ -166,18 +168,31 @@ window.onload = function(){
     //  获取注册验证码
     function get_verify(obj){
         obj.onclick = function() {
-            if(regBflag)
+            var r_phone = $("#r_phone")[0];
+            if(r_phone.value !="") {
+                if (!check(r_phone.getAttribute('data-type'), r_phone.value)) {
+                    jAlert("请输入有效的手机号");
+                    return;
+                }
+            }
+            else
+            {
+                jAlert('请输入手机号');
+                return;
+            }
+            if(regBflag_t)
             {
                 return;
             }
-            regBflag=true;
+            regBflag_t=true;
             var Parameters = {
                 "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"VerificationCodeType\":1}",
                 "ForeEndType": 3,
                 "Code": "0058"
             };
             console.log(Parameters.Parameters);
-            vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
+            phone_reg.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
+            vlm.Utils.timeCountDown('120', time_reciprocals_t, phone_timeout_t);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_verify);
         }
     }
@@ -198,7 +213,7 @@ window.onload = function(){
                 if (input[i].style.display != "none" && input[i].value != "") {
                     //console.log(input[i].getAttribute('data-type'));
                     if(!check(input[i].getAttribute('data-type'),input[i].value)){
-                        alert("用户名或密码错误");
+                        jAlert("用户名或密码错误");
                         return;
                     }
                 }
@@ -229,7 +244,7 @@ window.onload = function(){
                     if(input[i].value !="") {
                         if(input[i].getAttribute('data-type') !="code") {
                             if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                                alert("请输入有效的手机号");
+                                jAlert("请输入有效的手机号");
                                 return;
                             }
                         }
@@ -238,17 +253,17 @@ window.onload = function(){
                 }
                 if(input[0].value == '')
                 {
-                    alert('请输入手机号');
+                    jAlert('请输入手机号');
                     return;
                 }
                 if(input[1].value == '')
                 {
-                    alert('请输入验证码');
+                    jAlert('请输入验证码');
                     return;
                 }
                 if(input[2].value == '')
                 {
-                    alert('请输入新密码');
+                    jAlert('请输入新密码');
                     return;
                 }
                 var Parameters= {
@@ -263,13 +278,13 @@ window.onload = function(){
                 var input = email_find.getElementsByTagName('input')[0];
                 if(input.value !="") {
                     if (!check(input.getAttribute('data-type'), input.value)) {
-                        alert("请输入有效的邮箱");
+                        jAlert("请输入有效的邮箱");
                         return;
                     }
                 }
                 else
                 {
-                    alert('请输入邮箱');
+                    jAlert('请输入邮箱');
                     return;
                 }
                 var Parameters= {
@@ -300,14 +315,14 @@ window.onload = function(){
             if(find_phone.value !="") {
                 if(find_phone.getAttribute('data-type') !="code") {
                     if (!check(find_phone.getAttribute('data-type'), find_phone.value)) {
-                        alert("请输入有效的手机号");
+                        jAlert("请输入有效的手机号");
                         return;
                     }
                 }
             }
             else
             {
-                alert('请输入手机号');
+                jAlert('请输入手机号');
                 return;
             }
             var Parameters = {
@@ -315,6 +330,7 @@ window.onload = function(){
                 "ForeEndType": 3,
                 "Code": "0058"
             };
+            phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
             vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
         }
@@ -412,7 +428,7 @@ function  cb_register(){
         var login_pass = $("#r_e_password")[0];
     }
     else{
-        var login_pass =$("#r_m_password")[0];
+        var login_pass =$("#r_p_password")[0];
     }
 
     var Parameters= {
@@ -439,15 +455,15 @@ function mycallback_login(ret) {
 
         if(myJson.message == 'Invalid password')
         {
-            alert('密码错误，请重新输入');
+            jAlert('密码错误，请重新输入');
         }
         else if(myJson.message == '无此用户的相关信息')
         {
-            alert('未注册用户');
+            jAlert('未注册用户');
         }
         else
         {
-            alert(myJson.message);
+            jAlert(myJson.message);
         }
     }
 }
@@ -502,10 +518,10 @@ function mycallback_findver(ret){
 }
 
 //时间倒计时结束后
-function phone_timeout(){
+function phone_timeout(obj){
     console.log(phone_verify);
-    phone_verify.innerHTML='发送验证码';
-    phone_verify.style.color='#ffb413';
+    this.innerHTML='发送验证码';
+    this.style.color='#ffb413';
     regBflag=false;
 }
 
@@ -513,4 +529,16 @@ function phone_timeout(){
 function time_reciprocals(sec){
     phone_verify.innerHTML=sec+'秒重新发送';
     phone_verify.style.color='#ccc';
+}
+
+//时间倒计时结束后
+function phone_timeout_t(){
+    phone_reg.innerHTML='发送验证码';
+    regBflag_t=false;
+}
+
+//时间倒计过程中
+function time_reciprocals_t(sec){
+    phone_reg.innerHTML=sec+'秒重新发送';
+    phone_reg.style.color='#ccc';
 }

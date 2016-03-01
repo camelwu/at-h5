@@ -161,6 +161,20 @@
    {% } %}
      <li class = "" title="more">更多</li>
 </script>
+<script id="tpl_GetSpot" type="text/template">
+    {% for(var i = 0;i < data.lists.length;i++){ %}
+        <li>
+            <div>
+                <img src="{%=data.lists[i].pictureURL%}" class="banner-image" alt="img">
+                <div class="hp-block">
+                    <b class = "icon1 s-location"></b>{%=data.destCity%}
+                    </div>
+                </div>
+            <div class="spotDesc">{%=data.lists[i].packageName%}</div>
+            <div><span>￥</span><span class="pay-num">{%=data.lists[i].leadinPrice%}</span><span>起</span></div>
+        </li>
+    {% } %}
+</script>
 <script>
     (function(){
         var ww = this;
@@ -174,17 +188,17 @@
                 });
             };
             //   选择目的地
-            var changeCity = function(){
-                var city = $('#hotPlace')[0].children;
-                for(var i=0; i < city.length; i++){
-                    city[i].onclick = function(){
-                        for(var j=0; j < city.length; j++){
-                            city[j].className = "";
-                        }
-                        this.className='jjin-active';
-                    }
-                }
-            };
+//            var changeCity = function(){
+//                var city = $('#hotPlace')[0].children;
+//                for(var i=0; i < city.length; i++){
+//                    city[i].onclick = function(){
+//                        for(var j=0; j < city.length; j++){
+//                            city[j].className = "";
+//                        }
+//                        this.className='jjin-active';
+//                    }
+//                }
+//            };
             //   获取城市
             var getCity = function(){
                 var tmp={
@@ -197,7 +211,6 @@
             };
             var getCityCallback = function(ret){
                 var json=eval('('+ret+')');
-                console.log(json);
                 if(json.success){
                     var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
                     console.log(data);
@@ -205,51 +218,49 @@
                     if(data.data.destCities.length == 0){
                         jAlert("抱歉暂时没有数据","提示");
                     }
-                    MT.changeCity();
+                    //   选择目的地
+                    var changeCity = function(){
+                        var city = $('#hotPlace')[0].children;
+                        for(var i=0; i < city.length; i++){
+                            city[i].onclick = function(){
+                                for(var j=0; j < city.length; j++){
+                                    city[j].className = "";
+                                }
+                                this.className='jjin-active';
+                            }
+                        }
+                    };
+                    changeCity();
                 }else {
-                    console.log(json);
                     jAlert(json.message,"提示");
                 }
             };
-
             //   获取景点
-            var getSpot = function(){
-                var tpl = [
-                    '<li>',
-                        '<div>',
-                            '<img src="{%=PictureURL%}" class="banner-image" alt="img">',
-                            '<div class="hp-block">',
-                                '<b class = "icon1 s-location"></b>{%=DestCity%}',
-                            '</div>',
-                        '</div>',
-                        '<div class="spotDesc">{%=PackageName%}</div>',
-                        '<div><span>￥</span><span class="pay-num">{%=LeadinPrice%}</span><span>起</span></div>',
-                    '</li>'
-                ].join('');
-                var tmp={
+            var getSpot = function() {
+                var tmp = {
                     "Parameters": {
                         "DestCityCode": "SIN"
                     },
                     "ForeEndType": 3,
                     "Code": "0207"
                 };
-                console.log(tmp);
-                vlm.loadJson("",JSON.stringify(tmp),spot_back);
-                function spot_back(ret){
-                    var json=eval('('+ret+')');
-                    console.log(json);
-                    if(json.success) {
-                        var data = json.data, html_spot = template(tpl, data.lists);
-                        $("#hotSpot").html(html_spot);
-                    }else{
-                        console.log(json);
-                        jAlert("数据格式错误","提示");
+                vlm.loadJson("", JSON.stringify(tmp), getSpotCallback);
+            };
+            var getSpotCallback = function(ret){
+                var json=eval('('+ret+')');
+                if(json.success){
+                    var data=json,tpl_GetSpot = template("tpl_GetSpot",data);
+                    console.log(data);
+                    $("#hotSpot").html(tpl_GetSpot);
+                    if(data.data.lists.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
                     }
+                }else {
+                    jAlert(json.message,"提示");
                 }
             };
             return{
                 FlashLoad:flashLoad,
-                ChangeCity:changeCity,
                 GetCity:getCity,
                 GetSpot:getSpot
             };
@@ -257,13 +268,9 @@
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
             tour_index.FlashLoad();
-//            tour_index.ChangeCity();
             tour_index.GetCity();
             tour_index.GetSpot()
 
-        };
-        ww.MT.changeCity = function(){
-            tour_index.ChangeCity();
         };
         MT.load();
     })()
