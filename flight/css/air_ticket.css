@@ -556,6 +556,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.4rem;
     top: 0;
     left: -0.8rem;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 
 .clearfix .cl_search i {
