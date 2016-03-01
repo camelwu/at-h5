@@ -924,7 +924,18 @@ var arrCountry= [{"CountryEN":"Angola",
         })(i);
     }
 
+
+
 })();
 
-
+//根据CountryCode获得CountryName
+function getCountryName(code){
+    for(var i=0;i<arrCountry.length; i++)
+    {
+        if(arrCountry[i].CountryCode == code)
+        {
+            return arrCountry[i];
+        }
+    }
+}
 
