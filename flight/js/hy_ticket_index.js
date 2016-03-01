@@ -92,10 +92,11 @@
        },
 
        returnCityCode:function(arg){
-           var CityCode = "";
+           var CityCode = "",type='domestic';
            for(var i=0;i<internationalCities.length;i++){
                if(internationalCities[i].CityName ==arg.innerHTML){
                    CityCode = internationalCities[i].CityCode;
+                   type = 'international';
                    break;
                }
            }
@@ -103,11 +104,12 @@
                for(var j=0;j<domesticCities.length;j++){
                    if(domesticCities[j].CityName ==arg.innerHTML){
                        CityCode = domesticCities[j].CityCode;
+                       type = 'domestic';
                        break;
                    }
                }
            }
-           return CityCode;
+           return {CityCode:CityCode,type:type};
        },
 
        returnCabinClass:function(arg){
@@ -138,7 +140,7 @@
            this.addHandler(ticketSearchButton,'click', function(){
                var oDiv = document.querySelector('#single').style.display == 'block'?document.querySelector('#single'):document.querySelector('#double');
                var cityItems = oDiv.querySelectorAll('.city-search'),cityStrs ="",CityCodeFrom = "",CityCodeTo = "",startDate = "",endDate = "",adultNumber = "",childNumber = "",CabinStr = "",paraObj = new Object(),paramStr = "";
-               var NumofAdult = "",NumofChild ="";
+               var NumofAdult = "",NumofChild ="",CityFromObj={},CityToObj={};
                if(cityItems[0].innerHTML==cityItems[1].innerHTML){
                    tipBox.innerHTML = '请确保出发与到达为不同城市！';
                    tipBox.style.display = 'block';
@@ -150,8 +152,10 @@
                }else{
                    if(document.querySelector('#double').style.display == 'block'){
                        cityStrs = document.querySelectorAll('#double .city-search');
-                       CityCodeFrom = that.returnCityCode(cityStrs[0]);
-                       CityCodeTo = that.returnCityCode(cityStrs[1]);
+                       CityFromObj = that.returnCityCode(cityStrs[0]);
+                       CityToObj = that.returnCityCode(cityStrs[1]);
+                       CityCodeFrom = CityFromObj['CityCode'];
+                       CityCodeTo = CityToObj['CityCode'];
                        startDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[0].innerHTML);
                        endDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[1].innerHTML);
                        adultNumber = document.querySelector('#double span.adult-number').innerHTML;
@@ -159,6 +163,7 @@
                        CabinStr = that.returnCabinClass(document.querySelector('#double .double-cabin-choose').innerHTML);
                        paraObj.CityCodeFrom = CityCodeFrom;
                        paraObj.CityCodeTo = CityCodeTo;
+                       paraObj.interNationalOrDomestic = (CityFromObj["type"]=="domestic"&&CityToObj["type"]=="domestic")?"domestic":"international";
                        paraObj.DepartDate = startDate;
                        paraObj.ReturnDate = endDate;
                        paraObj.CabinClass = CabinStr;
@@ -185,14 +190,19 @@
                        NumofAdult = parseInt(document.querySelector('.adult-number').innerHTML);
                        NumofChild = parseInt(document.querySelector('.child-number').innerHTML);
                        cityStrs = document.querySelectorAll('#single .city-search');
-                       CityCodeFrom = that.returnCityCode(cityStrs[0]);
-                       CityCodeTo = that.returnCityCode(cityStrs[1]);
+                       CityFromObj = that.returnCityCode(cityStrs[0]);
+                       CityToObj = that.returnCityCode(cityStrs[1]);
+                       CityCodeFrom = CityFromObj['CityCode'];
+                       CityCodeTo = CityToObj['CityCode'];
+                       console.log(CityCodeFrom)
+                       console.log(CityCodeTo)
                        startDate = that.reDate(document.querySelector('#chooseDate-single').querySelector('.dateNumber').innerHTML);
                        adultNumber = document.querySelector('#single span.adult-number').innerHTML;
                        childNumber = document.querySelector('#single span.child-number').innerHTML;
                        CabinStr = that.returnCabinClass(document.querySelector('#single .single-cabin-choose').innerHTML);
                        paraObj.CityCodeFrom = CityCodeFrom;
                        paraObj.CityCodeTo = CityCodeTo;
+                       paraObj.interNationalOrDomestic = (CityFromObj["type"]=="domestic"&&CityToObj["type"]=="domestic")?"domestic":"international";
                        paraObj.DepartDate = startDate;
                        paraObj.CabinClass = CabinStr;
                        paraObj.RouteType = "Oneway";
@@ -526,24 +536,28 @@
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
           var dCityData = this.storageUtil.get('dHisCity');
           var iCityData = this.storageUtil.get('iHisCity');
-          var liStr='',that = ticketIndexModal;
-          var n = type == 'international'?iCityData.data:dCityData.data;
-          for(var i = 0; i < arg.length; i++)
-          {
-              if (n.indexOf(arg[i]) == -1) n.push(arg[i]);
-              if(n.length > 3){
-                  n = n.slice(1);
-               }
-          }
+          var liStr='',that = ticketIndexModal, n=[];
+          if(iCityData!=undefined&&dCityData!=undefined){
+               n = (type == 'international')?iCityData.data:dCityData.data;
+           }
 
-          if(n.length>0){
-              (type == "demestic")?that.storageUtil.set('dHisCity',{type:"demestic",data:n}):that.storageUtil.set('iHisCity',{type:"international",data:n});
-              for(var m = 0; m < n.length; m++){
-                  liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
-              }
-          }
-          ul.innerHTML =liStr;
-          outLi.style.display ='block';
+                for(var i = 0; i < arg.length; i++)
+                {
+                    if (n.indexOf(arg[i]) == -1) n.push(arg[i]);
+                    if(n.length > 3){
+                        n = n.slice(1);
+                    }
+                }
+
+                if(n.length>0){
+                    (type == "demestic")?that.storageUtil.set('dHisCity',{type:"demestic",data:n}):that.storageUtil.set('iHisCity',{type:"international",data:n});
+                    for(var m = 0; m < n.length; m++){
+                        liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
+                    }
+                }
+                ul.innerHTML =liStr;
+                outLi.style.display ='block';
+
        },
        eventHandle2:function(){
            var that = ticketIndexModal;
@@ -775,7 +789,7 @@
                }else if(target.className.indexOf('city-word')!=-1){
                    if(domesticCity.style.display=='block'){
                        that.dhisChoosePool.push(target.innerHTML);
-                       that.historyChooseHandler(that.dhisChoosePool,"demestic");
+                       that.historyChooseHandler(that.dhisChoosePool,"domestic");
                    }else{
                        that.ihisChoosePool.push(target.innerHTML);
                        that.historyChooseHandler(that.ihisChoosePool,"international");

@@ -588,7 +588,7 @@ var ticketDouble = {
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
-        this.tripType = "international"; //international backParaObj.tripType ,domestic
+        this.tripType = backParaObj.interNationalOrDomestic //international backParaObj.tripType ,domestic
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
         backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);

@@ -271,6 +271,7 @@
                     });
                 }
 
+
                 $.ajax({
                     type : "post",
                     url : url + '?rnd=' + Math.random(),
@@ -287,17 +288,17 @@
                             var password = md5("");
                             xhr.setRequestHeader('uid', user);
                         }
-                    },complete( jqXHR, textStatus){
-                        if(animout!=undefined && animout != ""){
-                            animout();//动画淡出
-                        }
                     },
                     success : function(jsondata) {
+
                         mycallback(jsondata);
 
 
                     }
                 });
+                if(animout!=undefined && animout != ""){
+                    animout();//动画淡出
+                }
                 $.ajaxSetup({
                     async : true
                 });
@@ -421,7 +422,7 @@
                 if(islogin == true){
                     window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId;
                 }else{
-                    jAlert("登录失败","提示");
+                    //jAlert("登录失败","提示");
                     return false;
                 }
 

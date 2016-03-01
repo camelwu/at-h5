@@ -96,9 +96,10 @@ var ticketOrder = {
         var deletePassenger = document.querySelectorAll('.icon-add');
         var chooseAgreeInfo = document.querySelector('.choose-agree-info');
         var that = this;
-        /*this.addHandler(addPassenger,'click', function(){
-            document.location.href = '../user/user-choiceAir.html?type=add&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild
-        });*/
+
+        this.addHandler(addPassenger,'click', function(){
+             vlm.f_choice('f','traver','',true,true)
+        });
 
         for(var i = 0;i<toEditPassengers.length;i++){
             this.addHandler(toEditPassengers[i],'click', function(){
@@ -106,7 +107,7 @@ var ticketOrder = {
             });
         }
 
-            this.addHandler(chooseAgreeInfo,'click', function(){
+        this.addHandler(chooseAgreeInfo,'click', function(){
                var event = event || window.event;
                var target = event.target || event.srcElement;
                var opEle = document.querySelector('#confirm-button');
@@ -146,7 +147,7 @@ var ticketOrder = {
             var target =event.target || event.srcElement;
             var that = ticketOrder;
             that.backParaObj = that.reverseInformation;
-            that.backParaObj.TravellerInfo = [
+            /*that.backParaObj.TravellerInfo = [
                 {
                     chineseName:"刘德华",
                     PassengerType: "ADULT",  //乘客类
@@ -178,16 +179,20 @@ var ticketOrder = {
                     BaggageCode:"",//行李编码，一期不用,
                     NationalityCode: "CHN" //国籍代码
                 },
-            ];
-                that.backParaObj.ContactDetail={
-                      chineseName:"郭富城",
-                      SexCode: "Mr",  //称呼
-                      FirstName: "Jack", //姓
-                      LastName: "Ma",  //名
-                      Email: "330@qq.com", //邮箱
-                      MobilePhone: "15123957486",        //手机号
-                      CountryNumber: "86"
-            }
+            ];*/
+           that.backParaObj.TravellerInfo =JSON.parse(window['localStorage']['travellerInfo_selected']);
+            console.log(that.backParaObj.TravellerInfo)
+          /* that.backParaObj.ContactDetail={
+                chineseName:"郭富城",
+                SexCode: "Mr",  //称呼
+                FirstName: "Jack", //姓
+                LastName: "Ma",  //名
+                Email: "330@qq.com", //邮箱
+                MobilePhone: "15123957486",        //手机号
+                CountryNumber: "86"
+            }*/
+           that.backParaObj.ContactDetail =JSON.parse(window['localStorage']['contact_selected']);
+
             /*var reverseInformationCache = {
              WapOrder:{
              SetID:"30000080",
@@ -212,11 +217,7 @@ var ticketOrder = {
                 $("#status-f").hide();
                 var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
                 arg = JSON.parse(arg)
-                console.log(that.reverseInformation)
-                console.log(that.orderFlightData)
                 if(arg.success&&arg.code==200){
-                    console.log(that.reverseInformation)
-                    console.log(that.orderFlightData)
                     var orderResultInfo = {};
                     orderResultInfo['orderTime'] = new Date();
                     orderResultInfo['TotalFlightPrice'] = that.reverseInformation['TotalFlightPrice'];
@@ -231,9 +232,12 @@ var ticketOrder = {
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
                     console.log(orderResultInfo)
-                   // document.location.href = 'pay_detail.html';
+                    document.location.href = 'pay_detail.html';
                 }else{
+                    console.log(arg)
+
                     orderResultTip.innerHTML = arg.message;
+                    orderResultTip.style.display = 'block';
                     that.timer7 = window.setTimeout(function(){
                         orderResultTip.style.display = 'none';
                         window.clearTimeout(that.timer7);

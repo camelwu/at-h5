@@ -456,7 +456,7 @@
 		"Code" : "0074"
 	}, tpl_traveler = ['{% for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
 		'{% if (dd.listTravellerIdInfo.length>0) %}'+
-		'<li class="eve-traveler" index={%=i%}>', '<b class="icon user-choice" data-id={%=i%}></b>',
+		'<li class="eve-traveler" index={%=i%}>', '<b class="icon user-choice" data-id={%=dd.traveller.travellerId%}></b>',
 		'<b class="icon user-edit" data-id="{%=dd.traveller.travellerId%}"></b>',
 		'<ul class="often_user">',
 		'<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
@@ -480,7 +480,6 @@
 			travJson = eval('(' + json + ')')
 			json = JSON.parse(json);
 			for(var i=0;i<= json.data.length-1;i++){
-				debugger;
 				tralJsonObj[json.data[i].traveller.travellerId]=json.data[i];
 			}
 			console.log(tralJsonObj);
@@ -488,8 +487,8 @@
 				var html = template(tpl_traveler, json);
 				document.getElementById("allList").innerHTML = html;
 				$(".list-traveler .eve-traveler .user-edit").on("click",function(){
-					index=$(this).parent().attr("index")
-					showAddAir_page("edit",index);
+					id=$(this).attr("data-id")
+					showAddAir_page("edit",id);
 				})
 				if(isNeedPassport=="true") {
 					$(".list-traveler .eve-traveler").each(function () {
@@ -539,46 +538,78 @@
 	function submit_t() {
 		if (window.opener) {
 			var seled = $(".choiced");
-			debugger;
+			selectUser=[];
 			if(isNeedPassport=="true"){
 				$(seled).each(function(){
 					var cardType=$(this).siblings(".often_user").find("li").eq(0).attr("data-card");
 					if(cardType !=1) {
 						jAlert('请完善"'+$(this).siblings(".often_user").find("li").eq(0).html()+'"护照信息');
-					}else{
-						var user={};
-						selectUser.push($(this).attr("data-id"));
+						return;
 					}
+					selectUser.push(tralJsonObj[$(this).attr("data-id")]);
 				})
 			}
+			else{
+				$(seled).each(function(){
+					selectUser.push(tralJsonObj[$(this).attr("data-id")]);
+					alert($(this).attr("data-id"));
+				})
 
-			var passagerList=[];
-			$(seled).each(function(){
-				var passager={};
-				passager.id=$(this).siblings(".often_user").find(".travellerId").val();
-				passager.sex=$(this).siblings(".often_user").find(".sexName").val();
-				passager.cnName=$(this).siblings(".often_user").find(".cnName").html();
-				passager.firstName=$(this).siblings(".often_user").find(".firstName").html();
-				passager.lastName=$(this).siblings(".often_user").find(".lastName").html();
-				passager.cardType=$(this).siblings(".often_user").find(".passport-card-type").html();
-				passager.cardNum=$(this).siblings(".often_user").find(".passport-card-number").html();
-				passager.id=$(this).siblings(".often_user").find(".travellerId").html();
-				passagerList.push(passager);
-			});
+			}
 			var tpl=GetTpl(from,isContact)
-			var html = template(tpl,passagerList);
+            debugger;
+			var html = template(tpl,selectUser);
+			SavaLocalStorge(selectUser,isContact)//报错LocalStorge
 			if(window.opener.SelectPersonInformation) {
 				window.opener.SelectPersonInformation(html,isContact);
 			}
-			localStorage.setItem('user_selected',JSON.stringify(selectUser));
-			console.log(localStorage.getItem("user_selected"));
 			self.close();
-
 		} else {
 			window.history.go(-1);
 		}
 	}
+	function SavaLocalStorge(list,isContact){
 
+		if(!isContact)
+		{
+			var TravellerInfo=[]
+			for(var i=0; i<=list.length-1;i++){
+				TraInfo={};
+				CertificateInfo={}
+				TraInfo.PassengerType= "ADULT";  //乘客类型
+				TraInfo.SexCode= "Mr";       //称呼
+				TraInfo.FirstName="sss";     //姓
+				TraInfo.LastName= "ddd";       //名
+				TraInfo.DateOfBirth= "1900-12-24";
+
+				//信用卡信息
+				CertificateInfo.IdType= "4";     //证件类型
+				CertificateInfo.IdCountry= "CN";  //证件发行国家
+				CertificateInfo.IdNumber= "3412";      //证件号码
+				CertificateInfo.IdActivatedDate= "2016-12-31" ; //证件有效期
+				TraInfo.FlightCertificateInfo=CertificateInfo;
+
+				TraInfo.BaggageCode="",//行李编码，一期不用,
+				TraInfo.NationalityCode="CHN" //国籍代码
+				TravellerInfo.push(TraInfo)
+			}
+			localStorage.setItem('travellerInfo_selected',JSON.stringify(TravellerInfo));
+		}
+		else
+		{
+			var ContactDetail={}
+			for(var i=0; i<=list.length-1;i++){
+				ContactDetail.SexCode= "Mr"; //称呼
+				ContactDetail.FirstName="dddd" ;//姓
+				ContactDetail.LastName="ssss"  //名
+				ContactDetail.Email="855@asiatravel.com" //邮箱
+				ContactDetail.MobilePhone="123456789",        //手机号
+				ContactDetail.CountryNumber="SG"
+			}
+			localStorage.setItem('contact_selected',JSON.stringify(ContactDetail));
+		}
+
+		}
 	// 新建常旅
 	function GetTpl(from,isContact){
 		switch (from){
@@ -601,7 +632,7 @@
 
 	}
 	//显示新增乘机人编辑页
-	function showAddAir_page(type,index) {
+	function showAddAir_page(type,id) {
 		var addAir_page = document.getElementById("addAir-page");
 		addAir_page.style.display = "block";
 		if(type=="new"){
@@ -610,36 +641,33 @@
 		else {
 			$("#delTra").show();
 			$(".addAir-page .header h3").html("编辑"+titleType+"信息");
-			$(".cnName").attr("value",travJson.data[index].traveller.idName);
-			$(".firstName").attr("value",travJson.data[index].traveller.firstName);
-			$(".lastName").attr("value",travJson.data[index].traveller.lastName);
-			$(".nameche-wrap").attr("data-id",travJson.data[index].traveller.travellerId)
-			$(".telNum").attr("value",travJson.data[index].traveller.MobilePhone);
-			$(".txtEmail").attr("value",travJson.data[index].traveller.Email);
+			$(".cnName").attr("value",tralJsonObj[id].traveller.idName);
+			$(".firstName").attr("value",tralJsonObj[id].traveller.firstName);
+			$(".lastName").attr("value",tralJsonObj[id].traveller.lastName);
+			$(".nameche-wrap").attr("data-id",tralJsonObj[id].traveller.travellerId)
+			$(".telNum").attr("value",tralJsonObj[id].traveller.MobilePhone);
+			$(".txtEmail").attr("value",tralJsonObj[id].traveller.Email);
 
-			$(".cardNumber").attr("value",travJson.data[index].listTravellerIdInfo[0].idNumber);
-			$(".postCard").attr("data-code",travJson.data[index].listTravellerIdInfo[0].idType);
-			$(".cardDateLimit").attr("value",travJson.data[index].listTravellerIdInfo[0].IdActivatedDate.replace("号","日"));
-			$(".cardCountry").attr("value",travJson.data[index].listTravellerIdInfo[0].IdCountry);
+			$(".cardNumber").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idNumber);
+			$(".postCard").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idType);
+			$(".cardDateLimit").attr("value",tralJsonObj[id].listTravellerIdInfo[0].IdActivatedDate.replace("号","日"));
+			$(".cardCountry").attr("value",tralJsonObj[id].listTravellerIdInfo[0].IdCountry);
 
-
-debugger;
-
-			if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
+			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
-			} else if (travJson.data[index].listTravellerIdInfo[0].idType == "2") {
+			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "2") {
 				$(".postCard").html("身份证");
-			} else if (travJson.data[index].listTravellerIdInfo[0].idType == "3") {
+			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "3") {
 				$(".postCard").html("出生证明");
-			} else if (travJson.data[index].listTravellerIdInfo[0].idType == "4") {
+			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "4") {
 				$(".postCard").html("港澳通行证");
-			} else if (travJson.data[index].listTravellerIdInfo[0].idType == "5") {
+			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "5") {
 				$(".postCard").html("军官证");
-			} else if (travJson.data[index].listTravellerIdInfo[0].idType == "6") {
+			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "6") {
 				$(".postCard").html("驾驶证");
-			} else if (travJson.data[index].listTravellerIdInfo[0].idType == "7") {
+			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "7") {
 				$(".postCard").html("台胞证");
-			} else if (travJson.data[index].listTravellerIdInfo[0].idType == "8") {
+			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "8") {
 				$(".postCard").html("回乡证");
 			} else {
 				$(".postCard").html("其他");
@@ -764,24 +792,27 @@ debugger;
 	})
 </script>
 <!--机票-获取乘客信息-->
-<script id="tpl_f_passager" type="text/template">
+<script id="tpl_f_passager" type="text/template"	>
 	<li class="ride-user-info">
-		<span  class="icon-add"><i></i></span>
+		<span class="icon-add"><i></i></span>
 		<div class="middle">
 			<p class="name">
-				<span>姓 / 名</span><input type="text" name="input-zone" placeholder="BAI/LISA" readonly="readonly" value="{%=cnName%}" data-id="{%=id%}" />
+				<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" value="{%=traveller.lastName%}">
+				<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly"  value="{%=traveller.firstName%}">
 			</p>
 			<div class="passport">
-				<span>{%=cardType%}</span><input type="text" name="input-zone" placeholder="1234567890" readonly="readonly" value="{%=cardNum%}" /><span class="passenger-sex">{%=sex%}</span>
+				<span>护照</span><input type="text" name="input-zone"  readonly="readonly" value="{%=listTravellerIdInfo[0].idNumber%}"><span class="passenger-sex">{%=traveller.sexName%}</span>
 			</div>
 		</div>
-		<span class="next-icon"><i></i></span>
+		<i></i>
 	</li>
 </script>
 <!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
-		<label for="name" class="name-label">姓/名</label><input type="text" name="name" id="name" placeholder="BAI/LISA"  value="{%=cnName%}"/>
+
+		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}" />
+		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.lastName%}" />
 	</div>
 	<div class="unit tel">
 		<div class="left">
@@ -796,12 +827,12 @@ debugger;
 		</div>
 
 		<div class="right">
-			<input type="tel" name="tel"  id="tel-num" placeholder="用于接收通知" />
+			<input type="tel" name="tel"  id="tel-num" placeholder="用于接收通知" value="{%=traveller.mobilePhone%}" />
 		</div>
 	</div>
 
 	<div class="unit email">
-		<label for="email-label">E-mail</label><input type="email" name="email" id="email-label"  class="txtEmail" placeholder="用于接收通知" />
+		<label for="email-label">E-mail</label><input type="email" name="email" id="email-label" placeholder="用于接收通知" value=" {%=traveller.email%}" />
 	</div>
 	</div>
 </script>

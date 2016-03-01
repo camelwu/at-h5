@@ -324,7 +324,7 @@ function styleChange(id,mytext){
 
     });
     //输入框样式改变
-    styleChange('sousou','酒店名/位置')
+    //styleChange('sousou','酒店名/位置')
 
     var list_oUl=lsf_myweb.getbyid('lsf_list');
     var pWidth=list_oUl.offsetWidth-140;
@@ -457,8 +457,9 @@ function styleChange(id,mytext){
                     (data[i].hotelNameLocale||'')+'('+data[i].hotelName+')'+
                     '</p>'+
                     '<div class="h-score">'+
-                    '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+data[i].hotelReviewScore+'</span>'+
-                    '<span style="color:#999999;font-size:1rem;">分/'+data[i].hotelReviewCount+'人点评</span>'+
+                    '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+(parseFloat(data[i].hotelReviewScore)?data[i].hotelReviewScore+'</span>'+
+                    '<span style="color:#999999;font-size:1rem;">分/'+(parseFloat(data[i].hotelReviewCount)?data[i].hotelReviewCount:'')+'人点评</span>':'</span>'+
+                    '<span style="color:#fff;font-size:1rem;">分/'+(parseFloat(data[i].hotelReviewCount)?data[i].hotelReviewCount:'')+'人点评</span>')+
                     '<p class="hl_price">'+
                     '<span style="font-size:0.8rem;color:#fe4716;">￥</span>'+
                     '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+data[i].avgPriceCNY+'</span>'+
@@ -480,20 +481,20 @@ function styleChange(id,mytext){
             //横屏竖屏时改变酒店名宽度
             var hl_aLi=list_oUl.children;
             var hl_hname=lsf_myweb.getbyclass(list_oUl,'hname');
-            function screenDir(){
-                if(window.orientation==180||window.orientation==0){
-                    //alert('竖屏状态');
-                    var hnameWidth=(list_oUl.offsetWidth-140);
-                }
-                if(window.orientation==90||window.orientation==-90){
-                    //alert('横屏状态');
-                    var hnameWidth=(list_oUl.offsetWidth-140);
-                }
-                for(var j=0;j<hl_hname.length;j++){
-                    hl_hname[j].style.width=hnameWidth+'px';
-                }
-            }
-            window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
+            //function screenDir(){
+            //    if(window.orientation==180||window.orientation==0){
+            //        //alert('竖屏状态');
+            //        var hnameWidth=(list_oUl.offsetWidth-140);
+            //    }
+            //    if(window.orientation==90||window.orientation==-90){
+            //        //alert('横屏状态');
+            //        var hnameWidth=(list_oUl.offsetWidth-140);
+            //    }
+            //    for(var j=0;j<hl_hname.length;j++){
+            //        hl_hname[j].style.width=hnameWidth+'px';
+            //    }
+            //}
+            //window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
             //懒加载
             function lazyLoad2(){
                 lazyLoad.apply(this,arguments);

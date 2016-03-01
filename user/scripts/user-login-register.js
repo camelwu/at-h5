@@ -140,7 +140,7 @@ window.onload = function(){
                     console.log(input[i].getAttribute('data-type'));
                     if(input[i].getAttribute('data-type') !="code") {
                         if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                            alert("输入不正确");
+                            jAlert("输入不正确");
                             return;
                         }
                     }
@@ -198,7 +198,7 @@ window.onload = function(){
                 if (input[i].style.display != "none" && input[i].value != "") {
                     //console.log(input[i].getAttribute('data-type'));
                     if(!check(input[i].getAttribute('data-type'),input[i].value)){
-                        alert("用户名或密码错误");
+                        jAlert("用户名或密码错误");
                         return;
                     }
                 }
@@ -229,7 +229,7 @@ window.onload = function(){
                     if(input[i].value !="") {
                         if(input[i].getAttribute('data-type') !="code") {
                             if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                                alert("请输入有效的手机号");
+                                jAlert("请输入有效的手机号");
                                 return;
                             }
                         }
@@ -238,17 +238,17 @@ window.onload = function(){
                 }
                 if(input[0].value == '')
                 {
-                    alert('请输入手机号');
+                    jAlert('请输入手机号');
                     return;
                 }
                 if(input[1].value == '')
                 {
-                    alert('请输入验证码');
+                    jAlert('请输入验证码');
                     return;
                 }
                 if(input[2].value == '')
                 {
-                    alert('请输入新密码');
+                    jAlert('请输入新密码');
                     return;
                 }
                 var Parameters= {
@@ -263,13 +263,13 @@ window.onload = function(){
                 var input = email_find.getElementsByTagName('input')[0];
                 if(input.value !="") {
                     if (!check(input.getAttribute('data-type'), input.value)) {
-                        alert("请输入有效的邮箱");
+                        jAlert("请输入有效的邮箱");
                         return;
                     }
                 }
                 else
                 {
-                    alert('请输入邮箱');
+                    jAlert('请输入邮箱');
                     return;
                 }
                 var Parameters= {
@@ -300,14 +300,14 @@ window.onload = function(){
             if(find_phone.value !="") {
                 if(find_phone.getAttribute('data-type') !="code") {
                     if (!check(find_phone.getAttribute('data-type'), find_phone.value)) {
-                        alert("请输入有效的手机号");
+                        jAlert("请输入有效的手机号");
                         return;
                     }
                 }
             }
             else
             {
-                alert('请输入手机号');
+                jAlert('请输入手机号');
                 return;
             }
             var Parameters = {
@@ -439,15 +439,15 @@ function mycallback_login(ret) {
 
         if(myJson.message == 'Invalid password')
         {
-            alert('密码错误，请重新输入');
+            jAlert('密码错误，请重新输入');
         }
         else if(myJson.message == '无此用户的相关信息')
         {
-            alert('未注册用户');
+            jAlert('未注册用户');
         }
         else
         {
-            alert(myJson.message);
+            jAlert(myJson.message);
         }
     }
 }
