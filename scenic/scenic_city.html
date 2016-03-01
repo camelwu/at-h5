@@ -38,13 +38,65 @@
                     <section>
                         <div class="gui-tab-view" id="ui-view-2">
                             <ul class="gui-tab-mod">
-                                <li data-key="1" data-index="0" class="gui-tab-current cp">国内城市</li>
-                                <li data-key="2" data-index="1" class="cp">海外城市</li>
+                                <li data-key="1" class="gui-tab-current cp">国内城市</li>
+                                <li data-key="2" class="cp">海外城市</li>
                                 <i class="gui-tab-scrollbar gui-tab"></i>
                             </ul>
                         </div>
 
-                        <ul id="js_inland" class="gui-city-itmes">
+                        <ul id="js_inland" class="gui-city-itmes gui-hidden">
+                            <li>
+                                <span class="gui-city-t">当前</span>
+                                <ul class="city-tags">
+                                    <li class="current">我的位置</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="gui-city-t">历史选择</span>
+                                <ul class="city-tags">
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="gui-city-t">热门城市</span>
+                                <ul class="city-tags">
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                    <li>北京</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul id="js_oversea" class="gui-city-itmes">
                             <li>
                                 <span class="gui-city-t">当前</span>
                                 <ul class="city-tags">
@@ -258,6 +310,7 @@
 
     </ul>
 </div>
-<script></script>
+<script src="../js/lib/jquery.js"></script>
+<script src="js/scenic_city.js"></script>
 </body>
 </html>
