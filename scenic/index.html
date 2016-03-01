@@ -174,7 +174,7 @@
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
     <script id="tpl_GetHotCity" type="text/template">
-        {% for(var i=0,len=data.destCities.length >= 8?8:data.destCities.length;i<len;i++){ %}
+        {% for(var i=0,len=data.destCities.length;i<len;i++){ %}
             <li class = "hotplace {% if(i == 0){ %}pl-active{% } %}" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
         {% } %}
         <li class = "hotplace" title="more">更多</li>
@@ -249,9 +249,9 @@
                         data : data,
                         contentType : 'application/json;charset=utf-8',
                         beforeSend : function(xhr) {
-                            if(animin!=undefined && animin != ""){
-                                animin();
-                            }
+//                            if(animin!=undefined && animin != ""){
+//                                animin();
+//                            }
                             //后续开始加密，设置header
                             //xhr.setRequestHeader('Content-Type','application/json');
                             if (encryption != undefined && encryption == true) {
@@ -259,11 +259,12 @@
                                 var password = md5("");
                                 xhr.setRequestHeader('uid', user);
                             }
-                        },complete( jqXHR, textStatus){
-                            if(animout!=undefined && animout != ""){
-                                animout();//动画淡出
-                            }
                         },
+//                        complete( jqXHR, textStatus){
+//                            if(animout!=undefined && animout != ""){
+//                                animout();//动画淡出
+//                            }
+//                        },
                         success : function(jsondata) {
                             mycallback(jsondata);
 

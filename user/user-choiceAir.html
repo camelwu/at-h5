@@ -165,9 +165,7 @@
 						<div>
 							发证国家
 						</div>
-						<div class="country-btn cardCountry" data-code="CN" >
-							中国
-						</div>
+						<div class="country-btn cardCountry" data-code="CN" >中国</div>
 					</li>
 				</ul>
 				<div class="addtra-title">其他信息</div>
@@ -177,9 +175,7 @@
 						<div>
 							国籍
 						</div>
-						<div class="country-btn country" data-code="CN" >
-							中国
-						</div>
+						<div class="country-btn country" data-code="CN" >中国</div>
 					</li>
 					<li>
 						<div>
@@ -436,6 +432,7 @@
 	var from=vlm.getpara("from");
 	var json="";
 	var travJson;
+	var tralJsonObj={};
 	var index;
 	var selectUser=[]
 
@@ -482,6 +479,11 @@
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
 			travJson = eval('(' + json + ')')
 			json = JSON.parse(json);
+			for(var i=0;i<= json.data.length-1;i++){
+				debugger;
+				tralJsonObj[json.data[i].traveller.travellerId]=json.data[i];
+			}
+			console.log(tralJsonObj);
 			if (json.success) {
 				var html = template(tpl_traveler, json);
 				document.getElementById("allList").innerHTML = html;
@@ -587,6 +589,13 @@
 				else{
 					return "tpl_f_contact";
 				}
+			case "t" :
+				if(!isContact) {
+					return "tpl_t_passager";
+				}
+				else{
+					return "tpl_t_contact";
+				}
 
 		}
 
@@ -614,7 +623,7 @@
 			$(".cardCountry").attr("value",travJson.data[index].listTravellerIdInfo[0].IdCountry);
 
 
-
+debugger;
 
 			if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
@@ -690,29 +699,30 @@
 		var inputList=$(".addAir-page")
 		console.log($(inputList).find(".lastName").eq(0).val());
 		console.log($(inputList).find(".country").eq(0).html());
-		debugger;
-		var Parameters = {
-			"Parameters": "{\"Traveller\":{\"IdName\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
-			"\"LastName\":\"" +$(inputList).find(".lastName").eq(0).val() + "\"" + "," +
-			"\"FirstName\":\"" + $(inputList).find(".firstName").eq(0).val() + "\"," +
-			"\"CountryCode\":\"" + $(inputList).find(".country").eq(0).attr("data-code") + "\"," +
-			"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
-			"\"SexCode\":\"" + sexCode + "\"," +
-			"\"SexName\":\"" + sexName + "\"," +
-			"\"DateOfBirth\":\""+	"2016-02-13" + "\","+
-			"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
-			"\"MemberId\":\"" + memberId + "\"," +
-			"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"," +
-			"\"ListTravellerIdInfo\":" +
-			"[{" +
-			"\"IdType\":\"" +  $(inputList).find(".postCard").eq(0).attr("data-code") + "\"," +
-			"\"IdNumber\":\"" +  $(inputList).find(".cardNumber").eq(0).val() + "\"," +
-			"\"IdCountry\":\"" +  $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\","
-			+"\"IdActivatedDate\":\""+	"2016-02-13" + "\""+
-//			+ "\"IdActivatedDate\":\"" + $(inputList).find(".cardDateLimit").eq(0).val().replace("号","日")+ "\"" +
-			"}]}"
-			,"ForeEndType": 3
-			,"Code": "0071"
+		var Parameters= {
+			"Parameters":
+					"{\"Traveller\":" +
+					"{" +
+					"\"IdName\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
+					"\"LastName\":\"" +$(inputList).find(".lastName").eq(0).val() + "\"" + "," +
+					"\"FirstName\":\"" + $(inputList).find(".firstName").eq(0).val() + "\"," +
+					"\"CountryCode\":\"" + $(inputList).find(".country").eq(0).attr("data-code") + "\"," +
+					"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
+					"\"SexCode\":\"" + sexCode + "\"," +
+					"\"SexName\":\"" + sexName + "\"," +
+					"\"DateOfBirth\":\"1932-06-15\"," +
+					"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
+					"\"MemberId\":\"" + memberId + "\"," +
+					"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"}," +
+					"\"ListTravellerIdInfo\":" +
+					"[{" +
+					"\"IdType\":" +  $(inputList).find(".postCard").eq(0).attr("data-code") +"," +
+					"\"IdNumber\":\"" +  $(inputList).find(".cardNumber").eq(0).val() + "\"," +
+					"\"IdCountry\":\"" +  $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\","+
+					"\"IdActivatedDate\":\"2016-02-13T00:00:00\"" +
+					"}]}",
+			"ForeEndType": 3,
+			"Code": "0071"
 		}
 		console.log(Parameters);
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
@@ -742,7 +752,7 @@
 			"Code" : "0073"
 		};
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-			var myJson = eval('(' + ret + ')');
+			var myJson = eval('(' + data + ')');
 			console.log(myJson);
 			if (myJson.success) {
 				window.location.reload();
@@ -753,7 +763,7 @@
 
 	})
 </script>
-<!--获取乘客信息-->
+<!--机票-获取乘客信息-->
 <script id="tpl_f_passager" type="text/template">
 	<li class="ride-user-info">
 		<span  class="icon-add"><i></i></span>
@@ -768,7 +778,7 @@
 		<span class="next-icon"><i></i></span>
 	</li>
 </script>
-<!--获取乘客信息-->
+<!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
 		<label for="name" class="name-label">姓/名</label><input type="text" name="name" id="name" placeholder="BAI/LISA"  value="{%=cnName%}"/>
@@ -794,6 +804,17 @@
 		<label for="email-label">E-mail</label><input type="email" name="email" id="email-label"  class="txtEmail" placeholder="用于接收通知" />
 	</div>
 	</div>
+</script>
+
+<!--景点-获取乘客信息-->
+<script id="tpl_t_passager" type="text/template">
+	<li><span class="tourist-name tour-short">姓名：</span><span class="tourist-list-light">{%=cnName%}</span><span class="tourist-list-light">{%=cardNum%}</span></li>
+</script>
+<!--景点-获取联系人信息-->
+<script id="tpl_t_contact" type="text/template">
+	<li><span class="tourist-name tour-short">姓名：</span><span class="tourist-list-light">{%=cnName%}</span></li>
+	<li><span class="tourist-name tour-short">手机：</span><i class="tourist-list-light">+86</i><span class="tourist-list-light"></span></li>
+	<li><span class="tourist-name tour-short">邮箱：</span><span class="tourist-list-light"></span></li>
 </script>
 
 <!--国籍选择结束-->

@@ -20,11 +20,11 @@
 <body>
 <div id="headerview" style="height: 44px;">
     <div id="ui-view-1" class="t-header">
-            <span class="t-header-icon fl t-header-iconsize cp"></span>
-            <div class="t-search-view t-search-viewsize">
-                <input class="t-search-inputbox" placeholder="北京/beijing/bj/bjs/中国" />
-            </div>
-        
+        <span class="t-header-icon fl t-header-iconsize cp"></span>
+        <div class="t-search-view t-search-viewsize">
+            <input class="t-search-inputbox" placeholder="北京/beijing/bj/bjs/中国"/>
+        </div>
+
     </div>
 </div>
 
@@ -35,58 +35,149 @@
 
             <article>
 
-                    <section>
-                        <div class="gui-tab-view" id="ui-view-2">
-                            <ul class="gui-tab-mod">
-                                <li data-key="1" data-index="0" class="gui-tab-current cp">国内城市</li>
-                                <li data-key="2" data-index="1" class="cp">海外城市</li>
-                                <i class="gui-tab-scrollbar gui-tab"></i>
-                            </ul>
-                        </div>
-
-                        <ul id="js_inland" class="gui-city-itmes">
-                            <li>
-                                <span class="gui-city-t">当前</span>
-                                <ul class="city-tags">
-                                    <li class="current">我的位置</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="gui-city-t">热门城市</span>
-                                <ul class="city-tags">
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                    <li>北京</li>
-                                </ul>
-                            </li>
+                <section>
+                    <div class="gui-tab-view" id="ui-view-2">
+                        <ul class="gui-tab-mod">
+                            <li data-key="1" class="gui-tab-current cp">国内城市</li>
+                            <li data-key="2" class="cp">海外城市</li>
+                            <i class="gui-tab-scrollbar gui-tab"></i>
                         </ul>
-                    </section>
+                    </div>
+
+                    <ul id="js_inland" class="gui-city-itmes gui-hidden">
+                        <li>
+                            <span class="gui-city-t">当前</span>
+                            <ul class="city-tags">
+                                <li class="current">我的位置</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="gui-city-t">历史选择</span>
+                            <ul class="city-tags">
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="gui-city-t">热门城市</span>
+                            <ul class="city-tags">
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul id="js_oversea" class="gui-city-itmes">
+                        <li>
+                            <span class="gui-city-t">当前</span>
+                            <ul class="city-tags">
+                                <li class="current">我的位置</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="gui-city-t">热门城市</span>
+                            <ul class="city-tags">
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                                <li>北京</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="js_SearchBox" class="searchbox-head gui-city-hd gui-input-focus">
+                    <i class="t-header-icon t-header-iconsize"></i>
+                    <div class="gui-city-hd">
+                        <input class="gui-input-box js_pop_input" placeholder="全球城市/区域/位置/酒店名">
+                        <span class="gui-focus-close js_clear_input" style="display:none">×</span>
+                    </div>
+                    <button type="button" class="gui-btn-cancle js_btn_cancle">取消</button>
+                </section>
+
+                <section id="js_layerSearchBox_listBox" class="hotel-filter-searchlistbox js_layer_list_wrap"
+                         style="top: 78px;">
+                    <ul id="js_layerSearchBox_listBox_destination"
+                        class="cui-city-associate hotel-asso-wrap hotel-t-border js_layer_list">
+                        <li class="js_destination_item" data-source="ac" data-cityid="168" data-citytype="2">
+                            <div class="hotel-asso-l"><p class="js_tit"><strong>12</strong>，新西伯利亚，新西伯利亚州，俄罗斯</p>
+                                <small class="js_sub_tit">,Novosibirsk,Russia</small>
+                            </div>
+                            <span class="hotel-asso-r js_search_typename">地标</span>
+                        </li>
+                        <li class="js_destination_item" data-source="ac" data-cityid="637" data-citytype="2">
+                            <div class="hotel-asso-l"><p class="js_tit"><strong>12</strong>区 海伊韦德，布达佩斯，佩斯州，匈牙利</p>
+                                <small class="js_sub_tit"><strong>12</strong>.Hegyvidék,Budapest,Pest,Hungary</small>
+                            </div>
+                            <span class="hotel-asso-r js_search_typename">商业区</span>
+                        </li>
+                        <li class="js_destination_item" data-source="ac" data-cityid="192" data-citytype="2">
+                            <div class="hotel-asso-l"><p class="js_tit">第<strong>12</strong>区 贝西-里昂火车站，巴黎，法兰西岛大区，法国</p>
+                                <small class="js_sub_tit"><strong>12</strong>.Bercy-Gare de lyon,Paris,Ile de
+                                    France,France
+                                </small>
+                            </div>
+                            <span class="hotel-asso-r js_search_typename">商业区</span>
+                        </li>
+                    </ul>
+                    <ul id="js_layerSearchBox_listBox_empty" class="cui-city-n" style="display: none;">
+                        <li class="cui-city-novalue">无联想结果</li>
+                    </ul>
+                </section>
 
             </article>
 
@@ -258,6 +349,7 @@
 
     </ul>
 </div>
-<script></script>
+<script src="../js/lib/jquery.js"></script>
+<script src="js/scenic_city.js"></script>
 </body>
 </html>
