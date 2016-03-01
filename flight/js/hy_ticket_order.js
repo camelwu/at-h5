@@ -98,7 +98,7 @@ var ticketOrder = {
         var that = this;
 
         this.addHandler(addPassenger,'click', function(){
-             vlm.f_choice('f','traver','',true,true)
+             //vlm.f_choice('f','traver','',true,true)
         });
 
         for(var i = 0;i<toEditPassengers.length;i++){

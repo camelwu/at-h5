@@ -428,6 +428,8 @@
 	var isMulSelect=vlm.getpara("isMulSelect");//是否多选
 	var isNeedPassport=vlm.getpara("isNeedPassport");//是否需要护照
 	var titleType=vlm.getpara("title").substr(2);//是否多选title;
+	var travId=vlm.getpara("Id");//id
+	debugger;
 	$(".newTitle").html("新增"+titleType)
 	var from=vlm.getpara("from");
 	var json="";
@@ -504,6 +506,10 @@
 				jAlert(json.message + "", '');
 			}
 			check_box();
+			if(travId>0){
+				showAddAir_page("edit",travId);
+
+			}
 		});
 	}
 
@@ -552,12 +558,10 @@
 			else{
 				$(seled).each(function(){
 					selectUser.push(tralJsonObj[$(this).attr("data-id")]);
-					alert($(this).attr("data-id"));
 				})
 
 			}
 			var tpl=GetTpl(from,isContact)
-            debugger;
 			var html = template(tpl,selectUser);
 			SavaLocalStorge(selectUser,isContact)//报错LocalStorge
 			if(window.opener.SelectPersonInformation) {
@@ -644,6 +648,8 @@
 		else {
 			debugger;
 			$("#delTra").show();
+			$(".addAir-page .header h3").attr("type","edit")
+			$(".addAir-page .header h3").attr("data-id",tralJsonObj[id].traveller.travellerId)
 			$(".addAir-page .header h3").html("编辑"+titleType+"信息");
 			$(".cnName").attr("value",tralJsonObj[id].traveller.idName);
 			$(".firstName").attr("value",tralJsonObj[id].traveller.firstName);
@@ -712,6 +718,8 @@
 	}
 
 	$(".addFinish").on("click",function(){
+		var type=$(".addAir-page .header h3").attr("type");
+
 		//  判断性别
 		var man = $("#man")[0];
 		var sexCode;
@@ -731,38 +739,76 @@
 		var inputList=$(".addAir-page")
 		console.log($(inputList).find(".lastName").eq(0).val());
 		console.log($(inputList).find(".country").eq(0).html());
-		var Parameters= {
-			"Parameters":
-					"{\"Traveller\":" +
-					"{" +
-					"\"IdName\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
-					"\"LastName\":\"" +$(inputList).find(".lastName").eq(0).val() + "\"" + "," +
-					"\"FirstName\":\"" + $(inputList).find(".firstName").eq(0).val() + "\"," +
-					"\"CountryCode\":\"" + $(inputList).find(".country").eq(0).attr("data-code") + "\"," +
-					"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
-					"\"SexCode\":\"" + sexCode + "\"," +
-					"\"SexName\":\"" + sexName + "\"," +
-					"\"DateOfBirth\":\"1932-06-15\"," +
-					"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
-					"\"MemberId\":\"" + memberId + "\"," +
-					"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"}," +
-					"\"ListTravellerIdInfo\":" +
-					"[{" +
-					"\"IdType\":" +  $(inputList).find(".postCard").eq(0).attr("data-code") +"," +
-					"\"IdNumber\":\"" +  $(inputList).find(".cardNumber").eq(0).val() + "\"," +
-					"\"IdCountry\":\"" +  $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\","+
-					"\"IdActivatedDate\":\"2016-02-13T00:00:00\"" +
-					"}]}",
-			"ForeEndType": 3,
-			"Code": "0071"
+		if(type=="edit") {
+			var id=$(".addAir-page .header h3").attr("data-id");
+			var Parameters = {
+
+				"Parameters": "{\"Traveller\":" +
+				"{" +
+				"\"TravellerId\":\"" + id + "\"," +
+				"\"IdName\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
+				"\"LastName\":\"" + $(inputList).find(".lastName").eq(0).val() + "\"" + "," +
+				"\"FirstName\":\"" + $(inputList).find(".firstName").eq(0).val() + "\"," +
+				"\"CountryCode\":\"" + $(inputList).find(".country").eq(0).attr("data-code") + "\"," +
+				"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
+				"\"SexCode\":\"" + sexCode + "\"," +
+				"\"SexName\":\"" + sexName + "\"," +
+				"\"DateOfBirth\":\"1932-06-15\"," +
+				"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
+				"\"MemberId\":\"" + memberId + "\"," +
+				"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"}," +
+				"\"ListTravellerIdInfo\":" +
+				"[{" +
+				"\"IdType\":" + $(inputList).find(".postCard").eq(0).attr("data-code") + "," +
+				"\"IdNumber\":\"" + $(inputList).find(".cardNumber").eq(0).val() + "\"," +
+				"\"IdCountry\":\"" + $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\"," +
+				"\"IdActivatedDate\":\"2016-02-13T00:00:00\"" +
+				"}]}",
+				"ForeEndType": 3,
+				"Code": "0072"
+			}
 		}
-		console.log(Parameters);
+		else{
+			var Parameters = {
+				"Parameters": "{\"Traveller\":" +
+				"{" +
+				"\"TravellerId\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
+				"\"IdName\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
+				"\"LastName\":\"" + $(inputList).find(".lastName").eq(0).val() + "\"" + "," +
+				"\"FirstName\":\"" + $(inputList).find(".firstName").eq(0).val() + "\"," +
+				"\"CountryCode\":\"" + $(inputList).find(".country").eq(0).attr("data-code") + "\"," +
+				"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
+				"\"SexCode\":\"" + sexCode + "\"," +
+				"\"SexName\":\"" + sexName + "\"," +
+				"\"DateOfBirth\":\"1932-06-15\"," +
+				"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
+				"\"MemberId\":\"" + memberId + "\"," +
+				"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"}," +
+				"\"ListTravellerIdInfo\":" +
+				"[{" +
+				"\"IdType\":" + $(inputList).find(".postCard").eq(0).attr("data-code") + "," +
+				"\"IdNumber\":\"" + $(inputList).find(".cardNumber").eq(0).val() + "\"," +
+				"\"IdCountry\":\"" + $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\"," +
+				"\"IdActivatedDate\":\"2016-02-13T00:00:00\"" +
+				"}]}",
+				"ForeEndType": 3,
+				"Code": "0071"
+			}
+
+		}
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
 			var data=JSON.parse(data);
 			if(data.success) {
-				window.location.reload();
-				$("#preloader").hide();
-				showAddAir_page("new");
+				// 有ID说明是编辑，关闭窗口
+				if(travId>0)
+				{
+					self.close();
+				}
+				else {
+					window.location.reload();
+					$("#preloader").hide();
+					showAddAir_page("new");
+				}
 			}
 			else
 			{
@@ -798,7 +844,7 @@
 <!--机票-获取乘客信息-->
 <script id="tpl_f_passager" type="text/template"	>
 	<li class="ride-user-info">
-		<span class="icon-add"><i></i></span>
+		<span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}"></i></span>
 		<div class="middle">
 			<p class="name">
 				<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" value="{%=traveller.lastName%}">
@@ -808,7 +854,7 @@
 				<span>护照</span><input type="text" name="input-zone"  readonly="readonly" value="{%=listTravellerIdInfo[0].idNumber%}"><span class="passenger-sex">{%=traveller.sexName%}</span>
 			</div>
 		</div>
-		<i></i>
+		<i class="edit-passager" data-id="{%=traveller.travellerId%}"></i>
 	</li>
 </script>
 <!--机票-获取联系人信息-->

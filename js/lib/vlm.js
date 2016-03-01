@@ -8,7 +8,7 @@
  */
 (function(e, t) {"use strict";
 	var n = n || (function(n) {//123.56.190.34
-			var _api = "http://10.2.22.239:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
+			var _api = "http://123.56.190.34:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 					home : ['首页', basePath],
 					find : ['目的地', basePath + '/scenic/index.html'],
 					user : ['我的', basePath + '/user/user.html']
@@ -956,7 +956,7 @@
 					}
 				}, l_find = function() {
 
-				}, _choice = function(f, t, tid, isNeedPassport,isMulSelect) {
+				}, _choice = function(f, t, tid, isNeedPassport,isMulSelect,numofAdult,numofChlid,id) {
 					//if(arguments.length<1){return ;}
 					//var arg = arguments.callee.slice(this);
 					var type = '', title = '';
@@ -980,7 +980,7 @@
 					} else {
 						type = 'add';
 					}
-					var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '', title, "fullscreen=1");
+					var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
 					//choice.location = urls;
 				};
 			//out api
