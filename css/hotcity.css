@@ -61,7 +61,7 @@ i{font-style: normal;}
 }
 .hot_tagBox span{float:left;width:49.8%;height:38px;text-align:center;font-size:17px;color:#999;}
 .hot_tagBox span.current{
-    border-bottom:1px solid #ffb500;color:#ffb500;overflow:hidden;
+    border-bottom:3px solid #ffb500;color:#ffb500;overflow:hidden;
 }
 .hot_tagBox span a{display:block;color:#999;}
 
