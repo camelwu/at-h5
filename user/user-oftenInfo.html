@@ -26,6 +26,7 @@
     <title>个人中心常用信息 - 亚洲旅行网</title>
     <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css"		rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <link href="../css/date_select.css"	rel="stylesheet" type="text/css">
 </head>
@@ -238,7 +239,7 @@
                         <li>
                             <b class="icons open-pho"></b>
                             <div>发证国家</div>
-                            <div class="country-btn" id="country-name" >中国</div>
+                            <div class="country-btn" id="country-name" date-code="CN" >中国</div>
                         </li>
                     </ul>
                     <div class="addtra-title">其他信息</div>
@@ -246,7 +247,7 @@
                         <li>
                             <b class="icons open-pho"></b>
                             <div>国籍</div>
-                            <div id="countryName" class="country-btn"></div>
+                            <div id="countryName" date-code="CN" class="country-btn"></div>
                         </li>
                         <li>
                             <div>性别</div>
@@ -434,7 +435,9 @@
         </div>
     </div>
     <!--国籍选择结束-->
+    <script src="../js/lib/jquery.js"></script>
     <script src="../js/country_list.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/require.js" data-main="../js/user.js"></script>
 </body>
 </html>
