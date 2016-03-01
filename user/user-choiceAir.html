@@ -572,25 +572,27 @@
 
 		if(!isContact)
 		{
+			debugger;
 			var TravellerInfo=[]
 			for(var i=0; i<=list.length-1;i++){
 				TraInfo={};
 				CertificateInfo={}
 				TraInfo.PassengerType= "ADULT";  //乘客类型
-				TraInfo.SexCode= "Mr";       //称呼
-				TraInfo.FirstName="sss";     //姓
-				TraInfo.LastName= "ddd";       //名
-				TraInfo.DateOfBirth= "1900-12-24";
+				TraInfo.SexCode= list[i].traveller.sexCode;       //称呼
+				TraInfo.FirstName=list[i].traveller.firstName;     //姓
+				TraInfo.LastName= list[i].traveller.lastName;       //名
+				TraInfo.DateOfBirth= list[i].traveller.dateOfBirth;
 
 				//信用卡信息
-				CertificateInfo.IdType= "4";     //证件类型
-				CertificateInfo.IdCountry= "CN";  //证件发行国家
-				CertificateInfo.IdNumber= "3412";      //证件号码
-				CertificateInfo.IdActivatedDate= "2016-12-31" ; //证件有效期
+				CertificateInfo.IdType= list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idType;     //证件类型
+				CertificateInfo.IdCountry= list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idCountry;  //证件发行国家
+				CertificateInfo.IdNumber=  list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idNumber;      //证件号码
+				CertificateInfo.IdActivatedDate= list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idActivatedDate ; //证件有效期
 				TraInfo.FlightCertificateInfo=CertificateInfo;
 
 				TraInfo.BaggageCode="",//行李编码，一期不用,
-				TraInfo.NationalityCode="CHN" //国籍代码
+				//TraInfo.NationalityCode=list[i].traveller.nationalityCode;//国籍代码
+				TraInfo.NationalityCode="CHN";
 				TravellerInfo.push(TraInfo)
 			}
 			localStorage.setItem('travellerInfo_selected',JSON.stringify(TravellerInfo));
@@ -599,12 +601,13 @@
 		{
 			var ContactDetail={}
 			for(var i=0; i<=list.length-1;i++){
-				ContactDetail.SexCode= "Mr"; //称呼
-				ContactDetail.FirstName="dddd" ;//姓
-				ContactDetail.LastName="ssss"  //名
-				ContactDetail.Email="855@asiatravel.com" //邮箱
-				ContactDetail.MobilePhone="123456789",        //手机号
-				ContactDetail.CountryNumber="SG"
+				ContactDetail.SexCode=  list[i].traveller.sexCode;; //称呼
+				ContactDetail.FirstName=list[i].traveller.firstName ;//姓
+				ContactDetail.LastName=list[i].traveller.lastName;  //名
+				ContactDetail.Email=list[i].traveller.email;//邮箱
+				ContactDetail.MobilePhone==list[i].traveller.mobilePhone;        //手机号
+//				ContactDetail.CountryNumber=list[i].traveller.countryCode
+				ContactDetail.CountryNumber="86";
 			}
 			localStorage.setItem('contact_selected',JSON.stringify(ContactDetail));
 		}
@@ -639,19 +642,20 @@
 			$(".addAir-page .header h3").html("新建"+titleType+"信息");
 		}
 		else {
+			debugger;
 			$("#delTra").show();
 			$(".addAir-page .header h3").html("编辑"+titleType+"信息");
 			$(".cnName").attr("value",tralJsonObj[id].traveller.idName);
 			$(".firstName").attr("value",tralJsonObj[id].traveller.firstName);
 			$(".lastName").attr("value",tralJsonObj[id].traveller.lastName);
 			$(".nameche-wrap").attr("data-id",tralJsonObj[id].traveller.travellerId)
-			$(".telNum").attr("value",tralJsonObj[id].traveller.MobilePhone);
-			$(".txtEmail").attr("value",tralJsonObj[id].traveller.Email);
+			$(".telNum").attr("value",tralJsonObj[id].traveller.mobilePhone);
+			$(".txtEmail").attr("value",tralJsonObj[id].traveller.email);
 
 			$(".cardNumber").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idNumber);
 			$(".postCard").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idType);
-			$(".cardDateLimit").attr("value",tralJsonObj[id].listTravellerIdInfo[0].IdActivatedDate.replace("号","日"));
-			$(".cardCountry").attr("value",tralJsonObj[id].listTravellerIdInfo[0].IdCountry);
+			$(".cardDateLimit").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idActivatedDate.replace("号","日"));
+			$(".cardCountry").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idCountry);
 
 			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
