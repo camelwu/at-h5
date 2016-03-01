@@ -271,6 +271,7 @@
                     });
                 }
 
+
                 $.ajax({
                     type : "post",
                     url : url + '?rnd=' + Math.random(),
@@ -287,17 +288,17 @@
                             var password = md5("");
                             xhr.setRequestHeader('uid', user);
                         }
-                    },complete( jqXHR, textStatus){
-                        if(animout!=undefined && animout != ""){
-                            animout();//动画淡出
-                        }
                     },
                     success : function(jsondata) {
+
                         mycallback(jsondata);
 
 
                     }
                 });
+                if(animout!=undefined && animout != ""){
+                    animout();//动画淡出
+                }
                 $.ajaxSetup({
                     async : true
                 });
