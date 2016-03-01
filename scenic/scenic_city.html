@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="sc-content">
-        <section>
+
             <div class="gui-tab-view" id="ui-view-2">
                 <ul class="gui-tab-mod">
                     <li data-key="1" class="gui-tab-current cp">国内城市</li>
@@ -131,7 +131,7 @@
                     </ul>
                 </li>
             </ul>
-        </section>
+       
     </div>
     <div id="ui-view-3">
         <ul class="tags-cut">
@@ -296,7 +296,7 @@
         </ul>
     </div>
 </div>
-<div id="citysear_page" class="all-elements" style="display: block;">
+<div id="citysear_page" class="all-elements" style="display: none;">
     <div style="height: 44px;z-index: 100">
         <div class="t-header" >
             <span class="t-header-icon fl t-header-iconsize cp"></span>
@@ -329,9 +329,14 @@
     </div>
 </div>
 <script src="../js/lib/jquery.js"></script>
-<script src="js/scenic_city.js"></script>
+<script src="js/scenic_pub.js"></script>
 <script>
+    (function(){
 
+        //tab滚动
+        MT.tabScroll();
+
+    })();
 </script>
 </body>
 </html>
