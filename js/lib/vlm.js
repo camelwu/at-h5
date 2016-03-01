@@ -302,6 +302,18 @@
 								return false;
 							}
 						},
+						//六位数字验证码
+						code:function(name){
+							var pattern=/[0-9]{6}/
+							//只能是中文，长度为2-7位
+							if(pattern.test(name)){
+								return true;
+							}
+							else
+							{
+								return false;
+							}
+						},
 						engName:function(name){
 							var pattern=/^[a-zA-Z][a-zA-Z/s]*[a-zA-Z]{1,25}$/;
 							//字符头尾是字母，中间由空格和字母组成，中间可以有多个空格;2-26字符

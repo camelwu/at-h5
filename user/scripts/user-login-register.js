@@ -124,6 +124,9 @@ window.onload = function(){
         if(type == "pass"){
            return vlm.Utils.validate.password(num);
         }
+        if(type == "code"){
+            return vlm.Utils.validate.code(num);
+        }
     };
     // 会员注册
     function user_register(obj){
@@ -133,29 +136,63 @@ window.onload = function(){
             if(header_email.style.display == "none"){
                 password = r_e_password;
                 input = email_register.getElementsByTagName('input');
-            }else{
-                password = r_p_password;
-                input = phone_register.getElementsByTagName('input');
-            }
-            for(var i= 0;i < input.length;i++){
-                if(input[i].style.display!=="none" && input[i].value !="") {
-                    console.log(input[i].getAttribute('data-type'));
-                    if(input[i].getAttribute('data-type') !="code") {
-                        if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                            jAlert("输入不正确");
-                            return;
-                        }
-                    }
-                }else if(input[i].value ==""){
+                if(input[0].value == '')
+                {
+                    jAlert("请输入邮箱");
+                    return;
+                }
+                else if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+                    jAlert("请输入有效邮箱");
+                    return;
+                }
+                if(input[1].value == '')
+                {
+                    jAlert("请输入密码");
+                    return;
+                }else if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+                    jAlert("请输入6-18位密码");
+                    return;
+                }
+                if(input[2].value == '')
+                {
                     jAlert("请输入确认密码");
                     return;
                 }
+                if($('#rs_e_password').val() !== $('#r_e_password').val())
+                {
+                    jAlert('两次输入的密码不一致！');
+                    return;
+                }
+            }else{
+                password = r_p_password;
+                input = phone_register.getElementsByTagName('input');
+                if(input[0].value == '')
+                {
+                    jAlert("请输入手机号");
+                    return;
+                }
+                else if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+                    jAlert("请输入有效手机号");
+                    return;
+                }
+                if(input[1].value == '')
+                {
+                    jAlert("请输入验证码");
+                    return;
+                }else if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+                    jAlert("请输入有效验证码");
+                    return;
+                }
+                if(input[2].value == '')
+                {
+                    jAlert("请输入密码");
+                    return;
+                }else if (!check(input[2].getAttribute('data-type'), input[0].value)) {
+                    jAlert("请输入6-18位密码");
+                    return;
+                }
             }
-            if($('#rs_e_password').val() !== $('#r_e_password').val())
-            {
-                jAlert('两次输入的密码不一致！');
-                return;
-            }
+
             var Parameters= {
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\""+r_email.value+"\",\"Password\":\""+password.value+"\",\"Mobile\":\""+r_phone.value+"\",\"Code\":\""+verify.value+"\"}",
                 "ForeEndType": 3,
