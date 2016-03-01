@@ -249,9 +249,9 @@
                         data : data,
                         contentType : 'application/json;charset=utf-8',
                         beforeSend : function(xhr) {
-//                            if(animin!=undefined && animin != ""){
-//                                animin();
-//                            }
+                            if(animin!=undefined && animin != ""){
+                                animin();
+                            }
                             //后续开始加密，设置header
                             //xhr.setRequestHeader('Content-Type','application/json');
                             if (encryption != undefined && encryption == true) {
@@ -260,17 +260,16 @@
                                 xhr.setRequestHeader('uid', user);
                             }
                         },
-//                        complete( jqXHR, textStatus){
-//                            if(animout!=undefined && animout != ""){
-//                                animout();//动画淡出
-//                            }
-//                        },
                         success : function(jsondata) {
+
                             mycallback(jsondata);
 
 
                         }
                     });
+                    if(animout!=undefined && animout != ""){
+                        animout();//动画淡出
+                    }
                     $.ajaxSetup({
                         async : true
                     });
