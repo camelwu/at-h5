@@ -5,6 +5,12 @@ console.log('上面是从localStorage上面得到的数据');
 
 console.log(myData);
 
+var userFlightInformation=localStorage.getItem('orderResultInfo');
+var tpl=template("payDetail",JSON.parse(userFlightInformation).data);
+console.log(tpl);
+$("#payDetail").html(tpl);
+
+
 var ticketPayDetail = {
 
     requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
@@ -39,23 +45,23 @@ var ticketPayDetail = {
         c.loadJson(questUrl, JSON.stringify(dataObj), Callback);
     },
 
-    timeCount:function(){
-        var oSpan=document.getElementById('cou-down');
-        var n=1800, m, s;
-        tick();
-        var timer=setInterval(tick,1000);
-        function tick(){
-            n--;
-            m=parseInt(n/60)<10?'0'+parseInt(n/60):parseInt(n/60);
-            s=n%60<10?'0'+n%60:n%60;
-            oSpan.innerHTML=m+'分钟'+s+'秒';
-            if(n<0)
-            {
-                clearInterval(timer);
-                oSpan.innerHTML='结束';
-            }
-        }
-    },
+    //timeCount:function(){
+    //    var oSpan=document.getElementById('cou-down');
+    //    var n=1800, m, s;
+    //    tick();
+    //    var timer=setInterval(tick,1000);
+    //    function tick(){
+    //        n--;
+    //        m=parseInt(n/60)<10?'0'+parseInt(n/60):parseInt(n/60);
+    //        s=n%60<10?'0'+n%60:n%60;
+    //        oSpan.innerHTML=m+'分钟'+s+'秒';
+    //        if(n<0)
+    //        {
+    //            clearInterval(timer);
+    //            oSpan.innerHTML='结束';
+    //        }
+    //    }
+    //},
 
     sliderOption:function(){
         $(".custom-select").each(function() {
@@ -132,7 +138,7 @@ var ticketPayDetail = {
     },
     init:function(){
         this.addEvent();
-        this.timeCount();
+        //this.timeCount();
         this.sliderOption();
         this.cardAction();
     }
@@ -168,14 +174,17 @@ function M(json){
                 "CardContactNumber": $(".CardContactNumber2").val()+$(".CardContactNumber2").val(),
                 "CardAddress": $(".CardAddress").val(),
                 "CardAddressPostalCode": "1234",
+                "CardAddressCity":"北京",
                 "CardAddressCountryCode":  $(".CardAddressCountryCode").attr("data-code")
             },
-            "BookingRefNo":"SGSINFT0012951"
+            "BookingRefNo":"CNBJSFT0001557",
+            "CurrencyCode":"CNY",
+            "TotalFlightPrice":"3190.00",
+            "PaymentMode":"CreditCard"
         },
         "ForeEndType": 3,
         "Code": "3004"
     };
-    debugger;
     console.log(data);
     var payment=new paymentObj(data,mycallback);
     payment.handlePayment();

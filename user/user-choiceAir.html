@@ -432,6 +432,7 @@
 	var from=vlm.getpara("from");
 	var json="";
 	var travJson;
+	var tralJsonObj={};
 	var index;
 	var selectUser=[]
 
@@ -478,6 +479,11 @@
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
 			travJson = eval('(' + json + ')')
 			json = JSON.parse(json);
+			for(var i=0;i<= json.data.length-1;i++){
+				debugger;
+				tralJsonObj[json.data[i].traveller.travellerId]=json.data[i];
+			}
+			console.log(tralJsonObj);
 			if (json.success) {
 				var html = template(tpl_traveler, json);
 				document.getElementById("allList").innerHTML = html;
@@ -610,7 +616,7 @@
 			$(".cardCountry").attr("value",travJson.data[index].listTravellerIdInfo[0].IdCountry);
 
 
-
+debugger;
 
 			if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");

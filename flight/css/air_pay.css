@@ -266,7 +266,8 @@ i {
 }
 
 .passenger-msg {
-    padding: 15px;
+    padding-top: 30px;
+    padding-left: 30px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 0;
     background-color: white;
@@ -277,7 +278,6 @@ i {
 }
 
 .passenger-msg-tit {
-    width: 80px;
     display: inline-block;
     color: #666;
 
@@ -683,7 +683,7 @@ i {
     color: #fff;
 }
 .passenger-detail{
-    margin-right: 8px;
+    margin-right: 25px;
     float: right;
     color: #fdb330;
 
@@ -722,4 +722,31 @@ i {
     -ms-transform: rotate(-135deg) translateY(-50%);
     transform: rotate(-135deg) translateY(-50%);
 }
+.passenger-msg .passenger-msg-tit{
+    float: left;
+}
+.passenger .passager-list{
+    margin-left: 80px;
+}
+.passenger .passager-list .passager-info{
+    margin-bottom: 20px;
+}
+.passenger .passager-list .passager-info .passenger-msg-nameEn{
+   margin-left: 5px;
+    margin-right: 5px;
+}
+.passenger .passager-list .passager-info .passenger-msg-sex{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.open-pho-down {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    right: 10px;
+    background-position: 65% 3%;
+}
+
+
+
 

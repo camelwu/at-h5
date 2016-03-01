@@ -22,8 +22,22 @@ function selectThis(){
     }
 }
 */
-//lsf 刘少飞的js
+function strlen(str) {
+    var len = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        //单字节加1
+        if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+            len++;
+        }
+        else {
+            len += 2;
+        }
+    }
+    return len;
+}
 
+//lsf 刘少飞的js
 var lsf_myweb={
     "getbyid":function(id){
         return document.getElementById(id);
@@ -108,7 +122,7 @@ var lsf_myweb={
     lsf_myweb.styleChange('jp_guest_name','姓名');
     lsf_myweb.styleChange('jp_limit_time','月/年，如：09/12');
     lsf_myweb.styleChange('jp_safe_code','签名栏末尾最后3位');
-
+    lsf_myweb.styleChange('jp_bank_name','发卡银行');
     //返回按钮
     var jp_back=document.getElementById('jp_back');
     lsf_myweb.bind(jp_back,'click',function(){
@@ -181,7 +195,20 @@ var lsf_myweb={
             $.alerts.alert('请输入持卡人姓名');
             return;
         }else{
+            if(strlen(jp_guest_name.value)>20)
+            {
+                $.alerts.alert('超出最大字符!');
+                return;
+            }
             myData.CardHolderName=jp_guest_name.value;
+        }
+
+        //发卡银行验证
+        if(jpBankName.value=='发卡银行'){
+            $.alerts.alert('请输入发卡银行');
+            return;
+        }else{
+            myData.BankName=jpBankName.value;
         }
         //有效期验证
         if(jp_limit_time.value=='月/年，如：09/12'){
@@ -210,15 +237,12 @@ var lsf_myweb={
                 }
             }
         }
-
-        myData.BankName=jpBankName.innerHTML;
-        myData.CardIssuanceCountry=jp_bank_country.innerHTML;
+        myData.CardIssuanceCountry=$("#jp_bank_country").attr("data-code");
         localStorage.setItem('user_order_storage12345',JSON.stringify(myData));
         console.log(myData);
         console.log('以上是更新的localStorage的数据');
         //window.location.href='trade_details.html';
-        $("#status-h").fadeIn();
-        $("#preloader").delay(400).fadeIn("medium");
+
         //  交互部分
         function M(json){
             console.log(json.totalPriceCNY);
@@ -228,6 +252,8 @@ var lsf_myweb={
                 "Code": "0012"
             };
             console.log(data);
+            $("#status-h").fadeIn();
+            $("#preloader").delay(400).fadeIn("medium");
             var payment=new paymentObj(data,mycallback);
             payment.handlePayment();
             //return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
@@ -237,10 +263,9 @@ var lsf_myweb={
             if(data.success){
                 window.location.href='trade_details.html';
             }else{
-
-                $.alerts.alert(data.message);
                 $("#status-h").fadeOut();
-                $("#preloader").delay(400).fadeOut("medium");
+                $("#preloader").fadeOut("medium");
+                $.alerts.alert(data.message);
             }
         }
         M(myData);
