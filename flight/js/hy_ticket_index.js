@@ -11,7 +11,7 @@
                num: 13,
                time: dateInitObj,
                sClass1: 'double-date',
-               type:'double'
+               type:'Return'
            });
        },
 
@@ -25,7 +25,7 @@
                num: 13,
                time: dateInitObj,
                sClass1: 'enterDate',
-               type:'single'
+               type:'Oneway'
            });
        },
 
@@ -177,6 +177,7 @@
                        paraObj.PriorityRule= 0;
                        paraObj.pageNo= 1;
                        paraObj.pageSize= 10;
+                       paraObj.hasTax= true;
                        paraObj.IsDesc= "false";
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
@@ -216,6 +217,7 @@
                        paraObj.IsDesc= "false";
                        paraObj.pageNo= 1;
                        paraObj.pageSize= 10;
+                       paraObj.hasTax= true;
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
                        that.storageUtil.set('ticketSearchedInfo',paraObj)
@@ -326,9 +328,7 @@
                   if(target.className.indexOf('span-target')!=-1){
                       var oSpan = this.querySelector('span');
                       oSpan.style.transition = '0.7s all ease';
-                      //oSpan.style.webkitTransition = '0.7s all ease';
-                      //oSpan.style.webkitTransformOrigin = '18px ' + '23px';
-                      //oSpan.style.transformOrigin = '22px ' + '24px';
+                      oSpan.style.webkitTransition = '0.7s all ease';
                       this.current = (this.current + 180);
                       oSpan.style.transform = 'rotate(' + this.current + 'deg)';
                       oSpan.style.webkitTransform = 'rotate(' + this.current + 'deg)';

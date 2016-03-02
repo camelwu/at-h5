@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>套餐详情</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>套餐详情 - 亚洲旅行网</title>
     <link href="../styles/framework.css" rel="stylesheet"/>
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/packages_detail.css">
+    <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
     <div id="preloader">
@@ -48,13 +70,6 @@
                     <p class="pd-contitle">行程安排</p>
                     <ul id="tag1_con">
                         <!--<li>06：30崇文门新侨诺富特饭店 （地铁2号线、5号线“崇文门站”A/B口出既是）</li>-->
-                        <!--<li>07：10王府井万程华府酒店 (中国儿童剧院门口；距天安门步行仅10分钟）</li>-->
-                        <!--<li>07：40北土城地铁站 (奥体中心区域；地铁8号线B口、地铁10号线C1口)</li>-->
-                        <!--<li>08 ：00赴AAAAA级风景区、国家名片、世界文化遗产、中华民族的精神象征——【八达岭长城】（辅助交通工具滑车往返100元/人 自愿乘坐）。在烽台上举目瞭望长城内外秀丽景观。</li>-->
-                        <!--<li>12：00金肆维国际餐厅用餐</li>-->
-                        <!--<li>13：30前往5A风景区、世界文化遗产、陵寝文化代表—— 【十三陵定陵】，远眺十三陵水库。定陵是明代第十三个皇帝万历皇帝及两位皇后的合葬墓。定陵地宫是目前十三陵中唯一被开发的地下宫殿，探寻定陵地宫一起探求中国皇家陵寝文化。在定陵博物馆内可以欣赏到出土的文物：金翼善冠（皇冠）、十二龙九凤冠（凤冠）金托金爵等</li>-->
-                        <!--<li>16：30统一返回市区；散团地点二选一(游览奥林匹克公园或王府井)；自由参观08奥运主会场鸟巢外景、梦幻水蓝色游泳馆水立方外景后散团(附近有奥运8号线地铁)</li>-->
-                        <!--<li>17：30自由畅游王府井步行街后散团（附近有地铁1号线王府井站）</li>-->
                     </ul>
                 </div>
                 <div id="pageTag_2" style="display:none;">
@@ -92,7 +107,7 @@
             <!--<li><span>酒店+景点</span><i>7816</i></li>-->
         <!--</ul>-->
     <!--</div>    -->
-    <script src="../js/head_back.js"></script>
+
     <script src="../js/scenic.js"></script>
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/lib/plugins.js"></script>
@@ -140,7 +155,7 @@
                     ];
                     var tmp={
                         "Parameters": {
-                        "PackageID": val.packageId
+                            "PackageID": val.packageID
                              },
                         "ForeEndType": 3,
                             "Code": "0202"
