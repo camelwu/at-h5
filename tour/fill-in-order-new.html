@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>填写订单</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link href="styles/framework.css" type="text/css" rel="stylesheet">
-    <link href="styles/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/fill-in-order.css">
+    <link href="../styles/framework.css" type="text/css" rel="stylesheet">
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/fill-in-order.css">
 </head>
 <body>
     <div class="all-elements">
         <!--   顶部   -->
         <header class="top">
-            <a href="javascript:;" class="icons header-back"></a>
+            <a href="javascript:history.go(-1);" class="icons header-back"></a>
             <span class="title">填写订单</span>
         </header>
         <!--   内容   -->
@@ -115,7 +115,7 @@
 			<!---->
             <section class="personal_data_box">
                 <div class="personal_data">
-                    <span class="title"><i>航班信息（选填）</i></span>
+                    <span class="title"><i>航班信息</i></span>
                     <div class="content2" id="content3">
 						<div class="nav2-left">
 							<span class="nav2-lefttop">出发</span>							
@@ -158,7 +158,7 @@
             <span class="all_num">套餐总额：<i>7816</i></span>
             <span class="separate_num">分开预订：<i>7816</i></span>
             <i class="itemized" id="show_de">明细</i>
-            <a href="#" class="reserve">预定</a>
+            <a href="order_pay_page.html" class="reserve">预定</a>
         </div>
         <!--底部-->
         <!-- <footer class="order-amount">
@@ -182,11 +182,10 @@
     </div> 
 
     <!--同意条款-->
-    <script src="js/item_agree.js"></script>
-    <script src="js/scenic.js"></script>    
-    <script src="js/head_back.js"></script>
-    <script src="js/lib/jquery.js"></script>
-    <script src="js/lib/d_calendar.js"></script>
+    <script src="../js/item_agree.js"></script>
+    <script src="../js/scenic.js"></script>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/d_calendar.js"></script>
     <script>
         var lsf_myweb={
             "getbyid":function(id){
@@ -290,7 +289,22 @@
                 lsf_myweb.getbyid('content4_week_span1').innerHTML='周'+n2c[oday1];
                 document.getElementById("content4_CheckInDate").value=arr[0];
             }
-            var myDate2 = new Calender4({id:'content4',num: 13,time:_obj_4});            
+            var myDate2 = new Calender4({id:'content4',num: 13,time:_obj_4});
+        })();
+        (function(){
+            var oAgree=document.getElementsByClassName('order-notice-btn')[0];
+            var bOk=true;
+            oAgree.onclick=function(){
+                if(bOk){
+                    oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
+                    oAgree.style.backgroundSize='40rem 12rem';
+                    bOk=false;
+                }else{
+                    oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
+                    oAgree.style.backgroundSize='40rem 12rem';
+                    bOk=true;
+                }
+            };
         })();
     </script>
 </body>
