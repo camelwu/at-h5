@@ -57,6 +57,41 @@
             $("#js_oversea").show();
         }
 
+        /**
+         * [public sort]城市排序 按照cityCode快速排序
+         * @param a
+         * @param b
+         * @returns {number}
+         * @constructor
+         */
+        var ByCities = function(a, b){
+            return a.cityCode.substr(0,1).toLowerCase().charCodeAt(0) - b.cityCode.substr(0,1).toLowerCase().charCodeAt(0);
+        }
+
+
+        /**
+         * [public splitarray] 将数组中相同的元素提取出变为一个数组,最后由若干个小数组组成一个大数组
+         * @param _oldArray
+         * @returns {Array}
+         * @constructor
+         */
+        var SplitCitiesArray = function(_oldArray){
+            var oldArray = _oldArray,
+            newArray = [],
+            n = 0, tmp_old, tmp_new;
+
+            for (var i = 0; i < oldArray.length -1; i++) {
+                tmp_old = oldArray[i].cityCode.substr(0,1).toLocaleLowerCase().charCodeAt(0);
+                tmp_new = oldArray[i + 1].cityCode.substr(0,1).toLocaleLowerCase().charCodeAt(0);
+                if ( tmp_old!= tmp_new) {
+                    newArray.push(oldArray.slice(n, i + 1));
+                    n = i + 1;
+                }
+            }
+            //console.log(newArr)
+            return newArray;
+        }
+
 
         /**
          * [public ajax]动画模版
@@ -152,7 +187,9 @@
             MTtab:MTtab,//[private scenic_city]
             CLoadJson:CLoadJson,//[public ajax]
             CAnimIn:CAnimIn,//[public ajax]
-            CAnimOut:CAnimOut//[public ajax]
+            CAnimOut:CAnimOut,//[public ajax]
+            SplitCitiesArray:SplitCitiesArray,//[public split array]
+            ByCities:ByCities //[public by cityCode]
         }
     }();
     webkit.MT = webkit.MT || {};
@@ -168,6 +205,12 @@
     }
     webkit.MT.ajaxJson = function(url, data, mycallback,animin,animout, async, encryption){
         core.CLoadJson(url, data, mycallback,animin,animout, async, encryption);
+    }
+    webkit.MT.ByCities = function(a,b){
+        return core.ByCities(a,b);
+    }
+    webkit.MT.SplitCitiesArray = function(_oldArray){
+       return core.SplitCitiesArray(_oldArray);
     }
 
 })();

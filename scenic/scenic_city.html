@@ -96,8 +96,11 @@
                     <ul class="city-tags">
                         <li class="current">我的位置</li>
                         <li>北京</li>
-                        <li>北京</li>
-                        <li>北京</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="gui-city-t">历史选择</span>
+                    <ul class="city-tags">
                         <li>北京</li>
                         <li>北京</li>
                         <li>北京</li>
@@ -135,165 +138,9 @@
        
     </div>
     <div id="ui-view-3">
-        <ul class="tags-cut">
+        <ul id="CharColumn" class="tags-cut">
 
-            <li data-key="cur" data-value="当前">
-                当前
-            </li>
 
-            <li data-key="hot" data-value="热门">
-                热门
-            </li>
-
-            <li data-key="a" data-value="A">
-
-                <span class="tags" data-value="A">A</span>
-
-            </li>
-
-            <li data-key="b" data-value="B">
-
-                <span class="tags" data-value="B">B</span>
-
-            </li>
-
-            <li data-key="c" data-value="C">
-
-                <span class="tags" data-value="C">C</span>
-
-            </li>
-
-            <li data-key="d" data-value="D">
-
-                <span class="tags" data-value="D">D</span>
-
-            </li>
-
-            <li data-key="e" data-value="E">
-
-                <span class="tags" data-value="E">E</span>
-
-            </li>
-
-            <li data-key="f" data-value="F">
-
-                <span class="tags" data-value="F">F</span>
-
-            </li>
-
-            <li data-key="g" data-value="G">
-
-                <span class="tags" data-value="G">G</span>
-
-            </li>
-
-            <li data-key="h" data-value="H">
-
-                <span class="tags" data-value="H">H</span>
-
-            </li>
-            <li data-key="i" data-value="I">
-
-                <span class="tags" data-value="I">I</span>
-
-            </li>
-            <li data-key="j" data-value="J">
-
-                <span class="tags" data-value="J">J</span>
-
-            </li>
-
-            <li data-key="k" data-value="K">
-
-                <span class="tags" data-value="K">K</span>
-
-            </li>
-
-            <li data-key="l" data-value="L">
-
-                <span class="tags" data-value="L">L</span>
-
-            </li>
-
-            <li data-key="m" data-value="M">
-
-                <span class="tags" data-value="M">M</span>
-
-            </li>
-
-            <li data-key="n" data-value="N">
-
-                <span class="tags" data-value="N">N</span>
-
-            </li>
-            <li data-key="o" data-value="O">
-
-                <span class="tags" data-value="O">O</span>
-
-            </li>
-
-            <li data-key="p" data-value="P">
-
-                <span class="tags" data-value="P">P</span>
-
-            </li>
-
-            <li data-key="q" data-value="Q">
-
-                <span class="tags" data-value="Q">Q</span>
-
-            </li>
-
-            <li data-key="r" data-value="R">
-
-                <span class="tags" data-value="R">R</span>
-
-            </li>
-
-            <li data-key="s" data-value="S">
-
-                <span class="tags" data-value="S">S</span>
-
-            </li>
-
-            <li data-key="t" data-value="T">
-
-                <span class="tags" data-value="T">T</span>
-
-            </li>
-            <li data-key="u" data-value="U">
-
-                <span class="tags" data-value="U">U</span>
-
-            </li>
-            <li data-key="v" data-value="V">
-
-                <span class="tags" data-value="V">V</span>
-
-            </li>
-            <li data-key="w" data-value="W">
-
-                <span class="tags" data-value="W">W</span>
-
-            </li>
-
-            <li data-key="x" data-value="X">
-
-                <span class="tags" data-value="X">X</span>
-
-            </li>
-
-            <li data-key="y" data-value="Y">
-
-                <span class="tags" data-value="Y">Y</span>
-
-            </li>
-
-            <li data-key="z" data-value="Z">
-
-                <span class="tags" data-value="Z">Z</span>
-
-            </li>
         </ul>
     </div>
 </div>
@@ -343,10 +190,6 @@
 
 <script>
     (function(){
-
-        //tab切换
-        MT.tabScroll();
-
         /**
          * 获得国外热门城市
          */
@@ -362,6 +205,7 @@
 
             MT.ajaxJson("",JSON.stringify(Param),MT.CallbackExHotCity,MT.ajaxAnimIn,MT.ajaxAnimOut);
         }
+
         /**
          * 获得国外热门城市的回调方法
          * @param data
@@ -371,7 +215,27 @@
             var json=eval('('+data+')');
             console.log(json);
             if(json.success){
-                var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data),tpl_str,tpl_title,tpl_ul;
+                var newArray = MT.SplitCitiesArray(json.data.destCities.sort(MT.ByCities));
+
+                for (var i = 0;i<newArray.length;i++){
+//                    console.log(newArray[i]);
+                    var title =newArray[i][0].cityCode.substr(0,1);
+                    tpl_str = $("<li></li>");
+                    $("<span class='gui-city-t'></span>").html(title).appendTo(tpl_str);
+                    tpl_ul = $("<ul class='city-tags'></ul>");
+                    tpl_ul.appendTo(tpl_str);
+                    for (var j = 0;j<newArray[i].length;j++){
+//                        console.log(newArray[i][j].cityName);
+                       var li_child= $("<li></li>");
+                        li_child.html(newArray[i][j].cityName).appendTo(tpl_ul);
+                    }
+                    $("#js_oversea").append(tpl_str);
+                }
+
+                MT.CharColumn("CharColumn",newArray);
+
+
                 $("#js_ExHotCity").html(tpl_GetExHotCity);
             }else {
                 console.log(json);
@@ -380,8 +244,32 @@
 
         }
 
-        MT.getExHotCity();
+        /**
+         * 城市列表字母列表
+         * @param ulId
+         * @param newArray
+         * @constructor
+         */
+         MT.CharColumn = function(ulId,newArray){
+             var ul = $("#"+ulId),childli,childspan;
+             $("<li data-key='cur' data-value='当前'>当前</li>").appendTo(ul);
+             $("<li data-key='hot' data-value='热门'>热门</li>").appendTo(ul);
 
+             for (var i = 0;i<newArray.length;i++){
+                 var title =newArray[i][0].cityCode.substr(0,1);
+                 childli = $("<li data-key='"+title+"' data-value='"+title+"'></li>");
+                 childspan = $("<span class='tags' data-value='"+title+"'><span> ").html(title);
+                 childspan.appendTo(childli);
+                 childli.appendTo(ul);
+             }
+         }
+
+
+
+        //tab切换
+        MT.tabScroll();
+        //加载国外热门城市
+        MT.getExHotCity();
 
     })();
 </script>
