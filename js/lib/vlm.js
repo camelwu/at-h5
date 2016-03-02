@@ -804,6 +804,7 @@
 							for (var i = 0; i < a.length; i++) {
 								a[i].style.display = "";
 							}
+							header.getElementsByTagName("h3")[0].innerHTML = '登录';
 							btns.innerHTML = '登录';
 							btns.style.marginTop = "0";
 						}
@@ -830,6 +831,7 @@
 								for (var i = 0; i < a.length; i++) {
 									a[i].style.display = "none";
 								}
+								header.getElementsByTagName("h3")[0].innerHTML = '注册';
 								btns.innerHTML = '注册';
 								btns.style.marginTop = "40px";
 								break;
