@@ -76,28 +76,6 @@
                         <!--<div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>-->
                         <!--<div><span>￥</span><span class="pay-num">1680</span><span>起</span></div>-->
                     <!--</li>-->
-                    <!--<li>-->
-                        <!--<div>-->
-                            <!--<img src="../scenic/images/jdzhuye3_03.jpg" class="banner-image" alt="img">-->
-                            <!--<div class="hp-block">-->
-                                <!--<b class = "icon1 s-location"></b>-->
-                                <!--马来西亚-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>-->
-                        <!--<div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<div>-->
-                            <!--<img src="../scenic/images/jdzhuye4_03.jpg" class="banner-image" alt="img">-->
-                            <!--<div class="hp-block">-->
-                                <!--<b class = "icon1 s-location"></b>-->
-                                <!--马来西亚-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>-->
-                        <!--<div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>-->
-                    <!--</li>-->
                 </ul>
             </section>
         </div>
@@ -164,14 +142,16 @@
 <script id="tpl_GetSpot" type="text/template">
     {% for(var i = 0;i < data.lists.length;i++){ %}
         <li>
-            <div>
-                <img src="{%=data.lists[i].pictureURL%}" class="banner-image" alt="img">
-                <div class="hp-block">
-                    <b class = "icon1 s-location"></b>{%=data.destCity%}
+            <a href="packages_detail.html?packageId={%=data.lists[i].packageID%}">
+                <div>
+                    <img src="{%=data.lists[i].pictureURL%}" class="banner-image" alt="img">
+                    <div class="hp-block">
+                        <b class = "icon1 s-location"></b>{%=data.destCity%}
                     </div>
                 </div>
-            <div class="spotDesc">{%=data.lists[i].packageName%}</div>
-            <div><span>￥</span><span class="pay-num">{%=data.lists[i].leadinPrice%}</span><span>起</span></div>
+                <div class="spotDesc">{%=data.lists[i].packageName%}</div>
+                <div><span>￥</span><span class="pay-num">{%=data.lists[i].leadinPrice%}</span><span>起</span></div>
+            </a>
         </li>
     {% } %}
 </script>
@@ -187,18 +167,6 @@
                     $("#preloader").delay(400).fadeOut("medium");
                 });
             };
-            //   选择目的地
-//            var changeCity = function(){
-//                var city = $('#hotPlace')[0].children;
-//                for(var i=0; i < city.length; i++){
-//                    city[i].onclick = function(){
-//                        for(var j=0; j < city.length; j++){
-//                            city[j].className = "";
-//                        }
-//                        this.className='jjin-active';
-//                    }
-//                }
-//            };
             //   获取城市
             var getCity = function(){
                 var tmp={
@@ -270,7 +238,6 @@
             tour_index.FlashLoad();
             tour_index.GetCity();
             tour_index.GetSpot()
-
         };
         MT.load();
     })()
