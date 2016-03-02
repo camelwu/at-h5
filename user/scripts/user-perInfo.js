@@ -133,7 +133,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
             }else{
                 sex.className="info-sex";
                 block.innerHTML = "男";
@@ -143,7 +143,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
             }
 
         };
@@ -383,10 +383,6 @@ $('#birth-cont').click(function(){
 function mycallback_birth(ret){
     var myJson=eval('('+ret+')');
     console.log(myJson.data[0].dateOfBirth);
-    if(myJson.success)
-    {
-        //window.location.href="user.html";
-    }
 }
 
 function mycallback(ret){
@@ -465,13 +461,7 @@ function mycallback_infoemail(ret){
 //性别回调
 function mycallback_sex(ret){
     var myJson = eval('('+ret+')');
-    console.log(myJson);
-    if(myJson.success){
-        window.location.href="user.html";
-
-    }else{
-        alert(myJson.message);
-    }
+    console.log(myJson.data[0].salutation);
 }
 
 function mycallback_phoneVeri(ret){
