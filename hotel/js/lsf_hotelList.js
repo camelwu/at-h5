@@ -327,7 +327,7 @@ function styleChange(id,mytext){
     //styleChange('sousou','酒店名/位置')
 
     var list_oUl=lsf_myweb.getbyid('lsf_list');
-    var pWidth=list_oUl.offsetWidth-130;
+    var pWidth=list_oUl.offsetWidth-125;
     var str=window.location.href;
     var url_json=url2json(str);
     var oBody=document.getElementsByTagName('body')[0];
