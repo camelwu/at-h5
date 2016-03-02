@@ -141,7 +141,7 @@
                         <li>
                             <b class="icons open-pho"></b>
                             <div>证件类型</div>
-                            <div id="postCard" class="postCard" >护照</div>
+                            <div id="postCard" class="postCard" >身份证</div>
                         </li>
                         <li>
                             <div>证件号</div>
@@ -154,7 +154,7 @@
                         <li>
                             <b class="icons open-pho"></b>
                             <div>发证国家</div>
-                            <div class="country-btn" date-code="CN">中国</div>
+                            <div class="country-btn" data-code="CN" data-tel-code="86">中国</div>
                         </li>
                     </ul>
                     <div class="addtra-title">其他信息</div>
@@ -162,7 +162,7 @@
                         <li>
                             <b class="icons open-pho"></b>
                             <div>国籍</div>
-                            <div class="country-btn"  date-code="CN">中国</div>
+                            <div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>
                         </li>
                         <li>
                             <div>性别</div>
@@ -181,7 +181,7 @@
                         <li class="clearFix">
                             <div class="con-phone fl">
                                 手机号
-                                <span>+86</span>
+                                <span class="phone-pre">+86</span>
                             </div>
                             <input type="text" placeholder="请确保手机号无误" id="mobile-cell-add">
                         </li>
@@ -230,7 +230,7 @@
                         </li>
                         <li>
                             <div>证件号</div>
-                            <input type="text" placeholder="确保与证件保持一致">
+                            <input type="text" class="postNum" placeholder="确保与证件保持一致">
                         </li>
                         <li>
                             <b class="icons open-pho"></b>
@@ -239,7 +239,7 @@
                         <li>
                             <b class="icons open-pho"></b>
                             <div>发证国家</div>
-                            <div class="country-btn" id="country-name" date-code="CN" >中国</div>
+                            <div class="country-btn" id="country-name" data-code="CN" data-tel-code="86">中国</div>
                         </li>
                     </ul>
                     <div class="addtra-title">其他信息</div>
@@ -247,7 +247,7 @@
                         <li>
                             <b class="icons open-pho"></b>
                             <div>国籍</div>
-                            <div id="countryName" date-code="CN" class="country-btn"></div>
+                            <div id="countryName" data-code="CN" class="country-btn" data-tel-code="86"></div>
                         </li>
                         <li>
                             <div>性别</div>
@@ -266,7 +266,7 @@
                         <li class="clearFix">
                             <div class="con-phone fl">
                                 手机号
-                                <span>+86</span>
+                                <span class="phone-pre">+86</span>
                             </div>
                             <input type="text" placeholder="请确保手机号无误" id="mobile-cell">
                         </li>

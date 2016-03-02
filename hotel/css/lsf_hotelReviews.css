@@ -203,6 +203,9 @@ header i{
 }
 .lsf_reUser span i{
     margin-left: 0.4rem;
+    color:#fff;
+    background-color:rgb(85,191,183);
+    padding:1px 2px;
 }
 .lsf_reUser span i img{
     width:1rem;height:1rem;

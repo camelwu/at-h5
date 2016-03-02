@@ -342,6 +342,12 @@ Calender.prototype = {
             var target = event.target || event.srcElement;
             if(target.className.indexOf("header-back")>-1){
             	that.removeDate();
+                console.log(that.header);
+                //if( that.header !== undefined && that.header != ""){
+                //    that.header.parentNode.removeChild(that.header);
+                //}
+
+
             }
         });
     }

@@ -38,8 +38,19 @@
 					return obj;
 				}, _init = function() {
 					_loadend();
-					var hrefstr = window.location.href, _a = hrefstr.split("/"), _s = _a[_a.length - 1], _p = _s.indexOf("."), _k = _s.substring(0, _p);
-					_k = _k == "index" || _k == "" ? "home" : _k;
+					var hrefstr = window.location.href,_k;
+					if(hrefstr=="http://"+basePath+"/index.html" || hrefstr=="http://"+basePath+"/"){
+						_k = "home";
+					}else{
+						var _s = hrefstr.substr(basePath.length+1);
+						if(_s==""||_s=="index.html"){
+							_k = "home";
+						}else if(_s=="scenic/index.html"){
+							_k = "find";
+						}else if(_s=="user/user.html"){
+							_k = "user";
+						}
+					}
 					//底部菜单
 					if (menus.hasOwnProperty(_k)) {
 						_initMenu();
@@ -793,6 +804,7 @@
 							for (var i = 0; i < a.length; i++) {
 								a[i].style.display = "";
 							}
+							header.getElementsByTagName("h3")[0].innerHTML = '登录';
 							btns.innerHTML = '登录';
 							btns.style.marginTop = "0";
 						}
@@ -819,6 +831,7 @@
 								for (var i = 0; i < a.length; i++) {
 									a[i].style.display = "none";
 								}
+								header.getElementsByTagName("h3")[0].innerHTML = '注册';
 								btns.innerHTML = '注册';
 								btns.style.marginTop = "40px";
 								break;

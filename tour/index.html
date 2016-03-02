@@ -76,28 +76,6 @@
                         <!--<div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>-->
                         <!--<div><span>￥</span><span class="pay-num">1680</span><span>起</span></div>-->
                     <!--</li>-->
-                    <!--<li>-->
-                        <!--<div>-->
-                            <!--<img src="../scenic/images/jdzhuye3_03.jpg" class="banner-image" alt="img">-->
-                            <!--<div class="hp-block">-->
-                                <!--<b class = "icon1 s-location"></b>-->
-                                <!--马来西亚-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>-->
-                        <!--<div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<div>-->
-                            <!--<img src="../scenic/images/jdzhuye4_03.jpg" class="banner-image" alt="img">-->
-                            <!--<div class="hp-block">-->
-                                <!--<b class = "icon1 s-location"></b>-->
-                                <!--马来西亚-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>-->
-                        <!--<div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>-->
-                    <!--</li>-->
                 </ul>
             </section>
         </div>
@@ -157,21 +135,23 @@
 <script src="../js/lib/custom.js"></script>
 <script id="tpl_GetHotCity" type="text/template">
    {% for(var i=0,len=data.destCities.length>=5?5:data.destCities.length;i<len;i++){ %}
-   <li class = "{% if(i==0){ %}jjin-active{% } %}" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
+   <li class = "{% if(i==0){ %}jjin-active{% } %}" title="{%=data.destCities[i].cityCode%}" ><a href="scenic_list.html?cityCode={%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</a></li>
    {% } %}
-     <li class = "" title="more">更多</li>
+     <li class = "" title="more"><a>更多</a></li>
 </script>
-<script id="tpl_GetSpot" type="text/template">
-    {% for(var i = 0;i < data.lists.length;i++){ %}
+<script id="tpl_GetHotSpot" type="text/template">
+    {% for(var i = 0;i < hotelAndScenicList.length;i++){ %}
         <li>
-            <div>
-                <img src="{%=data.lists[i].pictureURL%}" class="banner-image" alt="img">
-                <div class="hp-block">
-                    <b class = "icon1 s-location"></b>{%=data.destCity%}
+            <a href="packages_detail.html?packageID={%=hotelAndScenicList[i].productID%}">
+                <div>
+                    <img src="{%=hotelAndScenicList[i].productPicUrl%}" class="banner-image" alt="img">
+                    <div class="hp-block">
+                        <b class = "icon1 s-location"></b>{%=hotelAndScenicList[i].productSite%}
                     </div>
                 </div>
-            <div class="spotDesc">{%=data.lists[i].packageName%}</div>
-            <div><span>￥</span><span class="pay-num">{%=data.lists[i].leadinPrice%}</span><span>起</span></div>
+                <div class="spotDesc">{%=hotelAndScenicList[i].productDesc%}</div>
+                <div><span>￥</span><span class="pay-num">{%=hotelAndScenicList[i].productPrice%}</span><span>起</span></div>
+            </a>
         </li>
     {% } %}
 </script>
@@ -187,18 +167,6 @@
                     $("#preloader").delay(400).fadeOut("medium");
                 });
             };
-            //   选择目的地
-//            var changeCity = function(){
-//                var city = $('#hotPlace')[0].children;
-//                for(var i=0; i < city.length; i++){
-//                    city[i].onclick = function(){
-//                        for(var j=0; j < city.length; j++){
-//                            city[j].className = "";
-//                        }
-//                        this.className='jjin-active';
-//                    }
-//                }
-//            };
             //   获取城市
             var getCity = function(){
                 var tmp={
@@ -235,42 +203,39 @@
                     jAlert(json.message,"提示");
                 }
             };
-            //   获取景点
-            var getSpot = function() {
+            //   获取热门景点
+            var getHotSpot = function() {
                 var tmp = {
-                    "Parameters": {
-                        "DestCityCode": "SIN"
-                    },
-                    "ForeEndType": 3,
-                    "Code": "0207"
+                    "Parameters":{"Isinternational":true,"PageNo":1,"PageSize":10}
+                    ,"ForeEndType":3,
+                    "Code":"001306"
                 };
-                vlm.loadJson("", JSON.stringify(tmp), getSpotCallback);
-            };
-            var getSpotCallback = function(ret){
-                var json=eval('('+ret+')');
-                if(json.success){
-                    var data=json,tpl_GetSpot = template("tpl_GetSpot",data);
-                    console.log(data);
-                    $("#hotSpot").html(tpl_GetSpot);
-                    if(data.data.lists.length == 0){
-                        jAlert("抱歉暂时没有数据","提示");
+                vlm.loadJson("", JSON.stringify(tmp), getHotSpotCallback);
+                function getHotSpotCallback(ret){
+                    var json=eval('('+ret+')');
+                    if(json.success){
+                        var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
+                        console.log(data);
+                        $("#hotSpot").html(tpl_GetHotSpot);
+                        if(data.hotelAndScenicList.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
+                    }else {
+                        jAlert(json.message,"提示");
                     }
-                }else {
-                    jAlert(json.message,"提示");
                 }
             };
             return{
                 FlashLoad:flashLoad,
                 GetCity:getCity,
-                GetSpot:getSpot
+                GetHotSpot:getHotSpot
             };
         }();
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
             tour_index.FlashLoad();
             tour_index.GetCity();
-            tour_index.GetSpot()
-
+            tour_index.GetHotSpot()
         };
         MT.load();
     })()
