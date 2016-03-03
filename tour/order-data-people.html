@@ -103,18 +103,18 @@
                     <div class="nav2-center">
                         <div class="nav2-centertop">
                             <span>景点1</span>
-                            <p><input name="CheckInDate" id="content3_CheckInDate" value="2016-03-11"><span id="content3_week_span1">周四</span></p>
+                            <p><input name="CheckInDate" id="content3_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content3_week_span1" class="content3_week_span1">周四</span></p>
                         </div>
                     </div>
                     <div class="nav2-centerright">
                         <i></i>
                     </div>
                 </div>
-                <div class="content2">
+                <div class="content2" id="content4">
                     <div class="nav2-center">
                         <div class="nav2-centertop">
-                            <span>景点2</span>
-                            <p><input name="CheckInDate" value="2016-03-11"><span>周四</span></p>
+                            <span>景点1</span>
+                            <p><input name="CheckInDate" id="content4_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content4_week_span1" class="content3_week_span1">周四</span></p>
                         </div>
                     </div>
                     <div class="nav2-centerright">
@@ -252,31 +252,7 @@
                 lsf_myweb.getbyid('content3_week_span1').innerHTML='周'+n2c[oday1];
                 document.getElementById("content3_CheckInDate").value=arr[0];
             }
-            var myDate1 = new Calender3({id:'content3',num: 13,time:_obj_3});            
         })();
-
-        var dateInitObj = {};
-
-        //单程事例
-        var myDate= new TicketDate({
-            id: 'chooseDate-single',  //触发日期弹出框的标签的id
-            num: 13,                  //弹出日期的最多出现的月份数
-            time: dateInitObj,        //特征日期，传入之前先把值处理为比如  dateInitObj['2016-02-30'] = '去程';形式
-            sClass1: 'enterDate',     //选择日期后赋值给该元素
-            type:'Oneway'             //日历类型：Return ：包含返程，Oneway，不会提示两次以上的点击
-        });
-
-
-        //双程事例
-        dateInitObj['2016-04-08'] = '去程';
-        dateInitObj['2016-04-12'] = '返程';
-        var myDate= new TicketDate({
-            id: 'ori-des-Date',
-            num: 13,
-            time: dateInitObj,
-            sClass1: 'double-date',
-            type:'Return'
-        });
         (function(){
             function toUp(m,n,n_1){
                 var _type = n.parentNode.getAttribute("data-type");
@@ -425,49 +401,149 @@
                 next!=null?next.parentNode.insertBefore(el(html),next):dom.parentNode.appendChild(el(html));
             }
         })()
-
-
-
-
-
-
-
     </script>
 
 <script>
 
-    function double(){
-        var paraObj = {
-            start:'2016-04-12',
-            end:'2016-04-18'};
+    function initDate(){
+        var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
+            r =new Date( d.setDate(d.getDate() + 1)),paraObj={};
+        paraObj = {
+            start:s.getFullYear() + "-"+(s.getMonth()+1)+ "-"+s.getDate(),
+            end:r.getFullYear() + "-"+(r.getMonth()+1)+ "-"+r.getDate()};
+        console.log(paraObj)
+
         var dateInitObj = {},paramStr;
-        dateInitObj[paraObj.start] = '入住';
-        dateInitObj[paraObj.end] = '离店';
+        var  returnWeek=function(arg){
+            if(arg){
+                var week,array,index = new Date(arg.replace(/-/g, "/")).getDay();
+                switch (index){
+                    case 0 :
+                        week = '周日';
+                        break;
+                    case 1 :
+                        week = '周一';
+                        break;
+                    case 2 :
+                        week = '周二';
+                        break;
+                    case 3 :
+                        week = '周三';
+                        break;
+                    case 4 :
+                        week = '周四';
+                        break;
+                    case 5 :
+                        week = '周五';
+                        break;
+                    case 6 :
+                        week = '周六';
+                        break;
+                    default :
+                        void(0);
+                }
+                return week;
+            }
+        };
+
         var myDate= new TicketDate({
             id: 'content2',
             num: 13,
             time: dateInitObj,
             sClass1: 'double-date',
             type:'Return',
-            _word:{tip:['入住','离店']}
+            range:[],
+            _word:{tip:['入住','离店']},
+            fn:function(){},
+            fn2:function(arg){
+
+                var inputs = document.querySelectorAll('.CheckInDateI'),span1 = document.querySelector('#week_span1'),span2 = document.querySelector('#week_span2');
+                inputs[0].value = arg.start;
+                inputs[1].value = arg.end;
+                span1.innerHTML = returnWeek(arg.start)+' 入住';
+                span2.innerHTML = returnWeek(arg.end)+' 离店'
+
+                getDay(inputs[0].value,inputs[1].value)
+                chooseDate('content3_')
+            }
         });
+        document.querySelector('#CheckInDate').value = paraObj.start;
+        document.querySelector('#CheckOutDate').value = paraObj.end;
+        document.querySelector('#week_span1').innerHTML = returnWeek(paraObj.start);
+        document.querySelector('#week_span2').innerHTML = returnWeek(paraObj.end);
+
+        dateInitObj[paraObj.start] = '入住';
+        dateInitObj[paraObj.end] = '离店';
     };
-    double();
-   /* function single (){
-        var paraObj = {
-            start:this.reDate(document.querySelector('.single-date').innerHTML)};
+
+    function chooseDate(arg){
         var dateInitObj = {},paramStr;
-        dateInitObj[paraObj.start] = '已选';
-        var myDate2= new TicketDate({
-            id: 'chooseDate-single',
+        dateInitObj['0000-00-00'] = '入住';
+        var rangeArray = [];
+        rangeArray[0] =document.querySelector('#CheckInDate').value;
+        rangeArray[1]=document.querySelector('#CheckOutDate').value
+        var myDate= new TicketDate({
+            id: 'content3',
             num: 13,
             time: dateInitObj,
-            sClass1: 'enterDate',
+            sClass1: arg+'CheckInDate',
             type:'Oneway',
-            _word:{tip:['去程']}
+            _word:{tip:['入住']},
+            range:rangeArray,
+            fn:function(){},
+            fn2:function(arg1){
+                var  returnWeek=function(arg1){
+                    if(arg1){
+                        var week,array,index = new Date(arg1.replace(/-/g, "/")).getDay();
+                        switch (index){
+                            case 0 :
+                                week = '周日';
+                                break;
+                            case 1 :
+                                week = '周一';
+                                break;
+                            case 2 :
+                                week = '周二';
+                                break;
+                            case 3 :
+                                week = '周三';
+                                break;
+                            case 4 :
+                                week = '周四';
+                                break;
+                            case 5 :
+                                week = '周五';
+                                break;
+                            case 6 :
+                                week = '周六';
+                                break;
+                            default :
+                                void(0);
+                        }
+                        return week;
+                    }
+                };
+                var inputs = document.querySelector('.'+arg+'CheckInDate');
+                    span = document.querySelector('.'+arg+'week_span1');
+                    inputs.value = arg1.start;
+                    span.innerHTML = returnWeek(arg1.start);
+            }
         });
-    },
-    */
+    };
+
+     function getDay(arg1, arg2){
+          var time1 = Date.parse(arg1);
+          var time2 = Date.parse(arg2);
+          var total_day =document.querySelector('#total_day');
+          var dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+           total_day.innerHTML = dayCount
+     }
+    initDate();
+    chooseDate('content3_');
+
+  var test1 =document.querySelector('#CheckInDate').value;
+  var  test2=document.querySelector('#CheckOutDate').value;
+   getDay(test1,test2)
 
 
 </script>

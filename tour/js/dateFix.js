@@ -1,4 +1,4 @@
-//ÈÕÆÚº¯Êı¼°ĞŞ¸Äº¯Êı
+//æ—¥æœŸå‡½æ•°åŠä¿®æ”¹å‡½æ•°
 function TicketDate(argument){
     Calender.call(this,argument)
 }
@@ -8,10 +8,10 @@ TicketDate.prototype.linkColor=function(type,date){
     var that = this, links = _CalF.$('.live',this.dd), startIndex,endIndex;
     if(type == 'Return'&&date==undefined){
         for(var st = 0;st < links.length;st++) {
-            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='È¥³Ì'){
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='å»ç¨‹'){
                 startIndex=st;
             }
-            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='·µ³Ì'){
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='è¿”ç¨‹'){
                 endIndex=st;
             }
         }
@@ -32,6 +32,23 @@ TicketDate.prototype.linkColor=function(type,date){
     }
     return false;
 };
+
+TicketDate.prototype.linkRange=function(type,date){
+    var that = this, links = _CalF.$('.live',this.dd), startRange,endRange;
+    if(!this.range.length){
+        return;
+    }
+    startRange =new Date(this.range[0].replace("-","/"));
+    endRange = new Date(this.range[1].replace("-","/"));
+      for(var st = 0;st < links.length;st++) {
+           if(links[st].getAttribute('data-day')!=null){
+               if(new Date((links[st].getAttribute('data-day')).replace("-","/"))<startRange ||new Date((links[st].getAttribute('data-day')).replace("-","/"))>endRange){
+                  links[st].className = links[st].className+" disabled"
+               }
+           }
+      }
+};
+
 TicketDate.prototype.initialize =function (options) {
     this.type = options.type;
     this.id = options.id;
@@ -40,7 +57,9 @@ TicketDate.prototype.initialize =function (options) {
     this.sClass1=options.sClass1;
     this.id2=options.id2;
     this.fn = options.fn;
+    this.fn2 = options.fn2;
     this.time = options.time;
+    this.range = options.range;
     this.op = 0;
     this.input = _CalF.$('#'+ this.id);
     this.inputEvent();
@@ -48,7 +67,7 @@ TicketDate.prototype.initialize =function (options) {
 };
 
 TicketDate.prototype.createContainer = function(odate){
-    // Èç¹û´æÔÚ£¬ÔòÒÆ³ıÕû¸öÈÕÆÚ²ãContainer
+    // å¦‚æœå­˜åœ¨ï¼Œåˆ™ç§»é™¤æ•´ä¸ªæ—¥æœŸå±‚Container
     var odiv = _CalF.$('#'+ this.id + '-date'),that=this;
     if(!!odiv) odiv.parentNode.removeChild(odiv);
     var container = this.container = document.createElement('div');
@@ -56,16 +75,16 @@ TicketDate.prototype.createContainer = function(odate){
     container.style.position = "absolute";
     container.style.zIndex = 98;
     if(this.input.tagName === 'input'){
-        //PCÊäÈë¿ò
+        //PCè¾“å…¥æ¡†
         var inputPos = _CalF.getPos(this.input);
-        // ¸ù¾İinputµÄÎ»ÖÃÉèÖÃcontainer¸ß¶È
+        // æ ¹æ®inputçš„ä½ç½®è®¾ç½®containeré«˜åº¦
         container.style.left = inputPos.left + 'px';
         container.style.top = inputPos.bottom - 1 + 'px';
-        // ÉèÖÃÈÕÆÚ²ãÉÏµÄµ¥»÷ÊÂ¼ş£¬½ö¹©×èÖ¹Ã°Åİ£¬ÓÃÍ¾ÔÚÈÕÆÚ²ãÍâµ¥»÷¹Ø±ÕÈÕÆÚ²ã
+        // è®¾ç½®æ—¥æœŸå±‚ä¸Šçš„å•å‡»äº‹ä»¶ï¼Œä»…ä¾›é˜»æ­¢å†’æ³¡ï¼Œç”¨é€”åœ¨æ—¥æœŸå±‚å¤–å•å‡»å…³é—­æ—¥æœŸå±‚
         _CalF.bind(container, 'click', this.stopPropagation);
 
     }else{
-        //MÕ¾²ã
+        //Mç«™å±‚
         container.style.background = "#f5f4f9";
         container.style.overflow = 'auto';
         container.style.width = container.style.height = '100%';
@@ -77,7 +96,7 @@ TicketDate.prototype.createContainer = function(odate){
         header.id = this.id+"-header";
         header.className = 'header';
         this.type=='Oneway'?header.style.height = "45px":void(0);
-        header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="icons header-back"></a><h3>Ñ¡ÔñÈÕÆÚ</h3>':'<a href="javascript:void(0);" class="icons header-back"></a><h3>Ñ¡ÔñÈÕÆÚ</h3><p class="choose-week-tip">Ñ¡ÔñÈÕÆÚÎª³ö·¢µØÈÕÆÚ</p>';
+        header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="icons header-back"></a><h3>é€‰æ‹©æ—¥æœŸ</h3>':'<a href="javascript:void(0);" class="icons header-back"></a><h3>é€‰æ‹©æ—¥æœŸ</h3><p class="choose-week-tip">é€‰æ‹©æ—¥æœŸä¸ºå‡ºå‘åœ°æ—¥æœŸ</p>';
         document.body.appendChild(header);
 
         var weeker = document.createElement('div');
@@ -90,7 +109,7 @@ TicketDate.prototype.createContainer = function(odate){
         tiper.id = this.id + '-tiper';
         tiper.className = 'tipers';
 
-        tiper.innerHTML = "ÇëÑ¡Ôñ"+that._word.tip[0]+"ÈÕÆÚ";
+        tiper.innerHTML = "è¯·é€‰æ‹©"+that._word.tip[0]+"æ—¥æœŸ";
         this.type=='Oneway'?void(0):container.appendChild(tiper);
     }
     document.body.appendChild(container);
@@ -107,66 +126,77 @@ TicketDate.prototype.drawDate = function (odate) {
     this.date = date = odate.getDate();
     this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
     tims = this.time;
-    textNode = document.createTextNode(year + 'Äê' + month + 'ÔÂ');
+    textNode = document.createTextNode(year + 'å¹´' + month + 'æœˆ');
     titleDate.appendChild(textNode);
 
-    // »ñÈ¡Ä£°åÖĞÎ¨Ò»µÄDDÔªËØ
+    // è·å–æ¨¡æ¿ä¸­å”¯ä¸€çš„DDå…ƒç´ 
     dd = _CalF.$('dd',dateWarp)[0];
-    // »ñÈ¡±¾ÔÂÌìÊı
+    // è·å–æœ¬æœˆå¤©æ•°
     days = new Date(year, month, 0).getDate();
-    // »ñÈ¡±¾ÔÂµÚÒ»ÌìÊÇĞÇÆÚ¼¸
+    // è·å–æœ¬æœˆç¬¬ä¸€å¤©æ˜¯æ˜ŸæœŸå‡ 
     weekStart = new Date(year, month-1,1).getDay();
-    // ¿ªÍ·ÏÔÊ¾¿Õ°×¶Î
+    // å¼€å¤´æ˜¾ç¤ºç©ºç™½æ®µ
     for (i = 0; i < weekStart; i++) {
         ddHtml.push('<a>&nbsp;</a>');
     }
-    // Ñ­»·ÏÔÊ¾ÈÕÆÚ
+    // å¾ªç¯æ˜¾ç¤ºæ—¥æœŸ
+
     for (i = 1; i <= days; i++) {
-        if (year < nowyear) {
-            ddHtml.push('<a class="disabled">' + i + '</a>');
-        } else if (year == nowyear) {
-            if (month < nowmonth + 1) {
-                ddHtml.push('<a class="live disabled">' + i + '</a>');
-            } else if (month == nowmonth + 1) {
-                if (i < nowdate){
+
+            if (year < nowyear) {
+                ddHtml.push('<a class="disabled">' + i + '</a>');
+            } else if (year == nowyear) {
+                if (month < nowmonth + 1) {
                     ddHtml.push('<a class="live disabled">' + i + '</a>');
-                }else{
+                } else if (month == nowmonth + 1) {
+                    if (i < nowdate){
+                        ddHtml.push('<a class="live disabled">' + i + '</a>');
+                    }
+                    else{
+                        m=month<10?'0'+month:month;
+                        d=i<10?'0'+i:i;
+                        if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
+                            pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                        }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
+                            pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
+                        }else{
+                            pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+                        }
+                        i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">ä»Šå¤©</a>'):ddHtml.push(pstr);
+                    }
+                    //if(i<nowDate||i<(new Date(this.range[0])).getDate())
+
+
+                } else if (month == nowmonth + 2) {
                     m=month<10?'0'+month:month;
                     d=i<10?'0'+i:i;
-                    if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                    if (i < nowdate ||i<(new Date(this.range[0])).getDate()||i>(new Date(this.range[1])).getDate()){
+                        pstr ='<a class="live disabled">' + i + '</a>';
+                    }else if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
                     }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                     }else{
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
                     }
-                    i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">½ñÌì</a>'):ddHtml.push(pstr);
+                    ddHtml.push(pstr);
+                } else {
+                    ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
                 }
-            } else if (month == nowmonth + 2) {
-                m=month<10?'0'+month:month;
-                d=i<10?'0'+i:i;
-                if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
-                }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
-                }else{
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
-                }
-                ddHtml.push(pstr);
-            } else {
+            } else if (year > nowyear) {
                 ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
             }
-        } else if (year > nowyear) {
-            ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
         }
-    }
+
+
     dd.innerHTML = ddHtml.join('');
 
-    // Ìí¼Ó
+    // æ·»åŠ 
     this.container.appendChild(dateWarp);
     var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
     if(ie6) dateWarp.appendChild(this.createIframe());
     this.linkOn();
+    this.linkRange();
 };
 
 TicketDate.prototype.linkOn = function(){
@@ -183,7 +213,7 @@ TicketDate.prototype.linkOn = function(){
                         that.linkOver(event);
                     }else{
                         if(that.op==0){
-                            that.tiper.innerHTML = 'ÇëÑ¡Ôñ'+that._word.tip[1]+'ÈÕÆÚ';
+                            that.tiper.innerHTML = 'è¯·é€‰æ‹©'+that._word.tip[1]+'æ—¥æœŸ';
                             that.linkReset(this.index);
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.tip[that.op]+'</span>');
                             that.op++;
@@ -194,7 +224,7 @@ TicketDate.prototype.linkOn = function(){
                             that.linkOver();
                             that.linkColor('Return');
                         }else if(that.op==1&&this.getAttribute('data-day')==that.cache){
-                            that.tiper.innerHTML =that._word.tip[1]+'ÈÕÆÚĞè´óÓÚÈ¥³ÌÈÕÆÚ';
+                            that.tiper.innerHTML =that._word.tip[1]+'æ—¥æœŸéœ€å¤§äºå»ç¨‹æ—¥æœŸ';
                         }
                     }
                 }
@@ -207,38 +237,49 @@ TicketDate.prototype.linkOn = function(){
 TicketDate.prototype.linkOver = function(event){
     var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
     var out = _CalF.$('input',that.input);
+    console.log(out)
     if(!out.length){
         out=_CalF.$('.'+this.sClass1,document);
     }
 
     if(this.type != 'Oneway'){
-        var tal = _CalF.$('#'+this.id2,that.input);
+        var tal = _CalF.$('#'+this.id2,that.input), outObj = {};
         if(out[0].tagName=='INPUT'){
-            for(i = 0;i<2;i++){
-                arr.push(sels[i].parentNode.getAttribute("data-day"));
-                out[i].value = sels[i].parentNode.getAttribute("data-day");
+
+            arr.push(sels[0].parentNode.getAttribute("data-day"));
+            arr.push(sels[1].parentNode.getAttribute("data-day"));
+            outObj['start'] = sels[0].parentNode.getAttribute("data-day");
+            if(out[1]){
+                outObj['end'] = sels[1].parentNode.getAttribute("data-day");
             }
+            if(typeof that.fn2 == 'function'){ that.fn2(outObj)}
         }else{
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
+            outObj['start'] = sels[0].parentNode.getAttribute("data-day");
             out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            if(out[1]){out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));}
+            if(out[1]){out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+                outObj['end'] = sels[1].parentNode.getAttribute("data-day");
+            }
         }
         if(tal){
             tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
         }
     }else{
-        var event = event || window.event;
+        var event = event || window.event ,outObj_ = {};
         var target = event.target || event.srcElement,dateSTr='';
         if(target.tagName == 'A'){
             dateSTr = target.getAttribute('data-day');
             that.linkColor('Oneway',dateSTr);
+            outObj_['start'] = target.getAttribute('data-day');
             out[0].innerHTML=returnWeek(dateSTr);
         }else if(target.tagName == 'SPAN'){
             dateSTr = target.parentNode.getAttribute('data-day');
+            outObj_['start'] = target.parentNode.getAttribute('data-day');
             that.linkColor('Oneway',dateSTr);
             out[0].innerHTML=returnWeek(dateSTr);
         }
+        if(typeof that.fn2 == 'function'){ that.fn2(outObj_)}
     }
     that.timer = window.setTimeout(function(){
         that.removeDate();
@@ -257,25 +298,25 @@ TicketDate.prototype.linkOver = function(event){
             var week,array,index = new Date(arg.replace(/-/g, "/")).getDay();
             switch (index){
                 case 0 :
-                    week = 'ÖÜÈÕ';
+                    week = 'å‘¨æ—¥';
                     break;
                 case 1 :
-                    week = 'ÖÜÒ»';
+                    week = 'å‘¨ä¸€';
                     break;
                 case 2 :
-                    week = 'ÖÜ¶ş';
+                    week = 'å‘¨äºŒ';
                     break;
                 case 3 :
-                    week = 'ÖÜÈı';
+                    week = 'å‘¨ä¸‰';
                     break;
                 case 4 :
-                    week = 'ÖÜËÄ';
+                    week = 'å‘¨å››';
                     break;
                 case 5 :
-                    week = 'ÖÜÎå';
+                    week = 'å‘¨äº”';
                     break;
                 case 6 :
-                    week = 'ÖÜÁù';
+                    week = 'å‘¨å…­';
                     break;
                 default :
                     void(0);
@@ -283,7 +324,7 @@ TicketDate.prototype.linkOver = function(event){
             array = arg.split('-');
             array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
             array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
-            return '<span class="dateNumber">'+array[1]+'ÔÂ'+array[2]+'ÈÕ'+'</span>'+' '+'<span>'+week+'</span>';
+            return '<span class="dateNumber">'+array[1]+'æœˆ'+array[2]+'æ—¥'+'</span>'+' '+'<span>'+week+'</span>';
         }
     }
 };

@@ -214,10 +214,15 @@ TicketDate.prototype.linkOver = function(event){
     if(this.type != 'Oneway'){
         var tal = _CalF.$('#'+this.id2,that.input);
         if(out[0].tagName=='INPUT'){
-            for(i = 0;i<2;i++){
+            /*for(i = 0;i<2;i++){
                 arr.push(sels[i].parentNode.getAttribute("data-day"));
                 out[i].value = sels[i].parentNode.getAttribute("data-day");
-            }
+            }*/
+            arr.push(sels[0].parentNode.getAttribute("data-day"));
+            arr.push(sels[1].parentNode.getAttribute("data-day"));
+            out[0].value=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+            if(out[1]){out[1].value=returnWeek(sels[1].parentNode.getAttribute("data-day"));}
+
         }else{
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
