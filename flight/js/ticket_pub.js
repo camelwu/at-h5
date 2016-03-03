@@ -22,20 +22,22 @@ TicketDate.prototype.linkColor=function(type,date){
         for(var sn = 0;sn < links.length;sn++) {
             var temStr = /(\d{1,2})/g.exec(links[sn].innerHTML);
             if(links[sn].getAttribute('data-day') == date){
-                links[sn].innerHTML = '<span class="live_circle">'+temStr[0]+'</span>';
+                links[sn].innerHTML = '<span class="live_circle">'+temStr[0];
             }else{
-               if(temStr){
-                   links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
-                  }
+                if(temStr){
+                    links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
+                }
             }
         }
     }
     return false;
 };
+
+TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程']};
+
 TicketDate.prototype.initialize =function (options) {
     this.type = options.type;
     this.id = options.id;
-    this._word = options._word;
     this.num = options.num;
     this.sClass1=options.sClass1;
     this.id2=options.id2;
@@ -49,7 +51,7 @@ TicketDate.prototype.initialize =function (options) {
 
 TicketDate.prototype.createContainer = function(odate){
     // 如果存在，则移除整个日期层Container
-    var odiv = _CalF.$('#'+ this.id + '-date'),that=this;
+    var odiv = _CalF.$('#'+ this.id + '-date');
     if(!!odiv) odiv.parentNode.removeChild(odiv);
     var container = this.container = document.createElement('div');
     container.id = this.id + '-date';
@@ -90,7 +92,7 @@ TicketDate.prototype.createContainer = function(odate){
         tiper.id = this.id + '-tiper';
         tiper.className = 'tipers';
 
-        tiper.innerHTML = "请选择"+that._word.tip[0]+"日期";
+        tiper.innerHTML = "请选择去程日期";
         this.type=='Oneway'?void(0):container.appendChild(tiper);
     }
     document.body.appendChild(container);
@@ -183,18 +185,18 @@ TicketDate.prototype.linkOn = function(){
                         that.linkOver(event);
                     }else{
                         if(that.op==0){
-                            that.tiper.innerHTML = '请选择'+that._word.tip[1]+'日期';
+                            that.tiper.innerHTML = '请选择'+that._word.f[1]+'日期';
                             that.linkReset(this.index);
-                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.tip[that.op]+'</span>');
+                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.op++;
                             that.cache = this.getAttribute('data-day');
                         }else if(that.op==1&&this.getAttribute('data-day')!=that.cache){
-                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.tip[that.op]+'</span>');that.op>=1?that.op=0:null;
+                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');that.op>=1?that.op=0:null;
                             that.tiper.style.display = 'none';
                             that.linkOver();
                             that.linkColor('Return');
                         }else if(that.op==1&&this.getAttribute('data-day')==that.cache){
-                            that.tiper.innerHTML =that._word.tip[1]+'日期需大于去程日期';
+                            that.tiper.innerHTML = '返程日期需大于去程日期';
                         }
                     }
                 }
@@ -214,15 +216,10 @@ TicketDate.prototype.linkOver = function(event){
     if(this.type != 'Oneway'){
         var tal = _CalF.$('#'+this.id2,that.input);
         if(out[0].tagName=='INPUT'){
-            /*for(i = 0;i<2;i++){
+            for(i = 0;i<2;i++){
                 arr.push(sels[i].parentNode.getAttribute("data-day"));
                 out[i].value = sels[i].parentNode.getAttribute("data-day");
-            }*/
-            arr.push(sels[0].parentNode.getAttribute("data-day"));
-            arr.push(sels[1].parentNode.getAttribute("data-day"));
-            out[0].value=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            if(out[1]){out[1].value=returnWeek(sels[1].parentNode.getAttribute("data-day"));}
-
+            }
         }else{
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
@@ -251,7 +248,7 @@ TicketDate.prototype.linkOver = function(event){
             that.header.parentNode.removeChild(that.header);
         }
         if(typeof that.fn==='function'){
-                that.fn();
+            that.fn();
             window.clearTimeout(that.timer);
             that.timer = null;
         }
@@ -315,7 +312,6 @@ TicketDate.prototype.linkReset =function(ele){
         return false;
     }
 };
-
 var  conditionalFiltering = {
 
     addHandler: function (target, eventType, handle) {

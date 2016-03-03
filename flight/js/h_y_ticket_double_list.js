@@ -7,7 +7,6 @@ var ticketDouble = {
     dateInit:function(arg){
         var spans = document.querySelectorAll('.ticket-double-date');
         var dateInitObj = {};
-        console.log(arg)
         spans[0].innerHTML = ticketDouble.returnWeek(arg.DepartDate);
         spans[1].innerHTML = ticketDouble.returnWeek(arg.ReturnDate);
         dateInitObj[arg.DepartDate] = '去程';
