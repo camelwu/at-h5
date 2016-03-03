@@ -84,7 +84,7 @@
 			$("#popup_content").addClass(type);
 			if (type=="layer") {
 				$("#popup_container").css({
-					minHeight : $("#popup_container").outerHeight(true),
+					//minHeight : $("#popup_container").outerHeight(true),
 					maxWidth : $("#popup_container").outerWidth() - 24
 				});
 			}
