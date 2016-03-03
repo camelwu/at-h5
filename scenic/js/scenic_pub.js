@@ -5,6 +5,67 @@
     var webkit = this;
     var core = function(){
         var _url ="http://10.2.22.239:8888/api/GetServiceApiResult";
+        var callback="";
+        var citycode=[
+            {   //scenic
+                city:{
+                    inland:{hotcity:0,citylist:0},
+                    oversea:{hotcity:"0096",citylist:"0086"}
+                }
+            },
+            {   //tour
+                city:{
+                    inland:{hotcity:0,citylist:0},
+                    oversea:{hotcity:0,citylist:0}
+                }
+            }
+
+        ];
+
+        var getCity = function(code,callback){
+
+            return {CallbackCity:citycode[code],CallbackUrl:callback}
+        }
+
+        var d2jhash = function(key){
+            var hash = 5381;
+            for (var i = 0;i<key.length;i++){
+                hash = hash * 33 +key.charCodeAt(i);
+            }
+            return hash % 1013;
+        }
+
+        /**
+         * [public GetQueryString] 获取URL中的参数
+         * @param name
+         * @returns {*}
+         * @constructor
+         */
+        var GetQueryString = function(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  decodeURI(r[2]); return null;
+        }
+
+        var GetRequestUrl = function(url) {
+            var url = url||location.search; //获取url中"?"符后的字串
+            var ename;
+            var Request = [];
+            if(url.indexOf("?")!=-1)
+            {
+                var str = url.substr(url.indexOf("?")+1,url.len);
+
+                strs= str.split("&");
+                //console.log(strs);
+                for(var i=0;i < strs.length;i++)
+                {
+                    Request[i] = strs[i];
+                }
+
+            }
+            return Request;
+        }
 
         /**
          * [private scenic_city]tab初始化
@@ -91,6 +152,7 @@
             //console.log(newArr)
             return newArray;
         }
+
 
 
         /**
@@ -189,7 +251,10 @@
             CAnimIn:CAnimIn,//[public ajax]
             CAnimOut:CAnimOut,//[public ajax]
             SplitCitiesArray:SplitCitiesArray,//[public split array]
-            ByCities:ByCities //[public by cityCode]
+            ByCities:ByCities, //[public by cityCode]
+            getCity:getCity,
+            GetQueryString:GetQueryString,//[public GetURL QueryString ]
+            GetRequestUrl:GetRequestUrl
         }
     }();
     webkit.MT = webkit.MT || {};
@@ -208,6 +273,15 @@
     }
     webkit.MT.ByCities = function(a,b){
         return core.ByCities(a,b);
+    }
+    webkit.MT.getCity = function(a,b){
+        return core.getCity(a,b);
+    }
+    webkit.MT.GetQueryString = function(a){
+        return core.GetQueryString(a);
+    }
+    webkit.MT.GetRequestUrl = function(url){
+        return core.GetRequestUrl(url);
     }
     webkit.MT.SplitCitiesArray = function(_oldArray){
        return core.SplitCitiesArray(_oldArray);

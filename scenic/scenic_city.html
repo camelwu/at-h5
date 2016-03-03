@@ -177,12 +177,14 @@
     </div>
 </div>
 <script src="../js/lib/jquery.js"></script>
-<script src="js/scenic_pub.js"></script>
+<script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/template.js"></script>
+<script src="js/scenic_pub.js"></script>
+
 
 <script id="tpl_GetHotCity" type="text/template">
-    {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i<len;i++){ %}
+    {% for(var i=0,len=data.destCities.length;i<len;i++){ %}
     <li>{%=data.destCities[i].cityName%}</li>
     {% } %}
 </script>
@@ -190,6 +192,13 @@
 
 <script>
     (function(){
+        //hotcity listcity callbackcode
+        var val = vlm.parseUrlPara(window.location.href);
+        var callback = MT.GetQueryString("callback");
+        var callbackcity = MT.getCity(val.citycode,callback);
+        var callback_url = MT.GetRequestUrl(callback);
+        console.log(callback_url);
+
         /**
          * 获得国外热门城市
          */
@@ -200,7 +209,7 @@
                     "SubProduct": "All"
                 },
                 "ForeEndType": 3,
-                "Code": "0096"
+                "Code": callbackcity.CallbackCity.city.oversea.hotcity
             }
 
             MT.ajaxJson("",JSON.stringify(Param),MT.CallbackExHotCity,MT.ajaxAnimIn,MT.ajaxAnimOut);
@@ -215,19 +224,51 @@
             var json=eval('('+data+')');
             console.log(json);
             if(json.success){
+                var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                $("#js_ExHotCity").html(tpl_GetExHotCity);
+            }else {
+                console.log(json);
+                jAlert(json.message,"提示");
+            }
+
+        }
+
+        /**
+         * 获得城市列表
+         */
+        MT.getCityList = function(){
+            var Param=
+            {
+                "Parameters": {
+                    "SubProduct": "All"
+                },
+                "ForeEndType": 3,
+                "Code": callbackcity.CallbackCity.city.oversea.citylist
+            }
+
+            MT.ajaxJson("",JSON.stringify(Param),MT.CallbackCityList,MT.ajaxAnimIn,MT.ajaxAnimOut);
+        }
+
+        /**
+         * 获得城市列表的回调方法
+         * @param data
+         * @constructor
+         */
+        MT.CallbackCityList = function(data){
+            var json=eval('('+data+')');
+            console.log(json);
+            if(json.success){
                 var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data),tpl_str,tpl_title,tpl_ul;
                 var newArray = MT.SplitCitiesArray(json.data.destCities.sort(MT.ByCities));
-
+//                var docf = document.createDocumentFragment();
                 for (var i = 0;i<newArray.length;i++){
-//                    console.log(newArray[i]);
                     var title =newArray[i][0].cityCode.substr(0,1);
-                    tpl_str = $("<li></li>");
-                    $("<span class='gui-city-t'></span>").html(title).appendTo(tpl_str);
+                    tpl_str = $("<li id='"+title+"'></li>");
+                    $("<span  class='gui-city-t'></span>").html(title).appendTo(tpl_str);
                     tpl_ul = $("<ul class='city-tags'></ul>");
                     tpl_ul.appendTo(tpl_str);
                     for (var j = 0;j<newArray[i].length;j++){
-//                        console.log(newArray[i][j].cityName);
-                       var li_child= $("<li></li>");
+                       var li_child= $("<li data-key='"+newArray[i][j].cityCode+"'></li>").click(MT.ClickTags);
                         li_child.html(newArray[i][j].cityName).appendTo(tpl_ul);
                     }
                     $("#js_oversea").append(tpl_str);
@@ -244,6 +285,15 @@
 
         }
 
+        MT.ClickTags = function(e){
+            var cc = $(this).attr("data-key");
+            var url = callbackcity.CallbackUrl;
+            if(url == ""){
+                return false;
+            }
+            window.location.href = "../"+url+"?DestCityCode="+cc;
+        }
+
         /**
          * 城市列表字母列表
          * @param ulId
@@ -252,24 +302,33 @@
          */
          MT.CharColumn = function(ulId,newArray){
              var ul = $("#"+ulId),childli,childspan;
-             $("<li data-key='cur' data-value='当前'>当前</li>").appendTo(ul);
-             $("<li data-key='hot' data-value='热门'>热门</li>").appendTo(ul);
+             $("<li data-key='cur' data-value='当前'>当前</li>").click(MT.ClickChar).appendTo(ul);
+             $("<li data-key='hot' data-value='热门'>热门</li>").click(MT.ClickChar).appendTo(ul);
 
              for (var i = 0;i<newArray.length;i++){
                  var title =newArray[i][0].cityCode.substr(0,1);
-                 childli = $("<li data-key='"+title+"' data-value='"+title+"'></li>");
+                 childli = $("<li data-key='"+title+"' data-value='"+title+"'></li>").click(MT.ClickChar);
                  childspan = $("<span class='tags' data-value='"+title+"'><span> ").html(title);
                  childspan.appendTo(childli);
                  childli.appendTo(ul);
              }
          }
 
+        MT.ClickChar = function(e){
+
+            var id = $(this).attr("data-key");
+            var pos = $("#"+id).offset().top;
+            $("html,body").animate({ scrollTop: pos }, 400);
+//            console.log(id);
+        }
 
 
         //tab切换
         MT.tabScroll();
         //加载国外热门城市
         MT.getExHotCity();
+        //加载城市列表
+        MT.getCityList();
 
     })();
 </script>
