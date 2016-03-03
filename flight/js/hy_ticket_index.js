@@ -11,7 +11,8 @@
                num: 13,
                time: dateInitObj,
                sClass1: 'double-date',
-               type:'Return'
+               type:'Return',
+               _word:{tip:['去程','返程']}
            });
        },
 
@@ -25,7 +26,8 @@
                num: 13,
                time: dateInitObj,
                sClass1: 'enterDate',
-               type:'Oneway'
+               type:'Oneway',
+               _word:{tip:['去程']}
            });
        },
 
@@ -532,6 +534,7 @@
                createEle(iCityData);}
        },
        historyChooseHandler:function(arg,type){
+           console.log(type)
           var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
           var dCityData = this.storageUtil.get('dHisCity');
@@ -550,6 +553,7 @@
                 }
 
                 if(n.length>0){
+
                     (type == "demestic")?that.storageUtil.set('dHisCity',{type:"demestic",data:n}):that.storageUtil.set('iHisCity',{type:"international",data:n});
                     for(var m = 0; m < n.length; m++){
                         liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
@@ -806,7 +810,6 @@
            })
        },
        searchHandler:function(){
-           //alert(1)
           var cityListSearched = document.querySelector('.city-list-searched');
           var cityInputZone = document.querySelector('#city-input-zone');
           var domesticCity = document.querySelector('.domestic-city');

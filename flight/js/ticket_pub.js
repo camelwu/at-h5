@@ -32,12 +32,10 @@ TicketDate.prototype.linkColor=function(type,date){
     }
     return false;
 };
-
-TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程']};
-
 TicketDate.prototype.initialize =function (options) {
     this.type = options.type;
     this.id = options.id;
+    this._word = options._word;
     this.num = options.num;
     this.sClass1=options.sClass1;
     this.id2=options.id2;
@@ -51,7 +49,7 @@ TicketDate.prototype.initialize =function (options) {
 
 TicketDate.prototype.createContainer = function(odate){
     // 如果存在，则移除整个日期层Container
-    var odiv = _CalF.$('#'+ this.id + '-date');
+    var odiv = _CalF.$('#'+ this.id + '-date'),that=this;
     if(!!odiv) odiv.parentNode.removeChild(odiv);
     var container = this.container = document.createElement('div');
     container.id = this.id + '-date';
@@ -92,7 +90,7 @@ TicketDate.prototype.createContainer = function(odate){
         tiper.id = this.id + '-tiper';
         tiper.className = 'tipers';
 
-        tiper.innerHTML = "请选择去程日期";
+        tiper.innerHTML = "请选择"+that._word.tip[0]+"日期";
         this.type=='Oneway'?void(0):container.appendChild(tiper);
     }
     document.body.appendChild(container);
@@ -185,18 +183,18 @@ TicketDate.prototype.linkOn = function(){
                         that.linkOver(event);
                     }else{
                         if(that.op==0){
-                            that.tiper.innerHTML = '请选择'+that._word.f[1]+'日期';
+                            that.tiper.innerHTML = '请选择'+that._word.tip[1]+'日期';
                             that.linkReset(this.index);
-                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
+                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.tip[that.op]+'</span>');
                             that.op++;
                             that.cache = this.getAttribute('data-day');
                         }else if(that.op==1&&this.getAttribute('data-day')!=that.cache){
-                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');that.op>=1?that.op=0:null;
+                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.tip[that.op]+'</span>');that.op>=1?that.op=0:null;
                             that.tiper.style.display = 'none';
                             that.linkOver();
                             that.linkColor('Return');
                         }else if(that.op==1&&this.getAttribute('data-day')==that.cache){
-                            that.tiper.innerHTML = '返程日期需大于去程日期';
+                            that.tiper.innerHTML =that._word.tip[1]+'日期需大于去程日期';
                         }
                     }
                 }

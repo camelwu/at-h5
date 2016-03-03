@@ -312,5 +312,32 @@ TicketDate.prototype.linkReset =function(ele){
     }
 };
 
+/*
+
+//用法：先引入d_calendar1.0.2.js,再引入该文件（重写一些方法）
+
+var dateInitObj = {};
+
+//单程事例
+var myDate= new TicketDate({
+    id: 'chooseDate-single',  //触发日期弹出框的标签的id
+    num: 13,                  //弹出日期的最多出现的月份数
+    time: dateInitObj,        //特征日期，传入之前先把值处理为比如  dateInitObj['2016-02-30'] = '去程';形式
+    sClass1: 'enterDate',     //选择日期后赋值给该元素
+    type:'Oneway'             //日历类型：Return ：包含返程，Oneway，不会提示两次以上的点击
+});
+
+
+//双程事例
+dateInitObj['2016-04-08'] = '去程';
+dateInitObj['2016-04-12'] = '返程';
+var myDate= new TicketDate({
+    id: 'ori-des-Date',
+    num: 13,
+    time: dateInitObj,
+    sClass1: 'double-date',
+    type:'Return'
+});
+*/
 
 
