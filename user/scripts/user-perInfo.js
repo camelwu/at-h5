@@ -487,7 +487,14 @@ function mycallback_newKey(ret){
 
 /*退出账户清除localStorage*/
 $('.info-quit').click(function(){
-    localStorage.removeItem('login');
+    jConfirm("确认退出当前帐号?","",logout);
+    function logout(){
+    	localStorage.removeItem('memberid');
+    	localStorage.removeItem('login');
+    	localStorage.removeItem('email');
+    	localStorage.removeItem('phone');
+    	window.location.href='user.html';
+    }
 });
 
 
