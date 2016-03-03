@@ -167,7 +167,7 @@ function u_perInfo(){
             }
             else
             {
-                alert('昵称需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+                jAlert('昵称需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
             }
 
         }
@@ -195,7 +195,7 @@ function u_perInfo(){
 
             var oInputName = document.getElementById("infoForm").getElementsByTagName("input")[0];
             u_realname = oInputName.value;
-            if(vlm.Utils.validate.nickName(u_realname))
+            if(vlm.Utils.validate.ChineseName(u_realname))
             {
                 var Parameters={
                     "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
@@ -207,7 +207,7 @@ function u_perInfo(){
             }
             else
             {
-                alert('姓名需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+                jjAlert('只能是中文，长度为2-7位');
             }
 
         }
@@ -223,20 +223,20 @@ function u_perInfo(){
             u_phone = oInputMobile.value;
             if ( ! check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                alert("输入不正确");
+                jjjAlert("输入不正确");
                 return;
             }
 
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    alert("用户已绑定信息不能修改");
+                    jjjAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
             if(oInputCode.value =='' )
             {
-                alert('请输入验证码');
+                jjAlert('请输入验证码');
             }
             else
             {
@@ -262,13 +262,13 @@ function u_perInfo(){
             if(oInputEmail.value !="") {
                 if(oInputEmail.getAttribute('data-type') !="code") {
                     if (!check(oInputEmail.getAttribute('data-type'), oInputEmail.value)) {
-                        alert("输入不正确");
+                        jjAlert("输入不正确");
                         return;
                     }
                 }
                 if(localStorage.email != ""){
                     if(oInputEmail.value == email){
-                        alert("用户已绑定信息不能修改");
+                        jjAlert("用户已绑定信息不能修改");
                         return;
                     }
                 }
@@ -296,13 +296,13 @@ function u_perInfo(){
 
             if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                alert("输入不正确");
+                jjAlert("输入不正确");
                 return;
             }
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    alert("用户已绑定信息不能修改");
+                    jjAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
@@ -332,11 +332,11 @@ function u_perInfo(){
             for(var i= 0;i < input.length;i++){
                 if(input[i].type !="button" && input[i].value !="") {
                     if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                        alert("输入不正确");
+                        jjAlert("输入不正确");
                         return;
                     }
                     if(input[1].value != input[2].value){
-                        alert("输入不正确");
+                        jjAlert("输入不正确");
                         return;
                     }
                 }
@@ -431,7 +431,7 @@ function mycallback_nick(ret){
         window.location.href = "user-perInfo.html";
         document.getElementById("nickForm").submit();
     }else{
-        alert(myJson.message);
+        jjAlert(myJson.message);
     }
 }
 function mycallback_info(ret){
@@ -443,7 +443,7 @@ function mycallback_info(ret){
         //console.log(localStorage);
         document.getElementById("infoForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
@@ -454,7 +454,7 @@ function mycallback_infoemail(ret){
         localStorage.email = u_email;
         document.getElementById("infoForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
@@ -472,7 +472,7 @@ function mycallback_phoneVeri(ret){
     if(myJson.success){
         vlm.Utils.sendMobileCode(phone_ver.value);
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 function mycallback_newKey(ret){
@@ -481,7 +481,7 @@ function mycallback_newKey(ret){
     if(myJson.success){
         document.getElementById("keyForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
@@ -527,6 +527,6 @@ function clearname(){
 //    if(myJson.Success){
 //        c.Utils.sendMobileCode(phone_ver.value);
 //    }else{
-//        alert(myJson.Message);
+//        jAlert(myJson.Message);
 //    }
 //}
