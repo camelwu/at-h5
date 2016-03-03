@@ -91,11 +91,9 @@
             
         </div>
         <!--   底部预定   -->
-       <div class="package_reserve">
-            <!--<span class="all_num">套餐总额：<i>7816</i></span>-->
-            <!--<span class="separate_num">分开预订：<i>7816</i></span>-->
-            <!--<i class="itemized" id="show_de">明细</i>-->
-            <a href="order-data-people.html" class="reserve">预定</a>
+       <div id="packagePrice" class="package_reserve">
+            <!--<span class="all_num">套餐总额：<i>7816</i>起/人（<b></b>人起订）</span>-->
+            <!--<a href="order-data-people.html" class="reserve">预定</a>-->
         </div>
     </div>
     <!--   背景块   -->  
@@ -153,6 +151,10 @@
                     var tpl2 = [
                          '<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom%}至{%=departValidTo%}</i></h3>'
                     ];
+                    var tpl3 = [
+                        '<span class="all_num">套餐总额：<i>'+val.packagePrice+'</i>起/人（<b>{%=minPax%}</b>人起订）</span>',
+                        '<a href="order-data-people.html" class="reserve">预定</a>'
+                    ];
                     var tmp={
                         "Parameters": {
                             "PackageID": val.packageID
@@ -168,13 +170,14 @@
                             var data = json.data;
                             var html_pb = template(tpl1,data);
                             var html_tt = template(tpl2,data);
+                            var html_pp = template(tpl3,data);
                             var tpl_GetSpotOverview = template("tpl_GetSpotOverview",data);
                             var tpl_GetSpotImportantNotes = template("tpl_GetSpotImportantNotes",data);
                             $("#packageBox").html(html_pb);
                             $('#tourTime').html(html_tt);
                             $('#tag1_con').html(tpl_GetSpotOverview);
                             $('#pageTag_2').html(tpl_GetSpotImportantNotes);
-
+                            $('#packagePrice').html(html_pp);
                             if(data.length == 0){
                                 jAlert("抱歉暂时没有数据","提示");
                             }

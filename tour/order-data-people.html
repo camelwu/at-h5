@@ -58,11 +58,11 @@
                     </div>
                     <div class="nav2-center">
                         <div class="nav2-centertop">
-                            <p><input name="CheckInDate" id="CheckInDate" value="2016-03-11"><span id="week_span1">周四 入住</span></p>
+                            <p><input name="CheckInDate" id="CheckInDate" value="2016-03-11" class="CheckInDateI"><span id="week_span1">周四 入住</span></p>
 
                         </div>
                         <div class="nav2-centerbottom">
-                            <p><input name="CheckOutDate" id="CheckOutDate" value="2016-03-12"><span id="week_span2">周一 离店</span></p>
+                            <p><input name="CheckOutDate" id="CheckOutDate" value="2016-03-12" class="CheckInDateI"><span id="week_span2">周一 离店</span></p>
                         </div>
                     </div>
                     <div class="nav2-centerright">
@@ -126,13 +126,14 @@
         </div>       
     </div>
 
-    <script src="../js/lib/d_calendar.js"></script>
+    <script src="../js/lib/d_calendar1.0.2.js"></script>
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/lib/plugins.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
+    <script src="js/dateFix.js"></script>
     <script>
         $(window).load(function () {
             $("#status").fadeOut();
@@ -165,7 +166,7 @@
             }
         };
         (function(){
-            var n2c=['日','一','二','三','四','五','六',];
+            var n2c=['日','一','二','三','四','五','六'];
             function toDou(num){
                 return num<10?'0'+num:''+num;
             }
@@ -254,6 +255,28 @@
             var myDate1 = new Calender3({id:'content3',num: 13,time:_obj_3});            
         })();
 
+        var dateInitObj = {};
+
+        //单程事例
+        var myDate= new TicketDate({
+            id: 'chooseDate-single',  //触发日期弹出框的标签的id
+            num: 13,                  //弹出日期的最多出现的月份数
+            time: dateInitObj,        //特征日期，传入之前先把值处理为比如  dateInitObj['2016-02-30'] = '去程';形式
+            sClass1: 'enterDate',     //选择日期后赋值给该元素
+            type:'Oneway'             //日历类型：Return ：包含返程，Oneway，不会提示两次以上的点击
+        });
+
+
+        //双程事例
+        dateInitObj['2016-04-08'] = '去程';
+        dateInitObj['2016-04-12'] = '返程';
+        var myDate= new TicketDate({
+            id: 'ori-des-Date',
+            num: 13,
+            time: dateInitObj,
+            sClass1: 'double-date',
+            type:'Return'
+        });
         (function(){
             function toUp(m,n,n_1){
                 var _type = n.parentNode.getAttribute("data-type");
@@ -402,6 +425,52 @@
                 next!=null?next.parentNode.insertBefore(el(html),next):dom.parentNode.appendChild(el(html));
             }
         })()
+
+
+
+
+
+
+
     </script>
+
+<script>
+
+    function double(){
+        var paraObj = {
+            start:'2016-04-12',
+            end:'2016-04-18'};
+        var dateInitObj = {},paramStr;
+        dateInitObj[paraObj.start] = '入住';
+        dateInitObj[paraObj.end] = '离店';
+        var myDate= new TicketDate({
+            id: 'content2',
+            num: 13,
+            time: dateInitObj,
+            sClass1: 'double-date',
+            type:'Return',
+            _word:{tip:['入住','离店']}
+        });
+    };
+    double();
+   /* function single (){
+        var paraObj = {
+            start:this.reDate(document.querySelector('.single-date').innerHTML)};
+        var dateInitObj = {},paramStr;
+        dateInitObj[paraObj.start] = '已选';
+        var myDate2= new TicketDate({
+            id: 'chooseDate-single',
+            num: 13,
+            time: dateInitObj,
+            sClass1: 'enterDate',
+            type:'Oneway',
+            _word:{tip:['去程']}
+        });
+    },
+    */
+
+
+</script>
+
 </body>
 </html>
