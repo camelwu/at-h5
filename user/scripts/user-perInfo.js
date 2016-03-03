@@ -10,8 +10,8 @@ var r_phone=$('#phone')[0];
 var UserSex=localStorage.salutation;
 var phone_verify=$('#phone_ver')[0];
 function u_perInfo(){
-    var menu = $("#menu")[0];
-    menu.style.display = "none";
+    //var menu = $("#menu")[0];
+    //menu.style.display = "none";
     var email = localStorage.email||sessionStorage.email;
     var phone = localStorage.phone||sessionStorage.phone;
     var oPassword = localStorage.password||sessionStorage.password;
