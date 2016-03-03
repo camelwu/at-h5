@@ -40,6 +40,21 @@
 
     function show_detail_expenses(){
         var showDom = document.getElementById("detail_expenses"),_t=this;
+        var packageTit=showDom.querySelector('.package-tit');
+        //packageTit.innerHTML=document.querySelector('.sce-introduce-txt').innerHTML;
+        packageTit.innerHTML='套餐名称';
+
+        var traNum=document.querySelectorAll('.trave-li');
+        var str1='';
+        for(var i=0;i<traNum.length; i++)
+        {
+            var inputAdult=traNum[i].querySelectorAll('.list_con2 input');
+            var lastName=inputAdult[0].value;
+            var firstName=inputAdult[1].value;
+            str1+='<li><span>'+'出行人'+(i+1)+'</span><i>'+lastName+firstName+'</i></li>';
+        }
+        document.querySelector('#detail_expenses ul').innerHTML='<li><span class="package-tit">'+packageTit.innerHTML+'</span><i data-unit="&#165;">56 x '+traNum.length+'</i></li>'+str1;
+
         function showChangeClass(){_t.className='itemized';}
         this.className=="itemized"?(isShow(showDom,'42px',showChangeClass),_t.className='itemized_d'):isHide(showDom,showChangeClass);
     }

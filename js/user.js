@@ -289,19 +289,23 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var oMobile = $('#mobile-cell')[0].value;
                 var oEmail = $('#email-cell')[0].value;
 
-                if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
-                    var Parameters = {
-                        "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\""+$('#uptra_page .country-btn').eq(1).attr('data-code')+"\",\"CountryName\":\""+$('#uptra_page .country-btn').eq(1).html()+"\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+oBirthday+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\""+$('#uptra_page .country-btn').eq(0).attr('data-code')+"\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"}]}",
-                        "ForeEndType": 3,
-                        "Code": "0072"
-                    };
-                    console.log(Parameters);
-                    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
-
+                if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+                {
+                    jAlert('请输入正确的手机号');
+                    return;
                 }
-                else {
-                    jAlert('请输入正确的手机号和邮箱');
+                if ( ! vlm.Utils.validate.email(oEmail) )
+                {
+                    jAlert('请输入正确的邮箱');
+                    return;
                 }
+                var Parameters = {
+                    "Parameters": "{\"Traveller\":{\"TravellerId\":" + travelId + ",\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\""+$('#uptra_page .country-btn').eq(1).attr('data-code')+"\",\"CountryName\":\""+$('#uptra_page .country-btn').eq(1).html()+"\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+oBirthday+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"Id\":" + id + ",\"TravellerId\":" + travelId + ",\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\""+$('#uptra_page .country-btn').eq(0).attr('data-code')+"\",\"IdActivatedDate\":\""+input[4].value.replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"}]}",
+                    "ForeEndType": 3,
+                    "Code": "0072"
+                };
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
 
             }
         }
@@ -309,21 +313,22 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         upTraveler(upadate_finish);
         //   删除常旅客
         var delTra = $("#delTra")[0];
-
         function deleteTra(obj) {
             obj.onclick = function () {
                 var travelId = array[index];
-                //console.log(travelId);
-                var Parameters = {
-                    "Parameters": "{\"travellerId\":" +travelId+ "}",
-                    "ForeEndType": 3,
-                    "Code": "0073"
-                };
-                //console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+
+                jConfirm("确认删除该旅客?","",deletetra);
+                function deletetra(){
+                    var Parameters = {
+                        "Parameters": "{\"travellerId\":" +travelId+ "}",
+                        "ForeEndType": 3,
+                        "Code": "0073"
+                    };
+                    //console.log(Parameters);
+                    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+                }
             }
         }
-
         deleteTra(delTra);
     });
 
