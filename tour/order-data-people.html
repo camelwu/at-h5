@@ -93,7 +93,7 @@
                     <input class="inp-cage" type="text" value placeholder="2-14"><i class="child-sui">岁</i>
                 </div>
                 <div class="numbList">
-                    <span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>
+                    <span class="bedList"><i>加床</i><b class="icon noselect"></b></span>
                 </div>
             </div>
         </section>
@@ -101,7 +101,7 @@
             <h3>景点</h3>
         </section>
         <section id="tourTime" class="tourTime">
-           <!-- <div class="content2" id="content3">
+            <div class="content2" id="content3">
             <div class="nav2-center">
             <div class="nav2-centertop">
             <span>景点1</span>
@@ -112,9 +112,19 @@
             <i></i>
             </div>
             </div>
-            -->
+            <div class="content2" id="content4">
+            <div class="nav2-center">
+            <div class="nav2-centertop">
+            <span>景点1</span>
+            <p><input name="CheckInDate" id="content4_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content4_week_span1" class="week-tour">周四</span></p>
+            </div>
+            </div>
+            <div class="nav2-centerright">
+            <i></i>
+            </div>
+            </div>
         </section>
-        <section class="orderBtn"><a id="order_btn" href="#">预订</a></section>
+        <section class="orderBtn"><a href="hotel_list.html">预订</a></section>
     </div>
 </div>
 
@@ -268,7 +278,7 @@
                     +'<input class="inp-cage" type="text" value placeholder="2-14"><i class="child-sui">岁</i>'
                     +'</div>'
                     +'<div class="numbList spenumbList">'
-                    +'<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'
+                    +'<span class="bedList"><i>加床</i><b class="icon noselect"></b></span>'
                     +'</div>';
         }
         function extraRoomTemp(i){
@@ -288,7 +298,7 @@
                     +'<input class="inp-cage" type="text" value placeholder="2-14"><i class="child-sui">岁</i>'
                     +'</div>'
                     +'<div class="numbList">'
-                    +'<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'
+                    +'<span class="bedList"><i>加床</i><b class="icon noselect"></b></span>'
                     +'</div>'
                     +'</div>';
         }
@@ -310,11 +320,11 @@
 //   获取景点
 <script id="tpl_GetTour" type="text/template">
     {% for(var i=0;i < tours.length;i++){ %}
-    <div class="content2" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
+    <div class="content2" id="content{%=i%}">
         <div class="nav2-center">
             <div class="nav2-centertop">
                 <span>景点{%=i+1%}</span>
-                <p><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">周四</span></p>
+                <p><input name="CheckInDate" id="content3_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content3_week_span1" class="content3_week_span1">周四</span></p>
             </div>
         </div>
         <div class="nav2-centerright">
@@ -353,7 +363,6 @@
                     if(json.success) {
                         var data = json.data;
                         var tpl_GetTour = template("tpl_GetTour",data);
-                        dateHandler.init();
                         $('#tourTime').html(tpl_GetTour);
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
@@ -364,79 +373,9 @@
                     }
                 }
             };
-            //  传递数据
-            var sendInfo = function(){
-                var CheckInDate = document.getElementById('CheckInDate').value;
-                var CheckOutDate = document.getElementById('CheckOutDate').value;
-                var roomNum = document.getElementById('roomNum').innerHTML;   //房间数
-                var inputInfo = document.getElementsByClassName("cut-up-cont");
-                var bed = document.getElementsByClassName("bedList");
-                var adult = [];
-                var eveAdultNum = [];
-                var eveChildNum = [];
-                var ifAddBed = [];
-                var adultNum = 0;
-                var withoutBedNum = 0;
-                //  总成人数,每个房间成人数，儿童数和不加床儿童数
-                for(var i = 0;i < inputInfo.length;i++){
-                    if(inputInfo[i].getAttribute("data-type") == 'adultNum'){
-                        adult.push(inputInfo[i].innerHTML);
-                        eveAdultNum.push(inputInfo[i].innerHTML);
-                    }
-                    if(inputInfo[i].getAttribute("data-type") == 'childNum'){
-                        eveChildNum.push(inputInfo[i].innerHTML);
-                    }
-                }
-                for(var j = 0;j < adult.length;j++){
-                    adultNum = adultNum + parseInt(adult[j]);
-                }
-                for(var m = 0;m < bed.length;m++){
-                    if(bed[m].getAttribute('data-type') == 'ifaddBed'){
-                        ifAddBed.push(bed[m].getElementsByTagName('b')[0]);
-                    }
-                }
-                for(var n = 0;n < ifAddBed.length;n++){
-                    if(ifAddBed[n].className == 'icon noselect'){
-                        withoutBedNum ++;
-                    }
-                }
-                var tourUl = document.querySelector('#tourTime'),tourData = [];
-                var tourEles= tourUl.querySelectorAll('.content2');
-                for(var h = 0; h < tourEles.length;h++){
-                    var temObj = {};
-                    temObj['tourId']=tourEles[h].getAttribute('data-tour-id');
-                    temObj['tourDate']=tourEles[h].querySelector('input').value;
-                    tourData.push(temObj);
-                }
-                //   判断页面能否跳转
-                var input = document.getElementsByClassName("inp-cage");
-                for(var w = 0;w < input.length;w++){
-                    if(input[w].value == ''){
-                        jAlert("儿童年龄未输入","提示");
-                        return;
-                    }
-                    if(input[w].value < 2 || input[w].value >14){
-                        jAlert("儿童年龄不符合标准","提示");
-                        return;
-                    }
-                }
-                var InfoData = {
-                    "checkInDate":CheckInDate,
-                    "checkOutDate":CheckOutDate,
-                    "roomNum":parseInt(roomNum),
-                    "adultNum":adultNum,
-                    "withoutBedNum":withoutBedNum,
-                    "tourList":tourData,
-                    "eveAdultNum":eveAdultNum,
-                    "eveChildNum":eveChildNum
-                };
-                localStorage.info = InfoData;
-                window.location.href = "hotel_list.html";
-            };
             return{
                 FlashLoad:flashLoad,
-                GetSpot:getSpot,
-                SendInfo:sendInfo
+                GetSpot:getSpot
             }
         }();
         ww.MT = ww.MT || {};
@@ -444,15 +383,10 @@
             inpitInfo.FlashLoad();
             inpitInfo.GetSpot();
         };
-        ww.MT.sendData = function(){
-            inpitInfo.SendInfo();
-        };
         MT.load();
-
     })();
-    var order_btn = $('#order_btn');
-    order_btn.click( MT.sendData);
-    var dateHandler = {
+
+   var dateHandler = {
        initDate: function(){
            var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
                    r =new Date( d.setDate(d.getDate() + 1)),paraObj={};
@@ -503,7 +437,7 @@
                range:[],
                _word:{tip:['入住','离店']},
                fn:function(){ //最终执行函数
-                  // alert(2)
+                   alert(2)
                },
                fn2:function(arg){ //选择之后的及时回调
                    var inputs = document.querySelectorAll('.'+this.sClass1),span1 = document.querySelector('#week_span1'),span2 = document.querySelector('#week_span2');
@@ -617,6 +551,7 @@
 
        }
    };
+    dateHandler.init()
 
 </script>
 

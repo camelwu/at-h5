@@ -1,11 +1,4 @@
-/**
- * Created by Asiatravel on 2015/12/31.
- */
-//董振昊js代码
-/**
- * Created by changlv on 2015/12/11.
- */
-    //解决300毫秒延迟问题
+
 (function($) {
     $(document).ready(function() {
         window.addEventListener('load', function() {
@@ -377,7 +370,7 @@ function inpChange(id,myText){
     var cityListData={
         "Code": "0083",
         "Parameters": "",
-        "ForeEndType": 1
+        "ForeEndType": 3
     };
     //城市列表
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){

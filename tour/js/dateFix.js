@@ -95,13 +95,14 @@ TicketDate.prototype.createContainer = function(odate){
         var header = this.header = document.createElement('div');
         header.id = this.id+"-header";
         header.className = 'header';
+        header.style.top = 0;
         this.type=='Oneway'?header.style.height = "45px":void(0);
         header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3>':'<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
         document.body.appendChild(header);
 
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop=this.type=='Oneway'? '4.5rem':'6.8rem';
+        weeker.style.marginTop=this.type=='Oneway'? '3.68rem':'3.68rem';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
