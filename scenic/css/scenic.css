@@ -648,9 +648,14 @@ i{
 }
 .sce-name-all {
     font-size: 1.3rem;
-    line-height: 1.9rem;
     overflow: hidden;
     margin-bottom: 1.4rem;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 .sce-img-box {
     width: 85px;
@@ -1513,7 +1518,7 @@ i{
     position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 110;
+    z-index: 77;
 }
 .order-total-wrap {
     width: 100%;
@@ -1767,7 +1772,7 @@ i{
     background-color: #000;
     opacity: 0.3;
     filter: alpha(opacity:30);
-    z-index: 90;
+    z-index: 75;
     display: none;
 }
 .price-tot-box {
@@ -2043,6 +2048,9 @@ i{
     text-align:center;line-height:38px;    margin-left: 15px;
     margin-bottom: 10px;
     border: 1px solid #d1d1d1;
+}
+.conBox .cityListBox ul li a{
+    color: inherit!important;
 }
 /*.conBox .cityListBox ul li span,*/
 /*.conBox .cityListBox ul li a{*/

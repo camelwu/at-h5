@@ -833,6 +833,9 @@ var arrCountry= [{"CountryEN":"Angola",
     var oTc=document.querySelector('.country-list-searched');
     var countryListSearched = document.querySelector('.country-list-searched');
     var countryInputZone = document.querySelector('#country-input-zone');
+    $('.country-hidden').click(function(){
+        $('.country-cho-wrap').hide();
+    });
     for(var i=0;i<aBtn.length; i++)
     {
         (function(index){
@@ -840,12 +843,28 @@ var arrCountry= [{"CountryEN":"Angola",
                 var _this=this;
                 countryListSearched.onclick=function(e){
                     _this.innerHTML=countryInputZone.value=e.target.innerHTML;
+                    $(oCont).attr("data-code", $(e.target).attr("data-code"));
+                    $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     this.style.display='none';
                     setTimeout(function(){
                         oDiv.style.display='none';
                         oTc.style.display='none';
                         oInput.value='';
                     },500)
+                    if($('#addtra_page')[0].style.display == 'none')
+                    {
+                        if(index == 1 || index == 3)
+                        {
+                            $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        }
+                    }
+                    else{
+                        if(index == 1 || index == 3)
+                        {
+                            $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        }
+                    }
+
                 };
 
                 oDiv.style.display='block';
@@ -856,16 +875,29 @@ var arrCountry= [{"CountryEN":"Angola",
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
                     oCont.innerHTML=oInp.value=e.target.innerHTML;
-                    $(oCont).attr("data-code", $(e.target).attr("data-code"))
-                    $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"))
+                    $(oCont).attr("data-code", $(e.target).attr("data-code"));
+                    $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     console.log(e.target);
                     setTimeout(function(){
                         oDiv.style.display='none';
                         oTc.style.display='none';
                         oInput.value='';
                     },500)
-                };
 
+                    if($('#addtra_page')[0].style.display == 'none')
+                    {
+                        if(index == 1 || index == 3)
+                        {
+                            $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        }
+                    }
+                    else{
+                        if(index == 1 || index == 3)
+                        {
+                            $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        }
+                    }
+                };
 
             };
 
@@ -888,7 +920,7 @@ var arrCountry= [{"CountryEN":"Angola",
                             resultStr += '<li class="country-list-searched-item">无搜索结果</li>';
                         } else {
                             for (var j = 0; j < searchResult.length; j++) {
-                                resultStr += '<li class="country-list-searched-item">' + searchResult[j].CountryName + '</li>';
+                                resultStr += '<li class="country-list-searched-item" data-tel-code="'+searchResult[j].TelCode+'" data-code="'+searchResult[j].CountryCode+'" >' + searchResult[j].CountryName + '</li>';
                             }
                         }
                         countryListSearched.innerHTML = resultStr;
@@ -930,6 +962,17 @@ var arrCountry= [{"CountryEN":"Angola",
 
 //根据CountryCode获得CountryName
 function getCountryName(code){
+    for(var i=0;i<arrCountry.length; i++)
+    {
+        if(arrCountry[i].CountryCode == code)
+        {
+            return arrCountry[i];
+        }
+    }
+}
+
+//根据CountryCode获得手机区号data-tel-code
+function getTelCode(code){
     for(var i=0;i<arrCountry.length; i++)
     {
         if(arrCountry[i].CountryCode == code)

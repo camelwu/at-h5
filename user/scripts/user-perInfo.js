@@ -10,8 +10,8 @@ var r_phone=$('#phone')[0];
 var UserSex=localStorage.salutation;
 var phone_verify=$('#phone_ver')[0];
 function u_perInfo(){
-    var menu = $("#menu")[0];
-    menu.style.display = "none";
+    //var menu = $("#menu")[0];
+    //menu.style.display = "none";
     var email = localStorage.email||sessionStorage.email;
     var phone = localStorage.phone||sessionStorage.phone;
     var oPassword = localStorage.password||sessionStorage.password;
@@ -133,7 +133,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
             }else{
                 sex.className="info-sex";
                 block.innerHTML = "男";
@@ -143,7 +143,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
             }
 
         };
@@ -155,6 +155,7 @@ function u_perInfo(){
         obj.onclick = function() {
             var input = document.getElementById("nickForm").getElementsByTagName("input");
             var oNickname=input[0].value;
+            console.log(oNickname);
             if(vlm.Utils.validate.nickName(oNickname))
             {
                 var Parameters = {
@@ -167,7 +168,7 @@ function u_perInfo(){
             }
             else
             {
-                alert('昵称需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+                jAlert('昵称需要由4-20个字符，可由中英文字母，数字、"-"、"_"组成');
             }
 
         }
@@ -195,7 +196,7 @@ function u_perInfo(){
 
             var oInputName = document.getElementById("infoForm").getElementsByTagName("input")[0];
             u_realname = oInputName.value;
-            if(vlm.Utils.validate.nickName(u_realname))
+            if(vlm.Utils.validate.ChineseName(u_realname))
             {
                 var Parameters={
                     "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
@@ -207,7 +208,7 @@ function u_perInfo(){
             }
             else
             {
-                alert('姓名需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+                jAlert('只能是中文，长度为2-7位');
             }
 
         }
@@ -223,20 +224,20 @@ function u_perInfo(){
             u_phone = oInputMobile.value;
             if ( ! check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                alert("输入不正确");
+                jAlert("输入不正确");
                 return;
             }
 
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    alert("用户已绑定信息不能修改");
+                    jAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
             if(oInputCode.value =='' )
             {
-                alert('请输入验证码');
+                jAlert('请输入验证码');
             }
             else
             {
@@ -262,13 +263,13 @@ function u_perInfo(){
             if(oInputEmail.value !="") {
                 if(oInputEmail.getAttribute('data-type') !="code") {
                     if (!check(oInputEmail.getAttribute('data-type'), oInputEmail.value)) {
-                        alert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                 }
                 if(localStorage.email != ""){
                     if(oInputEmail.value == email){
-                        alert("用户已绑定信息不能修改");
+                        jAlert("用户已绑定信息不能修改");
                         return;
                     }
                 }
@@ -296,13 +297,13 @@ function u_perInfo(){
 
             if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                alert("输入不正确");
+                jAlert("输入不正确");
                 return;
             }
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    alert("用户已绑定信息不能修改");
+                    jAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
@@ -332,11 +333,11 @@ function u_perInfo(){
             for(var i= 0;i < input.length;i++){
                 if(input[i].type !="button" && input[i].value !="") {
                     if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                        alert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                     if(input[1].value != input[2].value){
-                        alert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                 }
@@ -383,10 +384,6 @@ $('#birth-cont').click(function(){
 function mycallback_birth(ret){
     var myJson=eval('('+ret+')');
     console.log(myJson.data[0].dateOfBirth);
-    if(myJson.success)
-    {
-        //window.location.href="user.html";
-    }
 }
 
 function mycallback(ret){
@@ -430,12 +427,12 @@ function mycallback(ret){
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
-    console.log(myJson);
+    //console.log(myJson);
     if(myJson.success) {
         window.location.href = "user-perInfo.html";
         document.getElementById("nickForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 function mycallback_info(ret){
@@ -447,7 +444,7 @@ function mycallback_info(ret){
         //console.log(localStorage);
         document.getElementById("infoForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
@@ -458,20 +455,14 @@ function mycallback_infoemail(ret){
         localStorage.email = u_email;
         document.getElementById("infoForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
 //性别回调
 function mycallback_sex(ret){
     var myJson = eval('('+ret+')');
-    console.log(myJson);
-    if(myJson.success){
-        window.location.href="user.html";
-
-    }else{
-        alert(myJson.message);
-    }
+    console.log(myJson.data[0].salutation);
 }
 
 function mycallback_phoneVeri(ret){
@@ -482,7 +473,7 @@ function mycallback_phoneVeri(ret){
     if(myJson.success){
         vlm.Utils.sendMobileCode(phone_ver.value);
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 function mycallback_newKey(ret){
@@ -491,13 +482,20 @@ function mycallback_newKey(ret){
     if(myJson.success){
         document.getElementById("keyForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
 /*退出账户清除localStorage*/
 $('.info-quit').click(function(){
-    localStorage.removeItem('login');
+    jConfirm("确认退出当前帐号?","",logout);
+    function logout(){
+    	localStorage.removeItem('memberid');
+    	localStorage.removeItem('login');
+    	localStorage.removeItem('email');
+    	localStorage.removeItem('phone');
+    	window.location.href='user.html';
+    }
 });
 
 
@@ -530,6 +528,6 @@ function clearname(){
 //    if(myJson.Success){
 //        c.Utils.sendMobileCode(phone_ver.value);
 //    }else{
-//        alert(myJson.Message);
+//        jAlert(myJson.Message);
 //    }
 //}

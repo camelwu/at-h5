@@ -8,6 +8,7 @@
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/scenic.css">
     <!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
+    <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
 
@@ -24,8 +25,8 @@
                     <section class="travel-date clearFix">
                         <span class="travel-date-tit fl">游玩日期</span>
                         <div class="travel-date-wrap fr clearFix">
-                            <div class="travel-date-wrap-so fl">
-                                <span class="tra-ymd" id="jdate">2015.11.14</span>
+                            <div id="jdate" class="travel-date-wrap-so fl">
+                                <span class="tra-ymd" >2015.11.14</span>
                                 <span class="tra-week">星期五</span>
                                 <b></b>
                             </div>
@@ -59,7 +60,13 @@
                         <a href="javascript:;" class="con-add-butto fr" onclick="vlm.f_choice('t','traver','',false,false);"></a>
                     </div>
                     <ul class="tourist-msg tanktick">
-
+                        <li>
+                            <span class="tourist-name tour-short">姓：</span><input id="scenic2_name1" style="width:20%;display: inline-block;" placeholder="Liou">
+                            <span class="tourist-name tour-short">名：</span><input id="scenic2_name2" style="width:20%;display: inline-block;" placeholder="Venson">
+                        </li>
+                        <li>
+                            <span class="tourist-name tour-short">护照：</span><input id="scenic2_idcard" style="display: inline-block;" placeholder="EA2359923">
+                        </li>
                     </ul>
                 </div>
                 <div class="tourist-ticket-wrap">
@@ -68,6 +75,9 @@
                         <a href="javascript:;" class="con-add-butto fr" onclick="vlm.f_choice('t','contact','',false,false);"></a>
                     </div>
                     <ul class="tourist-msg contact">
+                        <li><span class="tourist-name tour-short">姓名：</span><input id="scenic2_name" style="display: inline-block;" placeholder="Venson"></li>
+                        <li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  placeholder="+8618611850882"></li>
+                        <li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"  placeholder="113638136@163.com"></li>
                     </ul>
                 </div>
                 <div class="gray-block"></div>
@@ -94,8 +104,8 @@
                     <i class="add-tic-btn"></i>
                     <span class="add-tic-txt">添加其他套餐</span>
                 </div>
-                <div class="gray-block"></div>
-                <div class="clearFix hotel-choi-but">
+                <div class="gray-block" data-key="holist_page"></div>
+                <div class="clearFix hotel-choi-but" data-key="holist_page">
                     <span class="fl">提供接送</span>
                     <b class="hot-arrow-rig"></b>
                     <a id="choHotel" class="fr">请选择酒店</a>
@@ -109,9 +119,9 @@
         </div>
 
         <!--    接送酒店列表页     -->
-        <div id="holist_page" class="all-elements" style="display: none;">
+        <div id="holist_page" class="all-elements" data-key="holist_page" style="display: none;">
             <div class="header" style="z-index: 1000">
-                <a id="close_list" href="#" class="icons header-back"></a>
+                <a id="close_list" href="javascript:void(0);" class="icons header-back"></a>
                 <div class="sod-search">
                     <img class="sod-fdj" src="../images/1.png">
                     <input type="text" value placeholder="搜索">
@@ -186,58 +196,191 @@
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
     <script src="../js/lib/d_calendar1.0.2.js"></script>
+    <script src="js/dateFix.js"></script>
+    <script src="js/scenic_pub.js"></script>
     <script>
-        //日期调用
-        var myDate1 = new Calender({id:'jdate',input:'jdate',num:2,time:[]});
+        /*景点 预订MT*/
+        (function(){
+            var val = vlm.parseUrlPara(window.location.href);
+            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax;
+
+            /**
+             * 返回接送点信息
+             */
+            MT.getPickupPoint = function(){
+                if(val.RPP == "0"){
+                    $("[data-key=holist_page]").hide();
+                    return false;
+                }
+                var param =
+                {
+                    "Parameters": {
+                        "PackageID": val.PackageID
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0089"
+                }
+                MT.ajaxJson("",JSON.stringify(param),MT.callbackPickupPoint,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            }
+            /**
+             * 接送点信息callback
+             * @param data
+             */
+            MT.callbackPickupPoint = function(data){
+                var json=eval('('+data+')');
+                console.log(json);
+                if(json.success){
+
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
+            }
+            /**
+             * 返回详细信息
+             */
+            MT.getDetails = function(){
+                var param =
+                {
+                    "Parameters": {
+                        "PackageID": val.PackageID
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0088"
+                }
+                MT.ajaxJson("",JSON.stringify(param),MT.callbackDetails,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            }
+
+            /**
+             * 详细信息 callback
+             * @param data
+             */
+            MT.callbackDetails = function(data){
+                var json=eval('('+data+')');
+                console.log(json);
+                if(json.success){
+                    var data=json.data;
+
+                    ChildAgeMin = data.childAgeMin;
+                    ChildAgeMax = data.childAgeMax;
+                    TravelDate = data.defaultDepartStartDate;
+                    TourID = data.tours;
+                    MinPax = data.minPax;
 
 
-      
+                    var SearchPrice=
+                    {
+                        "Parameters": {
+                            "PackageID": val.PackageID,
+                            "Adult": MinPax,
+                            "Child": [
+                                ChildAgeMin,
+                                ChildAgeMax
+                            ],
+                            "Tours": [
+
+                            ]
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0091"
+
+                    }
+
+                    for (var i = 0;i<data.tours.length;i++)
+                    {
+                        SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
+                    }
+
+                    MT.getPickupPoint();
+                    MT.getSearchPrice(SearchPrice);
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
+            }
+
+            /**
+             * 返回SearchPrice
+             */
+            MT.getSearchPrice = function(SearchPrice){
+
+                MT.ajaxJson("",JSON.stringify(SearchPrice),MT.callbackSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            }
+
+            /**
+             * SearchPrice callback
+             * @param data
+             */
+            MT.callbackSearchPrice = function(data){
+                var json=eval('('+data+')');
+                console.log(json);
+                if(json.success){
+
+
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
+            }
+
+
+
+
+            MT.getDetails();
+
+
+        })();
+       
         //添加更多套餐弹窗
-        var oSetBtn=document.querySelector('.add-ticket');
-        var oAddwin=document.querySelector('.add-setmeal');
-        var oMaskWin=document.querySelector('.mask');
-        var oSetmealBtn=document.querySelector('.add-setmeal-sure');
-        var aMealBtn=document.querySelectorAll('.setmeal-tr');
+        (function(){
+            var oSetBtn=document.querySelector('.add-ticket');
+            var oAddwin=document.querySelector('.add-setmeal');
+            var oMaskWin=document.querySelector('.mask');
+            var oSetmealBtn=document.querySelector('.add-setmeal-sure');
+            var aMealBtn=document.querySelectorAll('.setmeal-tr');
 
-        oSetBtn.onclick=function(){
-            oMaskWin.style.display='block';
-            oAddwin.style.bottom='0';
+            oSetBtn.onclick=function(){
+                oMaskWin.style.display='block';
+                oAddwin.style.bottom='0';
 
-            oSetmealBtn.onclick=function(){
-                oMaskWin.style.display='none';
-                oAddwin.style.bottom='-500px';
+                oSetmealBtn.onclick=function(){
+                    oMaskWin.style.display='none';
+                    oAddwin.style.bottom='-500px';
+                };
             };
-        };
 
-        for(var i=0;i<aMealBtn.length; i++)
-        {
-            aMealBtn[i].flag=true;
-            aMealBtn[i].onclick=function(){
-                if(this.flag)
-                {
-                    this.className='setmeal-tr on fr';
-                    this.flag=false;
-                }
-                else
-                {
-                    this.className='setmeal-tr fr';
-                    this.flag=true;
-                }
-            };
-        }
+            for(var i=0;i<aMealBtn.length; i++)
+            {
+                aMealBtn[i].flag=true;
+                aMealBtn[i].onclick=function(){
+                    if(this.flag)
+                    {
+                        this.className='setmeal-tr on fr';
+                        this.flag=false;
+                    }
+                    else
+                    {
+                        this.className='setmeal-tr fr';
+                        this.flag=true;
+                    }
+                };
+            }
+        })();
 
         //选择上午下午
-        var oTraBtn=document.querySelector('.travel-date-wrap-noon').querySelectorAll('a');
-        for(var i=0;i<oTraBtn.length; i++)
-        {
-            oTraBtn[i].onclick=function(){
-                 for(var i=0;i<oTraBtn.length; i++)
-                 {
-                     oTraBtn[i].className='fa-noon';
-                 }
-                this.className='fa-noon on';
-            };
-        }
+        (function(){
+            var oTraBtn=document.querySelector('.travel-date-wrap-noon').querySelectorAll('a');
+            for(var i=0;i<oTraBtn.length; i++)
+            {
+                oTraBtn[i].onclick=function(){
+                     for(var i=0;i<oTraBtn.length; i++)
+                     {
+                         oTraBtn[i].className='fa-noon';
+                     }
+                    this.className='fa-noon on';
+                };
+            }
+        })();
 
         /*票数加减*/
         (function(){
@@ -277,7 +420,10 @@
         /*同意条款*/
         (function(){
             var oAgree=document.getElementsByClassName('order-notice-btn')[0];
-            var bOk=true;
+
+
+            var bOk=false;
+
             oAgree.onclick=function(){
                 if(bOk){
                     oAgree.style.background='url(images/ui/icons1.png) -23.7rem -0.4rem';
@@ -289,6 +435,9 @@
                     bOk=true;
                 }
             };
+
+            oAgree.style.background='url(images/ui/icons1.png) -23.7rem -0.4rem';
+            oAgree.style.backgroundSize='40rem 12rem';
         })();
 
         /*价目详情窗*/
@@ -308,6 +457,13 @@
                     bOk=true;
                 }
             };
+            oMask.onclick = function(){
+                if(bOk == false){
+                    oMask.style.display='none';
+                    oHid.style.bottom='-300px';
+                    bOk=true;
+                }
+            }
         })();
 
 
@@ -345,120 +501,70 @@
         }
 
     </script>
-    <script>
-        /*景点 预订MT*/
-        (function(){
-            var webkit = this;
-            var core = function(){
-                var val = vlm.parseUrlPara(window.location.href);
-                var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
-                vlm.init();
 
-                console.log(val.PackageID);
-                /**
-                 * @动画模版
-                 * @constructor
-                 */
-                var CTmplAnim = function(){
-                    var _childhtml = '<div id="preloader"><div id="status"><p class="center-text"><br><em>加载中……</em></p></div></div>';
-                    var _roothtml = $(_childhtml)[0];
-
-                    return _roothtml;
-                }
-
-                /**
-                 * @动画淡入
-                 * @constructor
-                 */
-                var CAnimIn = function(){
-                    if($("[id=preloader]").length < 1){
-                        document.body.appendChild(CTmplAnim());
-                    }
-                    $("#preloader").ajaxStart(function(){
-                        $(this).show();
-                    });
-
-                }
-
-                /**
-                 * 动画淡出
-                 * @constructor
-                 */
-                var CAnimOut = function(){
-
-                    $("#preloader").ajaxStop(function(){
-                        $(this).delay(400).fadeOut();
-                    });
-
-                }
-
-                /**
-                 * @loadJson 增强方法 CLoadJson ,加入了两个参数 animin (淡入动画),animout(淡出动画)
-                 * @param url
-                 * @param data
-                 * @param mycallback
-                 * @param animin ,type function [new]
-                 * @param animout ,type function [new]
-                 * @param async
-                 * @param encryption
-                 * @constructor
-                 */
-                var CLoadJson = function(url, data, mycallback,animin,animout, async, encryption) {
-                    if (async != undefined && async == true) {
-                        $.ajaxSetup({
-                            async : false
-                        });
-                    }
-
-
-                    $.ajax({
-                        type : "post",
-                        url : url + '?rnd=' + Math.random(),
-                        data : data,
-                        contentType : 'application/json;charset=utf-8',
-                        beforeSend : function(xhr) {
-                            if(animin!=undefined && animin != ""){
-                                animin();
-                            }
-                            //后续开始加密，设置header
-                            //xhr.setRequestHeader('Content-Type','application/json');
-                            if (encryption != undefined && encryption == true) {
-                                var uid = md5("zhangfengming");
-                                var password = md5("");
-                                xhr.setRequestHeader('uid', user);
-                            }
-                        },
-                        success : function(jsondata) {
-
-                            mycallback(jsondata);
-
-
+<script>
+    function chooseDate(arg){
+        var dateInitObj = {},paramStr;
+        dateInitObj['0000-00-00'] = '入住';
+        var rangeArray = [];
+        rangeArray[0] ='2016-04-05';
+        rangeArray[1]='2016-04-25';
+        var myDate= new TicketDate({
+            id: 'jdate',
+            num: 13,
+            time: dateInitObj,
+            sClass1:'tra-ymd',
+            type:'Oneway',
+            _word:{tip:['入住']},
+            range:rangeArray,
+//            fn:function(arg){
+////                alert(1)
+//                console.log(arg)
+//            }, //赋值框是非input元素时：在选择日期完成后执行的回调函数，内容可自定义,
+            fn2:function(arg1){  //赋值框是input：在选择日期完成后执行的回调函数，内容可自定义,
+//                alert(2) //Object {start: "2016-4-20"}
+                console.log(arg1)
+                var  returnWeek=function(arg1){
+                    if(arg1){
+                        var week,array,index = new Date(arg1.replace(/-/g, "/")).getDay();
+                        switch (index){
+                            case 0 :
+                                week = '周日';
+                                break;
+                            case 1 :
+                                week = '周一';
+                                break;
+                            case 2 :
+                                week = '周二';
+                                break;
+                            case 3 :
+                                week = '周三';
+                                break;
+                            case 4 :
+                                week = '周四';
+                                break;
+                            case 5 :
+                                week = '周五';
+                                break;
+                            case 6 :
+                                week = '周六';
+                                break;
+                            default :
+                                void(0);
                         }
-                    });
-                    if(animout!=undefined && animout != ""){
-                        animout();//动画淡出
+                        return week;
                     }
-                    $.ajaxSetup({
-                        async : true
-                    });
-                }
+                };
 
+                span = document.querySelector('.tra-ymd');
+                span2 = document.querySelector('.tra-week');
 
-
-
-
-                return {
-
-                }
-
-            }();
-            webkit.MT = webkit.MT || {};
-            webkit.MT.load = function(){
-
+                span.innerHTML = arg1.start;
+                span2.innerHTML = returnWeek(arg1.start);
             }
-
-            MT.load();
-        })();
-    </script>
+        });
+    };
+    chooseDate()
+</script>
 </body>
 </html>

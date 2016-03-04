@@ -96,8 +96,11 @@
                     <ul class="city-tags">
                         <li class="current">我的位置</li>
                         <li>北京</li>
-                        <li>北京</li>
-                        <li>北京</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="gui-city-t">历史选择</span>
+                    <ul class="city-tags">
                         <li>北京</li>
                         <li>北京</li>
                         <li>北京</li>
@@ -135,165 +138,9 @@
        
     </div>
     <div id="ui-view-3">
-        <ul class="tags-cut">
+        <ul id="CharColumn" class="tags-cut">
 
-            <li data-key="cur" data-value="当前">
-                当前
-            </li>
 
-            <li data-key="hot" data-value="热门">
-                热门
-            </li>
-
-            <li data-key="a" data-value="A">
-
-                <span class="tags" data-value="A">A</span>
-
-            </li>
-
-            <li data-key="b" data-value="B">
-
-                <span class="tags" data-value="B">B</span>
-
-            </li>
-
-            <li data-key="c" data-value="C">
-
-                <span class="tags" data-value="C">C</span>
-
-            </li>
-
-            <li data-key="d" data-value="D">
-
-                <span class="tags" data-value="D">D</span>
-
-            </li>
-
-            <li data-key="e" data-value="E">
-
-                <span class="tags" data-value="E">E</span>
-
-            </li>
-
-            <li data-key="f" data-value="F">
-
-                <span class="tags" data-value="F">F</span>
-
-            </li>
-
-            <li data-key="g" data-value="G">
-
-                <span class="tags" data-value="G">G</span>
-
-            </li>
-
-            <li data-key="h" data-value="H">
-
-                <span class="tags" data-value="H">H</span>
-
-            </li>
-            <li data-key="i" data-value="I">
-
-                <span class="tags" data-value="I">I</span>
-
-            </li>
-            <li data-key="j" data-value="J">
-
-                <span class="tags" data-value="J">J</span>
-
-            </li>
-
-            <li data-key="k" data-value="K">
-
-                <span class="tags" data-value="K">K</span>
-
-            </li>
-
-            <li data-key="l" data-value="L">
-
-                <span class="tags" data-value="L">L</span>
-
-            </li>
-
-            <li data-key="m" data-value="M">
-
-                <span class="tags" data-value="M">M</span>
-
-            </li>
-
-            <li data-key="n" data-value="N">
-
-                <span class="tags" data-value="N">N</span>
-
-            </li>
-            <li data-key="o" data-value="O">
-
-                <span class="tags" data-value="O">O</span>
-
-            </li>
-
-            <li data-key="p" data-value="P">
-
-                <span class="tags" data-value="P">P</span>
-
-            </li>
-
-            <li data-key="q" data-value="Q">
-
-                <span class="tags" data-value="Q">Q</span>
-
-            </li>
-
-            <li data-key="r" data-value="R">
-
-                <span class="tags" data-value="R">R</span>
-
-            </li>
-
-            <li data-key="s" data-value="S">
-
-                <span class="tags" data-value="S">S</span>
-
-            </li>
-
-            <li data-key="t" data-value="T">
-
-                <span class="tags" data-value="T">T</span>
-
-            </li>
-            <li data-key="u" data-value="U">
-
-                <span class="tags" data-value="U">U</span>
-
-            </li>
-            <li data-key="v" data-value="V">
-
-                <span class="tags" data-value="V">V</span>
-
-            </li>
-            <li data-key="w" data-value="W">
-
-                <span class="tags" data-value="W">W</span>
-
-            </li>
-
-            <li data-key="x" data-value="X">
-
-                <span class="tags" data-value="X">X</span>
-
-            </li>
-
-            <li data-key="y" data-value="Y">
-
-                <span class="tags" data-value="Y">Y</span>
-
-            </li>
-
-            <li data-key="z" data-value="Z">
-
-                <span class="tags" data-value="Z">Z</span>
-
-            </li>
         </ul>
     </div>
 </div>
@@ -330,12 +177,14 @@
     </div>
 </div>
 <script src="../js/lib/jquery.js"></script>
-<script src="js/scenic_pub.js"></script>
+<script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/template.js"></script>
+<script src="js/scenic_pub.js"></script>
+
 
 <script id="tpl_GetHotCity" type="text/template">
-    {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i<len;i++){ %}
+    {% for(var i=0,len=data.destCities.length;i<len;i++){ %}
     <li>{%=data.destCities[i].cityName%}</li>
     {% } %}
 </script>
@@ -343,9 +192,12 @@
 
 <script>
     (function(){
-
-        //tab切换
-        MT.tabScroll();
+        //hotcity listcity callbackcode
+        var val = vlm.parseUrlPara(window.location.href);
+        var callback = MT.GetQueryString("callback");
+        var callbackcity = MT.getCity(val.citycode,callback);
+        var callback_url = MT.GetRequestUrl(callback);
+        console.log(callback_url);
 
         /**
          * 获得国外热门城市
@@ -357,11 +209,12 @@
                     "SubProduct": "All"
                 },
                 "ForeEndType": 3,
-                "Code": "0096"
+                "Code": callbackcity.CallbackCity.city.oversea.hotcity
             }
 
             MT.ajaxJson("",JSON.stringify(Param),MT.CallbackExHotCity,MT.ajaxAnimIn,MT.ajaxAnimOut);
         }
+
         /**
          * 获得国外热门城市的回调方法
          * @param data
@@ -380,8 +233,102 @@
 
         }
 
-        MT.getExHotCity();
+        /**
+         * 获得城市列表
+         */
+        MT.getCityList = function(){
+            var Param=
+            {
+                "Parameters": {
+                    "SubProduct": "All"
+                },
+                "ForeEndType": 3,
+                "Code": callbackcity.CallbackCity.city.oversea.citylist
+            }
 
+            MT.ajaxJson("",JSON.stringify(Param),MT.CallbackCityList,MT.ajaxAnimIn,MT.ajaxAnimOut);
+        }
+
+        /**
+         * 获得城市列表的回调方法
+         * @param data
+         * @constructor
+         */
+        MT.CallbackCityList = function(data){
+            var json=eval('('+data+')');
+            console.log(json);
+            if(json.success){
+                var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data),tpl_str,tpl_title,tpl_ul;
+                var newArray = MT.SplitCitiesArray(json.data.destCities.sort(MT.ByCities));
+//                var docf = document.createDocumentFragment();
+                for (var i = 0;i<newArray.length;i++){
+                    var title =newArray[i][0].cityCode.substr(0,1);
+                    tpl_str = $("<li id='"+title+"'></li>");
+                    $("<span  class='gui-city-t'></span>").html(title).appendTo(tpl_str);
+                    tpl_ul = $("<ul class='city-tags'></ul>");
+                    tpl_ul.appendTo(tpl_str);
+                    for (var j = 0;j<newArray[i].length;j++){
+                       var li_child= $("<li data-key='"+newArray[i][j].cityCode+"'></li>").click(MT.ClickTags);
+                        li_child.html(newArray[i][j].cityName).appendTo(tpl_ul);
+                    }
+                    $("#js_oversea").append(tpl_str);
+                }
+
+                MT.CharColumn("CharColumn",newArray);
+
+
+                $("#js_ExHotCity").html(tpl_GetExHotCity);
+            }else {
+                console.log(json);
+                jAlert(json.message,"提示");
+            }
+
+        }
+
+        MT.ClickTags = function(e){
+            var cc = $(this).attr("data-key");
+            var url = callbackcity.CallbackUrl;
+            if(url == ""){
+                return false;
+            }
+            window.location.href = "../"+url+"?DestCityCode="+cc;
+        }
+
+        /**
+         * 城市列表字母列表
+         * @param ulId
+         * @param newArray
+         * @constructor
+         */
+         MT.CharColumn = function(ulId,newArray){
+             var ul = $("#"+ulId),childli,childspan;
+             $("<li data-key='cur' data-value='当前'>当前</li>").click(MT.ClickChar).appendTo(ul);
+             $("<li data-key='hot' data-value='热门'>热门</li>").click(MT.ClickChar).appendTo(ul);
+
+             for (var i = 0;i<newArray.length;i++){
+                 var title =newArray[i][0].cityCode.substr(0,1);
+                 childli = $("<li data-key='"+title+"' data-value='"+title+"'></li>").click(MT.ClickChar);
+                 childspan = $("<span class='tags' data-value='"+title+"'><span> ").html(title);
+                 childspan.appendTo(childli);
+                 childli.appendTo(ul);
+             }
+         }
+
+        MT.ClickChar = function(e){
+
+            var id = $(this).attr("data-key");
+            var pos = $("#"+id).offset().top;
+            $("html,body").animate({ scrollTop: pos }, 400);
+//            console.log(id);
+        }
+
+
+        //tab切换
+        MT.tabScroll();
+        //加载国外热门城市
+        MT.getExHotCity();
+        //加载城市列表
+        MT.getCityList();
 
     })();
 </script>

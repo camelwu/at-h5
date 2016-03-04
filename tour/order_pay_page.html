@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="../styles/framework.css" rel="stylesheet"/>
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/order_pay_page.css">
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                <br>
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <!--   顶部   -->
+        <header class="top">
+            <a href="javascript:history.go(-1);" class="icons header-back"></a>
+            <span class="title">订单详情</span>
+        </header>
+        <!--   内容   -->
+        <div id="content ddd" class="snap-content" style="padding-top: 45px;">
+            <section class="order_type"><i class="orange">待支付</i></section>
+            <section class="all_info">
+                <p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】<span class="sce-introduce-span">（产品编号 PK348758945）</span></p>
+            </section>
+            
+            <section class="all_title">
+                <h3 class="hotel">酒店</h3><span class="editBtn"></span>
+            </section>
+            <section class="hotel_box">
+                <!--<span class="conlist">东京动机涩谷卓越大酒店</span>-->
+                <!--<span class="conlist">11月25日 - 11月26日 共1晚(目的地时间为准)</span> -->
+            </section>
+            <div class="sce-list-wrap">
+                <!--<div class="sce-list-box">-->
+                    <!--<section class="all_title">-->
+                        <!--<h3><i>景点1</i>杜莎夫人蜡像馆</h3>-->
+                    <!--</section>-->
+                    <!--<section class="trip_box">-->
+                        <!--<span class="conlist">游玩时间：2018.12.25 上午</span>-->
+                    <!--</section>-->
+                <!--</div>-->
+            </div>
+
+            <section class="order_total">
+                订单总额：<b class="orange">¥</b><i class="orange">5,296</i>
+                <a href="#">费用明细</a>
+            </section>
+            <section class="order_information">
+                <span class="title">订单信息</span>
+                <div class="conBox">
+                    <ul>
+                        <li><i>订单号</i>12341234123</li>
+                        <li><i>下单时间</i>2015-02-25 11:20</li>
+                        <li><i>联系人</i>BAI/FKDS</li>
+                        <li><i>联系电话</i>13865365698</li>
+                        <li><i>邮箱</i>ak-47@163.com</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="order_pay_btnBox">
+                <a href="javascript:;" class="order_pay_btn">支付订单</a>
+            </section>
+        </div>
+    </div>
+
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="js/order_sure.js"></script>
+</body>
+</html>

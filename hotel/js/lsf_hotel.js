@@ -1,11 +1,4 @@
-/**
- * Created by Asiatravel on 2015/12/31.
- */
-//董振昊js代码
-/**
- * Created by changlv on 2015/12/11.
- */
-    //解决300毫秒延迟问题
+
 (function($) {
     $(document).ready(function() {
         window.addEventListener('load', function() {
@@ -377,7 +370,7 @@ function inpChange(id,myText){
     var cityListData={
         "Code": "0083",
         "Parameters": "",
-        "ForeEndType": 1
+        "ForeEndType": 3
     };
     //城市列表
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d){
@@ -458,7 +451,7 @@ function inpChange(id,myText){
                     for(var name in dataWorIN){
                         if(citySearchBox.value){
                             for(var j=0;j<dataWorIN[name].length;j++){
-                                if(citySearchBox.value==(dataWorIN[name][j].cityNameCN?dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length)):false)||citySearchBox.value.toLowerCase()==(dataWorIN[name][j].pingYin?dataWorIN[name][j].pingYin.substring(0,(citySearchBox.value.length)):false)||citySearchBox.value==(dataWorIN[name][j].cityNameEN?dataWorIN[name][j].cityNameEN.substring(0,(citySearchBox.value.length)):false)||citySearchBox.value==(dataWorIN[name][j].acronym?dataWorIN[name][j].acronym.substring(0,(citySearchBox.value.length)):false)||citySearchBox.value==(dataWorIN[name][j].cityCode?dataWorIN[name][j].cityCode.substring(0,(citySearchBox.value.length)):false)){
+                                if(citySearchBox.value==(dataWorIN[name][j].cityNameCN?dataWorIN[name][j].cityNameCN.substring(0,(citySearchBox.value.length)):false)||citySearchBox.value.toLowerCase()==(dataWorIN[name][j].pingYin?dataWorIN[name][j].pingYin.substring(0,(citySearchBox.value.length)):false)||citySearchBox.value.toLowerCase()==(dataWorIN[name][j].cityNameEN?dataWorIN[name][j].cityNameEN.toLowerCase().substring(0,(citySearchBox.value.length)):false)||citySearchBox.value==(dataWorIN[name][j].acronym?dataWorIN[name][j].acronym.substring(0,(citySearchBox.value.length)):false)||citySearchBox.value==(dataWorIN[name][j].cityCode?dataWorIN[name][j].cityCode.substring(0,(citySearchBox.value.length)):false)){
                                     interInpCity.push(dataWorIN[name][j].cityNameCN);
                                 }
                             }
@@ -500,7 +493,7 @@ function inpChange(id,myText){
                     for(var name in dataWorCN){
                         if(dcitySearchBox.value){
                             for(var j=0;j<dataWorCN[name].length;j++){
-                                if(dcitySearchBox.value==(dataWorCN[name][j].cityNameCN?dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value.toLowerCase()==(dataWorCN[name][j].pingYin?dataWorCN[name][j].pingYin.substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value==(dataWorCN[name][j].cityNameEN?dataWorCN[name][j].cityNameEN.substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value==(dataWorCN[name][j].acronym?dataWorCN[name][j].acronym.substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value==(dataWorCN[name][j].cityCode?dataWorCN[name][j].cityCode.substring(0,(dcitySearchBox.value.length)):false)){
+                                if(dcitySearchBox.value==(dataWorCN[name][j].cityNameCN?dataWorCN[name][j].cityNameCN.substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value.toLowerCase()==(dataWorCN[name][j].pingYin?dataWorCN[name][j].pingYin.substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value.toLowerCase()==(dataWorCN[name][j].cityNameEN?dataWorCN[name][j].cityNameEN.toLowerCase().substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value==(dataWorCN[name][j].acronym?dataWorCN[name][j].acronym.substring(0,(dcitySearchBox.value.length)):false)||dcitySearchBox.value==(dataWorCN[name][j].cityCode?dataWorCN[name][j].cityCode.substring(0,(dcitySearchBox.value.length)):false)){
                                     domInpCity.push(dataWorCN[name][j].cityNameCN);
                                 }
                             }

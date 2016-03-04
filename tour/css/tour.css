@@ -732,7 +732,9 @@ section[class^="hotelInfo_numb"] .numbList{
     margin-left:70px;border-bottom:1px solid #ddd;overflow:hidden;
 }
 section[class^="hotelInfo_numb"] .numbList:last-child{
-    border:none;
+    clear: both;
+    border: none;
+    margin-left: 0;
 }
 section[class^="hotelInfo_numb"] .numbList span.n_tit{
     float:left;
@@ -743,6 +745,10 @@ section[class^="hotelInfo_numb"] .numbList span.child-age{
     font-size: 1.4rem;
     color: #999999;
     top: 6px;
+}
+.spenumbList{
+    clear: both;
+    margin-left: 0!important;
 }
 .bedList{
     display: block;

@@ -7,7 +7,6 @@ var ticketDouble = {
     dateInit:function(arg){
         var spans = document.querySelectorAll('.ticket-double-date');
         var dateInitObj = {};
-        console.log(arg)
         spans[0].innerHTML = ticketDouble.returnWeek(arg.DepartDate);
         spans[1].innerHTML = ticketDouble.returnWeek(arg.ReturnDate);
         dateInitObj[arg.DepartDate] = '去程';
@@ -17,7 +16,7 @@ var ticketDouble = {
             num: 13,
             time: dateInitObj,
             sClass1: 'date-wrap-double',
-            type:'double',
+            type:'Return',
             fn:this.dateChangeRender
         });
     },
@@ -201,7 +200,7 @@ var ticketDouble = {
 
     alertNoFlightNotice:function(citys,type){
         var div = document.createElement('div'),allEleWrap = document.querySelector('.all-elements'),backButton,that = ticketDouble;
-        var arrowIcon = type =='single'?'direction-single':'direction-double';
+        var arrowIcon = type =='Oneway'?'direction-single':'direction-double';
         div.className = 'no-flight-notice';
         div.innerHTML = '<header class="big-title"><i class="fl close-no-flight"></i>'+
         '<span class="set-place">'+citys.fromCity+'</span>'+
@@ -303,9 +302,10 @@ var ticketDouble = {
         });
     },
 
-    changeFlightList:function(arg){
+    changeFlightList:function(arg, type){
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper'),ticketListStr = '',li;
+        var taxPriceStr = '';
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         var myFixed = function(arg){
             if(String(arg).indexOf('.')>-1){
@@ -394,10 +394,17 @@ var ticketDouble = {
         }
         function rightPrice(arg){
             var str = '';
-            str +='<div class="price-tax">'+
-            '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
-            '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
-            '        </div>';
+            if(type == 'false'){
+                str +='<div class="price-tax">'+
+                '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountADT))+'</span><span class="word-tip">往返</span><br></div>'+
+                '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
+                '        </div>';
+            }else{
+                str +='<div class="price-tax">'+
+                '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
+                '    <div class="price-tax-info tax-word-pull-left"><span class="tax-word">含税费</span></div>'+
+                '        </div>';
+            }
             return str;
         }
     } ,
@@ -477,6 +484,7 @@ var ticketDouble = {
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
             tipEle.style.display = 'none';
             that.flightResultArray.push(arg["data"])
+            that.lastBackData = arg;
             that.storageUtil.set('flightListData',that.flightResultArray);
             that.pageNo = arg.data.pageNo;
             that.pageCount = arg.data.pageCount;
@@ -495,7 +503,7 @@ var ticketDouble = {
             tipEle.style.display = 'none';
             document.querySelector('#preloader').style.display='none';
             that.checkPullStatus();
-            that.alertNoFlightNotice(that.backParaObj,'single')
+            that.alertNoFlightNotice(that.backParaObj,'Oneway')
         }
         that.checkPullStatus()
     },
@@ -580,7 +588,23 @@ var ticketDouble = {
                 }
             }
         });
-        /*}*/
+    },
+    handler1:function(arg){ //后台请求
+        var that = ticketDouble;
+        that.backParaObj = arg;
+        console.log(this)
+        console.log(1)
+        document.querySelector('#preloader').style.display='block';
+        that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        console.log(arg)
+    },
+    handler2:function(arg){ //自己缓存的数据重新展现
+        var that = ticketDouble;
+        that.backParaObj = arg;
+        that.changeFlightList(that.lastBackData, that.backParaObj.hasTax);
+
+        console.log(2)
+        console.log(arg)
     },
     init:function(){
         var backParaObj = this.parseUrlPara(document.location.search, true),that = ticketDouble;
@@ -588,7 +612,7 @@ var ticketDouble = {
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
-        this.tripType = backParaObj.interNationalOrDomestic //international backParaObj.tripType ,domestic
+        this.tripType = backParaObj.interNationalOrDomestic;
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
         backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
@@ -601,7 +625,7 @@ var ticketDouble = {
         if($.browser.webkit && !window.chrome){
             document.querySelector('#wrapper').style.top = '88px';
         }
-        bottomModal.init('all-elements',this.tripType,"double",this.callRender);
+        conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj,this.handler1, this.handler2);
         this.taxHandler();
         this.isClearAll = true;
         this.flightResultArray = [];

@@ -38,8 +38,19 @@
 					return obj;
 				}, _init = function() {
 					_loadend();
-					var hrefstr = window.location.href, _a = hrefstr.split("/"), _s = _a[_a.length - 1], _p = _s.indexOf("."), _k = _s.substring(0, _p);
-					_k = _k == "index" || _k == "" ? "home" : _k;
+					var hrefstr = window.location.href,_k;
+					if(hrefstr=="http://"+basePath+"/index.html" || hrefstr=="http://"+basePath+"/"){
+						_k = "home";
+					}else{
+						var _s = hrefstr.substr(basePath.length+1);
+						if(_s==""||_s=="index.html"){
+							_k = "home";
+						}else if(_s=="scenic/index.html"){
+							_k = "find";
+						}else if(_s=="user/user.html"){
+							_k = "user";
+						}
+					}
 					//底部菜单
 					if (menus.hasOwnProperty(_k)) {
 						_initMenu();
@@ -260,8 +271,8 @@
 						},
 						//用户名
 						userName : function(uname) {
-							//var pattern = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;//3-16位 字母开头  字母数字下划线组合
-							var pattern = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+							var pattern = /^[a-zA-Z][a-zA-Z0-9_]{3,29}$/;//4-29位 字母开头  字母数字下划线组合
+							//var pattern = /^[a-zA-Z][a-zA-Z0-9_]*$/;
 							if (pattern.test(uname)) {
 								return true;
 							} else {
@@ -281,8 +292,8 @@
 						},
 						//昵称
 						nickName : function(name) {
-							var pattern = /[a-zA-Z0-9-_]{4,30}/;
-							//4-30个字符，可由中英文字母，数字、"-"、"_"组成
+							var pattern = /^[a-zA-Z0-9-_]{4,20}$/;
+							//4-20个字符，可由中英文字母，数字、"-"、"_"组成
 
 							if (pattern.test(name)) {
 								return true;
@@ -304,7 +315,7 @@
 						},
 						//六位数字验证码
 						code:function(name){
-							var pattern=/[0-9]{6}/
+							var pattern=/^[0-9]{6}$/
 							//只能是中文，长度为2-7位
 							if(pattern.test(name)){
 								return true;
@@ -736,7 +747,7 @@
 					}
 				}, l_login = function(c) {
 					var _head = ['<a href="javascript:;" class="icons header-close" id="close"></a>', '<h3>登录</h3>', '<div class="header-finish" id="2reg">注册</div>'//邮箱注册，手机注册
-					], _login = ['<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号" required data-type="mobile"></div>', '<div class="login-input"><b class="icon login-mail"></b><input type="email" value="" placeholder="邮箱" required data-type="email"><b class="icon login-clear" id="e_clear"></b></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="密码" required data-type="password"></div>'], _reg = ['<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号" required data-type="mobile"></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="number" value="" placeholder="输入验证码" required data-type="code"><div id="get_code" class="code">获取验证码</div></div>', '<div class="login-input"><b class="icon login-mail"></b><input type="email" value="" placeholder="输入邮箱" required data-type="email"></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="输入6-18位密码" required data-type="password"></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="确认密码" required data-type="passc"></div>'], _btn = ['<a class="forgotkey" href="javascript:;" onclick="show_keypage()">忘记密码？</a><a class="changelogin" href="javascript:;" id="change_login">切换邮箱登录<b class="icon login-change"></b></a>', '<div class="btn full-button button-orange" id="u_btn">登录</div>'];
+					], _login = ['<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号" required data-type="mobile"></div>', '<div class="login-input"><b class="icon login-mail"></b><input type="email" value="" placeholder="邮箱" required data-type="email"><b class="icon login-clear" id="e_clear"></b></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="密码" required data-type="password"></div>'], _reg = ['<div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div><input type="tel" class="in-phone" value="" placeholder="输入手机号" required data-type="mobile"></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="text" value="" placeholder="输入验证码" required data-type="code"><div id="get_code" class="code">获取验证码</div></div>', '<div class="login-input"><b class="icon login-mail"></b><input type="email" value="" placeholder="输入邮箱" required data-type="email"></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="输入6-18位密码" required data-type="password"></div>', '<div class="login-input"><b class="icons login-pass"></b><input type="password" value="" placeholder="确认密码" required data-type="passc"></div>'], _btn = ['<a class="forgotkey" href="javascript:;" onclick="show_keypage()">忘记密码？</a><a class="changelogin" href="javascript:;" id="change_login">切换邮箱登录<b class="icon login-change"></b></a>', '<div class="btn full-button button-orange" id="u_btn">登录</div>'];
 					function _html(t, n) {
 						if (t == "_login") {
 							if (n) {
@@ -793,6 +804,7 @@
 							for (var i = 0; i < a.length; i++) {
 								a[i].style.display = "";
 							}
+							header.getElementsByTagName("h3")[0].innerHTML = '登录';
 							btns.innerHTML = '登录';
 							btns.style.marginTop = "0";
 						}
@@ -819,6 +831,7 @@
 								for (var i = 0; i < a.length; i++) {
 									a[i].style.display = "none";
 								}
+								header.getElementsByTagName("h3")[0].innerHTML = '注册';
 								btns.innerHTML = '注册';
 								btns.style.marginTop = "40px";
 								break;
