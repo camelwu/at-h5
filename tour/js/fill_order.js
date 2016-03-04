@@ -5,7 +5,7 @@
 (function(){
 
     var oReserve=document.querySelector('.reserve');
-    //¼ÓÔØ¶¯»­
+    //åŠ è½½åŠ¨ç”»
     function package_detail(){
 
         $(window).load(function () {
@@ -15,51 +15,51 @@
     };
     package_detail();
 
-    //ÓĞÎŞº½°àĞÅÏ¢
+    //æœ‰æ— èˆªç­ä¿¡æ¯
     if( ! localStorage.BookingFormInfo)
     {
         $('#flight-air').remove();
     }
 
-    //Ì×²ÍÃû³Æ
-    var sceTit='°Ë´ïÁë³¤³ÇÒ»ÈÕÓÎ¡¾½öÏŞ12-23ÈÕ-12ÔÂ30ÈÕÊ¹ÓÃ¡¿';
-    var sceCpde='£¨²úÆ·±àºÅ PK348758945£©';
+    //å¥—é¤åç§°
+    var sceTit='å…«è¾¾å²­é•¿åŸä¸€æ—¥æ¸¸ã€ä»…é™12-23æ—¥-12æœˆ30æ—¥ä½¿ç”¨ã€‘';
+    var sceCpde='ï¼ˆäº§å“ç¼–å· PK348758945ï¼‰';
     $('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">'+sceCpde+'</span>';
 
 
-    //¸ù¾İ·¿¼äÊı´´½¨·¿¼äĞÅÏ¢
+    //æ ¹æ®æˆ¿é—´æ•°åˆ›å»ºæˆ¿é—´ä¿¡æ¯
     var roomNumber=localStorage.roomNumber=2;
     for(var i=0;i<roomNumber; i++)
     {
         var oRoom=document.createElement('div');
         oRoom.className='per_data';
-        oRoom.innerHTML='<span class="title"><i>·¿¼ä'+(i+1)+'</i></span>'
+        oRoom.innerHTML='<span class="title"><i>æˆ¿é—´'+(i+1)+'</i></span>'
             +'<ul>'
             +'<section class="li_section_box">'
             +'<li>'
-            +'<span class="list_tit">³ÉÈË1£º</span>'
+            +'<span class="list_tit">æˆäºº1ï¼š</span>'
             +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
             +'</li>'
             +'<li class="trave-li">'
-            +'<span class="list_tit2">ĞÕ£º</span>'
+            +'<span class="list_tit2">å§“ï¼š</span>'
             +'<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>'
-            +'<span class="list_tit2">Ãû£º</span>'
+            +'<span class="list_tit2">åï¼š</span>'
             +'<span class="list_con2 name-inp"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>'
             +'</li>'
             +'<li>'
-            +'<span class="list_tit">»¤ÕÕ£º</span>'
+            +'<span class="list_tit">æŠ¤ç…§ï¼š</span>'
             +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>'
             +'</li>'
             +'</section>'
             +'<section class="li_section_box">'
             +'<li>'
-            +'<span class="list_tit">¶ùÍ¯1£º</span>'
+            +'<span class="list_tit">å„¿ç«¥1ï¼š</span>'
             +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
             +'</li>'
             +'<li class="trave-li">'
-            +'<span class="list_tit2">ĞÕ£º</span>'
+            +'<span class="list_tit2">å§“ï¼š</span>'
             +'<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>'
-            +'<span class="list_tit2">Ãû£º</span>'
+            +'<span class="list_tit2">åï¼š</span>'
             +'<span class="list_con2"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>'
             +'</li>'
             +'</section>'
@@ -72,7 +72,7 @@
     });
 
 
-    //Í¬ÒâÌõ¿î
+    //åŒæ„æ¡æ¬¾
     var oAgree=document.querySelector('.order-notice-btn');
     var bOk=true;
     oAgree.onclick=function(){
@@ -92,7 +92,7 @@
         }
     };
 
-    //   ¶©µ¥Êı¾İ
+    //   è®¢å•æ•°æ®
     function sentPackage(obj){
         obj.onclick=function(){
             this.style.backgroundColor='#ff9313';
@@ -107,14 +107,14 @@
                 var firstNameChi=inputAdult[3].value;
             }
 
-            //ÁªÏµÈËĞÅÏ¢
+            //è”ç³»äººä¿¡æ¯
             var conInput=document.querySelectorAll('#personal_data .list_inp2');
             var conLasName=conInput[0].value;
             var conFirName=conInput[1].value;
             var conPhone=conInput[2].value;
             var conEmail=conInput[3].value;
 
-            //º½°àĞÅÏ¢
+            //èˆªç­ä¿¡æ¯
             if($('#flight-air')[0]){
                 var departNum=document.querySelector('#content3 .input_flight input').value;
                 var departTime=document.querySelector('#content3_CheckInDate').value;
@@ -122,7 +122,7 @@
                 var arriveTime=document.querySelector('#content4_CheckInDate').value;
             }
 
-            //´æÁªÏµÈËĞÅÏ¢
+            //å­˜è”ç³»äººä¿¡æ¯
             function setContact(){
 
                 var oLast=$('#list-lastname').val();
@@ -227,8 +227,5 @@
             }
         }
     };
-
-
-
 
 })()
