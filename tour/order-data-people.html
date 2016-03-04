@@ -324,7 +324,7 @@
         <div class="nav2-center">
             <div class="nav2-centertop">
                 <span>景点{%=i+1%}</span>
-                <p><input name="CheckInDate" id="content3_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content3_week_span1" class="content3_week_span1">周四</span></p>
+                <p><input name="CheckInDate" id="content3_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content3_week_span1" class="week-tour">周四</span></p>
             </div>
         </div>
         <div class="nav2-centerright">
@@ -437,7 +437,7 @@
                range:[],
                _word:{tip:['入住','离店']},
                fn:function(){ //最终执行函数
-                   alert(2)
+                   //alert(2)
                },
                fn2:function(arg){ //选择之后的及时回调
                    var inputs = document.querySelectorAll('.'+this.sClass1),span1 = document.querySelector('#week_span1'),span2 = document.querySelector('#week_span2');
@@ -504,6 +504,7 @@
                range:rangeArray,
                fn:function(){},
                fn2:function(arg1){
+                   console.log(ele)
                    var inputs = ele.querySelector('.'+input),span1 = ele.querySelector('.week-tour');
                    var  returnWeek=function(arg1){
                        if(arg1){
