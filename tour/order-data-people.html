@@ -376,7 +376,9 @@
                 var eveChildNum = [];
                 var ifAddBed = [];
                 var adultNum = 0;
+                var childNum = 0;
                 var withoutBedNum = 0;
+                var allNum = 0;
                 //  总成人数,每个房间成人数，儿童数和不加床儿童数
                 for(var i = 0;i < inputInfo.length;i++){
                     if(inputInfo[i].getAttribute("data-type") == 'adultNum'){
@@ -395,11 +397,15 @@
                         ifAddBed.push(bed[m].getElementsByTagName('b')[0]);
                     }
                 }
+                for(var k = 0;k < eveChildNum.length;k++){
+                    childNum = childNum + parseInt(eveChildNum[k]);
+                }
                 for(var n = 0;n < ifAddBed.length;n++){
                     if(ifAddBed[n].className == 'icon noselect'){
                         withoutBedNum ++;
                     }
                 }
+                allNum = adultNum + childNum;
                 var tourUl = document.querySelector('#tourTime'),tourData = [];
                 var tourEles= tourUl.querySelectorAll('.content2');
                 for(var h = 0; h < tourEles.length;h++){
@@ -425,6 +431,8 @@
                     "checkOutDate":CheckOutDate,
                     "roomNum":parseInt(roomNum),
                     "adultNum":adultNum,
+                    "childNum":childNum,
+                    "allNum":allNum,
                     "withoutBedNum":withoutBedNum,
                     "tourList":tourData,
                     "eveAdultNum":eveAdultNum,

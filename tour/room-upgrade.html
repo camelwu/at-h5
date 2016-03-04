@@ -27,6 +27,31 @@
     <title>房间升级 - 亚洲旅行网</title>
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/tour.css">
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #popup_panel .d-ok {
+            background: none;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffb413;
+            width: 80px;
+            margin: 13px auto;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        #popup_message {
+            width:auto!important;
+            padding: 29px 22px;
+            font-size: 14px;
+            color: #484848;
+            text-align: center;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <div id="preloader">
@@ -94,7 +119,6 @@
             <a href="fill-in-order-new.html" class="hs-next">下一步</a>
         </div>
     </div>
-
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
@@ -102,27 +126,90 @@
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script>
-    $(window).load(function () {
-        $("#status").fadeOut();
-        $("#preloader").delay(400).fadeOut("medium");
-    });
     (function(){
-        var li = document.getElementsByClassName('hd-hotel');
-        var img = document.getElementsByClassName('hd-choose');
-        for(var j = 0;j < li.length;j++){
-            {
-                (function(index) {
-                    li[j].onclick = function () {
-                        for (var i = 0; i < li.length; i++) {
-                            li[i].style.backgroundColor = "#ffffff";
-                            img[i].className = 'hd-choose';
+        var ww = this;
+        vlm.init();
+        var room_upgrade = function(){
+            //   加载动画
+            var flashLoad = function(){
+                $(window).load(function () {
+                    $("#status").fadeOut();
+                    $("#preloader").delay(400).fadeOut("medium");
+                });
+            };
+            //   房间信息加载
+            var getRoomInfo = function(){
+                var orderInfo =  JSON.parse(localStorage.info);
+                console.log(orderInfo);
+                var packageID = localStorage.packageID;
+                var tmp = {
+                    "Parameters": {
+                        "PackageID": packageID,
+                        "CheckinDate": orderInfo.checkInDate,
+                        "CheckoutDate": orderInfo.checkOutDate,
+                        "HotelID": "25",
+                        "RoomDetails": [
+                            {
+                                "Adult": orderInfo.adultNum,
+                                "ChildWithoutBed": [
+                                    orderInfo.withoutBedNum
+                                ]
+                            }
+                        ],
+                        "Tours": [
+                            orderInfo.tourList
+                        ]
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0208"
+                };
+                console.log(tmp);
+                vlm.loadJson("",JSON.stringify(tmp),getroom_back);
+                function getroom_back(ret){
+                    var json = ('('+ret+')');
+                    if(json.success){
+                        var data=json.data;
+                        console.log(data);
+                        if(data.room.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
                         }
-                        li[index].style.backgroundColor = "#dfdfdd";
-                        img[index].className = 'hd-choose cho-active';
-                    };
-                }(j))
+                    }else {
+                        jAlert(json.message,"提示");
+                    }
+                }
+            };
+            //   选择房间
+            var chooseRoom = function(){
+                var li = document.getElementsByClassName('hd-hotel');
+                var img = document.getElementsByClassName('hd-choose');
+                for(var j = 0;j < li.length;j++){
+                    {
+                        (function(index) {
+                            li[j].onclick = function () {
+                                for (var i = 0; i < li.length; i++) {
+                                    li[i].style.backgroundColor = "#ffffff";
+                                    img[i].className = 'hd-choose';
+                                }
+                                li[index].style.backgroundColor = "#dfdfdd";
+                                img[index].className = 'hd-choose cho-active';
+                            };
+                        }(j))
+                    }
+                }
+            };
+            return{
+                FlashLoad:flashLoad,
+                ChooseRoom:chooseRoom,
+                GetRoomInfo:getRoomInfo
             }
-        }
+        }();
+        ww.MT = ww.MT || {};
+        ww.MT.load = function(){
+            room_upgrade.FlashLoad();
+            room_upgrade.ChooseRoom();
+            room_upgrade.GetRoomInfo();
+        };
+        MT.load();
     })();
 </script>
 </body>
