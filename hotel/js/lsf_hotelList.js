@@ -444,9 +444,6 @@ function styleChange(id, mytext) {
 		//console.log(data);
 		var data_address = data.locationList;
 		var data = data.hotelList;
-		console.log(data_address);
-		console.log(data);
-		console.log('hajshdj');
 		var timer = null;
 		var oUl = lsf_myweb.getbyid('lsf_list');
 		list_oUl.innerHTML = '';
@@ -498,54 +495,7 @@ function styleChange(id, mytext) {
 			//}
 			//window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
 			//懒加载
-			function lazyLoad2() {
-				lazyLoad.apply(this, arguments);
-			}
-
-
-			lazyLoad2.prototype = new lazyLoad();
-
-			lazyLoad2.prototype.update = function() {
-				//如图片都加载完成，返�?
-				//alert(this.imgs.length);
-				if (!this.imgs.length) {
-					return;
-				}
-				var i = this.imgs.length;
-				for (--i; i >= 0; i--) {
-					if (this.shouldShow(i)) {
-						//加载图片
-						var osrc = this.imgs[i].src;
-						this.imgs[i].src = this.imgs[i].getAttribute("data-src");
-						this.imgs[i].onerror = function() {
-							this.src = '../images/hotelListerrorpic.png';
-						};
-						//清理缓存
-						this.imgs.splice(i, 1);
-					}
-				}
-			};
-			lazyLoad2.prototype.bindEvent = function() {
-				var that = this;
-				//节流处理，绑定Window 滑动和屏幕大小改变，也可替换成其它元素
-				this.on(document.getElementById("lsf_list"), 'scroll', function() {
-					throttle(that.update, {
-						context : that
-					});
-				});
-				this.on(document, 'touchmove', function() {
-					throttle(that.update, {
-						context : that
-					});
-				});
-				this.on(window, 'resize', function() {
-					throttle(that.update, {
-						context : that
-					});
-				});
-
-			};
-			var c = new lazyLoad2('lsf_list', 'allElements');
+			var c = new lazyLoad('lsf_list');
 		} else {
 			var oLi = document.createElement('li');
 			oLi.innerHTML = '<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
