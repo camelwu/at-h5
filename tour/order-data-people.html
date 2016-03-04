@@ -390,11 +390,12 @@
        initDate: function(){
            var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
                    r =new Date( d.setDate(d.getDate() + 1)),paraObj={};
+           var inputs = document.querySelectorAll('.CheckInDateI');
            paraObj = {
                start:s.getFullYear() + "-"+(s.getMonth()+1)+ "-"+s.getDate(),
                end:r.getFullYear() + "-"+(r.getMonth()+1)+ "-"+r.getDate()};
-           console.log(paraObj)
-
+            inputs[0].value = paraObj.start;
+            inputs[1].value = paraObj.end;
            var dateInitObj = {},paramStr;
            var  returnWeek=function(arg){
                if(arg){
