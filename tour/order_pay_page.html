@@ -34,21 +34,20 @@
                 <h3 class="hotel">酒店</h3><span class="editBtn"></span>
             </section>
             <section class="hotel_box">
-                <span class="conlist">东京动机涩谷卓越大酒店</span>
-                <span class="conlist">11月25日 - 11月26日 共1晚(目的地时间为准)</span>      
+                <!--<span class="conlist">东京动机涩谷卓越大酒店</span>-->
+                <!--<span class="conlist">11月25日 - 11月26日 共1晚(目的地时间为准)</span> -->
             </section>
-            <section class="all_title">
-                <h3><i>景点1</i>杜莎夫人蜡像馆</h3>
-            </section>
-            <section class="trip_box">
-                <span class="conlist">游玩时间：2018.12.25 上午</span>
-            </section>
-            <section class="all_title">
-                <h3><i>景点2</i>杜莎夫人蜡像馆</h3>
-            </section>
-            <section class="trip_box">
-                <span class="conlist">游玩时间：2018.12.25 上午</span>
-            </section>
+            <div class="sce-list-wrap">
+                <!--<div class="sce-list-box">-->
+                    <!--<section class="all_title">-->
+                        <!--<h3><i>景点1</i>杜莎夫人蜡像馆</h3>-->
+                    <!--</section>-->
+                    <!--<section class="trip_box">-->
+                        <!--<span class="conlist">游玩时间：2018.12.25 上午</span>-->
+                    <!--</section>-->
+                <!--</div>-->
+            </div>
+
             <section class="order_total">
                 订单总额：<b class="orange">¥</b><i class="orange">5,296</i>
                 <a href="#">费用明细</a>
@@ -75,74 +74,6 @@
     <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
-    <script>
-        //加载动画
-        function package_detail(){
-
-            $(window).load(function () {
-                $("#status").fadeOut();
-                $("#preloader").delay(400).fadeOut("medium");
-            });
-        };
-        package_detail();
-
-        //订单确认
-        var order_pay_btn=document.querySelector('.order_pay_btn');
-
-        function order_sure(obj){
-            obj.onclick=function(){
-
-                var Parmeters=
-                {
-                    "Parameters": {
-                        "BookingRefNo": "SG17SINFP0136971",
-                        "PaymentDetails": {
-                            "PaymentMode": "CreditCard",
-                            "ReturnURL": "http://localhost/returnpage.aspx",
-                            "PayCurrencyCode": "CNY",
-                            "PayTotalAmount": "3634.00",
-                            "CreditCardDetails": {
-                                "CardType": "Visa",
-                                "CardHolderName": "Kim Pin",
-                                "CardNumber": "4544152000000004",
-                                "CardSecurityCode": "123",
-                                "CardIssuanceBank": "Citibank",
-                                "CardExpiryDate": "2019-02-26T00:00:00",
-                                "CardIssuanceCountryCode": "SG",
-                                "CardAddress": "Toa Payoh",
-                                "CardAddressPostalCode": "7866778",
-                                "CardAddressCity": "Singapore",
-                                "CardAddressCountryCode": "SG",
-                                "CardContactNumber": {
-                                    "CountryCode": "65",
-                                    "PhoneNo": "787656767"
-                                }
-                            }
-                        }
-                    },
-                    "Method": null,
-                    "ForeEndType": 3,
-                    "Code": "0203"
-                }
-
-                console.log(Parmeters);
-                vlm.loadJson("",JSON.stringify(Parmeters),order_sure_back);
-
-            };
-        }
-
-        order_sure(order_pay_btn);
-
-        //订单确认回调
-        function order_sure_back(ret){
-
-            var json=eval('('+ret+')');
-            if(json.success)
-            {
-
-                //window.location.href='order-pay.html';
-            }
-        }
-    </script>
+    <script src="js/order_sure.js"></script>
 </body>
 </html>
