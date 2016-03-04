@@ -430,7 +430,7 @@
                     "eveAdultNum":eveAdultNum,
                     "eveChildNum":eveChildNum
                 };
-                localStorage.info = InfoData;
+                localStorage.setItem('info', JSON.stringify(InfoData));
                 window.location.href = "hotel_list.html";
             };
             return{

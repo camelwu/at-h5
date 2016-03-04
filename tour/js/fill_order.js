@@ -15,6 +15,10 @@
     };
     package_detail();
 
+    //localStorage.Info
+    var jsonPackage=localStorage.info;
+    console.log(jsonPackage);
+
     //有无航班信息
     if( ! localStorage.BookingFormInfo)
     {
@@ -136,10 +140,11 @@
             };
             setContact();
 
+
             var Parmeters={
 
                 "Parameters": {
-                    "PackageID": "159",
+                    "PackageID": ""+localStorage.packageID+"",
                     "CheckinDate": "2016-03-08T00:00:00",
                     "CheckoutDate": "2016-03-10T00:00:00",
                     "HotelID": "30",
@@ -212,6 +217,81 @@
                 "Code": "0204"
             };
 
+//            var Parmeters={
+//
+//                "Parameters": {
+//                    "PackageID": "159",
+//                    "CheckinDate": "2016-03-08T00:00:00",
+//                    "CheckoutDate": "2016-03-10T00:00:00",
+//                    "HotelID": "30",
+//                    "RoomID": "77501",
+//                    "RoomDetails": [
+//                        {
+//                            "Adult": "2"
+//                        }
+//                    ],
+//                    "Tours": [
+//                        {
+//                            "TourID": "137",
+//                            "TravelDate": "2016-03-09T00:00:00",
+//                            "TourSession": "None"
+//                        },
+//                        {
+//                            "TourID": "166",
+//                            "TravelDate": "2016-03-09T00:00:00",
+//                            "TourSession": "None"
+//                        }
+//                    ],
+//                    "FlightDetails": {
+//                        "ArrivalFlightNo": "JT678",
+//                        "ArrivalDateTime": "2016-02-02T00:00:00",
+//                        "DepartFlightNo": "JT878",
+//                        "DepartDateTime": "2016-02-05T00:00:00"
+//                    },
+//
+////                            "FlightDetails": {
+////                                "ArrivalFlightNo": ""+arriveNum+"",
+////                                "ArrivalDateTime": ""+arriveTime+"",
+////                                "DepartFlightNo": ""+departNum+"",
+////                                "DepartDateTime": ""+departTime+""
+////                            },
+//                    "Travelers": [
+//                        {
+//                            "RoomSeqNo": "1",
+//                            "TravelerType": "Adult",
+//                            "Salutation": "Mr",
+//                            "FirstName": "Kim",
+//                            "LastName": "Pin",
+//                            "NationalityCode": "SG"
+//                        },
+//                        {
+//                            "RoomSeqNo": "1",
+//                            "TravelerType": "Adult",
+//                            "Salutation": "Mr",
+//                            "FirstName": "Han",
+//                            "LastName": "Pin"
+//                        }
+//                    ],
+//                    "ContactDetails": {
+//                        "Salutation": "Mr",
+//                        "FirstName": "Kim",
+//                        "LastName": "Pin",
+//                        "Email": "test@asiatravel.com",
+//                        "ContactNo": {
+//                            "CountryCode": "65",
+//                            "PhoneNo": "7678767"
+//                        },
+//                        "MemberID": "6789"
+//                    },
+//                    "ChargeDetails": {
+//                        "CurrencyCode": "CNY",
+//                        "TotalPrice": "2610.00"
+//                    }
+//                },
+//                "Method": null,
+//                "ForeEndType": 3,
+//                "Code": "0204"
+//            };
             console.log(Parmeters);
             vlm.loadJson("",JSON.stringify(Parmeters),package_back);
         }
