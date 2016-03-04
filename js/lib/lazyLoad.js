@@ -90,12 +90,12 @@ function throttle() {
  * url:data-src=realurl
  */
 
-function lazyLoad(id, boxId) {
+function lazyLoad(id) {
 	//确认操作容器
 	if (!id)
 		return;
 	this.container = document.getElementById(id);
-	this.box = document.getElementById(boxId);
+	this.box = this.container.parentNode;
 	//获取图片列表
 	this.imgs = this.getImgs();
 	//执行初始化
@@ -187,8 +187,7 @@ lazyLoad.prototype = {
 				context : that
 			});
 		});
-		that.on(this.container, 'scroll', function() {
-			console.log("scroll");
+		that.on(this.box, 'scroll', function() {
 			throttle(that.update, {
 				context : that
 			});
