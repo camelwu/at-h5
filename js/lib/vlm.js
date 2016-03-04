@@ -292,8 +292,8 @@
 						},
 						//昵称
 						nickName : function(name) {
-							var pattern = /[a-zA-Z0-9-_]{4,30}/;
-							//4-30个字符，可由中英文字母，数字、"-"、"_"组成
+							var pattern = /^[a-zA-Z0-9-_]{4,20}$/;
+							//4-20个字符，可由中英文字母，数字、"-"、"_"组成
 
 							if (pattern.test(name)) {
 								return true;
@@ -315,7 +315,7 @@
 						},
 						//六位数字验证码
 						code:function(name){
-							var pattern=/[0-9]{6}/
+							var pattern=/^[0-9]{6}$/
 							//只能是中文，长度为2-7位
 							if(pattern.test(name)){
 								return true;

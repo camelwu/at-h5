@@ -113,6 +113,7 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
+    <script src="js/scenic_pub.js"></script>
 <script id="tpl_GetDetails_Package_Title" type="text/template">
     {%=packageName%}
 </script>
@@ -135,11 +136,12 @@
     {%=country%} {%=destCity%}
 </script>
 <script id="tpl_GetDetails_Package_ScenicPackage" type="text/template">
+
     {% for(var i=0,len=data.prices.length;i<len;i++){ %}
     <li>
         <div class="combo-name">{%=data.packageName%}{% if(data.prices[i].category=="ADULT"){ %}(ADULT){% }else{ %}(CHILD){% } %}</div>
         <div class="combo-price">{%=data.prices[i].amountInCNY%}</div>
-        <a href="javascript:MT.CCheckLogin({%=packageID%});" class="s-reserve button-orange">预定</a>
+        <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %});" class="s-reserve button-orange">预定</a>
         <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
         <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>-->
     </li>
@@ -158,319 +160,169 @@
 <script>
     /*景点 目标城市列表页MT*/
     (function(){
-        var webkit = this;
-        var core = function(){
-            var val = vlm.parseUrlPara(window.location.href);
-            var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult",
-                    themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate;
-            var defineProperty = {
-                get apiurl (){
-                    return apiurl;
-                },
-                set apiurl (value){
-                    apiurl = value;
-                },
-                get themeId (){
-                    return themeId;
-                },
-                set themeId (value){
-                    themeId = value;
-                },get OnlyForAdult (){
-                    return OnlyForAdult;
-                },
-                set OnlyForAdult (value){
-                    OnlyForAdult = value;
-                },get MinPax (){
-                    return MinPax;
-                },
-                set MinPax (value){
-                    MinPax = value;
-                },get MaxAdult (){
-                    return MaxAdult;
-                },
-                set MaxAdult (value){
-                    MaxAdult = value;
-                },get ChildAgeMin (){
-                    return ChildAgeMin;
-                },
-                set ChildAgeMin (value){
-                    ChildAgeMin = value;
-                },get ChildAgeMax (){
-                    return ChildAgeMax;
-                },
-                set ChildAgeMax (value){
-                    ChildAgeMax = value;
-                },get TourID (){
-                    return TourID;
-                },
-                set TourID (value){
-                    TourID = value;
-                },get TravelDate (){
-                    return TravelDate;
-                },
-                set TravelDate (value){
-                    TravelDate = value;
-                }
-            };
+        var val = vlm.parseUrlPara(window.location.href);
+        var themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate;
+        vlm.init();
 
-            vlm.init();
+        /**
+         * 加载详情
+         * @constructor
+         */
+        MT.CLoadGetDetails = function(){
 
 
-            /**
-             * @动画模版
-             * @constructor
-             */
-            var CTmplAnim = function(){
-                var _childhtml = '<div id="preloader"><div id="status"><p class="center-text"><br><em>加载中……</em></p></div></div>';
-                var _roothtml = $(_childhtml)[0];
-
-                return _roothtml;
+            var Param=
+            {
+                "Parameters": {
+                    "PackageID": val.packageID
+                },
+                "ForeEndType": 3,
+                "Code": "0088"
             }
 
-            /**
-             * @动画淡入
-             * @constructor
-             */
-            var CAnimIn = function(){
-                if($("[id=preloader]").length < 1){
-                    document.body.appendChild(CTmplAnim());
-                }
-                $("#preloader").ajaxStart(function(){
-                    $(this).show();
-                });
+            MT.ajaxJson("",JSON.stringify(Param),MT.GetDetailsCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
 
-            }
+        }
 
-            /**
-             * 动画淡出
-             * @constructor
-             */
-            var CAnimOut = function(){
+        /**
+         * 加载详情 [CLoadGetDetails Callback]
+         * @param data
+         * @constructor
+         */
+        MT.GetDetailsCallback = function(data){
+            var json=eval('('+data+')');
+            console.log(json);
+            if(json.success){
+                var data=json.data,tpl_GetDetails_Package_Title = template("tpl_GetDetails_Package_Title",data),
+                        tpl_GetDetails_Package_ScheduledTimeFrom = template("tpl_GetDetails_Package_ScheduledTimeFrom",data),
+                        tpl_GetDetails_Package_ScheduledTimeTo = template("tpl_GetDetails_Package_ScheduledTimeTo",data),
+                        tpl_GetDetails_Package_ParadeTimeFrom = template("tpl_GetDetails_Package_ParadeTimeFrom",data),
+                        tpl_GetDetails_Package_ParadeTimeTo = template("tpl_GetDetails_Package_ParadeTimeTo",data),
+                        tpl_GetDetails_Package_BusinessAddress = template("tpl_GetDetails_Package_BusinessAddress",data),
+                        tpl_GetDetails_Package_Feature = template("tpl_GetDetails_Package_Feature",data),
+                        tpl_GetDetails_Package_TripPlan = template("tpl_GetDetails_Package_TripPlan",data.tours),
+                        tpl_GetDetails_Package_Attention = template("tpl_GetDetails_Package_Attention",data.tours),
+                        tpl_GetDetails_Package_ServTerm = template("tpl_GetDetails_Package_ServTerm",data);
 
-                $("#preloader").ajaxStop(function(){
-                    $(this).delay(400).fadeOut();
-                });
-
-            }
-
-            /**
-             * @loadJson 增强方法 CLoadJson ,加入了两个参数 animin (淡入动画),animout(淡出动画)
-             * @param url
-             * @param data
-             * @param mycallback
-             * @param animin ,type function [new]
-             * @param animout ,type function [new]
-             * @param async
-             * @param encryption
-             * @constructor
-             */
-            var CLoadJson = function(url, data, mycallback,animin,animout, async, encryption) {
-                if (async != undefined && async == true) {
-                    $.ajaxSetup({
-                        async : false
-                    });
-                }
+                ChildAgeMin = data.childAgeMin;
+                ChildAgeMax = data.childAgeMax;
+                TravelDate = data.defaultDepartStartDate;
+                TourID = data.tours;
+                MinPax = data.minPax;
 
 
-                $.ajax({
-                    type : "post",
-                    url : url + '?rnd=' + Math.random(),
-                    data : data,
-                    contentType : 'application/json;charset=utf-8',
-                    beforeSend : function(xhr) {
-                        if(animin!=undefined && animin != ""){
-                            animin();
-                        }
-                        //后续开始加密，设置header
-                        //xhr.setRequestHeader('Content-Type','application/json');
-                        if (encryption != undefined && encryption == true) {
-                            var uid = md5("zhangfengming");
-                            var password = md5("");
-                            xhr.setRequestHeader('uid', user);
-                        }
-                    },
-                    success : function(jsondata) {
-
-                        mycallback(jsondata);
-
-
-                    }
-                });
-                if(animout!=undefined && animout != ""){
-                    animout();//动画淡出
-                }
-                $.ajaxSetup({
-                    async : true
-                });
-            }
-
-            /**
-             * 加载详情
-             * @constructor
-             */
-            var CLoadGetDetails = function(){
-
-
-                var GetDetails=
+                var SearchPrice=
                 {
                     "Parameters": {
-                        "PackageID": val.packageID
+                        "PackageID": val.packageID,
+                        "Adult": MinPax,
+                        "Child": [
+                            ChildAgeMin,
+                            ChildAgeMax
+                        ],
+                        "Tours": [
+
+                        ]
                     },
                     "ForeEndType": 3,
-                    "Code": "0088"
+                    "Code": "0091"
+
                 }
-                CLoadJson(defineProperty.apiurl,JSON.stringify(GetDetails),GetDetailsCallback,CAnimIn,CAnimOut);
 
-            }
+                for (var i = 0;i<data.tours.length;i++)
+                {
+                    SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
+                }
 
-            /**
-             * 加载详情 [CLoadGetDetails Callback]
-             * @param data
-             * @constructor
-             */
-            var GetDetailsCallback = function(data){
-                var json=eval('('+data+')');
+//                console.log(SearchPrice);
+
+                $("#ScenicTopImg").attr("src",data.pictureURL);
+                $("#Title").html(tpl_GetDetails_Package_Title);
+                $("#ScheduledTimeFrom").html(tpl_GetDetails_Package_ScheduledTimeFrom);
+                $("#ScheduledTimeTo").html(tpl_GetDetails_Package_ScheduledTimeTo);
+                $("#ParadeTimeFrom").html(tpl_GetDetails_Package_ParadeTimeFrom);
+                $("#ParadeTimeTo").html(tpl_GetDetails_Package_ParadeTimeTo);
+                $("#BusinessAddress").html(tpl_GetDetails_Package_BusinessAddress);
+                $("#Feature").html(tpl_GetDetails_Package_Feature).find("ul").addClass("s-special");
+                $("#TripPlan").html(tpl_GetDetails_Package_TripPlan).find("ul").addClass("s-special");
+                $("#Attention").html(tpl_GetDetails_Package_Attention).find("ul").addClass("s-special");
+                $("#ServTerm").html(tpl_GetDetails_Package_ServTerm).find("ul").addClass("s-special");
+
+                MT.CLoadSearchPrice(SearchPrice);
+            }else {
                 console.log(json);
-                if(json.success){
-                    var data=json.data,tpl_GetDetails_Package_Title = template("tpl_GetDetails_Package_Title",data),
-                            tpl_GetDetails_Package_ScheduledTimeFrom = template("tpl_GetDetails_Package_ScheduledTimeFrom",data),
-                            tpl_GetDetails_Package_ScheduledTimeTo = template("tpl_GetDetails_Package_ScheduledTimeTo",data),
-                            tpl_GetDetails_Package_ParadeTimeFrom = template("tpl_GetDetails_Package_ParadeTimeFrom",data),
-                            tpl_GetDetails_Package_ParadeTimeTo = template("tpl_GetDetails_Package_ParadeTimeTo",data),
-                            tpl_GetDetails_Package_BusinessAddress = template("tpl_GetDetails_Package_BusinessAddress",data),
-                            tpl_GetDetails_Package_Feature = template("tpl_GetDetails_Package_Feature",data),
-                            tpl_GetDetails_Package_TripPlan = template("tpl_GetDetails_Package_TripPlan",data.tours),
-                            tpl_GetDetails_Package_Attention = template("tpl_GetDetails_Package_Attention",data.tours),
-                            tpl_GetDetails_Package_ServTerm = template("tpl_GetDetails_Package_ServTerm",data);
-
-                    defineProperty.ChildAgeMin = data.childAgeMin;
-                    defineProperty.ChildAgeMax = data.childAgeMax;
-                    defineProperty.TravelDate = data.defaultDepartStartDate;
-                    defineProperty.TourID = data.tours;
-                    defineProperty.MinPax = data.minPax;
-
-
-                    var SearchPrice=
-                    {
-                        "Parameters": {
-                            "PackageID": val.packageID,
-                            "Adult": defineProperty.MinPax,
-                            "Child": [
-                                defineProperty.ChildAgeMin,
-                                defineProperty.ChildAgeMax
-                            ],
-                            "Tours": [
-
-                            ]
-                        },
-                        "ForeEndType": 3,
-                        "Code": "0091"
-
-                    }
-
-                    for (var i = 0;i<data.tours.length;i++)
-                    {
-                        SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": defineProperty.TravelDate};
-                    }
-
-                    console.log(SearchPrice);
-
-                    $("#ScenicTopImg").attr("src",data.pictureURL);
-                    $("#Title").html(tpl_GetDetails_Package_Title);
-                    $("#ScheduledTimeFrom").html(tpl_GetDetails_Package_ScheduledTimeFrom);
-                    $("#ScheduledTimeTo").html(tpl_GetDetails_Package_ScheduledTimeTo);
-                    $("#ParadeTimeFrom").html(tpl_GetDetails_Package_ParadeTimeFrom);
-                    $("#ParadeTimeTo").html(tpl_GetDetails_Package_ParadeTimeTo);
-                    $("#BusinessAddress").html(tpl_GetDetails_Package_BusinessAddress);
-                    $("#Feature").html(tpl_GetDetails_Package_Feature).find("ul").addClass("s-special");
-                    $("#TripPlan").html(tpl_GetDetails_Package_TripPlan).find("ul").addClass("s-special");
-                    $("#Attention").html(tpl_GetDetails_Package_Attention).find("ul").addClass("s-special");
-                    $("#ServTerm").html(tpl_GetDetails_Package_ServTerm).find("ul").addClass("s-special");
-
-                    CLoadSearchPrice(SearchPrice);
-                }else {
-                    console.log(json);
-                    jAlert(json.message,"提示");
-                }
+                jAlert(json.message,"提示");
             }
-            /**
-             * 查询价格
-             * @constructor
-             */
-            var CLoadSearchPrice = function(SearchPrice){
+        }
 
 
-                CLoadJson(defineProperty.apiurl,JSON.stringify(SearchPrice),SearchPriceCallback,CAnimIn,CAnimOut);
-                function SearchPriceCallback(data){
-                    var json=eval('('+data+')');
-                    console.log(json);
-                    if(json.success){
-                        var data=json.data,tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);
-                        $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
-                    }else {
-                        console.log(json);
-                        jAlert(json.message,"提示");
-                    }
-                }
+        /**
+         * 查询价格
+         * @constructor
+         */
+        MT.CLoadSearchPrice = function(SearchPrice){
 
+            MT.ajaxJson("",JSON.stringify(SearchPrice),MT.SearchPriceCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+
+        }
+        /**
+         * 查询价格回调方法
+         * @param data
+         * @constructor
+         */
+        MT.SearchPriceCallback = function(data){
+            var json=eval('('+data+')');
+            console.log(json);
+            if(json.success){
+                var data=json.data,tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);
+                $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
+            }else {
+                console.log(json);
+                jAlert(json.message,"提示");
             }
+        }
 
-            //判断是否登录
-            var CCheckLogin = function(packageId){
-                var islogin = vlm.checkLogin(localStorage.getItem("login"));
+        //判断是否登录
+        MT.CCheckLogin = function(packageId,RequiredPickupPoint){
+            var islogin = vlm.checkLogin(localStorage.getItem("login"));
 //                console.log(vlm.checkLogin(localStorage.getItem("login")));
-                if(islogin == true){
-                    window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId;
-                }else{
-                    //jAlert("登录失败","提示");
-                    return false;
-                }
-
+            if(islogin == true){
+                window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId
+                        +"&RPP="+RequiredPickupPoint;
+            }else{
+                //jAlert("登录失败","提示");
+                return false;
             }
 
-
-
-            var CrefreshTab=function(){
-                var li = document.getElementsByClassName('no-class');
-                var li_ul = document.getElementsByClassName('state-detail');
-                for(var i = 0;i < li.length;i++){
-                    {
-                        (function(index){
-                            li[i].onclick=function(){
-                                var b = li[index].getElementsByTagName('b')[1];
-                                if(li_ul[index].className == 'state-detail'){
-                                    li_ul[index].className = 'state-detail s-active';
-                                    b.className = 'jd-icon s-up';
-                                }else{
-                                    li_ul[index].className = 'state-detail';
-                                    b.className = 'jd-icon s-down';
-                                }
-                            };
-                        })(i);
-                    }
-                }
-            }
-
-
-
-            return {
-                CLoadGetDetails:CLoadGetDetails,
-                CLoadSearchPrice:CLoadSearchPrice,
-                CrefreshTab:CrefreshTab,
-                CCheckLogin:CCheckLogin
-            }
-
-        }();
-        webkit.MT = webkit.MT || {};
-        webkit.MT.load = function(){
-            core.CLoadGetDetails();
-            core.CrefreshTab();
-        }
-        webkit.MT.CCheckLogin=function(packageId){
-            core.CCheckLogin(packageId);
         }
 
-        MT.load();
+
+
+        MT.CrefreshTab=function(){
+            var li = document.getElementsByClassName('no-class');
+            var li_ul = document.getElementsByClassName('state-detail');
+            for(var i = 0;i < li.length;i++){
+                {
+                    (function(index){
+                        li[i].onclick=function(){
+                            var b = li[index].getElementsByTagName('b')[1];
+                            if(li_ul[index].className == 'state-detail'){
+                                li_ul[index].className = 'state-detail s-active';
+                                b.className = 'jd-icon s-up';
+                            }else{
+                                li_ul[index].className = 'state-detail';
+                                b.className = 'jd-icon s-down';
+                            }
+                        };
+                    })(i);
+                }
+            }
+        }
+
+
+        MT.CLoadGetDetails();
+        MT.CrefreshTab();
+
     })();
 </script>
 
