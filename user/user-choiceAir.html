@@ -429,7 +429,6 @@
 	var isNeedPassport=vlm.getpara("isNeedPassport");//是否需要护照
 	var titleType=vlm.getpara("title").substr(2);//是否多选title;
 	var travId=vlm.getpara("Id");//id
-	debugger;
 	$(".newTitle").html("新增"+titleType)
 	var from=vlm.getpara("from");
 	var json="";
@@ -479,6 +478,7 @@
 	function get_allList() {
 		get_hisList();
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
+			debugger;
 			travJson = eval('(' + json + ')')
 			json = JSON.parse(json);
 			for(var i=0;i<= json.data.length-1;i++){
@@ -572,11 +572,11 @@
 			window.history.go(-1);
 		}
 	}
+	//保存选择的记录
 	function SavaLocalStorge(list,isContact){
 
 		if(!isContact)
 		{
-			debugger;
 			var TravellerInfo=[]
 			for(var i=0; i<=list.length-1;i++){
 				TraInfo={};
@@ -640,13 +640,14 @@
 	}
 	//显示新增乘机人编辑页
 	function showAddAir_page(type,id) {
+		debugger;
 		var addAir_page = document.getElementById("addAir-page");
 		addAir_page.style.display = "block";
 		if(type=="new"){
 			$(".addAir-page .header h3").html("新建"+titleType+"信息");
 		}
 		else {
-			debugger;
+
 			$("#delTra").show();
 			$(".addAir-page .header h3").attr("type","edit")
 			$(".addAir-page .header h3").attr("data-id",tralJsonObj[id].traveller.travellerId)
@@ -660,8 +661,9 @@
 
 			$(".cardNumber").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idNumber);
 			$(".postCard").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idType);
-			$(".cardDateLimit").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idActivatedDate.replace("号","日"));
+			$(".cardDateLimit").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
 			$(".cardCountry").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idCountry);
+			$(".birthDay").attr("value",tralJsonObj[id].listTravellerIdInfo[0].dateOfBirth);
 
 			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
@@ -739,13 +741,15 @@
 		var inputList=$(".addAir-page")
 		console.log($(inputList).find(".lastName").eq(0).val());
 		console.log($(inputList).find(".country").eq(0).html());
+		debugger;
+
 		if(type=="edit") {
 			var id=$(".addAir-page .header h3").attr("data-id");
 			var Parameters = {
 
 				"Parameters": "{\"Traveller\":" +
 				"{" +
-				"\"TravellerId\":\"" + id + "\"," +
+				"\"TravellerId\":" + id + "," +
 				"\"IdName\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
 				"\"LastName\":\"" + $(inputList).find(".lastName").eq(0).val() + "\"" + "," +
 				"\"FirstName\":\"" + $(inputList).find(".firstName").eq(0).val() + "\"," +
@@ -753,16 +757,18 @@
 				"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
 				"\"SexCode\":\"" + sexCode + "\"," +
 				"\"SexName\":\"" + sexName + "\"," +
-				"\"DateOfBirth\":\"1932-06-15\"," +
+				"\"DateOfBirth\":\""+ $(inputList).find(".birthDay").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"," +
 				"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
 				"\"MemberId\":\"" + memberId + "\"," +
 				"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"}," +
 				"\"ListTravellerIdInfo\":" +
 				"[{" +
+				"\"Id\":\"" + tralJsonObj[id].listTravellerIdInfo[0].id + "\"," +
+				"\"TravellerId\":" + id + "," +
 				"\"IdType\":" + $(inputList).find(".postCard").eq(0).attr("data-code") + "," +
 				"\"IdNumber\":\"" + $(inputList).find(".cardNumber").eq(0).val() + "\"," +
 				"\"IdCountry\":\"" + $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\"," +
-				"\"IdActivatedDate\":\"2016-02-13T00:00:00\"" +
+				"\"IdActivatedDate\":\""+ $(inputList).find(".cardDateLimit").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"" +
 				"}]}",
 				"ForeEndType": 3,
 				"Code": "0072"
@@ -780,7 +786,7 @@
 				"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
 				"\"SexCode\":\"" + sexCode + "\"," +
 				"\"SexName\":\"" + sexName + "\"," +
-				"\"DateOfBirth\":\"1932-06-15\"," +
+				"\"DateOfBirth\":\""+ $(inputList).find(".birthDay").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"," +
 				"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
 				"\"MemberId\":\"" + memberId + "\"," +
 				"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"}," +
@@ -789,7 +795,7 @@
 				"\"IdType\":" + $(inputList).find(".postCard").eq(0).attr("data-code") + "," +
 				"\"IdNumber\":\"" + $(inputList).find(".cardNumber").eq(0).val() + "\"," +
 				"\"IdCountry\":\"" + $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\"," +
-				"\"IdActivatedDate\":\"2016-02-13T00:00:00\"" +
+				"\"IdActivatedDate\"\""+ $(inputList).find(".cardDateLimit").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"" +
 				"}]}",
 				"ForeEndType": 3,
 				"Code": "0071"
@@ -799,6 +805,7 @@
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
 			var data=JSON.parse(data);
 			if(data.success) {
+				get_allList();
 				// 有ID说明是编辑，关闭窗口
 				if(travId>0)
 				{
