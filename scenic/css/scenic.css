@@ -1772,7 +1772,7 @@ i{
     background-color: #000;
     opacity: 0.3;
     filter: alpha(opacity:30);
-    z-index: 90;
+    z-index: 75;
     display: none;
 }
 .price-tot-box {
