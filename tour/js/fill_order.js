@@ -67,6 +67,7 @@
         $('#per-room-wrap')[0].appendChild(oRoom);
     }
 
+    //添加联系人
     $('.add-contact').click(function(){
         vlm.f_choice('t','contact','',false,false);
     });
@@ -139,8 +140,8 @@
 
                 "Parameters": {
                     "PackageID": "159",
-                    "CheckinDate": "2016-03-05T00:00:00",
-                    "CheckoutDate": "2016-03-08T00:00:00",
+                    "CheckinDate": "2016-03-08T00:00:00",
+                    "CheckoutDate": "2016-03-10T00:00:00",
                     "HotelID": "30",
                     "RoomID": "77501",
                     "RoomDetails": [
@@ -151,12 +152,12 @@
                     "Tours": [
                         {
                             "TourID": "137",
-                            "TravelDate": "2016-03-06T00:00:00",
+                            "TravelDate": "2016-03-09T00:00:00",
                             "TourSession": "None"
                         },
                         {
                             "TourID": "166",
-                            "TravelDate": "2016-03-06T00:00:00",
+                            "TravelDate": "2016-03-09T00:00:00",
                             "TourSession": "None"
                         }
                     ],
@@ -203,7 +204,7 @@
                     },
                     "ChargeDetails": {
                         "CurrencyCode": "CNY",
-                        "TotalPrice": "3634.00"
+                        "TotalPrice": "2610.00"
                     }
                 },
                 "Method": null,

@@ -47,7 +47,7 @@
                     <div class="user-info" id="user-info">
                         <a href="user-login.html" id="unloginShow">
                             <img id="userIcon" src="../images/ui/photo-man.png">
-                            <div class="user-name"><span id="user_name">登录/注册</span><b id="user_sex"></b></div>
+                            <div class="user-name"><span id="user_name">点击头像登录/注册</span><b id="user_sex"></b></div>
                         </a>
                         <div id="loginShow">
                         </div>
@@ -63,7 +63,7 @@
                 </div>
                 <ul class="s_lists">
                     <li id="bindCard">
-                        <b class="icons open-info"></b><a href="user-login.html" id="common-msg">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
+                        <b class="icons open-info"></b><a href="user-login.html" id="common-msg">常用信息维护 <em>常用旅客</em><b class="icons open-arw"></b></a>
                     </li>
                     <li id="setPwd">
                         <b class="icons open-fav"></b><a href="javascript:;">我的收藏<b class="icons open-arw"></b></a>
@@ -137,7 +137,7 @@
         <script type="text/javascript" src="../js/lib/template.js"></script>
         <script type="text/javascript">
 
-            var ldata = {unlogin:true,name:"登录/注册"};
+            var ldata = {unlogin:true,name:"点击头像登录/注册"};
             var lstr = template("user_order",ldata);
             $("#user_order").html(lstr);
 
