@@ -271,8 +271,8 @@
 						},
 						//用户名
 						userName : function(uname) {
-							//var pattern = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;//3-16位 字母开头  字母数字下划线组合
-							var pattern = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+							var pattern = /^[a-zA-Z][a-zA-Z0-9_]{3,29}$/;//4-29位 字母开头  字母数字下划线组合
+							//var pattern = /^[a-zA-Z][a-zA-Z0-9_]*$/;
 							if (pattern.test(uname)) {
 								return true;
 							} else {
