@@ -155,6 +155,7 @@ function u_perInfo(){
         obj.onclick = function() {
             var input = document.getElementById("nickForm").getElementsByTagName("input");
             var oNickname=input[0].value;
+            console.log(oNickname);
             if(vlm.Utils.validate.nickName(oNickname))
             {
                 var Parameters = {
@@ -167,7 +168,7 @@ function u_perInfo(){
             }
             else
             {
-                jAlert('昵称需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+                jAlert('昵称需要由4-20个字符，可由中英文字母，数字、"-"、"_"组成');
             }
 
         }
@@ -207,7 +208,7 @@ function u_perInfo(){
             }
             else
             {
-                jjAlert('只能是中文，长度为2-7位');
+                jAlert('只能是中文，长度为2-7位');
             }
 
         }
@@ -223,20 +224,20 @@ function u_perInfo(){
             u_phone = oInputMobile.value;
             if ( ! check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                jjjAlert("输入不正确");
+                jAlert("输入不正确");
                 return;
             }
 
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    jjjAlert("用户已绑定信息不能修改");
+                    jAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
             if(oInputCode.value =='' )
             {
-                jjAlert('请输入验证码');
+                jAlert('请输入验证码');
             }
             else
             {
@@ -262,13 +263,13 @@ function u_perInfo(){
             if(oInputEmail.value !="") {
                 if(oInputEmail.getAttribute('data-type') !="code") {
                     if (!check(oInputEmail.getAttribute('data-type'), oInputEmail.value)) {
-                        jjAlert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                 }
                 if(localStorage.email != ""){
                     if(oInputEmail.value == email){
-                        jjAlert("用户已绑定信息不能修改");
+                        jAlert("用户已绑定信息不能修改");
                         return;
                     }
                 }
@@ -296,13 +297,13 @@ function u_perInfo(){
 
             if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                jjAlert("输入不正确");
+                jAlert("输入不正确");
                 return;
             }
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    jjAlert("用户已绑定信息不能修改");
+                    jAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
@@ -332,11 +333,11 @@ function u_perInfo(){
             for(var i= 0;i < input.length;i++){
                 if(input[i].type !="button" && input[i].value !="") {
                     if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                        jjAlert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                     if(input[1].value != input[2].value){
-                        jjAlert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                 }
@@ -426,12 +427,12 @@ function mycallback(ret){
 }
 function mycallback_nick(ret){
     var myJson = eval('('+ret+')');
-    console.log(myJson);
+    //console.log(myJson);
     if(myJson.success) {
         window.location.href = "user-perInfo.html";
         document.getElementById("nickForm").submit();
     }else{
-        jjAlert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 function mycallback_info(ret){

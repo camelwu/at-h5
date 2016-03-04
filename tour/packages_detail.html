@@ -178,6 +178,7 @@
                             $('#tag1_con').html(tpl_GetSpotOverview);
                             $('#pageTag_2').html(tpl_GetSpotImportantNotes);
                             $('#packagePrice').html(html_pp);
+                            localStorage.packageID = val.packageID;
                             if(data.length == 0){
                                 jAlert("抱歉暂时没有数据","提示");
                             }

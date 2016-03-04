@@ -82,15 +82,16 @@
 			});
 			//
 			$("#popup_content").addClass(type);
-			if (type=="layer") {
+			if (type == "layer") {
 				$("#popup_container").css({
 					//minHeight : $("#popup_container").outerHeight(true),
 					maxWidth : $("#popup_container").outerWidth() - 24
 				});
+				$.alerts._reposition();
+			} else {
+				$.alerts._reposition();
+				$.alerts._maintainPosition(true);
 			}
-			$.alerts._reposition();
-			$.alerts._maintainPosition(true);
-
 			switch( type ) {
 				case 'alert':
 					$("#popup_message").after('<div id="popup_error"></div> <div id="popup_panel"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
@@ -215,11 +216,11 @@
 						if (callback)
 							callback(false);
 					});
-					//$("#popup_ok").focus();
+					setTimeout("$.alerts._reposition()", "80");
 					break;
 			}
-			if($(".snap-content")){
-				$(".snap-content").css("overflow","hidden")
+			if ($(".snap-content")) {
+				$(".snap-content").css("overflow", "hidden")
 			}
 			// Make draggable
 			if ($.alerts.draggable) {
@@ -235,7 +236,8 @@
 			}
 		},
 		_remove : function() {
-			$("#popup-overlay").remove();$(".snap-content").css("overflow","auto");
+			$("#popup-overlay").remove();
+			$(".snap-content").css("overflow", "auto");
 			//$.alerts._overlay('hide');
 			//$.alerts._maintainPosition(false);
 		},
@@ -243,7 +245,7 @@
 			$("#popup_container").remove();
 			$.alerts._overlay('hide');
 			$.alerts._maintainPosition(false);
-			$(".snap-content").css("overflow","auto");
+			$(".snap-content").css("overflow", "auto");
 		},
 		_overlay : function(status) {
 			switch( status ) {
@@ -268,6 +270,7 @@
 		},
 		_reposition : function() {
 			var top = (($(window).height() / 2) - ($("#popup_container").outerHeight(true) / 2)) + $.alerts.verticalOffset, left = (($(window).width() / 2) - ($("#popup_container").outerWidth() / 2)) + $.alerts.horizontalOffset, h = $(document).height() - 200;
+			console.log(top);
 			if (top < 0)
 				top = 0;
 			if (left < 0)
@@ -278,18 +281,11 @@
 				top = top + $(window).scrollTop();
 
 			if ($("#popup_more")) {
-				$("#popup_more").css({
-					//height : h + 'px',
-					maxHeight : h + 'px'
-				});
-				console.log($("#popup_container").outerHeight(true)+",h="+$("#popup_container").offsetHeight);
+				top = ($(window).height() - $("#popup_container").outerHeight(true)) / 2;
 				$("#popup_container").css({
-					top : '50%',
-					left : '50%',
-					marginTop : '-' + $("#popup_container").outerHeight() / 2 + 'px',
-					marginLeft : '-' + $("#popup_container").outerWidth() / 2 + 'px'
+					top : top + 'px',
+					left : left + 'px'
 				});
-
 			} else {
 				$("#popup_container").css({
 					top : top + 'px',
