@@ -15,6 +15,14 @@
     <script src="js/order-details.js"></script>
 </head>
 <body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                <br>
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
 <div class="all-elements">
     <div class="header">
         <a href="javascript:void(0);" class="icons header-back" id="td_back"></a>
@@ -108,7 +116,39 @@
         <a href="#" onclick="Yes()" class="Yes">确定</a>
     </div>
 </div>
-
-
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/custom.js"></script>
+<script>
+    (function(){
+        var ww = this;
+        vlm.init();
+        var orderDetail = function(){
+            //   加载动画
+            var flashLoad = function(){
+                $(window).load(function () {
+                    $("#status").fadeOut();
+                    $("#preloader").delay(400).fadeOut("medium");
+                });
+            };
+            //   数据加载
+            var getDetailData = function(){
+                var tmp = {
+                    "Parameters": "{\"CultureName\":\"en-US\",\"BookingReferenceNo\":\"SG-1708118-8016\"}",
+                    "ForeEndType": 3,
+                    "Code": "0013"
+                };
+                vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
+                function getDetail_back(ret){
+                    var json = eval('('+ret+')');
+                    console.log(json);
+                }
+            }
+        }()
+    })()
+</script>
 </body>
 </html>
