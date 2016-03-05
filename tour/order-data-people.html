@@ -371,13 +371,15 @@
                 var roomNum = document.getElementById('roomNum').innerHTML;   //房间数
                 var inputInfo = document.getElementsByClassName("cut-up-cont");
                 var bed = document.getElementsByClassName("bedList");
+                var childAge = document.getElementsByClassName("inp-cage");
                 var adult = [];
                 var eveAdultNum = [];
                 var eveChildNum = [];
                 var ifAddBed = [];
+                var withoutBedAge = [];
+                var withBedAge = [];
                 var adultNum = 0;
                 var childNum = 0;
-                var withoutBedNum = 0;
                 var allNum = 0;
                 //  总成人数,每个房间成人数，儿童数和不加床儿童数
                 for(var i = 0;i < inputInfo.length;i++){
@@ -402,7 +404,9 @@
                 }
                 for(var n = 0;n < ifAddBed.length;n++){
                     if(ifAddBed[n].className == 'icon noselect'){
-                        withoutBedNum ++;
+                        withoutBedAge.push(childAge[n].value);
+                    }else{
+                        withBedAge.push(childAge[n].value);
                     }
                 }
                 allNum = adultNum + childNum;
@@ -433,7 +437,8 @@
                     "adultNum":adultNum,
                     "childNum":childNum,
                     "allNum":allNum,
-                    "withoutBedNum":withoutBedNum,
+                    "withoutBedAge":withoutBedAge,
+                    "withBedAge":withBedAge,
                     "tourList":tourData,
                     "eveAdultNum":eveAdultNum,
                     "eveChildNum":eveChildNum
