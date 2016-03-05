@@ -698,7 +698,7 @@
 					$.ajax({
 						type : "post",
 						url : _api + '?rnd=' + Math.random(),
-						//datType:'json',
+						timeout : 10000,
 						data : data,
 						contentType : 'application/json;charset=utf-8',
 						beforeSend : function(xhr) {
@@ -710,9 +710,22 @@
 								xhr.setRequestHeader('uid', user);
 							}
 						},
-						success : function(jsondata) {
+						complete : function(XMLHttpRequest,status){
+					　　　　
+					　　},
+						success : function(jsondata){
 							mycallback(jsondata);
-						}
+						},
+						error:function(XMLHttpRequest, textStatus, errorThrown){
+		                    if(textStatus=='timeout'){
+					　　　　　  alert("超时请更换条件重新查询！");window.history.go(-1);
+					　　　　}
+		                    //alert('error');
+		                    //alert(XMLHttpRequest);
+		                    //alert(textStatus); 
+		                    //alert(errorThrown);
+		                    //alert(XMLHttpRequest.readyState);
+		                }
 					});
 					$.ajaxSetup({
 						async : true
