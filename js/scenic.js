@@ -41,8 +41,6 @@
     function show_detail_expenses(){
         var showDom = document.getElementById("detail_expenses"),_t=this;
         var packageTit=showDom.querySelector('.package-tit');
-        //packageTit.innerHTML=document.querySelector('.sce-introduce-txt').innerHTML;
-        packageTit.innerHTML='套餐名称';
 
         var traNum=document.querySelectorAll('.trave-li');
         var str1='';
