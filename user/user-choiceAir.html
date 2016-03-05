@@ -562,6 +562,7 @@
 
 			}
 			var tpl=GetTpl(from,isContact)
+			debugger;
 			var html = template(tpl,selectUser);
 			SavaLocalStorge(selectUser,isContact)//报错LocalStorge
 			if(window.opener.SelectPersonInformation) {
@@ -896,13 +897,20 @@
 
 <!--景点-获取乘客信息-->
 <script id="tpl_t_passager" type="text/template">
-	<li><span class="tourist-name tour-short">姓名：</span><span class="tourist-list-light">{%=cnName%}</span><span class="tourist-list-light">{%=cardNum%}</span></li>
+	<li>
+		<span class="tourist-name tour-short">姓：</span><input id="scenic2_name1" style="width:20%;display: inline-block;" placeholder="Liou" value="{%=traveller.lastName%}">
+		<span class="tourist-name tour-short">名：</span><input id="scenic2_name2" style="width:20%;display: inline-block;" placeholder="Venson" value="{%=traveller.firstName%}">
+	</li>
+	<li>
+		<span class="tourist-name tour-short">护照：</span><input id="scenic2_idcard" style="display: inline-block;" placeholder="EA2359923" value="{%=listTravellerIdInfo[0].idNumber%}">
+	</li>
+
 </script>
 <!--景点-获取联系人信息-->
 <script id="tpl_t_contact" type="text/template">
-	<li><span class="tourist-name tour-short">姓名：</span><span class="tourist-list-light">{%=cnName%}</span></li>
-	<li><span class="tourist-name tour-short">手机：</span><i class="tourist-list-light">+86</i><span class="tourist-list-light"></span></li>
-	<li><span class="tourist-name tour-short">邮箱：</span><span class="tourist-list-light"></span></li>
+	<li><span class="tourist-name tour-short">姓名：</span><input id="scenic2_name" style="display: inline-block;" placeholder="Venson" value="{%=traveller.cnName%}"></li>
+	<li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  placeholder="+8618611850882" value="{%=traveller.mobilePhone%}"></li>
+	<li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"  placeholder="113638136@163.com" value="{%=traveller.email%}"></li>
 </script>
 
 <!--国籍选择结束-->

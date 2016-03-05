@@ -8,7 +8,7 @@
  */
 (function(e, t) {"use strict";
 	var n = n || (function(n) {//123.56.190.34
-			var _api = "http://10.2.22.239:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
+			var _api = "http://123.56.190.34:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 					home : ['首页', basePath],
 					find : ['目的地', basePath + '/scenic/index.html'],
 					user : ['我的', basePath + '/user/user.html']
