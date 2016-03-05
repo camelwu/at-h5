@@ -20,7 +20,7 @@
         </div>
         <!--   内容   -->
         <div class="sc-content">
-            <section class="sce-ticket-wrap min320">
+            <section class="js-adult sce-ticket-wrap min320">
                 <div class="sce-ticket">
                     <section class="travel-date clearFix">
                         <span class="travel-date-tit fl">游玩日期</span>
@@ -108,7 +108,7 @@
                 <div class="clearFix hotel-choi-but" data-key="holist_page">
                     <span class="fl">提供接送</span>
                     <b class="hot-arrow-rig"></b>
-                    <a id="choHotel" class="fr">请选择酒店</a>
+                    <a id="choHotel" data-key="" class="fr">请选择酒店</a>
 
                 </div>
             </section>
@@ -127,7 +127,7 @@
                     <input type="text" value placeholder="搜索">
                 </div>
             </div>
-            <div class="sc-content" style="z-index: 999">
+            <div class="sc-content js-PickupPoint" style="z-index: 999">
                 <ul class="hote-list">
                     <li>111</li>
                     <li>331</li>
@@ -198,11 +198,46 @@
     <script src="../js/lib/d_calendar1.0.2.js"></script>
     <script src="js/dateFix.js"></script>
     <script src="js/scenic_pub.js"></script>
+    <script id="tpl_PickupPoint" type="text/template">
+        <ul class="hote-list">
+            {% for(var i=0,len=data.pickupInfos.length;i<len;i++){ %}
+                <li data-key="{%=data.pickupInfos[i].pickupID%}">{%=data.pickupInfos[i].pickupPoint%}</li>
+            {% } %}
+        </ul>
+    </script>
     <script>
         /*景点 预订MT*/
         (function(){
             var val = vlm.parseUrlPara(window.location.href);
             var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax;
+
+            /**
+             * 接送酒店页Event
+             */
+            MT.bindEventPickupPoint =function() {
+                var choHotel = $('#choHotel');
+                var close_list = $('#close_list');
+                var holist_page = $('#holist_page');
+                var list = $(".hote-list li");
+
+
+                choHotel.click(function () {
+                    holist_page.css({display:'block'});
+                });
+                close_list.click(function () {
+                    holist_page.css({display:'none'});
+                });
+
+                list.click(MT.clickHotelList);
+            }
+            /**
+             * 接送酒店列表Event
+             */
+            MT.clickHotelList = function(){
+                $('#choHotel').attr("data-key", $(this).attr("data-key"));
+                $('#choHotel').html($(this).html());
+                $('#holist_page').css({display:'none'});
+            }
 
             /**
              * 返回接送点信息
@@ -230,7 +265,9 @@
                 var json=eval('('+data+')');
                 console.log(json);
                 if(json.success){
-
+                    var data = json,tpl_PickupPoint = template("tpl_PickupPoint",data);
+                    $(".js-PickupPoint").html(tpl_PickupPoint);
+                    MT.bindEventPickupPoint();
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
@@ -468,25 +505,7 @@
         })();
 
 
-        /*接送酒店页*/
-        (function(){
-            var choHotel = $('#choHotel')[0];
-            var close_list = $('#close_list')[0];
-            var holist_page = $('#holist_page')[0];
-            var list = document.getElementsByClassName('hote-list')[0].getElementsByTagName('li');
-            choHotel.onclick = function(){
-                holist_page.style.display = 'block';
-            };
-            close_list.onclick = function(){
-                holist_page.style.display = 'none';
-            };
-            for(var i = 0;i < list.length;i++){
-                list[i].onclick = function(){
-                    choHotel.innerHTML = this.innerHTML;
-                    holist_page.style.display = 'none';
-                }
-            }
-        })()
+
 
         function SelectPersonInformation(html,isContact){
             if(html !="") {

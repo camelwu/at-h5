@@ -96,10 +96,9 @@ i{
     margin-top: 0.6rem;
 }
 .l-price{
-    position: relative;
-    float: right;
-    left: 38%;
-    bottom: 0;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
 }
 .price-num{
     font-size:2rem;
@@ -204,6 +203,7 @@ i{
     height: 114px;
     border-bottom: 1px solid #CCCCCC;
     clear: both;
+    position: relative;
 }
 .ho_pic{
     float: left;
