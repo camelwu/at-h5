@@ -444,9 +444,6 @@ function styleChange(id, mytext) {
 		//console.log(data);
 		var data_address = data.locationList;
 		var data = data.hotelList;
-		console.log(data_address);
-		console.log(data);
-		console.log('hajshdj');
 		var timer = null;
 		var oUl = lsf_myweb.getbyid('lsf_list');
 		list_oUl.innerHTML = '';
@@ -475,8 +472,8 @@ function styleChange(id, mytext) {
 				if (data[i].location) {
 					data[i].location = '(' + data[i].location + ')';
 				}
-
-				var str = '<li class="ho_list">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + (data[i].hotelNameLocale || '') + '(' + data[i].hotelName + ')' + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:0.8rem;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].city + data[i].location + '</p>' + '</div>' + '</li>';
+				
+				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + namestr + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:0.8rem;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].city + data[i].location + '</p>' + '</div>' + '</li>';
 				list_oUl.innerHTML += str;
 
 			}
@@ -498,54 +495,7 @@ function styleChange(id, mytext) {
 			//}
 			//window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
 			//懒加载
-			function lazyLoad2() {
-				lazyLoad.apply(this, arguments);
-			}
-
-
-			lazyLoad2.prototype = new lazyLoad();
-
-			lazyLoad2.prototype.update = function() {
-				//如图片都加载完成，返�?
-				//alert(this.imgs.length);
-				if (!this.imgs.length) {
-					return;
-				}
-				var i = this.imgs.length;
-				for (--i; i >= 0; i--) {
-					if (this.shouldShow(i)) {
-						//加载图片
-						var osrc = this.imgs[i].src;
-						this.imgs[i].src = this.imgs[i].getAttribute("data-src");
-						this.imgs[i].onerror = function() {
-							this.src = '../images/hotelListerrorpic.png';
-						};
-						//清理缓存
-						this.imgs.splice(i, 1);
-					}
-				}
-			};
-			lazyLoad2.prototype.bindEvent = function() {
-				var that = this;
-				//节流处理，绑定Window 滑动和屏幕大小改变，也可替换成其它元素
-				this.on(document.getElementById("lsf_list"), 'scroll', function() {
-					throttle(that.update, {
-						context : that
-					});
-				});
-				this.on(document, 'touchmove', function() {
-					throttle(that.update, {
-						context : that
-					});
-				});
-				this.on(window, 'resize', function() {
-					throttle(that.update, {
-						context : that
-					});
-				});
-
-			};
-			var c = new lazyLoad2('lsf_list', 'allElements');
+			var c = new lazyLoad('lsf_list');
 		} else {
 			var oLi = document.createElement('li');
 			oLi.innerHTML = '<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';

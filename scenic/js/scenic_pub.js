@@ -21,12 +21,21 @@
             }
 
         ];
-
+        /**
+         * [private getcity]返回城市对象
+         * @param code
+         * @param callback
+         * @returns {{CallbackCity: ({city}|*), CallbackUrl: *}}
+         */
         var getCity = function(code,callback){
 
             return {CallbackCity:citycode[code],CallbackUrl:callback}
         }
-
+        /**
+         * [public hash]返回hashcode编码
+         * @param key
+         * @returns {number}
+         */
         var d2jhash = function(key){
             var hash = 5381;
             for (var i = 0;i<key.length;i++){
@@ -34,6 +43,41 @@
             }
             return hash % 1013;
         }
+        /**
+         * 存储历史记录
+         */
+        var Queue = function(){
+            var items = [];
+            //向队列尾部添加一个或多个新的对象
+            this.enqueue = function (element) {
+                items.push(element);
+            }
+            //移除队列第一个
+            this.dequeue =function(){
+                return items.shift();
+            }
+            //返回队列中第一个元素
+            this.front = function(){
+                return items[0];
+            }
+            //队列中是否位空,空则返回true,否则返回false
+            this.isEmpty = function(){
+                return items.length == 0;
+            }
+            //清空队列
+            this.clear = function(){
+                items=[];
+            }
+            //返回队列返回个数
+            this.size = function(){
+                return items.length;
+            }
+            //显示队列
+            this.showrender = function(){
+                console.log(items.toString());
+            }
+        }
+
 
         /**
          * [public GetQueryString] 获取URL中的参数
@@ -47,7 +91,12 @@
             var r = window.location.search.substr(1).match(reg);
             if(r!=null)return  decodeURI(r[2]); return null;
         }
-
+        /**
+         * 待定
+         * @param url
+         * @returns {Array}
+         * @constructor
+         */
         var GetRequestUrl = function(url) {
             var url = url||location.search; //获取url中"?"符后的字串
             var ename;
@@ -252,9 +301,10 @@
             CAnimOut:CAnimOut,//[public ajax]
             SplitCitiesArray:SplitCitiesArray,//[public split array]
             ByCities:ByCities, //[public by cityCode]
-            getCity:getCity,
+            getCity:getCity, //[private getcity]
             GetQueryString:GetQueryString,//[public GetURL QueryString ]
-            GetRequestUrl:GetRequestUrl
+            GetRequestUrl:GetRequestUrl,
+            Queue:Queue //[public Queue]
         }
     }();
     webkit.MT = webkit.MT || {};

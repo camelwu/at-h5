@@ -91,7 +91,6 @@ TicketDate.prototype.createContainer = function(odate){
         container.style.left = '0';
         container.style.top = '0';
         container.style.paddingBottom = '118px';
-        //
         var header = this.header = document.createElement('div');
         header.id = this.id+"-header";
         header.className = 'header';
@@ -225,7 +224,7 @@ TicketDate.prototype.linkOn = function(){
                             that.linkOver();
                             that.linkColor('Return');
                         }else if(that.op==1&&this.getAttribute('data-day')==that.cache){
-                            that.tiper.innerHTML =that._word.tip[1]+'日期需大于去程日期';
+                            that.tiper.innerHTML =that._word.tip[1]+'日期需大于'+that._word.tip[0]+'日期';
                         }
                     }
                 }
@@ -238,7 +237,6 @@ TicketDate.prototype.linkOn = function(){
 TicketDate.prototype.linkOver = function(event){
     var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
     var out = _CalF.$('input',that.input);
-    console.log(out)
     if(!out.length){
         out=_CalF.$('.'+this.sClass1,document);
     }
