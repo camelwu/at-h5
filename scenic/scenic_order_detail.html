@@ -19,7 +19,7 @@
             <h3>景点预订</h3>
         </div>
         <!--   内容   -->
-        <div class="sc-content">
+        <div class="sc-content js-content">
             <section class="js-adult sce-ticket-wrap min320">
                 <div class="sce-ticket">
                     <section class="travel-date clearFix">
@@ -189,6 +189,7 @@
             </ul>
         </div>
     </div>
+    <!--<span data-key="CallData" data-code="" style="display: none;">-->
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/lib/plugins.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
@@ -205,11 +206,45 @@
             {% } %}
         </ul>
     </script>
+    <script id="tpl_Adult" type="text/template">
+        <section class="js-adult sce-ticket-wrap min320">
+            <div class="sce-ticket">
+                <section class="travel-date clearFix">
+                    <span class="travel-date-tit fl">游玩日期</span>
+                    <div class="travel-date-wrap fr clearFix">
+                        <div id="jdate" class="travel-date-wrap-so fl">
+                            <span class="tra-ymd" >
+
+                            </span>
+                            <span class="tra-week">星期五</span>
+                            <b></b>
+                        </div>
+                        <div class="travel-date-wrap-noon fl">
+                            <a href="javascript:;" class="fa-noon">上午</a>
+                            <a href="javascript:;" class="fa-noon on">下午</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="sce-introduce">
+                    <p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】</p>
+                </section>
+                <div class="gray-block"></div>
+            </div>
+            <div class="sce-ticket per-price-wrap clearFix">
+                <span class="per-price-tit fl">单价：</span>
+                <strong class="per-price-cont fl">¥56</strong>
+                <div class="per-price-control fr"><span class="cut-down-btn">-</span><i class="cut-up-cont">1</i><span class="plus-btn">+</span></div>
+            </div>
+        </section>
+    </script>
+    <script id="tpl_Child" type="text/template">
+
+    </script>
     <script>
         /*景点 预订MT*/
         (function(){
             var val = vlm.parseUrlPara(window.location.href);
-            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax;
+            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata;
 
             /**
              * 接送酒店页Event
@@ -294,9 +329,11 @@
              */
             MT.callbackDetails = function(data){
                 var json=eval('('+data+')');
+                DetailData = json;
                 console.log(json);
                 if(json.success){
                     var data=json.data;
+
 
                     ChildAgeMin = data.childAgeMin;
                     ChildAgeMax = data.childAgeMax;
@@ -350,14 +387,27 @@
              */
             MT.callbackSearchPrice = function(data){
                 var json=eval('('+data+')');
+                SearchPriceData = json;
                 console.log(json);
                 if(json.success){
+                    globaldata = {DetailData:DetailData,SearchPriceData:SearchPriceData}
 
-
+                    MT.render();
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
                 }
+            }
+
+            MT.render = function(){
+
+                var tpl_Adult = template("tpl_Adult",globaldata);
+//                var tpl_Child = template("tpl_Child",globaldata);
+
+//                $(".js-content:first-child").html(tpl_Adult);
+                $(".js-content:nth-child(0)").html(tpl_Adult);
+                $(".js-content:last-child").html(tpl_Adult);
+                console.log(globaldata);
             }
 
 
