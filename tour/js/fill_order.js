@@ -59,7 +59,7 @@
                     +'<span class="list_tit">成人'+(k+1)+'：</span>'
                     +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
                     +'</li>'
-                    +'<li class="trave-li">'
+                    +'<li class="trave-li trave-li-adu">'
                     +'<span class="list_tit2 ">姓：</span>'
                     +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" /></span>'
                     +'<span class="list_tit2 ">名：</span>'
@@ -82,7 +82,7 @@
                     +'<span class="list_tit">儿童'+(j+1)+'：</span>'
                     +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
                     +'</li>'
-                    +'<li class="trave-li-child">'
+                    +'<li class="trave-li trave-li-child">'
                     +'<span class="list_tit2 ">姓：</span>'
                     +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" /></span>'
                     +'<span class="list_tit2 ">名：</span>'
@@ -125,7 +125,6 @@
         function sentPackage(obj){
             obj.onclick=function(){
                 this.style.backgroundColor='#ff9313';
-
                 var roomNum=document.querySelectorAll('.per_data');
                 //联系人信息
                 var conInput=document.querySelectorAll('#personal_data .list_inp2');
@@ -146,7 +145,7 @@
                         "RoomID": "77501",
                         "RoomDetails": [
                             {
-                                "Adult": jsonPackage.adultNum
+                                "Adult": (jsonPackage.adultNum+jsonPackage.childNum)
                             }
                         ],
 
@@ -191,12 +190,23 @@
                     var traveler=[];
 
                     //每个房间的成人信息
-                    var oLiAdult=roomNum[i].querySelectorAll('.trave-li');
+                    var oLiAdult=roomNum[i].querySelectorAll('.trave-li-adu');
                     for(var n=0;n<oLiAdult.length;n++)
                     {
                         var inputAdult=oLiAdult[n].querySelectorAll('.list-adult');
                         var lastNameAdu=inputAdult[0].value;
                         var firstNameAdu=inputAdult[1].value;
+                        //if(! vlm.Utils.validate.mobileNo(oMobile))
+                        if(lastNameAdu == '')
+                        {
+                            jAlert('请输入名');
+                            return;
+                        }
+                        if(firstNameAdu == '')
+                        {
+                            jAlert('请输入姓');
+                            return;
+                        }
                         var tra={};
                         tra.RoomSeqNo=i+1;
                         tra.TravelerType="Adult";
@@ -213,6 +223,17 @@
                         var inputChild = roomNum[i].querySelectorAll('.list-child');
                         var lastNameChi = inputChild[0].value;
                         var firstNameChi = inputChild[1].value;
+                        //if(! vlm.Utils.validate.mobileNo(oMobile))
+                        if(lastNameChi == '')
+                        {
+                            jAlert('请输入名');
+                            return;
+                        }
+                        if(firstNameChi == '')
+                        {
+                            jAlert('请输入姓');
+                            return;
+                        }
                         var tra = {};
                         tra.RoomSeqNo = (m + 1);
                         tra.TravelerType = "Child";
@@ -226,6 +247,20 @@
                 }
                 Parmeters.Parameters.Travelers=traveler;
 
+                // 手机号邮箱检验
+                var oMobile = $('#list_con_tel')[0].value;
+                var oEmail = $('#list_con_email')[0].value;
+
+                if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+                {
+                    jAlert('请输入正确的手机号');
+                    return;
+                }
+                if ( ! vlm.Utils.validate.email(oEmail) )
+                {
+                    jAlert('请输入正确的邮箱');
+                    return;
+                }
                 //接机信息
                 if($('#flight-air')[0]){
                     var departFlightNo=document.querySelector('#content3 .input_flight input').value;

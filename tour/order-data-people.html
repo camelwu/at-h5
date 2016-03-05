@@ -419,17 +419,33 @@
                     tourData.push(temObj);
                 }
                 //   判断页面能否跳转
-                var input = document.getElementsByClassName("inp-cage");
-                for(var w = 0;w < input.length;w++){
-                    if(input[w].value == ''){
-                        jAlert("儿童年龄未输入","提示");
-                        return;
-                    }
-                    if(input[w].value < 2 || input[w].value >14){
-                        jAlert("儿童年龄不符合标准","提示");
-                        return;
+
+                var extraChild = document.getElementsByClassName('extraChild');
+                for(var v = 0;v < extraChild.length;v++){
+                    if(extraChild[v].style.display != 'none'){
+                        var input = extraChild[v].getElementsByClassName("inp-cage");
+                        for(var w = 0;w < input.length;w++){
+                            if(input[w].value == ''){
+                                jAlert("儿童年龄未输入","提示");
+                                return;
+                            }
+                            if(input[w].value < 2 || input[w].value >14){
+                                jAlert("儿童年龄不符合标准","提示");
+                                return;
+                            }
+                        }
                     }
                 }
+//                for(var w = 0;w < input.length;w++){
+//                    if(input[w].value == ''){
+//                        jAlert("儿童年龄未输入","提示");
+//                        return;
+//                    }
+//                    if(input[w].value < 2 || input[w].value >14){
+//                        jAlert("儿童年龄不符合标准","提示");
+//                        return;
+//                    }
+//                }
                 var InfoData = {
                     "checkInDate":CheckInDate,
                     "checkOutDate":CheckOutDate,
