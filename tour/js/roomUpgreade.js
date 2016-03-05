@@ -36,56 +36,8 @@ var roomUpGrade = {
         return this;
     },
 
-    callBack: function () {
-        var tpl = ['<li class="ho_list">',
-            '<img class="h-choose" src="../images/ui/choose.png">',
-            '<div class="ho_pic">',
-            '<img src="{%=hotelPictureURL%}" >',
-            '</div>'].join('');
-        var tpl1 = [
-            '<li class="ho_list" data-id="{%=hotelID%}">',
-            '<img class="h-choose" src="../images/ui/choose.png">',
-            '<div class="ho_pic">',
-            '<img src="../images/pictures/hotplay1.png" real-src="{%=hotelPictureURL%}" class="ho_img" />',
-            '</div>',
-            '<div class="ho_infor">',
-            '<p class="hname">{%=hotelName%}</p>',
-            '{% if(data["score"]||data["comments"]){ %}<div class="h-score">{% if(data["score"]){ %}<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">{%=score%}</span>{% } %} {% if(data["comments"]){ %}<span style="color:#999999;font-size:0.8rem;">∑÷/{%=comments%}»Àµ„∆¿</span>{% } %}</div> {% }else{ %}{% } %}',
-            '<div class="h-grade">',
-            '<span style="color:#999999;font-size:1rem;">{%=starRating%}–«º∂</span>',
-            '{% if(data["freeWifi"]){ %}<b class="hl-icon1"></b>{% } %}',
-            '{% if(data["freeBus"]){ %}<b class="hl-icon2"></b>{% } %}',
-            '<p class="h-address">{%=location%}</p>',
-            '</div>',
-            '</div>',
-            '<div class="l-price">',
-            '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}£§ {% }else{ %} $ {% } %}</span>',
-            '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>',
-            '<a class="choose-no">—°‘Ò</a>',
-            '</div>',
-            '</li>'
-        ].join('');
-        var resultData = JSON.parse(arguments[0]),that = hotelList;
-        if (resultData.success) {
-            if (resultData.data.hotels.length == 0) {
-                jAlert("±ß«∏‘› ±√ª”– ˝æ›", "Ã· æ");
-            }else{
-                console.log(resultData.data)
-                that.packageID = resultData.data.packageID;
-                var hotels = resultData.data.hotels;
-                hotels = that.resetData(hotels);
-                var tpl_GetList = template(tpl1, hotels);
-                $("#preloader").fadeOut();
-                $('#lsf_list').html(tpl_GetList);
-                that.delayLoadImage().addEvent()
-            }
-        } else {
-            jAlert(resultData.message, "Ã· æ");
-        }
-    },
-
     resetData: function(){
-        /*var data = arguments[0];
+        var data = arguments[0];
         var starWord=function(arg){
             var star="";
             switch(arg[0]){
@@ -93,174 +45,109 @@ var roomUpGrade = {
                     star = "";
                     break;
                 case "1":
-                    star = "“ª";
+                    star = "‰∏Ä";
                     break;
                 case "2":
-                    star = "∂˛";
+                    star = "‰∫å";
                     break;
                 case "3":
-                    star = "»˝";
+                    star = "‰∏â";
                     break;
                 case "4":
-                    star = "Àƒ";
+                    star = "Âõõ";
                     break;
                 case "5":
-                    star = "ŒÂ";
+                    star = "‰∫î";
                     break;
                 case "6":
-                    star = "¡˘";
+                    star = "ÂÖ≠";
                     break;
                 default :
                     star = "";
             }
             return star;
         };
-        for(var i= 0,len =arguments[0].length; i<len;i++ ){
-            var temp = arguments[0][i]['starRating'];
-            data[i]['starRating'] = starWord(temp)
-        }
-        return data;*/
+       var temp = arguments[0]['starRating'];
+       data['starRating'] = starWord(temp);
+        return data;
+    },
+    dateDeal: function () {
+        var reg = /\d{4}-(\d{1,2})-(\d{1,2}).*/;
+        var dateD1 = reg.exec(this.curParaObj.CheckinDate);
+        var dateD2 = reg.exec(this.curParaObj.CheckoutDate);
+        var inStr = dateD1[1]+'-'+dateD1[2];
+        var outStr = dateD2[1]+'-'+dateD2[2];
+        var time1 = Date.parse(this.curParaObj.CheckinDate), time2 = Date.parse(this.curParaObj.CheckoutDate);
+        var dayNum=(Math.abs(time2 - time1))/1000/60/60/24;
+        console.log(dayNum)
+       document.querySelector('.date-in').innerHTML = inStr +'ÂÖ•‰Ωè';
+       document.querySelector('.date-out').innerHTML = outStr +'Á¶ªÂ∫ó';
+       document.querySelector('.day-number').innerHTML = "ÂÖ±"+dayNum+"Êôö";
+       return  this;
     },
     addEvent: function () {
-        /*var hotelUl = document.querySelector('#lsf_list'), that = this, nextButton = document.querySelector('.hs-next');
-        var allPic = hotelUl.querySelectorAll('.h-choose');
-        that.eventHandler(hotelUl,'click',function(event){
-            var e = event || window.event ;
-            var target = e.target || e.srcElement;
-            var lastEle = target,choose;
-            for(var i=0;i<allPic.length;i++){
-                allPic[i].style.display = 'none';
-            }
-            while(lastEle.className !="ho_list"){
-                lastEle = lastEle.parentNode;
-            }
-            choose = lastEle.querySelector('.h-choose').style.display = (lastEle.querySelector('.h-choose').style.display=='block')?'none':'block';
-
-        });
-        that.eventHandler(nextButton,'click',function(event){
-            var e = event || window.event,that = hotelList;
-            var target = e.target || e.srcElement, allChoosePic = hotelUl.querySelectorAll('.h-choose'),infoId='';
-            for(var i = 0; i<allChoosePic.length;i++ ){
-                (allChoosePic[i].style.display == 'block')?infoId=allChoosePic[i].parentNode.getAttribute('data-id'):void(0);
-            }
-
-            var info = JSON.parse(window.localStorage.info);
-            /!* var s = "{"checkInDate":"2016 - 3 - 29","
-             checkOutDate":"2016 - 3 - 30","
-             roomNum":1,"
-             adultNum":1,"
-             childNum":1,"
-             allNum":2,"
-             withoutBedNum":1,"
-             tourList":[{"tourId":"137
-             ","
-             tourDate":"
-             2016 - 3 - 29"},{"tourId":"166","tourDate":"2016 - 3 - 30"}" +
-             "],"
-             eveAdultNum
-             ":["
-             1
-             "],"
-             eveChildNum
-             ":["
-             1
-             "]}"*!/
-
-            var paraObj = {
-                packageID:that.packageID,
-                checkInDate:info.checkInDate,
-                checkOutDate:info.checkOutDate,
-                roomDetails:{adult:info.adultNum, childWithoutBed :info.withoutBedNum,childWithBed :info.childWithBed},
-                hotelID:infoId,
-                tours:info.tourList
-            },paramStr='';
-            for(var attr in paraObj){
-                paramStr+="&"+attr+"="+paraObj[attr];
-            }
-            paramStr=paramStr.slice(1);
-            document.location.href='room-upgrade.html?'+paramStr;
-        });
-*/
-        var button = document.querySelector('.button-next');
-        var that = this;
-        this.eventHandler(button, 'click', function(){
-            var testObj= {
-                    "PackageID": "159",
-                    "CheckinDate": "2016-03-08T00:00:00",
-                    "CheckoutDate": "2016-03-12T00:00:00",
-                    "HotelID": "30",
-                    "RoomDetails": [
-                        {
-                            "adult": "2",
-                            "ChildWithoutBed": [
-                                6
-                            ]
-                        }
-                    ],
-                    "Tours": [
-                        {
-                            "TourID": "137",
-                            "TravelDate": "2016-03-09T00:00:00"
-                        },
-                        {
-                            "TourID": "166",
-                            "TravelDate": "2016-03-09T00:00:00"
-                        }
-                    ]
-                };
-
-            that.tAjax(that.requestUrl, testObj, '0208', 3, that.callBack);
-        });
-
         return this;
     },
     callBack: function () {
-       /* var tpl = ['<li class="ho_list">',
-            '<img class="h-choose" src="../images/ui/choose.png">',
-            '<div class="ho_pic">',
-            '<img src="{%=hotelPictureURL%}" >',
-            '</div>'].join('');
         var tpl1 = [
-            '<li class="ho_list" data-id="{%=hotelID%}">',
-            '<img class="h-choose" src="../images/ui/choose.png">',
-            '<div class="ho_pic">',
-            '<img src="../images/pictures/hotplay1.png" real-src="{%=hotelPictureURL%}" class="ho_img" />',
-            '</div>',
-            '<div class="ho_infor">',
-            '<p class="hname">{%=hotelName%}</p>',
-            '{% if(data["score"]||data["comments"]){ %}<div class="h-score">{% if(data["score"]){ %}<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">{%=score%}</span>{% } %} {% if(data["comments"]){ %}<span style="color:#999999;font-size:0.8rem;">∑÷/{%=comments%}»Àµ„∆¿</span>{% } %}</div> {% }else{ %}{% } %}',
-            '<div class="h-grade">',
-            '<span style="color:#999999;font-size:1rem;">{%=starRating%}–«º∂</span>',
-            '{% if(data["freeWifi"]){ %}<b class="hl-icon1"></b>{% } %}',
-            '{% if(data["freeBus"]){ %}<b class="hl-icon2"></b>{% } %}',
-            '<p class="h-address">{%=location%}</p>',
-            '</div>',
-            '</div>',
-            '<div class="l-price">',
-            '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}£§ {% }else{ %} $ {% } %}</span>',
-            '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>',
-            '<a class="choose-no">—°‘Ò</a>',
-            '</div>',
-            '</li>'
+       '<a href="hotel-summary.html" class="top-pic"><img class="hotelPic" src="{%=hotelPictureURL%}"></a>',
+        '<ul id="hd_list" class="d-list">',
+        '<li>',
+        '<p class="d-score">',
+        '<b class="d-icon4"></b>{%=location%}</p>',
+        '</li>',
+        '<li>',
+        '<p class="d-score">{%=starRating%}ÊòüÁ∫ß</p>',
+        '{% if(data["freeWifi"]){ %}<b class="d-icon2"></b>{% } %}',
+        '<a href="{%=moreInfoLink%}" class="d-icon1"></a>',
+        '</li>',
+        '<li>',
+        '<p class="d-p3 date-in">3Êúà22ÂÖ•‰Ωè</p><p class="d-p3 date-out" style="margin-left: 5px;">3Êúà30Á¶ªÂ∫ó</p>',
+        '<p class="d-p2 day-number">ÂÖ±8Êôö</p>',
+        '</li>',
+        '<li>',
+        '<ul class="room-list" id="room-list">',
+        '</ul>',
+        '</li>',
+        '</ul>',
+        '<a href="fill-in-order-new.html" class="hs-next">‰∏ã‰∏ÄÊ≠•</a>'
         ].join('');
-        var resultData = JSON.parse(arguments[0]),that = hotelList;
+        var tpl2 =[
+            '<li class="hd-hotel">',
+            '<img class="hd-choose" src="../images/ui/choose.png">',
+            '<div class="d-div3">',
+            '<p class="d-p5">Ê†áÂáÜ‰ª∑</p>',
+            '<p class="d-p7">',
+            '<span>{% if(data["includedBreakfast"]){ %}Êó†Êó©{% } %}{% if(data["bigBed"]){ %}Â§ßÂ∫ä{% } %}{% if(data["cannotCancel"]){ %}‰∏çÂèØÂèñÊ∂à{% } %}</span>' +
+            '{% if(data["roomHasNum"]){ %}<span style="color: #fe4716"> ‰ªÖÂâ©{%=roomHasNum%}Èó¥</span>{% } %}',
+            '</p>',
+            '</div>',
+            '<p class="hd-price">',
+            '<span>+Ôø•</span>',
+            '<span>{%=totailPrice%}</span>',
+            '</p>',
+            '</li>'
+
+        ].join('');
+
+
+        var resultData = JSON.parse(arguments[0]),that = roomUpGrade;
         if (resultData.success) {
             if (resultData.data.hotels.length == 0) {
-                jAlert("±ß«∏‘› ±√ª”– ˝æ›", "Ã· æ");
+                jAlert("Êä±Ê≠âÊöÇÊó∂Ê≤°ÊúâÊï∞ÊçÆ", "ÊèêÁ§∫");
             }else{
-                console.log(resultData.data)
-                that.packageID = resultData.data.packageID;
-                var hotels = resultData.data.hotels;
-                hotels = that.resetData(hotels);
+                var  hotels = that.resetData(resultData.data.hotels[0]);
+                var  rooms = resultData.data.hotels[0].rooms[0];
                 var tpl_GetList = template(tpl1, hotels);
+                var tpl_GetRooms = template(tpl2, rooms);
                 $("#preloader").fadeOut();
-                $('#lsf_list').html(tpl_GetList);
-                that.delayLoadImage().addEvent()
+                $('#sc-content').html(tpl_GetList);
+                $('#room-list').html(tpl_GetRooms);
+                that.dateDeal().delayLoadImage().addEvent()
             }
         } else {
-            jAlert(resultData.message, "Ã· æ");
-        }*/''
-        console.log(arguments[0])
+            jAlert(resultData.message, "ÊèêÁ§∫");
+        }
     },
     delayLoadImage : function(item) {
         var images = document.getElementsByClassName('ho_img');
@@ -292,37 +179,45 @@ var roomUpGrade = {
         return this;
     },
     initRender:function(){
-       /* var that = this;
-        var data = {
-            "PackageID": "159",
-            "CheckinDate": "2016-03-08T00:00:00",
-            "CheckoutDate": "2016-03-11T00:00:00",
-            "RoomDetails": [
-                {
-                    "Adult": "2",
-                    "ChildWithoutBed": [6]
-                }
-            ],
-            "Tours": [
-                {
-                    "TourID": "137",
-                    "TravelDate": "2016-03-09T00:00:00"
-                },
-                {
-                    "TourID": "166",
-                    "TravelDate": "2016-03-09T00:00:00"
-                }
-            ]
-        };
-        that.tAjax(that.requestUrl, data, '0208', 3, that.callBack);
-        return this;*/
+
+        return this;
     },
     createTags: function () {
-        return this;
+        var that = this;
+            var testObj= { //2ren
+                "PackageID": "159",
+                "CheckinDate": "2016-03-08T00:00:00",
+                "CheckoutDate": "2016-03-12T00:00:00",
+                "HotelID": "30",
+                "RoomDetails": [
+                    {
+                        "adult": "2",
+                        "ChildWithoutBed": [
+                            6
+                        ]
+                    }
+                ],
+                "Tours": [
+                    {
+                        "TourID": "137",
+                        "TravelDate": "2016-03-09T00:00:00"
+                    },
+                    {
+                        "TourID": "166",
+                        "travelDate": "2016-03-09T00:00:00"
+                    }
+                ]
+            };
+
+        //var  testObj=JSON.parse(window.localStorage.getItem('roomUpdateInfo'));
+        console.log(testObj)
+        that.curParaObj = testObj;
+            that.tAjax(that.requestUrl, testObj, '0208', 3, that.callBack);
+            return this;
     },
 
     init: function () {
-        this.createTags().initRender();
+        this.createTags()/*.initRender();*/
         this.addEvent();
     }
 
