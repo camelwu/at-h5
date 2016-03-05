@@ -53,16 +53,16 @@
         <!--</header>-->
         <!--   内容   -->
         <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 20px;">
-            <section>
+            <!--<section>-->
                 <!--<div class="cont-exhibition">-->
                     <!--<img src="images/palace.jpg" alt=""/>-->
                 <!--</div>-->
-                <div class="scenic-list-box">
+                <!--<div class="scenic-list-box">-->
                     <!--<div class="scenic-list-choi-wrap">-->
                         <!--<a class="active">北京景点</a>-->
                         <!--<a>周边景点</a>-->
                     <!--</div>-->
-                    <ul id="scenic-list-cont" class="scenic-list-cont active">
+                    <ul id="scenic-list-cont" class="scenic-list-box scenic-list-cont active">
 
                     </ul>
                     <!--<ul class="scenic-list-cont">-->
@@ -81,8 +81,8 @@
                             <!--</a>-->
                         <!--</li>-->
                     <!--</ul>-->
-                </div>
-            </section>
+                <!--</div>-->
+            <!--</section>-->
         </div>
         <!--   底部   -->
         <!--<footer class="sce-bottom">-->
@@ -131,6 +131,7 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
+    <script src="../js/lib/lazyLoad.js"></script>
     <script id="tpl_Localtxt" type="text/template">
        {%=destCity%}
     </script>
@@ -145,7 +146,7 @@
         <li class="s-li">
             <a href="../scenic/scenic_detail.html?packageID={%=packageID%}">
                 <div class="sce-img-box">
-                    <img src="{%=pictureURL%}" alt="" class="sce-img">
+                    <img  src="../images/loading-hotel.gif" data-src="{%=pictureURL%}"  class="sce-img">
                 </div>
                 <div class="sce-detail">
                     <p class="sce-name-all">{%=packageName%}</p>
@@ -300,6 +301,7 @@
                         $("#SpotScreen").html(tpl_SpotScreen);
 
                         CBot_screen();
+                        var c = new lazyLoad("scenic-list-cont");
                         if(data.lists.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }
@@ -363,6 +365,7 @@
                         $("#SpotScreen").html(tpl_SpotScreen);
 
                         CBot_screen();
+                        var c = new lazyLoad("scenic-list-cont");
                         if(data.lists.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }
@@ -402,6 +405,7 @@
                     if(json.success){
                         var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists);
                         $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                        var c = new lazyLoad("scenic-list-cont");
                         if(data.lists.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }
@@ -508,6 +512,8 @@
             };
 
             MT.load();
+
+
         })();
     </script>
 </body>

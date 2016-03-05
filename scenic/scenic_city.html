@@ -22,7 +22,7 @@
 <div class="all-elements">
     <div id="headerview" style="height: 44px;">
         <div id="ui-view-1" class="t-header">
-            <span class="t-header-icon fl t-header-iconsize cp"></span>
+            <span class="js-backpage t-header-icon fl t-header-iconsize cp"></span>
             <div class="t-search-view t-search-viewsize">
                 <input class="t-search-inputbox" placeholder="北京/beijing/bj/bjs/中国"/>
             </div>
@@ -185,7 +185,7 @@
 
 <script id="tpl_GetHotCity" type="text/template">
     {% for(var i=0,len=data.destCities.length;i<len;i++){ %}
-    <li>{%=data.destCities[i].cityName%}</li>
+    <li data-key="{%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</li>
     {% } %}
 </script>
 
@@ -198,6 +198,13 @@
         var callbackcity = MT.getCity(val.citycode,callback);
         var callback_url = MT.GetRequestUrl(callback);
         console.log(callback_url);
+
+        MT.bindclickBackPage = function(){
+            $(".js-backpage").click(function(){
+//               window.location.href = callback;
+                history.go(-1);
+            });
+        }
 
         /**
          * 获得国外热门城市
@@ -225,7 +232,10 @@
             console.log(json);
             if(json.success){
                 var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
-                $("#js_ExHotCity").html(tpl_GetExHotCity);
+
+                $("#js_ExHotCity").html(tpl_GetExHotCity).find("li").click(MT.ClickTags);
+
+
             }else {
                 console.log(json);
                 jAlert(json.message,"提示");
@@ -258,7 +268,7 @@
             var json=eval('('+data+')');
             console.log(json);
             if(json.success){
-                var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data),tpl_str,tpl_title,tpl_ul;
+                var data=json,tpl_str,tpl_title,tpl_ul;
                 var newArray = MT.SplitCitiesArray(json.data.destCities.sort(MT.ByCities));
 //                var docf = document.createDocumentFragment();
                 for (var i = 0;i<newArray.length;i++){
@@ -276,8 +286,6 @@
 
                 MT.CharColumn("CharColumn",newArray);
 
-
-                $("#js_ExHotCity").html(tpl_GetExHotCity);
             }else {
                 console.log(json);
                 jAlert(json.message,"提示");
@@ -287,7 +295,7 @@
 
         MT.ClickTags = function(e){
             var cc = $(this).attr("data-key");
-            var url = callbackcity.CallbackUrl;
+            var url = callback;
             if(url == ""){
                 return false;
             }
@@ -329,6 +337,9 @@
         MT.getExHotCity();
         //加载城市列表
         MT.getCityList();
+        //给返回绑定click事件
+        MT.bindclickBackPage();
+
 
     })();
 </script>
