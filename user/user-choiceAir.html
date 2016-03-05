@@ -144,7 +144,7 @@
 							证件类型
 						</div>
 						<div id="postCard" class="postCard" data-code="1">
-							护照
+							身份证
 						</div>
 					</li>
 					<li>
@@ -414,8 +414,9 @@
 	</div>
 </div>
 
-<script src="../js/country_list.js"></script>
+
 <script src="../js/lib/jquery.js"></script>
+<script src="../js/country_list.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/plugins.js"></script>
@@ -660,11 +661,23 @@
 			$(".telNum").attr("value",tralJsonObj[id].traveller.mobilePhone);
 			$(".txtEmail").attr("value",tralJsonObj[id].traveller.email);
 
+
+
 			$(".cardNumber").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idNumber);
 			$(".postCard").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idType);
 			$(".cardDateLimit").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
-			$(".cardCountry").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idCountry);
+			$(".cardCountry").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idCountry);
+			$(".cardCountry").html(getCountryName(tralJsonObj[id].listTravellerIdInfo[0].idCountry).CountryName);
+
+
 			$(".birthDay").attr("value",tralJsonObj[id].listTravellerIdInfo[0].dateOfBirth);
+			if (tralJsonObj[id].traveller.sexCode == "Mr") {
+				$("#man").className="icon-h traveler-sex1";
+				$("#woman").className="icon-h traveler-sex2";
+			} else {
+				$("#man").className="icon-h traveler-sex2";
+				$("#woman").className="icon-h traveler-sex1";
+			}
 
 			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
@@ -727,6 +740,7 @@
 		var man = $("#man")[0];
 		var sexCode;
 		var sexName;
+		debugger;
 		if (man.className == "icon-h traveler-sex1") {
 			sexCode = "Mr";
 			sexName = "男";
@@ -769,38 +783,25 @@
 				"\"IdType\":" + $(inputList).find(".postCard").eq(0).attr("data-code") + "," +
 				"\"IdNumber\":\"" + $(inputList).find(".cardNumber").eq(0).val() + "\"," +
 				"\"IdCountry\":\"" + $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\"," +
-				"\"IdActivatedDate\":\""+ $(inputList).find(".cardDateLimit").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"" +
+				"\"IdActivatedDate\":\""+ $(inputList).find(".cardDateLimit").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"," +
+				"\"NationalityCode\":\"" + $(inputList).find(".country").eq(0).attr("data-code") + "\"" +
 				"}]}",
 				"ForeEndType": 3,
 				"Code": "0072"
 			}
 		}
 		else{
-			var Parameters = {
-				"Parameters": "{\"Traveller\":" +
-				"{" +
-				"\"TravellerId\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
-				"\"IdName\":\"" + $(inputList).find(".cnName").eq(0).val() + "\"," +
-				"\"LastName\":\"" + $(inputList).find(".lastName").eq(0).val() + "\"" + "," +
-				"\"FirstName\":\"" + $(inputList).find(".firstName").eq(0).val() + "\"," +
-				"\"CountryCode\":\"" + $(inputList).find(".country").eq(0).attr("data-code") + "\"," +
-				"\"CountryName\":\"" + $(inputList).find(".country").eq(0).html() + "\"," +
-				"\"SexCode\":\"" + sexCode + "\"," +
-				"\"SexName\":\"" + sexName + "\"," +
-				"\"DateOfBirth\":\""+ $(inputList).find(".birthDay").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"," +
-				"\"Email\":\"" + $(inputList).find(".txtEmail").eq(0).val() + "\"," +
-				"\"MemberId\":\"" + memberId + "\"," +
-				"\"MobilePhone\":\"" + $(inputList).find(".telNum").eq(0).val() + "\"}," +
-				"\"ListTravellerIdInfo\":" +
-				"[{" +
-				"\"IdType\":" + $(inputList).find(".postCard").eq(0).attr("data-code") + "," +
-				"\"IdNumber\":\"" + $(inputList).find(".cardNumber").eq(0).val() + "\"," +
-				"\"IdCountry\":\"" + $(inputList).find(".cardCountry").eq(0).attr("data-code") + "\"," +
-				"\"IdActivatedDate\"\""+ $(inputList).find(".cardDateLimit").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"" +
-				"}]}",
+			var Parameters= {
+				"Parameters": "{\"Traveller\":{\"IdName\":\""+$(inputList).find(".cnName").eq(0).val()+"\",\"LastName\":\""+$(inputList).find(".lastName").eq(0).val()+"\",\"FirstName\":\""+$(inputList).find(".firstName").eq(0).val() +"\",\"CountryCode\":\""+$(inputList).find(".country").eq(0).attr("data-code")+"\"," +
+				"\"CountryName\":\""+$(inputList).find(".country").eq(0).html()+"\",\"SexCode\":\""+sexCode+"\",\"SexName\":\""+sexName+"\",\"DateOfBirth\":\""+ $(inputList).find(".birthDay").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"," +
+				"\"Email\":\""+$(inputList).find(".txtEmail").eq(0).val() +"\",\"MemberId\":\""+memberId+"\",\"MobilePhone\":\""+$(inputList).find(".telNum").eq(0).val()+"\"}," +
+				"\"ListTravellerIdInfo\":[{\"Id\":0,\"TravellerId\":0," +
+				"\"IdType\":"+  $(inputList).find(".postCard").eq(0).attr("data-code") +",\"IdNumber\":\""+ $(inputList).find(".cardNumber").eq(0).val()+"\",\"IdCountry\":\"CN\",\"IdActivatedDate\":\""+$(inputList).find(".cardDateLimit").eq(0).val().replace('年','-').replace('月','-').replace('号','').replace('日','')+"\"," +
+				"\"NationalityCode\":\""+$(inputList).find(".country").eq(0).attr("data-code")+"\"}]}",
 				"ForeEndType": 3,
 				"Code": "0071"
 			}
+
 
 		}
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
