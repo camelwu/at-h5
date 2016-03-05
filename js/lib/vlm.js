@@ -715,7 +715,7 @@
 						},
 						error:function(XMLHttpRequest, textStatus, errorThrown){
 							if(textStatus=='timeout'){
-								alert("超时请更换条件重新查询！");
+								alert("网络不给力，刷新重试！");
 								window.location.reload();
 							}
 				　　　　}
