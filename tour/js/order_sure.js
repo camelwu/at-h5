@@ -12,10 +12,34 @@
     };
     package_detail();
 
-    //套餐名称
-    var sceTit='八达岭长城一日游【仅限12-23日-12月30日使用】';
-    var sceCpde='（产品编号 PK348758945）';
-    $('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">'+sceCpde+'</span>';
+    //localStorage.Info
+    var jsonPackage=JSON.parse(localStorage.info);
+    console.log(jsonPackage);
+
+    var Parmeters=
+    {
+        "Parameters": {
+            "PackageID": localStorage.packageID
+        },
+        "ForeEndType": 3,
+        "Code": "0202"
+    }
+    //console.log(Parmeters);
+    vlm.loadJson("",JSON.stringify(Parmeters),package_tit_back);
+
+    //初始化函数回调
+    function package_tit_back(ret){
+        var json = eval('('+ret+')');
+        console.log(json);
+        if(json.success) {
+            //套餐名称
+            var sceTit=json.data.packageName;
+            var sceCpde=json.data.packageRefNo;
+            $('.sce-introduce-txt')[0].innerHTML=sceTit+' <span class="sce-introduce-span">'+sceCpde+'</span>';
+        }else{
+            jAlert(json.message);
+        }
+    }
 
     //酒店信息
     var hotel_box=document.querySelector('.hotel_box');
@@ -25,7 +49,7 @@
         +'<span class="conlist">'+hotelTime+'</span>';
 
     //根据景点数创建景点列表
-    var sceNumber=localStorage.sceNumber=2;
+    var sceNumber=jsonPackage.tourList.length
     for(var i=0;i<sceNumber; i++)
     {
         var oSce=document.createElement('div');
@@ -88,8 +112,8 @@
 
     //订单确认回调
     function order_sure_back(ret){
-
         var json=eval('('+ret+')');
+        console.log(json);
         if(json.success)
         {
 
