@@ -28,7 +28,14 @@
     <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
 <div class="all-elements fix-background">
     <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<i class="tel-icon"></i></header>
     <div class="ticket-order-detail-content">
@@ -154,9 +161,37 @@
         <button type="button" class="call"><a href="tel:400 805 8888">拨打</a></button>
     </div>
 </div>
-</body>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vcm.js"></script>
 <script type="text/javascript" src="js/hy_ticket_order_detail.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/custom.js"></script>
+<script>
+    (function(){
+        var ww = this;
+        vlm.init();
+        var orderDetail = function(){
+            //   加载动画
+            var flashLoad = function(){
+                $(window).load(function () {
+                    $("#status").fadeOut();
+                    $("#preloader").delay(400).fadeOut("medium");
+                });
+            };
+            //   加载详情数据
+            var getDetailData = function(){
+                var tmp = {
+                    "Parameters": {"flightOrderID":1137 },
+                    "ForeEndType": 3,
+                    "Code": "3006"
+                };
+
+            }
+        }()
+    })()
+</script>
+</body>
 </html>

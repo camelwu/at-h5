@@ -698,7 +698,7 @@
 					$.ajax({
 						type : "post",
 						url : _api + '?rnd=' + Math.random(),
-						timeout : 10000,
+						//datType:'json',
 						data : data,
 						contentType : 'application/json;charset=utf-8',
 						beforeSend : function(xhr) {
@@ -710,22 +710,9 @@
 								xhr.setRequestHeader('uid', user);
 							}
 						},
-						complete : function(XMLHttpRequest,status){
-					　　　　
-					　　},
-						success : function(jsondata){
+						success : function(jsondata) {
 							mycallback(jsondata);
-						},
-						error:function(XMLHttpRequest, textStatus, errorThrown){
-		                    if(textStatus=='timeout'){
-					　　　　　  alert("网络不给力，请刷新重试！");window.location.reload();
-					　　　　}
-		                    //alert('error');
-		                    //alert(XMLHttpRequest);
-		                    //alert(textStatus); 
-		                    //alert(errorThrown);
-		                    //alert(XMLHttpRequest.readyState);
-		                }
+						}
 					});
 					$.ajaxSetup({
 						async : true
@@ -982,7 +969,7 @@
 					}
 				}, l_find = function() {
 
-				}, _choice = function(f, t, tid, isNeedPassport,isMulSelect) {
+				}, _choice = function(f, t, tid, isNeedPassport,isMulSelect,numofAdult,numofChlid,id) {
 					//if(arguments.length<1){return ;}
 					//var arg = arguments.callee.slice(this);
 					var type = '', title = '';
@@ -1006,7 +993,9 @@
 					} else {
 						type = 'add';
 					}
-					var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '', title, "fullscreen=1");
+					var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
+					//var choice =window.showModalDialog('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id ,'a_iframe');
+
 					//choice.location = urls;
 				};
 			//out api

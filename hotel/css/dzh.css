@@ -755,6 +755,46 @@
     background-color: #F5F4F9;
     border: 1px solid #fe6a03;
 }
+.od-mb{
+    width: 100%;height:100%;
+    position: fixed;
+    background-color:rgba(0,0,0,0.5);
+    /*opacity: 0.5;*/
+    display: none;
+    z-index: 2000;
+}
+.pd-block{
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom:-300px;
+    color: #484848;
+    z-index: 2000000;
+}
+.pd-list{
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.pd-list li{
+    padding:15px 15px;
+    margin-bottom: 5px;
+}
+.pd-list li div:nth-child(1){
+    float: left;
+}
+.pd-list li div:nth-child(2){
+    float: right;
+}
+.pd-list li:last-child{
+    border-top: 1px solid #d6d6d6;
+    color:#fb763b;
+    height: 44px;
+}
+
+
+
+
 
 /*ȡ��*/
 #choose{
