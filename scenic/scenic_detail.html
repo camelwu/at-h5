@@ -139,9 +139,10 @@
 
     {% for(var i=0,len=data.prices.length;i<len;i++){ %}
     <li>
-        <div class="combo-name">{%=data.packageName%}{% if(data.prices[i].category=="ADULT"){ %}(ADULT){% }else{ %}(CHILD){% } %}</div>
-        <div class="combo-price">{%=data.prices[i].amountInCNY%}</div>
-        <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %});" class="s-reserve button-orange">预定</a>
+        <div class="combo-name">{%=data.packageName%}</div>
+        <div class="combo-price">{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(ADULT){% }else{ %}(CHILD){% } %}</div>
+        <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %}
+        ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %});" class="s-reserve button-orange">预定</a>
         <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
         <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>-->
     </li>
@@ -283,12 +284,12 @@
         }
 
         //判断是否登录
-        MT.CCheckLogin = function(packageId,RequiredPickupPoint){
+        MT.CCheckLogin = function(packageId,RequiredPickupPoint,Adult){
             var islogin = vlm.checkLogin(localStorage.getItem("login"));
 //                console.log(vlm.checkLogin(localStorage.getItem("login")));
             if(islogin == true){
                 window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId
-                        +"&RPP="+RequiredPickupPoint;
+                        +"&RPP="+RequiredPickupPoint+"&ADU"+Adult;
             }else{
                 //jAlert("登录失败","提示");
                 return false;
