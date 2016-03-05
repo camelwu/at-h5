@@ -698,7 +698,7 @@
 					$.ajax({
 						type : "post",
 						url : _api + '?rnd=' + Math.random(),
-						//datType:'json',
+						timeout : 10000,
 						data : data,
 						contentType : 'application/json;charset=utf-8',
 						beforeSend : function(xhr) {
@@ -712,7 +712,13 @@
 						},
 						success : function(jsondata) {
 							mycallback(jsondata);
-						}
+						},
+						error:function(XMLHttpRequest, textStatus, errorThrown){
+							if(textStatus=='timeout'){
+								alert("网络不给力，刷新重试！");
+								window.location.reload();
+							}
+				　　　　}
 					});
 					$.ajaxSetup({
 						async : true
