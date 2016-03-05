@@ -316,9 +316,8 @@
 		},
 
 		reserveHandler : function(event) {
-			if (vlm.checkLogin())
-				document.location.href = 'user_order.html?' + 'roomCode=' + this.getAttribute('room-code');
-
+			vlm.checkLogin(torder);
+			function torder(){document.location.href = 'user_order.html?' + 'roomCode=' + this.getAttribute('room-code');}
 		},
 
 		toggleSlider : function() {
