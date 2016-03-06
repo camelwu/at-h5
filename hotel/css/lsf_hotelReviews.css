@@ -170,13 +170,14 @@ header i{
 .comments em{
 	display:block;
 	position:absolute;
-	width:1.5rem;
+	width:40px;
 	height:54px;
 	bottom:0;
 	right:0;
+	/*border:#000000 1px solid;*/
 }
 .lsf_reDiscuss p i{
-    width:1.5rem;height:1.5rem;background:url(../../images/ui/icons.png) -16.9rem -0.5rem;background-size:24.3rem 16rem;bottom:0;
+    width:1.5rem;height:1.5rem;background:url(../../images/ui/icons.png) -16.9rem -0.5rem;background-size:24.3rem 16rem;bottom:0;right:0;
     position:absolute;
 }
 .lsf_reUser{
