@@ -96,6 +96,7 @@ TicketDate.prototype.createContainer = function(odate){
         header.id = this.id+"-header";
         header.className = 'header';
         this.type=='Oneway'?header.style.height = "45px":void(0);
+        header.style.top = "0px";
         header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3>':'<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
         document.body.appendChild(header);
 

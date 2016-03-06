@@ -44,6 +44,64 @@
             return hash % 1013;
         }
         /**
+         * [public date]获取年月日
+         * @param arg "2016-01-01T00:00:00"
+         * @param mark 例如 "-" 2016-01-01 ,"/" 2016/01/01
+         * @returns {string}
+         */
+        var getYMD = function(arg,mark){
+            var defaultTime =arg
+                .replace(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})T(\d{1,2})[:](\d{1,2})[:](\d{1,2})/g, function(){
+                    if(mark!=undefined && mark!=""){
+                        mark = mark;
+                    }else{
+                        mark = "-";
+                    }
+                    var args = [];
+                    args = [].slice.call(arguments);
+                    args = args.slice(1,4);
+                    console.log(args);
+                    return args[0]+mark+args[1]+mark+args[2];
+                });
+            return defaultTime;
+        }
+        /**
+         * [public week]获取当前日期星期几
+         * @param arg1 2016-01-01
+         * @returns {string}
+         */
+        var getWeek = function(arg1){
+            if(arg1){
+                var week,array,index = new Date(arg1.replace(/-/g, "/")).getDay();
+                switch (index){
+                    case 0 :
+                        week = '周日';
+                        break;
+                    case 1 :
+                        week = '周一';
+                        break;
+                    case 2 :
+                        week = '周二';
+                        break;
+                    case 3 :
+                        week = '周三';
+                        break;
+                    case 4 :
+                        week = '周四';
+                        break;
+                    case 5 :
+                        week = '周五';
+                        break;
+                    case 6 :
+                        week = '周六';
+                        break;
+                    default :
+                        void(0);
+                }
+                return week;
+            }
+        };
+        /**
          * 存储历史记录
          */
         var Queue = function(){
@@ -304,7 +362,9 @@
             getCity:getCity, //[private getcity]
             GetQueryString:GetQueryString,//[public GetURL QueryString ]
             GetRequestUrl:GetRequestUrl,
-            Queue:Queue //[public Queue]
+            Queue:Queue, //[public Queue]
+            getYMD:getYMD,//[public getYMD]
+            getWeek:getWeek //[public QugetWeekeue]
         }
     }();
     webkit.MT = webkit.MT || {};
@@ -336,5 +396,10 @@
     webkit.MT.SplitCitiesArray = function(_oldArray){
        return core.SplitCitiesArray(_oldArray);
     }
-
+    webkit.MT.getYMD = function(arg,mark){
+        return core.getYMD(arg,mark);
+    }
+    webkit.MT.getWeek = function(arg){
+        return core.getWeek(arg);
+    }
 })();
