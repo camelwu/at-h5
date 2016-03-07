@@ -253,7 +253,7 @@
 
         PaymentDetails.PayCurrencyCode="CNY";
         PaymentDetails.PayTotalAmount="508";
-        debugger;
+//        debugger;
         if (type == "UnionPay")
         {
             PaymentDetails.PaymentMode="UnionPay";
@@ -296,7 +296,7 @@
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
             var data=JSON.parse(data);
             if(data.success) {
-                debugger;
+//                debugger;
                 var tpl = template("tpl_orderinfo",data.data);
                 var tplC = template("tpl_orderTotal",data.data);
                 $(".per-pay-msg-bg").html(tpl);

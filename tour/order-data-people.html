@@ -445,16 +445,6 @@
                         }
                     }
                 }
-//                for(var w = 0;w < input.length;w++){
-//                    if(input[w].value == ''){
-//                        jAlert("儿童年龄未输入","提示");
-//                        return;
-//                    }
-//                    if(input[w].value < 2 || input[w].value >14){
-//                        jAlert("儿童年龄不符合标准","提示");
-//                        return;
-//                    }
-//                }
                 var InfoData = {
                     "checkInDate":CheckInDate,
                     "checkOutDate":CheckOutDate,
@@ -494,7 +484,7 @@
         initDate: function(){
             var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
                     r =new Date( d.setDate(d.getDate() + 1)),paraObj={};
-            var inputs = document.querySelectorAll('.CheckInDateI')
+            var inputs = document.querySelectorAll('.CheckInDateI');
             paraObj = {
                 start:s.getFullYear() + "-"+(s.getMonth()+1)+ "-"+s.getDate(),
                 end:r.getFullYear() + "-"+(r.getMonth()+1)+ "-"+r.getDate()};
