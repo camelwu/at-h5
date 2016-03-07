@@ -1594,8 +1594,9 @@ i{
     margin-bottom: 0;
     padding: 0 20px;
     border-top: 1px solid #ddd;
-    margin-top: 1rem;
+    margin-top: 0rem;
     font-size: 1.5rem;
+    background-color: #FFFFFF;
 }
 .children-wrap li{
     height: 40px;
@@ -1870,6 +1871,7 @@ i{
     left: 0;
     background:#fff;
     z-index: 200;
+    width: 100%;
     transition: 0.5s all ease;
 }
 .add-setmeal-list{
