@@ -493,6 +493,7 @@ i{
     border-radius: 5px;
     text-align: center;
     line-height: 30px;
+    overflow: hidden;
 }
 .pl-active{
     color:#ffb413;
