@@ -295,7 +295,7 @@ TicketDate.prototype.linkOver = function(event){
             window.clearTimeout(that.timer);
             that.timer = null;
         }
-    },1000);
+    },100);
 
     function returnWeek(arg){
         if(arg){
