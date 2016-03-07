@@ -366,8 +366,8 @@
             };
             //  传递数据
             var sendInfo = function(){
-                var CheckInDate = document.getElementById('CheckInDate').value;
-                var CheckOutDate = document.getElementById('CheckOutDate').value;
+                var CheckInDate = document.getElementById('CheckInDate').value+'T00:00:00';
+                var CheckOutDate = document.getElementById('CheckOutDate').value+'T00:00:00';
                 var roomNum = document.getElementById('roomNum').innerHTML;   //房间数
                 var inputInfo = document.getElementsByClassName("cut-up-cont");
                 var bed = document.getElementsByClassName("bedList");
@@ -404,9 +404,9 @@
                 }
                 for(var n = 0;n < ifAddBed.length;n++){
                     if(ifAddBed[n].className == 'icon noselect'){
-                        withoutBedAge.push(childAge[n].value);
+                        withoutBedAge.push(parseInt(childAge[n].value));
                     }else{
-                        withBedAge.push(childAge[n].value);
+                        withBedAge.push(parseInt(childAge[n].value));
                     }
                 }
                 allNum = adultNum + childNum;
@@ -414,8 +414,8 @@
                 var tourEles= tourUl.querySelectorAll('.content2');
                 for(var h = 0; h < tourEles.length;h++){
                     var temObj = {};
-                    temObj['tourId']=tourEles[h].getAttribute('data-tour-id');
-                    temObj['tourDate']=tourEles[h].querySelector('input').value;
+                    temObj['tourID']=tourEles[h].getAttribute('data-tour-id');
+                    temObj['travelDate']=tourEles[h].querySelector('input').value+'T00:00:00';
                     tourData.push(temObj);
                 }
                 //   判断页面能否跳转

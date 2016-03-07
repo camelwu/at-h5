@@ -258,8 +258,7 @@ var lsf_myweb={
                 "Code": "0012"
             };
             console.log(data);
-            $("#status-h").fadeIn();
-            $("#preloader").delay(400).fadeIn("medium");
+            vlm.init();
             var payment=new paymentObj(data,mycallback);
             payment.handlePayment();
             //return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);

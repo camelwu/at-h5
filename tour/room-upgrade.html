@@ -54,14 +54,14 @@
     </style>
 </head>
 <body>
-    <div id="preloader">
+    <!--<div id="preloader">
         <div id="status">
             <p class="center-text">
                 <br>
                 <em>加载中……</em>
             </p>
         </div>
-    </div>
+    </div>-->
     <div class="all-elements" id="allElements">
         <!--   顶部   -->
         <div class="header">
@@ -69,7 +69,7 @@
             <h3 class="head-h3">房间升级</h3>
         </div>
         <!--   内容   -->
-        <div class="sc-content">
+        <div class="sc-content" id="sc-content">
             <a href="hotel-summary.html" class="top-pic">
                 <img class="hotelPic" src="../images/03-1_02.jpg">
             </a>
@@ -89,31 +89,35 @@
                     <p class="d-p3" style="margin-left: 5px;">12月30离店</p>
                     <p class="d-p2">共9晚</p>
                 </li>
-                <li class="hd-hotel">
-                    <img class="hd-choose" src="../images/ui/choose.png">
-                    <div class="d-div3">
-                        <p class="d-p5">标准价</p>
-                        <p class="d-p7">
-                            <span>无早 大床 不可取消</span><span style="color: #fe4716"> 仅剩2间</span>
-                        </p>
-                    </div>
-                    <p class="hd-price">
-                        <span>+￥</span>
-                        <span>848</span>
-                    </p>
-                </li>
-                <li class="hd-hotel">
-                    <img class="hd-choose" src="../images/ui/choose.png">
-                    <div class="d-div3">
-                        <p class="d-p5">含早</p>
-                        <p class="d-p7">
-                            <span>无早 大/双床 免费取消</span>
-                        </p>
-                    </div>
-                    <p class="hd-price">
-                        <span>+￥</span>
-                        <span>908</span>
-                    </p>
+                <li>
+                    <ul class="room-list">
+                        <li class="hd-hotel">
+                            <img class="hd-choose" src="../images/ui/choose.png">
+                            <div class="d-div3">
+                                <p class="d-p5">标准价</p>
+                                <p class="d-p7">
+                                    <span>无早 大床 不可取消</span><span style="color: #fe4716"> 仅剩2间</span>
+                                </p>
+                            </div>
+                            <p class="hd-price">
+                                <span>+￥</span>
+                                <span>848</span>
+                            </p>
+                        </li>
+                        <li class="hd-hotel">
+                            <img class="hd-choose" src="../images/ui/choose.png">
+                            <div class="d-div3">
+                                <p class="d-p5">含早</p>
+                                <p class="d-p7">
+                                    <span>无早 大/双床 免费取消</span>
+                                </p>
+                            </div>
+                            <p class="hd-price">
+                                <span>+￥</span>
+                                <span>908</span>
+                            </p>
+                        </li>
+                    </ul>
                 </li>
             </ul>
            <!-- <a href="fill-in-order-new.html" class="hs-next">下一步</a>-->
@@ -128,7 +132,7 @@
 <script src="../js/lib/custom.js"></script>
 <script src="js/roomUpgreade.js"></script>
 <script>
-    (function(){
+  /*  (function(){
         var ww = this;
         vlm.init();
         var room_upgrade = function(){
@@ -212,7 +216,7 @@
             room_upgrade.GetRoomInfo();
         };
         MT.load();
-    })();
+    })();*/
 </script>
 </body>
 </html>

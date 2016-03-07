@@ -584,7 +584,14 @@
 				TraInfo={};
 				CertificateInfo={}
 				TraInfo.PassengerType= "ADULT";  //乘客类型
-				TraInfo.SexCode= list[i].traveller.sexCode;       //称呼
+				if(list[i].traveller.sexCode=="Mrs")
+				{
+					TraInfo.SexCode="Mr"
+				}
+				else{
+					TraInfo.SexCode="Ms"      //称呼
+				}
+				//TraInfo.SexCode= list[i].traveller.sexCode;       //称呼
 				TraInfo.FirstName=list[i].traveller.firstName;     //姓
 				TraInfo.LastName= list[i].traveller.lastName;       //名
 				TraInfo.DateOfBirth= list[i].traveller.dateOfBirth;
@@ -598,7 +605,8 @@
 
 				TraInfo.BaggageCode="",//行李编码，一期不用,
 				//TraInfo.NationalityCode=list[i].traveller.nationalityCode;//国籍代码
-				TraInfo.NationalityCode="CHN";
+
+				TraInfo.CountryCode ="CN";
 				TravellerInfo.push(TraInfo)
 			}
 			localStorage.setItem('travellerInfo_selected',JSON.stringify(TravellerInfo));
@@ -607,7 +615,13 @@
 		{
 			var ContactDetail={}
 			for(var i=0; i<=list.length-1;i++){
-				ContactDetail.SexCode=  list[i].traveller.sexCode;; //称呼
+				if(list[i].traveller.sexCode=="Mrs")
+				{
+					ContactDetail.SexCode="Mr"
+				}
+				else{
+					ContactDetail.SexCode="Ms"      //称呼
+				}
 				ContactDetail.FirstName=list[i].traveller.firstName ;//姓
 				ContactDetail.LastName=list[i].traveller.lastName;  //名
 				ContactDetail.Email=list[i].traveller.email;//邮箱
@@ -660,8 +674,8 @@
 			$(".nameche-wrap").attr("data-id",tralJsonObj[id].traveller.travellerId)
 			$(".telNum").attr("value",tralJsonObj[id].traveller.mobilePhone);
 			$(".txtEmail").attr("value",tralJsonObj[id].traveller.email);
-
-
+			$(".country").html(tralJsonObj[id].traveller.countryName)
+			$(".country").attr("data-code",tralJsonObj[id].traveller.countryCode);
 
 			$(".cardNumber").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idNumber);
 			$(".postCard").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idType);
@@ -672,11 +686,20 @@
 
 			$(".birthDay").attr("value",tralJsonObj[id].listTravellerIdInfo[0].dateOfBirth);
 			if (tralJsonObj[id].traveller.sexCode == "Mr") {
-				$("#man").className="icon-h traveler-sex1";
-				$("#woman").className="icon-h traveler-sex2";
+				$("#woman").removeClass("traveler-sex1");
+				$("#woman").addClass("traveler-sex2");
+
+				$("#man").removeClass("traveler-sex2");
+				$("#man").addClass("traveler-sex1");
+
+
 			} else {
-				$("#man").className="icon-h traveler-sex2";
-				$("#woman").className="icon-h traveler-sex1";
+
+				$("#man").removeClass("traveler-sex1");
+				$("#man").addClass("traveler-sex2");
+
+				$("#woman").removeClass("traveler-sex2");
+				$("#woman").addClass("traveler-sex1");
 			}
 
 			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {

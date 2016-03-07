@@ -61,7 +61,7 @@ var hotelList = {
                 '<div class="l-price">',
                 '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>',
                 '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>',
-                '<a class="choose-no">选择</a>',
+                '<!--<a class="choose-no">选择</a>-->',
                 '</div>',
             '</li>'
         ].join('');
@@ -70,7 +70,6 @@ var hotelList = {
             if (resultData.data.hotels.length == 0) {
                 jAlert("抱歉暂时没有数据", "提示");
             }else{
-                console.log(resultData.data)
                 that.packageID = resultData.data.packageID;
                 var hotels = resultData.data.hotels;
                 hotels = that.resetData(hotels);
@@ -145,40 +144,29 @@ var hotelList = {
             }
 
             var info = JSON.parse(window.localStorage.info);
-           /* var s = "{"checkInDate":"2016 - 3 - 29","
-            checkOutDate":"2016 - 3 - 30","
-            roomNum":1,"
-            adultNum":1,"
-            childNum":1,"
-            allNum":2,"
-            withoutBedNum":1,"
-            tourList":[{"tourId":"137
-            ","
-            tourDate":"
-            2016 - 3 - 29"},{"tourId":"166","tourDate":"2016 - 3 - 30"}" +
-            "],"
-            eveAdultNum
-            ":["
-            1
-            "],"
-            eveChildNum
-            ":["
-            1
-            "]}"
-*/
-            var paraObj = {
-                packageID:that.packageID,
-                checkInDate:info.checkInDate+'T00:00:00',
-                checkOutDate:info.checkOutDate+'T00:00:00',
-                roomDetails:[{adult:info.adultNum, childWithoutBed:info.withoutBedNum,childWithBed :info.childWithBed}],
-                hotelID:infoId,
-                tours:info.tourList
-            },paramStr='';
-            for(var attr in paraObj){
-                paramStr+="&"+attr+"="+paraObj[attr];
+            if(infoId){
+                var roomDetails = [{adult:0}];
+                roomDetails[0].adult=parseInt(info.adultNum);
+                (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
+                (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
+                (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
+
+                var paraObj = {
+                    packageID:window.localStorage.packageID,
+                    checkOutDate:info.checkOutDate,
+                    roomDetails:roomDetails,
+                    hotelID:infoId,
+                    tours:info.tourList
+                };
+                console.log(paraObj)
+                if(that.hasChoosed == true)
+
+                    window.localStorage.setItem('roomUpdateInfo',JSON.stringify(paraObj));
+                    document.location.href='room-upgrade.html';
+            }else{
+                alert('请选择酒店！')
             }
-            paramStr=paramStr.slice(1);
-            document.location.href='room-upgrade.html?'+paramStr;
+
         });
 
         return this;
@@ -215,7 +203,7 @@ var hotelList = {
     },
     initRender:function(){
         var that = this;
-        var data = {
+        var paraObj = {
             "PackageID": "159",
             "CheckinDate": "2016-03-08T00:00:00",
             "CheckoutDate": "2016-03-11T00:00:00",
@@ -236,7 +224,23 @@ var hotelList = {
                 }
             ]
         };
-        that.tAjax(that.requestUrl, data, '0208', 3, that.callBack);
+       /* var info = JSON.parse(window.localStorage.info);
+        var roomDetails = [{adult:0}];
+        roomDetails[0].adult=parseInt(info.adultNum);
+        (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
+        (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
+        (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
+
+        var paraObj = {
+            packageID:window.localStorage.packageID,
+            checkInDate:info.checkInDate,
+            checkOutDate:info.checkOutDate,
+            roomDetails:roomDetails,
+            tours:info.tourList
+        };
+         console.log(paraObj)*/
+        that.hasChoosed == false;
+        that.tAjax(that.requestUrl, paraObj, '0208', 3, that.callBack);
         return this;
     },
     createTags: function () {

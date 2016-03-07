@@ -146,6 +146,7 @@ var ticketOrder = {
             var event = event || window.event;
             var target =event.target || event.srcElement;
             var that = ticketOrder;
+            debugger;
             that.backParaObj = that.reverseInformation;
             /*that.backParaObj.TravellerInfo = [
                 {
@@ -212,6 +213,18 @@ var ticketOrder = {
              };*/
             $("#preloader").show();
             $("#status-f").show();
+            console.log(JSON.stringify(that.backParaObj));
+
+            //{"Parameters":{"WapOrder":{"SetID":"30000013","CacheID":"3002909","CityCodeFrom":"BJS","CityCodeTo":"SIN",
+            //    "NumofAdult":1,"NumofChild":0,"RouteType":"Oneway","CabinClass":"Economy","IP":"","DeviceID":"","SourceType":"","Version":"","MemberId":10000},
+            //
+            //    "TravellerInfo":[{"CountryCode":"CN","PassengerType":"ADULT","SexCode":"Mr","FirstName":"sss","LastName":"ddd","DateOfBirth":"1980-12-24",
+            //        "FlightCertificateInfo":{"IdType":1,"IdCountry":"CN","IdNumber":"3412","IdActivatedDate":"2018-12-31"},"AirCorpCode":"MF","FlightNo":"757"}],"
+            //
+            //    ContactDetail":{"SexCode":"Mr","FirstName":"dddd","LastName":"ssss","Email":"855@asiatravel.com","Email2":"","ContactNumber":"5689","
+            //    MobilePhone":"13454345654","FaxNumber":"","DestContactNumber":"12356","Address":"kkkk","PostalCode":"123456","City":"SIN","CountryNumber":"86 "}
+            //        ,"CurrencyCode":"CNY","TotalFlightPrice":"3190.00"},"ForeEndType":3,"Code":"3002"}
+
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
                 $("#preloader").hide();
                 $("#status-f").hide();

@@ -316,8 +316,17 @@
 		},
 
 		reserveHandler : function(event) {
-			vlm.checkLogin(torder);
-			function torder(){document.location.href = 'user_order.html?' + 'roomCode=' + this.getAttribute('room-code');}
+			//TODO:判断用户是否登录，目前为了调试注释了这部分逻辑
+			if(vlm.checkLogin(torder)) {
+				//vlm.checkLogin();
+				torder();
+			}
+			else{
+				torder();
+			}
+			function torder() {
+				document.location.href = 'user_order.html?' + 'roomCode=' + $(".subRoomEvent").attr("room-code");
+			}
 		},
 
 		toggleSlider : function() {
