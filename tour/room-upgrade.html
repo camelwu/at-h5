@@ -54,14 +54,14 @@
     </style>
 </head>
 <body>
-    <!--<div id="preloader">
+    <div id="preloader">
         <div id="status">
             <p class="center-text">
                 <br>
                 <em>加载中……</em>
             </p>
         </div>
-    </div>-->
+    </div>
     <div class="all-elements" id="allElements">
         <!--   顶部   -->
         <div class="header">
@@ -70,58 +70,6 @@
         </div>
         <!--   内容   -->
         <div class="sc-content" id="sc-content">
-            <a href="hotel-summary.html" class="top-pic">
-                <img class="hotelPic" src="../images/03-1_02.jpg">
-            </a>
-            <ul id="hd_list" class="d-list">
-                <li>
-                    <p class="d-score">
-                        <b class="d-icon4"></b>
-                        1-12-2 Dougenzaka shibuya-ku</p>
-                </li>
-                <li>
-                    <p class="d-score">3星级</p>
-                    <b class="d-icon2"></b>
-                    <a href="#" class="d-icon1" ></a>
-                </li>
-                <li>
-                    <p class="d-p3">12月22入住</p>
-                    <p class="d-p3" style="margin-left: 5px;">12月30离店</p>
-                    <p class="d-p2">共9晚</p>
-                </li>
-                <li>
-                    <ul class="room-list">
-                        <li class="hd-hotel">
-                            <img class="hd-choose" src="../images/ui/choose.png">
-                            <div class="d-div3">
-                                <p class="d-p5">标准价</p>
-                                <p class="d-p7">
-                                    <span>无早 大床 不可取消</span><span style="color: #fe4716"> 仅剩2间</span>
-                                </p>
-                            </div>
-                            <p class="hd-price">
-                                <span>+￥</span>
-                                <span>848</span>
-                            </p>
-                        </li>
-                        <li class="hd-hotel">
-                            <img class="hd-choose" src="../images/ui/choose.png">
-                            <div class="d-div3">
-                                <p class="d-p5">含早</p>
-                                <p class="d-p7">
-                                    <span>无早 大/双床 免费取消</span>
-                                </p>
-                            </div>
-                            <p class="hd-price">
-                                <span>+￥</span>
-                                <span>908</span>
-                            </p>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-           <!-- <a href="fill-in-order-new.html" class="hs-next">下一步</a>-->
-            <button class="hs-next button-next">测试</button>
         </div>
     </div>
 <script src="../js/lib/jquery.js"></script>
@@ -132,91 +80,6 @@
 <script src="../js/lib/custom.js"></script>
 <script src="js/roomUpgreade.js"></script>
 <script>
-  /*  (function(){
-        var ww = this;
-        vlm.init();
-        var room_upgrade = function(){
-            //   加载动画
-            var flashLoad = function(){
-                $(window).load(function () {
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
-                });
-            };
-            //   房间信息加载
-            var getRoomInfo = function(){
-                var orderInfo =  JSON.parse(localStorage.info);
-                console.log(orderInfo);
-                var packageID = localStorage.packageID;
-                var tmp = {
-                    "Parameters": {
-                        "PackageID": packageID,
-                        "CheckinDate": orderInfo.checkInDate,
-                        "CheckoutDate": orderInfo.checkOutDate,
-                        "HotelID": "25",
-                        "RoomDetails": [
-                            {
-                                "Adult": orderInfo.adultNum,
-                                "ChildWithoutBed": [
-                                    orderInfo.withoutBedNum
-                                ]
-                            }
-                        ],
-                        "Tours": [
-                            orderInfo.tourList
-                        ]
-                    },
-                    "ForeEndType": 3,
-                    "Code": "0208"
-                };
-                console.log(tmp);
-                vlm.loadJson("",JSON.stringify(tmp),getroom_back);
-                function getroom_back(ret){
-                    var json = ('('+ret+')');
-                    if(json.success){
-                        var data=json.data;
-                        console.log(data);
-                        if(data.room.length == 0){
-                            jAlert("抱歉暂时没有数据","提示");
-                        }
-                    }else {
-                        jAlert(json.message,"提示");
-                    }
-                }
-            };
-            //   选择房间
-            var chooseRoom = function(){
-                var li = document.getElementsByClassName('hd-hotel');
-                var img = document.getElementsByClassName('hd-choose');
-                for(var j = 0;j < li.length;j++){
-                    {
-                        (function(index) {
-                            li[j].onclick = function () {
-                                for (var i = 0; i < li.length; i++) {
-                                    li[i].style.backgroundColor = "#ffffff";
-                                    img[i].className = 'hd-choose';
-                                }
-                                li[index].style.backgroundColor = "#dfdfdd";
-                                img[index].className = 'hd-choose cho-active';
-                            };
-                        }(j))
-                    }
-                }
-            };
-            return{
-                FlashLoad:flashLoad,
-                ChooseRoom:chooseRoom,
-                GetRoomInfo:getRoomInfo
-            }
-        }();
-        ww.MT = ww.MT || {};
-        ww.MT.load = function(){
-            room_upgrade.FlashLoad();
-            room_upgrade.ChooseRoom();
-            room_upgrade.GetRoomInfo();
-        };
-        MT.load();
-    })();*/
 </script>
 </body>
 </html>

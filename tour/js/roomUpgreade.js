@@ -73,24 +73,27 @@ var roomUpGrade = {
     },
     dateDeal: function () {
         var reg = /\d{4}-(\d{1,2})-(\d{1,2}).*/;
-        var dateD1 = reg.exec(this.curParaObj.CheckinDate);
-        var dateD2 = reg.exec(this.curParaObj.CheckoutDate);
+        var dateD1 = reg.exec(this.curParaObj.checkInDate);
+        var dateD2 = reg.exec(this.curParaObj.checkOutDate);
         var inStr = dateD1[1]+'-'+dateD1[2];
         var outStr = dateD2[1]+'-'+dateD2[2];
-        var time1 = Date.parse(this.curParaObj.CheckinDate), time2 = Date.parse(this.curParaObj.CheckoutDate);
+        var time1 = Date.parse(this.curParaObj.checkInDate.replace(/T.*/g,'')), time2 = Date.parse(this.curParaObj.checkOutDate.replace(/T.*/g,''));
         var dayNum=(Math.abs(time2 - time1))/1000/60/60/24;
-        console.log(dayNum)
        document.querySelector('.date-in').innerHTML = inStr +'入住';
        document.querySelector('.date-out').innerHTML = outStr +'离店';
        document.querySelector('.day-number').innerHTML = "共"+dayNum+"晚";
        return  this;
     },
     addEvent: function () {
-        return this;
+        var nextPage = document.querySelector('.hs-next'), that = roomUpGrade;
+        this.eventHandler(nextPage, 'click', function(){
+                        document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice;
+        });
     },
     callBack: function () {
+        var that = roomUpGrade;
         var tpl1 = [
-       '<a href="hotel-summary.html" class="top-pic"><img class="hotelPic" src="{%=hotelPictureURL%}"></a>',
+       '<a href="hotel-summary.html" class="top-pic"><img class="hotelPic" src="../images/hotelDetailerrorpic.png" real-src="{%=hotelPictureURL%}"></a>',
         '<ul id="hd_list" class="d-list">',
         '<li>',
         '<p class="d-score">',
@@ -110,7 +113,7 @@ var roomUpGrade = {
         '</ul>',
         '</li>',
         '</ul>',
-        '<a href="fill-in-order-new.html" class="hs-next">下一步</a>'
+        '<a href=" javascript:void(0)" class="hs-next">下一步</a>'
         ].join('');
         var tpl2 =[
             '<li class="hd-hotel">',
@@ -127,19 +130,18 @@ var roomUpGrade = {
             '<span>{%=totailPrice%}</span>',
             '</p>',
             '</li>'
-
         ].join('');
-
-
         var resultData = JSON.parse(arguments[0]),that = roomUpGrade;
         if (resultData.success) {
             if (resultData.data.hotels.length == 0) {
                 jAlert("抱歉暂时没有数据", "提示");
             }else{
+                console.log(resultData.data)
                 var  hotels = that.resetData(resultData.data.hotels[0]);
                 var  rooms = resultData.data.hotels[0].rooms[0];
                 var tpl_GetList = template(tpl1, hotels);
                 var tpl_GetRooms = template(tpl2, rooms);
+                that.dataInfo = resultData.data;
                 $("#preloader").fadeOut();
                 $('#sc-content').html(tpl_GetList);
                 $('#room-list').html(tpl_GetRooms);
@@ -150,24 +152,11 @@ var roomUpGrade = {
         }
     },
     delayLoadImage : function(item) {
-        var images = document.getElementsByClassName('ho_img');
-        for(var i = 0;i<images.length;i++){
-            (function(){
-                var temp = i;
-                var re_url = images[temp].getAttribute('real-src');
-                var loadImage= function(url, callback){
-                    var img = new Image();
-                    img.src = url;
-                    img.onload = function() {
-                        img.onload = null;
-                        callback(temp);
-                    };
-                };
-                loadImage(re_url, function(i) {
-                    images[temp].setAttribute('src', re_url);
-                });
-            })(i)
-        }
+        var image = document.getElementsByClassName('hotelPic')[0];
+        var re_url = image.getAttribute('real-src');
+        loadImage(re_url, function() {
+            image.setAttribute('src', re_url);
+        });
         function loadImage(url, callback) {
             var img = new Image();
             img.src = url;
@@ -178,49 +167,17 @@ var roomUpGrade = {
         }
         return this;
     },
-    initRender:function(){
-
-        return this;
-    },
     createTags: function () {
         var that = this;
-            var testObj= { //2ren
-                "PackageID": "159",
-                "CheckinDate": "2016-03-08T00:00:00",
-                "CheckoutDate": "2016-03-12T00:00:00",
-                "HotelID": "30",
-                "RoomDetails": [
-                    {
-                        "adult": "2",
-                        "ChildWithoutBed": [
-                            6
-                        ]
-                    }
-                ],
-                "Tours": [
-                    {
-                        "TourID": "137",
-                        "TravelDate": "2016-03-09T00:00:00"
-                    },
-                    {
-                        "TourID": "166",
-                        "travelDate": "2016-03-09T00:00:00"
-                    }
-                ]
-            };
-
-        //var  testObj=JSON.parse(window.localStorage.getItem('roomUpdateInfo'));
+        var  testObj=JSON.parse(window.localStorage.getItem('roomUpdateInfo'));
         console.log(testObj)
         that.curParaObj = testObj;
-            that.tAjax(that.requestUrl, testObj, '0208', 3, that.callBack);
+        that.tAjax(that.requestUrl, testObj, '0208', 3, that.callBack);
             return this;
     },
-
     init: function () {
-        this.createTags()/*.initRender();*/
-        this.addEvent();
+        this.createTags();
     }
-
 };
 roomUpGrade.init();
 
