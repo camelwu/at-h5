@@ -344,7 +344,7 @@
         /*景点 预订MT*/
         (function(){
             var val = vlm.parseUrlPara(window.location.href);
-            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata;
+            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata,ExtendData;
 
             /**
              * 接送酒店页Event
@@ -502,30 +502,29 @@
              * 渲染模版
              */
             MT.render = function(){
-                var data,isAudlt = val.ADU;
+                var isAudlt = val.ADU;
 
                 if(isAudlt == 1){
-                    data = $.extend({isAudlt:1},globaldata);
+                    ExtendData = $.extend({isAudlt:1},globaldata);
                 }
 
                 if(isAudlt == 0){
-                    data = $.extend({isAudlt:0},globaldata);
+                    ExtendData = $.extend({isAudlt:0},globaldata);
                 }
 
-                var tpl_ScenicView1 = template("tpl_ScenicView1",data);
+                MT.renderView1();
+//                MT.renderView2();
+                MT.renderAddPackageView();
 
-                var tpl_ScenicView2 = template("tpl_ScenicView2",data);
-
-                var tpl_Adult_Child1 = template("tpl_Adult_Child1",data);
-
-                var tpl_Adult_Child2 = template("tpl_Adult_Child2",data);
-
-                var tpl_ScenicPrices = template("tpl_ScenicPrices",data);
-
-
-
-
-
+            }
+            /**
+             * 渲染view1
+             * @constructor
+             */
+            MT.renderView1 = function(){
+                var data = ExtendData;
+                var tpl_ScenicView1 = template("tpl_ScenicView1",ExtendData);
+                var tpl_Adult_Child1 = template("tpl_Adult_Child1",ExtendData);
                 //初始化默认时间
                 var defaultTime = MT.getYMD(data.DetailData.data.defaultDepartStartDate,"-");
 
@@ -538,6 +537,15 @@
                     child_one.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[i].tourID);
                     child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName);
                 }
+            }
+            /**
+             * 渲染view2
+             * @constructor
+             */
+            MT.renderView2 = function(){
+                var data = ExtendData;
+                var tpl_ScenicView2 = template("tpl_ScenicView2",ExtendData);
+                var tpl_Adult_Child2 = template("tpl_Adult_Child2",ExtendData);
 
                 $(".js-childblock2").after(tpl_ScenicView2);
                 for(var j=0;j<data.SearchPriceData.data.tourInfos.length;j++){
@@ -545,7 +553,14 @@
                     child_two.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[j].tourID);
                     child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName);
                 }
-
+            }
+            /**
+             * 渲染添加套餐菜单
+             * @constructor
+             */
+            MT.renderAddPackageView = function(){
+                var data = ExtendData;
+                var tpl_ScenicPrices = template("tpl_ScenicPrices",data);
 
                 for(var k=0;k<data.SearchPriceData.data.prices.length;k++){
                     var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
@@ -562,23 +577,6 @@
                     child_price.find("[data-c-id=meal]:last").attr("data-category",data.SearchPriceData.data.prices[k].category);
                     child_price.find(".js-setmeal-price-cont:last").html("¥"+data.SearchPriceData.data.prices[k].amountInCNY);
                 }
-
-
-
-//                var time = MT.getYMD(data.DetailData.data.defaultDepartStartDate,"-");
-
-//                $(".js-childblock1").after(tpl_ScenicView1);
-//                $(".js-sce-ticket1").append(tpl_Adult_Child1)
-//                        .find(".sce-ticket:last").attr("data-key",1)
-//                        .find("#jdate > .js-ymd").html(time)
-//                        .next(".js-week").html(MT.getWeek(time));
-//
-//                $(".js-sce-ticket1").append(tpl_Adult_Child1)
-//                        .find(".sce-ticket:last").attr("data-key",2);
-//                $(".js-childblock2").after(tpl_ScenicView2);
-//                $(".js-sce-ticket2").append(tpl_Adult_Child2);
-                console.log(data);
-
             }
 
 
@@ -694,17 +692,41 @@
                 oSetmealBtn.click(function(){
                     oMaskWin.css({display:'none'});
                     oAddwin.css({bottom:'-500px'});
+                    var addval = $(".js-tpl-ScenicPrices").find("[data-add]").attr("data-add");
+                    if(addval != undefined){
+                        if(addval == 1){
+                            MT.renderView2();
+                        }else{
+                            $(".js-scenicview2").remove();
+                        }
+                    }else{
+                        if(addval == 0){
+                            $(".js-scenicview2").remove();
+                        }
+
+                    }
+
                 });
 
             }
-
+            /**
+             * 操作套餐列表
+             * @param obj
+             * @constructor
+             */
             MT.MealClick = function(obj){
                 var currentClass = $(obj).attr("class");
+                var firstval = $(obj).attr("data-first");
+                if(firstval){
+                    return false;
+                }
 
                 if(currentClass == "setmeal-tr fr"){
                     $(obj).attr("class","setmeal-tr fr on");
+                    $(obj).attr("data-add",1);
                 }else{
                     $(obj).attr("class","setmeal-tr fr");
+                    $(obj).attr("data-add",0);
                 }
             }
 
