@@ -149,19 +149,20 @@
     </div>
     <!--国籍选择结束-->
     <script src="../js/lib/jquery.js"></script>
-    <script src="../js/lib/plugins.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
-    <script src="../js/lib/custom.js"></script>
     <script src="js/order-pay.js"></script>
     <script src="../js/country_list.js"></script>
 <script>
     $(window).load(function () {
-        $("#status").fadeOut();
-        $("#preloader").delay(400).fadeOut("medium");
         Init();
     });
+    var getCN = {
+        "CNY": "￥",
+        "SGD":"SGD",
+        "USD":"$"
+    };
     /*倒计时*/
     window.onload=function(){
         sec('countdown',1800);
@@ -201,7 +202,6 @@
                 }
                 this.className='icon circle-choi';
                 if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
-                    jAlert(2222);
                     out_pay.style.display = "block";
                 }
                 else{
@@ -236,8 +236,9 @@
                 var url=data.data.paymentRedirectURL ;
                 window.open(url);
             }else{
-                alert(data.message);
+                 alert(data.message);
             }
+            vlm.init();
 
         })
     }
@@ -304,10 +305,11 @@
             }
             else
             {
-                debugger;
-                jAlert("添加失败！");
+
+                alert("添加失败！");
 
             }
+            vlm.init();
 
         });
     }
@@ -321,13 +323,13 @@
             </li>
             <li>
                 <div>票务信息：<i>{%=packageName%}1张</i></div>
-                <div class="pay-total">总价：<span style="color:#fe6a03">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{%=chargeDetails[0].currencyCode%}</i></div>
+                <div class="pay-total">总价：<span style="color:#fe6a03">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
             </li>
         </ul>
     </script>
 
     <script id="tpl_orderTotal" type="text/template"	>
-        订单总价：{%=chargeDetails[0].currencyCode%}<span>{%=chargeDetails[0].totalAmount%}</span>
+        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=chargeDetails[0].totalAmount%}</span>
     </script>
 
 </div>

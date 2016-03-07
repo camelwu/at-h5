@@ -916,11 +916,12 @@
                }
                return week;
            };
-           startStrMonth = parseInt(s.getMonth() +1) > 10 ?parseInt(s.getMonth() +1):'0'+parseInt(s.getMonth() +1);
-           startStrDate = parseInt(s.getDate()) > 10 ?parseInt(s.getDate()):'0'+parseInt(s.getDate());
-           endStrMonth = parseInt(r.getMonth() +1) > 10 ?parseInt(r.getMonth() +1):'0'+parseInt(r.getMonth() +1);
-           endStrDate = parseInt(r.getDate()) > 10 ?parseInt(r.getDate()):'0'+parseInt(r.getDate());
+           startStrMonth = parseInt(s.getMonth() +1) >= 10 ?parseInt(s.getMonth() +1):'0'+parseInt(s.getMonth() +1);
+           startStrDate = parseInt(s.getDate()) >= 10 ?parseInt(s.getDate()):'0'+parseInt(s.getDate());
+           endStrMonth = parseInt(r.getMonth() +1) >= 10 ?parseInt(r.getMonth() +1):'0'+parseInt(r.getMonth() +1);
+           endStrDate = parseInt(r.getDate()) >= 10 ?parseInt(r.getDate()):'0'+parseInt(r.getDate());
            startDay = [startStrMonth +'月' + startStrDate +'日',returnWeek(s.getDay())];
+
            endDay = [endStrMonth +'月' + endStrDate +'日',returnWeek(r.getDay())];
            document.querySelector('.single-date').innerHTML = startDay[0];
            document.querySelector('.single-week').innerHTML = startDay[1];

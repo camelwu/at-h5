@@ -11,6 +11,8 @@
     <link href="styles/framework.css" rel="stylesheet"/>
     <link href="styles/style.css" rel="stylesheet"/>
     <link href="styles/tips.css" rel="stylesheet"/>
+
+
 </head>
 <body>
 <div id="preloader">
@@ -28,24 +30,54 @@
 <script type="application/javascript">
 $(document).ready()
 {
-    var data = {
-        "Parameters": {"BookingRefNo": "SGSINFT0012966"},
-        "ForeEndType": 3,
-        "Code": "3009"
-    }
-    console.log(data);
-    var payment = new paymentObj(data, mycallback);
-    payment.handlePayment();
-}
-function mycallback(str){
-    console.log(str);
-    var data=eval('('+str+')');
-    if(data.success){
-        window.location.href='flight/pay_success.html';
-    }else{
-       alert(data.message);
-    }
-}
+    var business=vlm.getpara("business");
+    var foreEndType=vlm.getpara("foreEndType");
+    var pgtid=vlm.getpara("pgtid");
 
+    var data = {
+        "Parameters": {"BookingRefNo": "SGSINFT0012966","gtid":pgtid},
+        "ForeEndType": 3
+    }
+    /*如果是H5设备的接口，回调，反则APP端已经调用，不用再调用
+    1、酒店
+    2、景点
+    3、机票
+    4、会员中心	-- 不会返回该值
+    5、酒+景
+    */
+    if(foreEndType==3) {
+
+        if(business==3){
+            data.Code="3009";//机票
+        }
+        else if(business==2){
+            data.Code="0094";//景点
+        }
+        elseif(business==5)
+            data.Code="0205";//酒+景
+        }
+        console.log(data);
+        var payment = new paymentObj(data, function () {
+            console.log(str);
+            var data = eval('(' + str + ')');
+            if (data.success) {
+                if(business==1) {
+                    window.location.href = 'flight/pay_success.html';
+                }
+                else if(business==2) {
+                    window.location.href = 'scenic/pay_success.html';
+                }
+                else{
+                    window.location.href = 'tour/pay_success.html';
+                }
+
+            } else {
+                alert(data.message);
+            }
+
+        });
+        payment.handlePayment();
+    }
+}
 </script>
 </body>
