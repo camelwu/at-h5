@@ -21,34 +21,63 @@
         <!--   内容   -->
         <div class="sc-content js-content">
             <div class="js-childblock1"></div>
-            <!--<section class="js-adult sce-ticket-wrap min320">-->
-                <!--<div class="sce-ticket">-->
-                    <!--<section class="travel-date clearFix">-->
-                        <!--<span class="travel-date-tit fl">游玩日期</span>-->
-                        <!--<div class="travel-date-wrap fr clearFix">-->
-                            <!--<div id="jdate" class="travel-date-wrap-so fl">-->
-                                <!--<span class="tra-ymd" >2015.11.14</span>-->
-                                <!--<span class="tra-week">星期五</span>-->
-                                <!--<b></b>-->
-                            <!--</div>-->
-                            <!--<div class="travel-date-wrap-noon fl">-->
-                                <!--<a href="javascript:;" class="fa-noon">上午</a>-->
-                                <!--<a href="javascript:;" class="fa-noon on">下午</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</section>-->
-                    <!--<section class="sce-introduce">-->
-                        <!--<p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】</p>-->
-                    <!--</section>-->
-                    <!--<div class="gray-block"></div>-->
-                <!--</div>-->
-                <!--<div class="sce-ticket per-price-wrap clearFix">-->
-                    <!--<span class="per-price-tit fl">单价：</span>-->
-                    <!--<strong class="per-price-cont fl">¥56</strong>-->
-                    <!--<div class="per-price-control fr"><span class="cut-down-btn">-</span><i class="cut-up-cont">1</i><span class="plus-btn">+</span></div>-->
-                <!--</div>-->
-            <!--</section>-->
-            <!--联系人资料-->
+            <section class="js-adult sce-ticket-wrap min320">
+                <div class="sce-ticket">
+                    <section class="travel-date clearFix">
+                        <span class="travel-date-tit fl">游玩日期</span>
+                        <div class="travel-date-wrap fr clearFix">
+                            <div id="jdate0" class="travel-date-wrap-so fl">
+                                <span class="tra-ymd" >2015.11.14</span>
+                                <span class="tra-week">星期五</span>
+                                <b></b>
+                            </div>
+                            <div class="travel-date-wrap-noon fl">
+                                <a href="javascript:;" class="fa-noon">上午</a>
+                                <a href="javascript:;" class="fa-noon on">下午</a>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="sce-introduce">
+                        <p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】</p>
+                    </section>
+                    <div class="gray-block"></div>
+                </div>
+                <div class="sce-ticket per-price-wrap clearFix">
+                    <span class="per-price-tit fl">单价：</span>
+                    <strong class="per-price-cont fl">¥56</strong>
+                    <div class="per-price-control fr"><span class="cut-down-btn">-</span><i class="cut-up-cont">1</i><span class="plus-btn">+</span></div>
+                </div>
+            </section>
+
+            <section class="js-adult sce-ticket-wrap min320">
+                <div class="sce-ticket">
+                    <section class="travel-date clearFix">
+                        <span class="travel-date-tit fl">游玩日期</span>
+                        <div class="travel-date-wrap fr clearFix">
+                            <div id="jdate1" class="travel-date-wrap-so fl">
+                                <span class="tra-ymd" >2015.11.14</span>
+                                <span class="tra-week">星期五</span>
+                                <b></b>
+                            </div>
+                            <div class="travel-date-wrap-noon fl">
+                                <a href="javascript:;" class="fa-noon">上午</a>
+                                <a href="javascript:;" class="fa-noon on">下午</a>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="sce-introduce">
+                        <p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】</p>
+                    </section>
+                    <div class="gray-block"></div>
+                </div>
+                <div class="sce-ticket per-price-wrap clearFix">
+                    <span class="per-price-tit fl">单价：</span>
+                    <strong class="per-price-cont fl">¥56</strong>
+                    <div class="per-price-control fr"><span class="cut-down-btn">-</span><i class="cut-up-cont">1</i><span class="plus-btn">+</span></div>
+                </div>
+            </section>
+
+            联系人资料
             
             <section class="tourist-ticket-box min320">
                 <!--<div class="contact-document">-->
@@ -212,7 +241,9 @@
     </script>
     <script id="tpl_ScenicView1" type="text/template">
         <section class="js-scenicview1 sce-ticket-wrap min320">
-            <div class="js-sce-ticket1"></div>
+            <div class="js-sce-ticket1">
+
+            </div>
 
             {% if(isAudlt==1){ %}
             <div class="sce-ticket per-price-wrap clearFix">
@@ -291,7 +322,7 @@
             <section class="travel-date clearFix">
                 <span class="travel-date-tit fl">游玩日期</span>
                 <div class="travel-date-wrap fr clearFix">
-                    <div id="jdate" class="travel-date-wrap-so fl" onclick=MT.chooseDate(this,{begin:"{%=DetailData.data.departValidFrom%}",end:"{%=DetailData.data.departValidTo%}"});>
+                    <div id="jdate2" class="travel-date-wrap-so fl" onclick=MT.chooseDate(this,{begin:"{%=DetailData.data.departValidFrom%}",end:"{%=DetailData.data.departValidTo%}"});>
 
                         <span class="tra-ymd js-ymd"></span>
                         <span class="tra-week js-week"></span>
@@ -648,8 +679,8 @@
 
 
 
-            MT.chooseDate = function(obj,arg){
-                console.log(obj,arg);
+           /* MT.chooseDate = function(obj,arg){
+               /!* console.log(obj,arg);
                 var rangeArray = [];
                 rangeArray[0] ='2016-04-05';
                 rangeArray[1]='2016-04-25';
@@ -671,8 +702,8 @@
                         span.innerHTML = arg1.start;
                         span2.innerHTML = MT.getWeek(arg1.start);
                     }
-                });
-            };
+                });*!/
+            };*/
             /**
              * 初始化添加套餐列表
              * @constructor
@@ -894,70 +925,40 @@
 
     </script>
 
-<!--<script>-->
-    <!--function chooseDate(arg){-->
-        <!--var dateInitObj = {},paramStr;-->
-        <!--dateInitObj['0000-00-00'] = '入住';-->
-        <!--var rangeArray = [];-->
-        <!--rangeArray[0] ='2016-04-05';-->
-        <!--rangeArray[1]='2016-04-25';-->
-        <!--var myDate= new TicketDate({-->
-            <!--id: 'jdate',-->
-            <!--num: 13,-->
-            <!--time: dateInitObj,-->
-            <!--sClass1:'tra-ymd',-->
-            <!--type:'Oneway',-->
-            <!--_word:{tip:['入住']},-->
-            <!--range:rangeArray,-->
-//            fn:function(arg){
-////                alert(1)
-//                console.log(arg)
-//            }, //赋值框是非input元素时：在选择日期完成后执行的回调函数，内容可自定义,
-            fn2:function(arg1){  //赋值框是input：在选择日期完成后执行的回调函数，内容可自定义,
-//                alert(2) //Object {start: "2016-4-20"}
-                console.log(arg1)
-//                var  returnWeek=function(arg1){
-//                    if(arg1){
-//                        var week,array,index = new Date(arg1.replace(/-/g, "/")).getDay();
-//                        switch (index){
-//                            case 0 :
-//                                week = '周日';
-//                                break;
-//                            case 1 :
-//                                week = '周一';
-//                                break;
-//                            case 2 :
-//                                week = '周二';
-//                                break;
-//                            case 3 :
-//                                week = '周三';
-//                                break;
-//                            case 4 :
-//                                week = '周四';
-//                                break;
-//                            case 5 :
-//                                week = '周五';
-//                                break;
-//                            case 6 :
-//                                week = '周六';
-//                                break;
-//                            default :
-//                                void(0);
-//                        }
-//                        return week;
-//                    }
-//                };
-
-                <!--span = document.querySelector('.tra-ymd');-->
-                <!--span2 = document.querySelector('.tra-week');-->
-
-                <!--span.innerHTML = arg1.start;-->
-                <!--span2.innerHTML = returnWeek(arg1.start);-->
-            <!--}-->
-        <!--});-->
-    <!--};-->
-    <!--chooseDate()-->
-<!--</script>-->
-
 </body>
+<script>
+    function dateHandler(){
+        var startDate = '2016-03-15';
+        var endDate = '2016-03-21';
+        var allOuter = document.querySelectorAll('.travel-date-wrap-so');
+        var chooseDate=function(id, dateNum , startDate, endDate){
+                var rangeArray = [startDate, endDate];
+                var myDate= new TicketDate({
+                    id: id,
+                    num: 13,
+                    time: {},
+                    sClass1:dateNum,
+                    type:'Oneway',
+                    _word:{tip:['入住']},
+                    range:rangeArray,
+                    fn:function(){
+                    }
+                });
+        };
+        
+        for(var i = 0; i<allOuter.length;i++ ){
+            (function(){
+                var id = allOuter[i].id;
+                chooseDate(id, 'tra-ymd', startDate, endDate)
+            })(allOuter[i]);
+        }
+    }
+
+    dateHandler();
+
+
+
+
+</script>
 </html>
+
