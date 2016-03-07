@@ -205,7 +205,7 @@
                     out_pay.style.display = "block";
                 }
                 else{
-                    Payment("UnionPay","SG17SINFP0136825");
+                    Payment("UnionPay","SG17SINFP0375501");
                 }
             }
         }
@@ -220,10 +220,10 @@
             out_pay.style.display = "none";
         };
         btnPay.onclick=function(){
-            Payment("UnionPay","SG17SINFP0375501");
+            Payment("UnionPay","SG17SINFP0375521");
         }
         btnCPay.onclick=function(){
-            Payment("CreditCard","SG17SINFP0375501");
+            Payment("CreditCard","SG17SINFP0375521");
         }
     })();
     function Payment(type,code){
@@ -287,7 +287,7 @@
     function Init(){
         var Parameters={
             "Parameters": {
-                "BookingRefNo": "SG17SINFP0136825"
+                "BookingRefNo": "SG17SINFP0375501"
             }
             ,
             "ForeEndType": 3,
@@ -303,11 +303,8 @@
                 $("#order-price").html(tplC);
 
             }
-            else
-            {
-
+            else {
                 alert("添加失败！");
-
             }
             vlm.init();
 

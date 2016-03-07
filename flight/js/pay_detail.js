@@ -1,14 +1,25 @@
-localStorage.setItem('flight_order_storage12345',JSON.stringify({BookingID:11111111}));
-var myData=JSON.parse(localStorage.getItem('flight_order_storage12345'));
-console.log(myData);
-console.log('上面是从localStorage上面得到的数据');
+$(document).ready(function(){
 
-console.log(myData);
+    localStorage.setItem('flight_order_storage12345',JSON.stringify({BookingID:11111111}));
+    var myData=JSON.parse(localStorage.getItem('flight_order_storage12345'));
+    console.log(myData);
+    console.log('上面是从localStorage上面得到的数据');
 
-var userFlightInformation=localStorage.getItem('orderResultInfo');
-var tpl=template("payDetail",JSON.parse(userFlightInformation).data);
-console.log(tpl);
-$("#payDetail").html(tpl);
+    console.log(myData);
+
+    var userFlightInformation=localStorage.getItem('orderResultInfo');
+    var tpl=template("payDetail",JSON.parse(userFlightInformation).data);
+    console.log(tpl);
+    $("#payDetail").html(tpl);
+    vlm.init();
+
+    $(".passenger-detail").on("click",function(){
+        $(".passenger").toggle();
+    })
+
+})
+
+
 
 
 var ticketPayDetail = {
@@ -193,8 +204,9 @@ function M(json){
 //数据展示部分
 function V(d){
     if(d.success){
-        console.log(d.data.redirectURL);
-        var url=d.data.redirectURL;
+        debugger;
+        console.log(d.data.paymentRedirectURL);
+        var url=d.data.paymentRedirectURL;
         window.open(url);
     }else{
         alert(d.message);
@@ -207,9 +219,7 @@ function mycallback(str){
 }
 ticketPayDetail.init();
 
-$(".passenger-detail").on("click",function(){
-    $(".passenger").toggle();
-})
+
 
 function getCardInfo(){
     //"Parameters": {"CardInfo": { "CardType": "Visa","CardHolderName": "sss","BankName": "sds","CardCountryCode": "SG","CardNumber": "4544152000000004","CardSecurityCode": "123","CardExpiryDate":"2018-12-31","CardContactNumber": "45345","CardAddress": "SDSS","CardAddressPostalCode": "1234", "CardAddressCountryCode": "BKK"},"BookingRefNo":"SGSINFT0012951"},
