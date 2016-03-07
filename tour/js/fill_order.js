@@ -19,12 +19,32 @@
     var jsonPackage=JSON.parse(localStorage.info);
     console.log(jsonPackage);
 
-    //有无航班信息
-    localStorage.BookingFormInfo=1;
-    if( ! localStorage.BookingFormInfo)
-    {
-        $('#flight-air').remove();
+    var winhref=window.location.search.substring(1);
+    var arr2=winhref.split('&');
+    console.log(arr2);
+
+    //航班信息
+    var airFli=arr2[1].split('=')[1];
+    switch (airFli){
+        case 'None':
+            $('#flight-air').remove();
+            break;
+        case 'TwoWay':
+            $('#flight-air').remove();
+            break;
+        case 'Arrival':
+            $('#content3').remove();
+            break;
+        case 'Depart':
+            $('#content4').remove();
+            break;
+        default:;
     }
+    //订单总价
+    var totPrice=arr2[2].split('=')[1];
+    $('.all_num i').html(totPrice);
+    $('.separate_num i').html(totPrice);
+
 
     function init(){
         var Parmeters=
@@ -94,7 +114,6 @@
 
         }
 
-
         //添加联系人
         $('.add-contact').click(function(){
             vlm.f_choice('t','contact','',false,false);
@@ -132,6 +151,10 @@
                 var conFirName=conInput[1].value;
                 var conPhone=conInput[2].value;
                 var conEmail=conInput[3].value;
+                localStorage.conLasName=conInput[0].value;
+                localStorage.conFirName=conInput[1].value;
+                localStorage.conPhone=conInput[2].value;
+                localStorage.conEmail=conInput[3].value;
 
                 //总价
                 var totalPrice=document.querySelector('.all_num i').innerHTML;
@@ -139,15 +162,10 @@
                 var Parmeters={
                     "Parameters": {
                         "PackageID": localStorage.packageID,
-                        "CheckinDate": jsonPackage.checkInDate+'T00:00:00',
-                        "CheckoutDate": jsonPackage.checkOutDate+'T00:00:00',
+                        "CheckinDate": jsonPackage.checkInDate,
+                        "CheckoutDate": jsonPackage.checkOutDate,
                         "HotelID": "30",
                         "RoomID": "77501",
-                        "RoomDetails": [
-                            {
-                                "Adult": (jsonPackage.adultNum+jsonPackage.childNum)
-                            }
-                        ],
 
                         "ContactDetails": {
                             "Salutation": "Mr",
@@ -162,8 +180,15 @@
                         },
                         "ChargeDetails": {
                             "CurrencyCode": "CNY",
-                            "TotalPrice": totalPrice
+                            "TotalPrice": totPrice
                         }
+                        //"FlightDetails": {
+                        //    "ArrivalFlightNo": "JT678",
+                        //    "ArrivalDateTime": "2016-02-02T00:00:00",
+                        //    "DepartFlightNo": "JT878",
+                        //    "DepartDateTime": "2016-02-05T00:00:00"
+                        //}
+
                     },
 
                     "Method": null,
@@ -171,24 +196,34 @@
                     "Code": "0204"
                 };
 
+                //每个房间成人
+                var roomdet=[];
+                for(var i=0;i<jsonPackage.roomNum;i++)
+                {
+                    var roomdetail={};
+                    for(var j=0;j<jsonPackage.eveAdultNum.length;j++)
+                    {
+                        roomdetail.Adult=jsonPackage.eveAdultNum[i];
+                    }
+                    roomdet.push(roomdetail);
+                }
+                Parmeters.Parameters.RoomDetails=roomdet;
                 //添加景点信息
                 var Tour=[];
                 for(var i=0;i<jsonPackage.tourList.length; i++)
                 {
                     var tour={};
-                    tour.TourID=jsonPackage.tourList[i].tourId;
-                    tour.TravelDate=jsonPackage.tourList[i].tourDate;
+                    tour.TourID=jsonPackage.tourList[i].tourID;
+                    tour.TravelDate=jsonPackage.tourList[i].travelDate;
                     tour.TourSession="None";
                     Tour.push(tour);
                     Parmeters.Parameters.Tours=Tour;
                 }
 
                 //添加旅客姓名等信息
-
+                var traveler=[];
                 for(var i=0;i<roomNum.length; i++)
                 {
-                    var traveler=[];
-
                     //每个房间的成人信息
                     var oLiAdult=roomNum[i].querySelectorAll('.trave-li-adu');
                     for(var n=0;n<oLiAdult.length;n++)
@@ -199,12 +234,12 @@
                         //if(! vlm.Utils.validate.mobileNo(oMobile))
                         if(lastNameAdu == '')
                         {
-                            jAlert('请输入名');
+                            jAlert('请输入姓');
                             return;
                         }
                         if(firstNameAdu == '')
                         {
-                            jAlert('请输入姓');
+                            jAlert('请输入名');
                             return;
                         }
                         var tra={};
@@ -219,7 +254,7 @@
 
                     //每个房间的儿童信息
                     var oLiChild=roomNum[i].querySelectorAll('.trave-li-child');
-                    for(var m=0;m<oLiChild,length;m++) {
+                    for(var m=0;m<oLiChild.length;m++) {
                         var inputChild = roomNum[i].querySelectorAll('.list-child');
                         var lastNameChi = inputChild[0].value;
                         var firstNameChi = inputChild[1].value;
@@ -247,35 +282,58 @@
                 }
                 Parmeters.Parameters.Travelers=traveler;
 
+
+                //联系人姓名检验
+                var inputCon=$('.list_inp_name');
+                if(inputCon.eq(0).val() == '')
+                {
+                    jAlert('请输入联系人的姓');
+                    return;
+                }
+                if(inputCon.eq(1).val() == '')
+                {
+                    jAlert('请输入联系人的名');
+                    return;
+                }
                 // 手机号邮箱检验
-                var oMobile = $('#list_con_tel')[0].value;
-                var oEmail = $('#list_con_email')[0].value;
-
-                if ( ! vlm.Utils.validate.mobileNo(oMobile) )
-                {
-                    jAlert('请输入正确的手机号');
-                    return;
-                }
-                if ( ! vlm.Utils.validate.email(oEmail) )
-                {
-                    jAlert('请输入正确的邮箱');
-                    return;
-                }
+                //var oMobile = $('#list_con_tel')[0].value;
+                //var oEmail = $('#list_con_email')[0].value;
+                //
+                //if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+                //{
+                //    jAlert('请输入正确的手机号');
+                //    return;
+                //}
+                //if ( ! vlm.Utils.validate.email(oEmail) )
+                //{
+                //    jAlert('请输入正确的邮箱');
+                //    return;
+                //}
                 //接机信息
-                if($('#flight-air')[0]){
-                    var departFlightNo=document.querySelector('#content3 .input_flight input').value;
-                    var departDateTime=document.querySelector('#content3_CheckInDate').value;
-                    var arrivalFlightNo=document.querySelector('#content4 .input_flight input').value;
-                    var arrivalDateTime=document.querySelector('#content4_CheckInDate').value;
-
+                if($('#flight-air').css('display') == 'block'){
                     var fli={};
-                    fli.ArrivalFlightNo=arrivalFlightNo;
-                    fli.ArrivalDateTime=arrivalDateTime+'T00:00:00';
-                    fli.DepartFlightNo=departFlightNo;
-                    fli.DepartDateTime=departDateTime+'T00:00:00';
+                    if($('#content3').css('display') == 'block')
+                    {
+                        var departFlightNo=document.querySelector('#content3 .input_flight input').value;
+                        var departDateTime=document.querySelector('#content3_CheckInDate').value;
+                        fli.DepartFlightNo=departFlightNo;
+                        fli.DepartDateTime=departDateTime+'T00:00:00';
+                    }
+                    if($('#content4').css('display') == 'block')
+                    {
+
+                        var arrivalFlightNo=document.querySelector('#content4 .input_flight input').value;
+                        var arrivalDateTime=document.querySelector('#content4_CheckInDate').value;
+                        fli.ArrivalFlightNo=arrivalFlightNo;
+                        fli.ArrivalDateTime=arrivalDateTime+'T00:00:00';
+                    }
+
+
                     Parmeters.Parameters.FlightDetails=fli;
                 }
-                //console.log(Parmeters);
+
+                console.log(Parmeters);
+                setOrderTime();
                 vlm.loadJson("",JSON.stringify(Parmeters),package_back);
             }
 
@@ -285,6 +343,7 @@
                 if(json.success) {
                     localStorage.bookingID=json.data.bookingID;
                     localStorage.bookingRefNo=json.data.bookingRefNo;
+
                     window.location.href='order_pay_page.html';
                 }else{
                     jAlert(json.message);
@@ -310,4 +369,29 @@
     }
 
 
+    //上午下午
+    var aNoon=$('.travel-noon a');
+    aNoon.click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        if(aNoon.attr('class') == 'fa-noon on')
+        {
+            localStorage.noon=0;
+        }
+        else
+        {
+            localStorage.noon=1;
+        }
+    });
+
+
+    function setOrderTime(){
+        var oDate=new Date();
+        var year=oDate.getFullYear();
+        var mon=oDate.getMonth()+1;
+        var day=oDate.getDate();
+        var h=oDate.getHours();
+        var m=oDate.getMinutes();
+        var s=oDate.getSeconds();
+        localStorage.orderTime=year+'-'+mon+'-'+day+' '+h+':'+m+':'+s;
+    }
 })()

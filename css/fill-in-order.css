@@ -444,6 +444,7 @@ i {
     line-height: 45px;
     font-size: 14px;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    display: inline-block;
 }
 
 .personal_data_box .nav2-lefttop {
@@ -475,6 +476,7 @@ i {
     line-height: 45px;
     font-size: 14px;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    display: inline-block;
 }
 
 .personal_data_box .nav2-center p {
@@ -666,4 +668,23 @@ i {
 
 .detail_expenses ul li:last-child {
     border: none;
+}
+
+.travel-noon{
+    margin-top: 5px;
+}
+.travel-noon .fa-noon{
+    display: inline-block;
+    width: 40px;
+    height: 28px;
+    border: 2px solid #d1d1d1;
+    color: #d1d1d1;
+    text-align: center;
+    line-height: 28px;
+    border-radius: 5px;
+    margin-left: 15px;
+}
+.travel-noon .fa-noon.on{
+    border: 2px solid #ffb413;
+    color: #ffb413;
 }
