@@ -60,7 +60,7 @@
                     var args = [];
                     args = [].slice.call(arguments);
                     args = args.slice(1,4);
-                    console.log(args);
+                    //console.log(args);
                     return args[0]+mark+args[1]+mark+args[2];
                 });
             return defaultTime;

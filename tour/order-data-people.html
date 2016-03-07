@@ -79,7 +79,7 @@
             <span class="title">房间1</span>
             <div class="numbList">
                 <span class="n_tit">成人</span>
-                <div class="per-price-control"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="adultNum">1</i><span class="plus-btn"></span></div>
+                <div class="per-price-control"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>
             </div>
             <div class="numbList">
                 <span class="n_tit">儿童</span>
@@ -275,7 +275,7 @@
             return '<span class="title">房间'+i+'</span>'
                     +'<div class="numbList">'
                     +'<span class="n_tit">成人</span>'
-                    +'<div class="per-price-control"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="adultNum">1</i><span class="plus-btn"></span></div>'
+                    +'<div class="per-price-control"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'
                     +'</div>'
                     +'<div class="numbList">'
                     +'<span class="n_tit">儿童</span>'
@@ -325,6 +325,7 @@
 </script>
 <script>
     (function(){
+        var maxAdultNumber = 0;
         var ww = this;
         var val = vlm.parseUrlPara(window.location.href);
         vlm.init();
@@ -352,6 +353,7 @@
                     console.log(json);
                     if(json.success) {
                         var data = json.data;
+                        maxAdultNumber = parseInt(data.maxAdult);
                         var tpl_GetTour = template("tpl_GetTour",data);
                         dateHandler.init();
                         $('#tourTime').html(tpl_GetTour);
@@ -420,7 +422,14 @@
                 }
                 //   判断页面能否跳转
 
+                var extraAdult = parseInt(document.querySelector('#adult-people-number').innerHTML);
                 var extraChild = document.getElementsByClassName('extraChild');
+                console.log(extraAdult)
+                console.log(maxAdultNumber)
+                if(extraAdult < maxAdultNumber){
+                    jAlert("成人不能少于"+maxAdultNumber+"人","提示");
+                    return;
+                }
                 for(var v = 0;v < extraChild.length;v++){
                     if(extraChild[v].style.display != 'none'){
                         var input = extraChild[v].getElementsByClassName("inp-cage");

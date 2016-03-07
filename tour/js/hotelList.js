@@ -46,7 +46,7 @@ var hotelList = {
             '<li class="ho_list" data-id="{%=hotelID%}">',
                 '<img class="h-choose" src="../images/ui/choose.png">',
                 '<div class="ho_pic">',
-                '<img src="../images/pictures/hotplay1.png" real-src="{%=hotelPictureURL%}" class="ho_img" />',
+                '<img src="../images/hotelDetailerrorpic.png" real-src="{%=hotelPictureURL%}" class="ho_img" />',
                 '</div>',
                 '<div class="ho_infor">',
             '<p class="hname">{%=hotelName%}</p>',
@@ -61,6 +61,7 @@ var hotelList = {
                 '<div class="l-price">',
                 '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>',
                 '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>',
+                '<div class="city-choose-tip" id="show-result-tip"></div>',
                 '<!--<a class="choose-no">选择</a>-->',
                 '</div>',
             '</li>'
@@ -71,6 +72,7 @@ var hotelList = {
                 jAlert("抱歉暂时没有数据", "提示");
             }else{
                 that.packageID = resultData.data.packageID;
+                that.bookingFormInfo = resultData.data.bookingFormInfo;
                 var hotels = resultData.data.hotels;
                 hotels = that.resetData(hotels);
                 var tpl_GetList = template(tpl1, hotels);
@@ -138,35 +140,37 @@ var hotelList = {
         });
         that.eventHandler(nextButton,'click',function(event){
             var e = event || window.event,that = hotelList;
-            var target = e.target || e.srcElement, allChoosePic = hotelUl.querySelectorAll('.h-choose'),infoId='';
+            var target = e.target || e.srcElement, allChoosePic = hotelUl.querySelectorAll('.h-choose'),hotelId='';
+            var tipBox = document.querySelector('#show-result-tip');
             for(var i = 0; i<allChoosePic.length;i++ ){
-                (allChoosePic[i].style.display == 'block')?infoId=allChoosePic[i].parentNode.getAttribute('data-id'):void(0);
+                (allChoosePic[i].style.display == 'block')?hotelId=allChoosePic[i].parentNode.getAttribute('data-id'):void(0);
             }
+            if(hotelId) {
+                var roomDetails = [{adult:0}],info = JSON.parse(window.localStorage.info);
+                 roomDetails[0].adult=parseInt(info.adultNum);
+                 (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
+                 (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
+                 (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
 
-            var info = JSON.parse(window.localStorage.info);
-            if(infoId){
-                var roomDetails = [{adult:0}];
-                roomDetails[0].adult=parseInt(info.adultNum);
-                (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
-                (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
-                (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
-
-                var paraObj = {
-                    packageID:window.localStorage.packageID,
-                    checkOutDate:info.checkOutDate,
-                    roomDetails:roomDetails,
-                    hotelID:infoId,
-                    tours:info.tourList
-                };
-                console.log(paraObj)
-                if(that.hasChoosed == true)
-
-                    window.localStorage.setItem('roomUpdateInfo',JSON.stringify(paraObj));
-                    document.location.href='room-upgrade.html';
+                 var paraObj = {
+                 packageID:window.localStorage.packageID,
+                 checkInDate:info.checkInDate,
+                 checkOutDate:info.checkOutDate,
+                 roomDetails:roomDetails,
+                 hotelID:hotelId,
+                 tours:info.tourList
+                 };
+                window.localStorage.roomUpdateInfo=JSON.stringify(paraObj);
+                document.location.href='room-upgrade.html?'+'travelersInput='+that.bookingFormInfo.travelersInput+'&airportTransferType='+that.bookingFormInfo.airportTransferType;
             }else{
-                alert('请选择酒店！')
+                tipBox.innerHTML = '请选择酒店！';
+                tipBox.style.display = 'block';
+                that.timer = window.setTimeout(function(){
+                    tipBox.style.display = 'none';
+                    window.clearTimeout(that.timer);
+                    that.timer = null;
+                },3000000);
             }
-
         });
 
         return this;
@@ -203,28 +207,7 @@ var hotelList = {
     },
     initRender:function(){
         var that = this;
-        var paraObj = {
-            "PackageID": "159",
-            "CheckinDate": "2016-03-08T00:00:00",
-            "CheckoutDate": "2016-03-11T00:00:00",
-            "RoomDetails": [
-                {
-                    "Adult": "2",
-                    "ChildWithoutBed": [6]
-                }
-            ],
-            "Tours": [
-                {
-                    "TourID": "137",
-                    "TravelDate": "2016-03-09T00:00:00"
-                },
-                {
-                    "TourID": "166",
-                    "TravelDate": "2016-03-09T00:00:00"
-                }
-            ]
-        };
-       /* var info = JSON.parse(window.localStorage.info);
+        var info = JSON.parse(window.localStorage.info);
         var roomDetails = [{adult:0}];
         roomDetails[0].adult=parseInt(info.adultNum);
         (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
@@ -238,8 +221,8 @@ var hotelList = {
             roomDetails:roomDetails,
             tours:info.tourList
         };
-         console.log(paraObj)*/
-        that.hasChoosed == false;
+        that.paraObj = paraObj;
+        that.hasChoosed = false;
         that.tAjax(that.requestUrl, paraObj, '0208', 3, that.callBack);
         return this;
     },
