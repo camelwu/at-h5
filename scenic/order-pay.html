@@ -202,7 +202,6 @@
                 }
                 this.className='icon circle-choi';
                 if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
-                    jAlert(2222);
                     out_pay.style.display = "block";
                 }
                 else{
@@ -237,8 +236,9 @@
                 var url=data.data.paymentRedirectURL ;
                 window.open(url);
             }else{
-                alert(data.message);
+                 alert(data.message);
             }
+            vlm.init();
 
         })
     }
@@ -295,7 +295,6 @@
         }
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
             var data=JSON.parse(data);
-            debugger;
             if(data.success) {
                 debugger;
                 var tpl = template("tpl_orderinfo",data.data);
@@ -307,7 +306,7 @@
             else
             {
 
-                jAlert("添加失败！");
+                alert("添加失败！");
 
             }
             vlm.init();

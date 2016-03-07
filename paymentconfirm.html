@@ -38,15 +38,22 @@ $(document).ready()
         "Parameters": {"BookingRefNo": "SGSINFT0012966","gtid":pgtid},
         "ForeEndType": 3
     }
-    //如果是H5设备的接口，回调，反则APP端已经调用，不用再调用
+    /*如果是H5设备的接口，回调，反则APP端已经调用，不用再调用
+    1、酒店
+    2、景点
+    3、机票
+    4、会员中心	-- 不会返回该值
+    5、酒+景
+    */
     if(foreEndType==3) {
-        if(business==1){
+
+        if(business==3){
             data.Code="3009";//机票
         }
         else if(business==2){
             data.Code="0094";//景点
         }
-        else{
+        elseif(business==5)
             data.Code="0205";//酒+景
         }
         console.log(data);

@@ -562,6 +562,7 @@
 				})
 
 			}
+			jAlert(111);
 			var tpl=GetTpl(from,isContact)
 			debugger;
 			var html = template(tpl,selectUser);
@@ -932,9 +933,9 @@
 </script>
 <!--景点-获取联系人信息-->
 <script id="tpl_t_contact" type="text/template">
-	<li><span class="tourist-name tour-short">姓名：</span><input id="scenic2_name" style="display: inline-block;" placeholder="Venson" value="{%=traveller.cnName%}"></li>
-	<li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  placeholder="+8618611850882" value="{%=traveller.mobilePhone%}"></li>
-	<li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"  placeholder="113638136@163.com" value="{%=traveller.email%}"></li>
+	<li><span class="tourist-name tour-short">姓名：</span><input id="scenic2_name" style="display: inline-block;" value="{%=traveller.idName%}"></li>
+	<li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  value="{%=traveller.mobilePhone%}"></li>
+	<li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"   value="{%=traveller.email%}"></li>
 </script>
 
 <!--国籍选择结束-->
