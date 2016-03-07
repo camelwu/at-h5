@@ -43,15 +43,12 @@
          <span><strong>待支付</strong></span>
          <span>支付剩余时间：<strong>25</strong>分<strong>36</strong>秒</span>
       </div>
-
-
          <ul class="ticket-detail-information">
-              <li class="set-start">
+              <li id="LeaveInfo" class="set-start">
                   <div class="rel-start">
-                       <div class="week-city-city">
+                      <div class="week-city-city">
                           <span><i></i></span> <span>01-08</span> <span>周二 上海 - 洛杉矶</span>
                       </div>
-
                       <div class="time-arrow-time">
                           <div class="city-time-left">
                                <div class="clock">07:00</div>
@@ -66,7 +63,6 @@
                               <p class="port-name">莫斯科</p>
                           </div>
                       </div>
-
                       <div class="nation-flight-number">
                           <span>中国国航</span><span>|</span><span>CA983</span><span>|</span><span>波音787<span>(大)</span></span>
                       </div>
@@ -163,7 +159,7 @@
 </div>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/vcm.js"></script>
+<!--<script src="../js/lib/vcm.js"></script>-->
 <script type="text/javascript" src="js/hy_ticket_order_detail.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/vlm.js"></script>
@@ -188,9 +184,28 @@
                     "ForeEndType": 3,
                     "Code": "3006"
                 };
-
+                vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
+                function getDetail_back(ret){
+                    var json=eval('('+ret+')');
+                    if(json.success){
+                        var data=json.data;
+                        console.log(data);
+                    }else {
+                        jAlert(json.message,"提示");
+                    }
+                }
+            };
+            return{
+                FlashLoad:flashLoad,
+                GetDetailData:getDetailData
             }
-        }()
+        }();
+        ww.MT = ww.MT || {};
+        ww.MT.load = function(){
+            orderDetail.FlashLoad();
+            orderDetail.GetDetailData();
+        };
+        MT.load();
     })()
 </script>
 </body>
