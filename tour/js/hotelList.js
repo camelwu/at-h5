@@ -61,7 +61,6 @@ var hotelList = {
                 '<div class="l-price">',
                 '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>',
                 '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>',
-                '<div class="city-choose-tip" id="show-result-tip"></div>',
                 '<!--<a class="choose-no">选择</a>-->',
                 '</div>',
             '</li>'
@@ -81,7 +80,19 @@ var hotelList = {
                 that.delayLoadImage().addEvent()
             }
         } else {
-            jAlert(resultData.message, "提示");
+            $("#preloader").fadeOut();
+            var tipBox = document.querySelector('#show-result-tip');
+            if(resultData.message.indexOf('No available room(s)')>-1){
+                tipBox.innerHTML = '抱歉暂时没有数据！';
+                tipBox.style.display = 'block';
+                that.timer = window.setTimeout(function(){
+                    tipBox.style.display = 'none';
+                    window.clearTimeout(that.timer);
+                    that.timer = null;
+                },3000);
+                // window.history.go(-1);
+            }
+
         }
     },
 
@@ -146,22 +157,7 @@ var hotelList = {
                 (allChoosePic[i].style.display == 'block')?hotelId=allChoosePic[i].parentNode.getAttribute('data-id'):void(0);
             }
             if(hotelId) {
-                var roomDetails = [{adult:0}],info = JSON.parse(window.localStorage.info);
-                 roomDetails[0].adult=parseInt(info.adultNum);
-                 (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
-                 (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
-                 (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
-
-                 var paraObj = {
-                 packageID:window.localStorage.packageID,
-                 checkInDate:info.checkInDate,
-                 checkOutDate:info.checkOutDate,
-                 roomDetails:roomDetails,
-                 hotelID:hotelId,
-                 tours:info.tourList
-                 };
-                window.localStorage.roomUpdateInfo=JSON.stringify(paraObj);
-                document.location.href='room-upgrade.html?'+'travelersInput='+that.bookingFormInfo.travelersInput+'&airportTransferType='+that.bookingFormInfo.airportTransferType;
+                document.location.href='room-upgrade.html?'+'hotelID='+hotelId+'&travelersInput='+that.bookingFormInfo.travelersInput+'&airportTransferType='+that.bookingFormInfo.airportTransferType;
             }else{
                 tipBox.innerHTML = '请选择酒店！';
                 tipBox.style.display = 'block';
@@ -169,10 +165,9 @@ var hotelList = {
                     tipBox.style.display = 'none';
                     window.clearTimeout(that.timer);
                     that.timer = null;
-                },3000000);
+                },3000);
             }
         });
-
         return this;
     },
 
@@ -207,21 +202,8 @@ var hotelList = {
     },
     initRender:function(){
         var that = this;
-        var info = JSON.parse(window.localStorage.info);
-        var roomDetails = [{adult:0}];
-        roomDetails[0].adult=parseInt(info.adultNum);
-        (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
-        (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
-        (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
-
-        var paraObj = {
-            packageID:window.localStorage.packageID,
-            checkInDate:info.checkInDate,
-            checkOutDate:info.checkOutDate,
-            roomDetails:roomDetails,
-            tours:info.tourList
-        };
-        that.paraObj = paraObj;
+        var paraObj = JSON.parse(window.localStorage.info);
+        this.paraInfo = paraObj;
         that.hasChoosed = false;
         that.tAjax(that.requestUrl, paraObj, '0208', 3, that.callBack);
         return this;

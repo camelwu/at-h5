@@ -419,7 +419,7 @@
 
 		//点评点击事件
 		h_reviews : function() {
-
+			if(parseInt(hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewScore)>0&&parseInt(hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewCount)>0)
 			window.location.href = 'hotel_reviews.html?' + 'HotelID=' + hotelDetail.gdataInfo.HotelID + '&' + 'TAAvgRating=' + hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewScore + '&' + 'TAReviewCount=' + hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewCount;
 		},
 
