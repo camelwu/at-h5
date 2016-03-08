@@ -32,11 +32,13 @@ $(document).ready()
 {
     var business=vlm.getpara("business");
     var foreEndType=vlm.getpara("foreEndType");
+
+    var bookingRefNo=vlm.getpara("bookingRefNo");
     var pgtid=vlm.getpara("pgtid");
-    alert("11111");
+
     debugger;
     var data = {
-        "Parameters": {"BookingRefNo": "SGSINFT0012966","gtid":pgtid},
+        "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
         "ForeEndType": 3
     }
     /*如果是H5设备的接口，回调，反则APP端已经调用，不用再调用
@@ -63,13 +65,13 @@ $(document).ready()
             var data = eval('(' + str + ')');
             if (data.success) {
                 if(business==3) {
-                    window.location.href = 'flight/pay_success.html?OrderID=11';
+                    window.location.href = 'flight/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
                 else if(business==2) {
-                    window.location.href = 'scenic/pay_success.html?OrderID?=2';
+                    window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
                 else if(business==5){
-                    window.location.href = 'tour/pay_success.html?OrderID?=2';
+                    window.location.href = 'tour/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
 
             } else {
