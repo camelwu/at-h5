@@ -825,7 +825,7 @@ var arrCountry= [{"CountryEN":"Angola",
     oUl.innerHTML=str1;
     oUl.className='country-list';
 
-    document.querySelector('#country-wrap').appendChild(oUl);
+    if(document.querySelector('#country-wrap'))document.querySelector('#country-wrap').appendChild(oUl);
 
     var aBtn=document.querySelectorAll('.country-btn');
     var oDiv=document.querySelector('.country-cho-wrap');

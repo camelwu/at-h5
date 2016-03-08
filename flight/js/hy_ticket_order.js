@@ -96,11 +96,6 @@ var ticketOrder = {
         var deletePassenger = document.querySelectorAll('.icon-add');
         var chooseAgreeInfo = document.querySelector('.choose-agree-info');
         var that = this;
-
-        this.addHandler(addPassenger,'click', function(){
-             //vlm.f_choice('f','traver','',true,true)
-        });
-
         for(var i = 0;i<toEditPassengers.length;i++){
             this.addHandler(toEditPassengers[i],'click', function(){
                 document.location.href = '../user/user-choiceAir.html?type=edit&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild;
@@ -131,9 +126,6 @@ var ticketOrder = {
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         });
 
-       /* this.addHandler(contactPerson,'click', function(){
-            document.location.href = '../user/cont-list.html'
-        });*/
         this.addHandler(rightArrow,'click', function(){
             $("#preloader").show();
             $("#status-f").show();
@@ -192,6 +184,27 @@ var ticketOrder = {
                 MobilePhone: "15123957486",        //手机号
                 CountryNumber: "86"
             }*/
+
+           /* var s= "{"SexCode":"Ms","
+            FirstName":"六","
+            LastName":"赵","
+            Email":"330@qq.com","
+            CountryNumber":"86","
+            ContactNumber":"5689","
+            MobilePhone":"13454345654"}"*/
+
+            var contactInfo = JSON.parse(JSON.parse(window['localStorage']['contact_selected'])),contactInfoCache = {};
+            for(var tem in contactInfo){
+                contactInfoCache[tem] = contactInfo[tem];
+            }
+            contactInfoCache.FirstName = document.querySelector('#first-name').innerHTML;
+            contactInfoCache.LastName = document.querySelector('#last-name').innerHTML;
+            contactInfoCache.Email =document.querySelector('#email-label').innerHTML;
+            contactInfoCache.CountryNumber = document.querySelector('#first-name').innerHTML;
+            contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
+
+
+
            that.backParaObj.ContactDetail =JSON.parse(window['localStorage']['contact_selected']);
 
             /*var reverseInformationCache = {
@@ -213,18 +226,6 @@ var ticketOrder = {
              };*/
             $("#preloader").show();
             $("#status-f").show();
-            console.log(JSON.stringify(that.backParaObj));
-
-            //{"Parameters":{"WapOrder":{"SetID":"30000013","CacheID":"3002909","CityCodeFrom":"BJS","CityCodeTo":"SIN",
-            //    "NumofAdult":1,"NumofChild":0,"RouteType":"Oneway","CabinClass":"Economy","IP":"","DeviceID":"","SourceType":"","Version":"","MemberId":10000},
-            //
-            //    "TravellerInfo":[{"CountryCode":"CN","PassengerType":"ADULT","SexCode":"Mr","FirstName":"sss","LastName":"ddd","DateOfBirth":"1980-12-24",
-            //        "FlightCertificateInfo":{"IdType":1,"IdCountry":"CN","IdNumber":"3412","IdActivatedDate":"2018-12-31"},"AirCorpCode":"MF","FlightNo":"757"}],"
-            //
-            //    ContactDetail":{"SexCode":"Mr","FirstName":"dddd","LastName":"ssss","Email":"855@asiatravel.com","Email2":"","ContactNumber":"5689","
-            //    MobilePhone":"13454345654","FaxNumber":"","DestContactNumber":"12356","Address":"kkkk","PostalCode":"123456","City":"SIN","CountryNumber":"86 "}
-            //        ,"CurrencyCode":"CNY","TotalFlightPrice":"3190.00"},"ForeEndType":3,"Code":"3002"}
-
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
                 $("#preloader").hide();
                 $("#status-f").hide();
@@ -327,6 +328,132 @@ var ticketOrder = {
 
     },
 
+    countrySlider:function (){
+        var countryTrigger = document.querySelector('.country-trigger'),that= this;
+        countryTrigger.onclick = function(){
+            var div = document.createElement('div');
+            var searchHandler=function(){
+                var countryInputZone = document.querySelector('#country-input-zone');
+                var cityListSearched = document.querySelector('.country-list-searched-order');
+                var countryListInitShow = document.querySelector('.country-list-init-show');
+                var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+                Array.prototype.distinct=function(){
+                    var sameObj=function(a,b){
+                        var tag = true;
+                        if(!a||!b)return false;
+                        for(var x in a){
+                            if(!b[x])
+                                return false;
+                            if(typeof(a[x])==='object'){
+                                tag=sameObj(a[x],b[x]);
+                            }else{
+                                if(a[x]!==b[x])
+                                    return false;
+                            }
+                        }
+                        return tag;
+                    };
+                    var newArr=[],obj={};
+                    for(var i=0,len=this.length;i<len;i++){
+                        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+                            newArr.push(this[i]);
+                            obj[typeof(this[i])+this[i]]=this[i];
+                        }
+                    }
+                    return newArr;
+                };
+
+                if(reg.test(valueStr)){
+                    for(var p = 0; p < arrCountry.length; p++){
+                        if(arrCountry[p]['CountryEN'].indexOf(valueStr)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
+                            searchResult.push(arrCountry[p]);
+                        }
+                    }
+                }
+                searchResult = searchResult.distinct();
+                console.log(searchResult)
+                if(!searchResult.length){
+                    resultStr +='<li>无搜索结果</li>';
+                    cityListSearched.style.display = 'none';
+                }else{
+                    for(var l = 0;l<searchResult.length;l++){
+                        resultStr += '<li data-tel-code="'+searchResult[l].TelCode+'" data-Country-code="'+searchResult[l].CountryCode+'">'+searchResult[l].CountryName+'</li>'
+                    }
+                    cityListSearched.innerHTML = resultStr;
+                    cityListSearched.style.display = 'block';
+                }
+            }
+            div.className = 'all-elements country-cho-wrap-order';
+            div.innerHTML = '<div class="header country-list-header">'+
+            '<a href="javascript:void(0)" class="icons header-back country-hidden"></a>'+
+            '<div class="cl_search">'+
+            '<input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>'+
+            '<i></i>'+
+            '</div>'+
+            '</div>'+
+            '<ul class="country-list-searched country-list-searched-order"></ul>'+
+            '<div class="snap-content country-list country-list-init-show" style="padding-top: 45px">'+
+            '<div class="country-wrap" id="country-wrap">'+
+            '<ul class="country-list counter-list-to-order">'+
+            '<li data-tel-code="244" data-code="AO">安哥拉</li>'+
+            '<li data-tel-code="93" data-code="AF">阿富汗</li>'+
+            '<li data-tel-code="355" data-code="AL">阿尔巴尼亚</li>'+
+            '<li data-tel-code="213" data-code="DZ">阿尔及利亚</li>'+
+            '<li data-tel-code="376" data-code="AD">安道尔共和国</li>'+
+            '<li data-tel-code="1264" data-code="AI">安圭拉岛</li>'+
+            '<li data-tel-code="1268" data-code="AG">安提瓜和巴布达</li>'+
+            '</ul>'+
+            '</div>'+
+            '</div>';
+            document.body.appendChild(div);
+            var  countryChoWrapOrder = document.querySelector('.country-cho-wrap-order');
+            var  cityInputZone = document.querySelector('#country-input-zone');
+            var  countryHidden = document.querySelector('.country-hidden');
+            var  ulLi = document.querySelector('.counter-list-to-order'),liStr = '' ;
+            Array.prototype.distinct=function(){
+                var sameObj=function(a,b){
+                    var tag = true;
+                    if(!a||!b)return false;
+                    for(var x in a){
+                        if(!b[x])
+                            return false;
+                        if(typeof(a[x])==='object'){
+                            tag=sameObj(a[x],b[x]);
+                        }else{
+                            if(a[x]!==b[x])
+                                return false;
+                        }
+                    }
+                    return tag;
+                };
+                var newArr=[],obj={};
+                for(var i=0,len=this.length;i<len;i++){
+                    if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+                        newArr.push(this[i]);
+                        obj[typeof(this[i])+this[i]]=this[i];
+                    }
+                }
+                return newArr;
+            };
+            arrCountry = arrCountry .distinct();
+            console.log()
+            for(var ji= 0, len =arrCountry.length;ji<len; ji++){
+                    liStr += '<li data-tel-code="'+arrCountry[ji].TelCode+'" data-code="'+arrCountry[ji].CountryCode+'">'+arrCountry[ji].CountryName+'</li>'
+                 }
+            ulLi.innerHTML = liStr;
+            if(cityInputZone.addEventListener){
+                cityInputZone.addEventListener('input',searchHandler,false)
+            }else{
+                cityInputZone.attachEvent('onpropertychange',searchHandler)
+            }
+             countryHidden.onclick=function(){
+                    if(document.querySelector('.country-cho-wrap-order')){
+                             document.body.removeChild(document.querySelector('.country-cho-wrap-order'));
+                    }
+            };
+            countryChoWrapOrder.onclick=function(event){};
+        };
+    },
     tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
         var that=this,dataObj =
         {
@@ -531,15 +658,15 @@ var ticketOrder = {
        totalPerson.innerHTML = totalPersonNum+'人总价';
    },
     init:function(){
-         var reverseInformation = this.storageUtil.get('reverseInformationCache');
-         this.reverseInformation = reverseInformation;
-        this.telSlider();
-        this.loadingFade();
-        this.orderFlightData = this.storageUtil.get('curFlightListData');
-        this.addContent(this.orderFlightData);
-        console.log(this.storageUtil.get('curFlightListData'))
-        this.addEvent();
-        this.costFinaList();
+       var reverseInformation = this.storageUtil.get('reverseInformationCache');
+       this.reverseInformation = reverseInformation;
+       this.telSlider();
+       this.loadingFade();
+       this.orderFlightData = this.storageUtil.get('curFlightListData');
+       this.addContent(this.orderFlightData);
+       this.addEvent();
+       this.costFinaList();
+       this.countrySlider();
     }
 };
 

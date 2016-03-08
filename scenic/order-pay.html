@@ -320,7 +320,7 @@
             </li>
             <li>
                 <div>票务信息：<i>{%=packageName%}1张</i></div>
-                <div class="pay-total">总价：<span style="color:#fe6a03" class="totalAmount">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
+                <div class="pay-total">总价：<span style="color:#fe6a03">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
             </li>
         </ul>
     </script>

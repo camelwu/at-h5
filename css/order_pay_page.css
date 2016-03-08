@@ -42,7 +42,26 @@ i{
     line-height: 40px;
     width: 100%;
 }
-
+.sc-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 45px;
+    padding-bottom: 20px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
+}
 .icons {
     background-image: url(../images/ui/icons.png);
     background-repeat: no-repeat;
@@ -110,7 +129,9 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
 .hotel_box span.conlist{
     display:block;font-size:13px;font-weight:normal;height:18px;line-height:18px;overflow:hidden;
 }
-
+.hotel_box span.conlist:first-child{
+    color: #484848;font-size: 15px;
+}
 
 
 .trip_box{background:#fff;padding:10px 12px;overflow:hidden;}
@@ -157,4 +178,76 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
 .order_pay_btnBox a{
     color:#fff;background:#fdb330;border-radius: 3px;text-align:center;
     height:36px;line-height:36px;font-size:16px;
+}
+/* ·ÑÓÃÃ÷Ï¸¿é */
+.od-mb{
+    width: 100%;height:100%;
+    position: fixed;
+    background-color:rgba(0,0,0,0.5);
+    display: none;
+    z-index: 2000;
+}
+.pd-block{
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom:-400px;
+    color: #fb4927;
+    z-index: 2000000;
+}
+.pd-list{
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 0;
+}
+.pd-list li{
+    height: 44px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+.pd-list li div:nth-child(1){
+    float: left;
+}
+.pd-list li div:nth-child(2){
+    float: right;
+}
+.pd-list li div:nth-child(3){
+    float: right;
+    margin-right: 12px;
+}
+.pd-list li:first-child{
+    border-bottom: 1px solid #d6d6d6;
+    color:#484848;
+}
+
+.hspd-block{
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom:-300px;
+    color: #484848;
+    z-index: 2000000;
+}
+.hspd-list{
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 0;
+}
+.hspd-list li{
+    padding:15px 15px;
+    margin-bottom: 5px;
+}
+.hspd-list li div:nth-child(1){
+    float: left;
+}
+.hspd-list li div:nth-child(2){
+    float: right;
+}
+.hspd-list li:last-child{
+    border-top: 1px solid #d6d6d6;
+    color:#fb763b;
+    height: 44px;
 }

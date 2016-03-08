@@ -2977,7 +2977,32 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     position: relative;
     overflow: visible;
+    width:100%;
+    text-align: center;
 }
+#country-code{
+   position: relative;
+    left:-14%
+}
+#slider-country-choose{
+    display: inline-block;
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-bottom: 1px solid rgb(102, 102, 102);
+    border-right: 1px solid rgb(102, 102, 102);
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    -o-transform: rotate(45deg) translateY(-50%);
+    -moz-transform: rotate(45deg) translateY(-50%);
+    -ms-transform: rotate(45deg) translateY(-50%);
+    transform: rotate(45deg) translateY(-50%);
+    -webkit-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+}
+
 
 .custom-select-wrapper {
     position: relative;

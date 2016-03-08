@@ -741,12 +741,12 @@
 						success : function(jsondata) {
 							mycallback(jsondata);
 						},
-						error:function(XMLHttpRequest, textStatus, errorThrown){
-							/*if(textStatus=='timeout'){
+						/*error:function(XMLHttpRequest, textStatus, errorThrown){
+							/!*if(textStatus=='timeout'){
 								alert("网络不给力，刷新重试！");
 								window.location.reload();
-							}*/
-				　　　　}
+							}*!/
+				　　　　}*/
 					});
 					$.ajaxSetup({
 						async : true
