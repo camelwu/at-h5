@@ -32,7 +32,6 @@ $(document).ready()
 {
     var business=vlm.getpara("business");
     var foreEndType=vlm.getpara("foreEndType");
-
     var bookingRefNo=vlm.getpara("bookingRefNo");
     var pgtid=vlm.getpara("pgtid");
 
@@ -51,13 +50,40 @@ $(document).ready()
     if(foreEndType==3) {
 
         if(business==3){
-            data.Code="3009";//机票
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                 "Code": "3009"
+            }
+
         }
         else if(business==2){
-            data.Code="0094";//景点
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                "Code": "0094"
+            }
         }
-        else if(business==5)
-            data.Code="0205";//酒+景
+        else if(business==5){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                "Code": "0205"
+            }
+        }
+        else if(business==1){
+            var refID=vlm.getpara("rid");
+            var pid=vlm.getpara("pid");
+            var opid=vlm.getpara("opid");
+            data={
+                "Parameters":{
+                    "refID":refID,
+                    "pid":pid,
+                    "opid":opid
+                },
+                "ForeEndType":3,
+                "Code": "0015"
+            }
         }
         console.log(data);
         var payment = new paymentObj(data, function (str) {
@@ -70,6 +96,9 @@ $(document).ready()
                 else if(business==2) {
                     window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
+                else if(business==1){
+                    window.location.href = 'hotel/trade_details.html?bookingRefNo='+bookingRefNo;
+                }
                 else if(business==5){
                     window.location.href = 'tour/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
@@ -80,6 +109,8 @@ $(document).ready()
 
         });
         payment.handlePayment();
+}
+
 }
 </script>
 </body>

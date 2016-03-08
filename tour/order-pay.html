@@ -164,30 +164,27 @@
             "USD":"$"
         };
         /*倒计时*/
-        window.onload=function(){
-            sec('countdown',1800);
-
-            function sec(sName,time){
-                var oSpan=document.getElementById(sName);
-                var n=time;
-                tick1();
-                var timer=setInterval(tick1,1000);
-                function tick1()
-                {
-                    n--;
-                    var m=parseInt(n/60);
-                    var s=n%60;
-                    oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
-                    if (n<0) {
-                        clearInterval(timer);
-                        oSpan.innerHTML="结束"
-                    }
+        function sec(sName,time){
+            var oSpan=document.getElementById(sName);
+            var n=time;
+            tick1();
+            var timer=setInterval(tick1,1000);
+            function tick1()
+            {
+                n--;
+                var m=parseInt(n/60);
+                var s=n%60;
+                oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
+                if (n<0) {
+                    clearInterval(timer);
+                    oSpan.innerHTML="结束"
                 }
             }
-            function toDub(a){
-                return a<10 ? '0'+a : ''+a;
-            }
-        };
+        }
+        function toDub(a){
+            return a<10 ? '0'+a : ''+a;
+        }
+
         (function(){
             var b=document.getElementById('pay_way').getElementsByTagName("b");
             var agree = $("#agree")[0];
@@ -333,6 +330,8 @@
         }
 
         function Init(){
+
+
             var Parameters={
                 "Parameters": {
                     "BookingRefNo": "SG17SINFP0375528"
@@ -345,6 +344,35 @@
                 var data=JSON.parse(data);
                 if(data.success) {
                     debugger;
+
+                    var date1=new Date();  //开始时间
+                    var date2=new Date(data.data.bookingDate.replace("T"," "))
+                    var date3=date1.getTime()-date2.getTime() //时间差的毫秒数
+                    //计算出相差天数
+                    var days=Math.floor(date3/(24*3600*1000))
+
+                    //计算出小时数
+                    var leave1=date3%(24*3600*1000)    //计算天数后剩余的毫秒数
+                    var hours=Math.floor(leave1/(3600*1000))
+
+                    //计算相差分钟数
+                    var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
+                    var minutes=Math.floor(leave2/(60*1000))
+
+                    //计算相差秒数
+                    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+                    var seconds=Math.round(leave3/1000)
+
+
+                    if(minutes*60+seconds<=30*60) {
+                        sec('countdown',30*60-(minutes*60+seconds));
+                    }
+                    else{
+                        var oSpan=document.getElementById("countdown").innerHTML("已经结束");
+
+                    }
+
+
                     var tpl = template("tpl_orderinfo",data.data);
                     var tplC = template("tpl_orderTotal",data.data);
                     $(".per-pay-msg-bg").html(tpl);
