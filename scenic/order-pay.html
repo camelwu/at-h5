@@ -253,7 +253,54 @@
 
         PaymentDetails.PayCurrencyCode="CNY";
         PaymentDetails.PayTotalAmount=$(".totalAmount").html();
-        debugger;
+
+        if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
+            jAlert("持卡人姓名不能为空！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["engName"]($(".CardHolderName").val())){
+            jAlert("持卡人姓名必须为英文！","",null,"确认");
+            return false;
+        }
+
+        if(!vlm.Utils.validate["isNoEmpty"]($(".CardNumber").val())){
+            jAlert("信用卡不能为空！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["isNoEmpty"]($(".CardSecurityCode").val())){
+            jAlert("安全码不能为空！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["isNoEmpty"]($(".CardExpiryDate").val())){
+            jAlert("有效期不能为空！","",null,"确认");
+            return false;
+        }
+
+        if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
+            jAlert("信用卡卡号错误！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["safecode"]($(".CardSecurityCode").val())){
+            jAlert("安全码3位数字！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["dataValid"]($(".CardExpiryDate").val())){
+            jAlert("有效期格式不正确！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
+            jAlert("手机号不能为空！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["isNoEmpty"]($(".CardCity").val())){
+            jAlert("账单城市不能不空！","",null,"确认");
+            return false;
+        }
+        if(!vlm.Utils.validate["isNoEmpty"]($(".CardAddress").val())){
+            jAlert("账单地址不能不空！","",null,"确认");
+            return false;
+        }
+
         if (type == "UnionPay")
         {
             PaymentDetails.PaymentMode="UnionPay";

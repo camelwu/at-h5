@@ -193,7 +193,7 @@ var ticketOrder = {
             ContactNumber":"5689","
             MobilePhone":"13454345654"}"*/
 
-            var contactInfo = JSON.parse(JSON.parse(window['localStorage']['contact_selected'])),contactInfoCache = {};
+            var contactInfo = JSON.parse(window['localStorage']['contact_selected']),contactInfoCache = {};
             for(var tem in contactInfo){
                 contactInfoCache[tem] = contactInfo[tem];
             }
