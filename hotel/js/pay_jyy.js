@@ -258,9 +258,10 @@ var lsf_myweb={
             console.log(data);
             debugger;
             console.log(JSON.stringify(data))
-            vlm.init();
+
             var payment=new paymentObj(data,mycallback);
             payment.handlePayment();
+            vlm.init();
             //return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
         }
         //数据展示部分

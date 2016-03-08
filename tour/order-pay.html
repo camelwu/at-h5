@@ -221,10 +221,10 @@
                 out_pay.style.display = "none";
             };
             btnPay.onclick=function(){
-                Payment("UnionPay","SG17SINFP0136825");
+                Payment("UnionPay","SG17SINFP0375528");
             }
             btnCPay.onclick=function(){
-                Payment("CreditCard","SG17SINFP0136956");
+                Payment("CreditCard","SG17SINFP0375528");
             }
         })();
         function Payment(type,code){
@@ -252,7 +252,7 @@
             var CreditCardDetails = {};
 
             PaymentDetails.PayCurrencyCode="CNY";
-            PaymentDetails.PayTotalAmount="390";
+            PaymentDetails.PayTotalAmount=$(".totalAmount").html();
             debugger;
             if (type == "UnionPay")
             {
@@ -288,7 +288,7 @@
         function Init(){
             var Parameters={
                 "Parameters": {
-                    "BookingRefNo": "SG17SINFP0136825"
+                    "BookingRefNo": "SG17SINFP0375528"
                 }
                 ,
                 "ForeEndType": 3,
@@ -322,7 +322,7 @@
             </li>
             <li>
                 <div>票务信息：<i>{%=packageName%}1张</i></div>
-                <div class="pay-total">总价：<span style="color:#fe6a03">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
+                <div class="pay-total">总价：<span style="color:#fe6a03" class="totalAmount">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
             </li>
         </ul>
     </script>
