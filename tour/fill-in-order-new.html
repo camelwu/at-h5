@@ -108,9 +108,9 @@
                         <div class="input_flight">
                             <input class="" name="" value="" placeholder="航班号">
                         </div>
-                        <div class="nav2-center">
+                        <div class="nav2-center" id="nav2-center-dep">
                             <div class="nav2-centertop">
-                                <input name="CheckInDate" id="content3_CheckInDate" placeholder="年月日"><span id="content3_week_span1"></span>
+                                <input name="CheckInDate" id="content3_CheckInDate" placeholder="年月日" readonly><span id="content3_week_span1"></span>
                             </div>
                         </div>
                         <div class="nav2-centerright"><i></i></div>
@@ -122,9 +122,9 @@
                         <div class="input_flight">
                             <input class="" name=""value="" placeholder="航班号">
                         </div>
-                        <div class="nav2-center">
+                        <div class="nav2-center" id="nav2-center-arr">
                             <div class="nav2-centertop">
-                                <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日"><span id="content4_week_span1"></span>
+                                <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日" readonly><span id="content4_week_span1"></span>
                             </div>
                         </div>
                         <div class="nav2-centerright"><i></i></div>
@@ -236,7 +236,7 @@
                 lsf_myweb.getbyid('content3_week_span1').innerHTML='周'+n2c[oday1];
                 document.getElementById("content3_CheckInDate").value=arr[0];
             }
-            var myDate1 = new Calender3({id:'content3',num: 13,time:_obj_3});
+            var myDate1 = new Calender3({id:'nav2-center-dep',num: 13,time:_obj_3});
 
             function Calender4(){Calender.apply(this,arguments);}
             Calender4.prototype=new Calender();
@@ -270,7 +270,7 @@
                 lsf_myweb.getbyid('content4_week_span1').innerHTML='周'+n2c[oday1];
                 document.getElementById("content4_CheckInDate").value=arr[0];
             }
-            var myDate2 = new Calender4({id:'content4',num: 13,time:_obj_4});
+            var myDate2 = new Calender4({id:'nav2-center-arr',num: 13,time:_obj_4});
         })();
 
     </script>

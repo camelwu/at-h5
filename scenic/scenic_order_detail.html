@@ -129,7 +129,7 @@
             </div>
             <div class="order-total-wrap clearFix">
                 <span class="fl">订单金额：</span>
-                <span class="order-total-fare fl">¥56</span>
+                <span class="order-total-fare fl js-order-total"></span>
                 <i class="order-total-tip fl"></i>
                 <a href="order-pay.html" class="order-total-btn fr">预定</a>
             </div>
@@ -189,9 +189,9 @@
             </div>
 
             {% if(isAudlt==1){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥56</strong>
+                <strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Audlt-cont">{%=DetailData.data.minPax%}</i>
@@ -199,9 +199,9 @@
                 </div>
             </div>
             {% }else if(isAudlt==0){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥{%=isAudlt%}</strong>
+                <strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Child-cont">{%=DetailData.data.minPax%}</i>
@@ -227,9 +227,9 @@
 
 
             {% if(isAudlt==0){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥56</strong>
+                <strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Audlt-cont">{%=DetailData.data.minPax%}</i>
@@ -237,9 +237,9 @@
                 </div>
             </div>
             {% }else if(isAudlt==1){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥{%=isAudlt%}</strong>
+                <strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Child-cont">{%=DetailData.data.minPax%}</i>
@@ -405,7 +405,7 @@
             MT.callbackDetails = function(data){
                 var json=eval('('+data+')');
                 DetailData = json;
-                console.log(json);
+//                console.log(json);
                 if(json.success){
                     var data=json.data;
 
@@ -463,7 +463,7 @@
             MT.callbackSearchPrice = function(data){
                 var json=eval('('+data+')');
                 SearchPriceData = json;
-                console.log(json);
+//                console.log(json);
                 if(json.success){
                     globaldata = {DetailData:DetailData,SearchPriceData:SearchPriceData}
 
@@ -480,21 +480,24 @@
                 var isAudlt = val.ADU;
 
                 if(isAudlt == 1){
-                    ExtendData = $.extend({isAudlt:1},globaldata);
+                    ExtendData = $.extend({isAudlt:1,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:""},globaldata);
                 }
 
                 if(isAudlt == 0){
-                    ExtendData = $.extend({isAudlt:0},globaldata);
+                    ExtendData = $.extend({isAudlt:0,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:""},globaldata);
                 }
 
                 StartDate =  MT.getYMD(ExtendData.DetailData.data.departValidFrom,"-");
                 EndDate =  MT.getYMD(ExtendData.DetailData.data.departValidTo,"-");
+                ExtendData.minPax = ExtendData.DetailData.data.minPax;
+                ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
                 MT.renderView1();
 
                 MT.renderAddPackageView();
 
                 dateHandler();
 
+                console.log(ExtendData);
             }
             /**
              * 渲染view1
@@ -506,6 +509,7 @@
                 var tpl_Adult_Child1 = template("tpl_Adult_Child1",ExtendData);
                 //初始化默认时间
                 var defaultTime = MT.getYMD(data.DetailData.data.defaultDepartStartDate,"-");
+                var categoryIndex = 0,categoryTitle;
 
 
                 $(".js-childblock1").after(tpl_ScenicView1);
@@ -515,8 +519,23 @@
                     child_one.find(".sce-ticket:last").attr("id","jdate"+i);
                     child_one.find("#jdate > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
                     child_one.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[i].tourID);
-                    child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName);
+                    child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+"["+data.DetailData.data.packageRefNo+"]");
+
                 }
+
+                for (var i = 0;i<data.SearchPriceData.data.prices.length;i++){
+                    categoryTitle = data.SearchPriceData.data.prices[i].category;
+                    if(categoryTitle == "ADULT"){
+                        categoryIndex = i;
+                        data.AudltPrice = data.SearchPriceData.data.prices[i].amountInCNY;
+                    }
+                    if(categoryTitle == "CHILD"){
+                        categoryIndex = i;
+                        data.ChildPrice = data.SearchPriceData.data.prices[i].amountInCNY;
+                    }
+                }
+
+                MT.OnePrice(1);
             }
             /**
              * 渲染view2
@@ -526,13 +545,66 @@
                 var data = ExtendData;
                 var tpl_ScenicView2 = template("tpl_ScenicView2",ExtendData);
                 var tpl_Adult_Child2 = template("tpl_Adult_Child2",ExtendData);
+                var categoryIndex = 0,categoryTitle;
 
                 $(".js-childblock2").after(tpl_ScenicView2);
                 for(var j=0;j<data.SearchPriceData.data.tourInfos.length;j++){
                     var child_two = $(".js-sce-ticket2").append(tpl_Adult_Child2);
                     child_two.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[j].tourID);
-                    child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName);
+                    child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName+"["+data.DetailData.data.packageRefNo+"]");
                 }
+
+                MT.OnePrice(2);
+            }
+            /**
+             * 计算单价
+             */
+            MT.OnePrice = function(num){
+                var view1Price,view2Price,totalPrice;
+                if(num == 1)
+                {
+                    if(val.ADU == 1){
+                        view1Price =$(".js-scenicview1").find(".js-per-price-cont1").html("¥"+ExtendData.AudltPrice * ExtendData.minPax);
+                    }else if(val.ADU == 0){
+                        view1Price =$(".js-scenicview1").find(".js-per-price-cont1").html("¥"+ExtendData.ChildPrice * ExtendData.minPax);
+                    }
+                    view1Price = view1Price.html();
+
+                    view1Price = parseInt(view1Price.substring(1,view1Price.length));
+                }
+
+                if(num == 2)
+                {
+                    if(val.ADU == 0){
+                        view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥"+ExtendData.AudltPrice * ExtendData.minPax);
+                    }else if(val.ADU == 1){
+                        view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥"+ExtendData.ChildPrice * ExtendData.minPax);
+                    }
+                    view2Price = view2Price.html();
+                    view2Price = parseInt(view2Price.substring(1,view2Price.length));
+                }
+
+                if(view1Price == undefined){
+                    view1Price = 0;
+                }
+                if(view2Price == undefined){
+                    view2Price = 0;
+                }
+
+                totalPrice = $(".js-order-total").html();
+                if(totalPrice == ""){
+                    totalPrice = 0;
+                }else{
+                    if(totalPrice.indexOf("¥")!= -1){
+                        totalPrice = parseInt(totalPrice.substring(1,totalPrice.length));
+                    }else{
+                        totalPrice = parseInt(totalPrice);
+                    }
+                }
+
+
+                $(".js-order-total").html("¥"+parseInt(totalPrice + view1Price + view2Price));
+
             }
             /**
              * 渲染添加套餐菜单
@@ -579,9 +651,64 @@
 
             }
 
+            /**
+             * 计算价格
+             * @param obj
+             * @param isAudlt
+             * @param count
+             * @constructor
+             */
+            MT.CalculatePrice = function(obj,count){
+                var current = $(obj).parent().parent().attr("data-key");
+
+                if(current == "js-per-price1"){
+                    if(ExtendData.isAudlt == 1){
+                        price1 = $(".js-per-price-cont1").html("¥"+ExtendData.AudltPrice * count);
+                    }else if(ExtendData.isAudlt == 0){
+                        price1 = $(".js-per-price-cont1").html("¥"+ExtendData.ChildPrice * count);
+                    }
+                }
+
+                if(current == "js-per-price2"){
+                    if(ExtendData.isAudlt == 0){
+                        price2 = $(".js-per-price-cont2").html("¥"+ExtendData.AudltPrice * count);
+                    }else if(ExtendData.isAudlt == 1){
+                        price2 = $(".js-per-price-cont2").html("¥"+ExtendData.ChildPrice * count);
+                    }
+
+                }
+
+
+                MT.totalPrice();
+            }
 
             /**
-             * 增加减少单价
+             * 计算总金额
+             * @constructor
+             */
+            MT.totalPrice = function(){
+                var price1,price2,totalPrice;
+
+                price1 = $(".js-per-price-cont1").html();
+                price2 = $(".js-per-price-cont2").html();
+                if(price1 == undefined){
+                    price1 = 0;
+                }else{
+                    price1 = parseInt(price1.substring(1,price1.length));
+                }
+                if(price2 == undefined){
+                    price2 = 0;
+                }else{
+                    price2 = parseInt(price2.substring(1,price2.length));
+                }
+
+                totalPrice = price1 + price2;
+
+                $(".js-order-total").html("¥"+parseInt(totalPrice));
+            }
+
+            /**
+             * 增加减少人数
              * @param obj
              * @param isAudlt
              * @param minPax
@@ -589,25 +716,49 @@
              */
             MT.PlusCount = function(obj,isAudlt,minPax,mark){
                 var current = 1;
-                var AudltCount =$("js-Audlt-cont").html();
-                var ChildCount =$("js-Child-cont").html();
+                var AudltCount =$(".js-Audlt-cont").html();
+                var ChildCount =$(".js-Child-cont").html();
+
+                if(AudltCount == undefined){
+                    AudltCount = 0;
+                }
+                if(ChildCount == undefined){
+                    ChildCount = 0;
+                }
+                var maxCount = parseInt(AudltCount) + parseInt(ChildCount);
                 var child_yearsold;
                 if(isAudlt){
                     if(mark == 1){
-                        current = parseInt($(obj).prev().html());
-                        $(obj).prev().html(current+1);
+                        current = parseInt($(obj).prev().html())+1;
+                        $(obj).prev().html(current);
+                        MT.CalculatePrice(obj,current);
+
                     }else{
                         current = parseInt($(obj).next().html());
-                        if(current > minPax ){
-                            $(obj).next().html(current-1);
+
+                        if(ExtendData.minPaxType == "AdultAndChild"){
+
+                            if(maxCount > minPax && current > 1){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                            }
                         }
+
+                        if(ExtendData.minPaxType == "AdultOnly"){
+                            if(AudltCount > minPax ){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                            }
+                        }
+
 
                     }
 
                 }else{
                     if(mark == 1){
-                        current = parseInt($(obj).prev().html());
-                        $(obj).prev().html(current+1);
+                        current = parseInt($(obj).prev().html())+1;
+                        $(obj).prev().html(current);
+                        MT.CalculatePrice(obj,current);
                         child_yearsold = $("<li class='clearFix'>" +
                                 "<span id='child_old' class='child-age fl'>儿童年龄"+(current+1)+"</span>" +
                                 "<div class='child-age-cont fr'><input type='text' placeholder='2-14'/><span>岁</span></div>" +
@@ -616,10 +767,25 @@
                         $(".js-children-wrap").append(child_yearsold);
                     }else{
                         current = parseInt($(obj).next().html());
-                        if(current > minPax ){
-                            $(obj).next().html(current-1);
-                            $(".js-children-wrap:last-child").children("li:last").remove();
+
+                        if(ExtendData.minPaxType == "AdultAndChild"){
+
+                            if(maxCount > minPax && current > 1){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                                $(".js-children-wrap:last-child").children("li:last").remove();
+                            }
                         }
+
+                        if(ExtendData.minPaxType == "AdultOnly"){
+                            if(current > 1 ){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                                $(".js-children-wrap:last-child").children("li:last").remove();
+                            }
+                        }
+
+
 
                     }
                 }
@@ -651,10 +817,12 @@
                             MT.renderView2();
                         }else{
                             $(".js-scenicview2").remove();
+                            MT.totalPrice();
                         }
                     }else{
                         if(addval == 0){
                             $(".js-scenicview2").remove();
+                            MT.totalPrice();
                         }
 
                     }
@@ -681,6 +849,7 @@
                     $(obj).attr("class","setmeal-tr fr");
                     $(obj).attr("data-add",0);
                 }
+
             }
 
             /**

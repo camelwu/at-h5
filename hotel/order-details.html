@@ -13,7 +13,6 @@
     <link href="../styles/framework.css" rel="stylesheet">
     <link href="css/dzh.css" rel="stylesheet">
     <link href="../styles/tips.css"	rel="stylesheet">
-    <script src="js/order-details.js"></script>
 </head>
 <body>
     <div id="preloader">
@@ -100,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <a href="#" onclick="fun11()" class="hotelInter2">取消订单</a>
+        <a href="#" class="hotelInter2">取消订单</a>
 
 
 </div>
@@ -120,19 +119,19 @@
     <!--      费用明细块      -->
     <div id="pdetail_mb" class="od-mb"></div>
     <div id="pd_block" class="pd-block">
-        <ul class="pd-list">
-            <li>
-                <div>成人×1</div>
-                <div>￥1000</div>
-            </li>
-            <li>
-                <div>儿童×2</div>
-                <div>￥1200</div>
-            </li>
-            <li>
-                <div>总价</div>
-                <div>￥2200</div>
-            </li>
+        <ul id="pd_list" class="pd-list">
+            <!--<li>-->
+                <!--<div>成人×1</div>-->
+                <!--<div>￥1000</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div>儿童×2</div>-->
+                <!--<div>￥1200</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div>总价</div>-->
+                <!--<div>￥2200</div>-->
+            <!--</li>-->
         </ul>
     </div>
 </div>
@@ -142,6 +141,7 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
+<script src="js/order-details.js"></script>
 <script>
     (function(){
         var ww = this;
@@ -167,25 +167,40 @@
                         '<div class="reserve-bottom2">最晚到店18:00</div>',
                         '<div class="reserve-bottom3">地址: {%=hotelAddress%}</div>',
                     '</div>'
-                ];
+                ].join('');
                 var tpl2 = [
                      '<a class="a1" href="#">订单总额:&nbsp;',
                         '<span class="a1-1"><b>￥</b>{%=totalRoomRate%}</span>',
                         '<span class="a1-2">费用明细</span>',
                      '</a>'
-                ];
+                ].join('');
                 var tpl3 = [
                      '<span>{%=bookingReferenceNo%}</span> ',
                      '<span>{%=createdTime%}</span>',
                      '<span>{%=noOfRooms%}间</span>',
                      '<span>{%=guestNameList.guestFirstName%}{%=guestNameList.guestLastName%}</span>',
                      '<span>{%=guestContactNo%}</span>'
-                ];
+                ].join('');
+                var tpl4 = [
+                    '<li>',
+                        '<div>成人×1</div>',
+                        '<div>￥1000</div>',
+                    '</li>',
+                    '<li>',
+                        '<div>儿童×2</div>',
+                        '<div>￥1200</div>',
+                    '</li>',
+                    '<li>',
+                        '<div>总价</div>',
+                        '<div>￥2200</div>',
+                    '</li> '
+                ].join('');
                 var tmp = {
                     "Parameters": "{\"CultureName\":\"en-US\",\"BookingReferenceNo\":\"SG-1708118-8016\"}",
                     "ForeEndType": 3,
                     "Code": "0013"
                 };
+                console.log(tmp);
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
                 function getDayNum(arg1,arg2){
                     var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
@@ -200,14 +215,15 @@
                         var html_hl = template(tpl1,data);
                         var html_ap = template(tpl2,data);
                         var html_oi = template(tpl3,data);
+                        var html_pd_list = template(tpl4,data);
                         $('#hotelInfo').html(html_hl);
                         $('#allPrice').html(html_ap);
                         $('#orderInfo').html(html_oi);
+                        $('#pd_list').html(html_pd_list);
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }
                     }else{
-                        console.log(json);
                         jAlert(json.message,"提示");
                     }
                 }
