@@ -97,7 +97,7 @@ var roomUpGrade = {
         '<ul id="hd_list" class="d-list">',
         '<li>',
         '<p class="d-score">',
-        '<b class="d-icon4"></b>{%=location%}</p>',
+        '<b class="d-icon4"></b> {%=location%}</p>',
         '</li>',
         '<li>',
         '<p class="d-score">{%=starRating%}星级</p>',

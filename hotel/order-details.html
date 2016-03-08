@@ -13,7 +13,6 @@
     <link href="../styles/framework.css" rel="stylesheet">
     <link href="css/dzh.css" rel="stylesheet">
     <link href="../styles/tips.css"	rel="stylesheet">
-    <script src="js/order-details.js"></script>
 </head>
 <body>
     <div id="preloader">
@@ -100,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <a href="#" onclick="fun11()" class="hotelInter2">取消订单</a>
+        <a href="#" class="hotelInter2">取消订单</a>
 
 
 </div>
@@ -142,6 +141,7 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
+<script src="js/order-details.js"></script>
 <script>
     (function(){
         var ww = this;
@@ -200,6 +200,7 @@
                     "ForeEndType": 3,
                     "Code": "0013"
                 };
+                console.log(tmp);
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
                 function getDayNum(arg1,arg2){
                     var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
@@ -223,7 +224,6 @@
                             jAlert("抱歉暂时没有数据","提示");
                         }
                     }else{
-                        console.log(json);
                         jAlert(json.message,"提示");
                     }
                 }

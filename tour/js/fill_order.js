@@ -96,22 +96,24 @@
             }
 
             //每个房间儿童数
-            for(var j=0;j<jsonPackage.eveChildNum[i]; j++)
-            {
-                var oSection=document.createElement('section');
-                oSection.className='li_section_box';
-                oSection.innerHTML='<li>'
-                    +'<span class="list_tit">儿童'+(j+1)+'：</span>'
-                    +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
-                    +'</li>'
-                    +'<li class="trave-li trave-li-child">'
-                    +'<span class="list_tit2 ">姓：</span>'
-                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" /></span>'
-                    +'<span class="list_tit2 ">名：</span>'
-                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Xiaohua" /></span>'
-                    +'</li>'
-                    +'</section>';
-                oRoomNum[i].querySelector('ul').appendChild(oSection);
+            if(jsonPackage.eveChildNum){
+                for(var j=0;j<jsonPackage.eveChildNum[i]; j++)
+                {
+                    var oSection=document.createElement('section');
+                    oSection.className='li_section_box';
+                    oSection.innerHTML='<li>'
+                        +'<span class="list_tit">儿童'+(j+1)+'：</span>'
+                        +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
+                        +'</li>'
+                        +'<li class="trave-li trave-li-child">'
+                        +'<span class="list_tit2 ">姓：</span>'
+                        +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" /></span>'
+                        +'<span class="list_tit2 ">名：</span>'
+                        +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Xiaohua" /></span>'
+                        +'</li>'
+                        +'</section>';
+                    oRoomNum[i].querySelector('ul').appendChild(oSection);
+                }
             }
 
         }
