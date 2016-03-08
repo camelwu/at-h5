@@ -223,7 +223,7 @@
                             '</section>',
                             '<section class="hotel_box">',
                             '<span class="conlist">{%=hotelDetails.hotelName%}</span>',
-                            '<span class="conlist">{%=hotelDetails.checkInDate%} - {%=hotelDetails.checkoutDate%} 共'+dayNum+'晚(目的地时间为准)</span>',
+                            '<span class="conlist">{%=hotelDetails.checkinDate.substring(0,10)%} - {%=hotelDetails.checkoutDate.substring(0,10)%} 共'+dayNum+'晚(目的地时间为准)</span>',
                             '</section>'
                         ].join('');
                         for(var i = 0;i < data.chargeDetails.length;i++){
