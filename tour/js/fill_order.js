@@ -19,31 +19,33 @@
     var jsonPackage=JSON.parse(localStorage.info);
     console.log(jsonPackage);
 
-    var winhref=window.location.search.substring(1);
-    var arr2=winhref.split('&');
-    console.log(arr2);
+    if(window.location.search){
+        var winhref=window.location.search.substring(1);
+        var arr2=winhref.split('&');
+        console.log(arr2);
 
-    //航班信息
-    var airFli=arr2[1].split('=')[1];
-    switch (airFli){
-        case 'None':
-            $('#flight-air').remove();
-            break;
-        case 'TwoWay':
-            $('#flight-air').remove();
-            break;
-        case 'Arrival':
-            $('#content3').remove();
-            break;
-        case 'Depart':
-            $('#content4').remove();
-            break;
-        default:;
+        //航班信息
+        var airFli=arr2[1].split('=')[1];
+        switch (airFli){
+            case 'None':
+                $('#flight-air').remove();
+                break;
+            case 'TwoWay':
+                $('#flight-air').remove();
+                break;
+            case 'Arrival':
+                $('#content3').remove();
+                break;
+            case 'Depart':
+                $('#content4').remove();
+                break;
+            default:;
+        }
+        //订单总价
+        var totPrice=arr2[2].split('=')[1];
+        $('.all_num i').html(totPrice);
+        $('.separate_num i').html(totPrice);
     }
-    //订单总价
-    var totPrice=arr2[2].split('=')[1];
-    $('.all_num i').html(totPrice);
-    $('.separate_num i').html(totPrice);
 
 
     function init(){

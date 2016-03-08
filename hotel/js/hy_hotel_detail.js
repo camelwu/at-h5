@@ -316,7 +316,7 @@
 		},
 
 		reserveHandler : function(event) {
-			//TODO:判断用户是否登录，目前为了调试注释了这部分逻辑
+			var code = this.getAttribute("room-code");
 			if(vlm.checkLogin(torder)) {
 				//vlm.checkLogin();
 				torder();
@@ -325,7 +325,7 @@
 				torder();
 			}
 			function torder() {
-				document.location.href = 'user_order.html?' + 'roomCode=' + $(".subRoomEvent").attr("room-code");
+				document.location.href = 'user_order.html?' + 'roomCode=' + code;
 			}
 		},
 

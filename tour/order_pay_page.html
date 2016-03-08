@@ -138,11 +138,12 @@
         <h3><i>景点{%=i+1%}</i>{%=tours[i].tourName%}</h3>
     </section>
     <section class="trip_box">
-        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%}</span>
+        <span class="conlist">游玩时间：{%=tours[i].travelDate%} {%=tourNoon%}</span>
     </section>
     {% } %}
 </script>
 <script>
+    var tourNoon;
     (function(){
         var ww = this;
         vlm.init();
@@ -157,7 +158,7 @@
             //   获取详情
             var getDetail = function(){
                 var info = JSON.parse(localStorage.info);
-                var dayNum;
+
                 var chargeDetail = [];
                 var totalPrice = 0;
                 var myDate = new Date();
@@ -170,15 +171,7 @@
                     '<p class="sce-introduce-txt">{%=packageName%}<span class="sce-introduce-span">（产品编号 {%=packageRefNo%}）</span></p>' +
                     '</a>'
                 ].join('');
-                var tpl2 = [
-                    '<section class="all_title">',
-                    '<h3 class="hotel">酒店</h3><span class="editBtn"></span>',
-                    '</section>',
-                    '<section class="hotel_box">',
-                    '<span class="conlist">{%=hotelDetails.hotelName%}</span>',
-                    '<span class="conlist">{%=hotelDetails.checkInDate%} - {%=hotelDetails.checkoutDate%} 共'+dayNum+'晚(目的地时间为准)</span>',
-                    '</section>'
-                ].join('');
+
                 var tpl3 = [
                     '订单总额：<b class="orange">¥</b><i class="orange">'+totalPrice+'</i>' +
                     '<a href="#">费用明细</a>'
@@ -206,31 +199,48 @@
                 ].join('');
                 var tmp = {
                     "Parameters": {
-                        "BookingRefNo": "SG17SINFP0136845"
+                        "BookingRefNo": "SG17SINFP0375528"
                     },
                     "ForeEndType": 3,
                     "Code": "0206"
                 };
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
-                function getDayNum(arg1,arg2){
-                    var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
-                    return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
-                }
+
                 function getDetail_back(ret){
                     var json = eval('('+ret+')');
                     if(json.success) {
                         var data = json.data;
                         console.log(data);
-                        dayNum = getDayNum(data.hotelCheckInTime,data.hotelCheckOutTime);
+                        var dayNum;
+                        function getDayNum(arg1,arg2){
+                            var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+                            return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+                        }
+                        dayNum = getDayNum(data.hotelDetails.checkinDate.substring(0,10),data.hotelDetails.checkoutDate.substring(0,10));
+                        var tpl2 = [
+                            '<section class="all_title">',
+                            '<h3 class="hotel">酒店</h3><span class="editBtn"></span>',
+                            '</section>',
+                            '<section class="hotel_box">',
+                            '<span class="conlist">{%=hotelDetails.hotelName%}</span>',
+                            '<span class="conlist">{%=hotelDetails.checkinDate.substring(0,10)%} - {%=hotelDetails.checkoutDate.substring(0,10)%} 共'+dayNum+'晚(目的地时间为准)</span>',
+                            '</section>'
+                        ].join('');
                         for(var i = 0;i < data.chargeDetails.length;i++){
                             chargeDetail.push(data.chargeDetails[i].totalAmountInCNY);
                         }
                         for(var j = 0;j < chargeDetail.length;j++){
                             totalPrice = totalPrice + chargeDetail[j].totalAmountInCNY;
                         }
-                        adultPrice = info.adultNum * chargeDetails[0].amountInCNY;
-                        childPrice = info.childNum * chargeDetails[1].amountInCNY;
+                        adultPrice = info.adultNum * data.chargeDetails[0].amountInCNY;
+                        childPrice = info.childNum * data.chargeDetails[1].amountInCNY;
                         total = adultPrice + childPrice;
+                        var noon = localStorage.noon;
+                        if(noon == 0){
+                            tourNoon = '上午';
+                        }else{
+                            tourNoon = '下午';
+                        }
                         var html_pi = template(tpl1,data);
                         var html_hi = template(tpl2,data);
                         var tpl_GetTourInfo = template("tpl_GetTourInfo",data);

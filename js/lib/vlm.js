@@ -251,6 +251,34 @@
 					},
 					//格式验证
 					validate : {
+						isNoEmpty:function(obj){
+							if(obj==""){
+								return false;
+							}else{
+								return true;
+							}
+						},
+						dataValid:function(obj){
+
+							var reg =/(\d{2})\/(\d{2})$/;
+							console.log(reg.test(obj));
+							if(!reg.test(obj)){
+								return false;
+							}
+							else{
+								return true;
+							}
+
+						},
+						safecode:function(obj){
+							debugger;
+							var reg = new RegExp("^[0-9]*$");
+							if(obj.length>3 || !reg.test(obj)){
+								return false;
+							}else{
+								return true;
+							}
+						},
 						//手机格式
 						mobileNo : function(mobile) {
 							var pattern = /^1\d{10}$/;
@@ -713,12 +741,12 @@
 						success : function(jsondata) {
 							mycallback(jsondata);
 						},
-						/*error:function(XMLHttpRequest, textStatus, errorThrown){
-							/!*if(textStatus=='timeout'){
+						error:function(XMLHttpRequest, textStatus, errorThrown){
+							if(textStatus=='timeout'){
 								alert("网络不给力，刷新重试！");
 								window.location.reload();
-							}*!/
-				　　　　}*/
+							}
+				　　　　}
 					});
 					$.ajaxSetup({
 						async : true
