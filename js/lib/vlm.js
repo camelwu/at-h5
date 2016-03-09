@@ -743,13 +743,13 @@
 						},
 						complete : function(XMLHttpRequest,textStatus){
 							if(textStatus == 'timeout'){
-								jAlert("网络不给力，刷新重试！");
+								alert("网络不给力，刷新重试！");
 								window.location.reload();
 							}
 						},
 						error:function(XMLHttpRequest, textStatus, errorThrown){
 							if(textStatus == 'timeout'){
-								jAlert("网络不给力，刷新重试！");
+								alert("网络不给力，刷新重试！");
 								window.location.reload();
 							}
 				　　　　}
