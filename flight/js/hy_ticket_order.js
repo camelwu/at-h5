@@ -138,92 +138,28 @@ var ticketOrder = {
             var event = event || window.event;
             var target =event.target || event.srcElement;
             var that = ticketOrder;
-            debugger;
             that.backParaObj = that.reverseInformation;
-            /*that.backParaObj.TravellerInfo = [
-                {
-                    chineseName:"刘德华",
-                    PassengerType: "ADULT",  //乘客类
-                    SexCode: "Mr",        //称呼
-                    FirstName: "sss",     //姓
-                    LastName: "ddd",       //名
-                    DateOfBirth: "1978-12-24", //出生日期
-                    FlightCertificateInfo: {    //证件信息
-                        IdType: "4",      //证件类型
-                        IdCountry: "CN",  //证件发行国家
-                        IdNumber: "3412",      //证件号码
-                        IdActivatedDate: "2016-12-31"  //证件有效期
-                    },
-                    BaggageCode:"",//行李编码，一期不用,
-                    NationalityCode: "CHN" //国籍代码
-                },
-                {   chineseName:"张学友",
-                    PassengerType: "ADULT",  //乘客类
-                    SexCode: "Mr",        //称呼
-                    FirstName: "sss",     //姓
-                    LastName: "ddd",       //名
-                    DateOfBirth: "1968-12-24", //出生日期
-                    FlightCertificateInfo: {    //证件信息
-                        IdType: "4",      //证件类型
-                        IdCountry: "CN",  //证件发行国家
-                        IdNumber: "3418",      //证件号码
-                        IdActivatedDate: "2016-12-31"  //证件有效期
-                    },
-                    BaggageCode:"",//行李编码，一期不用,
-                    NationalityCode: "CHN" //国籍代码
-                },
-            ];*/
-           that.backParaObj.TravellerInfo =JSON.parse(window['localStorage']['travellerInfo_selected']);
-            console.log(that.backParaObj.TravellerInfo)
-          /* that.backParaObj.ContactDetail={
-                chineseName:"郭富城",
-                SexCode: "Mr",  //称呼
-                FirstName: "Jack", //姓
-                LastName: "Ma",  //名
-                Email: "330@qq.com", //邮箱
-                MobilePhone: "15123957486",        //手机号
-                CountryNumber: "86"
-            }*/
-
-           /* var s= "{"SexCode":"Ms","
-            FirstName":"六","
-            LastName":"赵","
-            Email":"330@qq.com","
-            CountryNumber":"86","
-            ContactNumber":"5689","
-            MobilePhone":"13454345654"}"*/
-
-            var contactInfo = JSON.parse(window['localStorage']['contact_selected']),contactInfoCache = {};
-            for(var tem in contactInfo){
-                contactInfoCache[tem] = contactInfo[tem];
-            }
-            contactInfoCache.FirstName = document.querySelector('#first-name').innerHTML;
-            contactInfoCache.LastName = document.querySelector('#last-name').innerHTML;
-            contactInfoCache.Email =document.querySelector('#email-label').innerHTML;
-            contactInfoCache.CountryNumber = document.querySelector('#first-name').innerHTML;
-            contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
-
+            that.backParaObj.TravellerInfo =JSON.parse(window['localStorage']['travellerInfo_selected']);
+            var contactInfo = JSON.parse(window['localStorage']['contact_selected']),infoFromTags = {
+                "SexCode": "Ms",
+                "FirstName": "",
+                "LastName": "",
+                "Email": "",
+                "CountryNumber": "86",
+                "ContactNumber": "",
+                "MobilePhone": ""
+            };
+            infoFromTags.FirstName = document.querySelector('#first-name').innerHTML;
+            infoFromTags.LastName = document.querySelector('#last-name').innerHTML;
+            infoFromTags.Email =document.querySelector('#email-label').innerHTML;
+            infoFromTags.CountryNumber = document.querySelector('#first-name').innerHTML;
+            infoFromTags.MobilePhone = document.querySelector('#tel-num').value;
+            for(var t in contactInfo){
+                infoFromTags[t] = contactInfo[t];
+            };
 
 
            that.backParaObj.ContactDetail =JSON.parse(window['localStorage']['contact_selected']);
-
-            /*var reverseInformationCache = {
-             WapOrder:{
-             SetID:"30000080",
-             CacheID:"3500553",
-             CityCodeFrom:"BJS", //出发地三字码
-             CityCodeTo:"BJS",  //到达地三字码
-             NumofAdult:2,
-             NumofChild:2,
-             RouteType:"Oneway",
-             CabinClass:"First",
-             MemberId:"123456"   //必须，用户编码，
-             },
-             CurrencyCode: "CNY",
-             TotalFlightPrice: 106255,
-             TravellerInfo:[],
-             ContactDetail:{}
-             };*/
             $("#preloader").show();
             $("#status-f").show();
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
@@ -246,7 +182,7 @@ var ticketOrder = {
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
                     console.log(orderResultInfo)
-                    document.location.href = 'pay_detail.html';
+                   // document.location.href = 'pay_detail.html';
                 }else{
                     console.log(arg)
 

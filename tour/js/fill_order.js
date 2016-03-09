@@ -5,6 +5,7 @@
 (function(){
 
     var oReserve=document.querySelector('.reserve');
+    var hotelID='',totPrice='';
     //加载动画
     function package_detail(){
 
@@ -19,34 +20,38 @@
     var jsonPackage=JSON.parse(localStorage.info);
     console.log(jsonPackage);
 
-    if(window.location.search){
-        var winhref=window.location.search.substring(1);
-        var arr2=winhref.split('&');
-        console.log(arr2);
-
-        //航班信息
-        var airFli=arr2[1].split('=')[1];
-        switch (airFli){
-            case 'None':
-                $('#flight-air').remove();
-                break;
-            case 'TwoWay':
-                $('#flight-air').remove();
-                break;
-            case 'Arrival':
-                $('#content3').remove();
-                break;
-            case 'Depart':
-                $('#content4').remove();
-                break;
-            default:;
+    //处理地址栏信息
+    function urlShow(){
+        if(window.location.search){
+            var winhref=window.location.search.substring(1);
+            var arr2=winhref.split('&');
+            console.log(arr2);
+            //hotel
+            hotelID=arr2[0].split('=')[1];
+            //航班信息
+            var airFli=arr2[1].split('=')[1];
+            switch (airFli){
+                case 'None':
+                    $('#flight-air').remove();
+                    break;
+                case 'TwoWay':
+                    $('#flight-air').remove();
+                    break;
+                case 'Arrival':
+                    $('#content3').remove();
+                    break;
+                case 'Depart':
+                    $('#content4').remove();
+                    break;
+                default:;
+            }
+            //订单总价
+            totPrice=arr2[3].split('=')[1];
+            $('.all_num i').html(totPrice);
+            $('.separate_num i').html(totPrice);
         }
-        //订单总价
-        var totPrice=arr2[2].split('=')[1];
-        $('.all_num i').html(totPrice);
-        $('.separate_num i').html(totPrice);
     }
-
+    urlShow();
 
     function init(){
         var Parmeters=
@@ -62,7 +67,7 @@
 
 
         //根据房间数创建房间信息
-        var roomNumber=jsonPackage.roomNum;
+        var roomNumber=jsonPackage.roomDetails.length;
         for(var i=0;i<roomNumber; i++)
         {
             var oRoom=document.createElement('div');
@@ -73,7 +78,8 @@
             var oRoomNum=document.querySelectorAll('.per_data');
 
             //每个房间成人数
-            for(var k=0;k<jsonPackage.eveAdultNum[i];k++)
+            var tAdult=parseInt(jsonPackage.roomDetails[i].adult);
+            for(var k=0;k<tAdult;k++)
             {
                 var oSection=document.createElement('section');
                 oSection.className='li_section_box';
@@ -96,24 +102,31 @@
             }
 
             //每个房间儿童数
-            if(jsonPackage.eveChildNum){
-                for(var j=0;j<jsonPackage.eveChildNum[i]; j++)
-                {
-                    var oSection=document.createElement('section');
-                    oSection.className='li_section_box';
-                    oSection.innerHTML='<li>'
-                        +'<span class="list_tit">儿童'+(j+1)+'：</span>'
-                        +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
-                        +'</li>'
-                        +'<li class="trave-li trave-li-child">'
-                        +'<span class="list_tit2 ">姓：</span>'
-                        +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" /></span>'
-                        +'<span class="list_tit2 ">名：</span>'
-                        +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Xiaohua" /></span>'
-                        +'</li>'
-                        +'</section>';
-                    oRoomNum[i].querySelector('ul').appendChild(oSection);
-                }
+            var totChiNUm= 0,t1= 0,t2=0;
+            if(jsonPackage.roomDetails[i].childWithOutBed){
+                t1=parseInt(jsonPackage.roomDetails[i].childWithOutBed.length);
+            }
+            if(jsonPackage.roomDetails[i].childWithBed){
+                t2=parseInt(jsonPackage.roomDetails[i].childWithBed.length);
+            }
+
+            totChiNUm=t1+t2;
+            for(var j=0;j<totChiNUm; j++)
+            {
+                var oSection=document.createElement('section');
+                oSection.className='li_section_box';
+                oSection.innerHTML='<li>'
+                    +'<span class="list_tit">儿童'+(j+1)+'：</span>'
+                    +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
+                    +'</li>'
+                    +'<li class="trave-li trave-li-child">'
+                    +'<span class="list_tit2 ">姓：</span>'
+                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" /></span>'
+                    +'<span class="list_tit2 ">名：</span>'
+                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Xiaohua" /></span>'
+                    +'</li>'
+                    +'</section>';
+                oRoomNum[i].querySelector('ul').appendChild(oSection);
             }
 
         }
@@ -162,13 +175,12 @@
 
                 //总价
                 var totalPrice=document.querySelector('.all_num i').innerHTML;
-
                 var Parmeters={
                     "Parameters": {
                         "PackageID": localStorage.packageID,
-                        "CheckinDate": jsonPackage.checkInDate,
-                        "CheckoutDate": jsonPackage.checkOutDate,
-                        "HotelID": "30",
+                        "CheckinDate": jsonPackage.CheckInDate,
+                        "CheckoutDate": jsonPackage.CheckOutDate,
+                        "HotelID": hotelID,
                         "RoomID": "77501",
 
                         "ContactDetails": {
@@ -186,13 +198,6 @@
                             "CurrencyCode": "CNY",
                             "TotalPrice": totPrice
                         }
-                        //"FlightDetails": {
-                        //    "ArrivalFlightNo": "JT678",
-                        //    "ArrivalDateTime": "2016-02-02T00:00:00",
-                        //    "DepartFlightNo": "JT878",
-                        //    "DepartDateTime": "2016-02-05T00:00:00"
-                        //}
-
                     },
 
                     "Method": null,
@@ -202,23 +207,20 @@
 
                 //每个房间成人
                 var roomdet=[];
-                for(var i=0;i<jsonPackage.roomNum;i++)
+                for(var i=0;i<roomNum.length;i++)
                 {
                     var roomdetail={};
-                    for(var j=0;j<jsonPackage.eveAdultNum.length;j++)
-                    {
-                        roomdetail.Adult=jsonPackage.eveAdultNum[i];
-                    }
+                    roomdetail.Adult=jsonPackage.roomDetails[i].adult;
                     roomdet.push(roomdetail);
                 }
                 Parmeters.Parameters.RoomDetails=roomdet;
                 //添加景点信息
                 var Tour=[];
-                for(var i=0;i<jsonPackage.tourList.length; i++)
+                for(var i=0;i<jsonPackage.tours.length; i++)
                 {
                     var tour={};
-                    tour.TourID=jsonPackage.tourList[i].tourID;
-                    tour.TravelDate=jsonPackage.tourList[i].travelDate;
+                    tour.TourID=jsonPackage.tours[i].tourID;
+                    tour.TravelDate=jsonPackage.tours[i].travelDate;
                     tour.TourSession="None";
                     Tour.push(tour);
                     Parmeters.Parameters.Tours=Tour;

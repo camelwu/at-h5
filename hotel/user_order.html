@@ -33,7 +33,7 @@
 			<a href="javascript:;" class="icons header-back" id="uo_back"></a>
 			<h3>填写订单</h3>
 		</div>
-		<div class="all-elements" id="all_elements">
+		<div class="all-elements input-relative" id="all_elements">
 			<div class="uo_box" id="uo_box">
 				<div class="uo_con1">
 					<p>
@@ -105,56 +105,57 @@
 					</p>
 				</div>
 			</div>
-		</div>
-		<div class="uo_hid" id="uo_hid">
-			<p class="uo_hid_shadow" id="uo_hid_shadow"></p>
-			<div class="uo_hid_con" id="uo_hid_con">
-				<div class="uo_hid_det">
-					<p class="fl uo_hid_p1">
-						费用明细
-					</p>
-					<p class="fr uo_hid_p2" id="uo_hid_p2">
-						1间×1晚
-					</p>
-				</div>
-				<div class="uo_hid_price">
-					<p>
-						<span class="fl uo_hid_span1">房费</span>
-						<span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
-					</p>
-					<p>
-						<span class="fl uo_hid_span1">税和服务费</span>
-						<span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
-					</p>
-				</div>
-				<div class="uo_hid_met" id="uo_hid_met">
-					付款方式：前台现付
-				</div>
-			</div>
-		</div>
-		<div class="uo_footer" id="uo_footer">
-			<div class="uo_or_sum" id="uo_or_sumBox1">
-				<em class="fl uo_or_order">订单总额：</em>
-				<div class="uo_or_pr fl">
-					￥<span id="uo_or_sum"></span>
+			<div class="uo_hid" id="uo_hid">
+				<p class="uo_hid_shadow" id="uo_hid_shadow"></p>
+				<div class="uo_hid_con" id="uo_hid_con">
+					<div class="uo_hid_det">
+						<p class="fl uo_hid_p1">
+							费用明细
+						</p>
+						<p class="fr uo_hid_p2" id="uo_hid_p2">
+							1间×1晚
+						</p>
+					</div>
+					<div class="uo_hid_price">
+						<p>
+							<span class="fl uo_hid_span1">房费</span>
+							<span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
+						</p>
+						<p>
+							<span class="fl uo_hid_span1">税和服务费</span>
+							<span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
+						</p>
+					</div>
+					<div class="uo_hid_met" id="uo_hid_met">
+						付款方式：前台现付
+					</div>
 				</div>
 			</div>
-			<div class="uo_or_sum" id="uo_or_sumBox2">
-				<em class="fl uo_or_assure">订单总额：</em>
-				<div class="uo_or_pr uo_or_pr2 fl">
-					<p>
-						SGD<span id="uo_or_sum2"></span>
-					</p>
-					<p id="uo_or_sum2CNY">
-						约￥
-					</p>
+			<div class="uo_footer" id="uo_footer">
+				<div class="uo_or_sum" id="uo_or_sumBox1">
+					<em class="fl uo_or_order">订单总额：</em>
+					<div class="uo_or_pr fl">
+						￥<span id="uo_or_sum"></span>
+					</div>
 				</div>
+				<div class="uo_or_sum" id="uo_or_sumBox2">
+					<em class="fl uo_or_assure">订单总额：</em>
+					<div class="uo_or_pr uo_or_pr2 fl">
+						<p>
+							SGD<span id="uo_or_sum2"></span>
+						</p>
+						<p id="uo_or_sum2CNY">
+							约￥
+						</p>
+					</div>
+				</div>
+				<p class="uo_or_infor" id="uo_or_infor">
+					<span class="fl">明细</span><i class="fl"></i>
+				</p>
+				<input type="button" value="确认订单" id="uo_confirm" />
 			</div>
-			<p class="uo_or_infor" id="uo_or_infor">
-				<span class="fl">明细</span><i class="fl"></i>
-			</p>
-			<input type="button" value="确认订单" id="uo_confirm" />
 		</div>
+		
 	</body>
 	<script src="../js/lib/jquery.js"></script>
 	<script src="../js/lib/jquery.alert.js"></script>

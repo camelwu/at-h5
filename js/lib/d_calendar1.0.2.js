@@ -293,7 +293,6 @@ Calender.prototype = {
     removeDate:function(){
         var that=this;
         var ov = _CalF.$('#'+ this.id + '-header');
-        console.log(ov)
         if(!!ov) ov.parentNode.removeChild(ov);
         var odiv = _CalF.$('#'+ this.id + '-date');
         if(!!odiv) odiv.parentNode.removeChild(odiv);

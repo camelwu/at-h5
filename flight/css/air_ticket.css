@@ -2358,7 +2358,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .order-top p.go-line i.icon-clock {
-    display: inline-block;
     background-image: url(../../images/ui/icon-t.png);
     background-repeat: no-repeat;
     background-size: 233.5px 140.5px;
@@ -2366,7 +2365,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 20px;
     height: 20px;
     position: absolute;
-    right: 5.4rem;
+    right: 6.5rem;
     top: 0.1rem;
 }
 
@@ -2876,7 +2875,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .total-price-number span strong {
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 .detail {
