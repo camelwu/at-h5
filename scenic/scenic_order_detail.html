@@ -316,9 +316,6 @@
 
     </script>
 
-
-
-
     <script>
 
         /*景点 预订MT*/
@@ -1137,6 +1134,112 @@
             }
         }
 
+    </script>
+    <!--  国家列表选择弹框    -->
+    <style>
+        .pop_box{
+            width: 100%;
+            position:fixed;
+            top: 0;
+            left:0;
+            background:#fff;
+            height: 100%;
+            z-index: 101;
+        }
+        .pop_box .t-header{
+            position:fixed;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 45px;
+            background: linear-gradient(#16364f, #194361);
+            background: -webkit-linear-gradient(#16364f, #194361);
+            background: -moz-linear-gradient(#16364f, #194361);
+            background: -o-linear-gradient(#16364f, #194361);
+        }
+        .pop_box span.js-backpage{
+            position: absolute;
+            width: 12px;
+            height: 22px;
+            left: 15px;
+            top: 10px;
+        }
+        .pop_box .t-header-icon {
+            display: inline-block;
+            background-image: url(../images/ui/icons.png);
+            background-repeat: no-repeat;
+            background-size: 243px 160px;
+        }
+        .pop_box .t-search-view{
+            padding-top:8px;
+            margin-left: 43px;
+            margin-right:60px;
+        }
+        .pop_box .t-search-view input{
+            display:inline-block;
+            height: 30px;
+            border-radius:5px;
+            width:100%;
+            background-image:url("../images/1.png");
+            background-repeat: no-repeat;
+            background-position: 4px 7px;
+            background-size:15px 15px;
+            padding:0 20px 0 30px;
+        }
+        .pop_box .cancelBtn{
+            color:#fff;
+            position:absolute;
+            right:0;
+            top: 0;
+            width:45px;
+            line-height:45px;
+        }
+        .pop_box .pop_list>li{ border-bottom:1px solid #efefef;line-height:20px;overflow:hidden; padding:5px 11px; margin:0px 1px 0px;}
+        .pop_box .pop_list>li p{ margin:0;}
+        .pop_box .empty_history dt{ border-bottom:1px solid #efefef; padding:15px 11px; margin:0px 1px 0px; line-height:20px;}
+        .pop_box .empty_history dd{padding-top:10px;}
+        .pop_box .empty_history dd a{
+            text-align:center;
+            color:#609cc6;
+            letter-spacing:1px;
+        }
+    </style>
+    <div class="pop_box" style="display:none">
+        <div style="height: 44px;">
+            <div class="t-header">
+                <span id="js_back_btn" class="js-backpage t-header-icon fl t-header-iconsize"></span>
+                <div class="t-search-view t-search-viewsize">
+                    <input class="t-search-inputbox" placeholder="北京/beijing/bj/bjs/中国">
+                </div>
+                <a href="javascript:;" class="cancelBtn">取消</a>
+            </div>
+        </div>
+        <ul class="pop_list">
+            <li><p>111111</p></li>
+            <li><p>111111</p></li>
+            <li><p>111111</p></li>
+            <li><p>111111</p></li>
+            <li><p>111111</p></li>
+            <li><p>111111</p></li>
+            <li><p>111111111111111111111111111111111111111111111111111111111111111111111111</p></li>
+            <li><p>111111</p></li>
+            <li><p>111111</p></li>
+        </ul>
+        <dl class="empty_history">
+            <dt>北航/辽宁大学南校区，辽宁、沈阳，中国，中国，中国，北京的大学</dt>
+            <dd><a href="javascript:;">清空搜索历史</a> </dd>
+        </dl>
+    </div>
+    <script>
+        $(function(){
+            $('#scenic2_NationalityCode').focus(function(){
+                console.log(1)
+                $('.pop_box').show()
+            })
+            $('#js_back_btn').click(function(){
+                $('.pop_box').hide()
+            })
+        })
     </script>
 
 </body>

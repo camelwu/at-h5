@@ -1601,6 +1601,9 @@ i{
     margin-bottom: 0;
     margin-left: 10px;
 }
+.tourist-msg li input{
+    height: 30px;
+}
 .tourist-msg li:last-child {
     border-bottom: none;
 }
@@ -1608,7 +1611,7 @@ i{
     box-sizing: border-box;
     text-align: center;
     height: 45px;
-    padding-top: 15px;
+    padding-top: 14px;
     width: 140px;
     margin: 0 auto;
 }
@@ -1784,7 +1787,7 @@ i{
     font-size: 1.2rem;
 }
 .tour-short {
-    width: 22%;
+    width: 47px;
 }
 /*景点预订免登陆结束*/
 
