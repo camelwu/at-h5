@@ -168,7 +168,7 @@ function u_perInfo(){
             }
             else
             {
-                jAlert('昵称需要由4-20个字符，可由中英文字母，数字、"-"、"_"组成');
+                jAlert('昵称需要由4-20个字符，可由中英文字母，数字、"-"、"_"组成，不能以"-","_"开头');
             }
 
         }
@@ -196,7 +196,7 @@ function u_perInfo(){
 
             var oInputName = document.getElementById("infoForm").getElementsByTagName("input")[0];
             u_realname = oInputName.value;
-            if(vlm.Utils.validate.ChineseName(u_realname))
+            if(vlm.Utils.validate.chiEngName(u_realname))
             {
                 var Parameters={
                     "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
@@ -208,7 +208,7 @@ function u_perInfo(){
             }
             else
             {
-                jAlert('只能是中文，长度为2-7位');
+                jAlert('姓名需要由2-20个字符，可由中英文字母，数字、"-"、"_"组成，不能以"-","_"开头');
             }
 
         }
