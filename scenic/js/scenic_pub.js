@@ -4,7 +4,8 @@
 (function(){
     var webkit = this;
     var core = function(){
-        var _url ="http://10.2.22.239:8888/api/GetServiceApiResult";
+        var _url ="http://123.56.190.34:8888/api/GetServiceApiResult";
+        //var _url ="http://10.2.22.239:8888/api/GetServiceApiResult";
         var callback="";
         var citycode=[
             {   //scenic
