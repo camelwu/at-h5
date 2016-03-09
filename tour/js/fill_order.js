@@ -154,7 +154,7 @@
             }else{
                 oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
                 oAgree.style.backgroundSize='40rem 12rem';
-                document.querySelector('.reserve').style.backgroundColor='#ddd';
+                oReserve.style.backgroundColor='#ddd';
                 bOk=true;
             }
         };
@@ -163,7 +163,13 @@
         function sentPackage(obj){
             obj.onclick=function(){
 
-                //this.style.backgroundColor='#ff9313';
+                if(this.style.backgroundColor == 'rgb(221, 221, 221)'){
+                    return;
+                }
+                else
+                {
+                    this.style.backgroundColor='#ff9313';
+                }
                 var roomNum=document.querySelectorAll('.per_data');
                 //联系人信息
                 var conInput=document.querySelectorAll('#personal_data .list_inp2');
