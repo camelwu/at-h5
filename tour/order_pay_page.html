@@ -59,7 +59,9 @@
     </header>
     <!--   内容   -->
     <div class="sc-content">
-        <section class="order_type"><i class="orange">待支付</i></section>
+        <div id="payStatus">
+            <!--<section class="order_type"><i class="orange">待支付</i></section>-->
+        </div>
         <section id="packageInfo" class="all_info">
             <!--<p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】<span class="sce-introduce-span">（产品编号 PK348758945）</span></p>-->
         </section>
@@ -102,8 +104,8 @@
                 </ul>
             </div>
         </section>
-        <section class="order_pay_btnBox">
-            <a href="order-pay.html" class="order_pay_btn">支付订单</a>
+        <section id="payBtn" class="order_pay_btnBox">
+            <!--<a href="order-pay.html" class="order_pay_btn">支付订单</a>-->
         </section>
     </div>
 </div>
@@ -140,6 +142,18 @@
     <section class="trip_box">
         <span class="conlist">游玩时间：{%=tours[i].travelDate%} {%=tourNoon%}</span>
     </section>
+    {% } %}
+</script>
+<script id="tpl_payStatus" type="text/template">
+    {% if(paymentStatus){  %}
+    <section class="order_type"><i class="orange">已支付</i></section>
+    {% }else{ %}
+    <section class="order_type"><i class="orange">待支付</i></section>
+    {% } %}
+</script>
+<script id="tpl_payBtn"  type="text/template">
+    {% if(!paymentStatus){  %}
+    <a href="order-pay.html" class="order_pay_btn">支付订单</a>
     {% } %}
 </script>
 <script>
@@ -197,9 +211,16 @@
                     '<div>￥'+total+'</div>',
                     '</li>'
                 ].join('');
+                var tpl6 = [
+                    '<section class="order_pay_btnBox">',
+                        '<a href="order-pay.html" class="order_pay_btn">支付订单</a>',
+                    '</section>'
+                ].join('');
+//                var bookingRefNo="SG17SINFP0375528";
+                var bookingRefNo=vlm.getpara("bookingRefNo");
                 var tmp = {
                     "Parameters": {
-                        "BookingRefNo": "SG17SINFP0375528"
+                        "BookingRefNo": bookingRefNo
                     },
                     "ForeEndType": 3,
                     "Code": "0206"
@@ -247,12 +268,16 @@
                         var html_tp = template(tpl3,data);
                         var html_oi = template(tpl4,data);
                         var html_pd_list = template(tpl5,data);
+                        var tpl_payStatus = template("tpl_payStatus",data);
+                        var tpl_payBtn = template("tpl_payBtn",data);
                         $('#packageInfo').html(html_pi);
                         $('#hotelInfo').html(html_hi);
                         $('#tourInfo').html(tpl_GetTourInfo);
                         $('#totlePrice').html(html_tp);
                         $('#orderInfo').html(html_oi);
                         $('#pd_list').html(html_pd_list);
+                        $('#payStatus').html(tpl_payStatus);
+                        $('#payBtn').html(tpl_payBtn);
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }

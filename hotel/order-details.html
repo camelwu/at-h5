@@ -156,18 +156,6 @@
             };
             //   数据加载
             var getDetailData = function(){
-                var dayNum;
-                var tpl1 = [
-                    '<div class="reserve-top">',
-                        '<div class="reserve-top1"><a class="a" href="#">{%=hotelNameHotel%}</a></div> ',
-                        '<div class="reserve-top2">房型: &nbsp;&nbsp;{%=roomType%}</div>',
-                    '</div>',
-                    '<div class="reserve-bottom">',
-                        '<div class="reserve-bottom1">{%=hotelCheckInTime%}-{%=hotelCheckOutTime%} 共'+dayNum+'晚(当地时间为准)</div>',
-                        '<div class="reserve-bottom2">最晚到店18:00</div>',
-                        '<div class="reserve-bottom3">地址: {%=hotelAddress%}</div>',
-                    '</div>'
-                ].join('');
                 var tpl2 = [
                      '<a class="a1" href="#">订单总额:&nbsp;',
                         '<span class="a1-1"><b>￥</b>{%=totalRoomRate%}</span>',
@@ -178,16 +166,16 @@
                      '<span>{%=bookingReferenceNo%}</span> ',
                      '<span>{%=createdTime%}</span>',
                      '<span>{%=noOfRooms%}间</span>',
-                     '<span>{%=guestNameList.guestFirstName%}{%=guestNameList.guestLastName%}</span>',
+                     '<span>{%=guestNameList.guestLastName%}{%=guestNameList.guestFirstName%}</span>',
                      '<span>{%=guestContactNo%}</span>'
                 ].join('');
                 var tpl4 = [
                     '<li>',
-                        '<div>成人×1</div>',
+                        '<div>成人×{%=noOfAdults%}</div>',
                         '<div>￥1000</div>',
                     '</li>',
                     '<li>',
-                        '<div>儿童×2</div>',
+                        '<div>儿童×{%=noOfChild%}</div>',
                         '<div>￥1200</div>',
                     '</li>',
                     '<li>',
@@ -196,23 +184,46 @@
                     '</li> '
                 ].join('');
                 var tmp = {
-                    "Parameters": "{\"CultureName\":\"en-US\",\"BookingReferenceNo\":\"SG-1141607-13855\"}",
-                    "ForeEndType": 3,
-                    "Code": "0013"
-
+                    "Parameters":{"bookingReferenceNo":"SG-1141622-8829"},
+                    "Code":"0013",
+                    "ForeEndType":2
                 };
+//                var tmp ={
+//                    "Parameters":"{\"CultureName\":\"en-US\",\"BookingReferenceNo\":\"SG-1708118-8016\"}",
+//                    "ForeEndType":3,
+//                    "Code":"0013"
+//                };
+//                var tmp = {
+//                    "Parameters": "{\"CultureName\":\"en-US\",\"BookingReferenceNo\":\"SG-1141607-13855\"}",
+//                    "ForeEndType": 3,
+//                    "Code": "0013"
+//                };
                 console.log(tmp);
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
-                function getDayNum(arg1,arg2){
-                    var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
-                    return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
-                }
+
                 function getDetail_back(ret){
                     var json = eval('('+ret+')');
                     console.log(json);
                     if(json.success) {
                         var data = json.data;
-                        dayNum = getDayNum(data.hotelCheckInTime,data.hotelCheckOutTime);
+                        var dayNum;
+
+                        function getDayNum(arg1,arg2){
+                            var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+                            return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+                        }
+                        dayNum = getDayNum(data[0].checkInDate,data[0].checkOutDate);
+                        var tpl1 = [
+                            '<div class="reserve-top">',
+                            '<div class="reserve-top1"><a class="a" href="hotel_detail.html?hotelCode={%=hotelCode%}">{%=hotelName%}</a></div> ',
+                            '<div class="reserve-top2">房型: &nbsp;&nbsp;{%=roomType%}</div>',
+                            '</div>',
+                            '<div class="reserve-bottom">',
+                            '<div class="reserve-bottom1">{%=checkInDate%}-{%=checkOutDate%} 共'+dayNum+'晚(当地时间为准)</div>',
+                            '<div class="reserve-bottom2">最晚到店18:00</div>',
+                            '<div class="reserve-bottom3">地址: {%=hotelAddress%}</div>',
+                            '</div>'
+                        ].join('');
                         var html_hl = template(tpl1,data);
                         var html_ap = template(tpl2,data);
                         var html_oi = template(tpl3,data);
