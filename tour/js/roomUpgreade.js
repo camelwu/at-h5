@@ -87,7 +87,7 @@ var roomUpGrade = {
     addEvent: function () {
         var nextPage = document.querySelector('.hs-next'), that = roomUpGrade;
         this.eventHandler(nextPage, 'click', function(){
-                        document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice;
+                        document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice+'&roomID='+that.dataInfo.hotels[0].rooms[0].roomID;
         });
     },
     callBack: function () {
