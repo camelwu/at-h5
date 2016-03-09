@@ -320,9 +320,19 @@
 						},
 						//昵称
 						nickName : function(name) {
-							var pattern = /^[a-zA-Z0-9-_]{4,20}$/;
-							//4-20个字符，可由中英文字母，数字、"-"、"_"组成
-
+							//var pattern = /^[a-zA-Z0-9-_]{4,20}$/;
+							var pattern = /^[\u4E00-\u9FA5a-zA-Z0-9][\u4E00-\u9FA5a-zA-Z0-9-_]{3,19}$/;
+							//4-20个字符，可由中英文字母，数字、"-"、"_"组成，不能以'-','_'开头
+							if (pattern.test(name)) {
+								return true;
+							} else {
+								return false;
+							}
+						},
+						//用户中心姓名
+						chiEngName : function(name) {
+							var pattern = /^[\u4E00-\u9FA5a-zA-Z][\u4E00-\u9FA5a-zA-Z-_]{1,19}/;
+							//姓名需要由2-20个字符，可由中英文字母，数字、"-"、"_"组成，不能以'-','_'开头
 							if (pattern.test(name)) {
 								return true;
 							} else {

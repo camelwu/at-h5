@@ -230,7 +230,7 @@ uoHisData();
         $("#preloader").delay(400).fadeOut("medium");
     });
 
-
+    var all_elements = document.getElementById("all_elements");
     var uo_back=document.getElementById('uo_back');
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
@@ -242,6 +242,19 @@ uoHisData();
     var uo_confirm=document.getElementById('uo_confirm');
     var downBok=true;
     var bOk2=true;
+    
+    //底部浮层在调用键盘时遮挡页面元素
+    
+    all_elements.onclick = function(e){
+        var targetEleName = e.target.tagName.toLocaleLowerCase();
+        var uo_footer = document.getElementById("uo_footer");
+        if(targetEleName == "input"){
+            uo_footer.style.position = "absolute";
+        }else{
+            uo_footer.style.position = "fixed";
+        }
+    }
+    
     //返回按钮
     uo_back.onclick=function(){
         window.history.go(-1);
