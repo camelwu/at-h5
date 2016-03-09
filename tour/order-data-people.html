@@ -83,7 +83,7 @@
             <div class="numbList">
                 <span class="n_tit">儿童</span>
                 <span class="child-age">（2-14岁）</span>
-                <div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="childNum">1</i><span class="plus-btn"></span></div>
+                <div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">1</i><span class="plus-btn"></span></div>
             </div>
             <!--<div id="addChild">-->
             <div class="extraChild">
@@ -293,12 +293,16 @@
         var val = vlm.parseUrlPara(window.location.href);
         vlm.init();
         var packageID = localStorage.packageID;
-
         var initAgeRange = function(){
-            var s = document.querySelector('.child-age');
-            s.innerHTML = '('+childAgeMin+'-'+childAgeMax+')';
+            var s = document.querySelectorAll('.child-age');
+            var input = document.querySelectorAll('.inp-cage');
+            for(var i=0;i< s.length;i++) {
+                s[i].innerHTML = '(' + childAgeMin + '-' + childAgeMax + ')';
+            }
+            for(var j=0;j< input.length;j++) {
+                input[j].placeholder =childAgeMin + '-' + childAgeMax;
+            }
         };
-
 
         var inpitInfo = function(){
             //   加载动画
@@ -334,7 +338,9 @@
                         var tpl_GetTour = template("tpl_GetTour",data);
                         dateHandler.init();
                         $('#tourTime').html(tpl_GetTour);
-                        initAgeRange();
+                        if(!onlyForAdult){
+                            initAgeRange();
+                        }
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }
@@ -357,26 +363,26 @@
                 for(var hn = 0, len =roomDetailSection.length; hn<len; hn++){
                         var temEle = roomDetailSection[hn], temObj={}, childWithOutBed = [], childWithBed=[];
                         var temAdultNum =parseInt(temEle.querySelector('#adult-people-number').innerHTML);
-                        var temChildNum =parseInt(temEle.querySelector('.cut-up-cont').innerHTML);
-                        var temChildAge =parseInt(temEle.querySelector('#adult-people-number').innerHTML);
+                    if(!onlyForAdult) {
+                        var temChildNum = parseInt(temEle.querySelector('.child-number').innerHTML);
+                        var temChildAge = parseInt(temEle.querySelector('#adult-people-number').innerHTML);
                         var extraChild = temEle.querySelector('.extraChild');
                         var childChooseParent = extraChild.querySelectorAll('.numbList');
-                        for(var s=0; s<childChooseParent.length; s++ ){
-                               var ty =childChooseParent[s];
-                               var tt =ty.querySelector('.icon.noselect');
-                               if(!onlyForAdult){
-                                   if(tt.className.indexOf('ico_select')>-1){
-                                       childWithBed.push(ty.parentNode.querySelector('input').value);
-                                   }else{
-                                       childWithOutBed.push(ty.parentNode.querySelector('input').value)
-                                   }
-                               }
+                        for (var s = 0; s < childChooseParent.length; s++) {
+                            var ty = childChooseParent[s];
+                            var tt = ty.querySelector('.icon.noselect');
+                            if(temChildNum){
+                                if (tt.className.indexOf('ico_select') > -1) {
+                                    childWithBed.push(ty.parentNode.querySelector('input').value);
+                                } else {
+                                    childWithOutBed.push(ty.parentNode.querySelector('input').value)
+                                }
+                            }
                         }
-                    temObj.adult = temAdultNum;
-                    if(!onlyForAdult){
                         childWithBed.length>0?temObj.childWithBed = childWithBed:void(0);
                         childWithOutBed.length>0?temObj.childWithOutBed = childWithOutBed:void(0);
                     }
+                    temObj.adult = temAdultNum;
                     roomDetails.push(temObj);
                 }
 
