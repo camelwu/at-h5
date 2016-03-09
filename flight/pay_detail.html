@@ -41,7 +41,8 @@
             <i class="tel-icon"></i>
         </div>
         <div id="content ddd"  style="padding-top: 45px; padding-bottom: 51px;">
-            <form action="#" method="get" id="payDetail">
+            <form action="#" method="get" >
+                <div id="payDetail">
                 <section class="payment-cutdown">
                     <h3>订单总价：{%=CurrencyCode%}<span class="totalFlightPrice">{%=TotalFlightPrice%}</span></h3>
                     {% var d=new Date(orderTime); d.setMinutes(d.getMinutes()+30);%}
@@ -88,6 +89,7 @@
                     </li>
                 </ul>
                 </section>
+                </div>
                 <section class="payment-type">
                     <h3 class="payment-type-tit">付款方式：</h3>
                     <ul class="clearFix credit-card-wrap" id="credit-card">
