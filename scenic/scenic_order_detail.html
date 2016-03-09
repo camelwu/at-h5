@@ -1215,15 +1215,15 @@
             </div>
         </div>
         <ul class="pop_list">
-            <li><p>111111</p></li>
-            <li><p>111111</p></li>
-            <li><p>111111</p></li>
-            <li><p>111111</p></li>
-            <li><p>111111</p></li>
-            <li><p>111111</p></li>
-            <li><p>111111111111111111111111111111111111111111111111111111111111111111111111</p></li>
-            <li><p>111111</p></li>
-            <li><p>111111</p></li>
+            <li><p>中国</p></li>
+            <li><p>北京</p></li>
+            <li><p>上海</p></li>
+            <li><p>重庆</p></li>
+            <li><p>广州</p></li>
+            <li><p>河北</p></li>
+            <li><p>河南河南河男活动啊哈佛啊和佛</p></li>
+            <li><p>湖南</p></li>
+            <li><p>湖北</p></li>
         </ul>
         <dl class="empty_history">
             <dt>北航/辽宁大学南校区，辽宁、沈阳，中国，中国，中国，北京的大学</dt>
@@ -1234,10 +1234,15 @@
         $(function(){
             $('#scenic2_NationalityCode').click(function(){
                 console.log(1)
-                $('.pop_box').show()
+                $('.pop_box').show();
             })
-            $('#js_back_btn').click(function(){
-                $('.pop_box').hide()
+            $('#js_back_btn,.cancelBtn').click(function(){
+                $('.pop_box').hide();
+            })
+
+            $('.pop_box ul.pop_list li').click(function(){
+                $('input#scenic2_NationalityCode').val($(this).find('p').html())
+                $('.pop_box').hide();
             })
         })
     </script>
