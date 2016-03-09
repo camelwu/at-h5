@@ -179,8 +179,9 @@
             };
             //   加载详情数据
             var getDetailData = function(){
+                var bookingRefNo=vlm.getpara("bookingRefNo");
                 var tmp = {
-                    "Parameters": {"flightOrderID":1137 },
+                    "Parameters": {"BookingRefNo":bookingRefNo },
                     "ForeEndType": 3,
                     "Code": "3006"
                 };
@@ -188,7 +189,9 @@
                 function getDetail_back(ret){
                     var json=eval('('+ret+')');
                     if(json.success){
+                        debugger;
                         var data=json.data;
+                        $(".all-elements").html()
                         console.log(data);
                     }else {
                         jAlert(json.message,"提示");

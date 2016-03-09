@@ -91,7 +91,8 @@ $(document).ready()
             var data = eval('(' + str + ')');
             if (data.success) {
                 if(business==3) {
-                    window.location.href = 'flight/pay_success.html?bookingRefNo='+bookingRefNo;
+                    var code=data.BookingRefNo;
+                    window.location.href = 'flight/pay_success.html?bookingRefNo='+code;
                 }
                 else if(business==2) {
                     window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;

@@ -43,7 +43,7 @@
         <div id="content ddd"  style="padding-top: 45px; padding-bottom: 51px;">
             <form action="#" method="get" id="payDetail">
                 <section class="payment-cutdown">
-                    <h3>订单总价：<span>{%=CurrencyCode%}{%=TotalFlightPrice%}</span></h3>
+                    <h3>订单总价：{%=CurrencyCode%}<span class="totalFlightPrice">{%=TotalFlightPrice%}</span></h3>
                     {% var d=new Date(orderTime); d.setMinutes(d.getMinutes()+30);%}
                     <span class="payment-tips">为了保证出票，请在：<i class="payment-cut-time">{%=d.getHours()+":"+d.getMinutes()%}</i>前完成支付。</span>
                 </section>
@@ -53,11 +53,11 @@
                     </p>
                     <p class="go-back-p">
                         <span class="round-trip-go"><i class="round-go-tip"></i>{%=CurrencyCode%}</span>
-                        <span class="round-trip-back"><i class="round-back-tip"></i>2015-01-11 09:00</span>
+                        <span class="round-trip-back"><i class="round-back-tip"></i>{%=flightInfo.flightLeaveEndDate.replace("T"," ")%}</span>
                     </p>
                     {% } else{ %} 单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     <p class="go-back-p">
-                        <span class="round-trip-go"><i class="round-go-tip"></i>2015-01-11 09:00</span>
+                        <span class="round-trip-go"><i class="round-go-tip"></i>{%=flightInfo.flightLeaveEndDate.replace("T"," ")%}</span>
                     </p>
                     {%}%}
                     <p class="go-back-p">

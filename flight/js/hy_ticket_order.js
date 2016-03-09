@@ -246,7 +246,8 @@ var ticketOrder = {
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
                     console.log(orderResultInfo)
-                    document.location.href = 'pay_detail.html';
+                    debugger;
+                    document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
                 }else{
                     console.log(arg)
 
