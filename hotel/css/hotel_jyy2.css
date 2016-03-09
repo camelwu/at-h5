@@ -221,7 +221,7 @@ body {
 }
 .h-div1{
     float: right;
-    width:54px;
+    padding:0 3px;
     height:15px;
     line-height:15px;
     color: white;
