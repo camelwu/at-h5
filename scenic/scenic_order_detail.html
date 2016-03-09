@@ -477,7 +477,15 @@
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
+
                 }
+            }
+            /*
+            * 返回年月日
+            * */
+            MT.getYMDMatch = function(arg)
+            {
+                return arg.match(/\d{4}[-/]\d{2}[-/]\d{2}/)[0];
             }
             /**
              * 渲染模版
@@ -493,8 +501,10 @@
                     ExtendData = $.extend({isAudlt:0,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},globaldata);
                 }
 
-                StartDate =  MT.getYMD(ExtendData.DetailData.data.departValidFrom,"-");
-                EndDate =  MT.getYMD(ExtendData.DetailData.data.departValidTo,"-");
+
+                ExtendData.DefaultDate =  MT.getYMDMatch(ExtendData.DetailData.data.defaultDepartStartDate);
+                ExtendData.StartDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidFrom);
+                ExtendData.EndDate =  MT.getYMDMatch(ExtendData.DetailData.data.departValidTo);
                 ExtendData.minPax = ExtendData.DetailData.data.minPax;
                 ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
                 ExtendData.PackageID = ExtendData.DetailData.data.packageID;
@@ -534,7 +544,7 @@
                 var tpl_ScenicView1 = template("tpl_ScenicView1",ExtendData);
                 var tpl_Adult_Child1 = template("tpl_Adult_Child1",ExtendData);
                 //初始化默认时间
-                var defaultTime = MT.getYMD(data.DetailData.data.defaultDepartStartDate,"-");
+                var defaultTime = ExtendData.DefaultDate;
                 var categoryIndex = 0,categoryTitle;
 
 
@@ -1018,8 +1028,8 @@
              * @constructor
              */
             function dateHandler(){
-                var startDate = StartDate;
-                var endDate = EndDate;
+                var startDate = ExtendData.StartDate;
+                var endDate = ExtendData.EndDate;
                 var allOuter = document.querySelectorAll('.travel-date-wrap-so');
                 var chooseDate=function(id, dateNum , startDate, endDate){
                     var rangeArray = [startDate, endDate];
@@ -1041,9 +1051,6 @@
                     for(var i = 0; i<allOuter.length;i++ ){
                         (function(){
                             var id = allOuter[i].id;
-                            startDate = startDate.match(/\d{4}[-/]\d{2}[-/]\d{2}/)[0];
-                            endDate = endDate.match(/\d{4}[-/]\d{2}[-/]\d{2}/)[0];
-                            console.log(startDate +"- "+endDate);
                             chooseDate(id, 'tra-ymd', startDate, endDate)
                         })(allOuter[i]);
                     }
