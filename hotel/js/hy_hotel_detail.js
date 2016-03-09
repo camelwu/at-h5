@@ -419,7 +419,7 @@
 
 		//点评点击事件
 		h_reviews : function() {
-			if(parseInt(hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewScore)>0&&parseInt(hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewCount)>0)
+
 			window.location.href = 'hotel_reviews.html?' + 'HotelID=' + hotelDetail.gdataInfo.HotelID + '&' + 'TAAvgRating=' + hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewScore + '&' + 'TAReviewCount=' + hotelDetail.sourceData.data[0].hotelGenInfo.hotelReviewCount;
 		},
 
@@ -470,6 +470,8 @@
 			};
 			faceImg.onclick = function(event) {
 				document.getElementById('imageContainer').style.display = 'block';
+				//默认先加载两张图片
+				hotelDetail.preLoadImage();
 			};
 
 			hotelDetail.addHandler(innerDiv, 'touchstart', hotelDetail.startHandler)
@@ -534,12 +536,34 @@
 				document.querySelectorAll('.indexShow')[0].innerHTML = item + "/" + result.data[0].hotelImagesList.length;
 			}
 		},
-
+		preLoadImage : function(){
+			//默认至少加载两张图片
+			var images = document.getElementsByClassName('freeImage');
+			function loadImage(url, index, callback) {
+				var img = new Image();
+				img.src = url;
+				img.onload = function() {
+					img.onload = null;
+					callback(index);
+				};
+			}
+			for(var i=0;i<2;i++){
+				if(!images[i]){return;}
+				var re_url = images[i].getAttribute('real-src');
+				console.info(re_url);
+				(function(i,re_url){
+					loadImage(re_url, i, function(i) {
+						images[i].setAttribute('src', re_url);
+					});
+				})(i,re_url)
+			}
+		},
 		delayLoadImage : function(item) {
 			var images = document.getElementsByClassName('freeImage');
-			var re_url = images[item - 1].getAttribute('real-src');
+			//默认正常显示两张图片，滑动第一张时加载第三张
+			var re_url = images[item] ? images[item].getAttribute('real-src') : "";
 			loadImage(re_url, function() {
-				images[item - 1].setAttribute('src', re_url);
+				images[item].setAttribute('src', re_url);
 			});
 			function loadImage(url, callback) {
 				var img = new Image();
