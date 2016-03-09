@@ -205,6 +205,16 @@ var hotelList = {
         var paraObj = JSON.parse(window.localStorage.info);
         this.paraInfo = paraObj;
         that.hasChoosed = false;
+        var paraObj = {
+                "packageID": "159",
+                "CheckInDate": "2016-3-16T00:00:00",
+                "CheckOutDate": "2016-3-18T00:00:00",
+                "roomDetails": [{"adult": 2}],
+                "tours": [{"tourID": "137", "travelDate": "2016-3-17T00:00:00"}, {
+                    "tourID": "166",
+                    "travelDate": "2016-3-16T00:00:00"
+                }]
+        };
         that.tAjax(that.requestUrl, paraObj, '0208', 3, that.callBack);
         return this;
     },
