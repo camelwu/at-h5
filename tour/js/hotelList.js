@@ -65,37 +65,20 @@ var hotelList = {
                 '</div>',
             '</li>'
         ].join('');
-        var resultData = JSON.parse(arguments[0]),that = hotelList;
-        if (resultData.success) {
-            if (resultData.data.hotels.length == 0) {
+        var resultData = arguments[0],that = hotelList;
+            if (resultData.hotels.length == 0) {
                 jAlert("抱歉暂时没有数据", "提示");
             }else{
-                that.packageID = resultData.data.packageID;
-                that.bookingFormInfo = resultData.data.bookingFormInfo;
-                var hotels = resultData.data.hotels;
+                that.packageID = resultData.packageID;
+                that.bookingFormInfo = resultData.bookingFormInfo;
+                var hotels = resultData.hotels;
                 hotels = that.resetData(hotels);
                 var tpl_GetList = template(tpl1, hotels);
                 $("#preloader").fadeOut();
                 $('#lsf_list').html(tpl_GetList);
                 that.delayLoadImage().addEvent()
             }
-        } else {
-            $("#preloader").fadeOut();
-            var tipBox = document.querySelector('#show-result-tip');
-            if(resultData.message.indexOf('No available room(s)')>-1){
-                tipBox.innerHTML = '抱歉暂时没有数据！';
-                tipBox.style.display = 'block';
-                that.timer = window.setTimeout(function(){
-                    tipBox.style.display = 'none';
-                    window.clearTimeout(that.timer);
-                    that.timer = null;
-                },3000);
-                // window.history.go(-1);
-            }
-
-        }
     },
-
     resetData: function(){
          var data = arguments[0];
          var starWord=function(arg){
@@ -203,9 +186,10 @@ var hotelList = {
     initRender:function(){
         var that = this;
         var paraObj = JSON.parse(window.localStorage.info);
+        var hotelResultData = JSON.parse(localStorage.getItem('hotelResultData'));
         this.paraInfo = paraObj;
         that.hasChoosed = false;
-        that.tAjax(that.requestUrl, paraObj, '0208', 3, that.callBack);
+        that.callBack(hotelResultData)
         return this;
     },
     createTags: function () {

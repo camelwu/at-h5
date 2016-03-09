@@ -5,7 +5,7 @@
 (function(){
 
     var oReserve=document.querySelector('.reserve');
-    var hotelID='',totPrice='';
+    var hotelID='',totPrice='',roomID='';
     //加载动画
     function package_detail(){
 
@@ -49,6 +49,9 @@
             totPrice=arr2[3].split('=')[1];
             $('.all_num i').html(totPrice);
             $('.separate_num i').html(totPrice);
+
+            //roomID
+            roomID=arr2[4].split('=')[1];
         }
     }
     urlShow();
@@ -152,7 +155,6 @@
                 oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
                 oAgree.style.backgroundSize='40rem 12rem';
                 document.querySelector('.reserve').style.backgroundColor='#ddd';
-                oReserve.href='javascript:;';
                 bOk=true;
             }
         };
@@ -160,7 +162,8 @@
         //   订单数据
         function sentPackage(obj){
             obj.onclick=function(){
-                this.style.backgroundColor='#ff9313';
+
+                //this.style.backgroundColor='#ff9313';
                 var roomNum=document.querySelectorAll('.per_data');
                 //联系人信息
                 var conInput=document.querySelectorAll('#personal_data .list_inp2');
@@ -181,7 +184,7 @@
                         "CheckinDate": jsonPackage.CheckInDate,
                         "CheckoutDate": jsonPackage.CheckOutDate,
                         "HotelID": hotelID,
-                        "RoomID": "77501",
+                        "RoomID": roomID,
 
                         "ContactDetails": {
                             "Salutation": "Mr",
@@ -205,15 +208,38 @@
                     "Code": "0204"
                 };
 
-                //每个房间成人
+                //每个房间
                 var roomdet=[];
                 for(var i=0;i<roomNum.length;i++)
                 {
+                    //成人
                     var roomdetail={};
                     roomdetail.Adult=jsonPackage.roomDetails[i].adult;
+                    //儿童
+                    if(jsonPackage.roomDetails[0].childWithBed){
+                        var arrWithbed=[];
+                        for(var k=0;k<jsonPackage.roomDetails[0].childWithBed.length;k++)
+                        {
+                            //arrWithbed.push(jsonPackage.roomDetails[0].childWithBed[k]);
+                            arrWithbed.push(8);
+
+                        }
+                        roomdetail.ChildwithBed=arrWithbed;
+                    }
+                    if(jsonPackage.roomDetails[0].childWithOutBed){
+                        var arrWithoutbed=[];
+                        for(var m=0;m<jsonPackage.roomDetails[0].childWithOutBed.length;m++)
+                        {
+                            //arrWithoutbed.push(jsonPackage.roomDetails[0].childWithOutBed[m]);
+                            arrWithoutbed.push(8);
+
+                        }
+                        roomdetail.ChildwithoutBed=arrWithoutbed;
+                    }
                     roomdet.push(roomdetail);
                 }
                 Parmeters.Parameters.RoomDetails=roomdet;
+
                 //添加景点信息
                 var Tour=[];
                 for(var i=0;i<jsonPackage.tours.length; i++)
@@ -259,31 +285,32 @@
                     }
 
                     //每个房间的儿童信息
-                    //var oLiChild=roomNum[i].querySelectorAll('.trave-li-child');
-                    //for(var m=0;m<oLiChild.length;m++) {
-                    //    var inputChild = roomNum[i].querySelectorAll('.list-child');
-                    //    var lastNameChi = inputChild[0].value;
-                    //    var firstNameChi = inputChild[1].value;
-                    //    //if(! vlm.Utils.validate.mobileNo(oMobile))
-                    //    if(lastNameChi == '')
-                    //    {
-                    //        jAlert('请输入名');
-                    //        return;
-                    //    }
-                    //    if(firstNameChi == '')
-                    //    {
-                    //        jAlert('请输入姓');
-                    //        return;
-                    //    }
-                    //    var tra = {};
-                    //    tra.RoomSeqNo = (m + 1);
-                    //    tra.TravelerType = "Child";
-                    //    tra.Salutation = "None";
-                    //    tra.FirstName = firstNameChi;
-                    //    tra.LastName = lastNameChi;
-                    //    tra.NationalityCode = "SG";
-                    //    traveler.push(tra);
-                    //}
+                    var oLiChild=roomNum[i].querySelectorAll('.trave-li-child');
+                    for(var m=0;m<oLiChild.length;m++) {
+                        var inputChild = roomNum[i].querySelectorAll('.list-child');
+                        var lastNameChi = inputChild[0].value;
+                        var firstNameChi = inputChild[1].value;
+                        //if(! vlm.Utils.validate.mobileNo(oMobile))
+                        if(lastNameChi == '')
+                        {
+                            jAlert('请输入名');
+                            return;
+                        }
+                        if(firstNameChi == '')
+                        {
+                            jAlert('请输入姓');
+                            return;
+                        }
+                        var tra = {};
+                        tra.RoomSeqNo = (m + 1);
+                        tra.TravelerType = "Child";
+                        tra.Salutation = "None";
+                        tra.FirstName = firstNameChi;
+                        tra.LastName = lastNameChi;
+                        tra.DOB ="2008-3-9";
+                        tra.NationalityCode = "SG";
+                        traveler.push(tra);
+                    }
 
                 }
                 Parmeters.Parameters.Travelers=traveler;

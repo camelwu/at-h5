@@ -38,7 +38,7 @@
         <div class="header" id="vlm-login">
             <a href="../scenic/index.html" class="icons header-back"></a>
             <h3>特色当地游</h3>
-            <a href="javascript:;" class="location-wrap">
+            <a href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html" class="location-wrap">
             <span id="Localtxt" class="location-txt"></span>
             <i class="location-tip"></i>
             </a>
@@ -132,6 +132,7 @@
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
     <script src="../js/lib/lazyLoad.js"></script>
+    <script src="js/scenic_pub.js"></script>
     <script id="tpl_Localtxt" type="text/template">
        {%=destCity%}
     </script>
@@ -160,358 +161,257 @@
     <script>
         /*景点 目标城市列表页MT*/
         (function(){
-            var webkit = this;
-
-            var core = function(){
-                var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
-                var themeId = "";
-                var defineProperty = {
-                    get themeId (){
-                        return themeId;
-                    },
-                    set themeId (value){
-                        themeId = value;
-                    }
-                };
-
-                vlm.init();
-
-
-                /**
-                 * @动画模版
-                 * @constructor
-                 */
-                var CTmplAnim = function(){
-                    var _childhtml = '<div id="preloader"><div id="status"><p class="center-text"><br><em>加载中……</em></p></div></div>';
-                    var _roothtml = $(_childhtml)[0];
-
-                    return _roothtml;
+            var val = vlm.parseUrlPara(window.location.href);
+            var themeId = "";
+            var defineProperty = {
+                get themeId (){
+                    return themeId;
+                },
+                set themeId (value){
+                    themeId = value;
                 }
-
-                /**
-                 * @动画淡入
-                 * @constructor
-                 */
-                var CAnimIn = function(){
-                    if($("[id=preloader]").length < 1){
-                        document.body.appendChild(CTmplAnim());
-                    }
-                    $("#preloader").ajaxStart(function(){
-                            $(this).show();
-                    });
-
-                }
-
-                /**
-                 * 动画淡出
-                 * @constructor
-                 */
-                var CAnimOut = function(){
-
-                    $("#preloader").ajaxStop(function(){
-                        $(this).delay(400).fadeOut();
-                    });
-
-                }
-
-                /**
-                 * @loadJson 增强方法 CLoadJson ,加入了两个参数 animin (淡入动画),animout(淡出动画)
-                 * @param url
-                 * @param data
-                 * @param mycallback
-                 * @param animin ,type function [new]
-                 * @param animout ,type function [new]
-                 * @param async
-                 * @param encryption
-                 * @constructor
-                 */
-                var CLoadJson = function(url, data, mycallback,animin,animout, async, encryption) {
-                    if (async != undefined && async == true) {
-                        $.ajaxSetup({
-                            async : false
-                        });
-                    }
-
-
-                    $.ajax({
-                        type : "post",
-                        url : url + '?rnd=' + Math.random(),
-                        data : data,
-                        contentType : 'application/json;charset=utf-8',
-                        beforeSend : function(xhr) {
-                            if(animin!=undefined && animin != ""){
-                                animin();
-                            }
-                            //后续开始加密，设置header
-                            //xhr.setRequestHeader('Content-Type','application/json');
-                            if (encryption != undefined && encryption == true) {
-                                var uid = md5("zhangfengming");
-                                var password = md5("");
-                                xhr.setRequestHeader('uid', user);
-                            }
-                        },
-                        success : function(jsondata) {
-
-                            mycallback(jsondata);
-
-
-                        }
-                    });
-                    if(animout!=undefined && animout != ""){
-                        animout();//动画淡出
-                    }
-                    $.ajaxSetup({
-                        async : true
-                    });
-                }
-
-                /**
-                 * @获取景点列表
-                 * @constructor
-                 */
-                var CLoadSearchAvailableToursAttractions = function(){
-
-                    var val = vlm.parseUrlPara(window.location.href);
-                    var SearchAvailableToursAttractions=
-                    {
-                        "Parameters": {
-                            "DestCityCode": val.DestCityCode
-                        },
-                        "ForeEndType": 3,
-                        "Code": "0087"
-                    };
-                    CLoadJson(apiurl,JSON.stringify(SearchAvailableToursAttractions),SearchAvailableToursAttractionsCallback,CAnimIn,CAnimOut);
-
-                }
-
-                /**
-                 * @获取景点列表 [CLoadSearchAvailableToursAttractions Callback]
-                 * @param data
-                 * @constructor
-                 */
-                var SearchAvailableToursAttractionsCallback = function(data){
-                    var json=eval('('+data+')');
-                    console.log(json);
-                    if(json.success){
-                        var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
-                                tpl_Localtxt = template("tpl_Localtxt",data),
-                                tpl_SpotScreen = template("tpl_SpotScreen",data);
-                        $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
-                        $("#Localtxt").html(tpl_Localtxt);
-                        $("#SpotScreen").html(tpl_SpotScreen);
-
-                        CBot_screen();
-                        var c = new lazyLoad("scenic-list-cont");
-                        if(data.lists.length == 0){
-                            jAlert("抱歉暂时没有数据","提示");
-                        }
-                    }else {
-                        console.log(json);
-                        jAlert(json.message,"提示");
-                    }
-                }
-
-                /**
-                 * @价格排序
-                 * @constructor
-                 */
-                var CBindPriceSort = function(){
-
-
-                    $("#priceSort").toggle(function(){
-                        console.log(defineProperty.themeId);
-                        CLoadPriceSort("HighToLow",defineProperty.themeId);
-                    },function(){
-                        CLoadPriceSort("LowToHigh",defineProperty.themeId);
-                    },function(){
-                        CLoadPriceSort("",defineProperty.themeId);
-                    });
-                }
-                /**
-                 * @价格排序
-                 * @constructor
-                 */
-                var CLoadPriceSort = function(priceSort,themeId){
-
-                    var val = vlm.parseUrlPara(window.location.href);
-                    var PriceSort=
-                    {
-                        "Parameters": {
-                            "DestCityCode": val.DestCityCode,
-                            "PriceSortType" :priceSort,
-                            "ThemeID":themeId
-                        },
-                        "ForeEndType": 3,
-                        "Code": "0087"
-                    };
-                    CLoadJson(apiurl,JSON.stringify(PriceSort),PriceSortCallback,CAnimIn,CAnimOut);
-
-                }
-
-                /**
-                 * @价格排序 [CLoadSearchAvailableToursAttractions Callback]
-                 * @param data
-                 * @constructor
-                 */
-                var PriceSortCallback = function(data){
-                    var json=eval('('+data+')');
-                    console.log(json);
-                    if(json.success){
-                        var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
-                                tpl_Localtxt = template("tpl_Localtxt",data),
-                                tpl_SpotScreen = template("tpl_SpotScreen",data);
-                        $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
-                        $("#Localtxt").html(tpl_Localtxt);
-                        $("#SpotScreen").html(tpl_SpotScreen);
-
-                        CBot_screen();
-                        var c = new lazyLoad("scenic-list-cont");
-                        if(data.lists.length == 0){
-                            jAlert("抱歉暂时没有数据","提示");
-                        }
-                    }else {
-                        console.log(json);
-                        jAlert(json.message,"提示");
-                    }
-                }
-
-                /**
-                 * @根据主题筛选
-                 * @param themeid
-                 * @constructor
-                 */
-                var CLoadFilterTheme = function(themeid){
-                    var val = vlm.parseUrlPara(window.location.href);
-                    var SearchAvailableToursAttractions=
-                    {
-                        "Parameters": {
-                            "DestCityCode": val.DestCityCode,
-                            "ThemeID":themeid
-                        },
-                        "ForeEndType": 3,
-                        "Code": "0087"
-                    };
-                    CLoadJson(apiurl,JSON.stringify(SearchAvailableToursAttractions),FilterThemeCallback,CAnimIn,CAnimOut);
-                }
-
-                /**
-                 * @根据主题筛选 [CLoadFilterTheme Callback]
-                 * @param data
-                 * @constructor
-                 */
-                var FilterThemeCallback = function(data){
-                    var json=eval('('+data+')');
-                    console.log(json);
-                    if(json.success){
-                        var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists);
-                        $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
-                        var c = new lazyLoad("scenic-list-cont");
-                        if(data.lists.length == 0){
-                            jAlert("抱歉暂时没有数据","提示");
-                        }
-
-                    }else {
-                        console.log(json);
-                        jAlert(json.message,"提示");
-                    }
-                }
-
-
-
-                /**
-                 * 筛选主题
-                 * @constructor
-                 */
-                var CBot_screen = function(){
-                    var screen = $("#screen")[0];
-                    var mb = $("#screen_mb")[0];
-                    var screenBlock = $("#list_screen")[0];
-                    var quit = $("#quit_screen")[0];
-                    var sure = $("#sure_screen")[0];
-                    var clear = $("#clear_screen")[0];
-
-                    //    点击筛选
-                    screen.onclick = function(){
-                        mb.style.display="block";
-                        screen.style.opacity = "1";
-                        screenBlock.style.bottom=0;
-                        screenBlock.style.transition="all 400ms";
-                    };
-                    //    关闭筛选
-                    function closeblock(){
-                        mb.style.display="none";
-                        screen.style.opacity = "0.8";
-                        screenBlock.style.bottom=-500+'px';
-                        screenBlock.style.transition="all 400ms";
-
-                        if(this.title == "confirm"){
-                            //获得themeid
-                            themeid=$(".spot-slected").attr("title");
-                            //调用主题方法
-                            CLoadFilterTheme(themeid);
-                            defineProperty.themeId = themeid;
-                            console.log(defineProperty.themeId);
-                        }
-
-
-                    }
-
-                    quit.onclick = closeblock;
-                    sure.onclick = closeblock;
-                    //   筛选选择
-                    var li  = document.getElementsByClassName('spot-screen')[0].getElementsByTagName('li');
-                    var b = document.getElementsByClassName('jd-icon scr-gou');
-                    for(var i = 0;i < li.length;i++){
-
-                            (function(index){
-                                li[i].onclick = function(){
-                                    if(index==0){
-                                        for(var i = 0;i < li.length;i++){
-                                            li[i].className = '';
-                                            b[i].className = 'jd-icon scr-gou';
-                                        }
-                                        li[index].className = 'spot-slected';
-                                        b[index].className = 'jd-icon scr-gou s-active';
-                                    }else{
-                                        for(var j = 0;j < li.length;j++){
-                                            li[j].className = '';
-                                            b[j].className = 'jd-icon scr-gou';
-                                        }
-                                        li[0].className = '';
-                                        li[index].className = 'spot-slected';
-                                        b[index].className = 'jd-icon scr-gou s-active';
-                                    }
-                                };
-                            })(i);
-
-                    }
-                    //   清除筛选
-                    clear.onclick = function(){
-                        li[0].className = 'spot-slected';
-                        b[0].className = 'jd-icon scr-gou s-active';
-                        for(var i = 1;i < li.length;i++){
-                            li[i].className = '';
-                            b[i].className = 'jd-icon scr-gou';
-                        }
-                    };
-
-                };
-
-                return {
-                    CLoadSearchAvailableToursAttractions:CLoadSearchAvailableToursAttractions,
-                    CBot_screen:CBot_screen,
-                    CBindPriceSort:CBindPriceSort
-                }
-
-            }();
-            webkit.MT = webkit.MT || {};
-            webkit.MT.load = function(){
-                core.CBindPriceSort();
-                core.CLoadSearchAvailableToursAttractions();
-                core.CBot_screen();
             };
 
-            MT.load();
+            vlm.init();
+
+
+            /**
+             * @获取景点列表
+             * @constructor
+             */
+            MT.CLoadSearchAvailableToursAttractions = function(){
+
+                var param=
+                {
+                    "Parameters": {
+                        "DestCityCode": val.DestCityCode
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0087"
+                };
+
+                MT.ajaxJson("",JSON.stringify(param),MT.SearchAvailableToursAttractionsCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            }
+
+            /**
+             * @获取景点列表 [CLoadSearchAvailableToursAttractions Callback]
+             * @param data
+             * @constructor
+             */
+            MT.SearchAvailableToursAttractionsCallback = function(data){
+                var json=eval('('+data+')');
+                console.log(json);
+                if(json.success){
+                    var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
+                            tpl_Localtxt = template("tpl_Localtxt",data),
+                            tpl_SpotScreen = template("tpl_SpotScreen",data);
+                    $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                    $("#Localtxt").html(tpl_Localtxt);
+                    $("#SpotScreen").html(tpl_SpotScreen);
+
+                    MT.CBot_screen();
+                    var c = new lazyLoad("scenic-list-cont");
+                    if(data.lists.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
+                    }
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
+            }
+
+            /**
+             * @价格排序
+             * @constructor
+             */
+            MT.CBindPriceSort = function(){
+
+
+                $("#priceSort").toggle(function(){
+                    MT.CLoadPriceSort("HighToLow",defineProperty.themeId);
+                },function(){
+                    MT.CLoadPriceSort("LowToHigh",defineProperty.themeId);
+                });
+            }
+
+
+            /**
+             * @价格排序
+             * @constructor
+             */
+            MT.CLoadPriceSort = function(priceSort,themeId){
+
+
+                var param=
+                {
+                    "Parameters": {
+                        "DestCityCode": val.DestCityCode,
+                        "PriceSortType" :priceSort,
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0087"
+                };
+                if(themeId != ""){
+                    param.Parameters.ThemeID=themeId;
+                }
+
+
+                MT.ajaxJson("",JSON.stringify(param),MT.PriceSortCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+
+            }
+
+            /**
+             * @价格排序 [CLoadSearchAvailableToursAttractions Callback]
+             * @param data
+             * @constructor
+             */
+            MT.PriceSortCallback = function(data){
+                var json=eval('('+data+')');
+                console.log(json);
+                if(json.success){
+                    var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
+                            tpl_Localtxt = template("tpl_Localtxt",data),
+                            tpl_SpotScreen = template("tpl_SpotScreen",data);
+                    $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                    $("#Localtxt").html(tpl_Localtxt);
+                    $("#SpotScreen").html(tpl_SpotScreen);
+
+                    MT.CBot_screen();
+                    var c = new lazyLoad("scenic-list-cont");
+                    if(data.lists.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
+                    }
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
+            }
+
+
+            /**
+             * @根据主题筛选
+             * @param themeid
+             * @constructor
+             */
+            MT.CLoadFilterTheme = function(themeid){
+
+                var param=
+                {
+                    "Parameters": {
+                        "DestCityCode": val.DestCityCode,
+                        "ThemeID":themeid
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0087"
+                };
+                MT.ajaxJson("",JSON.stringify(param),MT.FilterThemeCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            }
+
+            /**
+             * @根据主题筛选 [CLoadFilterTheme Callback]
+             * @param data
+             * @constructor
+             */
+            MT.FilterThemeCallback = function(data){
+                var json=eval('('+data+')');
+                console.log(json);
+                if(json.success){
+                    var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists);
+                    $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                    var c = new lazyLoad("scenic-list-cont");
+                    if(data.lists.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
+                    }
+
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
+            }
+
+            /**
+             * 筛选主题
+             * @constructor
+             */
+            MT.CBot_screen = function(){
+                var screen = $("#screen")[0];
+                var mb = $("#screen_mb")[0];
+                var screenBlock = $("#list_screen")[0];
+                var quit = $("#quit_screen")[0];
+                var sure = $("#sure_screen")[0];
+                var clear = $("#clear_screen")[0];
+
+                //    点击筛选
+                screen.onclick = function(){
+                    mb.style.display="block";
+                    screen.style.opacity = "1";
+                    screenBlock.style.bottom=0;
+                    screenBlock.style.transition="all 400ms";
+                };
+                //    关闭筛选
+                function closeblock(){
+                    mb.style.display="none";
+                    screen.style.opacity = "0.8";
+                    screenBlock.style.bottom=-500+'px';
+                    screenBlock.style.transition="all 400ms";
+
+                    if(this.title == "confirm"){
+                        //获得themeid
+                        themeid=$(".spot-slected").attr("title");
+                        //调用主题方法
+                        MT.CLoadFilterTheme(themeid);
+                        defineProperty.themeId = themeid;
+                        console.log(defineProperty.themeId);
+                    }
+
+
+                }
+
+                quit.onclick = closeblock;
+                sure.onclick = closeblock;
+                //   筛选选择
+                var li  = document.getElementsByClassName('spot-screen')[0].getElementsByTagName('li');
+                var b = document.getElementsByClassName('jd-icon scr-gou');
+                for(var i = 0;i < li.length;i++){
+
+                    (function(index){
+                        li[i].onclick = function(){
+                            if(index==0){
+                                for(var i = 0;i < li.length;i++){
+                                    li[i].className = '';
+                                    b[i].className = 'jd-icon scr-gou';
+                                }
+                                li[index].className = 'spot-slected';
+                                b[index].className = 'jd-icon scr-gou s-active';
+                            }else{
+                                for(var j = 0;j < li.length;j++){
+                                    li[j].className = '';
+                                    b[j].className = 'jd-icon scr-gou';
+                                }
+                                li[0].className = '';
+                                li[index].className = 'spot-slected';
+                                b[index].className = 'jd-icon scr-gou s-active';
+                            }
+                        };
+                    })(i);
+
+                }
+                //   清除筛选
+                clear.onclick = function(){
+                    li[0].className = 'spot-slected';
+                    b[0].className = 'jd-icon scr-gou s-active';
+                    for(var i = 1;i < li.length;i++){
+                        li[i].className = '';
+                        b[i].className = 'jd-icon scr-gou';
+                    }
+                };
+
+            };
+
+
+            MT.CBindPriceSort();
+            MT.CLoadSearchAvailableToursAttractions();
+            MT.CBot_screen();
 
 
         })();
