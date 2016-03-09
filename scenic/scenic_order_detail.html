@@ -39,7 +39,7 @@
                             <span class="tourist-name tour-short">名：</span><input id="scenic2_name2" style="width:20%;display: inline-block;" placeholder="Venson">
                         </li>
                         <li>
-                            <span class="tourist-name tour-short">国籍：</span><input id="scenic2_NationalityCode" style="display: inline-block;" placeholder="国籍">
+                            <span class="tourist-name tour-short">国籍：</span><input id="scenic2_NationalityCode" readonly="readonly" style="display: inline-block;" placeholder="国籍">
                         </li>
                         <li>
                             <span class="tourist-name tour-short">护照：</span><input id="scenic2_idcard" style="display: inline-block;" placeholder="EA2359923">
@@ -1232,7 +1232,7 @@
     </div>
     <script>
         $(function(){
-            $('#scenic2_NationalityCode').focus(function(){
+            $('#scenic2_NationalityCode').click(function(){
                 console.log(1)
                 $('.pop_box').show()
             })
