@@ -2205,13 +2205,28 @@ i{
     width:45px;
     line-height:45px;
 }
-.pop_box .pop_list>li{ border-bottom:1px solid #efefef;line-height:20px;overflow:hidden; padding:5px 11px; margin:0px 1px 0px;}
+.pop_box .pop_list>li{
+    border-bottom:1px solid #efefef;
+    line-height:20px;overflow:hidden;
+    padding:5px 11px; margin:0px 1px 0px;
+}
 .pop_box .pop_list>li p{ margin:0;}
-.pop_box .empty_history dt{ border-bottom:1px solid #efefef; padding:15px 11px; margin:0px 1px 0px; line-height:20px;}
+.pop_box .empty_history dt{
+    border-bottom:1px solid #efefef;
+    padding:15px 11px;
+    margin:0px 1px 0px;
+    line-height:20px;
+}
 .pop_box .empty_history dd{padding-top:10px;}
 .pop_box .empty_history dd a{
     text-align:center;
     color:#609cc6;
     letter-spacing:1px;
 }
-.pop_box .t-search-viewsize span{position:absolute; right:0; top:12px; padding: 0 10px;; font-family: arial;}
+.pop_box .t-search-viewsize span{
+    position:absolute;
+    right:0;
+    top:12px;
+    padding: 0 10px;
+    font-family: arial;
+}
