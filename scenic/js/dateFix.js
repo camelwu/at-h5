@@ -261,8 +261,8 @@ TicketDate.prototype.linkOver = function(event){
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
             outObj['start'] = sels[0].parentNode.getAttribute("data-day");
-            out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            if(out[1]){out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+            out[0].innerHTML=sels[0].parentNode.getAttribute("data-day");
+            if(out[1]){out[1].innerHTML=sels[1].parentNode.getAttribute("data-day");
                 outObj['end'] = sels[1].parentNode.getAttribute("data-day");
             }
         }
@@ -276,12 +276,12 @@ TicketDate.prototype.linkOver = function(event){
             dateSTr = target.getAttribute('data-day');
             that.linkColor('Oneway',dateSTr);
             outObj_['start'] = target.getAttribute('data-day');
-            out[0].innerHTML=returnWeek(dateSTr);
+            out[0].innerHTML=dateSTr;
         }else if(target.tagName == 'SPAN'){
             dateSTr = target.parentNode.getAttribute('data-day');
             outObj_['start'] = target.parentNode.getAttribute('data-day');
             that.linkColor('Oneway',dateSTr);
-            out[0].innerHTML=returnWeek(dateSTr);
+            out[0].innerHTML=dateSTr;
         }
         if(typeof that.fn2 == 'function'){ that.fn2(outObj_)}
     }
