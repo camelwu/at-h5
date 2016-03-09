@@ -74,11 +74,11 @@
             <span class="title">房间</span>
             <div class="per-price-control" data-type="extraRoom"><span id="room_downb" class="cut-down-btn"></span><i id="roomNum" class="cut-up-cont">1</i><span class="plus-btn"></span></div>
         </section>
-        <section class="hotelInfo_numb_people">
+        <section class="hotelInfo_numb_people init-hotel-room-detail">
             <span class="title">房间1</span>
             <div class="numbList">
                 <span class="n_tit">成人</span>
-                <div class="per-price-control"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>
+                <div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>
             </div>
             <div class="numbList">
                 <span class="n_tit">儿童</span>
@@ -114,161 +114,6 @@
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script src="js/dateFix.js"></script>
-<script>
-    (function(){
-        function toUp(m,n,n_1){
-            var _type = n.parentNode.getAttribute("data-type");
-            n.onclick=function(){
-                var str=m.innerHTML;
-                str=Number(str);
-                str=str+1;
-                m.innerHTML=str;
-                str==0?n_1.style.backgroundPosition = '-26px 2px':n_1.style.backgroundPosition = '-51px 2px';
-                _type=="extraChild"&&extraChild(n.parentNode.parentNode,str);
-                _type=="extraRoom"&&extraRoom(n.parentNode.parentNode,str);
-            };
-        }
-        function toDown(m,n){
-            var _type = n.parentNode.getAttribute("data-type");
-            n.onclick=function(){
-                var str=m.innerHTML;
-                str=Number(str);
-                if(n.id == 'room_downb'){
-                    if(str<=1){m.innerHTML=1;}else{str=str-1;m.innerHTML=str;}
-                    str==1?n.style.backgroundPosition = '-26px 2px':n.style.backgroundPosition = '-51px 2px';
-                }else {
-                    if (str <= 0) {
-                        m.innerHTML = 0;
-                    } else {
-                        str = str - 1;
-                        m.innerHTML = str;
-                    }
-                    str == 0 ? n.style.backgroundPosition = '-26px 2px' : n.style.backgroundPosition = '-51px 2px';
-                }
-                _type=="extraChild"&&extraChild(n.parentNode.parentNode,str);
-                _type=="extraRoom"&&extraRoom(n.parentNode.parentNode,str);
-            };
-        }
-        //  实现加减
-        function add_subtract() {
-            var oNum = document.getElementsByClassName('cut-up-cont'),
-                    _plus_btn = document.getElementsByClassName('plus-btn'),
-                    _cut_down_btn = document.getElementsByClassName('cut-down-btn');
-            for (var i = 0; i < oNum.length; i++) {
-                toUp(oNum[i], _plus_btn[i], _cut_down_btn[i]);
-                toDown(oNum[i], _cut_down_btn[i]);
-                var str = parseInt(oNum[i].innerHTML);
-                if (i == 0) {
-                    str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-26px 2px' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
-                } else {
-                    str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-26px 2px' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
-                }
-            }
-            (function() {
-                var addBed = document.getElementsByClassName('icon noselect');
-                for (var j = 0; j < addBed.length; j++) {
-                    {
-                        (function(index) {
-                            addBed[j].onclick = function () {
-                                var c_name = addBed[index].className;
-                                if (c_name == 'icon noselect') {
-                                    this.className = 'icon noselect ico_select';
-                                } else {
-                                    this.className = 'icon noselect';
-                                }
-                            }
-                        }(j))
-                    }
-                }
-            })()
-        }
-        add_subtract();
-        //   加减儿童
-        function extraChild(dom,numb){
-//      var _bedBox = dom.parentNode.getElementById('addChild') , _html='';
-            var _bedBox = dom.parentNode.getElementsByClassName('extraChild') , _html='';
-            if(numb==0&&_bedBox.length==1){_bedBox[0].style.display = 'none';}else{
-                _bedBox[0].style.display = 'block';
-                var _listHtml = '';
-                for(var i=1;i<=numb;i++){_listHtml+=extraChildTemp(i);}
-                if(_bedBox.length==0){
-                    _html='<div class="extraChild">';
-                    domAfter(dom,_html+_listHtml+'</div>');
-                }else{
-                    _bedBox[0].innerHTML = _listHtml;
-                }
-            }
-            add_subtract();
-        }
-        //    加减房间
-        function extraRoom(dom,numb){
-            var roomBox_first = dom.parentNode.childNodes[7];
-            var roomBox = document.getElementsByClassName('hotelInfo_numb_people');
-            var _html = '';
-            if(numb<roomBox.length){
-                console.log(roomBox[roomBox.length-1]);
-                roomBox_first.parentNode.removeChild(roomBox[roomBox.length-1]);
-            }else if(numb==roomBox.length){
-                return;
-            }
-            else{
-                var section = document.createElement("section");
-                section.className = "hotelInfo_numb_people";
-                for(var i=1;i<=numb;i++){
-                    _html = extraRoomTemp(i);
-                    var rb_l = roomBox.length;
-                    var lastIndex = rb_l-1;
-                    section.innerHTML = _html;
-                    roomBox_first.parentNode.insertBefore(section,roomBox[lastIndex].nextElementSibling);
-                }
-            }
-            add_subtract();
-        }
-        function extraChildTemp(i){
-            return '<span class="bedList" style="float: left"><i>儿童年龄'+i+'</i></span>'
-                    +'<div class="childAge">'
-                    +'<input class="inp-cage" type="text" value placeholder="2-14"><i class="child-sui">岁</i>'
-                    +'</div>'
-                    +'<div class="numbList spenumbList">'
-                    +'<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'
-                    +'</div>';
-        }
-        function extraRoomTemp(i){
-            return '<span class="title">房间'+i+'</span>'
-                    +'<div class="numbList">'
-                    +'<span class="n_tit">成人</span>'
-                    +'<div class="per-price-control"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'
-                    +'</div>'
-                    +'<div class="numbList">'
-                    +'<span class="n_tit">儿童</span>'
-                    +'<span class="child-age">（2-14岁）</span>'
-                    +'<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">1</i><span class="plus-btn"></span></div>'
-                    +'</div>'
-                    +'<div class="extraChild">'
-                    +'<span class="bedList" style="float: left"><i>儿童年龄1</i></span>'
-                    +'<div class="childAge">'
-                    +'<input class="inp-cage" type="text" value placeholder="2-14"><i class="child-sui">岁</i>'
-                    +'</div>'
-                    +'<div class="numbList">'
-                    +'<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'
-                    +'</div>'
-                    +'</div>';
-        }
-        function domAfter(dom,html){
-            var next = dom.nextSibling;
-            if(next!=null){
-                while(next.tagName==undefined){
-                    if(next.nextSibling!=null){
-                        next = next.nextSibling;
-                    }else{
-                        next = null;break;
-                    }
-                }
-            }
-            next!=null?next.parentNode.insertBefore(el(html),next):dom.parentNode.appendChild(el(html));
-        }
-    })()
-</script>
 //   获取景点
 <script id="tpl_GetTour" type="text/template">
     {% for(var i=0;i < tours.length;i++){ %}
@@ -289,7 +134,7 @@
 <script>
     (function(){
         var minPaxType = 0,  minPax= 0, maxAdult = 0, onlyForAdult = false, childAgeMin= 2, childAgeMax= 14;
-        var ww = this, packageID='';
+        var ww = this, packageID='', roomMinNum= 1, roomMaxNum=3;
         var val = vlm.parseUrlPara(window.location.href);
         vlm.init();
         var packageID = localStorage.packageID;
@@ -304,7 +149,6 @@
                 input[j].placeholder =childAgeMin + '-' + childAgeMax;
             }
         };
-
         var inpitInfo = function(){
             //   加载动画
             var flashLoad = function(){
@@ -336,6 +180,237 @@
                         packageID = data.packageID;
                         childAgeMin = parseInt(data.childAgeMin);
                         childAgeMax = parseInt(data.childAgeMax);
+                        (function(){
+                            initRooms();
+                            function toUp(m,n,n_1){
+                                var _type = n.parentNode.getAttribute("data-type");
+                                var str='', temAll= 0, roomEle='';
+                                n.onclick=function(){
+                                    roomEle=n.parentNode.parentNode.parentNode;
+                                    if(_type=="extraChild"){
+                                        str=m.innerHTML;
+                                        str=Number(str);
+                                        str=str+1;
+                                        temAll = Number(roomEle.querySelector('.adult-people-number').innerHTML)+str;
+                                        if(temAll>roomMaxNum){
+                                            jAlert('单个房间最大人数不能超过'+roomMaxNum+'人','提示');
+                                           // n.style.backgroundPosition = '-51px 2px';
+                                        }else{
+                                            m.innerHTML=str;
+                                        }
+                                       extraChild(n.parentNode.parentNode,str);
+                                    }else if(_type=="extraRoom"){
+                                        str=m.innerHTML;
+                                        str=Number(str);
+                                        str=str+1;
+                                        m.innerHTML=str;
+                                        extraRoom(n.parentNode.parentNode,str);
+                                    }else if(_type=="adult"){
+                                        if(onlyForAdult){
+                                            str=m.innerHTML;
+                                            str=Number(str);
+                                            str=str+1;
+                                            temAll = str;
+                                            if(temAll>roomMaxNum){
+                                                jAlert('单个房间最大人数不能超过'+roomMaxNum+'人','提示');
+                                               // n.style.backgroundPosition = '-51px 2px';
+                                            }else{
+                                                m.innerHTML=str;
+                                            }
+                                        }else{
+                                            str=m.innerHTML;
+                                            str=Number(str);
+                                            str=str+1;
+                                            temAll = Number(roomEle.querySelector('.child-number').innerHTML)+str;
+                                            if(temAll>roomMaxNum){
+                                                jAlert('单个房间最大人数不能超过'+roomMaxNum+'人','提示');
+                                                //n.style.backgroundPosition = '-51px 2px';
+                                            }else{
+                                                m.innerHTML=str;
+                                            }
+                                        }
+                                    }
+                                };
+                            }
+                            function toDown(m,n){
+                                var _type = n.parentNode.getAttribute("data-type");
+                                n.onclick=function(){
+                                    var str=m.innerHTML;
+                                    str=Number(str);
+                                    if(n.id == 'room_downb'){
+                                        if(str<=1){m.innerHTML=1;}else{str=str-1;m.innerHTML=str;}
+                                        str==1?n.style.backgroundPosition = '-26px 2px':n.style.backgroundPosition = '-51px 2px';
+                                    }else {
+                                        if (str <= 0) {
+                                            m.innerHTML = 0;
+                                        } else {
+                                            str = str - 1;
+                                            m.innerHTML = str;
+                                        }
+                                        str == 0 ? n.style.backgroundPosition = '-26px 2px' : n.style.backgroundPosition = '-51px 2px';
+                                    }
+                                    _type=="extraChild"&&extraChild(n.parentNode.parentNode,str);
+                                    _type=="extraRoom"&&extraRoom(n.parentNode.parentNode,str);
+                                };
+                            }
+                            //  实现加减
+                            function add_subtract() {
+                                var oNum = document.getElementsByClassName('cut-up-cont'),
+                                        _plus_btn = document.getElementsByClassName('plus-btn'),
+                                        _cut_down_btn = document.getElementsByClassName('cut-down-btn');
+                                for (var i = 0; i < oNum.length; i++) {
+                                    toUp(oNum[i], _plus_btn[i], _cut_down_btn[i]);
+                                    toDown(oNum[i], _cut_down_btn[i]);
+                                    var str = parseInt(oNum[i].innerHTML);
+                                    if (i == 0) {
+                                        str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-26px 2px' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
+                                    } else {
+                                        str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-26px 2px' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
+                                    }
+                                }
+                                (function() {
+                                    var addBed = document.getElementsByClassName('icon noselect');
+                                    for (var j = 0; j < addBed.length; j++) {
+                                        {
+                                            (function(index) {
+                                                addBed[j].onclick = function () {
+                                                    var c_name = addBed[index].className;
+                                                    if (c_name == 'icon noselect') {
+                                                        this.className = 'icon noselect ico_select';
+                                                    } else {
+                                                        this.className = 'icon noselect';
+                                                    }
+                                                }
+                                            }(j))
+                                        }
+                                    }
+                                })()
+                            }
+                            add_subtract();
+                            //   加减儿童
+                            function extraChild(dom,numb){
+                                var _bedBox = dom.parentNode.getElementsByClassName('extraChild') , _html='';
+                                if(numb==0&&_bedBox.length==1){_bedBox[0].style.display = 'none';}else{
+                                    _bedBox[0].style.display = 'block';
+                                    var _listHtml = '';
+                                    for(var i=1;i<=numb;i++){_listHtml+=extraChildTemp(i);}
+                                    if(_bedBox.length==0){
+                                        _html='<div class="extraChild">';
+                                        domAfter(dom,_html+_listHtml+'</div>');
+                                    }else{
+                                        _bedBox[0].innerHTML = _listHtml;
+                                    }
+                                }
+                                add_subtract();
+                            }
+                            //    加减房间
+                            function extraRoom(dom,numb){
+                                var roomBox_first = dom.parentNode.childNodes[7];
+                                var roomBox = document.getElementsByClassName('hotelInfo_numb_people');
+                                var _html = '';
+                                if(numb<roomBox.length){
+                                    roomBox_first.parentNode.removeChild(roomBox[roomBox.length-1]);
+                                }else if(numb==roomBox.length){
+                                    return;
+                                }
+                                else{
+                                    var section = document.createElement("section");
+                                    section.className = "hotelInfo_numb_people";
+                                    for(var i=1;i<=numb;i++){
+                                        _html = extraRoomTemp(i);
+                                        var rb_l = roomBox.length;
+                                        var lastIndex = rb_l-1;
+                                        section.innerHTML = _html;
+                                        roomBox_first.parentNode.insertBefore(section,roomBox[lastIndex].nextElementSibling);
+                                    }
+                                }
+                                add_subtract();
+                            }
+                            function extraChildTemp(i){
+                                return '<span class="bedList" style="float: left"><i>儿童年龄'+i+'</i></span>'
+                                        +'<div class="childAge">'
+                                        +'<input class="inp-cage" type="text" value placeholder="'+childAgeMin+'-'+childAgeMax+'"><i class="child-sui">岁</i>'
+                                        +'</div>'
+                                        +'<div class="numbList spenumbList">'
+                                        +'<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'
+                                        +'</div>';
+                            }
+                            function extraRoomTemp(i){
+                                if(onlyForAdult){
+                                    return '<span class="title">房间'+i+'</span>'
+                                            +'<div class="numbList" style="margin-left: 70px;border-bottom: 1px solid #ddd;">'
+                                            +'<span class="n_tit">成人</span>'
+                                            +'<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'
+                                            +'</div>';
+                                }else{
+                                    return '<span class="title">房间'+i+'</span>'
+                                            +'<div class="numbList">'
+                                            +'<span class="n_tit">成人</span>'
+                                            +'<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'
+                                            +'</div>'
+                                            +'<div class="numbList">'
+                                            +'<span class="n_tit">儿童</span>'
+                                            +'<span class="child-age">('+childAgeMin+'-'+childAgeMax+')</span>'
+                                            +'<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">1</i><span class="plus-btn"></span></div>'
+                                            +'</div>'
+                                            +'<div class="extraChild">'
+                                            +'<span class="bedList" style="float: left"><i>儿童年龄1</i></span>'
+                                            +'<div class="childAge">'
+                                            +'<input class="inp-cage" type="text" value placeholder="2-14"><i class="child-sui">岁</i>'
+                                            +'</div>'
+                                            +'<div class="numbList">'
+                                            +'<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'
+                                            +'</div>'
+                                            +'</div>';
+                                }
+                            }
+                            function domAfter(dom,html){
+                                var next = dom.nextSibling;
+                                if(next!=null){
+                                    while(next.tagName==undefined){
+                                        if(next.nextSibling!=null){
+                                            next = next.nextSibling;
+                                        }else{
+                                            next = null;break;
+                                        }
+                                    }
+                                }
+                                next!=null?next.parentNode.insertBefore(el(html),next):dom.parentNode.appendChild(el(html));
+                            }
+                            function initRooms(){
+                                  var initEle = document.querySelector('.init-hotel-room-detail'), initStr='';
+                                  if(onlyForAdult){
+                                      initStr='<span class="title">房间1</span>'+
+                                      '<div class="numbList">'+
+                                      '<span class="n_tit" style="margin-left: 70px;border-bottom: 1px solid #ddd; ">成人</span>'+
+                                      '<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'+
+                                      '</div>'
+                                  }else{
+                                      initStr='<span class="title">房间1</span>'+
+                                      '<div class="numbList">'+
+                                      '<span class="n_tit" style="margin-left: 70px">成人</span>'+
+                                      '<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'+
+                                      '</div>'+
+                                      '<div class="numbList">'+
+                                      '<span class="n_tit">儿童</span>'+
+                                      '<span class="child-age">（2-14岁）</span>'+
+                                      '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">1</i><span class="plus-btn"></span></div>'+
+                                      '</div>'+
+                                          <!--<div id="addChild">-->
+                                      '<div class="extraChild">'+
+                                      '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>'+
+                                      '<div class="childAge">'+
+                                      '<input class="inp-cage" type="text" placeholder="2-14"><i class="child-sui">岁</i>'+
+                                      '</div>'+
+                                      '<div class="numbList">'+
+                                      '<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'+
+                                      '</div>'+
+                                      '</div>'
+                                  }
+                                initEle.innerHTML = initStr;
+
+                            }
+                        })();
                         var tpl_GetTour = template("tpl_GetTour",data);
                         if(localStorage.getItem('init')!='1'){
                             dateHandler.init();
@@ -740,12 +815,11 @@
             return this;
         },
         getDayNum: function(arg1,arg2){
-            var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+            var time1 = Date.parse(arg1), time2 = Date.parse(arg2), dayCount;
             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
         },
         init:function(){
             this.initDate()
-
         }
     };
 </script>
