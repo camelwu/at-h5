@@ -167,7 +167,7 @@ TicketDate.prototype.drawDate = function (odate) {
                 //if(i<nowDate||i<(new Date(this.range[0])).getDate())
 
 
-            } else if (month == nowmonth + 2) {
+            } /*else if (month == nowmonth + 2) {
                 m=month<10?'0'+month:month;
                 d=i<10?'0'+i:i;
                 if (i < nowdate ||i<(new Date(this.range[0])).getDate()||i>(new Date(this.range[1])).getDate()){
@@ -180,7 +180,7 @@ TicketDate.prototype.drawDate = function (odate) {
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
                 }
                 ddHtml.push(pstr);
-            } else {
+            } */else {
                 ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
             }
         } else if (year > nowyear) {
