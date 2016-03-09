@@ -44,7 +44,7 @@ i{
     position: absolute;
     width: 12px;
     height: 22px;
-    left: 15px;
+    left: 1.0rem;
     top: 12px;
 }
 
@@ -867,4 +867,25 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child{border:none;}
     -moz-transition: all 0.7s ease-in-out;
     -ms-transition: all 0.7s ease-in-out;
     transition: all 0.7s ease-in-out;
+}
+#popup_content{
+    background-color: #fff;
+    border-radius: 3px;
+    min-width: 290px;
+    max-width: 76%;
+    margin-left: 12%;
+}
+#popup_message {
+    padding: 29px 22px;
+    font-size: 14px;
+    color: #484848;
+    text-align: center;
+}
+#popup_panel {
+    width: 100%;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 700;
+    border-top: 1px #dedede solid;
+    text-align: center;
 }

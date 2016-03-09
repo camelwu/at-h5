@@ -242,7 +242,7 @@
                     +'<div class="numbList">'
                     +'<span class="n_tit">儿童</span>'
                     +'<span class="child-age">（2-14岁）</span>'
-                    +'<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont" data-type="childNum">1</i><span class="plus-btn"></span></div>'
+                    +'<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">1</i><span class="plus-btn"></span></div>'
                     +'</div>'
                     +'<div class="extraChild">'
                     +'<span class="bedList" style="float: left"><i>儿童年龄1</i></span>'
@@ -293,6 +293,7 @@
         var val = vlm.parseUrlPara(window.location.href);
         vlm.init();
         var packageID = localStorage.packageID;
+        localStorage.setItem('init','0');
         var initAgeRange = function(){
             var s = document.querySelectorAll('.child-age');
             var input = document.querySelectorAll('.inp-cage');
@@ -336,7 +337,9 @@
                         childAgeMin = parseInt(data.childAgeMin);
                         childAgeMax = parseInt(data.childAgeMax);
                         var tpl_GetTour = template("tpl_GetTour",data);
-                        dateHandler.init();
+                        if(localStorage.getItem('init')!='1'){
+                            dateHandler.init();
+                        };
                         $('#tourTime').html(tpl_GetTour);
                         if(!onlyForAdult){
                             initAgeRange();
@@ -352,7 +355,6 @@
             };
             //  传递数据
             var sendInfo = function(){
-
                 var packageID = packageID;
                 var CheckInDate = document.getElementById('CheckInDate').value+'T00:00:00';
                 var CheckOutDate = document.getElementById('CheckOutDate').value+'T00:00:00';
@@ -437,7 +439,32 @@
                             tours: tours
                         };
                         localStorage.setItem('info', JSON.stringify(paraObj));
-                        window.location.href = "hotel_list.html";
+                  //获得数据
+                        var getHotel = function(){
+                            $("#preloader").show();
+                            $("#status").show();
+                            var tmp={
+                                Parameters:paraObj,
+                                ForeEndType: 3,
+                                Code: "0208"
+                            };
+                            vlm.loadJson("",JSON.stringify(tmp),callBack);
+                            function callBack(ret){
+                                localStorage.setItem('init', '1');
+                                $("#preloader").fadeOut("medium");
+                                var json = eval('('+ret+')');
+                                console.log(json);
+                                if(json.success) {
+                                    localStorage.setItem('info', JSON.stringify(paraObj));
+                                    localStorage.setItem('hotelResultData', JSON.stringify(json.data));
+                                     window.location.href = "hotel_list.html";
+                                }else{
+                                    console.log(json);
+                                    jAlert(json.message,"提示");
+                                }
+                            }
+                        };
+                        getHotel();
                     }
                 }else{
                     var extraChild = document.getElementsByClassName('extraChild');
@@ -492,9 +519,31 @@
                            roomDetails:roomDetails,
                            tours: tours
                        };
-                       console.log(paraObj);
-                       localStorage.setItem('info', JSON.stringify(paraObj));
-                        window.location.href = "hotel_list.html";
+                       //获得数据
+                       var getHotel = function(){
+                           $("#preloader").show();
+                           $("#status").show();
+                           var tmp={
+                               Parameters:paraObj,
+                               ForeEndType: 3,
+                               Code: "0208"
+                           };
+                           vlm.loadJson("",JSON.stringify(tmp),callBack);
+                           function callBack(ret){
+                               localStorage.setItem('init', '1');
+                               $("#preloader").fadeOut("medium");
+                               var json = eval('('+ret+')');
+                               console.log(json);
+                               if(json.success) {
+                                   localStorage.setItem('info', JSON.stringify(paraObj));
+                                   localStorage.setItem('hotelResultData', JSON.stringify(json.data));
+                                   window.location.href = "hotel_list.html";
+                               }else{
+                                   jAlert(json.message,"提示");
+                               }
+                           }
+                       };
+                       getHotel();
                    }
                 }
             };
@@ -514,7 +563,6 @@
             inpitInfo.SendInfo();
         };
         MT.load();
-
     })();
     var order_btn = $('#order_btn');
     order_btn.click( MT.sendData);
@@ -629,8 +677,9 @@
                     span1.innerHTML = returnWeek(arg.start)+' 入住';
                     span2.innerHTML = returnWeek(arg.end)+' 离店';
                     for(var i = 0; i<allDivs.length;i++ ){
-                        var inputClassName ='',span='',id='',input =allDivs[i].querySelector('input');
+                        var inputClassName ='',span='',id='',input =allDivs[i].querySelector('input'), spanWeek =allDivs[i].querySelector('.week-tour');
                         input.value=inputs[0].value;
+                        spanWeek.innerHTML = returnWeek(inputs[0].value);
                         id = allDivs[i].id;
                         inputClassName = input.className;
                         span = allDivs[i].querySelectorAll('span')[1].className;
