@@ -259,31 +259,31 @@
                     }
 
                     //每个房间的儿童信息
-                    //var oLiChild=roomNum[i].querySelectorAll('.trave-li-child');
-                    //for(var m=0;m<oLiChild.length;m++) {
-                    //    var inputChild = roomNum[i].querySelectorAll('.list-child');
-                    //    var lastNameChi = inputChild[0].value;
-                    //    var firstNameChi = inputChild[1].value;
-                    //    //if(! vlm.Utils.validate.mobileNo(oMobile))
-                    //    if(lastNameChi == '')
-                    //    {
-                    //        jAlert('请输入名');
-                    //        return;
-                    //    }
-                    //    if(firstNameChi == '')
-                    //    {
-                    //        jAlert('请输入姓');
-                    //        return;
-                    //    }
-                    //    var tra = {};
-                    //    tra.RoomSeqNo = (m + 1);
-                    //    tra.TravelerType = "Child";
-                    //    tra.Salutation = "None";
-                    //    tra.FirstName = firstNameChi;
-                    //    tra.LastName = lastNameChi;
-                    //    tra.NationalityCode = "SG";
-                    //    traveler.push(tra);
-                    //}
+                    var oLiChild=roomNum[i].querySelectorAll('.trave-li-child');
+                    for(var m=0;m<oLiChild.length;m++) {
+                        var inputChild = roomNum[i].querySelectorAll('.list-child');
+                        var lastNameChi = inputChild[0].value;
+                        var firstNameChi = inputChild[1].value;
+                        //if(! vlm.Utils.validate.mobileNo(oMobile))
+                        if(lastNameChi == '')
+                        {
+                            jAlert('请输入名');
+                            return;
+                        }
+                        if(firstNameChi == '')
+                        {
+                            jAlert('请输入姓');
+                            return;
+                        }
+                        var tra = {};
+                        tra.RoomSeqNo = (m + 1);
+                        tra.TravelerType = "Child";
+                        tra.Salutation = "None";
+                        tra.FirstName = firstNameChi;
+                        tra.LastName = lastNameChi;
+                        tra.NationalityCode = "SG";
+                        traveler.push(tra);
+                    }
 
                 }
                 Parmeters.Parameters.Travelers=traveler;
