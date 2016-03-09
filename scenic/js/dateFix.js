@@ -142,51 +142,34 @@ TicketDate.prototype.drawDate = function (odate) {
     // 循环显示日期
 
     for (i = 1; i <= days; i++) {
-
-            if (year < nowyear) {
-                ddHtml.push('<a class="disabled">' + i + '</a>');
-            } else if (year == nowyear) {
-                if (month < nowmonth + 1) {
+        if (year < nowyear) {
+            ddHtml.push('<a class="disabled">' + i + '</a>');
+        } else if (year == nowyear) {
+            if (month < nowmonth + 1) {
+                ddHtml.push('<a class="live disabled">' + i + '</a>');
+            } else if (month == nowmonth + 1) {
+                if (i < nowdate){
                     ddHtml.push('<a class="live disabled">' + i + '</a>');
-                } else if (month == nowmonth + 1) {
-                    if (i < nowdate){
-                        ddHtml.push('<a class="live disabled">' + i + '</a>');
-                    }
-                    else{
-                        m=month<10?'0'+month:month;
-                        d=i<10?'0'+i:i;
-                        if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                            pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
-                        }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
-                            pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
-                        }else{
-                            pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
-                        }
-                        i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
-                    }
-                    //if(i<nowDate||i<(new Date(this.range[0])).getDate())
-
-
-                } else if (month == nowmonth + 2) {
+                }
+                else{
                     m=month<10?'0'+month:month;
                     d=i<10?'0'+i:i;
-                    if (i < nowdate ||i<(new Date(this.range[0])).getDate()||i>(new Date(this.range[1])).getDate()){
-                        pstr ='<a class="live disabled">' + i + '</a>';
-                    }else if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
+                    if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
                     }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                     }else{
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
                     }
-                    ddHtml.push(pstr);
-                } else {
-                    ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+                    i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
                 }
-            } else if (year > nowyear) {
+            }else {
                 ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
             }
+        } else if (year > nowyear) {
+            ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
         }
+    }
 
 
     dd.innerHTML = ddHtml.join('');
@@ -261,8 +244,8 @@ TicketDate.prototype.linkOver = function(event){
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
             outObj['start'] = sels[0].parentNode.getAttribute("data-day");
-            out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            if(out[1]){out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+            out[0].innerHTML=sels[0].parentNode.getAttribute("data-day");
+            if(out[1]){out[1].innerHTML=sels[1].parentNode.getAttribute("data-day");
                 outObj['end'] = sels[1].parentNode.getAttribute("data-day");
             }
         }
@@ -276,12 +259,12 @@ TicketDate.prototype.linkOver = function(event){
             dateSTr = target.getAttribute('data-day');
             that.linkColor('Oneway',dateSTr);
             outObj_['start'] = target.getAttribute('data-day');
-            out[0].innerHTML=returnWeek(dateSTr);
+            out[0].innerHTML=dateSTr;
         }else if(target.tagName == 'SPAN'){
             dateSTr = target.parentNode.getAttribute('data-day');
             outObj_['start'] = target.parentNode.getAttribute('data-day');
             that.linkColor('Oneway',dateSTr);
-            out[0].innerHTML=returnWeek(dateSTr);
+            out[0].innerHTML=dateSTr;
         }
         if(typeof that.fn2 == 'function'){ that.fn2(outObj_)}
     }

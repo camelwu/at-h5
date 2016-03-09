@@ -39,6 +39,9 @@
                             <span class="tourist-name tour-short">名：</span><input id="scenic2_name2" style="width:20%;display: inline-block;" placeholder="Venson">
                         </li>
                         <li>
+                            <span class="tourist-name tour-short">国籍：</span><input id="scenic2_NationalityCode" readonly="readonly" style="display: inline-block;" placeholder="国籍">
+                        </li>
+                        <li>
                             <span class="tourist-name tour-short">护照：</span><input id="scenic2_idcard" style="display: inline-block;" placeholder="EA2359923">
                         </li>
                     </ul>
@@ -49,9 +52,12 @@
                         <a href="javascript:;" class="con-add-butto fr" onclick="vlm.f_choice('t','contact','',false,false);"></a>
                     </div>
                     <ul class="tourist-msg contact">
-                        <li><span class="tourist-name tour-short">姓名：</span><input id="scenic2_name" style="display: inline-block;" placeholder="Venson"></li>
-                        <li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  placeholder="+8618611850882"></li>
-                        <li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"  placeholder="113638136@163.com"></li>
+                        <li>
+                            <span class="tourist-name tour-short">姓：</span><input id="scenic_name1" style="width:20%;display: inline-block;" placeholder="Liou">
+                            <span class="tourist-name tour-short">名：</span><input id="scenic_name2" style="width:20%;display: inline-block;" placeholder="Venson">
+                        </li>
+                        <li><span class="tourist-name tour-short">手机：</span><input id="scenic_phone" style="display: inline-block;"  placeholder="+8618611850882"></li>
+                        <li><span class="tourist-name tour-short">邮箱：</span><input id="scenic_email" style="display: inline-block;"  placeholder="113638136@163.com"></li>
                     </ul>
                 </div>
                 <!--<div class="gray-block"></div>-->
@@ -129,9 +135,9 @@
             </div>
             <div class="order-total-wrap clearFix">
                 <span class="fl">订单金额：</span>
-                <span class="order-total-fare fl">¥56</span>
+                <span class="order-total-fare fl js-order-total"></span>
                 <i class="order-total-tip fl"></i>
-                <a href="order-pay.html" class="order-total-btn fr">预定</a>
+                <a href="javascript:void(0)" class="order-total-btn fr js-order-detail">预定</a>
             </div>
         </footer>
         <!--添加其他套餐-->
@@ -189,9 +195,9 @@
             </div>
 
             {% if(isAudlt==1){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥56</strong>
+                <strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Audlt-cont">{%=DetailData.data.minPax%}</i>
@@ -199,9 +205,9 @@
                 </div>
             </div>
             {% }else if(isAudlt==0){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥{%=isAudlt%}</strong>
+                <strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Child-cont">{%=DetailData.data.minPax%}</i>
@@ -227,9 +233,9 @@
 
 
             {% if(isAudlt==0){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥56</strong>
+                <strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Audlt-cont">{%=DetailData.data.minPax%}</i>
@@ -237,9 +243,9 @@
                 </div>
             </div>
             {% }else if(isAudlt==1){ %}
-            <div class="sce-ticket per-price-wrap clearFix">
+            <div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
                 <span class="per-price-tit fl">单价：</span>
-                <strong class="per-price-cont fl">¥{%=isAudlt%}</strong>
+                <strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
                 <div class="per-price-control fr">
                     <span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
                     <i class="cut-up-cont js-Child-cont">{%=DetailData.data.minPax%}</i>
@@ -261,7 +267,7 @@
 
     <script id="tpl_Adult_Child1" type="text/template">
 
-        <div class="sce-ticket">
+        <div class="sce-ticket js-sce">
             <section class="travel-date clearFix">
                 <span class="travel-date-tit fl">游玩日期</span>
                 <div class="travel-date-wrap fr clearFix">
@@ -273,8 +279,8 @@
                         <b></b>
                     </div>
                     <div class="travel-date-wrap-noon fl">
-                        <a href="javascript:void(0);" class="fa-noon" onclick="MT.HalfDay(this,1)">上午</a>
-                        <a href="javascript:void(0);" class="fa-noon on" onclick="MT.HalfDay(this,0)">下午</a>
+                        <a href="javascript:void(0);" data-key="MorningTour" class="fa-noon" onclick="MT.HalfDay(this,1)">上午</a>
+                        <a href="javascript:void(0);" data-key="AfternoonTour" class="fa-noon on" onclick="MT.HalfDay(this,0)">下午</a>
                     </div>
                 </div>
             </section>
@@ -309,9 +315,6 @@
         </li>
 
     </script>
-
-
-
 
     <script>
 
@@ -405,7 +408,7 @@
             MT.callbackDetails = function(data){
                 var json=eval('('+data+')');
                 DetailData = json;
-                console.log(json);
+//                console.log(json);
                 if(json.success){
                     var data=json.data;
 
@@ -463,7 +466,7 @@
             MT.callbackSearchPrice = function(data){
                 var json=eval('('+data+')');
                 SearchPriceData = json;
-                console.log(json);
+//                console.log(json);
                 if(json.success){
                     globaldata = {DetailData:DetailData,SearchPriceData:SearchPriceData}
 
@@ -471,7 +474,15 @@
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
+
                 }
+            }
+            /*
+            * 返回年月日
+            * */
+            MT.getYMDMatch = function(arg)
+            {
+                return arg.match(/\d{4}[-/]\d{2}[-/]\d{2}/)[0];
             }
             /**
              * 渲染模版
@@ -480,21 +491,46 @@
                 var isAudlt = val.ADU;
 
                 if(isAudlt == 1){
-                    ExtendData = $.extend({isAudlt:1},globaldata);
+                    ExtendData = $.extend({isAudlt:1,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},globaldata);
                 }
 
                 if(isAudlt == 0){
-                    ExtendData = $.extend({isAudlt:0},globaldata);
+                    ExtendData = $.extend({isAudlt:0,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},globaldata);
                 }
 
-                StartDate =  MT.getYMD(ExtendData.DetailData.data.departValidFrom,"-");
-                EndDate =  MT.getYMD(ExtendData.DetailData.data.departValidTo,"-");
+
+                ExtendData.DefaultDate =  MT.getYMDMatch(ExtendData.DetailData.data.defaultDepartStartDate);
+                ExtendData.StartDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidFrom);
+                ExtendData.EndDate =  MT.getYMDMatch(ExtendData.DetailData.data.departValidTo);
+                ExtendData.minPax = ExtendData.DetailData.data.minPax;
+                ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
+                ExtendData.PackageID = ExtendData.DetailData.data.packageID;
+                ExtendData.travelersInput = ExtendData.SearchPriceData.data.bookingFormInfo.travelersInput;
+                ExtendData.requiredPickupPoint = ExtendData.SearchPriceData.data.bookingFormInfo.requiredPickupPoint;
+                ExtendData.airportTransferType = ExtendData.SearchPriceData.data.bookingFormInfo.airportTransferType;
+                //是否需要接送服务
+                if(ExtendData.requiredPickupPoint){
+                    $("[data-key=holist_page]").remove();
+                }
+                //是否需要护照
+                if(ExtendData.travelersInput == "RequiredAllTravelersDetailsWithoutDocumentInfo"){
+                    $("#scenic2_idcard").parent().remove();
+                }
+                //是否需要航班信息
+                if(ExtendData.airportTransferType == "None"){
+                    //None, TwoWay，Arrival，Depart
+
+                }
+
+
+
                 MT.renderView1();
 
                 MT.renderAddPackageView();
 
                 dateHandler();
 
+                console.log(ExtendData);
             }
             /**
              * 渲染view1
@@ -505,7 +541,8 @@
                 var tpl_ScenicView1 = template("tpl_ScenicView1",ExtendData);
                 var tpl_Adult_Child1 = template("tpl_Adult_Child1",ExtendData);
                 //初始化默认时间
-                var defaultTime = MT.getYMD(data.DetailData.data.defaultDepartStartDate,"-");
+                var defaultTime = ExtendData.DefaultDate;
+                var categoryIndex = 0,categoryTitle;
 
 
                 $(".js-childblock1").after(tpl_ScenicView1);
@@ -515,8 +552,23 @@
                     child_one.find(".sce-ticket:last").attr("id","jdate"+i);
                     child_one.find("#jdate > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
                     child_one.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[i].tourID);
-                    child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName);
+                    child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+"["+data.DetailData.data.packageRefNo+"]");
+
                 }
+
+                for (var i = 0;i<data.SearchPriceData.data.prices.length;i++){
+                    categoryTitle = data.SearchPriceData.data.prices[i].category;
+                    if(categoryTitle == "ADULT"){
+                        categoryIndex = i;
+                        data.AudltPrice = data.SearchPriceData.data.prices[i].amountInCNY;
+                    }
+                    if(categoryTitle == "CHILD"){
+                        categoryIndex = i;
+                        data.ChildPrice = data.SearchPriceData.data.prices[i].amountInCNY;
+                    }
+                }
+
+                MT.OnePrice(1);
             }
             /**
              * 渲染view2
@@ -526,13 +578,66 @@
                 var data = ExtendData;
                 var tpl_ScenicView2 = template("tpl_ScenicView2",ExtendData);
                 var tpl_Adult_Child2 = template("tpl_Adult_Child2",ExtendData);
+                var categoryIndex = 0,categoryTitle;
 
                 $(".js-childblock2").after(tpl_ScenicView2);
                 for(var j=0;j<data.SearchPriceData.data.tourInfos.length;j++){
                     var child_two = $(".js-sce-ticket2").append(tpl_Adult_Child2);
                     child_two.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[j].tourID);
-                    child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName);
+                    child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName+"["+data.DetailData.data.packageRefNo+"]");
                 }
+
+                MT.OnePrice(2);
+            }
+            /**
+             * 计算单价
+             */
+            MT.OnePrice = function(num){
+                var view1Price,view2Price,totalPrice;
+                if(num == 1)
+                {
+                    if(val.ADU == 1){
+                        view1Price =$(".js-scenicview1").find(".js-per-price-cont1").html("¥"+ExtendData.AudltPrice * ExtendData.minPax);
+                    }else if(val.ADU == 0){
+                        view1Price =$(".js-scenicview1").find(".js-per-price-cont1").html("¥"+ExtendData.ChildPrice * ExtendData.minPax);
+                    }
+                    view1Price = view1Price.html();
+
+                    view1Price = parseInt(view1Price.substring(1,view1Price.length));
+                }
+
+                if(num == 2)
+                {
+                    if(val.ADU == 0){
+                        view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥"+ExtendData.AudltPrice * ExtendData.minPax);
+                    }else if(val.ADU == 1){
+                        view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥"+ExtendData.ChildPrice * ExtendData.minPax);
+                    }
+                    view2Price = view2Price.html();
+                    view2Price = parseInt(view2Price.substring(1,view2Price.length));
+                }
+
+                if(view1Price == undefined){
+                    view1Price = 0;
+                }
+                if(view2Price == undefined){
+                    view2Price = 0;
+                }
+
+                totalPrice = $(".js-order-total").html();
+                if(totalPrice == ""){
+                    totalPrice = 0;
+                }else{
+                    if(totalPrice.indexOf("¥")!= -1){
+                        totalPrice = parseInt(totalPrice.substring(1,totalPrice.length));
+                    }else{
+                        totalPrice = parseInt(totalPrice);
+                    }
+                }
+
+
+                $(".js-order-total").html("¥"+parseInt(totalPrice + view1Price + view2Price));
+
             }
             /**
              * 渲染添加套餐菜单
@@ -579,9 +684,64 @@
 
             }
 
+            /**
+             * 计算价格
+             * @param obj
+             * @param isAudlt
+             * @param count
+             * @constructor
+             */
+            MT.CalculatePrice = function(obj,count){
+                var current = $(obj).parent().parent().attr("data-key");
+
+                if(current == "js-per-price1"){
+                    if(ExtendData.isAudlt == 1){
+                        price1 = $(".js-per-price-cont1").html("¥"+ExtendData.AudltPrice * count);
+                    }else if(ExtendData.isAudlt == 0){
+                        price1 = $(".js-per-price-cont1").html("¥"+ExtendData.ChildPrice * count);
+                    }
+                }
+
+                if(current == "js-per-price2"){
+                    if(ExtendData.isAudlt == 0){
+                        price2 = $(".js-per-price-cont2").html("¥"+ExtendData.AudltPrice * count);
+                    }else if(ExtendData.isAudlt == 1){
+                        price2 = $(".js-per-price-cont2").html("¥"+ExtendData.ChildPrice * count);
+                    }
+
+                }
+
+
+                MT.totalPrice();
+            }
 
             /**
-             * 增加减少单价
+             * 计算总金额
+             * @constructor
+             */
+            MT.totalPrice = function(){
+                var price1,price2,totalPrice;
+
+                price1 = $(".js-per-price-cont1").html();
+                price2 = $(".js-per-price-cont2").html();
+                if(price1 == undefined){
+                    price1 = 0;
+                }else{
+                    price1 = parseInt(price1.substring(1,price1.length));
+                }
+                if(price2 == undefined){
+                    price2 = 0;
+                }else{
+                    price2 = parseInt(price2.substring(1,price2.length));
+                }
+
+                totalPrice = price1 + price2;
+
+                $(".js-order-total").html("¥"+parseInt(totalPrice));
+            }
+
+            /**
+             * 增加减少人数
              * @param obj
              * @param isAudlt
              * @param minPax
@@ -589,37 +749,76 @@
              */
             MT.PlusCount = function(obj,isAudlt,minPax,mark){
                 var current = 1;
-                var AudltCount =$("js-Audlt-cont").html();
-                var ChildCount =$("js-Child-cont").html();
+                var AudltCount =$(".js-Audlt-cont").html();
+                var ChildCount =$(".js-Child-cont").html();
+
+                if(AudltCount == undefined){
+                    AudltCount = 0;
+                }
+                if(ChildCount == undefined){
+                    ChildCount = 0;
+                }
+                var maxCount = parseInt(AudltCount) + parseInt(ChildCount);
                 var child_yearsold;
                 if(isAudlt){
                     if(mark == 1){
-                        current = parseInt($(obj).prev().html());
-                        $(obj).prev().html(current+1);
+                        current = parseInt($(obj).prev().html())+1;
+                        $(obj).prev().html(current);
+                        MT.CalculatePrice(obj,current);
+
                     }else{
                         current = parseInt($(obj).next().html());
-                        if(current > minPax ){
-                            $(obj).next().html(current-1);
+
+                        if(ExtendData.minPaxType == "AdultAndChild"){
+
+                            if(maxCount > minPax && current > 0){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                            }
                         }
+
+                        if(ExtendData.minPaxType == "AdultOnly"){
+                            if(AudltCount > minPax ){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                            }
+                        }
+
 
                     }
 
                 }else{
                     if(mark == 1){
-                        current = parseInt($(obj).prev().html());
-                        $(obj).prev().html(current+1);
+                        current = parseInt($(obj).prev().html())+1;
+                        $(obj).prev().html(current);
+                        MT.CalculatePrice(obj,current);
                         child_yearsold = $("<li class='clearFix'>" +
-                                "<span id='child_old' class='child-age fl'>儿童年龄"+(current+1)+"</span>" +
+                                "<span id='child_old' class='child-age fl'>儿童年龄"+(current)+"</span>" +
                                 "<div class='child-age-cont fr'><input type='text' placeholder='2-14'/><span>岁</span></div>" +
                                 "</li>");
 
                         $(".js-children-wrap").append(child_yearsold);
                     }else{
                         current = parseInt($(obj).next().html());
-                        if(current > minPax ){
-                            $(obj).next().html(current-1);
-                            $(".js-children-wrap:last-child").children("li:last").remove();
+
+                        if(ExtendData.minPaxType == "AdultAndChild"){
+
+                            if(maxCount > minPax && current > 0){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                                $(".js-children-wrap:last-child").children("li:last").remove();
+                            }
                         }
+
+                        if(ExtendData.minPaxType == "AdultOnly"){
+                            if(current > 1 ){
+                                $(obj).next().html(current-1);
+                                MT.CalculatePrice(obj,current-1);
+                                $(".js-children-wrap:last-child").children("li:last").remove();
+                            }
+                        }
+
+
 
                     }
                 }
@@ -651,10 +850,12 @@
                             MT.renderView2();
                         }else{
                             $(".js-scenicview2").remove();
+                            MT.totalPrice();
                         }
                     }else{
                         if(addval == 0){
                             $(".js-scenicview2").remove();
+                            MT.totalPrice();
                         }
 
                     }
@@ -681,6 +882,142 @@
                     $(obj).attr("class","setmeal-tr fr");
                     $(obj).attr("data-add",0);
                 }
+
+            }
+
+            /**
+             * 预订 创建订单
+             * @constructor
+             */
+            MT.OrderDetail = function(){
+                $(".js-order-detail").click(function(){
+                    var AdultCount = 0,ChildCount = 0,ChildArray = [],Childtmp = ""
+                            ,TourArray = [],TourObj = {},DOB ="",TravelDate = "",TourSession = ""
+                            ,TourCount = 0,TourID = 0,PickupID = "",PickupPoint="",PickupCount = 0
+                            ,PickupTmp,PickupPoint = {},TravelerType = "",Salutation ="",FirstName = ""
+                            ,LastName = "",NationalityCode = "",Travelers = [],Email = ""
+                            ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",TotalPrice = 0;
+                    var param =
+                    {
+                        "Parameters": {
+                            "PackageID": ExtendData.PackageID,
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0092"
+                    }
+                    //成人数量
+                    AdultCount = $(".js-Audlt-cont").html();
+                    if(AdultCount == undefined)
+                    {
+                        AdultCount = 0;
+                    }
+                    param.Parameters.Adult = AdultCount;
+
+                    //儿童年龄数组
+                    ChildCount = $(".js-Child-cont").html();
+                    if(ChildCount == undefined)
+                    {
+                        ChildCount = 0;
+                        ChildArray = [];
+                    }else{
+                        ChildCount = parseInt(ChildCount);
+                        for(var i = 0;i< ChildCount;i++){
+                            Childtmp = $(".js-children-wrap").find("input").eq(i).val();
+                            ChildArray.push(Childtmp);
+                        }
+                    }
+                    param.Parameters.Child = ChildArray;
+
+                    //景点
+                    TourCount = $(".js-sce").length;
+                    if(TourCount > 0){
+                        for(var i=0;i<TourCount;i++){
+                            TourID = $(".js-sce").eq(i).find(".js-sce-introduce-txt").attr("data-key");
+                            TravelDate = $(".js-sce").eq(i).find(".js-ymd").html() + "T00:00:00";
+                            TourSession = $(".js-sce").eq(i).find(".on").attr("data-key");
+
+                            TourObj = {TourID,TravelDate,TourSession};
+
+                            TourArray.push(TourObj);
+                        }
+                        param.Parameters.Tours = TourArray;
+                    }
+
+
+                    //接送服务
+                    PickupCount = $("#choHotel").length;
+                    if(PickupCount > 0){
+                        PickupTmp = $("#choHotel").attr("data-key");
+                        if(PickupTmp != ""){
+                            PickupID = $("#choHotel").attr("data-key");
+                            PickupCount = $("#choHotel").html();
+                            PickupPoint = {PickupID,PickupCount};
+                            param.Parameters.PickupPoint = PickupPoint;
+                        }
+
+                    }
+
+
+                    TravelerType = ExtendData.isAudlt == 1?"Adult":"Child";
+                    Salutation = "Mr";
+                    //取票人信息
+                    FirstName = $("#scenic2_name1").val();
+                    LastName = $("#scenic2_name2").val();
+                    NationalityCode = $("#scenic2_NationalityCode").val().toUpperCase();
+
+                    if(TravelerType == "Child" ){
+                        DOB = "1987-07-13";
+                        param.Parameters.Travelers = [{TravelerType,Salutation,FirstName,LastName,DOB,NationalityCode}];
+                    }else{
+                        param.Parameters.Travelers = [{TravelerType,Salutation,FirstName,LastName,NationalityCode}];
+                    }
+
+
+
+                    //联系人信息
+                    FirstName = $("#scenic_name1").val();
+                    LastName = $("#scenic_name2").val();
+                    switch (NationalityCode){
+                        case "CN":
+                            CountryCode = 86;
+                            break;
+                        case "SG":
+                            CountryCode = 65;
+                        case "AE":
+                            CountryCode = 971;
+                        case "TH":
+                            CountryCode = 66;
+                            break;
+                    }
+                    Email = $("#scenic_email").val();
+                    PhoneNo = $("#scenic_phone").val();
+                    param.Parameters.ContactDetails  = {"Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"Email":Email,"ContactNo":{"CountryCode":CountryCode,"PhoneNo":PhoneNo}};
+
+                    //价格信息
+                    CurrencyCode = "CNY";
+                    TotalPrice = $(".js-order-total").html();
+                    TotalPrice = parseInt(TotalPrice.substring(1,TotalPrice.length));
+                    param.Parameters.ChargeDetails = {"CurrencyCode":CurrencyCode,"TotalPrice":TotalPrice};
+
+                    console.log(param);
+                    MT.ajaxJson("",JSON.stringify(param),MT.callbackOrderDetail,MT.ajaxAnimIn,MT.ajaxAnimOut);
+                });
+            }
+
+            /**
+             * 预订 callback
+             * @param data
+             * @constructor
+             */
+            MT.callbackOrderDetail = function(data){
+                var json=eval('('+data+')');
+                console.log(json);
+                if(json.success){
+
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
             }
 
             /**
@@ -688,8 +1025,8 @@
              * @constructor
              */
             function dateHandler(){
-                var startDate = StartDate;
-                var endDate = EndDate;
+                var startDate = ExtendData.StartDate;
+                var endDate = ExtendData.EndDate;
                 var allOuter = document.querySelectorAll('.travel-date-wrap-so');
                 var chooseDate=function(id, dateNum , startDate, endDate){
                     var rangeArray = [startDate, endDate];
@@ -702,6 +1039,7 @@
                         _word:{tip:['入住']},
                         range:rangeArray,
                         fn:function(){
+
                         }
                     });
                 };
@@ -723,102 +1061,12 @@
 
             MT.getDetails();
             MT.InitMorePackage();
-
+            MT.OrderDetail();
 
 
 
         })();
 
-
-
-
-        //添加更多套餐弹窗
-//        (function(){
-//            var oSetBtn=document.querySelector('.add-ticket');
-//            var oAddwin=document.querySelector('.add-setmeal');
-//            var oMaskWin=document.querySelector('.mask');
-//            var oSetmealBtn=document.querySelector('.add-setmeal-sure');
-//            var aMealBtn=document.querySelectorAll('.setmeal-tr');
-//
-//            oSetBtn.onclick=function(){
-//                oMaskWin.style.display='block';
-//                oAddwin.style.bottom='0';
-//
-//                oSetmealBtn.onclick=function(){
-//                    oMaskWin.style.display='none';
-//                    oAddwin.style.bottom='-500px';
-//                };
-//            };
-
-//            for(var i=0;i<aMealBtn.length; i++)
-//            {
-//                aMealBtn[i].flag=true;
-//                aMealBtn[i].onclick=function(){
-//                    if(this.flag)
-//                    {
-//                        this.className='setmeal-tr on fr';
-//                        this.flag=false;
-//                    }
-//                    else
-//                    {
-//                        this.className='setmeal-tr fr';
-//                        this.flag=true;
-//                    }
-//                };
-//            }
-//        })();
-
-        //选择上午下午
-//        (function(){
-//            var oTraBtn=document.querySelector('.travel-date-wrap-noon').querySelectorAll('a');
-//            for(var i=0;i<oTraBtn.length; i++)
-//            {
-//                oTraBtn[i].onclick=function(){
-//                     for(var i=0;i<oTraBtn.length; i++)
-//                     {
-//                         oTraBtn[i].className='fa-noon';
-//                     }
-//                    this.className='fa-noon on';
-//                };
-//            }
-//        })();
-
-        /*票数加减*/
-        /*
-        (function(){
-            function toUp(m,n){
-                var oNum=document.getElementsByClassName(m)[0];
-                var oBtn=document.getElementsByClassName(n)[0];
-                oBtn.onclick=function(){
-                    var str=oNum.innerHTML;
-                    str=Number(str);
-                    str=str+1;
-                    oNum.innerHTML=str;
-                };
-            }
-            function toDown(m,n){
-                var oNum=document.getElementsByClassName(m)[0];
-                var oBtn=document.getElementsByClassName(n)[0];
-
-                oBtn.onclick=function(){
-                    var str=oNum.innerHTML;
-                    str=Number(str);
-                    if(str<=1){
-                        oNum.innerHTML=1;
-                    }else{
-                        str=str-1;
-                        oNum.innerHTML=str;
-                    }
-                };
-            }
-            toUp('cut-up-cont','plus-btn');
-            toDown('cut-up-cont','cut-down-btn');
-
-            toUp('set-seal-cont','set-sealplus-btn');
-            toDown('set-seal-cont','set-sealdown-btn');
-
-        })();
-        */
 
         /*同意条款*/
         (function(){
@@ -886,6 +1134,49 @@
             }
         }
 
+    </script>
+    <!--  国家列表选择弹框    -->
+    <div class="pop_box" style="display:none">
+        <div style="height: 44px;">
+            <div class="t-header">
+                <span id="js_back_btn" class="js-backpage t-header-icon fl t-header-iconsize"></span>
+                <div class="t-search-view t-search-viewsize">
+                    <input class="t-search-inputbox" placeholder="北京/beijing/bj/bjs/中国">
+                </div>
+                <a href="javascript:;" class="cancelBtn">取消</a>
+            </div>
+        </div>
+        <ul class="pop_list">
+            <li><p>中国</p></li>
+            <li><p>北京</p></li>
+            <li><p>上海</p></li>
+            <li><p>重庆</p></li>
+            <li><p>广州</p></li>
+            <li><p>河北</p></li>
+            <li><p>河南河南河男活动啊哈佛啊和佛</p></li>
+            <li><p>湖南</p></li>
+            <li><p>湖北</p></li>
+        </ul>
+        <dl class="empty_history">
+            <dt>北航/辽宁大学南校区，辽宁、沈阳，中国，中国，中国，北京的大学</dt>
+            <dd><a href="javascript:;">清空搜索历史</a> </dd>
+        </dl>
+    </div>
+    <script>
+        $(function(){
+            $('#scenic2_NationalityCode').click(function(){
+                console.log(1)
+                $('.pop_box').show();
+            })
+            $('#js_back_btn,.cancelBtn').click(function(){
+                $('.pop_box').hide();
+            })
+
+            $('.pop_box ul.pop_list li').click(function(){
+                $('input#scenic2_NationalityCode').val($(this).find('p').html())
+                $('.pop_box').hide();
+            })
+        })
     </script>
 
 </body>

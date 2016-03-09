@@ -61,30 +61,24 @@ var hotelList = {
                 '<div class="l-price">',
                 '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>',
                 '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>',
-                '<div class="city-choose-tip" id="show-result-tip"></div>',
                 '<!--<a class="choose-no">选择</a>-->',
                 '</div>',
             '</li>'
         ].join('');
-        var resultData = JSON.parse(arguments[0]),that = hotelList;
-        if (resultData.success) {
-            if (resultData.data.hotels.length == 0) {
+        var resultData = arguments[0],that = hotelList;
+            if (resultData.hotels.length == 0) {
                 jAlert("抱歉暂时没有数据", "提示");
             }else{
-                that.packageID = resultData.data.packageID;
-                that.bookingFormInfo = resultData.data.bookingFormInfo;
-                var hotels = resultData.data.hotels;
+                that.packageID = resultData.packageID;
+                that.bookingFormInfo = resultData.bookingFormInfo;
+                var hotels = resultData.hotels;
                 hotels = that.resetData(hotels);
                 var tpl_GetList = template(tpl1, hotels);
                 $("#preloader").fadeOut();
                 $('#lsf_list').html(tpl_GetList);
                 that.delayLoadImage().addEvent()
             }
-        } else {
-            jAlert(resultData.message, "提示");
-        }
     },
-
     resetData: function(){
          var data = arguments[0];
          var starWord=function(arg){
@@ -146,22 +140,7 @@ var hotelList = {
                 (allChoosePic[i].style.display == 'block')?hotelId=allChoosePic[i].parentNode.getAttribute('data-id'):void(0);
             }
             if(hotelId) {
-                var roomDetails = [{adult:0}],info = JSON.parse(window.localStorage.info);
-                 roomDetails[0].adult=parseInt(info.adultNum);
-                 (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
-                 (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
-                 (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
-
-                 var paraObj = {
-                 packageID:window.localStorage.packageID,
-                 checkInDate:info.checkInDate,
-                 checkOutDate:info.checkOutDate,
-                 roomDetails:roomDetails,
-                 hotelID:hotelId,
-                 tours:info.tourList
-                 };
-                window.localStorage.roomUpdateInfo=JSON.stringify(paraObj);
-                document.location.href='room-upgrade.html?'+'travelersInput='+that.bookingFormInfo.travelersInput+'&airportTransferType='+that.bookingFormInfo.airportTransferType;
+                document.location.href='room-upgrade.html?'+'hotelID='+hotelId+'&travelersInput='+that.bookingFormInfo.travelersInput+'&airportTransferType='+that.bookingFormInfo.airportTransferType;
             }else{
                 tipBox.innerHTML = '请选择酒店！';
                 tipBox.style.display = 'block';
@@ -169,10 +148,9 @@ var hotelList = {
                     tipBox.style.display = 'none';
                     window.clearTimeout(that.timer);
                     that.timer = null;
-                },3000000);
+                },3000);
             }
         });
-
         return this;
     },
 
@@ -207,23 +185,11 @@ var hotelList = {
     },
     initRender:function(){
         var that = this;
-        var info = JSON.parse(window.localStorage.info);
-        var roomDetails = [{adult:0}];
-        roomDetails[0].adult=parseInt(info.adultNum);
-        (parseInt(info.childNum)==0)?roomDetails[0].childNum=parseInt(info.childNum):void(0);
-        (parseInt(info.withoutBedAge.length)>0)?roomDetails[0].childWithoutBed=info.withoutBedAge:void(0);
-        (parseInt(info.withBedAge.length)>0)?roomDetails[0].childWithBed=info.withBedAge:void(0);
-
-        var paraObj = {
-            packageID:window.localStorage.packageID,
-            checkInDate:info.checkInDate,
-            checkOutDate:info.checkOutDate,
-            roomDetails:roomDetails,
-            tours:info.tourList
-        };
-        that.paraObj = paraObj;
+        var paraObj = JSON.parse(window.localStorage.info);
+        var hotelResultData = JSON.parse(localStorage.getItem('hotelResultData'));
+        this.paraInfo = paraObj;
         that.hasChoosed = false;
-        that.tAjax(that.requestUrl, paraObj, '0208', 3, that.callBack);
+        that.callBack(hotelResultData)
         return this;
     },
     createTags: function () {

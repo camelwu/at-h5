@@ -96,12 +96,12 @@ TicketDate.prototype.createContainer = function(odate){
         header.className = 'header';
         header.style.top = 0;
         this.type=='Oneway'?header.style.height = "45px":void(0);
-        header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3>':'<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
+        header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="icons header-back-date"></a><h3>选择日期</h3>':'<a href="javascript:void(0);" class="icons header-back-date"></a><h3>选择日期</h3><p class="choose-week-tip" style="margin-bottom: 0;margin-left: 1rem;color:#BCC6CD">选择日期为出发地日期</p>';
         document.body.appendChild(header);
 
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop=this.type=='Oneway'? '3.68rem':'3.68rem';
+        weeker.style.marginTop=this.type=='Oneway'? '5.68rem':'5.68rem';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
@@ -167,7 +167,7 @@ TicketDate.prototype.drawDate = function (odate) {
                 //if(i<nowDate||i<(new Date(this.range[0])).getDate())
 
 
-            } else if (month == nowmonth + 2) {
+            } /*else if (month == nowmonth + 2) {
                 m=month<10?'0'+month:month;
                 d=i<10?'0'+i:i;
                 if (i < nowdate ||i<(new Date(this.range[0])).getDate()||i>(new Date(this.range[1])).getDate()){
@@ -180,7 +180,7 @@ TicketDate.prototype.drawDate = function (odate) {
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
                 }
                 ddHtml.push(pstr);
-            } else {
+            } */else {
                 ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
             }
         } else if (year > nowyear) {

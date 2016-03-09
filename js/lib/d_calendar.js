@@ -63,6 +63,7 @@ _CalF = {
  * @name Calender
  * @constructor
  * @created by wusong
+ * @parameter :id[]||'',num:Number,time[timestamp]||timestring,type:h||f||t,fn:callback
  * */
 function Calender() {
 	if (!arguments.length)
@@ -80,16 +81,30 @@ Calender.prototype = {
 	_tempmonth : ['<span class="prevmonth">prevmonth</span>', '<span class="nextmonth">nextmonth</span>'],
 	_tempweek : ['<dl>', '<dt class="date_title">日</dt>', '<dt class="date_title">一</dt>', '<dt class="date_title">二</dt>', '<dt class="date_title">三</dt>', '<dt class="date_title">四</dt>', '<dt class="date_title">五</dt>', '<dt class="date_title">六</dt>', '</dl>'],
 	_template : ['<dl>', '<dt class="title-date">', '</dt>', '<dd></dd>', '</dl>'],
-	// 初始化对象
 	initialize : function(options) {
-		this.id = options.id;
 		this.num = options.num;
 		this.time = options.time;
+		this.type = options.type;
 		this.fn = options.fn;
+		if ( typeof options.id === "string" || (isArray(options.id) && options.id.length == 1)) {
+			this.id = options.id;
+			this.output = this.input = document.getElementById("" + this.id);
+		} else {
+			this.id = options.id[0];
+			this.input = document.getElementById("" + options.id[0]);
+			this.output = document.getElementById("" + options.id[1]);
+		}
 		this.op = 0;
-		this.input = _CalF.$('#' + this.id);
+		if ( typeof options.time === "string" || ( isArray(options.time) && options.time.length == 1)) {
+			this.ops = 1;
+		}else{
+			this.ops = options.time.length;
+		}
 		this.inputEvent();
 		this.outClick();
+		function isArray(obj) {
+			return Object.prototype.toString.call(obj) === '[object Array]';
+		}
 	},
 	// 创建日期最外层盒子，并设置盒子的绝对定位
 	createContainer : function(odate) {

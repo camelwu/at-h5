@@ -37,8 +37,17 @@ i{
     width: 12px;
     height: 22px;
     left: 15px;
-    top: 10px;
+    top: 22px;
 }
+
+.header-back-date{
+    position: absolute;
+    width: 12px;
+    height: 22px;
+    left: 1.0rem;
+    top: 12px;
+}
+
 .sc-content{
     position: absolute;
     top: 0;
@@ -455,6 +464,9 @@ i{
 /*
     房间升级页
 */
+.hd-hotel{
+    list-style-type:none;
+}
 .top-pic{
     display: block;
     width:100%;
@@ -473,7 +485,7 @@ i{
     float: left;
     margin-top: 20px;
     color:#484848;
-    font-size:0.8em;
+    font-size:1.4rem;
 }
 .d-icon1{
     float: right;
@@ -501,13 +513,13 @@ i{
     margin-top: 20px;
     margin-right: 5px;
     color:#ffbf4b;
-    font-size:0.8em;
+    font-size:1.5rem;
 }
 .d-p3{
     float: left;
     margin-top: 20px;
     color:#484848;
-    font-size:1.3em;
+    font-size:1.5rem;
 }
 .d-div3{
     float: left;
@@ -515,8 +527,10 @@ i{
 }
 .d-p5{
     display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
     color:#484848;
-    font-size:1.3em;
+    font-size:1.5em;
 }
 .d-icon3{
     display: inline-block;
@@ -549,7 +563,7 @@ i{
     margin-top:15px;
 }
 .hd-price span:nth-child(1){
-    font-size:0.8em;
+    font-size:1.8rem;
     color:#fe4716;
 }
 .hd-price span:nth-child(2){
@@ -853,4 +867,25 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child{border:none;}
     -moz-transition: all 0.7s ease-in-out;
     -ms-transition: all 0.7s ease-in-out;
     transition: all 0.7s ease-in-out;
+}
+#popup_content{
+    background-color: #fff;
+    border-radius: 3px;
+    min-width: 290px;
+    max-width: 76%;
+    margin-left: 12%;
+}
+#popup_message {
+    padding: 29px 22px;
+    font-size: 14px;
+    color: #484848;
+    text-align: center;
+}
+#popup_panel {
+    width: 100%;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 700;
+    border-top: 1px #dedede solid;
+    text-align: center;
 }

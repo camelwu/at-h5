@@ -73,11 +73,11 @@ var roomUpGrade = {
     },
     dateDeal: function () {
         var reg = /\d{4}-(\d{1,2})-(\d{1,2}).*/;
-        var dateD1 = reg.exec(this.curParaObj.checkInDate);
-        var dateD2 = reg.exec(this.curParaObj.checkOutDate);
+        var dateD1 = reg.exec(this.curParaObj.CheckInDate);
+        var dateD2 = reg.exec(this.curParaObj.CheckOutDate);
         var inStr = dateD1[1]+'-'+dateD1[2];
         var outStr = dateD2[1]+'-'+dateD2[2];
-        var time1 = Date.parse(this.curParaObj.checkInDate.replace(/T.*/g,'')), time2 = Date.parse(this.curParaObj.checkOutDate.replace(/T.*/g,''));
+        var time1 = Date.parse(this.curParaObj.CheckInDate.replace(/T.*/g,'')), time2 = Date.parse(this.curParaObj.CheckOutDate.replace(/T.*/g,''));
         var dayNum=(Math.abs(time2 - time1))/1000/60/60/24;
        document.querySelector('.date-in').innerHTML = inStr +'入住';
        document.querySelector('.date-out').innerHTML = outStr +'离店';
@@ -87,7 +87,7 @@ var roomUpGrade = {
     addEvent: function () {
         var nextPage = document.querySelector('.hs-next'), that = roomUpGrade;
         this.eventHandler(nextPage, 'click', function(){
-                        document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice;
+                        document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice+'&roomID='+that.dataInfo.hotels[0].rooms[0].roomID;
         });
     },
     callBack: function () {
@@ -97,7 +97,7 @@ var roomUpGrade = {
         '<ul id="hd_list" class="d-list">',
         '<li>',
         '<p class="d-score">',
-        '<b class="d-icon4"></b>{%=location%}</p>',
+        '<b class="d-icon4"></b> {%=location%}</p>',
         '</li>',
         '<li>',
         '<p class="d-score">{%=starRating%}星级</p>',
@@ -148,6 +148,7 @@ var roomUpGrade = {
                 that.dateDeal().delayLoadImage().addEvent()
             }
         } else {
+            $("#preloader").fadeOut();
             jAlert(resultData.message, "提示");
         }
     },
@@ -169,10 +170,11 @@ var roomUpGrade = {
     },
     createTags: function () {
         var that = this;
-        var  testObj=JSON.parse(window.localStorage.getItem('roomUpdateInfo'));
-        console.log(testObj)
-        that.curParaObj = testObj;
-        that.tAjax(that.requestUrl, testObj, '0208', 3, that.callBack);
+        var  paraObj=JSON.parse(window.localStorage.getItem('info'));
+        var hotelIDStr = document.location.search.substring(0,document.location.search.indexOf('&')).replace(/\?/,'');
+        paraObj.hotelID = hotelIDStr.substring(hotelIDStr.indexOf('=')+1);
+        that.curParaObj = paraObj;
+        that.tAjax(that.requestUrl, paraObj, '0208', 3, that.callBack);
             return this;
     },
     init: function () {

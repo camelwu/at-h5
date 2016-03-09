@@ -1,6 +1,11 @@
+.all-elements.input-relative{
+	position: relative;
+	max-height: auto;
+}
 .uo_box{
-    position:absolute;top:0;right:0;left:0;bottom:0;overflow:auto;
-    margin-bottom:47px;
+    position:relative;
+	margin-bottom: 47px;
+	overflow:auto;
 }
 em,b,i{
     font-weight:normal;
@@ -194,8 +199,9 @@ em,b,i{
     margin:0;padding:0;line-height:1.6rem;
 }
 .uo_footer{
-    position:fixed;
-    bottom:0;left:0;
+    position: fixed;
+    bottom:0;
+	left:0;
     background:#fff;
     display:-webkit-box;
     display:-moz-box;
@@ -277,12 +283,13 @@ em,b,i{
     border-radius: 0;
 }
 .uo_hid{
-    padding:0 1.5rem;border-bottom:1px solid #d6d6d6;
-    position:fixed;left:0;top:0;width:100%;
-
-
+    padding:0 1.5rem;
+	border-bottom:1px solid #d6d6d6;
+    position: absolute;
+	left:0;
+	top:0;
+	width:100%;
     height:0;
-
 }
 .uo_hid_shadow{
     position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);

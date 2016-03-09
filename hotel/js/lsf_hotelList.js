@@ -455,14 +455,17 @@ function styleChange(id, mytext) {
 				var str4 = '';
 				if (data[i].isFreeWiFi) {
 					//str2+='<b class="hl-icon1">免费wifi</b>';
-					str2 += '<div class="h-div1">免费wifi</div>';
+					str2 += '<div class="h-div1">wifi</div>';
 				}
 				if (data[i].isFreeTransfer) {
 					//str2+='<b class="hl-icon2">免费接送</b>';
 					str2 += '<div class="h-div1">免费接送</div>';
 				}
 				if (data[i].isCashReward) {
-					str3 = '<div class="h-div1" style="background-color: #ffb412">现金奖励</div>';
+					str3 = '<div class="h-div1" style="background-color: #ffb412">'+data[i].isCashRewardTitle+'</div>';
+				}
+				if (data[i].isCashRebate) {
+					str3 = '<div class="h-div1" style="background-color: #ffb412">'+data[i].isCashRebateTitle+'</div>';
 				}
 				if (data[i].isFreeCityTour) {
 					str4 = '<div class="h-div1">免费景点</div>';
