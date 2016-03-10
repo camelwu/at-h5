@@ -219,9 +219,22 @@ body {
     background-size: 400px 120px;
     background-position:33% 8%;
 }
+.h-wifi,.h-transfer{
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -77px -14px;
+    vertical-align: -4px;
+}
+.h-transfer{
+    background-position: -37px -14px;
+}
 .h-div1{
     float: right;
-    width:54px;
+    padding:0 3px;
     height:15px;
     line-height:15px;
     color: white;

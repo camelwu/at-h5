@@ -77,9 +77,7 @@
             var Parameters= {"Parameters": {"bookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
                 debugger;
-                var data=JSON.parse(data);
                 if(data.success) {
-                    debugger;
                     var html = template("tpl", data.data);
                     $(".content-div").html(html)
                 }else{

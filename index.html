@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -164,7 +164,7 @@
 							"Code" : "001302"
 						};
 						vlm.loadJson("", JSON.stringify(tmp), function(ret) {
-							var json = eval('(' + ret + ')');
+							var json = ret;
 							// console.log(json);
 							if (json.success) {
 								var data = json.data, html_b = template(tpl0, data.bannerList);
@@ -198,7 +198,7 @@
 							"Code" : "001303"
 						};
 						vlm.loadJson("", JSON.stringify(tmp), function(ret) {
-							var json = eval('(' + ret + ')');
+							var json = ret;
 							console.log(json);
 							if (json.success) {
 								var data = json.data, html_tj = template(tpl1, data.playerRecommendList);
