@@ -241,20 +241,29 @@ window.onload = function(){
             if (change_email.style.display == "none") {
                 login_pass = e_password;
                 input = email_login.getElementsByTagName('input');
+                if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+                    jAlert("请输入有效邮箱");
+                    return;
+                }
+                if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+                    jAlert("请输入6-18位密码");
+                    return;
+                }
+
             } else {
                 login_pass = p_password;
                 input = phone_login.getElementsByTagName('input');
-            }
 
-            for (var i = 0; i < input.length; i++) {
-                if (input[i].style.display != "none" && input[i].value != "") {
-                    //console.log(input[i].getAttribute('data-type'));
-                    if(!check(input[i].getAttribute('data-type'),input[i].value)){
-                        jAlert("用户名或密码错误");
-                        return;
-                    }
+                if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+                    jAlert("请输入有效手机号");
+                    return;
+                }
+                if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+                    jAlert("请输入6-18位密码");
+                    return;
                 }
             }
+
             var Parameters= {
                 "Parameters": "{\"CultureName\":\"\",\"Email\":\""+email.value+"\",\"Password\":\""+login_pass.value+"\",\"Mobile\":\""+phone.value+"\"}",
                 "ForeEndType": 3,
