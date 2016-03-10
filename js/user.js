@@ -356,7 +356,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
 //  页面初始获取常旅客
     function mycallback(ret) {
-        travJson = eval('(' + ret + ')');
+        travJson = ret;
         var blank = $("#blank")[0];
         console.log(travJson)
         if (travJson.success) {
@@ -452,7 +452,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     }
 
     function mycallback_addtrav(ret) {
-        var myJson = eval('(' + ret + ')');
+        var myJson = ret;
         //console.log(myJson);
         if (myJson.success) {
             document.getElementById("addForm").submit();
@@ -463,7 +463,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     }
 
     function mycallback_deltrav(ret) {
-        var myJson = eval('(' + ret + ')');
+        var myJson = ret;
         console.log(myJson);
         if (myJson.success) {
             window.location.href = "user-oftenInfo.html";
@@ -473,7 +473,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     }
 
     function mycallback_uptrav(ret) {
-        var myJson = eval('(' + ret + ')');
+        var myJson = ret;
         console.log(myJson);
         if (myJson.success) {
            document.getElementById("updateForm").submit();

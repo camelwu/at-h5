@@ -403,7 +403,7 @@ window.onload = function(){
 
     //获取机器码后再发请求
    function mycallback_forgotpass(ret){
-       var myJson=eval('('+ret+')');
+       var myJson=ret;
        if(myJson.success)
        {
            var Parameters={
@@ -448,7 +448,7 @@ function close_keypage(){
     fkey_page.style.display = "none";
 }
 function mycallback_register(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     if(myJson.success){
         jAlert('注册成功','',cb_register);
     }else{
@@ -480,7 +480,7 @@ function  cb_register(){
 }
 
 function mycallback_login(ret) {
-    var myJson = eval('(' + ret + ')');
+    var myJson = ret;
     console.log(myJson);
     if (myJson.success) {
         localStorage.email = myJson.data[0].email;
@@ -507,7 +507,7 @@ function mycallback_login(ret) {
 //注册验证码回调
 function mycallback_verify(ret){
     var verify = $("#verify")[0];
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
      console.log(myJson);
     if(myJson.success){
         vlm.Utils.sendMobileCode(verify.value);
@@ -516,7 +516,7 @@ function mycallback_verify(ret){
     }
 }
 function mycallback_findkey(ret){
-    var myJson = eval('(' + ret + ')');
+    var myJson = ret;
     //console.log(myJson);
     if(myJson.success){
         jAlert('重置密码成功','',call_pass);
@@ -529,7 +529,7 @@ function mycallback_findkey(ret){
 
 //邮箱找回密码回调
 function mycallback_findkey_email(ret){
-    var myJson = eval('(' + ret + ')');
+    var myJson = ret;
     //console.log(myJson);
     if(myJson.success){
         jAlert('已将重置密码的邮件发送到您的邮箱，请查收','',call_pass);
@@ -546,7 +546,7 @@ function call_pass(){
 //找回密码验证码回调
 function mycallback_findver(ret){
     var find_veri = $("#find_veri")[0];
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     if(myJson.success){
         vlm.Utils.sendMobileCode(find_veri.value);
     }else{

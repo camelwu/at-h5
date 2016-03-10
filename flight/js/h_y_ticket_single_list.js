@@ -194,14 +194,13 @@ var ticketSingle = {
         }
     },
     renderHandler:function(arg){
-        arg = JSON.parse(arg);
-        console.log(arg)
+        var arg = arg;
         var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
                 tipEle.style.display = 'none';
-                that.flightResultArray.push(arg["data"])
+                that.flightResultArray.push(arg["data"]);
                 that.lastBackData = arg;
                 that.storageUtil.set('flightListData',that.flightResultArray);
                 that.pageNo = arg.data.pageNo;
@@ -285,6 +284,7 @@ var ticketSingle = {
     },
 
     changeFlightList:function(arg, type){
+        console.log(arg)
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
