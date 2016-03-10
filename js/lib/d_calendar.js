@@ -86,18 +86,22 @@ Calender.prototype = {
 		this.time = options.time;
 		this.type = options.type;
 		this.fn = options.fn;
-		if ( typeof options.id === "string" || (isArray(options.id) && options.id.length == 1)) {
+		if ( typeof options.id === "string") {
 			this.id = options.id;
 			this.output = this.input = document.getElementById("" + this.id);
 		} else {
-			this.id = options.id[0];
-			this.input = document.getElementById("" + options.id[0]);
-			this.output = document.getElementById("" + options.id[1]);
+			if (isArray(options.id)) {
+				this.id = options.id[0];
+				this.input = document.getElementById("" + options.id[0]);
+				this.output = options.id.length == 1 ? this.input : document.getElementById("" + options.id[1]);
+			} else {
+				alert('paramater is error!');
+			}
 		}
 		this.op = 0;
-		if ( typeof options.time === "string" || ( isArray(options.time) && options.time.length == 1)) {
+		if ( typeof options.time === "string" || (isArray(options.time) && options.time.length == 1)) {
 			this.ops = 1;
-		}else{
+		} else {
 			this.ops = options.time.length;
 		}
 		this.inputEvent();
@@ -105,8 +109,8 @@ Calender.prototype = {
 		function isArray(obj) {
 			return Object.prototype.toString.call(obj) === '[object Array]';
 		}
+
 	},
-	// 创建日期最外层盒子，并设置盒子的绝对定位
 	createContainer : function(odate) {
 		// 如果存在，则移除整个日期层Container
 		var odiv = _CalF.$('#' + this.id + '-date');
@@ -117,16 +121,14 @@ Calender.prototype = {
 		container.style.position = "absolute";
 		container.style.zIndex = 98;
 		if (this.input.tagName === 'input') {
-			//PC输入框
+			//PC
 			var inputPos = _CalF.getPos(this.input);
 			// 根据input的位置设置container高度
 			container.style.left = inputPos.left + 'px';
 			container.style.top = inputPos.bottom - 1 + 'px';
 			// 设置日期层上的单击事件，仅供阻止冒泡，用途在日期层外单击关闭日期层
 			_CalF.bind(container, 'click', this.stopPropagation);
-
 		} else {
-			//M站层
 			container.style.background = "#f5f4f9";
 			container.style.overflow = 'auto';
 			container.style.width = container.style.height = '100%';
@@ -242,7 +244,9 @@ Calender.prototype = {
 	},
 	// 移除日期DIV.calendar
 	removeDate : function() {
-		var odiv = _CalF.$('#' + this.id + '-date');
+		var that=this,odiv = _CalF.$('#' + this.id + '-date');
+		if(!!that.header)
+			that.header.parentNode.removeChild(that.header);
 		if (!!odiv)
 			odiv.parentNode.removeChild(odiv);
 	},
@@ -263,19 +267,13 @@ Calender.prototype = {
 		var links = _CalF.$('.live', this.dd), i, l = links.length, that = this;
 		for ( i = 0; i < l; i++) {
 			links[i].index = i;
-			// links[i].onmouseover = function(){
-			// $(this).addClass("on");
-			// };
-			// links[i].onmouseout = function(){
-			// $(this).removeClass("on");
-			// };
 			links[i].onclick = function() {
 				if (that.input.tagName === 'input') {
 					$(this).css("border", "1px solid #ff6a2f").css("z-index", "9999999");
 					$(this).siblings().css("border", "").css("z-index", "");
 				} else {
 					if (!(this.className.indexOf("disabled") > -1)) {
-						if (that.op == 0) {
+						if (that.op < that.ops) {
 							that.tiper.innerHTML = '请选择' + that._word.h[1] + '日期';
 							that.linkReset(this.index);
 							$(this).html('<span class="live_circle">' + (this.innerHTML) + '</span><span class="live_txt">' + that._word.h[that.op] + '</span>');
@@ -294,14 +292,17 @@ Calender.prototype = {
 		var sels = $('#' + this.id + '-date .live_circle'), i, l = sels.length, that = this, arr = [];
 		var out = _CalF.$('input', that.input);
 		var tal = _CalF.$('#total_day', that.input);
-		for ( i = 0; i < 2; i++) {
+		for ( i = 0; i < l; i++) {
 			arr.push(sels[i].parentNode.getAttribute("data-day"));
 			out[i].value = sels[i].parentNode.getAttribute("data-day");
 		}
 		tal.innerHTML = (Math.round((new Date(arr[1]) - new Date(arr[0])) / (1000 * 60 * 60 * 24)));
 		that.removeDate();
-		that.header.parentNode.removeChild(that.header);
-
+		if (that.fn) {
+			that.fn(true);
+		}else{
+			
+		}
 	},
 	linkReset : function(ele) {
 		var that = this, ospan = $('.live_circle'), l = ospan.length, links = _CalF.$('.live', this.dd), len = links.length;
@@ -322,7 +323,8 @@ Calender.prototype = {
 		}
 	},
 	inputEvent : function() {
-		var that = this, date = new Date(), nowY = date.getFullYear(), nowM = date.getMonth(), nowD = date.getDate();
+		var that = this, date = new Date(), nowY = date.getFullYear(), nowM = date.getMonth(), nowD = date.getDate(),
+		nums = that.num?that.num:1;
 		_CalF.bind(this.input, 'click', function() {
 			that.createContainer();
 			for (var i = 0; i < that.num; i++) {
@@ -342,5 +344,3 @@ Calender.prototype = {
 		});
 	}
 };
-
-// var myDate1 = new Calender({id:'j_Date1'});
