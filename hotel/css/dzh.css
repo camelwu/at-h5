@@ -638,49 +638,49 @@
     color: #484848;
 }
 .reserve{
-    height: 133px;
     background: #fff;
-    margin: 10px 0;
+    margin-top: 10px;
     border-bottom: 1px solid #dedede;
 }
 .reserve-top{
-    height: 55px;
+    /*height: 55px;*/
     margin: 0 15px;
 }
 .reserve-top1{
     font-weight:bold;
     font-size: 1.5rem;
     color: #000;
-    line-height: 35px;
+    /*line-height: 35px;*/
 }
 .reserve-top2{
     font-size: 1.1rem;
     color: #999999;
-    line-height: 15px;
+    /*line-height: 15px;*/
 }
 .reserve-bottom{
-    height: 78px;
+    /*height: 78px;*/
     border-top: 1px solid #dedede;
     margin: 0 15px 10px 15px;
 }
 .reserve-bottom1{
+    padding-top: 10px;
     font-weight:bold;
     font-size: 1.4rem;
     color: #000;
-    line-height: 33px;
+    /*line-height: 33px;*/
 }
 .reserve-bottom2{
     font-size: 1.1rem;
     color: #999;
-    line-height: 13px;
+    /*line-height: 13px;*/
 }
 .reserve-bottom3{
     font-size: 1.1rem;
     color: #999;
-    line-height: 28px;
+    /*line-height: 28px;*/
 }
 .pay{
-    height: 36px;
+    /*height: 36px;*/
     border-bottom: 1px solid #dedede;
     background: #fff;
 }
@@ -705,23 +705,18 @@
     font-size: 1.4rem;
 }
 .bookinfo{
-    height: 147px;
     background: #fff;
-    margin: 10px 0;
     border-bottom: 1px solid #dedede;
 }
 .bookinfo1{
-    height: 31px;
     margin: 0 15px;
-    line-height: 31px;
+    padding: 8px 0;
     color: #484848;
     font-size: 1.4rem;
 }
 .bookinfo2{
-    height: 115px;
     border-top: 1px solid #dedede;
     margin: 0 15px;
-    line-height: 23px;
     display: flex;
     flex-flow: row;
 }
