@@ -659,12 +659,7 @@ function styleChange(id, mytext) {
 	console.log(url_json);
 	console.log('22222');
 	M(url_json);
-	function mycallback(d) {
-		//console.log(d);
-		var json = eval('(' + d + ')');
-		console.log(json);
-		//console.log(1);
-		//alert(arr.Success);
+	function mycallback(json) {
 		if (json.success) {
 			//console.log(json.Data);
 			var data = json.data[0];
