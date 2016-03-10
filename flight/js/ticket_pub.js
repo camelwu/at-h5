@@ -406,8 +406,8 @@ var  conditionalFiltering = {
                 '</div>'+
                 '</div>';
                 middleModal.innerHTML =
-                    '<li class="time-modal-item active" data-i="false"><b></b>从早到晚</li>'+
-                    '<li class="time-modal-item" data-i="true"><b></b>从晚到早</li>'
+                    '<li class="time-modal-item active" data-i="true"><b></b>从早到晚</li>'+
+                    '<li class="time-modal-item" data-i="false"><b></b>从晚到早</li>'
                 rightModal.innerHTML =''
 
             }else{                   //国内往返
