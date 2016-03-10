@@ -1858,6 +1858,7 @@ i{
 }
 .price-per-tit{
     padding-left: 20px;
+    overflow: hidden;
 }
 .add-tic-owner{
     display: -moz-box;
