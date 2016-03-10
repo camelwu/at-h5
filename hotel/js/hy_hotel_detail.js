@@ -5,6 +5,7 @@
 		tempCurLeft : 0,
 		tempStart : 0,
 		isAnimation : false,
+        currentIndex : 0,
 		requestUrl : "http://10.2.22.239:8888/api/GetServiceApiResult",
 
 		myData : {
@@ -265,13 +266,16 @@
 				hotelDetail.$Id('imageContainer').style.display = 'block';
 			};
 
-			imageContainer.onclick = function(event) {
-				var event = event || window.event;
+            //事件冒泡处理
+            hotelDetail.addHandler(imageContainer,"click",function(){
+                //点击图片关闭大图显示
+                
+                var event = event || window.event;
 				var target = event.target || event.srcElement;
-				if (target.id == 'imageContainer') {
-					target.style.display = 'none'
-				}
-			};
+                if(target.nodeName.toLowerCase() == "img"){
+                      imageContainer.style.display = 'none';                
+                }
+            });
 			//地图暂时不用
 			/*
 			 toMap.onclick = function () {
@@ -312,7 +316,11 @@
 
 			hotelDetail.addHandler(window, 'resize', function() {
 				hotelDetail.widthCorrecting(hotelDetail.sourceData);
-			})
+			});
+            
+            hotelDetail.addHandler(window, 'orientationchange', function() {
+				hotelDetail.orientationchange();
+			});
 		},
 
 		reserveHandler : function(event) {
@@ -354,14 +362,37 @@
 		},
 
 		widthCorrecting : function(result) {
+            var imgUlContainer = document.querySelectorAll('.imgUl')[0];
 			var innerWidth = window.innerWidth, innerHeight = window.innerHeight;
-			document.querySelectorAll('.imgUl')[0].style.width = result.data[0].hotelImagesList.length != 0 ? (100 * result.data[0].hotelImagesList.length) + "%" : "100%";
+			imgUlContainer.style.width = result.data[0].hotelImagesList.length != 0 ? (100 * result.data[0].hotelImagesList.length) + "%" : "100%";
+            imgUlContainer.style.left = - innerWidth * this.currentIndex + "px";
+            //重设已经滑动的距离
+            hotelDetail.tempCurLeft = - innerWidth * this.currentIndex;
 			if (document.querySelectorAll('.imageLi').length) {
 				for (var m = 0, Lis = document.querySelectorAll('.imageLi'); m < Lis.length; m++) {
 					Lis[m].style.width = innerWidth + "px";
 				}
 			}
 		},
+        
+        orientationchange : function(event){
+            var showZone = document.getElementsByClassName("showZone")[0];
+            var indexShow = document.getElementsByClassName("indexShow")[0];
+            //竖屏状态
+            if(window.orientation && window.orientation==180||window.orientation==0){ 
+                showZone.style.height = "38.5%";
+                showZone.style.top = "28%";
+                indexShow.style.zIndex = "0";
+                indexShow.style.top = '21%';
+            } 
+            //横屏状态
+            if(window.orientation && window.orientation==90||window.orientation==-90){ 
+                showZone.style.height = "100%";
+                showZone.style.top = "0px";
+                indexShow.style.zIndex = "99";
+                indexShow.style.top = '0px';
+            } 
+        },
 
 		createAll : function(result) {
 			result = JSON.parse(result);
@@ -468,6 +499,7 @@
 					tar.style.display = 'none'
 				}
 			};
+            
 			faceImg.onclick = function(event) {
 				document.getElementById('imageContainer').style.display = 'block';
 				//默认先加载两张图片
@@ -480,19 +512,18 @@
 		},
 
 		startHandler : function(e) {
-			hotelDetail.preventDefault(e);
-			hotelDetail.stopPropagation(e);
+			//hotelDetail.preventDefault(e);
+			//hotelDetail.stopPropagation(e);
 			if (!hotelDetail.isAnimation) {
 				hotelDetail.tempStart = e.targetTouches[0].pageX;
 			} else {
 				hotelDetail.isAnimation = true;
 			}
-
 		},
 
 		moveHandler : function(e) {
-			hotelDetail.preventDefault(e);
-			hotelDetail.stopPropagation(e);
+			//hotelDetail.preventDefault(e);
+			//hotelDetail.stopPropagation(e);
 			var imgUl = document.getElementsByClassName('imgUl')[0];
 			imgUl.style.left = parseFloat(imgUl.style.left) + e.targetTouches[0].pageX - hotelDetail.tempStart + 'px';
 			hotelDetail.tempStart = e.targetTouches[0].pageX;
@@ -500,14 +531,17 @@
 		},
 
 		endHandler : function(e) {
-			hotelDetail.preventDefault(e);
-			hotelDetail.stopPropagation(e);
+			//hotelDetail.preventDefault(e);
+			//hotelDetail.stopPropagation(e);
 			var minLeftValue = (document.querySelectorAll('.imageLi').length - 1) * window.innerWidth;
 			var endLeftValue = parseFloat(document.getElementsByClassName('imgUl')[0].style.left);
 			var distance = endLeftValue - hotelDetail.tempCurLeft, time = 1000, targetLeft, indexNUm;
+           
 			if (distance < 0 && Math.abs(distance) >= window.innerWidth / 4) {
+                 //向左滑动
 				targetLeft = hotelDetail.tempCurLeft - window.innerWidth;
 			} else if (distance > 0 && Math.abs(distance) >= window.innerWidth / 4) {
+                //向右滑动
 				targetLeft = hotelDetail.tempCurLeft + window.innerWidth;
 			} else {
 				targetLeft = hotelDetail.tempCurLeft;
@@ -519,7 +553,9 @@
 				targetLeft = -minLeftValue;
 			}
 			indexNUm = Math.abs(Math.floor(targetLeft / window.innerWidth)) + 1;
+            hotelDetail.currentIndex = indexNUm;  //记下当前页面
 			time = Math.abs((targetLeft - parseFloat(document.getElementsByClassName('imgUl')[0].style.left)) / window.innerWidth) * time;
+            
 			hotelDetail.tempCurLeft = targetLeft;
 			$('.imgUl').animate({
 				'left' : targetLeft
