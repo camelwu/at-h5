@@ -129,7 +129,7 @@
         <footer class="order-amount">
             <!--价格明细-->
             <div class="price-tot-box">
-                <ul class="price-tot-list">
+                <ul class="price-tot-list js-price-list">
                     <li><span class="price-per-tit">八达岭长城一日游</span><span class="price-per-tot">¥56×2</span></li>
                     <li><span class="price-per-tit">鸟巢水立方一日游</span><span class="price-per-tot">¥56×4</span></li>
                     <li><span class="price-per-tit">桂林七日游</span><span class="price-per-tot">¥56×4</span></li>
@@ -285,7 +285,7 @@
                 {% for(var i=0,len=DetailData.data.minPax;i<len;i++){ %}
                 <li class="clearFix">
                     <span id="child_old" class="child-age fl">儿童年龄{%=i+1%}</span>
-                    <div class="child-age-cont fr"><input type="text" placeholder="2-14"/><span>岁</span></div>
+                    <div class="child-age-cont fr"><input type="text" placeholder="{%=DetailData.data.childAgeMin%}-{%=DetailData.data.childAgeMax%}"/><span>岁</span></div>
                 </li>
                 {% } %}
             </ul>
@@ -322,7 +322,7 @@
 
     <script id="tpl_Adult_Child2" type="text/template">
 
-        <div class="sce-ticket">
+        <div class="sce-ticket js-sce">
 
             <section class="sce-introduce">
                 <p class="sce-introduce-txt js-sce-introduce-txt" data-key=""></p>
@@ -597,6 +597,7 @@
                 }
 
                 MT.OnePrice(1);
+                MT.PriceList();
             }
             /**
              * 渲染view2
@@ -822,7 +823,7 @@
                         MT.CalculatePrice(obj,current);
                         child_yearsold = $("<li class='clearFix'>" +
                                 "<span id='child_old' class='child-age fl'>儿童年龄"+(current)+"</span>" +
-                                "<div class='child-age-cont fr'><input type='text' placeholder='2-14'/><span>岁</span></div>" +
+                                "<div class='child-age-cont fr'><input type='text' placeholder=\""+ExtendData.DetailData.data.childAgeMin+"-"+DetailData.data.childAgeMax+"\"/><span>岁</span></div>" +
                                 "</li>");
 
                         $(".js-children-wrap").append(child_yearsold);
@@ -916,6 +917,74 @@
 
             }
 
+            MT.PriceList = function(){
+                var AudltCount = 0,ChildCount = 0,list = [],taglist;
+
+
+                //从成人进入
+                if($(".js-scenicview1").length > 0 && $("[data-key=\"js-per-price1\"]").find(".js-Audlt-cont").length > 0){
+                    AudltCount = $("[data-key=\"js-per-price1\"]").find(".js-Audlt-cont").html();
+                    if(AudltCount > 0){
+                        if($(".js-sce-ticket1").find(".js-sce").length > 0){
+                            for(var i = 0;i<$(".js-sce-ticket1").find(".js-sce").length;i++){
+                                var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
+                                var htmltag = $("<li><span class=\"price-per-tit\">(成人)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.AudltPrice+"×"+AudltCount+"</span></li>");
+                                list.push(htmltag);
+                            }
+                        }
+
+                    }
+                }
+
+                if($(".js-scenicview1").length > 0 && $("[data-key=\"js-per-price1\"]").find(".js-Child-cont").length > 0){
+                    ChildCount = $("[data-key=\"js-per-price1\"]").find(".js-Child-cont").html();
+                    if(ChildCount > 0){
+                        if($(".js-sce-ticket1").find(".js-sce").length > 0){
+                            for(var i = 0;i<$(".js-sce-ticket1").find(".js-sce").length;i++){
+                                var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
+                                var htmltag = $("<li><span class=\"price-per-tit\">(儿童)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.ChildPrice+"×"+ChildCount+"</span></li>");
+                                list.push(htmltag);
+                            }
+                        }
+
+                    }
+
+                }
+
+                //view2 儿童
+                if($(".js-scenicview2").length > 0 && $("[data-key=\"js-per-price2\"]").find(".js-Child-cont").length > 0){
+                    ChildCount = $("[data-key=\"js-per-price2\"]").find(".js-Child-cont").html();
+                    if(ChildCount > 0){
+                        if($(".js-sce-ticket2").find(".js-sce").length > 0){
+                            for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce").length;i++){
+                                var title = $(".js-sce-ticket2").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
+                                var htmltag = $("<li><span class=\"price-per-tit\">(儿童)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.ChildPrice+"×"+ChildCount+"</span></li>");
+                                list.push(htmltag);
+                            }
+                        }
+
+                    }
+
+                }
+
+                //view2 成人
+                if($(".js-scenicview2").length > 0 && $("[data-key=\"js-per-price2\"]").find(".js-Audlt-cont").length > 0){
+                    AudltCount = $("[data-key=\"js-per-price2\"]").find(".js-Audlt-cont").html();
+                    if(AudltCount > 0){
+                        if($(".js-sce-ticket2").find(".js-sce").length > 0){
+                            for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce").length;i++){
+                                var title = $(".js-sce-ticket2").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
+                                var htmltag = $("<li><span class=\"price-per-tit\">(成人)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.AudltPrice+"×"+AudltCount+"</span></li>");
+                                list.push(htmltag);
+                            }
+                        }
+
+                    }
+                }
+                console.log(list);
+                $(".js-price-list").html(list);
+            }
+
             /**
              * 预订 创建订单
              * @constructor
@@ -1004,7 +1073,6 @@
 
                     if(AdultCount > 0){
                         for(var i = 0;i<AdultCount;i++){
-
                             Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
                         }
                     }
@@ -1143,10 +1211,12 @@
                     oMask.style.display='block';
                     oHid.style.bottom='50px';
                     bOk=false;
+                    MT.PriceList();
                 }else{
                     oMask.style.display='none';
                     oHid.style.bottom='-300px';
                     bOk=true;
+
                 }
             };
             oMask.onclick = function(){
