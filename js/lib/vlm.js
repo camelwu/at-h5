@@ -1041,6 +1041,7 @@
 				};
 				$("#preloader").ajaxStart(function(){
 				   $(this).show();
+					$('#status').show();
 				});
 				$("#preloader").ajaxStop(function(){
 				   $(this).hide();
