@@ -10,7 +10,7 @@
 	var n = n || (function(n) {//10.2.22.239               123.56.190.34
 			var _api = "http://123.56.190.34:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 					home : ['首页', basePath],
-					find : ['目的地', basePath + '/scenic/index.html'],
+					find : ['目的地', 'javascript:void(0);'],
 					user : ['我的', basePath + '/user/user.html']
 				}, arr_t = {
 					1 : '护照',
@@ -943,10 +943,7 @@
 								ForeEndType : 3,
 								Code : "0052"
 							};
-
-							mycallback = function(json) {
-								var myJson = eval('(' + json + ')');
-								 console.log(myJson);
+							mycallback = function(myJson) {
 								if (myJson.success) {
 									lStorage.email = myJson.data[0].email;
 									lStorage.phone = myJson.data[0].mobile;
@@ -955,13 +952,13 @@
 									if (getpara("redicturl") != null)
 										window.location.href = getpara("redicturl");
 									else{
-										 if(typeof c === "function"){
-											 c();
-										 }
 										container.parentNode.removeChild(container);
+										if(typeof c === "function"){
+											c();
+										}
 									}
 								} else {
-									alert(myJson.message);
+									//alert(myJson.message);
 								}
 							};
 							//{“Success”:true,”Message”:””,Data:””}
@@ -1044,7 +1041,10 @@
 				};
 				$("#preloader").ajaxStart(function(){
 				   $(this).show();
-				 });
+				});
+				$("#preloader").ajaxStop(function(){
+				   $(this).hide();
+				});
 			//out api
 			return {
 				api : _api,

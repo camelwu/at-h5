@@ -341,9 +341,7 @@ var lsf_myweb={
             }
         }
         M(myData);
-        function mycallback(str){
-            console.log(str);
-            var data_json=eval('('+str+')');
+        function mycallback(data_json){
             V(data_json);
         }
     });

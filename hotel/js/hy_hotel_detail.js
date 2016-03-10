@@ -395,7 +395,6 @@
         },
 
 		createAll : function(result) {
-			result = JSON.parse(result);
 			console.log('callback函数得到的数据');
 			hotelDetail.myData.createAllback = result;
 			console.log(hotelDetail.myData);
@@ -654,11 +653,9 @@
 			hotelDetail.updateSubRoomModal(tempInfo);
 		},
 
-		showRoomModals : function(d) {
+		showRoomModals : function(result) {
 			var oDiv = document.createElement('div');
-			var result = eval('(' + d + ')');
 			console.log(result);
-			console.log(result.data[0]);
 			console.log(777777777777777);
 			function showDesc(arr, num) {
 				if (num) {

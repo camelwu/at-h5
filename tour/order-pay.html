@@ -152,7 +152,6 @@
     <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
-    <script src="js/order-pay.js"></script>
     <script src="../js/country_list.js"></script>
     <script>
         $(window).load(function () {
@@ -186,6 +185,7 @@
         }
 
         (function(){
+            var bookingRefNo=vlm.getpara("bookingRefNo");
             var b=document.getElementById('pay_way').getElementsByTagName("b");
             var agree = $("#agree")[0];
             var close_page = $("#close_page")[0];
@@ -199,7 +199,6 @@
                     }
                     this.className='icon circle-choi';
                     if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
-                        jAlert(2222);
                         out_pay.style.display = "block";
                     }
                     else{
@@ -218,25 +217,27 @@
                 out_pay.style.display = "none";
             };
             btnPay.onclick=function(){
-                Payment("UnionPay","SG17SINFP0375528");
+                Payment("UnionPay",bookingRefNo);
             }
             btnCPay.onclick=function(){
-                Payment("CreditCard","SG17SINFP0375528");
+                Payment("CreditCard",bookingRefNo);
             }
         })();
         function Payment(type,code){
 
             var  Parameters=GetParameters(type,code);
             console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-                if(data.success){
-                    var url=data.data.paymentRedirectURL ;
-                    window.open(url);
-                }else{
-                    alert(data.message);
-                }
+            if(Parameters) {
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
+                    if (data.success) {
+                        var url = data.data.paymentRedirectURL;
+                        window.open(url);
+                    } else {
+                        alert(data.message);
+                    }
 
-            })
+                })
+            }
         }
         function GetParameters(type,orderCode) {
             var json={}
@@ -329,11 +330,10 @@
         }
 
         function Init(){
-
-
+            var bookingRefNo=vlm.getpara("bookingRefNo");
             var Parameters={
                 "Parameters": {
-                    "BookingRefNo": "SG17SINFP0375528"
+                    "BookingRefNo": bookingRefNo
                 }
                 ,
                 "ForeEndType": 3,
@@ -379,7 +379,7 @@
                 }
                 else
                 {
-                    jAlert("添加失败！");
+                    jAlert("支付失败！");
                 }
                 vlm.init();
 
@@ -401,7 +401,8 @@
     </script>
 
     <script id="tpl_orderTotal" type="text/template"	>
-        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=chargeDetails[0].totalAmount%}</span>
+        {% var total=0; for(var i=0;i<=chargeDetails.length-1;i++){ total+=chargeDetails[i].amountInCNY; } %}
+        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=totalt%}</span>
     </script>
 
 </div>

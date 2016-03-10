@@ -184,6 +184,7 @@
 
     (function(){
         Init();
+        var bookingRefNo= vlm.getpara("bookingRefNo")
         var b=document.getElementById('pay_way').getElementsByTagName("b");
         var agree = $("#agree")[0];
         var close_page = $("#close_page")[0];
@@ -200,7 +201,8 @@
                     out_pay.style.display = "block";
                 }
                 else{
-                    Payment("UnionPay","SG17SINFP0375501");
+                    var bookingRefNo=vlm.getpara("bookingRefNo");
+                    Payment("UnionPay",bookingRefNo);
                 }
             }
         }
@@ -215,12 +217,12 @@
             out_pay.style.display = "none";
         };
         btnPay.onclick=function(){
-            var bookinbgRefNo=vlm.getpara("bookingRefNo");
-            Payment("UnionPay",bokinbgRefNo);
+            var bookingRefNo=vlm.getpara("bookingRefNo");
+            Payment("UnionPay",bookinbgRefNo);
         }
         btnCPay.onclick=function(){
-            var bookinbgRefNo=vlm.getpara("bookingRefNo");
-            Payment("CreditCard",bookinbgRefNo);
+            var bookingRefNo=vlm.getpara("bookingRefNo");
+            Payment("CreditCard",bookingRefNo);
         }
     })();
     function Payment(type,code){
