@@ -152,7 +152,6 @@
     <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
-    <script src="js/order-pay.js"></script>
     <script src="../js/country_list.js"></script>
     <script>
         $(window).load(function () {
@@ -199,7 +198,6 @@
                     }
                     this.className='icon circle-choi';
                     if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
-                        jAlert(2222);
                         out_pay.style.display = "block";
                     }
                     else{
@@ -228,15 +226,17 @@
 
             var  Parameters=GetParameters(type,code);
             console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-                if(data.success){
-                    var url=data.data.paymentRedirectURL ;
-                    window.open(url);
-                }else{
-                    alert(data.message);
-                }
+            if(Parameters) {
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
+                    if (data.success) {
+                        var url = data.data.paymentRedirectURL;
+                        window.open(url);
+                    } else {
+                        alert(data.message);
+                    }
 
-            })
+                })
+            }
         }
         function GetParameters(type,orderCode) {
             var json={}
@@ -329,11 +329,10 @@
         }
 
         function Init(){
-
-
+            var bookingRefNo=vlm.getpara("bookingRefNo");
             var Parameters={
                 "Parameters": {
-                    "BookingRefNo": "SG17SINFP0375528"
+                    "BookingRefNo": bookingRefNo
                 }
                 ,
                 "ForeEndType": 3,
