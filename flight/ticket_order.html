@@ -93,7 +93,6 @@
                             <span id="country-code">+86</span><span id="slider-country-choose"></span>
                         </div>
                     </div>
-
                     <div class="right">
                         <input type="tel" name="tel"  id="tel-num" placeholder="用于接收通知" />
                     </div>
@@ -191,9 +190,7 @@
                 每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
                 每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
             </p>
-
         </div>
-
     </div>
     <!--退改签结束-->
 
@@ -339,7 +336,7 @@
                     var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
                     var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
                     vlm.f_choice('f','traver','',true,true,numofAdult,numofChild,id);
-                })
+                });
                 $(".del-passager").on("click",function(){
                     $(this).parent().parent().remove()
                 })
@@ -348,7 +345,7 @@
             else {
                 $(".contact-table div").remove();
                 $(".contact-table").append(html);
-
+                ticketOrder.countrySlider();
             }
         }
     }

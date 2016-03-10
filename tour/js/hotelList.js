@@ -129,7 +129,8 @@ var hotelList = {
             while(lastEle.className !="ho_list"){
                 lastEle = lastEle.parentNode;
             }
-            choose = lastEle.querySelector('.h-choose').style.display = (lastEle.querySelector('.h-choose').style.display=='block')?'none':'block';
+            choose = lastEle.querySelector('.h-choose');
+            choose.style.display = (choose.style.display=='block')?'none':'block';
 
         });
         that.eventHandler(nextButton,'click',function(event){

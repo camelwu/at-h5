@@ -138,92 +138,18 @@ var ticketOrder = {
             var event = event || window.event;
             var target =event.target || event.srcElement;
             var that = ticketOrder;
-            debugger;
             that.backParaObj = that.reverseInformation;
-            /*that.backParaObj.TravellerInfo = [
-                {
-                    chineseName:"刘德华",
-                    PassengerType: "ADULT",  //乘客类
-                    SexCode: "Mr",        //称呼
-                    FirstName: "sss",     //姓
-                    LastName: "ddd",       //名
-                    DateOfBirth: "1978-12-24", //出生日期
-                    FlightCertificateInfo: {    //证件信息
-                        IdType: "4",      //证件类型
-                        IdCountry: "CN",  //证件发行国家
-                        IdNumber: "3412",      //证件号码
-                        IdActivatedDate: "2016-12-31"  //证件有效期
-                    },
-                    BaggageCode:"",//行李编码，一期不用,
-                    NationalityCode: "CHN" //国籍代码
-                },
-                {   chineseName:"张学友",
-                    PassengerType: "ADULT",  //乘客类
-                    SexCode: "Mr",        //称呼
-                    FirstName: "sss",     //姓
-                    LastName: "ddd",       //名
-                    DateOfBirth: "1968-12-24", //出生日期
-                    FlightCertificateInfo: {    //证件信息
-                        IdType: "4",      //证件类型
-                        IdCountry: "CN",  //证件发行国家
-                        IdNumber: "3418",      //证件号码
-                        IdActivatedDate: "2016-12-31"  //证件有效期
-                    },
-                    BaggageCode:"",//行李编码，一期不用,
-                    NationalityCode: "CHN" //国籍代码
-                },
-            ];*/
-           that.backParaObj.TravellerInfo =JSON.parse(window['localStorage']['travellerInfo_selected']);
-            console.log(that.backParaObj.TravellerInfo)
-          /* that.backParaObj.ContactDetail={
-                chineseName:"郭富城",
-                SexCode: "Mr",  //称呼
-                FirstName: "Jack", //姓
-                LastName: "Ma",  //名
-                Email: "330@qq.com", //邮箱
-                MobilePhone: "15123957486",        //手机号
-                CountryNumber: "86"
-            }*/
-
-           /* var s= "{"SexCode":"Ms","
-            FirstName":"六","
-            LastName":"赵","
-            Email":"330@qq.com","
-            CountryNumber":"86","
-            ContactNumber":"5689","
-            MobilePhone":"13454345654"}"*/
-
+            that.backParaObj.TravellerInfo =JSON.parse(window['localStorage']['travellerInfo_selected']);
             var contactInfo = JSON.parse(window['localStorage']['contact_selected']),contactInfoCache = {};
-            for(var tem in contactInfo){
-                contactInfoCache[tem] = contactInfo[tem];
-            }
             contactInfoCache.FirstName = document.querySelector('#first-name').innerHTML;
             contactInfoCache.LastName = document.querySelector('#last-name').innerHTML;
             contactInfoCache.Email =document.querySelector('#email-label').innerHTML;
             contactInfoCache.CountryNumber = document.querySelector('#first-name').innerHTML;
             contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
-
-
-
-           that.backParaObj.ContactDetail =JSON.parse(window['localStorage']['contact_selected']);
-
-            /*var reverseInformationCache = {
-             WapOrder:{
-             SetID:"30000080",
-             CacheID:"3500553",
-             CityCodeFrom:"BJS", //出发地三字码
-             CityCodeTo:"BJS",  //到达地三字码
-             NumofAdult:2,
-             NumofChild:2,
-             RouteType:"Oneway",
-             CabinClass:"First",
-             MemberId:"123456"   //必须，用户编码，
-             },
-             CurrencyCode: "CNY",
-             TotalFlightPrice: 106255,
-             TravellerInfo:[],
-             ContactDetail:{}
-             };*/
+            for(var tem in contactInfo){
+                contactInfoCache[tem] = contactInfo[tem];
+            }
+            that.backParaObj.ContactDetail =JSON.parse(window['localStorage']['contact_selected']);
             $("#preloader").show();
             $("#status-f").show();
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
@@ -246,11 +172,8 @@ var ticketOrder = {
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
                     console.log(orderResultInfo)
-                    debugger;
                     document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
                 }else{
-                    console.log(arg)
-
                     orderResultTip.innerHTML = arg.message;
                     orderResultTip.style.display = 'block';
                     that.timer7 = window.setTimeout(function(){
@@ -262,7 +185,6 @@ var ticketOrder = {
             });
 
         });
-
 
         this.addHandler(Button,'click', function(){
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
@@ -365,30 +287,32 @@ var ticketOrder = {
                 };
 
                 if(reg.test(valueStr)){
+                    console.log(22)
+                    var mb = String(valueStr).toLowerCase();
                     for(var p = 0; p < arrCountry.length; p++){
-                        if(arrCountry[p]['CountryEN'].indexOf(valueStr)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
+                        var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
+                        if(ma.indexOf(mb)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
                             searchResult.push(arrCountry[p]);
                         }
                     }
-                }
-                searchResult = searchResult.distinct();
-                console.log(searchResult)
-                if(!searchResult.length){
-                    resultStr +='<li>无搜索结果</li>';
-                    cityListSearched.style.display = 'none';
-                }else{
-                    for(var l = 0;l<searchResult.length;l++){
-                        resultStr += '<li data-tel-code="'+searchResult[l].TelCode+'" data-Country-code="'+searchResult[l].CountryCode+'">'+searchResult[l].CountryName+'</li>'
+                    searchResult = searchResult.distinct();
+                    if(!searchResult.length){
+                        resultStr +='<li>无搜索结果</li>';
+                        cityListSearched.style.display = 'none';
+                    }else{
+                        for(var l = 0;l<searchResult.length;l++){
+                            resultStr += '<li data-tel-code="'+searchResult[l].TelCode+'" data-Country-code="'+searchResult[l].CountryCode+'">'+searchResult[l].CountryName+'</li>'
+                        }
+                        cityListSearched.innerHTML = resultStr;
+                        cityListSearched.style.display = 'block';
                     }
-                    cityListSearched.innerHTML = resultStr;
-                    cityListSearched.style.display = 'block';
                 }
-            }
+            };
             div.className = 'all-elements country-cho-wrap-order';
             div.innerHTML = '<div class="header country-list-header">'+
             '<a href="javascript:void(0)" class="icons header-back country-hidden"></a>'+
             '<div class="cl_search">'+
-            '<input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>'+
+            '<input type="text" placeholder="中国/China/zhongguo" id="country-input-zone"/>'+
             '<i></i>'+
             '</div>'+
             '</div>'+
@@ -396,18 +320,11 @@ var ticketOrder = {
             '<div class="snap-content country-list country-list-init-show" style="padding-top: 45px">'+
             '<div class="country-wrap" id="country-wrap">'+
             '<ul class="country-list counter-list-to-order">'+
-            '<li data-tel-code="244" data-code="AO">安哥拉</li>'+
-            '<li data-tel-code="93" data-code="AF">阿富汗</li>'+
-            '<li data-tel-code="355" data-code="AL">阿尔巴尼亚</li>'+
-            '<li data-tel-code="213" data-code="DZ">阿尔及利亚</li>'+
-            '<li data-tel-code="376" data-code="AD">安道尔共和国</li>'+
-            '<li data-tel-code="1264" data-code="AI">安圭拉岛</li>'+
-            '<li data-tel-code="1268" data-code="AG">安提瓜和巴布达</li>'+
             '</ul>'+
             '</div>'+
             '</div>';
             document.body.appendChild(div);
-            var  countryChoWrapOrder = document.querySelector('.country-cho-wrap-order');
+
             var  cityInputZone = document.querySelector('#country-input-zone');
             var  countryHidden = document.querySelector('.country-hidden');
             var  ulLi = document.querySelector('.counter-list-to-order'),liStr = '' ;
@@ -437,7 +354,6 @@ var ticketOrder = {
                 return newArr;
             };
             arrCountry = arrCountry .distinct();
-            console.log()
             for(var ji= 0, len =arrCountry.length;ji<len; ji++){
                     liStr += '<li data-tel-code="'+arrCountry[ji].TelCode+'" data-code="'+arrCountry[ji].CountryCode+'">'+arrCountry[ji].CountryName+'</li>'
                  }
@@ -452,9 +368,29 @@ var ticketOrder = {
                              document.body.removeChild(document.querySelector('.country-cho-wrap-order'));
                     }
             };
-            countryChoWrapOrder.onclick=function(event){};
+            that.addCountryCodeHandler();
         };
     },
+    addCountryCodeHandler:function(){
+        var  countryChoWrapOrder = document.querySelector('.country-cho-wrap-order');
+        var  cityInputZone = document.querySelector('#country-input-zone');
+        countryChoWrapOrder.onclick=function(event){
+            var event = event || window.event;
+            var target = event.target ||event.srcElement;
+            var countryCode = document.querySelector('#country-code'), that =this;
+            if(target.tagName=='LI'){
+                cityInputZone.value = target.innerHTML;
+                countryCode.innerHTML ='+'+target.getAttribute('data-tel-code');
+                that.timer9 = window.setTimeout(function(){
+                    countryCode.innerHTML ='+'+target.getAttribute('data-tel-code');
+                    window.clearTimeout(that.timer9);
+                    that.timer9 = null;
+                    document.body.removeChild(that);
+                },1000)
+            }
+        };
+    },
+
     tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
         var that=this,dataObj =
         {
