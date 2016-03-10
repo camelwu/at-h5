@@ -195,13 +195,12 @@ var ticketSingle = {
     },
     renderHandler:function(arg){
         arg = JSON.parse(arg);
-        console.log(arg)
         var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
                 tipEle.style.display = 'none';
-                that.flightResultArray.push(arg["data"])
+                that.flightResultArray.push(arg["data"]);
                 that.lastBackData = arg;
                 that.storageUtil.set('flightListData',that.flightResultArray);
                 that.pageNo = arg.data.pageNo;
@@ -285,6 +284,7 @@ var ticketSingle = {
     },
 
     changeFlightList:function(arg, type){
+        console.log(arg)
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
@@ -597,6 +597,27 @@ var ticketSingle = {
         backParaObj.pageNo = parseInt(backParaObj.pageNo);
         backParaObj.pageSize = parseInt(backParaObj.pageSize);
         this.backParaObj = backParaObj;
+        var backParaObj = {
+                "CityCodeFrom": "BJS",
+                "CityCodeTo": "SIN",
+                "interNationalOrDomestic": "international",
+                "DepartDate": "2016-03-16",
+                "CabinClass": "First",
+                "RouteType": "Oneway",
+                "IsHideSharedFlight": "false",
+                "IsDirectFlight": "false",
+                "NumofAdult": 2,
+                "NumofChild": 0,
+                "DepartStartHour": "00",
+                "DepartEndHour": "24",
+                "PriorityRule": 0,
+                "IsDesc": "true",
+                "pageNo": 1,
+                "pageSize": 10,
+                "hasTax": "true",
+                "fromCity": "北京",
+                "toCity": "新加坡"
+        }
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.flightResultArray = [];
         if($.browser.webkit && !window.chrome){

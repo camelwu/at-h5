@@ -180,7 +180,7 @@
                        paraObj.pageNo= 1;
                        paraObj.pageSize= 10;
                        paraObj.hasTax= true;
-                       paraObj.IsDesc= "false";
+                       paraObj.IsDesc= "true";
                        paraObj.fromCity= cityItems[0].innerHTML;
                        paraObj.toCity= cityItems[1].innerHTML;
                        that.storageUtil.set('ticketSearchedInfo',paraObj)
@@ -216,7 +216,7 @@
                        paraObj.DepartStartHour="00";
                        paraObj.DepartEndHour="24";
                        paraObj.PriorityRule= 0;
-                       paraObj.IsDesc= "false";
+                       paraObj.IsDesc= "true";
                        paraObj.pageNo= 1;
                        paraObj.pageSize= 10;
                        paraObj.hasTax= true;
