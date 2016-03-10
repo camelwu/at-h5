@@ -740,7 +740,7 @@
 						data : data,
 						contentType : 'application/json;charset=utf-8',
 						beforeSend : function(xhr) {
-							xhr.setRequestHeader("Accept-Encoding", "gzip");
+							//xhr.setRequestHeader("Accept-Encoding", "gzip");
 							//xhr.setRequestHeader('Content-Type','application/json');
 							if (encryption != undefined && encryption == true) {
 								var uid = md5("zhangfengming");
