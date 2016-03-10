@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>订单详情</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link href="../styles/framework.css" rel="stylesheet"/>
-    <link href="../styles/style.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/order_pay_page.css">
-</head>
-<body>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +26,6 @@
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
     <title>酒+景订单详情 - 亚洲旅行网</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="../styles/framework.css" rel="stylesheet"/>
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/order_pay_page.css">
@@ -172,7 +161,6 @@
             //   获取详情
             var getDetail = function(){
                 var info = JSON.parse(localStorage.info);
-
                 var chargeDetail = [];
                 var totalPrice = 0;
                 var myDate = new Date();
@@ -228,7 +216,7 @@
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
 
                 function getDetail_back(ret){
-                    var json = eval('('+ret+')');
+                    var json = ret;
                     if(json.success) {
                         var data = json.data;
                         console.log(data);
