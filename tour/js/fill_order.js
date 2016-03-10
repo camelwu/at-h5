@@ -154,7 +154,7 @@
             }else{
                 oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
                 oAgree.style.backgroundSize='40rem 12rem';
-                document.querySelector('.reserve').style.backgroundColor='#ddd';
+                oReserve.style.backgroundColor='#ddd';
                 bOk=true;
             }
         };
@@ -163,7 +163,13 @@
         function sentPackage(obj){
             obj.onclick=function(){
 
-                //this.style.backgroundColor='#ff9313';
+                if(this.style.backgroundColor == 'rgb(221, 221, 221)'){
+                    return;
+                }
+                else
+                {
+                    this.style.backgroundColor='#ff9313';
+                }
                 var roomNum=document.querySelectorAll('.per_data');
                 //联系人信息
                 var conInput=document.querySelectorAll('#personal_data .list_inp2');
@@ -171,10 +177,6 @@
                 var conFirName=conInput[1].value;
                 var conPhone=conInput[2].value;
                 var conEmail=conInput[3].value;
-                localStorage.conLasName=conInput[0].value;
-                localStorage.conFirName=conInput[1].value;
-                localStorage.conPhone=conInput[2].value;
-                localStorage.conEmail=conInput[3].value;
 
                 //总价
                 var totalPrice=document.querySelector('.all_num i').innerHTML;
@@ -376,7 +378,6 @@
                 if(json.success) {
                     localStorage.bookingID=json.data.bookingID;
                     localStorage.bookingRefNo=json.data.bookingRefNo;
-
                     window.location.href='order_pay_page.html';
                 }else{
                     jAlert(json.message);

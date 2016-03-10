@@ -42,7 +42,7 @@
                         <li>
                             <span class="tourist-name tour-short">国籍：</span>
                             <!--<input id="scenic2_NationalityCode" readonly="readonly" style="display: inline-block;" placeholder="国籍">-->
-                            <span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" >中国</span>
+                            <span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" data-tel-code="86">中国</span>
                         </li>
                         <li>
                             <span class="tourist-name tour-short">护照：</span><input id="scenic2_idcard" style="display: inline-block;" placeholder="EA2359923">
@@ -247,7 +247,7 @@
                 {% for(var i=0,len=DetailData.data.minPax;i<len;i++){ %}
                     <li class="clearFix">
                         <span id="child_old" class="child-age fl">儿童年龄{%=i+1%}</span>
-                        <div class="child-age-cont fr"><input type="text" placeholder="2-14"/><span>岁</span></div>
+                        <div class="child-age-cont fr"><input type="text"  placeholder="{%=DetailData.data.childAgeMin%}-{%=DetailData.data.childAgeMax%}"/><span>岁</span></div>
                     </li>
                 {% } %}
             </ul>
@@ -403,7 +403,7 @@
              * @param data
              */
             MT.callbackPickupPoint = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
                     var data = json,tpl_PickupPoint = template("tpl_PickupPoint",data);
@@ -434,7 +434,7 @@
              * @param data
              */
             MT.callbackDetails = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 DetailData = json;
 //                console.log(json);
                 if(json.success){
@@ -492,7 +492,7 @@
              * @param data
              */
             MT.callbackSearchPrice = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 SearchPriceData = json;
 //                console.log(json);
                 if(json.success){
@@ -875,6 +875,9 @@
                     var addval = $(".js-tpl-ScenicPrices").find("[data-add]").attr("data-add");
                     if(addval != undefined){
                         if(addval == 1){
+                            if($(".js-scenicview2").length > 0){
+                                return false;
+                            }
                             MT.renderView2();
                         }else{
                             $(".js-scenicview2").remove();
@@ -921,7 +924,7 @@
                 $(".js-order-detail").click(function(){
                     var AdultCount = 0,ChildCount = 0,ChildArray = [],Childtmp = ""
                             ,TourArray = [],TourObj = {},DOB ="",TravelDate = "",TourSession = ""
-                            ,TourCount = 0,TourID = 0,PickupID = "",PickupPoint="",PickupCount = 0
+                            ,TourCount = 0,TourID = 0,PickupID = "",PickupCount = 0,currentY = 0
                             ,PickupTmp,PickupPoint = {},TravelerType = "",Salutation ="",FirstName = ""
                             ,LastName = "",NationalityCode = "",Travelers = [],Email = ""
                             ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",TotalPrice = 0;
@@ -985,38 +988,44 @@
 
                     }
 
+                    //国籍
+                    NationalityCode = $("#jp_bank_country").attr("data-code");
+                    CountryCode = $("#jp_bank_country").attr("data-tel-code");
 
                     TravelerType = ExtendData.isAudlt == 1?"Adult":"Child";
                     Salutation = "Mr";
                     //取票人信息
                     FirstName = $("#scenic2_name1").val();
                     LastName = $("#scenic2_name2").val();
-                    NationalityCode = $("#scenic2_NationalityCode").val().toUpperCase();
 
-                    if(TravelerType == "Child" ){
-                        DOB = "1987-07-13";
-                        param.Parameters.Travelers = [{TravelerType,Salutation,FirstName,LastName,DOB,NationalityCode}];
-                    }else{
-                        param.Parameters.Travelers = [{TravelerType,Salutation,FirstName,LastName,NationalityCode}];
+
+
+
+
+                    if(AdultCount > 0){
+                        for(var i = 0;i<AdultCount;i++){
+
+                            Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
+                        }
                     }
+
+                    if(ChildCount > 0){
+                        for(var i = 0;i<ChildCount;i++){
+                            currentY = new Date();
+                            currentY = parseInt(currentY.getFullYear()) - parseInt(ChildArray[i]);
+                            DOB = currentY+"-01-01";
+                            Travelers.push({"TravelerType": "Child","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"DOB":DOB,"NationalityCode":NationalityCode});
+                        }
+                    }
+
+                    param.Parameters.Travelers = Travelers;
 
 
 
                     //联系人信息
                     FirstName = $("#scenic_name1").val();
                     LastName = $("#scenic_name2").val();
-                    switch (NationalityCode){
-                        case "CN":
-                            CountryCode = 86;
-                            break;
-                        case "SG":
-                            CountryCode = 65;
-                        case "AE":
-                            CountryCode = 971;
-                        case "TH":
-                            CountryCode = 66;
-                            break;
-                    }
+
                     Email = $("#scenic_email").val();
                     PhoneNo = $("#scenic_phone").val();
                     param.Parameters.ContactDetails  = {"Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"Email":Email,"ContactNo":{"CountryCode":CountryCode,"PhoneNo":PhoneNo}};
@@ -1038,10 +1047,13 @@
              * @constructor
              */
             MT.callbackOrderDetail = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
-
+                    var bookingRefNo = json.data.bookingRefNo;
+                    if(bookingRefNo != undefined && bookingRefNo != ""){
+                        window.location.href = "../scenic/order-detail.html?bookingRefNo="+bookingRefNo;
+                    }
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");

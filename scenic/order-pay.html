@@ -155,40 +155,35 @@
     <script src="js/order-pay.js"></script>
     <script src="../js/country_list.js"></script>
 <script>
-    $(window).load(function () {
-        Init();
-    });
     var getCN = {
         "CNY": "￥",
         "SGD":"SGD",
         "USD":"$"
     };
-    /*倒计时*/
-    window.onload=function(){
-        sec('countdown',1800);
 
-        function sec(sName,time){
-            var oSpan=document.getElementById(sName);
-            var n=time;
-            tick1();
-            var timer=setInterval(tick1,1000);
-            function tick1()
-            {
-                n--;
-                var m=parseInt(n/60);
-                var s=n%60;
-                oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
-                if (n<0) {
-                    clearInterval(timer);
-                    oSpan.innerHTML="结束"
-                }
+    function sec(sName,time){
+        var oSpan=document.getElementById(sName);
+        var n=time;
+        tick1();
+        var timer=setInterval(tick1,1000);
+        function tick1()
+        {
+            n--;
+            var m=parseInt(n/60);
+            var s=n%60;
+            oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
+            if (n<0) {
+                clearInterval(timer);
+                oSpan.innerHTML="结束"
             }
         }
-        function toDub(a){
-            return a<10 ? '0'+a : ''+a;
-        }
-    };
+    }
+    function toDub(a){
+        return a<10 ? '0'+a : ''+a;
+    }
+
     (function(){
+        Init();
         var b=document.getElementById('pay_way').getElementsByTagName("b");
         var agree = $("#agree")[0];
         var close_page = $("#close_page")[0];
@@ -220,27 +215,30 @@
             out_pay.style.display = "none";
         };
         btnPay.onclick=function(){
-            Payment("UnionPay","SG17SINFP0375521");
+            var bookinbgRefNo=vlm.getpara("BookingRefNo");
+            Payment("UnionPay",bokinbgRefNo);
         }
         btnCPay.onclick=function(){
-            Payment("CreditCard","SG17SINFP0375521");
+            var bookinbgRefNo=vlm.getpara("BookingRefNo");
+            Payment("CreditCard",bookinbgRefNo);
         }
     })();
     function Payment(type,code){
 
        var  Parameters=GetParameters(type,code);
-        console.log(Parameters);
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-            var data=JSON.parse(data);
-            if(data.success){
-                var url=data.data.paymentRedirectURL ;
-                window.open(url);
-            }else{
-                 alert(data.message);
-            }
-            vlm.init();
+        if(Parameters) {
+            console.log(Parameters);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
+                if (data.success) {
+                    var url = data.data.paymentRedirectURL;
+                    window.open(url);
+                } else {
+                    alert(data.message);
+                }
+                vlm.init();
 
-        })
+            })
+        }
     }
     function GetParameters(type,orderCode) {
         var json={}
@@ -332,11 +330,15 @@
     }
 
     function Init(){
+        var bookinbgRefNo=vlm.getpara("BookingRefNo");
+        if(bookinbgRefNo==null){
+            jAlert("参数订单BookingRefNo不能为空！");
+            return;
+        }
         var Parameters={
             "Parameters": {
-                "BookingRefNo": "SG17SINFP0375501"
-            }
-            ,
+                "BookingRefNo": bookinbgRefNo
+            },
             "ForeEndType": 3,
             "Code": "0095"
         }
@@ -344,6 +346,32 @@
             var data=JSON.parse(data);
             if(data.success) {
                 debugger;
+                var date1=new Date();  //开始时间
+                var date2=new Date(data.data.bookingDate.replace("T"," "))
+                var date3=date1.getTime()-date2.getTime() //时间差的毫秒数
+                //计算出相差天数
+                var days=Math.floor(date3/(24*3600*1000))
+
+                //计算出小时数
+                var leave1=date3%(24*3600*1000)    //计算天数后剩余的毫秒数
+                var hours=Math.floor(leave1/(3600*1000))
+
+                //计算相差分钟数
+                var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
+                var minutes=Math.floor(leave2/(60*1000))
+
+                //计算相差秒数
+                var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+                var seconds=Math.round(leave3/1000)
+
+
+                if(days==0 && hours==0 && minutes*60+seconds<=30*60) {
+                    sec('countdown',30*60-(minutes*60+seconds));
+                }
+                else{
+                    var oSpan=document.getElementById("countdown")
+                    $("#countdown").html("已经结束");
+                }
                 var tpl = template("tpl_orderinfo",data.data);
                 var tplC = template("tpl_orderTotal",data.data);
                 $(".per-pay-msg-bg").html(tpl);
@@ -351,7 +379,7 @@
 
             }
             else {
-                alert("添加失败！");
+                alert("网络异常，加载失败！");
             }
             vlm.init();
 
@@ -366,8 +394,8 @@
                 <span>订单号: <i>{%=bookingRefNo%}</i></span>
             </li>
             <li>
-                <div>票务信息：<i>{%=packageName%}1张</i></div>
-                <div class="pay-total">总价：<span style="color:#fe6a03">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
+                <div>票务信息：<i> {%=packageName%}{%=travelers.length%}张</i></div>
+                <div class="pay-total">总价：<span style="color:#fe6a03" class="totalAmount">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
             </li>
         </ul>
     </script>

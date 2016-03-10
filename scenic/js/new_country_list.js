@@ -885,7 +885,7 @@ var arrCountry= [{"CountryEN":"Angola",
                         oDiv.style.display='none';
                         oTc.style.display='none';
                         oInput.value='';
-                    },500)
+                    },100)
 
                     //if($('#addtra_page')[0].style.display == 'none')
                     //{

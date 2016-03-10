@@ -1,21 +1,46 @@
+
+var bookingRefNo=vlm.getpara("bookingRefNo");
+var getCoin = {
+    "CNY": "￥",
+    "USD":"$"
+};
+var getSex = {
+    "MS": "男",
+    "MRS":"女"
+};
 $(document).ready(function(){
 
-    localStorage.setItem('flight_order_storage12345',JSON.stringify({BookingID:11111111}));
-    var myData=JSON.parse(localStorage.getItem('flight_order_storage12345'));
-    console.log(myData);
-    console.log('上面是从localStorage上面得到的数据');
 
-    console.log(myData);
+    var Parameters={"Parameters": {"BookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
+    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+        if(data.success) {
+            debugger;
+            var tpl=template("payDetail",data.data);
+            $("#payDetail").html(tpl);
 
-    var userFlightInformation=localStorage.getItem('orderResultInfo');
-    var tpl=template("payDetail",JSON.parse(userFlightInformation).data);
-    console.log(tpl);
-    $("#payDetail").html(tpl);
-    vlm.init();
+            $(".passenger-detail").on("click",function(){
+                $(".passenger").toggle();
+            })
 
-    $(".passenger-detail").on("click",function(){
-        $(".passenger").toggle();
-    })
+        }})
+        vlm.init();
+
+
+
+    //localStorage.setItem('flight_order_storage12345',JSON.stringify({BookingID:11111111}));
+    //var myData=JSON.parse(localStorage.getItem('flight_order_storage12345'));
+    //console.log(myData);
+    //console.log('上面是从localStorage上面得到的数据');
+    //
+    //console.log(myData);
+    //
+    //var userFlightInformation=localStorage.getItem('orderResultInfo');
+    //var tpl=template("payDetail",JSON.parse(userFlightInformation).data);
+    //console.log(tpl);
+    //$("#payDetail").html(tpl);
+
+
+
     var ticketPayDetail = {
 
         requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
@@ -221,8 +246,9 @@ function M(json){
         return false;
     }
 
-
+debugger;
     console.log(cardInfo);
+
     var data= {
         //"Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\",\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":120,\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"T00:00:00\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"SG\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\",\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
         //"Parameters": {"CardInfo": cardInfo, "BookingRefNo":"SGSINFT0012951"},
@@ -234,23 +260,24 @@ function M(json){
                 "CardCountryCode": $(".CardCountryCode").attr("data-code"),
                 "CardNumber":  $(".CardNumber").val(),
                 "CardSecurityCode": $(".CardSecurityCode").val(),
-                "CardExpiryDate":"2018-12-31",
+                //"CardExpiryDate":"2018-12-31",
+                CardExpiryDate: $(".CardExpiryDate").val(),
                 "CardContactNumber": $(".CardContactNumber2").val()+$(".CardContactNumber2").val(),
                 "CardAddress": $(".CardAddress").val(),
-                "CardAddressPostalCode": "1234",
-                "CardAddressCity":"北京",
+                "CardAddressPostalCode":  $(".CardAddressPostalCode").val(),
+                "CardAddressCity":$(".CardCity").val(),
                 "CardAddressCountryCode":  $(".CardAddressCountryCode").attr("data-code")
             },
-            "BookingRefNo":"CNBJSFT0001557",
+            "BookingRefNo":bookingRefNo,
             "CurrencyCode":"CNY",
-            "TotalFlightPrice":"3190.00",
+            "TotalFlightPrice":$(".totalFlightPrice").html(),
             "PaymentMode":"CreditCard"
         },
         "ForeEndType": 3,
         "Code": "3004"
     };
     console.log(data);
-    $.alerts.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",callback,"支付完成","支付出现问题");
+    //$.alerts.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",callback,"支付完成","支付出现问题");
     var payment=new paymentObj(data,mycallback);
     payment.handlePayment();
     //return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);

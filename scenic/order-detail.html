@@ -117,9 +117,13 @@
         {% } %}
     </script>
     <script>
+
+    </script>
+    <script>
         (function(){
             var ww = this;
             vlm.init();
+            var val = vlm.parseUrlPara(window.location.href);
             var sc_orderDetail = function(){
                 //   加载动画
                 var flashLoad = function(){
@@ -159,14 +163,14 @@
                     ].join('');
                     var tmp = {
                         "Parameters": {
-                            "BookingRefNo": "SG17SINFP0136825"
+                            "BookingRefNo": val.bookingRefNo
                         },
                         "ForeEndType": 3,
                         "Code": "0095"
                     };
                     vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
-                    function getDetail_back(ret){
-                        var json = eval('('+ret+')');
+                    function getDetail_back(data){
+                        var json=data;
                         if(json.success) {
                             var data = json.data;
                             console.log(data);

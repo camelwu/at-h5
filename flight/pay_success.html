@@ -61,15 +61,20 @@
         <div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>
     </div>
 
-    <script src="js/head_back.js"></script>
     <script type="text/javascript" src="../js/lib/jquery.js"></script>
     <script type="text/javascript" src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
     <script>
+        var getWayCN = {
+            "Return": "往返",
+            "Oneway":"单程",
+            "Multistop":"联程"
+        };
         $(document).ready(function(){
             var memberId=JSON.parse(localStorage.getItem('memberid'));
-            var flightOrderID=vlm.getpara("flightOrderID");
-            var Parameters= {"Parameters": {"flightOrderID":flightOrderID },"ForeEndType": 3, "Code": "3006"}
+            var bookingRefNo=vlm.getpara("bookingRefNo");
+            var Parameters= {"Parameters": {"bookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
                 debugger;
                 var data=JSON.parse(data);
@@ -101,16 +106,20 @@
             <div class="wave_left"></div>
             <div class="wave_right"></div>
             <ul class="air-detail-box">
-                <li>往返  上海—伦敦</li>
-                <li><span>订单号：</span><span>233345345321423</span></li>
-                <li><i class="go-tip"></i><span>2015-01-08 13:00</span></li>
-                <li><i class="back-tip"></i><span>2015-01-11 09:00</span></li>
+                <li>{%=getWayCN[routeType]%}  {%=flightInfo.cityNameFrom%}—{%=flightInfo.cityNameTo%}</li>
+                <li><span>订单号：</span><span>{%=bookingRefNo%}</span></li>
+                {% if(routeType=="Oneway"){ %}
+                <li><i class="go-tip"></i><span>{%=flightInfo.flightLeaveStartDate.replace("T"," ")%}</span></li>
+                {% }else{ %}
+                <li><i class="go-tip"></i><span>{%=flightInfo.flightLeaveStartDate.replace("T"," ")%}</span></li>
+                <li><i class="back-tip"></i><span>{%=flightInfo.flightLeaveEndDate.replace("T"," ")%}</span></li>
+                {% } %}
             </ul>
-            <p class="airticket-tot">¥838</p>
+            <p class="airticket-tot">¥{%=totalFlightPrice%}</p>
         </section>
         <section class="lsf_tra_look">
             <p class="clearfix"><span class="fl">返回首页</span></p>
-            <p class="clearfix lsf_tra_lo_p2"><span class="fr"><a href="ticket_order_detail.html">查看订单</a></span></p>
+            <p class="clearfix lsf_tra_lo_p2"><span class="fr"><a class="checkOrderDetail" href="ticket_order_detail.html?bookingRefNo={%=bookingRefNo%}">查看订单</a></span></p>
         </section>
     </script>
 </body>

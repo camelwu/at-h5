@@ -154,7 +154,6 @@ var lsf_myweb={
         var oBoxChildren=oBox.children;
         var aB=oBox.getElementsByTagName('b');
         for(var i=0;i<oBoxChildren.length;i++){
-            debugger;
             lsf_myweb.bind(oBoxChildren[i],'click',function(){
                 var oB=this.getElementsByTagName('b')[0];
                 var oSpan=this.getElementsByTagName('span')[0];
@@ -174,7 +173,6 @@ var lsf_myweb={
     payType('p-ul1');
     lsf_myweb.bind(oBtn,'click',function(){
 
-        debugger;
         if(myPayType==0){
             alert('请选择支付类型');
             return;
@@ -184,12 +182,12 @@ var lsf_myweb={
         }
         //信用卡验证
         if(jp_bank.value=='输入银行卡号'){
-            $.alerts.alert('请输入信用卡卡号')
+            $.alerts.alert('请输入信用卡卡号',null,"确定");
             return;
         }else{
             var reg=/^\d+$/g;
             if(!reg.test(jp_bank.value)){
-                $.alerts.alert('信用卡卡号必须是数字');
+                $.alerts.alert('信用卡卡号必须是数字',null,"确定");
                 return;
             }else{
                 myData.CreditCardNumber=jp_bank.value;
@@ -202,7 +200,7 @@ var lsf_myweb={
         }else{
             if(strlen(jp_guest_name.value)>20)
             {
-                $.alerts.alert('超出最大字符!');
+                $.alerts.alert('超出最大字符!',null,"确定");
                 return;
             }
             myData.CardHolderName=jp_guest_name.value;
@@ -210,32 +208,32 @@ var lsf_myweb={
 
         //发卡银行验证
         if(jpBankName.value=='发卡银行'){
-            $.alerts.alert('请输入发卡银行');
+            $.alerts.alert('请输入发卡银行',null,"确定");
             return;
         }else{
             myData.BankName=jpBankName.value;
         }
         //有效期验证
         if(jp_limit_time.value=='月/年，如：09/12'){
-            $.alerts.alert('请输入有效期');
+            $.alerts.alert('请输入有效期',null,"确定");
             return;
         }else{
             myData.CreditCardExpiryDate=jp_limit_time.value;
         }
         //安全码验证
         if(jp_safe_code.value=='签名栏末尾最后3位'){
-            $.alerts.alert('请输入信用卡安全码');
+            $.alerts.alert('请输入信用卡安全码',null,"确定");
             return;
         }else{
             var reg=/^\d+$/g;
             if(!reg.test(jp_safe_code.value)){
-                $.alerts.alert('信用卡安全码必须是数字');
+                $.alerts.alert('信用卡安全码必须是数字',null,"确定");
                 return;
             }else{
                 if(jp_safe_code.value.length==3){
                     myData.CardSecurityCode=jp_safe_code.value;
                 }else{
-                    $.alerts.alert('信用卡安全码必须是3位数字');
+                    $.alerts.alert('信用卡安全码必须是3位数字',null,"确定");
                     return;
                 }
             }
@@ -250,13 +248,76 @@ var lsf_myweb={
         function M(json){
             debugger;
             console.log(json.totalPriceCNY);
-            var data={
-                "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\",\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\",   \"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\",\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\",\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+",\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\",\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\",\"GuestEmail\":\"thomas.gunawan@asiatravel.com\",\"TotalPrice\":\""+json.totalPriceCNY+"\",\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0,\"CardHolderName\":\""+json.CardHolderName+"\",\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+",\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\",\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"CN\",\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\",\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\",\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
-                "ForeEndType": 3,
-                "Code": "0012"
+            //var data={
+            //    "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\"," +
+            //    "\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\"," +
+            //    "\"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\"," +
+            //    "\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\"," +
+            //    "\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+"," +
+            //    "\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\"," +
+            //    "\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\"," +
+            //    "\"GuestEmail\":\"thomas.gunawan@asiatravel.com\"," +
+            //    "\"TotalPrice\":\""+json.totalPriceCNY+"\",\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0," +
+            //    "\"CardHolderName\":\""+json.CardHolderName+"\"," +
+            //    "\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+"," +
+            //    "\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\"," +
+            //    "\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"CN\"," +
+            //    "\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\"," +
+            //    "\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"," +
+            //    "\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
+            //    "ForeEndType": 3,
+            //    "Code": "0012"
+            //};
+            var data={};
+            var guestNameList=[];
+            for(var i=0;i<=json.guestName.length-1;i++){
+                var guestInfo={};
+                guestInfo.guestFirstName=json.guestName[i].GuestFirstName;
+                guestInfo.guestLastName=json.guestName[i].GuestLastName;
+                guestNameList.push(guestInfo);
+            }
+
+            data.Parameters={
+                "availability":true,
+                "bankName":"qwertyu",
+                "browserType":"",
+                "cardBillingAddress":"werty",
+                "cardHolderName":json.CardHolderName,
+                "cardIssuanceCountry":json.CardIssuanceCountry,
+                "cardSecurityCode":json.CardSecurityCode,
+                "cashVoucherDetails":"",
+                "checkInDate":json.dateInfo.CheckInDate+"T00:00:00",
+                "checkOutDate":json.dateInfo.CheckOutDate+"T00:00:00",
+                "cookieID":1,
+                "creditCardExpiryDate":json.CreditCardExpiryDate,
+                "creditCardNumber":json.CreditCardNumber,
+                "creditCardType":json.CreditCardType,
+                "guestContactNo":json.GuestContactNo,
+                "guestEmail":json.GuestEmail,
+                 guestNameList:guestNameList,
+                "guestRequest":"",
+                "guestTitle":"Mr",
+                "hotelCode":json.HotelGenInfo.hotelCode,
+                "hotelName":json.HotelGenInfo.hotelName,
+                "iPAddress":"",
+                "memberId":localStorage.memberid,
+                "nationlityCode":"",
+                "numOfChild":0,
+                "numOfGuest":json.NumOfRoom,
+                "numOfRoom":json.NumOfRoom,
+                "residenceCode":"",
+                "roomCode":json.roomCode,
+                "roomName":json.roomName,
+                "roomTypeCode":json.RoomTypeCode,
+                "roomTypeName":json.RoomTypeName,
+                "sessionID":"",
+                "totalPrice":json.totalPriceCNY,
+                "trck":""
             };
+            data.ForeEndType=3;
+            data.Code="0012";
+
             console.log(data);
-            debugger;
             console.log(JSON.stringify(data))
 
             var payment=new paymentObj(data,mycallback);
@@ -266,8 +327,13 @@ var lsf_myweb={
         }
         //数据展示部分
         function V(data){
+
             if(data.success){
-                window.location.href='trade_details.html';
+                debugger;
+                if(data.data.length>=1) {
+                    //window.location.href='trade_details.html';
+                    window.open(data.data[0].paymentRedirectURL);
+                }
             }else{
                 $("#status-h").fadeOut();
                 $("#preloader").fadeOut("medium");
