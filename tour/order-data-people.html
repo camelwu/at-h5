@@ -304,7 +304,7 @@
                                 +'<div class="extraChild">'
                                 +'<span class="bedList" style="float: left"><i>儿童年龄1</i></span>'
                                 +'<div class="childAge">'
-                                +'<input class="inp-cage" type="text" value placeholder="2-14"><i class="child-sui">岁</i>'
+                                +'<input class="inp-cage" type="text" value placeholder="('+childAgeMin+'-'+childAgeMax+')"><i class="child-sui">岁</i>'
                                 +'</div>'
                                 +'<div class="numbList">'
                                 +'<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'
@@ -341,14 +341,14 @@
                         '</div>'+
                         '<div class="numbList">'+
                         '<span class="n_tit">儿童</span>'+
-                        '<span class="child-age">（2-14岁）</span>'+
+                        '<span class="child-age">('+childAgeMin+'-'+childAgeMax+')</span>'+
                         '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">1</i><span class="plus-btn"></span></div>'+
                         '</div>'+
                             <!--<div id="addChild">-->
                         '<div class="extraChild">'+
                         '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>'+
                         '<div class="childAge">'+
-                        '<input class="inp-cage" type="text" placeholder="2-14"><i class="child-sui">岁</i>'+
+                        '<input class="inp-cage" type="text" placeholder="('+childAgeMin+'-'+childAgeMax+')"><i class="child-sui">岁</i>'+
                         '</div>'+
                         '<div class="numbList">'+
                         '<span class="bedList" data-type="ifaddBed"><i>加床</i><b class="icon noselect"></b></span>'+
@@ -415,7 +415,7 @@
                 var roomNum = parseInt(document.getElementById('roomNum').innerHTML);
                 var roomDetails = [], tours = [];
                 var roomDetailSection = document.querySelectorAll('.hotelInfo_numb_people');
-                var tourEle = document.querySelectorAll('.tour-out-div')
+                var tourEle = document.querySelectorAll('.tour-out-div');
                 for(var hn = 0, len =roomDetailSection.length; hn<len; hn++){
                         var temEle = roomDetailSection[hn], temObj={}, childWithOutBed = [], childWithBed=[];
                         var temAdultNum =parseInt(temEle.querySelector('#adult-people-number').innerHTML);

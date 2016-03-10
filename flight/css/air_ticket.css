@@ -1115,7 +1115,7 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     width: 28.55px;
     position: absolute;
-    right: 52px;
+    right: 48px;
     top: -4px;
     font-size: 10px;
 }
@@ -1679,7 +1679,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 18px;
     height: 16px;
     position: absolute;
-    left: 36%;
+    left: 32%;
     top: 0.9rem;
     background-image: url(../../images/ui/icons1.png);
     background-size: 400px 120px;
