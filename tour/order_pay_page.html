@@ -142,7 +142,7 @@
 </script>
 <script id="tpl_payBtn"  type="text/template">
     {% if(!paymentStatus){  %}
-    <a href="order-pay.html" class="order_pay_btn">支付订单</a>
+    <a href="order-pay.html?bookingRefNo={%=bookingRefNo%}" class="order_pay_btn">支付订单</a>
     {% } %}
 </script>
 <script>
@@ -199,11 +199,7 @@
                     '<div>￥'+total+'</div>',
                     '</li>'
                 ].join('');
-                var tpl6 = [
-                    '<section class="order_pay_btnBox">',
-                        '<a href="order-pay.html" class="order_pay_btn">支付订单</a>',
-                    '</section>'
-                ].join('');
+
 //                var bookingRefNo="SG17SINFP0375528";
                 var bookingRefNo=vlm.getpara("bookingRefNo");
                 var tmp = {
