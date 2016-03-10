@@ -131,7 +131,7 @@ var roomUpGrade = {
             '</p>',
             '</li>'
         ].join('');
-        var resultData = JSON.parse(arguments[0]),that = roomUpGrade;
+        var resultData = arguments[0],that = roomUpGrade;
         if (resultData.success) {
             if (resultData.data.hotels.length == 0) {
                 jAlert("抱歉暂时没有数据", "提示");
