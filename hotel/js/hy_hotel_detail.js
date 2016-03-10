@@ -395,7 +395,7 @@
         },
 
 		createAll : function(result) {
-			result = JSON.parse(result);
+			//result = JSON.parse(result);
 			console.log('callback函数得到的数据');
 			hotelDetail.myData.createAllback = result;
 			console.log(hotelDetail.myData);

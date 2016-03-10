@@ -564,6 +564,8 @@ function inpChange(id, myText) {
 			for (var name in json) {
 				cityHisArr.push(name);
 			}
+            //倒序
+            cityHisArr.reverse();
 			var djson = {};
 			for (var i = 0; i < dcityHisArr.length; i++) {
 				if (dcityHisArr[i]) {
@@ -576,7 +578,7 @@ function inpChange(id, myText) {
 			}
 			//把历史城市生成页面
 			cl_citysHis.innerHTML = '';
-			for (var i = 0; i < cityHisArr.length; i++) {
+			for (var i = 0; i < cityHisArr.length&& i<6; i++) {
 				cl_citysHisStr += '<li>' + cityHisArr[i] + '</li>';
 			}
 			cl_citysHis.innerHTML = cl_citysHisStr;
