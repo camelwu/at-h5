@@ -88,7 +88,7 @@ $(document).ready()
         console.log(data);
         var payment = new paymentObj(data, function (str) {
             console.log(str);
-            var data = eval('(' + str + ')');
+            var data =str;
             if (data.success) {
                 if(business==3) {
                     var code=data.BookingRefNo;
