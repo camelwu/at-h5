@@ -21,9 +21,10 @@ $(document).ready(function(){
             $(".passenger-detail").on("click",function(){
                 $(".passenger").toggle();
             })
+            vlm.init();
 
         }})
-        vlm.init();
+
 
 
 
