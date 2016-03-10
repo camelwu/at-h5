@@ -17,7 +17,7 @@
             {   //tour
                 city:{
                     inland:{hotcity:0,citylist:0},
-                    oversea:{hotcity:0,citylist:0}
+                    oversea:{hotcity:"0096",citylist:"0086"}
                 }
             }
 
