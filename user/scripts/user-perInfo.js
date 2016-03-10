@@ -382,12 +382,12 @@ $('#birth-cont').click(function(){
 
 //修改出生日期回调
 function mycallback_birth(ret){
-    var myJson=eval('('+ret+')');
+    var myJson=ret;
     console.log(myJson.data[0].dateOfBirth);
 }
 
 function mycallback(ret){
-    infoJson = eval('('+ret+')');
+    infoJson = ret;
     console.log(infoJson);
     var nickname = $("#nickname")[0];
     var name = $("#name")[0];
@@ -426,7 +426,7 @@ function mycallback(ret){
     memberid = localStorage.memberid;
 }
 function mycallback_nick(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     //console.log(myJson);
     if(myJson.success) {
         window.location.href = "user-perInfo.html";
@@ -436,7 +436,7 @@ function mycallback_nick(ret){
     }
 }
 function mycallback_info(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         localStorage.realname = u_realname;
@@ -449,7 +449,7 @@ function mycallback_info(ret){
 }
 
 function mycallback_infoemail(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         localStorage.email = u_email;
@@ -461,14 +461,14 @@ function mycallback_infoemail(ret){
 
 //性别回调
 function mycallback_sex(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson.data[0].salutation);
 }
 
 function mycallback_phoneVeri(ret){
     var phone_ver = $("#phone_ver")[0];
     console.log(ret);
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         vlm.Utils.sendMobileCode(phone_ver.value);
@@ -477,7 +477,7 @@ function mycallback_phoneVeri(ret){
     }
 }
 function mycallback_newKey(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         document.getElementById("keyForm").submit();

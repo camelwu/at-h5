@@ -191,7 +191,7 @@
          * @constructor
          */
         MT.GetDetailsCallback = function(data){
-            var json=eval('('+data+')');
+            var json=data;
             console.log(json);
             if(json.success){
                 var data=json.data,tpl_GetDetails_Package_Title = template("tpl_GetDetails_Package_Title",data),
@@ -272,7 +272,7 @@
          * @constructor
          */
         MT.SearchPriceCallback = function(data){
-            var json=eval('('+data+')');
+            var json=data;
             console.log(json);
             if(json.success){
                 var data=json.data,tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);

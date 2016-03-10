@@ -480,8 +480,7 @@
 		get_hisList();
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
 			debugger;
-			travJson = eval('(' + json + ')')
-			json = JSON.parse(json);
+			travJson = json
 			for(var i=0;i<= json.data.length-1;i++){
 				tralJsonObj[json.data[i].traveller.travellerId]=json.data[i];
 			}

@@ -117,6 +117,9 @@
         {% } %}
     </script>
     <script>
+
+    </script>
+    <script>
         (function(){
             var ww = this;
             vlm.init();
@@ -166,8 +169,8 @@
                         "Code": "0095"
                     };
                     vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
-                    function getDetail_back(ret){
-                        var json = eval('('+ret+')');
+                    function getDetail_back(data){
+                        var json=data;
                         if(json.success) {
                             var data = json.data;
                             console.log(data);

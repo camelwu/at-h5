@@ -194,7 +194,7 @@ var ticketSingle = {
         }
     },
     renderHandler:function(arg){
-        var arg = JSON.parse(arg);
+        var arg = arg;
         var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
         document.querySelector('#preloader').style.display='none';
@@ -597,27 +597,6 @@ var ticketSingle = {
         backParaObj.pageNo = parseInt(backParaObj.pageNo);
         backParaObj.pageSize = parseInt(backParaObj.pageSize);
         this.backParaObj = backParaObj;
-        var backParaObj = {
-                "CityCodeFrom": "BJS",
-                "CityCodeTo": "SIN",
-                "interNationalOrDomestic": "international",
-                "DepartDate": "2016-03-16",
-                "CabinClass": "First",
-                "RouteType": "Oneway",
-                "IsHideSharedFlight": "false",
-                "IsDirectFlight": "false",
-                "NumofAdult": 2,
-                "NumofChild": 0,
-                "DepartStartHour": "00",
-                "DepartEndHour": "24",
-                "PriorityRule": 0,
-                "IsDesc": "true",
-                "pageNo": 1,
-                "pageSize": 10,
-                "hasTax": "true",
-                "fromCity": "北京",
-                "toCity": "新加坡"
-        }
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.flightResultArray = [];
         if($.browser.webkit && !window.chrome){
