@@ -145,8 +145,6 @@
                "Code": "0062"
            }
            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-                debugger;
-               var data=JSON.parse(data);
                if(data.success) {
                    var html = template("tpl_ticket", data.data);
                    $(".ticket-div").html(html)

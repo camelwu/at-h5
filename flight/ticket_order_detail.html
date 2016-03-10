@@ -150,7 +150,7 @@
     </div>
         <div class="contact-service"><span>联系客服</span> <i></i></div>
           <div class="button">
-        <button type="button" class="pay-button">支付订单</button>
+        <button type="button" class="pay-button"><a href="pay_detail.html?bookingRefNo={%=bookingRefNo%}">支付订单</a></button>
     </div>
     </div>
 </div>
@@ -168,16 +168,24 @@
 <div id="pd_block" class="pd-block">
     <ul id="pd_list" class="pd-list">
         <li>
-        <div>成人×1</div>
-        <div>￥1000</div>
+            <div>成人×{%=numofAdult%}</div>
+            <div>￥{%=numofAdult*flightInfo.totalFareAmountADT%}</div>
         </li>
         <li>
-        <div>儿童×2</div>
-        <div>￥1200</div>
+            <div>成人税费×{%=numofAdult%}</div>
+            <div>￥{%=numofAdult*flightInfo.totalTaxAmountADT%}</div>
         </li>
         <li>
-        <div>总价</div>
-        <div>￥2200</div>
+            <div>儿童×{%=numofChild%}</div>
+            <div>￥{%=numofChild*flightInfo.totalFareAmountCHD%}</div>
+        </li>
+        <li>
+            <div>儿童税费×{%=numofChild%}</div>
+            <div>￥{%=numofChild*flightInfo.totalTaxAmountCHD%}</div>
+        </li>
+        <li>
+            <div>总价</div>
+            <div>￥{%=totalFlightPrice%}</div>
         </li>
     </ul>
 </div>
@@ -218,7 +226,9 @@
                     if(json.success){
                         var data=json.data;
                         var tpl=template("detail",data);
-                        $("#detail").html(tpl)
+                        var tplD=template("pd_list",data);
+                        $("#detail").html(tpl);
+                        $("#pd_list").html(tplD)
                         console.log(data);
                         showPriceDetail();
                     }else {

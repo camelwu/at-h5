@@ -44,13 +44,13 @@
             <form action="#" method="get" >
                 <div id="payDetail">
                 <section class="payment-cutdown">
-                    <h3>订单总价：{%=CurrencyCode%}<span class="totalFlightPrice">{%=TotalFlightPrice%}</span></h3>
-                    {% var d=new Date(orderTime); d.setMinutes(d.getMinutes()+30);%}
+                    <h3>订单总价：{%=getCoin[currencyCode]%}<span class="totalFlightPrice">{%=totalFlightPrice%}</span></h3>
+                    {% var d=new Date(createTime); d.setMinutes(d.getMinutes()+30);%}
                     <span class="payment-tips">为了保证出票，请在：<i class="payment-cut-time">{%=d.getHours()+":"+d.getMinutes()%}</i>前完成支付。</span>
                 </section>
                 <section class="round-trip-wrap">
                     <p class="round-trip">
-                        {% if(RouteType=="Return"){ %}往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
+                        {% if(routeType=="Return"){ %}往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     </p>
                     <p class="go-back-p">
                         <span class="round-trip-go"><i class="round-go-tip"></i>{%=CurrencyCode%}</span>
@@ -62,7 +62,7 @@
                     </p>
                     {%}%}
                     <p class="go-back-p">
-                        <span>人数：{%=NumofAdult%}成人 {%=NumofChild%}儿童</span>
+                        <span>人数：{%=numofAdult%}成人 {%=numofChild%}儿童</span>
                         <span class="passenger-detail">详情<i class="icon-arrow"></i></span>
                     </p>
                 </section>
@@ -70,10 +70,10 @@
                 <ul class="passenger-msg">
                     <li class="passenger-msg-tit">出行人</li>
                     <li class="passager-list">
-                        {% for(var index in TravellerInfo){ %}
+                        {% for(var index in travelers){ %}
                             <ul class="passager-info">
-                                <li><span class="passenger-msg-name">{%=TravellerInfo[index].chineseName%}</span><span  class="passenger-msg-nameEn">{%=TravellerInfo[index].LastName%}/{%=TravellerInfo[index].LastName%}</span>(<span  class="passenger-msg-sex">{%=TravellerInfo[index].SexCode%}</span>)</li>
-                                <li><span class="passenger-msg-card">{%=TravellerInfo[index].IdType%}</span><span  class="passenger-msg-cardNum">{%=TravellerInfo[index].IdNumber%}</span></li>
+                                <li><span class="passenger-msg-name">{%=travelers[index].travelerName%}</span><span  class="passenger-msg-nameEn">{%=travelers[index].travelerName%}/{%=travelers[index].lastName%}</span>(<span  class="passenger-msg-sex">{%=getSex[travelers[index].sexCode]%}</span>)</li>
+                                <li><span class="passenger-msg-card">{%=travelers[index].IdType%}</span><span  class="passenger-msg-cardNum">{%=travelers[index].IdNumber%}</span></li>
                             </ul>
                         {% } %}
                     </li>
@@ -82,9 +82,9 @@
                     <li class="passenger-msg-tit">联系人</li>
                     <li class="passager-list">
                         <ul class="passager-info">
-                            <li><span class="passenger-msg-name">{%=ContactDetail.chineseName%}</span><span  class="passenger-msg-nameEn">{%=ContactDetail.FirstName%}/{%=ContactDetail.LastName%}</span>(<span  class="passenger-msg-sex">{%=ContactDetail.SexCode%}</span>)</li>
-                            <li><span class="passenger-msg-telCode">+{%=ContactDetail.CountryNumber%}</span><span  class="passenger-msg-telNum">{%=ContactDetail.MobilePhone%}</span></li>
-                            <li><span>chenyubao@asiatravel.com</span></li>
+                            <li><span class="passenger-msg-name">张三</span><span  class="passenger-msg-nameEn">张/三</span>(<span  class="passenger-msg-sex">男</span>)</li>
+                            <li><span class="passenger-msg-telCode"></span><span  class="passenger-msg-telNum">{%=contactNumber%}</span></li>
+                            <li><span>{%=email%}</span></li>
                         </ul>
                     </li>
                 </ul>
@@ -125,11 +125,7 @@
                         <div class="left">
                             <span>手机号</span>
                             <div class="center">
-                                <select name="sources" id="sources" class="custom-select sources CardContactNumber1" placeholder="+86">
-                                    <option value="+86">+86</option>
-                                    <option value="+87">+87</option>
-                                    <option value="+88">+88</option>
-                                </select>
+                                <span id="sources" class="country-btn CardAddressCountryCode CardContactNumber1" data-code="CN"  data-tel-code="86">中国</span>
                             </div>
                         </div>
                         <div class="right">
@@ -144,6 +140,7 @@
                         <div class="nation">
                             <span>持卡人国家</span>
                             <span class="country-btn CardAddressCountryCode" data-code="CN" >中国</span>
+                            <b class="icons open-pho-down"></b>
                         </div>
                     </li>
                 </ul>

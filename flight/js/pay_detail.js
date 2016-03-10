@@ -1,36 +1,46 @@
 
 var bookingRefNo=vlm.getpara("bookingRefNo");
+var getCoin = {
+    "CNY": "￥",
+    "USD":"$"
+};
+var getSex = {
+    "MS": "男",
+    "MRS":"女"
+};
 $(document).ready(function(){
+
 
     var Parameters={"Parameters": {"BookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-        var data=JSON.parse(data);
         if(data.success) {
             debugger;
             var tpl=template("payDetail",data.data);
             $("#payDetail").html(tpl);
+
+            $(".passenger-detail").on("click",function(){
+                $(".passenger").toggle();
+            })
 
         }})
         vlm.init();
 
 
 
-    localStorage.setItem('flight_order_storage12345',JSON.stringify({BookingID:11111111}));
-    var myData=JSON.parse(localStorage.getItem('flight_order_storage12345'));
-    console.log(myData);
-    console.log('上面是从localStorage上面得到的数据');
+    //localStorage.setItem('flight_order_storage12345',JSON.stringify({BookingID:11111111}));
+    //var myData=JSON.parse(localStorage.getItem('flight_order_storage12345'));
+    //console.log(myData);
+    //console.log('上面是从localStorage上面得到的数据');
+    //
+    //console.log(myData);
+    //
+    //var userFlightInformation=localStorage.getItem('orderResultInfo');
+    //var tpl=template("payDetail",JSON.parse(userFlightInformation).data);
+    //console.log(tpl);
+    //$("#payDetail").html(tpl);
 
-    console.log(myData);
-
-    var userFlightInformation=localStorage.getItem('orderResultInfo');
-    var tpl=template("payDetail",JSON.parse(userFlightInformation).data);
-    console.log(tpl);
-    $("#payDetail").html(tpl);
 
 
-    $(".passenger-detail").on("click",function(){
-        $(".passenger").toggle();
-    })
     var ticketPayDetail = {
 
         requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
@@ -267,7 +277,7 @@ debugger;
         "Code": "3004"
     };
     console.log(data);
-    $.alerts.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",callback,"支付完成","支付出现问题");
+    //$.alerts.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",callback,"支付完成","支付出现问题");
     var payment=new paymentObj(data,mycallback);
     payment.handlePayment();
     //return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);

@@ -229,7 +229,6 @@
             var  Parameters=GetParameters(type,code);
             console.log(Parameters);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-                var data=JSON.parse(data);
                 if(data.success){
                     var url=data.data.paymentRedirectURL ;
                     window.open(url);
@@ -341,7 +340,6 @@
                 "Code": "0095"
             }
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-                var data=JSON.parse(data);
                 if(data.success) {
                     debugger;
 
