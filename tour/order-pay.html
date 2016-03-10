@@ -401,7 +401,8 @@
     </script>
 
     <script id="tpl_orderTotal" type="text/template"	>
-        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=chargeDetails[0].totalAmount%}</span>
+        {% var total=0; for(var i=0;i<=chargeDetails.length-1;i++){ total+=chargeDetails[i].amountInCNY; } %}
+        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=totalt%}</span>
     </script>
 
 </div>
