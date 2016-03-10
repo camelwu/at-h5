@@ -215,11 +215,11 @@
             out_pay.style.display = "none";
         };
         btnPay.onclick=function(){
-            var bookinbgRefNo=vlm.getpara("BookingRefNo");
+            var bookinbgRefNo=vlm.getpara("bookingRefNo");
             Payment("UnionPay",bokinbgRefNo);
         }
         btnCPay.onclick=function(){
-            var bookinbgRefNo=vlm.getpara("BookingRefNo");
+            var bookinbgRefNo=vlm.getpara("bookingRefNo");
             Payment("CreditCard",bookinbgRefNo);
         }
     })();
@@ -330,20 +330,19 @@
     }
 
     function Init(){
-        var bookinbgRefNo=vlm.getpara("BookingRefNo");
-        if(bookinbgRefNo==null){
+        var bookingRefNo=vlm.getpara("bookingRefNo");
+        if(bookingRefNo==null){
             jAlert("参数订单BookingRefNo不能为空！");
             return;
         }
         var Parameters={
             "Parameters": {
-                "BookingRefNo": bookinbgRefNo
+                "BookingRefNo": bookingRefNo
             },
             "ForeEndType": 3,
             "Code": "0095"
         }
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-            var data=JSON.parse(data);
             if(data.success) {
                 debugger;
                 var date1=new Date();  //开始时间
