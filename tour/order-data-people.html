@@ -377,8 +377,7 @@
                 };
                 vlm.loadJson("",JSON.stringify(tmp),getspot_back);
                 function getspot_back(ret){
-                    var json = eval('('+ret+')');
-                    console.log(json);
+                    var json = ret;
                     if(json.success) {
                         var data = json.data;
                         dateHandler.dataInfomation = json.data;
@@ -505,7 +504,7 @@
                             function callBack(ret){
                                 localStorage.setItem('init', '1');
                                 $("#preloader").fadeOut("medium");
-                                var json = eval('('+ret+')');
+                                var json = ret;
                                 console.log(json);
                                 if(json.success) {
                                     localStorage.setItem('info', JSON.stringify(paraObj));
@@ -585,7 +584,7 @@
                            function callBack(ret){
                                localStorage.setItem('init', '1');
                                $("#preloader").fadeOut("medium");
-                               var json = eval('('+ret+')');
+                               var json = ret;
                                console.log(json);
                                if(json.success) {
                                    localStorage.setItem('info', JSON.stringify(paraObj));

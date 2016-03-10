@@ -199,7 +199,7 @@
              * @constructor
              */
             MT.SearchAvailableToursAttractionsCallback = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
                     var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
@@ -266,7 +266,7 @@
              * @constructor
              */
             MT.PriceSortCallback = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
                     var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
@@ -313,7 +313,7 @@
              * @constructor
              */
             MT.FilterThemeCallback = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
                     var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists);

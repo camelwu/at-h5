@@ -275,7 +275,7 @@
              * @constructor
              */
             MT.GetExHotCityCallback = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
                     var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);

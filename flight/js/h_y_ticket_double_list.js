@@ -478,8 +478,7 @@ var ticketDouble = {
     renderHandler:function(arg){
         var that = ticketDouble,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
-        arg = JSON.parse(arg);
-        console.log(arg)
+        var arg = arg;
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
             tipEle.style.display = 'none';
