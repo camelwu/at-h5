@@ -281,15 +281,20 @@ ul, li {
     position: relative;
     height: 3.448275%;
 }
-
-.pop_box{
-    width: 100%;
+.pop_bg{
+    background:#fff;
     position:fixed;
     top: 0;
-    left:0;
-    background:#fff;
+    left: 0;
+    width: 100%;
     height: 100%;
-    z-index: 101;
+    z-index:101;
+}
+.pop_box{
+    width: 100%;
+    position:relative;
+    background:#fff;
+    z-index: 110;
 }
 .pop_box .t-header{
     position:fixed;
@@ -338,6 +343,7 @@ ul, li {
     border-bottom:1px solid #efefef;
     margin:0 1px;
     padding: 5px 11px;
+    position:relative;
 }
 .pop_box .empty_history dt{
     border-bottom:1px solid #efefef;
@@ -359,8 +365,14 @@ ul, li {
     font-family: arial;
     color: #000;
     line-height: 30px;
+    display:none;
 }
-
+.pop_box .not_exist{
+    color: #609cc6;
+    text-align: center;
+    display:none;
+    padding-top: 50px;
+}
 
 
 
