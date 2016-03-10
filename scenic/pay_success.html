@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
     <meta name="screen-orientation" content="portrait">
     <meta name="x5-orientation" content="portrait">
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
-    <title>支付成功</title>
+
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
     <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
@@ -19,48 +23,146 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>景点支付成功 - 亚洲旅行网</title>
     <link href="../styles/framework.css" rel="stylesheet"/>
-    <link href="../styles/style.css" rel="stylesheet"/>
-    <link href="../flight/css/air_pay.css" rel="stylesheet"/>
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <link href="../styles/tips.css"	rel="stylesheet">
+    <link rel="stylesheet" href="../hotel/css/trade_details.css" />
+
 </head>
 <body>
-<div class="all-elements">
-    <div class="header">
-        <a href="javascript:;" class="icons header-back"></a>
-        <h3 class="edit-tit">交易详情</h3>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
     </div>
-    <div id="content ddd"  style="padding-top: 45px; padding-bottom: 51px;">
-        <section>
-            <div class="payment-tip-wrap">
-                <i class="payment-suc"></i>
-                <span class="payment-tip">支付成功</span>
-            </div>
-        </section>
-        <section class="air-detail-wrap">
-            <div class="circle-bg-wrap">
-                <div class="circle-bg-line"></div>
-                <span class="circle-left"></span>
-                <span class="circle-right"></span>
-            </div>
-            <div class="wave_left"></div>
-            <div class="wave_right"></div>
-            <ul class="air-detail-box">
-                <li>往返  上海—伦敦</li>
-                <li><span>订单号：</span><span>233345345321423</span></li>
-                <li><i class="go-tip"></i><span>2015-01-08 13:00</span></li>
-                <li><i class="back-tip"></i><span>2015-01-11 09:00</span></li>
-            </ul>
-            <p class="airticket-tot">¥838</p>
-        </section>
-        <section class="lsf_tra_look">
-            <p class="clearfix"><span class="fl">返回首页</span></p>
-            <p class="clearfix lsf_tra_lo_p2"><span class="fr">查看订单</span></p>
-        </section>
-    </div>
-
-    <div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>
 </div>
+<div class="all-elements all-element-other">
+    <div class="header" id="vlm-login">
+        <a href="javascript:history.go(-1);" class="icons header-back" id="td_back"></a>
+        <h3>交易详情</h3>
+    </div>
+    <div class="tra_con1">
+        <div class="tra_c1_inbox">
+            <i></i>
+            <span>支付成功</span>
+        </div>
+    </div>
+    <div class="tra_con2">
+        <div id="tourInfo" class="tra_c2_inbox">
+            <!--<div class="tra_order">订单号：11111</div>-->
+            <!--<h3>八达岭长城一日游</h3>-->
+            <!--<p class="tra_live">游玩时间：<span>11月25日</span></p>-->
+            <!--<div class="tra_people">2成人 1儿童</div>-->
+            <!--<p class="tra_price">￥838</p>-->
+        </div>
+    </div>
+    <div id="tra_btn" class="tra_btn">
+        <!--<a href="../index.html">-->
+        <!--<input type="button" value="返回首页" class="fl"  id="fl"/>-->
+        <!--</a>-->
+        <!--<a href="order_pay_page.html" class="tra_btn_div2">-->
+        <!--<input type="button" value="查看订单" class="fr" id="fr" />-->
+        <!--</a>-->
+    </div>
+    <div class="tra_footer">
+        <p>版权所有 @ 2015 Asiatravel.com控股有限公司.保留所有权利</p>
+    </div>
+</div>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/custom.js"></script>
+<script id="tpl_tourInfo"  type="text/template">
+    <div class="tra_order">订单号：{%=bookingID%}</div>
+    {% for(var i=0;i < tours.length;i++){ %}
+    <h3>{%=tours[i].tourName%}</h3>
+    <p class="tra_live">游玩时间：<span>{%=tours[i].travelDate.substr(0,10)%}</span></p>
+    {% } %}
+    <div class="tra_people">'+adultNum+'成人 '+childNum+'儿童</div>
+    <p class="tra_price">￥'+totalPrice+'</p>
+</script>
+<script>
+    var adultNum = 0;
+    var childNum = 0;
+    var totalPrice = 0;
+    (function(){
+        var ww = this;
+        vlm.init();
+        var sh_paySuccess = function(){
+            //   加载动画
+            var flashLoad = function(){
+                $(window).load(function () {
+                    $("#status").fadeOut();
+                    $("#preloader").delay(400).fadeOut("medium");
+                });
+            };
+            //   获取页面信息
+            var getPageInfo = function(){
+                //                var bookingRefNo="SG17SINFP0375528";
+                var bookingRefNo=vlm.getpara("bookingRefNo");
+                var tpl2 = [
+                    '<a href="../index.html">',
+                    '<input type="button" value="返回首页" class="fl"  id="fl"/>',
+                    '</a>',
+                    '<a href="order-detail.html?bookingRefNo={%=bookingRefNo%}" class="tra_btn_div2">',
+                    '<input type="button" value="查看订单" class="fr" id="fr" />',
+                    '</a>'
+                ].join('');
+                var tmp = {
+                    "Parameters": {
+                        "BookingRefNo": "SG17SINFP0136825"
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0095"
+                };
 
-<script src="js/head_back.js"></script>
+                vlm.loadJson("",JSON.stringify(tmp),getPageInfo_back);
+                function getPageInfo_back(ret) {
+                    var json=ret;
+                    console.log(json);
+                    if (json.success) {
+                        var data = json.data;
+
+                        for(var i = 0;i < data.travelers.length;i++){
+                            if(data.travelers[i].travelerType == "Adult"){
+                                adultNum++;
+                            }else{
+                                childNum++;
+                            }
+                        }
+                        for(var j = 0;j < data.chargeDetails.length;j++){
+                            totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
+                        }
+//                        var html_ti = template(tpl1,data);
+                        var tpl_tourInfo = template("tpl_tourInfo",data);
+                        var html_tb = template(tpl2,data);
+
+                        $('#tourInfo').html(tpl_tourInfo);
+                        $('#tra_btn').html(html_tb);
+                    }else{
+                        console.log(json);
+                        jAlert(json.message,"提示");
+                    }
+                }
+            };
+            return{
+                FlashLoad:flashLoad,
+                GetPageInfo:getPageInfo
+            }
+        }();
+        ww.MT = ww.MT || {};
+        ww.MT.load = function(){
+            sh_paySuccess.FlashLoad();
+            sh_paySuccess.GetPageInfo()
+        };
+        MT.load();
+    })()
+</script>
 </body>
 </html>
