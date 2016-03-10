@@ -4,8 +4,8 @@
 var newkey;
 var phone_verify=$('#find_verify')[0];
 var phone_reg=$('#get_code')[0];
-var regBflag=false;
 var regBflag_t=false;
+var Bflag_forget=false;
 window.onload = function(){
     var menu = $("#menu")[0];
     menu.style.display = "none";
@@ -136,20 +136,13 @@ window.onload = function(){
             if(header_email.style.display == "none"){
                 password = r_e_password;
                 input = email_register.getElementsByTagName('input');
-                if(input[0].value == '')
-                {
-                    jAlert("请输入邮箱");
-                    return;
-                }
-                else if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+
+                if (!check(input[0].getAttribute('data-type'), input[0].value)) {
                     jAlert("请输入有效邮箱");
                     return;
                 }
-                if(input[1].value == '')
-                {
-                    jAlert("请输入密码");
-                    return;
-                }else if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+
+                if (!check(input[1].getAttribute('data-type'), input[1].value)) {
                     jAlert("请输入6-18位密码");
                     return;
                 }
@@ -166,28 +159,16 @@ window.onload = function(){
             }else{
                 password = r_p_password;
                 input = phone_register.getElementsByTagName('input');
-                if(input[0].value == '')
-                {
-                    jAlert("请输入手机号");
-                    return;
-                }
-                else if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+
+                if (!check(input[0].getAttribute('data-type'), input[0].value)) {
                     jAlert("请输入有效手机号");
                     return;
                 }
-                if(input[1].value == '')
-                {
-                    jAlert("请输入验证码");
-                    return;
-                }else if (!check(input[1].getAttribute('data-type'), input[1].value)) {
+                if (!check(input[1].getAttribute('data-type'), input[1].value)) {
                     jAlert("请输入有效验证码");
                     return;
                 }
-                if(input[2].value == '')
-                {
-                    jAlert("请输入密码");
-                    return;
-                }else if (!check(input[2].getAttribute('data-type'), input[0].value)) {
+                if (!check(input[2].getAttribute('data-type'), input[0].value)) {
                     jAlert("请输入6-18位密码");
                     return;
                 }
@@ -341,14 +322,6 @@ window.onload = function(){
                 console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey_email);
             }
-
-            //var Parameters= {
-            //    "Parameters": "{\"CultureName\":\"\",\"Email\":\""+find_email.value+"\",\"Mobile\":\""+find_phone.value+"\",\"NewPassword\":\""+input[2].value+"\",\"Code\":\""+input[1].value+"\"}",
-            //    "ForeEndType": 3,
-            //    "Code": "0055"
-            //};
-
-
         }
     }
     findkey(findkey_btn);
@@ -371,6 +344,11 @@ window.onload = function(){
                 jAlert('请输入手机号');
                 return;
             }
+            if(Bflag_forget)
+            {
+                return;
+            }
+            Bflag_forget=true;
             var Parameters = {
                 "Parameters": "{\"CultureName\":\"\",\"Mobile\":\"" + find_phone.value + "\",\"VerificationCodeType\":3}",
                 "ForeEndType": 3,
@@ -383,32 +361,6 @@ window.onload = function(){
     }
     get_fver(find_verify);
 
-    //邮箱找回密码
-    //function findkeybyemail(obj){
-    //    obj.onclick = function(){
-    //        //debugger;
-    //        var input;
-    //        var find_email = $("#find_email")[0];
-    //        input = email_find.getElementsByTagName('input')[0];
-    //        if(input.value !="") {
-    //            console.log(input.getAttribute('data-type'));
-    //            if(input.getAttribute('data-type') !="code") {
-    //                if (!check(input.getAttribute('data-type'), input.value)) {
-    //                    alert("输入不正确");
-    //                    return;
-    //                }
-    //            }
-    //        }
-    //        var Parameters= {
-    //            "Parameters": "{\"CultureName\":\"\",\"Email\":\""+input.value+"\",\"Mobile\":\"\",\"NewPassword\":\"\",\"Code\":\"284665\"}",
-    //            "ForeEndType": 3,
-    //            "Code": "0055"
-    //        }
-    //        console.log(Parameters);
-    //        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_forgotpass);
-    //    }
-    //}
-    //findkeybyemail(findkey_btn);
 
     //获取机器码后再发请求
    function mycallback_forgotpass(ret){
@@ -424,7 +376,7 @@ window.onload = function(){
        }
        else
        {
-           alert(myJson.message);
+           jAlert(myJson.message);
        }
 
    }
@@ -461,7 +413,7 @@ function mycallback_register(ret){
     if(myJson.success){
         jAlert('注册成功','',cb_register);
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
@@ -521,7 +473,7 @@ function mycallback_verify(ret){
     if(myJson.success){
         vlm.Utils.sendMobileCode(verify.value);
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 function mycallback_findkey(ret){
@@ -529,10 +481,8 @@ function mycallback_findkey(ret){
     //console.log(myJson);
     if(myJson.success){
         jAlert('重置密码成功','',call_pass);
-
-
     }else{
-        alert(myJson.message);
+        jAlert('修改密码失败，请重试');
     }
 }
 
@@ -544,7 +494,7 @@ function mycallback_findkey_email(ret){
         jAlert('已将重置密码的邮件发送到您的邮箱，请查收','',call_pass);
 
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
@@ -559,7 +509,7 @@ function mycallback_findver(ret){
     if(myJson.success){
         vlm.Utils.sendMobileCode(find_veri.value);
     }else{
-        alert(myJson.Message);
+        jAlert(myJson.Message);
     }
 }
 
@@ -568,7 +518,7 @@ function phone_timeout(obj){
     console.log(phone_verify);
     this.innerHTML='发送验证码';
     this.style.color='#ffb413';
-    regBflag=false;
+    Bflag_forget=false;
 }
 
 //时间倒计过程中
