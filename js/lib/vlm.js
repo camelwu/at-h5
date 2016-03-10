@@ -943,10 +943,7 @@
 								ForeEndType : 3,
 								Code : "0052"
 							};
-
-							mycallback = function(json) {
-								var myJson = eval('(' + json + ')');
-								 console.log(myJson);
+							mycallback = function(myJson) {
 								if (myJson.success) {
 									lStorage.email = myJson.data[0].email;
 									lStorage.phone = myJson.data[0].mobile;
@@ -955,13 +952,13 @@
 									if (getpara("redicturl") != null)
 										window.location.href = getpara("redicturl");
 									else{
-										 if(typeof c === "function"){
-											 c();
-										 }
 										container.parentNode.removeChild(container);
+										if(typeof c === "function"){
+											c();
+										}
 									}
 								} else {
-									alert(myJson.message);
+									//alert(myJson.message);
 								}
 							};
 							//{“Success”:true,”Message”:””,Data:””}
@@ -1044,7 +1041,10 @@
 				};
 				$("#preloader").ajaxStart(function(){
 				   $(this).show();
-				 });
+				});
+				$("#preloader").ajaxStop(function(){
+				   $(this).hide();
+				});
 			//out api
 			return {
 				api : _api,
