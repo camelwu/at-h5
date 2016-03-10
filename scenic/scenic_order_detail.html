@@ -537,7 +537,7 @@
                 ExtendData.requiredPickupPoint = ExtendData.SearchPriceData.data.bookingFormInfo.requiredPickupPoint;
                 ExtendData.airportTransferType = ExtendData.SearchPriceData.data.bookingFormInfo.airportTransferType;
                 //是否需要接送服务
-                if(ExtendData.requiredPickupPoint){
+                if(!ExtendData.requiredPickupPoint){
                     $("[data-key=holist_page]").remove();
                 }
                 //是否需要护照
@@ -1050,7 +1050,7 @@
                         if(PickupTmp != ""){
                             PickupID = $("#choHotel").attr("data-key");
                             PickupCount = $("#choHotel").html();
-                            PickupPoint = {PickupID,PickupCount};
+                            PickupPoint = {"PickupID":PickupID,"PickupPoint":PickupCount};
                             param.Parameters.PickupPoint = PickupPoint;
                         }
 

@@ -275,7 +275,7 @@
                 var SearchAvailableToursAttractions=
                 {
                     "Parameters": {
-                        "DestCityCode": val.cityCode
+                        "DestCityCode": val.DestCityCode
                     },
                     "ForeEndType": 3,
                     "Code": "0207"
@@ -321,10 +321,8 @@
                 $("#priceSort").toggle(function(){
                     console.log(defineProperty.themeId);
                     CLoadPriceSort("HighToLow",defineProperty.themeId);
-                },function(){
-                    CLoadPriceSort("LowToHigh",defineProperty.themeId);
-                },function(){
-                    CLoadPriceSort("",defineProperty.themeId);
+                },function() {
+                    CLoadPriceSort("LowToHigh", defineProperty.themeId);
                 });
             }
             /**
@@ -339,11 +337,13 @@
                     "Parameters": {
                         "DestCityCode":  val.cityCode,
                         "PriceSortType" :priceSort,
-                        "ThemeID":themeId
                     },
                     "ForeEndType": 3,
                     "Code": "0207"
                 };
+                if(themeId != ""){
+                    PriceSort.Parameters.ThemeID=themeId;
+                }
                 CLoadJson(apiurl,JSON.stringify(PriceSort),PriceSortCallback,CAnimIn,CAnimOut);
 
             }
