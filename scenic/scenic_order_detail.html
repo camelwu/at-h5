@@ -403,7 +403,7 @@
              * @param data
              */
             MT.callbackPickupPoint = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
                     var data = json,tpl_PickupPoint = template("tpl_PickupPoint",data);
@@ -434,7 +434,7 @@
              * @param data
              */
             MT.callbackDetails = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 DetailData = json;
 //                console.log(json);
                 if(json.success){
@@ -492,7 +492,7 @@
              * @param data
              */
             MT.callbackSearchPrice = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 SearchPriceData = json;
 //                console.log(json);
                 if(json.success){
@@ -875,6 +875,9 @@
                     var addval = $(".js-tpl-ScenicPrices").find("[data-add]").attr("data-add");
                     if(addval != undefined){
                         if(addval == 1){
+                            if($(".js-scenicview2").length > 0){
+                                return false;
+                            }
                             MT.renderView2();
                         }else{
                             $(".js-scenicview2").remove();
@@ -1044,7 +1047,7 @@
              * @constructor
              */
             MT.callbackOrderDetail = function(data){
-                var json=eval('('+data+')');
+                var json=data;
                 console.log(json);
                 if(json.success){
                     var bookingRefNo = json.data.bookingRefNo;
