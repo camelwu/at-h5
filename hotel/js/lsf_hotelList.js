@@ -455,11 +455,11 @@ function styleChange(id, mytext) {
 				var str4 = '';
 				if (data[i].isFreeWiFi) {
 					//str2+='<b class="hl-icon1">免费wifi</b>';
-					str2 += '<div class="h-div1">免费wifi</div>';
+					str2 += '<span class="h-wifi"></span>';
 				}
 				if (data[i].isFreeTransfer) {
 					//str2+='<b class="hl-icon2">免费接送</b>';
-					str2 += '<div class="h-div1">免费接送</div>';
+					str2 += '<span class="h-transfer"></span>';
 				}
 				if (data[i].isCashReward) {
 					str3 = '<div class="h-div1" style="background-color: #ffb412">现金奖励</div>';
@@ -661,7 +661,7 @@ function styleChange(id, mytext) {
 	M(url_json);
 	function mycallback(d) {
 		//console.log(d);
-		var json = eval('(' + d + ')');
+		var json = d;
 		console.log(json);
 		//console.log(1);
 		//alert(arr.Success);

@@ -374,7 +374,7 @@ function inpChange(id, myText) {
 	};
 	//城市列表
 	vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d) {
-		var listJson = eval('(' + d + ')');
+		var listJson = d;
 		if (!listJson.success) {
 			jAlert(listJson.message);
 			return;
@@ -419,13 +419,13 @@ function inpChange(id, myText) {
 			//热门城市
 			//国际
 			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d) {
-				var json = eval('(' + d + ')');
+				var json = d;
 				var str = template("cl_citysHot", json.data);
 				$("#cl_citysHot").html(str);
 			});
 			//国内
 			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(doData), function(d) {
-				var json = eval('(' + d + ')');
+				var json = d;
 				var dstr = template("dcl_citysHot", json.data);
 				$("#dcl_citysHot").html(dstr);
 			});
