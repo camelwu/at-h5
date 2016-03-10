@@ -660,12 +660,8 @@
 			hotelDetail.updateSubRoomModal(tempInfo);
 		},
 
-		showRoomModals : function(d) {
+		showRoomModals : function(result) {
 			var oDiv = document.createElement('div');
-			var result = eval('(' + d + ')');
-			console.log(result);
-			console.log(result.data[0]);
-			console.log(777777777777777);
 			function showDesc(arr, num) {
 				if (num) {
 
