@@ -60,13 +60,13 @@
                 <!--<p class="tra_price">￥838</p>-->
             </div>
         </div>
-        <div class="tra_btn">
-            <a href="../index.html">
-                <input type="button" value="返回首页" class="fl"  id="fl"/>
-            </a>
-            <a href="order_pay_page.html" class="tra_btn_div2">
-                <input type="button" value="查看订单" class="fr" id="fr" />
-            </a>
+        <div id="tra_btn" class="tra_btn">
+            <!--<a href="../index.html">-->
+                <!--<input type="button" value="返回首页" class="fl"  id="fl"/>-->
+            <!--</a>-->
+            <!--<a href="order_pay_page.html" class="tra_btn_div2">-->
+                <!--<input type="button" value="查看订单" class="fr" id="fr" />-->
+            <!--</a>-->
         </div>
         <div class="tra_footer">
             <p>版权所有 @ 2015 Asiatravel.com控股有限公司.保留所有权利</p>
@@ -94,7 +94,14 @@
                 var getPageInfo = function(){
  //                var bookingRefNo="SG17SINFP0375528";
                     var bookingRefNo=vlm.getpara("bookingRefNo");
-
+                    var tpl2 = [
+                        '<a href="../index.html">',
+                        '<input type="button" value="返回首页" class="fl"  id="fl"/>',
+                        '</a>',
+                        '<a href="order_pay_page.html?bookingRefNo={%=bookingRefNo%}" class="tra_btn_div2">',
+                        '<input type="button" value="查看订单" class="fr" id="fr" />',
+                        '</a>'
+                    ].join('');
                     var tmp = {
                         "Parameters": {
                             "BookingRefNo": bookingRefNo
@@ -129,7 +136,9 @@
                                 '<p class="tra_price">￥'+totalPrice+'</p>'
                             ].join('');
                             var html_ti = template(tpl1,data);
+                            var html_tb = template(tpl2,data);
                             $('#tourInfo').html(html_ti);
+                            $('#tra_btn').html(html_tb);
                         }else{
                             console.log(json);
                             jAlert(json.message,"提示");
