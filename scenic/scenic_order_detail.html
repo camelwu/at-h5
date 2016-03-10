@@ -322,7 +322,7 @@
 
     <script id="tpl_Adult_Child2" type="text/template">
 
-        <div class="sce-ticket js-sce">
+        <div class="sce-ticket js-sce2">
 
             <section class="sce-introduce">
                 <p class="sce-introduce-txt js-sce-introduce-txt" data-key=""></p>
@@ -577,8 +577,8 @@
                 for (var i = 0;i<data.SearchPriceData.data.tourInfos.length;i++){
                     var child_one = $(".js-sce-ticket1").append(tpl_Adult_Child1);
                     child_one.find(".sce-ticket:last").attr("data-key",1);
-                    child_one.find(".sce-ticket:last").attr("id","jdate"+i);
-                    child_one.find("#jdate > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
+                    child_one.find(".sce-ticket:last").find(".js-date:eq("+i+")").attr("id","jdate"+i);
+                    child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
                     child_one.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[i].tourID);
                     child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+"["+data.DetailData.data.packageRefNo+"]");
 
@@ -921,7 +921,7 @@
                 var AudltCount = 0,ChildCount = 0,list = [],taglist;
 
 
-                //从成人进入
+                //view1 进入成人
                 if($(".js-scenicview1").length > 0 && $("[data-key=\"js-per-price1\"]").find(".js-Audlt-cont").length > 0){
                     AudltCount = $("[data-key=\"js-per-price1\"]").find(".js-Audlt-cont").html();
                     if(AudltCount > 0){
@@ -935,7 +935,7 @@
 
                     }
                 }
-
+                //view1 进入儿童
                 if($(".js-scenicview1").length > 0 && $("[data-key=\"js-per-price1\"]").find(".js-Child-cont").length > 0){
                     ChildCount = $("[data-key=\"js-per-price1\"]").find(".js-Child-cont").html();
                     if(ChildCount > 0){
@@ -956,8 +956,8 @@
                     ChildCount = $("[data-key=\"js-per-price2\"]").find(".js-Child-cont").html();
                     if(ChildCount > 0){
                         if($(".js-sce-ticket2").find(".js-sce").length > 0){
-                            for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce").length;i++){
-                                var title = $(".js-sce-ticket2").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
+                            for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce2").length;i++){
+                                var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
                                 var htmltag = $("<li><span class=\"price-per-tit\">(儿童)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.ChildPrice+"×"+ChildCount+"</span></li>");
                                 list.push(htmltag);
                             }
@@ -972,8 +972,8 @@
                     AudltCount = $("[data-key=\"js-per-price2\"]").find(".js-Audlt-cont").html();
                     if(AudltCount > 0){
                         if($(".js-sce-ticket2").find(".js-sce").length > 0){
-                            for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce").length;i++){
-                                var title = $(".js-sce-ticket2").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
+                            for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce2").length;i++){
+                                var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
                                 var htmltag = $("<li><span class=\"price-per-tit\">(成人)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.AudltPrice+"×"+AudltCount+"</span></li>");
                                 list.push(htmltag);
                             }
@@ -981,7 +981,6 @@
 
                     }
                 }
-                console.log(list);
                 $(".js-price-list").html(list);
             }
 
@@ -1071,20 +1070,22 @@
 
 
 
-                    if(AdultCount > 0){
-                        for(var i = 0;i<AdultCount;i++){
-                            Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
-                        }
-                    }
+//                    if(AdultCount > 0){
+//                        for(var i = 0;i<AdultCount;i++){
+//                            Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
+//                        }
+//                    }
 
-                    if(ChildCount > 0){
-                        for(var i = 0;i<ChildCount;i++){
-                            currentY = new Date();
-                            currentY = parseInt(currentY.getFullYear()) - parseInt(ChildArray[i]);
-                            DOB = currentY+"-01-01";
-                            Travelers.push({"TravelerType": "Child","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"DOB":DOB,"NationalityCode":NationalityCode});
-                        }
-                    }
+//                    if(ChildCount > 0){
+//                        for(var i = 0;i<ChildCount;i++){
+//                            currentY = new Date();
+//                            currentY = parseInt(currentY.getFullYear()) - parseInt(ChildArray[i]);
+//                            DOB = currentY+"-01-01";
+//                            Travelers.push({"TravelerType": "Child","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"DOB":DOB,"NationalityCode":NationalityCode});
+//                        }
+//                    }
+
+                    Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
 
                     param.Parameters.Travelers = Travelers;
 
@@ -1147,7 +1148,9 @@
                         _word:{tip:['入住']},
                         range:rangeArray,
                         fn:function(){
-
+//                            console.log(id);
+                            var ymd=$("#"+id).find(".js-ymd").html();
+                            $("#"+id).find(".js-week").html(MT.getWeek(ymd));
                         }
                     });
                 };
