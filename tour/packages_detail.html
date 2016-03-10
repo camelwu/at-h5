@@ -164,7 +164,7 @@
                     };
                     vlm.loadJson("",JSON.stringify(tmp),package_back);
                      function package_back(ret){
-                        var json = eval('('+ret+')');
+                         var json=ret;
                         console.log(json);
                         if(json.success) {
                             var data = json.data;

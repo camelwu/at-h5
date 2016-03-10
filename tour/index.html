@@ -178,7 +178,7 @@
                 vlm.loadJson("",JSON.stringify(tmp),getCityCallback);
             };
             var getCityCallback = function(ret){
-                var json=eval('('+ret+')');
+                var json=ret;
                 if(json.success){
                     var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
                     console.log(data);
@@ -212,7 +212,7 @@
                 };
                 vlm.loadJson("", JSON.stringify(tmp), getHotSpotCallback);
                 function getHotSpotCallback(ret){
-                    var json=eval('('+ret+')');
+                    var json=ret;
                     if(json.success){
                         var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
                         console.log(data);
