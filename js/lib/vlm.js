@@ -740,7 +740,7 @@
 						data : data,
 						contentType : 'application/json;charset=utf-8',
 						beforeSend : function(xhr) {
-							//后续开始加密，设置header
+							xhr.setRequestHeader("Accept-Encoding", "gzip");
 							//xhr.setRequestHeader('Content-Type','application/json');
 							if (encryption != undefined && encryption == true) {
 								var uid = md5("zhangfengming");
@@ -1042,6 +1042,9 @@
 
 					//choice.location = urls;
 				};
+				$("#preloader").ajaxStart(function(){
+				   $(this).show();
+				 });
 			//out api
 			return {
 				api : _api,
