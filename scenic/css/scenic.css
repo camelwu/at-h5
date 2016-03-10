@@ -1758,6 +1758,13 @@ i{
     right: 20px;
     top: 0;
 }
+.cho-hotel{
+    float: right;
+    width: 70%;
+    overflow: hidden;
+    text-align: right;
+}
+}
 /*景点预订免登陆开始*/
 .sce-order-login {
     color: #ffb500;
