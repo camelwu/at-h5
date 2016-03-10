@@ -20,6 +20,10 @@
     var jsonPackage=JSON.parse(localStorage.info);
     console.log(jsonPackage);
 
+    //从用户中心添加旅客
+    var aa=window.localStorage.contact_selected;
+    console.log(aa);
+
     //处理地址栏信息
     function urlShow(){
         if(window.location.search){
@@ -373,12 +377,12 @@
             }
 
             function package_back(ret){
-                var json = eval('('+ret+')');
+                var json = ret;
                 console.log(json);
                 if(json.success) {
                     localStorage.bookingID=json.data.bookingID;
                     localStorage.bookingRefNo=json.data.bookingRefNo;
-                    window.location.href='order_pay_page.html';
+                    window.location.href='order_pay_page.html?bookingRefNo='+json.data.bookingRefNo;
                 }else{
                     jAlert(json.message);
                 }
@@ -389,7 +393,7 @@
 
     //初始化函数回调
     function package_tit_back(ret){
-        var json = eval('('+ret+')');
+        var json = ret;
         //console.log(json);
         if(json.success) {
             //套餐名称
