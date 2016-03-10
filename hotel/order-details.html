@@ -29,7 +29,6 @@
         <h3>订单详情</h3>
     </div>
     <div id="content" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
-
         <div class="sure">
             <div class="sure1">订单已支付 等待入住</div>
             <div class="sure2">
@@ -53,11 +52,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
         <div id="hotelInfo" class="reserve">
             <!--<div class="reserve-top">-->
                 <!--<div class="reserve-top1"><a class="a" href="#">如果预订东京东急涩谷卓越大酒店</a></div>-->
@@ -120,18 +115,13 @@
     <div id="pdetail_mb" class="od-mb"></div>
     <div id="pd_block" class="pd-block">
         <ul id="pd_list" class="pd-list">
-            <!--<li>-->
-                <!--<div>成人×1</div>-->
-                <!--<div>￥1000</div>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<div>儿童×2</div>-->
-                <!--<div>￥1200</div>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<div>总价</div>-->
-                <!--<div>￥2200</div>-->
-            <!--</li>-->
+            <li>费用明细<span>1间 X 1晚</span></li>
+            <li>
+                <div>房费</div><span>￥1143</span>
+                <div style="clear: both"></div>
+                <div>税和服务费</div><span>￥159</span>
+            </li>
+            <li>付款方式：预付</li>
         </ul>
     </div>
 </div>
@@ -169,50 +159,34 @@
                      '<span>{%=guestNameList.guestLastName%}{%=guestNameList.guestFirstName%}</span>',
                      '<span>{%=guestContactNo%}</span>'
                 ].join('');
-                var tpl4 = [
-                    '<li>',
-                        '<div>成人×{%=noOfAdults%}</div>',
-                        '<div>￥1000</div>',
-                    '</li>',
-                    '<li>',
-                        '<div>儿童×{%=noOfChild%}</div>',
-                        '<div>￥1200</div>',
-                    '</li>',
-                    '<li>',
-                        '<div>总价</div>',
-                        '<div>￥2200</div>',
-                    '</li> '
-                ].join('');
                 var tmp = {
                     "Parameters":{"bookingReferenceNo":"SG-1141622-8829"},
                     "Code":"0013",
                     "ForeEndType":2
                 };
-//                var tmp ={
-//                    "Parameters":"{\"CultureName\":\"en-US\",\"BookingReferenceNo\":\"SG-1708118-8016\"}",
-//                    "ForeEndType":3,
-//                    "Code":"0013"
-//                };
-//                var tmp = {
-//                    "Parameters": "{\"CultureName\":\"en-US\",\"BookingReferenceNo\":\"SG-1141607-13855\"}",
-//                    "ForeEndType": 3,
-//                    "Code": "0013"
-//                };
                 console.log(tmp);
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
 
                 function getDetail_back(ret){
-                    var json = eval('('+ret+')');
+                    var json = ret;
                     console.log(json);
                     if(json.success) {
                         var data = json.data;
                         var dayNum;
-
+                        var tax_service;
+                        var payWay;
                         function getDayNum(arg1,arg2){
                             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
                             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
                         }
                         dayNum = getDayNum(data[0].checkInDate,data[0].checkOutDate);
+
+                        tax_service = parseInt(data[0].totalTaxCharge) + parseInt(data[0].totalSeriveCharge);
+                        if(data[0].paymentModeID == '1'){
+                            payWay = "预付";
+                        }else{
+                            payWay = "到付";
+                        }
                         var tpl1 = [
                             '<div class="reserve-top">',
                             '<div class="reserve-top1"><a class="a" href="hotel_detail.html?hotelCode={%=hotelCode%}">{%=hotelName%}</a></div> ',
@@ -223,6 +197,15 @@
                             '<div class="reserve-bottom2">最晚到店18:00</div>',
                             '<div class="reserve-bottom3">地址: {%=hotelAddress%}</div>',
                             '</div>'
+                        ].join('');
+                        var tpl4 = [
+                            '<li>费用明细<span>{%=noOfRooms%}间 X '+dayNum+'晚</span></li>',
+                            '<li>',
+                                '<div>房费</div><span>￥{%=totalRoomRate%}</span>',
+                                '<div style="clear: both"></div>',
+                                '<div>税和服务费</div><span>￥'+tax_service+'</span>',
+                            '</li>',
+                            '<li>付款方式：'+payWay+'</li>'
                         ].join('');
                         var html_hl = template(tpl1,data);
                         var html_ap = template(tpl2,data);
