@@ -37,7 +37,7 @@
     </div>
 </div>
 <div class="all-elements fix-background" id="detail">
-    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<i class="tel-icon"></i></header>
+    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<a class="tel-icon" href="tel:4005088888"></a></header>
     <div class="ticket-order-detail-content">
        <div class="until-pay">
          <span><strong>待支付</strong></span>
@@ -49,19 +49,19 @@
                   <div class="rel-start">
                       <div class="week-city-city">
 
-                          <span><i></i></span> <span>01-08</span> <span>周二 {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
+                          <span><i></i></span> <span>{% var d1=new Date(flightInfo.flightLeaveStartDate.replace("T"," ")); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
                       </div>
                       <div class="time-arrow-time">
                           <div class="city-time-left">
-                               <div class="clock">07:00</div>
+                               <div class="clock">{% var d2=new Date(flightInfo.segmentsLeave[0].departDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                                <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameFrom%}{%=flightInfo.segmentsLeave[0].TermDepart%}</p>
                           </div>
                           <div class="time-arrow">
-                               <h6>2h30m</h6>
+                               <h6>2h3m</h6>
                                <div class="icon-arrow"></div>
                           </div>
                           <div class="city-time-right">
-                              <div class="clock"><span>+1天</span>09:15</div>
+                              <div class="clock"><span>+1天</span>{% var d3=new Date(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                               <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameTo%}{%=flightInfo.segmentsLeave[0].TermArrive%}</p>
                           </div>
                       </div>
@@ -197,21 +197,20 @@
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
-<script src="../js/lib/custom.js"></script>
 <script>
-
+    var getWeek = {
+        "1": "一",
+        "2":"二",
+        "3":"三",
+        "4":"四",
+        "5":"五",
+        "6":"六",
+        "7":"日",
+    };
 
     (function(){
         var ww = this;
-        vlm.init();
         var orderDetail = function(){
-            //   加载动画
-            var flashLoad = function(){
-                $(window).load(function () {
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
-                });
-            };
             //   加载详情数据
             var getDetailData = function(){
                 var bookingRefNo=vlm.getpara("bookingRefNo");
@@ -221,16 +220,17 @@
                     "Code": "3006"
                 };
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
-                function getDetail_back(ret){
-                    var json=ret;
+                function getDetail_back(json){
                     if(json.success){
                         var data=json.data;
+                        debugger;
                         var tpl=template("detail",data);
                         var tplD=template("pd_list",data);
                         $("#detail").html(tpl);
                         $("#pd_list").html(tplD)
                         console.log(data);
                         showPriceDetail();
+                        vlm.init();
                     }else {
                         jAlert(json.message,"提示");
                     }
@@ -253,14 +253,12 @@
                 }
             };
             return{
-                FlashLoad:flashLoad,
                 GetDetailData:getDetailData,
                 ShowPriceDetail:showPriceDetail
             }
         }();
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
-            orderDetail.FlashLoad();
             orderDetail.GetDetailData();
             orderDetail.ShowPriceDetail()
         };
