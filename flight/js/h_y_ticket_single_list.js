@@ -194,7 +194,7 @@ var ticketSingle = {
         }
     },
     renderHandler:function(arg){
-        arg = JSON.parse(arg);
+        var arg = JSON.parse(arg);
         var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
         document.querySelector('#preloader').style.display='none';
