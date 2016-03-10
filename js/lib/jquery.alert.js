@@ -101,7 +101,7 @@
 					});
 					break;
 				case 'confirm':
-					$("#popup_message").after('<div id="popup_error"></div><div id="popup_panel"><div class="half"> <input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"></div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok" /></div></div>');
+					$("#popup_message").after('<div id="popup_error"></div><div id="popup_panel"><div class="half"> <button class="d-esc" id="popup_cancel">' + $.alerts.cancelButton + '</button></div><div class="half"><button class="d-ok" id="popup_ok" >' + $.alerts.okButton + '</button></div></div>');
 					$("#popup_ok").click(function() {
 						$.alerts._hide();
 						if (callback)

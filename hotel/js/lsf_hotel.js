@@ -373,7 +373,8 @@ function inpChange(id, myText) {
 		"ForeEndType" : 3
 	};
 	//城市列表
-	vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(listJson) {
+	vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d) {
+		var listJson = d;
 		if (!listJson.success) {
 			jAlert(listJson.message);
 			return;
@@ -417,12 +418,14 @@ function inpChange(id, myText) {
 		function cityShow(oData, doData, cityJson, dcityJson, obj, dobj) {
 			//热门城市
 			//国际
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(json) {
+			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d) {
+				var json = d;
 				var str = template("cl_citysHot", json.data);
 				$("#cl_citysHot").html(str);
 			});
 			//国内
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(doData), function(json) {
+			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(doData), function(d) {
+				var json = d;
 				var dstr = template("dcl_citysHot", json.data);
 				$("#dcl_citysHot").html(dstr);
 			});
@@ -561,6 +564,8 @@ function inpChange(id, myText) {
 			for (var name in json) {
 				cityHisArr.push(name);
 			}
+            //倒序
+            cityHisArr.reverse();
 			var djson = {};
 			for (var i = 0; i < dcityHisArr.length; i++) {
 				if (dcityHisArr[i]) {
@@ -573,7 +578,7 @@ function inpChange(id, myText) {
 			}
 			//把历史城市生成页面
 			cl_citysHis.innerHTML = '';
-			for (var i = cityHisArr.length; i > cityHisArr.length-6; i--) {
+			for (var i = 0; i < cityHisArr.length&& i<6; i++) {
 				cl_citysHisStr += '<li>' + cityHisArr[i] + '</li>';
 			}
 			cl_citysHis.innerHTML = cl_citysHisStr;
