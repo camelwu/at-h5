@@ -137,7 +137,13 @@
 			},
 
 			getTotalNights : function(end, start) {
-				return (Date.parse(end) - Date.parse(start)) / 1000 / 60 / 60 / 24;
+                var live_y=start.split('-')[0];
+                var live_m=start.split('-')[1]-1;
+                var live_d=start.split('-')[2];
+                var leave_y=end.split('-')[0];
+                var leave_m=end.split('-')[1]-1;
+                var leave_d=end.split('-')[2];
+				return (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
 			}
 		},
 
@@ -395,6 +401,7 @@
         },
 
 		createAll : function(result) {
+            alert(11);
 			//result = JSON.parse(result);
 			console.log('callback函数得到的数据');
 			hotelDetail.myData.createAllback = result;

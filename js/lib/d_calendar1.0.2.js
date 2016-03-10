@@ -113,7 +113,7 @@ Calender.prototype = {
         var container = this.container = document.createElement('div');
         container.id = this.id + '-date';
         container.style.position = "absolute";
-        container.style.zIndex = 98;
+        container.style.zIndex = 100;
         if(this.input.tagName === 'input'){
 	        //PC输入框
 	        var inputPos = _CalF.getPos(this.input);
@@ -135,6 +135,7 @@ Calender.prototype = {
 	        var header = this.header = document.createElement('div');
 	        header.id = this.id+"-header";
 	        header.className = 'header';
+            header.style.zIndex = 101;
 	        header.innerHTML = '<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3>';
 	        document.body.appendChild(header);
 	        
@@ -383,7 +384,7 @@ Calender.prototype = {
 		l=ospan.length,
 		links = _CalF.$('.live',this.dd),
 		len=links.length;
-		console.log(ospan[1].parentNode.outerHTML+ospan.length);
+		//console.log(ospan[1].parentNode.outerHTML+ospan.length);
 		if(that.op==0){
 			for(var i=0;i<l;i++){
 				var v = ospan[i].parentNode.getAttribute("data-day");
