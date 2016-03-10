@@ -46,8 +46,10 @@
             <span class="title">订单详情</span>
         </header>
         <!--   内容   -->
-        <div id="content ddd" class="snap-content" style="padding-top: 45px;">
-            <section class="order_type"><i class="orange">待支付</i></section>
+        <div class="sc-content">
+            <div id="payStatus">
+                <!--<section class="order_type"><i class="orange">待支付</i></section>-->
+            </div>
             <section id="packageInfo" class="all_info">
                 <!--<a href="scenic_detail.html">-->
                     <!--<p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】<span class="sce-introduce-span">（产品编号 PK348758945）</span></p>-->
@@ -77,8 +79,8 @@
                     </ul>
                 </div>
             </section>
-            <section class="order_pay_btnBox">
-                <a href="order-pay.html" class="order_pay_btn">支付订单</a>
+            <section id="payBtn" class="order_pay_btnBox">
+                <!--<a href="order-pay.html" class="order_pay_btn">支付订单</a>-->
             </section>
         </div>
     </div>
@@ -116,8 +118,17 @@
             </li>
         {% } %}
     </script>
-    <script>
-
+    <script id="tpl_payStatus" type="text/template">
+        {% if(paymentStatus){  %}
+        <section class="order_type"><i class="orange">已支付</i></section>
+        {% }else{ %}
+        <section class="order_type"><i class="orange">待支付</i></section>
+        {% } %}
+    </script>
+    <script id="tpl_payBtn"  type="text/template">
+        {% if(!paymentStatus){  %}
+        <a href="order-pay.html" class="order_pay_btn">支付订单</a>
+        {% } %}
     </script>
     <script>
         (function(){
@@ -163,7 +174,7 @@
                     ].join('');
                     var tmp = {
                         "Parameters": {
-                            "BookingRefNo": val.bookingRefNo
+                            "BookingRefNo": "SG17SINFP0136825"
                         },
                         "ForeEndType": 3,
                         "Code": "0095"
@@ -192,11 +203,15 @@
                             var html_tp = template(tpl2,data);
                             var html_oi = template(tpl3,data);
                             var html_pd_list = template(tpl4,data);
+                            var tpl_payStatus = template("tpl_payStatus",data);
+                            var tpl_payBtn = template("tpl_payBtn",data);
                             $('#packageInfo').html(html_pi);
                             $('#tourInfo').html(tpl_GetTourInfo);
                             $('#totlePrice').html(html_tp);
                             $('#orderInfo').html(html_oi);
                             $('#pd_list').html(html_pd_list);
+                            $('#payStatus').html(tpl_payStatus);
+                            $('#payBtn').html(tpl_payBtn);
                             if(data.length == 0){
                                 jAlert("抱歉暂时没有数据","提示");
                             }
