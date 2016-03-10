@@ -185,6 +185,7 @@
         }
 
         (function(){
+            var bookingRefNo=vlm.getpara("bookingRefNo");
             var b=document.getElementById('pay_way').getElementsByTagName("b");
             var agree = $("#agree")[0];
             var close_page = $("#close_page")[0];
@@ -216,10 +217,10 @@
                 out_pay.style.display = "none";
             };
             btnPay.onclick=function(){
-                Payment("UnionPay","SG17SINFP0375528");
+                Payment("UnionPay",bookingRefNo);
             }
             btnCPay.onclick=function(){
-                Payment("CreditCard","SG17SINFP0375528");
+                Payment("CreditCard",bookingRefNo);
             }
         })();
         function Payment(type,code){
