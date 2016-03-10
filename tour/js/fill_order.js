@@ -177,10 +177,6 @@
                 var conFirName=conInput[1].value;
                 var conPhone=conInput[2].value;
                 var conEmail=conInput[3].value;
-                localStorage.conLasName=conInput[0].value;
-                localStorage.conFirName=conInput[1].value;
-                localStorage.conPhone=conInput[2].value;
-                localStorage.conEmail=conInput[3].value;
 
                 //总价
                 var totalPrice=document.querySelector('.all_num i').innerHTML;
@@ -382,7 +378,6 @@
                 if(json.success) {
                     localStorage.bookingID=json.data.bookingID;
                     localStorage.bookingRefNo=json.data.bookingRefNo;
-
                     window.location.href='order_pay_page.html';
                 }else{
                     jAlert(json.message);

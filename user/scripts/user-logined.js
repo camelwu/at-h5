@@ -65,7 +65,7 @@ function init(){
 
 
 function mycallback(ret) {
-    var myJson = eval('(' + ret + ')');
+    var myJson = ret;
     console.log(myJson);
     if (myJson.success) {
         var user_name = $("#user_name")[0];
