@@ -86,7 +86,7 @@
 
                 </ul>
                 <div class = "sin-title">国外热景点</div>
-                <ul class = "hotspot">
+                <ul class = "hotspot" id="abroad_hotspot">
                     <li>
                         <div>
                             <img src="images/jdzhuye2_04.jpg" class="banner-image" alt="img">
@@ -98,28 +98,6 @@
                         <div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>
                         <div><span>￥</span><span class="pay-num">1680</span><span>起</span></div>
                     </li>
-                    <li>
-                        <div>
-                            <img src="images/jdzhuye3_03.jpg" class="banner-image" alt="img">
-                            <div class="hp-block">
-                                <b class = "icon1 s-location"></b>
-                                马来西亚
-                            </div>
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>
-                        <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="images/jdzhuye4_03.jpg" class="banner-image" alt="img">
-                            <div class="hp-block">
-                                <b class = "icon1 s-location"></b>
-                                马来西亚
-                            </div>
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>
-                        <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
-                    </li>
                 </ul>
             </div>
             <div class="out-content">
@@ -128,7 +106,7 @@
 
                 </ul>
                 <div class = "sin-title">国内热景点</div>
-                <ul class = "hotspot">
+                <ul class = "hotspot" id="domestic_hotspot">
                     <li>
                         <div>
                             <img src="images/jdzhuye6_06.jpg" class="banner-image" alt="img">
@@ -180,6 +158,22 @@
         {% } %}
         <li class = "hotplace" title="more">更多</li>
     </script>
+    <script id="tpl_GetHotSpot" type="text/template">
+        {% for(var i = 0;i < hotScenicList.length;i++){ %}
+        <li>
+            <a href="../scenic/scenic_detail.html?packageID={%=hotScenicList[i].productID%}">
+                    <img src="{%=hotScenicList[i].productPicUrl%}" class="banner-image" alt="img">
+                    <div class="hp-block">
+                        <b class="icon1 s-location"></b>
+                        {%=hotScenicList[i].productSite%}
+                    </div>
+            </a>
+            <div class="spotDesc">{%=hotScenicList[i].productDesc%}</div>
+            <div><span>￥</span><span class="pay-num">{%=hotScenicList[i].productPrice%}</span><span>起</span></div>
+        </li>
+        {% } %}
+    </script>
+
     <script>
         /*景点首页MT*/
         (function(){
@@ -289,10 +283,34 @@
                     jAlert(json.message,"提示");
                 }
             }
+            //   获取热门景点
+            MT.getHotSpot = function() {
+                var tmp = {
+                    "Parameters":{"Isinternational":true,"PageNo":1,"PageSize":10}
+                    ,"ForeEndType":3,
+                    "Code":"001305"
+                };
+                MT.ajaxJson("",JSON.stringify(tmp),MT.getHotSpotCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            };
+
+             MT.getHotSpotCallback = function(ret){
+                var json=ret;
+                if(json.success){
+                    var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
+                    console.log(data.hotScenicList);
+                    if(data.hotScenicList.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
+                    }
+                    $("#abroad_hotspot").html(tpl_GetHotSpot);
+
+                }else {
+                    jAlert(json.message,"提示");
+                }
+            }
 
             MT.CGetExHotCity();
             MT.CTab();
-
+            MT.getHotSpot();
         })();
     </script>
 </body>
