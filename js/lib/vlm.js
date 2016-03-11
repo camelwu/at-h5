@@ -341,7 +341,7 @@
 						},
 						//中文姓名
 						ChineseName:function(name){
-							var pattern=/^([\u4e00-\u9fa5]){2,7}$/
+							var pattern=/^([\u4e00-\u9fa5a-zA-Z]){2,7}$/
 							//只能是中文，长度为2-7位
 							if(pattern.test(name)){
 								return true;

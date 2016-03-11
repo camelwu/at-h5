@@ -331,13 +331,15 @@
 
 		reserveHandler : function(event) {
 			var code = this.getAttribute("room-code");
-			if(vlm.checkLogin(torder)) {
-				//vlm.checkLogin();
-				torder();
-			}
-			else{
-				torder();
-			}
+            try{
+                var sign = vlm.checkLogin(torder);
+                if(sign){
+                    torder();
+                }
+            }catch(e){
+                console.info(e);
+            }
+            
 			function torder() {
 				document.location.href = 'user_order.html?' + 'roomCode=' + code;
 			}
