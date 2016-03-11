@@ -397,7 +397,7 @@ function mycallback(ret){
     var sex = $("#sex")[0];
     var block = $("#block")[0];
     var userIcon = $("#userIcon")[0];
-    var birthCont=$('#birth-cont')[0];
+    var birthCont=$('#birth-cont-per')[0];
     if(infoJson.data == null)
     {
         nickname.innerHTML ='';

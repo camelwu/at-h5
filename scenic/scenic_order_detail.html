@@ -14,11 +14,27 @@
         .flight_info{ width:100%;}
         .flight_info>dt{ border-bottom:1px solid #e9e9e9; height:40px; line-height:40px; padding-left:20px;}
         .flight_info dd{ position:relative;}
-        .flight_info dd i{ position:absolute; left:0; width:60px;}
+        .flight_info>dt,.flight_info dd i.word{ color:#333;}
+        .flight_info dd i.word{ position:absolute; left:20px; width:60px; top:7px;}
         .flight_info dd ul{ margin-left:60px;}
-        .flight_info dd ul li{ height:34px;border-bottom:1px solid #e9e9e9;}
-        .flight_info dd ul li input{ height:34px; border:0;}
-        .flight_info dd ul li:last-child{ line-height:34px; }
+        .flight_info dd ul li{ height:38px;border-bottom:1px solid #e9e9e9;}
+        .flight_info dd ul li input{ height:37px; font-family: arial;}
+        .flight_info dd ul li:last-child{ line-height:38px; position:relative;}
+        .flight_info dd ul li:last-child span{ color:#afafaf}
+        .flight_info dd ul li input::-webkit-input-placeholder { /* WebKit browsers */
+            color: #afafaf; font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info dd ul li input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #afafaf;font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info dd ul li input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #afafaf;font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info dd ul li input:-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: #afafaf;font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info i.data_icon{
+            width: 16px;height:17px; position: absolute; right:20px;; top:48px; background: url(images/data_icon.gif) no-repeat; background-size: 100% 100%;}
     </style>
 
 </head>
@@ -122,22 +138,24 @@
                         <li><span class="tourist-name tour-short">邮箱：</span><input id="scenic_email" style="display: inline-block;"  placeholder="113638136@163.com"></li>
                     </ul>
                 </div>
-
+                <div class="gray-block" data-key="flight_page"></div>
                 <dl class="flight_info">
                     <dt>航班信息</dt>
                     <dd>
-                        <i>出发</i>
+                        <i class="word">出发</i>
                         <ul>
                             <li><input type="text" placeholder="航班号"></li>
                             <li><span>年月日</span></li>
                         </ul>
+                        <i class="data_icon"></i>
                     </dd>
                     <dd>
-                        <i>抵达</i>
+                        <i class="word">抵达</i>
                         <ul>
                             <li><input type="text" placeholder="航班号"></li>
                             <li><span>年月日</span></li>
                         </ul>
+                        <i class="data_icon"></i>
                     </dd>
                 </dl>
 
