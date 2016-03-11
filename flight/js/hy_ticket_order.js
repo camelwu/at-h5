@@ -267,7 +267,6 @@ var ticketOrder = {
                     },3000);
                 }
             });
-
         });
 
         this.addHandler(Button,'click', function(){

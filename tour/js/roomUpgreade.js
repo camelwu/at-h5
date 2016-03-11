@@ -72,7 +72,7 @@ var roomUpGrade = {
         return data;
     },
     dateDeal: function () {
-        var reg = /\d{4}-(\d{1,2})-(\d{1,2}).*/;
+        var reg = /\d{4}[/-](\d{1,2})[/-](\d{1,2}).*/;
         var dateD1 = reg.exec(this.curParaObj.CheckInDate);
         var dateD2 = reg.exec(this.curParaObj.CheckOutDate);
         var inStr = dateD1[1]+'-'+dateD1[2];
