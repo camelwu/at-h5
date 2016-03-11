@@ -5,7 +5,7 @@
 (function(){
 
     var oReserve=document.querySelector('.reserve');
-    var hotelID='',totPrice='',roomID='';
+    var hotelID='',perPrice=0,totPrice=0,roomID='';
     //加载动画
     function package_detail(){
 
@@ -23,42 +23,6 @@
     //从用户中心添加旅客
     var aa=window.localStorage.contact_selected;
     console.log(aa);
-
-    //处理地址栏信息
-    function urlShow(){
-        if(window.location.search){
-            var winhref=window.location.search.substring(1);
-            var arr2=winhref.split('&');
-            console.log(arr2);
-            //hotel
-            hotelID=arr2[0].split('=')[1];
-            //航班信息
-            var airFli=arr2[1].split('=')[1];
-            switch (airFli){
-                case 'None':
-                    $('#flight-air').remove();
-                    break;
-                case 'TwoWay':
-                    $('#flight-air').remove();
-                    break;
-                case 'Arrival':
-                    $('#content3').remove();
-                    break;
-                case 'Depart':
-                    $('#content4').remove();
-                    break;
-                default:;
-            }
-            //订单总价
-            totPrice=arr2[3].split('=')[1];
-            $('.all_num i').html(totPrice);
-            $('.separate_num i').html(totPrice);
-
-            //roomID
-            roomID=arr2[4].split('=')[1];
-        }
-    }
-    urlShow();
 
     function init(){
         var Parmeters=
@@ -138,6 +102,43 @@
 
         }
 
+        //处理地址栏信息
+        function urlShow(){
+            if(window.location.search){
+                var winhref=window.location.search.substring(1);
+                var arr2=winhref.split('&');
+                console.log(arr2);
+                //hotel
+                hotelID=arr2[0].split('=')[1];
+                //航班信息
+                var airFli=arr2[1].split('=')[1];
+                switch (airFli){
+                    case 'None':
+                        $('#flight-air').remove();
+                        break;
+                    case 'TwoWay':
+                        $('#flight-air').remove();
+                        break;
+                    case 'Arrival':
+                        $('#content3').remove();
+                        break;
+                    case 'Depart':
+                        $('#content4').remove();
+                        break;
+                    default:;
+                }
+                //订单总价
+                perPrice=arr2[3].split('=')[1];
+                totPrice=perPrice*(tAdult+totChiNUm);
+                $('.all_num i').html(totPrice);
+                $('.separate_num i').html(totPrice);
+
+                //roomID
+                roomID=arr2[4].split('=')[1];
+            }
+        }
+        urlShow();
+
         //添加联系人
         $('.add-contact').click(function(){
             vlm.f_choice('t','contact','',false,false);
@@ -205,7 +206,7 @@
                         },
                         "ChargeDetails": {
                             "CurrencyCode": "CNY",
-                            "TotalPrice": totPrice
+                            "TotalPrice": perPrice
                         }
                     },
 

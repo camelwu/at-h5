@@ -514,7 +514,7 @@
                                 if(json.success) {
                                     localStorage.setItem('info', JSON.stringify(paraObj));
                                     localStorage.setItem('hotelResultData', JSON.stringify(json.data));
-                                     window.location.href = "hotel_list.html";
+                                    window.location.href = "hotel_list.html";
                                 }else{
                                     console.log(json);
                                     jAlert(json.message,"提示");

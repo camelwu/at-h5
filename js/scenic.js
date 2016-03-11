@@ -51,7 +51,8 @@
             var firstName=inputAdult[1].value;
             str1+='<li><span>'+'出行人'+(i+1)+'</span><i>'+lastName+firstName+'</i></li>';
         }
-        document.querySelector('#detail_expenses ul').innerHTML='<li><span class="package-tit">'+packageTit.innerHTML+'</span><i data-unit="&#165;">56 x '+traNum.length+'</i></li>'+str1;
+        var perPrice=window.location.search.substring(1).split('&')[3].split('=')[1];
+        document.querySelector('#detail_expenses ul').innerHTML='<li><span class="package-tit">'+packageTit.innerHTML+'</span><i data-unit="&#165;">'+perPrice+' x '+traNum.length+'</i></li>'+str1;
 
         function showChangeClass(){_t.className='itemized';}
         this.className=="itemized"?(isShow(showDom,'42px',showChangeClass),_t.className='itemized_d'):isHide(showDom,showChangeClass);

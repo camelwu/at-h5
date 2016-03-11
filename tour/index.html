@@ -141,7 +141,7 @@
 <script id="tpl_GetHotSpot" type="text/template">
     {% for(var i = 0;i < hotelAndScenicList.length;i++){ %}
         <li>
-            <a href="packages_detail.html?packageID={%=hotelAndScenicList[i].productID%}">
+            <a href="packages_detail.html?packageID={%=hotelAndScenicList[i].productID%}&productPrice={%=hotelAndScenicList[i].productPrice%}">
                 <div>
                     <img src="{%=hotelAndScenicList[i].productPicUrl%}" class="banner-image" alt="img">
                     <div class="hp-block">
