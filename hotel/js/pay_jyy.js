@@ -331,8 +331,11 @@ var lsf_myweb={
             if(data.success){
                 debugger;
                 if(data.data.length>=1) {
-                    window.location.href=data.data[0].paymentRedirectURL;
-                    //window.open(data.data[0].paymentRedirectURL,"第三方支付","fullscreen=1");
+                    function loc(){
+                        var winRef = window.open("", "_blank");//打开一个新的页面
+                        winRef.location = data.data[0].paymentRedirectURL;
+                    }
+                    setTimeout(loc(),800);//这个等待很重要，如果不等待的话将无法实现
                 }
             }else{
                 $("#status-h").fadeOut();
