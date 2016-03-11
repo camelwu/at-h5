@@ -397,7 +397,7 @@
                         var tpl_GetTour = template("tpl_GetTour",data);
                         if(localStorage.getItem('init')!='1'){
                             dateHandler.init();
-                        };
+                        }
                         $('#tourTime').html(tpl_GetTour);
                         if(!onlyForAdult){
                             initAgeRange();
@@ -514,7 +514,7 @@
                                 if(json.success) {
                                     localStorage.setItem('info', JSON.stringify(paraObj));
                                     localStorage.setItem('hotelResultData', JSON.stringify(json.data));
-                                     window.location.href = "hotel_list.html";
+                                    window.location.href = "hotel_list.html";
                                 }else{
                                     console.log(json);
                                     jAlert(json.message,"提示");
@@ -634,6 +634,8 @@
 
             inputs[0].value = paraObj.start;
             inputs[1].value = paraObj.end;
+            var total_day =document.querySelector('#total_day');
+            total_day.innerHTML = 1;
             var dateInitObj = {},paramStr;
             var  returnWeek=function(arg){
                 if(arg){
