@@ -524,10 +524,10 @@
                         getHotel();
                     }
                 }else{
-                    var extraChild = document.getElementsByClassName('extraChild');
-                    for(var v = 0;v < extraChild.length;v++){
-                        if(extraChild[v].style.display != 'none'){
-                            var input = extraChild[v].getElementsByClassName("inp-cage");
+                    var exaddChild = document.getElementsByClassName('extraChild');
+                    for(var v = 0;v < exaddChild.length;v++){
+                        if(exaddChild[v].style.display != 'none'){
+                            var input = exaddChild[v].getElementsByClassName("inp-cage");
                             for(var w = 0;w < input.length;w++){
                                 if(input[w].value == ''){
                                     tipBox.innerHTML = '儿童年龄未输入!';
