@@ -1055,6 +1055,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     height: 33px;
     margin-top: 2px;
     line-height: 33px;
+    float:left;
 }
 
 .nav2-centertop > div {
@@ -1062,9 +1063,6 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     margin-left: 15px;
     margin-top: 8px;
     color: #fdb330;
-}
-.week-tour{
-
 }
 .orderBtn {
     margin: 20px 12px 0;
