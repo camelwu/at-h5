@@ -151,8 +151,12 @@
                             str=m.innerHTML;
                             str=Number(str);
                             str=str+1;
-                            m.innerHTML=str;
-                            extraRoom(n.parentNode.parentNode,str);
+                            if(str>6){
+                                jAlert('最多选择6个房间!','提示');
+                            }else{
+                                m.innerHTML=str;
+                                extraRoom(n.parentNode.parentNode,str);
+                            }
                         }else if(_type=="adult"){
                             if(onlyForAdult){
                                 str=m.innerHTML;
@@ -330,13 +334,13 @@
                     if(onlyForAdult){
                         initStr='<span class="title">房间1</span>'+
                         '<div class="numbList">'+
-                        '<span class="n_tit" style="margin-left: 70px;border-bottom: 1px solid #ddd; ">成人</span>'+
+                        '<span class="n_tit" style="border-bottom: 1px solid #ddd; ">成人</span>'+
                         '<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'+
                         '</div>'
                     }else{
                         initStr='<span class="title">房间1</span>'+
                         '<div class="numbList">'+
-                        '<span class="n_tit" style="margin-left: 70px">成人</span>'+
+                        '<span class="n_tit">成人</span>'+
                         '<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'+
                         '</div>'+
                         '<div class="numbList">'+
@@ -385,6 +389,7 @@
                         minPax = parseInt(data.minPax);
                         maxAdult = parseInt(data.maxAdult);
                         onlyForAdult = data.onlyForAdult;
+                        /*onlyForAdult = true;*/
                         packageID = data.packageID;
                         childAgeMin = parseInt(data.childAgeMin);
                         childAgeMax = parseInt(data.childAgeMax);

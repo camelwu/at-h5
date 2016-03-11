@@ -870,10 +870,8 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child{border:none;}
 }
 #popup_content{
     background-color: #fff;
-    border-radius: 3px;
-    min-width: 290px;
-    max-width: 76%;
-    margin: 0 auto;
+    width: 76%;
+    margin-left: 12%;
 }
 #popup_message {
     padding: 29px 22px;

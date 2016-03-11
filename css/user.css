@@ -1407,6 +1407,7 @@ ul, ol {
     height: 100%;
     border-radius: 4px;
     padding-left: 24px;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 
 .cl_search i {

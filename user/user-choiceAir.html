@@ -71,18 +71,6 @@
 			<b class="icons user-add"></b><span class="newTitle"></span>
 		</div>
 		<ul class="often-traveler choosed-traveler" id="content">
-			<!-- <li class="eve-traveler">
-                <b class="icon user-choice"></b>
-                <b class="icon user-edit"></b>
-                <ul class="often_user">
-                    <li>
-                        陈玉宝CHEN/YUBAO
-                    </li>
-                    <li>
-                        身份证 <span>11023319880358765</span>
-                    </li>
-                </ul>
-            </li> -->
 		</ul>
 		<div class="name-text" style="margin-bottom: 0;margin-top: -15px;">
 			首字母排序
@@ -878,7 +866,7 @@
 	})
 </script>
 <!--机票-获取乘客信息-->
-<script id="tpl_f_passager" type="text/template"	>
+<script id="tpl_f_passager" type="text/template">
 	<li class="ride-user-info">
 		<span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}"></i></span>
 		<div class="middle">
@@ -896,30 +884,22 @@
 <!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
-
-		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}" />
-		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.lastName%}" />
+		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.lastName%}"/>
+		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.firstName%}"/>
 	</div>
 	<div class="unit tel">
 		<div class="left">
 			<span>手机号</span>
-			<div class="center">
-				<select name="sources" id="sources" class="custom-select sources" placeholder="+86">
-					<option value="+86">+86</option>
-					<option value="+87">+87</option>
-					<option value="+88">+88</option>
-				</select>
+			<div class="center country-trigger">
+				<span id="country-code">+86</span><span id="slider-country-choose"></span>
 			</div>
 		</div>
-
 		<div class="right">
-			<input type="tel" name="tel"  id="tel-num" placeholder="用于接收通知" value="{%=traveller.mobilePhone%}" />
+			<input type="tel" name="tel" id="tel-num" placeholder="用于接收通知" value="{%=traveller.mobilePhone%}"/>
 		</div>
 	</div>
-
 	<div class="unit email">
-		<label for="email-label">E-mail</label><input type="email" name="email" id="email-label" placeholder="用于接收通知" value=" {%=traveller.email%}" />
-	</div>
+		<label for="email-label">E-mail</label><input type="email" name="email" id="email-label" placeholder="用于接收通知" value=" {%=traveller.email%}"/>
 	</div>
 </script>
 
