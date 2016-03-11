@@ -79,6 +79,17 @@
             <h3>景点</h3>
         </section>
         <section id="tourTime" class="tourTime">
+            <div class="content2 tour-out-div">
+                <div class="nav2-center">
+                    <div class="nav2-centertop">
+                        <div>景点</div>
+                        <p><input name="CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span class="week-tour">周四</span></p>
+                    </div>
+                </div>
+                <div class="nav2-centerright">
+                    <i></i>
+                </div>
+            </div>
         </section>
         <section class="orderBtn"><button id="order_btn">预订</button></section>
     </div>
@@ -99,7 +110,7 @@
     <div class="content2 tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
         <div class="nav2-center">
             <div class="nav2-centertop">
-                <span>景点{%=i+1%}</span>
+                <div>景点{%=i+1%}</div>
                 <p><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">周四</span></p>
             </div>
         </div>
