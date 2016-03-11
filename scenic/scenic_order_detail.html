@@ -129,9 +129,9 @@
                     <dd>
                         <i class="word">出发</i>
                         <ul >
-                            <li><input type="text" placeholder="航班号"></li>
+                            <li><input type="text" id="departFlightNo" placeholder="航班号"></li>
                             <li id="flight1" >
-                                <span class="js-flight-ymd">年月日</span>
+                                <span class="js-flight-ymd" id="departDateTime">年月日</span>
                                 <i class="data_icon"></i>
                             </li>
                         </ul>
@@ -140,9 +140,9 @@
                     <dd>
                         <i class="word">抵达</i>
                         <ul >
-                            <li><input type="text" placeholder="航班号"></li>
+                            <li><input type="text" id="arrivalFlightNo" placeholder="航班号"></li>
                             <li id="flight2">
-                                <span class="js-flight-ymd">年月日</span>
+                                <span class="js-flight-ymd" id="arrivalDateTime">年月日</span>
                                 <i class="data_icon"></i>
                             </li>
                         </ul>
@@ -1052,7 +1052,8 @@
                             ,TourCount = 0,TourID = 0,PickupID = "",PickupCount = 0,currentY = 0
                             ,PickupTmp,PickupPoint = {},TravelerType = "",Salutation ="",FirstName = ""
                             ,LastName = "",NationalityCode = "",Travelers = [],Email = ""
-                            ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",TotalPrice = 0;
+                            ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",TotalPrice = 0
+                            ,TravelerDocument;
                     var param =
                     {
                         "Parameters": {
@@ -1123,10 +1124,6 @@
                     FirstName = $("#scenic2_name1").val();
                     LastName = $("#scenic2_name2").val();
 
-
-
-
-
 //                    if(AdultCount > 0){
 //                        for(var i = 0;i<AdultCount;i++){
 //                            Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
@@ -1142,9 +1139,25 @@
 //                        }
 //                    }
 
-                    Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
-
+                    //是否需要护照
+                    if(ExtendData.travelersInput == "RequiredAllTravelersDetailsWithDocumentInfo"){
+                        TravelerDocument = $("#scenic2_idcard").val();
+                        Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode,"TravelerDocument":TravelerDocument});
+                    }else{
+                        Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
+                    }
                     param.Parameters.Travelers = Travelers;
+
+
+                    //是否需要航班信息
+                    if(ExtendData.airportTransferType != "None"){
+                        //None, TwoWay，Arrival，Depart
+                        var DepartFlightNo = $("#departFlightNo").val();
+                        var DepartDateTime = $("#departDateTime").html()+"T00:00:00";
+                        var ArrivalFlightNo = $("#arrivalFlightNo").val();
+                        var ArrivalDateTime = $("#arrivalDateTime").html()+"T00:00:00";
+                        param.Parameters.FlightDetails = {"ArrivalFlightNo":ArrivalFlightNo,"ArrivalDateTime":ArrivalDateTime,"DepartFlightNo":DepartFlightNo,"DepartDateTime":DepartDateTime};
+                    }
 
 
 
