@@ -34,7 +34,7 @@
             color: #afafaf;font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
         }
         .flight_info i.data_icon{
-            width: 16px;height:17px; position: absolute; right:20px;; top:48px; background: url(images/data_icon.gif) no-repeat; background-size: 100% 100%;}
+            width: 16px;height:17px; position: absolute; right:20px;; top:10px; background: url(images/date_icon.gif) no-repeat; background-size: 100% 100%;}
     </style>
 
 </head>
@@ -124,38 +124,29 @@
 
                 </div>
                 <div class="gray-block" data-key="flight_page"></div>
-                <div class="tourist-ticket-wrap">
-                    <div class="tourist-ticket clearFix">
-                        <h3 class="ticket-take-msg fl">联系人信息</h3>
-                        <a href="javascript:;" class="con-add-butto fr" onclick="vlm.f_choice('t','contact','',false,false);"></a>
-                    </div>
-                    <ul class="tourist-msg contact">
-                        <li>
-                            <span class="tourist-name tour-short">姓：</span><input id="scenic_name1" style="width:30%;display: inline-block;" placeholder="Liou">
-                            <span class="tourist-name tour-short">名：</span><input id="scenic_name2" style="width:30%;display: inline-block;" placeholder="Venson">
-                        </li>
-                        <li><span class="tourist-name tour-short">手机：</span><input id="scenic_phone" style="display: inline-block;"  placeholder="+8618611850882"></li>
-                        <li><span class="tourist-name tour-short">邮箱：</span><input id="scenic_email" style="display: inline-block;"  placeholder="113638136@163.com"></li>
-                    </ul>
-                </div>
-                <div class="gray-block" data-key="flight_page"></div>
                 <dl class="flight_info">
                     <dt>航班信息</dt>
                     <dd>
                         <i class="word">出发</i>
-                        <ul>
+                        <ul >
                             <li><input type="text" placeholder="航班号"></li>
-                            <li><span>年月日</span></li>
+                            <li id="flight1" >
+                                <span class="js-flight-ymd">年月日</span>
+                                <i class="data_icon"></i>
+                            </li>
                         </ul>
-                        <i class="data_icon"></i>
+
                     </dd>
                     <dd>
                         <i class="word">抵达</i>
-                        <ul>
+                        <ul >
                             <li><input type="text" placeholder="航班号"></li>
-                            <li><span>年月日</span></li>
+                            <li id="flight2">
+                                <span class="js-flight-ymd">年月日</span>
+                                <i class="data_icon"></i>
+                            </li>
                         </ul>
-                        <i class="data_icon"></i>
+
                     </dd>
                 </dl>
 
@@ -613,7 +604,7 @@
 
                 }
 
-
+                FlightDateChoose();
 
                 MT.renderView1();
 
@@ -876,7 +867,6 @@
                             }
                         }
 
-
                     }
 
                 }else{
@@ -1018,7 +1008,7 @@
                 if($(".js-scenicview2").length > 0 && $("[data-key=\"js-per-price2\"]").find(".js-Child-cont").length > 0){
                     ChildCount = $("[data-key=\"js-per-price2\"]").find(".js-Child-cont").html();
                     if(ChildCount > 0){
-                        if($(".js-sce-ticket2").find(".js-sce").length > 0){
+                        if($(".js-sce-ticket2").find(".js-sce2").length > 0){
                             for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce2").length;i++){
                                 var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
                                 var htmltag = $("<li><span class=\"price-per-tit\">(儿童)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.ChildPrice+"×"+ChildCount+"</span></li>");
@@ -1034,7 +1024,7 @@
                 if($(".js-scenicview2").length > 0 && $("[data-key=\"js-per-price2\"]").find(".js-Audlt-cont").length > 0){
                     AudltCount = $("[data-key=\"js-per-price2\"]").find(".js-Audlt-cont").html();
                     if(AudltCount > 0){
-                        if($(".js-sce-ticket2").find(".js-sce").length > 0){
+                        if($(".js-sce-ticket2").find(".js-sce2").length > 0){
                             for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce2").length;i++){
                                 var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
                                 var htmltag = $("<li><span class=\"price-per-tit\">(成人)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.AudltPrice+"×"+AudltCount+"</span></li>");
@@ -1227,6 +1217,36 @@
                     }
                 }
                 initDate();
+
+            }
+
+
+            /**
+             * 景点选择日期
+             * @constructor
+             */
+            function FlightDateChoose(){
+                var startDate = ExtendData.StartDate;
+                var endDate = ExtendData.EndDate;
+                var allOuter = document.querySelectorAll('.js-filght-travel-date');
+                var chooseDate=function(id, dateNum , startDate, endDate){
+                    var rangeArray = [startDate, endDate];
+                    var myDate= new TicketDate({
+                        id: id,
+                        num: 13,
+                        time: {},
+                        sClass1:dateNum,
+                        type:'Oneway',
+                        _word:{tip:['入住']},
+                        range:rangeArray,
+                        fn:function(){
+
+                        }
+                    });
+                };
+
+                chooseDate("flight1", 'js-flight-ymd', startDate, endDate);
+                chooseDate("flight2", 'js-flight-ymd', startDate, endDate);
 
             }
 
