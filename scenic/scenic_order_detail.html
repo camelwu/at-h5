@@ -124,7 +124,7 @@
 
                 </div>
                 <div class="gray-block" data-key="flight_page"></div>
-                <dl class="flight_info">
+                <dl class="flight_info" data-key="flight_page" style="display: none">
                     <dt>航班信息</dt>
                     <dd>
                         <i class="word">出发</i>
@@ -599,12 +599,16 @@
                     $("#scenic2_idcard").parent().remove();
                 }
                 //是否需要航班信息
-                if(ExtendData.airportTransferType == "None"){
+                if(ExtendData.airportTransferType != "None"){
                     //None, TwoWay，Arrival，Depart
+                    $("[data-key=flight_page]").show();
+                    FlightDateChoose();
 
+                }else{
+                    $("[data-key=flight_page]").hide();
                 }
 
-                FlightDateChoose();
+
 
                 MT.renderView1();
 
