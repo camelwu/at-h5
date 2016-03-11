@@ -341,7 +341,7 @@
 						},
 						//中文姓名
 						ChineseName:function(name){
-							var pattern=/^([\u4e00-\u9fa5]){2,7}$/
+							var pattern=/^([\u4e00-\u9fa5a-zA-Z]){2,7}$/
 							//只能是中文，长度为2-7位
 							if(pattern.test(name)){
 								return true;
@@ -736,7 +736,7 @@
 					$.ajax({
 						type : "post",
 						url : _api + '?rnd=' + Math.random(),
-						timeout : 10000,
+						timeout : 1000*60,
 						data : data,
 						contentType : 'application/json;charset=utf-8',
 						beforeSend : function(xhr) {

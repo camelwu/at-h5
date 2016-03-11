@@ -331,8 +331,8 @@ var lsf_myweb={
             if(data.success){
                 debugger;
                 if(data.data.length>=1) {
-                    //window.location.href='trade_details.html';
-                    window.open(data.data[0].paymentRedirectURL);
+                    window.location.href=data.data[0].paymentRedirectURL;
+                    //window.open(data.data[0].paymentRedirectURL,"第三方支付","fullscreen=1");
                 }
             }else{
                 $("#status-h").fadeOut();

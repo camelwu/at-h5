@@ -10,6 +10,33 @@
     <!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
     <link href="../styles/tips.css"	rel="stylesheet">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <style>
+        .flight_info{ width:100%;}
+        .flight_info>dt{ border-bottom:1px solid #e9e9e9; height:40px; line-height:40px; padding-left:20px;}
+        .flight_info dd{ position:relative;}
+        .flight_info>dt,.flight_info dd i.word{ color:#333;}
+        .flight_info dd i.word{ position:absolute; left:20px; width:60px; top:7px;}
+        .flight_info dd ul{ margin-left:60px;}
+        .flight_info dd ul li{ height:38px;border-bottom:1px solid #e9e9e9;}
+        .flight_info dd ul li input{ height:37px; font-family: arial;}
+        .flight_info dd ul li:last-child{ line-height:38px; position:relative;}
+        .flight_info dd ul li:last-child span{ color:#afafaf}
+        .flight_info dd ul li input::-webkit-input-placeholder { /* WebKit browsers */
+            color: #afafaf; font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info dd ul li input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #afafaf;font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info dd ul li input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #afafaf;font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info dd ul li input:-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: #afafaf;font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+        }
+        .flight_info i.data_icon{
+            width: 16px;height:17px; position: absolute; right:20px;; top:10px; background: url(images/date_icon.gif) no-repeat; background-size: 100% 100%;}
+    </style>
+
 </head>
 <body>
 
@@ -96,6 +123,33 @@
                     <a id="choHotel" data-key="" class="cho-hotel">请选择酒店</a>
 
                 </div>
+                <div class="gray-block" data-key="flight_page"></div>
+                <dl class="flight_info" data-key="flight_page" style="display: none">
+                    <dt>航班信息</dt>
+                    <dd>
+                        <i class="word">出发</i>
+                        <ul >
+                            <li><input type="text" id="departFlightNo" placeholder="航班号"></li>
+                            <li id="flight1" >
+                                <span class="js-flight-ymd" id="departDateTime">年月日</span>
+                                <i class="data_icon"></i>
+                            </li>
+                        </ul>
+
+                    </dd>
+                    <dd>
+                        <i class="word">抵达</i>
+                        <ul >
+                            <li><input type="text" id="arrivalFlightNo" placeholder="航班号"></li>
+                            <li id="flight2">
+                                <span class="js-flight-ymd" id="arrivalDateTime">年月日</span>
+                                <i class="data_icon"></i>
+                            </li>
+                        </ul>
+
+                    </dd>
+                </dl>
+
             </section>
             <div class="order-notice">
                 <i class="order-notice-btn on"></i>
@@ -130,10 +184,10 @@
             <!--价格明细-->
             <div class="price-tot-box">
                 <ul class="price-tot-list js-price-list">
-                    <li><span class="price-per-tit">八达岭长城一日游</span><span class="price-per-tot">¥56×2</span></li>
-                    <li><span class="price-per-tit">鸟巢水立方一日游</span><span class="price-per-tot">¥56×4</span></li>
-                    <li><span class="price-per-tit">桂林七日游</span><span class="price-per-tot">¥56×4</span></li>
-                    <li><span class="price-per-tit">香港迪士尼一日游</span><span class="price-per-tot">¥56×2</span></li>
+                    <!--<li><span class="price-per-tit">八达岭长城一日游</span><span class="price-per-tot">¥56×2</span></li>-->
+                    <!--<li><span class="price-per-tit">鸟巢水立方一日游</span><span class="price-per-tot">¥56×4</span></li>-->
+                    <!--<li><span class="price-per-tit">桂林七日游</span><span class="price-per-tot">¥56×4</span></li>-->
+                    <!--<li><span class="price-per-tit">香港迪士尼一日游</span><span class="price-per-tot">¥56×2</span></li>-->
                 </ul>
             </div>
             <div class="order-total-wrap clearFix">
@@ -545,9 +599,13 @@
                     $("#scenic2_idcard").parent().remove();
                 }
                 //是否需要航班信息
-                if(ExtendData.airportTransferType == "None"){
+                if(ExtendData.airportTransferType != "None"){
                     //None, TwoWay，Arrival，Depart
+                    $("[data-key=flight_page]").show();
+                    FlightDateChoose();
 
+                }else{
+                    $("[data-key=flight_page]").hide();
                 }
 
 
@@ -813,7 +871,6 @@
                             }
                         }
 
-
                     }
 
                 }else{
@@ -955,7 +1012,7 @@
                 if($(".js-scenicview2").length > 0 && $("[data-key=\"js-per-price2\"]").find(".js-Child-cont").length > 0){
                     ChildCount = $("[data-key=\"js-per-price2\"]").find(".js-Child-cont").html();
                     if(ChildCount > 0){
-                        if($(".js-sce-ticket2").find(".js-sce").length > 0){
+                        if($(".js-sce-ticket2").find(".js-sce2").length > 0){
                             for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce2").length;i++){
                                 var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
                                 var htmltag = $("<li><span class=\"price-per-tit\">(儿童)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.ChildPrice+"×"+ChildCount+"</span></li>");
@@ -971,7 +1028,7 @@
                 if($(".js-scenicview2").length > 0 && $("[data-key=\"js-per-price2\"]").find(".js-Audlt-cont").length > 0){
                     AudltCount = $("[data-key=\"js-per-price2\"]").find(".js-Audlt-cont").html();
                     if(AudltCount > 0){
-                        if($(".js-sce-ticket2").find(".js-sce").length > 0){
+                        if($(".js-sce-ticket2").find(".js-sce2").length > 0){
                             for(var i = 0;i<$(".js-sce-ticket2").find(".js-sce2").length;i++){
                                 var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
                                 var htmltag = $("<li><span class=\"price-per-tit\">(成人)"+title+"</span><span class=\"price-per-tot\">¥"+ExtendData.AudltPrice+"×"+AudltCount+"</span></li>");
@@ -995,7 +1052,8 @@
                             ,TourCount = 0,TourID = 0,PickupID = "",PickupCount = 0,currentY = 0
                             ,PickupTmp,PickupPoint = {},TravelerType = "",Salutation ="",FirstName = ""
                             ,LastName = "",NationalityCode = "",Travelers = [],Email = ""
-                            ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",TotalPrice = 0;
+                            ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",TotalPrice = 0
+                            ,TravelerDocument;
                     var param =
                     {
                         "Parameters": {
@@ -1066,10 +1124,6 @@
                     FirstName = $("#scenic2_name1").val();
                     LastName = $("#scenic2_name2").val();
 
-
-
-
-
 //                    if(AdultCount > 0){
 //                        for(var i = 0;i<AdultCount;i++){
 //                            Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
@@ -1085,9 +1139,25 @@
 //                        }
 //                    }
 
-                    Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
-
+                    //是否需要护照
+                    if(ExtendData.travelersInput == "RequiredAllTravelersDetailsWithDocumentInfo"){
+                        TravelerDocument = $("#scenic2_idcard").val();
+                        Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode,"TravelerDocument":TravelerDocument});
+                    }else{
+                        Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
+                    }
                     param.Parameters.Travelers = Travelers;
+
+
+                    //是否需要航班信息
+                    if(ExtendData.airportTransferType != "None"){
+                        //None, TwoWay，Arrival，Depart
+                        var DepartFlightNo = $("#departFlightNo").val();
+                        var DepartDateTime = $("#departDateTime").html()+"T00:00:00";
+                        var ArrivalFlightNo = $("#arrivalFlightNo").val();
+                        var ArrivalDateTime = $("#arrivalDateTime").html()+"T00:00:00";
+                        param.Parameters.FlightDetails = {"ArrivalFlightNo":ArrivalFlightNo,"ArrivalDateTime":ArrivalDateTime,"DepartFlightNo":DepartFlightNo,"DepartDateTime":DepartDateTime};
+                    }
 
 
 
@@ -1164,6 +1234,36 @@
                     }
                 }
                 initDate();
+
+            }
+
+
+            /**
+             * 景点选择日期
+             * @constructor
+             */
+            function FlightDateChoose(){
+                var startDate = ExtendData.StartDate;
+                var endDate = ExtendData.EndDate;
+                var allOuter = document.querySelectorAll('.js-filght-travel-date');
+                var chooseDate=function(id, dateNum , startDate, endDate){
+                    var rangeArray = [startDate, endDate];
+                    var myDate= new TicketDate({
+                        id: id,
+                        num: 13,
+                        time: {},
+                        sClass1:dateNum,
+                        type:'Oneway',
+                        _word:{tip:['入住']},
+                        range:rangeArray,
+                        fn:function(){
+
+                        }
+                    });
+                };
+
+                chooseDate("flight1", 'js-flight-ymd', startDate, endDate);
+                chooseDate("flight2", 'js-flight-ymd', startDate, endDate);
 
             }
 

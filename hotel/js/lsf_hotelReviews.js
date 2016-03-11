@@ -110,8 +110,7 @@
 		"HotelID" : HotelID
 	});
 	//callback函数
-	function mycallback(d) {
-		var json = JSON.parse(d);
+	function mycallback(json) {
 		if (json.success) {
 			V(json.data);
 		} else {
