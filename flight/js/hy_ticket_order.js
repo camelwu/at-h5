@@ -154,7 +154,6 @@ var ticketOrder = {
                         }
                   }
               }
-            console.log(realPara)
              for(var dd=0;dd<realPara.length;dd++){
                 if(realPara[dd].PassengerType == 'ADULT'){
                     tempAdult++;
@@ -163,8 +162,6 @@ var ticketOrder = {
                     tempChild++;
                 }
             }
-            console.log(tempAdult)
-            console.log(adultNum)
              if(tempAdult!=adultNum||tempChild!=childNum){
                  jAlert('请选择'+adultNum+'名成人,'+childNum+'名小孩!', '提示');
                  return;
@@ -254,8 +251,8 @@ var ticketOrder = {
                     orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];
                     orderResultInfo['RouteType'] = that.reverseInformation['WapOrder']['RouteType'];
                     orderResultInfo['flightInfo'] = that.orderFlightData;
-                    orderResultInfo['TravellerInfo'] = that.reverseInformation['TravellerInfo'];
-                    orderResultInfo['ContactDetail'] = that.reverseInformation['ContactDetail'];
+                    orderResultInfo['TravellerInfo'] = realPara;
+                    orderResultInfo['ContactDetail'] = contactInfo;
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
