@@ -178,10 +178,12 @@ function oDown(obj1, obj2, start, end) {
 
 oUp(ho_i1, ho_i2, 1, 10);
 oDown(ho_i2, ho_i1, 1, 10);
-oUp(ho_i7, ho_i6, 1, 100000);
-oDown(ho_i6, ho_i7, 1, 100000);
-oUp(ho_i3, ho_i4, 0, 100000);
-oDown(ho_i4, ho_i3, 0, 100000);
+//成人数最大为50
+oUp(ho_i7, ho_i6, 1, 50);
+oDown(ho_i6, ho_i7, 1, 50);
+//儿童数最多为10
+oUp(ho_i3, ho_i4, 0, 10);
+oDown(ho_i4, ho_i3, 0, 10);
 //lsf_myweb.bind(lsf_myweb.getbyid('room'),'click',function(){
 //    lsf_myweb.getbyid('count1').focus();
 //});
