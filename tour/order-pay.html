@@ -369,7 +369,12 @@
                         $(".countdown").html("已经结束");
 
                     }
+                    var sum = 0;
 
+                    data.data.chargeDetails.forEach(function (item, index, array) {
+                        sum += item.amountInCNY;
+                    });
+                    data.data.totel=sum;
 
                     var tpl = template("tpl_orderinfo",data.data);
                     var tplC = template("tpl_orderTotal",data.data);
@@ -379,6 +384,7 @@
                 }
                 else
                 {
+                    debugger;
                     jAlert("支付失败！");
                 }
                 vlm.init();
@@ -395,14 +401,13 @@
             </li>
             <li>
                 <div>票务信息：<i>{%=packageName%}1张</i></div>
-                <div class="pay-total">总价：<span style="color:#fe6a03" class="totalAmount">{%=chargeDetails[0].totalAmount%}</span><i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i></div>
+                <div class="pay-total">总价：<span style="color:#fe6a03" class="totalAmount">{%=totel%}</span><i class="pay-num">{%=totel%}￥</i></div>
             </li>
         </ul>
     </script>
 
     <script id="tpl_orderTotal" type="text/template"	>
-        {% var total=0; for(var i=0;i<=chargeDetails.length-1;i++){ total+=chargeDetails[i].amountInCNY; } %}
-        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=totalt%}</span>
+         订单总价：￥<span>{%=totel%}</span>
     </script>
 
 </div>

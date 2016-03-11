@@ -95,6 +95,8 @@ var ticketOrder = {
         var toEditPassengers = document.querySelectorAll('.next-icon');
         var deletePassenger = document.querySelectorAll('.icon-add');
         var chooseAgreeInfo = document.querySelector('.choose-agree-info');
+        var adultNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofAdult;
+        var childNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofChild;
         var that = this;
         for(var i = 0;i<toEditPassengers.length;i++){
             this.addHandler(toEditPassengers[i],'click', function(){
@@ -139,24 +141,107 @@ var ticketOrder = {
             var target =event.target || event.srcElement;
             var that = ticketOrder;
             that.backParaObj = that.reverseInformation;
-            that.backParaObj.TravellerInfo =JSON.parse(window['localStorage']['travellerInfo_selected']);
-            var contactInfo = JSON.parse(window['localStorage']['contact_selected']),contactInfoCache = {};
-            contactInfoCache.FirstName = document.querySelector('#first-name').innerHTML;
-            contactInfoCache.LastName = document.querySelector('#last-name').innerHTML;
-            contactInfoCache.Email =document.querySelector('#email-label').innerHTML;
-            contactInfoCache.CountryNumber = document.querySelector('#first-name').innerHTML;
-            contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
-            for(var tem in contactInfo){
-                contactInfoCache[tem] = contactInfo[tem];
+            var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']),contactInfoCache = {};
+            //乘客信息核对
+            var passengerLis = passengerWrap.querySelectorAll('LI'), realPara=[], tempAdult= 0, tempChild=0;
+              if(passengerLis){
+                  for(var li=0; li<passengerLis.length;li++){
+                        var passPortNumber = passengerLis[li].querySelector('.passport-number').value;
+                        for(var ki=0;ki<storageInfo.length;ki++){
+                                if(storageInfo[ki].FlightCertificateInfo.IdNumber == passPortNumber){
+                                    realPara.push(storageInfo[ki])
+                                }
+                        }
+                  }
+              }
+             for(var dd=0;dd<realPara.length;dd++){
+                if(realPara[dd].PassengerType == 'ADULT'){
+                    tempAdult++;
+                }
+                if(realPara[dd].PassengerType == 'CHILD'){
+                    tempChild++;
+                }
             }
-            that.backParaObj.ContactDetail =JSON.parse(window['localStorage']['contact_selected']);
+             if(tempAdult!=adultNum||tempChild!=childNum){
+                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名小孩!', '提示');
+                 return;
+             }
+            that.backParaObj.TravellerInfo =realPara;
+            var contactInfo =JSON.parse(window['localStorage']['contact_selected']);
+            contactInfoCache.FirstName = document.querySelector('#first-name').value;
+            contactInfoCache.LastName = document.querySelector('#last-name').value;
+            contactInfoCache.Email =document.querySelector('#email-label').value;
+            contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
+            contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
+            if(contactInfoCache.FirstName==""){
+                jAlert('请输入姓!', '提示');
+                return;
+            }
+            if(contactInfoCache.LastName==""){
+                jAlert('请输入名!', '提示');
+                return;
+            }
+            if(contactInfoCache.Email==""){
+                jAlert('请输入邮箱!', '提示');
+                return;
+            }
+            if(contactInfoCache.MobilePhone==""){
+                jAlert('请输入手机号!', '提示');
+                return;
+            }
+
+            for(var tv in contactInfoCache){
+                contactInfo[tv] = contactInfoCache[tv];
+            }
+            window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
+            that.backParaObj.ContactDetail =contactInfo;
             $("#preloader").show();
             $("#status-f").show();
+             /*  that.backParaObj={
+                "WapOrder": {
+                    "SetID": 30000255,
+                    "CacheID": 3004452,
+                    "CityCodeFrom": "BJS",
+                    "CityCodeTo": "SHA",
+                    "NumofAdult": "1",
+                    "NumofChild": "0",
+                    "RouteType": "Oneway",
+                    "CabinClass": "Economy",
+                    "SourceType": "H5",
+                    "MemberId": "84567"
+                },
+                "TravellerInfo": [{
+                    "PassengerType": "ADULT",
+                    "SexCode": "Ms",
+                    "FirstName": "楠",
+                    "LastName": "张",
+                    "DateOfBirth": "1990-01-09T00:00:00",
+                    "FlightCertificateInfo": {
+                        "IdType": 1,
+                        "IdCountry": "CN",
+                        "IdNumber": "12345678890",
+                        "IdActivatedDate": "2017-01-01T00:00:00"
+                    },
+                    "BaggageCode": "",
+                    "CountryCode": "CN"
+                }],
+                "ContactDetail": {
+                    "SexCode": "Ms",
+                    "FirstName": "张",
+                    "LastName": "楠",
+                    "Email": "332@qq.com",
+                    "CountryNumber": "86",
+                    "ContactNumber": "5689",
+                    "MobilePhone": "13456789090"
+                },
+                "CurrencyCode": "CNY",
+                "TotalFlightPrice": "1370.00"
+            }*/
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
                 $("#preloader").hide();
                 $("#status-f").hide();
                 var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
-                arg = JSON.parse(arg)
+                var arg = arg;
                 if(arg.success&&arg.code==200){
                     var orderResultInfo = {};
                     orderResultInfo['orderTime'] = new Date();
@@ -166,12 +251,11 @@ var ticketOrder = {
                     orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];
                     orderResultInfo['RouteType'] = that.reverseInformation['WapOrder']['RouteType'];
                     orderResultInfo['flightInfo'] = that.orderFlightData;
-                    orderResultInfo['TravellerInfo'] = that.reverseInformation['TravellerInfo'];
-                    orderResultInfo['ContactDetail'] = that.reverseInformation['ContactDetail'];
+                    orderResultInfo['TravellerInfo'] = realPara;
+                    orderResultInfo['ContactDetail'] = contactInfo;
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    console.log(orderResultInfo)
                     document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
                 }else{
                     orderResultTip.innerHTML = arg.message;
@@ -597,6 +681,7 @@ var ticketOrder = {
     init:function(){
        var reverseInformation = this.storageUtil.get('reverseInformationCache');
        this.reverseInformation = reverseInformation;
+        console.log(this.reverseInformation)
        this.telSlider();
        this.loadingFade();
        this.orderFlightData = this.storageUtil.get('curFlightListData');
