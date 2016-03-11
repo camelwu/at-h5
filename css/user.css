@@ -855,7 +855,19 @@
     width: 100%;
     height: 100%;
 }
-
+/*fix H5-171 android手机面板遮挡问题*/
+#addtra_page{
+    position: relative;
+}
+#addtra_page .relative-for-android{
+    position: relative;
+}
+#addtra_page .header{
+    z-index: 999;
+}
+#addtra_page .user-content{
+    position: relative;
+}
 .header-quit {
     position: absolute;
     left: 15px;
