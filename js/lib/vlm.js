@@ -736,7 +736,7 @@
 					$.ajax({
 						type : "post",
 						url : _api + '?rnd=' + Math.random(),
-						timeout : 10000,
+						timeout : 1000*60,
 						data : data,
 						contentType : 'application/json;charset=utf-8',
 						beforeSend : function(xhr) {

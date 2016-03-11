@@ -156,7 +156,7 @@ var ticketOrder = {
                 $("#preloader").hide();
                 $("#status-f").hide();
                 var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
-                arg = JSON.parse(arg)
+                //arg = JSON.parse(arg)
                 if(arg.success&&arg.code==200){
                     var orderResultInfo = {};
                     orderResultInfo['orderTime'] = new Date();

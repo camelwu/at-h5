@@ -26,8 +26,11 @@
 
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vlm.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
 <script type="application/javascript">
+
+
 $(document).ready()
 {
     var business=vlm.getpara("business");
@@ -82,14 +85,14 @@ $(document).ready()
                     "opid":opid
                 },
                 "ForeEndType":3,
-                "Code": "0015"
+                "Code": "0016"
             }
         }
         console.log(data);
-        var payment = new paymentObj(data, function (str) {
-            console.log(str);
-            var data =str;
+
+        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), function(data){
             if (data.success) {
+                vlm.init();
                 if(business==3) {
                     var code=data.BookingRefNo;
                     window.location.href = 'flight/pay_success.html?bookingRefNo='+code;
@@ -98,18 +101,17 @@ $(document).ready()
                     window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
                 else if(business==1){
-                    window.location.href = 'hotel/trade_details.html?bookingRefNo='+bookingRefNo;
+                    var code=data.data.bookingReferenceNo;
+                    window.location.href = 'hotel/trade_details.html?bookingRefNo='+code;
                 }
                 else if(business==5){
                     window.location.href = 'tour/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
-
             } else {
-                alert(data.message);
+                 alert(data.message);
             }
 
         });
-        payment.handlePayment();
 }
 
 }

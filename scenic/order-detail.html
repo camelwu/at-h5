@@ -127,7 +127,7 @@
     </script>
     <script id="tpl_payBtn"  type="text/template">
         {% if(!paymentStatus){  %}
-        <a href="order-pay.html" class="order_pay_btn">支付订单</a>
+        <a href="order-pay.html?bookingRefNo={%=bookingRefNo%}" class="order_pay_btn" >支付订单</a>
         {% } %}
     </script>
     <script>
@@ -169,8 +169,8 @@
                     ].join('');
                     var tpl4 = [
                         '<li><div>费用明细</div></li>' +
-                        '<li><div>{%=packageName%}成人票</div><div>×'+adultNum+'人</div><div>￥{%=chargeDetails[0].amountInCNY%}</div></li>' +
-                        '<li><div>{%=packageName%}儿童票</div><div>×'+childNum+'人</div><div>￥{%=chargeDetails[1].amountInCNY%}</div></li>'
+                        '<li><div>{%=packageName%}成人票</div><div>×'+adultNum+'人</div><div>￥{%=chargeDetails[0].totalAmount%}</div></li>'
+//                        + '<li><div>{%=packageName%}儿童票</div><div>×'+childNum+'人</div><div>￥{%=chargeDetails[1].totalAmount%}</div></li>'
                     ].join('');
                     var tmp = {
                         "Parameters": {
@@ -202,6 +202,7 @@
                             var tpl_GetTourInfo = template("tpl_GetTourInfo",data);
                             var html_tp = template(tpl2,data);
                             var html_oi = template(tpl3,data);
+                            debugger;
                             var html_pd_list = template(tpl4,data);
                             var tpl_payStatus = template("tpl_payStatus",data);
                             var tpl_payBtn = template("tpl_payBtn",data);
