@@ -741,8 +741,8 @@
                         }
                     };
                     allDivs = tourLi.querySelectorAll('.content2');
-                    inputs[0].value = arg.start.replace('-','/').replace('-','/');
-                    inputs[1].value = arg.end.replace('-','/').replace('-','/');
+                    inputs[0].value = arg.start;
+                    inputs[1].value = arg.end;
                     total_day.innerHTML = that.getDayNum(inputs[0].value,inputs[1].value);
                     span1.innerHTML = returnWeek(arg.start)+' 入住';
                     span2.innerHTML = returnWeek(arg.end)+' 离店';
@@ -752,7 +752,7 @@
                         spanWeek.innerHTML = returnWeek(inputs[0].value);
                         id = allDivs[i].id;
                         inputClassName = input.className;
-                        span = allDivs[i].querySelectorAll('span')[1].className;
+                        span = allDivs[i].querySelectorAll('span')[0].className;
                         that.chooseDate(allDivs[i],id,inputClassName, span ,inputs[0].value,inputs[1].value)
                     }
                 }
@@ -810,7 +810,7 @@
             return this;
         },
         getDayNum: function(arg1,arg2){
-            var time1 = Date.parse(arg1), time2 = Date.parse(arg2), dayCount;
+            var time1 = Date.parse(arg1.replace(/-/g, "/")), time2 = Date.parse(arg2.replace(/-/g, "/")), dayCount;
             return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
         },
         init:function(){
