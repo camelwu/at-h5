@@ -462,12 +462,10 @@
 			document.getElementById("hisList").innerHTML = html;
 		}
 	}
-
 	//获取数据源
 	function get_allList() {
 		get_hisList();
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
-			debugger;
 			travJson = json
 			for(var i=0;i<= json.data.length-1;i++){
 				tralJsonObj[json.data[i].traveller.travellerId]=json.data[i];
@@ -820,7 +818,7 @@
 
 		}
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-			var data=JSON.parse(data);
+			var data=data;
 			if(data.success) {
 				get_allList();
 				// 有ID说明是编辑，关闭窗口
@@ -854,8 +852,7 @@
 			"Code" : "0073"
 		};
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-			var myJson = eval('(' + data + ')');
-			console.log(myJson);
+			var myJson = data;
 			if (myJson.success) {
 				window.location.reload();
 			} else {
@@ -875,7 +872,7 @@
 				<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly"  value="{%=traveller.firstName%}">
 			</p>
 			<div class="passport">
-				<span>护照</span><input type="text" name="input-zone"  readonly="readonly" value="{%=listTravellerIdInfo[0].idNumber%}"><span class="passenger-sex">{%=traveller.sexName%}</span>
+				<span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly" value="{%=listTravellerIdInfo[0].idNumber%}"><span class="passenger-sex">{%=traveller.sexName%}</span>
 			</div>
 		</div>
 		<i class="edit-passager" data-id="{%=traveller.travellerId%}"></i>

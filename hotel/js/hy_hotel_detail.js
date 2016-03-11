@@ -97,7 +97,7 @@
 				}
 				var str = "";
 				for (var i = 0; i < arg.length; i++) {
-					str += '<li class="imageLi"><img class="freeImage" src="../images/hotelDetailerrorpic.png" real-src="' + arg[i].imageFileName + '"/></li>'
+					str += '<li class="imageLi"><img class="freeImage" data-error="../images/hotelDetailerrorpic.png" src="../images/loading-hotel.gif" real-src="' + arg[i].imageFileName + '"/></li>'
 				}
 
 				return str;
@@ -583,22 +583,28 @@
 		preLoadImage : function(){
 			//默认至少加载两张图片
 			var images = document.getElementsByClassName('freeImage');
-			function loadImage(url, index, callback) {
+			function loadImage(url,error_url, index, callback,errorFunc) {
 				var img = new Image();
 				img.src = url;
 				img.onload = function() {
 					img.onload = null;
 					callback(index);
 				};
+                img.onerror = function(){
+                    img.onerror = null;
+                    errorFunc();
+                }
 			}
 			for(var i=0;i<2;i++){
 				if(!images[i]){return;}
 				var re_url = images[i].getAttribute('real-src');
-				console.info(re_url);
+                var error_url = images[i].getAttribute('data-error');
 				(function(i,re_url){
-					loadImage(re_url, i, function(i) {
+					loadImage(re_url,error_url, i, function(i) {
 						images[i].setAttribute('src', re_url);
-					});
+					},function(){
+                        images[i].setAttribute('src', error_url);
+                    });
 				})(i,re_url)
 			}
 		},
@@ -606,16 +612,23 @@
 			var images = document.getElementsByClassName('freeImage');
 			//默认正常显示两张图片，滑动第一张时加载第三张
 			var re_url = images[item] ? images[item].getAttribute('real-src') : "";
-			loadImage(re_url, function() {
+            var error_url = images[item] ? images[item].getAttribute('data-error') : "";
+			loadImage(re_url,error_url, function() {
 				images[item].setAttribute('src', re_url);
-			});
-			function loadImage(url, callback) {
+			},function(){
+                images[item].setAttribute('src', error_url);
+            });
+			function loadImage(url, error_url,callback,errorFunc) {
 				var img = new Image();
 				img.src = url;
 				img.onload = function() {
 					img.onload = null;
 					callback();
 				};
+                img.onerror = function(){
+                    img.onerror = null;
+                    errorFunc();
+                }
 			}
 
 		},

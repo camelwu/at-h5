@@ -46,7 +46,7 @@
 			<div id="content" class="snap-content">
 				<div class="slider-container half-bottom">
 					<div class="homepage-slider" data-snap-ignore="true" id="banner">
-						<a> <img src="images/pictures/4.jpg" class="responsive-image" alt="img"> </a><a> <img src="images/pictures/4.jpg" class="responsive-image" alt="img"> </a>
+						<a> <img src="images/loading.gif" class="responsive-image" alt="img"> </a>
 					</div>
 				</div>
 
@@ -144,6 +144,12 @@
 		<script src="js/lib/vlm.js"></script>
 		<script src="js/lib/template.js"></script>
 		<script>
+			var linkurl = {
+				1:"./hotel/hotel_detail.html?HotelID=",
+				2:"./flight/ticket_seat_choose.html?setId=",
+				3:"./scenic/scenic_detail.html?packageID=",
+				4:"./tour/packages_detail.html?packageID=",
+			};
 			(function() {
 				vlm.init();
 				$(document).ready(function() {
@@ -186,7 +192,7 @@
 
 					//playerRecommend
 					function PlayerRecommend() {
-						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="./tour/packages_detail.html?packageID={%=productID%}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5>{%=productName%}</h5>', '<p>{%=productDesc%}</p>'].join('');
+						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5>{%=productName%}</h5>', '<p>{%=productDesc%}</p>'].join('');
 						var tmp = {
 							"Parameters" : {
 								"PageNo" : 1,
