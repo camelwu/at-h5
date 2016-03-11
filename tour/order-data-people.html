@@ -79,6 +79,17 @@
             <h3>景点</h3>
         </section>
         <section id="tourTime" class="tourTime">
+            <div class="content2 tour-out-div">
+                <div class="nav2-center">
+                    <div class="nav2-centertop">
+                        <div>景点</div>
+                        <p><input name="CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span class="week-tour">周四</span></p>
+                    </div>
+                </div>
+                <div class="nav2-centerright">
+                    <i></i>
+                </div>
+            </div>
         </section>
         <section class="orderBtn"><button id="order_btn">预订</button></section>
     </div>
@@ -99,7 +110,7 @@
     <div class="content2 tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
         <div class="nav2-center">
             <div class="nav2-centertop">
-                <span>景点{%=i+1%}</span>
+                <div>景点{%=i+1%}</div>
                 <p><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">周四</span></p>
             </div>
         </div>
@@ -333,8 +344,8 @@
                     var initEle = document.querySelector('.init-hotel-room-detail'), initStr='';
                     if(onlyForAdult){
                         initStr='<span class="title">房间1</span>'+
-                        '<div class="numbList">'+
-                        '<span class="n_tit" style="border-bottom: 1px solid #ddd; ">成人</span>'+
+                        '<div class="numbList" style="border-bottom: 1px solid #ddd;">'+
+                        '<span class="n_tit" style="margin-left: 70px ">成人</span>'+
                         '<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>'+
                         '</div>'
                     }else{
@@ -389,7 +400,6 @@
                         minPax = parseInt(data.minPax);
                         maxAdult = parseInt(data.maxAdult);
                         onlyForAdult = data.onlyForAdult;
-                        /*onlyForAdult = true;*/
                         packageID = data.packageID;
                         childAgeMin = parseInt(data.childAgeMin);
                         childAgeMax = parseInt(data.childAgeMax);
@@ -731,8 +741,8 @@
                         }
                     };
                     allDivs = tourLi.querySelectorAll('.content2');
-                    inputs[0].value = arg.start;
-                    inputs[1].value = arg.end;
+                    inputs[0].value = arg.start.replace('-','/').replace('-','/');
+                    inputs[1].value = arg.end.replace('-','/').replace('-','/');
                     total_day.innerHTML = that.getDayNum(inputs[0].value,inputs[1].value);
                     span1.innerHTML = returnWeek(arg.start)+' 入住';
                     span2.innerHTML = returnWeek(arg.end)+' 离店';

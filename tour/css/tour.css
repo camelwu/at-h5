@@ -980,7 +980,6 @@ section[class^="hotelInfo_numb"] .numbList span.child-age {
 section[class^="hotelInfo_numb"] .extraChild {
     overflow: hidden;
     margin-left: 70px;
-    border-bottom: 1px solid #dddddd;
 }
 
 section[class^="hotelInfo_numb"] .extraChild span {
@@ -1053,15 +1052,18 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 }
 
 .tourTime div.content2 .nav2-center input {
-    height: 36px;
-    line-height: 36px;
+    height: 33px;
+    margin-top: 2px;
+    line-height: 33px;
+    float:left;
 }
 
-.nav2-centertop > span {
+.nav2-centertop > div {
+    float:left;
     margin-left: 15px;
+    margin-top: 8px;
     color: #fdb330;
 }
-
 .orderBtn {
     margin: 20px 12px 0;
 }

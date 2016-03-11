@@ -500,7 +500,8 @@
                     TravelDate = data.defaultDepartStartDate;
                     TourID = data.tours;
                     MinPax = data.minPax;
-
+                    globaldata = {DetailData:DetailData};
+                    ExtendData = globaldata;
 
                     var SearchPrice=
                     {
@@ -520,13 +521,30 @@
 
                     }
 
+                    var OnlyAdultPrice=
+                    {
+                        "Parameters": {
+                            "PackageID": val.PackageID,
+                            "Adult": MinPax,
+                            "Tours": [
+
+                            ]
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0091"
+
+                    }
+
                     for (var i = 0;i<data.tours.length;i++)
                     {
                         SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
+                        OnlyAdultPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
                     }
 
                     MT.getPickupPoint();
-                    MT.getSearchPrice(SearchPrice);
+
+                    MT.getSearchPrice(OnlyAdultPrice,"OnlyAdult");
+                    MT.getSearchPrice(SearchPrice,"");
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
@@ -536,9 +554,13 @@
             /**
              * 返回SearchPrice
              */
-            MT.getSearchPrice = function(SearchPrice){
+            MT.getSearchPrice = function(SearchPrice,args){
+                if(args == "OnlyAdult"){
+                    MT.ajaxJson("",JSON.stringify(SearchPrice),MT.callbackOnlyAdultSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
+                }else{
+                    MT.ajaxJson("",JSON.stringify(SearchPrice),MT.callbackSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
+                }
 
-                MT.ajaxJson("",JSON.stringify(SearchPrice),MT.callbackSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
             }
 
             /**
@@ -550,7 +572,7 @@
                 SearchPriceData = json;
 //                console.log(json);
                 if(json.success){
-                    globaldata = {DetailData:DetailData,SearchPriceData:SearchPriceData}
+                    ExtendData = $.extend({"SearchPriceData":SearchPriceData},ExtendData);
 
                     MT.render();
                 }else {
@@ -559,6 +581,27 @@
 
                 }
             }
+
+            /**
+             * SearchPrice callback
+             * @param data
+             */
+            MT.callbackOnlyAdultSearchPrice = function(data){
+                var json=data;
+                SearchPriceData = json;
+//                console.log(json);
+                if(json.success){
+                    ExtendData = $.extend({"OnlyAdultPriceData":SearchPriceData},ExtendData);
+
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+
+                }
+
+            }
+
+
             /*
             * 返回年月日
             * */
@@ -573,11 +616,11 @@
                 var isAudlt = val.ADU;
 
                 if(isAudlt == 1){
-                    ExtendData = $.extend({isAudlt:1,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},globaldata);
+                    ExtendData = $.extend({isAudlt:1,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},ExtendData);
                 }
 
                 if(isAudlt == 0){
-                    ExtendData = $.extend({isAudlt:0,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},globaldata);
+                    ExtendData = $.extend({isAudlt:0,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},ExtendData);
                 }
 
 
@@ -1273,7 +1316,6 @@
             MT.getDetails();
             MT.InitMorePackage();
             MT.OrderDetail();
-
 
 
         })();
