@@ -149,7 +149,7 @@
                         '</div>'
                     ].join('');
                     var tpl2 = [
-                         '<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom%}至{%=departValidTo%}</i></h3>'
+                         '<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'
                     ];
                     var tpl3 = [
                         '<span class="all_num">套餐总额：<i>'+val.productPrice+'</i>起/人（<b>{%=minPax%}</b>人起订）</span>',
