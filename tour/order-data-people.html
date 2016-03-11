@@ -397,7 +397,7 @@
                         var tpl_GetTour = template("tpl_GetTour",data);
                         if(localStorage.getItem('init')!='1'){
                             dateHandler.init();
-                        };
+                        }
                         $('#tourTime').html(tpl_GetTour);
                         if(!onlyForAdult){
                             initAgeRange();
@@ -634,6 +634,8 @@
 
             inputs[0].value = paraObj.start;
             inputs[1].value = paraObj.end;
+            var total_day =document.querySelector('#total_day');
+            total_day.innerHTML = 1;
             var dateInitObj = {},paramStr;
             var  returnWeek=function(arg){
                 if(arg){
