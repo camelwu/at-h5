@@ -1136,7 +1136,7 @@
                             TravelDate = $(".js-sce").eq(i).find(".js-ymd").html() + "T00:00:00";
                             TourSession = $(".js-sce").eq(i).find(".on").attr("data-key");
 
-                            TourObj = {TourID,TravelDate,TourSession};
+                            TourObj = {"TourID":TourID,"TravelDate":TravelDate,"TourSession":TourSession};
 
                             TourArray.push(TourObj);
                         }
@@ -1376,18 +1376,18 @@
 
 
 
-        function SelectPersonInformation(html,isContact){
-            if(html !="") {
-                if (!isContact ) {
-                    $(".tanktick li").remove();
-                    $(".tanktick").append(html);
-                }
-                else {
-                    $(".contact li").remove();
-                    $(".contact").append(html);
-                }
-            }
-        }
+//        function SelectPersonInformation(html,isContact){
+//            if(html !="") {
+//                if (!isContact ) {
+//                    $(".tanktick li").remove();
+//                    $(".tanktick").append(html);
+//                }
+//                else {
+//                    $(".contact li").remove();
+//                    $(".contact").append(html);
+//                }
+//            }
+//        }
 
     </script>
 
