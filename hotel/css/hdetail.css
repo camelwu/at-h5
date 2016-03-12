@@ -186,13 +186,24 @@ html {
     font-size: 1.4rem;
     color: #ffb413;
 }
-
+.d-ul1 .wifi-icon{
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -77px -14px;
+    vertical-align: -4px;
+    margin-left: 5px;
+}
 
 .d-li1 {
     min-height: 50px;
     border-bottom: 1px solid #dfdfdd;
 //position: relative;
 }
+
 
 .d-score {
     /* float: left;*/
