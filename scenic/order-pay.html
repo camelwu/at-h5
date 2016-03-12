@@ -47,10 +47,10 @@
             </div>
             <ul class="pay-style-list" id="pay_way">
                  <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
-                 <li><span class="jd-icon pay-card"></span><b class="icon circle-choi"></b></li>
+                 <li><span class="jd-icon pay-card" data-type="pay-card"></span><b class="icon circle-choi"></b></li>
                  <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
-                <li><span class="jd-icon pay-visa"></span><b class="icon circle-chois"></b></li>
-                <li><span class="jd-icon pay-master"></span><b class="icon circle-chois"></b></li>
+                <li><span class="jd-icon pay-visa" data-type="pay-visa"></span><b class="icon circle-chois"></b></li>
+                <li><span class="jd-icon pay-master" data-type="pay-master"></span><b class="icon circle-chois"></b></li>
             </ul>
             <div class="state-agree">
                 <b class="icon1 s-agree" id="agree"></b>
@@ -197,13 +197,14 @@
                     b[i].className = "icon circle-chois";
                 }
                 this.className='icon circle-choi';
-                if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
-                    out_pay.style.display = "block";
-                }
-                else{
-                    var bookingRefNo=vlm.getpara("bookingRefNo");
-                    Payment("UnionPay",bookingRefNo);
-                }
+//                debugger;
+//                if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
+//                    out_pay.style.display = "block";
+//                }
+//                else{
+//                    var bookingRefNo=vlm.getpara("bookingRefNo");
+//                    Payment("UnionPay",bookingRefNo);
+//                }
             }
         }
         agree.onclick = function(){
@@ -218,7 +219,14 @@
         };
         btnPay.onclick=function(){
             var bookingRefNo=vlm.getpara("bookingRefNo");
-            Payment("UnionPay",bookinbgRefNo);
+            var type= $(".circle-choi").prev().attr("data-type");
+            if(type=="pay-card") {
+                Payment("UnionPay",bookingRefNo)
+            }
+            else{
+                out_pay.style.display = "block";
+            }
+
         }
         btnCPay.onclick=function(){
             var bookingRefNo=vlm.getpara("bookingRefNo");
@@ -254,58 +262,59 @@
         PaymentDetails.PayCurrencyCode="CNY";
         PaymentDetails.PayTotalAmount=$(".totalAmount").html();
 
-        if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
-            jAlert("持卡人姓名不能为空！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["engName"]($(".CardHolderName").val())){
-            jAlert("持卡人姓名必须为英文！","",null,"确认");
-            return false;
-        }
-
-        if(!vlm.Utils.validate["isNoEmpty"]($(".CardNumber").val())){
-            jAlert("信用卡不能为空！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["isNoEmpty"]($(".CardSecurityCode").val())){
-            jAlert("安全码不能为空！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["isNoEmpty"]($(".CardExpiryDate").val())){
-            jAlert("有效期不能为空！","",null,"确认");
-            return false;
-        }
-
-        if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
-            jAlert("信用卡卡号错误！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["safecode"]($(".CardSecurityCode").val())){
-            jAlert("安全码3位数字！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["dataValid"]($(".CardExpiryDate").val())){
-            jAlert("有效期格式不正确！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
-            jAlert("手机号不能为空！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["isNoEmpty"]($(".CardCity").val())){
-            jAlert("账单城市不能不空！","",null,"确认");
-            return false;
-        }
-        if(!vlm.Utils.validate["isNoEmpty"]($(".CardAddress").val())){
-            jAlert("账单地址不能不空！","",null,"确认");
-            return false;
-        }
 
         if (type == "UnionPay")
         {
             PaymentDetails.PaymentMode="UnionPay";
         }
         else{
+            if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
+                jAlert("持卡人姓名不能为空！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["engName"]($(".CardHolderName").val())){
+                jAlert("持卡人姓名必须为英文！","",null,"确认");
+                return false;
+            }
+
+            if(!vlm.Utils.validate["isNoEmpty"]($(".CardNumber").val())){
+                jAlert("信用卡不能为空！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["isNoEmpty"]($(".CardSecurityCode").val())){
+                jAlert("安全码不能为空！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["isNoEmpty"]($(".CardExpiryDate").val())){
+                jAlert("有效期不能为空！","",null,"确认");
+                return false;
+            }
+
+            if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
+                jAlert("信用卡卡号错误！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["safecode"]($(".CardSecurityCode").val())){
+                jAlert("安全码3位数字！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["dataValid"]($(".CardExpiryDate").val())){
+                jAlert("有效期格式不正确！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
+                jAlert("手机号不能为空！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["isNoEmpty"]($(".CardCity").val())){
+                jAlert("账单城市不能不空！","",null,"确认");
+                return false;
+            }
+            if(!vlm.Utils.validate["isNoEmpty"]($(".CardAddress").val())){
+                jAlert("账单地址不能不空！","",null,"确认");
+                return false;
+            }
+
             PaymentDetails.PaymentMode="CreditCard";
             PaymentDetails.ReturnURL="www.baidu.com";
             CreditCardDetails.CardType="Visa";
