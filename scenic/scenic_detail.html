@@ -185,6 +185,11 @@
 
         }
 
+        MT.getTime = function(date){
+            return date.replace(/(\d{2,4}-\d{1,2}-\d{1,2})T(\d{2}:\d{2}:\d{2})/,function(){
+                return arguments[1]+" "+arguments[2];
+            });
+        }
         /**
          * 加载详情 [CLoadGetDetails Callback]
          * @param data
@@ -194,7 +199,14 @@
             var json=data;
             console.log(json);
             if(json.success){
-                var data=json.data,tpl_GetDetails_Package_Title = template("tpl_GetDetails_Package_Title",data),
+                var data=json.data;
+                data.departValidFrom = MT.getTime(data.departValidFrom);
+                data.departValidTo = MT.getTime(data.departValidTo);
+                data.salesFrom = MT.getTime(data.salesFrom);
+                data.salesTo = MT.getTime(data.salesTo);
+
+
+                var tpl_GetDetails_Package_Title = template("tpl_GetDetails_Package_Title",data),
                         tpl_GetDetails_Package_ScheduledTimeFrom = template("tpl_GetDetails_Package_ScheduledTimeFrom",data),
                         tpl_GetDetails_Package_ScheduledTimeTo = template("tpl_GetDetails_Package_ScheduledTimeTo",data),
                         tpl_GetDetails_Package_ParadeTimeFrom = template("tpl_GetDetails_Package_ParadeTimeFrom",data),
