@@ -238,8 +238,13 @@
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
                     if (data.success) {
                         debugger;
+
                         var url = data.data.paymentRedirectURL;
-                        openwin(url);
+                        function loc(){
+                            var winRef = window.open("", "_blank");//打开一个新的页面
+                            winRef.location = url;//改变页面的 location
+                        }
+                        setTimeout(loc(),800);//这个等待很重要，如果不等待的话将无法实现
                     } else {
                         alert(data.message);
                     }
