@@ -161,9 +161,7 @@ $(document).ready(function(){
         addEvent:function(){
             var payButton = document.querySelector('.air-ticket-pay-btn'),that = ticketPayDetail;
             this.addHandler(payButton,'click', function(){
-                M(myData);
-
-
+                M();
             });
         },
         init:function(){
@@ -192,8 +190,7 @@ function callback(){
 
 
 //  交互部分
-function M(json){
-    console.log(json);
+function M(){
     var creditName = document.querySelector('.credit-det-cont');
     console.log(creditName);
     var cardInfo=getCardInfo();
@@ -267,7 +264,8 @@ debugger;
                 "CardAddress": $(".CardAddress").val(),
                 "CardAddressPostalCode":  $(".CardAddressPostalCode").val(),
                 "CardAddressCity":$(".CardCity").val(),
-                "CardAddressCountryCode":  $(".CardAddressCountryCode").attr("data-code")
+                "CardAddressCountryCode":  $(".CardAddressCountryCode").attr("data-code"),
+                "CountryNumber":"86"
             },
             "BookingRefNo":bookingRefNo,
             "CurrencyCode":"CNY",
@@ -278,6 +276,7 @@ debugger;
         "Code": "3004"
     };
     console.log(data);
+    debugger;
     //$.alerts.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",callback,"支付完成","支付出现问题");
     var payment=new paymentObj(data,mycallback);
     payment.handlePayment();
@@ -294,9 +293,7 @@ function V(d){
         alert(d.message);
     }
 }
-function mycallback(str){
-    console.log(str);
-    var data_json=eval('('+str+')');
+function mycallback(data_json){
     V(data_json);
 }
 
