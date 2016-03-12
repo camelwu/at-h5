@@ -550,9 +550,17 @@
 }
 
 .if_pay {
+    /*float: right;*/
+    display: inline-block;
+    padding-top: 10px;
+    padding-left: 40px;
+}
+
+.order-Amount {
     float: right;
     padding-top: 10px;
     padding-right: 10px;
+    color: red;
 }
 
 .info-title {
