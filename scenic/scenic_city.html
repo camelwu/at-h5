@@ -184,7 +184,7 @@
 
 
 <script>
-    var globalData = {},isLoad = false,arrHistory = [];
+    var globalData = {},isLoad = false;
     (function(){
         //hotcity listcity callbackcode
 
@@ -304,6 +304,7 @@
 
         }
         //刷新页面时加载本地储存
+        var arrHistory = [];
         var strHistory = localStorage.getItem('ac');
         console.log(strHistory)
         strHistory = localStorage.getItem('ac');

@@ -328,14 +328,12 @@ var lsf_myweb={
         //数据展示部分
         function V(data){
 
+            var winRef = window.open("", "_blank");//打开一个新的页面
             if(data.success){
                 debugger;
                 if(data.data.length>=1) {
-                    function loc(){
-                        var winRef = window.open("", "_blank");//打开一个新的页面
-                        winRef.location = data.data[0].paymentRedirectURL;
-                    }
-                    setTimeout(loc(),800);//这个等待很重要，如果不等待的话将无法实现
+                    var url = data.data[0].paymentRedirectURL;
+                    self.location.href=url;
                 }
             }else{
                 $("#status-h").fadeOut();
@@ -343,7 +341,9 @@ var lsf_myweb={
                 $.alerts.alert(data.message);
             }
         }
+
         M(myData);
+
         function mycallback(data_json){
             V(data_json);
         }

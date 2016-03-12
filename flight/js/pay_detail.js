@@ -285,14 +285,13 @@ debugger;
 //数据展示部分
 function V(d){
     if(d.success){
-        debugger;
-        console.log(d.data.paymentRedirectURL);
         var url=d.data.paymentRedirectURL;
-        window.open(url);
+        self.location.href=url;
     }else{
         alert(d.message);
     }
 }
+
 function mycallback(data_json){
     V(data_json);
 }

@@ -241,7 +241,8 @@
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
                     if (data.success) {
                         var url = data.data.paymentRedirectURL;
-                        window.open(url);
+                        self.location.href=url;
+
                     } else {
                         alert(data.message);
                     }

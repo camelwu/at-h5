@@ -235,11 +235,11 @@
             var  Parameters=GetParameters(type,code);
             console.log(Parameters);
             if(Parameters) {
+                var winRef = window.open("", "_blank");//打开一个新的页面
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
                     if (data.success) {
-                        debugger;
                         var url = data.data.paymentRedirectURL;
-                        openwin(url);
+                        self.location.href=url;
                     } else {
                         alert(data.message);
                     }
@@ -247,14 +247,7 @@
                 })
             }
         }
-        function openwin(url) {
-            var a = document.createElement("a");
-            a.setAttribute("href", url);
-            a.setAttribute("target", "_blank");
-            a.setAttribute("id", "camnpr");
-            document.body.appendChild(a);
-            a.click();
-        }
+
         function GetParameters(type,orderCode) {
             var json={}
             var Parameters = {};
