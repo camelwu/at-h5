@@ -1959,15 +1959,15 @@ i{
 }
 .sod-fdj{
     width:1.4rem;height: 1.4rem;
-    margin-left: 10px;
-    margin-top:10px;
+    margin-left: 8px;
+    margin-top: 8px;
 }
 .sod-search input{
     width: 80%;
     height: 24px;
     font-size: 1.4rem;
     position: absolute;
-    top: 5px;
+    top: 4px;
     left: 35px;
     border: none;
     outline: none;
