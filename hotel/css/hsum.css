@@ -2,6 +2,12 @@
 a{
     text-decoration: none;
 }
+.clearfix:after{
+    display:block;content:'';clear:both;
+}
+.clearfix{
+    zoom:1;
+}
 .top{
     width:100%;height:45px;
     display: flex;
@@ -100,9 +106,6 @@ a{
 }
 .s-ul2{
     width: 90%;
-    height: 110px;
-
-
     margin-top: 10px;
     margin-left: 20px;
 }
@@ -134,9 +137,6 @@ a{
     width:100%;
     height:45px;
     background: linear-gradient(#16364f,#194361);
-    z-index: 100;
-    position:fixed;
-    bottom: 0;
     text-align: center;
     font-size: 0.6rem;
     color:#9ba4ae;
@@ -144,5 +144,4 @@ a{
 }
 .contentBox{
      background:#fff;
-     padding-bottom: 45px;
 }

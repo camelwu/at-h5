@@ -12,9 +12,8 @@ window.onload = function () {
         "Code": "0009"
     };
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
-    function mycallback(d){
-        var jsonBack=eval('('+d+')');
-        var hoteFeatureDesc=jsonBack.data;
+    function mycallback(result){
+        var hoteFeatureDesc=result.data;
         console.log(hoteFeatureDesc);
         console.log(2222222222222);
 
