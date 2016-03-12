@@ -241,8 +241,14 @@
 
                         var url = data.data.paymentRedirectURL;
                         function loc(){
-                            var winRef = window.open("", "_blank");//打开一个新的页面
-                            winRef.location = url;//改变页面的 location
+//                            var winRef = window.open("", "_blank");//打开一个新的页面
+//                            winRef.location = url;//改变页面的 location
+                            var a = document.createElement("a");
+                            a.setAttribute("href", url);
+                            a.setAttribute("target", "_blank");
+                            a.setAttribute("id", "camnpr");
+                            document.body.appendChild(a);
+                            a.click();
                         }
                         setTimeout(loc(),800);//这个等待很重要，如果不等待的话将无法实现
                     } else {
