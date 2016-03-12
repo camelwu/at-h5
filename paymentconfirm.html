@@ -92,7 +92,6 @@ $(document).ready()
 
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), function(data){
             if (data.success) {
-                window.location.href = 'user/user-allorder.html';
                 vlm.init();
                 if(business==3) {
                     var code=data.BookingRefNo;
