@@ -74,9 +74,9 @@
 <ul id="js_oversea" class="gui-city-itmes">
     <li>
         <span class="gui-city-t">当前</span>
-        <ul class="city-tags">
+        <ul class="city-tags city-cur">
             <li class="current">我的位置</li>
-            <li>北京</li>
+            <li class="city-cur">北京</li>
         </ul>
     </li>
     <li>
@@ -312,6 +312,24 @@
             for (var i = 0; i< arrHistory.length; i++) {
                 $('<li>').html(arrHistory[i]).appendTo('#historySea');
             }
+            $('#historySea li').click(function(){
+                strHistory = localStorage.getItem('ac');
+                arrHistory = strHistory.split(',');
+                var isHere = false;
+                var value = $(this).html();
+                for(var k=0;k<arrHistory.length;k++){
+                    if(arrHistory[k] == value){
+                        isHere = true;
+                        var thisindex = k;
+                        break;
+                    }
+                }
+                arrHistory.unshift(arrHistory.splice(thisindex,1));
+                strHistory = localStorage.setItem('ac',arrHistory); console.log(arrHistory)
+                for (var i = 0; i< arrHistory.length; i++) {
+                    $('#historySea li').eq(i).html(arrHistory[i]);
+                }
+            })
         }
         MT.ClickTags = function(e){
             var cc = $(this).attr("data-key");
