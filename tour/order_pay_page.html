@@ -117,11 +117,9 @@
     </ul>
 </div>
 <script src="../js/lib/jquery.js"></script>
-<script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
-<script src="../js/lib/custom.js"></script>
 <!--<script src="js/order_sure.js"></script>-->
 <script id="tpl_GetTourInfo" type="text/template">
     {% for(var i=0;i < tours.length;i++){ %}
@@ -151,13 +149,6 @@
         var ww = this;
         vlm.init();
         var sh_orderDetail = function(){
-            //   加载动画
-            var flashLoad = function(){
-                $(window).load(function () {
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
-                });
-            };
             //   获取详情
             var getDetail = function(){
                 var info = JSON.parse(localStorage.info);
@@ -175,32 +166,34 @@
                 ].join('');
 
                 var tpl3 = [
-                    '订单总额：<b class="orange">¥</b><i class="orange">'+totalPrice+'</i>' +
+                    '订单总额：<b class="orange">¥</b><i class="orange">{%=totel%}</i>' +
                     '<a href="#">费用明细</a>'
                 ].join('');
                 var tpl4 = [
                     '<li><i>订单号</i>{%=bookingID%}</li>' +
-                    '<li><i>下单时间</i>'+createTime+'</li>' +
+                    '<li><i>下单时间</i>'+createTime.replace("T"," ")+'</li>' +
                     '<li><i>联系人</i>{%=contactDetails.lastName%} {%=contactDetails.firstName%}</li>' +
                     '<li><i>联系电话</i>{%=contactDetails.contactNo%}</li> ' +
                     '<li><i>邮箱</i>{%=contactDetails.email%}</li>'
                 ].join('');
                 var tpl5 = [
+                    '{% for(var i=0; i<=chargeDetails.length-1;i++){  if(chargeDetails[i].category=="ADULT"){ %}',
                     '<li>',
-                    '<div>成人×'+info.adultNum+'</div>',
-                    '<div>￥'+adultPrice+'</div>',
+                    '<div>成人×{%=chargeDetails[i].quantity%}</div>',
+                    '<div>￥{%=chargeDetails[i].amountInCNY%}</div>',
                     '</li>',
+                    '{% } else{ %}',
                     '<li>',
                     '<div>儿童×'+info.childNum+'</div>',
                     '<div>￥'+childPrice+'</div>',
                     '</li>',
+                    '{%} } %}',
                     '<li>',
                     '<div>总价</div>',
-                    '<div>￥'+total+'</div>',
+                    '<div>￥{%=totel%}</div>',
                     '</li>'
                 ].join('');
-
-//                var bookingRefNo="SG17SINFP0375528";
+                
                 var bookingRefNo=vlm.getpara("bookingRefNo");
                 var tmp = {
                     "Parameters": {
@@ -254,6 +247,13 @@
                         var html_pi = template(tpl1,data);
                         var html_hi = template(tpl2,data);
                         var tpl_GetTourInfo = template("tpl_GetTourInfo",data);
+
+                        debugger;
+                        var sum=0;
+                        data.chargeDetails.forEach(function (item, index, array) {
+                            sum += item.totalAmountInCNY;
+                        });
+                        data.totel=sum
                         var html_tp = template(tpl3,data);
                         var html_oi = template(tpl4,data);
                         var html_pd_list = template(tpl5,data);
@@ -270,6 +270,7 @@
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }
+                        vlm.init();
                     }else{
                         console.log(json);
                         jAlert(json.message,"提示");
@@ -293,14 +294,12 @@
                 }
             };
             return {
-                FlashLoad:flashLoad,
                 GetDetail:getDetail,
                 PriceDetail:priceDetail
             }
         }();
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
-            sh_orderDetail.FlashLoad();
             sh_orderDetail.GetDetail();
             sh_orderDetail.PriceDetail();
         };
