@@ -240,7 +240,8 @@
                     if (data.success) {
                         var url = data.data.paymentRedirectURL;
                         function openwin(url) {
-                            winRef.location = url;//改变页面的 location
+                            location.href=url;
+//                            winRef.location = url;//改变页面的 location
                         }
                         setTimeout(openwin(url),800);//这个等待很重要，如果不等待的话将无法实现
                     } else {
