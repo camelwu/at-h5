@@ -31,14 +31,14 @@
     <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
-    <div id="preloader">
-        <div id="status">
-            <p class="center-text">
-                <br>
-                <em>加载中……</em>
-            </p>
-        </div>
-    </div>
+    <!--<div id="preloader">-->
+        <!--<div id="status">-->
+            <!--<p class="center-text">-->
+                <!--<br>-->
+                <!--<em>加载中……</em>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="all-elements">
         <!--   顶部   -->
         <header class="top">
@@ -50,12 +50,12 @@
             <div id="payStatus">
                 <!--<section class="order_type"><i class="orange">待支付</i></section>-->
             </div>
-            <section id="packageInfo" class="all_info">
+            <section id="packageInfo" class="all_info" style="border: solid 1px #eeeeee;background: #ffffff;">
                 <!--<a href="scenic_detail.html">-->
                     <!--<p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】<span class="sce-introduce-span">（产品编号 PK348758945）</span></p>-->
                 <!--</a>-->
             </section>
-            <ul id="tourInfo" style="margin-bottom: 0">
+            <!--<ul id="tourInfo" style="margin-bottom: 0">-->
                 <!--<li class="sce-list-wrap">-->
                     <!--<div class="sce-list-box">-->
                     <!--<section class="all_title">-->
@@ -66,7 +66,7 @@
                     <!--</section>-->
                     <!--</div>-->
                 <!--</li>-->
-            </ul>
+            <!--</ul>-->
             <section id="totlePrice" class="order_total">
                 <!--订单总额：<b class="orange">¥</b><i class="orange">5,296</i>-->
                 <!--<a href="#">费用明细</a>-->
@@ -104,19 +104,20 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
+    <script src="js/scenic_pub.js"></script>
     <script id="tpl_GetTourInfo" type="text/template">
-        {% for(var i=0;i < tours.length;i++){ %}
-            <li class="sce-list-wrap">
-                <div class="sce-list-box">
-                    <section class="all_title">
-                        <h3><i>景点{%=i+1%}</i>{%=tours[i].tourName%}</h3>
-                    </section>
-                    <section class="trip_box">
-                        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%}</span>
-                    </section>
-                </div>
-            </li>
-        {% } %}
+        <!--{% for(var i=0;i < tours.length;i++){ %}-->
+            <!--<li class="sce-list-wrap">-->
+                <!--<div class="sce-list-box">-->
+                    <!--<section class="all_title">-->
+                        <!--<h3><i>景点{%=i+1%}</i>{%=tours[i].tourName%}</h3>-->
+                    <!--</section>-->
+                    <!--<section class="trip_box">-->
+                        <!--<span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%}</span>-->
+                    <!--</section>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--{% } %}-->
     </script>
     <script id="tpl_payStatus" type="text/template">
         {% if(paymentStatus){  %}
@@ -125,132 +126,125 @@
         <section class="order_type"><i class="orange">待支付</i></section>
         {% } %}
     </script>
+    <script id="tpl_Package" type="text/template">
+        <a href="../scenic/scenic_detail.html?packageID={%=packageID%}">
+            <p class="sce-introduce-txt">{%=packageName%}<span class="sce-introduce-span">（产品编号 {%=packageRefNo%}）</span></p>
+        </a>
+    </script>
     <script id="tpl_payBtn"  type="text/template">
         {% if(!paymentStatus){  %}
         <a href="order-pay.html?bookingRefNo={%=bookingRefNo%}" class="order_pay_btn" >支付订单</a>
         {% } %}
     </script>
+    <script id="tpl_Contect" type="text/template">
+        <li><i>订单号</i>{%=bookingID%}</li>
+        <li><i>下单时间</i>{%=bookingDate%}</li>
+        <li><i>联系人</i>{%=contactDetails.lastName%} {%=contactDetails.firstName%}</li>
+        <li><i>联系电话</i>{%=contactDetails.contactNo%}</li>
+        <li><i>邮箱</i>{%=contactDetails.email%}</li>
+    </script>
+    <script id="tpl_PayDetails"  type="text/template">
+        <li><div>费用明细</div></li>
+        {% for(var i=0;i<data.chargeDetails.length;i++){ %}
+            <li><div>{%=packageName%}{% if(data.chargeDetails[i].category == "ADULT"){ %}(成人票){% }else{ %}(儿童票){% } %}</div><div>×{%=data.chargeDetails[i].quantity%}</div><div>￥{%=data.chargeDetails[i].amountInCNY%}</div></li>
+        {% } %}
+    </script>
+    <script id="tpl_TotalPrice" type="text/template">
+        订单总额：<b class="orange">¥</b><i class="orange">{%=TotalPrice%}</i><a href="javascript:void(0)">费用明细</a>
+    </script>
     <script>
+
         (function(){
-            var ww = this;
-            vlm.init();
+
             var val = vlm.parseUrlPara(window.location.href);
-            var sc_orderDetail = function(){
-                //   加载动画
-                var flashLoad = function(){
-                    $(window).load(function () {
-                        $("#status").fadeOut();
-                        $("#preloader").delay(400).fadeOut("medium");
-                    });
+
+            //   获取详情
+            MT.getDetail = function(){
+                var tmp = {
+                    "Parameters": {
+                        "BookingRefNo": val.bookingRefNo
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0095"
                 };
-                //   获取详情
-                var getDetail = function(){
-                    var myDate = new Date();
-                    var chargeDetail = [];
-                    var totalPrice = 0;
-                    var createTime = myDate.toLocaleString();
-                    var adultNum = 0;
-                    var childNum = 0;
-                    var tpl1 = [
-                        '<a href="scenic_detail.html?packageID={%=packageID%}">' +
-                        '<p class="sce-introduce-txt">{%=packageName%}<span class="sce-introduce-span">（产品编号 {%=packageRefNo%}）</span></p>' +
-                        ' </a>'
-                    ].join('');
-                    var tpl2 = [
-                        '订单总额：<b class="orange">¥</b><i class="orange">'+totalPrice+'</i>' +
-                        '<a href="#">费用明细</a>'
-                    ].join('');
-                    var tpl3 = [
-                        '<li><i>订单号</i>{%=bookingID%}</li>' +
-                        '<li><i>下单时间</i>'+createTime+'</li>' +
-                        '<li><i>联系人</i>{%=contactDetails.lastName%} {%=contactDetails.firstName%}</li>' +
-                        '<li><i>联系电话</i>{%=contactDetails.contactNo%}</li> ' +
-                        '<li><i>邮箱</i>{%=contactDetails.email%}</li>'
-                    ].join('');
-                    var tpl4 = [
-                        '<li><div>费用明细</div></li>' +
-                        '<li><div>{%=packageName%}成人票</div><div>×'+adultNum+'人</div><div>￥{%=chargeDetails[0].totalAmount%}</div></li>'
-//                        + '<li><div>{%=packageName%}儿童票</div><div>×'+childNum+'人</div><div>￥{%=chargeDetails[1].totalAmount%}</div></li>'
-                    ].join('');
-                    var tmp = {
-                        "Parameters": {
-                            "BookingRefNo": val.bookingRefNo
-                        },
-                        "ForeEndType": 3,
-                        "Code": "0095"
-                    };
-                    vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
-                    function getDetail_back(data){
-                        var json=data;
-                        if(json.success) {
-                            var data = json.data;
-                            console.log(data);
-                            for(var i = 0;i < data.chargeDetails.length;i++){
-                                chargeDetail.push(data.chargeDetails[i].totalAmountInCNY);
-                            }
-                            for(var j = 0;j < chargeDetail.length;j++){
-                                totalPrice = totalPrice + chargeDetail[j].totalAmountInCNY;
-                            }
-                            for(var k = 0;k < data.travelers.length;k++){
-                                if(data.travelers[k].travelerType == "Adult"){
-                                    adultNum++;
-                                }else{
-                                    childNum++;
-                                }
-                            }
-                            var html_pi = template(tpl1,data);
-                            var tpl_GetTourInfo = template("tpl_GetTourInfo",data);
-                            var html_tp = template(tpl2,data);
-                            var html_oi = template(tpl3,data);
-                            debugger;
-                            var html_pd_list = template(tpl4,data);
-                            var tpl_payStatus = template("tpl_payStatus",data);
-                            var tpl_payBtn = template("tpl_payBtn",data);
-                            $('#packageInfo').html(html_pi);
-                            $('#tourInfo').html(tpl_GetTourInfo);
-                            $('#totlePrice').html(html_tp);
-                            $('#orderInfo').html(html_oi);
-                            $('#pd_list').html(html_pd_list);
-                            $('#payStatus').html(tpl_payStatus);
-                            $('#payBtn').html(tpl_payBtn);
-                            if(data.length == 0){
-                                jAlert("抱歉暂时没有数据","提示");
-                            }
-                        }else{
-                            console.log(json);
-                            jAlert(json.message,"提示");
+                MT.ajaxJson("",JSON.stringify(tmp),MT.getDetail_back,MT.ajaxAnimIn,MT.ajaxAnimOut);
+
+            };
+
+            MT.getDetail_back = function(data){
+                var json=data;
+                if(json.success) {
+                    var data = json.data;
+                    console.log(data);
+                    //下单时间fix
+                    var BookingDate = data.bookingDate;
+                    BookingDate = BookingDate.replace(/(\d{2,4}-\d{1,2}-\d{1,2})T(\d{2}:\d{2}:\d{2})/,function(){
+                        return arguments[1]+" "+arguments[2];
+                    });
+                    data.bookingDate = BookingDate;
+                    //联系信息电话fix
+                    var contactNo = data.contactDetails.contactNo;
+                    contactNo = contactNo.replace(/(\d+)--(\d+)/,function(){
+                        return "+"+arguments[1]+" "+arguments[2];
+                    });
+                    data.contactDetails.contactNo = contactNo;
+                    //计算总额
+                    var TotalPrice = 0;
+                    if(data.chargeDetails.length > 0){
+                        for (var i = 0;i<data.chargeDetails.length;i++){
+                            TotalPrice += parseInt(data.chargeDetails[i].totalAmountInCNY);
                         }
                     }
-                };
-                //   费用明细
-                var priceDetail = function(){
-                    var totlePrice = $('#totlePrice')[0];
-                    var pdetail_mb = $('#pdetail_mb')[0];
-                    var pd_block = $('#pd_block')[0];
-                    totlePrice.onclick = function(){
-                        pdetail_mb.style.display = "block";
-                        pd_block.style.bottom = 0;
-                        pd_block.style.transition="all 400ms";
-                    };
-                    pdetail_mb.onclick = function(){
-                        pdetail_mb.style.display = "none";
-                        pd_block.style.bottom = -400+'px';
-                        pd_block.style.transition="all 400ms";
+                    data.TotalPrice = TotalPrice;
+
+
+                    //订单状态
+                    var tpl_payStatus = template("tpl_payStatus",data);
+                    $('#payStatus').html(tpl_payStatus);
+                    //产品说明
+                    var html_pi = template("tpl_Package",data);
+                    $('#packageInfo').html(html_pi);
+                    //总额
+                    var html_tp = template("tpl_TotalPrice",data);
+                    $('#totlePrice').html(html_tp);
+                    //订单信息
+                    var html_oi = template("tpl_Contect",data);
+                    $('#orderInfo').html(html_oi);
+                    //费用详情
+                    var tpl_PayDetails = template("tpl_PayDetails",data);
+                    $('#pd_list').html(tpl_PayDetails);
+                    //订单按钮
+                    var tpl_payBtn = template("tpl_payBtn",data);
+                    $('#payBtn').html(tpl_payBtn);
+
+                    if(data.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
                     }
-                };
-                return {
-                    FlashLoad:flashLoad,
-                    GetDetail:getDetail,
-                    PriceDetail:priceDetail
+                }else{
+                    console.log(json);
+                    jAlert(json.message,"提示");
                 }
-            }();
-            ww.MT = ww.MT || {};
-            ww.MT.load = function(){
-                sc_orderDetail.FlashLoad();
-                sc_orderDetail.GetDetail();
-                sc_orderDetail.PriceDetail();
+            }
+
+            //   费用明细
+            MT.priceDetail = function(){
+                var totlePrice = $('#totlePrice')[0];
+                var pdetail_mb = $('#pdetail_mb')[0];
+                var pd_block = $('#pd_block')[0];
+                totlePrice.onclick = function(){
+                    pdetail_mb.style.display = "block";
+                    pd_block.style.bottom = 0;
+                    pd_block.style.transition="all 400ms";
+                };
+                pdetail_mb.onclick = function(){
+                    pdetail_mb.style.display = "none";
+                    pd_block.style.bottom = -400+'px';
+                    pd_block.style.transition="all 400ms";
+                }
             };
-            MT.load();
+
+            MT.getDetail();
+            MT.priceDetail();
         })()
     </script>
 </body>
