@@ -81,10 +81,10 @@
     </li>
     <li>
         <span class="gui-city-t">历史选择</span>
-        <ul class="city-tags">
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
+        <ul class="city-tags" id="historySea">
+            <!--<li>北京</li>-->
+            <!--<li>北京</li>-->
+            <!--<li>北京</li>-->
         </ul>
     </li>
     <li>
@@ -184,7 +184,7 @@
 
 
 <script>
-    var globalData = {},isLoad = false;
+    var globalData = {},isLoad = false,arrHistory = [];
     (function(){
         //hotcity listcity callbackcode
 
@@ -303,9 +303,49 @@
             }
 
         }
-
+        //刷新页面时加载本地储存
+        var strHistory = localStorage.getItem('ac');
+        console.log(strHistory)
+        strHistory = localStorage.getItem('ac');
+        if(strHistory){
+            arrHistory = strHistory.split(',');
+            for (var i = 0; i< arrHistory.length; i++) {
+                $('<li>').html(arrHistory[i]).appendTo('#historySea');
+            }
+        }
         MT.ClickTags = function(e){
             var cc = $(this).attr("data-key");
+            //历史begin
+            var thisHtml = $(this).html();
+            strHistory = localStorage.getItem('ac');
+            if(strHistory == null || strHistory == ""){
+                arrHistory.push(thisHtml)
+                $('<li>').html(arrHistory[0]).appendTo('#historySea');
+                localStorage.setItem('ac',arrHistory);
+            }else{
+                arrHistory = strHistory.split(',');
+                var isHere = false;
+                for(var k=0;k<arrHistory.length;k++){
+                    if(arrHistory[k] == thisHtml){
+                        isHere = true;
+                        var thisindex = k;
+                        break;
+                    }
+                }
+                if(isHere){
+                    arrHistory.unshift(arrHistory.splice(thisindex,1));
+                }else{
+                    arrHistory.unshift(thisHtml);
+                    if(arrHistory.length>3)arrHistory.length = 3;
+                }
+                for(var i=0;i<arrHistory.length;i++){
+                    $('<li>').html(arrHistory[i]).appendTo('#historySea');
+                }
+                localStorage.setItem('ac',arrHistory);
+            }
+            //历史end
+
+
             var url = callback;
             if(url == ""){
                 return false;
