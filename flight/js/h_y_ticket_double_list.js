@@ -211,7 +211,6 @@ var ticketDouble = {
         '<p class="no-flight-word">没有找到符合条件的航班！ </p></div>'
         allEleWrap.appendChild(div);
         backButton = document.querySelector('.close-no-flight');
-        console.log(that)
         that.addHandler(backButton,"click",function(){
             allEleWrap.removeChild(div)
         })
@@ -409,7 +408,6 @@ var ticketDouble = {
         }
     } ,
     callRender:function(arg){
-        console.log(arg)
             var paraObj = {},that = ticketDouble;
             paraObj.IsDirectFlight = arg.directFly == 'unlimitedPlane'?'false':'true';
             paraObj.IsShareFlight = arg.shareFlight == 'hideShareFlight'?'false':'true';
@@ -433,7 +431,6 @@ var ticketDouble = {
             for(var tem in paraObj){
                 that.backParaObj[tem] = paraObj[tem]
             }
-            console.log(that.backParaObj)
             document.querySelector('#preloader').style.display='block';
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
             var temObj = that.checkTip();
@@ -509,28 +506,22 @@ var ticketDouble = {
     pullDownAction:function(){
         var  that = ticketDouble;
         if(that.pageNo >= that.pageCount){
-            console.log(11)
             myScroll.refresh()
             jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
-            console.log(22)
             that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
-            console.log(that.backParaObj)
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
         }
     },
     pullUpAction:function(){
         var  that = ticketDouble;
         if(that.pageNo >= that.pageCount){
-            console.log(33)
             myScroll.refresh()
             jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
-            console.log(44)
             that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
-            console.log(that.backParaObj)
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
         }
     },
@@ -544,17 +535,14 @@ var ticketDouble = {
             topOffset: pullDownOffset,
             onRefresh: function () {
                 if (pullDownEl.className.match('loading')) {
-                    console.log(111)
                     pullDownEl.className = '';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
                 } else if (pullUpEl.className.match('loading')) {
-                    console.log(222)
                     pullUpEl.className = '';
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
                 }
             },
             onScrollMove: function () {
-                console.log(55)
                 if (this.y > 5 && !pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'flip';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
@@ -577,12 +565,10 @@ var ticketDouble = {
                 if (pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'loading';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
-                    console.log(66)
                     ticketDouble.pullDownAction();
                 } else if (pullUpEl.className.match('flip')) {
                     pullUpEl.className = 'loading';
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
-                    console.log(77)
                     ticketDouble.pullUpAction();
                 }
             }
@@ -591,19 +577,13 @@ var ticketDouble = {
     handler1:function(arg){ //后台请求
         var that = ticketDouble;
         that.backParaObj = arg;
-        console.log(this)
-        console.log(1)
         document.querySelector('#preloader').style.display='block';
         that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
-        console.log(arg)
     },
     handler2:function(arg){ //自己缓存的数据重新展现
         var that = ticketDouble;
         that.backParaObj = arg;
         that.changeFlightList(that.lastBackData, that.backParaObj.hasTax);
-
-        console.log(2)
-        console.log(arg)
     },
     init:function(){
         var backParaObj = this.parseUrlPara(document.location.search, true),that = ticketDouble;

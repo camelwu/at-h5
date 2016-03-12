@@ -2944,7 +2944,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: rotate(-135deg) translateY(-50%);
 }
 
-.confirm {
+.confirm-order {
     -webkit-box-flex: 3;      /* OLD - iOS 6-, Safari 3.1-6 */
     -moz-box-flex: 3;         /* OLD - Firefox 19- */
     -webkit-flex: 3;          /* Chrome */

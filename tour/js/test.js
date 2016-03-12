@@ -128,7 +128,7 @@
                 contentType: 'application/json;charset=utf-8',
                 success: function (data) {
                     var status = {};
-                    var p = JSON.parse(data);
+                    var p = data;
                     status = p;
                     if (!p.success) {
 

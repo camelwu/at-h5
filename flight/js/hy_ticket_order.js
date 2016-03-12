@@ -162,10 +162,13 @@ var ticketOrder = {
                     tempChild++;
                 }
             }
+            console.log(tempAdult)
+            console.log(tempChild)
              if(tempAdult!=adultNum||tempChild!=childNum){
-                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名小孩!', '提示');
+                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
                  return;
              }
+
             that.backParaObj.TravellerInfo =realPara;
             var contactInfo =JSON.parse(window['localStorage']['contact_selected']);
             contactInfoCache.FirstName = document.querySelector('#first-name').value;
@@ -258,13 +261,21 @@ var ticketOrder = {
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
                     document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
                 }else{
-                    orderResultTip.innerHTML = arg.message;
-                    orderResultTip.style.display = 'block';
-                    that.timer7 = window.setTimeout(function(){
-                        orderResultTip.style.display = 'none';
-                        window.clearTimeout(that.timer7);
-                        that.timer7 = null;
-                    },3000);
+                     if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
+                         jConfirm('预定失败,需要重新预定?', '提示', function(status){
+                             if(status == true){
+                                 window.history.go(-2);
+                             }
+                         }, '确定', '取消');
+                     }else{
+                         orderResultTip.innerHTML = arg.message;
+                         orderResultTip.style.display = 'block';
+                         that.timer7 = window.setTimeout(function(){
+                             orderResultTip.style.display = 'none';
+                             window.clearTimeout(that.timer7);
+                             that.timer7 = null;
+                         },3000);
+                     }
                 }
             });
         });
