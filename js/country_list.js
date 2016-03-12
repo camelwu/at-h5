@@ -835,6 +835,8 @@ var arrCountry= [{"CountryEN":"Angola",
     var countryInputZone = document.querySelector('#country-input-zone');
     $('.country-hidden').click(function(){
         $('.country-cho-wrap').hide();
+        document.querySelector("#addtra_page .user-content").style.position = "relative";
+        document.querySelector("#uptra_page .user-content").style.position = "relative";
     });
     for(var i=0;i<aBtn.length; i++)
     {
@@ -849,6 +851,8 @@ var arrCountry= [{"CountryEN":"Angola",
                     setTimeout(function(){
                         oDiv.style.display='none';
                         oTc.style.display='none';
+                        document.querySelector("#addtra_page .user-content").style.position = "relative";
+                        document.querySelector("#uptra_page .user-content").style.position = "relative";
                         oInput.value='';
                     },500)
                     if($('#addtra_page')[0].style.display == 'none')
@@ -868,7 +872,9 @@ var arrCountry= [{"CountryEN":"Angola",
                 };
 
                 oDiv.style.display='block';
-
+                //android 相对位置 防止键盘覆盖问题
+                document.querySelector("#addtra_page .user-content").style.position = "absolute";
+                document.querySelector("#uptra_page .user-content").style.position = "absolute";
 
                 var oCont=document.querySelectorAll('.country-btn')[index];
                 var oTab=document.querySelector('.country-list');
@@ -881,6 +887,8 @@ var arrCountry= [{"CountryEN":"Angola",
                     setTimeout(function(){
                         oDiv.style.display='none';
                         oTc.style.display='none';
+                        document.querySelector("#addtra_page .user-content").style.position = "relative";
+                        document.querySelector("#uptra_page .user-content").style.position = "relative";
                         oInput.value='';
                     },500)
 
