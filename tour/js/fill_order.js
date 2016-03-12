@@ -129,7 +129,8 @@
                 }
                 //订单总价
                 perPrice=arr2[3].split('=')[1];
-                totPrice=perPrice*(tAdult+totChiNUm);
+                //totPrice=perPrice*(tAdult+totChiNUm);
+                totPrice=perPrice;
                 $('.all_num i').html(totPrice);
                 $('.separate_num i').html(totPrice);
                 //roomID
@@ -205,7 +206,7 @@
                         },
                         "ChargeDetails": {
                             "CurrencyCode": "CNY",
-                            "TotalPrice": perPrice
+                            "TotalPrice": totPrice
                         }
                     },
 
@@ -227,7 +228,7 @@
                         for(var k=0;k<jsonPackage.roomDetails[0].childWithBed.length;k++)
                         {
                             //arrWithbed.push(jsonPackage.roomDetails[0].childWithBed[k]);
-                            arrWithbed.push(8);
+                            arrWithbed.push(7);
 
                         }
                         roomdetail.ChildwithBed=arrWithbed;
@@ -237,7 +238,7 @@
                         for(var m=0;m<jsonPackage.roomDetails[0].childWithOutBed.length;m++)
                         {
                             //arrWithoutbed.push(jsonPackage.roomDetails[0].childWithOutBed[m]);
-                            arrWithoutbed.push(8);
+                            arrWithoutbed.push(7);
 
                         }
                         roomdetail.ChildwithoutBed=arrWithoutbed;
@@ -313,7 +314,7 @@
                         tra.Salutation = "None";
                         tra.FirstName = firstNameChi;
                         tra.LastName = lastNameChi;
-                        tra.DOB ="2008-3-9";
+                        tra.DOB ="2009-2-1";
                         tra.NationalityCode = "SG";
                         traveler.push(tra);
                     }
@@ -394,7 +395,7 @@
     //初始化函数回调
     function package_tit_back(ret){
         var json = ret;
-        //console.log(json);
+        console.log(json);
         if(json.success) {
             //套餐名称
             var sceTit=json.data.packageName;
