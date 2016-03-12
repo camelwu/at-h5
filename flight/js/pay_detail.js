@@ -288,10 +288,18 @@ function V(d){
         debugger;
         console.log(d.data.paymentRedirectURL);
         var url=d.data.paymentRedirectURL;
-        window.open(url);
+        setTimeout(openwin(url),800);//这个等待很重要，如果不等待的话将无法实现
     }else{
         alert(d.message);
     }
+}
+function openwin(url) {
+    var a = document.createElement("a");
+    a.setAttribute("href", url);
+    a.setAttribute("target", "_blank");
+    a.setAttribute("id", "camnpr");
+    document.body.appendChild(a);
+    a.click();
 }
 function mycallback(data_json){
     V(data_json);
