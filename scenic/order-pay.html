@@ -36,19 +36,19 @@
         <form action="#" method="get">
             <div class="per-pay-msg-bg">
                 <!--<ul class="per-pay-msg">-->
-                    <!--<li>-->
-                        <!--<span>订单号: <i>237812</i></span>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<div>票务信息：<i>迪士尼门票1张；温泉门票1张</i></div>-->
-                        <!--<div class="pay-total">总价：<span style="color:#fe6a03">￥</span><i class="pay-num">143</i></div>-->
-                    <!--</li>-->
+                <!--<li>-->
+                <!--<span>订单号: <i>237812</i></span>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<div>票务信息：<i>迪士尼门票1张；温泉门票1张</i></div>-->
+                <!--<div class="pay-total">总价：<span style="color:#fe6a03">￥</span><i class="pay-num">143</i></div>-->
+                <!--</li>-->
                 <!--</ul>-->
             </div>
             <ul class="pay-style-list" id="pay_way">
-                 <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
-                 <li><span class="jd-icon pay-card" data-type="pay-card"></span><b class="icon circle-choi"></b></li>
-                 <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
+                <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
+                <li><span class="jd-icon pay-card" data-type="pay-card"></span><b class="icon circle-choi"></b></li>
+                <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
                 <li><span class="jd-icon pay-visa" data-type="pay-visa"></span><b class="icon circle-chois"></b></li>
                 <li><span class="jd-icon pay-master" data-type="pay-master"></span><b class="icon circle-chois"></b></li>
             </ul>
@@ -154,49 +154,49 @@
     <script src="../js/lib/template.js"></script>
     <script src="js/order-pay.js"></script>
     <script src="../js/country_list.js"></script>
-<script>
-    var getCN = {
-        "CNY": "￥",
-        "SGD":"SGD",
-        "USD":"$"
-    };
+    <script>
+        var getCN = {
+            "CNY": "￥",
+            "SGD":"SGD",
+            "USD":"$"
+        };
 
-    function sec(sName,time){
-        var oSpan=document.getElementById(sName);
-        var n=time;
-        tick1();
-        var timer=setInterval(tick1,1000);
-        function tick1()
-        {
-            n--;
-            var m=parseInt(n/60);
-            var s=n%60;
-            oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
-            if (n<0) {
-                clearInterval(timer);
-                oSpan.innerHTML="结束"
+        function sec(sName,time){
+            var oSpan=document.getElementById(sName);
+            var n=time;
+            tick1();
+            var timer=setInterval(tick1,1000);
+            function tick1()
+            {
+                n--;
+                var m=parseInt(n/60);
+                var s=n%60;
+                oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
+                if (n<0) {
+                    clearInterval(timer);
+                    oSpan.innerHTML="结束"
+                }
             }
         }
-    }
-    function toDub(a){
-        return a<10 ? '0'+a : ''+a;
-    }
+        function toDub(a){
+            return a<10 ? '0'+a : ''+a;
+        }
 
-    (function(){
-        Init();
-        var bookingRefNo= vlm.getpara("bookingRefNo")
-        var b=document.getElementById('pay_way').getElementsByTagName("b");
-        var agree = $("#agree")[0];
-        var close_page = $("#close_page")[0];
-        var out_pay = $("#out_pay")[0];
-        var btnPay= $(".btnUpay")[0];
-        var btnCPay= $(".btnCpay")[0];
-        for(var i=0; i < b.length; i++){
-            b[i].onclick = function(){
-                for(var i=0; i<b.length; i++){
-                    b[i].className = "icon circle-chois";
-                }
-                this.className='icon circle-choi';
+        (function(){
+            Init();
+            var bookingRefNo= vlm.getpara("bookingRefNo")
+            var b=document.getElementById('pay_way').getElementsByTagName("b");
+            var agree = $("#agree")[0];
+            var close_page = $("#close_page")[0];
+            var out_pay = $("#out_pay")[0];
+            var btnPay= $(".btnUpay")[0];
+            var btnCPay= $(".btnCpay")[0];
+            for(var i=0; i < b.length; i++){
+                b[i].onclick = function(){
+                    for(var i=0; i<b.length; i++){
+                        b[i].className = "icon circle-chois";
+                    }
+                    this.className='icon circle-choi';
 //                debugger;
 //                if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
 //                    out_pay.style.display = "block";
@@ -205,197 +205,196 @@
 //                    var bookingRefNo=vlm.getpara("bookingRefNo");
 //                    Payment("UnionPay",bookingRefNo);
 //                }
+                }
+            }
+            agree.onclick = function(){
+                if(agree.className == 'icon1 s-agree'){
+                    agree.className = 'icon1 s-agrees';
+                }else{
+                    agree.className = 'icon1 s-agree';
+                }
+            };
+            close_page.onclick = function(){
+                out_pay.style.display = "none";
+            };
+            btnPay.onclick=function(){
+                var bookingRefNo=vlm.getpara("bookingRefNo");
+                var type= $(".circle-choi").prev().attr("data-type");
+                if(type=="pay-card") {
+                    Payment("UnionPay",bookingRefNo)
+                }
+                else{
+                    out_pay.style.display = "block";
+                }
+
+            }
+            btnCPay.onclick=function(){
+                var bookingRefNo=vlm.getpara("bookingRefNo");
+                Payment("CreditCard",bookingRefNo);
+            }
+        })();
+        function Payment(type,code){
+
+            var  Parameters=GetParameters(type,code);
+            if(Parameters) {
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
+                    if (data.success) {
+                        var url = data.data.paymentRedirectURL;
+                        window.open(url);
+                    } else {
+                        alert(data.message);
+                    }
+                    vlm.init();
+
+                })
             }
         }
-        agree.onclick = function(){
-            if(agree.className == 'icon1 s-agree'){
-                agree.className = 'icon1 s-agrees';
-            }else{
-                agree.className = 'icon1 s-agree';
-            }
-        };
-        close_page.onclick = function(){
-            out_pay.style.display = "none";
-        };
-        btnPay.onclick=function(){
-            var bookingRefNo=vlm.getpara("bookingRefNo");
-            var type= $(".circle-choi").prev().attr("data-type");
-            if(type=="pay-card") {
-                Payment("UnionPay",bookingRefNo)
+        function GetParameters(type,orderCode) {
+            var json={}
+            var Parameters = {};
+            var PaymentDetails = {};
+            Parameters.BookingRefNo = orderCode;
+            var CardContactNumber={}
+            var CreditCardDetails = {};
+            PaymentDetails.PayCurrencyCode="CNY";
+            PaymentDetails.PayTotalAmount=$(".totalAmount").html();
+
+            if (type == "UnionPay")
+            {
+                PaymentDetails.PaymentMode="UnionPay";
             }
             else{
-                out_pay.style.display = "block";
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
+                    jAlert("持卡人姓名不能为空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["engName"]($(".CardHolderName").val())){
+                    jAlert("持卡人姓名必须为英文！","",null,"确认");
+                    return false;
+                }
+
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardNumber").val())){
+                    jAlert("信用卡不能为空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardSecurityCode").val())){
+                    jAlert("安全码不能为空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardExpiryDate").val())){
+                    jAlert("有效期不能为空！","",null,"确认");
+                    return false;
+                }
+
+                if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
+                    jAlert("信用卡卡号错误！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["safecode"]($(".CardSecurityCode").val())){
+                    jAlert("安全码3位数字！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["dataValid"]($(".CardExpiryDate").val())){
+                    jAlert("有效期格式不正确！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
+                    jAlert("手机号不能为空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardCity").val())){
+                    jAlert("账单城市不能不空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardAddress").val())){
+                    jAlert("账单地址不能不空！","",null,"确认");
+                    return false;
+                }
+
+                PaymentDetails.PaymentMode="CreditCard";
+                PaymentDetails.ReturnURL="www.baidu.com";
+                CreditCardDetails.CardType="Visa";
+                CreditCardDetails.CardHolderName=$(".CardHolderName").val();
+                CreditCardDetails.CardNumber=$(".CardNumber").val();
+                CreditCardDetails.CardSecurityCode=$(".CardSecurityCode").val();
+                CreditCardDetails.CardIssuanceBank=$(".CardIssuanceBank").val();
+                CreditCardDetails.CardExpiryDate=$(".CardExpiryDate").val();
+                CreditCardDetails.CardIssuanceCountryCode="SG"
+                CreditCardDetails.CardAddress=$(".CardAddress").val();
+                CreditCardDetails.CardAddressPostalCode=$(".CardAddressPostalCode").val();
+                CreditCardDetails.CardAddressCity=$(".CardAddressCity").val();
+                CreditCardDetails.CardAddressCountryCode= "SG",
+                        CardContactNumber={};
+                CardContactNumber.CountryCode="86";
+                CardContactNumber.PhoneNo=$(".PhoneNo").val();
+                CreditCardDetails.CardContactNumber=CardContactNumber;
+                PaymentDetails.CreditCardDetails=CreditCardDetails
             }
+            Parameters.PaymentDetails=PaymentDetails;
 
+            json.Parameters=Parameters;
+            json.ForeEndType=3;
+            json.Code="0093";
+            return json;
         }
-        btnCPay.onclick=function(){
+
+        function Init(){
             var bookingRefNo=vlm.getpara("bookingRefNo");
-            Payment("CreditCard",bookingRefNo);
-        }
-    })();
-    function Payment(type,code){
+            if(bookingRefNo==null){
+                jAlert("参数订单BookingRefNo不能为空！");
+                return;
+            }
+            var Parameters={
+                "Parameters": {
+                    "BookingRefNo": bookingRefNo
+                },
+                "ForeEndType": 3,
+                "Code": "0095"
+            }
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+                if(data.success) {
+                    debugger;
+                    var date1=new Date();  //开始时间
+                    var date2=new Date(data.data.bookingDate.replace("T"," "))
+                    var date3=date1.getTime()-date2.getTime() //时间差的毫秒数
+                    //计算出相差天数
+                    var days=Math.floor(date3/(24*3600*1000))
 
-       var  Parameters=GetParameters(type,code);
-        if(Parameters) {
-            console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
-                if (data.success) {
-                    var url = data.data.paymentRedirectURL;
-                    window.open(url);
-                } else {
-                    alert(data.message);
+                    //计算出小时数
+                    var leave1=date3%(24*3600*1000)    //计算天数后剩余的毫秒数
+                    var hours=Math.floor(leave1/(3600*1000))
+
+                    //计算相差分钟数
+                    var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
+                    var minutes=Math.floor(leave2/(60*1000))
+
+                    //计算相差秒数
+                    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+                    var seconds=Math.round(leave3/1000)
+
+
+                    if(days==0 && hours==0 && minutes*60+seconds<=30*60) {
+                        sec('countdown',30*60-(minutes*60+seconds));
+                    }
+                    else{
+                        var oSpan=document.getElementById("countdown")
+                        $("#countdown").html("已经结束");
+                    }
+                    var tpl = template("tpl_orderinfo",data.data);
+                    var tplC = template("tpl_orderTotal",data.data);
+                    $(".per-pay-msg-bg").html(tpl);
+                    $("#order-price").html(tplC);
+
+                }
+                else {
+                    alert("网络异常，加载失败！");
                 }
                 vlm.init();
 
-            })
+            });
         }
-    }
-    function GetParameters(type,orderCode) {
-        var json={}
-        var Parameters = {};
-        var PaymentDetails = {};
-        var CardContactNumber={}
-        Parameters.BookingRefNo = orderCode;
-        Parameters.PaymentDetails=PaymentDetails;
-        var CreditCardDetails = {};
-
-        PaymentDetails.PayCurrencyCode="CNY";
-        PaymentDetails.PayTotalAmount=$(".totalAmount").html();
-
-
-        if (type == "UnionPay")
-        {
-            PaymentDetails.PaymentMode="UnionPay";
-        }
-        else{
-            if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
-                jAlert("持卡人姓名不能为空！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["engName"]($(".CardHolderName").val())){
-                jAlert("持卡人姓名必须为英文！","",null,"确认");
-                return false;
-            }
-
-            if(!vlm.Utils.validate["isNoEmpty"]($(".CardNumber").val())){
-                jAlert("信用卡不能为空！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["isNoEmpty"]($(".CardSecurityCode").val())){
-                jAlert("安全码不能为空！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["isNoEmpty"]($(".CardExpiryDate").val())){
-                jAlert("有效期不能为空！","",null,"确认");
-                return false;
-            }
-
-            if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
-                jAlert("信用卡卡号错误！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["safecode"]($(".CardSecurityCode").val())){
-                jAlert("安全码3位数字！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["dataValid"]($(".CardExpiryDate").val())){
-                jAlert("有效期格式不正确！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
-                jAlert("手机号不能为空！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["isNoEmpty"]($(".CardCity").val())){
-                jAlert("账单城市不能不空！","",null,"确认");
-                return false;
-            }
-            if(!vlm.Utils.validate["isNoEmpty"]($(".CardAddress").val())){
-                jAlert("账单地址不能不空！","",null,"确认");
-                return false;
-            }
-
-            PaymentDetails.PaymentMode="CreditCard";
-            PaymentDetails.ReturnURL="www.baidu.com";
-            CreditCardDetails.CardType="Visa";
-            CreditCardDetails.CardHolderName=$(".CardHolderName").val();
-            CreditCardDetails.CardNumber=$(".CardNumber").val();
-            CreditCardDetails.CardSecurityCode=$(".CardSecurityCode").val();
-            CreditCardDetails.CardIssuanceBank=$(".CardIssuanceBank").val();
-            CreditCardDetails.CardExpiryDate=$(".CardExpiryDate").val();
-            CreditCardDetails.CardIssuanceCountryCode="SG"
-            CreditCardDetails.CardAddress=$(".CardAddress").val();
-            CreditCardDetails.CardAddressPostalCode=$(".CardAddressPostalCode").val();
-            CreditCardDetails.CardAddressCity=$(".CardAddressCity").val();
-            CreditCardDetails.CardAddressCountryCode= "SG",
-            CardContactNumber={};
-            CardContactNumber.CountryCode="86";
-            CardContactNumber.PhoneNo=$(".PhoneNo").val();
-            CreditCardDetails.CardContactNumber=CardContactNumber;
-            PaymentDetails.CreditCardDetails=CreditCardDetails
-        }
-        json.Parameters=Parameters;
-        json.ForeEndType=3;
-        json.Code="0093";
-        return json;
-    }
-
-    function Init(){
-        var bookingRefNo=vlm.getpara("bookingRefNo");
-        if(bookingRefNo==null){
-            jAlert("参数订单BookingRefNo不能为空！");
-            return;
-        }
-        var Parameters={
-            "Parameters": {
-                "BookingRefNo": bookingRefNo
-            },
-            "ForeEndType": 3,
-            "Code": "0095"
-        }
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
-            if(data.success) {
-                debugger;
-                var date1=new Date();  //开始时间
-                var date2=new Date(data.data.bookingDate.replace("T"," "))
-                var date3=date1.getTime()-date2.getTime() //时间差的毫秒数
-                //计算出相差天数
-                var days=Math.floor(date3/(24*3600*1000))
-
-                //计算出小时数
-                var leave1=date3%(24*3600*1000)    //计算天数后剩余的毫秒数
-                var hours=Math.floor(leave1/(3600*1000))
-
-                //计算相差分钟数
-                var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
-                var minutes=Math.floor(leave2/(60*1000))
-
-                //计算相差秒数
-                var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
-                var seconds=Math.round(leave3/1000)
-
-
-                if(days==0 && hours==0 && minutes*60+seconds<=30*60) {
-                    sec('countdown',30*60-(minutes*60+seconds));
-                }
-                else{
-                    var oSpan=document.getElementById("countdown")
-                    $("#countdown").html("已经结束");
-                }
-                var tpl = template("tpl_orderinfo",data.data);
-                var tplC = template("tpl_orderTotal",data.data);
-                $(".per-pay-msg-bg").html(tpl);
-                $("#order-price").html(tplC);
-
-            }
-            else {
-                alert("网络异常，加载失败！");
-            }
-            vlm.init();
-
-        });
-    }
-</script>
+    </script>
 
     <!--机票-获取乘客信息-->
     <script id="tpl_orderinfo" type="text/template"	>
