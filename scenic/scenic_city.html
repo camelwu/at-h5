@@ -304,18 +304,19 @@
 
         }
         //刷新页面时加载本地储存
-        var arrHistory = [];
+        var arrHistory = [],arr = [];
         var strHistory = localStorage.getItem('ac');
-        console.log(strHistory)
-        strHistory = localStorage.getItem('ac');
         if(strHistory){
             arrHistory = strHistory.split(',');
+            console.log(arrHistory)
             for (var i = 0; i< arrHistory.length; i++) {
-                $('<li>').html(arrHistory[i]).appendTo('#historySea');
+                $('<li>').attr('date-key',arrHistory[i].split(':')[0]).html(arrHistory[i].split(':')[1]).appendTo('#historySea');
             }
             $('#historySea li').click(function(){
                 strHistory = localStorage.getItem('ac');
                 arrHistory = strHistory.split(',');
+                var code = $(this).attr('date-key');
+//                alert(code)
                 var isHere = false;
                 var value = $(this).html();
                 for(var k=0;k<arrHistory.length;k++){
@@ -326,10 +327,15 @@
                     }
                 }
                 arrHistory.unshift(arrHistory.splice(thisindex,1));
-                strHistory = localStorage.setItem('ac',arrHistory); console.log(arrHistory)
+                strHistory = localStorage.setItem('ac',arrHistory);
                 for (var i = 0; i< arrHistory.length; i++) {
                     $('#historySea li').eq(i).html(arrHistory[i]);
                 }
+                var url = callback;
+                if(url == ""){
+                    return false;
+                }
+                window.location.href = "../"+url+"?DestCityCode="+code;
             })
         }
         MT.ClickTags = function(e){
@@ -338,14 +344,13 @@
             var thisHtml = $(this).html();
             strHistory = localStorage.getItem('ac');
             if(strHistory == null || strHistory == ""){
-                arrHistory.push(thisHtml)
-                $('<li>').html(arrHistory[0]).appendTo('#historySea');
+                arrHistory.push(cc+":"+thisHtml);
                 localStorage.setItem('ac',arrHistory);
             }else{
                 arrHistory = strHistory.split(',');
                 var isHere = false;
                 for(var k=0;k<arrHistory.length;k++){
-                    if(arrHistory[k] == thisHtml){
+                    if(arrHistory[k].split(':')[1] == thisHtml){
                         isHere = true;
                         var thisindex = k;
                         break;
@@ -354,17 +359,15 @@
                 if(isHere){
                     arrHistory.unshift(arrHistory.splice(thisindex,1));
                 }else{
-                    arrHistory.unshift(thisHtml);
+                    arrHistory.unshift(cc+":"+thisHtml);
                     if(arrHistory.length>3)arrHistory.length = 3;
                 }
-                for(var i=0;i<arrHistory.length;i++){
+                for (var i = 0; i< arrHistory.length; i++) {
                     $('<li>').html(arrHistory[i]).appendTo('#historySea');
                 }
                 localStorage.setItem('ac',arrHistory);
             }
             //历史end
-
-
             var url = callback;
             if(url == ""){
                 return false;
