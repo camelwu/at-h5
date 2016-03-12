@@ -333,11 +333,7 @@ var lsf_myweb={
                 debugger;
                 if(data.data.length>=1) {
                     var url = data.data[0].paymentRedirectURL;
-                    var winRef = window.open("", "_blank");//打开一个新的页面
-                    function openwin(url) {
-                        winRef.location = url;//改变页面的 location
-                    }
-                    setTimeout(openwin(url),800);//这个等待很重要，如果不等待的话将无法实现
+                    self.location.href=url;
                 }
             }else{
                 $("#status-h").fadeOut();

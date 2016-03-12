@@ -285,14 +285,8 @@ debugger;
 //数据展示部分
 function V(d){
     if(d.success){
-        debugger;
-        console.log(d.data.paymentRedirectURL);
         var url=d.data.paymentRedirectURL;
-        var winRef = window.open("", "_blank");//打开一个新的页面
-        function openwin(url) {
-            winRef.location = url;//改变页面的 location
-        }
-        setTimeout(openwin(url),800);//这个等待很重要，如果不等待的话将无法实现
+        self.location.href=url;
     }else{
         alert(d.message);
     }

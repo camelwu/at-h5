@@ -238,15 +238,10 @@
             var  Parameters=GetParameters(type,code);
             if(Parameters) {
                 console.log(Parameters);
-                var winRef = window.open("", "_blank");//打开一个新的页面
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
                     if (data.success) {
                         var url = data.data.paymentRedirectURL;
-                        function openwin(url) {
-                             location.href=url;
-//                            winRef.location = url;//改变页面的 location
-                        }
-                        setTimeout(openwin(url),800);//这个等待很重要，如果不等待的话将无法实现
+                        self.location.href=url;
 
                     } else {
                         alert(data.message);
@@ -256,7 +251,6 @@
                 })
             }
         }
-
         function GetParameters(type,orderCode) {
             var json={}
             var Parameters = {};
