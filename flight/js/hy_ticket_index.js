@@ -15,7 +15,6 @@
                _word:{tip:['去程','返程']}
            });
        },
-
        single:function(){
            var paraObj = {
                start:this.reDate(document.querySelector('.single-date').innerHTML)};
