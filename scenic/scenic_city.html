@@ -362,9 +362,9 @@
                     arrHistory.unshift(cc+":"+thisHtml);
                     if(arrHistory.length>3)arrHistory.length = 3;
                 }
-                for (var i = 0; i< arrHistory.length; i++) {
-                    $('<li>').html(arrHistory[i]).appendTo('#historySea');
-                }
+//                for (var i = 0; i< arrHistory.length; i++) {
+//                    $('<li>').html(arrHistory[i]).appendTo('#historySea');
+//                }
                 localStorage.setItem('ac',arrHistory);
             }
             //历史end
