@@ -328,7 +328,6 @@ var lsf_myweb={
         //数据展示部分
         function V(data){
 
-            var winRef = window.open("", "_blank");//打开一个新的页面
             if(data.success){
                 debugger;
                 if(data.data.length>=1) {

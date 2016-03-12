@@ -94,20 +94,20 @@ $(document).ready()
             if (data.success) {
                 window.location.href = 'user/user-allorder.html';
                 vlm.init();
-//                if(business==3) {
-//                    var code=data.BookingRefNo;
-//                    window.location.href = 'flight/pay_success.html?bookingRefNo='+code;
-//                }
-//                else if(business==2) {
-//                    window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
-//                }
-//                else if(business==1){
-//                    var code=data.data.bookingReferenceNo;
-//                    window.location.href = 'hotel/trade_details.html?bookingRefNo='+code;
-//                }
-//                else if(business==5){
-//                    window.location.href = 'tour/pay_success.html?bookingRefNo='+bookingRefNo;
-//                }
+                if(business==3) {
+                    var code=data.BookingRefNo;
+                    window.location.href = 'flight/pay_success.html?bookingRefNo='+code;
+                }
+                else if(business==2) {
+                    window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
+                }
+                else if(business==1){
+                    var code=data.data.bookingReferenceNo;
+                    window.location.href = 'hotel/trade_details.html?bookingRefNo='+code;
+                }
+                else if(business==5){
+                    window.location.href = 'tour/pay_success.html?bookingRefNo='+bookingRefNo;
+                }
             } else {
                  alert(data.message);
             }
