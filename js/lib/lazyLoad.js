@@ -122,10 +122,17 @@ lazyLoad.prototype = {
 			return;
 		}
 		var i = this.imgs.length;
+        var realSrc = "";
 		for (--i; i >= 0; i--) {
 			if (this.shouldShow(i)) {
-				//加载图片
-				this.imgs[i].src = this.imgs[i].getAttribute("data-src");
+				//加载图片 
+                realSrc = this.imgs[i].getAttribute("data-src");
+                if(realSrc.indexOf("http://") > -1){
+                    this.imgs[i].src = realSrc;
+                }else{
+                    //没有图片
+                    this.imgs[i].src = this.container.getAttribute("data-no-img");
+                }
 				//清理缓存
 				this.imgs.splice(i, 1);
 			}
