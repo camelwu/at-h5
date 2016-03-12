@@ -725,7 +725,18 @@
 						}
 
 					}
-				}, loadJson = function(url, data, mycallback, async, encryption) {
+				},
+                
+                loadJson = function(url, data, mycallback, async, encryption,isShowLoading) {
+                    if(isShowLoading != undefined && isShowLoading == true){
+                        //ajax 不全屏显示loading
+                        $("#preloader").ajaxStart(function(){
+                           $(this).hide();
+                        });
+                        $("#preloader").ajaxStop(function(){
+                           $(this).hide();
+                        });
+                    }
 					if (async != undefined && async == true) {
 						$.ajaxSetup({
 							async : false
@@ -1039,13 +1050,15 @@
 
 					//choice.location = urls;
 				};
-				$("#preloader").ajaxStart(function(){
-				   $(this).show();
-					$('#status').show();
-				});
-				$("#preloader").ajaxStop(function(){
-				   $(this).hide();
-				});
+                
+                $("#preloader").ajaxStart(function(){
+                   $(this).show();
+                    $('#status').show();
+                });
+                $("#preloader").ajaxStop(function(){
+                   $(this).hide();
+                });
+				
 			//out api
 			return {
 				api : _api,

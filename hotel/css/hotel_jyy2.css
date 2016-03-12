@@ -125,7 +125,7 @@ body {
     color: #d1d1d1;
 }
 .hotelcontent{
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
     margin-top: 45px;
     list-style-type: none;
@@ -574,8 +574,16 @@ body {
 /*
     ���������ٷ���ӵ�css����һ���ּӵ��м���
 */
+/*
 .hotelcontent li:last-child{
     margin-bottom:44px;
+}
+*/
+.load-more{
+    margin-bottom: 44px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
 }
 #preloader {
     position:fixed;
