@@ -241,7 +241,12 @@
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
                     if (data.success) {
                         var url = data.data.paymentRedirectURL;
+                        var winRef = window.open("", "_blank");//打开一个新的页面
+                        function openwin(url) {
+                            winRef.location = url;//改变页面的 location
+                        }
                         setTimeout(openwin(url),800);//这个等待很重要，如果不等待的话将无法实现
+
                     } else {
                         alert(data.message);
                     }
@@ -250,14 +255,7 @@
                 })
             }
         }
-        function openwin(url) {
-            var a = document.createElement("a");
-            a.setAttribute("href", url);
-            a.setAttribute("target", "_blank");
-            a.setAttribute("id", "camnpr");
-            document.body.appendChild(a);
-            a.click();
-        }
+
         function GetParameters(type,orderCode) {
             var json={}
             var Parameters = {};
