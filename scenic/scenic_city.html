@@ -283,7 +283,7 @@
                 var newArray = MT.SplitCitiesArray(json.data.destCities.sort(MT.ByCities));
 //                var docf = document.createDocumentFragment();
                 for (var i = 0;i<newArray.length;i++){
-                    var title =newArray[i][0].cityCode.substr(0,1);
+                    var title =newArray[i][0].cityNamePY.substr(0,1);
                     tpl_str = $("<li id='"+title+"'></li>");
                     $("<span  class='gui-city-t'></span>").html(title).appendTo(tpl_str);
                     tpl_ul = $("<ul class='city-tags'></ul>");
@@ -308,7 +308,7 @@
         var strHistory = localStorage.getItem('ac');
         if(strHistory){
             arrHistory = strHistory.split(',');
-            console.log(arrHistory)
+//            console.log(arrHistory)
             for (var i = 0; i< arrHistory.length; i++) {
                 $('<li>').attr('date-key',arrHistory[i].split(':')[0]).html(arrHistory[i].split(':')[1]).appendTo('#historySea');
             }
@@ -436,6 +436,7 @@
         $('#seach_up').focus();
         $('body').css('overflow-y','hidden');
         data = globalData.data.destCities;
+        console.log(data);
     })
     $('.pop_box #js_back_btn,.pop_box a.cancelBtn').click(function(){
         $('.pop_box_dis,.pop_box .not_exist,span#close_empty').hide();
@@ -454,7 +455,7 @@
         var value = $('#seach_up').val();
         var strCity = '';
         for(var i=0;i<data.length;i++){
-            if(data[i].cityCode.toLowerCase().indexOf(value)> -1){
+            if(data[i].cityNamePY.toLowerCase().indexOf(value)> -1){
                 strCity+='<li><p data-key='+data[i].cityCode+'>'+data[i].cityName+'</p></li>'
             }
             if(data[i].cityName.indexOf(value)> -1){
