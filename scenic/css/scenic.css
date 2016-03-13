@@ -414,8 +414,8 @@ i{
 .top-back{
     position: absolute;
     z-index: 1;
-    width: 12px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     left: 20px;
     top: 30px;
     background-position: 0.5% -1%;
@@ -1078,6 +1078,7 @@ i{
     margin: 0;
     padding:0!important;
     display: none;
+    overflow-x: auto;
 }
 .spe-detail{
     margin-bottom: 0;

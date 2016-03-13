@@ -24,7 +24,7 @@
 <body>
     <div class="all-elements">
         <div id="content" class="snap-content">
-            <a href="javascript:history.go(-1);" class="icons top-back"></a>
+            <a href="javascript:history.go(-1)" class="icons top-back"> </a>
             <div class="sce-detail-exhi">
                 <h3>景点详情</h3>
                 <img id="ScenicTopImg" src="images/greatwall-sun.jpg" alt="img"/>
@@ -140,14 +140,26 @@
     {% for(var i=0,len=data.prices.length;i<len;i++){ %}
     <li>
         <div class="combo-name">{%=data.packageName%}</div>
-        <div class="combo-price">{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人){% }else{ %}(儿童){% } %}</div>
+        <div class="combo-price">¥{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人){% }else{ %}(儿童){% } %}</div>
         <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %}
-        ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %});" class="s-reserve button-orange">预定</a>
+        ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %},0);" class="s-reserve button-orange">预订</a>
         <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
         <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>-->
     </li>
     {% } %}
 </script>
+    <script id="tpl_GetDetails_Package_ScenicPackageFail" type="text/template">
+
+
+        <li>
+            <div class="combo-name">{%=data.packageName%}</div>
+            <div class="combo-price">¥355(成人)</div>
+            <a href="javascript:MT.CCheckLogin({%=packageID%},0,1,1);" class="s-reserve button-orange">预定</a>
+            <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
+            <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>-->
+        </li>
+
+    </script>
 <script id="tpl_GetDetails_Package_TripPlan" type="text/template">
     {%=overview%}
 </script>
@@ -162,7 +174,7 @@
     /*景点 目标城市列表页MT*/
     (function(){
         var val = vlm.parseUrlPara(window.location.href);
-        var themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate;
+        var themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
         vlm.init();
 
         /**
@@ -200,6 +212,7 @@
             console.log(json);
             if(json.success){
                 var data=json.data;
+                ExtendData = data;
                 data.departValidFrom = MT.getTime(data.departValidFrom);
                 data.departValidTo = MT.getTime(data.departValidTo);
                 data.salesFrom = MT.getTime(data.salesFrom);
@@ -291,17 +304,19 @@
                 $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
             }else {
                 console.log(json);
-                jAlert(json.message,"提示");
+//                jAlert(json.message,"提示");
+                var data=ExtendData,tpl_GetDetails_Package_ScenicPackageFail = template("tpl_GetDetails_Package_ScenicPackageFail",data);
+                $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackageFail);
             }
         }
 
         //判断是否登录
-        MT.CCheckLogin = function(packageId,RequiredPickupPoint,Adult){
+        MT.CCheckLogin = function(packageId,RequiredPickupPoint,Adult,fail){
             var islogin = vlm.checkLogin(localStorage.getItem("login"));
 //                console.log(vlm.checkLogin(localStorage.getItem("login")));
             if(islogin == true){
                 window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId
-                        +"&RPP="+RequiredPickupPoint+"&ADU="+Adult;
+                        +"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
             }else{
                 location.href="../user/user-login.html"
             }
