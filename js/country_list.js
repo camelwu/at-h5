@@ -855,17 +855,20 @@ var arrCountry= [{"CountryEN":"Angola",
                         document.querySelector("#uptra_page .user-content").style.position = "relative";
                         oInput.value='';
                     },500)
-                    if($('#addtra_page')[0].style.display == 'none')
+                    if($('#addtra_page').length>0)
                     {
-                        if(index == 1 || index == 3)
+                        if($('#addtra_page')[0].style.display == 'none')
                         {
-                            $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                            if(index == 1 || index == 3)
+                            {
+                                $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                            }
                         }
-                    }
-                    else{
-                        if(index == 1 || index == 3)
-                        {
-                            $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        else{
+                            if(index == 1 || index == 3)
+                            {
+                                $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                            }
                         }
                     }
 
@@ -873,8 +876,10 @@ var arrCountry= [{"CountryEN":"Angola",
 
                 oDiv.style.display='block';
                 //android 相对位置 防止键盘覆盖问题
-                document.querySelector("#addtra_page .user-content").style.position = "absolute";
-                document.querySelector("#uptra_page .user-content").style.position = "absolute";
+                if(document.querySelector("#addtra_page .user-content") !=null) {
+                    document.querySelector("#addtra_page .user-content").style.position = "absolute";
+                    document.querySelector("#uptra_page .user-content").style.position = "absolute";
+                }
 
                 var oCont=document.querySelectorAll('.country-btn')[index];
                 var oTab=document.querySelector('.country-list');
@@ -891,18 +896,16 @@ var arrCountry= [{"CountryEN":"Angola",
                         document.querySelector("#uptra_page .user-content").style.position = "relative";
                         oInput.value='';
                     },500)
-
-                    if($('#addtra_page')[0].style.display == 'none')
-                    {
-                        if(index == 1 || index == 3)
-                        {
-                            $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                    if($('#addtra_page').length>0) {
+                        if ($('#addtra_page')[0].style.display == 'none') {
+                            if (index == 1 || index == 3) {
+                                $('#uptra_page .phone-pre').html('+' + $(e.target).attr('data-tel-code'));
+                            }
                         }
-                    }
-                    else{
-                        if(index == 1 || index == 3)
-                        {
-                            $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        else {
+                            if (index == 1 || index == 3) {
+                                $('#addtra_page .phone-pre').html('+' + $(e.target).attr('data-tel-code'));
+                            }
                         }
                     }
                 };

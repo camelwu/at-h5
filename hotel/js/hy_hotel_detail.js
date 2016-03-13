@@ -358,7 +358,8 @@
                 if(sign){
                     torder();
                 }else{
-					location.href="../user/user-login.html"
+					var url=window.location.href;
+					location.href="../user/user-login.html?returnUrl="+escape(url);
 				}
             }catch(e){
                 console.info(e);

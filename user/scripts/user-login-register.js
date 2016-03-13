@@ -448,7 +448,13 @@ function mycallback_login(ret) {
         localStorage.phone = myJson.data[0].mobile;
         localStorage.memberid = myJson.data[0].memberID;
         localStorage.setItem('login',1);
-        window.location.href = "user.html";
+        var url=vlm.getpara("returnUrl");
+
+        if(url=="" || url==null) {
+            window.location.href = "user.html";
+        }else{
+            window.location.href =unescape(url);
+        }
     } else {
 
         if(myJson.message == 'Invalid password')
