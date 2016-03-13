@@ -830,7 +830,7 @@ var arrCountry= [{"CountryEN":"Angola",
 
     if(document.querySelector('#country-wrap'))document.querySelector('#country-wrap').appendChild(oUl);
 
-    var aBtn=document.querySelectorAll('.country-btn');
+    var aBtn=document.querySelectorAll('.tel-btn');
     var oDiv=document.querySelector('.country-cho-wrap');
     var oInput=document.querySelector('#country-input-zone');
     var oTc=document.querySelector('.country-list-searched');
@@ -845,7 +845,7 @@ var arrCountry= [{"CountryEN":"Angola",
             aBtn[i].onclick=function(){
                 var _this=this;
                 countryListSearched.onclick=function(e){
-                    _this.innerHTML=countryInputZone.value=e.target.innerHTML;
+                    _this.innerHTML=countryInputZone.value=$(e.target).attr("data-tel-code");
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     this.style.display='none';
@@ -861,11 +861,12 @@ var arrCountry= [{"CountryEN":"Angola",
                 oDiv.style.display='block';
 
 
-                var oCont=document.querySelectorAll('.country-btn')[index];
+                var oCont=document.querySelectorAll('.tel-btn')[index];
                 var oTab=document.querySelector('.country-list');
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
-                    oCont.innerHTML=oInp.value=e.target.innerHTML;
+                    //oCont.innerHTML=oInp.value=e.target.innerHTML;
+                    oCont.innerHTML=oInp.value=$(e.target).attr("data-tel-code");
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     console.log(e.target);
