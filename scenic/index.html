@@ -168,7 +168,7 @@
                         {%=hotScenicList[i].productSite%}
                     </div>
             </a>
-            <div class="spotDesc">{%=hotScenicList[i].productDesc%}</div>
+            <div class="spotDesc">{%=hotScenicList[i].productName%}</div>
             <div><span>￥</span><span class="pay-num">{%=hotScenicList[i].productPrice%}</span><span>起</span></div>
         </li>
         {% } %}
@@ -297,7 +297,7 @@
                 var json=ret;
                 if(json.success){
                     var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
-                    console.log(data.hotScenicList);
+                    console.log(data);
                     if(data.hotScenicList.length == 0){
                         jAlert("抱歉暂时没有数据","提示");
                     }
