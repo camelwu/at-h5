@@ -352,11 +352,14 @@
 
 		reserveHandler : function(event) {
 			var code = this.getAttribute("room-code");
+
             try{
                 var sign = vlm.checkLogin(torder);
                 if(sign){
                     torder();
-                }
+                }else{
+					location.href="../user/user-login.html"
+				}
             }catch(e){
                 console.info(e);
             }
