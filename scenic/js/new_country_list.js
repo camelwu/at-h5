@@ -854,19 +854,7 @@ var arrCountry= [{"CountryEN":"Angola",
                         oTc.style.display='none';
                         oInput.value='';
                     },500)
-                    //if($('#addtra_page')[0].style.display == 'none')
-                    //{
-                    //    if(index == 1 || index == 3)
-                    //    {
-                    //        $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
-                    //    }
-                    //}
-                    //else{
-                    //    if(index == 1 || index == 3)
-                    //    {
-                    //        $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
-                    //    }
-                    //}
+
 
                 };
 
@@ -887,19 +875,7 @@ var arrCountry= [{"CountryEN":"Angola",
                         oInput.value='';
                     },100)
 
-                    //if($('#addtra_page')[0].style.display == 'none')
-                    //{
-                    //    if(index == 1 || index == 3)
-                    //    {
-                    //        $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
-                    //    }
-                    //}
-                    //else{
-                    //    if(index == 1 || index == 3)
-                    //    {
-                    //        $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
-                    //    }
-                    //}
+
                 };
 
             };

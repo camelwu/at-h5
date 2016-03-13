@@ -35,6 +35,14 @@
         }
         .flight_info i.data_icon{
             width: 16px;height:17px; position: absolute; right:20px;; top:10px; background: url(images/date_icon.gif) no-repeat; background-size: 100% 100%;}
+        .stopgray {
+            filter: grayscale(100%);
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            pointer-events:none;
+        }
     </style>
 
 </head>
@@ -576,8 +584,17 @@
 
                     MT.render();
                 }else {
-                    console.log(json);
-                    jAlert(json.message,"提示");
+
+                    if(val.FAIL == 1){
+                        MT.renderFail();
+                        return false;
+                    }else{
+
+                        console.log(json);
+                        jAlert(json.message,"提示");
+
+                    }
+
 
                 }
             }
@@ -601,6 +618,83 @@
 
             }
 
+
+            /**
+             * 渲染模版
+             */
+            MT.renderFail = function(){
+                var isAudlt = 1;
+
+                if(isAudlt == 1){
+                    ExtendData = $.extend({isAudlt:1,AudltPrice:0,ChildPrice:0,minPax:0,minPaxType:"",PackageID:0},ExtendData);
+                }
+
+                ExtendData.DefaultDate =  MT.getYMDMatch(ExtendData.DetailData.data.defaultDepartStartDate);
+                ExtendData.StartDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidFrom);
+                ExtendData.EndDate =  MT.getYMDMatch(ExtendData.DetailData.data.departValidTo);
+                ExtendData.minPax = ExtendData.DetailData.data.minPax;
+                ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
+                ExtendData.PackageID = ExtendData.DetailData.data.packageID;
+//                ExtendData.travelersInput = ExtendData.SearchPriceData.data.bookingFormInfo.travelersInput;
+//                ExtendData.requiredPickupPoint = ExtendData.SearchPriceData.data.bookingFormInfo.requiredPickupPoint;
+//                ExtendData.airportTransferType = ExtendData.SearchPriceData.data.bookingFormInfo.airportTransferType;
+                //是否需要接送服务
+                if(false){
+                    $("[data-key=holist_page]").remove();
+                }
+                //是否需要护照
+                if(false){
+                    $("#scenic2_idcard").parent().remove();
+                }
+                //是否需要航班信息
+                if(false){
+                    //None, TwoWay，Arrival，Depart
+                    $("[data-key=flight_page]").show();
+                    FlightDateChoose();
+
+                }else{
+                    $("[data-key=flight_page]").hide();
+                }
+
+
+                MT.renderViewFail();
+
+//                MT.renderAddPackageView();
+
+                dateHandler();
+
+                console.log(ExtendData);
+
+
+
+
+            }
+
+            /**
+             * 渲染view1
+             * @constructor
+             */
+            MT.renderViewFail = function(){
+                var data = ExtendData;
+                var tpl_ScenicView1 = template("tpl_ScenicView1",ExtendData);
+                var tpl_Adult_Child1 = template("tpl_Adult_Child1",ExtendData);
+                //初始化默认时间
+                var defaultTime = ExtendData.DefaultDate;
+                var categoryIndex = 0,categoryTitle;
+//                console.log(data);
+
+                $(".js-childblock1").after(tpl_ScenicView1);
+
+                var child_one = $(".js-sce-ticket1").append(tpl_Adult_Child1);
+                child_one.find(".sce-ticket:last").attr("data-key",1);
+                child_one.find(".sce-ticket:last").find(".js-date").attr("id","jdate0");
+                child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
+                child_one.find(".js-sce-introduce-txt:last").attr("data-key",data.DetailData.data.packageID);
+                child_one.find(".js-sce-introduce-txt:last").html(data.DetailData.data.packageName+"(产品编号:"+data.DetailData.data.packageRefNo+")");
+                $(".add-ticket").addClass("stopgray");
+                $(".js-order-total").html("¥0");
+
+            }
 
             /*
             * 返回年月日
@@ -652,7 +746,6 @@
                 }
 
 
-
                 MT.renderView1();
 
                 MT.renderAddPackageView();
@@ -660,6 +753,10 @@
                 dateHandler();
 
                 console.log(ExtendData);
+
+
+
+
             }
             /**
              * 渲染view1
@@ -681,7 +778,7 @@
                     child_one.find(".sce-ticket:last").find(".js-date:eq("+i+")").attr("id","jdate"+i);
                     child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
                     child_one.find(".js-sce-introduce-txt:last").attr("data-key",data.SearchPriceData.data.tourInfos[i].tourID);
-                    child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+"["+data.DetailData.data.packageRefNo+"]");
+                    child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+"(产品编号:"+data.DetailData.data.packageRefNo+")");
 
                 }
 
@@ -1334,10 +1431,13 @@
                     oAgree.style.background='url(images/ui/icons1.png) -23.7rem -0.4rem';
                     oAgree.style.backgroundSize='40rem 12rem';
                     bOk=false;
+                    $(".js-order-detail").removeClass("stopgray");
                 }else{
                     oAgree.style.background='url(images/ui/icons1.png) -26.6rem -0.4rem';
                     oAgree.style.backgroundSize='40rem 12rem';
                     bOk=true;
+                    $(".js-order-detail").addClass("stopgray");
+
                 }
             };
 
