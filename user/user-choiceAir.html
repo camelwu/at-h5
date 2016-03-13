@@ -547,10 +547,11 @@
 				});
 
 			}
+
 			var tpl=GetTpl(from,isContact)
 			var html = template(tpl,selectUser);
 			SavaLocalStorge(selectUser,isContact)
-		    $(ifrCilent.parentNode).find("."+elementId).html(html);
+		    $(ifrCilent.parentNode).find("#"+elementId).html(html);
 		    ifrCilent.parentNode.removeChild(ifrCilent);
 
 	}
@@ -633,6 +634,13 @@
 				}
 				else{
 					return "tpl_t_contact";
+				}
+			case "ht":
+				if(!isContact) {
+					return "tpl_ht_passager";
+				}
+				else{
+					return "tpl_ht_contact";
 				}
 
 		}
@@ -908,6 +916,37 @@
 	<li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  value="{%=traveller.mobilePhone%}"></li>
 	<li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"   value="{%=traveller.email%}"></li>
 </script>
+
+
+
+<!--酒+景获取联系人信息-->
+<script id="tpl_ht_passager" type="text/template">
+	<li class="trave-li trave-li-adu">
+		<span class="list_tit2 ">姓：</span><span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" value="{%=traveller.lastName%}"></span>
+		<span class="list_tit2 ">名：</span><span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" value="{%=traveller.firstName%}"></span>
+	</li>
+	 <li>
+		 <span class="list_tit">护照：</span> <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" value="{%=listTravellerIdInfo[0].idNumber%}"></span>
+	 </li>
+</script>
+<!--酒+景获取联系人信息-->
+<script id="tpl_ht_contact" type="text/template">
+	<li>
+		<span class="list_tit">姓：</span><input class="list_inp_name list_inp2" id="list-lastname" type="text" placeholder="姚" value="{%=traveller.lastName%}">
+		<span class="list_tit">名：</span><input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="军华" value="{%=traveller.firstName%}">
+
+	</li>
+	<li>
+		<span class="list_tit">手机：</span>
+		<span class="list_con"><input class="list_inp2" id="list_con_tel" type="text" placeholder="+8613090008000" value="{%=traveller.mobilePhone%}"></span>
+	</li>
+	<li>
+		<span class="list_tit">邮箱：</span>
+		<span class="list_con"><input class="list_inp2" id="list_con_email" type="text" placeholder="morningtour@163.com" value="{%=traveller.email%}"></span>
+	</li>
+</script>
+
+
 <!--国籍选择结束-->
 <script src="../js/country_list.js"></script>
 <script src="../js/require.js" data-main="../js/user.js"></script>

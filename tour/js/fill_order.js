@@ -56,7 +56,7 @@
                 oSection.className='li_section_box';
                 oSection.innerHTML='<li>'
                     +'<span class="list_tit">成人'+(k+1)+'：</span>'
-                    +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
+                    +'<b class="add_icon"><a href="javascript:;" class="add-passager" ></a></b></span>'
                     +'</li>'
                     +"<ul id='trave"+k+"'>"
                     +'<li class="trave-li trave-li-adu">'
@@ -141,15 +141,18 @@
         }
         urlShow();
 
-        //$('.add-contact').each(function(index,element){
-        //    $(this).click(function(){
-        //        debugger;
-        //        alert(11);
-        //        vlm.f_choice('trave'+index,'contact','',false,false);
-        //    })
-        //
-        //})
+        $('.add-passager').each(function(index,element){
+            $(this).click(function(){
+                debugger;
+                vlm.f_choice('trave'+index,"ht",'traver','',false,false);
+            })
 
+        })
+
+
+        $('.add-contact').click(function(){
+                vlm.f_choice('contact',"ht",'contact','',false,false);
+        })
 
 
 
