@@ -855,17 +855,19 @@ var arrCountry= [{"CountryEN":"Angola",
                         document.querySelector("#uptra_page .user-content").style.position = "relative";
                         oInput.value='';
                     },500)
-                    if($('#addtra_page')[0].style.display == 'none')
-                    {
-                        if(index == 1 || index == 3)
+                    if($('#addtra_page').length > 0){
+                        if($('#addtra_page')[0].style.display == 'none')
                         {
-                            $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                            if(index == 1 || index == 3)
+                            {
+                                $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                            }
                         }
-                    }
-                    else{
-                        if(index == 1 || index == 3)
-                        {
-                            $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        else{
+                            if(index == 1 || index == 3)
+                            {
+                                $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                            }
                         }
                     }
 
@@ -892,17 +894,16 @@ var arrCountry= [{"CountryEN":"Angola",
                         oInput.value='';
                     },500)
 
-                    if($('#addtra_page')[0].style.display == 'none')
-                    {
-                        if(index == 1 || index == 3)
-                        {
-                            $('#uptra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                    if($('#addtra_page').length > 0) {
+                        if ($('#addtra_page')[0].style.display == 'none') {
+                            if (index == 1 || index == 3) {
+                                $('#uptra_page .phone-pre').html('+' + $(e.target).attr('data-tel-code'));
+                            }
                         }
-                    }
-                    else{
-                        if(index == 1 || index == 3)
-                        {
-                            $('#addtra_page .phone-pre').html('+'+$(e.target).attr('data-tel-code'));
+                        else {
+                            if (index == 1 || index == 3) {
+                                $('#addtra_page .phone-pre').html('+' + $(e.target).attr('data-tel-code'));
+                            }
                         }
                     }
                 };
