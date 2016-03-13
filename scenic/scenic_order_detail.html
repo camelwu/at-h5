@@ -1175,6 +1175,44 @@
                 $(".js-price-list").html(list);
             }
 
+
+            MT.stopDefault = function(e) {
+                if ( e && e.preventDefault )
+                    e.preventDefault();
+                else
+                    window.event.returnValue = false;
+
+                return false;
+            }
+
+            /**
+             * 预订 验证
+             * @constructor
+             */
+            MT.validate = function(data,rules,message){
+                if(rules.required == "required"){
+                    if(!vlm.Utils.validate.isNoEmpty(data)){
+                        jAlert(message.required,"提示");
+                        MT.stopDefault(e);
+                    }
+                }
+                if(rules.email == "email"){
+                    if(!vlm.Utils.validate.email(data)){
+                        jAlert(message.email,"提示");
+
+                        MT.stopDefault(e);
+                    }
+                }
+                if(rules.phone == "phone"){
+                    if(!vlm.Utils.validate.mobileNo(data)){
+                        jAlert(message.phone,"提示");
+                        MT.stopDefault(e);
+                    }
+                }
+
+
+            }
+
             /**
              * 预订 创建订单
              * @constructor
@@ -1214,6 +1252,7 @@
                         ChildCount = parseInt(ChildCount);
                         for(var i = 0;i< ChildCount;i++){
                             Childtmp = $(".js-children-wrap").find("input").eq(i).val();
+                            MT.validate(Childtmp,{"required":"required"},{"required":"儿童年龄不能为空"});
                             ChildArray.push(Childtmp);
                         }
                     }
@@ -1235,18 +1274,7 @@
                     }
 
 
-                    //接送服务
-                    PickupCount = $("#choHotel").length;
-                    if(PickupCount > 0){
-                        PickupTmp = $("#choHotel").attr("data-key");
-                        if(PickupTmp != ""){
-                            PickupID = $("#choHotel").attr("data-key");
-                            PickupCount = $("#choHotel").html();
-                            PickupPoint = {"PickupID":PickupID,"PickupPoint":PickupCount};
-                            param.Parameters.PickupPoint = PickupPoint;
-                        }
 
-                    }
 
                     //国籍
                     NationalityCode = $("#jp_bank_country").attr("data-code");
@@ -1257,11 +1285,13 @@
                     //取票人信息
                     FirstName = $("#scenic2_name1").val();
                     LastName = $("#scenic2_name2").val();
-
+                    MT.validate(FirstName,{"required":"required"},{"required":"取票人姓不能为空"});
+                    MT.validate(LastName,{"required":"required"},{"required":"取票人名不能为空"});
 
                     //是否需要护照
                     if(ExtendData.travelersInput == "RequiredAllTravelersDetailsWithDocumentInfo"){
                         TravelerDocument = $("#scenic2_idcard").val();
+                        MT.validate(TravelerDocument,{"required":"required"},{"required":"护照不能为空"});
                         Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode,"TravelerDocument":TravelerDocument});
                     }else{
                         Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
@@ -1276,6 +1306,8 @@
                         var DepartDateTime = $("#departDateTime").html()+"T00:00:00";
                         var ArrivalFlightNo = $("#arrivalFlightNo").val();
                         var ArrivalDateTime = $("#arrivalDateTime").html()+"T00:00:00";
+                        MT.validate(DepartFlightNo,{"required":"required"},{"required":"航班信息不能为空"});
+                        MT.validate(ArrivalFlightNo,{"required":"required"},{"required":"航班信息不能为空"});
                         param.Parameters.FlightDetails = {"ArrivalFlightNo":ArrivalFlightNo,"ArrivalDateTime":ArrivalDateTime,"DepartFlightNo":DepartFlightNo,"DepartDateTime":DepartDateTime};
                     }
 
@@ -1284,10 +1316,31 @@
                     //联系人信息
                     FirstName = $("#scenic_name1").val();
                     LastName = $("#scenic_name2").val();
-
-                    Email = $("#scenic_email").val();
+                    MT.validate(FirstName,{"required":"required"},{"required":"联系人信息姓不能为空"});
+                    MT.validate(LastName,{"required":"required"},{"required":"联系人信息名不能为空"});
                     PhoneNo = $("#scenic_phone").val();
+                    MT.validate(PhoneNo,{"required":"required"},{"required":"联系电话不能为空"});
+                    MT.validate(PhoneNo,{"phone":"phone"},{"phone":"联系电话格式不正确"});
+                    Email = $("#scenic_email").val();
+                    MT.validate(Email,{"required":"required"},{"required":"Email不能为空"});
+                    MT.validate(Email,{"email":"email"},{"email":"请输入正确Email格式"});
                     param.Parameters.ContactDetails  = {"Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"Email":Email,"ContactNo":{"CountryCode":CountryCode,"PhoneNo":PhoneNo}};
+
+
+                    //接送服务
+                    PickupCount = $("#choHotel").length;
+                    if(PickupCount > 0){
+                        PickupTmp = $("#choHotel").attr("data-key");
+                        MT.validate(PickupTmp,{"required":"required"},{"required":"请选择接送地点"});
+                        if(PickupTmp != ""){
+                            PickupID = $("#choHotel").attr("data-key");
+                            PickupCount = $("#choHotel").html();
+                            PickupPoint = {"PickupID":PickupID,"PickupPoint":PickupCount};
+                            param.Parameters.PickupPoint = PickupPoint;
+                        }
+
+                    }
+
 
                     //价格信息
                     CurrencyCode = "CNY";
