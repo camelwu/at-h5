@@ -811,7 +811,7 @@
 				}
 			}, l_find = function() {
 
-			}, _choice = function(f, t, tid, isNeedPassport,isMulSelect,numofAdult,numofChlid,id) {
+			}, _choice = function(elementId,f, t, tid, isNeedPassport,isMulSelect,numofAdult,numofChlid,id) {
 				//if(arguments.length<1){return ;}
 				//var arg = arguments.callee.slice(this);
 				var type = '', title = '';
@@ -836,7 +836,7 @@
 					type = 'add';
 				}
 				//var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
-				var choice = createIframe('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id);
+				var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId +' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id);
 				document.body.appendChild(choice);
 				//choice.location = urls;
 			},createIframe = function(urlstr) {

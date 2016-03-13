@@ -57,7 +57,7 @@
                                <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameFrom%}{%=flightInfo.segmentsLeave[0].TermDepart%}</p>
                           </div>
                           <div class="time-arrow">
-                               <h6>2h3m</h6>
+                               <!--<h6>2h3m</h6>-->
                                <div class="icon-arrow"></div>
                           </div>
                           <div class="city-time-right">
@@ -78,7 +78,7 @@
                                   <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameFrom%}{%=flightInfo.segmentsLeave[i].TermDepart%}</p>
                               </div>
                               <div class="time-arrow">
-                                  <h6>2h30m</h6>
+                                  <!--<h6>2h30m</h6>-->
                                   <div class="icon-arrow"></div>
                               </div>
                               <div class="city-time-right">
@@ -142,13 +142,13 @@
             <span class="first">护照</span><span>123455677788</span>
         </p>
         <p>
-            <span class="first">联系电话</span><span>{%=contactNumber%}</span>
+            <span class="first">联系电话</span><span><a href="tel:{%=contactNumber%}">{%=contactNumber%}</a></span>
         </p>
         <p>
             <span class="first">邮箱</span><span>{%=email%}</span>
         </p>
     </div>
-        <div class="contact-service"><span>联系客服</span> <i></i></div>
+        <div class="contact-service"><span><a href="tel:888888888888">联系客服</a></span> <i></i></div>
           <div class="button">
         <button type="button" class="pay-button"><a href="pay_detail.html?bookingRefNo={%=bookingRefNo%}">支付订单</a></button>
     </div>

@@ -58,6 +58,7 @@
                     +'<span class="list_tit">成人'+(k+1)+'：</span>'
                     +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
                     +'</li>'
+                    +"<ul id='trave"+k+"'>"
                     +'<li class="trave-li trave-li-adu">'
                     +'<span class="list_tit2 ">姓：</span>'
                     +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" /></span>'
@@ -68,6 +69,7 @@
                     +'<span class="list_tit">护照：</span>'
                     +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>'
                     +'</li>';
+                    +"</ul>"
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
 
             }
@@ -139,10 +141,16 @@
         }
         urlShow();
 
-        //添加联系人
-        $('.add-contact').click(function(){
-            vlm.f_choice('t','contact','',false,false);
-        });
+        //$('.add-contact').each(function(index,element){
+        //    $(this).click(function(){
+        //        debugger;
+        //        alert(11);
+        //        vlm.f_choice('trave'+index,'contact','',false,false);
+        //    })
+        //
+        //})
+
+
 
 
         //同意条款

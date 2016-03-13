@@ -412,20 +412,21 @@
 <script src="../js/lib/scroller.js"></script>
 <!--<script src="scripts/userChoice.js"></script>-->
 <script>
-	vlm.init();
-	var urlobj = vlm.parseUrlPara(window.location.href);
-	var isMulSelect=vlm.getpara("isMulSelect");//是否多选
-	var isNeedPassport=vlm.getpara("isNeedPassport");//是否需要护照
-	var titleType=vlm.getpara("title").substr(2);//是否多选title;
-	var travId=vlm.getpara("Id");//id
-	$(".newTitle").html("新增"+titleType)
-	var from=vlm.getpara("from");
-	var json="";
-	var travJson;
-	var tralJsonObj={};
-	var index;
-	var selectUser=[]
+	var urlobj = vlm.parseUrlPara(window.location.href),isMulSelect=vlm.getpara("isMulSelect")//是否多选
+	,isNeedPassport=vlm.getpara("isNeedPassport")//是否需要护照
+	, titleType=vlm.getpara("title").substr(2)//是否多选title;
+	, travId=vlm.getpara("Id")//id,
+	 ,elementId=vlm.getpara("elementId")//id
+	, from=vlm.getpara("from")
+	, json=""
+	, travJson
+	, tralJsonObj={}
+	, index
+	, selectUser=[]
+	  ifrCilent=window.parent.document.getElementById("choiceAir");
 
+	$(".newTitle").html("新增"+titleType);
+	vlm.init();
 	//中-英
 	$('#chn-name .foreign').click(function() {
 		$('#chn-name').hide();
@@ -521,15 +522,14 @@
 		});
 	}
 	$(".header-back").click(function(){
-//		if (window.opener) {
-//			window.close();
-//		} else {
-//			window.history.go(-1);
-//		}
-		$("#choiceAir").hide();
+		//alert(document.getElementById("choiceAir"));
+		if (window.opener) {
+			window.close();
+		} else {
+			ifrCilent.parentNode.removeChild(ifrCilent);
+		}
 	});
 	function submit_t() {
-		if (window.opener) {
 			var seled = $(".choiced");
 			selectUser=[];
 			if(isNeedPassport=="true"){
@@ -541,25 +541,18 @@
 					}
 					selectUser.push(tralJsonObj[$(this).attr("data-id")]);
 				})
-			}
-			else{
+			}else{
 				$(seled).each(function(){
 					selectUser.push(tralJsonObj[$(this).attr("data-id")]);
-				})
+				});
 
 			}
-			jAlert(111);
 			var tpl=GetTpl(from,isContact)
-			debugger;
 			var html = template(tpl,selectUser);
-			SavaLocalStorge(selectUser,isContact)//报错LocalStorge
-			if(window.opener.SelectPersonInformation) {
-				window.opener.SelectPersonInformation(html,isContact);
-			}
-			self.close();
-		} else {
-			window.history.go(-1);
-		}
+			SavaLocalStorge(selectUser,isContact)
+		    $(ifrCilent.parentNode).find("."+elementId).html(html);
+		    ifrCilent.parentNode.removeChild(ifrCilent);
+
 	}
 	//保存选择的记录
 	function SavaLocalStorge(list,isContact){
@@ -647,7 +640,6 @@
 	}
 	//显示新增乘机人编辑页
 	function showAddAir_page(type,id) {
-		debugger;
 		var addAir_page = document.getElementById("addAir-page");
 		addAir_page.style.display = "block";
 		if(type=="new"){
@@ -754,7 +746,6 @@
 		var man = $("#man")[0];
 		var sexCode;
 		var sexName;
-		debugger;
 		if (man.className == "icon-h traveler-sex1") {
 			sexCode = "Mr";
 			sexName = "男";
@@ -770,7 +761,6 @@
 		var inputList=$(".addAir-page")
 		console.log($(inputList).find(".lastName").eq(0).val());
 		console.log($(inputList).find(".country").eq(0).html());
-		debugger;
 
 		if(type=="edit") {
 			var id=$(".addAir-page .header h3").attr("data-id");
@@ -835,7 +825,6 @@
 			}
 			else
 			{
-				debugger;
 				jAlert("添加失败！");
 
 			}
@@ -866,7 +855,7 @@
 <!--机票-获取乘客信息-->
 <script id="tpl_f_passager" type="text/template">
 	<li class="ride-user-info">
-		<span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}"></i></span>
+		<span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}" onclick="javascript:delPassager(this);" ></i></span>
 		<div class="middle">
 			<p class="name">
 				<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" value="{%=traveller.lastName%}">
@@ -876,9 +865,10 @@
 				<span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly" value="{%=listTravellerIdInfo[0].idNumber%}"><span class="passenger-sex">{%=traveller.sexName%}</span>
 			</div>
 		</div>
-		<i class="edit-passager" data-id="{%=traveller.travellerId%}"></i>
+		<i class="edit-passager" data-id="{%=traveller.travellerId%}" onclick="javascript:editPassager({%=traveller.travellerId%});"></i>
 	</li>
 </script>
+
 <!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
@@ -918,10 +908,10 @@
 	<li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  value="{%=traveller.mobilePhone%}"></li>
 	<li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"   value="{%=traveller.email%}"></li>
 </script>
-
 <!--国籍选择结束-->
 <script src="../js/country_list.js"></script>
 <script src="../js/require.js" data-main="../js/user.js"></script>
+
 
 </body>
 </html>
