@@ -142,7 +142,7 @@
         <div class="combo-name">{%=data.packageName%}</div>
         <div class="combo-price">¥{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人){% }else{ %}(儿童){% } %}</div>
         <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %}
-        ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %},0);" class="s-reserve button-orange">预定</a>
+        ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %},0);" class="s-reserve button-orange">预订</a>
         <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
         <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>-->
     </li>
