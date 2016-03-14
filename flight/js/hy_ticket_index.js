@@ -588,35 +588,65 @@ var  ticketIndexModal = {
                createEle(iCityData);}
        },
        historyChooseHandler:function(arg,type){
+           console.log(arg)
            console.log(type)
           var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
           var dCityData = this.storageUtil.get('dHisCity');
           var iCityData = this.storageUtil.get('iHisCity');
+          Array.prototype.distinct=function(){
+               var sameObj=function(a,b){
+                   var tag = true;
+                   if(!a||!b)return false;
+                   for(var x in a){
+                       if(!b[x])
+                           return false;
+                       if(typeof(a[x])==='object'){
+                           tag=sameObj(a[x],b[x]);
+                       }else{
+                           if(a[x]!==b[x])
+                               return false;
+                       }
+                   }
+                   return tag;
+               };
+               var newArr=[],obj={};
+               for(var i=0,len=this.length;i<len;i++){
+                   if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+                       newArr.push(this[i]);
+                       obj[typeof(this[i])+this[i]]=this[i];
+                   }
+               }
+               return newArr;
+           };
           var liStr='',that = ticketIndexModal, n=[];
-          if(iCityData!=undefined&&dCityData!=undefined){
-               n = (type == 'international')?iCityData.data:dCityData.data;
+           if(type == 'domestic'){
+               if(dCityData==undefined){
+                   n.push(arg[0]);
+               }else{
+                   n =  dCityData.data;
+                   n.push(arg[0]);
+                   n = n.distinct();
+                   n =  n.length>3?n.slice(1):n;
+               }
+               that.storageUtil.set('dHisCity',{type:"demestic",data:n})
+           }else{
+               if(iCityData==undefined){
+                   n.push(arg[0]);
+               }else{
+                   n =  iCityData.data;
+                   n.push(arg[0]);
+                   n = n.distinct();
+                   n =  n.length>3?n.slice(1):n;
+               }
+               that.storageUtil.set('iHisCity',{type:"international",data:n})
            }
 
-                for(var i = 0; i < arg.length; i++)
-                {
-                    if (n.indexOf(arg[i]) == -1) n.push(arg[i]);
-                    if(n.length > 3){
-                        n = n.slice(1);
-                    }
-                }
-
-                if(n.length>0){
-
-                    (type == "demestic")?that.storageUtil.set('dHisCity',{type:"demestic",data:n}):that.storageUtil.set('iHisCity',{type:"international",data:n});
-                    for(var m = 0; m < n.length; m++){
-                        liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
-                    }
-                }
-                ul.innerHTML =liStr;
-                outLi.style.display ='block';
-
-       },
+           for(var m = 0; m < n.length; m++){
+               liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
+           }
+           ul.innerHTML =liStr;
+           outLi.style.display ='block';},
        eventHandle2:function(){
            var that = ticketIndexModal;
            var outDiv = document.querySelector('.city-list-choose');
@@ -665,7 +695,6 @@ var  ticketIndexModal = {
                            },3000);
                            alert("")
                        }else {
-                           console.log(childAdd)
                            opSpan.innerHTML = adultNum+1;
                            opSiteEle.className = "add-minus-per-less adult";
                            childAdd.className = "add-minus-per-more child";
@@ -899,14 +928,14 @@ var  ticketIndexModal = {
                if(domesticCity.style.display=='block'&&internationalCity.style.display=='none'){
                      for(var k = 0; k < domesticCities.length;k++){
                            for(var t in domesticCities[k]){
-                               if(domesticCities[k][t].indexOf(valueStr) > -1){
+                               if(domesticCities[k][t].toLowerCase().indexOf(valueStr.toLowerCase()) > -1){
                                    searchResult.push(domesticCities[k])
                                }
                            }
                      }
                }else{
                    for(var p = 0; p < internationalCities.length; p++){
-                       if(internationalCities[p]['CityName'].indexOf(valueStr)>-1||internationalCities[p]['FullSpellingName'].indexOf(valueStr)>-1||internationalCities[p]['CityEN'].indexOf(valueStr)>-1){
+                       if(internationalCities[p]['CityName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||internationalCities[p]['FullSpellingName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||internationalCities[p]['CityEN'].toLowerCase().indexOf(valueStr.toLowerCase())>-1){
                            searchResult.push(internationalCities[p]);
                        }
                    }
@@ -916,17 +945,26 @@ var  ticketIndexModal = {
                   resultStr +='<li class="city-list-searched-item">无搜索结果</li>';
               }else{
                   for(var l = 0;l<searchResult.length;l++){
-                      if(/[A-za-z]+/.test(valueStr)){
-                          var operatingStr = searchResult[l].FullSpellingName, reg = /^(\w|[\u4E00-\u9FA5])*$/;
-                          var front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
-                          var middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
-                          var back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
-                          resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].CityName+'</span><span class="result-city-name-letter">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span></li>'
-                      }else if(/[\u4E00-\u9FA5]/.test(valueStr)){
-                          var operatingStr = searchResult[l].CityName;
-                          var front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
-                          var middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
-                          var back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                      var operatingStr='', front='', middle='', back='';
+                      if(/[A-Za-z]+/.test(valueStr)){
+                             if((searchResult[l].FullSpellingName.toUpperCase()).indexOf(valueStr.toUpperCase())>-1){
+                                 operatingStr = searchResult[l].FullSpellingName;
+                                 front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
+                                 middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                                 back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                                 resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].CityName+'</span><span class="result-city-name-letter">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span></li>'
+                             }else if(searchResult[l].CityEN.toUpperCase().indexOf(valueStr.toUpperCase())>-1){
+                                 operatingStr = searchResult[l].CityEN;
+                                 front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
+                                 middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                                 back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                                 resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].CityName+'</span><span class="result-city-name-letter">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span></li>'
+                             }
+                      } else if(/[\u4E00-\u9FA5]/.test(valueStr)){
+                           operatingStr = searchResult[l].CityName;
+                           front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
+                           middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                           back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
                           resultStr += '<li class="city-list-searched-item"><span class="result-city-name chinese-city-name-fix">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span><span class="result-city-name-letter chinese-city-spellname-fix">'+searchResult[l].FullSpellingName+'</span></li>'
                       }
                   }
@@ -939,7 +977,7 @@ var  ticketIndexModal = {
       },
        initDate:function(){
            var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
-               r =new Date( d.setDate(d.getDate() + 3)),
+               r =new Date( d.setDate(d.getDate() + 2)),
                startDay,endDay,startStrMonth = '',startStrDate = '',endStrMonth = '',endStrDate = '',
            returnWeek = function(index){
                var week = '';
