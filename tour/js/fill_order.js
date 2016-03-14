@@ -428,10 +428,10 @@
             //    '</li>'
             //].join('');
 
-            //var sceTit=json.data.packageName;
-            //var sceCpde=json.data.packageRefNo;
-            //$('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">'+sceCpde+'</span>';
-            //$('.package-tit').html(sceTit);
+            var sceTit=json.data.packageName;
+            var sceCpde=json.data.packageRefNo;
+            $('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">'+sceCpde+'</span>';
+            $('.package-tit').html(sceTit);
         }else{
             jAlert(json.message);
         }
