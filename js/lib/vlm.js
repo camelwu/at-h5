@@ -725,11 +725,20 @@
 					}
 
 				}
-			}, loadJson = function(url, data, mycallback, async, encryption) {
-				if (async != undefined && async == true) {
-					$.ajaxSetup({
-						async : false
-					});
+			}, loadJson = function(url, data, mycallback, async, encryption,isShowLoading) {
+                if(isShowLoading != undefined && isShowLoading == true){
+                    //ajax 不全屏显示loading
+                    $("#preloader").ajaxStart(function(){
+                       $(this).hide();
+                    });
+                    $("#preloader").ajaxStop(function(){
+                       $(this).hide();
+                    });
+                }
+                if (async != undefined && async == true) {
+                   $.ajaxSetup({
+                    async : false
+                });
 				}
 				//var AjaxUrl = url+ "?jsoncallback=?";
 				//$.ajax(url, data, mycallback);
