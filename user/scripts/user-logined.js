@@ -95,24 +95,7 @@ function mycallback(ret) {
             this.href='user-allorder.html'
         }
     };
-    aBtn[1].querySelector('a').onclick=function(){
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-allorder.html'
-        }
-    };
-    //aBtn[2].querySelector('a').onclick=function(){
-    //    if(localStorage.getItem('login') == 1)
-    //    {
-    //        this.href='user-allorder.html'
-    //    }
-    //};
-    //aBtn[3].querySelector('a').onclick=function(){
-    //    if(localStorage.getItem('login') == 1)
-    //    {
-    //        this.href='user-allorder.html'
-    //    }
-    //};
+
 
     document.querySelector('#common-msg').onclick=function(){
         if(localStorage.getItem('login') == 1)
@@ -130,22 +113,6 @@ function mycallback(ret) {
 
 
 })();
-
-//登录与不登录有无消息
-(function(){
-    var oUs=document.querySelector('#user_order');
-    var aLi=oUs.children;
-    if(localStorage.getItem('login') == 1)
-    {
-        aLi[1].querySelector('.info-circle2').style.display='block';
-
-    }
-    else
-    {
-        aLi[1].querySelector('.info-circle2').style.display='none';
-    }
-
-})()
 
 //设置里的消息开关
 function ifOpen(){
