@@ -50,10 +50,6 @@ i{
     display: inline-block;
 }
 
-.header-back {
-    width: 12px;
-    height: 22px;
-}
 /*头图*/
 .picBox{overflow:hidden;position:relative;}
 .picBox img{width:100%;height:auto;}
