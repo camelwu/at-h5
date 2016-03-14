@@ -355,7 +355,7 @@ window.onload = function(){
                 "Code": "0058"
             };
             phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
-            vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
+            vlm.Utils.timeCountDown('10', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
         }
     }
@@ -518,10 +518,9 @@ function mycallback_findver(ret){
 }
 
 //时间倒计时结束后
-function phone_timeout(obj){
-    console.log(phone_verify);
-    this.innerHTML='发送验证码';
-    this.style.color='#ffb413';
+function phone_timeout(){
+    phone_verify.innerHTML='发送验证码';
+    phone_verify.style.color='#ffb413';
     Bflag_forget=false;
 }
 

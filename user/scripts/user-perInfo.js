@@ -318,6 +318,7 @@ function u_perInfo(){
                 "Code": "0058"
             };
             console.log(Parameters.Parameters);
+            phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
             vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
 
@@ -504,7 +505,7 @@ function phone_timeout(){
     console.log(phone_verify);
     phone_verify.innerHTML='发送验证码';
     phone_verify.style.color='#ffb413';
-    regBflag=false;
+    phoneBflag=false;
 }
 
 //时间倒计过程中
