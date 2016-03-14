@@ -358,14 +358,14 @@ function u_perInfo(){
 }
 
 //修改出生日期
-$('#birth-cont').click(function(){
+$('#birth-cont-per').click(function(){
     setTimeout(function(){
         var oPerBack=$('.cabin-sure');
         function selDate(obj){
             obj.on('click', show)
         }
         function show(){
-            var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
+            var birthstr=$('#birth-cont-per')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
             //console.log(birthstr);
             var Parameters={
                 "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",

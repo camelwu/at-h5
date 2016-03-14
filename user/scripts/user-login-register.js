@@ -459,6 +459,10 @@ function mycallback_login(ret) {
         {
             jAlert('未注册用户');
         }
+        else if(myJson.message == 'Invalid username or password.')
+        {
+            jAlert('用户名或密码错误');
+        }
         else
         {
             jAlert(myJson.message);
