@@ -7,7 +7,6 @@ var ticketDouble = {
     dateInit:function(arg){
         var spans = document.querySelectorAll('.ticket-double-date');
         var dateInitObj = {};
-        console.log(arg)
         spans[0].innerHTML = ticketDouble.returnWeek(arg.DepartDate);
         spans[1].innerHTML = ticketDouble.returnWeek(arg.ReturnDate);
         dateInitObj[arg.DepartDate] = '去程';
@@ -17,7 +16,7 @@ var ticketDouble = {
             num: 13,
             time: dateInitObj,
             sClass1: 'date-wrap-double',
-            type:'double',
+            type:'Return',
             fn:this.dateChangeRender
         });
     },
@@ -201,7 +200,7 @@ var ticketDouble = {
 
     alertNoFlightNotice:function(citys,type){
         var div = document.createElement('div'),allEleWrap = document.querySelector('.all-elements'),backButton,that = ticketDouble;
-        var arrowIcon = type =='single'?'direction-single':'direction-double';
+        var arrowIcon = type =='Oneway'?'direction-single':'direction-double';
         div.className = 'no-flight-notice';
         div.innerHTML = '<header class="big-title"><i class="fl close-no-flight"></i>'+
         '<span class="set-place">'+citys.fromCity+'</span>'+
@@ -212,7 +211,6 @@ var ticketDouble = {
         '<p class="no-flight-word">没有找到符合条件的航班！ </p></div>'
         allEleWrap.appendChild(div);
         backButton = document.querySelector('.close-no-flight');
-        console.log(that)
         that.addHandler(backButton,"click",function(){
             allEleWrap.removeChild(div)
         })
@@ -303,9 +301,10 @@ var ticketDouble = {
         });
     },
 
-    changeFlightList:function(arg){
+    changeFlightList:function(arg, type){
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper'),ticketListStr = '',li;
+        var taxPriceStr = '';
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         var myFixed = function(arg){
             if(String(arg).indexOf('.')>-1){
@@ -333,7 +332,7 @@ var ticketDouble = {
         function goTrip(arg){
             var  data = arg.data.flightInfos[i].segmentsLeave;
             var  transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
-            var  tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>1?arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
+            var  tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>=1?'+'+arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
             var  str = '';
             var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
             var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
@@ -363,7 +362,7 @@ var ticketDouble = {
         function backTrip(arg){
             var data = arg.data.flightInfos[i].segmentsReturn;
             var transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsReturn);
-            var  tipDay = arg.data.flightInfos[i].flightReturnSpacingDay>1?arg.data.flightInfos[i].flightReturnSpacingDay+'天':'';
+            var  tipDay = arg.data.flightInfos[i].flightReturnSpacingDay>=1?'+'+arg.data.flightInfos[i].flightReturnSpacingDay+'天':'';
             var str = '';
             var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
             var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
@@ -394,15 +393,21 @@ var ticketDouble = {
         }
         function rightPrice(arg){
             var str = '';
-            str +='<div class="price-tax">'+
-            '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
-            '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
-            '        </div>';
+            if(type == 'false'){
+                str +='<div class="price-tax">'+
+                '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountADT))+'</span><span class="word-tip">往返</span><br></div>'+
+                '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
+                '        </div>';
+            }else{
+                str +='<div class="price-tax">'+
+                '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
+                '    <div class="price-tax-info tax-word-pull-left"><span class="tax-word">含税费</span></div>'+
+                '        </div>';
+            }
             return str;
         }
     } ,
     callRender:function(arg){
-        console.log(arg)
             var paraObj = {},that = ticketDouble;
             paraObj.IsDirectFlight = arg.directFly == 'unlimitedPlane'?'false':'true';
             paraObj.IsShareFlight = arg.shareFlight == 'hideShareFlight'?'false':'true';
@@ -426,7 +431,6 @@ var ticketDouble = {
             for(var tem in paraObj){
                 that.backParaObj[tem] = paraObj[tem]
             }
-            console.log(that.backParaObj)
             document.querySelector('#preloader').style.display='block';
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
             var temObj = that.checkTip();
@@ -471,12 +475,12 @@ var ticketDouble = {
     renderHandler:function(arg){
         var that = ticketDouble,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
-        arg = JSON.parse(arg);
-        console.log(arg)
+        var arg = arg;
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
             tipEle.style.display = 'none';
             that.flightResultArray.push(arg["data"])
+            that.lastBackData = arg;
             that.storageUtil.set('flightListData',that.flightResultArray);
             that.pageNo = arg.data.pageNo;
             that.pageCount = arg.data.pageCount;
@@ -495,35 +499,29 @@ var ticketDouble = {
             tipEle.style.display = 'none';
             document.querySelector('#preloader').style.display='none';
             that.checkPullStatus();
-            that.alertNoFlightNotice(that.backParaObj,'single')
+            that.alertNoFlightNotice(that.backParaObj,'Oneway')
         }
         that.checkPullStatus()
     },
     pullDownAction:function(){
         var  that = ticketDouble;
         if(that.pageNo >= that.pageCount){
-            console.log(11)
             myScroll.refresh()
-            jAlert('没有更多航班信息了','',function(){})
+            jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
-            console.log(22)
             that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
-            console.log(that.backParaObj)
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
         }
     },
     pullUpAction:function(){
         var  that = ticketDouble;
         if(that.pageNo >= that.pageCount){
-            console.log(33)
             myScroll.refresh()
-            jAlert('没有更多航班信息了','',function(){})
+            jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
-            console.log(44)
             that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
-            console.log(that.backParaObj)
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
         }
     },
@@ -537,17 +535,14 @@ var ticketDouble = {
             topOffset: pullDownOffset,
             onRefresh: function () {
                 if (pullDownEl.className.match('loading')) {
-                    console.log(111)
                     pullDownEl.className = '';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
                 } else if (pullUpEl.className.match('loading')) {
-                    console.log(222)
                     pullUpEl.className = '';
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
                 }
             },
             onScrollMove: function () {
-                console.log(55)
                 if (this.y > 5 && !pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'flip';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
@@ -570,17 +565,25 @@ var ticketDouble = {
                 if (pullDownEl.className.match('flip')) {
                     pullDownEl.className = 'loading';
                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
-                    console.log(66)
                     ticketDouble.pullDownAction();
                 } else if (pullUpEl.className.match('flip')) {
                     pullUpEl.className = 'loading';
                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
-                    console.log(77)
                     ticketDouble.pullUpAction();
                 }
             }
         });
-        /*}*/
+    },
+    handler1:function(arg){ //后台请求
+        var that = ticketDouble;
+        that.backParaObj = arg;
+        document.querySelector('#preloader').style.display='block';
+        that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+    },
+    handler2:function(arg){ //自己缓存的数据重新展现
+        var that = ticketDouble;
+        that.backParaObj = arg;
+        that.changeFlightList(that.lastBackData, that.backParaObj.hasTax);
     },
     init:function(){
         var backParaObj = this.parseUrlPara(document.location.search, true),that = ticketDouble;
@@ -588,7 +591,7 @@ var ticketDouble = {
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
-        this.tripType = "international"; //international backParaObj.tripType ,domestic
+        this.tripType = backParaObj.interNationalOrDomestic;
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
         backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
@@ -601,7 +604,7 @@ var ticketDouble = {
         if($.browser.webkit && !window.chrome){
             document.querySelector('#wrapper').style.top = '88px';
         }
-        bottomModal.init('all-elements',this.tripType,"double",this.callRender);
+        conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj,this.handler1, this.handler2);
         this.taxHandler();
         this.isClearAll = true;
         this.flightResultArray = [];

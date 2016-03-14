@@ -1,7 +1,7 @@
 /**
  * Created by Asiatravel on 2016/1/4.
  */
-    //我需要的数据：RoomCode/user_order_storage2/fake_data.totalNight/CheckInTime/CheckOutTime
+//对得到的url进行处理
 function url2json(url){
     if(!url)return;
     var json={};
@@ -80,6 +80,29 @@ var lsf_myweb={
         };
     }
 };
+
+
+//页面没有展示前页面展示的页面
+$(window).load(function () {
+    //$("#status-h").fadeOut();
+    //$("#preloader").delay(400).fadeOut("medium");
+    var oP=document.getElementById('uo_c1_info');
+    var timer=null;
+    timer=setInterval(function(){
+        if(oP.innerHTML!=''){
+            $("#status-h").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+            clearInterval(timer);
+        }
+        //console.log($('#lsf_list').children().length);
+    },30);
+
+});
+
+
+
+
+
 //输入框默认字体设置
 function styleChange(id,mytext){
     var oInp=document.getElementById(id);
@@ -134,6 +157,8 @@ styleChange('uo_c3_email','用于接收邮件通知');
 styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
 styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 */
+
+//把得到的数据全部存入到fake_data里面
     var RoomCode;
     var fake_data={};
     var myUrl=window.location.href;
@@ -177,6 +202,7 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 
 
 //获取user_order_storage12345,实现历史选择记忆功能
+
 function uoHisData(){
     var localData=JSON.parse(window.localStorage.getItem('user_order_storage12345'));
     console.log(localData);
@@ -190,6 +216,7 @@ function uoHisData(){
         console.log('hahahahhahahahah');
         return;
     }else{
+        fake_data.guestName=[];
         return;
     }
 }
@@ -203,18 +230,31 @@ uoHisData();
         $("#preloader").delay(400).fadeOut("medium");
     });
 
-
+    var all_elements = document.getElementById("all_elements");
     var uo_back=document.getElementById('uo_back');
     var uo_c2_i1=document.getElementById('uo_c2_i1');
     var uo_c2_i2=document.getElementById('uo_c2_i2');
     var uo_c1_info=document.getElementById('uo_c1_info');
-    var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
+    //var uo_c1_infoDown=document.getElementById('uo_c1_infoDown');
     var uo_c2_num=document.getElementById('uo_c2_num');
     var uo_or_infor=document.getElementById('uo_or_infor');
     var uo_form=document.getElementById('uo_con3');
     var uo_confirm=document.getElementById('uo_confirm');
     var downBok=true;
     var bOk2=true;
+    
+    //底部浮层在调用键盘时遮挡页面元素
+    
+    all_elements.onclick = function(e){
+        var targetEleName = e.target.tagName.toLocaleLowerCase();
+        var uo_footer = document.getElementById("uo_footer");
+        if(targetEleName == "input"){
+            uo_footer.style.position = "absolute";
+        }else{
+            uo_footer.style.position = "fixed";
+        }
+    }
+    
     //返回按钮
     uo_back.onclick=function(){
         window.history.go(-1);
@@ -232,7 +272,8 @@ uoHisData();
     }
     //取消说明时间展示
     var uo_c1_info=document.getElementById('uo_c1_info');
-    uo_c1_info.innerHTML='如果您在'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+'晚12时（目的地时间）之前取消不收取任何费用';
+    //uo_c1_info.innerHTML='如果您在'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+'晚12时（目的地时间）之前取消不收取任何费用';
+    uo_c1_info.innerHTML=fake_data.cancellationDesc;
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
     uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.hotelName+'</h3>'+
@@ -274,6 +315,7 @@ uoHisData();
         //        uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
         //    }
         //}
+        console.log(fake_data.guestName);
         if(fake_data.guestName.length){
             if(fake_data.guestName[0].GuestFirstName!=''){
                 var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
@@ -297,6 +339,7 @@ uoHisData();
     uoHisFillIn();
     //输入框默认字体设置
     styleChange('uo_c3_tele','用于接收短信通知');
+    //判断是国际酒店搜索还是国内酒店搜索
     if(hoPos=='inter'){
         styleChange('uo_c3_email','用于接收邮件通知');
         styleChange2('uo_c3_peoBox','uo_lastname','姓（如：Zhang）');
@@ -305,7 +348,19 @@ uoHisData();
         styleChange2('uo_c3_peoBox','uo_lastname','姓（如：张）');
         styleChange2('uo_c3_peoBox','uo_firstname','名（如：三）');
     }
-    // 明细
+    //$('#uo_c3_tele').bind('focus',function(){
+    //    $('#uo_footer').css({'position':'absolute','left':'0','top':$(document).height()});
+    //    $('#uo_box').css('margin-bottom','0px');
+    //});
+    //$('#uo_c3_tele').bind('blur',function(){
+    //    $('#uo_footer').css({'position':'fixed','left':'0','bottom':'0','top':'auto'});
+    //    $('#uo_box').css('margin-bottom','47px');
+    //});
+    //$('#uo_c3_tele').bind('focus',function(){
+    //    var uo_box=document.getElementById('uo_box');
+    //    document.documentElement.scrollTop='800';
+    //});
+    // 明细部分展示
     function uo_detail(id1,id2,id3,id4,id5,id6,id7,json){
         console.log(json);
         console.log(222);
@@ -317,14 +372,14 @@ uoHisData();
         oId1.innerHTML=json.NumOfRoom+'间×'+json.dateInfo.totalNight+'晚';
         if(parseInt(json.paymentModeID)==1){
             oId2.innerHTML='￥'+parseFloat(json.avgPriceCNY)*parseFloat(json.NumOfRoom);
-            oId3.innerHTML='￥'+parseFloat(json.taxChargesCNY)*parseFloat(json.NumOfRoom);
+            oId3.innerHTML='￥'+(parseFloat(json.taxChargesCNY)*1000*parseFloat(json.NumOfRoom))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
             oId5.innerHTML=parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
         }else if(parseInt(json.paymentModeID)==2){
             var oId6=document.getElementById(id6);
             var oId7=document.getElementById(id7);
             oId2.innerHTML='SGD'+parseFloat(json.avgPrice)*parseFloat(json.NumOfRoom);
-            oId3.innerHTML='SGD'+parseFloat(json.taxCharges)*parseFloat(json.NumOfRoom);
+            oId3.innerHTML='SGD'+(parseFloat(json.taxCharges)*1000*parseFloat(json.NumOfRoom))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
             oId6.innerHTML=parseFloat(json.totalPrice)*parseFloat(json.NumOfRoom);
             oId7.innerHTML='约￥'+parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
@@ -363,12 +418,12 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)<=1){
-            uo_c2_i1.style.background='url("../images/down2.png") no-repeat';
-            uo_c2_i1.style.backgroundSize='23px 23px';
+            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 -28px no-repeat';
+            uo_c2_i1.style.backgroundSize='23px 150px';
         }
         if(parseInt(uo_c2_num.innerHTML)<10){
-            uo_c2_i2.style.background='url("../images/up1.png") no-repeat';
-            uo_c2_i2.style.backgroundSize='23px 23px';
+            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -56px no-repeat';
+            uo_c2_i2.style.backgroundSize='23px 150px';
         }
         //修改数据并存储数据
         fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
@@ -382,14 +437,14 @@ uoHisData();
         var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
         var myNum=uo_c2_num.innerHTML;
         uo_c2_num.innerHTML=parseInt(uo_c2_num.innerHTML)+1;
-
-
+        //房间数不能超过10
         if(parseInt(uo_c2_num.innerHTML)>10){
             uo_c2_num.innerHTML=10;
         }else{
             for(var i=parseInt(myNum);i<parseInt(uo_c2_num.innerHTML);i++){
                 var oDiv=document.createElement('div');
                 oDiv.className='uo_c3_peo';
+                //判断是国际酒店搜索还是国内酒店搜索
                 if(hoPos=='inter'){
                     oDiv.innerHTML='<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
                         '<div class="uo_c3_infor">'+
@@ -426,12 +481,12 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)>1){
-            uo_c2_i1.style.background='url("../images/down1.png") no-repeat';
-            uo_c2_i1.style.backgroundSize='23px 23px';
+            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0 no-repeat';
+            uo_c2_i1.style.backgroundSize='23px 150px';
         }
         if(parseInt(uo_c2_num.innerHTML)>=10){
-            uo_c2_i2.style.background='url("../images/up2.png") no-repeat';
-            uo_c2_i2.style.backgroundSize='23px 23px';
+            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -84px no-repeat';
+            uo_c2_i2.style.backgroundSize='23px 150px';
         }
 
         //修改数据并存储数据
@@ -466,6 +521,7 @@ uoHisData();
         }
         bOk2=!bOk2;
     });
+    //确定按钮点击事件
     lsf_myweb.bind(uo_confirm,'click',function(){
         var uo_c3_infor=lsf_myweb.getbyclass(uo_form,'uo_c3_infor');
         var aUo_lastname=lsf_myweb.getbyclass(uo_form,'uo_lastname');
@@ -483,6 +539,7 @@ uoHisData();
                 }
             }
         }
+        //判断是国内搜索还是国际搜索
         if(hoPos=='inter'){
             for(var i=0;i<aUo_firstname.length;i++){
                 if(aUo_lastname[i].value=='姓（如：Zhang）'){
@@ -535,12 +592,11 @@ uoHisData();
             jAlert('请输入手机号');
             return;
         }else{
-            var reg=/^\d+$/g;
-            if(!reg.test(uo_c3_tele.value)){
-                jAlert('手机号必须是数字');
-                return;
-            }else{
+            if(vlm.Utils.validate.mobileNo(uo_c3_tele.value)){
                 fake_data.GuestContactNo=uo_c3_tele.value;
+            }else{
+                jAlert('手机号格式错误');
+                return;
             }
         }
         console.log(fake_data);
@@ -549,7 +605,12 @@ uoHisData();
                 jAlert('请输入邮箱');
                 return;
             }else{
-                fake_data.GuestEmail=uo_c3_email.value;
+                if(vlm.Utils.validate.email(uo_c3_email.value)){
+                    fake_data.GuestEmail=uo_c3_email.value;
+                }else{
+                    jAlert('邮箱格式错误');
+                    return;
+                }
             }
         }
         window.localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
@@ -558,10 +619,10 @@ uoHisData();
         uo_form.submit();
     });
     //取消说明点击事件
-    lsf_myweb.bind(uo_c1_infoDown,'click',function(){
-        uo_c1_info.className='';
-        this.style.display='none';
-    });
+    //lsf_myweb.bind(uo_c1_infoDown,'click',function(){
+    //    uo_c1_info.className='';
+    //    this.style.display='none';
+    //});
     //解决300毫秒延迟问题
     (function($) {
         $(document).ready(function() {

@@ -638,49 +638,49 @@
     color: #484848;
 }
 .reserve{
-    height: 133px;
     background: #fff;
-    margin: 10px 0;
+    margin-top: 10px;
     border-bottom: 1px solid #dedede;
 }
 .reserve-top{
-    height: 55px;
+    /*height: 55px;*/
     margin: 0 15px;
 }
 .reserve-top1{
     font-weight:bold;
     font-size: 1.5rem;
     color: #000;
-    line-height: 35px;
+    /*line-height: 35px;*/
 }
 .reserve-top2{
     font-size: 1.1rem;
     color: #999999;
-    line-height: 15px;
+    /*line-height: 15px;*/
 }
 .reserve-bottom{
-    height: 78px;
+    /*height: 78px;*/
     border-top: 1px solid #dedede;
     margin: 0 15px 10px 15px;
 }
 .reserve-bottom1{
+    padding-top: 10px;
     font-weight:bold;
     font-size: 1.4rem;
     color: #000;
-    line-height: 33px;
+    /*line-height: 33px;*/
 }
 .reserve-bottom2{
     font-size: 1.1rem;
     color: #999;
-    line-height: 13px;
+    /*line-height: 13px;*/
 }
 .reserve-bottom3{
     font-size: 1.1rem;
     color: #999;
-    line-height: 28px;
+    /*line-height: 28px;*/
 }
 .pay{
-    height: 36px;
+    /*height: 36px;*/
     border-bottom: 1px solid #dedede;
     background: #fff;
 }
@@ -705,23 +705,18 @@
     font-size: 1.4rem;
 }
 .bookinfo{
-    height: 147px;
     background: #fff;
-    margin: 10px 0;
     border-bottom: 1px solid #dedede;
 }
 .bookinfo1{
-    height: 31px;
     margin: 0 15px;
-    line-height: 31px;
+    padding: 8px 0;
     color: #484848;
     font-size: 1.4rem;
 }
 .bookinfo2{
-    height: 115px;
     border-top: 1px solid #dedede;
     margin: 0 15px;
-    line-height: 23px;
     display: flex;
     flex-flow: row;
 }
@@ -755,6 +750,53 @@
     background-color: #F5F4F9;
     border: 1px solid #fe6a03;
 }
+.od-mb{
+    width: 100%;height:100%;
+    position: fixed;
+    background-color:rgba(0,0,0,0.5);
+    display: none;
+    z-index: 2000;
+}
+.pd-block{
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom:-300px;
+    color: #484848;
+    z-index: 2000000;
+}
+.pd-list{
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    color:rgb(153,153,153);
+}
+.pd-list li{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom: 1px solid #d6d6d6;
+}
+.pd-list li:nth-child(1){
+    color:rgb(72,72,72);
+}
+.pd-list li:nth-child(2){
+    height: 52px;
+    color:rgb(254,71,22);
+}
+.pd-list li div{
+    float: left;
+}
+.pd-list li span{
+    display: inline-block;
+    float: right;
+}
+.pd-list li:last-child{
+    border:none;
+}
+
+
+
+
 
 /*ȡ��*/
 #choose{
@@ -906,7 +948,7 @@ ul,ol{
 .cl_con ul li{
     float:left;
     border:1px solid #e2e1e0;
-    width:29%;height:30px;
+    width:28%;height:30px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
@@ -932,11 +974,13 @@ ul,ol{
     font-size:1.2rem;
     height:14px;
     line-height:normal;
+    text-align:center;
 }
 .cityWord li a{
     color:#ffb413;
     display:block;
     width:100%;height:100%;
+    text-align:center;
 }
 .lsf_city_list ul{
     padding:0;

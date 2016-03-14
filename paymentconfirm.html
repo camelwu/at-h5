@@ -11,6 +11,8 @@
     <link href="styles/framework.css" rel="stylesheet"/>
     <link href="styles/style.css" rel="stylesheet"/>
     <link href="styles/tips.css" rel="stylesheet"/>
+
+
 </head>
 <body>
 <div id="preloader">
@@ -24,28 +26,94 @@
 
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vlm.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
 <script type="application/javascript">
+
+
 $(document).ready()
 {
+    var business=vlm.getpara("business");
+    var foreEndType=vlm.getpara("foreEndType");
+    var bookingRefNo=vlm.getpara("bookingRefNo");
+    var pgtid=vlm.getpara("pgtid");
+
+    debugger;
     var data = {
-        "Parameters": {"BookingRefNo": "SGSINFT0012966"},
-        "ForeEndType": 3,
-        "Code": "3009"
+        "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+        "ForeEndType": 3
     }
-    console.log(data);
-    var payment = new paymentObj(data, mycallback);
-    payment.handlePayment();
-}
-function mycallback(str){
-    console.log(str);
-    var data=eval('('+str+')');
-    if(data.success){
-        window.location.href='flight/pay_success.html';
-    }else{
-       alert(data.message);
-    }
+    /*如果是H5设备的接口，回调，反则APP端已经调用，不用再调用
+    1、酒店
+    2、景点
+    3、机票
+    4、会员中心	-- 不会返回该值
+    5、酒+景
+    */
+    if(foreEndType==3) {
+
+        if(business==3){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                 "Code": "3009"
+            }
+
+        }
+        else if(business==2){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                "Code": "0094"
+            }
+        }
+        else if(business==5){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                "Code": "0205"
+            }
+        }
+        else if(business==1){
+            var refID=vlm.getpara("rid");
+            var pid=vlm.getpara("pid");
+            var opid=vlm.getpara("opid");
+            data={
+                "Parameters":{
+                    "refID":refID,
+                    "pid":pid,
+                    "opid":opid
+                },
+                "ForeEndType":3,
+                "Code": "0016"
+            }
+        }
+        console.log(data);
+
+        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), function(data){
+            if (data.success) {
+                vlm.init();
+                debugger;
+                if(business==3) {
+                    window.location.href = 'flight/pay_success.html?bookingRefNo='+bookingRefNo;
+                }
+                else if(business==2) {
+                    window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
+                }
+                else if(business==1){
+                    var code=data.data.bookingReferenceNo;
+                    window.location.href = 'hotel/trade_details.html?bookingRefNo='+code;
+                }
+                else if(business==5){
+                    window.location.href = 'tour/trade_details.html?bookingRefNo='+bookingRefNo;
+                }
+            } else {
+                 alert(data.message);
+            }
+
+        });
 }
 
+}
 </script>
 </body>

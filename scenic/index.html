@@ -78,41 +78,25 @@
             <!--</div>-->
             <div class="s-type">
                 <div class="menu-active">出境游</div>
-                <div>国内游</div>
+                <div class="stopgray">国内游</div>
             </div>
             <div class="out-content s-active">
                 <div class="sin-title">国外热游地</div>
                 <ul id="out_place">
 
                 </ul>
-                <div class = "sin-title">国外热景点</div>
-                <ul class = "hotspot">
+                <div class = "sin-title">国外热门景点</div>
+                <ul class = "hotspot" id="abroad_hotspot">
                     <li>
-                        <img src="images/jdzhuye2_04.jpg" class="banner-image" alt="img">
-                        <div class="black-block">
-                            <b class = "icon1 s-location"></b>
-                            吉隆坡
+                        <div>
+                            <img src="images/jdzhuye2_04.jpg" class="banner-image" alt="img">
+                            <div class="hp-block">
+                                <b class = "icon1 s-location"></b>
+                                吉隆坡
+                            </div>
                         </div>
                         <div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>
                         <div><span>￥</span><span class="pay-num">1680</span><span>起</span></div>
-                    </li>
-                    <li>
-                        <img src="images/jdzhuye3_03.jpg" class="banner-image" alt="img">
-                        <div class="black-block">
-                            <b class = "icon1 s-location"></b>
-                            马来西亚
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>
-                        <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
-                    </li>
-                    <li>
-                        <img src="images/jdzhuye4_03.jpg" class="banner-image" alt="img">
-                        <div class="black-block">
-                            <b class = "icon1 s-location"></b>
-                            马来西亚
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天马来西亚城市游览</div>
-                        <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
                     </li>
                 </ul>
             </div>
@@ -121,31 +105,37 @@
                 <ul id="in_place">
 
                 </ul>
-                <div class = "sin-title">国内热景点</div>
-                <ul class = "hotspot">
+                <div class = "sin-title">国内热门景点</div>
+                <ul class = "hotspot" id="domestic_hotspot">
                     <li>
-                        <img src="images/jdzhuye6_06.jpg" class="banner-image" alt="img">
-                        <div class="black-block">
-                            <b class = "icon1 s-location"></b>
-                            扬州
+                        <div>
+                            <img src="images/jdzhuye6_06.jpg" class="banner-image" alt="img">
+                            <div class="hp-block">
+                                <b class = "icon1 s-location"></b>
+                                扬州
+                            </div>
                         </div>
                         <div class="spotDesc">两天一夜酒店+半天扬州城市游览</div>
                         <div><span>￥</span><span class="pay-num">1680</span><span>起</span></div>
                     </li>
                     <li>
-                        <img src="images/jdzhuye7_07.jpg" class="banner-image" alt="img">
-                        <div class="black-block">
-                            <b class = "icon1 s-location"></b>
-                            扬州
+                        <div>
+                            <img src="images/jdzhuye7_07.jpg" class="banner-image" alt="img">
+                            <div class="hp-block">
+                                <b class = "icon1 s-location"></b>
+                                扬州
+                            </div>
                         </div>
                         <div class="spotDesc">两天一夜酒店+半天扬州城市游览</div>
                         <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
                     </li>
                     <li>
-                        <img src="images/jdzhuye8_08.jpg" class="banner-image" alt="img">
-                        <div class="black-block">
-                            <b class = "icon1 s-location"></b>
-                            扬州
+                        <div>
+                            <img src="images/jdzhuye8_08.jpg" class="banner-image" alt="img">
+                            <div class="hp-block">
+                                <b class = "icon1 s-location"></b>
+                                扬州
+                            </div>
                         </div>
                         <div class="spotDesc">两天一夜酒店+半天扬州城市游览</div>
                         <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
@@ -161,197 +151,168 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/lib/custom.js"></script>
+    <script src="js/scenic_pub.js"></script>
     <script id="tpl_GetHotCity" type="text/template">
-        {% for(var i=0,len=data.destCities.length >= 8?8:data.destCities.length;i<len;i++){ %}
+        {% for(var i=0,len=data.destCities.length>=8?8:data.destCities.length;i<len;i++){ %}
             <li class = "hotplace {% if(i == 0){ %}pl-active{% } %}" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
         {% } %}
         <li class = "hotplace" title="more">更多</li>
     </script>
+    <script id="tpl_GetHotSpot" type="text/template">
+        {% for(var i = 0;i < hotScenicList.length;i++){ %}
+        <li>
+            <a href="../scenic/scenic_detail.html?packageID={%=hotScenicList[i].productID%}">
+                    <img src="{%=hotScenicList[i].productPicUrl%}" class="banner-image" alt="img">
+                    <div class="hp-block">
+                        <b class="icon1 s-location"></b>
+                        {%=hotScenicList[i].productSite%}
+                    </div>
+            </a>
+            <div class="spotDesc">{%=hotScenicList[i].productName%}</div>
+            <div><span>￥</span><span class="pay-num">{%=hotScenicList[i].productPrice%}</span><span>起</span></div>
+        </li>
+        {% } %}
+    </script>
+
     <script>
         /*景点首页MT*/
         (function(){
-            var webkit = this;
-            var core = function(){
-                var apiurl="http://10.2.22.239:8888/api/GetServiceApiResult";
-                vlm.init();
-                //刷新热门城市并绑定事件
-                var CHotCity=function(){
-                    var outplace = $("#out_place")[0].getElementsByTagName("li");
-                    var inplace = $("#in_place")[0].getElementsByTagName("li");
-                    for(var i=0; i < outplace.length; i++){
-                        outplace[i].onclick = function(){
-                            for(var i=0; i<outplace.length; i++){
-                                outplace[i].className = "hotplace";
-                            }
-                            this.className='hotplace pl-active';
-                            MT.CurrentPageTolist(this.title);
-                        }
-                    }
-                    for(var j=0; j < inplace.length; j++){
-                        inplace[j].onclick = function(){
-                            for(var j=0; j<inplace.length; j++){
-                                inplace[j].className = "hotplace";
-                            }
-                            this.className='hotplace pl-active';
-                            MT.CurrentPageTolist(this.title);
-                        }
-                    }
-                }
+            MT.ajaxAnimIn();
+            vlm.init();
+            /**
+             * 切换选项卡
+             * @constructor
+             */
+            MT.CTab = function(){
+                var aBtn=document.getElementsByClassName('s-type')[0].children;
+                var con=document.getElementsByClassName('out-content');
+                var ban=document.getElementsByClassName('top-ban');
+                for(var i=0; i<aBtn.length; i++)
+                {
+                    (function(index){
 
-                //热门城市跳转
-                var CindexTolist = function(cityCode){
-                    if(cityCode == "more"){
-                        return false;
-                    }
-                    window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
-                }
-
-                //切换选项卡
-                var CTab = function(){
-                    var aBtn=document.getElementsByClassName('s-type')[0].children;
-                    var con=document.getElementsByClassName('out-content');
-                    var ban=document.getElementsByClassName('top-ban');
-                    for(var i=0; i<aBtn.length; i++)
-                    {
-                        (function(index){
-
-                            aBtn[i].onclick=function(){
-                                for(var i=0; i<aBtn.length; i++)
-                                {
-                                    aBtn[i].className='';
-                                    ban[i].className='top-ban';
-                                    con[i].className='out-content';
-                                }
-
-                                this.className='menu-active';
-                                ban[index].className='top-ban s-active';
-                                con[index].className='out-content s-active';
-                            };
-                        })(i);
-                    }
-                }
-
-                //动画tmpl
-                var CTmplAnim = function(){
-                    var _childhtml = '<div id="preloader"><div id="status"><p class="center-text"><br><em>加载中……</em></p></div></div>';
-                    var _roothtml = $(_childhtml)[0];
-
-                    return _roothtml;
-                }
-
-                //动画淡入
-                var CAnimIn = function(){
-                    if($("[id=preloader]").length < 1){
-                        document.body.appendChild(CTmplAnim());
-                    }
-                    $("#status").fadeIn();
-                    $("#preloader").delay(400).fadeIn("medium");
-                }
-
-                //动画淡出
-                var CAnimOut = function(){
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
-                }
-
-                //加载国外热门城市
-                var CGetExHotCity = function(){
-                    var GetExHotCity=
-                    {
-                        "Parameters": {
-                            "SubProduct": "All"
-                        },
-                        "ForeEndType": 3,
-                        "Code": "0096"
-                    }
-
-                    CLoadJson(apiurl,JSON.stringify(GetExHotCity),GetExHotCityCallback,CAnimIn,CAnimOut);
-                    function GetExHotCityCallback(data){
-                        var json=eval('('+data+')');
-                        console.log(json);
-                        if(json.success){
-                            var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
-                            $("#out_place").html(tpl_GetExHotCity);
-                            MT.reloadHotCity();
-                        }else {
-                            console.log(json);
-                            jAlert(json.message,"提示");
-                        }
-                    }
-                }
-
-                /**
-                 * loadJson 增强方法 CLoadJson ,加入了两个参数 animin (淡入动画),animout(淡出动画)
-                 * @param url
-                 * @param data
-                 * @param mycallback
-                 * @param animin ,type function [new]
-                 * @param animout ,type function [new]
-                 * @param async
-                 * @param encryption
-                 * @constructor
-                 */
-                var CLoadJson = function(url, data, mycallback,animin,animout, async, encryption) {
-                    if (async != undefined && async == true) {
-                        $.ajaxSetup({
-                            async : false
-                        });
-                    }
-
-                    $.ajax({
-                        type : "post",
-                        url : url + '?rnd=' + Math.random(),
-                        data : data,
-                        contentType : 'application/json;charset=utf-8',
-                        beforeSend : function(xhr) {
-                            if(animin != undefined || animin!= "" || animin!= null){
-                                animin();
-                            }
-                            //后续开始加密，设置header
-                            //xhr.setRequestHeader('Content-Type','application/json');
-                            if (encryption != undefined && encryption == true) {
-                                var uid = md5("zhangfengming");
-                                var password = md5("");
-                                xhr.setRequestHeader('uid', user);
-                            }
-                        },
-                        success : function(jsondata) {
-                            mycallback(jsondata);
-                            if(animout!=undefined || animin!= "" || animin!= null){
-                                animout();//动画淡出
+                        aBtn[i].onclick=function(){
+                            for(var i=0; i<aBtn.length; i++)
+                            {
+                                aBtn[i].className='';
+                                ban[i].className='top-ban';
+                                con[i].className='out-content';
                             }
 
-                        }
-                    });
-                    $.ajaxSetup({
-                        async : true
-                    });
+                            this.className='menu-active';
+                            ban[index].className='top-ban s-active';
+                            con[index].className='out-content s-active';
+                        };
+                    })(i);
                 }
-
-                return {
-                    CreloadHotCity:CHotCity,
-                    Cloadtab:CTab,
-                    CAnimIn:CAnimIn,
-                    CAnimOut:CAnimOut,
-                    CGetExHotCity:CGetExHotCity,
-                    CindexTolist:CindexTolist
-                }
-
-            }();
-            webkit.MT = webkit.MT || {};
-
-            webkit.MT.load=function(){
-                core.CGetExHotCity();//加载境外热门城市
-                core.Cloadtab();//加载tab选项卡
             }
-            webkit.MT.reloadHotCity=function(){//刷新城市
-                core.CreloadHotCity();
+
+            /**
+             * 热门城市绑定事件
+             * @constructor
+             */
+            MT.reloadHotCity = function(){
+                var outplace = $("#out_place")[0].getElementsByTagName("li");
+                var inplace = $("#in_place")[0].getElementsByTagName("li");
+                for(var i=0; i < outplace.length; i++){
+                    outplace[i].onclick = function(){
+                        for(var i=0; i<outplace.length; i++){
+                            outplace[i].className = "hotplace";
+                        }
+                        this.className='hotplace pl-active';
+                        MT.CurrentPageTolist(this.title);
+                    }
+                }
+                for(var j=0; j < inplace.length; j++){
+                    inplace[j].onclick = function(){
+                        for(var j=0; j<inplace.length; j++){
+                            inplace[j].className = "hotplace";
+                        }
+                        this.className='hotplace pl-active';
+                        MT.CurrentPageTolist(this.title);
+                    }
+                }
             }
-            webkit.MT.CurrentPageTolist = function(cityCode){
-                core.CindexTolist(cityCode);//跳转到目标城市
+
+            /**
+             * 热门城市跳转
+             * @param cityCode
+             * @returns {boolean}
+             * @constructor
+             */
+            MT.CurrentPageTolist = function(cityCode){
+                if(cityCode == "more"){
+                    window.location.href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html";
+                    return false;
+                }
+                window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
             }
-            MT.load();
-        })(jQuery,window,document);
+
+            /**
+             * 加载国外热门城市
+             * @constructor
+             */
+            MT.CGetExHotCity = function(){
+                var param=
+                {
+                    "Parameters": {
+                        "SubProduct": "All"
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0096"
+                }
+                MT.ajaxJson("",JSON.stringify(param),MT.GetExHotCityCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            }
+
+            /**
+             * 加载国外热门城市 [CGetExHotCity Callback]
+             * @param data
+             * @constructor
+             */
+            MT.GetExHotCityCallback = function(data){
+                var json=data;
+                console.log(json);
+                if(json.success){
+                    var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                    $("#out_place").html(tpl_GetExHotCity);
+                    MT.reloadHotCity();
+                    if(data.data.destCities.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
+                    }
+                }else {
+                    console.log(json);
+                    jAlert(json.message,"提示");
+                }
+            }
+            //   获取热门景点
+            MT.getHotSpot = function() {
+                var tmp = {
+                    "Parameters":{"Isinternational":true,"PageNo":1,"PageSize":10}
+                    ,"ForeEndType":3,
+                    "Code":"001305"
+                };
+                MT.ajaxJson("",JSON.stringify(tmp),MT.getHotSpotCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            };
+
+             MT.getHotSpotCallback = function(ret){
+                var json=ret;
+                if(json.success){
+                    var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
+                    console.log(data);
+                    if(data.hotScenicList.length == 0){
+                        jAlert("抱歉暂时没有数据","提示");
+                    }
+                    $("#abroad_hotspot").html(tpl_GetHotSpot);
+
+                }else {
+                    jAlert(json.message,"提示");
+                }
+            }
+
+            MT.CGetExHotCity();
+            MT.CTab();
+            MT.getHotSpot();
+        })();
     </script>
 </body>
 </html>

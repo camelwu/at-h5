@@ -27,6 +27,31 @@
     <title>房间升级 - 亚洲旅行网</title>
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/tour.css">
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #popup_panel .d-ok {
+            background: none;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffb413;
+            width: 80px;
+            margin: 13px auto;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        #popup_message {
+            width:auto!important;
+            padding: 29px 22px;
+            font-size: 14px;
+            color: #484848;
+            text-align: center;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <div id="preloader">
@@ -40,90 +65,21 @@
     <div class="all-elements" id="allElements">
         <!--   顶部   -->
         <div class="header">
-            <a href="javascript:history.go(-1);" class="icons header-back"></a>
+            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
             <h3 class="head-h3">房间升级</h3>
         </div>
         <!--   内容   -->
-        <div class="sc-content">
-            <a href="hotel-summary.html" class="top-pic">
-                <img class="hotelPic" src="../images/03-1_02.jpg">
-            </a>
-            <ul id="hd_list" class="d-list">
-                <li>
-                    <p class="d-score">
-                        <b class="d-icon4"></b>
-                        1-12-2 Dougenzaka shibuya-ku</p>
-                </li>
-                <li>
-                    <p class="d-score">3星级</p>
-                    <b class="d-icon2"></b>
-                    <a href="#" class="d-icon1" ></a>
-                </li>
-                <li>
-                    <p class="d-p3">12月22入住</p>
-                    <p class="d-p3" style="margin-left: 5px;">12月30离店</p>
-                    <p class="d-p2">共9晚</p>
-                </li>
-                <li class="hd-hotel">
-                    <img class="hd-choose" src="../images/ui/choose.png">
-                    <div class="d-div3">
-                        <p class="d-p5">标准价</p>
-                        <p class="d-p7">
-                            <span>无早 大床 不可取消</span><span style="color: #fe4716"> 仅剩2间</span>
-                        </p>
-                    </div>
-                    <p class="hd-price">
-                        <span>+￥</span>
-                        <span>848</span>
-                    </p>
-                </li>
-                <li class="hd-hotel">
-                    <img class="hd-choose" src="../images/ui/choose.png">
-                    <div class="d-div3">
-                        <p class="d-p5">含早</p>
-                        <p class="d-p7">
-                            <span>无早 大/双床 免费取消</span>
-                        </p>
-                    </div>
-                    <p class="hd-price">
-                        <span>+￥</span>
-                        <span>908</span>
-                    </p>
-                </li>
-            </ul>
-            <a href="#" class="hs-next">下一步</a>
+        <div class="sc-content" id="sc-content">
         </div>
     </div>
-
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
+<script src="js/roomUpgreade.js"></script>
 <script>
-    $(window).load(function () {
-        $("#status").fadeOut();
-        $("#preloader").delay(400).fadeOut("medium");
-    });
-    (function(){
-        var li = document.getElementsByClassName('hd-hotel');
-        var img = document.getElementsByClassName('hd-choose');
-        for(var j = 0;j < li.length;j++){
-            {
-                (function(index) {
-                    li[j].onclick = function () {
-                        for (var i = 0; i < li.length; i++) {
-                            li[i].style.backgroundColor = "#ffffff";
-                            img[i].className = 'hd-choose';
-                        }
-                        li[index].style.backgroundColor = "#dfdfdd";
-                        img[index].className = 'hd-choose cho-active';
-                    };
-                }(j))
-            }
-        }
-    })();
 </script>
 </body>
 </html>

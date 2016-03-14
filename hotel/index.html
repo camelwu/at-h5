@@ -1,692 +1,1056 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="x5-fullscreen" content="true">
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+		<meta name="screen-orientation" content="portrait">
+		<meta name="full-screen" content="yes">
+		<meta name="browsermode" content="application">
+		<meta name="x5-orientation" content="portrait">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="x5-page-mode" content="app">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="green">
+		<title>酒店</title>
+		<link href="../styles/framework.css" rel="stylesheet">
+		<link href="../styles/style.css" rel="stylesheet">
+		<link href="../styles/tips.css" rel="stylesheet">
+		<link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+		<link href="css/dzh.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="preloader">
+			<div id="status-h">
+				<p class="center-text">
 
-    <title>国际酒店</title>
-    <link href="../styles/style.css" rel="stylesheet">
-    <link href="../styles/framework.css" rel="stylesheet">
-    <link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="css/dzh.css" rel="stylesheet">
-</head>
-<body>
-<div id="preloader">
-    <div id="status-h">
-        <p class="center-text">
-            
-            <em>加载中……</em>
-        </p>
-    </div>
-</div>
-<div class="all-elements">
-    <div class="box">
-        <div class="header">
-            <a href="javascript:;" class="icons header-back" id="ho_back"></a>
-            <h3>酒店</h3>
-        </div>
-        <div id="content ddd" class="snap-content" style="padding-top: 45px;">
-            <div id="h-Tab">
-                <a class="on" id="Inter">国际</a>
-                <a id="Dom">国内</a>
-            </div>
-            <form action="hotel_list.html" method="get">
-                <div class="quote-slider full-bottom" data-snap-ignore="true">
-                    <div class="content1" id="content1">
+					<em>加载中……</em>
+				</p>
+			</div>
+		</div>
+		<div class="all-elements">
+			<div class="box">
+				<div class="header">
+					<a href="../index.html" class="header-back" id="ho_back">
+                        <i class="icons go-back"></i>
+                    </a>
+					<h3>酒店</h3>
+				</div>
+				<div id="content ddd" class="snap-content" style="padding-top: 45px;">
+					<div id="h-Tab">
+						<a class="on" id="Inter">国际</a>
+						<a id="Dom">国内</a>
+					</div>
+					<form action="hotel_list.html" method="get" id="hotel_search">
+						<div class="quote-slider full-bottom" data-snap-ignore="true">
+							<div class="content1" id="content1">
 
-                        <div  id="arr1" class="nav1">
-                            <div class="nav111">
-                                目的地
-                            </div>
-                            <div class="nav112">
-                                <div class="choose-aim">
-                                    <input type="text" value="新加坡" id="input1" name="InterCityName" readonly />
-                                    <i class="icons open-arw"></i>
-                                </div>
-                            </div>
-                        </div>
+								<div  id="arr1" class="nav1">
+									<div class="nav111">
+										目的地
+									</div>
+									<div class="nav112">
+										<div class="choose-aim">
+											<input type="text" value="新加坡" id="input1" name="InterCityName" readonly />
+											<i class="icons open-arw"></i>
+										</div>
+									</div>
+								</div>
 
+								<div class="content2" id="content2">
+									<div class="nav2-left">
+										<span class="nav2-lefttop">日期</span>
+										<span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
+									</div>
+									<div class="nav2-center" id="nav2-center1">
+										<div class="nav2-centertop">
+											<p>
+												<input name="InterCheckInDate" id="CheckInDate"  readonly="readonly" class="fl"  value="2015-11-03">
+												<span id="week_span1" class="fl">周二 入住</span>
+											</p>
+										</div>
+										<div class="nav2-centerbottom">
+											<p>
+												<input name="InterCheckOutDate" id="CheckOutDate"  readonly="readonly" class="fl" value="2015-11-06">
+												<span id="week_span2" class="fl">周五 离店</span>
+											</p>
+										</div>
+									</div>
+									<div class="nav2-centerright">
+										<i></i>
+									</div>
+								</div>
 
-                        <div class="content2" id="content2">
-                            <div class="nav2-left">
-                                <span class="nav2-lefttop">日期</span>
-                                <span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
-                            </div>
-                            <div class="nav2-center" id="nav2-center1">
-                                <div class="nav2-centertop">
-                                    <p><input name="InterCheckInDate" id="CheckInDate"  readonly="readonly" class="fl"  value="2015-11-03"><span id="week_span1" class="fl">周二 入住</span></p>
-                                </div>
-                                <div class="nav2-centerbottom">
-                                    <p><input name="InterCheckOutDate" id="CheckOutDate"  readonly="readonly" class="fl" value="2015-11-06"><span id="week_span2" class="fl">周五 离店</span></p>
-                                </div>
-                            </div>
-                            <div class="nav2-centerright">
-                                <i></i>
-                            </div>
-                        </div>
+								<div id="room" class="content3">
+									<div class="nav3-left">
+										房间
+									</div>
+									<div class="nav3-right">
+										<input type="text" id="count1" name="NumRoom" value="1" readonly>
+										<i class="add" id="ho_i1"></i>
+										<i class="minus" id="ho_i2"></i>
+									</div>
+								</div>
 
-                        <div id="room" class="content3">
-                            <div class="nav3-left">
-                                房间
-                            </div>
-                            <div class="nav3-right">
-                                <input type="text" id="count1" name="NumRoom" value="1" readonly>
-                                <i class="add" id="ho_i1"></i>
-                                <i class="minus" id="ho_i2"></i>
-                            </div>
-                        </div>
+								<div id="people" class="content4">
+									<div class="nav4">
+										<div class="nav4-left">
+											人数
+										</div>
+										<div class="nav4-center">
+											<div class="nav4-centertop" id="nav4-centertop">
+												<p>
+													<input type="text" value="1" name="NumAdult" id="count2" readonly >
+													<span>成人</span>
+													<i class="add" id="ho_i7"></i>
+													<i class="minus" id="ho_i6"></i>
+												</p>
+											</div>
+											<div class="nav4-centerbottom" id="nav4-centerbottom">
+												<p>
+													<input type="text" value="0" name="NumChild" id="count3" readonly>
+													<span>儿童</span>
+													<i class="add" id="ho_i3"></i>
+													<i class="minus" id="ho_i4"></i>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
 
-                        <div id="people" class="content4">
-                            <div class="nav4">
-                                <div class="nav4-left">
-                                    人数
-                                </div>
-                                <div class="nav4-center">
-                                    <div class="nav4-centertop" id="nav4-centertop">
-                                        <p>
-                                            <input type="text" value="1" name="NumAdult" id="count2" readonly ><span>成人</span>
-                                            <i class="icons1 add1" id="ho_i7"></i>
-                                            <i class="icons1 minus1" id="ho_i6"></i>
-                                        </p>
-                                    </div>
-                                    <div class="nav4-centerbottom" id="nav4-centerbottom">
-                                        <p>
-                                            <input type="text" value="0" name="NumChild" id="count3" readonly><span>儿童</span>
-                                            <i class="icons1 add1" id="ho_i3"></i>
-                                            <i class="icons1 minus1" id="ho_i4"></i>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+								<!--已去掉城市模糊搜索
+								<div class="content5">
+								<input class="HotelName" name="InterHotelName" type="text" value="酒店名/位置"  id="InterHotelname">
+								</div>-->
 
+								<div class="aa">
+									<div>
+										<input type="submit"  id="InterBtn" value="查询" class="button-yellow hotelInter">
+									</div>
 
-                        <!--已去掉城市模糊搜索
-                        <div class="content5">
-                            <input class="HotelName" name="InterHotelName" type="text" value="酒店名/位置"  id="InterHotelname">
-                        </div>-->
+								</div>
+							</div>
+							<div class="content1">
+								<div  id="arr2" class="nav1">
+									<div class="nav111">
+										目的地
+									</div>
+									<div class="nav112">
+										<div class="choose-aim1" >
+											<input type="text"  value="北京" id="input2" name="DomCityName"  readonly="readonly" />
+											<i class="icons right1"></i>
+											<i class="position"></i>
+										</div>
+									</div>
+								</div>
 
-                        <div class="aa">
-                            <div>
-                                <input type="submit"  id="InterBtn" value="查询" class="button-yellow hotelInter">
-                            </div>
+								<div class="content2" id="domesticCalender">
+									<div class="nav2-left">
+										<span class="nav2-lefttop">日期</span>
+										<span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
+									</div>
+									<div class="nav2-center" id="nav2-center2">
+										<div class="nav2-centertop">
+											<p>
+												<input name="DomCheckInDate" id="DomCheckInDate"  readonly="readonly"   value="2015-11-03" class="fl">
+												<span id="weekSpan3" class="fl">周二 入住</span>
+											</p>
 
-                        </div>
-                    </div>
-                    <div class="content1">
-                        <div  id="arr2" class="nav1">
-                            <div class="nav111">
-                                目的地
-                            </div>
-                            <div class="nav112">
-                                <div class="choose-aim1" >
-                                    <input type="text"  value="北京" id="input2" name="DomCityName"  readonly="readonly" />
-                                    <i class="icons right1"></i>
-                                    <i class="position"></i>
-                                </div>
-                            </div>
-                        </div>
+										</div>
+										<div class="nav2-centerbottom" onclick="focus3()">
+											<p>
+												<input name="DomCheckOutDate" id="DomCheckOutDate"  readonly="readonly" value="2015-11-06" class="fl">
+												<span id="weekSpan4" class="fl">周五 离店</span>
+											</p>
+										</div>
+									</div>
+									<div class="nav2-centerright">
+										<i></i>
+									</div>
+								</div>
+								<!--已去掉城市模糊搜索
+								<div class="content5">
+								<input class="HotelName" name="DomHotelName" type="text" value="酒店名/位置" id="DomHotelName">
+								</div>-->
 
-                        <div class="content2" id="domesticCalender">
-                            <div class="nav2-left">
-                                <span class="nav2-lefttop">日期</span>
-                                <span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
-                            </div>
-                            <div class="nav2-center" id="nav2-center2">
-                                <div class="nav2-centertop">
-                                    <p><input name="DomCheckInDate" id="DomCheckInDate"  readonly="readonly"   value="2015-11-03" class="fl"><span id="weekSpan3" class="fl">周二 入住</span></p>
+								<div class="aa">
+									<div>
+										<input type="submit" value="查询" id="domBtn" class="button-yellow hotelInter">
+									</div>
+								</div>
+							</div>
+						</div>
 
-                                </div>
-                                <div class="nav2-centerbottom" onclick="focus3()">
-                                    <p><input name="DomCheckOutDate" id="DomCheckOutDate"  readonly="readonly" value="2015-11-06" class="fl"><span id="weekSpan4" class="fl">周五 离店</span></p>
-                                </div>
-                            </div>
-                            <div class="nav2-centerright">
-                                <i></i>
-                            </div>
-                        </div>
-                        <!--已去掉城市模糊搜索
-                        <div class="content5">
-                            <input class="HotelName" name="DomHotelName" type="text" value="酒店名/位置" id="DomHotelName">
-                        </div>-->
+					</form>
+					<div class="footer">
+						<span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span>
+					</div>
+					<div id="cd_date"></div>
+				</div>
+			</div>
+		</div>
 
-                        <div class="aa">
-                            <div>
-                                <input type="submit" value="查询" id="domBtn" class="button-yellow hotelInter">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+		<div class="header" id="vlm-login" style="z-index:121; display:none">
+			<div class="cl_search">
+				<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />
+				<!--<datalist id="searchCity">-->
+				<!--</datalist>-->
+				<i></i>
+			</div>
+			<a href="javascript:;" class="header-back" id="cl_back">
+                <i class="icons go-back"></i>
+            </a>
+		</div>
+		<div class="cl_box_box" id="cl_box_box" style="display:none">
+			<div class="cl_box">
 
-            </form>
-            <div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>
-            <div id="cd_date"></div>
-        </div>
-    </div>
-</div>
+				<ul class="cl_inp_citys" id="cl_inp_citys">
 
-<div class="header" id="vlm-login" style="z-index:121; display:none">
-    <div class="cl_search">
-        <input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />
-        <!--<datalist id="searchCity">-->
-        <!--</datalist>-->
-        <i></i>
-    </div>
-    <a href="javascript:;" class="icons header-back" id="cl_back"></a>
-</div>
-<div class="cl_box_box" id="cl_box_box" style="display:none">
-    <div class="cl_box">
+				</ul>
+				<div class="cl_curr cl_con"  >
+					<a name="cl_curr" class="cl_on">&nbsp;</a>
+					<div>
+						当前
+					</div>
+					<ul>
+						<li class="fl beijing">
+							北京
+						</li>
+					</ul>
+				</div>
+				<div class="cl_con ">
+					<a class="cl_on">&nbsp;</a>
+					<div>
+						历史选择
+					</div>
+					<ul class="cl_citysHis" id="cl_citysHis">
 
-        <ul class="cl_inp_citys" id="cl_inp_citys">
+					</ul>
+				</div>
+				<div class="cl_con ">
+					<a name="cl_hot" class="cl_on">&nbsp;</a>
+					<div>
+						热门城市
+					</div>
+					<ul class="cl_citysHot" id="cl_citysHot">
+						<li>
+							{%=cityChineseName%}
+						</li>
+					</ul>
+				</div>
+				<div class="cityWordBox" id="cityWordBox">
+					<div class="cityWord">
+						<div class="fr">
+							<a href="#cl_curr">当前</a>
+						</div>
+						<div class="fr">
+							<a href="#cl_hot">热门</a>
+						</div>
+						<ul class="cl_word fr" id="cl_side">
+							<li>
+								<a href="#a">A</a>
+							</li>
+							<li>
+								<a href="#b">B</a>
+							</li>
+							<li>
+								<a href="#c">C</a>
+							</li>
+							<li>
+								<a href="#d">D</a>
+							</li>
+							<li>
+								<a href="#e">E</a>
+							</li>
+							<li>
+								<a href="#f">F</a>
+							</li>
+							<li>
+								<a href="#g">G</a>
+							</li>
+							<li>
+								<a href="#h">H</a>
+							</li>
+							<li>
+								<a href="#i">I</a>
+							</li>
+							<li>
+								<a href="#j">J</a>
+							</li>
+							<li>
+								<a href="#k">K</a>
+							</li>
+							<li>
+								<a href="#l">L</a>
+							</li>
+							<li>
+								<a href="#m">M</a>
+							</li>
+							<li>
+								<a href="#n">N</a>
+							</li>
+							<li>
+								<a href="#o">O</a>
+							</li>
+							<li>
+								<a href="#p">P</a>
+							</li>
+							<li>
+								<a href="#q">Q</a>
+							</li>
+							<li>
+								<a href="#r">R</a>
+							</li>
+							<li>
+								<a href="#s">S</a>
+							</li>
+							<li>
+								<a href="#t">T</a>
+							</li>
+							<li>
+								<a href="#u">U</a>
+							</li>
+							<li>
+								<a href="#v">V</a>
+							</li>
+							<li>
+								<a href="#w">W</a>
+							</li>
+							<li>
+								<a href="#x">X</a>
+							</li>
+							<li>
+								<a href="#y">Y</a>
+							</li>
+							<li>
+								<a href="#z">Z</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<ol id="lsf_city_list" class="lsf_city_list">
+					<li class="cl_con ">
+						<a name="a" class="cl_on">&nbsp;</a>
+						<div>
+							A
+						</div>
+						<ul id="A">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="b" class="cl_on">&nbsp;</a>
+						<div>
+							B
+						</div>
+						<ul id="B">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="c" class="cl_on">&nbsp;</a>
+						<div>
+							C
+						</div>
+						<ul id="C">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="d" class="cl_on">&nbsp;</a>
+						<div>
+							D
+						</div>
+						<ul id="D">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="e" class="cl_on">&nbsp;</a>
+						<div>
+							E
+						</div>
+						<ul id="E">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="f" class="cl_on">&nbsp;</a>
+						<div>
+							F
+						</div>
+						<ul id="F">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="g" class="cl_on">&nbsp;</a>
+						<div>
+							G
+						</div>
+						<ul id="G">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="h" class="cl_on">&nbsp;</a>
+						<div>
+							H
+						</div>
+						<ul id="H">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="i" class="cl_on">&nbsp;</a>
+						<div>
+							I
+						</div>
+						<ul id="I">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="j" class="cl_on">&nbsp;</a>
+						<div>
+							J
+						</div>
+						<ul id="J">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="k" class="cl_on">&nbsp;</a>
+						<div>
+							K
+						</div>
+						<ul id="K">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="l" class="cl_on">&nbsp;</a>
+						<div>
+							L
+						</div>
+						<ul id="L">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="m" class="cl_on">&nbsp;</a>
+						<div>
+							M
+						</div>
+						<ul id="M">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="n" class="cl_on">&nbsp;</a>
+						<div>
+							N
+						</div>
+						<ul id="N">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="o" class="cl_on">&nbsp;</a>
+						<div>
+							O
+						</div>
+						<ul id="O">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="p" class="cl_on">&nbsp;</a>
+						<div>
+							P
+						</div>
+						<ul id="P">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="q" class="cl_on">&nbsp;</a>
+						<div>
+							Q
+						</div>
+						<ul id="Q">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="r" class="cl_on">&nbsp;</a>
+						<div>
+							R
+						</div>
+						<ul id="R">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="s" class="cl_on">&nbsp;</a>
+						<div>
+							S
+						</div>
+						<ul id="S">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="t" class="cl_on">&nbsp;</a>
+						<div>
+							T
+						</div>
+						<ul id="T">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="u" class="cl_on">&nbsp;</a>
+						<div>
+							U
+						</div>
+						<ul id="U">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="v" class="cl_on">&nbsp;</a>
+						<div>
+							V
+						</div>
+						<ul id="V">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="w" class="cl_on">&nbsp;</a>
+						<div>
+							W
+						</div>
+						<ul id="W">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="x" class="cl_on">&nbsp;</a>
+						<div>
+							X
+						</div>
+						<ul id="X">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="y" class="cl_on">&nbsp;</a>
+						<div>
+							Y
+						</div>
+						<ul id="Y">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="z" class="cl_on">&nbsp;</a>
+						<div>
+							Z
+						</div>
+						<ul id="Z">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+		<div class="header" id="dvlm-login" style="z-index:121;display:none">
+			<div class="cl_search">
+				<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="dcitySearchBox" />
+				<!--<datalist id="dsearchCity">-->
+				<!--</datalist>-->
+				<i></i>
+			</div>
+			<a href="javascript:;" class="header-back" id="dcl_back">
+                <i class="icons go-back"></i>
+            </a>
+		</div>
+		<div class="cl_box_box" id="dcl_box_box" style="display:none">
+			<div class="cl_box">
 
-        </ul>
-        <div class="cl_curr cl_con"  >
-            <a name="cl_curr" class="cl_on">&nbsp;</a>
-            <div>当前</div>
-            <ul>
-                <li class="fl beijing">北京</li>
-            </ul>
-        </div>
-        <div class="cl_con ">
-            <a class="cl_on">&nbsp;</a>
-            <div>历史选择</div>
-            <ul class="cl_citysHis" id="cl_citysHis">
+				<ul class="cl_inp_citys" id="dcl_inp_citys"></ul>
+				<div class="cl_curr cl_con"  >
+					<a name="dcl_curr" class="cl_on">&nbsp;</a>
+					<div>
+						当前
+					</div>
+					<ul>
+						<li class="fl beijing">
+							北京
+						</li>
+					</ul>
+				</div>
+				<div class="cl_con ">
+					<a class="cl_on">&nbsp;</a>
+					<div>
+						历史选择
+					</div>
+					<ul class="cl_citysHis" id="dcl_citysHis">
 
-            </ul>
-        </div>
-        <div class="cl_con ">
-            <a name="cl_hot" class="cl_on">&nbsp;</a>
-            <div>热门城市</div>
-                <ul class="cl_citysHot" id="cl_citysHot">
-                    <li>{%=cityChineseName%}</li>
-                </ul>
-        </div>
-        <div class="cityWordBox" id="cityWordBox">
-            <div class="cityWord">
-                <div class="fr"><a href="#cl_curr">当前</a></div>
-                <div class="fr"><a href="#cl_hot">热门</a></div>
-                <ul class="cl_word fr" id="cl_side">
-                    <li><a href="#a">A</a></li>
-                    <li><a href="#b">B</a></li>
-                    <li><a href="#c">C</a></li>
-                    <li><a href="#d">D</a></li>
-                    <li><a href="#e">E</a></li>
-                    <li><a href="#f">F</a></li>
-                    <li><a href="#g">G</a></li>
-                    <li><a href="#h">H</a></li>
-                    <li><a href="#i">I</a></li>
-                    <li><a href="#j">J</a></li>
-                    <li><a href="#k">K</a></li>
-                    <li><a href="#l">L</a></li>
-                    <li><a href="#m">M</a></li>
-                    <li><a href="#n">N</a></li>
-                    <li><a href="#o">O</a></li>
-                    <li><a href="#p">P</a></li>
-                    <li><a href="#q">Q</a></li>
-                    <li><a href="#r">R</a></li>
-                    <li><a href="#s">S</a></li>
-                    <li><a href="#t">T</a></li>
-                    <li><a href="#u">U</a></li>
-                    <li><a href="#v">V</a></li>
-                    <li><a href="#w">W</a></li>
-                    <li><a href="#x">X</a></li>
-                    <li><a href="#y">Y</a></li>
-                    <li><a href="#z">Z</a></li>
-                </ul>
-            </div>
-        </div>
-        <ol id="lsf_city_list" class="lsf_city_list">
-            <li class="cl_con ">
-                <a name="a" class="cl_on">&nbsp;</a>
-                <div>A</div>
-                <ul id="A">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="b" class="cl_on">&nbsp;</a>
-                <div>B</div>
-                <ul id="B">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="c" class="cl_on">&nbsp;</a>
-                <div>C</div>
-                <ul id="C">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="d" class="cl_on">&nbsp;</a>
-                <div>D</div>
-                <ul id="D">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="e" class="cl_on">&nbsp;</a>
-                <div>E</div>
-                <ul id="E">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="f" class="cl_on">&nbsp;</a>
-                <div>F</div>
-                <ul id="F">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="g" class="cl_on">&nbsp;</a>
-                <div>G</div>
-                <ul id="G">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="h" class="cl_on">&nbsp;</a>
-                <div>H</div>
-                <ul id="H">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="i" class="cl_on">&nbsp;</a>
-                <div>I</div>
-                <ul id="I">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="j" class="cl_on">&nbsp;</a>
-                <div>J</div>
-                <ul id="J">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="k" class="cl_on">&nbsp;</a>
-                <div>K</div>
-                <ul id="K">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="l" class="cl_on">&nbsp;</a>
-                <div>L</div>
-                <ul id="L">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="m" class="cl_on">&nbsp;</a>
-                <div>M</div>
-                <ul id="M">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="n" class="cl_on">&nbsp;</a>
-                <div>N</div>
-                <ul id="N">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="o" class="cl_on">&nbsp;</a>
-                <div>O</div>
-                <ul id="O">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="p" class="cl_on">&nbsp;</a>
-                <div>P</div>
-                <ul id="P">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="q" class="cl_on">&nbsp;</a>
-                <div>Q</div>
-                <ul id="Q">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="r" class="cl_on">&nbsp;</a>
-                <div>R</div>
-                <ul id="R">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="s" class="cl_on">&nbsp;</a>
-                <div>S</div>
-                <ul id="S">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="t" class="cl_on">&nbsp;</a>
-                <div>T</div>
-                <ul id="T">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="u" class="cl_on">&nbsp;</a>
-                <div>U</div>
-                <ul id="U">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="v" class="cl_on">&nbsp;</a>
-                <div>V</div>
-                <ul id="V">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="w" class="cl_on">&nbsp;</a>
-                <div>W</div>
-                <ul id="W">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="x" class="cl_on">&nbsp;</a>
-                <div>X</div>
-                <ul id="X">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="y" class="cl_on">&nbsp;</a>
-                <div>Y</div>
-                <ul id="Y">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="z" class="cl_on">&nbsp;</a>
-                <div>Z</div>
-                <ul id="Z">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-        </ol>
-    </div>
-</div>
-<div class="cl_box_box" id="dcl_box_box" style="display:none">
-    <div class="cl_box">
-        <div class="header" id="dvlm-login">
-            <div class="cl_search">
-                <input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="dcitySearchBox" />
-                <!--<datalist id="dsearchCity">-->
-                <!--</datalist>-->
-                <i></i>
-            </div>
-            <a href="javascript:;" class="icons header-back" id="dcl_back"></a>
-        </div>
-        <ul class="cl_inp_citys" id="dcl_inp_citys">
-        </ul>
-        <div class="cl_curr cl_con"  >
-            <a name="dcl_curr" class="cl_on">&nbsp;</a>
-            <div>当前</div>
-            <ul>
-                <li class="fl beijing">北京</li>
-            </ul>
-        </div>
-        <div class="cl_con ">
-            <a class="cl_on">&nbsp;</a>
-            <div>历史选择</div>
-            <ul class="cl_citysHis" id="dcl_citysHis">
-
-            </ul>
-        </div>
-        <div class="cl_con ">
-            <a name="dcl_hot" class="cl_on">&nbsp;</a>
-            <div>热门城市</div>
-            <ul class="cl_citysHot" id="dcl_citysHot">
-                <li>{%=cityChineseName%}</li>
-            </ul>
-        </div>
-        <div class="cityWordBox" id="dcityWordBox">
-            <div class="cityWord">
-                <div class="fr"><a href="#dcl_curr">当前</a></div>
-                <div class="fr"><a href="#dcl_hot">热门</a></div>
-                <ul class="cl_word fr" id="dcl_side">
-                    <li><a href="#da">A</a></li>
-                    <li><a href="#db">B</a></li>
-                    <li><a href="#dc">C</a></li>
-                    <li><a href="#dd">D</a></li>
-                    <li><a href="#de">E</a></li>
-                    <li><a href="#df">F</a></li>
-                    <li><a href="#dg">G</a></li>
-                    <li><a href="#dh">H</a></li>
-                    <li><a href="#di">I</a></li>
-                    <li><a href="#dj">J</a></li>
-                    <li><a href="#dk">K</a></li>
-                    <li><a href="#dl">L</a></li>
-                    <li><a href="#dm">M</a></li>
-                    <li><a href="#dn">N</a></li>
-                    <li><a href="#do">O</a></li>
-                    <li><a href="#dp">P</a></li>
-                    <li><a href="#dq">Q</a></li>
-                    <li><a href="#dr">R</a></li>
-                    <li><a href="#ds">S</a></li>
-                    <li><a href="#dt">T</a></li>
-                    <li><a href="#du">U</a></li>
-                    <li><a href="#dv">V</a></li>
-                    <li><a href="#dw">W</a></li>
-                    <li><a href="#dx">X</a></li>
-                    <li><a href="#dy">Y</a></li>
-                    <li><a href="#dz">Z</a></li>
-                </ul>
-            </div>
-        </div>
-        <ol id="dlsf_city_list" class="lsf_city_list">
-            <li class="cl_con ">
-                <a name="da" class="cl_on">&nbsp;</a>
-                <div>A</div>
-                <ul id="dA">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="db" class="cl_on">&nbsp;</a>
-                <div>B</div>
-                <ul id="dB">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dc" class="cl_on">&nbsp;</a>
-                <div>C</div>
-                <ul id="dC">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dd" class="cl_on">&nbsp;</a>
-                <div>D</div>
-                <ul id="dD">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="de" class="cl_on">&nbsp;</a>
-                <div>E</div>
-                <ul id="dE">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="df" class="cl_on">&nbsp;</a>
-                <div>F</div>
-                <ul id="dF">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dg" class="cl_on">&nbsp;</a>
-                <div>G</div>
-                <ul id="dG">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dh" class="cl_on">&nbsp;</a>
-                <div>H</div>
-                <ul id="dH">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="di" class="cl_on">&nbsp;</a>
-                <div>I</div>
-                <ul id="dI">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dj" class="cl_on">&nbsp;</a>
-                <div>J</div>
-                <ul id="dJ">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dk" class="cl_on">&nbsp;</a>
-                <div>K</div>
-                <ul id="dK">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dl" class="cl_on">&nbsp;</a>
-                <div>L</div>
-                <ul id="dL">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dm" class="cl_on">&nbsp;</a>
-                <div>M</div>
-                <ul id="dM">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dn" class="cl_on">&nbsp;</a>
-                <div>N</div>
-                <ul id="dN">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="do" class="cl_on">&nbsp;</a>
-                <div>O</div>
-                <ul id="dO">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con ">
-                <a name="dp" class="cl_on">&nbsp;</a>
-                <div>P</div>
-                <ul id="dP">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dq" class="cl_on">&nbsp;</a>
-                <div>Q</div>
-                <ul id="dQ">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dr" class="cl_on">&nbsp;</a>
-                <div>R</div>
-                <ul id="dR">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="ds" class="cl_on">&nbsp;</a>
-                <div>S</div>
-                <ul id="dS">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dt" class="cl_on">&nbsp;</a>
-                <div>T</div>
-                <ul id="dT">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="du" class="cl_on">&nbsp;</a>
-                <div>U</div>
-                <ul id="dU">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dv" class="cl_on">&nbsp;</a>
-                <div>V</div>
-                <ul id="dV">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dw" class="cl_on">&nbsp;</a>
-                <div>W</div>
-                <ul id="dW">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dx" class="cl_on">&nbsp;</a>
-                <div>X</div>
-                <ul id="dX">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dy" class="cl_on">&nbsp;</a>
-                <div>Y</div>
-                <ul id="dY">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-            <li class="cl_con">
-                <a name="dz" class="cl_on">&nbsp;</a>
-                <div>Z</div>
-                <ul id="dZ">
-                    <li>{%=cityNameCN%}</li>
-                </ul>
-            </li>
-        </ol>
-    </div>
-</div>
-</body>
-<script src="../js/lib/jquery-1.10.2.min.js"></script>
-<script src="../js/lib/plugins.js"></script>
-<script src="../owlcarousel/owl.carousel.min.js"></script>
-<script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/d_calendar1.0.2.js"></script>
-<script src="../js/lib/template.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
-<script id="tpl_Name" type="text/template"></script>
-<script src="js/lsf_hotel.js"></script>
+					</ul>
+				</div>
+				<div class="cl_con ">
+					<a name="dcl_hot" class="cl_on">&nbsp;</a>
+					<div>
+						热门城市
+					</div>
+					<ul class="cl_citysHot" id="dcl_citysHot">
+						<li>
+							{%=cityChineseName%}
+						</li>
+					</ul>
+				</div>
+				<div class="cityWordBox" id="dcityWordBox">
+					<div class="cityWord">
+						<div class="fr">
+							<a href="#dcl_curr">当前</a>
+						</div>
+						<div class="fr">
+							<a href="#dcl_hot">热门</a>
+						</div>
+						<ul class="cl_word fr" id="dcl_side">
+							<li>
+								<a href="#da">A</a>
+							</li>
+							<li>
+								<a href="#db">B</a>
+							</li>
+							<li>
+								<a href="#dc">C</a>
+							</li>
+							<li>
+								<a href="#dd">D</a>
+							</li>
+							<li>
+								<a href="#de">E</a>
+							</li>
+							<li>
+								<a href="#df">F</a>
+							</li>
+							<li>
+								<a href="#dg">G</a>
+							</li>
+							<li>
+								<a href="#dh">H</a>
+							</li>
+							<li>
+								<a href="#di">I</a>
+							</li>
+							<li>
+								<a href="#dj">J</a>
+							</li>
+							<li>
+								<a href="#dk">K</a>
+							</li>
+							<li>
+								<a href="#dl">L</a>
+							</li>
+							<li>
+								<a href="#dm">M</a>
+							</li>
+							<li>
+								<a href="#dn">N</a>
+							</li>
+							<li>
+								<a href="#do">O</a>
+							</li>
+							<li>
+								<a href="#dp">P</a>
+							</li>
+							<li>
+								<a href="#dq">Q</a>
+							</li>
+							<li>
+								<a href="#dr">R</a>
+							</li>
+							<li>
+								<a href="#ds">S</a>
+							</li>
+							<li>
+								<a href="#dt">T</a>
+							</li>
+							<li>
+								<a href="#du">U</a>
+							</li>
+							<li>
+								<a href="#dv">V</a>
+							</li>
+							<li>
+								<a href="#dw">W</a>
+							</li>
+							<li>
+								<a href="#dx">X</a>
+							</li>
+							<li>
+								<a href="#dy">Y</a>
+							</li>
+							<li>
+								<a href="#dz">Z</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<ol id="dlsf_city_list" class="lsf_city_list">
+					<li class="cl_con ">
+						<a name="da" class="cl_on">&nbsp;</a>
+						<div>
+							A
+						</div>
+						<ul id="dA">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="db" class="cl_on">&nbsp;</a>
+						<div>
+							B
+						</div>
+						<ul id="dB">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dc" class="cl_on">&nbsp;</a>
+						<div>
+							C
+						</div>
+						<ul id="dC">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dd" class="cl_on">&nbsp;</a>
+						<div>
+							D
+						</div>
+						<ul id="dD">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="de" class="cl_on">&nbsp;</a>
+						<div>
+							E
+						</div>
+						<ul id="dE">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="df" class="cl_on">&nbsp;</a>
+						<div>
+							F
+						</div>
+						<ul id="dF">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dg" class="cl_on">&nbsp;</a>
+						<div>
+							G
+						</div>
+						<ul id="dG">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dh" class="cl_on">&nbsp;</a>
+						<div>
+							H
+						</div>
+						<ul id="dH">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="di" class="cl_on">&nbsp;</a>
+						<div>
+							I
+						</div>
+						<ul id="dI">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dj" class="cl_on">&nbsp;</a>
+						<div>
+							J
+						</div>
+						<ul id="dJ">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dk" class="cl_on">&nbsp;</a>
+						<div>
+							K
+						</div>
+						<ul id="dK">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dl" class="cl_on">&nbsp;</a>
+						<div>
+							L
+						</div>
+						<ul id="dL">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dm" class="cl_on">&nbsp;</a>
+						<div>
+							M
+						</div>
+						<ul id="dM">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dn" class="cl_on">&nbsp;</a>
+						<div>
+							N
+						</div>
+						<ul id="dN">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="do" class="cl_on">&nbsp;</a>
+						<div>
+							O
+						</div>
+						<ul id="dO">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con ">
+						<a name="dp" class="cl_on">&nbsp;</a>
+						<div>
+							P
+						</div>
+						<ul id="dP">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dq" class="cl_on">&nbsp;</a>
+						<div>
+							Q
+						</div>
+						<ul id="dQ">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dr" class="cl_on">&nbsp;</a>
+						<div>
+							R
+						</div>
+						<ul id="dR">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="ds" class="cl_on">&nbsp;</a>
+						<div>
+							S
+						</div>
+						<ul id="dS">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dt" class="cl_on">&nbsp;</a>
+						<div>
+							T
+						</div>
+						<ul id="dT">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="du" class="cl_on">&nbsp;</a>
+						<div>
+							U
+						</div>
+						<ul id="dU">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dv" class="cl_on">&nbsp;</a>
+						<div>
+							V
+						</div>
+						<ul id="dV">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dw" class="cl_on">&nbsp;</a>
+						<div>
+							W
+						</div>
+						<ul id="dW">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dx" class="cl_on">&nbsp;</a>
+						<div>
+							X
+						</div>
+						<ul id="dX">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dy" class="cl_on">&nbsp;</a>
+						<div>
+							Y
+						</div>
+						<ul id="dY">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+					<li class="cl_con">
+						<a name="dz" class="cl_on">&nbsp;</a>
+						<div>
+							Z
+						</div>
+						<ul id="dZ">
+							<li>
+								{%=cityNameCN%}
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script src="../js/lib/plugins.js"></script>
+	<script src="../owlcarousel/owl.carousel.min.js"></script>
+	<script src="../js/lib/vlm.js"></script>
+	<script src="../js/lib/d_calendar1.0.2.js"></script>
+	<script src="../js/lib/template.js"></script>
+	<script src="../js/lib/jquery.alert.js"></script>
+	<script src="js/lsf_hotel.js"></script>
 </html>

@@ -68,7 +68,9 @@ var ticketOrder = {
         },
         get: function (key) {
             var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
-            return dataObj.data;
+            if(dataObj!=null){
+                return dataObj.data;
+            }
         }
     },
     timeCut:function(arg){
@@ -93,18 +95,16 @@ var ticketOrder = {
         var toEditPassengers = document.querySelectorAll('.next-icon');
         var deletePassenger = document.querySelectorAll('.icon-add');
         var chooseAgreeInfo = document.querySelector('.choose-agree-info');
+        var adultNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofAdult;
+        var childNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofChild;
         var that = this;
-        /*this.addHandler(addPassenger,'click', function(){
-            document.location.href = '../user/user-choiceAir.html?type=add&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild
-        });*/
-
         for(var i = 0;i<toEditPassengers.length;i++){
             this.addHandler(toEditPassengers[i],'click', function(){
                 document.location.href = '../user/user-choiceAir.html?type=edit&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild;
             });
         }
 
-            this.addHandler(chooseAgreeInfo,'click', function(){
+        this.addHandler(chooseAgreeInfo,'click', function(){
                var event = event || window.event;
                var target = event.target || event.srcElement;
                var opEle = document.querySelector('#confirm-button');
@@ -128,9 +128,6 @@ var ticketOrder = {
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         });
 
-       /* this.addHandler(contactPerson,'click', function(){
-            document.location.href = '../user/cont-list.html'
-        });*/
         this.addHandler(rightArrow,'click', function(){
             $("#preloader").show();
             $("#status-f").show();
@@ -142,9 +139,146 @@ var ticketOrder = {
         this.addHandler(confirmButton,'click', function(){
             var event = event || window.event;
             var target =event.target || event.srcElement;
-            document.location.href = 'pay_detail.html';
-        });
+            var that = ticketOrder;
+            that.backParaObj = that.reverseInformation;
+            var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']),contactInfoCache = {};
+            //乘客信息核对
+            var passengerLis = passengerWrap.querySelectorAll('LI'), realPara=[], tempAdult= 0, tempChild=0;
+              if(passengerLis){
+                  for(var li=0; li<passengerLis.length;li++){
+                        var passPortNumber = passengerLis[li].querySelector('.passport-number').value;
+                        for(var ki=0;ki<storageInfo.length;ki++){
+                                if(storageInfo[ki].FlightCertificateInfo.IdNumber == passPortNumber){
+                                    realPara.push(storageInfo[ki])
+                                }
+                        }
+                  }
+              }
+             for(var dd=0;dd<realPara.length;dd++){
+                if(realPara[dd].PassengerType == 'ADULT'){
+                    tempAdult++;
+                }
+                if(realPara[dd].PassengerType == 'CHILD'){
+                    tempChild++;
+                }
+            }
+            console.log(tempAdult)
+            console.log(tempChild)
+             if(tempAdult!=adultNum||tempChild!=childNum){
+                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
+                 return;
+             }
 
+            that.backParaObj.TravellerInfo =realPara;
+            var contactInfo =JSON.parse(window['localStorage']['contact_selected']);
+            contactInfoCache.FirstName = document.querySelector('#first-name').value;
+            contactInfoCache.LastName = document.querySelector('#last-name').value;
+            contactInfoCache.Email =document.querySelector('#email-label').value;
+            contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
+            contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
+            if(contactInfoCache.FirstName==""){
+                jAlert('请输入姓!', '提示');
+                return;
+            }
+            if(contactInfoCache.LastName==""){
+                jAlert('请输入名!', '提示');
+                return;
+            }
+            if(contactInfoCache.Email==""){
+                jAlert('请输入邮箱!', '提示');
+                return;
+            }
+            if(contactInfoCache.MobilePhone==""){
+                jAlert('请输入手机号!', '提示');
+                return;
+            }
+
+            for(var tv in contactInfoCache){
+                contactInfo[tv] = contactInfoCache[tv];
+            }
+            window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
+            that.backParaObj.ContactDetail =contactInfo;
+            $("#preloader").show();
+            $("#status-f").show();
+             /*  that.backParaObj={
+                "WapOrder": {
+                    "SetID": 30000255,
+                    "CacheID": 3004452,
+                    "CityCodeFrom": "BJS",
+                    "CityCodeTo": "SHA",
+                    "NumofAdult": "1",
+                    "NumofChild": "0",
+                    "RouteType": "Oneway",
+                    "CabinClass": "Economy",
+                    "SourceType": "H5",
+                    "MemberId": "84567"
+                },
+                "TravellerInfo": [{
+                    "PassengerType": "ADULT",
+                    "SexCode": "Ms",
+                    "FirstName": "楠",
+                    "LastName": "张",
+                    "DateOfBirth": "1990-01-09T00:00:00",
+                    "FlightCertificateInfo": {
+                        "IdType": 1,
+                        "IdCountry": "CN",
+                        "IdNumber": "12345678890",
+                        "IdActivatedDate": "2017-01-01T00:00:00"
+                    },
+                    "BaggageCode": "",
+                    "CountryCode": "CN"
+                }],
+                "ContactDetail": {
+                    "SexCode": "Ms",
+                    "FirstName": "张",
+                    "LastName": "楠",
+                    "Email": "332@qq.com",
+                    "CountryNumber": "86",
+                    "ContactNumber": "5689",
+                    "MobilePhone": "13456789090"
+                },
+                "CurrencyCode": "CNY",
+                "TotalFlightPrice": "1370.00"
+            }*/
+            that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
+                $("#preloader").hide();
+                $("#status-f").hide();
+                var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
+                var arg = arg;
+                if(arg.success&&arg.code==200){
+                    var orderResultInfo = {};
+                    orderResultInfo['orderTime'] = new Date();
+                    orderResultInfo['TotalFlightPrice'] = that.reverseInformation['TotalFlightPrice'];
+                    orderResultInfo['CurrencyCode'] = that.reverseInformation['CurrencyCode'];
+                    orderResultInfo['NumofAdult'] = that.reverseInformation['WapOrder']['NumofAdult'];
+                    orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];
+                    orderResultInfo['RouteType'] = that.reverseInformation['WapOrder']['RouteType'];
+                    orderResultInfo['flightInfo'] = that.orderFlightData;
+                    orderResultInfo['TravellerInfo'] = realPara;
+                    orderResultInfo['ContactDetail'] = contactInfo;
+                    orderResultInfo['bookingID'] = arg['data']['bookingID'];
+                    orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
+                    that.storageUtil.set('orderResultInfo',orderResultInfo);
+                    document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
+                }else{
+                     if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
+                         jConfirm('预定失败,需要重新预定?', '提示', function(status){
+                             if(status == true){
+                                 window.history.go(-2);
+                             }
+                         }, '确定', '取消');
+                     }else{
+                         orderResultTip.innerHTML = arg.message;
+                         orderResultTip.style.display = 'block';
+                         that.timer7 = window.setTimeout(function(){
+                             orderResultTip.style.display = 'none';
+                             window.clearTimeout(that.timer7);
+                             that.timer7 = null;
+                         },3000);
+                     }
+                }
+            });
+        });
 
         this.addHandler(Button,'click', function(){
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
@@ -209,6 +343,146 @@ var ticketOrder = {
             }
         });
 
+    },
+
+    countrySlider:function (){
+        var countryTrigger = document.querySelector('.country-trigger'),that= this;
+        countryTrigger.onclick = function(){
+            var div = document.createElement('div');
+            var searchHandler=function(){
+                var countryInputZone = document.querySelector('#country-input-zone');
+                var cityListSearched = document.querySelector('.country-list-searched-order');
+                var countryListInitShow = document.querySelector('.country-list-init-show');
+                var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+                Array.prototype.distinct=function(){
+                    var sameObj=function(a,b){
+                        var tag = true;
+                        if(!a||!b)return false;
+                        for(var x in a){
+                            if(!b[x])
+                                return false;
+                            if(typeof(a[x])==='object'){
+                                tag=sameObj(a[x],b[x]);
+                            }else{
+                                if(a[x]!==b[x])
+                                    return false;
+                            }
+                        }
+                        return tag;
+                    };
+                    var newArr=[],obj={};
+                    for(var i=0,len=this.length;i<len;i++){
+                        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+                            newArr.push(this[i]);
+                            obj[typeof(this[i])+this[i]]=this[i];
+                        }
+                    }
+                    return newArr;
+                };
+
+                if(reg.test(valueStr)){
+                    console.log(22)
+                    var mb = String(valueStr).toLowerCase();
+                    for(var p = 0; p < arrCountry.length; p++){
+                        var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
+                        if(ma.indexOf(mb)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
+                            searchResult.push(arrCountry[p]);
+                        }
+                    }
+                    searchResult = searchResult.distinct();
+                    if(!searchResult.length){
+                        resultStr +='<li>无搜索结果</li>';
+                        cityListSearched.style.display = 'none';
+                    }else{
+                        for(var l = 0;l<searchResult.length;l++){
+                            resultStr += '<li data-tel-code="'+searchResult[l].TelCode+'" data-Country-code="'+searchResult[l].CountryCode+'">'+searchResult[l].CountryName+'</li>'
+                        }
+                        cityListSearched.innerHTML = resultStr;
+                        cityListSearched.style.display = 'block';
+                    }
+                }
+            };
+            div.className = 'all-elements country-cho-wrap-order';
+            div.innerHTML = '<div class="header country-list-header">'+
+            '<a href="javascript:void(0)" class="icons header-back country-hidden"></a>'+
+            '<div class="cl_search">'+
+            '<input type="text" placeholder="中国/China/zhongguo" id="country-input-zone"/>'+
+            '<i></i>'+
+            '</div>'+
+            '</div>'+
+            '<ul class="country-list-searched country-list-searched-order"></ul>'+
+            '<div class="snap-content country-list country-list-init-show" style="padding-top: 45px">'+
+            '<div class="country-wrap" id="country-wrap">'+
+            '<ul class="country-list counter-list-to-order">'+
+            '</ul>'+
+            '</div>'+
+            '</div>';
+            document.body.appendChild(div);
+
+            var  cityInputZone = document.querySelector('#country-input-zone');
+            var  countryHidden = document.querySelector('.country-hidden');
+            var  ulLi = document.querySelector('.counter-list-to-order'),liStr = '' ;
+            Array.prototype.distinct=function(){
+                var sameObj=function(a,b){
+                    var tag = true;
+                    if(!a||!b)return false;
+                    for(var x in a){
+                        if(!b[x])
+                            return false;
+                        if(typeof(a[x])==='object'){
+                            tag=sameObj(a[x],b[x]);
+                        }else{
+                            if(a[x]!==b[x])
+                                return false;
+                        }
+                    }
+                    return tag;
+                };
+                var newArr=[],obj={};
+                for(var i=0,len=this.length;i<len;i++){
+                    if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+                        newArr.push(this[i]);
+                        obj[typeof(this[i])+this[i]]=this[i];
+                    }
+                }
+                return newArr;
+            };
+            arrCountry = arrCountry .distinct();
+            for(var ji= 0, len =arrCountry.length;ji<len; ji++){
+                    liStr += '<li data-tel-code="'+arrCountry[ji].TelCode+'" data-code="'+arrCountry[ji].CountryCode+'">'+arrCountry[ji].CountryName+'</li>'
+                 }
+            ulLi.innerHTML = liStr;
+            if(cityInputZone.addEventListener){
+                cityInputZone.addEventListener('input',searchHandler,false)
+            }else{
+                cityInputZone.attachEvent('onpropertychange',searchHandler)
+            }
+             countryHidden.onclick=function(){
+                    if(document.querySelector('.country-cho-wrap-order')){
+                             document.body.removeChild(document.querySelector('.country-cho-wrap-order'));
+                    }
+            };
+            that.addCountryCodeHandler();
+        };
+    },
+    addCountryCodeHandler:function(){
+        var  countryChoWrapOrder = document.querySelector('.country-cho-wrap-order');
+        var  cityInputZone = document.querySelector('#country-input-zone');
+        countryChoWrapOrder.onclick=function(event){
+            var event = event || window.event;
+            var target = event.target ||event.srcElement;
+            var countryCode = document.querySelector('#country-code'), that =this;
+            if(target.tagName=='LI'){
+                cityInputZone.value = target.innerHTML;
+                countryCode.innerHTML ='+'+target.getAttribute('data-tel-code');
+                that.timer9 = window.setTimeout(function(){
+                    countryCode.innerHTML ='+'+target.getAttribute('data-tel-code');
+                    window.clearTimeout(that.timer9);
+                    that.timer9 = null;
+                    document.body.removeChild(that);
+                },1000)
+            }
+        };
     },
 
     tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
@@ -297,10 +571,8 @@ var ticketOrder = {
                    that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><i class="icon-clock"></i><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span><span class="trigger-button right-arrow"></span>'+
                    '</p>';
                }
-
                return str;
         }
-
 
         function createTopBack(arg){
              var str ='',toCity ='';
@@ -356,7 +628,7 @@ var ticketOrder = {
                     '<div class="time-airport-info">'+
                     '<div class="start-time-info">'+
                     '<span class="time-number">'+that.timeCut(arg[j].departDate)+'</span>'+
-                    '<span class="air-port-word">'+arg[j].airportNameFrom+'</span>'+
+                    '<span class="air-port-word">'+arg[j].airportNameFrom+arg[j].termDepart+'</span>'+
                     '</div>'+
                     '<div class="total-time-info">'+
                     '<span class="time-hour-minute"></span>'+
@@ -365,7 +637,7 @@ var ticketOrder = {
                     '<div class="end-time-info">'+
                     '<span class="tip-add-days-seat">'+dayStr+'</span>'+
                     '<span class="time-number">'+that.timeCut(arg[j].arriveDate)+'</span>'+
-                    '<span class="air-port-word-right">'+arg[j].airportNameTo+'</span>'+
+                    '<span class="air-port-word-right">'+arg[j].airportNameTo+arg[j].termArrive+'</span>'+
                     '</div>'+
                     '</div>'+
                     '<div class="bottom-word">'+
@@ -417,85 +689,16 @@ var ticketOrder = {
        totalPerson.innerHTML = totalPersonNum+'人总价';
    },
     init:function(){
-         var reverseInformation = this.storageUtil.get('reverseInformationCache');
-         this.reverseInformation = reverseInformation;
-         console.log(reverseInformation)
-        /*var reverseInformationCache = {
-         WapOrder:{
-         SetID:"30000080",
-         CacheID:"3500553",
-         CityCodeFrom:"BJS", //出发地三字码
-         CityCodeTo:"BJS",  //到达地三字码
-         NumofAdult:2,
-         NumofChild:2,
-         RouteType:"Oneway",
-         CabinClass:"First",
-         SourceType:"H5" ,//,
-         MemberId:"123456"   //必须，用户编码，
-         },
-         CurrencyCode: "CNY",
-         TotalFlightPrice: 106255,
-         TravellerInfo:[],
-         ContactDetail:{}
-         };*/
-        //数据实例
-        /* var  reverseInformation = {
-            WapOrder:{//订单信息
-                     SetID:"30000080",
-                     CacheID:"3500553",
-                     CityCodeFrom:"BJS", //出发地三字码
-                     CityCodeTo:"BJS",  //到达地三字码
-                     NumofAdult:2,
-                     NumofChild:2,
-                     RouteType:"Oneway",
-                     CabinClass:"First",
-                     SourceType:"H5" ,//,
-                     MemberId:"123456"   //必须，用户编码，
-                  },
-
-            TravellerInfo: [   //乘客信息，是个数组
-                    {   PassengerType: "ADULT",  //乘客类型
-                        SexCode: "Mr",        //称呼
-                        FirstName: "sss",     //姓
-                        LastName: "ddd",       //名
-                        DateOfBirth: "1900-12-24", //出生日期
-                        FlightCertificateInfo: {    //证件信息
-                        IdType: "4",      //证件类型
-                        IdCountry: "SIN",  //证件发行国家
-                        NationalityCode: "123", //国籍代码
-                        IdNumber: "3412",      //证件号码
-                        IdActivatedDate: "2016-12-31"  //证件有效期
-                    },
-                    AirCorpCode: "MF",     //航空公司代码
-                    FlightNo: "757"       //航班号
-                }
-            ],
-            ContactDetail:{ //联系人信息:唯一的
-                SexCode: "Mr",  //称呼
-                FirstName: "dddd", //姓
-                LastName: "ssss",  //名
-                Email: "855@asiatravel.com", //邮箱
-                Email2: "",
-                ContactNumber: "5689",   //联系号码
-                MobilePhone: "",        //手机号
-                FaxNumber: "",           //传真
-                DestContactNumber: "12356",  //目的地联系号码
-                Address: "kkkk",    //地址
-                PostalCode: "123456",
-                City: "SIN",
-                CountryCode: "SG"
-            },
-            CurrencyCode: "",   //货币种类代码
-            TotalFlightPrice: ""   //合计费用
-        };*/
-
-        this.telSlider();
-        this.loadingFade();
-        this.orderFlightData = this.storageUtil.get('curFlightListData');
-        this.addContent(this.orderFlightData);
-        console.log(this.storageUtil.get('curFlightListData'))
-        this.addEvent();
-        this.costFinaList();
+       var reverseInformation = this.storageUtil.get('reverseInformationCache');
+       this.reverseInformation = reverseInformation;
+        console.log(this.reverseInformation)
+       this.telSlider();
+       this.loadingFade();
+       this.orderFlightData = this.storageUtil.get('curFlightListData');
+       this.addContent(this.orderFlightData);
+       this.addEvent();
+       this.costFinaList();
+       this.countrySlider();
     }
 };
 

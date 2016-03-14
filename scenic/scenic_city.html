@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+
+    <title>城市列表 - 亚洲旅行网</title>
+    <link href="../styles/framework.css" rel="stylesheet">
+    <link href="../styles/style.css" rel="stylesheet">
+    <link href="../scenic/css/scenic_city.css" rel="stylesheet">
+    <link href="../styles/tips.css"	rel="stylesheet">
+</head>
+<body>
+<ul id="js_inland" class="gui-city-itmes gui-hidden">
+    <li>
+        <span class="gui-city-t">当前</span>
+        <ul class="city-tags">
+            <li class="current">我的位置</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+        </ul>
+    </li>
+    <li>
+        <span class="gui-city-t">历史选择</span>
+        <ul class="city-tags">
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+        </ul>
+    </li>
+    <li>
+        <span class="gui-city-t">热门城市</span>
+        <ul id="js_InHotCity" class="city-tags">
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+        </ul>
+    </li>
+</ul>
+
+<ul id="js_oversea" class="gui-city-itmes">
+    <li>
+        <span class="gui-city-t">当前</span>
+        <ul class="city-tags city-cur">
+            <li class="current">我的位置</li>
+            <li class="city-cur">北京</li>
+        </ul>
+    </li>
+    <li>
+        <span class="gui-city-t">历史选择</span>
+        <ul class="city-tags" id="historySea">
+            <!--<li>北京</li>-->
+            <!--<li>北京</li>-->
+            <!--<li>北京</li>-->
+        </ul>
+    </li>
+    <li>
+        <span class="gui-city-t">热门城市</span>
+        <ul id="js_ExHotCity" class="city-tags">
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+            <li>北京</li>
+        </ul>
+    </li>
+</ul>
+<div class="all-element">
+    <div id="headerview" style="height: 44px;">
+        <div id="ui-view-1" class="t-header">
+            <!--<a href="../scenic/index.html" class="icons header-back"></a>-->
+            <span class="js-backpage t-header-icon fl t-header-iconsize cp"></span>
+            <div class="t-search-view t-search-viewsize">
+                <input class="t-search-inputbox" id="inputbox-btn" readonly="readonly" placeholder="北京/beijing/bj/bjs/中国"/>
+            </div>
+        </div>
+    </div>
+    <div class="sc-content">
+            <div class="gui-tab-view" id="ui-view-2">
+                <ul class="gui-tab-mod">
+                    <li data-key="1" class="gui-tab-current cp">国内城市</li>
+                    <li data-key="2" class="cp">海外城市</li>
+                    <i class="gui-tab-scrollbar gui-tab"></i>
+                </ul>
+            </div>
+    </div>
+    <div id="ui-view-3">
+        <ul id="CharColumn" class="tags-cut">
+
+
+        </ul>
+    </div>
+</div>
+
+
+<!--  国家列表选择弹框    -->
+<div class="pop_box_dis" style="display:none;">
+<p class="pop_bg"></p>
+<div class="pop_box">
+    <div style="height: 44px;">
+        <div class="t-header">
+            <span id="js_back_btn" class="t-header-icon fl t-header-iconsize"></span>
+            <div class="t-search-view t-search-viewsize">
+                <input class="t-search-inputbox" id="seach_up" placeholder="北京/beijing/bj/bjs/中国">
+                <span id="close_empty">X</span>
+            </div>
+            <a href="javascript:;" class="cancelBtn">取消</a>
+        </div>
+    </div>
+    <dl class="empty_history">
+        <dt>北航/辽宁大学南校区，辽宁、沈阳，中国，中国，中国，北京的大学</dt>
+        <dd><a href="javascript:;" class="empty_history">清空搜索历史</a> </dd>
+    </dl>
+    <div class="not_exist">
+        抱歉，没有找到您要搜索的省市！
+    </div>
+</div>
+</div>
+<script src="../js/lib/jquery.js"></script>
+<script>
+    $('html,body').animate({scrollTop:0})
+</script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="js/scenic_pub.js"></script>
+
+
+<script id="tpl_GetHotCity" type="text/template">
+    {% for(var i=0,len=data.destCities.length;i<len;i++){ %}
+    <li data-key="{%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</li>
+    {% } %}
+</script>
+
+
+<script>
+    var globalData = {},isLoad = false;
+    (function(){
+        //hotcity listcity callbackcode
+
+        var val = vlm.parseUrlPara(window.location.href);
+        var callback = MT.GetQueryString("callback");
+        var callbackcity = MT.getCity(val.citycode,callback);
+        var callback_url = MT.GetRequestUrl(callback);
+//        console.log(callback_url);
+        MT.ajaxAnimIn();
+        MT.bindclickBackPage = function(){
+            $(".js-backpage").click(function(){
+//               window.location.href = callback;
+                history.go(-1);
+            });
+        }
+
+        /**
+         * 获得国外热门城市
+         */
+        MT.getExHotCity = function(){
+            var Param=
+            {
+                "Parameters": {
+                    "SubProduct": "All"
+                },
+                "ForeEndType": 3,
+
+            }
+            if(val.citycode == 0){
+                Param.Code= "0096";
+            }
+            if(val.citycode == 1){
+                Param.Code= "0209";
+            }
+
+
+            MT.ajaxJson("",JSON.stringify(Param),MT.CallbackExHotCity,MT.ajaxAnimIn,MT.ajaxAnimOut);
+        }
+
+        /**
+         * 获得国外热门城市的回调方法
+         * @param data
+         * @constructor
+         */
+        MT.CallbackExHotCity = function(data){
+            var json=data;
+//            console.log(json);
+            if(json.success){
+                var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+
+                $("#js_ExHotCity").html(tpl_GetExHotCity).find("li").click(MT.ClickTags);
+
+
+            }else {
+                console.log(json);
+                jAlert(json.message,"提示");
+            }
+
+        }
+
+        /**
+         * 获得城市列表
+         */
+        MT.getCityList = function(){
+            var Param=
+            {
+                "Parameters": {
+                    "SubProduct": "All"
+                },
+                "ForeEndType": 3,
+            }
+            if(val.citycode == 0){
+                Param.Code= "0086";
+            }
+            if(val.citycode == 1){
+                Param.Code= "0201";
+            }
+
+            MT.ajaxJson("",JSON.stringify(Param),MT.CallbackCityList,MT.ajaxAnimIn,MT.ajaxAnimOut);
+
+        }
+
+        /**
+         * 获得城市列表的回调方法
+         * @param data
+         * @constructor
+         */
+        MT.CallbackCityList = function(data){
+            var json=data;
+//            console.log(json);
+//            console.log(pinyin.getCamelChars("N"));
+            if(json.success){
+                globalData = json;
+                isLoad = true;
+
+                var data=json,tpl_str,tpl_title,tpl_ul;
+
+//                console.log(json.data.destCities);
+                var newArray = MT.SplitCitiesArray(json.data.destCities.sort(MT.ByCities));
+//                var docf = document.createDocumentFragment();
+                for (var i = 0;i<newArray.length;i++){
+
+                    var title =newArray[i][0].cityNamePY.substr(0,1);
+                    tpl_str = $("<li id='"+title+"'></li>");
+                    $("<span  class='gui-city-t'></span>").html(title).appendTo(tpl_str);
+                    tpl_ul = $("<ul class='city-tags'></ul>");
+                    tpl_ul.appendTo(tpl_str);
+                    for (var j = 0;j<newArray[i].length;j++){
+                       var li_child= $("<li data-key='"+newArray[i][j].cityCode+"' data-value='"+newArray[i][j].cityNamePY+"'></li>").click(MT.ClickTags);
+                        li_child.html(newArray[i][j].cityName).appendTo(tpl_ul);
+                    }
+                    $("#js_oversea").append(tpl_str);
+                }
+
+                MT.CharColumn("CharColumn",newArray);
+
+            }else {
+                console.log(json);
+                jAlert(json.message,"提示");
+            }
+
+        }
+        //刷新页面时加载本地储存
+        var arrHistory = [],arr = [];
+        var strHistory = localStorage.getItem('ac');
+        if(strHistory){
+            arrHistory = strHistory.split(',');
+//            console.log(arrHistory)
+            for (var i = 0; i< arrHistory.length; i++) {
+                $('<li>').attr('date-key',arrHistory[i].split(':')[0]).html(arrHistory[i].split(':')[1]).appendTo('#historySea');
+            }
+            $('#historySea li').click(function(){
+                strHistory = localStorage.getItem('ac');
+                arrHistory = strHistory.split(',');
+                var code = $(this).attr('date-key');
+//                alert(code)
+                var isHere = false;
+                var value = $(this).html();
+                for(var k=0;k<arrHistory.length;k++){
+                    if(arrHistory[k] == value){
+                        isHere = true;
+                        var thisindex = k;
+                        break;
+                    }
+                }
+                arrHistory.unshift(arrHistory.splice(thisindex,1));
+                strHistory = localStorage.setItem('ac',arrHistory);
+                for (var i = 0; i< arrHistory.length; i++) {
+                    $('#historySea li').eq(i).html(arrHistory[i]);
+                }
+                var url = callback;
+                if(url == ""){
+                    return false;
+                }
+                window.location.href = "../"+url+"?DestCityCode="+code;
+            })
+        }
+        MT.ClickTags = function(e){
+            var cc = $(this).attr("data-key");
+            //历史begin
+            var thisHtml = $(this).html();
+            strHistory = localStorage.getItem('ac');
+            if(strHistory == null || strHistory == ""){
+                arrHistory.push(cc+":"+thisHtml);
+                localStorage.setItem('ac',arrHistory);
+            }else{
+                arrHistory = strHistory.split(',');
+                var isHere = false;
+                for(var k=0;k<arrHistory.length;k++){
+                    if(arrHistory[k].split(':')[1] == thisHtml){
+                        isHere = true;
+                        var thisindex = k;
+                        break;
+                    }
+                }
+                if(isHere){
+                    arrHistory.unshift(arrHistory.splice(thisindex,1));
+                }else{
+                    arrHistory.unshift(cc+":"+thisHtml);
+                    if(arrHistory.length>3)arrHistory.length = 3;
+                }
+//                for (var i = 0; i< arrHistory.length; i++) {
+//                    $('<li>').html(arrHistory[i]).appendTo('#historySea');
+//                }
+                localStorage.setItem('ac',arrHistory);
+            }
+            //历史end
+            var url = callback;
+            if(url == ""){
+                return false;
+            }
+            window.location.href = "../"+url+"?DestCityCode="+cc;
+        }
+
+        /**
+         * 城市列表字母列表
+         * @param ulId
+         * @param newArray
+         * @constructor
+         */
+         MT.CharColumn = function(ulId,newArray){
+             var ul = $("#"+ulId),childli,childspan;
+             $("<li data-key='cur' data-value='当前'>当前</li>").appendTo(ul);
+             $("<li data-key='cur' data-value='当前'>历史</li>").appendTo(ul);
+             $("<li data-key='hot' data-value='热门'>热门</li>").appendTo(ul);
+
+             for (var i = 0;i<newArray.length;i++){
+                 var title =newArray[i][0].cityCode.substr(0,1);
+                 childli = $("<li data-key='"+title+"' data-value='"+title+"'></li>")
+                 childspan = $("<span class='tags' data-value='"+title+"'><span> ").html(title);
+                 childspan.appendTo(childli);
+                 childli.appendTo(ul);
+             }
+//             console.log($('#CharColumn>li').size())
+             //字母点击事件
+             $('#CharColumn>li').each(function(i){
+                 $('#CharColumn>li').eq(i).click(function(){
+                     var object_li = $('#js_oversea>li').eq(i).offset().top;
+                     console.log(i)
+                     $('html,body').animate({scrollTop:object_li-89},300)
+                 })
+             })
+
+
+         }
+
+//        MT.ClickChar = function(e){
+//
+//            var id = $(this).attr("data-key");
+//            var pos = $("#"+id).offset().top;
+//            $("html,body").animate({ scrollTop: pos }, 400);
+////            console.log(id);
+//        }
+
+
+        //tab切换
+        MT.tabScroll();
+        //加载国外热门城市
+        MT.getExHotCity();
+        //加载城市列表
+        MT.getCityList();
+        //给返回绑定click事件
+        MT.bindclickBackPage();
+
+
+
+    })();
+</script>
+<!--搜索弹出框-->
+<script>
+    $('#inputbox-btn').click(function(){
+        $('.pop_box_dis,.pop_box .empty_history').show();
+        $('#seach_up').focus();
+        $('body').css('overflow-y','hidden');
+        data = globalData.data.destCities;
+        console.log(data);
+    })
+    $('.pop_box #js_back_btn,.pop_box a.cancelBtn').click(function(){
+        $('.pop_box_dis,.pop_box .not_exist,span#close_empty').hide();
+        $('#seach_up').val('');
+        $('#pop_list').html('');
+        $('body').attr("style","");
+    })
+    //键盘按下
+    var isCun = false;
+    $('#seach_up').keyup(function(){
+        $('span#close_empty').show();
+        if(isCun){
+            $('.pop_box #pop_list:first').remove();
+        }
+        $('.pop_box .empty_history').hide();
+        var value = $('#seach_up').val();
+        value = value.toLowerCase();
+        var strCity = '';
+        for(var i=0;i<data.length;i++){
+            if(data[i].cityNamePY.toLowerCase().indexOf(value)> -1){
+                strCity+='<li><p data-key='+data[i].cityCode+' data-value='+data[i].cityNamePY+'>'+data[i].cityName+'</p></li>'
+            }
+            if(data[i].cityName.indexOf(value)> -1){
+                strCity+='<li><p>'+data[i].cityName+'</p></li>'
+            }
+        }
+
+        //数据展示
+        $('<ul>',{
+            id:'pop_list',
+            html:strCity
+        }).addClass('pop_list').appendTo('.pop_box')
+        $('#pop_list').find("li>p").click(MT.ClickTags);
+        //下拉列表为空
+        if($('#pop_list').html() == ''){
+            $('.pop_box .not_exist').show();
+        }else{
+            $('.pop_box .not_exist').hide();
+        }
+        //输入框为空
+        if($('#seach_up').val() == ''){
+            $('#pop_list').html('');
+            $('span#close_empty').hide();
+        }else{
+            $('span#close_empty').show();
+        }
+        isCun = true;
+    })
+    //搜索控清空
+    $('.pop_box #close_empty').click(function(){
+        $('#seach_up').val('');
+        $('#pop_list').html('');
+        $('#seach_up').focus();
+        $('.pop_box #pop_list').remove();
+        $('.pop_box .not_exist,span#close_empty').hide();
+    })
+    //清空历史
+    $('.pop_box a.empty_history').click(function(){
+        $('.pop_box .empty_history').hide();
+    })
+</script>
+</body>
+</html>

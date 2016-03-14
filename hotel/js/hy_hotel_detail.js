@@ -5,6 +5,7 @@
 		tempCurLeft : 0,
 		tempStart : 0,
 		isAnimation : false,
+        currentIndex : 0,
 		requestUrl : "http://10.2.22.239:8888/api/GetServiceApiResult",
 
 		myData : {
@@ -96,7 +97,7 @@
 				}
 				var str = "";
 				for (var i = 0; i < arg.length; i++) {
-					str += '<li class="imageLi"><img class="freeImage" src="../images/hotelDetailerrorpic.png" real-src="' + arg[i].imageFileName + '"/></li>'
+					str += '<li class="imageLi"><img class="freeImage" data-error="../images/hotelDetailerrorpic.png" src="../images/loading-hotel.gif" real-src="' + arg[i].imageFileName + '"/></li>'
 				}
 
 				return str;
@@ -136,8 +137,35 @@
 			},
 
 			getTotalNights : function(end, start) {
-				return (Date.parse(end) - Date.parse(start)) / 1000 / 60 / 60 / 24;
-			}
+                var live_y=start.split('-')[0];
+                var live_m=start.split('-')[1]-1;
+                var live_d=start.split('-')[2];
+                var leave_y=end.split('-')[0];
+                var leave_m=end.split('-')[1]-1;
+                var leave_d=end.split('-')[2];
+				return (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
+			},
+            //just for wifi icon
+            getServiceList : function(hotelRoomList){
+                var serverListHtml = "";
+                var sign = false;
+                var roomList = null;
+                for(var i=0,len=hotelRoomList.length;i<len;i++){
+                    roomList = hotelRoomList[i].roomList;
+                    for(var j=0,l=roomList.length;j<l;j++){
+                        if(roomList[j].isFreeWifi){
+                            serverListHtml += "<span class='wifi-icon'></span>";
+                            sign = true;
+                            break;
+                        }
+                    }
+                    if(sign){
+                        break;
+                    }
+                        
+                }
+                return serverListHtml;
+            }
 		},
 
 		parseUrlPara : function(url, isEncode) {
@@ -213,7 +241,7 @@
 
 		subRoomListNoService : function(arg) {
 
-			var str = arg.listNum ? '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span><span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
+			var str = arg.listNum ? '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span><span class="only-num">' + arg.listNum + '间</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>' : '<li class="d-li1" style="border-bottom: 1px solid #ffffff"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">' + arg.roomName + '(标准价)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">不可取消</span></div></div><div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.avgPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
 
 			return str;
 		},
@@ -222,7 +250,7 @@
 
 			var str = '<li class="d-li1"><div class="roomName subRoomEvent" room-code="' + arg.roomCode + '"><div class="d-p5">';
 			str += arg.isabd ? arg.roomName + '(含早)</div><div class="d-p6"><span class="breakfast">双早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>' : arg.roomName + '(无早)</div><div class="d-p6"><span class="breakfast">无早</span><span class="big-bed">大床</span><span class="no-cancel">免费取消</span></div></div>';
-			str += '<div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.totalPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxCharge + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
+			str += '<div class="moneyTip"><span class="money">￥<span class="moneyNum">' + arg.totalPriceCNY + '</span></span><span class="TaxChange">另付税费￥' + arg.taxChargesCNY + '</span></div> <div class="reserve" room-code="' + arg.roomCode + '"><span>预订</span><span>在线付</span></div></li>';
 			return str;
 
 		},
@@ -233,7 +261,7 @@
 			arg.sort(getSortFun('asc',"avgPriceCNY"));
 			console.log(arg);
 			for (var i = 0; i < arg.length; i++) {
-				str += hotelDetail.subRoomListNoService(arg[i]) + hotelDetail.subRoomListHasService(arg[i]);
+				str += hotelDetail.subRoomListNoService(arg[i]);// + hotelDetail.subRoomListHasService(arg[i]);
 			}
 			str += '</ul>';
 			return str;
@@ -265,13 +293,16 @@
 				hotelDetail.$Id('imageContainer').style.display = 'block';
 			};
 
-			imageContainer.onclick = function(event) {
-				var event = event || window.event;
+            //事件冒泡处理
+            hotelDetail.addHandler(imageContainer,"click",function(){
+                //点击图片关闭大图显示
+                
+                var event = event || window.event;
 				var target = event.target || event.srcElement;
-				if (target.id == 'imageContainer') {
-					target.style.display = 'none'
-				}
-			};
+                if(target.nodeName.toLowerCase() == "img"){
+                      imageContainer.style.display = 'none';                
+                }
+            });
 			//地图暂时不用
 			/*
 			 toMap.onclick = function () {
@@ -312,13 +343,28 @@
 
 			hotelDetail.addHandler(window, 'resize', function() {
 				hotelDetail.widthCorrecting(hotelDetail.sourceData);
-			})
+			});
+            
+            hotelDetail.addHandler(window, 'orientationchange', function() {
+				hotelDetail.orientationchange();
+			});
 		},
 
 		reserveHandler : function(event) {
-			if (vlm.checkLogin())
-				document.location.href = 'user_order.html?' + 'roomCode=' + this.getAttribute('room-code');
+			var code = this.getAttribute("room-code");
 
+            try{
+                var sign = vlm.checkLogin(torder);
+                if(sign){
+                    torder();
+                }
+            }catch(e){
+                console.info(e);
+            }
+            
+			function torder() {
+				document.location.href = 'user_order.html?' + 'roomCode=' + code;
+			}
 		},
 
 		toggleSlider : function() {
@@ -346,17 +392,40 @@
 		},
 
 		widthCorrecting : function(result) {
+            var imgUlContainer = document.querySelectorAll('.imgUl')[0];
 			var innerWidth = window.innerWidth, innerHeight = window.innerHeight;
-			document.querySelectorAll('.imgUl')[0].style.width = result.data[0].hotelImagesList.length != 0 ? (100 * result.data[0].hotelImagesList.length) + "%" : "100%";
+			imgUlContainer.style.width = result.data[0].hotelImagesList.length != 0 ? (100 * result.data[0].hotelImagesList.length) + "%" : "100%";
+            imgUlContainer.style.left = - innerWidth * this.currentIndex + "px";
+            //重设已经滑动的距离
+            hotelDetail.tempCurLeft = - innerWidth * this.currentIndex;
 			if (document.querySelectorAll('.imageLi').length) {
 				for (var m = 0, Lis = document.querySelectorAll('.imageLi'); m < Lis.length; m++) {
 					Lis[m].style.width = innerWidth + "px";
 				}
 			}
 		},
+        
+        orientationchange : function(event){
+            var showZone = document.getElementsByClassName("showZone")[0];
+            var indexShow = document.getElementsByClassName("indexShow")[0];
+            //竖屏状态
+            if(window.orientation && window.orientation==180||window.orientation==0){ 
+                showZone.style.height = "38.5%";
+                showZone.style.top = "28%";
+                indexShow.style.zIndex = "0";
+                indexShow.style.top = '21%';
+            } 
+            //横屏状态
+            if(window.orientation && window.orientation==90||window.orientation==-90){ 
+                showZone.style.height = "100%";
+                showZone.style.top = "0px";
+                indexShow.style.zIndex = "99";
+                indexShow.style.top = '0px';
+            } 
+        },
 
 		createAll : function(result) {
-			result = JSON.parse(result);
+			//result = JSON.parse(result);
 			console.log('callback函数得到的数据');
 			hotelDetail.myData.createAllback = result;
 			console.log(hotelDetail.myData);
@@ -380,7 +449,7 @@
 
 			frontImgStr += '<div class="d-div1 faceImg"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum"><div class="d-p4">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
 
-			firstUl += '<ul class="d-ul1"><li  onclick="hotelDetail.h_reviews()"><span class="rateScore">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg"></b></li>' + '<li id="toMap"><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate"></b><b class="icons open-arg"></b></li></ul>';
+			firstUl += '<ul class="d-ul1"><li  onclick="hotelDetail.h_reviews()"><span class="rateScore">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg"></b></li>' + '<li id="toMap"><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate"></b><b class="icons open-arg"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
 
 			secondUl += '<ul class="d-ul2">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>离店<em>共<span id="nightNum">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg"></b></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
@@ -460,8 +529,11 @@
 					tar.style.display = 'none'
 				}
 			};
+            
 			faceImg.onclick = function(event) {
 				document.getElementById('imageContainer').style.display = 'block';
+				//默认先加载两张图片
+				hotelDetail.preLoadImage();
 			};
 
 			hotelDetail.addHandler(innerDiv, 'touchstart', hotelDetail.startHandler)
@@ -470,19 +542,18 @@
 		},
 
 		startHandler : function(e) {
-			hotelDetail.preventDefault(e);
-			hotelDetail.stopPropagation(e);
+			//hotelDetail.preventDefault(e);
+			//hotelDetail.stopPropagation(e);
 			if (!hotelDetail.isAnimation) {
 				hotelDetail.tempStart = e.targetTouches[0].pageX;
 			} else {
 				hotelDetail.isAnimation = true;
 			}
-
 		},
 
 		moveHandler : function(e) {
-			hotelDetail.preventDefault(e);
-			hotelDetail.stopPropagation(e);
+			//hotelDetail.preventDefault(e);
+			//hotelDetail.stopPropagation(e);
 			var imgUl = document.getElementsByClassName('imgUl')[0];
 			imgUl.style.left = parseFloat(imgUl.style.left) + e.targetTouches[0].pageX - hotelDetail.tempStart + 'px';
 			hotelDetail.tempStart = e.targetTouches[0].pageX;
@@ -490,14 +561,17 @@
 		},
 
 		endHandler : function(e) {
-			hotelDetail.preventDefault(e);
-			hotelDetail.stopPropagation(e);
+			//hotelDetail.preventDefault(e);
+			//hotelDetail.stopPropagation(e);
 			var minLeftValue = (document.querySelectorAll('.imageLi').length - 1) * window.innerWidth;
 			var endLeftValue = parseFloat(document.getElementsByClassName('imgUl')[0].style.left);
 			var distance = endLeftValue - hotelDetail.tempCurLeft, time = 1000, targetLeft, indexNUm;
+           
 			if (distance < 0 && Math.abs(distance) >= window.innerWidth / 4) {
+                 //向左滑动
 				targetLeft = hotelDetail.tempCurLeft - window.innerWidth;
 			} else if (distance > 0 && Math.abs(distance) >= window.innerWidth / 4) {
+                //向右滑动
 				targetLeft = hotelDetail.tempCurLeft + window.innerWidth;
 			} else {
 				targetLeft = hotelDetail.tempCurLeft;
@@ -509,7 +583,9 @@
 				targetLeft = -minLeftValue;
 			}
 			indexNUm = Math.abs(Math.floor(targetLeft / window.innerWidth)) + 1;
+            hotelDetail.currentIndex = indexNUm;  //记下当前页面
 			time = Math.abs((targetLeft - parseFloat(document.getElementsByClassName('imgUl')[0].style.left)) / window.innerWidth) * time;
+            
 			hotelDetail.tempCurLeft = targetLeft;
 			$('.imgUl').animate({
 				'left' : targetLeft
@@ -526,20 +602,55 @@
 				document.querySelectorAll('.indexShow')[0].innerHTML = item + "/" + result.data[0].hotelImagesList.length;
 			}
 		},
-
+		preLoadImage : function(){
+			//默认至少加载两张图片
+			var images = document.getElementsByClassName('freeImage');
+			function loadImage(url,error_url, index, callback,errorFunc) {
+				var img = new Image();
+				img.src = url;
+				img.onload = function() {
+					img.onload = null;
+					callback(index);
+				};
+                img.onerror = function(){
+                    img.onerror = null;
+                    errorFunc();
+                }
+			}
+			for(var i=0;i<2;i++){
+				if(!images[i]){return;}
+				var re_url = images[i].getAttribute('real-src');
+                var error_url = images[i].getAttribute('data-error');
+				(function(i,re_url){
+					loadImage(re_url,error_url, i, function(i) {
+						images[i].setAttribute('src', re_url);
+					},function(){
+                        images[i].setAttribute('src', error_url);
+                    });
+				})(i,re_url)
+			}
+		},
 		delayLoadImage : function(item) {
 			var images = document.getElementsByClassName('freeImage');
-			var re_url = images[item - 1].getAttribute('real-src');
-			loadImage(re_url, function() {
-				images[item - 1].setAttribute('src', re_url);
-			});
-			function loadImage(url, callback) {
+			//默认正常显示两张图片，滑动第一张时加载第三张
+			var re_url = images[item] ? images[item].getAttribute('real-src') : "";
+            var error_url = images[item] ? images[item].getAttribute('data-error') : "";
+			loadImage(re_url,error_url, function() {
+				images[item].setAttribute('src', re_url);
+			},function(){
+                images[item].setAttribute('src', error_url);
+            });
+			function loadImage(url, error_url,callback,errorFunc) {
 				var img = new Image();
 				img.src = url;
 				img.onload = function() {
 					img.onload = null;
 					callback();
 				};
+                img.onerror = function(){
+                    img.onerror = null;
+                    errorFunc();
+                }
 			}
 
 		},
@@ -586,12 +697,8 @@
 			hotelDetail.updateSubRoomModal(tempInfo);
 		},
 
-		showRoomModals : function(d) {
+		showRoomModals : function(result) {
 			var oDiv = document.createElement('div');
-			var result = eval('(' + d + ')');
-			console.log(result);
-			console.log(result.data[0]);
-			console.log(777777777777777);
 			function showDesc(arr, num) {
 				if (num) {
 

@@ -1,15 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
-		<meta name="apple-mobile-web-app-capable" content="yes"/>
-		<meta name="apple-mobile-web-app-status-bar-style" content="green">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
 		<meta name="screen-orientation" content="portrait">
-		<meta name="x5-orientation" content="portrait">
 		<meta name="full-screen" content="yes">
+		<meta name="browsermode" content="application">
+		<meta name="x5-orientation" content="portrait">
 		<meta name="x5-fullscreen" content="true">
-
+		<meta name="x5-page-mode" content="app">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="green">
 		<meta name="Keywords" content="亚洲旅行网">
 		<meta name="Description" content="境外专业旅行服务提供机构">
 		<link href="../styles/framework.css"  rel="stylesheet" type="text/css">
@@ -30,28 +31,30 @@
 		</div>
 		<div class="all-elements">
 			<div class="header" id="vlm-login">
-				<a href="javascript:;" class="icons header-back" id="hr_back"></a>
+				<a href="javascript:;" class="header-back" id="hr_back">
+                    <i class="icons go-back"></i>
+                </a>
 				<h3>酒店点评</h3>
 			</div>
-			<div class="hr_con_box">
+			<div class="hr_con_box" id="content">
 				<section class="lsf_reAll_grade clearfix">
-					<span class="fl lsf_grade1" id="TAAvgRating">4.3</span>
+					<span class="fl lsf_grade1" id="TAAvgRating">0</span>
 					<i class="fl">分/</i>
-					<span class="fl" id="TAReviewCount">835人点评</span>
+					<span class="fl" id="TAReviewCount">0人点评</span>
 				</section>
 				<section class="lsf_reDetail_grade" id="lsf_reDetail_grade">
-					<!--<section>
-					<p>设施&nbsp;<i>3.7</i>分</p>
-					<p class="lsf_gra_p2">客房&nbsp;<i>3.7</i>分</p>
+					<section>
+					<p>设施&nbsp;<i>0</i>分</p>
+					<p class="lsf_gra_p2">客房&nbsp;<i>0</i>分</p>
 					</section>
 					<section>
-					<p>地点&nbsp;<i>3.7</i>分</p>
-					<p class="lsf_gra_p2">服务&nbsp;<i>3.7</i>分</p>
+					<p>地点&nbsp;<i>0</i>分</p>
+					<p class="lsf_gra_p2">服务&nbsp;<i>0</i>分</p>
 					</section>
 					<section class="last_sec">
-					<p>清洁度&nbsp;<i>3.7</i>分</p>
-					<p class="lsf_gra_p2">物有值&nbsp;<i>3.7</i>分</p>
-					</section>-->
+					<p>清洁度&nbsp;<i>0</i>分</p>
+					<p class="lsf_gra_p2">性价比&nbsp;<i>0</i>分</p>
+					</section>
 				</section>
 				<section class="lsf_reDiscuss" id="lsf_reDiscuss">
 					<!--<div class="reBox">
@@ -78,7 +81,10 @@
 			</div>
 		</div>
 	</body>
-	<script src="../js/lib/jquery.js"></script><script src="../js/lib/jquery.alert.js"></script>
+	<script src="../js/lib/jquery.js"></script>
+	<script src="../js/lib/jquery.alert.js"></script>
+	<script src="../js/lib/plugins.js"></script>
 	<script src="../js/lib/vlm.js"></script>
+	<script src="../js/lib/template.js"></script>
 	<script src="js/lsf_hotelReviews.js"></script>
 </html>

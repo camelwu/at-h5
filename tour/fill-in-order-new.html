@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>填写订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="../styles/framework.css" type="text/css" rel="stylesheet">
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <link href="../styles/tips.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/fill-in-order.css">
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                <br>
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <!--   顶部   -->
+        <header class="header">
+            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+            <h3>填写订单</h3>
+        </header>
+        <!--   内容   -->
+        <div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
+            <section class="sce-ticket-wrap min320">
+                <div class="sce-ticket">
+                    <section class="sce-introduce">
+                        <p class="sce-introduce-txt fl"><span class="sce-introduce-span"></span></p>
+                        <div class="travel-noon fl">
+                            <a href="javascript:;" class="fa-noon on">上午</a>
+                            <a href="javascript:;" class="fa-noon">下午</a>
+                        </div>
+                    </section>
+                </div>
+            </section>
+			<section class="sce-line"></section>
+            <!--出行人资料-->
+            <section class="personal_data_box">
+                <div class="personal_data" id="per-room-wrap">
+                    <!--<div class="per_data">-->
+                        <!--<span class="title"><i>房间1</i></span>-->
+                        <!--<ul>-->
+                            <!--<section class="li_section_box">-->
+                                <!--<li>-->
+                                    <!--<span class="list_tit">成人1：</span>-->
+                                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
+                                <!--</li>-->
+                                <!--<li class="trave-li">-->
+                                    <!--<span class="list_tit2">姓：</span>-->
+                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
+                                    <!--<span class="list_tit2">名：</span>-->
+                                    <!--<span class="list_con2 name-inp"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<span class="list_tit">护照：</span>-->
+                                    <!--<span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>-->
+                                <!--</li>-->
+                            <!--</section>-->
+                            <!--<section class="li_section_box">-->
+                                <!--<li>-->
+                                    <!--<span class="list_tit">儿童1：</span>-->
+                                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
+                                <!--</li>-->
+                                <!--<li class="trave-li">-->
+                                    <!--<span class="list_tit2">姓：</span>-->
+                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
+                                    <!--<span class="list_tit2">名：</span>-->
+                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
+                                <!--</li>-->
+                            <!--</section>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                </div>
+            </section>
+            <!--联系人资料-->
+            <section class="personal_data_box">
+                <div class="personal_data" id="personal_data">
+                    <span class="title"><i>联系人资料</i><b><a href="javascript:;" class="add-contact"></a></b></span>
+                    <ul id="contact">
+                        <li>
+                            <span class="list_tit">姓：</span><input class="list_inp_name list_inp2" id="list-lastname" type="text" placeholder="姚" />
+                            <span class="list_tit">名：</span><input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="军华" />
+
+                        </li>
+                        <li>
+                            <span class="list_tit">手机：</span>
+                            <span class="list_con"><input class="list_inp2" id="list_con_tel" type="text" placeholder="+8613090008000" /></span>
+                        </li>
+                        <li>
+                            <span class="list_tit">邮箱：</span>
+                            <span class="list_con"><input class="list_inp2" id="list_con_email"  type="text" placeholder="morningtour@163.com" /></span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+			<!--航班信息-->
+            <section class="personal_data_box" id="flight-air">
+                <div class="personal_data">
+                    <span class="title"><i>航班信息</i></span>
+                    <div class="content2" id="content3">
+						<div class="nav2-left">
+							<span class="nav2-lefttop">出发</span>							
+						</div>
+                        <div class="input_flight">
+                            <input class="" name="" value="" placeholder="航班号">
+                        </div>
+                        <div class="nav2-center" id="nav2-center-dep">
+                            <div class="nav2-centertop">
+                                <input name="CheckInDate" id="content3_CheckInDate" placeholder="年月日" readonly><span id="content3_week_span1"></span>
+                            </div>
+                        </div>
+                        <div class="nav2-centerright"><i></i></div>
+					</div>
+					<div class="content2" id="content4">
+						<div class="nav2-left">
+							<span class="nav2-lefttop">抵达</span>							
+						</div>
+                        <div class="input_flight">
+                            <input class="" name=""value="" placeholder="航班号">
+                        </div>
+                        <div class="nav2-center" id="nav2-center-arr">
+                            <div class="nav2-centertop">
+                                <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日" readonly><span id="content4_week_span1"></span>
+                            </div>
+                        </div>
+                        <div class="nav2-centerright"><i></i></div>
+					</div>
+                </div>
+            </section>
+
+            <div class="order-notice">
+                <i class="order-notice-btn"></i>
+                <span class="order-notice-txt">已经阅读亚洲旅行网订票须知</span>
+            </div>
+        </div>
+        <!--   底部预定   -->
+       <div class="package_reserve">
+            <span class="all_num">套餐总额：<i></i></span>
+            <span class="separate_num">分开预订：<i></i></span>
+            <i class="itemized" id="show_de">明细</i>
+            <a href="javascript:;" class="reserve">预定</a>
+        </div>
+        <!--底部-->
+        <!-- <footer class="order-amount">
+            <div class="order-total-wrap">
+                <span>订单金额：</span>
+                <span class="order-total-fare">¥56</span>
+                <i class="itemized" id="show_de"></i>
+            </div>
+            <a href="order-pay.html" class="order-total-btn">预定</a>
+        </footer> -->
+    </div>
+    <!--   背景块   -->  
+    <div class="mask" id="r-mb"></div>
+    <!--   明细块   -->    
+    <div class="detail_expenses" id="detail_expenses">
+        <ul>
+            <!--<li><span class="package-tit"></span></li>-->
+        </ul>
+    </div> 
+
+    <!--同意条款-->
+    <script src="../js/scenic.js"></script>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/d_calendar.js"></script>
+    <script>
+        var lsf_myweb={
+            "getbyid":function(id){
+                return document.getElementById(id);
+            },
+            "getbytag":function(obj,tag){
+                return obj.getElementsByTagName(tag);
+            },
+            "getbyclass":function(obj,sClass){
+                if(obj.getElementsByClassName){
+                    return obj.getElementsByClassName(sClass);
+                }else{
+                    var aResult=[];
+                    var aEle=obj.getElementsByTagName('*');
+                    var reg=new RegExp('\\b'+sClass+'\\b','g');
+                    for(var i=0;i<aEle.length;i++){
+                        if(aEle[i].className.search(reg)!=-1){
+                            aResult.push(aEle[i]);
+                        }
+                    }
+                    return aResult;
+                }
+            },
+            bind:function(obj,sEv,fn){
+                obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+            }
+        };
+        (function(){
+            var n2c=['日','一','二','三','四','五','六',];
+            function toDou(num){return num<10?'0'+num:''+num;}
+            var oDate=new Date();
+            var y=oDate.getFullYear();
+            var m=oDate.getMonth()+1;
+            var d=oDate.getDate();
+            var oDate1=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+2);
+            var oDate2=new Date(oDate.getFullYear(),oDate.getMonth(),oDate.getDate()+5);
+            var beginDate=oDate1.getFullYear()+'-'+toDou(oDate1.getMonth()+1)+'-'+toDou(oDate1.getDate());
+            function Calender3(){Calender.apply(this,arguments);}
+            Calender3.prototype=new Calender();
+            Calender3.prototype.linkOn = function(){
+                var links = _CalF.$('.live',this.dd),i,l=links.length,that=this;
+                for(i = 0;i<l;i++){
+                    links[i].index = i;
+                    links[i].onclick = function(){
+                        if(that.input.tagName === 'input'){
+                            $(this).css("border","1px solid #ff6a2f").css("z-index","9999999");
+                            $(this).siblings().css("border","").css("z-index","");
+                        }else{
+                            if(!(this.className.indexOf("disabled")>-1)){
+                                $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');that.op>=1?that.op=0:null;
+                                that.linkOver();
+                            }
+                        }
+                    };
+                }
+            }
+            var _obj_3={};
+            var _CheckInDate3 = document.getElementById("content3_CheckInDate");
+            _CheckInDate3.value=beginDate;_obj_3[beginDate]="出发";
+            Calender3.prototype.linkOver=function(){
+                var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
+                arr.push(sels[1].parentNode.getAttribute("data-day"));
+                that.removeDate();
+                that.header.parentNode.removeChild(that.header);
+                var oDate1=new Date(arr[0].split('-')[0],(arr[0].split('-')[1]-1),arr[0].split('-')[2]);
+                var oday1=oDate1.getDay();
+                lsf_myweb.getbyid('content3_week_span1').innerHTML='周'+n2c[oday1];
+                document.getElementById("content3_CheckInDate").value=arr[0];
+            }
+            var myDate1 = new Calender3({id:'nav2-center-dep',num: 13,time:_obj_3});
+
+            function Calender4(){Calender.apply(this,arguments);}
+            Calender4.prototype=new Calender();
+            Calender4.prototype.linkOn = function(){
+                var links = _CalF.$('.live',this.dd),i,l=links.length,that=this;
+                for(i = 0;i<l;i++){
+                    links[i].index = i;
+                    links[i].onclick = function(){
+                        if(that.input.tagName === 'input'){
+                            $(this).css("border","1px solid #ff6a2f").css("z-index","9999999");
+                            $(this).siblings().css("border","").css("z-index","");
+                        }else{
+                            if(!(this.className.indexOf("disabled")>-1)){
+                                $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');that.op>=1?that.op=0:null;
+                                that.linkOver();
+                            }
+                        }
+                    };
+                }
+            }
+            var _obj_4={};
+            var _CheckInDate4 = document.getElementById("content4_CheckInDate");
+            _CheckInDate4.value=beginDate;_obj_4[beginDate]="抵达";
+            Calender4.prototype.linkOver=function(){
+                var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
+                arr.push(sels[1].parentNode.getAttribute("data-day"));
+                that.removeDate();
+                that.header.parentNode.removeChild(that.header);
+                var oDate1=new Date(arr[0].split('-')[0],(arr[0].split('-')[1]-1),arr[0].split('-')[2]);
+                var oday1=oDate1.getDay();
+                lsf_myweb.getbyid('content4_week_span1').innerHTML='周'+n2c[oday1];
+                document.getElementById("content4_CheckInDate").value=arr[0];
+            }
+            var myDate2 = new Calender4({id:'nav2-center-arr',num: 13,time:_obj_4});
+        })();
+
+    </script>
+
+    <!--填写订单-->
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="js/fill_order.js"></script>
+
+</body>
+</html>

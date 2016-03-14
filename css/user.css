@@ -471,20 +471,27 @@
 
 .show-key {
     position: relative;
-    width: 16px;
-    height: 16px;
-    margin-right: 7px;
-    top: 2px;
-    background-position: -323px 95%;
+    display:inline-block;
+    width: 22px;
+    height: 22px;
+    top: 4px;
+    margin-right: 3px;
+    background: url(../images/ui/icons.png) no-repeat;
+    background-position: 14% 100%;
+    background-size: 230px 155px;
 }
 
 .show-keys {
     position: relative;
-    width: 16px;
-    height: 16px;
-    margin-right: 7px;
-    top: 2px;
-    background-position: 91.2% 95%;
+    display:inline-block;
+    width: 22px;
+    height: 22px;
+    top: 4px;
+    margin-right: 3px;
+    background: url(../images/ui/icons.png) no-repeat;
+    background-position: 2% 100%;
+    background-size: 230px 155px;
+
 }
 
 /*
@@ -550,9 +557,17 @@
 }
 
 .if_pay {
+    /*float: right;*/
+    display: inline-block;
+    padding-top: 10px;
+    padding-left: 40px;
+}
+
+.order-Amount {
     float: right;
     padding-top: 10px;
     padding-right: 10px;
+    color: red;
 }
 
 .info-title {
@@ -807,6 +822,9 @@
     font-size: 12px;
     color: #999999;
 }
+.often_user .passport-tips{
+    color: red;
+}
 
 .often_user li:first-child {
     font-size: 14px;
@@ -852,7 +870,21 @@
     width: 100%;
     height: 100%;
 }
-
+/*fix H5-171 android手机面板遮挡问题*/
+#addtra_page,#uptra_page{
+    position: relative;
+}
+#addtra_page .relative-for-android,#uptra_page .relative-for-android{
+    position: relative;
+}
+#addtra_page .header,#uptra_page .header{
+    z-index: 999;
+}
+#addtra_page .user-content,#uptra_page .user-content{
+    position: relative;
+    margin-top: 45px;
+    top: 0px;
+}
 .header-quit {
     position: absolute;
     left: 15px;
@@ -1371,6 +1403,11 @@
     display: none;
 }
 
+.country-cho-wrap-order{
+    position: absolute;
+    z-index: 1000;
+}
+
 li {
     list-style: none;
     margin: 0;
@@ -1399,6 +1436,7 @@ ul, ol {
     height: 100%;
     border-radius: 4px;
     padding-left: 24px;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 
 .cl_search i {
@@ -1469,7 +1507,7 @@ ul, ol {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 6;
+    z-index: 9;
     background: #f5f4f9;
     margin-bottom: 0;
     overflow-y: scroll;
@@ -1645,4 +1683,20 @@ i{
 }
 .chn-eng-wrap{
     border-top: 1px solid #dedede;
+}
+.country-list{
+    z-index: 6;
+}
+.country-list-header{
+    height: 3.8rem;
+}
+.country-list-searched-order{
+    display: none;
+}
+
+.country-list-searched-order li{
+    padding-left: 35px;
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #dfdfdd;
 }

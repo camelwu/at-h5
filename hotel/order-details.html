@@ -12,16 +12,25 @@
     <link href="../styles/style.css" rel="stylesheet">
     <link href="../styles/framework.css" rel="stylesheet">
     <link href="css/dzh.css" rel="stylesheet">
-    <script src="js/order-details.js"></script>
+    <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text">
+                <br>
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:void(0);" class="icons header-back" id="td_back"></a>
+        <a href="javascript:void(0);" class="header-back" id="td_back" onclick="window.history.go(-1)">
+            <i class="icons go-back"></i>
+        </a>
         <h3>订单详情</h3>
     </div>
     <div id="content" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
-
         <div class="sure">
             <div class="sure1">订单已支付 等待入住</div>
             <div class="sure2">
@@ -45,29 +54,26 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
-        <div class="reserve">
-            <div class="reserve-top">
-                <div class="reserve-top1"><a class="a" href="#">如果预订东京东急涩谷卓越大酒店</a></div>
-                <div class="reserve-top2">房型: &nbsp;&nbsp;经济大床房</div>
-            </div>
-            <div class="reserve-bottom">
-                <div class="reserve-bottom1">11月25日-11月26日 共1晚(当地时间为准)</div>
-                <div class="reserve-bottom2">最晚到店18:00</div>
-                <div class="reserve-bottom3">地址: 1-12-1,Dogenzaka,shibuya-ku</div>
-            </div>
+        <div id="hotelInfo" class="reserve">
+            <!--<div class="reserve-top">-->
+                <!--<div class="reserve-top1"><a class="a" href="#">如果预订东京东急涩谷卓越大酒店</a></div>-->
+                <!--<div class="reserve-top2">房型: &nbsp;&nbsp;经济大床房</div>-->
+            <!--</div>-->
+            <!--<div class="reserve-bottom">-->
+                <!--<div class="reserve-bottom1">11月25日-11月26日 共1晚(当地时间为准)</div>-->
+                <!--<div class="reserve-bottom2">最晚到店18:00</div>-->
+                <!--<div class="reserve-bottom3">地址: 1-12-1,Dogenzaka,shibuya-ku</div>-->
+            <!--</div>-->
         </div>
 
 
         <div class="pay">
-            <div class="pay1" style="">
-                <a class="a1" href="#">订单总额:&nbsp;
-                    <span class="a1-1"><b>￥</b>1,293</span>
-                    <span class="a1-2">费用明细</span></a>
+            <div id="allPrice" class="pay1" style="">
+                <!--<a class="a1" href="#">订单总额:&nbsp;-->
+                    <!--<span class="a1-1"><b>￥</b>1,293</span>-->
+                    <!--<span class="a1-2">费用明细</span>-->
+                <!--</a>-->
             </div>
         </div>
 
@@ -81,21 +87,20 @@
                     <span>房间1入住</span>
                     <span>联系电话</span>
                 </div>
-                <div class="bookinfo2-2">
-                    <span>123456789</span>
-                    <span>2015-10-09 11:30</span>
-                    <span>1间</span>
-                    <span>alibaba</span>
-                    <span>138****3226</span>
+                <div id="orderInfo" class="bookinfo2-2">
+                    <!--<span>123456789</span>-->
+                    <!--<span>2015-10-09 11:30</span>-->
+                    <!--<span>1间</span>-->
+                    <!--<span>alibaba</span>-->
+                    <!--<span>138****3226</span>-->
                 </div>
             </div>
         </div>
-        <a href="#" onclick="fun11()" class="hotelInter2">取消订单</a>
+        <a href="#" class="hotelInter2">取消订单</a>
 
-
-    </div>
 
 </div>
+
 <div id="choose"></div>
 <div id="show" class="choose-content">
     <div class="choose-content1">
@@ -108,7 +113,149 @@
         <a href="#" onclick="Yes()" class="Yes">确定</a>
     </div>
 </div>
+    <!--      费用明细块      -->
+    <div id="pdetail_mb" class="od-mb"></div>
+    <div id="pd_block" class="pd-block">
+        <ul id="pd_list" class="pd-list">
+            <li>费用明细<span>1间 X 1晚</span></li>
+            <li>
+                <div>房费</div><span>￥1143</span>
+                <div style="clear: both"></div>
+                <div>税和服务费</div><span>￥159</span>
+            </li>
+            <li>付款方式：预付</li>
+        </ul>
+    </div>
+</div>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/custom.js"></script>
+<script src="js/order-details.js"></script>
+<script>
+    (function(){
+        var ww = this;
+        vlm.init();
+        var orderDetail = function(){
+            //   加载动画
+            var flashLoad = function(){
+                $(window).load(function () {
+                    $("#status").fadeOut();
+                    $("#preloader").delay(400).fadeOut("medium");
+                });
+            };
+            //   数据加载
+            var getDetailData = function(){
+                var tpl2 = [
+                     '<a class="a1" href="#">订单总额:&nbsp;',
+                        '<span class="a1-1"><b>￥</b>{%=totalRoomRate%}</span>',
+                        '<span class="a1-2">费用明细</span>',
+                     '</a>'
+                ].join('');
+                var tpl3 = [
+                     '<span>{%=bookingReferenceNo%}</span> ',
+                     '<span>{%=createdTime%}</span>',
+                     '<span>{%=noOfRooms%}间</span>',
+                     '<span>{%=guestNameList.guestLastName%}{%=guestNameList.guestFirstName%}</span>',
+                     '<span>{%=guestContactNo%}</span>'
+                ].join('');
+                var tmp = {
+                    "Parameters":{"bookingReferenceNo":"SG-1141622-8829"},
+                    "Code":"0013",
+                    "ForeEndType":2
+                };
+                console.log(tmp);
+                vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
 
+                function getDetail_back(ret){
+                    var json = ret;
+                    console.log(json);
+                    if(json.success) {
+                        var data = json.data;
+                        var dayNum;
+                        var tax_service;
+                        var payWay;
+                        function getDayNum(arg1,arg2){
+                            var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+                            return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+                        }
+                        dayNum = getDayNum(data[0].checkInDate,data[0].checkOutDate);
 
+                        tax_service = parseInt(data[0].totalTaxCharge) + parseInt(data[0].totalSeriveCharge);
+                        if(data[0].paymentModeID == '1'){
+                            payWay = "预付";
+                        }else{
+                            payWay = "到付";
+                        }
+                        var tpl1 = [
+                            '<div class="reserve-top">',
+                            '<div class="reserve-top1"><a class="a" href="hotel_detail.html?hotelCode={%=hotelCode%}">{%=hotelName%}</a></div> ',
+                            '<div class="reserve-top2">房型: &nbsp;&nbsp;{%=roomType%}</div>',
+                            '</div>',
+                            '<div class="reserve-bottom">',
+                            '<div class="reserve-bottom1">{%=checkInDate%}-{%=checkOutDate%} 共'+dayNum+'晚(当地时间为准)</div>',
+                            '<div class="reserve-bottom2">最晚到店18:00</div>',
+                            '<div class="reserve-bottom3">地址: {%=hotelAddress%}</div>',
+                            '</div>'
+                        ].join('');
+                        var tpl4 = [
+                            '<li>费用明细<span>{%=noOfRooms%}间 X '+dayNum+'晚</span></li>',
+                            '<li>',
+                                '<div>房费</div><span>￥{%=totalRoomRate%}</span>',
+                                '<div style="clear: both"></div>',
+                                '<div>税和服务费</div><span>￥'+tax_service+'</span>',
+                            '</li>',
+                            '<li>付款方式：'+payWay+'</li>'
+                        ].join('');
+                        var html_hl = template(tpl1,data);
+                        var html_ap = template(tpl2,data);
+                        var html_oi = template(tpl3,data);
+                        var html_pd_list = template(tpl4,data);
+                        $('#hotelInfo').html(html_hl);
+                        $('#allPrice').html(html_ap);
+                        $('#orderInfo').html(html_oi);
+                        $('#pd_list').html(html_pd_list);
+                        if(data.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
+                    }else{
+                        jAlert(json.message,"提示");
+                    }
+                }
+            };
+            //   费用明细
+            var showPriceDetail = function(){
+                var allPrice = $('#allPrice')[0];
+                var pdetail_mb = $('#pdetail_mb')[0];
+                var pd_block = $('#pd_block')[0];
+                allPrice.onclick = function(){
+                    pdetail_mb.style.display = "block";
+                    pd_block.style.bottom = 0;
+                    pd_block.style.transition="all 400ms";
+                };
+                pdetail_mb.onclick = function(){
+                    pdetail_mb.style.display = "none";
+                    pd_block.style.bottom = -350+'px';
+                    pd_block.style.transition="all 400ms";
+
+                }
+            };
+            return{
+                FlashLoad:flashLoad,
+                GetDetailData:getDetailData,
+                ShowPriceDetail:showPriceDetail
+            }
+        }();
+        ww.MT = ww.MT || {};
+        ww.MT.load = function(){
+            orderDetail.FlashLoad();
+            orderDetail.GetDetailData();
+            orderDetail.ShowPriceDetail()
+        };
+        MT.load();
+    })()
+</script>
 </body>
 </html>

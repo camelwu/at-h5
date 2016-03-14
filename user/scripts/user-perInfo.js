@@ -10,8 +10,8 @@ var r_phone=$('#phone')[0];
 var UserSex=localStorage.salutation;
 var phone_verify=$('#phone_ver')[0];
 function u_perInfo(){
-    var menu = $("#menu")[0];
-    menu.style.display = "none";
+    //var menu = $("#menu")[0];
+    //menu.style.display = "none";
     var email = localStorage.email||sessionStorage.email;
     var phone = localStorage.phone||sessionStorage.phone;
     var oPassword = localStorage.password||sessionStorage.password;
@@ -58,14 +58,16 @@ function u_perInfo(){
         obj.onclick = function(){
             var b = ifshowkey.firstElementChild;
             var input;
-            if(b.className == "icon show-keys"){
-                b.className = "icon show-key";
+            if(b.className == "show-key"){
+                document.querySelector('.pas-showhide').innerHTML='隐藏密码';
+                b.className = "show-keys";
                 input = document.getElementById("keyForm").getElementsByTagName("input");
                 for(var i = 0;i < input.length;i++){
                     input[i].type = "text";
                 }
             }else{
-                b.className = "icon show-keys";
+                document.querySelector('.pas-showhide').innerHTML='显示密码';
+                b.className = "show-key";
                 input = document.getElementById("keyForm").getElementsByTagName("input");
                 for(var j = 0;j < input.length;j++){
                     input[j].type = "password";
@@ -133,8 +135,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
             }else{
                 sex.className="info-sex";
                 block.innerHTML = "男";
@@ -144,8 +145,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
             }
 
         };
@@ -157,6 +157,7 @@ function u_perInfo(){
         obj.onclick = function() {
             var input = document.getElementById("nickForm").getElementsByTagName("input");
             var oNickname=input[0].value;
+            console.log(oNickname);
             if(vlm.Utils.validate.nickName(oNickname))
             {
                 var Parameters = {
@@ -169,7 +170,7 @@ function u_perInfo(){
             }
             else
             {
-                alert('昵称需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+                jAlert('昵称需要由4-20个字符，可由中英文字母，数字、"_"组成，不能以"_"开头');
             }
 
         }
@@ -195,21 +196,21 @@ function u_perInfo(){
     function changeInfo_name(obj){
         obj.onclick = function(){
 
-            var oInputName = document.getElementById("infoForm").getElementsByTagName("input")[0];
+            var oInputName = document.getElementById("realName");
             u_realname = oInputName.value;
-            if(vlm.Utils.validate.nickName(u_realname))
+            if(vlm.Utils.validate.chiEngName(u_realname))
             {
                 var Parameters={
                     "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                //console.log(Parameters);
+                console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
             }
             else
             {
-                alert('姓名需要由4-30个字符，可由中英文字母，数字、"-"、"_"组成');
+                jAlert('姓名需要由2-20个字符，可由中英文字母，数字、空格、"."组成，不能以空格或"."开头');
             }
 
         }
@@ -225,20 +226,20 @@ function u_perInfo(){
             u_phone = oInputMobile.value;
             if ( ! check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                alert("输入不正确");
+                jAlert("输入不正确");
                 return;
             }
 
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    alert("用户已绑定信息不能修改");
+                    jAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
             if(oInputCode.value =='' )
             {
-                alert('请输入验证码');
+                jAlert('请输入验证码');
             }
             else
             {
@@ -264,13 +265,13 @@ function u_perInfo(){
             if(oInputEmail.value !="") {
                 if(oInputEmail.getAttribute('data-type') !="code") {
                     if (!check(oInputEmail.getAttribute('data-type'), oInputEmail.value)) {
-                        alert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                 }
                 if(localStorage.email != ""){
                     if(oInputEmail.value == email){
-                        alert("用户已绑定信息不能修改");
+                        jAlert("用户已绑定信息不能修改");
                         return;
                     }
                 }
@@ -298,13 +299,13 @@ function u_perInfo(){
 
             if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
-                alert("输入不正确");
+                jAlert("输入不正确");
                 return;
             }
             if(localStorage.phone != "")
             {
                 if(oInputMobile.value == phone){
-                    alert("用户已绑定信息不能修改");
+                    jAlert("用户已绑定信息不能修改");
                     return;
                 }
             }
@@ -319,6 +320,7 @@ function u_perInfo(){
                 "Code": "0058"
             };
             console.log(Parameters.Parameters);
+            phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
             vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
 
@@ -334,11 +336,11 @@ function u_perInfo(){
             for(var i= 0;i < input.length;i++){
                 if(input[i].type !="button" && input[i].value !="") {
                     if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-                        alert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                     if(input[1].value != input[2].value){
-                        alert("输入不正确");
+                        jAlert("输入不正确");
                         return;
                     }
                 }
@@ -359,14 +361,14 @@ function u_perInfo(){
 }
 
 //修改出生日期
-$('#birth-cont').click(function(){
+$('#birth-cont-per').click(function(){
     setTimeout(function(){
         var oPerBack=$('.cabin-sure');
         function selDate(obj){
             obj.on('click', show)
         }
         function show(){
-            var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
+            var birthstr=$('#birth-cont-per')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
             //console.log(birthstr);
             var Parameters={
                 "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
@@ -381,31 +383,24 @@ $('#birth-cont').click(function(){
 
 })
 
-
-
-
 //修改出生日期回调
 function mycallback_birth(ret){
-    var myJson=eval('('+ret+')');
+    var myJson=ret;
     console.log(myJson.data[0].dateOfBirth);
-    if(myJson.success)
-    {
-        //window.location.href="user.html";
-    }
 }
 
 function mycallback(ret){
-    infoJson = eval('('+ret+')');
+    infoJson = ret;
     console.log(infoJson);
     var nickname = $("#nickname")[0];
     var name = $("#name")[0];
+    var realName = $("#realName")[0];
     var user_email = $("#email")[0];
     var user_phone = $("#phone")[0];
-    var realName = $("#realName")[0];
     var sex = $("#sex")[0];
     var block = $("#block")[0];
     var userIcon = $("#userIcon")[0];
-    var birthCont=$('#birth-cont')[0];
+    var birthCont=$('#birth-cont-per')[0];
     if(infoJson.data == null)
     {
         nickname.innerHTML ='';
@@ -413,10 +408,12 @@ function mycallback(ret){
     }
     else
     {
-        nickname.innerHTML = infoJson.data[0].nickName;
-        name.value = infoJson.data[0].nickName;
+        name.value=nickname.innerHTML = infoJson.data[0].nickName;
+        $('#hostname')[0].innerHTML= realName.value= infoJson.data[0].firstName;
         birthCont.value=infoJson.data[0].dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
-        realName.value = infoJson.data[0].firstName;
+        $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
+        $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
+
         if(infoJson.data[0].salutation == 26){
             sex.className="info-sex-on";
             block.innerHTML = "女";
@@ -429,23 +426,20 @@ function mycallback(ret){
     }
 
     user_email.value = localStorage.email;
-    user_phone.value = '';
-    //realName.value = sessionStorage.realname;
     memberid = localStorage.memberid;
-    document.querySelector('.mob-cell').value=infoJson.data[0].mobileNo;
 }
 function mycallback_nick(ret){
-    var myJson = eval('('+ret+')');
-    console.log(myJson);
+    var myJson = ret;
+    //console.log(myJson);
     if(myJson.success) {
         window.location.href = "user-perInfo.html";
         document.getElementById("nickForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 function mycallback_info(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         localStorage.realname = u_realname;
@@ -453,57 +447,61 @@ function mycallback_info(ret){
         //console.log(localStorage);
         document.getElementById("infoForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
 function mycallback_infoemail(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         localStorage.email = u_email;
         document.getElementById("infoForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
 //性别回调
 function mycallback_sex(ret){
-    var myJson = eval('('+ret+')');
-    console.log(myJson);
-    if(myJson.success){
-        window.location.href="user.html";
-
-    }else{
-        alert(myJson.message);
-    }
+    var myJson = ret;
+    console.log(myJson.data[0].salutation);
 }
 
 function mycallback_phoneVeri(ret){
     var phone_ver = $("#phone_ver")[0];
     console.log(ret);
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         vlm.Utils.sendMobileCode(phone_ver.value);
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 function mycallback_newKey(ret){
-    var myJson = eval('('+ret+')');
+    var myJson = ret;
     console.log(myJson);
     if(myJson.success){
         document.getElementById("keyForm").submit();
     }else{
-        alert(myJson.message);
+        jAlert(myJson.message);
     }
 }
 
 /*退出账户清除localStorage*/
 $('.info-quit').click(function(){
-    localStorage.removeItem('login');
+    jConfirm("确认退出当前帐号?","",logout);
+    function logout(arg){
+        if(arg){
+            localStorage.removeItem('memberid');
+            localStorage.removeItem('login');
+            localStorage.removeItem('email');
+            localStorage.removeItem('phone');
+            window.location.href='user.html';
+        }
+
+    }
 });
 
 
@@ -512,7 +510,7 @@ function phone_timeout(){
     console.log(phone_verify);
     phone_verify.innerHTML='发送验证码';
     phone_verify.style.color='#ffb413';
-    regBflag=false;
+    phoneBflag=false;
 }
 
 //时间倒计过程中
@@ -536,6 +534,6 @@ function clearname(){
 //    if(myJson.Success){
 //        c.Utils.sendMobileCode(phone_ver.value);
 //    }else{
-//        alert(myJson.Message);
+//        jAlert(myJson.Message);
 //    }
 //}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head lang="zh">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="green">
     <meta name="screen-orientation" content="portrait">
@@ -28,65 +28,72 @@
     <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-<div class="all-elements fix-background">
-    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<i class="tel-icon"></i></header>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
+<div class="all-elements fix-background" id="detail">
+    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<a class="tel-icon" href="tel:4005088888"></a></header>
     <div class="ticket-order-detail-content">
        <div class="until-pay">
          <span><strong>待支付</strong></span>
          <span>支付剩余时间：<strong>25</strong>分<strong>36</strong>秒</span>
       </div>
-
-
          <ul class="ticket-detail-information">
-              <li class="set-start">
+            {% if(routeType=="Oneway"){ %}
+              <li id="LeaveInfo" class="set-start">
                   <div class="rel-start">
-                       <div class="week-city-city">
-                          <span><i></i></span> <span>01-08</span> <span>周二 上海 - 洛杉矶</span>
-                      </div>
+                      <div class="week-city-city">
 
+                          <span><i></i></span> <span>{% var d1=new Date(flightInfo.flightLeaveStartDate.replace("T"," ")); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
+                      </div>
                       <div class="time-arrow-time">
                           <div class="city-time-left">
-                               <div class="clock">07:00</div>
-                               <p class="port-name">浦东机场T2</p>
+                               <div class="clock">{% var d2=new Date(flightInfo.segmentsLeave[0].departDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+                               <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameFrom%}{%=flightInfo.segmentsLeave[0].TermDepart%}</p>
                           </div>
                           <div class="time-arrow">
-                               <h6>2h30m</h6>
+                               <!--<h6>2h3m</h6>-->
                                <div class="icon-arrow"></div>
                           </div>
                           <div class="city-time-right">
-                              <div class="clock"><span>+1天</span>09:15</div>
-                              <p class="port-name">莫斯科</p>
+                              <div class="clock"><span>+1天</span>{% var d3=new Date(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+                              <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameTo%}{%=flightInfo.segmentsLeave[0].TermArrive%}</p>
                           </div>
                       </div>
-
                       <div class="nation-flight-number">
-                          <span>中国国航</span><span>|</span><span>CA983</span><span>|</span><span>波音787<span>(大)</span></span>
+                          <span>{%=flightInfo.segmentsLeave[0].airCorpName%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[0].marketingCarrierCode%}{%=flightInfo.segmentsLeave[0].flightNo%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[0].planeName%}<span>(大)</span></span>
                       </div>
                   </div>
-                  <p class="transit-word-city">中转莫斯科</p>
-                  <div class="rel-transit">
-                      <div class="time-arrow-time">
-                          <div class="city-time-left">
-                              <div class="clock">07:00</div>
-                              <p class="port-name">浦东机场T2</p>
+                  {% if(flightInfo.segmentsLeave.length>1){  for(var i=1; i<=flightInfo.segmentsLeave.length-1;i++){ %}
+                      <p class="transit-word-city">中转{%=flightInfo.segmentsLeave[1].cityNameFrom%}</p>
+                      <div class="rel-transit">
+                          <div class="time-arrow-time">
+                              <div class="city-time-left">
+                                  <div class="clock">07:00</div>
+                                  <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameFrom%}{%=flightInfo.segmentsLeave[i].TermDepart%}</p>
+                              </div>
+                              <div class="time-arrow">
+                                  <!--<h6>2h30m</h6>-->
+                                  <div class="icon-arrow"></div>
+                              </div>
+                              <div class="city-time-right">
+                                  <div class="clock"><span>+1天</span>09:15</div>
+                                  <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameTo%}{%=flightInfo.segmentsLeave[i].TermArrive%}</p>
+                              </div>
                           </div>
-                          <div class="time-arrow">
-                              <h6>2h30m</h6>
-                              <div class="icon-arrow"></div>
-                          </div>
-                          <div class="city-time-right">
-                              <div class="clock"><span>+1天</span>09:15</div>
-                              <p class="port-name">莫斯科</p>
-                          </div>
-                      </div>
 
-                      <div class="nation-flight-number">
-                          <span>中国国航</span><span>|</span><span>CA983</span><span>|</span><span>波音787<span>(大)</span></span>
+                          <div class="nation-flight-number">
+                              <span>{%=flightInfo.segmentsLeave[i].airCorpName%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[i].marketingCarrierCode%}{%=flightInfo.segmentsLeave[i].flightNo%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[i].planeName%}<span>(大)</span></span>
+                          </div>
                       </div>
-                  </div>
+                  {% }} %}
              </li>
-
+            {% }else{ %}
              <li class="set-start set-back">
                  <div class="rel-start">
                      <div class="week-city-city">
@@ -114,18 +121,19 @@
                      <p class="cross-by-station">经停西雅图 2h30m</p>
                  </div>
              </li>
+             {% } %}
         </ul>
-       <div class="order-summary">
-        <span>订单总额：<span>￥</span><strong>1,293</strong></span>
+       <div class="order-summary" id="allPrice">
+        <span>订单总额：<span>￥</span><strong>{%=totalFlightPrice%}</strong></span>
         <span>费用明细<i></i></span>
     </div>
        <div class="order-summary-information">
         <h4>订单信息</h4>
          <p>
-            <span class="first">订单号</span><span>1234567890</span>
+            <span class="first">订单号</span><span>{%=bookingRefNo%}</span>
         </p>
         <p>
-            <span class="first">下单时间</span><span>2015-10-09 11:20</span>
+            <span class="first">下单时间</span><span>{%=createTime%}</span>
         </p>
         <p>
             <span class="first">登机人</span><span>BAI/LISA</span>
@@ -134,15 +142,15 @@
             <span class="first">护照</span><span>123455677788</span>
         </p>
         <p>
-            <span class="first">联系电话</span><span>138****3226</span>
+            <span class="first">联系电话</span><span><a href="tel:{%=contactNumber%}">{%=contactNumber%}</a></span>
         </p>
         <p>
-            <span class="first">邮箱</span><span>aaaaaaaa@126.com</span>
+            <span class="first">邮箱</span><span>{%=email%}</span>
         </p>
     </div>
-        <div class="contact-service"><span>联系客服</span> <i></i></div>
+        <div class="contact-service"><span><a href="tel:888888888888">联系客服</a></span> <i></i></div>
           <div class="button">
-        <button type="button" class="pay-button">支付订单</button>
+        <button type="button" class="pay-button"><a href="pay_detail.html?bookingRefNo={%=bookingRefNo%}">支付订单</a></button>
     </div>
     </div>
 </div>
@@ -154,9 +162,109 @@
         <button type="button" class="call"><a href="tel:400 805 8888">拨打</a></button>
     </div>
 </div>
-</body>
+
+<!--      费用明细块      -->
+<div id="pdetail_mb" class="od-mb"></div>
+<div id="pd_block" class="pd-block">
+    <ul id="pd_list" class="pd-list">
+        <li>
+            <div>成人×{%=numofAdult%}</div>
+            <div>￥{%=numofAdult*flightInfo.totalFareAmountADT%}</div>
+        </li>
+        <li>
+            <div>成人税费×{%=numofAdult%}</div>
+            <div>￥{%=numofAdult*flightInfo.totalTaxAmountADT%}</div>
+        </li>
+        <li>
+            <div>儿童×{%=numofChild%}</div>
+            <div>￥{%=numofChild*flightInfo.totalFareAmountCHD%}</div>
+        </li>
+        <li>
+            <div>儿童税费×{%=numofChild%}</div>
+            <div>￥{%=numofChild*flightInfo.totalTaxAmountCHD%}</div>
+        </li>
+        <li>
+            <div>总价</div>
+            <div>￥{%=totalFlightPrice%}</div>
+        </li>
+    </ul>
+</div>
+
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/vcm.js"></script>
+<!--<script src="../js/lib/vcm.js"></script>-->
 <script type="text/javascript" src="js/hy_ticket_order_detail.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script>
+    var getWeek = {
+        "1": "一",
+        "2":"二",
+        "3":"三",
+        "4":"四",
+        "5":"五",
+        "6":"六",
+        "7":"日",
+    };
+
+    (function(){
+        var ww = this;
+        var orderDetail = function(){
+            //   加载详情数据
+            var getDetailData = function(){
+                var bookingRefNo=vlm.getpara("bookingRefNo");
+                var tmp = {
+                    "Parameters": {"BookingRefNo":bookingRefNo },
+                    "ForeEndType": 3,
+                    "Code": "3006"
+                };
+                vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
+                function getDetail_back(json){
+                    if(json.success){
+                        var data=json.data;
+                        debugger;
+                        var tpl=template("detail",data);
+                        var tplD=template("pd_list",data);
+                        $("#detail").html(tpl);
+                        $("#pd_list").html(tplD)
+                        console.log(data);
+                        showPriceDetail();
+                        vlm.init();
+                    }else {
+                        jAlert(json.message,"提示");
+                    }
+                }
+            };
+            var showPriceDetail = function(){
+                var allPrice = $('#allPrice')[0];
+                var pdetail_mb = $('#pdetail_mb')[0];
+                var pd_block = $('#pd_block')[0];
+                allPrice.onclick = function(){
+                    pdetail_mb.style.display = "block";
+                    pd_block.style.bottom = 0;
+                    pd_block.style.transition="all 400ms";
+                };
+                pdetail_mb.onclick = function(){
+                    pdetail_mb.style.display = "none";
+                    pd_block.style.bottom = -350+'px';
+                    pd_block.style.transition="all 400ms";
+
+                }
+            };
+            return{
+                GetDetailData:getDetailData,
+                ShowPriceDetail:showPriceDetail
+            }
+        }();
+        ww.MT = ww.MT || {};
+        ww.MT.load = function(){
+            orderDetail.GetDetailData();
+            orderDetail.ShowPriceDetail()
+        };
+        MT.load();
+    })()
+
+</script>
+</body>
 </html>

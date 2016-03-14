@@ -1,3 +1,6 @@
+.all-element-other{
+    position: relative;
+}
 .tra_con1{
     margin-top:45px;text-align:center;
     overflow:hidden;
@@ -27,7 +30,8 @@
     -o-border-image: url(../../images/lsf_bg1.png) 27;
     border-image: url(../../images/lsf_bg1.png) 27;
     background:#fff;
-    padding:0 35px;
+    text-align: center;
+    overflow-y: hidden;
 
 }
 .tra_c2_inbox p,.tra_c2_inbox h3   {
@@ -50,8 +54,19 @@
     color:rgb(153,153,153);
     border-bottom:1px solid #dfe0db;
 }
+.tra_order{
+    font-size: 1.4rem;
+    color: #484848;
+}
+.tra_people{
+    float: left;
+    color: #484848;
+    font-size: 1.4rem;
+    margin-top: 10px;
+}
 .tra_c2_inbox .tra_price{
-    font-size:3rem;color:rgb(255,180,19);
+    float: right;
+    font-size:2.5rem;color:rgb(255,180,19);
     margin-top:5px;
 }
 .tra_btn{
@@ -62,7 +77,19 @@
     display:flex;
     margin-top:25px;
     padding:0 15px;
-    margin-bottom:45px;
+    margin-bottom:60px;
+}
+
+.tra_btn div input {
+    width: 94%;
+    height: 100%;
+    background: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #ffb413;
+    font-size: 1.6rem;
+    color: rgb(255,180,19);
 }
 .tra_btn div{
     -webkit-box-flex:1;
@@ -73,7 +100,16 @@
     height:40px;
     overflow:hidden;
 }
-.tra_btn div input{
+.tra_btn a{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    height:40px;
+    overflow:hidden;
+}
+.tra_btn a input{
     width:94%;
     height:100%;
     background:none;

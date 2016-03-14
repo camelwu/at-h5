@@ -11,7 +11,7 @@ var ticketSingle = {
             num: 13,
             time: {},
             sClass1: 'num-wrap',
-            type:'single',
+            type:'Oneway',
             fn:this.dateChangeRender
         });
         document.querySelector('.single-ticket-input').innerHTML = this.returnWeek(arg.DepartDate);
@@ -194,14 +194,14 @@ var ticketSingle = {
         }
     },
     renderHandler:function(arg){
-        arg = JSON.parse(arg);
-        console.log(arg)
+        var arg = arg;
         var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
                 tipEle.style.display = 'none';
-                that.flightResultArray.push(arg["data"])
+                that.flightResultArray.push(arg["data"]);
+                that.lastBackData = arg;
                 that.storageUtil.set('flightListData',that.flightResultArray);
                 that.pageNo = arg.data.pageNo;
                 that.pageCount = arg.data.pageCount;
@@ -283,7 +283,8 @@ var ticketSingle = {
         return str;
     },
 
-    changeFlightList:function(arg){
+    changeFlightList:function(arg, type){
+        console.log(arg)
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
@@ -296,17 +297,21 @@ var ticketSingle = {
             }else{
                 return String(arg)+'.00';
             }
-        }
+        };
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
-        var myFixed = function(arg){
-                  if(String(arg).indexOf('.')>-1){
-                      if(String(arg).substring(String(arg).indexOf('.')).length ==2){
-                        return String(arg)+'0';
-                       }
-                        return String(arg).substring(0,String(arg).indexOf('.')+3)
-                  }else{
-                      return String(arg)+'.00';
-                  }
+        var returnRightTax = function(){
+            var str = '';
+            if(type == 'false'){
+                str+= '<div class="price-tax single-side">' +
+                '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span></div>' +
+                '<div class="single-price-tax-info"><span class="tax-word">税</span>'+myFixed(myFixed(arg.data.flightInfos[i].totalTaxAmountADT)) +'</div>'
+            }else{
+                str+= '<div class="price-tax single-side">' +
+                '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span></div>' +
+                '<div class="single-price-tax-info"><span class="tax-word">含税费</div>' +
+                '</div>'
+                }
+            return str;
         };
         for(var i = 0; i < arg.data.flightInfos.length; i++){
             ticketListStr = '';
@@ -315,8 +320,7 @@ var ticketSingle = {
             li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
             ShareFlightStr = arg.data.flightInfos[i].isReturnShareFlight==true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|':'';
             passByStr = arg.data.flightInfos[i].isLeaveStop==true?'&nbsp;<span class="green-tip">经停</span>':'';
-            tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>1?arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
-
+            tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>=1?'+'+arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
             transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
             ticketListStr +='<div class="time-airport" >' +
             '<div class = "go" >' +
@@ -334,9 +338,8 @@ var ticketSingle = {
             '<span class= "air-port-word" >'+arg.data.flightInfos[i].segmentsLeave[arg.data.flightInfos[i].segmentsLeave.length-1].airportNameTo+arg.data.flightInfos[i].segmentsLeave[0].termArrive+'</span>' +
             '</div ></div>' +
             '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierName+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierCode+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
-            '</div ></div>' +
-            '<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span ><span class = "price-num">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span>'+
-            '</div ><div class="single-price-tax-info"><span class="tax-word">税</span>￥'+myFixed(myFixed(arg.data.flightInfos[i].totalTaxAmountADT))+'</div></div>';
+            '</div ></div>' +returnRightTax();
+
             li.innerHTML = ticketListStr;
             ticketDetailUl.insertBefore(li, ticketDetailUl.childNodes[0]);
             myScroll.refresh();
@@ -477,7 +480,7 @@ var ticketSingle = {
                     console.log(11)
                      $('#pullUp').fadeOut(1000);
                      myScroll.refresh()
-                    jAlert('没有更多航班信息了','',function(){})
+                    jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
                 }else if(that.pageNo < that.pageCount){
                     console.log(22)
                     that.isClearAll = false;
@@ -492,7 +495,7 @@ var ticketSingle = {
                 console.log(33)
                 $('#pullUp').fadeOut(1000);
                 myScroll.refresh()
-                jAlert('没有更多航班信息了','',function(){})
+                jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
             }else if(that.pageNo < that.pageCount){
                 console.log(44)
                 that.isClearAll = false;
@@ -567,21 +570,33 @@ var ticketSingle = {
             });
         /*}*/
     },
+    handler1:function(arg){ //后台请求
+        var that = ticketSingle;
+        that.backParaObj = arg;
+        document.querySelector('#preloader').style.display='block';
+        that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        console.log(arg)
+    },
+    handler2:function(arg){ //自己缓存的数据重新展现
+        var that = ticketSingle;
+        that.backParaObj = arg;
+        that.changeFlightList(that.lastBackData, that.backParaObj.hasTax);
+        console.log(arg)
+    },
     init:function(){
         var backParaObj = this.parseUrlPara(document.location.search, true);
-        var myScroll, pullDownEl, pullDownOffset, pullUpEl, pullUpOffset, generatedCount = 0,that = this;
+        var myScroll, pullDownEl, pullDownOffset, pullUpEl, pullUpOffset, generatedCount = 0,that = ticketSingle;
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
-        this.tripType = "international"; //international backParaObj.tripType
+        this.tripType = backParaObj.interNationalOrDomestic;
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
         backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
         backParaObj.pageNo = parseInt(backParaObj.pageNo);
         backParaObj.pageSize = parseInt(backParaObj.pageSize);
         this.backParaObj = backParaObj;
-        console.log(this.backParaObj);
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.flightResultArray = [];
         if($.browser.webkit && !window.chrome){
@@ -589,7 +604,7 @@ var ticketSingle = {
         }
         this.dateInit(backParaObj);
         this.preAndNex();
-        bottomModal.init('all-elements',this.tripType,"single",this.callRender);
+        conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj,this.handler1, this.handler2);
         this.eventHandler();
         this.taxHandler();
         this.isClearAll = true;
