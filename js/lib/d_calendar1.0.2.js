@@ -136,7 +136,7 @@ Calender.prototype = {
 	        header.id = this.id+"-header";
 	        header.className = 'header';
             header.style.zIndex = 101;
-	        header.innerHTML = '<a href="javascript:void(0);" class="icons header-back"></a><h3>选择日期</h3>';
+	        header.innerHTML = '<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>';
 	        document.body.appendChild(header);
 	        
 	        var weeker = document.createElement('div');
