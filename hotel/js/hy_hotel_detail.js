@@ -354,7 +354,6 @@
 			var code = this.getAttribute("room-code");
 
             try{
-                //checkLogin 会判断用户是否登录，如果没有登录直接显示登录，登录成功后跳转到回调函数路径
                 var sign = vlm.checkLogin(torder);
                 if(sign){
                     torder();
@@ -446,7 +445,7 @@
 
 			hotelDetail.sourceData = result;
 			console.log(hotelDetail.sourceData);
-			headerStr += '<div class="header detailHeader" id="vlm-h-1"><a href="javascript:window.history.go(-1);" class="header-back" style="z-index: 4"><i class="icons go-back"></i></a><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) + '</h3></div>';
+			headerStr += '<div class="header detailHeader" id="vlm-h-1"><a href="javascript:window.history.go(-1);" class="icons header-back" style="z-index: 4"></a><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) + '</h3></div>';
 
 			frontImgStr += '<div class="d-div1 faceImg"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum"><div class="d-p4">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
 
@@ -535,8 +534,6 @@
 				document.getElementById('imageContainer').style.display = 'block';
 				//默认先加载两张图片
 				hotelDetail.preLoadImage();
-                //当前屏幕状态
-                hotelDetail.orientationchange();
 			};
 
 			hotelDetail.addHandler(innerDiv, 'touchstart', hotelDetail.startHandler)

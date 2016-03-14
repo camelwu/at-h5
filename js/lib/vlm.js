@@ -331,7 +331,7 @@
 					},
 					//用户中心姓名
 					chiEngName : function(name) {
-						var pattern = /^[\u4E00-\u9FA5a-zA-Z][\u4E00-\u9FA5a-zA-Z._ ]{1,19}/;
+						var pattern = /^[\u4E00-\u9FA5a-zA-Z][\u4E00-\u9FA5a-zA-Z. ]{1,19}$/;
 						//姓名用于兑奖和业务联系，需要填写真实姓名。必须是2-20个字符，支持空格、“.”
 						if (pattern.test(name)) {
 							return true;
@@ -725,11 +725,20 @@
 					}
 
 				}
-			}, loadJson = function(url, data, mycallback, async, encryption) {
-				if (async != undefined && async == true) {
-					$.ajaxSetup({
-						async : false
-					});
+			}, loadJson = function(url, data, mycallback, async, encryption,isShowLoading) {
+                if(isShowLoading != undefined && isShowLoading == true){
+                    //ajax 不全屏显示loading
+                    $("#preloader").ajaxStart(function(){
+                       $(this).hide();
+                    });
+                    $("#preloader").ajaxStop(function(){
+                       $(this).hide();
+                    });
+                }
+                if (async != undefined && async == true) {
+                   $.ajaxSetup({
+                    async : false
+                });
 				}
 				//var AjaxUrl = url+ "?jsoncallback=?";
 				//$.ajax(url, data, mycallback);

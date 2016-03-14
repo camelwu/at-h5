@@ -46,16 +46,17 @@
                 <!--</ul>-->
             </div>
             <ul class="pay-style-list" id="pay_way">
-                <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
+                <li>剩余支付时间: <i class="count-time countdown" id="countdown" c></i></li>
                 <li><span class="jd-icon pay-card" data-type="pay-card"></span><b class="icon circle-choi"></b></li>
                 <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
                 <li><span class="jd-icon pay-visa" data-type="pay-visa"></span><b class="icon circle-chois"></b></li>
                 <li><span class="jd-icon pay-master" data-type="pay-master"></span><b class="icon circle-chois"></b></li>
             </ul>
-            <div class="state-agree">
-                <b class="icon1 s-agree" id="agree"></b>
-                我已阅读并同意<a href="#">购票须知</a>
-            </div>
+            <!--<div class="state-agree">-->
+                <!--<b class="icon1 s-agree" id="agree"></b>-->
+                <!--我已阅读并同意-->
+                <!--<a href="#">购票须知</a>-->
+            <!--</div>-->
             <a href="#" class="s-btn button-orange btnUpay">确认</a>
         </form>
     </div>
@@ -166,6 +167,7 @@
         function sec(sName,time){
             var oSpan=document.getElementById(sName);
             var n=time;
+            debugger;
             tick1();
             var timer=setInterval(tick1,1000);
             function tick1()
@@ -206,13 +208,13 @@
 //                    }
                 }
             }
-            agree.onclick = function(){
-                if(agree.className == 'icon1 s-agree'){
-                    agree.className = 'icon1 s-agrees';
-                }else{
-                    agree.className = 'icon1 s-agree';
-                }
-            };
+//            agree.onclick = function(){
+//                if(agree.className == 'icon1 s-agree'){
+//                    agree.className = 'icon1 s-agrees';
+//                }else{
+//                    agree.className = 'icon1 s-agree';
+//                }
+//            };
             close_page.onclick = function(){
                 out_pay.style.display = "none";
             };
@@ -235,7 +237,6 @@
             var  Parameters=GetParameters(type,code);
             console.log(Parameters);
             if(Parameters) {
-                var winRef = window.open("", "_blank");//打开一个新的页面
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
                     if (data.success) {
                         var url = data.data.paymentRedirectURL;
@@ -377,7 +378,7 @@
                         sec('countdown',30*60-(minutes*60+seconds));
                     }
                     else{
-                        $(".countdown").html("已经结束");
+                        $("#countdown").html("已经结束");
 
                     }
                     var sum = 0;

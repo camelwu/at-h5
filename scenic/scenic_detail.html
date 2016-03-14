@@ -318,7 +318,8 @@
                 window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId
                         +"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
             }else{
-                location.href="../user/user-login.html"
+                var url=window.location.href;
+                location.href="../user/user-login.html?returnUrl="+escape(url);
             }
 
         }

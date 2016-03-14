@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8bf9800-328b-4600-9a30-68d195e24efd" name="Default" comment="">
-<<<<<<< HEAD
-      <change type="DELETED" beforePath="E:\project\at-h5\hotel-finsh.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\hotel.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\hotel_list.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\hotel_reviews.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\jyy_hd_map.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\jyy_hotelSummary.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\jyy_pay.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\product-hotel-index.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\trade_details.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\project\at-h5\user.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-=======
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flight/css/air_ticket.css" afterPath="$PROJECT_DIR$/flight/css/air_ticket.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flight/js/hy_ticket_index.js" afterPath="$PROJECT_DIR$/flight/js/hy_ticket_index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flight/index.html" afterPath="$PROJECT_DIR$/flight/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/lib/scroller.js" afterPath="$PROJECT_DIR$/js/lib/scroller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flight/ticket_order.html" afterPath="$PROJECT_DIR$/flight/ticket_order.html" />
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
+    <list default="true" id="d13c5d2d-4f3e-443e-88fb-154baf4fc4cc" name="默认的" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/scenic_order_freelogin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/js/head_back.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/css/order_pay.css" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\order-pay.html" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\contactslist.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/images/greatwall-01.jpg" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_order.html" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_order_detail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/js/price_detail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/images/hk.jpg" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_detail.html" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\editcontacts.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/js/tab.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/css/sce_detail.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/images/greatwall-sun.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/css/sce_evaluate.css" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_region.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/css/scenic_order.css" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_search.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/js/item_agree.js" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_list.html" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_region_filter.html" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\sce-evaluate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scenic/js/cut_plus.js" />
+      <change type="NEW" beforePath="" afterPath="D:\work\at-h5\scenic\.idea\scenic_surround.html" />
+      <change type="DELETED" beforePath="C:\item\at-h5\scenic\styles\reset.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\item\at-h5\scenic\scenic_order_cancellogin.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_region_filter.html" afterPath="$PROJECT_DIR$/scenic/scenic_region_filter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_detail.html" afterPath="$PROJECT_DIR$/scenic/scenic_detail.html" />
+      <change type="MOVED" beforePath="C:\item\at-h5\scenic\scenic_order_cancellogin.html" afterPath="D:\work\at-h5\scenic\.idea\scenic_order_cancellogin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_order.html" afterPath="$PROJECT_DIR$/scenic/scenic_order.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/css/sceniclist.css" afterPath="$PROJECT_DIR$/scenic/css/sceniclist.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/sce-evaluate.html" afterPath="$PROJECT_DIR$/scenic/sce-evaluate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/contactslist.html" afterPath="$PROJECT_DIR$/scenic/contactslist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_surround.html" afterPath="$PROJECT_DIR$/scenic/scenic_surround.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/order-pay.html" afterPath="$PROJECT_DIR$/scenic/order-pay.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/editcontacts.html" afterPath="$PROJECT_DIR$/scenic/editcontacts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_order_detail.html" afterPath="$PROJECT_DIR$/scenic/scenic_order_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/.idea/workspace.xml" afterPath="$PROJECT_DIR$/scenic/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_region.html" afterPath="$PROJECT_DIR$/scenic/scenic_region.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/styles/framework.css" afterPath="$PROJECT_DIR$/scenic/styles/framework.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/css/editcontacts.css" afterPath="$PROJECT_DIR$/scenic/css/editcontacts.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_search.html" afterPath="$PROJECT_DIR$/scenic/scenic_search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_list.html" afterPath="$PROJECT_DIR$/scenic/scenic_list.html" />
     </list>
     <ignored path="at-h5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,52 +66,18 @@
     <favorites_list name="at-h5" />
   </component>
   <component name="FileEditorManager">
-<<<<<<< HEAD
-    <leaf />
-=======
     <leaf>
-      <file leaf-file-name="hsum.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/hsum.css">
+      <file leaf-file-name="tab.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scenic/js/tab.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cache.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flight/js/cache.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1455501334000" expanded="true" signature="19407:19421" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mvc.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/lib/mvc.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45188284">
-              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Html5" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -96,37 +85,6 @@
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/js/perInfo.js" />
-        <option value="$PROJECT_DIR$/styles/style.css" />
-        <option value="$PROJECT_DIR$/user-allorder.html" />
-        <option value="$PROJECT_DIR$/user.html" />
-        <option value="$PROJECT_DIR$/user-choiceAir.html" />
-        <option value="$PROJECT_DIR$/js/lib/vcm.js" />
-        <option value="$PROJECT_DIR$/user-logined.html" />
-        <option value="$PROJECT_DIR$/user-unlogin.html" />
-        <option value="$PROJECT_DIR$/js/user-perInfo.js" />
-        <option value="$PROJECT_DIR$/js/user-logined.js" />
-        <option value="$PROJECT_DIR$/js/lib/vlm.js" />
-        <option value="$PROJECT_DIR$/user-login.html" />
-        <option value="$PROJECT_DIR$/js/user-login-register.js" />
-        <option value="D:/at-h5/at-h5/user-unlogin.html" />
-        <option value="$PROJECT_DIR$/country.html" />
-        <option value="$PROJECT_DIR$/styles/country_list.css" />
-        <option value="$PROJECT_DIR$/js/user.js" />
-        <option value="$PROJECT_DIR$/user-perInfo.html" />
-        <option value="$PROJECT_DIR$/styles/framework.css" />
-        <option value="$PROJECT_DIR$/user-amendInfo.html" />
-        <option value="$PROJECT_DIR$/js/user-oftenInfo.js" />
-        <option value="$PROJECT_DIR$/user-oftenInfo.html" />
-        <option value="$PROJECT_DIR$/js/country_list.js" />
-        <option value="$PROJECT_DIR$/css/user.css" />
-        <option value="$PROJECT_DIR$/index.html" />
-      </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
@@ -155,8 +113,8 @@
     <OptionsSetting value="true" id="更新" />
     <OptionsSetting value="true" id="状态" />
     <OptionsSetting value="true" id="编辑" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+    <ConfirmationsSetting value="0" id="添加" />
+    <ConfirmationsSetting value="0" id="移除" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -171,6 +129,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -180,65 +139,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-<<<<<<< HEAD
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hotel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-=======
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/at-h511/js/lib/vcm.js" />
-    <property name="two.files.diff.last.used.file" value="$USER_HOME$/Desktop/at-h511/js/lib/vcm.js" />
-    <property name="FullScreen" value="false" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\work\useraaa\at-h5" />
-      <recent name="E:\work\at-h511" />
+      <recent name="C:\item\at-h5" />
     </key>
   </component>
   <component name="RunManager">
@@ -287,170 +198,45 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e8bf9800-328b-4600-9a30-68d195e24efd" name="Default" comment="" />
-      <created>1452063331833</created>
+      <changelist id="d13c5d2d-4f3e-443e-88fb-154baf4fc4cc" name="默认的" comment="" />
+      <created>1452849015233</created>
       <option name="number" value="Default" />
-      <updated>1452063331833</updated>
+      <updated>1452849015233</updated>
     </task>
-    <task id="LOCAL-00001" summary="１．更改user.css&#10;2.添加user-allorder.html全部订单页&#10;3.添加user-amendInfo.html  包括找回密码页，修改昵称页，填写姓名页，手机号验证页，邮箱页，点评页，设置页，联系我们页。&#10;4.添加user-choiceAir.html 选择乘机人页&#10;5.添加user-oftenInfo.html 常旅信息页">
-      <created>1452064174403</created>
-      <option name="number" value="00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1452064174403</updated>
-    </task>
-    <task id="LOCAL-00002" summary="1.修改登录注册页面user-login.html&#10;2.完善页面间跳转&#10;3.修改user-login-register.js&#10;4.添加user.js">
-      <created>1452580712308</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1452580712308</updated>
-    </task>
-    <task id="LOCAL-00003" summary="1.修改vcm.js&#10;2.修改user-login-register.js&#10;3.添加user-logined.js&#10;4.添加user-perInfo,js&#10;5.修改user.css&#10;6.修改user-login.html&#10;7.修改user-logined.html&#10;8.修改user-perInfo.html">
-      <created>1452754188237</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1452754188237</updated>
-    </task>
-    <task id="LOCAL-00004" summary="1.修改user-login-register.js&#10;2.修改user-logined.js&#10;3.修改user-perInfo.js&#10;4.修改user-logined.html&#10;5.修改user-perInfo.html">
-      <created>1452851123226</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1452851123226</updated>
-    </task>
-    <task id="LOCAL-00005" summary="1.修改user.css">
-      <created>1452851814673</created>
-      <option name="number" value="00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1452851814673</updated>
-    </task>
-    <task id="LOCAL-00006" summary="1.修改user.css&#10;2.添加bg-login.png图片，删除bg-login.jpg图片&#10;3.添加bg-user.png图片，删除bg-user.jpg图片&#10;4.添加bu.png图片&#10;5.添加photo-man.png,photo-woman.png&#10;6.修改vlm.js&#10;7.修改user-logined.js&#10;8.修改user-perInfo.js&#10;9.修改user.js&#10;10.修改framework.css&#10;11.修改style.css&#10;12.修改user-allorder.html&#10;13.修改user-amendInfo.html&#10;14.修改user-choiceAir.html&#10;15.修改user-login.html&#10;16.修改user-logined.html&#10;17.修改user-oftenInfo.html&#10;18.修改user-perInfo.html&#10;19修改user.html">
-      <created>1453173876783</created>
-      <option name="number" value="00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1453173876783</updated>
-    </task>
-    <task id="LOCAL-00007" summary="1.修改user.css&#10;2.替换icon,png&#10;3.修改vlm.js&#10;4.修改user-logined.js&#10;5.修改user-login-register.js&#10;6.添加user-oftenInfo.js&#10;7.修改user-perInfo.js&#10;8.修改user.js&#10;9.修改user-amendInfo.html&#10;10.修改user-login.html&#10;11.修改user-logined.html&#10;12.修改user-oftenInfo.html&#10;13.修改user-perInfo.html&#10;14.修改user.html">
-      <created>1453200654524</created>
-      <option name="number" value="00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1453200654524</updated>
-    </task>
-    <task id="LOCAL-00008" summary="1.修改user.css&#10;2.替换icon,png&#10;3.修改user-logined.js&#10;4.修改user-login-register.js&#10;5.修改user-oftenInfo.js&#10;6.修改user-perInfo.js&#10;7.修改user-login.html&#10;8.修改user-logined.html&#10;9.修改user-oftenInfo.html&#10;10.修改user-perInfo.html&#10;11.修改user-choiceAir.html">
-      <created>1453435568051</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1453435568051</updated>
-    </task>
-    <task id="LOCAL-00009" summary="&#10;1.修改user-perInfo.js&#10;">
-      <created>1453446289137</created>
-      <option name="number" value="00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1453446289137</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
-=======
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
-    <editor active="true" />
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-=======
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294271" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-=======
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="6.25E-4" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13751584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="6.25E-4" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="１．更改user.css&#10;2.添加user-allorder.html全部订单页&#10;3.添加user-amendInfo.html  包括找回密码页，修改昵称页，填写姓名页，手机号验证页，邮箱页，点评页，设置页，联系我们页。&#10;4.添加user-choiceAir.html 选择乘机人页&#10;5.添加user-oftenInfo.html 常旅信息页" />
-    <MESSAGE value="1.修改登录注册页面user-login.html&#10;2.完善页面间跳转&#10;3.修改user-login-register.js&#10;4.添加user.js" />
-    <MESSAGE value="1.修改vcm.js&#10;2.修改user-login-register.js&#10;3.添加user-logined.js&#10;4.添加user-perInfo,js&#10;5.修改user.css&#10;6.修改user-login.html&#10;7.修改user-logined.html&#10;8.修改user-perInfo.html" />
-    <MESSAGE value="1.修改user-login-register.js&#10;2.修改user-logined.js&#10;3.修改user-perInfo.js&#10;4.修改user-logined.html&#10;5.修改user-perInfo.html" />
-    <MESSAGE value="1.修改user.css" />
-    <MESSAGE value="1.修改user.css&#10;2.添加bg-login.png图片，删除bg-login.jpg图片&#10;3.添加bg-user.png图片，删除bg-user.jpg图片&#10;4.添加bu.png图片&#10;5.添加photo-man.png,photo-woman.png&#10;6.修改vlm.js&#10;7.修改user-logined.js&#10;8.修改user-perInfo.js&#10;9.修改user.js&#10;10.修改framework.css&#10;11.修改style.css&#10;12.修改user-allorder.html&#10;13.修改user-amendInfo.html&#10;14.修改user-choiceAir.html&#10;15.修改user-login.html&#10;16.修改user-logined.html&#10;17.修改user-oftenInfo.html&#10;18.修改user-perInfo.html&#10;19修改user.html" />
-    <MESSAGE value="1.修改user.css&#10;2.替换icon,png&#10;3.修改vlm.js&#10;4.修改user-logined.js&#10;5.修改user-login-register.js&#10;6.添加user-oftenInfo.js&#10;7.修改user-perInfo.js&#10;8.修改user.js&#10;9.修改user-amendInfo.html&#10;10.修改user-login.html&#10;11.修改user-logined.html&#10;12.修改user-oftenInfo.html&#10;13.修改user-perInfo.html&#10;14.修改user.html" />
-    <MESSAGE value="1.修改user.css&#10;2.替换icon,png&#10;3.修改user-logined.js&#10;4.修改user-login-register.js&#10;5.修改user-oftenInfo.js&#10;6.修改user-perInfo.js&#10;7.修改user-login.html&#10;8.修改user-logined.html&#10;9.修改user-oftenInfo.html&#10;10.修改user-perInfo.html&#10;11.修改user-choiceAir.html" />
-    <MESSAGE value="&#10;1.修改user-perInfo.js&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;1.修改user-perInfo.js&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/js/country_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/user.css">
+    <entry file="file://$PROJECT_DIR$/scenic/js/tab.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -458,285 +244,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/country_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="65" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/user.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1209" column="29" selection-start-line="1209" selection-start-column="29" selection-end-line="1209" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-    <entry file="file://$PROJECT_DIR$/styles/framework.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2800" column="4" selection-start-line="2800" selection-start-column="4" selection-end-line="2800" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/js/hotel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.594046">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/hotel_jyy.js">
+    <entry file="file://$PROJECT_DIR$/scenic/js/tab.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_reviews.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lsf_hotelReviews.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.766666">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lsf_hotelList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="8" />
-=======
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="17" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="17" />
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/ui/bu.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.255751">
-          <caret line="854" column="0" selection-start-line="854" selection-start-column="0" selection-end-line="854" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="35" selection-start-line="115" selection-start-column="35" selection-end-line="115" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/ui/icons.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/ui/icon.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/js/lib/vlm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.025710419">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-    <entry file="file://$PROJECT_DIR$/user-info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="22.758621">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user-infolist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="22.758621">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user-login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.758621">
-          <caret line="109" column="25" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user-passengerinfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="23.310345">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user-signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.103448">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/order-details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.655172">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/all-order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.896552">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/js/cityList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="93" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-    <entry file="file://$PROJECT_DIR$/styles/cityList.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1785216">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="65" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/hotel-finsh.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5436047">
-          <caret line="17" column="91" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-    <entry file="file://$PROJECT_DIR$/city_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7122093">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.59593">
-          <caret line="175" column="13" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/js/require.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-    <entry file="file://$PROJECT_DIR$/styles/framework.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33240223">
-          <caret line="873" column="4" selection-start-line="873" selection-start-column="4" selection-end-line="873" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/js/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7863129">
-          <caret line="141" column="89" selection-start-line="141" selection-start-column="89" selection-end-line="141" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.6965065">
-          <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/user.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2860082">
-          <caret line="1445" column="1" selection-start-line="1445" selection-start-column="1" selection-end-line="1445" selection-end-column="1" />
-=======
-    <entry file="file://$PROJECT_DIR$/css/hsum.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flight/js/cache.js">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state vertical-scroll-proportion="2.5246913">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-=======
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1455501334000" expanded="true" signature="19407:19421" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/mvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45188284">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
->>>>>>> b5edf9cb80a7870ea9be726baf88c3ce1709fcdc
           <folding />
         </state>
       </provider>
