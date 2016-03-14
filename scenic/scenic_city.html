@@ -275,21 +275,25 @@
         MT.CallbackCityList = function(data){
             var json=data;
 //            console.log(json);
+//            console.log(pinyin.getCamelChars("N"));
             if(json.success){
                 globalData = json;
                 isLoad = true;
 
                 var data=json,tpl_str,tpl_title,tpl_ul;
+
+//                console.log(json.data.destCities);
                 var newArray = MT.SplitCitiesArray(json.data.destCities.sort(MT.ByCities));
 //                var docf = document.createDocumentFragment();
                 for (var i = 0;i<newArray.length;i++){
+
                     var title =newArray[i][0].cityNamePY.substr(0,1);
                     tpl_str = $("<li id='"+title+"'></li>");
                     $("<span  class='gui-city-t'></span>").html(title).appendTo(tpl_str);
                     tpl_ul = $("<ul class='city-tags'></ul>");
                     tpl_ul.appendTo(tpl_str);
                     for (var j = 0;j<newArray[i].length;j++){
-                       var li_child= $("<li data-key='"+newArray[i][j].cityCode+"'></li>").click(MT.ClickTags);
+                       var li_child= $("<li data-key='"+newArray[i][j].cityCode+"' data-value='"+newArray[i][j].cityNamePY+"'></li>").click(MT.ClickTags);
                         li_child.html(newArray[i][j].cityName).appendTo(tpl_ul);
                     }
                     $("#js_oversea").append(tpl_str);
@@ -456,7 +460,7 @@
         var strCity = '';
         for(var i=0;i<data.length;i++){
             if(data[i].cityNamePY.toLowerCase().indexOf(value)> -1){
-                strCity+='<li><p data-key='+data[i].cityCode+'>'+data[i].cityName+'</p></li>'
+                strCity+='<li><p data-key='+data[i].cityCode+' data-value='+data[i].cityNamePY+'>'+data[i].cityName+'</p></li>'
             }
             if(data[i].cityName.indexOf(value)> -1){
                 strCity+='<li><p>'+data[i].cityName+'</p></li>'

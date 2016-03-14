@@ -234,7 +234,7 @@
          * @constructor
          */
         var ByCities = function(a, b){
-            return a.cityCode.substr(0,1).toLowerCase().charCodeAt(0) - b.cityCode.substr(0,1).toLowerCase().charCodeAt(0);
+            return a.cityNamePY.substr(0,1).toUpperCase().charCodeAt(0) - b.cityNamePY.substr(0,1).toUpperCase().charCodeAt(0);
         }
 
 
@@ -250,8 +250,8 @@
             n = 0, tmp_old, tmp_new;
 
             for (var i = 0; i < oldArray.length -1; i++) {
-                tmp_old = oldArray[i].cityCode.substr(0,1).toLocaleLowerCase().charCodeAt(0);
-                tmp_new = oldArray[i + 1].cityCode.substr(0,1).toLocaleLowerCase().charCodeAt(0);
+                tmp_old = oldArray[i].cityNamePY.substr(0,1).toUpperCase().charCodeAt(0);
+                tmp_new = oldArray[i + 1].cityNamePY.substr(0,1).toUpperCase().charCodeAt(0);
                 if ( tmp_old!= tmp_new) {
                     newArray.push(oldArray.slice(n, i + 1));
                     n = i + 1;

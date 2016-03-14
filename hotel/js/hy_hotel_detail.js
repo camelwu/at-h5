@@ -354,12 +354,11 @@
 			var code = this.getAttribute("room-code");
 
             try{
+                //checkLogin 会判断用户是否登录，如果没有登录直接显示登录，登录成功后跳转到回调函数路径
                 var sign = vlm.checkLogin(torder);
                 if(sign){
                     torder();
-                }else{
-					location.href="../user/user-login.html"
-				}
+                }
             }catch(e){
                 console.info(e);
             }

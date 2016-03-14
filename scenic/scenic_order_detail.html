@@ -35,14 +35,6 @@
         }
         .flight_info i.data_icon{
             width: 16px;height:17px; position: absolute; right:20px;; top:10px; background: url(images/date_icon.gif) no-repeat; background-size: 100% 100%;}
-        .stopgray {
-            filter: grayscale(100%);
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            -o-filter: grayscale(100%);
-            pointer-events:none;
-        }
     </style>
 
 </head>
@@ -51,7 +43,7 @@
     <div class="all-elements">
         <!--   顶部   -->
         <div class="header">
-            <a href="javascript:history.go(-1);" class="icons header-back"></a>
+            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
             <h3>景点预订</h3>
         </div>
         <!--   内容   -->
@@ -171,7 +163,7 @@
                 <a id="close_list" href="javascript:void(0);" class="icons header-back"></a>
                 <div class="sod-search">
                     <img class="sod-fdj" src="../images/1.png">
-                    <input type="text" value placeholder="搜索">
+                    <input type="text" id="seach_up" value="" placeholder="搜索">
                 </div>
             </div>
             <div class="sc-content js-PickupPoint" style="z-index: 999">
@@ -370,8 +362,8 @@
                         <b></b>
                     </div>
                     <div class="travel-date-wrap-noon fl">
-                        <a href="javascript:void(0);" data-key="MorningTour" class="fa-noon" onclick="MT.HalfDay(this,1)">上午</a>
-                        <a href="javascript:void(0);" data-key="AfternoonTour" class="fa-noon on" onclick="MT.HalfDay(this,0)">下午</a>
+                        <a href="javascript:void(0);" data-key="MorningTour" class="fa-noon on" onclick="MT.HalfDay(this,1)">上午</a>
+                        <a href="javascript:void(0);" data-key="AfternoonTour" class="fa-noon" onclick="MT.HalfDay(this,0)">下午</a>
                     </div>
                 </div>
             </section>
@@ -412,8 +404,8 @@
         /*景点 预订MT*/
         (function(){
             var val = vlm.parseUrlPara(window.location.href);
-            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata,ExtendData
-                    ,StartDate,EndDate;
+            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata,ExtendData,
+            PickupPointData,StartDate,EndDate;
 
 
             /**
@@ -471,13 +463,33 @@
                 console.log(json);
                 if(json.success){
                     var data = json,tpl_PickupPoint = template("tpl_PickupPoint",data);
+                    PickupPointData = data.data.pickupInfos;
                     $(".js-PickupPoint").html(tpl_PickupPoint);
+                    MT.PickupPointSearch();
                     MT.bindEventPickupPoint();
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
                 }
             }
+
+            MT.PickupPointSearch = function(){
+
+                $('#seach_up').keyup(function(){
+                    var htmlTags = [];
+                    var value = $('#seach_up').val();
+                    console.log(PickupPointData);
+                    for(var i = 0;i<PickupPointData.length;i++){
+                        if(PickupPointData[i].pickupPoint.toLowerCase().indexOf(value)> -1){
+                            htmlTags.push("<li data-key="+PickupPointData[i].pickupID+">"+PickupPointData[i].pickupPoint+"</li>");
+                        }
+                    }
+
+                    $(".hote-list").html(htmlTags.join(''));
+                    MT.bindEventPickupPoint();
+                });
+            }
+
             /**
              * 返回详细信息
              */
