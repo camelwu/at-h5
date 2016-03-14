@@ -127,7 +127,7 @@ var roomUpGrade = {
             '</div>',
             '<p class="hd-price">',
             '<span>+￥</span>',
-            '<span>{%=totailPrice%}</span>',
+            '<span>{%=markUp%}</span>',
             '</p>',
             '</li>'
         ].join('');
