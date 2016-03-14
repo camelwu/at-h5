@@ -206,6 +206,11 @@ var lsf_myweb={
             myData.CardHolderName=jp_guest_name.value;
         }
 
+        if(!vlm.Utils.validate["engName"](jp_guest_name.value)){
+            jAlert("持卡人姓名必须为英文！","",null,"确认");
+            return false;
+        }
+
         //发卡银行验证
         if(jpBankName.value=='发卡银行'){
             $.alerts.alert('请输入发卡银行',null,"确定");
@@ -219,6 +224,10 @@ var lsf_myweb={
             return;
         }else{
             myData.CreditCardExpiryDate=jp_limit_time.value;
+        }
+        if(!vlm.Utils.validate["dataValid"](jp_limit_time.value)){
+            jAlert("有效期格式不正确！","",null,"确认");
+            return false;
         }
         //安全码验证
         if(jp_safe_code.value=='签名栏末尾最后3位'){
