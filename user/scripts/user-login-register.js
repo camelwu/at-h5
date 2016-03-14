@@ -355,7 +355,7 @@ window.onload = function(){
                 "Code": "0058"
             };
             phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
-            vlm.Utils.timeCountDown('10', time_reciprocals, phone_timeout);
+            vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
         }
     }
