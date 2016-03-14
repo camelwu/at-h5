@@ -194,7 +194,7 @@
         var callbackcity = MT.getCity(val.citycode,callback);
         var callback_url = MT.GetRequestUrl(callback);
 //        console.log(callback_url);
-
+        MT.ajaxAnimIn();
         MT.bindclickBackPage = function(){
             $(".js-backpage").click(function(){
 //               window.location.href = callback;
