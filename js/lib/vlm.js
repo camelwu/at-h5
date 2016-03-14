@@ -840,10 +840,10 @@
 				var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId +' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id);
 				document.body.appendChild(choice);
 				//choice.location = urls;
-			},createIframe = function(urlstr) {
-				var myIframe = document.createElement('iframe');
-				myIframe.id = 'choiceAir';
-				myIframe.name = 'choiceAir';
+			},createIframe = function(urlstr,id) {
+				var str = id?id:'choiceAir',myIframe = document.createElement('iframe');
+				myIframe.id = str;
+				myIframe.name = str;
 				myIframe.src = urlstr?urlstr:'about:blank';
 				myIframe.style.position = 'absolute';
 				myIframe.style.zIndex = '9999';
