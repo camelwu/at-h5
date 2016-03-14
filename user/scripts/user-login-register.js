@@ -417,6 +417,10 @@ function mycallback_login(myJson) {
 			window.location.href = urlobj["returnURL"];
 		}else if(urlobj["callback"]){
 			var c = urlobj["callback"];
+			if(window.parent){
+				var ifrCilent = window.parent.document.getElementById("choiceAir");
+				ifrCilent.parentNode.removeChild(ifrCilent);
+			}
 			window.parent.c();
 		}else{
 			window.location.href = "user.html";
