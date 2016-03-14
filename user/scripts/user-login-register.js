@@ -465,6 +465,10 @@ function mycallback_login(ret) {
         {
             jAlert('未注册用户');
         }
+        else if(myJson.message == 'Invalid username or password.')
+        {
+            jAlert('用户名或密码错误');
+        }
         else
         {
             jAlert(myJson.message);
@@ -520,10 +524,9 @@ function mycallback_findver(ret){
 }
 
 //时间倒计时结束后
-function phone_timeout(obj){
-    console.log(phone_verify);
-    this.innerHTML='发送验证码';
-    this.style.color='#ffb413';
+function phone_timeout(){
+    phone_verify.innerHTML='发送验证码';
+    phone_verify.style.color='#ffb413';
     Bflag_forget=false;
 }
 

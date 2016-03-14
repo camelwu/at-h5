@@ -357,10 +357,7 @@
                 var sign = vlm.checkLogin(torder);
                 if(sign){
                     torder();
-                }else{
-					var url=window.location.href;
-					location.href="../user/user-login.html?returnUrl="+escape(url);
-				}
+                }
             }catch(e){
                 console.info(e);
             }

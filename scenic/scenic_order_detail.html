@@ -35,14 +35,6 @@
         }
         .flight_info i.data_icon{
             width: 16px;height:17px; position: absolute; right:20px;; top:10px; background: url(images/date_icon.gif) no-repeat; background-size: 100% 100%;}
-        .stopgray {
-            filter: grayscale(100%);
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            -o-filter: grayscale(100%);
-            pointer-events:none;
-        }
     </style>
 
 </head>
@@ -51,7 +43,7 @@
     <div class="all-elements">
         <!--   顶部   -->
         <div class="header">
-            <a href="javascript:history.go(-1);" class="icons header-back"></a>
+            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
             <h3>景点预订</h3>
         </div>
         <!--   内容   -->
@@ -71,8 +63,8 @@
                     </div>
                     <ul class="tourist-msg tanktick" id="tanktick">
                         <li>
-                            <span class="tourist-name tour-short">姓：</span><input type="text" id="scenic2_name1" style="width:32%;display: inline-block;" placeholder="Liou">
-                            <span class="tourist-name tour-short">名：</span><input type="text" id="scenic2_name2" style="width:34%;display: inline-block;" placeholder="Venson">
+                            <span class="tourist-name tour-short" style="width:30px">姓：</span><input type="text" id="scenic2_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li">
+                            <span class="tourist-name tour-short" style="width:30px">名：</span><input type="text" id="scenic2_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin">
                         </li>
                         <li>
                             <span class="tourist-name tour-short">国籍：</span>
@@ -80,7 +72,7 @@
                             <span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" data-tel-code="86">中国</span>
                         </li>
                         <li>
-                            <span class="tourist-name tour-short">护照：</span><input type="text" id="scenic2_idcard" style="width:86%;display: inline-block;" placeholder="EA2359923">
+                            <span class="tourist-name tour-short">护照：</span><input type="text" id="scenic2_idcard" style="width:86%;display: inline-block;" placeholder="请输入护照,如EA2359923">
                         </li>
                     </ul>
                 </div>
@@ -91,11 +83,11 @@
                     </div>
                     <ul class="tourist-msg contact" id="contact">
                         <li>
-                            <span class="tourist-name tour-short">姓：</span><input type="text" name="firstName" id="scenic_name1" style="width:32%;display: inline-block;" placeholder="Liou">
-                            <span class="tourist-name tour-short">名：</span><input type="text" name="lastName" id="scenic_name2" style="width:34%;display: inline-block;" placeholder="Venson">
+                            <span class="tourist-name tour-short" style="width:30px">姓：</span><input type="text" name="firstName" id="scenic_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li">
+                            <span class="tourist-name tour-short" style="width:30px">名：</span><input type="text" name="lastName" id="scenic_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin">
                         </li>
-                        <li><span class="tourist-name tour-short">手机：</span>+<span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">86</span><input type="text" name="phone" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="18611850882"></li>
-                        <li><span class="tourist-name tour-short">邮箱：</span><input type="text" name="email" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="113638136@163.com"></li>
+                        <li><span class="tourist-name tour-short">手机：</span>+<span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">86</span><input type="text" name="phone" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号"></li>
+                        <li><span class="tourist-name tour-short">邮箱：</span><input type="text" name="email" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="常用邮箱"></li>
                     </ul>
                 </div>
                 <!--<div class="gray-block"></div>-->
@@ -171,7 +163,7 @@
                 <a id="close_list" href="javascript:void(0);" class="icons header-back"></a>
                 <div class="sod-search">
                     <img class="sod-fdj" src="../images/1.png">
-                    <input type="text" value placeholder="搜索">
+                    <input type="text" id="seach_up" value="" placeholder="搜索">
                 </div>
             </div>
             <div class="sc-content js-PickupPoint" style="z-index: 999">
@@ -370,8 +362,8 @@
                         <b></b>
                     </div>
                     <div class="travel-date-wrap-noon fl">
-                        <a href="javascript:void(0);" data-key="MorningTour" class="fa-noon" onclick="MT.HalfDay(this,1)">上午</a>
-                        <a href="javascript:void(0);" data-key="AfternoonTour" class="fa-noon on" onclick="MT.HalfDay(this,0)">下午</a>
+                        <a href="javascript:void(0);" data-key="MorningTour" class="fa-noon on" onclick="MT.HalfDay(this,1)">上午</a>
+                        <a href="javascript:void(0);" data-key="AfternoonTour" class="fa-noon" onclick="MT.HalfDay(this,0)">下午</a>
                     </div>
                 </div>
             </section>
@@ -412,8 +404,9 @@
         /*景点 预订MT*/
         (function(){
             var val = vlm.parseUrlPara(window.location.href);
-            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata,ExtendData
-                    ,StartDate,EndDate;
+            var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata,ExtendData,
+            PickupPointData,StartDate,EndDate;
+
 
             /**
              * 接送酒店页Event
@@ -470,13 +463,33 @@
                 console.log(json);
                 if(json.success){
                     var data = json,tpl_PickupPoint = template("tpl_PickupPoint",data);
+                    PickupPointData = data.data.pickupInfos;
                     $(".js-PickupPoint").html(tpl_PickupPoint);
+                    MT.PickupPointSearch();
                     MT.bindEventPickupPoint();
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
                 }
             }
+
+            MT.PickupPointSearch = function(){
+
+                $('#seach_up').keyup(function(){
+                    var htmlTags = [];
+                    var value = $('#seach_up').val();
+                    console.log(PickupPointData);
+                    for(var i = 0;i<PickupPointData.length;i++){
+                        if(PickupPointData[i].pickupPoint.toLowerCase().indexOf(value)> -1){
+                            htmlTags.push("<li data-key="+PickupPointData[i].pickupID+">"+PickupPointData[i].pickupPoint+"</li>");
+                        }
+                    }
+
+                    $(".hote-list").html(htmlTags.join(''));
+                    MT.bindEventPickupPoint();
+                });
+            }
+
             /**
              * 返回详细信息
              */
@@ -1175,6 +1188,44 @@
                 $(".js-price-list").html(list);
             }
 
+
+            MT.stopDefault = function(e) {
+                if ( e && e.preventDefault )
+                    e.preventDefault();
+                else
+                    window.event.returnValue = false;
+
+                return false;
+            }
+
+            /**
+             * 预订 验证
+             * @constructor
+             */
+            MT.validate = function(data,rules,message){
+                if(rules.required == "required"){
+                    if(!vlm.Utils.validate.isNoEmpty(data)){
+                        jAlert(message.required,"提示");
+                        MT.stopDefault(e);
+                    }
+                }
+                if(rules.email == "email"){
+                    if(!vlm.Utils.validate.email(data)){
+                        jAlert(message.email,"提示");
+
+                        MT.stopDefault(e);
+                    }
+                }
+                if(rules.phone == "phone"){
+                    if(!vlm.Utils.validate.mobileNo(data)){
+                        jAlert(message.phone,"提示");
+                        MT.stopDefault(e);
+                    }
+                }
+
+
+            }
+
             /**
              * 预订 创建订单
              * @constructor
@@ -1214,6 +1265,7 @@
                         ChildCount = parseInt(ChildCount);
                         for(var i = 0;i< ChildCount;i++){
                             Childtmp = $(".js-children-wrap").find("input").eq(i).val();
+                            MT.validate(Childtmp,{"required":"required"},{"required":"儿童年龄不能为空"});
                             ChildArray.push(Childtmp);
                         }
                     }
@@ -1235,18 +1287,7 @@
                     }
 
 
-                    //接送服务
-                    PickupCount = $("#choHotel").length;
-                    if(PickupCount > 0){
-                        PickupTmp = $("#choHotel").attr("data-key");
-                        if(PickupTmp != ""){
-                            PickupID = $("#choHotel").attr("data-key");
-                            PickupCount = $("#choHotel").html();
-                            PickupPoint = {"PickupID":PickupID,"PickupPoint":PickupCount};
-                            param.Parameters.PickupPoint = PickupPoint;
-                        }
 
-                    }
 
                     //国籍
                     NationalityCode = $("#jp_bank_country").attr("data-code");
@@ -1257,11 +1298,13 @@
                     //取票人信息
                     FirstName = $("#scenic2_name1").val();
                     LastName = $("#scenic2_name2").val();
-
+                    MT.validate(FirstName,{"required":"required"},{"required":"取票人姓不能为空"});
+                    MT.validate(LastName,{"required":"required"},{"required":"取票人名不能为空"});
 
                     //是否需要护照
                     if(ExtendData.travelersInput == "RequiredAllTravelersDetailsWithDocumentInfo"){
                         TravelerDocument = $("#scenic2_idcard").val();
+                        MT.validate(TravelerDocument,{"required":"required"},{"required":"护照不能为空"});
                         Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode,"TravelerDocument":TravelerDocument});
                     }else{
                         Travelers.push({"TravelerType": "Adult","Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"NationalityCode":NationalityCode});
@@ -1276,6 +1319,8 @@
                         var DepartDateTime = $("#departDateTime").html()+"T00:00:00";
                         var ArrivalFlightNo = $("#arrivalFlightNo").val();
                         var ArrivalDateTime = $("#arrivalDateTime").html()+"T00:00:00";
+                        MT.validate(DepartFlightNo,{"required":"required"},{"required":"航班信息不能为空"});
+                        MT.validate(ArrivalFlightNo,{"required":"required"},{"required":"航班信息不能为空"});
                         param.Parameters.FlightDetails = {"ArrivalFlightNo":ArrivalFlightNo,"ArrivalDateTime":ArrivalDateTime,"DepartFlightNo":DepartFlightNo,"DepartDateTime":DepartDateTime};
                     }
 
@@ -1284,10 +1329,31 @@
                     //联系人信息
                     FirstName = $("#scenic_name1").val();
                     LastName = $("#scenic_name2").val();
-
-                    Email = $("#scenic_email").val();
+                    MT.validate(FirstName,{"required":"required"},{"required":"联系人信息姓不能为空"});
+                    MT.validate(LastName,{"required":"required"},{"required":"联系人信息名不能为空"});
                     PhoneNo = $("#scenic_phone").val();
+                    MT.validate(PhoneNo,{"required":"required"},{"required":"联系电话不能为空"});
+                    MT.validate(PhoneNo,{"phone":"phone"},{"phone":"联系电话格式不正确"});
+                    Email = $("#scenic_email").val();
+                    MT.validate(Email,{"required":"required"},{"required":"Email不能为空"});
+                    MT.validate(Email,{"email":"email"},{"email":"请输入正确Email格式"});
                     param.Parameters.ContactDetails  = {"Salutation":Salutation,"FirstName":FirstName,"LastName":LastName,"Email":Email,"ContactNo":{"CountryCode":CountryCode,"PhoneNo":PhoneNo}};
+
+
+                    //接送服务
+                    PickupCount = $("#choHotel").length;
+                    if(PickupCount > 0){
+                        PickupTmp = $("#choHotel").attr("data-key");
+                        MT.validate(PickupTmp,{"required":"required"},{"required":"请选择接送地点"});
+                        if(PickupTmp != ""){
+                            PickupID = $("#choHotel").attr("data-key");
+                            PickupCount = $("#choHotel").html();
+                            PickupPoint = {"PickupID":PickupID,"PickupPoint":PickupCount};
+                            param.Parameters.PickupPoint = PickupPoint;
+                        }
+
+                    }
+
 
                     //价格信息
                     CurrencyCode = "CNY";

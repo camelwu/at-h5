@@ -827,7 +827,8 @@ var arrCountry= [{"CountryEN":"Angola",
 
     if(document.querySelector('#country-wrap'))document.querySelector('#country-wrap').appendChild(oUl);
 
-    var aBtn=document.querySelectorAll('.country-btn');
+    //var aBtn=document.querySelectorAll('.country-btn');
+    var aBtn=document.querySelectorAll('.countries-wrap');
     var oDiv=document.querySelector('.country-cho-wrap');
     var oInput=document.querySelector('#country-input-zone');
     var oTc=document.querySelector('.country-list-searched');
@@ -842,7 +843,8 @@ var arrCountry= [{"CountryEN":"Angola",
     {
         (function(index){
             aBtn[i].onclick=function(){
-                var _this=this;
+                var _this=this.querySelector('.country-btn');
+                //模糊搜索赋值
                 countryListSearched.onclick=function(e){
                     _this.innerHTML=countryInputZone.value=e.target.innerHTML;
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
@@ -881,11 +883,11 @@ var arrCountry= [{"CountryEN":"Angola",
                     document.querySelector("#uptra_page .user-content").style.position = "absolute";
                 }
 
-                var oCont=document.querySelectorAll('.country-btn')[index];
+                var oCont=document.querySelectorAll('.country-btn');
                 var oTab=document.querySelector('.country-list');
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
-                    oCont.innerHTML=oInp.value=e.target.innerHTML;
+                    oCont[index].innerHTML=oInp.value=e.target.innerHTML;
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     console.log(e.target);

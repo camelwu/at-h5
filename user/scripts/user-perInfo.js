@@ -168,7 +168,7 @@ function u_perInfo(){
             }
             else
             {
-                jAlert('昵称需要由4-20个字符，可由中英文字母，数字、"-"、"_"组成，不能以"-","_"开头');
+                jAlert('昵称需要由4-20个字符，可由中英文字母，数字、"_"组成，不能以"_"开头');
             }
 
         }
@@ -208,7 +208,7 @@ function u_perInfo(){
             }
             else
             {
-                jAlert('姓名需要由2-20个字符，可由中英文字母，数字、"-"、"_"组成，不能以"-","_"开头');
+                jAlert('姓名需要由2-20个字符，可由中英文字母，数字、空格、"."、"_"组成，不能以空格、"_"或"."开头');
             }
 
         }
@@ -318,6 +318,7 @@ function u_perInfo(){
                 "Code": "0058"
             };
             console.log(Parameters.Parameters);
+            phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
             vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
 
@@ -358,14 +359,14 @@ function u_perInfo(){
 }
 
 //修改出生日期
-$('#birth-cont').click(function(){
+$('#birth-cont-per').click(function(){
     setTimeout(function(){
         var oPerBack=$('.cabin-sure');
         function selDate(obj){
             obj.on('click', show)
         }
         function show(){
-            var birthstr=$('#birth-cont')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
+            var birthstr=$('#birth-cont-per')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
             //console.log(birthstr);
             var Parameters={
                 "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
@@ -504,7 +505,7 @@ function phone_timeout(){
     console.log(phone_verify);
     phone_verify.innerHTML='发送验证码';
     phone_verify.style.color='#ffb413';
-    regBflag=false;
+    phoneBflag=false;
 }
 
 //时间倒计过程中
