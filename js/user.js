@@ -313,15 +313,18 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
             obj.onclick = function () {
                 var travelId = array[index];
 
-                jConfirm("确认删除该旅客?","",deletetra);
-                function deletetra(){
-                    var Parameters = {
-                        "Parameters": "{\"travellerId\":" +travelId+ "}",
-                        "ForeEndType": 3,
-                        "Code": "0073"
-                    };
-                    //console.log(Parameters);
-                    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+                jConfirm("确认删除该旅客?","",deletetra); //message, title, callback, okstr, escstr
+                function deletetra(argue){
+                     if(argue==true){
+                         var Parameters = {
+                             "Parameters": "{\"travellerId\":" +travelId+ "}",
+                             "ForeEndType": 3,
+                             "Code": "0073"
+                         };
+                         //console.log(Parameters);
+                         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+
+                     }
                 }
             }
         }

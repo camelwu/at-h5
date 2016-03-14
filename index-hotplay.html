@@ -55,24 +55,24 @@
                 <div>欧美</div>
             </div>
             <ul class = "hotspot" id="hotspot">
-                <!--<li>-->
-                    <!--<div class="hp-atten"><span>199</span>人已关注</div>-->
-                    <!--<div>-->
-                        <!--<img src="scenic/images/greatwall-sun.jpg" class="banner-image" alt="img">-->
-                        <!--<div class="hp-block">-->
-                        <!--八达岭长城+秋季采摘水果一日游-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>-->
-                    <!--<div class="hp-sale">-->
-                        <!--<img src="images/zhekou.png">-->
-                        <!--<span>8.5折</span>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<span>￥</span><span class="pay-num">168</span>-->
-                        <!--<span class="old-num">268元</span>-->
-                    <!--</div>-->
-                <!--</li>-->
+                <li>
+                    <div class="hp-atten"><span>199</span>人已关注</div>
+                    <div>
+                        <img src="scenic/images/greatwall-sun.jpg" class="banner-image" alt="img">
+                        <div class="hp-block">
+                        八达岭长城+秋季采摘水果一日游
+                        </div>
+                    </div>
+                    <div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>
+                    <div class="hp-sale">
+                        <img src="images/zhekou.png">
+                        <span>8.5折</span>
+                    </div>
+                    <div>
+                        <span>￥</span><span class="pay-num">168</span>
+                        <span class="old-num">268元</span>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -82,6 +82,33 @@
     <script src="js/lib/vlm.js"></script>
     <script src="js/lib/template.js"></script>
     <script src="js/lib/custom.js"></script>
+    <script id="tpl_GotHotSpot"  type="text/template">
+        <li>
+            {% if(productType==4){ %}
+            <a href = "tour/packages_detail.html?packageID={%=productID%}&productPrice={%=productPrice%}">
+            {% }else if(productType==3){ %}
+            <a href = "scenic/scenic_detail.html?packageID={%=productID%}">
+            {% } %}
+            <div class="hp-atten"><span>{%=productAttentionNum%}</span>人已关注</div>
+            <div>
+                <img src="{%=productPicUrl%}" class="banner-image" alt="img">
+                <div class="hp-block">
+                    {%=productName%}
+                </div>
+            </div>
+            <div class="spotDesc">{%=productDesc%}</div>
+            <div class="hp-sale">
+                <img src="images/zhekou.png">
+                <span>{%=discount%}折</span>
+            </div>
+            <div>
+                <span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>
+                <span class="old-num">{%=productPrice%}元</span>
+            </div>
+            </a>
+            </a>
+        </li>
+    </script>
     <script>
         (function(){
             var ww = this;
@@ -123,8 +150,11 @@
                         var json = ret;
                         console.log(json);
                         if(json.success) {
-                            var data = json.data, html_hp = template(tpl,data.hotPlayList);
-                            $("#hotspot").html(html_hp);
+                            var data = json.data;
+//                            var html_hp = template(tpl,data.hotPlayList);
+                            var tpl_GotHotSpot = template("tpl_GotHotSpot",data.hotPlayList);
+//                            $("#hotspot").html(html_hp);
+                            $("#hotspot").html(tpl_GotHotSpot);
                         }else{
                             console.log(json);
                             jAlert("数据格式错误","提示");
@@ -179,8 +209,11 @@
                             var json = ret;
                             console.log(json);
                             if(json.success) {
-                                var data = json.data, html_hp = template(tpl,data.hotPlayList);
-                                $("#hotspot").html(html_hp);
+                                var data = json.data;
+//                                var html_hp = template(tpl,data.hotPlayList);
+//                                $("#hotspot").html(html_hp);
+                                var tpl_GotHotSpot = template("tpl_GotHotSpot",data.hotPlayList);
+                                $("#hotspot").html(tpl_GotHotSpot);
                             }else{
                                 console.log(json);
                                 jAlert("数据格式错误","提示");

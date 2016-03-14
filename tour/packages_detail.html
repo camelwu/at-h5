@@ -137,18 +137,19 @@
 		<script src="../js/lib/jquery.alert.js"></script>
 		<script src="../js/lib/vlm.js"></script>
 		<script src="../js/lib/template.js"></script>
-		<!-- <script src="../js/lib/custom.js"></script> -->
 		<script id="tpl_GetSpotOverview" type="text/template">
-			{% for(var i=0;i < tours.length;i++){ %}
-			<li>{%=tours[i].overview%}</li>
-			{% } %}
-		</script>
-		<script id="tpl_GetSpotImportantNotes" type="text/template">
-			<p class="pd-contitle">费用不包含</p>
-			{% for(var i=0;i < tours.length;i++){ %}
-			<p>{%=tours[i].importantNotes%}</p>
-			{% } %}
-		</script>
+        {% for(var i=0;i < tours.length;i++){ %}
+            <li>{%=tours[i].overview%}</li>
+        {% } %}
+    </script>
+    <script id="tpl_GetSpotImportantNotes" type="text/template">
+        {% for(var i=0;i < tours.length;i++){ %}
+            <p>{%=tours[i].importantNotes%}</p>
+        {% } %}
+    </script>
+    <script id="tpl_GetTermsConditions" type="text/template">
+        {%=termsConditions%}
+    </script>
 		<script>
 			(function() {
 				var ww = this, val = vlm.parseUrlPara(window.location.href);
@@ -164,44 +165,47 @@
 					//   套餐数据
 					var getPackage = function() {
 						var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}"><img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}"><img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;top:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
-						var tpl2 = ['<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'];
-						var tpl3 = ['<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>', '<a href="order-data-people.html" class="reserve">预定</a>'];
-						var tmp = {
-							"Parameters" : {
-								"PackageID" : val.packageID
-							},
-							"ForeEndType" : 3,
-							"Code" : "0202"
-						};
-						vlm.loadJson("", JSON.stringify(tmp), package_back);
-						function package_back(ret) {
-							var json = ret;
-							console.log(json);
-							if (json.success) {
-								var data = json.data;
-								var html_pb = template(tpl1, data);
-								var html_tt = template(tpl2, data);
-								var html_pp = template(tpl3, data);
-								var tpl_GetSpotOverview = template("tpl_GetSpotOverview", data);
-								var tpl_GetSpotImportantNotes = template("tpl_GetSpotImportantNotes", data);
-								$("#packageBox").html(html_pb);
-								$('#tourTime').html(html_tt);
-								$('#tag1_con').html(tpl_GetSpotOverview);
-								$('#pageTag_2').html(tpl_GetSpotImportantNotes);
-								$('#packagePrice').html(html_pp);
-								localStorage.packageID = val.packageID;
-								$(".swipebox").swipebox({
-									useCSS : true, // false will force the use of jQuery for animations
-									hideBarsDelay : 0 // 0 to always show caption and action bar
-								});
-								if (data.length == 0) {
-									jAlert("抱歉暂时没有数据", "提示");
-								}
-							} else {
-								console.log(json);
-								jAlert(json.message, "提示");
-							}
-						}
+						var tpl2 = [
+                         '<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'
+                    ];
+                    var tpl3 = [
+                        '<span class="all_num">套餐总额：<i>'+val.productPrice+'</i>起/人（<b>{%=minPax%}</b>人起订）</span>',
+                        '<a href="order-data-people.html" class="reserve">预定</a>'
+                    ];
+                    var tmp={
+                        "Parameters": {
+                            "PackageID": val.packageID
+                             },
+                        "ForeEndType": 3,
+                            "Code": "0202"
+                    };
+                    vlm.loadJson("",JSON.stringify(tmp),package_back);
+                     function package_back(ret){
+                         var json=ret;
+                        console.log(json);
+                        if(json.success) {
+                            var data = json.data;
+                            var html_pb = template(tpl1,data);
+                            var html_tt = template(tpl2,data);
+                            var html_pp = template(tpl3,data);
+                            var tpl_GetSpotOverview = template("tpl_GetSpotOverview",data);
+                            var tpl_GetSpotImportantNotes = template("tpl_GetSpotImportantNotes",data);
+                            var tpl_GetTermsConditions = template("tpl_GetTermsConditions",data);
+                            $("#packageBox").html(html_pb);
+                            $('#tourTime').html(html_tt);
+                            $('#tag1_con').html(tpl_GetSpotOverview);
+                            $('#pageTag_2').html(tpl_GetSpotImportantNotes);
+                            $('#pageTag_3').html(tpl_GetTermsConditions);
+                            $('#packagePrice').html(html_pp);
+                            localStorage.packageID = val.packageID;
+                            if(data.length == 0){
+                                jAlert("抱歉暂时没有数据","提示");
+                            }
+                        }else{
+                            console.log(json);
+                            jAlert(json.message,"提示");
+                        }
+                    }
 
 					};
 					return {
