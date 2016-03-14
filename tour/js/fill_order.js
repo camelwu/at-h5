@@ -410,23 +410,23 @@
         if(json.success) {
             //套餐名称
             var info = localStorage.info;
-            var tpl = [
-                '{% for(var i=0; i<=chargeDetails.length-1;i++){  if(chargeDetails[i].category=="ADULT"){ %}',
-                '<li>',
-                '<div>成人×{%=chargeDetails[i].quantity%}</div>',
-                '<div>￥{%=chargeDetails[i].amountInCNY%}</div>',
-                '</li>',
-                '{% } else{ %}',
-                '<li>',
-                '<div>儿童×'+info.childNum+'</div>',
-                '<div>￥'+childPrice+'</div>',
-                '</li>',
-                '{%} } %}',
-                '<li>',
-                '<div>总价</div>',
-                '<div>￥{%=totel%}</div>',
-                '</li>'
-            ].join('');
+            //var tpl = [
+            //    '{% for(var i=0; i<=chargeDetails.length-1;i++){  if(chargeDetails[i].category=="ADULT"){ %}',
+            //    '<li>',
+            //    '<div>成人×{%=chargeDetails[i].quantity%}</div>',
+            //    '<div>￥{%=chargeDetails[i].amountInCNY%}</div>',
+            //    '</li>',
+            //    '{% } else{ %}',
+            //    '<li>',
+            //    '<div>儿童×'+info.childNum+'</div>',
+            //    '<div>￥'+childPrice+'</div>',
+            //    '</li>',
+            //    '{%} } %}',
+            //    '<li>',
+            //    '<div>总价</div>',
+            //    '<div>￥{%=totel%}</div>',
+            //    '</li>'
+            //].join('');
 
             //var sceTit=json.data.packageName;
             //var sceCpde=json.data.packageRefNo;
