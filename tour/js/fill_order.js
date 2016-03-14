@@ -56,8 +56,9 @@
                 oSection.className='li_section_box';
                 oSection.innerHTML='<li>'
                     +'<span class="list_tit">成人'+(k+1)+'：</span>'
-                    +'<b class="add_icon"><a href="javascript:;" class="add-contact"></a></b></span>'
+                    +'<b class="add_icon"><a href="javascript:;" class="add-passager" ></a></b></span>'
                     +'</li>'
+                    +"<ul id='trave"+k+"'>"
                     +'<li class="trave-li trave-li-adu">'
                     +'<span class="list_tit2 ">姓：</span>'
                     +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" /></span>'
@@ -68,6 +69,7 @@
                     +'<span class="list_tit">护照：</span>'
                     +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>'
                     +'</li>';
+                    +"</ul>"
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
 
             }
@@ -129,7 +131,8 @@
                 }
                 //订单总价
                 perPrice=arr2[3].split('=')[1];
-                totPrice=perPrice*(tAdult+totChiNUm);
+                //totPrice=perPrice*(tAdult+totChiNUm);
+                totPrice=perPrice;
                 $('.all_num i').html(totPrice);
                 $('.separate_num i').html(totPrice);
                 //roomID
@@ -138,10 +141,19 @@
         }
         urlShow();
 
-        //添加联系人
+        $('.add-passager').each(function(index,element){
+            $(this).click(function(){
+                debugger;
+                vlm.f_choice('trave'+index,"ht",'traver','',false,false);
+            })
+
+        })
+
+
         $('.add-contact').click(function(){
-            vlm.f_choice('t','contact','',false,false);
-        });
+                vlm.f_choice('contact',"ht",'contact','',false,false);
+        })
+
 
 
         //同意条款
@@ -205,7 +217,7 @@
                         },
                         "ChargeDetails": {
                             "CurrencyCode": "CNY",
-                            "TotalPrice": perPrice
+                            "TotalPrice": totPrice
                         }
                     },
 
@@ -227,7 +239,7 @@
                         for(var k=0;k<jsonPackage.roomDetails[0].childWithBed.length;k++)
                         {
                             //arrWithbed.push(jsonPackage.roomDetails[0].childWithBed[k]);
-                            arrWithbed.push(8);
+                            arrWithbed.push(7);
 
                         }
                         roomdetail.ChildwithBed=arrWithbed;
@@ -237,7 +249,7 @@
                         for(var m=0;m<jsonPackage.roomDetails[0].childWithOutBed.length;m++)
                         {
                             //arrWithoutbed.push(jsonPackage.roomDetails[0].childWithOutBed[m]);
-                            arrWithoutbed.push(8);
+                            arrWithoutbed.push(7);
 
                         }
                         roomdetail.ChildwithoutBed=arrWithoutbed;
@@ -313,7 +325,7 @@
                         tra.Salutation = "None";
                         tra.FirstName = firstNameChi;
                         tra.LastName = lastNameChi;
-                        tra.DOB ="2008-3-9";
+                        tra.DOB ="2009-2-1";
                         tra.NationalityCode = "SG";
                         traveler.push(tra);
                     }
@@ -394,7 +406,7 @@
     //初始化函数回调
     function package_tit_back(ret){
         var json = ret;
-        //console.log(json);
+        console.log(json);
         if(json.success) {
             //套餐名称
             var sceTit=json.data.packageName;

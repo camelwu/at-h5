@@ -103,7 +103,7 @@ var ticketSeatChoose = {
                 that.storageUtil.set('reverseInformationCache',reverseInformationCache);
                 document.location.href = 'ticket_order.html';
             }else{
-                return;
+                location.href="../user/user-login.html"
             }
         });
         this.addHandler(changeExplain,'click', function(event){

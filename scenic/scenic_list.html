@@ -347,6 +347,7 @@
                     screen.style.opacity = "1";
                     screenBlock.style.bottom=0;
                     screenBlock.style.transition="all 400ms";
+                    $('body').css('overflow-y','hidden');
                 };
                 //    关闭筛选
                 function closeblock(){
@@ -354,7 +355,7 @@
                     screen.style.opacity = "0.8";
                     screenBlock.style.bottom=-500+'px';
                     screenBlock.style.transition="all 400ms";
-
+                    $('body').attr("style","");
                     if(this.title == "confirm"){
                         //获得themeid
                         themeid=$(".spot-slected").attr("title");

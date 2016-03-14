@@ -98,7 +98,7 @@
                         '<a href="../index.html">',
                         '<input type="button" value="返回首页" class="fl"  id="fl"/>',
                         '</a>',
-                        '<a href="order_pay_page.html?bookingRefNo={%=bookingRefNo%}" class="tra_btn_div2">',
+                        '<a href="../user/user-allorder.html" class="tra_btn_div2">',
                         '<input type="button" value="查看订单" class="fr" id="fr" />',
                         '</a>'
                     ].join('');
@@ -130,11 +130,17 @@
                             }
                             var tpl1 = [
                                 '<h3>{%=packageName%}</h3>',
-                                '<p class="tra_live">游玩时间：<span>{%=tours[0].travelDate.substr(0,10)%}</span></p>',
-                                '<div class="tra_order">订单号：{%=bookingID%}</div>',
+                                '<p class="tra_live">游玩时间：<span>{%=tours[0].travelDate%}</span></p>',
+                                '<div class="tra_order">订单号：{%=bookingRefNo%}</div>',
                                 '<div class="tra_people">'+adultNum+'成人 '+childNum+'儿童</div>',
-                                '<p class="tra_price">￥'+totalPrice+'</p>'
+                                '<p class="tra_price">￥{%=totel%}</p>'
                             ].join('');
+                            var sum=0;
+                            data.chargeDetails.forEach(function (item, index, array) {
+                                sum += item.totalAmountInCNY;
+                            });
+                            debugger;
+                            data.totel=sum;
                             var html_ti = template(tpl1,data);
                             var html_tb = template(tpl2,data);
                             $('#tourInfo').html(html_ti);

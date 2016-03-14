@@ -93,9 +93,9 @@ $(document).ready()
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), function(data){
             if (data.success) {
                 vlm.init();
+                debugger;
                 if(business==3) {
-                    var code=data.BookingRefNo;
-                    window.location.href = 'flight/pay_success.html?bookingRefNo='+code;
+                    window.location.href = 'flight/pay_success.html?bookingRefNo='+bookingRefNo;
                 }
                 else if(business==2) {
                     window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
@@ -105,7 +105,7 @@ $(document).ready()
                     window.location.href = 'hotel/trade_details.html?bookingRefNo='+code;
                 }
                 else if(business==5){
-                    window.location.href = 'tour/pay_success.html?bookingRefNo='+bookingRefNo;
+                    window.location.href = 'tour/trade_details.html?bookingRefNo='+bookingRefNo;
                 }
             } else {
                  alert(data.message);

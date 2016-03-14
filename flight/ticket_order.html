@@ -66,10 +66,10 @@
         <div class="ride-user">
             <div class="ride-user-first">
                 <span>乘机人</span>
-                    <a class="add-Passenger" href="javascript:void(0);" onclick=" vlm.f_choice('f','traver','',true,true,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild)">添加乘机人</a>
+                    <a id="add-Passenger" class="add-Passenger" href="javascript:void(0);" onclick=" vlm.f_choice('passenger-list-data','f','traver','',true,true,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild)">添加乘机人</a>
 
             </div>
-          <ul class="passenger-list-data">
+          <ul class="passenger-list-data" id="passenger-list-data">
              <!-- <li class="ride-user-info">
               <span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}"></i></span>
               <div class="middle">
@@ -89,10 +89,10 @@
         <div class="ride-user contact">
             <div class="ride-user-first">
                 <span>联系人</span>
-                <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('f','contact','',false,false)"></a>
+                <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('contact-table','f','contact','',false,false)"></a>
             </div>
 
-            <div class="table contact-table">
+            <div class="table contact-table" id="contact-table">
                 <div class="unit name">
 
                         <label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" />
@@ -127,7 +127,7 @@
             <p class="total-person-price">5人总价</p>
         </div>
         <p class="detail clearfixs detail-tangle"><span id="details">明细</span><span class="icon-arrow"></span></p>
-        <div class="confirm"><input type="button" id="confirm-button" value="确认预订" disabled/></div>
+        <div class="confirm-order"><input type="button" id="confirm-button" value="确认预订" disabled/></div>
     </footer>
 
     <!--遮罩-->
@@ -338,6 +338,17 @@
 <script src="js/hy_ticket_order.js"></script>
 <script>
 	vlm.l_contact();
+
+    function delPassager(obj){
+        $(obj).parent().parent().remove();
+    }
+
+    function editPassager(id){
+        var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
+        var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
+        vlm.f_choice('f','traver','',true,true,numofAdult,numofChild,id);
+    }
+
     function SelectPersonInformation(html,isContact){
         if(html !="") {
             if (!isContact ) {

@@ -38,7 +38,7 @@
     <!--     banner     -->
     <div class="all-elements">
         <div id="content" class="snap-content">
-            <a href="javascript:history.go(-1);" class="icons top-back"> </a>
+            <a href="../" class="icons top-back"> </a>
             <div class="top-ban s-active">
                 <a href="#">
                     <!--<div class="ban-desc">-->
@@ -85,7 +85,7 @@
                 <ul id="out_place">
 
                 </ul>
-                <div class = "sin-title">国外热景点</div>
+                <div class = "sin-title">国外热门景点</div>
                 <ul class = "hotspot" id="abroad_hotspot">
                     <li>
                         <div>
@@ -105,7 +105,7 @@
                 <ul id="in_place">
 
                 </ul>
-                <div class = "sin-title">国内热景点</div>
+                <div class = "sin-title">国内热门景点</div>
                 <ul class = "hotspot" id="domestic_hotspot">
                     <li>
                         <div>
@@ -168,7 +168,7 @@
                         {%=hotScenicList[i].productSite%}
                     </div>
             </a>
-            <div class="spotDesc">{%=hotScenicList[i].productDesc%}</div>
+            <div class="spotDesc">{%=hotScenicList[i].productName%}</div>
             <div><span>￥</span><span class="pay-num">{%=hotScenicList[i].productPrice%}</span><span>起</span></div>
         </li>
         {% } %}
@@ -297,7 +297,7 @@
                 var json=ret;
                 if(json.success){
                     var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
-                    console.log(data.hotScenicList);
+                    console.log(data);
                     if(data.hotScenicList.length == 0){
                         jAlert("抱歉暂时没有数据","提示");
                     }

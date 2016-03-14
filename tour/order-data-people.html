@@ -599,14 +599,13 @@
                            vlm.loadJson("",JSON.stringify(tmp),callBack);
                            function callBack(ret){
                                localStorage.setItem('init', '1');
-                               $("#preloader").fadeOut("medium");
                                var json = ret;
-                               console.log(json);
                                if(json.success) {
                                    localStorage.setItem('info', JSON.stringify(paraObj));
                                    localStorage.setItem('hotelResultData', JSON.stringify(json.data));
                                    window.location.href = "hotel_list.html";
                                }else{
+                                   $("#preloader").fadeOut("medium");
                                    jAlert(json.message,"提示");
                                }
                            }

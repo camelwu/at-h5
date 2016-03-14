@@ -1,4 +1,16 @@
-       var  ticketIndexModal = {
+//国际城市
+var _ExHotCity = {
+    "Parameters": "",
+    "ForeEndType": 3,
+    "Code": "0081"
+}
+//国内城市
+var _InHotCity = {
+    "Parameters": "",
+    "ForeEndType": 3,
+    "Code": "0082"
+}       
+var  ticketIndexModal = {
        double:function(){
            var paraObj = {
                start:this.reDate(document.querySelector('.double-date-one').innerHTML),
@@ -15,7 +27,6 @@
                _word:{tip:['去程','返程']}
            });
        },
-
        single:function(){
            var paraObj = {
                start:this.reDate(document.querySelector('.single-date').innerHTML)};
@@ -236,10 +247,18 @@
        toCitySearch:function(){
            var cityNames = document.querySelectorAll('.city-search');
            var outDiv = document.querySelector('.city-list-choose');
+           var input = document.getElementById("city-input-zone");
+           var searchList = document.querySelector(".city-list-searched");
            for(var i = 0; i < cityNames.length;i++){
                cityNames[i].onclick=function(){
                    ticketIndexModal.celement = this;
                    outDiv.style.display = 'block';
+                   
+                   //h5-470 每次显示城市搜索前清空输入框和搜索结果页
+                   input.value = "";
+                   searchList.style.display = 'none';
+                   searchList.innerHTML = "";
+                   
                }
            }
 
@@ -453,17 +472,52 @@
            wrapDiv.innerHTML = frameStr;
            allWrap.appendChild(wrapDiv);
        },
-
+          
+       selectCity : function (data) {
+            var _city;
+            if(data.filterColumn=="countryCode" && data.value == "NOTCN"){
+                _city=_ExHotCity;
+            }else if (data.filterColumn=="countryCode" && data.value == "CN"){
+                _city=_InHotCity;
+            }else{
+                _city=_InHotCity;
+            }
+            return _city;
+        },
        getHotCity:function(type){
            var that = this;
-           A(fns,type);
+           var filter ={};
+           filter.filterColumn = "countryCode";
+           filter.value = type;
+           var _city = this.selectCity(filter);
+           
+           var  data = JSON.stringify(_city);
+           vlm.loadJson("",data,fns);
+           /*
+           //A(fns,type);
            function A(fns,type){
                var filter ={};
                filter.filterColumn = "countryCode";
                filter.value = type;
                getNetCity(filter,fns);
+               
            }
-           function fns(arg,status,statusMsg){
+           */
+           function fns(result){
+               var status = {};
+                var p = result;
+                status = p;
+                if (!p.success) {
+
+                    return callback(cityresult, status.success, status.message);
+                }
+                //结果集合过滤器
+                //var cityresult = filterCity(p, dataObj);
+                var cityresult = p.data;
+                //将结果返回callback
+                return callback(cityresult, status.success, status.message);
+           }
+           function callback(arg,status,statusMsg){
                if(type =="NOTCN"){
                    that.intHotCity = arg;
                }else{
