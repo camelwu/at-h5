@@ -535,6 +535,8 @@
 				document.getElementById('imageContainer').style.display = 'block';
 				//默认先加载两张图片
 				hotelDetail.preLoadImage();
+                //当前屏幕状态
+                hotelDetail.orientationchange();
 			};
 
 			hotelDetail.addHandler(innerDiv, 'touchstart', hotelDetail.startHandler)
