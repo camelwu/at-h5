@@ -47,11 +47,6 @@ i {
     display: inline-block;
 }
 
-.header-back {
-    width: 12px;
-    height: 22px;
-}
-
 .date-picker {
     display: inline-block;
     vertical-align: middle;
