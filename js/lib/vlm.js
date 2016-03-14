@@ -788,7 +788,7 @@
 				}
 				//loadJsonp("yy","package.js",callbackFunction);
 			}, l_login = function(c) {
-                var loginer = createIframe('../user/user-login.html?callback='+c);
+                var urlstr = typeof c === "function"?'callback='+c:'returnURL='+c,loginer = createIframe('../user/user-login.html?callback='+c);
 				document.body.appendChild(loginer);
 			}, l_contact = function() {
 				if (document.getElementById("name")) {
