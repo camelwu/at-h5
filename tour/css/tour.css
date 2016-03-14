@@ -1042,7 +1042,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .tourTime div.content2 .nav2-centertop {
     height: 36px;
     border: none;
-    width: 78.2%;
+    width: 100%;
 }
 
 .tourTime div.content2 .nav2-center p {
@@ -1050,7 +1050,9 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     line-height: 36px;
     height: 36px;
 }
-
+.week-tour{
+    line-height: 2.5;
+}
 .tourTime div.content2 .nav2-center input {
     height: 33px;
     margin-top: 2px;
@@ -1063,6 +1065,10 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     margin-left: 15px;
     margin-top: 8px;
     color: #fdb330;
+    max-width: 48%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .orderBtn {
     margin: 20px 12px 0;

@@ -129,6 +129,9 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
 .hotel_box span.conlist{
     display:block;font-size:13px;font-weight:normal;height:18px;line-height:18px;overflow:hidden;
 }
+.hotel_box div.conlist{
+    display:block;font-size:13px;font-weight:normal;overflow:hidden;
+}
 .hotel_box span.conlist:first-child{
     color: #484848;font-size: 15px;
 }
