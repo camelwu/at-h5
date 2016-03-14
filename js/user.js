@@ -145,9 +145,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     cardId = "6";
                 } else if (postCard == "回乡证") {
                     cardId = "7";
-                } else if (postCard == "户口本") {
-                    cardId = "8";
-                }else if (postCard == "出生证明") {
+                } else if (postCard == "出生证明") {
                     cardId = "9";
                 } else {
                     cardId = "10";
@@ -269,9 +267,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     cardId = "6";
                 } else if (cardType == "回乡证") {
                     cardId = "7";
-                } else if (cardType == "户口本") {
-                    cardId = "8";
-                } else if (cardType == "出生证明") {
+                }  else if (cardType == "出生证明") {
                     cardId = "9";
                 }
                 else {
@@ -426,9 +422,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                         } else if (travJson.data[i].listTravellerIdInfo[0].idType == "7") {
                             ul_li2.innerHTML = "回乡证" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
                         }
-                        else if (travJson.data[i].listTravellerIdInfo[0].idType == "8") {
-                            ul_li2.innerHTML = "户口本" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
-                        }
                         else if (travJson.data[i].listTravellerIdInfo[0].idType == "9") {
                             ul_li2.innerHTML = "出生证明" + " " + travJson.data[i].listTravellerIdInfo[0].idNumber;
                         }
@@ -525,8 +518,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 cardType.innerHTML = "台胞证";
             } else if (travJson.data[index].listTravellerIdInfo[0].idType == "7") {
                 cardType.innerHTML = "回乡证";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "8") {
-                cardType.innerHTML = "户口本";
             } else if (travJson.data[index].listTravellerIdInfo[0].idType == "9") {
                 cardType.innerHTML = "出生证明";
             } else {
