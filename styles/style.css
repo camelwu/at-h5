@@ -377,6 +377,13 @@
 }
 .header-back{
     position:absolute;
+    width:42px;
+    height:100%;
+    top:0;
+}
+/*icons */
+.go-back{
+    position:absolute;
     width:12px;
     height:22px;
     left:15px;
