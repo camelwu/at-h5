@@ -1,4 +1,4 @@
-﻿var lsf_myweb = {
+var lsf_myweb = {
 	"getbyid" : function(id) {
 		return document.getElementById(id);
 	},
@@ -208,19 +208,15 @@
 			for (var i = 0; i < reBox.length; i++) {
 				(function(index) {
 					var oP = lsf_myweb.getbyclass(reBox[index],'comments')[0];
-					reBox[index].onclick = function(ev) {
-						var oEvent = ev || event;
-						oEvent.stopPropagation ? oEvent.stopPropagation() : oEvent.cancelBubble = true;
-						var reg = new RegExp('\\b' + 'drop_down' + '\\b', 'g');
-						var oSrc = oEvent.srcElement || oEvent.target;
-						if (oSrc.className.search(reg) != -1) {
-							oSrc.style.display = 'none';
-							var oSpan = oSrc.parentNode.firstElementChild || oSrc.parentNode.firstChild;
-							oSpan.innerHTML = comments[index].comments;
-							//alert(1);
-							//oP.innerHTML='<span>'+comments[index].Comments+'</span>';
-						}
-					};
+                    var dropDown = lsf_myweb.getbyclass(reBox[index], 'drop_down');
+                    if(dropDown.length > 0){
+                        dropDown[0].onclick = function(ev) {
+                            var oEvent = ev || event;
+                            this.style.display = 'none';
+                            var oSpan = this.parentNode.firstElementChild || this.parentNode.firstChild;
+                            oSpan.innerHTML = comments[index].comments;
+                        };
+                    }
 				})(i);
 			}
 		};
