@@ -58,14 +58,16 @@ function u_perInfo(){
         obj.onclick = function(){
             var b = ifshowkey.firstElementChild;
             var input;
-            if(b.className == "icon show-keys"){
-                b.className = "icon show-key";
+            if(b.className == "show-key"){
+                document.querySelector('.pas-showhide').innerHTML='隐藏密码';
+                b.className = "show-keys";
                 input = document.getElementById("keyForm").getElementsByTagName("input");
                 for(var i = 0;i < input.length;i++){
                     input[i].type = "text";
                 }
             }else{
-                b.className = "icon show-keys";
+                document.querySelector('.pas-showhide').innerHTML='显示密码';
+                b.className = "show-key";
                 input = document.getElementById("keyForm").getElementsByTagName("input");
                 for(var j = 0;j < input.length;j++){
                     input[j].type = "password";
@@ -194,7 +196,7 @@ function u_perInfo(){
     function changeInfo_name(obj){
         obj.onclick = function(){
 
-            var oInputName = document.getElementById("infoForm").getElementsByTagName("input")[0];
+            var oInputName = document.getElementById("realName");
             u_realname = oInputName.value;
             if(vlm.Utils.validate.chiEngName(u_realname))
             {
@@ -203,12 +205,12 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                //console.log(Parameters);
+                console.log(Parameters);
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
             }
             else
             {
-                jAlert('姓名需要由2-20个字符，可由中英文字母，数字、空格、"."、"_"组成，不能以空格、"_"或"."开头');
+                jAlert('姓名需要由2-20个字符，可由中英文字母，数字、空格、"."组成，不能以空格或"."开头');
             }
 
         }
@@ -490,12 +492,15 @@ function mycallback_newKey(ret){
 /*退出账户清除localStorage*/
 $('.info-quit').click(function(){
     jConfirm("确认退出当前帐号?","",logout);
-    function logout(){
-    	localStorage.removeItem('memberid');
-    	localStorage.removeItem('login');
-    	localStorage.removeItem('email');
-    	localStorage.removeItem('phone');
-    	window.location.href='user.html';
+    function logout(arg){
+        if(arg){
+            localStorage.removeItem('memberid');
+            localStorage.removeItem('login');
+            localStorage.removeItem('email');
+            localStorage.removeItem('phone');
+            window.location.href='user.html';
+        }
+
     }
 });
 
