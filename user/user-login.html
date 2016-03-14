@@ -1,131 +1,179 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="screen-orientation" content="portrait">
-<meta name="x5-orientation" content="portrait">
-<meta name="full-screen" content="yes">
-<meta name="x5-fullscreen" content="true">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />  
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" /> 
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
-<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
-<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
-<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
-<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
-<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="screen-orientation" content="portrait">
+		<meta name="x5-orientation" content="portrait">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+		<link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+		<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+		<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+		<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
-<title>用户登陆 - 亚洲旅行网</title>
+		<title>用户登陆 - 亚洲旅行网</title>
 
-<link href="../styles/style.css" rel="stylesheet" type="text/css">
-<link href="../styles/framework.css" rel="stylesheet" type="text/css">
-<link href="../styles/tips.css" rel="stylesheet" type="text/css">
-<link href="../css/user.css"	rel="stylesheet" type="text/css">
-</head>
-<body> 
+		<link href="../styles/framework.css" rel="stylesheet" type="text/css">
+		<link href="../styles/style.css" rel="stylesheet" type="text/css">
+		<link href="../styles/tips.css" rel="stylesheet" type="text/css">
+		<link href="../css/user.css"	rel="stylesheet" type="text/css">
+	</head>
+	<body>
 
-<div id="preloader">
-	<div id="status">
-    	<p class="center-text">
-			Loading the content...
-            <em>加载中……</em>
-        </p>
-    </div>
-</div>
-<div class="all-elements">
-    <!-- Page Content-->
-    <div id="content" class="snap-content">
-        <div class="login-page">
-            <div id="login_page" class="login-page-wrapper">
-                <div class="login-header" id="vlm-login">
-                    <a href="user.html" class="icons header-close"></a>
-                    <h3>登录</h3>
-                    <div class="header-finish" id="register">注册</div>
-                </div>
-                <div id="phone_login">
-                    <div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div>
-                        <input id="phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel" autocomplete="off"></div>
-                    <div class="login-input"><b class="icons login-pass"></b><input id="p_password" type="password" value="" placeholder="密码" data-type="pass" autocomplete="off"></div>
-                </div>
-                <div id="email_login">
-                    <div class="login-input"><b class="icon login-mail"></b><input id="email" type="text" value="" placeholder="邮箱" data-type="email"><b class="icon login-clear" id="e_clear"></b></div>
-                    <div class="login-input"><b class="icons login-pass"></b><input id="e_password" type="password" value="" placeholder="密码" data-type="pass"></div>
-                </div>
-                <div class="clear"></div>
-                <a class="forgotkey" href="#" onclick="show_keypage()">忘记密码？</a>
-                <a class="changelogin" href="#" id="change_email">切换邮箱登录<b class="icon login-change"></b></a>
-                <a class="changelogin" href="#" id="change_phone">切换手机登录<b class="icon login-change"></b></a>
-                <input id="login_btn" type="button" class="btn full-button button-orange" value="登录"/>
-            </div>
-            <!--   注册页   -->
-            <div class="login-page-wrapper" id="register_page" style="display:none;">
-                <div class="login-header">
-                    <a href="#" id="close_register" class="icons header-back"></a>
-                    <h3>注册</h3>
-                    <div class="header-finish" id="header_email">邮箱注册</div>
-                    <div class="header-finish" id="header_phone" style="display: none">手机注册</div>
-                </div>
-                <div id="phone_register">
-                    <div class="login-input"><b class="icon login-phone"></b><div class="p_86">+86</div>
-                        <input id="r_phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel"></div>
-                    <div class="login-input"><b class="icons login-pass"></b><input id="verify" type="password" value="" placeholder="输入验证码" data-type="code"><div id="get_code" class="regist-code">获取验证码</div></div>
-                    <div class="login-input"><b class="icons login-pass"></b><input id="r_p_password" type="password" value="" placeholder="输入6-18位密码" data-type="pass"></div>
-                    <div class="clear"></div>
-                </div>
-                <div id="email_register" style="display: none">
-                    <div class="login-input"><b class="icon login-mail"></b><input id="r_email" type="text" value="" placeholder="输入邮箱" data-type="email"></div>
-                    <div class="login-input"><b class="icons login-pass"></b><input type="password" id="rs_e_password" value="" placeholder="输入6-18位密码" data-type="pass"></div>
-                    <div class="login-input"><b class="icons login-pass"></b><input id="r_e_password" type="password" value="" placeholder="确认密码" data-type="pass"></div>
-                    <div class="clear"></div>
-                </div>
-                <a href="#" class="btn full-button button-orange" style="margin-top: 44px;" id="register_btn">注册</a>
-            </div>
-        </div>
-    </div>
-    <!--   找回密码页   -->
-    <div id="fkey_page" class="all-elements" style="display: none">
-        <div class="header">
-            <a class="icons header-back" onclick="close_keypage()"></a>
-            <h3 id="find_title">手机找回</h3>
-            <div id="cha_email" class="header-finish">邮箱找回</div>
-            <div id="cha_phone" class="header-finish" style="display: none">手机找回</div>
-        </div>
-        <div class="user-content">
-             <div id="phone_find">
-                <ul class="f_key">
-                    <li>中国+86
-                        <b class="icons open-pho"></b>
-                    </li>
-                    <li>
-                        <input id="find_phone" class="fk_put" type="text" value placeholder="输入有效手机号" data-type="tel">
-                    </li>
-                    <li style="padding-right: 0;">
-                        <input id="find_veri" class="fk_put" type="text" value placeholder="输入验证码" data-type="code">
-                        <div class="fk_div" id="find_verify">获取验证码</div>
-                    </li>
-                    <li>
-                        <input class="fk_put"  type="password" value placeholder="输入6-18位新密码" data-type="pass">
-                    </li>
-                </ul>
-            </div>
-            <div id="email_find" class="u_name" style="display: none">
-                <input id="find_email" type="text" style="font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
-            </div>
-            <a id="findkey_btn" href="#" class="f_btn button-orange">完成</a>
-        </div>
-    </div>
-</div>
-<div id="menu"></div>
-<script src="../js/require.js" data-main="../js/user.js"></script>
-<script type="text/javascript" src="../js/lib/jquery.js"></script>
-<script type="text/javascript" src="../js/lib/vlm.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
-<script type="text/javascript" src="scripts/user-login-register.js"></script>
-</body>
+		<div id="preloader">
+			<div id="status">
+				<p class="center-text">
+					Loading the content...
+					<em>加载中……</em>
+				</p>
+			</div>
+		</div>
+		<div class="all-elements">
+			<!-- Page Content-->
+			<div id="content" class="snap-content">
+				<div class="login-page">
+					<div id="login_page" class="login-page-wrapper">
+						<div class="login-header" id="vlm-login">
+							<a href="user.html" class="icons header-close"></a>
+							<h3>登录</h3>
+							<div class="header-finish" id="register">
+								注册
+							</div>
+						</div>
+						<div id="phone_login">
+							<div class="login-input">
+								<b class="icon login-phone"></b>
+								<div class="p_86">
+									+86
+								</div>
+								<input id="phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel" autocomplete="off">
+							</div>
+							<div class="login-input">
+								<b class="icons login-pass"></b>
+								<input id="p_password" type="password" value="" placeholder="密码" data-type="pass" autocomplete="off">
+							</div>
+						</div>
+						<div id="email_login">
+							<div class="login-input">
+								<b class="icon login-mail"></b>
+								<input id="email" type="text" value="" placeholder="邮箱" data-type="email">
+								<b class="icon login-clear" id="e_clear"></b>
+							</div>
+							<div class="login-input">
+								<b class="icons login-pass"></b>
+								<input id="e_password" type="password" value="" placeholder="密码" data-type="pass">
+							</div>
+						</div>
+						<div class="clear"></div>
+						<a class="forgotkey" href="#" onclick="show_keypage()">忘记密码？</a>
+						<a class="changelogin" href="#" id="change_email">切换邮箱登录<b class="icon login-change"></b></a>
+						<a class="changelogin" href="#" id="change_phone">切换手机登录<b class="icon login-change"></b></a>
+						<input id="login_btn" type="button" class="btn full-button button-orange" value="登录"/>
+					</div>
+					<!--   注册页   -->
+					<div class="login-page-wrapper" id="register_page" style="display:none;">
+						<div class="login-header">
+							<a href="javascript:void(0);" id="close_register" class="header-back"><i class="icons go-back"></i></a>
+							<h3>注册</h3>
+							<div class="header-finish" id="header_email">
+								邮箱注册
+							</div>
+							<div class="header-finish" id="header_phone" style="display: none">
+								手机注册
+							</div>
+						</div>
+						<div id="phone_register">
+							<div class="login-input">
+								<b class="icon login-phone"></b>
+								<div class="p_86">
+									+86
+								</div>
+								<input id="r_phone" type="text" class="in-phone" value="" placeholder="输入手机号" data-type="tel">
+							</div>
+							<div class="login-input">
+								<b class="icons login-pass"></b>
+								<input id="verify" type="password" value="" placeholder="输入验证码" data-type="code">
+								<div id="get_code" class="regist-code">
+									获取验证码
+								</div>
+							</div>
+							<div class="login-input">
+								<b class="icons login-pass"></b>
+								<input id="r_p_password" type="password" value="" placeholder="输入6-18位密码" data-type="pass">
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div id="email_register" style="display: none">
+							<div class="login-input">
+								<b class="icon login-mail"></b>
+								<input id="r_email" type="text" value="" placeholder="输入邮箱" data-type="email">
+							</div>
+							<div class="login-input">
+								<b class="icons login-pass"></b>
+								<input type="password" id="rs_e_password" value="" placeholder="输入6-18位密码" data-type="pass">
+							</div>
+							<div class="login-input">
+								<b class="icons login-pass"></b>
+								<input id="r_e_password" type="password" value="" placeholder="确认密码" data-type="pass">
+							</div>
+							<div class="clear"></div>
+						</div>
+						<a href="#" class="btn full-button button-orange" style="margin-top: 44px;" id="register_btn">注册</a>
+					</div>
+				</div>
+			</div>
+			<!--   找回密码页   -->
+			<div id="fkey_page" class="all-elements" style="display: none">
+				<div class="header">
+					<a class="header-back" onclick="close_keypage()"><i class="icons go-back"></i></a>
+					<h3 id="find_title">手机找回</h3>
+					<div id="cha_email" class="header-finish">
+						邮箱找回
+					</div>
+					<div id="cha_phone" class="header-finish" style="display: none">
+						手机找回
+					</div>
+				</div>
+				<div class="user-content">
+					<div id="phone_find">
+						<ul class="f_key">
+							<li>
+								中国+86 <b class="icons open-pho"></b>
+							</li>
+							<li>
+								<input id="find_phone" class="fk_put" type="text" value placeholder="输入有效手机号" data-type="tel">
+							</li>
+							<li style="padding-right: 0;">
+								<input id="find_veri" class="fk_put" type="text" value placeholder="输入验证码" data-type="code">
+								<div class="fk_div" id="find_verify">
+									获取验证码
+								</div>
+							</li>
+							<li>
+								<input class="fk_put"  type="password" value placeholder="输入6-18位新密码" data-type="pass">
+							</li>
+						</ul>
+					</div>
+					<div id="email_find" class="u_name" style="display: none">
+						<input id="find_email" type="text" style="font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
+					</div>
+					<a id="findkey_btn" href="#" class="f_btn button-orange">完成</a>
+				</div>
+			</div>
+		</div>
+		<script src="../js/lib/jquery.js"></script>
+		<script src="../js/lib/vlm.js"></script>
+		<script src="../js/lib/jquery.alert.js"></script>
+		<script type="text/javascript" src="scripts/user-login-register.js"></script>
+	</body>
 </html>
