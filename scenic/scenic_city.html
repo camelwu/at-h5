@@ -457,6 +457,7 @@
         }
         $('.pop_box .empty_history').hide();
         var value = $('#seach_up').val();
+        value = value.toLowerCase();
         var strCity = '';
         for(var i=0;i<data.length;i++){
             if(data[i].cityNamePY.toLowerCase().indexOf(value)> -1){
