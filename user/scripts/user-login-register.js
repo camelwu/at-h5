@@ -209,6 +209,13 @@ window.onload = function() {
 					jAlert("请输入6-18位密码");
 					return;
 				}
+				var Parameters = {
+					"Parameters" : "{\"CultureName\":\"\",\"Email\":\"" + email.value + "\",\"Password\":\"" + login_pass.value + "\"}",
+					"ForeEndType" : 3,
+					"Code" : "0052"
+				};
+				console.log(Parameters);
+				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
 
 			} else {
 				login_pass = p_password;
@@ -222,17 +229,16 @@ window.onload = function() {
 					jAlert("请输入6-18位密码");
 					return;
 				}
+				var Parameters = {
+					"Parameters" : "{\"CultureName\":\"\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value + "\"}",
+					"ForeEndType" : 3,
+					"Code" : "0052"
+
+				};
+				console.log(Parameters);
+				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
 			}
 
-			var Parameters = {
-				"Parameters" : "{\"CultureName\":\"\",\"Email\":\"" + email.value + "\",\"Password\":\"" + login_pass.value + "\",\"Mobile\":\"" + phone.value + "\"}",
-				"ForeEndType" : 3,
-				"Code" : "0052"
-
-			};
-
-			console.log(Parameters);
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
 		};
 	}
 
@@ -428,10 +434,10 @@ function mycallback_login(myJson) {
 	} else {
 		if (myJson.message == 'Invalid password') {
 			jAlert('密码错误，请重新输入');
-		} else if (myJson.message == '无此用户的相关信息') {
-			jAlert('未注册用户');
-		} else if (myJson.message == 'Invalid username or password.') {
+		}  else if (myJson.message == 'Invalid username or password.') {
 			jAlert('用户名或密码错误');
+		}  else if (myJson.message == '无此用户的相关信息') {
+			jAlert('未注册用户');
 		} else {
 			jAlert(myJson.message);
 		}
