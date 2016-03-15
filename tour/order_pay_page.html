@@ -175,23 +175,7 @@
                     '<li><i>联系电话</i>{%=contactDetails.contactNo%}</li> ' +
                     '<li><i>邮箱</i>{%=contactDetails.email%}</li>'
                 ].join('');
-                var tpl5 = [
-                    '{% for(var i=0; i<=chargeDetails.length-1;i++){  if(chargeDetails[i].category=="ADULT"){ %}',
-                    '<li>',
-                    '<div>成人×{%=chargeDetails[i].quantity%}</div>',
-                    '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
-                    '</li>',
-                    '{% } else{ %}',
-                    '<li>',
-                    '<div>儿童×{%=chargeDetails[i].quantity%}</div>',
-                    '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
-                    '</li>',
-                    '{%} } %}',
-                    '<li>',
-                    '<div>总价</div>',
-                    '<div>￥{%=totel%}</div>',
-                    '</li>'
-                ].join('');
+
 
                 var bookingRefNo=vlm.getpara("bookingRefNo");
                 var tmp = {
@@ -211,7 +195,7 @@
                         console.log(data);
                         var dayNum;
 //                        var chargeDetail = [];
-//                        var totalPrice = 0;
+                        var totalPrice = 0;
                         var total = 0;
                         function getDayNum(arg1,arg2){
                             var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
@@ -234,14 +218,37 @@
 //                            totalPrice = totalPrice + chargeDetail[j];
 //                        }
                         adultPrice = info.adultNum * data.chargeDetails[0].amountInCNY;
-                        if(data.chargeDetails[1]){
-                            childPrice = info.childNum * data.chargeDetails[1].amountInCNY;
-                            total = adultPrice + childPrice;
-                        }else{
-                            total = adultPrice;
+                        for(var j = 0;j < data.chargeDetails.length;j++){
+                            if(data.chargeDetails[j].category != "PAYMENT") {
+                                totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
+                            }
                         }
+                        var tpl5 = [
+                            '{% for(var i=0; i<=chargeDetails.length-1;i++){  if(chargeDetails[i].category=="ADULT"){ %}',
+                            '<li>',
+                            '<div>成人×{%=chargeDetails[i].quantity%}</div>',
+                            '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
+                            '</li>',
+                            '{% } else if(chargeDetails[i].category=="CHILD"){ %}',
+                            '<li>',
+                            '<div>儿童×{%=chargeDetails[i].quantity%}</div>',
+                            '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
+                            '</li>',
+                            '{% } %}',
+                            '{% } %}',
+                            '<li>',
+                            '<div>总价</div>',
+                            '<div>￥'+totalPrice+'</div>',
+                            '</li>'
+                        ].join('');
+//                        if(data.chargeDetails[1]){
+//                            childPrice = info.childNum * data.chargeDetails[1].amountInCNY;
+//                            total = adultPrice + childPrice;
+//                        }else{
+//                            total = adultPrice;
+//                        }
                         var tpl3 = [
-                            '订单总额：<b class="orange">¥</b><i class="orange">'+total+'</i>' +
+                            '订单总额：<b class="orange">¥</b><i class="orange">'+totalPrice+'</i>' +
                             '<a href="#">费用明细</a>'
                         ].join('');
                         var noon = localStorage.noon;

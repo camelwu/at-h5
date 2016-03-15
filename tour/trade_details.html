@@ -126,7 +126,9 @@
                                 }
                             }
                             for(var j = 0;j < data.chargeDetails.length;j++){
-                                totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
+                                if(data.chargeDetails[j].category != "PAYMENT") {
+                                    totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
+                                }
                             }
                             var tpl1 = [
                                 '<h3>{%=packageName%}</h3>',
@@ -135,12 +137,11 @@
                                 '<div class="tra_people">'+adultNum+'成人 '+childNum+'儿童</div>',
                                 '<p class="tra_price">￥{%=totel%}</p>'
                             ].join('');
-                            var sum=0;
-                            data.chargeDetails.forEach(function (item, index, array) {
-                                sum += item.totalAmountInCNY;
-                            });
-                            debugger;
-                            data.totel=sum;
+//                            var sum=0;
+//                            data.chargeDetails.forEach(function (item, index, array) {
+//                                sum += item.totalAmountInCNY;
+//                            });
+                            data.totel=totalPrice;
                             var html_ti = template(tpl1,data);
                             var html_tb = template(tpl2,data);
                             $('#tourInfo').html(html_ti);
