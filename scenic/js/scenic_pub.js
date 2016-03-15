@@ -210,8 +210,8 @@
             $("[data-key = 2]").removeClass("gui-tab-current cp");
             $("[data-key = 1]").addClass("gui-tab-current cp");
             $(".gui-tab-scrollbar").animate({left:0},"slow");
-            $("#js_oversea").hide();
-            $("#js_inland").show();
+            $("#js_oversea").show();
+            $("#js_inland").hide();
 
         }
         /**
@@ -222,8 +222,8 @@
             $("[data-key = 1]").removeClass("gui-tab-current cp");
             $("[data-key = 2]").addClass("gui-tab-current cp");
             $(".gui-tab-scrollbar").animate({left:$(".gui-tab-scrollbar").css("width")},"slow");
-            $("#js_inland").hide();
-            $("#js_oversea").show();
+            $("#js_oversea").hide();
+            $("#js_inland").show();
         }
 
         /**
