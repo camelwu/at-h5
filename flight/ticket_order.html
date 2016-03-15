@@ -66,8 +66,7 @@
         <div class="ride-user">
             <div class="ride-user-first">
                 <span>乘机人</span>
-                    <a id="add-Passenger" class="add-Passenger" href="javascript:void(0);" onclick=" vlm.f_choice('passenger-list-data','f','traver','',true,true,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild)">添加乘机人</a>
-
+                    <a id="add-Passenger" class="add-Passenger" href="javascript:void(0);" onclick=" vlm.f_choice('passenger-list-data','f','traver','',true,true,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild,null,callback)">添加乘机人</a>
             </div>
           <ul class="passenger-list-data" id="passenger-list-data">
              <!-- <li class="ride-user-info">
@@ -338,6 +337,10 @@
 <script src="js/hy_ticket_order.js"></script>
 <script>
 	vlm.l_contact();
+
+    function callback(){
+        alert("222");
+    }
 
     function delPassager(obj){
         $(obj).parent().parent().remove();
