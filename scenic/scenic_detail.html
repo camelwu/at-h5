@@ -19,6 +19,7 @@
     <link href="css/scenic.css" rel="stylesheet"/>
     <link href="../styles/tips.css"	rel="stylesheet">
     <link href="../css/user.css"	rel="stylesheet">
+    <link href="../styles/swipebox.css"	rel="stylesheet">
 
 </head>
 <body>
@@ -27,10 +28,18 @@
             <a href="javascript:history.go(-1)" class="icons top-back"> </a>
             <div class="sce-detail-exhi">
                 <h3>景点详情</h3>
-                <img id="ScenicTopImg" src="images/greatwall-sun.jpg" alt="img"/>
-                <div id="Title" class="black-block">
+                <section id="packageBox" class="picBox">
+                    <div>
+                    <img src="../images/03-1_02.jpg" alt="">
+                    <div class="pd-mb">
+                    <div>八达岭长城 + 秋季采摘水果一日游</div>
+                    <div>套餐编号：12345678</div>
+                    </div>
+                    </div>
+                </section>
+                <!--<div id="Title" class="black-block">-->
 
-                </div>
+                <!--</div>-->
             </div>
             <ul class="sd-time">
                 <li>
@@ -177,6 +186,27 @@
         var themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
         vlm.init();
 
+        var tpl1 = [
+            '<div>',
+            '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}',
+            '<img src="{%=pictureURL%}" alt="image">',
+            '{% }else{ %}',
+            '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' +
+            '<img src="{%=pictureURL%}" alt="image">',
+            '{% for(var i=0;i < imgl;i++){ %}',
+            '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' +
+            '<img src="{%=imgs[i].imageURL%}" alt="image"></a>',
+            '{% }} %}',
+            '<div class="pd-mb">',
+            '<div>{%=packageName%}</div>',
+            '<div>套餐编号：{%=packageRefNo%}</div>',
+            '{% if(imgl>0){ %}',
+            '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>',
+            '{% } %}',
+            '</div>',
+            '</div>'
+        ].join('');
+
         /**
          * 加载详情
          * @constructor
@@ -260,10 +290,20 @@
                     SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
                 }
 
-//                console.log(SearchPrice);
 
-                $("#ScenicTopImg").attr("src",data.pictureURL);
-                $("#Title").html(tpl_GetDetails_Package_Title);
+                var html_pb = template(tpl1, data);
+                $("#packageBox").html(html_pb);
+
+                $('.swipebox').click(function() {
+                    $('.gallery').hide(0);
+                    $('.portfolio-wide').hide(0);
+                });
+                $(".swipebox").swipebox({
+                    useCSS : true,
+                    hideBarsDelay : 0
+                });
+
+
                 $("#ScheduledTimeFrom").html(tpl_GetDetails_Package_ScheduledTimeFrom);
                 $("#ScheduledTimeTo").html(tpl_GetDetails_Package_ScheduledTimeTo);
                 $("#ParadeTimeFrom").html(tpl_GetDetails_Package_ParadeTimeFrom);
