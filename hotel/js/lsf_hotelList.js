@@ -993,9 +993,11 @@ function styleChange(id, mytext) {
         var loadMoreSign = "";
         var topAfter = 0;
         var ua = navigator.userAgent;
+        
         lsf_myweb.bind(listContainer,'touchstart',function(event){
             //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
             //for android
+            topAfter = loadMore.getBoundingClientRect().top;
             //如果是android浏览器 
             if(ua.indexOf("Android") > -1 || ua.indexOf('Linux') > -1){
                 load();
@@ -1010,7 +1012,6 @@ function styleChange(id, mytext) {
             if(loadMoreSign == "no"){
                 return;
             }
-            topAfter = loadMore.getBoundingClientRect().top;
             load();
         });
         
