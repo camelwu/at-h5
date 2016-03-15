@@ -1701,3 +1701,15 @@ i{
     line-height: 36px;
     border-bottom: 1px solid #dfdfdd;
 }
+.tel-icon {
+    display: block;
+    background-image: url(../images/ui/icons.png);
+    background-position: -218px -73px;
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    width: 17px;
+    height: 27px;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+}
