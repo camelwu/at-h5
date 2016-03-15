@@ -126,9 +126,11 @@
     <section class="all_title">
         <h3><i>景点{%=i+1%}</i>{%=tours[i].tourName%}</h3>
     </section>
+    {% if(tours[i].travelDate){ %}
     <section class="trip_box">
-        <span class="conlist">游玩时间：{%=tours[i].travelDate%} {%=tourNoon%}</span>
+        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%} {%=tourNoon%}</span>
     </section>
+    {% } %}
     {% } %}
 </script>
 <script id="tpl_payStatus" type="text/template">
@@ -177,12 +179,12 @@
                     '{% for(var i=0; i<=chargeDetails.length-1;i++){  if(chargeDetails[i].category=="ADULT"){ %}',
                     '<li>',
                     '<div>成人×{%=chargeDetails[i].quantity%}</div>',
-                    '<div>￥{%=chargeDetails[i].amountInCNY%}</div>',
+                    '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
                     '</li>',
                     '{% } else{ %}',
                     '<li>',
-                    '<div>儿童×'+info.childNum+'</div>',
-                    '<div>￥'+childPrice+'</div>',
+                    '<div>儿童×{%=chargeDetails[i].quantity%}</div>',
+                    '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
                     '</li>',
                     '{%} } %}',
                     '<li>',
