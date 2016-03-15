@@ -258,13 +258,15 @@
 						top : '0',
 						left : '0',
 						width : '100%',
-						height : '100%',
+						height : '200%',
 						background : $.alerts.overlayColor,
 						opacity : $.alerts.overlayOpacity
 					});
+					$(document.body).css('overflowY','hidden');
 					break;
 				case 'hide':
 					$("#popup_overlay").remove();
+					$(document.body).css('overflowY','auto');
 					break;
 			}
 		},
