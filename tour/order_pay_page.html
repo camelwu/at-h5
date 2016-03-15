@@ -153,15 +153,14 @@
             //   获取详情
             var getDetail = function(){
                 var info = JSON.parse(localStorage.info);
-
+                var productPrice = JSON.parse(localStorage.productPrice);
 
                 var myDate = new Date();
                 var createTime = myDate.toLocaleString();
                 var adultPrice = 0;
                 var childPrice = 0;
-
                 var tpl1 = [
-                    '<a href="packages_detail.html?packageID={%=packageID%}">' +
+                    '<a href="packages_detail.html?packageID={%=packageID%}&productPrice='+productPrice+'&status=0">' +
                     '<p class="sce-introduce-txt">{%=packageName%}<span class="sce-introduce-span">（产品编号 {%=packageRefNo%}）</span></p>' +
                     '</a>'
                 ].join('');

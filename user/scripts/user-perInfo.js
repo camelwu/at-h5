@@ -387,6 +387,12 @@ $('#birth-cont-per').click(function(){
 function mycallback_birth(ret){
     var myJson=ret;
     console.log(myJson.data[0].dateOfBirth);
+    if(myJson.success)
+    {
+        jAlert('修改成功');
+    }else{
+        jAlert('修改失败');
+    }
 }
 
 function mycallback(ret){
