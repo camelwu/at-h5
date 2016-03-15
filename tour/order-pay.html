@@ -63,7 +63,7 @@
     <!--     国外支付方式浮层     -->
     <div id="out_pay" class="all-elements" style="display: none">
         <div class="header">
-            <a id="close_page" class="icons header-back"></a>
+            <a id="close_page" class="header-back"><i class="icons go-back"></i></a>
             <h3 id="title">支付</h3>
             <b class="icons s-call"></b>
         </div>
@@ -259,7 +259,7 @@
             var CreditCardDetails = {};
 
             PaymentDetails.PayCurrencyCode="CNY";
-            PaymentDetails.PayTotalAmount=$(".totalAmount").html();
+            PaymentDetails.PayTotalAmount=$(".pay-num").html();
             debugger;
 
 
