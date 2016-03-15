@@ -734,6 +734,13 @@
                     $("#preloader").ajaxStop(function(){
                        $(this).hide();
                     });
+                }else{
+                    $("#preloader").ajaxStart(function(){
+                       $(this).show();
+                    });
+                    $("#preloader").ajaxStop(function(){
+                       $(this).hide();
+                    });
                 }
                 if (async != undefined && async == true) {
                    $.ajaxSetup({

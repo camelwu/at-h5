@@ -185,13 +185,14 @@ function styleChange(id, mytext) {
 			var obj = window.event.srcElement;
 			var oName = obj.className;
 			var array = [];
-			if (obj.innerHTML == "不限") {
+            var selected = [];
+			if (obj.innerText == "不限") {
 				array = document.getElementById("h-type").childNodes;
 				for (var i = 1; i < array.length; i++) {
 					array[i].className = "s-li";
 				}
 			}
-			if (obj.innerHTML != "不限") {
+			if (obj.innerText != "不限") {
 				document.getElementById("h-type").firstElementChild.className = "s-li";
 			}
 			if (oName == "s-li") {
@@ -199,19 +200,31 @@ function styleChange(id, mytext) {
 			} else {
 				obj.className = "s-li";
 			}
+            
+            //如果一个都没有选中的情况，显示不限；
+            array = document.getElementById("h-type").childNodes;
+            for(var j=0,len=array.length;j<len;j++){
+                if(array[j].className == "s-li1"){
+                    selected.push(array[j].innerText);
+                }
+            }
+            if(selected.length == 0){
+                document.getElementById("h-type").firstElementChild.className = "s-li1";
+            }
 		}
 
 		function selectLevel() {
 			var obj = window.event.srcElement;
 			var oName = obj.className;
 			var array = [];
-			if (obj.innerHTML == "不限") {
+            var selected = [];
+			if (obj.innerText == "不限") {
 				array = document.getElementById("h-level").childNodes;
 				for (var i = 1; i < array.length; i++) {
 					array[i].className = "s-li";
 				}
 			}
-			if (obj.innerHTML != "不限") {
+			if (obj.innerText != "不限") {
 				document.getElementById("h-level").firstElementChild.className = "s-li";
 			}
 			if (oName == "s-li") {
@@ -219,6 +232,16 @@ function styleChange(id, mytext) {
 			} else {
 				obj.className = "s-li";
 			}
+            //如果一个都没有选中的情况，显示不限；
+            array = document.getElementById("h-level").childNodes;
+            for(var j=0,len=array.length;j<len;j++){
+                if(array[j].className == "s-li1"){
+                    selected.push(array[j].innerText);
+                }
+            }
+            if(selected.length == 0){
+                document.getElementById("h-level").firstElementChild.className = "s-li1";
+            }
 		}
 
 		function openClick(obj1, obj2) {
@@ -435,6 +458,10 @@ function styleChange(id, mytext) {
 				"ForeEndType" : 3
 			};
 		}
+        
+        //设置pageIndex 在酒店列表容器上 用于判断是加载更多还是正常加载
+        document.getElementById("lsf_list").setAttribute("data-index", json.pageIndex);
+        
         if(json.pageIndex == 1){
             return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
         }else{
@@ -453,6 +480,11 @@ function styleChange(id, mytext) {
 		var timer = null;
 		var oUl = lsf_myweb.getbyid('lsf_list');
         var liHtml = "";
+        var loadSign = document.getElementById("lsf_list").getAttribute("data-index") > 1 ? true : false;  //true 加载更多
+        
+        if(!loadSign){
+            list_oUl.innerHTML = "";
+        }
 		if (data.length) {
 			for (var i = 0; i < data.length; i++) {
 				var str1 = data[i].starRating.substring(0, 1);
@@ -483,6 +515,7 @@ function styleChange(id, mytext) {
                 
                 liHtml += str;
 			}
+            //如果不是加载更多，清空节点内容
             
             list_oUl.innerHTML += liHtml;
             var moreEle = document.getElementById("load-more");
@@ -645,7 +678,7 @@ function styleChange(id, mytext) {
 		}
 	}
 
-	sortHistory();
+	//sortHistory();
 	//筛选实现记忆功能
 	function filterHistory() {
 		var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
@@ -661,7 +694,7 @@ function styleChange(id, mytext) {
 				obj[j].className = 's-li';
 			}
 			for (var i = 0; i < obj.length; i++) {
-				if (myAsiaHlHistory.hlFilter.chinese.indexOf(obj[i].innerHTML) != -1) {
+				if (myAsiaHlHistory.hlFilter.chinese.indexOf(obj[i].innerText) != -1) {
 					obj[i].className = 's-li1';
 				}
 			}
@@ -673,7 +706,7 @@ function styleChange(id, mytext) {
 		url_json.Category = myAsiaHlHistory.hlFilter.hotelType;
 	}
 
-	filterHistory();
+	//filterHistory();
 
 	console.log(url_json);
 	console.log('22222');
@@ -742,6 +775,8 @@ function styleChange(id, mytext) {
 				hlHis.hlSort.english = 'ReviewscoreDESC';
 			}
 			lsf_myweb.setSession('asiaHlHistory', hlHis);
+            //页码重置
+            url_json.pageIndex = 1;
 			M(url_json);
 		}
 	});
@@ -765,7 +800,7 @@ function styleChange(id, mytext) {
 				"hotelType" : ''
 			};
 			for (var i = 0; i < hl_star_type.length; i++) {
-				switch(hl_star_type[i].innerHTML) {
+				switch(hl_star_type[i].innerText) {
 					case '二星级以下':
 						hl_star_str += '2$';
 						hlHis.hlFilter.chinese += '二星级以下$';
@@ -870,6 +905,8 @@ function styleChange(id, mytext) {
 			hl_type_str = hl_type_str.substring(0, (hl_type_str.length - 1));
 			url_json.StarRating = hl_star_str;
 			url_json.Category = hl_type_str;
+            //页码重置
+            url_json.pageIndex = 1;
 			M(url_json);
 			//alert(hl_star_str+'---'+hl_type_str);
 		}
@@ -898,6 +935,8 @@ function styleChange(id, mytext) {
 				}
 			}
 			url_json.LocationList = locationList;
+            //页码重置  
+            url_json.pageIndex = 1;
 			M(url_json);
 		}
 	});
@@ -944,38 +983,53 @@ function styleChange(id, mytext) {
 	});
     
     //加载更多
-    var listContainer = lsf_myweb.getbyid("lsf_list");
-    var tempStart = 0;
-    var listContainerHeight = 0;
-    var loadMore = lsf_myweb.getbyid("load-more");
-    var loadMoreRect = "";
-    var windowHeight = window.innerHeight;
-    var pageIndex = 1;
-    var loadMoreSign = "";
-  
-    lsf_myweb.bind(listContainer,'touchstart',function(event){
-        listContainerHeight = listContainer.clientHeight;
-        tempStart = event.targetTouches[0].pageY;
-        loadMoreRect = loadMore.getBoundingClientRect();
-        console.info(listContainerHeight);
-    });
-    lsf_myweb.bind(listContainer,'touchmove',function(event){
+    function loadMore(){
+        var listContainer = lsf_myweb.getbyid("lsf_list");
+        var listContainerHeight = 0;
+        var loadMore = lsf_myweb.getbyid("load-more");
+        var loadMoreRect = "";
+        var windowHeight = window.innerHeight;
+        var pageIndex = 1;
+        var loadMoreSign = "";
+        var topAfter = 0;
+        var ua = navigator.userAgent;
+        lsf_myweb.bind(listContainer,'touchstart',function(event){
+            //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
+            //for android
+            //如果是android浏览器 
+            if(ua.indexOf("Android") > -1 || ua.indexOf('Linux') > -1){
+                load();
+            }
+        });
+        lsf_myweb.bind(listContainer,'touchmove',function(event){
+
+        });
+        lsf_myweb.bind(listContainer,'touchend',function(event){
+            //没有更多 数据加载标识
+            loadMoreSign = loadMore.getAttribute("data-more");
+            if(loadMoreSign == "no"){
+                return;
+            }
+            topAfter = loadMore.getBoundingClientRect().top;
+            load();
+        });
         
-    });
-    lsf_myweb.bind(listContainer,'touchend',function(event){
-        loadMoreSign = loadMore.getAttribute("data-more");
-        if(loadMoreSign == "no"){
-            return;
+        function load(){
+            //滑动到离底部30px距离使触发加载更多
+            
+            if(topAfter - windowHeight < 30){
+                loadMore.innerHTML = "加载中..."
+                pageIndex = pageIndex + 1;
+                url_json.pageIndex = pageIndex;
+                //TODO set page size  defualt set 20
+                //url_json.pageSize;
+                M(url_json);
+            }
         }
-        var topAfter = loadMore.getBoundingClientRect().top;
-        //TODO load more
-        if(topAfter - windowHeight < 0){
-            loadMore.innerHTML = "加载中..."
-            pageIndex = pageIndex + 1;
-            url_json.pageIndex = pageIndex;
-            //TODO set page size  defualt set 20
-            //url_json.pageSize;
-            M(url_json);
-        }
-    });
+        
+        //TODO 页面滚动到底部时选择筛选  页面没有回滚到顶部
+    };
+    
+    loadMore();
+    
 })();
