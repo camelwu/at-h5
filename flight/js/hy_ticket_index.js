@@ -841,15 +841,15 @@ var  ticketIndexModal = {
                if(domesticCity.style.display=='block'&&internationalCity.style.display=='none'){
 
                    if(target.tagName=='SPAN'&&target.className.indexOf('letter')>-1&&document.querySelector(".d"+target.innerHTML+"-Link")){
-                       document.querySelector(".d"+target.innerHTML+"-Link").scrollIntoView(false)
+                       document.querySelector(".d"+target.innerHTML+"-Link").scrollIntoView(true)
                    }else if(target.tagName=='SPAN'&&target.className.indexOf('city')>-1){
-                       document.querySelector(".d-"+target.className).scrollIntoView(false);
+                       document.querySelector(".d-"+target.className).scrollIntoView(true);
                    }
                }else if(domesticCity.style.display=='none'&&internationalCity.style.display=='block'){
                    if(target.tagName=='SPAN'&&target.className.indexOf('letter')>-1&&document.querySelector(".i"+target.innerHTML+"-Link")){
-                       document.querySelector(".i"+target.innerHTML+"-Link").scrollIntoView(false)
+                       document.querySelector(".i"+target.innerHTML+"-Link").scrollIntoView(true)
                    }else if(target.tagName=='SPAN'&&target.className.indexOf('city')>-1){
-                       document.querySelector(".i-"+target.className).scrollIntoView(false);
+                       document.querySelector(".i-"+target.className).scrollIntoView(true);
                    }
                }
            });
