@@ -385,19 +385,23 @@ function cb_register() {
 }
 
 function mycallback_login(myJson) {
-	console.log(myJson);
 	if (myJson.success) {
 		localStorage.email = myJson.data[0].email;
 		localStorage.phone = myJson.data[0].mobile;
 		localStorage.memberid = myJson.data[0].memberID;
 		localStorage.setItem('login', 1);
-		if (urlobj["returnURL"]) {
-			window.location.href = urlobj["returnURL"];
-		} else if (window.parent) {
-			var c = urlobj["callback"];
+		if (self != top) {
+			if (urlobj["returnURL"]) {
+				window.top.location.href = urlobj["returnURL"];
+			} else {
+				var c = urlobj["callback"];
+				c.replace("#", '');
+				window.parent.eval(c + "()");
+			}
 			var ifrCilent = window.parent.document.getElementById("choiceAir");
 			ifrCilent.parentNode.removeChild(ifrCilent);
-			window.parent.c();
+		} else if (urlobj["returnURL"]) {
+			window.top.location.href = urlobj["returnURL"];
 		} else {
 			window.location.href = "user.html";
 		}
@@ -417,11 +421,11 @@ function mycallback_login(myJson) {
 //头部关闭
 var loginRegShut = document.querySelector('#login-reg-shut');
 loginRegShut.onclick = function() {
-	if (urlobj["returnURL"]) {
-		window.location.href = urlobj["returnURL"];
-	} else if (window.parent) {
+	if (self != top) {
 		var ifrCilent = window.parent.document.getElementById("choiceAir");
 		ifrCilent.parentNode.removeChild(ifrCilent);
+	} else if (urlobj["returnURL"]) {
+		window.top.location.href = urlobj["returnURL"];
 	} else {
 		window.location.href = "user.html";
 	}
