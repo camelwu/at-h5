@@ -545,7 +545,7 @@ function styleChange(id, mytext) {
 			//懒加载
 			var c = new lazyLoad('lsf_list');
 		} else {
-            if(pageIndex > 1){
+            if(url_json.pageIndex > 1){
                 document.getElementById("load-more").innerHTML = "没有更多数据了";
             }else{
                 var oLi = document.createElement('li');
