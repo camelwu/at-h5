@@ -93,7 +93,7 @@
     var totalPrice = 0;
     (function(){
         var ww = this;
-        vlm.init();
+
         var sh_paySuccess = function(){
             //   加载动画
             var flashLoad = function(){
@@ -145,6 +145,7 @@
 
                         $('#tourInfo').html(tpl_tourInfo);
                         $('#tra_btn').html(html_tb);
+                        vlm.init();
                     }else{
                         console.log(json);
                         jAlert(json.message,"提示");
