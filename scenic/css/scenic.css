@@ -2276,3 +2276,7 @@ i{
     -o-filter: grayscale(100%);
     pointer-events:none;
 }
+/*景点详情页面 限定人数*/
+.minpax{
+    color: #FE0303;
+}

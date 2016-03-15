@@ -29,13 +29,13 @@
             <div class="sce-detail-exhi">
                 <h3>景点详情</h3>
                 <section id="packageBox" class="picBox">
-                    <div>
-                    <img src="../images/03-1_02.jpg" alt="">
-                    <div class="pd-mb">
-                    <div>八达岭长城 + 秋季采摘水果一日游</div>
-                    <div>套餐编号：12345678</div>
-                    </div>
-                    </div>
+                    <!--<div>-->
+                    <!--<img src="../images/03-1_02.jpg" alt="">-->
+                    <!--<div class="pd-mb">-->
+                    <!--<div>八达岭长城 + 秋季采摘水果一日游</div>-->
+                    <!--<div>套餐编号：12345678</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
                 </section>
                 <!--<div id="Title" class="black-block">-->
 
@@ -149,7 +149,7 @@
     {% for(var i=0,len=data.prices.length;i<len;i++){ %}
     <li>
         <div class="combo-name">{%=data.packageName%}</div>
-        <div class="combo-price">¥{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人){% }else{ %}(儿童){% } %}</div>
+        <div class="combo-price">¥{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人单价){% }else{ %}(儿童单价){% } %}</div><i class="minpax">限定{%=data.minPax%}人</i>
         <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %}
         ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %},0);" class="s-reserve button-orange">预订</a>
         <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
@@ -162,7 +162,7 @@
 
         <li>
             <div class="combo-name">{%=data.packageName%}</div>
-            <div class="combo-price">¥355(成人)</div>
+            <div class="combo-price">¥355(成人单价)</div>
             <a href="javascript:MT.CCheckLogin({%=packageID%},0,1,1);" class="s-reserve button-orange">预定</a>
             <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
             <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预定</a>-->
@@ -340,7 +340,9 @@
             var json=data;
             console.log(json);
             if(json.success){
-                var data=json.data,tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);
+                var data=json.data;
+                data.minPax =MinPax;
+                var tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);
                 $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
             }else {
                 console.log(json);
