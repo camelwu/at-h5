@@ -66,7 +66,7 @@
 					<span data-c-id="pageTag_3">条款和条件</span>
 				</section>
 
-				<section class="conBox">
+				<section class="detailBox">
 					<div id="pageTag_1">
 						<p class="pd-contitle">
 							行程安排
@@ -75,43 +75,8 @@
 							<!--<li>06：30崇文门新侨诺富特饭店 （地铁2号线、5号线“崇文门站”A/B口出既是）</li>-->
 						</ul>
 					</div>
-					<div id="pageTag_2" style="display:none;">
-						<p class="pd-contitle">
-							费用不包含
-						</p>
-						<p>
-							1.补充:因交通延阻、罢工、天气、飞机机器故障、航班取消或更改时间等不可抗力原因所引致的额外费用。,当地参加的自费以及以上"费用包含"中不包含的其它项目。
-						</p>
-						<p style="color:#f1661a;">
-							* 建议购买旅游人身意外保险 国内旅游意外伤害保障计划
-						</p>
-						<p style="color:#f1661a;">
-							备注：
-						</p>
-						<p style="color:#f1661a;">
-							所有推荐项目均是建议性项目，客人应本着"自愿自费"的原则酌情参加。
-						</p>
-					</div>
-					<div id="pageTag_3" style="display:none;">
-						<p class="pd-contitle">
-							出行须知
-						</p>
-						<p>
-							（1）合同一经签订且付全款，团队机票、列车票、船票即为出票，不得更改、签转、退票。
-						</p>
-						<p>
-							（2）飞行时间、车程时间、船程时间以当日实际所用时间为准。
-						</p>
-						<p>
-							（3）本产品如因淡季或收客人数较少，有可能与相近方向的发班线路拼车出游，届时请游客见谅。
-						</p>
-						<p style="padding:5px 0;color:#555;">
-							团队用餐
-						</p>
-						<p>
-							十人一桌，八菜一汤，人数不足十人时，在每人用餐标准不变的前提下调整餐食的分量。
-						</p>
-					</div>
+					<div id="pageTag_2" style="display:none;"></div>
+					<div id="pageTag_3" style="display:none;"></div>
 				</section>
 
 			</div>
@@ -139,12 +104,12 @@
 		<script src="../js/lib/template.js"></script>
 		<script id="tpl_GetSpotOverview" type="text/template">
 			{% for(var i=0;i < tours.length;i++){ %}
-			<li>{%=tours[i].overview%}</li>
+			<strong>{%=tours[i].tourName%}</strong><li>{%=tours[i].overview%}</li>
 			{% } %}
 		</script>
 		<script id="tpl_GetSpotImportantNotes" type="text/template">
 			{% for(var i=0;i < tours.length;i++){ %}
-			<p>{%=tours[i].importantNotes%}</p>
+			<strong>{%=tours[i].tourName%}</strong><p>{%=tours[i].importantNotes%}</p>
 			{% } %}
 		</script>
 		<script id="tpl_GetTermsConditions" type="text/template">

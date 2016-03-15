@@ -59,7 +59,7 @@
 </div>
 <div class="all-elements">
 	<div class="header" id="toper">
-		<a href="#" class="icons header-back"></a>
+		<a href="#" class="header-back name-illustrate"><i class="icons go-back"></i></a>
 		<h3>已选：<span class="adult-number">1</span>人</h3>
 		<div class="header-finish" onclick="submit_t();">
 			完成
@@ -211,7 +211,7 @@
 	<div class="fillName-page" id="fillName-page">
 		<div class="all-elements">
 			<div class="header">
-				<a href="#" class="icons header-back name-illustrate"></a>
+				<a href="#" class="header-back name-illustrate"><i class="icons go-back"></i></a>
 				<h3>填写姓名说明</h3>
 			</div>
 			<div class="snap-content" style="padding-top: 45px;background-color: white;">
@@ -530,6 +530,7 @@
 		}
 	});
 	function submit_t() {
+		debugger;
 			var seled = $(".choiced");
 			selectUser=[];
 			if(isNeedPassport=="true"){
@@ -551,8 +552,15 @@
 			var tpl=GetTpl(from,isContact)
 			var html = template(tpl,selectUser);
 			SavaLocalStorge(selectUser,isContact)
+		    var callback =vlm.getpara("callback");
+			if (callback != "undefined" && callback !=null) {
+				var callback=	eval("(" + callback + ")");
+				callback();
+			}
 		    $(ifrCilent.parentNode).find("#"+elementId).html(html);
 		    ifrCilent.parentNode.removeChild(ifrCilent);
+
+
 
 	}
 	//保存选择的记录
