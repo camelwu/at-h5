@@ -543,7 +543,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 //    });
 
     //新增常旅
-    var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
+    var myDate2 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
     var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
     var myDate2 = new Scroller({id: "postCard", type:"card",cont:"uuu"});
     //编辑常旅
