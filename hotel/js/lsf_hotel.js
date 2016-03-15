@@ -74,6 +74,21 @@ if (hotelStorage) {
 	//lsf_myweb.getbyid('InterHotelname').value=hotelStorage.InterHotelName;
 	//已去掉城市模糊搜索
 	//lsf_myweb.getbyid('DomHotelName').value=hotelStorage.DomHotelName;
+    recoverStatus("count1,count2,count3");
+   
+}
+//还原减号状态
+function recoverStatus(itemIdString){
+    var itemIdAarr = itemIdString.split(",");
+    for(var i=0,len=itemIdAarr.length;i<len;i++){
+        var itemEle = document.getElementById(itemIdAarr[i]);
+        var minusItem = itemEle.parentNode.getElementsByClassName("minus")[0];
+        if(parseInt(itemEle.value) > 0){
+            minusItem.style.backgroundPosition = "0px 0px";
+        }else{
+            minusItem.style.backgroundPosition = "0px -28px";
+        }
+    }
 }
 
 //国际国内切换实现滑动效果

@@ -919,6 +919,7 @@ ul,ol{
     background:#f5f4f9;
     z-index:30;
     display:none;
+    overflow-y: scroll;
 }
 .cl_inp_citys li{
     font-size:1.4rem;
