@@ -375,16 +375,19 @@ var  ticketIndexModal = {
            '</div>'+
            '<div class="domestic-city">'+
            '<ul class="city-classifying">'+
-           '<li class="title-tip d-cur-city"><h4>当前</h4>'+
+           '<li class="title-tip d-cur-city"><a class="target" name="CURR"></a>'+
+           '<h4>当前</h4>'+
            '<ul class="city-content">'+
            '<li class="city-content-item focus">北京</li>'+
            '</ul>'+
            '</li>'+
-           '<li class="title-tip d-his-city-ele d-his-city"><h4>历史选择</h4>'+
+           '<li class="title-tip d-his-city-ele d-his-city"><a class="target" name="HIST"></a>'+
+           '<h4>历史选择</h4>'+
            '<ul class="city-content history-choose-ul">'+
            '</ul>'+
            '</li>'+
-           '<li class="title-tip d-re-hot-city"><h4>热门城市</h4>'+
+           '<li class="title-tip d-re-hot-city"><a class="target" name="HOTT"></a>'+
+           '<h4>热门城市</h4>'+
            '<ul class="city-content city-content-hot">'+
            '</ul>'+
            '</li>'+
@@ -406,16 +409,19 @@ var  ticketIndexModal = {
            '</div>'+
            '<div class="international-city">'+
            '<ul class="city-classifying">'+
-           '<li class="title-tip i-cur-city"><h4>当前</h4>'+
+           '<li class="title-tip i-cur-city"><a class="target" name="ICURR"></a>'+
+           '<h4>当前</h4>'+
            '<ul class="city-content">'+
            '<li class="city-content-item focus">北京</li>'+
            '</ul>'+
            '</li>'+
-           '<li class="title-tip i-his-city-ele i-his-city"><h4>历史选择</h4>'+
+           '<li class="title-tip i-his-city-ele i-his-city"><a class="target" name="IHIST"></a>'+
+           '<h4>历史选择</h4>'+
            '<ul class="city-content">'+
            '</ul>'+
            '</li>'+
-           '<li class="title-tip i-re-hot-city"><h4>热门城市</h4>'+
+           '<li class="title-tip i-re-hot-city"><a class="target" name="IHOTT"></a>'+
+           '<h4>热门城市</h4>'+
            '<ul class="city-content city-content-hot">'+
            '</ul>'+
            '</li>'+
@@ -437,33 +443,35 @@ var  ticketIndexModal = {
            '</div>'+
            '<div class="right-side">'+
            '<div class="cur-word">'+
-           '<div class="special-tip"><span class="cur-city">当前</span><span class="his-city">历史</span><span class="re-hot-city">热门</span></div>'+
-           '<div class="city-pin-fir"><div>' + '<span class="letter">A</span>'+
-           '<span class="letter">B</span>'+
-           '<span class="letter">C</span>'+
-           '<span class="letter">D</span>'+
-           '<span class="letter">E</span>'+
-           '<span class="letter">F</span>'+
-           '<span class="letter">G</span>'+
-           '<span class="letter">H</span>'+
-           '<span class="letter">I</span>'+
-           '<span class="letter">J</span>'+
-           '<span class="letter">K</span>'+
-           '<span class="letter">L</span>'+
-           '<span class="letter">M</span>'+
-           '<span class="letter">N</span>'+
-           '<span class="letter">O</span>'+
-           '<span class="letter">P</span>'+
-           '<span class="letter">Q</span>'+
-           '<span class="letter">R</span>'+
-           '<span class="letter">S</span>'+
-           '<span class="letter">T</span>'+
-           '<span class="letter">U</span>'+
-           '<span class="letter">V</span>'+
-           '<span class="letter">W</span>'+
-           '<span class="letter">X</span>'+
-           '<span class="letter">Y</span>'+
-           '<span class="letter">Z</span></div></div>'+
+           '<div class="special-tip"><span class="cur-city"><a href="#CURR">当前</a></span><span class="his-city"><a href="#HIST">历史</a></span><span class="re-hot-city"><a href="#HOTT">热门</a></span></div>'+
+           '<div class="city-pin-fir"><div>'+
+           '<a class="letter" href="#A">A</a>'+
+           '<a class="letter" href="#B">B</a>'+
+           '<a class="letter" href="#C">C</a>'+
+           '<a class="letter" href="#D">D</a>'+
+           '<a class="letter" href="#E">E</a>'+
+           '<a class="letter" href="#F">F</a>'+
+           '<a class="letter" href="#G">G</a>'+
+           '<a class="letter" href="#H">H</a>'+
+           '<a class="letter" href="#I">I</a>'+
+           '<a class="letter" href="#J">J</a>'+
+           '<a class="letter" href="#K">K</a>'+
+           '<a class="letter" href="#L">L</a>'+
+           '<a class="letter" href="#M">M</a>'+
+           '<a class="letter" href="#N">N</a>'+
+           '<a class="letter" href="#O">O</a>'+
+           '<a class="letter" href="#P">P</a>'+
+           '<a class="letter" href="#Q">Q</a>'+
+           '<a class="letter" href="#R">R</a>'+
+           '<a class="letter" href="#S">S</a>'+
+           '<a class="letter" href="#T">T</a>'+
+           '<a class="letter" href="#U">U</a>'+
+           '<a class="letter" href="#V">V</a>'+
+           '<a class="letter" href="#W">W</a>'+
+           '<a class="letter" href="#X">X</a>'+
+           '<a class="letter" href="#Y">Y</a>'+
+           '<a class="letter" href="#Z">Z</a>'+
+           '</div></div>'+
            '</div>'+
            '</div>'+
            '<ul class="city-list-searched" style="display: none;">'+
@@ -493,16 +501,7 @@ var  ticketIndexModal = {
            
            var  data = JSON.stringify(_city);
            vlm.loadJson("",data,fns);
-           /*
-           //A(fns,type);
-           function A(fns,type){
-               var filter ={};
-               filter.filterColumn = "countryCode";
-               filter.value = type;
-               getNetCity(filter,fns);
-               
-           }
-           */
+
            function fns(result){
                var status = {};
                 var p = result;
@@ -549,7 +548,7 @@ var  ticketIndexModal = {
            var dCityListStr='',iCityListStr='';
            for(var temp in domesticCitiesData){
                if(tem != "0"){
-                   dCityListStr += '<li class="city-list-details-info d'+temp.toUpperCase()+'-Link"><h4>'+temp.toUpperCase()+'</h4><ul class="city-list-details-content">';
+                   dCityListStr += '<li class="city-list-details-info d'+temp.toUpperCase()+'-Link"><a class="target" name="'+temp.toUpperCase()+'"></a><h4>'+temp.toUpperCase()+'</h4><ul class="city-list-details-content">';
                    for(var j = 0;j< domesticCitiesData[temp].length;j++){
                        dCityListStr+='<li class="city-list-name city-word">'+domesticCitiesData[temp][j].CityName+'</li>';
                    }
@@ -557,7 +556,7 @@ var  ticketIndexModal = {
                }
            }
            for(var t in internationalCitiesData){
-               iCityListStr += '<li class="city-list-details-info i'+t.toUpperCase()+'-Link"><h4>'+t.toUpperCase()+'</h4><ul class="city-list-details-content">';
+               iCityListStr += '<li class="city-list-details-info d'+t.toUpperCase()+'-Link"><a class="target" name="IN'+t.toUpperCase()+'"></a><h4>'+t.toUpperCase()+'</h4><ul class="city-list-details-content">';
                for(var n = 0;n < internationalCitiesData[t].length; n++){
                    iCityListStr+='<li class="city-list-name city-word">'+internationalCitiesData[t][n].CityName+'</li>';
                }
@@ -819,12 +818,17 @@ var  ticketIndexModal = {
                    target.className='singleTrip addFontStyle';
                    target.parentNode.querySelector('.doubleTrip').className ='doubleTrip';
                    domesticCity.style.display = 'block';
-                   internationalCity.style.display = 'none'
+                   internationalCity.style.display = 'none';
+                   var rightOuter = document.querySelector('.right-side');
+                   rightOuter.innerHTML = '<div class="cur-word"><div class="special-tip"><span class="cur-city"><a href="#CURR">当前</a></span><span class="his-city"><a href="#HIST">历史</a></span><span class="re-hot-city"><a href="#HOTT">热门</a></span></div><div class="city-pin-fir"><div><a class="letter" href="#A">A</a><a class="letter" href="#B">B</a><a class="letter" href="#C">C</a><a class="letter" href="#D">D</a><a class="letter" href="#E">E</a><a class="letter" href="#F">F</a><a class="letter" href="#G">G</a><a class="letter" href="#H">H</a><a class="letter" href="#I">I</a><a class="letter" href="#J">J</a><a class="letter" href="#K">K</a><a class="letter" href="#L">L</a><a class="letter" href="#M">M</a><a class="letter" href="#N">N</a><a class="letter" href="#O">O</a><a class="letter" href="#P">P</a><a class="letter" href="#Q">Q</a><a class="letter" href="#R">R</a><a class="letter" href="#S">S</a><a class="letter" href="#T">T</a><a class="letter" href="#U">U</a><a class="letter" href="#V">V</a><a class="letter" href="#W">W</a><a class="letter" href="#X">X</a><a class="letter" href="#Y">Y</a><a class="letter" href="#Z">Z</a></div></div></div></div>';
+
                }else if(target.className=='doubleTrip'){
                    target.className='doubleTrip addFontStyle';
                    domesticCity.style.display = 'none';
                    target.parentNode.querySelector('.singleTrip').className ='singleTrip';
-                   internationalCity.style.display = 'block'
+                   internationalCity.style.display = 'block';
+                   var rightOuter = document.querySelector('.right-side');
+                   rightOuter.innerHTML = '<div class="cur-word"><div class="special-tip"><span class="cur-city"><a href="#ICURR">当前</a></span><span class="his-city"><a href="#IHIST">历史</a></span><span class="re-hot-city"><a href="#IHOTT">热门</a></span></div><div class="city-pin-fir"><div><a class="letter" href="#INA">A</a><a class="letter" href="#INB">B</a><a class="letter" href="#INC">C</a><a class="letter" href="#IND">D</a><a class="letter" href="#INE">E</a><a class="letter" href="#INF">F</a><a class="letter" href="#ING">G</a><a class="letter" href="#INH">H</a><a class="letter" href="#INI">I</a><a class="letter" href="#INJ">J</a><a class="letter" href="#INK">K</a><a class="letter" href="#INL">L</a><a class="letter" href="#INM">M</a><a class="letter" href="#INN">N</a><a class="letter" href="#INO">O</a><a class="letter" href="#INP">P</a><a class="letter" href="#INQ">Q</a><a class="letter" href="#INR">R</a><a class="letter" href="#INS">S</a><a class="letter" href="#INT">T</a><a class="letter" href="#INU">U</a><a class="letter" href="#INV">V</a><a class="letter" href="#INW">W</a><a class="letter" href="#INX">X</a><a class="letter" href="#INY">Y</a><a class="letter" href="#INZ">Z</a></div></div></div></div>';
                }
            });
 

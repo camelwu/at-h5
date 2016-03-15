@@ -78,13 +78,13 @@ TicketDate.prototype.createContainer = function(odate){
         var header = this.header = document.createElement('div');
         header.id = this.id+"-header";
         header.className = 'header';
-        this.type=='Oneway'?header.style.height = "45px":void(0);
+        this.type=='Oneway'?(header.style.height = "45px"):void(0);
         header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3>':'<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
         document.body.appendChild(header);
 
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop=this.type=='Oneway'? '4.5rem':'6.8rem';
+        weeker.style.marginTop=this.type=='Oneway'? '3.5rem':'5.8rem';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
@@ -171,25 +171,51 @@ TicketDate.prototype.drawDate = function (odate) {
     this.linkOn();
 
     if(this.type=='Oneway'){
-        document.querySelector('#chooseDate-single-header').onclick = function(event){
-            var event = event||window.event;
-            var target = event.target||event.srcElement, op = null, op2= null;
-            if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
-                op = document.querySelector('#chooseDate-single-date'), op2= document.querySelector('#chooseDate-single-header');
-                 document.body.removeChild(op)
-                 document.body.removeChild(op2)
+        if(document.querySelector('#chooseDate-single-header')){
+            document.querySelector('#chooseDate-single-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#chooseDate-single-date'), op2= document.querySelector('#chooseDate-single-header');
+                    document.body.removeChild(op);
+                    document.body.removeChild(op2)
+                }
+            }
+        }else if(document.querySelector('#dateIcon-header')){
+            document.querySelector('#dateIcon-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#dateIcon-header'), op2= document.querySelector('#dateIcon-date');
+                    document.body.removeChild(op)
+                    document.body.removeChild(op2)
+                }
             }
         }
+
     }else{
-        document.querySelector('#ori-des-Date-header').onclick = function(event){
-            var event = event||window.event;
-            var target = event.target||event.srcElement, op = null, op2= null;
-            if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
-                op = document.querySelector('#ori-des-Date-header'), op2= document.querySelector('#ori-des-Date-date');
-                document.body.removeChild(op)
-                document.body.removeChild(op2)
+        if(document.querySelector('#ori-des-Date-header')){
+            document.querySelector('#ori-des-Date-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#ori-des-Date-header'), op2= document.querySelector('#ori-des-Date-date');
+                    document.body.removeChild(op)
+                    document.body.removeChild(op2)
+                }
+            }
+        }else if(document.querySelector('#dateIcon-header')){
+            document.querySelector('#dateIcon-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#dateIcon-header'), op2= document.querySelector('#dateIcon-date');
+                    document.body.removeChild(op)
+                    document.body.removeChild(op2)
+                }
             }
         }
+
     }
 };
 
