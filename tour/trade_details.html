@@ -81,7 +81,6 @@
     <script>
         (function(){
             var ww = this;
-            vlm.init();
             var sh_paySuccess = function(){
                 //   加载动画
                 var flashLoad = function(){
@@ -139,12 +138,12 @@
                             data.chargeDetails.forEach(function (item, index, array) {
                                 sum += item.totalAmountInCNY;
                             });
-                            debugger;
                             data.totel=sum;
                             var html_ti = template(tpl1,data);
                             var html_tb = template(tpl2,data);
                             $('#tourInfo').html(html_ti);
                             $('#tra_btn').html(html_tb);
+                            vlm.init();
                         }else{
                             console.log(json);
                             jAlert(json.message,"提示");
