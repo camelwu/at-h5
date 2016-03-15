@@ -81,7 +81,6 @@
     <script>
         (function(){
             var ww = this;
-            vlm.init();
             var sh_paySuccess = function(){
                 //   加载动画
                 var flashLoad = function(){
@@ -146,6 +145,7 @@
                             var html_tb = template(tpl2,data);
                             $('#tourInfo').html(html_ti);
                             $('#tra_btn').html(html_tb);
+                            vlm.init();
                         }else{
                             console.log(json);
                             jAlert(json.message,"提示");
