@@ -730,16 +730,20 @@
                     //ajax 不全屏显示loading
                     $("#preloader").ajaxStart(function(){
                        $(this).hide();
+                       $('#status').hide();
                     });
                     $("#preloader").ajaxStop(function(){
                        $(this).hide();
+						$('#status').hide();
                     });
                 }else{
                     $("#preloader").ajaxStart(function(){
                        $(this).show();
+						$('#status').show();
                     });
                     $("#preloader").ajaxStop(function(){
                        $(this).hide();
+						$('#status').show();
                     });
                 }
                 if (async != undefined && async == true) {

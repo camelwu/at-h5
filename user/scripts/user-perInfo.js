@@ -472,6 +472,12 @@ function mycallback_infoemail(ret){
 function mycallback_sex(ret){
     var myJson = ret;
     console.log(myJson.data[0].salutation);
+    if(myJson.success)
+    {
+        jAlert('修改成功');
+    }else{
+        jAlert('修改失败');
+    }
 }
 
 function mycallback_phoneVeri(ret){
