@@ -93,19 +93,22 @@ var ticketSeatChoose = {
                 CurrencyCode: "CNY",
                 TotalFlightPrice: myFixed(totalCountCost)
             };
-            var loginResult = function(arg){
+            try{
+                var sign = vlm.checkLogin(torder);
+                if(sign){
+                    torder();
+                 }
+                }catch(e){
+                console.info(e);
+                }
+
+            function torder() {
                 reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
                 that.storageUtil.set('reverseInformationCache',reverseInformationCache);
                 document.location.href = 'ticket_order.html';
-            };
-            if(vlm.checkLogin(loginResult)){
-                reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
-                that.storageUtil.set('reverseInformationCache',reverseInformationCache);
-                document.location.href = 'ticket_order.html';
-            }else{
-                var url=window.location.href;
-                location.href="../user/user-login.html?returnUrl="+escape(url);
             }
+
+
         });
         this.addHandler(changeExplain,'click', function(event){
             var event = event || window.event;
