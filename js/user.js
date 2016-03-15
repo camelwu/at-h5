@@ -553,7 +553,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     //个人信息修改页生日
     var myDate4 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
-
+    $('#cardType').on('click',function(){
+        alert(1);
+    })
 });
 
 
