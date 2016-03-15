@@ -436,6 +436,49 @@
             jAlert(json.message);
         }
     }
+    //   获取明细
+    var info = JSON.parse(localStorage.info);
+    //var hotelID=vlm.getpara("hotelID");
+    var tmp = {
+        "Parameters": {
+            "PackageID": info.packageID,
+            "CheckinDate": info.CheckInDate,
+            "CheckoutDate": info.CheckOutDate,
+            "HotelID": hotelID,
+            "RoomDetails":info.roomDetails,
+            "Tours": info.tours
+        },
+        "ForeEndType": 3,
+        "Code": "0208"
+    };
+    vlm.loadJson("", JSON.stringify(tmp), getDetail_back);
+    function getDetail_back(ret){
+        var json = ret;
+        if(json.success) {
+            var data = json.data;
+            console.log(data);
+            var tpl = [
+                '{% for(var i=0; i<hotels[0].rooms[0].prices.length;i++){  if(hotels[0].rooms[0].prices[i].category=="ADULT"){ %}',
+                '<li>',
+                '<div>成人×{%=hotels[0].rooms[0].prices[i].quantity%}</div>',
+                '<div>￥{%=hotels[0].rooms[0].prices[i].totalAmountInCNY%}</div>',
+                '</li>',
+                '{% } else if(hotels[0].rooms[0].prices[i].category=="CHILD"){ %}',
+                '<li>',
+                '<div>儿童×{%=hotels[0].rooms[0].prices[i].quantity%}</div>',
+                '<div>￥{%=hotels[0].rooms[0].prices[i].totalAmountInCNY%}</div>',
+                '</li>',
+                '{% } %}',
+                '{% } %}'
+            ].join('');
+            var html_fd = template(tpl,data);
+            $('#fillDetail').html(html_fd);
+            vlm.init();
+        }else{
+            console.log(json);
+            jAlert(json.message,"提示");
+        }
+    }
 
 
     //上午下午
