@@ -494,7 +494,8 @@
 		}
 	});
 	function submit_t() {
-		debugger;
+
+
 			var seled = $(".choiced");
 			selectUser=[];
 			if(isNeedPassport=="true"){
@@ -521,7 +522,6 @@
 		    $(ifrCilent.parentNode).find("#"+elementId).html(html);
 
 			if (callback !=null) {
-				debugger;
 				window.parent.callback();
 			}
 		    ifrCilent.parentNode.removeChild(ifrCilent);
@@ -723,6 +723,21 @@
 	}
 
 	$(".addFinish").on("click",function(){
+
+		if(!vlm.Utils.validate["isNoEmpty"]($(".cnName").val())){
+			jAlert("中文姓名不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(".lastName").val())){
+			jAlert("姓（英文）不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(".lastName").val())){
+			jAlert("名（英文）不能为空！","",null,"确认");
+			return false;
+		}
+
+
 		var type=$(".addAir-page .header h3").attr("type");
 
 		//  判断性别
