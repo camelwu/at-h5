@@ -353,8 +353,6 @@
             }
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
                 if(data.success) {
-                    debugger;
-
                     var date1=new Date();  //开始时间
                     var date2=new Date(data.data.bookingDate.replace("T"," "))
                     var date3=date1.getTime()-date2.getTime() //时间差的毫秒数
