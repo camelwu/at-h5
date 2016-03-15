@@ -116,6 +116,11 @@
 			{%=termsConditions%}
 		</script>
 		<script>
+			function go2order(){
+				if(vlm.checkLogin('go2order')){
+					window.top.location.href='/tour/order-data-people.html';
+				}
+			}
 			(function() {
 				var ww = this, val = vlm.parseUrlPara(window.location.href);
 				vlm.init();
@@ -160,8 +165,8 @@
 						].join('');
 						var tpl3 = [
 							'<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>',
-							'{% if('+status+'=="1"){ %}',
-							'<a href="order-data-people.html" class="reserve">预定</a>',
+							'{% if('+val.status+'=="1"){ %}',
+							'<a href="javascript:go2order();" class="reserve">预定</a>',
 							'{% } %}'
 						].join('');
 						var tmp = {
@@ -174,7 +179,6 @@
 						vlm.loadJson("", JSON.stringify(tmp), package_back);
 						function package_back(ret) {
 							var json = ret;
-							console.log(json);
 							if (json.success) {
 								var data = json.data;
 								var html_pb = template(tpl1, data);
