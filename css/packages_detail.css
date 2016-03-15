@@ -126,7 +126,21 @@ i{
     list-style: disc inside;
     font-size: 13px;
 }
-
+.detailBox{
+    background:#fff;overflow:hidden;padding:0 10px;line-height:22px;padding-bottom:10px;
+}
+.detailBox p{
+    text-indent: 0;
+    margin-bottom: 0;
+    font-size: 13px;line-height:22px;color: #000;
+}
+.detailBox ul{margin:0;}
+.detailBox ul li{
+    line-height: 18px;
+    color: #000;
+    list-style: disc inside;
+    font-size: 13px;
+}
 /*µ×²¿Ô¤¶¨*/
 .package_reserve{
     position:fixed;left:0;bottom:0;z-index:999;width:100%;background:#fff;height:42px;
