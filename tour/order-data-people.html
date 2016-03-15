@@ -111,7 +111,7 @@
         <div class="nav2-center">
             <div class="nav2-centertop">
                 <div>{%=tours[i].tourName%}</div>
-                <span style="float: right"><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="2016-03-11" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">周四</span></span>
+                <span style="float: right"><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span></span>
             </div>
         </div>
         <div class="nav2-centerright">
@@ -122,6 +122,9 @@
 </script>
 
 <script>
+    var day_Num;
+    var day_start;
+    var day_weekday;
     (function(){
         var minPaxType = 0,  minPax= 0, maxAdult = 0, onlyForAdult = false, childAgeMin= 2, childAgeMax= 14;
         var ww = this, packageID='', roomMinNum= 1, roomMaxNum=3;
@@ -396,6 +399,9 @@
                     if(json.success) {
                         var data = json.data;
                         dateHandler.dataInfomation = json.data;
+                        var total_day =document.querySelector('#total_day');
+                        total_day.innerHTML = json.data.packageName.substr(2,1);
+                        day_Num = parseInt(json.data.packageName.substr(2,1));
                         minPaxType = parseInt(data.minPaxType);
                         minPax = parseInt(data.minPax);
                         maxAdult = parseInt(data.maxAdult);
@@ -637,7 +643,7 @@
     var dateHandler = {
         initDate: function(){
             var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
-                    r =new Date( d.setDate(d.getDate() + 1)),paraObj={};
+                    r =new Date( d.setDate(d.getDate() + day_Num)),paraObj={};
             var inputs = document.querySelectorAll('.CheckInDateI');
             paraObj = {
                 start:s.getFullYear() + "-"+(s.getMonth()+1)+ "-"+s.getDate(),
@@ -645,8 +651,9 @@
 
             inputs[0].value = paraObj.start;
             inputs[1].value = paraObj.end;
-            var total_day =document.querySelector('#total_day');
-            total_day.innerHTML = 1;
+            day_start = paraObj.start;
+//            var total_day =document.querySelector('#total_day');
+//            total_day.innerHTML = 1;
             var dateInitObj = {},paramStr;
             var  returnWeek=function(arg){
                 if(arg){
@@ -676,6 +683,7 @@
                         default :
                             void(0);
                     }
+                    day_weekday = week;
                     return week;
                 }
             };
@@ -692,7 +700,7 @@
                       var tipBox = document.querySelector('#show-result-tip');
                       var checkInDate = document.querySelector('#CheckInDate').value;
                       var checkOutDate = document.querySelector('#CheckOutDate').value,dayNum, that = dateHandler;
-                      dayNum = (Math.abs(Date.parse(checkOutDate) - Date.parse(checkInDate)))/1000/60/60/24
+                      dayNum = (Math.abs(Date.parse(checkOutDate) - Date.parse(checkInDate)))/1000/60/60/24;
                       dayNum ++;
                       var minMaxTime = /.*(\d)天(\d).*/.exec(that.dataInfomation.packageName);
                     if(dayNum !=minMaxTime[1]) {
