@@ -168,13 +168,8 @@ window.onload = function() {
 	function get_verify(obj) {
 		obj.onclick = function() {
 			var r_phone = $("#r_phone")[0];
-			if (r_phone.value != "") {
-				if (!check(r_phone.getAttribute('data-type'), r_phone.value)) {
-					jAlert("请输入有效的手机号");
-					return;
-				}
-			} else {
-				jAlert('请输入手机号');
+			if (!check(r_phone.getAttribute('data-type'), r_phone.value)) {
+				jAlert("请输入有效的手机号");
 				return;
 			}
 			if (regBflag_t) {
@@ -186,7 +181,7 @@ window.onload = function() {
 				"ForeEndType" : 3,
 				"Code" : "0058"
 			};
-			console.log(Parameters.Parameters);
+			console.log(Parameters);
 			phone_reg.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
 			vlm.Utils.timeCountDown('120', time_reciprocals_t, phone_timeout_t);
 			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_verify);
@@ -253,19 +248,8 @@ window.onload = function() {
 
 			if (email_find.style.display == 'none') {
 				var input = phone_find.getElementsByTagName('input');
-				for (var i = 0; i < input.length; i++) {
-					if (input[i].value != "") {
-						if (input[i].getAttribute('data-type') != "code") {
-							if (!check(input[i].getAttribute('data-type'), input[i].value)) {
-								jAlert("请输入有效的手机号");
-								return;
-							}
-						}
-					}
-
-				}
-				if (input[0].value == '') {
-					jAlert('请输入手机号');
+				if (!check(input[0].getAttribute('data-type'), input[0].value)) {
+					jAlert('请输入有效的手机号');
 					return;
 				}
 				if (input[1].value == '') {
@@ -285,13 +269,9 @@ window.onload = function() {
 				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
 			} else {
 				var input = email_find.getElementsByTagName('input')[0];
-				if (input.value != "") {
-					if (!check(input.getAttribute('data-type'), input.value)) {
-						jAlert("请输入有效的邮箱");
-						return;
-					}
-				} else {
-					jAlert('请输入邮箱');
+
+				if (!check(input.getAttribute('data-type'), input.value)) {
+					jAlert("请输入有效的邮箱");
 					return;
 				}
 				var Parameters = {
@@ -307,20 +287,11 @@ window.onload = function() {
 
 	findkey(findkey_btn);
 	//找回密码获取手机验证码
-	var find_verify = $("#find_verify")[0];
 	function get_fver(obj) {
 		obj.onclick = function() {
 			var find_phone = $("#find_phone")[0];
-
-			if (find_phone.value != "") {
-				if (find_phone.getAttribute('data-type') != "code") {
-					if (!check(find_phone.getAttribute('data-type'), find_phone.value)) {
-						jAlert("请输入有效的手机号");
-						return;
-					}
-				}
-			} else {
-				jAlert('请输入手机号');
+			if (!check(find_phone.getAttribute('data-type'), find_phone.value)) {
+				jAlert("请输入有效的手机号");
 				return;
 			}
 			if (Bflag_forget) {
@@ -332,13 +303,14 @@ window.onload = function() {
 				"ForeEndType" : 3,
 				"Code" : "0058"
 			};
+			console.log(Parameters);
 			phone_verify.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
 			vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
 			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
 		};
 	}
 
-	get_fver(find_verify);
+	get_fver(phone_verify);
 
 	//获取机器码后再发请求
 	function mycallback_forgotpass(ret) {
@@ -444,6 +416,28 @@ function mycallback_login(myJson) {
 	}
 }
 
+//注册登录关闭
+	var loginRegShut=document.querySelector('#login-reg-shut');
+	function loginRegSh(obj){
+		obj.onclick=function(){
+			if(urlobj["returnURL"])
+			{
+				window.location.href = urlobj["returnURL"];
+			}else if(urlobj["callback"]){
+				var c = urlobj["callback"];
+				if(window.parent){
+					var ifrCilent = window.parent.document.getElementById("choiceAir");
+					ifrCilent.parentNode.removeChild(ifrCilent);
+				}
+
+			}else{
+				window.location.href = "user.html";
+			}
+		}
+	}
+	loginRegSh(loginRegShut);
+
+
 //注册验证码回调
 function mycallback_verify(ret) {
 	var verify = $("#verify")[0];
@@ -489,7 +483,7 @@ function mycallback_findver(ret) {
 	if (myJson.success) {
 		vlm.Utils.sendMobileCode(find_veri.value);
 	} else {
-		jAlert(myJson.Message);
+		jAlert(myJson.message);
 	}
 }
 
