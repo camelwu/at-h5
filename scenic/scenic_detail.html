@@ -176,7 +176,7 @@
         var val = vlm.parseUrlPara(window.location.href);
         var themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
         vlm.init();
-        MT.ajaxAnimIn();
+
         /**
          * 加载详情
          * @constructor
@@ -317,10 +317,11 @@
             if(islogin == true){
                 window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId
                         +"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
-            }else{
-                var url=window.location.href;
-                location.href="../user/user-login.html?returnUrl="+escape(url);
             }
+//            else{
+//                var url=window.location.href;
+//                location.href="../user/user-login.html?returnUrl="+escape(url);
+//            }
 
         }
 

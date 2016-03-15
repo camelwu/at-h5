@@ -19,58 +19,6 @@
     <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
-<ul id="js_inland" class="gui-city-itmes gui-hidden">
-    <li>
-        <span class="gui-city-t">当前</span>
-        <ul class="city-tags">
-            <li class="current">我的位置</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-        </ul>
-    </li>
-    <li>
-        <span class="gui-city-t">历史选择</span>
-        <ul class="city-tags">
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-        </ul>
-    </li>
-    <li>
-        <span class="gui-city-t">热门城市</span>
-        <ul id="js_InHotCity" class="city-tags">
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-        </ul>
-    </li>
-</ul>
-
 <ul id="js_oversea" class="gui-city-itmes">
     <li>
         <span class="gui-city-t">当前</span>
@@ -82,40 +30,34 @@
     <li>
         <span class="gui-city-t">历史选择</span>
         <ul class="city-tags" id="historySea">
-            <!--<li>北京</li>-->
-            <!--<li>北京</li>-->
-            <!--<li>北京</li>-->
         </ul>
     </li>
     <li>
         <span class="gui-city-t">热门城市</span>
         <ul id="js_ExHotCity" class="city-tags">
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
-            <li>北京</li>
+
         </ul>
     </li>
 </ul>
+<ul id="js_inland" class="gui-city-itmes gui-hidden">
+    <li>
+        <span class="gui-city-t">当前</span>
+        <ul class="city-tags">
+            <li class="current">我的位置</li>
+        </ul>
+    </li>
+    <li>
+        <span class="gui-city-t">历史选择</span>
+        <ul class="city-tags">
+        </ul>
+    </li>
+    <li>
+        <span class="gui-city-t">热门城市</span>
+        <ul id="js_InHotCity" class="city-tags">
+        </ul>
+    </li>
+</ul>
+
 <div class="all-element">
     <div id="headerview" style="height: 44px;">
         <div id="ui-view-1" class="t-header">
@@ -129,8 +71,8 @@
     <div class="sc-content">
             <div class="gui-tab-view" id="ui-view-2">
                 <ul class="gui-tab-mod">
-                    <li data-key="1" class="gui-tab-current cp">国内城市</li>
-                    <li data-key="2" class="cp">海外城市</li>
+                    <li data-key="1" class="gui-tab-current cp">海外城市</li>
+                    <li data-key="2" class="cp">国内城市</li>
                     <i class="gui-tab-scrollbar gui-tab"></i>
                 </ul>
             </div>
@@ -159,8 +101,8 @@
         </div>
     </div>
     <dl class="empty_history">
-        <dt>北航/辽宁大学南校区，辽宁、沈阳，中国，中国，中国，北京的大学</dt>
-        <dd><a href="javascript:;" class="empty_history">清空搜索历史</a> </dd>
+        <!--<dt>北航/辽宁大学南校区，辽宁、沈阳，中国，中国，中国，北京的大学</dt>-->
+        <!--<dd><a href="javascript:;" class="empty_history">清空搜索历史</a> </dd>-->
     </dl>
     <div class="not_exist">
         抱歉，没有找到您要搜索的省市！
@@ -193,14 +135,12 @@
         var callback = MT.GetQueryString("callback");
         var callbackcity = MT.getCity(val.citycode,callback);
         var callback_url = MT.GetRequestUrl(callback);
-//        console.log(callback_url);
         MT.ajaxAnimIn();
         MT.bindclickBackPage = function(){
             $(".js-backpage").click(function(){
-//               window.location.href = callback;
                 history.go(-1);
             });
-        }
+        };
 
         /**
          * 获得国外热门城市
