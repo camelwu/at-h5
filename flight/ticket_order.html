@@ -66,7 +66,7 @@
         <div class="ride-user">
             <div class="ride-user-first">
                 <span>乘机人</span>
-                    <a id="add-Passenger" class="add-Passenger" href="javascript:void(0);" onclick=" vlm.f_choice('passenger-list-data','f','traver','',true,true,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild,null,callback)">添加乘机人</a>
+                    <a id="add-Passenger" class="add-Passenger" href="javascript:void(0);" onclick=" vlm.f_choice('passenger-list-data','f','traver','',true,true,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild,null,'callback')">添加乘机人</a>
             </div>
           <ul class="passenger-list-data" id="passenger-list-data">
              <!-- <li class="ride-user-info">
@@ -88,7 +88,7 @@
         <div class="ride-user contact">
             <div class="ride-user-first">
                 <span>联系人</span>
-                <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('contact-table','f','contact','',false,false)"></a>
+                <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></a>
             </div>
 
             <div class="table contact-table" id="contact-table">
@@ -339,7 +339,7 @@
 	vlm.l_contact();
 
     function callback(){
-        alert("222");
+        ticketOrder.countrySlider();
     }
 
     function delPassager(obj){

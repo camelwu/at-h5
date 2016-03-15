@@ -149,7 +149,7 @@
     {% for(var i=0,len=data.prices.length;i<len;i++){ %}
     <li>
         <div class="combo-name">{%=data.packageName%}</div>
-        <div class="combo-price">¥{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人单价){% }else{ %}(儿童单价){% } %}</div><i class="minpax">限定{%=data.minPax%}人</i>
+        <div class="combo-price">¥{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人单价){% }else{ %}(儿童单价){% } %}</div> <i class="minpax">限{%=data.minPax%}人起订</i>
         <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %}
         ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %},0);" class="s-reserve button-orange">预订</a>
         <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->

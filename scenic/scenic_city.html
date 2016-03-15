@@ -332,7 +332,7 @@
              $("<li data-key='hot' data-value='热门'>热门</li>").appendTo(ul);
 
              for (var i = 0;i<newArray.length;i++){
-                 var title =newArray[i][0].cityCode.substr(0,1);
+                 var title =newArray[i][0].cityNamePY.substr(0,1);
                  childli = $("<li data-key='"+title+"' data-value='"+title+"'></li>")
                  childspan = $("<span class='tags' data-value='"+title+"'><span> ").html(title);
                  childspan.appendTo(childli);
@@ -343,7 +343,7 @@
              $('#CharColumn>li').each(function(i){
                  $('#CharColumn>li').eq(i).click(function(){
                      var object_li = $('#js_oversea>li').eq(i).offset().top;
-                     console.log(i)
+//                     console.log(i)
                      $('html,body').animate({scrollTop:object_li-89},300)
                  })
              })

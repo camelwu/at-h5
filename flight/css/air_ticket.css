@@ -1,5 +1,5 @@
 .header {
-    height: 6.8rem;
+    height: 5.8rem;
 }
 .yellow {
     color: #FFB413
@@ -821,7 +821,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 100;
 }
 
-.all-elements .city-content .right-side .cur-word span {
+.all-elements .city-content .right-side .cur-word a {
     display: inline-block;
     width: 100%;
     height: 2rem;
@@ -839,8 +839,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.all-elements .city-content .right-side span.letter {
+.all-elements .city-content .right-side a.letter {
     border-bottom: 0.005rem dashed #dfdfdd;
+}
+.right-side a{
+    color: #ffb413;
 }
 
 .big-title {
@@ -863,7 +866,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 2rem;
     background: url(../../images/icons.png) 0 0;
     background-size: 24.3rem 16rem;
-    margin-top: 1.2rem;
+    margin-top: 1.0rem;
 }
 
 
@@ -4112,7 +4115,7 @@ li{
 .ticket-header-back{
     position: absolute;
     width: 50px;
-    height: 100%;
+    height: 44px;
     top: 0;
     left: 0;
 }
@@ -4123,6 +4126,14 @@ li{
     left: 15px;
     top: 50%;
     margin-top: -11px;
+}
+.target{
+    position: relative;
+    top: -53px;
+    display: block;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
 }
 
 
