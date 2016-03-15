@@ -129,6 +129,11 @@ i{
 .detailBox{
     background:#fff;overflow:hidden;padding:0 10px;line-height:22px;padding-bottom:10px;
 }
+.detailBox strong{
+    text-indent: 0;
+    margin-bottom: 10px;
+    font-size: 1.6rem;line-height:22px;color: #000;
+}
 .detailBox p{
     text-indent: 0;
     margin-bottom: 0;
