@@ -241,6 +241,7 @@
              * @constructor
              */
             MT.CurrentPageTolist = function(cityCode){
+                MT.AnimIn();
                 if(cityCode == "more"){
                     window.location.href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html";
                     return false;

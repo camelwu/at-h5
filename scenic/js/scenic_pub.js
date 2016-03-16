@@ -268,19 +268,27 @@
          * @constructor
          */
         var CTmplAnim = function(){
-            var _childhtml = '<div id="preloader"><div id="status"><p class="center-text"><br><em>加载中……</em></p></div></div>';
-            var _roothtml = $(_childhtml)[0];
-
+            var _roothtml = $("<div id=\"preloader\"><div id=\"status\"><p class=\"center-text\"><br><em>加载中……</em></p></div></div>");
             return _roothtml;
         }
 
+        var AnimIn = function(){
+            if($("[id=preloader]").length < 1) {
+                $("body").after(CTmplAnim());
+            }
+            $("[id=preloader]").show();
+        }
+
+        var AnimOut = function(){
+            $("[id=preloader]").delay(400).fadeOut();
+        }
         /**
          * [ajax]动画淡入
          * @constructor
          */
         var CAnimIn = function(){
             if($("[id=preloader]").length < 1){
-                document.body.appendChild(CTmplAnim());
+                $("body").after(CTmplAnim());
             }
             $("#preloader").ajaxStart(function(){
                 $(this).show();
@@ -358,6 +366,8 @@
             MTtabInit:MTtabInit,//[private scenic_city]
             MTtab:MTtab,//[private scenic_city]
             CLoadJson:CLoadJson,//[public ajax]
+            AnimIn:AnimIn,
+            AnimOut:AnimOut,
             CAnimIn:CAnimIn,//[public ajax]
             CAnimOut:CAnimOut,//[public ajax]
             SplitCitiesArray:SplitCitiesArray,//[public split array]
@@ -374,6 +384,12 @@
     webkit.MT.tabScroll = function(){
         core.MTtabInit();
         core.MTtab();
+    }
+    webkit.MT.AnimIn = function(){
+        core.AnimIn();
+    }
+    webkit.MT.AnimOut = function(){
+        core.AnimOut();
     }
     webkit.MT.ajaxAnimIn = function(){
         core.CAnimIn();
