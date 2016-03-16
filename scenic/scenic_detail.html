@@ -354,20 +354,12 @@
 
         //判断是否登录
         MT.CCheckLogin = function(packageId,RequiredPickupPoint,Adult,fail){
-            var islogin = vlm.checkLogin(localStorage.getItem("login"));
-//                console.log(vlm.checkLogin(localStorage.getItem("login")));
-            if(islogin == true){
-                window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId
-                        +"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
+          var that=this,returnUrl = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
+            if(vlm.checkLogin(returnUrl)){
+                debugger;
+                window.location.href = returnUrl;
             }
-//            else{
-//                var url=window.location.href;
-//                location.href="../user/user-login.html?returnUrl="+escape(url);
-//            }
-
         }
-
-
 
         MT.CrefreshTab=function(){
             var li = document.getElementsByClassName('no-class');
