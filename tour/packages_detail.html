@@ -139,7 +139,6 @@
 						var tpl2 = ['<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'];
 						var tpl3 = ['<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>', '<a href="order-data-people.html" class="reserve">预定</a>'];
 */
-						var status =  val.status;
 						var tpl1 = [
 							'<div>',
 							'{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}',
@@ -166,7 +165,7 @@
 						var tpl3 = [
 							'<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>',
 							'{% if('+val.status+'=="1"){ %}',
-							'<a href="javascript:go2order();" class="reserve">预定</a>',
+							'<a href="order-data-people.html" class="reserve">预定</a>',
 							'{% } %}'
 						].join('');
 						var tmp = {
