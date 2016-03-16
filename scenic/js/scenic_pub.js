@@ -312,6 +312,10 @@
          * @constructor
          */
         var CLoadJson = function(url, data, mycallback,animin,animout, async, encryption) {
+            if(animin!=undefined && animin != ""){
+                animin();
+            }
+
             if (async != undefined && async == true) {
                 $.ajaxSetup({
                     async : false
@@ -326,9 +330,7 @@
                 data : data,
                 contentType : 'application/json;charset=utf-8',
                 beforeSend : function(xhr) {
-                    if(animin!=undefined && animin != ""){
-                        animin();
-                    }
+
                     //后续开始加密，设置header
                     //xhr.setRequestHeader('Content-Type','application/json');
                     if (encryption != undefined && encryption == true) {

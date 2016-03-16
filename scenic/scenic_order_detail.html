@@ -384,7 +384,7 @@
         (function(){
             var val = vlm.parseUrlPara(window.location.href);
             var ChildAgeMin, ChildAgeMax, TravelDate,TourID,MinPax,DetailData,SearchPriceData,globaldata,ExtendData,
-            PickupPointData,StartDate,EndDate;
+            PickupPointData,StartDate,EndDate,recalSearchPrice;
 
             /**
              * 接送酒店页Event
@@ -538,13 +538,10 @@
                     for (var i = 0;i<data.tours.length;i++)
                     {
                         SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
-//                        OnlyAdultPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
                     }
-//                    console.log(SearchPrice);
                     MT.getPickupPoint();
 
-//                    MT.getSearchPrice(OnlyAdultPrice,"OnlyAdult");
-                    MT.getSearchPrice(SearchPrice,"");
+                    MT.getSearchPrice(SearchPrice);
                 }else {
                     console.log(json);
                     jAlert(json.message,"提示");
@@ -554,12 +551,9 @@
             /**
              * 返回SearchPrice
              */
-            MT.getSearchPrice = function(SearchPrice,args){
-                if(args == "OnlyAdult"){
-                    MT.ajaxJson("",JSON.stringify(SearchPrice),MT.callbackOnlyAdultSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
-                }else{
-                    MT.ajaxJson("",JSON.stringify(SearchPrice),MT.callbackSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
-                }
+            MT.getSearchPrice = function(SearchPrice){
+                recalSearchPrice = SearchPrice;
+                MT.ajaxJson("",JSON.stringify(SearchPrice),MT.callbackSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
 
             }
 
@@ -1166,7 +1160,9 @@
                 $(".js-price-list").html(list);
             }
 
-
+            /**
+             * 阻止事件
+             */
             MT.stopDefault = function(e) {
                 if ( e && e.preventDefault )
                     e.preventDefault();
@@ -1175,6 +1171,42 @@
 
                 return false;
             }
+
+
+
+            /**
+             * 返回SearchPrice
+             */
+            MT.recalSearchPrice = function(SearchPrice){
+                var relTotalPrice = 0;
+
+                MT.ajaxJson("",JSON.stringify(SearchPrice),callbackrecalSearchPrice,MT.ajaxAnimIn,MT.ajaxAnimOut);
+
+                /**
+                 * SearchPrice callback
+                 * @param data
+                 */
+                function callbackrecalSearchPrice(data){
+                    var json=data,len=0;
+                    console.log(json);
+                    if(json.success){
+                        len = json.data.prices.length;
+
+                        while(len--){
+                            relTotalPrice += parseInt(json.data.prices[len].totalAmountInCNY);
+                        }
+                    }else {
+                        console.log(json);
+                        jAlert(json.message,"提示");
+
+                    }
+                }
+
+                return relTotalPrice;
+
+            }
+
+
 
             /**
              * 预订 验证
@@ -1215,7 +1247,7 @@
                             ,TourCount = 0,TourID = 0,PickupID = "",PickupCount = 0,currentY = 0
                             ,PickupTmp,PickupPoint = {},TravelerType = "",Salutation ="",FirstName = ""
                             ,LastName = "",NationalityCode = "",Travelers = [],Email = ""
-                            ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",TotalPrice = 0
+                            ,ContactNo = {},CountryCode = 0,PhoneNo = 0,CurrencyCode = "",recalTotalPrice =0
                             ,TravelerDocument;
                     var param =
                     {
@@ -1225,6 +1257,7 @@
                         "ForeEndType": 3,
                         "Code": "0092"
                     }
+                    console.log(recalSearchPrice);
                     //成人数量
                     AdultCount = $(".js-Audlt-cont").html();
                     if(AdultCount == undefined)
@@ -1239,6 +1272,7 @@
                     {
                         ChildCount = 0;
                         ChildArray = [];
+                        delete recalSearchPrice.Parameters.Child;
                     }else{
                         ChildCount = parseInt(ChildCount);
                         for(var i = 0;i< ChildCount;i++){
@@ -1248,6 +1282,11 @@
                         }
                     }
                     param.Parameters.Child = ChildArray;
+
+                    //重新计算价格
+
+                    recalTotalPrice = MT.recalSearchPrice(recalSearchPrice);
+                    console.log(recalTotalPrice);
 
                     //景点
                     TourCount = $(".js-sce").length;
@@ -1335,9 +1374,9 @@
 
                     //价格信息
                     CurrencyCode = "CNY";
-                    TotalPrice = $(".js-order-total").html();
-                    TotalPrice = parseInt(TotalPrice.substring(1,TotalPrice.length));
-                    param.Parameters.ChargeDetails = {"CurrencyCode":CurrencyCode,"TotalPrice":TotalPrice};
+//                    recalTotalPrice = $(".js-order-total").html();
+//                    recalTotalPrice = parseInt(recalTotalPrice.substring(1,recalTotalPrice.length));
+                    param.Parameters.ChargeDetails = {"CurrencyCode":CurrencyCode,"TotalPrice":recalTotalPrice};
 
                     console.log(param);
                     MT.ajaxJson("",JSON.stringify(param),MT.callbackOrderDetail,MT.ajaxAnimIn,MT.ajaxAnimOut);
