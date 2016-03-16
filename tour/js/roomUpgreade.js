@@ -87,7 +87,15 @@ var roomUpGrade = {
     addEvent: function () {
         var nextPage = document.querySelector('.hs-next'), that = roomUpGrade;
         this.eventHandler(nextPage, 'click', function(){
-                        document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice+'&roomID='+that.dataInfo.hotels[0].rooms[0].roomID;
+            var roomid;
+            var li = document.getElementsByClassName('hd-hotel');
+            for(var i = 0;i < li.length;i++) {
+                if (li[i].style.backgroundColor == 'rgb(223, 223, 221)') {
+                    roomid = li[i].getAttribute('data-roomId');
+                    console.log(roomid)
+                }
+            }
+             document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice+'&roomID='+roomid;
         });
     },
     callBack: function () {
@@ -108,21 +116,23 @@ var roomUpGrade = {
         '<p class="d-p3 date-in">3月22入住</p><p class="d-p3 date-out" style="margin-left: 5px;">3月30离店</p>',
         '<p class="d-p2 day-number">共8晚</p>',
         '</li>',
-        '<li>',
+        '<li style=height:auto>',
         '<ul class="room-list" id="room-list">',
         '</ul>',
         '</li>',
         '</ul>',
         '<a href=" javascript:void(0)" class="hs-next">下一步</a>'
         ].join('');
-        var tpl2 =[
-            '<li class="hd-hotel">',
+        var tpl2 = [
+            '<li class="hd-hotel" data-roomId="{%=roomID%}">',
             '<img class="hd-choose" src="../images/ui/choose.png">',
             '<div class="d-div3">',
-            '<p class="d-p5">标准价</p>',
-            '<p class="d-p7">',
-            '<span>{% if(data["includedBreakfast"]){ %}无早{% } %}{% if(data["bigBed"]){ %}大床{% } %}{% if(data["cannotCancel"]){ %}不可取消{% } %}</span>' +
-            '{% if(data["roomHasNum"]){ %}<span style="color: #fe4716"> 仅剩{%=roomHasNum%}间</span>{% } %}',
+            '<p class="d-p5">' +
+            '{% if(includedBreakfast){ %}',
+            '{%=roomName%}(含早)',
+            '{% }else{ %}',
+            '{%=roomName%}(无早)',
+            '{% } %}',
             '</p>',
             '</div>',
             '<p class="hd-price">',
@@ -138,13 +148,14 @@ var roomUpGrade = {
             }else{
                 console.log(resultData.data)
                 var  hotels = that.resetData(resultData.data.hotels[0]);
-                var  rooms = resultData.data.hotels[0].rooms[0];
+                var  rooms = resultData.data.hotels[0].rooms;
                 var tpl_GetList = template(tpl1, hotels);
                 var tpl_GetRooms = template(tpl2, rooms);
                 that.dataInfo = resultData.data;
                 $("#preloader").fadeOut();
                 $('#sc-content').html(tpl_GetList);
                 $('#room-list').html(tpl_GetRooms);
+                that.chooseRoom();
                 that.dateDeal().delayLoadImage().addEvent()
             }
         } else {
@@ -165,6 +176,25 @@ var roomUpGrade = {
                 img.onload = null;
                 callback();
             };
+        }
+        return this;
+    },
+    chooseRoom : function(){
+        var li = document.getElementsByClassName('hd-hotel');
+        var img = document.getElementsByClassName('hd-choose');
+        for(var j = 0;j < li.length;j++){
+            {
+                (function(index) {
+                    li[j].onclick = function () {
+                        for (var i = 0; i < li.length; i++) {
+                            li[i].style.backgroundColor = "#ffffff";
+                            img[i].className = 'hd-choose';
+                        }
+                        li[index].style.backgroundColor = "#dfdfdd";
+                        img[index].className = 'hd-choose cho-active';
+                    };
+                }(j))
+            }
         }
         return this;
     },
