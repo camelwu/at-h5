@@ -76,7 +76,7 @@
 			var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
 			$("#popup_container").css({
 				position : pos,
-				zIndex : 999,
+				zIndex : 1011,
 				padding : 0,
 				margin : 0
 			});
@@ -254,7 +254,7 @@
 					$("BODY").append('<div id="popup_overlay"></div>');
 					$("#popup_overlay").css({
 						position : 'absolute',
-						zIndex : 998,
+						zIndex : 1010,
 						top : '0',
 						left : '0',
 						width : '100%',

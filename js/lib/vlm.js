@@ -190,7 +190,7 @@
 					var day = parseInt(timeData[2]);
 					var dtime = new Date(year, month, day).getTime();
 					var nowtime = new Date().getTime();
-					if (dtime <= nowtime-410227200000) {
+					if (dtime <= nowtime) {
 						return true;
 					} else {
 						return false;

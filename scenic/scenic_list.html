@@ -147,7 +147,7 @@
         <li class="s-li">
             <a href="../scenic/scenic_detail.html?packageID={%=packageID%}">
                 <div class="sce-img-box">
-                    <img  src="../images/loading-hotel.gif" data-src="{%=pictureURL%}"  class="sce-img">
+                    <img  src="../scenic/images/loading-scenic.gif" data-src="{%=pictureURL%}"  class="sce-img">
                 </div>
                 <div class="sce-detail">
                     <p class="sce-name-all">{%=packageName%}</p>
@@ -164,14 +164,6 @@
 
             var val = vlm.parseUrlPara(window.location.href);
             var themeId = "";
-            var defineProperty = {
-                get themeId (){
-                    return themeId;
-                },
-                set themeId (value){
-                    themeId = value;
-                }
-            };
             vlm.init();
 
 
@@ -228,9 +220,9 @@
 
 
                 $("#priceSort").toggle(function(){
-                    MT.CLoadPriceSort("HighToLow",defineProperty.themeId);
+                    MT.CLoadPriceSort("HighToLow",themeId);
                 },function(){
-                    MT.CLoadPriceSort("LowToHigh",defineProperty.themeId);
+                    MT.CLoadPriceSort("LowToHigh",themeId);
                 });
             }
 
@@ -347,7 +339,7 @@
                     screen.style.opacity = "1";
                     screenBlock.style.bottom=0;
                     screenBlock.style.transition="all 400ms";
-                    $('body').css('overflow-y','hidden');
+                    $('#scenic-list-cont').css('overflow-y','hidden');
                 };
                 //    关闭筛选
                 function closeblock(){
@@ -355,14 +347,14 @@
                     screen.style.opacity = "0.8";
                     screenBlock.style.bottom=-500+'px';
                     screenBlock.style.transition="all 400ms";
-                    $('body').attr("style","");
+                    $('#scenic-list-cont').attr("style","");
                     if(this.title == "confirm"){
                         //获得themeid
                         themeid=$(".spot-slected").attr("title");
                         //调用主题方法
                         MT.CLoadFilterTheme(themeid);
-                        defineProperty.themeId = themeid;
-                        console.log(defineProperty.themeId);
+                        themeId = themeid;
+                        console.log(themeId);
                     }
 
 
