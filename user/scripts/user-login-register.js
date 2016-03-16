@@ -392,7 +392,7 @@ function mycallback_login(myJson) {
 		localStorage.setItem('login', 1);
 		if (self != top) {
 			if (urlobj["returnURL"]) {
-				window.top.location.href = urlobj["returnURL"];
+				window.top.location.href = urlobj["returnURL"].replace("#","&");
 			} else {
 				var c = urlobj["callback"];
 				c.replace("#", '');

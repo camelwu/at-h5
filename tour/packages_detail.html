@@ -116,58 +116,21 @@
 			{%=termsConditions%}
 		</script>
 		<script>
-			function go2order(){
-				if(vlm.checkLogin('go2order')){
-					window.top.location.href='../tour/order-data-people.html';
+			function go2order() {
+				var url = '../tour/order-data-people.html';
+				if (vlm.checkLogin(url)) {
+					window.top.location.href = url;
 				}
 			}
 			(function() {
 				var ww = this, val = vlm.parseUrlPara(window.location.href);
 				vlm.init();
 				var package_detail = function() {
-					//   加载动画
-					var flashLoad = function() {
-						$(window).load(function() {
-							$("#status").fadeOut();
-							$("#preloader").delay(400).fadeOut("medium");
-						});
-					};
 					//   套餐数据
 					var getPackage = function() {
-/*
-						var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}"><img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}"><img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;bottom:0;right:15px;font-size:1rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
-						var tpl2 = ['<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'];
-						var tpl3 = ['<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>', '<a href="order-data-people.html" class="reserve">预定</a>'];
-*/
-						var tpl1 = [
-							'<div>',
-							'{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}',
-							'<img src="{%=pictureURL%}" alt="image">',
-							'{% }else{ %}',
-							'<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' +
-							'<img src="{%=pictureURL%}" alt="image">',
-							'{% for(var i=0;i < imgl;i++){ %}',
-							'<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' +
-							'<img src="{%=imgs[i].imageURL%}" alt="image"></a>',
-							'{% }} %}',
-							'<div class="pd-mb">',
-							'<div>{%=packageName%}</div>',
-							'<div>套餐编号：{%=packageRefNo%}</div>',
-							'{% if(imgl>0){ %}',
-							'<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>',
-							'{% } %}',
-							'</div>',
-							'</div>'
-						].join('');
-						var tpl2 = [
-							'<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'
-						].join('');
-						var tpl3 = [
-							'<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>',
-							'{% if('+val.status+'=="1"){ %}',
-							'<a href="order-data-people.html" class="reserve">预定</a>',
-							'{% } %}'
-						].join('');
+						var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' + '<img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' + '<img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
+						var tpl2 = ['<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'].join('');
+						var tpl3 = ['<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>', '{% if(' + val.status + '=="1"){ %}', '<a href="javascript:go2order();" class="reserve">预定</a>', '{% } %}'].join('');
 						var tmp = {
 							"Parameters" : {
 								"PackageID" : val.packageID
@@ -210,16 +173,15 @@
 								jAlert(json.message, "提示");
 							}
 						}
-
 					};
 					return {
-						FlashLoad : flashLoad,
+						//FlashLoad : flashLoad,
 						GetPackage : getPackage
 					};
 				}();
 				ww.MT = ww.MT || {};
 				ww.MT.load = function() {
-					package_detail.FlashLoad();
+					//package_detail.FlashLoad();
 					package_detail.GetPackage();
 				};
 				MT.load();
