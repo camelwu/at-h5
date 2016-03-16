@@ -2289,6 +2289,7 @@ i{
     bottom: -18px;
     position: absolute;
     color: #999999;
+    pointer-events: none;
 }
 /*航班信息 填写*/
 .flight_info{ width:100%;}

@@ -1599,6 +1599,36 @@
 
 			})();
 
+			/*价目详情窗*/
+			(function() {
+				var detaBtn = document.getElementsByClassName('order-total-tip')[0];
+				var oHid = document.getElementsByClassName('price-tot-box')[0];
+				var oMask = document.getElementsByClassName('mask')[0];
+				var bOk = true;
+
+				detaBtn.onclick = function() {
+					if (bOk) {
+						oMask.style.display = 'block';
+						oHid.style.bottom = '50px';
+						bOk = false;
+
+						MT.PriceList();
+					} else {
+						oMask.style.display = 'none';
+						oHid.style.bottom = '-300px';
+						bOk = true;
+
+					}
+				};
+				oMask.onclick = function() {
+					if (bOk == false) {
+						oMask.style.display = 'none';
+						oHid.style.bottom = '-300px';
+						bOk = true;
+					}
+				}
+			})();
+
 			/*同意条款*/
 			(function() {
 				var oAgree = document.getElementsByClassName('order-notice-btn')[0];
@@ -1625,46 +1655,8 @@
 				oAgree.style.backgroundSize = '40rem 12rem';
 			})();
 
-			/*价目详情窗*/
-			(function() {
-				var detaBtn = document.getElementsByClassName('order-total-tip')[0];
-				var oHid = document.getElementsByClassName('price-tot-box')[0];
-				var oMask = document.getElementsByClassName('mask')[0];
-				var bOk = true;
-				detaBtn.onclick = function() {
-					if (bOk) {
-						oMask.style.display = 'block';
-						oHid.style.bottom = '50px';
-						bOk = false;
-						MT.PriceList();
-					} else {
-						oMask.style.display = 'none';
-						oHid.style.bottom = '-300px';
-						bOk = true;
 
-					}
-				};
-				oMask.onclick = function() {
-					if (bOk == false) {
-						oMask.style.display = 'none';
-						oHid.style.bottom = '-300px';
-						bOk = true;
-					}
-				}
-			})();
 
-			//        function SelectPersonInformation(html,isContact){
-			//            if(html !="") {
-			//                if (!isContact ) {
-			//                    $(".tanktick li").remove();
-			//                    $(".tanktick").append(html);
-			//                }
-			//                else {
-			//                    $(".contact li").remove();
-			//                    $(".contact").append(html);
-			//                }
-			//            }
-			//        }
 
 		</script>
 

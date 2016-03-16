@@ -363,7 +363,7 @@
 						}
 					},
 					engName:function(name){
-						var pattern=/^[a-zA-Z][a-zA-Z/s]*[a-zA-Z]{1,25}$/;
+						var pattern=/^[a-zA-Z][a-zA-Z\s]*[a-zA-Z]{1,25}$/;
 						//字符头尾是字母，中间由空格和字母组成，中间可以有多个空格;2-26字符
 						if(pattern.test(name))
 						{
@@ -807,7 +807,15 @@
 				}
 				//loadJsonp("yy","package.js",callbackFunction);
 			}, l_login = function(c) {
-                var urlstr = typeof c === "string" && (c.indexOf(".html")>-1 || c.indexOf("&")>-1)?'returnURL='+c.replace("&","#"):'callback='+c,loginer = createIframe('../user/user-login.html?'+urlstr);
+                var urlstr;
+                if(typeof c === "string" && (c.indexOf(".html")>-1 || c.indexOf("&")>-1)){
+                	var str = c.replace("?","@");
+                	str = str.replace(/&/g,"*");
+                	urlstr = 'returnURL='+str;
+                }else{
+                	urlstr = 'callback='+c;
+                }
+                var loginer = createIframe('../user/user-login.html?'+urlstr);
 				document.body.appendChild(loginer);
 			}, l_contact = function() {
 				if (document.getElementById("name")) {
