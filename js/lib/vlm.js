@@ -807,7 +807,7 @@
 					}
 				}
 				//loadJsonp("yy","package.js",callbackFunction);
-			}, l_login = function(c) {
+			}, l_login = function(c) {console.log(c);
                 var urlstr = typeof(eval(c)) === "function"?'callback='+c:'returnURL='+c,loginer = createIframe('../user/user-login.html?'+urlstr);
 				document.body.appendChild(loginer);
 			}, l_contact = function() {
