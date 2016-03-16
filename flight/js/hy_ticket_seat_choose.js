@@ -93,23 +93,11 @@ var ticketSeatChoose = {
                 CurrencyCode: "CNY",
                 TotalFlightPrice: myFixed(totalCountCost)
             };
-            try{
-                var sign = vlm.checkLogin(torder);
-                if(sign){
-                    torder();
-                 }
-                }catch(e){
-                console.info(e);
-                }
-
-            function torder() {
-                reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
-                that.storageUtil.set('reverseInformationCache',reverseInformationCache);
-                document.location.href = 'ticket_order.html';
-            }
-
-
+            that.reverseInformationCache = reverseInformationCache;
+            that.testLogin();
         });
+
+
         this.addHandler(changeExplain,'click', function(event){
             var event = event || window.event;
             if (document.all) {
@@ -137,17 +125,15 @@ var ticketSeatChoose = {
                 document.querySelector('.ticket-detail-modal').style.display = 'none';
             }
         });
-      /*  this.addHandler(document,'click', function(event){
-            var event = event || window.event;
-            var target =event.target || event.srcElement;
-            if(target.id == 'popup_overlay')
-                    document.body.removeChild(document.querySelector('#popup_overlay'));
-                    if(document.querySelector('#popup_container')){
-                    document.body.removeChild(document.querySelector('#popup_container'));
-            }
-        });*/
     },
 
+    testLogin:function(){
+        if(vlm.checkLogin('ticketSeatChoose.testLogin')){
+            ticketSeatChoose.reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
+            ticketSeatChoose.storageUtil.set('reverseInformationCache',ticketSeatChoose.reverseInformationCache);
+            window.top.location.href='../flight/ticket_order.html';
+        }
+    },
     returnDate:function(arg){
         var argArray = /(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(arg);
         var transferData = argArray[1]+'-'+argArray[2]+'-'+argArray[3];
