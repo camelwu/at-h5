@@ -1,7 +1,7 @@
 /**
  * Created by changlv on 2016/1/7.
  */
-var newkey, phone_verify = $('#find_verify')[0], phone_reg = $('#get_code')[0], regBflag_t = false, Bflag_forget = false, urlobj = vlm.parseUrlPara(window.location.href, false);
+var newkey, phone_verify = $('#find_verify')[0], phone_reg = $('#get_code')[0], regBflag_t = false, Bflag_forget = false, urlobj = vlm.parseUrlPara(window.location.href, true);
 vlm.init();
 window.onload = function() {
 	var phone_login = $("#phone_login")[0];
@@ -383,7 +383,6 @@ function cb_register() {
 	console.log(Parameters);
 	vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
 }
-
 function mycallback_login(myJson) {
 	if (myJson.success) {
 		localStorage.email = myJson.data[0].email;
@@ -392,7 +391,10 @@ function mycallback_login(myJson) {
 		localStorage.setItem('login', 1);
 		if (self != top) {
 			if (urlobj["returnURL"]) {
-				window.top.location.href = urlobj["returnURL"].replace("#","&");
+				var str = vlm.getpara("returnURL"),pattern = new RegExp("[*]","g");
+                if(str.indexOf("*")){str = str.replace(pattern,"&");}
+				str = str.replace("@","?");
+				window.top.location.href = str;
 			} else {
 				var c = urlobj["callback"];
 				c.replace("#", '');
