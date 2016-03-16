@@ -59,8 +59,8 @@
 </div>
 <div class="all-elements">
 	<div class="header" id="toper">
-		<a href="#" class="header-back name-illustrate"><i class="icons go-back"></i></a>
-		<h3>已选：<span class="adult-number">1</span>人</h3>
+		<a href="#" class="header-back name-illustrate closedWin"><i class="icons go-back"></i></a>
+		<h3>已选：<span class="adult-number">1</span>人/5 <span class="childen-number">1</span>人/2</h3>
 		<div class="header-finish" onclick="submit_t();">
 			完成
 		</div>
@@ -206,138 +206,11 @@
 			</div>
 		</div>
 	</div>
-	<!-- 填写姓名说明页-->
-	<!-- 中文姓名-->
-	<div class="fillName-page" id="fillName-page">
-		<div class="all-elements">
-			<div class="header">
-				<a href="#" class="header-back name-illustrate"><i class="icons go-back"></i></a>
-				<h3>填写姓名说明</h3>
-			</div>
-			<div class="snap-content" style="padding-top: 45px;background-color: white;">
-				<ol class="ch_account" id="ch_account">
-					<li>
-						姓名要与所持证件的姓名一致
-					</li>
-					<li>
-						中文姓名
-						<ul class="name_ul">
-							<li>
-								若持护照乘机，必须确认护照上有中文姓名
-								<br/>
-								生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”
-								<div class="name-example">
-									<div>
-										中文姓名
-									</div>
-									<div>
-										王ben
-									</div>
-								</div>
-							</li>
-							<li>
-								姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”
-								<div class="name-example">
-									<div>
-										中文姓名
-									</div>
-									<div>
-										汉族然买买提
-									</div>
-								</div>
-							</li>
-							<li>
-								香港、台湾、澳门的护照不支持国内航班，请改用其他证件。
-							</li>
-						</ul>
-					</li>
-				</ol>
-				<!-- 英文姓名-->
-				<ol class="ch_account" id="en_account">
-					<li>
-						必须用英文字母填写，并确保与所持证件的姓名一致
-					</li>
-					<li>
-						中文姓名
-						<ul class="name_ul">
-							<li style="list-style-type: none;">
-								如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming
-								<div class="name-example">
-									<div>
-										Surname
-									</div>
-									<div>
-										Zhuge
-									</div>
-								</div>
-								<div class="name-example2" >
-									<div>
-										Given name
-									</div>
-									<div>
-										Kongming
-									</div>
-								</div>
-							</li>
-						</ul>
-					</li>
-					<li>
-						英文姓名
-						<ul class="name_ul">
-							<li>
-								若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
-								例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad
-								<div class="name-example">
-									<div>
-										Surname
-									</div>
-									<div>
-										Potter
-									</div>
-								</div>
-								<div class="name-example2" >
-									<div>
-										Given nam
-									</div>
-									<div>
-										joerad
-									</div>
-								</div>
-							</li>
-						</ul>
-						<ul class="name_ul">
-							<li>
-								姓与名总长度小于26个字符，若过程请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
-								在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
-								jame M C
-								<div class="name-example">
-									<div>
-										Surname
-									</div>
-									<div>
-										BlackSA
-									</div>
-								</div>
-								<div class="name-example2" >
-									<div>
-										Given nam
-									</div>
-									<div>
-										jame M C
-									</div>
-								</div>
-							</li>
-						</ul>
-					</li>
-				</ol>
-			</div>
-		</div>
-	</div>
 	<!-- 儿童购票说明页-->
 	<div class="childen-page" id="childen-page">
 		<div class="all-elements">
 			<div class="header">
-				<a class="icons header-back" onclick="closeChild_page()"></a>
+				<a class="icons header-back closedOfChindDescript" onclick="closeChild_page()"></a>
 				<h3>儿童购票说明</h3>
 			</div>
 			<div class="snap-content" style="padding-top: 45px;background-color: white;">
@@ -403,6 +276,92 @@
 </div>
 
 
+<!-- 填写姓名说明页-->
+<!-- 中文姓名-->
+<div class="fillName-page" id="fillName_page">
+	<div class="all-elements">
+		<div class="header">
+			<!--<a id="close_name" href="#" class="icons header-back"></a>-->
+			<a ihref="#" class="header-back"><i class="icons go-back closedOfFillName"></i></a>
+			<h3>填写姓名说明</h3>
+		</div>
+		<div class="user-content">
+			<ol class="ch_account" id="ch_account">
+			<li>姓名要与所持证件的姓名一致</li>
+			<li>中文姓名
+				<ul class="name_ul">
+					<li>若持护照乘机，必须确认护照上有中文姓名<br/>
+						生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”
+						<div class="name-example">
+							<div>中文姓名</div>
+							<div>王ben</div>
+						</div>
+					</li>
+					<li>
+						姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”
+						<div class="name-example">
+							<div>中文姓名</div>
+							<div>汉族然买买提</div>
+						</div>
+					</li>
+					<li>
+						香港、台湾、澳门的护照不支持国内航班，请改用其他证件。
+					</li>
+				</ul>
+			</li>
+			</ol>
+			<!-- 英文姓名-->
+			<ol class="ch_account" id="en_account">
+				<li>必须用英文字母填写，并确保与所持证件的姓名一致</li>
+				<li>中文姓名
+					<ul class="name_ul">
+						<li style="list-style-type: none;">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming
+							<div class="name-example">
+								<div>Surname</div>
+								<div>Zhuge</div>
+							</div>
+							<div class="name-example2" >
+								<div>Given name</div>
+								<div>Kongming</div>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li>英文姓名
+					<ul class="name_ul">
+						<li>若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
+							例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad
+							<div class="name-example">
+								<div>Surname</div>
+								<div>Potter</div>
+							</div>
+							<div class="name-example2" >
+								<div>Given nam</div>
+								<div>joerad</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="name_ul">
+						<li>姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
+							在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
+							jame M C
+							<div class="name-example">
+								<div>Surname</div>
+								<div>BlackSA</div>
+							</div>
+							<div class="name-example2" >
+								<div>Given nam</div>
+								<div>jame M C</div>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<div id="menu"></div>
+
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/country_list.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
@@ -410,6 +369,7 @@
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/scroller.js"></script>
+<script src="../scenic/js/new_countrytel_list.js"></script>
 <!--<script src="scripts/userChoice.js"></script>-->
 <script>
 	var urlobj = vlm.parseUrlPara(window.location.href),isMulSelect=vlm.getpara("isMulSelect")//是否多选
@@ -423,7 +383,9 @@
 	, tralJsonObj={}
 	, index
 	, selectUser=[]
-	  ifrCilent=window.parent.document.getElementById("choiceAir");
+	,ifrCilent=window.parent.document.getElementById("choiceAir")
+	,numofAdult=vlm.getpara("numofAdult")//id
+	,numofChlid=vlm.getpara("numofChlid")//id;
 
 	$(".newTitle").html("新增"+titleType);
 	vlm.init();
@@ -466,6 +428,10 @@
 	//获取数据源
 	function get_allList() {
 		get_hisList();
+		debugger;
+		$(".user-must").on("click",function(){
+			$("#fillName_page").show();
+		})
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
 			travJson = json
 			for(var i=0;i<= json.data.length-1;i++){
@@ -508,7 +474,12 @@
 				this.className = "icon user-choice";
 			}else{
 				this.className = "icon user-choice choiced";
-				$("#toper h3").html("已勾选"+$(".choiced").length+"人");
+				if(numofAdult!='null' && numofChlid!='null') {
+					$("#toper h3").html("已选" + $(".choiced").length + "人/成人" + numofAdult + " 1/" + numofChlid + "儿童");
+				}
+				else{
+					$("#toper h3").html("已选" + $(".choiced").length+"人");
+				}
 			}
 			if(isMulSelect=="false")
 			{
@@ -519,9 +490,14 @@
 					return;
 				}
 			}
+			if(numofAdult!='null' && numofAdult!='null' &&  $(".choiced").length>numofAdult){
+				jAlert("对不起，不能超过"+numofAdult+"成人");
+				$(this).removeClass("choiced");
+				return;
+			}
 		});
 	}
-	$(".header-back").click(function(){
+	$(".closedWin").click(function(){
 		//alert(document.getElementById("choiceAir"));
 		if (window.opener) {
 			window.close();
@@ -529,8 +505,13 @@
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		}
 	});
+	$(".closedOfFillName").click(function(){
+		$(this).parent().parent().parent().toggle();
+
+	})
 	function submit_t() {
-		debugger;
+
+
 			var seled = $(".choiced");
 			selectUser=[];
 			if(isNeedPassport=="true"){
@@ -553,11 +534,12 @@
 			var html = template(tpl,selectUser);
 			SavaLocalStorge(selectUser,isContact)
 		    var callback =vlm.getpara("callback");
-			if (callback != "undefined" && callback !=null) {
-				var callback=	eval("(" + callback + ")");
-				callback();
-			}
+
 		    $(ifrCilent.parentNode).find("#"+elementId).html(html);
+
+			if (callback !=null) {
+				window.parent.callback();
+			}
 		    ifrCilent.parentNode.removeChild(ifrCilent);
 
 
@@ -660,6 +642,7 @@
 		addAir_page.style.display = "block";
 		if(type=="new"){
 			$(".addAir-page .header h3").html("新建"+titleType+"信息");
+			$()
 		}
 		else {
 
@@ -756,6 +739,22 @@
 	}
 
 	$(".addFinish").on("click",function(){
+		var inputList=$(".addAir-page")
+		debugger;
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".cnName").eq(0).val())){
+			jAlert("中文姓名不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".lastName").eq(0).val())){
+			jAlert("姓（英文）不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".firstName").eq(0).val())){
+			jAlert("名（英文）不能为空！","",null,"确认");
+			return false;
+		}
+
+
 		var type=$(".addAir-page .header h3").attr("type");
 
 		//  判断性别
@@ -774,7 +773,7 @@
 //	var oEmail = $('#email-cell-add')[0].value;
 		//"\"DateOfBirth\":\"" + $(inputList).find(".birthDay").eq(0).val() + "\"," +
 //	if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
-		var inputList=$(".addAir-page")
+
 		console.log($(inputList).find(".lastName").eq(0).val());
 		console.log($(inputList).find(".country").eq(0).html());
 
@@ -914,14 +913,15 @@
 		<span class="tourist-name tour-short">名：</span><input id="scenic2_name2" style="width:20%;display: inline-block;" placeholder="Venson" value="{%=traveller.firstName%}">
 	</li>
 	<li>
-		<span class="tourist-name tour-short">护照：</span><input id="scenic2_idcard" style="display: inline-block;" placeholder="EA2359923" value="{%=listTravellerIdInfo[0].idNumber%}">
+		<span class="tourist-name tour-short">国籍：</span>
+		<span class="country-btn CardCountryCode" id="jp_bank_country" data-code="{%=traveller.countryCode%}" data-tel-code="86">中国</span>
 	</li>
 
 </script>
 <!--景点-获取联系人信息-->
 <script id="tpl_t_contact" type="text/template">
 	<li><span class="tourist-name tour-short">姓名：</span><input id="scenic2_name" style="display: inline-block;" value="{%=traveller.idName%}"></li>
-	<li><span class="tourist-name tour-short">手机：</span><input id="scenic2_phone" style="display: inline-block;"  value="{%=traveller.mobilePhone%}"></li>
+	<li><span class="tourist-name tour-short">手机：</span>+<span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">86</span><input type="text" name="phone" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" value="{%=traveller.mobilePhone%}"></li>
 	<li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"   value="{%=traveller.email%}"></li>
 </script>
 

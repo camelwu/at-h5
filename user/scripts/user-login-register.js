@@ -1,7 +1,7 @@
 /**
  * Created by changlv on 2016/1/7.
  */
-var newkey, phone_verify = $('#find_verify')[0], phone_reg = $('#get_code')[0], regBflag_t = false, Bflag_forget = false,urlobj = vlm.parseUrlPara(window.location.href,false);
+var newkey, phone_verify = $('#find_verify')[0], phone_reg = $('#get_code')[0], regBflag_t = false, Bflag_forget = false, urlobj = vlm.parseUrlPara(window.location.href, false);
 vlm.init();
 window.onload = function() {
 	var phone_login = $("#phone_login")[0];
@@ -385,30 +385,32 @@ function cb_register() {
 }
 
 function mycallback_login(myJson) {
-	console.log(myJson);
 	if (myJson.success) {
 		localStorage.email = myJson.data[0].email;
 		localStorage.phone = myJson.data[0].mobile;
 		localStorage.memberid = myJson.data[0].memberID;
 		localStorage.setItem('login', 1);
-		if(urlobj["returnURL"]){
-			window.location.href = urlobj["returnURL"];
-		}else if(urlobj["callback"]){
-			var c = urlobj["callback"];
-			if(window.parent){
-				var ifrCilent = window.parent.document.getElementById("choiceAir");
-				ifrCilent.parentNode.removeChild(ifrCilent);
+		if (self != top) {
+			if (urlobj["returnURL"]) {
+				window.top.location.href = urlobj["returnURL"];
+			} else {
+				var c = urlobj["callback"];
+				c.replace("#", '');
+				window.parent.eval(c + "()");
 			}
-			window.parent.c();
-		}else{
+			var ifrCilent = window.parent.document.getElementById("choiceAir");
+			ifrCilent.parentNode.removeChild(ifrCilent);
+		} else if (urlobj["returnURL"]) {
+			window.top.location.href = urlobj["returnURL"];
+		} else {
 			window.location.href = "user.html";
 		}
 	} else {
 		if (myJson.message == 'Invalid password') {
 			jAlert('密码错误，请重新输入');
-		}  else if (myJson.message == 'Invalid username or password.') {
+		} else if (myJson.message == 'Invalid username or password.') {
 			jAlert('用户名或密码错误');
-		}  else if (myJson.message == '无此用户的相关信息') {
+		} else if (myJson.message == '无此用户的相关信息') {
 			jAlert('未注册用户');
 		} else {
 			jAlert(myJson.message);
@@ -416,27 +418,18 @@ function mycallback_login(myJson) {
 	}
 }
 
-//注册登录关闭
-	var loginRegShut=document.querySelector('#login-reg-shut');
-	function loginRegSh(obj){
-		obj.onclick=function(){
-			if(urlobj["returnURL"])
-			{
-				window.location.href = urlobj["returnURL"];
-			}else if(urlobj["callback"]){
-				var c = urlobj["callback"];
-				if(window.parent){
-					var ifrCilent = window.parent.document.getElementById("choiceAir");
-					ifrCilent.parentNode.removeChild(ifrCilent);
-				}
-
-			}else{
-				window.location.href = "user.html";
-			}
-		}
+//头部关闭
+var loginRegShut = document.querySelector('#login-reg-shut');
+loginRegShut.onclick = function() {
+	if (self != top) {
+		var ifrCilent = window.parent.document.getElementById("choiceAir");
+		ifrCilent.parentNode.removeChild(ifrCilent);
+	} else if (urlobj["returnURL"]) {
+		window.top.location.href = urlobj["returnURL"];
+	} else {
+		window.location.href = "user.html";
 	}
-	loginRegSh(loginRegShut);
-
+};
 
 //注册验证码回调
 function mycallback_verify(ret) {
