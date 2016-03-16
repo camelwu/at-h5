@@ -105,7 +105,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var cardId;
                 //中文姓名验证
                 var sChiName=input[0].value;
-                if( ! vlm.Utils.validate.ChineseName(sChiName))
+                if( ! vlm.Utils.validate.chiEngName(sChiName))
                 {
                     jAlert('请输入正确的中文名');
                     return;
@@ -170,11 +170,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
                 //出生日期校验
                 var oBirthday=input[5].value.replace('年','-').replace('月','-').replace('号','').replace('日','');
-                if( ! vlm.Utils.compareBirth(oBirthday))
-                {
-                    jAlert('你选择的出生日期不符合购票要求(建议年龄大于13周岁)');
-                    return;
-                }
+
                 var oMobile = $('#mobile-cell-add')[0].value;
                 var oEmail = $('#email-cell-add')[0].value;
 
@@ -210,7 +206,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var countryName = document.getElementById("countryName").innerHTML;
                 //中文姓名验证
                 var sChiName=input[0].value;
-                if( ! vlm.Utils.validate.ChineseName(sChiName))
+                if( ! vlm.Utils.validate.chiEngName(sChiName))
                 {
                     jAlert('请输入正确的中文名');
                     return;
@@ -276,11 +272,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
                 //出生日期校验
                 var oBirthday=input[5].value.replace('年','-').replace('月','-').replace('号','').replace('日','');
-                if( ! vlm.Utils.compareBirth(oBirthday))
-                {
-                    jAlert('你选择的出生日期不符合购票要求(建议年龄大于13周岁)');
-                    return;
-                }
+
                 // 手机号邮箱检验
                 var oMobile = $('#mobile-cell')[0].value;
                 var oEmail = $('#email-cell')[0].value;
@@ -543,15 +535,15 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 //    });
 
     //新增常旅
-    var myDate2 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
+    var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
     var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
-    var myDate2 = new Scroller({id: "postCard", type:"card",cont:"uuu"});
+    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu"});
     //编辑常旅
-    var myDate3 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"eee1"});
-    var myDate3 = new Scroller({id: "time-cont-edit", type:"validity",cont:"eee2"});
-    var myDate3 = new Scroller({id: "cardType", type:"card",cont:"eee3"});
+    var myDate4 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"eee1"});
+    var myDate5 = new Scroller({id: "time-cont-edit", type:"validity",cont:"eee2"});
+    var myDate6 = new Scroller({id: "cardType", type:"card",cont:"eee3"});
     //个人信息修改页生日
-    var myDate4 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
+    var myDate7 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
     
 });
