@@ -532,7 +532,7 @@
 							"Parameters" : {
 								"PackageID" : val.PackageID,
 								"Adult" : MinPax,
-								"Child" : [ChildAgeMin, ChildAgeMax],
+								"Child" : [ChildAgeMin],
 								"Tours" : []
 							},
 							"ForeEndType" : 3,
@@ -878,19 +878,32 @@
 					var tpl_ScenicPrices = template("tpl_ScenicPrices", data);
 
 					for (var k = 0; k < data.SearchPriceData.data.prices.length; k++) {
-						var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
-						var title = data.SearchPriceData.data.prices[k].title;
-						child_price.find(".js-add-setmeal-tit:last").html(title);
-						if (val.ADU == 1 && data.SearchPriceData.data.prices[k].category == "ADULT") {
-							child_price.find("[data-c-id=meal]:last").attr("class", "setmeal-tr fr on");
-							child_price.find("[data-c-id=meal]:last").attr("data-first", 1);
+
+						if(val.ADU == 0 && data.SearchPriceData.data.prices[k].category == "ADULT"){
+							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
+							var title = data.SearchPriceData.data.prices[k].title;
+							child_price.find(".js-add-setmeal-tit:last").html(title);
+							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
+							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 						}
-						if (val.ADU == 0 && data.SearchPriceData.data.prices[k].category == "CHILD") {
-							child_price.find("[data-c-id=meal]:last").attr("class", "setmeal-tr fr on");
-							child_price.find("[data-c-id=meal]:last").attr("data-first", 1);
+						if(val.ADU == 1 && data.SearchPriceData.data.prices[k].category == "CHILD"){
+							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
+							var title = data.SearchPriceData.data.prices[k].title;
+							child_price.find(".js-add-setmeal-tit:last").html(title);
+							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
+							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 						}
-						child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
-						child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
+//						child_price.find(".js-add-setmeal-tit:last").html(title);
+//						if (val.ADU == 1 && data.SearchPriceData.data.prices[k].category == "ADULT") {
+//							child_price.find("[data-c-id=meal]:last").attr("class", "setmeal-tr fr on");
+//							child_price.find("[data-c-id=meal]:last").attr("data-first", 1);
+//						}
+//						if (val.ADU == 0 && data.SearchPriceData.data.prices[k].category == "CHILD") {
+//							child_price.find("[data-c-id=meal]:last").attr("class", "setmeal-tr fr on");
+//							child_price.find("[data-c-id=meal]:last").attr("data-first", 1);
+//						}
+//						child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
+//						child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 					}
 				}
 				/**
