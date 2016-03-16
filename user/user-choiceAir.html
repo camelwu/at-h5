@@ -506,12 +506,10 @@
 		}
 	});
 	$(".closedOfFillName").click(function(){
-		$(this).parent().parent().parent().toggle();
+		$(this).parent().parent().parent().hide();
 
 	})
 	function submit_t() {
-
-
 			var seled = $(".choiced");
 			selectUser=[];
 			if(isNeedPassport=="true"){
@@ -530,8 +528,9 @@
 
 			}
 
-			var tpl=GetTpl(from,isContact)
-			var html = template(tpl,selectUser);
+//			var tpl=GetTpl(from,isContact)
+//			var html = template(tpl,selectUser);
+		    ReplaceData(elementId,selectUser);
 			SavaLocalStorge(selectUser,isContact)
 		    var callback =vlm.getpara("callback");
 
@@ -541,8 +540,16 @@
 				window.parent.callback();
 			}
 		    ifrCilent.parentNode.removeChild(ifrCilent);
+	}
+	function ReplaceData(id,data){
+		debugger;
 
+		var elementId="#"+id
+		var htmlObj=parent.document.getElementById(elementId);
+		$(htmlObj).find("'"+elementId+"'").each(function(){
+			$(this).attr("data-element")
 
+		})
 
 	}
 	//保存选择的记录
