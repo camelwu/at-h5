@@ -361,33 +361,37 @@ function u_perInfo(){
 }
 
 //修改出生日期
-//$('#birth-cont-per').click(function(){
-//    setTimeout(function(){
-//        var oPerBack=$('.cabin-sure');
-//        function selDate(obj){
-//            obj.on('click', show)
-//        }
-//        function show(){
-//            var birthstr=$('#birth-cont-per')[0].value.replace('年','-').replace('月','-').replace('日','').replace('号','');
-//            console.log(birthstr);
-//            if( ! vlm.Utils.compareBirth(birthstr))
-//            {
-//
-//                jAlert('您选择的出生日期大于当前日期');
-//                return;
-//            }
-//            var Parameters={
-//                "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
-//                "ForeEndType": 3,
-//                "Code": "0056"
-//            };
-//            console.log(Parameters);
-//            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
-//        }
-//        selDate(oPerBack);
-//    },1000)
-//
-//})
+$('#birth-cont-per').click(function(){
+    setTimeout(function(){
+        var oPerBack=$('.cabin-sure');
+        function selDate(obj){
+            obj.on('click', show)
+        }
+        function show(){
+            var box = $('.sel-time .date-selected'), i = 0, len = box.length, opeater = document.getElementById("opeater"), arr = [];
+            var ele = document.getElementById('' + opeater.getAttribute("data-id"));
+            for (; i < len; i++) {
+                arr.push(box[i].innerHTML);
+            }
+            var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
+            console.log(birthstr);
+            if( ! vlm.Utils.compareBirth(birthstr))
+            {
+                jAlert('您选择的出生日期大于当前日期');
+                return;
+            }
+            var Parameters={
+                "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
+                "ForeEndType": 3,
+                "Code": "0056"
+            };
+            console.log(Parameters);
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+        }
+        selDate(oPerBack);
+    },1000)
+
+})
 
 //修改出生日期回调
 function mycallback_birth(ret){

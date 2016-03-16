@@ -243,18 +243,45 @@ uoHisData();
     var downBok=true;
     var bOk2=true;
     
-    //底部浮层在调用键盘时遮挡页面元素
-    
+    //android底部浮层在调用键盘时遮挡页面元素
+    //ios qq浏览器 fixed 支持问题
+    //总体测试效果不佳  建议后续需要用户输入的页面，统一将输入框放到页面顶部
+    var checkBrowser = function(){
+        var ua = navigator.userAgent;
+        return {
+            trident: ua.indexOf('Trident') > -1, //IE内核
+            presto: ua.indexOf('Presto') > -1, //opera内核
+            webKit: ua.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+            gecko: ua.indexOf('Gecko') > -1 && ua.indexOf('KHTML') == -1, //火狐内核
+            mobile: !!ua.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端
+            ios: !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1, //android终端或者uc浏览器
+            iPhone: ua.indexOf('iPhone') > -1 || ua.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+            iPad: ua.indexOf('iPad') > -1, //是否iPad
+            webApp: ua.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+            qq:/qqbrowser/i.test(ua)
+        }
+    }
     all_elements.onclick = function(e){
+        var browser = checkBrowser();
+        //alert(browser.qq);
         var targetEleName = e.target.tagName.toLocaleLowerCase();
         var uo_footer = document.getElementById("uo_footer");
         if(targetEleName == "input"){
             uo_footer.style.position = "absolute";
+            if(browser.qq){
+                document.querySelectorAll(".header")[0].style.position= "relative";
+                lsf_myweb.getbyclass(document.getElementById("all_elements"),"uo_con1")[0].style.marginTop = "0px";
+            }
         }else{
             uo_footer.style.position = "fixed";
+            if(browser.qq){
+                document.querySelectorAll(".header")[0].style.position= "fixed";
+                lsf_myweb.getbyclass(document.getElementById("all_elements"),"uo_con1")[0].style.marginTop = "45px";
+            }
         }
     }
-    
+
     //返回按钮
     uo_back.onclick=function(){
         window.history.go(-1);
@@ -617,6 +644,22 @@ uoHisData();
         console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
         uo_form.submit();
+    });
+    
+    var listContainer = $(".all-elements")[0];
+    lsf_myweb.bind(listContainer,'touchstart',function(event){
+        //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
+        //for android
+        //如果是android浏览器 
+        if(ua.indexOf("Android") > -1 || ua.indexOf('Linux') > -1){
+        }
+       // alert($(".header")[0].style);
+    });
+    lsf_myweb.bind(listContainer,'touchmove',function(event){
+        
+    });
+    lsf_myweb.bind(listContainer,'touchend',function(event){
+      // alert($(".header")[0].style);
     });
     //取消说明点击事件
     //lsf_myweb.bind(uo_c1_infoDown,'click',function(){
