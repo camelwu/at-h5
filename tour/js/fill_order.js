@@ -452,7 +452,7 @@
                 '{% } %}'
             ].join('');
             var html_fd = template(tpl,data);
-            $('.separate_num i').html(data.hotels[0].avgRatePerPaxSeparatelyInCNY);
+            //$('.separate_num i').html(data.hotels[0].avgRatePerPaxSeparatelyInCNY);
             $('#fillDetail').html(html_fd);
             vlm.init();
         }else{
