@@ -164,14 +164,6 @@
 
             var val = vlm.parseUrlPara(window.location.href);
             var themeId = "";
-            var defineProperty = {
-                get themeId (){
-                    return themeId;
-                },
-                set themeId (value){
-                    themeId = value;
-                }
-            };
             vlm.init();
 
 
@@ -228,9 +220,9 @@
 
 
                 $("#priceSort").toggle(function(){
-                    MT.CLoadPriceSort("HighToLow",defineProperty.themeId);
+                    MT.CLoadPriceSort("HighToLow",themeId);
                 },function(){
-                    MT.CLoadPriceSort("LowToHigh",defineProperty.themeId);
+                    MT.CLoadPriceSort("LowToHigh",themeId);
                 });
             }
 
@@ -361,8 +353,8 @@
                         themeid=$(".spot-slected").attr("title");
                         //调用主题方法
                         MT.CLoadFilterTheme(themeid);
-                        defineProperty.themeId = themeid;
-                        console.log(defineProperty.themeId);
+                        themeId = themeid;
+                        console.log(themeId);
                     }
 
 
