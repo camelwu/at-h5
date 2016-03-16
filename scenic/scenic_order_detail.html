@@ -13,7 +13,14 @@
 
 	</head>
 	<body>
-
+	<div id="preloader">
+		<div id="status">
+			<p class="center-text">
+				<br>
+				<em>加载中……</em>
+			</p>
+		</div>
+	</div>
 		<div class="all-elements">
 			<!--   顶部   -->
 			<div class="header">
@@ -393,6 +400,7 @@
 		</script>
 
 		<script>
+			MT.AnimIn();
 			function myCallBack() {
 				countryShow.init();
 			}
@@ -1168,23 +1176,13 @@
 					}
 					$(".js-price-list").html(list);
 				}
-				/**
-				 * 阻止事件
-				 */
-				MT.stopDefault = function(e) {
-					if (e && e.preventDefault)
-						e.preventDefault();
-					else
-						window.event.returnValue = false;
 
-					return false;
-				}
 				/**
 				 * 返回SearchPrice
 				 */
 				MT.recalSearchPrice = function(SearchPrice) {
 					var relTotalPrice = 0;
-
+					MT.AnimIn();
 					MT.ajaxJson("", JSON.stringify(SearchPrice), function(data) {
 						var json = data, len = 0;
 						console.log(json);
@@ -1199,7 +1197,7 @@
 							jAlert(json.message, "提示");
 
 						}
-					}, MT.ajaxAnimIn, MT.ajaxAnimOut,true);
+					}, "","",true);
 
 					/**
 					 * SearchPrice callback
@@ -1215,34 +1213,39 @@
 				 * @constructor
 				 */
 				MT.validate = function(data, rules, message) {
+					var status = true;
 					if (rules.required == "required") {
 						if (!vlm.Utils.validate.isNoEmpty(data)) {
 							jAlert(message.required, "提示");
-							MT.stopDefault(e);
+							status = false;
+							return false;
 						}
 					}
 					if (rules.email == "email") {
 						if (!vlm.Utils.validate.email(data)) {
 							jAlert(message.email, "提示");
-
-							MT.stopDefault(e);
+							status = false;
+							return false;
 						}
 					}
 					if (rules.phone == "phone") {
 						if (!vlm.Utils.validate.mobileNo(data)) {
 							jAlert(message.phone, "提示");
-							MT.stopDefault(e);
+							status = false;
+							return false;
 						}
 					}
-
+					MT.AnimOut();
+					return status;
 				}
 				/**
 				 * 预订 创建订单
 				 * @constructor
 				 */
 				MT.OrderDetail = function() {
-					$(".js-order-detail").click(function() {
-						var AdultCount = 0, ChildCount = 0, ChildArray = [], Childtmp = "", TourArray = [], TourObj = {}, DOB = "", TravelDate = "", TourSession = "", TourCount = 0, TourID = 0, PickupID = "", PickupCount = 0, currentY = 0, PickupTmp, PickupPoint = {}, TravelerType = "", Salutation = "", FirstName = "", LastName = "", NationalityCode = "", Travelers = [], Email = "", ContactNo = {}, CountryCode = 0, PhoneNo = 0, CurrencyCode = "", recalTotalPrice = 0, TravelerDocument;
+					$(".js-order-detail").click(function(e) {
+
+						var Status,AdultCount = 0, ChildCount = 0, ChildArray = [], Childtmp = "", TourArray = [], TourObj = {}, DOB = "", TravelDate = "", TourSession = "", TourCount = 0, TourID = 0, PickupID = "", PickupCount = 0, currentY = 0, PickupTmp, PickupPoint = {}, TravelerType = "", Salutation = "", FirstName = "", LastName = "", NationalityCode = "", Travelers = [], Email = "", ContactNo = {}, CountryCode = 0, PhoneNo = 0, CurrencyCode = "", recalTotalPrice = 0, TravelerDocument;
 						var param = {
 							"Parameters" : {
 								"PackageID" : ExtendData.PackageID,
@@ -1250,12 +1253,13 @@
 							"ForeEndType" : 3,
 							"Code" : "0092"
 						}
-						console.log(recalSearchPrice);
+
 						//成人数量
 						AdultCount = $(".js-Audlt-cont").html();
 						if (AdultCount == undefined) {
 							AdultCount = 0;
 						}
+						recalSearchPrice.Parameters.Adult = AdultCount;
 						param.Parameters.Adult = AdultCount;
 
 						//儿童年龄数组
@@ -1268,20 +1272,24 @@
 							ChildCount = parseInt(ChildCount);
 							for (var i = 0; i < ChildCount; i++) {
 								Childtmp = $(".js-children-wrap").find("input").eq(i).val();
-								MT.validate(Childtmp, {
+								Status = MT.validate(Childtmp, {
 									"required" : "required"
 								}, {
 									"required" : "儿童年龄不能为空"
 								});
+								if(!Status){
+									return false;
+								}
+
 								ChildArray.push(Childtmp);
 							}
+							recalSearchPrice.Parameters.Child = ChildArray;
 						}
+
 						param.Parameters.Child = ChildArray;
 
-						//重新计算价格
 
-						recalTotalPrice = MT.recalSearchPrice(recalSearchPrice);
-						console.log(recalTotalPrice);
+
 
 						//景点
 						TourCount = $(".js-sce").length;
@@ -1311,25 +1319,35 @@
 						//取票人信息
 						FirstName = $("#scenic2_name1").val();
 						LastName = $("#scenic2_name2").val();
-						MT.validate(FirstName, {
+						Status = MT.validate(FirstName, {
 							"required" : "required"
 						}, {
 							"required" : "取票人姓不能为空"
 						});
-						MT.validate(LastName, {
+						if(!Status){
+							return false;
+						}
+						Status = MT.validate(LastName, {
 							"required" : "required"
 						}, {
 							"required" : "取票人名不能为空"
 						});
+						if(!Status){
+							return false;
+						}
 
 						//是否需要护照
 						if (ExtendData.travelersInput == "RequiredAllTravelersDetailsWithDocumentInfo") {
 							TravelerDocument = $("#scenic2_idcard").val();
-							MT.validate(TravelerDocument, {
+							Status =MT.validate(TravelerDocument, {
 								"required" : "required"
 							}, {
 								"required" : "护照不能为空"
 							});
+							if(!Status){
+								return false;
+							}
+
 							Travelers.push({
 								"TravelerType" : "Adult",
 								"Salutation" : Salutation,
@@ -1356,16 +1374,22 @@
 							var DepartDateTime = $("#departDateTime").html() + "T00:00:00";
 							var ArrivalFlightNo = $("#arrivalFlightNo").val();
 							var ArrivalDateTime = $("#arrivalDateTime").html() + "T00:00:00";
-							MT.validate(DepartFlightNo, {
+							Status = MT.validate(DepartFlightNo, {
 								"required" : "required"
 							}, {
 								"required" : "航班信息不能为空"
 							});
-							MT.validate(ArrivalFlightNo, {
+							if(!Status){
+								return false;
+							}
+							Status = MT.validate(ArrivalFlightNo, {
 								"required" : "required"
 							}, {
 								"required" : "航班信息不能为空"
 							});
+							if(!Status){
+								return false;
+							}
 							param.Parameters.FlightDetails = {
 								"ArrivalFlightNo" : ArrivalFlightNo,
 								"ArrivalDateTime" : ArrivalDateTime,
@@ -1377,38 +1401,56 @@
 						//联系人信息
 						FirstName = $("#scenic_name1").val();
 						LastName = $("#scenic_name2").val();
-						MT.validate(FirstName, {
+						Status = MT.validate(FirstName, {
 							"required" : "required"
 						}, {
 							"required" : "联系人信息姓不能为空"
 						});
-						MT.validate(LastName, {
+						if(!Status){
+							return false;
+						}
+						Status = MT.validate(LastName, {
 							"required" : "required"
 						}, {
 							"required" : "联系人信息名不能为空"
 						});
+						if(!Status){
+							return false;
+						}
 						PhoneNo = $("#scenic_phone").val();
-						MT.validate(PhoneNo, {
+						Status = MT.validate(PhoneNo, {
 							"required" : "required"
 						}, {
 							"required" : "联系电话不能为空"
 						});
-						MT.validate(PhoneNo, {
+						if(!Status){
+							return false;
+						}
+						Status = MT.validate(PhoneNo, {
 							"phone" : "phone"
 						}, {
 							"phone" : "联系电话格式不正确"
 						});
+						if(!Status){
+							return false;
+						}
 						Email = $("#scenic_email").val();
-						MT.validate(Email, {
+						Status = MT.validate(Email, {
 							"required" : "required"
 						}, {
 							"required" : "Email不能为空"
 						});
-						MT.validate(Email, {
+						if(!Status){
+							return false;
+						}
+						Status = MT.validate(Email, {
 							"email" : "email"
 						}, {
 							"email" : "请输入正确Email格式"
 						});
+						if(!Status){
+							return false;
+						}
 						param.Parameters.ContactDetails = {
 							"Salutation" : Salutation,
 							"FirstName" : FirstName,
@@ -1424,11 +1466,14 @@
 						PickupCount = $("#choHotel").length;
 						if (PickupCount > 0) {
 							PickupTmp = $("#choHotel").attr("data-key");
-							MT.validate(PickupTmp, {
+							Status = MT.validate(PickupTmp, {
 								"required" : "required"
 							}, {
 								"required" : "请选择接送地点"
 							});
+							if(!Status){
+								return false;
+							}
 							if (PickupTmp != "") {
 								PickupID = $("#choHotel").attr("data-key");
 								PickupCount = $("#choHotel").html();
@@ -1441,6 +1486,8 @@
 
 						}
 
+						//重新计算价格
+						recalTotalPrice = MT.recalSearchPrice(recalSearchPrice);
 						//价格信息
 						CurrencyCode = "CNY";
 						//                    recalTotalPrice = $(".js-order-total").html();
@@ -1451,7 +1498,9 @@
 						};
 
 						console.log(param);
-						MT.ajaxJson("", JSON.stringify(param), MT.callbackOrderDetail, MT.ajaxAnimIn, MT.ajaxAnimOut);
+
+						MT.ajaxJson("", JSON.stringify(param), MT.callbackOrderDetail, "", "",true);
+						MT.AnimOut();
 					});
 				}
 				/**

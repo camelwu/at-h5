@@ -148,7 +148,7 @@ var lsf_myweb = {
 							str3 += '<li class="fl" style="background:url(../images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;"></li>';
 						}
 					}
-					str2 += '<div class="reBox">' + '<div class="clearfix lsf_reTitle">' + '<h2 class="fl">' + comments[i].title + '</h2>' + '<ol class="clearfix fr lsf_reSta">' + str3 + '</ol>' + '</div>' + '<p class="clearfix comments"><span class="com_cont">' + maxWord(comments[i].comments) + '</span>' + '<em class="fr drop_down"><i></i></em>' + '</p>' + '<div class="lsf_reUser">' + '<span class="reu_span1"><b class="fl">' + comments[i].reviewerName + '</b><i class="fl hr_city">' + comments[i].countryName + '</i></span>' + '<span class="reu_span2"><em class="fr">' + comments[i].createdDate.substring(0, comments[i].createdDate.indexOf('T')) + '</em></span>' + '</div>' + '</div>';
+					str2 += '<div class="reBox">' + '<div class="clearfix lsf_reTitle">' + '<h2 class="fl">' + comments[i].title + '</h2>' + '<ol class="clearfix fr lsf_reSta">' + str3 + '</ol>' + '</div>' + '<p class="clearfix comments"><span class="com_cont">' + maxWord(comments[i].comments) + '</span></p>' + '<em class="fr drop_down"><i></i></em>' + '<div class="lsf_reUser">' + '<span class="reu_span1"><b class="fl">' + comments[i].reviewerName + '</b><i class="fl hr_city">' + comments[i].countryName + '</i></span>' + '<span class="reu_span2"><em class="fr">' + comments[i].createdDate.substring(0, comments[i].createdDate.indexOf('T')) + '</em></span>' + '</div>' + '</div>';
 				}
 				lsf_myweb.getbyid('lsf_reDiscuss').innerHTML += str2;
 				notShow();
@@ -178,7 +178,7 @@ var lsf_myweb = {
 							str3 += '<li class="fl" style="background:url(../images/ui/icons1.png) -2.6rem -3.8rem;background-size:40rem 12rem;"></li>';
 						}
 					}
-					str2 += '<div class="reBox">' + '<div class="clearfix lsf_reTitle">' + '<h2 class="fl">' + comments[i].title + '</h2>' + '<ol class="clearfix fr lsf_reSta">' + str3 + '</ol>' + '</div>' + '<p class="clearfix comments"><span class="com_cont">' + maxWord(comments[i].comments) + '</span>' + '<em class="fr drop_down"><i></i></em>' + '</p>' + '<div class="lsf_reUser">' + '<span class="clearfix reu_span1"><b class="fl">' + comments[i].reviewerName + '</b><i class="fl">' + comments[i].countryName + '</i></span>' + '<span class="clearfix reu_span2"><em class="fr">' + comments[i].createdDate.substring(0, comments[i].createdDate.indexOf('T')) + '</em></span>' + '</div>' + '</div>';
+					str2 += '<div class="reBox">' + '<div class="clearfix lsf_reTitle">' + '<h2 class="fl">' + comments[i].title + '</h2>' + '<ol class="clearfix fr lsf_reSta">' + str3 + '</ol>' + '</div>' + '<p class="clearfix comments"><span class="com_cont">' + maxWord(comments[i].comments) + '</span></p>'  + '<em class="fr drop_down"><i></i></em>' + '<div class="lsf_reUser">' + '<span class="clearfix reu_span1"><b class="fl">' + comments[i].reviewerName + '</b><i class="fl">' + comments[i].countryName + '</i></span>' + '<span class="clearfix reu_span2"><em class="fr">' + comments[i].createdDate.substring(0, comments[i].createdDate.indexOf('T')) + '</em></span>' + '</div>' + '</div>';
 				}
 
 				lsf_myweb.getbyid('lsf_reDiscuss').innerHTML += str2;
@@ -197,7 +197,7 @@ var lsf_myweb = {
 			//评论数小于110字节的，不显示下拉按钮
 			for (var i = 0; i < com_cont.length; i++) {
 				if (count(com_cont[i].innerHTML).n <= 110) {
-					coms[i].innerHTML = '<span class="com_cont">' + comments[i].comments + '</span>';
+                    lsf_myweb.getbyclass(lsf_myweb.getbyid('lsf_reDiscuss'), 'drop_down')[i].style.display= "none";
 				}
 			}
 		}

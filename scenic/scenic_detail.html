@@ -23,6 +23,7 @@
 
 </head>
 <body>
+
     <div class="all-elements">
         <div id="content" class="snap-content">
             <a href="javascript:history.go(-1)" class="icons top-back"> </a>
@@ -182,6 +183,7 @@
 <script>
     /*景点 目标城市列表页MT*/
     (function(){
+
         var val = vlm.parseUrlPara(window.location.href);
         var themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
         vlm.init();
@@ -356,7 +358,7 @@
         MT.CCheckLogin = function(packageId,RequiredPickupPoint,Adult,fail){
           var that=this,returnUrl = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
             if(vlm.checkLogin(returnUrl)){
-                debugger;
+//                debugger;
                 window.location.href = returnUrl;
             }
         }
