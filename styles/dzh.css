@@ -136,6 +136,38 @@
     height: 46px;
     border-bottom: 1px solid #dedede;
 }
+.nav2-tour{
+    height:auto!important;
+    border-bottom: 1px solid #dedede;
+}
+.nav2-tour div:first-child{
+    margin-left: 15px;
+    margin-top: 8px;
+    padding-right: 10px;
+    color: #fdb330;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.nav2-tour div:nth-child(2){
+    text-align: left;
+    padding-left: 15px;
+}
+.nav2-tour input{
+    display: inline-block;
+    width: 22%;
+}
+.nav2-tour i{
+    background-image: url(../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -245px 0 ;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    right: 0;
+    bottom: 5px;
+}
 .nav2-center input{
     width: 85px;
     color: #000;

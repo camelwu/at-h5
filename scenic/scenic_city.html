@@ -19,6 +19,14 @@
     <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
 <ul id="js_oversea" class="gui-city-itmes">
     <li>
         <span class="gui-city-t">当前</span>
@@ -129,7 +137,7 @@
     var globalData = {},isLoad = false;
     (function(){
         //hotcity listcity callbackcode
-
+        MT.AnimIn();
         var val = vlm.parseUrlPara(window.location.href);
         var callback = MT.GetQueryString("callback");
         var callbackcity = MT.getCity(val.citycode,callback);
@@ -137,6 +145,7 @@
         MT.ajaxAnimIn();
         MT.bindclickBackPage = function(){
             $(".js-backpage").click(function(){
+                MT.AnimIn();
                 history.go(-1);
             });
         };
@@ -316,6 +325,7 @@
             if(url == ""){
                 return false;
             }
+            MT.AnimIn();
             window.location.href = "../"+url+"?DestCityCode="+cc;
         }
 

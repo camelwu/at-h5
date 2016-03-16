@@ -34,7 +34,6 @@
     <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
-
     <!--     banner     -->
     <div class="all-elements">
         <div id="content" class="snap-content">
@@ -177,7 +176,6 @@
     <script>
         /*景点首页MT*/
         (function(){
-
             vlm.init();
             /**
              * 切换选项卡
@@ -241,6 +239,7 @@
              * @constructor
              */
             MT.CurrentPageTolist = function(cityCode){
+                MT.AnimIn();
                 if(cityCode == "more"){
                     window.location.href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html";
                     return false;

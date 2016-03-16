@@ -167,6 +167,25 @@ header i{
     margin-right:1.5rem;
     font-size:1.4rem;
 }
+.reBox .drop_down{
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 54px;
+    bottom: 30px;
+    right: 0px;
+    background-color: white;
+    z-index: 999;
+}
+.reBox .drop_down i{
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(../../images/ui/icons.png) -16.9rem -0.5rem;
+    background-size: 24.3rem 16rem;
+    bottom: 15px;
+    right: 14px;
+    position: absolute;
+}
 .comments em{
 	display:block;
 	position:absolute;
