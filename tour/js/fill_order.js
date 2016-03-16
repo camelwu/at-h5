@@ -134,7 +134,6 @@
                 //totPrice=perPrice*(tAdult+totChiNUm);
                 totPrice=perPrice;
                 $('.all_num i').html(totPrice);
-                $('.separate_num i').html(totPrice);
                 //roomID
                 roomID=arr2[4].split('=')[1];
             }
@@ -453,6 +452,7 @@
                 '{% } %}'
             ].join('');
             var html_fd = template(tpl,data);
+            $('.separate_num i').html(data.hotels[0].avgRatePerPaxSeparatelyInCNY);
             $('#fillDetail').html(html_fd);
             vlm.init();
         }else{
