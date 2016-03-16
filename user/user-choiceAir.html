@@ -59,7 +59,7 @@
 </div>
 <div class="all-elements">
 	<div class="header" id="toper">
-		<a href="#" class="header-back name-illustrate"><i class="icons go-back"></i></a>
+		<a href="#" class="header-back name-illustrate closedWin"><i class="icons go-back"></i></a>
 		<h3>已选：<span class="adult-number">1</span>人/5 <span class="childen-number">1</span>人/2</h3>
 		<div class="header-finish" onclick="submit_t();">
 			完成
@@ -210,7 +210,7 @@
 	<div class="childen-page" id="childen-page">
 		<div class="all-elements">
 			<div class="header">
-				<a class="icons header-back" onclick="closeChild_page()"></a>
+				<a class="icons header-back closedOfChindDescript" onclick="closeChild_page()"></a>
 				<h3>儿童购票说明</h3>
 			</div>
 			<div class="snap-content" style="padding-top: 45px;background-color: white;">
@@ -282,7 +282,7 @@
 	<div class="all-elements">
 		<div class="header">
 			<!--<a id="close_name" href="#" class="icons header-back"></a>-->
-			<a ihref="#" class="header-back"><i class="icons go-back"></i></a>
+			<a ihref="#" class="header-back"><i class="icons go-back closedOfFillName"></i></a>
 			<h3>填写姓名说明</h3>
 		</div>
 		<div class="user-content">
@@ -383,7 +383,9 @@
 	, tralJsonObj={}
 	, index
 	, selectUser=[]
-	  ifrCilent=window.parent.document.getElementById("choiceAir");
+	,ifrCilent=window.parent.document.getElementById("choiceAir")
+	,numofAdult=vlm.getpara("numofAdult")//id
+	,numofChlid=vlm.getpara("numofChlid")//id;
 
 	$(".newTitle").html("新增"+titleType);
 	vlm.init();
@@ -428,7 +430,7 @@
 		get_hisList();
 		debugger;
 		$(".user-must").on("click",function(){
-			$("#fillName_page").toggle();
+			$("#fillName_page").show();
 		})
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
 			travJson = json
@@ -472,7 +474,12 @@
 				this.className = "icon user-choice";
 			}else{
 				this.className = "icon user-choice choiced";
-				$("#toper h3").html("已选"+$(".choiced").length+"人/成人1 1/2儿童");
+				if(numofAdult!='null' && numofChlid!='null') {
+					$("#toper h3").html("已选" + $(".choiced").length + "人/成人" + numofAdult + " 1/" + numofChlid + "儿童");
+				}
+				else{
+					$("#toper h3").html("已选" + $(".choiced").length+"人");
+				}
 			}
 			if(isMulSelect=="false")
 			{
@@ -483,9 +490,14 @@
 					return;
 				}
 			}
+			if(numofAdult!='null' && numofAdult!='null' &&  $(".choiced").length>numofAdult){
+				jAlert("对不起，不能超过"+numofAdult+"成人");
+				$(this).removeClass("choiced");
+				return;
+			}
 		});
 	}
-	$(".header-back").click(function(){
+	$(".closedWin").click(function(){
 		//alert(document.getElementById("choiceAir"));
 		if (window.opener) {
 			window.close();
@@ -493,6 +505,10 @@
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		}
 	});
+	$(".closedOfFillName").click(function(){
+		$(this).parent().parent().parent().toggle();
+
+	})
 	function submit_t() {
 
 
@@ -723,16 +739,17 @@
 	}
 
 	$(".addFinish").on("click",function(){
-
-		if(!vlm.Utils.validate["isNoEmpty"]($(".cnName").val())){
+		var inputList=$(".addAir-page")
+		debugger;
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".cnName").eq(0).val())){
 			jAlert("中文姓名不能为空！","",null,"确认");
 			return false;
 		}
-		if(!vlm.Utils.validate["isNoEmpty"]($(".lastName").val())){
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".lastName").eq(0).val())){
 			jAlert("姓（英文）不能为空！","",null,"确认");
 			return false;
 		}
-		if(!vlm.Utils.validate["isNoEmpty"]($(".lastName").val())){
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".firstName").eq(0).val())){
 			jAlert("名（英文）不能为空！","",null,"确认");
 			return false;
 		}
@@ -756,7 +773,7 @@
 //	var oEmail = $('#email-cell-add')[0].value;
 		//"\"DateOfBirth\":\"" + $(inputList).find(".birthDay").eq(0).val() + "\"," +
 //	if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
-		var inputList=$(".addAir-page")
+
 		console.log($(inputList).find(".lastName").eq(0).val());
 		console.log($(inputList).find(".country").eq(0).html());
 
