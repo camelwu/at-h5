@@ -155,6 +155,8 @@ var ticketSingle = {
                 var result = ticketSingle.returnWeek(arg);
                 document.querySelector('.single-ticket-input').innerHTML = result;
                 that.backParaObj.DepartDate = arg;
+                that.backParaObj.pageNo= 1;
+                that.backParaObj.pageSize= 10;
                 document.querySelector('#preloader').style.display='block';
                 that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
             }else {
@@ -175,6 +177,8 @@ var ticketSingle = {
                 oDivs[0].className = 'unit previous-day';
                 document.querySelector('.single-ticket-input').innerHTML = result_;
                 that.backParaObj.DepartDate = arg;
+                that.backParaObj.pageNo= 1;
+                that.backParaObj.pageSize= 10;
                 document.querySelector('#preloader').style.display='block';
                 that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
             }

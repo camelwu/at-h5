@@ -271,7 +271,6 @@
 
 					},
 					safecode:function(obj){
-						debugger;
 						var reg = new RegExp("^[0-9]*$");
 						if(obj.length>3 || !reg.test(obj)){
 							return false;
@@ -807,8 +806,8 @@
 					}
 				}
 				//loadJsonp("yy","package.js",callbackFunction);
-			}, l_login = function(c) {console.log(c);
-                var urlstr = typeof(eval(c)) === "function"?'callback='+c:'returnURL='+c,loginer = createIframe('../user/user-login.html?'+urlstr);
+			}, l_login = function(c) {
+                var urlstr = typeof c === "string" && (c.indexOf(".html")>-1 || c.indexOf("&")>-1)?'returnURL='+c.replace("&","#"):'callback='+c,loginer = createIframe('../user/user-login.html?'+urlstr);
 				document.body.appendChild(loginer);
 			}, l_contact = function() {
 				if (document.getElementById("name")) {

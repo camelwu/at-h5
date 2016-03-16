@@ -388,11 +388,11 @@ function mycallback_login(myJson) {
 	if (myJson.success) {
 		localStorage.email = myJson.data[0].email;
 		localStorage.phone = myJson.data[0].mobile;
-		localStorage.memberid = myJson.data[0].memberId;
+		localStorage.memberid = myJson.data[0].memberID;
 		localStorage.setItem('login', 1);
 		if (self != top) {
 			if (urlobj["returnURL"]) {
-				window.top.location.href = urlobj["returnURL"];
+				window.top.location.href = urlobj["returnURL"].replace("#","&");
 			} else {
 				var c = urlobj["callback"];
 				c.replace("#", '');

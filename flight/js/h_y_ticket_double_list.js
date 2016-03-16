@@ -122,17 +122,17 @@ var ticketDouble = {
         return '<span>'+tStr[1]+'-'+tStr[2]+'</span>&nbsp;<span>'+returnWeek()+'</span>';
     },
     dateChangeRender:function(){
-
         var that = ticketDouble,dateEle =document.querySelectorAll('.date-wrap-double');
         var start = dateEle[0].querySelector('.dateNumber').innerHTML,end = dateEle[1].querySelector('.dateNumber').innerHTML;
         document.querySelector('.start-date').innerHTML = that.reDate(start);
         document.querySelector('.end-date').innerHTML = that.reDate(end);
         that.backParaObj.DepartDate =new Date().getFullYear()+'-'+ document.querySelector('.start-date').querySelectorAll('span')[0].innerHTML;
         that.backParaObj.ReturnDate =new Date().getFullYear()+'-'+ document.querySelector('.end-date').querySelectorAll('span')[0].innerHTML;
+        that.backParaObj.pageNo= 1;
+        that.backParaObj.pageSize= 10;
         document.querySelector('#preloader').style.display='block';
         that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
     },
-
 
     parseUrlPara: function (url, isEncode) {
         var isEncode = isEncode || false;
