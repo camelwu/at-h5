@@ -363,7 +363,7 @@
 						}
 					},
 					engName:function(name){
-						var pattern=/^[a-zA-Z][a-zA-Z/s]*[a-zA-Z]{1,25}$/;
+						var pattern=/^[a-zA-Z][a-zA-Z\s]*[a-zA-Z]{1,25}$/;
 						//字符头尾是字母，中间由空格和字母组成，中间可以有多个空格;2-26字符
 						if(pattern.test(name))
 						{
