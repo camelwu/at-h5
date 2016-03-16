@@ -87,11 +87,9 @@
 					//minHeight : $("#popup_container").outerHeight(true),
 					maxWidth : $("#popup_container").outerWidth() - 24
 				});
-				$.alerts._reposition();
-			} else {
-				$.alerts._reposition();
-				$.alerts._maintainPosition(true);
 			}
+            $.alerts._reposition();
+            $.alerts._maintainPosition(true);
 			switch( type ) {
 				case 'alert':
 					$("#popup_message").after('<div id="popup_error"></div> <div id="popup_panel"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
@@ -282,8 +280,12 @@
 			if ('undefined' == typeof (document.body.style.maxHeight))
 				top = top + $(window).scrollTop();
 
-			if ($("#popup_more")) {
-				top = ($(window).height() - $("#popup_container").outerHeight(true)) / 2;
+			if ($("#popup_more")[0]) {
+				//top = ($(window).height() - $("#popup_container").outerHeight(true)) / 2;
+                //top = top < 0 ? 0 : top;
+                top = 0;
+                var containerHeight = $(window).height() - $("#popup_title").outerHeight(true);
+                $("#popup_more").css("height",containerHeight);
 				$("#popup_container").css({
 					top : top + 'px',
 					left : left + 'px'

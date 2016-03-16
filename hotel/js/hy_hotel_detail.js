@@ -354,17 +354,13 @@
 			var code = this.getAttribute("room-code");
 
             try{
-                var sign = vlm.checkLogin(torder);
+                var sign = vlm.checkLogin('../hotel/user_order.html?' + 'roomCode=' + code);
                 if(sign){
-                    torder();
+                    document.location.href = 'user_order.html?' + 'roomCode=' + code;
                 }
             }catch(e){
                 console.info(e);
             }
-            
-			function torder() {
-				document.location.href = 'user_order.html?' + 'roomCode=' + code;
-			}
 		},
 
 		toggleSlider : function() {

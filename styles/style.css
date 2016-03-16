@@ -263,6 +263,8 @@
 }
 .header{
 	position:fixed;
+    top: 0px;
+    left: 0px;
 	pointer-events:all;
 	z-index:99;
 	background: -webkit-linear-gradient(#16364f,#194361);
