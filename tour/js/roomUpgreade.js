@@ -87,15 +87,21 @@ var roomUpGrade = {
     addEvent: function () {
         var nextPage = document.querySelector('.hs-next'), that = roomUpGrade;
         this.eventHandler(nextPage, 'click', function(){
-            var roomid;
+            var roomid='', totalPrice=0;
             var li = document.getElementsByClassName('hd-hotel');
             for(var i = 0;i < li.length;i++) {
                 if (li[i].style.backgroundColor == 'rgb(223, 223, 221)') {
                     roomid = li[i].getAttribute('data-roomId');
-                    console.log(roomid)
+                    break;
                 }
             }
-             document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice+'&roomID='+roomid;
+             for(var s=0;s<that.roomsData.length;s++){
+                 if(that.roomsData[s].roomID==roomid){
+                     totalPrice = that.roomsData[s].totailPrice;
+                     break;
+                 }
+             }
+             document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+totalPrice+'&roomID='+roomid;
         });
     },
     callBack: function () {
@@ -152,6 +158,7 @@ var roomUpGrade = {
                 var tpl_GetList = template(tpl1, hotels);
                 var tpl_GetRooms = template(tpl2, rooms);
                 that.dataInfo = resultData.data;
+                that.roomsData = rooms;
                 $("#preloader").fadeOut();
                 $('#sc-content').html(tpl_GetList);
                 $('#room-list').html(tpl_GetRooms);

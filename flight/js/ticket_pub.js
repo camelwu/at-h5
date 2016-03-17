@@ -1141,7 +1141,8 @@ var  conditionalFiltering = {
                         setTimeDurationLis_is[cv].className = setTimeDurationLis_is[cv].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
                     }else if(type =='get'){
                         if(setTimeDurationLis_is[cv].className == "tag-item active"){
-                            this.tempStates.IsHideSharedFlight =setTimeDurationLis_is[cv].getAttribute('data-i');
+                            this.tempStates.DepartStartHour =setTimeDurationLis_is[cv].getAttribute('data-i').substring(0,2);
+                            this.tempStates.DepartEndHour =setTimeDurationLis_is[cv].getAttribute('data-i').substring(2);
                             break;
                         }
                     }  }
