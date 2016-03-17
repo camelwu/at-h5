@@ -101,7 +101,7 @@
             好评率
         </div>
         <div id="priceSort">
-            <b class="jd-icon s-rank"></b>
+            <b id="psort" class="jd-icon s-rank"></b>
             价格排序
         </div>
         <div id="screen">
@@ -316,12 +316,15 @@
              * @constructor
              */
             var CBindPriceSort = function(){
-
-
+                var psort = $('#psort')[0];
                 $("#priceSort").toggle(function(){
                     console.log(defineProperty.themeId);
+                    var priceSort = $('#priceSort')[0];
+                    priceSort.style.opacity = "1";
+                    psort.className ="jd-icon s-rank";
                     CLoadPriceSort("HighToLow",defineProperty.themeId);
                 },function() {
+                    psort.className ="s-ranks";
                     CLoadPriceSort("LowToHigh", defineProperty.themeId);
                 });
             }
