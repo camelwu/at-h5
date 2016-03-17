@@ -1190,36 +1190,7 @@
 					$(".js-price-list").html(list);
 				}
 
-				/**
-				 * 返回SearchPrice
-				 */
-				MT.recalSearchPrice = function(SearchPrice) {
-					var relTotalPrice = 0;
-					MT.AnimIn();
-					MT.ajaxJson("", JSON.stringify(SearchPrice), function(data) {
-						var json = data, len = 0;
-						console.log(json);
-						if (json.success) {
-							len = json.data.prices.length;
 
-							while (len--) {
-								relTotalPrice += parseInt(json.data.prices[len].totalAmountInCNY);
-							}
-						} else {
-							console.log(json);
-							jAlert(json.message, "提示");
-
-						}
-					}, "","",true);
-
-					/**
-					 * SearchPrice callback
-					 * @param data
-					 */
-
-					return relTotalPrice;
-
-				};
 
 				/**
 				 * 预订 验证
@@ -1256,6 +1227,7 @@
 				 * @constructor
 				 */
 				MT.OrderDetail = function() {
+
 					$(".js-order-detail").click(function(e) {
 
 						var Status,AdultCount = 0, ChildCount = 0, ChildArray = [], Childtmp = "", TourArray = [], TourObj = {}, DOB = "", TravelDate = "", TourSession = "", TourCount = 0, TourID = 0, PickupID = "", PickupCount = 0, currentY = 0, PickupTmp, PickupPoint = {}, TravelerType = "", Salutation = "", FirstName = "", LastName = "", NationalityCode = "", Travelers = [], Email = "", ContactNo = {}, CountryCode = 0, PhoneNo = 0, CurrencyCode = "", recalTotalPrice = 0, TravelerDocument;
@@ -1297,9 +1269,10 @@
 								ChildArray.push(Childtmp);
 							}
 							recalSearchPrice.Parameters.Child = ChildArray;
+							param.Parameters.Child = ChildArray;
 						}
 
-						param.Parameters.Child = ChildArray;
+
 
 
 
@@ -1499,23 +1472,62 @@
 
 						}
 
+
+
+//						console.log(param);
+
 						//重新计算价格
-						recalTotalPrice = MT.recalSearchPrice(recalSearchPrice);
-						//价格信息
-						CurrencyCode = "CNY";
-						//                    recalTotalPrice = $(".js-order-total").html();
-						//                    recalTotalPrice = parseInt(recalTotalPrice.substring(1,recalTotalPrice.length));
-						param.Parameters.ChargeDetails = {
-							"CurrencyCode" : CurrencyCode,
-							"TotalPrice" : recalTotalPrice
-						};
+						MT.recalSearchPrice(recalSearchPrice,param);
 
-						console.log(param);
 
-						MT.ajaxJson("", JSON.stringify(param), MT.callbackOrderDetail, "", "",true);
-						MT.AnimOut();
 					});
 				}
+
+				/**
+				 * 返回SearchPrice
+				 */
+				MT.recalSearchPrice = function(SearchPrice,OrderDetail) {
+					var relTotalPrice = 0;
+					$("#preloader").show();
+					/**
+					 * SearchPrice callback
+					 * @param data
+					 */
+					MT.ajaxJson("", JSON.stringify(SearchPrice),search);
+
+					function search(data) {
+						var json = data, len = 0;
+						console.log(json);
+						if (json.success) {
+							len = json.data.prices.length;
+							while (len--) {
+								relTotalPrice += parseInt(json.data.prices[len].totalAmountInCNY);
+							}
+
+							//价格信息
+							OrderDetail.Parameters.ChargeDetails = {
+								"CurrencyCode" : "CNY",
+								"TotalPrice" : relTotalPrice
+							};
+							console.log(OrderDetail);
+							MT.CreateOreder(OrderDetail);
+						} else {
+							console.log(json);
+							jAlert(json.message, "提示");
+
+						}
+					}
+				};
+
+				/**
+				 * 创建订单
+				 * @param OrderDetail
+				 * @constructor
+				 */
+				MT.CreateOreder = function(OrderDetail){
+					MT.ajaxJson("", JSON.stringify(OrderDetail), MT.callbackOrderDetail);
+				}
+
 				/**
 				 * 预订 callback
 				 * @param data
@@ -1529,11 +1541,15 @@
 						if (bookingRefNo != undefined && bookingRefNo != "") {
 							window.location.href = "../scenic/order-detail.html?bookingRefNo=" + bookingRefNo;
 						}
+						$("#preloader").hide();
 					} else {
 						console.log(json);
 						jAlert(json.message, "提示");
 					}
+
+
 				}
+
 				/**
 				 * 景点选择日期
 				 * @constructor

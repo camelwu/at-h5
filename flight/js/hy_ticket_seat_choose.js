@@ -188,10 +188,11 @@ var ticketSeatChoose = {
 
     createGoTripHtml:function(arg){
         var that = ticketSeatChoose;
-        var tipDay = arg.flightLeaveSpacingDay>=1?'+'+arg.flightLeaveSpacingDay+'天':'',str='',isLeaveStopStr,isLeaveShareFlight;
+        var tipDay = arg.flightLeaveSpacingDay>=1?'+'+arg.flightLeaveSpacingDay+'天':'',str='',isLeaveStopStr,isLeaveShareFlight, leaveStopTag='';
         if(arg.segmentsReturn == null)
         {
-             isLeaveStopStr = (arg.isLeaveStop == true)?'<span> | </span><span class="green-word">经停</span></span>':'';
+             isLeaveStopStr = (arg.isLeaveStop == true)?'<span class="green-word">经停</span></span>':'';
+             leaveStopTag = (arg.isLeaveStop == true)?'<span class="air-port-word">经停'+arg.segmentsLeave[0].techStopAirportName+'</span>':'';
              isLeaveShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
              str = '<div class="go-trip">' +
                 '<div class="top-line top-pad-no"">' +
@@ -203,7 +204,7 @@ var ticketSeatChoose = {
                 '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
                 '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
                 '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
-                '<span class="arrow-time"></span>'+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
+                '<span class="arrow-time"></span>'+leaveStopTag+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
                 '<div class="end-time-info">'+
                 ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
                 '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
@@ -221,7 +222,8 @@ var ticketSeatChoose = {
         }
         else
         {
-            isLeaveStopStr = (arg.isLeaveStop == true)?'<span> | </span><span class="green-word">经停</span></span>':'';
+            isLeaveStopStr = (arg.isLeaveStop == true)?'<span class="green-word">经停</span></span>':'';
+            leaveStopTag = (arg.isLeaveStop == true)?'<span class="air-port-word">经停'+arg.segmentsLeave[0].techStopAirportName+'</span>':'';
             isLeaveShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
             str = '<div class="go-trip">' +
                 '<div class="top-line">' +
@@ -233,7 +235,7 @@ var ticketSeatChoose = {
                 '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
                 '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
                 '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
-                '<span class="arrow-time"></span>'+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
+                '<span class="arrow-time"></span>'+leaveStopTag+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
                 '<div class="end-time-info">'+
                 ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
                 '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
@@ -252,9 +254,10 @@ var ticketSeatChoose = {
         return str
     },
     createBackTripHtml:function(arg){
-        var isReturnStopStr,isReturnShareFlight;
+        var isReturnStopStr,isReturnShareFlight, returnStopTag;
         if(arg.segmentsReturn){
             isReturnStopStr = (arg.isReturnStop == true)?'<span> | </span><span class="green-word">经停</span></span>':'';
+            returnStopTag = (arg.isReturnStop == true)?'<span class="air-port-word">经停'+arg.segmentsReturn[0].techStopAirportName+'</span>':'';
             isReturnShareFlight = (arg.isReturnShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
             var tipDay = arg.flightReturnSpacingDay>=1?'+'+arg.flightReturnSpacingDay+'天':'',str='',that =this;
             str='<div class="back-trip">'+
@@ -271,7 +274,7 @@ var ticketSeatChoose = {
             '</div>'+
             '<div class="total-time-info">'+
             '<span class="time-hour-minute">'+parseInt(arg.segmentsReturnTotalTravelTime/60)+'h'+arg.segmentsReturnTotalTravelTime%60+'m</span>'+
-            '<span class="arrow-time"></span>'+
+            '<span class="arrow-time"></span>'+returnStopTag+
             '<span class="air-port-word">'+that.returnTransferCity(arg.segmentsReturn)+'</span>'+
             '</div>'+
             '<div class="end-time-info">'+
@@ -302,13 +305,12 @@ var ticketSeatChoose = {
     },
     createDetailModal:function(arg){
         var that = ticketSeatChoose;
-
         var strModal='<div class="ticket-detail-modal" style="display: none;"><ul class="detail-outer">'+detailGo(arg)+detailBack(arg)+'</ul></div>';
         return strModal;
         function detailGo(arg){
             var str = '';
             var isStopStr, isShareFlight;
-            isStopStr = (arg.isLeaveStop == true)?'<span> | </span><span class="green-word">经停</span></span>':'';
+            isStopStr = (arg.isLeaveStop == true)?'<span class="green-word"> 经停</span></span>':'';
             isShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
             if(arg.segmentsReturn == null)
             {
@@ -342,8 +344,9 @@ var ticketSeatChoose = {
                var str = '',transferStr='',dayStr='',that = ticketSeatChoose;
             if(arg){
                 for(var j = 0;j<arg.length;j++){
-                    var
-                    transferStr= arg[j+1]!=undefined?'<div class="transit-city-hour">中转'+arg[j].cityNameTo+'</div>':'';
+                    var transferStr= arg[j+1]!=undefined?'<div class="transit-city-hour">中转'+arg[j].cityNameTo+'</div>':'',leaveStopTag='', hourStr;
+                   (arg[j].techStopTotal>=1)?leaveStopTag='<span class="air-port-word">经停'+arg[j].techStopAirportName+'</span>':'';
+                   // hourStr = (j==0)?'<span class="time-hour-minute">'+parseInt(arg.segmentsReturnTotalTravelTime/60)+'h'+arg.segmentsReturnTotalTravelTime%60+'m</span>':'';
                     dayStr= Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)>=1?Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)+'天':'';
                     str+='<div class="go-trip start">' +
                     '<div class="time-airport-info">'+
@@ -353,7 +356,7 @@ var ticketSeatChoose = {
                     '</div>'+
                     '<div class="total-time-info">'+
                     '<span class="time-hour-minute"></span>'+
-                    '<span class="arrow-time"></span>'+
+                    '<span class="arrow-time"></span>'+leaveStopTag+
                     '</div>'+
                     '<div class="end-time-info">'+
                     '<span class="tip-add-days-seat">'+dayStr+'</span>'+

@@ -46,7 +46,26 @@ i {
     background-size: 243px 160px;
     display: inline-block;
 }
-
+.sc-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 45px;
+    padding-bottom: 50px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
+}
 .date-picker {
     display: inline-block;
     vertical-align: middle;
@@ -673,4 +692,20 @@ i {
     border-top: 1px solid #d6d6d6;
     color:#fb763b;
     height: 44px;
+}
+/*   费用明细快  */
+.state-title{
+    padding:10px 15px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ffb413;
+}
+.state-list{
+    margin-bottom: 10px;
+}
+.state-list li{
+    list-style-type: disc;
+    margin:5px 15px 5px 30px;
+    margin-bottom: 0;
+    line-height: normal;
 }
