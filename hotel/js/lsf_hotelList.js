@@ -481,7 +481,7 @@ function styleChange(id, mytext) {
 		var oUl = lsf_myweb.getbyid('lsf_list');
         var liHtml = "";
         var loadSign = document.getElementById("lsf_list").getAttribute("data-index") > 1 ? true : false;  //true 加载更多
-        
+        //如果不是加载更多，清空节点内容
         if(!loadSign){
             list_oUl.innerHTML = "";
         }
@@ -515,16 +515,26 @@ function styleChange(id, mytext) {
                 
                 liHtml += str;
 			}
-            //如果不是加载更多，清空节点内容
+           
+            //fixed 页面滑动到底部后 清空内容重新赋值时页面还在底部
+            var timer =setTimeout(function(){
+                list_oUl.innerHTML += liHtml;
+                
+                var moreEle = document.getElementById("load-more");
+                if(data.length < url_json.pageSize){
+                    moreEle.setAttribute("data-more","no");
+                    moreEle.innerHTML = "没有更多数据了";
+                }else{
+                    moreEle.innerHTML = "上拉加载更多";
+                }
+                
+                //绑定跳转事件
+                getDetail(data);
+                
+                clearTimeout(timer);
+            },50)
             
-            list_oUl.innerHTML += liHtml;
-            var moreEle = document.getElementById("load-more");
-            if(data.length < url_json.pageSize){
-                moreEle.setAttribute("data-more","no");
-                moreEle.innerHTML = "没有更多数据了";
-            }else{
-                moreEle.innerHTML = "上拉加载更多";
-            }
+            
 			//横屏竖屏时改变酒店名宽度
 			var hl_aLi = list_oUl.children;
 			var hl_hname = lsf_myweb.getbyclass(list_oUl, 'hname');
@@ -724,8 +734,7 @@ function styleChange(id, mytext) {
 			console.log(2);
 			//console.log(data.HotelList);
 			V(data);
-			//绑定跳转事件
-			getDetail(data);
+			
 		} else {
 			if (json.message == 'There is no hotel on the selected destination.') {
 				var data = {
@@ -944,7 +953,7 @@ function styleChange(id, mytext) {
 	function getDetail(data) {
 		//console.log(url_json);
 		//console.log(data);
-		data = data.hotelList;
+		//data = data.hotelList;
 		var hotelRefers = document.getElementsByClassName('ho_list');
 		var toDetail = function(that) {
 			var paraObj = new Object();
@@ -978,13 +987,16 @@ function styleChange(id, mytext) {
 	}
 
 	//为了阻止遮罩层下面的内容被滑动
+    /*
+    //这样会导致浮层不能滑动 内容显示不全
 	$('#hl_hiddenBox').bind("touchmove", function(ev) {
 		ev.preventDefault();
 	});
+    */
     
     //加载更多
-    function loadMore(){
-        var listContainer = lsf_myweb.getbyid("lsf_list");
+    function loadMore(scrollContainerId){
+        var listContainer = lsf_myweb.getbyid(scrollContainerId);
         var listContainerHeight = 0;
         var loadMore = lsf_myweb.getbyid("load-more");
         var loadMoreRect = "";
@@ -997,9 +1009,10 @@ function styleChange(id, mytext) {
         lsf_myweb.bind(listContainer,'touchstart',function(event){
             //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
             //for android
-            topAfter = loadMore.getBoundingClientRect().top;
+            
             //如果是android浏览器 
             if(ua.indexOf("Android") > -1 || ua.indexOf('Linux') > -1){
+                topAfter = loadMore.getBoundingClientRect().top;
                 load();
             }
         });
@@ -1007,18 +1020,20 @@ function styleChange(id, mytext) {
 
         });
         lsf_myweb.bind(listContainer,'touchend',function(event){
+            topAfter = loadMore.getBoundingClientRect().top;
+            load();
+        });
+        
+        function load(){
             //没有更多 数据加载标识
             loadMoreSign = loadMore.getAttribute("data-more");
             if(loadMoreSign == "no"){
                 return;
             }
-            load();
-        });
-        
-        function load(){
-            //滑动到离底部30px距离使触发加载更多
             
-            if(topAfter - windowHeight < 30){
+            //滑动到离底部30px距离使触发加载更多
+            if(windowHeight - topAfter > 44){
+               // alert("topAfter:" + topAfter + "windowHeight:" + windowHeight);
                 loadMore.innerHTML = "加载中..."
                 pageIndex = pageIndex + 1;
                 url_json.pageIndex = pageIndex;
@@ -1031,6 +1046,6 @@ function styleChange(id, mytext) {
         //TODO 页面滚动到底部时选择筛选  页面没有回滚到顶部
     };
     
-    loadMore();
+    loadMore("lsf_list");
     
 })();
