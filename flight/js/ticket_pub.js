@@ -452,7 +452,7 @@ var  conditionalFiltering = {
                 '</div>'+
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
-                '<li class="filter-title clear-background" data-info="df">直飞/中转</li>'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
                 '<li class="filter-title" data-info="sh">共享航班</li>'+
                 '<li class="filter-title" data-info="du">起飞时段</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
@@ -501,7 +501,7 @@ var  conditionalFiltering = {
 
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
-                '<li class="filter-title clear-background" data-info="df">直飞/中转</li>'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
                 '<li class="filter-title" data-info="sh">共享航班</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
                 '</ul>'+
@@ -606,8 +606,8 @@ var  conditionalFiltering = {
                 '</ul>'+
                 '<div class="detail-list" style="color: rgb(102, 102, 102);">'+
                 '<ul class="add only-direct-fly" id="only-direct-fly">'+
-                '<li class="tag-item active" data-i="true">不限<b></b></li>'+
-                '<li class="tag-item" data-i="false">仅看直飞<b class=""></b></li>'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">仅看直飞<b class=""></b></li>'+
                 '</ul>'+
                 '<ul class="add filter-share" id="filter-share" style="display: none">'+
                 '<li class="tag-item active" data-i="false">不限<b></b></li>'+
