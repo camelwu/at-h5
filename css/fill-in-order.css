@@ -704,7 +704,8 @@ i {
     margin-bottom: 10px;
 }
 .state-list li{
-    padding:5px 15px;
+    list-style-type: disc;
+    margin:5px 15px 5px 30px;
     margin-bottom: 0;
     line-height: normal;
 }
