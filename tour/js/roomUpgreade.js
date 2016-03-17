@@ -79,8 +79,8 @@ var roomUpGrade = {
         var outStr = dateD2[1]+'-'+dateD2[2];
         var time1 = Date.parse(this.curParaObj.CheckInDate.replace(/T.*/g,'')), time2 = Date.parse(this.curParaObj.CheckOutDate.replace(/T.*/g,''));
         var dayNum=(Math.abs(time2 - time1))/1000/60/60/24;
-       document.querySelector('.date-in').innerHTML = inStr +'入住';
-       document.querySelector('.date-out').innerHTML = outStr +'离店';
+       document.querySelector('.date-in').innerHTML = inStr.replace('-','月') +'日入住';
+       document.querySelector('.date-out').innerHTML = outStr.replace('-','月') +'日离店';
        document.querySelector('.day-number').innerHTML = "共"+dayNum+"晚";
        return  this;
     },
