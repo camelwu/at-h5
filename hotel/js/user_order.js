@@ -262,6 +262,7 @@ uoHisData();
             qq:/qqbrowser/i.test(ua)
         }
     }
+    
     all_elements.onclick = function(e){
         var browser = checkBrowser();
         //alert(browser.qq);
@@ -646,21 +647,6 @@ uoHisData();
         uo_form.submit();
     });
     
-    var listContainer = $(".all-elements")[0];
-    lsf_myweb.bind(listContainer,'touchstart',function(event){
-        //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
-        //for android
-        //如果是android浏览器 
-        if(ua.indexOf("Android") > -1 || ua.indexOf('Linux') > -1){
-        }
-       // alert($(".header")[0].style);
-    });
-    lsf_myweb.bind(listContainer,'touchmove',function(event){
-        
-    });
-    lsf_myweb.bind(listContainer,'touchend',function(event){
-      // alert($(".header")[0].style);
-    });
     //取消说明点击事件
     //lsf_myweb.bind(uo_c1_infoDown,'click',function(){
     //    uo_c1_info.className='';

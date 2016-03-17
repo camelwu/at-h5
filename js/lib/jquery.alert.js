@@ -251,12 +251,12 @@
 					$.alerts._overlay('hide');
 					$("BODY").append('<div id="popup_overlay"></div>');
 					$("#popup_overlay").css({
-						position : 'absolute',
+						position : 'fixed',
 						zIndex : 1010,
 						top : '0',
 						left : '0',
 						width : '100%',
-						height : '200%',
+						height : '100%',
 						background : $.alerts.overlayColor,
 						opacity : $.alerts.overlayOpacity
 					});
