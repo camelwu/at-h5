@@ -40,7 +40,7 @@
     <div class="tra_con1">
         <div class="tra_c1_inbox">
             <i></i>
-            <span>支付成功</span>
+            <span>{% if(paymentModeID=="2"){ %} 预订成功 {% }else { %} 支付成功 {% } %} </span>
         </div>
     </div>
     <div class="tra_con2">

@@ -1115,7 +1115,7 @@ i{
 }
 .state-detail{
     margin: 0;
-    padding:0!important;
+    padding: 0 20px!important;
     display: none;
     overflow-x: auto;
 }
@@ -2291,6 +2291,11 @@ i{
     font-size: 1.2rem;
     color: #fe4716;
 }
+/*景点详情页面 限定人数*/
+.minpax2{
+    font-size: 1.2rem;
+    color:#666666;
+}
 /*景点预订页面 参考价格提示*/
 .tip_price{
     font-size: 0.1rem;
@@ -2325,3 +2330,9 @@ i{
 }
 .flight_info i.data_icon{
     width: 16px;height:17px; position: absolute; right:20px;; top:10px; background: url(images/date_icon.gif) no-repeat; background-size: 100% 100%;}
+
+
+.paymentType span{
+    padding-left: 9px;
+    vertical-align: middle;
+}
