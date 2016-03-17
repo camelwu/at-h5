@@ -339,9 +339,14 @@ var lsf_myweb={
 
             if(data.success){
                 debugger;
-                if(data.data.length>=1) {
-                    var url = data.data[0].paymentRedirectURL;
-                    self.location.href=url;
+                if(myData.paymentModeID=='1') {
+                    if (data.data.length >= 1) {
+                        var url = data.data[0].paymentRedirectURL;
+                        self.location.href = url;
+                    }
+                }
+                else{
+                    self.location.href = "trade_details.html?bookingRefNo="+data.data[0].referenceNo;
                 }
             }else{
                 $("#status-h").fadeOut();
