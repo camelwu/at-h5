@@ -2325,3 +2325,9 @@ i{
 }
 .flight_info i.data_icon{
     width: 16px;height:17px; position: absolute; right:20px;; top:10px; background: url(images/date_icon.gif) no-repeat; background-size: 100% 100%;}
+
+
+.paymentType span{
+    padding-left: 9px;
+    vertical-align: middle;
+}
