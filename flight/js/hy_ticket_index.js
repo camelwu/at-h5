@@ -41,7 +41,6 @@ var  ticketIndexModal = {
                _word:{tip:['去程']}
            });
        },
-
        reDate:function(arg){
            var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(arg);
            tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
