@@ -49,10 +49,10 @@
             </div>
             <ul class="pay-style-list" id="pay_way">
                 <li>剩余支付时间: <i class="count-time countdown" id="countdown" c></i></li>
-                <li><span class="jd-icon pay-card" data-type="pay-card"></span><b class="icon circle-choi"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-card" data-type="pay-card"></span><span >银联支付</span><b class="icon circle-choi"></b></li>
                 <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
-                <li><span class="jd-icon pay-visa" data-type="pay-visa"></span><b class="icon circle-chois"></b></li>
-                <li><span class="jd-icon pay-master" data-type="pay-master"></span><b class="icon circle-chois"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-visa" data-type="pay-visa"></span><span >维萨信用卡支付</span><b class="icon circle-chois"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-master" data-type="pay-master"></span><span>万事达卡支付</span><b class="icon circle-chois"></b></li>
             </ul>
             <!--<div class="state-agree">-->
                 <!--<b class="icon1 s-agree" id="agree"></b>-->
@@ -195,27 +195,12 @@
             var out_pay = $("#out_pay")[0];
             var btnPay= $(".btnUpay")[0];
             var btnCPay= $(".btnCpay")[0];
-            for(var i=0; i < b.length; i++){
-                b[i].onclick = function(){
-                    for(var i=0; i<b.length; i++){
-                        b[i].className = "icon circle-chois";
-                    }
-                    this.className='icon circle-choi';
-//                    if(b[1].className == "icon circle-choi"||b[2].className == "icon circle-choi"){
-//                        out_pay.style.display = "block";
-//                    }
-//                    else{
-//                        Payment("UnionPay","SG17SINFP0136825");
-//                    }
-                }
-            }
-//            agree.onclick = function(){
-//                if(agree.className == 'icon1 s-agree'){
-//                    agree.className = 'icon1 s-agrees';
-//                }else{
-//                    agree.className = 'icon1 s-agree';
-//                }
-//            };
+
+            $(".paymentType").click(function(){
+                $(this).siblings().find("b").removeClass("circle-choi").addClass("circle-chois");
+                $(this).find("b").removeClass("circle-chois").addClass("circle-choi");
+            })
+
             close_page.onclick = function(){
                 out_pay.style.display = "none";
             };

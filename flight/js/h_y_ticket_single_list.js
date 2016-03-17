@@ -305,7 +305,7 @@ var ticketSingle = {
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         var returnRightTax = function(){
             var str = '';
-            if(type == 'false'){
+            if(type == "false"){
                 str+= '<div class="price-tax single-side">' +
                 '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span></div>' +
                 '<div class="single-price-tax-info"><span class="tax-word">税</span>'+myFixed(myFixed(arg.data.flightInfos[i].totalTaxAmountADT)) +'</div>'
@@ -343,7 +343,6 @@ var ticketSingle = {
             '</div ></div>' +
             '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierName+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierCode+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
             '</div ></div>' +returnRightTax();
-
             li.innerHTML = ticketListStr;
             ticketDetailUl.insertBefore(li, ticketDetailUl.childNodes[0]);
             myScroll.refresh();

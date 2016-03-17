@@ -253,7 +253,10 @@ var  ticketIndexModal = {
                cityNames[i].onclick=function(){
                    ticketIndexModal.celement = this;
                    outDiv.style.display = 'block';
-                   
+                   document.querySelector('.air_content').style.display='none';
+                   var oDiv=document.createElement('div');
+                   oDiv.className='maskCity';
+                   document.querySelector('#tpls').appendChild(oDiv);
                    //h5-470 每次显示城市搜索前清空输入框和搜索结果页
                    input.value = "";
                    searchList.style.display = 'none';
@@ -806,6 +809,7 @@ var  ticketIndexModal = {
                cityInputZone.value = str;
                that.timer3 = window.setTimeout(function(){
                    outDiv.style.display = 'none';
+                   document.querySelector('.air_content').style.display='block';
                    that.celement.innerHTML= cityInputZone.value;
                    window.clearTimeout(that.timer3);
                    that.timer3 = null;
@@ -877,6 +881,7 @@ var  ticketIndexModal = {
                var target = event.target || event.srcElement;
                if(target.className =='fl'){
                    outDiv.style.display = 'none';
+                   document.querySelector('.air_content').style.display='block';
                }else if(target.className.indexOf('city-word')!=-1){
                    if(domesticCity.style.display=='block'){
                        that.dhisChoosePool.push(target.innerHTML);
@@ -888,6 +893,7 @@ var  ticketIndexModal = {
                    cityInputZone.value = target.innerHTML;
                    that.timer2 = window.setTimeout(function(){
                        outDiv.style.display = 'none';
+                       document.querySelector('.air_content').style.display='block';
                        that.celement.innerHTML= target.innerHTML;
                        window.clearTimeout(that.timer2);
                        that.timer2 = null;

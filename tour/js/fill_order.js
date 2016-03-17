@@ -61,13 +61,13 @@
                     +"<ul id='trave"+k+"'>"
                     +'<li class="trave-li trave-li-adu">'
                     +'<span class="list_tit2 ">姓：</span>'
-                    +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" /></span>'
+                    +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
                     +'<span class="list_tit2 ">名：</span>'
-                    +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" /></span>'
+                    +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
                     +'</li>'
                     +'<li>'
                     +'<span class="list_tit">护照：</span>'
-                    +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>'
+                    +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" data-elementName="idNumber" /></span>'
                     +'</li>';
                     +"</ul>"
                 oRoomNum[i].querySelector('ul').appendChild(oSection);

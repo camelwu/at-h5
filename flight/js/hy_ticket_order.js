@@ -688,6 +688,11 @@ var ticketOrder = {
        totalCost.innerHTML = myFixed(temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild);
        totalPerson.innerHTML = totalPersonNum+'人总价';
    },
+    deletePassager: function deletePassager(){
+         alert(11111111);
+
+     },
+
     init:function(){
        var reverseInformation = this.storageUtil.get('reverseInformationCache');
        this.reverseInformation = reverseInformation;
@@ -698,7 +703,7 @@ var ticketOrder = {
        this.addContent(this.orderFlightData);
        this.addEvent();
        this.costFinaList();
-       this.countrySlider();
+       //this.countrySlider();
     }
 };
 

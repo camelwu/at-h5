@@ -79,23 +79,29 @@ var roomUpGrade = {
         var outStr = dateD2[1]+'-'+dateD2[2];
         var time1 = Date.parse(this.curParaObj.CheckInDate.replace(/T.*/g,'')), time2 = Date.parse(this.curParaObj.CheckOutDate.replace(/T.*/g,''));
         var dayNum=(Math.abs(time2 - time1))/1000/60/60/24;
-       document.querySelector('.date-in').innerHTML = inStr +'入住';
-       document.querySelector('.date-out').innerHTML = outStr +'离店';
+       document.querySelector('.date-in').innerHTML = inStr.replace('-','月') +'日入住';
+       document.querySelector('.date-out').innerHTML = outStr.replace('-','月') +'日离店';
        document.querySelector('.day-number').innerHTML = "共"+dayNum+"晚";
        return  this;
     },
     addEvent: function () {
         var nextPage = document.querySelector('.hs-next'), that = roomUpGrade;
         this.eventHandler(nextPage, 'click', function(){
-            var roomid;
+            var roomid='', totalPrice=0;
             var li = document.getElementsByClassName('hd-hotel');
             for(var i = 0;i < li.length;i++) {
                 if (li[i].style.backgroundColor == 'rgb(223, 223, 221)') {
                     roomid = li[i].getAttribute('data-roomId');
-                    console.log(roomid)
+                    break;
                 }
             }
-             document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+that.dataInfo.hotels[0].rooms[0].totailPrice+'&roomID='+roomid;
+             for(var s=0;s<that.roomsData.length;s++){
+                 if(that.roomsData[s].roomID==roomid){
+                     totalPrice = that.roomsData[s].totailPrice;
+                     break;
+                 }
+             }
+             document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+totalPrice+'&roomID='+roomid;
         });
     },
     callBack: function () {
@@ -152,6 +158,7 @@ var roomUpGrade = {
                 var tpl_GetList = template(tpl1, hotels);
                 var tpl_GetRooms = template(tpl2, rooms);
                 that.dataInfo = resultData.data;
+                that.roomsData = rooms;
                 $("#preloader").fadeOut();
                 $('#sc-content').html(tpl_GetList);
                 $('#room-list').html(tpl_GetRooms);

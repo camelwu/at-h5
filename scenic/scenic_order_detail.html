@@ -45,18 +45,18 @@
 						<ul class="tourist-msg tanktick" id="tanktick">
 							<li>
 								<span class="tourist-name tour-short" style="width:30px">姓：</span>
-								<input type="text" id="scenic2_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li">
+								<input type="text" id="scenic2_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li"  data-elementName="lastName" data-elementName="lastName">
 								<span class="tourist-name tour-short" style="width:30px">名：</span>
-								<input type="text" id="scenic2_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin">
+								<input type="text" id="scenic2_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
 							</li>
-							<li>
+							<li class="countries-wrap">
 								<span class="tourist-name tour-short">国籍：</span>
 								<!--<input id="scenic2_NationalityCode" readonly="readonly" style="display: inline-block;" placeholder="国籍">-->
-								<span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" data-tel-code="86">中国</span>
+								<span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" data-tel-code="86" data-elementName="lastName">中国</span>
 							</li>
 							<li>
 								<span class="tourist-name tour-short">护照：</span>
-								<input type="text" id="scenic2_idcard" style="width:86%;display: inline-block;" placeholder="请输入护照,如EA2359923">
+								<input type="text" id="scenic2_idcard" style="width:86%;display: inline-block;" placeholder="请输入护照,如EA2359923" data-elementName="idNumber">
 							</li>
 						</ul>
 					</div>
@@ -68,17 +68,17 @@
 						<ul class="tourist-msg contact" id="contact">
 							<li>
 								<span class="tourist-name tour-short" style="width:30px">姓：</span>
-								<input type="text" name="firstName" id="scenic_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li">
+								<input type="text" name="firstName" id="scenic_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li" data-elementName="lastName" data-elementName="lastName">
 								<span class="tourist-name tour-short" style="width:30px">名：</span>
-								<input type="text" name="lastName" id="scenic_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin">
+								<input type="text" name="lastName" id="scenic_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
 							</li>
 							<li>
 								<span class="tourist-name tour-short">手机：</span>+<span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">86</span>
-								<input type="text" name="phone" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号">
+								<input type="text" name="phone" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" data-elementName="mobilePhone" data-elementName="mobilePhone">
 							</li>
 							<li>
 								<span class="tourist-name tour-short">邮箱：</span>
-								<input type="text" name="email" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="常用邮箱">
+								<input type="text" name="email" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="常用邮箱" data-elementName="email" data-elementName="email">
 							</li>
 						</ul>
 					</div>
@@ -263,8 +263,8 @@
 		<script src="../js/lib/d_calendar1.0.2.js"></script>
 		<script src="js/dateFix.js"></script>
 		<script src="js/scenic_pub.js"></script>
-		<script src="js/new_country_list.js"></script>
-		<script src="js/new_countrytel_list.js"></script>
+		<script src="../js/country_list.js"></script>
+		<script src="../js/countrytel_list.js"></script>
 		<script id="tpl_PickupPoint" type="text/template">
 			<ul class="hote-list">
 			{% for(var i=0,len=data.pickupInfos.length;i<len;i++){ %}
