@@ -137,15 +137,7 @@
 <script>
     (function(){
         var ww = this;
-        vlm.init();
         var orderDetail = function(){
-            //   加载动画
-            var flashLoad = function(){
-                $(window).load(function () {
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
-                });
-            };
             //   数据加载
             var getDetailData = function(){
                 var tpl2 = [
@@ -217,6 +209,7 @@
                         $('#allPrice').html(html_ap);
                         $('#orderInfo').html(html_oi);
                         $('#pd_list').html(html_pd_list);
+                        vlm.init();
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
                         }
@@ -239,18 +232,15 @@
                     pdetail_mb.style.display = "none";
                     pd_block.style.bottom = -350+'px';
                     pd_block.style.transition="all 400ms";
-
                 }
             };
             return{
-                FlashLoad:flashLoad,
                 GetDetailData:getDetailData,
                 ShowPriceDetail:showPriceDetail
             }
         }();
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
-            orderDetail.FlashLoad();
             orderDetail.GetDetailData();
             orderDetail.ShowPriceDetail()
         };
