@@ -34,7 +34,31 @@ TicketDate.prototype.linkColor=function(type,date){
 };
 
 TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程']};
+TicketDate.prototype.inputEvent=function(){
+    var that = this;
+    var date = new Date();
+    var nowY = date.getFullYear();
+    var nowM = date.getMonth();
+    var nowD = date.getDate();
+    var reShowDate = function(arg){
 
+    };
+    _CalF.bind(this.input, 'click',function(){
+        that.createContainer();
+        for(var i=0;i<that.num;i++){
+            if(i==(that.num-1)){
+                var idate=new Date(nowY, nowM+i ,01);
+                that.drawLastDate(idate);
+            }else{
+                var idate = new Date(nowY , nowM+i, 01);
+                that.drawDate(idate);
+            }
+        }
+
+      //this.linkColor(this.type,date)
+
+    });
+},
 TicketDate.prototype.initialize =function (options) {
     this.type = options.type;
     this.id = options.id;
@@ -272,11 +296,15 @@ TicketDate.prototype.linkOver = function(event){
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
             out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            if(out[1]){out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));}
+            that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day")
+            if(out[1]){
+                that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day")
+                out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));}
         }
         if(tal){
             tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
         }
+        that.doubleChosenDate = 'dateSTr'
     }else{
         var event = event || window.event;
         var target = event.target || event.srcElement,dateSTr='';
@@ -289,6 +317,7 @@ TicketDate.prototype.linkOver = function(event){
             that.linkColor('Oneway',dateSTr);
             out[0].innerHTML=returnWeek(dateSTr);
         }
+        that.singleChosenDate = dateSTr
     }
     that.timer = window.setTimeout(function(){
         that.removeDate();
@@ -1125,7 +1154,6 @@ var  conditionalFiltering = {
                         }
                     }
                 }
-
                 for (var jl = 0; jl < filterShareLis_is.length; jl++) {
                     if(type=="set"){
                         filterShareLis_is[jl].className = filterShareLis_is[jl].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
@@ -1157,11 +1185,11 @@ var  conditionalFiltering = {
                         }
                     } }
 
-
                 for(var ty = 0; ty < timeMiddleLis_is.length; ty++) {
                     if(type=="set"){
                         if(timeMiddleLis_is[ty].getAttribute('data-i').indexOf('isDesc')>-1){
                             timeMiddleLis_is[ty].className = timeMiddleLis_is[ty].getAttribute('data-i').substring(7) == this.tempStates.IsDesc ? "tag-item active" : "tag-item";
+
                         }else{
                             timeMiddleLis_is[ty].className = timeMiddleLis_is[ty].getAttribute('data-i') == this.tempStates.PriorityRule ? "tag-item active" : "tag-item";
                         }
@@ -1169,8 +1197,10 @@ var  conditionalFiltering = {
                         if(timeMiddleLis_is[ty].className == "tag-item active"){
                             if(timeMiddleLis_is[ty].getAttribute('data-i').indexOf('isDesc')>-1){
                                 this.tempStates.IsDesc =timeMiddleLis_is[ty].getAttribute('data-i').substring(7);
+                                this.tempStates.PriorityRule ="0";
                             }else{
                                 this.tempStates.PriorityRule =timeMiddleLis_is[ty].getAttribute('data-i');
+                                delete this.tempStates.IsDesc;
                             }
                             break;
                         }

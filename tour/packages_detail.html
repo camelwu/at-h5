@@ -69,8 +69,11 @@
 				<section class="detailBox">
 					<div id="pageTag_1">
 						<p class="pd-contitle">
-							行程安排
+							套餐包括
 						</p>
+						<div id="pack-detail-ht" style="margin-bottom: 4px">
+
+						</div>
 						<ul id="tag1_con">
 							<!--<li>06：30崇文门新侨诺富特饭店 （地铁2号线、5号线“崇文门站”A/B口出既是）</li>-->
 						</ul>
@@ -131,6 +134,7 @@
 						var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' + '<img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' + '<img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
 						var tpl2 = ['<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.replace("T"," ")%}至{%=departValidTo.replace("T"," ")%}</i></h3>'].join('');
 						var tpl3 = ['<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>', '{% if(' + val.status + '=="1"){ %}', '<a href="javascript:go2order();" class="reserve">预定</a>', '{% } %}'].join('');
+						var tpl4 = ['{%=inclusiveItem%}'].join('');
 						var tmp = {
 							"Parameters" : {
 								"PackageID" : val.packageID
@@ -141,11 +145,13 @@
 						vlm.loadJson("", JSON.stringify(tmp), package_back);
 						function package_back(ret) {
 							var json = ret;
+							console.log(json);
 							if (json.success) {
 								var data = json.data;
 								var html_pb = template(tpl1, data);
 								var html_tt = template(tpl2, data);
 								var html_pp = template(tpl3, data);
+								var html_det = template(tpl4, data);
 								var tpl_GetSpotOverview = template("tpl_GetSpotOverview", data);
 								var tpl_GetSpotImportantNotes = template("tpl_GetSpotImportantNotes", data);
 								var tpl_GetTermsConditions = template("tpl_GetTermsConditions", data);
@@ -155,6 +161,7 @@
 								$('#pageTag_2').html(tpl_GetSpotImportantNotes);
 								$('#pageTag_3').html(tpl_GetTermsConditions);
 								$('#packagePrice').html(html_pp);
+								$('#pack-detail-ht').html(html_det);
 								localStorage.packageID = val.packageID;
 								localStorage.productPrice = val.productPrice;
 								$('.swipebox').click(function() {
