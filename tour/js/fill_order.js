@@ -36,7 +36,7 @@
         //console.log(Parmeters);
         vlm.loadJson("",JSON.stringify(Parmeters),package_tit_back);
 
-
+        var travelersInput=window.location.search.substring(1).split('&')[5].split('=')[1];
         //根据房间数创建房间信息
         var roomNumber=jsonPackage.roomDetails.length;
         for(var i=0;i<roomNumber; i++)
@@ -54,22 +54,41 @@
             {
                 var oSection=document.createElement('section');
                 oSection.className='li_section_box';
-                oSection.innerHTML='<li>'
-                    +'<span class="list_tit">成人'+(k+1)+'：</span>'
-                    +'<b class="add_icon"><a href="javascript:;" class="add-passager" ></a></b></span>'
-                    +'</li>'
-                    +"<ul id='trave"+k+"'>"
-                    +'<li class="trave-li trave-li-adu">'
-                    +'<span class="list_tit2 ">姓：</span>'
-                    +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
-                    +'<span class="list_tit2 ">名：</span>'
-                    +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
-                    +'</li>'
-                    +'<li>'
-                    +'<span class="list_tit">护照：</span>'
-                    +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" data-elementName="idNumber" /></span>'
-                    +'</li>';
+                if(travelersInput == 0)
+                {
+                    oSection.innerHTML='<li>'
+                        +'<span class="list_tit">成人'+(k+1)+'：</span>'
+                        +'<b class="add_icon"><a href="javascript:;" class="add-passager" ></a></b></span>'
+                        +'</li>'
+                        +"<ul id='trave"+k+"'>"
+                        +'<li class="trave-li trave-li-adu">'
+                        +'<span class="list_tit2 ">姓：</span>'
+                        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
+                        +'<span class="list_tit2 ">名：</span>'
+                        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                        +'</li>'
+                        +"</ul>"
+                }
+                else
+                {
+                    oSection.innerHTML='<li>'
+                        +'<span class="list_tit">成人'+(k+1)+'：</span>'
+                        +'<b class="add_icon"><a href="javascript:;" class="add-passager" ></a></b></span>'
+                        +'</li>'
+                        +"<ul id='trave"+k+"'>"
+                        +'<li class="trave-li trave-li-adu">'
+                        +'<span class="list_tit2 ">姓：</span>'
+                        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
+                        +'<span class="list_tit2 ">名：</span>'
+                        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                        +'</li>'
+                        +'<li>'
+                        +'<span class="list_tit">护照：</span>'
+                        +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" data-elementName="idNumber" /></span>'
+                        +'</li>';
                     +"</ul>"
+                }
+
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
 
             }

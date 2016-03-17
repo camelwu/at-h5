@@ -70,7 +70,7 @@
 		<div class="f_btn button-orange" style="margin-top: 10px" onclick="showAddAir_page('new')">
 			<b class="icons user-add"></b><span class="newTitle"></span>
 		</div>
-		<ul class="often-traveler choosed-traveler" id="content">
+		<ul class="often-traveler choosed-traveler">
 		</ul>
 		<div class="name-text" style="margin-bottom: 0;margin-top: -15px;">
 			首字母排序
@@ -428,7 +428,6 @@
 	//获取数据源
 	function get_allList() {
 		get_hisList();
-		debugger;
 		$(".user-must").on("click",function(){
 			$("#fillName_page").show();
 		})
@@ -474,14 +473,14 @@
 				this.className = "icon user-choice";
 			}else{
 				this.className = "icon user-choice choiced";
-				if(numofAdult!='null' && numofChlid!='null') {
-					$("#toper h3").html("已选" + $(".choiced").length + "人/成人" + numofAdult + " 1/" + numofChlid + "儿童");
+				if(numofAdult!='undefined' && numofChlid!='undefined') {
+					$("#toper h3").html("已选"  + $(".choiced").length+"/"+numofAdult+"成人  0/" + numofChlid + "儿童");
 				}
 				else{
 					$("#toper h3").html("已选" + $(".choiced").length+"人");
 				}
 			}
-			if(isMulSelect=="false")
+			if(!isMulSelect)
 			{
 				var len= $(".list-traveler .choiced").length;
 				if(len>=2){
@@ -490,7 +489,7 @@
 					return;
 				}
 			}
-			if(numofAdult!='null' && numofAdult!='null' &&  $(".choiced").length>numofAdult){
+			if(numofAdult!= 'undefined' && numofAdult!='undefined' &&  $(".choiced").length>numofAdult){
 				jAlert("对不起，不能超过"+numofAdult+"成人");
 				$(this).removeClass("choiced");
 				return;
@@ -541,7 +540,6 @@
 			var children=htmlObj.children().eq(0);
         	htmlObj.children().remove();
 			for(var i=0; i<=data.length-1;i++){
-				debugger;
 				var cloneObj=children.clone(true);
 				cloneObj.show();
 				cloneObj.find('input').each(function(){
@@ -608,12 +606,12 @@
 				TraInfo.DateOfBirth= list[i].traveller.dateOfBirth;
 
 				//信用卡信息
-				CertificateInfo.IdType= list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idType;     //证件类型
-				CertificateInfo.IdCountry= list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idCountry;  //证件发行国家
-				CertificateInfo.IdNumber=  list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idNumber;      //证件号码
-				CertificateInfo.IdActivatedDate= list[i].listTravellerIdInfo[list[i].listTravellerIdInfo.length-1].idActivatedDate ; //证件有效期
+				CertificateInfo.IdType= list[i].listTravellerIdInfo[0].idType;     //证件类型
+				CertificateInfo.IdCountry= list[i].listTravellerIdInfo[0].idCountry;  //证件发行国家
+				CertificateInfo.IdNumber=  list[i].listTravellerIdInfo[0].idNumber;      //证件号码
+				CertificateInfo.IdActivatedDate= list[i].listTravellerIdInfo[0].idActivatedDate ; //证件有效期
 
-
+                console.log()
 				TraInfo.FlightCertificateInfo=CertificateInfo;
 
 				TraInfo.BaggageCode="",//行李编码，一期不用,
@@ -780,7 +778,6 @@
 
 	$(".addFinish").on("click",function(){
 		var inputList=$(".addAir-page")
-		debugger;
 		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".cnName").eq(0).val())){
 			jAlert("中文姓名不能为空！","",null,"确认");
 			return false;

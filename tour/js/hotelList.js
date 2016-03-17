@@ -61,7 +61,6 @@ var hotelList = {
                 '<div class="l-price">',
                 '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>',
                 '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>',
-                '<!--<a class="choose-no">选择</a>-->',
                 '</div>',
             '</li>'
         ].join('');
@@ -69,6 +68,7 @@ var hotelList = {
             if (resultData.hotels.length == 0) {
                 jAlert("抱歉暂时没有数据", "提示");
             }else{
+                console.log(resultData);
                 that.packageID = resultData.packageID;
                 that.bookingFormInfo = resultData.bookingFormInfo;
                 var hotels = resultData.hotels;

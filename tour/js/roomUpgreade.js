@@ -1,5 +1,4 @@
 var roomUpGrade = {
-
     CultureName: "zh-CN",
 
     requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
@@ -84,7 +83,7 @@ var roomUpGrade = {
        document.querySelector('.day-number').innerHTML = "共"+dayNum+"晚";
        return  this;
     },
-    addEvent: function () {
+    addEvent: function (travelersInput) {
         var nextPage = document.querySelector('.hs-next'), that = roomUpGrade;
         this.eventHandler(nextPage, 'click', function(){
             var roomid='', totalPrice=0;
@@ -101,7 +100,7 @@ var roomUpGrade = {
                      break;
                  }
              }
-             document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+totalPrice+'&roomID='+roomid;
+             document.location.href = 'fill-in-order-new.html'+document.location.search+'&totailPrice='+totalPrice+'&roomID='+roomid+'&travelersInput='+travelersInput;
         });
     },
     callBack: function () {
@@ -162,8 +161,9 @@ var roomUpGrade = {
                 $("#preloader").fadeOut();
                 $('#sc-content').html(tpl_GetList);
                 $('#room-list').html(tpl_GetRooms);
+                var travelersInput = resultData.data.bookingFormInfo.travelersInput;
                 that.chooseRoom();
-                that.dateDeal().delayLoadImage().addEvent()
+                that.dateDeal().delayLoadImage().addEvent(travelersInput)
             }
         } else {
             $("#preloader").fadeOut();
