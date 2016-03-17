@@ -280,7 +280,7 @@
         }
 
         var AnimOut = function(){
-            $("[id=preloader]").delay(400).fadeOut();
+            $("[id=preloader]").fadeOut();
         }
         /**
          * [ajax]动画淡入
