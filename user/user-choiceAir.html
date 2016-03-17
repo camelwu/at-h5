@@ -470,18 +470,19 @@
 	get_allList();
 	function check_box() {
 		$(".user-choice").click(function() {
+			debugger;
 			if(this.className == "icon user-choice choiced"){
 				this.className = "icon user-choice";
 			}else{
 				this.className = "icon user-choice choiced";
-				if(numofAdult!='null' && numofChlid!='null') {
+				if(numofAdult!='undefined' && numofChlid!='undefined') {
 					$("#toper h3").html("已选" + $(".choiced").length + "人/成人" + numofAdult + " 1/" + numofChlid + "儿童");
 				}
 				else{
 					$("#toper h3").html("已选" + $(".choiced").length+"人");
 				}
 			}
-			if(isMulSelect=="false")
+			if(!isMulSelect)
 			{
 				var len= $(".list-traveler .choiced").length;
 				if(len>=2){
@@ -490,7 +491,7 @@
 					return;
 				}
 			}
-			if(numofAdult!='null' && numofAdult!='null' &&  $(".choiced").length>numofAdult){
+			if(numofAdult!= 'undefined' && numofAdult!='undefined' &&  $(".choiced").length>numofAdult){
 				jAlert("对不起，不能超过"+numofAdult+"成人");
 				$(this).removeClass("choiced");
 				return;
