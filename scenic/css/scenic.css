@@ -1115,7 +1115,7 @@ i{
 }
 .state-detail{
     margin: 0;
-    padding:0!important;
+    padding: 0 20px!important;
     display: none;
     overflow-x: auto;
 }
@@ -2290,6 +2290,11 @@ i{
 .minpax{
     font-size: 1.2rem;
     color: #fe4716;
+}
+/*景点详情页面 限定人数*/
+.minpax2{
+    font-size: 1.2rem;
+    color:#666666;
 }
 /*景点预订页面 参考价格提示*/
 .tip_price{

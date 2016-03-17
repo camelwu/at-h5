@@ -53,13 +53,16 @@
                 </li>
             </ul>
             <ul class="spot-info">
-                <li>
+                <li class="no-class">
                     <b class="jd-icon s-spe"></b>
                     特色亮点
+                    <b class="jd-icon s-up"></b>
                 </li>
-                <li id="Feature">
+                <li id="Feature" class="state-detail s-active">
 
                 </li>
+
+
                 <li>
                     <b class="jd-icon s-open"></b>
                     营业时间
@@ -70,11 +73,12 @@
                     营业地址
                     <div id="BusinessAddress" class="spe-state"></div>
                 </li>
-                <li>
+                <li class="no-class">
                     <b class="jd-icon s-combo"></b>
-                    景点套餐
+                    景点费用
+                    <b class="jd-icon s-up"></b>
                 </li>
-                <li id="ScenicPackage" style="padding:0;margin:0;border:none;">
+                <li id="ScenicPackage" class="state-detail s-active" style="padding:0;margin:0;border:none;">
 
                 </li>
 
@@ -140,7 +144,10 @@
     {%=departValidTo%}
 </script>
 <script id="tpl_GetDetails_Package_Feature" type="text/template">
-    {%=inclusiveItem%}
+    <ul class="spe-detail">
+        {%=inclusiveItem%}
+    </ul>
+
 </script>
 <script id="tpl_GetDetails_Package_BusinessAddress" type="text/template">
     {%=country%} {%=destCity%}
@@ -150,7 +157,7 @@
     {% for(var i=0,len=data.prices.length;i<len;i++){ %}
     <li>
         <div class="combo-name">{%=data.packageName%}</div>
-        <div class="combo-price">¥{%=data.prices[i].amountInCNY%}{% if(data.prices[i].category=="ADULT"){ %}(成人单价){% }else{ %}(儿童单价){% } %}</div> <i class="minpax">限{%=data.minPax%}人起订</i>
+        <div class="combo-price">¥{%=data.prices[i].amountInCNY%}</div> <i class="minpax2">{% if(data.prices[i].category=="ADULT"){ %}(成人单价){% }else{ %}(儿童单价){% } %}</i> <i class="minpax">限{%=data.minPax%}人起订</i>
         <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %}
         ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %},0);" class="s-reserve button-orange">预订</a>
         <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
@@ -202,10 +209,10 @@
             '<div class="pd-mb">',
             '<div>{%=packageName%}</div>',
             '<div>套餐编号：{%=packageRefNo%}</div>',
-            '{% if(imgl>0){ %}',
-            '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>',
-            '{% } %}',
             '</div>',
+            '{% if(imgl>0){ %}',
+            '<div style="position:absolute;top:12%;right:15px;font-size: 1.6rem;color:#ffffff;">{%=(imgl+1)%}张</div>',
+            '{% } %}',
             '</div>'
         ].join('');
 
@@ -231,7 +238,7 @@
 
         MT.getTime = function(date){
             return date.replace(/(\d{2,4}-\d{1,2}-\d{1,2})T(\d{2}:\d{2}:\d{2})/,function(){
-                return arguments[1]+" "+arguments[2];
+                return arguments[1];
             });
         }
         /**
@@ -303,7 +310,6 @@
                     useCSS : true,
                     hideBarsDelay : 0
                 });
-
 
                 $("#ScheduledTimeFrom").html(tpl_GetDetails_Package_ScheduledTimeFrom);
                 $("#ScheduledTimeTo").html(tpl_GetDetails_Package_ScheduledTimeTo);
