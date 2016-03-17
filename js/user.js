@@ -105,7 +105,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var cardId;
                 //中文姓名验证
                 var sChiName=input[0].value;
-                if( ! vlm.Utils.validate.chiEngName(sChiName))
+                if( ! vlm.Utils.validate.chiName(sChiName))
                 {
                     jAlert('请输入正确的中文名');
                     return;
