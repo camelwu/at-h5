@@ -758,6 +758,16 @@ i{
     margin:0 auto;
     background-position: -164px -19px;
 }
+.s-ranks{
+    background-image: url(../../images/ui/jd-sort.png);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    display:block;
+    width:20px;
+    height:21px;
+    margin:0 auto;
+    background-position: 0px 4px;
+}
 .s-fil{
     display:block;
     width:20px;
