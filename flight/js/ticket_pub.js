@@ -409,10 +409,10 @@ var  conditionalFiltering = {
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i>' +
                 '<span class="filter-select">筛选</span>'+
                 '</div>'+
-                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span'+
-                '  class="filter-select">优选</span>'+
+                '<div class="fo-div" id="fo_ra" data-time-type="domestic"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
+                '  class="filter-select">起飞早到晚</span>'+
                 '</div>'+
-                '<div class="fo-div" id="fo_lo" data-price-type="domestic"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
+                '<div class="fo-div" id="fo_lo" data-price-type="domestic" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
                 ' class="filter-select">价格</span>'+  /*点击价格没有弹出框，直接变化价格展示*/
                 '</div>';
 
@@ -421,7 +421,6 @@ var  conditionalFiltering = {
                 '<div class="reset-action-item">重置</div>'+
                 '<div class="reset-action-item">确定</div>'+
                 '</div>'+
-
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
                 '<li class="filter-title clear-background" data-info="df">直飞/中转</li>'+
@@ -453,22 +452,18 @@ var  conditionalFiltering = {
                 '</ul>'+
                 '</div>'+
                 '</div>';
-                middleModal.innerHTML =
-                    '<li class="time-modal-item active" data-i="true"><b></b>从早到晚</li>'+
-                    '<li class="time-modal-item" data-i="false"><b></b>从晚到早</li>'
+                middleModal.innerHTML = '';
                 rightModal.innerHTML =''
-
             }else{                   //国内往返
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i>' +
                 '<span class="filter-select">筛选</span>'+
                 '</div>'+
-                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i>' +
+                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i>' +
                 '<span class="filter-select">优选</span>'+
                 '</div>'+
                 '<div class="fo-div" id="fo_lo" data-price-type="domestic"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
                 ' class="filter-select">价格</span>'+   // /*点击价格弹出框（含税与不含税，前端计算）/
                 '</div>';
-
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
                 '<div class="reset-action-item hot">取消</div>'+
                 '<div class="reset-action-item">重置</div>'+
@@ -511,8 +506,8 @@ var  conditionalFiltering = {
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span'+
                 ' class="filter-select">筛选</span>'+
                 '</div>'+
-                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span'+
-                ' class="filter-select">优选</span>'+
+                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
+                ' class="filter-select">起飞早到晚</span>'+
                 '</div>'+
                 '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
                 ' class="filter-select">价格</span>'+  /*点击价格有弹出框，包含含税与不含税*/
@@ -559,25 +554,21 @@ var  conditionalFiltering = {
                     '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'+
                     '    <li class="time-modal-item" data-i="isDesc_true"><b></b>起飞早到晚</li>'+
                     '    <li class="time-modal-item" data-i="isDesc_false"><b></b>起飞晚到早</li>'
-                rightModal.innerHTML =
-                    '<li class="price-modal-item active" data-i="true"><b></b>含税价</li>'+
-                    '<li class="price-modal-item" data-i="false"><b></b>不含税</li>'
+                rightModal.innerHTML =''
             }else{
-
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span'+
                 ' class="filter-select">筛选</span>'+
                 '</div>'+
-                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class=""></i><span'+
+                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
                 ' class="filter-select">优选</span>'+
                 '</div>'+
                 '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
-                ' class="filter-select">价格</span>'+  /*点击价格有弹出框，包含含税与不含税*/'</div>';
+                ' class="filter-select">含税费</span>'+  /*点击价格有弹出框，包含含税与不含税*/'</div>';
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
                 '<div class="reset-action-item hot">取消</div>'+
                 '<div class="reset-action-item">重置</div>'+
                 '<div class="reset-action-item">确定</div>'+
                 '</div>'+
-
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
                 '<li class="filter-title clear-background" data-info="df">直飞/中转</li>'+
@@ -606,9 +597,7 @@ var  conditionalFiltering = {
                     '    <li class="time-modal-item" data-i="1"><b></b>直飞优先</li>'+
                     '    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>'+
                     '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'
-                rightModal.innerHTML =
-                    '<li class="price-modal-item active" data-i="true"><b></b>含税价</li>'+
-                    '<li class="price-modal-item" data-i="false"><b></b>不含税</li>'
+                rightModal.innerHTML =""
             }
         }
         oDiv.appendChild(baseTitle);
@@ -631,14 +620,146 @@ var  conditionalFiltering = {
                 leftModal.style.webkitTransition = 'all 300ms linear';
                 leftModal.style.bottom = 0;
             };
-            var  middleModalHandle =function (){
-                var middleModal = document.querySelector('#time-modal');
-                middleModal.style.transition = 'all 300ms ease-in';
-                middleModal.style.webkitTransition = 'all 300ms linear';
-                middleModal.style.bottom = 0;
+            var  middleModalHandle =function (arg){
+                if(that.sinOrDou=="Oneway"&&that.tripType == "domestic"){
+                    var rightCock = titleWrap.querySelector('#fo_lo');
+                    var iEle = rightCock.querySelector('i');
+                    var spEle = rightCock.querySelector('SPAN');
+                    spEle.innerHTML ='价格';
+                    iEle.className ='';
+                    that.tempStates.PriorityRule = '0';
+                    if(arg.querySelector('.filter-select').innerHTML=='起飞早到晚'){
+                        arg.querySelector('.filter-select').innerHTML='起飞晚到早';
+                        that.tempStates.IsDesc = true;
+                    }else{
+                        arg.querySelector('.filter-select').innerHTML='起飞早到晚';
+                        that.tempStates.IsDesc = false;
+                    }
+                    that.fn(that.tempStates);
+                    that.checkRedTip();
+
+                }else if(that.sinOrDou=="Oneway"&&that.tripType == "international"){
+                    shadowEle.style.display='block';
+                    var middleModal = document.querySelector('#time-modal');
+                    var middleCock = document.querySelector('#fo_ra');
+                    middleModal.style.transition = 'all 300ms ease-in';
+                    middleModal.style.webkitTransition = 'all 300ms linear';
+                    middleModal.style.bottom = 0;
+                    middleModal.onclick = function(){
+                        var event = event || window.event;
+                        var target =target||event.srcElement, lineEle;
+                        var SP = middleCock.querySelector('SPAN');
+                        var iO = middleCock.querySelector('i');
+                        if(target.tagName == 'LI'){
+                            var twoEles = target.parentNode.querySelectorAll('li');
+                            for(var s = 0;s < twoEles.length;s++){
+                                twoEles[s].className = 'tag-item';
+                            }
+                            if(target.innerText=='不限'){
+                                SP.innerHTML = '优选';
+                            }else{SP.innerHTML = target.innerText; }
+                            target.className = 'tag-item active';
+                        }
+                        that.stateEvent('get');
+                        console.log(that.tempStates)
+                        that.fn(that.tempStates);
+                        that.checkRedTip();
+                        this.style.transition = 'all 300ms ease-in';
+                        this.style.webkitTransition = 'all 300ms linear';
+                        this.style.bottom = "-126%";
+                        shadowEle.style.display='none';
+                    }
+
+                } else if(that.sinOrDou=="Return"&&that.tripType == "domestic"){
+                    shadowEle.style.display='block';
+                    var middleModal = document.querySelector('#time-modal');
+                    var middleCock = document.querySelector('#fo_ra');
+                    var rightCock2 = titleWrap.querySelector('#fo_lo');
+                    var iEle = rightCock2.querySelector('i');
+                    var spEle = rightCock2.querySelector('SPAN');
+                    spEle.innerHTML ='价格';
+                    iEle.className ='';
+                    that.tempStates.PriorityRule = '0';
+                     middleModal.style.transition = 'all 300ms ease-in';
+                     middleModal.style.webkitTransition = 'all 300ms linear';
+                     middleModal.style.bottom = 0;
+                     middleModal.onclick = function(){
+                        var event = event || window.event;
+                        var target =target||event.srcElement, lineEle;
+                        var SP = middleCock.querySelector('SPAN');
+                        var iO = middleCock.querySelector('i');
+                        if(target.tagName == 'LI'){
+                            var twoEles = target.parentNode.querySelectorAll('li');
+                            for(var s = 0;s < twoEles.length;s++){
+                                twoEles[s].className = 'tag-item';
+                            }
+                            if(target.innerText=='不限'){
+                                SP.innerHTML = '优选';
+                            }else{SP.innerHTML = target.innerText; }
+                                target.className = 'tag-item active';
+                        }
+                        that.stateEvent('get');
+                        that.fn(that.tempStates);
+                        that.checkRedTip();
+                        this.style.transition = 'all 300ms ease-in';
+                        this.style.webkitTransition = 'all 300ms linear';
+                        this.style.bottom = "-126%";
+                         shadowEle.style.display='none';
+                    }
+                }else if(that.sinOrDou=="Return"&&that.tripType == "international"){
+                    shadowEle.style.display='block';
+                    var middleModal4 = document.querySelector('#time-modal');
+                    var middleCock4 = document.querySelector('#fo_ra');
+                    middleModal4.style.transition = 'all 300ms ease-in';
+                    middleModal4.style.webkitTransition = 'all 300ms linear';
+                    middleModal4.style.bottom = 0;
+                    middleModal4.onclick = function(){
+                        var event = event || window.event;
+                        var target =target||event.srcElement, lineEle;
+                        var SP = middleCock4.querySelector('SPAN');
+                        var iO = middleCock4.querySelector('i');
+                        if(target.tagName == 'LI'){
+                            var twoEles4 = target.parentNode.querySelectorAll('li');
+                            for(var s = 0;s < twoEles4.length;s++){
+                                twoEles4[s].className = 'tag-item';
+                            }
+                            if(target.innerText=='不限'){
+                                SP.innerHTML = '优选';
+                            }else{SP.innerHTML = target.innerText; }
+                            target.className = 'tag-item active';
+                        }
+                        that.stateEvent('get');
+                        console.log(that.tempStates)
+                        that.fn(that.tempStates);
+                        that.checkRedTip();
+                        this.style.transition = 'all 300ms ease-in';
+                        this.style.webkitTransition = 'all 300ms linear';
+                        this.style.bottom = "-126%";
+                        shadowEle.style.display='none';
+                    }
+                }
             };
             var  rightModalHandle = function(arg){
-                if(arg.getAttribute('data-price-type')=="domestic"){
+                if(that.sinOrDou=="Oneway"&&that.tripType == "domestic"){
+                     var middleCock = titleWrap.querySelector('#fo_ra');
+                     var iEle = middleCock.querySelector('i');
+                     var spEle = middleCock.querySelector('SPAN');
+                     spEle.innerHTML ='时间';
+                     iEle.className ='';
+                     that.tempStates.IsDesc = false;
+                     arg.querySelector('.filter-select').innerHTML='从低到高';
+                        that.tempStates.PriorityRule = '2';
+
+                    that.fn(that.tempStates);
+                    that.checkRedTip();
+
+                }else if(that.sinOrDou=="Return"&&that.tripType == "domestic"){
+                    var middleCock2 = titleWrap.querySelector('#fo_ra');
+                    var iEle = middleCock2.querySelector('i');
+                    var spEle = middleCock2.querySelector('SPAN');
+                    spEle.innerHTML ='优选';
+                    iEle.className ='red-tip';
+                    that.tempStates.PriorityRule = '0';
                     if(arg.querySelector('.filter-select').innerHTML=='从低到高'){
                         arg.querySelector('.filter-select').innerHTML='价格';
                         that.tempStates.PriorityRule = '0'
@@ -646,31 +767,42 @@ var  conditionalFiltering = {
                         arg.querySelector('.filter-select').innerHTML='从低到高';
                         that.tempStates.PriorityRule = '2';
                     }
+                    console.log(that.tempStates.PriorityRule)
+                    that.stateEvent('set');
                     that.fn(that.tempStates);
                     that.checkRedTip();
-                }else{
-                    var rightModal = document.querySelector('#price-modal');
-                    rightModal.style.transition = 'all 300ms ease-in';
-                    rightModal.style.webkitTransition = 'all 300ms linear';
-                    rightModal.style.bottom = 0;
-                    rightModal.onclick = function(){
-                        var event = event || window.event;
-                        var target =target||event.srcElement, lineEle;
-                        if(target.tagName == 'LI'){
-                            var twoEles = target.parentNode.querySelectorAll('li');
-                            for(var s = 0;s < twoEles.length;s++){
-                                twoEles[s].className = 'tag-item';
-                            }
-                            target.className = 'tag-item active';
-                        }
-                        that.stateEvent('get');
-                        that.fn_(that.tempStates);
-                        that.checkRedTip();
-                        this.style.transition = 'all 300ms ease-in';
-                        this.style.webkitTransition = 'all 300ms linear';
-                        this.style.bottom = "-126%";
+                }else if(that.sinOrDou=="Oneway"&&that.tripType == "international"){
+                    var rightCock2 = titleWrap.querySelector('#fo_lo');
+                    var iEle2 = rightCock2.querySelector('i');
+                    var spEle2 = rightCock2.querySelector('SPAN');
+                    if(spEle2.innerHTML=='含税'){
+                        spEle2.innerHTML='不含税';
+                        that.tempStates.hasTax = "false"
+                    }else{
+                        spEle2.innerHTML='含税';
+                        that.tempStates.hasTax = "true"
                     }
+                    console.log(that.tempStates)
+                    that.stateEvent('set');
+                    that.fn_(that.tempStates);
+                    that.checkRedTip();
+                }else if(that.sinOrDou=="Return"&&that.tripType == "international"){
+                    var rightCock5 = titleWrap.querySelector('#fo_lo');
+                    var iEle5 = rightCock5.querySelector('i');
+                    var spEle5 = rightCock5.querySelector('SPAN');
+                    if(spEle5.innerHTML=='含税'){
+                        spEle5.innerHTML='不含税';
+                        that.tempStates.hasTax = "false"
+                    }else{
+                        spEle5.innerHTML='含税';
+                        that.tempStates.hasTax = "true"
+                    }
+                    console.log(that.tempStates)
+                    that.stateEvent('set');
+                    that.fn_(that.tempStates);
+                    that.checkRedTip();
                 }
+
             };
 
             if(target.tagName == 'B'||target.tagName == 'SPAN'){
@@ -684,13 +816,9 @@ var  conditionalFiltering = {
                     leftModalHandle();
                     break;
                 case 'fo_ra':
-                    shadowEle.style.display = 'block';
-                    middleModalHandle();
+                    middleModalHandle(lineEle);
                     break;
                 case 'fo_lo':
-                    if(lineEle.getAttribute('data-info')=='openShadow'){
-                        shadowEle.style.display = 'block';
-                    }
                     rightModalHandle(lineEle);
                     break;
                 default :
@@ -797,24 +925,6 @@ var  conditionalFiltering = {
                         allLi[n].className = allLi[n]==target?"tag-item active":"tag-item"}
                 }
             };
-            var timeModal = document.querySelector('#time-modal');
-            timeModal.onclick = function(event){
-                var event = event || window.event;
-                var target =target||event.srcElement, lineEle;
-                if( target.className.indexOf('tag-item')>-1){
-                    var allLi =  target.parentNode.querySelectorAll('li');
-                    for(var n = 0; n< allLi.length; n++){
-                        allLi[n].className = allLi[n]==target?"tag-item active":"tag-item"
-                    }
-                }
-                that.stateEvent('get');
-                that.fn(that.tempStates);
-                that.checkRedTip();
-                this.style.transition = 'all 300ms ease-in';
-                this.style.webkitTransition = 'all 300ms linear';
-                this.style.bottom = '-126%';
-                shadowEle.style.display = 'none';
-            }
             shadowEle.onclick = function(event) {
                 var event = event || window.event;
                 var target = target || event.srcElement, lineEle;
@@ -856,7 +966,6 @@ var  conditionalFiltering = {
                         }
                     }
                 }
-
                 for (var j = 0; j < filterShareLis.length; j++) {
                     if(type=="set"){
                         filterShareLis[j].className = filterShareLis[j].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
@@ -887,7 +996,7 @@ var  conditionalFiltering = {
                         }
                     }
                 }
-                (this.tempStates.IsDesc == true) ? priceModalEle.querySelector('.filter-select').innerHTML = '价格' : priceModalEle.querySelector('.filter-select').innerHTML = '从低到高';
+                (this.tempStates.PriorityRule == '2') ? priceModalEle.querySelector('.filter-select').innerHTML = '从低到高' : priceModalEle.querySelector('.filter-select').innerHTML = '价格';
             }else{ //国内单程
 
                 var directFlyLis__ = document.querySelectorAll('.only-direct-fly li');
@@ -896,6 +1005,7 @@ var  conditionalFiltering = {
                 var seatConditionLis__ = document.querySelectorAll('#seat-condition li');
                 var timeMiddleLis__ = document.querySelectorAll('#time-modal li');
                 var priceModalEle__ = document.querySelector('#fo_lo');
+
                 for (var bn = 0; bn < directFlyLis__.length; bn++) {
                     if(type=="set"){
                         directFlyLis__[bn].className = directFlyLis__[bn].getAttribute('data-i') == this.tempStates.IsDirectFlight ? "tag-item active" : "tag-item";
@@ -954,7 +1064,7 @@ var  conditionalFiltering = {
                 var filterShareLis_ = document.querySelectorAll('.filter-share li');
                 var seatConditionLis_ = document.querySelectorAll('#seat-condition li');
                 var timeMiddleLis_ = document.querySelectorAll('#time-modal li');
-                var priceModalLis_ = document.querySelectorAll('#price-modal li');
+                var priceModalLis_ = document.querySelector('#fo_lo');
                 for (var q = 0; q < directFlyLis_.length; q++) {
                     if(type=="set"){
                         directFlyLis_[q].className = directFlyLis_[q].getAttribute('data-i') == this.tempStates.IsDirectFlight ? "tag-item active" : "tag-item";
@@ -996,26 +1106,15 @@ var  conditionalFiltering = {
                         }
                     }
                 }
-                for(var mv = 0; mv < priceModalLis_.length; mv++) { //如果后台允许多个无用参数，可以保留含税与不含税
-                    if(type=="set"){
-                        priceModalLis_[mv].className =  priceModalLis_[mv].getAttribute('data-i') == this.tempStates.hasTax ? "tag-item active" : "tag-item";
-                    }else if(type =='get'){
-                        if( priceModalLis_[mv].className == "tag-item active"){
-                            this.tempStates.hasTax = priceModalLis_[mv].getAttribute('data-i');
-                            break;
-                        }
-                    }
-                }
-
+                (this.tempStates.hasTax == "true") ? priceModalLis_.querySelector('.filter-select').innerHTML = '含税' : priceModalLis_.querySelector('.filter-select').innerHTML = '不含税';
 
             }else{   //国际单程
-
                 var directFlyLis_is = document.querySelectorAll('.only-direct-fly li');
                 var filterShareLis_is = document.querySelectorAll('.filter-share li');
                 var setTimeDurationLis_is = document.querySelectorAll('.set-time-duration li');
                 var seatConditionLis_is = document.querySelectorAll('#seat-condition li');
                 var timeMiddleLis_is = document.querySelectorAll('#time-modal li');
-                var priceModalLis_is = document.querySelectorAll('#price-modal li');
+                var priceModalLis_is = document.querySelector('#fo_lo');
                 for (var qq = 0; qq < directFlyLis_is.length; qq++) {
                     if(type=="set"){
                         directFlyLis_is[qq].className = directFlyLis_is[qq].getAttribute('data-i') == this.tempStates.IsDirectFlight ? "tag-item active" : "tag-item";
@@ -1076,18 +1175,7 @@ var  conditionalFiltering = {
                         }
                     }
                 }
-
-                for(var io = 0; io < priceModalLis_is.length; io++) { //如果后台允许多个无用参数，可以保留含税与不含税
-                    if(type=="set"){
-                        priceModalLis_is[io].className = priceModalLis_is[io].getAttribute('data-i') == this.tempStates.hasTax ? "tag-item active" : "tag-item";
-                    }else if(type =='get'){
-                        if(priceModalLis_is[io].className == "tag-item active"){
-                            this.tempStates.hasTax =priceModalLis_is[io].getAttribute('data-i');
-                            break;
-                        }
-                    }
-                }
-
+                (this.tempStates.hasTax == "true") ? priceModalLis_is.querySelector('.filter-select').innerHTML = '含税' : priceModalLis_is.querySelector('.filter-select').innerHTML = '不含税';
             }
         }
     },
@@ -1109,7 +1197,7 @@ var  conditionalFiltering = {
                  }else{
                      middleEle.querySelector('i').className = ''
                  };
-                 if(this.tempStates['hasTax']!= this.originInfo['hasTax']){
+                 if(this.tempStates['hasTax']!="true"){
                      rightEle.querySelector('i').className = 'red-tip'
                  }else{
                      rightEle.querySelector('i').className = ''
@@ -1128,14 +1216,15 @@ var  conditionalFiltering = {
                  }else{
                      middleEle.querySelector('i').className = ''
                  };
-                 if(this.tempStates['hasTax']!= this.originInfo['hasTax']){
+                 if(this.tempStates['hasTax'] =="false"){
                      rightEle.querySelector('i').className = 'red-tip'
                  }else{
                      rightEle.querySelector('i').className = ''
                  }
              }
         }else{
-            if(this.sinOrDou == 'Oneway'){
+            console.log(this.tempStates)
+            if(this.sinOrDou == 'Oneway'){  //单程国内
                 if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
                     this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
                     this.tempStates['CabinClass']!= this.originInfo['CabinClass']){
@@ -1143,33 +1232,30 @@ var  conditionalFiltering = {
                 }else{
                     leftEle.querySelector('i').className = ''
                 };
-                if(this.tempStates['PriorityRule']!= this.originInfo['PriorityRule']){
-                    middleEle.querySelector('i').className = 'red-tip'
+                if(middleEle.querySelector('SPAN').innerHTML =='时间'){
+                    middleEle.querySelector('i').className = '';
                 }else{
-                    middleEle.querySelector('i').className = ''
-                };
-                if(this.tempStates['hasTax']!= this.originInfo['hasTax']){
-                    rightEle.querySelector('i').className = 'red-tip'
-                }else{
+                    middleEle.querySelector('i').className = 'red-tip';
+                }
+                if(rightEle.querySelector('SPAN').innerHTML =='价格'){
                     rightEle.querySelector('i').className = ''
+                }else{
+                    rightEle.querySelector('i').className = 'red-tip'
                 }
             }else{
-                if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
+                if( this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
                     this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
                     this.tempStates['CabinClass']!= this.originInfo['CabinClass']){
                     leftEle.querySelector('i').className = 'red-tip'
                 }else{
                     leftEle.querySelector('i').className = ''
                 };
-                if(this.tempStates['PriorityRule']!= this.originInfo['PriorityRule']){
-                    middleEle.querySelector('i').className = 'red-tip'
-                }else{
-                    middleEle.querySelector('i').className = ''
-                };
-                if(this.tempStates['hasTax']!= this.originInfo['hasTax']){
-                    rightEle.querySelector('i').className = 'red-tip'
-                }else{
+
+                middleEle.querySelector('i').className = 'red-tip';
+                if(rightEle.querySelector('SPAN').innerHTML =='价格'){
                     rightEle.querySelector('i').className = ''
+                }else{
+                    rightEle.querySelector('i').className = 'red-tip'
                 }
             }
 
@@ -1183,7 +1269,6 @@ var  conditionalFiltering = {
         for(var tem in infoObj){
             this.originInfo[tem] = infoObj[tem]
         }
-
         this.fn = callback1;
         this.fn_ = callback2;
         this.createTags().addEvent().stateEvent('set');
