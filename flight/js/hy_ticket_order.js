@@ -188,8 +188,19 @@ var ticketOrder = {
                 jAlert('请输入邮箱!', '提示');
                 return;
             }
+            if(contactInfoCache.Email==""){
+                jAlert('请输入邮箱!', '提示');
+                return;
+            }else if(!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)){
+                jAlert('请输入正确格式邮箱!', '提示');
+                return;
+            }
+
             if(contactInfoCache.MobilePhone==""){
                 jAlert('请输入手机号!', '提示');
+                return;
+            }else if(!/^1\d{10}$/.test(contactInfoCache.MobilePhone)){
+                jAlert('请输入正确格式手机号!', '提示');
                 return;
             }
 
