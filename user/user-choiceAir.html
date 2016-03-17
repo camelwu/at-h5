@@ -372,8 +372,8 @@
 <script src="../scenic/js/new_countrytel_list.js"></script>
 <!--<script src="scripts/userChoice.js"></script>-->
 <script>
-	var urlobj = vlm.parseUrlPara(window.location.href),isMulSelect=vlm.getpara("isMulSelect")//是否多选
-	,isNeedPassport=vlm.getpara("isNeedPassport")//是否需要护照
+	var urlobj = vlm.parseUrlPara(window.location.href),isMulSelect=vlm.getpara("isMulSelect").toLowerCase()=="true"?true:false//是否多选
+	,isNeedPassport=vlm.getpara("isNeedPassport").toLowerCase()=="true"?true:false//是否需要护照
 	, titleType=vlm.getpara("title").substr(2)//是否多选title;
 	, travId=vlm.getpara("Id")//id,
 	 ,elementId=vlm.getpara("elementId")//id
@@ -527,30 +527,63 @@
 				});
 
 			}
-
-			var tpl=GetTpl(from,isContact)
-			var html = template(tpl,selectUser);
-		    //ReplaceData(elementId,selectUser);
+		    ReplaceData(elementId,selectUser);
 			SavaLocalStorge(selectUser,isContact)
 		    var callback =vlm.getpara("callback");
 
-		    $(ifrCilent.parentNode).find("#"+elementId).html(html);
-
-			if (callback !=null) {
-				window.parent.callback();
-			}
 		    ifrCilent.parentNode.removeChild(ifrCilent);
 	}
 	function ReplaceData(id,data){
-		debugger;
-
 		var elementId="#"+id
-		var htmlObj=parent.document.getElementById(elementId);
-		$(htmlObj).find("'"+elementId+"'").each(function(){
-			$(this).attr("data-element")
+		var htmlObj =$(ifrCilent.parentNode).find(elementId)
+		if(isMulSelect)
+		{
+			var children=htmlObj.children().eq(0);
+        	htmlObj.children().remove();
+			for(var i=0; i<=data.length-1;i++){
+				debugger;
+				var cloneObj=children.clone(true);
+				cloneObj.show();
+				cloneObj.find('input').each(function(){
+					if($(this).attr("data-elementName")!="undefined"){
+						if($(this).attr("data-elementName")=="idNumber") {
+							$(this).attr("value",data[i].listTravellerIdInfo[0].idNumber);
+						}
+						else{
+							$(this).attr("value",data[i].traveller[$(this).attr("data-elementName")]);
+						}
+					}
+				});
+				children.find('span').each(function(){
+					if(typeof($(this).attr("data-elementName"))!="undefined"){
+						var d=data[0].traveller[$(this).attr("data-elementName")];
+						var Country=getCountryName(d);
+						$(this).attr("data-tel-code",Country.CountryCode);
+						$(this).attr("data-tel-code",Country.CountryCode);
+						$(this).html(Country.CountryName);
+					}
+				});
+				htmlObj.append(cloneObj);
+			}
+		}
+		else{
+			htmlObj.find('input').each(function(){
+				if($(this).attr("data-elementName")!="undefined"){
+					if($(this).attr("data-elementName")=="idNumber") {
+						$(this).attr("value",data[0].listTravellerIdInfo[0].idNumber);
+					}
+					else {
+						$(this).attr("value", data[0].traveller[$(this).attr("data-elementName")]);
+					}
+				}
+			})
+			htmlObj.find('span').each(function(){
+				if($(this).attr("data-elementName")!="undefined"){
+					$(this).attr("value", data[0].traveller[$(this).attr("data-elementName")]);
 
-		})
-
+				}
+			})
+		}
 	}
 	//保存选择的记录
 	function SavaLocalStorge(list,isContact){
