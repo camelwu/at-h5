@@ -148,7 +148,7 @@
 						</div>
 						<input id="time-cont" type="text" class="birth-cont cardDateLimit" value="1990年1月9号" readonly />
 					</li>
-					<li>
+					<li class="countries-wrap">
 						<b class="icons open-pho"></b>
 						<div>
 							发证国家
@@ -158,7 +158,7 @@
 				</ul>
 				<div class="addtra-title">其他信息</div>
 				<ul class="addAir-info mart-non">
-					<li>
+					<li class="countries-wrap">
 						<b class="icons open-pho"></b>
 						<div>
 							国籍
@@ -255,7 +255,7 @@
 <!--国籍选择开始-->
 <div class="all-elements country-cho-wrap">
 	<div class="header">
-		<a href="javascript:;" class="icons header-back country-hidden"></a>
+		<a href="javascript:;" class="header-back name-illustrate country-hidden "><i class="icons go-back"></i></a>
 		<div class="cl_search">
 			<input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
 			<i></i>
@@ -680,7 +680,7 @@
 		addAir_page.style.display = "block";
 		if(type=="new"){
 			$(".addAir-page .header h3").html("新建"+titleType+"信息");
-			$()
+			$(".addAir-page input").attr("value","")
 		}
 		else {
 
