@@ -110,11 +110,13 @@
 		//   获取景点
 		<script id="tpl_GetTour" type="text/template">
 			{% for(var i=0;i < tours.length;i++){ %}
+			{% if(tours[i].travelDateMandatory){ %}
 			<div class="nav2-tour tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
 			<div>{%=tours[i].tourName%}</div>
 			<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span></div>
 			<i></i>
 			</div>
+			{% } %}
 			{% } %}
 		</script>
 
