@@ -478,6 +478,7 @@ var ticketDouble = {
         var arg = arg;
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
+            document.querySelector('.tip-button-para').style.display='none';
             tipEle.style.display = 'none';
             that.flightResultArray.push(arg["data"])
             that.lastBackData = arg;
@@ -488,6 +489,7 @@ var ticketDouble = {
             that.checkPullStatus();
             that.taxDeal(arg.data.flightInfos);
         }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
+            document.querySelector('.tip-button-para').style.display='none';
             airTicketsListWrapper.innerHTML = "";
             tipEle.style.display = 'block';
             that.timer8 = window.setTimeout(function(){
@@ -498,8 +500,8 @@ var ticketDouble = {
         }else{
             tipEle.style.display = 'none';
             document.querySelector('#preloader').style.display='none';
+            document.querySelector('.tip-button-para').style.display='block';
             that.checkPullStatus();
-            that.alertNoFlightNotice(that.backParaObj,'Oneway')
         }
         that.checkPullStatus()
     },
