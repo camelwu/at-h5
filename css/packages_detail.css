@@ -50,6 +50,26 @@ i{
     display: inline-block;
 }
 
+.sc-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 45px;
+    padding-bottom: 50px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
+}
 /*头图*/
 .picBox{overflow:hidden;position:relative;}
 .picBox img{width:100%;height:auto;}
@@ -130,14 +150,21 @@ i{
     background:#fff;overflow:hidden;padding:0 10px;line-height:22px;padding-bottom:10px;
 }
 .detailBox strong{
+    display: block;
     text-indent: 0;
     margin-bottom: 10px;
     font-size: 1.6rem;line-height:22px;color: #000;
 }
-.detailBox p{
+/*.detailBox p{*/
+    /*text-indent: 0;*/
+    /*margin-bottom: 0;*/
+    /*font-size: 13px;line-height:22px;color: #000;*/
+/*}*/
+.noteContent{
+    display: none;
     text-indent: 0;
     margin-bottom: 0;
-    font-size: 13px;line-height:22px;color: #000;
+    font-size: 13px;color: #000;
 }
 .detailBox ul{margin:0;}
 .detailBox ul li{

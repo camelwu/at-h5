@@ -47,7 +47,7 @@
 				<span class="title">套餐详情</span>
 			</header>
 			<!--   内容   -->
-			<div id="content ddd" class="snap-content" style="padding-top: 45px;padding-bottom:50px;">
+			<div class="sc-content">
 				<section id="packageBox" class="picBox">
 					<!--<div>-->
 					<!--<img src="../images/03-1_02.jpg" alt="">-->
@@ -107,12 +107,12 @@
 		<script src="../js/lib/template.js"></script>
 		<script id="tpl_GetSpotOverview" type="text/template">
 			{% for(var i=0;i < tours.length;i++){ %}
-			<strong>{%=tours[i].tourName%}</strong><li>{%=tours[i].overview%}</li>
+			<strong class="viewTitel">{%=tours[i].tourName%}</strong><li class="viewContent" style="display: none">{%=tours[i].overview%}</li>
 			{% } %}
 		</script>
 		<script id="tpl_GetSpotImportantNotes" type="text/template">
 			{% for(var i=0;i < tours.length;i++){ %}
-			<strong>{%=tours[i].tourName%}</strong><p>{%=tours[i].importantNotes%}</p>
+			<strong class="noteTitel">{%=tours[i].tourName%}</strong><div class="noteContent">{%=tours[i].importantNotes%}</div>
 			{% } %}
 		</script>
 		<script id="tpl_GetTermsConditions" type="text/template">
@@ -172,6 +172,12 @@
 									useCSS : true,
 									hideBarsDelay : 0
 								});
+								$('.viewTitel').click(function(){
+									$('.viewContent').eq($(this).index('.viewTitel')).toggle();
+								});
+								$('.noteTitel').click(function(){
+									$('.noteContent').eq($(this).index('.noteTitel')).toggle();
+								});
 								if (data.length == 0) {
 									jAlert("抱歉暂时没有数据", "提示");
 								}
@@ -181,6 +187,7 @@
 							}
 						}
 					};
+
 					return {
 						//FlashLoad : flashLoad,
 						GetPackage : getPackage
@@ -192,6 +199,7 @@
 					package_detail.GetPackage();
 				};
 				MT.load();
+
 			})();
 		</script>
 	</body>

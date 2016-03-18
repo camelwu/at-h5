@@ -87,7 +87,7 @@
 					<h3>景点</h3>
 				</section>
 				<section id="tourTime" class="tourTime">
-
+					
 				</section>
 				<section class="orderBtn">
 					<button id="order_btn">
@@ -110,9 +110,9 @@
 		//   获取景点
 		<script id="tpl_GetTour" type="text/template">
 			{% for(var i=0;i < tours.length;i++){ %}
-			{% if(tours[i].travelDateMandatory){ %}
 			<div class="nav2-tour tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
 			<div>{%=tours[i].tourName%}</div>
+			{% if(tours[i].travelDateMandatory){ %}
 			<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span></div>
 			<i></i>
 			</div>
@@ -328,18 +328,6 @@
 
 					function initRooms() {
 						var initEle = document.querySelector('.init-hotel-room-detail'), initStr = '';
-						/* 房间规则，成人数，儿童数
-						 1	0	不能预订
-						 1	1	不显示加床，但写死给新加坡传1成人1儿童加床
-						 1	2	不显示加床，但写死给新加坡传1成人1儿童加床1儿童不加床
-						 2	0	不显示加床
-						 2	1	显示加床，可选加床
-						 2	2	强制加1个床
-						 3	0	不显示加床
-						 3	1	显示加床，可选加床
-						 3	2	强制加1床
-						 *
-						 * */
 						if (onlyForAdult) {
 							initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>' + '</div>';
 						} else {
@@ -444,11 +432,17 @@
 							roomDetails.push(temObj);
 						}
 						for (var fg = 0; fg < tourEle.length; fg++) {
-							var id = tourEle[fg].getAttribute('data-tour-id');
-							var dateStr = tourEle[fg].querySelector('.content3_CheckInDate').value + 'T00:00:00', temp = {};
-							temp.tourID = id;
-							temp.travelDate = dateStr;
-							tours.push(temp);
+							var id = tourEle[fg].getAttribute('data-tour-id'),dateStr='',temp = {};
+							if(tourEle[fg].querySelector('.content3_CheckInDate')){
+								dateStr = tourEle[fg].querySelector('.content3_CheckInDate').value + 'T00:00:00';
+								temp.tourID = id;
+								temp.travelDate = dateStr;
+								tours.push(temp);
+							}else{
+								temp.tourID = id;
+								tours.push(temp);
+							}
+
 						}
 
 						var roomNum = roomDetails.length, allNum = 0;
@@ -656,9 +650,9 @@
 									return week;
 								}
 							};
-							allDivs = tourLi.querySelectorAll('.content2');
+							//allDivs = tourLi.querySelectorAll('.content2');
 
-							allDiv = tourLi.querySelectorAll('.nav2-tour');
+							allDivs = tourLi.querySelectorAll('.nav2-tour');
 							inputs[0].value = arg.start;
 							inputs[1].value = arg.end;
 							total_day.innerHTML = that.getDayNum(inputs[0].value, inputs[1].value);
@@ -666,22 +660,28 @@
 							span2.innerHTML = returnWeek(arg.end) + ' 离店';
 							for (var i = 0; i < allDivs.length; i++) {
 								var inputClassName = '', span = '', id = '', input = allDivs[i].querySelector('input'), spanWeek = allDivs[i].querySelector('.week-tour');
-								input.value = inputs[0].value;
-								spanWeek.innerHTML = returnWeek(inputs[0].value);
-								id = allDivs[i].id;
-								inputClassName = input.className;
-								span = allDivs[i].querySelectorAll('span')[0].className;
-								that.chooseDate(allDivs[i], id, inputClassName, span, inputs[0].value, inputs[1].value)
+								if(input){
+									input.value = inputs[0].value;
+									spanWeek.innerHTML = returnWeek(inputs[0].value);
+									id = allDivs[i].id;
+									inputClassName = input.className;
+									span = allDivs[i].querySelectorAll('span')[0].className;
+									that.chooseDate(allDivs[i], id, inputClassName, span, inputs[0].value, inputs[1].value)
+								}
+
 							}
-							for (var i = 0; i < allDiv.length; i++) {
+							/*for (var i = 0; i < allDiv.length; i++) {
 								var inputClassName = '', span = '', id = '', input = allDiv[i].querySelector('input'), spanWeek = allDiv[i].querySelector('.week-tour');
-								input.value = inputs[0].value;
-								spanWeek.innerHTML = returnWeek(inputs[0].value);
-								id = allDiv[i].id;
-								inputClassName = input.className;
-								span = allDiv[i].querySelectorAll('span')[0].className;
-								that.chooseDate(allDiv[i], id, inputClassName, span, inputs[0].value, inputs[1].value)
-							}
+								if(inputs[0].value != "") {
+									input.value = inputs[0].value;
+
+									spanWeek.innerHTML = returnWeek(inputs[0].value);
+									id = allDiv[i].id;
+									inputClassName = input.className;
+									span = allDiv[i].querySelectorAll('span')[0].className;
+									that.chooseDate(allDiv[i], id, inputClassName, span, inputs[0].value, inputs[1].value)
+								}
+							}*/
 						}
 					});
 					return this;
