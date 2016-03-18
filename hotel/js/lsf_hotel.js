@@ -95,7 +95,7 @@ function recoverStatus(itemIdString){
 var owlQuoteSlider = $(".quote-slider");
 
 owlQuoteSlider.owlCarousel({
-	items : 1,
+	items : 1
 
 });
 owlQuoteSlider.on('changed.owl.carousel', function(event) {

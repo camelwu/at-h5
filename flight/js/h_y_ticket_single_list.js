@@ -199,11 +199,11 @@ var ticketSingle = {
     },
     renderHandler:function(arg){
         var arg = arg;
-        console.log(arg)
         var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
-        var tipEle = document.querySelector('.flight-result-tip');
+        var tipEle = document.querySelector('.flight-result-tip'), noFlightInfo=null;
         document.querySelector('#preloader').style.display='none';
         if(arg.success&&arg.code==200&&arg.data.flightInfos.length > 0){
+                document.querySelector('.tip-button-para').style.display='none';
                 tipEle.style.display = 'none';
                 that.flightResultArray.push(arg["data"]);
                 that.lastBackData = arg;
@@ -214,6 +214,7 @@ var ticketSingle = {
                 that.eventHandler();
                 that.taxDeal(arg.data.flightInfos);
         }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
+            document.querySelector('.tip-button-para').style.display='none';
             airTicketsListWrapper.innerHTML = "";
             tipEle.style.display = 'block';
             that.timer7 = window.setTimeout(function(){
@@ -225,8 +226,7 @@ var ticketSingle = {
                tipEle.style.display = 'none';
                that.isClearAll = true;
                airTicketsListWrapper.innerHTML = "";
-               document.querySelector('#preloader').style.display='none';
-               that.alertNoFlightNotice(that.backParaObj,'single');
+               document.querySelector('.tip-button-para').style.display='block';
           }
         that.checkPullStatus()
     },

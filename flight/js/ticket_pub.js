@@ -21,12 +21,15 @@ TicketDate.prototype.linkColor=function(type,date){
     }else{
         for(var sn = 0;sn < links.length;sn++) {
             var temStr = /(\d{1,2})/g.exec(links[sn].innerHTML);
-            if(links[sn].getAttribute('data-day') == date){
-                links[sn].innerHTML = '<span class="live_circle">'+temStr[0];
-            }else{
-                if(temStr){
-                    links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
-                }
+            if(temStr){
+                    if(links[sn].getAttribute('data-day') == date){
+                         links[sn].innerHTML = '<span class="live_circle">'+temStr[0]+'</span>';
+                    }else{
+                         links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
+                       }
+                  }
+            if(links[sn].innerHTML=='今天'){
+                links[sn].innerHTML = '<span class="live_circle">今天</span>';
             }
         }
     }
@@ -257,17 +260,29 @@ TicketDate.prototype.linkOn = function(){
                         that.linkOver(event);
                     }else{
                         if(that.op==0){
+                            if(that.timer!=null){
+                                window.clearTimeout(that.timer);
+                                that.timer = null;
+                            }
                             that.tiper.innerHTML = '请选择'+that._word.f[1]+'日期';
                             that.linkReset(this.index);
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.op++;
                             that.cache = this.getAttribute('data-day');
                         }else if(that.op==1&&this.getAttribute('data-day')!=that.cache){
-                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');that.op>=1?that.op=0:null;
+                            if(that.timer!=null){
+                                window.clearTimeout(that.timer);
+                                that.timer = null;
+                            }
+                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.tiper.style.display = 'none';
                             that.linkOver();
                             that.linkColor('Return');
                         }else if(that.op==1&&this.getAttribute('data-day')==that.cache){
+                            if(that.timer!=null){
+                                window.clearTimeout(that.timer);
+                                that.timer = null;
+                            }
                             that.tiper.innerHTML = '返程日期需大于去程日期';
                         }
                     }
@@ -320,6 +335,7 @@ TicketDate.prototype.linkOver = function(event){
         that.singleChosenDate = dateSTr
     }
     that.timer = window.setTimeout(function(){
+        that.op>=1?that.op=0:null;
         that.removeDate();
         if(that.header.parentNode){
             that.header.parentNode.removeChild(that.header);
