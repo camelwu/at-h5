@@ -607,7 +607,7 @@ var  conditionalFiltering = {
                 '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
                 ' class="filter-select">优选</span>'+
                 '</div>'+
-                '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
+                '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class="red-tip"></i><span'+
                 ' class="filter-select">含税费</span>'+  /*点击价格有弹出框，包含含税与不含税*/'</div>';
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
                 '<div class="reset-action-item hot">取消</div>'+
@@ -800,19 +800,14 @@ var  conditionalFiltering = {
 
                 }else if(that.sinOrDou=="Return"&&that.tripType == "domestic"){
                     var middleCock2 = titleWrap.querySelector('#fo_ra');
-                    var iEle = middleCock2.querySelector('i');
-                    var spEle = middleCock2.querySelector('SPAN');
-                    spEle.innerHTML ='优选';
-                    iEle.className ='red-tip';
+                    var iEle7 = middleCock2.querySelector('i');
+                    var spEle7 = middleCock2.querySelector('SPAN');
+                    spEle7.innerHTML ='优选';
+                    iEle7.className ='';
                     that.tempStates.PriorityRule = '0';
-                    if(arg.querySelector('.filter-select').innerHTML=='从低到高'){
-                        arg.querySelector('.filter-select').innerHTML='价格';
-                        that.tempStates.PriorityRule = '0'
-                    }else{
-                        arg.querySelector('.filter-select').innerHTML='从低到高';
-                        that.tempStates.PriorityRule = '2';
-                    }
-                    console.log(that.tempStates.PriorityRule)
+
+                    arg.querySelector('.filter-select').innerHTML='从低到高';
+                    that.tempStates.PriorityRule = '2'
                     that.stateEvent('set');
                     that.fn(that.tempStates);
                     that.checkRedTip();
@@ -1263,14 +1258,9 @@ var  conditionalFiltering = {
                  }else{
                      middleEle.querySelector('i').className = ''
                  };
-                 if(this.tempStates['hasTax'] =="false"){
-                     rightEle.querySelector('i').className = 'red-tip'
-                 }else{
-                     rightEle.querySelector('i').className = ''
-                 }
+                   rightEle.querySelector('i').className = 'red-tip'
              }
         }else{
-            console.log(this.tempStates)
             if(this.sinOrDou == 'Oneway'){  //单程国内
                 if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
                     this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
@@ -1297,8 +1287,12 @@ var  conditionalFiltering = {
                 }else{
                     leftEle.querySelector('i').className = ''
                 };
+                if(middleEle.querySelector('SPAN').innerHTML=='优选'&&rightEle.querySelector('SPAN').innerHTML =='从低到高'){
+                    middleEle.querySelector('i').className = '';
+                }else{
+                    middleEle.querySelector('i').className = 'red-tip';
+                }
 
-                middleEle.querySelector('i').className = 'red-tip';
                 if(rightEle.querySelector('SPAN').innerHTML =='价格'){
                     rightEle.querySelector('i').className = ''
                 }else{
