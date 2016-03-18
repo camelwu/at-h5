@@ -432,12 +432,26 @@
                 var clear = $("#clear_screen")[0];
 
                 //    点击筛选
-                screen.onclick = function(){
+                screen.onclick = function(e){
                     mb.style.display="block";
                     screen.style.opacity = "1";
                     screenBlock.style.bottom=0;
                     screenBlock.style.transition="all 400ms";
+                    if ( e && e.stopPropagation ) {
+                        e.stopPropagation();
+                    }else{
+                        window.event.cancelBubble = true;
+                        return false;
+                    }
                 };
+                //点击蒙版关闭
+                $(document).click(function(e){
+                    if(e.target.className == 'qp-mengban')
+                    {
+                        closeblock();
+                    }
+                });
+
                 //    关闭筛选
                 function closeblock(){
                     mb.style.display="none";
