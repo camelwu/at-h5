@@ -473,12 +473,6 @@
 				this.className = "icon user-choice";
 			}else{
 				this.className = "icon user-choice choiced";
-				if(numofAdult!='undefined' && numofChlid!='undefined') {
-					$("#toper h3").html("已选"  + $(".choiced").length+"/"+numofAdult+"成人  0/" + numofChlid + "儿童");
-				}
-				else{
-					$("#toper h3").html("已选" + $(".choiced").length+"人");
-				}
 			}
 			if(!isMulSelect)
 			{
@@ -493,6 +487,14 @@
 				jAlert("对不起，不能超过"+numofAdult+"成人");
 				$(this).removeClass("choiced");
 				return;
+			}
+			else{
+				if(numofAdult!='undefined' && numofChlid!='undefined') {
+					$("#toper h3").html("已选"  + $(".choiced").length+"/"+numofAdult+"成人  0/" + numofChlid + "儿童");
+				}
+				else{
+					$("#toper h3").html("已选" + $(".choiced").length+"人");
+				}
 			}
 		});
 	}
