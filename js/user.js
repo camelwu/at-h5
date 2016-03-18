@@ -87,9 +87,30 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
             }
         }
 
-        closePage(add_quit, addtra_page);
-        closePage(update_quit, uptra_page);
         closePage(close_name, fillName_page);
+
+        //新增常旅取消按钮提示
+        add_quit.onclick=function(){
+            jConfirm("当前编辑的内容未保存，确定退出编辑?","",conAdd);
+        };
+        function conAdd(arg){
+            if(arg == true)
+            {
+                addtra_page.style.display='none';
+            }
+        }
+
+        //编辑常旅取消按钮提示
+        update_quit.onclick=function(){
+                jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
+            };
+
+        function conEdit(arg){
+            if(arg == true)
+            {
+                uptra_page.style.display='none';
+            }
+        }
 
         //   增加常旅客
         var add_finish = $("#add_finish")[0];
