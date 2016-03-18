@@ -1410,7 +1410,10 @@
     z-index: 1000;
     display: none;
 }
-
+.country-cho-wrap .header{
+    height: 45px;
+    max-height: 45px;
+}
 .country-cho-wrap-order{
     position: absolute;
     z-index: 1000;

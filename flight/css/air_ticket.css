@@ -2270,6 +2270,7 @@ h1, h2, h3, h4, h5, h6 {
 .order-top p.go-line {
     margin-bottom: 0;
     height: 2.0rem;
+    line-height: 2.0rem;
     padding-left: 2.0rem;
 }
 .order-top p.go-line >span {
@@ -2362,16 +2363,18 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 0;
 }
 
-.order-top p.go-line i.icon-clock {
+.order-top p.go-line span.icon-clock{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 6.5rem;
+    top: 50%;
+    margin-top: -7px;
     background-image: url(../../images/ui/icon-t.png);
     background-repeat: no-repeat;
     background-size: 233.5px 140.5px;
-    background-position: 11% 17%;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: 6.5rem;
-    top: 0.1rem;
+    background-position: -27px -25px;
 }
 
 .order-top p.go-line span.hour {
@@ -2387,7 +2390,7 @@ h1, h2, h3, h4, h5, h6 {
     background-image: url("../../images/ui/icons.png");
     background-repeat: no-repeat;
     background-size: 324.8px 214px;
-    background-position: 64.4% 2%;
+    background-position: 64.4% 3.7%;
     position: absolute;
     right: 0;
 }
@@ -2682,16 +2685,14 @@ h1, h2, h3, h4, h5, h6 {
     display: -moz-box;  /* Firefox */
     display: -ms-flexbox;    /* IE10 */
     display: -webkit-box;    /* Safari */
-    display: -webkit-flex;    /* Chrome, WebKit */
     display: box;
-    display: flexbox;
-    display: flex;
     justify-content: flex-start;
     align-content: center;
     -webkit-align-content: center;
     border-top: 1px solid #dfe0db;
     border-bottom: 1px solid #dfe0db;
     overflow: visible;
+    box-sizing: border-box;
 }
 
 .contact .table .name label.name-label {
@@ -2702,26 +2703,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact .table .tel div.left {
-    display: -moz-box;  /* Firefox */
-    display: -ms-flexbox;    /* IE10 */
-    display: -webkit-box;    /* Safari */
-    display: -webkit-flex;    /* Chrome, WebKit */
+      /* Chrome, WebKit */
     display: box;
-    display: flexbox;
-    display: flex;
-    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-flex: 1;         /* OLD - Firefox 19- */
-    -webkit-flex: 1;          /* Chrome */
-    -ms-flex: 1;              /* IE 10 */
-    flex: 1;
     border-right: 1px solid #dfe0db;
     overflow: visible;
+    width: 50%;
 }
 
 .contact .table .tel div.left span {
     line-height: 3.3rem;
     height: 3.3rem;
-    width: 8.7rem;
+    width: 50%;
+}
+.contact .table .tel div.left .center{
+    width: 50%;
 }
 
 .contact .table .tel div.left form {
@@ -2758,6 +2753,8 @@ h1, h2, h3, h4, h5, h6 {
 .contact .table .tel div.right input {
     width: 100%;
     margin-left: 10px;
+    line-height: 23px;
+    padding: 20px 0;
 }
 
 .contact .table .email {
@@ -2902,7 +2899,8 @@ h1, h2, h3, h4, h5, h6 {
     color: #484848;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 1.4rem;
+    margin-right: 10px;
+    width: 30px;
 }
 
 #details{
