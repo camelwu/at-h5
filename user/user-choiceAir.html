@@ -483,13 +483,13 @@
 					return;
 				}
 			}
-			if(numofAdult!= 'undefined' && numofAdult!='undefined' &&  $(".choiced").length>numofAdult){
+			if(numofAdult!= 'null' && numofAdult!='null' &&  $(".choiced").length>numofAdult){
 				jAlert("对不起，不能超过"+numofAdult+"成人");
 				$(this).removeClass("choiced");
 				return;
 			}
 			else{
-				if(numofAdult!='undefined' && numofChlid!='undefined') {
+				if(numofAdult!='null' && numofChlid!='null') {
 					$("#toper h3").html("已选"  + $(".choiced").length+"/"+numofAdult+"成人  0/" + numofChlid + "儿童");
 				}
 				else{
