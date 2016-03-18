@@ -324,7 +324,7 @@ var ticketDouble = {
             li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
             ticketListStr += '<div class="time-airport">'+goTrip(arg) + backTrip(arg) +'</div>' + rightPrice(arg.data.flightInfos[i]);
             li.innerHTML = ticketListStr;
-            ticketDetailUl.insertBefore(li, ticketDetailUl.childNodes[0]);
+            ticketDetailUl.appendChild(li);
             myScroll.refresh();
         }
         that.eventHandler();
