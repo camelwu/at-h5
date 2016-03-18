@@ -528,6 +528,13 @@ function styleChange(id, mytext) {
                     moreEle.innerHTML = "上拉加载更多";
                 }
                 
+                //横屏竖屏时改变酒店名宽度
+                var hl_aLi = list_oUl.children;
+                var hl_hname = lsf_myweb.getbyclass(list_oUl, 'hname');
+                
+                //懒加载
+                var c = new lazyLoad('lsf_list');
+                
                 //绑定跳转事件
                 getDetail(data);
                 
@@ -535,9 +542,7 @@ function styleChange(id, mytext) {
             },50)
             
             
-			//横屏竖屏时改变酒店名宽度
-			var hl_aLi = list_oUl.children;
-			var hl_hname = lsf_myweb.getbyclass(list_oUl, 'hname');
+			
 			//function screenDir(){
 			//    if(window.orientation==180||window.orientation==0){
 			//        //alert('竖屏状态');
@@ -552,8 +557,8 @@ function styleChange(id, mytext) {
 			//    }
 			//}
 			//window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
-			//懒加载
-			var c = new lazyLoad('lsf_list');
+			
+			
 		} else {
             if(url_json.pageIndex > 1){
                 document.getElementById("load-more").innerHTML = "没有更多数据了";
