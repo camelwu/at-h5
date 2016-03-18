@@ -21,12 +21,15 @@ TicketDate.prototype.linkColor=function(type,date){
     }else{
         for(var sn = 0;sn < links.length;sn++) {
             var temStr = /(\d{1,2})/g.exec(links[sn].innerHTML);
-            if(links[sn].getAttribute('data-day') == date){
-                links[sn].innerHTML = '<span class="live_circle">'+temStr[0];
-            }else{
-                if(temStr){
-                    links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
-                }
+            if(temStr){
+                    if(links[sn].getAttribute('data-day') == date){
+                         links[sn].innerHTML = '<span class="live_circle">'+temStr[0]+'</span>';
+                    }else{
+                         links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
+                       }
+                  }
+            if(links[sn].innerHTML=='今天'){
+                links[sn].innerHTML = '<span class="live_circle">今天</span>';
             }
         }
     }
