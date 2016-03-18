@@ -1898,6 +1898,16 @@ i{
     -webkit-flex:1;
     flex:1;
 }
+.price-tot-list li > span.price-totj{
+    width: 6rem;
+    position: absolute;
+    top: 8px;
+    right: 0;
+}
+.price-tot-list li > span.price-titj{
+    margin-right: 8.5rem;
+    line-height: 18px;
+}
 .price-per-tot {
     text-align: right;
     margin-right: 20px;
