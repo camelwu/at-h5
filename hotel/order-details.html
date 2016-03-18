@@ -137,6 +137,7 @@
 <script>
     (function(){
         var ww = this;
+        var bookingRefNo=vlm.getpara("bookingRefNo");
         var orderDetail = function(){
             //   数据加载
             var getDetailData = function(){
@@ -153,10 +154,11 @@
                      '<span>{%=guestNameList.guestLastName%}{%=guestNameList.guestFirstName%}</span>',
                      '<span>{%=guestContactNo%}</span>'
                 ].join('');
+
                 var tmp = {
-                    "Parameters":{"bookingReferenceNo":"SG-1141622-8829"},
+                    "Parameters":{"bookingReferenceNo":bookingRefNo},
                     "Code":"0013",
-                    "ForeEndType":2
+                    "ForeEndType":3
                 };
                 console.log(tmp);
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
