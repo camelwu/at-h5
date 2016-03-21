@@ -3838,7 +3838,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 20rem;
     padding: 0 1rem;
-    z-index: 321;
+    z-index:93;
 }
 .tip-button-para p{
     line-height: 1.65rem;

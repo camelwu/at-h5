@@ -214,7 +214,8 @@ var ticketSingle = {
                 that.eventHandler();
                 that.taxDeal(arg.data.flightInfos);
         }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
-            document.querySelector('.tip-button-para').style.display='none';
+            document.querySelector('.no-flight-word').innerHTML='未搜到航班信息，请扩大搜索范围!';
+            document.querySelector('.tip-button-para').style.display='block';
             airTicketsListWrapper.innerHTML = "";
             tipEle.style.display = 'block';
             that.timer7 = window.setTimeout(function(){
@@ -399,7 +400,6 @@ var ticketSingle = {
         '<p class="no-flight-word">没有找到符合条件的航班!</p></div>';
         allEleWrap.appendChild(div);
         backButton = document.querySelector('.close-no-flight');
-        console.log(that)
         that.addHandler(backButton,"click",function(){
             allEleWrap.removeChild(div)
         })
@@ -410,7 +410,8 @@ var ticketSingle = {
             filterModal=document.querySelector('#filter-modal'),timeModal = document.querySelector('#time-modal'),priceModal = document.querySelector('#price-modal');
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
-                document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
+                 that.storageUtil.set('currentListPara', that.backParaObj );
+                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
                 '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild;
             })
         }
