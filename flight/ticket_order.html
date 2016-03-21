@@ -81,7 +81,7 @@
                           <span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="idNumber"><span class="passenger-sex"></span>
                       </div>
                   </div>
-                  <i class="edit-passager" data-id="{%=traveller.travellerId%}"></i>
+                  <i class="edit-passager" data-id="" onclick="javascript:editPassager(this)"></i>
               </li>
           </ul>
             </section>
@@ -383,8 +383,8 @@
             ul.hide();
         }
     }
-
-    function editPassager(id){
+    function editPassager(obj){
+        var id=$(obj).attr("data-id");
         var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
         var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
         vlm.f_choice('f','traver','',true,true,numofAdult,numofChild,id);
