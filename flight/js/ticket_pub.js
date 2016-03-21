@@ -28,7 +28,7 @@ TicketDate.prototype.linkColor=function(type,date){
                          links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
                        }
                   }
-            if(links[sn].innerHTML=='今天'){
+            if(links[sn].innerHTML=='今天'&&date==links[sn].getAttribute('data-day')){
                 links[sn].innerHTML = '<span class="live_circle">今天</span>';
             }
         }
@@ -311,10 +311,11 @@ TicketDate.prototype.linkOver = function(event){
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
             out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day")
+            that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
             if(out[1]){
-                that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day")
-                out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));}
+                that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day");
+                out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+            }
         }
         if(tal){
             tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
