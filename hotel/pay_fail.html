@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <link href="../styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/framework.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/trade_details.css" />
+    <title>首页 - 亚洲旅行网</title>
+
+
+</head>
+<body>
+<div id="preloader">
+    <div id="status-h">
+        <p class="center-text">
+
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
+<div class="all-elements" >
+    <div id="elements">
+        <div class="header" id="vlm-login">
+            <!--<a href="javascript:;" class="header-back" id="td_back">-->
+            <!--<i class="icons go-back"></i>-->
+            <!--</a>-->
+            <h3>交易详情</h3>
+        </div>
+        <div class="tra_con1">
+            <div class="tra_c1_inbox">
+                <i class="payment-fail"></i>
+                <span>{% if(paymentModeID=="2"){ %} 预订失败 {% }else { %} 支付失败 {% } %} </span>
+            </div>
+        </div>
+        <div class="tra_con2">
+            <div class="tra_c2_inbox">
+                <h3 id="tdHoteName">{%=hotelName%}</h3>
+                <p class="tra_live">入住：<span id="tdCheckInDate">{%=(new Date(checkInDate)).getMonth()+1%}月{%= (new Date(checkInDate)).getDate()%}日</span>&nbsp;&nbsp;离店：<span id="tdCheckOutDate">{%=(new Date(checkOutDate)).getMonth()+1%}月{%=(new Date(checkOutDate)).getDate()%}日</span></p>
+                <p class="tra_house">房型：<span id="tdRoomType">{%=roomType%}</span>X<em id="tdNoomRoom"></em></p>
+                <p class="tra_price" id="tdPrice">￥{%=totalRoomRate%}</p>
+            </div>
+        </div>
+    </div>
+    <div class="tra_btn">
+        <div>
+            <input type="button" value="返回首页" class="fl"  id="fl" />
+        </div>
+        <div class="tra_btn_div2">
+            <input type="button" value="重新支付" class="fr" id="fr" />
+        </div>
+    </div>
+
+    <div class="tra_footer">
+        <p>版权所有 @ 2015 Asiatravel.com控股有限公司.保留所有权利</p>
+    </div>
+</div>
+</body>
+<!--<script src="js/lsf_tradeDetails.js"></script>-->
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script>
+    $(document).ready(function(){
+        var memberId=JSON.parse(localStorage.getItem('memberid'));
+        var bookingRefNo=vlm.getpara("bookingRefNo");
+        var Parameters={
+            "Parameters":{"bookingReferenceNo":bookingRefNo},
+            "Code":"0013",
+            "ForeEndType":3}
+        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+            if(data.success) {
+                var html = template("elements", data.data);
+                $("#elements").html(html);
+                vlm.init();
+                $("#fl").on("click",function(){
+                    location.href="../index.html";
+                })
+                $("#fr").on("click",function(){
+                    location.href="jyy_pay.html?bookingRefNo="+bookingRefNo;
+                })
+            }else{
+                alert("网络异常！");
+            }
+        })
+    })
+</script>
+</html>

@@ -137,3 +137,11 @@
     line-height:1.5rem;
     color:#bbc1c7;
 }
+.tra_con1 .payment-fail {
+    display: inline-block;
+    background: url(../../images/ui/icon-h.png);
+    width: 30px;
+    height: 30px;
+    background-position: 3% 90%;
+    background-size: 150px 65px;
+}

@@ -453,14 +453,12 @@
 
 					})
 				}
-
 			} else {
 				jAlert(json.message + "", '');
 			}
 			check_box();
 			if(travId>0){
 				showAddAir_page("edit",travId);
-
 			}
 		});
 	}
@@ -587,9 +585,7 @@
 	}
 	//保存选择的记录
 	function SavaLocalStorge(list,isContact){
-
-		if(!isContact)
-		{
+		if(!isContact){
 			var TravellerInfo=[]
 			for(var i=0; i<=list.length-1;i++){
 				TraInfo={};
@@ -683,7 +679,7 @@
 			$(".addAir-page input").attr("value","")
 		}
 		else {
-
+			debugger;
 			$("#delTra").show();
 			$(".addAir-page .header h3").attr("type","edit")
 			$(".addAir-page .header h3").attr("data-id",tralJsonObj[id].traveller.travellerId)
@@ -708,10 +704,8 @@
 			if (tralJsonObj[id].traveller.sexCode == "Mr") {
 				$("#woman").removeClass("traveler-sex1");
 				$("#woman").addClass("traveler-sex2");
-
 				$("#man").removeClass("traveler-sex2");
 				$("#man").addClass("traveler-sex1");
-
 
 			} else {
 
@@ -721,7 +715,6 @@
 				$("#woman").removeClass("traveler-sex2");
 				$("#woman").addClass("traveler-sex1");
 			}
-
 			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
 			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "2") {
@@ -857,9 +850,8 @@
 				"ForeEndType": 3,
 				"Code": "0071"
 			}
-
-
 		}
+		console.log(JSON.stringify(Parameters));
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
 			var data=data;
 			if(data.success) {
