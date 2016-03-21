@@ -158,7 +158,8 @@
 			<!--    接送酒店列表页     -->
 			<div id="holist_page" class="all-elements" data-key="holist_page" style="display: none;">
 				<div class="header" style="z-index: 1000">
-					<a id="close_list" href="javascript:void(0);" class="icons header-back"></a>
+					<!--<a id="close_list" href="javascript:void(0);" class="icons header-back"></a>-->
+					<a id="close_list" href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a>
 					<div class="sod-search">
 						<img class="sod-fdj" src="../images/1.png">
 						<input type="text" id="seach_up" value="" placeholder="搜索">
@@ -690,7 +691,8 @@
 					child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.DetailData.data.packageID);
 					child_one.find(".js-sce-introduce-txt:last").html(data.DetailData.data.packageName + "(产品编号:" + data.DetailData.data.packageRefNo + ")");
 					$(".add-ticket").addClass("stopgray");
-					$(".js-order-total").html("¥0");
+					$(".js-per-price-cont1").html("");
+					$(".js-order-total").html("");
 
 				}
 				/*
@@ -1217,7 +1219,7 @@
 							return false;
 						}
 					}
-					MT.AnimOut();
+
 					return status;
 				}
 				/**
@@ -1539,7 +1541,7 @@
 						if (bookingRefNo != undefined && bookingRefNo != "") {
 							window.location.href = "../scenic/order-detail.html?bookingRefNo=" + bookingRefNo;
 						}
-						$("#preloader").hide();
+//						$("#preloader").hide();
 					} else {
 						console.log(json);
 						jAlert(json.message, "提示");
