@@ -101,17 +101,15 @@ TicketDate.prototype.createContainer = function(odate){
         container.style.left = '0';
         container.style.top = '0';
         container.style.paddingBottom = '118px';
-        //
         var header = this.header = document.createElement('div');
         header.id = this.id+"-header";
         header.className = 'header';
-        //this.type=='Oneway'?(header.style.height = "45px"):void(0);
-        header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>':'<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p><p class="choose-week-tip">选择日期为出发地日期</p>';
+        header.innerHTML = '<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p><p class="choose-week-tip">选择日期为出发地日期</p>';
         document.body.appendChild(header);
 
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop=this.type=='Oneway'? '5.8rem':'5.8rem';
+        weeker.style.marginTop='5.8rem';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
