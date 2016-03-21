@@ -508,7 +508,7 @@
 		}
 	});
 	$(".closedOfFillName").click(function(){
-		$(this).parent().parent().parent().hide();
+		$("#fillName_page").hide();
 
 	})
 	function submit_t() {
@@ -679,7 +679,6 @@
 		addAir_page.style.display = "block";
 		if(type=="new"){
 			$(".addAir-page .header h3").html("新建"+titleType+"信息");
-			$(".addAir-page input").attr("value","")
 		}
 		else {
 			$("#delTra").show();
@@ -701,8 +700,7 @@
 			$(".cardCountry").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idCountry);
 			$(".cardCountry").html(getCountryName(tralJsonObj[id].listTravellerIdInfo[0].idCountry).CountryName);
 
-
-			$(".birthDay").attr("value",tralJsonObj[id].listTravellerIdInfo[0].dateOfBirth);
+			$(".birthDay").attr("value",tralJsonObj[id].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号');
 			if (tralJsonObj[id].traveller.sexCode == "Mr") {
 				$("#woman").removeClass("traveler-sex1");
 				$("#woman").addClass("traveler-sex2");
