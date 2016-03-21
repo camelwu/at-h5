@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <a href="#" class="hotelInter2">取消订单</a>
+        <a href="#" class="hotelInter2 cancelOrder">取消订单</a>
 
 
 </div>
@@ -159,6 +159,7 @@
                     "Code":"0013",
                     "ForeEndType":3
                 };
+                debugger;
                 console.log(tmp);
                 vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
 
@@ -235,15 +236,40 @@
                     pd_block.style.transition="all 400ms";
                 }
             };
+
+            var cancelOrderEvent=function(){
+                $(".cancelOrder").on("click",function(){
+                    var Parameters = {
+                        "Parameters":{"BookingReferenceNo":bookingRefNo},
+                        "Code":"0017",
+                        "ForeEndType":3
+                    };
+                    console.log(Parameters);
+                    vlm.loadJson("",JSON.stringify(Parameters),function(json){
+                        if(json.success) {
+                            jAlert("取消成功！");
+                            getDetailData();
+                            showPriceDetail();
+                        }
+                        else{
+                            jAlert("取消失败！");
+                        }
+                    });
+                })
+            }
+
             return{
                 GetDetailData:getDetailData,
-                ShowPriceDetail:showPriceDetail
+                ShowPriceDetail:showPriceDetail,
+                CancelOrderEvent:cancelOrderEvent
             }
         }();
+
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
             orderDetail.GetDetailData();
             orderDetail.ShowPriceDetail()
+            orderDetail.CancelOrderEvent();
         };
         MT.load();
     })()
