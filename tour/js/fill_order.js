@@ -162,14 +162,15 @@
         $('.add-passager').each(function(index,element){
             $(this).click(function(){
                 debugger;
-                vlm.f_choice('trave'+index,"ht",'traver','',false,false);
+                vlm.f_choice('trave'+index,"ht",'traver','',false,false,null,null,null,null);
+
             })
 
         })
 
 
         $('.add-contact').click(function(){
-                vlm.f_choice('contact',"ht",'contact','',false,false);
+                vlm.f_choice('contact',"ht",'contact','',false,false,null,null,null,null);
         })
 
 
