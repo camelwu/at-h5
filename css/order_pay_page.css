@@ -76,7 +76,7 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
 
 .all_info{
     display:block;padding:10px 40px 10px 10px;overflow:hidden;position:relative;
-    font-size:13px;
+    font-size:13px;background-color: white;
 }
 .all_info:after{
     content:'';position:absolute;display:block;width:12px;height:12px;
@@ -89,8 +89,7 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
 
 
 
-.all_title{
-    height:36px;line-height:36px;position:relative;border:1px solid #ededef;
+.all_title{line-height:36px;position:relative;border:1px solid #ededef;
     border-left:none;border-right:none;
 }
 .all_title h3{
@@ -147,7 +146,7 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
 }
 
 .order_total{
-    background:#fff;padding:10px 12px;margin:10px 0;overflow:hidden;position:relative;
+    background:#fff;padding:10px 12px;overflow:hidden;position:relative;
     line-height:22px;
 }
 .order_total:after{

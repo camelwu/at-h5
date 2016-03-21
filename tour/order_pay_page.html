@@ -124,7 +124,7 @@
 <script id="tpl_GetTourInfo" type="text/template">
     {% for(var i=0;i < tours.length;i++){ %}
     <section class="all_title">
-        <h3><i>景点{%=i+1%}</i>{%=tours[i].tourName%}</h3>
+        <h3><i>{%=tours[i].tourName%}</i></h3>
     </section>
     {% if(tours[i].travelDate){ %}
     <section class="trip_box">
@@ -316,7 +316,5 @@
         MT.load();
     })()
 </script>
-</body>
-</html>
 </body>
 </html>
