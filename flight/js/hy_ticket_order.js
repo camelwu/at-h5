@@ -127,21 +127,17 @@ var ticketOrder = {
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         });
-
-        this.addHandler(rightArrow,'click', function(){
-            $("#preloader").show();
-            $("#status-f").show();
-            $("#status-f").delay(400).fadeOut("medium");
-            $("#preloader").delay(400).fadeOut("medium");
-            document.querySelector('.summary-cost-shadow-two').style.display = 'block';
-            document.querySelector('.ticket-detail-modal').style.display = 'block';
-        });
         this.addHandler(confirmButton,'click', function(){
             var event = event || window.event;
             var target =event.target || event.srcElement;
             var that = ticketOrder;
             that.backParaObj = that.reverseInformation;
-            var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']),contactInfoCache = {};
+            if(!window['localStorage']['travellerInfo_selected']){
+                jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
+                return;
+            }else{
+                var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']),contactInfoCache = {};
+            }
             //乘客信息核对
             var passengerLis = passengerWrap.querySelectorAll('LI'), realPara=[], tempAdult= 0, tempChild=0;
               if(passengerLis){
@@ -170,7 +166,12 @@ var ticketOrder = {
              }
 
             that.backParaObj.TravellerInfo =realPara;
-            var contactInfo =JSON.parse(window['localStorage']['contact_selected']);
+            if(!window['localStorage']['contact_selected']){
+                jAlert('请完善联系人信息!', '提示');
+                return;
+            }else{
+                var contactInfo =JSON.parse(window['localStorage']['contact_selected']);
+            }
             contactInfoCache.FirstName = document.querySelector('#first-name').value;
             contactInfoCache.LastName = document.querySelector('#last-name').value;
             contactInfoCache.Email =document.querySelector('#email-label').value;

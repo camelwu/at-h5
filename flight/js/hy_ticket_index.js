@@ -1021,7 +1021,6 @@ var  ticketIndexModal = {
            endStrMonth = parseInt(r.getMonth() +1) >= 10 ?parseInt(r.getMonth() +1):'0'+parseInt(r.getMonth() +1);
            endStrDate = parseInt(r.getDate()) >= 10 ?parseInt(r.getDate()):'0'+parseInt(r.getDate());
            startDay = [startStrMonth +'月' + startStrDate +'日',returnWeek(s.getDay())];
-
            endDay = [endStrMonth +'月' + endStrDate +'日',returnWeek(r.getDay())];
            document.querySelector('.single-date').innerHTML = startDay[0];
            document.querySelector('.single-week').innerHTML = startDay[1];
@@ -1029,12 +1028,14 @@ var  ticketIndexModal = {
            document.querySelector('.double-week-one').innerHTML = startDay[1];
            document.querySelector('.double-date-two').innerHTML = endDay[0];
            document.querySelector('.double-week-two').innerHTML = endDay[1];
+           console.log(startDay[1])
+           console.log(endDay[1])
        },
        initShowData:function(arg){
               var outEleOpen,outEleClosed,singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
               var returnDateAndWeek = function(arg){
                     var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum; //"2016-02-24"
-                    var weekIndex = new Date(arg.replace('/-/g','/')).getDay();
+                    var weekIndex = new Date(arg.replace(/-/g,'/')).getDay();
                     dateNum = reg.exec(arg);
                     switch (weekIndex){
                       case 0 :

@@ -453,19 +453,15 @@
 
 					})
 				}
-
 			} else {
 				jAlert(json.message + "", '');
 			}
 			check_box();
 			if(travId>0){
 				showAddAir_page("edit",travId);
-
 			}
 		});
 	}
-
-
 	get_allList();
 	function check_box() {
 		$(".user-choice").click(function() {
@@ -490,7 +486,12 @@
 			}
 			else{
 				if(numofAdult!='null' && numofChlid!='null') {
-					$("#toper h3").html("已选"  + $(".choiced").length+"/"+numofAdult+"成人  0/" + numofChlid + "儿童");
+					if(numofChlid>0) {
+						$("#toper h3").html("已选" + $(".choiced").length + "/" + numofAdult + "成人  0/" + numofChlid + "儿童");
+					}
+					else{
+						$("#toper h3").html("已选" + $(".choiced").length + "/" + numofAdult + "成人");
+					}
 				}
 				else{
 					$("#toper h3").html("已选" + $(".choiced").length+"人");
@@ -568,7 +569,7 @@
 		}
 		else{
 			htmlObj.find('input').each(function(){
-				if($(this).attr("data-elementName")!="undefined"){
+				if($(this).attr("data-elementName")!="undefined" && data.length>0){
 					if($(this).attr("data-elementName")=="idNumber") {
 						$(this).attr("value",data[0].listTravellerIdInfo[0].idNumber);
 					}
@@ -578,7 +579,7 @@
 				}
 			})
 			htmlObj.find('span').each(function(){
-				if($(this).attr("data-elementName")!="undefined"){
+				if($(this).attr("data-elementName")!="undefined" && data.length>0){
 					$(this).attr("value", data[0].traveller[$(this).attr("data-elementName")]);
 
 				}
@@ -587,9 +588,7 @@
 	}
 	//保存选择的记录
 	function SavaLocalStorge(list,isContact){
-
-		if(!isContact)
-		{
+		if(!isContact){
 			var TravellerInfo=[]
 			for(var i=0; i<=list.length-1;i++){
 				TraInfo={};
@@ -683,7 +682,6 @@
 			$(".addAir-page input").attr("value","")
 		}
 		else {
-
 			$("#delTra").show();
 			$(".addAir-page .header h3").attr("type","edit")
 			$(".addAir-page .header h3").attr("data-id",tralJsonObj[id].traveller.travellerId)
@@ -708,10 +706,8 @@
 			if (tralJsonObj[id].traveller.sexCode == "Mr") {
 				$("#woman").removeClass("traveler-sex1");
 				$("#woman").addClass("traveler-sex2");
-
 				$("#man").removeClass("traveler-sex2");
 				$("#man").addClass("traveler-sex1");
-
 
 			} else {
 
@@ -721,7 +717,6 @@
 				$("#woman").removeClass("traveler-sex2");
 				$("#woman").addClass("traveler-sex1");
 			}
-
 			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
 			} else if (tralJsonObj[id].listTravellerIdInfo[0].idType == "2") {
@@ -857,9 +852,8 @@
 				"ForeEndType": 3,
 				"Code": "0071"
 			}
-
-
 		}
+		console.log(JSON.stringify(Parameters));
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
 			var data=data;
 			if(data.success) {
