@@ -1035,7 +1035,7 @@ var  ticketIndexModal = {
               var outEleOpen,outEleClosed,singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
               var returnDateAndWeek = function(arg){
                     var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum; //"2016-02-24"
-                    var weekIndex = new Date(arg.replace('/-/g','/')).getDay();
+                    var weekIndex = new Date(arg.replace(/-/g,'/')).getDay();
                     dateNum = reg.exec(arg);
                     switch (weekIndex){
                       case 0 :
