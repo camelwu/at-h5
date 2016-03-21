@@ -49,10 +49,10 @@
             </div>
             <ul class="pay-style-list" id="pay_way">
                 <li>剩余支付时间: <i class="count-time countdown" id="countdown" c></i></li>
-                <li class="paymentType"><span class="jd-icon pay-card" data-type="pay-card"></span><span >银联支付</span><b class="icon circle-choi"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-card" data-type="pay-card"></span><span data-type="pay-card" >银联支付</span><b class="icon circle-choi"></b></li>
                 <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
-                <li class="paymentType"><span class="jd-icon pay-visa" data-type="pay-visa"></span><span >维萨信用卡支付</span><b class="icon circle-chois"></b></li>
-                <li class="paymentType"><span class="jd-icon pay-master" data-type="pay-master"></span><span>万事达卡支付</span><b class="icon circle-chois"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-visa" data-type="pay-visa"></span><span data-type="pay-visa" >维萨信用卡支付</span><b class="icon circle-chois"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-master" data-type="pay-master"></span><span  data-type="pay-master">万事达卡支付</span><b class="icon circle-chois"></b></li>
             </ul>
             <!--<div class="state-agree">-->
                 <!--<b class="icon1 s-agree" id="agree"></b>-->
@@ -251,7 +251,7 @@
 
             if (type == "UnionPay")
             {
-                PaymentDetails.PaymentMode="UnionPay";
+                PaymentDetails.PaymentMode="UnionPayCNY";
             }
             else{
                 if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
