@@ -28,7 +28,7 @@ TicketDate.prototype.linkColor=function(type,date){
                          links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
                        }
                   }
-            if(links[sn].innerHTML=='今天'){
+            if(links[sn].innerHTML=='今天'&&date==links[sn].getAttribute('data-day')){
                 links[sn].innerHTML = '<span class="live_circle">今天</span>';
             }
         }
@@ -101,17 +101,15 @@ TicketDate.prototype.createContainer = function(odate){
         container.style.left = '0';
         container.style.top = '0';
         container.style.paddingBottom = '118px';
-        //
         var header = this.header = document.createElement('div');
         header.id = this.id+"-header";
         header.className = 'header';
-        this.type=='Oneway'?(header.style.height = "45px"):void(0);
-        header.innerHTML = this.type=='Oneway'?'<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3>':'<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
+        header.innerHTML = '<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p><p class="choose-week-tip">选择日期为出发地日期</p>';
         document.body.appendChild(header);
 
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop=this.type=='Oneway'? '3.5rem':'5.8rem';
+        weeker.style.marginTop='5.8rem';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
@@ -311,10 +309,11 @@ TicketDate.prototype.linkOver = function(event){
             arr.push(sels[0].parentNode.getAttribute("data-day"));
             arr.push(sels[1].parentNode.getAttribute("data-day"));
             out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day")
+            that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
             if(out[1]){
-                that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day")
-                out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));}
+                that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day");
+                out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+            }
         }
         if(tal){
             tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));

@@ -106,6 +106,7 @@ var hotelList = {
 			}
 			choose = lastEle.querySelector('.h-choose');
 			choose.style.display = (choose.style.display == 'block') ? 'none' : 'block';
+			var hotelId = lastEle.getAttribute("data-id").toString();
 			document.location.href = 'room-upgrade.html?' + 'hotelID=' + hotelId + '&travelersInput=' + that.bookingFormInfo.travelersInput + '&airportTransferType=' + that.bookingFormInfo.airportTransferType;
 		});
 		/*that.eventHandler(nextButton,'click',function(event){
