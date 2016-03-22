@@ -103,7 +103,7 @@ var roomUpGrade = {
 	callBack : function() {
 		var that = roomUpGrade;
 		var tpl1 = ['<a href="hotel-summary.html" class="top-pic"><img class="hotelPic" src="../images/hotelDetailerrorpic.png" real-src="{%=hotelPictureURL%}"></a>', '<ul id="hd_list" class="d-list">', '<li>', '<p class="d-score">', '<b class="d-icon4"></b> {%=location%}</p>', '</li>', '<li>', '<p class="d-score">{%=starRating%}星级</p>', '{% if(data["freeWifi"]){ %}<b class="d-icon2"></b>{% } %}', '<a href="{%=moreInfoLink%}" class="d-icon1"></a>', '</li>', '<li>', '<p class="d-p3 date-in">3月22入住</p><p class="d-p3 date-out" style="margin-left: 5px;">3月30离店</p>', '<p class="d-p2 day-number">共8晚</p>', '</li>', '<li style=height:auto>', '<ul class="room-list" id="room-list">', '</ul>', '</li>', '</ul>'].join('');
-		var tpl2 = ['<li class="hd-hotel" data-roomId="{%=roomID%}">', '<img class="hd-choose" src="../images/ui/choose.png">', '<div class="d-div3">', '<p class="d-p5">' + '{% if(includedBreakfast){ %}', '{%=roomName%}(含早)', '{% }else{ %}', '{%=roomName%}(无早)', '{% } %}', '</p>', '</div>', '<p class="hd-price">', '<span>+￥</span>', '<span>{%=markUp%}</span>', '</p>', '</li>'].join('');
+		var tpl2 = ['<li class="hd-hotel" data-roomId="{%=roomID%}">', '<img class="hd-choose" src="../images/ui/choose.png">', '<div class="d-div3">', '<p class="d-p5">' + '{% if(includedBreakfast){ %}', '{%=roomName%}(含早)', '{% }else{ %}', '{%=roomName%}(无早)', '{% } %}', '</p>', '</div>', '<p class="hd-price">', '<span>+￥</span>', '<span>{%=markUp%}/间</span>', '</p>', '</li>'].join('');
 		var resultData = arguments[0], that = roomUpGrade;
 		if (resultData.success) {
 			if (resultData.data.hotels.length == 0) {
