@@ -222,7 +222,7 @@ var ticketSeatChoose = {
                 '</div>'+
                 '</div>';
         }else{
-            isLeaveStopStr = (arg.isLeaveStop == true)?' | <span class="green-word">经停</span></span>':'';
+            isLeaveStopStr = "";//(arg.isLeaveStop == true)?' | <span class="green-word">经停</span></span>':'';
             leaveStopTag = (arg.isLeaveStop == true)?'<span class="air-port-word">经停'+arg.segmentsLeave[0].techStopAirportName+'</span>':'';
             isLeaveShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
             detailButton = (arg.segmentsLeave.length<=1)?'':'<span class="detail-word">详情<i></i></span>';
@@ -398,7 +398,7 @@ var ticketSeatChoose = {
                 if(String(arg).substring(String(arg).indexOf('.')).length ==2){
                     return String(arg)+'0';
                 }
-                return String(arg).substring(0,String(arg).indexOf('.')+3)
+                return String(arg).substring(0,String(arg).indexOf('.')+3);
             }else{
                 return String(arg)+'.00';
             }
@@ -411,7 +411,7 @@ var ticketSeatChoose = {
                          resultData = obj_;
                          return;
                      }
-                 })
+                 });
         });
         itemObj = resultData;
 
