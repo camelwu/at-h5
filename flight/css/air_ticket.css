@@ -2105,7 +2105,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .price-important .money-show-data .money-number {
     font-size: 1.8rem;
-    color: #fe6a00;
+    color: #FFB413;/*#fe6a00;*/
     font-weight: 600;
 }
 
