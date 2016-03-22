@@ -131,7 +131,11 @@ var ticketDouble = {
         that.backParaObj.pageNo= 1;
         that.backParaObj.pageSize= 10;
         document.querySelector('#preloader').style.display='block';
-        that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        //重置URL  DepartDate
+        var tempUrl = vlm.setUrlPara("","DepartDate",that.backParaObj.DepartDate);
+        var newUrl = vlm.setUrlPara(tempUrl,"ReturnDate",that.backParaObj.ReturnDate);
+        window.location.href = newUrl;
     },
 
     parseUrlPara: function (url, isEncode) {

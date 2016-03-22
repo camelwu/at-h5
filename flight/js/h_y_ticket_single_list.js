@@ -73,7 +73,11 @@ var ticketSingle = {
            document.querySelector('.single-ticket-input').innerHTML = tStr[1] + '-' + tStr[2] +'&nbsp;<span>'+ returnWeek(new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2])+'</span>';
            that.backParaObj.DepartDate = new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2];
            document.querySelector('#preloader').style.display='block';
-           that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+           //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+           //重置URL  DepartDate
+            var newUrl = vlm.setUrlPara("","DepartDate",that.backParaObj.DepartDate);
+            window.location.href = newUrl;
+        
     },
 
     tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
@@ -158,7 +162,10 @@ var ticketSingle = {
                 that.backParaObj.pageNo= 1;
                 that.backParaObj.pageSize= 10;
                 document.querySelector('#preloader').style.display='block';
-                that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+                //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+                //重置URL  DepartDate
+                var newUrl = vlm.setUrlPara("","DepartDate",arg);
+                window.location.href = newUrl;
             }else {
                 oDivs[0].className = 'unit previous-day disabled-date-choose'
             }
@@ -180,7 +187,10 @@ var ticketSingle = {
                 that.backParaObj.pageNo= 1;
                 that.backParaObj.pageSize= 10;
                 document.querySelector('#preloader').style.display='block';
-                that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+                //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+                //重置URL  DepartDate
+                var newUrl = vlm.setUrlPara("","DepartDate",arg);
+                window.location.href = newUrl;
             }
 
         });
@@ -213,6 +223,7 @@ var ticketSingle = {
                 that.changeFlightList(arg);
                 that.eventHandler();
                 that.taxDeal(arg.data.flightInfos);
+                
         }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
             document.querySelector('.no-flight-word').innerHTML='未搜到航班信息，请扩大搜索范围!';
             document.querySelector('.tip-button-para').style.display='block';
@@ -346,8 +357,8 @@ var ticketSingle = {
             '</div ></div>' +returnRightTax();
             li.innerHTML = ticketListStr;
             ticketDetailUl.appendChild(li);
-            myScroll.refresh();
         }
+        myScroll.refresh();
         this.eventHandler();
         return;
     },

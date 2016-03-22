@@ -28,7 +28,17 @@
 				if (r != null)
 					return decodeURIComponent(r[2]);
 				return null;
-			}, parseUrlPara = function(url, isEncode) {
+			}, setUrlPara = function(url,key,value){
+                var originalUrl = url ? url : window.location.href;
+                var url = originalUrl;
+                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                var result = url.match(reg);
+                if(result){
+                    return url.replace(result[0],"&"+key+"="+value+"&")
+                }else{
+                    return originalUrl;
+                }
+            },parseUrlPara = function(url, isEncode) {
 				var isEncode = isEncode || false;
 				var reg = /([^=&?]+)=([^=&?]+)/g, obj = {};
 				url.replace(reg, function() {
@@ -894,6 +904,7 @@
 			return {
 				api : _api,
 				getpara : getpara,
+                setUrlPara : setUrlPara,
 				arr_t : arr_t,
 				parseUrlPara : parseUrlPara,
 				loading : _loading,
