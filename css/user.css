@@ -1500,6 +1500,10 @@ ul, ol {
     width: 120px;
 }
 
+.birth-cont.wid100{
+    width: 90px;
+}
+
 .selbox-ul li span.date-selected{
     font-size: 1.9rem;
     color: #484848;

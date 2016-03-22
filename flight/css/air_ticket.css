@@ -3838,7 +3838,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 20rem;
     padding: 0 1rem;
-    z-index: 321;
+    z-index:93;
 }
 .tip-button-para p{
     line-height: 1.65rem;
@@ -4138,20 +4138,19 @@ li{
 }
 .jpop_box_tic dl{
     position: fixed;
-    width: 60%;
-    height:120px;
+    width: 50%;
+    height:110px;
     top:50%;
     left: 50%;
-    margin: -60px 0 0 -30%;
+    margin: -55px 0 0 -25%;
     z-index: 5;
     background: #fff;
-    border:1px solid #e0e0e0;
     border-radius:5px;
     text-align: center;
     box-shadow:-1px 1px 3px #c7c7c7;
 }
 .jpop_box_tic dt{
-    padding:25px 0 10px;
+    padding:18px 0 10px;
     font-size: 1.8rem;
     color:#5abdb7;
     border-bottom:1px solid #e1e1e1;
@@ -4159,10 +4158,11 @@ li{
 }
 .jpop_box_tic dd{
     overflow: hidden;
-    margin: 0 15%;
+    margin: 0 10%;
+    font-size:1.2rem;
 }
 .jpop_box_tic dd a,.jpop_box_tic dd span{
-    padding: 3px 15px;
+    padding: 5px 18px;
     color:#fff;
     border-radius:3px;
 }

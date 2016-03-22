@@ -2346,3 +2346,19 @@ i{
     padding-left: 9px;
     vertical-align: middle;
 }
+
+.state-title{
+    padding:10px 15px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ffb413;
+}
+.state-list{
+    margin-bottom: 10px;
+}
+.state-list li{
+    list-style-type: disc;
+    margin:5px 15px 5px 30px;
+    margin-bottom: 0;
+    line-height: normal;
+}

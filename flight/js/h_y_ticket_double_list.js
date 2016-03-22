@@ -489,7 +489,8 @@ var ticketDouble = {
             that.checkPullStatus();
             that.taxDeal(arg.data.flightInfos);
         }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
-            document.querySelector('.tip-button-para').style.display='none';
+            document.querySelector('.no-flight-word').innerHTML='未搜到航班信息，请扩大搜索范围!';
+            document.querySelector('.tip-button-para').style.display='block';
             airTicketsListWrapper.innerHTML = "";
             tipEle.style.display = 'block';
             that.timer8 = window.setTimeout(function(){
