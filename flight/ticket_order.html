@@ -81,7 +81,7 @@
                           <span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="idNumber"><span class="passenger-sex"></span>
                       </div>
                   </div>
-                  <i class="edit-passager" data-id="" onclick="javascript:editPassager(this)"></i>
+                  <i class="edit-passager" data-id="" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></i>
               </li>
           </ul>
             </section>
@@ -379,6 +379,9 @@
 <script>
 	vlm.l_contact();
 
+    localStorage.removeItem("travellerInfo_selected");
+    localStorage.removeItem("contact_selected");
+
     function callback(){
         ticketOrder.countrySlider();
     }
@@ -387,15 +390,17 @@
         var ul=$(obj).parent().parent().parent();
         if(ul.siblings().length>=1){
             ul.remove();
+
         }else{
             ul.hide();
         }
     }
     function editPassager(obj){
-        var id=$(obj).attr("data-id");
+        var id=$(obj).find("input").eq(0).val();
         var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
         var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-        vlm.f_choice('f','traver','',true,true,numofAdult,numofChild,id);
+        vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+
     }
 
 
@@ -408,7 +413,7 @@
                     var id=$(this).attr("data-id");
                     var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
                     var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-                    vlm.f_choice('f','traver','',true,true,numofAdult,numofChild,id);
+                    vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
                 });
                 $(".del-passager").on("click",function(){
                     $(this).parent().parent().remove()
