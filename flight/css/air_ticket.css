@@ -2794,19 +2794,22 @@ h1, h2, h3, h4, h5, h6 {
 .choose-agree-info{
     position: relative;
     top: 0.2rem;
+    left:-0.3rem;
     display: inline-block;
     width: 1.7rem;
     height: 1.7rem;
-    background: url("../../images/ui/icons1.png") -23.7rem -0.4rem;
+    background-image: url("../../images/ui/icons1.png");
+    background-size:40rem 12rem ;
     margin-top: -0.2rem;
 }
-.yep-agree-info{
-    background-size: 40rem 12rem;
-}
 .no-agree-info{
-    background-size: 36rem 12rem;
+    background-position:-26.5rem -0.3rem;
+    /*background-size: 36rem 12rem;*/
 }
-
+.yep-agree-info{
+    background-position:-23.6rem -0.3rem;
+    /*background-size: 40rem 12rem;*/
+}
 .read-tip a {
     display: inline-block;
     vertical-align: middle;
