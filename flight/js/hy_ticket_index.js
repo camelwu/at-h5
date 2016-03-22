@@ -446,7 +446,7 @@ var  ticketIndexModal = {
            '<div class="right-side">'+
            '<div class="cur-word">'+
            '<div class="special-tip"><span class="cur-city"><a href="#CURR">当前</a></span><span class="his-city"><a href="#HIST">历史</a></span><span class="re-hot-city"><a href="#HOTT">热门</a></span></div>'+
-           '<div class="city-pin-fir"><div>'+
+           '<div class="city-pin-fir">'+
            '<a class="letter" href="#A">A</a>'+
            '<a class="letter" href="#B">B</a>'+
            '<a class="letter" href="#C">C</a>'+
@@ -473,7 +473,7 @@ var  ticketIndexModal = {
            '<a class="letter" href="#X">X</a>'+
            '<a class="letter" href="#Y">Y</a>'+
            '<a class="letter" href="#Z">Z</a>'+
-           '</div></div>'+
+           '</div>'+
            '</div>'+
            '</div>'+
            '<ul class="city-list-searched" style="display: none;">'+

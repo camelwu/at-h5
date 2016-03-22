@@ -14,7 +14,6 @@ $(document).ready(function(){
     var Parameters={"Parameters": {"BookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
         if(data.success) {
-            debugger;
             var tpl=template("payDetail",data.data);
             $("#payDetail").html(tpl);
 
@@ -195,8 +194,6 @@ function M(){
     console.log(creditName);
     var cardInfo=getCardInfo();
 
-    debugger;
-
     if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
         jAlert("持卡人姓名不能为空！","",null,"确认");
         return false;
@@ -244,7 +241,6 @@ function M(){
         return false;
     }
 
-debugger;
     console.log(cardInfo);
 
     var data= {
@@ -276,7 +272,6 @@ debugger;
         "Code": "3004"
     };
     console.log(data);
-    debugger;
     //$.alerts.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",callback,"支付完成","支付出现问题");
     var payment=new paymentObj(data,mycallback);
     payment.handlePayment();

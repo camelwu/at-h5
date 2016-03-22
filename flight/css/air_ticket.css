@@ -51,7 +51,7 @@
     height:100%;
     width: 100%;
     overflow-y: auto;
-    z-index: 18;
+    z-index: 100;
    display: none;
 }
 
@@ -805,17 +805,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .all-elements .city-content .right-side .cur-word {
-    padding-top: 3.55rem;
-    height: 420px;
+    padding-top: 1.5rem;
     position: relative;
 }
 
 .city-pin-fir {
-    position: absolute;
-    left: 0;
-    top: 130px;
-    height: 278px;
-    overflow: scroll;
+    margin-top: 5px;
 }
 
 .rec-histor {
@@ -828,11 +823,11 @@ h1, h2, h3, h4, h5, h6 {
 .all-elements .city-content .right-side .cur-word a {
     display: inline-block;
     width: 100%;
-    height: 2rem;
-    line-height: 1.2rem !important;
+    height: 12px;
+    line-height: 12px !important;
     text-align: center;
     overflow: hidden;
-    font-size: 1.6rem;
+    font-size: 12px;
 }
 
 .all-elements .city-content .right-side .cur-word .cur-city, .all-elements .city-content .right-side .cur-word .his-city, .all-elements .city-content .right-side .cur-word .re-hot-city {
@@ -2105,7 +2100,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .price-important .money-show-data .money-number {
     font-size: 1.8rem;
-    color: #fe6a00;
+    color: #FFB413;/*#fe6a00;*/
     font-weight: 600;
 }
 

@@ -427,7 +427,7 @@
 	}
 	//获取数据源
 	function get_allList() {
-		get_hisList();
+		//get_hisList();
 		$(".user-must").on("click",function(){
 			$("#fillName_page").show();
 		})
@@ -440,6 +440,19 @@
 			if (json.success) {
 				var html = template(tpl_traveler, json);
 				document.getElementById("allList").innerHTML = html;
+                if(from=="f" && titleType=="乘机人") {
+					var personList = JSON.parse(localStorage.getItem("travellerInfo_selected"));
+					$(personList).each(function () {
+						var id = this.Id;
+						$("#allList").find(".user-choice").each(function(){
+                               var dataId=  $(this).attr("data-id");
+							   if(dataId==id){
+								   $(this).addClass("choiced");
+							   }
+							})
+					})
+				}
+
 				$(".list-traveler .eve-traveler .user-edit").on("click",function(){
 					id=$(this).attr("data-id")
 					showAddAir_page("edit",id);
@@ -512,28 +525,28 @@
 
 	})
 	function submit_t() {
-			var seled = $(".choiced");
-			selectUser=[];
-			if(isNeedPassport=="true"){
-				$(seled).each(function(){
-					var cardType=$(this).siblings(".often_user").find("li").eq(0).attr("data-card");
-					if(cardType !=1) {
-						jAlert('请完善"'+$(this).siblings(".often_user").find("li").eq(0).html()+'"护照信息');
-						return;
-					}
-					selectUser.push(tralJsonObj[$(this).attr("data-id")]);
-				})
-			}else{
-				$(seled).each(function(){
-					selectUser.push(tralJsonObj[$(this).attr("data-id")]);
-				});
-
-			}
-		    ReplaceData(elementId,selectUser);
-			SavaLocalStorge(selectUser,isContact)
-		    var callback =vlm.getpara("callback");
-
-		    ifrCilent.parentNode.removeChild(ifrCilent);
+		 GoBackData();
+		ifrCilent.parentNode.removeChild(ifrCilent);
+	}
+	function GoBackData(){
+		var seled = $(".choiced");
+		selectUser=[];
+		if(isNeedPassport=="true"){
+			$(seled).each(function(){
+				var cardType=$(this).siblings(".often_user").find("li").eq(0).attr("data-card");
+				if(cardType !=1) {
+					jAlert('请完善"'+$(this).siblings(".often_user").find("li").eq(0).html()+'"护照信息');
+					return;
+				}
+				selectUser.push(tralJsonObj[$(this).attr("data-id")]);
+			})
+		}else{
+			$(seled).each(function(){
+				selectUser.push(tralJsonObj[$(this).attr("data-id")]);
+			});
+		}
+		ReplaceData(elementId,selectUser);
+		SavaLocalStorge(selectUser,isContact)
 	}
 	function ReplaceData(id,data){
 		var elementId="#"+id
@@ -594,6 +607,7 @@
 				TraInfo={};
 				CertificateInfo={}
 				TraInfo.PassengerType= "ADULT";  //乘客类型
+				TraInfo.Id=list[i].traveller.travellerId;
 				if(list[i].traveller.sexCode=="Mrs")
 				{
 					TraInfo.SexCode="Mr"
@@ -612,10 +626,8 @@
 				CertificateInfo.IdNumber=  list[i].listTravellerIdInfo[0].idNumber;      //证件号码
 				CertificateInfo.IdActivatedDate= list[i].listTravellerIdInfo[0].idActivatedDate ; //证件有效期
 				TraInfo.FlightCertificateInfo=CertificateInfo;
-
-				TraInfo.BaggageCode="",//行李编码，一期不用,
+				TraInfo.BaggageCode="",
 				//TraInfo.NationalityCode=list[i].traveller.nationalityCode;//国籍代码
-
 				TraInfo.CountryCode ="CN";
 				TravellerInfo.push(TraInfo)
 			}
@@ -770,21 +782,10 @@
 	}
 
 	$(".addFinish").on("click",function(){
+		debugger;
+		var flag=validate();
+		if(!flag) return false;
 		var inputList=$(".addAir-page")
-		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".cnName").eq(0).val())){
-			jAlert("中文姓名不能为空！","",null,"确认");
-			return false;
-		}
-		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".lastName").eq(0).val())){
-			jAlert("姓（英文）不能为空！","",null,"确认");
-			return false;
-		}
-		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".firstName").eq(0).val())){
-			jAlert("名（英文）不能为空！","",null,"确认");
-			return false;
-		}
-
-
 		var type=$(".addAir-page .header h3").attr("type");
 
 		//  判断性别
@@ -799,18 +800,9 @@
 			sexName = "女";
 		}
 
-//	var oMobile = $('#mobile-cell-add')[0].value;
-//	var oEmail = $('#email-cell-add')[0].value;
-		//"\"DateOfBirth\":\"" + $(inputList).find(".birthDay").eq(0).val() + "\"," +
-//	if (vlm.Utils.validate.mobileNo(oMobile) && vlm.Utils.validate.email(oEmail)) {
-
-		console.log($(inputList).find(".lastName").eq(0).val());
-		console.log($(inputList).find(".country").eq(0).html());
-
 		if(type=="edit") {
 			var id=$(".addAir-page .header h3").attr("data-id");
 			var Parameters = {
-
 				"Parameters": "{\"Traveller\":" +
 				"{" +
 				"\"TravellerId\":" + id + "," +
@@ -859,12 +851,14 @@
 				// 有ID说明是编辑，关闭窗口
 				if(travId>0)
 				{
-					self.close();
+					if (window.opener) {
+						window.close();
+					} else {
+						ifrCilent.parentNode.removeChild(ifrCilent);
+					}
 				}
 				else {
-					window.location.reload();
-					$("#preloader").hide();
-					showAddAir_page("new");
+					$("#addAir-page").hide();
 				}
 			}
 			else
@@ -877,6 +871,50 @@
 
 
 	})
+
+	function validate(){
+		var inputList=$(".addAir-page")
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".cnName").eq(0).val())){
+			jAlert("中文姓名不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".lastName").eq(0).val())){
+			jAlert("姓（英文）不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".firstName").eq(0).val())){
+			jAlert("名（英文）不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".cardNumber").eq(0).val())){
+			jAlert("证件号不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".telNum").eq(0).val())){
+			jAlert("电话号码不能为空！","",null,"确认");
+			return false;
+		}
+
+		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".txtEmail").eq(0).val())){
+			jAlert("邮箱不能为空！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["ChineseName"]($(inputList).find(".cnName").eq(0).val())){
+			jAlert("中文名必须为中文！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["engName"]($(inputList).find(".lastName").eq(0).val())){
+			jAlert("姓必须为英文！","",null,"确认");
+			return false;
+		}
+		if(!vlm.Utils.validate["engName"]($(inputList).find(".firstName").eq(0).val())){
+			jAlert("名必须为英文！","",null,"确认");
+			return false;
+		}
+		return true;
+
+
+	}
 
 	$("#delTra").on("click",function(){
 		var travelId = $(".addtra-info").attr("data-id");
