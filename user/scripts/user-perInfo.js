@@ -374,7 +374,7 @@ $('#birth-cont-per').click(function(){
                 arr.push(box[i].innerHTML);
             }
             var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
-            console.log(birthstr);
+            //console.log(birthstr);
             if( ! vlm.Utils.compareBirth(birthstr))
             {
                 jAlert('您选择的出生日期大于当前日期');
@@ -426,7 +426,7 @@ function mycallback(ret){
     {
         name.value=nickname.innerHTML = infoJson.data[0].nickName;
         $('#hostname')[0].innerHTML= realName.value= infoJson.data[0].firstName;
-        birthCont.value=infoJson.data[0].dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
+        birthCont.value=infoJson.data[0].dateOfBirth.substring(0,10);
         $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
         $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
 
@@ -547,15 +547,3 @@ function clearname(){
     name.value = "";
 }
 
-//function mycallback_keyVeri(ret){
-//    var c = new vlm();
-//    var phone_ver = $("#phone_ver")[0];
-//    console.log(ret);
-//    var myJson = eval('('+ret+')');
-//    console.log(myJson);
-//    if(myJson.Success){
-//        c.Utils.sendMobileCode(phone_ver.value);
-//    }else{
-//        jAlert(myJson.Message);
-//    }
-//}
