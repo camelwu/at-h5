@@ -188,7 +188,7 @@
                             '<div class="reserve-top2">房型: &nbsp;&nbsp;{%=roomType%}</div>',
                             '</div>',
                             '<div class="reserve-bottom">',
-                            '<div class="reserve-bottom1">{%=checkInDate%}-{%=checkOutDate%} 共'+dayNum+'晚(当地时间为准)</div>',
+                            '<div class="reserve-bottom1">{%=checkInDate.split("T")[0]%}-{%=checkOutDate.split("T")[0]%} 共'+dayNum+'晚(当地时间为准)</div>',
                             '<div class="reserve-bottom2">最晚到店18:00</div>',
                             '<div class="reserve-bottom3">地址: {%=hotelAddress%}</div>',
                             '</div>'

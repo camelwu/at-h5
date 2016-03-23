@@ -127,6 +127,14 @@
             <a href="#" class="s-btn button-orange btnCpay">支付</a>
         </div>
     </div>
+    <!-- 电话弹框 begin-->
+    <div class="jpop_box_tic">
+        <dl>
+            <dt>400 805 8888</dt>
+            <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+        </dl>
+    </div>
+
     !--国籍选择开始-->
     <div class="all-elements country-cho-wrap">
         <div class="header">
@@ -150,6 +158,8 @@
         </div>
     </div>
     <!--国籍选择结束-->
+
+    <!--电话弹框结束-->
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/lib/vlm.js"></script>
@@ -158,6 +168,7 @@
     <script>
         $(window).load(function () {
             Init();
+
         });
         var getCN = {
             "CNY": "￥",
@@ -328,6 +339,13 @@
         }
 
         function Init(){
+            $('.tel-icon').click(function(){
+                $('.jpop_box_tic').fadeIn(100);
+            })
+            $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+                $('.jpop_box_tic').hide();
+            })
+
             var bookingRefNo=vlm.getpara("bookingRefNo");
             var Parameters={
                 "Parameters": {
