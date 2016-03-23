@@ -57,6 +57,7 @@
 .nav1{
     height: 45px;
     position: relative;
+    float: left;
 }
 .nav111{
     width: 88px;
@@ -723,19 +724,26 @@
 .bookinfo2-1{
     width: 72px;
     color: #999999;
+    float: left;
+    margin-bottom: 12px;
 }
 .bookinfo2-1 span{
     font-size: 1.4rem;
     display: block;
 }
 .bookinfo2-2{
-    flex: 1.0;
+    /*flex: 1.0;*/
+    padding-left: 20px;
     color: #484848;
 }
 .bookinfo2-2 span{
     color: #484848;
     display: block;
-    font-size: 1.4rem;
+    font-size: 12px;
+}
+.bookinfo2 span{
+    padding-top: 12px;
+    vertical-align: middle;
 }
 .hotelInter2{
     font-size: 1.2rem;

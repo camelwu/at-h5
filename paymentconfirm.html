@@ -26,11 +26,9 @@
 
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vlm.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
+<script src="js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
 <script type="application/javascript">
-
-
 $(document).ready()
 {
     var business=vlm.getpara("business");
@@ -102,7 +100,11 @@ $(document).ready()
                 }
                 else if(business==1){
                     var code=data.data.bookingReferenceNo;
-                    window.location.href = 'hotel/trade_details.html?bookingRefNo='+code;
+                    if(data.data.flag) {
+                        window.location.href = 'hotel/trade_details.html?bookingRefNo=' + code;
+                    }else{
+                        window.location.href = 'hotel/pay_fail.html?bookingRefNo=' + code;
+                    }
                 }
                 else if(business==5){
                     window.location.href = 'tour/trade_details.html?bookingRefNo='+bookingRefNo;
