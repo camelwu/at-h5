@@ -1528,6 +1528,7 @@ i{
 .sce-introduce {
     padding-left: 20px;
     padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
 }
 .sce-introduce-txt {
     font-size: 1.5rem;

@@ -78,7 +78,7 @@
 
 		sTools : {
 			hotelName : function(arg) {
-				return arg.indexOf('(') != -1 ? '<p class="d-p1">' + arg.slice(0, arg.indexOf(' (')) + '<br/>' + arg.slice(arg.indexOf(' (') + 1) + '</p>' : '<p class="d-p1" style="line-height: 44px">' + arg + '</p>';
+				return arg.indexOf('(') != -1 ? '<p class="d-p1">' + arg.slice(0, arg.indexOf('(')) + '</p>' : '<p class="d-p1">' + arg + '</p>';
 			},
 			frontImage : function(arg) {
 				for (var temp in arg) {
@@ -148,21 +148,24 @@
             //just for wifi icon
             getServiceList : function(hotelRoomList){
                 var serverListHtml = "";
-                var sign = false;
+                var wifiSign = false;
+                var transferSign = false;
                 var roomList = null;
                 for(var i=0,len=hotelRoomList.length;i<len;i++){
                     roomList = hotelRoomList[i].roomList;
                     for(var j=0,l=roomList.length;j<l;j++){
-                        if(roomList[j].isFreeWifi){
-                            serverListHtml += "<span class='wifi-icon'></span>";
-                            sign = true;
+                        if(wifiSign && transferSign){
                             break;
                         }
+                        if(roomList[j].isFreeWifi){
+                            serverListHtml += "<span class='wifi-icon'></span>";
+                            wifiSign = true;
+                        }
+                        if(roomList[j].isFreeTransfer){
+                            serverListHtml += "<span class='transfer-icon'></span>";
+                            transferSign = true;
+                        }
                     }
-                    if(sign){
-                        break;
-                    }
-                        
                 }
                 return serverListHtml;
             }
@@ -441,7 +444,7 @@
 
 			hotelDetail.sourceData = result;
 			console.log(hotelDetail.sourceData);
-			headerStr += '<div class="header detailHeader" id="vlm-h-1"><a href="javascript:window.history.go(-1);" class="header-back" style="z-index: 4"><i class="icons go-back"></i></a><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) + '</h3></div>';
+			headerStr += '<div class="header detailHeader" id="vlm-h-1"><a href="javascript:window.history.go(-1);" class="header-back" style="z-index: 4"><i class="icons go-back"></i></a><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelNameLocale) +'</h3></div>';
 
 			frontImgStr += '<div class="d-div1 faceImg"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum"><div class="d-p4">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
             
@@ -656,7 +659,7 @@
 		updateSubRoomModal : function(arg) {
 			console.log(arg);
 			console.log(1);
-			var modalStr = '';
+			var modalStr = '', couponStr = '';
 			//oDiv.className = "roomAll";
 			//oDiv.id = "infoAll";
 			modalStr += '<div class="info-div"><ul class="ro-info">';
@@ -667,9 +670,12 @@
 			modalStr += arg.isFreeCityTour ? '<li class="ro-info-item"><span class="item-name">免费观光</span><span class="item-content">有</span></li>' : '';
 			modalStr += arg.maxOccupancy ? '<li class="ro-info-item"><span class="item-name">最多居住人数</span><span class="item-content">' + arg.maxOccupancy + '人</span></li>' : '';
 			modalStr += arg.maxChildOccupancy ? '<li class="ro-info-item"><span class="item-name">最多孩子数</span><span class="item-content">' + arg.maxChildOccupancy + '人</span></li>' : '';
-			modalStr += arg.minNight ? '<li class="ro-info-item"><span class="item-name">最少居住晚数</span><span class="item-content">' + arg.minNight + '晚</span></li>' : '';
-			modalStr += arg.isCashRebate ? '</div><div class="info-div"><div class="rate-rule">优惠政策</div><p class="info-text"><span>现金奖励</span>优惠政策内容</p></div>' : '';
-			modalStr += arg.cancelWord ? '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text">取消说明规则</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text"><span class="infoTxtCan">暂无取消说明内容</span></p></div>';
+			modalStr += arg.minNight ? '<li class="ro-info-item"><span class="item-name">最少居住晚数</span><span class="item-content">' + arg.minNight + '晚</span></li></div>' : '';
+            couponStr += arg.isCashRebate ? '<p class="info-text"><span>'+arg.isCashRebateTitle+'</span>'+arg.isCashRebateDesc+'</p>' : '';
+            couponStr += arg.isFreeTransfer ? '<p class="info-text"><span>'+arg.isFreeTransferTitle+'</span>'+arg.isFreeTransferDesc+'</p>' : '';
+            couponStr += arg.isFreeCityTour ? '<p class="info-text"><span>'+arg.isFreeCityTourTitle+'</span>'+arg.isFreeCityTourDesc+'</p>' : '';
+			modalStr += '<div class="info-div"><div class="rate-rule">优惠政策</div>' + couponStr + '</div>';
+			modalStr += arg.cancellationDesc ? '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text">'+arg.cancellationDesc+'</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text"><span class="infoTxtCan">暂无取消说明内容</span></p></div>';
 			// modalStr += arg.isabd ? '<header class="r-top"><p class="r-p1">' + arg.roomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.roomName + '</p><b class="r-icon1 closeTag"></b></header>';          oDiv.innerHTML = modalStr;
 			//document.body.appendChild(oDiv);
 			//hotelDetail.$Id('r-mb').style.display = 'block';

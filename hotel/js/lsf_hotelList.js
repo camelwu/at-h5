@@ -157,25 +157,28 @@ function styleChange(id, mytext) {
 		}
 
 		function close(obj) {
+            var windowHeight = window.innerHeight;
 			mb = document.getElementById("r-mb");
 			mb.style.display = "none";
-			obj.style.bottom = -550 + 'px';
+			obj.style.bottom = -windowHeight + 'px';
 			obj.style.transition = "all 350ms";
 		}
 
 		function mb_close() {
+            var windowHeight = window.innerHeight;
+			mb = document.getElementById("r-mb");
 			mb = document.getElementById("r-mb");
 			mb.style.display = "none";
 			if (rank.style.display == "" || rank.style.display == "block") {
-				rank.style.bottom = -550 + 'px';
+				rank.style.bottom = -windowHeight + 'px';
 				rank.style.transition = "all 350ms";
 			}
 			if (screen.style.display == "" || screen.style.display == "block") {
-				screen.style.bottom = -550 + 'px';
+				screen.style.bottom = -windowHeight + 'px';
 				screen.style.transition = "all 350ms";
 			}
 			if (location.style.display == "" || location.style.display == "block") {
-				location.style.bottom = -550 + 'px';
+				location.style.bottom = -windowHeight + 'px';
 				location.style.transition = "all 350ms";
 			}
 		}
@@ -510,8 +513,8 @@ function styleChange(id, mytext) {
 				/*if (data[i].location) {
 					data[i].location = '(' + data[i].location + ')';
 				}*/
-				
-				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list" data-index="'+i+'">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + namestr + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:0.8rem;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].location + '</p>' + '</div>' + '</li>';
+                
+				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list" data-hotelCode="'+data[i].hotelCode+'" data-InstantConfirmation="'+data[i].InstantConfirmation+'" data-AllOccupancy="'+data[i].AllOccupancy+'">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + namestr + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:0.8rem;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].location + '</p>' + '</div>' + '</li>';
                 
                 liHtml += str;
 			}
@@ -595,18 +598,19 @@ function styleChange(id, mytext) {
 				aOk[i] = true;
 			}
 			//联动选项
-			//“不限”点击事件
+			//“不限”点击事件  
+            /*
 			lsf_myweb.bind(liFirst, 'click', function() {
 				if (!bOk) {
 					for (var i = 1; i < aLi.length; i++) {
 						lsf_myweb.removeClass(aLi[i], 'l-li2')
 					}
-					lsf_myweb.removeClass(liFirst, 'l-li3')
+					//lsf_myweb.removeClass(liFirst, 'l-li3')
 					for (var i = 1; i < aLi.length; i++) {
 						aOk[i] = true;
 					}
 				} else {
-					lsf_myweb.addClass(liFirst, 'l-li3');
+					//lsf_myweb.addClass(liFirst, 'l-li3');
 					for (var i = 1; i < aLi.length; i++) {
 						lsf_myweb.addClass(aLi[i], 'l-li2');
 					}
@@ -616,6 +620,7 @@ function styleChange(id, mytext) {
 				}
 				bOk = !bOk;
 			});
+            */
 			//每个地区的点击事件
 			for (var i = 1; i < aLi.length; i++) {
 				(function(index) {
@@ -962,12 +967,12 @@ function styleChange(id, mytext) {
 		var hotelRefers = document.getElementsByClassName('ho_list');
 		var toDetail = function(that) {
 			var paraObj = new Object();
-			paraObj.HotelID = data[that.index].hotelCode;
-			paraObj.HotelCode = data[that.index].hotelCode;
+			paraObj.HotelID = that.getAttribute('data-hotelCode');
+			paraObj.HotelCode = that.getAttribute('data-hotelCode');
 
 			// paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
-			paraObj.InstantConfirmation = data[that.index].InstantConfirmation != undefined ? data[that.index].InstantConfirmation : false;
-			paraObj.AllOccupancy = data[that.index].AllOccupancy != undefined ? data[that.index].AllOccupancy : true;
+			paraObj.InstantConfirmation = that.getAttribute('data-InstantConfirmation') != undefined ? that.getAttribute('data-InstantConfirmation') : false;
+			paraObj.AllOccupancy = that.getAttribute('data-AllOccupancy') != undefined ? that.getAttribute('data-AllOccupancy') : true;
 
 			paraObj.CheckInDate = url_json.InterCheckInDate;
 			paraObj.CheckOutDate = url_json.InterCheckOutDate;
@@ -983,7 +988,6 @@ function styleChange(id, mytext) {
 			window.location.href = 'hotel_detail.html?' + paramStr;
 		}
 		for (var i = 0; i < hotelRefers.length; i++) {
-			hotelRefers[i].index = hotelRefers[i].getAttribute("data-index");
 			hotelRefers[i].onclick = function() {
 				var that = this;
 				toDetail(that);

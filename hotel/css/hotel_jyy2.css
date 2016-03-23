@@ -481,7 +481,7 @@ body {
     width: 100%;
     background-color: white;
     position: fixed;
-    bottom:-550px;
+    bottom:-1550px;
     z-index: 2000000;
 }
 .loca_con{
