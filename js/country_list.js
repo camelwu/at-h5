@@ -888,8 +888,8 @@ var arrCountry= [{"CountryEN":"Angola",
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
                     oCont[index].innerHTML=oInp.value=e.target.innerHTML;
-                    $(oCont).attr("data-code", $(e.target).attr("data-code"));
-                    $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
+                    $(oCont).eq(index).attr("data-code", $(e.target).attr("data-code"));
+                    $(oCont).eq(index).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     console.log(e.target);
                     setTimeout(function(){
                         oDiv.style.display='none';
