@@ -358,7 +358,7 @@ var ticketSingle = {
             li.innerHTML = ticketListStr;
             ticketDetailUl.appendChild(li);
         }
-        myScroll.refresh();
+        this.loaded();
         this.eventHandler();
         return;
     },
@@ -494,7 +494,7 @@ var ticketSingle = {
                 if(that.pageNo >= that.pageCount){
                     console.log(11)
                      $('#pullUp').fadeOut(1000);
-                     myScroll.refresh()
+                     that.myScroll.refresh()
                     jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
                 }else if(that.pageNo < that.pageCount){
                     console.log(22)
@@ -509,7 +509,7 @@ var ticketSingle = {
             if(that.pageNo >= that.pageCount){
                 console.log(33)
                 $('#pullUp').fadeOut(1000);
-                myScroll.refresh()
+                that.myScroll.refresh()
                 jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
             }else if(that.pageNo < that.pageCount){
                 console.log(44)
@@ -521,12 +521,13 @@ var ticketSingle = {
         },
 
     loaded:function(){
+            var pullDownEl, pullDownOffset, pullUpEl, pullUpOffset;
             pullDownEl = document.getElementById('pullDown');
             pullDownOffset = pullDownEl.offsetHeight;
             pullUpEl = document.getElementById('pullUp');
             pullUpOffset = pullUpEl.offsetHeight;
 
-            myScroll = new iScroll('wrapper', {
+            this.myScroll = new iScroll('wrapper', {
                 useTransition: true,
                 topOffset: pullDownOffset,
                 onRefresh: function () {
@@ -591,11 +592,11 @@ var ticketSingle = {
     },
     init:function(){
         var backParaObj = this.parseUrlPara(document.location.search, true);
-        var myScroll, pullDownEl, pullDownOffset, pullUpEl, pullUpOffset, generatedCount = 0,that = ticketSingle;
+        var generatedCount = 0,that = ticketSingle;
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-        document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
+        //document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
         this.tripType = backParaObj.interNationalOrDomestic;
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
