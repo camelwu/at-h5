@@ -853,8 +853,10 @@ var arrCountry= [{"CountryEN":"Angola",
                     setTimeout(function(){
                         oDiv.style.display='none';
                         oTc.style.display='none';
-                        document.querySelector("#addtra_page .user-content").style.position = "relative";
-                        document.querySelector("#uptra_page .user-content").style.position = "relative";
+                        if(document.querySelector("#addtra_page .user-content")  !=null) {
+                            document.querySelector("#addtra_page .user-content").style.position = "relative";
+                            document.querySelector("#uptra_page .user-content").style.position = "relative";
+                        }
                         oInput.value='';
                     },500)
                     if($('#addtra_page').length>0)
