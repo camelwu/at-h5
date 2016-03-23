@@ -127,12 +127,14 @@
 				var ww = this, packageID = '', roomMinNum = 1, roomMaxNum = 5;
 				var val = vlm.parseUrlPara(window.location.href);
 				vlm.init();
+
 				var packageID = localStorage.packageID;
 				localStorage.setItem('init', '0');
 				var initAgeRange = function() {
 					var s = document.querySelectorAll('.child-age');
 					var input = document.querySelectorAll('.inp-cage');
 					for (var i = 0; i < s.length; i++) {
+
 						s[i].innerHTML = '(' + childAgeMin + '-' + childAgeMax + ')';
 					}
 					for (var j = 0; j < input.length; j++) {
@@ -373,7 +375,7 @@
 						var initStr = '';
 						var roomNum = document.getElementById('roomNum');
 						roomNum.innerHTML = Math.ceil(minPax/3);
-						var aa=(minPax-3*j)>3?3:(minPax-3*j)%3;
+						var aa;
 						if (onlyForAdult) {
 							if(minPax <= 3){
 								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">'+minPax%3+'</i><span class="plus-btn"></span></div>' + '</div>';
@@ -383,6 +385,7 @@
 								parent.insertBefore(section,hotelInfo.nextSibling);
 							}else{
 								for(var i = 0;i < Math.ceil(minPax/3);i++){
+									aa=(minPax-3*i)>3?3:(minPax-3*i)%3;
 									initStr = '<span class="title">房间'+i+'</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">'+aa+'</i><span class="plus-btn"></span></div>' + '</div>'
 									section = document.createElement('section');
 									section.innerHTML = initStr;
@@ -403,6 +406,7 @@
 								parent.insertBefore(section,hotelInfo.nextSibling);
 							}else{
 								for(var j = 0;j < Math.ceil(minPax/3);j++){
+									aa=(minPax-3*j)>3?3:(minPax-3*j)%3;
 									initStr = '<span class="title">房间'+(j+1)+'</span>' +
 											'<div class="numbList" style="border-bottom: 1px solid #ddd;">' +
 											'<span class="n_tit">成人</span>'+
@@ -501,6 +505,7 @@
 						var roomDetails = [], tours = [];
 						var roomDetailSection = document.querySelectorAll('.hotelInfo_numb_people');
 						var tourEle = document.querySelectorAll('.tour-out-div');
+
 						for (var hn = 0, len = roomDetailSection.length; hn < len; hn++) {
 							var temEle = roomDetailSection[hn], temObj = {}, childWithOutBed = [], childWithBed = [];
 							var temAdultNum = parseInt(temEle.querySelector('#adult-people-number').innerHTML);
