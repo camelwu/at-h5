@@ -29,7 +29,7 @@
 </head>
 <body>
     <div id="preloader">
-        <div id="status">
+        <div id="status-t">
             <p class="center-text">
                 <em>加载中……</em>
             </p>
@@ -196,7 +196,7 @@
             <div>
                 <p class="info-title">{%=productName%}</p>
                 <ul class="air-date">
-                    {% var d1= new Date(travelStartDate.replace("T"," ")) ; var d2=new Date(travelEndDate.replace("T"," ")); %}
+                    {% var d1= new Date(travelStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; var d2=new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")); %}
                     <li>{%= d1.getMonth()+1 %}-{%= d1.getDate() %} 至{%= d2.getMonth()+1 %}-{%= d2.getDate() %} 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
                 </ul>
             </div>
@@ -215,7 +215,7 @@
             <div>
                 <p class="info-title">{%=productName%}</p>
                 <ul class="air-date">
-                    {% var d3= new Date(travelEndDate.replace("T"," ")) ; %}
+                    {% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
                     <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
                 </ul>
             </div>
@@ -234,7 +234,7 @@
             <div>
                 <p class="info-title">{%=productName%}</p>
                 <ul class="air-date">
-                    {% var d3= new Date(travelEndDate.replace("T"," ")) ; %}
+                    {% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
                     <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
                 </ul>
             </div>
