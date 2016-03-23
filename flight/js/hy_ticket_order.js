@@ -346,12 +346,12 @@ var ticketOrder = {
             function hide(){
                 summaryCostModal.className="summary-cost-modal summary-cost-modal-hide";
                 summaryCostShadowOne.style.display='none';
-                detailTangle.className="detail clearfixs detail-tangle opened"}
+                detailTangle.className="detail clearfixs detail-tangle"}
 
             function show(){
                 summaryCostModal.className="summary-cost-modal summary-cost-modal-show";
                 summaryCostShadowOne.style.display='block';
-                detailTangle.className="detail clearfixs detail-tangle"
+                detailTangle.className="detail clearfixs detail-tangle opened"
             }
         });
 
