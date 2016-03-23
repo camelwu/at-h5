@@ -137,10 +137,10 @@
         {% } %}
     </script>
     <script id="tpl_Contect" type="text/template">
-        <li><i>订单号</i>{%=bookingID%}</li>
+        <li><i>订单号</i>{%=bookingRefNo%}</li>
         <li><i>下单时间</i>{%=bookingDate%}</li>
         <li><i>联系人</i>{%=contactDetails.lastName%} {%=contactDetails.firstName%}</li>
-        <li><i>联系电话</i>{%=contactDetails.contactNo%}</li>
+        <li><i>联系电话</i>{% console.log(contactDetails.contactNo); %}</li>
         <li><i>邮箱</i>{%=contactDetails.email%}</li>
     </script>
     <script id="tpl_PayDetails"  type="text/template">
@@ -155,10 +155,7 @@
     <script>
 
         (function(){
-
             var val = vlm.parseUrlPara(window.location.href);
-
-
             //   获取详情
             MT.getDetail = function(){
                 var tmp = {
@@ -169,14 +166,12 @@
                     "Code": "0095"
                 };
                 MT.ajaxJson("",JSON.stringify(tmp),MT.getDetail_back,MT.ajaxAnimIn,MT.ajaxAnimOut);
-
             };
 
             MT.getDetail_back = function(data){
                 var json=data;
                 if(json.success) {
                     var data = json.data;
-                    console.log(data);
                     //下单时间fix
                     var BookingDate = data.bookingDate;
                     BookingDate = BookingDate.replace(/(\d{2,4}-\d{1,2}-\d{1,2})T(\d{2}:\d{2}:\d{2})/,function(){

@@ -853,8 +853,10 @@ var arrCountry= [{"CountryEN":"Angola",
                     setTimeout(function(){
                         oDiv.style.display='none';
                         oTc.style.display='none';
-                        document.querySelector("#addtra_page .user-content").style.position = "relative";
-                        document.querySelector("#uptra_page .user-content").style.position = "relative";
+                        if(document.querySelector("#addtra_page .user-content")  !=null) {
+                            document.querySelector("#addtra_page .user-content").style.position = "relative";
+                            document.querySelector("#uptra_page .user-content").style.position = "relative";
+                        }
                         oInput.value='';
                     },500)
                     if($('#addtra_page').length>0)
@@ -888,8 +890,8 @@ var arrCountry= [{"CountryEN":"Angola",
                 var oInp=document.querySelector('.cl_search input');
                 oTab.onclick=function(e){
                     oCont[index].innerHTML=oInp.value=e.target.innerHTML;
-                    $(oCont).attr("data-code", $(e.target).attr("data-code"));
-                    $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
+                    $(oCont).eq(index).attr("data-code", $(e.target).attr("data-code"));
+                    $(oCont).eq(index).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     console.log(e.target);
                     setTimeout(function(){
                         oDiv.style.display='none';
