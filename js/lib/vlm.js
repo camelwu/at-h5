@@ -146,29 +146,29 @@
 					}
 					return (Math.round(num * 10000) / 100).toFixed(1) + '%';
 				},
-				//格式化日期为2016-01-01
+				//格式化日期
 				format_date : function(dtime, format) {
-					//2016-2-4因为麻痹的IOS，需要重写
 					dtime = dtime.replace("T", " ");
 					var newDate = new Date(dtime);
 					var year = newDate.getFullYear();
-					var month = newDate.getMonth() + 1;
-					var day = newDate.getDate();
-					var hour = newDate.getHours();
-					var minutes = newDate.getMinutes();
-					var seconds = newDate.getSeconds();
+					var yy = year.toString(),yy = yy.substr(-2),month = newDate.getMonth() + 1,day = newDate.getDate();
+					var hour = newDate.getHours(),minutes = newDate.getMinutes(),seconds = newDate.getSeconds();
 					month = month < 10 ? '0' + month : month;
 					day = day < 10 ? '0' + day : day;
 					hour = hour < 10 ? '0' + hour : hour;
 					minutes = minutes < 10 ? '0' + minutes : minutes;
 					var timeStr;
-					format = typeof format == 'undefined' ? 'Ymd' : format;
+					format = typeof format == 'undefined' ? '' : format;
 					if (format == 'YmdHi') {
 						timeStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes;
 					} else if (format == 'YmdHis') {
 						timeStr = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
-					} else {
+					} else if (format == 'Ymd') {
 						timeStr = year + '-' + month + '-' + day;
+					} else if (format == 'ymd') {
+						timeStr = yy + '-' + month + '-' + day;
+					} else {
+						timeStr = month + '-' + day;
 					}
 					return timeStr;
 				},
@@ -188,6 +188,16 @@
 					} else {
 						return false;
 					}
+				},
+				//比较时间的天数差
+				compareDay : function(d1,d2) {
+					if (d1 == '' || d1 == null || d2 == '' || d2 == null) {
+						return 'no timestr.';
+					}
+					d1=new Date(d1.replace("T"," "));
+					d2=new Date(d2.replace("T"," "));
+					var dtime = Math.floor((d2-d1)/(24*60*60*1000));
+					return dtime;
 				},
 				//比较出生日期
 				compareBirth : function(timeStr) {
