@@ -85,7 +85,6 @@ var ticketDouble = {
         }
         ticketDouble.addHandler(target, eventType, handle);
     },
-
     reDate:function(arg){
         var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(arg);
           var returnWeek  = function(){

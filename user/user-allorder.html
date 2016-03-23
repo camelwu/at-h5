@@ -215,7 +215,8 @@
             <div>
                 <p class="info-title">{%=productName%}</p>
                 <ul class="air-date">
-                    <li>有效期至：2015-12-30</li>
+                    {% var d3= new Date(travelEndDate.replace("T"," ")) ; %}
+                    <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
                 </ul>
             </div>
             <div style="border-top: 1px solid #dedede;">
@@ -228,16 +229,17 @@
                 <b class="icon user-spot"></b>
                 <div class="order-title">景点</div>
                 <div class="if_pay">{%=getCN[paymentStatus]%}</div>
-                <div class="order-Amount">$1111</div>
+                <div class="order-Amount">￥{%=bookingAmount%}</div>
             </div>
             <div>
                 <p class="info-title">{%=productName%}</p>
                 <ul class="air-date">
-                    <li>有效期至：2015-12-30</li>
+                    {% var d3= new Date(travelEndDate.replace("T"," ")) ; %}
+                    <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
                 </ul>
             </div>
             <div style="border-top: 1px solid #dedede;">
-                <a href="../scenic/order-detail.html" class="paybtn button-yellow">查看订单</a>
+                <a href="../scenic/order-detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
             </div>
         </div>
         {% } %}

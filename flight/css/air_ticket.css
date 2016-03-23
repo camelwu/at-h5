@@ -2469,9 +2469,8 @@ h1, h2, h3, h4, h5, h6 {
 .seat-condition .right p:nth-child(2) span {
     color: #a6dad6;
 }
-
 .ride-user {
-    min-height: 6.0rem;
+    /*min-height: 6.0rem;*/
     background: pink;
     margin-bottom: 1.0rem;
     background: #FFFFFF;

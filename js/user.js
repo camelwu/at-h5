@@ -557,6 +557,13 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
             }
             uptra_page.style.display='none';
 
+            //性别
+            if(oldcName != $('#countryName').html()){
+                jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
+                return;
+            }
+            uptra_page.style.display='none';
+
         };
 
         function conEdit(arg){

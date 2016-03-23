@@ -193,7 +193,9 @@
                     var TotalPrice = 0;
                     if(data.chargeDetails.length > 0){
                         for (var i = 0;i<data.chargeDetails.length;i++){
-                            TotalPrice += parseInt(data.chargeDetails[i].totalAmountInCNY);
+                            if(data.chargeDetails[i].category!="PAYMENT") {
+                                TotalPrice += parseInt(data.chargeDetails[i].totalAmountInCNY);
+                            }
                         }
                     }
                     data.TotalPrice = TotalPrice;

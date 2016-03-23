@@ -336,9 +336,7 @@ var lsf_myweb={
         }
         //数据展示部分
         function V(data){
-
             if(data.success){
-                debugger;
                 if(myData.paymentModeID=='1') {
                     if (data.data.length >= 1) {
                         var url = data.data[0].paymentRedirectURL;
@@ -351,12 +349,11 @@ var lsf_myweb={
             }else{
                 $("#status-h").fadeOut();
                 $("#preloader").fadeOut("medium");
-                $.alerts.alert(data.message);
+                $.alerts.alert(data.message,null,"确定");
             }
         }
 
         M(myData);
-
         function mycallback(data_json){
             V(data_json);
         }

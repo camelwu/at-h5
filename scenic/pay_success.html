@@ -79,7 +79,7 @@
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script id="tpl_tourInfo"  type="text/template">
-    <div class="tra_order">订单号：{%=bookingID%}</div>
+    <div class="tra_order">订单号：{%=bookingRefNo%}</div>
     {% for(var i=0;i < tours.length;i++){ %}
     <h3>{%=tours[i].tourName%}</h3>
     <p class="tra_live">游玩时间：<span>{%=tours[i].travelDate.substr(0,10)%}</span></p>
@@ -95,13 +95,6 @@
         var ww = this;
 
         var sh_paySuccess = function(){
-            //   加载动画
-            var flashLoad = function(){
-                $(window).load(function () {
-                    $("#status").fadeOut();
-                    $("#preloader").delay(400).fadeOut("medium");
-                });
-            };
             //   获取页面信息
             var getPageInfo = function(){
                 //                var bookingRefNo="SG17SINFP0375528";
@@ -137,7 +130,9 @@
                             }
                         }
                         for(var j = 0;j < data.chargeDetails.length;j++){
-                            totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
+                            if(data.chargeDetails[j].category!="PAYMENT") {
+                                totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
+                            }
                         }
 //                        var html_ti = template(tpl1,data);
                         var tpl_tourInfo = template("tpl_tourInfo",data);
@@ -153,13 +148,11 @@
                 }
             };
             return{
-                FlashLoad:flashLoad,
                 GetPageInfo:getPageInfo
             }
         }();
         ww.MT = ww.MT || {};
         ww.MT.load = function(){
-            sh_paySuccess.FlashLoad();
             sh_paySuccess.GetPageInfo()
         };
         MT.load();
