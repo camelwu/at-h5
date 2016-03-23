@@ -36,26 +36,36 @@
 <body>
     <!--     banner     -->
     <div class="all-elements">
+        <!--   顶部   -->
+        <div class="header" id="vlm-login">
+            <a href="../" class="header-back"><i class="icons go-back"></i></a>
+            <h3>景点/门票</h3>
+            <a href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html" class="location-wrap">
+                <span id="Localtxt" class="location-txt">更多</span>
+                <i class="location-tip"></i>
+            </a>
+        </div>
         <div id="content" class="snap-content">
-            <a href="../" class="icons top-back"> </a>
-            <div class="top-ban s-active">
-                <a href="#">
-                    <!--<div class="ban-desc">-->
-                        <!--<div>电影照进现实</div>-->
-                        <!--<div>—— · 新加坡环球影城 · ——</div>-->
-                    <!--</div>-->
-                    <img src="images/scenic_top1.png" class="banner-image" alt="img">
-                </a>
-            </div>
-            <div class="top-ban">
-                <a href="#">
 
-                        <!--<div>任烟花几月,不辞扬州</div>-->
-                        <!--<div>—— · 扬州悠闲两日游 · ——</div>-->
+            <!--<a href="../" class="icons top-back"> </a>-->
+            <!--<div class="top-ban s-active">-->
+                <!--<a href="#">-->
+                    <!--&lt;!&ndash;<div class="ban-desc">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div>电影照进现实</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div>—— · 新加坡环球影城 · ——</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--<img src="images/scenic_top1.png" class="banner-image" alt="img">-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="top-ban">-->
+                <!--<a href="#">-->
 
-                    <img src="images/scenic_top2.png" class="banner-image" alt="img">
-                </a>
-            </div>
+                        <!--&lt;!&ndash;<div>任烟花几月,不辞扬州</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div>—— · 扬州悠闲两日游 · ——</div>&ndash;&gt;-->
+
+                    <!--<img src="images/scenic_top2.png" class="banner-image" alt="img">-->
+                <!--</a>-->
+            <!--</div>-->
 
             <!--<div class="homepage-slider unactive" data-snap-ignore="true" id="banner">-->
                 <!--<a href="#">-->
@@ -152,10 +162,10 @@
     <script src="../js/lib/custom.js"></script>
     <script src="js/scenic_pub.js"></script>
     <script id="tpl_GetHotCity" type="text/template">
-        {% for(var i=0,len=data.destCities.length>=8?8:data.destCities.length;i<len;i++){ %}
+        {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i<len;i++){ %}
             <li class = "hotplace {% if(i == 0){ %}pl-active{% } %}" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
         {% } %}
-        <li class = "hotplace" title="more">更多</li>
+        <!--<li class = "hotplace" title="more">更多</li>-->
     </script>
     <script id="tpl_GetHotSpot" type="text/template">
         {% for(var i = 0;i < hotScenicList.length;i++){ %}
@@ -241,7 +251,7 @@
             MT.CurrentPageTolist = function(cityCode){
                 MT.AnimIn();
                 if(cityCode == "more"){
-                    window.location.href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html";
+//                    window.location.href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html";
                     return false;
                 }
                 window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
