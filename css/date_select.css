@@ -112,4 +112,8 @@
     font-size: 1.6rem;
 }
 
+.selbox-ul li span.date-selected{
+    font-size: 1.9rem;
+    color: #484848;
+}
 /*日期选择控件-出生日期结束*/
