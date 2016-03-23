@@ -31,6 +31,8 @@
 			<div class="sc-content js-content">
 				<div class="js-childblock1"></div>
 
+				<div class="js-childblock2"></div>
+
 				<section class="tourist-ticket-box min320">
 					<!--<div class="contact-document">-->
 					<!--<span class="contact-doc-tit">联系人资料</span>-->
@@ -38,7 +40,7 @@
 					<!--</div>-->
 					<!--<h3 class="free-login">免登陆下单</h3>-->
 					<div class="tourist-tic-wrap">
-						<div class="tourist-ticket clearFix">
+						<div class="tourist-ticket-head clearFix">
 							<h3 class="ticket-take-msg fl">取票人信息</h3>
 							<a href="javascript:;" class="con-add-butto fr" onclick="vlm.f_choice('tanktick','t','traver','',false,false,null,null,null,'myCallBack');"></a>
 						</div>
@@ -101,9 +103,8 @@
 					<!--</li>-->
 					<!--</ul>-->
 					<!--</section>-->
-					<div class="gray-block"></div>
-					<div class="js-childblock2"></div>
 
+					<div class="gray-block"></div>
 					<div class="add-ticket">
 						<i class="add-tic-btn"></i>
 						<span class="add-tic-txt">添加其他套餐</span>
@@ -353,6 +354,7 @@
 			</ul>
 			{% } %}
 			</section>
+			<div class="gray-block"></div>
 		</script>
 
 		<script id="tpl_ScenicView2" type="text/template">
@@ -390,6 +392,7 @@
 			</ul>
 			{% } %}
 			</section>
+			<div class="gray-block"></div>
 		</script>
 
 		<script id="tpl_Adult_Child1" type="text/template">
@@ -527,9 +530,9 @@
 					$('#seach_up').keyup(function() {
 						var htmlTags = [];
 						var value = $('#seach_up').val();
-						console.log(PickupPointData);
+//						console.log(PickupPointData);
 						for (var i = 0; i < PickupPointData.length; i++) {
-							if (PickupPointData[i].pickupPoint.toLowerCase().indexOf(value) > -1) {
+							if (PickupPointData[i].pickupPoint.toLowerCase().indexOf(value.toLowerCase()) > -1) {
 								htmlTags.push("<li data-key=" + PickupPointData[i].pickupID + ">" + PickupPointData[i].pickupPoint + "</li>");
 							}
 						}
@@ -862,7 +865,7 @@
 					for (var j = 0; j < data.SearchPriceData.data.tourInfos.length; j++) {
 						var child_two = $(".js-sce-ticket2").append(tpl_Adult_Child2);
 						child_two.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[j].tourID);
-						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "[" + data.DetailData.data.packageRefNo + "]");
+						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "(产品编号:" + data.DetailData.data.packageRefNo + ")");
 					}
 
 					MT.OnePrice(2);
@@ -874,9 +877,9 @@
 					var view1Price, view2Price, totalPrice;
 					if (num == 1) {
 						if (val.ADU == 1) {
-							view1Price = $(".js-scenicview1").find(".js-per-price-cont1").html("¥" + ExtendData.AudltPrice * ExtendData.minPax);
+							view1Price = $(".js-scenicview1").find(".js-per-price-cont1").html("¥" + ExtendData.AudltPrice);
 						} else if (val.ADU == 0) {
-							view1Price = $(".js-scenicview1").find(".js-per-price-cont1").html("¥" + ExtendData.ChildPrice * ExtendData.minPax);
+							view1Price = $(".js-scenicview1").find(".js-per-price-cont1").html("¥" + ExtendData.ChildPrice);
 						}
 						view1Price = view1Price.html();
 
@@ -885,9 +888,9 @@
 
 					if (num == 2) {
 						if (val.ADU == 0) {
-							view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥" + ExtendData.AudltPrice * ExtendData.minPax);
+							view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥" + ExtendData.AudltPrice);
 						} else if (val.ADU == 1) {
-							view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥" + ExtendData.ChildPrice * ExtendData.minPax);
+							view2Price = $(".js-scenicview2").find(".js-per-price-cont2").html("¥" + ExtendData.ChildPrice);
 						}
 						view2Price = view2Price.html();
 						view2Price = parseInt(view2Price.substring(1, view2Price.length));
@@ -911,7 +914,7 @@
 						}
 					}
 
-					$(".js-order-total").html("¥" + parseInt(totalPrice + view1Price + view2Price));
+					$(".js-order-total").html("¥" + parseInt(totalPrice + (view1Price + view2Price) * ExtendData.minPax));
 
 				}
 				/**
@@ -926,29 +929,18 @@
 
 						if(val.ADU == 0 && data.SearchPriceData.data.prices[k].category == "ADULT"){
 							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
-							var title = data.SearchPriceData.data.prices[k].title;
+							var title = "(成人)"+data.SearchPriceData.data.packageName;
 							child_price.find(".js-add-setmeal-tit:last").html(title);
 							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
 							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 						}
 						if(val.ADU == 1 && data.SearchPriceData.data.prices[k].category == "CHILD"){
 							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
-							var title = data.SearchPriceData.data.prices[k].title;
+							var title = "(儿童)"+data.SearchPriceData.data.packageName;
 							child_price.find(".js-add-setmeal-tit:last").html(title);
 							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
 							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 						}
-//						child_price.find(".js-add-setmeal-tit:last").html(title);
-//						if (val.ADU == 1 && data.SearchPriceData.data.prices[k].category == "ADULT") {
-//							child_price.find("[data-c-id=meal]:last").attr("class", "setmeal-tr fr on");
-//							child_price.find("[data-c-id=meal]:last").attr("data-first", 1);
-//						}
-//						if (val.ADU == 0 && data.SearchPriceData.data.prices[k].category == "CHILD") {
-//							child_price.find("[data-c-id=meal]:last").attr("class", "setmeal-tr fr on");
-//							child_price.find("[data-c-id=meal]:last").attr("data-first", 1);
-//						}
-//						child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
-//						child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 					}
 				}
 				/**
@@ -969,35 +961,7 @@
 					}
 
 				}
-				/**
-				 * 计算价格
-				 * @param obj
-				 * @param isAudlt
-				 * @param count
-				 * @constructor
-				 */
-				MT.CalculatePrice = function(obj, count) {
-					var current = $(obj).parent().parent().attr("data-key");
 
-					if (current == "js-per-price1") {
-						if (ExtendData.isAudlt == 1) {
-							price1 = $(".js-per-price-cont1").html("¥" + ExtendData.AudltPrice * count);
-						} else if (ExtendData.isAudlt == 0) {
-							price1 = $(".js-per-price-cont1").html("¥" + ExtendData.ChildPrice * count);
-						}
-					}
-
-					if (current == "js-per-price2") {
-						if (ExtendData.isAudlt == 0) {
-							price2 = $(".js-per-price-cont2").html("¥" + ExtendData.AudltPrice * count);
-						} else if (ExtendData.isAudlt == 1) {
-							price2 = $(".js-per-price-cont2").html("¥" + ExtendData.ChildPrice * count);
-						}
-
-					}
-
-					MT.totalPrice();
-				}
 				/**
 				 * 计算总金额
 				 * @constructor
@@ -1005,17 +969,18 @@
 				MT.totalPrice = function() {
 					var price1, price2, totalPrice;
 
-					price1 = $(".js-per-price-cont1").html();
-					price2 = $(".js-per-price-cont2").html();
+					price1 = $(".js-Audlt-cont").html();
+					price2 = $(".js-Child-cont").html();
 					if (price1 == undefined) {
 						price1 = 0;
 					} else {
-						price1 = parseInt(price1.substring(1, price1.length));
+
+						price1 = parseInt(price1) * ExtendData.AudltPrice;
 					}
 					if (price2 == undefined) {
 						price2 = 0;
 					} else {
-						price2 = parseInt(price2.substring(1, price2.length));
+						price2 = parseInt(price2) * ExtendData.ChildPrice;
 					}
 
 					totalPrice = price1 + price2;
@@ -1046,8 +1011,6 @@
 						if (mark == 1) {
 							current = parseInt($(obj).prev().html()) + 1;
 							$(obj).prev().html(current);
-							MT.CalculatePrice(obj, current);
-
 						} else {
 							current = parseInt($(obj).next().html());
 
@@ -1055,14 +1018,12 @@
 
 								if (maxCount > minPax && current > 0) {
 									$(obj).next().html(current - 1);
-									MT.CalculatePrice(obj, current - 1);
 								}
 							}
 
 							if (ExtendData.minPaxType == "AdultOnly") {
 								if (AudltCount > minPax) {
 									$(obj).next().html(current - 1);
-									MT.CalculatePrice(obj, current - 1);
 								}
 							}
 
@@ -1072,7 +1033,6 @@
 						if (mark == 1) {
 							current = parseInt($(obj).prev().html()) + 1;
 							$(obj).prev().html(current);
-							MT.CalculatePrice(obj, current);
 							child_yearsold = $("<li class='clearFix'>" + "<span id='child_old' class='child-age fl'>儿童年龄" + (current) + "</span>" + "<div class='child-age-cont fr'><input type='text' placeholder=\"" + ExtendData.DetailData.data.childAgeMin + "-" + DetailData.data.childAgeMax + "\"/><span>岁</span></div>" + "</li>");
 
 							$(".js-children-wrap").append(child_yearsold);
@@ -1083,7 +1043,6 @@
 
 								if (maxCount > minPax && current > 0) {
 									$(obj).next().html(current - 1);
-									MT.CalculatePrice(obj, current - 1);
 									$(".js-children-wrap:last-child").children("li:last").remove();
 								}
 							}
@@ -1091,13 +1050,14 @@
 							if (ExtendData.minPaxType == "AdultOnly") {
 								if (current > 1) {
 									$(obj).next().html(current - 1);
-									MT.CalculatePrice(obj, current - 1);
 									$(".js-children-wrap:last-child").children("li:last").remove();
 								}
 							}
 
 						}
 					}
+
+					MT.totalPrice();
 				}
 				/**
 				 * 初始化添加套餐列表
@@ -1131,14 +1091,14 @@
 								if ($(".js-scenicview2").length > 0) {
 									return false;
 								}
+								$(".add-ticket").addClass("stopgray");
 								MT.renderView2();
 							} else {
-								$(".js-scenicview2").remove();
+
 								MT.totalPrice();
 							}
 						} else {
 							if (addval == 0) {
-								$(".js-scenicview2").remove();
 								MT.totalPrice();
 							}
 

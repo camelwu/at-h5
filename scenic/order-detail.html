@@ -140,13 +140,13 @@
         <li><i>订单号</i>{%=bookingRefNo%}</li>
         <li><i>下单时间</i>{%=bookingDate%}</li>
         <li><i>联系人</i>{%=contactDetails.lastName%} {%=contactDetails.firstName%}</li>
-        <li><i>联系电话</i>{% console.log(contactDetails.contactNo); %}</li>
+        <li><i>联系电话</i>{%=contactDetails.contactNo%}</li>
         <li><i>邮箱</i>{%=contactDetails.email%}</li>
     </script>
     <script id="tpl_PayDetails"  type="text/template">
         <li><div>费用明细</div></li>
         {% for(var i=0;i<data.chargeDetails.length;i++){ %}
-            <li><div>{%=packageName%}{% if(data.chargeDetails[i].category == "ADULT"){ %}(成人票){% }else{ %}(儿童票){% } %}</div><div>×{%=data.chargeDetails[i].quantity%}</div><div>￥{%=data.chargeDetails[i].amountInCNY%}</div></li>
+            <li><div>{%=packageName%}{% if(data.chargeDetails[i].category == "ADULT"){ %}(成人票){% }else if(data.chargeDetails[i].category == "CHILD"){ %}(儿童票){% } %}</div><div>×{%=data.chargeDetails[i].quantity%}</div><div>￥{%=data.chargeDetails[i].amountInCNY%}</div></li>
         {% } %}
     </script>
     <script id="tpl_TotalPrice" type="text/template">
@@ -170,6 +170,7 @@
 
             MT.getDetail_back = function(data){
                 var json=data;
+                console.log(11);
                 if(json.success) {
                     var data = json.data;
                     //下单时间fix
@@ -181,7 +182,7 @@
                     //联系信息电话fix
                     var contactNo = data.contactDetails.contactNo;
                     contactNo = contactNo.replace(/(\d+)--(\d+)/,function(){
-                        return "+"+arguments[1]+" "+arguments[2];
+                        return arguments[1]+" "+arguments[2];
                     });
                     data.contactDetails.contactNo = contactNo;
                     //计算总额
