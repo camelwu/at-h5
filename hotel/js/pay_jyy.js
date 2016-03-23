@@ -349,7 +349,7 @@ var lsf_myweb={
             }else{
                 $("#status-h").fadeOut();
                 $("#preloader").fadeOut("medium");
-                $.alerts.alert(data.message,null,"确定");
+                jAlert(data.message,"",null,"确认");
             }
         }
 
