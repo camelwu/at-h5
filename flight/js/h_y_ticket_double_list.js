@@ -131,7 +131,11 @@ var ticketDouble = {
         that.backParaObj.pageNo= 1;
         that.backParaObj.pageSize= 10;
         document.querySelector('#preloader').style.display='block';
-        that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        //重置URL  DepartDate
+        var tempUrl = vlm.setUrlPara("","DepartDate",that.backParaObj.DepartDate);
+        var newUrl = vlm.setUrlPara(tempUrl,"ReturnDate",that.backParaObj.ReturnDate);
+        window.location.href = newUrl;
     },
 
     parseUrlPara: function (url, isEncode) {
@@ -489,7 +493,8 @@ var ticketDouble = {
             that.checkPullStatus();
             that.taxDeal(arg.data.flightInfos);
         }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
-            document.querySelector('.tip-button-para').style.display='none';
+            document.querySelector('.no-flight-word').innerHTML='未搜到航班信息，请扩大搜索范围!';
+            document.querySelector('.tip-button-para').style.display='block';
             airTicketsListWrapper.innerHTML = "";
             tipEle.style.display = 'block';
             that.timer8 = window.setTimeout(function(){

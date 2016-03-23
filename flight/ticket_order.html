@@ -81,7 +81,7 @@
                           <span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="idNumber"><span class="passenger-sex"></span>
                       </div>
                   </div>
-                  <i class="edit-passager" data-id="{%=traveller.travellerId%}"></i>
+                  <i class="edit-passager" data-id="" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></i>
               </li>
           </ul>
             </section>
@@ -350,14 +350,40 @@
 
         <div class="snap-content" style="padding-top: 45px;">
             <div class="country-wrap" id="country-wrap">
-                <!--<ul class="country-list">-->
-                <!--<li></li>-->
-                <!--</ul>-->
+                <ul class="inter-list jto_area_code">
+                    <li>
+                        <p>当前</p>
+                        <ul>
+                            <li><i>中国</i><span>86</span></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>热门城市</p>
+                        <ul>
+                            <li><i>新加坡</i><span>65</span></li>
+                            <li><i>香港</i><span>852</span></li>
+                            <li><i>日本</i><span>81</span></li>
+                        </ul>
+                    </li>
+
+                </ul>
             </div>
+            <ul>
+                <li>当前</li>
+                <li>热门城市</li>
+            </ul>
         </div>
     </div>
     <!--国籍选择结束-->
 
+    <!-- 电话弹框 begin-->
+    <div class="jpop_box_tic">
+        <dl>
+            <dt>400 805 8888</dt>
+            <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+        </dl>
+    </div>
+    <!--电话弹框结束-->
 
 </div>
 </body>
@@ -371,6 +397,9 @@
 <script>
 	vlm.l_contact();
 
+    localStorage.removeItem("travellerInfo_selected");
+    localStorage.removeItem("contact_selected");
+
     function callback(){
         ticketOrder.countrySlider();
     }
@@ -379,15 +408,17 @@
         var ul=$(obj).parent().parent().parent();
         if(ul.siblings().length>=1){
             ul.remove();
+
         }else{
             ul.hide();
         }
     }
-
-    function editPassager(id){
+    function editPassager(obj){
+        var id=$(obj).find("input").eq(0).val();
         var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
         var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-        vlm.f_choice('f','traver','',true,true,numofAdult,numofChild,id);
+        vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+
     }
 
 
@@ -400,7 +431,7 @@
                     var id=$(this).attr("data-id");
                     var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
                     var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-                    vlm.f_choice('f','traver','',true,true,numofAdult,numofChild,id);
+                    vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
                 });
                 $(".del-passager").on("click",function(){
                     $(this).parent().parent().remove()
@@ -414,5 +445,14 @@
             }
         }
     }
+</script>
+<!--电话弹框 begin-->
+<script>
+    $('.clearfix i.tel-icon').click(function(){
+        $('.jpop_box_tic').fadeIn(100);
+    })
+    $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+        $('.jpop_box_tic').hide();
+    })
 </script>
 </html>

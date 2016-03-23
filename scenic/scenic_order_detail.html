@@ -151,7 +151,7 @@
 				</section>
 				<div class="order-notice">
 					<i class="order-notice-btn on"></i>
-					<span class="order-notice-txt">已经阅读亚洲旅行网订票须知</span>
+					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网订票须知</span>
 				</div>
 			</div>
 
@@ -229,6 +229,51 @@
 			</div>
 
 		</div>
+	<!--   订票须知   -->
+	<div id="orderState" class="all-elements" style="display: none">
+		<!--   顶部   -->
+		<header class="header">
+			<a id="closeState" class="header-back"><i class="icons go-back"></i></a>
+			<h3>订票须知</h3>
+		</header>
+		<!--   内容   -->
+		<div class="sc-content" style="z-index: 98">
+			<div class="state-title">旅游套餐条款和条规</div>
+			<ol class="state-list">
+				<li style="list-style-type: disc">客人姓名需与护照姓名一致.</li>
+				<li>护照至少要有六个月以上的有效期才能申请入住签证和过境签证.</li>
+				<li>客人需自行申请入境签证或过境签证.</li>
+				<li>一旦收到预订，请务必仔细查看航班信息和旅游确认单信息是否完全正确.</li>
+				<li>请注意套餐的货币价格。结算货币即会是您将要支付的货币价格.</li>
+				<li>产品价格会依据高峰期和节假日而产生附加费用.</li>
+				<li>Asia Travel工作人员可以提供您信息咨询,但不对信息的变化承担任何的责任.</li>
+				<li>在发出旅游确认单前，价格和票务条件如有变更，恕不另行通知.</li>
+				<li>价格不能保证除非费用已经全额收到并且确认单已经发出.</li>
+				<li>Asia Travel 保留取消任何预订的权利.</li>
+				<li>任何取消/更改都要支付费用。请参考 Asia Travel的取消/更改条款.</li>
+				<li>所有的旅游套餐不可转让以及不可兑换.</li>
+				<li>在确认单发出后，任何更改都将被视为取消现有的预订。并且，需要支付相应的取消费用。请参考 Asia Travel取消条款.</li>
+				<li>请务必提供正确的电邮地址，并且您同意接受电子邮件作为通讯手段，接收您的旅游确认单和预订确认信息。这种情况下，您同意Asiatravel.com对您未收到酒店入住确认单和确认邮件不负任何责任.</li>
+				<li>作为一个额外保护我们的客户的措施，即时是在支付已经完成的情况下， www.asiatravel.com 仍需要您提供您的信用卡（正反面）的复印件和信用卡授权支付书，以排除被第三方使用该卡的可能性。如有需要，作为用户，您同意与www.asiatravel.com 合作并提供必要的相关文件.</li>
+				<li>门票不是用于兜售目的.</li>
+				<li>门票对外国游客和国内客人开放.</li>
+			</ol>
+			<div class="state-title">取消条款</div>
+			<ol class="state-list">
+				<li>一旦预订已被确认，预订就不能取消或修订</li>
+			</ol>
+			<div class="state-title">免责条款/规则和条例</div>
+			<ol class="state-list">
+				<li>所有的套餐都不可转让，不可退款，不可更改.</li>
+				<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐.</li>
+				<li>一旦确定购买任何一个旅游套餐，无论使用与否，都需要支付.</li>
+				<li>要完成预定，请您务必阅读并接受www.asiatravel.com预定条款条约和用户协议.</li>
+				<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六(6)个月的有效期及有效的签证.</li>
+				<li>虽然我们会尽力做好安全防范措施，但本公司不承担旅途中所造成的任何人身伤害或旅游行程中可能会发生的任何事故.</li>
+				<li>如果有儿童或婴儿一同出行，您有责任自行携带适当和正确的婴/幼儿座椅以便在行程中使用。如果不这样做会导致您的服务不能履行并且没有退款.</li>
+			</ol>
+		</div>
+	</div>
 		<!--国籍选择开始-->
 		<div class="all-elements country-cho-wrap">
 			<div class="header">
@@ -1626,6 +1671,15 @@
 				MT.InitMorePackage();
 				MT.OrderDetail();
 
+			})();
+
+			(function(){
+				$("#state_btn").click(function(){
+					$("#orderState").attr("style","display:block");
+				});
+				$("#closeState").click(function(){
+					$("#orderState").attr("style","display:none");
+				});
 			})();
 
 			/*价目详情窗*/
