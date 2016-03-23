@@ -1458,6 +1458,7 @@ i{
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
+
 .travel-date-tit {
     margin-top: 15px;
 }
@@ -1563,6 +1564,13 @@ i{
     margin-bottom: 0.6em;
     border-bottom: 1px solid #ddd;
 }
+.tourist-ticket-head{
+    height: 45px;
+    line-height: 45px;
+    /*border-top: 1px solid #ddd;*/
+    border-bottom: 1px solid #ddd;
+}
+
 .tourist-ticket{
     height: 45px;
     line-height: 45px;

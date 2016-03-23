@@ -197,7 +197,16 @@ html {
     vertical-align: -4px;
     margin-left: 5px;
 }
-
+.d-ul1 .transfer-icon{
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -37px -14px;
+    vertical-align: -4px;
+}
 .d-li1 {
     min-height: 50px;
     border-bottom: 1px solid #dfdfdd;
@@ -780,10 +789,22 @@ html {
     border-bottom: 1px solid rgba(121, 111, 121, 0.39)
 }
 
-.info-div .rate-rule{font-weight: bold;font-size: 1.4rem;}
+.info-div .rate-rule{
+    font-weight: bold;
+    font-size: 1.4rem;
+}
 
-.info-div .info-text{font-size: 1.4rem;margin-bottom: 0rem;}
-.info-div .info-text span{ background: #ffb413; padding: 0px 2px;color: white}
+.info-div .info-text{
+    font-size: 1.4rem;
+    margin-bottom: 0rem;
+    line-height: 1.5;
+}
+.info-div .info-text span{ 
+    background: #ffb413;
+    padding: 0px 2px;
+    color: white;
+    margin-right: 6px;
+}
 .info-div .info-text .infoTxtCan {
     color:#666;
     background:#fff;

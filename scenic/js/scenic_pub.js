@@ -268,7 +268,7 @@
          * @constructor
          */
         var CTmplAnim = function(){
-            var _roothtml = $("<div id=\"preloader\"><div id=\"status-t\"><p class=\"center-text\"><br><em>加载中……</em></p></div></div>");
+            var _roothtml = $("<div id=\"preloader\"><div id=\"status-t\"><p class=\"center-text\"><br><em></em></p></div></div>");
             return _roothtml;
         }
 
