@@ -127,12 +127,14 @@
 				var ww = this, packageID = '', roomMinNum = 1, roomMaxNum = 5;
 				var val = vlm.parseUrlPara(window.location.href);
 				vlm.init();
+
 				var packageID = localStorage.packageID;
 				localStorage.setItem('init', '0');
 				var initAgeRange = function() {
 					var s = document.querySelectorAll('.child-age');
 					var input = document.querySelectorAll('.inp-cage');
 					for (var i = 0; i < s.length; i++) {
+
 						s[i].innerHTML = '(' + childAgeMin + '-' + childAgeMax + ')';
 					}
 					for (var j = 0; j < input.length; j++) {
@@ -501,6 +503,7 @@
 						var roomDetails = [], tours = [];
 						var roomDetailSection = document.querySelectorAll('.hotelInfo_numb_people');
 						var tourEle = document.querySelectorAll('.tour-out-div');
+
 						for (var hn = 0, len = roomDetailSection.length; hn < len; hn++) {
 							var temEle = roomDetailSection[hn], temObj = {}, childWithOutBed = [], childWithBed = [];
 							var temAdultNum = parseInt(temEle.querySelector('#adult-people-number').innerHTML);

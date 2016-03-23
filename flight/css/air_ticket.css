@@ -2892,11 +2892,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffb412;
     text-align: right;
     position: absolute;
-    right: 1.3rem;
+    right: 1.5rem;
 }
 
-.detail-tangle .icon-arrow{
-    display: inline-block;
+.detail-tangle.opened .icon-arrow{
     position: absolute;
     right:0.2rem;
     top: 50%;
@@ -2918,16 +2917,23 @@ h1, h2, h3, h4, h5, h6 {
     -o-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -ms-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
+
 }
 
-.detail-tangle.opened .icon-arrow{
-    margin-top: 3px;
+.detail-tangle .icon-arrow{
+    position: absolute;
+    right:0.2rem;
+    top: 45%;
+    width: 8px;
+    height: 8px;
+    border-bottom: 1px solid  #ffb412;
+    border-right: 1px solid  #ffb412;
     -webkit-transform: rotate(-135deg) translateY(-50%);
     -o-transform: rotate(-135deg) translateY(-50%);
     -moz-transform: rotate(-135deg) translateY(-50%);
     -ms-transform: rotate(-135deg) translateY(-50%);
     transform: rotate(-135deg) translateY(-50%);
+    transition: all 0.4s ease-in-out;
 }
 
 .confirm-order {
