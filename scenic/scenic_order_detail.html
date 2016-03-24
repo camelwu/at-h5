@@ -183,6 +183,9 @@
 			<footer class="order-amount">
 				<!--价格明细-->
 				<div class="price-tot-box">
+					<ul class="price-tot-list">
+						<li style="border-bottom: 1px solid #ddd;margin:0px 20px;font-size: initial;">费用明细</li>
+					</ul>
 					<ul class="price-tot-list js-price-list">
 						<!--<li><span class="price-per-tit">八达岭长城一日游</span><span class="price-per-tot">¥56×2</span></li>-->
 						<!--<li><span class="price-per-tit">鸟巢水立方一日游</span><span class="price-per-tot">¥56×4</span></li>-->
@@ -193,8 +196,9 @@
 				<div class="order-total-wrap clearFix">
 					<span class="fl">订单总额：</span>
 					<span class="order-total-fare fl js-order-total"></span>
-					<i class="order-total-tip fl"></i>
 					<a href="javascript:void(0)" class="order-total-btn fr js-order-detail">预订</a>
+					<span class="order-total-tip-details fr">明细<i class="order-total-tip "></i></span>
+
 					<div class="tip_price" style="font-size: 1rem;">汇率变动，以最终支付价格为准</div>
 				</div>
 			</footer>
@@ -1140,7 +1144,7 @@
 							if ($(".js-sce-ticket1").find(".js-sce").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket1").find(".js-sce").length; i++) {
 									var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit price-titj\">(成人)" + title + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit price-titj\">" + title + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1154,7 +1158,7 @@
 							if ($(".js-sce-ticket1").find(".js-sce").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket1").find(".js-sce").length; i++) {
 									var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li><span class=\"price-per-tit\">(儿童)" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit\">" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1170,7 +1174,7 @@
 							if ($(".js-sce-ticket2").find(".js-sce2").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket2").find(".js-sce2").length; i++) {
 									var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li><span class=\"price-per-tit\">(儿童)" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit\">" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1186,7 +1190,7 @@
 							if ($(".js-sce-ticket2").find(".js-sce2").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket2").find(".js-sce2").length; i++) {
 									var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li><span class=\"price-per-tit\">(成人)" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit\">" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1650,7 +1654,8 @@
 
 			/*价目详情窗*/
 			(function() {
-				var detaBtn = document.getElementsByClassName('order-total-tip')[0];
+				var detaBtn = document.getElementsByClassName('order-total-tip-details')[0];
+				var tip = $(".order-total-tip");
 				var oHid = document.getElementsByClassName('price-tot-box')[0];
 				var oMask = document.getElementsByClassName('mask')[0];
 				var bOk = true;
@@ -1659,12 +1664,14 @@
 					if (bOk) {
 						oMask.style.display = 'block';
 						oHid.style.bottom = '50px';
+						tip.addClass("order-total-tips");
 						bOk = false;
 
 						MT.PriceList();
 					} else {
 						oMask.style.display = 'none';
 						oHid.style.bottom = '-300px';
+						tip.removeClass("order-total-tips");
 						bOk = true;
 
 					}
@@ -1673,6 +1680,7 @@
 					if (bOk == false) {
 						oMask.style.display = 'none';
 						oHid.style.bottom = '-300px';
+						tip.removeClass("order-total-tips");
 						bOk = true;
 					}
 				}
