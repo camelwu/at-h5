@@ -599,6 +599,10 @@
 								if (exaddChild[v].style.display != 'none') {
 									var input = exaddChild[v].getElementsByClassName("inp-cage");
 									for (var w = 0; w < input.length; w++) {
+										var reg=/^[0-9]{1,2}$/g;
+										if( ! reg.test(input[w].value)){
+
+										}
 										if (input[w].value == '') {
 											jAlert('儿童年龄未输入!');
 											return;
