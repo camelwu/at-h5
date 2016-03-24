@@ -82,8 +82,9 @@ function recoverStatus(itemIdString){
     var itemIdAarr = itemIdString.split(",");
     for(var i=0,len=itemIdAarr.length;i<len;i++){
         var itemEle = document.getElementById(itemIdAarr[i]);
+        var itemMinNum = itemEle.getAttribute("data-min");
         var minusItem = itemEle.parentNode.getElementsByClassName("minus")[0];
-        if(parseInt(itemEle.value) > 0){
+        if(parseInt(itemEle.value) > itemMinNum){
             minusItem.style.backgroundPosition = "0px 0px";
         }else{
             minusItem.style.backgroundPosition = "0px -28px";
