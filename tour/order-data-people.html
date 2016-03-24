@@ -114,8 +114,8 @@
 			{% if(tours[i].travelDateMandatory){ %}
 			<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span></div>
 			<i></i>
-			</div>
 			{% } %}
+			</div>
 			{% } %}
 		</script>
 		<script>
@@ -375,7 +375,7 @@
 						var aa;
 						if (onlyForAdult) {
 							if (minPax <= 3) {
-								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>';
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>';
 								section = document.createElement('section');
 								section.innerHTML = initStr;
 								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
@@ -383,20 +383,22 @@
 							} else {
 								for (var i = 0; i < Math.ceil(minPax / 3); i++) {
 									aa = (minPax - 3 * i) > 3 ? 3 : (minPax - 3 * i) % 3;
-									initStr = '<span class="title">房间' + i + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>'
+									initStr = '<span class="title">房间' + i + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>'
 									section = document.createElement('section');
 									section.innerHTML = initStr;
 									section.className = 'hotelInfo_numb_people init-hotel-room-detail';
 									if (i == 0) {
 										parent.insertBefore(section, hotelInfo.nextSibling);
-									} else {
+									} else if(j == 1) {
 										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling);
+									}else{
+										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling.nextSibling);
 									}
 								}
 							}
 						} else {
 							if (minPax <= 3) {
-								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="number" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="number" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
 								section = document.createElement('section');
 								section.innerHTML = initStr;
 								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
@@ -405,14 +407,15 @@
 								for (var j = 0; j < Math.ceil(minPax / 3); j++) {
 									aa = (minPax - 3 * j) > 3 ? 3 : (minPax - 3 * j) % 3;
 									initStr = '<span class="title">房间' + (j + 1) + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult">' + '<span class="cut-down-btn" id="adult-down"></span>' + '<i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span>' + '<i class="cut-up-cont child-number" data-type="childNum">0</i>' + '<span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="number" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div></div>';
-
 									section = document.createElement('section');
 									section.innerHTML = initStr;
 									section.className = 'hotelInfo_numb_people init-hotel-room-detail';
 									if (j == 0) {
 										parent.insertBefore(section, hotelInfo.nextSibling);
-									} else {
+									} else if(j == 1) {
 										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling);
+									}else{
+										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling.nextSibling);
 									}
 								}
 							}
@@ -485,24 +488,31 @@
 						var roomDetails = [], tours = [];
 						var roomDetailSection = document.querySelectorAll('.hotelInfo_numb_people');
 						var tourEle = document.querySelectorAll('.tour-out-div');
-
 						for (var hn = 0, len = roomDetailSection.length; hn < len; hn++) {
 							var temEle = roomDetailSection[hn], temObj = {}, childWithOutBed = [], childWithBed = [];
 							var temAdultNum = parseInt(temEle.querySelector('#adult-people-number').innerHTML);
 							if (!onlyForAdult) {
 								var temChildNum = parseInt(temEle.querySelector('.child-number').innerHTML);
-								var temChildAge = parseInt(temEle.querySelector('#adult-people-number').innerHTML);
 								var extraChild = temEle.querySelector('.extraChild');
 								var childChooseParent = extraChild.querySelectorAll('.numbList');
+								if(temAdultNum==1&&temChildNum==1){
+									childWithBed.push(temEle.querySelector('input').value);
+								}else if(temAdultNum==1&&temChildNum==2){
+									childWithBed.push(temEle.querySelectorAll('input')[0].value);
+									childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
+								}
 								for (var s = 0; s < childChooseParent.length; s++) {
 									var ty = childChooseParent[s];
 									var tt = ty.querySelector('.icon.noselect');
-									if (temChildNum) {
+									if (temChildNum == 1) {
 										if (tt.className.indexOf('ico_select') > -1) {
 											childWithBed.push(ty.parentNode.querySelector('input').value);
 										} else {
 											childWithOutBed.push(ty.parentNode.querySelector('input').value)
 										}
+									}else{
+										childWithBed.push(temEle.querySelectorAll('input')[0].value);
+										childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
 									}
 								}
 								childWithBed.length > 0 ? temObj.childWithBed = childWithBed :
@@ -589,7 +599,6 @@
 											jAlert(json.message, "提示");
 										}
 									}
-
 								};
 								getHotel();
 							}
