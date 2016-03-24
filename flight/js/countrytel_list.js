@@ -920,7 +920,6 @@ var arrCountry= [
             var moveTop = $('#jto_area_code>li').eq(i).offset().top-45;
             movetops.push(moveTop)
         })
-        console.log(movetops)
     })
     $('#jto_area_code li ul li').click(function(){
         var ooo = $(this).attr('code');
@@ -943,7 +942,7 @@ var arrCountry= [
         $('<ul>').addClass('inter-list jto_area_code jto_seachlist').html(strli).appendTo($('#jto_seach'));
         //input clear
         if($(this).val() == ""){
-            $('#jto_seach').html('')
+            $('#jto_seach').html('').hide();
         }
         $('.jto_seachlist li').click(function(){
             var ooo = $(this).attr('code');
@@ -952,7 +951,6 @@ var arrCountry= [
         })
     })
     //scroll
-
     $('#jto_letter_list li').each(function(i){
         $('#jto_letter_list li').eq(i).click(function(){
             $('.snap-content').scrollTop(movetops[i]);
