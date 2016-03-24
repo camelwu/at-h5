@@ -10,6 +10,7 @@
 		<!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
 		<link href="../styles/tips.css"	rel="stylesheet">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
+		<!--<link rel="import" href="my-dialog.html">-->
 
 	</head>
 	<body>
@@ -152,7 +153,7 @@
 				</section>
 				<div class="order-notice">
 					<i class="order-notice-btn on"></i>
-					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网<label style="color: #ffb413;display: inline;">订票须知</label></span>
+					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网<label style="color: #ffb413;display: inline;">旅行须知</label></span>
 				</div>
 			</div>
 
@@ -309,7 +310,7 @@
 		<script src="../js/lib/vlm.js"></script>
 		<script src="../js/lib/template.js"></script>
 		<script src="../js/lib/custom.js"></script>
-		<script src="../js/lib/d_calendar1.0.2.js"></script>
+		<script src="../js/lib/d_calendar.js"></script>
 		<script src="js/dateFix.js"></script>
 		<script src="js/scenic_pub.js"></script>
 		<script src="../js/country_list.js"></script>
@@ -452,6 +453,8 @@
 
 		<script>
 			MT.AnimIn();
+//			var link = document.querySelector('link');
+//			var importP = link.import.querySelector('div');
 			function myCallBack() {
 				countryShow.init();
 			}
@@ -1021,13 +1024,13 @@
 
 							if (ExtendData.minPaxType == "AdultAndChild") {
 
-								if (maxCount > minPax && current > 0) {
+								if (/*maxCount > minPax &&*/ current > 0) {
 									$(obj).next().html(current - 1);
 								}
 							}
 
 							if (ExtendData.minPaxType == "AdultOnly") {
-								if (AudltCount > minPax) {
+								if (AudltCount > 0/*minPax*/) {
 									$(obj).next().html(current - 1);
 								}
 							}
@@ -1046,7 +1049,7 @@
 
 							if (ExtendData.minPaxType == "AdultAndChild") {
 
-								if (maxCount > minPax && current > 0) {
+								if (/*maxCount > minPax &&*/ current > 0) {
 									$(obj).next().html(current - 1);
 									$(".js-children-wrap:last-child").children("li:last").remove();
 								}
@@ -1285,8 +1288,23 @@
 							recalSearchPrice.Parameters.Child = ChildArray;
 							param.Parameters.Child = ChildArray;
 						}
+						//判断人数
+						var totalP=0;
+						if(ExtendData.minPaxType == "AdultAndChild"){
+							totalP = AdultCount + ChildCount;
+							if(totalP < ExtendData.minPax){
+								jAlert("限定人数为"+ExtendData.minPax+"起订", "提示");
+								return false;
+							}
+						}
 
-
+						if(ExtendData.minPaxType == "AdultOnly"){
+							totalP = AdultCount;
+							if(totalP < ExtendData.minPax){
+								jAlert("限定成人人数为"+ExtendData.minPax+"起订", "提示");
+								return false;
+							}
+						}
 
 
 
@@ -1309,7 +1327,7 @@
 							}
 							param.Parameters.Tours = TourArray;
 						}
-
+						var regx = /[^a-zA-Z]+/g;
 						//国籍
 						NationalityCode = $("#jp_bank_country").attr("data-code");
 						CountryCode = $("#jp_tel_country").html();
@@ -1327,12 +1345,20 @@
 						if(!Status){
 							return false;
 						}
+						if(FirstName.match(regx)){
+							jAlert("只能输入英文", "提示");
+							return false;
+						}
 						Status = MT.validate(LastName, {
 							"required" : "required"
 						}, {
 							"required" : "取票人名不能为空"
 						});
 						if(!Status){
+							return false;
+						}
+						if(LastName.match(regx)){
+							jAlert("只能输入英文", "提示");
 							return false;
 						}
 
@@ -1409,6 +1435,11 @@
 						if(!Status){
 							return false;
 						}
+						if(FirstName.match(regx)){
+							jAlert("只能输入英文", "提示");
+							return false;
+						}
+
 						Status = MT.validate(LastName, {
 							"required" : "required"
 						}, {
@@ -1417,6 +1448,11 @@
 						if(!Status){
 							return false;
 						}
+						if(LastName.match(regx)){
+							jAlert("只能输入英文", "提示");
+							return false;
+						}
+
 						PhoneNo = $("#scenic_phone").val();
 						Status = MT.validate(PhoneNo, {
 							"required" : "required"
@@ -1576,21 +1612,21 @@
 					var endDate = ExtendData.EndDate;
 					var defaultDate = ExtendData.DefaultDate;
 					var allOuter = document.querySelectorAll('.travel-date-wrap-so');
+
+
+
+
 					var chooseDate = function(id, dateNum, startDate, endDate,defDate) {
-						var rangeArray = [startDate, endDate];
-						var d = eval("("+defDate+")");
-						var myDate = new TicketDate({
+						var rangeArray = [startDate, endDate],timobj={defDate:'游玩'};
+						var myDate = new Calender({
 							id : id,
 							num : 13,
-							sClass1 : dateNum,
-							time : {'游玩':defDate},
-							type : 'Oneway',
-							_word : {
-								tip : ['入住']
-							},
+							time : timobj,
+							output : ".js-ymd",
+							type : 't',
 							range : rangeArray,
 							fn : function() {
-								//                            console.log(id);
+								// console.log(id);
 								var ymd = $("#" + id).find(".js-ymd").html();
 								$("#" + id).find(".js-week").html(MT.getWeek(ymd));
 							}

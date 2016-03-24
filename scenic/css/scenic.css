@@ -1830,9 +1830,11 @@ i{
 }
 .cho-hotel{
     float: right;
-    width: 70%;
+    width: 65%;
     overflow: hidden;
     text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 /*景点预订免登陆开始*/
 .sce-order-login {
@@ -1931,7 +1933,7 @@ i{
 .price-tot-list li > span.price-totj{
     width: 6rem;
     position: absolute;
-    top: 8px;
+    /*top: 8px;*/
     right: 0;
 }
 .price-tot-list li > span.price-titj{
