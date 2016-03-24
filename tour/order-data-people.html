@@ -375,7 +375,7 @@
 						var aa;
 						if (onlyForAdult) {
 							if (minPax <= 3) {
-								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>';
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" >成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>';
 								section = document.createElement('section');
 								section.innerHTML = initStr;
 								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
@@ -383,7 +383,7 @@
 							} else {
 								for (var i = 0; i < Math.ceil(minPax / 3); i++) {
 									aa = (minPax - 3 * i) > 3 ? 3 : (minPax - 3 * i) % 3;
-									initStr = '<span class="title">房间' + i + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>'
+									initStr = '<span class="title">房间' + i + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" >成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>'
 									section = document.createElement('section');
 									section.innerHTML = initStr;
 									section.className = 'hotelInfo_numb_people init-hotel-room-detail';
@@ -396,7 +396,7 @@
 							}
 						} else {
 							if (minPax <= 3) {
-								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" style="margin-left: 70px ">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="number" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit" >成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="number" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
 								section = document.createElement('section');
 								section.innerHTML = initStr;
 								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
@@ -567,6 +567,11 @@
 								localStorage.setItem('info', JSON.stringify(paraObj));
 								//获得数据
 								var getHotel = function() {
+									var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
+									if ($('#total_day').html() != minMaxTime[2]){
+										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
+										return;
+									}
 									$("#preloader").show();
 									$("#status").show();
 									var tmp = {
@@ -598,11 +603,12 @@
 							for (var v = 0; v < exaddChild.length; v++) {
 								if (exaddChild[v].style.display != 'none') {
 									var input = exaddChild[v].getElementsByClassName("inp-cage");
+									var reg=/^[0-9]{1,2}$/g;
 									for (var w = 0; w < input.length; w++) {
-										if (input[w].value == '') {
-											jAlert('儿童年龄未输入!');
+ 										if( ! reg.test(input[w].value)){
+											jAlert('请输入儿童年龄（数字)!');
 											return;
-										} else if (input[w].value < childAgeMin || input[w].value > childAgeMax) {
+										}else if (input[w].value < childAgeMin || input[w].value > childAgeMax) {
 											jAlert('儿童年龄不符合标准!');
 											return;
 										}
@@ -628,6 +634,11 @@
 								};
 								//获得数据
 								var getHotel = function() {
+									var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
+									if ($('#total_day').html() != minMaxTime[2]){
+										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
+										return;
+									}
 									$("#preloader").show();
 									$("#status").show();
 									var tmp = {
@@ -635,7 +646,7 @@
 										ForeEndType : 3,
 										Code : "0208"
 									};
-									console.log(tmp);
+									//console.log(tmp);
 									vlm.loadJson("", JSON.stringify(tmp), function(ret) {
 										localStorage.setItem('init', '1');
 										var json = ret;

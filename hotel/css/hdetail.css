@@ -826,7 +826,7 @@ html {
 }
 .info-div ul,.info-div li.ro-info-item span.item-name{
     display: inline-block;
-    width: 30%;
+    width: 45%;
     text-align: left;
     font-size: 1.4rem;
 }
