@@ -213,7 +213,7 @@ var lsf_myweb = {
                         dropDown[0].onclick = function(ev) {
                             var oEvent = ev || event;
                             this.style.display = 'none';
-                            var oSpan = this.parentNode.firstElementChild || this.parentNode.firstChild;
+                            var oSpan = oP.firstElementChild || oP.firstChild;
                             oSpan.innerHTML = comments[index].comments;
                         };
                     }
