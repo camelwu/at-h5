@@ -147,6 +147,9 @@
     flex:2;
     padding-left: 12px;
 }
+.p-ul2 div{
+    width: 100px;
+}
 .p-ul2 li input{
     -webkit-box-felx:2;
     -moz-box-flex:2;
