@@ -6,7 +6,7 @@ TicketDate.prototype = new Calender();
 
 TicketDate.prototype.linkColor=function(type,date){
     var that = this, links = _CalF.$('.live',this.dd), startIndex,endIndex;
-    if(type == 'Return'&&date==undefined){
+    if(type == 'Return'){
         for(var st = 0;st < links.length;st++) {
             if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='去程'){
                 startIndex=st;
@@ -54,12 +54,18 @@ TicketDate.prototype.inputEvent=function(){
                 that.drawLastDate(idate);
             }else{
                 var idate = new Date(nowY , nowM+i, 01);
-                that.drawDate(idate);
+                if(that.type=="Oneway"){
+                    that.drawDate(idate);
+                    that.linkColor("Oneway",that.singleDate)
+                }else{
+                    var start=that.doubleDate.start,end=that.doubleDate.end;
+                    that.time={};
+                    that.time[start]='去程';
+                    that.time[end]='返程';
+                    that.drawDate(idate);
+                }
             }
         }
-
-      //this.linkColor(this.type,date)
-
     });
 },
 TicketDate.prototype.initialize =function (options) {
@@ -69,11 +75,11 @@ TicketDate.prototype.initialize =function (options) {
     this.sClass1=options.sClass1;
     this.id2=options.id2;
     this.fn = options.fn;
-    this.time = options.time;
     this.op = 0;
     this.input = _CalF.$('#'+ this.id);
     this.inputEvent();
     this.outClick();
+    this.type=="Oneway"?this.singleDate=options.time.start:this.doubleDate=options.dateObj;
 };
 
 TicketDate.prototype.createContainer = function(odate){
@@ -149,6 +155,7 @@ TicketDate.prototype.drawDate = function (odate) {
     }
     // 循环显示日期
     for (i = 1; i <= days; i++) {
+        i=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
         if (year < nowyear) {
             ddHtml.push('<a class="disabled">' + i + '</a>');
         } else if (year == nowyear) {
@@ -156,13 +163,13 @@ TicketDate.prototype.drawDate = function (odate) {
                 ddHtml.push('<a class="live disabled">' + i + '</a>');
             } else if (month == nowmonth + 1) {
                 if (i < nowdate){
+                    i=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
                     ddHtml.push('<a class="live disabled">' + i + '</a>');
                 }else{
-                    m=month<10?'0'+month:month;
-                    d=i<10?'0'+i:i;
-                    if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
-                    }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
+                    month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
+                    if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+month+'-'+i] +'</span></a>';
+                    }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                     }else{
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
@@ -170,11 +177,10 @@ TicketDate.prototype.drawDate = function (odate) {
                     i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
                 }
             } else if (month == nowmonth + 2) {
-                m=month<10?'0'+month:month;
-                d=i<10?'0'+i:i;
-                if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
-                }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
+                month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
+                if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
+                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+month+'-'+i] +'</span></a>';
+                }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                 }else{
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
@@ -267,11 +273,13 @@ TicketDate.prototype.linkOn = function(){
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.op++;
                             that.cache = this.getAttribute('data-day');
+                            that.doubleDate.start = this.getAttribute('data-day');
                         }else if(that.op==1&&this.getAttribute('data-day')!=that.cache){
                             if(that.timer!=null){
                                 window.clearTimeout(that.timer);
                                 that.timer = null;
                             }
+                            that.doubleDate.end = this.getAttribute('data-day');
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.tiper.style.display = 'none';
                             that.linkOver();
@@ -318,20 +326,18 @@ TicketDate.prototype.linkOver = function(event){
         if(tal){
             tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
         }
-        that.doubleChosenDate = 'dateSTr'
     }else{
         var event = event || window.event;
-        var target = event.target || event.srcElement,dateSTr='';
+        var target = event.target || event.srcElement;
         if(target.tagName == 'A'){
-            dateSTr = target.getAttribute('data-day');
-            that.linkColor('Oneway',dateSTr);
-            out[0].innerHTML=returnWeek(dateSTr);
+            that.singleDate = target.getAttribute('data-day');
+            that.linkColor('Oneway',that.singleDate);
+            out[0].innerHTML=returnWeek(that.singleDate);
         }else if(target.tagName == 'SPAN'){
-            dateSTr = target.parentNode.getAttribute('data-day');
-            that.linkColor('Oneway',dateSTr);
-            out[0].innerHTML=returnWeek(dateSTr);
+            that.singleDate = target.parentNode.getAttribute('data-day');
+            that.linkColor('Oneway',that.singleDate);
+            out[0].innerHTML=returnWeek(that.singleDate);
         }
-        that.singleChosenDate = dateSTr
     }
     that.timer = window.setTimeout(function(){
         that.op>=1?that.op=0:null;

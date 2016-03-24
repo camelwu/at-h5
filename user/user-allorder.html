@@ -134,7 +134,7 @@
 
 	var getCN = {
 		"Paid": "已支付",
-		"Pending":"待支付"
+		"Pending":"未支付"
 	};
 
 	$(document).ready(function(){
@@ -146,9 +146,16 @@
 		}
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
 			if(data.success) {
-				debugger;
-				var html = template("tpl_ticket", data.data);
-				$(".ticket-div").html(html)
+				if(data.data !=null) {
+					var html = template("tpl_ticket", data.data);
+					$(".ticket-div").html(html);
+					$(".hotel-div-cancel").on("click", function () {
+						location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
+					})
+				}
+				else{
+					$("#black_page").show();
+				}
 			}else{
 				alert("网络异常！");
 			}
@@ -162,6 +169,28 @@
 
 <!--模板-->
 <script id="tpl_ticket" type="text/template"	>
+	<!--未支付酒店-->
+	{% if(productType=="Hotel" && bookingStatus=="Canceled"){ %}
+	<!--取消酒店-->
+	<div class="order-div hotel-div-cancel" style="color: #999999" data-code="{%=bookingRefNo%}">
+		<div style="border-bottom: 1px solid #dedede;">
+			<b class="icon user-hotel2"></b>
+			<div class="order-title">酒店</div>
+			<div class="if_pay">已取消</div>
+			<div class="order-Amount">￥{%=bookingAmount%}</div>
+		</div>
+		<div>
+
+			<p class="info-title">{%=productName%}</p>
+			<ul class="air-date">
+				{% var d1= new Date(travelStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; var d2=new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")); %}
+				<li  style="font-size: 1.2rem">{%= d1.getMonth()+1 %}-{%= d1.getDate() %} 至{%= d2.getMonth()+1 %}-{%= d2.getDate() %} 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
+			</ul>
+
+		</div>
+	</div>
+	{% } %}
+
 	<!--机票-->
 	{% if(productType=="Flight"){ %}
 	<div class="order-div flight-div">
@@ -184,8 +213,8 @@
 			<a href="../flight/ticket_order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
 		</div>
 	</div>
-	{% } else if (productType=="Hotel") { %}
-	<!--景点-->
+	{% } else if (productType=="Hotel" && bookingStatus!="Canceled" ) { %}
+	<!--酒店-->
 	<div class="order-div scenic-div">
 		<div style="border-bottom: 1px solid #dedede;">
 			<b class="icon user-hotel1"></b>
@@ -204,6 +233,7 @@
 			<a href="../hotel/order-details.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
 		</div>
 	</div>
+	<!--酒店+景-->
 	{% }else if (productType=="Package_HT") { %}
 	<div class="order-div scenic-div">
 		<div style="border-bottom: 1px solid #dedede;">
@@ -223,6 +253,7 @@
 			<a href="../tour/order_pay_page.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
 		</div>
 	</div>
+	<!--景点-->
 	{% }else if (productType=="Package_T") { %}
 	<div class="order-div scenic-div">
 		<div style="border-bottom: 1px solid #dedede;">
@@ -243,21 +274,6 @@
 		</div>
 	</div>
 	{% } %}
-	<!--取消酒店-->
-	<!--<div class="order-div hotel-div-cancel" style="color: #999999">-->
-	<!--<div style="border-bottom: 1px solid #dedede;">-->
-	<!--<b class="icon user-hotel2"></b>-->
-	<!--<div class="order-title">酒店</div>-->
-	<!--<div class="if_pay">已取消</div>-->
-	<!--</div>-->
-	<!--<div>-->
-	<!--<p class="info-title">东京东急涩谷卓越大酒店</p>-->
-	<!--<ul class="air-date">-->
-	<!--<li>11-25至11-26 共1晚</li>-->
-	<!--<li style="font-size: 1.2rem">房型：经济大床房 房间数：2件</li>-->
-	<!--</ul>-->
-	<!--</div>-->
-	<!--</div>-->
 </script>
 
 
