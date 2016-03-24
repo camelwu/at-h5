@@ -996,11 +996,14 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     padding-top: 0.2rem;
 }
-
+.go-info{
+    min-height: 6rem;
+}
 .go-info .start-time-info {
     width: 36%;
     float: left;
     padding-top: 0.4rem;
+    position:static;
 }
 .go-info .start-time-info-double {
     width: 36%;
@@ -1015,7 +1018,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.0rem;
 }
 .small-info-double{
-    padding-left:2.0rem;
+    padding-left:1.0rem;
     margin-bottom: 0.4rem;
 }
 .go .small-info .green-tip {
@@ -1059,7 +1062,10 @@ h1, h2, h3, h4, h5, h6 {
 .go-info .start-time-info .air-port-word {
     display:block;
     font-size: 1.1rem;
-    margin-top: 0.56rem;
+    margin-top:3.8rem;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .go-info .total-time-info {
@@ -1114,9 +1120,11 @@ h1, h2, h3, h4, h5, h6 {
 .go-info .end-time-info {
     width: 36%;
     float: left;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    overflow: visible;
     text-align: right;
     padding-top: 0.4rem;
+    position: static;
 }
 
 .end-time-info .tip-add-days {
@@ -1138,7 +1146,10 @@ h1, h2, h3, h4, h5, h6 {
 .end-time-info .air-port-word {
     display: block;
     font-size: 1.1rem;
-    margin-top: 0.56rem;
+    margin-top: 3.8rem;
+    position: absolute;
+    right: 0;
+    top:0
 }
 
 .go-trip {
@@ -1300,7 +1311,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.0rem;
     color: #fe6a00;
     position: absolute;
-    top: 3.6rem;
+    top: 3.8rem;
     right: 2%
 }
 
