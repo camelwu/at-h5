@@ -990,6 +990,7 @@ h1, h2, h3, h4, h5, h6 {
 .air-tickets-detail .air-tickets-detail .time-airport .go {
     width: 100%;
     position: relative;
+    margin-bottom:1rem;
 }
 
 .air-tickets-detail .air-tickets-detail .time-airport .go .go-info,.air-tickets-detail .air-tickets-detail .time-airport .back .go-info {
@@ -1067,7 +1068,9 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     left: 0;
 }
-
+.go-info .start-time-info-double .air-port-word{
+    padding-left:1rem;
+}
 .go-info .total-time-info {
     width: 28%;
     float: left;
