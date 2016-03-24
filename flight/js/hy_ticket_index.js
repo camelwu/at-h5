@@ -24,18 +24,17 @@ var  ticketIndexModal = {
                time: dateInitObj,
                sClass1: 'double-date',
                type:'Return',
-               _word:{tip:['去程','返程']}
+               _word:{tip:['去程','返程']},
+               dateObj:paraObj
            });
        },
        single:function(){
            var paraObj = {
                start:this.reDate(document.querySelector('.single-date').innerHTML)};
-           var dateInitObj = {},paramStr;
-           dateInitObj[paraObj.start] = '已选';
            var myDate2= new TicketDate({
                id: 'chooseDate-single',
                num: 13,
-               time: dateInitObj,
+               time: paraObj,
                sClass1: 'enterDate',
                type:'Oneway',
                _word:{tip:['去程']}
@@ -674,7 +673,7 @@ var  ticketIndexModal = {
                    opSpan = target.parentNode.querySelector('.add-minus-per-content.adult-number');
                    var adultNum = parseInt(opSpan.innerHTML);
                    var childNum = parseInt(eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-content.child-number').innerHTML);
-                      childAdd = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-more.child');
+                    childAdd = eleUl.querySelectorAll('li')[1].querySelector('.add-minus-per-more.child');
                    if(adultNum+1+childNum>9){
                        target.className = "add-minus-per-more adult add-minus-per-more-grey";
                        showLine.innerHTML = "乘客总数不能超过 9 人!";
@@ -696,7 +695,9 @@ var  ticketIndexModal = {
                            },3000);
                            alert("")
                        }else {
-                           opSpan.innerHTML = adultNum+1;
+                           adultNum++;
+                           opSpan.innerHTML = adultNum;
+                           target.className = (adultNum+childNum)>=9?"add-minus-per-more adult add-minus-per-more-grey":"add-minus-per-more adult";
                            opSiteEle.className = "add-minus-per-less adult";
                            childAdd.className = "add-minus-per-more child";
                        }
@@ -717,11 +718,13 @@ var  ticketIndexModal = {
                    }else{
                        adultNum--;
                        opSpan.innerHTML = adultNum;
+                       target.className = adultNum<2?"add-minus-per-less adult add-minus-per-less-grey":"add-minus-per-less adult";
                        if (childNum != 0&&(adultNum/childNum<1/2)) {
                            childEle.innerHTML = adultNum*2;
                            childAdd.className = 'add-minus-per-more child add-minus-per-more-grey'
                        }
                        opSiteEle.className = "add-minus-per-more adult";
+
                    }
                }else if(target.className.indexOf("add-minus-per-more child")>-1){
                    eleUl = target.parentNode.parentNode.parentNode;
@@ -751,7 +754,9 @@ var  ticketIndexModal = {
                            },3000);
                            target.className = "add-minus-per-more child add-minus-per-more-grey";
                        }else {
-                           opSpan.innerHTML = childNum+1;
+                           childNum++;
+                           opSpan.innerHTML = childNum;
+                           target.className = (adultNum/childNum)<=1/2?"add-minus-per-more child add-minus-per-more-grey":"add-minus-per-more child";
                            opSiteEle.className = "add-minus-per-less child";
                        }
                    }
@@ -1028,8 +1033,6 @@ var  ticketIndexModal = {
            document.querySelector('.double-week-one').innerHTML = startDay[1];
            document.querySelector('.double-date-two').innerHTML = endDay[0];
            document.querySelector('.double-week-two').innerHTML = endDay[1];
-           console.log(startDay[1])
-           console.log(endDay[1])
        },
        initShowData:function(arg){
               var outEleOpen,outEleClosed,singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
@@ -1102,7 +1105,8 @@ var  ticketIndexModal = {
                    singleDate.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
                    singleWeek.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
                    adultNumber.innerHTML = arg.NumofAdult;
-                   childNumber.innerHTML = arg.NumofChild;
+                   adultNumber.parentNode.querySelector('.add-minus-per-less.adult').className= parseInt(arg.NumofAdult)<2?'add-minus-per-less adult add-minus-per-less-grey':'add-minus-per-less adult';
+                   childNumber.parentNode.querySelector('.add-minus-per-less.child').className= parseInt(arg.NumofChild)<1?'add-minus-per-less child add-minus-per-less-grey':'add-minus-per-less child';
                    seatEle.innerHTML =reFixedSeat(arg.CabinClass);
              }else if(arg.RouteType == "Return"){
                   outEleOpen = document.querySelector('#double');
@@ -1111,23 +1115,25 @@ var  ticketIndexModal = {
                   outEleClosed.style.display = "none";
                   singleTitle.className = "singleTrip grey-title";
                   doubleTitle.className = "doubleTrip light-title";
-                   var cityNames = outEleOpen.querySelectorAll('.city-search');
+                   var cityNames_ = outEleOpen.querySelectorAll('.city-search');
                    var doubleDateOne = outEleOpen.querySelector('.double-date-one');
                    var doubleWeekOne = outEleOpen.querySelector('.double-week-one');
                    var doubleDateTwo = outEleOpen.querySelector('.double-date-two');
                    var doubleWeekTwo = outEleOpen.querySelector('.double-week-two');
-                   var adultNumber = outEleOpen.querySelector('.add-minus-per-content.adult-number');
-                   var childNumber = outEleOpen.querySelector('.add-minus-per-content.child-number');
-                   var seatEle = outEleOpen.querySelector('.cabin-wrap-choice.double-cabin-choose');
-                   cityNames[0].innerHTML = arg.fromCity;
-                   cityNames[1].innerHTML = arg.toCity;
+                   var adultNumber_ = outEleOpen.querySelector('.add-minus-per-content.adult-number');
+                   var childNumber_ = outEleOpen.querySelector('.add-minus-per-content.child-number');
+                   var seatEle_ = outEleOpen.querySelector('.cabin-wrap-choice.double-cabin-choose');
+                   cityNames_[0].innerHTML = arg.fromCity;
+                   cityNames_[1].innerHTML = arg.toCity;
                    doubleDateOne.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
                    doubleWeekOne.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
                    doubleDateTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["date"];
                    doubleWeekTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["weekWord"];
-                   adultNumber.innerHTML = arg.NumofAdult;
-                   childNumber.innerHTML = arg.NumofChild;
-                   seatEle.innerHTML =reFixedSeat(arg.CabinClass);
+                   adultNumber_.innerHTML = arg.NumofAdult;
+                   childNumber_.innerHTML = arg.NumofChild;
+                   adultNumber_.parentNode.querySelector('.add-minus-per-less.adult').className= parseInt(arg.NumofAdult)<2?'add-minus-per-less adult add-minus-per-less-grey':'add-minus-per-less adult';
+                  childNumber_.parentNode.querySelector('.add-minus-per-less.child').className= parseInt(arg.NumofChild)<1?'add-minus-per-less child add-minus-per-less-grey':'add-minus-per-less child';
+                   seatEle_.innerHTML =reFixedSeat(arg.CabinClass);
               }
        },
        loadingFade:function(){
