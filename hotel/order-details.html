@@ -277,7 +277,7 @@
                         dayNum = getDayNum(data[0].checkInDate,data[0].checkOutDate);
 
                         tax_service = parseInt(data[0].totalTaxCharge) + parseInt(data[0].totalSeriveCharge);
-                        data[0].tax_service= parseInt(data[0].totalTaxCharge) + parseInt(data[0].totalSeriveCharge);
+                        data[0].tax_service= parseInt(data[0].totalTaxCharge+data[0].totalSeriveCharge);
                         if(data[0].paymentModeID == '1'){
                             payWay = "预付";
                         }else{
