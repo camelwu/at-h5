@@ -571,7 +571,7 @@ var  conditionalFiltering = {
                 '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
                 ' class="filter-select">起飞早到晚</span>'+
                 '</div>'+
-                '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
+                '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class="red-tip"></i><span'+
                 ' class="filter-select">价格</span>'+  /*点击价格有弹出框，包含含税与不含税*/
                 '</div>';
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
@@ -1257,12 +1257,7 @@ var  conditionalFiltering = {
                  }else{
                      middleEle.querySelector('i').className = ''
                  };
-                 if(this.tempStates['hasTax']!="true"){
-                     rightEle.querySelector('i').className = 'red-tip'
-                 }else{
-                     rightEle.querySelector('i').className = ''
-                 }
-
+                 rightEle.querySelector('i').className = 'red-tip'
              }else{  //双程国际
                  if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
                      this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
