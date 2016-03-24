@@ -113,7 +113,6 @@ TicketDate.prototype.createContainer = function(odate){
         header.className = 'header';
         header.innerHTML = '<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
         document.body.appendChild(header);
-
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
         weeker.style.marginTop='5.8rem';
@@ -290,7 +289,10 @@ TicketDate.prototype.linkOn = function(){
                                 window.clearTimeout(that.timer);
                                 that.timer = null;
                             }
-                            that.tiper.innerHTML = '返程日期需大于去程日期';
+                            that.tiper.style.display = 'none';
+                            that.doubleDate.end = this.getAttribute('data-day');
+                            this.querySelector('.live_txt').innerHTML=that._word.f[that.op];
+                            that.linkOver();
                         }
                     }
                 }
@@ -315,13 +317,24 @@ TicketDate.prototype.linkOver = function(event){
                 out[i].value = sels[i].parentNode.getAttribute("data-day");
             }
         }else{
-            arr.push(sels[0].parentNode.getAttribute("data-day"));
-            arr.push(sels[1].parentNode.getAttribute("data-day"));
-            out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
-            if(out[1]){
-                that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day");
-                out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+            if(sels.length==1){
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
+                if(out[1]){
+                    that.doubleChosenDateTwo = sels[0].parentNode.getAttribute("data-day");
+                    out[1].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                }
+            }else{
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                arr.push(sels[1].parentNode.getAttribute("data-day"));
+                out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
+                if(out[1]){
+                    that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day");
+                    out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+                }
             }
         }
         if(tal){
@@ -433,29 +446,27 @@ var  conditionalFiltering = {
     },
     createTags:function(tripType, sinOrDou, callback){
         var tripType = this.tripType, sinOrDou = this.sinOrDou, fn = this.fn;
-        //生成标签
-
         var backShadow = document.createElement('div');
         backShadow.className = 'r-shadow';
         backShadow.id = 'r-shadow';
 
-        var oDiv = document.createElement('div');  //最大的外城div
+        var oDiv = document.createElement('div');
         oDiv.className = "filter-wrap";
 
-        var baseTitle =  document.createElement('div');  //底部横显标题
+        var baseTitle =  document.createElement('div');
         baseTitle.className = "hl-bottom";
 
-        var leftModal =  document.createElement('div');  //最左测的弹出框
+        var leftModal =  document.createElement('div');
         leftModal.className = "reset-action";
         leftModal.id = "filter-modal";
 
-        var middleModal =  document.createElement('ul');  //中间的弹出框
+        var middleModal =  document.createElement('ul');
         middleModal.id = "time-modal";
 
-        var rightModal =  document.createElement('ul');  //右侧的弹出框
+        var rightModal =  document.createElement('ul');
         rightModal.id = "price-modal";
 
-        if(tripType =='domestic'){  //国内
+        if(tripType =='domestic'){
             if(sinOrDou == 'Oneway'){  //国内单程
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i>' +
                 '<span class="filter-select">筛选</span>'+
@@ -464,7 +475,7 @@ var  conditionalFiltering = {
                 '  class="filter-select">起飞早到晚</span>'+
                 '</div>'+
                 '<div class="fo-div" id="fo_lo" data-price-type="domestic" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
-                ' class="filter-select">价格</span>'+  /*点击价格没有弹出框，直接变化价格展示*/
+                ' class="filter-select">价格</span>'+
                 '</div>';
 
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
@@ -551,7 +562,7 @@ var  conditionalFiltering = {
                     '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'
                 rightModal.innerHTML =''
             }
-        }else{              //国际
+        }else{
             if(sinOrDou == 'Oneway'){  //国际单程
 
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span'+
@@ -814,7 +825,7 @@ var  conditionalFiltering = {
                     that.tempStates.PriorityRule = '0';
 
                     arg.querySelector('.filter-select').innerHTML='从低到高';
-                    that.tempStates.PriorityRule = '2'
+                    that.tempStates.PriorityRule = '2';
                     that.stateEvent('set');
                     that.fn(that.tempStates);
                     that.checkRedTip();
