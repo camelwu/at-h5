@@ -446,7 +446,8 @@
 								var data = json.data, total_day = document.querySelector('#total_day');
 								console.log(data);
 								dateHandler.dataInfomation = json.data;
-								day_start = vlm.Utils.format_date(data.defaultDepartStartDate, "Ymd");
+								//day_start = vlm.Utils.format_date(data.defaultDepartStartDate, "Ymd");
+								day_start = data.defaultDepartStartDate.substring(0,10);
 								day_Num = parseInt(data.minDuration ? data.minDuration : data.packageName.substr(2, 1));
 								minPaxType = parseInt(data.minPaxType);
 								minPax = parseInt(data.minPax);
