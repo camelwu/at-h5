@@ -96,7 +96,7 @@ function num2chin(num) {
 			return '五';
 			break;
 		default:
-			return '无';
+			return '二';  //默认二星级  H5-726
 			break;
 	};
 }
@@ -502,7 +502,7 @@ function styleChange(id, mytext) {
 					//str2+='<b class="hl-icon2">免费接送</b>';
 					str2 += '<span class="h-transfer"></span>';
 				}
-				if (data[i].isCashReward) {
+				if (data[i].isCashRebate) {
 					str3 = '<div class="h-div1" style="background-color: #ffb412">现金奖励</div>';
 				}
 				if (data[i].isFreeCityTour) {
@@ -599,28 +599,17 @@ function styleChange(id, mytext) {
 			}
 			//联动选项
 			//“不限”点击事件  
-            /*
+            
 			lsf_myweb.bind(liFirst, 'click', function() {
-				if (!bOk) {
-					for (var i = 1; i < aLi.length; i++) {
-						lsf_myweb.removeClass(aLi[i], 'l-li2')
-					}
-					//lsf_myweb.removeClass(liFirst, 'l-li3')
-					for (var i = 1; i < aLi.length; i++) {
-						aOk[i] = true;
-					}
-				} else {
-					//lsf_myweb.addClass(liFirst, 'l-li3');
-					for (var i = 1; i < aLi.length; i++) {
-						lsf_myweb.addClass(aLi[i], 'l-li2');
-					}
-					for (var i = 1; i < aLi.length; i++) {
-						aOk[i] = false;
-					}
-				}
-				bOk = !bOk;
+                lsf_myweb.removeClass(liFirst, 'l-li3');
+                for (var i = 1; i < aLi.length; i++) {
+                    lsf_myweb.removeClass(aLi[i], 'l-li2')
+                }
+                for (var i = 1; i < aLi.length; i++) {
+                    aOk[i] = true;
+                }
 			});
-            */
+            
 			//每个地区的点击事件
 			for (var i = 1; i < aLi.length; i++) {
 				(function(index) {

@@ -6,7 +6,7 @@ TicketDate.prototype = new Calender();
 
 TicketDate.prototype.linkColor=function(type,date){
     var that = this, links = _CalF.$('.live',this.dd), startIndex,endIndex;
-    if(type == 'Return'&&date==undefined){
+    if(type == 'Return'){
         for(var st = 0;st < links.length;st++) {
             if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='去程'){
                 startIndex=st;
@@ -54,12 +54,19 @@ TicketDate.prototype.inputEvent=function(){
                 that.drawLastDate(idate);
             }else{
                 var idate = new Date(nowY , nowM+i, 01);
-                that.drawDate(idate);
+                if(that.type=="Oneway"){
+                    console.log(that.singleDate)
+                    that.drawDate(idate);
+                    that.linkColor("Oneway",that.singleDate)
+                }else{
+                    var start=that.doubleDate.start,end=that.doubleDate.end;
+                    that.time={};
+                    that.time[start]='去程';
+                    that.time[end]='返程';
+                    that.drawDate(idate);
+                }
             }
         }
-
-      //this.linkColor(this.type,date)
-
     });
 },
 TicketDate.prototype.initialize =function (options) {
@@ -69,11 +76,11 @@ TicketDate.prototype.initialize =function (options) {
     this.sClass1=options.sClass1;
     this.id2=options.id2;
     this.fn = options.fn;
-    this.time = options.time;
     this.op = 0;
     this.input = _CalF.$('#'+ this.id);
     this.inputEvent();
     this.outClick();
+    this.type=="Oneway"?this.singleDate=options.time.start:this.doubleDate=options.dateObj;
 };
 
 TicketDate.prototype.createContainer = function(odate){
@@ -106,7 +113,6 @@ TicketDate.prototype.createContainer = function(odate){
         header.className = 'header';
         header.innerHTML = '<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
         document.body.appendChild(header);
-
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
         weeker.style.marginTop='5.8rem';
@@ -149,6 +155,7 @@ TicketDate.prototype.drawDate = function (odate) {
     }
     // 循环显示日期
     for (i = 1; i <= days; i++) {
+        i=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
         if (year < nowyear) {
             ddHtml.push('<a class="disabled">' + i + '</a>');
         } else if (year == nowyear) {
@@ -156,13 +163,13 @@ TicketDate.prototype.drawDate = function (odate) {
                 ddHtml.push('<a class="live disabled">' + i + '</a>');
             } else if (month == nowmonth + 1) {
                 if (i < nowdate){
+                    i=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
                     ddHtml.push('<a class="live disabled">' + i + '</a>');
                 }else{
-                    m=month<10?'0'+month:month;
-                    d=i<10?'0'+i:i;
-                    if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
-                    }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
+                    month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
+                    if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+month+'-'+i] +'</span></a>';
+                    }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                     }else{
                         pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
@@ -170,11 +177,10 @@ TicketDate.prototype.drawDate = function (odate) {
                     i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
                 }
             } else if (month == nowmonth + 2) {
-                m=month<10?'0'+month:month;
-                d=i<10?'0'+i:i;
-                if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
-                }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
+                month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
+                if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
+                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+month+'-'+i] +'</span></a>';
+                }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
                 }else{
                     pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
@@ -267,11 +273,13 @@ TicketDate.prototype.linkOn = function(){
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.op++;
                             that.cache = this.getAttribute('data-day');
+                            that.doubleDate.start = this.getAttribute('data-day');
                         }else if(that.op==1&&this.getAttribute('data-day')!=that.cache){
                             if(that.timer!=null){
                                 window.clearTimeout(that.timer);
                                 that.timer = null;
                             }
+                            that.doubleDate.end = this.getAttribute('data-day');
                             $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
                             that.tiper.style.display = 'none';
                             that.linkOver();
@@ -281,7 +289,10 @@ TicketDate.prototype.linkOn = function(){
                                 window.clearTimeout(that.timer);
                                 that.timer = null;
                             }
-                            that.tiper.innerHTML = '返程日期需大于去程日期';
+                            that.tiper.style.display = 'none';
+                            that.doubleDate.end = this.getAttribute('data-day');
+                            this.querySelector('.live_txt').innerHTML=that._word.f[that.op];
+                            that.linkOver();
                         }
                     }
                 }
@@ -306,32 +317,41 @@ TicketDate.prototype.linkOver = function(event){
                 out[i].value = sels[i].parentNode.getAttribute("data-day");
             }
         }else{
-            arr.push(sels[0].parentNode.getAttribute("data-day"));
-            arr.push(sels[1].parentNode.getAttribute("data-day"));
-            out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
-            that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
-            if(out[1]){
-                that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day");
-                out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+            if(sels.length==1){
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
+                if(out[1]){
+                    that.doubleChosenDateTwo = sels[0].parentNode.getAttribute("data-day");
+                    out[1].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                }
+            }else{
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                arr.push(sels[1].parentNode.getAttribute("data-day"));
+                out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
+                if(out[1]){
+                    that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day");
+                    out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+                }
             }
         }
         if(tal){
             tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
         }
-        that.doubleChosenDate = 'dateSTr'
     }else{
         var event = event || window.event;
-        var target = event.target || event.srcElement,dateSTr='';
+        var target = event.target || event.srcElement;
         if(target.tagName == 'A'){
-            dateSTr = target.getAttribute('data-day');
-            that.linkColor('Oneway',dateSTr);
-            out[0].innerHTML=returnWeek(dateSTr);
+            that.singleDate = target.getAttribute('data-day');
+            that.linkColor('Oneway',that.singleDate);
+            out[0].innerHTML=returnWeek(that.singleDate);
         }else if(target.tagName == 'SPAN'){
-            dateSTr = target.parentNode.getAttribute('data-day');
-            that.linkColor('Oneway',dateSTr);
-            out[0].innerHTML=returnWeek(dateSTr);
+            that.singleDate = target.parentNode.getAttribute('data-day');
+            that.linkColor('Oneway',that.singleDate);
+            out[0].innerHTML=returnWeek(that.singleDate);
         }
-        that.singleChosenDate = dateSTr
     }
     that.timer = window.setTimeout(function(){
         that.op>=1?that.op=0:null;
@@ -426,29 +446,27 @@ var  conditionalFiltering = {
     },
     createTags:function(tripType, sinOrDou, callback){
         var tripType = this.tripType, sinOrDou = this.sinOrDou, fn = this.fn;
-        //生成标签
-
         var backShadow = document.createElement('div');
         backShadow.className = 'r-shadow';
         backShadow.id = 'r-shadow';
 
-        var oDiv = document.createElement('div');  //最大的外城div
+        var oDiv = document.createElement('div');
         oDiv.className = "filter-wrap";
 
-        var baseTitle =  document.createElement('div');  //底部横显标题
+        var baseTitle =  document.createElement('div');
         baseTitle.className = "hl-bottom";
 
-        var leftModal =  document.createElement('div');  //最左测的弹出框
+        var leftModal =  document.createElement('div');
         leftModal.className = "reset-action";
         leftModal.id = "filter-modal";
 
-        var middleModal =  document.createElement('ul');  //中间的弹出框
+        var middleModal =  document.createElement('ul');
         middleModal.id = "time-modal";
 
-        var rightModal =  document.createElement('ul');  //右侧的弹出框
+        var rightModal =  document.createElement('ul');
         rightModal.id = "price-modal";
 
-        if(tripType =='domestic'){  //国内
+        if(tripType =='domestic'){
             if(sinOrDou == 'Oneway'){  //国内单程
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i>' +
                 '<span class="filter-select">筛选</span>'+
@@ -457,7 +475,7 @@ var  conditionalFiltering = {
                 '  class="filter-select">起飞早到晚</span>'+
                 '</div>'+
                 '<div class="fo-div" id="fo_lo" data-price-type="domestic" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
-                ' class="filter-select">价格</span>'+  /*点击价格没有弹出框，直接变化价格展示*/
+                ' class="filter-select">价格</span>'+
                 '</div>';
 
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
@@ -544,7 +562,7 @@ var  conditionalFiltering = {
                     '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'
                 rightModal.innerHTML =''
             }
-        }else{              //国际
+        }else{
             if(sinOrDou == 'Oneway'){  //国际单程
 
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span'+
@@ -723,6 +741,7 @@ var  conditionalFiltering = {
                     var spEle = rightCock2.querySelector('SPAN');
                     spEle.innerHTML ='价格';
                     iEle.className ='';
+                     arg.querySelector('i').className='red-tip';
                     that.tempStates.PriorityRule = '0';
                      middleModal.style.transition = 'all 300ms ease-in';
                      middleModal.style.webkitTransition = 'all 300ms linear';
@@ -806,7 +825,7 @@ var  conditionalFiltering = {
                     that.tempStates.PriorityRule = '0';
 
                     arg.querySelector('.filter-select').innerHTML='从低到高';
-                    that.tempStates.PriorityRule = '2'
+                    that.tempStates.PriorityRule = '2';
                     that.stateEvent('set');
                     that.fn(that.tempStates);
                     that.checkRedTip();
@@ -966,7 +985,7 @@ var  conditionalFiltering = {
             };
             shadowEle.onclick = function(event) {
                 var event = event || window.event;
-                var target = target || event.srcElement, lineEle;
+                var target = target || event.srcElement, lineEle, that=conditionalFiltering;
                 var leftModal = document.querySelector('#filter-modal');
                 var timeModal = document.querySelector('#time-modal');
                 var priceModal = document.querySelector('#price-modal');
@@ -974,13 +993,13 @@ var  conditionalFiltering = {
                     leftModal.style.transition = 'all 300ms ease-in';
                     leftModal.style.webkitTransition = 'all 300ms linear';
                     leftModal.style.bottom = '-126%';
-                    timeModal.style.transition = 'all 300ms ease-in';
-                    timeModal.style.webkitTransition = 'all 300ms linear';
-                    timeModal.style.bottom = '-126%';
                     priceModal.style.transition = 'all 300ms ease-in';
                     priceModal.style.webkitTransition = 'all 300ms linear';
                     priceModal.style.bottom = '-126%';
                     this.style.display = 'none';
+                    timeModal.style.transition = 'all 300ms ease-in';
+                    timeModal.style.webkitTransition = 'all 300ms linear';
+                    timeModal.style.bottom = '-126%';
                 }
             }
         };
@@ -1252,12 +1271,8 @@ var  conditionalFiltering = {
                  }else{
                      leftEle.querySelector('i').className = ''
                  };
-                 if(this.tempStates['PriorityRule']!= this.originInfo['PriorityRule']){
                      middleEle.querySelector('i').className = 'red-tip'
-                 }else{
-                     middleEle.querySelector('i').className = ''
-                 };
-                   rightEle.querySelector('i').className = 'red-tip'
+                     rightEle.querySelector('i').className = 'red-tip'
              }
         }else{
             if(this.sinOrDou == 'Oneway'){  //单程国内

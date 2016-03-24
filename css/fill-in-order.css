@@ -224,7 +224,7 @@ i {
     display: inline-block;
     width: 1.7rem;
     height: 1.7rem;
-    background: url(../images/ui/icons1.png) -26.6rem -0.4rem;
+    background: url(../images/ui/icons1.png) -23.7rem -0.4rem;
     background-size: 40rem 12rem;
     margin-top: 3px;
 }
@@ -594,7 +594,7 @@ i {
     top: 0;
     width: 88px;
     height: 42px;
-    background: #ddd;
+    background: #fdb330;
     color: #fff;
     text-align: center;
     line-height: 42px;
@@ -679,18 +679,25 @@ i {
     margin-bottom:0;
 }
 .hspd-list li{
-    padding:15px 15px;
+    height: 40px;
     margin-bottom: 5px;
+    line-height: 40px;
+    border-bottom: 1px solid #d6d6d6;
+}
+.hspd-list li:first-child{
+    color: #484848;
+    font-weight: bold;
 }
 .hspd-list li div:nth-child(1){
     float: left;
+    color:#fb763b;
 }
 .hspd-list li div:nth-child(2){
     float: right;
+    color:#fb763b;
 }
 .hspd-list li:last-child{
-    border-top: 1px solid #d6d6d6;
-    color:#fb763b;
+    border:none;
     height: 44px;
 }
 /*   费用明细快  */

@@ -177,7 +177,7 @@
 
         //同意条款
         var oAgree=document.querySelector('.order-notice-btn');
-        var bOk=true;
+        var bOk=false;
         oAgree.onclick=function(){
             if(bOk){
                 oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
@@ -457,16 +457,23 @@
         if(json.success) {
             var data = json.data;
             console.log(data);
+            var n;
+            for(var k = 0;k < data.hotels[0].rooms.length;k++){
+                if(data.hotels[0].rooms[k].roomID == roomID){
+                    n = k;
+                }
+            }
             var tpl = [
-                '{% for(var i=0; i<hotels[0].rooms[0].prices.length;i++){  if(hotels[0].rooms[0].prices[i].category=="ADULT"){ %}',
+                '<li>费用明细</li>',
+                '{% for(var i=0; i<hotels[0].rooms['+n+'].prices.length;i++){  if(hotels[0].rooms['+n+'].prices[i].category=="ADULT"){ %}',
                 '<li>',
-                '<div>成人×{%=hotels[0].rooms[0].prices[i].quantity%}</div>',
-                '<div>￥{%=hotels[0].rooms[0].prices[i].totalAmountInCNY%}</div>',
+                '<div>成人</div>',
+                '<div>￥{%=hotels[0].rooms['+n+'].prices[i].amountInCNY%}×{%=hotels[0].rooms['+n+'].prices[i].quantity%}人</div>',
                 '</li>',
-                '{% } else if(hotels[0].rooms[0].prices[i].category=="CHILD"){ %}',
+                '{% } else if(hotels[0].rooms['+n+'].prices[i].category=="CHILD"){ %}',
                 '<li>',
-                '<div>儿童×{%=hotels[0].rooms[0].prices[i].quantity%}</div>',
-                '<div>￥{%=hotels[0].rooms[0].prices[i].totalAmountInCNY%}</div>',
+                '<div>儿童</div>',
+                '<div>￥{%=hotels[0].rooms['+n+'].prices[i].amountInCNY%}×{%=hotels[0].rooms['+n+'].prices[i].quantity%}人</div>',
                 '</li>',
                 '{% } %}',
                 '{% } %}'

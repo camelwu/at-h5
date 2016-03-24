@@ -123,6 +123,7 @@ var lsf_myweb={
     lsf_myweb.styleChange('jp_limit_time','月/年，如：09/12');
     lsf_myweb.styleChange('jp_safe_code','签名栏末尾最后3位');
     lsf_myweb.styleChange('jp_bank_name','发卡银行');
+    lsf_myweb.styleChange('jp_bank_country','发卡国家');
     //返回按钮
     var jp_back=document.getElementById('jp_back');
     lsf_myweb.bind(jp_back,'click',function(){
@@ -218,6 +219,14 @@ var lsf_myweb={
         }else{
             myData.BankName=jpBankName.value;
         }
+        //发卡国家验证
+        if(jpBankCountry.value=='发卡国家'){
+            $.alerts.alert('请输入发卡国家',null,"确定");
+            return;
+        }else{
+            myData.CardIssuanceCountry=jpBankCountry.value;
+        }
+
         //有效期验证
         if(jp_limit_time.value=='月/年，如：09/12'){
             $.alerts.alert('请输入有效期',null,"确定");
@@ -247,7 +256,6 @@ var lsf_myweb={
                 }
             }
         }
-        myData.CardIssuanceCountry=$("#jp_bank_country").attr("data-code");
         localStorage.setItem('user_order_storage12345',JSON.stringify(myData));
         console.log(myData);
         console.log('以上是更新的localStorage的数据');
@@ -349,7 +357,7 @@ var lsf_myweb={
             }else{
                 $("#status-h").fadeOut();
                 $("#preloader").fadeOut("medium");
-                $.alerts.alert(data.message,null,"确定");
+                jAlert(data.message,"",null,"确认");
             }
         }
 

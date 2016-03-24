@@ -57,7 +57,6 @@
 .nav1{
     height: 45px;
     position: relative;
-    float: left;
 }
 .nav111{
     width: 88px;
@@ -628,6 +627,16 @@
     right: -10px;
     overflow: visible;
 }
+.q112{
+    width:10px;
+    height: 10px;
+    border-radius: 20px;
+    background: orange;
+    position: absolute;
+    top: 0;
+    right: -10px;
+    overflow: visible;
+}
 .q1 p{
     font-size: 1.1rem;
     margin-left: 15px;
@@ -651,11 +660,14 @@
     font-weight:bold;
     font-size: 1.5rem;
     color: #000;
+    margin-top: 8px;
     /*line-height: 35px;*/
 }
 .reserve-top2{
     font-size: 1.1rem;
     color: #999999;
+    margin-top: 5px;
+    margin-bottom: 5px;
     /*line-height: 15px;*/
 }
 .reserve-bottom{
@@ -673,6 +685,8 @@
 .reserve-bottom2{
     font-size: 1.1rem;
     color: #999;
+    margin-bottom: 5px;
+    margin-top: 5px;
     /*line-height: 13px;*/
 }
 .reserve-bottom3{
@@ -715,20 +729,26 @@
     color: #484848;
     font-size: 1.4rem;
 }
+.bookinfo2 p{
+    height: 30px;
+    font-size: 1.4rem;
+}
 .bookinfo2{
     border-top: 1px solid #dedede;
     margin: 0 15px;
     display: flex;
     flex-flow: row;
+    padding-top: 8px;
 }
 .bookinfo2-1{
     width: 72px;
     color: #999999;
     float: left;
+
     margin-bottom: 12px;
 }
 .bookinfo2-1 span{
-    font-size: 1.4rem;
+    font-size: 15px;
     display: block;
 }
 .bookinfo2-2{
@@ -740,6 +760,7 @@
     color: #484848;
     display: block;
     font-size: 12px;
+    height: 30px;
 }
 .bookinfo2 span{
     padding-top: 12px;

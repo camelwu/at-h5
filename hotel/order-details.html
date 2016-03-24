@@ -31,8 +31,33 @@
         <h3>订单详情</h3>
     </div>
     <div id="content" class="snap-content" style="padding-top: 45px;padding-bottom: 51px;">
-        <div class="sure">
-            <div class="sure1">订单已支付 等待入住</div>
+        <div class="sure" id="sure">
+            {% if(orderStatus==0){ %}
+            <div class="sure1">订单已提交</div>
+            <div class="sure2">
+                <div class="sure21">
+                    <div class="tenor">
+                        <div class="q1">
+                            <div class="q2">
+                                <div class="q11"><p>提交订单</p></div>
+                                <div class="q22"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q12"><p>支付订单</p></div>
+                                <div class="q23"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+                                <div class="q23"></div>
+                                <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% } else if (orderStatus==1) { %}
+            <div class="sure1">订单已支付</div>
             <div class="sure2">
                 <div class="sure21">
                     <div class="tenor">
@@ -54,6 +79,77 @@
                     </div>
                 </div>
             </div>
+            {% } else if (orderStatus==2) { %}
+            <div class="sure1">已入住</div>
+            <div class="sure2">
+                <div class="sure21">
+                    <div class="tenor">
+                        <div class="q1">
+                            <div class="q2">
+                                <div class="q11"><p>提交订单</p></div>
+                                <div class="q22"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q12"><p>支付订单</p></div>
+                                <div class="q22"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q11"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+                                <div class="q23"></div>
+                                <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% } else if (orderStatus==3) { %}
+            <div class="sure1">已离店</div>
+            <div class="sure2">
+                <div class="sure21">
+                    <div class="tenor">
+                        <div class="q1">
+                            <div class="q2">
+                                <div class="q11"><p>提交订单</p></div>
+                                <div class="q22"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q11"><p>支付订单</p></div>
+                                <div class="q22"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q11"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+                                <div class="q22"></div>
+                                <div class="q112"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% } else if (orderStatus==4) { %}
+            <div class="sure1">已取消</div>
+            <div class="sure2">
+                <div class="sure21">
+                    <div class="tenor">
+                        <div class="q1">
+                            <div class="q2">
+                                <div class="q12"><p>提交订单</p></div>
+                                <div class="q23"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q12"><p>支付订单</p></div>
+                                <div class="q23"></div>
+                            </div>
+                            <div class="q2">
+                                <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+                                <div class="q23"></div>
+                                <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% } %}
+
         </div>
         <div id="hotelInfo" class="reserve">
             <!--<div class="reserve-top">-->
@@ -81,11 +177,11 @@
             <div class="bookinfo1">订单信息</div>
             <div class="bookinfo2">
                 <div class="bookinfo2-1"  style="padding: 5px auto">
-                    <span>订单号</span>
-                    <span>下单时间 </span>
-                    <span>房间数</span>
-                    <span>房间1入住</span>
-                    <span>联系电话</span>
+                    <p>订单号</p>
+                    <p>下单时间 </p>
+                    <p>房间数</p>
+                    <p>房间入住人</p>
+                    <p>联系电话</p>
                 </div>
                 <div id="orderInfo" class="bookinfo2-2">
                     <!--<span>123456789</span>-->
@@ -96,7 +192,11 @@
                 </div>
             </div>
         </div>
-        <a href="#" class="hotelInter2 cancelOrder">取消订单</a>
+        <div class="btnDiv" id="btnDiv">
+            {% if(orderStatus==0 || orderStatus==1 ){ %}
+                <a href="#" class="hotelInter2 cancelOrder">取消订单</a>
+            {% } %}
+        </div>
 
 
 </div>
@@ -148,11 +248,11 @@
                      '</a>'
                 ].join('');
                 var tpl3 = [
-                     '<span>{%=bookingReferenceNo%}</span> ',
-                     '<span>{%=createdTime%}</span>',
-                     '<span>{%=noOfRooms%}间</span>',
-                     '<span>{%=guestNameList.guestLastName%}{%=guestNameList.guestFirstName%}</span>',
-                     '<span>{%=guestContactNo%}</span>'
+                     '<p>{%=bookingReferenceNo%}</p> ',
+                     '<p>{%=createdTime.replace("T"," ")%}</p>',
+                     '<p>{%=noOfRooms%}间</p>',
+                     '<p>{%=guestNameList.guestLastName%}{%=guestNameList.guestFirstName%}</p>',
+                     '<p>{%=guestContactNo%}</p>'
                 ].join('');
                 var tmp = {
                     "Parameters":{"bookingReferenceNo":bookingRefNo},
@@ -177,6 +277,7 @@
                         dayNum = getDayNum(data[0].checkInDate,data[0].checkOutDate);
 
                         tax_service = parseInt(data[0].totalTaxCharge) + parseInt(data[0].totalSeriveCharge);
+                        data[0].tax_service= parseInt(data[0].totalTaxCharge+data[0].totalSeriveCharge);
                         if(data[0].paymentModeID == '1'){
                             payWay = "预付";
                         }else{
@@ -196,7 +297,7 @@
                         var tpl4 = [
                             '<li>费用明细<span>{%=noOfRooms%}间 X '+dayNum+'晚</span></li>',
                             '<li>',
-                                '<div>房费</div><span>￥{%=totalRoomRate%}</span>',
+                                '<div>房费</div><span>￥{%=totalRoomRate-tax_service%}</span>',
                                 '<div style="clear: both"></div>',
                                 '<div>税和服务费</div><span>￥'+tax_service+'</span>',
                             '</li>',
@@ -210,6 +311,14 @@
                         $('#allPrice').html(html_ap);
                         $('#orderInfo').html(html_oi);
                         $('#pd_list').html(html_pd_list);
+
+                        var html = template("sure", data);
+                        $("#sure").html(html)
+                        var html = template("btnDiv", data);
+                        $("#btnDiv").html(html)
+                        cancelOrderEvent();
+
+
                         vlm.init();
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
@@ -244,16 +353,19 @@
                         "ForeEndType":3
                     };
                     console.log(Parameters);
-                    vlm.loadJson("",JSON.stringify(Parameters),function(json){
-                        if(json.success) {
-                            jAlert("取消成功！");
-                            getDetailData();
-                            showPriceDetail();
+                    jConfirm('是否取消订单?', '提示', function(status){
+                        if(status == true){
+                            vlm.loadJson("",JSON.stringify(Parameters),function(json){
+                                if(json.success) {
+                                    window.location.reload();
+                                }
+                                else{
+                                    jAlert("取消失败！");
+                                }
+                            });
                         }
-                        else{
-                            jAlert("取消失败！");
-                        }
-                    });
+                    }, '确定', '取消');
+
                 })
             }
 
