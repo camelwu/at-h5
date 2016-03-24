@@ -17,7 +17,7 @@
 		<div id="status-t">
 			<p class="center-text">
 				<br>
-				<em>加载中……</em>
+				<em></em>
 			</p>
 		</div>
 	</div>
@@ -152,7 +152,7 @@
 				</section>
 				<div class="order-notice">
 					<i class="order-notice-btn on"></i>
-					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网订票须知</span>
+					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网<label style="color: #ffb413;display: inline;">订票须知</label></span>
 				</div>
 			</div>
 
@@ -929,14 +929,14 @@
 
 						if(val.ADU == 0 && data.SearchPriceData.data.prices[k].category == "ADULT"){
 							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
-							var title = "(成人)"+data.SearchPriceData.data.packageName;
+							var title = data.SearchPriceData.data.packageName+"(成人票)";
 							child_price.find(".js-add-setmeal-tit:last").html(title);
 							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
 							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 						}
 						if(val.ADU == 1 && data.SearchPriceData.data.prices[k].category == "CHILD"){
 							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
-							var title = "(儿童)"+data.SearchPriceData.data.packageName;
+							var title = data.SearchPriceData.data.packageName+"(儿童票)";
 							child_price.find(".js-add-setmeal-tit:last").html(title);
 							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
 							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
@@ -1417,19 +1417,22 @@
 						if(!Status){
 							return false;
 						}
-						Status = MT.validate(PhoneNo, {
-							"phone" : "phone"
-						}, {
-							"phone" : "联系电话格式不正确"
-						});
-						if(!Status){
-							return false;
+						if(CountryCode == "86"){
+							Status = MT.validate(PhoneNo, {
+								"phone" : "phone"
+							}, {
+								"phone" : "联系电话格式不正确"
+							});
+							if(!Status){
+								return false;
+							}
 						}
+
 						Email = $("#scenic_email").val();
 						Status = MT.validate(Email, {
 							"required" : "required"
 						}, {
-							"required" : "Email不能为空"
+							"required" : "邮箱不能为空"
 						});
 						if(!Status){
 							return false;
@@ -1437,7 +1440,7 @@
 						Status = MT.validate(Email, {
 							"email" : "email"
 						}, {
-							"email" : "请输入正确Email格式"
+							"email" : "请输入正确邮箱格式"
 						});
 						if(!Status){
 							return false;
@@ -1562,14 +1565,16 @@
 				function dateHandler() {
 					var startDate = ExtendData.StartDate;
 					var endDate = ExtendData.EndDate;
+					var defaultDate = ExtendData.DefaultDate;
 					var allOuter = document.querySelectorAll('.travel-date-wrap-so');
-					var chooseDate = function(id, dateNum, startDate, endDate) {
+					var chooseDate = function(id, dateNum, startDate, endDate,defDate) {
 						var rangeArray = [startDate, endDate];
+						var d = eval("("+defDate+")");
 						var myDate = new TicketDate({
 							id : id,
 							num : 13,
-							time : {},
 							sClass1 : dateNum,
+							time : {'游玩':defDate},
 							type : 'Oneway',
 							_word : {
 								tip : ['入住']
@@ -1587,7 +1592,7 @@
 						for (var i = 0; i < allOuter.length; i++) {
 							(function() {
 								var id = allOuter[i].id;
-								chooseDate(id, 'tra-ymd', startDate, endDate)
+								chooseDate(id, 'tra-ymd', startDate, endDate,defaultDate)
 							})(allOuter[i]);
 						}
 					};
