@@ -79,30 +79,25 @@ Calender.prototype = {
 		t : '游玩'
 	},
 	_tempmonth : ['<span class="prevmonth">prevmonth</span>', '<span class="nextmonth">nextmonth</span>'],
-	_tempweek : ['<dl>', '<dt class="date_title">日</dt>', '<dt class="date_title">一</dt>', '<dt class="date_title">二</dt>', '<dt class="date_title">三</dt>', '<dt class="date_title">四</dt>', '<dt class="date_title">五</dt>', '<dt class="date_title">六</dt>', '</dl>'],
-	_template : ['<dl>', '<dt class="title-date">', '</dt>', '<dd></dd>', '</dl>'],
+	_tempweek : ['<dt class="date_title">日</dt>', '<dt class="date_title">一</dt>', '<dt class="date_title">二</dt>', '<dt class="date_title">三</dt>', '<dt class="date_title">四</dt>', '<dt class="date_title">五</dt>', '<dt class="date_title">六</dt>'],
+	_template : ['<dt class="title-date">', '</dt><dd>', '</dd>'],
 	initialize : function(options) {
 		this.num = options.num;
 		this.time = options.time;
 		this.type = options.type;
+		this.range = options.range;
 		this.fn = options.fn;
-		if ( typeof options.id === "string") {
-			this.id = options.id;
-			this.output = this.input = document.getElementById("" + this.id);
-		} else {
-			if (isArray(options.id)) {
-				this.id = options.id[0];
-				this.input = document.getElementById("" + options.id[0]);
-				this.output = options.id.length == 1 ? this.input : document.getElementById("" + options.id[1]);
-			} else {
-				alert('paramater is error!');
-			}
-		}
+		this.id = options.id;
+		this.input = document.getElementById("" + this.id);
+		this.output = _CalF.$(options.output);
 		this.op = 0;
-		if ( typeof options.time === "string" || (isArray(options.time) && options.time.length == 1)) {
+		if ( typeof options.time === "string") {
 			this.ops = 1;
 		} else {
-			this.ops = options.time.length;
+			if ( typeof options.time === "object") {
+				var arr = Object.keys(options.time);
+				this.ops = arr.length;
+			}
 		}
 		this.inputEvent();
 		this.outClick();
@@ -111,160 +106,140 @@ Calender.prototype = {
 		}
 
 	},
-	createContainer : function(odate) {
+	createContainer : function() {
 		// 如果存在，则移除整个日期层Container
-		var odiv = _CalF.$('#' + this.id + '-date');
+		var that = this, odiv = _CalF.$('#' + this.id + '-date'), intime = this.output, timobj = {}, date = new Date(), nowY = date.getFullYear(), nowM = date.getMonth(), nowD = date.getDate();
+		for (var i = 0; i < intime.length; i++) {
+			timobj[intime[i].innerHTML] = that.type != "t" ? that._word[that.type][i] : that._word[that.type];
+		}
+		that.time = timobj;
 		if (!!odiv)
 			odiv.parentNode.removeChild(odiv);
+		//头部
+		var header = this.header = document.createElement('div');
+		header.id = this.id + "-header";
+		header.className = 'header';
+		header.innerHTML = '<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>';
+		document.body.appendChild(header);
 		var container = this.container = document.createElement('div');
 		container.id = this.id + '-date';
 		container.style.position = "absolute";
 		container.style.zIndex = 98;
-		if (this.input.tagName === 'input') {
-			//PC
-			var inputPos = _CalF.getPos(this.input);
-			// 根据input的位置设置container高度
-			container.style.left = inputPos.left + 'px';
-			container.style.top = inputPos.bottom - 1 + 'px';
-			// 设置日期层上的单击事件，仅供阻止冒泡，用途在日期层外单击关闭日期层
-			_CalF.bind(container, 'click', this.stopPropagation);
+		container.style.background = "#f5f4f9";
+		_CalF.bind(container, 'click', this.stopPropagation);
+		//整体容器
+		container.style.overflow = 'auto';
+		container.style.width = container.style.height = '100%';
+		container.style.left = '0';
+		container.style.top = '0';
+		container.style.paddingBottom = '118px';
+		//提示
+		var tiper = this.tiper = document.createElement('div');
+		tiper.id = this.id + '-tiper';
+		tiper.className = 'tipers';
+		tiper.innerHTML = "请选择" + that._word[that.type] + "日期";
+		container.appendChild(tiper);
+		//内容
+		var calendar = document.createElement('div');
+		calendar.className = 'calendar';
+		calendar.style.marginTop = '45px';
+		container.appendChild(calendar);
+		//星期
+		var dl = document.createElement('dl');
+		dl.innerHTML = this._tempweek.join('');
+		calendar.appendChild(dl);
+		if (that.range) {
+			if (Object.prototype.toString.call(that.range) === '[object Array]') {
+				var d = new Date(that.range[1]);
+				var ly = d.getFullYear(), lm = d.getMonth();
+				if (ly == nowY) {
+					nums = lm - nowM + 1;
+				} else if (ly > nowY) {
+					nums = 13 - nowM + lm;
+					nums = nums > 13 ? 13 : nums;
+				}
+			}
+			that.num = nums;
 		} else {
-			container.style.background = "#f5f4f9";
-			container.style.overflow = 'auto';
-			container.style.width = container.style.height = '100%';
-			container.style.left = '0';
-			container.style.top = '0';
-			container.style.paddingBottom = '118px';
-			//
-			var header = this.header = document.createElement('div');
-			header.id = this.id + "-header";
-			header.className = 'header';
-			header.innerHTML = '<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>';
-			document.body.appendChild(header);
-
-			var weeker = document.createElement('div');
-			weeker.className = 'calendar';
-			weeker.style.marginTop = '45px';
-			weeker.innerHTML = this._tempweek.join('');
-			container.appendChild(weeker);
-
-			var tiper = this.tiper = document.createElement('div');
-			tiper.id = this.id + '-tiper';
-			tiper.className = 'tipers';
-			tiper.innerHTML = "请选择入住日期";
-			container.appendChild(tiper);
+			nums = that.num;
 		}
+		for ( i = 0; i < nums; i++) {
+			var d = new Date(nowY, nowM + i, 01), year = d.getFullYear(), month = d.getMonth() + 1;
+			dl.innerHTML += this._template[0] + year + '年' + month + '月' + this._template[1] + '' + this._template[2];
+		}
+		//
 		document.body.appendChild(container);
 	},
 	// 渲染日期
-	drawDate : function(odate) {// 参数 odate 为日期对象格式
-		var dateWarp, titleDate, dd, year, month, date, days, weekStart, i, l, ddHtml = [], textNode;
-		var nowDate = new Date(), nowyear = nowDate.getFullYear(), nowmonth = nowDate.getMonth(), nowdate = nowDate.getDate();
-		this.dateWarp = dateWarp = document.createElement('div');
-		dateWarp.className = 'calendar';
-		dateWarp.innerHTML = this._template.join('');
-		this.year = year = odate.getFullYear();
-		this.month = month = odate.getMonth() + 1;
-		this.date = date = odate.getDate();
-		this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
-		tims = this.time;
-		textNode = document.createTextNode(year + '年' + month + '月');
-		titleDate.appendChild(textNode);
-		//this.btnEvent();
+	drawDate : function() {
+		var that = this, date = new Date(), nowY = date.getFullYear(), nowM = date.getMonth(), nowD = date.getDate(), dateWarp, titleDate, dd, year, month, days, weekStart, tims = this.time;
+		dateWarp = this.dateWarp = _CalF.$('dl', that.container)[0];
+		titleDate = _CalF.$('.title-date', dateWarp);
+		dd = _CalF.$('dd', dateWarp);
+		console.log(tims);
+		for (var j = 0; j < titleDate.length; j++) {
+			var ddHtml = [], od = new Date(titleDate[j].innerHTML.replace("年", "-").replace("月", "-") + "01");
+			year = od.getFullYear();
+			month = od.getMonth() + 1;
+			days = new Date(year, month, 0).getDate();
+			weekStart = new Date(year, month - 1, 1).getDay();
 
-		// 获取模板中唯一的DD元素
-		dd = _CalF.$('dd',dateWarp)[0];
-		// 获取本月天数
-		days = new Date(year, month, 0).getDate();
-		// 获取本月第一天是星期几
-		weekStart = new Date(year, month - 1, 1).getDay();
-		// 开头显示空白段
-		for ( i = 0; i < weekStart; i++) {
-			ddHtml.push('<a>&nbsp;</a>');
-		}
-		// 循环显示日期
-		for ( i = 1; i <= days; i++) {
-			if (year < nowyear) {
-				ddHtml.push('<a class="disabled">' + i + '</a>');
-			} else if (year == nowyear) {
-				if (month < nowmonth + 1) {
-					ddHtml.push('<a class="live disabled">' + i + '</a>');
-				} else if (month == nowmonth + 1) {
-					if (i < nowdate) {
+			for (var i = 0; i < weekStart; i++) {
+				ddHtml.push('<a>&nbsp;</a>');
+			}
+			for ( i = 1; i <= days; i++) {
+				if (year < nowY) {
+					ddHtml.push('<a class="disabled">' + i + '</a>');
+				} else if (year == nowY) {
+					if (month < nowM + 1) {
 						ddHtml.push('<a class="live disabled">' + i + '</a>');
+					} else if (month == nowM + 1) {
+						if (i < nowD) {
+							ddHtml.push('<a class="live disabled">' + i + '</a>');
+						} else {
+							m = month < 10 ? '0' + month : month;
+							d = i < 10 ? '0' + i : i;
+							var istr = i == nowD ? '今天' : i;
+
+							if (tims[year + '-' + m + '-' + d] || tims[year + '-' + month + '-' + i]) {
+								var strs = tims[year + '-' + m + '-' + d] ? tims[year + '-' + m + '-' + d] : tims[year + '-' + month + '-' + i];
+								pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '"><span class="live_circle">' + istr + '</span><span class="live_txt">' + strs + '</span></a>';
+							} else {
+								pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + istr + '</a>';
+							}
+							ddHtml.push(pstr);
+						}
 					} else {
 						m = month < 10 ? '0' + month : month;
 						d = i < 10 ? '0' + i : i;
-						if (tims[year + '-' + m + '-' + d]) {
-							pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '"><span class="live_circle">' + i + '</span><span class="live_txt">' + tims[year + '-' + m + '-' + d] + '</span></a>';
+						if (tims[year + '-' + m + '-' + d] || tims[year + '-' + month + '-' + i]) {
+							var strs = tims[year + '-' + m + '-' + d] ? tims[year + '-' + m + '-' + d] : tims[year + '-' + month + '-' + i];
+							pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '"><span class="live_circle">' + i + '</span><span class="live_txt">' + strs + '</span></a>';
 						} else {
 							pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>';
 						}
-						i == nowdate ? ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">今天</a>') : ddHtml.push(pstr);
+						ddHtml.push(pstr);
 					}
-				} else if (month == nowmonth + 2) {
-					m = month < 10 ? '0' + month : month;
-					d = i < 10 ? '0' + i : i;
-					if (tims[year + '-' + m + '-' + d]) {
-						pstr = '<a class="live data-day="' + year + '-' + month + '-' + i + '"><span class="live_circle">' + i + '</span><span class="live_txt">' + tims[year + '-' + m + '-' + d] + '</span></a>';
-					} else {
-						pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>';
-					}
-					ddHtml.push(pstr);
 				} else {
 					ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
 				}
-			} else if (year > nowyear) {
-				ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
 			}
+			dd[j].innerHTML = ddHtml.join('');
 		}
-		dd.innerHTML = ddHtml.join('');
-
-		// 添加
-		this.container.appendChild(dateWarp);
-		//IE6 select遮罩
-		var ie6 = !!window.ActiveXObject && !window.XMLHttpRequest;
-		if (ie6)
-			dateWarp.appendChild(this.createIframe());
 		// A link事件绑定
 		this.linkOn();
 	},
-	createIframe : function() {
-		var myIframe = document.createElement('iframe');
-		myIframe.src = 'about:blank';
-		myIframe.style.position = 'absolute';
-		myIframe.style.zIndex = '-1';
-		myIframe.style.left = '-1px';
-		myIframe.style.top = 0;
-		myIframe.style.border = 0;
-		myIframe.style.filter = 'alpha(opacity= 0 )';
-		myIframe.style.width = this.container.offsetWidth + 'px';
-		myIframe.style.height = this.container.offsetHeight + 'px';
-		return myIframe;
-	},
 	// 移除日期DIV.calendar
 	removeDate : function() {
-		var that=this,odiv = _CalF.$('#' + this.id + '-date');
-		if(!!that.header)
+		var that = this, odiv = _CalF.$('#' + that.id + '-date');
+		if (!!that.header)
 			that.header.parentNode.removeChild(that.header);
 		if (!!odiv)
 			odiv.parentNode.removeChild(odiv);
 	},
-	// 上一月，下一月按钮事件
-	btnEvent : function() {
-		var that = this, prevmonth = _CalF.$('.prevmonth',this.dateWarp)[0], nextmonth = _CalF.$('.nextmonth',this.dateWarp)[0];
-		prevmonth.onclick = function() {
-			var idate = new Date(that.year, that.month - 2, that.date);
-			that.drawDate(idate);
-		};
-		nextmonth.onclick = function() {
-			var idate = new Date(that.year, that.month, that.date);
-			that.drawDate(idate);
-		};
-	},
 	// A 的事件
 	linkOn : function() {
-		var links = _CalF.$('.live', this.dd), i, l = links.length, that = this;
+		var links = _CalF.$('.live', this.dateWarp), i, l = links.length, that = this, ary = that._word[that.type];
 		for ( i = 0; i < l; i++) {
 			links[i].index = i;
 			links[i].onclick = function() {
@@ -276,11 +251,14 @@ Calender.prototype = {
 						if (that.op < that.ops) {
 							that.tiper.innerHTML = '请选择' + that._word.h[1] + '日期';
 							that.linkReset(this.index);
-							$(this).html('<span class="live_circle">' + (this.innerHTML) + '</span><span class="live_txt">' + that._word.h[that.op] + '</span>');
+							var cache = this.innerHTML, word = ( typeof ary === "string") ? ary : ary[that.op];
+							$(this).html('<span class="live_circle">' + cache + '</span><span class="live_txt">' + word + '</span>');
 							that.op++;
+							that.op == that.ops ? that.linkOver() :
+							void (0);
 						} else {
-							$(this).html('<span class="live_circle">' + (this.innerHTML) + '</span><span class="live_txt">' + that._word.h[that.op] + '</span>');
-							that.op >= 1 ? that.op = 0 : null;
+							var cache = this.innerHTML, word = ( typeof ary === "string") ? ary : ary[that.op];
+							$(this).html('<span class="live_circle">' + cache + '</span><span class="live_txt">' + word + '</span>');
 							that.linkOver();
 						}
 					}
@@ -290,23 +268,23 @@ Calender.prototype = {
 	},
 	linkOver : function() {
 		var sels = $('#' + this.id + '-date .live_circle'), i, l = sels.length, that = this, arr = [];
-		var out = _CalF.$('input', that.input);
-		var tal = _CalF.$('#total_day', that.input);
+		that.op == that.ops ? that.op = 0 : null;
+		var out = that.output ? that.output : _CalF.$('input', that.input);
+		var tal = _CalF.$('#total_day', that.input) ? _CalF.$('#total_day', that.input) : _CalF.$('#total_day', that.output);
 		for ( i = 0; i < l; i++) {
 			arr.push(sels[i].parentNode.getAttribute("data-day"));
-			out[i].value = sels[i].parentNode.getAttribute("data-day");
+			out[i].tagName === 'input' ? out[i].value = sels[i].parentNode.getAttribute("data-day") : out[i].innerHTML = sels[i].parentNode.getAttribute("data-day");
 		}
-		tal.innerHTML = (Math.round((new Date(arr[1]) - new Date(arr[0])) / (1000 * 60 * 60 * 24)));
 		that.removeDate();
 		if (that.fn) {
 			that.fn(true);
-		}else{
-			
+		} else {
+			tal ? tal.innerHTML = (Math.round((new Date(arr[1]) - new Date(arr[0])) / (1000 * 60 * 60 * 24))) :
+			void (0);
 		}
 	},
 	linkReset : function(ele) {
 		var that = this, ospan = $('.live_circle'), l = ospan.length, links = _CalF.$('.live', this.dd), len = links.length;
-		//console.log(ospan[1].parentNode);
 		if (that.op == 0) {
 			for (var i = 0; i < l; i++) {
 				var v = ospan[i].parentNode.getAttribute("data-day");
@@ -323,14 +301,10 @@ Calender.prototype = {
 		}
 	},
 	inputEvent : function() {
-		var that = this, date = new Date(), nowY = date.getFullYear(), nowM = date.getMonth(), nowD = date.getDate(),
-		nums = that.num?that.num:1;
+		var that = this;
 		_CalF.bind(this.input, 'click', function() {
 			that.createContainer();
-			for (var i = 0; i < that.num; i++) {
-				var idate = new Date(nowY, nowM + i, 01);
-				that.drawDate(idate);
-			}
+			that.drawDate();
 		});
 	},
 	outClick : function() {
