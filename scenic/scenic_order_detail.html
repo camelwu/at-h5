@@ -17,7 +17,7 @@
 		<div id="status-t">
 			<p class="center-text">
 				<br>
-				<em>加载中……</em>
+				<em></em>
 			</p>
 		</div>
 	</div>
@@ -1562,14 +1562,16 @@
 				function dateHandler() {
 					var startDate = ExtendData.StartDate;
 					var endDate = ExtendData.EndDate;
+					var defaultDate = ExtendData.DefaultDate;
 					var allOuter = document.querySelectorAll('.travel-date-wrap-so');
-					var chooseDate = function(id, dateNum, startDate, endDate) {
+					var chooseDate = function(id, dateNum, startDate, endDate,defDate) {
 						var rangeArray = [startDate, endDate];
+						var d = eval("("+defDate+")");
 						var myDate = new TicketDate({
 							id : id,
 							num : 13,
-							time : {},
 							sClass1 : dateNum,
+							time : {'游玩':defDate},
 							type : 'Oneway',
 							_word : {
 								tip : ['入住']
@@ -1587,7 +1589,7 @@
 						for (var i = 0; i < allOuter.length; i++) {
 							(function() {
 								var id = allOuter[i].id;
-								chooseDate(id, 'tra-ymd', startDate, endDate)
+								chooseDate(id, 'tra-ymd', startDate, endDate,defaultDate)
 							})(allOuter[i]);
 						}
 					};
