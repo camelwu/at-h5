@@ -598,15 +598,12 @@
 							for (var v = 0; v < exaddChild.length; v++) {
 								if (exaddChild[v].style.display != 'none') {
 									var input = exaddChild[v].getElementsByClassName("inp-cage");
+									var reg=/^[0-9]{1,2}$/g;
 									for (var w = 0; w < input.length; w++) {
-										var reg=/^[0-9]{1,2}$/g;
-										if( ! reg.test(input[w].value)){
-
-										}
-										if (input[w].value == '') {
-											jAlert('儿童年龄未输入!');
+ 										if( ! reg.test(input[w].value)){
+											jAlert('请输入儿童年龄（数字)!');
 											return;
-										} else if (input[w].value < childAgeMin || input[w].value > childAgeMax) {
+										}else if (input[w].value < childAgeMin || input[w].value > childAgeMax) {
 											jAlert('儿童年龄不符合标准!');
 											return;
 										}
