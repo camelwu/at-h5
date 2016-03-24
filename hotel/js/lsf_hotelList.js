@@ -96,7 +96,7 @@ function num2chin(num) {
 			return '五';
 			break;
 		default:
-			return '无';
+			return '二';  //默认二星级  H5-726
 			break;
 	};
 }
