@@ -143,7 +143,8 @@ var lsf_myweb={
     if(myData.paymentModeID=='1'){
         jp_price_sum.innerHTML='订单总价：￥'+myData.calcuTotalPriceCNY;
     }else{
-        jp_price_sum.innerHTML='担保：SGD'+myData.calcuTotalPrice+'<span>约￥'+myData.calcuTotalPriceCNY+'</span>';
+        //jp_price_sum.innerHTML='担保：SGD'+myData.calcuTotalPrice+'<span>约￥'+myData.calcuTotalPriceCNY+'</span>';
+        jp_price_sum.innerHTML="本预订需要您提供您的信用卡作为担保。<br/>该产品不可变更且不可取消，如未入住，扣除全额房费";
     }
     jp_hotel_name.innerHTML=myData.HotelGenInfo.hotelName;
     jp_date.innerHTML=myData.dateInfo.CheckInDate.split('-')[0]+'年'+myData.dateInfo.CheckInDate.split('-')[1]+'月'+myData.dateInfo.CheckInDate.split('-')[2]+'日'+' - '+myData.dateInfo.CheckOutDate.split('-')[0]+'年'+myData.dateInfo.CheckOutDate.split('-')[1]+'月'+myData.dateInfo.CheckOutDate.split('-')[2]+'日'+' 共'+myData.dateInfo.totalNight+'晚（当地时间为准）';
