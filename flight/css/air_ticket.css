@@ -76,6 +76,10 @@
 
 .calendar dd a {
     line-height: 25px;
+    font-size: 1.4rem;
+}
+.calendar dt.title-date {
+    font-size: 1.4rem;
 }
 .calendar dd a span.live_circle {
     height: 24px;
