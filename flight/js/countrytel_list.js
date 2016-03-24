@@ -874,6 +874,7 @@ var arrCountry= [
     var ulshow = document.getElementById('jto_letter_list');
     var letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     var letterRight = [];
+    var movetops = [];//offsettop
     //left list
     var resultL = {};
     for(var i=0;i<letters.length;i++){
@@ -915,6 +916,11 @@ var arrCountry= [
     //click show pop list
     $('#contact-table .center').click(function(){
         $('.country-cho-wrap').show();
+        $('#jto_area_code>li').each(function(i){
+            var moveTop = $('#jto_area_code>li').eq(i).offset().top-45;
+            movetops.push(moveTop)
+        })
+        console.log(movetops)
     })
     $('#jto_area_code li ul li').click(function(){
         var ooo = $(this).attr('code');
@@ -946,11 +952,10 @@ var arrCountry= [
         })
     })
     //scroll
+
     $('#jto_letter_list li').each(function(i){
-        var scrolltop = $('#jto_area_code>li').eq(i).offset().top-45;
         $('#jto_letter_list li').eq(i).click(function(){
-            //console.log(scrolltop);
-            $('.snap-content').scrollTop(scrolltop);
+            $('.snap-content').scrollTop(movetops[i]);
         })
     })
 })();
