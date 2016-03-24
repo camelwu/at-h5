@@ -224,7 +224,7 @@ i {
     display: inline-block;
     width: 1.7rem;
     height: 1.7rem;
-    background: url(../images/ui/icons1.png) -26.6rem -0.4rem;
+    background: url(../images/ui/icons1.png) -23.7rem -0.4rem;
     background-size: 40rem 12rem;
     margin-top: 3px;
 }
@@ -594,7 +594,7 @@ i {
     top: 0;
     width: 88px;
     height: 42px;
-    background: #ddd;
+    background: #fdb330;
     color: #fff;
     text-align: center;
     line-height: 42px;

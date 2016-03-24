@@ -177,7 +177,7 @@
 
         //同意条款
         var oAgree=document.querySelector('.order-notice-btn');
-        var bOk=true;
+        var bOk=false;
         oAgree.onclick=function(){
             if(bOk){
                 oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
