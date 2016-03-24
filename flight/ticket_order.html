@@ -25,8 +25,8 @@
     <link href="../styles/framework.css" rel="stylesheet" type="text/css">
     <link href="../styles/style.css" rel="stylesheet" type="text/css">
     <link href="../styles/tips.css" rel="stylesheet" type="text/css">
-    <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!--<div id="preloader">
@@ -333,7 +333,7 @@
     </div>
 
     <!--国籍选择开始-->
-    <div class="all-elements country-cho-wrap">
+    <div class="all-elements country-cho-wrap" style="background:#fff; display: block;">
         <div class="header">
             <a href="javascript:;" class="header-back country-hidden">
                 <i class="icons go-back"></i>
@@ -343,47 +343,47 @@
                 <i></i>
             </div>
         </div>
-
-        <!--国籍弹窗开始-->
-        <ul class="country-list-searched"></ul>
-        <!--国籍弹窗结束-->
-
         <div class="snap-content" style="padding-top: 45px;">
-            <div class="country-wrap" id="country-wrap">
-                <ul class="inter-list jto_area_code">
+            <div class="country-wrap">
+                <ul class="inter-list jto_area_code" id="jto_area_code">
                     <li>
-                        <p>当前</p>
+                        <p name="dq">当前</p>
                         <ul>
-                            <li><i>中国</i><span>86</span></li>
+                            <li code="86"><i>中国</i><span>86</span></li>
                         </ul>
                     </li>
                     <li>
-                        <p>热门城市</p>
+                        <p name="rm">热门城市</p>
                         <ul>
-                            <li><i>新加坡</i><span>65</span></li>
-                            <li><i>香港</i><span>852</span></li>
-                            <li><i>日本</i><span>81</span></li>
+                            <li code="65"><i>新加坡</i><span>65</span></li>
+                            <li code="852"><i>香港</i><span>852</span></li>
+                            <li code="81"><i>日本</i><span>81</span></li>
                         </ul>
                     </li>
-
                 </ul>
             </div>
-            <ul>
-                <li>当前</li>
-                <li>热门城市</li>
+        </div>
+        <div class="jto_letter_list">
+            <ul id="jto_letter_list">
+                <li><a href="#dq">当前</a></li>
+                <li><a href="#rm">热门</a></li>
             </ul>
+        </div>
+        <div class="jto_seach" id="jto_seach">
+            <!--<ul class="inter-list jto_area_code jto_seachlist" id="jto_seachlist">-->
+                <!--<li code="86"><i>中国</i><span>86</span></li>-->
+            <!--</ul>-->
         </div>
     </div>
     <!--国籍选择结束-->
-
-    <!-- 电话弹框 begin-->
+    <!--j 电话弹框 begin-->
     <div class="jpop_box_tic">
         <dl>
             <dt>400 805 8888</dt>
             <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
         </dl>
     </div>
-    <!--电话弹框结束-->
+    <!--j 电话弹框结束-->
 
 </div>
 </body>
@@ -391,7 +391,9 @@
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/country_list.js"></script>
-<script src="../js/countrytel_list.js"></script>
+<!--<script src="../js/countrytel_list.js"></script>-->
+<script src="../scenic/js/pinyin.js"></script>
+<script src="js/countrytel_list.js"></script>
 <script src="js/hy_ticket_order.js"></script>
 
 <script>
