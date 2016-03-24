@@ -1624,12 +1624,33 @@ i{
 .order-total-tip {
     display: inline-block;
     vertical-align: middle;
-    margin-left: 0.5rem;
-    margin-top: 1.3rem;
-    width: 1.9rem;
-    height: 1.9rem;
-    background: url(../images/ui/icon.png) 28% 33%;
-    background-size: 40rem 12rem;
+    margin-right: 0.5rem;
+    margin-left: 0.2rem;
+    margin-top: .3rem;
+    width: 1.3rem;
+    height: 1rem;
+    background: url(../../images/ui/up-tri.png) no-repeat;
+    background-size: .6rem .4rem;
+}
+
+.order-total-tips {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    margin-left: 0.2rem;
+    margin-top: .3rem;
+    width: 1.3rem;
+    height: 1rem;
+    background: url(../../images/ui/down-tri.png) no-repeat;
+    background-size: .6rem .4rem;
+}
+
+.order-total-tip-details {
+    display: inline-block;
+    vertical-align: middle;
+    color: #ffb413;
+    /*font-weight: bold;*/
+    font-size: .5rem!important;
 }
 .per-price-cont {
     color: #fe6a03;
@@ -1901,11 +1922,11 @@ i{
     margin-top: 20px;
 }
 .price-tot-list li > span {
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
+    /*-webkit-box-felx:1;*/
+    /*-moz-box-flex:1;*/
+    /*-ms-flex:1;*/
+    /*-webkit-flex:1;*/
+    /*flex:1;*/
 }
 .price-tot-list li > span.price-totj{
     width: 6rem;
@@ -1923,7 +1944,7 @@ i{
 }
 .price-per-tit{
     padding-left: 20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .add-tic-owner{
     display: -moz-box;
