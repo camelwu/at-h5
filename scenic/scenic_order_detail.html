@@ -1275,6 +1275,10 @@
 								if(!Status){
 									return false;
 								}
+								if(Childtmp > ExtendData.DetailData.data.childAgeMax || Childtmp < ExtendData.DetailData.data.childAgeMin){
+									jAlert("请输入正确的儿童年龄范围", "提示");
+									return false;
+								}
 
 								ChildArray.push(Childtmp);
 							}
