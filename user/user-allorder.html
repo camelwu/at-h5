@@ -110,19 +110,19 @@
 	</div>
 	<!--    无订单页   -->
 	<div id="black_page" class="user-content" style="display: none">
-		<div id="noOrder">
-			<div class="black-con">
-				<div class="bu_icon order"></div><br/>
-				暂时没有相关订单，快去下单吧！
+		<div id="noOrder" style="margin: 0 auto; width: 250px; margin-top: 150px">
+			<div class="black-con" style="position: relative; height: 110px;" >
+				<div class="bu_icon order" style="position: absolute; left: 50%; margin-left: -35px; top: 0;" ></div>
 			</div>
-			<input class="f_btn button-yellow" type="button" style="width: 50%;margin-left: 25%" value="马上下单"/>
+			<span style="display: block; text-align: center">暂时没有相关订单，快去下单吧！</span>
+			<input class="f_btn button-yellow  buyOrder" type="button" style="width: 50%;margin-left: 25%" value="马上下单"/>
 		</div>
-		<div id="noSignal">
-			<div class="black-con">
-				<div class="bu_icon wifi"></div><br/>
-				网络不给力，点击页面再试试吧
-			</div>
-		</div>
+		<!--<div id="noSignal">-->
+			<!--<div class="black-con">-->
+				<!--<div class="bu_icon wifi"></div><br/>-->
+				<!--网络不给力，点击页面再试试吧-->
+			<!--</div>-->
+		<!--</div>-->
 	</div>
 </div>
 <script src="../js/lib/jquery.js"></script>
@@ -138,6 +138,13 @@
 	};
 
 	$(document).ready(function(){
+
+		$(".buyOrder").on("click",function(){
+			location.href="../index.html"
+
+		})
+
+
 		var memberId=JSON.parse(localStorage.getItem('memberid'));
 		var Parameters= {
 			"Parameters": "{\"MemberId\":\""+memberId+"\"}",
@@ -146,7 +153,7 @@
 		}
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
 			if(data.success) {
-				if(data.data !=null) {
+				if(data.data !=null && data.data.length>0 ) {
 					var html = template("tpl_ticket", data.data);
 					$(".ticket-div").html(html);
 					$(".hotel-div-cancel").on("click", function () {

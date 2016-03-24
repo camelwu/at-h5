@@ -5,11 +5,13 @@ var ticketSingle = {
     requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
 
     dateInit:function(arg){
-
+        var paraObj = {
+            start:this.backParaObj.DepartDate};
+        console.log(paraObj)
         var myDate= new TicketDate({
             id: 'dateIcon',
             num: 13,
-            time: {},
+            time: paraObj,
             sClass1: 'num-wrap',
             type:'Oneway',
             fn:this.dateChangeRender

@@ -148,8 +148,8 @@
             //just for wifi icon
             getServiceList : function(hotelRoomList){
                 var serverListHtml = "";
-                var wifiSign = false;
-                var transferSign = false;
+                var wifiSign = 0;
+                var transferSign = 0;
                 var roomList = null;
                 for(var i=0,len=hotelRoomList.length;i<len;i++){
                     roomList = hotelRoomList[i].roomList;
@@ -157,13 +157,13 @@
                         if(wifiSign && transferSign){
                             break;
                         }
-                        if(roomList[j].isFreeWifi){
+                        if(roomList[j].isFreeWifi && wifiSign < 1){
                             serverListHtml += "<span class='wifi-icon'></span>";
-                            wifiSign = true;
+                            wifiSign = 1;
                         }
-                        if(roomList[j].isFreeTransfer){
+                        if(roomList[j].isFreeTransfer && transferSign < 1){
                             serverListHtml += "<span class='transfer-icon'></span>";
-                            transferSign = true;
+                            transferSign = 1;
                         }
                     }
                 }
@@ -296,16 +296,6 @@
 				hotelDetail.$Id('imageContainer').style.display = 'block';
 			};
 
-            //事件冒泡处理
-            hotelDetail.addHandler(imageContainer,"click",function(){
-                //点击图片关闭大图显示
-                
-                var event = event || window.event;
-				var target = event.target || event.srcElement;
-                if(target.nodeName.toLowerCase() == "img"){
-                      imageContainer.style.display = 'none';                
-                }
-            });
 			//地图暂时不用
 			/*
 			 toMap.onclick = function () {
@@ -526,8 +516,9 @@
 			outerDiv.onclick = function(event) {
 				var e = event || window.event;
 				var tar = event.target || event.srcElement;
-				if (tar.id == 'imageContainer') {
-					tar.style.display = 'none'
+                //android下touch事件preventDefault 导致图片点击事件不能触发，将关闭大图显示事件处理在外层容器或header上
+				if (tar.id == 'imageContainer' || tar.className == 'indexShow') {
+					outerDiv.style.display = 'none'
 				}
 			};
             
@@ -543,8 +534,8 @@
 		},
 
 		startHandler : function(e) {
-			//hotelDetail.preventDefault(e);
-			//hotelDetail.stopPropagation(e);
+			hotelDetail.preventDefault(e);
+			hotelDetail.stopPropagation(e);
 			if (!hotelDetail.isAnimation) {
 				hotelDetail.tempStart = e.targetTouches[0].pageX;
 			} else {
@@ -553,8 +544,8 @@
 		},
 
 		moveHandler : function(e) {
-			//hotelDetail.preventDefault(e);
-			//hotelDetail.stopPropagation(e);
+			hotelDetail.preventDefault(e);
+			hotelDetail.stopPropagation(e);
 			var imgUl = document.getElementsByClassName('imgUl')[0];
 			imgUl.style.left = parseFloat(imgUl.style.left) + e.targetTouches[0].pageX - hotelDetail.tempStart + 'px';
 			hotelDetail.tempStart = e.targetTouches[0].pageX;
@@ -562,8 +553,8 @@
 		},
 
 		endHandler : function(e) {
-			//hotelDetail.preventDefault(e);
-			//hotelDetail.stopPropagation(e);
+			hotelDetail.preventDefault(e);
+			hotelDetail.stopPropagation(e);
 			var minLeftValue = (document.querySelectorAll('.imageLi').length - 1) * window.innerWidth;
 			var endLeftValue = parseFloat(document.getElementsByClassName('imgUl')[0].style.left);
 			var distance = endLeftValue - hotelDetail.tempCurLeft, time = 1000, targetLeft, indexNUm;
@@ -703,16 +694,14 @@
 
 		showRoomModals : function(result) {
 			var oDiv = document.createElement('div');
-			function showDesc(arr, num) {
-				if (num) {
-
-				} else {
-					if (!arr.length)
-						return '暂无描述';
-					if (!arr.imageDesc) {
-						return '暂无描述';
-					}
-				}
+			function showDesc(arr) {
+                var descStr = "暂无描述";
+                if(arr.length == 0){
+                    return descStr;
+                }else{
+                    descStr =  arr[0].imageDesc ? arr[0].imageDesc : descStr;
+                }
+                return descStr;
 			}
 
 			//房间设施数据处理
@@ -733,7 +722,7 @@
 					oSrc = '<div class="hdItem"><img class="hotelPic2" src="../images/hotelDetailerrorpic.png"></div>';
 				} else {
 					for (var i = 0; i < arr.length; i++) {
-						oSrc += '<div class="hdItem"><img class="hotelPic2" src="' + arr[i].imageFileName + '"></div>';
+						oSrc += '<div class="hdItem"><img class="hotelPic2" data-error="../images/hotelDetailerrorpic.png" src="../images/loading-hotel.gif" real-src="' + arr[i].imageFileName + '"></div>';
 					}
 				};
 				return oSrc;
@@ -750,6 +739,34 @@
 			 };*/
 			var message = '<div class="owl-carousel">' + showPic(result.data[0].hotelRoomFeaturesList) + '</div> <article class="r-ar">最多 2成人<br>儿童10岁或以上按照成人算。  10岁以下的儿童按照酒店的具体规定一般免费（但不提供早餐和加床）。婴儿（1岁以下）如果使用现有的床铺可免费入住。请注意，如果您需要一个婴儿床可能有额外收费 </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间描述</p> <article class="r-ar" id="hdRoomDesc">' + showDesc(result.data[0].hotelRoomFeaturesList) + ' </article> <hr size="1px" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">' + showFeature(result.data[0].hotelRoomAmenitiesList) + '</ul>';
 			jLayer(message, "房间信息");
+            
+            //图片懒加载
+            var images = document.getElementsByClassName('hotelPic2');
+			function loadImage(url,error_url, index, callback,errorFunc) {
+				var img = new Image();
+				img.src = url;
+				img.onload = function() {
+					img.onload = null;
+					callback(index);
+				};
+                img.onerror = function(){
+                    img.onerror = null;
+                    errorFunc();
+                }
+			}
+			for(var i=0;i<images.length;i++){
+				if(!images[i]){return;}
+				var re_url = images[i].getAttribute('real-src');
+                var error_url = images[i].getAttribute('data-error');
+				(function(i,re_url){
+					loadImage(re_url,error_url, i, function(i) {
+						images[i].setAttribute('src', re_url);
+					},function(){
+                        images[i].setAttribute('src', error_url);
+                    });
+				})(i,re_url)
+			}
+            
 			//如果图片没有加载出来就显示默认图片
 			var aImg = oDiv.getElementsByTagName('img');
 			var hdRoomDesc = document.getElementById('hdRoomDesc');
@@ -766,8 +783,8 @@
 			});
 			owl.on('changed.owl.carousel', function(ev) {
 				console.log(ev);
-				if (result.data[0].hotelRoomFeaturesList[ev.item.index]) {
-					hdRoomDesc.innerHTML = result.data[0].hotelRoomFeaturesList[ev.item.index];
+				if (result.data[0].hotelRoomFeaturesList[ev.item.index].imageDesc) {
+					hdRoomDesc.innerHTML = result.data[0].hotelRoomFeaturesList[ev.item.index].imageDesc;
 				} else {
 					hdRoomDesc.innerHTML = '暂无描述'
 				}

@@ -50,13 +50,13 @@
 	</style>
 </head>
 <body>
-<div id="preloader">
-	<div id="status-f">
-		<p class="center-text">
-			<em>加载中……</em>
-		</p>
-	</div>
-</div>
+<!--<div id="preloader">-->
+	<!--<div id="status-f">-->
+		<!--<p class="center-text">-->
+			<!--<em>加载中……</em>-->
+		<!--</p>-->
+	<!--</div>-->
+<!--</div>-->
 <div class="all-elements">
 	<div class="header" id="toper">
 		<a href="#" class="header-back name-illustrate closedWin"><i class="icons go-back"></i></a>
@@ -388,7 +388,7 @@
 	,numofChlid=vlm.getpara("numofChlid")//id;
 
 	$(".newTitle").html("新增"+titleType);
-	vlm.init();
+
 	//中-英
 	$('#chn-name .foreign').click(function() {
 		$('#chn-name').hide();
@@ -926,7 +926,10 @@
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
 			var myJson = data;
 			if (myJson.success) {
-				window.location.reload();
+				//window.location.reload();
+				$(".addAir-page").hide();
+				get_allList();
+
 			} else {
 				alert(myJson.message);
 			}

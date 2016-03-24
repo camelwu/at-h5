@@ -17,6 +17,7 @@ var ticketDouble = {
             time: dateInitObj,
             sClass1: 'date-wrap-double',
             type:'Return',
+            dateObj:{start:this.backParaObj.DepartDate,end:this.backParaObj.ReturnDate},
             fn:this.dateChangeRender
         });
     },

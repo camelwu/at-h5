@@ -76,6 +76,10 @@
 
 .calendar dd a {
     line-height: 25px;
+    font-size: 1.4rem;
+}
+.calendar dt.title-date {
+    font-size: 1.4rem;
 }
 .calendar dd a span.live_circle {
     height: 24px;
@@ -2777,11 +2781,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .choose-agree-info{
     position: relative;
-    top: 0.2rem;
+    top: 0.3rem;
     left:-0.3rem;
     display: inline-block;
     width: 1.7rem;
-    height: 1.7rem;
+    height: 1.8rem;
     background-image: url("../../images/ui/icons1.png");
     background-size:40rem 12rem ;
     margin-top: -0.2rem;

@@ -827,12 +827,13 @@
 
 					$(".js-childblock1").after(tpl_ScenicView1);
 					for (var i = 0; i < data.SearchPriceData.data.tourInfos.length; i++) {
-						var child_one = $(".js-sce-ticket1").append(tpl_Adult_Child1);
+						var child_one = $(".js-sce-ticket1").append(tpl_Adult_Child1),tchild=ExtendData.isAudlt?"(成人票)":"(儿童票)";
 						child_one.find(".sce-ticket:last").attr("data-key", 1);
 						child_one.find(".sce-ticket:last").find(".js-date:eq(" + i + ")").attr("id", "jdate" + i);
 						child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
 						child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[i].tourID);
-						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName + "(产品编号:" + data.DetailData.data.packageRefNo + ")");
+
+						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+ "(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild);
 
 					}
 
@@ -863,9 +864,9 @@
 
 					$(".js-childblock2").after(tpl_ScenicView2);
 					for (var j = 0; j < data.SearchPriceData.data.tourInfos.length; j++) {
-						var child_two = $(".js-sce-ticket2").append(tpl_Adult_Child2);
+						var child_two = $(".js-sce-ticket2").append(tpl_Adult_Child2),tchild=!ExtendData.isAudlt?"(成人票)":"(儿童票)";
 						child_two.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[j].tourID);
-						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "(产品编号:" + data.DetailData.data.packageRefNo + ")");
+						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild);
 					}
 
 					MT.OnePrice(2);
