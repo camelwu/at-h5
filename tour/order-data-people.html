@@ -501,18 +501,20 @@
 									childWithBed.push(temEle.querySelectorAll('input')[0].value);
 									childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
 								}
-								for (var s = 0; s < childChooseParent.length; s++) {
-									var ty = childChooseParent[s];
-									var tt = ty.querySelector('.icon.noselect');
-									if (temChildNum == 1) {
-										if (tt.className.indexOf('ico_select') > -1) {
-											childWithBed.push(ty.parentNode.querySelector('input').value);
-										} else {
-											childWithOutBed.push(ty.parentNode.querySelector('input').value)
+								if(temAdultNum == 2||temAdultNum == 3){
+									for (var s = 0; s < childChooseParent.length; s++) {
+										var ty = childChooseParent[s];
+										var tt = ty.querySelector('.icon.noselect');
+										if (temChildNum == 1) {
+											if (tt.className.indexOf('ico_select') > -1) {
+												childWithBed.push(ty.parentNode.querySelector('input').value);
+											} else {
+												childWithOutBed.push(ty.parentNode.querySelector('input').value)
+											}
+										}else if (temChildNum == 2){
+											childWithBed.push(temEle.querySelectorAll('input')[0].value);
+											childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
 										}
-									}else{
-										childWithBed.push(temEle.querySelectorAll('input')[0].value);
-										childWithOutBed.push(temEle.querySelectorAll('input')[1].value);
 									}
 								}
 								childWithBed.length > 0 ? temObj.childWithBed = childWithBed :
