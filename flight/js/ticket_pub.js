@@ -55,6 +55,7 @@ TicketDate.prototype.inputEvent=function(){
             }else{
                 var idate = new Date(nowY , nowM+i, 01);
                 if(that.type=="Oneway"){
+                    console.log(that.singleDate)
                     that.drawDate(idate);
                     that.linkColor("Oneway",that.singleDate)
                 }else{
@@ -729,6 +730,7 @@ var  conditionalFiltering = {
                     var spEle = rightCock2.querySelector('SPAN');
                     spEle.innerHTML ='价格';
                     iEle.className ='';
+                     arg.querySelector('i').className='red-tip';
                     that.tempStates.PriorityRule = '0';
                      middleModal.style.transition = 'all 300ms ease-in';
                      middleModal.style.webkitTransition = 'all 300ms linear';
@@ -972,7 +974,7 @@ var  conditionalFiltering = {
             };
             shadowEle.onclick = function(event) {
                 var event = event || window.event;
-                var target = target || event.srcElement, lineEle;
+                var target = target || event.srcElement, lineEle, that=conditionalFiltering;
                 var leftModal = document.querySelector('#filter-modal');
                 var timeModal = document.querySelector('#time-modal');
                 var priceModal = document.querySelector('#price-modal');
@@ -980,13 +982,13 @@ var  conditionalFiltering = {
                     leftModal.style.transition = 'all 300ms ease-in';
                     leftModal.style.webkitTransition = 'all 300ms linear';
                     leftModal.style.bottom = '-126%';
-                    timeModal.style.transition = 'all 300ms ease-in';
-                    timeModal.style.webkitTransition = 'all 300ms linear';
-                    timeModal.style.bottom = '-126%';
                     priceModal.style.transition = 'all 300ms ease-in';
                     priceModal.style.webkitTransition = 'all 300ms linear';
                     priceModal.style.bottom = '-126%';
                     this.style.display = 'none';
+                    timeModal.style.transition = 'all 300ms ease-in';
+                    timeModal.style.webkitTransition = 'all 300ms linear';
+                    timeModal.style.bottom = '-126%';
                 }
             }
         };
@@ -1258,12 +1260,8 @@ var  conditionalFiltering = {
                  }else{
                      leftEle.querySelector('i').className = ''
                  };
-                 if(this.tempStates['PriorityRule']!= this.originInfo['PriorityRule']){
                      middleEle.querySelector('i').className = 'red-tip'
-                 }else{
-                     middleEle.querySelector('i').className = ''
-                 };
-                   rightEle.querySelector('i').className = 'red-tip'
+                     rightEle.querySelector('i').className = 'red-tip'
              }
         }else{
             if(this.sinOrDou == 'Oneway'){  //单程国内
