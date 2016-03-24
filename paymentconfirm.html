@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="preloader">
-    <div id="status-t">
+    <div id="statusDiv" class="status-t">
         <p class="center-text">
             <br>
             <em>订单确认中，请稍等……</em>
@@ -35,8 +35,23 @@ $(document).ready()
     var foreEndType=vlm.getpara("foreEndType");
     var bookingRefNo=vlm.getpara("bookingRefNo");
     var pgtid=vlm.getpara("pgtid");
-
     debugger;
+    $("#statusDiv").removeClass();
+    if(business==1) {
+        $("#statusDiv").addClass("status-h");
+    }
+    else if(business==2){
+        $("#statusDiv").addClass("status-t");
+    }
+    else if(business==3){
+        $("#statusDiv").addClass("status-f");
+    }
+    else if(business==5){
+        $("#statusDiv").addClass("status-t");
+    }
+    else{
+        $("#statusDiv").addClass("status");
+    }
     var data = {
         "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
         "ForeEndType": 3

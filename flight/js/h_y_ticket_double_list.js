@@ -338,7 +338,7 @@ var ticketDouble = {
             var  transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
             var  tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>=1?'+'+arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
             var  str = '';
-            var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
+            var isStrop = arg.data.flightInfos[i].isLeaveStop == true?' | <span class="green-tip">经停</span>':'';
             var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
             str+='<div class="go">'+
             '<div class="go-info">'+
@@ -368,7 +368,7 @@ var ticketDouble = {
             var transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsReturn);
             var  tipDay = arg.data.flightInfos[i].flightReturnSpacingDay>=1?'+'+arg.data.flightInfos[i].flightReturnSpacingDay+'天':'';
             var str = '';
-            var isStrop = arg.data.flightInfos[i].isLeaveStop == true?'&nbsp;|&nbsp;<span class="green-tip">经停</span>':'';
+            var isStrop = arg.data.flightInfos[i].isReturnStop == true?' | <span class="green-tip">经停</span>':'';
             var isShareFlight = arg.data.flightInfos[i].isReturnShareFlight == true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>':'';
             str+='<div class="go">'+
             '<div class="go-info">'+
