@@ -20,10 +20,6 @@
     var jsonPackage=JSON.parse(localStorage.info);
     console.log(jsonPackage);
 
-    //从用户中心添加旅客
-    var aa=window.localStorage.contact_selected;
-    console.log(aa);
-
     function init(){
         var Parmeters=
         {
@@ -132,13 +128,12 @@
                 //hotel
                 hotelID=arr2[0].split('=')[1];
                 //航班信息
-                var airFli=arr2[1].split('=')[1];
+                var airFli=arr2[2].split('=')[1];
                 switch (airFli){
                     case 'None':
                         $('#flight-air').remove();
                         break;
                     case 'TwoWay':
-                        $('#flight-air').remove();
                         break;
                     case 'Arrival':
                         $('#content3').remove();

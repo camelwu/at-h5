@@ -503,7 +503,7 @@ function styleChange(id, mytext) {
 					str2 += '<span class="h-transfer"></span>';
 				}
 				if (data[i].isCashRebate) {
-					str3 = '<div class="h-div1" style="background-color: #ffb412">现金奖励</div>';
+					str3 = '<div class="h-div1" style="background-color: #ffb412">返现</div>';
 				}
 				if (data[i].isFreeCityTour) {
 					str4 = '<div class="h-div1">免费景点</div>';
@@ -514,7 +514,7 @@ function styleChange(id, mytext) {
 					data[i].location = '(' + data[i].location + ')';
 				}*/
                 
-				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list" data-hotelCode="'+data[i].hotelCode+'" data-InstantConfirmation="'+data[i].InstantConfirmation+'" data-AllOccupancy="'+data[i].AllOccupancy+'">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + namestr + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:0.8rem;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].location + '</p>' + '</div>' + '</li>';
+				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list" data-hotelCode="'+data[i].hotelCode+'" data-InstantConfirmation="'+data[i].InstantConfirmation+'" data-AllOccupancy="'+data[i].AllOccupancy+'">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + namestr + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:12px;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].location + '</p>' + '</div>' + '</li>';
                 
                 liHtml += str;
 			}
@@ -523,12 +523,12 @@ function styleChange(id, mytext) {
             var timer =setTimeout(function(){
                 list_oUl.innerHTML += liHtml;
                 
-                var moreEle = document.getElementById("load-more");
+                var moreEle = document.getElementById("loadMore");
                 if(data.length < url_json.pageSize){
                     moreEle.setAttribute("data-more","no");
                     moreEle.innerHTML = "没有更多数据了";
                 }else{
-                    moreEle.innerHTML = "上拉加载更多";
+                    moreEle.innerHTML = "点击加载更多";
                 }
                 
                 //横屏竖屏时改变酒店名宽度
@@ -993,6 +993,26 @@ function styleChange(id, mytext) {
     */
     
     //加载更多
+    function loadMore(){
+        var loadMore = document.getElementById("loadMore");
+        var pageIndex = 1;
+       //没有更多 数据加载标识
+        var loadMoreSign = loadMore.getAttribute("data-more");
+        if(loadMoreSign == "no"){
+            return;
+        }
+        
+        loadMore.innerHTML = "正在加载..."
+        pageIndex = pageIndex + 1;
+        url_json.pageIndex = pageIndex;
+        //TODO set page size  defualt set 20
+        //url_json.pageSize;
+        M(url_json);
+    }
+    lsf_myweb.bind(document.getElementById("loadMore"), 'click',function(event){
+        loadMore();
+    });
+    /*
     function loadMore(scrollContainerId){
         var listContainer = lsf_myweb.getbyid(scrollContainerId);
         var listContainerHeight = 0;
@@ -1045,5 +1065,5 @@ function styleChange(id, mytext) {
     };
     
     loadMore("lsf_list");
-    
+    */
 })();

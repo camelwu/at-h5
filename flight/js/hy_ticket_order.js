@@ -132,6 +132,8 @@ var ticketOrder = {
             var target =event.target || event.srcElement;
             var that = ticketOrder;
             that.backParaObj = that.reverseInformation;
+            var selectTravellerList=window['localStorage']['travellerInfo_selected'];
+            debugger;
             if(!window['localStorage']['travellerInfo_selected']){
                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
                 return;
@@ -311,7 +313,8 @@ var ticketOrder = {
             } else {
                 event.stopPropagation();
             }
-            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
+            jTiper('<p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p>',
+                '退改签说明',function(){})
         });
 
         this.addHandler(document,'click', function(event){
