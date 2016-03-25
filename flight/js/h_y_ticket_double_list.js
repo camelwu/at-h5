@@ -56,7 +56,7 @@ var ticketDouble = {
     return '<span>'+array[1]+'-'+array[2]+'</span>'+' '+'<span>'+week+'</span>';
 },
 
-    tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
+    tAjax: function (questUrl, data, Code, ForeEndType, Callback,noShowLoading) {
         var that=this,dataObj =
         {
             Parameters: data,
@@ -64,7 +64,11 @@ var ticketDouble = {
             Code: Code
         };
         questUrl = questUrl?questUrl:that.requestUrl;
-        vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+        if(noShowLoading){
+            vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback,false,false,noShowLoading);
+        }else{
+            vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+        }
     },
 
     addHandler: function (target, eventType, handle) {
@@ -304,7 +308,20 @@ var ticketDouble = {
             shadowBox.style.display = 'none';
         });
     },
-
+    loadMoreHandler:function(pageNo,pageCount){
+        var loadMoreBtn = document.getElementById("loadMore");
+        loadMoreBtn.innerHTML = "点击加载更多";
+        loadMoreBtn.style.display = "block";
+        if(pageNo == pageCount){
+            loadMoreBtn.innerHTML = "没有更多数据了";
+        }
+    },
+    loadMoreBtnEvent:function(){
+        var loadMoreBtn = document.getElementById("loadMore");
+        this.addHandler(loadMoreBtn,"click",function(){
+            ticketDouble.loadMoreData();
+        })
+    },
     changeFlightList:function(arg, type){
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper'),ticketListStr = '',li;
@@ -330,6 +347,7 @@ var ticketDouble = {
             li.innerHTML = ticketListStr;
             ticketDetailUl.appendChild(li);
         }
+        this.loadMoreHandler(arg.data.pageNo,arg.data.pageCount);
         that.eventHandler();
         return;
         function goTrip(arg){
@@ -463,6 +481,20 @@ var ticketDouble = {
             return JSON.stringify(dataObj.data);
         }
     },
+    checkPullStatus:function(){
+        /*
+        var lis =  document.querySelectorAll('.air-tickets-detail-wrapper li');
+        var pullDown = document.querySelector('#pullDown'),pullUp = document.querySelector('#pullUp');
+        if(lis!=null&&lis.length>0){
+            pullDown.style.display = "block";
+            pullUp.style.display = "block";
+        }else{
+            pullDown.style.display = "none";
+            pullUp.style.display = "none";
+        }
+        */
+    },
+
     renderHandler:function(arg){
         var that = ticketDouble,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
@@ -494,6 +526,24 @@ var ticketDouble = {
             document.querySelector('.tip-button-para').style.display='block';
         }
     },
+
+    loadMoreData:function(){
+        var  that = ticketDouble;
+         var loadMore = document.getElementById("loadMore");
+        if(that.pageNo >= that.pageCount){
+            console.log(33)
+            $('#loadMore').fadeOut(1000);
+            jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
+        }else if(that.pageNo < that.pageCount){
+            console.log(44)
+            that.isClearAll = false;
+            that.backParaObj["pageNo"] ++;
+            console.log(that.backParaObj)
+            loadMore.innerHTML = "正在加载...";
+            that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler,true);
+        }
+    },
+
     handler1:function(arg){ //后台请求
         var that = ticketDouble;
         that.backParaObj = arg;
@@ -527,6 +577,7 @@ var ticketDouble = {
         this.isClearAll = true;
         this.flightResultArray = [];
         this.initLeftState = this.checkTip();
+        this.loadMoreBtnEvent();
     }
 };
 

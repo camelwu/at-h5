@@ -407,32 +407,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     padding: 0;
 }
-#pullDown, #pullUp {
-    background: #fff;
-    height: 40px;
-    line-height: 40px;
-    padding: 5px 10px;
-    border-bottom: 1px solid #ccc;
-    font-weight: bold;
-    font-size: 14px;
-    color: #888;
-}
-.pullUp{
-    margin-bottom:0.6rem;
-}
-#pullDown .pullDownIcon {
-    -webkit-transform: rotate(0deg) translateZ(0);
-}
-#pullDown .pullDownIcon, #pullUp .pullUpIcon {
-    display: block;
-    float: left;
-    width: 40px;
-    height: 40px;
-    background: url(../../images/pull-icon@2x.png) 0 0 no-repeat;
-    -webkit-background-size: 40px 80px;
-    background-size: 40px 80px;
-    -webkit-transition-property: -webkit-transform;
-    -webkit-transition-duration: 250ms;
+#loadMore{
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
 }
 
 #scroller ul {
