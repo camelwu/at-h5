@@ -388,6 +388,17 @@ uoHisData();
     //    var uo_box=document.getElementById('uo_box');
     //    document.documentElement.scrollTop='800';
     //});
+    //获取判断服务器给的数据的精度
+    function getAccuracy(digit){
+        var digitLen = new String(digit).length;
+        var dotIndex = new String(digit).indexOf(".");
+        return dotIndex > -1 ? digitLen - dotIndex - 1 : 0;
+    } 
+    
+    function formatFloat(f, digit) {
+        var m = Math.pow(10, digit);
+        return parseInt(f * m, 10) / m;
+    }
     // 明细部分展示
     function uo_detail(id1,id2,id3,id4,id5,id6,id7,json){
         console.log(json);
@@ -397,6 +408,9 @@ uoHisData();
         var oId3=document.getElementById(id3);
         var oId4=document.getElementById(id4);
         var oId5=document.getElementById(id5);
+        var accuracy = getAccuracy(json.totalPrice);
+        var totalPrice = parseFloat(json.totalPrice)*parseFloat(json.NumOfRoom);
+        var totalPriceCNY = parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
         oId1.innerHTML=json.NumOfRoom+'间×'+json.dateInfo.totalNight+'晚';
         if(parseInt(json.paymentModeID)==1){
             oId2.innerHTML='￥'+parseFloat(json.avgPriceCNY)*parseFloat(json.NumOfRoom);
@@ -406,14 +420,16 @@ uoHisData();
         }else if(parseInt(json.paymentModeID)==2){
             var oId6=document.getElementById(id6);
             var oId7=document.getElementById(id7);
+            
             oId2.innerHTML='SGD'+parseFloat(json.avgPrice)*parseFloat(json.NumOfRoom);
             oId3.innerHTML='SGD'+(parseFloat(json.taxCharges)*1000*parseFloat(json.NumOfRoom))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
-            oId6.innerHTML=parseFloat(json.totalPrice)*parseFloat(json.NumOfRoom);
-            oId7.innerHTML='约￥'+parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
+            //判断服务器给的数据的精度
+            oId6.innerHTML=accuracy > 0 ? formatFloat(totalPrice,accuracy) : totalPrice;
+            oId7.innerHTML='约￥'+ (accuracy > 0 ? formatFloat(totalPriceCNY,accuracy) : totalPriceCNY);
         }
-        fake_data.calcuTotalPrice=parseFloat(json.NumOfRoom)*parseFloat(json.totalPrice);
-        fake_data.calcuTotalPriceCNY=parseFloat(json.NumOfRoom)*parseFloat(json.totalPriceCNY);
+        fake_data.calcuTotalPrice=accuracy > 0 ? formatFloat(totalPrice,accuracy) : totalPrice;
+        fake_data.calcuTotalPriceCNY=accuracy > 0 ? formatFloat(totalPriceCNY,accuracy) : totalPriceCNY;
         localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
     }
     uo_detail('uo_hid_p2','uo_hid_span2','uo_hid_span3','uo_hid_met','uo_or_sum','uo_or_sum2','uo_or_sum2CNY',fake_data);

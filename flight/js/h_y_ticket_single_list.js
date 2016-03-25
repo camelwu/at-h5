@@ -7,7 +7,6 @@ var ticketSingle = {
     dateInit:function(arg){
         var paraObj = {
             start:this.backParaObj.DepartDate};
-        console.log(paraObj)
         var myDate= new TicketDate({
             id: 'dateIcon',
             num: 13,

@@ -588,8 +588,6 @@ var  ticketIndexModal = {
                createEle(iCityData);}
        },
        historyChooseHandler:function(arg,type){
-           console.log(arg)
-           console.log(type)
           var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
           var dCityData = this.storageUtil.get('dHisCity');

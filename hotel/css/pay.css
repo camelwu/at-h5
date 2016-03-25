@@ -14,7 +14,12 @@
 .p-p1{
     margin-top: 20px;
     margin-left: 15px;
-    font-size:1.1rem;
+    font-size:2.1rem;
+}
+.p-p11 {
+    margin-top: 20px;
+    margin-left: 15px;
+    font-size: 1.1rem;
 }
 .p-p1 span{
     color:#d1d1d1;

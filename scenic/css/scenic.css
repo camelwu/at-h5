@@ -1630,7 +1630,7 @@ i{
     width: 1.3rem;
     height: 1rem;
     background: url(../../images/ui/up-tri.png) no-repeat;
-    background-size: .6rem .4rem;
+    background-size: 1rem .8rem;
 }
 
 .order-total-tips {
@@ -1642,7 +1642,7 @@ i{
     width: 1.3rem;
     height: 1rem;
     background: url(../../images/ui/down-tri.png) no-repeat;
-    background-size: .6rem .4rem;
+    background-size: 1rem .8rem;
 }
 
 .order-total-tip-details {
@@ -1650,7 +1650,7 @@ i{
     vertical-align: middle;
     color: #ffb413;
     /*font-weight: bold;*/
-    font-size: .5rem!important;
+    font-size: 1.3rem!important;
 }
 .per-price-cont {
     color: #fe6a03;
@@ -1868,7 +1868,41 @@ i{
     width: 47px;
 }
 /*景点预订免登陆结束*/
-
+/*旅行须知*/
+.travelnotes-warp{
+    position: fixed;
+    display: inline-block;
+    width: 90%;
+    height: 55%;
+    margin: 30% 5% 0 5%;
+    box-sizing: border-box;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    z-index: 98;
+    background: #ffffff;
+}
+.travelnotes-header{
+    display: block;
+    width: 100%;
+    height: 15%;
+    box-sizing: border-box;
+    padding: 0;
+    background-color: #ffb413;
+}
+.travelnotes-header label{
+    float: left;
+    font-size: 1.7rem;
+    color: #fff;
+    padding-left: 1rem;
+    height: 100%;
+    line-height: 100%;
+}
+.travelnotes-header-icon{
+    float: right;
+    background: url(../images/ui/icons1.png) -0.3rem 0.3em;
+    background-size: 33rem 10rem;
+}
+/*旅行须知*/
 /*景点预订明细开始*/
 .mask {
     width: 100%;
