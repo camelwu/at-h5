@@ -1252,11 +1252,7 @@ var  conditionalFiltering = {
                  }else{
                      leftEle.querySelector('i').className = ''
                  };
-                 if(this.tempStates['PriorityRule']!= this.originInfo['PriorityRule']||this.tempStates['isDesc']!= this.originInfo['isDesc']){
-                     middleEle.querySelector('i').className = 'red-tip'
-                 }else{
-                     middleEle.querySelector('i').className = ''
-                 };
+                 middleEle.querySelector('i').className = 'red-tip'
                  rightEle.querySelector('i').className = 'red-tip'
              }else{  //双程国际
                  if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
