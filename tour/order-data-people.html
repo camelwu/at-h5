@@ -474,9 +474,6 @@
 								}
 								localStorage.noon = noon;
 								var tpl_GetTour = template("tpl_GetTour", data);
-								if (localStorage.getItem('init') != '1') {
-									dateHandler.init();
-								}
 								$('#tourTime').html(tpl_GetTour);
 								// 向景点增加时间
 								$(".content3_CheckInDate").val(day_start);
@@ -734,7 +731,6 @@
 				}();
 				ww.MT = ww.MT || {};
 				ww.MT.load = function() {
-					inpitInfo.FlashLoad();
 					inpitInfo.GetSpot();
 				};
 
