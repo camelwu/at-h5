@@ -128,7 +128,7 @@
     </section>
     {% if(tours[i].travelDate){ %}
     <section class="trip_box">
-        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%} {%=tourNoon%}</span>
+        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%} {%=tourNoon[i]%}</span>
     </section>
     {% } %}
     {% } %}
@@ -146,7 +146,7 @@
     {% } %}
 </script>
 <script>
-    var tourNoon;
+    var tourNoon = [];
     (function(){
         var ww = this;
         var sh_orderDetail = function(){
@@ -249,12 +249,10 @@
                             '订单总额：<b class="orange">¥</b><i class="orange">'+totalPrice+'</i>' +
                             '<a href="#">费用明细</a>'
                         ].join('');
-                        var noon = localStorage.noon;
-                        if(noon == 0){
-                            tourNoon = '上午';
-                        }else{
-                            tourNoon = '下午';
-                        }
+
+                        tourNoon  =localStorage.getItem("noon");
+                        tourNoon = tourNoon.split(",");
+                        console.log(tourNoon);
                         var html_pi = template(tpl1,data);
                         var html_hi = template(tpl2,data);
                         var tpl_GetTourInfo = template("tpl_GetTourInfo",data);

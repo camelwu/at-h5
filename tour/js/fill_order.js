@@ -173,23 +173,24 @@
                 vlm.f_choice('contact',"ht",'contact','',false,false,null,null,null,null);
         })
 
-
+        sentPackage(oReserve);
 
         //同意条款
         var oAgree=document.querySelector('.order-notice-btn');
-        var bOk=false;
+        var bOk=true;
         oAgree.onclick=function(){
             if(bOk){
+                oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
+                oAgree.style.backgroundSize='40rem 12rem';
+                oReserve.style.backgroundColor='#ddd';
+                sentPackage(oReserve);
+                bOk=false;
+            }else{
                 oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
                 oAgree.style.backgroundSize='40rem 12rem';
                 oReserve.style.backgroundColor='#fdb330';
                 oReserve.style.color='#fff';
-                sentPackage(oReserve);
-                bOk=false;
-            }else{
-                oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
-                oAgree.style.backgroundSize='40rem 12rem';
-                oReserve.style.backgroundColor='#ddd';
+
                 bOk=true;
             }
         };
