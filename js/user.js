@@ -94,10 +94,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
         function addTraveler(obj) {
             obj.onclick = function () {
-                var travelId = array[index];
-                //console.log(travelId);
-                var id = arrayId[index];
-                //console.log(id);
                 var input = document.getElementById("addForm").getElementsByTagName("input");
                 var postCard = document.getElementById("postCard").innerHTML;
                 var cardId;
@@ -165,6 +161,30 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     sexCode = "Mrs";
                     sexName = "女";
                 }
+                // 手机号邮箱检验
+                var oMobile = $('#mobile-cell-add')[0].value;
+                var oEmail = $('#email-cell-add')[0].value;
+
+                if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+                {
+                    jAlert('请输入正确的手机号');
+                    return;
+                }
+                if ( ! vlm.Utils.validate.email(oEmail) )
+                {
+                    jAlert('请输入正确的邮箱');
+                    return;
+                }
+
+                var Parameters = {
+                    "Parameters": "{\"Traveller\":{\"IdName\":\"" + input[0].value + "\",\"LastName\":\"" + input[1].value + "\",\"FirstName\":\"" + input[2].value + "\",\"CountryCode\":\""+$('#addtra_page .country-btn').eq(1).attr('data-code')+"\",\"CountryName\":\""+$('#addtra_page .country-btn').eq(1).html()+"\",\"SexCode\":\"" + sexCode + "\",\"SexName\":\"" + sexName + "\",\"DateOfBirth\":\""+input[5].value+"\",\"Email\":\"" + input[7].value + "\",\"MemberId\":\"" + memberId + "\",\"MobilePhone\":\"" + input[6].value + "\"},\"ListTravellerIdInfo\":[{\"IdType\":"+cardId+",\"IdNumber\":\"" + input[3].value + "\",\"IdCountry\":\""+$('#addtra_page .country-btn').eq(0).attr('data-code')+"\",\"IdActivatedDate\":\""+input[4].value+"\"}]}",
+                    "ForeEndType": 3,
+                    "Code": "0071"
+                };
+
+
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
             }
             //新增常旅取消按钮提示
             var input = document.getElementById("addForm").getElementsByTagName("input");
