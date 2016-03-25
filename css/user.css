@@ -1143,13 +1143,8 @@
     padding-bottom: 16px;
     margin-left: 15px;
     font-size: 14px;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid #dedede;
+    overflow: hidden;
 }
 
 .addAir-info li:last-child {
@@ -1158,27 +1153,30 @@
 
 .addAir-info div {
     font-size: 15px;
-    -webkit-box-felx: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
+    float: left;
+    width: 80px;
 }
-
-.addAir-info li div:last-child {
-    -webkit-box-felx: 2;
-    -moz-box-flex: 2;
-    -ms-flex: 2;
-    -webkit-flex: 2;
-    flex: 2;
+.addAir-info .country-btn {
+    width: 60%;
+    float: left;
+    height: 20px;
+    margin-left: 12%;
+}
+.addAir-info .sex-cho-wrap {
+    width: 60%;
+    margin-left: 12%;
 }
 
 .addAir-info input {
-    -webkit-box-felx: 2;
-    -moz-box-flex: 2;
-    -ms-flex: 2;
-    -webkit-flex: 2;
-    flex: 2;
+    float: left;
+    margin-left: 12%;
+    width: 60%;
+}
+
+.addAir-info .postCard{
+    width: 60%;
+    float: left;
+    margin-left: 12%;
 }
 
 .user-account {
