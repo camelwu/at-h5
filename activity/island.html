@@ -9,6 +9,14 @@
     <link href="css/activity.css" rel="stylesheet"/>
 </head>
 <body>
+<div id="preloader" style="">
+    <div id="status-f">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
     <div class="all-elements all-green">
         <section>
             <img src="../images/activity/island.jpg" alt=""/>
@@ -43,7 +51,7 @@
     <script src="../js/lib/template.js"></script>
     <script>
         (function() {
-            vlm.init();
+
             $(document).ready(function() {
                 window.addEventListener('load', function() {
 //                    FastClick.attach(document.body);
@@ -223,6 +231,7 @@
             ];
             var  html_tj = template("tpl_seoul", data);
             $("#act-list").html(html_tj);
+            vlm.init();
         })();
         function getNowFormatDate() {
             var date = new Date();
