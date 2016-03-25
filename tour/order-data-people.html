@@ -611,22 +611,22 @@
 								getHotel();
 							}
 						} else {
-//							var exaddChild = document.getElementsByClassName('extraChild');
-//							for (var v = 0; v < exaddChild.length; v++) {
-//								if (exaddChild[v].style.display != 'none') {
-//									var input = exaddChild[v].getElementsByClassName("inp-cage");
-//									for (var w = 0; w < input.length; w++) {
-//										if(input[w].value == '')
-//										{
-//											jAlert('请输入儿童年龄!');
-//											return;
-//										}else if(input[w].value < childAgeMin || input[w].value > childAgeMax) {
-//											jAlert('儿童年龄不符合标准!');
-//											return;
-//										}
-//									}
-//								}
-//							}
+							var exaddChild = document.getElementsByClassName('extraChild');
+							for (var v = 0; v < exaddChild.length; v++) {
+								if (exaddChild[v].style.display != 'none') {
+									var input = exaddChild[v].getElementsByClassName("inp-cage");
+									for (var w = 0; w < input.length; w++) {
+										if(input[w].value == '')
+										{
+											jAlert('请输入儿童年龄!');
+											return;
+										}else if(input[w].value < childAgeMin || input[w].value > childAgeMax) {
+											jAlert('儿童年龄不符合标准!');
+											return;
+										}
+									}
+								}
+							}
 
 							allNum = adultNum + childNum;
 							if (adultNum > maxAdult && maxAdult != -1) {
