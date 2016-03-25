@@ -523,12 +523,12 @@ function styleChange(id, mytext) {
             var timer =setTimeout(function(){
                 list_oUl.innerHTML += liHtml;
                 
-                var moreEle = document.getElementById("load-more");
+                var moreEle = document.getElementById("loadMore");
                 if(data.length < url_json.pageSize){
                     moreEle.setAttribute("data-more","no");
                     moreEle.innerHTML = "没有更多数据了";
                 }else{
-                    moreEle.innerHTML = "上拉加载更多";
+                    moreEle.innerHTML = "点击加载更多";
                 }
                 
                 //横屏竖屏时改变酒店名宽度
@@ -993,6 +993,26 @@ function styleChange(id, mytext) {
     */
     
     //加载更多
+    function loadMore(){
+        var loadMore = document.getElementById("loadMore");
+        var pageIndex = 1;
+       //没有更多 数据加载标识
+        var loadMoreSign = loadMore.getAttribute("data-more");
+        if(loadMoreSign == "no"){
+            return;
+        }
+        
+        loadMore.innerHTML = "正在加载..."
+        pageIndex = pageIndex + 1;
+        url_json.pageIndex = pageIndex;
+        //TODO set page size  defualt set 20
+        //url_json.pageSize;
+        M(url_json);
+    }
+    lsf_myweb.bind(document.getElementById("loadMore"), 'click',function(event){
+        loadMore();
+    });
+    /*
     function loadMore(scrollContainerId){
         var listContainer = lsf_myweb.getbyid(scrollContainerId);
         var listContainerHeight = 0;
@@ -1045,5 +1065,5 @@ function styleChange(id, mytext) {
     };
     
     loadMore("lsf_list");
-    
+    */
 })();
