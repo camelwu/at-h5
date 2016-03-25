@@ -337,7 +337,7 @@
 						} else if (i == 1) {
 							return '<span class="bedList" style="float: left"><i>儿童年龄' + i + '</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>' + '</div>';
 						} else if (i == 2) {
-							return '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童年龄2</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge();"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
+							return '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童年龄2</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
 						}
 					}
 
@@ -826,7 +826,7 @@
 				}
 			};
 			function setAge(obj){
-				console.log(obj.value);
+				//console.log(obj.value);
 				obj.value=obj.value.replace(/\D/ig,'');
 			}
 		</script>
