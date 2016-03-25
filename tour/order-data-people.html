@@ -141,6 +141,9 @@
 				};
 				var tagAndEvent = function() {
 					initRooms();
+					if (localStorage.getItem('init') != '1') {
+						dateHandler.init();
+					}
 					function toUp(m, n, n_1) {
 						var _type = n.parentNode.getAttribute("data-type");
 						var str = '', temAll = 0, roomEle = '';
@@ -734,7 +737,7 @@
 				}();
 				ww.MT = ww.MT || {};
 				ww.MT.load = function() {
-					inpitInfo.FlashLoad();
+
 					inpitInfo.GetSpot();
 				};
 

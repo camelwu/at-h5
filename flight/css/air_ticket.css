@@ -37,7 +37,21 @@
     top: 0;
     left: 0;
 }
-
+.ticket-order-tel{
+    width: 21px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+.ticket-order-tel i{
+    display: block;
+    background-image: url(../../images/ui/icons.png);
+    background-position: -218px -73px;
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    width: 17px;
+    height: 27px;
+}
 .calendar {
     margin-bottom: 0;
 }
@@ -118,8 +132,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 1.25rem;
     height: 2rem;
     background: url(../../images/icons.png) 0 0;
-    background-size: 24.3rem 16rem;
-    margin-top: 1.2rem;
+    background-size: 24.3rem 14rem;
+    margin-top: 12px;
 }
 
 .air_content {
@@ -1063,7 +1077,7 @@ h1, h2, h3, h4, h5, h6 {
 .go-info .start-time-info .air-port-word {
     display:block;
     font-size: 1.1rem;
-    margin-top:3.8rem;
+    margin-top:4rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -1151,7 +1165,7 @@ h1, h2, h3, h4, h5, h6 {
 .end-time-info .air-port-word {
     display: block;
     font-size: 1.1rem;
-    margin-top: 3.8rem;
+    margin-top: 4rem;
     position: absolute;
     right: 0;
     top:0
@@ -1316,7 +1330,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.0rem;
     color: #fe6a00;
     position: absolute;
-    top: 3.8rem;
+    top:4rem;
     right: 2%
 }
 

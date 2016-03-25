@@ -106,7 +106,8 @@ var ticketSeatChoose = {
                 event.stopPropagation();
             }
 
-            jLayer('<p style="padding-left: 15px">退改签规则，以航司为准!</p>','退改签说明',function(){})
+            jTiper('<p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p>',
+                '退改签说明',function(){})
         });
         if(detailWord){
             this.addHandler(detailWord,'click', function(event){

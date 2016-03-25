@@ -196,18 +196,6 @@ var ticketSingle = {
 
         });
     },
-
-    checkPullStatus:function(){
-        var lis =  document.querySelectorAll('.air-tickets-detail-wrapper li');
-        var pullDown = document.querySelector('#pullDown'),pullUp = document.querySelector('#pullUp');
-        if(lis!=null&&lis.length>0){
-            pullDown.style.display = "block";
-            pullUp.style.display = "block";
-        }else{
-            pullDown.style.display = "none";
-            pullUp.style.display = "none";
-        }
-    },
     renderHandler:function(arg){
         var arg = arg;
         var that = ticketSingle,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
@@ -241,7 +229,6 @@ var ticketSingle = {
                airTicketsListWrapper.innerHTML = "";
                document.querySelector('.tip-button-para').style.display='block';
           }
-        that.checkPullStatus()
     },
 
     taxDeal:function(arg){
@@ -359,7 +346,6 @@ var ticketSingle = {
             li.innerHTML = ticketListStr;
             ticketDetailUl.appendChild(li);
         }
-        this.loaded();
         this.eventHandler();
         return;
     },
@@ -488,96 +474,6 @@ var ticketSingle = {
             shadowBox.style.display = 'none';
         });
     },
-
-    /*refreshData:{*/
-        pullDownAction:function(){
-                var  that = ticketSingle;
-                if(that.pageNo >= that.pageCount){
-                    console.log(11)
-                     $('#pullUp').fadeOut(1000);
-                     that.myScroll.refresh()
-                    jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
-                }else if(that.pageNo < that.pageCount){
-                    console.log(22)
-                    that.isClearAll = false;
-                     that.backParaObj["pageNo"] ++;
-                     console.log(that.backParaObj)
-                     that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
-                }
-        },
-        pullUpAction:function(){
-            var  that = ticketSingle;
-            if(that.pageNo >= that.pageCount){
-                console.log(33)
-                $('#pullUp').fadeOut(1000);
-                that.myScroll.refresh()
-                jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
-            }else if(that.pageNo < that.pageCount){
-                console.log(44)
-                that.isClearAll = false;
-                that.backParaObj["pageNo"] ++;
-                console.log(that.backParaObj)
-                that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
-            }
-        },
-
-    loaded:function(){
-            var pullDownEl, pullDownOffset, pullUpEl, pullUpOffset;
-            pullDownEl = document.getElementById('pullDown');
-            pullDownOffset = pullDownEl.offsetHeight;
-            pullUpEl = document.getElementById('pullUp');
-            pullUpOffset = pullUpEl.offsetHeight;
-
-            this.myScroll = new iScroll('wrapper', {
-                useTransition: true,
-                topOffset: pullDownOffset,
-                onRefresh: function () {
-                    if (pullDownEl.className.match('loading')) {
-                        console.log(111)
-                        pullDownEl.className = '';
-                        pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
-                    } else if (pullUpEl.className.match('loading')) {
-                        console.log(222)
-                        pullUpEl.className = '';
-                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
-                    }
-                },
-                onScrollMove: function () {
-                    console.log(55)
-                    if (this.y > 5 && !pullDownEl.className.match('flip')) {
-                        pullDownEl.className = 'flip';
-                        pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
-                        this.minScrollY = 0;
-                    } else if (this.y < 5 && pullDownEl.className.match('flip')) {
-                        pullDownEl.className = '';
-                        pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
-                        this.minScrollY = -pullDownOffset;
-                    } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
-                        pullUpEl.className = 'flip';
-                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
-                        this.maxScrollY = this.maxScrollY;
-                    } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
-                        pullUpEl.className = '';
-                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
-                        this.maxScrollY = pullUpOffset;
-                    }
-                },
-                onScrollEnd: function () {
-                    if (pullDownEl.className.match('flip')) {
-                        pullDownEl.className = 'loading';
-                        pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
-                        console.log(66)
-                        ticketSingle.pullDownAction();
-                    } else if (pullUpEl.className.match('flip')) {
-                        pullUpEl.className = 'loading';
-                        pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
-                        console.log(77)
-                        ticketSingle.pullUpAction();
-                    }
-                }
-            });
-        /*}*/
-    },
     handler1:function(arg){ //后台请求
         var that = ticketSingle;
         that.backParaObj = arg;
@@ -596,8 +492,6 @@ var ticketSingle = {
         var generatedCount = 0,that = ticketSingle;
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-        //document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
         this.tripType = backParaObj.interNationalOrDomestic;
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);

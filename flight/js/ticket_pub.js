@@ -55,7 +55,6 @@ TicketDate.prototype.inputEvent=function(){
             }else{
                 var idate = new Date(nowY , nowM+i, 01);
                 if(that.type=="Oneway"){
-                    console.log(that.singleDate)
                     that.drawDate(idate);
                     that.linkColor("Oneway",that.singleDate)
                 }else{
@@ -860,9 +859,7 @@ var  conditionalFiltering = {
                     that.fn_(that.tempStates);
                     that.checkRedTip();
                 }
-
             };
-
             if(target.tagName == 'B'||target.tagName == 'SPAN'){
                 lineEle = target.parentNode;
             }else if(target.className == 'fo-div'){
@@ -1195,7 +1192,7 @@ var  conditionalFiltering = {
 
                 for (var cv = 0; cv < setTimeDurationLis_is.length; cv++) {
                     if(type=="set"){
-                        setTimeDurationLis_is[cv].className = setTimeDurationLis_is[cv].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
+                        setTimeDurationLis_is[cv].className = setTimeDurationLis_is[cv].getAttribute('data-i') == this.tempStates.DepartStartHour+this.tempStates.DepartEndHour? "tag-item active" : "tag-item";
                     }else if(type =='get'){
                         if(setTimeDurationLis_is[cv].className == "tag-item active"){
                             this.tempStates.DepartStartHour =setTimeDurationLis_is[cv].getAttribute('data-i').substring(0,2);
