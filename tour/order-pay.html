@@ -51,8 +51,8 @@
                 <li>剩余支付时间: <i class="count-time countdown" id="countdown" c></i></li>
                 <li class="paymentType"><span class="jd-icon pay-card" data-type="pay-card"></span><span data-type="pay-card" >银联支付</span><b class="icon circle-choi"></b></li>
                 <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
-                <li class="paymentType"><span class="jd-icon pay-visa" data-type="pay-visa"></span><span data-type="pay-visa" >Visa信用卡支付</span><b class="icon circle-chois"></b></li>
-                <li class="paymentType"><span class="jd-icon pay-master" data-type="pay-master"></span><span  data-type="pay-master">万事达卡支付</span><b class="icon circle-chois"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-visa" data-type="pay-visa"></span><span data-type="Visa" >Visa信用卡支付</span><b class="icon circle-chois"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-master" data-type="pay-master"></span><span  data-type="Master">万事达卡支付</span><b class="icon circle-chois"></b></li>
             </ul>
             <!--<div class="state-agree">-->
                 <!--<b class="icon1 s-agree" id="agree"></b>-->
@@ -101,7 +101,7 @@
                     <input type="text" value placeholder="请输入签名栏末尾最后3位" class="CardSecurityCode">
                 </li>
                 <div class="fill-tel">
-                    <div class="tel-div">持卡人手机号  <span>+86<b class="icons s-xiala1"></b></span></div>
+                    <div class="tel-div">持卡人手机号  +<span class="tel-btn">86<b class="icons s-xiala1"></b></span></div>
                     <input type="tel" value placeholder="用于接收通知" class="PhoneNo">
                 </div>
                 <li>
@@ -165,6 +165,7 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="../js/country_list.js"></script>
+    <script src="../js/countrytel_list.js"></script>
     <script>
         $(window).load(function () {
             Init();
@@ -314,7 +315,7 @@
 
                 PaymentDetails.PaymentMode="CreditCard";
                 PaymentDetails.ReturnURL="www.baidu.com";
-                CreditCardDetails.CardType="Visa";
+                CreditCardDetails.CardType==$(".circle-choi").prev().attr("data-type");
                 CreditCardDetails.CardHolderName=$(".CardHolderName").val();
                 CreditCardDetails.CardNumber=$(".CardNumber").val();
                 CreditCardDetails.CardSecurityCode=$(".CardSecurityCode").val();
@@ -326,7 +327,7 @@
                 CreditCardDetails.CardAddressCity=$(".CardAddressCity").val();
                 CreditCardDetails.CardAddressCountryCode= "SG",
                         CardContactNumber={};
-                CardContactNumber.CountryCode="86";
+                CardContactNumber.CountryCode=$(".tel-btn").attr("data-code");
                 CardContactNumber.PhoneNo=$(".PhoneNo").val();
                 CreditCardDetails.CardContactNumber=CardContactNumber;
                 PaymentDetails.CreditCardDetails=CreditCardDetails

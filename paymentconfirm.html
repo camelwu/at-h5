@@ -107,11 +107,21 @@ $(document).ready()
             if (data.success) {
                 vlm.init();
                 debugger;
-                if(business==3) {
-                    window.location.href = 'flight/pay_success.html?bookingRefNo='+bookingRefNo;
+                if(business==3){
+                   if(data.data.booleanResult) {
+                       window.location.href = 'flight/pay_success.html?bookingRefNo=' + bookingRefNo;
+                   }
+                  else{
+                       window.location.href = 'flight/pay_fail.html?bookingRefNo=' + bookingRefNo;
+                   }
                 }
                 else if(business==2) {
-                    window.location.href = 'scenic/pay_success.html?bookingRefNo='+bookingRefNo;
+                    if(data.data.paymentStatus) {
+                        window.location.href = 'scenic/pay_success.html?bookingRefNo=' + bookingRefNo;
+                    }
+                    else{
+                        window.location.href = 'scenic/pay_fail.html?bookingRefNo=' + bookingRefNo;
+                    }
                 }
                 else if(business==1){
                     var code=data.data.bookingReferenceNo;
@@ -122,7 +132,12 @@ $(document).ready()
                     }
                 }
                 else if(business==5){
-                    window.location.href = 'tour/trade_details.html?bookingRefNo='+bookingRefNo;
+                    if(data.data.paymentStatus) {
+                        window.location.href = 'tour/trade_details.html?bookingRefNo=' + bookingRefNo;
+                    }
+                    else{
+                        window.location.href = 'tour/pay_fail.html?bookingRefNo=' + bookingRefNo;
+                    }
                 }
             } else {
                  alert(data.message);
