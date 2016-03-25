@@ -92,6 +92,10 @@
     line-height: 25px;
     font-size: 1.4rem;
 }
+.ca_week dt{
+    line-height: 25px;
+    font-size: 1.4rem;
+}
 .calendar dt.title-date {
     font-size: 1.4rem;
 }
@@ -2023,7 +2027,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 3rem;
     text-align: center;
     position: absolute;
-    top: -0.5rem;
+    top: 4px;
     right: 50px;
     font-size: 1rem;
 }

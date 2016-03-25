@@ -511,11 +511,9 @@ var ticketSingle = {
         var  that = ticketSingle;
          var loadMore = document.getElementById("loadMore");
         if(that.pageNo >= that.pageCount){
-            console.log(33)
             $('#loadMore').fadeOut(1000);
             jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
-            console.log(44)
             that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
             console.log(that.backParaObj)

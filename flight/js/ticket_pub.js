@@ -36,7 +36,7 @@ TicketDate.prototype.linkColor=function(type,date){
     return false;
 };
 
-TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程']};
+TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程','去+返']};
 TicketDate.prototype.inputEvent=function(){
     var that = this;
     var date = new Date();
@@ -60,8 +60,12 @@ TicketDate.prototype.inputEvent=function(){
                 }else{
                     var start=that.doubleDate.start,end=that.doubleDate.end;
                     that.time={};
-                    that.time[start]='去程';
-                    that.time[end]='返程';
+                    if(start!=end){
+                        that.time[start]='去程';
+                        that.time[end]='返程';
+                    }else{
+                        that.time[start]='去+返';
+                    }
                     that.drawDate(idate);
                 }
             }
@@ -130,7 +134,7 @@ TicketDate.prototype.createContainer = function(odate){
 
 TicketDate.prototype.drawDate = function (odate) {
     var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
-    var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+    var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),curday = nowDate.getDate();
     this.dateWarp = dateWarp = document.createElement('div');
     dateWarp.className = 'calendar';
     dateWarp.innerHTML = this._template.join('');
@@ -149,47 +153,47 @@ TicketDate.prototype.drawDate = function (odate) {
     // 获取本月第一天是星期几
     weekStart = new Date(year, month-1,1).getDay();
     // 开头显示空白段
-    for (i = 0; i < weekStart; i++) {
+    for (j = 0; j < weekStart; j++) {
         ddHtml.push('<a>&nbsp;</a>');
     }
     // 循环显示日期
     for (i = 1; i <= days; i++) {
-        i=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
+        var ii=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
         if (year < nowyear) {
             ddHtml.push('<a class="disabled">' + i + '</a>');
         } else if (year == nowyear) {
             if (month < nowmonth + 1) {
                 ddHtml.push('<a class="live disabled">' + i + '</a>');
-            } else if (month == nowmonth + 1) {
-                if (i < nowdate){
-                    i=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
+            } else if (month == nowmonth + 1){
+                if (parseInt(i) < curday){
+                    ii=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
                     ddHtml.push('<a class="live disabled">' + i + '</a>');
                 }else{
                     month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
                     if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+month+'-'+i] +'</span></a>';
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+month+'-'+i] +'</span></a>';
                     }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span></a>';
                     }else{
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>';
                     }
-                    i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
+                    parseInt(i) == curday?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+ii+'">今天</a>'):ddHtml.push(pstr);
                 }
-            } else if (month == nowmonth + 2) {
+            }else if (month == nowmonth + 2) {
                 month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
                 if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+month+'-'+i] +'</span></a>';
+                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+month+'-'+i] +'</span></a>';
                 }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
+                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span></a>';
                 }else{
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>';
                 }
                 ddHtml.push(pstr);
             } else {
-                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>');
             }
         } else if (year > nowyear) {
-            ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+            ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>');
         }
     }
     dd.innerHTML = ddHtml.join('');
@@ -290,7 +294,7 @@ TicketDate.prototype.linkOn = function(){
                             }
                             that.tiper.style.display = 'none';
                             that.doubleDate.end = this.getAttribute('data-day');
-                            this.querySelector('.live_txt').innerHTML=that._word.f[that.op];
+                            this.querySelector('.live_txt').innerHTML=that._word.f[2];
                             that.linkOver();
                         }
                     }
@@ -580,7 +584,7 @@ var  conditionalFiltering = {
                 '</div>'+
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
-                '<li class="filter-title clear-background" data-info="df">直飞/中转</li>'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
                 '<li class="filter-title" data-info="sh">共享航班</li>'+
                 '<li class="filter-title" data-info="du">起飞时段</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
@@ -632,7 +636,7 @@ var  conditionalFiltering = {
                 '</div>'+
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
-                '<li class="filter-title clear-background" data-info="df">直飞/中转</li>'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
                 '<li class="filter-title" data-info="sh">共享航班</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
                 '</ul>'+
