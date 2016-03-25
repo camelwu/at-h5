@@ -150,7 +150,11 @@
 
 </script>
 <script id="tpl_GetDetails_Package_BusinessAddress" type="text/template">
-    {%=country%} {%=destCity%}
+    {% if(country==destCity){ %}
+        {%=destCity%}
+    {% }else{ %}
+        {%=country%} {%=destCity%}
+    {% } %}
 </script>
 <script id="tpl_GetDetails_Package_ScenicPackage" type="text/template">
 
