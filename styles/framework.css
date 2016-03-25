@@ -580,6 +580,9 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #7f8c8d;
 	color: #FFFFFF;
 }
+.snap-content .button-grey{
+	display:none!important;
+}
 .button-grey:hover {
 	background-color: #95a5a6;
 }
