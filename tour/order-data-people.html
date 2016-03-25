@@ -337,7 +337,7 @@
 						} else if (i == 1) {
 							return '<span class="bedList" style="float: left"><i>儿童年龄' + i + '</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>' + '</div>';
 						} else if (i == 2) {
-							return '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童年龄2</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge();"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
+							return '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童年龄2</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
 						}
 					}
 
@@ -446,7 +446,8 @@
 								var data = json.data, total_day = document.querySelector('#total_day');
 								console.log(data);
 								dateHandler.dataInfomation = json.data;
-								day_start = vlm.Utils.format_date(data.defaultDepartStartDate, "Ymd");
+								//day_start = vlm.Utils.format_date(data.defaultDepartStartDate, "Ymd");
+								day_start = data.defaultDepartStartDate.substring(0,10);
 								day_Num = parseInt(data.minDuration ? data.minDuration : data.packageName.substr(2, 1));
 								minPaxType = parseInt(data.minPaxType);
 								minPax = parseInt(data.minPax);
@@ -610,22 +611,22 @@
 								getHotel();
 							}
 						} else {
-//							var exaddChild = document.getElementsByClassName('extraChild');
-//							for (var v = 0; v < exaddChild.length; v++) {
-//								if (exaddChild[v].style.display != 'none') {
-//									var input = exaddChild[v].getElementsByClassName("inp-cage");
-//									for (var w = 0; w < input.length; w++) {
-//										if(input[w].value == '')
-//										{
-//											jAlert('请输入儿童年龄!');
-//											return;
-//										}else if(input[w].value < childAgeMin || input[w].value > childAgeMax) {
-//											jAlert('儿童年龄不符合标准!');
-//											return;
-//										}
-//									}
-//								}
-//							}
+							var exaddChild = document.getElementsByClassName('extraChild');
+							for (var v = 0; v < exaddChild.length; v++) {
+								if (exaddChild[v].style.display != 'none') {
+									var input = exaddChild[v].getElementsByClassName("inp-cage");
+									for (var w = 0; w < input.length; w++) {
+										if(input[w].value == '')
+										{
+											jAlert('请输入儿童年龄!');
+											return;
+										}else if(input[w].value < childAgeMin || input[w].value > childAgeMax) {
+											jAlert('儿童年龄不符合标准!');
+											return;
+										}
+									}
+								}
+							}
 
 							allNum = adultNum + childNum;
 							if (adultNum > maxAdult && maxAdult != -1) {
@@ -825,7 +826,7 @@
 				}
 			};
 			function setAge(obj){
-				console.log(obj.value);
+				//console.log(obj.value);
 				obj.value=obj.value.replace(/\D/ig,'');
 			}
 		</script>

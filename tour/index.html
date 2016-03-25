@@ -44,14 +44,19 @@
         <header class="header">
             <a href="javascript:history.go(-1);"  class="header-back"><i class="icons go-back"></i></a>
             <h3>酒+景</h3>
-            <a onclick="MT.CurrentPageTolist()" style="position: absolute;color:#fff;width:50px;top: 0;right: 0;text-align: center;height: 45px;line-height: 45px;">更多</a>
+            <a onclick="MT.CurrentPageTolist()" class="location-wrap">
+                <span id="Localtxt" class="location-txt">更多</span>
+                <i class="location-tip"></i>
+            </a>
+            <!--<a onclick="MT.CurrentPageTolist()" style="position: absolute;color:#fff;width:50px;top: 0;right: 0;text-align: center;height: 45px;line-height: 45px;">更多</a>-->
+            <!--<i class="location-tip"></i>-->
         </header>
         <!--   内容   -->
         <div class="sc-content">
             <section class="hot_tagBox">
                 <span>国内游</span>
                 <span class="current">出境游</span>
-            </section>`
+            </section>
             <section class="conBox">
                 <h3 class="title">热门目的地</h3>
                 <div class="cityListBox">
