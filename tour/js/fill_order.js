@@ -163,18 +163,13 @@
             $(this).click(function(){
                 debugger;
                 vlm.f_choice('trave'+index,"ht",'traver','',false,false,null,null,null,null);
-
             })
-
-        })
-
-
+        });
         $('.add-contact').click(function(){
                 vlm.f_choice('contact',"ht",'contact','',false,false,null,null,null,null);
-        })
+        });
 
         sentPackage(oReserve);
-
         //同意条款
         var oAgree=document.querySelector('.order-notice-btn');
         var bOk=true;

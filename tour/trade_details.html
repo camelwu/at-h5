@@ -80,8 +80,6 @@
     <script>
         (function(){
             var ww = this;
-            var info = JSON.parse(localStorage.info);
-            console.dir(info);
             var sh_paySuccess = function(){
                 //   加载动画
                 var flashLoad = function(){
@@ -130,7 +128,6 @@
                                     totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
                                 }
                             }
-                            debugger;
                             var travelDate='';
                             for(var m = 0;m < data.tours.length;m++){
                                 if(data.tours[m].travelDate!=undefined){
@@ -138,15 +135,18 @@
                                     break;
                                 }
                             }
-                            if(travelDate==''){
-                                travelDate = info.CheckInDate.substr(0,10);
-                                if(travelDate.substr(9,1)=='T'){
-                                    travelDate = info.CheckInDate.substr(0,9);
-                                }
-                            }
+//                            if(travelDate==''){
+//                                travelDate = info.CheckInDate.substr(0,10);
+//                                if(travelDate.substr(9,1)=='T'){
+//                                    travelDate = info.CheckInDate.substr(0,9);
+//                                }
+//                            }
+                            var td = travelDate!=''?1:0
                             var tpl1 = [
                                 '<h3>{%=packageName%}</h3>',
+                                '{% if('+td+'){ %}',
                                 '<p class="tra_live">游玩时间：<span>'+travelDate+'</span></p>',
+                                '{% } %}',
                                 '<div class="tra_order">订单号：{%=bookingRefNo%}</div>',
                                 '<div class="tra_people">'+adultNum+'成人 '+childNum+'儿童</div>',
                                 '<p class="tra_price">￥'+totalPrice+'</p>'
