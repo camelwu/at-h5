@@ -859,9 +859,7 @@ var  conditionalFiltering = {
                     that.fn_(that.tempStates);
                     that.checkRedTip();
                 }
-
             };
-
             if(target.tagName == 'B'||target.tagName == 'SPAN'){
                 lineEle = target.parentNode;
             }else if(target.className == 'fo-div'){

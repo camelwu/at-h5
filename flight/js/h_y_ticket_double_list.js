@@ -329,7 +329,6 @@ var ticketDouble = {
             ticketListStr += '<div class="time-airport">'+goTrip(arg) + backTrip(arg) +'</div>' + rightPrice(arg.data.flightInfos[i]);
             li.innerHTML = ticketListStr;
             ticketDetailUl.appendChild(li);
-            myScroll.refresh();
         }
         that.eventHandler();
         return;
