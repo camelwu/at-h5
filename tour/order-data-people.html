@@ -474,12 +474,44 @@
 								if (data.length == 0) {
 									jAlert("抱歉暂时没有数据", "提示");
 								}
+
+								//初始时景点时间可选
+								function chooseScenicDate(){
+									var inputs=document.querySelectorAll('.CheckInDateI');
+									var total_day = document.querySelector('#total_day');
+									var tourLi = document.querySelector('.tourTime'),allDivs;
+									allDivs = tourLi.querySelectorAll('.nav2-tour');
+									for (var i = 0; i < allDivs.length; i++) {
+
+										var inputClassName = '', span = '', id = '', input = allDivs[i].querySelector('input'), spanWeek = allDivs[i].querySelector('.week-tour');
+										if (input) {
+
+											input.value = inputs[0].value;
+											var returnWeek = function(arg1) {
+												if (arg1) {
+													var week, array, index = new Date(arg1.replace(/-/g, "/")).getDay();
+													week = day_ary[index];
+													return week;
+												}
+											};
+											spanWeek.innerHTML = returnWeek(inputs[0].value);
+											id = allDivs[i].id;
+											inputClassName = input.className;
+											span = allDivs[i].querySelectorAll('span')[0].className;
+											//console.log(inputs[0].value+':'+inputs[1].value);
+											dateHandler.chooseDate(allDivs[i], id, inputClassName, span, inputs[0].value, inputs[1].value);
+										}
+
+									}
+								}
+								chooseScenicDate();
 							} else {
 								console.log(json);
 								jAlert(json.message, "提示");
 							}
 						});
 					};
+
 					//  传递数据
 					var sendInfo = function() {
 						var packageID = packageID;
@@ -678,10 +710,11 @@
 							}
 						}
 					};
+
 					return {
 						FlashLoad : flashLoad,
 						GetSpot : getSpot,
-						SendInfo : sendInfo
+						SendInfo : sendInfo,
 					};
 				}();
 				ww.MT = ww.MT || {};
@@ -695,6 +728,8 @@
 				};
 				MT.load();
 			})();
+
+
 			var order_btn = $('#order_btn');
 			order_btn.click(MT.sendData);
 			var dateHandler = {
@@ -768,6 +803,7 @@
 									id = allDivs[i].id;
 									inputClassName = input.className;
 									span = allDivs[i].querySelectorAll('span')[0].className;
+									//console.log(inputs[0].value+':'+inputs[1].value);
 									that.chooseDate(allDivs[i], id, inputClassName, span, inputs[0].value, inputs[1].value);
 								}
 
@@ -825,8 +861,10 @@
 					this.initDate();
 				}
 			};
+
+
+			//儿童年龄纯数字
 			function setAge(obj){
-				//console.log(obj.value);
 				obj.value=obj.value.replace(/\D/ig,'');
 			}
 		</script>
