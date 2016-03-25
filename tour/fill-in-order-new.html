@@ -30,10 +30,10 @@
                 <div class="sce-ticket">
                     <section class="sce-introduce">
                         <p class="sce-introduce-txt fl"><span class="sce-introduce-span"></span></p>
-                        <div class="travel-noon fl">
-                            <a href="javascript:;" class="fa-noon on">上午</a>
-                            <a href="javascript:;" class="fa-noon">下午</a>
-                        </div>
+                        <!--<div class="travel-noon fl">-->
+                            <!--<a href="javascript:;" class="fa-noon on">上午</a>-->
+                            <!--<a href="javascript:;" class="fa-noon">下午</a>-->
+                        <!--</div>-->
                     </section>
                 </div>
             </section>
@@ -280,9 +280,11 @@
                 lsf_myweb.getbyid('content3_week_span1').innerHTML='周'+n2c[oday1];
                 document.getElementById("content3_CheckInDate").value=arr[0];
             }
-            var myDate1 = new Calender3({id:'nav2-center-dep',num: 13,time:_obj_3});
+
+            var myDate1 = new Calender3({id:'nav2-center-dep',num: 13,time:_obj_3,output:'content3_CheckInDate'});
 
             function Calender4(){Calender.apply(this,arguments);}
+
             Calender4.prototype=new Calender();
             Calender4.prototype.linkOn = function(){
                 var links = _CalF.$('.live',this.dd),i,l=links.length,that=this;
@@ -314,7 +316,8 @@
                 lsf_myweb.getbyid('content4_week_span1').innerHTML='周'+n2c[oday1];
                 document.getElementById("content4_CheckInDate").value=arr[0];
             };
-            var myDate2 = new Calender4({id:'nav2-center-arr',num: 13,time:_obj_4});
+            var myDate2 = new Calender4({id:'nav2-center-arr',num: 13,time:_obj_4,output:'content4_CheckInDate'});
+            Calender4();
         })();
         (function(){
             var state_btn = $('#state_btn')[0];

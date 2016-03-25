@@ -366,7 +366,7 @@ var ticketSeatChoose = {
                     '<span class="time-number">'+that.timeCut(arg[j].departDate)+'</span>'+
                     '<span class="air-port-word">'+arg[j].airportNameFrom+arg[j].termDepart+'</span>'+
                     '</div>'+
-                    '<div class="total-time-info">'+
+                    '<div class="total-time-info detail-time-info">'+
                     '<span class="arrow-time"></span>'+leaveStopTag+
                     '</div>'+
                     '<div class="end-time-info">'+
@@ -419,7 +419,7 @@ var ticketSeatChoose = {
         console.log(this.curFlightListData)
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
-        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?'<span>儿童不可定</span>':'';
+        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':'';
         var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>'
         var contentHtml ='<div class="air_content" style="background:#f5f4f9;">' +
             '<ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+that.createGoTripHtml(itemObj)+that.createBackTripHtml(itemObj)+'</li></ul>'+

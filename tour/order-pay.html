@@ -105,14 +105,13 @@
                     <input type="tel" value placeholder="用于接收通知" class="PhoneNo">
                 </div>
                 <li>
-                    <div>账单地址</div>
-                    <input type="text" value placeholder="请输入持卡人账单地址" class="CardAddress" >
-                </li>
-                <li>
                     <div>账单城市</div>
                     <input type="text" value placeholder="请输入持卡人账单城市" class="CardAddressCity" >
                 </li>
-
+                <li>
+                    <div>账单地址</div>
+                    <input type="text" value placeholder="请输入持卡人账单地址" class="CardAddress" >
+                </li>
                 <li>
                     <div>邮政编码</div>
                     <input type="text" value placeholder="请输入邮政编码" class="CardAddressPostalCode" >
@@ -287,7 +286,6 @@
                     jAlert("有效期不能为空！","",null,"确认");
                     return false;
                 }
-
                 if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
                     jAlert("信用卡卡号错误！","",null,"确认");
                     return false;
@@ -300,16 +298,16 @@
                     jAlert("有效期格式不正确！","",null,"确认");
                     return false;
                 }
-                if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
-                    jAlert("手机号不能为空！","",null,"确认");
-                    return false;
-                }
                 if(!vlm.Utils.validate["isNoEmpty"]($(".CardCity").val())){
                     jAlert("账单城市不能不空！","",null,"确认");
                     return false;
                 }
                 if(!vlm.Utils.validate["isNoEmpty"]($(".CardAddress").val())){
                     jAlert("账单地址不能不空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
+                    jAlert("手机号不能为空！","",null,"确认");
                     return false;
                 }
 
