@@ -1888,19 +1888,24 @@ i{
     box-sizing: border-box;
     padding: 0;
     background-color: #ffb413;
+    clear: both;
 }
 .travelnotes-header label{
     float: left;
     font-size: 1.7rem;
     color: #fff;
     padding-left: 1rem;
+    width: 70%;
     height: 100%;
-    line-height: 100%;
+    line-height: 200%;
 }
 .travelnotes-header-icon{
     float: right;
-    background: url(../images/ui/icons1.png) -0.3rem 0.3em;
-    background-size: 33rem 10rem;
+    width: 40px;
+    height: 40px;
+    background: url(../../images/ui/icon.png) -105px -35px;
+    background-size: 500px 149px;
+    margin-right: 1rem;
 }
 /*旅行须知*/
 /*景点预订明细开始*/

@@ -1063,7 +1063,7 @@ h1, h2, h3, h4, h5, h6 {
 .go-info .start-time-info .air-port-word {
     display:block;
     font-size: 1.1rem;
-    margin-top:3.8rem;
+    margin-top:4rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -1151,7 +1151,7 @@ h1, h2, h3, h4, h5, h6 {
 .end-time-info .air-port-word {
     display: block;
     font-size: 1.1rem;
-    margin-top: 3.8rem;
+    margin-top: 4rem;
     position: absolute;
     right: 0;
     top:0
@@ -1316,7 +1316,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.0rem;
     color: #fe6a00;
     position: absolute;
-    top: 3.8rem;
+    top:4rem;
     right: 2%
 }
 
