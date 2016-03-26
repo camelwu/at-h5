@@ -553,7 +553,7 @@ i {
     房间升级页
 */
 .hd-hotel {
-    height:92px!important;
+    height:82px!important;
     list-style-type: none;
 }
 
@@ -623,6 +623,7 @@ i {
 .d-div3 {
     float: left;
     margin-top: 10px;
+    width: 63%;
 }
 
 .d-p5 {
@@ -632,7 +633,7 @@ i {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     font-size: 1.5em;
 }
@@ -668,7 +669,7 @@ i {
 .hd-price {
     float: right;
     margin-right: 10px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .hd-price span:nth-child(1) {
