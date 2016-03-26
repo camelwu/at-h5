@@ -352,6 +352,10 @@ var lsf_myweb={
                         var url = data.data[0].paymentRedirectURL;
                         self.location.href = url;
                     }
+                    else{
+                        var url = data.data.paymentRedirectURL;
+                        self.location.href = url;
+                    }
                 }
                 else{
                     self.location.href = "trade_details.html?bookingRefNo="+data.data[0].referenceNo;

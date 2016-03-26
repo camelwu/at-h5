@@ -22,7 +22,7 @@
     </div>
 <div class="all-elements">
     <div class="header">
-        <a href="../user/user-allorder.html" class="header-back" id="td_back">
+        <a href="javascript:void(0);" class="header-back" id="td_back" onclick="window.history.go(-1)">
             <i class="icons go-back"></i>
         </a>
         <h3>订单详情</h3>
@@ -87,7 +87,7 @@
                                 <div class="q22"></div>
                             </div>
                             <div class="q2">
-                                <div class="q12"><p>支付订单</p></div>
+                                <div class="q11"><p>支付订单</p></div>
                                 <div class="q22"></div>
                             </div>
                             <div class="q2">
@@ -190,8 +190,10 @@
             </div>
         </div>
         <div class="btnDiv" id="btnDiv">
-            {% if(orderStatus==0 || orderStatus==1 ){ %}
-                <a href="javascript:void(0);" class="hotelInter2 cancelOrder">取消订单</a>
+            {% if(orderStatus==1 ){ %}
+                <a href="#" class="hotelInter2 cancelOrder">取消订单</a>
+            {% } else if(orderStatus==0){ %}
+                <a href="jyy_pay.html?bookingRefNo={%=bookingReferenceNo%}" class="hotelInter2">支付</a>
             {% } %}
         </div>
 
@@ -316,7 +318,6 @@
                         $("#btnDiv").html(html)
                         cancelOrderEvent();
 
-
                         vlm.init();
                         if(data.length == 0){
                             jAlert("抱歉暂时没有数据","提示");
@@ -356,7 +357,8 @@
                             vlm.loadJson("",JSON.stringify(Parameters),function(json){
                                 if(json.success) {
                                     window.location.reload();
-                                }else{
+                                }
+                                else{
                                     jAlert("取消失败！");
                                 }
                             });
