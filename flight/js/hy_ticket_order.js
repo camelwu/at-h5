@@ -94,7 +94,6 @@ var ticketOrder = {
         var passengerWrap = document.querySelector('#passenger-list');
         var toEditPassengers = document.querySelectorAll('.next-icon');
         var deletePassenger = document.querySelectorAll('.icon-add');
-        var chooseAgreeInfo = document.querySelector('.choose-agree-info');
         var adultNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofAdult;
         var childNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofChild;
         var that = this;
@@ -103,22 +102,6 @@ var ticketOrder = {
                 document.location.href = '../user/user-choiceAir.html?type=edit&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild;
             });
         }
-
-        this.addHandler(chooseAgreeInfo,'click', function(){
-               var event = event || window.event;
-               var target = event.target || event.srcElement;
-               var opEle = document.querySelector('#confirm-button');
-                if(target.className=="choose-agree-info yep-agree-info"){
-                    target.className = "choose-agree-info no-agree-info";
-                    opEle.style.background = "#BDB9B1";
-                    opEle.disabled = true;
-                }else{
-                    target.className = "choose-agree-info yep-agree-info";
-                    opEle.style.background = "#ffb413";
-                    opEle.disabled = false;
-                }
-        })
-
         this.addHandler(rightArrow,'click', function(){
             $("#preloader").show();
             $("#status-f").show();

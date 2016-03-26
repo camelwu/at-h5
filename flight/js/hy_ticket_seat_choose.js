@@ -417,19 +417,19 @@ var ticketSeatChoose = {
         });
         itemObj = resultData;
         this.curFlightListData = itemObj;
-        console.log(this.curFlightListData)
+        console.log(this.assistInfo)
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
         var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':'';
-        var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>'
+        var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>';
+        var priceAndTaxStr =this.assistInfo.interNationalOrDomestic=="domestic"?'<div class="money-show-data money-show-data-domestic"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountADT)+'</span></div>':'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountExc)+'</span> <p>税费￥'+myFixed(itemObj.totalTaxAmountADT)+'</p></div>';
         var contentHtml ='<div class="air_content" style="background:#f5f4f9;">' +
             '<ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+that.createGoTripHtml(itemObj)+that.createBackTripHtml(itemObj)+'</li></ul>'+
             '<div class="price-important">' +
             '<div class="left-part"><h4>'+itemObj.segmentsLeave[0].cabinClassName+'</h4>' +
             '<p><span class="change" id="change-explain">退改签说明</span>'+childOrderStr+'</p>' +
-            '</div>'+
-            '<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountExc)+'</span> <p>税费￥'+myFixed(itemObj.totalTaxAmountADT)+'</p>' +
-            '</div><button type="button" id="reserve-button">预订</button></div>' +
+            '</div>'+priceAndTaxStr+
+            '<button type="button" id="reserve-button">预订</button></div>' +
             '<div class="bottom-word-more">买单程票须持留学生转签证、移民签证，一年以上工作签证等证件类型，请您确认后购买，以免无法办理乘机和入境。'+
             '</div></div>';
         backMeal ='<div class="ticket-shadow" style="display: none"></div><div class="buy-ticket-notice back-meal" style="display: none;">' +
