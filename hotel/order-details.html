@@ -286,7 +286,7 @@
 //                        HotelID=46&HotelCode=46&InstantConfirmation=undefined&AllOccupancy=undefined&CheckInDate=2016-03-26&CheckOutDate=2016-03-27&NumRoom=1&NumAdult=2&NumChild=0
                         var tpl1 = [
                             '<div class="reserve-top">',
-                            '<div class="reserve-top1"><a class="a" href="hotel_detail.html?HotelID={%=hotelCode%}&HotelCode={%=hotelCode%}&&InstantConfirmation=undefined&AllOccupancy=undefined&CheckInDate={%=checkInDate%}&CheckOutDate={%=checkOutDate%}&NumRoom={%=noOfRooms%}&NumAdult={%=noOfAdults%}&NumChild={%=noOfChild%}">{%=hotelName%}</a></div> ',
+                            '<div class="reserve-top1"><a class="a" href="hotel_detail.html?HotelID={%=hotelCode%}&HotelCode={%=hotelCode%}&&InstantConfirmation=undefined&AllOccupancy=undefined&CheckInDate={%=checkInDate.split("T")[0]%}&CheckOutDate={%=checkOutDate.split("T")[0]%}&NumRoom={%=noOfRooms%}&NumAdult={%=noOfAdults%}&NumChild={%=noOfChild%}">{%=hotelName%}</a></div> ',
                             '<div class="reserve-top2">房型: &nbsp;&nbsp;{%=roomType%}</div>',
                             '</div>',
                             '<div class="reserve-bottom">',
