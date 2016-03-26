@@ -131,7 +131,7 @@
                             var travelDate='';
                             for(var m = 0;m < data.tours.length;m++){
                                 if(data.tours[m].travelDate!=undefined){
-                                    travelDate = data.tours[m].travelDate;
+                                    travelDate = data.tours[m].travelDate.substr(0,10);
                                     break;
                                 }
                             }
