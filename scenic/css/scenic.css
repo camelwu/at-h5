@@ -1881,7 +1881,7 @@ i{
     z-index: 98;
     background: #ffffff;
     overflow: auto;
-
+    pointer-events:none;
 }
 .travelnotes-header{
     position: fixed;
