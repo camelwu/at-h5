@@ -117,7 +117,9 @@ var lsf_myweb={
     console.log('上面是从localStorage上面得到的数据');
     //支付类型：1-Visa, 20-MasterCard(万事达卡), 21-Paypal
     var myPayType=1;
-
+    //初始化有效期选择组件
+    var expityDate = new Scroller({id: "jp_limit_time", type:"cardExpirationDate",cont:"cardExpirationDate1"});
+    
     //输入框
     lsf_myweb.styleChange('jp_bank','输入银行卡号');
     lsf_myweb.styleChange('jp_guest_name','姓名');
