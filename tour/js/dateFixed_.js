@@ -113,7 +113,7 @@ TicketDate.prototype.createContainer = function(odate){
         var header = this.header = document.createElement('div');
         header.id = this.id+"-header";
         header.className = 'header';
-        header.innerHTML = '<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
+        header.innerHTML = '<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>';
         document.body.appendChild(header);
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
