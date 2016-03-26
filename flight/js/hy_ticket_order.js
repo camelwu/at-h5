@@ -94,7 +94,6 @@ var ticketOrder = {
         var passengerWrap = document.querySelector('#passenger-list');
         var toEditPassengers = document.querySelectorAll('.next-icon');
         var deletePassenger = document.querySelectorAll('.icon-add');
-        var chooseAgreeInfo = document.querySelector('.choose-agree-info');
         var adultNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofAdult;
         var childNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofChild;
         var that = this;
@@ -103,22 +102,6 @@ var ticketOrder = {
                 document.location.href = '../user/user-choiceAir.html?type=edit&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild;
             });
         }
-
-        this.addHandler(chooseAgreeInfo,'click', function(){
-               var event = event || window.event;
-               var target = event.target || event.srcElement;
-               var opEle = document.querySelector('#confirm-button');
-                if(target.className=="choose-agree-info yep-agree-info"){
-                    target.className = "choose-agree-info no-agree-info";
-                    opEle.style.background = "#BDB9B1";
-                    opEle.disabled = true;
-                }else{
-                    target.className = "choose-agree-info yep-agree-info";
-                    opEle.style.background = "#ffb413";
-                    opEle.disabled = false;
-                }
-        })
-
         this.addHandler(rightArrow,'click', function(){
             $("#preloader").show();
             $("#status-f").show();
@@ -542,9 +525,7 @@ var ticketOrder = {
         array = arg.split('-');
         array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
         array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
-
-        return '<span class="date">'+array[1]+'-'+array[2]+'</span>'+'<span class="order-week">'+week+'</span>';
-
+        return '<span class="date">'+argArray[1]+'-'+argArray[2]+'-'+argArray[3]+'</span>'+'<span class="order-week">'+week+'</span>';
     },
     addContent:function(arg){
         var orderTop = document.querySelector('.order-top');

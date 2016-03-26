@@ -18,8 +18,6 @@
 
     //localStorage.Info
     var jsonPackage=JSON.parse(localStorage.info);
-    console.log(jsonPackage);
-
     function init(){
         var Parmeters=
         {
@@ -124,19 +122,50 @@
             if(window.location.search){
                 var winhref=window.location.search.substring(1);
                 var arr2=winhref.split('&');
-                console.log(arr2);
                 //hotel
                 hotelID=arr2[0].split('=')[1];
                 //航班信息
                 var airFli=arr2[2].split('=')[1];
+                var dateObj = JSON.parse(window.localStorage.info);
+                var paraObj = {
+                    start:dateObj.CheckInDate.replace(/T.*/,''),
+                    end:dateObj.CheckOutDate.replace(/T.*/,'')
+                };
                 switch (airFli){
                     case 'None':
                         $('#flight-air').remove();
                         break;
                     case 'TwoWay':
+                        document.querySelector('#content3_CheckInDate').value=paraObj.start;
+                        document.querySelector('#content4_CheckInDate').value=paraObj.end;
+                        var myDate= new TicketDate({
+                            id: 'nav2-center-dep',
+                            num: 13,
+                            time: paraObj,
+                            sClass1: 'CheckInDate',
+                            type:'Oneway',
+                            _word:{tip:['出发']}
+                        });
+                        var myDate2= new TicketDate({
+                            id: 'nav2-center-arr',
+                            num: 13,
+                            time: paraObj,
+                            sClass1: 'CheckInDate',
+                            type:'Oneway',
+                            _word:{tip:['出发']}
+                        });
                         break;
                     case 'Arrival':
                         $('#content3').remove();
+                        document.querySelector('#content3_CheckInDate').value=paraObj.start;
+                        var myDate= new TicketDate({
+                            id: 'nav2-center-dep',
+                            num: 13,
+                            time: paraObj,
+                            sClass1: 'CheckInDate',
+                            type:'Oneway',
+                            _word:{tip:['出发']}
+                        });
                         break;
                     case 'Depart':
                         $('#content4').remove();
@@ -408,7 +437,6 @@
     //初始化函数回调
     function package_tit_back(ret){
         var json = ret;
-        console.log(json);
         if(json.success) {
             //套餐名称
             var sceTit=json.data.packageName;
@@ -439,7 +467,6 @@
         var json = ret;
         if(json.success) {
             var data = json.data;
-            console.log(data);
             var n;
             for(var k = 0;k < data.hotels[0].rooms.length;k++){
                 if(data.hotels[0].rooms[k].roomID == roomID){

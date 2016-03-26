@@ -995,7 +995,7 @@ function styleChange(id, mytext) {
     //加载更多
     function loadMore(){
         var loadMore = document.getElementById("loadMore");
-        var pageIndex = 1;
+        var pageIndex = url_json.pageIndex + 1;
        //没有更多 数据加载标识
         var loadMoreSign = loadMore.getAttribute("data-more");
         if(loadMoreSign == "no"){
@@ -1003,7 +1003,6 @@ function styleChange(id, mytext) {
         }
         
         loadMore.innerHTML = "正在加载..."
-        pageIndex = pageIndex + 1;
         url_json.pageIndex = pageIndex;
         //TODO set page size  defualt set 20
         //url_json.pageSize;

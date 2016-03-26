@@ -570,6 +570,7 @@ i {
 }
 
 .d-list li {
+    list-style: none;
     height: 50px;
     border-bottom: 1px solid #dfdfdd;
 }
@@ -623,7 +624,7 @@ i {
 .d-div3 {
     float: left;
     margin-top: 10px;
-    width: 63%;
+    width: 60%;
 }
 
 .d-p5 {

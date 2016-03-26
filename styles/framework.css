@@ -63,9 +63,9 @@ div, a, p, img, blockquote, form, fieldset, textarea, input, label, iframe, code
 /*	2. Typography  */
 
 p {
-	line-height: 2.0 rem;
-	margin-bottom: 2.0 rem;
-	font-size: 1.2 rem;
+	line-height: 2.0rem;
+	margin-bottom: 2.0rem;
+	font-size: 1.2rem;
 	letter-spacing: 0;
 }
 
@@ -130,8 +130,8 @@ body {
 	-webkit-font-smoothing: antialiased;
 	color: #666;
 	background: #f5f4f9;
-	font-size: 1.4 rem;
-	line-height: 2.0 rem;
+	font-size: 1.4rem;
+	line-height: 2.0rem;
 }
 
 h1 {
@@ -460,7 +460,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .button i {
 	margin-right: 10px;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 	width: 12px;
 	text-align: center;
 	margin-left: -5px;
@@ -637,7 +637,7 @@ h1, h2, h3, h4, h5, h6 {
 /*	Price  */
 
 .price {
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 	color: #f66107;
 	font-weight: 400;
 }
@@ -849,7 +849,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contactField {
 	background-color: rgba(255,255,255,0.4);
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 	color: #666;
 	border: solid 1px #cacaca;
 }
@@ -860,7 +860,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contactTextarea {
 	background-color: rgba(255,255,255,0.4);
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 	border: solid 1px #cacaca;
 	color: #666;
 }
@@ -883,7 +883,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contactNameField {
 	padding-bottom: 5px;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 }
 
 .contactNameField span {
@@ -893,7 +893,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contactEmailField {
 	padding-bottom: 5px;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 }
 
 .contactEmailField span {
@@ -903,7 +903,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contactMessageTextarea {
 	padding-bottom: 5px;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 }
 
 .contactMessageTextarea span {
@@ -1067,7 +1067,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .adaptive-style a {
 	float: right;
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 	color: #1f1f1f;
 	margin-left: 8px;
 	margin-right: 8px;
@@ -1131,11 +1131,11 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 768px) {
 	.adaptive-four a {
-		font-size: 2.4 rem;
-		line-height: 2.6 rem;
+		font-size: 2.4rem;
+		line-height: 2.6rem;
 	}
 	.decoration {
-		height: 2.4 rem;
+		height: 2.4rem;
 	}
 }
 /*Portfolios*/
@@ -1174,7 +1174,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-one-links a:first-child {
 	float: left;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 }
 
 .portfolio-one-links a:first-child i {
@@ -1183,7 +1183,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-one-links a:last-child {
 	float: right;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 }
 
 .portfolio-one-details a {
@@ -1284,7 +1284,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 	margin-top: 20px;
 	margin-bottom: 0px;
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 }
 
 .portfolio-two-text .subtitle {
@@ -1313,7 +1313,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-two-links a:first-child {
 	float: left;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 }
 
 .portfolio-two-links a:first-child i {
@@ -1322,7 +1322,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .portfolio-two-links a:last-child {
 	float: right;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 }
 
 .portfolio-two-details a {
@@ -1718,13 +1718,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 #unloginShow {
 	color: #fff;
-	font-size: 1.5 rem;
+	font-size: 1.5rem;
 	margin: 8px auto 13px auto;
 	text-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 }
 #userTab a {
 	width: 25%;
-	height: 2.2 rem;
+	height: 2.2rem;
 	border-left: #ccc 1px solid;
 	float: left;
 	text-align: center;
@@ -1757,11 +1757,11 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 14px;
 }
 .userWallet div a {
-	line-height: 2.0 rem;
+	line-height: 2.0rem;
 	margin-left: 10px;
 }
 .userWallet div a:last-child {
-	margin-top: 1.2 rem;
+	margin-top: 1.2rem;
 }
 .userWallet div a em {
 	float: right;
@@ -1770,7 +1770,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .line-bottom {
 	border-bottom: #CCCCCC 1px solid;
-	padding: 0.6 rem 1.5 rem;
+	padding: 0.6rem 1.5rem;
 }
 .line-bottom a {
 	background-image: url(../images/icon_arrow.png);
@@ -1781,7 +1781,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .line-bottom a em {
 	float: right;
-	margin-right: 2.0 rem;
+	margin-right: 2.0rem;
 	font-style: normal;
 }
 .user-info-top {
@@ -1804,13 +1804,13 @@ h1, h2, h3, h4, h5, h6 {
 .orderList li {
 	list-style: none;
 	background: #fff;
-	line-height: 2.0 rem;
+	line-height: 2.0rem;
 	border: 1px solid #DEDEDE;
 	border-radius: 3px;
 }
 .orderList li div {
 	border-bottom: #CCCCCC 1px solid;
-	padding: 0.6 rem 1.0 rem 0.6 rem 3.6 rem;
+	padding: 0.6rem 1.0rem 0.6rem 3.6rem;
 }
 .orderList li div:nth-child(2) {
 	border-bottom: 0;
@@ -1837,8 +1837,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 .state {
 	color: #DEDEDE;
-	font-size: 1.6 rem;
-	line-height: 1.6 rem;
+	font-size: 1.6rem;
+	line-height: 1.6rem;
 	margin: 0 9px;
 }
 .i-h {
@@ -1926,7 +1926,7 @@ h1, h2, h3, h4, h5, h6 {
 /*//////////////////////////*/
 
 .switch-box h4 {
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 	line-height: 29px;
 	float: left;
 	font-weight: 500;
@@ -2126,7 +2126,7 @@ ul.s_lists {
 }
 .s_lists li {
 	list-style: none;
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 	padding: 12px 15px;
 	border-bottom: 1px #dedede solid;
 	background-color: #fff;
@@ -2154,13 +2154,13 @@ ul.s_lists {
 	color: #FFB413;
 }
 .s-lists {
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 	padding: 10px 15px;
 	border-bottom: 1px #dedede solid;
 	background-color: #fff;
 }
 .s-listc {
-	font-size: 1.3 rem;
+	font-size: 1.3rem;
 	text-align: center;
 	padding: 10px;
 	color: #fe4716;
@@ -2211,7 +2211,7 @@ ul.s_lists {
 	width: 70%;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 }
 
 .slider-style-1 h2 {
@@ -2237,7 +2237,7 @@ ul.s_lists {
 	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 	font-weight: 500;
 	text-transform: uppercase;
 	text-align: center;
@@ -2257,7 +2257,7 @@ ul.s_lists {
 	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 1.2 rem;
+	font-size: 1.2rem;
 	font-weight: 500;
 	text-transform: uppercase;
 	text-align: center;
@@ -2317,7 +2317,7 @@ ul.s_lists {
 	width: 70%;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 }
 
 .slider-style-3 {
@@ -2342,7 +2342,7 @@ ul.s_lists {
 .slider-style-3 h3 {
 	color: #FFFFFF;
 	text-align: center;
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 	font-weight: 700;
 	text-transform: uppercase;
 	margin-bottom: 20px;
@@ -2353,7 +2353,7 @@ ul.s_lists {
 	width: 70%;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 }
 
 @media (min-width: 768px) {
@@ -2368,7 +2368,7 @@ ul.s_lists {
 	}
 
 	.slider-style-1 p {
-		font-size: 1.4 rem;
+		font-size: 1.4rem;
 		width: 320px;
 	}
 
@@ -2405,7 +2405,7 @@ ul.s_lists {
 /*定位城市*/
 
 .city-list .list-title {
-	font-size: 1.4 rem;
+	font-size: 1.4rem;
 	color: #666;
 	background-color: #d5d5d5;
 }
@@ -2416,7 +2416,7 @@ ul.s_lists {
 	padding: 10px 0 10px 20px;
 }
 .city-list .current-city {
-	font-size: 1.5 rem;
+	font-size: 1.5rem;
 	color: #ff7800;
 	background-color: #fff;
 }
@@ -2436,8 +2436,8 @@ ul.list-content {
 	position: relative;
 	list-style: none;
 	float: left;
-	font-size: 1.4 rem;
-	line-height: 3.2 rem;
+	font-size: 1.4rem;
+	line-height: 3.2rem;
 	box-sizing: border-box;
 	color: #666;
 	text-align: center;

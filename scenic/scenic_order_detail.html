@@ -47,9 +47,9 @@
 						<ul class="tourist-msg tanktick" id="tanktick">
 							<li>
 								<span class="tourist-name tour-short" style="width:30px">姓：</span>
-								<input type="text" id="scenic2_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li"  data-elementName="lastName" data-elementName="lastName">
+								<input type="text" id="scenic2_name1" tabindex="1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li"  data-elementName="lastName" data-elementName="lastName">
 								<span class="tourist-name tour-short" style="width:30px">名：</span>
-								<input type="text" id="scenic2_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
+								<input type="text" id="scenic2_name2" tabindex="2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
 							</li>
 							<li class="countries-wrap">
 								<span class="tourist-name tour-short">国籍：</span>
@@ -58,7 +58,7 @@
 							</li>
 							<li>
 								<span class="tourist-name tour-short">护照：</span>
-								<input type="text" id="scenic2_idcard" style="width:86%;display: inline-block;" placeholder="请输入护照,如EA2359923" data-elementName="idNumber">
+								<input type="text" id="scenic2_idcard" tabindex="3" style="width:86%;display: inline-block;" placeholder="请输入护照,如EA2359923" data-elementName="idNumber">
 							</li>
 						</ul>
 					</div>
@@ -70,17 +70,17 @@
 						<ul class="tourist-msg contact" id="contact">
 							<li>
 								<span class="tourist-name tour-short" style="width:30px">姓：</span>
-								<input type="text" name="firstName" id="scenic_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li" data-elementName="lastName" data-elementName="lastName">
+								<input type="text" name="firstName" tabindex="4" id="scenic_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li" data-elementName="lastName" data-elementName="lastName">
 								<span class="tourist-name tour-short" style="width:30px">名：</span>
-								<input type="text" name="lastName" id="scenic_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
+								<input type="text" name="lastName" tabindex="5" id="scenic_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
 							</li>
 							<li>
 								<span class="tourist-name tour-short">手机：</span>+<span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">86</span>
-								<input type="text" name="phone" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" data-elementName="mobilePhone" data-elementName="mobilePhone">
+								<input type="text" name="phone" tabindex="6" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" data-elementName="mobilePhone" data-elementName="mobilePhone">
 							</li>
 							<li>
 								<span class="tourist-name tour-short">邮箱：</span>
-								<input type="text" name="email" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="常用邮箱" data-elementName="email" data-elementName="email">
+								<input type="text" name="email" tabindex="7" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="常用邮箱" data-elementName="email" data-elementName="email">
 							</li>
 						</ul>
 					</div>
@@ -235,20 +235,22 @@
 
 		</div>
 	<!--   旅行须知   -->
-	<div class="travelnotes-warp js-travelnotes" style="display: none;">
-		<div class="travelnotes-header">
-			购票须知
-			<i class="travelnotes-header-icon js-travelnotes-close"></i>
+	<div class="tmask js-mask">
+		<div class="travelnotes-warp js-travelnotes" style="display: none;">
+			<div class="travelnotes-header">
+				购票须知
+				<i class="travelnotes-header-icon js-travelnotes-close"></i>
+			</div>
+			<ol class="travelnotes-list">
+				<li>所有的套餐都不可转让，不可退款，不可更改。</li>
+				<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>
+				<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+				<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+				<li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
+				<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
+				<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
+			</ol>
 		</div>
-		<ol class="travelnotes-list">
-			<li>所有的套餐都不可转让，不可退款，不可更改。</li>
-			<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>
-			<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
-			<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
-			<li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
-			<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
-			<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
-		</ol>
 	</div>
 	<!--   旅行须知   -->
 
@@ -1659,11 +1661,11 @@
 			(function(){
 				$("#state_btn").click(function(){
 					$(".js-travelnotes").attr("style","display:block");
-					$(".mask").show();
+					$(".js-mask").show();
 				});
 				$(".js-travelnotes-close").click(function(){
 					$(".js-travelnotes").attr("style","display:none");
-					$(".mask").hide();
+					$(".js-mask").hide();
 				});
 			})();
 

@@ -32,6 +32,7 @@ var roomUpGrade = {
 		return this;
 	},
 
+
 	resetData : function() {
 		var data = arguments[0];
 		var starWord = function(arg) {

@@ -181,7 +181,7 @@ var ticketDouble = {
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
-                '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild;
+                '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild+'&interNationalOrDomestic='+that.backParaObj.interNationalOrDomestic;
             })
         }
         this.addHandler(shadowBox, 'click', function(){
@@ -420,10 +420,16 @@ var ticketDouble = {
                 '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
                 '        </div>';
             }else{
-                str +='<div class="price-tax">'+
-                '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
-                '    <div class="price-tax-info tax-word-pull-left"><span class="tax-word">含税费</span></div>'+
-                '        </div>';
+                if(that.backParaObj.interNationalOrDomestic=="domestic"){
+                    str +='<div class="price-tax">'+
+                    '    <div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountADT))+'</span><span class="word-tip">往返</span><br></div>'+
+                    '    </div>';
+                }else{
+                    str +='<div class="price-tax">'+
+                    '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
+                    '    <div class="price-tax-info tax-word-pull-left"><span class="tax-word">含税费</span></div>'+
+                    '        </div>';
+                }
             }
             return str;
         }
@@ -466,7 +472,7 @@ var ticketDouble = {
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
-                '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild;
+                '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild+'&interNationalOrDomestic='+that.backParaObj.interNationalOrDomestic;
             })
 
         }
