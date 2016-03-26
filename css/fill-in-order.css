@@ -488,6 +488,17 @@ input{
 .personal_data_box .nav2-centertop {
     height: 46px;
 }
+.nav2-centertop .tour-scene-date{
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    right: 0;
+    background-image: url(../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -245px 0;
+}
+
 
 .personal_data_box .nav2-center input {
     width: 85px;

@@ -34,10 +34,7 @@
 <body>
     <div id="preloader">
         <div id="status-t">
-            <p class="center-text">
-                <br>
-                <em>加载中……</em>
-            </p>
+            <p class="center-text"></p>
         </div>
     </div>
     <div class="all-elements all-element-other">
@@ -131,7 +128,7 @@
                             var travelDate='';
                             for(var m = 0;m < data.tours.length;m++){
                                 if(data.tours[m].travelDate!=undefined){
-                                    travelDate = data.tours[m].travelDate;
+                                    travelDate = data.tours[m].travelDate.substr(0,10);
                                     break;
                                 }
                             }

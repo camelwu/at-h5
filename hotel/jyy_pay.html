@@ -30,6 +30,7 @@
     <link href="../styles/tips.css" rel="stylesheet"/>
     <link href="css/pay.css"		rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/date_select.css" rel="stylesheet" type="text/css">
 </head>
 <body onload="init()">
     <div id="preloader">
@@ -85,7 +86,7 @@
                 </li>
                 <li>
                     <div>有效期</div>
-                    <input type="text" value="月/年，如：09/12" id="jp_limit_time">
+                    <input type="text" value="月/年，如：09/12" id="jp_limit_time" readonly>
                 </li>
                 <li>
                     <div>安全码</div>
@@ -134,6 +135,8 @@
     <script charset="gb2312" type="text/javascript" src="../js/payment.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
     <!--<script data-main="../js/main.js" src="../js/require.js"></script>-->
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/scroller.js"></script>
     <script type="text/javascript" src="js/pay_jyy.js"></script>
     <script src="../js/country_list.js"></script>
 </body>

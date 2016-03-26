@@ -67,6 +67,7 @@
     overflow-y: auto;
     z-index: 100;
    display: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .top-tel{
@@ -847,7 +848,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .big-title {
     width: 100%;
-    height: 4.0rem;
+    height: 49px;
     background: #163852;
     line-height: 4.0rem;
     padding: 0 1.0rem;
@@ -1132,7 +1133,7 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     width: 28.55px;
     position: absolute;
-    right: 48px;
+    right: 52px;
     top: 1px;
     font-size: 10px;
 }
@@ -1174,13 +1175,9 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 10.2rem;
     position: relative;
 }
-.hasTax{
-
-}
-
 
 .air-tickets-detail .air-tickets-detail .single-side {
-    min-height: 5.2rem;
+    min-height: 5.32rem;
 }
 
 .price-tax .price-info {
@@ -1193,6 +1190,11 @@ h1, h2, h3, h4, h5, h6 {
 .single-side .price-info {
     position: absolute;
     top: 1.8rem;
+    right: 2%;
+}
+.single-side .price-info-domestic{
+    position: absolute;
+    top: 2.4rem;
     right: 2%;
 }
 
@@ -1946,7 +1948,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .time-airport-info {
     width: 100%;
-    height: 6.2rem;
+    height: 7.2rem;
     overflow: hidden;
     padding: 1.0rem 0;
 }
@@ -1979,7 +1981,7 @@ h1, h2, h3, h4, h5, h6 {
 .start-time-info span.air-port-word {
     display: block;
     font-size: 1.1rem;
-    margin-top: 3.8rem;
+    margin-top: 4.8rem;
     position: absolute;
     left:0;
     top:0
@@ -2002,7 +2004,7 @@ h1, h2, h3, h4, h5, h6 {
 .end-time-info .air-port-word-right {
     display: block;
     font-size: 1.1rem;
-    margin-top: 3.8rem;
+    margin-top: 4.8rem;
     position: absolute;
     right:0;
     top:0
@@ -2018,7 +2020,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     position: absolute;
     top: 6px;
-    right: 44px;
+    right: 50px;
     font-size: 1rem;
 }
 
@@ -2028,7 +2030,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     position: absolute;
     top: 4px;
-    right: 50px;
+    right: 48px;
     font-size: 1rem;
 }
 
@@ -2109,6 +2111,10 @@ h1, h2, h3, h4, h5, h6 {
     text-align: right;
     overflow: visible;
 }
+.price-important .money-show-data-domestic {
+    padding-top: 10px;
+}
+
 
 .price-important .money-show-data .tag-one {
     font-size: 1.2rem;
@@ -2165,7 +2171,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ticket-detail-modal .detail-outer {
     background: #FFFFFF;
-    list-style: none;
+    list-style: block;
     margin-bottom: 0;
     padding: 1.0rem;
 
@@ -2968,7 +2974,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 5.0rem
 }
 #confirm-button{
-    background:#BDB9B1;
+    background:#ffb413;
     font-size: 1.6rem;
     color: #fff;
     font-weight: normal;

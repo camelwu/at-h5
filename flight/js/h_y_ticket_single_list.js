@@ -306,7 +306,9 @@ var ticketSingle = {
     },
 
     changeFlightList:function(arg, type){
+        console.log(arg);
         var that = this;
+        console.log(that.backParaObj);
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
         var myFixed = function(arg){
@@ -327,10 +329,16 @@ var ticketSingle = {
                 '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountADT)+'</span></div>' +
                 '<div class="single-price-tax-info"><span class="tax-word">税</span>'+myFixed(myFixed(arg.data.flightInfos[i].totalTaxAmountADT)) +'</div>'
             }else{
-                str+= '<div class="price-tax single-side">' +
-                '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span></div>' +
-                '<div class="single-price-tax-info"><span class="tax-word">含税费</div>' +
-                '</div>'
+                if(that.backParaObj.interNationalOrDomestic=="domestic"){
+                    str+= '<div class="price-tax single-side">' +
+                    '<div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountADT)+'</span></div>' +
+                    '</div>'
+                }else{
+                    str+= '<div class="price-tax single-side">' +
+                    '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span></div>' +
+                    '<div class="single-price-tax-info"><span class="tax-word">含税费</div>' +
+                    '</div>'
+                }
                 }
             return str;
         };
@@ -442,7 +450,7 @@ var ticketSingle = {
             this.addHandler(oLis[i], 'click', function(){
                  that.storageUtil.set('currentListPara', that.backParaObj );
                  document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
-                '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild;
+                '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild+'&interNationalOrDomestic='+that.backParaObj.interNationalOrDomestic;
             })
         }
         this.addHandler(shadowBox, 'click', function(){
