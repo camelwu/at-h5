@@ -134,7 +134,8 @@ TicketDate.prototype.createContainer = function(odate){
 
 TicketDate.prototype.drawDate = function (odate) {
     var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
-    var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),curday = nowDate.getDate();
+    var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+    var mWor='',dWor='';
     this.dateWarp = dateWarp = document.createElement('div');
     dateWarp.className = 'calendar';
     dateWarp.innerHTML = this._template.join('');
@@ -153,47 +154,45 @@ TicketDate.prototype.drawDate = function (odate) {
     // 获取本月第一天是星期几
     weekStart = new Date(year, month-1,1).getDay();
     // 开头显示空白段
-    for (j = 0; j < weekStart; j++) {
+    for (i = 0; i < weekStart; i++) {
         ddHtml.push('<a>&nbsp;</a>');
     }
     // 循环显示日期
     for (i = 1; i <= days; i++) {
-        var ii=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
+        dWor=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
+        mWor=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
         if (year < nowyear) {
             ddHtml.push('<a class="disabled">' + i + '</a>');
         } else if (year == nowyear) {
             if (month < nowmonth + 1) {
                 ddHtml.push('<a class="live disabled">' + i + '</a>');
-            } else if (month == nowmonth + 1){
-                if (parseInt(i) < curday){
-                    ii=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
+            } else if (month == nowmonth + 1) {
+                if (i < nowdate){
                     ddHtml.push('<a class="live disabled">' + i + '</a>');
                 }else{
-                    month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
-                    if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+month+'-'+i] +'</span></a>';
-                    }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span></a>';
+                    if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Return"){
+                        pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+mWor+'-'+dWor] +'</span></a>';
+                    }else if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Oneway"){
+                        pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span></a>';
                     }else{
-                        pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>';
+                        pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>';
                     }
-                    parseInt(i) == curday?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+ii+'">今天</a>'):ddHtml.push(pstr);
+                    i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">今天</a>'):ddHtml.push(pstr);
                 }
-            }else if (month == nowmonth + 2) {
-                month=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
-                if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Return"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+month+'-'+i] +'</span></a>';
-                }else if(tims&&tims[year+'-'+month+'-'+i]&&this.type=="Oneway"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'"><span class="live_circle">' + i + '</span></a>';
+            } else if (month == nowmonth + 2) {
+                if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Return"){
+                    pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+mWor+'-'+dWor] +'</span></a>';
+                }else if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Oneway"){
+                    pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span></a>';
                 }else{
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>';
+                    pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>';
                 }
                 ddHtml.push(pstr);
             } else {
-                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>');
+                ddHtml.push('<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>');
             }
         } else if (year > nowyear) {
-            ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+ii+'">' + i + '</a>');
+            ddHtml.push('<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>');
         }
     }
     dd.innerHTML = ddHtml.join('');
@@ -726,7 +725,6 @@ var  conditionalFiltering = {
                             target.className = 'tag-item active';
                         }
                         that.stateEvent('get');
-                        console.log(that.tempStates)
                         that.fn(that.tempStates);
                         that.checkRedTip();
                         this.style.transition = 'all 300ms ease-in';
@@ -795,7 +793,6 @@ var  conditionalFiltering = {
                             target.className = 'tag-item active';
                         }
                         that.stateEvent('get');
-                        console.log(that.tempStates)
                         that.fn(that.tempStates);
                         that.checkRedTip();
                         this.style.transition = 'all 300ms ease-in';
@@ -843,7 +840,6 @@ var  conditionalFiltering = {
                         spEle2.innerHTML='含税';
                         that.tempStates.hasTax = "true"
                     }
-                    console.log(that.tempStates)
                     that.stateEvent('set');
                     that.fn_(that.tempStates);
                     that.checkRedTip();
@@ -858,7 +854,6 @@ var  conditionalFiltering = {
                         spEle5.innerHTML='含税';
                         that.tempStates.hasTax = "true"
                     }
-                    console.log(that.tempStates)
                     that.stateEvent('set');
                     that.fn_(that.tempStates);
                     that.checkRedTip();

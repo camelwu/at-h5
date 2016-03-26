@@ -266,7 +266,7 @@ var lsf_myweb={
 
         //  交互部分
         function M(json){
-            debugger;
+
             var bookingRefNo=vlm.getpara("bookingRefNo");
             var data = {};
             if(bookingRefNo == null) {
@@ -278,7 +278,7 @@ var lsf_myweb={
                     guestInfo.guestLastName = json.guestName[i].GuestLastName;
                     guestNameList.push(guestInfo);
                 }
-                debugger;
+
                 data.Parameters = {
                     "availability": true,
                     "bankName": json.BankName,
