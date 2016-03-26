@@ -573,6 +573,7 @@ i {
     list-style: none;
     height: 50px;
     border-bottom: 1px solid #dfdfdd;
+    overflow: hidden;
 }
 
 .d-score {
@@ -629,14 +630,13 @@ i {
 
 .d-p5 {
     vertical-align: top;
-    margin-top: 10px;
     color: #484848;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    font-size: 1.5em;
+    font-size: 1.4rem;
 }
 
 .d-icon3 {
@@ -670,7 +670,7 @@ i {
 .hd-price {
     float: right;
     margin-right: 10px;
-    margin-top: 20px;
+    margin-top: 26px;
 }
 
 .hd-price span:nth-child(1) {
@@ -679,7 +679,7 @@ i {
 }
 
 .hd-price span:nth-child(2) {
-    font-size: 2em;
+    font-size: 1.8rem;
     font-weight: 600;
     color: #fe4716;
 }
