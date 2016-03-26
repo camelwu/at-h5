@@ -1911,7 +1911,6 @@ i{
     padding-left: 30px;
     padding-right: 10px;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
 }
 .travelnotes-list li{
     list-style: decimal;
