@@ -1662,10 +1662,12 @@
 				$("#state_btn").click(function(){
 //					$(".js-travelnotes").attr("style","display:block");
 					$(".js-mask").show();
+					$('.sc-content').css({"overflow":"hidden"})
 				});
 				$(".js-travelnotes-close").click(function(){
 //					$(".js-travelnotes").attr("style","display:none");
 					$(".js-mask").hide();
+					$('.sc-content').css({"overflow":"auto"})
 				});
 			})();
 
