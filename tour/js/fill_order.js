@@ -291,15 +291,12 @@
                         var inputAdult=oLiAdult[n].querySelectorAll('.list-adult');
                         var lastNameAdu=inputAdult[0].value;
                         var firstNameAdu=inputAdult[1].value;
-                        //if(! vlm.Utils.validate.mobileNo(oMobile))
-                        if(lastNameAdu == '')
-                        {
-                            jAlert('请输入姓');
+                        if(! vlm.Utils.validate.engName(lastNameAdu)){
+                            jAlert('请您输入英文的旅行人姓名');
                             return;
                         }
-                        if(firstNameAdu == '')
-                        {
-                            jAlert('请输入名');
+                        if(! vlm.Utils.validate.engName(firstNameAdu)){
+                            jAlert('请您输入英文的旅行人姓名');
                             return;
                         }
                         var tra={};
@@ -318,15 +315,12 @@
                         var inputChild = roomNum[i].querySelectorAll('.list-child');
                         var lastNameChi = inputChild[0].value;
                         var firstNameChi = inputChild[1].value;
-                        //if(! vlm.Utils.validate.mobileNo(oMobile))
-                        if(lastNameChi == '')
-                        {
-                            jAlert('请输入名');
+                        if(! vlm.Utils.validate.engName(lastNameChi)){
+                            jAlert('请您输入英文的旅行人姓名');
                             return;
                         }
-                        if(firstNameChi == '')
-                        {
-                            jAlert('请输入姓');
+                        if(! vlm.Utils.validate.engName(firstNameChi)){
+                            jAlert('请您输入英文的旅行人姓名');
                             return;
                         }
                         var tra = {};
@@ -346,30 +340,28 @@
 
                 //联系人姓名检验
                 var inputCon=$('.list_inp_name');
-                if(inputCon.eq(0).val() == '')
-                {
-                    jAlert('请输入联系人的姓');
+                if(! vlm.Utils.validate.engName(inputCon.eq(0).val())){
+                    jAlert('请您输入英文的联系人姓名');
                     return;
                 }
-                if(inputCon.eq(1).val() == '')
-                {
-                    jAlert('请输入联系人的名');
+                if(! vlm.Utils.validate.engName(inputCon.eq(1).val())){
+                    jAlert('请您输入英文的联系人姓名');
                     return;
                 }
                 // 手机号邮箱检验
-                //var oMobile = $('#list_con_tel')[0].value;
-                //var oEmail = $('#list_con_email')[0].value;
-                //
-                //if ( ! vlm.Utils.validate.mobileNo(oMobile) )
-                //{
-                //    jAlert('请输入正确的手机号');
-                //    return;
-                //}
-                //if ( ! vlm.Utils.validate.email(oEmail) )
-                //{
-                //    jAlert('请输入正确的邮箱');
-                //    return;
-                //}
+                var oMobile = $('#list_con_tel')[0].value;
+                var oEmail = $('#list_con_email')[0].value;
+
+                if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+                {
+                    jAlert('请输入正确的手机号');
+                    return;
+                }
+                if ( ! vlm.Utils.validate.email(oEmail) )
+                {
+                    jAlert('请输入正确的邮箱');
+                    return;
+                }
                 //接机信息
                 if($('#flight-air').css('display') == 'block'){
                     var fli={};
