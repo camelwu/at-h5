@@ -34,7 +34,10 @@
 <body>
 <div id="preloader">
     <div id="status-t">
-        <p class="center-text"></p>
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
     </div>
 </div>
 <div class="all-elements">
@@ -125,7 +128,7 @@
     </section>
     {% if(tours[i].travelDate){ %}
     <section class="trip_box">
-        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%} {%=tourNoon[i]%}</span>
+        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%}</span>
     </section>
     {% } %}
     {% } %}
@@ -143,21 +146,25 @@
     {% } %}
 </script>
 <script>
-    var tourNoon = [];
+//    var tourNoon = [];
     (function(){
         var ww = this;
         var sh_orderDetail = function(){
             //   获取详情
             var getDetail = function(){
-                var info = JSON.parse(localStorage.info);
-                var productPrice = JSON.parse(localStorage.productPrice);
+
+//                var info =0;
+//                if(localStorage.info !=undefined){
+//                     info = JSON.parse(localStorage.info);
+//                }
+//                var productPrice = JSON.parse(localStorage.productPrice);
 
                 var myDate = new Date();
                 var createTime = myDate.toLocaleString();
                 var adultPrice = 0;
                 var childPrice = 0;
                 var tpl1 = [
-                    '<a href="packages_detail.html?packageID={%=packageID%}&productPrice='+productPrice+'&status=0">' +
+                    '<a href="packages_detail.html?packageID={%=packageID%}&productPrice={%=totel%}&status=0">' +
                     '<p class="sce-introduce-txt">{%=packageName%}<span class="sce-introduce-span">（产品编号 {%=packageRefNo%}）</span></p>' +
                     '</a>'
                 ].join('');
@@ -212,7 +219,7 @@
 //                        for(var j = 0;j < chargeDetail.length;j++){
 //                            totalPrice = totalPrice + chargeDetail[j];
 //                        }
-                        adultPrice = info.adultNum * data.chargeDetails[0].amountInCNY;
+//                        adultPrice = info.adultNum * data.chargeDetails[0].amountInCNY;
                         for(var j = 0;j < data.chargeDetails.length;j++){
                             if(data.chargeDetails[j].category != "PAYMENT") {
                                 totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
@@ -247,17 +254,22 @@
                             '<a href="#">费用明细</a>'
                         ].join('');
 
-                        tourNoon  =localStorage.getItem("noon");
-                        tourNoon = tourNoon.split(",");
-                        console.log(tourNoon);
+//                        tourNoon  =localStorage.getItem("noon");
+//                        tourNoon = tourNoon.split(",");
+//                        console.log(tourNoon);
+
+                        var sum = 0;
+                        data.chargeDetails.forEach(function (item, index, array) {
+                            if(item.category !="PAYMENT") {
+                                sum += item.totalAmountInCNY;
+                            }
+                        });
+                        data.totel=sum;
+
                         var html_pi = template(tpl1,data);
                         var html_hi = template(tpl2,data);
                         var tpl_GetTourInfo = template("tpl_GetTourInfo",data);
-                        var sum=0;
-                        data.chargeDetails.forEach(function (item, index, array) {
-                            sum += item.totalAmountInCNY;
-                        });
-                        data.totel=sum;
+
                         var html_tp = template(tpl3,data);
                         var html_oi = template(tpl4,data);
                         var html_pd_list = template(tpl5,data);
