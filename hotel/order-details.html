@@ -22,7 +22,7 @@
     </div>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:void(0);" class="header-back" id="td_back" onclick="window.history.go(-1)">
+        <a href="../user/user-allorder.html" class="header-back" id="td_back">
             <i class="icons go-back"></i>
         </a>
         <h3>订单详情</h3>
@@ -191,7 +191,7 @@
         </div>
         <div class="btnDiv" id="btnDiv">
             {% if(orderStatus==0 || orderStatus==1 ){ %}
-                <a href="#" class="hotelInter2 cancelOrder">取消订单</a>
+                <a href="javascript:void(0);" class="hotelInter2 cancelOrder">取消订单</a>
             {% } %}
         </div>
 
@@ -356,8 +356,7 @@
                             vlm.loadJson("",JSON.stringify(Parameters),function(json){
                                 if(json.success) {
                                     window.location.reload();
-                                }
-                                else{
+                                }else{
                                     jAlert("取消失败！");
                                 }
                             });
