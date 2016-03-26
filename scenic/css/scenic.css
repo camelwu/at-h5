@@ -1924,6 +1924,7 @@ i{
     background: rgba(0,0,0,0.3);
     z-index: 75;
     display: none;
+    pointer-events: none;
 
 }
 /*旅行须知*/
