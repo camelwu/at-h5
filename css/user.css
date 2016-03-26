@@ -110,7 +110,9 @@
     line-height: 20px;
     color: white;
 }
-
+a{
+    font-size: 1.4rem;
+}
 .user-menu li:first-child {
     border: none;
 }
@@ -504,7 +506,7 @@
          修改昵称页css
 */
 .u_name {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-top: 10px;
     padding: 12px 15px;
     border-top: 1px #dedede solid;
@@ -533,7 +535,7 @@
 
 .name-text {
     padding: 5px 15px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #999999;
     margin-bottom: -12px;
 }
@@ -918,7 +920,7 @@
     width: 22px;
     height: 22px;
     position: absolute;
-    top: 13px;
+    top: 8px;
     margin-left: 5px;
     background-position: 28% 35%;
 }
