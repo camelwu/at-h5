@@ -895,6 +895,7 @@
 				//var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
 				var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId +' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id+"&callback="+callback);
 				document.body.appendChild(choice);
+				window.parent.document.getElementById("ticket-wrap").style.display="none";
 				//choice.location = urls;
 			},createIframe = function(urlstr,id) {
 				var str = id?id:'choiceAir',myIframe = document.createElement('iframe');
