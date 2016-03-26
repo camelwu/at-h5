@@ -105,6 +105,7 @@ var lsf_myweb={
     }
 };
 ;(function(){
+
     //预加载的图片
     $(window).load(function () {
         $("#status-h").fadeOut();
@@ -266,79 +267,76 @@ var lsf_myweb={
         //  交互部分
         function M(json){
             debugger;
-            console.log(json.totalPriceCNY);
-            //var data={
-            //    "Parameters": "{\"CultureName\":\"en-US\",\"PartnerCode\":\"1000\",\"HotelCode\":\""+json.HotelGenInfo.hotelCode+"\"," +
-            //    "\"RoomCode\":"+json.roomCode+",\"HotelName\":\""+json.HotelGenInfo.hotelName+"\"," +
-            //    "\"RoomTypeCode\": "+json.RoomTypeCode+", \"RoomTypeName\":\""+json.RoomTypeName+"\"," +
-            //    "\"RoomName\": \""+json.roomName+"\",\"CheckInDate\":\""+json.dateInfo.CheckInDate+"T00:00:00\"," +
-            //    "\"CheckOutDate\":\""+json.dateInfo.CheckOutDate+"T00:00:00\",\"NumOfRoom\":"+json.NumOfRoom+"," +
-            //    "\"NumOfGuest\":2,\"NumOfChild\":0,\"GuestTitle\":\"Mr\",\"GuestLastName\":\"Testing\"," +
-            //    "\"GuestFirstName\":\"Tester\",\"GuestContactNo\":\""+json.GuestContactNo+"\"," +
-            //    "\"GuestEmail\":\"thomas.gunawan@asiatravel.com\"," +
-            //    "\"TotalPrice\":\""+json.totalPriceCNY+"\",\"Availability\":true,\"GuestRequest\":\"test\",\"MemberId\":0," +
-            //    "\"CardHolderName\":\""+json.CardHolderName+"\"," +
-            //    "\"CreditCardNumber\":\""+json.CreditCardNumber+"\",\"CreditCardType\":"+json.CreditCardType+"," +
-            //    "\"CreditCardExpiryDate\":\""+json.CreditCardExpiryDate+"\",\"CardSecurityCode\":\""+json.CardSecurityCode+"\"," +
-            //    "\"BankName\":\""+json.BankName+"\",\"ResidenceCode\":\"SIN\",\"NationlityCode\":\"CN\"," +
-            //    "\"CardBillingAddress\":\"Toa Pa Yoh\",\"CardIssuanceCountry\":\""+json.CardIssuanceCountry+"\"," +
-            //    "\"CashVoucherDetails\":\"\",\"Trck\":\"\",\"IPAddress\":\"\",\"CookieID\":1,\"BrowserType\":\"\",\"SessionID\":\"\"," +
-            //    "\"GuestNameList\":[{\"GuestLastName\":\"yu\",\"GuestFirstName\":\"xiang\"}]}",
-            //    "ForeEndType": 3,
-            //    "Code": "0012"
-            //};
-            var data={};
-            var guestNameList=[];
-            for(var i=0;i<=json.guestName.length-1;i++){
-                var guestInfo={};
-                guestInfo.guestFirstName=json.guestName[i].GuestFirstName;
-                guestInfo.guestLastName=json.guestName[i].GuestLastName;
-                guestNameList.push(guestInfo);
+            var bookingRefNo=vlm.getpara("bookingRefNo");
+            var data = {};
+            if(bookingRefNo == null) {
+                console.log(json.totalPriceCNY);
+                var guestNameList = [];
+                for (var i = 0; i <= json.guestName.length - 1; i++) {
+                    var guestInfo = {};
+                    guestInfo.guestFirstName = json.guestName[i].GuestFirstName;
+                    guestInfo.guestLastName = json.guestName[i].GuestLastName;
+                    guestNameList.push(guestInfo);
+                }
+                debugger;
+                data.Parameters = {
+                    "availability": true,
+                    "bankName": json.BankName,
+                    "browserType": "",
+                    "cardBillingAddress": "werty",
+                    "cardHolderName": json.CardHolderName,
+                    "cardIssuanceCountry": json.CardIssuanceCountry,
+                    "cardSecurityCode": json.CardSecurityCode,
+                    "cashVoucherDetails": "",
+                    "checkInDate": json.dateInfo.CheckInDate + "T00:00:00",
+                    "checkOutDate": json.dateInfo.CheckOutDate + "T00:00:00",
+                    "cookieID": 1,
+                    "creditCardExpiryDate": json.CreditCardExpiryDate,
+                    "creditCardNumber": json.CreditCardNumber,
+                    "creditCardType": json.CreditCardType,
+                    "guestContactNo": json.GuestContactNo,
+                    "guestEmail": json.GuestEmail,
+                    guestNameList: guestNameList,
+                    "guestRequest": "",
+                    "guestTitle": "Mr",
+                    "hotelCode": json.HotelGenInfo.hotelCode,
+                    "hotelName": json.HotelGenInfo.hotelName,
+                    "iPAddress": "",
+                    "memberId": localStorage.memberid,
+                    "nationlityCode": "",
+                    "numOfChild": 0,
+                    "numOfGuest": json.NumOfRoom,
+                    "numOfRoom": json.NumOfRoom,
+                    "residenceCode": "",
+                    "roomCode": json.roomCode,
+                    "roomName": json.roomName,
+                    "roomTypeCode": json.RoomTypeCode,
+                    "roomTypeName": json.RoomTypeName,
+                    "sessionID": "",
+                    "totalPrice": json.totalPriceCNY,
+                    "trck": ""
+                };
+                data.ForeEndType = 3;
+                data.Code = "0012";
             }
-
-            data.Parameters={
-                "availability":true,
-                "bankName":"qwertyu",
-                "browserType":"",
-                "cardBillingAddress":"werty",
-                "cardHolderName":json.CardHolderName,
-                "cardIssuanceCountry":json.CardIssuanceCountry,
-                "cardSecurityCode":json.CardSecurityCode,
-                "cashVoucherDetails":"",
-                "checkInDate":json.dateInfo.CheckInDate+"T00:00:00",
-                "checkOutDate":json.dateInfo.CheckOutDate+"T00:00:00",
-                "cookieID":1,
-                "creditCardExpiryDate":json.CreditCardExpiryDate,
-                "creditCardNumber":json.CreditCardNumber,
-                "creditCardType":json.CreditCardType,
-                "guestContactNo":json.GuestContactNo,
-                "guestEmail":json.GuestEmail,
-                 guestNameList:guestNameList,
-                "guestRequest":"",
-                "guestTitle":"Mr",
-                "hotelCode":json.HotelGenInfo.hotelCode,
-                "hotelName":json.HotelGenInfo.hotelName,
-                "iPAddress":"",
-                "memberId":localStorage.memberid,
-                "nationlityCode":"",
-                "numOfChild":0,
-                "numOfGuest":json.NumOfRoom,
-                "numOfRoom":json.NumOfRoom,
-                "residenceCode":"",
-                "roomCode":json.roomCode,
-                "roomName":json.roomName,
-                "roomTypeCode":json.RoomTypeCode,
-                "roomTypeName":json.RoomTypeName,
-                "sessionID":"",
-                "totalPrice":json.totalPriceCNY,
-                "trck":""
-            };
-            data.ForeEndType=3;
-            data.Code="0012";
-
-            console.log(data);
+            else{
+                data.Parameters = {
+                    "bankName": json.BankName,
+                    "bookingReferenceNo":bookingRefNo,
+                    "cardBillingAddress":"",
+                    "cardHolderName": json.CardHolderName,
+                    "cardIssuanceCountry": json.CardIssuanceCountry,
+                    "cardSecurityCode": json.CardSecurityCode,
+                    "cashVoucherDetails":"",
+                    "creditCardExpiryDate": json.CreditCardExpiryDate,
+                    "creditCardNumber": json.CreditCardNumber,
+                    "creditCardType": json.CreditCardType,
+                    "paymentGatewayID":"0"
+                };
+                data.ForeEndType = 3;
+                data.Code = "0014";
+            }
             console.log(JSON.stringify(data))
-
             var payment=new paymentObj(data,mycallback);
             payment.handlePayment();
             vlm.init();

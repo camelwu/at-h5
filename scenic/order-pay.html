@@ -46,7 +46,8 @@
                 <!--</ul>-->
             </div>
             <ul class="pay-style-list" id="pay_way">
-                <li>剩余支付时间: <i class="count-time" id="countdown"></i></li>
+                <li>请在: <i class="count-time" id="countdown">00:00</i>前完成支付。</li>
+
                 <li class="paymentType"><span class="jd-icon pay-card" data-type="pay-card"></span><span data-type="pay-card" >银联支付</span><b class="icon circle-choi"></b></li>
                 <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
                 <li class="paymentType"><span class="jd-icon pay-visa" data-type="pay-visa"></span><span  data-type="Visa">Visa信用卡支付</span><b class="icon circle-chois"></b></li>
@@ -170,28 +171,6 @@
             "SGD":"SGD",
             "USD":"$"
         };
-
-        function sec(sName,time){
-            var oSpan=document.getElementById(sName);
-            var n=time;
-            tick1();
-            var timer=setInterval(tick1,1000);
-            function tick1()
-            {
-                n--;
-                var m=parseInt(n/60);
-                var s=n%60;
-                oSpan.innerHTML=toDub(m)+'分'+toDub(s)+'秒';
-                if (n<0) {
-                    clearInterval(timer);
-                    oSpan.innerHTML="结束"
-                }
-            }
-        }
-        function toDub(a){
-            return a<10 ? '0'+a : ''+a;
-        }
-
         (function(){
             Init();
             var bookingRefNo= vlm.getpara("bookingRefNo")
@@ -226,7 +205,6 @@
             }
         })();
         function Payment(type,code){
-
             var  Parameters=GetParameters(type,code);
             if(Parameters) {
                 console.log(Parameters);
@@ -262,10 +240,6 @@
                     jAlert("持卡人姓名不能为空！","",null,"确认");
                     return false;
                 }
-                if(!vlm.Utils.validate["engName"]($(".CardHolderName").val())){
-                    jAlert("持卡人姓名必须为英文！","",null,"确认");
-                    return false;
-                }
 
                 if(!vlm.Utils.validate["isNoEmpty"]($(".CardNumber").val())){
                     jAlert("信用卡不能为空！","",null,"确认");
@@ -279,7 +253,6 @@
                     jAlert("有效期不能为空！","",null,"确认");
                     return false;
                 }
-
                 if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
                     jAlert("信用卡卡号错误！","",null,"确认");
                     return false;
@@ -354,33 +327,16 @@
             }
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
                 if(data.success) {
-                    debugger;
-                    var date1=new Date();  //开始时间
-                    var date2=new Date(data.data.bookingDate.replace("T"," "))
-                    var date3=date1.getTime()-date2.getTime() //时间差的毫秒数
-                    //计算出相差天数
-                    var days=Math.floor(date3/(24*3600*1000))
+                    var d=new Date(Date.parse(data.data.bookingDate.replace("T"," ").replace(/-/g, "/")));
+                    d.setMinutes(d.getMinutes()+30);
+                    $(".count-time").html(d.getHours()+":"+d.getMinutes());
 
-                    //计算出小时数
-                    var leave1=date3%(24*3600*1000)    //计算天数后剩余的毫秒数
-                    var hours=Math.floor(leave1/(3600*1000))
-
-                    //计算相差分钟数
-                    var leave2=leave1%(3600*1000)        //计算小时数后剩余的毫秒数
-                    var minutes=Math.floor(leave2/(60*1000))
-
-                    //计算相差秒数
-                    var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
-                    var seconds=Math.round(leave3/1000)
-
-
-                    if(days==0 && hours==0 && minutes*60+seconds<=30*60+5) {
-                        sec('countdown',30*60-(minutes*60+seconds));
+                    var sumAmount=0;
+                    for (var i = 0;i<data.data.chargeDetails.length;i++){
+                        sumAmount+=data.data.chargeDetails[i].totalAmount;
                     }
-                    else{
-                        var oSpan=document.getElementById("countdown")
-                        $("#countdown").html("已经结束");
-                    }
+                    data.data.sumAmount=sumAmount;
+
                     var tpl = template("tpl_orderinfo",data.data);
                     var tplC = template("tpl_orderTotal",data.data);
                     $(".per-pay-msg-bg").html(tpl);
@@ -404,13 +360,13 @@
             </li>
             <li>
                 <div>票务信息：<i> {%=packageName%}{%=travelers.length%}张</i></div>
-                <div class="pay-total">总价：<i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i><span style="color:#fe6a03" class="totalAmount">{%=chargeDetails[0].totalAmount%}</span></div>
+                <div class="pay-total">总价：<i class="pay-num">{% var d=chargeDetails[0]; %}{%=getCN[d.currencyCode]%}</i><span style="color:#fe6a03" class="totalAmount">{%=sumAmount%}</span></div>
             </li>
         </ul>
     </script>
 
     <script id="tpl_orderTotal" type="text/template"	>
-        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=chargeDetails[0].totalAmount%}</span>
+        订单总价：{% var d=chargeDetails[0]; %} {%=getCN[d.currencyCode]%}<span>{%=sumAmount%}</span>
     </script>
 
 
