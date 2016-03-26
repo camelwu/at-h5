@@ -1885,7 +1885,7 @@ i{
 }
 .travelnotes-header{
     position: fixed;
-    width: 100%;
+    width: 90%;
     height: 50px;
     box-sizing: border-box;
     background-color: #ffb413;
@@ -1897,7 +1897,7 @@ i{
 
 .travelnotes-header-icon{
     position: absolute;
-    right: 10%;
+    right: 3%;
     top: 7px;
     margin-right: 3%;
     width: 40px;
