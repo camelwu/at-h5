@@ -251,7 +251,7 @@
                      '<p>{%=bookingReferenceNo%}</p> ',
                      '<p>{%=createdTime.replace("T"," ")%}</p>',
                      '<p>{%=noOfRooms%}间</p>',
-                     '<p>{%=guestNameList.guestLastName%}{%=guestNameList.guestFirstName%}</p>',
+                     '<p>{%=guestNameList[0].guestLastName%}{%=guestNameList[0].guestFirstName%}</p>',
                      '<p>{%=guestContactNo%}</p>'
                 ].join('');
                 var tmp = {
@@ -300,7 +300,7 @@
                             '<li>',
                                 '<div>房费</div><span>￥{%=totalRoomRate-tax_service%}</span>',
                                 '<div style="clear: both"></div>',
-                                '<div>税和服务费</div><span>￥'+tax_service+'</span>',
+                                '<div>税和服务费</div><span>{%=tax_service%}</span>',
                             '</li>',
                             '<li>付款方式：'+payWay+'</li>'
                         ].join('');
