@@ -35,7 +35,7 @@ $(document).ready()
     var foreEndType=vlm.getpara("foreEndType");
     var bookingRefNo=vlm.getpara("bookingRefNo");
     var pgtid=vlm.getpara("pgtid");
-    debugger;
+
     $("#statusDiv").removeClass();
     if(business==1) {
         $("#statusDiv").addClass("status-h");
@@ -106,7 +106,7 @@ $(document).ready()
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), function(data){
             if (data.success) {
                 vlm.init();
-                debugger;
+
                 if(business==3){
                    if(data.data.booleanResult) {
                        window.location.href = 'flight/pay_success.html?bookingRefNo=' + bookingRefNo;

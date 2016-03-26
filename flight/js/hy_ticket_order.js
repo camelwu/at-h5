@@ -133,7 +133,6 @@ var ticketOrder = {
             var that = ticketOrder;
             that.backParaObj = that.reverseInformation;
             var selectTravellerList=window['localStorage']['travellerInfo_selected'];
-            debugger;
             if(!window['localStorage']['travellerInfo_selected']){
                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
                 return;
