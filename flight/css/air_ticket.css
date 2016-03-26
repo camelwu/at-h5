@@ -580,7 +580,14 @@ h1, h2, h3, h4, h5, h6 {
 .all-elements .city-content {
     padding: 4.125rem 0 2.0rem;
 }
-
+.all-elements .jcity-content{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom:0;
+    overflow-y: scroll;
+}
 .all-elements .city-content .hTab {
     height: 3.8rem;
     line-height: 3.8rem;
@@ -747,7 +754,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.4rem;
     list-style: none;
     position: fixed;
-    top: 4.6rem;
+    top: 4rem;
     right: 0;
     bottom: 0;
     left: 0;
@@ -809,14 +816,22 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 5;
     color: #ffb413;
 }
-
-.all-elements .city-content .right-side .cur-word {
+.right-side{
+    position: fixed;
+    right: 0;
+    top: 70px;
+    width: 30px;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+}
+.right-side .cur-word {
     padding-top: 1.5rem;
-    position: relative;
+    /*position: relative;*/
 }
 
 .city-pin-fir {
-    margin-top: 5px;
+    margin-top:0px;
 }
 
 .rec-histor {
@@ -825,23 +840,28 @@ h1, h2, h3, h4, h5, h6 {
     top: 50px;
     z-index: 100;
 }
-
 .all-elements .city-content .right-side .cur-word a {
-    display: inline-block;
     width: 100%;
-    height: 12px;
-    line-height: 12px !important;
+    height: 14px;
+    line-height: 14px !important;
     text-align: center;
     overflow: hidden;
     font-size: 12px;
 }
-
-.all-elements .city-content .right-side .cur-word .cur-city, .all-elements .city-content .right-side .cur-word .his-city, .all-elements .city-content .right-side .cur-word .re-hot-city {
-    padding-right: 5px;
-    font-size: 1.4rem;
-    padding-top: 5px;
-    line-height: 1.3rem;
+.special-tip span.re-hot-city{
+    padding-top:0;
+    line-height: 14px;
 }
+.all-elements .city-content .right-side .cur-word .cur-city, .all-elements .city-content .right-side .cur-word .his-city, .all-elements .city-content .right-side .cur-word .re-hot-city {
+    padding-right:0;
+    font-size: 1.4rem;
+    padding-top:0px;
+    line-height: 14px;
+    height: 14px;
+    display:block;
+    text-align: center;
+}
+
 .right-side a{
     color: #ffb413;
 }

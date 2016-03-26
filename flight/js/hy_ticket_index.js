@@ -369,7 +369,7 @@ var  ticketIndexModal = {
            '    <input type="text" placeholder="新加坡/xinjiapo/Singapore" id="city-input-zone"><i></i>'+
            '</div>'+
            '</header>'+
-           '<div class="city-content">'+
+           '<div class="city-content jcity-content">'+
            '<div class="hTab c-htab">'+
            '<div class="singleTrip addFontStyle">国内</div>'+
            '<div class="doubleTrip">国际</div>'+
@@ -442,6 +442,9 @@ var  ticketIndexModal = {
            '</li>'+
            '</ul>'+
            '</div>'+
+           '<ul class="city-list-searched" style="display: none;">'+
+           '</ul>'+
+           '</div>'+
            '<div class="right-side">'+
            '<div class="cur-word">'+
            '<div class="special-tip"><span class="cur-city"><a href="#CURR">当前</a></span><span class="his-city"><a href="#HIST">历史</a></span><span class="re-hot-city"><a href="#HOTT">热门</a></span></div>'+
@@ -474,9 +477,6 @@ var  ticketIndexModal = {
            '<a class="letter" href="#Z">Z</a>'+
            '</div>'+
            '</div>'+
-           '</div>'+
-           '<ul class="city-list-searched" style="display: none;">'+
-           '</ul>'+
            '</div>';
            wrapDiv.innerHTML = frameStr;
            allWrap.appendChild(wrapDiv);
