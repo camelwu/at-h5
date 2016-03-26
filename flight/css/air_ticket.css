@@ -67,6 +67,7 @@
     overflow-y: auto;
     z-index: 100;
    display: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .top-tel{
