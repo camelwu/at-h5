@@ -514,7 +514,6 @@
 					selectAdult=selectAdult+1;
 				}
 			})
-
 			if(!isMulSelect)
 			{
 				var len= $(".list-traveler .choiced").length;
@@ -524,27 +523,30 @@
 					return;
 				}
 			}
-			if(numofAdult!= 'null' && selectAdult>numofAdult){
-				jAlert("对不起，不能超过"+numofAdult+"成人");
-				$(this).removeClass("choiced");
-				return;
-			}
-			if( numofAdult!='null' && selectChild>numofChlid){
-				jAlert("对不起，不能超过"+numofAdult+"儿童");
-				$(this).removeClass("choiced");
-				return;
-			}
-			else{
-				if(numofAdult!='null' && numofChlid!='null') {
-					if(numofChlid>0) {
-						$("#toper h3").html("已选" + selectAdult + "/" + numofAdult + "成人  "+selectChild+"/" + numofChlid + "儿童");
-					}
-					else{
-						$("#toper h3").html("已选" + selectAdult+ "/" + numofAdult + "成人");
-					}
+			else {
+				if (numofAdult != 'null' && selectAdult > numofAdult) {
+					jAlert("对不起，不能超过" + numofAdult + "成人");
+					$(this).removeClass("choiced");
+					return;
 				}
-				else{
-					$("#toper h3").html("已选" + $(".choiced").length+"人");
+				console.log("selectChild" + numofChlid);
+				if (numofChlid != 'null' && selectChild > numofChlid) {
+					jAlert("对不起，不能超过" + numofChlid + "儿童");
+					$(this).removeClass("choiced");
+					return;
+				}
+				else {
+					if (numofAdult != 'null' && numofChlid != 'null') {
+						if (numofChlid > 0) {
+							$("#toper h3").html("已选" + selectAdult + "/" + numofAdult + "成人  " + selectChild + "/" + numofChlid + "儿童");
+						}
+						else {
+							$("#toper h3").html("已选" + selectAdult + "/" + numofAdult + "成人");
+						}
+					}
+					else {
+						$("#toper h3").html("已选" + $(".choiced").length + "人");
+					}
 				}
 			}
 		});
@@ -737,6 +739,7 @@
 		}
 		else {
 			$("#delTra").show();
+
 			$(".addAir-page .header h3").attr("type","edit")
 			$(".addAir-page .header h3").attr("data-id",tralJsonObj[id].traveller.travellerId)
 			$(".addAir-page .header h3").html("编辑"+titleType+"信息");
@@ -747,15 +750,16 @@
 			$(".telNum").attr("value",tralJsonObj[id].traveller.mobilePhone);
 			$(".txtEmail").attr("value",tralJsonObj[id].traveller.email);
 			$(".country").html(tralJsonObj[id].traveller.countryName)
-			$(".country").attr("data-code",tralJsonObj[id].traveller.countryCode);
 
 			$(".cardNumber").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idNumber);
 			$(".postCard").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idType);
 			$(".cardDateLimit").attr("value",tralJsonObj[id].listTravellerIdInfo[0].idActivatedDate.substring(0,10).replace('-','年').replace('-','月')+'号');
 			$(".cardCountry").attr("data-code",tralJsonObj[id].listTravellerIdInfo[0].idCountry);
+			console.log(tralJsonObj[id].listTravellerIdInfo[0].idCountry)
 			$(".cardCountry").html(getCountryName(tralJsonObj[id].listTravellerIdInfo[0].idCountry).CountryName);
 
 			$(".birthDay").attr("value",tralJsonObj[id].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号');
+			$(".country").attr("data-code",tralJsonObj[id].traveller.countryCode);
 			if (tralJsonObj[id].traveller.sexCode == "Mr") {
 				$("#woman").removeClass("traveler-sex1");
 				$("#woman").addClass("traveler-sex2");

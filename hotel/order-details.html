@@ -87,7 +87,7 @@
                                 <div class="q22"></div>
                             </div>
                             <div class="q2">
-                                <div class="q12"><p>支付订单</p></div>
+                                <div class="q11"><p>支付订单</p></div>
                                 <div class="q22"></div>
                             </div>
                             <div class="q2">
@@ -190,8 +190,10 @@
             </div>
         </div>
         <div class="btnDiv" id="btnDiv">
-            {% if(orderStatus==0 || orderStatus==1 ){ %}
+            {% if(orderStatus==1 ){ %}
                 <a href="#" class="hotelInter2 cancelOrder">取消订单</a>
+            {% } else if(orderStatus==0){ %}
+                <a href="jyy_pay.html?bookingRefNo={%=bookingReferenceNo%}" class="hotelInter2">支付</a>
             {% } %}
         </div>
 
@@ -315,7 +317,6 @@
                         var html = template("btnDiv", data);
                         $("#btnDiv").html(html)
                         cancelOrderEvent();
-
 
                         vlm.init();
                         if(data.length == 0){
