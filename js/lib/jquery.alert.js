@@ -55,12 +55,18 @@
 				//if (callback) callback(result);
 			});
 		},
+		tiper : function(message, title) {
+			if (title == null)
+				title = '1';
+			$.alerts._show(title, message, null, 'tiper', function(result) {
+				//if (callback) callback(result);
+			});
+		},
 		// Private methods
 		_show : function(title, msg, value, type, callback) {
-
 			$.alerts._hide();
 			$.alerts._overlay('show');
-			if (type == "layer") {
+			if (type == "layer"||type == "tiper") {
 				$("BODY").append('<div id="popup_container">' + '<div id="popup_title">' + title + '</div>' + '<div id="popup_content">' + '<div id="popup_more">' + msg + '</div>' + '</div>' + '</div>');
 				console.log(title);
 				//$("#popup_title").text(title);$("#popup-more").text(moreMsg);
@@ -74,15 +80,27 @@
 
 			// IE6 Fix var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
 			var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
-			$("#popup_container").css({
-				position : pos,
-				zIndex : 1011,
-				padding : 0,
-				margin : 0
-			});
+			if(type == "tiper"){
+				$("#popup_container").css({
+					position : pos,
+					zIndex : 1011,
+					padding : 0,
+					height:312,
+					margin : 0,
+					marginTop:112,
+					borderRadius:3
+				});
+			}else{
+				$("#popup_container").css({
+					position : pos,
+					zIndex : 1011,
+					padding : 0,
+					margin : 0
+				});
+			}
 			//
 			$("#popup_content").addClass(type);
-			if (type == "layer") {
+			if (type == "layer"||type == "tiper") {
 				$("#popup_container").css({
 					//minHeight : $("#popup_container").outerHeight(true),
 					maxWidth : $("#popup_container").outerWidth() - 24
@@ -216,6 +234,19 @@
 					});
 					setTimeout("$.alerts._reposition()", "80");
 					break;
+				case 'tiper':
+					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
+					$("#popup_overlay").click(function() {
+						$.alerts._hide();
+					});
+					$("#popup_cancel").click(function() {
+						$.alerts._hide();
+						if (callback)
+							callback(false);
+					});
+					setTimeout("$.alerts._reposition()", "80");
+					break;
+
 			}
 			if ($(".snap-content")) {
 				$(".snap-content").css("overflow", "hidden")
@@ -329,6 +360,8 @@
 	jLayer = function(message, title) {
 		$.alerts.layer(message, title);
 	};
-
+	jTiper = function(message, title) {
+		$.alerts.tiper(message, title);
+	};
 })(jQuery);
 

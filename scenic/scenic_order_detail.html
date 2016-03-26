@@ -10,7 +10,6 @@
 		<!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
 		<link href="../styles/tips.css"	rel="stylesheet">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
-		<!--<link rel="import" href="my-dialog.html">-->
 
 	</head>
 	<body>
@@ -153,7 +152,7 @@
 				</section>
 				<div class="order-notice">
 					<i class="order-notice-btn on"></i>
-					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网<label style="color: #ffb413;display: inline;">旅行须知</label></span>
+					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网<label style="color: #ffb413;display: inline;">购票须知</label></span>
 				</div>
 			</div>
 
@@ -236,21 +235,22 @@
 
 		</div>
 	<!--   旅行须知   -->
-	<!--<div id="travelnotes" class="travelnotes-warp">-->
-		<!--<div class="travelnotes-header">-->
-			<!--<label>旅行须知</label>-->
-			<!--<i class="travelnotes-header-icon"></i>-->
-		<!--</div>-->
-		<!--<ul class="travelnotes-list">-->
-			<!--<li>所有的套餐都不可转让，不可退款，不可更改。</li>-->
-			<!--<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>-->
-			<!--<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>-->
-			<!--<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>-->
-			<!--<li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>-->
-			<!--<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>-->
-			<!--<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>-->
-		<!--</ul>-->
-	<!--</div>-->
+	<div class="travelnotes-warp js-travelnotes" style="display: none;">
+		<div class="travelnotes-header">
+			购票须知
+			<i class="travelnotes-header-icon js-travelnotes-close"></i>
+		</div>
+		<ol class="travelnotes-list">
+			<li>所有的套餐都不可转让，不可退款，不可更改。</li>
+			<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>
+			<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+			<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+			<li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
+			<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
+			<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
+		</ol>
+	</div>
+	<!--   旅行须知   -->
 
 		<!--国籍选择开始-->
 		<div class="all-elements country-cho-wrap">
@@ -1318,7 +1318,7 @@
 							return false;
 						}
 						if(FirstName.match(regx)){
-							jAlert("只能输入英文", "提示");
+							jAlert("请您输入英文的取票人姓名", "提示");
 							return false;
 						}
 						Status = MT.validate(LastName, {
@@ -1330,7 +1330,7 @@
 							return false;
 						}
 						if(LastName.match(regx)){
-							jAlert("只能输入英文", "提示");
+							jAlert("请您输入英文的取票人姓名", "提示");
 							return false;
 						}
 
@@ -1408,7 +1408,7 @@
 							return false;
 						}
 						if(FirstName.match(regx)){
-							jAlert("只能输入英文", "提示");
+							jAlert("请您输入英文的联系人姓名", "提示");
 							return false;
 						}
 
@@ -1421,7 +1421,7 @@
 							return false;
 						}
 						if(LastName.match(regx)){
-							jAlert("只能输入英文", "提示");
+							jAlert("请您输入英文的联系人姓名", "提示");
 							return false;
 						}
 
@@ -1467,6 +1467,7 @@
 							"FirstName" : FirstName,
 							"LastName" : LastName,
 							"Email" : Email,
+							"MemberID":localStorage.memberid,
 							"ContactNo" : {
 								"CountryCode" : CountryCode,
 								"PhoneNo" : PhoneNo
@@ -1655,14 +1656,16 @@
 
 			})();
 
-//			(function(){
-//				$("#state_btn").click(function(){
-//					$("#orderState").attr("style","display:block");
-//				});
-//				$("#closeState").click(function(){
-//					$("#orderState").attr("style","display:none");
-//				});
-//			})();
+			(function(){
+				$("#state_btn").click(function(){
+					$(".js-travelnotes").attr("style","display:block");
+					$(".mask").show();
+				});
+				$(".js-travelnotes-close").click(function(){
+					$(".js-travelnotes").attr("style","display:none");
+					$(".mask").hide();
+				});
+			})();
 
 			/*价目详情窗*/
 			(function() {

@@ -176,15 +176,19 @@ Calender.prototype = {
 		dateWarp = this.dateWarp = _CalF.$('dl', that.container)[0];
 		titleDate = _CalF.$('.title-date', dateWarp);
 		dd = _CalF.$('dd', dateWarp);
-		console.log(tims);
 		for (var j = 0; j < titleDate.length; j++) {
-			var ddHtml = [], od = new Date(titleDate[j].innerHTML.replace("年", "-").replace("月", "-") + "01");
+			console.log(titleDate[j].innerHTML.replace(/年/,"-").replace(/月/, "-") + "01");
+			var tmp = titleDate[j].innerHTML.replace(/年/,"/").replace(/月/, "/") + "01";
+			var od = new Date(tmp);
 			year = od.getFullYear();
 			month = od.getMonth() + 1;
 			days = new Date(year, month, 0).getDate();
 			weekStart = new Date(year, month - 1, 1).getDay();
 
+			console.log(days);
+			var ddHtml = [];
 			for (var i = 0; i < weekStart; i++) {
+				console.log(1);
 				ddHtml.push('<a>&nbsp;</a>');
 			}
 			for ( i = 1; i <= days; i++) {
@@ -224,6 +228,7 @@ Calender.prototype = {
 					ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
 				}
 			}
+			console.log(ddHtml);
 			dd[j].innerHTML = ddHtml.join('');
 		}
 		// A link事件绑定

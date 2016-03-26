@@ -56,7 +56,7 @@ var ticketDouble = {
     return '<span>'+array[1]+'-'+array[2]+'</span>'+' '+'<span>'+week+'</span>';
 },
 
-    tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
+    tAjax: function (questUrl, data, Code, ForeEndType, Callback,noShowLoading) {
         var that=this,dataObj =
         {
             Parameters: data,
@@ -64,7 +64,11 @@ var ticketDouble = {
             Code: Code
         };
         questUrl = questUrl?questUrl:that.requestUrl;
-        vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+        if(noShowLoading){
+            vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback,false,false,noShowLoading);
+        }else{
+            vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+        }
     },
 
     addHandler: function (target, eventType, handle) {
@@ -304,7 +308,20 @@ var ticketDouble = {
             shadowBox.style.display = 'none';
         });
     },
-
+    loadMoreHandler:function(pageNo,pageCount){
+        var loadMoreBtn = document.getElementById("loadMore");
+        loadMoreBtn.innerHTML = "点击加载更多";
+        loadMoreBtn.style.display = "block";
+        if(pageNo == pageCount){
+            loadMoreBtn.innerHTML = "没有更多数据了";
+        }
+    },
+    loadMoreBtnEvent:function(){
+        var loadMoreBtn = document.getElementById("loadMore");
+        this.addHandler(loadMoreBtn,"click",function(){
+            ticketDouble.loadMoreData();
+        })
+    },
     changeFlightList:function(arg, type){
         var that = this;
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper'),ticketListStr = '',li;
@@ -329,8 +346,8 @@ var ticketDouble = {
             ticketListStr += '<div class="time-airport">'+goTrip(arg) + backTrip(arg) +'</div>' + rightPrice(arg.data.flightInfos[i]);
             li.innerHTML = ticketListStr;
             ticketDetailUl.appendChild(li);
-            myScroll.refresh();
         }
+        this.loadMoreHandler(arg.data.pageNo,arg.data.pageCount);
         that.eventHandler();
         return;
         function goTrip(arg){
@@ -464,8 +481,8 @@ var ticketDouble = {
             return JSON.stringify(dataObj.data);
         }
     },
-
     checkPullStatus:function(){
+        /*
         var lis =  document.querySelectorAll('.air-tickets-detail-wrapper li');
         var pullDown = document.querySelector('#pullDown'),pullUp = document.querySelector('#pullUp');
         if(lis!=null&&lis.length>0){
@@ -475,7 +492,9 @@ var ticketDouble = {
             pullDown.style.display = "none";
             pullUp.style.display = "none";
         }
+        */
     },
+
     renderHandler:function(arg){
         var that = ticketDouble,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
@@ -490,7 +509,6 @@ var ticketDouble = {
             that.pageNo = arg.data.pageNo;
             that.pageCount = arg.data.pageCount;
             that.changeFlightList(arg);
-            that.checkPullStatus();
             that.taxDeal(arg.data.flightInfos);
         }else if(arg.success == false&&arg.message.indexOf('greater')>-1){
             document.querySelector('.no-flight-word').innerHTML='未搜到航班信息，请扩大搜索范围!';
@@ -506,81 +524,26 @@ var ticketDouble = {
             tipEle.style.display = 'none';
             document.querySelector('#preloader').style.display='none';
             document.querySelector('.tip-button-para').style.display='block';
-            that.checkPullStatus();
         }
-        that.checkPullStatus()
     },
-    pullDownAction:function(){
+
+    loadMoreData:function(){
         var  that = ticketDouble;
+         var loadMore = document.getElementById("loadMore");
         if(that.pageNo >= that.pageCount){
-            myScroll.refresh()
+            console.log(33)
+            $('#loadMore').fadeOut(1000);
             jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
         }else if(that.pageNo < that.pageCount){
+            console.log(44)
             that.isClearAll = false;
             that.backParaObj["pageNo"] ++;
-            that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+            console.log(that.backParaObj)
+            loadMore.innerHTML = "正在加载...";
+            that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler,true);
         }
     },
-    pullUpAction:function(){
-        var  that = ticketDouble;
-        if(that.pageNo >= that.pageCount){
-            myScroll.refresh()
-            jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>','',function(){})
-        }else if(that.pageNo < that.pageCount){
-            that.isClearAll = false;
-            that.backParaObj["pageNo"] ++;
-            that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
-        }
-    },
-    loaded:function(){
-        pullDownEl = document.getElementById('pullDown');
-        pullDownOffset = pullDownEl.offsetHeight;
-        pullUpEl = document.getElementById('pullUp');
-        pullUpOffset = pullUpEl.offsetHeight;
-        myScroll = new iScroll('wrapper', {
-            useTransition: true,
-            topOffset: pullDownOffset,
-            onRefresh: function () {
-                if (pullDownEl.className.match('loading')) {
-                    pullDownEl.className = '';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
-                } else if (pullUpEl.className.match('loading')) {
-                    pullUpEl.className = '';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
-                }
-            },
-            onScrollMove: function () {
-                if (this.y > 5 && !pullDownEl.className.match('flip')) {
-                    pullDownEl.className = 'flip';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
-                    this.minScrollY = 0;
-                } else if (this.y < 5 && pullDownEl.className.match('flip')) {
-                    pullDownEl.className = '';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
-                    this.minScrollY = -pullDownOffset;
-                } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
-                    pullUpEl.className = 'flip';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
-                    this.maxScrollY = this.maxScrollY;
-                } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
-                    pullUpEl.className = '';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
-                    this.maxScrollY = pullUpOffset;
-                }
-            },
-            onScrollEnd: function () {
-                if (pullDownEl.className.match('flip')) {
-                    pullDownEl.className = 'loading';
-                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
-                    ticketDouble.pullDownAction();
-                } else if (pullUpEl.className.match('flip')) {
-                    pullUpEl.className = 'loading';
-                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
-                    ticketDouble.pullUpAction();
-                }
-            }
-        });
-    },
+
     handler1:function(arg){ //后台请求
         var that = ticketDouble;
         that.backParaObj = arg;
@@ -596,8 +559,6 @@ var ticketDouble = {
         var backParaObj = this.parseUrlPara(document.location.search, true),that = ticketDouble;
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-        document.addEventListener('DOMContentLoaded', function () { setTimeout(that.loaded, 200); }, false);
         this.tripType = backParaObj.interNationalOrDomestic;
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
@@ -616,6 +577,7 @@ var ticketDouble = {
         this.isClearAll = true;
         this.flightResultArray = [];
         this.initLeftState = this.checkTip();
+        this.loadMoreBtnEvent();
     }
 };
 

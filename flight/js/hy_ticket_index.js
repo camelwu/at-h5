@@ -696,8 +696,8 @@ var  ticketIndexModal = {
                            adultNum++;
                            opSpan.innerHTML = adultNum;
                            target.className = (adultNum+childNum)>=9?"add-minus-per-more adult add-minus-per-more-grey":"add-minus-per-more adult";
+                           childAdd.className =(adultNum+childNum)>=9?"add-minus-per-more child add-minus-per-more-grey":"add-minus-per-more child";
                            opSiteEle.className = "add-minus-per-less adult";
-                           childAdd.className = "add-minus-per-more child";
                        }
                    }
                }else if(target.className.indexOf("add-minus-per-less adult")>-1){
@@ -730,7 +730,9 @@ var  ticketIndexModal = {
                    opSiteEle = target.parentNode.querySelector('.add-minus-per-less');
                    opSpan = target.parentNode.querySelector('.add-minus-per-content.child-number');
                    var  childNum = parseInt(opSpan.innerHTML);
+                   var  adultEle = eleUl.querySelectorAll('li')[0].querySelector('.add-minus-per-more.adult');
                    var  adultNum = parseInt(eleUl.querySelectorAll('li')[0].querySelector('.add-minus-per-content.adult-number').innerHTML);
+                   console.log(adultNum)
                    if(adultNum+1+childNum>9){
                        target.className = "add-minus-per-more child add-minus-per-more-grey";
                        showLine.innerHTML = "乘客总数不能超过 9 人!";
@@ -755,6 +757,7 @@ var  ticketIndexModal = {
                            childNum++;
                            opSpan.innerHTML = childNum;
                            target.className = (adultNum/childNum)<=1/2?"add-minus-per-more child add-minus-per-more-grey":"add-minus-per-more child";
+                           adultEle.className = (adultNum+childNum)>=9?"add-minus-per-more adult add-minus-per-more-grey":"add-minus-per-more adult";
                            opSiteEle.className = "add-minus-per-less child";
                        }
                    }

@@ -29,16 +29,16 @@
     <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!--<div id="preloader">
+<div id="preloader">
     <div id="status-f">
         <p class="center-text">
             <br>
             <em>加载中……</em>
         </p>
     </div>
-</div>-->
+</div>
 <div class="all-elements">
-    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单填写<i class="tel-icon"></i></header>
+    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单填写<a href="tel:4008058888" class="ticket-order-tel"><i>&nbsp;</i></a></header>
     <div class="air_content">
 
         <div class="order-top">
@@ -59,7 +59,6 @@
                     <p><span class="tag">￥<strong>11942</strong></span>
                     </p><p><span class="tip-word">退改签说明</span></p>
                 </div>
-
             </div>
         </div>
 
@@ -180,34 +179,6 @@
 
     </div>
     <!--注意事项结束-->
-    <!--退改签开始-->
-    <div class="buy-ticket-notice back-meal" style="display: none">
-        <div class="header back-meal-close">
-            <span>退改签说明</span>
-            <span><i></i></span>
-        </div>
-        <div class="content-notice ">
-            <p>
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-                每程不得退改签 每程不得退改签 每程不得退改签 每程不得退改签
-            </p>
-        </div>
-    </div>
-    <!--退改签结束-->
-
     <!--机票详情开始-->
     <div class="ticket-detail-modal" style="display: none">
         <ul class="detail-outer">
@@ -376,15 +347,6 @@
         </div>
     </div>
     <!--国籍选择结束-->
-    <!--j 电话弹框 begin-->
-    <div class="jpop_box_tic">
-        <dl>
-            <dt>400 805 8888</dt>
-            <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
-        </dl>
-    </div>
-    <!--j 电话弹框结束-->
-
 </div>
 </body>
 <script src="../js/lib/jquery.js"></script>
@@ -447,14 +409,5 @@
             }
         }
     }
-</script>
-<!--电话弹框 begin-->
-<script>
-    $('.clearfix i.tel-icon').click(function(){
-        $('.jpop_box_tic').fadeIn(100);
-    })
-    $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
-        $('.jpop_box_tic').hide();
-    })
 </script>
 </html>
