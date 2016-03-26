@@ -236,7 +236,7 @@
 		</div>
 	<!--   旅行须知   -->
 	<div class="tmask js-mask">
-		<div class="travelnotes-warp js-travelnotes" style="display: none;">
+		<div class="travelnotes-warp js-travelnotes">
 			<div class="travelnotes-header">
 				购票须知
 				<i class="travelnotes-header-icon js-travelnotes-close"></i>
@@ -1660,11 +1660,11 @@
 
 			(function(){
 				$("#state_btn").click(function(){
-					$(".js-travelnotes").attr("style","display:block");
+//					$(".js-travelnotes").attr("style","display:block");
 					$(".js-mask").show();
 				});
 				$(".js-travelnotes-close").click(function(){
-					$(".js-travelnotes").attr("style","display:none");
+//					$(".js-travelnotes").attr("style","display:none");
 					$(".js-mask").hide();
 				});
 			})();
