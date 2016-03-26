@@ -57,7 +57,7 @@
 		</p>
 	</div>
 </div>
-<div class="all-elements">
+<div class="all-elements" style="overflow: scroll;">
 	<div class="header" id="toper">
 		<a href="#" class="header-back name-illustrate closedWin"><i class="icons go-back"></i></a>
 		<h3>已选：<span class="adult-number"></h3>
@@ -66,7 +66,7 @@
 		</div>
 	</div>
 	<!-- Page Content-->
-	<div class="snap-content" style="padding-top: 45px;background-color: white;">
+	<div class="snap-content" style="padding-top: 45px;background-color: white;top:auto;bottom:auto;">
 		<div class="f_btn button-orange" style="margin-top: 10px" onclick="showAddAir_page('new')">
 			<b class="icons user-add"></b><span class="newTitle"></span>
 		</div>
@@ -563,10 +563,14 @@
 		$("#fillName_page").hide();
 
 	})
+
 	function submit_t() {
+		window.parent.document.getElementById("ticket-wrap").style.display="block";
 		 GoBackData();
 		ifrCilent.parentNode.removeChild(ifrCilent);
+
 	}
+
 	function GoBackData(){
 		var seled = $(".choiced");
 		selectUser=[];
@@ -585,7 +589,7 @@
 			});
 		}
 		ReplaceData(elementId,selectUser);
-		SavaLocalStorge(selectUser,isContact)
+		SavaLocalStorge(selectUser,isContact);
 	}
 	function ReplaceData(id,data){
 		var elementId="#"+id

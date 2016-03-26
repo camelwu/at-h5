@@ -342,16 +342,16 @@ var ticketSingle = {
                 }
             return str;
         };
+        ticketListStr = '';
         for(var i = 0; i < arg.data.flightInfos.length; i++){
-            ticketListStr = '';
-            li = document.createElement('li');
-            li.className = "air-tickets-detail seat-detail";
-            li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
+            //li = document.createElement('li');
+            //li.className = "air-tickets-detail seat-detail";
+            //li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
             ShareFlightStr = arg.data.flightInfos[i].isReturnShareFlight==true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|':'';
             passByStr = arg.data.flightInfos[i].isLeaveStop==true?' | <span class="green-tip">经停</span>':'';
             tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>=1?'+'+arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
             transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
-            ticketListStr +='<div class="time-airport" >' +
+            ticketListStr +='<li class="air-tickets-detail seat-detail" data-set-id="'+arg.data.flightInfos[i].setID+'"><div class="time-airport" >' +
             '<div class = "go" >' +
             '<div class = "go-info" >' +
             '<div class="start-time-info" >' +
@@ -367,11 +367,11 @@ var ticketSingle = {
             '<span class= "air-port-word" >'+arg.data.flightInfos[i].segmentsLeave[arg.data.flightInfos[i].segmentsLeave.length-1].airportNameTo+arg.data.flightInfos[i].segmentsLeave[0].termArrive+'</span>' +
             '</div ></div>' +
             '<p class="small-info"></span >'+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierName+arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierCode+arg.data.flightInfos[i].segmentsLeave[0].flightNo+'&nbsp;|&nbsp;'+arg.data.flightInfos[i].segmentsLeave[0].cabinClassName+ShareFlightStr+passByStr+'</p>'+
-            '</div ></div>' +returnRightTax();
-            li.innerHTML = ticketListStr;
-            ticketDetailUl.appendChild(li);
+            '</div ></div>' +returnRightTax() + '</li>';
+            //li.innerHTML = ticketListStr;
+            //ticketDetailUl.appendChild(li);
         }
-
+        ticketDetailUl.innerHTML += ticketListStr;
         this.loadMoreHandler(arg.data.pageNo,arg.data.pageCount);
         this.eventHandler();
         return;
@@ -556,9 +556,6 @@ var ticketSingle = {
         this.backParaObj = backParaObj;
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.flightResultArray = [];
-        if($.browser.webkit && !window.chrome){
-           document.querySelector('#wrapper').style.top = '88px';
-        }
         this.dateInit(backParaObj);
         this.preAndNex();
         conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj,this.handler1, this.handler2);
@@ -569,5 +566,4 @@ var ticketSingle = {
         this.loadMoreBtnEvent();
     }
 };
-
 ticketSingle.init();

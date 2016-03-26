@@ -241,15 +241,15 @@
 				购票须知
 				<i class="travelnotes-header-icon js-travelnotes-close"></i>
 			</div>
-			<ol class="travelnotes-list">
-				<li>所有的套餐都不可转让，不可退款，不可更改。</li>
-				<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>
-				<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
-				<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
-				<li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
-				<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
-				<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
-			</ol>
+				<ol class="travelnotes-list">
+					<li>所有的套餐都不可转让，不可退款，不可更改。</li>
+					<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>
+					<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+					<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+					<li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
+					<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
+					<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
+				</ol>
 		</div>
 	</div>
 	<!--   旅行须知   -->
@@ -1121,7 +1121,7 @@
 							if ($(".js-sce-ticket1").find(".js-sce").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket1").find(".js-sce").length; i++) {
 									var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit price-titj\">" + title + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit price-titj\">" + "(成人票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1135,7 +1135,7 @@
 							if ($(".js-sce-ticket1").find(".js-sce").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket1").find(".js-sce").length; i++) {
 									var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit\">" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "(儿童票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1151,7 +1151,7 @@
 							if ($(".js-sce-ticket2").find(".js-sce2").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket2").find(".js-sce2").length; i++) {
 									var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit\">" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "(儿童票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1167,7 +1167,7 @@
 							if ($(".js-sce-ticket2").find(".js-sce2").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket2").find(".js-sce2").length; i++) {
 									var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit\">" + title + "</span><span class=\"price-per-tot\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "(成人票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1668,6 +1668,9 @@
 //					$(".js-travelnotes").attr("style","display:none");
 					$(".js-mask").hide();
 					$('.sc-content').css({"overflow":"auto"})
+				});
+				$(".js-mask").click(function(){
+					$(".js-mask").hide();
 				});
 			})();
 

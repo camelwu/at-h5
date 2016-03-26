@@ -575,9 +575,6 @@ var ticketDouble = {
         this.dateInit(backParaObj);
         this.toSeatDetail();
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
-        if($.browser.webkit && !window.chrome){
-            document.querySelector('#wrapper').style.top = '88px';
-        }
         conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj,this.handler1, this.handler2);
         this.taxHandler();
         this.isClearAll = true;
