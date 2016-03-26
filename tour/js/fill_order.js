@@ -129,7 +129,7 @@
                 var dateObj = JSON.parse(window.localStorage.info);
                 var paraObj = {
                     start:dateObj.CheckInDate.replace(/T.*/,''),
-                    end:dateObj.CheckOutDate.replace(/T.*/,'')
+                    end:dateObj.CheckInDate.replace(/T.*/,'')
                 };
                 switch (airFli){
                     case 'None':
