@@ -1915,6 +1915,17 @@ i{
 .travelnotes-list li{
     list-style: decimal;
 }
+.tmask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 75;
+    display: none;
+
+}
 /*旅行须知*/
 /*景点预订明细开始*/
 .mask {
