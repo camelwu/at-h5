@@ -1881,7 +1881,7 @@ i{
     z-index: 98;
     background: #ffffff;
     overflow: auto;
-    pointer-events:none;
+
 }
 .travelnotes-header{
     position: fixed;
@@ -1928,6 +1928,7 @@ i{
     filter: alpha(opacity:30);
     z-index: 75;
     display: none;
+    pointer-events:none;
 }
 .price-tot-box {
     position: fixed;
