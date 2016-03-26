@@ -1873,7 +1873,7 @@ i{
     position: fixed;
     display: inline-block;
     width: 90%;
-    height: 55%;
+    height: 58%;
     margin: 30% 5% 0 5%;
     box-sizing: border-box;
     border: 1px solid #d1d1d1;
@@ -1881,6 +1881,7 @@ i{
     z-index: 98;
     background: #ffffff;
     overflow: auto;
+
 }
 .travelnotes-header{
     position: fixed;
