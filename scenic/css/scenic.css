@@ -1907,6 +1907,7 @@ i{
     background-size: 500px 149px;
 }
 .travelnotes-list{
+    display: block;
     padding-top: 60px;
     padding-left: 30px;
     padding-right: 10px;
@@ -1928,7 +1929,6 @@ i{
     filter: alpha(opacity:30);
     z-index: 75;
     display: none;
-    pointer-events:none;
 }
 .price-tot-box {
     position: fixed;
