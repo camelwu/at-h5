@@ -355,7 +355,7 @@ var ticketSeatChoose = {
                     }
                     if(arg[j].techStopTotal>=1){
                          var stopHour = (arg[j].techStopDepartDate!=''&&arg[j].techStopArriveDate!='')?(Math.abs(Date.parse(arg[j].techStopArriveDate) -Date.parse(arg[j].techStopDepartDate)))/1000/60:'';
-                         leaveStopTag=stopHour!=''?'<span class="air-port-word">经停'+arg[j].techStopAirportName+'</span><span class="air-port-hour">'+parseInt(stopHour/60)+'h'+stopHour%60+'m</span>':'<span class="air-port-word">经停'+arg[j].techStopAirportName+'</span>';
+                         leaveStopTag=stopHour!=''?'<span class="leave-stop-word">经停'+arg[j].techStopAirportName+'</span><span class="air-port-hour">'+parseInt(stopHour/60)+'h'+stopHour%60+'m</span>':'<span class="leave-stop-word">经停'+arg[j].techStopAirportName+'</span>';
                     }else{
                         leaveStopTag='';
                     }
@@ -428,9 +428,7 @@ var ticketSeatChoose = {
             '<div class="left-part"><h4>'+itemObj.segmentsLeave[0].cabinClassName+'</h4>' +
             '<p><span class="change" id="change-explain">退改签说明</span>'+childOrderStr+'</p>' +
             '</div>'+priceAndTaxStr+
-            '<button type="button" id="reserve-button">预订</button></div>' +
-            '<div class="bottom-word-more">买单程票须持留学生转签证、移民签证，一年以上工作签证等证件类型，请您确认后购买，以免无法办理乘机和入境。'+
-            '</div></div>';
+            '<button type="button" id="reserve-button">预订</button></div></div>';
         backMeal ='<div class="ticket-shadow" style="display: none"></div><div class="buy-ticket-notice back-meal" style="display: none;">' +
         '<div class="header back-meal-close"><span>退改签说明</span><span><i></i></span></div><div class="content-notice ">' +
         '<p>退改签规则，以航司为准!</p>' +
