@@ -79,7 +79,6 @@
 						<span id="room_downb" class="cut-down-btn"></span><i id="roomNum" class="cut-up-cont"></i><span class="plus-btn"></span>
 					</div>
 				</section>
-				<!--<section class="hotelInfo_numb_people init-hotel-room-detail"></section>-->
 				<section class="all_title">
 					<h3>景点</h3>
 				</section>
@@ -175,8 +174,6 @@
 							} else if (_type == "adult") {
 								var adultdown = n.parentNode.getElementsByClassName('cut-down-btn')[0];
 								adultdown.style.backgroundPosition = '-51px 2px';
-								//								var adultPeople = parseInt(n.parentNode.getElementsByClassName('adult-people-number')[0].innerHTML);
-								//								extraChildTemp(m.innerHTML,adultPeople);
 								if (onlyForAdult) {
 									str = m.innerHTML;
 									str = Number(str);
@@ -421,7 +418,6 @@
 								}
 							}
 						}
-						//						initEle.innerHTML = initStr;
 					}
 
 				};
@@ -599,7 +595,6 @@
 							}
 
 						}
-
 						//   判断页面能否跳转
 						var tipBox = document.querySelector('#show-result-tip');
 						var InfoData = {};
@@ -876,8 +871,6 @@
 					this.initDate();
 				}
 			};
-
-
 			//儿童年龄纯数字
 			function setAge(obj){
 				obj.value=obj.value.replace(/\D/ig,'');

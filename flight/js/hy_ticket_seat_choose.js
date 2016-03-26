@@ -168,7 +168,7 @@ var ticketSeatChoose = {
         array = arg.split('-');
         array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
         array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
-        return '<span class="month-day">'+array[1]+'-'+array[2]+'</span>'+'<span class="week-day-item">'+week+'</span>';
+        return '<span class="month-day">'+argArray[1]+'-'+argArray[2]+'-'+argArray[3]+'</span>'+'<span class="week-day-item">'+week+'</span>';
 
     },
     timeCut:function(arg){
@@ -417,7 +417,6 @@ var ticketSeatChoose = {
         });
         itemObj = resultData;
         this.curFlightListData = itemObj;
-        console.log(this.assistInfo)
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
         var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':'';

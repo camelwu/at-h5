@@ -164,23 +164,7 @@ TicketDate.prototype.drawDate = function (odate) {
                     }
                     i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
                 }
-                //if(i<nowDate||i<(new Date(this.range[0])).getDate())
-
-
-            } /*else if (month == nowmonth + 2) {
-                m=month<10?'0'+month:month;
-                d=i<10?'0'+i:i;
-                if (i < nowdate ||i<(new Date(this.range[0])).getDate()||i>(new Date(this.range[1])).getDate()){
-                    pstr ='<a class="live disabled">' + i + '</a>';
-                }else if(tims[year+'-'+m+'-'+d]&&this.type=="Return"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
-                }else if(tims[year+'-'+m+'-'+d]&&this.type=="Oneway"){
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span></a>';
-                }else{
-                    pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
-                }
-                ddHtml.push(pstr);
-            } */else {
+            } else {
                 ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
             }
         } else if (year > nowyear) {

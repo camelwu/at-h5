@@ -525,9 +525,7 @@ var ticketOrder = {
         array = arg.split('-');
         array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
         array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
-
-        return '<span class="date">'+array[1]+'-'+array[2]+'</span>'+'<span class="order-week">'+week+'</span>';
-
+        return '<span class="date">'+argArray[1]+'-'+argArray[2]+'-'+argArray[3]+'</span>'+'<span class="order-week">'+week+'</span>';
     },
     addContent:function(arg){
         var orderTop = document.querySelector('.order-top');
