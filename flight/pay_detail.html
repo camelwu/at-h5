@@ -24,6 +24,7 @@
     <link href="../styles/tips.css" rel="stylesheet"/>
     <link href="css/air_pay.css" rel="stylesheet"/>
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/date_select.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="preloader">
@@ -109,16 +110,22 @@
                     </ul>
                 </section>
                 <ul class="credit-card-detail">
-                    <li><span class="credit-det-title">持卡人姓名</span><input type="text" placeholder="请输入持卡人姓名" class="credit-det-cont CardHolderName"/></li>
-                    <li><span class="credit-det-title">信用卡卡号</span><input type="text" placeholder="请输入信用卡卡号" class="credit-det-cont CardNumber"/></li>
+                    <li>
+                        <span class="credit-det-title">持卡人姓名</span>
+                        <input type="text" placeholder="请输入持卡人姓名" class="credit-det-cont CardHolderName"/>
+                    </li>
+                    <li>
+                        <span class="credit-det-title">信用卡卡号</span>
+                        <input type="tel" placeholder="请输入信用卡卡号" class="credit-det-cont CardNumber" pattern="[0-9]{13,16}" onkeyup='this.value=this.value.replace(/\D/gi,"")'></input>
+                    </li>
                     <li><span class="credit-det-title">发卡银行</span><span><input type="text" placeholder="发卡银行" class="credit-det-cont BankName"/></span></li>
                     <li class="countries-wrap">
                         <span class="credit-det-title">发卡国家</span>
                         <span class="country-btn CardCountryCode" data-code="CN" >中国</span>
                         <b class="icons open-pho-down"></b>
                     </li>
-                    <li><span class="credit-det-title">有效期</span><input type="text" placeholder="月/年，如09/12" class="credit-det-cont CardExpiryDate"/></li>
-                    <li><span class="credit-det-title">安全码</span><input type="text" placeholder="请输入签名栏末尾最后3位" class="credit-det-cont CardSecurityCode"/></li>
+                    <li><span class="credit-det-title">有效期</span><input type="text" id="CardExpiryDate" placeholder="月/年，如09/12" class="credit-det-cont CardExpiryDate"/></li>
+                    <li><span class="credit-det-title">安全码</span><input type="tel" placeholder="请输入签名栏末尾最后3位" class="credit-det-cont CardSecurityCode" onkeyup='this.value=this.value.replace(/\D/gi,"")'/></li>
                     <li class="tel-option">
                         <div class="left">
                             <span>手机号</span>
@@ -127,12 +134,12 @@
                             </div>
                         </div>
                         <div class="right">
-                            <input type="text" name="tel"  id="tel-num" placeholder="用于接收通知" class="CardContactNumber2" />
+                            <input type="tel" name="tel"  id="tel-num" placeholder="用于接收通知" class="CardContactNumber2" onkeyup='this.value=this.value.replace(/\D/gi,"")'/>
                         </div>
                     </li>
                     <li><span class="credit-det-title">账单城市</span><input type="text" placeholder="请输入持卡人账单城市" class="credit-det-cont CardCity"/></li>
                     <li><span class="credit-det-title">账单地址</span><input type="text" placeholder="请输入持卡人账单地址" class="credit-det-cont CardAddress"/></li>
-                    <li><span class="credit-det-title">邮政编码</span><input type="text" placeholder="请输入邮政编码" class="credit-det-cont CardAddressPostalCode"/></li>
+                    <li><span class="credit-det-title">邮政编码</span><input type="tel" placeholder="请输入邮政编码" class="credit-det-cont CardAddressPostalCode" onkeyup='this.value=this.value.replace(/\D/gi,"")'/></li>
 
                     <li class="tel-option">
                         <div class="nation countries-wrap" >
@@ -177,7 +184,8 @@
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/template.js"></script>
-
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/scroller.js"></script>
 <script charset="gb2312"  type="text/javascript" src="../js/payment.js"></script>
 <script type="text/javascript" src="js/pay_detail.js"></script>
 <script src="../js/country_list.js"></script>
