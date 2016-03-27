@@ -10,10 +10,11 @@
 //    alert(CardInfo);
 //})
 $(document).ready(function(){
-
+    //初始化有效期选择组件
+    var expityDate = new Scroller({id: "CardExpiryDate", type:"cardExpirationDate",cont:"cardExpirationDate12"});
 })
 function getPaymentDetails(){
-    //�������ÿ��ṹ
+    //定义行用卡结构
     var cardInfo={
         "CardType":111,
         "CardHolderName":$(".fill-content").find("li input").eq(0).val(),
