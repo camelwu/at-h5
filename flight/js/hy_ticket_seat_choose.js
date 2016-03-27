@@ -421,7 +421,7 @@ var ticketSeatChoose = {
         this.currentFlightData = itemObj;
         var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':'';
         var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>';
-        var priceAndTaxStr =this.assistInfo.interNationalOrDomestic=="domestic"?'<div class="money-show-data money-show-data-domestic"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountADT)+'</span></div>':'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountExc)+'</span> <p>税费￥'+myFixed(itemObj.totalTaxAmountADT)+'</p></div>';
+        var priceAndTaxStr =this.assistInfo.interNationalOrDomestic=="domestic"?'<div class="money-show-data money-show-data-domestic"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountADT)+'</span></div>':'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountExc)+'</span> <p>含税费￥'+myFixed(itemObj.totalTaxAmountADT)+'</p></div>';
         var contentHtml ='<div class="air_content" style="background:#f5f4f9;">' +
             '<ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+that.createGoTripHtml(itemObj)+that.createBackTripHtml(itemObj)+'</li></ul>'+
             '<div class="price-important">' +

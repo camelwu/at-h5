@@ -35,10 +35,12 @@
 </div>
 <div class="all-elements fix-background" id="detail">
     <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<a class="tel-icon" href="tel:4005088888"></a></header>
-    <div class="ticket-order-detail-content">
+    <div class="ticket-order-detail-content" u>
        <div class="until-pay">
-         <span><strong>待支付</strong></span>
-         <span>支付剩余时间：<strong>25</strong>分<strong>36</strong>秒</span>
+         <span><strong>{% if(isContinuePay==false){ %} 未支付 {% }else{ %} 已支付 {% } %}</strong></span>
+           {% if(isContinuePay==false){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
+                <span>请在<strong>{%= d.getHours()+":"+d.getMinutes() %} 前完成支付</strong></span>
+           {% } %}
       </div>
          <ul class="ticket-detail-information">
             {% if(routeType=="Oneway"){ %}
@@ -58,12 +60,12 @@
                                <div class="icon-arrow"></div>
                           </div>
                           <div class="city-time-right">
-                              <div class="clock"><span>+1天</span>{% var d3=new Date(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+                              <div class="clock"><span></span>{% var d3=new Date(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                               <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameTo%}{%=flightInfo.segmentsLeave[0].TermArrive%}</p>
                           </div>
                       </div>
                       <div class="nation-flight-number">
-                          <span>{%=flightInfo.segmentsLeave[0].airCorpName%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[0].marketingCarrierCode%}{%=flightInfo.segmentsLeave[0].flightNo%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[0].planeName%}<span>(大)</span></span>
+                          <span>{%=flightInfo.segmentsLeave[0].airCorpName%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[0].marketingCarrierCode%}{%=flightInfo.segmentsLeave[0].flightNo%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[0].planeName%}<span></span></span>
                       </div>
                   </div>
                   {% if(flightInfo.segmentsLeave.length>1){  for(var i=1; i<=flightInfo.segmentsLeave.length-1;i++){ %}
@@ -71,7 +73,7 @@
                       <div class="rel-transit">
                           <div class="time-arrow-time">
                               <div class="city-time-left">
-                                  <div class="clock">07:00</div>
+                                  <div class="clock">{% var d2=new Date(flightInfo.segmentsLeave[i].departDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                                   <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameFrom%}{%=flightInfo.segmentsLeave[i].TermDepart%}</p>
                               </div>
                               <div class="time-arrow">
@@ -79,7 +81,7 @@
                                   <div class="icon-arrow"></div>
                               </div>
                               <div class="city-time-right">
-                                  <div class="clock"><span>+1天</span>09:15</div>
+                                  <div class="clock"><span></span>{% var d3=new Date(flightInfo.segmentsLeave[i].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                                   <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameTo%}{%=flightInfo.segmentsLeave[i].TermArrive%}</p>
                               </div>
                           </div>
@@ -130,13 +132,13 @@
             <span class="first">订单号</span><span>{%=bookingRefNo%}</span>
         </p>
         <p>
-            <span class="first">下单时间</span><span>{%=createTime%}</span>
+            <span class="first">下单时间</span><span>{%=createTime.replace("T"," ")%}</span>
         </p>
         <p>
-            <span class="first">登机人</span><span>BAI/LISA</span>
+            <span class="first">登机人</span><span>{%=lastName%}/{%=firstName%}</span>
         </p>
         <p>
-            <span class="first">护照</span><span>123455677788</span>
+            <span class="first">护照</span><span>{%=travelers[0].idNumber%}</span>
         </p>
         <p>
             <span class="first">联系电话</span><span><a href="tel:{%=contactNumber%}">{%=contactNumber%}</a></span>
@@ -146,9 +148,11 @@
         </p>
     </div>
         <div class="contact-service"><span><a href="tel:888888888888">联系客服</a></span> <i></i></div>
+        {% if(isContinuePay==false){ %}
           <div class="button">
         <button type="button" class="pay-button"><a href="pay_detail.html?bookingRefNo={%=bookingRefNo%}">支付订单</a></button>
     </div>
+        {% } %}
     </div>
 </div>
 <div class="mb"></div>
@@ -158,6 +162,13 @@
         <button type="button" class="cancel">取消</button>
         <button type="button" class="call"><a href="tel:400 805 8888">拨打</a></button>
     </div>
+</div>
+
+<div class="jpop_box_tic" style="display: none;">
+    <dl>
+        <dt>400 805 8888</dt>
+        <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+    </dl>
 </div>
 
 <!--      费用明细块      -->
@@ -204,6 +215,10 @@
         "6":"六",
         "7":"日",
     };
+    var getStateCN = {
+        "Paid": "已支付",
+        "Pending":"未支付"
+    };
 
     (function(){
         var ww = this;
@@ -227,6 +242,12 @@
                         $("#pd_list").html(tplD)
                         console.log(data);
                         showPriceDetail();
+                        $(".contact-service").on("click",function(){
+                            $(".jpop_box_tic").show();
+                        })
+                        $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+                            $('.jpop_box_tic').hide();
+                        })
                         vlm.init();
                     }else {
                         jAlert(json.message,"提示");

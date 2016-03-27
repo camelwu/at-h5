@@ -259,13 +259,13 @@ i{
 }
 .fill-tel div{
     float: left;
-    width:45%;
+    width:48%;
     border-right:1px solid #dddddd;
 }
 .fill-tel input{
     width: 50%;
     margin-top: 5px;
-    left: 20px;
+    left: 10px;
 }
 .s-xiala1{
     width: 13px;

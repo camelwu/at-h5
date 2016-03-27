@@ -81,15 +81,7 @@
 			// IE6 Fix var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
 			var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
 			if(type == "tiper"){
-				$("#popup_container").css({
-					position : pos,
-					zIndex : 1011,
-					padding : 0,
-					height:312,
-					margin : 0,
-					marginTop:112,
-					borderRadius:3
-				});
+				$("#popup_container").addClass('popup_container')
 			}else{
 				$("#popup_container").css({
 					position : pos,
@@ -100,14 +92,16 @@
 			}
 			//
 			$("#popup_content").addClass(type);
-			if (type == "layer"||type == "tiper") {
+			if (type == "layer") {
 				$("#popup_container").css({
 					//minHeight : $("#popup_container").outerHeight(true),
 					maxWidth : $("#popup_container").outerWidth() - 24
 				});
 			}
-            $.alerts._reposition();
-            $.alerts._maintainPosition(true);
+			if(type != "tiper"){
+				$.alerts._reposition();
+				$.alerts._maintainPosition(true);
+			}
 			switch( type ) {
 				case 'alert':
 					$("#popup_message").after('<div id="popup_error"></div> <div id="popup_panel"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
@@ -244,7 +238,6 @@
 						if (callback)
 							callback(false);
 					});
-					setTimeout("$.alerts._reposition()", "80");
 					break;
 
 			}

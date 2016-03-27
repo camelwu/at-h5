@@ -565,7 +565,9 @@
 	})
 
 	function submit_t() {
-		window.parent.document.getElementById("ticket-wrap").style.display="block";
+		if(window.parent.document.getElementById("ticket-wrap") !=null) {
+			window.parent.document.getElementById("ticket-wrap").style.display = "block";
+		}
 		 GoBackData();
 		ifrCilent.parentNode.removeChild(ifrCilent);
 
@@ -736,6 +738,7 @@
 	}
 	//显示新增乘机人编辑页
 	function showAddAir_page(type,id) {
+		clearInput();
 		var addAir_page = document.getElementById("addAir-page");
 		addAir_page.style.display = "block";
 		if(type=="new"){
@@ -1053,8 +1056,8 @@
 <!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
-		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.lastName%}"/>
-		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.firstName%}"/>
+		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}"/>
+		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.lastName%}"/>
 	</div>
 	<div class="unit tel">
 		<div class="left">
