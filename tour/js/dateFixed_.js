@@ -7,10 +7,10 @@ TicketDate.prototype.linkColor=function(type,date){
     var that = this, links = _CalF.$('.live',this.dd), startIndex,endIndex;
     if(type == 'Return'){
         for(var st = 0;st < links.length;st++) {
-            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='去程'){
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='入住'){
                 startIndex=st;
             }
-            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='返程'){
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='离店'){
                 endIndex=st;
             }
         }
@@ -35,7 +35,7 @@ TicketDate.prototype.linkColor=function(type,date){
     return false;
 };
 
-TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程','去+返']};
+TicketDate.prototype._word = {h:['入住','离店'],f:['入住','离店','去+返']};
 TicketDate.prototype.inputEvent=function(){
     var that = this;
     var date = new Date();
@@ -60,8 +60,8 @@ TicketDate.prototype.inputEvent=function(){
                     var start=that.doubleDate.start,end=that.doubleDate.end;
                     that.time={};
                     if(start!=end){
-                        that.time[start]='去程';
-                        that.time[end]='返程';
+                        that.time[start]='入住';
+                        that.time[end]='离店';
                     }else{
                         that.time[start]='去+返';
                     }
@@ -78,11 +78,15 @@ TicketDate.prototype.inputEvent=function(){
         this.sClass1=options.sClass1;
         this.id2=options.id2;
         this.fn = options.fn;
+        this.fn2 = options.fn2;
         this.op = 0;
         this.input = _CalF.$('#'+ this.id);
         this.inputEvent();
         this.outClick();
         this.type=="Oneway"?this.singleDate=options.time.start:this.doubleDate=options.dateObj;
+        if(options.range){
+            this.range = options.range;
+        }
     };
 
 TicketDate.prototype.createContainer = function(odate){
@@ -117,7 +121,7 @@ TicketDate.prototype.createContainer = function(odate){
         document.body.appendChild(header);
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop='5.8rem';
+        weeker.style.marginTop='3.8rem';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
@@ -125,7 +129,7 @@ TicketDate.prototype.createContainer = function(odate){
         tiper.id = this.id + '-tiper';
         tiper.className = 'tipers';
 
-        tiper.innerHTML = "请选择去程日期";
+        tiper.innerHTML = "请选择入住日期";
         this.type=='Oneway'?void(0):container.appendChild(tiper);
     }
     document.body.appendChild(container);
@@ -300,7 +304,12 @@ TicketDate.prototype.linkOn = function(){
             }
         };
     }
-    this.linkColor('Return')
+    this.linkColor('Return');
+    if(!this.range){
+        return;
+    }else if(this.type=="Oneway"&&this.range.length>=2){
+        this.linkRange('Oneway');
+    }
 };
 
 TicketDate.prototype.linkOver = function(event){
@@ -410,6 +419,24 @@ TicketDate.prototype.linkOver = function(event){
             return '<span class="dateNumber">'+array[1]+'月'+array[2]+'日'+'</span>'+' '+'<span>'+week+'</span>';
         }
     }
+};
+
+TicketDate.prototype.linkRange=function(type){
+    var that = this, links = _CalF.$('.live',this.dd), startRange,endRange;
+    if(!this.range){
+        return;
+    }else if(type=="Oneway"&&this.range.length>=2){
+        startRange =new Date(this.range[0].replace(/-/g,"/"));
+        endRange = new Date(this.range[1].replace(/-/g,"/"));
+        for(var st = 0;st < links.length;st++) {
+            if(links[st].getAttribute('data-day')!=null){
+                if(new Date((links[st].getAttribute('data-day')).replace(/-/g,"/"))<startRange ||new Date((links[st].getAttribute('data-day')).replace(/-/g,"/"))>endRange){
+                    links[st].className = links[st].className+" disabled"
+                }
+            }
+        }
+    }
+
 };
 
 TicketDate.prototype.linkReset =function(ele){
