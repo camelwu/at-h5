@@ -954,17 +954,17 @@
 			jAlert("证件号不能为空！","",null,"确认");
 			return false;
 		}
-		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".telNum").eq(0).val())){
-			jAlert("电话号码不能为空！","",null,"确认");
+		if(!vlm.Utils.validate["mobileNo"]($(inputList).find(".telNum").eq(0).val())){
+			jAlert("请输入有效的电话号码！","",null,"确认");
 			return false;
 		}
 
-		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".txtEmail").eq(0).val())){
-			jAlert("邮箱不能为空！","",null,"确认");
+		if(!vlm.Utils.validate["email"]($(inputList).find(".txtEmail").eq(0).val())){
+			jAlert("请输入有效的邮箱！","",null,"确认");
 			return false;
 		}
-		if(!vlm.Utils.validate["ChineseName"]($(inputList).find(".cnName").eq(0).val())){
-			jAlert("中文名必须为中文！","",null,"确认");
+		if(!vlm.Utils.validate["chiName"]($(inputList).find(".cnName").eq(0).val())){
+			jAlert("请输入有效的中文名！","",null,"确认");
 			return false;
 		}
 		if(!vlm.Utils.validate["engName"]($(inputList).find(".lastName").eq(0).val())){

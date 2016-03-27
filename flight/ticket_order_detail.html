@@ -37,8 +37,8 @@
     <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<a class="tel-icon" href="tel:4005088888"></a></header>
     <div class="ticket-order-detail-content" u>
        <div class="until-pay">
-         <span><strong>{% if(isContinuePay==false){ %} 未支付 {% }else{ %} 已支付 {% } %}</strong></span>
-           {% if(isContinuePay==false){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
+         <span><strong>{% if(isContinuePay==true){ %} 未支付 {% }else{ %} 已支付 {% } %}</strong></span>
+           {% if(isContinuePay==true){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
                 <span>请在<strong>{%= d.getHours()+":"+d.getMinutes() %} 前完成支付</strong></span>
            {% } %}
       </div>
@@ -213,7 +213,7 @@
         </p>
     </div>
         <div class="contact-service"><span><a href="tel:888888888888">联系客服</a></span> <i></i></div>
-        {% if(isContinuePay==false){ %}
+        {% if(isContinuePay==true){ %}
           <div class="button">
         <button type="button" class="pay-button"><a href="pay_detail.html?bookingRefNo={%=bookingRefNo%}">支付订单</a></button>
     </div>
