@@ -257,7 +257,7 @@ function M(){
                 "CardNumber":  $(".CardNumber").val(),
                 "CardSecurityCode": $(".CardSecurityCode").val(),
                 //"CardExpiryDate":"2018-12-31",
-                CardExpiryDate: $(".CardExpiryDate").val(),
+                CardExpiryDate: $(".CardExpiryDate").attr("data-expire"),
                 "CardContactNumber": $(".CardContactNumber2").val()+$(".CardContactNumber2").val(),
                 "CardAddress": $(".CardAddress").val(),
                 "CardAddressPostalCode":  $(".CardAddressPostalCode").val(),
