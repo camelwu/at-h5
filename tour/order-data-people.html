@@ -617,7 +617,7 @@
 								//获得数据
 								var getHotel = function() {
 									var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
-									if ($('#total_day').html() != minMaxTime[2]){
+									if ($('#total_day').html() < minMaxTime[2]){
 										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
 										return;
 									}
