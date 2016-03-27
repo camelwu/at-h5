@@ -562,7 +562,9 @@
 		if (window.opener) {
 			window.close();
 		} else {
-			window.parent.document.getElementById("ticket-wrap").style.display="block";
+			if(window.parent.document.getElementById("ticket-wrap") !=null) {
+				window.parent.document.getElementById("ticket-wrap").style.display = "block";
+			}
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		}
 	});
@@ -658,7 +660,6 @@
 			for(var i=0; i<=list.length-1;i++){
 				TraInfo={};
 				CertificateInfo={}
-				debugger;
 				if(GetAgeByBrithday(list[i].traveller.dateOfBirth)<12){
 					TraInfo.PassengerType= "CHILD";  //乘客类型
 				}
