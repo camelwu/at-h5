@@ -333,8 +333,7 @@
                 if(data.success) {
                     var d=new Date(Date.parse(data.data.bookingDate.replace("T"," ").replace(/-/g, "/")));
                     d.setMinutes(d.getMinutes()+30);
-                    $(".count-time").html(d.getHours()+":"+d.getMinutes());
-
+                    $(".count-time").html(vlm.Utils.format_add_zero(d.getHours())+":"+vlm.Utils.format_add_zero(d.getMinutes()));
                     var sumAmount=0;
                     for (var i = 0;i<data.data.chargeDetails.length;i++){
                         sumAmount+=data.data.chargeDetails[i].totalAmount;
