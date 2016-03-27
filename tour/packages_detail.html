@@ -116,8 +116,9 @@
 			{%=termsConditions%}
 		</script>
 		<script>
+			var maxExtensionNight;
 			function go2order() {
-				var url = '../tour/order-data-people.html';
+				var url = '../tour/order-data-people.html?maxExtensionNight='+maxExtensionNight;
 				if (vlm.checkLogin(url)) {
 					window.top.location.href = url;
 				}
@@ -147,6 +148,7 @@
 								var data = json.data;
 								var html_pb = template(tpl1, data);
 								var html_tt = template(tpl2, data);
+								maxExtensionNight = data.maxExtensionNight;
 								var html_pp = template(tpl3, data);
 								var html_det = template(tpl4, data);
 								var tpl_GetSpotOverview = template("tpl_GetSpotOverview", data);
