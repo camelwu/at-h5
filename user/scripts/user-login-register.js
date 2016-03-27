@@ -160,7 +160,7 @@ window.onload = function() {
 					return;
 				}
 				var Parameters = {
-					"Parameters" : "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"Code\":\"" + verify.value + "\"}",
+					"Parameters" : "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"Password\":\"" + password.value + "\",\"Code\":\"" + verify.value + "\"}",
 					"ForeEndType" : 3,
 					"Code" : "0051"
 				};
