@@ -2461,6 +2461,7 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-flex: 6;          /* Chrome */
     -ms-flex: 6;              /* IE 10 */
     flex: 6;
+    overflow:initial;
 }
 
 .seat-condition .left > span {
@@ -2473,7 +2474,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .seat-condition .left > p {
     height: 2.4rem;
-    width: 100%;
+    width: 120%;
     margin-bottom: 0;
     line-height: 2.4rem;
 }
