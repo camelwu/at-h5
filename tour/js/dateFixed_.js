@@ -116,12 +116,12 @@ TicketDate.prototype.createContainer = function(odate){
         container.style.paddingBottom = '118px';
         var header = this.header = document.createElement('div');
         header.id = this.id+"-header";
-        header.className = 'header';
+        header.className = 'header tour-date-header';
         header.innerHTML = '<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>';
         document.body.appendChild(header);
         var weeker = document.createElement('div');
         weeker.className = 'calendar';
-        weeker.style.marginTop='3.8rem';
+        weeker.style.marginTop='49px';
         weeker.innerHTML = this._tempweek.join('');
         container.appendChild(weeker);
 
@@ -205,14 +205,13 @@ TicketDate.prototype.drawDate = function (odate) {
     var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
     if(ie6) dateWarp.appendChild(this.createIframe());
     this.linkOn();
-
     if(this.type=='Oneway'){
         if(document.querySelector('#chooseDate-single-header')){
             document.querySelector('#chooseDate-single-header').onclick = function(event){
                 var event = event||window.event;
                 var target = event.target||event.srcElement, op = null, op2= null;
-                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
-                    op = document.querySelector('#chooseDate-single-date'), op2= document.querySelector('#chooseDate-single-header');
+                if((target.tagName == 'A'&&target.className=='header-back')||(target.tagName == 'I'&&target.className=='icons go-back')){
+                    op = document.querySelector('.header'), op2= document.querySelector('#date-range-date');
                     document.body.removeChild(op);
                     document.body.removeChild(op2)
                 }
