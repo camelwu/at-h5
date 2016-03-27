@@ -81,7 +81,7 @@
                                   <div class="icon-arrow"></div>
                               </div>
                               <div class="city-time-right">
-                                  <div class="clock"><span></span>09:15</div>
+                                  <div class="clock"><span></span>{% var d3=new Date(flightInfo.segmentsLeave[i].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                                   <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameTo%}{%=flightInfo.segmentsLeave[i].TermArrive%}</p>
                               </div>
                           </div>
@@ -138,7 +138,7 @@
             <span class="first">登机人</span><span>{%=lastName%}/{%=firstName%}</span>
         </p>
         <p>
-            <span class="first">护照</span><span>123455677788</span>
+            <span class="first">护照</span><span>{%=travelers[0].idNumber%}</span>
         </p>
         <p>
             <span class="first">联系电话</span><span><a href="tel:{%=contactNumber%}">{%=contactNumber%}</a></span>
