@@ -232,7 +232,7 @@ var ticketOrder = {
                             if(status == true){
                                 window.history.go(-2);
                             }
-                        }, '确定', '取消');
+                        }, '确定','取消');
                     }else{
                          orderResultTip.innerHTML = arg.message;
                          orderResultTip.style.display = 'block';
