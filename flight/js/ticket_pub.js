@@ -616,8 +616,8 @@ var  conditionalFiltering = {
                     '    <li class="time-modal-item active" data-i="1"><b></b>直飞优先</li>'+
                     '    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>'+
                     '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'+
-                    '    <li class="time-modal-item" data-i="isDesc_true"><b></b>起飞早到晚</li>'+
-                    '    <li class="time-modal-item" data-i="isDesc_false"><b></b>起飞晚到早</li>'
+                    '    <li class="time-modal-item" data-i="isDesc_false"><b></b>起飞早到晚</li>'+
+                    '    <li class="time-modal-item" data-i="isDesc_true"><b></b>起飞晚到早</li>'
                 rightModal.innerHTML =''
             }else{
                 baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span'+

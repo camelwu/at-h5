@@ -1909,9 +1909,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-line span {
-    font-size: 1.6rem;
+    font-size: 14px;
     color: #45494b;
-    margin-left: 0.8rem;
+    margin-left: 6px;
 }
 .top-line span:first-child{
     margin-left: 0
@@ -1941,11 +1941,11 @@ h1, h2, h3, h4, h5, h6 {
     top: 1px;
 }
 .top-line .detail-word {
-    font-size: 1.3rem;
+    font-size: 14px;
     color: #FFB413;
     position: relative;
     position: absolute;
-    top: -5px;
+    top: -4px;
     right: 0;
 }
 .top-line .detail-hour-word {
@@ -2461,6 +2461,7 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-flex: 6;          /* Chrome */
     -ms-flex: 6;              /* IE 10 */
     flex: 6;
+    overflow:initial;
 }
 
 .seat-condition .left > span {
@@ -2473,7 +2474,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .seat-condition .left > p {
     height: 2.4rem;
-    width: 100%;
+    width: 120%;
     margin-bottom: 0;
     line-height: 2.4rem;
 }
