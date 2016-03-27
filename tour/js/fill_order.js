@@ -185,7 +185,6 @@
 
         $('.add-passager').each(function(index,element){
             $(this).click(function(){
-                debugger;
                 vlm.f_choice('trave'+index,"ht",'traver','',false,false,null,null,null,null);
             })
         });
