@@ -280,7 +280,6 @@ var ticketOrder = {
             var event = event || window.event;
             var target =event.target || event.srcElement;
             if(target.id == 'popup_overlay'){
-                document.body.removeChild(target);
                 if(document.querySelector('#popup_container')){
                     document.body.removeChild(document.querySelector('#popup_container'));
                 }
