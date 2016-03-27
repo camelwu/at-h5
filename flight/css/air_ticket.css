@@ -1199,7 +1199,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .price-tax .price-info {
     position: absolute;
-    top: 4.6rem;
+    top: 6.6rem;
     right: 2%;
     overflow: visible;
 }
@@ -1320,7 +1320,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.0rem;
     color: rgb(247, 135, 68);
     position: absolute;
-    top: 6.6rem;
+    top: 8.6rem;
     right: 2%
 }
 .tax-word-pull-left{
@@ -1938,15 +1938,14 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     top: 1px;
 }
-
 .top-line .detail-word {
-    float: right;
     font-size: 1.3rem;
     color: #FFB413;
     position: relative;
-    bottom: 0.34rem;
+    position: absolute;
+    top: -5px;
+    right: 0;
 }
-
 .top-line .detail-hour-word {
     float: right;
     font-size: 1.0rem;
