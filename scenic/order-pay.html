@@ -94,11 +94,11 @@
                 </li>
                 <li>
                     <div>有效期</div>
-                    <input type="text" value placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate">
+                    <input type="text" value placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate" readonly>
                 </li>
                 <li>
                     <div>安全码</div>
-                    <input type="tel" value placeholder="请输入签名栏末尾最后3位" class="CardSecurityCode" pattern="[0-9]{3}" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+                    <input type="tel" value placeholder="请输入签名栏末尾最后3位" class="CardSecurityCode" pattern="[0-9]{3}" onkeyup='this.value=this.value.replace(/\D/gi,"")' >
                 </li>
                 <div class="fill-tel">
                     <div class="tel-div">持卡人手机号  +<span class="tel-btn">86</span><b class="icons s-xiala1"></b></div>
