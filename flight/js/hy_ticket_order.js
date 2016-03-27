@@ -148,6 +148,7 @@ var ticketOrder = {
              }
 
             that.backParaObj.TravellerInfo =realPara;
+
             if(window['localStorage']['contact_selected']){
                 contactInfo =JSON.parse(window['localStorage']['contact_selected']);
                 }else{
@@ -160,11 +161,13 @@ var ticketOrder = {
                 SexCode: "Mr"}
             }
             console.log(contactInfo)
+
             contactInfoCache.FirstName = document.querySelector('#first-name').value;
             contactInfoCache.LastName = document.querySelector('#last-name').value;
             contactInfoCache.Email =document.querySelector('#email-label').value;
             contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
             contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
+            
             if(contactInfoCache.FirstName==""){
                 jAlert('请输入姓!', '提示');
                 return;
@@ -173,6 +176,11 @@ var ticketOrder = {
                 jAlert('请输入名!', '提示');
                 return;
             }
+            /* H5-764
+            if(contactInfoCache.FirstName=="" && contactInfoCache.LastName==""){
+                jAlert('请输入姓或者名!', '提示');
+                return;
+            }*/
             if(contactInfoCache.Email==""){
                 jAlert('请输入邮箱!', '提示');
                 return;
@@ -184,7 +192,6 @@ var ticketOrder = {
                 jAlert('请输入正确格式邮箱!', '提示');
                 return;
             }
-
             if(contactInfoCache.MobilePhone==""){
                 jAlert('请输入手机号!', '提示');
                 return;
