@@ -107,6 +107,11 @@
 					return true;
 				}
 			}, _Utils = {
+				format_add_zero:function(time){
+					if(time<10){
+						return "0"+time;
+					}
+				},
 				//转化数字为现金格式
 				format_number : function(number) {
 					if ( typeof number != 'number') {

@@ -482,7 +482,7 @@ var  conditionalFiltering = {
 
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
                 '<div class="reset-action-item hot">取消</div>'+
-                '<div class="reset-action-item">重置</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
                 '<div class="reset-action-item">确定</div>'+
                 '</div>'+
                 '<div class="reaction-detail" id="reaction-detail">'+
@@ -530,7 +530,7 @@ var  conditionalFiltering = {
                 '</div>';
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
                 '<div class="reset-action-item hot">取消</div>'+
-                '<div class="reset-action-item">重置</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
                 '<div class="reset-action-item">确定</div>'+
                 '</div>'+
 
@@ -578,7 +578,7 @@ var  conditionalFiltering = {
                 '</div>';
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
                 '<div class="reset-action-item hot">取消</div>'+
-                '<div class="reset-action-item">重置</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
                 '<div class="reset-action-item">确定</div>'+
                 '</div>'+
                 '<div class="reaction-detail" id="reaction-detail">'+
@@ -627,10 +627,10 @@ var  conditionalFiltering = {
                 ' class="filter-select">优选</span>'+
                 '</div>'+
                 '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class="red-tip"></i><span'+
-                ' class="filter-select">含税费</span>'+  /*点击价格有弹出框，包含含税与不含税*/'</div>';
+                ' class="filter-select">含税价</span>'+  /*点击价格有弹出框，包含含税与不含税*/'</div>';
                 leftModal.innerHTML = '    <div class="reset-action-wrap">'+
                 '<div class="reset-action-item hot">取消</div>'+
-                '<div class="reset-action-item">重置</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
                 '<div class="reset-action-item">确定</div>'+
                 '</div>'+
                 '<div class="reaction-detail" id="reaction-detail">'+
@@ -931,7 +931,7 @@ var  conditionalFiltering = {
                             cancelFunction();
                             shadowEle.style.display = 'none';
                             break;
-                        case "重置" :
+                        case "清空筛选" :
                             resetFunction();
                             break;
                         case "确定" :

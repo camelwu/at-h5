@@ -427,7 +427,7 @@ var ticketDouble = {
                 }else{
                     str +='<div class="price-tax">'+
                     '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
-                    '    <div class="price-tax-info tax-word-pull-left"><span class="tax-word">含税费</span></div>'+
+                    '    <div class="price-tax-info tax-word-pull-left"><span class="tax-word">含税总价</span></div>'+
                     '        </div>';
                 }
             }
