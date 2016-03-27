@@ -827,7 +827,7 @@ a{
 .often_user li {
     list-style-type: none;
     border: none;
-    font-size: 12px;
+    font-size: 1.4rem;
     color: #999999;
 }
 .often_user .passport-tips{
@@ -1787,6 +1787,20 @@ i{
 }
 .jto_area_code li ul li:last-child{
     border-bottom:0;
+}
+
+.per-type{
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 20px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 18px;
+    color: #ffb413;
+    font-size: 1.2rem;
+    border: 1px solid #eee;
+    margin-left: 5px;
 }
 
 

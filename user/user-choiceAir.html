@@ -66,7 +66,7 @@
 		</div>
 	</div>
 	<!-- Page Content-->
-	<div class="snap-content" style="padding-top: 45px;background-color: white;top:auto;bottom:auto;">
+	<div class="snap-content" style="padding-top: 45px;background-color: white;">
 		<div class="f_btn button-orange" style="margin-top: 10px" onclick="showAddAir_page('new')">
 			<b class="icons user-add"></b><span class="newTitle"></span>
 		</div>
@@ -414,7 +414,13 @@
 		'<ul class="often_user">',
 		'<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
 		'<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
-		'<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><span class="cnName">{%=dd.traveller.idName%}</span><span class="lastName">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span></li>',
+		'<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><span class="cnName">{%=dd.traveller.idName%}</span><span class="lastName">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
+		'{% if (dd.traveller.travellerAge<2){ %}'+
+		'<i class="per-type">婴儿</i></li>'+'{% } %}'+
+		'{% if (dd.traveller.travellerAge<12 && dd.traveller.travellerAge>=2 ){ %}'+
+		'<i class="per-type">儿童</i></li>'+'{% } %}'+
+		'{% if (dd.traveller.travellerAge>=12){ %}'+
+		'<i class="per-type">成人</i></li>'+'{% } %}'+
 		'<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>',
 		'</ul>', '</li>', '{% } %}'].join('');
 	function get_hisList() {
@@ -556,6 +562,7 @@
 		if (window.opener) {
 			window.close();
 		} else {
+			window.parent.document.getElementById("ticket-wrap").style.display="block";
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		}
 	});
