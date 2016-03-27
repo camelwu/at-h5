@@ -957,7 +957,7 @@ var  ticketIndexModal = {
                }
               searchResult = searchResult.distinct();
               if(!searchResult.length){
-                  resultStr +='<li class="city-list-searched-item">无搜索结果</li>';
+                  resultStr +='<li class="city-list-searched-item">该城市无机场</li>';
               }else{
                   for(var l = 0;l<searchResult.length;l++){
                       var operatingStr='', front='', middle='', back='';

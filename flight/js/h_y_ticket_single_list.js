@@ -336,7 +336,7 @@ var ticketSingle = {
                 }else{
                     str+= '<div class="price-tax single-side">' +
                     '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span></div>' +
-                    '<div class="single-price-tax-info"><span class="tax-word">含税费</div>' +
+                    '<div class="single-price-tax-info"><span class="tax-word">含税总价</div>' +
                     '</div>'
                 }
                 }

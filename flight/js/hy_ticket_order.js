@@ -196,46 +196,6 @@ var ticketOrder = {
             that.backParaObj.ContactDetail =contactInfo;
             $("#preloader").show();
             $("#status-f").show();
-             /*  that.backParaObj={
-                "WapOrder": {
-                    "SetID": 30000255,
-                    "CacheID": 3004452,
-                    "CityCodeFrom": "BJS",
-                    "CityCodeTo": "SHA",
-                    "NumofAdult": "1",
-                    "NumofChild": "0",
-                    "RouteType": "Oneway",
-                    "CabinClass": "Economy",
-                    "SourceType": "H5",
-                    "MemberId": "84567"
-                },
-                "TravellerInfo": [{
-                    "PassengerType": "ADULT",
-                    "SexCode": "Ms",
-                    "FirstName": "楠",
-                    "LastName": "张",
-                    "DateOfBirth": "1990-01-09T00:00:00",
-                    "FlightCertificateInfo": {
-                        "IdType": 1,
-                        "IdCountry": "CN",
-                        "IdNumber": "12345678890",
-                        "IdActivatedDate": "2017-01-01T00:00:00"
-                    },
-                    "BaggageCode": "",
-                    "CountryCode": "CN"
-                }],
-                "ContactDetail": {
-                    "SexCode": "Ms",
-                    "FirstName": "张",
-                    "LastName": "楠",
-                    "Email": "332@qq.com",
-                    "CountryNumber": "86",
-                    "ContactNumber": "5689",
-                    "MobilePhone": "13456789090"
-                },
-                "CurrencyCode": "CNY",
-                "TotalFlightPrice": "1370.00"
-            }*/
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
                 $("#preloader").hide();
                 $("#status-f").hide();
@@ -295,7 +255,7 @@ var ticketOrder = {
             } else {
                 event.stopPropagation();
             }
-            jTiper('<p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p>',
+            jTiper('<p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p>',
                 '退改签说明',function(){})
         });
 

@@ -1746,7 +1746,9 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     z-index: 90;
 }
-
+#wrapper{
+    margin-top: 49px;
+}
 .date-search-line .unit {
     text-align: center;
     height: 3.9rem;
@@ -4271,8 +4273,17 @@ li{
 .jto_seachlist li span{
     float: right;
 }
-
-
+.popup_container{
+    position: fixed;
+    z-index: 1011;
+    padding: 0px;
+    height: 312px;
+    margin: 112px 0px 0px;
+    border-radius: 3px;
+    width: 90%;
+    top: 0px;
+    left: 5%
+}
 
 
 
