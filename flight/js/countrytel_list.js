@@ -948,6 +948,7 @@ var arrCountry= [
             var ooo = $(this).attr('code');
             $('span#country-code').html('+'+ooo);
             $('.country-cho-wrap,#jto_seach').hide();
+            $("input#country-input-zone").val('');
         })
     })
     //scroll

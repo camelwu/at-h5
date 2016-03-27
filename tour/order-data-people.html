@@ -102,7 +102,7 @@
 		<script src="../js/lib/vlm.js"></script>
 		<script src="../js/lib/template.js"></script>
 		<script src="../js/lib/custom.js"></script>
-		<script src="js/dateFix.js"></script>
+		<script src="js/dateFixed_.js"></script>
 		<script id="tpl_GetTour" type="text/template">
 			{% for(var i=0;i < tours.length;i++){ %}
 			<div class="nav2-tour tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
@@ -441,9 +441,7 @@
 						vlm.loadJson("", JSON.stringify(tmp), function(json) {
 							if (json.success) {
 								var data = json.data, total_day = document.querySelector('#total_day');
-								console.log(data);
 								dateHandler.dataInfomation = json.data;
-								//day_start = vlm.Utils.format_date(data.defaultDepartStartDate, "Ymd");
 								day_start = data.defaultDepartStartDate.substring(0,10);
 								day_Num = parseInt(data.minDuration ? data.minDuration : data.packageName.substr(2, 1));
 								minPaxType = parseInt(data.minPaxType);
@@ -477,7 +475,6 @@
 								// 向景点增加时间
 								$(".content3_CheckInDate").val(day_start);
 								var index = day_ary[new Date(day_start.replace(/-/g, "/")).getDay()];
-								console.log(index);
 								$(".week-tour").html(index);
 								if (!onlyForAdult) {
 									initAgeRange();
@@ -509,7 +506,6 @@
 											id = allDivs[i].id;
 											inputClassName = input.className;
 											span = allDivs[i].querySelectorAll('span')[0].className;
-											//console.log(inputs[0].value+':'+inputs[1].value);
 											dateHandler.chooseDate(allDivs[i], id, inputClassName, span, inputs[0].value, inputs[1].value);
 										}
 
@@ -517,7 +513,6 @@
 								}
 								chooseScenicDate();
 							} else {
-								console.log(json);
 								jAlert(json.message, "提示");
 							}
 						});
@@ -724,7 +719,7 @@
 					return {
 						FlashLoad : flashLoad,
 						GetSpot : getSpot,
-						SendInfo : sendInfo,
+						SendInfo : sendInfo
 					};
 				}();
 				ww.MT = ww.MT || {};
@@ -739,12 +734,13 @@
 				MT.load();
 			})();
 
-
 			var order_btn = $('#order_btn');
 			order_btn.click(MT.sendData);
 			var dateHandler = {
 				initDate : function() {
+					day_start=day_start.replace(/-/g,'/')
 					var inputs = document.querySelectorAll('.CheckInDateI'), d = new Date(day_start), s = new Date(d.setDate(d.getDate())), r = new Date(d.setDate(d.getDate() + day_Num - 1)), paraObj = {
+
 						start : s.getFullYear() + "-" + (s.getMonth() + 1) + "-" + s.getDate(),
 						end : r.getFullYear() + "-" + (r.getMonth() + 1) + "-" + r.getDate()
 					};
@@ -765,6 +761,10 @@
 						time : dateInitObj,
 						sClass1 : 'CheckInDateI',
 						type : 'Return',
+						dateObj:{
+							start:paraObj.start,
+							end:paraObj.end
+						},
 						range : [],
 						_word : {
 							tip : ['入住', '离店']
@@ -776,7 +776,8 @@
 							dayNum = (Math.abs(Date.parse(checkOutDate) - Date.parse(checkInDate))) / 1000 / 60 / 60 / 24;
 							dayNum++;
 							var minMaxTime = /.*(\d)天(\d).*/.exec(that.dataInfomation.packageName);
-							if (dayNum != minMaxTime[1]) {
+							this.fn2({start:checkInDate,end:checkOutDate})
+							/*if (dayNum != minMaxTime[1]) {
 								tipBox.innerHTML = '请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！';
 								tipBox.style.display = 'block';
 								that.timer = window.setTimeout(function() {
@@ -784,9 +785,9 @@
 									window.clearTimeout(that.timer);
 									that.timer = null;
 								}, 3000);
-							}
+							}*/
 						},
-						fn2 : function(arg) {//选择之后的及时回调
+						fn2 : function(arg) {
 							var inputs = document.querySelectorAll('.' + this.sClass1), span1 = document.querySelector('#week_span1'), span2 = document.querySelector('#week_span2');
 							var total_day = document.querySelector('#total_day'), that = dateHandler;
 							var tourLi = document.querySelector('.tourTime'), allDivs, allDiv;
@@ -797,7 +798,6 @@
 									return week;
 								}
 							};
-							//allDivs = tourLi.querySelectorAll('.content2');
 
 							allDivs = tourLi.querySelectorAll('.nav2-tour');
 							inputs[0].value = arg.start;
@@ -813,53 +813,30 @@
 									id = allDivs[i].id;
 									inputClassName = input.className;
 									span = allDivs[i].querySelectorAll('span')[0].className;
-									//console.log(inputs[0].value+':'+inputs[1].value);
 									that.chooseDate(allDivs[i], id, inputClassName, span, inputs[0].value, inputs[1].value);
 								}
 
 							}
-							/*for (var i = 0; i < allDiv.length; i++) {
-							 var inputClassName = '', span = '', id = '', input = allDiv[i].querySelector('input'), spanWeek = allDiv[i].querySelector('.week-tour');
-							 if(inputs[0].value != "") {
-							 input.value = inputs[0].value;
-
-							 spanWeek.innerHTML = returnWeek(inputs[0].value);
-							 id = allDiv[i].id;
-							 inputClassName = input.className;
-							 span = allDiv[i].querySelectorAll('span')[0].className;
-							 that.chooseDate(allDiv[i], id, inputClassName, span, inputs[0].value, inputs[1].value)
-							 }
-							 }*/
 						}
 					});
 					return this;
 				},
 				chooseDate : function(ele, id, input, span, startDate, endDate) {
 					var rangeArray = [startDate, endDate];
-					var myDate = new TicketDate({
+					new TicketDate({
 						id : id,
 						num : 13,
-						time : {},
+						time : {start:rangeArray[0]},//options.time.start
 						sClass1 : input,
+						dateObj:{
+							start:startDate,
+							end:endDate
+						},
 						type : 'Oneway',
 						_word : {
 							tip : ['入住']
 						},
-						range : rangeArray,
-						fn : function() {
-						},
-						fn2 : function(arg1) {
-							var inputs = ele.querySelector('.' + input), span1 = ele.querySelector('.week-tour');
-							var returnWeek = function(arg1) {
-								if (arg1) {
-									var week, array, index = new Date(arg1.replace(/-/g, "/")).getDay();
-									week = day_ary[index];
-									return week;
-								}
-							};
-							inputs.value = arg1.start;
-							span1.innerHTML = returnWeek(arg1.start);
-						}
+						range : rangeArray
 					});
 					return this;
 				},
