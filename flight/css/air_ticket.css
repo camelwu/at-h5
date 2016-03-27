@@ -395,9 +395,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #loadMore{
-    height: 35px;
+    height: 40px;
     text-align: center;
-    line-height: 35px;
+    line-height: 40px;
+    font-size: 16px;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 
 #scroller ul {
@@ -945,7 +947,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     font-size: 1.2rem;
     padding-left: 1.0rem;
-    color: #717a83;
+    color: #C0CFDE;
 }
 
 .date-place-info .date-icon {
@@ -1190,6 +1192,7 @@ h1, h2, h3, h4, h5, h6 {
     float: left;
     min-height: 10.2rem;
     position: relative;
+    overflow: visible;
 }
 
 .air-tickets-detail .air-tickets-detail .single-side {
@@ -1198,7 +1201,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .price-tax .price-info {
     position: absolute;
-    top: 4.6rem;
+    top: 6.6rem;
     right: 2%;
     overflow: visible;
 }
@@ -1319,7 +1322,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.0rem;
     color: rgb(247, 135, 68);
     position: absolute;
-    top: 6.6rem;
+    top: 8.6rem;
     right: 2%
 }
 .tax-word-pull-left{
@@ -1746,7 +1749,9 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     z-index: 90;
 }
-
+#wrapper{
+    margin-top: 49px;
+}
 .date-search-line .unit {
     text-align: center;
     height: 3.9rem;
@@ -1935,15 +1940,14 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     top: 1px;
 }
-
 .top-line .detail-word {
-    float: right;
     font-size: 1.3rem;
     color: #FFB413;
     position: relative;
-    bottom: 0.34rem;
+    position: absolute;
+    top: -5px;
+    right: 0;
 }
-
 .top-line .detail-hour-word {
     float: right;
     font-size: 1.0rem;
@@ -2650,7 +2654,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .passport input {
-    width: 40%;
+    width: 60%;
     display: inline-block;
     font-size: 1.35rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
@@ -4271,8 +4275,17 @@ li{
 .jto_seachlist li span{
     float: right;
 }
-
-
+.popup_container{
+    position: fixed;
+    z-index: 1011;
+    padding: 0px;
+    height: 312px;
+    margin: 112px 0px 0px;
+    border-radius: 3px;
+    width: 90%;
+    top: 0px;
+    left: 5%
+}
 
 
 

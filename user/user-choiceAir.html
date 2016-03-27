@@ -66,7 +66,7 @@
 		</div>
 	</div>
 	<!-- Page Content-->
-	<div class="snap-content" style="padding-top: 45px;background-color: white;top:auto;bottom:auto;">
+	<div class="snap-content" style="padding-top: 45px;background-color: white;">
 		<div class="f_btn button-orange" style="margin-top: 10px" onclick="showAddAir_page('new')">
 			<b class="icons user-add"></b><span class="newTitle"></span>
 		</div>
@@ -139,7 +139,7 @@
 						<div>
 							证件号
 						</div>
-						<input type="text" placeholder="与乘机人姓名一致" class="cardNumber">
+						<input type="text" placeholder="确保与乘机证件一致" class="cardNumber">
 					</li>
 					<li>
 						<b class="icons open-pho"></b>
@@ -202,6 +202,7 @@
 				<!--<div class="user-account" onclick="showChild_page()">-->
 				<!--儿童婴儿购票说明>-->
 				<!--</div>-->
+
 				<div id="delTra" class="f_btn button-grey" style="display:none">删除常旅客</div>
 			</div>
 		</div>
@@ -414,7 +415,13 @@
 		'<ul class="often_user">',
 		'<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
 		'<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
-		'<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><span class="cnName">{%=dd.traveller.idName%}</span><span class="lastName">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span></li>',
+		'<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><span class="cnName">{%=dd.traveller.idName%}</span><span class="lastName">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
+		'{% if (dd.traveller.travellerAge<2){ %}'+
+		'<i class="per-type">婴儿</i></li>'+'{% } %}'+
+		'{% if (dd.traveller.travellerAge<12 && dd.traveller.travellerAge>=2 ){ %}'+
+		'<i class="per-type">儿童</i></li>'+'{% } %}'+
+		'{% if (dd.traveller.travellerAge>=12){ %}'+
+		'<i class="per-type">成人</i></li>'+'{% } %}'+
 		'<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>',
 		'</ul>', '</li>', '{% } %}'].join('');
 	function get_hisList() {
@@ -556,6 +563,9 @@
 		if (window.opener) {
 			window.close();
 		} else {
+			if(window.parent.document.getElementById("ticket-wrap") !=null) {
+				window.parent.document.getElementById("ticket-wrap").style.display = "block";
+			}
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		}
 	});
@@ -565,7 +575,9 @@
 	})
 
 	function submit_t() {
-		window.parent.document.getElementById("ticket-wrap").style.display="block";
+		if(window.parent.document.getElementById("ticket-wrap") !=null) {
+			window.parent.document.getElementById("ticket-wrap").style.display = "block";
+		}
 		 GoBackData();
 		ifrCilent.parentNode.removeChild(ifrCilent);
 
@@ -649,7 +661,6 @@
 			for(var i=0; i<=list.length-1;i++){
 				TraInfo={};
 				CertificateInfo={}
-				debugger;
 				if(GetAgeByBrithday(list[i].traveller.dateOfBirth)<12){
 					TraInfo.PassengerType= "CHILD";  //乘客类型
 				}
@@ -736,6 +747,7 @@
 	}
 	//显示新增乘机人编辑页
 	function showAddAir_page(type,id) {
+		clearInput();
 		var addAir_page = document.getElementById("addAir-page");
 		addAir_page.style.display = "block";
 		if(type=="new"){
@@ -942,17 +954,17 @@
 			jAlert("证件号不能为空！","",null,"确认");
 			return false;
 		}
-		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".telNum").eq(0).val())){
-			jAlert("电话号码不能为空！","",null,"确认");
+		if(!vlm.Utils.validate["mobileNo"]($(inputList).find(".telNum").eq(0).val())){
+			jAlert("请输入有效的电话号码！","",null,"确认");
 			return false;
 		}
 
-		if(!vlm.Utils.validate["isNoEmpty"]($(inputList).find(".txtEmail").eq(0).val())){
-			jAlert("邮箱不能为空！","",null,"确认");
+		if(!vlm.Utils.validate["email"]($(inputList).find(".txtEmail").eq(0).val())){
+			jAlert("请输入有效的邮箱！","",null,"确认");
 			return false;
 		}
-		if(!vlm.Utils.validate["ChineseName"]($(inputList).find(".cnName").eq(0).val())){
-			jAlert("中文名必须为中文！","",null,"确认");
+		if(!vlm.Utils.validate["chiName"]($(inputList).find(".cnName").eq(0).val())){
+			jAlert("请输入有效的中文名！","",null,"确认");
 			return false;
 		}
 		if(!vlm.Utils.validate["engName"]($(inputList).find(".lastName").eq(0).val())){
@@ -1053,8 +1065,8 @@
 <!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
-		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.lastName%}"/>
-		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.firstName%}"/>
+		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}"/>
+		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.lastName%}"/>
 	</div>
 	<div class="unit tel">
 		<div class="left">

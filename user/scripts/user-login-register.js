@@ -136,6 +136,13 @@ window.onload = function() {
 					jAlert('两次输入的密码不一致！');
 					return;
 				}
+				var Parameters = {
+					"Parameters" : "{\"CultureName\":\"\",\"Email\":\"" + r_email.value + "\",\"Password\":\"" + password.value + "\"}",
+					"ForeEndType" : 3,
+					"Code" : "0051"
+				};
+				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
+
 			} else {
 				password = r_p_password;
 				input = phone_register.getElementsByTagName('input');
@@ -152,14 +159,15 @@ window.onload = function() {
 					jAlert("请输入6-18位密码");
 					return;
 				}
+				var Parameters = {
+					"Parameters" : "{\"CultureName\":\"\",\"Mobile\":\"" + r_phone.value + "\",\"Password\":\"" + password.value + "\",\"Code\":\"" + verify.value + "\"}",
+					"ForeEndType" : 3,
+					"Code" : "0051"
+				};
+				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
+
 			}
 
-			var Parameters = {
-				"Parameters" : "{\"CultureName\":\"\",\"Email\":\"" + r_email.value + "\",\"Password\":\"" + password.value + "\",\"Mobile\":\"" + r_phone.value + "\",\"Code\":\"" + verify.value + "\"}",
-				"ForeEndType" : 3,
-				"Code" : "0051"
-			};
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
 		};
 	}
 

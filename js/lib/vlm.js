@@ -107,6 +107,11 @@
 					return true;
 				}
 			}, _Utils = {
+				format_add_zero:function(time){
+					if(time<10){
+						return "0"+time;
+					}
+				},
 				//转化数字为现金格式
 				format_number : function(number) {
 					if ( typeof number != 'number') {
@@ -895,7 +900,10 @@
 				//var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
 				var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId +' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id+"&callback="+callback);
 				document.body.appendChild(choice);
-				window.parent.document.getElementById("ticket-wrap").style.display="none";
+				if(window.parent.document.getElementById("ticket-wrap")){
+					window.parent.document.getElementById("ticket-wrap").style.display="none";
+				}
+
 				//choice.location = urls;
 			},createIframe = function(urlstr,id) {
 				var str = id?id:'choiceAir',myIframe = document.createElement('iframe');
