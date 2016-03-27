@@ -51,8 +51,8 @@
                         {% if(routeType=="Return"){ %}往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     </p>
                     <p class="go-back-p">
-                        <span class="round-trip-go"><i class="round-go-tip"></i>{%=CurrencyCode%}</span>
-                        <span class="round-trip-back"><i class="round-back-tip"></i>{%=flightInfo.flightLeaveEndDate.replace("T"," ")%}</span>
+                        <span class="round-trip-go"><i class="round-go-tip"></i>{%=flightInfo.flightLeaveStartDate.split("T")[0]%}</span>
+                        <span class="round-trip-back"><i class="round-back-tip"></i>{%=flightInfo.flightReturnStartDate.split("T")[0]%}</span>
                     </p>
                     {% } else{ %} 单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     <p class="go-back-p">
