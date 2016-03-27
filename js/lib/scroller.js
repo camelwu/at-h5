@@ -254,6 +254,7 @@ Scroller.prototype = {
 				arr[2]=that.addZero(parseInt(arr[2]));
 				ele.value = arr.join("-");
 			}else if(that.type == 'cardExpirationDate'){
+                ele.setAttribute("data-expire",arr[1].replace('年','')+"-"+that.addZero(parseInt(arr[0]))+"-01");
                 arr[0]=that.addZero(parseInt(arr[0]));
                 arr[1]=arr[1].replace('年','').substr(2);
                 ele.value = arr.join("/");
