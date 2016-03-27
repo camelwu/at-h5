@@ -395,9 +395,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #loadMore{
-    height: 35px;
+    height: 40px;
     text-align: center;
-    line-height: 35px;
+    line-height: 40px;
+    font-size: 16px;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 
 #scroller ul {
@@ -945,7 +947,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     font-size: 1.2rem;
     padding-left: 1.0rem;
-    color: #717a83;
+    color: #C0CFDE;
 }
 
 .date-place-info .date-icon {
