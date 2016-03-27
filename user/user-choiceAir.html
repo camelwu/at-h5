@@ -565,7 +565,9 @@
 	})
 
 	function submit_t() {
-		window.parent.document.getElementById("ticket-wrap").style.display="block";
+		if(window.parent.document.getElementById("ticket-wrap") !=null) {
+			window.parent.document.getElementById("ticket-wrap").style.display = "block";
+		}
 		 GoBackData();
 		ifrCilent.parentNode.removeChild(ifrCilent);
 

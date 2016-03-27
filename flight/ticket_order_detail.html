@@ -164,6 +164,13 @@
     </div>
 </div>
 
+<div class="jpop_box_tic" style="display: none;">
+    <dl>
+        <dt>400 805 8888</dt>
+        <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+    </dl>
+</div>
+
 <!--      费用明细块      -->
 <div id="pdetail_mb" class="od-mb"></div>
 <div id="pd_block" class="pd-block">
@@ -236,7 +243,10 @@
                         console.log(data);
                         showPriceDetail();
                         $(".contact-service").on("click",function(){
-                            $(".contact-wrap").show();
+                            $(".jpop_box_tic").show();
+                        })
+                        $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+                            $('.jpop_box_tic').hide();
                         })
                         vlm.init();
                     }else {
