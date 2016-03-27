@@ -292,7 +292,7 @@
 		<script id="tpl_PickupPoint" type="text/template">
 			<ul class="hote-list">
 			{% for(var i=0,len=data.pickupInfos.length;i<len;i++){ %}
-			<li data-key="{%=data.pickupInfos[i].pickupID%}">{%=data.pickupInfos[i].pickupPoint%}</li>
+			<li data-key="{%=data.pickupInfos[i].pickupID%}">{%=data.pickupInfos[i].pickupPoint%}<i class="pickup-icon js-pickup-icon"></i></li>
 			{% } %}
 			</ul>
 		</script>
@@ -465,10 +465,11 @@
 				 */
 				MT.clickHotelList = function() {
 					$('#choHotel').attr("data-key", $(this).attr("data-key"));
+					$(".js-pickup-icon").hide();
+					$(this).find(".js-pickup-icon").show();
 					$('#choHotel').html($(this).html());
-					$('#holist_page').css({
-						display : 'none'
-					});
+					$('#choHotel').find(".js-pickup-icon").remove()
+					$('#holist_page').hide();
 				}
 				/**
 				 * 返回接送点信息
