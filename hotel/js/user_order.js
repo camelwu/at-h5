@@ -462,11 +462,11 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)<=1){
-            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 -28px no-repeat';
+            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 -27px no-repeat';
             uo_c2_i1.style.backgroundSize='23px 150px';
         }
         if(parseInt(uo_c2_num.innerHTML)<10){
-            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -56px no-repeat';
+            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -55px no-repeat';
             uo_c2_i2.style.backgroundSize='23px 150px';
         }
         //修改数据并存储数据
@@ -525,7 +525,7 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)>1){
-            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0 no-repeat';
+            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 -27px no-repeat';
             uo_c2_i1.style.backgroundSize='23px 150px';
         }
         if(parseInt(uo_c2_num.innerHTML)>=10){

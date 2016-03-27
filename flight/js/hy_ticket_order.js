@@ -78,7 +78,6 @@ var ticketOrder = {
         return result[1]+':'+result[2];
     },
     addEvent:function(){
-        var Button = document.querySelector('#buy-ticket-tip');
         var closeTag = document.querySelector('.close-buy-tip');
         var tipWord = document.querySelector('.tip-word');
         var backMealClose = document.querySelector('.back-meal-close');
@@ -251,11 +250,6 @@ var ticketOrder = {
                      }
                 }
             });
-        });
-
-        this.addHandler(Button,'click', function(){
-            document.querySelector('.summary-cost-shadow-two').style.display = 'block';
-            document.querySelector('.buy-tip').style.display = 'block';
         });
         this.addHandler(closeTag,'click', function(event){
             var event = event || window.event;
