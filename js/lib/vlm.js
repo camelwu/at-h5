@@ -108,8 +108,11 @@
 				}
 			}, _Utils = {
 				format_add_zero:function(time){
-					if(time<10){
+					if(parseInt(time)<10){
 						return "0"+time;
+					}
+					else{
+						return time;
 					}
 				},
 				//转化数字为现金格式
