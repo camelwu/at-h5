@@ -113,7 +113,7 @@ var ticketOrder = {
         this.addHandler(confirmButton,'click', function(){
             var event = event || window.event;
             var target =event.target || event.srcElement;
-            var that = ticketOrder;
+            var that = ticketOrder,contactInfo={};
             that.backParaObj = that.reverseInformation;
             var selectTravellerList=window['localStorage']['travellerInfo_selected'];
             if(!window['localStorage']['travellerInfo_selected']){
@@ -142,25 +142,32 @@ var ticketOrder = {
                     tempChild++;
                 }
             }
-            console.log(tempAdult)
-            console.log(tempChild)
              if(tempAdult!=adultNum||tempChild!=childNum){
                  jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
                  return;
              }
 
             that.backParaObj.TravellerInfo =realPara;
-            if(!window['localStorage']['contact_selected']){
-                jAlert('请完善联系人信息!', '提示');
-                return;
-            }else{
-                var contactInfo =JSON.parse(window['localStorage']['contact_selected']);
+
+            if(window['localStorage']['contact_selected']){
+                contactInfo =JSON.parse(window['localStorage']['contact_selected']);
+                }else{
+                contactInfo={ContactNumber: "",
+                CountryNumber: "",
+                Email: "",
+                FirstName: "",
+                LastName: "",
+                MobilePhone: "",
+                SexCode: "Mr"}
             }
+            console.log(contactInfo)
+
             contactInfoCache.FirstName = document.querySelector('#first-name').value;
             contactInfoCache.LastName = document.querySelector('#last-name').value;
             contactInfoCache.Email =document.querySelector('#email-label').value;
             contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
             contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
+            
             if(contactInfoCache.FirstName==""){
                 jAlert('请输入姓!', '提示');
                 return;
@@ -169,6 +176,11 @@ var ticketOrder = {
                 jAlert('请输入名!', '提示');
                 return;
             }
+            /* H5-764
+            if(contactInfoCache.FirstName=="" && contactInfoCache.LastName==""){
+                jAlert('请输入姓或者名!', '提示');
+                return;
+            }*/
             if(contactInfoCache.Email==""){
                 jAlert('请输入邮箱!', '提示');
                 return;
@@ -180,7 +192,6 @@ var ticketOrder = {
                 jAlert('请输入正确格式邮箱!', '提示');
                 return;
             }
-
             if(contactInfoCache.MobilePhone==""){
                 jAlert('请输入手机号!', '提示');
                 return;
@@ -223,7 +234,13 @@ var ticketOrder = {
                                  window.history.go(-2);
                              }
                          }, '确定', '取消');
-                     }else{
+                     }else if(arg.message.indexOf('过期')>-1){
+                        jConfirm('航班信息过期,需要重新预定?', '提示', function(status){
+                            if(status == true){
+                                window.history.go(-2);
+                            }
+                        }, '确定','取消');
+                    }else{
                          orderResultTip.innerHTML = arg.message;
                          orderResultTip.style.display = 'block';
                          that.timer7 = window.setTimeout(function(){

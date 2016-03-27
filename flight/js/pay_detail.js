@@ -9,7 +9,9 @@ var getSex = {
     "MRS":"女"
 };
 $(document).ready(function(){
-
+    
+    //初始化有效期选择组件
+    var expityDate = new Scroller({id: "CardExpiryDate", type:"cardExpirationDate",cont:"cardExpirationDate1234"});
 
     var Parameters={"Parameters": {"BookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
