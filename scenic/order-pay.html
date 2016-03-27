@@ -17,6 +17,8 @@
     <link href="css/scenic.css" rel="stylesheet"/>
     <link href="../styles/tips.css"		rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/date_select.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="preloader">
@@ -79,7 +81,7 @@
                 </li>
                 <li>
                     <div>信用卡卡号</div>
-                    <input type="text" value placeholder="请输入信用卡卡号" class="CardNumber">
+                    <input type="tel" value placeholder="请输入信用卡卡号" class="CardNumber" pattern="[0-9]{13,16}" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
                 </li>
                 <li>
                     <div>发卡银行</div>
@@ -92,15 +94,15 @@
                 </li>
                 <li>
                     <div>有效期</div>
-                    <input type="text" value placeholder="月/年，如：09/12" class="CardExpiryDate">
+                    <input type="text" value placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate" readonly>
                 </li>
                 <li>
                     <div>安全码</div>
-                    <input type="text" value placeholder="请输入签名栏末尾最后3位" class="CardSecurityCode">
+                    <input type="tel" value placeholder="请输入签名栏末尾最后3位" class="CardSecurityCode" pattern="[0-9]{3}" onkeyup='this.value=this.value.replace(/\D/gi,"")' >
                 </li>
                 <div class="fill-tel">
                     <div class="tel-div">持卡人手机号  +<span class="tel-btn">86</span><b class="icons s-xiala1"></b></div>
-                    <input type="text" value placeholder="用于接收通知" class="PhoneNo">
+                    <input type="tel" value placeholder="用于接收通知" class="PhoneNo" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
                 </div>
                 <li>
                     <div>账单地址</div>
@@ -114,7 +116,7 @@
 
                 <li>
                     <div>邮政编码</div>
-                    <input type="text" value placeholder="请输入邮政编码" class="CardAddressPostalCode" >
+                    <input type="tel" value placeholder="请输入邮政编码" class="CardAddressPostalCode" pattern="[0-9]{6}" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
                 </li>
                 <li class="countries-wrap">
                     <div>持卡人国家</div>
@@ -162,6 +164,8 @@
     <script src="../js/lib/jquery.alert.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/scroller.js"></script>
     <script src="js/order-pay.js"></script>
     <script src="../js/country_list.js"></script>
     <script src="../js/countrytel_list.js"></script>
