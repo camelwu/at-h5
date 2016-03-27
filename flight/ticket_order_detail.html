@@ -37,8 +37,8 @@
     <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单详情<a class="tel-icon" href="tel:4005088888"></a></header>
     <div class="ticket-order-detail-content" u>
        <div class="until-pay">
-         <span>{% if(isContinuePay){ %} <strong>{%= isContinuePay==true %}未支付</strong>{% }else{ %} <strong>已支付</strong> {% } %}</span>
-           {% if(isContinuePay==true){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
+         <span>{% if(isContinuePay){ %} <strong>未支付</strong>{% }else{ %} <strong>已支付</strong> {% } %}</span>
+           {% if(isContinuePay){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
                 <span>请在<strong>{%= d.getHours()+":"+d.getMinutes() %} 前完成支付</strong></span>
            {% } %}
       </div>
@@ -48,11 +48,11 @@
                   <div class="rel-start">
                       <div class="week-city-city">
 
-                          <span><i></i></span> <span>{% var d1=new Date(flightInfo.flightLeaveStartDate.replace("T"," ")); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
+                          <span><i></i></span> <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
                       </div>
                       <div class="time-arrow-time">
                           <div class="city-time-left">
-                               <div class="clock">{% var d2=new Date(flightInfo.segmentsLeave[0].departDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+                               <div class="clock">{% var d2=new Date(Date.parse(flightInfo.segmentsLeave[0].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                                <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameFrom%}{%=flightInfo.segmentsLeave[0].TermDepart%}</p>
                           </div>
                           <div class="time-arrow">
@@ -60,7 +60,7 @@
                                <div class="icon-arrow"></div>
                           </div>
                           <div class="city-time-right">
-                              <div class="clock"><span></span>{% var d3=new Date(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+                              <div class="clock">{% var d3=new Date(Date.parse(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                               <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameTo%}{%=flightInfo.segmentsLeave[0].TermArrive%}</p>
                           </div>
                       </div>
@@ -73,7 +73,7 @@
                       <div class="rel-transit">
                           <div class="time-arrow-time">
                               <div class="city-time-left">
-                                  <div class="clock">{% var d2=new Date(flightInfo.segmentsLeave[i].departDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+                                  <div class="clock">{% var d2=new Date(Date.parse(flightInfo.segmentsLeave[i].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                                   <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameFrom%}{%=flightInfo.segmentsLeave[i].TermDepart%}</p>
                               </div>
                               <div class="time-arrow">
@@ -81,7 +81,7 @@
                                   <div class="icon-arrow"></div>
                               </div>
                               <div class="city-time-right">
-                                  <div class="clock"><span></span>{% var d3=new Date(flightInfo.segmentsLeave[i].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+                                  <div class="clock">{% var d3=  new Date(Date.parse(flightInfo.segmentsLeave[i].arriveDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                                   <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameTo%}{%=flightInfo.segmentsLeave[i].TermArrive%}</p>
                               </div>
                           </div>
@@ -97,11 +97,12 @@
                  <div class="rel-start">
                      <div class="week-city-city">
 
-                         <span><i></i></span> <span>{% var d1=new Date(flightInfo.flightLeaveStartDate.replace("T"," ")); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
+                         <span><i></i></span> <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
                      </div>
                      <div class="time-arrow-time">
                          <div class="city-time-left">
-                             <div class="clock">{% var d2=new Date(flightInfo.segmentsLeave[0].departDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+
+                             <div class="clock">{% var d2= new Date(Date.parse(flightInfo.segmentsLeave[0].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameFrom%}{%=flightInfo.segmentsLeave[0].TermDepart%}</p>
                          </div>
                          <div class="time-arrow">
@@ -109,7 +110,8 @@
                              <div class="icon-arrow"></div>
                          </div>
                          <div class="city-time-right">
-                             <div class="clock"><span></span>{% var d3=new Date(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+
+                             <div class="clock">{% var d3= new Date(Date.parse(flightInfo.segmentsLeave[0].arriveDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameTo%}{%=flightInfo.segmentsLeave[0].TermArrive%}</p>
                          </div>
                      </div>
@@ -122,7 +124,8 @@
                  <div class="rel-transit">
                      <div class="time-arrow-time">
                          <div class="city-time-left">
-                             <div class="clock">{% var d2=new Date(flightInfo.segmentsLeave[i].departDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+
+                             <div class="clock">{% var d2= new Date(Date.parse(flightInfo.segmentsLeave[i].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameFrom%}{%=flightInfo.segmentsLeave[i].TermDepart%}</p>
                          </div>
                          <div class="time-arrow">
@@ -130,7 +133,8 @@
                              <div class="icon-arrow"></div>
                          </div>
                          <div class="city-time-right">
-                             <div class="clock"><span></span>{% var d3=new Date(flightInfo.segmentsLeave[i].arriveDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+
+                             <div class="clock">{% var d3=new Date(Date.parse(flightInfo.segmentsLeave[i].arriveDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsLeave[i].airportNameTo%}{%=flightInfo.segmentsLeave[i].TermArrive%}</p>
                          </div>
                      </div>
@@ -149,7 +153,8 @@
 
                      <div class="time-arrow-time">
                          <div class="city-time-left">
-                             <div class="clock">{% var d3=new Date(flightInfo.segmentsReturn[0].departDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+
+                             <div class="clock">{% var d3=new Date(Date.parse(flightInfo.segmentsReturn[0].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[0].airportNameFrom%}{%=flightInfo.segmentsReturn[0].TermArrive%}</p>
                          </div>
                          <div class="time-arrow">
@@ -157,7 +162,8 @@
                              <div class="icon-arrow open"></div>
                          </div>
                          <div class="city-time-right">
-                             <div class="clock"><span></span>{% var d2=new Date(flightInfo.segmentsReturn[0].arriveDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+
+                             <div class="clock">{% var d2= new Date(Date.parse(flightInfo.segmentsReturn[0].arriveDate.replace("T"," ").replace(/-/g, "/")));%} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[0].airportNameTo%}{%=flightInfo.segmentsReturn[0].TermArrive%}</p>
                          </div>
                      </div>
@@ -169,7 +175,8 @@
                      <p class="transit-word-city">中转{%=flightInfo.segmentsReturn[1].cityNameFrom%}</p>
                      <div class="time-arrow-time">
                          <div class="city-time-left">
-                             <div class="clock">{% var d3=new Date(flightInfo.segmentsReturn[i].departDate.replace("T"," ")); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+
+                             <div class="clock">{% var d3=new Date(Date.parse(flightInfo.segmentsReturn[i].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[i].airportNameFrom%}{%=flightInfo.segmentsReturn[i].TermArrive%}</p>
                          </div>
                          <div class="time-arrow">
@@ -177,7 +184,7 @@
                              <div class="icon-arrow open"></div>
                          </div>
                          <div class="city-time-right">
-                             <div class="clock"><span></span>{% var d2=new Date(flightInfo.segmentsReturn[i].arriveDate.replace("T"," ")); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+                             <div class="clock">{% var d2= new Date(Date.parse(flightInfo.segmentsReturn[i].arriveDate.replace("T"," ").replace(/-/g, "/")));%} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[i].airportNameTo%}{%=flightInfo.segmentsReturn[i].TermArrive%}</p>
                          </div>
                      </div>
@@ -213,7 +220,7 @@
         </p>
     </div>
         <div class="contact-service"><span><a href="tel:888888888888">联系客服</a></span> <i></i></div>
-        {% if(isContinuePay==true){ %}
+        {% if(isContinuePay){ %}
           <div class="button">
         <button type="button" class="pay-button"><a href="pay_detail.html?bookingRefNo={%=bookingRefNo%}">支付订单</a></button>
     </div>
