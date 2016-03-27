@@ -228,7 +228,7 @@ Calender.prototype = {
 					ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
 				}
 			}
-			console.log(ddHtml);
+			//console.log(ddHtml);
 			dd[j].innerHTML = ddHtml.join('');
 		}
 		// A link事件绑定
