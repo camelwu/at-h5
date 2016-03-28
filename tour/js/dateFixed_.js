@@ -435,7 +435,6 @@ TicketDate.prototype.linkRange=function(type){
             }
         }
     }
-
 };
 
 TicketDate.prototype.linkReset =function(ele){
