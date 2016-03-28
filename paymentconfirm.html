@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>订单确认等待页面</title>
+    <link href="styles/framework.css" rel="stylesheet"/>
+    <link href="styles/style.css" rel="stylesheet"/>
+    <link href="styles/tips.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+<div id="preloader">
+    <div id="statusDiv" class="status-t">
+        <p class="center-text">
+            <br>
+            <em>订单确认中，请稍等……</em>
+        </p>
+    </div>
+</div>
+
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/vlm.js"></script>
+<script src="js/lib/jquery.alert.js"></script>
+<script type="text/javascript" src="js/payment.js"></script>
+<script type="application/javascript">
+$(document).ready()
+{
+    var business=vlm.getpara("business");
+    var foreEndType=vlm.getpara("foreEndType");
+    var bookingRefNo=vlm.getpara("bookingRefNo");
+    var pgtid=vlm.getpara("pgtid");
+
+    $("#statusDiv").removeClass();
+    if(business==1) {
+        $("#statusDiv").addClass("status-h");
+    }
+    else if(business==2){
+        $("#statusDiv").addClass("status-t");
+    }
+    else if(business==3){
+        $("#statusDiv").addClass("status-f");
+    }
+    else if(business==5){
+        $("#statusDiv").addClass("status-t");
+    }
+    else{
+        $("#statusDiv").addClass("status");
+    }
+    var data = {
+        "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+        "ForeEndType": 3
+    }
+    /*如果是H5设备的接口，回调，反则APP端已经调用，不用再调用
+    1、酒店
+    2、景点
+    3、机票
+    4、会员中心	-- 不会返回该值
+    5、酒+景
+    */
+    if(foreEndType==3) {
+
+        if(business==3){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                 "Code": "3009"
+            }
+
+        }
+        else if(business==2){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                "Code": "0094"
+            }
+        }
+        else if(business==5){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                "Code": "0205"
+            }
+        }
+        else if(business==1){
+            var refID=vlm.getpara("rid");
+            var pid=vlm.getpara("pid");
+            var opid=vlm.getpara("opid");
+            data={
+                "Parameters":{
+                    "refID":refID,
+                    "pid":pid,
+                    "opid":opid
+                },
+                "ForeEndType":3,
+                "Code": "0016"
+            }
+        }
+        console.log(data);
+
+        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), function(data){
+            if (data.success) {
+                vlm.init();
+
+                if(business==3){
+                   if(data.data.booleanResult) {
+                       window.location.href = 'flight/pay_success.html?bookingRefNo=' + bookingRefNo;
+                   }
+                  else{
+                       window.location.href = 'flight/pay_fail.html?bookingRefNo=' + bookingRefNo;
+                   }
+                }
+                else if(business==2) {
+                    if(data.data.paymentStatus) {
+                        window.location.href = 'scenic/pay_success.html?bookingRefNo=' + bookingRefNo;
+                    }
+                    else{
+                        window.location.href = 'scenic/pay_fail.html?bookingRefNo=' + bookingRefNo;
+                    }
+                }
+                else if(business==1){
+                    var code=data.data.bookingReferenceNo;
+                    if(data.data.flag) {
+                        window.location.href = 'hotel/trade_details.html?bookingRefNo=' + code;
+                    }else{
+                        window.location.href = 'hotel/pay_fail.html?bookingRefNo=' + code;
+                    }
+                }
+                else if(business==5){
+                    if(data.data.paymentStatus) {
+                        window.location.href = 'tour/trade_details.html?bookingRefNo=' + bookingRefNo;
+                    }
+                    else{
+                        window.location.href = 'tour/pay_fail.html?bookingRefNo=' + bookingRefNo;
+                    }
+                }
+            } else {
+                 alert(data.message);
+            }
+
+        });
+}
+
+}
+</script>
+</body>

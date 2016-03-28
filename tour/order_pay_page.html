@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>酒+景订单详情 - 亚洲旅行网</title>
+    <link href="../styles/framework.css" rel="stylesheet"/>
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/order_pay_page.css">
+    <link href="../styles/tips.css"	rel="stylesheet">
+</head>
+<body>
+<div id="preloader">
+    <div id="status-t">
+        <p class="center-text">
+            <br>
+            <em>加载中……</em>
+        </p>
+    </div>
+</div>
+<div class="all-elements">
+    <!--   顶部   -->
+    <header class="header">
+        <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+        <h3>订单详情</h3>
+    </header>
+    <!--   内容   -->
+    <div class="sc-content">
+        <div id="payStatus">
+            <!--<section class="order_type"><i class="orange">待支付</i></section>-->
+        </div>
+        <section id="packageInfo" class="all_info">
+            <!--<p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】<span class="sce-introduce-span">（产品编号 PK348758945）</span></p>-->
+        </section>
+        <div id="hotelInfo">
+            <!--<section class="all_title">-->
+            <!--<h3 class="hotel">酒店</h3><span class="editBtn"></span>-->
+            <!--</section>-->
+            <!--<section class="hotel_box">-->
+            <!--<span class="conlist">东京动机涩谷卓越大酒店</span>-->
+            <!--<span class="conlist">11月25日 - 11月26日 共1晚(目的地时间为准)</span>-->
+            <!--</section>-->
+        </div>
+        <div id="tourInfo">
+            <!--<section class="all_title">-->
+            <!--<h3><i>景点1</i>杜莎夫人蜡像馆</h3>-->
+            <!--</section>-->
+            <!--<section class="trip_box">-->
+            <!--<span class="conlist">游玩时间：2018.12.25 上午</span>-->
+            <!--</section>-->
+            <!--<section class="all_title">-->
+            <!--<h3><i>景点2</i>杜莎夫人蜡像馆</h3>-->
+            <!--</section>-->
+            <!--<section class="trip_box">-->
+            <!--<span class="conlist">游玩时间：2018.12.25 上午</span>-->
+            <!--</section>-->
+        </div>
+        <section id="totlePrice" class="order_total">
+            <!--订单总额：<b class="orange">¥</b><i class="orange">5,296</i>-->
+            <!--<a href="#">费用明细</a>-->
+        </section>
+        <section class="order_information">
+            <span class="title">订单信息</span>
+            <div class="conBox">
+                <ul id="orderInfo">
+                        <!--<li><i>订单号</i>12341234123</li>-->
+                        <!--<li><i>下单时间</i>2015-02-25 11:20</li>-->
+                        <!--<li><i>联系人</i>BAI/FKDS</li>-->
+                        <!--<li><i>联系电话</i>13865365698</li>-->
+                        <!--<li><i>邮箱</i>ak-47@163.com</li>-->
+                </ul>
+            </div>
+        </section>
+        <section id="payBtn" class="order_pay_btnBox">
+            <!--<a href="order-pay.html" class="order_pay_btn">支付订单</a>-->
+        </section>
+    </div>
+</div>
+<!--      费用明细块      -->
+<div id="pdetail_mb" class="od-mb"></div>
+<div id="hspd_block" class="hspd-block">
+    <ul id="pd_list" class="hspd-list">
+        <!--<li>-->
+        <!--<div>成人×1</div>-->
+        <!--<div>￥1000</div>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<div>儿童×2</div>-->
+        <!--<div>￥1200</div>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<div>总价</div>-->
+        <!--<div>￥2200</div>-->
+        <!--</li>-->
+    </ul>
+</div>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<!--<script src="js/order_sure.js"></script>-->
+<script id="tpl_GetTourInfo" type="text/template">
+    {% for(var i=0;i < tours.length;i++){ %}
+    <section class="all_title">
+        <h3><i>{%=tours[i].tourName%}</i></h3>
+    </section>
+    {% if(tours[i].travelDate){ %}
+    <section class="trip_box">
+        <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%}</span>
+    </section>
+    {% } %}
+    {% } %}
+</script>
+<script id="tpl_payStatus" type="text/template">
+    {% if(paymentStatus){  %}
+    <section class="order_type"><i class="orange">已支付</i></section>
+    {% }else{ %}
+    <section class="order_type"><i class="orange">待支付</i></section>
+    {% } %}
+</script>
+<script id="tpl_payBtn"  type="text/template">
+    {% if(!paymentStatus){  %}
+    <a href="order-pay.html?bookingRefNo={%=bookingRefNo%}" class="order_pay_btn">支付订单</a>
+    {% } %}
+</script>
+<script>
+//    var tourNoon = [];
+    (function(){
+        var ww = this;
+        var sh_orderDetail = function(){
+            //   获取详情
+            var getDetail = function(){
+
+//                var info =0;
+//                if(localStorage.info !=undefined){
+//                     info = JSON.parse(localStorage.info);
+//                }
+//                var productPrice = JSON.parse(localStorage.productPrice);
+
+                var myDate = new Date();
+                var createTime = myDate.toLocaleString();
+                var adultPrice = 0;
+                var childPrice = 0;
+                var tpl1 = [
+                    '<a href="packages_detail.html?packageID={%=packageID%}&productPrice={%=totel%}&status=0">' +
+                    '<p class="sce-introduce-txt">{%=packageName%}<span class="sce-introduce-span">（产品编号 {%=packageRefNo%}）</span></p>' +
+                    '</a>'
+                ].join('');
+
+
+                var tpl4 = [
+                    '<li><i>订单号</i>{%=bookingRefNo%}</li>' +
+                    '<li><i>下单时间</i>'+createTime.replace("T"," ")+'</li>' +
+                    '<li><i>联系人</i>{%=contactDetails.lastName%} {%=contactDetails.firstName%}</li>' +
+                    '<li><i>联系电话</i>{%=contactDetails.contactNo%}</li> ' +
+                    '<li><i>邮箱</i>{%=contactDetails.email%}</li>'
+                ].join('');
+
+
+                var bookingRefNo=vlm.getpara("bookingRefNo");
+                var tmp = {
+                    "Parameters": {
+                        "BookingRefNo": bookingRefNo
+                    },
+                    "ForeEndType": 3,
+                    "Code": "0206"
+                };
+                console.log(tmp);
+                vlm.loadJson("",JSON.stringify(tmp),getDetail_back);
+
+                function getDetail_back(ret){
+                    var json = ret;
+                    if(json.success) {
+                        var data = json.data;
+                        console.log(data);
+                        var dayNum;
+//                        var chargeDetail = [];
+                        var totalPrice = 0;
+                        var total = 0;
+                        function getDayNum(arg1,arg2){
+                            var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+                            return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+                        }
+                        dayNum = getDayNum(data.hotelDetails.checkinDate.substring(0,10),data.hotelDetails.checkoutDate.substring(0,10));
+                        var tpl2 = [
+                            '<section class="all_title">',
+                            '<h3 class="hotel">酒店</h3><span class="editBtn"></span>',
+                            '</section>',
+                            '<section class="hotel_box">',
+                            '<span class="conlist">{%=hotelDetails.hotelName%}</span>',
+                            '<div class="conlist">{%=hotelDetails.checkinDate.substring(0,10).replace("-","年").replace("-","月")%}日 入住 {%=hotelDetails.checkoutDate.substring(0,10).replace("-","年").replace("-","月")%}日 离店</br>共'+dayNum+'晚(目的地时间为准)</div>',
+                            '</section>'
+                        ].join('');
+//                        for(var i = 0;i < data.chargeDetails.length;i++){
+//                            chargeDetail.push(data.chargeDetails[i].totalAmountInCNY);
+//                        }
+//                        for(var j = 0;j < chargeDetail.length;j++){
+//                            totalPrice = totalPrice + chargeDetail[j];
+//                        }
+//                        adultPrice = info.adultNum * data.chargeDetails[0].amountInCNY;
+                        for(var j = 0;j < data.chargeDetails.length;j++){
+                            if(data.chargeDetails[j].category != "PAYMENT") {
+                                totalPrice = totalPrice + data.chargeDetails[j].totalAmountInCNY;
+                            }
+                        }
+                        var tpl5 = [
+                            '{% for(var i=0; i<=chargeDetails.length-1;i++){  if(chargeDetails[i].category=="ADULT"){ %}',
+                            '<li>',
+                            '<div>成人×{%=chargeDetails[i].quantity%}</div>',
+                            '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
+                            '</li>',
+                            '{% } else if(chargeDetails[i].category=="CHILD"){ %}',
+                            '<li>',
+                            '<div>儿童×{%=chargeDetails[i].quantity%}</div>',
+                            '<div>￥{%=chargeDetails[i].totalAmountInCNY%}</div>',
+                            '</li>',
+                            '{% } %}',
+                            '{% } %}',
+                            '<li>',
+                            '<div>总价</div>',
+                            '<div>￥'+totalPrice+'</div>',
+                            '</li>'
+                        ].join('');
+//                        if(data.chargeDetails[1]){
+//                            childPrice = info.childNum * data.chargeDetails[1].amountInCNY;
+//                            total = adultPrice + childPrice;
+//                        }else{
+//                            total = adultPrice;
+//                        }
+                        var tpl3 = [
+                            '订单总额：<b class="orange">¥</b><i class="orange">'+totalPrice+'</i>' +
+                            '<a href="#">费用明细</a>'
+                        ].join('');
+
+//                        tourNoon  =localStorage.getItem("noon");
+//                        tourNoon = tourNoon.split(",");
+//                        console.log(tourNoon);
+
+                        var sum = 0;
+                        data.chargeDetails.forEach(function (item, index, array) {
+                            if(item.category !="PAYMENT") {
+                                sum += item.totalAmountInCNY;
+                            }
+                        });
+                        data.totel=sum;
+
+                        var html_pi = template(tpl1,data);
+                        var html_hi = template(tpl2,data);
+                        var tpl_GetTourInfo = template("tpl_GetTourInfo",data);
+
+                        var html_tp = template(tpl3,data);
+                        var html_oi = template(tpl4,data);
+                        var html_pd_list = template(tpl5,data);
+                        var tpl_payStatus = template("tpl_payStatus",data);
+                        var tpl_payBtn = template("tpl_payBtn",data);
+                        $('#packageInfo').html(html_pi);
+                        $('#hotelInfo').html(html_hi);
+                        $('#tourInfo').html(tpl_GetTourInfo);
+                        $('#totlePrice').html(html_tp);
+                        $('#orderInfo').html(html_oi);
+                        $('#pd_list').html(html_pd_list);
+                        $('#payStatus').html(tpl_payStatus);
+                        $('#payBtn').html(tpl_payBtn);
+                        if(data.length == 0){
+                            jAlert("抱歉暂时没有数据","提示");
+                        }
+                        vlm.init();
+                    }else{
+                        console.log(json);
+                        jAlert(json.message,"提示");
+                    }
+                }
+            };
+
+            //   费用明细
+            var priceDetail = function(){
+                var totlePrice = $('#totlePrice')[0];
+                var pdetail_mb = $('#pdetail_mb')[0];
+                var hspd_block = $('#hspd_block')[0];
+                totlePrice.onclick = function(){
+                    pdetail_mb.style.display = "block";
+                    hspd_block.style.bottom = 0;
+                    hspd_block.style.transition="all 400ms";
+                };
+                pdetail_mb.onclick = function(){
+                    pdetail_mb.style.display = "none";
+                    hspd_block.style.bottom = -400+'px';
+                    hspd_block.style.transition="all 400ms";
+                }
+            };
+            return {
+                GetDetail:getDetail,
+                PriceDetail:priceDetail
+            }
+        }();
+        ww.MT = ww.MT || {};
+        ww.MT.load = function(){
+            sh_orderDetail.GetDetail();
+            sh_orderDetail.PriceDetail();
+        };
+        MT.load();
+    })()
+</script>
+</body>
+</html>

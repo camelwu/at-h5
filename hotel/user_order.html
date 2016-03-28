@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head lang="cn">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+		<meta name="screen-orientation" content="portrait">
+		<meta name="full-screen" content="yes">
+		<meta name="browsermode" content="application">
+		<meta name="x5-orientation" content="portrait">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="x5-page-mode" content="app">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="green">
+		<meta name="Keywords" content="亚洲旅行网">
+		<meta name="Description" content="境外专业旅行服务提供机构">
+		<title>首页 - 亚洲旅行网</title>
+		<link href="../styles/framework.css" rel="stylesheet" />
+		<link href="../styles/style.css" rel="stylesheet" />
+		<link href="css/user_order.css" rel="stylesheet" />
+		<link href="../styles/tips.css" rel="stylesheet" />
+
+	</head>
+	<body>
+		<div id="preloader">
+			<div id="status-h">
+				<p class="center-text"></p>
+			</div>
+		</div>
+		<div class="header" id="vlm-login">
+			<a href="javascript:;" class="header-back" id="uo_back">
+                <i class="icons go-back"></i>
+            </a>
+			<h3>填写订单</h3>
+		</div>
+		<div class="all-elements input-relative" id="all_elements">
+			<div class="uo_box" id="uo_box">
+				<div class="uo_con1">
+					<p>
+						取消说明：
+					</p>
+					<div>
+						<p class="uo_c1_info" id="uo_c1_info"></p>
+						<!--<i id="uo_c1_infoDown"></i>-->
+					</div>
+				</div>
+				<div class="uo_con2">
+					<div id="uo_con2_chil1">
+						<h3><!--东京东急涩谷卓越大酒店--></h3>
+						<p class="uo_c2_infor">
+							<!--11月25日-11日26日 共1晚（目的地时间为准）-->
+						</p>
+						<p class="uo_house">
+							<!--房型：经济大床房-->
+						</p>
+					</div>
+					<div class="uo_con2_chil2">
+						<p class="fl">
+							房间数
+						</p>
+						<i class="fr uo_c2_i2" id="uo_c2_i2"></i>
+						<em class="fr"><b id="uo_c2_num">2</b></em>
+						<i class="fr uo_c2_i1" id="uo_c2_i1"></i>
+					</div>
+				</div>
+				<form class="uo_con3" id="uo_con3" action="jyy_pay.html" method="get">
+					<div class="uo_c3_peoBox" id="uo_c3_peoBox">
+						<!--<div class="uo_c3_peo">
+						<div class="uo_c3_div1">房间1入住人</div>
+						<div class="uo_c3_infor">
+						<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />
+						<input type="text" value="名（如：Justin）" class="uo_firstname"  />
+						</div>
+						</div>
+						<div class="uo_c3_peo">
+						<div class="uo_c3_div1">房间2入住人</div>
+						<div class="uo_c3_infor">
+						<input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />
+						<input type="text" value="名（如：Justin）" class="uo_firstname"  />
+						</div>
+						</div>-->
+					</div>
+					<div class="uo_c3_teBox">
+						<p>
+							手机号
+						</p>
+						<input type="text" value="用于接收短信通知" id="uo_c3_tele"  />
+					</div>
+					<div class="uo_c3_teBox">
+						<p>
+							E-mail
+						</p>
+						<input type="text" value="用于接收邮件通知" id="uo_c3_email" />
+					</div>
+				</form>
+				<div class="uo_con5">
+					<p>
+						温馨提示
+					</p>
+					<p>
+						如您在14：00前到店，可能需要等待方能入住，具体以酒店安排为准。
+					</p>
+					<p id="toPayExp">
+						您将根据付款当天的汇率以及酒店当地的货币付费给酒店。Asiatravel不提供发票，如需消费凭证，请向酒店前台索取消费清单。
+					</p>
+				</div>
+			</div>
+			<div class="uo_hid" id="uo_hid">
+				<p class="uo_hid_shadow" id="uo_hid_shadow"></p>
+				<div class="uo_hid_con" id="uo_hid_con">
+					<div class="uo_hid_det">
+						<p class="fl uo_hid_p1">
+							费用明细
+						</p>
+						<p class="fr uo_hid_p2" id="uo_hid_p2">
+							1间×1晚
+						</p>
+					</div>
+					<div class="uo_hid_price">
+						<p>
+							<span class="fl uo_hid_span1">房费</span>
+							<span class="fr uo_hid_span2" id="uo_hid_span2">￥1134</span>
+						</p>
+						<p>
+							<span class="fl uo_hid_span1">税和服务费</span>
+							<span class="fr uo_hid_span2" id="uo_hid_span3">￥159</span>
+						</p>
+					</div>
+					<div class="uo_hid_met" id="uo_hid_met">
+						付款方式：前台现付
+					</div>
+				</div>
+			</div>
+			<div class="uo_footer" id="uo_footer">
+				<div class="uo_or_sum" id="uo_or_sumBox1">
+					<em class="fl uo_or_order">订单总额：</em>
+					<div class="uo_or_pr fl">
+						￥<span id="uo_or_sum"></span>
+					</div>
+				</div>
+				<div class="uo_or_sum" id="uo_or_sumBox2">
+					<em class="fl uo_or_assure">订单总额：</em>
+					<div class="uo_or_pr uo_or_pr2 fl">
+						<p>
+							SGD<span id="uo_or_sum2"></span>
+						</p>
+						<p id="uo_or_sum2CNY">
+							约￥
+						</p>
+					</div>
+				</div>
+				<p class="uo_or_infor" id="uo_or_infor">
+					<span class="fl">明细</span><i class="fl"></i>
+				</p>
+				<input type="button" value="确认订单" id="uo_confirm" />
+			</div>
+		</div>
+		
+	</body>
+	<script src="../js/lib/jquery.js"></script>
+	<script src="../js/lib/jquery.alert.js"></script>
+	<script src="../js/lib/plugins.js"></script>
+	<script src="../js/lib/vlm.js"></script>
+	<script src="js/user_order.js"></script>
+</html>
