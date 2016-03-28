@@ -417,7 +417,7 @@ var ticketDouble = {
             if(type == "false"){
                 str +='<div class="price-tax">'+
                 '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountADT))+'</span><span class="word-tip">往返</span><br></div>'+
-                '    <div class="price-tax-info"><span class="tax-word">税</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
+                '    <div class="price-tax-info"><span class="tax-word">税费</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
                 '        </div>';
             }else{
                 if(that.backParaObj.interNationalOrDomestic=="domestic"){

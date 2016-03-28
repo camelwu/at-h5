@@ -248,7 +248,6 @@ TicketDate.prototype.drawDate = function (odate) {
                 }
             }
         }
-
     }
 };
 
@@ -833,11 +832,11 @@ var  conditionalFiltering = {
                     var rightCock2 = titleWrap.querySelector('#fo_lo');
                     var iEle2 = rightCock2.querySelector('i');
                     var spEle2 = rightCock2.querySelector('SPAN');
-                    if(spEle2.innerHTML=='含税'){
-                        spEle2.innerHTML='不含税';
+                    if(spEle2.innerHTML=='含税价'){
+                        spEle2.innerHTML='不含税价';
                         that.tempStates.hasTax = "false"
                     }else{
-                        spEle2.innerHTML='含税';
+                        spEle2.innerHTML='含税价';
                         that.tempStates.hasTax = "true"
                     }
                     that.stateEvent('set');
@@ -847,11 +846,11 @@ var  conditionalFiltering = {
                     var rightCock5 = titleWrap.querySelector('#fo_lo');
                     var iEle5 = rightCock5.querySelector('i');
                     var spEle5 = rightCock5.querySelector('SPAN');
-                    if(spEle5.innerHTML=='含税'){
-                        spEle5.innerHTML='不含税';
+                    if(spEle5.innerHTML=='含税价'){
+                        spEle5.innerHTML='不含税价';
                         that.tempStates.hasTax = "false"
                     }else{
-                        spEle5.innerHTML='含税';
+                        spEle5.innerHTML='含税价';
                         that.tempStates.hasTax = "true"
                     }
                     that.stateEvent('set');
@@ -1160,7 +1159,7 @@ var  conditionalFiltering = {
                         }
                     }
                 }
-                (this.tempStates.hasTax == "true") ? priceModalLis_.querySelector('.filter-select').innerHTML = '含税' : priceModalLis_.querySelector('.filter-select').innerHTML = '不含税';
+                (this.tempStates.hasTax == "true") ? priceModalLis_.querySelector('.filter-select').innerHTML = '含税价' : priceModalLis_.querySelector('.filter-select').innerHTML = '不含税价';
 
             }else{   //国际单程
                 var directFlyLis_is = document.querySelectorAll('.only-direct-fly li');
@@ -1231,7 +1230,7 @@ var  conditionalFiltering = {
                         }
                     }
                 }
-                (this.tempStates.hasTax == "true") ? priceModalLis_is.querySelector('.filter-select').innerHTML = '含税' : priceModalLis_is.querySelector('.filter-select').innerHTML = '不含税';
+                (this.tempStates.hasTax == "true") ? priceModalLis_is.querySelector('.filter-select').innerHTML = '含税价' : priceModalLis_is.querySelector('.filter-select').innerHTML = '不含税价';
             }
         }
     },
