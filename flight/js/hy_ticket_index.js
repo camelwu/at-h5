@@ -908,6 +908,7 @@ var  ticketIndexModal = {
            })
        },
        searchHandler:function(){
+
           var cityListSearched = document.querySelector('.city-list-searched');
           var cityInputZone = document.querySelector('#city-input-zone');
           var domesticCity = document.querySelector('.domestic-city');
