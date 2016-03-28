@@ -595,7 +595,7 @@ var ticketOrder = {
                     '<span class="time-number">'+that.timeCut(arg[j].departDate)+'</span>'+
                     '<span class="air-port-word">'+arg[j].airportNameFrom+arg[j].termDepart+'</span>'+
                     '</div>'+
-                    '<div class="total-time-info">'+
+                    '<div class="total-time-info detail-time-info">'+
                     '<span class="time-hour-minute"></span>'+
                     '<span class="arrow-time"></span>'+
                     '</div>'+
@@ -652,12 +652,7 @@ var ticketOrder = {
        costTotal.innerHTML = costStr;
        totalCost.innerHTML = myFixed(temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild);
        totalPerson.innerHTML = totalPersonNum+'人总价';
-   },
-    deletePassager: function deletePassager(){
-         alert(11111111);
-
-     },
-
+    },
     init:function(){
        var reverseInformation = this.storageUtil.get('reverseInformationCache');
        this.reverseInformation = reverseInformation;

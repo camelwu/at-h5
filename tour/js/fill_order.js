@@ -55,7 +55,7 @@
                         +'<b class="add_icon"><a href="javascript:;" class="add-passager" ></a></b></span>'
                         +'</li>'
                         +"<ul id='trave"+k+"'>"
-                        +'<li class="trave-li trave-li-adu">'
+                        +'<li class="trave-li trave-li-adu ">'
                         +'<span class="list_tit2 ">姓：</span>'
                         +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
                         +'<span class="list_tit2 ">名：</span>'
@@ -76,15 +76,9 @@
                         +'<span class="list_tit2 ">名：</span>'
                         +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
                         +'</li>'
-                        +'<li>'
-                        +'<span class="list_tit">护照：</span>'
-                        +' <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" data-elementName="idNumber" /></span>'
-                        +'</li>';
-                    +"</ul>"
+                        +"</ul>"
                 }
-
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
-
             }
 
             //每个房间儿童数
@@ -114,6 +108,14 @@
                     +'</section>';
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
             }
+
+            //第一个房间的第一个人添加国籍
+            var oCountry=$('<li class="clearFix countries-wrap">'
+                +'<b class="icons open-pho-tour"></b>'
+                +'<span class="list_country fl">国籍：</span>'
+                +'<div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>'
+                +'</li>')
+            oCountry.appendTo($('#trave0'));
 
         }
 
@@ -333,7 +335,6 @@
                         tra.Salutation="Mr";
                         tra.FirstName=firstNameAdu;
                         tra.LastName=lastNameAdu;
-                        tra.NationalityCode="SG";
                         traveler.push(tra);
                     }
 
@@ -358,12 +359,12 @@
                         tra.FirstName = firstNameChi;
                         tra.LastName = lastNameChi;
                         tra.DOB ="2009-2-1";
-                        tra.NationalityCode = "SG";
                         traveler.push(tra);
                     }
 
                 }
                 Parmeters.Parameters.Travelers=traveler;
+                Parmeters.Parameters.Travelers[0].NationalityCode=$('#trave0 .country-btn').attr('data-code');
 
 
                 //联系人姓名检验
