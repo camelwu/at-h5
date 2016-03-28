@@ -56,14 +56,14 @@
 						<div class="nav2-center">
 							<div class="nav2-centertop">
 								<p>
-									<input name="CheckInDate" id="CheckInDate" value="2016-03-11" class="CheckInDateI">
+									<input name="CheckInDate" id="CheckInDate" value="2016-03-11" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span1">周四 入住</span>
 								</p>
 
 							</div>
 							<div class="nav2-centerbottom">
 								<p>
-									<input name="CheckOutDate" id="CheckOutDate" value="2016-03-12" class="CheckInDateI">
+									<input name="CheckOutDate" id="CheckOutDate" value="2016-03-12" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span2">周一 离店</span>
 								</p>
 							</div>
@@ -108,7 +108,7 @@
 			<div class="nav2-tour tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
 			<div>{%=tours[i].tourName%}</div>
 			{% if(tours[i].travelDateMandatory){ %}
-			<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate"><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span>{%=noon[i]%}</div>
+			<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate" readonly="readonly" ><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span>{%=noon[i]%}</div>
 			<i></i>
 			{% } %}
 			</div>
