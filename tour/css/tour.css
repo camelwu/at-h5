@@ -1110,18 +1110,15 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 }
 
 .city-choose-tip {
-    width: 136px;
-    height: 40px;
-    line-height: 40px;
+    padding: 0 15px;
+    width: 80%;
     color: #fff;
     background: rgba(0, 0, 0, 0.6);
     position: fixed;
-    left: 50%;
-    margin-left: -68px;
+    left: 10%;
     z-index: 102;
-    text-align: center;
     border-radius: 3px;
-    bottom: 50%;
+    bottom: 10%;
     font-size: 1.2rem;
     display: none;
     -webkit-transition: all 0.7s ease-in-out;
