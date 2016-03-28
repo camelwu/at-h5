@@ -423,9 +423,9 @@
                 var json = ret;
                 console.log(json);
                 if(json.success) {
-                    //localStorage.bookingID=json.data.bookingID;
-                    //localStorage.bookingRefNo=json.data.bookingRefNo;
-                    //window.location.href='order_pay_page.html?bookingRefNo='+json.data.bookingRefNo;
+                    localStorage.bookingID=json.data.bookingID;
+                    localStorage.bookingRefNo=json.data.bookingRefNo;
+                    window.location.href='order_pay_page.html?bookingRefNo='+json.data.bookingRefNo;
                 }else{
                     jAlert(json.message);
                 }
