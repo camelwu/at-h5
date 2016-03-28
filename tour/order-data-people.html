@@ -801,7 +801,7 @@
 							dayNum++;
 							var minMaxTime = /.*(\d)天(\d).*/.exec(that.dataInfomation.packageName);
 							var dayNumber = that.getDayNum(checkInDate, checkOutDate);
-							if (dayNumber<that.dateInfomation.maxExtensionNight&&dayNumber>that.dateInfomation.minDuration&&new Date(checkInDate.replace(/-/g,"/"))>new Date(that.dateInfomation.departValidFrom.replace(/-/g,"/"))&&new Date(checkOutDate.replace(/-/g,"/"))<new Date(that.dateInfomation.departValidTo.replace(/-/g,"/"))) {
+							if (dayNumber<=that.dateInfomation.maxExtensionNight&&dayNumber>=that.dateInfomation.minDuration&&new Date(checkInDate.replace(/-/g,"/"))>new Date(that.dateInfomation.departValidFrom.replace(/-/g,"/"))&&new Date(checkOutDate.replace(/-/g,"/"))<new Date(that.dateInfomation.departValidTo.replace(/-/g,"/"))) {
 								this.fn2({start:checkInDate,end:checkOutDate})
 							}else{
 								tipBox.innerHTML = ' 您入住的日期需要在'+that.dateInfomation.departValidFrom+'与'+that.dateInfomation.departValidTo+'之间，最少'+that.dateInfomation.minDuration+'晚最多'+that.dateInfomation.maxExtensionNight+'晚';
