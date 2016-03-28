@@ -511,21 +511,6 @@
 				this.className = "icon user-choice choiced";
 			}
 
-			$(".choiced").each(function(){
-				var age=$(this).attr("data-age");
-				if(age<=2){
-					jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
-					$(this).removeClass("choiced");
-					$(this).addClass("user-choice");
-					return false;
-				}
-				else if(age>2 && age<12) {
-					selectChild=selectChild+1;
-				}
-				else if (age>=12){
-					selectAdult=selectAdult+1;
-				}
-			})
 			if(!isMulSelect)
 			{
 				var len= $(".list-traveler .choiced").length;
@@ -536,28 +521,45 @@
 				}
 			}
 			else {
+
+				$(".choiced").each(function(){
+					var age=$(this).attr("data-age");
+					if(age<=2){
+						jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
+						$(this).removeClass("choiced");
+						$(this).addClass("user-choice");
+						return false;
+					}
+					else if(age>2 && age<12) {
+						selectChild=selectChild+1;
+					}
+					else if (age>=12){
+						selectAdult=selectAdult+1;
+					}
+				})
+
 				if (numofAdult != 'null' && selectAdult > numofAdult) {
-					jAlert("对不起，不能超过" + numofAdult + "成人");
+					jAlert("当前价格仅限于"+numofAdult+"成人（"+numofAdult+"成人为搜索条件）");
 					$(this).removeClass("choiced");
 					return;
 				}
 				console.log("selectChild" + numofChlid);
 				if (numofChlid != 'null' && selectChild > numofChlid) {
-					jAlert("对不起，不能超过" + numofChlid + "儿童");
+					jAlert("当前价格仅限于"+numofChlid+"儿童（"+numofChlid+"儿童为搜索条件）");
 					$(this).removeClass("choiced");
 					return;
 				}
 				else {
 					if (numofAdult != 'null' && numofChlid != 'null') {
 						if (numofChlid > 0) {
-							$("#toper h3").html("已选" + selectAdult + "/" + numofAdult + "成人  " + selectChild + "/" + numofChlid + "儿童");
+							$("#toper h3").html("已选:" + selectAdult + "/" + numofAdult + "成人  " + selectChild + "/" + numofChlid + "儿童");
 						}
 						else {
-							$("#toper h3").html("已选" + selectAdult + "/" + numofAdult + "成人");
+							$("#toper h3").html("已选:" + selectAdult + "/" + numofAdult + "成人");
 						}
 					}
 					else {
-						$("#toper h3").html("已选" + $(".choiced").length + "人");
+						$("#toper h3").html("已选:" + $(".choiced").length + "人");
 					}
 				}
 			}
