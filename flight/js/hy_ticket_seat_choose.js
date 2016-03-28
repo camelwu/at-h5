@@ -313,6 +313,7 @@ var ticketSeatChoose = {
         return str;
     },
     createDetailModal:function(arg){
+        console.log(arg)
         var that = ticketSeatChoose;
         var strModal='<div class="ticket-detail-modal" style="display: none;"><ul class="detail-outer">'+detailGo(arg)+detailBack(arg)+'</ul></div>';
         return strModal;

@@ -426,7 +426,7 @@ function mycallback(ret){
     {
         name.value=nickname.innerHTML = infoJson.data[0].nickName;
         $('#hostname')[0].innerHTML= realName.value= infoJson.data[0].firstName;
-        birthCont.value=infoJson.data[0].dateOfBirth.substring(0,10);
+        birthCont.innerHTML=infoJson.data[0].dateOfBirth.substring(0,10);
         $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
         $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
 

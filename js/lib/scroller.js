@@ -236,7 +236,7 @@ Scroller.prototype = {
 		for (; i < len; i++) {
 			arr.push(box[i].innerHTML);
 		}
-		if (/^(textarea|input)$/i.test(ele.nodeName)) {
+		if (/^(textarea|input|div)$/i.test(ele.nodeName)) {
 			if(that.type == "birth"){
 				var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
 				if( ! vlm.Utils.compareBirth(birthstr))
@@ -247,17 +247,30 @@ Scroller.prototype = {
 				arr[0]=arr[0].replace('年','');
 				arr[1]=that.addZero(parseInt(arr[1]));
 				arr[2]=that.addZero(parseInt(arr[2]));
+				if(ele.nodeName == 'DIV')
+				{
+					ele.innerHTML = arr.join("-");
+				}
 				ele.value = arr.join("-");
+
 			}else if(that.type == "validity"){
 
 				arr[0]=arr[0].replace('年','');
 				arr[1]=that.addZero(parseInt(arr[1]));
 				arr[2]=that.addZero(parseInt(arr[2]));
+				if(ele.nodeName == 'DIV')
+				{
+					ele.innerHTML = arr.join("-");
+				}
 				ele.value = arr.join("-");
 			}else if(that.type == 'cardExpirationDate'){
                 ele.setAttribute("data-expire",arr[1].replace('年','')+"-"+that.addZero(parseInt(arr[0]))+"-01");
                 arr[0]=that.addZero(parseInt(arr[0]));
                 arr[1]=arr[1].replace('年','').substr(2);
+				if(ele.nodeName == 'DIV')
+				{
+					ele.innerHTML = arr.join("-");
+				}
                 ele.value = arr.join("/");
             }
 
