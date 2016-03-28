@@ -743,12 +743,11 @@ input{
 
 .travelnotes-header-icon{
     position: absolute;
-    right: 3%;
+    right: 12px;
     top: 7px;
-    margin-right: 3%;
-    width: 40px;
+    width: 30px;
     height: 40px;
-    background: url(../../images/ui/icon.png) -105px -34px;
+    background: url(../images/ui/icon.png) -105px -34px;
     background-size: 500px 149px;
 }
 .travelnotes-list{

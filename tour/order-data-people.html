@@ -204,6 +204,9 @@
 									} else {
 										m.innerHTML = str;
 									}
+									var parent = n.parentNode.parentNode.parentNode;
+									var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
+									changeChildTemp(parent,str,ChildNum);
 								}
 							}
 						};
@@ -230,6 +233,9 @@
 									m.innerHTML = str;
 								}
 								str == 1 ? n.style.backgroundPosition = '-26px 2px' : n.style.backgroundPosition = '-51px 2px';
+								var parent = n.parentNode.parentNode.parentNode;
+								var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
+								changeChildTemp(parent,str,ChildNum);
 							} else {
 								if (str <= 0) {
 									m.innerHTML = 0;
@@ -284,8 +290,9 @@
 						if (numb == 0 && _bedBox.length == 1) {
 							_bedBox[0].style.display = 'none';
 						} else {
+							var _listHtml;
 							_bedBox[0].style.display = 'block';
-							var _listHtml = extraChildTemp(numb, adultPeople);
+							_listHtml = extraChildTemp(numb, adultPeople);
 							//'';
 							/*for (var i = 1; i <= numb; i++) {
 							 _listHtml += extraChildTemp(i);
@@ -293,10 +300,10 @@
 							if (_bedBox.length == 0) {
 								_html = '<div class="extraChild">';
 								domAfter(dom, _html + _listHtml + '</div>');
-								var _listHtml = extraChildTemp(numb, adultPeople);
+								_listHtml = extraChildTemp(numb, adultPeople);
 							} else {
 								_bedBox[0].innerHTML = _listHtml;
-								var _listHtml = extraChildTemp(numb, adultPeople);
+								_listHtml = extraChildTemp(numb, adultPeople);
 							}
 						}
 						add_subtract();
@@ -338,7 +345,21 @@
 							return '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童年龄2</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
 						}
 					}
-
+					//    儿童信息随成人信息更变
+					function changeChildTemp(box,n,i){
+						var listStr = box.querySelector('.extraChild');
+						if (n == 1) {
+							if (i == 2) {
+								listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童年龄1</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童年龄2</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '"><i class="child-sui">岁</i>' + '</div>';
+							} else {
+								listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童年龄' + i + '</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
+							}
+						} else if (i == 1) {
+							listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童年龄' + i + '</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>' + '</div>';
+						} else if (i == 2) {
+							listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童年龄1</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童年龄2</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
+						}
+					}
 					function extraRoomTemp(i) {
 						if (onlyForAdult) {
 							return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>' + '</div>';
