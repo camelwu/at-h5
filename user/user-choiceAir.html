@@ -539,13 +539,26 @@
 				})
 
 				if (numofAdult != 'null' && selectAdult > numofAdult) {
-					jAlert("当前价格仅限于"+numofAdult+"成人（"+numofAdult+"成人为搜索条件）");
+					jAlert(numofChlid);
+					if(numofChlid>0) {
+						jAlert("当前价格仅限于"+numofAdult+"成人，"+numofChlid+"儿童");
+					}
+					else{
+						jAlert("当前价格仅限于"+numofAdult+"成人");
+					}
+
 					$(this).removeClass("choiced");
 					return;
 				}
 				console.log("selectChild" + numofChlid);
 				if (numofChlid != 'null' && selectChild > numofChlid) {
-					jAlert("当前价格仅限于"+numofChlid+"儿童（"+numofChlid+"儿童为搜索条件）");
+					if(numofAdult>0) {
+						jAlert("当前价格仅限于"+numofAdult+"成人，"+numofChlid+"儿童");
+					}
+					else{
+						jAlert("当前价格仅限于"+numofChlid+"儿童");
+					}
+
 					$(this).removeClass("choiced");
 					return;
 				}
