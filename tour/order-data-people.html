@@ -472,6 +472,12 @@
 								packageID = data.packageID;
 								childAgeMin = parseInt(data.childAgeMin);
 								childAgeMax = parseInt(data.childAgeMax);
+								dateHandler.dateInfomation = {
+									minDuration:parseInt(data.minDuration)-1,
+									maxExtensionNight:parseInt(data.maxExtensionNight),
+									departValidFrom:/(.*)(T.*)/g.exec(data.departValidFrom)[1],
+									departValidTo:/(.*)(T.*)/g.exec(data.departValidTo)[1]
+								};
 								total_day.innerHTML = day_Num - 1;
 								tagAndEvent();
 								for(var i = 0;i < data.tours.length;i++){
@@ -596,7 +602,7 @@
 								tours.push(temp);
 							}
 						}
-						//						var roomNum = roomDetails.length, allNum = 0;
+						//	var roomNum = roomDetails.length, allNum = 0;
 						var allNum = 0;
 						var adultNum = 0;
 						var childNum = 0;
@@ -608,7 +614,6 @@
 							if (roomDetails[kl]['childWithOutBed']) {
 								childNum = childNum + roomDetails[kl]['childWithOutBed'].length;
 							}
-
 						}
 						//   判断页面能否跳转
 						var tipBox = document.querySelector('#show-result-tip');
@@ -638,10 +643,10 @@
 								//获得数据
 								var getHotel = function() {
 									var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
-									if ($('#total_day').html() < minMaxTime[2]){
-										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
-										return;
-									}
+//									if ($('#total_day').html() < minMaxTime[2]){
+//										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
+//										return;
+//									}
 									$("#preloader").show();
 									$("#status").show();
 									var tmp = {
@@ -705,10 +710,10 @@
 								//获得数据
 								var getHotel = function() {
 									var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
-									if ($('#total_day').html() != minMaxTime[2]){
-										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
-										return;
-									}
+//									if ($('#total_day').html() != minMaxTime[2]){
+//										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
+//										return;
+//									}
 									$("#preloader").show();
 									$("#status").show();
 									var tmp = {
@@ -758,7 +763,7 @@
 			order_btn.click(MT.sendData);
 			var dateHandler = {
 				initDate : function() {
-					day_start=day_start.replace(/-/g,'/')
+					day_start=day_start.replace(/-/g,'/');
 					var inputs = document.querySelectorAll('.CheckInDateI'), d = new Date(day_start), s = new Date(d.setDate(d.getDate())), r = new Date(d.setDate(d.getDate() + day_Num - 1)), paraObj = {
 
 						start : s.getFullYear() + "-" + (s.getMonth() + 1) + "-" + s.getDate(),
@@ -796,8 +801,10 @@
 							dayNum++;
 							var minMaxTime = /.*(\d)天(\d).*/.exec(that.dataInfomation.packageName);
 							var dayNumber = that.getDayNum(checkInDate, checkOutDate);
-							if (dayNumber>parseInt(window.location.search.substring(window.location.search.indexOf('=')+1))) {
-								tipBox.innerHTML = '选择日期最大为' + dayNumber + '天' + (dayNumber-1) + '夜！'; //延长选择
+							if (dayNumber<=that.dateInfomation.maxExtensionNight&&dayNumber>=that.dateInfomation.minDuration&&new Date(checkInDate.replace(/-/g,"/"))>new Date(that.dateInfomation.departValidFrom.replace(/-/g,"/"))&&new Date(checkOutDate.replace(/-/g,"/"))<new Date(that.dateInfomation.departValidTo.replace(/-/g,"/"))) {
+								this.fn2({start:checkInDate,end:checkOutDate})
+							}else{
+								tipBox.innerHTML = ' 您入住的日期需要在'+that.dateInfomation.departValidFrom+'与'+that.dateInfomation.departValidTo+'之间，最少'+that.dateInfomation.minDuration+'晚最多'+that.dateInfomation.maxExtensionNight+'晚';
 								tipBox.style.display = 'block';
 								that.timer = window.setTimeout(function() {
 									tipBox.style.display = 'none';
@@ -805,8 +812,6 @@
 									that.timer = null;
 								}, 3000);
 								return;
-							}else{
-								this.fn2({start:checkInDate,end:checkOutDate})
 							}
 						},
 						fn2 : function(arg) {

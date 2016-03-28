@@ -41,7 +41,7 @@
 			<!--   内容   -->
 			<div id="content" class="snap-content">
 				<ul id="scenic-list-cont" class="scenic-list-cont active" style="margin-top: 45px;margin-bottom: 4px;"></ul>
-				<div style="margin-bottom: 44px; text-align: center; height: 10px;line-height: 30px;" id="loadMore">
+				<div style="margin-bottom: 44px; text-align: center; height: 10px;line-height: 10px;" id="loadMore">
 					<!--点击加载更多-->
 				</div>
 			</div>
@@ -143,7 +143,7 @@
 				 */
 				MT.SearchAvailableToursAttractionsCallback = function(data) {
 					var json = data;
-					console.log(json);
+//					console.table(json);
 					if (json.success) {
 						var data = json.data, tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions", data.lists), tpl_Localtxt = template("tpl_Localtxt", data), tpl_SpotScreen = template("tpl_SpotScreen", data);
 						$("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
@@ -286,7 +286,7 @@
 							//调用主题方法
 							MT.CLoadFilterTheme(themeid);
 							themeId = themeid;
-							console.log(themeId);
+//							console.log(themeId);
 						}
 
 					}
