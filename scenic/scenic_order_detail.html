@@ -1660,13 +1660,20 @@
 			})();
 
 			(function(){
+				//阻止在嵌套元素中传播
+				function cancelPropagation (event){
+					event = window.event||event;
+					if( document.all){
+						event.cancelBubble = true;
+					}else{
+						event.stopPropagation();
+					}
+				}
 				$("#state_btn").click(function(){
-//					$(".js-travelnotes").attr("style","display:block");
 					$(".js-mask").show();
 					$('.sc-content').css({"overflow":"hidden"})
 				});
 				$(".js-travelnotes-close").click(function(){
-//					$(".js-travelnotes").attr("style","display:none");
 					$(".js-mask").hide();
 					$('.sc-content').css({"overflow":"auto"})
 				});
@@ -1674,9 +1681,10 @@
 					$(".js-mask").hide();
 				});
 				$('.js-mask .js-travelnotes').click(function(event){
-					event.stopPropagation();
+					cancelPropagation(event);
 					$(".js-mask").show();
 				})
+
 			})();
 
 			/*价目详情窗*/
