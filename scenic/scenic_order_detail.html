@@ -1671,18 +1671,17 @@
 				}
 				$("#state_btn").click(function(){
 					$(".js-mask").show();
-					$('.sc-content').css({"overflow":"hidden"})
+//					$('.sc-content').css({"overflow":"hidden"})
 				});
 				$(".js-travelnotes-close").click(function(){
 					$(".js-mask").hide();
-					$('.sc-content').css({"overflow":"auto"})
+//					$('.sc-content').css({"overflow":"auto"})
 				});
 				$(".js-mask").click(function(){
 					$(".js-mask").hide();
 				});
-				$('.js-mask .js-travelnotes').click(function(event){
+				$('.js-travelnotes').click(function(event){
 					cancelPropagation(event);
-					$(".js-mask").show();
 				})
 
 			})();
