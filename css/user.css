@@ -1009,6 +1009,11 @@ a{
     margin-left: 12%;
     width: 60%;
 }
+.addtra-info .birth-cont {
+    float: left;
+    margin-left: 12%;
+    width: 60%;
+}
 
 .icon-h {
     background-image: url(../images/ui/icon-h.png);
@@ -1526,15 +1531,14 @@ ul, ol {
     -ms-flex: 1;              /* IE 10 */
     flex: 1;
 }
-
+.s_lists li.sex-alter div.birth-cont{
+    text-align: right;
+    margin-right: 15px;
+}
 .birth-cont{
     font-size: 1.5rem;
     color: #666;
     width: 120px;
-}
-
-.birth-cont.wid100{
-    width: 90px;
 }
 
 #unloginShow{

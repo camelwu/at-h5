@@ -625,7 +625,7 @@ i {
 .d-div3 {
     float: left;
     margin-top: 10px;
-    width: 60%;
+    width: 62%;
 }
 
 .d-p5 {
@@ -674,12 +674,12 @@ i {
 }
 
 .hd-price span:nth-child(1) {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #fe4716;
 }
 
 .hd-price span:nth-child(2) {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #fe4716;
 }
