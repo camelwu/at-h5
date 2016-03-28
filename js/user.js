@@ -219,7 +219,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     $('#man').attr('class','icon-h traveler-sex1');
                     $('#woman').attr('class','icon-h traveler-sex2');
                     addtra_page.style.display='none';
-
                 }
             }
         }
