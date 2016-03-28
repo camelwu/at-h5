@@ -644,10 +644,10 @@
 								//获得数据
 								var getHotel = function() {
 									var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
-									if ($('#total_day').html() < minMaxTime[2]){
-										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
-										return;
-									}
+//									if ($('#total_day').html() < minMaxTime[2]){
+//										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
+//										return;
+//									}
 									$("#preloader").show();
 									$("#status").show();
 									var tmp = {
@@ -711,10 +711,10 @@
 								//获得数据
 								var getHotel = function() {
 									var minMaxTime = /.*(\d)天(\d).*/.exec(dateHandler.dataInfomation.packageName);
-									if ($('#total_day').html() != minMaxTime[2]){
-										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
-										return;
-									}
+//									if ($('#total_day').html() != minMaxTime[2]){
+//										jAlert('请选择日期为' + minMaxTime[1] + '天' + minMaxTime[2] + '夜！');
+//										return;
+//									}
 									$("#preloader").show();
 									$("#status").show();
 									var tmp = {
@@ -802,9 +802,9 @@
 							dayNum++;
 							var minMaxTime = /.*(\d)天(\d).*/.exec(that.dataInfomation.packageName);
 							var dayNumber = that.getDayNum(checkInDate, checkOutDate);
-							if (dayNumber>that.dateInfomation.maxExtensionNight||dayNumber<that.dateInfomation.minDuration) {
-								alert(111)
-								tipBox.innerHTML = ' 您入住的日期需要在'+that.dateInfomation.departValidFrom+'与'+that.dateInfomation.departValidTo+'之间，最少'+that.dateInfomation.minDuration+'晚最多'+that.dateInfomation.maxExtensionNight+'晚';
+							var minNight = that.dateInfomation.minDuration-1;
+							if (dayNumber>that.dateInfomation.maxExtensionNight||dayNumber<minNight) {
+								tipBox.innerHTML = ' 您入住的日期需要在'+that.dateInfomation.departValidFrom+'与'+that.dateInfomation.departValidTo+'之间，最少'+minNight+'晚最多'+that.dateInfomation.maxExtensionNight+'晚';
 								tipBox.style.display = 'block';
 								that.timer = window.setTimeout(function() {
 									tipBox.style.display = 'none';
