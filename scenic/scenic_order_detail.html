@@ -1673,6 +1673,10 @@
 				$(".js-mask").click(function(){
 					$(".js-mask").hide();
 				});
+				$('.js-mask .js-travelnotes').click(function(event){
+					event.stopPropagation();
+					$(".js-mask").show();
+				})
 			})();
 
 			/*价目详情窗*/
