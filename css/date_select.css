@@ -82,7 +82,8 @@
 }
 
 .sel-time {
-    height: 195px;
+    margin-top: -20px;
+    height: 225px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -90,7 +91,7 @@
 .sel-time span {
     display: block;
     font-size: 1.8rem;
-    line-height: 39px;
+    line-height: 50px;
     text-align: center;
     color: #999;
 }
@@ -101,7 +102,7 @@
     width: 100%;
     pointer-events: none;
     box-sizing: border-content;
-    height: 35px;
+    height: 50px;
     border-top: 2px solid #FFB413;
     border-bottom: 2px solid #FFB413;
 }
