@@ -27,7 +27,7 @@ Scroller.prototype = {
 		time : ['<span>上午</span>', '<span>下午</span>'],
 		comp : ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],
 		seat:  ['<span>经济舱</span>','<span>超级经济舱</span>','<span>商务舱</span>','<span>头等舱</span>'],
-        cardExpirationDate : ['月',"年"]
+        cardExpirationDate : ['年','月']
         
 	},
 	_time : ['birth', 'validity',"cardExpirationDate"],
@@ -264,9 +264,11 @@ Scroller.prototype = {
 				}
 				ele.value = arr.join("-");
 			}else if(that.type == 'cardExpirationDate'){
-                ele.setAttribute("data-expire",arr[1].replace('年','')+"-"+that.addZero(parseInt(arr[0]))+"-01");
-                arr[0]=that.addZero(parseInt(arr[0]));
-                arr[1]=arr[1].replace('年','').substr(2);
+                ele.setAttribute("data-expire",arr[0].replace('年','')+"-"+that.addZero(parseInt(arr[1]))+"-01");
+				var sYear=arr[0];
+                arr[0]=that.addZero(parseInt(arr[1]));
+                arr[1]=parseInt(sYear.substring(2));
+
 				if(ele.nodeName == 'DIV')
 				{
 					ele.innerHTML = arr.join("-");
