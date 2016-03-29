@@ -189,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 0px !important;
 }
 .half-bottom {
-	margin-bottom: 15px;
+	/*margin-bottom: 15px;*/
 }
 .full-bottom {
 	margin-bottom: 30px !important;
@@ -1668,7 +1668,7 @@ h1, h2, h3, h4, h5, h6 {
 .owl-pagination {
 	position: absolute;
 	width: 100%;
-	top: -40px;
+	top: -30px;
 	z-index: 9999999 !important;
 }
 

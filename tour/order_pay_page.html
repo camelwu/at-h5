@@ -210,6 +210,7 @@
                             '</section>',
                             '<section class="hotel_box">',
                             '<span class="conlist">{%=hotelDetails.hotelName%}</span>',
+                            '<div class="conlist">房型：{%=hotelDetails.rooms[0].roomName%}</div>',
                             '<div class="conlist">{%=hotelDetails.checkinDate.substring(0,10).replace("-","年").replace("-","月")%}日 入住 {%=hotelDetails.checkoutDate.substring(0,10).replace("-","年").replace("-","月")%}日 离店</br>共'+dayNum+'晚(目的地时间为准)</div>',
                             '</section>'
                         ].join('');
