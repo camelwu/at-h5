@@ -26,6 +26,7 @@ Scroller.prototype = {
 		date : ['年', '月', '日'],
 		time : ['<span>上午</span>', '<span>下午</span>'],
 		comp : ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],
+		comp1 : ['<span>&nbsp;</span>'],
 		seat:  ['<span>经济舱</span>','<span>超级经济舱</span>','<span>商务舱</span>','<span>头等舱</span>'],
         cardExpirationDate : ['年','月']
         
@@ -139,11 +140,11 @@ Scroller.prototype = {
 			if (opeater.innerHTML == "") {
 				switch(t) {
 					case 'card':
-						var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp'].join('');
+						var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp1'].join('');
 						Creatwaprer(str);
 						break;
 					case 'seat':
-						var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp'].join('');
+						var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp1'].join('');
 						Creatwaprer(str);
 						break;
 					case 'time':
@@ -152,14 +153,14 @@ Scroller.prototype = {
                     case 'cardExpirationDate':
                         for (var i = 0, d = that._template['cardExpirationDate'], len = d.length; i < len; i++) {
 							var str = setTime(i, d[i]);
-							Creatwaprer(that._template['comp'].join('') + str + that._template['comp'].join(''));
+							Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
 						}
                         break;
 					default:
 						//time
 						for (var i = 0, d = that._template['date'], len = d.length; i < len; i++) {
 							var str = setTime(i, d[i]);
-							Creatwaprer(that._template['comp'].join('') + str + that._template['comp'].join(''));
+							Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
 						}
 						break;
 				}
@@ -274,13 +275,12 @@ Scroller.prototype = {
 					ele.innerHTML = arr.join("-");
 				}
                 ele.value = arr.join("/");
-            }
+            }else{
+				$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
+				ele.innerHTML = arr.join("");
+			}
 
-		} else {
-			$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
-			ele.innerHTML = arr.join("");
 		}
-
 		this.selShow(0);
 	},
 	//选择重置
