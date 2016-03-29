@@ -13,18 +13,3 @@ function paymentObj(data,callback) {
     };
 }
 
-//(function($) {
-//    $.fn.payment = function(options, callback) {
-//        var defaults = {
-//            data: ''
-//        };
-//        var opts = $.extend(defaults, options);
-//        $(this).each(function() {
-//            var res=vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
-//        });
-//        if(callback) {
-//            callback();
-//        }
-//    };
-//})(jQuery);
-
