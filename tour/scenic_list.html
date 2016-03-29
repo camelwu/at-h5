@@ -135,22 +135,57 @@
     {% for(var i=0,len=data.themes.length;i<len;i++){ %}
     <li title="{%=data.themes[i].themeID%}">{%=data.themes[i].themeName%}<b class="jd-icon scr-gou"></b></li>
     {% } %}
-
 </script>
 <script id="tpl_SearchAvailableToursAttractions" type="text/template">
+    {% if(data.lists.length>=10){ %}
+    {% for(var i=0;i<=10;i++){ %}
     <li class="s-li">
-        <a href="packages_detail.html?packageID={%=packageID%}&productPrice={%=leadinPrice%}&status=1">
+        <a href="packages_detail.html?packageID={%=data.lists[i].packageID%}&productPrice={%=data.lists[i].leadinPrice%}&status=1">
             <div class="sce-img-box">
-                <img src="{%=pictureURL%}" alt="" class="sce-img">
+                <img src="{%=data.lists[i].pictureURL%}" alt="" class="sce-img">
             </div>
             <div class="sce-detail">
-                <p class="sce-name-all">{%=packageName%}</p>
+                <p class="sce-name-all">{%=data.lists[i].packageName%}</p>
                 <div class="sce-det-fare">
-                    <span class="sale-fare"><i>{%=leadinPrice%}</i> 元起/人</span>
+                    <span class="sale-fare"><i>{%=data.lists[i].leadinPrice%}</i> 元起/人</span>
                 </div>
             </div>
         </a>
     </li>
+    {% } %}
+    {% for(var i=11,len=data.lists.length;i<len;i++){ %}
+    <li class="s-li" style="display:none;">
+        <a href="packages_detail.html?packageID={%=data.lists[i].packageID%}&productPrice={%=data.lists[i].leadinPrice%}&status=1">
+            <div class="sce-img-box">
+                <img src="{%=data.lists[i].pictureURL%}" alt="" class="sce-img">
+            </div>
+            <div class="sce-detail">
+                <p class="sce-name-all">{%=data.lists[i].packageName%}</p>
+                <div class="sce-det-fare">
+                    <span class="sale-fare"><i>{%=data.lists[i].leadinPrice%}</i> 元起/人</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    {% } %}
+    <div class="loadmore">点击加载更多</div>
+    {% }else{ %}
+    {% for(var i=0,len=data.lists.length;i<len;i++){ %}
+    <li class="s-li">
+        <a href="packages_detail.html?packageID={%=data.lists[i].packageID%}&productPrice={%=data.lists[i].leadinPrice%}&status=1">
+            <div class="sce-img-box">
+                <img src="{%=data.lists[i].pictureURL%}" alt="" class="sce-img">
+            </div>
+            <div class="sce-detail">
+                <p class="sce-name-all">{%=data.lists[i].packageName%}</p>
+                <div class="sce-det-fare">
+                    <span class="sale-fare"><i>{%=data.lists[i].leadinPrice%}</i> 元起/人</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    {% } %}
+    {% } %}
 </script>
 <script>
     /*景点 目标城市列表页MT*/
@@ -226,8 +261,6 @@
                         async : false
                     });
                 }
-
-
                 $.ajax({
                     type : "post",
                     url : url + '?rnd=' + Math.random(),
@@ -277,9 +310,7 @@
                 };
 
                 CLoadJson(apiurl,JSON.stringify(SearchAvailableToursAttractions),SearchAvailableToursAttractionsCallback,CAnimIn,CAnimOut);
-
             };
-
             /**
              * @获取景点列表 [CLoadSearchAvailableToursAttractions Callback]
              * @param data
@@ -290,15 +321,16 @@
                 console.log(json);
                 if(json.success){
                     var data=json.data;
-                    console.log(data)
-                    var tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
+                    console.log(data);
+//                    var tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data.lists),
+                    var tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data),
                             tpl_Localtxt = template("tpl_Localtxt",data),
                             tpl_SpotScreen = template("tpl_SpotScreen",data);
                     $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
                     $("#Localtxt").html(tpl_Localtxt);
                     $("#SpotScreen").html(tpl_SpotScreen);
-
                     CBot_screen();
+                    Loadmore();
                     if(data.lists.length == 0){
                         jAlert("抱歉暂时没有数据","提示");
                     }
@@ -306,8 +338,17 @@
                     console.log(json);
                     jAlert(json.message,"提示");
                 }
-            }
-
+            };
+            var Loadmore = function(){
+                var loadmore = $('.loadmore')[0];
+                var scenicList = document.getElementById('scenic-list-cont').getElementsByTagName('li');
+                loadmore.onclick = function(){
+                    loadmore.style.display = 'none';
+                    for(var i =11;i < scenicList.length;i++){
+                        scenicList[i].style.display = 'block';
+                    }
+                }
+            };
             /**
              * @价格排序
              * @constructor
@@ -330,7 +371,6 @@
              * @constructor
              */
             var CLoadPriceSort = function(priceSort,themeId){
-
                 var val = vlm.parseUrlPara(window.location.href);
                 var PriceSort=
                 {
@@ -346,7 +386,7 @@
                 }
                 CLoadJson(apiurl,JSON.stringify(PriceSort),PriceSortCallback,CAnimIn,CAnimOut);
 
-            }
+            };
 
             /**
              * @价格排序 [CLoadSearchAvailableToursAttractions Callback]
@@ -412,7 +452,7 @@
                     console.log(json);
                     jAlert(json.message,"提示");
                 }
-            }
+            };
 
 
 
