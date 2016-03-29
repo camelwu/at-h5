@@ -1152,3 +1152,10 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .CheckInDateI{
     float: left;
 }
+
+.room-list{
+    margin-bottom: 0;
+}
+.room-list > li:last-child{
+    border-bottom: none;
+}
