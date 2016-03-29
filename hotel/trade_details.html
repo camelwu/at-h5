@@ -79,7 +79,6 @@
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
             debugger;
             if(data.success) {
-                debugger;
                 var html = template("elements", data.data);
                 $("#elements").html(html);
                 vlm.init();
@@ -87,7 +86,6 @@
                     location.href="../index.html";
                 })
                 $("#fr").on("click",function(){
-                    debugger;
                     location.href="../user/user-allorder.html";
                 })
             }else{
