@@ -192,19 +192,19 @@
 
     var padding = 1;
 
-    requestAnimationFrame(function frame() {
-        var min = 0,
-                max = dialog.scrollHeight - dialog.clientHeight;
-
-        var val = dialog.scrollTop;
-
-        if (val === min) {
-            dialog.scrollTop += padding;
-        } else if (val === max) {
-            dialog.scrollTop -= padding;
-        }
-
-        requestAnimationFrame(frame);
-    });
+//    requestAnimationFrame(function frame() {
+//        var min = 0,
+//                max = dialog.scrollHeight - dialog.clientHeight;
+//
+//        var val = dialog.scrollTop;
+//
+//        if (val === min) {
+//            dialog.scrollTop += padding;
+//        } else if (val === max) {
+//            dialog.scrollTop -= padding;
+//        }
+//
+//        requestAnimationFrame(frame);
+//    });
 </script>
 
