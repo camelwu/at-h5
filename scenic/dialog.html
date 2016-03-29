@@ -55,7 +55,7 @@
         border: 3px solid black;
         background: white;
         overflow: scroll;
-        /*box-sizing: border-box;*/
+        box-sizing: border-box;
     }
     .modal-open dialog {
         display: block;
@@ -145,52 +145,52 @@
 </body>
 
 <script>
-    var dialog = document.querySelector('dialog');
-    var button = document.querySelector('button');
+//    var dialog = document.querySelector('dialog');
+//    var button = document.querySelector('button');
+//
+//    var touchX, touchY;
+//
+//    button.onclick = function(e) {
+//        document.body.classList.add('modal-open');
+//    };
+//
+//    window.ontouchstart = function(e) {
+//        if (!document.body.classList.contains('modal-open'))
+//            return;
+//
+//        var touch = e.changedTouches[0];
+//
+//        touchX = touch.screenX;
+//        touchY = touch.screenY;
+//
+//        if (!dialog.contains(e.target))
+//            e.preventDefault();
 
-    var touchX, touchY;
+//        if (dialog.scrollTop === 0)
+//            e.preventDefault();
+//        else if (dialog.scrollTop === dialog.scrollHeight - dialog.clientHeight)
+//            e.preventDefault();
+//    };
 
-    button.onclick = function(e) {
-        document.body.classList.add('modal-open');
-    };
+//    window.ontouchend = function(e) {
+//        var touch = e.changedTouches[0];
+//
+//        if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
+//            return;
+//
+//        if (!dialog.contains(e.target))
+//            document.body.classList.remove('modal-open');
+//
+//        touchX = void 0;
+//        touchY = void 0;
+//    };
+//
+//    window.ontouchcancel = function(e) {
+//        touchX = void 0;
+//        touchY = void 0;
+//    };
 
-    window.ontouchstart = function(e) {
-        if (!document.body.classList.contains('modal-open'))
-            return;
-
-        var touch = e.changedTouches[0];
-
-        touchX = touch.screenX;
-        touchY = touch.screenY;
-
-        if (!dialog.contains(e.target))
-            e.preventDefault();
-
-        if (dialog.scrollTop === 0)
-            e.preventDefault();
-        else if (dialog.scrollTop === dialog.scrollHeight - dialog.clientHeight)
-            e.preventDefault();
-    };
-
-    window.ontouchend = function(e) {
-        var touch = e.changedTouches[0];
-
-        if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
-            return;
-
-        if (!dialog.contains(e.target))
-            document.body.classList.remove('modal-open');
-
-        touchX = void 0;
-        touchY = void 0;
-    };
-
-    window.ontouchcancel = function(e) {
-        touchX = void 0;
-        touchY = void 0;
-    };
-
-    var padding = 1;
+//    var padding = 1;
 
 //    requestAnimationFrame(function frame() {
 //        var min = 0,
