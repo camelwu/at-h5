@@ -4064,27 +4064,6 @@ li{
 }
 
 
-.sel-time {
-    height:195px;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-}
-.sel-time span {
-    display:block;
-    font-size:1.8rem;
-    line-height:39px;
-    text-align:center;
-    color:#999;
-}
- .sel-box {
-    position:absolute;
-    top:80px;width:100%;
-    pointer-events:none;
-    box-sizing: border-content;
-    height:35px;
-    border-top:2px solid #FFB413;
-    border-bottom:2px solid #FFB413;
-}
 .city-choose-mask{
     position: fixed;
     left: 0;

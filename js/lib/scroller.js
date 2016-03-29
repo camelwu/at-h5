@@ -27,7 +27,7 @@ Scroller.prototype = {
 		time : ['<span>上午</span>', '<span>下午</span>'],
 		comp : ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],
 		seat:  ['<span>经济舱</span>','<span>超级经济舱</span>','<span>商务舱</span>','<span>头等舱</span>'],
-        cardExpirationDate : ['月',"年"]
+        cardExpirationDate : ['年','月']
         
 	},
 	_time : ['birth', 'validity',"cardExpirationDate"],
@@ -183,7 +183,7 @@ Scroller.prototype = {
 			dataNode = $('.date-selected');
 			// 默认选中
 			for (var j = 0, len = dataNode.length; j < len; j++) {
-				var pNode=dataNode[j].parentNode,pos = dataNode[j].offsetTop-39*2;
+				var pNode=dataNode[j].parentNode,pos = dataNode[j].offsetTop-50*2;
 				$(pNode).scrollTop(pos);
 			}
 		}
@@ -264,9 +264,11 @@ Scroller.prototype = {
 				}
 				ele.value = arr.join("-");
 			}else if(that.type == 'cardExpirationDate'){
-                ele.setAttribute("data-expire",arr[1].replace('年','')+"-"+that.addZero(parseInt(arr[0]))+"-01");
-                arr[0]=that.addZero(parseInt(arr[0]));
-                arr[1]=arr[1].replace('年','').substr(2);
+                ele.setAttribute("data-expire",arr[0].replace('年','')+"-"+that.addZero(parseInt(arr[1]))+"-01");
+				var sYear=arr[0];
+                arr[0]=that.addZero(parseInt(arr[1]));
+                arr[1]=parseInt(sYear.substring(2));
+
 				if(ele.nodeName == 'DIV')
 				{
 					ele.innerHTML = arr.join("-");
@@ -300,8 +302,8 @@ Scroller.prototype = {
 		});
 		//绑定滑动
 		$(".sel-time").bind("scrollstop", function() {
-			var obj = $(this), Nodes = this.childNodes, posY = this.scrollTop, p = parseInt(posY / 39), h = posY / 39 - p <= 0.5 ? p * 39 : (p + 1) * 39;
-			if (posY / 39 - p > 0.5) {
+			var obj = $(this), Nodes = this.childNodes, posY = this.scrollTop, p = parseInt(posY / 50), h = posY / 50 - p <= 0.5 ? p * 50 : (p + 1) * 50;
+			if (posY / 50 - p > 0.5) {
 				p++;
 			}
 			$(this).animate({
@@ -340,12 +342,12 @@ Scroller.prototype = {
 		});
 		//
 		function ResetDay(day) {
-			var oLiDay = sels.eq(2), pos = oLiDay.scrollTop(), page = parseInt(pos / 39), arr3 = [];
+			var oLiDay = sels.eq(2), pos = oLiDay.scrollTop(), page = parseInt(pos / 50), arr3 = [];
 			for (var i = 1; i < day + 1; i++) {
 				arr3.push('<span>' + i + '号</span>');
 			}
 			oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp'].join(''));
-			if (pos / 39 - page > 0.5) {
+			if (pos / 50 - page > 0.5) {
 				page += 3;
 			} else {
 				page += 2;
