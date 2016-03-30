@@ -280,6 +280,8 @@ Scroller.prototype = {
 				ele.innerHTML = arr.join("");
 			}
 
+		}else{
+			ele.innerHTML = arr.join("");
 		}
 		this.selShow(0);
 	},
