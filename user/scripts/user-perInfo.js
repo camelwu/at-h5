@@ -282,6 +282,7 @@ function u_perInfo(){
                     "Code": "0056"
                 };
                 //console.log(Parameters);
+                $('#preloader').remove();
                 vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_infoemail);
 
             };

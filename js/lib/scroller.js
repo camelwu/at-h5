@@ -184,7 +184,7 @@ Scroller.prototype = {
 			dataNode = $('.date-selected');
 			// 默认选中
 			for (var j = 0, len = dataNode.length; j < len; j++) {
-				var pNode=dataNode[j].parentNode,pos = dataNode[j].offsetTop-50*2;
+				var pNode=dataNode[j].parentNode,pos = dataNode[j].offsetTop-49*2;
 				$(pNode).scrollTop(pos);
 			}
 		}
@@ -304,8 +304,8 @@ Scroller.prototype = {
 		});
 		//绑定滑动
 		$(".sel-time").bind("scrollstop", function() {
-			var obj = $(this), Nodes = this.childNodes, posY = this.scrollTop, p = parseInt(posY / 50), h = posY / 50 - p <= 0.5 ? p * 50 : (p + 1) * 50;
-			if (posY / 50 - p > 0.5) {
+			var obj = $(this), Nodes = this.childNodes, posY = this.scrollTop, p = parseInt(posY / 49), h = posY / 49 - p <= 0.5 ? p * 49 : (p + 1) * 49;
+			if (posY / 49 - p > 0.5) {
 				p++;
 			}
 			$(this).animate({
@@ -344,12 +344,12 @@ Scroller.prototype = {
 		});
 		//
 		function ResetDay(day) {
-			var oLiDay = sels.eq(2), pos = oLiDay.scrollTop(), page = parseInt(pos / 50), arr3 = [];
+			var oLiDay = sels.eq(2), pos = oLiDay.scrollTop(), page = parseInt(pos / 49), arr3 = [];
 			for (var i = 1; i < day + 1; i++) {
 				arr3.push('<span>' + i + '号</span>');
 			}
 			oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp'].join(''));
-			if (pos / 50 - page > 0.5) {
+			if (pos / 49 - page > 0.5) {
 				page += 3;
 			} else {
 				page += 2;

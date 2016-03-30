@@ -4040,17 +4040,6 @@ li{
     background-color: #f5f4f9;
     font-size: 1.6rem;
 }
-.selbox-ul {
-    margin:5px 40px;
-    display: -moz-box;  /* Firefox */
-    display: -ms-flexbox;    /* IE10 */
-    display: -webkit-box;    /* Safari */
-    display: -webkit-flex;    /* Chrome, WebKit */
-    display: flex;
-    height:195px;
-    overflow:hidden;
-    flex-direction: row ;justify-content:center;
-}
 .selbox-ul li{
     position:relative;
     list-style: none;

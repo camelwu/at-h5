@@ -834,11 +834,7 @@ var arrCountry= [{"CountryEN":"Angola",
     var oTc=document.querySelector('.country-list-searched');
     var countryListSearched = document.querySelector('.country-list-searched');
     var countryInputZone = document.querySelector('#country-input-zone');
-    $('.country-hidden').click(function(){
-        $('.country-cho-wrap').hide();
-        document.querySelector("#addtra_page .user-content").style.position = "relative";
-        document.querySelector("#uptra_page .user-content").style.position = "relative";
-    });
+
     for(var i=0;i<aBtn.length; i++)
     {
         (function(index){
@@ -854,8 +850,14 @@ var arrCountry= [{"CountryEN":"Angola",
                         oDiv.style.display='none';
                         oTc.style.display='none';
                         if(document.querySelector("#addtra_page .user-content")  !=null) {
-                            document.querySelector("#addtra_page .user-content").style.position = "relative";
-                            document.querySelector("#uptra_page .user-content").style.position = "relative";
+                            $('#addtra_page .user-content').show().css({
+                                'height':n,
+                                'position':'relative'
+                            });
+                            $('#uptra_page .user-content').show().css({
+                                'height':n,
+                                'position':'relative'
+                            });
                         }
                         oInput.value='';
                     },500)
@@ -879,11 +881,31 @@ var arrCountry= [{"CountryEN":"Angola",
                 };
 
                 oDiv.style.display='block';
+                $('#uptra_page .user-content').hide();
+                var n;
+                n=$(window).height();
                 //android 相对位置 防止键盘覆盖问题
                 if(document.querySelector("#addtra_page .user-content") !=null) {
                     document.querySelector("#addtra_page .user-content").style.position = "absolute";
                     document.querySelector("#uptra_page .user-content").style.position = "absolute";
                 }
+
+                //国家选择弹层返回按钮
+                $('.country-hidden').click(function(){
+                    $('.country-cho-wrap').hide();
+
+                    $('#addtra_page .user-content').show().css({
+                        'height':n,
+                        'position':'relative'
+                    });
+                    $('#content').show();
+                    $('#uptra_page .user-content').show().css({
+                        'height':n,
+                        'position':'relative'
+                    });
+
+
+                });
 
                 var oCont=document.querySelectorAll('.country-btn');
                 var oTab=document.querySelector('.country-list');
@@ -897,8 +919,16 @@ var arrCountry= [{"CountryEN":"Angola",
                         oDiv.style.display='none';
                         oTc.style.display='none';
                         if(document.querySelector("#addtra_page .user-content")!=null) {
-                            document.querySelector("#addtra_page .user-content").style.position = "relative";
-                            document.querySelector("#uptra_page .user-content").style.position = "relative";
+                            //document.querySelector("#addtra_page .user-content").style.position = "relative";
+                            //document.querySelector("#uptra_page .user-content").style.position = "relative";
+                            $('#addtra_page .user-content').show().css({
+                                'height':n,
+                                'position':'relative'
+                            });
+                            $('#uptra_page .user-content').show().css({
+                                'height':n,
+                                'position':'relative'
+                            });
                         }
                         oInput.value='';
                     },500)
