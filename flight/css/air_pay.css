@@ -193,6 +193,7 @@ i {
 
 .scro-auto {
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .payment-cutdown {
