@@ -22,7 +22,7 @@
     </div>
 <div class="all-elements">
     <div class="header">
-        <a href="javascript:void(0);" class="header-back" id="td_back" onclick="window.history.go(-1)">
+        <a href="javascript:void(0);" class="header-back" id="td_back">
             <i class="icons go-back"></i>
         </a>
         <h3>订单详情</h3>
@@ -383,6 +383,16 @@
         };
         MT.load();
     })()
+</script>
+<!--iphone 不支持window.history.go(-1)的解决办法-->
+<script>
+    $(function(){
+        $("#td_back").attr("href","javascript:void(0);").click(function(){
+            if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+                window.location.href = window.document.referrer;
+            } else { window.history.go("-1"); }
+        });
+    })
 </script>
 </body>
 </html>
