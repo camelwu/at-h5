@@ -1759,6 +1759,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 3.9rem;
     color: #FFB413;
     font-size: 1.4rem;
+    position: relative;
 }
 
 .date-search-line .previous-day {
@@ -1768,20 +1769,10 @@ h1, h2, h3, h4, h5, h6 {
      color: #8E8E8E!important;
 }
 
-.previous-day i {
-    position: absolute;
-    width: 1.12rem;
-    height: 1.6rem;
-    background: url(../../images/ui/left-tri.png) no-repeat;
-    background-position: 0 3px;
-    background-size: 0.7rem 1rem;
-    top: 30.5%;
-    left: 14%;
-}
 .previous-day-arrow{
     display: inline-block;
     position: absolute;
-    left: 1.3rem;
+    left: 1.2rem;
     top: 50%;
     width: 8px;
     height: 8px;
@@ -1798,14 +1789,42 @@ h1, h2, h3, h4, h5, h6 {
     -ms-transform-origin: 50% 0;
     transform-origin: 50% 0;
 }
-
-.disabled-date-choose{
-    color: #82817E!important;
+.next-day-arrow{
+    display: inline-block;
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-bottom: 1.2px solid #FFB412;
+    border-left: 0;
+    border-right: 1.2px solid #FFB412;
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    -o-transform: rotate(-45deg) translateY(-50%);
+    -moz-transform: rotate(-45deg) translateY(-50%);
+    -ms-transform: rotate(-45deg) translateY(-50%);
+    transform: rotate(-45deg) translateY(-50%);
+    -webkit-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
 }
-.disabled-date-choose span{
+
+.disabled-date-choose.previous-day span{
     color: #82817E;
     border-bottom: 1.2px solid #82817E;
+    border-right: 0;
     border-left: 1.2px solid #82817E;
+}
+.disabled-date-choose.next-day span{
+    color: #82817E;
+    border-bottom: 1.2px solid #82817E;
+    border-right: 1.2px solid #82817E;
+    border-left: 0;
+}
+.disabled-date-choose {
+    color: #82817E!important;
 }
 
 .date-search-line .next-day {
