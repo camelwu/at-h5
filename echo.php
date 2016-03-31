@@ -3,7 +3,7 @@
 $fileName="log.txt";
 
 if(file_exists($fileName)) {
-  echo("存在!");
+  echo("存在");
 } else{
   echo("不存在!");
 }
