@@ -89,7 +89,7 @@
 
 .sel-time span {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     line-height: 49px;
     text-align: center;
     color: #999;
@@ -113,7 +113,7 @@
 }
 
 .selbox-ul li span.date-selected{
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     color: #484848;
 }
 /*日期选择控件-出生日期结束*/
