@@ -454,6 +454,14 @@
 		$(".user-must").on("click",function(){
 			$("#fillName_page").show();
 		})
+		if(isMulSelect){
+			if (numofChlid > 0) {
+				$("#toper h3").html("已选:0/" + numofAdult + "成人  " + selectChild + "/" + numofChlid + "儿童");
+			}
+			else {
+				$("#toper h3").html("已选:0/" + numofAdult + "成人");
+			}
+		}
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
 			travJson = json
 			for(var i=0;i<= json.data.length-1;i++){
