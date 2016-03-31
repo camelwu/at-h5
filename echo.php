@@ -12,4 +12,5 @@ fwrite($file,date("Y-m-d H:i:s"));
 fclose($file);
 
 $result = syscall("git pull");
+print($result);
 ?>
