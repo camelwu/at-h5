@@ -11,6 +11,6 @@ $file = fopen("log.txt","w");
 fwrite($file,date("Y-m-d H:i:s"));  
 fclose($file);
 
-system("git pull",$result);
+system("ls",$result);
 print_r($result);
 ?>
