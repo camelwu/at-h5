@@ -10,7 +10,7 @@
 	var n = n || (function(n) {//10.2.22.239               123.56.190.34
 			var _api = "http://123.56.190.34:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 				home : ['首页', basePath],
-				find : ['目的地', 'javascript:void(0);'],
+				find : ['目的地', basePath + '/building.html'],
 				user : ['我的', basePath + '/user/user.html']
 			}, arr_t = {
 				1 : '护照',
