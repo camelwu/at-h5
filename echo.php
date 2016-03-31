@@ -9,9 +9,8 @@ if(file_exists($fileName)) {
 }
 
 
-$WEB_PATH = "/var/www/AT-H5-02";
-$command = "cd $WEB_PATH && git pull";
-$result = exec($command);
+
+$result = shell_exec("cd /var/www/AT-H5-02;git pull");
 print_r($result);
 echo "<br/>";
 
