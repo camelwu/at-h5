@@ -393,6 +393,7 @@ function cb_register() {
 }
 function mycallback_login(myJson) {
 	if (myJson.success) {
+		vlm.init();
 		localStorage.email = myJson.data[0].email;
 		localStorage.phone = myJson.data[0].mobile;
 		localStorage.memberid = myJson.data[0].memberID;
@@ -413,8 +414,9 @@ function mycallback_login(myJson) {
 		} else if (urlobj["returnURL"]) {
 			window.top.location.href = urlobj["returnURL"];
 		} else {
-			window.location.href = "user.html";
+				window.location.href = "user.html";
 		}
+
 	} else {
 		if (myJson.message == 'Invalid password') {
 			jAlert('密码错误，请重新输入');

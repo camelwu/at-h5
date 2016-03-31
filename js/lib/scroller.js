@@ -26,6 +26,7 @@ Scroller.prototype = {
 		date : ['年', '月', '日'],
 		time : ['<span>上午</span>', '<span>下午</span>'],
 		comp : ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],
+		comp1 : ['<span>&nbsp;</span>'],
 		seat:  ['<span>经济舱</span>','<span>超级经济舱</span>','<span>商务舱</span>','<span>头等舱</span>'],
         cardExpirationDate : ['年','月']
         
@@ -139,11 +140,11 @@ Scroller.prototype = {
 			if (opeater.innerHTML == "") {
 				switch(t) {
 					case 'card':
-						var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp'].join('');
+						var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp1'].join('');
 						Creatwaprer(str);
 						break;
 					case 'seat':
-						var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp'].join('');
+						var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp1'].join('');
 						Creatwaprer(str);
 						break;
 					case 'time':
@@ -152,14 +153,14 @@ Scroller.prototype = {
                     case 'cardExpirationDate':
                         for (var i = 0, d = that._template['cardExpirationDate'], len = d.length; i < len; i++) {
 							var str = setTime(i, d[i]);
-							Creatwaprer(that._template['comp'].join('') + str + that._template['comp'].join(''));
+							Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
 						}
                         break;
 					default:
 						//time
 						for (var i = 0, d = that._template['date'], len = d.length; i < len; i++) {
 							var str = setTime(i, d[i]);
-							Creatwaprer(that._template['comp'].join('') + str + that._template['comp'].join(''));
+							Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
 						}
 						break;
 				}
@@ -183,7 +184,7 @@ Scroller.prototype = {
 			dataNode = $('.date-selected');
 			// 默认选中
 			for (var j = 0, len = dataNode.length; j < len; j++) {
-				var pNode=dataNode[j].parentNode,pos = dataNode[j].offsetTop-50*2;
+				var pNode=dataNode[j].parentNode,pos = dataNode[j].offsetTop-49*2;
 				$(pNode).scrollTop(pos);
 			}
 		}
@@ -274,13 +275,14 @@ Scroller.prototype = {
 					ele.innerHTML = arr.join("-");
 				}
                 ele.value = arr.join("/");
-            }
+            }else{
+				$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
+				ele.innerHTML = arr.join("");
+			}
 
-		} else {
-			$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
+		}else{
 			ele.innerHTML = arr.join("");
 		}
-
 		this.selShow(0);
 	},
 	//选择重置
@@ -302,8 +304,8 @@ Scroller.prototype = {
 		});
 		//绑定滑动
 		$(".sel-time").bind("scrollstop", function() {
-			var obj = $(this), Nodes = this.childNodes, posY = this.scrollTop, p = parseInt(posY / 50), h = posY / 50 - p <= 0.5 ? p * 50 : (p + 1) * 50;
-			if (posY / 50 - p > 0.5) {
+			var obj = $(this), Nodes = this.childNodes, posY = this.scrollTop, p = parseInt(posY / 49), h = posY / 49 - p <= 0.5 ? p * 49 : (p + 1) * 49;
+			if (posY / 49 - p > 0.5) {
 				p++;
 			}
 			$(this).animate({
@@ -342,12 +344,12 @@ Scroller.prototype = {
 		});
 		//
 		function ResetDay(day) {
-			var oLiDay = sels.eq(2), pos = oLiDay.scrollTop(), page = parseInt(pos / 50), arr3 = [];
+			var oLiDay = sels.eq(2), pos = oLiDay.scrollTop(), page = parseInt(pos / 49), arr3 = [];
 			for (var i = 1; i < day + 1; i++) {
 				arr3.push('<span>' + i + '号</span>');
 			}
 			oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp'].join(''));
-			if (pos / 50 - page > 0.5) {
+			if (pos / 49 - page > 0.5) {
 				page += 3;
 			} else {
 				page += 2;

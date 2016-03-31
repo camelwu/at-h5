@@ -147,7 +147,7 @@
         <li><div>费用明细</div></li>
         {% for(var i=0;i<data.chargeDetails.length;i++){ %}
             {%  if(data.chargeDetails[i].category != "PAYMENT"){ %}
-            <li><div>{%=packageName%}{% if(data.chargeDetails[i].category == "ADULT"){ %}(成人票){% }else{ %}(儿童票){% } %}</div><div>×{%=data.chargeDetails[i].quantity%}</div><div>￥{%=data.chargeDetails[i].amountInCNY%}</div></li>
+            <li><div>{% if(data.chargeDetails[i].category == "ADULT"){ %}成人票×{%=data.chargeDetails[i].quantity%}人{% }else{ %}儿童票×{%=data.chargeDetails[i].quantity%}人{% } %}</div><div>￥{%=data.chargeDetails[i].amountInCNY%}</div></li>
             {% } %}
         {% } %}
     </script>
