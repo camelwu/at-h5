@@ -863,7 +863,7 @@ var arrCountry= [{"CountryEN":"Angola",
                     },500)
                     if($('#addtra_page').length>0)
                     {
-                        if($('#addtra_page')[0].style.display == 'none')
+                        if($('#uptra_page')[0].style.display == 'block')
                         {
                             if(index == 1 || index == 3)
                             {
@@ -932,8 +932,9 @@ var arrCountry= [{"CountryEN":"Angola",
                         }
                         oInput.value='';
                     },500)
+
                     if($('#addtra_page').length>0) {
-                        if ($('#addtra_page')[0].style.display == 'none') {
+                        if ($('#uptra_page')[0].style.display == 'block') {
                             if (index == 1 || index == 3) {
                                 $('#uptra_page .phone-pre').html('+' + $(e.target).attr('data-tel-code'));
                             }

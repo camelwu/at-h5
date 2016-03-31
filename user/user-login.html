@@ -51,7 +51,7 @@
 						<div id="phone_login">
 							<div class="login-input">
 								<b class="icon login-phone"></b>
-								<div class="p_86">
+								<div class="p_86 tel-btn">
 									+86
 								</div>
 								<input id="phone" type="tel" class="in-phone" value="" placeholder="输入手机号" data-type="tel" autocomplete="off">
@@ -93,7 +93,7 @@
 						<div id="phone_register">
 							<div class="login-input">
 								<b class="icon login-phone"></b>
-								<div class="p_86">
+								<div class="p_86 tel-btn">
 									+86
 								</div>
 								<input id="r_phone" type="tel" class="in-phone" value="" placeholder="输入手机号" data-type="tel">
@@ -169,9 +169,31 @@
 				</div>
 			</div>
 		</div>
+		<!--国籍选择开始-->
+		<div class="all-elements country-cho-wrap">
+			<div class="header">
+				<a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
+				<div class="cl_search">
+					<input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+					<i></i>
+				</div>
+			</div>
+
+			<!--国籍弹窗开始-->
+			<ul class="country-list-searched"></ul>
+			<!--国籍弹窗结束-->
+
+			<div class="snap-content" style="padding-top: 45px;">
+				<div class="country-wrap" id="country-wrap">
+				</div>
+			</div>
+		</div>
+		<!--国籍选择结束-->
 		<script src="../js/lib/jquery.js"></script>
 		<script src="../js/lib/vlm.js"></script>
 		<script src="../js/lib/jquery.alert.js"></script>
+		<script src="../js/country_list.js"></script>
+		<script src="../js/countrytel_list.js"></script>
 		<script type="text/javascript" src="scripts/user-login-register.js"></script>
 	</body>
 </html>

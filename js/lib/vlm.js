@@ -10,7 +10,7 @@
 	var n = n || (function(n) {//10.2.22.239               123.56.190.34
 			var _api = "http://123.56.190.34:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 				home : ['首页', basePath],
-				find : ['目的地', 'javascript:void(0);'],
+				find : ['目的地', basePath + '/building.html'],
 				user : ['我的', basePath + '/user/user.html']
 			}, arr_t = {
 				1 : '护照',
@@ -876,7 +876,7 @@
 				}
 			}, l_find = function() {
 
-			}, _choice = function(elementId,f, t, tid, isNeedPassport,isMulSelect,numofAdult,numofChlid,id,callback) {
+			}, _choice = function(elementId,f, t, tid, isNeedPassport,isMulSelect,numofAdult,numofChlid,id,departDate) {
 				//if(arguments.length<1){return ;}
 				//var arg = arguments.callee.slice(this);
 				var type = '', title = '';
@@ -901,7 +901,7 @@
 					type = 'add';
 				}
 				//var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
-				var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId +' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id+"&callback="+callback);
+				var choice = createIframe('../user/user-choiceAir.html?elementId='+elementId +' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id+"&departDate="+departDate);
 				document.body.appendChild(choice);
 				if(window.parent.document.getElementById("ticket-wrap")){
 					window.parent.document.getElementById("ticket-wrap").style.display="none";

@@ -387,6 +387,7 @@
 	,ifrCilent=window.parent.document.getElementById("choiceAir")
 	,numofAdult=vlm.getpara("numofAdult")//id
 	,numofChlid=vlm.getpara("numofChlid")//id;
+	,departDate=vlm.getpara("departDate")//departDate;
 
 	$(".newTitle").html("新增"+titleType);
 
@@ -453,10 +454,18 @@
 		$(".user-must").on("click",function(){
 			$("#fillName_page").show();
 		})
+		if(isMulSelect){
+			if (numofChlid > 0) {
+				$("#toper h3").html("已选:0/" + numofAdult + "成人  " + selectChild + "/" + numofChlid + "儿童");
+			}
+			else {
+				$("#toper h3").html("已选:0/" + numofAdult + "成人");
+			}
+		}
 		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
 			travJson = json
 			for(var i=0;i<= json.data.length-1;i++){
-				json.data[i].traveller.travellerAge=GetAgeByBrithday(json.data[i].traveller.dateOfBirth)
+				json.data[i].traveller.travellerAge=GetAgeByBrithday(json.data[i].traveller.dateOfBirth);
 				tralJsonObj[json.data[i].traveller.travellerId]=json.data[i];
 			}
 			console.log(tralJsonObj);
@@ -524,13 +533,13 @@
 
 				$(".choiced").each(function(){
 					var age=$(this).attr("data-age");
-					if(age<=2){
+					if(age<2){
 						jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
 						$(this).removeClass("choiced");
 						$(this).addClass("user-choice");
 						return false;
 					}
-					else if(age>2 && age<12) {
+					else if(age>=2 && age<12) {
 						selectChild=selectChild+1;
 					}
 					else if (age>=12){
@@ -1024,7 +1033,7 @@
 
 	function GetAgeByBrithday(birthday){
 		var age=-1;
-		var today=new Date();
+		var today=new Date(departDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"));
 		var todayYear=today.getFullYear();
 		var todayMonth=today.getMonth()+1;
 		var todayDay=today.getDate();

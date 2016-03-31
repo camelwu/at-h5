@@ -139,7 +139,6 @@ var ticketSingle = {
         array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
         return array[1]+'-'+array[2]+' '+'<span>'+week+'</span>';
     },
-
     parseUrlPara: function (url, isEncode) {
         var isEncode = isEncode || false;
         var reg = /([^=&?]+)=([^=&?]+)/g, obj = {};
@@ -160,7 +159,7 @@ var ticketSingle = {
             var monthNum = (dd.getMonth()+1)<10?"0"+parseInt((dd.getMonth()+1)):dd.getMonth()+1;
             var dateNum = (dd.getDate())<10?"0"+parseInt(dd.getDate()):dd.getDate();
             var arg = dd.getFullYear()+'-'+monthNum+'-'+dateNum;
-            if(new Date(arg.replace(/-/g, "/"))-new Date()>0){
+            if(new Date(arg.replace(/-/g, "/")+' 23:59:59')>=new Date()){
                 var result = ticketSingle.returnWeek(arg);
                 document.querySelector('.single-ticket-input').innerHTML = result;
                 that.backParaObj.DepartDate = arg;
@@ -199,19 +198,6 @@ var ticketSingle = {
             }
 
         });
-    },
-    checkPullStatus:function(){
-        /*
-        var lis =  document.querySelectorAll('.air-tickets-detail-wrapper li');
-        var pullDown = document.querySelector('#pullDown'),pullUp = document.querySelector('#pullUp');
-        if(lis!=null&&lis.length>0){
-            pullDown.style.display = "block";
-            pullUp.style.display = "block";
-        }else{
-            pullDown.style.display = "none";
-            pullUp.style.display = "none";
-        }
-        */
     },
     renderHandler:function(arg){
         var arg = arg;

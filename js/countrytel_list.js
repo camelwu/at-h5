@@ -846,6 +846,7 @@ var arrCountry= [{"CountryEN":"Angola",
                 var _this=this;
                 countryListSearched.onclick=function(e){
                     _this.innerHTML=countryInputZone.value=$(e.target).attr("data-tel-code");
+                    _this.innerHTML='+'+_this.innerHTML;
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     this.style.display='none';
@@ -866,6 +867,7 @@ var arrCountry= [{"CountryEN":"Angola",
                 oTab.onclick=function(e){
                     //oCont.innerHTML=oInp.value=e.target.innerHTML;
                     oCont.innerHTML=oInp.value=$(e.target).attr("data-tel-code");
+                    oCont.innerHTML='+'+oCont.innerHTML;
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     console.log(e.target);
