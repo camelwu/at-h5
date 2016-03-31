@@ -66,10 +66,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var add_quit = $("#add_quit")[0];
         var uptra_page = $("#uptra_page")[0];
         var update_quit = $("#update_quit")[0];
-        var name_state = $("#name_state")[0];
-        var aname_state = $("#aname_state")[0];
         var fillName_page = $("#fillName_page")[0];
-        var close_name = $("#close_name")[0];
 
         function showPage(obj1, obj2) {
             obj1.onclick = function () {
@@ -77,21 +74,10 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
             }
         }
-
         showPage(addUser, addtra_page);
-        showPage(name_state, fillName_page);
-        showPage(aname_state, fillName_page);
-        function closePage(obj1, obj2) {
-            obj1.onclick = function () {
-                obj2.style.display = "none";
-            }
-        }
-
-        closePage(close_name, fillName_page);
 
         //   增加常旅客
         var add_finish = $("#add_finish")[0];
-
         function addTraveler(obj) {
             obj.onclick = function () {
                 var input = document.getElementById("addForm").getElementsByTagName("input");
@@ -419,13 +405,113 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     var b = document.createElement("b");
                     b.className = "user-edits";
                     b.style.marginTop = li.clientHeight + 20 + 'px';
-                    b.addEventListener("click", updateTra);
                     li.appendChild(b);
                     var ul = document.createElement("ul");
                     ul.className = "often_user";
                     var ul_li1 = document.createElement("li");
                     ul_li1.innerHTML = travJson.data[i].traveller.idName + travJson.data[i].traveller.lastName + "/" + travJson.data[i].traveller.firstName;
                     ul.appendChild(ul_li1);
+                    b.parentNode.addEventListener("click", updateTra);
+
+                    //  编辑常旅客页面
+                    function updateTra() {
+                        var li=b.parentNode;
+                        index = li.getAttribute("index");
+                        var uptra_page = $("#uptra_page")[0];
+                        uptra_page.style.display = "block";
+                        var input = document.getElementById("updateForm").getElementsByTagName("input");
+                        var cardType = $("#cardType")[0];
+                        var countryName = $("#countryName")[0];
+                        var man2 = $("#man2")[0];
+                        var woman2 = $("#woman2")[0];
+                        var old0,old1,old2,old3,old4,old5,old6,old7,oldcard,oldcName,oldsendName,oldsex;
+                        //var idtype_num=travJson.data[index].listTravellerIdInfo.length;
+                        old0=input[0].value = travJson.data[index].traveller.idName;
+                        old1=input[1].value = travJson.data[index].traveller.lastName;
+                        old2=input[2].value = travJson.data[index].traveller.firstName;
+
+                        var telCode=getTelCode(travJson.data[index].traveller.countryCode);
+                        if(telCode == undefined)
+                        {
+                            $('#uptra_page .phone-pre').html('+86');
+                        }else{
+                            $('#uptra_page .phone-pre').html('+'+telCode.TelCode);
+                        }
+                        $('#uptra_page .country-btn').eq(0).attr('data-code',travJson.data[index].listTravellerIdInfo[0].idCountry)
+                        if(travJson.data[index].listTravellerIdInfo.length != 0)
+                        {
+                            old3=input[3].value = travJson.data[index].listTravellerIdInfo[0].idNumber;
+                            old6=$('#time-cont-edit')[0].innerHTML= travJson.data[index].listTravellerIdInfo[0].idActivatedDate.substring(0,10);
+                            if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
+                                oldcard=cardType.innerHTML = "护照";
+                            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "2") {
+                                oldcard=cardType.innerHTML = "身份证";
+                            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "3") {
+                                oldcard=cardType.innerHTML = "出生证明";
+                            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "4") {
+                                oldcard=cardType.innerHTML = "港澳通行证";
+                            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "5") {
+                                oldcard=cardType.innerHTML = "军官证";
+                            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "6") {
+                                oldcard=cardType.innerHTML = "驾驶证";
+                            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "7") {
+                                oldcard=cardType.innerHTML = "台胞证";
+                            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "9") {
+                                oldcard=cardType.innerHTML = "回乡证";
+                            } else {
+                                oldcard=cardType.innerHTML = "其他";
+                            }
+                        }
+                        //input[5].value = travJson.data[index].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
+                        old7=$('#birth-cont-edit')[0].innerHTML = travJson.data[index].traveller.dateOfBirth.substring(0,10);
+                        old4=input[4].value = travJson.data[index].traveller.mobilePhone;
+                        old5=input[5].value = travJson.data[index].traveller.email;
+                        oldsex=travJson.data[index].traveller.sexCode;
+                        console.log(oldsex);
+                        oldcName=countryName.innerHTML = travJson.data[index].traveller.countryName;
+                        var idCountry=travJson.data[index].listTravellerIdInfo[0].idCountry;
+                        oldsendName=getCountryName(idCountry).CountryName;
+                        if (travJson.data[index].traveller.sexCode == "Mr") {
+                            man2.className = "icon-h traveler-sex1";
+                            woman2.className = "icon-h traveler-sex2";
+                        } else {
+                            man2.className = "icon-h traveler-sex2";
+                            woman2.className = "icon-h traveler-sex1";
+                        }
+
+                        //编辑常旅取消按钮提示
+                        update_quit.onclick=function(){
+                            var arr=[old0,old1,old2,old3,old4,old5];
+                            for(var i=0;i<input.length; i++)
+                            {
+                                if(arr[i] != input[i].value){
+                                    jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
+                                    return;
+                                }
+                            }
+                            //证件类型、发证国家、国籍、性别
+                            if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ||oldcName != $('#countryName').html()){
+                                jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
+                                return;
+                            }
+
+                            if(oldsex == 'Mr' && $('#woman2').attr('class') == 'icon-h traveler-sex1' || oldsex == 'Mrs' && $('#woman2').attr('class') == 'icon-h traveler-sex2')
+                            {
+                                jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
+                                return;
+                            }
+                            uptra_page.style.display='none';
+
+                        };
+
+                        function conEdit(arg){
+                            if(arg == true)
+                            {
+                                uptra_page.style.display='none';
+                            }
+                        }
+                    }
+
                     var ul_li2 = document.createElement("li");
                     if(travJson.data[i].listTravellerIdInfo.length != 0)
                     {
@@ -497,107 +583,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         }
     }
 
-//  编辑常旅客页面
-    function updateTra() {
-        var b = window.event.srcElement;
-        var li = b.parentElement;
-        index = li.getAttribute("index");
-        var uptra_page = $("#uptra_page")[0];
-        uptra_page.style.display = "block";
-        var input = document.getElementById("updateForm").getElementsByTagName("input");
-        var cardType = $("#cardType")[0];
-        var countryName = $("#countryName")[0];
-        var man2 = $("#man2")[0];
-        var woman2 = $("#woman2")[0];
-        var old0,old1,old2,old3,old4,old5,old6,old7,oldcard,oldcName,oldsendName,oldsex;
-        //var idtype_num=travJson.data[index].listTravellerIdInfo.length;
-        old0=input[0].value = travJson.data[index].traveller.idName;
-        old1=input[1].value = travJson.data[index].traveller.lastName;
-        old2=input[2].value = travJson.data[index].traveller.firstName;
 
-        var telCode=getTelCode(travJson.data[index].traveller.countryCode);
-        if(telCode == undefined)
-        {
-            $('#uptra_page .phone-pre').html('+86');
-        }else{
-            $('#uptra_page .phone-pre').html('+'+telCode.TelCode);
-        }
-        $('#uptra_page .country-btn').eq(0).attr('data-code',travJson.data[index].listTravellerIdInfo[0].idCountry)
-        if(travJson.data[index].listTravellerIdInfo.length != 0)
-        {
-            old3=input[3].value = travJson.data[index].listTravellerIdInfo[0].idNumber;
-            old6=$('#time-cont-edit')[0].innerHTML= travJson.data[index].listTravellerIdInfo[0].idActivatedDate.substring(0,10);
-            if (travJson.data[index].listTravellerIdInfo[0].idType == "1") {
-                oldcard=cardType.innerHTML = "护照";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "2") {
-                oldcard=cardType.innerHTML = "身份证";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "3") {
-                oldcard=cardType.innerHTML = "出生证明";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "4") {
-                oldcard=cardType.innerHTML = "港澳通行证";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "5") {
-                oldcard=cardType.innerHTML = "军官证";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "6") {
-                oldcard=cardType.innerHTML = "驾驶证";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "7") {
-                oldcard=cardType.innerHTML = "台胞证";
-            } else if (travJson.data[index].listTravellerIdInfo[0].idType == "9") {
-                oldcard=cardType.innerHTML = "回乡证";
-            } else {
-                oldcard=cardType.innerHTML = "其他";
-            }
-        }
-        //input[5].value = travJson.data[index].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号';
-        old7=$('#birth-cont-edit')[0].innerHTML = travJson.data[index].traveller.dateOfBirth.substring(0,10);
-        old4=input[4].value = travJson.data[index].traveller.mobilePhone;
-        old5=input[5].value = travJson.data[index].traveller.email;
-        oldsex=travJson.data[index].traveller.sexCode;
-        console.log(oldsex);
-        oldcName=countryName.innerHTML = travJson.data[index].traveller.countryName;
-        var idCountry=travJson.data[index].listTravellerIdInfo[0].idCountry;
-        oldsendName=getCountryName(idCountry).CountryName;
-        if (travJson.data[index].traveller.sexCode == "Mr") {
-            man2.className = "icon-h traveler-sex1";
-            woman2.className = "icon-h traveler-sex2";
-        } else {
-            man2.className = "icon-h traveler-sex2";
-            woman2.className = "icon-h traveler-sex1";
-        }
-
-        //编辑常旅取消按钮提示
-        update_quit.onclick=function(){
-            var arr=[old0,old1,old2,old3,old4,old5];
-            for(var i=0;i<input.length; i++)
-            {
-                if(arr[i] != input[i].value){
-                    jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
-                    return;
-                }
-            }
-            //证件类型、发证国家、国籍、性别
-            if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ||oldcName != $('#countryName').html()){
-                jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
-                return;
-            }
-
-            if(oldsex == 'Mr' && $('#woman2').attr('class') == 'icon-h traveler-sex1' || oldsex == 'Mrs' && $('#woman2').attr('class') == 'icon-h traveler-sex2')
-            {
-                jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
-                return;
-            }
-            uptra_page.style.display='none';
-
-        };
-
-        function conEdit(arg){
-            if(arg == true)
-            {
-                uptra_page.style.display='none';
-            }
-        }
-    }
-
-//    });
 
     //新增常旅
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
@@ -610,7 +596,31 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     //个人信息修改页生日
     var myDate7 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
-    
+    //姓名说明新增
+    $('#aname_state').click(function(){
+        $('#content-wrap').hide();
+        $('#addtra_page').hide();
+        $('#fillName_page').show();
+    })
+
+    $('#close_name').click(function(){
+        $('#content-wrap').show();
+        $('#addtra_page').show();
+        $('#fillName_page').hide();
+    });
+
+    //编辑
+    $('#name_state').click(function(){
+        $('#content-wrap').hide();
+        $('#uptra_page').hide();
+        $('#fillName_page').show();
+    })
+
+    $('#close_name').click(function(){
+        $('#content-wrap').show();
+        $('#uptra_page').show();
+        $('#fillName_page').hide();
+    });
 });
 
 
