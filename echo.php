@@ -10,7 +10,7 @@ if(file_exists($fileName)) {
 
 
 
-$result = shell_exec("cd /var/www/AT-H5-02;git pull");
+$result = shell_exec("bash deploy.sh");
 print_r($result);
 echo "<br/>";
 
