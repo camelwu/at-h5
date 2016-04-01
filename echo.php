@@ -10,7 +10,7 @@ if(file_exists($fileName)) {
 
 
 
-$result = shell_exec("/bin/sh deploy.sh");
+$result = shell_exec("ls -l");
 print_r($result);
 echo "<br/>";
 
