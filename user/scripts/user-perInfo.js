@@ -124,7 +124,6 @@ function u_perInfo(){
     });
     //  性别选择
     function changeSex(obj){
-
         obj.onclick = function() {
             if(sex.className != "info-sex-on"){
                 sex.className="info-sex-on";
@@ -361,190 +360,196 @@ function u_perInfo(){
 
 }
 
-//修改出生日期
-$('#birth-cont-per').click(function(){
-    setTimeout(function(){
-        var oPerBack=$('.cabin-sure');
-        function selDate(obj){
-            obj.on('click', show)
-        }
-        function show(){
-            var box = $('.sel-time .date-selected'), i = 0, len = box.length, opeater = document.getElementById("opeater"), arr = [];
-            var ele = document.getElementById('' + opeater.getAttribute("data-id"));
-            for (; i < len; i++) {
-                arr.push(box[i].innerHTML);
+    //修改出生日期
+    $('#birth-cont-per').click(function(){
+        setTimeout(function(){
+            var oPerBack=$('.cabin-sure');
+            function selDate(obj){
+                obj.on('click', show)
             }
-            var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
-            //console.log(birthstr);
-            if( ! vlm.Utils.compareBirth(birthstr))
-            {
-                jAlert('您选择的出生日期大于当前日期');
-                return;
+            function show(){
+                var box = $('.sel-time .date-selected'), i = 0, len = box.length, opeater = document.getElementById("opeater"), arr = [];
+                var ele = document.getElementById('' + opeater.getAttribute("data-id"));
+                for (; i < len; i++) {
+                    arr.push(box[i].innerHTML);
+                }
+                var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
+                //console.log(birthstr);
+                if( ! vlm.Utils.compareBirth(birthstr))
+                {
+                    jAlert('您选择的出生日期大于当前日期');
+                    return;
+                }
+                var Parameters={
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
+                    "ForeEndType": 3,
+                    "Code": "0056"
+                };
+                console.log(Parameters);
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
             }
-            var Parameters={
-                "Parameters": "{\"MemberId\":\""+memberid+"\",\"DOB\":\""+birthstr+"\"}",
-                "ForeEndType": 3,
-                "Code": "0056"
-            };
-            console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
-        }
-        selDate(oPerBack);
-    },1000)
+            selDate(oPerBack);
+        },1000)
 
-})
+    })
 
-//修改出生日期回调
-function mycallback_birth(ret){
-    var myJson=ret;
-    console.log(myJson.data[0].dateOfBirth);
-    if(myJson.success)
-    {
-        jAlert('修改成功');
-    }else{
-        jAlert('修改失败');
-    }
-}
-
-function mycallback(ret){
-    infoJson = ret;
-    console.log(infoJson);
-    var nickname = $("#nickname")[0];
-    var name = $("#name")[0];
-    var realName = $("#realName")[0];
-    var user_email = $("#email")[0];
-    var user_phone = $("#phone")[0];
-    var sex = $("#sex")[0];
-    var block = $("#block")[0];
-    var userIcon = $("#userIcon")[0];
-    var birthCont=$('#birth-cont-per')[0];
-    if(infoJson.data == null)
-    {
-        nickname.innerHTML ='';
-        name.value ='';
-    }
-    else
-    {
-        name.value=nickname.innerHTML = infoJson.data[0].nickName;
-        $('#hostname')[0].innerHTML= realName.value= infoJson.data[0].firstName;
-        birthCont.innerHTML=infoJson.data[0].dateOfBirth.substring(0,10);
-        $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
-        $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
-
-        if(infoJson.data[0].salutation == 26){
-            sex.className="info-sex-on";
-            block.innerHTML = "女";
-            userIcon.src = "../images/ui/photo-man.png";
+    //修改出生日期回调
+    function mycallback_birth(ret){
+        var myJson=ret;
+        console.log(myJson.data[0].dateOfBirth);
+        if(myJson.success)
+        {
+            jAlert('修改成功');
         }else{
-            sex.className="info-sex";
-            block.innerHTML = "男";
-            userIcon.src = "../images/ui/photo-woman.png";
+            jAlert('修改失败');
         }
     }
 
-    user_email.value = localStorage.email;
-    memberid = localStorage.memberid;
-}
-function mycallback_nick(ret){
-    var myJson = ret;
-    //console.log(myJson);
-    if(myJson.success) {
-        window.location.href = "user-perInfo.html";
-        document.getElementById("nickForm").submit();
-    }else{
-        jAlert(myJson.message);
-    }
-}
-function mycallback_info(ret){
-    var myJson = ret;
-    console.log(myJson);
-    if(myJson.success){
-        localStorage.realname = u_realname;
-        localStorage.phone = u_phone;
-        //console.log(localStorage);
-        document.getElementById("infoForm").submit();
-    }else{
-        jAlert(myJson.message);
-    }
-}
+    function mycallback(ret){
+        infoJson = ret;
+        console.log(infoJson);
+        var nickname = $("#nickname")[0];
+        var name = $("#name")[0];
+        var realName = $("#realName")[0];
+        var user_email = $("#email")[0];
+        var user_phone = $("#phone")[0];
+        var sex = $("#sex")[0];
+        var block = $("#block")[0];
+        var userIcon = $("#userIcon")[0];
+        var birthCont=$('#birth-cont-per')[0];
+        if(infoJson.data == null)
+        {
+            nickname.innerHTML ='';
+            name.value ='';
+        }
+        else
+        {
+            name.value=nickname.innerHTML = infoJson.data[0].nickName;
+            $('#hostname')[0].innerHTML= realName.value= infoJson.data[0].firstName;
+            birthCont.innerHTML=infoJson.data[0].dateOfBirth.substring(0,10);
+            $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
+            $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
 
-function mycallback_infoemail(ret){
-    var myJson = ret;
-    console.log(myJson);
-    if(myJson.success){
-        localStorage.email = u_email;
-        document.getElementById("infoForm").submit();
-    }else{
-        jAlert(myJson.message);
-    }
-}
-
-//性别回调
-function mycallback_sex(ret){
-    var myJson = ret;
-    console.log(myJson.data[0].salutation);
-    if(myJson.success)
-    {
-        jAlert('修改成功');
-    }else{
-        jAlert('修改失败');
-    }
-}
-
-function mycallback_phoneVeri(ret){
-    var phone_ver = $("#phone_ver")[0];
-    console.log(ret);
-    var myJson = ret;
-    console.log(myJson);
-    if(myJson.success){
-        vlm.Utils.sendMobileCode(phone_ver.value);
-    }else{
-        jAlert(myJson.message);
-    }
-}
-function mycallback_newKey(ret){
-    var myJson = ret;
-    console.log(myJson);
-    if(myJson.success){
-        document.getElementById("keyForm").submit();
-    }else{
-        jAlert(myJson.message);
-    }
-}
-
-/*退出账户清除localStorage*/
-$('.info-quit').click(function(){
-    jConfirm("确认退出当前帐号?","",logout);
-    function logout(arg){
-        if(arg){
-            localStorage.removeItem('memberid');
-            localStorage.removeItem('login');
-            localStorage.removeItem('email');
-            localStorage.removeItem('phone');
-            window.location.href='user.html';
+            if(infoJson.data[0].salutation == 26){
+                sex.className="info-sex-on";
+                block.innerHTML = "女";
+                userIcon.src = "../images/ui/photo-man.png";
+            }else{
+                sex.className="info-sex";
+                block.innerHTML = "男";
+                userIcon.src = "../images/ui/photo-woman.png";
+            }
         }
 
+        user_email.value = localStorage.email;
+        memberid = localStorage.memberid;
     }
-});
+    function mycallback_nick(ret){
+        var myJson = ret;
+        //console.log(myJson);
+        if(myJson.success) {
+            window.location.href = "user-perInfo.html";
+            document.getElementById("nickForm").submit();
+        }else{
+            jAlert(myJson.message);
+        }
+    }
+    function mycallback_info(ret){
+        var myJson = ret;
+        console.log(myJson);
+        if(myJson.success){
+            localStorage.realname = u_realname;
+            localStorage.phone = u_phone;
+            //console.log(localStorage);
+            document.getElementById("infoForm").submit();
+        }else{
+            jAlert(myJson.message);
+        }
+    }
+
+    function mycallback_infoemail(ret){
+        var myJson = ret;
+        console.log(myJson);
+        if(myJson.success){
+            localStorage.email = u_email;
+            document.getElementById("infoForm").submit();
+        }else{
+            jAlert(myJson.message);
+        }
+    }
+
+    //性别回调
+    function mycallback_sex(ret){
+        var myJson = ret;
+        console.log(myJson.data[0].salutation);
+        if(myJson.success)
+        {
+            if(myJson.data[0].salutation == 26)
+            {
+                $('#userIcon').attr('src','../images/ui/photo-man.png');
+            }else{
+                $('#userIcon').attr('src','../images/ui/photo-woman.png');
+            }
+            jAlert('修改成功');
+        }else{
+            jAlert('修改失败');
+        }
+    }
+
+    function mycallback_phoneVeri(ret){
+        var phone_ver = $("#phone_ver")[0];
+        console.log(ret);
+        var myJson = ret;
+        console.log(myJson);
+        if(myJson.success){
+            vlm.Utils.sendMobileCode(phone_ver.value);
+        }else{
+            jAlert(myJson.message);
+        }
+    }
+    function mycallback_newKey(ret){
+        var myJson = ret;
+        console.log(myJson);
+        if(myJson.success){
+            document.getElementById("keyForm").submit();
+        }else{
+            jAlert(myJson.message);
+        }
+    }
+
+    /*退出账户清除localStorage*/
+    $('.info-quit').click(function(){
+        jConfirm("确认退出当前帐号?","",logout);
+        function logout(arg){
+            if(arg){
+                localStorage.removeItem('memberid');
+                localStorage.removeItem('login');
+                localStorage.removeItem('email');
+                localStorage.removeItem('phone');
+                window.location.href='user.html';
+            }
+
+        }
+    });
 
 
-//时间倒计时结束后
-function phone_timeout(){
-    console.log(phone_verify);
-    phone_verify.innerHTML='发送验证码';
-    phone_verify.style.color='#ffb413';
-    phoneBflag=false;
-}
+    //时间倒计时结束后
+    function phone_timeout(){
+        console.log(phone_verify);
+        phone_verify.innerHTML='发送验证码';
+        phone_verify.style.color='#ffb413';
+        phoneBflag=false;
+    }
 
-//时间倒计过程中
-function time_reciprocals(sec){
-    phone_verify.innerHTML=sec+'秒重新发送';
-    phone_verify.style.color='#ccc';
-}
+    //时间倒计过程中
+    function time_reciprocals(sec){
+        phone_verify.innerHTML=sec+'秒重新发送';
+        phone_verify.style.color='#ccc';
+    }
 
-//清除昵称输入内容
-function clearname(){
-    var name = document.getElementById("name");
-    name.value = "";
-}
+    //清除昵称输入内容
+    function clearname(){
+        var name = document.getElementById("name");
+        name.value = "";
+    }
 
