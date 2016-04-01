@@ -1862,13 +1862,13 @@ h1, h2, h3, h4, h5, h6 {
     width: 22px;
     height: 22px;
     left: 3px;
-    top: 13px;
+    top: 12px;
 }
 
 .date-search-line .top-search-zone div {
     display: inline-block;
     height: 40px;
-    line-height: 40px;
+    line-height: 42px;
     width: 60%;
     background: #FFFFFF;
     text-align: center;
