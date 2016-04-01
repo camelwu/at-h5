@@ -244,6 +244,10 @@ Scroller.prototype = {
 		for (; i < len; i++) {
 			arr.push(box[i].innerHTML);
 		}
+        
+        //缓存用户选择的内容
+        ele.setAttribute("data-cache",arr.join("-"));
+        
 		if (/^(textarea|input|div)$/i.test(ele.nodeName)) {
 			if(that.type == "birth"){
 				var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
@@ -286,7 +290,8 @@ Scroller.prototype = {
 				$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
 				ele.innerHTML = arr.join("");
 			}
-
+            
+           
 		}else{
 			ele.innerHTML = arr.join("");
 		}
@@ -303,6 +308,44 @@ Scroller.prototype = {
 		}
 		return str;
 	},
+    //时间缓存
+    scrollTo : function(){
+        var opeater = document.getElementById("opeater");
+        var time = document.getElementById('' + opeater.getAttribute("data-id")).getAttribute("data-cache");
+        if(!time){return};
+        var arr = time.split("-");
+        var year = arr[0];
+        var month = arr[1];
+        var day = arr.length > 2 ? arr[2] : "";
+        
+        var sels = $(".sel-time");
+        for(var i=0;i<sels.length;i++){
+            var nodes = sels[i].childNodes;
+            for(var j=0;j<nodes.length;j++){
+                var h = (j-2) * 49;   //减去两个空节点
+                switch(nodes[j].innerText){
+                    case year:
+                        $(sels[0]).animate({
+                            scrollTop : h
+                        });
+                    break;
+                    case month:
+                         $(sels[1]).animate({
+                            scrollTop : h
+                        });
+                    break;
+                    case day:
+                        if(i == 2){
+                            $(sels[2]).animate({
+                                scrollTop : h
+                            });
+                        }
+                    break;
+                }
+            }
+        }
+        
+    },
 	// 滑动事件
 	scrollOn : function() {
 		var sels = $('.sel-time'), i = 0, l = sels.length, that = this, m = 1;
@@ -353,7 +396,7 @@ Scroller.prototype = {
 		function ResetDay(day) {
 			var oLiDay = sels.eq(2), pos = oLiDay.scrollTop(), page = parseInt(pos / 49), arr3 = [];
 			for (var i = 1; i < day + 1; i++) {
-				arr3.push('<span>' + i + '号</span>');
+				arr3.push('<span>' + i + '日</span>');
 			}
 			oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp'].join(''));
 			if (pos / 49 - page > 0.5) {
@@ -393,6 +436,7 @@ Scroller.prototype = {
 			that.createContainer(id, t);
 			that.drawData(id, t);
 			that.type = t;
+            that.scrollTo();
 		});
 	},
 	// 对象区域外点击，隐藏

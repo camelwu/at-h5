@@ -396,7 +396,7 @@ var ticketSeatChoose = {
         this.curFlightListData = itemObj;
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
-        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':'';
+        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = /*this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':*/'';
         var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>';
         var priceAndTaxStr='';
         if(this.assistInfo.interNationalOrDomestic=="domestic"){

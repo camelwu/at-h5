@@ -73,6 +73,7 @@ TicketDate.prototype.inputEvent=function(){
         }
     });
 },
+
 TicketDate.prototype.initialize =function (options) {
     this.type = options.type;
     this.id = options.id;
@@ -197,7 +198,6 @@ TicketDate.prototype.drawDate = function (odate) {
         }
     }
     dd.innerHTML = ddHtml.join('');
-
     // 添加
     this.container.appendChild(dateWarp);
     var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
@@ -475,6 +475,7 @@ TicketDate.prototype.drawLastDate =function (odate) { // 参数 odate 为日期�
     // A link事件绑定
     this.linkOn();
 };
+
 var  conditionalFiltering = {
 
     addHandler: function (target, eventType, handle) {
@@ -500,7 +501,6 @@ var  conditionalFiltering = {
         var backShadow = document.createElement('div');
         backShadow.className = 'r-shadow';
         backShadow.id = 'r-shadow';
-
         var oDiv = document.createElement('div');
         oDiv.className = "filter-wrap";
 
@@ -537,7 +537,7 @@ var  conditionalFiltering = {
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
                 '<li class="filter-title clear-background" data-info="df">直飞</li>'+
-                '<li class="filter-title" data-info="sh">共享航班</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
                 '<li class="filter-title" data-info="du">起飞时段</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
                 '</ul>'+
@@ -560,7 +560,7 @@ var  conditionalFiltering = {
                 '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
                 '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
-                '<li class="tag-item" data-i="Business">公务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
                 '</ul>'+
                 '</div>'+
@@ -601,7 +601,7 @@ var  conditionalFiltering = {
                 '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
                 '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
-                '<li class="tag-item" data-i="Business">公务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
                 '</ul>'+
                 '</div>'+
@@ -656,7 +656,7 @@ var  conditionalFiltering = {
                 '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
                 '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
-                '<li class="tag-item" data-i="Business">公务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
                 '</ul>'+
                 '</div>'+
@@ -685,7 +685,7 @@ var  conditionalFiltering = {
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
                 '<li class="filter-title clear-background" data-info="df">直飞</li>'+
-                '<li class="filter-title" data-info="sh">共享航班</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
                 '</ul>'+
                 '<div class="detail-list" style="color: rgb(102, 102, 102);">'+
@@ -700,7 +700,7 @@ var  conditionalFiltering = {
                 '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
                 '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
-                '<li class="tag-item" data-i="Business">公务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
                 '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
                 '</ul>'+
                 '</div>'+

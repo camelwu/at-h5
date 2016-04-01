@@ -9,6 +9,13 @@ var getSex = {
     "MRS":"女"
 };
 $(document).ready(function(){
+
+    $(".tel-icon").on("click", function () {
+        $(".jpop_box_tic").show();
+    })
+    $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+        $('.jpop_box_tic').hide();
+    })
     
     //初始化有效期选择组件
     var expityDate = new Scroller({id: "CardExpiryDate", type:"cardExpirationDate",cont:"cardExpirationDate1234"});
