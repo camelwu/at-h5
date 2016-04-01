@@ -86,6 +86,7 @@ Scroller.prototype = {
 		var that = this, Warper, dataNode, lineNode, opeater;
 		function setTime(t, s) {
 			var Y = [];
+            var m = new Date().getMonth(), d = new Date().getDate();
 			if (s == "年") {
 				if (that.type == that._time[0]) {
 					t = 0;
@@ -108,11 +109,17 @@ Scroller.prototype = {
 					Y.push("<span>" + i + s + "</span>");
 				}
 			} else if (s == "月") {
-				for (var i = 1; i <= 12; i++) {
-					Y.push("<span>" + i + s + "</span>");
-				}
+                    
+                    if (that.type == that._time[2]){
+                        for (var i = m + 1; i <= 12; i++) {
+                            Y.push("<span>" + i + s + "</span>");
+                        }
+                    }else{
+                        for (var i = 1; i <= 12; i++) {
+                            Y.push("<span>" + i + s + "</span>");
+                        }
+                    }
 			} else {
-				var m = new Date().getMonth(), d = new Date().getDate();
 				for (var i = 1; i <= that.days[1]; i++) {
 					Y.push("<span>" + i + s + "</span>");
 				}
