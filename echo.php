@@ -8,10 +8,6 @@ if(file_exists($fileName)) {
   echo("不存在!");
 }
 
-
-
-//$result = shell_exec("/bin/bash ./deploy.sh");
-//passthru('deploy.sh',$result);
 exec("/usr/bin/sudo /var/www/AT-H5-02/deploy.sh",$result,$ret);
 echo "<br/>";
 print_r($result);
