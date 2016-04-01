@@ -469,7 +469,8 @@ var ticketDouble = {
         var oLis =  document.querySelectorAll('.seat-detail'),that = ticketDouble;
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
-                document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
+                 console.log(that.backParaObj)
+                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+'&hasTax='+that.backParaObj.hasTax+
                 '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild+'&interNationalOrDomestic='+that.backParaObj.interNationalOrDomestic;
             })
 

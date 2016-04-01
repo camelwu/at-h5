@@ -1690,12 +1690,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #time-modal,#price-modal{
-   /* min-height: 6.4rem;*/
     width: 100%;
     position: fixed;
     bottom: -126%;
     background: #FFFFFF;
-    z-index: 87;
+    z-index: 105;
     margin-bottom: 0;
     list-style: none;
 }
