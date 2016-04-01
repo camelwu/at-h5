@@ -850,11 +850,16 @@ var arrCountry= [{"CountryEN":"Angola",
                         oDiv.style.display='none';
                         oTc.style.display='none';
                         if(document.querySelector("#addtra_page .user-content")  !=null) {
-                            $('#addtra_page .user-content').show().css({
+                            $('.gj-header').css('visibility','hidden');
+                            $('.country-cho-wrap').css('visibility','hidden');
+                            $('#addtra_page').css({
+                                'visibility':'visible',
                                 'height':n,
                                 'position':'relative'
                             });
-                            $('#uptra_page .user-content').show().css({
+                            $('#content').show();
+                            $('#uptra_page').css({
+                                'visibility':'visible',
                                 'height':n,
                                 'position':'relative'
                             });
@@ -881,7 +886,10 @@ var arrCountry= [{"CountryEN":"Angola",
                 };
 
                 oDiv.style.display='block';
-                $('#uptra_page .user-content').hide();
+                $('.country-cho-wrap').css('visibility','visible');
+                $('.gj-header').css('visibility','visible');
+                $('#content-wrap').css('visibility','hidden');
+                $('#uptra_page').css('visibility','hidden');
                 var n;
                 n=$(window).height();
                 //android 相对位置 防止键盘覆盖问题
@@ -892,18 +900,19 @@ var arrCountry= [{"CountryEN":"Angola",
 
                 //国家选择弹层返回按钮
                 $('.country-hidden').click(function(){
-                    $('.country-cho-wrap').hide();
-
-                    $('#addtra_page .user-content').show().css({
+                    $('.gj-header').css('visibility','hidden');
+                    $('.country-cho-wrap').css('visibility','hidden');
+                    $('#addtra_page').css({
+                        'visibility':'visible',
                         'height':n,
                         'position':'relative'
                     });
                     $('#content').show();
-                    $('#uptra_page .user-content').show().css({
+                    $('#uptra_page').css({
+                        'visibility':'visible',
                         'height':n,
                         'position':'relative'
                     });
-
 
                 });
 
@@ -919,13 +928,15 @@ var arrCountry= [{"CountryEN":"Angola",
                         oDiv.style.display='none';
                         oTc.style.display='none';
                         if(document.querySelector("#addtra_page .user-content")!=null) {
-                            //document.querySelector("#addtra_page .user-content").style.position = "relative";
-                            //document.querySelector("#uptra_page .user-content").style.position = "relative";
-                            $('#addtra_page .user-content').show().css({
+                            $('.gj-header').css('visibility','hidden');
+                            $('.country-cho-wrap').css('visibility','hidden');
+                            $('#addtra_page').css({
+                                'visibility':'visible',
                                 'height':n,
                                 'position':'relative'
                             });
-                            $('#uptra_page .user-content').show().css({
+                            $('#uptra_page').css({
+                                'visibility':'visible',
                                 'height':n,
                                 'position':'relative'
                             });

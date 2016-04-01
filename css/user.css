@@ -1411,6 +1411,10 @@ a{
 
 
 /*国籍选择*/
+.gj-header{
+    z-index: 9999;
+    visibility: hidden;
+}
 .country-cho-wrap {
     position: absolute;
     top:0;
