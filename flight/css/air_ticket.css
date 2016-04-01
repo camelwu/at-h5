@@ -738,7 +738,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.4rem;
     list-style: none;
     position: fixed;
-    top: 4rem;
+    top:50px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -1741,9 +1741,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .date-search-line{
     width: 100%;
-    height: 4.9rem;
+    height: 48px;
     background: #163852;
-    padding-bottom: 1.0rem;
     position: fixed;
     top: 49px;
     left: 0;
@@ -1754,9 +1753,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .date-search-line .unit {
     text-align: center;
-    height: 3.9rem;
+    height: 100%;
     width: 26%;
-    line-height: 3.9rem;
+    line-height: 49px;
     color: #FFB413;
     font-size: 1.4rem;
     position: relative;
@@ -1772,8 +1771,8 @@ h1, h2, h3, h4, h5, h6 {
 .previous-day-arrow{
     display: inline-block;
     position: absolute;
-    left: 1.2rem;
-    top: 50%;
+    left: 12px;
+    top: 25px;
     width: 8px;
     height: 8px;
     border-bottom: 1.2px solid #FFB412;
@@ -1799,7 +1798,7 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1.2px solid #FFB412;
     border-left: 0;
     border-right: 1.2px solid #FFB412;
-    -webkit-transform: rotate(45deg) translateY(-50%);
+    -webkit-transform: rotate(-45deg) translateY(-50%);
     -o-transform: rotate(-45deg) translateY(-50%);
     -moz-transform: rotate(-45deg) translateY(-50%);
     -ms-transform: rotate(-45deg) translateY(-50%);
@@ -1844,11 +1843,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .date-search-line .top-search-zone {
-    height: 3.6rem;
+    height: 40px;
     width: 48%;
     float: left;
     background: #FFFFFF;
     border-radius: 4px;
+    position: relative;
+    top: 4px;
 
 }
 
@@ -1861,8 +1862,8 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     width: 22px;
     height: 22px;
-    left: 0;
-    top: 1.26rem;
+    left: 3px;
+    top: 13px;
 }
 
 .date-search-line .top-search-zone div {
@@ -1881,12 +1882,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .date-search-line .top-search-zone i {
     background: url(../../images/ui/down-tri.png) no-repeat;
-    background-size: 13px 7px;
+    background-size: 12px 7px;
     position: absolute;
     width: 22px;
     height: 22px;
     right: 0;
-    top: 1.6rem;
+    top: 18px;
 }
 .num-wrap {display: none}
 .berths {
