@@ -37,6 +37,7 @@ TicketDate.prototype.linkColor=function(type,date){
 };
 
 TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程','去+返']};
+
 TicketDate.prototype.inputEvent=function(){
     var that = this;
     var date = new Date();
@@ -353,6 +354,9 @@ TicketDate.prototype.linkOver = function(event){
             that.linkColor('Oneway',that.singleDate);
             out[0].innerHTML=returnWeek(that.singleDate);
         }
+        console.log(that.singleDate)
+        console.log(out[0])
+        out[0].setAttribute('data-date',that.singleDate)
     }
     that.timer = window.setTimeout(function(){
         that.op>=1?that.op=0:null;
@@ -424,6 +428,52 @@ TicketDate.prototype.linkReset =function(ele){
         }
         return false;
     }
+};
+
+TicketDate.prototype.drawLastDate =function (odate) { // 参数 odate 为日期对象格式
+    var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+    var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate(), MonWord='', dayWord='';
+    this.dateWarp = dateWarp = document.createElement('div');
+    dateWarp.className = 'calendar';
+    dateWarp.innerHTML = this._template.join('');
+    this.year = year = odate.getFullYear();
+    this.month = month = odate.getMonth()+1;
+    this.date = date = odate.getDate();
+    this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+    tims = this.time;
+    textNode = document.createTextNode(year + '年' + month + '月');
+    titleDate.appendChild(textNode);
+    //this.btnEvent();
+    console.log(year);
+    // 获取模板中唯一的DD元素
+    dd = _CalF.$('dd',dateWarp)[0];
+    // 获取本月天数
+    days = new Date(year, month, 0).getDate();
+    // 获取本月第一天是星期几
+    weekStart = new Date(year, month-1,1).getDay();
+    // 开头显示空白段
+    for (i = 0; i < weekStart; i++) {
+        ddHtml.push('<a>&nbsp;</a>');
+    }
+    // 循环显示日期
+    MonWord = Number(month)<10?'0'+Number(month):Number(month);
+    for (i = 1; i <= days; i++) {
+        if(i<=nowdate){
+            dayWord = Number(i)<10?'0'+Number(i):Number(i);
+            ddHtml.push('<a class="live" data-day="'+year+'-'+MonWord+'-'+dayWord+'">' + i + '</a>');
+        }else{
+            ddHtml.push('<a class="disabled">' + i + '</a>');
+        }
+    }
+    dd.innerHTML = ddHtml.join('');
+
+    // 添加
+    this.container.appendChild(dateWarp);
+    //IE6 select遮罩
+    var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+    if(ie6) dateWarp.appendChild(this.createIframe());
+    // A link事件绑定
+    this.linkOn();
 };
 var  conditionalFiltering = {
 

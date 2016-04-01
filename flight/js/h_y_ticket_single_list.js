@@ -38,10 +38,11 @@ var ticketSingle = {
     },
 
     dateChangeRender:function(){
-           var that = ticketSingle,dateStr = document.querySelector('.num-wrap').innerHTML;
-           var reg = /(\d{1,2})月(\d{1,2})日/g,tStr = reg.exec(dateStr);
+           var that = ticketSingle,dateStr = document.querySelector('.num-wrap').getAttribute('data-date');
+           var reg = /(\d{4})-(\d{1,2}-\d{1,2})/g,tStr = reg.exec(dateStr);
+        console.log(tStr)
            var returnWeek  = function(arg){
-                   var index = new Date(new Date().getFullYear()+'/'+tStr[1]+'/'+tStr[2]).getDay(),week;
+                   var index = new Date(dateStr.replace(/-/g,'/')).getDay(),week;
                    switch (index){
                    case 0 :
                        week = '周日';
@@ -71,14 +72,13 @@ var ticketSingle = {
                };
            tStr[1] = parseInt(tStr[1]) < 10?'0'+parseInt(tStr[1]):parseInt(tStr[1]);
            tStr[2] = parseInt(tStr[2]) < 10?'0'+parseInt(tStr[2]):parseInt(tStr[2]);
-           document.querySelector('.single-ticket-input').innerHTML = tStr[1] + '-' + tStr[2] +'&nbsp;<span>'+ returnWeek(new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2])+'</span>';
-           that.backParaObj.DepartDate = new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2];
+           document.querySelector('.single-ticket-input').innerHTML = tStr[1]+'&nbsp;<span>'+ returnWeek(new Date().getFullYear()+'-'+tStr[1]+'-'+tStr[2])+'</span>';
+           that.backParaObj.DepartDate = dateStr;
            document.querySelector('#preloader').style.display='block';
            //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
            //重置URL  DepartDate
             var newUrl = vlm.setUrlPara("","DepartDate",that.backParaObj.DepartDate);
             window.location.href = newUrl;
-        
     },
 
     tAjax: function (questUrl, data, Code, ForeEndType, Callback,loadMoreSign) {
@@ -108,7 +108,8 @@ var ticketSingle = {
     },
 
     returnWeek:function(arg){
-        var index = new Date(arg.replace(/-/g, "/")).getDay(),week;
+
+        var index =new Date(arg.replace(/-/g, "/")).getDay(),week;
         switch (index){
             case 0 :
                 week = '周日';
@@ -151,39 +152,15 @@ var ticketSingle = {
     preAndNex:function(){
         var oDivs = document.querySelectorAll('.unit'),that = this;
         ticketSingle.addHandler(oDivs[0], 'click', function(){
-            var str = document.querySelector('.single-ticket-input').innerHTML;
-            var reg = /(\d{1,2}-\d{1,2})[\s\S]*/g;
-            var dateCur = reg.exec(str)[1];
-            var dd = new Date(((new Date().getFullYear()) +'-'+dateCur).replace(/-/g, "/"));
-            dd.setDate(dd.getDate()-1);
-            var monthNum = (dd.getMonth()+1)<10?"0"+parseInt((dd.getMonth()+1)):dd.getMonth()+1;
-            var dateNum = (dd.getDate())<10?"0"+parseInt(dd.getDate()):dd.getDate();
-            var arg = dd.getFullYear()+'-'+monthNum+'-'+dateNum;
-            if(new Date(arg.replace(/-/g, "/")+' 23:59:59')>=new Date()){
-                var result = ticketSingle.returnWeek(arg);
-                document.querySelector('.single-ticket-input').innerHTML = result;
-                that.backParaObj.DepartDate = arg;
-                that.backParaObj.pageNo= 1;
-                that.backParaObj.pageSize= 10;
-                document.querySelector('#preloader').style.display='block';
-                //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
-                //重置URL  DepartDate
-                var newUrl = vlm.setUrlPara("","DepartDate",arg);
-                window.location.href = newUrl;
-            }else {
-                oDivs[0].className = 'unit previous-day disabled-date-choose'
-            }
-        });
-        ticketSingle.addHandler(oDivs[1], 'click', function(){
-            var str = document.querySelector('.single-ticket-input').innerHTML;
-            var reg = /(\d{1,2}-\d{1,2})[\s\S]*/g;
-            var dateCur = reg.exec(str)[1];
-            var dd = new Date(((new Date().getFullYear()) +'-'+dateCur).replace(/-/g, "/"));
-            dd.setDate(dd.getDate()+1);
-            var monthNum = (dd.getMonth()+1)<10?"0"+parseInt((dd.getMonth()+1)):dd.getMonth()+1;
-            var dateNum = (dd.getDate())<10?"0"+parseInt(dd.getDate()):dd.getDate();
-            var arg = dd.getFullYear()+'-'+monthNum+'-'+dateNum;
-            if(new Date(arg.replace(/-/g, "/"))-new Date()>0){
+            var arg_ = document.querySelector('.num-wrap').getAttribute('data-date'),arg;
+            var tem = new Date(arg_);
+            arg= new Date(tem.setDate(tem.getDate()-1));
+            var monthNum = (arg.getMonth()+1)<10?"0"+parseInt((arg.getMonth()+1)):arg.getMonth()+1;
+            var dateNum = (arg.getDate())<10?"0"+parseInt(arg.getDate()):arg.getDate();
+            arg = arg.getFullYear()+'-'+monthNum+'-'+dateNum;
+            console.log(arg)
+            var lineMaxDate = new Date().getFullYear()+1+'/'+(new Date().getMonth()+1)+'/'+new Date().getDate();
+            if(new Date(arg+' 23:59:59')>=new Date()){
                 var result_ = ticketSingle.returnWeek(arg);
                 oDivs[0].className = 'unit previous-day';
                 document.querySelector('.single-ticket-input').innerHTML = result_;
@@ -195,6 +172,33 @@ var ticketSingle = {
                 //重置URL  DepartDate
                 var newUrl = vlm.setUrlPara("","DepartDate",arg);
                 window.location.href = newUrl;
+            }else{
+                oDivs[0].className = 'unit previous-day disabled-date-choose'
+            }
+        });
+        ticketSingle.addHandler(oDivs[1], 'click', function(event){
+            var arg_ = document.querySelector('.num-wrap').getAttribute('data-date'),arg;
+            var tem = new Date(arg_);
+            arg= new Date(tem.setDate(tem.getDate()+1));
+            var monthNum = (arg.getMonth()+1)<10?"0"+parseInt((arg.getMonth()+1)):arg.getMonth()+1;
+            var dateNum = (arg.getDate())<10?"0"+parseInt(arg.getDate()):arg.getDate();
+            arg = arg.getFullYear()+'-'+monthNum+'-'+dateNum;
+            console.log(arg)
+            var lineMaxDate = new Date().getFullYear()+1+'/'+(new Date().getMonth()+1)+'/'+new Date().getDate();
+            if(new Date(arg)>new Date()&&new Date(arg)<=new Date(lineMaxDate+' 08:00:00')){
+                var result_ = ticketSingle.returnWeek(arg);
+                oDivs[0].className = 'unit previous-day';
+                document.querySelector('.single-ticket-input').innerHTML = result_;
+                that.backParaObj.DepartDate = arg;
+                that.backParaObj.pageNo= 1;
+                that.backParaObj.pageSize= 10;
+                document.querySelector('#preloader').style.display='block';
+                //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+                //重置URL  DepartDate
+                var newUrl = vlm.setUrlPara("","DepartDate",arg);
+                 window.location.href = newUrl;
+            }else{
+                oDivs[1].className = 'unit next-day disabled-date-choose'
             }
 
         });
@@ -533,6 +537,7 @@ var ticketSingle = {
         var generatedCount = 0,that = ticketSingle;
         document.querySelector('.set-place').innerHTML =backParaObj.fromCity;
         document.querySelector('.to-place').innerHTML =backParaObj.toCity;
+        document.querySelector('.num-wrap').setAttribute('data-date', backParaObj.DepartDate);
         this.tripType = backParaObj.interNationalOrDomestic;
         backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
         backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
