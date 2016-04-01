@@ -19,7 +19,11 @@
     }
     body.modal-open {
         overflow: hidden;
-        /*-webkit-overflow-scrolling: touch;*/
+        -webkit-overflow-scrolling: touch;
+        /*		position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;*/
     }
     main {
         position: relative;
@@ -35,7 +39,6 @@
     }
     .modal-open modal {
         position: fixed;
-        display: none;
         background: rgba(0, 0, 0, .5);
         left: 0;
         top: 0;
@@ -46,8 +49,8 @@
     dialog {
         position: relative;
         display: none;
-        min-width: 300px;
-        max-width: 600px;
+        min-width: 150px;
+        max-width: 300px;
         /*max-height: 100px;*/
         max-height: 90%;
         margin: 4em auto;
@@ -56,7 +59,7 @@
         border: 3px solid black;
         background: white;
         overflow: scroll;
-        box-sizing: border-box;
+        /*box-sizing: border-box;*/
     }
     .modal-open dialog {
         display: block;
@@ -149,13 +152,11 @@
     var dialog = document.querySelector('dialog');
     var button = document.querySelector('button');
 
-
     var touchX, touchY;
 
     button.onclick = function(e) {
         document.body.classList.add('modal-open');
     };
-
 
     window.ontouchstart = function(e) {
         if (!document.body.classList.contains('modal-open'))
@@ -175,57 +176,39 @@
             e.preventDefault();
     };
 
-//    window.ontouchstart = function(e) {
-//        if (!document.body.classList.contains('modal-open'))
-//            return;
-//
-//        var touch = e.changedTouches[0];
-//
-//        touchX = touch.screenX;
-//        touchY = touch.screenY;
-//
-//        if (!dialog.contains(e.target))
-//            e.preventDefault();
-//
-//        if (dialog.scrollTop === 0)
-//            e.preventDefault();
-//        else if (dialog.scrollTop === dialog.scrollHeight - dialog.clientHeight)
-//            e.preventDefault();
-//    };
+    window.ontouchend = function(e) {
+        var touch = e.changedTouches[0];
 
-//    window.ontouchend = function(e) {
-//        var touch = e.changedTouches[0];
-//
-//        if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
-//            return;
-//
-//        if (!dialog.contains(e.target))
-//            document.body.classList.remove('modal-open');
-//
-//        touchX = void 0;
-//        touchY = void 0;
-//    };
-//
-//    window.ontouchcancel = function(e) {
-//        touchX = void 0;
-//        touchY = void 0;
-//    };
+        if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
+            return;
 
-//    var padding = 1;
+        if (!dialog.contains(e.target))
+            document.body.classList.remove('modal-open');
 
-//    requestAnimationFrame(function frame() {
-//        var min = 0,
-//                max = dialog.scrollHeight - dialog.clientHeight;
-//
-//        var val = dialog.scrollTop;
-//
-//        if (val === min) {
-//            dialog.scrollTop += padding;
-//        } else if (val === max) {
-//            dialog.scrollTop -= padding;
-//        }
-//
-//        requestAnimationFrame(frame);
-//    });
+        touchX = void 0;
+        touchY = void 0;
+    };
+
+    window.ontouchcancel = function(e) {
+        touchX = void 0;
+        touchY = void 0;
+    };
+
+    var padding = 1;
+
+    requestAnimationFrame(function frame() {
+        var min = 0,
+                max = dialog.scrollHeight - dialog.clientHeight;
+
+        var val = dialog.scrollTop;
+
+        if (val === min) {
+            dialog.scrollTop += padding;
+        } else if (val === max) {
+            dialog.scrollTop -= padding;
+        }
+
+        requestAnimationFrame(frame);
+    });
 </script>
 
