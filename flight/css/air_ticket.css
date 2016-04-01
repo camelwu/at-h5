@@ -2715,7 +2715,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 0.2rem;
     font-size: 1.35rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
-
+    line-height: 3.5rem;
 }
 
 .contact .table .unit {
@@ -2756,6 +2756,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 3.3rem;
     height: 3.3rem;
     width: 3.3rem;
+    float: left;
 }
 
 .contact .table .tel div.left {
@@ -2802,7 +2803,13 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 24px;
     padding: 8px 0;
 }
-
+.contact-table .nleft,.contact-table .nright{
+    width: 50%;
+}
+.contact-table .nleft{
+    border-right:1px solid #dfe0db;
+}
+.contact-table .nright label{ padding-left: 10px;}
 .contact .table .email {
     display: -moz-box;  /* Firefox */
     display: -ms-flexbox;    /* IE10 */
