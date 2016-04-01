@@ -73,6 +73,7 @@ TicketDate.prototype.inputEvent=function(){
         }
     });
 },
+
 TicketDate.prototype.initialize =function (options) {
     this.type = options.type;
     this.id = options.id;
@@ -197,7 +198,6 @@ TicketDate.prototype.drawDate = function (odate) {
         }
     }
     dd.innerHTML = ddHtml.join('');
-
     // 添加
     this.container.appendChild(dateWarp);
     var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
@@ -475,6 +475,7 @@ TicketDate.prototype.drawLastDate =function (odate) { // 参数 odate 为日期�
     // A link事件绑定
     this.linkOn();
 };
+
 var  conditionalFiltering = {
 
     addHandler: function (target, eventType, handle) {
@@ -500,7 +501,6 @@ var  conditionalFiltering = {
         var backShadow = document.createElement('div');
         backShadow.className = 'r-shadow';
         backShadow.id = 'r-shadow';
-
         var oDiv = document.createElement('div');
         oDiv.className = "filter-wrap";
 
