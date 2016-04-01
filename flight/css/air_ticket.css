@@ -3042,13 +3042,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 #country-code{
    position: relative;
-    left:-14%
+    /*left:-14%*/
 }
 #slider-country-choose{
     display: inline-block;
     position: relative;
     width: 8px;
     height: 8px;
+    margin-left: 15px;
     border-bottom: 1px solid rgb(102, 102, 102);
     border-right: 1px solid rgb(102, 102, 102);
     -webkit-transform: rotate(45deg) translateY(-50%);
