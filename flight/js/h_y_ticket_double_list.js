@@ -416,17 +416,17 @@ var ticketDouble = {
             var str = '';
             if(type == "false"){
                 str +='<div class="price-tax">'+
-                '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountADT))+'</span><span class="word-tip">往返</span><br></div>'+
-                '    <div class="price-tax-info"><span class="tax-word">税费</span>￥'+myFixed(arg.totalTaxAmountADT)+'</div>'+
+                '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+arg.totalFareAmountADT+'</span><span class="word-tip">往返</span><br></div>'+
+                '    <div class="price-tax-info"><span class="tax-word">税费</span>￥'+arg.totalTaxAmountADT+'</div>'+
                 '        </div>';
             }else{
                 if(that.backParaObj.interNationalOrDomestic=="domestic"){
                     str +='<div class="price-tax">'+
-                    '    <div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountADT))+'</span><span class="word-tip">往返</span><br></div>'+
+                    '    <div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="price-num">'+arg.totalFareAmountADT+'</span><span class="word-tip">往返</span><br></div>'+
                     '    </div>';
                 }else{
                     str +='<div class="price-tax">'+
-                    '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+myFixed(parseInt(arg.totalFareAmountExc))+'</span><span class="word-tip">往返</span><br></div>'+
+                    '    <div class="price-info"><span class="price-icon">￥</span><span class="price-num">'+arg.totalFareAmountExc+'</span><span class="word-tip">往返</span><br></div>'+
                     '    <div class="price-tax-info tax-word-pull-left"><span class="tax-word">含税总价</span></div>'+
                     '        </div>';
                 }
@@ -454,7 +454,6 @@ var ticketDouble = {
                     paraObj.PriorityRule = 0;
             }
             paraObj.HasTax = arg.paraRight=='hasTax'?"true":"false";
-            /*  if(paraObj!=that.bottomInfoData){*/
             for(var tem in paraObj){
                 that.backParaObj[tem] = paraObj[tem]
             }
@@ -464,7 +463,6 @@ var ticketDouble = {
             that.initLeftState.left!=temObj.left?document.querySelector('#fo_sc i').className='red-tip':document.querySelector('#fo_sc i').className='';
             that.initLeftState.middle!=temObj.middle?document.querySelector('#fo_ra i').className='red-tip':document.querySelector('#fo_ra i').className='';
             that.initLeftState.right!=temObj.right?document.querySelector('#fo_lo i').className='red-tip':document.querySelector('#fo_lo i').className='';
-            /* }*/
         },
 
     toSeatDetail:function(){
@@ -487,20 +485,6 @@ var ticketDouble = {
             return JSON.stringify(dataObj.data);
         }
     },
-    checkPullStatus:function(){
-        /*
-        var lis =  document.querySelectorAll('.air-tickets-detail-wrapper li');
-        var pullDown = document.querySelector('#pullDown'),pullUp = document.querySelector('#pullUp');
-        if(lis!=null&&lis.length>0){
-            pullDown.style.display = "block";
-            pullUp.style.display = "block";
-        }else{
-            pullDown.style.display = "none";
-            pullUp.style.display = "none";
-        }
-        */
-    },
-
     renderHandler:function(arg){
         var that = ticketDouble,airTicketsListWrapper =  document.querySelector('.air-tickets-detail-wrapper');
         var tipEle = document.querySelector('.flight-result-tip');
