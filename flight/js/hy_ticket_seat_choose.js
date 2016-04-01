@@ -64,16 +64,6 @@ var ticketSeatChoose = {
 
         this.addHandler(reserveButton,'click', function(){
             var that = ticketSeatChoose,login;
-            var myFixed = function(arg){
-                if(String(arg).indexOf('.')>-1){
-                    if(String(arg).substring(String(arg).indexOf('.')).length ==2){
-                        return String(arg)+'0';
-                    }
-                    return String(arg).substring(0,String(arg).indexOf('.')+3)
-                }else{
-                    return String(arg)+'.00';
-                }
-            };
             var totalCountCost = that.curFlightListData.totalTaxAmountADT ==0?that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult):
             that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult) + (that.curFlightListData.totalFareAmountCHD+that.curFlightListData.totalTaxAmountCHD)*parseInt(that.assistInfo.NumofChild);
             var reverseInformationCache = {
@@ -91,7 +81,7 @@ var ticketSeatChoose = {
                 TravellerInfo:[],
                 ContactDetail:{},
                 CurrencyCode: "CNY",
-                TotalFlightPrice: myFixed(totalCountCost)
+                TotalFlightPrice: totalCountCost
             };
             that.reverseInformationCache = reverseInformationCache;
             that.testLogin();
@@ -190,9 +180,9 @@ var ticketSeatChoose = {
 
     createGoTripHtml:function(arg){
         var that = ticketSeatChoose, detailButton;
-        var tipDay = arg.flightLeaveSpacingDay>=1?'+'+arg.flightLeaveSpacingDay+'天':'',str='',isLeaveStopStr,isLeaveShareFlight, leaveStopTag='';
-        if(arg.segmentsReturn == null)
-        {
+        var tipDay = arg.flightLeaveSpacingDay>=1?'+'+arg.flightLeaveSpacingDay+'天':'',str='',isLeaveStopStr,isLeaveShareFlight, leaveStopTag='', realUseStr = '';
+        realUseStr = arg.isLeaveShareFlight==false?'':'<div class="right"><span>实际乘坐</span><span>'+arg.segmentsLeave[0].operatingCarrierName+'</span><span>'+arg.segmentsLeave[0].planeName+'</span></div>';
+        if(arg.segmentsReturn == null){
              isLeaveStopStr = (arg.isLeaveStop == true)?' | <span class="green-word">经停</span></span>':'';
             for(var mj= 0,len=arg.segmentsLeave.length;mj<len;mj++){
                 if(arg.segmentsLeave[mj].techStopTotal>=1){
@@ -220,15 +210,16 @@ var ticketSeatChoose = {
                 '</div>'+
                 '</div>'+
                 '<div class="bottom-word">'+
+                '<div class="left">'+
                 '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
-                '<span> | </span>'+
-                '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
+                '<span>| '+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
                 '<span> | </span>'+
                 '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+isLeaveStopStr+isLeaveShareFlight+
+                '</div>'+realUseStr+
                 '</div>'+
                 '</div>';
         }else{
-            isLeaveStopStr = "";//(arg.isLeaveStop == true)?' | <span class="green-word">经停</span></span>':'';
+            isLeaveStopStr = "";
             leaveStopTag = (arg.isLeaveStop == true)?'<span class="air-port-word">经停'+arg.segmentsLeave[0].techStopAirportName+'</span>':'';
             isLeaveShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
             detailButton = (arg.segmentsLeave.length<=1&&arg.segmentsReturn.length<=1)?'':'<span class="detail-word">详情<i></i></span>';
@@ -250,18 +241,21 @@ var ticketSeatChoose = {
                 '</div>'+
                 '</div>'+
                 '<div class="bottom-word">'+
+                '<div class="left">'+
                 '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
                 '<span> | </span>'+
                 '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
                 '<span> | </span>'+
                 '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+isLeaveStopStr+isLeaveShareFlight+
+                '</div>'+realUseStr+
                 '</div>'+
                 '</div>';
         }
         return str
     },
     createBackTripHtml:function(arg){
-        var isReturnStopStr='',isReturnShareFlight='', returnStopTag='';
+        var isReturnStopStr='',isReturnShareFlight='', returnStopTag='', realUseStr = '';
+        realUseStr = arg.isReturnShareFlight==false?'':'<div class="right"><span>实际乘坐</span><span>'+arg.segmentsReturn[0].operatingCarrierName+'</span><span>'+arg.segmentsReturn[0].planeName+'</span></div>';
         if(arg.segmentsReturn){
             isReturnStopStr = (arg.isReturnStop == true)?' | <span class="green-word">经停</span></span>':'';
             for(var df= 0,len=arg.segmentsReturn.length;df<len;df++){
@@ -299,14 +293,7 @@ var ticketSeatChoose = {
             '<span>'+arg.segmentsReturn[0].operatingCarrierCode+arg.segmentsReturn[0].flightNo+'</span>'+
             '<span> | </span>'+
             '<span>'+arg.segmentsReturn[0].planeName+arg.segmentsReturn[0].planeType+'</span></span>'+isReturnStopStr +isReturnShareFlight+
-            '</div>'+
-            '<div class="right">'+
-            '<span>实际乘坐</span>'+
-            '<span>'+arg.segmentsReturn[0].operatingCarrierName+'</span>'+
-            '<span>'+arg.segmentsReturn[0].planeName+'</span>'+
-            '</div>'+
-            '</div>'+
-            '</div>'
+            '</div>'+realUseStr+'</div></div>';
         }else{
             str=''
         }
@@ -396,17 +383,6 @@ var ticketSeatChoose = {
     },
     createHtml:function(){
         var dataPools = this.storageUtil.get('flightListData'), resultData = {},that = this,setID = this.assistInfo.setId,summaryHtml='';
-        var myFixed = function(arg){
-            if(String(arg).indexOf('.')>-1){
-                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
-                    return String(arg)+'0';
-                }
-                return String(arg).substring(0,String(arg).indexOf('.')+3);
-            }else{
-                return String(arg)+'.00';
-            }
-        };
-
         var allEle = document.querySelector('.all-elements'),itemObj={},backMeal ='';
              dataPools.forEach(function(obj){
                  obj["flightInfos"].forEach(function(obj_){
@@ -420,9 +396,14 @@ var ticketSeatChoose = {
         this.curFlightListData = itemObj;
         this.storageUtil.set('curFlightListData',itemObj);
         this.currentFlightData = itemObj;
-        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':'';
+        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = /*this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':*/'';
         var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>';
-        var priceAndTaxStr =this.assistInfo.interNationalOrDomestic=="domestic"?'<div class="money-show-data money-show-data-domestic"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountADT)+'</span></div>':'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+myFixed(itemObj.totalFareAmountExc)+'</span> <p>含税费￥'+myFixed(itemObj.totalTaxAmountADT)+'</p></div>';
+        var priceAndTaxStr='';
+        if(this.assistInfo.interNationalOrDomestic=="domestic"){
+            priceAndTaxStr='<div class="money-show-data money-show-data-domestic"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountADT+'</span></div>';
+        }else{
+            priceAndTaxStr=this.assistInfo.hasTax=='true'?'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountExc+'</span><p>含税费</p></div>':'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountADT+'</span><p>税费￥'+itemObj.totalTaxAmountADT+'</p></div>';
+        }
         var contentHtml ='<div class="air_content" style="background:#f5f4f9;">' +
             '<ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+that.createGoTripHtml(itemObj)+that.createBackTripHtml(itemObj)+'</li></ul>'+
             '<div class="price-important">' +

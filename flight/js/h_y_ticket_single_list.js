@@ -301,7 +301,7 @@ var ticketSingle = {
         console.log(that.backParaObj);
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
-        var myFixed = function(arg){
+       /* var myFixed = function(arg){
             if(String(arg).indexOf('.')>-1){
                 if(String(arg).substring(String(arg).indexOf('.')).length ==2){
                     return String(arg)+'0';
@@ -310,22 +310,22 @@ var ticketSingle = {
             }else{
                 return String(arg)+'.00';
             }
-        };
+        };*/
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         var returnRightTax = function(){
             var str = '';
             if(type == "false"){
                 str+= '<div class="price-tax single-side">' +
-                '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountADT)+'</span></div>' +
-                '<div class="single-price-tax-info"><span class="tax-word">税费</span>'+myFixed(myFixed(arg.data.flightInfos[i].totalTaxAmountADT)) +'</div>'
+                '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+arg.data.flightInfos[i].totalFareAmountADT+'</span></div>' +
+                '<div class="single-price-tax-info"><span class="tax-word">税费</span>'+arg.data.flightInfos[i].totalTaxAmountADT+'</div>'
             }else{
                 if(that.backParaObj.interNationalOrDomestic=="domestic"){
                     str+= '<div class="price-tax single-side">' +
-                    '<div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountADT)+'</span></div>' +
+                    '<div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="single-price-pull-right">'+arg.data.flightInfos[i].totalFareAmountADT+'</span></div>' +
                     '</div>'
                 }else{
                     str+= '<div class="price-tax single-side">' +
-                    '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+myFixed(arg.data.flightInfos[i].totalFareAmountExc)+'</span></div>' +
+                    '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+arg.data.flightInfos[i].totalFareAmountExc+'</span></div>' +
                     '<div class="single-price-tax-info"><span class="tax-word">含税总价</div>' +
                     '</div>'
                 }
@@ -439,7 +439,7 @@ var ticketSingle = {
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
                  that.storageUtil.set('currentListPara', that.backParaObj );
-                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
+                 document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+'&hasTax='+that.backParaObj.hasTax+
                 '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild+'&interNationalOrDomestic='+that.backParaObj.interNationalOrDomestic;
             })
         }

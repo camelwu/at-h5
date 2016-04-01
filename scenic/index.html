@@ -163,7 +163,7 @@
     <script src="js/scenic_pub.js"></script>
     <script id="tpl_GetHotCity" type="text/template">
         {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i<len;i++){ %}
-            <li class = "hotplace {% if(i == 0){ %}pl-active{% } %}" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
+            <li class = "hotplace" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
         {% } %}
         <!--<li class = "hotplace" title="more">更多</li>-->
     </script>
@@ -224,19 +224,19 @@
                 var inplace = $("#in_place")[0].getElementsByTagName("li");
                 for(var i=0; i < outplace.length; i++){
                     outplace[i].onclick = function(){
-                        for(var i=0; i<outplace.length; i++){
-                            outplace[i].className = "hotplace";
-                        }
-                        this.className='hotplace pl-active';
+//                        for(var i=0; i<outplace.length; i++){
+//                            outplace[i].className = "hotplace";
+//                        }
+//                        this.className='hotplace pl-active';
                         MT.CurrentPageTolist(this.title);
                     }
                 }
                 for(var j=0; j < inplace.length; j++){
                     inplace[j].onclick = function(){
-                        for(var j=0; j<inplace.length; j++){
-                            inplace[j].className = "hotplace";
-                        }
-                        this.className='hotplace pl-active';
+//                        for(var j=0; j<inplace.length; j++){
+//                            inplace[j].className = "hotplace";
+//                        }
+//                        this.className='hotplace pl-active';
                         MT.CurrentPageTolist(this.title);
                     }
                 }
@@ -271,6 +271,7 @@
                     "Code": "0096"
                 }
                 MT.ajaxJson("",JSON.stringify(param),MT.GetExHotCityCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+//                vlm.loadJson("",JSON.stringify(param),MT.GetExHotCityCallback);
             }
 
             /**
@@ -301,6 +302,7 @@
                     "Code":"001305"
                 };
                 MT.ajaxJson("",JSON.stringify(tmp),MT.getHotSpotCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
+//                vlm.loadJson("",JSON.stringify(tmp),MT.getHotSpotCallback);
             };
 
              MT.getHotSpotCallback = function(ret){

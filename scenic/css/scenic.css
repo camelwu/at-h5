@@ -776,7 +776,8 @@ i{
     background-position: -164px 2px;
 }
 .loadmore{
-    padding: 10px 5px;
+    padding: 10px 0;
+    text-align: center;
 }
 /* 列表筛选块  */
 .qp-mengban{
@@ -1685,7 +1686,6 @@ i{
     text-align: center;
     height: 45px;
     padding-top: 14px;
-    width: 140px;
     margin: 0 auto;
 }
 .sce-introduce-child{
