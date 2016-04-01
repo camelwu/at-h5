@@ -9,11 +9,6 @@ if(file_exists($fileName)) {
 }
 
 exec("/usr/bin/sudo /var/www/AT-H5-02/deploy.sh",$result,$ret);
-echo "<br/>";
-print_r($result);
-echo "<br/>";
-print_r($ret);
-echo "<br/>";
 
 foreach($result as $value)
 {
