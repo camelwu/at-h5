@@ -68,13 +68,14 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var update_quit = $("#update_quit")[0];
         var fillName_page = $("#fillName_page")[0];
 
-        function showPage(obj1, obj2) {
-            obj1.onclick = function () {
-                obj2.style.display = "block";
-
+        $('#addUser').click(function(){
+            if($('.eve-traveler').length >= 50)
+            {
+                jAlert('超过常旅客人数上限，请删除一些再添加吧!');
+                return;
             }
-        }
-        showPage(addUser, addtra_page);
+            $('#addtra_page').show();
+        });
 
         //   增加常旅客
         var add_finish = $("#add_finish")[0];
