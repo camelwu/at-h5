@@ -495,7 +495,6 @@ function u_perInfo(){
             jAlert('修改失败');
         }
     }
-
     function mycallback_phoneVeri(ret){
         var phone_ver = $("#phone_ver")[0];
         console.log(ret);
