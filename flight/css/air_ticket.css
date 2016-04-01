@@ -4027,6 +4027,15 @@ li{
     padding-left: 1rem;
     font-size: 1.6rem;
 }
+.open-pho{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    right: 15px;
+    top: 8px;
+    background-position: 65% 3%;
+    background-size:340px 230px;
+}
 /*仓位选择弹窗*/
 
 /*舱位选择滑动*/
