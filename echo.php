@@ -10,8 +10,12 @@ if(file_exists($fileName)) {
 
 
 
-$result = shell_exec("/bin/bash ./deploy.sh");
+//$result = shell_exec("/bin/bash ./deploy.sh");
+
+exec("/bin/bash ./deploy.sh",$result,$ret);
 print_r($result);
+echo "<br/>";
+print_r($ret);
 echo "<br/>";
 
 $file = fopen("log.txt","w");
