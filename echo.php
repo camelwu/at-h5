@@ -12,7 +12,8 @@ if(file_exists($fileName)) {
 
 //$result = shell_exec("/bin/bash ./deploy.sh");
 
-exec("/bin/bash ./deploy.sh",$result,$ret);
+exec("/bin/bash /var/www/AT-H5-02/deploy.sh",$result,$ret);
+echo "<br/>";
 print_r($result);
 echo "<br/>";
 print_r($ret);
