@@ -180,7 +180,7 @@ var ticketDouble = {
             filterModal=document.querySelector('#filter-modal'),timeModal = document.querySelector('#time-modal'),priceModal = document.querySelector('#price-modal');
         for(var i = 0 ;i < oLis.length; i ++){
             this.addHandler(oLis[i], 'click', function(){
-                document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+
+                document.location.href ='ticket_seat_choose.html?setId='+this.getAttribute('data-set-id')+'&RouteType='+that.backParaObj.RouteType+'&hasTax='+that.backParaObj.hasTax+
                 '&CabinClass='+that.backParaObj.CabinClass+'&NumofAdult='+that.backParaObj.NumofAdult+'&NumofChild='+that.backParaObj.NumofChild+'&interNationalOrDomestic='+that.backParaObj.interNationalOrDomestic;
             })
         }
