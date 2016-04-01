@@ -35,6 +35,7 @@
     }
     .modal-open modal {
         position: fixed;
+        display: none;
         background: rgba(0, 0, 0, .5);
         left: 0;
         top: 0;
@@ -150,12 +151,30 @@
 
 
     var touchX, touchY;
-//
+
     button.onclick = function(e) {
         document.body.classList.add('modal-open');
     };
 
-//
+
+    window.ontouchstart = function(e) {
+        if (!document.body.classList.contains('modal-open'))
+            return;
+
+        var touch = e.changedTouches[0];
+
+        touchX = touch.screenX;
+        touchY = touch.screenY;
+
+        if (!dialog.contains(e.target))
+            e.preventDefault();
+
+        if (dialog.scrollTop === 0)
+            e.preventDefault();
+        else if (dialog.scrollTop === dialog.scrollHeight - dialog.clientHeight)
+            e.preventDefault();
+    };
+
 //    window.ontouchstart = function(e) {
 //        if (!document.body.classList.contains('modal-open'))
 //            return;
@@ -167,7 +186,7 @@
 //
 //        if (!dialog.contains(e.target))
 //            e.preventDefault();
-
+//
 //        if (dialog.scrollTop === 0)
 //            e.preventDefault();
 //        else if (dialog.scrollTop === dialog.scrollHeight - dialog.clientHeight)
