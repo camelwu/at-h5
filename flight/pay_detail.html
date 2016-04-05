@@ -71,7 +71,7 @@
                         {% for(var index in travelers){ %}
                             <ul class="passager-info">
                                 <li><span class="passenger-msg-name">{%=travelers[index].travelerName%}</span><span  class="passenger-msg-nameEn">{%=travelers[index].travelerName%}/{%=travelers[index].lastName%}</span>(<span  class="passenger-msg-sex">{%=getSex[travelers[index].sexCode]%}</span>)</li>
-                                <li><span class="passenger-msg-card">{%=travelers[index].IdType%}</span><span  class="passenger-msg-cardNum">{%=travelers[index].IdNumber%}</span></li>
+                                <li><span class="passenger-msg-card">{%=getCardType[travelers[index].idType]%}</span><span  class="passenger-msg-cardNum">{%=travelers[index].idNumber%}</span></li>
                             </ul>
                         {% } %}
                     </li>

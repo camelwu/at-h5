@@ -8,6 +8,11 @@ var getSex = {
     "MS": "男",
     "MRS":"女"
 };
+
+var getCardType = {
+    1: "身份证",
+    2:"护照",
+};
 $(document).ready(function(){
 
     $(".tel-icon").on("click", function () {

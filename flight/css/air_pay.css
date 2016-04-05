@@ -53,6 +53,10 @@ i {
 .air-detail-wrap {
     position: relative;
     margin: 0 20px 25px;
+    -webkit-border-image: url(../../images/lsf_bg1.png) 27;
+    -moz-border-image: url(../../images/lsf_bg1.png) 27;
+    -o-border-image: url(../../images/lsf_bg1.png) 27;
+    border-image: url(../../images/lsf_bg1.png) 27;
 }
 
 .air-detail-box {
@@ -267,7 +271,7 @@ i {
 }
 
 .passenger-msg {
-    padding-top: 30px;
+    padding-top: 22px;
     padding-left: 30px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 0;
