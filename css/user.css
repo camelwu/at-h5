@@ -828,6 +828,9 @@ a{
     list-style-type: none;
     border: none;
     font-size: 1.4rem;
+
+}
+.often_user .passport-num{
     color: #999999;
 }
 .often_user .passport-tips{
