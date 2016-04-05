@@ -366,7 +366,7 @@ var  ticketIndexModal = {
            wrapDiv.className = 'city-list-choose';
            frameStr +='<header class="clearfix"><i class="fl"></i>'+
            '<div class="cl_search">'+
-           '    <input type="text" placeholder="新加坡/xinjiapo/Singapore" id="city-input-zone"><i></i>'+
+           '<input type="text" placeholder="北京/beijing/bj/bjs/中国" id="city-input-zone"><i></i>'+
            '</div>'+
            '</header>'+
            '<div class="city-content jcity-content">'+
