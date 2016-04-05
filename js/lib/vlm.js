@@ -67,7 +67,6 @@
 				//底部菜单
 
 				if (menus.hasOwnProperty(_k)) {
-
 					_initMenu();
 				}
 				if ($(".header").length >= 1 && $(".header").is(":visible")) {
