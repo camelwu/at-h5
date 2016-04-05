@@ -3058,7 +3058,7 @@ h1, h2, h3, h4, h5, h6 {
 .detail-tangle.opened .icon-arrow {
     position: absolute;
     right: 0.2rem;
-    top: 56%;
+    top: 54%;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid #ffb412;
@@ -3083,7 +3083,7 @@ h1, h2, h3, h4, h5, h6 {
 .detail-tangle .icon-arrow {
     position: absolute;
     right: 0.2rem;
-    top: 38%;
+    top: 36%;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid #ffb412;
