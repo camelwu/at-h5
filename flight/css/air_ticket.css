@@ -3037,8 +3037,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flexbox;
     display: flex;
     color: #ffb412;
-    height: 3rem;
-    line-height: 3rem;
+    height: 5rem;
+    line-height:5rem;
     font-size: 1.25rem;
     color: #484848;
     justify-content: flex-end;
@@ -3057,17 +3057,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .detail-tangle.opened .icon-arrow {
     position: absolute;
-    right: 0.2rem;
-    top: 50%;
+    right: 0.4rem;
+    top: 54%;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid #ffb412;
     border-right: 1px solid #ffb412;
-    -webkit-transform: rotate(45deg) translateY(-50%);
-    -o-transform: rotate(45deg) translateY(-50%);
-    -moz-transform: rotate(45deg) translateY(-50%);
-    -ms-transform: rotate(45deg) translateY(-50%);
-    transform: rotate(45deg) translateY(-50%);
+    -webkit-transform: rotate(-135deg) translateY(-50%);
+    -o-transform: rotate(-135deg) translateY(-50%);
+    -moz-transform: rotate(-135deg) translateY(-50%);
+    -ms-transform: rotate(-135deg) translateY(-50%);
+    transform: rotate(-135deg) translateY(-50%);
     -webkit-transform-origin: 50% 0;
     -o-transform-origin: 50% 0;
     -moz-transform-origin: 50% 0;
@@ -3082,17 +3082,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .detail-tangle .icon-arrow {
     position: absolute;
-    right: 0.2rem;
-    top: 45%;
+    right: 0.6rem;
+    top: 43%;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid #ffb412;
     border-right: 1px solid #ffb412;
-    -webkit-transform: rotate(-135deg) translateY(-50%);
-    -o-transform: rotate(-135deg) translateY(-50%);
-    -moz-transform: rotate(-135deg) translateY(-50%);
-    -ms-transform: rotate(-135deg) translateY(-50%);
-    transform: rotate(-135deg) translateY(-50%);
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    -o-transform: rotate(45deg) translateY(-50%);
+    -moz-transform: rotate(45deg) translateY(-50%);
+    -ms-transform: rotate(45deg) translateY(-50%);
+    transform: rotate(45deg) translateY(-50%);
     transition: all 0.4s ease-in-out;
 }
 
@@ -3108,7 +3108,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.4rem;
     color: #ffb413;
     font-weight: normal;
-    height: 5.0rem
+    height: 5rem
 }
 
 #confirm-button {
@@ -3135,12 +3135,14 @@ h1, h2, h3, h4, h5, h6 {
 
 #country-code {
     position: relative;
-    left: -14%
+    /*left: -14%*/
 }
 
 #slider-country-choose {
-    display: inline-block;
-    position: relative;
+    /*display: inline-block;*/
+    position: absolute;
+    top: 45%;
+    right: 0%;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid rgb(102, 102, 102);
@@ -4026,7 +4028,7 @@ li {
 .pas-num-title {
     display: block;
     padding-left: 1.2rem;
-    margin-top: 2rem;
+    padding-top: 1.2rem;
     font-size: 1.6rem;
 }
 
@@ -4057,6 +4059,7 @@ li {
 
 .add-minus-per {
     font-size: 1.6rem;
+    vertical-align: middle;
 }
 
 .add-minus-per-box {
@@ -4066,7 +4069,6 @@ li {
     -ms-flex: 1; /* IE 10 */
     flex: 1;
     text-align: right;
-    padding-top: 0.5rem;
 }
 
 .add-minus-per-more {
@@ -4077,6 +4079,7 @@ li {
     width: 23px;
     height: 23px;
     background-position: 0 44%;
+    vertical-align: middle;
 }
 
 .add-minus-per-more-grey {
@@ -4091,6 +4094,7 @@ li {
     width: 23px;
     height: 23px;
     background-position: 0 0;
+    vertical-align: middle;
 }
 
 .add-minus-per-less-grey {
@@ -4100,7 +4104,6 @@ li {
 .add-minus-per-content {
     display: inline-block;
     vertical-align: top;
-    margin-top: -0.78rem;
     width: 1.6rem;
     text-align: center;
     font-size: 1.4rem;

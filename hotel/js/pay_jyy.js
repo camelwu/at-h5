@@ -121,12 +121,12 @@ var lsf_myweb={
     var expityDate = new Scroller({id: "jp_limit_time", type:"cardExpirationDate",cont:"cardExpirationDate1"});
     
     //输入框
-    lsf_myweb.styleChange('jp_bank','输入银行卡号');
-    lsf_myweb.styleChange('jp_guest_name','姓名');
-    lsf_myweb.styleChange('jp_limit_time','月/年，如：09/12');
-    lsf_myweb.styleChange('jp_safe_code','签名栏末尾最后3位');
-    lsf_myweb.styleChange('jp_bank_name','发卡银行');
-    lsf_myweb.styleChange('jp_bank_country','发卡国家');
+    //lsf_myweb.styleChange('jp_bank','输入银行卡号');
+    //lsf_myweb.styleChange('jp_guest_name','姓名');
+    //lsf_myweb.styleChange('jp_limit_time','月/年，如：09/12');
+    //lsf_myweb.styleChange('jp_safe_code','签名栏末尾最后3位');
+    //lsf_myweb.styleChange('jp_bank_name','发卡银行');
+    //lsf_myweb.styleChange('jp_bank_country','发卡国家');
     //返回按钮
     var jp_back=document.getElementById('jp_back');
     lsf_myweb.bind(jp_back,'click',function(){
@@ -187,54 +187,54 @@ var lsf_myweb={
             myData.CreditCardType=myPayType;
         }
         //信用卡验证
-        if(jp_bank.value=='输入银行卡号'){
-            $.alerts.alert('请输入信用卡卡号',null,"确定");
+        if(jp_bank.value==''){
+            $.alerts.alert('请输入信用卡卡号',null,null,"确定");
             return;
         }else{
             var reg=/^\d+$/g;
             if(!reg.test(jp_bank.value)){
-                $.alerts.alert('信用卡卡号必须是数字',null,"确定");
+                $.alerts.alert('信用卡卡号必须是数字',null,null,"确定");
                 return;
             }else{
                 myData.CreditCardNumber=jp_bank.value;
             }
         }
         //姓名验证
-        if(jp_guest_name.value=='姓名'){
+        if(jp_guest_name.value==''){
             $.alerts.alert('请输入持卡人姓名');
             return;
         }else{
             if(strlen(jp_guest_name.value)>20)
             {
-                $.alerts.alert('超出最大字符!',null,"确定");
+                $.alerts.alert('超出最大字符!',null,null,"确定");
                 return;
             }
             myData.CardHolderName=jp_guest_name.value;
         }
 
         if(!vlm.Utils.validate["engName"](jp_guest_name.value)){
-            jAlert("持卡人姓名必须为英文！","",null,"确认");
+            jAlert("持卡人姓名必须为英文！","",null,null,"确认");
             return false;
         }
 
         //发卡银行验证
-        if(jpBankName.value=='发卡银行'){
-            $.alerts.alert('请输入发卡银行',null,"确定");
+        if(jpBankName.value==''){
+            $.alerts.alert('请输入发卡银行',null,null,"确定");
             return;
         }else{
             myData.BankName=jpBankName.value;
         }
         //发卡国家验证
-        if(jpBankCountry.value=='发卡国家'){
-            $.alerts.alert('请输入发卡国家',null,"确定");
+        if(jpBankCountry.value==''){
+            $.alerts.alert('请输入发卡国家',null,null,"确定");
             return;
         }else{
             myData.CardIssuanceCountry=jpBankCountry.value;
         }
 
         //有效期验证
-        if(jp_limit_time.value=='月/年，如：09/12'){
-            $.alerts.alert('请输入有效期',null,"确定");
+        if(jp_limit_time.value==''){
+            $.alerts.alert('请输入有效期',null,null,"确定");
             return;
         }else{
             myData.CreditCardExpiryDate=jp_limit_time.value;
@@ -244,19 +244,19 @@ var lsf_myweb={
             return false;
         }
         //安全码验证
-        if(jp_safe_code.value=='签名栏末尾最后3位'){
-            $.alerts.alert('请输入信用卡安全码',null,"确定");
+        if(jp_safe_code.value==''){
+            $.alerts.alert('请输入信用卡安全码',null,null,"确定");
             return;
         }else{
             var reg=/^\d+$/g;
             if(!reg.test(jp_safe_code.value)){
-                $.alerts.alert('信用卡安全码必须是数字',null,"确定");
+                $.alerts.alert('信用卡安全码必须是数字',null,null,"确定");
                 return;
             }else{
                 if(jp_safe_code.value.length==3){
                     myData.CardSecurityCode=jp_safe_code.value;
                 }else{
-                    $.alerts.alert('信用卡安全码必须是3位数字',null,"确定");
+                    $.alerts.alert('信用卡安全码必须是3位数字',null,null,"确定");
                     return;
                 }
             }

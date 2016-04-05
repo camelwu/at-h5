@@ -216,15 +216,13 @@ var ticketDouble = {
         '<span class="to-place">'+citys.toCity+'</span>'+
         '</header>'+
         '<div class="tip-button-para">'+
-        '<p class="no-flight-word">没有找到符合条件的航班！ </p></div>'
+        '<p class="no-flight-word">没有找到符合条件的航班！ </p></div>';
         allEleWrap.appendChild(div);
         backButton = document.querySelector('.close-no-flight');
         that.addHandler(backButton,"click",function(){
             allEleWrap.removeChild(div)
         })
-
     },
-
     returnTransferCity:function(arg){
         var str = '';
         if(arg.length<=2){
@@ -234,7 +232,6 @@ var ticketDouble = {
         }
         return str;
     },
-
     returnTransferCity:function(arg){
         var str = '';
         if(arg.length<2){

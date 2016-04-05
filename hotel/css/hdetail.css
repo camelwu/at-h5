@@ -90,7 +90,7 @@ html {
 
 .hotelPic {
     width: 100%;
-    /*height: 100%;*/
+    height: 100%;
 }
 
 .hotelPic2 {
@@ -826,7 +826,7 @@ html {
 }
 .info-div ul,.info-div li.ro-info-item span.item-name{
     display: inline-block;
-    width: 45%;
+    width: 35%;
     text-align: left;
     font-size: 1.4rem;
 }
