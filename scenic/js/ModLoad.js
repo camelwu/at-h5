@@ -2,6 +2,8 @@
  * Created by apple on 16/4/5.
  */
 (function (ModLoad) {
+    //ModLoad 版本号
+    ModLoad.version = "1.0.1";
     //模块缓存器,存储已创建模块.
     var moduleCache = {};
     //拼接完整的文件路径字符串,如'lib/ajax'=>'lib/ajax.js'
