@@ -126,6 +126,50 @@
 			(function() {
 				var ww = this, val = vlm.parseUrlPara(window.location.href);
 				vlm.init();
+				var scroll_control = function(){
+					var body = document.body;
+					var touchX, touchY;
+					window.ontouchstart = function(e) {
+						var touch = e.changedTouches[0];
+
+						touchX = touch.screenX;
+						touchY = touch.screenY;
+						
+						if (!body.contains(e.target))
+							e.preventDefault();
+						if (body.scrollTop === 0)
+							e.preventDefault();
+						else if (body.scrollTop === body.scrollHeight - body.clientHeight)
+							e.preventDefault();
+					};
+					window.ontouchend = function(e) {
+						var touch = e.changedTouches[0];
+
+						if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
+							return;
+
+						touchX = void 0;
+						touchY = void 0;
+					};
+					window.ontouchcancel = function(e) {
+						touchX = void 0;
+						touchY = void 0;
+					};
+
+					var padding = 1;
+
+					requestAnimationFrame(function frame() {
+						var min = 0,
+								max = body.scrollHeight - body.clientHeight;
+						var val = body.scrollTop;
+						if (val === min) {
+							body.scrollTop += padding;
+						} else if (val === max) {
+							body.scrollTop -= padding;
+						}
+						requestAnimationFrame(frame);
+					});
+				};
 				var package_detail = function() {
 					//   套餐数据
 					var getPackage = function() {
@@ -209,6 +253,7 @@
 
 					return {
 						//FlashLoad : flashLoad,
+						Scroll_control:scroll_control,
 						GetPackage : getPackage
 					};
 				}();
@@ -216,6 +261,7 @@
 				ww.MT.load = function() {
 					//package_detail.FlashLoad();
 					package_detail.GetPackage();
+					package_detail.Scroll_control()
 				};
 				MT.load();
 
