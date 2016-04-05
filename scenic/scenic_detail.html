@@ -204,10 +204,10 @@
             '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}',
             '<img src="{%=pictureURL%}" alt="image">',
             '{% }else{ %}',
-            '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' +
-            '<img src="{%=pictureURL%}" alt="image">',
-            '{% for(var i=0;i < imgl;i++){ %}',
-            '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' +
+            '<a href="{%=imgs[0].imageURL%}" class="swipebox" title="1/{%=(imgl)%}">' +
+            '<img src="{%=imgs[0].imageURL%}" alt="image">',
+            '{% for(var i=1;i < imgl;i++){ %}',
+            '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}">' +
             '<img src="{%=imgs[i].imageURL%}" alt="image"></a>',
             '{% }} %}',
             '<div class="pd-mb">',
@@ -215,7 +215,7 @@
             '<div>产品编号：{%=packageRefNo%}</div>',
             '</div>',
             '{% if(imgl>0){ %}',
-            '<div style="position:absolute;top:12%;right:15px;font-size: 1.6rem;color:#ffffff;">{%=(imgl+1)%}张</div>',
+            '<div style="position:absolute;top:12%;right:15px;font-size: 1.6rem;color:#ffffff;">{%=(imgl)%}张</div>',
             '{% } %}',
             '</div>'
         ].join('');
@@ -302,7 +302,7 @@
                     SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
                 }
 
-
+                console.log(data);
                 var html_pb = template(tpl1, data);
                 $("#packageBox").html(html_pb);
 

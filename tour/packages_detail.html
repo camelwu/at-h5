@@ -129,7 +129,27 @@
 				var package_detail = function() {
 					//   套餐数据
 					var getPackage = function() {
-						var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' + '<img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' + '<img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
+						var tpl1 = [
+							'<div>',
+							'{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}',
+							'<img src="{%=pictureURL%}" alt="image">',
+							'{% }else{ %}',
+							'<a href="{%=imgs[0].imageURL%}" class="swipebox" title="1/{%=(imgl)%}">' +
+							'<img src="{%=imgs[0].imageURL%}" alt="image">',
+							'{% for(var i=1;i < imgl;i++){ %}',
+							'<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}">' +
+							'<img src="{%=imgs[i].imageURL%}" alt="image"></a>',
+							'{% }} %}',
+							'<div class="pd-mb">',
+							'<div>{%=packageName%}</div>',
+							'<div>产品编号：{%=packageRefNo%}</div>',
+							'</div>',
+							'{% if(imgl>0){ %}',
+							'<div style="position:absolute;top:12%;right:15px;font-size: 1.6rem;color:#ffffff;">{%=(imgl)%}张</div>',
+							'{% } %}',
+							'</div>'
+						].join('');
+						//var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' + '<img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' + '<img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
 						var tpl2 = ['<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.substr(0,10)%}至{%=departValidTo.substr(0,10)%}</i></h3>'].join('');
 						var tpl3 = ['<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>', '{% if(' + val.status + '=="1"){ %}', '<a href="javascript:go2order();" class="reserve">预订</a>', '{% } %}'].join('');
 						var tpl4 = ['{%=inclusiveItem%}'].join('');
