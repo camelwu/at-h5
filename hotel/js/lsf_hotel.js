@@ -62,35 +62,7 @@ var lsf_myweb = {
 		}
 	}
 };
-//网页还原用户上一次选择内容
-var hotelStorage = JSON.parse(localStorage.getItem('hotelStorage12345'));
-console.log(hotelStorage);
-if (hotelStorage) {
-	lsf_myweb.getbyid('input1').value = hotelStorage.InterDes;
-	lsf_myweb.getbyid('count1').value = hotelStorage.NumRoom;
-	lsf_myweb.getbyid('count2').value = hotelStorage.NumAdult;
-	lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
-	lsf_myweb.getbyid('input2').value = hotelStorage.DomDes;
-	//lsf_myweb.getbyid('InterHotelname').value=hotelStorage.InterHotelName;
-	//已去掉城市模糊搜索
-	//lsf_myweb.getbyid('DomHotelName').value=hotelStorage.DomHotelName;
-    recoverStatus("count1,count2,count3");
-   
-}
-//还原减号状态
-function recoverStatus(itemIdString){
-    var itemIdAarr = itemIdString.split(",");
-    for(var i=0,len=itemIdAarr.length;i<len;i++){
-        var itemEle = document.getElementById(itemIdAarr[i]);
-        var itemMinNum = itemEle.getAttribute("data-min");
-        var minusItem = itemEle.parentNode.getElementsByClassName("minus")[0];
-        if(parseInt(itemEle.value) > itemMinNum){
-            minusItem.style.backgroundPosition = "0px 0px";
-        }else{
-            minusItem.style.backgroundPosition = "0px -28px";
-        }
-    }
-}
+
 
 //国际国内切换实现滑动效果
 var owlQuoteSlider = $(".quote-slider");
@@ -895,6 +867,51 @@ function inpChange(id, myText) {
 	var beginDate = oDate1.getFullYear() + '-' + toDou(oDate1.getMonth() + 1) + '-' + toDou(oDate1.getDate());
 	var leaveDate = oDate2.getFullYear() + '-' + toDou(oDate2.getMonth() + 1) + '-' + toDou(oDate2.getDate());
 	var obj = {};
+    
+    //网页还原用户上一次选择内容
+    var hotelStorage = JSON.parse(localStorage.getItem('hotelStorage12345'));
+    console.log(hotelStorage);
+    if (hotelStorage) {
+        lsf_myweb.getbyid('input1').value = hotelStorage.InterDes;
+        lsf_myweb.getbyid('count1').value = hotelStorage.NumRoom;
+        lsf_myweb.getbyid('count2').value = hotelStorage.NumAdult;
+        lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
+        lsf_myweb.getbyid('input2').value = hotelStorage.DomDes;
+        
+        checkIn.value=hotelStorage.InterBeginDate;
+        checkOut.value=hotelStorage.InterLeaveDate;
+        lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
+        week_span1.innerHTML=hotelStorage.InterBeginDateWeek;
+        week_span2.innerHTML=hotelStorage.InterLeaveDateWeek;
+        obj[hotelStorage.InterBeginDate]="入住";
+        obj[hotelStorage.InterLeaveDate]="离店";
+        //lsf_myweb.getbyid('InterHotelname').value=hotelStorage.InterHotelName;
+        //已去掉城市模糊搜索
+        //lsf_myweb.getbyid('DomHotelName').value=hotelStorage.DomHotelName;
+        recoverStatus("count1,count2,count3");
+
+    }else{
+        checkIn.value = beginDate;
+        checkOut.value = leaveDate;
+        week_span1.innerHTML = '周' + n2c(oDate1.getDay()) + ' 入住';
+        week_span2.innerHTML = '周' + n2c(oDate2.getDay()) + ' 离店';
+        obj[beginDate] = "入住";
+        obj[leaveDate] = "离店";
+    }
+    //还原减号状态
+    function recoverStatus(itemIdString){
+        var itemIdAarr = itemIdString.split(",");
+        for(var i=0,len=itemIdAarr.length;i<len;i++){
+            var itemEle = document.getElementById(itemIdAarr[i]);
+            var itemMinNum = itemEle.getAttribute("data-min");
+            var minusItem = itemEle.parentNode.getElementsByClassName("minus")[0];
+            if(parseInt(itemEle.value) > itemMinNum){
+                minusItem.style.backgroundPosition = "0px 0px";
+            }else{
+                minusItem.style.backgroundPosition = "0px -28px";
+            }
+        }
+    }
 	//网页还原用户上一次选择内容
 	//if(hotelStorage){
 	//    checkIn.value=hotelStorage.InterBeginDate;
@@ -914,12 +931,7 @@ function inpChange(id, myText) {
 	//    console.log('国际');
 	//    console.log(obj);
 	//}
-	checkIn.value = beginDate;
-	checkOut.value = leaveDate;
-	week_span1.innerHTML = '周' + n2c(oDate1.getDay()) + ' 入住';
-	week_span2.innerHTML = '周' + n2c(oDate2.getDay()) + ' 离店';
-	obj[beginDate] = "入住";
-	obj[leaveDate] = "离店";
+	
 	//国内城市
 	var DomCheckInDate = document.getElementById('DomCheckInDate');
 	var DomCheckOutDate = document.getElementById('DomCheckOutDate');
@@ -930,29 +942,24 @@ function inpChange(id, myText) {
 	var week_span3 = document.getElementById('weekSpan3');
 	var week_span4 = document.getElementById('weekSpan4');
 	var obj2 = {};
-	//网页还原用户上一次选择内容
-	//if(hotelStorage){
-	//    DomCheckInDate.value=hotelStorage.DomCheckInDate;
-	//    DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
-	//    lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
-	//    week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
-	//    week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
-	//    obj2[hotelStorage.DomCheckInDate]="入住";
-	//    obj2[hotelStorage.DomCheckOutDate]="离店";
-	//}else{
-	//    DomCheckInDate.value=DomBeginDate;
-	//    DomCheckOutDate.value=DomLeaveDate;
-	//    week_span3.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
-	//    week_span4.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
-	//    obj2[DomBeginDate]="入住";
-	//    obj2[DomLeaveDate]="离店";
-	//}
-	DomCheckInDate.value = DomBeginDate;
-	DomCheckOutDate.value = DomLeaveDate;
-	week_span3.innerHTML = '周' + n2c(oDate1.getDay()) + ' 入住';
-	week_span4.innerHTML = '周' + n2c(oDate2.getDay()) + ' 离店';
-	obj2[DomBeginDate] = "入住";
-	obj2[DomLeaveDate] = "离店";
+    
+	if(hotelStorage){
+	    DomCheckInDate.value=hotelStorage.DomCheckInDate;
+	    DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
+	    lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
+	    week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
+	    week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
+	    obj2[hotelStorage.DomCheckInDate]="入住";
+	    obj2[hotelStorage.DomCheckOutDate]="离店";
+	}else{
+	    DomCheckInDate.value = DomBeginDate;
+        DomCheckOutDate.value = DomLeaveDate;
+        week_span3.innerHTML = '周' + n2c(oDate1.getDay()) + ' 入住';
+        week_span4.innerHTML = '周' + n2c(oDate2.getDay()) + ' 离店';
+        obj2[DomBeginDate] = "入住";
+        obj2[DomLeaveDate] = "离店";
+	}
+    
 	function Calender2() {
 		Calender.apply(this, arguments);
 		this.idTotal = arguments[0].idTotal;
