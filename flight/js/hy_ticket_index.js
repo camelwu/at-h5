@@ -942,15 +942,13 @@ var  ticketIndexModal = {
           if(reg.test(valueStr)){
                if(domesticCity.style.display=='block'&&internationalCity.style.display=='none'){
                      for(var k = 0; k < domesticCities.length;k++){
-                           for(var t in domesticCities[k]){
-                               if(domesticCities[k][t].toLowerCase().indexOf(valueStr.toLowerCase()) > -1){
-                                   searchResult.push(domesticCities[k])
-                               }
-                           }
+                         if(domesticCities[k]['CityName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||domesticCities[k]['FullSpellingName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||domesticCities[k]['CityEN'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||domesticCities[k]['CityCode'].toLowerCase().indexOf(valueStr.toLowerCase())>-1){
+                             searchResult.push(domesticCities[k])
+                         }
                      }
                }else{
                    for(var p = 0; p < internationalCities.length; p++){
-                       if(internationalCities[p]['CityName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||internationalCities[p]['FullSpellingName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||internationalCities[p]['CityEN'].toLowerCase().indexOf(valueStr.toLowerCase())>-1){
+                       if(internationalCities[p]['CityName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||internationalCities[p]['FullSpellingName'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||internationalCities[p]['CityEN'].toLowerCase().indexOf(valueStr.toLowerCase())>-1||internationalCities[p]['CityCode'].toLowerCase().indexOf(valueStr.toLowerCase())>-1){
                            searchResult.push(internationalCities[p]);
                        }
                    }
@@ -974,6 +972,8 @@ var  ticketIndexModal = {
                                  middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
                                  back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
                                  resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].CityName+'</span><span class="result-city-name-letter">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span></li>'
+                             }else if(searchResult[l].CityCode.toUpperCase().indexOf(valueStr.toUpperCase())>-1){
+                                 resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].CityName+'</span><span class="result-city-name-letter">'+searchResult[l].FullSpellingName+'</span></li>'
                              }
                       } else if(/[\u4E00-\u9FA5]/.test(valueStr)){
                            operatingStr = searchResult[l].CityName;
