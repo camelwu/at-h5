@@ -3135,12 +3135,14 @@ h1, h2, h3, h4, h5, h6 {
 
 #country-code {
     position: relative;
-    left: -14%
+    /*left: -14%*/
 }
 
 #slider-country-choose {
-    display: inline-block;
-    position: relative;
+    /*display: inline-block;*/
+    position: absolute;
+    top: 45%;
+    right: 0%;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid rgb(102, 102, 102);
