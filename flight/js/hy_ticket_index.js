@@ -1103,7 +1103,6 @@ var  ticketIndexModal = {
                   adultNumber_op = outEleClosed.querySelector('.add-minus-per-content.adult-number');
                   childNumber_op = outEleClosed.querySelector('.add-minus-per-content.child-number');
                   seatEle = outEleOpen.querySelector('.cabin-wrap-choice.single-cabin-choose');
-
                   singleDate.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
                   singleWeek.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
              }else if(arg.RouteType == "Return"){
