@@ -162,8 +162,11 @@
     -webkit-flex:2;
     flex:2;
     font-size:1.6rem;
-    color:#d1d1d1;
+    color:#484848;
     padding-left: 12px;
+    -webkit-input-placeholder: #d1d1d1;
+    -moz-placeholder : #d1d1d1;
+    -ms-input-placeholder : #d1d1d1;
 }
 .p-icon4{
     position: absolute;
