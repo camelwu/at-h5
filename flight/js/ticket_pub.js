@@ -89,7 +89,6 @@ TicketDate.prototype.initialize =function (options) {
 };
 
 TicketDate.prototype.createContainer = function(odate){
-    // 如果存在，则移除整个日期层Container
     var odiv = _CalF.$('#'+ this.id + '-date');
     if(!!odiv) odiv.parentNode.removeChild(odiv);
     var container = this.container = document.createElement('div');
