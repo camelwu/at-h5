@@ -890,6 +890,9 @@
 						case "t":
 							title = '选择取票人';
 							break;
+						case "ht":
+							title = '选择取票人';
+							break;
 						default:
 							title = '选择乘机人';
 							break;
