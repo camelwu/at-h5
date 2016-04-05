@@ -3037,8 +3037,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flexbox;
     display: flex;
     color: #ffb412;
-    height: 5rem;
-    line-height: 5rem;
+    height: 3rem;
+    line-height: 3rem;
     font-size: 1.25rem;
     color: #484848;
     justify-content: flex-end;
