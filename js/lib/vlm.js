@@ -7,6 +7,7 @@
  * ver:1.1.1
  */
 (function(e, t) {"use strict";
+
 	var n = n || (function(n) {//123.56.190.34 //10.6.11.20:8888
 			var _api = "http://123.56.190.34:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 				home : ['首页', basePath],
@@ -59,10 +60,14 @@
 						_k = "find";
 					}else if(_s=="user/user.html"){
 						_k = "user";
+					}else if(_s=="building.html"){
+						_k = "find";
 					}
 				}
 				//底部菜单
+
 				if (menus.hasOwnProperty(_k)) {
+
 					_initMenu();
 				}
 				if ($(".header").length >= 1 && $(".header").is(":visible")) {
