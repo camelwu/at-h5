@@ -89,7 +89,6 @@ TicketDate.prototype.initialize =function (options) {
 };
 
 TicketDate.prototype.createContainer = function(odate){
-    // 如果存在，则移除整个日期层Container
     var odiv = _CalF.$('#'+ this.id + '-date');
     if(!!odiv) odiv.parentNode.removeChild(odiv);
     var container = this.container = document.createElement('div');
@@ -548,7 +547,7 @@ var  conditionalFiltering = {
                 '</ul>'+
                 '<ul class="add filter-share" id="filter-share" style="display: none">'+
                 '<li class="tag-item active" data-i="false">不限<b></b></li>'+
-                '<li class="tag-item" data-i="true">隐藏共享航班<b class=""></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
                 '</ul>'+
                 '<ul class="add set-time-duration" id="set-time-duration" style="display: none">'+
                 '<li class="tag-item active" data-i="0024">不限<b></b></li>'+
@@ -586,7 +585,7 @@ var  conditionalFiltering = {
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
                 '<li class="filter-title clear-background" data-info="df">直飞</li>'+
-                '<li class="filter-title" data-info="sh">共享航班</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
                 '</ul>'+
                 '<div class="detail-list" style="color: rgb(102, 102, 102);">'+
@@ -596,7 +595,7 @@ var  conditionalFiltering = {
                 '</ul>'+
                 '<ul class="add filter-share" id="filter-share" style="display: none">'+
                 '<li class="tag-item active" data-i="false">不限<b></b></li>'+
-                '<li class="tag-item" data-i="true">隐藏共享航班<b class=""></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
                 '</ul>'+
                 '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
                 '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
@@ -633,7 +632,7 @@ var  conditionalFiltering = {
                 '<div class="reaction-detail" id="reaction-detail">'+
                 '<ul class="filter-bottom" id="filter-bottom">'+
                 '<li class="filter-title clear-background" data-info="df">直飞</li>'+
-                '<li class="filter-title" data-info="sh">共享航班</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
                 '<li class="filter-title" data-info="du">起飞时段</li>'+
                 '<li class="filter-title" data-info="se">舱位</li>'+
                 '</ul>'+
@@ -644,7 +643,7 @@ var  conditionalFiltering = {
                 '</ul>'+
                 '<ul class="add filter-share" id="filter-share" style="display: none">'+
                 '<li class="tag-item active" data-i="false">不限<b></b></li>'+
-                '<li class="tag-item" data-i="true">隐藏共享航班<b class=""></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
                 '</ul>'+
                 '<ul class="add set-time-duration" id="set-time-duration" style="display: none">'+
                 '<li class="tag-item active" data-i="0024">不限<b></b></li>'+
@@ -695,7 +694,7 @@ var  conditionalFiltering = {
                 '</ul>'+
                 '<ul class="add filter-share" id="filter-share" style="display: none">'+
                 '<li class="tag-item active" data-i="false">不限<b></b></li>'+
-                '<li class="tag-item" data-i="true">隐藏共享航班<b class=""></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
                 '</ul>'+
                 '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
                 '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+

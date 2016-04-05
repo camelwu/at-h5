@@ -9,7 +9,7 @@ var _InHotCity = {
     "Parameters": "",
     "ForeEndType": 3,
     "Code": "0082"
-}       
+}
 var  ticketIndexModal = {
        double:function(){
            var paraObj = {
@@ -366,7 +366,7 @@ var  ticketIndexModal = {
            wrapDiv.className = 'city-list-choose';
            frameStr +='<header class="clearfix"><i class="fl"></i>'+
            '<div class="cl_search">'+
-           '    <input type="text" placeholder="新加坡/xinjiapo/Singapore" id="city-input-zone"><i></i>'+
+           '<input type="text" placeholder="北京/beijing/bj/bjs/中国" id="city-input-zone"><i></i>'+
            '</div>'+
            '</header>'+
            '<div class="city-content jcity-content">'+
@@ -908,7 +908,6 @@ var  ticketIndexModal = {
            })
        },
        searchHandler:function(){
-
           var cityListSearched = document.querySelector('.city-list-searched');
           var cityInputZone = document.querySelector('#city-input-zone');
           var domesticCity = document.querySelector('.domestic-city');
@@ -1037,9 +1036,9 @@ var  ticketIndexModal = {
            document.querySelector('.double-week-two').innerHTML = endDay[1];
        },
        initShowData:function(arg){
-              var outEleOpen,outEleClosed,singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
+              var singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
               var returnDateAndWeek = function(arg){
-                    var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum; //"2016-02-24"
+                    var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum;
                     var weekIndex = new Date(arg.replace(/-/g,'/')).getDay();
                     dateNum = reg.exec(arg);
                     switch (weekIndex){
@@ -1089,54 +1088,54 @@ var  ticketIndexModal = {
                       }
                       return cabinStr;
               };
+              var outEleOpen, outEleClosed, cityNames, singleDate, singleWeek, adultNumber, childNumber, adultNumber_op, childNumber_op, seatEle;
+              var doubleDateOne, doubleWeekOne, doubleDateTwo, doubleWeekTwo ;
               if(arg.RouteType == "Oneway"){
-                 outEleOpen = document.querySelector('#single');
-                 outEleClosed = document.querySelector('#double');
-                 outEleOpen.style.display = "block";
-                 outEleClosed.style.display = "none";
+                  outEleOpen = document.querySelector('#single');
+                  outEleClosed = document.querySelector('#double');
                   singleTitle.className = "singleTrip light-title";
                   doubleTitle.className = "doubleTrip grey-title";
-                   var cityNames = outEleOpen.querySelectorAll('.city-search');
-                   var singleDate = outEleOpen.querySelector('.single-date');
-                   var singleWeek = outEleOpen.querySelector('.single-week');
-                   var adultNumber = outEleOpen.querySelector('.add-minus-per-content.adult-number');
-                   var childNumber = outEleOpen.querySelector('.add-minus-per-content.child-number');
-                   var seatEle = outEleOpen.querySelector('.cabin-wrap-choice.single-cabin-choose');
-                   cityNames[0].innerHTML = arg.fromCity;
-                   cityNames[1].innerHTML = arg.toCity;
-                   singleDate.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
-                   singleWeek.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
-                   adultNumber.innerHTML = arg.NumofAdult;
-                   adultNumber.parentNode.querySelector('.add-minus-per-less.adult').className= parseInt(arg.NumofAdult)<2?'add-minus-per-less adult add-minus-per-less-grey':'add-minus-per-less adult';
-                   childNumber.parentNode.querySelector('.add-minus-per-less.child').className= parseInt(arg.NumofChild)<1?'add-minus-per-less child add-minus-per-less-grey':'add-minus-per-less child';
-                   seatEle.innerHTML =reFixedSeat(arg.CabinClass);
+                  cityNames = outEleOpen.querySelectorAll('.city-search');
+                  singleDate = outEleOpen.querySelector('.single-date');
+                  singleWeek = outEleOpen.querySelector('.single-week');
+                  adultNumber = outEleOpen.querySelector('.add-minus-per-content.adult-number');
+                  childNumber = outEleOpen.querySelector('.add-minus-per-content.child-number');
+                  adultNumber_op = outEleClosed.querySelector('.add-minus-per-content.adult-number');
+                  childNumber_op = outEleClosed.querySelector('.add-minus-per-content.child-number');
+                  seatEle = outEleOpen.querySelector('.cabin-wrap-choice.single-cabin-choose');
+                  singleDate.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
+                  singleWeek.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
              }else if(arg.RouteType == "Return"){
                   outEleOpen = document.querySelector('#double');
                   outEleClosed = document.querySelector('#single');
-                  outEleOpen.style.display = "block";
-                  outEleClosed.style.display = "none";
                   singleTitle.className = "singleTrip grey-title";
                   doubleTitle.className = "doubleTrip light-title";
-                   var cityNames_ = outEleOpen.querySelectorAll('.city-search');
-                   var doubleDateOne = outEleOpen.querySelector('.double-date-one');
-                   var doubleWeekOne = outEleOpen.querySelector('.double-week-one');
-                   var doubleDateTwo = outEleOpen.querySelector('.double-date-two');
-                   var doubleWeekTwo = outEleOpen.querySelector('.double-week-two');
-                   var adultNumber_ = outEleOpen.querySelector('.add-minus-per-content.adult-number');
-                   var childNumber_ = outEleOpen.querySelector('.add-minus-per-content.child-number');
-                   var seatEle_ = outEleOpen.querySelector('.cabin-wrap-choice.double-cabin-choose');
-                   cityNames_[0].innerHTML = arg.fromCity;
-                   cityNames_[1].innerHTML = arg.toCity;
-                   doubleDateOne.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
-                   doubleWeekOne.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
-                   doubleDateTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["date"];
-                   doubleWeekTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["weekWord"];
-                   adultNumber_.innerHTML = arg.NumofAdult;
-                   childNumber_.innerHTML = arg.NumofChild;
-                   adultNumber_.parentNode.querySelector('.add-minus-per-less.adult').className= parseInt(arg.NumofAdult)<2?'add-minus-per-less adult add-minus-per-less-grey':'add-minus-per-less adult';
-                  childNumber_.parentNode.querySelector('.add-minus-per-less.child').className= parseInt(arg.NumofChild)<1?'add-minus-per-less child add-minus-per-less-grey':'add-minus-per-less child';
-                   seatEle_.innerHTML =reFixedSeat(arg.CabinClass);
-              }
+                  cityNames = outEleOpen.querySelectorAll('.city-search');
+                  doubleDateOne = outEleOpen.querySelector('.double-date-one');
+                  doubleWeekOne = outEleOpen.querySelector('.double-week-one');
+                  doubleDateTwo = outEleOpen.querySelector('.double-date-two');
+                  doubleWeekTwo = outEleOpen.querySelector('.double-week-two');
+                  adultNumber = outEleOpen.querySelector('.add-minus-per-content.adult-number');
+                  childNumber = outEleOpen.querySelector('.add-minus-per-content.child-number');
+                  seatEle = outEleOpen.querySelector('.cabin-wrap-choice.double-cabin-choose');
+                  adultNumber_op = outEleClosed.querySelector('.add-minus-per-content.adult-number');
+                  childNumber_op = outEleClosed.querySelector('.add-minus-per-content.child-number');
+                  doubleDateOne.innerHTML = returnDateAndWeek(arg.DepartDate)["date"];
+                  doubleWeekOne.innerHTML = returnDateAndWeek(arg.DepartDate)["weekWord"];
+                  doubleDateTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["date"];
+                  doubleWeekTwo.innerHTML = returnDateAndWeek(arg.ReturnDate)["weekWord"];
+                  }
+                   outEleOpen.style.display = "block";
+                   outEleClosed.style.display = "none";
+                   cityNames[0].innerHTML = arg.fromCity;
+                   cityNames[1].innerHTML = arg.toCity;
+                   adultNumber.innerHTML = arg.NumofAdult;
+                   childNumber.innerHTML = arg.NumofChild;
+                   adultNumber.parentNode.querySelector('.add-minus-per-less.adult').className= parseInt(arg.NumofAdult)<2?'add-minus-per-less adult add-minus-per-less-grey':'add-minus-per-less adult';
+                   childNumber.parentNode.querySelector('.add-minus-per-less.child').className= parseInt(arg.NumofChild)<1?'add-minus-per-less child add-minus-per-less-grey':'add-minus-per-less child';
+                   adultNumber_op.parentNode.querySelector('.add-minus-per-less.adult').className= parseInt(arg.NumofAdult)<2?'add-minus-per-less adult add-minus-per-less-grey':'add-minus-per-less adult';
+                   childNumber_op.parentNode.querySelector('.add-minus-per-less.child').className= parseInt(arg.NumofChild)<1?'add-minus-per-less child add-minus-per-less-grey':'add-minus-per-less child';
+                   seatEle.innerHTML =reFixedSeat(arg.CabinClass);
        },
        loadingFade:function(){
             $(window).load(function () {
