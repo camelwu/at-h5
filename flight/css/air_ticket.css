@@ -3088,11 +3088,11 @@ h1, h2, h3, h4, h5, h6 {
     height: 8px;
     border-bottom: 1px solid #ffb412;
     border-right: 1px solid #ffb412;
-    -webkit-transform: rotate(45deg) translateY(-26%);
-    -o-transform: rotate(45deg) translateY(-26%);
-    -moz-transform: rotate(45deg) translateY(-26%);
-    -ms-transform: rotate(45deg) translateY(-26%);
-    transform: rotate(45deg) translateY(-26%);
+    -webkit-transform: rotate(45deg) translateY(-10%);
+    -o-transform: rotate(45deg) translateY(-10%);
+    -moz-transform: rotate(45deg) translateY(-10%);
+    -ms-transform: rotate(45deg) translateY(-10%);
+    transform: rotate(45deg) translateY(-10%);
     transition: all 0.4s ease-in-out;
 }
 
