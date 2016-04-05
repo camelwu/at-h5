@@ -78,8 +78,8 @@
 		<ul class="often-traveler list-traveler" id="allList">
 
 		</ul>
-		<div class="con-text">
-			为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月
+		<div class="con-text" id="con-text">
+			<!--为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月-->
 		</div>
 	</div>
 	<!-- 新增乘机人页-->
@@ -416,7 +416,7 @@
 		'<ul class="often_user">',
 		'<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
 		'<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
-		'<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><span class="cnName">{%=dd.traveller.idName%}</span><span class="lastName">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
+		'<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
 		'{% if (dd.traveller.travellerAge<2){ %}'+
 		'<i class="per-type">婴儿</i></li>'+'{% } %}'+
 		'{% if (dd.traveller.travellerAge<12 && dd.traveller.travellerAge>=2 ){ %}'+
@@ -1166,6 +1166,19 @@
 <script src="../js/country_list.js"></script>
 <script src="../js/require.js" data-main="../js/user.js"></script>
 
+<!--国内航班不需要护照过期提示-->
+<script>
+	$(function(){
+		var olocal = localStorage.getItem('curFlightListData');
+		var json = eval('('+olocal+')');
+		console.log(typeof json);
+		if(json.data.isInternationalFlight){
+			$('#con-text').html('为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月');
+		}else{
+			$('#con-text').html('')
+		}
+	})
+</script>
 
 </body>
 </html>

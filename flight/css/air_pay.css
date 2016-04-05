@@ -51,27 +51,19 @@ i {
 }
 
 .air-detail-wrap {
-    position: relative;
-    width: 100%;
-    margin-top: 30px;
-    border: 16px;
+    margin: 0 5px;
+    border-width: 16px;
     -webkit-border-image: url(../../images/lsf_bg1.png) 27;
     -moz-border-image: url(../../images/lsf_bg1.png) 27;
     -o-border-image: url(../../images/lsf_bg1.png) 27;
     border-image: url(../../images/lsf_bg1.png) 27;
-    background: #fff;
-    text-align: center;
-    overflow-y: hidden;
 }
 
 .air-detail-box {
-    padding: 0 20px;
-    margin: 0 10px;
+    padding: 0 30px;
     background-color: #fff;
-    position: relative;
-    z-index: 50;
+    margin-bottom: 0;
 }
-
 
 .air-detail-box li {
     font-size: 1.4rem;
@@ -85,8 +77,8 @@ i {
 }
 
 .airticket-tot {
-    padding: 8px 0 8px 20px;
-    margin: 0 10px;
+    padding: 0 30px;
+    margin-bottom: 0;
     font-size: 1.7rem;
     color: #ffb412;
     background-color: #fff;
@@ -188,6 +180,7 @@ i {
     color: #000;
 }
 
+
 .round-go-tip {
     display: inline-block;
     background: url(../../images/ui/air-icons.png);
@@ -213,14 +206,13 @@ i {
 .round-trip-go {
     float: left;
 }
-
 .round-trip-back {
     margin-right: 30px;
     float: right;
 }
 
 .passenger-msg {
-    padding-top: 30px;
+    padding-top: 22px;
     padding-left: 30px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 0;
@@ -335,7 +327,7 @@ i {
     border-bottom: none;
 }
 
-.tel-option {
+.tel-option{
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
@@ -350,7 +342,7 @@ i {
     overflow: visible;
 }
 
-.tel-option .left {
+.tel-option .left{
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
@@ -367,7 +359,7 @@ i {
     overflow: visible;
 }
 
-.nation {
+.nation{
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
@@ -383,25 +375,24 @@ i {
     overflow: visible;
 }
 
-.tel-option .left span {
+.tel-option .left span{
     line-height: 3.3rem;
     height: 3.3rem;
     width: 8.7rem;
 }
 
-.nation span {
+.nation span{
     line-height: 3.2rem;
     height: 3.2rem;
     width: 13.7rem;
 }
 
-.nation > span:first-child {
+.nation>span:first-child{
     line-height: 3.2rem;
     height: 3.2rem;
     width: 8.7rem;
 }
-
-.nation .center {
+.nation .center{
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -webkit-flex: 1;
@@ -409,12 +400,13 @@ i {
     flex: 1;
 }
 
+
+
 .center {
     display: inline-block;
     position: relative;
     overflow: visible;
 }
-
 .custom-select-wrapper {
     position: relative;
     display: inline-block;
@@ -425,7 +417,6 @@ i {
 .custom-select-wrapper select {
     display: none;
 }
-
 .custom-select {
     position: relative;
     display: inline-block;
@@ -471,6 +462,7 @@ i {
     overflow: visible;
 }
 
+
 .nation .custom-select.opened .custom-options {
     opacity: 1;
     visibility: visible;
@@ -489,6 +481,7 @@ i {
     z-index: 97;
 }
 
+
 .custom-select-trigger {
     position: relative;
     display: block;
@@ -500,6 +493,7 @@ i {
     border-radius: 4px;
     cursor: pointer;
 }
+
 
 .custom-select-trigger:after {
     position: absolute;
@@ -517,7 +511,7 @@ i {
     transform-origin: 50% 0;
 }
 
-.nation .custom-select-trigger:after {
+.nation .custom-select-trigger:after{
     margin-top: 3px;
     transform: rotate(-135deg) translateY(-50%);
 }
@@ -527,14 +521,12 @@ i {
     transform: rotate(-135deg) translateY(-50%);
 }
 
-.nation .custom-select.opened .custom-select-trigger:after {
+.nation .custom-select.opened .custom-select-trigger:after{
     transform: rotate(45deg) translateY(-50%);
 }
-
 .custom-option:first-of-type {
     border-radius: 4px 4px 0 0;
 }
-
 .custom-option {
     position: relative;
     display: block;
@@ -547,7 +539,7 @@ i {
     transition: all 0.4s ease-in-out;
 }
 
-.tel-option .right {
+.tel-option .right{
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
@@ -561,6 +553,7 @@ i {
     -ms-flex: 1;
     flex: 1;
 }
+
 
 .tel-option .right input {
     width: 100%;
@@ -628,8 +621,8 @@ i {
     text-align: center;
     line-height: 3.7rem;
     font-size: 1.5rem;
-    color: #ffb413;
 }
+
 .lsf_tra_look .fl a{
     color: #ffb413;
 }
@@ -637,27 +630,24 @@ i {
     background: #ffb413;
     color: #fff;
 }
-
-.lsf_tra_look .lsf_tra_lo_p2 a {
+.lsf_tra_look .lsf_tra_lo_p2 a{
     color: #fff;
 }
-
-.passenger-detail {
+.passenger-detail{
     margin-right: 25px;
     float: right;
     color: #fdb330;
 
 }
-
-.passenger-detail .icon-arrow {
+.passenger-detail .icon-arrow{
     margin-left: 3px;
     display: inline-block;
-    right: 0.2rem;
+    right:0.2rem;
     top: 50%;
     width: 8px;
     height: 8px;
-    border-bottom: 1px solid #ffb412;
-    border-right: 1px solid #ffb412;
+    border-bottom: 1px solid  #ffb412;
+    border-right: 1px solid  #ffb412;
     -webkit-transform: rotate(45deg) translateY(-50%);
     -o-transform: rotate(45deg) translateY(-50%);
     -moz-transform: rotate(45deg) translateY(-50%);
@@ -675,7 +665,7 @@ i {
     transition: all 0.4s ease-in-out;
 }
 
-.passenger-detail.opened .icon-arrow {
+.passenger-detail.opened .icon-arrow{
     margin-top: 5px;
     -webkit-transform: rotate(-135deg) translateY(-50%);
     -o-transform: rotate(-135deg) translateY(-50%);
@@ -683,29 +673,23 @@ i {
     -ms-transform: rotate(-135deg) translateY(-50%);
     transform: rotate(-135deg) translateY(-50%);
 }
-
-.passenger-msg .passenger-msg-tit {
+.passenger-msg .passenger-msg-tit{
     float: left;
 }
-
-.passenger .passager-list {
+.passenger .passager-list{
     margin-left: 80px;
 }
-
-.passenger .passager-list .passager-info {
+.passenger .passager-list .passager-info{
     margin-bottom: 20px;
 }
-
-.passenger .passager-list .passager-info .passenger-msg-nameEn {
-    margin-left: 5px;
+.passenger .passager-list .passager-info .passenger-msg-nameEn{
+   margin-left: 5px;
     margin-right: 5px;
 }
-
-.passenger .passager-list .passager-info .passenger-msg-sex {
+.passenger .passager-list .passager-info .passenger-msg-sex{
     margin-left: 3px;
     margin-right: 3px;
 }
-
 .open-pho-down {
     position: absolute;
     width: 10px;
