@@ -3037,8 +3037,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flexbox;
     display: flex;
     color: #ffb412;
-    height: 3rem;
-    line-height: 3rem;
+    height: 5rem;
+    line-height:5rem;
     font-size: 1.25rem;
     color: #484848;
     justify-content: flex-end;
@@ -3083,7 +3083,7 @@ h1, h2, h3, h4, h5, h6 {
 .detail-tangle .icon-arrow {
     position: absolute;
     right: 0.2rem;
-    top: 36%;
+    top: 43%;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid #ffb412;
@@ -3104,11 +3104,11 @@ h1, h2, h3, h4, h5, h6 {
     flex: 2.5;
     background: #BDB9B1;
     text-align: center;
-    line-height: 3rem;
+    line-height: 5rem;
     font-size: 1.4rem;
     color: #ffb413;
     font-weight: normal;
-    height: 3.5rem
+    height: 5rem
 }
 
 #confirm-button {
