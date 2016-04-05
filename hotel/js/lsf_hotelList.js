@@ -518,12 +518,15 @@ function styleChange(id, mytext) {
                 
                 liHtml += str;
 			}
-           
+            //筛选无结果到有结果时样式调整
+            oUl.style.height = '';
+            
             //fixed 页面滑动到底部后 清空内容重新赋值时页面还在底部
             var timer =setTimeout(function(){
                 list_oUl.innerHTML += liHtml;
                 
                 var moreEle = document.getElementById("loadMore");
+                moreEle.style.display = "block";
                 if(data.length < url_json.pageSize){
                     moreEle.setAttribute("data-more","no");
                     moreEle.innerHTML = "没有更多数据了";
@@ -564,8 +567,9 @@ function styleChange(id, mytext) {
 			
 		} else {
             if(url_json.pageIndex > 1){
-                document.getElementById("load-more").innerHTML = "没有更多数据了";
+                document.getElementById("loadMore").innerHTML = "没有更多数据了";
             }else{
+                document.getElementById("loadMore").style.display = "none";
                 var oLi = document.createElement('li');
                 oLi.innerHTML = '<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
                 oLi.className = 'hotelConNo';
