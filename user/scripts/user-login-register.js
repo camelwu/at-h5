@@ -413,8 +413,14 @@ function mycallback_login(myJson) {
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		} else if (urlobj["returnURL"]) {
 			window.top.location.href = urlobj["returnURL"];
-		} else {
-				window.location.href = "user.html";
+		} else if(window.location.search == '?oftenInfo')
+		{
+			window.location.href = "user-oftenInfo.html";
+		} else if(window.location.search == '?allorder')
+		{
+			window.location.href = "user-allorder.html";
+		}else{
+			window.location.href = "user-perInfo.html";
 		}
 
 	} else {
