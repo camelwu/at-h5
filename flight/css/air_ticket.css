@@ -2889,6 +2889,7 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-box-flex:1;
     -moz-box-flex:1;
     box-flex:1;
+    line-height: 3.3rem;
 }
 .contact .table .tel div.left form {
     display: inline-block;
@@ -2914,7 +2915,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     margin-left: 10px;
     height: 38px;
-    line-height: 24px;
+    line-height: 38px;
     padding: 8px 0;
 }
 
