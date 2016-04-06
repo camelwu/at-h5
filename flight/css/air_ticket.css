@@ -3202,9 +3202,7 @@ h1, h2, h3, h4, h5, h6 {
     -ms-transform-origin: 50% 0;
     transform-origin: 50% 0;
 }
-.jcenters #slider-country-choose{
-    margin-top: 18px;
-}
+
 .custom-select-wrapper {
     position: relative;
     display: inline-block;
