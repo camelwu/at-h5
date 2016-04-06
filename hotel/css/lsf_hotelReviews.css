@@ -170,10 +170,10 @@ header i{
 .reBox .drop_down{
     display: block;
     position: absolute;
-    width: 40px;
+    width: 30px;
     height: 54px;
     bottom: 30px;
-    right: 0px;
+    right: 3px;
     background-color: white;
     z-index: 999;
 }
