@@ -149,7 +149,6 @@ function oDown(obj1, obj2, start, end) {
 		var oEvent = ev || event;
 		oEvent.stopPropagation ? oEvent.stopPropagation() : oEvent.cancelBubble = true;
 		if (parseInt(this.parentNode.children[0].value) > start) {
-			//console.log(parseInt(this.parentNode.children[0].value));
 			this.parentNode.children[0].value--;
 		}
 		if (parseInt(this.parentNode.children[0].value) > start) {
@@ -399,13 +398,12 @@ function inpChange(id, myText) {
 					dataWorIN[dataIN[i].pingYin.substring(0, 1).toUpperCase()].push(dataIN[i]);
 				}
 			}
+			console.log(dataWorCN)
 		}
 
 		sortBy(listJson);
-		console.log(listJson);
-		console.log(dataWorCN);
-		console.log(dataWorIN);
 		function cityShow(oData, doData, cityJson, dcityJson, obj, dobj) {
+			console.log()
 			//热门城市
 			//国际
 			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d) {
@@ -912,26 +910,6 @@ function inpChange(id, myText) {
             }
         }
     }
-	//网页还原用户上一次选择内容
-	//if(hotelStorage){
-	//    checkIn.value=hotelStorage.InterBeginDate;
-	//    checkOut.value=hotelStorage.InterLeaveDate;
-	//    lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
-	//    week_span1.innerHTML=hotelStorage.InterBeginDateWeek;
-	//    week_span2.innerHTML=hotelStorage.InterLeaveDateWeek;
-	//    obj[hotelStorage.InterBeginDate]="入住";
-	//    obj[hotelStorage.InterLeaveDate]="离店";
-	//}else{
-	//    checkIn.value=beginDate;
-	//    checkOut.value=leaveDate;
-	//    week_span1.innerHTML='周'+n2c(oDate1.getDay())+' 入住';
-	//    week_span2.innerHTML='周'+n2c(oDate2.getDay())+' 离店';
-	//    obj[beginDate]="入住";
-	//    obj[leaveDate]="离店";
-	//    console.log('国际');
-	//    console.log(obj);
-	//}
-	
 	//国内城市
 	var DomCheckInDate = document.getElementById('DomCheckInDate');
 	var DomCheckOutDate = document.getElementById('DomCheckOutDate');
@@ -942,7 +920,6 @@ function inpChange(id, myText) {
 	var week_span3 = document.getElementById('weekSpan3');
 	var week_span4 = document.getElementById('weekSpan4');
 	var obj2 = {};
-    
 	if(hotelStorage){
 	    DomCheckInDate.value=hotelStorage.DomCheckInDate;
 	    DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
@@ -965,10 +942,7 @@ function inpChange(id, myText) {
 		this.idTotal = arguments[0].idTotal;
 		this.idLive = arguments[0].idLive;
 		this.idLeave = arguments[0].idLeave;
-		console.log(arguments[0]);
 	}
-
-
 	Calender2.prototype = new Calender();
 	var oldlinkover = Calender.prototype.linkOver;
 	Calender2.prototype.linkOver = function() {
@@ -977,11 +951,6 @@ function inpChange(id, myText) {
 		var tal = _CalF.$('#' + that.idTotal, that.input);
 		beginDate = sels[0].parentNode.getAttribute("data-day").split('-').join('-');
 		leaveDate = sels[1].parentNode.getAttribute("data-day").split('-').join('-');
-		//console.log(this.time);
-		//console.log(myDate1);
-		//console.log(obj);
-		//console.log(sels[0].parentNode.getAttribute("data-day"));
-		//console.log(sels[1].parentNode.getAttribute("data-day"));
 		var liveDate = sels[0].parentNode.getAttribute("data-day").split('-');
 		var leaveDate = sels[1].parentNode.getAttribute("data-day").split('-');
 		for (var i = 0; i < liveDate.length; i++) {
@@ -990,24 +959,17 @@ function inpChange(id, myText) {
 		for (var i = 0; i < leaveDate.length; i++) {
 			leaveDate[i] = leaveDate[i] < 10 ? '0' + leaveDate[i] : leaveDate[i];
 		}
-		//console.log(liveDate);
 		liveDate = liveDate.join('-');
 		leaveDate = leaveDate.join('-');
-		//console.log(liveDate);
 		out[0].value = liveDate;
 		out[1].value = leaveDate;
 		arr.push(liveDate);
 		arr.push(leaveDate);
-		//console.log(arr);
 		//修改calendar传入的参数obj的值
 		obj = {};
-		console.log(out[0].value + ':' + out[1].value);
 		obj[out[0].value] = "入住";
 		obj[out[1].value] = "离店";
 		this.time = obj;
-		//console.log(this.time);
-		//console.log(arr);
-		//console.log(new Date(arr[1]));
 		var live_y = arr[0].split('-')[0];
 		var live_m = arr[0].split('-')[1] - 1;
 		var live_d = arr[0].split('-')[2];
