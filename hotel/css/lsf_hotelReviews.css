@@ -171,9 +171,9 @@ header i{
     display: block;
     position: absolute;
     width: 30px;
-    height: 54px;
     bottom: 30px;
-    right: 3px;
+    height: 54px;
+    right: 2px;
     background-color: white;
     z-index: 999;
 }
