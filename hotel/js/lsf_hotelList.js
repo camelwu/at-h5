@@ -131,7 +131,18 @@ function styleChange(id, mytext) {
 		}
 	};
 }
+;(function(){
+//		var inst = document.getElementById("fo_lo");
+//		var submit = document.getElementById("l_but");
+	$("#fo_lo").on("click",function(){
+		$("#l_but").addClass("s-but-checked");
+		console.log("111");
+	});
+	$("#l_but").on("click",function(){
+		$("#l_but").removeClass("s-but-checked");
+	})
 
+})();
 (function() {
 	//贾燕云的js
 	function h_l_s() {

@@ -476,6 +476,19 @@ body {
     color: white;
     border-radius: 5px;
     background-color:#ffb413;
+
+}
+.s-submit{
+    width: 94%;height: 36px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.s-but-checked{
+    position: fixed;
+    left:0;
+    bottom:0;
 }
 /*
     λ�ÿ�
