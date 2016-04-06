@@ -103,24 +103,24 @@ var  ticketIndexModal = {
        },
 
        returnCityCode:function(arg){
-           var CityCode = "",type='domestic';
+           var cityCode = "",type='domestic';
            for(var i=0;i<internationalCities.length;i++){
-               if(internationalCities[i].CityName ==arg.innerHTML){
-                   CityCode = internationalCities[i].CityCode;
+               if(internationalCities[i].cityNameCN ==arg.innerHTML){
+                   cityCode = internationalCities[i].cityCode;
                    type = 'international';
                    break;
                }
            }
-           if(!CityCode){
+           if(!cityCode){
                for(var j=0;j<domesticCities.length;j++){
-                   if(domesticCities[j].CityName ==arg.innerHTML){
-                       CityCode = domesticCities[j].CityCode;
+                   if(domesticCities[j].cityNameCN ==arg.innerHTML){
+                       cityCode = domesticCities[j].cityCode;
                        type = 'domestic';
                        break;
                    }
                }
            }
-           return {CityCode:CityCode,type:type};
+           return {cityCode:cityCode,type:type};
        },
 
        returnCabinClass:function(arg){
@@ -164,9 +164,10 @@ var  ticketIndexModal = {
                    if(document.querySelector('#double').style.display == 'block'){
                        cityStrs = document.querySelectorAll('#double .city-search');
                        CityFromObj = that.returnCityCode(cityStrs[0]);
+                       console.log(CityFromObj)
                        CityToObj = that.returnCityCode(cityStrs[1]);
-                       CityCodeFrom = CityFromObj['CityCode'];
-                       CityCodeTo = CityToObj['CityCode'];
+                       CityCodeFrom = CityFromObj['cityCode'];
+                       CityCodeTo = CityToObj['cityCode'];
                        startDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[0].innerHTML);
                        endDate = that.reDate(document.querySelector('.ori-des-Date').querySelectorAll('.dateNumber')[1].innerHTML);
                        adultNumber = document.querySelector('#double span.adult-number').innerHTML;
@@ -204,8 +205,8 @@ var  ticketIndexModal = {
                        cityStrs = document.querySelectorAll('#single .city-search');
                        CityFromObj = that.returnCityCode(cityStrs[0]);
                        CityToObj = that.returnCityCode(cityStrs[1]);
-                       CityCodeFrom = CityFromObj['CityCode'];
-                       CityCodeTo = CityToObj['CityCode'];
+                       CityCodeFrom = CityFromObj['cityCode'];
+                       CityCodeTo = CityToObj['cityCode'];
                        startDate = that.reDate(document.querySelector('#chooseDate-single').querySelector('.dateNumber').innerHTML);
                        adultNumber = document.querySelector('#single span.adult-number').innerHTML;
                        childNumber = document.querySelector('#single span.child-number').innerHTML;
