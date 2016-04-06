@@ -33,6 +33,7 @@ $(document).ready(function(){
 
             $(".passenger-detail").on("click",function(){
                 $(".passenger").toggle();
+                $(this).toggleClass('opened');
             })
             vlm.init();
 

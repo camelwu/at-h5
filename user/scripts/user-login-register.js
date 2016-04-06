@@ -413,8 +413,14 @@ function mycallback_login(myJson) {
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		} else if (urlobj["returnURL"]) {
 			window.top.location.href = urlobj["returnURL"];
-		} else {
-				window.location.href = "user.html";
+		} else if(window.location.search == '?oftenInfo')
+		{
+			window.location.href = "user-oftenInfo.html";
+		} else if(window.location.search == '?allorder')
+		{
+			window.location.href = "user-allorder.html";
+		}else{
+			window.location.href = "user-perInfo.html";
 		}
 
 	} else {
@@ -491,6 +497,33 @@ function mycallback_findver(ret) {
 		jAlert(myJson.message);
 	}
 }
+
+//登录和注册清除内容图标
+	function clearValue(id){
+		$(id).on('input propertychange',function(){
+			if($(id).val() == ''){
+				$(this).parent().find('.login-clear').hide();
+			}else{
+				$(this).parent().find('.login-clear').show();
+			}
+		});
+
+		$(id).parent().find('.login-clear').click(function(){
+			$(this).hide();
+			$(id).val('');
+		});
+	}
+
+	clearValue('#phone');
+	clearValue('#p_password');
+	clearValue('#email');
+	clearValue('#e_password');
+	clearValue('#r_phone');
+	clearValue('#verify');
+	clearValue('#r_p_password');
+	clearValue('#r_email');
+	clearValue('#rs_e_password');
+	clearValue('#r_e_password');
 
 //时间倒计时结束后
 function phone_timeout() {

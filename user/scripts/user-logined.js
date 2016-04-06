@@ -93,14 +93,19 @@ function mycallback(ret) {
         if(localStorage.getItem('login') == 1)
         {
             this.href='user-allorder.html'
+        }else{
+            this.href="user-login.html?allorder";
         }
     };
 
 
     document.querySelector('#common-msg').onclick=function(){
+
         if(localStorage.getItem('login') == 1)
         {
-            this.href='user-oftenInfo.html'
+            this.href='user-oftenInfo.html';
+        }else{
+            this.href="user-login.html?oftenInfo";
         }
     };
 
