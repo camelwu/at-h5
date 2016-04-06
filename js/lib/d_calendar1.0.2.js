@@ -345,8 +345,20 @@ Calender.prototype = {
         }
     },
     linkOver:function(){
-    	var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
+    	var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[],obj ={};
 		var out = _CalF.$('input',that.input);
+        var liveDate = sels[0].parentNode.getAttribute("data-day").split("-");
+        var leaveDate = sels[1].parentNode.getAttribute("data-day").split("-");
+        for (var i = 0; i < liveDate.length; i++) {
+			liveDate[i] = liveDate[i] < 10 ? '0' + liveDate[i] : liveDate[i];
+		}
+		for (var i = 0; i < leaveDate.length; i++) {
+			leaveDate[i] = leaveDate[i] < 10 ? '0' + leaveDate[i] : leaveDate[i];
+		}
+		
+		liveDate = liveDate.join('-');
+		leaveDate = leaveDate.join('-');
+        
         if(!out.length){
             out=_CalF.$('.'+this.sClass1,that.input);
         }
@@ -357,10 +369,10 @@ Calender.prototype = {
                 out[i].value = sels[i].parentNode.getAttribute("data-day");
             }
         }else{
-            arr.push(sels[0].parentNode.getAttribute("data-day"));
-            arr.push(sels[1].parentNode.getAttribute("data-day"));
-            out[0].innerHTML=sels[0].parentNode.getAttribute("data-day");
-            out[1].innerHTML=sels[1].parentNode.getAttribute("data-day");
+            arr.push(liveDate);
+            arr.push(leaveDate);
+            out[0].innerHTML=liveDate;
+            out[1].innerHTML=leaveDate;
         }
         console.log(out[0]+':'+out[1]);
         var live_y=arr[0].split('-')[0];
@@ -372,6 +384,13 @@ Calender.prototype = {
         if(tal){
             tal.innerHTML = (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
         }
+        
+        //修改calendar传入的参数obj的值
+		console.log(out[0].value + ':' + out[1].value);
+		obj[arr[0]] = this._word.h[0];
+		obj[arr[1]] = this._word.h[1];
+		this.time = obj;
+        
     	that.removeDate();
     	//that.header.parentNode.removeChild(that.header);
         if(typeof that.fn==='function'){
