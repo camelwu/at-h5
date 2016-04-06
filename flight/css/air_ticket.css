@@ -2918,7 +2918,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     margin-left: 10px;
     /*height: 38px;*/
-    /*line-height: 38px;*/
+    line-height: 38px;
     /*padding: 8px 0;*/
 }
 
