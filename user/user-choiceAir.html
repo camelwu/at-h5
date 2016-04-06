@@ -1173,9 +1173,9 @@
 		var json = eval('('+olocal+')');
 		console.log(typeof json);
 		if(json.data.isInternationalFlight){
-			$('#con-text').html('为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月');
+			$('#con-text,#con-text').html('为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月');
 		}else{
-			$('#con-text').html('')
+			$('#con-text,#con-text').html('')
 		}
 	})
 </script>
