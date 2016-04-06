@@ -2891,6 +2891,9 @@ h1, h2, h3, h4, h5, h6 {
     box-flex:1;
     line-height: 3.3rem;
 }
+.contact .table .tel div.left .jcenters p:nth-child(2){
+    padding-top: 2px;
+}
 .contact .table .tel div.left form {
     display: inline-block;
     line-height: 3.3rem;
@@ -2914,9 +2917,9 @@ h1, h2, h3, h4, h5, h6 {
 .contact .table .tel div.right input {
     width: 100%;
     margin-left: 10px;
-    height: 38px;
-    line-height: 38px;
-    padding: 8px 0;
+    /*height: 38px;*/
+    /*line-height: 38px;*/
+    /*padding: 8px 0;*/
 }
 
 .contact-table .nleft, .contact-table .nright {
