@@ -2498,7 +2498,7 @@ h1, h2, h3, h4, h5, h6 {
     background-size: 217.5px 130.5px;
     background-position: 12.8% 19.2%;
     position: absolute;
-    right: 64px;
+    right: 68px;
     top: 1px;
 }
 
@@ -2805,7 +2805,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact .table input {
     width: 33%;
     margin-left: 0.2rem;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     line-height: 3.5rem;
 }
@@ -2814,6 +2814,10 @@ h1, h2, h3, h4, h5, h6 {
     height: 3.3rem;
     width: 100%;
     padding: 0 1.0rem;
+
+}
+.contact .table .unit.email{
+    font-size: 1.2rem;
 }
 
 .contact .table .name {
@@ -2844,6 +2848,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact .table .name label.name-label {
+    font-size: 1.2rem;
     display: inline-block;
     line-height: 3.3rem;
     height: 3.3rem;
@@ -2863,12 +2868,28 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 3.3rem;
     height: 3.3rem;
     width: 50%;
+    font-size: 1.2rem;
 }
-
+.contact .table .tel div.left span.jiphone{
+    width: 30%;
+    position: absolute;
+}
 .contact .table .tel div.left .center {
     width: 50%;
 }
-
+.contact .table .tel div.left .jcenters{
+    margin-left:30%;
+    display:-webkit-box;
+    display:-moz-box;
+    display:box;
+    width: auto;
+}
+.contact .table .tel div.left .jcenters p{
+    display: block;
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    box-flex:1;
+}
 .contact .table .tel div.left form {
     display: inline-block;
     line-height: 3.3rem;
@@ -2892,7 +2913,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact .table .tel div.right input {
     width: 100%;
     margin-left: 10px;
-    height: 40px;
+    height: 38px;
     line-height: 24px;
     padding: 8px 0;
 }
@@ -2940,7 +2961,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact .table .email input {
     width: 60%;
     margin-left: 0.2rem;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
 }
 
 .read-tip {
@@ -3161,10 +3182,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #slider-country-choose {
-    /*display: inline-block;*/
-    position: absolute;
-    top: 45%;
-    right: 0%;
+    display: inline-block;
+    /*position: absolute;*/
+    /*top: 45%;*/
+    /*right: 0%;*/
     width: 8px;
     height: 8px;
     border-bottom: 1px solid rgb(102, 102, 102);
@@ -3180,7 +3201,9 @@ h1, h2, h3, h4, h5, h6 {
     -ms-transform-origin: 50% 0;
     transform-origin: 50% 0;
 }
-
+.jcenters #slider-country-choose{
+    margin-top: 18px;
+}
 .custom-select-wrapper {
     position: relative;
     display: inline-block;

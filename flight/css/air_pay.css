@@ -634,16 +634,17 @@ i {
     color: #fff;
 }
 .passenger-detail{
-    margin-right: 25px;
+    padding-right: 30px;
     float: right;
     color: #fdb330;
+    position:relative;
 
 }
 .passenger-detail .icon-arrow{
     margin-left: 3px;
-    display: inline-block;
-    right:0.2rem;
-    top: 50%;
+    position: absolute;
+    top: 11px;
+    right: 15px;
     width: 8px;
     height: 8px;
     border-bottom: 1px solid  #ffb412;

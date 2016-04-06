@@ -158,7 +158,6 @@ var ticketSingle = {
             var monthNum = (arg.getMonth()+1)<10?"0"+parseInt((arg.getMonth()+1)):arg.getMonth()+1;
             var dateNum = (arg.getDate())<10?"0"+parseInt(arg.getDate()):arg.getDate();
             arg = arg.getFullYear()+'-'+monthNum+'-'+dateNum;
-            console.log(arg)
             var lineMaxDate = new Date().getFullYear()+1+'/'+(new Date().getMonth()+1)+'/'+new Date().getDate();
             if(new Date(arg+' 23:59:59')>=new Date()){
                 var result_ = ticketSingle.returnWeek(arg);
@@ -181,26 +180,36 @@ var ticketSingle = {
             var tem = new Date(arg_);
             arg= new Date(tem.setDate(tem.getDate()+1));
             var monthNum = (arg.getMonth()+1)<10?"0"+parseInt((arg.getMonth()+1)):arg.getMonth()+1;
-            var dateNum = (arg.getDate())<10?"0"+parseInt(arg.getDate()):arg.getDate();
+            var dateNum = (arg.getDate())<10?"0"+parseInt(arg.getDate()):arg.getDate(), result_,newUrl;
             arg = arg.getFullYear()+'-'+monthNum+'-'+dateNum;
-            console.log(arg)
             var lineMaxDate = new Date().getFullYear()+1+'/'+(new Date().getMonth()+1)+'/'+new Date().getDate();
-            if(new Date(arg)>new Date()&&new Date(arg)<=new Date(lineMaxDate+' 08:00:00')){
-                var result_ = ticketSingle.returnWeek(arg);
+            console.log(lineMaxDate)
+            if(new Date(arg)+' 00:00:00'>new Date()&&new Date(arg)<new Date(lineMaxDate+' 00:00:00')){
+                result_ = ticketSingle.returnWeek(arg);
                 oDivs[0].className = 'unit previous-day';
                 document.querySelector('.single-ticket-input').innerHTML = result_;
                 that.backParaObj.DepartDate = arg;
                 that.backParaObj.pageNo= 1;
                 that.backParaObj.pageSize= 10;
                 document.querySelector('#preloader').style.display='block';
+                newUrl = vlm.setUrlPara("","DepartDate",arg);
+                window.location.href = newUrl;
+            }else if(new Date(arg+' 00:00:00')-new Date(lineMaxDate+' 00:00:00')==0){
+                result_ = ticketSingle.returnWeek(arg);
+                oDivs[0].className = 'unit previous-day';
+                document.querySelector('.single-ticket-input').innerHTML = result_;
+                that.backParaObj.DepartDate = arg;
+                that.backParaObj.pageNo= 1;
+                that.backParaObj.pageSize= 10;
+                document.querySelector('#preloader').style.display='block';
+                oDivs[1].className = 'unit next-day disabled-date-choose';
                 //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
                 //重置URL  DepartDate
-                var newUrl = vlm.setUrlPara("","DepartDate",arg);
-                 window.location.href = newUrl;
+                newUrl = vlm.setUrlPara("","DepartDate",arg);
+                window.location.href = newUrl;
             }else{
                 oDivs[1].className = 'unit next-day disabled-date-choose'
             }
-
         });
     },
     renderHandler:function(arg){
@@ -301,16 +310,6 @@ var ticketSingle = {
         console.log(that.backParaObj);
         var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
         var ticketListStr,ShareFlightStr='',passByStr='',transferCity='',tipDay='', li;
-       /* var myFixed = function(arg){
-            if(String(arg).indexOf('.')>-1){
-                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
-                    return String(arg)+'0';
-                }
-                return String(arg).substring(0,String(arg).indexOf('.')+3)
-            }else{
-                return String(arg)+'.00';
-            }
-        };*/
         ticketDetailUl.innerHTML = that.isClearAll==true?"":ticketDetailUl.innerHTML;
         var returnRightTax = function(){
             var str = '';
@@ -334,9 +333,6 @@ var ticketSingle = {
         };
         ticketListStr = '';
         for(var i = 0; i < arg.data.flightInfos.length; i++){
-            //li = document.createElement('li');
-            //li.className = "air-tickets-detail seat-detail";
-            //li.setAttribute("data-set-id",arg.data.flightInfos[i].setID);
             ShareFlightStr = arg.data.flightInfos[i].isReturnShareFlight==true?'&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|':'';
             passByStr = arg.data.flightInfos[i].isLeaveStop==true?' | <span class="green-tip">经停</span>':'';
             tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay>=1?'+'+arg.data.flightInfos[i].flightLeaveSpacingDay+'天':'';
@@ -460,7 +456,6 @@ var ticketSingle = {
             this.style.display = 'none';
         });
     },
-
     taxHandler:function(){
         var priceModal = document.querySelector('#price-modal');
         this.addHandler(priceModal, 'click', function(event){
@@ -497,14 +492,12 @@ var ticketSingle = {
                     sibLis[l].className =sibLis[l]==target?"price-modal-item active":"price-modal-item";
                 }
             }
-
             this.style.transition = 'all 300ms ease-in';
             this.style.webkitTransition = 'all 300ms linear';
             this.style.bottom = '-126%';
             shadowBox.style.display = 'none';
         });
     },
-        
     loadMoreData:function(){
         var  that = ticketSingle;
          var loadMore = document.getElementById("loadMore");
@@ -532,6 +525,13 @@ var ticketSingle = {
         that.changeFlightList(that.lastBackData, that.backParaObj.hasTax);
         console.log(arg)
     },
+    fixColor:function(){
+        var lineMaxDate = new Date().getFullYear()+1+'/'+(new Date().getMonth()+1)+'/'+new Date().getDate();
+        var oDivs = document.querySelectorAll('.unit');
+        if(new Date(this.backParaObj.DepartDate+' 00:00:00')-new Date(lineMaxDate+' 00:00:00')==0){
+          oDivs[1].className = 'unit next-day disabled-date-choose';
+        }
+    },
     init:function(){
         var backParaObj = this.parseUrlPara(document.location.search, true);
         var generatedCount = 0,that = ticketSingle;
@@ -547,6 +547,7 @@ var ticketSingle = {
         this.backParaObj = backParaObj;
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         this.flightResultArray = [];
+        this.fixColor();
         this.dateInit(backParaObj);
         this.preAndNex();
         conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj,this.handler1, this.handler2);
