@@ -1399,6 +1399,9 @@ a{
     right: 13px;
     background-position: -85px -35px;
 }
+.login-clear.get-code-del{
+    right: 125px;
+}
 
 .regist-code {
     display: inline-block;
