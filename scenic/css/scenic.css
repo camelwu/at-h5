@@ -456,6 +456,14 @@ i{
     font-size: 1.4rem;
     margin-bottom: 15px;
 }
+.s-type .menu-line{
+    position: absolute;
+    left: 50%;
+    top: 1.2rem;
+    height: 2.1rem;
+    width: 1px;
+    background-color: #ccc;
+}
 .s-type div{
     width: 50%;
     height: 100%;
@@ -465,7 +473,6 @@ i{
 }
 .s-type div:first-child{
     float: left;
-    border-right: 0.1rem solid #cccccc;
     border-bottom: 0.1rem solid #cccccc;
 }
 .s-type div:last-child{
