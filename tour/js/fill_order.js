@@ -129,7 +129,7 @@
                 var dateObj = JSON.parse(window.localStorage.info);
                 var paraObj = {
                     start:dateObj.CheckInDate.replace(/T.*/,''),
-                    end:dateObj.CheckInDate.replace(/T.*/,'')
+                    end:dateObj.CheckOutDate.replace(/T.*/,'')
                 };
                 switch (airFli){
                     case 'None':
@@ -396,19 +396,24 @@
                     {
                         var departFlightNo=document.querySelector('#content3 .input_flight input').value;
                         var departDateTime=document.querySelector('#content3_CheckInDate').value;
-                        fli.DepartFlightNo=departFlightNo;
-                        fli.DepartDateTime=departDateTime+'T00:00:00';
+                        if(departFlightNo = ''){
+                            fli.DepartFlightNo = "None";
+                        }else{
+                            fli.DepartFlightNo=departFlightNo;
+                            fli.DepartDateTime=departDateTime+'T00:00:00';
+                        }
                     }
                     if($('#content4').css('display') == 'block')
                     {
-
                         var arrivalFlightNo=document.querySelector('#content4 .input_flight input').value;
                         var arrivalDateTime=document.querySelector('#content4_CheckInDate').value;
-                        fli.ArrivalFlightNo=arrivalFlightNo;
-                        fli.ArrivalDateTime=arrivalDateTime+'T00:00:00';
+                        if(arrivalFlightNo = ''){
+                            fli.ArrivalFlightNo = "None";
+                        }else{
+                            fli.ArrivalFlightNo=arrivalFlightNo;
+                            fli.ArrivalDateTime=arrivalDateTime+'T00:00:00';
+                        }
                     }
-
-
                     Parmeters.Parameters.FlightDetails=fli;
                 }
 
@@ -437,6 +442,7 @@
         var json = ret;
         if(json.success) {
             //套餐名称
+            console.log(json);
             var sceTit=json.data.packageName;
             var sceCpde=json.data.packageRefNo;
             $('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">'+sceCpde+'</span>';
