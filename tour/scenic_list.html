@@ -40,7 +40,7 @@
 <div class="all-elements">
     <!--   顶部   -->
     <div class="header" id="vlm-login">
-        <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+        <a href="javascript:;" id="city-back-tip" class="header-back"><i class="icons go-back"></i></a>
         <h3>酒+景</h3>
         <a href="../scenic/scenic_city.html?citycode=1&callback=tour/scenic_list.html" class="location-wrap">
             <span id="Localtxt" class="location-txt"></span>
@@ -565,6 +565,12 @@
 
         MT.load();
     })();
+
+    //城市返回记录已访问过
+    $('#city-back-tip').click(function(){
+        var cityvisited=window.location.search;
+        window.location.href='index.html'+cityvisited;
+    });
 </script>
 </body>
 </html>

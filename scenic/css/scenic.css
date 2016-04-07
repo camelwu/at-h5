@@ -414,11 +414,16 @@ i{
 .top-back{
     position: absolute;
     z-index: 1;
+    width: 50px;
+    height: 45px;
+    padding: 16px 0 0 20px;
+    left: 0px;
+    top: 10px;
+    background-position: 0.5% -1%;
+}
+.top-back .icons{
     width: 24px;
     height: 24px;
-    left: 20px;
-    top: 30px;
-    background-position: 0.5% -1%;
 }
 .top-ban{
     position: relative;
@@ -494,6 +499,9 @@ i{
     text-align: center;
     line-height: 30px;
     overflow: hidden;
+}
+.j-hotplace{
+    border: 1px solid #ffb500;
 }
 .pl-active{
     color:#ffb413;
@@ -2286,10 +2294,14 @@ i{
     /*margin:0 15px;display:block;height:30px;overflow:hidden;*/
     /*text-align:center;line-height:30px;*/
 /*}*/
+#hotPlace li{
+    border-radius: 5px;
+ }
 .jjin-active{
-    background: #ffb413;
-    color:#fff;
-    border:none!important;
+    background: #fff;
+    color:#ffb413;
+    border:1px solid #ffb413!important;
+    border-radius:5px;
 }
 /*.conBox .cityListBox .active{*/
     /*background: #ffb413;*/

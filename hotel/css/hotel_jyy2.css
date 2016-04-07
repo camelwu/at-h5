@@ -495,6 +495,13 @@ body {
     left:0;
     bottom:0;
 }
+.s-but1{
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    opacity: 1;
+
+}
 /*
     λ�ÿ�
 */
@@ -511,6 +518,9 @@ body {
     right: 0;
     overflow:auto;
 
+}
+.r-container{
+    padding-bottom: 100px;
 }
 .l-ul{
     width: 94%;
