@@ -159,14 +159,11 @@ var ticketOrder = {
                 MobilePhone: "",
                 SexCode: "Mr"}
             }
-            console.log(contactInfo)
-
             contactInfoCache.FirstName = document.querySelector('#first-name').value;
             contactInfoCache.LastName = document.querySelector('#last-name').value;
             contactInfoCache.Email =document.querySelector('#email-label').value;
             contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
             contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
-            
             if(contactInfoCache.FirstName==""){
                 jAlert('请输入姓!', '提示');
                 return;

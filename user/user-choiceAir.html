@@ -1080,8 +1080,8 @@
 		<span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}" onclick="javascript:delPassager(this);" ></i></span>
 		<div class="middle">
 			<p class="name">
-				<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" value="{%=traveller.lastName%}">
-				<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly"  value="{%=traveller.firstName%}">
+				<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" value="{%=traveller.firstName%}">
+				<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly"  value="{%=traveller.lastName%}">
 			</p>
 			<div class="passport">
 				<span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly" value="{%=listTravellerIdInfo[0].idNumber%}"><span class="passenger-sex">{%=traveller.sexName%}</span>
@@ -1094,7 +1094,7 @@
 <!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
-		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}"/>
+		<label for="first-name" class="name-label">姓123</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}"/>
 		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.lastName%}"/>
 	</div>
 	<div class="unit tel">
