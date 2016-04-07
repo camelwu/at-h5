@@ -2286,10 +2286,14 @@ i{
     /*margin:0 15px;display:block;height:30px;overflow:hidden;*/
     /*text-align:center;line-height:30px;*/
 /*}*/
+#hotPlace li{
+    border-radius: 5px;
+ }
 .jjin-active{
-    background: #ffb413;
-    color:#fff;
-    border:none!important;
+    background: #fff;
+    color:#ffb413;
+    border:1px solid #ffb413!important;
+    border-radius:5px;
 }
 /*.conBox .cityListBox .active{*/
     /*background: #ffb413;*/
