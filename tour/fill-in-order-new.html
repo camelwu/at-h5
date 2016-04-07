@@ -97,30 +97,30 @@
 			<!--航班信息-->
             <section class="personal_data_box" id="flight-air">
                 <div class="personal_data">
-                    <span class="title"><i>航班信息</i></span>
+                    <span class="title"><i>航班信息（选填）</i><i id="send_btn" class="send-impo"></i></span>
                     <div class="content2" id="content3">
 						<div class="nav2-left">
-							<span class="nav2-lefttop">出发</span>							
+							<span class="nav2-lefttop">抵达</span>
 						</div>
                         <div class="input_flight">
                             <input class="" name="" value="" placeholder="航班号">
                         </div>
                         <div class="nav2-center" id="nav2-center-dep">
                             <div class="nav2-centertop">
-                                <input name="CheckInDate" id="content3_CheckInDate" class="content3_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
+                                <input name="CheckInDate" id="content3_CheckInDate" class="content3_CheckInDate" placeholder="年月日" readonly><input class="content3_time" value="12:00"><i class="tour-scene-date"></i>
                             </div>
                         </div>
 					</div>
 					<div class="content2" id="content4">
 						<div class="nav2-left">
-							<span class="nav2-lefttop">抵达</span>							
+							<span class="nav2-lefttop">离开</span>
 						</div>
                         <div class="input_flight">
                             <input class="" name=""value="" placeholder="航班号">
                         </div>
                         <div class="nav2-center" id="nav2-center-arr">
                             <div class="nav2-centertop">
-                                <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
+                                <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日" readonly><input class="content4_time" value="12:00"><i class="tour-scene-date"></i>
                             </div>
                         </div>
 					</div>
@@ -157,9 +157,9 @@
             <!--<li><span class="package-tit"></span></li>-->
         </ul>
     </div>
-    <!--   旅行须知   -->
+    <!--   旅行须知and接送须知   -->
     <div class="tmask js-mask">
-        <div class="travelnotes-warp js-travelnotes">
+        <div id="traState" class="travelnotes-warp js-travelnotes">
             <div class="travelnotes-header">
                 旅行须知
                 <i class="travelnotes-header-icon js-travelnotes-close"></i>
@@ -172,6 +172,18 @@
                 <li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
                 <li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
                 <li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
+            </ol>
+        </div>
+        <div id="sendState" class="travelnotes-warp js-travelnotes">
+            <div class="travelnotes-header">
+                接送须知
+                <i class="travelnotes-header-icon js-travelnotes-close"></i>
+            </div>
+            <ol class="travelnotes-list">
+                <li>如果还未预订机票，您可任意填写航班信息，继续您的预订。请您至少在出发3天前，联系我们并提新的航班信息，我们会重新安排您的接送。</li>
+                <li>不填写接送信息默认您不需要接送。</li>
+                <li>如果您需要修改航班信息，也请在出发前3天联系我们并提供新的航班信息，我们会及时处理。</li>
+                <li>接机时间是您抵达的时间，送机时间是您离开的时间。</li>
             </ol>
         </div>
     </div>
@@ -213,6 +225,9 @@
             }
             $("#state_btn").click(function(){
                 $(".js-mask").show();
+                $('#traState').show();
+                $('#traState').css({"height":"50%"});
+                $('#sendState').hide();
                 $('.sc-content').css({"overflow":"hidden"})
             });
             $(".js-travelnotes-close").click(function(){
@@ -225,6 +240,13 @@
             });
             $(".js-travelnotes").click(function(e){
                 cancelPropagation(e);
+            });
+            $("#send_btn").click(function(){
+                $(".js-mask").show();
+                $('#traState').hide();
+                $('#sendState').show();
+                $('#sendState').css({"height":"35%"});
+                $('.sc-content').css({"overflow":"hidden"});
             });
         })();
     </script>
