@@ -495,6 +495,9 @@ i{
     line-height: 30px;
     overflow: hidden;
 }
+.j-hotplace{
+    border: 1px solid #ffb500;
+}
 .pl-active{
     color:#ffb413;
     border:1px solid #ffb413;
