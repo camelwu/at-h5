@@ -284,16 +284,11 @@ body {
 }
 .fo-div{
     text-align: center;
-    width: 33.3%;
+    width: 33.3333%;
     color: white;
     font-size: 11px;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
-
     overflow:hidden;
+    position: relative;
 }
 .hl-icon3{
     display:block;
@@ -312,6 +307,16 @@ body {
 .hl-icon-5{
     background:url("../../images/ui/location.png");
     background-size: 15px 15px;
+}
+.fo-div .red-tip{
+    position: absolute;
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: red;
+    border-radius: 4px;
+    right: 36%;
+    top: 15%;
 }
 .ho_list{
     display: -moz-box;
@@ -476,6 +481,19 @@ body {
     color: white;
     border-radius: 5px;
     background-color:#ffb413;
+
+}
+.s-submit{
+    width: 94%;height: 36px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.s-but-checked{
+    position: fixed;
+    left:0;
+    bottom:0;
 }
 /*
     λ�ÿ�

@@ -85,6 +85,7 @@ function url2json(url){
 
     });
 })();
+
 (function(){
     var list_oUl=lsf_myweb.getbyid('lsf_list');
     var pWidth=list_oUl.offsetWidth-140;

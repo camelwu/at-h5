@@ -498,6 +498,33 @@ function mycallback_findver(ret) {
 	}
 }
 
+//登录和注册清除内容图标
+	function clearValue(id){
+		$(id).on('input propertychange',function(){
+			if($(id).val() == ''){
+				$(this).parent().find('.login-clear').hide();
+			}else{
+				$(this).parent().find('.login-clear').show();
+			}
+		});
+
+		$(id).parent().find('.login-clear').click(function(){
+			$(this).hide();
+			$(id).val('');
+		});
+	}
+
+	clearValue('#phone');
+	clearValue('#p_password');
+	clearValue('#email');
+	clearValue('#e_password');
+	clearValue('#r_phone');
+	clearValue('#verify');
+	clearValue('#r_p_password');
+	clearValue('#r_email');
+	clearValue('#rs_e_password');
+	clearValue('#r_e_password');
+
 //时间倒计时结束后
 function phone_timeout() {
 	phone_verify.innerHTML = '发送验证码';

@@ -71,7 +71,7 @@ var lsf_myweb = {
 		return JSON.parse(window.sessionStorage.getItem(name));
 	}
 };
-//storage存储
+//storage存储  筛选条件只在酒店列表页生效，再次进入时清空还原
 var hlHis = lsf_myweb.getSession('asiaHlHistory') || {};
 lsf_myweb.setSession('asiaHlHistory', hlHis);
 //把星级英文数字换成汉字
@@ -131,7 +131,18 @@ function styleChange(id, mytext) {
 		}
 	};
 }
+;(function(){
+//		var inst = document.getElementById("fo_lo");
+//		var submit = document.getElementById("l_but");
+	$("#fo_lo").on("click",function(){
+		$("#l_but").addClass("s-but-checked");
+		console.log("111");
+	});
+	$("#l_but").on("click",function(){
+		$("#l_but").removeClass("s-but-checked");
+	})
 
+})();
 (function() {
 	//贾燕云的js
 	function h_l_s() {
@@ -413,8 +424,25 @@ function styleChange(id, mytext) {
 			}
 			return cityName;
 		}
-
-
+        
+        //显示筛选状态
+         var leftEle = document.getElementById('fo_ra'),middleEle = document.getElementById('fo_sc'),rightEle = document.getElementById('fo_lo');
+        if(json.rank != "" && json.rank != "PriorityDESC"){
+            leftEle.querySelector("i").className = "red-tip";
+        }else{
+            leftEle.querySelector("i").className = "";
+        }
+        if(json.Category != "" || json.StarRating != ""){
+            middleEle.querySelector("i").className = "red-tip";
+        }else{
+            middleEle.querySelector("i").className = "";
+        }
+        if(json.LocationList != ""){
+            rightEle.querySelector("i").className = "red-tip";
+        }else{
+            rightEle.querySelector("i").className = "";
+        }
+            
 		json.InterCityName = cityNameChange(json.InterCityName);
 		json.DomCityName = cityNameChange(json.DomCityName);
 		//对得到的汉字名字进行处理，得到英文名字和三字码
@@ -691,7 +719,7 @@ function styleChange(id, mytext) {
 		}
 	}
 
-	//sortHistory();
+	sortHistory();
 	//筛选实现记忆功能
 	function filterHistory() {
 		var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
@@ -719,7 +747,7 @@ function styleChange(id, mytext) {
 		url_json.Category = myAsiaHlHistory.hlFilter.hotelType;
 	}
 
-	//filterHistory();
+	filterHistory();
 
 	console.log(url_json);
 	console.log('22222');
@@ -763,10 +791,10 @@ function styleChange(id, mytext) {
 	lsf_myweb.bind(oBody, 'click', function(ev) {
 		var oEvent = ev || event;
 		var oSrc = oEvent.srcElement || oEvent.target;
-		hlHis.hlSort = {
-			"chinese" : '',
-			"english" : ''
-		};
+        hlHis.hlSort = hlHis.hlSort || {};
+        hlHis.hlSort.chinese = hlHis.hlSort.chinese || "";
+        hlHis.hlSort.english = hlHis.hlSort.english || "";
+
 		if (oSrc.className == 'r-li') {
 			var oSrc_str = oSrc.innerHTML;
 			if (oSrc_str.indexOf('推荐排序') != -1) {
@@ -806,11 +834,11 @@ function styleChange(id, mytext) {
 			var hl_star_str = '';
 			var hl_type_str = '';
 			var hl_star_type = lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'), 's-li1');
-			hlHis.hlFilter = {
-				"chinese" : '',
-				"star" : '',
-				"hotelType" : ''
-			};
+            hlHis.hlFilter = hlHis.hlFilter || {};
+            hlHis.hlFilter.chinese = hlHis.hlFilter.hotelType || "";
+            hlHis.hlFilter.star = hlHis.hlFilter.hotelType || "";
+            hlHis.hlFilter.hotelType = hlHis.hlFilter.hotelType || "";
+
 			for (var i = 0; i < hl_star_type.length; i++) {
 				switch(hl_star_type[i].innerText) {
 					case '二星级以下':
