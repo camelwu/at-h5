@@ -386,7 +386,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     {
                         array[i] = travJson.data[i].listTravellerIdInfo[0].travellerId;
                         arrayId[i] = travJson.data[i].listTravellerIdInfo[0].id;
-                        var oCountryName=getCountryName(travJson.data[i].listTravellerIdInfo[0].idCountry)
+                        var oCountryName=getCountryName(travJson.data[i].listTravellerIdInfo[0].idCountry);
                         if(oCountryName == undefined)
                         {
                             $('#country-name').html();
@@ -514,6 +514,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         oldcName=countryName.innerHTML = travJson.data[index].traveller.countryName;
         var idCountry=travJson.data[index].listTravellerIdInfo[0].idCountry;
         oldsendName=getCountryName(idCountry).CountryName;
+        $('#country-name').html(oldsendName);
         if (travJson.data[index].traveller.sexCode == "Mr") {
             man2.className = "icon-h traveler-sex1";
             woman2.className = "icon-h traveler-sex2";
@@ -533,7 +534,8 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 }
             }
             //证件类型、发证国家、国籍、性别
-            if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ||oldcName != $('#countryName').html()){
+            console.log(oldsendName +":"+ $('#country-name').html());
+            if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ){
                 jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
                 return;
             }
@@ -550,6 +552,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         function conEdit(arg){
             if(arg == true)
             {
+                $('#content-wrap').css('visibility','visible');
                 uptra_page.style.display='none';
             }
         }
