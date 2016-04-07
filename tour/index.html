@@ -39,7 +39,7 @@
     <div class="all-elements">
         <!--   顶部   -->
         <header class="header">
-            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+            <a href="javascript:;" class="header-back" id="ht-back"><i class="icons go-back"></i></a>
             <h3>酒+景</h3>
             <a onclick="MT.CurrentPageTolist()" class="location-wrap">
                 <span id="Localtxt" class="location-txt">更多</span>
@@ -265,6 +265,9 @@
         MT.load();
     })();
 
+    $('#ht-back').click(function(){
+        window.location.href='../index.html';
+    });
 </script>
 </body>
 </html>
