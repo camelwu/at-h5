@@ -363,6 +363,8 @@ function styleChange(id, mytext) {
 	//返回按钮事件
 	var hl_back = document.getElementById('hl_back');
 	lsf_myweb.bind(hl_back, 'click', function() {
+        //清空筛选条件
+        lsf_myweb.setSession('asiaHlHistory', {});
 		window.location.href = 'index.html';
 	});
 	//页面没有展示前页面展示的页面
@@ -433,7 +435,25 @@ function styleChange(id, mytext) {
 			}
 			return cityName;
 		}
-
+        
+        
+        //显示筛选状态
+        var leftEle = document.getElementById('fo_ra'),middleEle = document.getElementById('fo_sc'),rightEle = document.getElementById('fo_lo');
+        if(json.rank != "" && json.rank != "PriorityDESC"){
+            leftEle.querySelector("i").className = "red-tip";
+        }else{
+            leftEle.querySelector("i").className = "";
+        }
+        if(json.Category != "" || json.StarRating != ""){
+            middleEle.querySelector("i").className = "red-tip";
+        }else{
+            middleEle.querySelector("i").className = "";
+        }
+        if(json.LocationList != ""){
+            rightEle.querySelector("i").className = "red-tip";
+        }else{
+            rightEle.querySelector("i").className = "";
+        }
 
 		json.InterCityName = cityNameChange(json.InterCityName);
 		json.DomCityName = cityNameChange(json.DomCityName);
@@ -667,7 +687,9 @@ function styleChange(id, mytext) {
 			hlAddress();
 		}
 		addressBok = false;
-
+        //位置信息实现记忆功能   获取到数据后  再执行一次
+        locationHistory();
+        
 		$(function() {
 			//$("#status-h").fadeOut();
 			//$("#preloader").delay(400).fadeOut("medium");
@@ -694,7 +716,7 @@ function styleChange(id, mytext) {
 		if (!myAsiaHlHistory.hlSort)
 			return;
 		for (var i = 0; i < hlSortLi.length; i++) {
-			if (hlSortLi[i].innerHTML.indexOf(myAsiaHlHistory.hlSort.chinese) != -1) {
+			if (myAsiaHlHistory.hlSort.chinese && hlSortLi[i].innerHTML.indexOf(myAsiaHlHistory.hlSort.chinese) != -1) {
 				url_json.rank = myAsiaHlHistory.hlSort.english;
 				for (var j = 0; j < hlSortLi.length; j++) {
 					hlSortLi[j].style.color = '#b3b2b4';
@@ -711,7 +733,7 @@ function styleChange(id, mytext) {
 		}
 	}
 
-	//sortHistory();
+	sortHistory();
 	//筛选实现记忆功能
 	function filterHistory() {
 		var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
@@ -723,14 +745,18 @@ function styleChange(id, mytext) {
 		var hLevelLi = hLevel.children;
 		var hTypeLi = hType.children;
 		function filterAli(obj) {
-			for (var j = 0; j < obj.length; j++) {
-				obj[j].className = 's-li';
-			}
+            var sign = false;
 			for (var i = 0; i < obj.length; i++) {
 				if (myAsiaHlHistory.hlFilter.chinese.indexOf(obj[i].innerText) != -1) {
+                    sign = true;
 					obj[i].className = 's-li1';
-				}
+				}else{
+                    obj[i].className = 's-li';
+                }
 			}
+            if(!sign){
+                obj[0].className = 's-li1';
+            }
 		}
 
 		filterAli(hLevelLi);
@@ -739,8 +765,36 @@ function styleChange(id, mytext) {
 		url_json.Category = myAsiaHlHistory.hlFilter.hotelType;
 	}
 
-	//filterHistory();
+	filterHistory();
+    
+    //位置信息实现记忆功能   获取到数据后  再执行一次
+    function locationHistory() {
+        var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+        if (!myAsiaHlHistory.hlLocation)
+            return;
+        var hLocation= document.getElementById('l-ul');
+        var hLocationLi = hLocation.children
+        function resetStatus(obj){
+            var locationList = myAsiaHlHistory.hlLocation.list.split("$");
+            var locationLen = locationList.length;
+            if(locationLen > 0 && hLocationLi[0]){
+                hLocationLi[0].classList.add("l-li3");
+            }
+            for (var i = 0; i < obj.length; i++) {
+                for(var j=0; j < locationLen; j++){
+                    if(obj[i].firstChild.innerText == locationList[j]){
+                        obj[i].classList.add('l-li2');
+                    }
+                }
+            }
+        }
+        resetStatus(hLocationLi);
+        url_json.LocationList = myAsiaHlHistory.hlLocation.list;
+    }
 
+    locationHistory();
+    
+    
 	console.log(url_json);
 	console.log('22222');
 	M(url_json);
@@ -949,6 +1003,8 @@ function styleChange(id, mytext) {
 		var oLocation = document.getElementById('location');
 		var loca_con = document.getElementById('loca_con');
 		var loca_conBro = document.getElementById('loca_conBro');
+        hlHis.hlLocation = hlHis.hlLocation || {};
+        hlHis.hlLocation.list = hlHis.hlLocation.list || "";
 		//设置弹出框的最大高度
 		var clienH = document.documentElement.clientHeight;
 		loca_conBro.style.height = loca_con.offsetHeight + 'px';
@@ -966,6 +1022,8 @@ function styleChange(id, mytext) {
 					locationList += cityName.innerHTML;
 				}
 			}
+            hlHis.hlLocation.list = locationList;
+            lsf_myweb.setSession('asiaHlHistory', hlHis);
 			url_json.LocationList = locationList;
             //页码重置  
             url_json.pageIndex = 1;
