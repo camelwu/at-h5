@@ -777,7 +777,7 @@ function styleChange(id, mytext) {
         function resetStatus(obj){
             var locationList = myAsiaHlHistory.hlLocation.list.split("$");
             var locationLen = locationList.length;
-            if(locationLen > 0 && hLocationLi[0]){
+            if(locationLen > 1 && hLocationLi[0]){
                 hLocationLi[0].classList.add("l-li3");
             }
             for (var i = 0; i < obj.length; i++) {
