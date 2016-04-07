@@ -199,7 +199,8 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     {
                         input[i].value='';
                     }
-                    input[4].value=input[5].value='1990-01-01';
+                    $('#time-cont').html('');
+                    $('#birth-cont').html('1990-01-01');
                     $('.country-btn').html('中国');
                     $('.country-btn').attr('data-code','CN');
                     $('.country-btn').attr('data-tel-code','86');
