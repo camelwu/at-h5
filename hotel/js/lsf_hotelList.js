@@ -837,10 +837,10 @@ function styleChange(id, mytext) {
 	lsf_myweb.bind(oBody, 'click', function(ev) {
 		var oEvent = ev || event;
 		var oSrc = oEvent.srcElement || oEvent.target;
-		hlHis.hlSort = {
-			"chinese" : '',
-			"english" : ''
-		};
+        hlHis.hlSort = hlHis.hlSort || {};
+        hlHis.hlSort.chinese = hlHis.hlSort.chinese || "";
+        hlHis.hlSort.english = hlHis.hlSort.english || "";
+		
 		if (oSrc.className == 'r-li') {
 			var oSrc_str = oSrc.innerHTML;
 			if (oSrc_str.indexOf('推荐排序') != -1) {
@@ -880,11 +880,11 @@ function styleChange(id, mytext) {
 			var hl_star_str = '';
 			var hl_type_str = '';
 			var hl_star_type = lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'), 's-li1');
-			hlHis.hlFilter = {
-				"chinese" : '',
-				"star" : '',
-				"hotelType" : ''
-			};
+            hlHis.hlFilter = hlHis.hlFilter || {};
+            hlHis.hlFilter.chinese = hlHis.hlFilter.chinese || "";
+            hlHis.hlFilter.star = hlHis.hlFilter.star || "";
+            hlHis.hlFilter.hotelType = hlHis.hlFilter.hotelType || "";
+			
 			for (var i = 0; i < hl_star_type.length; i++) {
 				switch(hl_star_type[i].innerText) {
 					case '二星级以下':
