@@ -500,15 +500,33 @@ input{
 }
 
 
-.personal_data_box .nav2-center input {
-    width: 85px;
-    height:45px;
-    color: #000;
+.personal_data_box .nav2-center input:nth-child(1){
+    width: 90px;
+    height: 45px;
+    color: #fdb330;
     line-height: 45px;
     font-size: 14px;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     display: inline-block;
 }
+.personal_data_box .nav2-center input:nth-child(2){
+    width:50px;
+    height: 45px;
+    color: #fdb330;
+    line-height: 45px;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    display: inline-block;
+}
+/*.personal_data_box .nav2-center input :nth-child(2){*/
+    /*width: 50px;*/
+    /*height: 45px;*/
+    /*color: #fdb330;*/
+    /*line-height: 45px;*/
+    /*font-size: 14px;*/
+    /*font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;*/
+    /*display: inline-block;*/
+/*}*/
 
 .personal_data_box .nav2-center p {
     padding-left: 14px;
@@ -645,6 +663,16 @@ input{
     background-position: -66px -34px;
 }
 
+.send-impo{
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/ui/icon.png);
+    background-size: 387px 118px;
+    background-position: -102px -32px;
+}
 /*task*/
 .mask {
     width: 100%;

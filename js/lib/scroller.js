@@ -290,10 +290,6 @@ Scroller.prototype = {
 				$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
 				ele.innerHTML = arr.join("");
 			}
-            
-           
-		}else{
-			ele.innerHTML = arr.join("");
 		}
 		this.selShow(0);
 	},

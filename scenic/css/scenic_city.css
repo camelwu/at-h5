@@ -131,6 +131,7 @@ ul, li {
     height: 30px;
     line-height: normal;
     display: inline-block;
+    vertical-align: middle;
     padding: 0 60px 0 28px;
     background-color: #FFF;
     border-radius: 5px;

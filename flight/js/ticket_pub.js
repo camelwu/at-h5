@@ -1206,7 +1206,6 @@ var  conditionalFiltering = {
                     }
                 }
                 (this.tempStates.hasTax == "true") ? priceModalLis_.querySelector('.filter-select').innerHTML = '含税价' : priceModalLis_.querySelector('.filter-select').innerHTML = '不含税价';
-
             }else{   //国际单程
                 var directFlyLis_is = document.querySelectorAll('.only-direct-fly li');
                 var filterShareLis_is = document.querySelectorAll('.filter-share li');

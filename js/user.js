@@ -357,7 +357,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         })(i);
     }
 
-
 //  页面初始获取常旅客
     function mycallback(ret) {
         travJson = ret;
