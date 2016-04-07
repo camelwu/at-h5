@@ -6,7 +6,8 @@ var getCoin = {
 };
 var getSex = {
     "MS": "男",
-    "MRS":"女"
+    "MRS":"女",
+     "MR":"女",
 };
 
 var getCardType = {

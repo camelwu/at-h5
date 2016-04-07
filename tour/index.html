@@ -39,7 +39,7 @@
     <div class="all-elements">
         <!--   顶部   -->
         <header class="header">
-            <a href="javascript:history.go(-1);"  class="header-back"><i class="icons go-back"></i></a>
+            <a href="javascript:;" class="header-back" id="ht-back"><i class="icons go-back"></i></a>
             <h3>酒+景</h3>
             <a onclick="MT.CurrentPageTolist()" class="location-wrap">
                 <span id="Localtxt" class="location-txt">更多</span>
@@ -138,7 +138,7 @@
 <script src="../js/lib/custom.js"></script>
 <script id="tpl_GetHotCity" type="text/template">
    {% for(var i=0;i<9;i++){ %}
-   <li class = "{% if(i==0){ %}jjin-active{% } %}" title="{%=data.destCities[i].cityCode%}" ><a href="scenic_list.html?DestCityCode={%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</a></li>
+   <li title="{%=data.destCities[i].cityCode%}" ><a href="scenic_list.html?DestCityCode={%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</a></li>
    {% } %}
 </script>
 <script id="tpl_GetHotSpot" type="text/template">
@@ -182,12 +182,22 @@
             var getCityCallback = function(ret){
                 var json=ret;
                 if(json.success){
-                    var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
+                    var data=json;
+                    var tpl_GetExHotCity = template("tpl_GetHotCity",data);
                     console.log(data);
                     $("#hotPlace").html(tpl_GetExHotCity);
+                    //记录哪个城市被浏览
+                    var arr=document.getElementById('hotPlace').children,citycho=window.location.search.split('=')[1];
+                    for(var i=0;i<arr.length; i++)
+                    {
+                        if(arr[i].getAttribute('title') == citycho){
+                            arr[i].className='jjin-active';
+                        }
+                    }
                     if(data.data.destCities.length == 0){
                         jAlert("抱歉暂时没有数据","提示");
                     }
+
                     //   选择目的地
                     var changeCity = function(){
                         var city = $('#hotPlace')[0].children;
@@ -253,7 +263,11 @@
         }
 
         MT.load();
-    })()
+    })();
+
+    $('#ht-back').click(function(){
+        window.location.href='../index.html';
+    });
 </script>
 </body>
 </html>

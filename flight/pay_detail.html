@@ -51,12 +51,13 @@
                         {% if(routeType=="Return"){ %}往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     </p>
                     <p class="go-back-p">
-                        <span class="round-trip-go"><i class="round-go-tip"></i>{%=flightInfo.flightLeaveStartDate.split("T")[0]%}</span>
-                        <span class="round-trip-back"><i class="round-back-tip"></i>{%=flightInfo.flightReturnStartDate.split("T")[0]%}</span>
+                        {% var d1= new Date(flightInfo.flightLeaveStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; var d2=new Date(flightInfo.flightReturnStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")); %}
+                        <span class="round-trip-go"><i class="round-go-tip"></i>{%=d1.getFullYear()%}-{%=vlm.Utils.format_add_zero(d1.getMonth()+1)%}-{%=vlm.Utils.format_add_zero(d1.getDate())%} {%=vlm.Utils.format_add_zero(d1.getHours())%}:{%=vlm.Utils.format_add_zero(d1.getSeconds())%}</span>
+                        <span class="round-trip-back"><i class="round-back-tip"></i>{%=d2.getFullYear()%}-{%=vlm.Utils.format_add_zero(d2.getMonth()+1)%}-{%=vlm.Utils.format_add_zero(d2.getDate())%} {%=vlm.Utils.format_add_zero(d2.getHours())%}:{%=vlm.Utils.format_add_zero(d2.getSeconds())%}</span>
                     </p>
                     {% } else{ %} 单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
                     <p class="go-back-p">
-                        <span class="round-trip-go"><i class="round-go-tip"></i>{%=flightInfo.flightLeaveEndDate.split("T")[0]%}</span>
+                        <span class="round-trip-go"><i class="round-go-tip"></i>{%=flightInfo.flightLeaveEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")%}</span>
                     </p>
                     {%}%}
                     <p class="go-back-p">
@@ -70,7 +71,7 @@
                     <li class="passager-list">
                         {% for(var index in travelers){ %}
                             <ul class="passager-info">
-                                <li><span class="passenger-msg-name">{%=travelers[index].travelerName%}</span><span  class="passenger-msg-nameEn">{%=travelers[index].travelerName%}/{%=travelers[index].lastName%}</span>(<span  class="passenger-msg-sex">{%=getSex[travelers[index].sexCode]%}</span>)</li>
+                                <li><span  class="passenger-msg-nameEn">{%=travelers[index].travelerName%}/{%=travelers[index].lastName%}</span>(<span  class="passenger-msg-sex">{%=getSex[travelers[index].sexCode]%}</span>)</li>
                                 <li><span class="passenger-msg-card">{%=getCardType[travelers[index].idType]%}</span><span  class="passenger-msg-cardNum">{%=travelers[index].idNumber%}</span></li>
                             </ul>
                         {% } %}
@@ -80,7 +81,7 @@
                     <li class="passenger-msg-tit">联系人</li>
                     <li class="passager-list">
                         <ul class="passager-info">
-                            <li><span class="passenger-msg-name">{%=firstName%}/{%=lastName%}</span><span  class="passenger-msg-nameEn"></span>(<span  class="passenger-msg-sex">{%=sexCode%}</span>)</li>
+                            <li><span class="passenger-msg-name">{%=firstName%}/{%=lastName%}</span><span  class="passenger-msg-nameEn"></span>(<span  class="passenger-msg-sex">{%=getSex[sexCode]%}</span>)</li>
                             <li><span class="passenger-msg-telCode"></span><span  class="passenger-msg-telNum">{%=contactNumber%}</span></li>
                             <li><span>{%=email%}</span></li>
                         </ul>
