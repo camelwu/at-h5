@@ -1016,8 +1016,7 @@ var  ticketIndexModal = {
           }
       },
        initDate:function(){
-           var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)),
-               r =new Date( d.setDate(d.getDate() + 2)),
+           var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)), r =new Date( d.setDate(d.getDate() + 2)),
                startDay,endDay,startStrMonth = '',startStrDate = '',endStrMonth = '',endStrDate = '',
            returnWeek = function(index){
                var week = '';
