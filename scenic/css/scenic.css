@@ -414,11 +414,16 @@ i{
 .top-back{
     position: absolute;
     z-index: 1;
+    width: 50px;
+    height: 45px;
+    padding: 14px 0 0 20px;
+    left: 0px;
+    top: 10px;
+    background-position: 0.5% -1%;
+}
+.top-back .icons{
     width: 24px;
     height: 24px;
-    left: 20px;
-    top: 30px;
-    background-position: 0.5% -1%;
 }
 .top-ban{
     position: relative;
