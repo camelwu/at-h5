@@ -138,7 +138,7 @@ function styleChange(id, mytext) {
 	$("#fo_lo").on("click",function(){
 		$("#l_but").addClass("s-but-checked");
 		$("#s_but1").addClass("s-but-checked");
-		//console.log("111");
+		console.log("111");
 	});
 	$("#l_but").on("click",function(){
 		$("#l_but").removeClass("s-but-checked");
