@@ -39,6 +39,7 @@ Scroller.prototype = {
 		this.type = options.type;
 		this.cont = options.cont;
 		this.cache[options.id] = "";
+		this.callback=options.callback
 		this.inputEvent(options.id, options.type,options.cont);
 		this.outClick();
 		// 区域外事件绑定
@@ -109,7 +110,7 @@ Scroller.prototype = {
 					Y.push("<span>" + i + s + "</span>");
 				}
 			} else if (s == "月") {
-                    
+
                     if (that.type == that._time[2]){
                         for (var i = m + 1; i <= 12; i++) {
                             Y.push("<span>" + i + s + "</span>");
@@ -290,10 +291,13 @@ Scroller.prototype = {
 				$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
 				ele.innerHTML = arr.join("");
 			}
-            
-           
+
+
 		}else{
 			ele.innerHTML = arr.join("");
+		}
+		if(that.callback !=null){
+			that.callback();
 		}
 		this.selShow(0);
 	},

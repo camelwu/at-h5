@@ -422,8 +422,10 @@
 		'{% if (dd.traveller.travellerAge<12 && dd.traveller.travellerAge>=2 ){ %}'+
 		'<i class="per-type">儿童</i></li>'+'{% } %}'+
 		'{% if (dd.traveller.travellerAge>=12){ %}'+
-		'<i class="per-type">成人</i></li>'+'{% } %}'+
-		'<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>',
+		'<i class="per-type">成人</i></li>',
+		'{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ %}',
+			'<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
+		'{% } %}',
 		'</ul>', '</li>', '{% } %}'].join('');
 	function get_hisList() {
 		var from = urlobj.from;

@@ -832,6 +832,7 @@ a{
 }
 .often_user .passport-num{
     color: #999999;
+    margin-left: 31px;
 }
 .often_user .passport-tips{
     color: red;

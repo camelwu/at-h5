@@ -346,6 +346,7 @@ function inpChange(id, myText) {
 	var dcl_back = document.getElementById('dcl_back');
 	var vlm_login = document.getElementById('vlm-login');
 	var dvlm_login = document.getElementById('dvlm-login');
+	var allElements = document.querySelector('.all-elements');
 	var domHotData = {
 		"Parameters" : "",
 		"ForeEndType" : 3,
@@ -454,6 +455,7 @@ function inpChange(id, myText) {
 						oLi.innerHTML = interInpCity[i];
 						cl_inp_citys.appendChild(oLi);
 						oLi.onclick = function() {
+							alert(22222222)
 							abroad_target_city.value = this.innerHTML;
 							cl_box_box.style.display = 'none';
 							cl_inp_citys.style.display = 'none';
@@ -461,16 +463,6 @@ function inpChange(id, myText) {
 						};
 					}
 				}
-
-				//if(citySearchBox.value.charCodeAt(0)>=0x4e00&&citySearchBox.value.charCodeAt(i)<=0x9fa5){
-				//    getInpCity();
-				//}else{
-				//    if(citySearchBox.value.length>=2){
-				//        getInpCity();
-				//    }else{
-				//        cl_inp_citys.innerHTML='';
-				//    }
-				//}
 				getInpCity();
 			};
 			//国内酒店
@@ -505,16 +497,6 @@ function inpChange(id, myText) {
 						};
 					}
 				}
-
-				//if(dcitySearchBox.value.charCodeAt(0)>=0x4e00&&dcitySearchBox.value.charCodeAt(i)<=0x9fa5){
-				//    dgetInpCity();
-				//}else{
-				//    if(dcitySearchBox.value.length>=2){
-				//        dgetInpCity();
-				//    }else{
-				//        dcl_inp_citys.innerHTML='';
-				//    }
-				//}
 				dgetInpCity();
 			};
 			if (obj.getAttribute('id') == 'input1') {
@@ -729,7 +711,7 @@ function inpChange(id, myText) {
 							}
 						}
 					}
-
+					allElements.style.visibility = 'visible';
 				};
 			}
 
@@ -816,17 +798,16 @@ function inpChange(id, myText) {
 				}
 			}
 		}
-
 		cityShow(interHotData, domHotData, dataWorIN, dataWorCN, abroad_target_city, domestic_target_city);
 		//国际城市
-		console.log(dataWorIN);
-		console.log(8888888888888888888);
 		lsf_myweb.bind(abroad_target_city, 'click', function() {
+			allElements.style.visibility = 'hidden';
 			cl_box_box.style.display = 'block';
 			vlm_login.style.display = 'block';
 		});
 		//国内城市
 		lsf_myweb.bind(domestic_target_city, 'click', function() {
+			allElements.style.visibility = 'hidden';
 			dcl_box_box.style.display = 'block';
 			dvlm_login.style.display = 'block';
 		});
