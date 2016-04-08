@@ -471,7 +471,7 @@
 					$(".js-pickup-icon").hide();
 					$(this).find(".js-pickup-icon").show();
 					$('#choHotel').html($(this).html());
-					$('#choHotel').find(".js-pickup-icon").remove()
+					$('#choHotel').find(".js-pickup-icon").remove();
 					$('#holist_page').hide();
 				}
 				/**
@@ -1125,7 +1125,7 @@
 							if ($(".js-sce-ticket1").find(".js-sce").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket1").find(".js-sce").length; i++) {
 									var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit price-titj\">" + "(成人票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit price-titj\">" + "成人票" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
