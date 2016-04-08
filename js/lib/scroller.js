@@ -39,6 +39,7 @@ Scroller.prototype = {
 		this.type = options.type;
 		this.cont = options.cont;
 		this.cache[options.id] = "";
+		this.callback=options.callback
 		this.inputEvent(options.id, options.type,options.cont);
 		this.outClick();
 		// 区域外事件绑定
@@ -294,6 +295,9 @@ Scroller.prototype = {
 
 		}else{
 			ele.innerHTML = arr.join("");
+		}
+		if(that.callback !=null){
+			that.callback();
 		}
 		this.selShow(0);
 	},
