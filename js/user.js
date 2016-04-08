@@ -184,7 +184,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                         return;
                     }
                 }
-                if($('#postCard').html() != '护照' || $('#time-cont').html() != '1990-01-01' || $('#birth-cont').html() != '1990-01-01' || $('.country-btn').eq(0).html() != '中国' || $('.country-btn').eq(1).html() != '中国' || input[4].value !='' || input[5].value !='' || $('#woman').attr('class') == 'icon-h traveler-sex1'){
+                if($('#postCard').html() != '护照' || $('#time-cont').html() != '' || $('#birth-cont').html() != '1990-01-01' || $('.country-btn').eq(0).html() != '中国' || $('.country-btn').eq(1).html() != '中国' || input[4].value !='' || input[5].value !='' || $('#woman').attr('class') == 'icon-h traveler-sex1'){
                     jConfirm("当前编辑的内容未保存，确定退出编辑?","",conAdd);
                     return;
                 }
@@ -199,7 +199,8 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     {
                         input[i].value='';
                     }
-                    input[4].value=input[5].value='1990-01-01';
+                    $('#time-cont').html('');
+                    $('#birth-cont').html('1990-01-01');
                     $('.country-btn').html('中国');
                     $('.country-btn').attr('data-code','CN');
                     $('.country-btn').attr('data-tel-code','86');
@@ -357,7 +358,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         })(i);
     }
 
-
 //  页面初始获取常旅客
     function mycallback(ret) {
         travJson = ret;
@@ -386,7 +386,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     {
                         array[i] = travJson.data[i].listTravellerIdInfo[0].travellerId;
                         arrayId[i] = travJson.data[i].listTravellerIdInfo[0].id;
-                        var oCountryName=getCountryName(travJson.data[i].listTravellerIdInfo[0].idCountry)
+                        var oCountryName=getCountryName(travJson.data[i].listTravellerIdInfo[0].idCountry);
                         if(oCountryName == undefined)
                         {
                             $('#country-name').html();
@@ -514,6 +514,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         oldcName=countryName.innerHTML = travJson.data[index].traveller.countryName;
         var idCountry=travJson.data[index].listTravellerIdInfo[0].idCountry;
         oldsendName=getCountryName(idCountry).CountryName;
+        $('#country-name').html(oldsendName);
         if (travJson.data[index].traveller.sexCode == "Mr") {
             man2.className = "icon-h traveler-sex1";
             woman2.className = "icon-h traveler-sex2";
@@ -533,7 +534,8 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 }
             }
             //证件类型、发证国家、国籍、性别
-            if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ||oldcName != $('#countryName').html()){
+            console.log(oldsendName +":"+ $('#country-name').html());
+            if(old7 != $('#birth-cont-edit')[0].innerHTML || old6 != $('#time-cont-edit')[0].innerHTML || oldcard != $('#cardType').html() || oldsendName != $('#country-name').html() || oldcName != $('#countryName').html() ){
                 jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
                 return;
             }
@@ -550,6 +552,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         function conEdit(arg){
             if(arg == true)
             {
+                $('#content-wrap').css('visibility','visible');
                 uptra_page.style.display='none';
             }
         }

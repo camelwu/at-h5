@@ -414,11 +414,16 @@ i{
 .top-back{
     position: absolute;
     z-index: 1;
+    width: 50px;
+    height: 45px;
+    padding: 16px 0 0 20px;
+    left: 0px;
+    top: 10px;
+    background-position: 0.5% -1%;
+}
+.top-back .icons{
     width: 24px;
     height: 24px;
-    left: 20px;
-    top: 30px;
-    background-position: 0.5% -1%;
 }
 .top-ban{
     position: relative;
@@ -451,16 +456,23 @@ i{
     font-size: 1.4rem;
     margin-bottom: 15px;
 }
+.s-type .menu-line{
+    position: absolute;
+    left: 50%;
+    top: 1.2rem;
+    height: 2.1rem;
+    width: 1px;
+    background-color: #ccc;
+}
 .s-type div{
     width: 50%;
     height: 100%;
     font-size: 1.6rem;
     text-align: center;
-    color:#cccccc;
+    color:#ccc;
 }
 .s-type div:first-child{
     float: left;
-    border-right: 0.1rem solid #cccccc;
     border-bottom: 0.1rem solid #cccccc;
 }
 .s-type div:last-child{
@@ -494,6 +506,9 @@ i{
     text-align: center;
     line-height: 30px;
     overflow: hidden;
+}
+.j-hotplace{
+    border: 1px solid #ffb500;
 }
 .pl-active{
     color:#ffb413;
@@ -617,21 +632,25 @@ i{
     line-height: 35px;
     text-align: right;
 }
+.header a i.location-tip{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
 .location-tip {
     position: absolute;
-    right:0;
+    right:4px;
     top: 0;
     width: 20px;
     height: 16px;
     background-image: url(../images/ui/icons.png);
-    background-position: 74% 6%;
-    background-size: 250px 180px;
-    margin-top: 1.2rem;
+    /*background-position: 74% 6%;*/
+    background-size: 200px 110px;
+    margin-top: 0.8rem;
 }
 .location-txt {
     color: #fff;
     height: 35px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     display: inline-block;
     overflow: hidden;
     margin-right: 24px;
@@ -2286,10 +2305,14 @@ i{
     /*margin:0 15px;display:block;height:30px;overflow:hidden;*/
     /*text-align:center;line-height:30px;*/
 /*}*/
+#hotPlace li{
+    border-radius: 5px;
+ }
 .jjin-active{
-    background: #ffb413;
-    color:#fff;
-    border:none!important;
+    background: #fff;
+    color:#ffb413;
+    border:1px solid #ffb413!important;
+    border-radius:5px;
 }
 /*.conBox .cityListBox .active{*/
     /*background: #ffb413;*/

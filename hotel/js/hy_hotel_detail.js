@@ -441,7 +441,6 @@
 			headerStr += '<div class="header detailHeader" id="vlm-h-1"><a href="javascript:window.history.go(-1);" class="header-back" style="z-index: 4"><i class="icons go-back"></i></a><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelNameLocale) +'</h3></div>';
 			frontImgStr = '';
 			frontImgStr += '<div class="d-div1 faceImg"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum"><div class="d-p4">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
-
             //H5-410 点评为0时不显示该模块
             rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li  onclick="hotelDetail.h_reviews()"><span class="rateScore">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg"></b></li>';
 			firstUl += '<ul class="d-ul1">' +rateStr+ '<li id="toMap"><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate"></b><b class="icons open-arg"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';

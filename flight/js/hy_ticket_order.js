@@ -87,7 +87,7 @@ var ticketOrder = {
         var detailTangle = document.querySelector('.detail-tangle');
         var summaryCostModal = document.querySelector('.summary-cost-modal');
         var summaryCostShadowOne = document.querySelector('.summary-cost-shadow-one');
-        var rightArrow = document.querySelector('.trigger-button ');
+        var rightArrow = document.querySelector('.trigger-button');
         var addPassenger = document.querySelector('.add-Passenger');
         var contactPerson = document.querySelector('.contact-person');
         var passengerWrap = document.querySelector('#passenger-list');
@@ -159,14 +159,11 @@ var ticketOrder = {
                 MobilePhone: "",
                 SexCode: "Mr"}
             }
-            console.log(contactInfo)
-
             contactInfoCache.FirstName = document.querySelector('#first-name').value;
             contactInfoCache.LastName = document.querySelector('#last-name').value;
             contactInfoCache.Email =document.querySelector('#email-label').value;
             contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
             contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
-            
             if(contactInfoCache.FirstName==""){
                 jAlert('请输入姓!', '提示');
                 return;
@@ -348,7 +345,6 @@ var ticketOrder = {
                 };
 
                 if(reg.test(valueStr)){
-                    console.log(22)
                     var mb = String(valueStr).toLowerCase();
                     for(var p = 0; p < arrCountry.length; p++){
                         var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
@@ -502,23 +498,12 @@ var ticketOrder = {
         var detailOuter = document.querySelector('.detail-outer');
         var goLineOuterHtml = '',seatConditionHtml ='', detailOuterHtml='',costStr='',that = this;
         var cacheInfo = this.storageUtil.get('reverseInformationCache');
-        var myFixed = function(arg){
-            if(String(arg).indexOf('.')>-1){
-                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
-                    return String(arg)+'0';
-                }
-                return String(arg).substring(0,String(arg).indexOf('.')+3)
-            }else{
-                return String(arg)+'.00';
-            }
-        };
-
         if(arg.segmentsReturn){
-            goLineOuterHtml+= '<div class="go-line-outer-sub">' + createTopGo(arg)+'<p class="go-line go-line-return-middle"><span class="trigger-button right-arrow"></span></p>'+createTopBack(arg)+'</div>';
+            goLineOuterHtml+= '<div class="go-line-outer-sub">' + createTopGo(arg)+'<div class="go-line-return-middle"><span class="trigger-button right-arrow"></span></div>'+createTopBack(arg)+'</div><hr class="order-line" />';
             seatConditionHtml += createSeatCondition(arg);
             orderTop.innerHTML = goLineOuterHtml + seatConditionHtml;
         }else{
-            goLineOuterHtml+= '<div class="go-line-outer-sub match">' + createTopGo(arg)+createTopBack(arg)+'</div>';
+            goLineOuterHtml+= '<div class="go-line-outer-sub match">' + createTopGo(arg)+'</div><hr class="order-line" />';
             seatConditionHtml += createSeatCondition(arg);
             orderTop.innerHTML = goLineOuterHtml + seatConditionHtml;
         }
@@ -533,8 +518,8 @@ var ticketOrder = {
                }else{
                    toCity = arg.segmentsLeave.length>1?arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameFrom:arg.segmentsLeave[0].airportNameTo;
                    str+='<p class="go-line" style="padding-left:0;">' +
-                   that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><span class="trigger-button right-arrow"></span><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
-                   '<span class="icon-clock"></span></p>';
+                   that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
+                   '<span class="icon-clock"></span></p><span class="trigger-button single-right-arrow"></span>';
                }
                return str;
         }
@@ -554,7 +539,7 @@ var ticketOrder = {
             var tipStr = arg.segmentsReturn!=null?'往返票价':'单程票价';
             var str ='';
              str +='<div class="seat-condition"><div class="left">' +
-                   '<span>'+arg.segmentsLeave[0].cabinClassName+'</span><p><span>'+tipStr+'</span>&nbsp;￥<span>'+myFixed(arg.totalFareAmountADT)+'</span><span>&nbsp;税费</span>￥<span>'+myFixed(arg.totalTaxAmountADT)+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+myFixed(arg.totalFareAmountExc)+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>';
+                   '<span>'+arg.segmentsLeave[0].cabinClassName+'</span><p><span>'+tipStr+'</span>&nbsp;￥<span>'+arg.totalFareAmountADT+'</span><span>&nbsp;税费</span>￥<span>'+arg.totalTaxAmountADT+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+arg.totalFareAmountExc+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>';
             return str;
 
         }
@@ -569,10 +554,8 @@ var ticketOrder = {
                 str += '<li class="detail-start">' +
                 '<div class="top-line top-pad-no">' + that.returnDate(arg.flightLeaveStartDate) + '<span class="start">' + arg.cityNameFrom + '</span><span class="line">-</span><span class="end">' + arg.cityNameTo + '</span>' +
                 '<span class="detail-hour">' + parseInt(arg.segmentsLeaveTotalTravelTime / 60) + 'h' + arg.segmentsLeaveTotalTravelTime % 60 + 'm</span></div>' + createFlightUnit(arg.segmentsLeave) + '</div></li>';
-
             }
             return str;
-
         }
         function detailBack(arg){
             var str = '';
@@ -621,17 +604,7 @@ var ticketOrder = {
     costFinaList:function(){
        var that = this, costTotal = document.querySelector('.second-line'),temObj = {},totalCost = document.querySelector('.total-price-number strong');
        var costStr = '',curFlightListData = this.storageUtil.get('curFlightListData'),reverseInformation=this.reverseInformation ;
-       var myFixed = function(arg){
-            if(String(arg).indexOf('.')>-1){
-                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
-                    return String(arg)+'0';
-                }
-                return String(arg).substring(0,String(arg).indexOf('.')+3)
-            }else{
-                return String(arg)+'.00';
-            }
-        };
-        var totalPerson = document.querySelector('.total-person-price'),totalPersonNum = 0;
+       var totalPerson = document.querySelector('.total-person-price'),totalPersonNum = 0;
        temObj.totalFareAmountADT = curFlightListData.totalFareAmountADT;
        temObj.totalFareAmountCHD = curFlightListData.totalFareAmountCHD;
        temObj.totalFareAmountExc = curFlightListData.totalFareAmountExc;
@@ -640,23 +613,22 @@ var ticketOrder = {
        temObj.NumofAdult = parseInt(reverseInformation.WapOrder.NumofAdult);
        temObj.NumofChild = parseInt(reverseInformation.WapOrder.NumofChild);
        this.costFinaListData = temObj;
-       costStr+= '<p>成人票<span>￥<span>'+myFixed(temObj.totalFareAmountADT)+'</span> x'+temObj.NumofAdult+' 人</span></p>';
-       costStr+= '<p>税费<span>￥<span>'+myFixed(temObj.totalTaxAmountADT)+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+       costStr+= '<p>成人票<span>￥<span>'+temObj.totalFareAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+       costStr+= '<p>税费<span>￥<span>'+temObj.totalTaxAmountADT+'</span> x'+temObj.NumofAdult+' 人</span></p>';
         if(this.orderFlightData.totalFareAmountCHD){
-            costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+myFixed(temObj.totalFareAmountCHD)+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
-            costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+myFixed(temObj.totalTaxAmountCHD)+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+temObj.totalFareAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+temObj.totalTaxAmountCHD+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
             totalPersonNum = temObj.NumofAdult+temObj.NumofChild
         }else{
             totalPersonNum = temObj.NumofAdult;
         }
        costTotal.innerHTML = costStr;
-       totalCost.innerHTML = myFixed(temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild);
+       totalCost.innerHTML = temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild;
        totalPerson.innerHTML = totalPersonNum+'人总价';
     },
     init:function(){
        var reverseInformation = this.storageUtil.get('reverseInformationCache');
        this.reverseInformation = reverseInformation;
-        console.log(this.reverseInformation)
        this.telSlider();
        this.loadingFade();
        this.orderFlightData = this.storageUtil.get('curFlightListData');

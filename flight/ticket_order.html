@@ -2,6 +2,7 @@
 <head lang="zh">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="green">
     <meta name="Keywords" content="亚洲旅行网">
@@ -70,8 +71,8 @@
                   <span class="icon-add"><i class="del-passager" onclick="javascript:delPassager(this)"></i></span>
                   <div class="middle">
                       <p class="name">
-                          <label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" data-elementName="firstName" >
-                          <label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly" data-elementName="lastName"  >
+                          <label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" data-elementName="lastName" >
+                          <label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly" data-elementName="firstName"  >
                       </p>
                       <div class="passport">
                           <span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="idNumber"><span class="passenger-sex"></span>
@@ -81,31 +82,28 @@
               </li>
           </ul>
             </section>
-
         </div>
-
         <div class="ride-user contact">
             <div class="ride-user-first">
                 <span>联系人</span>
                 <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></a>
             </div>
-
             <div class="table contact-table" id="contact-table">
                 <div class="unit name">
                     <div class="nleft">
-                        <label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI"  data-elementName="firstName" />
+                        <label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI"  data-elementName="lastName" />
                     </div>
                     <span class="fly-line"></span>
                     <div class="nright">
-                        <label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" data-elementName="lastName" />
+                        <label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" data-elementName="firstName" />
                     </div>
                 </div>
                 <div class="unit tel">
                     <div class="left">
-                        <span>手机号</span>
-                        <div class="center" >
-                            <span id="country-code" data-elementName="countryCode" class="tel-btn"  >+86</span>
-                            <span id="slider-country-choose" ></span>
+                        <span class="jiphone">手机号</span>
+                        <div class="center jcenters" >
+                            <p><span id="country-code" data-elementName="countryCode" class="tel-btn"  >+86</span></p>
+                            <p><span id="slider-country-choose" ></span></p>
                         </div>
                     </div>
                     <span class="fly-line"></span>
@@ -184,121 +182,6 @@
     <!--机票详情开始-->
     <div class="ticket-detail-modal" style="display: none">
         <ul class="detail-outer">
-
-            <li class="detail-start">
-                <div class="go-trip start">
-                    <div class="top-line">
-                        <span class="icon-go"></span>
-                        <span class="month-day">01-08</span>
-                        <span class="week-day-item">周二</span>
-                        <span class="start">上海</span>
-                        <span class="line">-</span>
-                        <span class="end">洛杉矶</span>
-                        <span class="detail-hour">14h</span>
-                    </div>
-                    <div class="time-airport-info">
-                        <div class="start-time-info">
-                            <span class="time-number">07:00</span>
-                            <span class="air-port-word">浦东机场T2</span>
-                        </div>
-
-                        <div class="total-time-info">
-                            <span class="time-hour-minute">2h30m</span>
-                            <span class="arrow-time"></span>
-                        </div>
-
-
-                        <div class="end-time-info">
-                            <span class="tip-add-days-seat">+1天</span>
-                            <span class="time-number">07:00</span>
-                            <span class="air-port-word-right">洛杉矶机场</span>
-                        </div>
-                    </div>
-                    <div class="bottom-word">
-                        <span>中国国航</span>
-                        <span>|</span>
-                        <span>CA983</span>
-                        <span>|</span>
-                        <span>波音787<span>(大)</span></span>
-                    </div>
-                </div>
-                <div class="transit-city-hour">中转莫斯科 2h33m</div>
-                <div class="go-trip transit">
-
-                    <div class="time-airport-info">
-                        <div class="start-time-info">
-                            <span class="time-number">07:00</span>
-                            <span class="air-port-word">浦东机场T2</span>
-                        </div>
-
-                        <div class="total-time-info">
-                            <span class="time-hour-minute">11h30m</span>
-                            <span class="arrow-time"></span>
-                        </div>
-
-
-                        <div class="end-time-info">
-                            <span class="tip-add-days-seat">+1天</span>
-                            <span class="time-number">07:00</span>
-                            <span class="air-port-word-right">洛杉矶机场</span>
-                        </div>
-                    </div>
-                    <div class="bottom-word">
-                        <span>中国国航</span>
-                        <span>|</span>
-                        <span>CA983</span>
-                        <span>|</span>
-                        <span>波音787<span>(大)</span></span>
-                    </div>
-                </div>
-            </li>
-            <li class="detail-back">
-                <div class="back-trip">
-
-                    <div class="top-line">
-                        <span class="icon-back"></span>
-                        <span class="month-day">01-08</span>
-                        <span class="week-day-item">周二</span>
-                        <span class="start">上海</span>
-                        <span class="line">-</span>
-                        <span class="end">洛杉矶</span>
-                        <span class="detail-hour">11h30m</span>
-                    </div>
-                    <div class="time-airport-info">
-                        <div class="start-time-info">
-                            <span class="time-number">07:00</span>
-                            <span class="air-port-word">浦东机场T2</span>
-                        </div>
-
-                        <div class="total-time-info">
-                            <span class="time-hour-minute">11h30m</span>
-                            <span class="arrow-time"></span>
-                            <span class="air-port-word">经停西雅图2h30m</span>
-                        </div>
-
-
-                        <div class="end-time-info">
-                            <span class="tip-add-days-seat">+1天</span>
-                            <span class="time-number">07:00</span>
-                            <span class="air-port-word-right">洛杉矶机场</span>
-                        </div>
-                    </div>
-                    <div class="bottom-word">
-                        <div class="left">
-                            <span>中国国航</span>
-                            <span>|</span>
-                            <span>CA983</span>
-                            <span>|</span>
-                            <span>波音787<span>(大)</span></span>
-                        </div>
-                        <div class="right">
-                            <span>实际乘坐</span>
-                            <span>东方航空</span>
-                            <span>MU853</span>
-                        </div>
-                    </div>
-                </div>
-            </li>
         </ul>
     </div>
     <!--机票详情结束-->

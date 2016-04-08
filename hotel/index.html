@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
 	<head lang="en">
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-		<meta name="screen-orientation" content="portrait">
-		<meta name="full-screen" content="yes">
-		<meta name="browsermode" content="application">
-		<meta name="x5-orientation" content="portrait">
-		<meta name="x5-fullscreen" content="true">
-		<meta name="x5-page-mode" content="app">
-		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta name="apple-mobile-web-app-status-bar-style" content="green">
-		<title>酒店</title>
-		<link href="../styles/framework.css" rel="stylesheet">
-		<link href="../styles/style.css" rel="stylesheet">
-		<link href="../styles/tips.css" rel="stylesheet">
-		<link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-		<link href="css/dzh.css" rel="stylesheet">
+		<meta name="Keywords" content="亚洲旅行网">
+		<meta name="Description" content="境外专业旅行服务提供机构">
+		<meta name="screen-orientation" content="portrait">
+		<meta name="x5-orientation" content="portrait">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<title>机票首页</title>
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+		<link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+		<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+		<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+		<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+		<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+		<link href="../styles/framework.css" rel="stylesheet" type="text/css">
+		<link href="../styles/style.css" rel="stylesheet" type="text/css">
+		<link href="../styles/tips.css" rel="stylesheet" type="text/css">
+		<link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+		<link href="css/dzh.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="preloader">
@@ -114,12 +124,6 @@
 										</div>
 									</div>
 								</div>
-
-								<!--已去掉城市模糊搜索
-								<div class="content5">
-								<input class="HotelName" name="InterHotelName" type="text" value="酒店名/位置"  id="InterHotelname">
-								</div>-->
-
 								<div class="aa">
 									<div>
 										<input type="submit"  id="InterBtn" value="查询" class="button-yellow hotelInter">
@@ -165,11 +169,6 @@
 										<i></i>
 									</div>
 								</div>
-								<!--已去掉城市模糊搜索
-								<div class="content5">
-								<input class="HotelName" name="DomHotelName" type="text" value="酒店名/位置" id="DomHotelName">
-								</div>-->
-
 								<div class="aa">
 									<div>
 										<input type="submit" value="查询" id="domBtn" class="button-yellow hotelInter">
@@ -186,8 +185,7 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="header" id="vlm-login" style="z-index:121; display:none">
+		<div class="hotel-header" id="vlm-login" style="z-index:139; display:none">
 			<div class="cl_search">
 				<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="citySearchBox" />
 				<!--<datalist id="searchCity">-->
@@ -616,7 +614,7 @@
 				</ol>
 			</div>
 		</div>
-		<div class="header" id="dvlm-login" style="z-index:121;display:none">
+		<div class="hotel-header" id="dvlm-login" style="z-index:139;display:none">
 			<div class="cl_search">
 				<input type="text" placeholder="北京/beijing/bj/bjs/中国" list="searchCity" id="dcitySearchBox" />
 				<!--<datalist id="dsearchCity">-->

@@ -353,8 +353,6 @@ TicketDate.prototype.linkOver = function(event){
             that.linkColor('Oneway',that.singleDate);
             out[0].innerHTML=returnWeek(that.singleDate);
         }
-        console.log(that.singleDate)
-        console.log(out[0])
         out[0].setAttribute('data-date',that.singleDate)
     }
     that.timer = window.setTimeout(function(){
@@ -443,7 +441,6 @@ TicketDate.prototype.drawLastDate =function (odate) { // 参数 odate 为日期�
     textNode = document.createTextNode(year + '年' + month + '月');
     titleDate.appendChild(textNode);
     //this.btnEvent();
-    console.log(year);
     // 获取模板中唯一的DD元素
     dd = _CalF.$('dd',dateWarp)[0];
     // 获取本月天数
@@ -1209,7 +1206,6 @@ var  conditionalFiltering = {
                     }
                 }
                 (this.tempStates.hasTax == "true") ? priceModalLis_.querySelector('.filter-select').innerHTML = '含税价' : priceModalLis_.querySelector('.filter-select').innerHTML = '不含税价';
-
             }else{   //国际单程
                 var directFlyLis_is = document.querySelectorAll('.only-direct-fly li');
                 var filterShareLis_is = document.querySelectorAll('.filter-share li');

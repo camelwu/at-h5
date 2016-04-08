@@ -142,6 +142,7 @@
 		<script src="js/lib/jquery.alert.js"></script>
 		<script src="js/lib/vlm.js"></script>
 		<script src="js/lib/template.js"></script>
+
 		<script>
 			var linkurl = {
 				1:"./hotel/hotel_detail.html?HotelID=",
@@ -152,7 +153,6 @@
 			(function() {
 				vlm.init();
 				$(document).ready(function() {
-
 					window.addEventListener('load', function() {
 						FastClick.attach(document.body);
 					}, false);
@@ -191,7 +191,7 @@
 
 					//playerRecommend
 					function PlayerRecommend() {
-						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5>{%=productName%}</h5>', '<p>{%=productDesc%}</p>'].join('');
+						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
 						var tmp = {
 							"Parameters" : {
 								"PageNo" : 1,

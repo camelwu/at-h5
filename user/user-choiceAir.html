@@ -196,7 +196,7 @@
 						<input type="text" placeholder="常用邮箱" id="email-cell-add" class="txtEmail">
 					</li>
 				</ul>
-				<div class="name-text">
+				<div class="name-text" id="name-text">
 					为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月
 				</div>
 				<!--<div class="user-account" onclick="showChild_page()">-->
@@ -422,8 +422,10 @@
 		'{% if (dd.traveller.travellerAge<12 && dd.traveller.travellerAge>=2 ){ %}'+
 		'<i class="per-type">儿童</i></li>'+'{% } %}'+
 		'{% if (dd.traveller.travellerAge>=12){ %}'+
-		'<i class="per-type">成人</i></li>'+'{% } %}'+
-		'<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[0].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[0].idNumber%}</span></li>',
+		'<i class="per-type">成人</i></li>',
+		'{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ %}',
+			'<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
+		'{% } %}',
 		'</ul>', '</li>', '{% } %}'].join('');
 	function get_hisList() {
 		var from = urlobj.from;
@@ -1080,8 +1082,8 @@
 		<span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}" onclick="javascript:delPassager(this);" ></i></span>
 		<div class="middle">
 			<p class="name">
-				<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" value="{%=traveller.lastName%}">
-				<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly"  value="{%=traveller.firstName%}">
+				<label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" value="{%=traveller.firstName%}">
+				<label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly"  value="{%=traveller.lastName%}">
 			</p>
 			<div class="passport">
 				<span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly" value="{%=listTravellerIdInfo[0].idNumber%}"><span class="passenger-sex">{%=traveller.sexName%}</span>
@@ -1094,7 +1096,7 @@
 <!--机票-获取联系人信息-->
 <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
-		<label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}"/>
+		<label for="first-name" class="name-label">姓123</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}"/>
 		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.lastName%}"/>
 	</div>
 	<div class="unit tel">
