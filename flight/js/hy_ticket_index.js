@@ -1060,6 +1060,8 @@ var  ticketIndexModal = {
            document.querySelector('.double-week-two').innerHTML = endDay[1];
        },
        initShowData:function(arg){
+              var arg=arg;
+              var jd = new Date(), js = new Date(jd.setDate(jd.getDate() + 1)), jr =new Date( jd.setDate(jd.getDate() + 2));
               var singleTitle = document.querySelector('.singleTrip'),doubleTitle = document.querySelector('.doubleTrip');
               var returnDateAndWeek = function(arg){
                     var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum;
@@ -1113,7 +1115,20 @@ var  ticketIndexModal = {
                       return cabinStr;
               };
               var outEleOpen, outEleClosed, cityNames, singleDate, singleWeek, adultNumber, childNumber, adultNumber_op, childNumber_op, seatEle;
-              var doubleDateOne, doubleWeekOne, doubleDateTwo, doubleWeekTwo ;
+              var doubleDateOne, doubleWeekOne, doubleDateTwo, doubleWeekTwo, newStart='', newEnd='';
+              if(new Date(arg.DepartDate.replace(/-/g,'/'))<js){
+                   var smonthStr = (js.getMonth()+1)<10?'0'+(js.getMonth()+1):js.getMonth()+1;
+                   var sdayStr = js.getDate()<10?'0'+js.getDate():js.getDate();
+                   var emonthStr = (jr.getMonth()+1)<10?'0'+(jr.getMonth()+1):jr.getMonth()+1;
+                   var edayStr = jr.getDate()<10?'0'+jr.getDate():jr.getDate();
+                   var yearDS = js.getFullYear();
+                  if(arg.RouteType=='Return'){
+                      arg.ReturnDate = yearDS +'-'+emonthStr+'-'+edayStr;
+                      arg.ReturnDate = yearDS +'-'+emonthStr+'-'+edayStr;
+                  }
+                  arg.DepartDate = yearDS +'-'+smonthStr+'-'+sdayStr;
+                  arg.DepartDate = yearDS +'-'+smonthStr+'-'+sdayStr;
+              }
               if(arg.RouteType == "Oneway"){
                   outEleOpen = document.querySelector('#single');
                   outEleClosed = document.querySelector('#double');
