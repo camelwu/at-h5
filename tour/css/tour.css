@@ -232,8 +232,8 @@ i {
 
 .hl-icon3 {
     display: block;
-    width: 13px;
-    height: 13px;
+    width: 14px;
+    height: 14px;
     margin: 0 auto;
     margin-top: 6px;
     margin-bottom: 5px;
@@ -241,7 +241,14 @@ i {
     background-size: 400px 120px;
     background-position: 41% 8%;
 }
-
+.hl-icon-4{
+    background:url("../../images/ui/filter.png");
+    background-size: 15px 15px;
+}
+.hl-icon-5{
+    background:url("../../images/ui/location.png");
+    background-size: 15px 15px;
+}
 .icon-scr {
     background-position: 47% 8%;
 }
@@ -378,7 +385,7 @@ i {
     margin-right: 15px;
     list-style-type: none;
     overflow: hidden;
-    border-bottom: 1px solid #d0d0d3;
+    /*border-bottom: 1px solid #d0d0d3;*/
 }
 
 .s-li {
