@@ -12,11 +12,14 @@
 *{padding:0; margin:0;}
 .nav{ color:#fff; height:40px; width:100%; background:#930; position:fixed; top:0; left:0; z-index:2;}
 p{padding:10px;}
-.a{ background:#3CC; color:#fff; position:absolute; top:0; width:100%; overflow-y:scroll; -webkit-overflow-scrolling: touch;}
+.a{ background:#3CC; color:#fff; position:absolute; top:0; width:100%; overflow-y:scroll;-webkit-overflow-scrolling: touch;}
 .c{ position:fixed; top:50%; left:50%; width:300px; height:300px; margin:-150px 0 0 -150px; background:#fff;
    -webkit-overflow-scrolling: touch;  overflow-y:scroll; display:none;}
 .box{ width:100%; position:relative;}
-
+.mask{ position: fixed; top:0; left:0; background:rgba(0,0,0,0.3); display:none;
+    width: 100%;
+    height: 100%;
+}
 </style>
 
 <body>
@@ -197,22 +200,27 @@ var a = document.getElementById('a');
 var popbox = document.getElementById('c');
 var oNav = document.getElementById('nav');
 var clientH = document.documentElement.clientHeight;
+var mask = document.getElementById('mask');
 a.style.height = clientH+'px';
 var ali = a.children;
 for(var i=0;i<ali.length;i++){
 	ali[i].onclick = function(){
         popbox.style.display = 'block';
 		a.style.overflow = 'hidden';
+        a.style.position = 'fixed';
+        mask.style.display = 'block';
 	};
 }
 //弹窗
-popbox.onclick = function(){
-	a.style.overflow = 'hidden';
-};
+//popbox.onclick = function(){
+//	a.style.overflow = 'hidden';
+//};
 //点击关闭弹窗
 oNav.onclick = function(){
 	a.style.overflowY = 'scroll';
+    a.style.position = 'absolute';
     popbox.style.display = 'none';
+    mask.style.display = 'none';
 };
 
 </script>
