@@ -287,6 +287,7 @@
 		<script src="../js/lib/custom.js"></script>
 		<script src="../js/lib/d_calendar.js"></script>
 		<script src="js/dateFix.js"></script>
+		<script src="js/ModLoad.js"></script>
 		<script src="js/scenic_pub.js"></script>
 		<script src="../js/country_list.js"></script>
 		<script src="../js/countrytel_list.js"></script>
@@ -428,8 +429,7 @@
 
 		<script>
 			MT.AnimIn();
-//			var link = document.querySelector('link');
-//			var importP = link.import.querySelector('div');
+
 			function myCallBack() {
 				countryShow.init();
 			}
@@ -438,6 +438,8 @@
 			(function() {
 				var val = vlm.parseUrlPara(window.location.href);
 				var ChildAgeMin, ChildAgeMax, TravelDate, TourID, MinPax, DetailData, SearchPriceData, globaldata, ExtendData, PickupPointData, StartDate, EndDate, recalSearchPrice;
+
+
 
 				/**
 				 * 接送酒店页Event
@@ -816,7 +818,7 @@
 						child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
 						child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[i].tourID);
 
-						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+ "(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild);
+						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+ "<span style=\"color:#666;\">(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
 
 					}
 
@@ -849,7 +851,7 @@
 					for (var j = 0; j < data.SearchPriceData.data.tourInfos.length; j++) {
 						var child_two = $(".js-sce-ticket2").append(tpl_Adult_Child2),tchild=!ExtendData.isAudlt?"(成人票)":"(儿童票)";
 						child_two.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[j].tourID);
-						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild);
+						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "<span style=\"color:#666;\">(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
 					}
 
 					MT.OnePrice(2);
@@ -1137,7 +1139,7 @@
 							if ($(".js-sce-ticket1").find(".js-sce").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket1").find(".js-sce").length; i++) {
 									var title = $(".js-sce-ticket1").find(".js-sce").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "(儿童票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "儿童票" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1153,7 +1155,7 @@
 							if ($(".js-sce-ticket2").find(".js-sce2").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket2").find(".js-sce2").length; i++) {
 									var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "(儿童票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "儿童票" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.ChildPrice + "×" + ChildCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
@@ -1169,7 +1171,7 @@
 							if ($(".js-sce-ticket2").find(".js-sce2").length > 0) {
 								for (var i = 0; i < $(".js-sce-ticket2").find(".js-sce2").length; i++) {
 									var title = $(".js-sce-ticket2").find(".js-sce2").eq(i).find(".js-sce-introduce-txt").html();
-									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "(成人票)" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
+									var htmltag = $("<li style='height:auto;'><span class=\"price-per-tit  price-titj\">" + "成人票" + "</span><span class=\"price-per-tot price-totj\">¥" + ExtendData.AudltPrice + "×" + AudltCount + "</span></li>");
 									list.push(htmltag);
 								}
 							}
