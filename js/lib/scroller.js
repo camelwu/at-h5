@@ -39,7 +39,7 @@ Scroller.prototype = {
 		this.type = options.type;
 		this.cont = options.cont;
 		this.cache[options.id] = "";
-		this.callback=options.callback
+		this.callback=options.callback;
 		this.inputEvent(options.id, options.type,options.cont);
 		this.outClick();
 		// 区域外事件绑定
@@ -250,52 +250,45 @@ Scroller.prototype = {
         ele.setAttribute("data-cache",arr.join("-"));
         
 		if (/^(textarea|input|div)$/i.test(ele.nodeName)) {
-			if(that.type == "birth"){
-				var birthstr=arr.join("").replace('年','-').replace('月','-').replace('号','').replace('日','');
-				if( ! vlm.Utils.compareBirth(birthstr))
-				{
+			if (that.type == "birth") {
+				var birthstr = arr.join("").replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
+				if (!vlm.Utils.compareBirth(birthstr)) {
 					jAlert('您选择的出生日期大于当前日期');
 					return;
 				}
-				arr[0]=arr[0].replace('年','');
-				arr[1]=that.addZero(parseInt(arr[1]));
-				arr[2]=that.addZero(parseInt(arr[2]));
-				if(ele.nodeName == 'DIV')
-				{
+				arr[0] = arr[0].replace('年', '');
+				arr[1] = that.addZero(parseInt(arr[1]));
+				arr[2] = that.addZero(parseInt(arr[2]));
+				if (ele.nodeName == 'DIV') {
 					ele.innerHTML = arr.join("-");
 				}
 				ele.value = arr.join("-");
 
-			}else if(that.type == "validity"){
+			} else if (that.type == "validity") {
 
-				arr[0]=arr[0].replace('年','');
-				arr[1]=that.addZero(parseInt(arr[1]));
-				arr[2]=that.addZero(parseInt(arr[2]));
-				if(ele.nodeName == 'DIV')
-				{
+				arr[0] = arr[0].replace('年', '');
+				arr[1] = that.addZero(parseInt(arr[1]));
+				arr[2] = that.addZero(parseInt(arr[2]));
+				if (ele.nodeName == 'DIV') {
 					ele.innerHTML = arr.join("-");
 				}
 				ele.value = arr.join("-");
-			}else if(that.type == 'cardExpirationDate'){
-                ele.setAttribute("data-expire",arr[0].replace('年','')+"-"+that.addZero(parseInt(arr[1]))+"-01");
-				var sYear=arr[0];
-                arr[0]=that.addZero(parseInt(arr[1]));
-                arr[1]=parseInt(sYear.substring(2));
+			} else if (that.type == 'cardExpirationDate') {
+				ele.setAttribute("data-expire", arr[0].replace('年', '') + "-" + that.addZero(parseInt(arr[1])) + "-01");
+				var sYear = arr[0];
+				arr[0] = that.addZero(parseInt(arr[1]));
+				arr[1] = parseInt(sYear.substring(2));
 
-				if(ele.nodeName == 'DIV')
-				{
+				if (ele.nodeName == 'DIV') {
 					ele.innerHTML = arr.join("-");
 				}
-                ele.value = arr.join("/");
-            }else{
-				$(ele).attr("data-code",$(box).attr("data-code")) //添加data-code属性
+				ele.value = arr.join("/");
+			} else {
+				$(ele).attr("data-code", $(box).attr("data-code")) //添加data-code属性
 				ele.innerHTML = arr.join("");
 			}
-
-
-		}else{
-			ele.innerHTML = arr.join("");
 		}
+		//编辑常旅中证件类型回调
 		if(that.callback !=null){
 			that.callback();
 		}
