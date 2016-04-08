@@ -203,7 +203,7 @@ var clientH = document.documentElement.clientHeight;
 var mask = document.getElementById('mask');
 a.style.height = clientH+'px';
 var ali = a.children;
-var onoff = false;
+
 for(var i=0;i<ali.length;i++){
 	ali[i].onclick = function(){
         popbox.style.display = 'block';
@@ -213,15 +213,15 @@ for(var i=0;i<ali.length;i++){
         onoff = true;
 	};
 }
-if(onoff){
-    a.ontouchstart = function(){
-        return false;
-    };
-}else{
-    a.ontouchstart = function(){
-        return true;
-    };
-}
+popbox.touchstart = function(e){
+    e.stopPropagation();
+};
+popbox.touchmove = function(e){
+    e.stopPropagation();
+};
+popbox.touchend = function(e){
+    e.stopPropagation();
+};
 //弹窗
 //popbox.onclick = function(){
 //	a.style.overflow = 'hidden';
