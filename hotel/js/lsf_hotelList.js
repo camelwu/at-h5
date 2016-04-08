@@ -223,7 +223,6 @@ function styleChange(id, mytext) {
 			} else {
 				obj.className = "s-li";
 			}
-
             //如果一个都没有选中的情况，显示不限；
             array = document.getElementById("h-type").childNodes;
             for(var j=0,len=array.length;j<len;j++){
