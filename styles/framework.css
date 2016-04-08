@@ -183,6 +183,16 @@ h1, h2, h3, h4, h5, h6 {
 .half-top {
 	margin-top: 15px;
 }
+.to-rec-tit{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.to-recommend{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 .no-bottom {
 	margin-bottom: 0px !important;
