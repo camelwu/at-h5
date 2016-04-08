@@ -13,7 +13,8 @@
 .nav{ color:#fff; height:40px; width:100%; background:#930; position:fixed; top:0; left:0; z-index:2;}
 p{padding:10px;}
 .a{ background:#3CC; color:#fff; position:absolute; top:0; width:100%; overflow-y:scroll;}
-.c{ position:fixed; top:50%; left:50%; width:300px; height:300px; margin:-150px 0 0 -150px; background:#fff;overflow-y:scroll; display:none;}
+.c{ position:fixed; top:50%; left:50%; width:300px; height:300px; margin:-150px 0 0 -150px; background:#fff;
+   -webkit-overflow-scrolling: touch;  overflow-y:scroll; display:none;}
 .box{ width:100%; position:relative;}
 
 </style>
@@ -103,61 +104,61 @@ p{padding:10px;}
 
 <div class="c" id="c">
     <div class="d">
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容2223</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容333</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容422</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容536</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容晚</p>
-        <p>内容</p>
-        <p>内容</p>
-        <p>内容</p>
+        <p>内容内容内容内容内容内容内容</p>
+        <p>内内容内容内容内容内容内容容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容内容内容内容容</p>
+        <p>内容2223内容内容内容内容内容内容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内容内容内容内容内容内容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容容</p>
+        <p>内容内容内容内容内容内容333</p>
+        <p>内内容内容内容容</p>
+        <p>内内容内容内容内容容</p>
+        <p>内内容内容内容容</p>
+        <p>内容内容内容内容</p>
+        <p>内内容内容容422</p>
+        <p>内内容内容内容容</p>
+        <p>内容内容内容内容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容内容容</p>
+        <p>内容内容内容内容内容536</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容内容容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容内容内容容</p>
+        <p>内内容内容内容内容容</p>
+        <p>内内容内容内容内容内容容晚</p>
+        <p>内内容内容内容内容容</p>
+        <p>内容内容内容内容内容内容</p>
+        <p>内内容内容内容内容内容容</p>
 	</div>
 </div>
 <script>
 var a = document.getElementById('a');
-var c = document.getElementById('c');
+var popbox = document.getElementById('c');
 var oNav = document.getElementById('nav');
 var clientH = document.documentElement.clientHeight;
 a.style.height = clientH+'px';
 var ali = a.children;
 for(var i=0;i<ali.length;i++){
 	ali[i].onclick = function(){
-		c.style.display = 'block';
+        popbox.style.display = 'block';
 		a.style.overflow = 'hidden';
 	};
 }
-c.onclick = function(){
-	var atop = a.scrollTop;
+//弹窗
+popbox.onclick = function(){
 	a.style.overflow = 'hidden';
-	console.log(atop)
 };
+//点击关闭弹窗
 oNav.onclick = function(){
 	a.style.overflowY = 'scroll';
-	c.style.display = 'none';
+    popbox.style.display = 'none';
 };
 
 </script>
