@@ -251,6 +251,7 @@
 					<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
 					<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
 				</ol>
+
 		</div>
 	</div>
 	<!--   旅行须知   -->
@@ -1676,20 +1677,33 @@
 						event.stopPropagation();
 					}
 				}
-				$("#state_btn").click(function(){
+//				$("#state_btn").click(function(){
+//					$(".js-mask").show();
+//				});
+				$("#state_btn").on("click",function(){
 					$(".js-mask").show();
+				});
 //					$('.sc-content').css({"overflow":"hidden"})
-				});
-				$(".js-travelnotes-close").click(function(){
+
+//				$(".js-travelnotes-close").click(function(){
+//					$(".js-mask").hide();
+////					$('.sc-content').css({"overflow":"auto"})
+//				});
+				$(".js-travelnotes-close").on("click",function(){
 					$(".js-mask").hide();
-//					$('.sc-content').css({"overflow":"auto"})
 				});
-				$(".js-mask").click(function(){
+//				$(".js-mask").click(function(){
+//					$(".js-mask").hide();
+//				});
+				$(".js-mask").on("click",function(){
 					$(".js-mask").hide();
 				});
-				$('.js-travelnotes').click(function(event){
+//				$('.js-travelnotes').click(function(event){
+//					cancelPropagation(event);
+//				});
+				$(".js-travelnotes").on("click",function(){
 					cancelPropagation(event);
-				})
+				});
 
 			})();
 

@@ -189,7 +189,7 @@
     <script>
         /*景点首页MT*/
         (function(){
-            var nowindex = 0;//点击事件获取当前下标值
+//            var nowindex = 0;//点击事件获取当前下标值
 //            localStorage.setItem('clickli','');//点击事件存储下标key名字
             vlm.init();
             /**
@@ -228,21 +228,21 @@
                 var outplace = $("#out_place")[0].getElementsByTagName("li");
                 var inplace = $("#in_place")[0].getElementsByTagName("li");
                 //添加返回页面的当前点击状态
-                var listindex = localStorage.getItem('clickli');
-                if(listindex){
-                    for(var i=0; i < outplace.length; i++){
-                        outplace[listindex].className='hotplace pl-active';
-                    }
-                }
+//                var listindex = localStorage.getItem('clickli');
+//                if(listindex){
+//                    for(var i=0; i < outplace.length; i++){
+//                        outplace[listindex].className='hotplace pl-active';
+//                    }
+//                }
                 for(var i=0; i < outplace.length; i++){
-                    outplace[i].index = i;
+//                    outplace[i].index = i;
                     outplace[i].onclick = function(){
-                        nowindex = this.index;
+//                        nowindex = this.index;
 //                        for(var i=0; i<outplace.length; i++){
 //                            outplace[i].className = "hotplace";
 //                        }
 //                        this.className='hotplace pl-active';
-                        localStorage.setItem('clickli',nowindex);
+//                        localStorage.setItem('clickli',nowindex);
                         MT.CurrentPageTolist(this.title);
                     }
                 }
