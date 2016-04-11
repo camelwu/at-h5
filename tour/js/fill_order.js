@@ -445,7 +445,7 @@
             console.log(json);
             var sceTit=json.data.packageName;
             var sceCpde=json.data.packageRefNo;
-            $('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">'+sceCpde+'</span>';
+            $('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">(产品编号：'+sceCpde+')</span>';
             $('.package-tit').html(sceTit);
         }else{
             jAlert(json.message);
@@ -453,6 +453,7 @@
     }
     //   获取明细
     var info = JSON.parse(localStorage.info);
+    console.dir(info.roomDetails.length);
     //var hotelID=vlm.getpara("hotelID");
     var tmp = {
         "Parameters": {
@@ -471,13 +472,14 @@
         var json = ret;
         if(json.success) {
             var data = json.data;
+            console.log(data);
             var n;
             for(var k = 0;k < data.hotels[0].rooms.length;k++){
                 if(data.hotels[0].rooms[k].roomID == roomID){
                     n = k;
                 }
             }
-            var tpl = [
+            var tpl1 = [
                 '<li>费用明细</li>',
                 '{% for(var i=0; i<hotels[0].rooms['+n+'].prices.length;i++){  if(hotels[0].rooms['+n+'].prices[i].category=="ADULT"){ %}',
                 '<li>',
@@ -492,9 +494,27 @@
                 '{% } %}',
                 '{% } %}'
             ].join('');
-            var html_fd = template(tpl,data);
+            var tpl2 = [
+                '<div class="sce-introduce-txt">{%=hotels[0].hotelName%}</div>',
+                '{% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %}',
+                '<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}'+info.roomDetails.length+'间</div>',
+                '{% } %}',
+                '{% } %}',
+                '<div class="detail-span">'+info.CheckInDate.substr(0,10)+' 至 '+info.CheckOutDate.substr(0,10)+' '+info.nightNum+'晚</div>'
+            ].join('');
+            var tpl3 = [
+                '<div>',
+                '<div class="sce-introduce-txt">曼谷大皇宫门票</div>',
+                '<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>',
+                '<div class="detail-span">成人票 2张</div>',
+                '<div class="detail-span">儿童票 1张</div>',
+                '</div>'
+            ].join('');
+            var html_fd = template(tpl1,data);
+            var html_dh = template(tpl2,data);
             //$('.separate_num i').html(data.hotels[0].avgRatePerPaxSeparatelyInCNY);
             $('#fillDetail').html(html_fd);
+            $('#hotel_detail').html(html_dh);
             vlm.init();
         }else{
             console.log(json);

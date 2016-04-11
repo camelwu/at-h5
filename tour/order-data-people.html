@@ -509,16 +509,20 @@
 								total_day.innerHTML = day_Num - 1;
 								tagAndEvent();
 								for(var i = 0;i < data.tours.length;i++){
-									if(data.tours[i].tourSession[0] == 0){
-										noon.push('上午');
-									}else if(data.tours[i].tourSession[0] == 1){
-										noon.push('下午');
-									}else if(data.tours[i].tourSession[0] == 2){
-										noon.push('晚上');
-									}else if(data.tours[i].tourSession[0] == 3){
-										noon.push('');
-									}else if(data.tours[i].tourSession[0] == 4){
-										noon.push('');
+									if(data.tours[i].tourSession.length == 1) {
+										if (data.tours[i].tourSession[0] == 0) {
+											noon.push('上午');
+										} else if (data.tours[i].tourSession[0] == 1) {
+											noon.push('下午');
+										} else if (data.tours[i].tourSession[0] == 2) {
+											noon.push('晚上');
+										} else if (data.tours[i].tourSession[0] == 3) {
+											noon.push('');
+										} else if (data.tours[i].tourSession[0] == 4) {
+											noon.push('');
+										}
+									}else{
+										var nn = e.parentNode.getElementsByClassName('tourSelect tourcho')[0].innerHTML;
 									}
 								}
 								localStorage.noon = noon;
@@ -651,6 +655,7 @@
 						//   判断页面能否跳转
 						var tipBox = document.querySelector('#show-result-tip');
 						var InfoData = {};
+						var nightnum = document.getElementById('total_day').innerHTML;
 						if (onlyForAdult) {
 							allNum = adultNum;
 							if (adultNum > maxAdult && maxAdult != -1) {
@@ -669,6 +674,7 @@
 									packageID : localStorage.packageID,
 									CheckInDate : CheckInDate,
 									CheckOutDate : CheckOutDate,
+									nightNum:nightnum,
 									roomDetails : roomDetails,
 									tours : tours
 								};
@@ -735,6 +741,7 @@
 									packageID : localStorage.packageID,
 									CheckInDate : CheckInDate,
 									CheckOutDate : CheckOutDate,
+									nightNum:nightnum,
 									roomDetails : roomDetails,
 									adultNum : adultNum,
 									childNum : childNum,
