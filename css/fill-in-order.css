@@ -376,7 +376,9 @@ input{
     font-size: 14px;
     width: 100%;
 }
-
+.trave-li-child{
+    padding-left: 15px!important;
+}
 .personal_data ul li span.list_tit {
     display: inline-block;
     width: 62px;

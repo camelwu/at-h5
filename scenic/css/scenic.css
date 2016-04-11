@@ -1897,6 +1897,14 @@ i{
     height: 15px;
     background-position: 73% 3%;
 }
+.codefont{
+    color:#999999;
+    font-size: 12px;
+}
+.ticket-type{
+    color:#999999;
+    font-size: 12px!important;
+}
 /*景点预订免登陆开始*/
 .sce-order-login {
     color: #ffb500;
