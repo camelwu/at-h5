@@ -662,9 +662,9 @@
 								} else if (tourData.tours[i].tourSession[0] == 2) {
 									noon.push('晚上');
 								} else if (tourData.tours[i].tourSession[0] == 3) {
-									noon.push('');
+									noon.push(' ');
 								} else if (tourData.tours[i].tourSession[0] == 4) {
-									noon.push('');
+									noon.push(' ');
 								}
 							}else{
 								var tournoon = tourEle[i].getElementsByClassName('tourSelect');
@@ -681,9 +681,8 @@
 								weekday.push('');
 							}
 						}
-						alert(weekday);
-						localStorage.noon = noon;
-						localStorage.week = weekday;
+						localStorage.noon = JSON.stringify(noon);
+						localStorage.week = JSON.stringify(weekday);
 						//   判断页面能否跳转
 						var tipBox = document.querySelector('#show-result-tip');
 						var InfoData = {};

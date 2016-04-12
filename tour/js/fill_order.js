@@ -471,6 +471,9 @@
         var json = ret;
         if(json.success) {
             var data = json.data;
+            var weekday = JSON.parse(localStorage.week);
+            var noon = JSON.parse(localStorage.noon);
+            data= $.extend({"weekday":weekday,"noon":noon},data);
             console.log(data);
             var n;
             for(var k = 0;k < data.hotels[0].rooms.length;k++){
@@ -507,7 +510,7 @@
             var tpl2 = [
                 '<div class="sce-introduce-txt">{%=hotels[0].hotelName%}</div>',
                 '{% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %}',
-                '<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}'+info.roomDetails.length+'间</div>',
+                '<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}' + info.roomDetails.length+'间</div>',
                 '{% } %}',
                 '{% } %}',
                 '<div class="detail-span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>'
@@ -517,40 +520,48 @@
                 '<div>',
                 '<div class="sce-introduce-txt">{%=tourInfos[i].tourName%}</div>',
                 '{% if(tourInfos[i].travelDateSpecified){ %}',
-                '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} 周三 上午</div>',
+                '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',
                 '{% } %}',
-                '<div class="detail-span">成人票 2张</div>',
-                '<div class="detail-span">儿童票 1张</div>',
+                '<div class="detail-span">成人票 '+info.adultNum+'张</div>',
+                '<div class="detail-span">儿童票 '+info.childNum+'张</div>',
                 '</div>',
                 '{% } %}'
             ].join('');
             var html_fd = template(tpl1,data);
             var html_dh = template(tpl2,data);
+            var html_dt = template(tpl3,data);
             //$('.separate_num i').html(data.hotels[0].avgRatePerPaxSeparatelyInCNY);
             $('#fillDetail').html(html_fd);
             $('#hotel_detail').html(html_dh);
+            $('#tour_detail').html(html_dt);
             vlm.init();
         }else{
             console.log(json);
             jAlert(json.message,"提示");
         }
     }
-
-
-    //上午下午
-    var aNoon=$('.travel-noon a');
-    aNoon.click(function(){
-        $(this).addClass('on').siblings().removeClass('on');
-        if(aNoon.attr('class') == 'fa-noon on')
-        {
-            localStorage.noon=0;
-        }
-        else
-        {
-            localStorage.noon=1;
-        }
+    ////上午下午
+    //var aNoon=$('.travel-noon a');
+    //aNoon.click(function(){
+    //    $(this).addClass('on').siblings().removeClass('on');
+    //    if(aNoon.attr('class') == 'fa-noon on')
+    //    {
+    //        localStorage.noon=0;
+    //    }
+    //    else
+    //    {
+    //        localStorage.noon=1;
+    //    }
+    //});
+    $('.open-close').click(function(){
+        $('#detailBox').toggle();
+        $('.icons.de-close').toggleClass('de-open');
+        //if($('#detailBox').display == 'none'){
+        //    $('#detailBox').show();
+        //}else{
+        //    $('#detailBox').hide();
+        //}
     });
-
 
     function setOrderTime(){
         var oDate=new Date();

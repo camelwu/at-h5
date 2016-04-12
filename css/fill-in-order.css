@@ -439,7 +439,7 @@ input{
 .de-open{
     width:15px;
     height:10px;
-    background-position: 74% 5%;
+    background-position: 74% 5%!important;
 }
 .de-close{
     width:15px;
