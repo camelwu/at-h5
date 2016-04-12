@@ -453,7 +453,6 @@
     }
     //   获取明细
     var info = JSON.parse(localStorage.info);
-    console.dir(info.roomDetails.length);
     //var hotelID=vlm.getpara("hotelID");
     var tmp = {
         "Parameters": {
@@ -494,21 +493,36 @@
                 '{% } %}',
                 '{% } %}'
             ].join('');
+            var CheckInDate,CheckOutDate;
+            if(info.CheckInDate.substr(9,1) == 'T'){
+                CheckInDate = info.CheckInDate.substr(0,9);
+            }else{
+                CheckInDate = info.CheckInDate.substr(0,10);
+            }
+            if(info.CheckOutDate.substr(9,1) == 'T'){
+                CheckOutDate = info.CheckOutDate.substr(0,9);
+            }else{
+                CheckOutDate = info.CheckOutDate.substr(0,10);
+            }
             var tpl2 = [
                 '<div class="sce-introduce-txt">{%=hotels[0].hotelName%}</div>',
                 '{% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %}',
                 '<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}'+info.roomDetails.length+'间</div>',
                 '{% } %}',
                 '{% } %}',
-                '<div class="detail-span">'+info.CheckInDate.substr(0,10)+' 至 '+info.CheckOutDate.substr(0,10)+' '+info.nightNum+'晚</div>'
+                '<div class="detail-span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>'
             ].join('');
             var tpl3 = [
+                '{% for(var i=0;i<tourInfos.length;i++){ %}',
                 '<div>',
-                '<div class="sce-introduce-txt">曼谷大皇宫门票</div>',
-                '<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>',
+                '<div class="sce-introduce-txt">{%=tourInfos[i].tourName%}</div>',
+                '{% if(tourInfos[i].travelDateSpecified){ %}',
+                '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} 周三 上午</div>',
+                '{% } %}',
                 '<div class="detail-span">成人票 2张</div>',
                 '<div class="detail-span">儿童票 1张</div>',
-                '</div>'
+                '</div>',
+                '{% } %}'
             ].join('');
             var html_fd = template(tpl1,data);
             var html_dh = template(tpl2,data);

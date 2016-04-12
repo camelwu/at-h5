@@ -478,6 +478,7 @@
 						});
 					};
 					//   加载景点
+					var tourData;
 					var getSpot = function() {
 						var tmp = {
 							"Parameters" : {
@@ -490,6 +491,7 @@
 							if (json.success) {
 								console.log(json);
 								var data = json.data, total_day = document.querySelector('#total_day');
+								tourData = data;
 								dateHandler.dataInfomation = json.data;
 								day_start = data.defaultDepartStartDate.substring(0,10);
 								day_Num = parseInt(data.minDuration ? data.minDuration : data.packageName.substr(2, 1));
@@ -509,23 +511,18 @@
 								total_day.innerHTML = day_Num - 1;
 								tagAndEvent();
 								for(var i = 0;i < data.tours.length;i++){
-									if(data.tours[i].tourSession.length == 1) {
-										if (data.tours[i].tourSession[0] == 0) {
-											noon.push('上午');
-										} else if (data.tours[i].tourSession[0] == 1) {
-											noon.push('下午');
-										} else if (data.tours[i].tourSession[0] == 2) {
-											noon.push('晚上');
-										} else if (data.tours[i].tourSession[0] == 3) {
-											noon.push('');
-										} else if (data.tours[i].tourSession[0] == 4) {
-											noon.push('');
-										}
-									}else{
-										var nn = e.parentNode.getElementsByClassName('tourSelect tourcho')[0].innerHTML;
+									if (data.tours[i].tourSession[0] == 0) {
+										noon.push('上午');
+									} else if (data.tours[i].tourSession[0] == 1) {
+										noon.push('下午');
+									} else if (data.tours[i].tourSession[0] == 2) {
+										noon.push('晚上');
+									} else if (data.tours[i].tourSession[0] == 3) {
+										noon.push('');
+									} else if (data.tours[i].tourSession[0] == 4) {
+										noon.push('');
 									}
 								}
-								localStorage.noon = noon;
 								var tpl_GetTour = template("tpl_GetTour", data);
 								if (localStorage.getItem('init') != '1') {
 									dateHandler.init();
@@ -652,6 +649,41 @@
 								childNum = childNum + roomDetails[kl]['childWithOutBed'].length;
 							}
 						}
+						//   tourSession存取
+						noon = [];
+						var weekday = [];
+						var weekinfo;
+						for(var i = 0;i < tourData.tours.length;i++){
+							if(tourData.tours[i].tourSession.length == 1) {
+								if (tourData.tours[i].tourSession[0] == 0) {
+									noon.push('上午');
+								} else if (tourData.tours[i].tourSession[0] == 1) {
+									noon.push('下午');
+								} else if (tourData.tours[i].tourSession[0] == 2) {
+									noon.push('晚上');
+								} else if (tourData.tours[i].tourSession[0] == 3) {
+									noon.push('');
+								} else if (tourData.tours[i].tourSession[0] == 4) {
+									noon.push('');
+								}
+							}else{
+								var tournoon = tourEle[i].getElementsByClassName('tourSelect');
+								for(var n = 0;n < tournoon.length;n++){
+									if(tournoon[n].className == 'tourSelect tourcho'){
+										noon.push(tournoon[n].innerHTML);
+									}
+								}
+							}
+							if(tourData.tours[i].travelDateMandatory){
+								weekinfo = tourEle[i].querySelector('.week-tour');
+								weekday.push(weekinfo.innerHTML);
+							}else{
+								weekday.push('');
+							}
+						}
+						alert(weekday);
+						localStorage.noon = noon;
+						localStorage.week = weekday;
 						//   判断页面能否跳转
 						var tipBox = document.querySelector('#show-result-tip');
 						var InfoData = {};
