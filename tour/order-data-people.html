@@ -108,8 +108,33 @@
 			<div class="nav2-tour tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
 			<div>{%=tours[i].tourName%}</div>
 			{% if(tours[i].travelDateMandatory){ %}
+			{% if(tours[i].tourSession.length==1){ %}
 			<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate" readonly="readonly" ><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span>{%=noon[i]%}</div>
 			<i></i>
+			{% }else if(tours[i].tourSession.length==2){ %}
+				<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate" readonly="readonly" ><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span><i></i></div>
+				<div class="tourSe">选择游玩时段</div>
+			{% if(tours[i].tourSession[1]==0){ %}
+				<div class="tourSelect">上午</div>
+			{% }else if(tours[i].tourSession[1]==1){ %}
+				<div class="tourSelect">下午</div>
+			{% }else if(tours[i].tourSession[1]==2){  %}
+				<div class="tourSelect">晚上</div>
+			{% } %}
+			{% if(tours[i].tourSession[0]==0){ %}
+				<div class="tourSelect tourcho">上午</div>
+			{% }else if(tours[i].tourSession[0]==1){ %}
+				<div class="tourSelect tourcho">下午</div>
+			{% }else if(tours[i].tourSession[0]==2){  %}
+				<div class="tourSelect tourcho">晚上</div>
+			{% } %}
+			{% }else if(tours[i].tourSession.length==3){  %}
+				<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate" readonly="readonly" ><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span><i></i></div>
+				<div class="tourSe">选择游玩时段</div>
+				<div class="tourSelect">晚上</div>
+				<div class="tourSelect">下午</div>
+				<div class="tourSelect tourcho">上午</div>
+			{% } %}
 			{% } %}
 			</div>
 			{% } %}
@@ -463,6 +488,7 @@
 						};
 						vlm.loadJson("", JSON.stringify(tmp), function(json) {
 							if (json.success) {
+								console.log(json);
 								var data = json.data, total_day = document.querySelector('#total_day');
 								dateHandler.dataInfomation = json.data;
 								day_start = data.defaultDepartStartDate.substring(0,10);
@@ -483,16 +509,20 @@
 								total_day.innerHTML = day_Num - 1;
 								tagAndEvent();
 								for(var i = 0;i < data.tours.length;i++){
-									if(data.tours[i].tourSession[0] == 0){
-										noon.push('上午');
-									}else if(data.tours[i].tourSession[0] == 1){
-										noon.push('下午');
-									}else if(data.tours[i].tourSession[0] == 2){
-										noon.push('晚上');
-									}else if(data.tours[i].tourSession[0] == 3){
-										noon.push('');
-									}else if(data.tours[i].tourSession[0] == 4){
-										noon.push('');
+									if(data.tours[i].tourSession.length == 1) {
+										if (data.tours[i].tourSession[0] == 0) {
+											noon.push('上午');
+										} else if (data.tours[i].tourSession[0] == 1) {
+											noon.push('下午');
+										} else if (data.tours[i].tourSession[0] == 2) {
+											noon.push('晚上');
+										} else if (data.tours[i].tourSession[0] == 3) {
+											noon.push('');
+										} else if (data.tours[i].tourSession[0] == 4) {
+											noon.push('');
+										}
+									}else{
+										var nn = e.parentNode.getElementsByClassName('tourSelect tourcho')[0].innerHTML;
 									}
 								}
 								localStorage.noon = noon;
@@ -501,6 +531,11 @@
 									dateHandler.init();
 								}
 								$('#tourTime').html(tpl_GetTour);
+								// 景点选择上下午，晚上
+								$('.tourSelect').click(function(e){
+									e.stopPropagation();
+									$(this).addClass('tourcho').siblings().removeClass('tourcho');
+								});
 								// 向景点增加时间
 								$(".content3_CheckInDate").val(day_start);
 								var index = day_ary[new Date(day_start.replace(/-/g, "/")).getDay()];
@@ -620,6 +655,7 @@
 						//   判断页面能否跳转
 						var tipBox = document.querySelector('#show-result-tip');
 						var InfoData = {};
+						var nightnum = document.getElementById('total_day').innerHTML;
 						if (onlyForAdult) {
 							allNum = adultNum;
 							if (adultNum > maxAdult && maxAdult != -1) {
@@ -638,6 +674,7 @@
 									packageID : localStorage.packageID,
 									CheckInDate : CheckInDate,
 									CheckOutDate : CheckOutDate,
+									nightNum:nightnum,
 									roomDetails : roomDetails,
 									tours : tours
 								};
@@ -704,6 +741,7 @@
 									packageID : localStorage.packageID,
 									CheckInDate : CheckInDate,
 									CheckOutDate : CheckOutDate,
+									nightNum:nightnum,
 									roomDetails : roomDetails,
 									adultNum : adultNum,
 									childNum : childNum,

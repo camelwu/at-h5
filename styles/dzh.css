@@ -177,6 +177,27 @@
     font-size: 14px;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
+.tourSe{
+    float: left;
+    padding:5px 15px;
+    color: #a9a9a9;
+}
+.tourSelect{
+    float: right;
+    margin-right: 15px;
+    margin-top: 6px;
+    width:49px;
+    height:22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 5px;
+    border:1px solid #999999;
+    color:#999999;
+}
+.tourcho{
+    border:1px solid #fdb330;
+    color:#fdb330;
+}
 .nav2-center p{
     padding-left: 14px;
     display: inline-flex;

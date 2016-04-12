@@ -10,7 +10,6 @@
 		<!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
 		<link href="../styles/tips.css"	rel="stylesheet">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
-
 	</head>
 	<body>
 	<div id="preloader">
@@ -23,7 +22,7 @@
 	</div>
 		<div class="all-elements">
 			<!--   顶部   -->
-			<div class="header">
+			<div class="scenic-header">
 				<a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
 				<h3>景点预订</h3>
 			</div>
@@ -251,6 +250,7 @@
 					<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
 					<li>更多规定，请您阅读www.asiatravel.com预定条款条约和用户协议。</li>
 				</ol>
+
 		</div>
 	</div>
 	<!--   旅行须知   -->
@@ -367,7 +367,7 @@
 			{% for(var i=0,len=DetailData.data.minPax;i<len;i++){ %}
 			<li class="clearFix">
 			<span id="child_old" class="child-age fl">儿童年龄{%=i+1%}</span>
-			<div class="child-age-cont fr"><input type="text" placeholder="{%=DetailData.data.childAgeMin%}-{%=DetailData.data.childAgeMax%}"/><span>岁</span></div>
+			<div class="child-age-cont fr"><input type="number" placeholder="{%=DetailData.data.childAgeMin%}-{%=DetailData.data.childAgeMax%}"/><span>岁</span></div>
 			</li>
 			{% } %}
 			</ul>
@@ -420,6 +420,7 @@
 			<li>
 			<div class="fl">
 			<span class="add-setmeal-tit js-add-setmeal-tit"></span>
+			<span class="add-setmeal-tit ticket-type"></span>
 			<span class="setmeal-tit">单价：<strong class="setmeal-price-cont js-setmeal-price-cont">¥</strong></span>
 			</div>
 			<b class="setmeal-tr fr" data-c-id="meal" onclick="MT.MealClick(this);"></b>
@@ -818,7 +819,7 @@
 						child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
 						child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[i].tourID);
 
-						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+ "<span style=\"color:#666;\">(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
+						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+ "<span class='codefont'>(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
 
 					}
 
@@ -915,15 +916,18 @@
 
 						if(val.ADU == 0 && data.SearchPriceData.data.prices[k].category == "ADULT"){
 							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
-							var title = data.SearchPriceData.data.packageName+"(成人票)";
+							var title = data.SearchPriceData.data.packageName;
 							child_price.find(".js-add-setmeal-tit:last").html(title);
+							child_price.find('.ticket-type').html("(成人票)");
 							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
 							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 						}
 						if(val.ADU == 1 && data.SearchPriceData.data.prices[k].category == "CHILD"){
 							var child_price = $(".js-tpl-ScenicPrices").append(tpl_ScenicPrices);
-							var title = data.SearchPriceData.data.packageName+"(儿童票)";
+//							var title = data.SearchPriceData.data.packageName+"(儿童票)";
+							var title = data.SearchPriceData.data.packageName;
 							child_price.find(".js-add-setmeal-tit:last").html(title);
+							child_price.find('.ticket-type').html("(儿童票)");
 							child_price.find("[data-c-id=meal]:last").attr("data-category", data.SearchPriceData.data.prices[k].category);
 							child_price.find(".js-setmeal-price-cont:last").html("¥" + data.SearchPriceData.data.prices[k].amountInCNY);
 						}
@@ -1672,20 +1676,33 @@
 						event.stopPropagation();
 					}
 				}
-				$("#state_btn").click(function(){
+//				$("#state_btn").click(function(){
+//					$(".js-mask").show();
+//				});
+				$("#state_btn").on("click",function(){
 					$(".js-mask").show();
+				});
 //					$('.sc-content').css({"overflow":"hidden"})
-				});
-				$(".js-travelnotes-close").click(function(){
+
+//				$(".js-travelnotes-close").click(function(){
+//					$(".js-mask").hide();
+////					$('.sc-content').css({"overflow":"auto"})
+//				});
+				$(".js-travelnotes-close").on("click",function(){
 					$(".js-mask").hide();
-//					$('.sc-content').css({"overflow":"auto"})
 				});
-				$(".js-mask").click(function(){
+//				$(".js-mask").click(function(){
+//					$(".js-mask").hide();
+//				});
+				$(".js-mask").on("click",function(){
 					$(".js-mask").hide();
 				});
-				$('.js-travelnotes').click(function(event){
+//				$('.js-travelnotes').click(function(event){
+//					cancelPropagation(event);
+//				});
+				$(".js-travelnotes").on("click",function(){
 					cancelPropagation(event);
-				})
+				});
 
 			})();
 

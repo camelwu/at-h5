@@ -592,16 +592,46 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     //新增常旅
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
     var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
-    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu",callback:callback});
+    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu",callback:cardcallback});
     //编辑常旅
     var myDate4 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"eee1"});
     var myDate5 = new Scroller({id: "time-cont-edit", type:"validity",cont:"eee2"});
-    var myDate6 = new Scroller({id: "cardType", type:"card",cont:"eee3"});
+    var myDate6 = new Scroller({id: "cardType", type:"card",cont:"eee3",callback:cardcallback});
     //个人信息修改页生日
     var myDate7 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
-    function callback(){
-        alert(11);
+    function cardcallback(){
+        console.log();
+        if($('.date-selected').html() == '护照')
+        {
+            function cardnum(){
+                var arr1=travJson.data[index].listTravellerIdInfo;
+                for(var i=0;i<arr1.length; i++)
+                {
+                    if(arr1[i].idType == 1)
+                    {
+                        return arr1[i].idNumber;
+                    }
+                }
+            }
+            var idnumber=cardnum();
+            $('.postNum').val(idnumber);
+        }else if($('.date-selected').html() == '身份证')
+        {
+            function cardnum(){
+                var arr1=travJson.data[index].listTravellerIdInfo;
+                for(var i=0;i<arr1.length; i++)
+                {
+                    if(arr1[i].idType == 2)
+                    {
+                        return arr1[i].idNumber;
+                    }
+                }
+            }
+            var idnumber=cardnum();
+            $('.postNum').val(idnumber);
+        }
+
     }
 
     //姓名说明新增
