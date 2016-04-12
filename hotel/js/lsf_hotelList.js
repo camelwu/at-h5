@@ -131,22 +131,36 @@ function styleChange(id, mytext) {
 		}
 	};
 }
-//解决位置搜索部分确定按钮太靠下的问题
-;(function(){
-//		var inst = document.getElementById("fo_lo");
-//		var submit = document.getElementById("l_but");
-	$("#fo_lo").on("click",function(){
-		$("#l_but").addClass("s-but-checked");
-		$("#s_but1").addClass("s-but-checked");
-		console.log("111");
-	});
-	$("#l_but").on("click",function(){
-		$("#l_but").removeClass("s-but-checked");
-		$("#s_but1").removeClass("s-but-checked");
-	});
-
-})();
+////解决位置搜索部分确定按钮太靠下的问题
+//;(function(){
+////		var inst = document.getElementById("fo_lo");
+////		var submit = document.getElementById("l_but");
+//	$("#fo_lo").on("click",function(){
+//		$("#l_but").addClass("s-but-checked");
+//		$("#s_but1").addClass("s-but-checked");
+//		console.log("111");
+//	});
+//	$("#l_but").on("click",function(){
+//		$("#l_but").removeClass("s-but-checked");
+//		$("#s_but1").removeClass("s-but-checked");
+//	});
+//
+//})();
 (function() {
+	function checked(){
+		$("#fo_lo").on("click",function(){
+			$("#l_but").addClass("s-but-checked");
+			$("#s_but1").addClass("s-but-checked");
+			console.log("111");
+		});
+	}
+	function submit(){
+		$("#l_but").on("click",function(){
+			$("#l_but").removeClass("s-but-checked");
+			$("#s_but1").removeClass("s-but-checked");
+		});
+	}
+	checked();submit();
 	//贾燕云的js
 	function h_l_s() {
 		var rli = [], sli1 = [], sli2 = [], lb = [];
