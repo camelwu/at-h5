@@ -247,11 +247,8 @@ function inpChange(id, myText) {
 		}
 	};
 }
-
 //酒店输入框
 //已去掉城市模糊搜索
-//inpChange('InterHotelname','酒店名/位置');
-//inpChange('DomHotelName','酒店名/位置');
 (function() {
 	var hoPos = '';
 	//目的地输入框去掉光标
@@ -319,17 +316,10 @@ function inpChange(id, myText) {
 				break;
 		};
 	}
-
 	function toDou(num) {
 		return num < 10 ? '0' + num : '' + num;
 	}
 
-	//var cdDate=lsf_myweb.getbyid('cd_date');
-	//返回按钮
-	//var ho_back=document.getElementById('ho_back');
-	//ho_back.onclick=function(){
-	//    window.history.go(-1);
-	//};
 	//城市列表
 	var dataCN = [];
 	var dataIN = [];
@@ -399,13 +389,10 @@ function inpChange(id, myText) {
 					dataWorIN[dataIN[i].pingYin.substring(0, 1).toUpperCase()].push(dataIN[i]);
 				}
 			}
-			console.log(dataWorCN)
 		}
 
 		sortBy(listJson);
 		function cityShow(oData, doData, cityJson, dcityJson, obj, dobj) {
-			console.log()
-			//热门城市
 			//国际
 			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d) {
 				var json = d;
@@ -455,7 +442,6 @@ function inpChange(id, myText) {
 						oLi.innerHTML = interInpCity[i];
 						cl_inp_citys.appendChild(oLi);
 						oLi.onclick = function() {
-							alert(22222222)
 							abroad_target_city.value = this.innerHTML;
 							cl_box_box.style.display = 'none';
 							cl_inp_citys.style.display = 'none';
@@ -845,37 +831,77 @@ function inpChange(id, myText) {
 	var oDate2 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 3);
 	var beginDate = oDate1.getFullYear() + '-' + toDou(oDate1.getMonth() + 1) + '-' + toDou(oDate1.getDate());
 	var leaveDate = oDate2.getFullYear() + '-' + toDou(oDate2.getMonth() + 1) + '-' + toDou(oDate2.getDate());
+	var jd = new Date(), js = new Date(jd.setDate(jd.getDate() + 1)), jr =new Date( jd.setDate(jd.getDate() + 1));
+	var smonthStr = (js.getMonth()+1)<10?'0'+(js.getMonth()+1):js.getMonth()+1;
+	var sdayStr = js.getDate()<10?'0'+js.getDate():js.getDate();
+	var emonthStr = (jr.getMonth()+1)<10?'0'+(jr.getMonth()+1):jr.getMonth()+1;
+	var edayStr = jr.getDate()<10?'0'+jr.getDate():jr.getDate();
+	var yearDS = js.getFullYear();
+	var returnWeek = function(arg){
+		var reg=/\d{4}-(\d{2})-(\d{2})/,week,dateNum;
+		var weekIndex = new Date(arg.replace(/-/g,'/')).getDay();
+		dateNum = reg.exec(arg);
+		switch (weekIndex){
+			case 0 :
+				week = '周日';
+				break;
+			case 1 :
+				week = '周一';
+				break;
+			case 2 :
+				week = '周二';
+				break;
+			case 3 :
+				week = '周三';
+				break;
+			case 4 :
+				week = '周四';
+				break;
+			case 5 :
+				week = '周五';
+				break;
+			case 6 :
+				week = '周六';
+				break;
+			default :void(0)
+		}
+		return week;
+	};
 	var obj = {};
     
     //网页还原用户上一次选择内容
     var hotelStorage = JSON.parse(localStorage.getItem('hotelStorage12345'));
-    console.log(hotelStorage);
+	//国际
     if (hotelStorage) {
         lsf_myweb.getbyid('input1').value = hotelStorage.InterDes;
-        //lsf_myweb.getbyid('count1').value = hotelStorage.NumRoom;
-        //lsf_myweb.getbyid('count2').value = hotelStorage.NumAdult;
-        //lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
+        lsf_myweb.getbyid('count1').value = hotelStorage.NumRoom;
+        lsf_myweb.getbyid('count2').value = hotelStorage.NumAdult;
+        lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
         lsf_myweb.getbyid('input2').value = hotelStorage.DomDes;
-
-        checkIn.value=hotelStorage.InterBeginDate;
-        checkOut.value=hotelStorage.InterLeaveDate;
-        lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
-        week_span1.innerHTML=hotelStorage.InterBeginDateWeek;
-        week_span2.innerHTML=hotelStorage.InterLeaveDateWeek;
-        obj[hotelStorage.InterBeginDate]="入住";
-        obj[hotelStorage.InterLeaveDate]="离店";
-        //lsf_myweb.getbyid('InterHotelname').value=hotelStorage.InterHotelName;
-        //已去掉城市模糊搜索
-        //lsf_myweb.getbyid('DomHotelName').value=hotelStorage.DomHotelName;
+		if(new Date(hotelStorage.InterBeginDate.replace(/-/g,'/'))<js){
+			checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+			checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
+			lsf_myweb.getbyid('total_day').innerHTML=1;
+			week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
+			week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
+		}else {
+			checkIn.value = hotelStorage.InterBeginDate;
+			checkOut.value = hotelStorage.InterLeaveDate;
+			lsf_myweb.getbyid('total_day').innerHTML = hotelStorage.InterTotalDay;
+			week_span1.innerHTML = hotelStorage.InterBeginDateWeek;
+			week_span2.innerHTML = hotelStorage.InterLeaveDateWeek;
+			obj[hotelStorage.InterBeginDate] = "入住";
+			obj[hotelStorage.InterLeaveDate] = "离店";
+		}
         recoverStatus("count1,count2,count3");
-
     }else{
-        checkIn.value = beginDate;
-        checkOut.value = leaveDate;
-        week_span1.innerHTML = '周' + n2c(oDate1.getDay()) + ' 入住';
-        week_span2.innerHTML = '周' + n2c(oDate2.getDay()) + ' 离店';
-        obj[beginDate] = "入住";
-        obj[leaveDate] = "离店";
+		checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+		checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
+		lsf_myweb.getbyid('total_day').innerHTML=1;
+		week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
+		week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
+		obj[checkIn.value] = "入住";
+		obj[checkOut.value] = "离店";
     }
     //还原减号状态
     function recoverStatus(itemIdString){
@@ -902,20 +928,29 @@ function inpChange(id, myText) {
 	var week_span4 = document.getElementById('weekSpan4');
 	var obj2 = {};
 	if(hotelStorage){
-	    DomCheckInDate.value=hotelStorage.DomCheckInDate;
-	    DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
-	    lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
-	    week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
-	    week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
-	    obj2[hotelStorage.DomCheckInDate]="入住";
-	    obj2[hotelStorage.DomCheckOutDate]="离店";
+		if(new Date(hotelStorage.DomCheckInDate.replace(/-/g,'/'))<js){
+			DomCheckInDate.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+			DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
+			lsf_myweb.getbyid('domeTotalDay').innerHTML=1;
+			week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
+			week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
+		}else{
+			DomCheckInDate.value=hotelStorage.DomCheckInDate;
+			DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
+			lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
+			week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
+			week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
+		}
+		obj2[hotelStorage.DomCheckInDate]="入住";
+		obj2[hotelStorage.DomCheckOutDate]="离店";
 	}else{
-	    DomCheckInDate.value = DomBeginDate;
-        DomCheckOutDate.value = DomLeaveDate;
-        week_span3.innerHTML = '周' + n2c(oDate1.getDay()) + ' 入住';
-        week_span4.innerHTML = '周' + n2c(oDate2.getDay()) + ' 离店';
-        obj2[DomBeginDate] = "入住";
-        obj2[DomLeaveDate] = "离店";
+		DomCheckInDate.value.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+		DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
+		lsf_myweb.getbyid('domeTotalDay').innerHTML=1;
+		week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
+		week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
+		obj2[DomCheckInDate.value]="入住";
+		obj2[DomCheckOutDate.value]="离店";
 	}
     
 	function Calender2() {
@@ -988,16 +1023,13 @@ function inpChange(id, myText) {
 		//用于记录用户历史选择
 
 		var hotelStorage12345 = {
-			//现在只有Singapore可以查询到数据，所以先默认城市是Singapore
 			"InterDes" : lsf_myweb.getbyid('input1').value,
-			//"InterDes":"Singapore",
 			"InterBeginDate" : lsf_myweb.getbyid('CheckInDate').value,
 			"InterLeaveDate" : lsf_myweb.getbyid('CheckOutDate').value,
 			"NumRoom" : lsf_myweb.getbyid('count1').value,
 			"NumAdult" : lsf_myweb.getbyid('count2').value,
 			"NumChild" : lsf_myweb.getbyid('count3').value,
 			//已去掉城市模糊搜索
-			//"InterHotelName":lsf_myweb.getbyid('InterHotelname').value,
 			"InterTotalDay" : lsf_myweb.getbyid('total_day').innerHTML,
 			"InterBeginDateWeek" : lsf_myweb.getbyid('week_span1').innerHTML,
 			"InterLeaveDateWeek" : lsf_myweb.getbyid('week_span2').innerHTML,
@@ -1005,7 +1037,6 @@ function inpChange(id, myText) {
 			"DomCheckInDate" : lsf_myweb.getbyid('DomCheckInDate').value,
 			"DomCheckOutDate" : lsf_myweb.getbyid('DomCheckOutDate').value,
 			//已去掉城市模糊搜索
-			//"DomHotelName":lsf_myweb.getbyid('DomHotelName').value,
 			"DomeTotalDay" : lsf_myweb.getbyid('domeTotalDay').innerHTML,
 			"DomBeginDateWeek" : lsf_myweb.getbyid('weekSpan3').innerHTML,
 			"DomLeaveDateWeek" : lsf_myweb.getbyid('weekSpan4').innerHTML
@@ -1013,17 +1044,6 @@ function inpChange(id, myText) {
 		localStorage.setItem('hotelStorage12345', JSON.stringify(hotelStorage12345));
 	}
 
-	//查询按钮点击事件
-	/*lsf_myweb.bind(lsf_myweb.getbyid('InterBtn'),'click',function(){
-	 hoMemory();
-	 hoPos='inter';
-	 localStorage.setItem('hoPos',hoPos);
-	 });
-	 lsf_myweb.bind(lsf_myweb.getbyid('domBtn'),'click',function(){
-	 hoMemory();
-	 hoPos='dom';
-	 localStorage.setItem('hoPos',hoPos);
-	 });*/
 	$("#hotel_search").submit(function() {
 		if (document.getElementById("Inter").className == "on") {//国际
 			if (parseInt(document.getElementById("count1").value)>parseInt(document.getElementById("count2").value)) {
