@@ -166,6 +166,7 @@ h5 {
 	color: #212935;
 	font-size: 14px;
 	margin-bottom: 5px;
+	margin-top: 5px;
 	font-weight: 800;
 }
 
@@ -177,7 +178,7 @@ h6 {
 }
 h1, h2, h3, h4, h5, h6 {
 	-webkit-font-smoothing: antialiased;
-	color: #1f1f1f;
+	color: rgb(72,72,72);
 }
 
 .half-top {
@@ -2459,4 +2460,5 @@ ul.list-content {
 .index-title {
 	margin-left: 15px;
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
