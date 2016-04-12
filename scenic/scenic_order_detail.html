@@ -45,19 +45,19 @@
 						</div>
 						<ul class="tourist-msg tanktick" id="tanktick">
 							<li>
-								<span class="tourist-name tour-short" style="width:30px">姓：</span>
+								<span class="tourist-name tour-short" style="width:30px">姓</span>
 								<input type="text" id="scenic2_name1" tabindex="1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li"  data-elementName="lastName" data-elementName="lastName">
-								<span class="tourist-name tour-short" style="width:30px">名：</span>
+								<span class="tourist-name tour-short" style="width:30px">名</span>
 								<input type="text" id="scenic2_name2" tabindex="2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
 							</li>
 							<li class="countries-wrap">
 								<b class="icons open-pho-tour"></b>
-								<span class="tourist-name tour-short">国籍：</span>
+								<span class="tourist-name tour-short">国籍</span>
 								<!--<input id="scenic2_NationalityCode" readonly="readonly" style="display: inline-block;" placeholder="国籍">-->
 								<span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" data-tel-code="86" data-elementName="lastName">中国</span>
 							</li>
 							<li>
-								<span class="tourist-name tour-short">护照：</span>
+								<span class="tourist-name tour-short">护照</span>
 								<input type="text" id="scenic2_idcard" tabindex="3" style="width:70%;display: inline-block;" placeholder="请输入护照,如EA2359923" data-elementName="idNumber">
 							</li>
 						</ul>
@@ -69,17 +69,17 @@
 						</div>
 						<ul class="tourist-msg contact" id="contact">
 							<li>
-								<span class="tourist-name tour-short" style="width:30px">姓：</span>
+								<span class="tourist-name tour-short" style="width:30px">姓</span>
 								<input type="text" name="firstName" tabindex="4" id="scenic_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li" data-elementName="lastName" data-elementName="lastName">
-								<span class="tourist-name tour-short" style="width:30px">名：</span>
+								<span class="tourist-name tour-short" style="width:30px">名</span>
 								<input type="text" name="lastName" tabindex="5" id="scenic_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName" data-elementName="firstName">
 							</li>
 							<li>
-								<span class="tourist-name tour-short">手机：</span><span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">+86</span><b class="icons open-phonum"></b>
-								<input type="tel" name="phone" tabindex="6" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" data-elementName="mobilePhone" data-elementName="mobilePhone">
+								<span class="tourist-name tour-short">手机号</span><span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">+86</span><b class="icons open-phonum"></b>
+								<input type="tel" name="phone" tabindex="6" id="scenic_phone" style="width: 64%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" data-elementName="mobilePhone" data-elementName="mobilePhone">
 							</li>
 							<li>
-								<span class="tourist-name tour-short">邮箱：</span>
+								<span class="tourist-name tour-short">邮箱</span>
 								<input type="text" name="email" tabindex="7" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="常用邮箱" data-elementName="email" data-elementName="email">
 							</li>
 						</ul>
@@ -194,7 +194,7 @@
 					</ul>
 				</div>
 				<div class="order-total-wrap clearFix">
-					<span class="fl">订单总额：</span>
+					<span class="fl">订单总额 &nbsp;</span>
 					<span class="order-total-fare fl js-order-total"></span>
 					<a href="javascript:void(0)" class="order-total-btn fr js-order-detail">预订</a>
 					<span class="order-total-tip-details fr">明细<i class="order-total-tip "></i></span>
@@ -306,7 +306,7 @@
 
 			{% if(isAudlt==1){ %}
 			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
-			<span class="per-price-tit fl">单价：</span>
+			<span class="per-price-tit fl">单价&nbsp;</span>
 			<strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
 			<div class="per-price-control fr">
 			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
@@ -316,7 +316,7 @@
 			</div>
 			{% }else if(isAudlt==0){ %}
 			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
-			<span class="per-price-tit fl">单价：</span>
+			<span class="per-price-tit fl">单价&nbsp;</span>
 			<strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
 			<div class="per-price-control fr">
 			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
@@ -344,7 +344,7 @@
 
 			{% if(isAudlt==0){ %}
 			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
-			<span class="per-price-tit fl">单价：</span>
+			<span class="per-price-tit fl">单价&nbsp;</span>
 			<strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
 			<div class="per-price-control fr">
 			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
@@ -354,7 +354,7 @@
 			</div>
 			{% }else if(isAudlt==1){ %}
 			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
-			<span class="per-price-tit fl">单价：</span>
+			<span class="per-price-tit fl">单价&nbsp;</span>
 			<strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
 			<div class="per-price-control fr">
 			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
@@ -723,7 +723,7 @@
 					child_one.find(".sce-ticket:last").find(".js-date").attr("id", "jdate0");
 					child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
 					child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.DetailData.data.packageID);
-					child_one.find(".js-sce-introduce-txt:last").html(data.DetailData.data.packageName + "(产品编号:" + data.DetailData.data.packageRefNo + ")");
+					child_one.find(".js-sce-introduce-txt:last").html(data.DetailData.data.packageName + "(产品编号 " + data.DetailData.data.packageRefNo + ")");
 					$(".add-ticket").addClass("stopgray");
 					$(".js-per-price-cont1").html("");
 					$(".js-order-total").html("");
@@ -819,7 +819,7 @@
 						child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
 						child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[i].tourID);
 
-						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+ "<span class='codefont'>(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
+						child_one.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[i].tourName+ "<span class='codefont'>(产品编号 " + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
 
 					}
 
@@ -852,7 +852,7 @@
 					for (var j = 0; j < data.SearchPriceData.data.tourInfos.length; j++) {
 						var child_two = $(".js-sce-ticket2").append(tpl_Adult_Child2),tchild=!ExtendData.isAudlt?"(成人票)":"(儿童票)";
 						child_two.find(".js-sce-introduce-txt:last").attr("data-key", data.SearchPriceData.data.tourInfos[j].tourID);
-						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "<span style=\"color:#666;\">(产品编号:" + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
+						child_two.find(".js-sce-introduce-txt:last").html(data.SearchPriceData.data.tourInfos[j].tourName + "<span style=\"color:#666;\">(产品编号 " + data.DetailData.data.packageRefNo + ")"+tchild+"</span>");
 					}
 
 					MT.OnePrice(2);
