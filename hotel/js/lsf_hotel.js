@@ -852,11 +852,11 @@ function inpChange(id, myText) {
     console.log(hotelStorage);
     if (hotelStorage) {
         lsf_myweb.getbyid('input1').value = hotelStorage.InterDes;
-        lsf_myweb.getbyid('count1').value = hotelStorage.NumRoom;
-        lsf_myweb.getbyid('count2').value = hotelStorage.NumAdult;
-        lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
+        //lsf_myweb.getbyid('count1').value = hotelStorage.NumRoom;
+        //lsf_myweb.getbyid('count2').value = hotelStorage.NumAdult;
+        //lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
         lsf_myweb.getbyid('input2').value = hotelStorage.DomDes;
-        
+
         checkIn.value=hotelStorage.InterBeginDate;
         checkOut.value=hotelStorage.InterLeaveDate;
         lsf_myweb.getbyid('total_day').innerHTML=hotelStorage.InterTotalDay;
