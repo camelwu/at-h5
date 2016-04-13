@@ -1,0 +1,307 @@
+body{
+    background-color: #fff;
+}
+li{
+    list-style: none;
+}
+i{
+    font-style: normal;
+}
+.icon {
+    background-image: url(../../images/ui/icon.png);
+    background-repeat: no-repeat;
+    background-size: 397px 118px;
+    display: inline-block;
+}
+.icons {
+    background-image: url(../../images/ui/icons.png);
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    display: inline-block;
+}
+.sc-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 45px;
+    padding-bottom: 40px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
+}
+
+/*   首页搜索页开始    */
+.realInfo {
+    background: #FFFFFF;
+    width: 100%;
+}
+.realInfo .place {
+    height: 4.8rem;
+    line-height: 4.8rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 1.6rem;
+    padding: 0 1.0rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+}
+.realInfo .place .origin {
+    height: 4.8rem;
+    width: 35%;
+    line-height: 4.8rem;
+    float: left;
+    border-bottom: 0.1rem solid #dedede;
+}
+.realInfo .place .iconTip {
+    height: 4.8rem;
+    width: 30%;
+    line-height: 4.8rem;
+    float: left;
+}
+.iconTip > div {
+    margin: 0 auto;
+    width: 42px;
+    height: 100%;
+    background-image: url(../../images/ui/air-icons.png);
+    background-repeat: no-repeat;
+    background-position: 38% 13.5%;
+    background-size: 316px 180px;
+    overflow: hidden;
+}
+.realInfo .place .iconTip .active {
+    position: absolute;
+    top: 5px;
+    height: 42px;
+    width: 42px;
+    background: url(../../images/ui/fly-roll.png) no-repeat;
+    background-size: 42px 42px;
+}
+.realInfo .place .destination {
+    height: 4.8rem;
+    width: 35%;
+    line-height: 4.8rem;
+    float: left;
+    text-align: right;
+    border-bottom: 0.1rem solid #dedede;
+}
+.realInfo .dateInfo {
+    height: 4.8rem;
+    line-height: 4.8rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 1.6rem;
+    padding: 0 1.0rem;
+    border-bottom: 0.1rem solid #dedede;
+}
+.title-p {
+    margin-bottom: 0;
+    overflow-y: hidden;
+    height: 2rem;
+    line-height: 2rem;
+}
+.title-p span {
+    font-size: 1.2rem
+}
+.title-p span:first-child {
+    float: left;
+}
+.title-p span:last-child {
+    float: right;
+}
+.ori-des-Date {
+    height: 2.8rem;
+    line-height: 2.8rem;
+    overflow: hidden;
+}
+.originDateInfo {
+    float: left;
+}
+.destinationInfo {
+    float: right;
+}
+.dateTag span {
+    font-size: 1.6rem;
+    color: #000000;
+}
+.dateTag .double-week-one {
+    color:rgb(72,72,72);
+    font-size: 1.4rem;
+}
+.dateTag .double-week-two {
+    color:rgb(72,72,72);
+    font-size: 1.4rem;
+}
+       /*   房间信息   */
+.hotelInfo_numb_room{
+    background: #FFFFFF;
+    overflow: hidden;
+}
+section[class^="hotelInfo_numb"] span.title {
+    display: block;
+    position: absolute;
+    width: 70px;
+    height: 36px;
+    line-height: 36px;
+    left: 10px;
+}
+section[class^="hotelInfo_numb"] .per-price-control {
+    float: right;
+    padding: 8px 6px;
+}
+section[class^="hotelInfo_numb"] .per-price-control span {
+    width: 20px;
+    height: 20px;
+    float: left;
+    background: url(../../images/icons1.png) no-repeat 0 2px;
+    background-size: 320px auto;
+}
+section[class^="hotelInfo_numb"] .per-price-control span:first-child {
+    background-position: -26px 2px;
+}
+section[class^="hotelInfo_numb"] .per-price-control i {
+    width: 25px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    text-align: center;
+    font-size: 13px;
+}
+section.hotelInfo_numb_people {
+    /*border: none;*/
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+section[class^="hotelInfo_numb"] .per-price-control {
+    float: right;
+    padding: 8px 6px;
+}
+section[class^="hotelInfo_numb"] .per-price-control span {
+    width: 20px;
+    height: 20px;
+    float: left;
+    background: url(../../images/icons1.png) no-repeat 0 2px;
+    background-size: 320px auto;
+}
+section[class^="hotelInfo_numb"] .per-price-control span:first-child {
+    background-position: -26px 2px;
+}
+section[class^="hotelInfo_numb"] .per-price-control i {
+    width: 25px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    text-align: center;
+    font-size: 13px;
+}
+section[class^="hotelInfo_numb"] .numbList {
+    margin-left: 70px;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+section[class^="hotelInfo_numb"] .numbList:last-child {
+    clear: both;
+    border: none;
+    /*margin-left: 0;*/
+}
+section[class^="hotelInfo_numb"] .numbList span.n_tit {
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    text-indent: 16px;
+}
+section[class^="hotelInfo_numb"] .numbList span.child-age {
+    position: relative;
+    font-size: 1.4rem;
+    color: #999999;
+    top: 6px;
+}
+section[class^="hotelInfo_numb"] .extraChild {
+    overflow: hidden;
+    margin-left: 70px;
+}
+section[class^="hotelInfo_numb"] .extraChild span {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 15px;
+    position: relative;
+    clear: both;
+}
+section[class^="hotelInfo_numb"] .extraChild span:last-child {
+    border: none;
+}
+.spenumbList {
+    clear: both;
+    margin-left: 0 !important;
+}
+.bedList {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 15px;
+    position: relative;
+}
+.childAge {
+    float: right;
+    width: 25%;
+    margin-top: 5px;
+}
+.inp-cage {
+    display: inline-block;
+    width: 65%;
+}
+.child-sui {
+    display: inline-block;
+}
+.noselect {
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 21px;
+    height: 22px;
+    background-position: -211px -94.9px
+}
+.ico_select {
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 21px;
+    height: 22px;
+    background-position: -236px -94.9px;
+}
+.search-button {
+    height: 4.4rem;
+    margin: 2.5rem 0 0 0;
+    padding: 0 1.2rem
+}
+.search-button input {
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+    height: 44px;
+    line-height: 44px;
+    min-width: 60px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #FFB413
+}
+.scer-fo{
+    bottom: 0;
+    text-align: center;
+    font-size: 1rem;
+    color:rgb(153,153,153);
+}

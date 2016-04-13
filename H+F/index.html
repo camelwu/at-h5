@@ -24,7 +24,7 @@
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
-    <title>酒+景首页 - 亚洲旅行网</title>
+    <title>机+酒首页 - 亚洲旅行网</title>
     <link href="../styles/framework.css" rel="stylesheet"/>
     <link href="../styles/style.css" type="text/css" rel="stylesheet">
     <link href="css/hf_list.css" rel="stylesheet"/>
@@ -34,15 +34,90 @@
 <div class="all-elements">
     <!--   顶部   -->
     <header class="header">
-        <a href="javascript:;" class="header-back" id="ht-back"><i class="icons go-back"></i></a>
+        <a href="javascript:history.go(-1);" class="header-back" id="ht-back"><i class="icons go-back"></i></a>
         <h3>机+酒</h3>
-        <a onclick="MT.CurrentPageTolist()" class="location-wrap">
-            <span id="Localtxt" class="location-txt">更多</span>
-            <i class="location-tip"></i>
-        </a>
     </header>
     <!--   内容   -->
     <div class="sc-content">
+        <div class="realInfo">
+            <div class="place">
+                <div class="origin city-search">北京</div>
+                <div class="iconTip"><div><span class="active span-target"></span></div></div>
+                <div class="destination city-search ">新加坡</div>
+            </div>
+            <div class="dateInfo" id="chooseDate-double">
+                <p class="title-p"><span>出发日期</span><span>返程日期</span></p>
+                <div class="ori-des-Date" id="ori-des-Date">
+                    <span class="originDateInfo dateTag double-date"><span class="dateNumber double-date-one">02-20</span>&nbsp;<span class="double-week-one">周四</span></span>
+                    <span class="destinationInfo dateTag double-date"><span class="dateNumber double-date-two">02-23</span>&nbsp;<span class="double-week-two">周六</span></span>
+                </div>
+            </div>
+        </div>
+        <section class="hotelInfo_numb_room">
+            <span class="title">房间</span>
+            <div class="per-price-control" data-type="extraRoom">
+                <span id="room_downb" class="cut-down-btn"></span><i id="roomNum" class="cut-up-cont">2</i><span class="plus-btn"></span>
+            </div>
+        </section>
+        <section class="hotelInfo_numb_people init-hotel-room-detaol">
+            <span class="title">房间1</span>
+            <div class="numbList" style="border-bottom: 1px solid #ddd;">
+                <span class="n_tit">成人</span>
+                <div class="per-price-control" data-type="adult">
+                    <span class="cut-down-btn" id="adult-down"></span>
+                    <i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i>
+                    <span class="plus-btn"></span>
+                </div>
+            </div>
+            <div class="numbList">
+                <span class="n_tit">儿童</span>
+                <span class="child-age">(2-12岁)</span>
+                <div class="per-price-control" data-type="extraChild">
+                    <span class="cut-down-btn"></span>
+                    <i class="cut-up-cont child-number" data-type="childNum">2</i>
+                    <span class="plus-btn"></span>
+                </div>
+            </div>
+            <div class="extraChild">
+                <span class="bedList" style="float: left"><i>儿童年龄1</i></span>
+                <div class="childAge">
+                    <input class="inp-cage" type="tel" placeholder="(2-12)"><i class="child-sui">岁</i>
+                </div>
+                <span class="bedList" style="float: left"><i>儿童年龄2</i></span>
+                <div class="childAge">
+                    <input class="inp-cage" type="tel" placeholder="(2-12)"><i class="child-sui">岁</i>
+                </div>
+                <div class="numbList spenumbList">
+                    <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>
+                </div>
+            </div>
+        </section>
+        <section class="hotelInfo_numb_people init-hotel-room-detaol">
+            <span class="title">房间2</span>
+            <div class="numbList" style="border-bottom: 1px solid #ddd;">
+                <span class="n_tit">成人</span>
+                <div class="per-price-control" data-type="adult">
+                    <span class="cut-down-btn"></span>
+                    <i class="cut-up-cont adult-people-number" data-type="adultNum">1</i>
+                    <span class="plus-btn"></span>
+                </div>
+            </div>
+            <div class="numbList">
+                <span class="n_tit">儿童</span>
+                <span class="child-age">(2-12岁)</span>
+                <div class="per-price-control" data-type="extraChild">
+                    <span class="cut-down-btn"></span>
+                    <i class="cut-up-cont child-number" data-type="childNum">0</i>
+                    <span class="plus-btn"></span>
+                </div>
+            </div>
+        </section>
+        <div class="search-button">
+            <input type="button" value="查询" class="button-orange hotelInter" id="search-button" />
+        </div>
+        <footer class="scer-fo">
+            自由配 预订快 资源全 价格低
+        </footer>
     </div>
 </div>
 </body>
