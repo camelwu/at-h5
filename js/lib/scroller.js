@@ -110,16 +110,9 @@ Scroller.prototype = {
 					Y.push("<span>" + i + s + "</span>");
 				}
 			} else if (s == "月") {
-
-                    if (that.type == that._time[2]){
-                        for (var i = m + 1; i <= 12; i++) {
-                            Y.push("<span>" + i + s + "</span>");
-                        }
-                    }else{
-                        for (var i = 1; i <= 12; i++) {
-                            Y.push("<span>" + i + s + "</span>");
-                        }
-                    }
+                for (var i = 1; i <= 12; i++) {
+                    Y.push("<span>" + i + s + "</span>");
+                }
 			} else {
 				for (var i = 1; i <= that.days[1]; i++) {
 					Y.push("<span>" + i + s + "</span>");
@@ -289,7 +282,7 @@ Scroller.prototype = {
 			}
 		}
 		//编辑常旅中证件类型回调
-		if(that.callback !=null){
+		if(that.callback && typeof that.callback == 'function'){
 			that.callback();
 		}
 		this.selShow(0);
