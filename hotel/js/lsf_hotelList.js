@@ -892,6 +892,10 @@ function styleChange(id, mytext) {
 		if (oSrc.getAttribute('id') == 's_but') {
 			var hl_star_str = '';
 			var hl_type_str = '';
+            var hl_filter_chinese = '';
+            var hl_filter_star = '';
+            var hl_filter_type = '';
+            
 			var hl_star_type = lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'), 's-li1');
             hlHis.hlFilter = hlHis.hlFilter || {};
             hlHis.hlFilter.chinese = hlHis.hlFilter.chinese || "";
@@ -902,106 +906,109 @@ function styleChange(id, mytext) {
 				switch(hl_star_type[i].innerText) {
 					case '二星级以下':
 						hl_star_str += '2$';
-						hlHis.hlFilter.chinese += '二星级以下$';
-						hlHis.hlFilter.star += '2$';
+						hl_filter_chinese += '二星级以下$';
+						hl_filter_star += '2$';
 						break;
 					case '三星':
 						hl_star_str += '3$';
-						hlHis.hlFilter.chinese += '三星$';
-						hlHis.hlFilter.star += '3$';
+						hl_filter_chinese += '三星$';
+						hl_filter_star += '3$';
 						break;
 					case '四星':
 						hl_star_str += '4$';
-						hlHis.hlFilter.chinese += '四星$';
-						hlHis.hlFilter.star += '4$';
+						hl_filter_chinese += '四星$';
+						hl_filter_star += '4$';
 						break;
 					case '五星':
 						hl_star_str += '5$';
-						hlHis.hlFilter.chinese += '五星$';
-						hlHis.hlFilter.star += '5$';
+						hl_filter_chinese += '五星$';
+						hl_filter_star += '5$';
 						break;
 					case '酒店':
 						hl_type_str += '1$';
-						hlHis.hlFilter.chinese += '酒店$';
-						hlHis.hlFilter.hotelType += '1$';
+						hl_filter_chinese += '酒店$';
+						hl_filter_type += '1$';
 						break;
 					case '汽车旅馆':
 						hl_type_str += '2$';
-						hlHis.hlFilter.chinese += '汽车旅馆$';
-						hlHis.hlFilter.hotelType += '2$';
+						hl_filter_chinese += '汽车旅馆$';
+						hl_filter_type += '2$';
 						break;
 					case '酒店式公寓':
 						hl_type_str += '3$';
-						hlHis.hlFilter.chinese += '酒店式公寓$';
-						hlHis.hlFilter.hotelType += '2$';
+						hl_filter_chinese += '酒店式公寓$';
+						hl_filter_type += '2$';
 						break;
 					case '家庭旅馆':
 						hl_type_str += '4$';
-						hlHis.hlFilter.chinese += '家庭旅馆$';
-						hlHis.hlFilter.hotelType += '4$';
+						hl_filter_chinese += '家庭旅馆$';
+						hl_filter_type += '4$';
 						break;
 					case '背包客栈':
 						hl_type_str += '5$';
-						hlHis.hlFilter.chinese += '背包客栈$';
-						hlHis.hlFilter.hotelType += '5$';
+						hl_filter_chinese += '背包客栈$';
+						hl_filter_type += '5$';
 						break;
 					case '宾馆/招待所':
 						hl_type_str += '6$';
-						hlHis.hlFilter.chinese += '宾馆/招待所$';
-						hlHis.hlFilter.hotelType += '6$';
+						hl_filter_chinese += '宾馆/招待所$';
+						hl_filter_type += '6$';
 						break;
 					case '精品酒店':
 						hl_type_str += '7$';
-						hlHis.hlFilter.chinese += '精品酒店$';
-						hlHis.hlFilter.hotelType += '7$';
+						hl_filter_chinese += '精品酒店$';
+						hl_filter_type += '7$';
 						break;
 					case '度假类酒店':
 						hl_type_str += '8$';
-						hlHis.hlFilter.chinese += '度假类酒店$';
-						hlHis.hlFilter.hotelType += '8$';
+						hl_filter_chinese += '度假类酒店$';
+						hl_filter_type += '8$';
 						break;
 					case '游轮度假酒店':
 						hl_type_str += '9$';
-						hlHis.hlFilter.chinese += '游轮度假酒店$';
-						hlHis.hlFilter.hotelType += '9$';
+						hl_filter_chinese += '游轮度假酒店$';
+						hl_filter_type += '9$';
 						break;
 					case '别墅型酒店':
 						hl_type_str += '10$';
-						hlHis.hlFilter.chinese += '别墅型酒店$';
-						hlHis.hlFilter.hotelType += '10$';
+						hl_filter_chinese += '别墅型酒店$';
+						hl_filter_type += '10$';
 						break;
 					case '乡村平房酒店':
 						hl_type_str += '11$';
-						hlHis.hlFilter.chinese += '乡村平房酒店$';
-						hlHis.hlFilter.hotelType += '11$';
+						hl_filter_chinese += '乡村平房酒店$';
+						hl_filter_type += '11$';
 						break;
 					case '家庭寄宿':
 						hl_type_str += '12$';
-						hlHis.hlFilter.chinese += '家庭寄宿$';
-						hlHis.hlFilter.hotelType += '12$';
+						hl_filter_chinese += '家庭寄宿$';
+						hl_filter_type += '12$';
 						break;
 					case '农舍式房子':
 						hl_type_str += '13$';
-						hlHis.hlFilter.chinese += '农舍式房子$';
-						hlHis.hlFilter.hotelType += '13$';
+						hl_filter_chinese += '农舍式房子$';
+						hl_filter_type += '13$';
 						break;
 					case '豪华露营地':
 						hl_type_str += '14$';
-						hlHis.hlFilter.chinese += '豪华露营地$';
-						hlHis.hlFilter.hotelType += '14$';
+						hl_filter_chinese += '豪华露营地$';
+						hl_filter_type += '14$';
 						break;
 					case '标准露营地':
 						hl_type_str += '15$';
-						hlHis.hlFilter.chinese += '标准露营地$';
-						hlHis.hlFilter.hotelType += '15$';
+						hl_filter_chinese += '标准露营地$';
+						hl_filter_type += '15$';
 						break;
 				};
 			}
-			hlHis.hlFilter.chinese = hlHis.hlFilter.chinese.substring(0, hlHis.hlFilter.chinese.length - 1);
-			hlHis.hlFilter.hotelType = hlHis.hlFilter.hotelType.substring(0, hlHis.hlFilter.hotelType.length - 1);
-			lsf_myweb.setSession('asiaHlHistory', hlHis);
-			hl_star_str = hl_star_str.substring(0, (hl_star_str.length - 1));
+            hl_star_str = hl_star_str.substring(0, (hl_star_str.length - 1));
 			hl_type_str = hl_type_str.substring(0, (hl_type_str.length - 1));
+            
+			hlHis.hlFilter.chinese = hl_filter_chinese.substring(0, (hl_filter_chinese.length - 1));
+			hlHis.hlFilter.hotelType = hl_filter_type.substring(0, (hl_filter_type.length - 1));
+			hlHis.hlFilter.star = hl_filter_star.substring(0, (hl_filter_star.length - 1));
+			lsf_myweb.setSession('asiaHlHistory', hlHis);
+			
 			url_json.StarRating = hl_star_str;
 			url_json.Category = hl_type_str;
             //页码重置
