@@ -19,6 +19,12 @@ i{
     background-size: 243px 160px;
     display: inline-block;
 }
+.hf-icon{
+    background-image: url(../../images/ui/h+f.png);
+    background-repeat: no-repeat;
+    background-size: 300px 229px;
+    display: inline-block;
+}
 .sc-content{
     position: absolute;
     top: 0;
@@ -39,7 +45,26 @@ i{
     transform: translate3d(0, 0, 0);
     background-color: #F5F4F9;
 }
-
+.fi-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 110px;
+    padding-bottom: 40px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
+}
 /*   首页搜索页开始    */
 .realInfo {
     background: #FFFFFF;
@@ -144,6 +169,7 @@ i{
        /*   房间信息   */
 .hotelInfo_numb_room{
     background: #FFFFFF;
+    border-bottom: 1px solid #ddd;
     overflow: hidden;
 }
 section[class^="hotelInfo_numb"] span.title {
@@ -152,6 +178,7 @@ section[class^="hotelInfo_numb"] span.title {
     width: 70px;
     height: 36px;
     line-height: 36px;
+    color:#fdb330;
     left: 10px;
 }
 section[class^="hotelInfo_numb"] .per-price-control {
@@ -305,3 +332,126 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     font-size: 1rem;
     color:rgb(153,153,153);
 }
+/*   首页搜索页结束    */
+
+/*   航空公司列表页开始    */
+.big-title {
+    width: 100%;
+    height: 49px;
+    background: #163852;
+    line-height: 4.0rem;
+    padding: 0 1.0rem;
+    font-size: 1.75rem;
+    color: #fff;
+    text-align: center;
+    z-index: 7;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.direction-double {
+    background-image: url(../../images/ui/icon-t.png);
+    background-repeat: no-repeat;
+    background-size: 236.5px 139.5px;
+    background-position: 46% 47%;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+}
+.date-place-info {
+    width: 100%;
+    /*height: 4.9rem;*/
+    background: #163852;
+    padding-bottom: 1.0rem;
+    position: fixed;
+    top: 3.9rem;
+    left: 0;
+    z-index: 45;
+}
+.date-place-info .date-place-info-content {
+    width: 100%;
+    height: 100%
+}
+.date-place-info .date-place-info-content .week-day-info {
+    padding-left: 1.0rem;
+    width: 100%;
+    height: 2.4rem;
+    color: #FFFFFF;
+    line-height: 2.4rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+}
+.date-place-info .date-place-info-content .search-info-tip {
+    /*width: 100%;*/
+    display: block;
+    height: 1.8rem;
+    box-sizing: border-box;
+    line-height: 1.8rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    padding-left: 1.0rem;
+    color: #C0CFDE;
+}
+.ticket-double-date {
+    font-size: 1.6rem;
+    color: #ffb413;
+    position: relative;
+    top: 0.05rem;
+}
+.ticket-double-date span {
+    font-size: 1.0rem;
+    color: #FFFFFF;
+}
+.ticket-double-date span:first-child {
+    font-size: 1.4rem;
+    color: #FFB413;
+}
+.airway-list{
+    width: 100%;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+.airway-list li{
+    position: relative;
+    height: 62px;
+    padding: 15px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+.airway-list li div:nth-child(1){
+      float: left;
+      width: 32px;
+      height: 32px;
+      border-radius: 32px;
+      overflow: hidden;
+}
+.airway-list li div:nth-child(1) img{
+    width:100%;
+}
+.airway-list li .airway-name{
+    float: left;
+    margin-left: 10px;
+    font-size: 1.4rem;
+    line-height: 34px;
+}
+.airway-list .aw-price{
+    float: right;
+    color: #fb6a22;
+    font-weight: bold;
+    line-height: 34px;
+}
+.airway-list .aw-price span:first-child{
+    font-size: 1.1rem;
+}
+.airway-list .aw-price span:last-child{
+    font-size: 1.4rem;
+}
+.cho-gou{
+    position: absolute;
+     top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    background-position: 80% 31%;
+}
+/*   航空公司列表页结束    */
