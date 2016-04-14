@@ -91,6 +91,7 @@ input{
 }
 
 .sce-introduce {
+    overflow: hidden;
     padding: 0.8em 0;
 }
 
@@ -98,7 +99,7 @@ input{
     font-size: 14px;
     line-height: 18px;
     margin: 0;
-    padding: 0 14px 14px 14px;
+    padding: 0 14px 0 14px;
 }
 
 .sce-introduce-txt .sce-introduce-span {
@@ -106,7 +107,11 @@ input{
     font-size: 12px;
     display: block;
 }
-
+.detail-span{
+    padding-left: 14px;
+    color: #999999;
+    font-size: 12px;
+}
 .sce-line {
     background: #f5f4f9;
     height: 10px;
@@ -427,7 +432,20 @@ input{
 .personal_data ul li:last-child {
     border: none;
 }
-
+.open-close{
+    width:100%;
+    text-align: center;
+}
+.de-open{
+    width:15px;
+    height:10px;
+    background-position: 74% 5%!important;
+}
+.de-close{
+    width:15px;
+    height:10px;
+    background-position: 81% 5%;
+}
 /*日期*/
 .personal_data_box .content2 {
     position: relative;

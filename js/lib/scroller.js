@@ -21,7 +21,7 @@ Scroller.prototype = {
 	_btn : ['<span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span>', '<span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span>'],
 	// 模板数组
 	_template : {
-		/*card : ['<span data-code="2">护照</span>', '<span data-code="1">身份证</span>', '<span data-code="4">出生证明</span>', '<span data-code="5">港澳通行证</span>', '<span data-code="6">军官证</span>', '<span data-code="7">驾驶证</span>', '<span data-code="8">台胞证</span>', '<span data-code="3">回乡证</span>', '<span data-code="9">其他</span>'],*/
+		tours : ['<span data-code="2">月日周</span>', '<span data-code="5">时</span>', '<span data-code="6">分</span>'],
         card : ['<span data-code="2">护照</span>', '<span data-code="1">身份证</span>'],
 		date : ['年', '月', '日'],
 		time : ['<span>上午</span>', '<span>下午</span>'],
@@ -110,16 +110,9 @@ Scroller.prototype = {
 					Y.push("<span>" + i + s + "</span>");
 				}
 			} else if (s == "月") {
-
-                    if (that.type == that._time[2]){
-                        for (var i = m + 1; i <= 12; i++) {
-                            Y.push("<span>" + i + s + "</span>");
-                        }
-                    }else{
-                        for (var i = 1; i <= 12; i++) {
-                            Y.push("<span>" + i + s + "</span>");
-                        }
-                    }
+                for (var i = 1; i <= 12; i++) {
+                    Y.push("<span>" + i + s + "</span>");
+                }
 			} else {
 				for (var i = 1; i <= that.days[1]; i++) {
 					Y.push("<span>" + i + s + "</span>");
@@ -289,7 +282,7 @@ Scroller.prototype = {
 			}
 		}
 		//编辑常旅中证件类型回调
-		if(that.callback !=null){
+		if(that.callback && typeof that.callback == 'function'){
 			that.callback();
 		}
 		this.selShow(0);

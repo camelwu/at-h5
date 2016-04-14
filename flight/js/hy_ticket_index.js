@@ -1124,9 +1124,7 @@ var  ticketIndexModal = {
                    var yearDS = js.getFullYear();
                   if(arg.RouteType=='Return'){
                       arg.ReturnDate = yearDS +'-'+emonthStr+'-'+edayStr;
-                      arg.ReturnDate = yearDS +'-'+emonthStr+'-'+edayStr;
                   }
-                  arg.DepartDate = yearDS +'-'+smonthStr+'-'+sdayStr;
                   arg.DepartDate = yearDS +'-'+smonthStr+'-'+sdayStr;
               }
               if(arg.RouteType == "Oneway"){
