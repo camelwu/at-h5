@@ -101,7 +101,7 @@
     width: 26px;
     height: 45px;
     padding: 10px 0;
-    background-image: url(../../images/ui/h+f.png);
+    background-image: url(../../images/ui/ticket_hotel.png);
     background-repeat: no-repeat;
     background-size: 300px 229px;
     background-position: 60.8% 48.4%;
@@ -503,7 +503,7 @@ button.no-choose-button{
     background: pink;
     margin: 51% 15%;
     position: relative;
-    background: url(../../images/H+F/no_result@2x.png) no-repeat;
+    background: url(../../images/hotel_flight/no_result@2x.png) no-repeat;
     background-size: 164px 50px;
     background-position: 50% 50%;
 }
