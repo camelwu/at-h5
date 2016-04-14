@@ -777,11 +777,11 @@
 						$("[data-key=holist_page]").remove();
 					}
 					//是否需要护照
-					if (ExtendData.travelersInput == "RequiredAllTravelersDetailsWithoutDocumentInfo") {
+					if (ExtendData.travelersInput == "0") {
 						$("#scenic2_idcard").parent().remove();
 					}
 					//是否需要航班信息
-					if (ExtendData.airportTransferType != "None") {
+					if (ExtendData.airportTransferType != "0") {
 						//None, TwoWay，Arrival，Depart
 						$("[data-key=flight_page]").show();
 						FlightDateChoose();
@@ -1345,7 +1345,7 @@
 						}
 
 						//是否需要护照
-						if (ExtendData.travelersInput == "RequiredAllTravelersDetailsWithDocumentInfo") {
+						if (ExtendData.travelersInput == "1") {
 							TravelerDocument = $("#scenic2_idcard").val();
 							Status =MT.validate(TravelerDocument, {
 								"required" : "required"
@@ -1376,7 +1376,7 @@
 						param.Parameters.Travelers = Travelers;
 
 						//是否需要航班信息
-						if (ExtendData.airportTransferType != "None") {
+						if (ExtendData.airportTransferType != "0") {
 							//None, TwoWay，Arrival，Depart
 							var DepartFlightNo = $("#departFlightNo").val();
 							var DepartDateTime = $("#departDateTime").html() + "T00:00:00";
@@ -1620,7 +1620,7 @@
 						for (var i = 0; i < allOuter.length; i++) {
 							(function() {
 								var id = allOuter[i].id;
-								chooseDate(id, 'tra-ymd', startDate, endDate,defaultDate)
+								chooseDate(id, 'tra-ymd', startDate, endDate,defaultDate);
 							})(allOuter[i]);
 						}
 					};
@@ -1637,19 +1637,18 @@
 					var endDate = ExtendData.EndDate;
 					var allOuter = document.querySelectorAll('.js-filght-travel-date');
 					var chooseDate = function(id, dateNum, startDate, endDate) {
-						var rangeArray = [startDate, endDate];
-						var myDate = new TicketDate({
+						var rangeArray = [startDate, endDate],timobj={defDate:'游玩'};
+						var myDate = new Calender({
 							id : id,
 							num : 13,
-							time : {},
-							sClass1 : dateNum,
-							type : 'Oneway',
-							_word : {
-								tip : ['入住']
-							},
+							time : timobj,
+							output : dateNum,
+							type : 't',
 							range : rangeArray,
 							fn : function() {
-
+								// console.log(id);
+								var ymd = $("#" + id).find(".js-ymd").html();
+								$("#" + id).find(".js-week").html(MT.getWeek(ymd));
 							}
 						});
 					};
