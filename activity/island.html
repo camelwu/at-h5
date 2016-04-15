@@ -31,21 +31,12 @@
 
 <script id="tpl_seoul" type="text/template">
     <li>
-        <a href="javascript:void(0);" onclick="jumpto({%=ProductID%},{%=ProductType%},\'{%=ProductPrice%}\',\'{%=ProductDesc%}\')"><img src="{%=ProductPicUrl%}" alt="img"/></a>
-        <div class="clearFix">
-            <p class="act-tit fl">{%=ProductName%}</p>
-            <span class="fr act-price">¥<i>{%=ProductPrice.replace(/起/,"")%}</i>起</span>
-            </div>
+        <a href="javascript:void(0);" onclick="jumpto({%=ProductID%},{%=ProductType%},\'{%=ProductPrice%}\',\'{%=ProductDesc%}\')"><img class="loadimg" src="{%=ProductPicUrl%}" alt="img"/></a>
+        <dl>
+            <dt>{%=ProductName%}</dt>
+            <dd>￥<span>{%=ProductPrice.replace(/起/,"")%}</span>起</dd>
+        </dl>
     </li>
-    <!--<li>-->
-        <!--<div class="seolist-tab">-->
-            <!--<a href="javascript:void(0);" onclick="jumpto({%=ProductID%},{%=ProductType%},\'{%=ProductPrice%}\',\'{%=ProductDesc%}\')"><img src="{%=ProductPicUrl%}" alt="img"/></a>-->
-            <!--<div class="clearFix">-->
-                <!--<p class="seo-tit fl">{%=ProductName%}</p>-->
-                <!--<span class="fr act-price">¥<i>{%=ProductPrice.replace(/起/,"")%}</i>起</span>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</li>-->
 </script>
 <script src="../js/lib/jquery.js"></script>
 

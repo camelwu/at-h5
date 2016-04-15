@@ -210,7 +210,7 @@ li.wrap-line{
 .is_list dl{ position:relative; height:53px;}
 .is_list dd{ position:absolute; right:0; top:0; width:75px; color:#f05b61; text-align:right;height:135px; line-height:53px;}
 .is_list dd span{ font-size:18px;}
-.is_list dt{ margin-right:80px; padding-top:7px; line-height:20px;}
+.is_list dt{ margin-right:80px; padding-top:7px; line-height:20px; height: 48px; overflow: hidden;}
 
 
 
