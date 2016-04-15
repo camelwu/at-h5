@@ -688,10 +688,10 @@
 	//保存选择的记录
 	function SavaLocalStorge(list,isContact){
 		if(!isContact){
-			var TravellerInfo=[]
+			var TravellerInfo=[];
 			for(var i=0; i<=list.length-1;i++){
 				TraInfo={};
-				CertificateInfo={}
+				CertificateInfo={};
 				if(GetAgeByBrithday(list[i].traveller.dateOfBirth)<12){
 					TraInfo.PassengerType= "CHILD";  //乘客类型
 				}
@@ -704,7 +704,7 @@
 					TraInfo.SexCode="Mr"
 				}
 				else{
-					TraInfo.SexCode="Ms"      //称呼
+					TraInfo.SexCode="Ms";      //称呼
 				}
 				//TraInfo.SexCode= list[i].traveller.sexCode;       //称呼
 				TraInfo.FirstName=list[i].traveller.firstName;     //姓
@@ -716,7 +716,7 @@
 				CertificateInfo.IdCountry= list[i].listTravellerIdInfo[0].idCountry;  //证件发行国家
 				CertificateInfo.IdNumber=  list[i].listTravellerIdInfo[0].idNumber;      //证件号码
 				CertificateInfo.IdActivatedDate= list[i].listTravellerIdInfo[0].idActivatedDate ; //证件有效期
-				TraInfo.FlightCertificateInfo=CertificateInfo;
+				TraInfo.CertificateInfo=CertificateInfo;
 				TraInfo.BaggageCode="",
 				//TraInfo.NationalityCode=list[i].traveller.nationalityCode;//国籍代码
 				TraInfo.CountryCode ="CN";
@@ -726,14 +726,14 @@
 		}
 		else
 		{
-			var ContactDetail={}
+			var ContactDetail={};
 			for(var i=0; i<=list.length-1;i++){
 				if(list[i].traveller.sexCode=="Mrs")
 				{
 					ContactDetail.SexCode="Mr"
 				}
 				else{
-					ContactDetail.SexCode="Ms"      //称呼
+					ContactDetail.SexCode="Ms";      //称呼
 				}
 				ContactDetail.FirstName=list[i].traveller.firstName ;//姓
 				ContactDetail.LastName=list[i].traveller.lastName;  //名
@@ -841,8 +841,6 @@
 				$(".postCard").html("其他");
 			}
 		}
-
-
 	}
 
 
