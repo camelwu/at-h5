@@ -1,0 +1,223 @@
+.all-elements.input-relative{
+	position: relative;
+	max-height: auto;
+}
+em,b,i{
+    font-weight:normal;
+    font-style:normal;
+}
+ul,li{list-style: none}
+/*脚部开始*/
+.order-footer{
+    position: fixed;
+    bottom:0;
+	left:0;
+    background:#fff;
+    display:flex;
+    height:47px;
+    width:100%;
+    border-top:1px solid #d6d6d6;
+
+}
+.order-num{
+    height: 100%;
+    width: 50%;
+    font-size: 1.8rem;
+    padding-left: 15px;
+}
+.order-num span.card1{
+text-align: center;
+display: inline-block;
+line-height: 47px;
+color: #FB6A22;
+margin-bottom: 10px;
+}
+.order-num span.num1{
+    text-align: center;
+    display: inline-block;
+}
+.order-detail{
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    right:25%;
+    text-align: center;
+    line-height: 47px;
+}
+.order-detail span {
+    color: #FDBD4C;
+    text-align: center;
+    font-size:1.8rem;
+}
+.order-detail i{
+    background-image: url(../../images/ui/h+f.png);
+    background-size: 200px 200px;
+    background-repeat: inherit;
+}
+.order-submit {
+    height: 100%;
+    width: 25%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #FDB330;
+    text-align: center;
+    color: white;
+    font-size: 2.0rem;
+}
+/*}脚步结束*/
+/*胸部开始*/
+.container1{
+    width: 100%;
+    height: 100%;
+    padding-top:45px;
+    position: relative;
+    top:0px;left:0px;
+}
+.order-bg{
+    background: #E9E9E9;
+}
+.order-plane{
+    width: 100%;
+    /*padding-left:15px;*/
+
+}
+.order-lis1{
+    width: 100%;
+    height: 50px;
+}
+.order-lis1-l{
+    float:left;
+}
+.order-lis1-l i{
+    width: 40px;
+    height: 28px;
+    display: inline-block;
+    background-image: url(../../images/ui/h+f.png);
+    background-position: 125px 120px;
+    background-size: 260px 206px;
+    position: absolute;
+    top: 14px;
+    left: 0;
+}
+
+.order-lis1-l span{
+    display: inline-block;
+    text-align: center;
+    line-height: 60px;
+    font-size: 1.6rem;
+    position: absolute;
+    top: 0px;
+    left: 40px;
+}
+.order-lis1-r{
+    float:right;
+}
+.order-lis1-r span{
+    display: inline-block;
+    text-align: center;
+    line-height: 60px;
+    font-size:1.6rem;
+    position: absolute;
+    top:0;
+    right:46px;
+}
+.order-lis1-r i{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-image: url(../../images/ui/h+f.png);
+    background-size: 260px 206px;
+    background-position: 117px 121px;
+    position: absolute;
+    top:14px;
+    right:8px;
+}
+.order-lis2{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    padding-left:15px;
+    padding-right: 15px;
+    margin-bottom: 0px;
+}
+.order-lis2-l{
+    float:left;
+
+}
+.order-lis2-l span,.order-lis2-r span{
+    display: inline-block;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 50px;
+}
+.order-lis2-l i{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-image: url(../../images/ui/h+f.png);
+    background-size: 260px 206px;
+    background-position: 117px 121px;
+    position: absolute;
+    top:14px;
+    left:8px;
+}
+.order-lis2-r{
+    float:right;
+    text-align: center;
+    line-height: 40px;
+}
+.order-lis3{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    padding-left:15px;
+    padding-right: 15px;
+    margin-bottom: 0;
+
+}
+.order-lis3-l{
+    float:left;
+
+}
+.order-lis3-l span,.order-lis3-r span{
+    display: inline-block;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 50px;
+}
+.order-lis3-l i{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-image: url(../../images/ui/h+f.png);
+    background-size: 300px 240px;
+    background-position: 248px 141px;
+    position: absolute;
+    top: 64px;
+    left: 10px;
+}
+.order-lis3-r{
+    float:right;
+    text-align: center;
+    line-height: 40px;
+}
+.order-lis4{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    padding-left:15px;
+    margin-right: 15px;
+}
+.order-lis4 span{
+    display: inline-block;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 50px;
+}
+
+
+
+
+
