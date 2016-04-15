@@ -1064,7 +1064,6 @@ var  ticketIndexModal = {
                       default :void(0)
                   }
                return {date:dateNum[1]+'月'+dateNum[2]+'日',weekWord:week}
-
               };
               var reFixedSeat = function(arg){
                       var cabinStr="";
