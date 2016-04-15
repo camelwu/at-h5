@@ -946,7 +946,6 @@ var  ticketIndexModal = {
                   }
               }
               searchResult = searchResult.distinct();
-              searchResult= [ {"cityId":"319","cityNameEn":"Canberra","cityNameCN":"堪培拉","cityCode":"CBR","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kpl","pingYin":"kanpeila"}];
               if(!searchResult.length){
                   resultStr +='<li class="city-list-searched-item">该城市无机场</li>';
               }else{
