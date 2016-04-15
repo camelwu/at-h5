@@ -831,7 +831,8 @@ function inpChange(id, myText) {
 	var oDate2 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 3);
 	var beginDate = oDate1.getFullYear() + '-' + toDou(oDate1.getMonth() + 1) + '-' + toDou(oDate1.getDate());
 	var leaveDate = oDate2.getFullYear() + '-' + toDou(oDate2.getMonth() + 1) + '-' + toDou(oDate2.getDate());
-	var jd = new Date(), js = new Date(jd.setDate(jd.getDate() + 1)), jr =new Date( jd.setDate(jd.getDate() + 1));
+	var jd = new Date(), js = new Date(jd.setDate(jd.getDate() + 2)), jr =new Date( jd.setDate(jd.getDate() + 1));
+    //H5-1008   T+2~T+3
 	var smonthStr = (js.getMonth()+1)<10?'0'+(js.getMonth()+1):js.getMonth()+1;
 	var sdayStr = js.getDate()<10?'0'+js.getDate():js.getDate();
 	var emonthStr = (jr.getMonth()+1)<10?'0'+(jr.getMonth()+1):jr.getMonth()+1;
@@ -884,6 +885,8 @@ function inpChange(id, myText) {
 			lsf_myweb.getbyid('total_day').innerHTML=1;
 			week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
 			week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
+            obj[checkIn.value] = "入住";
+		    obj[checkOut.value] = "离店";
 		}else {
 			checkIn.value = hotelStorage.InterBeginDate;
 			checkOut.value = hotelStorage.InterLeaveDate;
@@ -904,9 +907,9 @@ function inpChange(id, myText) {
 		obj[checkOut.value] = "离店";
     }
 	window.onload = function() {
-		lsf_myweb.getbyid('count1').value = 1;
-		lsf_myweb.getbyid('count2').value = 1;
-		lsf_myweb.getbyid('count3').value = 0;
+		//lsf_myweb.getbyid('count1').value = 1;
+		//lsf_myweb.getbyid('count2').value = 1;
+		//lsf_myweb.getbyid('count3').value = 0;
 	}
     //还原减号状态
     function recoverStatus(itemIdString){

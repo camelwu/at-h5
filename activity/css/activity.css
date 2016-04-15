@@ -108,3 +108,114 @@ i{
     margin-top: 15px;
     margin-bottom: 0;
 }
+/*chaimeili/xinjiapo*/
+.header-picture img{
+    width: 100%;
+    height: auto;
+}
+.content-container{
+    background:#291D41;
+}
+.wrap{
+    position: relative;
+    /*padding-bottom: 45px;*/
+}
+.wrap-list li:first-child {
+    border-radius: 10px 10px 0 0;
+}
+.wrap-list li {
+    margin: 0 15px;
+}
+.wrap-list-1{
+    border:4px solid #FCFCFC;
+}
+.wrap-list-1 img{
+    display: inline-block;
+    width: 48%;
+    height: 152px;
+    float:left;
+    border-right:4px solid #FCFCFC;
+}
+.wrap-list-r{
+    display: inline-block;
+    width: 52%;
+    height: 152px;
+    padding:10px;
+
+}
+.wrap-list-r h3{
+    font-size: 1.6rem;
+    /*text-align: center;*/
+    color: #FFD800;
+    height: 1.6rem;
+    overflow: hidden;
+}
+.wrap-list-r div{
+    margin-top:1.0rem;
+}
+.wrap-list-p1{
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    height: 2.0rem;
+    overflow: hidden;
+}
+.wrap-list-p2{
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    color:#FFD800;
+    margin-bottom: 0px;
+}
+.wrap-list-span1{
+    font-size: 1.6rem;
+    display: inline-block;
+    width: 42%;
+    height: 1.4rem;
+    color: #FEFB14;
+    overflow: hidden;
+    margin-top:5px;
+}
+.wrap-list-span2{
+    height: 2.2rem;
+    width: 66px;
+    display:inline-block;
+    background-color: #FEFB14;
+    color: black;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 2.4rem;
+    float:right;
+    margin-right:0.6rem;
+}
+li.wrap-line{
+    width: 2px;
+    height: 3rem;
+    border-radius: 1px;
+    background-color: #FEFB14;
+    margin:10px 48%;
+}
+.footer-picture{
+    width: 100%;
+    height: auto;
+    margin-top:3rem;
+}
+
+/*jyj island*/
+.is_box{ max-width:640px; margin:0 auto; background:#3077b7;}
+.is_banner{ width:100%;}
+.is_list{ padding:0 15px;}
+.is_list li{ width:100%; background:#fff; padding:11px 11px 0; margin-top:12px;}
+.is_list li a{ display:block; width:100%; height:135px;}
+.is_list li img{ width:100%; height:135px;}
+.is_list dl{ position:relative; height:53px;}
+.is_list dd{ position:absolute; right:0; top:0; width:75px; color:#f05b61; text-align:right;height:135px; line-height:53px;}
+.is_list dd span{ font-size:18px;}
+.is_list dt{ margin-right:80px; padding-top:7px; line-height:20px; height: 48px; overflow: hidden;}
+
+
+
+
+
+
+
+

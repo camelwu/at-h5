@@ -1,4 +1,4 @@
-/*ÈÕÆÚÑ¡Ôñ¿Ø¼ş-³öÉúÈÕÆÚ¿ªÊ¼*/
+/*æ—¥æœŸé€‰æ‹©æ§ä»¶-å‡ºç”Ÿæ—¥æœŸå¼€å§‹*/
 
 .mask {
     position: fixed;
@@ -44,7 +44,7 @@
 }
 
 .selbox-ul {
-    margin: 0 40px;
+    margin: 0 25px;
     display: -moz-box; /* Firefox */
     display: -ms-flexbox; /* IE10 */
     display: -webkit-box; /* Safari */
@@ -59,7 +59,7 @@
 .selbox-ul li {
     position: relative;
     list-style: none;
-    margin-right: 34px;
+    margin-right: 26px;
     margin-bottom: 0;
     /*padding:10px 1px;*/
     -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
@@ -116,4 +116,4 @@
     font-size: 1.8rem;
     color: #484848;
 }
-/*ÈÕÆÚÑ¡Ôñ¿Ø¼ş-³öÉúÈÕÆÚ½áÊø*/
+/*æ—¥æœŸé€‰æ‹©æ§ä»¶-å‡ºç”Ÿæ—¥æœŸç»“æŸ*/

@@ -447,7 +447,7 @@ Calender.prototype = {
         _CalF.bind(document, 'click',function(event){
             event = event || window.event;
             var target = event.target || event.srcElement;
-            if(target.className.indexOf("header-back")>-1){
+            if(target.className.indexOf("header-back")>-1 || target.className.indexOf("go-back")>-1){
             	that.removeDate();
             }
         });
