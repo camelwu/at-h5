@@ -127,7 +127,7 @@ var ticketOrder = {
                   for(var li=0; li<passengerLis.length;li++){
                         var passPortNumber = passengerLis[li].querySelector('.passport-number').value;
                         for(var ki=0;ki<storageInfo.length;ki++){
-                                if(storageInfo[ki].FlightCertificateInfo.IdNumber == passPortNumber){
+                                if(storageInfo[ki].CertificateInfo.IdNumber == passPortNumber){
                                     realPara.push(storageInfo[ki])
                                 }
                         }
@@ -159,8 +159,6 @@ var ticketOrder = {
                 MobilePhone: "",
                 SexCode: "Mr"}
             }
-            console.log(contactInfo)
-
             contactInfoCache.FirstName = document.querySelector('#first-name').value;
             contactInfoCache.LastName = document.querySelector('#last-name').value;
             contactInfoCache.Email =document.querySelector('#email-label').value;
@@ -206,6 +204,7 @@ var ticketOrder = {
             that.backParaObj.ContactDetail =contactInfo;
             $("#preloader").show();
             $("#status-f").show();
+            console.log(that.backParaObj);
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
                 $("#preloader").hide();
                 $("#status-f").hide();
@@ -225,7 +224,7 @@ var ticketOrder = {
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
+                    //document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
                 }else{
                      if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
                          jConfirm('预定失败,需要重新预定?', '提示', function(status){
