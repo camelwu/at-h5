@@ -931,35 +931,6 @@ var  ticketIndexModal = {
            };
           var searchResult = [], interAndDem=[];
           if(reg.test(valueStr)){
-              /* if(domesticCity.style.display=='block'&&internationalCity.style.display=='none'){
-                   for(var k = 0; k < domesticCities.length;k++){
-                          for(var tec in domesticCities[k]){
-                                   if(/[\u4e00-\u9fa5]{1,}/.test(domesticCities[k][tec])){
-                                         if(domesticCities[k]['cityNameCN'].indexOf(valueStr)>-1){
-                                             searchResult.push(domesticCities[k])
-                                         }
-                                   }else{
-                                         if(domesticCities[k][tec].toLowerCase().indexOf(valueStr.toLowerCase())>-1){
-                                           searchResult.push(domesticCities[k])
-                                       }
-                                   }
-                          }
-                   }
-               }else{
-                   for(var p = 0; p < internationalCities.length; p++){
-                           for(var temq in internationalCities[p]){
-                               if(/[\u4e00-\u9fa5]{1,}/.test(internationalCities[p][temq])){
-                                   if(internationalCities[p]['cityNameCN'].indexOf(valueStr)>-1){
-                                       searchResult.push(internationalCities[p])
-                                   }
-                               }else{
-                                   if(internationalCities[p][temq].toLowerCase().indexOf(valueStr.toLowerCase())>-1){
-                                       searchResult.push(internationalCities[p])
-                                   }
-                               }
-                           }
-                   }
-               }*/
               interAndDem = domesticCities.concat(internationalCities);
               for(var p = 0; p < interAndDem.length; p++){
                   for(var temq in interAndDem[p]){
@@ -975,6 +946,7 @@ var  ticketIndexModal = {
                   }
               }
               searchResult = searchResult.distinct();
+              searchResult= [ {"cityId":"319","cityNameEn":"Canberra","cityNameCN":"堪培拉","cityCode":"CBR","countryName":"Australia","countryIsoCode":"AU","hyKeyWord":"kpl","pingYin":"kanpeila"}];
               if(!searchResult.length){
                   resultStr +='<li class="city-list-searched-item">该城市无机场</li>';
               }else{
@@ -984,13 +956,13 @@ var  ticketIndexModal = {
                              if((searchResult[l].pingYin.toUpperCase()).indexOf(valueStr.toUpperCase())>-1){
                                  operatingStr = searchResult[l].pingYin;
                                  front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
-                                 middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                                 middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),valueStr.length);
                                  back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
                                  resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].cityNameCN+'</span><span class="result-city-name-letter">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span></li>'
                              }else if(searchResult[l].cityNameEn.toUpperCase().indexOf(valueStr.toUpperCase())>-1){
                                  operatingStr = searchResult[l].cityNameEn;
                                  front = operatingStr.substring(0,operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()));
-                                 middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
+                                 middle = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase()),valueStr.length);
                                  back = operatingStr.substr(operatingStr.toUpperCase().indexOf(valueStr.toUpperCase())+valueStr.length);
                                  resultStr += '<li class="city-list-searched-item"><span class="result-city-name">'+searchResult[l].cityNameCN+'</span><span class="result-city-name-letter">'+front+'<span class="high-light-letter">'+middle+'</span>'+back+'</span></li>'
                              }else if(searchResult[l].cityCode.toUpperCase().indexOf(valueStr.toUpperCase())>-1){
