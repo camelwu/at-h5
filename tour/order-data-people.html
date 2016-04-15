@@ -364,7 +364,7 @@
 								return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
 							}
 						} else if (i == 1) {
-							return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>' + '</div>';
+							return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
 						} else if (i == 2) {
 							return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
 						}
@@ -380,7 +380,7 @@
 								listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
 							}
 						} else if (i == 1) {
-							listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>' + '</div>';
+							listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
 						} else if (i == 2) {
 							listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
 						}
@@ -416,53 +416,67 @@
 						var section;
 						var initStr = '';
 						var roomNum = document.getElementById('roomNum');
-						roomNum.innerHTML = Math.ceil(minPax / 3);
+						roomNum.innerHTML = 1;
+						//  勿删
+//						roomNum.innerHTML = Math.ceil(minPax / 3);
 						var aa;
 						if (onlyForAdult) {
 							if (minPax <= 3) {
-								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>';
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax + '</i><span class="plus-btn"></span></div>' + '</div>';
 								section = document.createElement('section');
 								section.innerHTML = initStr;
 								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
 								parent.insertBefore(section, hotelInfo.nextSibling);
 							} else {
-								for (var i = 0; i < Math.ceil(minPax / 3); i++) {
-									aa = (minPax - 3 * i) > 3 ? 3 : (minPax - 3 * i) % 3;
-									initStr = '<span class="title">房间' + i + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>'
-									section = document.createElement('section');
-									section.innerHTML = initStr;
-									section.className = 'hotelInfo_numb_people init-hotel-room-detail';
-									if (i == 0) {
-										parent.insertBefore(section, hotelInfo.nextSibling);
-									} else if(j == 1) {
-										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling);
-									}else{
-										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling.nextSibling);
-									}
-								}
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">3</i><span class="plus-btn"></span></div>' + '</div>';
+								section = document.createElement('section');
+								section.innerHTML = initStr;
+								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
+								parent.insertBefore(section, hotelInfo.nextSibling);
+								//    这段注释请勿删除（jyy）
+//								for (var i = 0; i < Math.ceil(minPax / 3); i++) {
+//									aa = (minPax - 3 * i) > 3 ? 3 : (minPax - 3 * i) % 3;
+//									initStr = '<span class="title">房间' + i + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>'
+//									section = document.createElement('section');
+//									section.innerHTML = initStr;
+//									section.className = 'hotelInfo_numb_people init-hotel-room-detail';
+//									if (i == 0) {
+//										parent.insertBefore(section, hotelInfo.nextSibling);
+//									} else if(j == 1) {
+//										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling);
+//									}else{
+//										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling.nextSibling);
+//									}
+//								}
 							}
 						} else {
 							if (minPax <= 3) {
-								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax % 3 + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax+ '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
 								section = document.createElement('section');
 								section.innerHTML = initStr;
 								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
 								parent.insertBefore(section, hotelInfo.nextSibling);
 							} else {
-								for (var j = 0; j < Math.ceil(minPax / 3); j++) {
-									aa = (minPax - 3 * j) > 3 ? 3 : (minPax - 3 * j) % 3;
-									initStr = '<span class="title">房间' + (j + 1) + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult">' + '<span class="cut-down-btn" id="adult-down"></span>' + '<i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span>' + '<i class="cut-up-cont child-number" data-type="childNum">0</i>' + '<span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div></div>';
-									section = document.createElement('section');
-									section.innerHTML = initStr;
-									section.className = 'hotelInfo_numb_people init-hotel-room-detail';
-									if (j == 0) {
-										parent.insertBefore(section, hotelInfo.nextSibling);
-									} else if(j == 1) {
-										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling);
-									}else{
-										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling.nextSibling);
-									}
-								}
+								initStr = '<span class="title">房间1</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">3</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
+								section = document.createElement('section');
+								section.innerHTML = initStr;
+								section.className = 'hotelInfo_numb_people init-hotel-room-detail';
+								parent.insertBefore(section, hotelInfo.nextSibling);
+								//    这段注释请勿删除（jyy）
+//								for (var j = 0; j < Math.ceil(minPax / 3); j++) {
+//									aa = (minPax - 3 * j) > 3 ? 3 : (minPax - 3 * j) % 3;
+//									initStr = '<span class="title">房间' + (j + 1) + '</span>' + '<div class="numbList" style="border-bottom: 1px solid #ddd;">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult">' + '<span class="cut-down-btn" id="adult-down"></span>' + '<i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">' + aa + '</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span>' + '<i class="cut-up-cont child-number" data-type="childNum">0</i>' + '<span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div></div>';
+//									section = document.createElement('section');
+//									section.innerHTML = initStr;
+//									section.className = 'hotelInfo_numb_people init-hotel-room-detail';
+//									if (j == 0) {
+//										parent.insertBefore(section, hotelInfo.nextSibling);
+//									} else if(j == 1) {
+//										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling);
+//									}else{
+//										parent.insertBefore(section, hotelInfo.nextSibling.nextSibling.nextSibling);
+//									}
+//								}
 							}
 						}
 					}
@@ -640,7 +654,7 @@
 						var adultNum = 0;
 						var childNum = 0;
 						for (var kl = 0; kl < roomNum; kl++) {
-							adultNum = adultNum + (roomDetails[kl].adult);
+							adultNum = adultNum + roomDetails[kl].adult;
 							if (roomDetails[kl]['childWithBed']) {
 								childNum = childNum + roomDetails[kl]['childWithBed'].length;
 							}
