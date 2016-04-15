@@ -885,6 +885,8 @@ function inpChange(id, myText) {
 			lsf_myweb.getbyid('total_day').innerHTML=1;
 			week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
 			week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
+            obj[checkIn.value] = "入住";
+		    obj[checkOut.value] = "离店";
 		}else {
 			checkIn.value = hotelStorage.InterBeginDate;
 			checkOut.value = hotelStorage.InterLeaveDate;
