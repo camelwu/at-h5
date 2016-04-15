@@ -250,7 +250,8 @@ var lsf_myweb={
             $.alerts.alert('请输入有效期',null,null,"确定");
             return;
         }else{
-            myData.CreditCardExpiryDate=jp_limit_time.value;
+            //myData.CreditCardExpiryDate=jp_limit_time.value;
+            myData.CreditCardExpiryDate=jp_limit_time.getAttribute("data-expire");
         }
         if(!vlm.Utils.validate["dataValid"](jp_limit_time.value)){
             jAlert("有效期格式不正确！","",null,"确认");
