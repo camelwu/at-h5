@@ -295,10 +295,9 @@ Scroller.prototype = {
         for (; i < len; i++) {
             arr.push(box[i].innerHTML);
         }
-
         //缓存用户选择的内容
         ele.setAttribute("data-cache", arr.join("-"));
-
+        ele.innerHTML = arr.join("-");
         if (/^(textarea|input|div)$/i.test(ele.nodeName)) {
             if (that.type == "birth") {
                 var birthstr = arr.join("").replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');

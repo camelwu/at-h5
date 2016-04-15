@@ -191,6 +191,7 @@
     padding: 0 1.5rem;
     color: rgb(102, 102, 102);
     background: #FFFFFF;
+    margin-bottom: 0;
 }
 .room-ul-outer li{
     list-style: none;
@@ -251,6 +252,7 @@ button.no-choose-button{
     line-height: 40px;
     text-align: center;
     color: #999999;
+    margin-bottom: 20px;
 }
 .check-more-room span:nth-child(2){
     display: inline-block;

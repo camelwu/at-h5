@@ -118,20 +118,7 @@ var lsf_myweb={
     //支付类型：1-Visa, 20-MasterCard(万事达卡), 21-Paypal
     var myPayType=1;
     //初始化有效期选择组件
-    var expityDate = new Scroller({
-        id: "jp_limit_time", 
-        type:"cardExpirationDate",
-        cont:"cardExpirationDate1",
-        callback: function(){
-            var jp_limit_time=document.getElementById('jp_limit_time');
-            var selectTime = jp_limit_time.getAttribute("data-expire");
-            var nowTime = new Date().getTime();
-            selectTime = new Date(selectTime).getTime();
-            if(nowTime > selectTime){
-                $.alerts.alert('有效期应大于当前日期，请重新选择!',null,null,"确定");
-            }
-        }
-    });
+    var expityDate = new Scroller({id: "jp_limit_time", type:"cardExpirationDate",cont:"cardExpirationDate1"});
     
     //输入框
     //lsf_myweb.styleChange('jp_bank','输入银行卡号');
@@ -163,9 +150,9 @@ var lsf_myweb={
         jp_price_sum.innerHTML="本预订需要您提供您的信用卡作为担保。<br/>该产品不可变更且不可取消，如未入住，扣除全额房费";
         $("#jp_price_sum").css("font-size","1.1rem")
     }
-    jp_hotel_name.innerHTML=myData.HotelGenInfo.hotelName;
-    jp_date.innerHTML=myData.dateInfo.CheckInDate.split('-')[0]+'年'+myData.dateInfo.CheckInDate.split('-')[1]+'月'+myData.dateInfo.CheckInDate.split('-')[2]+'日'+' - '+myData.dateInfo.CheckOutDate.split('-')[0]+'年'+myData.dateInfo.CheckOutDate.split('-')[1]+'月'+myData.dateInfo.CheckOutDate.split('-')[2]+'日'+' 共'+myData.dateInfo.totalNight+'晚（当地时间为准）';
-    jp_house_type.innerHTML='房型：'+myData.RoomTypeName+' 房间数：'+myData.NumOfRoom+'间';
+    //jp_hotel_name.innerHTML=myData.HotelGenInfo.hotelName;
+    //jp_date.innerHTML=myData.dateInfo.CheckInDate.split('-')[0]+'年'+myData.dateInfo.CheckInDate.split('-')[1]+'月'+myData.dateInfo.CheckInDate.split('-')[2]+'日'+' - '+myData.dateInfo.CheckOutDate.split('-')[0]+'年'+myData.dateInfo.CheckOutDate.split('-')[1]+'月'+myData.dateInfo.CheckOutDate.split('-')[2]+'日'+' 共'+myData.dateInfo.totalNight+'晚（当地时间为准）';
+    //jp_house_type.innerHTML='房型：'+myData.RoomTypeName+' 房间数：'+myData.NumOfRoom+'间';
 
     //付款方式点击事件
     function payType(id){
@@ -250,8 +237,7 @@ var lsf_myweb={
             $.alerts.alert('请输入有效期',null,null,"确定");
             return;
         }else{
-            //myData.CreditCardExpiryDate=jp_limit_time.value;
-            myData.CreditCardExpiryDate=jp_limit_time.getAttribute("data-expire");
+            myData.CreditCardExpiryDate=jp_limit_time.value;
         }
         if(!vlm.Utils.validate["dataValid"](jp_limit_time.value)){
             jAlert("有效期格式不正确！","",null,"确认");
