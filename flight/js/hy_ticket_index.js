@@ -1174,5 +1174,4 @@ var  ticketIndexModal = {
            this.ihisChoosePool = [];
        }
    };
-
 ticketIndexModal.init();
