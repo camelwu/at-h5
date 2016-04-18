@@ -867,7 +867,11 @@ var arrCountry= [{"CountryEN":"Angola",
                 oTab.onclick=function(e){
                     //oCont.innerHTML=oInp.value=e.target.innerHTML;
                     oCont.innerHTML=oInp.value=$(e.target).attr("data-tel-code");
-                    oCont.innerHTML='+'+oCont.innerHTML;
+                    if(oCont.className == 'tel-btn coun-find'){
+                        oCont.innerHTML=$(e.target).html()+'+'+oCont.innerHTML;
+                    }else{
+                        oCont.innerHTML='+'+oCont.innerHTML;
+                    }
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
                     console.log(e.target);
