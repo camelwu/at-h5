@@ -164,7 +164,6 @@ var  ticketIndexModal = {
                    if(document.querySelector('#double').style.display == 'block'){
                        cityStrs = document.querySelectorAll('#double .city-search');
                        CityFromObj = that.returnCityCode(cityStrs[0]);
-                       console.log(CityFromObj)
                        CityToObj = that.returnCityCode(cityStrs[1]);
                        CityCodeFrom = CityFromObj['cityCode'];
                        CityCodeTo = CityToObj['cityCode'];
@@ -723,7 +722,6 @@ var  ticketIndexModal = {
                    var  childNum = parseInt(opSpan.innerHTML);
                    var  adultEle = eleUl.querySelectorAll('li')[0].querySelector('.add-minus-per-more.adult');
                    var  adultNum = parseInt(eleUl.querySelectorAll('li')[0].querySelector('.add-minus-per-content.adult-number').innerHTML);
-                   console.log(adultNum)
                    if(adultNum+1+childNum>9){
                        target.className = "add-minus-per-more child add-minus-per-more-grey";
                        showLine.innerHTML = "乘客总数不能超过 9 人!";
@@ -759,6 +757,7 @@ var  ticketIndexModal = {
                    opSpan = target.parentNode.querySelector('.add-minus-per-content.child-number');
                    var childNum = parseInt(opSpan.innerHTML);
                    var adultNum = parseInt(eleUl.querySelectorAll('li')[0].querySelector('.add-minus-per-content.adult-number').innerHTML);
+                   var adultPlus = eleUl.querySelector('.add-minus-per-more.adult');
                    if(childNum-1<=0){
                        opSpan.innerHTML = 0;
                        target.className = "add-minus-per-less child add-minus-per-less-grey";
@@ -775,6 +774,7 @@ var  ticketIndexModal = {
                        } else {
                            opSpan.innerHTML = childNum-1;
                            opSiteEle.className = "add-minus-per-more child";
+                           adultPlus.className = "add-minus-per-more adult";
                        }
                    }
                }
