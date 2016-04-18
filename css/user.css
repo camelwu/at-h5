@@ -59,12 +59,13 @@
 .int-tel{
     position: absolute;
     right:12px;
-    top: 0;
+    top: -2px;
     width: 20px;
     height: 16px;
     background-image: url(../images/ui/icons.png);
     background-size: 200px 110px;
     transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
 }
 .open-pho {
     position: absolute;
