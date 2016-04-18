@@ -28,7 +28,7 @@
     <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
     <link href="../styles/tips.css" rel="stylesheet"/>
-    <link href="css/pay.css"		rel="stylesheet" type="text/css">
+    <link href="css/h+f_pay.css" rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <link href="../css/date_select.css" rel="stylesheet" type="text/css">
 </head>
@@ -53,80 +53,16 @@
             <!--   总价   -->
             <div class="p-price">
                 <p class="p-p1" id="jp_price_sum">订单总价：<span>￥838.00</span></p>
-                <p class = "p-p3">为保证出票，请在<i>17:14</i>前完成支付</p>
-            </div>
-            <!--   酒店信息   -->
-            <div class = "p-home">
-                <ul class="p-hotelinfo">
-                    <li id="jp_hotel_name">机票+酒店</li>
-                    <li id="jp_date">
-                        <span class="hf-f"><i class = "hf-go"></i></span>
-                        <span class="hf-f"><i class = "hf-back"></i></span>
-                    </li>
-                    <li id="jp_house_type">
-                        <div class = "hf-anum">
-                            <span>人数:</span>
-                            <span><i>2</i>成人</span>
-                            <span><i>1</i>儿童</span>
-                            <span class = "hf-rack"  id = "hf_rack">详情<i id = "toggle" class = "down-tri"></i></span>
-                        </div>
-                    </li>
-                </ul>
-                <div class="roomPay" id = "roomPay_show">
-                    <ul class = "room-lis">
-                        <li class = "d-li1">
-                            <div class = "d-li1-l">出行人</div>
-                            <ul class = "d-li1-r">
-                                <li>陈玉宝Chen/Yubao <i>（男）</i></li>
-                                <li>护照E12345678</li>
-                                <li>陈玉宝Chen/Yubao<i>（男）</i></li>
-                                <li>护照E12345678</li>
-                                <li>陈玉宝Chen/Yubao<i>（男）</i></li>
-                                <li>护照E12345678</li>
-                            </ul>
-                        </li>
-                        <li class = "d-li2">
-                            <div class = "d-li2-l">联系人</div>
-                            <ul class = "d-li2-r">
-                                <li>陈玉宝Chenyubao（男）</li>
-                                <li>+86 15588888888</li>
-                                <li>chanyubao@asiatravel.com</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--   支付方式   -->
-            <div class="p-pay">
-                <div class="p-p2">信用卡类型：</div>
-                <ul class="p-ul1" id="p-ul1">
-                    <li>
-                        <b class="p-icon1"></b>
-                        <div class="p_visaCard"></div>
-                        <span class="jp_credit1">维萨信用卡</span>
-                    </li>
-
-                    <li>
-                        <b class="p-icon2"></b>
-                        <div class="p-icon3"></div>
-                        <span class="jp_credit2">万事达卡</span>
-                    </li>
-                    <li>
-                        <b class="p-icon4"></b>
-                        <div class="p-icon5"></div>
-                        <span class="jp_credit3">美国运通卡</span>
-                    </li>
-                </ul>
             </div>
             <!--   支付信息   -->
             <ul class="p-ul2">
                 <li>
-                    <div>持卡人姓名</div>
-                    <input type="text" value="" id="jp_guest_name" maxlength="20" placeholder="请输入持卡人姓名">
+                    <div>信用卡号</div>
+                    <input type="text" value="" id="jp_guest_name" maxlength="20" placeholder="请输入信用卡卡号">
                 </li>
                 <li>
-                    <div>信用卡卡号</div>
-                    <input type="text" value="" id="jp_bank" placeholder="请输入信用卡卡号">
+                    <div>持卡人姓名</div>
+                    <input type="text" value="" id="jp_guest_name" maxlength="20" placeholder="姓名">
                 </li>
                 <li>
                     <div>发卡银行</div>
@@ -144,13 +80,17 @@
                 <input type="text" value="" id="jp_limit_time" readonly placeholder="月/年，如：09/12">
                 </li>
                 <li>
-                <div>CW2/CVC2号</div>
+                <div>安全码</div>
                 <input type="text" value="" id="jp_safe_code" placeholder="请输入签名栏末尾最后3位">
                 </li>
                 <li>
                     <div>持卡人手机号</div>
                     <span class = "phone">+86 <i>∨</i></span>
                     <input type="text " placeholder="用于接收通知"/>
+                </li>
+                <li>
+                    <div>账单城市</div>
+                    <input type="tex" placeholder="请输入持卡人账单城市"/>
                 </li>
                 <li>
                     <div>账单地址</div>
