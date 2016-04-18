@@ -58,7 +58,7 @@
         </div>
         <div class="fi-content">
             <ul class="airway-list">
-                <li>
+                <li class="airway">
                     <div>
                         <img src="../images/flights.png" />
                     </div>
@@ -68,7 +68,7 @@
                     </div>
                     <b class="hf-icon cho-gou"></b>
                 </li>
-                <li>
+                <li class="airway">
                     <div>
                         <img src="../images/flights.png" />
                     </div>
@@ -78,7 +78,7 @@
                     </div>
                     <b class="hf-icon"></b>
                 </li>
-                <li>
+                <li class="airway">
                     <div>
                         <img src="../images/flights.png" />
                     </div>
@@ -91,5 +91,23 @@
             </ul>
         </div>
     </div>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script>
+        var airwayLiat = {
+            chooseAirway:function(){
+                $('.airway').click(function(){
+                    $(this).find('b.hf-icon').addClass('cho-gou').parents().siblings().find('b.hf-icon').removeClass('cho-gou');
+                });
+            },
+            init:function(){
+                this.chooseAirway();
+            }
+        }
+        airwayLiat.init();
+    </script>
 </body>
 </html>
