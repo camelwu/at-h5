@@ -68,8 +68,15 @@ var ticketHotel = {
         });
 
     },
+    //   Ò³ÃæÌø×ª
+    nextPage:function(){
+        $('.edit-button').click(function(){
+            window.location.href = 'index.html';
+        })
+    },
     init:function () {
         this.eventHandler();
+        this.nextPage();
     }
 };
 ticketHotel.init();
