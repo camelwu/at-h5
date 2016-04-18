@@ -848,8 +848,8 @@ var arrCountry= [{"CountryEN":"Angola",
                     countryInputZone.value=$(e.target).attr("data-tel-code");
                     if(_this.className == 'tel-btn coun-find'){
                         _this.children[0].innerHTML=$(e.target).html()+'+'+$(e.target).attr("data-tel-code");
-                    }else{
-                        _this.innerHTML='+'+$(e.target).attr("data-tel-code");
+                    }else if(_this.className == 'p_86 tel-btn'){
+                        _this.children[0].innerHTML='+'+$(e.target).attr("data-tel-code");
                     }
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
@@ -871,8 +871,8 @@ var arrCountry= [{"CountryEN":"Angola",
                 oTab.onclick=function(e){
                     if(oCont.className == 'tel-btn coun-find'){
                         oCont.children[0].innerHTML=$(e.target).html()+'+'+$(e.target).attr("data-tel-code");
-                    }else{
-                        oCont.innerHTML='+'+$(e.target).attr("data-tel-code");
+                    }else if(oCont.className == 'p_86 tel-btn'){
+                        oCont.children[0].innerHTML='+'+$(e.target).attr("data-tel-code");
                     }
                     $(oCont).attr("data-code", $(e.target).attr("data-code"));
                     $(oCont).attr("data-tel-code", $(e.target).attr("data-tel-code"));
