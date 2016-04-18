@@ -121,14 +121,14 @@ margin-bottom: 10px;
     position: absolute;
     top:0;
     right:46px;
+    color: #FDB330;
 }
 .order-lis1-r i{
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    background-image: url(../../images/ui/ticket_hotel.png);
-    background-size: 260px 206px;
-    background-position: 117px 121px;
+    background: url(../../images/ui/air-icons.png) no-repeat -154px -18px;
+    background-size: 250px 150px;
+    float: right;
+    width: 20px;
+    height: 36px;
     position: absolute;
     top:14px;
     right:8px;
@@ -161,7 +161,7 @@ margin-bottom: 10px;
     display: inline-block;
     background-image: url(../../images/ui/ticket_hotel.png);
     background-size: 300px 240px;
-    background-position: 248px 141px;
+    background-position: 273px 141px;
     position: absolute;
     top: 64px;
     left: 10px;
@@ -173,14 +173,12 @@ margin-bottom: 10px;
 }
 
 .order-lis2-r i,.order-lis3-r i{
-    width: 30px;
+    width: 14px;
     height: 30px;
-    display: inline-block;
-    background-image: url(../../images/ui/ticket_hotel.png);
-    background-size: 260px 200px;
-    background-position: 168px 153px;
+    background: url(../../images/ui/icon-t.png) no-repeat -28px -18.5px;
+    background-size: 233px 140px;
     position: absolute;
-    top: 64px;
+    top: 66px;
     right: 72px;
 }
 .order-lis3{
@@ -231,9 +229,9 @@ margin-bottom: 10px;
     line-height: 50px;
 }
 span.order-lis3-r i{
-    background-position: 168px 153px;
+    background-position: -28px -18.5px;
     position: absolute;
-    top: 114px;
+    top: 116px;
     right: 72px;
 }
 span.order-ml{
