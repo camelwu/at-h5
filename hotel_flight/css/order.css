@@ -116,7 +116,7 @@ margin-bottom: 10px;
 .order-lis1-r span{
     display: inline-block;
     text-align: center;
-    line-height: 60px;
+    line-height: 40px;
     font-size:1.6rem;
     position: absolute;
     top:0;
@@ -130,7 +130,7 @@ margin-bottom: 10px;
     width: 20px;
     height: 36px;
     position: absolute;
-    top:14px;
+    top:6px;
     right:8px;
 }
 .order-lis2{
@@ -163,7 +163,7 @@ margin-bottom: 10px;
     background-size: 300px 240px;
     background-position: 273px 141px;
     position: absolute;
-    top: 64px;
+    top: 54px;
     left: 10px;
 }
 .order-lis2-r{
@@ -178,7 +178,7 @@ margin-bottom: 10px;
     background: url(../../images/ui/icon-t.png) no-repeat -28px -18.5px;
     background-size: 233px 140px;
     position: absolute;
-    top: 66px;
+    top: 56px;
     right: 72px;
 }
 .order-lis3{
@@ -207,7 +207,7 @@ margin-bottom: 10px;
     background-size: 300px 240px;
     background-position: 248px 141px;
     position: absolute;
-    top: 112px;
+    top: 102px;
     left: 10px;
 }
 .order-lis3-r{
@@ -231,7 +231,7 @@ margin-bottom: 10px;
 span.order-lis3-r i{
     background-position: -28px -18.5px;
     position: absolute;
-    top: 116px;
+    top: 106px;
     right: 72px;
 }
 span.order-ml{
@@ -245,7 +245,7 @@ span.order-ml{
 .order-hotle ul{
     position: relative;
     font-size: 1.4rem;
-    /*margin-bottom: 0px;*/
+    margin-bottom: 0px;
 }
 .order-hotle li{
     width: 100%;
@@ -253,8 +253,8 @@ span.order-ml{
     padding-left:15px;
 }
 li.order-hlist1{
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     font-size:1.6rem;
 }
 li.order-hlist1 i{
@@ -265,13 +265,13 @@ li.order-hlist1 i{
     background-size: 300px 240px;
     background-position: 46px 141px;
     position: absolute;
-    top: 15px;
+    top: 4px;
     left: 10px;
 }
 li.order-hlist1 span{
     display: inline-block;
     text-align: center;
-    line-height: 60px;
+    line-height: 40px;
     font-size: 1.6rem;
     position: absolute;
     top: 0px;
@@ -319,7 +319,7 @@ li.order-tlist1{
 }
 .order-tsl2{
     position: absolute;
-    top:0px;
+    top:2px;
     right:100px;
 }
 .order-tsl3{
@@ -329,10 +329,10 @@ li.order-tlist1{
     border-radius: 5px;
     color: white;
     text-align: center;
-    line-height: 32px;
+    line-height: 30px;
     display: inline-block;
     position:absolute;
-    top:2px;
+    top:8px;
     right:15px;
 }
 li.order-tlist2{
@@ -368,14 +368,17 @@ li.order-tlist2 i{
     width: 100%;
     position: relative;
 }
+.order-link ul{
+    margin-bottom: 0px;
+}
 li.order-llist1{
     width: 100%;
-    height: 60px;
+    height: 40px;
     padding:0 15px;
 }
 .order-llist1 span{
     font-size:1.6rem;
-    line-height: 60px;
+    line-height: 40px;
 }
 .order-llist2,.order-llist3 ,.order-llist4{
     width: 100%;
@@ -419,6 +422,7 @@ li.order-llist1{
     height: 40px;
     width: 100%;
     text-align: center;
+    line-height: 40px;
 }
 .order-prompt u{
     color: #FDB330;
