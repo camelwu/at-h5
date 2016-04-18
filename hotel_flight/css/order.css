@@ -84,7 +84,7 @@ margin-bottom: 10px;
 }
 .order-lis1{
     width: 100%;
-    height: 50px;
+    height: 40px;
 }
 .order-lis1-l{
     float:left;
@@ -97,14 +97,14 @@ margin-bottom: 10px;
     background-position: 125px 120px;
     background-size: 260px 206px;
     position: absolute;
-    top: 14px;
+    top: 6px;
     left: 0;
 }
 
 .order-lis1-l span{
     display: inline-block;
     text-align: center;
-    line-height: 60px;
+    line-height: 40px;
     font-size: 1.6rem;
     position: absolute;
     top: 0px;
