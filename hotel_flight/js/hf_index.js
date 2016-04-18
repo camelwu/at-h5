@@ -167,6 +167,78 @@ var hf_search = {
         }
         this.add_subtract();
     },
+    //   加减房间
+    extraRoom:function(dom, numb){
+        var roomBox_first = dom.parentNode.childNodes[7];
+        var roomBox = document.getElementsByClassName('hotelInfo_numb_people');
+        var _html = '';
+        if (numb < roomBox.length) {
+            roomBox_first.parentNode.removeChild(roomBox[roomBox.length - 1]);
+        } else if (numb == roomBox.length) {
+            return;
+        } else {
+            var section = document.createElement("section");
+            section.className = "hotelInfo_numb_people";
+            for (var i = 1; i <= numb; i++) {
+                _html = extraRoomTemp(i);
+                var rb_l = roomBox.length;
+                var lastIndex = rb_l - 1;
+                section.innerHTML = _html;
+                roomBox_first.parentNode.insertBefore(section, roomBox[lastIndex].nextElementSibling);
+            }
+        }
+        this.add_subtract();
+    },
+    //   儿童逻辑
+    extraChildTemp:function(i, n){
+        var listStr = box.querySelector('.extraChild');
+        if (n == 1) {
+            if (i == 2) {
+                listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '"><i class="child-sui">岁</i>' + '</div>';
+            } else {
+                listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
+            }
+        } else if (i == 1) {
+            listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
+        } else if (i == 2) {
+            listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
+        }
+        this.addbed();
+    },
+    //    儿童信息随成人信息更变
+    changeChildTemp:function(box,n,i){
+        var listStr = box.querySelector('.extraChild');
+        if (n == 1) {
+            if (i == 2) {
+                listStr.innerHTML = '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '"><i class="child-sui">岁</i>' + '</div>';
+            } else {
+                listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>';
+            }
+        } else if (i == 1) {
+            listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>';
+        } else if (i == 2) {
+            listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="' + childAgeMin + '-' + childAgeMax+'" onkeyup="setAge(this);"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon ico_select"></b></span>' + '</div>';
+        }
+        this.addbed();
+    },
+    //   加房间
+    extraRoomTemp:function(i){
+        return '<span class="title">房间' + i + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control" data-type="adult"><span class="cut-down-btn" id="adult-down"></span><i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">1</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control" data-type="extraChild"><span class="cut-down-btn"></span><i class="cut-up-cont child-number" data-type="childNum">0</i><span class="plus-btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" value placeholder="' + childAgeMin + '-' + childAgeMax + '" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>' + '<div class="numbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect"></b></span>' + '</div>' + '</div>';
+    },
+    domAfter:function(dom, html){
+        var next = dom.nextSibling;
+        if (next != null) {
+            while (next.tagName == undefined) {
+                if (next.nextSibling != null) {
+                    next = next.nextSibling;
+                } else {
+                    next = null;
+                    break;
+                }
+            }
+        }
+        next != null ? next.parentNode.insertBefore(el(html), next) : dom.parentNode.appendChild(el(html));
+    },
     //   页面跳转
     nextPage:function(){
         $('#search-button').click(function(){

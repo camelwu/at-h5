@@ -8,6 +8,9 @@ var flight_list = {
             $(this).find('.hf-gou').addClass('cho-gou').parents().siblings().find('.hf-gou').removeClass('cho-gou');
             window.location.href = 'ticket_hotel_choose.html';
         });
+        $('#fo_aw').click(function(){
+            window.location.href = 'airway-list.html';
+        })
     },
     init:function(){
         this.nextPage();
