@@ -53,7 +53,7 @@
     font-weight: 600;
 }
 
-.coun-find{
+.coun-find >div{
     display: inline-block;
 }
 .open-pho {
