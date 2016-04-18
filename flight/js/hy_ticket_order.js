@@ -196,7 +196,6 @@ var ticketOrder = {
                 jAlert('请输入正确格式手机号!', '提示');
                 return;
             }
-
             for(var tv in contactInfoCache){
                 contactInfo[tv] = contactInfoCache[tv];
             }

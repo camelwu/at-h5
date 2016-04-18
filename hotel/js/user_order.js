@@ -168,8 +168,8 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
             //alert(RoomCode);
         }
     }
-    //默认房间数量
-    fake_data.NumOfRoom=1;
+    //默认房间数量 从搜索列表页获取
+    fake_data.NumOfRoom= JSON.parse(localStorage.getItem("hotelStorage12345")).NumRoom || 1;
     var user_order_storage2=localStorage.getItem('hotelDetailData');
     console.log(JSON.parse(user_order_storage2));
     console.log(999999999999);
@@ -344,16 +344,15 @@ uoHisData();
         //    }
         //}
         console.log(fake_data.guestName);
-        if(fake_data.guestName.length){
-            if(fake_data.guestName[0].GuestFirstName!=''){
-                var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
-                var uo_firstname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_firstname');
-                for(var j=0;j<uo_lastname.length;j++){
-                    uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
-                    uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
-                }
+        var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
+        var uo_firstname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_firstname');
+        for(var j=0;j<uo_lastname.length;j++){
+            if(j<fake_data.guestName.length){
+                uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
+                uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
             }
         }
+        
         //手机号和邮箱实现历史记忆功能
         var uo_c3_tele=document.getElementById('uo_c3_tele');
         var uo_c3_email=document.getElementById('uo_c3_email');

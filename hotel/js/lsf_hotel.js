@@ -907,9 +907,9 @@ function inpChange(id, myText) {
 		obj[checkOut.value] = "离店";
     }
 	window.onload = function() {
-		lsf_myweb.getbyid('count1').value = 1;
-		lsf_myweb.getbyid('count2').value = 1;
-		lsf_myweb.getbyid('count3').value = 0;
+		//lsf_myweb.getbyid('count1').value = 1;
+		//lsf_myweb.getbyid('count2').value = 1;
+		//lsf_myweb.getbyid('count3').value = 0;
 	}
     //还原减号状态
     function recoverStatus(itemIdString){
