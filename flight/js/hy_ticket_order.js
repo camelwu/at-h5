@@ -212,7 +212,7 @@ var ticketOrder = {
                 if(arg.success&&arg.code==200){
                     var orderResultInfo = {};
                     orderResultInfo['orderTime'] = new Date();
-                    orderResultInfo['TotalFlightPrice'] = that.reverseInformation['TotalFlightPrice'];
+                    orderResultInfo['TotalPrice'] = that.reverseInformation['TotalPrice'];
                     orderResultInfo['CurrencyCode'] = that.reverseInformation['CurrencyCode'];
                     orderResultInfo['NumofAdult'] = that.reverseInformation['WapOrder']['NumofAdult'];
                     orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];

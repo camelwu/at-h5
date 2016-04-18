@@ -1,7 +1,6 @@
 /**
  * Created by zhouwei on 2016/3/31.
  * 支付页面（酒店，机票，酒+景，机+X）
- *test ss   sssssssss
  */
 (function(){
     var payment=function(){
@@ -14,19 +13,18 @@
             "Hotle":{id: 1, name: "酒店", detailCode: "0038", payMentCode: "022"},
             "Flight":{id: 2, name: "机票", detailCode: "0038", payMentCode: "022"},
             "Scenic":{id: 3, name: "景点", detailCode: "0095", payMentCode: "0093"},
-            "Tour":{id: 4, name: "酒+景", detailCode: "0038", payMentCode: "022"}
+            "Tour":{id: 4, name: "酒+景", detailCode: "0206", payMentCode: "022"}
         };
 
         var _init={
           bindPaymentTypeEvent:function(){
-            debugger;
-            alert(111);
               $(".paymentType b").on("click",function(){
-                 alert(111);
-
+                  $(".paymentType b").removeClass("circle-choi");
+                  $(".paymentType b").addClass("circle-chois");
+                  $(this).removeClass("circle-chois");
+                 $(this).addClass("circle-choi");
               })
           }
-
         }
         var _getOrderData=function(bussinessType,bookingRefNo,foreEndType,callback){
             var Parameters={
@@ -57,12 +55,12 @@
             if(type.id==3){
                 var html = template("tpl_scenic_detail", data);
                 $(".pay-type").append(html);
-
             }
             else if(type.id==2){
 
             }
         }
+
         /*页面初始化方法*/
         var _initPage=function(){
             var type=_bussinessType[vlm.getpara("type")];
@@ -71,7 +69,8 @@
             _getOrderData(type,bookingRefNo,3,function(data){
                 vlm.init();
                 if (data.success) {
-                    _generateHtml(type,data);
+
+
                 }
                 else{
                     jAlert("网络请求错误！");
