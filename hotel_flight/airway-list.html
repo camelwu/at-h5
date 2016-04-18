@@ -66,7 +66,7 @@
                     <div class="aw-price">
                         <apan>+￥</apan><apnn >100</apnn>
                     </div>
-                    <b class="hf-icon cho-gou"></b>
+                    <b class="hf-icon"></b>
                 </li>
                 <li class="airway">
                     <div>
@@ -101,6 +101,7 @@
             chooseAirway:function(){
                 $('.airway').click(function(){
                     $(this).find('b.hf-icon').addClass('cho-gou').parents().siblings().find('b.hf-icon').removeClass('cho-gou');
+                    window.location.href = 'ticket-list.html';
                 });
             },
             init:function(){
