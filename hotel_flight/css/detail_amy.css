@@ -56,8 +56,8 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 .jhf-mes .jhf-drg p{font-size: 1.6rem;color: #fe4716;text-align:right; padding-right:15px;}
 .jhf-mes .jhf-drg p.reduce,.reduce{ color:#5abfb6;}
 .jhf-mes .jhf-drg p span{ display:inline-block; line-height:4.8rem;}
-.jhf-mes .jhf-drg p i{ background:url(../../images/ui/icons1.png) no-repeat; background-position:-48px -33px; background-size:400px 120px; display:inline-block; width:18px; height:19px; margin-left:2px; position:relative; top:3px;}
-.jhf-mes .jhf-drg p i.cur{ background-position:-73px -33px;}
+.jhf-mes .jhf-drg p i{ background:url(../../images/ui/icons1.png) no-repeat; background-position:-73px -33px; background-size:400px 120px; display:inline-block; width:18px; height:19px; margin-left:2px; position:relative; top:3px;}
+.jhf-mes .jhf-drg p i.cur{ background-position:-48px -33px;}
 .jhf-mes .lfword{ padding-left:15px;}
 .jhf-mes .lfword p:nth-child(1){ font-size:1.4rem; margin-bottom:-0.4rem; padding-top:0.6rem;}
 .jhf-mes .lfword p:nth-child(2){ color:#999;}
@@ -79,7 +79,7 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 
 /*ji+jiu hotel seach list jyj*/
 .jlist-nav .j-title{ margin-right:10px;}
-.jlist { background:#fff;border-top:1px solid #dfdfdd;}
+.jlist { background:#fff;border-top:1px solid #dfdfdd; padding-bottom:40px;}
 .jlist li{ border-bottom:1px solid #dfdfdd; height:93px; position:relative; margin-bottom:0;}
 .jlist li .jimg{ width:82px; height:92px; position:absolute; left:0; top:0;}
 .jlist .imgrt{ margin:0 15px 0 92px;}

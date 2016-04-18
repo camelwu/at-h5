@@ -170,10 +170,10 @@ header i{
 .reBox .drop_down{
     display: block;
     position: absolute;
-    width: 30px;
-    height: 54px;
-    bottom: 30px;
-    right: 2px;
+    width: 1.5rem;
+    height: 1.5rem;
+    bottom: 3.5rem;
+    right: 0px;
     background-color: white;
     z-index: 999;
 }
@@ -182,7 +182,7 @@ header i{
     height: 1.5rem;
     background: url(../../images/ui/icons.png) -16.9rem -0.5rem;
     background-size: 24.3rem 16rem;
-    bottom: 15px;
+    bottom: 20px;
     right: 14px;
     position: absolute;
 }
