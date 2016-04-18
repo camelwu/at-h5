@@ -40,7 +40,7 @@ function init(){
     function close(obj){
         obj.onclick = function(){
             link_page.style.display = "none";
-        }
+        };
     }
     close(close_page);
 
@@ -49,8 +49,9 @@ function init(){
     {
         return;
     }
+    vlm.checkUser();
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
-    var li = document.getElementById("user_order").getElementsByTagName("li");
+    //var li = document.getElementById("user_order").getElementsByTagName("li");
     //function order(obj){
     //    obj.onclick = function(){
     //        window.location.href = "user-allorder.html";
@@ -66,7 +67,6 @@ function init(){
 
 function mycallback(ret) {
     var myJson = ret;
-    console.log(myJson);
     if (myJson.success) {
         var user_name = $("#user_name")[0];
         var user_sex = $("#user_sex")[0];

@@ -51,7 +51,7 @@ margin-bottom: 10px;
     font-size:1.8rem;
 }
 .order-detail i{
-    background-image: url(../../images/ui/h+f.png);
+    background-image: url(../../images/ui/ticket_hotel.png);
     background-size: 200px 200px;
     background-repeat: inherit;
 }
@@ -73,19 +73,18 @@ margin-bottom: 10px;
     height: 100%;
     padding-top:45px;
     position: relative;
-    top:0px;left:0px;
+    top:0;left:0;
+    padding-bottom:47px;
 }
 .order-bg{
     background: #E9E9E9;
 }
 .order-plane{
     width: 100%;
-    /*padding-left:15px;*/
-
 }
 .order-lis1{
     width: 100%;
-    height: 50px;
+    height: 40px;
 }
 .order-lis1-l{
     float:left;
@@ -94,18 +93,18 @@ margin-bottom: 10px;
     width: 40px;
     height: 28px;
     display: inline-block;
-    background-image: url(../../images/ui/h+f.png);
+    background-image: url(../../images/ui/ticket_hotel.png);
     background-position: 125px 120px;
     background-size: 260px 206px;
     position: absolute;
-    top: 14px;
+    top: 6px;
     left: 0;
 }
 
 .order-lis1-l span{
     display: inline-block;
     text-align: center;
-    line-height: 60px;
+    line-height: 40px;
     font-size: 1.6rem;
     position: absolute;
     top: 0px;
@@ -117,21 +116,21 @@ margin-bottom: 10px;
 .order-lis1-r span{
     display: inline-block;
     text-align: center;
-    line-height: 60px;
+    line-height: 40px;
     font-size:1.6rem;
     position: absolute;
     top:0;
     right:46px;
+    color: #FDB330;
 }
 .order-lis1-r i{
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    background-image: url(../../images/ui/h+f.png);
-    background-size: 260px 206px;
-    background-position: 117px 121px;
+    background: url(../../images/ui/air-icons.png) no-repeat -154px -18px;
+    background-size: 250px 150px;
+    float: right;
+    width: 20px;
+    height: 36px;
     position: absolute;
-    top:14px;
+    top:6px;
     right:8px;
 }
 .order-lis2{
@@ -142,40 +141,53 @@ margin-bottom: 10px;
     padding-right: 15px;
     margin-bottom: 0px;
 }
+ .order-plane ul {
+    position: relative;
+     font-size: 1.4rem;
+     margin-bottom:0px;
+}
 .order-lis2-l{
     float:left;
-
 }
 .order-lis2-l span,.order-lis2-r span{
     display: inline-block;
     text-align: center;
-    font-size: 1.6rem;
     line-height: 50px;
+    margin-left: 0.2rem;
 }
 .order-lis2-l i{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;;
     display: inline-block;
-    background-image: url(../../images/ui/h+f.png);
-    background-size: 260px 206px;
-    background-position: 117px 121px;
+    background-image: url(../../images/ui/ticket_hotel.png);
+    background-size: 300px 240px;
+    background-position: 273px 141px;
     position: absolute;
-    top:14px;
-    left:8px;
+    top: 54px;
+    left: 10px;
 }
 .order-lis2-r{
     float:right;
     text-align: center;
     line-height: 40px;
 }
+
+.order-lis2-r i,.order-lis3-r i{
+    width: 14px;
+    height: 30px;
+    background: url(../../images/ui/icon-t.png) no-repeat -28px -18.5px;
+    background-size: 233px 140px;
+    position: absolute;
+    top: 56px;
+    right: 72px;
+}
 .order-lis3{
     width: 100%;
     height: 50px;
     background-color: white;
-    padding-left:15px;
-    padding-right: 15px;
+    padding:0 15px;
     margin-bottom: 0;
-
+    border-bottom: 1px solid #ccc;
 }
 .order-lis3-l{
     float:left;
@@ -184,18 +196,18 @@ margin-bottom: 10px;
 .order-lis3-l span,.order-lis3-r span{
     display: inline-block;
     text-align: center;
-    font-size: 1.6rem;
     line-height: 50px;
+    margin-left: 0.2rem;
 }
 .order-lis3-l i{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
-    background-image: url(../../images/ui/h+f.png);
+    background-image: url(../../images/ui/ticket_hotel.png);
     background-size: 300px 240px;
     background-position: 248px 141px;
     position: absolute;
-    top: 64px;
+    top: 102px;
     left: 10px;
 }
 .order-lis3-r{
@@ -216,7 +228,205 @@ margin-bottom: 10px;
     font-size: 1.6rem;
     line-height: 50px;
 }
+span.order-lis3-r i{
+    background-position: -28px -18.5px;
+    position: absolute;
+    top: 106px;
+    right: 72px;
+}
+span.order-ml{
+    margin-left:2rem;
+}
+/*jiudinsbufen*/
+.order-hotle{
+    width: 100%;
+    position: relative;
+}
+.order-hotle ul{
+    position: relative;
+    font-size: 1.4rem;
+    margin-bottom: 0px;
+}
+.order-hotle li{
+    width: 100%;
+    height: 30px;
+    padding-left:15px;
+}
+li.order-hlist1{
+    height: 40px;
+    line-height: 40px;
+    font-size:1.6rem;
+}
+li.order-hlist1 i{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+    background-image: url(../../images/ui/ticket_hotel.png);
+    background-size: 300px 240px;
+    background-position: 46px 141px;
+    position: absolute;
+    top: 4px;
+    left: 10px;
+}
+li.order-hlist1 span{
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    font-size: 1.6rem;
+    position: absolute;
+    top: 0px;
+    left: 40px;
+}
+li.order-hlist2{
+    height: 56px;
+    background-color: white;
+    padding:15px 0 0 15px;
+    font-size: 1.6rem;
+    line-height: 50px;
+    margin-bottom: 0px;
+}
+.order-hlist3,.order-hlist4{
+    background-color: white;
+    margin-bottom: 0px;
+    line-height: 30px;
+}
+li.order-hlist4{
+    height: 40px;
+    padding-bottom: 10px;
+}
+/*chuxingren？*/
+.order-trip{
+    width: 100%;
+    position: relative;
+}
+.order-trip ul{
+    width: 100%;
+    position: relative;top:0px ;left:0px;
+    margin-bottom: 0px;
+}
+.order-tlist1{
+    width: 100%;
+    height: 50px;
+    padding:0 15px;
+}
+li.order-tlist1{
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.6rem;
+}
+.order-tsl1{
+    float:left;
+}
+.order-tsl2{
+    position: absolute;
+    top:2px;
+    right:100px;
+}
+.order-tsl3{
+    width: 6rem;
+    font-size:1.4rem;
+    background-color: #FDB330;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    display: inline-block;
+    position:absolute;
+    top:8px;
+    right:15px;
+}
+li.order-tlist2{
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    padding:0 15px;
+}
+li.order-tlist2 i{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+    background-image: url(../../images/ui/ticket_hotel.png);
+    background-size: 300px 240px;
+    background-position: 115px 99px;
+    position: absolute;
+    top: 58px;
+    left: 10px;
+}
+.order-tlist2 div{
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    top:58px;
+    left:60px;
+}
+.order-tlist2 span{
+    width: 100%;
+    display: block;
+}
+/*联系人？*/
+.order-link{
+    width: 100%;
+    position: relative;
+}
+.order-link ul{
+    margin-bottom: 0px;
+}
+li.order-llist1{
+    width: 100%;
+    height: 40px;
+    padding:0 15px;
+}
+.order-llist1 span{
+    font-size:1.6rem;
+    line-height: 40px;
+}
+.order-llist2,.order-llist3 ,.order-llist4{
+    width: 100%;
+    padding:0 15px;
+    background-color: white;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #ccc;
+}
+.order-llist2 input,.order-llist3 input ,.order-llist4 input{
+    display: inline-block;
+    height: 40px;
+    width: 44%;
+    line-height: 40px;
+    font-size:1.4rem;
+}
 
+.order-line{
+    border-left: 1px solid #ccc;
+    margin-right:1.0rem;
+    margin-left:1.0rem;
+}
+.order-llist3{
+    display: inline-block;
+    width: 100%;
+    line-height: 40px;
+}
+.order-ls{
+    display: inline-block;
+    width: 44%;
+}
+.order-last{
+    float:right;
+}
+.order-llist4 span{
+    display:inline-block;
+    width: 25%;
+}
+
+/*阅读须知*/
+.order-prompt{
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+}
+.order-prompt u{
+    color: #FDB330;
+}
 
 
 

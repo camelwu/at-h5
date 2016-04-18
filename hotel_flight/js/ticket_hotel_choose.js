@@ -68,8 +68,24 @@ var ticketHotel = {
         });
 
     },
+    //   Ò³ÃæÌø×ª
+    nextPage:function(){
+        $('.edit-button').click(function(){
+            window.location.href = 'index.html';
+        });
+        $('.flight-summary-info').click(function(){
+            window.location.href = 'ticket-detail.html';
+        });
+        $('.hotel-summary-info').click(function(){
+            window.location.href = 'hotel_detail.html';
+        });
+        $('#confirm-button').click(function(){
+            window.location.href = 'user_order.html';
+        })
+    },
     init:function () {
         this.eventHandler();
+        this.nextPage();
     }
 };
 ticketHotel.init();

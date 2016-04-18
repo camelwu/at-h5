@@ -32,7 +32,7 @@
 <div class="jhf-box">
     <!--nav-->
     <div class="jhf-nav jlist-nav">
-        <a class="j-back jpa" href="javascript:;"><i></i></a>
+        <a class="j-back jpa" href="javascript:window.history.go(-1);"><i></i></a>
         <div class="j-title">
             <p class="titcn">京东东急涩谷卓越大酒店</p>
             <p class="titen">(Shibuya Excel Hotel Tokyu Tokyo)</p>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <ol class="show">
-                    <li class="lfword jpr">
+                    <li class="lfword jpr roomli">
                         <p>标准价</p>
                         <p>无早 大床 不可取消&nbsp;&nbsp;<span>仅剩&nbsp;2&nbsp;间</span></p>
                         <div class="price">
@@ -83,7 +83,7 @@
                             <span>100</span>
                         </div>
                     </li>
-                	<li class="lfword">
+                	<li class="lfword roomli">
                     	<p>含早</p>
                         <p>双早 大/双床 免费取消</p>
                     </li>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <ol class="show">
-                    <li class="lfword jpr">
+                    <li class="lfword jpr roomli">
                         <p>标准价</p>
                         <p>无早 大床 不可取消&nbsp;&nbsp;<span>仅剩&nbsp;2&nbsp;间</span></p>
                         <div class="price">
@@ -115,7 +115,7 @@
                             <span>100</span>
                         </div>
                     </li>
-                	<li class="lfword">
+                	<li class="lfword roomli">
                     	<p>含早</p>
                         <p>双早 大/双床 免费取消</p>
                     </li>
@@ -138,7 +138,7 @@
                     </div>
                 </div>
                 <ol class="show">
-                    <li class="lfword jpr">
+                    <li class="lfword jpr roomli">
                         <p>标准价</p>
                         <p>无早 大床 不可取消&nbsp;&nbsp;<span>仅剩&nbsp;2&nbsp;间</span></p>
                         <div class="price">
@@ -147,7 +147,7 @@
                             <span>100</span>
                         </div>
                     </li>
-                	<li class="lfword">
+                	<li class="lfword roomli">
                     	<p>含早</p>
                         <p>双早 大/双床 免费取消</p>
                     </li>
@@ -168,7 +168,12 @@ $(function(){
 			$('.jhf-mes ol.show').eq(i).slideToggle();
 			$('.jhf-mes ol.show').eq(i).show().parents('li.showh').siblings().find('ol.show').slideUp();
 		})
-	})
+	});
+    //  页面跳转
+    $('.roomli').click(function(){
+        window.location.href = 'ticket_hotel_choose.html';
+    })
+
 })
 </script>
 

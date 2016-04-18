@@ -346,9 +346,11 @@ uoHisData();
         console.log(fake_data.guestName);
         var uo_lastname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_lastname');
         var uo_firstname=lsf_myweb.getbyclass(uo_c3_peoBox,'uo_firstname');
-        for(var j=0;j<fake_data.guestName.length;j++){
-            uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
-            uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
+        for(var j=0;j<uo_lastname.length;j++){
+            if(j<fake_data.guestName.length){
+                uo_lastname[j].value=fake_data.guestName[j].GuestLastName;
+                uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
+            }
         }
         
         //手机号和邮箱实现历史记忆功能
