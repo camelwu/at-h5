@@ -53,6 +53,19 @@
     font-weight: 600;
 }
 
+.coun-find >div{
+    display: inline-block;
+}
+.int-tel{
+    position: absolute;
+    right:12px;
+    top: 0;
+    width: 20px;
+    height: 16px;
+    background-image: url(../images/ui/icons.png);
+    background-size: 200px 110px;
+    transform: rotate(270deg);
+}
 .open-pho {
     position: absolute;
     width: 10px;
@@ -1340,7 +1353,7 @@ a{
     margin-left: 29px;
     margin-top: 16px;
     border-right: 1px solid rgba(255, 255, 255, 0.5);
-    padding-right: 15px;
+    padding-right: 40px;
 }
 
 .login-input .in-phone {
@@ -1820,5 +1833,7 @@ i{
     margin-left: 5px;
 }
 
-
+#login_btn, #register_btn{
+    font-size: 1.5rem;
+}
 

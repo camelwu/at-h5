@@ -40,7 +40,7 @@ function init(){
     function close(obj){
         obj.onclick = function(){
             link_page.style.display = "none";
-        }
+        };
     }
     close(close_page);
 
@@ -49,6 +49,7 @@ function init(){
     {
         return;
     }
+    vlm.checkUser(mycallback);
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
     var li = document.getElementById("user_order").getElementsByTagName("li");
     //function order(obj){

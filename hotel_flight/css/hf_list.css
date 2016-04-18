@@ -187,28 +187,28 @@ section[class^="hotelInfo_numb"] span.title {
     color:#fdb330;
     left: 10px;
 }
-section[class^="hotelInfo_numb"] .per-price-control {
-    float: right;
-    padding: 8px 6px;
-}
-section[class^="hotelInfo_numb"] .per-price-control span {
-    width: 20px;
-    height: 20px;
-    float: left;
-    background: url(../../images/icons1.png) no-repeat 0 2px;
-    background-size: 320px auto;
-}
-section[class^="hotelInfo_numb"] .per-price-control span:first-child {
-    background-position: -26px 2px;
-}
-section[class^="hotelInfo_numb"] .per-price-control i {
-    width: 25px;
-    height: 20px;
-    line-height: 20px;
-    float: left;
-    text-align: center;
-    font-size: 13px;
-}
+/*section[class^="hotelInfo_numb"] .per-price-control {*/
+    /*float: right;*/
+    /*padding: 8px 6px;*/
+/*}*/
+/*section[class^="hotelInfo_numb"] .per-price-control span {*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*float: left;*/
+    /*background: url(../../images/icons1.png) no-repeat 0 2px;*/
+    /*background-size: 320px auto;*/
+/*}*/
+/*section[class^="hotelInfo_numb"] .per-price-control span:first-child {*/
+    /*background-position: -26px 2px;*/
+/*}*/
+/*section[class^="hotelInfo_numb"] .per-price-control i {*/
+    /*width: 25px;*/
+    /*height: 20px;*/
+    /*line-height: 20px;*/
+    /*float: left;*/
+    /*text-align: center;*/
+    /*font-size: 13px;*/
+/*}*/
 section.hotelInfo_numb_people {
     /*border: none;*/
     border-bottom: 1px solid #ddd;
