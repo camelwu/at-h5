@@ -1820,5 +1820,7 @@ i{
     margin-left: 5px;
 }
 
-
+#login_btn, #register_btn{
+    font-size: 1.5rem;
+}
 
