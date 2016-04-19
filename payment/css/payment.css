@@ -136,8 +136,6 @@
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
-    display: flex;
-    justify-content: space-between;
     margin-left: 20px;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -183,6 +181,7 @@
     display: inline-block;
     height: 10px;
     margin-right: 1px;
+    margin-left: 10px;
 }
 .p-ul2 li span.phone{
     position: relative;
@@ -490,6 +489,8 @@
     height: 6px;
     margin-left: 1px;
     margin-top: 5px;
+    right: 20px;
+    position: absolute;
     background-position: 73.5% 7%;
 }
 /*÷ß∏∂ ß∞‹“≥Ω· ¯*/
