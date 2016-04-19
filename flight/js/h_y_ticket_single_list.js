@@ -362,6 +362,7 @@ var ticketSingle = {
         this.eventHandler();
         return;
     },
+
     loadMoreHandler:function(pageNo,pageCount){
         var loadMoreBtn = document.getElementById("loadMore");
         loadMoreBtn.innerHTML = "点击加载更多";
@@ -370,12 +371,14 @@ var ticketSingle = {
             loadMoreBtn.innerHTML = "没有更多数据了";
         }
     },
+
     loadMoreBtnEvent:function(){
         var loadMoreBtn = document.getElementById("loadMore");
         this.addHandler(loadMoreBtn,"click",function(){
             ticketSingle.loadMoreData();
         })
     },
+
     callRender:function(arg){
         var paraObj = {},that = ticketSingle;
         paraObj.IsDirectFlight = arg.directFly == 'unlimitedPlane'?'false':'true';
@@ -411,6 +414,7 @@ var ticketSingle = {
               that.initLeftState.middle!=temObj.middle?document.querySelector('#fo_ra i').className='red-tip':document.querySelector('#fo_ra i').className='';
               that.initLeftState.right!=temObj.right?document.querySelector('#fo_lo i').className='red-tip':document.querySelector('#fo_lo i').className='';
     },
+
     alertNoFlightNotice:function(citys,type){
         var div = document.createElement('div'),allEleWrap = document.querySelector('.all-elements'),backButton,that = ticketSingle;
         var arrowIcon = type =='single'?'direction-single':'direction-double';
@@ -429,6 +433,7 @@ var ticketSingle = {
         })
 
             },
+
     eventHandler:function(){
         var oLis =  document.querySelectorAll('.seat-detail'),that = ticketSingle,shadowBox = document.querySelector('#r-shadow'),
             filterModal=document.querySelector('#filter-modal'),timeModal = document.querySelector('#time-modal'),priceModal = document.querySelector('#price-modal');
@@ -456,6 +461,7 @@ var ticketSingle = {
             this.style.display = 'none';
         });
     },
+
     taxHandler:function(){
         var priceModal = document.querySelector('#price-modal');
         this.addHandler(priceModal, 'click', function(event){
@@ -498,6 +504,7 @@ var ticketSingle = {
             shadowBox.style.display = 'none';
         });
     },
+
     loadMoreData:function(){
         var  that = ticketSingle;
          var loadMore = document.getElementById("loadMore");
@@ -512,6 +519,7 @@ var ticketSingle = {
             that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler,true);
         }
     },
+
     handler1:function(arg){ //后台请求
         var that = ticketSingle;
         that.backParaObj = arg;
@@ -519,12 +527,14 @@ var ticketSingle = {
         that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
         console.log(arg)
     },
+
     handler2:function(arg){ //自己缓存的数据重新展现
         var that = ticketSingle;
         that.backParaObj = arg;
         that.changeFlightList(that.lastBackData, that.backParaObj.hasTax);
         console.log(arg)
     },
+
     fixColor:function(){
         var lineMaxDate = new Date().getFullYear()+1+'/'+(new Date().getMonth()+1)+'/'+new Date().getDate();
         var oDivs = document.querySelectorAll('.unit');
@@ -532,6 +542,7 @@ var ticketSingle = {
           oDivs[1].className = 'unit next-day disabled-date-choose';
         }
     },
+
     init:function(){
         var backParaObj = this.parseUrlPara(document.location.search, true);
         var generatedCount = 0,that = ticketSingle;

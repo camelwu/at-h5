@@ -577,6 +577,7 @@ var  ticketIndexModal = {
            if(iCityData!==null&&iCityData!=undefined){
                createEle(iCityData);}
        },
+
        historyChooseHandler:function(arg,type){
           var ul = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele ul'):document.querySelector('.i-his-city-ele ul');
           var outLi = document.querySelector('.domestic-city').style.display =='block'?document.querySelector('.d-his-city-ele'):document.querySelector('.i-his-city-ele');
@@ -615,7 +616,7 @@ var  ticketIndexModal = {
                    n =  dCityData.data;
                    n.push(arg[0]);
                    n = n.distinct();
-                   n =  n.length>3?n.slice(1):n;
+                   n = n.length>3?n.slice(1):n;
                }
                that.storageUtil.set('dHisCity',{type:"demestic",data:n})
            }else{
@@ -629,12 +630,14 @@ var  ticketIndexModal = {
                }
                that.storageUtil.set('iHisCity',{type:"international",data:n})
            }
-
+           console.log(n)
            for(var m = 0; m < n.length; m++){
                liStr +='<li class="city-content-item focus">'+n[m]+'</li>'
            }
            ul.innerHTML =liStr;
-           outLi.style.display ='block';},
+           outLi.style.display ='block';
+       },
+
        eventHandle2:function(){
            var that = ticketIndexModal;
            var outDiv = document.querySelector('.city-list-choose');
