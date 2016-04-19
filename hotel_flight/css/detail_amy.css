@@ -132,7 +132,7 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 .jpay-tit p{ line-height:40px; font-size:16px;}
 .jpay-tit p.hadpay{ color:#38b2a9; text-align:center;}
 .jpay-tit p.willpay{ color:#fb6a21;}
-.jpay-tit p.willpay span{ float:right; color:#fdb330; font-size:14px;font-weight:normal;}
+.jpay-tit span.willpay-span{ color:#fdb330; font-size:14px;font-weight:normal;display:inline-block;  width: 42%;  position: absolute;top:6px;  right:0;}
 .jpay-t{ height:36px;padding:0 15px; border-top:1px solid #dedede; border-bottom:1px solid #dedede;}
 .jpay-t i,.jpay-t p{ float:left;}
 .jpay-t a{ float:right; color:#fdb330; font-size:12px;}
