@@ -947,7 +947,7 @@ section[class^="hotelInfo_numb"] .per-price-control i {
 
 section[class^="hotelInfo_numb"] .numbList {
     margin-left: 70px;
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
     overflow: hidden;
 }
 

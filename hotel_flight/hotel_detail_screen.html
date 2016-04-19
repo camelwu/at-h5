@@ -34,33 +34,34 @@
     <div class="jhf-nav jlist-nav">
         <a class="j-back jpa" href="javascript:window.history.go(-1);"><i></i></a>
         <div class="j-title">
-            <p class="bigtit">酒店（共50家）</p>
+            <p class="bigtit">酒店（共<span id="totalHotels"></span>家）</p>
         </div>
     </div>
     <!--content-->
     <div class="j-content jpr">
-        <ul class="jlist">
-        	<li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>0</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
+        <ul class="jlist" id="hj_jList">
+                <li class="cur">
+                    <img class="jimg" src="../images/hotelListNo.jpg" data-src="{%= hotelPictureURL %}" alt="">
+                    <dl class="imgrt">
+                        <dt>{%= hotelName %}</dt>
+                        <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
+                        <dd>
+                            <span>{%= starRating %}星级</span>
+                            <span class="wifi"></span>
+                            <span class="car"></span>
+                        </dd>
+                        <dd>
+                            <span>{%= city %}</span>
+                            <div class="price">
+                                <span>+</span>
+                                <span>￥</span>
+                                <span>{%= avgRatePerPax %}</span>
+                            </div>
+                        </dd>
+                    </dl>
+<!--                    <i class="active"></i>-->
+                </li>
+<!--
             <li class="hotelli">
             	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
                 <dl class="imgrt">
@@ -82,216 +83,8 @@
                 </dl>
                 <i class="active"></i>
             </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>1908</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price reduce">
-                            <span>-</span>
-                            <span>￥</span>
-                            <span>1908</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>0</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>100</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>1908</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price reduce">
-                            <span>-</span>
-                            <span>￥</span>
-                            <span>1908</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>0</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>100</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>1908</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price reduce">
-                            <span>-</span>
-                            <span>￥</span>
-                            <span>1908</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
+-->
+           
         </ul>
 	</div>
 </div>
@@ -381,6 +174,9 @@
 
 
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="js/hf_hotelList.js"></script>
 <script>
 $(function(){
     $('.jlist li').on('click',function(){

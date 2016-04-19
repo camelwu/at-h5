@@ -81,7 +81,7 @@ var ticketSeatChoose = {
                 TravellerInfo:[],
                 ContactDetail:{},
                 CurrencyCode: "CNY",
-                TotalFlightPrice: totalCountCost
+                TotalPrice: totalCountCost
             };
             that.reverseInformationCache = reverseInformationCache;
             that.testLogin();
