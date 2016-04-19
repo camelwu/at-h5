@@ -1,22 +1,5 @@
 *{margin:0;padding:0;}i{font-style:normal}
 /*支付页面开始*/
-.header{
-    background:white;
-    color: black;
-}
-.icon-back{
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    top:8px;
-    left:10px;
-    color:black;
-    line-height: 68px;
-    background-image: url(../../images/hotel_flight/back.png);
-}
-.header h3{
-    color: #999;
-}
 .android-relative{
     position: relative;
 }
