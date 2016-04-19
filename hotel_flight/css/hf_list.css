@@ -477,7 +477,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     position: relative;
     background: #FFFFFF;
     overflow: hidden;
-    margin-bottom: 0.8rem;
+    /*margin-bottom: 0.8rem;*/
     border-top: 1px solid #dedede;
     border-bottom: 1px solid #dedede;
 }
@@ -521,6 +521,16 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .air-tickets-detail-berths .go-tip {
     width: 100%;
     position: relative;
+}
+.price-up{
+    width:100%;
+    background: #dedede;
+    text-align: center;
+    padding: 0.8rem 0;
+    color:#fff;
+}
+.price-up span{
+    color:#fb6a22;
 }
 .go-info {
     min-height: 6rem;
@@ -637,11 +647,6 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     position: static;
 }
 .end-time-info .tip-add-days {
-    /*display: inline-block;*/
-    /*float: right;*/
-    /*width: 28.55px;*/
-    /*margin-top: -3px;*/
-    /*font-size: 10px;*/
     position: absolute;
     right: 0;
     top: 4px;
@@ -749,6 +754,138 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     margin-top: 6px;
     margin-bottom: 5px;
     background-position: -167px -23px;
+}
+#r-shadow {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 104;
+    display: none;
+}
+.reset-action .reset-action-item {
+    padding: 0 1.0rem;
+    height: 4.0rem;
+    width: 33.3%;
+    float: left;
+    line-height: 4.0rem;
+    text-align: center;
+    font-size: 1.6rem;
+    background: #e9e9e9;
+}
+.reset-action div:first-child {
+    text-align: left;
+}
+.reset-action div:last-child {
+    text-align: right;
+}
+.reset-action-wrap .hot {
+    color: rgb(255, 180, 19);
+}
+.reaction-detail {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    border-top: 1px solid #d0d0d0;
+}
+#filter-bottom {
+    list-style: none;
+    width: 26%;
+    float: left;
+    height: 100%;
+    background: #e9e9e9;
+    margin-bottom: 0;
+}
+#filter-bottom li {
+    list-style: none;
+    width: 100%;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    text-align: center;
+    border-bottom: 0.1rem solid #d0d0d3;
+    margin-bottom: 0;
+    background: #e9e9e9;
+}
+#filter-bottom li.clear-background {
+    background: #FFFFFF;
+}
+.reaction-detail .detail-list {
+    width: 73.9%;
+    float: left;
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+}
+.reaction-detail .detail-list ul, .reaction-detail .detail-list ul li {
+    list-style: none;
+}
+.reaction-detail .detail-list ul.add {
+    width: 100%;
+    padding: 0 1.0rem;
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow-y: scroll;
+}
+.reaction-detail .detail-list ul.add li {
+    margin-bottom: 0;
+    width: 100%;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    text-align: center;
+    border-bottom: 0.1rem solid #d0d0d3;
+    text-align: left;
+}
+.reaction-detail .detail-list ul.add .active {
+    color: rgb(255, 180, 19);
+}
+.reaction-detail .detail-list ul.add .active b {
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    margin-left: -78px;
+    margin-top: 12px;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position: 77% 4%;
+    float: right;
+}
+#time-modal, #price-modal {
+    width: 100%;
+    position: fixed;
+    bottom: -126%;
+    background: #FFFFFF;
+    z-index: 105;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+#time-modal li, #price-modal li {
+    list-style: none;
+    margin-bottom: 0;
+    width: 100%;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    text-align: center;
+    border-bottom: 0.1rem solid #d0d0d3;
+    position: relative;
+}
+
+#time-modal .active, #price-modal .active {
+    color: rgb(255, 180, 19);
+}
+
+#time-modal .active b, #price-modal .active b {
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    position: absolute;
+    left: 32%;
+    top: 0.9rem;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position: 77% 4%;
 }
 /*   机票列表页结束    */
 
