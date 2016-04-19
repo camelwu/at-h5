@@ -119,6 +119,7 @@
     padding: 8px 0;
     overflow: hidden;
     position: relative;
+    min-height: 98px;
 }
 .ho_pic{
     width: 84px;
@@ -148,6 +149,9 @@
 .score-person-number, .score-person-number span{
     font-size: 1.2rem;
     color: #999;
+}
+.score-person-number{
+    min-height: 24px;
 }
 .score-value{
     font-size:1.5rem!important;
