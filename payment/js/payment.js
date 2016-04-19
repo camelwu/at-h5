@@ -13,7 +13,8 @@
             "Hotle":{id: 1, name: "酒店", detailCode: "0038", payMentCode: "022"},
             "Flight":{id: 2, name: "机票", detailCode: "0038", payMentCode: "022"},
             "Scenic":{id: 3, name: "景点", detailCode: "0095", payMentCode: "0093"},
-            "Tour":{id: 4, name: "酒+景", detailCode: "0206", payMentCode: "022"}
+            "Tour":{id: 4, name: "酒+景", detailCode: "0206", payMentCode: "022"},
+            "FlightHotle":{id: 5, name: "机+酒", detailCode: "50100007", payMentCode: "50100005"}
         };
 
         var _init={
@@ -24,6 +25,11 @@
               })
 
               $(".credit-session .go-back").on("click",function(){
+                  $(".paymentype-session").show();
+                  $(".credit-session").hide();
+
+              })
+              $(".p-but").on("click",function(){
                   $(".paymentype-session").show();
                   $(".credit-session").hide();
 
@@ -56,9 +62,9 @@
         };
         /*生成HTML片段*/
         var _generateHtml=function(type,data){
-            if(type.id==3){
-                var html = template("tpl_scenic_detail", data);
-                $(".pay-type").append(html);
+            if(type.id==5){
+                var html = template("tpl_flighthotel_detail", data.data);
+                $(".p-home").append(html);
             }
             else if(type.id==2){
 
@@ -73,8 +79,7 @@
             _getOrderData(type,bookingRefNo,3,function(data){
                 vlm.init();
                 if (data.success) {
-
-
+                    _generateHtml(type,data);
                 }
                 else{
                     jAlert("网络请求错误！");
