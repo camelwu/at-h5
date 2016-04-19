@@ -223,7 +223,7 @@ var ticketOrder = {
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    //document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
+                    document.location.href = 'pay_detail.html?bookingRefNo='+orderResultInfo.bookingRefNo;
                 }else{
                      if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
                          jConfirm('预定失败,需要重新预定?', '提示', function(status){
