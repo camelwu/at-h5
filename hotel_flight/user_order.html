@@ -18,14 +18,13 @@
 		<link href="../styles/style.css" rel="stylesheet" />
 		<link href="../styles/tips.css" rel="stylesheet" />
 		<link href="css/order.css" rel="stylesheet" />
-
 	</head>
 	<body>
-		<!--<div id="preloader">-->
-			<!--<div id="status">-->
-				<!---->
-			<!--</div>-->
-		<!--</div>-->
+		<div id="preloader">
+			<div id="status-h">
+				<p class="center-text"></p>
+			</div>
+		</div>
 		<div class="header" id="vlm-login">
 			<a href="javascript:;" class="header-back" id="uo_back">
                 <i class="icons go-back"></i>
@@ -107,6 +106,7 @@
 								<span>姓/名  BAI/LISA</span>
 								<span>护照   12345678910   女</span>
 							</div>
+							<em></em>
 						</li>
 					</ul>
 				</div>
@@ -114,32 +114,32 @@
 					<ul>
 						<li class = "order-llist1">
 							<span>联系人</span>
-							<span>与第一出行人相同</span>
-							<i></i>
+							<span class="contact-same">与第一出行人相同</span>
+							<i class="hfcont-tip"></i>
 						</li>
 						<li class = "order-llist2">
 							<input type="text"placeholder="姓（如：Zhang）"/>
 							<span class="order-line"></span>
-							<input type="text"placeholder="姓（如：Zhang）"/>
+							<input type="text"placeholder="名（如：Wei）"/>
 						</li>
 						<li class = "order-llist3">
 							<span class = "order-ls">
-								<span>手机号</span>
+								<span class="order-ls-cell">手机号</span>
 								<span class = "order-last">+86</span>
 								<i></i>
 							</span>
 							<span class="order-line"></span>
-							<input type="text" placeholder="用于接收通知"/>
+							<input type="text" placeholder="用于接收通知" class="fr"/>
 						</li>
 						<li class = "order-llist4">
-							<span>E-mail</span>
+							<span class="fl">E-mail</span>
 							<input type="text" placeholder="用于接收通知"/>
 						</li>
 					</ul>
 				</div>
 				<div class="order-bg order-prompt">
 					<span>
-						<i></i>
+						<i class="agree-no"></i>
 						<span>我已阅读并同意 <u>购票须知</u>和 <u>酒店入住</u>须知</span>
 					</span>
 				</div>
@@ -149,16 +149,224 @@
 					<span class = "num1">订单总额: </span><span class="card1">￥7816</span>
 				</div>
 				<p class="order-detail">
-					<span class="">明细</span><i></i>
+					<span class="">明细</span><i class="detail-fale"></i>
 				</p>
 				<input type="button" value="预定" class = "order-submit"/>
 			</div>
 		</div>
 	<script src="../js/lib/jquery-1.10.2.min.js"></script>
+	<!--填写订单-->
+	<script src="../js/lib/jquery.alert.js"></script>
+	<script src="../js/lib/vlm.js"></script>
+	<script src="../js/lib/template.js"></script>
+	<script src="../js/country_list.js"></script>
+	<script src="js/hf_orderdata.js"></script>
 	<script>
-		$('.order-submit').click(function(){
-			window.location.href = 'order_detail.html';
-		})
+//		$('.order-submit').click(function(){
+//			window.location.href = 'order_detail.html';
+//		})
 	</script>
+	<!--模板机票-->
+	<script id="order-flight" type="text/template" >
+		<ul>
+			<li class = "order-lis1">
+				<span class="order-lis1-l">
+					<i></i>
+					<span>机票</span>
+				</span>
+				<span class="order-lis1-r">
+					<span>详情</span>
+					<i></i>
+				</span>
+			</li>
+			<li class = "order-lis2">
+				<span class="order-lis2-l">
+					<i></i>
+					{% var d1= new Date(),arr=flightInfo.flightLeaveStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %}
+					<span class = "order-ml">{%=flightInfo.flightLeaveStartDate.substring(5,10)%}</span>
+					<span>{%='周'+arr1[d1.getDay()]%}</span>
+					<span class="airport-recycle">{%=flightInfo.segmentsLeave[0].airportNameFrom+'-'+flightInfo.segmentsLeave[0].airportNameTo%}</span>
+				</span>
+				<span class="order-lis2-r">
+					<i></i>
+					<span>{%=flightInfo.segmentsLeaveTotalTravelTimeString%}</span>
+				</span>
+			</li>
+			<li class = "order-lis3">
+				<span class="order-lis3-l">
+					<i></i>
+					{% var d1= new Date(),arr=flightInfo.flightReturnStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %}
+					<span class = "order-ml">{%=flightInfo.flightReturnStartDate.substring(5,10)%}</span>
+					<span>{%='周'+arr1[d1.getDay()]%}</span>
+					<span class="airport-recycle">{%=flightInfo.segmentsReturn[0].airportNameFrom+'-'+flightInfo.segmentsReturn[0].airportNameTo%}</span>
+				</span>
+				<span class="order-lis3-r">
+					<i></i>
+					<span>{%=flightInfo.segmentsReturnTotalTravelTimeString%}</span>
+				</span>
+			</li>
+			<li class = "order-lis4">
+				<span>
+					头等舱+往返舱
+				</span>
+			</li>
+		</ul>
+	</script>
+	<!--模板机票结束-->
+	<script id="order-hotel" type="text/template" >
+
+	</script>
+	<script>
+		(function () {
+
+			//加载动画
+			function package_detail() {
+
+				$(window).load(function () {
+					$("#status").fadeOut();
+					$("#preloader").delay(400).fadeOut("medium");
+				});
+			};
+			package_detail();
+
+			//初始化
+			function init() {
+
+				var data=JSON.parse(localStorage.flightHotelFirstResult);
+				console.log(data);
+				function date_format(str){
+					var arr=str.split('-');
+					var oDate=new Date();
+					oDate.setFullYear(arr[0],arr[1],arr[2]);
+					return(oDate.getDay());
+				}
+				//机票详情
+
+				var flightdet=template('order-flight',data);
+				$('.order-plane').html(flightdet);
+			}
+
+			init();
+
+			//下单
+			var orderSub=document.querySelector('.order-submit');
+			function hf_order(obj){
+				obj.onclick=function(){
+
+					var Parmeters = {
+						"Parameters": {
+							"SetID": 1002001,
+							"CacheID": 1013226,
+							"CityCodeFrom": "SIN",
+							"CityCodeTo": "BKK",
+							"DepartDate": "2016-04-25T00:00:00",
+							"ReturnDate": "2016-04-27T00:00:00",
+							"HotelID": 96,
+							"RoomID": 108450,
+							"MemberId": "84587",
+							"RoomDetails": [{"Adult": 2, "ChildWithoutBed": [6]}, {"Adult": 1}, {"Adult": 1}],
+							"TravellerInfo": [{
+								"PassengerType": "ADULT",
+								"SexCode": "Ms",
+								"FirstName": "fr1",
+								"LastName": "111",
+								"DateOfBirth": "1990-01-09T00:00:00",
+								"CertificateInfo": {
+									"IdType": 1,
+									"IdCountry": "CN",
+									"IdNumber": "123",
+									"IdActivatedDate": "2017-01-09T00:00:00"
+								},
+								"CountryCode": "CN"
+							}, {
+								"PassengerType": "ADULT",
+								"SexCode": "Ms",
+								"FirstName": "ddd",
+								"LastName": "2222",
+								"DateOfBirth": "1990-01-09T00:00:00",
+								"CertificateInfo": {
+									"IdType": 1,
+									"IdCountry": "CN",
+									"IdNumber": "895333",
+									"IdActivatedDate": "2017-01-09T00:00:00"
+								},
+								"CountryCode": "CN"
+							}, {
+								"PassengerType": "ADULT",
+								"SexCode": "Ms",
+								"FirstName": "kli",
+								"LastName": "2222",
+								"DateOfBirth": "1991-01-09T00:00:00",
+								"CertificateInfo": {
+									"IdType": 1,
+									"IdCountry": "CN",
+									"IdNumber": "453333",
+									"IdActivatedDate": "2017-01-09T00:00:00"
+								},
+								"CountryCode": "CN"
+							}, {
+								"PassengerType": "ADULT",
+								"SexCode": "Ms",
+								"FirstName": "jkk",
+								"LastName": "df",
+								"DateOfBirth": "1989-01-09T00:00:00",
+								"CertificateInfo": {
+									"IdType": 1,
+									"IdCountry": "CN",
+									"IdNumber": "5833333",
+									"IdActivatedDate": "2017-01-09T00:00:00"
+								},
+								"CountryCode": "CN"
+							}],
+							"ContactDetail": {
+								"SexCode": "Ms",
+								"FirstName": "111",
+								"LastName": "111",
+								"Email": "1111",
+								"CountryNumber": "86",
+								"MobilePhone": "12385692356"
+							},
+							"CurrencyCode": "CNY",
+							"TotalPrice": "9664"
+						},
+						"ForeEndType": 3,
+						"Code": "50100004"
+					}
+					console.log(Parmeters);
+					vlm.loadJson("", JSON.stringify(Parmeters), hotel_flight_back);
+				};
+			}
+			hf_order(orderSub);
+
+			//下单回调函数
+			function hotel_flight_back(ret){
+
+				var json=ret;
+				console.log(json);
+				if(json.success)
+				{
+					alert(1);
+					window.localStorage.BookingRefNo=json.BookingRefNo;
+					window.localStorage.BookingID=json.BookingID;
+				}
+			}
+
+
+
+
+
+
+
+
+
+		})();
+	</script>
+
+
+
+
+
+
+
 	</body>
 </html>
