@@ -79,7 +79,7 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 
 /*ji+jiu hotel seach list jyj*/
 .jlist-nav .j-title{ margin-right:10px;}
-.jlist { background:#fff;border-top:1px solid #dfdfdd; padding-bottom:40px;}
+.jlist { background:#fff;border-top:1px solid #dfdfdd;}
 .jlist li{ border-bottom:1px solid #dfdfdd; height:93px; position:relative; margin-bottom:0;}
 .jlist li .jimg{ width:82px; height:92px; position:absolute; left:0; top:0;}
 .jlist .imgrt{ margin:0 15px 0 92px;}
