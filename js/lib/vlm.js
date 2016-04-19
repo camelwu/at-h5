@@ -109,8 +109,7 @@
 				l_login(c);
 				return false;
 			} else {
-				l_find();
-				//return true;
+				return l_find(c);
 			}
 		}, _Utils = {
 			format_add_zero : function(time) {
@@ -786,10 +785,10 @@
 				});
 			}
 			//var AjaxUrl = url+ "?jsoncallback=?";
-			//$.ajax(url, data, mycallback);
+			url = url?url:_api;
 			$.ajax({
 				type : "post",
-				url : _api + '?rnd=' + Math.random(),
+				url : url + '?rnd=' + Math.random(),
 				timeout : 1000 * 60,
 				data : data,
 				contentType : 'application/json;charset=utf-8',
@@ -873,20 +872,23 @@
 				lStorage.email = lStorage.email ? lStorage.email : document.getElementById("email-label").value;
 			}
 		}, l_find = function(mycall) {
-			var email = localStorage.email,phone = localStorage.phone,memberid = localStorage.memberid;
-			var Parameters={
-		        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
+			var email = localStorage.email,phone = localStorage.phone,memberid = localStorage.memberid,back=false,
+			udata={
+		        "Parameters": "{\"CultureName\":\"zh-CN\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
 		        "ForeEndType": 3,
 		        "Code": "0053"
 		    };
-		    loadJson("",JSON.stringify(Parameters), function(myJson){
+		    loadJson("",JSON.stringify(udata), function(myJson){
 		    	if (myJson.success) {
-
-			    	if(mycall)
-			    		mycall();
-			    	return true;
+			    	back= true;
+		    	}else{
+		    		if(mycall){
+			    		var c = eval(mycall);
+			    		c();
+		    		}
 		    	}
-		    });
+		    },true);
+		    return back;
 		}, _choice = function(elementId, f, t, tid, isNeedPassport, isMulSelect, numofAdult, numofChlid, id, departDate) {
 			//if(arguments.length<1){return ;}
 			//var arg = arguments.callee.slice(this);
