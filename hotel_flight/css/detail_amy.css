@@ -58,7 +58,7 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 .jhf-mes .jhf-drg p span{ display:inline-block; line-height:4.8rem;}
 .jhf-mes .jhf-drg p i{ background:url(../../images/ui/icons1.png) no-repeat; background-position:-73px -33px; background-size:400px 120px; display:inline-block; width:18px; height:19px; margin-left:2px; position:relative; top:3px;}
 .jhf-mes .jhf-drg p i.cur{ background-position:-48px -33px;}
-.jhf-mes .lfword{ padding-left:15px;}
+.jhf-mes .lfword{ padding-left:15px; margin-right:90px; }
 .jhf-mes .lfword p:nth-child(1){ font-size:1.4rem; margin-bottom:-0.4rem; padding-top:0.6rem;}
 .jhf-mes .lfword p:nth-child(2){ color:#999;}
 .jhf-mes ol.show{ background:#f5f4f9; display:none;}
