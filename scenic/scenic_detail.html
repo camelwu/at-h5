@@ -362,8 +362,8 @@
         //判断是否登录
         MT.CCheckLogin = function(packageId,RequiredPickupPoint,Adult,fail){
           var that=this,returnUrl = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
+           console.log(vlm.checkLogin(returnUrl))
             if(vlm.checkLogin(returnUrl)){
-//                debugger;
                 window.location.href = returnUrl;
             }
         }
