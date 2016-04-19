@@ -120,7 +120,7 @@ var ticketSeatChoose = {
     },
 
     testLogin:function(){
-        if(vlm.checkLogin('ticketSeatChoose.testLogin')){
+        if(vlm.checkLogin('ticketSeatChoose.testLogin', ticketSeatChoose.testLogin)){
             ticketSeatChoose.reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
             ticketSeatChoose.storageUtil.set('reverseInformationCache',ticketSeatChoose.reverseInformationCache);
             window.top.location.href='../flight/ticket_order.html';

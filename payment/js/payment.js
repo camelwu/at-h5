@@ -18,11 +18,15 @@
 
         var _init={
           bindPaymentTypeEvent:function(){
-              $(".paymentType b").on("click",function(){
-                  $(".paymentType b").removeClass("circle-choi");
-                  $(".paymentType b").addClass("circle-chois");
-                  $(this).removeClass("circle-chois");
-                 $(this).addClass("circle-choi");
+              $(".p-pay li").on("click",function(){
+                    $(".paymentype-session").hide();
+                    $(".credit-session").show();
+              })
+
+              $(".credit-session .go-back").on("click",function(){
+                  $(".paymentype-session").show();
+                  $(".credit-session").hide();
+
               })
           }
         }
