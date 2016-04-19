@@ -381,7 +381,7 @@
 
 				//中文姓名
 				ChineseName : function(name) {
-					var pattern = /^([\u4e00-\u9fa5a-zA-Z]){2,7}$/
+					var pattern = /^([\u4e00-\u9fa5a-zA-Z]){2,7}$/;
 					//只能是中文，长度为2-7位
 					if (pattern.test(name)) {
 						return true;
@@ -391,7 +391,7 @@
 				},
 				//六位数字验证码
 				code : function(name) {
-					var pattern = /^[0-9]{6}$/
+					var pattern = /^[0-9]{6}$/;
 					//只能是中文，长度为2-7位
 					if (pattern.test(name)) {
 						return true;

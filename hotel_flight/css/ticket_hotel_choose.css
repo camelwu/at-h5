@@ -220,8 +220,8 @@
     font-size: 10px;
 }
 .palss-price-button{
-    float: right;
-    position: relative;
+    position: absolute;
+    right: 15px;
 }
 .palss-price-button span{
     color: #fb6a22;

@@ -59,13 +59,17 @@ var ticketHotel = {
     eventHandler: function () {
         var detailEle = document.querySelector('.detail-text-arrow'), that = ticketHotel, shadowEle= document.querySelector('.shadow');
         var detailLine = document.querySelector('.summary-cost-modal'), icon=document.querySelector('.icon-arrow');
-        var roomOuter = document.querySelector('.room-ul-outer');
+        var roomOuter = document.querySelector('.room-ul-outer'), reBack = document.querySelector('.edit-button');
         var hide = function(){ detailLine.style.bottom = "-50px";
             shadowEle.style.display = 'none';
             icon.className="icon-arrow arrow-down";};
         var show = function(){ detailLine.style.bottom = "50px";
             shadowEle.style.display = 'block';
             icon.className="icon-arrow arrow-up";};
+        this.addHandler(reBack, 'click', function (){
+           window.location.href = 'index.html';
+        });
+
         this.addHandler(detailEle, 'click', function (){
             var event = event || window.event;
             var target =target||event.srcElement;
