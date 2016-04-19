@@ -33,41 +33,27 @@
     <link href="../css/date_select.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!--<div id="preloader">-->
-    <!--<div id="status-h">-->
-        <!--<p class="center-text"></p>-->
-    <!--</div>-->
-<!--</div>-->
-<!-- Page Content-->
+<div id="preloader">
+    <div id="status-h">
+        <p class="center-text"></p>
+    </div>
+</div>
+<!--1支付方式-->
 <div class="paymentype-session snap-content android-relative" style="display: block">
     <div class="header">
         <a href="javascript:;" class="header-back">
             <i class="icons go-back"></i>
         </a>
-        <h3>支付</h3>
+        <h3>订单支付</h3>
         <a href="javascript:;" class = "header-call">
             <i></i>
         </a>
     </div>
-    <!--   酒店信息   -->
+    <!--   详情信息   -->
     <div class = "p-home">
-        <ul class="p-hotelinfo">
-            <li id="jp_hotel_name">机票+酒店</li>
-            <li id="jp_date">
-                <span class="hf-f"><i class = "hf-go"></i></span>
-                <span class="hf-f"><i class = "hf-back"></i></span>
-            </li>
-            <li id="jp_house_type">
-                <div class = "hf-anum">
-                    <span>人数:</span>
-                    <span><i>2</i>成人</span>
-                    <span><i>1</i>儿童</span>
-                </div>
-            </li>
-            <li> 订单总价：<i>￥143</i></li>
-        </ul>
+
     </div>
-    <!--   支付方式   -->
+    <!-- 支付方式   -->
     <div class="p-pay">
         <ul class="p-ul1">
             <li>
@@ -93,7 +79,7 @@
         </ul>
     </div>
 </div>
-
+<!--2信用卡信息-->
 <div class="credit-session android-relative" style="display: none">
     <div class="header">
         <a href="javascript:;" class="header-back">
@@ -114,7 +100,7 @@
         <ul class="p-ul2">
             <li>
                 <div>信用卡号</div>
-                <input type="text" value="" id="jp_card_number" maxlength="20" placeholder="请输入信用卡卡号">
+                <input type="text" value="" id="jp_card_number" maxlength="20" placeholder="输入信用卡卡号">
             </li>
             <li>
                 <div>持卡人姓名</div>
@@ -124,25 +110,26 @@
                 <div>发卡银行</div>
                 <input type="text" value="" id="jp_bank_name" placeholder="招商银行">
             </li>
-            <li  >
+            <li class="countries-wrap">
                 <div>发卡国家</div>
-                <input type="text" value="" id="jp_bank_country" placeholder="中国">
-                <span>∨</span>
+                <div><span class="country-btn CardCountryCode CardIssuanceCountryCode" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
+                <b class="icons s-xiala1"></b>
                 <!--<a href="#" class="icons open-pho" ></a>-->
                 <!--<div class="second-div" ><span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" >中国</span></div>-->
             </li>
             <li>
                 <div>有效期</div>
-                <input type="text" value="" id="jp_limit_time" readonly placeholder="月/年，如：09/12">
+                <input type="text" value="" placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate" readonly="">
             </li>
             <li>
                 <div>安全码</div>
                 <input type="text" value="" id="jp_safe_code" placeholder="请输入签名栏末尾最后3位">
             </li>
-            <li>
+            <li class="fill-tel">
                 <div>持卡人手机号</div>
-                <span class = "phone">+86 <i>∨</i></span>
-                <input type="text " placeholder="用于接收通知"/>
+                <span class="tel-btn phone">+86</span>
+                <b class="icons s-xiala1"></b>
+                <input type="tel" value placeholder="用于接收通知" class="PhoneNo" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
             </li>
             <li>
                 <div>账单城市</div>
@@ -156,16 +143,17 @@
                 <div>邮政编码</div>
                 <input type="text" placeholder="请输入邮政编码"/>
             </li>
-            <li>
+            <li class="countries-wrap">
                 <div>持卡人国家</div>
-                <input type="text" placeholder="中国"/>
-                <span>∨</span>
+                <div><span class="country-btn" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
+                <b class="icons s-xiala1"></b>
             </li>
         </ul>
         <hr width="100%" size="1px" color="#dddddd">
-        <div class="p-but" id="p-but">支付</div>
+        <div class="p-but">支付</div>
     </div>
 </div>
+<!--信用卡信息-->
 <!--国籍选择开始-->
 <div class="all-elements country-cho-wrap">
     <div class="header">
@@ -191,10 +179,30 @@
 <!--国籍选择结束-->
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/plugins.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/scroller.js"></script>
 <script src="../js/country_list.js"></script>
+<script src="../js/countrytel_list.js"></script>
+<script src="../js/lib/template.js"></script>
+<script id="tpl_flighthotel_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>机票+酒店</l>
+        <li>
+            <span class="hf-f"><i class = "hf-go"></i><p>2015-01-08 17:32</p></span>
+            <span class="hf-f"><i class = "hf-back"></i><p>2015-01-11 17:32</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>2</i>成人</span>
+                <span><i>1</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：<i>￥{%=totalFlightPrice%}</i></li>
+    </ul>
+</script>
 
 </body>
 </html>
