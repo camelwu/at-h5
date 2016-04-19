@@ -785,10 +785,10 @@
 				});
 			}
 			//var AjaxUrl = url+ "?jsoncallback=?";
-			//$.ajax(url, data, mycallback);
+			url = url?url:_api;
 			$.ajax({
 				type : "post",
-				url : _api + '?rnd=' + Math.random(),
+				url : url + '?rnd=' + Math.random(),
 				timeout : 1000 * 60,
 				data : data,
 				contentType : 'application/json;charset=utf-8',
