@@ -267,14 +267,93 @@ var hf_search = {
     },
     //   页面跳转
     nextPage:function(){
-        $('#search-button').click(function(){
-            window.location.href = 'ticket_hotel_choose.html';
-        })
+        var exaddChild = document.getElementsByClassName('extraChild');
+        for (var v = 0; v < exaddChild.length; v++) {
+            if (exaddChild[v].style.display != 'none') {
+                var input = exaddChild[v].getElementsByClassName("inp-cage");
+                for (var w = 0; w < input.length; w++) {
+                    if(input[w].value == '')
+                    {
+                        jAlert('请输入儿童年龄!');
+                        return;
+                    }else if(input[w].value < 2|| input[w].value > 12) {
+                        jAlert('儿童年龄不符合标准!');
+                        return;
+                    }
+                }
+            }
+        }
+
+        var fromCity = $('.origin')[0].getAttribute('data-citycode');
+        var toCity = $('.destination')[0].getAttribute('data-citycode');
+        var departDate = $('#startData').innerHTML + 'T00:00:00';
+        var returnDate = $('#returnData').innerHTML + 'T00:00:00';
+        var roomDetails = [],temObj = {},childWithOutBed = [], childWithBed = [];
+        var room = $('.hotelInfo_numb_people');
+        for(var r = 0;r < room.length;r++){
+            var temAdultNum = parseInt(room[r].querySelector('#adult-people-number').innerHTML);
+            var temChildNum = parseInt(room[r].querySelector('.child-number').innerHTML);
+            var extraChild = room[r].querySelector('.extraChild');
+            var childChooseParent = extraChild.querySelectorAll('.numbList');
+            if(temAdultNum==1&&temChildNum==1){
+                childWithBed.push(room[r].querySelector('input').value);
+            }else if(temAdultNum==1&&temChildNum==2){
+                childWithBed.push(room[r].querySelectorAll('input')[0].value);
+                childWithOutBed.push(room[r].querySelectorAll('input')[1].value);
+            }
+            if(temAdultNum == 2||temAdultNum == 3){
+                for (var s = 0; s < childChooseParent.length; s++) {
+                    var ty = childChooseParent[s];
+                    var tt = ty.querySelector('.icon.noselect');
+                    if (temChildNum == 1) {
+                        if (tt.className.indexOf('ico_select') > -1) {
+                            childWithBed.push(ty.parentNode.querySelector('input').value);
+                        } else {
+                            childWithOutBed.push(ty.parentNode.querySelector('input').value)
+                        }
+                    }else if (temChildNum == 2){
+                        childWithBed.push(room[r].querySelectorAll('input')[0].value);
+                        childWithOutBed.push(room[r].querySelectorAll('input')[1].value);
+                    }
+                }
+                childWithBed.length > 0 ? temObj.childWithBed = childWithBed :
+                    void (0);
+                childWithOutBed.length > 0 ? temObj.childWithOutBed = childWithOutBed :
+                    void (0);
+            }
+            temObj.adult = temAdultNum;
+            roomDetails.push(temObj);
+        }
+        var allNum = 0;
+        var adultNum = 0;
+        var childNum = 0;
+        for (var kl = 0; kl < roomDetails.length; kl++) {
+            adultNum = adultNum + roomDetails[kl].adult;
+            if (roomDetails[kl]['childWithBed']) {
+                childNum = childNum + roomDetails[kl]['childWithBed'].length;
+            }
+            if (roomDetails[kl]['childWithOutBed']) {
+                childNum = childNum + roomDetails[kl]['childWithOutBed'].length;
+            }
+        }
+        allNum = adultNum + childNum;
+        var searchInfo = {
+            FromCity:fromCity,
+            ToCity:toCity,
+            DepartDate:departDate,
+            ReturnDate:returnDate,
+            PeopleNum:allNum,
+            AdultNum:adultNum,
+            ChildNum:childNum,
+            RoomInfo:roomDetails
+        };
+        localStorage.setItem('searchInfo', JSON.stringify(searchInfo));
+        window.location.href = 'ticket_hotel_choose.html';
     },
     init:function(){
         this.add_subtract();
         this.tangleCity();
-        this.nextPage();
     }
 };
 hf_search.init();
+$('#search-button').click(hf_search.nextPage);
