@@ -108,11 +108,17 @@ var ticketHotel = {
         });
 
         this.addHandler(detailEle, 'click', function (){
+            alert(1)
             var event = event || window.event;
             var target =target||event.srcElement;
+            event.stopPropagation();
+            event.cancelable = true;
             if(target.className=='detail'){
+                alert(2)
                 detailLine.style.webkitTransition = "all 300ms";
                 shadowEle.style.display=='block'?hide():show();
+            }else if(target.id=='confirm-button'){
+
             }
         });
         this.addHandler(document, 'click', function (){
@@ -163,13 +169,15 @@ var ticketHotel = {
     renderHandler:function(arg){
         var resultData = arg, that = ticketHotel;
         resultData  = result1;
-        this.cacheData = resultData;
-        this.cacheRoomData = resultData.data.hotelInfo.rooms;
-        console.log(resultData.data)
+
         if (resultData.success) {
             if (resultData.data == null) {
                 jAlert("抱歉暂时没有数据", "提示");
             } else {
+                this.cacheData = resultData;
+                this.cacheRoomData = resultData.data.hotelInfo.rooms;
+                console.log(resultData.data)
+                that.storageUtil.set('curFlightDetailInfo', resultData.data.flightInfo);
                 var temp_flightInfo = [
                     '<div class="trip-go">',
                     '<div class="title-date-address">',
@@ -361,7 +369,6 @@ var ticketHotel = {
                         result.flightReturnStartPlaneName = arg.segmentsReturn[arg.segmentsReturn.length-1].planeName;
                         result.flightReturnTransercity = (arg.segmentsReturn.length-1)+"次"
                     }
-
                     return result;
                 };
                 var hotelDateHandler = function(arg){
@@ -422,6 +429,70 @@ var ticketHotel = {
                 ReturnDate: "2016-05-15T00:00:00",
                 RoomDetails: [{Adult: "2", ChildWithoutBed: [6]}]
         };
+
+        var changedFlightInfo = {
+            "setID": 223456,
+                "cacheID": 1013262,
+                "segmentsLeaveTotalTravelTime": 225,
+                "segmentsLeaveTotalTravelTimeString": "2h25m",
+                "segmentsReturnTotalTravelTime": 225,
+                "segmentsReturnTotalTravelTimeString": "2h25m",
+                "cityCodeFrom": "SIN",
+                "cityCodeTo": "BKK",
+                "cityNameFrom": "香港",
+                "cityNameTo": "曼谷",
+                "isLeaveShareFlight": 0,
+                "isReturnShareFlight": 0,
+                "isInternationalFlight": 1,
+                "flightLeaveStartDate": "2016-05-10T16:00:00",
+                "flightLeaveEndDate": "2016-05-10T17:25:00",
+                "flightReturnStartDate": "2016-05-15T09:40:00",
+                "flightReturnEndDate": "2016-05-15T13:05:00",
+                "flightLeaveSpacingDay": 0,
+                "flightReturnSpacingDay": 0,
+                "segmentsLeave": [{
+                "airportCodeFrom": "SIN",
+                "airportCodeTo": "BKK",
+                "cityCodeFrom": "SIN",
+                "cityCodeTo": "BKK",
+                "airportNameFrom": "新加坡樟宜机场",
+                "airportNameTo": "曼谷苏瓦纳蓬国际机场",
+                "cityNameFrom": "新加坡",
+                "cityNameTo": "曼谷",
+                "airCorpCode": "SQ",
+                "airCorpName": "新加坡航空",
+                "flightNo": "976",
+                "departDate": "2016-05-10T16:00:00",
+                "arriveDate": "2016-05-10T17:25:00",
+                "planeType": "333",
+                "planeName": "空客 A330-300",
+                "marketingCarrierCode": "SQ",
+                "operatingCarrierCode": "SQ",
+                "operatingCarrierName": "新加坡航空"
+            }],
+                "segmentsReturn": [{
+                "airportCodeFrom": "BKK",
+                "airportCodeTo": "SIN",
+                "cityCodeFrom": "BKK",
+                "cityCodeTo": "SIN",
+                "airportNameFrom": "曼谷苏瓦纳蓬国际机场",
+                "airportNameTo": "新加坡樟宜机场",
+                "cityNameFrom": "曼谷",
+                "cityNameTo": "新加坡",
+                "airCorpCode": "SQ",
+                "airCorpName": "新加坡航空",
+                "flightNo": "973",
+                "departDate": "2016-05-15T09:40:00",
+                "arriveDate": "2016-05-15T13:05:00",
+                "planeType": "333",
+                "planeName": "空客 A330-300",
+                "marketingCarrierCode": "SQ",
+                "operatingCarrierCode": "SQ",
+                "operatingCarrierName": "新加坡航空"
+            }],
+                "directFlight": 0
+        };
+
 
         this.initParaObj = initParaObj;
         this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
