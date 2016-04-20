@@ -5,10 +5,16 @@
     var webkit = this;
     var core = function(){
 
+        //var _url ="http://10.6.11.20:1111/api/GetServiceApiResult";
         var _url ="http://10.6.11.20:8888/api/GetServiceApiResult";
-        //var _url ="http://10.6.11.20:8888/api/GetServiceApiResult";
+        //var _url ="http://123.56.190.34:8888/api/GetServiceApiResult";
         //var _url ="http://10.2.22.239:8888/api/GetServiceApiResult";
+        /**
+         * 存储历史记录
+         */
+        var items = [];
         var callback="";
+
         var citycode=[
             {   //scenic
                 city:{
@@ -24,6 +30,9 @@
             }
 
         ];
+        var XCache = function(){
+            return localStorage.getItem("XCache");
+        }
         /**
          * [private getcity]返回城市对象
          * @param code
@@ -104,40 +113,6 @@
                 return week;
             }
         };
-        /**
-         * 存储历史记录
-         */
-        var Queue = function(){
-            var items = [];
-            //向队列尾部添加一个或多个新的对象
-            this.enqueue = function (element) {
-                items.push(element);
-            }
-            //移除队列第一个
-            this.dequeue =function(){
-                return items.shift();
-            }
-            //返回队列中第一个元素
-            this.front = function(){
-                return items[0];
-            }
-            //队列中是否位空,空则返回true,否则返回false
-            this.isEmpty = function(){
-                return items.length == 0;
-            }
-            //清空队列
-            this.clear = function(){
-                items=[];
-            }
-            //返回队列返回个数
-            this.size = function(){
-                return items.length;
-            }
-            //显示队列
-            this.showrender = function(){
-                console.log(items.toString());
-            }
-        }
 
 
         /**
@@ -263,6 +238,38 @@
             return newArray;
         }
 
+        var setItems = function(item){
+            items = item;
+        }
+        //向队列尾部添加一个或多个新的对象
+        var enqueue = function (element) {
+            items.push(element);
+        }
+        //移除队列第一个
+        var dequeue =function(){
+            return items.shift();
+        }
+        //返回队列中第一个元素
+        var front = function(){
+            return items[0];
+        }
+        //队列中是否位空,空则返回true,否则返回false
+        var isEmpty = function(){
+            return items.length == 0;
+        }
+        //清空队列
+        var clear = function(){
+            items=[];
+        }
+        //返回队列返回个数
+        var size = function(){
+            return items.length;
+        }
+        //显示队列
+        var showrender = function(){
+            return items;
+            //console.log(items);
+        }
 
 
         /**
@@ -270,7 +277,7 @@
          * @constructor
          */
         var CTmplAnim = function(){
-            var _roothtml = $("<div id=\"preloader\"><div id=\"status-t\"><p class=\"center-text\"><br><em></em></p></div></div>");
+            var _roothtml = $("<div id=\"preloader\"><div id=\"status\"><p class=\"center-text\"><br><em></em></p></div></div>");
             return _roothtml;
         }
 
@@ -377,12 +384,50 @@
             getCity:getCity, //[private getcity]
             GetQueryString:GetQueryString,//[public GetURL QueryString ]
             GetRequestUrl:GetRequestUrl,
-            Queue:Queue, //[public Queue]
             getYMD:getYMD,//[public getYMD]
-            getWeek:getWeek //[public QugetWeekeue]
+            getWeek:getWeek, //[public QugetWeekeue]
+            enqueue:enqueue,
+            dequeue:dequeue,
+            front:front,
+            isEmpty:isEmpty,
+            clear:clear,
+            size:size,
+            showrender:showrender,
+            setItems:setItems,
+            XCache:XCache
         }
     }();
     webkit.MT = webkit.MT || {};
+
+    webkit.MT.XCache = function(){
+        return core.XCache();
+    }
+
+    webkit.MT.QsetItems = function (element) {
+        core.setItems(element);
+    }
+    webkit.MT.Qenqueue = function (element) {
+        core.enqueue(element);
+    }
+    webkit.MT.Qdequeue = function () {
+        return core.dequeue();
+    }
+    webkit.MT.Qfront = function () {
+        return core.front();
+    }
+    webkit.MT.QisEmpty = function () {
+        return core.isEmpty();
+    }
+    webkit.MT.Qclear = function () {
+        core.clear();
+    }
+    webkit.MT.Qsize = function () {
+        return core.size();
+    }
+    webkit.MT.Qshowrender = function () {
+       return core.showrender();
+    }
+
     webkit.MT.tabScroll = function(){
         core.MTtabInit();
         core.MTtab();
