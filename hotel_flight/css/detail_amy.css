@@ -1,116 +1,679 @@
 @charset "utf-8";
-/* CSS Document */
-/*ji+jiu hotel-detail jyj*/
-li{ list-style:none;}
-a:visited,a:link{ text-decoration:none;}
-.jpr{ position:relative;}
-.jpa{ position:absolute;}
-.jfw{ font-weight:bold;}
-.jhf-box{max-width:640px; margin:0 auto; color:#484848;}
-.jhf-nav{ height:44px; position:fixed; top:0; left:0; width:100%; z-index:10; overflow:hidden;
-	background-image:-webkit-linear-gradient(top,#16364f,#194361);
-	background-image:-moz-linear-gradient(top,#16364f,#194361);
-	background-image:-o-linear-gradient(top,#16364f,#194361);
-	background-image:-ms-linear-gradient(top,#16364f,#194361);
-	background-image:linear-gradient(top,#16364f,#194361);
-}
-.jhf-nav a.j-back{ width:3.8rem; top:0; left:0; height:100%;}
-.jhf-nav a.j-back i{background:url(../../images/ui/icons.png) no-repeat 0 0;background-size:243px 161px; display:block; width:14px; height:21px;    margin:12px 0 0 20px;}
-.jhf-nav .j-lick{ width:3.8rem; top:0; right:0; height:100%;}
-.jhf-nav .j-title{ margin:0 3.6rem;}
-.jhf-nav .j-title p{ text-align:center; margin-bottom:0; color:#fff; overflow:hidden; height:2.2rem;}
-.jhf-nav .j-title p.titcn{ font-size:14px; padding-top:5px;}
-.jhf-nav .j-title p.titen{ margin-top:-3px;}
-.jhf-nav .j-title p.bigtit{ line-height:44px; height:44px; font-size:1.6rem;}
-.j-content{ z-index:1; padding-top:44px;}
-.jhf-banner{ height:200px; width:100%;}
-.jhf-banner img{ width:100%; height:100%;}
-.jhf-banner dl{ height:2.6rem; line-height:2.6rem; background:rgba(0,0,0,0.4); position:absolute; bottom:0; left:0; text-align:right; width:100%; margin-bottom:0;}
-.jhf-banner dl dd{ padding-right:1.5rem; color:#fff;}
-.jhf-ul{ background:#fff; margin-bottom:0;}
-.jhf-ul p,.jhf-ul ol{ margin-bottom:0;}
-.jhf-ul li{ border-bottom:1px solid #dfdfdd; height:4.8rem; line-height:4.8rem; margin-bottom:0;}
-.jhf-ul li .arrow{ background:url(../../images/ui/icons.png) no-repeat; width:10px; height:14px; position:absolute; right:0; top:50%; margin-top:-8px;background-position:-152px -5px; background-size:243px 161px;}
-.jhf-ul li:nth-of-type(1) .arrow{ margin-top:-6px;}
-.jhf-score { padding:0 15px; background:#fff; border-bottom:1px solid #dfdfdd; margin-bottom:10px;}
-.jhf-score li:last-child{ border-bottom:0; position:relative;}
-.jhf-score li span.score{ font-size:1.8rem; color:#55bfb7;}
-.jhf-score li:nth-child(2){overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
-.jhf-score li:nth-child(2) i,.jhf-score li span.wifi,.jhf-score li span.park{ background:url(../../images/ui/icon-h.png) no-repeat; display:inline-block;position:relative;}
-.jhf-score li:nth-child(2) i{background-position:-324px -117px; background-size:402px 174px; width:24px; height:21px; top:5px;}	
-.jhf-score li span.wifi{background-position:-93px -15px; background-size:500px 216px; width:20px; height:21px; top:5px;}
-.jhf-score li span.park{ background-image:-webkit-image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
-background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
-background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
-background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
- background-size:13px 13px; width:16px; height:16px; top:5px; margin-left:3px;}
 
-.jhf-mes li{ height:auto;}
-.jhf-mes li .arrow{ right:15px;}
-.jhf-mes li:nth-child(1){ border-top:0;}
-.jhf-mes>li:nth-child(1){padding:0 15px; border-bottom:1px solid #dfdfdd;}
-.jhf-mes>li{ border-bottom:0;}
-.jhf-mes div.slide{ width:100%; height:4.8rem; border-bottom:1px solid #dfdfdd;}
-.jhf-mes .jhf-drg{ position:absolute; right:0; top:0; width:90px; height:100%;}
-.jhf-mes .jhf-drg b.cur{ position:absolute; top:0; right:0; background:url(../images/h+f.png) no-repeat -182px -61px; width:21px; height:21px; background-size:300px 229px;}
-.jhf-mes .jhf-drg p{font-size: 1.6rem;color: #fe4716;text-align:right; padding-right:15px;}
-.jhf-mes .jhf-drg p.reduce,.reduce{ color:#5abfb6;}
-.jhf-mes .jhf-drg p span{ display:inline-block; line-height:4.8rem;}
-.jhf-mes .jhf-drg p i{ background:url(../../images/ui/icons1.png) no-repeat; background-position:-73px -33px; background-size:400px 120px; display:inline-block; width:18px; height:19px; margin-left:2px; position:relative; top:3px;}
-.jhf-mes .jhf-drg p i.cur{ background-position:-48px -33px;}
-.jhf-mes ol.show .lfword{ margin:0 15px; }
-.jhf-mes .slide .lfword{ margin-right:90px; padding-left:15px;}
-.jhf-mes .lfword p:nth-child(1){ font-size:1.4rem; margin-bottom:-0.4rem; padding-top:0.6rem;}
-.jhf-mes .lfword p:nth-child(2){ color:#999;}
-.jhf-mes ol.show{ background:#f5f4f9; display:none;}
-.jhf-mes ol.show li:nth-child(1){ font-size:1.4rem;}
-.jhf-mes ol.show li.lfword p:nth-child(2){ padding-bottom:5px;}
-.jhf-mes ol.show span{ color:#fe4716;}
-.jhf-mes .price{ position:absolute; top:0; right:15px;font-size:1.6rem;}
-.jhf-mes .price span{ display:inline-block;}
-.jhf-mes .jhf-drg p span:nth-child(1){ position:relative; top:1px;}
-.jhf-mes .jhf-drg p span:nth-child(2){ margin-left:-6px; font-size:1.2rem;}
-.jhf-mes .jhf-drg p span:nth-child(3){ margin-left:-6px;}
-.jhf-mes .jhf-drg p.reduce span:nth-child(1){top:0px;}
-.price span:nth-child(1){ position:relative; top:1px;}
-.price span:nth-child(2){ margin-left:-6px; font-size:1.2rem;}
-.price span:nth-child(3){ margin-left:-6px;}
-.jhf-mes .lfword i.book{background:url(../../images/ui/icons1.png) no-repeat; background-position:-101px -33px; background-size:400px 120px; display:inline-block; width:18px; height:19px; margin-left:2px;}
-.jhf-mes .lfword span.name,.jhf-mes .lfword i.book{ float:left;}
-.jhf-mes .lfword span.name{ height: 24px; overflow: hidden;white-space: nowrap;  text-overflow: ellipsis;max-width: 90%;}
+/* CSS Document */
+
+
+/*ji+jiu hotel-detail jyj*/
+li {
+    list-style: none;
+}
+
+a:visited,
+a:link {
+    text-decoration: none;
+}
+
+.jpr {
+    position: relative;
+}
+
+.jpa {
+    position: absolute;
+}
+
+.jfw {
+    font-weight: bold;
+}
+
+.jhf-box {
+    max-width: 640px;
+    margin: 0 auto;
+    color: #484848;
+}
+
+.jhf-nav {
+    height: 44px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    overflow: hidden;
+    background-image: -webkit-linear-gradient(top, #16364f, #194361);
+    background-image: -moz-linear-gradient(top, #16364f, #194361);
+    background-image: -o-linear-gradient(top, #16364f, #194361);
+    background-image: -ms-linear-gradient(top, #16364f, #194361);
+    background-image: linear-gradient(top, #16364f, #194361);
+}
+
+.jhf-nav a.j-back {
+    width: 3.8rem;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.jhf-nav a.j-back i {
+    background: url(../../images/ui/icons.png) no-repeat 0 0;
+    background-size: 243px 161px;
+    display: block;
+    width: 14px;
+    height: 21px;
+    margin: 12px 0 0 20px;
+}
+
+.jhf-nav .j-lick {
+    width: 3.8rem;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.jhf-nav .j-title {
+    margin: 0 3.6rem;
+}
+
+.jhf-nav .j-title p {
+    text-align: center;
+    margin-bottom: 0;
+    color: #fff;
+    overflow: hidden;
+    height: 2.2rem;
+}
+
+.jhf-nav .j-title p.titcn {
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+.jhf-nav .j-title p.titen {
+    margin-top: -3px;
+}
+
+.jhf-nav .j-title p.bigtit {
+    line-height: 44px;
+    height: 44px;
+    font-size: 1.6rem;
+}
+
+.j-content {
+    z-index: 1;
+    padding-top: 44px;
+}
+
+.j-content .more {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+
+.jhf-banner {
+    height: 200px;
+    width: 100%;
+}
+
+.jhf-banner img {
+    width: 100%;
+    height: 100%;
+}
+
+.jhf-banner dl {
+    height: 2.6rem;
+    line-height: 2.6rem;
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: right;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.jhf-banner dl dd {
+    padding-right: 1.5rem;
+    color: #fff;
+}
+
+.jhf-ul {
+    background: #fff;
+    margin-bottom: 0;
+}
+
+.jhf-ul p,
+.jhf-ul ol {
+    margin-bottom: 0;
+}
+
+.jhf-ul li {
+    border-bottom: 1px solid #dfdfdd;
+    height: 4.8rem;
+    line-height: 4.8rem;
+    margin-bottom: 0;
+}
+
+.jhf-ul li .arrow {
+    background: url(../../images/ui/icons.png) no-repeat;
+    width: 10px;
+    height: 14px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -8px;
+    background-position: -152px -5px;
+    background-size: 243px 161px;
+}
+
+.jhf-ul li:nth-of-type(1) .arrow {
+    margin-top: -6px;
+}
+
+.jhf-score {
+    padding: 0 15px;
+    background: #fff;
+    border-bottom: 1px solid #dfdfdd;
+    margin-bottom: 10px;
+}
+
+.jhf-score li:last-child {
+    border-bottom: 0;
+    position: relative;
+}
+
+.jhf-score li span.score {
+    font-size: 1.8rem;
+    color: #55bfb7;
+}
+
+.jhf-score li:nth-child(2) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.jhf-score li:nth-child(2) i,
+.jhf-score li span.wifi,
+.jhf-score li span.park {
+    background: url(../../images/ui/icon-h.png) no-repeat;
+    display: inline-block;
+    position: relative;
+}
+
+.jhf-score li:nth-child(2) i {
+    background-position: -324px -117px;
+    background-size: 402px 174px;
+    width: 24px;
+    height: 21px;
+    top: 5px;
+}
+
+.jhf-score li span.wifi {
+    background-position: -93px -15px;
+    background-size: 500px 216px;
+    width: 20px;
+    height: 21px;
+    top: 5px;
+}
+
+.jhf-score li span.park {
+    background-image: -webkit-image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+    background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+    background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+    background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+    background-size: 13px 13px;
+    width: 16px;
+    height: 16px;
+    top: 5px;
+    margin-left: 3px;
+}
+
+.jhf-mes li {
+    height: auto;
+}
+
+.jhf-mes li .arrow {
+    right: 15px;
+}
+
+.jhf-mes li:nth-child(1) {
+    border-top: 0;
+}
+
+.jhf-mes>li:nth-child(1) {
+    padding: 0 15px;
+    border-bottom: 1px solid #dfdfdd;
+}
+
+.jhf-mes>li {
+    border-bottom: 0;
+}
+
+.jhf-mes div.slide {
+    width: 100%;
+    height: 4.8rem;
+    border-bottom: 1px solid #dfdfdd;
+}
+
+.jhf-mes .jhf-drg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90px;
+    height: 100%;
+}
+
+.jhf-mes .jhf-drg b.cur {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../images/h+f.png) no-repeat -182px -61px;
+    width: 21px;
+    height: 21px;
+    background-size: 300px 229px;
+}
+
+.jhf-mes .jhf-drg p {
+    font-size: 1.6rem;
+    color: #fe4716;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.jhf-mes .jhf-drg p.reduce,
+.reduce {
+    color: #5abfb6;
+}
+
+.jhf-mes .jhf-drg p span {
+    display: inline-block;
+    line-height: 4.8rem;
+}
+
+.jhf-mes .jhf-drg p i {
+    background: url(../../images/ui/icons1.png) no-repeat;
+    background-position: -73px -33px;
+    background-size: 400px 120px;
+    display: inline-block;
+    width: 18px;
+    height: 19px;
+    margin-left: 2px;
+    position: relative;
+    top: 3px;
+}
+
+.jhf-mes .jhf-drg p i.cur {
+    background-position: -48px -33px;
+}
+
+.jhf-mes ol.show .lfword {
+    margin: 0 15px;
+}
+
+.jhf-mes .slide .lfword {
+    margin-right: 90px;
+    padding-left: 15px;
+}
+
+.jhf-mes .lfword p:nth-child(1) {
+    font-size: 1.4rem;
+    margin-bottom: -0.4rem;
+    padding-top: 0.6rem;
+}
+
+.jhf-mes .lfword p:nth-child(2) {
+    color: #999;
+}
+
+.jhf-mes ol.show {
+    background: #f5f4f9;
+    display: none;
+}
+
+.jhf-mes ol.show li:nth-child(1) {
+    font-size: 1.4rem;
+}
+
+.jhf-mes ol.show li.lfword p:nth-child(2) {
+    padding-bottom: 5px;
+}
+
+.jhf-mes ol.show span {
+    color: #fe4716;
+}
+
+.jhf-mes .price {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 1.6rem;
+}
+
+.jhf-mes .price span {
+    display: inline-block;
+}
+
+.jhf-mes .jhf-drg p span:nth-child(1) {
+    position: relative;
+    top: 1px;
+}
+
+.jhf-mes .jhf-drg p span:nth-child(2) {
+    margin-left: -6px;
+    font-size: 1.2rem;
+}
+
+.jhf-mes .jhf-drg p span:nth-child(3) {
+    margin-left: -6px;
+}
+
+.jhf-mes .jhf-drg p.reduce span:nth-child(1) {
+    top: 0px;
+}
+
+.price span:nth-child(1) {
+    position: relative;
+    top: 1px;
+}
+
+.price span:nth-child(2) {
+    margin-left: -6px;
+    font-size: 1.2rem;
+}
+
+.price span:nth-child(3) {
+    margin-left: -6px;
+}
+
+.jhf-mes .lfword i.book {
+    background: url(../../images/ui/icons1.png) no-repeat;
+    background-position: -101px -33px;
+    background-size: 400px 120px;
+    display: inline-block;
+    width: 18px;
+    height: 19px;
+    margin-left: 2px;
+}
+
+.jhf-mes .lfword span.name,
+.jhf-mes .lfword i.book {
+    float: left;
+}
+
+.jhf-mes .lfword span.name {
+    height: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 90%;
+}
+
 /*ji+jiu hotel seach list jyj*/
-.jlist-nav .j-title{ margin-right:15px;}
-.jlist { background:#fff;border-top:1px solid #dfdfdd;}
-.jlist li{ border-bottom:1px solid #dfdfdd; height:93px; position:relative; margin-bottom:0;}
-.jlist li .jimg{ width:82px; height:92px; position:absolute; left:0; top:0;}
-.jlist .imgrt{ margin:0 15px 0 92px;}
-.jlist .imgrt dt{ font-size:1.6rem;font-weight:bold;white-space: nowrap;text-overflow: ellipsis;overflow: hidden; padding:8px 0 5px; margin-right:45px;}
-.jlist dd{ color:#999;}
-.jlist span.score{ font-size:1.6rem; color:#5abfb6;}
-.jlist .price{ display:inline; float:right;}
-.jlist dd:nth-child(3){ overflow:hidden;}
-.jlist dd:nth-child(3) span{ float:left;}
-.jlist .wifi{ background:url(../../images/ui/icons1.png) no-repeat;background-position:-128px -9px; background-size:500px 150px; width:20px; height:18px;}
-.jlist .car{ background:url(../../images/ui/icons1.png) no-repeat;background-position:-160px -9px; background-size:500px 150px; width:20px; height:18px;}
-.jlist li.cur i.active{position:absolute;top:0;right:0;background:url(../../images/ui/ticket_hotel.png) no-repeat -179px -53px;width:35px;height:33px;background-size:260px 199px;}
-.j-bottom{ height:40px; position:fixed; width:100%; background:#2e4960; bottom:0; left:0; overflow:hidden; z-index:10;font-family:FZLTXHK;}
-.j-bottom .fo-div{ width:50%; float:left; text-align:center; color:#fff;}
-.j-bottom .icon3{ width:15px; height:15px; margin:5px auto -2px; background:#fff;}
-.j-bottom .fo-lf .icon3{ background:url(../../images/ui/sort.png) no-repeat; background-size:100% 100%;}
-.j-bottom .fo-rg .icon3{ background:url(../../images/ui/filter.png) no-repeat; background-size:100% 100%;}
+
+.jlist-nav .j-title {
+    margin-right: 10px;
+}
+
+.jlist {
+    background: #fff;
+    border-top: 1px solid #dfdfdd;
+}
+
+.jlist li {
+    border-bottom: 1px solid #dfdfdd;
+    height: 93px;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.jlist li .jimg {
+    width: 82px;
+    height: 92px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.jlist .imgrt {
+    margin: 0 15px 0 92px;
+}
+
+.jlist .imgrt dt {
+    font-size: 1.6rem;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 8px 0 5px;
+    margin-right: 45px;
+}
+
+.jlist dd {
+    color: #999;
+}
+
+.jlist span.score {
+    font-size: 1.6rem;
+    color: #5abfb6;
+}
+
+.jlist .price {
+    display: inline;
+    float: right;
+}
+
+.jlist dd:nth-child(3) {
+    overflow: hidden;
+}
+
+.jlist dd:nth-child(3) span {
+    float: left;
+}
+
+.jlist .wifi {
+    background: url(../../images/ui/icons1.png) no-repeat;
+    background-position: -128px -9px;
+    background-size: 500px 150px;
+    width: 20px;
+    height: 18px;
+}
+
+.jlist .car {
+    background: url(../../images/ui/icons1.png) no-repeat;
+    background-position: -160px -9px;
+    background-size: 500px 150px;
+    width: 20px;
+    height: 18px;
+}
+
+.jlist li.cur i.active {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../../images/ui/ticket_hotel.png) no-repeat -179px -53px;
+    width: 35px;
+    height: 33px;
+    background-size: 260px 199px;
+}
+
+.j-bottom {
+    height: 40px;
+    position: fixed;
+    width: 100%;
+    background: #2e4960;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 10;
+    font-family: FZLTXHK;
+}
+
+.j-bottom .fo-div {
+    width: 50%;
+    float: left;
+    text-align: center;
+    color: #fff;
+}
+
+.j-bottom .icon3 {
+    width: 15px;
+    height: 15px;
+    margin: 5px auto -2px;
+    background: #fff;
+}
+
+.j-bottom .fo-lf .icon3 {
+    background: url(../../images/ui/sort.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.j-bottom .fo-rg .icon3 {
+    background: url(../../images/ui/filter.png) no-repeat;
+    background-size: 100% 100%;
+}
+
 
 /*ji+jiu sort-pop jyj*/
-.jpop,.jpop .mask{ position:fixed; top:0; left:0; width:100%; height:100%;}
-.jpop{z-index:20; display:none;}
-.jpop .mask{ background:rgba(0,0,0,0.6); z-index:21;}
-.jpop .sort{ position:fixed; bottom:0; left:0; width:100%; background:#fff; z-index:22; margin-bottom:0; display:none;}
-.jpop .sort li{ position:relative; height:44px; line-height:44px; margin-bottom:0;}
-.jpop .sort li.cur i{ width:50px; height:44px; position:absolute; left:0; top:0; background:url(../../images/icon_checkmark_yellow.png) no-repeat center center; background-size:15px 10px;}
-.jpop .sort p{ margin:0 0 0 50px;border-bottom:1px solid #dfdfdd; line-height:44px; padding-left:15px;font-size:1.4rem;}
+
+.jpop,
+.jpop .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.jpop {
+    z-index: 20;
+    display: none;
+}
+
+.jpop .mask {
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 21;
+}
+
+.jpop .sort {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 22;
+    margin-bottom: 0;
+    display: none;
+}
+
+.jpop .sort li {
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    margin-bottom: 0;
+}
+
+.jpop .sort li.cur i {
+    width: 50px;
+    height: 44px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(../../images/icon_checkmark_yellow.png) no-repeat center center;
+    background-size: 15px 10px;
+}
+
+.jpop .sort p {
+    margin: 0 0 0 50px;
+    border-bottom: 1px solid #dfdfdd;
+    line-height: 44px;
+    padding-left: 15px;
+    font-size: 1.4rem;
+}
+
 
 /*ji+jiu screen-pop jyj*/
-.jpop .sort,.jpop .screen{ display:none;}
-.jpop .screen{ position:fixed; z-index:22; background:#f5f4f9; height:324px; width:100%; bottom:0; left:0;}
+
+.jpop .sort,
+.jpop .screen {
+    display: none;
+}
+
+.jpop .screen {
+    position: fixed;
+    z-index: 22;
+    background: #f5f4f9;
+    height: 490px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.jpop .screen .hl_sc_chil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.jpop .screen .hl_sc_chil h4 {
+    margin-top: 13px;
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+.jpop .screen .s-ul {
+    margin-top: 12px;
+    margin-left: 15px;
+    margin-right: 15px;
+    list-style-type: none;
+    overflow: hidden;
+    border-bottom: 1px solid #d0d0d3;
+}
+
+.jpop .screen .s-li {
+    float: left;
+    width: 29%;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #d0d0d3;
+    font-size: 13px;
+    color: #686869;
+    line-height: 30px;
+}
+
+.jpop .screen .s-li1 {
+    float: left;
+    width: 29%;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ffb412;
+    font-size: 13px;
+    color: #ffb412;
+    line-height: 30px;
+}
+.jpop .screen .s-but{
+    width: 94%;
+    height: 36px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 16px;
+    color: white;
+    border-radius: 5px;
+    background-color: #ffb413;
+}
+
+
+/*
 .jpop .j-list{ height:264px; overflow:hidden;border-bottom:1px solid #dedede;}
 .jpop .j-list ul,.jpop .j-list ul li{ margin-bottom:0;}
 .jpop .j-list li{ height:44px; line-height:44px;}
@@ -125,59 +688,270 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 
 .jpop .j-btn{ height:60px; width:100%;}
 .j-btn a{ display:block; margin:10px 15px 0; height:40px; line-height:40px; text-align:center; color:#fff; background:#fdb330; border-radius:5px; font-size:1.6rem;}
+*/
+
 
 /*pay detai--already pay*/
-.jhf-nav .phone{background:url(../../images/ui/icons.png) no-repeat; background-size:250px 165px;background-position:-218px -66px; }
-.j-content p,.j-content ul,.j-content ol,.j-content li{ margin-bottom:0;}
-.jpay-tit{ padding:0 15px; height:40px;background:#fff; overflow:hidden; font-family:FZLTXHK; font-weight:bold;}
-.jpay-tit p{ line-height:40px; font-size:16px;}
-.jpay-tit p.hadpay{ color:#38b2a9; text-align:center;}
-.jpay-tit p.willpay{ color:#fb6a21;}
-.jpay-tit span.willpay-span{ color:#fdb330; font-size:14px;font-weight:normal;display:inline-block;  width: 42%;  position: absolute;top:6px;  right:0;}
-.jpay-t{ height:36px;padding:0 15px; border-top:1px solid #dedede; border-bottom:1px solid #dedede;}
-.jpay-t i,.jpay-t p{ float:left;}
-.jpay-t a{ float:right; color:#fdb330; font-size:12px;}
-.jpay-t p{ font-size:14px;}
-.jpay-t p,.jpay-t a{ height:36px; line-height:36px;}
-.jpay-t i{ background:url(../../images/ui/icons.png) no-repeat; background-size:200px 132px; display:inline-block; width:25px; height:33px;}
-.jpay-t.jp-fl i{ background-position:0px -81px;}
-.jpay-t.jp-ht i{ background-position:-55px -81px;}
-.jpay-t a span{ background:url(../../images/ui/air-icons.png) no-repeat -154px -18px; background-size:250px 150px; float:right; width:20px; height:36px;}
-.jpay-c{ padding:0 15px; background:#fff;}
-.jpay-c2 dl{ padding-top:8px;}
-.jpay-c2 dt i,.jpay-c dt span{ float:left; margin-right:3px;}
-.jpay-c2 dt{ height:30px; line-height:30px;}
-.jpay-c2 dt i{ background:url(../../images/ui/icon-h.png) no-repeat; background-size:402px 174px;}
-.jpay-c2 dt i.go,.jpay-c dt i.back{ width:15px; height:30px;}
-.jpay-c2 dt i.go{ background-position:-316px -53px;}
-.jpay-c2 dt i.back{ background-position:-341px -53px;}
-.jpay-c2 dt i.time{ width:14px; height:30px; background:url(../../images/ui/icon-t.png) no-repeat -28px -18.5px;background-size:233px 140px;}
-.jpay-c2 dt .time{float:right; margin-right:0px;}
-.jpay-c2 dt .more{max-width:4.8rem;overflow: hidden;white-space: nowrap;
-text-overflow: ellipsis;}
-.jpay-c2 dd{ font-weight:bold; height:34px; line-height:34px; border-top:1px solid #dedede; margin-top:8px;}
-.jpay-c3 {border-bottom:1px solid #dedede;}
-.jpay-c3 dl{ padding:12px 0;}
-.jpay-c3 dt{ font-weight:bold; }
-.jpay-c4{ margin:10px 0; height:36px; overflow:hidden; border-top:1px solid #dedede; border-bottom:1px solid #dedede; }
-.jpay-c4 i,.jpay-c4 span{ float:left; line-height:36px; height:36px;}
-.jpay-c4 .fr{ float:right;}
-.jpay-c4 .money,.jpay-c4 .num{ color:#fb6a22;}
-.jpay-c4 .money{ font-size:12px;}
-.jpay-c4 .num{ font-size:16px;}
-.jpay-c4 .icon{ width:11px; background:url(../../images/ui/icons.png) no-repeat; background-size:200px 132px; background-position:-122px 7px; }
-.jpay-c4 .cost{ color:#fdb330;}
-.jpay-c5{ border-top:1px solid #dedede; border-bottom:1px solid #dedede;}
-.jpay-c5 dl{ padding-bottom:10px;}
-.jpay-c5 dt{ height:36px; line-height:36px; border-bottom:1px solid #dedede; margin-bottom:10px;}
-.jpay-c5 dd{ position:relative; height:24px; line-height:24px;}
-.jpay-c5 dd span{ position:absolute; width:64px; top:0; left:0; color:#999;}
-.jpay-c5 dd p{ margin-left:70px; font-size:14px;}
-.jpay-c6{ margin-bottom:20px;}
 
+.jhf-nav .phone {
+    background: url(../../images/ui/icons.png) no-repeat;
+    background-size: 250px 165px;
+    background-position: -218px -66px;
+}
 
-.jpay-c7{ margin-bottom:30px;}
+.j-content p,
+.j-content ul,
+.j-content ol,
+.j-content li {
+    margin-bottom: 0;
+}
 
+.jpay-tit {
+    padding: 0 15px;
+    height: 40px;
+    background: #fff;
+    overflow: hidden;
+    font-family: FZLTXHK;
+    font-weight: bold;
+}
 
+.jpay-tit p {
+    line-height: 40px;
+    font-size: 16px;
+}
 
+.jpay-tit p.hadpay {
+    color: #38b2a9;
+    text-align: center;
+}
 
+.jpay-tit p.willpay {
+    color: #fb6a21;
+}
+
+.jpay-tit span.willpay-span {
+    color: #fdb330;
+    font-size: 14px;
+    font-weight: normal;
+    display: inline-block;
+    width: 42%;
+    position: absolute;
+    top: 6px;
+    right: 0;
+}
+
+.jpay-t {
+    height: 36px;
+    padding: 0 15px;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+}
+
+.jpay-t i,
+.jpay-t p {
+    float: left;
+}
+
+.jpay-t a {
+    float: right;
+    color: #fdb330;
+    font-size: 12px;
+}
+
+.jpay-t p {
+    font-size: 14px;
+}
+
+.jpay-t p,
+.jpay-t a {
+    height: 36px;
+    line-height: 36px;
+}
+
+.jpay-t i {
+    background: url(../../images/ui/icons.png) no-repeat;
+    background-size: 200px 132px;
+    display: inline-block;
+    width: 25px;
+    height: 33px;
+}
+
+.jpay-t.jp-fl i {
+    background-position: 0px -81px;
+}
+
+.jpay-t.jp-ht i {
+    background-position: -55px -81px;
+}
+
+.jpay-t a span {
+    background: url(../../images/ui/air-icons.png) no-repeat -154px -18px;
+    background-size: 250px 150px;
+    float: right;
+    width: 20px;
+    height: 36px;
+}
+
+.jpay-c {
+    padding: 0 15px;
+    background: #fff;
+}
+
+.jpay-c2 dl {
+    padding-top: 8px;
+}
+
+.jpay-c2 dt i,
+.jpay-c dt span {
+    float: left;
+    margin-right: 3px;
+}
+
+.jpay-c2 dt {
+    height: 30px;
+    line-height: 30px;
+}
+
+.jpay-c2 dt i {
+    background: url(../../images/ui/icon-h.png) no-repeat;
+    background-size: 402px 174px;
+}
+
+.jpay-c2 dt i.go,
+.jpay-c dt i.back {
+    width: 15px;
+    height: 30px;
+}
+
+.jpay-c2 dt i.go {
+    background-position: -316px -53px;
+}
+
+.jpay-c2 dt i.back {
+    background-position: -341px -53px;
+}
+
+.jpay-c2 dt i.time {
+    width: 14px;
+    height: 30px;
+    background: url(../../images/ui/icon-t.png) no-repeat -28px -18.5px;
+    background-size: 233px 140px;
+}
+
+.jpay-c2 dt .time {
+    float: right;
+    margin-right: 0px;
+}
+
+.jpay-c2 dt .more {
+    max-width: 4.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.jpay-c2 dd {
+    font-weight: bold;
+    height: 34px;
+    line-height: 34px;
+    border-top: 1px solid #dedede;
+    margin-top: 8px;
+}
+
+.jpay-c3 {
+    border-bottom: 1px solid #dedede;
+}
+
+.jpay-c3 dl {
+    padding: 12px 0;
+}
+
+.jpay-c3 dt {
+    font-weight: bold;
+}
+
+.jpay-c4 {
+    margin: 10px 0;
+    height: 36px;
+    overflow: hidden;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+}
+
+.jpay-c4 i,
+.jpay-c4 span {
+    float: left;
+    line-height: 36px;
+    height: 36px;
+}
+
+.jpay-c4 .fr {
+    float: right;
+}
+
+.jpay-c4 .money,
+.jpay-c4 .num {
+    color: #fb6a22;
+}
+
+.jpay-c4 .money {
+    font-size: 12px;
+}
+
+.jpay-c4 .num {
+    font-size: 16px;
+}
+
+.jpay-c4 .icon {
+    width: 11px;
+    background: url(../../images/ui/icons.png) no-repeat;
+    background-size: 200px 132px;
+    background-position: -122px 7px;
+}
+
+.jpay-c4 .cost {
+    color: #fdb330;
+}
+
+.jpay-c5 {
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+}
+
+.jpay-c5 dl {
+    padding-bottom: 10px;
+}
+
+.jpay-c5 dt {
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 10px;
+}
+
+.jpay-c5 dd {
+    position: relative;
+    height: 24px;
+    line-height: 24px;
+}
+
+.jpay-c5 dd span {
+    position: absolute;
+    width: 64px;
+    top: 0;
+    left: 0;
+    color: #999;
+}
+
+.jpay-c5 dd p {
+    margin-left: 70px;
+    font-size: 14px;
+}
+
+.jpay-c6 {
+    margin-bottom: 20px;
+}
+
+.jpay-c7 {
+    margin-bottom: 30px;
+}

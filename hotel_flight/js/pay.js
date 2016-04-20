@@ -118,7 +118,20 @@ var lsf_myweb={
     //支付类型：1-Visa, 20-MasterCard(万事达卡), 21-Paypal
     var myPayType=1;
     //初始化有效期选择组件
-    var expityDate = new Scroller({id: "jp_limit_time", type:"cardExpirationDate",cont:"cardExpirationDate1"});
+    var expityDate = new Scroller({
+        id: "jp_limit_time", 
+        type:"cardExpirationDate",
+        cont:"cardExpirationDate1",
+        callback: function(){
+            var jp_limit_time=document.getElementById('jp_limit_time');
+            var selectTime = jp_limit_time.getAttribute("data-expire");
+            var nowTime = new Date().getTime();
+            selectTime = new Date(selectTime).getTime();
+            if(nowTime > selectTime){
+                $.alerts.alert('有效期应大于当前日期，请重新选择!',null,null,"确定");
+            }
+        }
+    });
     
     //输入框
     //lsf_myweb.styleChange('jp_bank','输入银行卡号');

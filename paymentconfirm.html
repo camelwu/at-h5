@@ -62,9 +62,9 @@ $(document).ready()
     3、机票
     4、会员中心	-- 不会返回该值
     5、酒+景
+    50 机+酒
     */
     if(foreEndType==3) {
-
         if(business==3){
             data= {
                 "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
@@ -87,6 +87,15 @@ $(document).ready()
                 "Code": "0205"
             }
         }
+        else if(business==50){
+            data= {
+                "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+                "ForeEndType": 3,
+                "Code": "50100006"
+            }
+        }
+
+
         else if(business==1){
             var refID=vlm.getpara("rid");
             var pid=vlm.getpara("pid");

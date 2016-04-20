@@ -412,16 +412,16 @@ uoHisData();
         var totalPriceCNY = parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
         oId1.innerHTML=json.NumOfRoom+'间×'+json.dateInfo.totalNight+'晚';
         if(parseInt(json.paymentModeID)==1){
-            oId2.innerHTML='￥'+parseFloat(json.avgPriceCNY)*parseFloat(json.NumOfRoom);
-            oId3.innerHTML='￥'+(parseFloat(json.taxChargesCNY)*1000*parseFloat(json.NumOfRoom))/1000;
+            oId2.innerHTML='￥'+parseFloat(json.avgPriceCNY)*parseFloat(json.NumOfRoom)*parseInt(json.dateInfo.totalNight);
+            oId3.innerHTML='￥'+(parseFloat(json.taxChargesCNY)*1000*parseFloat(json.NumOfRoom)*parseInt(json.dateInfo.totalNight))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
             oId5.innerHTML=parseFloat(json.totalPriceCNY)*parseFloat(json.NumOfRoom);
         }else if(parseInt(json.paymentModeID)==2){
             var oId6=document.getElementById(id6);
             var oId7=document.getElementById(id7);
             
-            oId2.innerHTML='SGD'+parseFloat(json.avgPrice)*parseFloat(json.NumOfRoom);
-            oId3.innerHTML='SGD'+(parseFloat(json.taxCharges)*1000*parseFloat(json.NumOfRoom))/1000;
+            oId2.innerHTML='SGD'+parseFloat(json.avgPrice)*parseFloat(json.NumOfRoom)*parseInt(json.dateInfo.totalNight);
+            oId3.innerHTML='SGD'+(parseFloat(json.taxCharges)*1000*parseFloat(json.NumOfRoom)*parseInt(json.dateInfo.totalNight))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
             //判断服务器给的数据的精度
             oId6.innerHTML=accuracy > 0 ? formatFloat(totalPrice,accuracy) : totalPrice;

@@ -54,7 +54,7 @@
     <!-- 支付方式   -->
     <div class="p-pay">
         <ul class="p-ul1">
-            <li data-paymentmode="AliPay">
+            <li data-paymentmode="AlipayCNY">
                 <i class="p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
@@ -115,7 +115,7 @@
             </li>
             <li>
                 <div>有效期</div>
-                <input type="text" data-expire="2019-01-01" placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate" readonly="">
+                <input type="text" value="" id="jp_limit_time" readonly placeholder="月/年，如：09/12">
             </li>
             <li>
                 <div>安全码</div>
@@ -124,12 +124,12 @@
             <li class="fill-tel">
                 <div>持卡人手机号</div>
                 <span class="tel-btn phone">+86</span>
-                <b class="icons s-xiala1"></b>
+                <b class="icons s-xiala3"></b>
                 <input type="tel" value placeholder="用于接收通知" class="MobilePhone" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
             </li>
             <li>
                 <div>账单城市</div>
-                <input type="tex" placeholder="请输入持卡人账单城市" class="CardAddressCountryCode"/>
+                <input type="tex" placeholder="请输入持卡人账单城市" class="cardAddressCity"/>
             </li>
             <li>
                 <div>账单地址</div>
@@ -184,9 +184,9 @@
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/scroller.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/scroller.js"></script>
 <script src="../js/country_list.js"></script>
 <script src="../js/countrytel_list.js"></script>
 <script src="../js/lib/template.js"></script>

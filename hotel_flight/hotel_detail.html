@@ -34,18 +34,16 @@
     <div class="jhf-nav jlist-nav">
         <a class="j-back jpa" href="javascript:window.history.go(-1);"><i></i></a>
         <div class="j-title" id="j-title">
-            <!--<p class="titcn">{%=hotelName%}</p>-->
-            <!--<p class="titen">(Shibuya Excel Hotel Tokyu Tokyo)</p>-->
         </div>
     </div>
     <!--content-->
     <div class="j-content jpr">
         <!--banner-->
-        <div class="jhf-banner jpr" id="">
-            <img class="hotelPic" src="../images/03-1_02.jpg" alt="">
-            <dl>
-                <dd>36张</dd>
-            </dl>
+        <div class="jhf-banner jpr">
+            <!--<img class="hotelPic" src="../images/03-1_02.jpg" alt="">-->
+            <!--<dl>-->
+                <!--<dd>36张</dd>-->
+            <!--</dl>-->
         </div>
         <!--score-->
         <ul class="jhf-ul jhf-score">
@@ -56,39 +54,7 @@
         <!--hotel detail message-->
         <ul class="jhf-ul jhf-mes">
             <li id="chooseDate" class="jpr"><span>12月22日</span>入住&nbsp;&nbsp;<span>12月26日</span>离店&nbsp;&nbsp;共9晚<i class="arrow"></i></li>
-            <!--<li class="showh">-->
-                <!--<div class="slide jpr">-->
-                    <!--<div class="lfword">-->
-                        <!--<p><span class="name">高级客房</span><i class="book"></i></p>-->
-
-                        <!--<p>32-38㎡ 大/双床</p>-->
-                    <!--</div>-->
-                    <!--<div class="jhf-drg">-->
-                        <!--<p>-->
-                            <!--<span>+</span>-->
-                            <!--<span>￥</span>-->
-                            <!--<span>0</span>-->
-                            <!--<i></i>-->
-                        <!--</p>-->
-                        <!--<b></b>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<ol class="show">-->
-                    <!--<li class="lfword jpr roomli">-->
-                        <!--<p>标准价</p>-->
-                        <!--<p>无早 大床 不可取消&nbsp;&nbsp;<span>仅剩&nbsp;2&nbsp;间</span></p>-->
-                        <!--<div class="price">-->
-                            <!--<span>+</span>-->
-                            <!--<span>￥</span>-->
-                            <!--<span>100</span>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                    <!--<li class="lfword roomli">-->
-                        <!--<p>含早</p>-->
-                        <!--<p>双早 大/双床 免费取消</p>-->
-                    <!--</li>-->
-                <!--</ol>-->
-            <!--</li>-->
+            <!-- room list-->
         </ul>
     </div>
 </div>
@@ -96,13 +62,18 @@
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
+<script src="../js/lib/d_calendar1.0.2.js"></script>
 <script src="js/hf_hotelDetail.js"></script>
 <!--nav中英文标题-->
 <script id="tpl_seoul" type="text/template">
     <p class="titcn">{%=hotelName%}</p>
     <p class="titen">{%=hotelName%}</p>
 </script>
-<!--&lt;!&ndash;评分、星级、wifi&ndash;&gt;-->
+<!--banner-->
+<script id="banner" type="text/template">
+    <img class="hotelPic" src={%=hotelPictureURL%} alt="">
+</script>
+<!--评分、星级、wifi-->
 <script id="jhf_score" type="text/template">
     <li class="jpr"><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评<i class="arrow"></i></li>
     <li><i></i>{%=location%}</li>
@@ -112,34 +83,21 @@
 <script id="jhf_room" type="text/template">
     {% for(var i=0;i<roomdata.length;i++){ %}
     <li class="showh">
-        <div class="slide jpr">
-            <div class="lfword">
-                <p><span class="name">{%=roomdata[i].roomName%}</span><i class="book"></i></p>
-                <p>32-38㎡ 大/双床</p>
-            </div>
-            <div class="jhf-drg">
-                <p>
-                    <span>+</span>
-                    <span>￥</span>
-                    <span>0</span>
-                    <i></i>
-                </p>
-                <b></b>
-            </div>
-        </div>
-        <ol class="show">
+        <ol class="show" style="display: block;">
             <li class="lfword jpr roomli">
-                <p>标准价</p>
-                <p>无早 大床 不可取消&nbsp;&nbsp;<span>仅剩&nbsp;2&nbsp;间</span></p>
+                <p>{%=roomdata[i].roomName%}</p>
+                <p>{% if(roomdata[i].includedBreakfast){ %}双早{% }else{ %}无早{% } %} <!--大床 不可取消&nbsp;&nbsp;<span>仅剩&nbsp;2&nbsp;间</span>--></p>
+                {% if(roomdata[i].addtionalPrice>=0){ %}
                 <div class="price">
-                    <span>+</span>
+                {% }else{ %}<div class="price reduce">{% } %}
+                    {% if(roomdata[i].addtionalPrice>=0){ %}
+                        <span>+</span>
+                    {% }else{ %}
+                        <span class="reduce">-</span>
+                    {% } %}
                     <span>￥</span>
-                    <span>100</span>
+                    <span>{%=roomdata[i].addtionalPrice.toString().substring(1)-0%}</span>
                 </div>
-            </li>
-            <li class="lfword roomli">
-                <p>含早</p>
-                <p>双早 大/双床 免费取消</p>
             </li>
         </ol>
     </li>
