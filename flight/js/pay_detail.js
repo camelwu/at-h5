@@ -24,7 +24,20 @@ $(document).ready(function(){
     })
     
     //初始化有效期选择组件
-    var expityDate = new Scroller({id: "CardExpiryDate", type:"cardExpirationDate",cont:"cardExpirationDate1234"});
+    var expityDate = new Scroller({
+        id: "CardExpiryDate", 
+        type:"cardExpirationDate",
+        cont:"cardExpirationDate1234",
+        callback: function(){
+            var jp_limit_time=document.getElementById('CardExpiryDate');
+            var selectTime = jp_limit_time.getAttribute("data-expire");
+            var nowTime = new Date().getTime();
+            selectTime = new Date(selectTime).getTime();
+            if(nowTime > selectTime){
+                $.alerts.alert('有效期应大于当前日期，请重新选择!',null,null,"确定");
+            }
+        }
+    });
 
     var Parameters={"Parameters": {"BookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){

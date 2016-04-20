@@ -29,6 +29,10 @@
 </head>
 
 <body>
+<div id="preloader">
+    <div id="status">
+    </div>
+</div>
 <div class="jhf-box">
     <!--nav-->
     <div class="jhf-nav jlist-nav">
@@ -40,27 +44,7 @@
     <!--content-->
     <div class="j-content jpr">
         <ul class="jlist" id="hj_jList">
-                <li class="cur">
-                    <img class="jimg" src="../images/hotelListNo.jpg" data-src="{%= hotelPictureURL %}" alt="">
-                    <dl class="imgrt">
-                        <dt>{%= hotelName %}</dt>
-                        <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                        <dd>
-                            <span>{%= starRating %}星级</span>
-                            <span class="wifi"></span>
-                            <span class="car"></span>
-                        </dd>
-                        <dd>
-                            <span>{%= city %}</span>
-                            <div class="price">
-                                <span>+</span>
-                                <span>￥</span>
-                                <span>{%= avgRatePerPax %}</span>
-                            </div>
-                        </dd>
-                    </dl>
-<!--                    <i class="active"></i>-->
-                </li>
+                
 <!--
             <li class="hotelli">
             	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
@@ -86,6 +70,7 @@
 -->
            
         </ul>
+        <div class="more" id="loadMore">点击加载更多</div>
         <div style="height: 40px; width: 100%;"></div>
 	</div>
 </div>
@@ -106,13 +91,90 @@
 	<p class="mask" id="mask"></p>
     <!--sort pop-->
     <ul class="sort">
-    	<li class="cur"><i></i><p>价格从高至低</p></li>
-        <li><i></i><p>价格从低至高</p></li>
-        <li><i></i><p>评分从高到低</p></li>
-        <li><i></i><p>星级从高到低</p></li>
-        <li><i></i><p>星级从低到高</p></li>
+    	<li data-sort="4"><i></i><p>价格从高至低</p></li>
+        <li data-sort="3"><i></i><p>价格从低至高</p></li>
+<!--        <li data-sort="0"><i></i><p>评分从高到低</p></li>-->
+        <li data-sort="2"><i></i><p>星级从高到低</p></li>
+        <li data-sort="1"><i></i><p>星级从低到高</p></li>
     </ul>
     <!--screen pop-->
+    <div class="screen" id="screen">
+        <div class="hl_sc_chil">
+            <h4>星级档次</h4>
+            <ul class="s-ul" id="h-level">
+                <li class="s-li1">
+                    不限
+                </li>
+                <li class="s-li">
+                    二星级以下
+                </li>
+                <li class="s-li">
+                    三星
+                </li>
+                <li class="s-li">
+                    四星
+                </li>
+                <li class="s-li">
+                    五星
+                </li>
+            </ul>
+            <h4>酒店类型</h4>
+            <ul class="s-ul" id="h-type">
+                <li class="s-li1">
+                    不限
+                </li>
+                <li class="s-li">
+                    酒店
+                </li>
+                <li class="s-li">
+                    汽车旅馆
+                </li>
+                <li class="s-li">
+                    酒店式公寓
+                </li>
+                <li class="s-li">
+                    家庭旅馆
+                </li>
+                <li class="s-li">
+                    背包客栈
+                </li>
+                <li class="s-li">
+                    宾馆/招待所
+                </li>
+                <li class="s-li">
+                    精品酒店
+                </li>
+                <li class="s-li">
+                    度假类酒店
+                </li>
+                <li class="s-li">
+                    游轮度假酒店
+                </li>
+                <li class="s-li">
+                    别墅型酒店
+                </li>
+                <li class="s-li">
+                    乡村平房酒店
+                </li>
+                <li class="s-li">
+                    家庭寄宿
+                </li>
+                <li class="s-li">
+                    农舍式房子
+                </li>
+                <li class="s-li">
+                    豪华露营地
+                </li>
+                <li class="s-li">
+                    标准露营地
+                </li>
+            </ul>
+            <div class="s-but" id="s_but">
+                确定
+            </div>
+        </div>
+    </div>
+<!--
     <div class="screen">
         <div class="j-list">
             <ul class="screen-lf">
@@ -171,55 +233,40 @@
         </div>
         <p class="j-btn"><a href="javascript:;">确定</a></p>
     </div>
+-->
 </div>
-
+<script type="text/template" id="hj_list_template">
+    <li class="cur" data-hotelId="{%= hotelID %}" data-hotelInfo="{%= hotelInfo %}">
+        <img class="jimg" src="../images/hotelListNo.jpg" data-src="{%= hotelPictureURL %}" alt="">
+        <dl class="imgrt">
+            <dt>{%= hotelName %}</dt>
+            <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
+            <dd>
+                <span>{%= starRating %}星级</span>
+                <span class="wifi"></span>
+                <span class="car"></span>m
+            </dd>
+            <dd>
+                <span>{%= city %}</span>
+                <div class="price">
+                    <span>+</span>
+                    <span>￥</span>
+                    <span>{%= avgRatePerPax %}</span>
+                </div>
+            </dd>
+        </dl>
+        <i class=""></i>
+    </li>
+</script>
 
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/lazyLoad.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="js/hf_hotelList.js"></script>
 <script>
 $(function(){
-    $('.jlist li').on('click',function(){
-        $(this).addClass('cur').siblings().removeClass('cur');
-    })
-	/*排序*/
-	$('.j-bottom .fo-lf').on('click',function(){
-		$('.jpop,.jpop .sort').show();
-	})
-	$('.jpop .sort li').on('click',function(){
-		$(this).addClass('cur').siblings().removeClass('cur');
-		$('.jpop,.jpop .sort').hide();
-	})
-	/*筛选*/
-	$('.j-bottom .fo-rg').on('click',function(){
-		$('.jpop,.jpop .screen').show();
-	})
-	$('.jpop .screen-lf li').on('click',function(){
-		$(this).addClass('cur').siblings().removeClass('cur');
-		$('.screen-rg ul').eq($(this).index()).show().siblings().hide();
-	})
-	$('.jpop .screen-rg ul li').on('click',function(){
-		$(this).addClass('cur').siblings().removeClass('cur');
-	})
-	$('.jpop .j-btn').on('click',function(){
-		$('.jpop,.jpop .screen').hide();
-		/*恢复默认
-		$('.jpop .screen-lf li').eq(0).addClass('cur').siblings().removeClass('cur');
-		$('.jpop .screen-rg ul li').eq(0).addClass('cur').siblings().removeClass('cur');
-		$('.screen-rg ul').eq(0).show().siblings().hide();*/
-	})
-	/*遮罩层事件*/
-	var mask = document.getElementById('mask');
-	mask.addEventListener('touchstart',fn, false);
-	function fn(event){
-		var event = event|| window.event;
-		$('.jpop,.jpop .screen,.jpop .sort').hide();
-	}
-    //  页面跳转
-    $('.hotelli').click(function(){
-        window.location.href = 'hotel_detail.html';
-    })
+    
 })
 </script>
 
