@@ -19,7 +19,11 @@
 //    
 //});
 (function () {
-    var params = {
+    var parametersStorage = JSON.parse(localStorage.getItem("changeHotelParaObj")) || {};
+    if(!parametersStorage){
+       // return;
+    }
+     var params = {
             "Code": "50100003",
             "ForeEndType": 2,
             "Parameters": {
@@ -38,14 +42,32 @@
             }]
             }
         },
+//    var params = {
+//            "Code": "50100003",
+//            "ForeEndType": 2,
+//            "Parameters": {
+//                "SelectedHotelID": parametersStorage.SelectedHotelID || "",
+//                "FlightCacheID": parametersStorage.FlightCacheID || "",
+//                "FlightSetID": parametersStorage.FlightSetID || "",
+//                "CityCodeFrom": parametersStorage.CityCodeFrom || "",
+//                "CityCodeTo": parametersStorage.CityCodeTo || "",
+//                "DepartDate": parametersStorage.DepartDate || "",
+//                "ReturnDate": parametersStorage.ReturnDate || "",
+//                "SortFields": parametersStorage.SortFields || "",
+//                "PageNo": parametersStorage.PageNo || "",
+//                "PageSize": parametersStorage.PageSize || "",
+//                "RoomDetails": parametersStorage.RoomDetails || []
+//            }
+//        },
         currentPage;
-
+   
     vlm.init();
 
     //根据模板需要提前处理好data
     function handleData(data) {
         var len = data.length;
         for (var i = 0; i < len; i++) {
+            data[i].hotelInfo = encodeURI(JSON.stringify(data[i]));
             switch (data[i].starRating) {
                 case "1":
                     data[i].starRating = "一";
@@ -122,7 +144,7 @@
                 return;
             }
             var data = result.data;
-            var str = template("hj_list_template", data.hotels);
+            var str = template("hj_list_template", handleData(data.hotels));
             $("#hj_jList").html($("#hj_jList").html() + str);
             //$("#totalHotels").html(); //更新酒店数量 接口没有酒店总数
             
@@ -406,26 +428,35 @@
             event.preventDefault();
         }
         
-        // 酒店详情页 页面跳转
+        // 酒店选择 页面跳转 将选择的酒店信息存入sessionStorage
         $('#hj_jList').on("click","li",function(evnt){
             var that = $(this);
-            var paraObj = new Object();
-			paraObj.HotelID = that.attr('data-hotelId');
-			paraObj.SelectedRoomID = params.Parameters.SelectedRoomID;
-			paraObj.FlightCacheID = params.Parameters.FlightCacheID;
-			paraObj.FlightSetID = params.Parameters.FlightSetID;
-			paraObj.CityCodeFrom = params.Parameters.CityCodeFrom;
-			paraObj.CityCodeTo = params.Parameters.CityCodeTo;
-			paraObj.ReturnDate = params.Parameters.ReturnDate;
-			//paraObj.RoomDetails = params.Parameters.RoomDetails;
-
-            var paramStr = "";
-			for (var attr in paraObj) {
-				paramStr += "&" + attr + "=" + paraObj[attr];
-			}
-			paramStr = paramStr.slice(1);
+            that.find('i').addClass("active");
+            var hotelInfo = decodeURI(that.attr("data-hotelInfo"));
+            sessionStorage.setItem('flightHotelAllData',hotelInfo);
+            var timer = setTimeout(function(){
+                window.history.go(-1);
+                clearTimeout(timer);
+            },500)
             
-            window.location.href = 'hotel_detail.html?' + paramStr;
+//            
+//            var paraObj = new Object();
+//			paraObj.HotelID = that.attr('data-hotelId');
+//			paraObj.SelectedRoomID = params.Parameters.SelectedRoomID;
+//			paraObj.FlightCacheID = params.Parameters.FlightCacheID;
+//			paraObj.FlightSetID = params.Parameters.FlightSetID;
+//			paraObj.CityCodeFrom = params.Parameters.CityCodeFrom;
+//			paraObj.CityCodeTo = params.Parameters.CityCodeTo;
+//			paraObj.ReturnDate = params.Parameters.ReturnDate;
+//			//paraObj.RoomDetails = params.Parameters.RoomDetails;
+//
+//            var paramStr = "";
+//			for (var attr in paraObj) {
+//				paramStr += "&" + attr + "=" + paraObj[attr];
+//			}
+//			paramStr = paramStr.slice(1);
+//            
+//            window.location.href = 'hotel_detail.html?' + paramStr;
         });
     }
 
