@@ -30,7 +30,7 @@ var data2 = '',roomdata = '';
         banner();
         adress();
         room();
-        rili();
+        vlm.init();
     }
     //nav标题部分
     function nav(){
@@ -43,6 +43,7 @@ var data2 = '',roomdata = '';
         $('.jhf-banner').html(banner);
     }
     //日历部分
+    rili();
     function rili(){
 
     }
@@ -54,22 +55,13 @@ var data2 = '',roomdata = '';
 
     //客房部分
     function room(){
-
         var jhf_room = template("jhf_room", data2.hotelInfo);
         $('.jhf-mes').append(jhf_room);
-        if(roomdata[3].addtionalPrice==0){
-            console.log('空字符传22')
-        }else{
-            console.log(1)
-        }
-
 
         $('.jhf-mes li.showh .slide').each(function(i){
             $('.jhf-mes li.showh .slide').eq(i).click(function(){
                 $(this).find('i').toggleClass('cur');
-                $(this).parent().siblings().find('i').removeClass('cur');
                 $('.jhf-mes ol.show').eq(i).slideToggle();
-                $('.jhf-mes ol.show').eq(i).show().parents('li.showh').siblings().find('ol.show').slideUp();
             })
         });
     }

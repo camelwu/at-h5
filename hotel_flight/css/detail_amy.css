@@ -78,16 +78,17 @@ a:link {
     margin-bottom: 0;
     color: #fff;
     overflow: hidden;
-    height: 2.2rem;
+    height: 16px;
+    line-height: 16px;
 }
 
 .jhf-nav .j-title p.titcn {
     font-size: 14px;
-    padding-top: 5px;
+    margin-top: 7px;
 }
 
 .jhf-nav .j-title p.titen {
-    margin-top: -3px;
+    /*margin-top: -3px;*/
 }
 
 .jhf-nav .j-title p.bigtit {
@@ -312,11 +313,15 @@ a:link {
     margin-right: 90px;
     padding-left: 15px;
 }
-
+.jhf-mes .show .lfword p{
+    margin-right:80px;
+}
 .jhf-mes .lfword p:nth-child(1) {
     font-size: 1.4rem;
     margin-bottom: -0.4rem;
     padding-top: 0.6rem;
+    height: 31px;
+    overflow: hidden;
 }
 
 .jhf-mes .lfword p:nth-child(2) {
@@ -327,7 +332,12 @@ a:link {
     background: #f5f4f9;
     display: none;
 }
-
+.jhf-mes ol.show{
+    border-bottom: 1px solid #dfdfdd;
+}
+.jhf-mes ol.show li:last-child{
+    border-bottom:0 ;
+}
 .jhf-mes ol.show li:nth-child(1) {
     font-size: 1.4rem;
 }
@@ -336,15 +346,17 @@ a:link {
     padding-bottom: 5px;
 }
 
-.jhf-mes ol.show span {
-    color: #fe4716;
-}
+/*.jhf-mes ol.show span {*/
+    /*color: #fe4716;*/
+/*}*/
 
 .jhf-mes .price {
     position: absolute;
     top: 0;
-    right: 15px;
+    right: 0;
     font-size: 1.6rem;
+    width: 60px;
+    text-align: right;
 }
 
 .jhf-mes .price span {
@@ -409,7 +421,9 @@ a:link {
 /*ji+jiu hotel seach list jyj*/
 
 .jlist-nav .j-title {
-    margin-right: 10px;
+    margin-right:20px;
+    height: 44px;
+    overflow: hidden;
 }
 
 .jlist {
