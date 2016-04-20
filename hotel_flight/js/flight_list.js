@@ -2,6 +2,10 @@
  * Created by Venson on 2016/4/18.
  */
 var flight_list = {
+    //      页面加载机票数据
+    getTicketList:function(){
+        
+    },
     addHandler: function (target, eventType, handle) {
         if (document.addEventListener) {
             this.addHandler = function (target, eventType, handle) {
@@ -485,7 +489,7 @@ var flight_list = {
                     var confirmFunction=function(){
                         that.stateEvent('get');
                         that.fn(that.tempStates);
-                        that.checkRedTip();
+                        //that.checkRedTip();
                         leftWrap.style.transition = 'all 300ms ease-in';
                         leftWrap.style.webkitTransition = 'all 300ms linear';
                         leftWrap.style.bottom = '-126%';
@@ -864,6 +868,8 @@ var flight_list = {
         });
     },
     init:function(infoObj, callback1, callback2){
+        var changeFlightInfo =  JSON.parse(localStorage.changeFlightParaObj);
+        this.getTicketList();
         this.tempStates = infoObj;
         this.originInfo = new Object();
         for(var tem in infoObj){
