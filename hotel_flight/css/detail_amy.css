@@ -58,7 +58,8 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 .jhf-mes .jhf-drg p span{ display:inline-block; line-height:4.8rem;}
 .jhf-mes .jhf-drg p i{ background:url(../../images/ui/icons1.png) no-repeat; background-position:-73px -33px; background-size:400px 120px; display:inline-block; width:18px; height:19px; margin-left:2px; position:relative; top:3px;}
 .jhf-mes .jhf-drg p i.cur{ background-position:-48px -33px;}
-.jhf-mes .lfword{ padding-left:15px;}
+.jhf-mes ol.show .lfword{ margin:0 15px; }
+.jhf-mes .slide .lfword{ margin-right:90px; padding-left:15px;}
 .jhf-mes .lfword p:nth-child(1){ font-size:1.4rem; margin-bottom:-0.4rem; padding-top:0.6rem;}
 .jhf-mes .lfword p:nth-child(2){ color:#999;}
 .jhf-mes ol.show{ background:#f5f4f9; display:none;}
@@ -76,7 +77,7 @@ background-image:image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../..
 .price span:nth-child(3){ margin-left:-6px;}
 .jhf-mes .lfword i.book{background:url(../../images/ui/icons1.png) no-repeat; background-position:-101px -33px; background-size:400px 120px; display:inline-block; width:18px; height:19px; margin-left:2px;}
 .jhf-mes .lfword span.name,.jhf-mes .lfword i.book{ float:left;}
-
+.jhf-mes .lfword span.name{ height: 24px; overflow: hidden;white-space: nowrap;  text-overflow: ellipsis;max-width: 90%;}
 /*ji+jiu hotel seach list jyj*/
 .jlist-nav .j-title{ margin-right:10px;}
 .jlist { background:#fff;border-top:1px solid #dfdfdd;}

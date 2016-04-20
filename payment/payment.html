@@ -10,7 +10,6 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
 
-
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../images/splash/splash-icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="../images/splash/splash-icon-big.png">
     <link rel="apple-touch-startup-image" href="../images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
@@ -24,7 +23,6 @@
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="../images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <title>订单支付 - 亚洲旅行网</title>
-
     <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
     <link href="../styles/tips.css" rel="stylesheet"/>
@@ -56,22 +54,22 @@
     <!-- 支付方式   -->
     <div class="p-pay">
         <ul class="p-ul1">
-            <li>
+            <li data-paymentmode="AliPay">
                 <i class="p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
             </li>
-            <li>
-                <i class="p-icon2"></i>
-                <span class="jp_credit">微信支付</span>
-                <i class = "p-icon5"></i>
-            </li>
-            <li>
+            <!--<li data-cardtype="31">-->
+                <!--<i class="p-icon2"></i>-->
+                <!--<span class="jp_credit" >微信支付</span>-->
+                <!--<i class = "p-icon5"></i>-->
+            <!--</li>-->
+            <li data-paymentmode="CreditCard"  data-cardtype="Visa">
                 <i class="p-icon3"></i>
                 <span class="jp_credit">维萨信用卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
-            <li>
+            <li data-paymentmode="CreditCard" data-cardtype="Master">
                 <i class="p-icon4"></i>
                 <span class="jp_credit">万事达卡支付</span>
                 <i class = "p-icon5"></i>
@@ -86,66 +84,64 @@
             <i class="icons go-back"></i>
         </a>
         <h3>支付</h3>
-        <a href="javascript:;" class = "header-call">
-            <i></i>
-        </a>
+        <a class="tel-icon"></a>
     </div>
     <!-- Page Content-->
     <div class="snap-content android-relative">
         <!--   总价   -->
         <div class="p-price">
-            <p class="p-p1" id="jp_price_sum">订单总价：<span>￥838.00</span></p>
+            <p class="p-p1" id="jp_price_sum">订单总价：￥<span class="total_price">838.00</span></p>
         </div>
         <!--   支付信息   -->
         <ul class="p-ul2">
             <li>
                 <div>信用卡号</div>
-                <input type="text" value="" id="jp_card_number" maxlength="20" placeholder="输入信用卡卡号">
+                <input type="text" value="" class="cardNumber" maxlength="20" placeholder="输入信用卡卡号">
             </li>
             <li>
                 <div>持卡人姓名</div>
-                <input type="text" value="" id="jp_card_name" maxlength="20" placeholder="姓名">
+                <input type="text" value="" class="cardHolderName" maxlength="20" placeholder="姓名">
             </li>
             <li>
                 <div>发卡银行</div>
-                <input type="text" value="" id="jp_bank_name" placeholder="招商银行">
+                <input type="text" value="" class="bankName" placeholder="招商银行">
             </li>
             <li class="countries-wrap">
                 <div>发卡国家</div>
-                <div><span class="country-btn CardCountryCode CardIssuanceCountryCode" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
+                <div><span class="CardCountryCode country-btn" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
                 <b class="icons s-xiala1"></b>
                 <!--<a href="#" class="icons open-pho" ></a>-->
                 <!--<div class="second-div" ><span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" >中国</span></div>-->
             </li>
             <li>
                 <div>有效期</div>
-                <input type="text" value="" placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate" readonly="">
+                <input type="text" data-expire="2019-01-01" placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate" readonly="">
             </li>
             <li>
                 <div>安全码</div>
-                <input type="text" value="" id="jp_safe_code" placeholder="请输入签名栏末尾最后3位">
+                <input type="text" value="" class="cardSecurityCode" placeholder="请输入签名栏末尾最后3位">
             </li>
             <li class="fill-tel">
                 <div>持卡人手机号</div>
                 <span class="tel-btn phone">+86</span>
                 <b class="icons s-xiala1"></b>
-                <input type="tel" value placeholder="用于接收通知" class="PhoneNo" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+                <input type="tel" value placeholder="用于接收通知" class="MobilePhone" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
             </li>
             <li>
                 <div>账单城市</div>
-                <input type="tex" placeholder="请输入持卡人账单城市"/>
+                <input type="tex" placeholder="请输入持卡人账单城市" class="CardAddressCountryCode"/>
             </li>
             <li>
                 <div>账单地址</div>
-                <input type="tex" placeholder="请输入持卡人账单地址"/>
+                <input type="tex" placeholder="请输入持卡人账单地址" class="cardAddress"/>
             </li>
             <li>
                 <div>邮政编码</div>
-                <input type="text" placeholder="请输入邮政编码"/>
+                <input type="text" placeholder="请输入邮政编码" class="cardAddressPostalCode"/>
             </li>
             <li class="countries-wrap">
                 <div>持卡人国家</div>
-                <div><span class="country-btn" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
+                <div><span class="CardIssuanceCountryCode country-btn" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
                 <b class="icons s-xiala1"></b>
             </li>
         </ul>
@@ -157,7 +153,7 @@
 <!--国籍选择开始-->
 <div class="all-elements country-cho-wrap">
     <div class="header">
-        <a href="javascript:;" class="icons header-back country-hidden"></a>
+        <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
         <div class="cl_search">
             <input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
             <i></i>
@@ -177,7 +173,15 @@
     </div>
 </div>
 <!--国籍选择结束-->
+<!--客服电话-->
+<div class="jpop_box_tic" style="display: none;">
+    <dl>
+        <dt>400 805 8888</dt>
+        <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+    </dl>
+</div>
 <script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
@@ -200,7 +204,73 @@
                 <span><i>1</i>儿童</span>
             </div>
         </li>
-        <li class="order-price"> 订单总价：<i>￥{%=totalFlightPrice%}</i></li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_hotel_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>酒店</l>
+        <li>
+            <span class="hf-f"><i class = "hf-go"></i><p>2015-01-08 17:32</p></span>
+            <span class="hf-f"><i class = "hf-back"></i><p>2015-01-11 17:32</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>2</i>成人</span>
+                <span><i>1</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_flight_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>单程</l>
+        <li>
+            <span class="hf-f"><i class = "hf-go"></i><p>2015-01-08 17:32</p></span>
+            <span class="hf-f"><i class = "hf-back"></i><p>2015-01-11 17:32</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>{%=numofAdult%}</i>成人</span>
+                <span><i>{%=numofChild%}</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_tour_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>酒+景</l>
+        <li>
+            <span class="hf-f"><p>{%=packageName%}</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>2</i>成人</span>
+                <span><i>1</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_scenic_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>景点</l>
+        <li>
+            <span class="hf-f"><p>{%=packageName%}</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>2</i>成人</span>
+                <span><i>1</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
     </ul>
 </script>
 
