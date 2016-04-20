@@ -129,3 +129,9 @@
     background-position: 3% 90%;
     background-size: 150px 65px;
 }
+.tra_con1 .payment-success{
+    display:inline-block;width:22px;height:22px;background:url("../../images/lsf_icon1.png");
+    -webkit-background-size: 22px 22px;
+    background-size: 22px 22px;
+    vertical-align:middle;
+}

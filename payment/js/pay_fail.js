@@ -1,294 +1,93 @@
-/**
- * Created by chaimeili  2016/04/20.
- * Ö§¸¶³É¹¦£¨¾Æµê£¬»úÆ±£¬¾Æ+¾°£¬»ú+X£©
- */
+//created chaimeili on 2016/04/20
 (function(){
-    /*È«¾Ö±äÁ¿ÉùÃ÷*/
-    var type/*ÒµÎñÀàĞÍ */,
-        bookingRefNo/*¶©µ¥ºÅ */;
-    var payment=function(){
-        /*Ö§¸¶Ä£¿é£¨¾Æµê£¬»úÆ±£¬¾°µã£¬¾Æ+¾°£¬»ú+¾Æ£©*/
+    //å®šä¹‰å…¨å±€å˜é‡ï¼šè®¢å•å·ã€äº§å“åã€è®¢å•æ€»é¢
+    var type,bookingRefNo;
+    /*æ”¯ä»˜æ¨¡å—ï¼ˆé…’åº—ï¼Œæœºç¥¨ï¼Œæ™¯ç‚¹ï¼Œé…’+æ™¯ï¼Œæœº+é…’ï¼‰*/
+    var pay_fail = function(){
         var _bussinessType= {
-            "Hotle":{id: 1, name: "¾Æµê", detailCode: "0013", payMentCode: "0012"},
-            "Flight":{id: 2, name: "»úÆ±", detailCode: "3006", payMentCode: "3004"},
-            "Scenic":{id: 3, name: "¾°µã", detailCode: "0095", payMentCode: "0093"},
-            "Tour":{id: 4, name: "¾Æ+¾°", detailCode: "0095", payMentCode: "0203"},
-            "FlightHotle":{id: 5, name: "»ú+¾Æ", detailCode: "50100007", payMentCode: "50100005"}
+            "Hotle":{id: 1,detailCode: "0013"},
+            "Flight":{id: 2,detailCode: "3006"},
+            "Scenic":{id: 3,detailCode: "0095"},
+            "Tour":{id: 4,detailCode: "0095"},
+            "FlightHotle":{id: 5,detailCode: "50100007"}
         };
-        /*Ò³Ãæ³õÊ¼»¯*/
-        var _init={
-
-            //Ò³ÃæÊÂ¼ş°ó¶¨
-            bindPaymentTypeEvent:function(){
-                //Ñ¡ÔñÖ§¸¶·½Ê½
-                $(".p-pay li").on("click",function(){
-
-                    paymentMode=$(this).attr("data-paymentmode") //»ñÈ¡Ñ¡ÔñÖ§¸¶ÀàĞÍ
-                    cardType=$(this).attr("data-cardtype")//»ñÈ¡Ñ¡Ôñ¿¨ÀàĞÍÀàĞÍ
-
-                    //Èç¹ûÔÚÏßÖ§¸¶£¨ÒøÁªOrÖ§¸¶±¦£©
-                    if(cardType=="undefined" || cardType==undefined){
-                        _paymentEvent();
-                    }else{
-                        $(".paymentype-session").hide();
-                        $(".credit-session").show();
-                    }
+        //é¡µé¢åˆå§‹åŒ–
+        var _init = {
+            //é¡µé¢äº‹ä»¶ç»‘å®š
+            bindbindPaymentTypeEvent:function(){
+                $("#fl").on("click",function() {
+                    window.location.href = "../index.html";
                 })
-                //»ØÍË°´Å¥
-                $(".credit-session .go-back").on("click",function(){
-                    $(".paymentype-session").show();
-                    $(".credit-session").hide();
-
+                $("#fr").on("click",function() {
+                    window.location.href = "payment/payment.html?bookingRefNo={%=bookingRefNo%}&type=FlightHotle";
                 })
-                //800µç»°°´Å¥
-                $(".tel-icon").on("click", function () {
-                    $(".jpop_box_tic").show();
-                })
-                $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
-                    $('.jpop_box_tic').hide();
-                })
-
-                //Ö§¸¶°´Å¥
-                $(".p-but").on("click",function(){
-                    _paymentEvent();
+                $("#fr2").on("click",function() {
+                    window.location.href = "";
                 })
             }
-        }
-        /*»ñÈ¡¶©µ¥ÏêÇéÊı¾İ*/
-        var _getOrderData=function(bussinessType,bookingRefNo,foreEndType,callback){
-            var Parameters;
-            //Todo ¾ÆµêÌØÊâ´¦Àí£¨Ä¿Ç°Îª²»Ó°Ïì¾ÆµêÖ§¸¶Á÷³Ì£¬ÔİÊ±µ¥¶À´¦Àí£¬ºóÆÚµÈºóÌ¨½Ó¿ÚÖØ¹¹È¥µô£©
-            if(bussinessType.id==1){
-                Parameters={
-                    "CultureName":"en-US",
-                    "BookingReferenceNo": bookingRefNo
-                }
-            }
-            else{
-                Parameters={
-                    "BookingRefNo": bookingRefNo
-                }
-            }
-            var Parameters={
-                "Parameters": Parameters,
+        };
+        /*è·å–è®¢å•è¯¦æƒ…æ•°æ®*/
+        var _getData=function(bussinessType,bookingRefNo,foreEndType,callback){
+            var para={
+                "Parameters": {"BookingRefNo": bookingRefNo},
                 "ForeEndType":foreEndType,
-                "Code": bussinessType.detailCode
-            }
-            console.log(JSON.stringify(Parameters));
-            vlm.loadJson("", JSON.stringify(Parameters),callback);
-        };
-        /*Ö§¸¶ModleÊµÌå*/
-        var _get_modle=function(){
-            return {
-                "cardAddressPostalCode":$(".cardAddressPostalCode").val(),
-                "bankName":$(".bankName").val(),
-                "countryNumber":"CN",
-                "cardAddressCity":$(".cardAddressCity").val(),
-                "cardHolderName":$(".cardHolderName").val(),
-                "cardExpiryDate":"2018-12-31",
-                "cardNumber":$(".cardNumber").val(),
-                "MobilePhone":$(".MobilePhone").val(),
-                "cardType":cardType,
-                "cardSecurityCode":$(".cardSecurityCode").val(),
-                "cardCountryCode":"CN",
-                "cardAddressCountryCode":$(".CardAddressCountryCode").val(),
-                "cardAddress":$(".cardAddress").val()
-            }
-        };
-        /*Ö§¸¶·½·¨  paymentType(Ö§¸¶±¦£¬ĞÅÓÃ¿¨)£¬bussinessType£¨»úÆ±£¬¾Æµê....£©*/
-        var _paymentEvent=function() {
-            var parameters
-            //Todo ¾ÆµêÖ§¸¶ÌØÊâ´¦Àí£¨Ä¿Ç°Îª²»Ó°Ïì¾ÆµêÖ§¸¶Á÷³Ì£¬ÔİÊ±µ¥¶À´¦Àí£¬ºóÆÚµÈºóÌ¨½Ó¿ÚÖØ¹¹È¥µô£©
-            if (type.id == 1){
-                //ÑéÖ¤modle£»
-                _check_modle();
-                var json=JSON.parse(localStorage.getItem('user_order_storage12345'));
-                var model=_get_modle();
-                var guestNameList = [];
-                for (var i = 0; i <= myData.guestName.length - 1; i++) {
-                    var guestInfo = {};
-                    guestInfo.guestFirstName = json.guestName[i].GuestFirstName;
-                    guestInfo.guestLastName = json.guestName[i].GuestLastName;
-                    guestNameList.push(guestInfo);
-                }
-                //Ö§¸¶Ä£Ê½ÎªĞÅÓÃ¿¨
-                if (paymentMode == "CreditCard" && (bookingRefNo == null || bookingRefNo==undefined )) {
-                    var flag= _check_modle();
-                    if(!flag){
-                        return;
-                    }
-                    Parameters = {
-                        "availability": true,
-                        "bankName": json.BankName,
-                        "browserType": "",
-                        "cardBillingAddress": "werty",
-                        "cardHolderName": json.CardHolderName,
-                        "cardIssuanceCountry": json.CardIssuanceCountry,
-                        "cardSecurityCode":  model.cardSecurityCode,
-                        "cashVoucherDetails": "",
-                        "checkInDate": json.dateInfo.CheckInDate + "T00:00:00",
-                        "checkOutDate": json.dateInfo.CheckOutDate + "T00:00:00",
-                        "cookieID": 1,
-                        "creditCardExpiryDate": model.cardExpiryDate,
-                        "creditCardNumber":  model.cardNumber,
-                        "creditCardType": cardType,
-                        "guestContactNo": json.GuestContactNo,
-                        "guestEmail": json.GuestEmail,
-                        guestNameList: guestNameList,
-                        "guestRequest": "",
-                        "guestTitle": "Mr",
-                        "hotelCode": json.HotelGenInfo.hotelCode,
-                        "hotelName": json.HotelGenInfo.hotelName,
-                        "iPAddress": "",
-                        "memberId": localStorage.memberid,
-                        "nationlityCode": "",
-                        "numOfChild": 0,
-                        "numOfGuest": json.NumOfRoom,
-                        "numOfRoom": json.NumOfRoom,
-                        "residenceCode": "",
-                        "roomCode": json.roomCode,
-                        "roomName": json.roomName,
-                        "roomTypeCode": json.RoomTypeCode,
-                        "roomTypeName": json.RoomTypeName,
-                        "sessionID": "",
-                        "totalPrice": json.totalPriceCNY,
-                        "trck": ""
-                    }
-                }
-                else{
-                    Parameters = {
-                        "bankName": json.BankName,
-                        "bookingReferenceNo":bookingRefNo,
-                        "cardBillingAddress":"",
-                        "cardHolderName": json.CardHolderName,
-                        "cardIssuanceCountry": json.CardIssuanceCountry,
-                        "cardSecurityCode": model.cardSecurityCode,
-                        "cashVoucherDetails":"",
-                        "creditCardExpiryDate": model.cardExpiryDate,
-                        "creditCardNumber":  model.cardNumber,
-                        "creditCardType": cardType,
-                        "paymentGatewayID":"0"
-                    }
-                }
-                var param = {
-                    "Code": type.payMentCode,
-                    "Parameters": Parameters,
-                    "ForeEndType": 3
-                }
-            }
-            else {
-                //Ö§¸¶Ä£Ê½ÎªÔÚÏßÖ§¸¶
-                if (paymentMode == "CreditCard") {
-                    var flag= _check_modle();
-                    if(!flag){
-                        return;
-                    }
-                    parameters = {
-                        "cardInfo": _get_modle(),
-                        "bookingRefNo": bookingRefNo,
-                        "currencyCode": "CNY",
-                        "totalPrice":  $(".total_price").html(),
-                        "paymentMode": paymentMode
-                    }
-                } else {
-                    parameters = {
-                        "cardInfo": {},
-                        "bookingRefNo": bookingRefNo,
-                        "currencyCode": "CNY",
-                        "totalPrice": $(".total_price").html(),
-                        "paymentMode": paymentMode
-                    }
-                }
-                var param = {
-                    "Code": type.payMentCode,
-                    "Parameters": parameters,
-                    "ForeEndType": 3
-                }
-            }
-
-            //$.jAlert.confirm("Ö§¸¶Íê³ÉÇ°£¬Çë²»Òª¹Ø±Õ´ËÖ§¸¶ÑéÖ¤´°¿Ú </br> Ö§¸¶Íê³Éºó£¬Çë¸ù¾İÄãÖ§¸¶µÄÇé¿öµã»÷ÏÂÃæµÄ°´Å¥¡£","ÍøÉÏÖ§¸¶ÌáÊ¾",null,"Ö§¸¶Íê³É","Ö§¸¶³öÏÖÎÊÌâ");
-            console.log(JSON.stringify(param));
-            vlm.loadJson("", JSON.stringify(param), function(data){
+                "Code": type.detailCode
+                };
+            console.log(JSON.stringify(para));
+            vlm.loadJson("", JSON.stringify(para),function(data){
                 if (data.success) {
-                    location.href=data.url;
+                    if(type.id==1){
+                        data.data.productName=data.data.hotelname;
+                    }else if(type.id==2){
+                        var cityfrom = data.data.cityNameFrom;
+                        var cityto = data.data.cityNameTo;
+                        data.data.productName=cityfrom/cityto;
+                    }
+                    else if(type.id==3){
+                        data.data.productName=data.data.packageName;
+                        var totalPrice=0;
+                        for(var i=0;i<=data.data.chargeDetails.length-1;i++){
+                            totalPrice+=data.data.chargeDetails[i].totalAmount;
+                        }
+                        data.data.totalPrice=totalPrice;
+                    }
+                    else if(type.id==4){
+                        data.data.productName=data.data.packageName;
+                    }
+                    else if(type.id==5){
+
+                    }
+                    var html = template("vlm_login", data.data);
+                    $("#vlm_login").html(html);
                 }
-                else{
-                    alert(data.message);
-                }
+
             });
-
         };
-        /*Éú³É¶©µ¥ÏêÇéHTMLÆ¬¶Î*/
-        var _generateHtml=function(type,data){
-            //»ú+¾ÆÏêÇétpl
-            if(type.id==5){
-                var html = template("tpl_flighthotel_detail", data.data);
-                $(".p-home").append(html);
-            }
-            //¾ÆµêÏêÇétpl
-            else if(type.id==1){
-                data.data.totalPrice=data.data.totalFlightPrice;
-                var html = template("tpl_hotel_detail", data.data);
-                $(".p-home").append(html);
-            }
-            //»úÆ±ÏêÇétpl
-            else if(type.id==2){
-                data.data.totalPrice=data.data.totalFlightPrice;
-                var html = template("tpl_flight_detail", data.data);
-                $(".p-home").append(html);
-            }
-            //¾°µãÏêÇétpl
-            else if(type.id==3){
-                var totalPrice=0;
-                for (var i = 0;i<data.data.chargeDetails.length;i++){
-                    totalPrice+=data.data.chargeDetails[i].totalAmount;
-                }
-                data.data.totalPrice=totalPrice;
-                var html = template("tpl_scenic_detail", data.data);
-                $(".p-home").append(html);
-            }
-            //¾Æ+¾°ÏêÇétpl
-            else if(type.id==4){
-                var totalPrice=0;
-                for (var i = 0;i<data.data.chargeDetails.length;i++){
-                    totalPrice+=data.data.chargeDetails[i].totalAmount;
-                }
-                data.data.totalPrice=totalPrice;
-                var html = template("tpl_tour_detail", data.data);
-                $(".p-home").append(html);
-            }
-
-            //»ñÈ¡ÏêÇé¼Û¸ñ
-            var price=$(html).find(".order-price i").html();
-            $(".total_price").html(price)
-        }
-
-        /*Ò³Ãæ³õÊ¼»¯·½·¨*/
-        var _initPage=function(){
-
-            //»ñÈ¡Url²ÎÊı
-            type=_bussinessType[vlm.getpara("type")];//ÒµÎñÀàĞÍ£¨1¾Æµê£¬2»úÆ±£¬3¾°µã£¬4¾Æ+¾°£¬5»ú+¾°£©
-            bookingRefNo=vlm.getpara("bookingRefNo");//¶©µ¥code
-
-            //°ó¶¨Ò³ÃæÊÂ¼ş
-            _init.bindPaymentTypeEvent();
-
-            //»ñÈ¡¶©µ¥ÏêÇéÊı¾İ
-            _getOrderData(type,bookingRefNo,3,function(data){
+        //é¡µé¢åˆå§‹åŒ–æ–¹æ³•
+        var  _initPage = function(){
+            //è·å–urlå‚æ•°
+            type=_bussinessType[vlm.getpara("type")];//ä¸šåŠ¡ç±»å‹ï¼ˆ1é…’åº—ï¼Œ2æœºç¥¨ï¼Œ3æ™¯ç‚¹ï¼Œ4é…’+æ™¯ï¼Œ5æœº+æ™¯ï¼‰
+            bookingRefNo=vlm.getpara("bookingRefNo");//è®¢å•code
+            //ç»‘å®šé¡µé¢äº‹ä»¶
+            _init.bindbindPaymentTypeEvent();
+            //è·å–æ”¯ä»˜æ•°æ®
+            _getData(type,bookingRefNo,3,function(data){
                 vlm.init();
                 if (data.success) {
-                    _generateHtml(type,data);
+                    data.data.totalPrice=data.data.totalFlightPrice;
+                    var html = template("vlm_login", data.data);
+                    $("#vlm_login").html(html);
+
                 }
                 else{
-                    jAlert("ÍøÂçÇëÇó´íÎó£¡");
+                    jAlert("ç½‘ç»œè¯·æ±‚é”™è¯¯ï¼");
                 }
             });
         };
-        /*½Ó¿Ú*/
+        /*æ¥å£*/
         return{
             InitPage:_initPage()
         }
-    }()
+    }();
 
-})()
-
+})();
