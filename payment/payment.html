@@ -10,7 +10,6 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
 
-
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../images/splash/splash-icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="../images/splash/splash-icon-big.png">
     <link rel="apple-touch-startup-image" href="../images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
@@ -24,7 +23,6 @@
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="../images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <title>订单支付 - 亚洲旅行网</title>
-
     <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
     <link href="../styles/style.css"		rel="stylesheet" type="text/css">
     <link href="../styles/tips.css" rel="stylesheet"/>
@@ -56,7 +54,7 @@
     <!-- 支付方式   -->
     <div class="p-pay">
         <ul class="p-ul1">
-            <li data-paymentmode="31">
+            <li data-paymentmode="AliPay">
                 <i class="p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
@@ -66,12 +64,12 @@
                 <!--<span class="jp_credit" >微信支付</span>-->
                 <!--<i class = "p-icon5"></i>-->
             <!--</li>-->
-            <li data-paymentmode="20"  data-cardtype="101">
+            <li data-paymentmode="CreditCard"  data-cardtype="Visa">
                 <i class="p-icon3"></i>
                 <span class="jp_credit">维萨信用卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
-            <li data-paymentmode="20" data-cardtype="103">
+            <li data-paymentmode="CreditCard" data-cardtype="Master">
                 <i class="p-icon4"></i>
                 <span class="jp_credit">万事达卡支付</span>
                 <i class = "p-icon5"></i>
@@ -86,9 +84,7 @@
             <i class="icons go-back"></i>
         </a>
         <h3>支付</h3>
-        <a href="javascript:;" class = "header-call">
-            <i></i>
-        </a>
+        <a class="tel-icon"></a>
     </div>
     <!-- Page Content-->
     <div class="snap-content android-relative">
@@ -177,6 +173,13 @@
     </div>
 </div>
 <!--国籍选择结束-->
+<!--客服电话-->
+<div class="jpop_box_tic" style="display: none;">
+    <dl>
+        <dt>400 805 8888</dt>
+        <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+    </dl>
+</div>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
@@ -202,6 +205,72 @@
             </div>
         </li>
         <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_hotel_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>酒店</l>
+        <li>
+            <span class="hf-f"><i class = "hf-go"></i><p>2015-01-08 17:32</p></span>
+            <span class="hf-f"><i class = "hf-back"></i><p>2015-01-11 17:32</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>2</i>成人</span>
+                <span><i>1</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_flight_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>单程</l>
+        <li>
+            <span class="hf-f"><i class = "hf-go"></i><p>2015-01-08 17:32</p></span>
+            <span class="hf-f"><i class = "hf-back"></i><p>2015-01-11 17:32</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>{%=numofAdult%}</i>成人</span>
+                <span><i>{%=numofChild%}</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_tour_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>酒+景</l>
+        <li>
+            <span class="hf-f"><p>{%=packageName%}</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>2</i>成人</span>
+                <span><i>1</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
+    </ul>
+</script>
+<script id="tpl_scenic_detail" type="text/template">
+    <ul class="p-hotelinfo">
+        <l>景点</l>
+        <li>
+            <span class="hf-f"><p>{%=packageName%}</p></span>
+        </li>
+        <li>
+            <div class = "hf-anum">
+                <span>人数:</span>
+                <span><i>2</i>成人</span>
+                <span><i>1</i>儿童</span>
+            </div>
+        </li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
     </ul>
 </script>
 

@@ -168,8 +168,8 @@
     padding-left: 12px;
 }
 .p-ul2 div{
-    width: 100px;color:#484848;
-
+    width: 115px;
+    color:#484848;
 }
 .p-ul2 li input{
     flex:2;
@@ -492,5 +492,17 @@
     right: 20px;
     position: absolute;
     background-position: 73.5% 7%;
+}
+.tel-icon {
+    display: block;
+    background-image: url(../images/ui/icons.png);
+    background-position: -218px -73px;
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    width: 17px;
+    height: 27px;
+    position: absolute;
+    right: 10px;
+    top: 14px;
 }
 /*÷ß∏∂ ß∞‹“≥Ω· ¯*/
