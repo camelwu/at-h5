@@ -1,7 +1,7 @@
 var ticketHotel = {
 
     requestUrl: 'http://10.6.11.20:8888/ ',
-
+    isStop: true,
     addHandler: function (target, eventType, handle) {
         if (document.addEventListener) {
             this.addHandler = function (target, eventType, handle) {
@@ -60,7 +60,7 @@ var ticketHotel = {
         var detailEle = document.querySelector('.detail-text-arrow'), that = ticketHotel, shadowEle= document.querySelector('.shadow');
         var detailLine = document.querySelector('.summary-cost-modal'), icon=document.querySelector('.icon-arrow');
         var roomOuter = document.querySelector('.room-ul-outer'), reBack = document.querySelector('.edit-button'), hotelDetail = document.querySelector('.hotel-info-data-item');
-        var changeFlight = document.querySelector('.change-flight-action'), changeHotel = document.querySelector('.change-hotel-action'), toFlightDetail = document.querySelector('.flight-detail');
+        var toFlightDetail = document.querySelector('.flight-detail');
 
         var hide = function(){ detailLine.style.bottom = "-50px";
             shadowEle.style.display = 'none';
@@ -68,33 +68,6 @@ var ticketHotel = {
         var show = function(){ detailLine.style.bottom = "50px";
             shadowEle.style.display = 'block';
             icon.className="icon-arrow arrow-up";};
-
-
-        this.addHandler(changeFlight, 'click', function (){
-            var that = ticketHotel;
-            var paraObj = that.initParaObj;
-            paraObj.AirwayCacheID = that.cacheData.airwayCacheID;
-            paraObj.AirwaySetID = that.cacheData.airwaySetID;
-            paraObj.SortFields = [0];
-            /* paraObj = {
-                CityCodeFrom: "SIN",
-                CityCodeTo: "BKK",
-                DepartDate: "2016-05-10T00:00:00",
-                ReturnDate: "2016-05-15T00:00:00",
-                RoomDetails: [{Adult: "2", ChildWithoutBed: [6]}],
-                AirwayCacheID: "13752",
-                AirwaySetID: "1002001",
-                SortFields: [0]
-            };*/
-            that.storageUtil.set('changeFlightParaObj',paraObj);
-            this.href = 'ticket-list.html';
-        });
-
-        this.addHandler(changeHotel, 'click', function (){
-
-            this.href = 'hotel_detail_screen.html';
-        });
-
         this.addHandler(reBack, 'click', function (){
            window.location.href = 'index.html';
         });
@@ -166,17 +139,77 @@ var ticketHotel = {
             }
         });
     },
-    renderHandler:function(arg){
-        var resultData = arg, that = ticketHotel;
-        resultData  = result1;
+    changeHandler:function(){
+        var changeFlight = document.querySelector('.change-flight-action'), changeHotel = document.querySelector('.change-hotel-action');
+        this.addHandler(changeFlight, 'click', function (event){
+            var that = ticketHotel, tag=that.isStop;
+            var paraObj = that.initParaObj;
+            /* paraObj = {//最终格式
+             CityCodeFrom: "SIN",
+             CityCodeTo: "BKK",
+             DepartDate: "2016-05-10T00:00:00",
+             ReturnDate: "2016-05-15T00:00:00",
+             RoomDetails: [{Adult: "2", ChildWithoutBed: [6]}],
+             AirwayCacheID: "13752",
+             AirwaySetID: "1002001",
+             SortFields: [0],
+             ScreenFields":[1]
+             };*/
+            if(tag){
+                event.preventDefault();
+                alert('稍后再试');
+            }else{
+                paraObj.AirwayCacheID = that.cacheData.airwayCacheID;
+                paraObj.AirwaySetID = that.cacheData.airwaySetID;
+                paraObj.SortFields = [0];
+                paraObj.ScreenFields=[1];
+                that.storageUtil.set('changeFlightParaObj',paraObj);
+            }
+        });
 
+        this.addHandler(changeHotel, 'click', function (){
+            var that = ticketHotel, tag=that.isStop;
+            var paraObj = that.initParaObj;
+             /*paraObj = {//最终格式
+                     "SelectedHotelID": "1005455",
+                     "FlightCacheID": "13767",
+                     "FlightSetID": "1002001",
+                     "CityCodeFrom": "SIN",
+                     "CityCodeTo": "BKK",
+                     "DepartDate": "2016-05-07",
+                     "ReturnDate": "2016-05-08",
+                     "SortFields": [1, 3],
+                     "PageNo": 1,
+                     "PageSize": 20,
+                     "RoomDetails": [{"Adult": 2}]
+                 }*/
+            if(tag){
+                event.preventDefault();
+                alert('稍后再试');
+            }else{
+                paraObj.SelectedHotelID = that.cacheData.hotelInfo.hotelID;
+                paraObj.FlightCacheID = that.cacheData.flightInfo.cacheID;
+                paraObj.FlightSetID = that.cacheData.flightInfo.setID;
+                paraObj.SortFields = [1, 3];
+                paraObj.PageNo = 1;
+                paraObj.PageSize = 20;
+                that.storageUtil.set('changeHotelParaObj',paraObj);
+            }
+        });
+
+    },
+    renderHandler:function(arg){
+        console.log(arg)
+        var resultData = arg, that = ticketHotel;
+        //resultData  = result1;
+        if(!resultData)return;
         if (resultData.success) {
             if (resultData.data == null) {
                 jAlert("抱歉暂时没有数据", "提示");
             } else {
-                this.cacheData = resultData;
-                this.cacheRoomData = resultData.data.hotelInfo.rooms;
-                console.log(resultData.data)
+                that.cacheData = resultData.data;
+                that.cacheRoomData = resultData.data.hotelInfo.rooms;
+                console.log(that)
                 that.storageUtil.set('curFlightDetailInfo', resultData.data.flightInfo);
                 var temp_flightInfo = [
                     '<div class="trip-go">',
@@ -414,19 +447,26 @@ var ticketHotel = {
                 $('.hotel-summary-info').eq(0).html(hotelInfoTags);
                 $('.room-ul-outer').eq(0).html(roomInfoTags);
                 that.eventHandler();
+                that.isStop = false;
             }
         } else {
             $("#preloader").fadeOut();
             jAlert(resultData.message, "提示");
         }
     },
-
     init:function () {
+        var storagePara = JSON.parse(window.localStorage.getItem('searchInfo')), initParaObj={};
+        initParaObj.CityCodeFrom = storagePara.FromCity;
+        initParaObj.CityCodeTo = storagePara.ToCity;
+        initParaObj.DepartDate = storagePara.DepartDate;
+        initParaObj.ReturnDate = storagePara.ReturnDate;
+        initParaObj.RoomDetails = storagePara.RoomInfo;
+        console.log(initParaObj)
         var initParaObj = {
                 CityCodeFrom: "SIN",
                 CityCodeTo: "BKK",
-                DepartDate: "2016-05-10T00:00:00",
-                ReturnDate: "2016-05-15T00:00:00",
+                DepartDate: "2016-05-17T00:00:00",
+                ReturnDate: "2016-05-25T00:00:00",
                 RoomDetails: [{Adult: "2", ChildWithoutBed: [6]}]
         };
 
@@ -493,10 +533,10 @@ var ticketHotel = {
                 "directFlight": 0
         };
 
-
         this.initParaObj = initParaObj;
         this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
-        this.renderHandler();
+        //this.renderHandler();
+        this.changeHandler();
     }
 };
 ticketHotel.init();
