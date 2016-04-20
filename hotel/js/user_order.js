@@ -200,7 +200,6 @@ styleChange2('uo_c3_peoBox','uo_firstname','名（如：San）');
 //本地存储数据
 //localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
 
-
 //获取user_order_storage12345,实现历史选择记忆功能
 
 function uoHisData(){
@@ -310,6 +309,12 @@ uoHisData();
 
     //房间数列表
     uo_c2_num.innerHTML=fake_data.NumOfRoom;
+    //初始化房间数减号状态
+    if(parseInt(fake_data.NumOfRoom) >1 && parseInt(fake_data.NumOfRoom) <10){
+        uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0px no-repeat';
+        uo_c2_i1.style.backgroundSize='23px 150px';
+    }
+    
     var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
     for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
         if(hoPos=='inter'){
@@ -388,6 +393,7 @@ uoHisData();
     //    document.documentElement.scrollTop='800';
     //});
     //获取判断服务器给的数据的精度
+    
     function getAccuracy(digit){
         var digitLen = new String(digit).length;
         var dotIndex = new String(digit).indexOf(".");
@@ -524,7 +530,7 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)>1){
-            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 -27px no-repeat';
+            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0px no-repeat';
             uo_c2_i1.style.backgroundSize='23px 150px';
         }
         if(parseInt(uo_c2_num.innerHTML)>=10){
