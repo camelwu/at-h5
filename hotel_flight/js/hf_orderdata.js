@@ -119,6 +119,7 @@ var data= {
             }],
         "additionalPrice": 0
     },
+    "RoomDetails":[{"Adult":"2","ChildWithoutBed":[6]},{"Adult":"1","ChildWithoutBed":[6]}],
     "airwaySetID": 1002001,
     "airwayCacheID": 1013262
 }
