@@ -433,7 +433,9 @@
             var that = $(this);
             that.find('i').addClass("active");
             var hotelInfo = decodeURI(that.attr("data-hotelInfo"));
-            sessionStorage.setItem('flightHotelAllData',hotelInfo);
+            var flightHotelAllData = JSON.parse(sessionStorage.getItem('flightHotelAllData'));
+            flightHotelAllData.data.hotelInfo = hotelInfo;
+            sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
             var timer = setTimeout(function(){
                 window.history.go(-1);
                 clearTimeout(timer);
