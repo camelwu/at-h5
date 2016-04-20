@@ -51,10 +51,10 @@ var flight_list = {
         //var rightModal =  document.createElement('ul');
         //rightModal.id = "price-modal";
 
-        baseTitle.innerHTML = '<div class="fo-div" id="fo_aw"><b class="hf-icon ic-aw"></b><i class=""></i>' +
+        baseTitle.innerHTML = '<div class="fo-div" id="fo_aw"><b class="hf-icon ic-aw"></b><i class="red-tip"></i>' +
             '<span class="filter-select">航空公司</span>'+
             '</div>'+
-            '<div class="fo-div" id="fo_ra"><b class="jd-icon s-rank"></b><i class=""></i>' +
+            '<div class="fo-div" id="fo_ra"><b class="jd-icon s-rank"></b><i class="red-tip"></i>' +
             '<span class="filter-select">快速排序</span>'+
             '</div>'+
             '<div class="fo-div" id="fo_scr"><b class="hl-icon3 filter"></b><i class=""></i>' +
