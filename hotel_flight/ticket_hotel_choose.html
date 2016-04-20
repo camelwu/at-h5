@@ -17,10 +17,10 @@
     <link href="css/ticket_hotel_choose.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!--<div id="preloader">
+<div id="preloader">
     <div id="status">
     </div>
-</div>-->
+</div>
 <div class="all-elements ticket-hotel-wrap">
     <div class="header header-wrap">
         <a href="javascript:window.history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
@@ -36,126 +36,41 @@
         <a href="">机票</a>
         <a href="ticket-list.html" class="change-flight-action">更换航班</a>
     </div>
-    <div class="flight-summary-info">
-        <div class="trip-go">
-            <div class="title-date-address">
-                <span class="icon go-icon"></span>
-                <span class="go-date">01-08</span>
-                <span class="go-week">周二</span>
-                <span class="go-set-city">北京</span>
-                -
-                <span class="go-off-city">泰国</span>
-            </div>
-            <div class="time-port-day">
-                <div class="left">
-                    <span class="start-time">07:00</span>
-                    <span class="start-port">浦东机场T2</span>
-                </div>
-                <div class="middle">
-                    <div class="time-cost">11h30m</div>
-                    <div class="to-arrow"></div>
-                    <div class="transfer-city">转莫斯科</div>
-                </div>
-                <div class="right">
-                    <span class="arrive-time">09:00</span><span class="tip">+1天</span>
-                    <span class="arrive-port">浦东机场T2</span>
-                </div>
-                <p><span>中国国航</span><span> | CA983</span><span> | 波音787(大)</span></p>
-            </div>
-        </div>
-        <div class="spend-line">
-            <hr><span></span>
-        </div>
-        <div class="trip-back">
-            <div class="title-date-address">
-                <span class="icon back-icon"></span>
-                <span class="back-date">01-08</span>
-                <span class="back-week">周二</span>
-                <span class="back-set-city">北京</span>
-                -
-                <span class="back-off-city">泰国</span>
-            </div>
-            <div class="time-port-day">
-                <div class="left">
-                    <span class="start-time">07:00</span>
-                    <span class="start-port">浦东机场T2</span>
-                </div>
-                <div class="middle">
-                    <div class="time-cost">11h30m</div>
-                    <div class="to-arrow"></div>
-                    <div class="transfer-city">转莫斯科吉尔吉斯斯坦</div>
-                </div>
-                <div class="right">
-                    <span class="arrive-time">09:00</span><span class="tip">+1天</span>
-                    <span class="arrive-port">浦东机场T2</span>
-                </div>
-                <p><span>中国国航</span><span> | CA983</span><span> | 波音787(大)</span></p>
-            </div>
-        </div>
-    </div>
+    <div class="flight-summary-info"></div>
     <div class="ticket-icon-change hotel">
         <a href="" class="hotel-icon"><i></i></a>
         <a href="">酒店</a>
         <a href="hotel_search_list.html" class="change-hotel-action">更换酒店</a>
     </div>
-    <div class="hotel-summary-info">
-        <h4 class="hotel-name">新加坡千禧三井花园饭店</h4>
-        <div class="hotel-info-outer">
-            <div class="ho_pic">
-                <img src="http://images.asiatravel.com/Hotel/6822/6822exterior.jpg" class="ho_img">
-            </div>
-            <div class="hotel-info-data-item">
-                <div class="date-date">
-                    <span class="set-date-off">11月25日</span>-<span class="set-date-stop">11月26日  <span class="total-night-number">共<span>6</span>晚</span></span>
-                </div>
-                <div class="score-person-number"><span class="score-value">4.3</span>分 / <span class="person-number-value">378</span>人点评</div>
-                <p class="star-class">
-                    <span class="star-text">三星级</span><span class="wifi-icon"></span><span class="car-icon"></span>
-                </p>
-            </div>
-            <div class="arrow-icon"></div>
-        </div>
-    </div>
-    <ul class="room-ul-outer">
-        <li class="has-chosen">
-            <div class="room-name-detail">
-                <h4>高级客房</h4>
-                <p><span>含早</span><span>可加床</span><span>免费wifi</span></p>
-            </div>
-            <div class="palss-price-button">
-                <span>+￥</span><span>100</span>
-                <button class="has-choose-button">已选择</button>
-            </div>
-        </li>
-        <li class="on-chosen">
-            <div class="room-name-detail">
-                <h4>高级客房</h4>
-                <p><span>含早</span><span>可加床</span><span>免费wifi</span></p>
-            </div>
-            <div class="palss-price-button">
-                <span>+￥</span><span>100</span>
-                <button class="no-choose-button">选择</button>
-            </div>
-        </li>
-    </ul>
+    <div class="hotel-summary-info"></div>
+    <ul class="room-ul-outer"></ul>
     <div class="check-more-room">查看更多房型<span>(3)</span><span></span></div>
+    <div style="height: 50px; width: 100%;"></div>
     <div class="order-total-wrap clearFix">
         <span>套餐总额: &nbsp;</span>
-        <span class="order-total-fare">¥1664</span>
+        <span class="money-tag">¥</span>
+        <span class="order-total-fare">1664</span>
         <div class="detail-text-arrow">
             <span class="detail">明细</span><i class="icon-arrow arrow-down"></i>
             <span id="confirm-button">预定</span>
         </div>
     </div>
-    <div class="summary-cost-modal" style="transition: all 300ms; bottom: -50px;">
-        <p>成人费用 x <span>2</span> <span> ￥1134</span></p>
-        <p>儿童费用 x <span>2</span> <span> ￥1134</span></p>
-    </div>
+    <div class="summary-cost-modal" style="transition: all 300ms; bottom: -50px;"></div>
 </div>
 <div class="shadow" style="display: none;"></div>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/plugins.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/template.js"></script>
 <script type="text/javascript" src="js/ticket_hotel_choose.js"></script>
+<script>
+    (function($) {
+        $(document).ready(function() {
+            window.addEventListener('load', function() {
+                FastClick.attach(document.body);
+            }, false);
+        });
+    }(jQuery));
+</script>
 </body></html>

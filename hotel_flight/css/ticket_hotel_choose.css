@@ -57,6 +57,7 @@
     color: #FFFFFF;
     font-size: 1.3rem;
     border-radius: 3px;
+    font-family: "microsoft yahei", Arial, sans-serif;
 }
 .ticket-icon-change.flight,.ticket-icon-change.hotel {
     background: #f5f4f9;
@@ -257,7 +258,7 @@ button.no-choose-button{
     line-height: 40px;
     text-align: center;
     color: #999999;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 .check-more-room span:nth-child(2){
     display: inline-block;
@@ -292,6 +293,11 @@ button.no-choose-button{
 .order-total-wrap span:nth-child(1){
     font-size: 1.4rem;
     color: #999;
+}
+.order-total-wrap span:nth-child(2){
+    font-size: 1.4rem;
+    color: #fe6a03;
+    font-weight: 600;
 }
 .order-total-wrap span.order-total-fare{
     font-size: 2.0rem;

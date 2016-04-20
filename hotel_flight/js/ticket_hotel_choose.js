@@ -64,7 +64,7 @@ var ticketHotel = {
         var detailEle = document.querySelector('.detail-text-arrow'), that = ticketHotel, shadowEle= document.querySelector('.shadow');
         var detailLine = document.querySelector('.summary-cost-modal'), icon=document.querySelector('.icon-arrow');
         var roomOuter = document.querySelector('.room-ul-outer'), reBack = document.querySelector('.edit-button'), hotelDetail = document.querySelector('.hotel-info-data-item');
-        var toFlightDetail = document.querySelector('.flight-detail');
+        var toFlightDetail = document.querySelector('.flight-detail'), checkMore = document.querySelector('.check-more-room');
 
         var hide = function(){ detailLine.style.bottom = "-50px";
             shadowEle.style.display = 'none';
@@ -88,7 +88,7 @@ var ticketHotel = {
             paraObject.ReturnDate =that.cacheData.flightInfo.flightReturnStartDate;
             paraObject.RoomDetails =that.initParaObj.RoomDetails;
             console.log(paraObject)
-            that.storageUtil.set('hotelDetailInfo', paraObject);
+            that.storageUtil.set('local','hotelDetailInfo', paraObject);
             if(that.cacheRoomId){
                 alert('请选择房间！')
             }else{
@@ -123,7 +123,6 @@ var ticketHotel = {
 
             }
         });
-
         this.addHandler(document, 'click', function (){
             var event = event || window.event;
             var target =target||event.srcElement;
@@ -131,6 +130,12 @@ var ticketHotel = {
                 detailLine.style.webkitTransition = "all 300ms";
                 shadowEle.style.display=='block'?hide():show();
             }
+        });
+
+        this.addHandler(checkMore, 'click', function (){
+            var event = event || window.event;
+            var target =target||event.srcElement;
+
         });
 
         this.addHandler(roomOuter, 'click', function (){
@@ -170,6 +175,13 @@ var ticketHotel = {
                 $('.summary-cost-modal').eq(0).html(priceDetail);
                 orderTotalFare.innerHTML = totalPackagePrice;
             }
+        });
+    },
+    loadingFade:function(){
+        $(window).load(function () {
+            $("#status-f").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+
         });
     },
     changeHandler:function(){
@@ -243,6 +255,7 @@ var ticketHotel = {
             orderPara.DepartDate=that.cacheData.flightInfo.flightLeaveStartDate;
             orderPara.ReturnDate=that.cacheData.flightInfo.flightReturnStartDate;
             orderPara.HotelID=that.cacheData.hotelInfo.hotelID;
+            orderPara.Name=that.cacheData.hotelInfo.hotelName;
             orderPara.RoomID=that.cacheRoomId;
             orderPara.RoomDetails=that.initParaObj.RoomDetails;
             orderPara.priceDetail=that.cachePriceDetailInfo;
@@ -262,9 +275,7 @@ var ticketHotel = {
                 }*/
             that.storageUtil.set('local','createOrderParaPart', orderPara);
             window.location.href = 'user_order.html';
-
         });
-
     },
     renderHandler:function(arg){
         var resultData = arg, that = ticketHotel;
@@ -273,7 +284,7 @@ var ticketHotel = {
             if (resultData.data == null) {
                 window.location.href = 'no_result.html';
             } else {
-                //document.querySelector('#preloader').style.display='none';
+                that.loadingFade();
                 that.cacheData = resultData.data;
                 console.log(resultData.data)
                 that.cacheRoomData = resultData.data.hotelInfo.rooms;
@@ -407,7 +418,8 @@ var ticketHotel = {
                 };
                 var flightInfo =resultData.data.flightInfo;
                 var hotelInfo = resultData.data.hotelInfo;
-                var roomInfo = resultData.data.hotelInfo.rooms;
+                var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [];
+                temSmallRoom = resultData.data.hotelInfo.rooms.length<=3?resultData.data.hotelInfo.rooms:resultData.data.hotelInfo.rooms.slice(0,3);
                 var flightDataHandler = function(arg){
                     var result = {};
                     result.flightLeaveStartDate_md = arg.flightLeaveStartDate.substr(5,5);
@@ -511,7 +523,7 @@ var ticketHotel = {
                 hotelInfo = hotelDateHandler(hotelInfo);
                 var flightInfoTags = template(temp_flightInfo, flightInfo);
                 var hotelInfoTags = template(temp_hotelInfo, hotelInfo);
-                var roomInfoTags = template(roomStr, roomInfo);
+                var roomInfoTags=temSmallRoom.length<=3?template(roomStr, temSmallRoom):template(roomStr, roomInfo)
                 $('.flight-summary-info').eq(0).html(flightInfoTags);
                 $('.hotel-summary-info').eq(0).html(hotelInfoTags);
                 $('.room-ul-outer').eq(0).html(roomInfoTags);
