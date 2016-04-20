@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="808ef735-1808-4127-85ec-18d8b9940ff0" name="默认的" comment="忘记密码国籍不可点">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hotel_flight/js/hf_orderdata.js" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\hotel_flight\user_order_fix.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\已选择@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\已选择@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\景点@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\景点@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\机票@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\机票@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\选择@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\选择@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\酒店@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\酒店@2x@3x.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/js/hf_order.js" afterPath="$PROJECT_DIR$/hotel_flight/js/hf_order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/css/order.css" afterPath="$PROJECT_DIR$/hotel_flight/css/order.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_detail.html" afterPath="$PROJECT_DIR$/scenic/scenic_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/user.css" afterPath="$PROJECT_DIR$/css/user.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/user_order.html" afterPath="$PROJECT_DIR$/hotel_flight/user_order.html" />
+    <list default="true" id="2443a1ad-543c-4ec1-93bb-6e804794e1a7" name="默认的" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/order_detail_pay.html" afterPath="$PROJECT_DIR$/hotel_flight/order_detail_pay.html" />
+    </list>
+    <list id="17f09b4b-1778-44f4-9e3f-1f2b733cc21f" name="New changelist" comment="">
+      <change type="DELETED" beforePath="E:\work\at-h5\.idea\.name" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/order_detail.html" afterPath="$PROJECT_DIR$/hotel_flight/order_detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/lib/vlm.js" afterPath="$PROJECT_DIR$/js/lib/vlm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -41,88 +29,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="user_order.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hotel_flight/user_order.html">
+      <file leaf-file-name="order_detail_pay.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hotel_flight/order_detail_pay.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53961134">
-              <caret line="344" column="25" selection-start-line="344" selection-start-column="25" selection-end-line="344" selection-end-column="25" />
+            <state vertical-scroll-proportion="-1.8712871">
+              <caret line="91" column="49" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="49" />
               <folding>
-                <element signature="n#script#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1461058031285" expanded="true" signature="1386:2298" placeholder="..." />
+                <element signature="n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#7;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vlm.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/lib/vlm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="order.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hotel_flight/css/order.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4">
-              <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Html5" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scenic/css/scenic_city.css" />
-        <option value="$PROJECT_DIR$/scenic/index.html" />
-        <option value="$PROJECT_DIR$/scenic/css/scenic.css" />
-        <option value="$PROJECT_DIR$/styles/style.css" />
-        <option value="$PROJECT_DIR$/styles/owl.theme.css" />
+        <option value="$PROJECT_DIR$/hotel_flight/hf_pay.html" />
+        <option value="$PROJECT_DIR$/hotel_flight/css/pay.css" />
+        <option value="$PROJECT_DIR$/hotel_flight/h+f_pay.html" />
+        <option value="$PROJECT_DIR$/activity/seoul160415.html" />
         <option value="$PROJECT_DIR$/activity/css/activity.css" />
-        <option value="$PROJECT_DIR$/user/user-oftenInfo.html" />
-        <option value="$PROJECT_DIR$/styles/framework.css" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/lib/scroller.js" />
-        <option value="$PROJECT_DIR$/js/user.js" />
-        <option value="$PROJECT_DIR$/11.html" />
-        <option value="$PROJECT_DIR$/pc/1index.html" />
-        <option value="$PROJECT_DIR$/H+F/css/hf_order.css" />
-        <option value="$PROJECT_DIR$/H+F/hf_order_fill.html" />
-        <option value="$PROJECT_DIR$/js/countrytel_list.js" />
-        <option value="$PROJECT_DIR$/user/user-login.html" />
-        <option value="$PROJECT_DIR$/hotel_flight/user_order_fix.html" />
-        <option value="$PROJECT_DIR$/user/user.html" />
-        <option value="$PROJECT_DIR$/user/scripts/user-logined.js" />
-        <option value="$PROJECT_DIR$/scenic/scenic_detail.html" />
-        <option value="$PROJECT_DIR$/css/user.css" />
-        <option value="$PROJECT_DIR$/hotel_flight/js/hf_orderdata.js" />
-        <option value="$PROJECT_DIR$/tour/js/11" />
-        <option value="$PROJECT_DIR$/hotel_flight/js/hf_order.js" />
-        <option value="$PROJECT_DIR$/user/user-allorder.html" />
-        <option value="$PROJECT_DIR$/hotel_flight/css/order.css" />
-        <option value="$PROJECT_DIR$/js/lib/vlm.js" />
+        <option value="$PROJECT_DIR$/activity/seoul.html" />
+        <option value="$PROJECT_DIR$/hotel/css/lsf_hotelReviews.css" />
+        <option value="$PROJECT_DIR$/hotel/css/dzh.css" />
         <option value="$PROJECT_DIR$/hotel_flight/user_order.html" />
+        <option value="$PROJECT_DIR$/hotel_flight/css/order.css" />
+        <option value="$PROJECT_DIR$/styles/dzh.css" />
+        <option value="$PROJECT_DIR$/tour/css/tour.css" />
+        <option value="$PROJECT_DIR$/payment/payment.html" />
+        <option value="$PROJECT_DIR$/payment/css/payment.css" />
+        <option value="$PROJECT_DIR$/hotel/pay_fail.html" />
+        <option value="$PROJECT_DIR$/hotel_flight/order_pay.html" />
+        <option value="$PROJECT_DIR$/hotel_flight/pay_fail.html" />
+        <option value="$PROJECT_DIR$/hotel_flight/order_detail.html" />
+        <option value="$PROJECT_DIR$/hotel_flight/css/h+f_pay.css" />
+        <option value="$USER_HOME$/Desktop/1.html" />
+        <option value="$PROJECT_DIR$/hotel_flight/css/detail_amy.css" />
+        <option value="$PROJECT_DIR$/flight/ticket_order_detail.html" />
+        <option value="$PROJECT_DIR$/js/lib/vlm.js" />
+        <option value="$PROJECT_DIR$/hotel_flight/order_detail_pay.html" />
       </list>
     </option>
   </component>
@@ -134,25 +88,19 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1598" />
-    <option name="height" value="858" />
+    <option name="x" value="1592" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1216" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
     <OptionsSetting value="true" id="添加" />
     <OptionsSetting value="true" id="移除" />
     <OptionsSetting value="true" id="签出" />
     <OptionsSetting value="true" id="更新" />
     <OptionsSetting value="true" id="状态" />
     <OptionsSetting value="true" id="编辑" />
-    <ConfirmationsSetting value="1" id="添加" />
+    <ConfirmationsSetting value="0" id="添加" />
     <ConfirmationsSetting value="0" id="移除" />
   </component>
   <component name="ProjectView">
@@ -196,68 +144,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="hotel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="更改的文件" />
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.lastSelected" value="configurable.group.appearance" />
-    <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
-    <property name="settings.editor.selected.configurable" value="liveEdit" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\item_1\at-h5\hotel_flight\js" />
-      <recent name="C:\item_1\at-h5\hotel_flight" />
-      <recent name="C:\item_1\at-h5\H+F" />
-      <recent name="C:\item_1\at-h5\images\ui" />
-      <recent name="C:\item_1\at-h5\images\H+F" />
-    </key>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
   <component name="RestoreUpdateTree" date="片刻 之前" ActionInfo="更新 (_U)">
     <UpdatedFiles>
@@ -273,9 +179,21 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/css/h+f_pay.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/order_pay.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/hotel_detail.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/hotel_list.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/hotel_reviews.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/hotel_summary.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/index.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/jyy_pay.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/order-details.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/pay_fail.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/trade_details.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel/user_order.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/css/hf_list.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/js/flight_list.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/ticket-list.html</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/js/lib/vlm.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/scenic/scenic_order_detail.html</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="已创建" />
@@ -417,188 +335,154 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="808ef735-1808-4127-85ec-18d8b9940ff0" name="默认的" comment="" />
-      <created>1460008199867</created>
+      <changelist id="2443a1ad-543c-4ec1-93bb-6e804794e1a7" name="默认的" comment="" />
+      <changelist id="17f09b4b-1778-44f4-9e3f-1f2b733cc21f" name="New changelist" comment="" />
+      <created>1460681937039</created>
       <option name="number" value="Default" />
-      <updated>1460008199867</updated>
+      <updated>1460681937039</updated>
     </task>
-    <task id="LOCAL-00001" summary="1.景点更多图标方向；&#10;2.城市选择input 不居中">
-      <created>1460011495780</created>
+    <task id="LOCAL-00001" summary="支付详情页，支付成功，支付失败">
+      <created>1460683077452</created>
       <option name="number" value="00001" />
       <option name="project" value="LOCAL" />
-      <updated>1460011495780</updated>
+      <updated>1460683077452</updated>
     </task>
-    <task id="LOCAL-00002" summary="H5-938[T-特色当地游页]景点首页与特色当地游页，右上角城市选择区域的小箭头为实心向下&#10;H5-935 CLONE - [M-我的]常用信息维护里的“出行人，乘机人，常旅客”逗号是用中文还是英文">
-      <created>1460012485665</created>
+    <task id="LOCAL-00002" summary="支付页面">
+      <created>1460683220239</created>
       <option name="number" value="00002" />
       <option name="project" value="LOCAL" />
-      <updated>1460012485665</updated>
+      <updated>1460683220239</updated>
     </task>
-    <task id="LOCAL-00003" summary="H5-938[T-特色当地游页]景点首页与特色当地游页，右上角城市选择区域的小箭头为实心向下&#10;H5-935 CLONE - [M-我的]常用信息维护里的“出行人，乘机人，常旅客”逗号是用中文还是英文">
-      <created>1460012517616</created>
+    <task id="LOCAL-00003" summary="环球影城">
+      <created>1460702008599</created>
       <option name="number" value="00003" />
       <option name="project" value="LOCAL" />
-      <updated>1460012517616</updated>
+      <updated>1460702008599</updated>
     </task>
-    <task id="LOCAL-00004" summary="首页图标变成圆形">
-      <created>1460016352698</created>
+    <task id="LOCAL-00004" summary="环球影城图片">
+      <created>1460703184825</created>
       <option name="number" value="00004" />
       <option name="project" value="LOCAL" />
-      <updated>1460016352698</updated>
+      <updated>1460703184825</updated>
     </task>
-    <task id="LOCAL-00005" summary="新增常旅取消时默认重置">
-      <created>1460017822581</created>
+    <task id="LOCAL-00005" summary="支付页面重构pay.html=h+f.html+order-pay.html">
+      <created>1460707501824</created>
       <option name="number" value="00005" />
       <option name="project" value="LOCAL" />
-      <updated>1460017822581</updated>
+      <updated>1460707501824</updated>
     </task>
-    <task id="LOCAL-00006" summary="新增常旅取消时默认重置">
-      <created>1460019385355</created>
+    <task id="LOCAL-00006" summary="h+f.html">
+      <created>1460714021549</created>
       <option name="number" value="00006" />
       <option name="project" value="LOCAL" />
-      <updated>1460019385355</updated>
+      <updated>1460714021549</updated>
     </task>
-    <task id="LOCAL-00007" summary="首页今日推荐只允许两行显示">
-      <created>1460079464189</created>
+    <task id="LOCAL-00007" summary="back.png">
+      <created>1460943292130</created>
       <option name="number" value="00007" />
       <option name="project" value="LOCAL" />
-      <updated>1460079464189</updated>
+      <updated>1460943292130</updated>
     </task>
-    <task id="LOCAL-00008" summary="scroller加回调，证件号随着证件类型变化而变">
-      <created>1460089159889</created>
+    <task id="LOCAL-00008" summary="点评列表页评论后的下拉按钮遮挡评论内容">
+      <created>1460945671622</created>
       <option name="number" value="00008" />
       <option name="project" value="LOCAL" />
-      <updated>1460089159889</updated>
+      <updated>1460945671622</updated>
     </task>
-    <task id="LOCAL-00009" summary="vlm api地址更改">
-      <created>1460352779030</created>
+    <task id="LOCAL-00009" summary="点击banner详情页的景点，进入套餐详情页，点击预订，进入资料输入页，酒店日期上方与酒店的横线切图不直，房间信息下方多了一条线">
+      <created>1460947568992</created>
       <option name="number" value="00009" />
       <option name="project" value="LOCAL" />
-      <updated>1460352779030</updated>
+      <updated>1460947568992</updated>
     </task>
-    <task id="LOCAL-00010" summary="H+F">
-      <created>1460509749559</created>
+    <task id="LOCAL-00010" summary="填单页 user-order.html">
+      <created>1460965855160</created>
       <option name="number" value="00010" />
       <option name="project" value="LOCAL" />
-      <updated>1460509749559</updated>
+      <updated>1460965855160</updated>
     </task>
-    <task id="LOCAL-00011" summary="h+f">
-      <created>1460510623607</created>
+    <task id="LOCAL-00011" summary="填单页 user-order.html">
+      <created>1460967144418</created>
       <option name="number" value="00011" />
       <option name="project" value="LOCAL" />
-      <updated>1460510623607</updated>
+      <updated>1460967144418</updated>
     </task>
-    <task id="LOCAL-00012" summary="h+f">
-      <created>1460511654518</created>
+    <task id="LOCAL-00012" summary="填单页 user-order.html">
+      <created>1460967551927</created>
       <option name="number" value="00012" />
       <option name="project" value="LOCAL" />
-      <updated>1460511654518</updated>
+      <updated>1460967551927</updated>
     </task>
-    <task id="LOCAL-00013" summary=" hf 填写订单页">
-      <created>1460518105500</created>
+    <task id="LOCAL-00013" summary="填单页 user-order.html">
+      <created>1460968179852</created>
       <option name="number" value="00013" />
       <option name="project" value="LOCAL" />
-      <updated>1460518105500</updated>
+      <updated>1460968179852</updated>
     </task>
-    <task id="LOCAL-00014" summary="删除1.js">
-      <created>1460682053488</created>
+    <task id="LOCAL-00014" summary="点击banner详情页的景点，进入套餐详情页，点击预订，进入资料输入页，酒店日期上方与酒店的横线切图不直，房间信息下方多了一条线">
+      <created>1460969004625</created>
       <option name="number" value="00014" />
       <option name="project" value="LOCAL" />
-      <updated>1460682053488</updated>
+      <updated>1460969004625</updated>
     </task>
-    <task id="LOCAL-00015" summary="用户中心登录和注册字体太小">
-      <created>1460949032430</created>
+    <task id="LOCAL-00015" summary="点击banner详情页的景点，进入套餐详情页，点击预订，进入资料输入页，酒店日期上方与酒店的横线切图不直，房间信息下方多了一条线">
+      <created>1460969371958</created>
       <option name="number" value="00015" />
       <option name="project" value="LOCAL" />
-      <updated>1460949032430</updated>
+      <updated>1460969371958</updated>
     </task>
-    <task id="LOCAL-00016" summary="忘记密码国籍不可点">
-      <created>1460958246853</created>
+    <task id="LOCAL-00016" summary="支付详情页头部样式">
+      <created>1461028334903</created>
       <option name="number" value="00016" />
       <option name="project" value="LOCAL" />
-      <updated>1460958246853</updated>
+      <updated>1461028334903</updated>
     </task>
-    <task id="LOCAL-00017" summary="国籍手机号登录页">
-      <created>1460962655222</created>
+    <task id="LOCAL-00017" summary="支付详情页头部样式">
+      <created>1461036866010</created>
       <option name="number" value="00017" />
       <option name="project" value="LOCAL" />
-      <updated>1460962655222</updated>
+      <updated>1461036866010</updated>
     </task>
-    <task id="LOCAL-00018" summary="hotel flight删除无用页面">
-      <created>1460962758458</created>
+    <task id="LOCAL-00018" summary="order_pay.html头部样式调整">
+      <created>1461045192187</created>
       <option name="number" value="00018" />
       <option name="project" value="LOCAL" />
-      <updated>1460962758458</updated>
+      <updated>1461045192187</updated>
     </task>
-    <task id="LOCAL-00019" summary="登录页+86图标">
-      <created>1460964366270</created>
+    <task id="LOCAL-00019" summary="订单详情页">
+      <created>1461057788656</created>
       <option name="number" value="00019" />
       <option name="project" value="LOCAL" />
-      <updated>1460964366270</updated>
+      <updated>1461057788656</updated>
     </task>
-    <task id="LOCAL-00020" summary="+86图标">
-      <created>1460967825751</created>
-      <option name="number" value="00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1460967825751</updated>
-    </task>
-    <task id="LOCAL-00021" summary="登录用户中心报错">
-      <created>1460969780298</created>
-      <option name="number" value="00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1460969780298</updated>
-    </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1598" height="858" extended-state="0" />
-    <editor active="true" />
+    <frame x="1592" y="-8" width="1936" height="1216" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17948718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.153125" sideWeight="0.49528936" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32599726" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761732" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24968395" sideWeight="0.5047106" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24968314" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3261745" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -612,37 +496,66 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.景点更多图标方向；&#10;2.城市选择input 不居中" />
-    <MESSAGE value="H5-938[T-特色当地游页]景点首页与特色当地游页，右上角城市选择区域的小箭头为实心向下&#10;H5-935 CLONE - [M-我的]常用信息维护里的“出行人，乘机人，常旅客”逗号是用中文还是英文" />
-    <MESSAGE value="首页图标变成圆形" />
-    <MESSAGE value="新增常旅取消时默认重置" />
-    <MESSAGE value="首页今日推荐只允许两行显示" />
-    <MESSAGE value="scroller加回调，证件号随着证件类型变化而变" />
-    <MESSAGE value="vlm api地址更改" />
-    <MESSAGE value="H+F" />
-    <MESSAGE value="h+f" />
-    <MESSAGE value=" hf 填写订单页" />
-    <MESSAGE value="删除1.js" />
-    <MESSAGE value="用户中心登录和注册字体太小" />
-    <MESSAGE value="忘记密码国籍不可点" />
-    <MESSAGE value="国籍手机号登录页" />
-    <MESSAGE value="hotel flight删除无用页面" />
-    <MESSAGE value="登录页+86图标" />
-    <MESSAGE value="+86图标" />
-    <MESSAGE value="登录用户中心报错" />
-    <option name="LAST_COMMIT_MESSAGE" value="登录用户中心报错" />
+    <MESSAGE value="支付详情页，支付成功，支付失败" />
+    <MESSAGE value="支付页面" />
+    <MESSAGE value="环球影城" />
+    <MESSAGE value="环球影城图片" />
+    <MESSAGE value="支付页面重构pay.html=h+f.html+order-pay.html" />
+    <MESSAGE value="h+f.html" />
+    <MESSAGE value="back.png" />
+    <MESSAGE value="点评列表页评论后的下拉按钮遮挡评论内容" />
+    <MESSAGE value="填单页 user-order.html" />
+    <MESSAGE value="点击banner详情页的景点，进入套餐详情页，点击预订，进入资料输入页，酒店日期上方与酒店的横线切图不直，房间信息下方多了一条线" />
+    <MESSAGE value="支付详情页头部样式" />
+    <MESSAGE value="order_pay.html头部样式调整" />
+    <MESSAGE value="订单详情页" />
+    <option name="LAST_COMMIT_MESSAGE" value="订单详情页" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tour/css/tour.css">
+    <entry file="file://$PROJECT_DIR$/flight/order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5192308">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/transfers.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/ui/jd-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/css/pay.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7">
+          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/hotel_flight/back.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/css/lsf_hotelReviews.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="182" column="64" selection-start-line="182" selection-start-column="64" selection-end-line="182" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/css/dzh.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45980254">
+          <caret line="158" column="65" selection-start-line="158" selection-start-column="65" selection-end-line="158" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -653,7 +566,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/tips.css">
+    <entry file="file://$PROJECT_DIR$/hotel_flight/ticket-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/ticket-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/ui/ticket_hotel.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/ui/checkbox1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/hotel_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/hotel_detail_screen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/css/order.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.8928068">
+          <caret line="417" column="1" selection-start-line="417" selection-start-column="1" selection-end-line="417" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/user_order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5657143">
+          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/dzh.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="174" column="22" selection-start-line="174" selection-start-column="22" selection-end-line="174" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.042857144">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tour/order-data-people.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42857143">
+          <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tour/css/tour.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="950" column="21" selection-start-line="950" selection-start-column="21" selection-end-line="950" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scenic/scenic_order_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -667,114 +660,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/lazyLoad.js">
+    <entry file="file://$PROJECT_DIR$/scenic/order-detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="145" column="30" selection-start-line="145" selection-start-column="16" selection-end-line="145" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/css/hf.css">
+    <entry file="file://$USER_HOME$/Desktop/新建文件夹/template-native-debug.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment/css/payment.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.027803522">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment/js/payment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.4189065">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/airway-list.html">
+    <entry file="file://$PROJECT_DIR$/payment/payment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.6057692">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/h+f_pay.html">
+    <entry file="file://$PROJECT_DIR$/hotel/pay_fail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="7.9710145">
+          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/hotel_detail.html">
+    <entry file="file://$PROJECT_DIR$/hotel_flight/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-20.512821">
+          <caret line="105" column="21" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/hotel_detail_screen.html">
+    <entry file="file://$PROJECT_DIR$/hotel_flight/js/hf_index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7586207">
-          <caret line="22" column="79" selection-start-line="22" selection-start-column="79" selection-end-line="22" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/order_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/order_detail_pay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/order_pay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/pay_fail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/ticket_hotel_choose.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/ui/ticket_hotel.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Documents/Tencent Files/1136328136/FileRecv/MockData/MockData/601301/04_14_10_32_37.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/user-oftenInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/user-perInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.882096">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/js/ticket_hotel_choose.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-11.633333">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -786,243 +724,173 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/js/hf_index.js">
+    <entry file="file://$PROJECT_DIR$/hotel/jyy_pay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.615385">
+          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/pay_fail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3076923">
+          <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/order_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.9788462">
+          <caret line="126" column="20" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/h+f_pay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7692308">
+          <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/css/h+f_pay.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="260" column="35" selection-start-line="260" selection-start-column="35" selection-end-line="260" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/js/ticket_hotel_choose_null.js">
+    <entry file="file://$PROJECT_DIR$/hotel_flight/order_pay.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scenic/css/scenic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="671" column="23" selection-start-line="663" selection-start-column="4" selection-end-line="671" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/countrytel_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5209497">
-          <caret line="874" column="90" selection-start-line="874" selection-start-column="90" selection-end-line="874" selection-end-column="90" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/user-choiceAir.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.768559">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.7692308">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/user-login.html">
+    <entry file="file://$PROJECT_DIR$/hotel_flight/pay_succes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78165936">
-          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.03076923">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/user_order.html">
+    <entry file="file://$PROJECT_DIR$/user/user-amendInfo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/scripts/user-logined.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6955307">
-          <caret line="74" column="14" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flight/js/hy_ticket_order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1312847">
-          <caret line="19" column="13" selection-start-line="18" selection-start-column="46" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scenic/scenic_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.137931">
-          <caret line="365" column="17" selection-start-line="365" selection-start-column="17" selection-end-line="365" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flight/js/hy_ticket_seat_choose.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.7638483">
-          <caret line="120" column="0" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-66.93104">
-          <caret line="140" column="35" selection-start-line="140" selection-start-column="35" selection-end-line="140" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/hotel_flight/cancel-date@2x.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/ui/icons.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/ui/icons1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tour/order-pay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.39461884">
+        <state vertical-scroll-proportion="-0.6442308">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flight/ticket_order.html">
+    <entry file="file://$PROJECT_DIR$/flight/pay_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.586207">
-          <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
-          <folding>
-            <element signature="n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flight/css/air_ticket.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323782">
-          <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Documents/Tencent Files/1136328136/FileRecv/hotel_flight_data_interface_temp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8510029">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/user.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45845273">
-          <caret line="1363" column="13" selection-start-line="1363" selection-start-column="13" selection-end-line="1363" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/js/hf_orderdata.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.747851">
-          <caret line="121" column="27" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tour/js/11">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="2" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tour/fill-in-order-new.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71449924">
-          <caret line="280" column="29" selection-start-line="280" selection-start-column="29" selection-end-line="280" selection-end-column="29" />
-          <folding>
-            <element signature="n#section#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#4;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/scripts/user-login-register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4641834">
-          <caret line="241" column="34" selection-start-line="241" selection-start-column="30" selection-end-line="241" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tour/js/fill_order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7249284">
-          <caret line="497" column="23" selection-start-line="483" selection-start-column="12" selection-end-line="497" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/js/hf_order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/css/order.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4">
-          <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/user/user-allorder.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0">
-          <caret line="206" column="116" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="116" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="205.64102">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flight/trade_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="140.25641">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/css/detail_amy.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.633333">
+          <caret line="129" column="69" selection-start-line="129" selection-start-column="69" selection-end-line="129" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/vlm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flight/ticket_order_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.652174">
+          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/user_order.html">
+    <entry file="file://$PROJECT_DIR$/hotel/order-details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53961134">
-          <caret line="344" column="25" selection-start-line="344" selection-start-column="25" selection-end-line="344" selection-end-column="25" />
+        <state vertical-scroll-proportion="18.461538">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#script#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1461058031285" expanded="true" signature="1386:2298" placeholder="..." />
+            <marker date="1461057720000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flight/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3744799">
+          <caret line="39" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="178" selection-end-column="7" />
+          <folding>
+            <element signature="n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#7;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="15.410256">
+          <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/order_detail_pay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8712871">
+          <caret line="91" column="49" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="49" />
+          <folding>
+            <element signature="n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#7;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/新建文件夹/09-template-menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7073509">
+          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
