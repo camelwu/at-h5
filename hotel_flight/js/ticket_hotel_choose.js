@@ -112,13 +112,11 @@ var ticketHotel = {
         });
 
         this.addHandler(detailEle, 'click', function (){
-            alert(1)
             var event = event || window.event;
             var target =target||event.srcElement;
             event.stopPropagation();
             event.cancelable = true;
             if(target.className=='detail'){
-                alert(2)
                 detailLine.style.webkitTransition = "all 300ms";
                 shadowEle.style.display=='block'?hide():show();
             }else if(target.id=='confirm-button'){
@@ -160,6 +158,7 @@ var ticketHotel = {
                     if(roomData[k]['roomID']==roomId){
                         tem = roomData[k].prices;
                         that.cacheRoomId=roomId;
+                        that.cachePriceDetailInfo=roomData[k];
                         break;
                     }
                 }
@@ -175,6 +174,7 @@ var ticketHotel = {
     },
     changeHandler:function(){
         var changeFlight = document.querySelector('.change-flight-action'), changeHotel = document.querySelector('.change-hotel-action');
+        var confirmButton =  document.querySelector('#confirm-button');
         this.addHandler(changeFlight, 'click', function (event){
             var that = ticketHotel, tag=that.isStop;
             var paraObj = that.initParaObj;
@@ -229,6 +229,40 @@ var ticketHotel = {
                 paraObj.PageSize = 20;
                 that.storageUtil.set('local','changeHotelParaObj',paraObj);
             }
+        });
+        this.addHandler(confirmButton, 'click', function (){
+            var event = event || window.event;
+            var target =target||event.srcElement;
+            event.stopPropagation();
+            var that = ticketHotel, orderPara={};
+            console.log(that.cacheData)
+            orderPara.SetID=that.cacheData.flightInfo.setID;
+            orderPara.CacheID= that.cacheData.flightInfo.cacheID;
+            orderPara.CityCodeFrom=that.cacheData.flightInfo.cityCodeFrom;
+            orderPara.CityCodeTo=that.cacheData.flightInfo.cityCodeTo;
+            orderPara.DepartDate=that.cacheData.flightInfo.flightLeaveStartDate;
+            orderPara.ReturnDate=that.cacheData.flightInfo.flightReturnStartDate;
+            orderPara.HotelID=that.cacheData.hotelInfo.hotelID;
+            orderPara.RoomID=that.cacheRoomId;
+            orderPara.RoomDetails=that.initParaObj.RoomDetails;
+            orderPara.priceDetail=that.cachePriceDetailInfo;
+            orderPara.CurrencyCode=that.cacheData.hotelInfo.currencyCode;
+           /* var testObj = {
+                    "SetID": 1002001,
+                    "CacheID": 1013226,
+                    "CityCodeFrom": "SIN",
+                    "CityCodeTo": "BKK",
+                    "DepartDate": "2016-04-25T00:00:00",
+                    "ReturnDate": "2016-04-27T00:00:00",
+                    "HotelID": 96,
+                    "RoomID": 108450,
+                    "RoomDetails": [{"Adult": 2, "ChildWithoutBed": [6]}, {"Adult": 1}, {"Adult": 1}],
+                    "CurrencyCode": "CNY",
+                    "TotalPrice": "9664"
+                }*/
+            that.storageUtil.set('local','createOrderParaPart', orderPara);
+            window.location.href = 'user_order.html';
+
         });
 
     },
@@ -338,7 +372,7 @@ var ticketHotel = {
                           '</p>',
                        '</div>',
                        '<div class="palss-price-button">',
-                       '<span>+￥</span><span>{%=totalAmount%}</span>',
+                       '<span>+￥</span><span>{%=addtionalPrice%}</span>',
                        '<button class="no-choose-button">选择</button>',
                       '</div>',
                 '</li>'].join('');
@@ -491,7 +525,7 @@ var ticketHotel = {
     },
     init:function () {
         var storagePara = JSON.parse(window.localStorage.getItem('searchInfo')), initParaObj={};
-        var flightHotelData = this.storageUtil.get('session','flightHotelAllData');
+        var flightHotelData = JSON.parse(this.storageUtil.get('session','flightHotelAllData'));
         console.log(flightHotelData)
         this.cacheRoomId = '';
         initParaObj.CityCodeFrom = storagePara.FromCity;
