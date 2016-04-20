@@ -45,7 +45,15 @@ var data2 = '',roomdata = '';
     //日历部分
     rili();
     function rili(){
-
+        var dateInitObj = new Object();
+        var myDate2 = new Calender({
+            id : 'chooseDate',
+            num : 13,
+            time : dateInitObj,
+            sClass1 : 'enterDate',
+            id2 : 'nightNum'
+            //fn : hotelDetail.upDateContent
+        });
     }
     //地址 星级 wifi
     function adress(){
