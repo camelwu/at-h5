@@ -424,17 +424,18 @@ li.order-tlist2 em {
     right: 15px;
 }
 
-.order-tlist2 div {
+.order-tlist2 .traveller-wrap{
     width: 100%;
     height: 40px;
     position: absolute;
-    top: 58px;
+    top: 50px;
     left: 60px;
 }
 
 .order-tlist2 span {
     width: 100%;
     display: block;
+    line-height:22px ;
 }
 
 /*联系人？*/
@@ -611,7 +612,7 @@ li.order-llist1 {
 
 .hf_detail_fare {
     transition: 300ms all ease;
-    bottom: -50px;
+    bottom: -80px;
     padding: 0 15px;
     width: 100%;
     position: fixed;
