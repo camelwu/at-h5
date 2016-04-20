@@ -59,15 +59,52 @@ var ticketHotel = {
     eventHandler: function () {
         var detailEle = document.querySelector('.detail-text-arrow'), that = ticketHotel, shadowEle= document.querySelector('.shadow');
         var detailLine = document.querySelector('.summary-cost-modal'), icon=document.querySelector('.icon-arrow');
-        var roomOuter = document.querySelector('.room-ul-outer'), reBack = document.querySelector('.edit-button');
+        var roomOuter = document.querySelector('.room-ul-outer'), reBack = document.querySelector('.edit-button'), hotelDetail = document.querySelector('.hotel-info-data-item');
+        var changeFlight = document.querySelector('.change-flight-action'), changeHotel = document.querySelector('.change-hotel-action'), toFlightDetail = document.querySelector('.flight-detail');
+
         var hide = function(){ detailLine.style.bottom = "-50px";
             shadowEle.style.display = 'none';
             icon.className="icon-arrow arrow-down";};
         var show = function(){ detailLine.style.bottom = "50px";
             shadowEle.style.display = 'block';
             icon.className="icon-arrow arrow-up";};
+
+
+        this.addHandler(changeFlight, 'click', function (){
+            var that = ticketHotel;
+            var paraObj = that.initParaObj;
+            paraObj.AirwayCacheID = that.cacheData.airwayCacheID;
+            paraObj.AirwaySetID = that.cacheData.airwaySetID;
+            paraObj.SortFields = [0];
+            /* paraObj = {
+                CityCodeFrom: "SIN",
+                CityCodeTo: "BKK",
+                DepartDate: "2016-05-10T00:00:00",
+                ReturnDate: "2016-05-15T00:00:00",
+                RoomDetails: [{Adult: "2", ChildWithoutBed: [6]}],
+                AirwayCacheID: "13752",
+                AirwaySetID: "1002001",
+                SortFields: [0]
+            };*/
+            that.storageUtil.set('changeFlightParaObj',paraObj);
+            this.href = 'ticket-list.html';
+        });
+
+        this.addHandler(changeHotel, 'click', function (){
+
+            this.href = 'hotel_detail_screen.html';
+        });
+
         this.addHandler(reBack, 'click', function (){
            window.location.href = 'index.html';
+        });
+
+        this.addHandler(hotelDetail, 'click', function (){
+            window.location.href = 'hotel_detail.html';
+        });
+
+        this.addHandler(toFlightDetail, 'click', function (){
+            window.location.href = 'ticket-detail.html';
         });
 
         this.addHandler(detailEle, 'click', function (){
@@ -128,7 +165,7 @@ var ticketHotel = {
         resultData  = result1;
         this.cacheData = resultData;
         this.cacheRoomData = resultData.data.hotelInfo.rooms;
-        console.log(resultData.data.hotelInfo.rooms)
+        console.log(resultData.data)
         if (resultData.success) {
             if (resultData.data == null) {
                 jAlert("抱歉暂时没有数据", "提示");
@@ -162,7 +199,7 @@ var ticketHotel = {
                     '</div>',
                     '</div>',
                     '<div class="spend-line">',
-                    '<hr><span></span>',
+                    '<hr><span class="flight-detail"></span>',
                     '</div>',
                     '<div class="trip-back">',
                     '<div class="title-date-address">',
@@ -369,6 +406,7 @@ var ticketHotel = {
                 $('.flight-summary-info').eq(0).html(flightInfoTags);
                 $('.hotel-summary-info').eq(0).html(hotelInfoTags);
                 $('.room-ul-outer').eq(0).html(roomInfoTags);
+                that.eventHandler();
             }
         } else {
             $("#preloader").fadeOut();
@@ -377,13 +415,17 @@ var ticketHotel = {
     },
 
     init:function () {
-        var backParaObj = this.parseUrlPara(document.location.search, true);
-        backParaObj = {
+        var initParaObj = {
+                CityCodeFrom: "SIN",
+                CityCodeTo: "BKK",
+                DepartDate: "2016-05-10T00:00:00",
+                ReturnDate: "2016-05-15T00:00:00",
+                RoomDetails: [{Adult: "2", ChildWithoutBed: [6]}]
         };
-        this.backParaObj = backParaObj;
-        this.tAjax(this.requestUrl, backParaObj, "50100001", 3, this.renderHandler);
+
+        this.initParaObj = initParaObj;
+        this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
         this.renderHandler();
-        this.eventHandler();
     }
 };
 ticketHotel.init();
