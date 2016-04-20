@@ -525,8 +525,7 @@ var ticketHotel = {
     },
     init:function () {
         var storagePara = JSON.parse(window.localStorage.getItem('searchInfo')), initParaObj={};
-        var flightHotelData = JSON.parse(this.storageUtil.get('session','flightHotelAllData'));
-        console.log(flightHotelData)
+        var temFlightHotelData = this.storageUtil.get('session','flightHotelAllData');
         this.cacheRoomId = '';
         initParaObj.CityCodeFrom = storagePara.FromCity;
         initParaObj.CityCodeTo = storagePara.ToCity;
@@ -534,7 +533,7 @@ var ticketHotel = {
         initParaObj.ReturnDate = storagePara.ReturnDate;
         initParaObj.RoomDetails = storagePara.RoomInfo;
         this.initParaObj = initParaObj;
-        if(!flightHotelData){
+        if(!temFlightHotelData){
             var initParaObj = {
                 CityCodeFrom: "SIN",
                 CityCodeTo: "BKK",
@@ -545,7 +544,7 @@ var ticketHotel = {
             this.initParaObj = initParaObj;
             this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
         }else{
-            var temObj = {};
+            var flightHotelData = JSON.parse(temFlightHotelData),temObj = {};
             temObj.success = true;
             temObj.data = flightHotelData;
             this.renderHandler(temObj);
