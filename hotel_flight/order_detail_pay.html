@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="green">
-<meta name="Keywords" content="亚洲旅行网">
-<meta name="Description" content="境外专业旅行服务提供机构">
-<meta name="screen-orientation" content="portrait">
-<meta name="x5-orientation" content="portrait">
-<meta name="full-screen" content="yes">
-<meta name="x5-fullscreen" content="true">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
-<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
-<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
-<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
-<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
-<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-<title>订单详情-已支付</title>
-<link href="../styles/framework.css" rel="stylesheet" type="text/css">
-<link href="../styles/style.css" rel="stylesheet" type="text/css">
-<link href="css/detail_amy.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+    <title>订单详情-已支付</title>
+    <link href="../styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    <link href="css/detail_amy.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -41,23 +41,24 @@
     <!--content-->
     <div class="j-content jpr" id = "jpr">
         <div class="jpay-tit">
-        	<p class="hadpay">已支付</p>
-            <!--<p class="willpay">未支付<span>请在17:30之前完成支付</span></p>-->
+            {% if(isContinuePay){ %} <p class="willpay">未支付</p>{% }else{ %} <p class="hadpay">已支付 {% } %}</p>
+            {% if(isContinuePay){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
+            <span class = "willpay-span">请在{%= d.getHours()+":"+d.getMinutes() %} 前完成支付</span>
+            {% } %}
         </div>
-        
         <!--fight-->
         <div class="jpay-t jp-fl">
             <i></i>
             <p>机票</p>
             <a href="javascript:;">详情<span></span></a>
         </div>
-        
+
         <div class="jpay-c jpay-c2">
-        	<dl>
-            	<dt>
-                	<i class="go"></i>
-                    <span>01-08</span>
-                    <span>周二</span>
+            <dl>
+                <dt>
+                    <i class="go"></i>
+                    <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d1.getMonth()+1%}-{%=d1.getDate()%}</span>
+                    <span>周{%= getWeek[d1.getDay()]%}</span>
                     <span class="more">{%=flightInfo.cityNameFrom%}</span>
                     <span>-</span>
                     <span class="more">{%=flightInfo.cityNameTo%}</span>
@@ -65,52 +66,53 @@
                     <i class="time timei"></i>
                 </dt>
                 <dt>
-                	<i class="back"></i>
-                    <span>01-08</span>
-                    <span>周二</span>
-                    <span class="more">北京首都机场</span>
+                    <i class="back"></i>
+                    <span>{% var d1=new Date(Date.parse(flightInfo.flightReturnStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d1.getMonth()+1%}-{%=d1.getDate()%}</span>
+                    <span>周{%= getWeek[d1.getDay()]%}</span>
+                    <span class="more">{%=flightInfo.cityNameTo%}</span>
                     <span>-</span>
-                    <span class="more">新加坡樟宜机场</span>
-                    <span class="time timew">11h30m</span>
+                    <span class="more">{%=flightInfo.cityNameFrom%}</span>
+                    <span class="time timew">{%=flightInfo.segmentsReturnTotalTravelTimeString%}</span>
                     <i class="time timei"></i>
                 </dt>
                 <dd>头等舱+往返舱</dd>
             </dl>
-        	<p></p>
+            <p></p>
         </div>
-        
+
         <!--hotel-->
         <div class="jpay-t jp-ht">
-        	<i></i>
+            <i></i>
             <p>酒店</p>
         </div>
         <div class="jpay-c jpay-c3">
-        	<dl>
-            	<dt>{%=hotelDetails.hotleName%}</dt>
-                <dd><span>{%=hotelDetails.checkInDate%}</span> - <span>{%=hotelDetails.checkoutDate%}</span> 共<span>1</span>晚（当地时间为准）</dd>
+            <dl>
+                <dt>{%=hotelDetails.hotleName%}</dt>
+                <dd><span>{%=hotelDetails.checkInDate.substring(0,10)%}</span> - <span>{%=hotelDetails.checkoutDate.substring(0,10)%}</span>
+                    共<span>2</span>晚（当地时间为准）</dd>
                 <dd>房型：<span>{%=hotelDetails.roomDetials.roomName%}</span> 房间数：<span>{%=hotelDetails.roomDetials.numRoom%}</span>间</dd>
             </dl>
         </div>
         <div class="jpay-c jpay-c4">
-        	<span class="tit">订单总额：</span>
+            <span class="tit">订单总额：</span>
             <span class="money">￥</span>
             <span class="num jfw">{%=totalFlightPrice%}</span>
             <a class="fr" href="javscript:;">
-            	<i class="icon fr"></i>
-            	<span class="cost fr">费用明细</span>
-            </a>      
+                <i class="icon fr"></i>
+                <span class="cost fr">费用明细</span>
+            </a>
         </div>
-        
+
         <div class="jpay-c jpay-c5" >
-        	<dl>
-            	<dt>订单信息</dt>
+            <dl>
+                <dt>订单信息</dt>
                 <dd>
                     <span>订单号</span>
                     <p>{%=bookingRefNo%}</p>
                 </dd>
                 <dd>
                     <span>下单时间</span>
-                    <p>{%=createTime%}</p>
+                    <p>{%=createTime.substring(0,10) %}</p>
                 </dd>
                 <dd>
                     <span>登机人</span>
@@ -118,7 +120,7 @@
                 </dd>
                 <dd>
                     <span>护照</span>
-                    <p>{%=travelers[1].idNumber%}</p>
+                    <p>{%=travelers[0].idNumber%}</p>
                 </dd>
                 <dd>
                     <span>联系电话</span>
@@ -130,14 +132,19 @@
                 </dd>
             </dl>
         </div>
-        
+
         <div class="jpay-c jpay-c4 jpay-c6">
-        	<span class="tit">联系客服</span>
+            <span class="tit">联系客服</span>
             <a class="fr" href="javscript:;">
-            	<i class="icon fr"></i>
-            </a>      
+                <i class="icon fr"></i>
+            </a>
         </div>
-	</div>
+        {% if(isContinuePay){ %}
+        <div class="j-btn jpay-c7" id = "jpay_pay">
+            <a href="order_pay.html?bookingRefNo={%=bookingRefNo%}">支付订单</a>
+        </div>
+        {% } %}
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
@@ -145,30 +152,37 @@
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script>
-    $(document).ready(function(){
-//        var data = {"success":1,"code":200,"data":{"flightInfo":{"setID":0,"cacheID":0,"segmentsLeaveTotalTravelTime":715,"segmentsLeaveTotalTravelTimeString":"7h15m","segmentsReturnTotalTravelTime":705,"segmentsReturnTotalTravelTimeString":"7h05m","cityCodeFrom":"SIN","cityCodeTo":"BKK","cityNameFrom":"新加坡","cityNameTo":"曼谷","isLeaveShareFlight":0,"isReturnShareFlight":0,"isInternationalFlight":1,"flightLeaveStartDate":"2016-04-25T06:40:00","flightLeaveEndDate":"2016-04-25T10:15:00","flightReturnStartDate":"2016-04-27T06:00:00","flightReturnEndDate":"2016-04-27T11:25:00","flightLeaveSpacingDay":0,"flightReturnSpacingDay":0,"segmentsLeave":[{"airportCodeFrom":"SIN","airportCodeTo":"KUL","cityCodeFrom":"SIN","cityCodeTo":"BKK","airportNameFrom":"新加坡樟宜机场","airportNameTo":"吉隆坡国际机场","cityNameFrom":"新加坡","cityNameTo":"吉隆坡","airCorpCode":"MH","airCorpName":"马来西亚航空公司","flightNo":"602","departDate":"2016-04-25T06:40:00","arriveDate":"2016-04-25T07:40:00","planeType":"738","planeName":"波音737-800","marketingCarrierCode":"MH","operatingCarrierCode":"MH","operatingCarrierName":"马来西亚航空公司"},{"airportCodeFrom":"KUL","airportCodeTo":"BKK","cityCodeFrom":"SIN","cityCodeTo":"BKK","airportNameFrom":"吉隆坡国际机场","airportNameTo":"曼谷苏瓦纳蓬国际机场","cityNameFrom":"吉隆坡","cityNameTo":"曼谷","airCorpCode":"MH","airCorpName":"马来西亚航空公司","flightNo":"784","departDate":"2016-04-25T09:10:00","arriveDate":"2016-04-25T10:15:00","planeType":"738","planeName":"波音737-800","marketingCarrierCode":"MH","operatingCarrierCode":"MH","operatingCarrierName":"马来西亚航空公司"}],"segmentsReturn":[{"airportCodeFrom":"BKK","airportCodeTo":"KUL","cityCodeFrom":"SIN","cityCodeTo":"BKK","airportNameFrom":"曼谷苏瓦纳蓬国际机场","airportNameTo":"吉隆坡国际机场","cityNameFrom":"曼谷","cityNameTo":"吉隆坡","airCorpCode":"MH","airCorpName":"马来西亚航空公司","flightNo":"797","departDate":"2016-04-27T06:00:00","arriveDate":"2016-04-27T09:10:00","planeType":"738","planeName":"波音737-800","marketingCarrierCode":"MH","operatingCarrierCode":"MH","operatingCarrierName":"马来西亚航空公司"},{"airportCodeFrom":"KUL","airportCodeTo":"SIN","cityCodeFrom":"SIN","cityCodeTo":"BKK","airportNameFrom":"吉隆坡国际机场","airportNameTo":"新加坡樟宜机场","cityNameFrom":"吉隆坡","cityNameTo":"新加坡","airCorpCode":"MH","airCorpName":"马来西亚航空公司","flightNo":"627","departDate":"2016-04-27T10:15:00","arriveDate":"2016-04-27T11:25:00","planeType":"738","planeName":"波音737-800","marketingCarrierCode":"MH","operatingCarrierCode":"MH","operatingCarrierName":"马来西亚航空公司"}],"directFlight":1,"currencyCode":"CNY","additionalPrice":0},"currencyCode":"CNY","totalFlightPrice":4816,"createTime":"2016-04-12T15:48:00","isContinuePay":0,"bookingRefNo":"SG17SINFP0375958","travelers":[{"travelerName":"xiaoding","lastName":"ding","idType":1,"idNumber":"P989878","sexCode":1},{"travelerName":"xiaoding","lastName":"ding","idType":1,"idNumber":"P989878","sexCode":1}],"contactNumber":"86--15001235421","email":"Kim@email.com","sexCode":1,"firstName":"xiao","lastName":"ding","hotelDetails":{"hotleName":"Amari Boulevard","checkInDate":"2016-04-25T00:00:00","checkoutDate":"2016-04-27T00:00:00","roomDetials":{"roomName":"Superior Room","totalAdult":2,"totalChild":0,"numRoom":1}}}};
-//        var JSON= JSON.stringify(data);
-        var bookingRefNo=vlm.getpara("SG17SINFP0375958");
+    var getWeek = {
+        "1": "一",
+        "2":"二",
+        "3":"三",
+        "4":"四",
+        "5":"五",
+        "6":"六",
+        "7":"日",
+    };
+(function(){
+        var bookingRefNo=vlm.getpara("bookingRefNo");
         var Parameters={
-            "Parameters":{"bookingReferenceNo":bookingRefNo},
+            "Parameters":{"BookingRefNo":"SG17SINFP0375958"},
             "Code":"50100007",
             "ForeEndType":3}
-        vlm.loadJson("http://10.6.11.20:11111/api/GetServiceApiResult",JSON.stringify(Parameters), function(data){
+        vlm.loadJson("http://10.6.11.21:1337/api/GetServiceApiResult",JSON.stringify(Parameters), function(data){
             if(data.success) {
                 var html = template("jpr", data.data);
+
                 $("#jpr").html(html);
                 vlm.init();
                 $("#j_back").on("click",function(){
                     location.href="../payment/payment.html";
                 });
                 $("#fr").on("click",function(){
-                    location.href="#";
+                    location.href="";
                 });
             }else{
                 alert("网络异常！");
             }
         },true)
-    })
+    })()
 </script>
 </html>
-

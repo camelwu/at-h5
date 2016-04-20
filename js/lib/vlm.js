@@ -10,7 +10,7 @@
 	"use strict";
 
 	var n = n || (function(n) {//123.56.190.34:8888 //10.6.11.20:8888
-		var _api = "http://10.6.11.20:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
+		var _api = "http://10.6.11.21:1337/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 			home : ['首页', basePath],
 			find : ['目的地', basePath + '/building.html'],
 			user : ['我的', basePath + '/user/user.html']
@@ -381,7 +381,7 @@
 
 				//中文姓名
 				ChineseName : function(name) {
-					var pattern = /^([\u4e00-\u9fa5a-zA-Z]){2,7}$/
+					var pattern = /^([\u4e00-\u9fa5a-zA-Z]){2,7}$/;
 					//只能是中文，长度为2-7位
 					if (pattern.test(name)) {
 						return true;
@@ -391,7 +391,7 @@
 				},
 				//六位数字验证码
 				code : function(name) {
-					var pattern = /^[0-9]{6}$/
+					var pattern = /^[0-9]{6}$/;
 					//只能是中文，长度为2-7位
 					if (pattern.test(name)) {
 						return true;

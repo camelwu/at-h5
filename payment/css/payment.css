@@ -37,14 +37,9 @@
     font-size: 1.1rem;
 
 }
-.p-p1 span{
-    color:#d1d1d1;
-    font-size:1.6rem;
-    margin-left:12px;
-}
 .hf-go{
     display: inline-block;
-    width: 30px;
+    width: 22px;
     height: 22px;
     position: relative;
     left:0px;
@@ -59,7 +54,6 @@
     width: 30px;
     height: 22px;
     position: relative;
-    left:100px;
     top:0px;
     background-image:  url(../../images/ui/ticket_hotel.png);
     background-size: 400px 320px;
@@ -142,8 +136,6 @@
     display: -ms-flexbox;
     display: -webkit-box;
     display: -webkit-flex;
-    display: flex;
-    justify-content: space-between;
     margin-left: 20px;
     padding-top: 13px;
     padding-bottom: 13px;
@@ -176,21 +168,20 @@
     padding-left: 12px;
 }
 .p-ul2 div{
-    width: 100px;color:#484848;
-
+    width: 115px;
+    color:#484848;
 }
 .p-ul2 li input{
     flex:2;
     font-size:1.4rem;
-    color:#D1D1D1;
     padding-left: 12px;
 
 }
 .p-ul2 li span{
     display: inline-block;
-    width: 10px;
     height: 10px;
-    margin-right: 15px;
+    margin-right: 1px;
+    margin-left: 10px;
 }
 .p-ul2 li span.phone{
     position: relative;
@@ -237,7 +228,7 @@
 }
 .p-home .p-hotelinfo li{
     list-style-type: none;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-size: 1.4rem;
 }
 .p-home .p-hotelinfo li:first-child{
@@ -248,12 +239,26 @@
     font-size: 1.6rem;
     font-weight: 500;
 }
+.p-home .hf-f{
+    display: inline-block;
+}
+.p-home .hf-f p{
+    font-size: 1.5rem;
+    margin-bottom:0px;
+    display: inline-block;
+    color: #BDBDBD;
+}
+.hf-anum span{
+    font-size: 1.5rem;
+    color: #BDBDBD;
+}
 .p-pay{
     background: white;
     width: 100%;
     height: 100%;
     padding:0 15px 0 15px;
     position: relative;
+    margin-top:15px;
 }
 .p-icon1{
     width: 22px;
@@ -317,9 +322,9 @@
 .p-icon5{
     width: 22px;
     height: 22px;
-    background-image: url(../../images/ui/jd-icon.png);
-    background-size: 280px 100px;
-    background-position: 526px 199px;
+    background-image: url(../../images/ui/icons.png);
+    background-size: 280px 204px;
+    background-position: 66% 2%;
     position: absolute;
     top: 1rem;
     right: 1.2rem;
@@ -471,5 +476,33 @@
     height: 30px;
     background-position: 3% 90%;
     background-size: 150px 65px;
+}
+.order-price{
+    margin-top: 15px;
+}
+.order-price i{
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+.s-xiala1 {
+    width: 13px;
+    height: 6px;
+    margin-left: 1px;
+    margin-top: 5px;
+    right: 20px;
+    position: absolute;
+    background-position: 73.5% 7%;
+}
+.tel-icon {
+    display: block;
+    background-image: url(../images/ui/icons.png);
+    background-position: -218px -73px;
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    width: 17px;
+    height: 27px;
+    position: absolute;
+    right: 10px;
+    top: 14px;
 }
 /*÷ß∏∂ ß∞‹“≥Ω· ¯*/

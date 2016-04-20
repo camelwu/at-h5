@@ -1,4 +1,5 @@
 var ticketHotel = {
+
     requestUrl: 'http://10.6.11.20:8888/ ',
 
     addHandler: function (target, eventType, handle) {
@@ -19,6 +20,7 @@ var ticketHotel = {
         }
         this.addHandler(target, eventType, handle);
     },
+
     tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
         var that = this, dataObj =
         {
@@ -33,6 +35,7 @@ var ticketHotel = {
             vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
         }
     },
+
     storageUtil: {
         set: function (key, v) {
             var localStorage = window.localStorage;
@@ -56,12 +59,17 @@ var ticketHotel = {
     eventHandler: function () {
         var detailEle = document.querySelector('.detail-text-arrow'), that = ticketHotel, shadowEle= document.querySelector('.shadow');
         var detailLine = document.querySelector('.summary-cost-modal'), icon=document.querySelector('.icon-arrow');
+        var roomOuter = document.querySelector('.room-ul-outer'), reBack = document.querySelector('.edit-button');
         var hide = function(){ detailLine.style.bottom = "-50px";
             shadowEle.style.display = 'none';
             icon.className="icon-arrow arrow-down";};
         var show = function(){ detailLine.style.bottom = "50px";
             shadowEle.style.display = 'block';
             icon.className="icon-arrow arrow-up";};
+        this.addHandler(reBack, 'click', function (){
+           window.location.href = 'index.html';
+        });
+
         this.addHandler(detailEle, 'click', function (){
             var event = event || window.event;
             var target =target||event.srcElement;
@@ -78,12 +86,49 @@ var ticketHotel = {
                 shadowEle.style.display=='block'?hide():show();
             }
         });
+        this.addHandler(roomOuter, 'click', function (){
+            var event = event || window.event;
+            var target =target||event.srcElement;
+            var ele,allButton,roomId,tem=null, roomData = that.cacheRoomData, priceDetail, totalPackagePrice= 0, orderTotalFare = document.querySelector('.order-total-fare');
+            var detailPrice = [
+                '{% if(data["category"]==1){ %}<p>成人费用 x <span>{%=quantity%}</span> <span> ￥{%=totalAmount%}</span></p>{% } %}',
+                '{% if(data["category"]==2){ %}<p>儿童费用 x <span>{%=quantity%}</span> <span> ￥{%=totalAmount%}</span></p>{% } %}'
+            ].join('');
+            if(target.className=='no-choose-button'){
+                ele = target.parentNode.parentNode;
+                allButton = ele.parentNode.querySelectorAll('button');
+                for(var t = 0, length =allButton.length;t<length;t++){
+                    if(allButton[t]==target){
+                        allButton[t].className='has-choose-button';
+                        allButton[t].innerHTML='已选择';
+                    }else{
+                        allButton[t].className='no-choose-button';
+                        allButton[t].innerHTML='选择';
+                    }
+                }
+                roomId= ele.getAttribute('data-room-id');
+                for(var k = 0, len =roomData.length;k<len;k++){
+                    if(roomData[k]['roomID']==roomId){
+                        tem = roomData[k].prices;
+                        break;
+                    }
+                }
+                priceDetail = template(detailPrice, tem);
+                for(var p= 0,len_=tem.length;p<len_;p++){
+                    totalPackagePrice+=tem[p].totalAmount;
+                }
+               // totalPackagePrice='￥'+tem[p].totalAmount;
+                $('.summary-cost-modal').eq(0).html(priceDetail);
+                orderTotalFare.innerHTML = totalPackagePrice;
+            }
+        });
     },
-
     renderHandler:function(arg){
         var resultData = arg, that = ticketHotel;
         resultData  = result1;
-        console.log(resultData)
+        this.cacheData = resultData;
+        this.cacheRoomData = resultData.data.hotelInfo.rooms;
+        console.log(resultData.data.hotelInfo.rooms)
         if (resultData.success) {
             if (resultData.data == null) {
                 jAlert("抱歉暂时没有数据", "提示");
@@ -169,6 +214,21 @@ var ticketHotel = {
                     '</div>',
                     '<div class="arrow-icon"></div>',
                     '</div>'].join('');
+                var roomStr =[
+                    '<li class="has-chosen" data-room-id="{%=roomID%}">',
+                       '<div class="room-name-detail">',
+                        '<h4>{%=roomName%}</h4>',
+                          '<p>',
+                         '{% if(data["includedBreakfast"]){ %}<span>含早</span>{% } %}',
+                         '{% if(data["plusBed"]){ %}<span>可加床</span>{% } %}',
+                         '{% if(data["freeWifi"]){ %}<span>免费wifi</span>{% } %}',
+                          '</p>',
+                       '</div>',
+                       '<div class="palss-price-button">',
+                       '<span>+￥</span><span>{%=totalAmount%}</span>',
+                       '<button class="no-choose-button">选择</button>',
+                      '</div>',
+                '</li>'].join('');
                 var returnWeek = function(arg){
                     var arg = arg.replace(/T.*/,'');
                     var index = new Date(arg.replace(/-/g,'/')).getDay(), week='';
@@ -200,7 +260,7 @@ var ticketHotel = {
                 };
                 var flightInfo =resultData.data.flightInfo;
                 var hotelInfo = resultData.data.hotelInfo;
-                console.log(hotelInfo)
+                var roomInfo = resultData.data.hotelInfo.rooms;
                 var flightDataHandler = function(arg){
                     var result = {};
                     result.flightLeaveStartDate_md = arg.flightLeaveStartDate.substr(5,5);
@@ -301,31 +361,29 @@ var ticketHotel = {
                     result.starRating = StarRatingHandler(star);
                     return result;
                 };
-
                 flightInfo = flightDataHandler(flightInfo);
                 hotelInfo = hotelDateHandler(hotelInfo);
-
                 var flightInfoTags = template(temp_flightInfo, flightInfo);
                 var hotelInfoTags = template(temp_hotelInfo, hotelInfo);
+                var roomInfoTags = template(roomStr, roomInfo);
                 $('.flight-summary-info').eq(0).html(flightInfoTags);
-                //$('.hotel-summary-info').eq(0).html(hotelInfoTags);
-
+                $('.hotel-summary-info').eq(0).html(hotelInfoTags);
+                $('.room-ul-outer').eq(0).html(roomInfoTags);
             }
         } else {
             $("#preloader").fadeOut();
             jAlert(resultData.message, "提示");
         }
-
-
     },
 
     init:function () {
         var backParaObj = this.parseUrlPara(document.location.search, true);
-        backParaObj = {};
+        backParaObj = {
+        };
         this.backParaObj = backParaObj;
         this.tAjax(this.requestUrl, backParaObj, "50100001", 3, this.renderHandler);
         this.renderHandler();
-        //this.eventHandler();
+        this.eventHandler();
     }
 };
 ticketHotel.init();
