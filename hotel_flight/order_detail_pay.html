@@ -41,8 +41,8 @@
     <!--content-->
     <div class="j-content jpr" id = "jpr">
         <div class="jpay-tit">
-            {% if(isContinuePay){ %} <p class="willpay">未支付</p>{% }else{ %} <p class="hadpay">已支付 {% } %}</p>
-            {% if(isContinuePay){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
+            {% if(!isContinuePay){ %} <p class="willpay">未支付</p>{% }else{ %} <p class="hadpay">已支付 {% } %}</p>
+            {% if(!isContinuePay){ var d=new Date(Date.parse(createTime.replace("T"," ").replace(/-/g, "/")));d.setMinutes(d.getMinutes()+30); %}
             <span class = "willpay-span">请在{%= d.getHours()+":"+d.getMinutes() %} 前完成支付</span>
             {% } %}
         </div>
@@ -89,7 +89,7 @@
             <dl>
                 <dt>{%=hotelDetails.hotleName%}</dt>
                 <dd><span>{%=hotelDetails.checkInDate.substring(0,10)%}</span> - <span>{%=hotelDetails.checkoutDate.substring(0,10)%}</span>
-                    共<span>2</span>晚（当地时间为准）</dd>
+                    共<span>{%=hotelDetails.dayNum%}</span>晚（当地时间为准）</dd>
                 <dd>房型：<span>{%=hotelDetails.roomDetials.roomName%}</span> 房间数：<span>{%=hotelDetails.roomDetials.numRoom%}</span>间</dd>
             </dl>
         </div>
@@ -139,7 +139,7 @@
                 <i class="icon fr"></i>
             </a>
         </div>
-        {% if(isContinuePay){ %}
+        {% if(!isContinuePay){ %}
         <div class="j-btn jpay-c7" id = "jpay_pay">
             <a href="order_pay.html?bookingRefNo={%=bookingRefNo%}">支付订单</a>
         </div>
@@ -169,8 +169,11 @@
             "ForeEndType":3}
         vlm.loadJson("http://10.6.11.21:1337/api/GetServiceApiResult",JSON.stringify(Parameters), function(data){
             if(data.success) {
+                console.log(data.data)
+                data.data.hotelDetails.dayNum = getDayNum(data.data.hotelDetails.checkInDate.replace(/T.*/,''),data.data.hotelDetails.checkoutDate.replace(/T.*/,''))
+                console.log(data.data.hotelDetails.dayNum)
                 var html = template("jpr", data.data);
-
+                var dayNum = getDayNum("hotelDetails.checkInDate","hotelDetails.roomDetials");
                 $("#jpr").html(html);
                 vlm.init();
                 $("#j_back").on("click",function(){
@@ -181,6 +184,10 @@
                 });
             }else{
                 alert("网络异常！");
+            }
+            function getDayNum(arg1, arg2) {
+                var time1 = Date.parse(arg1.replace(/-/g, "/")), time2 = Date.parse(arg2.replace(/-/g, "/")), dayCount;
+                return dayCount = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
             }
         },true)
     })()
