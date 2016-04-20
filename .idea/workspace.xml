@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="808ef735-1808-4127-85ec-18d8b9940ff0" name="默认的" comment="忘记密码国籍不可点">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hotel_flight/js/hf_orderdata.js" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\hotel_flight\user_order_fix.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\已选择@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\已选择@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\景点@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\景点@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\机票@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\机票@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\选择@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\选择@3x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\酒店@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\item_1\at-h5\images\hotel_flight\酒店@2x@3x.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/js/hf_order.js" afterPath="$PROJECT_DIR$/hotel_flight/js/hf_order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/css/order.css" afterPath="$PROJECT_DIR$/hotel_flight/css/order.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scenic/scenic_detail.html" afterPath="$PROJECT_DIR$/scenic/scenic_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/user.css" afterPath="$PROJECT_DIR$/css/user.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hotel_flight/user_order.html" afterPath="$PROJECT_DIR$/hotel_flight/user_order.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment/css/payment.css" afterPath="$PROJECT_DIR$/payment/css/payment.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment/payment.html" afterPath="$PROJECT_DIR$/payment/payment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment/js/payment.js" afterPath="$PROJECT_DIR$/payment/js/payment.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/lib/vlm.js" afterPath="$PROJECT_DIR$/js/lib/vlm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -41,25 +27,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="user_order.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="payment.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payment/payment.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-40.293102">
+              <caret line="131" column="81" selection-start-line="131" selection-start-column="66" selection-end-line="131" selection-end-column="81" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payment/css/payment.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="495" column="9" selection-start-line="495" selection-start-column="9" selection-end-line="495" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pay_jyy.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hotel/js/pay_jyy.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.2">
+              <caret line="121" column="26" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jyy_pay.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hotel/jyy_pay.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.7586207">
+              <caret line="88" column="102" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_order.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel_flight/user_order.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53961134">
-              <caret line="344" column="25" selection-start-line="344" selection-start-column="25" selection-end-line="344" selection-end-column="25" />
+            <state vertical-scroll-proportion="-6.107143">
+              <caret line="350" column="17" selection-start-line="350" selection-start-column="17" selection-end-line="350" selection-end-column="17" />
               <folding>
                 <element signature="n#script#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1461058031285" expanded="true" signature="1386:2298" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vlm.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vlm.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/lib/vlm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.19537275">
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/payment/js/payment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.1666667">
+              <caret line="320" column="13" selection-start-line="320" selection-start-column="13" selection-end-line="320" selection-end-column="13" />
+              <folding>
+                <element signature="e#1133#2314#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,7 +104,7 @@
       <file leaf-file-name="order.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hotel_flight/css/order.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.4">
+            <state vertical-scroll-proportion="0.0">
               <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
               <folding />
             </state>
@@ -121,8 +158,11 @@
         <option value="$PROJECT_DIR$/hotel_flight/js/hf_order.js" />
         <option value="$PROJECT_DIR$/user/user-allorder.html" />
         <option value="$PROJECT_DIR$/hotel_flight/css/order.css" />
-        <option value="$PROJECT_DIR$/js/lib/vlm.js" />
         <option value="$PROJECT_DIR$/hotel_flight/user_order.html" />
+        <option value="$PROJECT_DIR$/js/lib/vlm.js" />
+        <option value="$PROJECT_DIR$/payment/css/payment.css" />
+        <option value="$PROJECT_DIR$/payment/payment.html" />
+        <option value="$PROJECT_DIR$/payment/js/payment.js" />
       </list>
     </option>
   </component>
@@ -134,10 +174,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1598" />
-    <option name="height" value="858" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -196,20 +236,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="at-h5" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -234,8 +260,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -247,8 +273,24 @@
     <property name="FullScreen" value="false" />
     <property name="settings.editor.selected.configurable" value="liveEdit" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/at-h5-nodejs" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="176" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="176" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="206" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="999" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="194" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="170" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="200" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="993" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -273,9 +315,15 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/css/h+f_pay.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/order_pay.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/js/lib/vlm.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/css/detail_amy.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/css/ticket_hotel_choose.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/hotel_detail.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/index.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/js/flight_list.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/js/hf_index.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/js/ticket_hotel_choose.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/ticket-list.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/ticket_hotel_choose.html</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="已创建" />
@@ -283,6 +331,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/js/hf_hotelDetail.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/hotel_flight/js/hotel_flight_data_interface_temp.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="已删除" />
@@ -552,12 +602,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1598" height="858" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17948718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.179375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32599726" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="版本控制" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3954116" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -639,20 +689,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tour/css/tour.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel/user_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/tips.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -749,13 +785,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Documents/Tencent Files/1136328136/FileRecv/MockData/MockData/601301/04_14_10_32_37.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/user/user-oftenInfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -767,7 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.882096">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -829,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.78165936">
           <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -844,7 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6955307">
           <caret line="74" column="14" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -852,7 +878,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.1312847">
           <caret line="19" column="13" selection-start-line="18" selection-start-column="46" selection-end-line="19" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,15 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3323782">
           <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Documents/Tencent Files/1136328136/FileRecv/hotel_flight_data_interface_temp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8510029">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -942,26 +958,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tour/js/11">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="2" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tour/fill-in-order-new.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.71449924">
           <caret line="280" column="29" selection-start-line="280" selection-start-column="29" selection-end-line="280" selection-end-column="29" />
-          <folding>
-            <element signature="n#section#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#4;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -977,7 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7249284">
           <caret line="497" column="23" selection-start-line="483" selection-start-column="12" selection-end-line="497" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -985,13 +984,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hotel_flight/css/order.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4">
+        <state vertical-scroll-proportion="0.0">
           <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
           <folding />
         </state>
@@ -1001,28 +999,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0">
           <caret line="206" column="116" selection-start-line="206" selection-start-column="16" selection-end-line="206" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel_flight/user_order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.107143">
+          <caret line="350" column="17" selection-start-line="350" selection-start-column="17" selection-end-line="350" selection-end-column="17" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#script#7;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/js/pay_jyy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.2">
+          <caret line="121" column="26" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hotel/jyy_pay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.7586207">
+          <caret line="88" column="102" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment/css/payment.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="495" column="9" selection-start-line="495" selection-start-column="9" selection-end-line="495" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment/payment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-40.293102">
+          <caret line="131" column="81" selection-start-line="131" selection-start-column="66" selection-end-line="131" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment/js/payment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1666667">
+          <caret line="320" column="13" selection-start-line="320" selection-start-column="13" selection-end-line="320" selection-end-column="13" />
+          <folding>
+            <element signature="e#1133#2314#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/vlm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.19537275">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hotel_flight/user_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53961134">
-          <caret line="344" column="25" selection-start-line="344" selection-start-column="25" selection-end-line="344" selection-end-column="25" />
-          <folding>
-            <element signature="n#script#7;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1461058031285" expanded="true" signature="1386:2298" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>

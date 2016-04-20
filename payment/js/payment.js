@@ -27,9 +27,8 @@
         };
         /*页面初始化*/
         var _init={
-
-          //页面事件绑定
-          bindPaymentTypeEvent:function(){
+            //页面事件绑定
+            bindPaymentTypeEvent:function(){
               //选择支付方式
               $(".p-pay li").on("click",function(){
 
@@ -62,7 +61,26 @@
               $(".p-but").on("click",function(){
                   _paymentEvent();
               })
-          }
+          },
+            //有效期下拉控件
+            expityDateInit:function(){
+                var expityDate = new Scroller({
+                    id: "jp_limit_time",
+                    type:"cardExpirationDate",
+                    cont:"cardExpirationDate1",
+                    callback: function(){
+                        var jp_limit_time=document.getElementById('jp_limit_time');
+                        var selectTime = jp_limit_time.getAttribute("data-expire");
+                        var nowTime = new Date().getTime();
+                        selectTime = new Date(selectTime).getTime();
+                        if(nowTime > selectTime){
+                            $.alerts.alert('有效期应大于当前日期，请重新选择!',null,null,"确定");
+                        }
+                    }
+                });
+
+            }
+
         }
         /*获取订单详情数据*/
         var _getOrderData=function(bussinessType,bookingRefNo,foreEndType,callback){
@@ -92,7 +110,7 @@
             return {
                 "cardAddressPostalCode":$(".cardAddressPostalCode").val(),
                 "bankName":$(".bankName").val(),
-                "countryNumber":"CN",
+                "countryNumber":"86",
                 "cardAddressCity":$(".cardAddressCity").val(),
                 "cardHolderName":$(".cardHolderName").val(),
                 "cardExpiryDate":"2018-12-31",
@@ -101,7 +119,7 @@
                 "cardType":cardType,
                 "cardSecurityCode":$(".cardSecurityCode").val(),
                 "cardCountryCode":"CN",
-                "cardAddressCountryCode":$(".CardAddressCountryCode").val(),
+                "cardAddressCountryCode":"CN",
                 "cardAddress":$(".cardAddress").val()
             }
         };
@@ -131,10 +149,10 @@
                 jAlert("安全码3位数字！","",null,"确认");
                 return false;
             }
-            if(!vlm.Utils.validate["dataValid"](model.cardExpiryDate)){
-                jAlert("有效期格式不正确！","",null,"确认");
-                return false;
-            }
+            //if(!vlm.Utils.validate["dataValid"](model.cardExpiryDate)){
+            //    jAlert("有效期格式不正确！","",null,"确认");
+            //    return false;
+            //}
             if(!vlm.Utils.validate["isNoEmpty"](model.cardAddressCity)){
                 jAlert("账单城市不能不空！","",null,"确认");
                 return false;
@@ -264,7 +282,7 @@
             console.log(JSON.stringify(param));
             vlm.loadJson("", JSON.stringify(param), function(data){
                     if (data.success) {
-                        location.href=data.url;
+                        location.href=data.data.paymentRedirectURL;
                     }
                     else{
                         alert(data.message);
@@ -326,6 +344,7 @@
 
             //绑定页面事件
             _init.bindPaymentTypeEvent();
+            _init.expityDateInit();
 
             //获取订单详情数据
             _getOrderData(type,bookingRefNo,3,function(data){
