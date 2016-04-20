@@ -1,7 +1,8 @@
 var ticketHotel = {
-
     requestUrl: 'http://10.6.11.20:8888/ ',
+
     isStop: true,
+
     addHandler: function (target, eventType, handle) {
         if (document.addEventListener) {
             this.addHandler = function (target, eventType, handle) {
@@ -42,8 +43,10 @@ var ticketHotel = {
             storageOr.setItem(key, JSON.stringify({data: v}))
         },
         get: function (type, key) {
-            var storageOr =type=='local'?window.localStorage:window.sessionStorage, data = storageOr.getItem(key), dataObj = JSON.parse(data);
-            return JSON.stringify(dataObj.data);
+            var storageOr = type=='local'?window.localStorage:window.sessionStorage, data = storageOr.getItem(key), dataObj = JSON.parse(data);
+            if(dataObj){
+                return JSON.stringify(dataObj.data);
+            }
         }
     },
 
@@ -56,6 +59,7 @@ var ticketHotel = {
         });
         return obj;
     },
+
     eventHandler: function () {
         var detailEle = document.querySelector('.detail-text-arrow'), that = ticketHotel, shadowEle= document.querySelector('.shadow');
         var detailLine = document.querySelector('.summary-cost-modal'), icon=document.querySelector('.icon-arrow');
@@ -84,6 +88,12 @@ var ticketHotel = {
             paraObject.ReturnDate =that.cacheData.flightInfo.flightReturnStartDate;
             paraObject.RoomDetails =that.initParaObj.RoomDetails;
             console.log(paraObject)
+            that.storageUtil.set('hotelDetailInfo', paraObject);
+            if(that.cacheRoomId){
+                alert('请选择房间！')
+            }else{
+                window.location.href = 'hotel_detail.html';
+            }
            /* var testPara= { //最终参数形式
                     "HotelID": "11911",
                     "SelectedRoomID": 173151,
@@ -95,11 +105,6 @@ var ticketHotel = {
                     "ReturnDate": "2016-05-08",
                     "RoomDetails": [{"Adult": 2}]
             }*/
-
-
-
-
-           // window.location.href = 'hotel_detail.html';
         });
 
         this.addHandler(toFlightDetail, 'click', function (){
@@ -120,6 +125,7 @@ var ticketHotel = {
 
             }
         });
+
         this.addHandler(document, 'click', function (){
             var event = event || window.event;
             var target =target||event.srcElement;
@@ -128,6 +134,7 @@ var ticketHotel = {
                 shadowEle.style.display=='block'?hide():show();
             }
         });
+
         this.addHandler(roomOuter, 'click', function (){
             var event = event || window.event;
             var target =target||event.srcElement;
@@ -232,6 +239,7 @@ var ticketHotel = {
             if (resultData.data == null) {
                 window.location.href = 'no_result.html';
             } else {
+                //document.querySelector('#preloader').style.display='none';
                 that.cacheData = resultData.data;
                 console.log(resultData.data)
                 that.cacheRoomData = resultData.data.hotelInfo.rooms;
@@ -483,7 +491,8 @@ var ticketHotel = {
     },
     init:function () {
         var storagePara = JSON.parse(window.localStorage.getItem('searchInfo')), initParaObj={};
-        var flightHotelData = JSON.parse(this.storageUtil.get('session','flightHotelAllData'));
+        var flightHotelData = this.storageUtil.get('session','flightHotelAllData');
+        console.log(flightHotelData)
         this.cacheRoomId = '';
         initParaObj.CityCodeFrom = storagePara.FromCity;
         initParaObj.CityCodeTo = storagePara.ToCity;
