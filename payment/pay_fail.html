@@ -15,44 +15,39 @@
     <link href="../styles/style.css" rel="stylesheet" type="text/css" />
     <link href="../styles/framework.css" rel="stylesheet" type="text/css" />
     <link href="../styles/tips.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/pay.css" />
-    <link href="../css/date_select.css" rel="stylesheet" type="text/css">
-    <title>支付失败 - 亚洲旅行网</title>
+    <link rel="stylesheet" href="css/pay_fail.css" />
+    <title>首页 - 亚洲旅行网</title>
 
 
 </head>
 <body>
-<div id="preloader">
-    <div id="status">
-        
-    </div>
-</div>
+<!--<div id="preloader">-->
+    <!--<div id="status">-->
+
+    <!--</div>-->
+<!--</div>-->
 <div class="all-elements" >
     <div id="elements">
         <div class="header" id="vlm-login">
-            <a href="javascript:;" class="header-back" id="jp_back">
-                <i class="icons go-back"></i>
-            </a>
+            <!--<a href="javascript:;" class="header-back" id="td_back">-->
+            <!--<i class="icons go-back"></i>-->
+            <!--</a>-->
             <h3>交易详情</h3>
         </div>
         <div class="tra_con1">
             <div class="tra_c1_inbox">
                 <i class="payment-fail"></i>
-                <span>支付失败</span>
+                <span>预订失败</span>
             </div>
         </div>
-        <div class="tra_con2">
+        <div class="tra_con2" id = "vlm_login">
             <div class="tra_c2_inbox">
-                <h3 id="tdHoteName">北京-新加坡</h3>
-                <p class="tra_live">订单号：<span id="tdCheckInDate">123456789</span></p>
-                <p class="tra_house">机票+酒店</p>
-                <p class = "tra_num">
-                    <span>人数:</span>
-                    <span><i>2</i>成人</span>
-                    <span><i>1</i>儿童</span></p>
-                <p class = "tra_go">出发时间 <span>2015-12-19</span></p>
-                <p class = "tra-backtime">返回时间 <span>2015-12-19</span></p>
-                <p class="tra_price" id="tdPrice">订单总额：<span>￥1,293</span></p>
+                <h3 id="tdHoteName">订单号：</h3><span>{%=bookingRefNo%}</span>
+                <p class="tra_live">
+                    <span id="tdCheckInDate">{%=hotelDetails.dayNum%}天{%=hotelDetails.dayNum%}晚</span>&nbsp;&nbsp;
+                    <span>{%=flightInfo.cityNameTo%}{%=flightInfo.cityCodeTo%}</span><span>{%=hotelDetails.hotleName%}</span>
+                </p>
+                <p class="tra_price" id="tdPrice">订单总额：<span>{%=totalFlightPrice%}</span></p>
             </div>
         </div>
     </div>
@@ -75,29 +70,37 @@
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
+<script type="text/javascript" src="js/payment.js"></script>
 <script>
-    $(document).ready(function(){
-        var memberId=JSON.parse(localStorage.getItem('memberid'));
+    (function(){
         var bookingRefNo=vlm.getpara("bookingRefNo");
         var Parameters={
-            "Parameters":{"bookingReferenceNo":bookingRefNo},
-            "Code":"0013",
-            "ForeEndType":3}
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+            "Parameters":{"BookingRefNo":"SG17SINFP0375958"},
+            "Code":"50100007",
+            "ForeEndType":3};
+        vlm.loadJson("http://10.6.11.21:1337/api/GetServiceApiResult",JSON.stringify(Parameters), function(data){
             if(data.success) {
-                var html = template("elements", data.data);
-                $("#elements").html(html);
+                console.log(data.data);
+                data.data.hotelDetails.dayNum = getDayNum(data.data.hotelDetails.checkInDate.replace(/T.*/,''),data.data.hotelDetails.checkoutDate.replace(/T.*/,''));
+                console.log(data.data.hotelDetails.dayNum);
+                var html = template("vlm_login", data.data);
+                var dayNum = getDayNum("hotelDetails.checkInDate","hotelDetails.roomDetials");
+                $("#vlm_login").html(html);
                 vlm.init();
-                $("#fl").on("click",function(){
-                    location.href="../index.html";
-                })
+                $("#j_back").on("click",function(){
+                    location.href="../payment/payment.html";
+                });
                 $("#fr").on("click",function(){
-                    location.href="jyy_pay.html?bookingRefNo="+bookingRefNo;
-                })
+                    location.href="";
+                });
             }else{
-               console.log("网络异常！");
+                alert("网络异常！");
             }
-        })
-    })
+            function getDayNum(arg1, arg2) {
+                var time1 = Date.parse(arg1.replace(/-/g, "/")), time2 = Date.parse(arg2.replace(/-/g, "/")), dayCount;
+                return dayCount = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
+            }
+        },true)
+    })()
 </script>
 </html>
