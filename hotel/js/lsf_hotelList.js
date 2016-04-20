@@ -409,13 +409,13 @@ function styleChange(id, mytext) {
 	console.log(url_json);
 
 	var preloader = document.getElementById('preloader');
-	var status_h = document.getElementById('status-h');
+	var status_h = document.getElementById('status');
 	//交互部分
 	function M(json) {
 		console.log('这是传入的数据');
 		console.log(json);
 		preloader.style.display = 'block';
-		status_h.style.display = 'block';
+		//status_h.style.display = 'block';
 		var lsf_list = document.getElementById('lsf_list');
 		//lsf_list.innerHTML = '';
 		json = json || {};
