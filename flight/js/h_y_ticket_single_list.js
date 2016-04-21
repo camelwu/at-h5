@@ -316,7 +316,7 @@ var ticketSingle = {
             if(type == "false"){
                 str+= '<div class="price-tax single-side">' +
                 '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+arg.data.flightInfos[i].totalFareAmountADT+'</span></div>' +
-                '<div class="single-price-tax-info"><span class="tax-word">税费</span>'+arg.data.flightInfos[i].totalTaxAmountADT+'</div>'
+                '<div class="single-price-tax-info"><span class="tax-word">税费</span> ￥'+arg.data.flightInfos[i].totalTaxAmountADT+'</div>'
             }else{
                 if(that.backParaObj.interNationalOrDomestic=="domestic"){
                     str+= '<div class="price-tax single-side">' +
