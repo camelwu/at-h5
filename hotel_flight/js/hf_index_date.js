@@ -38,12 +38,6 @@
         $("#startData").attr("data-startData",startData);
 
 
-
-
-
-
-
-
         var endday = $("#endday").val();
 
         mendday = endday;
@@ -77,8 +71,11 @@
     }
 
     function initDate(day1,day2){
-        $("#startday").replace(/[\ /=]/g,"-").val(day1);
-        $("#endday").replace(/[\ /=]/g,"-").val(day2);
+
+        day1 = day1.replace(/\W/g,"-");
+        day2 = day2.replace(/\W/g,"-");
+        $("#startday").val(day1);
+        $("#endday").val(day2);
         updateTime();
     }
     initDate(starttime,endtime);
