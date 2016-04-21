@@ -5,11 +5,11 @@
     /*支付模块（酒店，机票，景点，酒+景，机+酒）*/
     var pay_fail = function(){
         var _bussinessType= {
-            "Hotle":{id: 1,detailCode: "0013"},
-            "Flight":{id: 2,detailCode: "3006"},
-            "Scenic":{id: 3,detailCode: "0095"},
-            "Tour":{id: 4,detailCode: "0095"},
-            "FlightHotle":{id: 5,detailCode: "50100007"}
+            "Hotle":{id: 1,detailCode: "0013",name:"Hotle"},
+            "Flight":{id: 2,detailCode: "3006",name:"Flight"},
+            "Scenic":{id: 3,detailCode: "0095",name:"Scenic"},
+            "Tour":{id: 4,detailCode: "0095",name:"Tour"},
+            "FlightHotle":{id: 5,detailCode: "50100007",name:"FlightHotle"}
         };
         //页面初始化
         var _init = {
@@ -19,27 +19,39 @@
                     window.location.href = "../user/user.html";
                 })
                 $("#fr").on("click",function() {
-                    window.location.href = "payment.html";
+                    window.location.href = "payment.html?bookingRefNo="+bookingRefNo+"&type="+type.name;
                 })
                 $("#fr2").on("click",function() {
-                    window.location.href = "../hotel_flight/order_detail_pay.html";
+                    window.location.href = "../user/user-allorder.html";
                 })
             }
         };
         /*获取订单详情数据*/
         var _getData=function(bussinessType,bookingRefNo,foreEndType,callback){
-            var para={
-                "Parameters": {"BookingRefNo": bookingRefNo},
-                "ForeEndType":foreEndType,
-                "Code": type.detailCode
+            var para;
+            if(type.id==1){
+                 para={
+                    "Parameters": {"BookingReferenceNo": bookingRefNo},
+                    "ForeEndType":foreEndType,
+                    "Code": type.detailCode
                 };
+            }
+            else{
+                 para={
+                    "Parameters": {"BookingRefNo": bookingRefNo},
+                    "ForeEndType":foreEndType,
+                    "Code": type.detailCode
+                };
+            }
             console.log(JSON.stringify(para));
             vlm.loadJson("", JSON.stringify(para),function(data){
                 if (data.success) {
                     if(type.id==1){
-                        data.data.productName=data.data.hotelname;
+                        data.data[0].bookingRefNo=data.data[0].bookingReferenceNo;
+                        data.data[0].productName=data.data[0].hotelName;
+                        data.data[0].totalPrice=parseInt(data.data[0].totalSeriveCharge)+parseInt(data.data[0].totalTaxCharge)+parseInt(data.data[0].totalRoomRate);
                     }else if(type.id==2){
-                         data.data.productName = data.data.cityNameFrom/data.data.cityNameTo;
+                        data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
                     }
                     else if(type.id==3){
@@ -59,7 +71,8 @@
                         data.data.totalPrice=totalprice;
                     }
                     else if(type.id==5){
-
+                        data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
+                        data.data.totalPrice=data.data.totalFlightPrice;
                     }
                     var html = template("vlm_login", data.data);
                     $("#vlm_login").html(html);

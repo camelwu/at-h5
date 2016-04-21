@@ -100,11 +100,11 @@
 							<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>
 							<span class = "order-tsl2">1/2成人 0/2儿童</span>
 						</li>
-						<li class = "order-tlist2">
+						<li class = "order-tlist2" id="order-tlist">
 							<i class="tra-delete"></i>
 							<div class="traveller-wrap">
-								<span>姓/名  BAI/LISA</span>
-								<span>护照   12345678910   女</span>
+								<span>姓/名<b class="travel-last" data-elementName="lastName">BAI</b>/<b class="travel-first" data-elementName="firstName">LISA</b></span>
+								<span><em class="card-tra-type" card-type="1">护照</em><b class="idnumber">12345678910</b> <b class="travel-sex" data-sex="Ms">女</b></span>
 							</div>
 							<em></em>
 						</li>
@@ -148,7 +148,8 @@
 				<p class="order-detail">
 					<span class="">明细</span><i class="detail-fale"></i>
 				</p>
-				<input type="button" value="预定" class = "order-submit"/>
+				<a href="javascript:;" class = "order-submit">预定</a>
+
 			</div>
 		</div>
 		<!--   明细块   -->
@@ -156,8 +157,6 @@
 		<div class="hf_detail_fare">
 			<!--<p>成人费用 x <span>2</span> <span> ￥1134</span></p>-->
 			<!--<p>儿童费用 x <span>2</span> <span> ￥1134</span></p>-->
-			<!--<p>机票差价 x <span>2</span> <span> ￥1134</span></p>-->
-			<!--<p>酒店差价 x <span>2</span> <span> ￥1134</span></p>-->
 		</div>
 
 		<!--国籍选择开始-->
@@ -186,11 +185,7 @@
 	<script src="../js/lib/vlm.js"></script>
 	<script src="../js/lib/template.js"></script>
 	<script src="../js/countrytel_list.js"></script>
-	<script>
-//		$('.order-submit').click(function(){
-//			window.location.href = 'order_detail.html';
-//		})
-	</script>
+
 	<!--模板机票-->
 	<script id="order-flight" type="text/template" >
 		<ul>
@@ -268,28 +263,8 @@
     <script id="totamount-det" type="text/template">
         <p>成人费用 x <span>{%=priceDetail.prices[0].quantity%}</span> <span> ￥{%=priceDetail.prices[0].amount%}</span></p>
         <p>儿童费用 x <span>{%=priceDetail.prices[1].quantity%}</span> <span> ￥{%=priceDetail.prices[1].amount%}</span></p>
-        <p>差价<span></span><span>￥{%=priceDetail.addtionalPrice%}</span></p>
     </script>
 	<!--模板酒店结束-->
-
-	<!--模板添加出行人-->
-	<!--<script id="traveller-add" type="text/template" >-->
-		<!--<ul>-->
-			<!--<li class = "order-tlist1">-->
-				<!--<span class = "order-tsl1">出行人</span>-->
-				<!--<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>-->
-				<!--<span class = "order-tsl2">1/2成人 0/2儿童</span>-->
-			<!--</li>-->
-			<!--<li class = "order-tlist2">-->
-				<!--<i class="tra-delete"></i>-->
-				<!--<div class="traveller-wrap">-->
-					<!--<span>姓/名 {%=LastName%}/{%=FirstName%}</span>-->
-					<!--<span>护照   12345678910   女</span>-->
-				<!--</div>-->
-				<!--<em></em>-->
-			<!--</li>-->
-		<!--</ul>-->
-	<!--</script>-->
 
 
 	<!--模板添加出行人结束-->
@@ -323,23 +298,16 @@
                 //明细块
                 var totamount=template('totamount-det',datahot);
                 $('.hf_detail_fare').html(totamount);
-                var num=datahot.priceDetail.totalAmount+datahot.priceDetail.addtionalPrice;
-                var totamountnum='￥'+num;
+                var totamountnum='￥'+datahot.priceDetail.totalAmount;
                 $('.card1').html(totamountnum);
 
 			}
 			init();
 
-
-
-//			$('.header-finish').click(function(){
-//				var  travaldata=localStorage.contact_selected;
-//				var travelPeo=template('traveller-add',travaldata);
-//				$('.order-trip').html(travelPeo);
-//			});
-			/*添加出行人*/
+            /*添加出行人*/
 			$(document).on('click','.order-tsl3',function(){
-				vlm.f_choice('contact',"ht",'contact','',false,false,null,null,null,null);
+				debugger;
+				vlm.f_choice('order-tlist2',"ht",'contact','',false,false,null,null,null,null);
 
 			});
 
@@ -350,9 +318,11 @@
 				if($('.hf_detail_fare').css('bottom') == '-80px')
 				{
 					$('.hf_det_mask').show();
+					$('.detail-fale').addClass('open');
 					$('.hf_detail_fare').css('bottom','47px');
 				}else{
 					$('.hf_det_mask').hide();
+					$('.detail-fale').removeClass('open');
 					$('.hf_detail_fare').css('bottom','-80px');
 				}
 			});
@@ -385,56 +355,42 @@
 				obj.onclick=function(){
 
 					//联系人姓名检验
-					var inputlast=$('.hf_con_lastname');
-					if(! vlm.Utils.validate.engName(inputlast.val())){
-						jAlert('请您输入英文的联系人姓');
-						return;
-					}
-					var inputfir=$('.hf_con_firstname');
-					if(! vlm.Utils.validate.engName(inputfir.val())){
-						jAlert('请您输入英文的联系人名');
-						return;
-					}
-					// 手机号邮箱检验
-					var oMobile = $('.hf_con_cell')[0].value;
-					var oEmail = $('.hf_con_email')[0].value;
-
-					if ( ! vlm.Utils.validate.mobileNo(oMobile) )
-					{
-						jAlert('请输入正确的手机号');
-						return;
-					}
-					if ( ! vlm.Utils.validate.email(oEmail) )
-					{
-						jAlert('请输入正确的邮箱');
-						return;
-					}
+//					var inputlast=$('.hf_con_lastname');
+//					if(! vlm.Utils.validate.engName(inputlast.val())){
+//						jAlert('请您输入英文的联系人姓');
+//						return;
+//					}
+//					var inputfir=$('.hf_con_firstname');
+//					if(! vlm.Utils.validate.engName(inputfir.val())){
+//						jAlert('请您输入英文的联系人名');
+//						return;
+//					}
+//					// 手机号邮箱检验
+//					var oMobile = $('.hf_con_cell')[0].value;
+//					var oEmail = $('.hf_con_email')[0].value;
+//
+//					if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+//					{
+//						jAlert('请输入正确的手机号');
+//						return;
+//					}
+//					if ( ! vlm.Utils.validate.email(oEmail) )
+//					{
+//						jAlert('请输入正确的邮箱');
+//						return;
+//					}
 					var Parmeters = {
 						"Parameters": {
-							"SetID": 1002001,
-							"CacheID": 1013226,
-							"CityCodeFrom": "SIN",
-							"CityCodeTo": "BKK",
-							"DepartDate": "2016-04-25T00:00:00",
-							"ReturnDate": "2016-04-27T00:00:00",
-							"HotelID": 96,
-							"RoomID": 108450,
-							"MemberId": "84587",
-//							"RoomDetails": [{"Adult": 2, "ChildWithoutBed": [6]}, {"Adult": 1}, {"Adult": 1}],
-//							"TravellerInfo": [{
-//								"PassengerType": "ADULT",
-//								"SexCode": "Ms",
-//								"FirstName": "fr1",
-//								"LastName": "111",
-//								"DateOfBirth": "1990-01-09T00:00:00",
-//								"CertificateInfo": {
-//									"IdType": 1,
-//									"IdCountry": "CN",
-//									"IdNumber": "123",
-//									"IdActivatedDate": "2017-01-09T00:00:00"
-//								},
-//								"CountryCode": "CN"
-//							}],
+							"SetID": datahot.SetID,
+							"CacheID": datahot.CacheID,
+							"CityCodeFrom": datahot.CityCodeFrom,
+							"CityCodeTo": datahot.CityCodeTo,
+							"DepartDate": datahot.DepartDate,
+							"ReturnDate": datahot.ReturnDate,
+							"HotelID": datahot.HotelID,
+							"RoomID": datahot.RoomID,
+							"MemberId": localStorage.memberid,
+
 							"ContactDetail": {
 								"SexCode": "Ms",
 								"FirstName": $('.hf_con_firstname').val(),
@@ -443,39 +399,37 @@
 								"CountryNumber": $('.tel-btn span').html().substring(1),
 								"MobilePhone": $('.hf_con_cell').val()
 							},
-							"CurrencyCode": "CNY",
-							"TotalPrice": "9664"
+							"CurrencyCode": datahot.priceDetail.CurrencyCode,
+							"TotalPrice": datahot.priceDetail.totalAmount
 						},
 						"ForeEndType": 3,
 						"Code": "50100004"
 					}
 
                     //房间信息
-                    Parmeters.Parameters.RoomDetails=data.RoomDetails;
+                    Parmeters.Parameters.RoomDetails=datahot.RoomDetails;
 
                     //出行人
                     var traveller=[];
-                    var traAdu={};
-                    var traChi={};
-                    var room=data.RoomDetails;
-                    var traAdultnum=0;
-                    var traChildnum=0;
-                    for(var i=0;i<room.length; i++)
+                    var aConlist=$('.order-tlist2');
+                    for(var i=0;i<aConlist.length; i++)
                     {
-                        traAdultnum+=parseInt(room[i].Adult);
-                        for(var j=0;j<room[i].Adult;j++)
-                        {
-							traAdu.PassengerType='ADULT';
-							traveller.push(traAdu);
-                        }
-						for(var k=0;k<room[i].ChildWithoutBed.length;k++)
-						{
-							traChi.PassengerType='CHILD';
-							traveller.push(traChi);
-						}
-
+                        var tra={};
+                        var person={};
+                        person.FirstName=aConlist.eq(i).find('.travel-last').html();
+                        person.LastName=aConlist.eq(i).find('.travel-first').html();
+                        person.PassengerType='ADULT';
+                        person.DateOfBirth='1990-01-09T00:00:00';
+                        tra.IdNumber=aConlist.eq(i).find('.idnumber').html();
+                        tra.IdCountry='CN';
+                        tra.idType=aConlist.eq(i).find('.card-tra-type').attr('card-type');
+                        tra.IdActivatedDate='2017-01-09T00:00:00';
+                        person.CertificateInfo=tra;
+                        person.SexCode=aConlist.eq(i).find('.travel-sex').attr('data-sex');
+                        traveller.push(person);
+                        console.log(person);
                     }
-                    traNum=traAdultnum+traChildnum;
+
                     Parmeters.Parameters.TravellerInfo=traveller;
 					console.log(Parmeters);
 					vlm.loadJson("", JSON.stringify(Parmeters), hotel_flight_back);
@@ -493,6 +447,7 @@
 					alert(1);
 					window.localStorage.BookingRefNo=json.BookingRefNo;
 					window.localStorage.BookingID=json.BookingID;
+					window.location.href='order_detail.html';
 				}
 			}
 

@@ -284,8 +284,8 @@ var hf_search = {
             }
         }
 
-        var fromCity = $('.origin')[0].getAttribute('data-citycode');
-        var toCity = $('.destination')[0].getAttribute('data-citycode');
+        var fromCity = $('.origin').attr("data-citycode");
+        var toCity = $('.destination').attr("data-citycode");
         var departDate = $('#startData').innerHTML + 'T00:00:00';
         var returnDate = $('#returnData').innerHTML + 'T00:00:00';
         var roomDetails = [],temObj = {},childWithOutBed = [], childWithBed = [];
