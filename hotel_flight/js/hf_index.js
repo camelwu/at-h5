@@ -284,6 +284,8 @@ var hf_search = {
             }
         }
 
+        var FromCityNameCN = $('.origin').html() ;
+        var ToCityNameCN = $('.destination').html();
         var fromCity = $('.origin').attr("data-citycode");
         var toCity = $('.destination').attr("data-citycode");
         var departDate = $('#startData').attr("data-startdata") + 'T00:00:00';
@@ -338,6 +340,8 @@ var hf_search = {
         }
         allNum = adultNum + childNum;
         var searchInfo = {
+            FromCityNameCN:FromCityNameCN,
+            ToCityNameCN:ToCityNameCN,
             FromCity:fromCity,
             ToCity:toCity,
             DepartDate:departDate,
