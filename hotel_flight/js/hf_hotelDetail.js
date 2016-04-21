@@ -15,11 +15,10 @@ var data2 = '',roomdata = '';
 
     var departDateHtml = localJson.data.DepartDate.substring(5);
     var enterDateHtml = localJson.data.ReturnDate.substring(5);
-    $('.jhf-mes span.departDate').html(departDateHtml)
-    $('.jhf-mes span.returnDate').html(enterDateHtml)
+    $('.jhf-mes span.departDate').html(departDateHtml);
+    $('.jhf-mes span.returnDate').html(enterDateHtml);
     //getDayNum计算天数
-
-    //getDayNum(arg1, arg2);
+    $('#nightNum').html(getDayNum(departDateHtml, enterDateHtml))
     function getDayNum(arg1, arg2) {
         var time1 = Date.parse(arg1.replace(/-/g, "/")), time2 = Date.parse(arg2.replace(/-/g, "/")), dayCount;
         return dayCount = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
@@ -30,9 +29,8 @@ var data2 = '',roomdata = '';
     function dataCallBack(result) {
         //console.log(result);
         data2 = result.data;
-        //console.log(data2);
+        console.log(data2);
         roomdata = data2.hotelInfo.rooms;
-        //console.log(roomdata[0].roomName);
         nav();
         banner();
         adress();
@@ -79,16 +77,16 @@ var data2 = '',roomdata = '';
 
         $('.jhf-mes li.showh .slide').each(function(i){
             $('.jhf-mes li.showh .slide').eq(i).click(function(){
-                $(this).find('i').toggleClass('cur');
-                $('.jhf-mes ol.show').eq(i).slideToggle();
-                $(this).find('b').toggleClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
+                //$(this).find('i').toggleClass('cur');
+                //$('.jhf-mes ol.show').eq(i).slideToggle();
+                $(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
             })
         });
 
         //点击跳转
-        $('ol.show li.roomli').on('click',function(){
-            window.location.href = 'ticket_hotel_choose.html';
-        })
+        //$('ol.show li.roomli').on('click',function(){
+        //    window.location.href = 'ticket_hotel_choose.html';
+        //})
     }
 })()
 

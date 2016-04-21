@@ -60,6 +60,38 @@
         <ul class="jhf-ul jhf-mes">
             <li class="jpr"><span class="enterDate departDate"></span>入住&nbsp;&nbsp;<span class="enterDate returnDate"></span>离店&nbsp;&nbsp;共<span id="nightNum">4</span>晚<!--<i class="arrow"></i>--></li>
             <!-- room list-->
+            <!--<li class="showh">-->
+                <!--<div class="slide jpr">-->
+                    <!--<div class="lfword">-->
+                        <!--<p><span class="name">高级客房</span><i class="book"></i></p>-->
+                        <!--<p>32-38㎡ 大/双床</p>-->
+                    <!--</div>-->
+                    <!--<div class="jhf-drg">-->
+                        <!--<p>-->
+                            <!--<span>+</span>-->
+                            <!--<span>￥</span>-->
+                            <!--<span>0</span>-->
+                            <!--<i></i>-->
+                        <!--</p>-->
+                        <!--<b></b>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<ol class="show">-->
+                    <!--<li class="lfword jpr roomli">-->
+                        <!--<p>标准价</p>-->
+                        <!--<p>无早 大床 不可取消&nbsp;&nbsp;<span>仅剩&nbsp;2&nbsp;间</span></p>-->
+                        <!--<div class="price">-->
+                            <!--<span>+</span>-->
+                            <!--<span>￥</span>-->
+                            <!--<span>100</span>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="lfword roomli">-->
+                        <!--<p>含早</p>-->
+                        <!--<p>双早 大/双床 免费取消</p>-->
+                    <!--</li>-->
+                <!--</ol>-->
+            <!--</li>-->
         </ul>
     </div>
 </div>
@@ -90,30 +122,29 @@
     <li class="showh">
         <div class="slide jpr">
             <div class="lfword">
-                <p><span class="name">{%=roomdata[i].roomName%}</span><i class="book"></i></p>
-                <p>32-38㎡ 大/双床</p>
+                <p><span class="name">{%=roomdata[i].roomName%}</span></p>
+                <p>{% if(roomdata[i].includedBreakfast){ %}双早{% }else{ %}无早{% } %}</p>
             </div>
             <div class="jhf-drg">
                 {% if(roomdata[i].addtionalPrice>=0){ %}<p>{% }else{ %}<p class="reduce">{% } %}
                     <span>{% if(roomdata[i].addtionalPrice>=0){ %}+{% }else{ %}-{% } %}</span>
                     <span>￥</span>
                     <span>{%=roomdata[i].addtionalPrice.toString().substring(1)-0%}</span>
-                    <i></i>
                 </p>
                 <b></b>
             </div>
         </div>
-        <ol class="show">
-            <li class="lfword jpr roomli">
-                <p>{%=roomdata[i].roomName%}</p>
-                <p>{% if(roomdata[i].includedBreakfast){ %}双早{% }else{ %}无早{% } %} 大床 不可取消&nbsp;&nbsp;<span><!--仅剩&nbsp;2&nbsp;间--></span></p>
-                {% if(roomdata[i].addtionalPrice>=0){ %}<div class="price">{% }else{ %}<div class="price reduce">{% } %}
-                    <span>{% if(roomdata[i].addtionalPrice>=0){ %}+{% }else{ %}-{% } %}</span>
-                    <span>￥</span>
-                    <span>{%=roomdata[i].addtionalPrice.toString().substring(1)-0%}</span>
-                </div>
-            </li>
-        </ol>
+        <!--<ol class="show" style="display: block;">-->
+            <!--<li class="lfword jpr roomli">-->
+                <!--<p>{%=roomdata[i].roomName%}</p>-->
+                <!--<p>{% if(roomdata[i].includedBreakfast){ %}双早{% }else{ %}无早{% } %} 大床 不可取消&nbsp;&nbsp;<span>&lt;!&ndash;仅剩&nbsp;2&nbsp;间&ndash;&gt;</span></p>-->
+                <!--{% if(roomdata[i].addtionalPrice>=0){ %}<div class="price">{% }else{ %}<div class="price reduce">{% } %}-->
+                    <!--<span>{% if(roomdata[i].addtionalPrice>=0){ %}+{% }else{ %}-{% } %}</span>-->
+                    <!--<span>￥</span>-->
+                    <!--<span>{%=roomdata[i].addtionalPrice.toString().substring(1)-0%}</span>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ol>-->
     </li>
     {% } %}
 </script>
