@@ -21,26 +21,26 @@
 (function () {
     var parametersStorage = JSON.parse(localStorage.getItem("changeHotelParaObj")) || {};
     var parametersS = parametersStorage.data;
-//     var params = {
-//            "Code": "50100003",
-//            "ForeEndType": 2,
-//            "Parameters": {
-//                "SelectedHotelID": "1005455",
-//                "FlightCacheID": "13767",
-//                "FlightSetID": "1002001",
-//                "CityCodeFrom": "SIN",
-//                "CityCodeTo": "BKK",
-//                "DepartDate": "2016-05-07",
-//                "ReturnDate": "2016-05-08",
-//                "SortFields": [1, 3],
-//                "PageNo": 1,
-//                "PageSize": 20,
-//                "RoomDetails": [{
-//                    "Adult": 2
-//            }]
-//            }
-//        },
-    var params = {
+     var params = {
+            "Code": "50100003",
+            "ForeEndType": 2,
+            "Parameters": {
+                "SelectedHotelID": "1005455",
+                "FlightCacheID": "13767",
+                "FlightSetID": "1002001",
+                "CityCodeFrom": "SIN",
+                "CityCodeTo": "BKK",
+                "DepartDate": "2016-05-07",
+                "ReturnDate": "2016-05-08",
+                "SortFields": [1, 3],
+                "PageNo": 1,
+                "PageSize": 20,
+                "RoomDetails": [{
+                    "Adult": 2
+            }]
+            }
+        },
+   /* var params = {
             "Code": "50100003",
             "ForeEndType": 2,
             "Parameters": {
@@ -56,7 +56,7 @@
                 "PageSize": parametersS.PageSize || "",
                 "RoomDetails": parametersS.RoomDetails || []
             }
-        },
+        },*/
         currentPage;
    
     vlm.init();
@@ -419,13 +419,11 @@
         /*遮罩层事件*/
         var mask = document.getElementById('mask');
         mask.addEventListener('touchstart', fn, false);
-
         function fn(event) {
             var event = event || window.event;
             $('.jpop,.jpop .screen,.jpop .sort').hide();
             event.preventDefault();
         }
-        
         // 酒店选择 页面跳转 将选择的酒店信息存入sessionStorage
         $('#hj_jList').on("click","li",function(evnt){
             var that = $(this);

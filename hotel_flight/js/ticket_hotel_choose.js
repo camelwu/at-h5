@@ -91,7 +91,7 @@ var ticketHotel = {
                 jAlert('请先选择房间', "提示");
             }else{
               that.storageUtil.set('local','hotelDetailInfo', paraObject);
-               window.location.href = 'hotel_detail.html';
+               window.location.href = 'hotel_detail.html?selectedRooId='+that.cacheRoomId;
             }
            /* var testPara= { //最终参数形式
                     "HotelID": "11911",
@@ -251,6 +251,8 @@ var ticketHotel = {
         this.addHandler(changeHotel, 'click', function (){
             var that = ticketHotel, tag=that.isStop;
             var paraObj = that.initParaObj;
+            paraObj.DepartDate=paraObj.DepartDate.replace(/T.*/,'');
+            paraObj.ReturnDate=paraObj.ReturnDate.replace(/T.*/,'');
              /*paraObj = {//最终格式
                      "SelectedHotelID": "1005455",
                      "FlightCacheID": "13767",
@@ -589,25 +591,38 @@ var ticketHotel = {
             jAlert(resultData.message, "提示");
         }
     },
+    initTop:function(arg){
+        var startEle = document.querySelector('.set-date');
+        var endEle = document.querySelector('.arrive-date');
+        var adult = document.querySelector('.adult-ft');
+        var child = document.querySelector('.child-ft');
+        var returnWeek=function(g){
+                var week,array;
+                array = g.split('-');
+                array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
+                array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
+                return array[1]+'月'+array[2]+'日';
+            };
+        startEle.innerHTML= '出发:'+returnWeek(arg.DepartDate.replace(/T.*/,''));
+        endEle.innerHTML= '返回:'+returnWeek(arg.ReturnDate.replace(/T.*/,''));
+        adult.innerHTML= arg.AdultNum+'成人';
+        child.innerHTML= arg.ChildNum+'儿童';
+    },
     init:function () {
         var storagePara = JSON.parse(window.localStorage.getItem('searchInfo')), initParaObj={};
         var temFlightHotelData = this.storageUtil.get('session','flightHotelAllData');
+        this.initTop(storagePara);
         this.cacheRoomId = '';
         initParaObj.CityCodeFrom = storagePara.FromCity;
         initParaObj.CityCodeTo = storagePara.ToCity;
         initParaObj.DepartDate = storagePara.DepartDate;
         initParaObj.ReturnDate = storagePara.ReturnDate;
         initParaObj.RoomDetails = storagePara.RoomInfo;
+        initParaObj.SortFields=[0];
+        initParaObj.ScreenFileds=[0];
+        initParaObj.flightStartTime=0;
         this.initParaObj = initParaObj;
         if(!temFlightHotelData){
-            var initParaObj = {
-                CityCodeFrom: "SIN",
-                CityCodeTo: "BKK",
-                DepartDate: "2016-05-17T00:00:00",
-                ReturnDate: "2016-05-25T00:00:00",
-                RoomDetails: [{Adult: "2", ChildWithoutBed: [6]}]
-            };
-            this.initParaObj = initParaObj;
             this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
         }else{
             var flightHotelData = JSON.parse(temFlightHotelData),temObj = {};

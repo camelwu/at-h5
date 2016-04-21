@@ -87,8 +87,7 @@ var data2 = '',roomdata = '';
                 //$('.jhf-mes ol.show').eq(i).slideToggle();
                 $(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
                 var roomID = roomdata[i].roomID;
-                console.log('roomID:'+roomID)
-                //window.location.href = 'ticket_hotel_choose.html？roomID'+roomID;
+                window.location.href = 'ticket_hotel_choose.html?roomID='+roomID;
             })
         });
     }
