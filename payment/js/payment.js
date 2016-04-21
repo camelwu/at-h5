@@ -184,21 +184,24 @@
             if (type.id == 1){
                 //验证modle；
                 _check_modle();
-                var json=JSON.parse(localStorage.getItem('user_order_storage12345'));
+
                 var model=_get_modle();
                 var guestNameList = [];
-                for (var i = 0; i <= myData.guestName.length - 1; i++) {
-                    var guestInfo = {};
-                    guestInfo.guestFirstName = json.guestName[i].GuestFirstName;
-                    guestInfo.guestLastName = json.guestName[i].GuestLastName;
-                    guestNameList.push(guestInfo);
-                }
-                //支付模式为信用卡
-                if (paymentMode == "CreditCard" && (bookingRefNo == null || bookingRefNo==undefined )) {
+
+                //酒店订单未生成
+                if (bookingRefNo == null || bookingRefNo==undefined ) {
                     var flag= _check_modle();
                     if(!flag){
                         return;
                     }
+                    var json=JSON.parse(localStorage.getItem('user_order_storage12345'));
+                    for (var i = 0; i <= json.guestName.length - 1; i++) {
+                        var guestInfo = {};
+                        guestInfo.guestFirstName = json.guestName[i].GuestFirstName;
+                        guestInfo.guestLastName = json.guestName[i].GuestLastName;
+                        guestNameList.push(guestInfo);
+                    }
+
                     Parameters = {
                         "availability": true,
                         "bankName": json.BankName,
@@ -214,6 +217,12 @@
                         "creditCardExpiryDate": model.cardExpiryDate,
                         "creditCardNumber":  model.cardNumber,
                         "creditCardType": cardType,
+                        "cardBillingAddress": "werty",
+                        "countryNumber": "86",
+                        "MobilePhone": "13520591255",
+                        "cardAddressCity": "北京",
+                        "cardAddressPostalCode": "122132",
+                        "cardCountryCode": "CN",
                         "guestContactNo": json.GuestContactNo,
                         "guestEmail": json.GuestEmail,
                          guestNameList: guestNameList,
@@ -259,6 +268,7 @@
                 }
             }
             else {
+
                 //支付模式为在线支付
                 if (paymentMode == "CreditCard") {
                     var flag= _check_modle();
