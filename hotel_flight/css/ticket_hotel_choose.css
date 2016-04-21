@@ -260,7 +260,7 @@ button.no-choose-button{
     color: #999999;
     margin-bottom: 50px;
 }
-.check-more-room span:nth-child(2){
+.check-more-down{
     display: inline-block;
     width: 8px;
     height: 8px;
@@ -278,6 +278,7 @@ button.no-choose-button{
     -ms-transform-origin: 50% 0;
     transform-origin: 50% 0;
 }
+
 .order-total-wrap {
     width: 100%;
     font-size: 1.7rem;
