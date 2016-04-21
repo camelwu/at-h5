@@ -266,7 +266,7 @@
             console.log(atime +":"+btime);
             if(atime > btime){
                 console.log("a > b");
-                localStorage.XCache = 0;
+                localStorage.XCache = "";
                 return false;
             }else{
                 localStorage.XCache = 1;
