@@ -92,7 +92,7 @@ var ticketHotel = {
             if(that.cacheRoomId){
                 alert('请选择房间！')
             }else{
-                window.location.href = 'hotel_detail.html';
+               window.location.href = 'hotel_detail.html';
             }
            /* var testPara= { //最终参数形式
                     "HotelID": "11911",

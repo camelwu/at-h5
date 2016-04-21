@@ -16,13 +16,13 @@
             //页面事件绑定
             bindbindPaymentTypeEvent:function(){
                 $("#fl").on("click",function() {
-                    window.location.href = "../index.html";
+                    window.location.href = "../user/user.html";
                 })
                 $("#fr").on("click",function() {
-                    window.location.href = "payment/payment.html?bookingRefNo={%=bookingRefNo%}&type=FlightHotle";
+                    window.location.href = "payment.html";
                 })
                 $("#fr2").on("click",function() {
-                    window.location.href = "";
+                    window.location.href = "../hotel_flight/order_detail_pay.html";
                 })
             }
         };
@@ -39,9 +39,8 @@
                     if(type.id==1){
                         data.data.productName=data.data.hotelname;
                     }else if(type.id==2){
-                        var cityfrom = data.data.cityNameFrom;
-                        var cityto = data.data.cityNameTo;
-                        data.data.productName=cityfrom/cityto;
+                         data.data.productName = data.data.cityNameFrom/data.data.cityNameTo;
+                        data.data.totalPrice=data.data.totalFlightPrice;
                     }
                     else if(type.id==3){
                         data.data.productName=data.data.packageName;
@@ -53,6 +52,11 @@
                     }
                     else if(type.id==4){
                         data.data.productName=data.data.packageName;
+                        var totalprice=0;
+                        for(var i=0;i<=data.data.chargeDetails.length-1;i++){
+                            totalprice+=data.data.chargeDetails[i].totalAmount;
+                        }
+                        data.data.totalPrice=totalprice;
                     }
                     else if(type.id==5){
 
@@ -77,7 +81,6 @@
                     data.data.totalPrice=data.data.totalFlightPrice;
                     var html = template("vlm_login", data.data);
                     $("#vlm_login").html(html);
-
                 }
                 else{
                     jAlert("网络请求错误！");

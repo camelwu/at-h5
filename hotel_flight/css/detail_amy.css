@@ -671,7 +671,7 @@ a:link {
     color: #ffb412;
     line-height: 30px;
 }
-.jpop .screen .s-but{
+.jpop .screen .s-but,.jpay-c7 a{
     width: 94%;
     height: 36px;
     margin-left: 3%;
@@ -966,6 +966,7 @@ a:link {
     margin-bottom: 20px;
 }
 
-.jpay-c7 {
-    margin-bottom: 30px;
-}
+/*.jpay-c7 {*/
+    /*margin-bottom: 30px;*/
+/*}*/
+

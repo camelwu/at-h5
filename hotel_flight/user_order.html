@@ -21,12 +21,12 @@
 	</head>
 	<body>
 		<div id="preloader">
-			<div id="status-h">
+			<div id="status">
 				<p class="center-text"></p>
 			</div>
 		</div>
 		<div class="header" id="vlm-login">
-			<a href="javascript:;" class="header-back" id="uo_back">
+			<a href="javascript:window.history.go(-1);" class="header-back" id="uo_back">
                 <i class="icons go-back"></i>
             </a>
 			<h3>订单填写</h3>
@@ -94,15 +94,15 @@
 					<!--</ul>-->
 				</div>
 				<div class="order-bg order-trip">
-					<ul>
+					<ul id="tra-per-wrap">
 						<li class = "order-tlist1">
 							<span class = "order-tsl1">出行人</span>
-							<span class = "order-tsl3">添加出行人</span>
+							<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>
 							<span class = "order-tsl2">1/2成人 0/2儿童</span>
 						</li>
 						<li class = "order-tlist2">
 							<i class="tra-delete"></i>
-							<div>
+							<div class="traveller-wrap">
 								<span>姓/名  BAI/LISA</span>
 								<span>护照   12345678910   女</span>
 							</div>
@@ -154,8 +154,10 @@
 		<!--   明细块   -->
 		<div class="hf_det_mask"></div>
 		<div class="hf_detail_fare">
-			<p>成人费用 x <span>2</span> <span> ￥1134</span></p>
-			<p>儿童费用 x <span>2</span> <span> ￥1134</span></p>
+			<!--<p>成人费用 x <span>2</span> <span> ￥1134</span></p>-->
+			<!--<p>儿童费用 x <span>2</span> <span> ￥1134</span></p>-->
+			<!--<p>机票差价 x <span>2</span> <span> ￥1134</span></p>-->
+			<!--<p>酒店差价 x <span>2</span> <span> ￥1134</span></p>-->
 		</div>
 
 		<!--国籍选择开始-->
@@ -184,7 +186,6 @@
 	<script src="../js/lib/vlm.js"></script>
 	<script src="../js/lib/template.js"></script>
 	<script src="../js/countrytel_list.js"></script>
-	<script src="js/hf_orderdata.js"></script>
 	<script>
 //		$('.order-submit').click(function(){
 //			window.location.href = 'order_detail.html';
@@ -246,18 +247,52 @@
 				<i></i>
 				<span>酒店</span>
 			</li>
-			<li class = "order-hlist2">{%=hotelInfo.hotelName%}</li>
+			<li class = "order-hlist2"></li>
 			<li class = "order-hlist3">
-				<span>11月25日-11月26日</span>
-				<span>共1晚（当地时间为准）</span>
+				<span>{%=DepartDate.substring(5,10).replace('-','月')%}日 - {%=ReturnDate.substring(5,10).replace('-','月')%}日</span>
+                {% function getDayNum(arg1,arg2){
+                var time1 = Date.parse(arg1), time2 = Date.parse(arg2);
+                return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+                }
+                dayNum = getDayNum(data.DepartDate.substring(0,10),ReturnDate.substring(0,10));%}
+				<span>共{%=dayNum%}晚（当地时间为准）</span>
 			</li>
 			<li class = "order-hlist4">
 				<span>房型：经济大床房</span>
-				<span>房间数：2间</span>
+
+				<span>房间数：{%=RoomDetails.length%}间</span>
 			</li>
 		</ul>
 	</script>
+
+    <script id="totamount-det" type="text/template">
+        <p>成人费用 x <span>{%=priceDetail.prices[0].quantity%}</span> <span> ￥{%=priceDetail.prices[0].amount%}</span></p>
+        <p>儿童费用 x <span>{%=priceDetail.prices[1].quantity%}</span> <span> ￥{%=priceDetail.prices[1].amount%}</span></p>
+        <p>差价<span></span><span>￥{%=priceDetail.addtionalPrice%}</span></p>
+    </script>
 	<!--模板酒店结束-->
+
+	<!--模板添加出行人-->
+	<!--<script id="traveller-add" type="text/template" >-->
+		<!--<ul>-->
+			<!--<li class = "order-tlist1">-->
+				<!--<span class = "order-tsl1">出行人</span>-->
+				<!--<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>-->
+				<!--<span class = "order-tsl2">1/2成人 0/2儿童</span>-->
+			<!--</li>-->
+			<!--<li class = "order-tlist2">-->
+				<!--<i class="tra-delete"></i>-->
+				<!--<div class="traveller-wrap">-->
+					<!--<span>姓/名 {%=LastName%}/{%=FirstName%}</span>-->
+					<!--<span>护照   12345678910   女</span>-->
+				<!--</div>-->
+				<!--<em></em>-->
+			<!--</li>-->
+		<!--</ul>-->
+	<!--</script>-->
+
+
+	<!--模板添加出行人结束-->
 	<script>
 		(function () {
 
@@ -272,29 +307,53 @@
 			package_detail();
 
 			//初始化
-            var data=JSON.parse(localStorage.flightHotelFirstResult);
-            console.log(data);
-
+            var datafli=JSON.parse(sessionStorage.flightHotelAllData).data;
+            //console.log(datafli);
+            var datahot=JSON.parse(localStorage.createOrderParaPart).data;
+            console.log(datahot);
 			function init() {
 				//机票详情
-				var flightdet=template('order-flight',data);
+				var flightdet=template('order-flight',datafli);
 				$('.order-plane').html(flightdet);
 
 				//酒店详情
-				var flightdet=template('order-hot',data);
-				$('.order-hotel').html(flightdet);
+				var hoteldet=template('order-hot',datahot);
+				$('.order-hotel').html(hoteldet);
+
+                //明细块
+                var totamount=template('totamount-det',datahot);
+                $('.hf_detail_fare').html(totamount);
+                var num=datahot.priceDetail.totalAmount+datahot.priceDetail.addtionalPrice;
+                var totamountnum='￥'+num;
+                $('.card1').html(totamountnum);
+
 			}
 			init();
 
+
+
+//			$('.header-finish').click(function(){
+//				var  travaldata=localStorage.contact_selected;
+//				var travelPeo=template('traveller-add',travaldata);
+//				$('.order-trip').html(travelPeo);
+//			});
+			/*添加出行人*/
+			$(document).on('click','.order-tsl3',function(){
+				vlm.f_choice('contact',"ht",'contact','',false,false,null,null,null,null);
+
+			});
+
+
+
 			//明细showhide
 			$('.order-detail').click(function(){
-				if($('.hf_detail_fare').css('bottom') == '-50px')
+				if($('.hf_detail_fare').css('bottom') == '-80px')
 				{
 					$('.hf_det_mask').show();
 					$('.hf_detail_fare').css('bottom','47px');
 				}else{
 					$('.hf_det_mask').hide();
-					$('.hf_detail_fare').css('bottom','-50px');
+					$('.hf_detail_fare').css('bottom','-80px');
 				}
 			});
 

@@ -43,6 +43,8 @@ var data2 = '',roomdata = '';
         $('.jhf-banner').html(banner);
     }
     //日历部分
+
+
     rili();
     function rili(){
         var dateInitObj = new Object();
@@ -51,9 +53,14 @@ var data2 = '',roomdata = '';
             num : 13,
             time : dateInitObj,
             sClass1 : 'enterDate',
-            id2 : 'nightNum'
-            //fn : hotelDetail.upDateContent
+            id2 : 'nightNum',
+            fn : upDateContent
         });
+        function upDateContent(){
+            hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
+            hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
+            hotelDetail.init(hotelDetail.gdataInfo);
+        }
     }
     //地址 星级 wifi
     function adress(){
