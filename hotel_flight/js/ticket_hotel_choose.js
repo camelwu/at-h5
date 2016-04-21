@@ -419,7 +419,9 @@ var ticketHotel = {
                 var flightInfo =resultData.data.flightInfo;
                 var hotelInfo = resultData.data.hotelInfo;
                 var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [];
-                temSmallRoom = resultData.data.hotelInfo.rooms.length<=3?resultData.data.hotelInfo.rooms:resultData.data.hotelInfo.rooms.slice(0,3);
+                if(resultData.data.hotelInfo.rooms){
+                    temSmallRoom = resultData.data.hotelInfo.rooms.length<=3?resultData.data.hotelInfo.rooms:resultData.data.hotelInfo.rooms.slice(0,3);
+                }
                 var flightDataHandler = function(arg){
                     var result = {};
                     result.flightLeaveStartDate_md = arg.flightLeaveStartDate.substr(5,5);
