@@ -112,16 +112,21 @@ var ticketHotel = {
         });
 
         this.addHandler(detailEle, 'click', function (){
+            console.log(that.cacheRoomId)
             var event = event || window.event;
             var target =target||event.srcElement;
-            event.stopPropagation();
-            event.cancelable = true;
-            if(target.className=='detail'){
-                detailLine.style.webkitTransition = "all 300ms";
-                shadowEle.style.display=='block'?hide():show();
-            }else if(target.id=='confirm-button'){
-
+            if(!that.cacheRoomId){
+                jAlert('请先选择房间', "提示");
+            }else{
+                event.stopPropagation();
+                event.cancelable = true;
+                if(target.className=='detail'){
+                    detailLine.style.webkitTransition = "all 300ms";
+                    shadowEle.style.display=='block'?hide():show();
+                }else if(target.id=='confirm-button'){
+                }
             }
+
         });
         this.addHandler(document, 'click', function (){
             var event = event || window.event;
@@ -203,7 +208,7 @@ var ticketHotel = {
              };*/
             if(tag){
                 event.preventDefault();
-                alert('稍后再试');
+                jAlert('请稍后再试', "提示");
             }else{
                 paraObj.AirwayCacheID = that.cacheData.airwayCacheID;
                 paraObj.AirwaySetID = that.cacheData.airwaySetID;
@@ -231,7 +236,7 @@ var ticketHotel = {
                  }*/
             if(tag){
                 event.preventDefault();
-                alert('稍后再试');
+                jAlert('请稍后再试', "提示");
             }else{
                 paraObj.SelectedHotelID = that.cacheData.hotelInfo.hotelID;
                 paraObj.FlightCacheID = that.cacheData.flightInfo.cacheID;
