@@ -90,7 +90,7 @@ var ticketHotel = {
             console.log(paraObject)
             that.storageUtil.set('local','hotelDetailInfo', paraObject);
             if(that.cacheRoomId){
-                alert('请选择房间！')
+                jAlert('请先选择房间', "提示");
             }else{
                window.location.href = 'hotel_detail.html';
             }
@@ -214,6 +214,8 @@ var ticketHotel = {
                 paraObj.AirwaySetID = that.cacheData.airwaySetID;
                 paraObj.SortFields = [0];
                 paraObj.ScreenFields=[1];
+                paraObj.DepartDat = "2016-05-12T00:00:00";
+                paraObj.ReturnDate = "2016-05-17T00:00:00";
                 that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
             }
         });
@@ -252,7 +254,6 @@ var ticketHotel = {
             var target =target||event.srcElement;
             event.stopPropagation();
             var that = ticketHotel, orderPara={};
-            console.log(that.cacheData)
             orderPara.SetID=that.cacheData.flightInfo.setID;
             orderPara.CacheID= that.cacheData.flightInfo.cacheID;
             orderPara.CityCodeFrom=that.cacheData.flightInfo.cityCodeFrom;
@@ -423,9 +424,20 @@ var ticketHotel = {
                 };
                 var flightInfo =resultData.data.flightInfo;
                 var hotelInfo = resultData.data.hotelInfo;
-                var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [];
+                var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [], temBackRoom = [], length=0;
                 if(resultData.data.hotelInfo.rooms){
-                    temSmallRoom = resultData.data.hotelInfo.rooms.length<=3?resultData.data.hotelInfo.rooms:resultData.data.hotelInfo.rooms.slice(0,3);
+                      if(resultData.data.hotelInfo.rooms.length<=3){
+                          length = resultData.data.hotelInfo.rooms.length-2;
+                          temSmallRoom=resultData.data.hotelInfo.rooms;
+                          var innerStr = '<div class="check-more-room">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                          $(".check-more-room").eq(0).html(innerStr).show();
+                      }else{
+                          length = resultData.data.hotelInfo.rooms.length-3;
+                          var innerStr = '<div class="check-more-room">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                          $(".check-more-room").eq(0).html(innerStr).show();
+                          temSmallRoom=resultData.data.hotelInfo.rooms.slice(0,3);
+                          temBackRoom = resultData.data.hotelInfo.rooms.slice(3);
+                    }
                 }
                 var flightDataHandler = function(arg){
                     var result = {};
