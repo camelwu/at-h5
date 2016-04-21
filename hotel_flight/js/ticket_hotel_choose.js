@@ -155,21 +155,19 @@ var ticketHotel = {
                 '<button class="no-choose-button">选择</button>',
                 '</div>',
                 '</li>'].join('');
-            if(target.className.indexOf('open')>-1){
+            if($(".check-more-room").eq(0).text().indexOf('查')>-1){
                 moreStr = template(tplRoom, that.temBackRoom);
                 tempEle.html(tempEle.html() + moreStr) + moreStr;
-                innerStr = '<div class="check-more-room close">收起更多房型<span class="check-more-down"></span></div>';
+                innerStr = '收起更多房型<span class="check-more-down"></span>';
                 $(".check-more-room").eq(0).html(innerStr).show();
             }else{
                 moreStr = template(tplRoom, that.temSmallRoom);
                 tempEle.html( moreStr);
 
                 length = that.temBackRoom.length;
-                innerStr = '<div class="check-more-room open">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                innerStr = '查看更多房型<span>('+length+')</span><span class="check-more-down"></span>';
                 $(".check-more-room").eq(0).html(innerStr).show();
             }
-
-
         });
 
         this.addHandler(roomOuter, 'click', function (){
@@ -457,18 +455,12 @@ var ticketHotel = {
                 var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [], temBackRoom = [], length= 0, roomInfoTags;
                 if(resultData.data.hotelInfo.rooms){
                       if(resultData.data.hotelInfo.rooms.length<=3){
-                          length = resultData.data.hotelInfo.rooms.length-2;
-                          temSmallRoom=resultData.data.hotelInfo.rooms;
-                          var innerStr = '<div class="check-more-room open">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
-                          temSmallRoom=resultData.data.hotelInfo.rooms.slice(0,2);
-                          temBackRoom = resultData.data.hotelInfo.rooms.slice(2);
-                          that.temSmallRoom = temSmallRoom;
-                          that.temBackRoom = temBackRoom;
+                          temSmallRoom = resultData.data.hotelInfo.rooms;
                           roomInfoTags=template(roomStr, temSmallRoom)
                           $(".check-more-room").eq(0).html(innerStr).show();
                       }else{
                           length = resultData.data.hotelInfo.rooms.length-3;
-                          var innerStr = '<div class="check-more-room open">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                          var innerStr = '查看更多房型<span>('+length+')</span><span class="check-more-down"></span>';
                           $(".check-more-room").eq(0).html(innerStr).show();
                           temSmallRoom=resultData.data.hotelInfo.rooms.slice(0,3);
                           temBackRoom = resultData.data.hotelInfo.rooms.slice(3);
@@ -610,9 +602,8 @@ var ticketHotel = {
     },
     init:function () {
         var storagePara = JSON.parse(window.localStorage.getItem('searchInfo')), initParaObj={};
+        var changeFlightInfo = window.location.search;
         var temFlightHotelData = this.storageUtil.get('session','flightHotelAllData');
-        this.initTop(storagePara);
-        this.cacheRoomId = '';
         initParaObj.CityCodeFrom = storagePara.FromCity;
         initParaObj.CityCodeTo = storagePara.ToCity;
         initParaObj.DepartDate = storagePara.DepartDate;
@@ -621,6 +612,17 @@ var ticketHotel = {
         initParaObj.SortFields=[0];
         initParaObj.ScreenFileds=[0];
         initParaObj.flightStartTime=0;
+        if(changeFlightInfo&&temFlightHotelData){
+            flightHotelData = JSON.parse(temFlightHotelData)
+                  if(changeFlightInfo.AirwayCacheID!=flightHotelData.AirwayCacheID||changeFlightInfo.AirwaySetID!=flightHotelData.AirwaySetID){
+                      initParaObj.AirwayCacheID = changeFlightInfo.AirwayCacheID;
+                      initParaObj.AirwaySetID = changeFlightInfo.AirwaySetID;
+                      this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
+                  }
+        }
+        this.initTop(storagePara);
+        this.cacheRoomId = '';
+
         this.initParaObj = initParaObj;
         if(!temFlightHotelData){
             this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
