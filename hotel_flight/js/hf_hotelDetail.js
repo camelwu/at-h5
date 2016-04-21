@@ -1,42 +1,28 @@
 var data2 = '',roomdata = '';
 (function () {
     var localJson = eval("localJson="+localStorage.getItem("hotelDetailInfo"));
+    //data中入住离店时间必须去掉时分秒
+    var departDate = localJson.data.DepartDate.substring(0,10);
+    var enterDate = localJson.data.ReturnDate.substring(0,10);
+    localJson.data.DepartDate = departDate;
+    localJson.data.ReturnDate = enterDate;
     console.log(localJson)
-    //var data = {
-    //    "Code":"50100009",
-    //    "ForeEndType":2,
-    //    "Parameters":{
-    //        "HotelID":"11911",
-    //        "SelectedRoomID":173151,
-    //        "FlightCacheID":"1013219",
-    //        "FlightSetID":"1003003",
-    //        "CityCodeFrom":"SIN",
-    //        "CityCodeTo":"BKK",
-    //        "DepartDate":"2016-05-07",
-    //        "ReturnDate":"2016-05-08",
-    //        "RoomDetails":[
-    //            {"Adult":2}
-    //        ]
-    //    }
-    //}
     var data = {
         "Code":"50100009",
         "ForeEndType":2,
-        "Parameters":{
-            "HotelID": 1005455,
-            "SelectedRoomID": "",
-            "FlightCacheID": 14094,
-            "FlightSetID": 1001001,
-            "CityCodeFrom": "SIN",
-            "CityCodeTo": "BKK",
-            "DepartDate": "2016-05-17T16:00:00",
-            "ReturnDate": "2016-05-25T09:40:00",
-            "RoomDetails": [
-                {
-                    "adult": 2
-                }
-            ]
-        }
+        "Parameters":localJson.data
+    }
+
+    var departDateHtml = localJson.data.DepartDate.substring(5);
+    var enterDateHtml = localJson.data.ReturnDate.substring(5);
+    $('.jhf-mes span.departDate').html(departDateHtml)
+    $('.jhf-mes span.returnDate').html(enterDateHtml)
+    //getDayNum计算天数
+
+    //getDayNum(arg1, arg2);
+    function getDayNum(arg1, arg2) {
+        var time1 = Date.parse(arg1.replace(/-/g, "/")), time2 = Date.parse(arg2.replace(/-/g, "/")), dayCount;
+        return dayCount = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
     }
 
 
@@ -98,6 +84,11 @@ var data2 = '',roomdata = '';
                 $(this).find('b').toggleClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
             })
         });
+
+        //点击跳转
+        $('ol.show li.roomli').on('click',function(){
+            window.location.href = 'ticket_hotel_choose.html';
+        })
     }
 })()
 
