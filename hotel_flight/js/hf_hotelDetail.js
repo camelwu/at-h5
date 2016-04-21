@@ -57,6 +57,7 @@ var data2 = '',roomdata = '';
             fn : upDateContent
         });
         function upDateContent(){
+            alert(222)
             hotelDetail.gdataInfo.CheckInDate = document.getElementsByClassName('enterDate')[0].innerHTML;
             hotelDetail.gdataInfo.CheckOutDate = document.getElementsByClassName('enterDate')[1].innerHTML;
             hotelDetail.init(hotelDetail.gdataInfo);
