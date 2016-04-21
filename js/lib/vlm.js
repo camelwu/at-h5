@@ -10,7 +10,7 @@
 	"use strict";
 
 	var n = n || (function(n) {//123.56.190.34:8888 //10.6.11.20:8888
-			var _api = (location.href.indexOf("hotel_flight") > -1 || location.href.indexOf("payment") > -1) ? "http://10.6.11.21:1337/api/GetServiceApiResult": "http://10.6.11.20:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
+			var _api = (location.href.indexOf("hotel_flight") > -1 || location.href.indexOf("payment") > -1) ? "http://10.6.11.28:1337/api/GetServiceApiResult": "http://10.6.11.20:8888/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 				home : ['首页', basePath],
 				find : ['目的地', basePath + '/building.html'],
 				user : ['我的', basePath + '/user/user.html']

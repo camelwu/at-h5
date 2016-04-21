@@ -119,21 +119,6 @@
 //        }
 
     /**
-     * 获得城市列表
-     * @param
-     * @constructor 获得城市列表
-     */
-    MT.getCityList = function(){
-        if(!MT.XCache()){
-            originParams = {"Parameters":{"CityType":"1","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
-            destinationParams = {"Parameters":{"CityType":"2","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
-            MT.ajaxJson("http://10.6.11.20:1111/api/GetServiceApiResult",JSON.stringify(originParams),MT.OriginCallbackCityList,MT.ajaxAnimIn,MT.ajaxAnimOut);
-            MT.ajaxJson("http://10.6.11.20:1111/api/GetServiceApiResult",JSON.stringify(destinationParams),MT.DestinationCallbackCityList,MT.ajaxAnimIn,MT.ajaxAnimOut);
-        }
-
-    }
-
-    /**
      * 城市列表排序
      * @param 城市A
      * @param 城市B
@@ -274,6 +259,42 @@
                 return true;
             }
 
+        }
+
+    }
+    /**
+     * 判断是否到缓存日期
+     * @param 当前时间
+     * @param 缓存时间
+     * @constructor 判断是否到缓存日期
+     */
+    MT.isXCacheTime = function(atime,btime){
+        atime = new Date(atime);
+        btime = new Date(btime);
+        if(atime > btime){
+            localStorage.XCache = "";
+        }else{
+            localStorage.XCache = 1;
+        }
+    }
+
+    /**
+     * 获得城市列表
+     * @param
+     * @constructor 获得城市列表
+     */
+    MT.getCityList = function(){
+        var atime,btime;
+        atime = new Date();
+        atime = atime.getFullYear()+"/"+(atime.getMonth()+1)+"/"+atime.getDate();
+        btime = localStorage.getItem("XCacheTime");
+        MT.isXCacheTime(atime,btime);
+
+        if(!MT.XCache()){
+            originParams = {"Parameters":{"CityType":"1","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
+            destinationParams = {"Parameters":{"CityType":"2","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
+            MT.ajaxJson("http://10.6.11.20:1111/api/GetServiceApiResult",JSON.stringify(originParams),MT.OriginCallbackCityList,MT.ajaxAnimIn,MT.ajaxAnimOut);
+            MT.ajaxJson("http://10.6.11.20:1111/api/GetServiceApiResult",JSON.stringify(destinationParams),MT.DestinationCallbackCityList,MT.ajaxAnimIn,MT.ajaxAnimOut);
         }
 
     }
