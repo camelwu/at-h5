@@ -20,45 +20,43 @@
 //});
 (function () {
     var parametersStorage = JSON.parse(localStorage.getItem("changeHotelParaObj")) || {};
-    if(!parametersStorage){
-       // return;
-    }
-     var params = {
-            "Code": "50100003",
-            "ForeEndType": 2,
-            "Parameters": {
-                "SelectedHotelID": "1005455",
-                "FlightCacheID": "13767",
-                "FlightSetID": "1002001",
-                "CityCodeFrom": "SIN",
-                "CityCodeTo": "BKK",
-                "DepartDate": "2016-05-07",
-                "ReturnDate": "2016-05-08",
-                "SortFields": [1, 3],
-                "PageNo": 1,
-                "PageSize": 20,
-                "RoomDetails": [{
-                    "Adult": 2
-            }]
-            }
-        },
-//    var params = {
+    var parametersS = parametersStorage.data;
+//     var params = {
 //            "Code": "50100003",
 //            "ForeEndType": 2,
 //            "Parameters": {
-//                "SelectedHotelID": parametersStorage.SelectedHotelID || "",
-//                "FlightCacheID": parametersStorage.FlightCacheID || "",
-//                "FlightSetID": parametersStorage.FlightSetID || "",
-//                "CityCodeFrom": parametersStorage.CityCodeFrom || "",
-//                "CityCodeTo": parametersStorage.CityCodeTo || "",
-//                "DepartDate": parametersStorage.DepartDate || "",
-//                "ReturnDate": parametersStorage.ReturnDate || "",
-//                "SortFields": parametersStorage.SortFields || "",
-//                "PageNo": parametersStorage.PageNo || "",
-//                "PageSize": parametersStorage.PageSize || "",
-//                "RoomDetails": parametersStorage.RoomDetails || []
+//                "SelectedHotelID": "1005455",
+//                "FlightCacheID": "13767",
+//                "FlightSetID": "1002001",
+//                "CityCodeFrom": "SIN",
+//                "CityCodeTo": "BKK",
+//                "DepartDate": "2016-05-07",
+//                "ReturnDate": "2016-05-08",
+//                "SortFields": [1, 3],
+//                "PageNo": 1,
+//                "PageSize": 20,
+//                "RoomDetails": [{
+//                    "Adult": 2
+//            }]
 //            }
 //        },
+    var params = {
+            "Code": "50100003",
+            "ForeEndType": 2,
+            "Parameters": {
+                "SelectedHotelID": parametersS.SelectedHotelID || "",
+                "FlightCacheID": parametersS.FlightCacheID || "",
+                "FlightSetID": parametersS.FlightSetID || "",
+                "CityCodeFrom": parametersS.CityCodeFrom || "",
+                "CityCodeTo": parametersS.CityCodeTo || "",
+                "DepartDate": parametersS.DepartDate || "",
+                "ReturnDate": parametersS.ReturnDate || "",
+                "SortFields": parametersS.SortFields || "",
+                "PageNo": parametersS.PageNo || "",
+                "PageSize": parametersS.PageSize || "",
+                "RoomDetails": parametersS.RoomDetails || []
+            }
+        },
         currentPage;
    
     vlm.init();
@@ -433,16 +431,19 @@
             var that = $(this);
             that.find('i').addClass("active");
             var hotelInfo = decodeURI(that.attr("data-hotelInfo"));
-            var flightHotelAllData = JSON.parse(sessionStorage.getItem('flightHotelAllData'));
-            flightHotelAllData.data.hotelInfo = JSON.parse(hotelInfo);
-            sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
+            //var flightHotelAllData = JSON.parse(sessionStorage.getItem('flightHotelAllData'));
+            //flightHotelAllData.data.hotelInfo = JSON.parse(hotelInfo);
+            //sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
+            parametersStorage.data.HotelID = that.attr("data-hotelid");
+            localStorage.setItem("hotelDetailInfo",JSON.stringify(parametersStorage));
             var timer = setTimeout(function(){
-                window.history.go(-1);
+                //window.history.go(-1);
+                window.location.href = 'hotel_detail.html';
                 clearTimeout(timer);
             },500)
             
 //            
-//            var paraObj = new Object();
+//          var paraObj = new Object();
 //			paraObj.HotelID = that.attr('data-hotelId');
 //			paraObj.SelectedRoomID = params.Parameters.SelectedRoomID;
 //			paraObj.FlightCacheID = params.Parameters.FlightCacheID;
