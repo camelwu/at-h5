@@ -67,8 +67,8 @@ Calender.prototype = {
     constructor:Calender,
     // 文字数组
     _word :{
-    	h:['入住','离店'],
-    	f:['去程','回程']
+    	hotel:['入住','离店'],
+    	flight:['去程','回程']
     },
     _tempmonth:[
         '<span class="prevmonth">prevmonth</span>',
@@ -94,12 +94,14 @@ Calender.prototype = {
         '</dl>'],
     // 初始化对象
     initialize :function (options) {
+        this.type = options.type || 'hotel'; //默认酒店日期组件   hotel || flight
+        this.format = options.format || "yyyy-mm-dd"; //TODO用于显示用的日期格式 yyyy-mm-dd,mm-dd
         this.id = options.id; // input的ID
         this.num = options.num;//显示数量
         this.sClass1=options.sClass1;
         this.id2=options.id2;
         this.fn = options.fn;
-        this.time = options.time;//已有时间
+        this.time = options.time;//已有时间  默认选中时间
         this.op = 0;//已操作次数
         this.input = _CalF.$('#'+ this.id); // 获取INPUT元素
 		this.inputEvent(); // input的事件绑定，获取焦点事件
@@ -330,13 +332,13 @@ Calender.prototype = {
 				}else{
 					if(!(this.className.indexOf("disabled")>-1)){
 						if(that.op==0){
-							that.tiper.innerHTML = '请选择'+that._word.h[1]+'日期';
+							that.tiper.innerHTML = '请选择'+that._word[that.type][1]+'日期';
 							that.linkReset(this.index);
-							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');
+							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word[that.type][that.op]+'</span>');
                             $(this).addClass("disabled");
 							that.op++;
 						}else{
-							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.h[that.op]+'</span>');that.op>=1?that.op=0:null;
+							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word[that.type][that.op]+'</span>');that.op>=1?that.op=0:null;
 							that.linkOver();
 						}
 					}
@@ -387,8 +389,8 @@ Calender.prototype = {
         
         //修改calendar传入的参数obj的值
 		console.log(out[0].value + ':' + out[1].value);
-		obj[arr[0]] = this._word.h[0];
-		obj[arr[1]] = this._word.h[1];
+		obj[arr[0]] = this._word[that.type][0];
+		obj[arr[1]] = this._word[that.type][1];
 		this.time = obj;
         
     	that.removeDate();
