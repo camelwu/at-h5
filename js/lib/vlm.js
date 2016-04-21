@@ -8,7 +8,6 @@
  */
 (function(e, t) {
 	var n = n || (function(n) {//123.56.190.34:8888 //10.6.11.20:8888
-
 			var _api = "http://10.6.11.28:1337/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 				home : ['首页', basePath],
 				find : ['目的地', basePath + '/building.html'],
