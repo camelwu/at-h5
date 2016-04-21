@@ -25,6 +25,21 @@
         fn:updateTime
     });
 
+    function changeMouth(day){
+        day = day.replace(/(\d{4})\W(\d{1,2})\W(\d{1,2})/g,function(){
+
+            if(arguments[2].length == 1){
+                arguments[2] = "0"+arguments[2];
+            }
+            if(arguments[3].length == 1){
+                arguments[3] = "0"+arguments[3];
+            }
+            //console.log(arguments[1]+"/"+arguments[2]+"/"+arguments[3]);
+            return arguments[1]+"/"+arguments[2]+"/"+arguments[3];
+        });
+        return day;
+    }
+
     function updateTime(){
         var startday,endday,mstartday,mendday,startData,returnData,currentStartday,currentEndday,week1,week2;
         var startday = $("#startday").val();
@@ -61,7 +76,7 @@
         $(".double-week-two").html("周"+week2);
 
 
-        console.log(startday+" -- "+endday);
+        //console.log(startday+" -- "+endday);
     }
 
     function getWeekly(day){
@@ -71,13 +86,16 @@
     }
 
     function initDate(day1,day2){
-
+        day1 = changeMouth(day1);
+        day2 = changeMouth(day2);
         day1 = day1.replace(/\W/g,"-");
         day2 = day2.replace(/\W/g,"-");
         $("#startday").val(day1);
         $("#endday").val(day2);
         updateTime();
     }
+
+
     initDate(starttime,endtime);
 
 })();

@@ -71,7 +71,7 @@ i{
     transform: translate3d(0, 0, 0);
     background-color: #F5F4F9;
 }
-/*   Ê×Ò³ËÑË÷Ò³¿ªÊ¼    */
+/*   é¦–é¡µæœç´¢é¡µå¼€å§‹    */
 .realInfo {
     background: #FFFFFF;
     width: 100%;
@@ -172,7 +172,7 @@ i{
     color:rgb(72,72,72);
     font-size: 1.4rem;
 }
-       /*   ·¿¼äĞÅÏ¢   */
+/*   æˆ¿é—´ä¿¡æ¯   */
 .hotelInfo_numb_room{
     background: #FFFFFF;
     border-bottom: 1px solid #ddd;
@@ -188,26 +188,26 @@ section[class^="hotelInfo_numb"] span.title {
     left: 10px;
 }
 /*section[class^="hotelInfo_numb"] .per-price-control {*/
-    /*float: right;*/
-    /*padding: 8px 6px;*/
+/*float: right;*/
+/*padding: 8px 6px;*/
 /*}*/
 /*section[class^="hotelInfo_numb"] .per-price-control span {*/
-    /*width: 20px;*/
-    /*height: 20px;*/
-    /*float: left;*/
-    /*background: url(../../images/icons1.png) no-repeat 0 2px;*/
-    /*background-size: 320px auto;*/
+/*width: 20px;*/
+/*height: 20px;*/
+/*float: left;*/
+/*background: url(../../images/icons1.png) no-repeat 0 2px;*/
+/*background-size: 320px auto;*/
 /*}*/
 /*section[class^="hotelInfo_numb"] .per-price-control span:first-child {*/
-    /*background-position: -26px 2px;*/
+/*background-position: -26px 2px;*/
 /*}*/
 /*section[class^="hotelInfo_numb"] .per-price-control i {*/
-    /*width: 25px;*/
-    /*height: 20px;*/
-    /*line-height: 20px;*/
-    /*float: left;*/
-    /*text-align: center;*/
-    /*font-size: 13px;*/
+/*width: 25px;*/
+/*height: 20px;*/
+/*line-height: 20px;*/
+/*float: left;*/
+/*text-align: center;*/
+/*font-size: 13px;*/
 /*}*/
 section.hotelInfo_numb_people {
     /*border: none;*/
@@ -338,9 +338,9 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     font-size: 1rem;
     color:rgb(153,153,153);
 }
-/*   Ê×Ò³ËÑË÷Ò³½áÊø    */
+/*   é¦–é¡µæœç´¢é¡µç»“æŸ    */
 
-/*   º½¿Õ¹«Ë¾ÁĞ±íÒ³¿ªÊ¼    */
+/*   èˆªç©ºå…¬å¸åˆ—è¡¨é¡µå¼€å§‹    */
 .big-title {
     width: 100%;
     height: 49px;
@@ -425,11 +425,11 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     border-bottom: 1px solid #ddd;
 }
 .airway-list li div:nth-child(1){
-      float: left;
-      width: 32px;
-      height: 32px;
-      border-radius: 32px;
-      overflow: hidden;
+    float: left;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    overflow: hidden;
 }
 .airway-list li div:nth-child(1) img{
     width:100%;
@@ -454,15 +454,15 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 }
 .cho-gou{
     position: absolute;
-     top: 0;
+    top: 0;
     right: 0;
     width: 35px;
     height: 35px;
     background-position: 80% 31%;
 }
-/*   º½¿Õ¹«Ë¾ÁĞ±íÒ³½áÊø    */
+/*   èˆªç©ºå…¬å¸åˆ—è¡¨é¡µç»“æŸ    */
 
-/*   »úÆ±ÁĞ±íÒ³¿ªÊ¼    */
+/*   æœºç¥¨åˆ—è¡¨é¡µå¼€å§‹    */
 .air-tickets-detail {
     width: 100%;
     background: #f5f4f9;
@@ -496,15 +496,15 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     padding-top: 0.2rem;
 }
 /*.air-tickets-detail .air-tickets-detail .price-tax {*/
-    /*width: 26.2%;*/
-    /*float: left;*/
-    /*min-height: 10.2rem;*/
-    /*position: relative;*/
-    /*overflow: visible;*/
+/*width: 26.2%;*/
+/*float: left;*/
+/*min-height: 10.2rem;*/
+/*position: relative;*/
+/*overflow: visible;*/
 /*}*/
 
 /*.air-tickets-detail .air-tickets-detail .single-side {*/
-    /*min-height: 5.32rem;*/
+/*min-height: 5.32rem;*/
 /*}*/
 .berths {
     padding-top: 0;
@@ -684,7 +684,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     font-size: 1.0rem;
     color: #a6dad6;
 }
-     /*   µ×²¿   */
+/*   åº•éƒ¨   */
 .hl-bottom {
     width: 100%;
     height: 44px;
@@ -887,16 +887,16 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     background-size: 400px 120px;
     background-position: 77% 4%;
 }
-/*   »úÆ±ÁĞ±íÒ³½áÊø    */
+/*   æœºç¥¨åˆ—è¡¨é¡µç»“æŸ    */
 
-/*   »úÆ±ÏêÇéÒ³¿ªÊ¼    */
+/*   æœºç¥¨è¯¦æƒ…é¡µå¼€å§‹    */
 .date-place-info .airph{
     padding: 15px;
     text-align: center;
     font-size: 1.4rem;
 }
 .date-place-info .airph span:nth-child(1){
-    color:rgb(251,106,34);
+    color:rgb(255,255,255);
 }
 .date-place-info .airph span:nth-child(2){
     color:rgb(255,255,255);
@@ -917,7 +917,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
     margin-left: 0;
 }
 /*.top-pad-no {*/
-    /*padding-left: 0;*/
+/*padding-left: 0;*/
 /*}*/
 .top-line span {
     font-size: 14px;
@@ -1040,4 +1040,4 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .air-detail{
     margin-bottom: 0!important;
 }
-/*   »úÆ±ÏêÇéÒ³½áÊø    */
+/*   æœºç¥¨è¯¦æƒ…é¡µç»“æŸ    */
