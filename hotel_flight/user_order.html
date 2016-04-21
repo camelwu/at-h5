@@ -304,7 +304,7 @@
 					var traChildnum=0;
 					for(var i=0;i<room.length; i++)
 					{
-						traAdultnum+=room[i].adult;
+						traAdultnum+=parseInt(room[i].Adult);
 						if(room[i].ChildWithoutBed)
 						{
 							traChildnum+=(room[i].ChildWithoutBed.length)
@@ -318,7 +318,6 @@
 					$('.adu-tot').html(traAdultnum);
 				}
 				travelDet();
-
                 //明细块
                 var totamount=template('totamount-det',datahot);
                 $('.hf_detail_fare').html(totamount);
