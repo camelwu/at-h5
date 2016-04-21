@@ -1561,10 +1561,11 @@ ul, ol {
 .s_lists li.sex-alter div.birth-cont{
     text-align: right;
     margin-right: 15px;
+    color: #ffb413;
 }
 .birth-cont{
     font-size: 1.5rem;
-    color: #ffb413;
+    color: #666;
     width: 120px;
 }
 
