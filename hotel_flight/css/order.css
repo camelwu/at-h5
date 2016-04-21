@@ -64,7 +64,8 @@ ul, li {
 }
 
 .order-submit {
-    height: 100%;
+    height: 47px;
+    line-height: 47px;
     width: 25%;
     position: absolute;
     right: 0;
@@ -73,6 +74,9 @@ ul, li {
     text-align: center;
     color: white;
     font-size: 2.0rem;
+}
+.order-submit:hover{
+    color: #ccc;
 }
 
 /*}脚步结束*/
@@ -557,43 +561,41 @@ li.order-llist1 {
 }
 
 .detail-fale {
-    position: absolute;
-    right: 1.2rem;
-    top: 43%;
+    display: inline-block;
+    position: relative;
     width: 8px;
     height: 8px;
-    border-bottom: 1px solid #ffb412;
-    border-right: 1px solid #ffb412;
+    margin-left:22px;
+    right: 1rem;
+    top: 5px;
+    border-top: 1px solid #ffb412;
+    border-left: 1px solid #ffb412;
     -webkit-transform: rotate(45deg) translateY(-50%);
     -o-transform: rotate(45deg) translateY(-50%);
     -moz-transform: rotate(45deg) translateY(-50%);
     -ms-transform: rotate(45deg) translateY(-50%);
     transform: rotate(45deg) translateY(-50%);
-    transition: all 0.4s ease-in-out;
-}
-
-.detail-fale.open {
-    position: absolute;
-    right: 0.4rem;
-    top: 54%;
-    width: 8px;
-    height: 8px;
-    border-bottom: 1px solid #ffb412;
-    border-right: 1px solid #ffb412;
-    -webkit-transform: rotate(-135deg) translateY(-50%);
-    -o-transform: rotate(-135deg) translateY(-50%);
-    -moz-transform: rotate(-135deg) translateY(-50%);
-    -ms-transform: rotate(-135deg) translateY(-50%);
-    transform: rotate(-135deg) translateY(-50%);
     -webkit-transform-origin: 50% 0;
     -o-transform-origin: 50% 0;
     -moz-transform-origin: 50% 0;
     -ms-transform-origin: 50% 0;
     transform-origin: 50% 0;
-    -webkit-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.detail-fale.open {
+    top: 1px;
+    -webkit-transform: rotate(225deg) translateY(-50%);
+    -o-transform: rotate(225deg) translateY(-50%);
+    -moz-transform: rotate(225deg) translateY(-50%);
+    -ms-transform: rotate(225deg) translateY(-50%);
+    transform: rotate(225deg) translateY(-50%);
+    -webkit-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    transition: all 0.4s ease-in-out;
 
 }
 
