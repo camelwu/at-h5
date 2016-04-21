@@ -100,7 +100,7 @@
 							<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>
 							<span class = "order-tsl2">1/2成人 0/2儿童</span>
 						</li>
-						<li class = "order-tlist2">
+						<li class = "order-tlist2" id="order-tlist">
 							<i class="tra-delete"></i>
 							<div class="traveller-wrap">
 								<span>姓/名<b class="travel-last" data-elementName="lastName">BAI</b>/<b class="travel-first" data-elementName="firstName">LISA</b></span>
@@ -148,7 +148,8 @@
 				<p class="order-detail">
 					<span class="">明细</span><i class="detail-fale"></i>
 				</p>
-				<input type="button" value="预定" class = "order-submit"/>
+				<a href="javascript:;" class = "order-submit">预定</a>
+
 			</div>
 		</div>
 		<!--   明细块   -->
@@ -184,11 +185,7 @@
 	<script src="../js/lib/vlm.js"></script>
 	<script src="../js/lib/template.js"></script>
 	<script src="../js/countrytel_list.js"></script>
-	<script>
-//		$('.order-submit').click(function(){
-//			window.location.href = 'order_detail.html';
-//		})
-	</script>
+
 	<!--模板机票-->
 	<script id="order-flight" type="text/template" >
 		<ul>
@@ -309,7 +306,8 @@
 
             /*添加出行人*/
 			$(document).on('click','.order-tsl3',function(){
-				vlm.f_choice('contact',"ht",'contact','',false,false,null,null,null,null);
+				debugger;
+				vlm.f_choice('order-tlist2',"ht",'contact','',false,false,null,null,null,null);
 
 			});
 
@@ -320,9 +318,11 @@
 				if($('.hf_detail_fare').css('bottom') == '-80px')
 				{
 					$('.hf_det_mask').show();
+					$('.detail-fale').addClass('open');
 					$('.hf_detail_fare').css('bottom','47px');
 				}else{
 					$('.hf_det_mask').hide();
+					$('.detail-fale').removeClass('open');
 					$('.hf_detail_fare').css('bottom','-80px');
 				}
 			});
@@ -447,6 +447,7 @@
 					alert(1);
 					window.localStorage.BookingRefNo=json.BookingRefNo;
 					window.localStorage.BookingID=json.BookingID;
+					window.location.href='order_detail.html';
 				}
 			}
 
