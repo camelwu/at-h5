@@ -23,6 +23,12 @@ var data2 = '',roomdata = '';
         var time1 = Date.parse(arg1.replace(/-/g, "/")), time2 = Date.parse(arg2.replace(/-/g, "/")), dayCount;
         return dayCount = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
     }
+    //判断是从列表页进入还是机景选择页进
+    if(window.location.search == ''){
+        console.log('是列表页')
+    }else{
+        console.log('是何勇页面')
+    }
 
 
     vlm.loadJson('', JSON.stringify(data), dataCallBack);//url统一改vlm中的，此处可以为空
@@ -80,13 +86,11 @@ var data2 = '',roomdata = '';
                 //$(this).find('i').toggleClass('cur');
                 //$('.jhf-mes ol.show').eq(i).slideToggle();
                 $(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
+                var roomID = roomdata[i].roomID;
+                console.log('roomID:'+roomID)
+                //window.location.href = 'ticket_hotel_choose.html？roomID'+roomID;
             })
         });
-
-        //点击跳转
-        //$('ol.show li.roomli').on('click',function(){
-        //    window.location.href = 'ticket_hotel_choose.html';
-        //})
     }
 })()
 
