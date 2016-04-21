@@ -28,18 +28,30 @@
         };
         /*获取订单详情数据*/
         var _getData=function(bussinessType,bookingRefNo,foreEndType,callback){
-            var para={
-                "Parameters": {"BookingRefNo": bookingRefNo},
-                "ForeEndType":foreEndType,
-                "Code": type.detailCode
+            var para;
+            if(type.id==1){
+                 para={
+                    "Parameters": {"BookingReferenceNo": bookingRefNo},
+                    "ForeEndType":foreEndType,
+                    "Code": type.detailCode
                 };
+            }
+            else{
+                 para={
+                    "Parameters": {"BookingRefNo": bookingRefNo},
+                    "ForeEndType":foreEndType,
+                    "Code": type.detailCode
+                };
+            }
             console.log(JSON.stringify(para));
             vlm.loadJson("", JSON.stringify(para),function(data){
                 if (data.success) {
                     if(type.id==1){
-                        data.data.productName=data.data.hotelname;
+                        data.data[0].bookingRefNo=data.data[0].bookingReferenceNo;
+                        data.data[0].productName=data.data[0].hotelName;
+                        data.data[0].totalPrice=parseInt(data.data[0].totalSeriveCharge)+parseInt(data.data[0].totalTaxCharge)+parseInt(data.data[0].totalRoomRate);
                     }else if(type.id==2){
-                         data.data.productName = data.data.cityNameFrom/data.data.cityNameTo;
+                        data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
                     }
                     else if(type.id==3){
@@ -59,7 +71,8 @@
                         data.data.totalPrice=totalprice;
                     }
                     else if(type.id==5){
-
+                        data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
+                        data.data.totalPrice=data.data.totalFlightPrice;
                     }
                     var html = template("vlm_login", data.data);
                     $("#vlm_login").html(html);

@@ -34,236 +34,236 @@
     <div class="all-elements">
         <header class="big-title">
             <a href="javascript:window.history.go(-1);" class="header-back" style="z-index: 4"><i class="icons go-back"></i></a>
-            <span class="set-place">北京</span>
+            <span class="set-place"></span>
             <i class="direction-double"></i>
-            <span class="to-place">泰国</span>
+            <span class="to-place"></span>
         </header>
         <div class="date-place-info">
             <div class="date-place-info-content">
                     <span class="week-day-info">
                         去程&nbsp;
                         <span class="ticket-double-date start-date">
-                            <span>01-06</span>
-                            <span>周三</span>
+                            <span id="departData"></span>
+                            <span id="departWeek"></span>
                         </span>
                     </span>
                 <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
                     <span class="week-day-info">
                         回程&nbsp;
                         <span class="ticket-double-date end-date">
-                            <span>01-12</span>
-                            <span>周三</span>
+                            <span id="returnData"></span>
+                            <span id="returnWeek"></span>
                         </span>
                     </span>
                 <span class="search-info-tip">查询日期为出发地日期</span>
             </div>
         </div>
         <div id="content" class="fi-content">
-            <ul class="air-tickets-detail air-tickets-detail-wrapper">
-                <li class="air-tickets-detail seat-detail" data-set-id="1">
-                    <div class="time-airport">
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="start-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
+            <!--<ul class="air-tickets-detail air-tickets-detail-wrapper">-->
+                <!--<li class="air-tickets-detail seat-detail" data-set-id="1">-->
+                    <!--<div class="time-airport">-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="start-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
 
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                    <span class="tip-add-days">+1天</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>
-                            </p>
-                        </div>
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="end-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
-                                    <span class="tip-add-days">+1天</span>
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱
-                            </p>
-                        </div>
-                    </div>
-                    <b class="hf-icon hf-gou"></b>
-                </li>
-                <li class="air-tickets-detail seat-detail" data-set-id="1">
-                    <div class="time-airport">
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="start-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="end-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<b class="hf-icon hf-gou"></b>-->
+                <!--</li>-->
+                <!--<li class="air-tickets-detail seat-detail" data-set-id="1">-->
+                    <!--<div class="time-airport">-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="start-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
 
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                    <span class="tip-add-days">+1天</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>
-                            </p>
-                        </div>
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="end-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
-                                    <span class="tip-add-days">+1天</span>
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱
-                            </p>
-                        </div>
-                    </div>
-                    <b class="hf-icon hf-gou"></b>
-                </li>
-                <li class="air-tickets-detail seat-detail" data-set-id="1">
-                    <div class="time-airport">
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="start-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="end-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<b class="hf-icon hf-gou"></b>-->
+                <!--</li>-->
+                <!--<li class="air-tickets-detail seat-detail" data-set-id="1">-->
+                    <!--<div class="time-airport">-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="start-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
 
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                    <span class="tip-add-days">+1天</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>
-                            </p>
-                        </div>
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="end-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
-                                    <span class="tip-add-days">+1天</span>
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱
-                            </p>
-                        </div>
-                    </div>
-                    <b class="hf-icon hf-gou"></b>
-                </li>
-            </ul>
-            <div class="price-up">以下航班需加<span>￥811.20</span></div>
-            <ul class="air-tickets-detail air-tickets-detail-wrapper">
-                <li class="air-tickets-detail seat-detail" data-set-id="1">
-                    <div class="time-airport">
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="start-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="end-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<b class="hf-icon hf-gou"></b>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="price-up">以下航班需加<span>￥811.20</span></div>-->
+            <!--<ul class="air-tickets-detail air-tickets-detail-wrapper">-->
+                <!--<li class="air-tickets-detail seat-detail" data-set-id="1">-->
+                    <!--<div class="time-airport">-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="start-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
 
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                    <span class="tip-add-days">+1天</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>
-                            </p>
-                        </div>
-                        <div class="go">
-                            <div class="go-info">
-                                <div class="start-time-info start-time-info-double">
-                                    <span class="end-icon"></span>
-                                    <span class="time-number">07:00</span>
-                                    <span class="air-port-word">浦东T2</span>
-                                </div>
-                                <div class="total-time-info">
-                                    <span class="time-hour-minute">11h30m</span>
-                                    <span class="arrow-time"></span>
-                                    <span class="air-port-word">转莫斯科</span>
-                                </div>
-                                <div class="end-time-info">
-                                    <span class="tip-add-days">+1天</span>
-                                    <span class="time-number">09:15</span>
-                                    <span class="air-port-word">洛杉矶B</span>
-                                </div>
-                            </div>
-                            <p class="small-info-double ">
-                                南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱
-                            </p>
-                        </div>
-                    </div>
-                    <b class="hf-icon hf-gou"></b>
-                </li>
-            </ul>
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱 | <span class="green-tip">经停</span> | <span class="green-tip">共享</span>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class="go">-->
+                            <!--<div class="go-info">-->
+                                <!--<div class="start-time-info start-time-info-double">-->
+                                    <!--<span class="end-icon"></span>-->
+                                    <!--<span class="time-number">07:00</span>-->
+                                    <!--<span class="air-port-word">浦东T2</span>-->
+                                <!--</div>-->
+                                <!--<div class="total-time-info">-->
+                                    <!--<span class="time-hour-minute">11h30m</span>-->
+                                    <!--<span class="arrow-time"></span>-->
+                                    <!--<span class="air-port-word">转莫斯科</span>-->
+                                <!--</div>-->
+                                <!--<div class="end-time-info">-->
+                                    <!--<span class="tip-add-days">+1天</span>-->
+                                    <!--<span class="time-number">09:15</span>-->
+                                    <!--<span class="air-port-word">洛杉矶B</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<p class="small-info-double ">-->
+                                <!--南航CZ9270<span>&nbsp;|&nbsp;</span>商务舱-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<b class="hf-icon hf-gou"></b>-->
+                <!--</li>-->
+            <!--</ul>-->
         </div>
         <!--<div class="hl-bottom">-->
             <!--<div class="fo-div" id="fo_aw">-->
@@ -289,5 +289,12 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/template.js"></script>
     <script src="js/flight_list.js"></script>
+    <!--<script id="tpl_flightList" type="text/template">-->
+        <!--{% for(var i=0;i< flightInfoListGroup.length;i++){ %}-->
+        <!--{% if(flightInfoListGroup[i].additionalPrice!=0){ %}-->
+        <!--<div class="price-up">以下航班需加<span>￥{%=flightInfoListGroup[i].additionalPrice%}</span></div>-->
+        <!--{% } %}-->
+        <!--{% } %}-->
+    <!--</script>-->
 </body>
 </html>

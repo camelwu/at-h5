@@ -1,10 +1,131 @@
 /**
  * Created by Venson on 2016/4/18.
  */
+var changeFlightInfo;
 var flight_list = {
+    requestUrl:"http://10.6.11.28:1337/api/GetServiceApiResult",
+    getById:function(obj){
+        return document.getElementById(obj);
+    },
+    getByClass:function(obj){
+        return document.getElementsByClassName(obj);
+    },
+    getWeekDay:function(date){
+        var final_date = date.substr(0,10).replace(/-/g,'/');
+        var week = "周" + "日一二三四五六".split("")[new Date(final_date).getDay()];
+        return week;
+    },
     //      页面加载机票数据
     getTicketList:function(){
-        
+        var that = this;
+        var sendData = changeFlightInfo.data;
+        $('#departData').html(sendData.DepartDate.substr(5,5));
+        $('#returnData').html(sendData.ReturnDate.substr(5,5));
+        $('#departWeek').html(that.getWeekDay(sendData.DepartDate));
+        $('#returnWeek').html(that.getWeekDay(sendData.ReturnDate));
+        var tpl1 = [
+            '{% for(var i=0;i < flightInfoListGroup.length;i++){ %}',
+            '{% if(flightInfoListGroup[i].additionalPrice!=0){ %}',
+            '<div class="price-up">以下航班需加<span>￥{%=flightInfoListGroup[i].additionalPrice%}</span></div>',
+            '{% } %}',
+            '<ul class="js-air-list air-tickets-detail air-tickets-detail-wrapper">',
+            '{% for(var j=0;j < flightInfoListGroup[i].flightInfoList.length;j++){ %}',
+            '<li class="js-air-item air-tickets-detail seat-detail" data-setID="{%=flightInfoListGroup[i].flightInfoList[j].setID%}" data-cacheID="{%=flightInfoListGroup[i].flightInfoList[j].cacheID%}">',
+            '<div class="time-airport">',
+            '<div class="go">',
+            '<div class="go-info">',
+            '<div class="start-time-info start-time-info-double">',
+            '<span class="start-icon"></span>',
+            '<span class="time-number">{%=flightInfoListGroup[i].flightInfoList[j].flightLeaveStartDate.substr(11,5)%}</span>',
+            '<span class="air-port-word">{%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[flightInfoListGroup[i].flightInfoList[j].segmentsLeave.length-1].airportNameFrom%}</span>',
+            '</div>',
+            '<div class="total-time-info">',
+            '<span class="time-hour-minute">{%=flightInfoListGroup[i].flightInfoList[j].segmentsLeaveTotalTravelTimeString%}</span>',
+            '<span class="arrow-time"></span>',
+            '{% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %}',
+            '<span class="air-port-word">转***</span>',
+            '{% } %}',
+            '</div>',
+            '<div class="end-time-info">',
+            '<span class="time-number">{%=flightInfoListGroup[i].flightInfoList[j].flightLeaveEndDate.substr(11,5)%}</span>',
+            '<span class="air-port-word">{%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[flightInfoListGroup[i].flightInfoList[j].segmentsLeave.length-1].airportNameTo%}</span>',
+            '{% if(flightInfoListGroup[i].flightInfoList[j].flightLeaveSpacingDay !=0){ %}',
+            '<span class="tip-add-days">+{%=flightInfoListGroup[i].flightInfoList[j].flightLeaveSpacingDay%}天</span>',
+            '{% } %}',
+            '</div>',
+            '</div>',
+            '<p class="small-info-double ">{%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].OperatingCarrierName%}{%=flightInfoListGroup[i].flightInfoList[j].segmentsLeave[0].planeName%}<span>&nbsp;|&nbsp;</span>',
+            '{% if(flightInfoListGroup[i].flightInfoList[j].isLeaveShareFlight){ %}',
+            '商务舱 | <span class="green-tip">共享</span>',
+            '{% }else{ %}',
+            '商务舱',
+            '{% } %}',
+            '</p>',
+            '</div>',
+            '<div class="go">',
+            '<div class="go-info">',
+            '<div class="start-time-info start-time-info-double">',
+            '<span class="end-icon"></span>',
+            '<span class="time-number">{%=flightInfoListGroup[i].flightInfoList[j].flightReturnStartDate.substr(11,5)%}</span>',
+            '<span class="air-port-word">{%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airportNameFrom%}</span>',
+            '</div>',
+            '<div class="total-time-info">',
+            '<span class="time-hour-minute">{%=flightInfoListGroup[i].flightInfoList[j].segmentsReturnTotalTravelTimeString%}</span>',
+            '<span class="arrow-time"></span>',
+            '{% if(flightInfoListGroup[i].flightInfoList[j].directFlight==1){ %}',
+            '<span class="air-port-word">转***</span>',
+            '{% } %}',
+            '</div>',
+            '<div class="end-time-info">',
+            '{% if(flightInfoListGroup[i].flightInfoList[j].flightReturnSpacingDay !=0){ %}',
+            '<span class="tip-add-days">+{%=flightInfoListGroup[i].flightInfoList[j].flightReturnSpacingDay%}天</span>',
+            '{% } %}',
+            '<span class="time-number">{%=flightInfoListGroup[i].flightInfoList[j].flightReturnEndDate.substr(11,5)%}</span>',
+            '<span class="air-port-word">{%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[flightInfoListGroup[i].flightInfoList[j].segmentsReturn.length-1].airportNameTo%}</span>',
+            '</div>',
+            '</div>',
+            '<p class="small-info-double ">{%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].OperatingCarrierName%}{%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeName%}<span>&nbsp;|&nbsp;</span>',
+            '{% if(flightInfoListGroup[i].flightInfoList[j].isReturnShareFlight){ %}',
+            '商务舱 | <span class="green-tip">共享</span>',
+            '{% }else{ %}',
+            '商务舱',
+            '{% } %}',
+            '</p>',
+            '</div>',
+            '</div>',
+            '<b class="hf-icon hf-gou"></b>',
+            '</li>',
+            '{% } %}',
+            '</ul>',
+            '{% } %}'
+        ].join('');
+        var ticketList_callback = function(ret){
+            console.log(sendData);
+            var json = ret;
+            var data = json.data;
+            if(json.success){
+                console.log(json);
+                $('.set-place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
+                $('.to-place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
+                var html_c = template(tpl1,data);
+                $('#content').html(html_c);
+                $('.js-air-list > .js-air-item').click(flight_list.nextPage);
+            }else{
+                jAlert(json.message,"提示");
+            }
+        };
+        this.tAjax("",sendData,"50100002","3",ticketList_callback);
+
+    },
+    tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
+        var that=this,dataObj =
+        {
+            Parameters: data,
+            ForeEndType: ForeEndType,
+            Code: Code
+        };
+        questUrl = questUrl?questUrl:that.requestUrl;
+        vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
     },
     addHandler: function (target, eventType, handle) {
         if (document.addEventListener) {
@@ -854,31 +975,28 @@ var flight_list = {
 
 
 
-
-
-
-
-
     //  排序or筛选结束
     //  页面跳转
     nextPage:function(){
-        $('.seat-detail').click(function(){
+        //$('.seat-detail').click(function(){
             $(this).find('.hf-gou').addClass('cho-gou').parents().siblings().find('.hf-gou').removeClass('cho-gou');
             window.location.href = 'ticket_hotel_choose.html';
-        });
+        //});
     },
     init:function(infoObj, callback1, callback2){
-        var changeFlightInfo =  JSON.parse(localStorage.changeFlightParaObj);
+        changeFlightInfo =  JSON.parse(localStorage.changeFlightParaObj);
         this.getTicketList();
-        this.tempStates = infoObj;
-        this.originInfo = new Object();
-        for(var tem in infoObj){
-            this.originInfo[tem] = infoObj[tem]
-        }
-        this.fn = callback1;
-        this.fn_ = callback2;
+        //this.tempStates = infoObj;
+        //this.originInfo = new Object();
+        //for(var tem in infoObj){
+        //    this.originInfo[tem] = infoObj[tem]
+        //}
+        //this.fn = callback1;
+        //this.fn_ = callback2;
         this.createTags().addEvent().stateEvent('set');
-        this.nextPage();
+        //this.nextPage();
     }
 };
 flight_list.init();
+
+//$('.js-air-list > .js-air-item').click(flight_list.nextPage);
