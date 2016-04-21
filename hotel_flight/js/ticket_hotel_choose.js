@@ -139,7 +139,37 @@ var ticketHotel = {
 
         this.addHandler(checkMore, 'click', function (){
             var event = event || window.event;
-            var target =target||event.srcElement;
+            var target =target||event.srcElement,moreStr='',innerStr, length=0;
+            var tempEle= $(".room-ul-outer").eq(0);
+            var tplRoom = [
+                '<li class="has-chosen" data-room-id="{%=roomID%}">',
+                '<div class="room-name-detail">',
+                '<h4>{%=roomName%}</h4>',
+                '<p>',
+                '{% if(data["includedBreakfast"]){ %}<span>含早</span>{% } %}',
+                '{% if(data["plusBed"]){ %}<span>可加床</span>{% } %}',
+                '{% if(data["freeWifi"]){ %}<span>免费wifi</span>{% } %}',
+                '</p>',
+                '</div>',
+                '<div class="palss-price-button">',
+                '<span>+￥</span><span>{%=addtionalPrice%}</span>',
+                '<button class="no-choose-button">选择</button>',
+                '</div>',
+                '</li>'].join('');
+            if(target.className.indexOf('open')>-1){
+                moreStr = template(tplRoom, that.temBackRoom);
+                tempEle.html(tempEle.html() + moreStr) + moreStr;
+                innerStr = '<div class="check-more-room close">收起更多房型<span class="check-more-down"></span></div>';
+                $(".check-more-room").eq(0).html(innerStr).show();
+            }else{
+                moreStr = template(tplRoom, that.temSmallRoom);
+                tempEle.html( moreStr);
+
+                length = that.temBackRoom.length;
+                innerStr = '<div class="check-more-room open">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                $(".check-more-room").eq(0).html(innerStr).show();
+            }
+
 
         });
 
@@ -214,12 +244,11 @@ var ticketHotel = {
                 paraObj.AirwaySetID = that.cacheData.airwaySetID;
                 paraObj.SortFields = [0];
                 paraObj.ScreenFields=[1];
-                paraObj.DepartDat = "2016-05-12T00:00:00";
+                paraObj.DepartDate = "2016-05-12T00:00:00";
                 paraObj.ReturnDate = "2016-05-17T00:00:00";
                 that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
             }
         });
-
         this.addHandler(changeHotel, 'click', function (){
             var that = ticketHotel, tag=that.isStop;
             var paraObj = that.initParaObj;
@@ -424,19 +453,27 @@ var ticketHotel = {
                 };
                 var flightInfo =resultData.data.flightInfo;
                 var hotelInfo = resultData.data.hotelInfo;
-                var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [], temBackRoom = [], length=0;
+                var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [], temBackRoom = [], length= 0, roomInfoTags;
                 if(resultData.data.hotelInfo.rooms){
                       if(resultData.data.hotelInfo.rooms.length<=3){
                           length = resultData.data.hotelInfo.rooms.length-2;
                           temSmallRoom=resultData.data.hotelInfo.rooms;
-                          var innerStr = '<div class="check-more-room">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                          var innerStr = '<div class="check-more-room open">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                          temSmallRoom=resultData.data.hotelInfo.rooms.slice(0,2);
+                          temBackRoom = resultData.data.hotelInfo.rooms.slice(2);
+                          that.temSmallRoom = temSmallRoom;
+                          that.temBackRoom = temBackRoom;
+                          roomInfoTags=template(roomStr, temSmallRoom)
                           $(".check-more-room").eq(0).html(innerStr).show();
                       }else{
                           length = resultData.data.hotelInfo.rooms.length-3;
-                          var innerStr = '<div class="check-more-room">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
+                          var innerStr = '<div class="check-more-room open">查看更多房型<span>('+length+')</span><span class="check-more-down"></span></div>';
                           $(".check-more-room").eq(0).html(innerStr).show();
                           temSmallRoom=resultData.data.hotelInfo.rooms.slice(0,3);
                           temBackRoom = resultData.data.hotelInfo.rooms.slice(3);
+                          that.temSmallRoom = temSmallRoom;
+                          that.temBackRoom = temBackRoom;
+                          roomInfoTags=template(roomStr, temSmallRoom);
                     }
                 }
                 var flightDataHandler = function(arg){
@@ -542,7 +579,6 @@ var ticketHotel = {
                 hotelInfo = hotelDateHandler(hotelInfo);
                 var flightInfoTags = template(temp_flightInfo, flightInfo);
                 var hotelInfoTags = template(temp_hotelInfo, hotelInfo);
-                var roomInfoTags=temSmallRoom.length<=3?template(roomStr, temSmallRoom):template(roomStr, roomInfo)
                 $('.flight-summary-info').eq(0).html(flightInfoTags);
                 $('.hotel-summary-info').eq(0).html(hotelInfoTags);
                 $('.room-ul-outer').eq(0).html(roomInfoTags);
