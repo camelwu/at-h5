@@ -226,6 +226,11 @@
     margin-top: 60px;
     margin-left: 15px;
 }
+.p-home .p-hotelinfo l{
+    font-size: 1.6rem;
+}
+
+
 .p-home .p-hotelinfo li{
     list-style-type: none;
     margin-bottom: 6px;
@@ -240,6 +245,7 @@
     font-weight: 500;
 }
 .p-home .hf-f{
+    margin-top: 5px;
     display: inline-block;
 }
 .p-home .hf-f p{
@@ -256,7 +262,7 @@
     background: white;
     width: 100%;
     height: 100%;
-    padding:0 15px 0 15px;
+    /*padding:0 15px 0 15px;*/
     position: relative;
     margin-top:15px;
 }
@@ -313,10 +319,11 @@
     border-bottom:0 solid #e9e9e9;;
 }
 .p-ul1 span{
-    display: inline-block; display: inline-block;
+    display: inline-block;
+    display: inline-block;
     line-height: 3rem;
     width: 100%;
-    font-size:1.6rem;
+    font-size: 1.5rem;
     margin-left: 4rem;
 }
 .p-icon5{
@@ -327,7 +334,7 @@
     background-position: 66% 2%;
     position: absolute;
     top: 1rem;
-    right: 1.2rem;
+    right: 1rem;
     border-radius: 50%;
 }
 

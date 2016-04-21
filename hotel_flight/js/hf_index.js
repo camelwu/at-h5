@@ -356,6 +356,7 @@ var hf_search = {
         window.location.href = 'ticket_hotel_choose.html';
     },
     init:function(){
+       // window.sessionStorage.setItem('flightHotelAllData',''); //清除历史机票酒店信息
         this.add_subtract();
         this.tangleCity();
     }

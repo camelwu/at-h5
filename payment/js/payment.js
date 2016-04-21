@@ -86,24 +86,34 @@
         var _getOrderData=function(bussinessType,bookingRefNo,foreEndType,callback){
             var Parameters;
             //Todo 酒店特殊处理（目前为不影响酒店支付流程，暂时单独处理，后期等后台接口重构去掉）
-            if(bussinessType.id==1){
-                 Parameters={
-                     "CultureName":"en-US",
-                     "BookingReferenceNo": bookingRefNo
+            if(bookingRefNo!=null && bookingRefNo!=undefined && bookingRefNo!=="undefined"){
+                if (bussinessType.id == 1) {
+                    Parameters = {
+                        "CultureName": "en-US",
+                        "BookingReferenceNo": bookingRefNo
+                    }
                 }
+                else {
+                    Parameters = {
+                        "BookingRefNo": bookingRefNo
+                    }
+                }
+                var Parameters = {
+                    "Parameters": Parameters,
+                    "ForeEndType": foreEndType,
+                    "Code": bussinessType.detailCode
+                }
+                console.log(JSON.stringify(Parameters));
+                vlm.loadJson("", JSON.stringify(Parameters), callback);
             }
             else{
-                Parameters={
-                    "BookingRefNo": bookingRefNo
-                }
+                var json=JSON.parse(localStorage.getItem('user_order_storage12345'));
+                vlm.init();
+                var data={data:json};
+                console.log(json);
+
+                _generateHtml(type,data);
             }
-            var Parameters={
-                "Parameters": Parameters,
-                "ForeEndType":foreEndType,
-                "Code": bussinessType.detailCode
-            }
-            console.log(JSON.stringify(Parameters));
-            vlm.loadJson("", JSON.stringify(Parameters),callback);
         };
         /*支付Modle实体*/
         var _get_modle=function(){
@@ -174,21 +184,24 @@
             if (type.id == 1){
                 //验证modle；
                 _check_modle();
-                var json=JSON.parse(localStorage.getItem('user_order_storage12345'));
+
                 var model=_get_modle();
                 var guestNameList = [];
-                for (var i = 0; i <= myData.guestName.length - 1; i++) {
-                    var guestInfo = {};
-                    guestInfo.guestFirstName = json.guestName[i].GuestFirstName;
-                    guestInfo.guestLastName = json.guestName[i].GuestLastName;
-                    guestNameList.push(guestInfo);
-                }
-                //支付模式为信用卡
-                if (paymentMode == "CreditCard" && (bookingRefNo == null || bookingRefNo==undefined )) {
+
+                //酒店订单未生成
+                if (bookingRefNo == null || bookingRefNo==undefined ) {
                     var flag= _check_modle();
                     if(!flag){
                         return;
                     }
+                    var json=JSON.parse(localStorage.getItem('user_order_storage12345'));
+                    for (var i = 0; i <= json.guestName.length - 1; i++) {
+                        var guestInfo = {};
+                        guestInfo.guestFirstName = json.guestName[i].GuestFirstName;
+                        guestInfo.guestLastName = json.guestName[i].GuestLastName;
+                        guestNameList.push(guestInfo);
+                    }
+
                     Parameters = {
                         "availability": true,
                         "bankName": json.BankName,
@@ -204,6 +217,12 @@
                         "creditCardExpiryDate": model.cardExpiryDate,
                         "creditCardNumber":  model.cardNumber,
                         "creditCardType": cardType,
+                        "cardBillingAddress": "werty",
+                        "countryNumber": "86",
+                        "MobilePhone": "13520591255",
+                        "cardAddressCity": "北京",
+                        "cardAddressPostalCode": "122132",
+                        "cardCountryCode": "CN",
                         "guestContactNo": json.GuestContactNo,
                         "guestEmail": json.GuestEmail,
                          guestNameList: guestNameList,
@@ -249,6 +268,7 @@
                 }
             }
             else {
+
                 //支付模式为在线支付
                 if (paymentMode == "CreditCard") {
                     var flag= _check_modle();
@@ -298,8 +318,21 @@
                 $(".p-home").append(html);
             }
             //酒店详情tpl
-            else if(type.id==1){
-                data.data.totalPrice=data.data.totalFlightPrice;
+            else if(type.id==1) {
+                //data.data.totalPrice=data.data.totalFlightPrice;
+                if (bookingRefNo == null) {
+                    data.data.totalPrice=data.data.calcuTotalPriceCNY
+                    data.data.hotelName=data.data.HotelGenInfo.hotelNameLocale;
+                    data.data.roomType=data.data.RoomTypeName;
+                    data.data.noOfRooms=data.data.NumOfRoom;
+
+                }
+                else{
+                    data.data.hotelName=data.data[0].hotelName
+                    data.data[0].totalPrice=parseInt(data.data[0].totalTaxCharge)+parseInt(data.data[0].totalSeriveCharge)+parseInt(data.data[0].totalRoomRate);
+
+                }
+
                 var html = template("tpl_hotel_detail", data.data);
                 $(".p-home").append(html);
             }
