@@ -286,8 +286,8 @@ var hf_search = {
 
         var fromCity = $('.origin').attr("data-citycode");
         var toCity = $('.destination').attr("data-citycode");
-        var departDate = $('#startData').innerHTML + 'T00:00:00';
-        var returnDate = $('#returnData').innerHTML + 'T00:00:00';
+        var departDate = $('#startData').attr("startData") + 'T00:00:00';
+        var returnDate = $('#returnData').attr("returnData") + 'T00:00:00';
         var roomDetails = [],temObj = {},childWithOutBed = [], childWithBed = [];
         var room = $('.hotelInfo_numb_people');
         for(var r = 0;r < room.length;r++){

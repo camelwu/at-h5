@@ -47,11 +47,14 @@
             <div class="dateInfo" id="chooseDate-double">
                 <p class="title-p"><span>出发日期</span><span>返程日期</span></p>
                 <div class="ori-des-Date" id="ori-des-Date">
-                    <span class="originDateInfo dateTag double-date"><span class="dateNumber double-date-one">02-20</span><span id="startData"></span></span>&nbsp;<span class="double-week-one">周四</span></span>
-                    <span class="destinationInfo dateTag double-date"><span class="dateNumber double-date-two">02-23</span><span id="returnData"></span>&nbsp;<span class="double-week-two">周六</span></span>
+                    <span class="originDateInfo dateTag double-date"><span id="mstartday" class="dateNumber double-date-one">02-20</span><span id="startData"></span></span>&nbsp;<span class="double-week-one">周四</span></span>
+                     <input id="startday" type="hidden" value="">
+                    <span class="destinationInfo dateTag double-date"><span id="mendday" class="dateNumber double-date-two">02-23</span><span id="returnData"></span>&nbsp;<span class="double-week-two">周六</span></span>
+                    <input id="endday" type="hidden" value="">
                 </div>
             </div>
         </div>
+
         <section class="hotelInfo_numb_room">
             <span class="title" style="color:rgb(72,72,72);">房间</span>
             <div class="per-price-control" data-type="extraRoom">
@@ -163,5 +166,7 @@
 <script src="../scenic/js/pinyin.js"></script>
 <script src="../scenic/js/scenic_pub.js"></script>
 <script src="js/hf_citylist.js"></script>
+<script src="../js/lib/d_calendar1.0.2.js"></script>
+<script src="js/hf_index_date.js"></script>
 </body>
 </html>
