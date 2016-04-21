@@ -500,13 +500,13 @@ function mycallback_findver(ret) {
 
 //登录和注册清除内容图标
 	function clearValue(id){
-		$(id).on('input propertychange',function(){
+		$(id).on('input propertychange focus',function(){
 			if($(id).val() == ''){
 				$(this).parent().find('.login-clear').hide();
 			}else{
 				$(this).parent().find('.login-clear').show();
 			}
-		});
+		})
 
 		$(id).parent().find('.login-clear').click(function(){
 			$(this).hide();

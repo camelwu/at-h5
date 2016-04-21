@@ -1,6 +1,13 @@
 /**
  * Created by apple on 16/4/20.
  */
+(function($) {
+    $(document).ready(function() {
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
+    });
+}(jQuery));
 (function(){
     var globalData = {},originData = {},destinationData = {};
     var arrHistory = [],arr = [],originParams={},destinationParams={};
