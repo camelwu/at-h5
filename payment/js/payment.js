@@ -86,24 +86,34 @@
         var _getOrderData=function(bussinessType,bookingRefNo,foreEndType,callback){
             var Parameters;
             //Todo 酒店特殊处理（目前为不影响酒店支付流程，暂时单独处理，后期等后台接口重构去掉）
-            if(bussinessType.id==1){
-                 Parameters={
-                     "CultureName":"en-US",
-                     "BookingReferenceNo": bookingRefNo
+            if(bookingRefNo!=null && bookingRefNo!=undefined && bookingRefNo!=="undefined"){
+                if (bussinessType.id == 1) {
+                    Parameters = {
+                        "CultureName": "en-US",
+                        "BookingReferenceNo": bookingRefNo
+                    }
                 }
+                else {
+                    Parameters = {
+                        "BookingRefNo": bookingRefNo
+                    }
+                }
+                var Parameters = {
+                    "Parameters": Parameters,
+                    "ForeEndType": foreEndType,
+                    "Code": bussinessType.detailCode
+                }
+                console.log(JSON.stringify(Parameters));
+                vlm.loadJson("", JSON.stringify(Parameters), callback);
             }
             else{
-                Parameters={
-                    "BookingRefNo": bookingRefNo
-                }
+                var json=JSON.parse(localStorage.getItem('user_order_storage12345'));
+                vlm.init();
+                var data={data:json};
+                console.log(json);
+
+                _generateHtml(type,data);
             }
-            var Parameters={
-                "Parameters": Parameters,
-                "ForeEndType":foreEndType,
-                "Code": bussinessType.detailCode
-            }
-            console.log(JSON.stringify(Parameters));
-            vlm.loadJson("", JSON.stringify(Parameters),callback);
         };
         /*支付Modle实体*/
         var _get_modle=function(){
@@ -298,8 +308,21 @@
                 $(".p-home").append(html);
             }
             //酒店详情tpl
-            else if(type.id==1){
-                data.data.totalPrice=data.data.totalFlightPrice;
+            else if(type.id==1) {
+                //data.data.totalPrice=data.data.totalFlightPrice;
+                if (bookingRefNo == null) {
+                    data.data.totalPrice=data.data.calcuTotalPriceCNY
+                    data.data.hotelName=data.data.HotelGenInfo.hotelNameLocale;
+                    data.data.roomType=data.data.RoomTypeName;
+                    data.data.noOfRooms=data.data.NumOfRoom;
+
+                }
+                else{
+                    data.data.hotelName=data.data[0].hotelName
+                    data.data[0].totalPrice=parseInt(data.data[0].totalTaxCharge)+parseInt(data.data[0].totalSeriveCharge)+parseInt(data.data[0].totalRoomRate);
+
+                }
+
                 var html = template("tpl_hotel_detail", data.data);
                 $(".p-home").append(html);
             }

@@ -180,16 +180,7 @@
         <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
     </dl>
 </div>
-<script src="../js/lib/jquery.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/plugins.js"></script>
-<script src="../js/lib/scroller.js"></script>
-<script type="text/javascript" src="js/payment.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/country_list.js"></script>
-<script src="../js/countrytel_list.js"></script>
-<script src="../js/lib/template.js"></script>
+
 <script id="tpl_flighthotel_detail" type="text/template">
     <ul class="p-hotelinfo">
         <l>机票+酒店</l>
@@ -209,27 +200,43 @@
 </script>
 <script id="tpl_hotel_detail" type="text/template">
     <ul class="p-hotelinfo">
-        <l>酒店</l>
+        <l>{%=hotelName%}</l>
         <li>
-            <span class="hf-f"><i class = "hf-go"></i><p>2015-01-08 17:32</p></span>
-            <span class="hf-f"><i class = "hf-back"></i><p>2015-01-11 17:32</p></span>
+            <span class="hf-f"><p>11月25日-11月26日 共1晚（当地时间为准）</p></span>
         </li>
         <li>
             <div class = "hf-anum">
-                <span>人数:</span>
-                <span><i>2</i>成人</span>
-                <span><i>1</i>儿童</span>
+                <span>房型:</span>
+                <span>{%=roomType%}</span>
+                <span>房间数</span>
+                <span><i>{%=noOfRooms%}</i>间</span>
+
             </div>
         </li>
-        <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+        <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
     </ul>
 </script>
 <script id="tpl_flight_detail" type="text/template">
     <ul class="p-hotelinfo">
-        <l>单程</l>
         <li>
-            <span class="hf-f"><i class = "hf-go"></i><p>2015-01-08 17:32</p></span>
-            <span class="hf-f"><i class = "hf-back"></i><p>2015-01-11 17:32</p></span>
+            {% if(flightInfo.segmentsReturn==null){ %}
+                <l>
+                    单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
+                <l>
+                <li>
+                    <span class="hf-f"><i class = "hf-go"></i><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
+                </li>
+
+             {% } else{ %}
+                <l>
+                    往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
+
+                <li>
+                <li>
+                    <span class="hf-f"><i class = "hf-go"></i><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
+                    <span class="hf-f"><i class = "hf-back"></i><p>{%=flightInfo.flightReturnStartDate%}</p></span>
+                </li>
+              {% } %}
         </li>
         <li>
             <div class = "hf-anum">
@@ -259,9 +266,9 @@
 </script>
 <script id="tpl_scenic_detail" type="text/template">
     <ul class="p-hotelinfo">
-        <l>景点</l>
+        <l>{%=packageName%}</l>
         <li>
-            <span class="hf-f"><p>{%=packageName%}</p></span>
+            <span class="hf-f"><p>11月25日-11月26日 共1晚（当地时间为准）</p></span>
         </li>
         <li>
             <div class = "hf-anum">
@@ -273,6 +280,20 @@
         <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
     </ul>
 </script>
+
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/scroller.js"></script>
+<script type="text/javascript" src="js/payment.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/country_list.js"></script>
+<script src="../js/countrytel_list.js"></script>
+
+
+
 
 </body>
 </html>
