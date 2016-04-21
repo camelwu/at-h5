@@ -87,11 +87,10 @@ var ticketHotel = {
             paraObject.DepartDate =that.cacheData.flightInfo.flightLeaveStartDate;
             paraObject.ReturnDate =that.cacheData.flightInfo.flightReturnStartDate;
             paraObject.RoomDetails =that.initParaObj.RoomDetails;
-            console.log(paraObject)
-            that.storageUtil.set('local','hotelDetailInfo', paraObject);
-            if(that.cacheRoomId){
+            if(!that.cacheRoomId){
                 jAlert('请先选择房间', "提示");
             }else{
+              that.storageUtil.set('local','hotelDetailInfo', paraObject);
                window.location.href = 'hotel_detail.html';
             }
            /* var testPara= { //最终参数形式
