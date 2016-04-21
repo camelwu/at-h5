@@ -98,7 +98,7 @@
 						<li class = "order-tlist1">
 							<span class = "order-tsl1">出行人</span>
 							<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>
-							<span class = "order-tsl2">1/2成人 0/2儿童</span>
+							<span class = "order-tsl2"><i class="adu-choose">0</i>/<i class="adu-tot"></i>成人 <b><i class="chi-choose">0</i>/<i class="chi-tot"></i>儿童</b></span>
 						</li>
 						<li class = "order-tlist2" id="order-tlist">
 							<i class="tra-delete"></i>
@@ -295,6 +295,30 @@
 				var hoteldet=template('order-hot',datahot);
 				$('.order-hotel').html(hoteldet);
 
+				//出行人明细
+				function travelDet(){
+					var traAdu={};
+					var traChi={};
+					var room=datahot.RoomDetails;
+					var traAdultnum=0;
+					var traChildnum=0;
+					for(var i=0;i<room.length; i++)
+					{
+						traAdultnum+=room[i].adult;
+						if(room[i].ChildWithoutBed)
+						{
+							traChildnum+=(room[i].ChildWithoutBed.length)
+						}
+
+					}
+					if(traChildnum == 0){
+						$('.order-tsl2 b').remove();
+					}
+					$('.chi-tot').html(traChildnum);
+					$('.adu-tot').html(traAdultnum);
+				}
+				travelDet();
+
                 //明细块
                 var totamount=template('totamount-det',datahot);
                 $('.hf_detail_fare').html(totamount);
@@ -306,7 +330,6 @@
 
             /*添加出行人*/
 			$(document).on('click','.order-tsl3',function(){
-				debugger;
 				vlm.f_choice('order-tlist2',"ht",'contact','',false,false,null,null,null,null);
 
 			});
@@ -450,8 +473,6 @@
 					window.location.href='order_detail.html';
 				}
 			}
-
-
 
 		})();
 	</script>
