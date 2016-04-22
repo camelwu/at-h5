@@ -454,16 +454,16 @@ var ticketHotel = {
                 var hotelInfo = resultData.data.hotelInfo;
                 var roomInfo = resultData.data.hotelInfo.rooms, temSmallRoom = [], temBackRoom = [], length= 0, roomInfoTags;
                 if(resultData.data.hotelInfo.rooms){
-                      if(resultData.data.hotelInfo.rooms.length<=3){
+                      if(resultData.data.hotelInfo.rooms.length<=2){
                           temSmallRoom = resultData.data.hotelInfo.rooms;
-                          roomInfoTags=template(roomStr, temSmallRoom)
-                          $(".check-more-room").eq(0).html(innerStr).show();
+                          roomInfoTags=template(roomStr, temSmallRoom);
+                          $(".check-more-room").eq(0).html(innerStr).hide();
                       }else{
-                          length = resultData.data.hotelInfo.rooms.length-3;
+                          length = resultData.data.hotelInfo.rooms.length-2;
                           var innerStr = '查看更多房型<span>('+length+')</span><span class="check-more-down"></span>';
                           $(".check-more-room").eq(0).html(innerStr).show();
-                          temSmallRoom=resultData.data.hotelInfo.rooms.slice(0,3);
-                          temBackRoom = resultData.data.hotelInfo.rooms.slice(3);
+                          temSmallRoom=resultData.data.hotelInfo.rooms.slice(0,2);
+                          temBackRoom = resultData.data.hotelInfo.rooms.slice(2);
                           that.temSmallRoom = temSmallRoom;
                           that.temBackRoom = temBackRoom;
                           roomInfoTags=template(roomStr, temSmallRoom);
@@ -588,6 +588,8 @@ var ticketHotel = {
         var endEle = document.querySelector('.arrive-date');
         var adult = document.querySelector('.adult-ft');
         var child = document.querySelector('.child-ft');
+        var startP = document.querySelector('.origin');
+        var arriveP = document.querySelector('.destination');
         var returnWeek=function(g){
                 var week,array;
                 array = g.split('-');
@@ -599,6 +601,8 @@ var ticketHotel = {
         endEle.innerHTML= '返回:'+returnWeek(arg.ReturnDate.replace(/T.*/,''));
         adult.innerHTML= arg.AdultNum+'成人';
         child.innerHTML= arg.ChildNum+'儿童';
+        startP.innerHTML= arg.FromCityNameCN;
+        arriveP.innerHTML= arg.ToCityNameCN;
     },
     init:function () {
         var storagePara = JSON.parse(window.localStorage.getItem('searchInfo')), initParaObj={};

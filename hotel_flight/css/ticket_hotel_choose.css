@@ -192,6 +192,9 @@
     -ms-transform-origin: 50% 0;
     transform-origin: 50% 0;
 }
+.outerDIv{
+    margin-bottom: 50px;
+}
 .room-ul-outer{
     padding: 0 1.5rem;
     color: rgb(102, 102, 102);
@@ -258,7 +261,6 @@ button.no-choose-button{
     line-height: 40px;
     text-align: center;
     color: #999999;
-    margin-bottom: 50px;
 }
 .check-more-down{
     display: inline-block;
