@@ -256,7 +256,7 @@ var ticketHotel = {
                 paraObj.AirwayCacheID = that.cacheData.airwayCacheID;
                 paraObj.AirwaySetID = that.cacheData.airwaySetID;
                 paraObj.SortFields = [0];
-                paraObj.ScreenFileds=[1];
+                paraObj.ScreenFields=[0];
                 paraObj.DepartDate = that.initParaObj.DepartDate;
                 paraObj.ReturnDate = that.initParaObj.ReturnDate;
                 that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
