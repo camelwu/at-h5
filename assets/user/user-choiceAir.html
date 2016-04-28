@@ -652,6 +652,9 @@
 		SavaLocalStorge(selectUser,isContact);
 	}
 	function ReplaceData(id,data){
+    if(data.length<=0){
+      return false;
+    }
 		var elementId="#"+id;
 		var htmlObj =$(ifrCilent.parentNode).find(elementId);
 		if(isMulSelect)
