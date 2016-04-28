@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+    <title>机+酒首页 - 亚洲旅行网</title>
+    <link href="../styles/framework.css" rel="stylesheet"/>
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <link href="css/hf_list.css" rel="stylesheet"/>
+    <link href="css/hf_city.css" rel="stylesheet">
+    <link href="../styles/tips.css"	rel="stylesheet">
+</head>
+<body>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <br>
+            <em></em>
+        </p>
+    </div>
+</div>
+<div class="all-elements">
+    <!--   顶部   -->
+    <header class="header">
+        <a href="../index.html" class="header-back" id="ht-back"><i class="icons go-back"></i></a>
+        <h3>机+酒</h3>
+    </header>
+    <!--   内容   -->
+    <div class="sc-content">
+        <!--<div style="background: #fff;">-->
+        <div class="sc-content2" style="background: #fff;">
+        <div class="realInfo">
+            <div class="place">
+                <div class="origin city-search" data-citycode="BJS">北京</div>
+                <div class="iconTip"><div><span class="active span-target"></span></div></div>
+                <div class="destination city-search " data-citycode="SIN">新加坡</div>
+            </div>
+            <div class="dateInfo" id="chooseDate-double">
+                <p class="title-p"><span>出发日期</span><span>返程日期</span></p>
+                <div class="ori-des-Date" id="ori-des-Date">
+                    <span class="originDateInfo dateTag double-date"><span id="mstartday" class="dateNumber double-date-one">02-20</span><span id="startData"></span></span>&nbsp;<span class="double-week-one">周四</span></span>
+                     <input id="startday" type="hidden" value="">
+                    <span class="destinationInfo dateTag double-date"><span id="mendday" class="dateNumber double-date-two">02-23</span><span id="returnData"></span>&nbsp;<span class="double-week-two">周六</span></span>
+                    <input id="endday" type="hidden" value="">
+                </div>
+            </div>
+        </div>
+        <section class="hotelInfo_numb_room">
+            <span class="title" style="color:rgb(72,72,72);">房间</span>
+            <div class="per-price-control" data-type="extraRoom">
+                <span id="room_downb" class="cut-down-btn"></span><i id="roomNum" class="cut-up-cont">1</i><span class="plus-btn"></span>
+            </div>
+        </section>
+        </div>
+        <!--</div>-->
+        <!--<section class="hotelInfo_numb_people init-hotel-room-detaol">-->
+            <!--<span class="title">房间1</span>-->
+            <!--<div class="numbList">-->
+                <!--<span class="n_tit">成人</span>-->
+                <!--<div class="per-price-control" data-type="adult">-->
+                    <!--<span class="cut-down-btn" id="adult-down" style="background-position: -51px 2px;"></span>-->
+                    <!--<i class="cut-up-cont adult-people-number" data-type="adultNum" id="adult-people-number">2</i>-->
+                    <!--<span class="plus-btn"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="numbList">-->
+                <!--<span class="n_tit">儿童</span>-->
+                <!--<span class="child-age">(2-12岁)</span>-->
+                <!--<div class="per-price-control" data-type="extraChild">-->
+                    <!--<span class="cut-down-btn"></span>-->
+                    <!--<i class="cut-up-cont child-number" data-type="childNum">0</i>-->
+                    <!--<span class="plus-btn"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="extraChild" style="display: none">-->
+                <!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
+                <!--<div class="childAge">-->
+                    <!--<input class="inp-cage" type="tel" placeholder="(2-12)"><i class="child-sui">岁</i>-->
+                <!--</div>-->
+                <!--<span class="bedList" style="float: left"><i>儿童年龄2</i></span>-->
+                <!--<div class="childAge">-->
+                    <!--<input class="inp-cage" type="tel" placeholder="(2-12)"><i class="child-sui">岁</i>-->
+                <!--</div>-->
+                <!--<div class="numbList spenumbList">-->
+                    <!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</section>-->
+        <!--</div>-->
+        <div class="search-button">
+            <input type="button" value="查询" class="button-orange hotelInter" id="search-button" />
+        </div>
+        <footer class="scer-fo">
+            自由配 预订快 资源全 价格低
+        </footer>
+    </div>
+</div>
+
+<!--城市列表-->
+<ul id="js_oversea" class="gui-city-itmes" style="position:relative;z-index: 2;display: none;">
+</ul>
+<ul id="js_inland" class="gui-city-itmes gui-hidden" style="position: relative;z-index: 2;display: none;">
+</ul>
+<div class="all-elementcity" style="display: none;">
+    <div id="headerview" style="height: 44px;">
+        <div id="ui-view-1" class="t-header">
+            <!--<a href="../scenic/index.html" class="icons header-back"></a>-->
+            <span class="js-backpage t-header-icon fl t-header-iconsize cp"></span>
+            <div class="t-search-view t-search-viewsize">
+                <input class="t-search-inputbox" id="inputbox-btn" readonly="readonly" placeholder="北京/beijing/bj/bjs"/>
+            </div>
+        </div>
+    </div>
+    <!--<div class="sc-contentcity">-->
+        <!--<div class="gui-tab-view" id="ui-view-2">-->
+            <!--<ul class="gui-tab-mod">-->
+                <!--<li data-key="1" class="gui-tab-current cp">海外城市</li>-->
+                <!--<li data-key="2" class="cp stopgray">国内城市</li>-->
+                <!--<i class="gui-tab-scrollbar gui-tab"></i>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div id="ui-view-3">
+        <ul id="CharColumn" class="tags-cut">
+        </ul>
+    </div>
+</div>
+<!--城市列表-->
+
+<!--  城市列表搜索    -->
+<div class="pop_box_dis" style="display:none;">
+    <p class="pop_bg"></p>
+    <div class="pop_box">
+        <div style="height: 44px;">
+            <div class="t-header">
+                <span id="js_back_btn" class="t-header-icon fl t-header-iconsize"></span>
+                <div class="t-search-view t-search-viewsize">
+                    <input class="t-search-inputbox" id="seach_up" placeholder="北京/beijing/bj/bjs">
+                    <span id="close_empty"></span>
+                </div>
+                <a href="javascript:;" class="cancelBtn">取消</a>
+            </div>
+        </div>
+        <dl class="empty_history">
+            <!--<dt>北航/辽宁大学南校区，辽宁、沈阳，中国，中国，中国，北京的大学</dt>-->
+            <!--<dd><a href="javascript:;" class="empty_history">清空搜索历史</a> </dd>-->
+        </dl>
+        <div class="not_exist">
+            抱歉，没有找到您要搜索的省市！
+        </div>
+    </div>
+</div>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="js/hf_index.js"></script>
+<script src="../scenic/js/pinyin.js"></script>
+<script src="../scenic/js/scenic_pub.js"></script>
+<script src="js/hf_citylist.js"></script>
+<script src="../js/lib/d_calendar1.0.2.js"></script>
+<script src="js/hf_index_date.js"></script>
+</body>
+</html>

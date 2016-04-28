@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="green">
+<meta name="Keywords" content="亚洲旅行网">
+<meta name="Description" content="境外专业旅行服务提供机构">
+<meta name="screen-orientation" content="portrait">
+<meta name="x5-orientation" content="portrait">
+<meta name="full-screen" content="yes">
+<meta name="x5-fullscreen" content="true">
+<link rel="stylesheet" href="../styles/lsf_base.css" />
+<style>
+	html {
+		font-size:62.5%;
+	}
+	body{
+		overflow-x:hidden;
+	}
+	.all_elements{
+		position:absolute;
+		overflow-x:hidden!important;
+		width:100%;
+		height:100%;
+		min-height:100%;
+		max-height:100%;		
+	}
+	header,section,footer{
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		-mz-box-sizing:border-box;
+		-o-box-sizing:border-box;
+		box-sizing:border-box;
+	}
+	header{
+		width:100%;
+		height:4.4rem;background:#163852;line-height:4.4rem;padding:0 1.5rem;	font-size:1.75rem;color:#fff;text-align:center;
+	}
+	header i{
+		width:1.25rem;height:2rem;background:url(../images/icons.png) 0 0;background-size:243px 160px;margin-top:1.2rem;
+	}
+	.lsf_orExp{
+		width:100%;height:5rem;background:#fad485;
+		padding:1rem 0;
+	}
+	.lsf_orExp p{
+		color:#fff;line-height:1.8rem;
+		font-size:1.1rem;	padding:0 1.5rem;
+	}
+	.lsf_orExp p i{
+		width:1.2rem;height:0.7rem;margin-top:0.6rem;background:url("../images/lsf_down1.png");background-size:1.1rem 0.6rem;
+	}
+	.lsf_uo_hotel{
+		width:100%;
+		padding:1rem 1.5rem;	border-bottom:1px solid #dedede;line-height:2rem;	
+	}
+	.uo_hotel_name h2{
+		font-size:1.5rem;font-weight:bold;color:#000;
+	}
+	.uo_hotel_name p{
+		font-size:1.3rem;color:#484848;		
+	}
+	.uo_hotel_name .hotType{
+		color:#999999;	
+	}
+	.uo_hotel_num{
+		display:-webkit-box;
+		display:-moz-box;
+		display:-ms-flexbox;
+		display:-webkit-flex;
+		display:flex;
+		border-top:1px solid #dedede;
+		padding-top:1rem;	
+	}
+	.uo_hot_num_ibox{
+		min-width:6rem;
+	}
+	.uo_hotel_num div{
+		-webkit-box-flex:1;
+		-moz-box-flex:1;
+		-ms-flex:1;
+		-webkit-flex:1;
+		flex-grow:1;	
+	}
+	.uo_hotel_num .sp2{
+		margin-left:5.3rem;
+	}
+	.uo_hot_num_i1{
+		width:2.3rem;height:2.3rem;background:url(../images/ui/icons1.png) -6.5rem 0;background-size:40rem 12rem;
+	}
+	.uo_hot_num_i2{
+		width:2.3rem;height:2.3rem;background:url(../images/ui/icons1.png) -0.3rem 0;background-size:40rem 12rem;margin-right:1rem;
+	}
+	.lsf_userName{
+		width:100%;
+		padding:0 1.5rem;border-bottom:1px solid #dedede;
+	}
+	.lsf_un_in{
+		font-size:1.2rem;color:#484848;line-height:4rem;border-bottom:1px solid #dfe0db;		
+	}
+	.lsf_un_infor{
+		display:-webkit-box;
+		display:-moz-box;
+		display:-ms-flexbox;
+		display:-webkit-flex;
+		display:flex;
+		flex-direction:row;
+		-webkit-flex-direction:row;
+		font-size:1.2rem;color:#a9a9a9;padding:1.3rem 0;		
+	}
+	.lsf_un_infor input{
+		-webkit-box-flex:1;
+		-moz-box-flex:1;
+		-ms-flex:1;
+		-webkit-flex:1;
+		flex:1;					border:none;
+	}
+	.lsf_lastName{
+		border-right:1px solid #dfe0db;		
+	}
+	.lsf_firstName{
+		padding-left:1.1rem;		
+	}
+	.lsf_tele{
+		width:100%;
+		font-size:1.3rem;color:#484848;line-height:3.9rem;border-bottom:1px solid #dfe0db;		
+		padding:0 1.5rem;
+	}
+	.lsf_tele .lsf_tele_sp1{
+		font-size:1.3rem;color:#484848;
+	}
+	.lsf_tele .lsf_tele_sp2{
+		margin-left:5.3rem;
+		margin-top:1.2rem;
+		font-size:1.1rem;
+		color:#999999;				border:none;
+	}
+	.lsf_argee{
+		width:100%;
+		text-align:center;	padding:1.5rem 4rem;line-height:1.7rem;font-size:0.9rem;
+		color:#757575;
+	}
+	.lsf_argee i{
+		width:1.7rem;height:1.7rem;background:url(../images/ui/icons1.png) -26.6rem -0.4rem;background-size:40rem 12rem;
+		margin-top:-0.2rem;
+	}
+	.lsf_argee  a{
+		text-decoration:underline;
+		color:#feb932;		
+	}
+	.lsf_point{
+		width:100%;
+		padding:0 1.5rem 1rem;
+		font-size:1rem;
+		color:#757575;
+		margin-bottom:4rem;
+	}
+	.lsf_point p{
+		line-height:1.7rem;		
+	}
+	footer{
+		width:100%;
+		height:4rem;
+		position:fixed;
+		left:0;
+		bottom:0;
+		background:#fff;
+		display:-webkit-box;
+		display:-moz-box;
+		display:-ms-flexbox;
+		display:-webkit-flex;
+		display:flex;
+		-webkit-flex-direction:row;
+		flex-direction:row;		
+		line-height:4rem;	
+		padding-left:1.5rem;	
+		border-top:1px solid #dedede;
+	}
+	.lsf_sum{
+		-webkit-box-flex:4;
+		-moz-box-flex:4;
+		-ms-flex:4;
+		-webkit-flex:4;
+		flex:4;
+		height:4rem;line-height:4rem;
+		font-size:1.25rem;color:#484848;
+	}
+	.lsf_sum em{
+		color:#fe6a03;		
+	}
+	.lsf_sum em strong{
+		font-size:2rem;	
+	}
+	.lsf_detail{
+		-webkit-box-flex:2;
+		-moz-box-flex:2;
+		-ms-flex:2;
+		-webkit-flex:2;
+		flex:2;
+		color:#ffb412;
+	}
+	.lsf_detail i{
+		width:1.2rem;height:1rem;background:url(../images/ui/icons1.png) -5.1rem -3.8rem;background-size:40rem 12rem;
+	margin-top:1.5rem;
+	}
+	.lsf_confirm{
+		-webkit-box-flex:3;
+		-moz-box-flex:3;
+		-mz-flex:3;
+		-webkie-flex:3;
+		flex:3;
+		background:#ffb413;
+		text-align:center;
+		line-height:4rem;
+		font-size:1.4rem;color:#fff;font-weight:bold;
+	}
+	.lsf_hid{
+		position:fixed;left:0;top:0;width:100%;height:0;overflow:hidden;
+	}
+	.lsf_hid_p{
+		background:rgba(0,0,0,0.5);width:100%;height:100%;
+	}
+	.lsf_hid .lsf_hid_div1{
+		position:absolute;left:0;bottom:-320px;width:100%;background:#fff;transition:all 350ms ease;
+		height:13.5rem;
+	}
+	.lsf_feeDetail{
+		height:15rem;padding:0 1.5rem;		
+	}
+	.lsf_feeDetail section{
+		display:-webkit-box;
+		display:-webkit-flex;
+		display:-moz-box;
+		display:-ms-flexbox;
+		display:flex;
+		
+	}
+	.lsf_feeDetail section span{
+		-webkit-box-flex:1;
+		-moz-box-flex:1;
+		-ms-flex:1;
+		-webkit-flex:1;
+		flex:1;
+	}
+	.lsf_fd_sec1{
+		line-height:3.7rem;border-bottom:1px solid #d6d6d6;	font-size:1.3rem;	
+	}
+	.lsf_fd_sec1 span i{
+		font-size:1.2rem;color:#a9a9a9;		
+	}
+	.lsf_fd_sec2{
+		height:3rem;line-height:3rem;font-size:1.3rem;color:#fe4716;	
+	}
+	.lsf_fd_sec3{
+		border-bottom:1px solid #d6d6d6;			
+	}
+	.lsf_fd_sec4{
+		font-size:1.3rem;color:#999999;line-height:3.7rem;
+		height:3.7rem;
+	}
+</style>
+<script>
+	window.onload=function(){
+		function toUp(id1,id2){
+			var oNum=document.getElementById(id1);
+			var oBtn=document.getElementById(id2);
+			oBtn.onclick=function(){
+				var str=oNum.innerHTML;
+				str=Number(str);
+				str=str+1;
+				oNum.innerHTML=str;
+			};
+		}
+		function toDown(id1,id2){
+			var oNum=document.getElementById(id1);
+			var oBtn=document.getElementById(id2);
+
+			oBtn.onclick=function(){
+				var str=oNum.innerHTML;
+				str=Number(str);
+				if(str<=0){
+					alert('房间数不能小于0');
+				}else{
+					str=str-1;
+					oNum.innerHTML=str;
+				}
+			};
+		}
+		toUp('uo_hotNum','uo_hotUp');
+		toDown('uo_hotNum','uo_hotDown');
+
+		(function(){
+			var detaBtn=document.getElementById('lsf_details');
+			var detaBtnI=detaBtn.getElementsByTagName('i')[0];
+			var oHid=document.getElementById('lsf_hid');
+			var hidDiv1=document.getElementById('lsf_hid_div1');
+			var bOk=true;
+			detaBtn.onclick=function(){
+				if(bOk){
+					oHid.style.height='100%';
+					hidDiv1.style.bottom='3.5rem';
+					detaBtnI.style.background='url(images/ui/icons1.png) -7.6rem -3.8rem';
+					detaBtnI.style.backgroundSize='40rem 12rem';
+					bOk=false;
+				}else{
+					oHid.style.height=0;
+					hidDiv1.style.bottom='-320px';
+					detaBtnI.style.background='url(images/ui/icons1.png) -5.1rem -3.8rem';
+					detaBtnI.style.backgroundSize='40rem 12rem';
+					bOk=true;
+				}
+			};
+		})();
+		(function(){
+			var oAgree=document.getElementById('lsf_agree');
+			var bOk=true;
+			oAgree.onclick=function(){
+				if(bOk){
+					oAgree.style.background='url(images/ui/icons1.png) -23.7rem -0.4rem';
+					oAgree.style.backgroundSize='40rem 12rem';
+					bOk=false;
+				}else{
+					oAgree.style.background='url(images/ui/icons1.png) -26.6rem -0.4rem';
+					oAgree.style.backgroundSize='40rem 12rem';
+					bOk=true;
+				}
+
+			};
+		})();
+	};
+</script>
+<title>首页 - 亚洲旅行网</title>
+
+
+</head>
+<body>
+<div class="all_elements">
+	<header class="clearfix"><i class="fl"></i>填写订单</header>
+	<section class="lsf_orExp">
+		<p>取消说明</p>
+		<p class="clearfix">如果您在2016年1月11日晚1时(目的地时间)之...<i class="fr"></i></p>
+	</section>
+	<section class="lsf_uo_hotel">
+		<div class="uo_hotel_name">
+			<h2>东京东急涩谷卓越大酒店</h2>
+			<p><span>11月25日-11月26日<span>共<span>1</span>晚（目的地时间为准）</p>
+			<p class="hotType">房型：<span>经济大床房</span></p>
+		</div>
+		<div class="uo_hotel_num">
+			<div class="clearfix">
+				<span class="fl">房间数</span>
+				<span class="sp2 fl"><em id="uo_hotNum">2</em>间</span>
+			</div>
+			<div class="clearfix uo_hot_num_ibox"><i class="uo_hot_num_i1 fr" id="uo_hotDown"></i><i class="uo_hot_num_i2 fr" id="uo_hotUp"></i></div>
+		</div>
+	</section>
+	<section class="lsf_userName">
+		<div class="lsf_un_in">房间1入住人</div>
+		<div class="lsf_un_infor">
+			<input class="lsf_lastName" placeholder="姓（如：Timberlake）">
+			<input class="lsf_firstName" placeholder="名（如：Justin）">
+		</div>
+	</section>
+	<section class="lsf_tele clearfix">
+		<p class="lsf_tele_sp1 fl">手机号</p>
+		<input class="lsf_tele_sp2 fl" placeholder="用于接收短信通知">
+	</section>
+	<section class="lsf_argee clearfix">
+		<i class="fl" id="lsf_agree"></i>通过选择完成预订我承认我已经阅读并接收如下免责声明，<a href="javascript:;">条款及条件</a>
+	和<a href="javascript">用户协议</a>
+	</section>
+	<section class="lsf_point">
+		<p>温馨提示</p>
+		<p>请您在15分钟内完成订单填写，以免酒店房间被他人定完。</p>
+		<p>如您在14:00前到点，可能需要等待方能入住，具体以酒店安排为准</p>
+	</section>
+	<section class="lsf_hid" id="lsf_hid">
+		<p class="lsf_hid_p"></p>
+		<div id="lsf_hid_div1" class="lsf_hid_div1">
+			<section class="lsf_feeDetail" id="lsf_feeDetail">
+				<section class="lsf_fd_sec1">
+					<span>费用明细</span>
+					<span class="clearfix"><i class="fr">1间×1晚</i></span>
+				</section>
+				<section class="lsf_fd_sec2">
+					<span>房费</span>
+					<span class="clearfix"><i class="fr">¥1134</i></span>
+				</section>
+				<section class="lsf_fd_sec2 lsf_fd_sec3">
+					<span>税和服务费</span>
+					<span class="clearfix"><i class="fr">¥159</i></span>
+				</section>
+				<section  class="lsf_fd_sec4">
+					付款方式：预付
+				</section>
+			</section>
+
+		</div>
+	</section>
+	<footer>
+		<p class="lsf_sum">订单总额：<em>￥<strong>1,293</strong></em></p>
+		<p class="lsf_detail clearfix"><span class="fl" id="lsf_details">明细<span><i class="fr"></i></p>
+		<p class="lsf_confirm"><span>确认预订</span></p>
+	</footer>
+</div>
+
+</body>
+</html>

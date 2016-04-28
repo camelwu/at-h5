@@ -1,0 +1,1122 @@
+body{
+    background-color: #fff;
+}
+li{
+    list-style: none;
+}
+i{
+    font-style: normal;
+}
+.icon {
+    background-image: url(../../images/ui/icon.png);
+    background-repeat: no-repeat;
+    background-size: 397px 118px;
+    display: inline-block;
+}
+.icons {
+    background-image: url(../../images/ui/icons.png);
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    display: inline-block;
+}
+.hf-icon{
+    background-image: url(../../images/ui/ticket_hotel.png);
+    background-repeat: no-repeat;
+    background-size: 300px 229px;
+    display: inline-block;
+}
+.jd-icon {
+    background-image: url(../../images/ui/jd-icon.png);
+    background-repeat: no-repeat;
+    background-size: 256px 71px;
+    display: inline-block;
+}
+.sc-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 45px;
+    padding-bottom: 40px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
+}
+.fi-content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 110px;
+    padding-bottom: 40px;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: #F5F4F9;
+}
+/*   首页搜索页开始    */
+.realInfo {
+    background: #FFFFFF;
+    width: 100%;
+}
+.realInfo .place {
+    height: 4.8rem;
+    line-height: 4.8rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 1.6rem;
+    padding: 0 1.0rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+}
+.realInfo .place .origin {
+    height: 4.8rem;
+    width: 35%;
+    line-height: 4.8rem;
+    float: left;
+    border-bottom: 0.1rem solid #dedede;
+}
+.realInfo .place .iconTip {
+    height: 4.8rem;
+    width: 30%;
+    line-height: 4.8rem;
+    float: left;
+}
+.iconTip > div {
+    margin: 0 auto;
+    width: 42px;
+    height: 100%;
+    background-image: url(../../images/ui/air-icons.png);
+    background-repeat: no-repeat;
+    background-position: 38% 13.5%;
+    background-size: 316px 180px;
+    overflow: hidden;
+}
+.realInfo .place .iconTip .active {
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    height: 32px;
+    width: 32px;
+    background: url(../../images/ui/fly-roll.png) no-repeat;
+    background-size: 32px 32px;
+}
+.realInfo .place .destination {
+    height: 4.8rem;
+    width: 35%;
+    line-height: 4.8rem;
+    float: left;
+    text-align: right;
+    border-bottom: 0.1rem solid #dedede;
+}
+.realInfo .dateInfo {
+    height: 4.8rem;
+    line-height: 4.8rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 1.6rem;
+    margin: 0 1.0rem;
+    border-bottom: 0.1rem solid #dedede;
+}
+.title-p {
+    margin-bottom: 0;
+    overflow-y: hidden;
+    height: 2rem;
+    line-height: 2rem;
+}
+.title-p span {
+    font-size: 1.2rem
+}
+.title-p span:first-child {
+    float: left;
+}
+.title-p span:last-child {
+    float: right;
+}
+.ori-des-Date {
+    height: 2.8rem;
+    line-height: 2.8rem;
+    overflow: hidden;
+}
+.originDateInfo {
+    float: left;
+}
+.destinationInfo {
+    float: right;
+}
+.dateTag span {
+    font-size: 1.6rem;
+    color: #000000;
+}
+.dateTag .double-week-one {
+    color:rgb(72,72,72);
+    font-size: 1.4rem;
+}
+.dateTag .double-week-two {
+    color:rgb(72,72,72);
+    font-size: 1.4rem;
+}
+/*   房间信息   */
+.hotelInfo_numb_room{
+    background: #FFFFFF;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    margin: 0 1rem;
+}
+section[class^="hotelInfo_numb"] span.title {
+    display: block;
+    position: absolute;
+    width: 70px;
+    height: 36px;
+    line-height: 36px;
+    color:#fdb330;
+    left: 10px;
+}
+/*section[class^="hotelInfo_numb"] .per-price-control {*/
+/*float: right;*/
+/*padding: 8px 6px;*/
+/*}*/
+/*section[class^="hotelInfo_numb"] .per-price-control span {*/
+/*width: 20px;*/
+/*height: 20px;*/
+/*float: left;*/
+/*background: url(../../images/icons1.png) no-repeat 0 2px;*/
+/*background-size: 320px auto;*/
+/*}*/
+/*section[class^="hotelInfo_numb"] .per-price-control span:first-child {*/
+/*background-position: -26px 2px;*/
+/*}*/
+/*section[class^="hotelInfo_numb"] .per-price-control i {*/
+/*width: 25px;*/
+/*height: 20px;*/
+/*line-height: 20px;*/
+/*float: left;*/
+/*text-align: center;*/
+/*font-size: 13px;*/
+/*}*/
+section.hotelInfo_numb_people {
+    /*border: none;*/
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    background: #FFFFFF;
+    margin: 0 1rem;
+}
+section.hotelInfo_numb_people:last-child{
+    border-bottom: 0;
+}
+.sc-content .sc-content2{
+    border-bottom: 1px solid #ddd;
+}
+section[class^="hotelInfo_numb"] .per-price-control {
+    float: right;
+    padding: 8px 6px;
+}
+section[class^="hotelInfo_numb"] .per-price-control span {
+    width: 20px;
+    height: 20px;
+    float: left;
+    background: url(../../images/ui/icons1.png) no-repeat 0 2px;
+    background-size: 320px auto;
+    background-position: -131px -24px;
+    /*/!*background-position: -109px -24px;*!/  //置灰*/
+}
+section[class^="hotelInfo_numb"] .per-price-control span:first-child {
+    background-position: -26px 2px;
+}
+section[class^="hotelInfo_numb"] .per-price-control i {
+    width: 25px;
+    height: 20px;
+    line-height: 22px;
+    float: left;
+    text-align: center;
+    font-size: 13px;
+}
+section[class^="hotelInfo_numb"] .numbList {
+    margin-left: 70px;
+    overflow: hidden;
+}
+section[class^="hotelInfo_numb"] .numbList:last-child {
+    clear: both;
+    border: none;
+    /*margin-left: 0;*/
+}
+section[class^="hotelInfo_numb"] .numbList span.n_tit {
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    text-indent: 16px;
+}
+section[class^="hotelInfo_numb"] .numbList span.child-age {
+    position: relative;
+    font-size: 1.4rem;
+    color: #999999;
+    top: 8px;
+}
+section[class^="hotelInfo_numb"] .extraChild {
+    overflow: hidden;
+    margin-left: 70px;
+}
+section[class^="hotelInfo_numb"] .extraChild span {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 15px;
+    position: relative;
+    clear: both;
+}
+section[class^="hotelInfo_numb"] .extraChild span:last-child {
+    border: none;
+}
+.spenumbList {
+    clear: both;
+    margin-left: 0 !important;
+}
+.bedList {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 15px;
+    position: relative;
+}
+.childAge {
+    float: right;
+    width: 50px;
+    margin-top: 5px;
+}
+.inp-cage {
+    display: inline-block;
+    width: 65%;
+}
+.child-sui {
+    display: inline-block;
+}
+.noselect {
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 21px;
+    height: 22px;
+    background-position: -211px -94.9px
+}
+.ico_select {
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    width: 21px;
+    height: 22px;
+    background-position: -236px -94.9px;
+}
+.search-button {
+    height: 4.4rem;
+    margin: 2.5rem 0 0 0;
+    padding: 0 1.2rem
+}
+.search-button input {
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+    height: 44px;
+    line-height: 44px;
+    min-width: 60px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #FFB413
+}
+.scer-fo{
+    bottom: 0;
+    margin-top: 10px;
+    text-align: center;
+    color:rgb(153,153,153);
+}
+/*   首页搜索页结束    */
+
+/*   航空公司列表页开始    */
+.big-title {
+    width: 100%;
+    height: 49px;
+    background: #163852;
+    line-height: 4.0rem;
+    padding: 0 1.0rem;
+    font-size: 1.75rem;
+    color: #fff;
+    text-align: center;
+    z-index: 7;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.direction-double {
+    background-image: url(../../images/ui/icon-t.png);
+    background-repeat: no-repeat;
+    background-size: 236.5px 139.5px;
+    background-position: 46% 47%;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+}
+.date-place-info {
+    width: 100%;
+    /*height: 4.9rem;*/
+    background: #163852;
+    padding-bottom: 1.0rem;
+    position: fixed;
+    top: 3.9rem;
+    left: 0;
+    z-index: 45;
+}
+.date-place-info .date-place-info-content {
+    width: 100%;
+    height: 100%
+}
+.date-place-info .date-place-info-content .week-day-info {
+    padding-left: 1.0rem;
+    width: 100%;
+    height: 2.4rem;
+    color: #FFFFFF;
+    line-height: 2.4rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+}
+.date-place-info .date-place-info-content .search-info-tip {
+    /*width: 100%;*/
+    display: block;
+    height: 1.8rem;
+    box-sizing: border-box;
+    line-height: 1.8rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    padding-left: 1.0rem;
+    color: #C0CFDE;
+}
+.ticket-double-date {
+    font-size: 1.6rem;
+    color: #ffb413;
+    position: relative;
+    top: 0.05rem;
+}
+.ticket-double-date span {
+    font-size: 1.0rem;
+    color: #FFFFFF;
+}
+.ticket-double-date span:first-child {
+    font-size: 1.4rem;
+    color: #FFB413;
+}
+.airway-list{
+    width: 100%;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+.airway-list li{
+    position: relative;
+    height: 62px;
+    padding: 15px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+.airway-list li div:nth-child(1){
+    float: left;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    overflow: hidden;
+}
+.airway-list li div:nth-child(1) img{
+    width:100%;
+}
+.airway-list li .airway-name{
+    float: left;
+    margin-left: 10px;
+    font-size: 1.4rem;
+    line-height: 34px;
+}
+.airway-list .aw-price{
+    float: right;
+    color: #fb6a22;
+    font-weight: bold;
+    line-height: 34px;
+}
+.airway-list .aw-price span:first-child{
+    font-size: 1.1rem;
+}
+.airway-list .aw-price span:last-child{
+    font-size: 1.4rem;
+}
+.cho-gou{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    background-position: 80% 31%;
+}
+/*   航空公司列表页结束    */
+
+/*   机票列表页开始    */
+.air-tickets-detail {
+    width: 100%;
+    background: #f5f4f9;
+    position: relative;
+    list-style: none;
+    /*padding-top: 4.8rem;*/
+    margin-bottom: 0;
+}
+.air-tickets-detail li {
+    width: 100%;
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    position: relative;
+    background: #FFFFFF;
+    overflow: hidden;
+    /*margin-bottom: 0.8rem;*/
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+}
+.air-tickets-detail .air-tickets-detail .time-airport {
+    width: 95%;
+    float: left;
+
+}
+.air-tickets-detail .air-tickets-detail .time-airport .go {
+    width: 100%;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.air-tickets-detail .air-tickets-detail .time-airport .go .go-info, .air-tickets-detail .air-tickets-detail .time-airport .back .go-info {
+    width: 100%;
+    padding-top: 0.2rem;
+}
+/*.air-tickets-detail .air-tickets-detail .price-tax {*/
+/*width: 26.2%;*/
+/*float: left;*/
+/*min-height: 10.2rem;*/
+/*position: relative;*/
+/*overflow: visible;*/
+/*}*/
+
+/*.air-tickets-detail .air-tickets-detail .single-side {*/
+/*min-height: 5.32rem;*/
+/*}*/
+.berths {
+    padding-top: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+.berths .air-tickets-detail-berths {
+    list-style: none;
+    width: 100%;
+    padding: 1.0rem 1.0rem;
+    min-height: 5.0rem;
+    background: #ffffff;
+}
+.air-tickets-detail-berths .go-tip {
+    width: 100%;
+    position: relative;
+}
+.price-up{
+    width:100%;
+    background: #dedede;
+    text-align: center;
+    padding: 0.8rem 0;
+    color:#fff;
+}
+.price-up span{
+    color:#fb6a22;
+}
+.go-info {
+    min-height: 6rem;
+}
+.go-info .start-time-info {
+    width: 36%;
+    float: left;
+    padding-top: 0.4rem;
+    position: static;
+}
+.go-info .start-time-info-double {
+    width: 36%;
+    float: left;
+    padding-left: 2.0rem;
+}
+.green-tip {
+    line-height: 1.8rem;
+    margin-bottom: 0;
+    font-size: 1.0rem;
+    color: #a6dad6;
+}
+.go-info .start-time-info .start-icon {
+    display: inline-block;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -316px -60px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 0;
+}
+.go-info .start-time-info .end-icon {
+    display: inline-block;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -340px -60px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 0;
+    top: 0.2rem;
+}
+.start-time-info .time-number {
+    display: inline-block;
+    font-size: 1.8rem;
+    color: #000000;
+    width: 52.55px;
+    margin-right: 28.55px;
+}
+.start-time-info .air-port-word {
+    display: block;
+    font-size: 1.1rem;
+    margin-top: 4.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.go-info .start-time-info .time-number {
+    display: block;
+    font-size: 1.8rem;
+    color: #000000;
+}
+.go-info .start-time-info .air-port-word {
+    display: block;
+    font-size: 1.1rem;
+    margin-top: 4.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.go-info .start-time-info-double .air-port-word {
+    padding-left: 1rem;
+}
+.go-info .total-time-info {
+    width: 28%;
+    float: left;
+    padding: 0.4rem 0;
+    text-align: center;
+}
+.total-time-info .time-hour-minute {
+    display: -moz-box;
+    display: -webkit-box;
+    font-size: 0.8rem;
+    width: 100%;
+    -webkit-box-pack: center;
+    box-pack: center;
+}
+.total-time-info .air-port-word-right {
+    display: -moz-box;
+    display: -webkit-box;
+    font-size: 1.0rem;
+    width: 100%;
+    -webkit-box-pack: center;
+    box-pack: center;
+}
+.total-time-info .arrow-time {
+    display: block;
+    margin: 0 auto 0;
+    width: 72px;
+    height: 0.5rem;
+    background: url(../../images/arrowslong.png) no-repeat 0 0;
+    background-size: 100% 100%;
+}
+.detail-time-info .arrow-time {
+    margin-top: 1.0rem;
+}
+.total-time-info .air-port-word, .air-port-hour {
+    display: inline-block;
+    font-size: 1rem;
+    max-width: 6rem;
+    text-align: center;
+    color: #ffb413;
+    z-index: 7;
+    line-height: 1.1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 auto;
+}
+.go-info .end-time-info {
+    width: 36%;
+    float: left;
+    /*overflow: hidden;*/
+    overflow: visible;
+    text-align: right;
+    padding-top: 0.4rem;
+    position: static;
+}
+.end-time-info .tip-add-days {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    width: 28.55px;
+    font-size: 10px;
+}
+
+.end-time-info .time-number {
+    display: inline-block;
+    font-size: 1.8rem;
+    color: #000000;
+    width: 52.55px;
+    margin-right: 28.55px;
+}
+.end-time-info .air-port-word {
+    display: block;
+    font-size: 1.1rem;
+    margin-top: 4.5rem;
+    position: absolute;
+    right: 28.55px;
+    top: 0;
+}
+.go-trip .end-time-info .air-port-word {
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-left: 2.2rem;
+}
+.small-info-double {
+    padding-left: 1.0rem;
+    margin-bottom: 0.4rem;
+}
+.green-tip {
+    line-height: 1.8rem;
+    margin-bottom: 0;
+    font-size: 1.0rem;
+    color: #a6dad6;
+}
+/*   底部   */
+.hl-bottom {
+    width: 100%;
+    height: 44px;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE10 */
+    display: -webkit-box; /* Safari */
+    display: -webkit-flex; /* Chrome, WebKit */
+    display: box;
+    display: flexbox;
+    display: flex;
+    background: #163852;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    font-size: 10em;
+    color: white;
+    z-index: 61;
+}
+.fo-div {
+    text-align: center;
+    color: white;
+    font-size: 11px;
+    width: 33.3%;
+}
+.hl-icon3 {
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    background-image: url(../../images/ui/icon-t.png);
+    background-size: 233px 140px;
+}
+.red-tip {
+    position: absolute;
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: red;
+    border-radius: 4px;
+    right: 36%;
+    top: 15%;
+}
+.filter {
+    background-position: 50% 74%;
+}
+.filter-select {
+    position: relative;
+    top: -0.42rem;
+}
+.ic-aw{
+    display: block;
+    width: 20px;
+    height: 16px;
+    margin: 0 auto;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    background-position: 28.5% 48%;
+}
+.s-rank {
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    margin-top: 6px;
+    margin-bottom: 5px;
+    background-position: -167px -23px;
+}
+#r-shadow {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 104;
+    display: none;
+}
+.reset-action .reset-action-item {
+    padding: 0 1.0rem;
+    height: 4.0rem;
+    width: 33.3%;
+    float: left;
+    line-height: 4.0rem;
+    text-align: center;
+    font-size: 1.6rem;
+    background: #e9e9e9;
+}
+.reset-action div:first-child {
+    text-align: left;
+}
+.reset-action div:last-child {
+    text-align: right;
+}
+.reset-action-wrap .hot {
+    color: rgb(255, 180, 19);
+}
+.reaction-detail {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    border-top: 1px solid #d0d0d0;
+}
+#filter-bottom {
+    list-style: none;
+    width: 26%;
+    float: left;
+    height: 100%;
+    background: #e9e9e9;
+    margin-bottom: 0;
+}
+#filter-bottom li {
+    list-style: none;
+    width: 100%;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    text-align: center;
+    border-bottom: 0.1rem solid #d0d0d3;
+    margin-bottom: 0;
+    background: #e9e9e9;
+}
+#filter-bottom li.clear-background {
+    background: #FFFFFF;
+}
+.reaction-detail .detail-list {
+    width: 73.9%;
+    float: left;
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+}
+.reaction-detail .detail-list ul, .reaction-detail .detail-list ul li {
+    list-style: none;
+}
+.reaction-detail .detail-list ul.add {
+    width: 100%;
+    padding: 0 1.0rem;
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow-y: scroll;
+}
+.reaction-detail .detail-list ul.add li {
+    margin-bottom: 0;
+    width: 100%;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    text-align: center;
+    border-bottom: 0.1rem solid #d0d0d3;
+    text-align: left;
+}
+.reaction-detail .detail-list ul.add .active {
+    color: rgb(255, 180, 19);
+}
+.reaction-detail .detail-list ul.add .active b {
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    margin-left: -78px;
+    margin-top: 12px;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position: 77% 4%;
+    float: right;
+}
+/*price-modal 原来 -- wusong 20160422*/
+#time-modal, #filter-modal {
+    width: 100%;
+    height:270px;
+    position: fixed;
+    bottom: -126%;
+    background: #FFFFFF;
+    z-index: 105;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+#time-modal li, #filter-modal li {
+    list-style: none;
+    margin-bottom: 0;
+    width: 100%;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    text-align: center;
+    border-bottom: 0.1rem solid #d0d0d3;
+    position: relative;
+}
+
+#time-modal .active, #filter-modal .active {
+    color: rgb(255, 180, 19);
+}
+
+#time-modal .active b{
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    position: absolute;
+    left: 32%;
+    top: 0.9rem;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position: 77% 4%;
+}
+#filter-modal .active b{
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    margin-left: -78px;
+    margin-top: 12px;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position: 77% 4%;
+    float: right;
+}
+/*price-modal->filter-modal -- wusong 20160422*/
+/*   机票列表页结束    */
+
+/*   机票详情页开始    */
+.date-place-info .airph{
+    padding: 15px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.date-place-info .airph span:nth-child(1){
+    color:rgb(255,255,255);
+}
+.date-place-info .airph span:nth-child(2){
+    color:rgb(255,255,255);
+}
+.top-line {
+    width: 100%;
+    position: relative;
+    font-size: 1.55rem;
+    height: 2.0rem;
+    line-height: 2.0rem;
+    color: #000000;
+    padding-left: 1.4rem;
+}
+.top-line > span {
+    margin-left: 0.8rem;
+}
+.top-line > span:first-child {
+    margin-left: 0;
+}
+/*.top-pad-no {*/
+/*padding-left: 0;*/
+/*}*/
+.top-line span {
+    font-size: 14px;
+    color: #45494b;
+    margin-left: 6px;
+}
+.top-line span:first-child {
+    margin-left: 0
+}
+.top-line span.icon-go {
+    background-image: url(../../images/ui/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 450px 185px;
+    background-position: 82.5% 38%;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 0;
+    top: 1px;
+}
+.top-line span.icon-back {
+    background-image: url(../../images/ui/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 450px 185px;
+    background-position: 88.5% 38%;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 0;
+    top: 1px;
+}
+.top-line .detail-word {
+    font-size: 14px;
+    color: #FFB413;
+    /*position: relative;*/
+    position: absolute;
+    top: -4px;
+    right: 0;
+}
+.top-line .detail-hour-word {
+    float: right;
+    font-size: 1.0rem;
+    color: rgb(102, 102, 102);
+    line-height: 2.2rem;
+}
+.time-airport-info {
+    width: 100%;
+    height: 7.2rem;
+    overflow: hidden;
+    padding: 1.0rem 0;
+}
+.time-airport-info .start-time-info, .time-airport-info .total-time-info, .time-airport-info .end-time-info {
+    width: 33.3%;
+    float: left;
+    overflow: visible;
+    position: static;
+}
+.time-airport-info .start-time-info {
+    text-align: left;
+}
+.time-airport-info .total-time-info {
+    text-align: center;
+}
+.time-airport-info .end-time-info {
+    text-align: right;
+}
+.go-trip .bottom-word {
+    line-height: 1.4rem;
+}
+.bottom-word span {
+    line-height: 1.8rem;
+    margin-bottom: 0;
+    font-size: 1.0rem;
+    color:#a9a9a9;
+}
+.bottom-word .left, .bottom-word .right {
+    height: 100%;
+    float: left;
+}
+.bottom-word .left {
+    width: 55%;
+    text-align: left;
+}
+.bottom-word .right {
+    width: 45%;
+    text-align: right;
+}
+.bottom-word .right span {
+    color: #74c8c2
+}
+.back-trip {
+    padding-top: 1.0rem;
+}
+.tip-add-days-seat {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    width: 28.55px;
+    font-size: 10px;
+}
+.top-line .detail-hour {
+    float: right;
+    font-size: 1.0rem;
+    color: #000000;
+}
+.end-time-info .air-port-word-right {
+    display: block;
+    font-size: 1.1rem;
+    margin-top: 4.5rem;
+    position: absolute;
+    right: 28.55px;
+    top: 0;
+}
+.transit-city-hour {
+    text-align: center;
+    font-size: 1.0rem;
+    color: #ffb413;
+    padding: 0.5rem 0;
+}
+.air-detail{
+    margin-bottom: 0!important;
+}
+/*   机票详情页结束    */
+
+/*无结果*/
+.flight-hotel-no-result{
+    position: fixed;
+    overflow-x: hidden!important;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    z-index: 124;
+    background: #F5F4F9;
+}
+.header-wrap {
+    text-align: center;
+    display: table;
+    height: 45px;
+}
+.header-wrap span {
+    display: table-cell;
+    vertical-align: middle;
+    color: #FFFFFF;
+    font-size: 1.7rem;
+}
+.no-result-search {
+    height: 100px;
+    background: pink;
+    margin: 51% 15%;
+    position: relative;
+    background: url(../../images/hotel_flight/no_result@2x.png) no-repeat;
+    background-size: 164px 50px;
+    background-position: 50% 50%;
+}
+.no-result-search p {
+    margin-bottom: 0;
+    width: 100%;
+    color: #aeadaf;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}

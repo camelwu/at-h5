@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+    <title>个人中心(未登录) - 亚洲旅行网</title>
+    <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
+    <link href="../styles/style.css"		rel="stylesheet" type="text/css">
+    <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <style>
+    .mask {
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    background-color: #000;
+	    opacity:0.5;
+    	z-index: 999;
+	}
+    .selbox-footer {
+	    position: fixed;
+	    z-index: 1000;
+	    width: 100%;
+	    bottom: 0px;
+	    background-color: white;
+	}
+	.selbox-opeater {
+		height:40px;
+		line-height:40px;
+		background-color: #f5f4f9;
+		font-size: 1.6rem;
+	}
+	.selbox-ul {
+	    margin:5px 40px;
+	    display: -moz-box;  /* Firefox */
+		display: -ms-flexbox;    /* IE10 */
+		display: -webkit-box;    /* Safari */
+		display: -webkit-flex;    /* Chrome, WebKit */
+		display: flex;
+	    height:195px;
+	    overflow:hidden;
+		flex-direction: row ;justify-content:center;
+	}
+	.selbox-ul li{
+		position:relative;
+		list-style: none;
+		margin-right:34px;margin-bottom:0;
+		/*padding:10px 1px;*/
+		-webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+	    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+	    -webkit-flex: 1;          /* Chrome */
+	    -ms-flex: 1;              /* IE 10 */
+	    flex: 1.0;
+	}
+	.selbox-ul li:first-child {
+		-webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
+	    -moz-box-flex: 2;         /* OLD - Firefox 19- */
+	    -webkit-flex: 2;          /* Chrome */
+	    -ms-flex: 2;              /* IE 10 */
+	    flex: 2.0;
+	}
+	.selbox-ul li:last-child {
+		margin-right:0;
+	}
+	.sel-time {
+	    height:195px;
+	    overflow: auto;
+  		-webkit-overflow-scrolling: touch;
+	}
+	.sel-time span {
+		display:block;
+		font-size:1.8rem;
+		line-height:39px;
+		text-align:center;
+		color:#999;
+	}
+	.sel-box {
+		position:absolute;
+		top:80px;width:100%;
+		pointer-events:none;
+		box-sizing: border-content;
+		height:35px;
+		border-top:2px solid #FFB413;
+		border-bottom:2px solid #FFB413;
+	}
+	</style>
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            <p class="center-text"></p>
+                
+                <em>加载中……</em>
+            </p>
+        </div>
+    </div>
+    <div class="all-elements">
+        <!-- Page Content-->
+        <div id="content" class="snap-content">
+            <div class="user-top half-bottom">
+                <div class="user-header" id="showMessage">
+                    <a href="javascript:window.history.go(-1);" class="icons header-back"> </a>
+                    <a href="javascript:void(0);" class="icon header-msg"> </a>
+                </div>
+                <div class="user-info">
+                    <img id="userIcon" src="../images/ui/user-heads.png">
+                    <a href="user-login.html" id="unloginShow">点击登录，体验更多</a><!--a href="user-login.html" class="button button-red">注册</a-->
+                    <div id="loginShow">
+                    </div>
+                    <div class="unl_div">
+                        <ul class="user-menu">
+                            <li>全部订单</li>
+                            <li>待付款</li>
+                            <li>未出行</li>
+                            <li>待评价</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="s_lists">
+                <li id="bindCard">
+                    <b class="icons open-info"></b><a href="user-infolist.html">常用信息维护 <em>地址、乘机人</em><b class="icons open-arw"></b></a>
+                </li>
+                <li id="setPwd">
+                    <b class="icons open-fav"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">我的收藏<b class="icons open-arw"></b></a>
+                </li>
+                <li id="browsHis">
+                    <b class="icon open-his"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">浏览历史<b class="icons open-arw"></b></a>
+                </li>
+                <li id="setting">
+                    <b class="icon open-set"></b><a id="setdata" href="javascript:void1();">设置<b class="icons open-arw"></b></a>
+                </li>
+                <li id="verifyName">
+                    <b class="icons open-msg"></b><a href="/login/index?redirecturl=/invest/account/account_manager_index">联系我们<b class="icons open-arw"></b></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+		<div class="mask" id="overlay"></div>
+        <div class="selbox-footer" id="selbox">
+		    <div id="opeater" style="height:40px;line-height:40px;background-color: #f5f4f9;font-size: 1.6rem;"><span class="fl" style="margin-left: 10px;color:#999;">取消</span><span class="fr" style="margin-right: 10px;color: #ffb413;">确定</span></div>
+		    <ul class="selbox-ul" id="rank">
+		        <li>
+					<div class="sel-time" id="year">
+				        <span>&nbsp;</span><span>&nbsp;</span>
+						<span>1900年</span>
+				        <span>1901年</span>
+				        <span>1902年</span>
+				        <span>1900年</span>
+				        <span>1901年</span>
+				        <span>1902年</span>
+				        <span>1900年</span>
+				        <span>1901年</span>
+				        <span>1902年</span>
+				        <span>1900年</span>
+				        <span>1901年</span>
+				        <span>1902年</span>
+				    </div>
+				    <div class="sel-box y"></div>
+				</li>
+		        <li>
+					<div class="sel-time" id="mon">
+				        <span>&nbsp;</span><span>&nbsp;</span>
+				        <span>1月</span>
+				        <span>2月</span>
+				        <span>3月</span>
+				        <span>4月</span>
+				        <span>5月</span>
+				        <span>6月</span>
+				        <span>7月</span>
+				        <span>8月</span>
+				        <span>9月</span>
+				        <span>10月</span>
+				        <span>11月</span>
+				        <span>12月</span>
+				        <span>&nbsp;</span><span>&nbsp;</span>
+				    </div>
+				        <div class="sel-box m"></div>
+				</li>
+		        <li>
+					<div class="sel-time" id="day">
+				        <span>1号</span>
+				        <span>2号</span>
+				        <span>3号</span>
+				        <span>4号</span>
+				        <span>5号</span>
+				        <span>6号</span>
+				        <span>7号</span>
+				        <span>8号</span>
+				        <span>9号</span>
+				        <span>10号</span>
+				        <span>11号</span>
+				        <span>12号</span>
+				        <span>13号</span>
+				        <span>14号</span>
+				        <span>15号</span>
+				        <span>16号</span>
+				        <span>17号</span>
+				        <span>18号</span>
+				        <span>&nbsp;</span><span>&nbsp;</span>
+				    </div>
+				    <div class="sel-box d"></div>
+				</li>
+		    </ul>
+	    </div>
+    <script src="../js/require.js" data-main="../js/user.js"></script>
+    <script>
+    var fns = function(){console.log("ffff");};
+window.onscroll = function(){
+	throttle(fns);
+};
+function Selbox() {
+	if(!arguments.length)return;
+    this.initialize.apply(this, arguments);
+	this.result=[];
+}
+Selbox.prototype = {
+	constructor:Selbox,
+    _Btn:[
+        '<span style="float:left;margin-left: 10px;color:#999;" id="cancel">取消</span>',
+        '<span style="float:right;margin-right: 10px;color: #ffb413;" id="ok">确定</span>',
+    ],
+    // 模板数组
+    _template :[
+        '<ul>',
+        '<li></li>',
+        '<li></li>',
+        '<li></li>',
+        '</ul>'],
+    // 初始化对象
+    initialize :function (options) {
+        this.id = options.id; // input的ID
+        this.num = options.num;//显示数量
+        this.time = options.time;//已有时间
+        this.op = 0;//已操作次数
+        this.input = document.getElementById(this.id); // 获取INPUT元素
+		this.inputEvent(); // input的事件绑定，获取焦点事件
+        this.outClick(); // 区域外事件绑定
+    },
+	createContainer:function(){var Cbtn = '',Obtn = '';
+		//增加遮罩
+		var odiv = document.createElement('div');
+			odiv.className = "mask";
+		document.body.appendChild(odiv);
+		//设置层
+		if (document.getElementById("sel")) {
+			var bhder = document.getElementById("sel");
+			bhder.className = "selbox-footer";
+		} else {
+			var bhder = document.createElement('div');
+			bhder.id = "sel";
+			bhder.className = "selbox-footer";
+			document.body.appendChild(bhder);
+		}
+		//头部层
+		bhder.innerHTML = Cbtn+""+Obtn;
+		//<ul class="selbox-ul" id="rank">
+		var rank = document.createElement('ul');
+		rank.id = "rank";
+		rank.className = "selbox-ul";
+		document.body.appendChild(opeater);
+	},
+    // 移除DIV
+    removeContainer:function(){
+        var odiv = document.getElementById('selbox');
+        if(!!odiv) odiv.parentNode.removeChild(odiv);
+        var odiv = document.getElementById('overlay');
+        if(!!odiv) odiv.parentNode.removeChild(odiv);
+    },
+    // 取消，确认按钮事件
+    btnEvent:function(){
+        var that = this,
+        Cbtn = document.getElementById('cancel'),
+		Obtn = document.getElementById('ok');
+        Cbtn.onclick = function(){
+            that.removeDate();
+        };
+        Obtn.onclick = function(){
+            var idate = new Date(that.year , that.month, that.date);
+            that.drawDate(idate);
+        };
+    },	
+    // 渲染日期
+    drawDate:function (odate) { // 参数 odate 为日期对象格式
+        var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+        var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+        this.dateWarp = dateWarp = document.createElement('div');
+        dateWarp.className = 'calendar';
+        dateWarp.innerHTML = this._template.join('');
+        this.year = year = odate.getFullYear();
+        this.month = month = odate.getMonth()+1;
+        this.date = date = odate.getDate();
+        this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+		tims = this.time;
+		textNode = document.createTextNode(year + '年' + month + '月');
+		titleDate.appendChild(textNode);
+		//this.btnEvent();
+
+        // 获取模板中唯一的DD元素
+        dd = _CalF.$('dd',dateWarp)[0];
+        // 获取本月天数
+        days = new Date(year, month, 0).getDate();
+        // 获取本月第一天是星期几
+        weekStart = new Date(year, month-1,1).getDay();
+        // 开头显示空白段
+        for (i = 0; i < weekStart; i++) {
+            ddHtml.push('<a>&nbsp;</a>');
+        }
+        // 循环显示日期
+        for (i = 1; i <= days; i++) {
+            if (year < nowyear) {
+                ddHtml.push('<a class="disabled">' + i + '</a>');
+            } else if (year == nowyear) {
+                if (month < nowmonth + 1) {
+                    ddHtml.push('<a class="live disabled">' + i + '</a>');
+                } else if (month == nowmonth + 1) {
+                    if (i < nowdate){
+                    	ddHtml.push('<a class="live disabled">' + i + '</a>');
+                    }else{
+						m=month<10?'0'+month:month;
+						d=i<10?'0'+i:i;
+						if(tims[year+'-'+m+'-'+d]){
+							pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+						}else{
+							pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+						}
+						i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
+					}
+                } else if (month == nowmonth + 2) {
+					m=month<10?'0'+month:month;
+					d=i<10?'0'+i:i;
+					if(tims[year+'-'+m+'-'+d]){
+						pstr = '<a class="live data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
+					}else{
+						pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+					}
+					ddHtml.push(pstr);
+				} else {
+                    ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+                }
+            } else if (year > nowyear) {
+                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+            }
+        }
+        dd.innerHTML = ddHtml.join('');
+        
+        // 添加
+        this.container.appendChild(dateWarp);
+        //IE6 select遮罩
+        var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+        if(ie6) dateWarp.appendChild(this.createIframe());
+        // A link事件绑定
+        this.linkOn();
+    },
+    // 表单的事件
+    inputEvent:function(){
+        var that = this;
+        var date = new Date();
+        var nowY = date.getFullYear();
+        var nowM = date.getMonth();
+        var nowD = date.getDate();
+		_CalF.bind(this.input, 'click',function(){
+            that.createContainer();
+	        for(var i=0;i<that.num;i++){
+	        	var idate = new Date(nowY , nowM+i, nowD);
+	        	that.drawDate(idate);
+	        }
+		});
+    }
+};
+    </script>
+</body>
+</html>
