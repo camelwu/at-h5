@@ -445,7 +445,7 @@ var flight_list = {
                         for (var l = 0; l < seatConditionLis.length; l++) {
                             seatConditionLis[l].className =(l == 0)?"tag-item active" :"tag-item";
                         }
-                        changeFlightInfo.data.ScreenFields = [0];
+                        changeFlightInfo.data.ScreenFileds = [0];
                         changeFlightInfo.data.flightStartTime = 0;
                     };
                     var confirmFunction=function(){
@@ -455,10 +455,11 @@ var flight_list = {
                                 var direct_type = directFly[i].getAttribute('data-i');
                                 switch (direct_type){
                                     case "false" :
-                                        changeFlightInfo.data.ScreenFields = flight_list.replaceElement(changeFlightInfo.data.ScreenFields,1,0);
+                                        changeFlightInfo.data.ScreenFileds = flight_list.replaceElement(changeFlightInfo.data.ScreenFileds,1,0);
                                         break;
                                     case "true" :
-                                        changeFlightInfo.data.ScreenFields.push(1);
+                                      console.log(changeFlightInfo.data)
+                                        changeFlightInfo.data.ScreenFileds.push(1);
                                         break;
                                     default :void(0);
                                 }
@@ -470,10 +471,10 @@ var flight_list = {
                                 var share_type = filterShare[j].getAttribute('data-i');
                                 switch (share_type){
                                     case "false" :
-                                        changeFlightInfo.data.ScreenFields = flight_list.replaceElement(changeFlightInfo.data.ScreenFields,2,0);
+                                        changeFlightInfo.data.ScreenFileds = flight_list.replaceElement(changeFlightInfo.data.ScreenFileds,2,0);
                                         break;
                                     case "true" :
-                                        changeFlightInfo.data.ScreenFields.push(2);
+                                        changeFlightInfo.data.ScreenFileds.push(2);
                                         break;
                                     default :void(0);
                                 }
@@ -485,23 +486,23 @@ var flight_list = {
                                 var time_type = startTime[k].getAttribute('data-i');
                                 switch (time_type){
                                     case "false" :
-                                        changeFlightInfo.data.ScreenFields = flight_list.replaceElement(changeFlightInfo.data.ScreenFields,3,0);
+                                        changeFlightInfo.data.ScreenFileds = flight_list.replaceElement(changeFlightInfo.data.ScreenFileds,3,0);
                                         changeFlightInfo.data.flightStartTime = 0;
                                         break;
                                     case "1" :
-                                        changeFlightInfo.data.ScreenFields.push(3);
+                                        changeFlightInfo.data.ScreenFileds.push(3);
                                         changeFlightInfo.data.flightStartTime = 1;
                                         break;
                                     case "2" :
-                                        changeFlightInfo.data.ScreenFields.push(3);
+                                        changeFlightInfo.data.ScreenFileds.push(3);
                                         changeFlightInfo.data.flightStartTime = 2;
                                         break;
                                     case "3" :
-                                        changeFlightInfo.data.ScreenFields.push(3);
+                                        changeFlightInfo.data.ScreenFileds.push(3);
                                         changeFlightInfo.data.flightStartTime = 3;
                                         break;
                                     case "4" :
-                                        changeFlightInfo.data.ScreenFields.push(3);
+                                        changeFlightInfo.data.ScreenFileds.push(3);
                                         changeFlightInfo.data.flightStartTime = 4;
                                         break;
                                     default :void(0);
