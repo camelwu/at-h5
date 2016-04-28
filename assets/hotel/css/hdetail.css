@@ -791,7 +791,7 @@ html {
     /*border-bottom: 1px solid rgba(121, 111, 121, 0.39)*/
 }
 #popup_more{
-    max-height: 234px;
+    max-height: 344px;
 }
 div#popup_container{
     position: fixed;
