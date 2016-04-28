@@ -14,7 +14,7 @@
         /*支付类型*/
         var paymentType={
             "Visa":{id:1,name:"Visa信用卡"},
-            "Mast":{id:20,name:"万事达信用卡"},
+            "Master":{id:20,name:"万事达信用卡"},
             "Paypal":{id:21,name:"万事达信用卡"},
             "UnionPayCNY":{id:28,name:"万事达信用卡"},
             "AliPayCNY":{id:27,name:"万事达信用卡"},
