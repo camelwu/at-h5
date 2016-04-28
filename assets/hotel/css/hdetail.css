@@ -59,6 +59,18 @@ html {
 	background-position: -37px -14px;
 }
 
+.h-div1{
+	float: right;
+	padding:0 3px;
+	height:15px;
+	line-height:15px;
+	color: white;
+	text-align: center;
+	-webkit-text-size-adjust:none;font-size: 1rem;
+	background-color: #55bfb7;
+	margin-right:4px;
+}
+
 .d-icon {
     background-image: url(../../images/ui/icons.png);
     background-repeat: no-repeat;

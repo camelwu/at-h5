@@ -439,14 +439,19 @@
 			hotelDetail.sourceData = result;
 			console.log(hotelDetail.sourceData);
 
-      var isFreeWifi = '';
-      var isFreeTransfer = '';
+      var isFreeWifi = '',isFreeTransfer = '',isCashRebate = '',isFreeCityTour = '';
       var hotelGenInfo = result.data[0].hotelGenInfo;
       if (hotelGenInfo.isFreeWiFi) {
         isFreeWifi += '<span class="h-wifi"></span>';
       }
       if (hotelGenInfo.isFreeTransfer) {
         isFreeTransfer += '<span class="h-transfer"></span>';
+      }
+      if (hotelGenInfo.isCashRebate) {
+        isCashRebate = '<div class="h-div1" style="background-color: #ffb412">返现</div>';
+      }
+      if (hotelGenInfo.isFreeCityTour) {
+        isFreeCityTour = '<div class="h-div1">免费景点</div>';
       }
 
 			headerStr += '<div class="header detailHeader" id="vlm-h-1"><a href="javascript:window.history.go(-1);" class="header-back" style="z-index: 4"><i class="icons go-back"></i></a><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) +'</h3></div>';
