@@ -667,14 +667,16 @@
 					var cloneObj=children.clone(true);
 					cloneObj.show();
 					cloneObj.find('b').each(function(){
-						if($(this).attr("data-elementName")!="undefined"){
+
+						if($(this).attr("data-elementName")!= undefined){
 							if($(this).attr("data-elementName")=="idNumber") {
 								$(this).html(data[i].listTravellerIdInfo[0].idNumber);
-							}
-							else{
+							}else{
 								$(this).html(data[i].traveller[$(this).attr("data-elementName")]);
 							}
-						}
+						}else{
+              $(this).html(data[i].traveller.sexName);
+            }
 					});
 					cloneObj.find('input').val(data[i].traveller.travellerId);
 					htmlObj.append(cloneObj);
@@ -689,7 +691,7 @@
 					var cloneObj=children.clone(true);
 					cloneObj.show();
 					cloneObj.find('input').each(function(){
-						if($(this).attr("data-elementName")!="undefined"){
+						if($(this).attr("data-elementName")!= undefined ){
 							if($(this).attr("data-elementName")=="idNumber") {
 								$(this).attr("value",data[i].listTravellerIdInfo[0].idNumber);
 							}
@@ -699,7 +701,7 @@
 						}
 					});
 					children.find('span').each(function(){
-						if(typeof($(this).attr("data-elementName"))!="undefined"){
+						if(typeof($(this).attr("data-elementName"))!=undefined){
 							var d=data[0].traveller[$(this).attr("data-elementName")];
 							var Country=getCountryName(d);
 							$(this).attr("data-tel-code",Country.CountryCode);
@@ -713,7 +715,7 @@
 		}
 		else{
 			htmlObj.find('input').each(function(){
-				if($(this).attr("data-elementName")!="undefined" && data.length>0){
+				if($(this).attr("data-elementName")!=undefined && data.length>0){
 					if($(this).attr("data-elementName")=="idNumber") {
 						$(this).attr("value",data[0].listTravellerIdInfo[0].idNumber);
 					}
@@ -723,7 +725,7 @@
 				}
 			})
 			htmlObj.find('span').each(function(){
-				if($(this).attr("data-elementName")!="undefined" && data.length>0){
+				if($(this).attr("data-elementName")!=undefined && data.length>0){
 					$(this).attr("value", data[0].traveller[$(this).attr("data-elementName")]);
 
 				}

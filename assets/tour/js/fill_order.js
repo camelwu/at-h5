@@ -145,7 +145,7 @@
                 };
                 var checkInDate = dateObj.CheckInDate.split("T")[0].split("-");
                 var checkOutDate = dateObj.CheckOutDate.split("T")[0].split("-");
-                
+
                 switch (airFli){
                     case '0':   // None => 0
                         $('#flight-air').remove();
@@ -171,7 +171,7 @@
 //                        });
                         //初始化content3_CheckInDate scroller组件
                         console.info(localStorage.info);
-                        
+
                         var arriveDate = new Scroller({id: "content3_CheckInDate", type:"dateTime",cont:"content3_CheckInDate",startDate:new Date(checkInDate[0],checkInDate[1],checkInDate[2]),num:2});
                         var leftDate = new Scroller({id: "content4_CheckInDate", type:"dateTime",cont:"content4_CheckInDate",startDate:new Date(checkOutDate[0],checkOutDate[1],checkOutDate[2]),num:1});
 
@@ -415,7 +415,7 @@
                 }
                 //接机信息
                 var dateObj = JSON.parse(window.localStorage.info);
-               
+
                 var checkInDate = dateObj.CheckInDate;
                 var checkOutDate = dateObj.CheckOutDate;
                 if($('#flight-air').css('display') == 'block'){
@@ -428,13 +428,13 @@
                         if(arrivalFlightNo = ''){
                             fli.ArrivalFlightNo = "None";
                         }else{
-                            fli.ArrivalFlightNo=departFlightNo;
+                            fli.ArrivalFlightNo=arrivalFlightNo;
                             if(dateTime.indexOf("T") > -1){
                                 fli.ArrivalDateTime=dateTime;
                             }else{
                                 fli.ArrivalDateTime=dateTime[0]+'-' + dateTime[1]+'-'+dateTime[2]+'T'+dateTime[3]+':'+dateTime[4]+':00';
                             }
-                            
+
                         }
                     }
                     if($('#content4').css('display') == 'block')
@@ -451,7 +451,7 @@
                             }else{
                                 fli.DepartDateTime=departDate[0]+'-' + departDate[1]+'-'+departDate[2]+'T'+departDate[3]+':'+departDate[4]+':00';
                             }
-                            
+
                         }
                     }
                     Parmeters.Parameters.FlightDetails=fli;
@@ -613,6 +613,6 @@
         var s=oDate.getSeconds();
         localStorage.orderTime=year+'-'+mon+'-'+day+' '+h+':'+m+':'+s;
     }
-    
-    
+
+
 })()

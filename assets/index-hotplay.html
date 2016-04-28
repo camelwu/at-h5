@@ -46,10 +46,10 @@
                 </a>
             </div>
             <div class="s-type-four">
-                <div class="menu-active">海岛</div>
-                <div>亲子</div>
-                <div>户外</div>
-                <div>人文</div>
+                <div class="menu-active" data-num="1">海岛</div>
+                <div data-num="2">亲子</div>
+                <div data-num="3">户外</div>
+                <div data-num="4">人文</div>
             </div>
             <ul class = "hotspot" id="hotspot">
                 <li>
@@ -169,16 +169,8 @@
                              menu[j].className = '';
                         }
                         target.className = 'menu-active';
-                        console.log(target.innerHTML);
-                        if(target.innerHTML =="东南亚"){
-                            num = 1
-                        }else if(target.innerHTML =="港澳"){
-                            num = 2
-                        }else if(target.innerHTML =="日韩"){
-                            num = 3
-                        }else if(target.innerHTML =="欧美"){
-                            num = 4
-                        }
+                        
+                        num = target.getAttribute("data-num");
                         var tmp={
                             "Parameters":{"SiteType":num,"PageNo":1,"PageSize":10},
                             "ForeEndType":3,
