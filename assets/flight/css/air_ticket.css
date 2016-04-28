@@ -2461,7 +2461,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .order-top p.go-line span {
     display: inline-block;
-    font-size: 1.4rem;
+    /*font-size: 1.4rem;*/
     color: #000000;
     margin-left: 0.2rem;
 }
@@ -2470,7 +2470,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .fix-width {
-    max-width: 5rem;
+    max-width: 4rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -2508,7 +2508,7 @@ h1, h2, h3, h4, h5, h6 {
     background-size: 217.5px 130.5px;
     background-position: 12.8% 19.2%;
     position: absolute;
-    right: 68px;
+    right: 62px;
     top: 1px;
 }
 
