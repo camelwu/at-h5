@@ -44,6 +44,21 @@ html {
     display: inline-block;
 }
 
+.h-wifi, .h-transfer {
+	display: inline-block;
+	width: 20px;
+	height: 15px;
+	background-image: url(../../images/icon-h.png);
+	background-repeat: no-repeat;
+	background-size: 402px 174px;
+	background-position: -75px -14px;
+	vertical-align: -4px;
+}
+
+.h-transfer {
+	background-position: -37px -14px;
+}
+
 .d-icon {
     background-image: url(../../images/ui/icons.png);
     background-repeat: no-repeat;
