@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="green">
+	<meta name="Keywords" content="亚洲旅行网">
+	<meta name="Description" content="境外专业旅行服务提供机构">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+	<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+	<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+	<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+	<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+	<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+	<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+	<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+	<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+	<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+	<title>套餐详情 - 亚洲旅行网</title>
+	<link href="../styles/framework.css" rel="stylesheet"/>
+	<link href="../styles/style.css" rel="stylesheet">
+	<link href="../styles/swipebox.css"	rel="stylesheet">
+	<link href="../styles/tips.css"	rel="stylesheet">
+	<link href="../css/packages_detail.css" rel="stylesheet">
+</head>
+<body>
+<div id="preloader">
+	<div id="status">
+		
+	</div>
+</div>
+<div class="all-elements">
+	<!--   顶部   -->
+	<header class="top">
+		<a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+		<span class="title">套餐详情</span>
+	</header>
+	<!--   内容   -->
+	<div class="sc-content">
+		<section id="packageBox" class="picBox">
+			<!--<div>-->
+			<!--<img src="../images/03-1_02.jpg" alt="">-->
+			<!--<div class="pd-mb">-->
+			<!--<div>八达岭长城 + 秋季采摘水果一日游</div>-->
+			<!--<div>套餐编号：12345678</div>-->
+			<!--</div>-->
+			<!--</div>-->
+		</section>
+		<section id="tourTime" class="page_title">
+			<!--<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>2015-03-01至2016-12-31</i></h3>-->
+		</section>
+		<section class="pageTag" id="pageTag">
+			<span class="current" data-c-id="pageTag_1">概况</span>
+			<span data-c-id="pageTag_2">注意事项</span>
+			<span data-c-id="pageTag_3">条款和条件</span>
+		</section>
+
+		<section class="detailBox">
+			<div id="pageTag_1">
+				<p class="pd-contitle">
+					套餐包括
+				</p>
+				<div id="pack-detail-ht" style="margin-bottom: 4px">
+
+				</div>
+				<ul id="tag1_con">
+					<!--<li>06：30崇文门新侨诺富特饭店 （地铁2号线、5号线“崇文门站”A/B口出既是）</li>-->
+				</ul>
+			</div>
+			<div id="pageTag_2" style="display:none;"></div>
+			<div id="pageTag_3" style="display:none;"></div>
+		</section>
+
+	</div>
+	<!--   底部预订   -->
+	<div id="packagePrice" class="package_reserve">
+		<!--<span class="all_num">套餐总额：<i>7816</i>起/人（<b></b>人起订）</span>-->
+		<!--<a href="order-data-people.html" class="reserve">预订</a>-->
+	</div>
+</div>
+<!--   背景块   -->
+<!--<div class="mask" id="r-mb"></div>-->
+<!--   明细块   -->
+<!--<div class="detail_expenses" id="detail_expenses">-->
+<!--<ul>-->
+<!--<li>费用明细</li>-->
+<!--<li><span>酒店+景点</span><i>7816</i></li>-->
+<!--</ul>-->
+<!--</div>    -->
+
+<script src="../js/scenic.js"></script>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script id="tpl_GetSpotOverview" type="text/template">
+	{% for(var i=0;i < tours.length;i++){ %}
+	<strong class="viewTitel">{%=tours[i].tourName%}</strong><li class="viewContent">{%=tours[i].overview%}</li>
+	{% } %}
+</script>
+<script id="tpl_GetSpotImportantNotes" type="text/template">
+	{% for(var i=0;i < tours.length;i++){ %}
+	<strong class="noteTitel">{%=tours[i].tourName%}</strong><div class="noteContent">{%=tours[i].importantNotes%}</div>
+	{% } %}
+</script>
+<script id="tpl_GetTermsConditions" type="text/template">
+	{%=termsConditions%}
+</script>
+<script>
+	var maxExtensionNight;
+	function go2order() {
+		var url = '../tour/order-data-people.html';
+		if (vlm.checkLogin(url)) {
+			window.top.location.href = url;
+		}
+	}
+	(function() {
+		var ww = this, val = vlm.parseUrlPara(window.location.href);
+		vlm.init();
+		var package_detail = function() {
+			//   套餐数据
+			var getPackage = function() {
+				var tpl1 = [
+					'<div>',
+					'{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}',
+					'<img src="{%=pictureURL%}" alt="image">',
+					'{% }else{ %}',
+					'<a href="{%=imgs[0].imageURL%}" class="swipebox" title="1/{%=(imgl)%}">' +
+					'<img src="{%=imgs[0].imageURL%}" alt="image">',
+					'{% for(var i=1;i < imgl;i++){ %}',
+					'<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}">' +
+					'<img src="{%=imgs[i].imageURL%}" alt="image"></a>',
+					'{% }} %}',
+					'<div class="pd-mb">',
+					'<div>{%=packageName%}</div>',
+					'<div>产品编号：{%=packageRefNo%}</div>',
+					'</div>',
+					'{% if(imgl>0){ %}',
+					'<div style="position:absolute;top:12%;right:15px;font-size: 1.6rem;color:#ffffff;">{%=(imgl)%}张</div>',
+					'{% } %}',
+					'</div>'
+				].join('');
+				//var tpl1 = ['<div>', '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}', '<img src="{%=pictureURL%}" alt="image">', '{% }else{ %}', '<a href="{%=pictureURL%}" class="swipebox" title="1/{%=(imgl+1)%}">' + '<img src="{%=pictureURL%}" alt="image">', '{% for(var i=0;i < imgl;i++){ %}', '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+2)%}/{%=(imgl+1)%}">' + '<img src="{%=imgs[i].imageURL%}" alt="image"></a>', '{% }} %}', '<div class="pd-mb">', '<div>{%=packageName%}</div>', '<div>套餐编号：{%=packageRefNo%}</div>', '{% if(imgl>0){ %}', '<div style="position:absolute;bottom:0;right:15px;font-size: 1.6rem;">{%=(imgl+1)%}张</div>', '{% } %}', '</div>', '</div>'].join('');
+				var tpl2 = ['<h3><b class="jd-icon s-you"></b>旅行适用时间：<i>{%=departValidFrom.substr(0,10)%}至{%=departValidTo.substr(0,10)%}</i></h3>'].join('');
+				var tpl3 = ['<span class="all_num">套餐总额：<i>' + val.productPrice + '</i>起/人（<b>{%=minPax%}</b>人起订）</span>', '{% if(' + val.status + '=="1"){ %}', '<a href="javascript:go2order();" class="reserve">预订</a>', '{% } %}'].join('');
+				var tpl4 = ['{%=inclusiveItem%}'].join('');
+				var tmp = {
+					"Parameters" : {
+						"PackageID" : val.packageID
+					},
+					"ForeEndType" : 3,
+					"Code" : "0202"
+				};
+				vlm.loadJson("", JSON.stringify(tmp), package_back);
+				function package_back(ret) {
+					var json = ret;
+					console.log(json);
+					if (json.success) {
+						var data = json.data;
+						var html_pb = template(tpl1, data);
+						var html_tt = template(tpl2, data);
+						maxExtensionNight = data.maxExtensionNight;
+						var html_pp = template(tpl3, data);
+						var html_det = template(tpl4, data);
+						var tpl_GetSpotOverview = template("tpl_GetSpotOverview", data);
+						var tpl_GetSpotImportantNotes = template("tpl_GetSpotImportantNotes", data);
+						var tpl_GetTermsConditions = template("tpl_GetTermsConditions", data);
+						$("#packageBox").html(html_pb);
+						$('#tourTime').html(html_tt);
+						$('#tag1_con').html(tpl_GetSpotOverview);
+						$('#pageTag_2').html(tpl_GetSpotImportantNotes);
+						$('#pageTag_3').html(tpl_GetTermsConditions);
+						$('#packagePrice').html(html_pp);
+						$('#pack-detail-ht').html(html_det);
+						localStorage.packageID = val.packageID;
+						localStorage.productPrice = val.productPrice;
+						$('.swipebox').click(function() {
+							$('.gallery').hide(0);
+							$('.portfolio-wide').hide(0);
+						});
+						$(".swipebox").swipebox({
+							useCSS : true,
+							hideBarsDelay : 0
+						});
+						$('.viewTitel').click(function(){
+							$('.viewContent').eq($(this).index('.viewTitel')).toggle();
+						});
+						$('.noteTitel').click(function(){
+							$('.noteContent').eq($(this).index('.noteTitel')).toggle();
+						});
+						if (data.length == 0) {
+							jAlert("抱歉暂时没有数据", "提示");
+						}
+					} else {
+						console.log(json);
+						jAlert(json.message, "提示");
+					}
+				}
+			};
+
+			return {
+				//FlashLoad : flashLoad,
+				GetPackage : getPackage
+			};
+		}();
+		ww.MT = ww.MT || {};
+		ww.MT.load = function() {
+			//package_detail.FlashLoad();
+			package_detail.GetPackage();
+		};
+		MT.load();
+
+	})();
+</script>
+</body>
+</html>

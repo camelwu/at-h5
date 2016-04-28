@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>填写订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="../styles/framework.css" type="text/css" rel="stylesheet">
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <link href="../styles/tips.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/fill-in-order.css">
+    <link rel="stylesheet" type="text/css" href="../css/date_select.css">
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">
+            
+        </div>
+    </div>
+    <div class="all-elements">
+        <!--   顶部   -->
+        <header class="header">
+            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+            <h3>填写订单</h3>
+        </header>
+        <!--   内容   -->
+        <div class="sc-content">
+            <section class="sce-ticket-wrap min320">
+                <div class="sce-ticket">
+                    <section class="sce-introduce">
+                        <p class="sce-introduce-txt fl"><span class="sce-introduce-span"></span></p>
+                        <!--<div class="travel-noon fl">-->
+                            <!--<a href="javascript:;" class="fa-noon on">上午</a>-->
+                            <!--<a href="javascript:;" class="fa-noon">下午</a>-->
+                        <!--</div>-->
+                    </section>
+                    <div id="detailBox">
+                        <section id="hotel_detail" class="sce-ticket">
+                            <!--<div class="sce-introduce-txt">曼谷王子皇宫酒店</div>-->
+                            <!--<div class="detail-span">房型 豪华海景房2间</div>-->
+                            <!--<div class="detail-span">2016-03-31 至 2016-04-02 2晚</div>-->
+                        </section>
+                        <section id="tour_detail" class="sce-ticket">
+                            <!--<div>-->
+                                <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
+                                <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
+                                <!--<div class="detail-span">成人票 2张</div>-->
+                                <!--<div class="detail-span">儿童票 1张</div>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
+                                <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
+                                <!--<div class="detail-span">成人票 2张</div>-->
+                                <!--<div class="detail-span">儿童票 1张</div>-->
+                            <!--</div>-->
+                        </section>
+                     </div>
+                    <div class="open-close">
+                        <b class="icons de-close"></b>
+                    </div>
+                </div>
+            </section>
+			<section class="sce-line"></section>
+            <!--出行人资料-->
+            <section class="personal_data_box">
+                <div class="personal_data" id="per-room-wrap">
+                    <!--<div class="per_data">-->
+                        <!--<span class="title"><i>房间1</i></span>-->
+                        <!--<ul>-->
+                            <!--<section class="li_section_box">-->
+                                <!--<li>-->
+                                    <!--<span class="list_tit">成人1：</span>-->
+                                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
+                                <!--</li>-->
+                                <!--<li class="trave-li">-->
+                                    <!--<span class="list_tit2">姓：</span>-->
+                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
+                                    <!--<span class="list_tit2">名：</span>-->
+                                    <!--<span class="list_con2 name-inp"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<span class="list_tit">护照：</span>-->
+                                    <!--<span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>-->
+                                <!--</li>-->
+                            <!--</section>-->
+                            <!--<section class="li_section_box">-->
+                                <!--<li>-->
+                                    <!--<span class="list_tit">儿童1：</span>-->
+                                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
+                                <!--</li>-->
+                                <!--<li class="trave-li">-->
+                                    <!--<span class="list_tit2">姓：</span>-->
+                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
+                                    <!--<span class="list_tit2">名：</span>-->
+                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
+                                <!--</li>-->
+                            <!--</section>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                </div>
+            </section>
+            <!--联系人资料-->
+            <section class="personal_data_box">
+                <div class="personal_data" id="personal_data">
+                    <span class="title"><i>联系人资料</i><b><a href="javascript:;" class="add-contact"></a></b></span>
+                    <ul id="contact">
+                        <li>
+                            <span class="list_tit">姓：</span><input class="list_inp_name list_inp2" id="list-lastname" type="text" placeholder="Li"  data-elementName="lastName"  />
+                            <span class="list_tit">名：</span><input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="Shimin" data-elementName="firstName"  />
+
+                        </li>
+                        <li>
+                            <span class="list_tit">手机：</span>
+                            <span class="list_con"><input class="list_inp2" id="list_con_tel" type="tel" placeholder="用于接收短信通知" data-elementName="mobilePhone"  /></span>
+                        </li>
+                        <li>
+                            <span class="list_tit">邮箱：</span>
+                            <span class="list_con"><input class="list_inp2" id="list_con_email"  type="text" placeholder="用于接收邮件通知" data-elementName="email"  /></span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+			<!--航班信息-->
+            <section class="personal_data_box" id="flight-air">
+                <div class="personal_data">
+                    <span class="title"><i>接送服务（选填）</i><i id="send_btn" class="send-impo"></i></span>
+                    <div class="content2" id="content3">
+						<div class="nav2-left">
+							<span class="nav2-lefttop">抵达</span>
+						</div>
+                        <div class="input_flight">
+                            <input class="checkInDate" name="" value="" placeholder="航班号">
+                        </div>
+                        <div class="nav2-center" id="nav2-center-dep">
+                            <div class="nav2-centertop">
+                                <input name="CheckInDate" id="content3_CheckInDate" class="content3_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
+                            </div>
+                        </div>
+					</div>
+					<div class="content2" id="content4">
+						<div class="nav2-left">
+							<span class="nav2-lefttop">离开</span>
+						</div>
+                        <div class="input_flight">
+                            <input class="" name=""value="" placeholder="航班号">
+                        </div>
+                        <div class="nav2-center" id="nav2-center-arr">
+                            <div class="nav2-centertop">
+                                <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
+                            </div>
+                        </div>
+					</div>
+                </div>
+            </section>
+
+            <div class="order-notice">
+                <i class="order-notice-btn"></i>
+                <span class="order-notice-txt">已经阅读亚洲旅行网<span id="state_btn" style="color: #ffbf4b">旅行须知</span></span>
+            </div>
+        </div>
+        <!--   底部预订   -->
+       <div class="package_reserve">
+            <span class="all_num">套餐总额：<i></i></span>
+            <!--<span class="separate_num">分开预订：<i></i></span>-->
+            <i class="itemized" id="show_de">明细</i>
+            <a href="javascript:;" class="reserve">预订</a>
+        </div>
+        <!--底部-->
+        <!-- <footer class="order-amount">
+            <div class="order-total-wrap">
+                <span>订单金额：</span>
+                <span class="order-total-fare">¥56</span>
+                <i class="itemized" id="show_de"></i>
+            </div>
+            <a href="order-pay.html" class="order-total-btn">预订</a>
+        </footer> -->
+    </div>
+    <!--   背景块   -->  
+    <div class="mask" id="r-mb"></div>
+    <!--   明细块   -->    
+    <div class="detail_expenses" id="detail_expenses">
+        <ul id="fillDetail"class="hspd-list">
+            <!--<li><span class="package-tit"></span></li>-->
+        </ul>
+    </div>
+    <!--   旅行须知and接送须知   -->
+    <div class="tmask js-mask">
+        <div id="traState" class="travelnotes-warp js-travelnotes">
+            <div class="travelnotes-header">
+                旅行须知
+                <i class="travelnotes-header-icon js-travelnotes-close"></i>
+            </div>
+            <ol class="travelnotes-list">
+                <li>所有的套餐都不可转让，不可退款，不可更改。</li>
+                <li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>
+                <li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+                <li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
+                <li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
+                <li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
+                <li>更多规定，请您阅读www.asiatravel.com预订条款条约和用户协议。</li>
+            </ol>
+        </div>
+        <div id="sendState" class="travelnotes-warp js-travelnotes">
+            <div class="travelnotes-header">
+                接送须知
+                <i class="travelnotes-header-icon js-travelnotes-close"></i>
+            </div>
+            <ol class="travelnotes-list">
+                <li>如果还未预订机票，您可任意填写航班信息，继续您的预订。请您至少在出发3天前，联系我们并提新的航班信息，我们会重新安排您的接送。</li>
+                <li>不填写接送信息默认您不需要接送。</li>
+                <li>如果您需要修改航班信息，也请在出发前3天联系我们并提供新的航班信息，我们会及时处理。</li>
+                <li>接机时间是您抵达的时间，送机时间是您离开的时间。</li>
+            </ol>
+        </div>
+    </div>
+    <!--国籍选择开始-->
+    <div class="all-elements country-cho-wrap">
+        <div class="header">
+            <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
+            <div class="cl_search">
+                <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+                <i></i>
+            </div>
+        </div>
+
+        <!--国籍弹窗开始-->
+        <ul class="country-list-searched"></ul>
+        <!--国籍弹窗结束-->
+
+        <div class="snap-content" style="padding-top: 45px;">
+            <div class="country-wrap" id="country-wrap">
+            </div>
+        </div>
+    </div>
+    <!--国籍选择结束-->
+    <!--同意条款-->
+    <script src="../js/scenic.js"></script>
+    <script src="../js/lib/jquery.js"></script>
+<!--    <script src="js/dateFixed_.js"></script>-->
+    <script>
+        (function(){
+            //阻止在嵌套元素中传播
+            function cancelPropagation (event){
+                event = window.event||event;
+                if( document.all){
+                    event.cancelBubble = true;
+                }else{
+                    event.stopPropagation();
+                }
+            }
+            $("#state_btn").click(function(){
+                $(".js-mask").show();
+                $('#traState').show();
+                $('#traState').css({"height":"50%"});
+                $('#sendState').hide();
+                $('.sc-content').css({"overflow":"hidden"})
+            });
+            $(".js-travelnotes-close").click(function(){
+                $(".js-mask").hide();
+                $('.sc-content').css({"overflow":"auto"})
+            });
+            $(".js-mask").click(function(){
+                $(".js-mask").hide();
+                $('.sc-content').css({"overflow":"auto"})
+            });
+            $(".js-travelnotes").click(function(e){
+                cancelPropagation(e);
+            });
+            $("#send_btn").click(function(){
+                $(".js-mask").show();
+                $('#traState').hide();
+                $('#sendState').show();
+                $('#sendState').css({"height":"35%"});
+                $('.sc-content').css({"overflow":"hidden"});
+            });
+        })();
+    </script>
+    <!--填写订单-->
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/scroller.js"></script>
+    <script src="js/fill_order.js"></script>
+    <script src="../js/country_list.js"></script>
+</body>
+</html>

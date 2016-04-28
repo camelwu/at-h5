@@ -1,0 +1,76 @@
+<html><head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>机票酒店选择页</title>
+    <link href="../styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <link href="css/ticket_hotel_choose.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="preloader">
+    <div id="status">
+    </div>
+</div>
+<div class="all-elements ticket-hotel-wrap">
+    <div class="header header-wrap">
+        <a href="javascript:void(0)" class="header-back"><i class="icons go-back"></i></a>
+        <span class="origin">北京</span><span class="icon"><i></i></span><span class="destination">泰国</span>
+    </div>
+    <div class="set-arrive-time">
+        <p class="line-one-date"><span class="set-date">出发: 01月20日</span><span class="arrive-date">返回: 01月24日</span></p>
+        <p class="line-two-number"><span class="adult-ft">2成人</span><span class="child-ft">1儿童</span></p>
+        <button class="edit-button">修改</button>
+    </div>
+    <div class="ticket-icon-change flight">
+        <a href="" class="ticket-icon"><i></i></a>
+        <a href="">机票</a>
+        <a href="ticket-list.html" class="change-flight-action">更换航班</a>
+    </div>
+    <div class="flight-summary-info"></div>
+    <div class="ticket-icon-change hotel">
+        <a href="" class="hotel-icon"><i></i></a>
+        <a href="">酒店</a>
+        <a href="hotel_search_list.html" class="change-hotel-action">更换酒店</a>
+    </div>
+    <div class="hotel-summary-info"></div>
+    <div class="outerDIv"><ul class="room-ul-outer"></ul><div class="check-more-room"></div></div>
+    <div style="height: 50px; width: 100%;"></div>
+    <div class="order-total-wrap clearFix">
+        <span>套餐总额: &nbsp;</span>
+        <span class="money-tag">¥</span>
+        <span class="order-total-fare"></span>
+        <div class="detail-text-arrow">
+            <span class="detail">明细</span><i class="icon-arrow arrow-down"></i>
+            <span id="confirm-button">预订</span>
+        </div>
+    </div>
+    <div class="summary-cost-modal" style="transition: all 300ms; bottom: -50px;"></div>
+</div>
+<div class="shadow" style="display: none;"></div>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/plugins.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
+<script type="text/javascript" src="../js/lib/template.js"></script>
+<script type="text/javascript" src="js/ticket_hotel_choose.js"></script>
+<script>
+    (function($) {
+        $(document).ready(function() {
+            window.addEventListener('load', function() {
+                FastClick.attach(document.body);
+            }, false);
+        });
+    }(jQuery));
+</script>
+</body></html>

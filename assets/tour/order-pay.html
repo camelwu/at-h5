@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>订单支付 - 亚洲旅行网</title>
+    <link href="../styles/style.css" rel="stylesheet"/>
+    <link href="../styles/framework.css" rel="stylesheet"/>
+    <link href="../scenic/css/scenic.css" rel="stylesheet"/>
+    <link href="../styles/tips.css"		rel="stylesheet" type="text/css">
+    <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/date_select.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="preloader">
+    <div id="status">
+        
+    </div>
+</div>
+<div class="all-elements">
+
+    <div class="header">
+        <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+        <h3>订单支付</h3>
+        <!--<i class="tel-icon"></i>-->
+    </div>
+    <div class="sc-content">
+        <form action="#" method="get">
+            <div class="per-pay-msg-bg">
+                <!--<ul class="per-pay-msg">-->
+                <!--<li>-->
+                <!--<span>订单号: <i>237812</i></span>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<div>票务信息：<i>迪士尼门票1张；温泉门票1张</i></div>-->
+                <!--<div class="pay-total">总价：<span style="color:#fe6a03">￥</span><i class="pay-num">143</i></div>-->
+                <!--</li>-->
+                <!--</ul>-->
+            </div>
+            <ul class="pay-style-list" id="pay_way">
+                <li>请在<i class="count-time" id="countdown">00:00</i>前完成支付</li>
+                <li class="paymentType"><span class="jd-icon pay-card" data-type="pay-card"></span><span data-type="pay-card" >银联支付</span><b class="icon circle-choi"></b></li>
+                <!--<li><span class="jd-icon pay-bao"></span><b class="icon circle-chois"></b></li>-->
+                <li class="paymentType"><span class="jd-icon pay-visa" data-type="pay-visa"></span><span data-type="Visa" >Visa信用卡支付</span><b class="icon circle-chois"></b></li>
+                <li class="paymentType"><span class="jd-icon pay-master" data-type="pay-master"></span><span  data-type="Master">万事达卡支付</span><b class="icon circle-chois"></b></li>
+            </ul>
+            <!--<div class="state-agree">-->
+                <!--<b class="icon1 s-agree" id="agree"></b>-->
+                <!--我已阅读并同意-->
+                <!--<a href="#">购票须知</a>-->
+            <!--</div>-->
+            <a href="#" class="s-btn button-orange btnUpay">确认</a>
+        </form>
+    </div>
+    <!--     国外支付方式浮层     -->
+    <div id="out_pay" class="all-elements" style="display: none">
+        <div class="header">
+            <a id="close_page" class="header-back"><i class="icons go-back"></i></a>
+            <h3 id="title">支付</h3>
+            <!--<b class="icons s-call"></b>-->
+            <i class="tel-icon"></i>
+        </div>
+        <!--     内容     -->
+        <div class="sc-content" style="background-color: white">
+            <div class="sp-total" id="order-price">
+                <!--订单总价：￥<span>{%=chargeDetails[0].TotalAmount%}</span>-->
+            </div>
+            <ul class="fill-content">
+                <li>
+                    <div>持卡人姓名</div>
+                    <input type="text" value placeholder="请输入持卡人姓名" class="CardHolderName">
+                </li>
+                <li>
+                    <div>信用卡卡号</div>
+                    <input type="tel" value placeholder="请输入信用卡卡号" class="CardNumber" pattern="[0-9]{13,16}" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+                </li>
+                <li>
+                    <div>发卡银行</div>
+                    <input type="text" value placeholder="发卡银行"  class="CardIssuanceBank">
+                </li>
+                <li class="countries-wrap">
+                    <div>发卡国家</div>
+                    <div><span class="country-btn CardCountryCode" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
+                    <!--<div>中国<b class="icons s-xiala2"></b></div>-->
+                </li>
+                <li>
+                    <div>有效期</div>
+                    <input type="text" value placeholder="月/年，如：09/12" class="CardExpiryDate" id="CardExpiryDate" readonly>
+                </li>
+                <li>
+                    <div>安全码</div>
+                    <input type="tel" value placeholder="请输入签名栏末尾最后3位" class="CardSecurityCode" onkeyup='this.value=this.value.replace(/\D/gi,"")' >
+                </li>
+                <div class="fill-tel">
+                    <div class="tel-div">持卡人手机号  +<span class="tel-btn">86<b class="icons s-xiala1"></b></span></div>
+                    <input type="tel" value placeholder="用于接收通知" class="PhoneNo" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+                </div>
+                <li>
+                    <div>账单城市</div>
+                    <input type="text" value placeholder="请输入持卡人账单城市" class="CardAddressCity" >
+                </li>
+                <li>
+                    <div>账单地址</div>
+                    <input type="text" value placeholder="请输入持卡人账单地址" class="CardAddress" >
+                </li>
+                <li>
+                    <div>邮政编码</div>
+                    <input type="tel" value placeholder="请输入邮政编码" class="CardAddressPostalCode" onkeyup='this.value=this.value.replace(/\D/gi,"")' >
+                </li>
+                <li class="countries-wrap">
+                    <div>持卡人国家</div>
+                    <div><span class="country-btn CardCountryCode CardIssuanceCountryCode" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
+                    <!--<div>中国<b class="icons s-xiala2"></b></div>-->
+                </li>
+            </ul>
+
+            <a href="#" class="s-btn button-orange btnCpay">支付</a>
+        </div>
+    </div>
+    <!-- 电话弹框 begin-->
+    <div class="jpop_box_tic">
+        <dl>
+            <dt>400 805 8888</dt>
+            <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+        </dl>
+    </div>
+
+    !--国籍选择开始-->
+    <div class="all-elements country-cho-wrap">
+        <div class="header">
+            <a href="javascript:;"  class="header-back country-hidden"><i class="icons go-back"></i></a>
+            <div class="cl_search">
+                <input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
+                <i></i>
+            </div>
+        </div>
+
+        <!--国籍弹窗开始-->
+        <ul class="country-list-searched"></ul>
+        <!--国籍弹窗结束-->
+
+        <div class="snap-content" style="padding-top: 45px;">
+            <div class="country-wrap" id="country-wrap">
+                <!--<ul class="country-list">-->
+                <!--<li></li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+    </div>
+    <!--国籍选择结束-->
+
+    <!--电话弹框结束-->
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/scroller.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/country_list.js"></script>
+    <script src="../js/countrytel_list.js"></script>
+    <script>
+        $(window).load(function () {
+            Init();
+
+        });
+        var getCN = {
+            "CNY": "￥",
+            "SGD":"SGD",
+            "USD":"$"
+        };
+
+        (function(){
+            var bookingRefNo=vlm.getpara("bookingRefNo");
+            var b=document.getElementById('pay_way').getElementsByTagName("b");
+            var agree = $("#agree")[0];
+            var close_page = $("#close_page")[0];
+            var out_pay = $("#out_pay")[0];
+            var btnPay= $(".btnUpay")[0];
+            var btnCPay= $(".btnCpay")[0];
+
+            $(".paymentType").click(function(){
+                $(this).siblings().find("b").removeClass("circle-choi").addClass("circle-chois");
+                $(this).find("b").removeClass("circle-chois").addClass("circle-choi");
+            })
+
+            close_page.onclick = function(){
+                out_pay.style.display = "none";
+            };
+            btnPay.onclick=function(){
+                var bookingRefNo=vlm.getpara("bookingRefNo");
+                var type= $(".circle-choi").prev().attr("data-type");
+                if(type=="pay-card") {
+                    Payment("UnionPay",bookingRefNo)
+                }
+                else{
+                    out_pay.style.display = "block";
+                }
+            }
+            btnCPay.onclick=function(){
+                Payment("CreditCard",bookingRefNo);
+            }
+        })();
+        function Payment(type,code){
+
+            var  Parameters=GetParameters(type,code);
+            console.log(Parameters);
+            if(Parameters) {
+                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
+                    if (data.success) {
+                        debugger;
+                        var url = data.data.paymentRedirectURL;
+                        self.location.href=url;
+                    } else {
+                        alert(data.message);
+                    }
+
+                })
+            }
+        }
+
+        function GetParameters(type,orderCode) {
+            var json={}
+            var Parameters = {};
+            var PaymentDetails = {};
+            var CardContactNumber={}
+            Parameters.BookingRefNo = orderCode;
+            Parameters.PaymentDetails=PaymentDetails;
+            var CreditCardDetails = {};
+
+            PaymentDetails.PayCurrencyCode="CNY";
+            PaymentDetails.PayTotalAmount=$(".pay-num").html();
+
+            if (type == "UnionPay")
+            {
+                PaymentDetails.PaymentMode="UnionPayCNY";
+            }
+            else{
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardHolderName").val())){
+                    jAlert("持卡人姓名不能为空！","",null,"确认");
+                    return false;
+                }
+//                if(!vlm.Utils.validate["engName"]($(".CardHolderName").val())){
+//                    jAlert("持卡人姓名必须为英文！","",null,"确认");
+//                    return false;
+//                }
+
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardNumber").val())){
+                    jAlert("信用卡不能为空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardSecurityCode").val())){
+                    jAlert("安全码不能为空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardExpiryDate").val())){
+                    jAlert("有效期不能为空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["bankAccountNo"]($(".CardNumber").val())){
+                    jAlert("信用卡卡号错误！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["safecode"]($(".CardSecurityCode").val())){
+                    jAlert("安全码3位数字！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["dataValid"]($(".CardExpiryDate").val())){
+                    jAlert("有效期格式不正确！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardCity").val())){
+                    jAlert("账单城市不能不空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".CardAddress").val())){
+                    jAlert("账单地址不能不空！","",null,"确认");
+                    return false;
+                }
+                if(!vlm.Utils.validate["isNoEmpty"]($(".PhoneNo").val())){
+                    jAlert("手机号不能为空！","",null,"确认");
+                    return false;
+                }
+
+                PaymentDetails.PaymentMode="CreditCard";
+                PaymentDetails.ReturnURL="www.baidu.com";
+                CreditCardDetails.CardType==$(".circle-choi").prev().attr("data-type");
+                CreditCardDetails.CardHolderName=$(".CardHolderName").val();
+                CreditCardDetails.CardNumber=$(".CardNumber").val();
+                CreditCardDetails.CardSecurityCode=$(".CardSecurityCode").val();
+                CreditCardDetails.CardIssuanceBank=$(".CardIssuanceBank").val();
+                CreditCardDetails.CardExpiryDate= $(".CardExpiryDate").attr("data-expire");
+                CreditCardDetails.CardIssuanceCountryCode="SG"
+                CreditCardDetails.CardAddress=$(".CardAddress").val();
+                CreditCardDetails.CardAddressPostalCode=$(".CardAddressPostalCode").val();
+                CreditCardDetails.CardAddressCity=$(".CardAddressCity").val();
+                CreditCardDetails.CardAddressCountryCode= "SG",
+                        CardContactNumber={};
+                CardContactNumber.CountryCode=$(".tel-btn").attr("data-code");
+                CardContactNumber.PhoneNo=$(".PhoneNo").val();
+                CreditCardDetails.CardContactNumber=CardContactNumber;
+                PaymentDetails.CreditCardDetails=CreditCardDetails
+            }
+            json.Parameters=Parameters;
+            json.Method=null;
+            json.ForeEndType=3;
+            json.Code="0203";
+            return json;
+        }
+
+        function Init(){
+            //初始化有效期选择组件
+            var expityDate = new Scroller({
+                id: "CardExpiryDate", 
+                type:"cardExpirationDate",
+                cont:"cardExpirationDate123",
+                callback: function(){
+                    var jp_limit_time=document.getElementById('CardExpiryDate');
+                    var selectTime = jp_limit_time.getAttribute("data-expire");
+                    var nowTime = new Date().getTime();
+                    selectTime = new Date(selectTime).getTime();
+                    if(nowTime > selectTime){
+                        $.alerts.alert('有效期应大于当前日期，请重新选择!',null,null,"确定");
+                    }
+                }
+            });
+            
+            $('.tel-icon').click(function(){
+                $('.jpop_box_tic').fadeIn(100);
+            })
+            $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+                $('.jpop_box_tic').hide();
+            })
+
+            var bookingRefNo=vlm.getpara("bookingRefNo");
+            var Parameters={
+                "Parameters": {
+                    "BookingRefNo": bookingRefNo
+                }
+                ,
+                "ForeEndType": 3,
+                "Code": "0095"
+            }
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+                if(data.success) {
+                    var d=new Date(Date.parse(data.data.bookingDate.replace("T"," ").replace(/-/g, "/")));
+                    d.setMinutes(d.getMinutes()+30);
+                    $(".count-time").html(vlm.Utils.format_add_zero(d.getHours())+":"+vlm.Utils.format_add_zero(d.getMinutes()));
+
+                    var sum = 0;
+                    data.data.chargeDetails.forEach(function (item, index, array) {
+                        sum += item.totalAmountInCNY;
+                    });
+                    data.data.totel=sum;
+
+                    var tpl = template("tpl_orderinfo",data.data);
+                    var tplC = template("tpl_orderTotal",data.data);
+                    $(".per-pay-msg-bg").html(tpl);
+                    $("#order-price").html(tplC);
+
+                }
+                else
+                {
+                    jAlert("支付失败！");
+                }
+                vlm.init();
+
+            });
+        }
+    </script>
+
+    <!--机票-获取乘客信息-->
+    <script id="tpl_orderinfo" type="text/template"	>
+        <ul class="per-pay-msg">
+            <li>
+                <span>订单号: <i>{%=bookingRefNo%}</i></span>
+            </li>
+            <li>
+                <div>{%=packageName%}</div>
+                <div class="pay-total">总价：<span style="color:#fe6a03" class="totalAmount">￥</span><i class="pay-num">{%=totel%}</i></div>
+            </li>
+        </ul>
+    </script>
+
+    <script id="tpl_orderTotal" type="text/template"	>
+         订单总价：￥<span>{%=totel%}</span>
+    </script>
+
+</div>
+</body>
+</html>

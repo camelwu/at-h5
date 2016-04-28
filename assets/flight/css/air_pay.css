@@ -1,0 +1,704 @@
+.clearFix:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+li {
+    list-style: none;
+}
+
+i {
+    font-style: normal;
+}
+
+/*编辑联系人开始*/
+.edit-tit {
+    font-weight: normal;
+
+}
+
+.payment-tip-wrap {
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+    margin: 10px auto;
+}
+
+.payment-suc {
+    display: inline-block;
+    background: url(../../images/ui/icon-h.png);
+    width: 30px;
+    height: 30px;
+    background-position: 25% 90%;
+    background-size: 150px 65px;
+}
+
+.payment-fail {
+    display: inline-block;
+    background: url(../../images/ui/icon-h.png);
+    width: 30px;
+    height: 30px;
+    background-position: 3% 90%;
+    background-size: 150px 65px;
+}
+
+.payment-tip {
+    font-size: 1.7rem;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 3px;
+}
+
+.air-detail-wrap {
+    margin: 0 5px;
+    border-width: 16px;
+    -webkit-border-image: url(../../images/lsf_bg1.png) 27;
+    -moz-border-image: url(../../images/lsf_bg1.png) 27;
+    -o-border-image: url(../../images/lsf_bg1.png) 27;
+    border-image: url(../../images/lsf_bg1.png) 27;
+}
+
+.air-detail-box {
+    padding: 0 30px;
+    background-color: #fff;
+    margin-bottom: 0;
+}
+
+.air-detail-box li {
+    font-size: 1.4rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    border-bottom: 1px dotted #e9e9e9;
+}
+
+.air-detail-box li:last-child {
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.airticket-tot {
+    padding: 0 30px;
+    margin-bottom: 0;
+    font-size: 1.7rem;
+    color: #ffb412;
+    background-color: #fff;
+    line-height: 3rem;
+}
+
+.go-tip {
+    display: inline-block;
+    background: url(../../images/ui/air-icons.png);
+    width: 30px;
+    height: 20px;
+    background-position: 26% 33%;
+    background-size: 280px 160px;
+    margin-top: 8px;
+    vertical-align: top;
+}
+
+.back-tip {
+    display: inline-block;
+    background: url(../../images/ui/air-icons.png);
+    width: 30px;
+    height: 20px;
+    background-position: 26% 18%;
+    background-size: 280px 160px;
+    margin-top: 8px;
+    vertical-align: top;
+}
+
+.footer {
+    width: 100%;
+    height: 44px;
+    background: linear-gradient(#16364f, #194361);
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    z-index: 98;
+    margin-top: -10px;
+}
+
+.footer span {
+    font-size: 9px;
+    color: #f5f4f9;
+    line-height: 44px;
+}
+
+/*支付详情*/
+.tel-icon {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background: url(../../images/ui/icons.png) no-repeat;
+    background-position: -218px -73px;
+    background-size: 243px 160px;
+    width: 17px;
+    height: 27px;
+}
+
+.scro-auto {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.payment-cutdown {
+    height: 90px;
+    background-color: #55bfb7;
+    color: #fff;
+    padding: 20px 0 0 15px;
+}
+
+.payment-cut-time {
+    color: #ffb413;
+}
+
+.payment-cutdown h3 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.payment-tips {
+    font-size: 1.2rem;
+}
+
+.round-trip-wrap {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0 10px 15px;
+    font-size: 1.3rem;
+}
+
+.round-trip {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.go-back-p {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+
+.round-go-tip {
+    display: inline-block;
+    background: url(../../images/ui/air-icons.png);
+    width: 25px;
+    height: 25px;
+    background-position: 26% 33%;
+    background-size: 283px 162px;
+    margin-top: -5px;
+    vertical-align: middle;
+}
+
+.round-back-tip {
+    display: inline-block;
+    background: url(../../images/ui/air-icons.png);
+    width: 25px;
+    height: 25px;
+    background-position: 26% 18%;
+    background-size: 283px 162px;
+    margin-top: -5px;
+    vertical-align: middle;
+}
+
+.round-trip-go {
+    float: left;
+}
+.round-trip-back {
+    margin-right: 30px;
+    float: right;
+}
+
+.passenger-msg {
+    padding-top: 22px;
+    padding-left: 30px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0;
+    background-color: white;
+}
+
+.passenger-msg li {
+    line-height: 2rem;
+}
+
+.passenger-msg-tit {
+    display: inline-block;
+    color: #666;
+
+}
+
+.passenger-msg-cont {
+    color: #484848;
+}
+
+.p-icon1 {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    position: relative;
+    top: -12px;
+    background-image: url(../../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position: 10% 38%;
+    margin-right: 10px;
+}
+
+.p-icon2 {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    position: relative;
+    top: -12px;
+    background-image: url(../../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position: 4.8% 38%;
+    margin-right: 10px;
+}
+
+.p-icon3 {
+    display: inline-block;
+    width: 42px;
+    height: 30px;
+    background-image: url(../../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position: -79% 38%
+}
+
+.pay-icon02 {
+    display: inline-block;
+    width: 42px;
+    height: 30px;
+    background-image: url(../../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position: 71.6% 38%;
+}
+
+.pay-icon03 {
+    display: inline-block;
+    width: 42px;
+    height: 30px;
+    background-image: url(../../images/ui/icon-h.png);
+    background-size: 402px 174px;
+    background-position: 58% 38%;
+}
+
+.payment-type {
+    padding: 20px 0 20px 15px;
+    background-color: #f0eeee;
+}
+
+.payment-type-tit {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.credit-card {
+    width: 50%;
+    text-align: center;
+}
+
+.credit-card-name {
+    display: block;
+    font-size: 1.2rem;
+    padding-left: 20px;
+}
+
+.credit-card-wrap {
+    margin-bottom: 0;
+}
+
+.credit-card-detail {
+    border-bottom: 1px solid #ddd;
+    font-size: 1.5rem;
+    padding: 0 15px;
+    background: #fff;
+}
+
+.credit-card-detail li {
+    border-bottom: 1px solid #ddd;
+    height: 40px;
+    line-height: 40px;
+}
+
+.credit-card-detail li:last-child {
+    border-bottom: none;
+}
+
+.tel-option{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: box;
+    display: flexbox;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    -webkit-align-content: center;
+    border-bottom: 1px solid #dfe0db;
+    overflow: visible;
+}
+
+.tel-option .left{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: box;
+    display: flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    border-right: 1px solid #dfe0db;
+    overflow: visible;
+}
+
+.nation{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: box;
+    display: flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: visible;
+}
+
+.tel-option .left span{
+    line-height: 3.3rem;
+    height: 3.3rem;
+    width: 8.7rem;
+}
+
+.nation span{
+    line-height: 3.2rem;
+    height: 3.2rem;
+    width: 13.7rem;
+}
+
+.nation>span:first-child{
+    line-height: 3.2rem;
+    height: 3.2rem;
+    width: 8.7rem;
+}
+.nation .center{
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+
+
+.center {
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+}
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    overflow: visible;
+}
+
+.custom-select-wrapper select {
+    display: none;
+}
+.custom-select {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+    z-index: 100;
+}
+
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    border: 1px solid #b5b5b5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #fff;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px);
+    overflow: visible;
+}
+
+.nation .custom-options {
+    position: absolute;
+    display: block;
+    top: -324%;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    border: 1px solid #b5b5b5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #fff;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px);
+    overflow: visible;
+}
+
+
+.nation .custom-select.opened .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+    overflow: visible;
+    z-index: 97;
+}
+
+.custom-select.opened .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+    overflow: visible;
+    z-index: 97;
+}
+
+
+.custom-select-trigger {
+    position: relative;
+    display: block;
+    width: 130px;
+    padding: 0 84px 0 22px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 60px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.custom-select-trigger:after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    right: 25px;
+    margin-top: -3px;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    transform: rotate(45deg) translateY(-50%);
+    transition: all 0.4s ease-in-out;
+    transform-origin: 50% 0;
+}
+
+.nation .custom-select-trigger:after{
+    margin-top: 3px;
+    transform: rotate(-135deg) translateY(-50%);
+}
+
+.custom-select.opened .custom-select-trigger:after {
+    margin-top: 3px;
+    transform: rotate(-135deg) translateY(-50%);
+}
+
+.nation .custom-select.opened .custom-select-trigger:after{
+    transform: rotate(45deg) translateY(-50%);
+}
+.custom-option:first-of-type {
+    border-radius: 4px 4px 0 0;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 0 2.2rem;
+    border-bottom: 1px solid #b5b5b5;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #b5b5b5;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.tel-option .right{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: box;
+    display: flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+
+.tel-option .right input {
+    width: 100%;
+    margin-left: 10px;
+    height: 3.3rem;
+    line-height: 3.3rem;
+    font-size: 1.35rem;
+}
+
+.credit-det-cont {
+    display: inline-block;
+    margin-top: 14px;
+    vertical-align: top;
+    font-size: 1.3rem;
+}
+
+.credit-det-title {
+    display: inline-block;
+    width: 100px;
+}
+
+.airticket-pay-box {
+    padding: 0 30px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.air-ticket-pay-btn {
+    height: 44px;
+    line-height: 44px;
+    background-color: #fdb330;
+    color: #fff;
+    font-size: 1.7rem;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+
+}
+
+.lsf_tra_look {
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    padding: 2.5rem;
+}
+
+.lsf_tra_look p {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    height: 8rem;
+}
+
+.lsf_tra_look p span {
+    width: 90%;
+    height: 3.7rem;
+    border: 2px solid #ffb413;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 3.7rem;
+    font-size: 1.5rem;
+}
+
+.lsf_tra_look .fl a{
+    color: #ffb413;
+}
+.lsf_tra_look .lsf_tra_lo_p2 span {
+    background: #ffb413;
+    color: #fff;
+}
+.lsf_tra_look .lsf_tra_lo_p2 a{
+    color: #fff;
+}
+.passenger-detail{
+    padding-right: 30px;
+    float: right;
+    color: #fdb330;
+    position:relative;
+
+}
+.passenger-detail .icon-arrow{
+    margin-left: 3px;
+    position: absolute;
+    top: 11px;
+    right: 15px;
+    width: 8px;
+    height: 8px;
+    border-bottom: 1px solid  #ffb412;
+    border-right: 1px solid  #ffb412;
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    -o-transform: rotate(45deg) translateY(-50%);
+    -moz-transform: rotate(45deg) translateY(-50%);
+    -ms-transform: rotate(45deg) translateY(-50%);
+    transform: rotate(45deg) translateY(-50%);
+    -webkit-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.passenger-detail.opened .icon-arrow{
+    margin-top: 5px;
+    -webkit-transform: rotate(-135deg) translateY(-50%);
+    -o-transform: rotate(-135deg) translateY(-50%);
+    -moz-transform: rotate(-135deg) translateY(-50%);
+    -ms-transform: rotate(-135deg) translateY(-50%);
+    transform: rotate(-135deg) translateY(-50%);
+}
+.passenger-msg .passenger-msg-tit{
+    float: left;
+}
+.passenger .passager-list{
+    margin-left: 80px;
+}
+.passenger .passager-list .passager-info{
+    margin-bottom: 20px;
+}
+.passenger .passager-list .passager-info .passenger-msg-nameEn{
+    margin-right: 5px;
+}
+.passenger .passager-list .passager-info .passenger-msg-sex{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.open-pho-down {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    right: 15px;
+    background-position: 65% 3%;
+    margin-top: 10px;
+}
+
+
+
+
