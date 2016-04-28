@@ -56,7 +56,7 @@
                 <p class = "wrap-list-p2">结束时间: <i>{%=ProductEndDate%}</i></p>
                 <div>
                     <span class = "wrap-list-span1">￥{%=ProductPrice.replace(/起/,"")%}起</span>
-                    <a class = "wrap-list-span2" href="javascript:void(0);" onclick="jumpto({%=ProductID%},{%=ProductType%},\'{%=ProductPrice%}\',\'{%=ProductDesc%}\')">立即预订</a>
+                    <a class = "wrap-list-span2" href="javascript:void(0);" onclick="jumpto({%=ProductID%},\'{%=ProductType%}\',\'{%=ProductPrice%}\',\'{%=ProductDesc%}\')">立即预订</a>
                 </div>
             </span>
         </div>
@@ -224,7 +224,9 @@
             1:"../hotel/hotel_detail.html?productType="+ProductType+"HotelID="+ProductID+"&HotelCode="+ProductID+"&CheckInDate="+currentdate+"&CheckOutDate="+newdate+"&NumRoom=1&NumAdult=1&NumChild=1",
             2:"../flight/ticket_seat_choose.html?productType="+ProductType+"&setId="+ProductType,
             3:"../scenic/scenic_detail.html?packageID="+ProductID,
-            4:"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1"
+            'T':"../scenic/scenic_detail.html?packageID="+ProductID,
+            4:"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1",
+            'HT':"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1"
         };
         var url=linkurl[ProductType];
 
