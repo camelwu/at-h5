@@ -632,6 +632,7 @@
 	}
 
 	function GoBackData(){
+    debugger;
 		var seled = $(".choiced");
 		selectUser=[];
 		if(isNeedPassport=="true"){
@@ -652,6 +653,9 @@
 		SavaLocalStorge(selectUser,isContact);
 	}
 	function ReplaceData(id,data){
+    if(data.length<=0){
+      return false;
+    }
 		var elementId="#"+id;
 		var htmlObj =$(ifrCilent.parentNode).find(elementId);
 		if(isMulSelect)
