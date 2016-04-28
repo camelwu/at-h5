@@ -402,10 +402,20 @@
             //酒+景详情tpl
             else if(type.id==4){
                 var totalPrice=0;
+                var numofAdult=0;
+                var numofChild=0;
                 for (var i = 0;i<data.data.chargeDetails.length;i++){
+                  if(data.data.chargeDetails[i].category=="ADULT"){
+                    numofAdult+=1
                     totalPrice+=data.data.chargeDetails[i].totalAmount;
+                  }else if(data.data.chargeDetails[i].category=="CHILD"){
+                    numofChild+=1;
+                    totalPrice+=data.data.chargeDetails[i].totalAmount;
+                  }
                 }
                 data.data.totalPrice=totalPrice;
+                data.data.numofAdult=numofAdult;
+                data.data.numofChild=numofChild;
                 var html = template("tpl_tour_detail", data.data);
                 $(".payment-type-list").append(html);
             }
