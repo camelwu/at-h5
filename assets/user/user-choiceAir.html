@@ -790,12 +790,13 @@
 				var str=numAdu+'/'+datahot.RoomDetails[0].adult+'成人';
 				if($(ifrCilent.parentNode).find('#traveltab').length == 1){
 					var traveltab =$(ifrCilent.parentNode).find('#traveltab');
-					if(datahot.RoomDetails[0].childWithOutBed != undefined){
+					if(datahot.RoomDetails[0].childWithOutBed != undefined ){
 						var str='<i class="adu-choose">'+numAdu+'</i>/<i class="adu-tot">'+datahot.RoomDetails[0].adult+'</i>成人 <b><i class="chi-choose">'+numChi+'</i>/<i class="chi-tot">'+datahot.RoomDetails[0].childWithOutBed.length+'</i>儿童</b>';
-					}else{
+					}else if(datahot.RoomDetails[0].childWithBed != undefined){
+            var str='<i class="adu-choose">'+numAdu+'</i>/<i class="adu-tot">'+datahot.RoomDetails[0].adult+'</i>成人 <b><i class="chi-choose">'+numChi+'</i>/<i class="chi-tot">'+datahot.RoomDetails[0].childWithBed.length+'</i>儿童</b>';
+          }else {
 						var str='<i class="adu-choose">'+numAdu+'</i>/<i class="adu-tot">'+datahot.RoomDetails[0].adult+'</i>成人 <b>';
 					}
-
 					traveltab.find('.order-tsl2').html(str);
 				}
 			}
