@@ -43,7 +43,11 @@
                 traAdultnum+=parseInt(room[i].adult);
                 if(room[i].childWithOutBed)
                 {
-                    traChildnum+=(room[i].childWithOutBed.length)
+                    traChildnum+=room[i].childWithOutBed.length;
+                }
+                if(room[i].childWithBed)
+                {
+                  traChildnum+=room[i].childWithBed.length;
                 }
 
             }

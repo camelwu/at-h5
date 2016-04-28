@@ -70,7 +70,7 @@
         <ul class="p-ul2">
             <li>
                 <div>信用卡号</div>
-                <input type="text" value="" class="cardNumber" maxlength="20" placeholder="输入信用卡卡号">
+                <input type="text" onkeyup="setNum(this);" value="" class="cardNumber" maxlength="20" placeholder="输入信用卡卡号">
             </li>
             <li>
                 <div>持卡人姓名</div>
@@ -89,17 +89,17 @@
             </li>
             <li>
                 <div>有效期</div>
-                <div id="jp_limit_time"  class="cardExpiryDate" readonly >月/年，如：09/12</div>
+                <div id="jp_limit_time"  class="cardExpiryDate" readonly style="color: #a9a9a9;font-family: FZLTXHK;">月/年，如：09/12</div>
             </li>
             <li>
                 <div>安全码</div>
-                <input type="text" value="" class="cardSecurityCode" placeholder="请输入签名栏末尾最后3位">
+                <input type="text" onkeyup="setNum(this);" value="" class="cardSecurityCode" placeholder="请输入签名栏末尾最后3位">
             </li>
             <li class="fill-tel">
                 <div>持卡人手机号</div>
                 <span  class="tel-btn phone"  value="CN" data-code="86">+86</span>
                 <b class="icons s-xiala3"></b>
-                <input type="tel" value placeholder="用于接收通知" class="MobilePhone" onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+                <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
             </li>
             <li>
                 <div>账单城市</div>
@@ -111,7 +111,7 @@
             </li>
             <li>
                 <div>邮政编码</div>
-                <input type="text" placeholder="请输入邮政编码" class="cardAddressPostalCode"/>
+                <input type="text" placeholder="请输入邮政编码" class="cardAddressPostalCode" onkeyup="setNum(this);" />
             </li>
             <li class="countries-wrap">
                 <div>持卡人国家</div>
@@ -151,7 +151,7 @@
 <div class="jpop_box_tic" style="display: none;">
     <dl>
         <dt>400 805 8888</dt>
-        <dd><span>取消</span><a href="tel:+4008058888">拨打</a></dd>
+        <dd><span>取消</span><a href="tel:4008058888">拨打</a></dd>
     </dl>
 </div>
 
@@ -323,8 +323,8 @@
             <li>
                 <div class = "hf-anum">
                     <span>人数:</span>
-                    <span><i>2</i>成人</span>
-                    <span><i>1</i>儿童</span>
+                    <span><i>{%=numofAdult%}</i>成人</span>
+                    <span><i>{%=numofChild%}</i>儿童</span>
                 </div>
             </li>
             <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
@@ -412,7 +412,12 @@
 <script src="../js/country_list.js"></script>
 <script src="../js/countrytel_list.js"></script>
 
-
+<script>
+ // 输入只能纯数字
+  function setNum(obj) {
+    obj.value = obj.value.replace(/\D/ig, '');
+  }
+</script>
 
 
 </body>
