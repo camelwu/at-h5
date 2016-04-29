@@ -18,7 +18,8 @@ module.exports = function (grunt) {
             options: {
                 banner: '/*! asiatravel FE team '+name+'-----'+date+' */\n',
                 compress:{
-                    dead_code:true
+                    drop_console:true,  //去除console
+                    drop_debugger:true  //去除debugger
                 }
             },
             files: [{
