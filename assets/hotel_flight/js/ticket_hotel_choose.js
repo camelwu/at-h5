@@ -363,7 +363,7 @@ var ticketHotel = {
                     '<div class="time-port-day">',
                     '<div class="left">',
                     '<span class="start-time">{%=flightLeaveStartDate_clock%}</span>',
-                    '<span class="start-port">{%=flightLeaveStartAirportNameFrom%}</span>',
+                    '<span class="start-port">{%=flightLeaveStartAirportNameFrom%}{%=flightLeaveStartTermDepart%}</span>',
                     '</div>',
                     '<div class="middle">',
                     '<div class="time-cost">{%=segmentsLeaveTotalTravelTimeString%}</div>',
@@ -373,7 +373,7 @@ var ticketHotel = {
                     '<div class="right">',
                     '<span class="arrive-time">{%=flightLeaveEndtDate_clock%}</span>' +
                     '{% if(data["flightLeaveSpacingDay"]){ %}<span class="tip">+{%=flightLeaveSpacingDay%}天</span>{% } %}',
-                    '<span class="arrive-port">{%=flightLeaveStartAirportNameTo%}</span>',
+                    '<span class="arrive-port">{%=flightLeaveStartAirportNameTo%}{%=flightLeaveStartTermArrive%}</span>',
                     '</div>',
                     '<p><span>{%=flightLeaveStartOperatingCarrierName%}</span><span> | {%=flightLeaveStartPlaneType%}</span><span> | {%=flightLeaveStartPlaneName%}</span><span> | {%=cabinClass%}</span></p>',
                     '</div>',
@@ -393,7 +393,7 @@ var ticketHotel = {
                     '<div class="time-port-day">',
                     '<div class="left">',
                     '<span class="start-time">{%=flightReturnStartDate_clock%}</span>',
-                    '<span class="start-port">{%=flightReturnStartOperatingCarrierName%}</span>',
+                    '<span class="start-port">{%=flightReturnStartAirportNameFrom%}{%=flightReturnStartTermDepart%}</span>',
                     '</div>',
                     '<div class="middle">',
                     '<div class="time-cost">{%=segmentsReturnTotalTravelTimeString%}</div>',
@@ -403,7 +403,7 @@ var ticketHotel = {
                     '<div class="right">',
                     '<span class="arrive-time">{%=flightReturnEndDate_clock%}</span>' +
                     '{% if(data["flightReturnSpacingDay"]){ %}<span class="tip">+{%=flightReturnSpacingDay%}天</span>{% } %}',
-                    '<span class="arrive-port">{%=flightReturnStartAirportNameTo%}</span>',
+                    '<span class="arrive-port">{%=flightReturnStartAirportNameTo%}{%=flightReturnStartTermArrive%}</span>',
                     '</div>',
                     '<p><span>{%=flightReturnStartOperatingCarrierName%}</span><span> | {%=flightReturnStartPlaneType%}</span><span> | {%=flightReturnStartPlaneName%}</span><span> | {%=cabinClass%}</span></p>',
                     '</div>',
@@ -529,10 +529,17 @@ var ticketHotel = {
                     result.cabinClass = cabin;
                     result.flightLeaveStartCityNameFrom  = arg.cityNameFrom;
                     result.flightLeaveStartCityNameTo  = arg.cityNameTo;
+                    result.flightLeaveStartAirportNameFrom  = arg.segmentsLeave[0].airportNameFrom;
+                    result.flightLeaveStartTermDepart  = arg.segmentsLeave[0].termDepart;
+                    result.flightLeaveStartAirportNameTo  = arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo;
+                    result.flightLeaveStartTermArrive  = arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive;
+
                     if(arg.segmentsLeave.length==1){
                         result.flightLeaveStartOperatingCarrierName = arg.segmentsLeave[0].operatingCarrierName;
                         result.flightLeaveStartPlaneType = arg.segmentsLeave[0].planeType;
                         result.flightLeaveStartPlaneName = arg.segmentsLeave[0].planeName;
+
+
                     }else if(arg.segmentsLeave.length==2){
                         result.flightLeaveStartOperatingCarrierName = arg.segmentsLeave[1].operatingCarrierName;
                         result.flightLeaveStartPlaneType = arg.segmentsLeave[1].planeType;
@@ -563,6 +570,15 @@ var ticketHotel = {
                     }
                     result.flightReturnStartCityNameFrom  = arg.cityNameTo;
                     result.flightReturnStartCityNameTo  = arg.cityNameFrom;
+
+
+                  result.flightReturnStartAirportNameFrom  = arg.segmentsReturn[0].airportNameFrom;
+                  result.flightReturnStartTermDepart  = arg.segmentsReturn[0].termDepart;
+                  result.flightReturnStartAirportNameTo  = arg.segmentsReturn[arg.segmentsReturn.length-1].airportNameTo;
+                  result.flightReturnStartTermArrive  = arg.segmentsReturn[arg.segmentsLeave.length-1].termArrive;
+
+
+
                     if(arg.segmentsReturn.length==1){
                         result.flightReturnStartOperatingCarrierName = arg.segmentsReturn[0].operatingCarrierName;
                         result.flightReturnStartPlaneType = arg.segmentsReturn[0].planeType;
