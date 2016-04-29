@@ -85,7 +85,7 @@
 			}else{
 				$("#popup_container").css({
 					position : pos,
-					zIndex : 1011,
+					zIndex : 1111,
 					padding : 0,
 					margin : 0
 				});

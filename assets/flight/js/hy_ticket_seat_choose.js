@@ -170,7 +170,7 @@ var ticketSeatChoose = {
         var str = '';
         if(arg.length<2){
             str = ''
-        }else if(arg.length=2){
+        }else if(arg.length==2){
             str = '<span class="air-port-word">转'+arg[0].cityNameTo+'</span>'
         }else if(arg.length>=3){
             str = '<span class="air-port-word">中转'+(arg.length-1)+'次</span>'
@@ -300,13 +300,12 @@ var ticketSeatChoose = {
         return str;
     },
     createDetailModal:function(arg){
-        console.log(arg)
         var that = ticketSeatChoose;
         var strModal='<div class="ticket-detail-modal" style="display: none;"><ul class="detail-outer">'+detailGo(arg)+detailBack(arg)+'</ul></div>';
+      console.log(arg)
         return strModal;
         function detailGo(arg){
-            var str = '';
-            var isStopStr, isShareFlight;
+            var str = '', isStopStr, isShareFlight;
             isShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
             if(arg.segmentsReturn == null)
             {
@@ -320,10 +319,9 @@ var ticketSeatChoose = {
                     '<span class="detail-hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsLeave,isShareFlight)+'</li>';
             }
             return str;
-
         }
         function detailBack(arg){
-            var str = '',isShareFlight;
+            var arg = arg, str = '',isShareFlight;
             isShareFlight = (arg.isReturnShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
             if(arg.segmentsReturn){
                 str += '<li class="detail-start">' +
@@ -336,8 +334,8 @@ var ticketSeatChoose = {
                var str = '',transferStr='',dayStr='',that = ticketSeatChoose, planeNameStr='', isStopStr='';
                if(arg){
                 for(var j = 0;j<arg.length;j++){
-                    var transferStr='', transferHour='',leaveStopTag='';
-                    if(arg[j+1]){
+                     transferStr='', transferHour='',leaveStopTag='';
+                     if(arg[j+1]){
                         transferHour = (Math.abs(Date.parse(arg[j+1].departDate) -Date.parse(arg[j].arriveDate)))/1000/60;
                         transferStr='<div class="transit-city-hour">中转'+arg[j].cityNameTo+' '+parseInt(transferHour/60)+'h'+transferHour%60+'m</div>';
                     }

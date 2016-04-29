@@ -225,18 +225,9 @@ var ticketDouble = {
     },
     returnTransferCity: function (arg) {
         var str = '';
-        if (arg.length <= 2) {
-            str = '<span class="air-port-word">转' + arg[0].cityNameTo + '</span>'
-        } else if (arg.length >= 3) {
-            str = '<span class="air-port-word">中转' + (arg.length - 1) + '次</span>'
-        }
-        return str;
-    },
-    returnTransferCity: function (arg) {
-        var str = '';
         if (arg.length < 2) {
             str = ''
-        } else if (arg.length = 2) {
+        } else if (arg.length == 2) {
             str = '<span class="air-port-word">转' + arg[0].cityNameTo + '</span>'
         } else if (arg.length >= 3) {
             str = '<span class="air-port-word">中转' + (arg.length - 1) + '次</span>'
@@ -495,9 +486,7 @@ var ticketDouble = {
         if (arg.success && arg.code == 200 && arg.data.flightInfos.length > 0) {
             document.querySelector('.tip-button-para').style.display = 'none';
             tipEle.style.display = 'none';
-            that.flightResultArray.push(arg["data"]);
             that.lastBackData = arg;
-            that.storageUtil.set('flightListData', that.flightResultArray);
             that.pageNo = arg.data.pageNo;
             that.pageCount = arg.data.pageCount;
             that.changeFlightList(arg, clearTag);
@@ -565,7 +554,6 @@ var ticketDouble = {
         this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
         conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj, this.handler1, this.handler2, this);
         this.taxHandler();
-        this.flightResultArray = [];
         this.initLeftState = this.checkTip();
         this.loadMoreBtnEvent();
     }

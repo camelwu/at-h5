@@ -80,7 +80,9 @@
 .flight-summary-info, .hotel-summary-info{
     background: white;
     padding: 0 1.5rem;
-    border-bottom: 1px solid #dedede;
+}
+.hotel-summary-info{
+  border-bottom: 1px solid #dedede;
 }
 .trip-go, .trip-back{
     margin-right: 35px;
@@ -114,13 +116,16 @@
     margin-bottom: 0;
     height:30px;
     line-height: 30px;
-    /*border-bottom: 1px solid #dedede;*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #dedede;
 }
 .hotel-info-outer{
-    padding: 8px 0;
-    overflow: hidden;
-    position: relative;
-    height: 100px;
+  padding: 8px 0;
+  overflow: hidden;
+  position: relative;
+  height: 100px;
 }
 .ho_pic{
     width: 84px;

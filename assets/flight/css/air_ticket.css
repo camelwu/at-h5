@@ -701,7 +701,9 @@ h1, h2, h3, h4, h5, h6 {
 .i-his-city-ele, .d-his-city-ele {
     display: none;
 }
-
+.all-elements .city-content .city-classifying .title-tip .city-content li.city-content-item.focus{
+  border: 0.1rem solid rgb(255, 180, 19);
+}
 .focus {
     color: rgb(255, 180, 19) !important;
 }
@@ -828,7 +830,7 @@ h1, h2, h3, h4, h5, h6 {
 .right-side {
     position: fixed;
     right: 0;
-    top: 106px;
+    top: 82px;
     width: 30px;
     font-size: 12px;
     line-height: 14px;

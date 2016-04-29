@@ -9,7 +9,7 @@
     });
 }(jQuery));
 (function(){
-    var globalData = {},originData = {},destinationData = {},hotcityData = {};
+    var globalData = {},originData = {},destinationData = {},hotcityData = {},selectCityList = 0;
     var arrHistory = [],arr = [],originParams={},destinationParams={},hotcityParams;
     $('html,body').animate({scrollTop:0});
 
@@ -23,6 +23,7 @@
      */
     $(".origin").click(function(){
         originORdestination = ".origin";
+        selectCityList = 0;
         MT.LoadingShow();
         hotcityData = JSON.parse(localStorage.getItem("hf_hotcity"));
 
@@ -46,6 +47,7 @@
      */
     $(".destination").click(function(){
         originORdestination = ".destination";
+        selectCityList = 1;
         MT.LoadingShow();
         hotcityData = JSON.parse(localStorage.getItem("hf_hotcity"));
         if(MT.XCache()){
@@ -62,10 +64,22 @@
         MT.getCityHistory();
 
     });
+    /**
+     * Loading动画开始
+     * @param
+     * @constructor
+     * @return
+     */
     MT.LoadingShow = function(){
         $("#preloader").show();
         $('#status').show();
     }
+    /**
+     * Loading动画结束
+     * @param
+     * @constructor
+     * @return
+     */
     MT.LoadingHide = function(){
         $("#preloader").hide();
         $('#status').hide();
@@ -79,6 +93,8 @@
         $(".all-elementcity").hide();
         $("#js_oversea").hide();
     });
+
+
 
     /**
      * 设置城市
@@ -98,7 +114,24 @@
     }
 
 
+    MT.getCity = function(){
+      var city1,city2;
+      city1 = localStorage.getItem("ac_city1");
+      city2 = localStorage.getItem("ac_city2");
 
+      if(city1){
+        city1 = JSON.parse(city1);
+        $(".origin").html(city1[city1.length -1].toString().split(":")[0]);
+        $(".origin").attr("data-citycode",city1[city1.length -1].toString().split(":")[1]);
+      }
+
+      if(city2){
+        city2 = JSON.parse(city2);
+        $(".destination").html(city2[city2.length -1].toString().split(":")[0]);
+        $(".destination").attr("data-citycode",city2[city2.length -1].toString().split(":")[1]);
+      }
+
+    }
 
     /**
      * 城市列表排序
@@ -107,7 +140,6 @@
      * @constructor 城市列表排序
      */
     MT.ByCitylist = function(a,b){
-//            console.log(a.fullSpellingName.substr(0,1).toUpperCase().charCodeAt(0));
         return a.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toUpperCase().charCodeAt(0) - b.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toUpperCase().charCodeAt(0);
     }
 
@@ -131,7 +163,6 @@
                 n = i + 1;
             }
         }
-        //console.log(newArr)
         return newArray;
     }
     /**
@@ -174,7 +205,13 @@
 
         MT.CharColumn("CharColumn",newArray);
     }
-
+    /**
+     * 生成热门城市
+     * @param 当前城市
+     * @param 数据
+     * @constructor
+     * @return 热门城市列表
+     */
     MT.CreateHotCityList = function (selectName,json){
         //console.log(json);
         if(json){
@@ -261,11 +298,6 @@
         if (!oldXCacheTime){
             MT.setXCache(json);
         }else{
-//                XCacheTime = json.data.updateTime.replace(/T\d{2}:\d{2}:\d{2}/,"");
-//                XCacheTime = XCacheTime.replace(/-/g,"/");
-//                XCacheTime = new Date(XCacheTime);
-//                XCacheTime = new Date(XCacheTime.valueOf()+ 1*24*60*60*1000);
-//                XCacheTime = XCacheTime.getFullYear()+"/"+(XCacheTime.getMonth()+1)+"/"+XCacheTime.getDate();
             atime = new Date();
             atime = atime.getFullYear()+"/"+(atime.getMonth()+1)+"/"+atime.getDate();
             atime = new Date(atime);
@@ -311,7 +343,7 @@
         atime = atime.getFullYear()+"/"+(atime.getMonth()+1)+"/"+atime.getDate();
         btime = localStorage.getItem("XCacheTime");
         MT.isXCacheTime(atime,btime);
-
+        MT.getCity();
         if(!MT.XCache()){
             hotcityParams = {"Parameters":{},"ForeEndType":3,"Code":"50100010"};
             originParams = {"Parameters":{"CityType":"1","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
@@ -409,7 +441,13 @@
      * @constructor 获得城市列表历史纪录
      */
     MT.getCityHistory = function(){
-        var oldHistoryCityData = localStorage.getItem("ac_city");
+        var oldHistoryCityData;
+        if(selectCityList == 0){
+          oldHistoryCityData = localStorage.getItem("ac_city1");
+        }
+        if(selectCityList == 1){
+          oldHistoryCityData = localStorage.getItem("ac_city2");
+        }
         oldHistoryCityData = JSON.parse(oldHistoryCityData);
 
         if(oldHistoryCityData){
@@ -436,16 +474,27 @@
      * @constructor 设置城市列表历史纪录
      */
     MT.setHistoryCity = function(cityname,citycode){
-        var oldHistoryCityData = localStorage.getItem("ac_city");
+        var oldHistoryCityData;
+        if(selectCityList == 0){
+          oldHistoryCityData = localStorage.getItem("ac_city1");
+        }
+        if(selectCityList == 1){
+          oldHistoryCityData = localStorage.getItem("ac_city2");
+        }
         var newHistoryCityData = [cityname+":"+citycode];
         var tmpdata = [],tmpArray = [];
 
         if(!oldHistoryCityData){
             tmpdata.push(newHistoryCityData);
-            localStorage.setItem("ac_city",JSON.stringify(tmpdata));
+            if(selectCityList == 0){
+              localStorage.setItem("ac_city1",JSON.stringify(tmpdata));
+            }
+            if(selectCityList == 1){
+              localStorage.setItem("ac_city2",JSON.stringify(tmpdata));
+            }
         }else{
             oldHistoryCityData = JSON.parse(oldHistoryCityData);
-            console.log(oldHistoryCityData);
+            //console.log(oldHistoryCityData);
             for (var i = oldHistoryCityData.length-1;i >= 0;i--){
                 //console.log(oldHistoryCityData[i]);
                 if(oldHistoryCityData[i].toString().split(":")[1] === citycode){
@@ -453,7 +502,12 @@
                     MT.remove(oldHistoryCityData,i);
                     oldHistoryCityData.push(tmpdata);
                     tmpdata = oldHistoryCityData;
-                    localStorage.setItem("ac_city",JSON.stringify(tmpdata));
+                  if(selectCityList == 0){
+                    localStorage.setItem("ac_city1",JSON.stringify(tmpdata));
+                  }
+                  if(selectCityList == 1){
+                    localStorage.setItem("ac_city2",JSON.stringify(tmpdata));
+                  }
                     return;
                 }
 
@@ -464,7 +518,12 @@
             }
             oldHistoryCityData.push(newHistoryCityData);
             tmpdata = oldHistoryCityData;
-            localStorage.setItem("ac_city",JSON.stringify(tmpdata));
+            if(selectCityList == 0){
+              localStorage.setItem("ac_city1",JSON.stringify(tmpdata));
+            }
+            if(selectCityList == 1){
+              localStorage.setItem("ac_city2",JSON.stringify(tmpdata));
+            }
 
         }
 
