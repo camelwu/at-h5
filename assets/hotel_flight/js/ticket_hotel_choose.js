@@ -649,7 +649,7 @@ var ticketHotel = {
                 return array[1]+'月'+array[2]+'日';
             };
         startEle.innerHTML= '出发:'+returnWeek(arg.DepartDate.replace(/T.*/,''));
-        endEle.innerHTML= '返回:'+returnWeek(arg.ReturnDate.replace(/T.*/,''));
+        endEle.innerHTML= '返程:'+returnWeek(arg.ReturnDate.replace(/T.*/,''));
         adult.innerHTML= arg.AdultNum+'成人';
         child.innerHTML= arg.ChildNum+'儿童';
         startP.innerHTML= arg.FromCityNameCN;
