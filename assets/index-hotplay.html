@@ -86,7 +86,6 @@
             {% }else if(productType==3){ %}
             <a href = "scenic/scenic_detail.html?packageID={%=productID%}">
             {% } %}
-            <div class="hp-atten"><span>{%=productAttentionNum%}</span>人已关注</div>
             <div>
                 <img src="{%=productPicUrl%}" class="banner-image" alt="img">
                 <div class="hp-block">
@@ -94,13 +93,8 @@
                 </div>
             </div>
             <div class="spotDesc">{%=productDesc%}</div>
-            <div class="hp-sale">
-                <img src="images/zhekou.png">
-                <span>{%=discount%}折</span>
-            </div>
             <div>
                 <span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>
-                <span class="old-num">{%=productPrice%}元</span>
             </div>
             </a>
             </a>
@@ -128,19 +122,13 @@
                     vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
                     var tpl = [
                         '<li>',
-                        '<div class="hp-atten"><span>{%=productAttentionNum%}</span>人已关注</div>',
                         '<div>',
                         '<img src="{%=productPicUrl%}" class="banner-image" alt="img">',
                         '<div class="hp-block">{%=productName%}</div>',
                         '</div>',
                         '<div class="spotDesc">{%=productDesc%}</div>',
-                        '<div class="hp-sale">',
-                        '<img src="images/zhekou.png">',
-                        '<span>{%=discount%}折</span>',
-                        '</div>',
                         '<div>',
                         '<span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>',
-                        '<span class="old-num">{%=productPrice%}元</span>',
                         '</div>',
                         '</li>'].join('');
                     function hotplay_back(ret){
@@ -179,19 +167,13 @@
                         vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
                         var tpl = [
                             '<li>',
-                            '<div class="hp-atten"><span>{%=productAttentionNum%}</span>人已关注</div>',
                             '<div>',
                                 '<img src="{%=productPicUrl%}" class="banner-image" alt="img">',
                                 '<div class="hp-block">{%=productName%}</div>',
                              '</div>',
                             '<div class="spotDesc">{%=productDesc%}</div>',
-                            '<div class="hp-sale">',
-                            '<img src="images/zhekou.png">',
-                            '<span>{%=discount%}折</span>',
-                            '</div>',
                             '<div>',
                             '<span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>',
-                            '<span class="old-num">{%=productPrice%}元</span>',
                             '</div>',
                             '</li>'].join('');
                         function hotplay_back(ret){
