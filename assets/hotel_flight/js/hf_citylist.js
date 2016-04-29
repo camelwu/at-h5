@@ -9,7 +9,7 @@
     });
 }(jQuery));
 (function(){
-    var globalData = {},originData = {},destinationData = {},hotcityData = {};
+    var globalData = {},originData = {},destinationData = {},hotcityData = {},selectCityList = 0;
     var arrHistory = [],arr = [],originParams={},destinationParams={},hotcityParams;
     $('html,body').animate({scrollTop:0});
 
@@ -23,6 +23,7 @@
      */
     $(".origin").click(function(){
         originORdestination = ".origin";
+        selectCityList = 0;
         MT.LoadingShow();
         hotcityData = JSON.parse(localStorage.getItem("hf_hotcity"));
 
@@ -46,6 +47,7 @@
      */
     $(".destination").click(function(){
         originORdestination = ".destination";
+        selectCityList = 1;
         MT.LoadingShow();
         hotcityData = JSON.parse(localStorage.getItem("hf_hotcity"));
         if(MT.XCache()){
@@ -409,7 +411,13 @@
      * @constructor 获得城市列表历史纪录
      */
     MT.getCityHistory = function(){
-        var oldHistoryCityData = localStorage.getItem("ac_city");
+        var oldHistoryCityData;
+        if(selectCityList == 0){
+          oldHistoryCityData = localStorage.getItem("ac_city1");
+        }
+        if(selectCityList == 1){
+          oldHistoryCityData = localStorage.getItem("ac_city2");
+        }
         oldHistoryCityData = JSON.parse(oldHistoryCityData);
 
         if(oldHistoryCityData){
@@ -436,16 +444,27 @@
      * @constructor 设置城市列表历史纪录
      */
     MT.setHistoryCity = function(cityname,citycode){
-        var oldHistoryCityData = localStorage.getItem("ac_city");
+        var oldHistoryCityData;
+        if(selectCityList == 0){
+          oldHistoryCityData = localStorage.getItem("ac_city1");
+        }
+        if(selectCityList == 1){
+          oldHistoryCityData = localStorage.getItem("ac_city2");
+        }
         var newHistoryCityData = [cityname+":"+citycode];
         var tmpdata = [],tmpArray = [];
 
         if(!oldHistoryCityData){
             tmpdata.push(newHistoryCityData);
-            localStorage.setItem("ac_city",JSON.stringify(tmpdata));
+            if(selectCityList == 0){
+              localStorage.setItem("ac_city1",JSON.stringify(tmpdata));
+            }
+            if(selectCityList == 1){
+              localStorage.setItem("ac_city2",JSON.stringify(tmpdata));
+            }
         }else{
             oldHistoryCityData = JSON.parse(oldHistoryCityData);
-            console.log(oldHistoryCityData);
+            //console.log(oldHistoryCityData);
             for (var i = oldHistoryCityData.length-1;i >= 0;i--){
                 //console.log(oldHistoryCityData[i]);
                 if(oldHistoryCityData[i].toString().split(":")[1] === citycode){
@@ -453,7 +472,12 @@
                     MT.remove(oldHistoryCityData,i);
                     oldHistoryCityData.push(tmpdata);
                     tmpdata = oldHistoryCityData;
-                    localStorage.setItem("ac_city",JSON.stringify(tmpdata));
+                  if(selectCityList == 0){
+                    localStorage.setItem("ac_city1",JSON.stringify(tmpdata));
+                  }
+                  if(selectCityList == 1){
+                    localStorage.setItem("ac_city2",JSON.stringify(tmpdata));
+                  }
                     return;
                 }
 
@@ -464,7 +488,12 @@
             }
             oldHistoryCityData.push(newHistoryCityData);
             tmpdata = oldHistoryCityData;
-            localStorage.setItem("ac_city",JSON.stringify(tmpdata));
+            if(selectCityList == 0){
+              localStorage.setItem("ac_city1",JSON.stringify(tmpdata));
+            }
+            if(selectCityList == 1){
+              localStorage.setItem("ac_city2",JSON.stringify(tmpdata));
+            }
 
         }
 
