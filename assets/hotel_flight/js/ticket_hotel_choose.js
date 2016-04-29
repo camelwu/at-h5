@@ -375,7 +375,7 @@ var ticketHotel = {
                     '{% if(data["flightLeaveSpacingDay"]){ %}<span class="tip">+{%=flightLeaveSpacingDay%}天</span>{% } %}',
                     '<span class="arrive-port">{%=flightLeaveStartAirportNameTo%}{%=flightLeaveStartTermArrive%}</span>',
                     '</div>',
-                    '<p><span>{%=flightLeaveStartOperatingCarrierName%}</span><span> | {%=flightLeaveStartAirCorpCode%}{%=flightLeaveStartFlightNo%}</span><span> | {%=flightLeaveStartPlaneName%}</span><span> | {%=cabinClass%}</span></p>',
+                    '<p><span>{%=flightLeaveStartOperatingCarrierName%}</span><span> | {%=flightLeaveStartAirCorpCode%}{%=flightLeaveStartFlightNo%}</span><span> | {%=flightLeaveStartPlaneName%}</span></p>',
                     '</div>',
                     '</div>',
                     '<div class="spend-line">',
@@ -405,7 +405,7 @@ var ticketHotel = {
                     '{% if(data["flightReturnSpacingDay"]){ %}<span class="tip">+{%=flightReturnSpacingDay%}天</span>{% } %}',
                     '<span class="arrive-port">{%=flightReturnStartAirportNameTo%}{%=flightReturnStartTermArrive%}</span>',
                     '</div>',
-                    '<p><span>{%=flightReturnStartOperatingCarrierName%}</span><span> | {%=flightReturnStartAirCorpCode%}{%=flightReturnStartFlightNo%}</span></span><span> | {%=flightReturnStartPlaneName%}</span><span> | {%=cabinClass%}</span></p>',
+                    '<p><span>{%=flightReturnStartOperatingCarrierName%}</span><span> | {%=flightReturnStartAirCorpCode%}{%=flightReturnStartFlightNo%}</span></span><span> | {%=flightReturnStartPlaneName%}</span></span></p>',
                     '</div>',
                     '</div>'].join('');
                 var temp_hotelInfo = [
