@@ -78,6 +78,19 @@ var hotelList = {
 				$('#lsf_list').html(tpl_GetList);
 				$('#h-level').html(tpl_getStar);
 				$('#l-ul').html(tpl_getLocation);
+
+        // 恢复上次选中的酒店位置
+        var oldLocation = newPara.Location.replace('$', '');
+        oldLocation = oldLocation ? oldLocation : '不限';
+        $('#l-ul .l-li').find('b').removeClass('l-icon1').addClass('l-icon');
+        $('#l-ul .l-li').each(function (index, item) {
+          var $item = $(item);
+          if($item.text().trim() === oldLocation){
+            $item.find('b').addClass('l-icon1').removeClass('l-icon');
+            return;
+          }
+        });
+
 				that.delayLoadImage().addEvent()
 			}
 		}else{
@@ -460,9 +473,7 @@ function url2json(url) {
       var $this = $(this);
       var b = $this.find('b');
       var selected = b.hasClass('l-icon1');
-      if (selected) {
-        b.removeClass('l-icon1').addClass('l-icon');
-      } else {
+      if (!selected) {
         b.removeClass('l-icon').addClass('l-icon1');
         $this.siblings().find('b').addClass('l-icon').removeClass('l-icon1');
       }
