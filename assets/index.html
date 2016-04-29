@@ -36,7 +36,7 @@
 	<body>
 		<div id="preloader">
 			<div id="status">
-				
+
 			</div>
 		</div>
 		<div class="all-elements">
@@ -188,7 +188,8 @@
 
 					//playerRecommend
 					function PlayerRecommend() {
-						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
+//						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
+            var tpl1 = ['<div class="half-top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
 						var tmp = {
 							"Parameters" : {
 								"PageNo" : 1,
