@@ -170,7 +170,7 @@ var ticketSeatChoose = {
         var str = '';
         if(arg.length<2){
             str = ''
-        }else if(arg.length=2){
+        }else if(arg.length==2){
             str = '<span class="air-port-word">转'+arg[0].cityNameTo+'</span>'
         }else if(arg.length>=3){
             str = '<span class="air-port-word">中转'+(arg.length-1)+'次</span>'
