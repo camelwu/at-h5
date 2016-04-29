@@ -81,6 +81,9 @@
     background: white;
     padding: 0 1.5rem;
 }
+.hotel-summary-info{
+  border-bottom: 1px solid #dedede;
+}
 .trip-go, .trip-back{
     margin-right: 35px;
 }
