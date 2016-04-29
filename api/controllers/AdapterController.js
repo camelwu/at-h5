@@ -68,7 +68,7 @@ module.exports = {
             //http://10.6.11.20:11111/api/GetServiceApiResult  hotel_flight
             //10.7.2.100:8888   
             //UAT domain   hapi.atrip.net
-            var _api = 'http://hapi.atrip.net/api/GetServiceApiResult' + '?rnd=' + Math.random();
+            var _api = 'http://hapi.atrip.net:8000/api/GetServiceApiResult' + '?rnd=' + Math.random();
 
             //自定义请求header和body
             var option = {
