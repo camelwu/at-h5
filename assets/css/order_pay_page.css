@@ -260,9 +260,20 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
   list-style-type: none;
   background: #FFFFFF;
 }
+#confirmBox div{
+  padding: 10px 15px;
+  border-top: 1px solid #edeceb;
+  color: #999;
+  background: #f7f7f7;
+}
+#confirmBox div span{
+  color:#d1d1d1;
+  font-size: 12px;
+}
 #confirmBox li{
   padding:10px 15px;
   position: relative;
+  border-bottom: 1px solid #edeceb;
 }
 #confirmBox li:after{
   content: '';

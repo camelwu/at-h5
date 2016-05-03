@@ -77,7 +77,8 @@
       <div id="sendInfo">
       </div>
       <ul id="confirmBox">
-        <li>酒店确认单</li>
+        <!--<div>电子确认单<span>（酒店入住，景点入园时提示）</span></div>-->
+        <!--<li><a href="confirm-page.html?hotel=1">酒店确认单</a></li>-->
       </ul>
         <section id="totlePrice" class="order_total">
             <!--订单总额：<b class="orange">¥</b><i class="orange">5,296</i>-->
@@ -155,6 +156,14 @@
     </section>
     {% } %}
   </section>
+</script>
+<script id="tpl_confirmCard" type="text/template">
+  <div>电子确认单<span>（酒店入住，景点入园时提示）</span></div>
+  <li><a href="confirm-page.html?hotel=1">酒店确认单</a></li>
+  <li><a href="confirm-page.html?tour=1">旅行确认单</a></li>
+  {% for(var i = 0;i < tours.length;i++){ %}
+  <li><a href="confirm-page.html?spot=1">景点确认单{%=i+1%}</a></li>
+  {% } %}
 </script>
 <script id="tpl_payStatus" type="text/template">
     {% if(paymentStatus){  %}
@@ -307,10 +316,11 @@
                         var html_pd_list = template(tpl5,data);
                         var tpl_payStatus = template("tpl_payStatus",data);
                         var tpl_payBtn = template("tpl_payBtn",data);
+                        var tpl_confirm = template("tpl_confirmCard",data);
                         $('#packageInfo').html(html_pi);
                         $('#hotelInfo').html(html_hi);
                         $('#tourInfo').html(tpl_GetTourInfo);
-                      debugger;
+                        $('#confirmBox').html(tpl_confirm);
                       if(data.flightDetails){
                         var tpl_sendServe =  template("tpl_sendServe",data);
                         $('#sendInfo').html(tpl_sendServe);
