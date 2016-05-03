@@ -216,8 +216,8 @@ var ticketSingle = {
   renderHandler: function (arg) {
     var arg = arg;
     var that = ticketSingle, airTicketsListWrapper = document.querySelector('.air-tickets-detail-wrapper');
-    var tipEle = document.querySelector('.flight-result-tip'), noFlightInfo = null, clearTag = '';
-    clearTag = that.isClearAll, storage = window.localStorage;
+    var tipEle = document.querySelector('.flight-result-tip'), noFlightInfo = null, clearTag = '', localStorage;
+    clearTag = that.isClearAll, localStorage = window.localStorage;
     document.querySelector('#preloader').style.display = 'none';
     if (arg.success && arg.code == 200 && arg.data.flightInfos.length > 0) {
       document.querySelector('.tip-button-para').style.display = 'none';
@@ -225,7 +225,7 @@ var ticketSingle = {
       that.lastBackData = arg;
       that.pageNo = arg.data.pageNo;
       that.pageCount = arg.data.pageCount;
-      storage.setItem('flightListData', JSON.stringify(arg.data.flightInfos))
+      localStorage.setItem('flightListData', JSON.stringify(arg.data.flightInfos));
       that.changeFlightList(arg, clearTag);
       that.eventHandler();
       that.taxDeal(arg.data.flightInfos);
