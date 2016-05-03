@@ -50,6 +50,7 @@ function init(){
         return;
     }
     vlm.checkUser();
+    vlm.loading();
     vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
 
 
@@ -59,6 +60,7 @@ function init(){
 function mycallback(ret) {
     var myJson = ret;
     console.log(myJson.data[0].nickName);
+    vlm.loadend();
     if (myJson.success) {
         var user_name = $("#user_name")[0];
         var user_sex = $("#user_sex")[0];
