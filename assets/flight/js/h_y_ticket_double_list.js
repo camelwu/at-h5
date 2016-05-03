@@ -489,7 +489,7 @@ var ticketDouble = {
             that.lastBackData = arg;
             that.pageNo = arg.data.pageNo;
             that.pageCount = arg.data.pageCount;
-            storage.setItem('flightListData', JSON.stringify(arg.data.flightInfos));
+            localStorage.setItem('flightListData', JSON.stringify(arg.data.flightInfos));
             that.changeFlightList(arg, clearTag);
             that.taxDeal(arg.data.flightInfos);
         } else if (arg.success == false && arg.message.indexOf('greater') > -1) {
