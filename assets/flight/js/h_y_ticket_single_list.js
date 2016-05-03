@@ -75,7 +75,7 @@ var ticketSingle = {
     tStr[2] = parseInt(tStr[2]) < 10 ? '0' + parseInt(tStr[2]) : parseInt(tStr[2]);
     document.querySelector('.single-ticket-input').innerHTML = tStr[1] + '&nbsp;<span>' + returnWeek(new Date().getFullYear() + '-' + tStr[1] + '-' + tStr[2]) + '</span>';
     that.backParaObj.DepartDate = dateStr;
-    document.querySelector('#preloader').style.display = 'block';
+    //document.querySelector('#preloader').style.display = 'block';
     //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
     //重置URL  DepartDate
     var newUrl = vlm.setUrlPara("", "DepartDate", that.backParaObj.DepartDate);
@@ -217,20 +217,18 @@ var ticketSingle = {
     var arg = arg;
     var that = ticketSingle, airTicketsListWrapper = document.querySelector('.air-tickets-detail-wrapper');
     var tipEle = document.querySelector('.flight-result-tip'), noFlightInfo = null, clearTag = '';
-    clearTag = that.isClearAll;
+    clearTag = that.isClearAll, storage = window.localStorage;
     document.querySelector('#preloader').style.display = 'none';
     if (arg.success && arg.code == 200 && arg.data.flightInfos.length > 0) {
       document.querySelector('.tip-button-para').style.display = 'none';
       tipEle.style.display = 'none';
-      that.flightResultArray.push(arg["data"]);
       that.lastBackData = arg;
-      that.storageUtil.set('flightListData', that.flightResultArray);
       that.pageNo = arg.data.pageNo;
       that.pageCount = arg.data.pageCount;
+      storage.setItem('flightListData', JSON.stringify(arg.data.flightInfos))
       that.changeFlightList(arg, clearTag);
       that.eventHandler();
       that.taxDeal(arg.data.flightInfos);
-
     } else if (arg.success == false && arg.message.indexOf('greater') > -1) {
       document.querySelector('.no-flight-word').innerHTML = '未搜到航班信息，请扩大搜索范围!';
       document.querySelector('.tip-button-para').style.display = 'block';
@@ -307,9 +305,8 @@ var ticketSingle = {
   },
 
   changeFlightList: function (arg, type) {
-    var that = ticketSingle;
-    var that = this;
-    var ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
+    if(!arg){return};
+    var arg = arg, that = ticketSingle, ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
     var ticketListStr, ShareFlightStr = '', passByStr = '', transferCity = '', tipDay = '', li;
     ticketDetailUl.innerHTML = type == true ? "" : ticketDetailUl.innerHTML;
     var returnRightTax = function () {
@@ -539,7 +536,6 @@ var ticketSingle = {
     var that = ticketSingle;
     that.backParaObj = arg;
     that.changeFlightList(that.lastBackData, true);
-    console.log(arg)
   },
 
   fixColor: function () {
@@ -564,7 +560,6 @@ var ticketSingle = {
     this.backParaObj = backParaObj;
     this.isClearAll = true;
     this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
-    this.flightResultArray = [];
     this.fixColor();
     this.dateInit(backParaObj);
     this.preAndNex();

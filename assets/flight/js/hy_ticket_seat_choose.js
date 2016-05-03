@@ -192,7 +192,7 @@ var ticketSeatChoose = {
             }
              isLeaveShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
              detailButton = (arg.segmentsLeave.length<=1)?'':'<span class="detail-word">详情<i></i></span>';
-             str = '<div class="go-trip">' +
+             str = '<div class="go-trip no-return-trip">' +
                 '<div class="top-line top-pad-no"">' +
                 '</span>'+that.returnDate(arg.flightLeaveStartDate)+
                 '<span class="start">'+arg.cityNameFrom+'</span>'+
@@ -380,16 +380,14 @@ var ticketSeatChoose = {
         return obj;
     },
     createHtml:function(){
-        var dataPools = this.storageUtil.get('flightListData'), resultData = {},that = this,setID = this.assistInfo.setId,summaryHtml='';
+        var dataPools = JSON.parse(window.localStorage.getItem('flightListData')), resultData = {},that = this,setID = this.assistInfo.setId,summaryHtml='';
         var allEle = document.querySelector('.all-elements'),itemObj={},backMeal ='';
-             dataPools.forEach(function(obj){
-                 obj["flightInfos"].forEach(function(obj_){
-                     if(obj_.setID == setID){
-                         resultData = obj_;
-                         return;
-                     }
-                 });
-        });
+             dataPools.forEach(function(obj) {
+               if (obj.setID == setID) {
+                 resultData = obj;
+                  return;
+               }
+             });
         itemObj = resultData;
         this.curFlightListData = itemObj;
         this.storageUtil.set('curFlightListData',itemObj);
