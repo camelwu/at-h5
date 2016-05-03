@@ -2083,11 +2083,7 @@ i{
     margin-top: 20px;
 }
 .price-tot-list li > span {
-    /*-webkit-box-felx:1;*/
-    /*-moz-box-flex:1;*/
-    /*-ms-flex:1;*/
-    /*-webkit-flex:1;*/
-    /*flex:1;*/
+   color:#fe4716;
 }
 .price-tot-list li > span.price-totj{
     width: 6rem;
