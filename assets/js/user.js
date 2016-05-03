@@ -149,7 +149,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     sexName = "女";
                 }
                 // 手机号邮箱检验
+                $('#mobile-cell-add')[0].value=$('#mobile-cell-add')[0].value.replace(/^\s*/,'');
                 var oMobile = $('#mobile-cell-add')[0].value;
+                $('#email-cell-add')[0].value=$('#email-cell-add')[0].value.replace(/^\s*/,'');
                 var oEmail = $('#email-cell-add')[0].value;
 
                 if ( ! vlm.Utils.validate.mobileNo(oMobile) )
@@ -293,7 +295,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
 
                 // 手机号邮箱检验
+                $('#mobile-cell')[0].value=$('#mobile-cell')[0].value.replace(/^\s*/,'');
                 var oMobile = $('#mobile-cell')[0].value;
+                $('#email-cell')[0].value=$('#email-cell')[0].value.replace(/^\s*/,'');
                 var oEmail = $('#email-cell')[0].value;
 
                 if ( ! vlm.Utils.validate.mobileNo(oMobile) )

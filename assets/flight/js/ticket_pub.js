@@ -1273,8 +1273,8 @@ var  conditionalFiltering = {
                             this.tempStates.CabinClass = seatConditionLis_is[hy].getAttribute('data-i');
                             break;
                         }
-                    } }
-
+                    }
+                }
                 for(var ty = 0; ty < timeMiddleLis_is.length; ty++) {
                     if(type=="set"){
                         if(timeMiddleLis_is[ty].getAttribute('data-i').indexOf('isDesc')>-1){
