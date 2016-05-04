@@ -1,26 +1,4 @@
-/*header开始*/
-.header {
-  height: 1rem;
-  line-height: 1rem;
-  background-color: #fcfcfc;
-}
 
-.go_back {
-  /*background: url(../../images/ui/icons.png) no-repeat;*/
-  /*background-size: 243px 160px;*/
-  /*position: absolute;*/
-  /*left: 15px;*/
-  /*top: 10px;*/
-  /*width:12px;*/
-  /*height:22px;*/
-}
-
-.header > h3 {
-  text-align: center;
-  font-size: .33rem;
-}
-
-/*header结束*/
 /*公用开始*/
 .fl {
   float: left;
@@ -32,23 +10,29 @@
 *{
   box-sizing: border-box;
 }
+.header >h3{
+  font-size: .36rem;
+}
+.content{
+  padding-top: 45px;
+}
 /*公共结束*/
 
 /*机票开始*/
-.fli_hd {
+.fht_hd {
   background-color: #f7f7f7;
   height: 0.68rem;
   line-height: 0.68rem;
   font-size: 0.28rem;
   border-top: .01rem solid #ddd;
+  padding: 0 .28rem;
 }
 
-.fli_hd_tit {
-  margin-left: .28rem;
+.fht_hd_tit {
   color: #333;
 
 }
-.fli_hd_tit >i{
+.fht_hd_tit >i{
   display: inline-block;
   vertical-align: top;
   margin-top: .09rem;
@@ -60,12 +44,11 @@
   background-size: 5.2rem 4.12rem;
 }
 
-.fli_hd_det{
-  margin-right: .28rem;
+.fht_hd_det{
   font-size: .24rem;
   color: #999;
 }
-.fli_hd_det >i{
+.fht_hd_det >i{
   display: inline-block;
   vertical-align: top;
   margin-top: .2rem;
@@ -85,7 +68,6 @@
 }
 .flight_cir_wrap{
   padding: .4rem .28rem;
-  border-bottom: .02rem solid #e6e6e6;
 }
 .flight_cir_wrap li:nth-child(2){
   margin-bottom:0;
@@ -96,6 +78,45 @@
   font-size: .28rem;
   margin-top: .4rem;
 }
+
+/*机票结束*/
+/*酒店开始*/
+.hotel_wrap{
+  font-size: .28rem;
+  margin-left: .28rem;
+  padding: .4rem 0;
+}
+.hotel_wrap li{
+  margin-bottom: .32rem;
+}
+.fht_hd_tit.hotel >i{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .09rem;
+  margin-right: .16rem;
+  width: .5rem;
+  height: .5rem;
+  background-image: url(../../images/ui/ticket_hotel.png);
+  background-position: .8rem 2.33rem;
+  background-size: 5.2rem 4.12rem;
+}
+.hotel_wrap >h3{
+  margin-bottom: .32rem;
+  font-weight: bold;
+}
+
+/*酒店结束*/
+/*景点开始*/
+.tour_wrap > li{
+  padding: .4rem .28rem;
+  font-size: .28rem;
+  border-bottom: .01rem solid #e6e6e6;
+}
+.tour_wrap > li:last-child{
+  border-bottom: none;
+}
+
+/*景点结束*/
 
 /*预定footer*/
 .order-footer {
@@ -166,270 +187,15 @@
 }
 
 /*footer结束*/
-/*content开始*/
-.flight_section {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-.order-plane {
-  width: 100%;
-}
-
-.airport-recycle {
-  width: 110px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.order-lis1 {
-  width: 100%;
-  height: 40px;
-}
-
-.order-lis1-l {
-  float: left;
-}
-
-.order-lis1-l i {
-  width: 40px;
-  height: 28px;
-  display: inline-block;
-  background-image: url(../../images/ui/ticket_hotel.png);
-  background-position: 125px 120px;
-  background-size: 260px 206px;
-  position: absolute;
-  top: 6px;
-  left: 0;
-}
-
-.order-lis1-l span {
-  display: inline-block;
-  text-align: center;
-  line-height: 40px;
-  font-size: 1.6px;
-  position: absolute;
-  top: 0px;
-  left: 40px;
-}
-
-.order-lis1-r {
-  float: right;
-}
-
-.order-lis1-r span {
-  display: inline-block;
-  text-align: center;
-  line-height: 40px;
-  font-size: 1.5px;
-  margin-right: 40px;
-  color: #FDB330;
-}
-
-.order-lis1-r i {
-  background: url(../../images/ui/air-icons.png) no-repeat -154px -18px;
-  background-size: 250px 150px;
-  width: 20px;
-  height: 36px;
-  position: absolute;
-  top: 3px;
-  right: 15px;
-}
-
-.order-lis2 {
-  width: 100%;
-  height: 40px;
-  background-color: white;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 0px;
-}
-
-.order-plane ul {
-  position: relative;
-  font-size: 1.4px;
-  margin-bottom: 0px;
-}
-
-.order-lis2-l {
-  float: left;
-  height: 40px;
-}
-
-.order-lis2-l span, .order-lis2-r span {
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
-  line-height: 40px;
-  margin-left: 0.2px;
-}
-
-.order-lis2-l i {
-  width: 24px;
-  height: 24px;;
-  background-image: url(../../images/ui/ticket_hotel.png);
-  background-size: 300px 240px;
-  background-position: 273px 141px;
-  position: absolute;
-  top: 42px;
-  left: 10px;
-}
-
-.order-lis2-r {
-  float: right;
-  text-align: center;
-  line-height: 40px;
-}
-
-.order-lis2-r i, .order-lis3-r i {
-  width: 14px;
-  height: 30px;
-  background: url(../../images/ui/icon-t.png) no-repeat -28px -18.5px;
-  background-size: 233px 140px;
-  position: absolute;
-  top: 45px;
-  right: 72px;
-}
-
-.order-lis3 {
-  width: 100%;
-  height: 40px;
-  background-color: white;
-  padding: 0 15px;
-  margin-bottom: 0;
-  border-bottom: 1px solid #ccc;
-}
-
-.order-lis3-l {
-  float: left;
-
-}
-
-.order-lis3-l span, .order-lis3-r span {
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
-  line-height: 30px;
-  margin-left: 0.2px;
-}
-
-.order-lis3-l i {
-  width: 24px;
-  height: 24px;
-  background-image: url(../../images/ui/ticket_hotel.png);
-  background-size: 300px 240px;
-  background-position: 248px 141px;
-  position: absolute;
-  top: 77px;
-  left: 10px;
-}
-
-.order-lis3-r {
-  float: right;
-  text-align: center;
-  line-height: 40px;
-}
-
-.order-lis4 {
-  width: 100%;
-  height: 40px;
-  background-color: white;
-  padding-left: 15px;
-  margin-right: 15px;
-}
-
-.order-lis4 span {
-  display: inline-block;
-  text-align: center;
-  font-size: 1.6px;
-  line-height: 40px;
-}
-
-span.order-lis3-r i {
-  background-position: -28px -18.5px;
-  position: absolute;
-  top: 80px;
-  right: 72px;
-}
-
-span.order-ml {
-  margin-left: 2px;
-}
-
-/*jiudinsbufen*/
-.order-hotel {
-  width: 100%;
-  position: relative;
-}
-
-.order-hotel ul {
-  position: relative;
-  font-size: 1.4px;
-  margin-bottom: 0px;
-}
-
-.order-hotel li {
-  width: 100%;
-  line-height: 30px;
-  padding-left: 15px;
-}
-
-li.order-hlist1 {
-  height: 35px;
-  line-height: 35px;
-  font-size: 1.6px;
-}
-
-li.order-hlist1 i {
-  width: 34px;
-  height: 34px;
-  display: inline-block;
-  background-image: url(../../images/ui/ticket_hotel.png);
-  background-size: 276px 206px;
-  background-position: 44px 123px;
-  position: absolute;
-  top: 2px;
-  left: 10px;
-}
-
-li.order-hlist1 span {
-  display: inline-block;
-  text-align: center;
-  line-height: 40px;
-  font-size: 1.6px;
-  position: absolute;
-  top: 0px;
-  left: 40px;
-}
-
-li.order-hlist2 {
-  background-color: white;
-  padding: 10px 0 0 15px;
-  font-size: 1.6px;
-  line-height: 30px;
-  margin-bottom: 0px;
-  color: #333;
-}
-
-.order-hlist3, .order-hlist4 {
-  background-color: white;
-  margin-bottom: 0px;
-  padding-left: 15px;
-}
-
-li.order-hlist4 {
-  padding-bottom: 10px;
-}
-
-li.order-hlist4 > span {
-  margin-right: 10px;
-}
 
 /*出行人*/
+#order-twrap{
+ font-size: .28rem;
+}
+#order-twrap b{
+  font-weight: normal;
+}
+
 .order-trip {
   width: 100%;
   position: relative;
@@ -459,7 +225,6 @@ li.order-hlist4 > span {
 
 .order-tsl2 {
   float: right;
-  margin-right: 96px;
   font-size: 1.3px;
   line-height: 40px;
 }

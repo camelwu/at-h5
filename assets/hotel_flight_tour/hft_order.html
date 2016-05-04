@@ -25,16 +25,17 @@
   <!--</div>-->
 <!--</div>-->
 <div class="header">
-  <a href="javascript:window.history.go(-1);" class="header-back">
+  <a href="javascript:window.history.go(-1);" class="header_back">
     <i class="go_back"></i>
   </a>
   <h3>订单填写</h3>
 </div>
 <div class="content">
+  <!--机票-->
   <div class="flight_section">
-    <div class="fli_hd clearfix">
-      <span class="fli_hd_tit fl"><i></i>机票</span>
-      <span class="fli_hd_det fr"><i></i>详情</span>
+    <div class="fht_hd clearfix">
+      <span class="fht_hd_tit fl"><i></i>机票</span>
+      <span class="fht_hd_det fr"><i></i>详情</span>
     </div>
     <ul class="flight_cir_wrap">
       <li class="fli_cont clearfix">
@@ -66,40 +67,58 @@
       </li>
     </ul>
   </div>
-  <div class="order-bg order-hotel">
-    <ul>
-    <li class = "order-hlist1">
-    <i></i>
-    <span>酒店</span>
-    </li>
-    <li class = "order-hlist2">东京东急涩卓越大酒店</li>
-    <li class = "order-hlist3">
-    <span>11月25日-11月26日</span>
-    <span>共1晚（当地时间为准）</span>
-    </li>
-    <li class = "order-hlist4">
-    <span>房型：经济大床房</span>
-    <span>房间数：2间</span>
-    </li>
+  <!--酒店-->
+  <div class="hotel_section">
+    <div class="fht_hd clearfix">
+      <span class="fht_hd_tit hotel fl"><i></i>酒店</span>
+    </div>
+    <div class="hotel_wrap">
+      <h3>东京东急涩卓越大酒店</h3>
+      <ul>
+        <li class = "hotel_check_wrap">
+          <span>11月25日-11月26日</span>
+          <span>共1晚（当地时间为准）</span>
+        </li>
+        <li class = "hotel_room_det">
+          <span>房型：经济大床房</span>
+          <span>房间数：2间</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--景点-->
+  <div class="tour_section">
+    <div class="fht_hd clearfix">
+      <span class="fht_hd_tit tour fl"><i></i>景点</span>
+    </div>
+    <ul class="tour_wrap">
+      <li>
+        <p>吉隆坡市区半日游</p>
+        <p>11月25日 上午</p>
+      </li>
+      <li>
+        <p>吉隆坡市区半日游</p>
+        <p>11月25日 上午</p>
+      </li>
     </ul>
   </div>
-  <!--<div class="order-bg order-trip">-->
-    <!--<div class = "order-tlist1" id="traveltab">-->
-      <!--<span class = "order-tsl1">出行人</span>-->
-      <!--<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>-->
-      <!--<span class = "order-tsl2"><i class="adu-choose">0</i>/<i class="adu-tot"></i>成人 <b><i class="chi-choose">0</i>/<i class="chi-tot"></i>儿童</b></span>-->
-    <!--</div>-->
-    <!--<ul id="order-twrap" style="display: none">-->
-      <!--<li class = "order-tlist2" >-->
-        <!--<i class="tra-delete" onclick="delPassager(this);"></i>-->
-        <!--<div class="traveller-wrap">-->
-          <!--<span>姓/名<b class="travel-last" data-elementName="lastName">BAI</b>/<b class="travel-first" data-elementName="firstName">LISA</b></span>-->
-          <!--<span><em class="card-tra-type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel-sex" data-sex="Ms">女</b></span>-->
-        <!--</div>-->
-        <!--<em data-id="" onclick="javascript:editPassager(this)" ><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></em>-->
-      <!--</li>-->
-    <!--</ul>-->
-  <!--</div>-->
+  <div class="traveller_section">
+    <div class = "fht_hd clearfix" id="traveltab">
+      <span class = "fl fht_travel">出行人</span>
+      <span class = "order-tsl2"><i class="adu-choose">0</i>/<i class="adu-tot"></i>成人 <b><i class="chi-choose">0</i>/<i class="chi-tot"></i>儿童</b></span>
+      <a href="javascript:;"></a>
+    </div>
+    <ul id="order-twrap" style="display: block">
+      <li class = "order-tlist2" >
+        <i class="tra-delete" onclick="delPassager(this);"></i>
+        <div class="traveller-wrap">
+          <span>姓/名<b class="travel-last" data-elementName="lastName">BAI</b>/<b class="travel-first" data-elementName="firstName">LISA</b></span>
+          <span><em class="card-tra-type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel-sex" data-sex="Ms">女</b></span>
+        </div>
+        <em data-id="" onclick="javascript:editPassager(this)" ><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></em>
+      </li>
+    </ul>
+  </div>
   <!--<div class="order-bg order-link">-->
     <!--<div class = "order-llist1">-->
       <!--<span>联系人</span>-->
