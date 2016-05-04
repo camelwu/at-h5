@@ -29,7 +29,9 @@
 .fr {
   float: right;
 }
-
+*{
+  box-sizing: border-box;
+}
 /*公共结束*/
 
 /*机票开始*/
@@ -38,34 +40,61 @@
   height: 0.68rem;
   line-height: 0.68rem;
   font-size: 0.28rem;
+  border-top: .01rem solid #ddd;
 }
 
 .fli_hd_tit {
-  padding-left: 1.04rem;
+  margin-left: .28rem;
+  color: #333;
 
 }
 .fli_hd_tit >i{
-  width: .8rem;
-  height: .56rem;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .09rem;
+  margin-right: .16rem;
+  width: .5rem;
+  height: .5rem;
   background-image: url(../../images/ui/ticket_hotel.png);
-  background-position: 2.5rem 2.4rem;
+  background-position: 2.33rem 2.33rem;
   background-size: 5.2rem 4.12rem;
-  position: absolute;
-  top: .06rem;
-  left: .28rem;
 }
 
 .fli_hd_det{
-  padding-right: 0.72rem;
+  margin-right: .28rem;
+  font-size: .24rem;
+  color: #999;
 }
 .fli_hd_det >i{
-  background: url(../../images/hotel_flight_tour/flight_det.png) no-repeat -154px -18px;
-  background-size: 250px 150px;
-  width: 20px;
-  height: 36px;
-  position: absolute;
-  top: 3px;
-  right: 15px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .2rem;
+  margin-right: .12rem;
+  background: url(../../images/hotel_flight_tour/flight_det.png) no-repeat;
+  background-size: .32rem .32rem;
+  width: .32rem;
+  height: .32rem;
+
+}
+
+.fli_cont{
+  font-size: .28rem;
+  height: .32rem;
+  line-height: .32rem;
+  margin-bottom: .32rem;
+}
+.flight_cir_wrap{
+  padding: .4rem .28rem;
+  border-bottom: .02rem solid #e6e6e6;
+}
+.flight_cir_wrap li:nth-child(2){
+  margin-bottom:0;
+  padding-bottom:.8rem;
+  border-bottom: .01rem solid #e6e6e6;
+}
+.cabin_level{
+  font-size: .28rem;
+  margin-top: .4rem;
 }
 
 /*预定footer*/
