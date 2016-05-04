@@ -63,6 +63,7 @@ var flight_list = {
     getTicketList:function(){
         var that = this;
         var sendData = changeFlightInfo.data;
+      console.log()
 
         $('#departData').html(that.formatDate(sendData.DepartDate,"MM-dd"));
         $('#returnData').html(that.formatDate(sendData.ReturnDate,"MM-dd"));
@@ -73,7 +74,7 @@ var flight_list = {
             '<div class="price-up">以下航班需加<span>￥{%=flightInfoListGroup[i].additionalPrice%}</span></div>',
             '<ul class="js-air-list air-tickets-detail air-tickets-detail-wrapper">',
             '{% for(var j=0;j < flightInfoListGroup[i].flightInfoList.length;j++){ %}',
-            '<li class="js-air-item air-tickets-detail seat-detail" data-setID="{%=flightInfoListGroup[i].flightInfoList[j].setID%}" data-cacheID="{%=flightInfoListGroup[i].flightInfoList[j].cacheID%}">',
+            '<li class="js-air-item air-tickets-detail seat-detail" data-setID="{%=flightInfoListGroup[i].flightInfoList[j].setID%}" data-cacheID="{%=flightInfoListGroup[i].flightInfoList[j].cacheID%}" data-addPrice="{%=flightInfoListGroup[i].additionalPrice%}" >',
             '<div class="time-airport">',
             '<div class="go">',
             '<div class="go-info">',
@@ -159,7 +160,6 @@ var flight_list = {
             '{% }else if(flightInfoListGroup[i].flightInfoList[j].cabinClass==3){ %}',
             '<span class="return-space">超级经济舱舱</span>',
             '{% } %}',
-
             '{% if(flightInfoListGroup[i].flightInfoList[j].isReturnShareFlight){ %}',
             '<span>&nbsp;|&nbsp;</span>',
             '<span class="green-tip">共享</span>',
@@ -167,11 +167,7 @@ var flight_list = {
             '</p>',
             '</div>',
             '</div>',
-            '{% if(i==0&&j==0){ %}',
-            '<b class="hf-icon hf-gou cho-gou"></b>',
-            '{% }else{ %}',
             '<b class="hf-icon hf-gou"></b>',
-            '{% } %}',
             '</li>',
             '{% } %}',
             '</ul>',
@@ -185,7 +181,7 @@ var flight_list = {
           '</div>',
           '<span class="airway-name">{%=airways[i].chineseName%}</span>',
           '<div class="aw-price">',
-          '<apan>+￥</apan><apnn >{%=airways[i].additionalPrice%}</apnn>',
+          '<span>+￥</span><span class="js-price">{%=airways[i].additionalPrice%}</spnn>',
           '</div>',
           '<b class="hf-icon"></b>',
           '</li>',
@@ -194,7 +190,6 @@ var flight_list = {
         var ticketList_callback = function(ret){
             var json = ret, that=flight_list;
             var data = json.data;
-            //json = {}
             if(json.success && json.code == '200'&&data.flightInfoListGroup.length>0){
                 $('.set-place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
                 $('.to-place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
@@ -202,6 +197,16 @@ var flight_list = {
                 $('#content').html(html_c);
                 var html_aw = template(tpl2,data);
                 $('#airway_list').html(html_aw);
+              //   选中的机票
+              var li = document.getElementsByClassName('js-air-item');
+              for(var k = 0;k < li.length;k++){
+                var ticket_setid = li[k].getAttribute('data-setID');
+                if(ticket_setid == oldFlightInfo.data.AirwaySetID){
+                  var bb = li[k].getElementsByTagName('b')[0];
+                  bb.className = 'hf-icon hf-gou cho-gou';
+                  var addPrice = li[k].getAttribute('data-addPrice');
+                }
+              }
               //   选中的航空公司
               var airway = document.getElementsByClassName('airway');
               for(var i = 0;i < airway.length;i++){
@@ -209,9 +214,11 @@ var flight_list = {
                 if(aw_setid == oldFlightInfo.data.AirwaySetID){
                   var b = airway[i].getElementsByTagName('b')[0];
                   b.className = 'hf-icon cho-gou';
+                  if(addPrice != '0'){
+                    airway[i].getElementsByClassName('js-price')[0].innerHTML = addPrice;
+                  }
                 }
               }
-                //}
                 //  页面跳转
                 $(".js-air-item").click(function(){
                     $(this).find('.hf-gou').addClass('cho-gou').parents().siblings().find('.hf-gou').removeClass('cho-gou');
@@ -226,6 +233,7 @@ var flight_list = {
                             }
                         }
                     }
+                    //console.log( flightHotelAllData)//flightHotelAllData
                     sessionStorage.flightHotelAllData = JSON.stringify(flightHotelAllData);
                     flightHotelAllData = JSON.parse(sessionStorage.flightHotelAllData);
                     window.location.href = 'ticket_hotel_choose.html?init';
@@ -243,7 +251,7 @@ var flight_list = {
                   //sessionStorage.flightHotelAllData = JSON.stringify(flightHotelAllData);
                   changeFlightInfo.data.AirwayCacheID = airwayCacheID;
                   changeFlightInfo.data.AirwaySetID = airwaySetID;
-                  localStorage.changeFlightParaObj = JSON.stringify(changeFlightInfo);
+                  //localStorage.changeFlightParaObj = JSON.stringify(changeFlightInfo);
                   if(changeFlightInfo != oldFlightInfo){
                     flight_list.tAjax("",changeFlightInfo.data,"50100002","3",ticketList_callback);
                   }
@@ -259,6 +267,7 @@ var flight_list = {
                 that.noResult();
             }
         };
+      console.log(sendData)
         this.tAjax("",sendData,"50100002","3",ticketList_callback);
 
     },
@@ -521,7 +530,7 @@ var flight_list = {
                         changeFlightInfo.data.SortFields = [];
                         changeFlightInfo.data.SortFields.push(3);
                     }
-                    localStorage.changeFlightParaObj = JSON.stringify(changeFlightInfo);
+                  //  localStorage.changeFlightParaObj = JSON.stringify(changeFlightInfo);
                     middleModal4.style.transition = 'all 300ms ease-in';
                     middleModal4.style.webkitTransition = 'all 300ms linear';
                     middleModal4.style.bottom = "-126%";
@@ -653,7 +662,7 @@ var flight_list = {
                                 }
                             }
                         }
-                        localStorage.changeFlightParaObj = JSON.stringify(changeFlightInfo);
+                      //  localStorage.changeFlightParaObj = JSON.stringify(changeFlightInfo);
                         $('#red_scr').addClass('red-tip');
                         leftWrap.style.transition = 'all 300ms ease-in';
                         leftWrap.style.webkitTransition = 'all 300ms linear';
@@ -737,9 +746,10 @@ var flight_list = {
     //  排序or筛选结束
     init:function(){
         changeFlightInfo =  JSON.parse(localStorage.changeFlightParaObj);
+      console.log(changeFlightInfo);
         oldFlightInfo =  JSON.parse(localStorage.changeFlightParaObj);
-        this.getTicketList();
-        this.createTags().addEvent();
+       this.getTicketList();
+       this.createTags().addEvent();
     }
 };
 flight_list.init();
