@@ -1,18 +1,19 @@
-.all-elements.input-relative {
-  position: relative;
-  max-height: auto;
+/*header开始*/
+.header{
+  height: 1rem;
 }
 
-em, b, i {
-  font-weight: normal;
-  font-style: normal;
-}
 
-ul, li {
-  list-style: none
-}
 
-/*脚部开始*/
+/*header结束*/
+
+
+
+
+
+
+
+/*footer*/
 .order-footer {
   position: fixed;
   bottom: 0;
@@ -29,7 +30,7 @@ ul, li {
 .order-num {
   height: 100%;
   width: 50%;
-  font-size: 1.8rem;
+  font-size: 1.8px;
   padding-left: 15px;
 }
 
@@ -44,7 +45,7 @@ ul, li {
 .order-num span.num1 {
   text-align: center;
   display: inline-block;
-  font-size: 1.6rem;
+  font-size: 1.6px;
 }
 
 .order-detail {
@@ -60,7 +61,7 @@ ul, li {
 .order-detail span {
   color: #FDBD4C;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.4px;
 }
 
 .order-submit {
@@ -73,14 +74,14 @@ ul, li {
   background-color: #FDB330;
   text-align: center;
   color: white;
-  font-size: 2.0rem;
+  font-size: 2.0px;
 }
 .order-submit:hover{
   color: #ccc;
 }
 
-/*}脚步结束*/
-/*中间开始*/
+/*footer结束*/
+/*content开始*/
 .container1 {
   width: 100%;
   height: 100%;
@@ -130,7 +131,7 @@ ul, li {
   display: inline-block;
   text-align: center;
   line-height: 40px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   position: absolute;
   top: 0px;
   left: 40px;
@@ -144,7 +145,7 @@ ul, li {
   display: inline-block;
   text-align: center;
   line-height: 40px;
-  font-size: 1.5rem;
+  font-size: 1.5px;
   margin-right: 40px;
   color: #FDB330;
 }
@@ -170,7 +171,7 @@ ul, li {
 
 .order-plane ul {
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   margin-bottom: 0px;
 }
 
@@ -184,7 +185,7 @@ ul, li {
   vertical-align: top;
   text-align: center;
   line-height: 40px;
-  margin-left: 0.2rem;
+  margin-left: 0.2px;
 }
 
 .order-lis2-l i {
@@ -233,7 +234,7 @@ ul, li {
   vertical-align: top;
   text-align: center;
   line-height: 30px;
-  margin-left: 0.2rem;
+  margin-left: 0.2px;
 }
 
 .order-lis3-l i {
@@ -264,7 +265,7 @@ ul, li {
 .order-lis4 span {
   display: inline-block;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   line-height: 40px;
 }
 
@@ -276,7 +277,7 @@ span.order-lis3-r i {
 }
 
 span.order-ml {
-  margin-left: 2rem;
+  margin-left: 2px;
 }
 
 /*jiudinsbufen*/
@@ -287,7 +288,7 @@ span.order-ml {
 
 .order-hotel ul {
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   margin-bottom: 0px;
 }
 
@@ -300,7 +301,7 @@ span.order-ml {
 li.order-hlist1 {
   height: 35px;
   line-height: 35px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
 }
 
 li.order-hlist1 i {
@@ -319,7 +320,7 @@ li.order-hlist1 span {
   display: inline-block;
   text-align: center;
   line-height: 40px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   position: absolute;
   top: 0px;
   left: 40px;
@@ -328,7 +329,7 @@ li.order-hlist1 span {
 li.order-hlist2 {
   background-color: white;
   padding: 10px 0 0 15px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   line-height: 30px;
   margin-bottom: 0px;
   color: #333;
@@ -348,7 +349,7 @@ li.order-hlist4 > span {
   margin-right: 10px;
 }
 
-/*chuxingren？*/
+/*出行人*/
 .order-trip {
   width: 100%;
   position: relative;
@@ -368,7 +369,7 @@ li.order-hlist4 > span {
   height: 40px;
   padding: 0 15px;
   line-height: 40px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   margin-bottom: 0;
 }
 
@@ -379,13 +380,13 @@ li.order-hlist4 > span {
 .order-tsl2 {
   float: right;
   margin-right: 96px;
-  font-size: 1.3rem;
+  font-size: 1.3px;
   line-height: 40px;
 }
 
 .order-tsl3 {
-  width: 7.2rem;
-  font-size: 1.3rem;
+  width: 7.2px;
+  font-size: 1.3px;
   background-color: #FDB330;
   border-radius: 5px;
   color: white;
@@ -440,7 +441,7 @@ li.order-tlist2 em {
   line-height:22px ;
 }
 
-/*联系人？*/
+/*联系人*/
 .order-link {
   width: 100%;
   position: relative;
@@ -455,7 +456,7 @@ li.order-tlist2 em {
 }
 
 .order-llist1 span {
-  font-size: 1.6rem;
+  font-size: 1.6px;
   line-height: 40px;
 }
 
@@ -463,25 +464,25 @@ li.order-tlist2 em {
   position: absolute;
   left: 75px;
   top: 8px;
-  width: 1.75rem;
-  height: 2rem;
+  width: 1.75px;
+  height: 2px;
   background: url("../../images/ui/icons1.png") no-repeat;
   background-size: 620px 180px;
   background-position: -37px -52px;
 }
 
 .order-llist1 .contact-same {
-  font-size: 1.4rem;
+  font-size: 1.4px;
   margin-left: 35px;
 }
 
 .hfcont-tip {
-  width: 2.2rem;
-  height: 2.2rem;
-  font-size: 1.4rem;
+  width: 2.2px;
+  height: 2.2px;
+  font-size: 1.4px;
   position: absolute;
-  right: 2rem;
-  top: 0.7rem;
+  right: 2px;
+  top: 0.7px;
   background-image: url("../../images/ui/icon-t.png");
   background-repeat: no-repeat;
   background-size: 235.8px 142.6px;
@@ -506,7 +507,7 @@ li.order-tlist2 em {
   width: 44%;
   margin-top:10px;
   /*border: 1px solid #900;*/
-  font-size: 1.4rem;
+  font-size: 1.4px;
   height: 20px;
   line-height: 20px;
 }
@@ -523,8 +524,8 @@ li.order-tlist2 em {
   height: 20px;
   background-color: #ccc;
   vertical-align: top;
-  margin: 0 1.0rem;
-  margin-top: 1rem;
+  margin: 0 1.0px;
+  margin-top: 1px;
 }
 
 .order-llist3 {
@@ -570,7 +571,7 @@ li.order-tlist2 em {
   width: 8px;
   height: 8px;
   margin-left:22px;
-  right: 1rem;
+  right: 1px;
   top: 5px;
   border-top: 1px solid #ffb412;
   border-left: 1px solid #ffb412;
@@ -635,7 +636,7 @@ li.order-tlist2 em {
 
 .hf_detail_fare p span:nth-child(2) {
   float: right;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   color: rgb(72, 72, 72)
 }
 
@@ -661,17 +662,6 @@ li.order-tlist2 em {
 .country-cho-wrap-order {
   position: absolute;
   z-index: 1000;
-}
-
-li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul, ol {
-  margin: 0;
-  padding: 0;
 }
 
 .cl_search {
@@ -726,10 +716,10 @@ ul, ol {
   height: auto;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   list-style: none;
   position: fixed;
-  top: 3.8rem;
+  top: 3.8px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -737,19 +727,19 @@ ul, ol {
   background: #f5f4f9;
   margin-bottom: 0;
   overflow-y: scroll;
-  padding-top: 1rem;
+  padding-top: 1px;
 }
 
 .country-list-searched li.country-list-searched-item {
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   list-style: none;
-  height: 3.4rem;
-  line-height: 3.4rem;
+  height: 3.4px;
+  line-height: 3.4px;
   text-align: left;
-  border-bottom: 0.1rem solid #dfdfdd;
+  border-bottom: 0.1px solid #dfdfdd;
   margin-bottom: 0;
-  padding-left: 4rem;
+  padding-left: 4px;
 
 }
 
