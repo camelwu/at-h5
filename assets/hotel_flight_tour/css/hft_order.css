@@ -1,18 +1,103 @@
-.all-elements.input-relative {
-  position: relative;
-  max-height: auto;
+/*header开始*/
+.header {
+  height: 1rem;
+  line-height: 1rem;
+  background-color: #fcfcfc;
 }
 
-em, b, i {
-  font-weight: normal;
-  font-style: normal;
+.go_back {
+  /*background: url(../../images/ui/icons.png) no-repeat;*/
+  /*background-size: 243px 160px;*/
+  /*position: absolute;*/
+  /*left: 15px;*/
+  /*top: 10px;*/
+  /*width:12px;*/
+  /*height:22px;*/
 }
 
-ul, li {
-  list-style: none
+.header > h3 {
+  text-align: center;
+  font-size: .33rem;
 }
 
-/*脚部开始*/
+/*header结束*/
+/*公用开始*/
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+*{
+  box-sizing: border-box;
+}
+/*公共结束*/
+
+/*机票开始*/
+.fli_hd {
+  background-color: #f7f7f7;
+  height: 0.68rem;
+  line-height: 0.68rem;
+  font-size: 0.28rem;
+  border-top: .01rem solid #ddd;
+}
+
+.fli_hd_tit {
+  margin-left: .28rem;
+  color: #333;
+
+}
+.fli_hd_tit >i{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .09rem;
+  margin-right: .16rem;
+  width: .5rem;
+  height: .5rem;
+  background-image: url(../../images/ui/ticket_hotel.png);
+  background-position: 2.33rem 2.33rem;
+  background-size: 5.2rem 4.12rem;
+}
+
+.fli_hd_det{
+  margin-right: .28rem;
+  font-size: .24rem;
+  color: #999;
+}
+.fli_hd_det >i{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .2rem;
+  margin-right: .12rem;
+  background: url(../../images/hotel_flight_tour/flight_det.png) no-repeat;
+  background-size: .32rem .32rem;
+  width: .32rem;
+  height: .32rem;
+
+}
+
+.fli_cont{
+  font-size: .28rem;
+  height: .32rem;
+  line-height: .32rem;
+  margin-bottom: .32rem;
+}
+.flight_cir_wrap{
+  padding: .4rem .28rem;
+  border-bottom: .02rem solid #e6e6e6;
+}
+.flight_cir_wrap li:nth-child(2){
+  margin-bottom:0;
+  padding-bottom:.8rem;
+  border-bottom: .01rem solid #e6e6e6;
+}
+.cabin_level{
+  font-size: .28rem;
+  margin-top: .4rem;
+}
+
+/*预定footer*/
 .order-footer {
   position: fixed;
   bottom: 0;
@@ -29,7 +114,7 @@ ul, li {
 .order-num {
   height: 100%;
   width: 50%;
-  font-size: 1.8rem;
+  font-size: 1.8px;
   padding-left: 15px;
 }
 
@@ -44,7 +129,7 @@ ul, li {
 .order-num span.num1 {
   text-align: center;
   display: inline-block;
-  font-size: 1.6rem;
+  font-size: 1.6px;
 }
 
 .order-detail {
@@ -60,7 +145,7 @@ ul, li {
 .order-detail span {
   color: #FDBD4C;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.4px;
 }
 
 .order-submit {
@@ -73,25 +158,21 @@ ul, li {
   background-color: #FDB330;
   text-align: center;
   color: white;
-  font-size: 2.0rem;
+  font-size: 2.0px;
 }
-.order-submit:hover{
+
+.order-submit:hover {
   color: #ccc;
 }
 
-/*}脚步结束*/
-/*中间开始*/
-.container1 {
+/*footer结束*/
+/*content开始*/
+.flight_section {
   width: 100%;
   height: 100%;
-  padding-top: 45px;
   position: relative;
   top: 0;
   left: 0;
-}
-
-.order-bg {
-  background: #E9E9E9;
 }
 
 .order-plane {
@@ -130,7 +211,7 @@ ul, li {
   display: inline-block;
   text-align: center;
   line-height: 40px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   position: absolute;
   top: 0px;
   left: 40px;
@@ -144,7 +225,7 @@ ul, li {
   display: inline-block;
   text-align: center;
   line-height: 40px;
-  font-size: 1.5rem;
+  font-size: 1.5px;
   margin-right: 40px;
   color: #FDB330;
 }
@@ -170,7 +251,7 @@ ul, li {
 
 .order-plane ul {
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   margin-bottom: 0px;
 }
 
@@ -184,7 +265,7 @@ ul, li {
   vertical-align: top;
   text-align: center;
   line-height: 40px;
-  margin-left: 0.2rem;
+  margin-left: 0.2px;
 }
 
 .order-lis2-l i {
@@ -233,7 +314,7 @@ ul, li {
   vertical-align: top;
   text-align: center;
   line-height: 30px;
-  margin-left: 0.2rem;
+  margin-left: 0.2px;
 }
 
 .order-lis3-l i {
@@ -264,7 +345,7 @@ ul, li {
 .order-lis4 span {
   display: inline-block;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   line-height: 40px;
 }
 
@@ -276,7 +357,7 @@ span.order-lis3-r i {
 }
 
 span.order-ml {
-  margin-left: 2rem;
+  margin-left: 2px;
 }
 
 /*jiudinsbufen*/
@@ -287,7 +368,7 @@ span.order-ml {
 
 .order-hotel ul {
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   margin-bottom: 0px;
 }
 
@@ -300,7 +381,7 @@ span.order-ml {
 li.order-hlist1 {
   height: 35px;
   line-height: 35px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
 }
 
 li.order-hlist1 i {
@@ -319,7 +400,7 @@ li.order-hlist1 span {
   display: inline-block;
   text-align: center;
   line-height: 40px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   position: absolute;
   top: 0px;
   left: 40px;
@@ -328,7 +409,7 @@ li.order-hlist1 span {
 li.order-hlist2 {
   background-color: white;
   padding: 10px 0 0 15px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   line-height: 30px;
   margin-bottom: 0px;
   color: #333;
@@ -348,7 +429,7 @@ li.order-hlist4 > span {
   margin-right: 10px;
 }
 
-/*chuxingren？*/
+/*出行人*/
 .order-trip {
   width: 100%;
   position: relative;
@@ -368,7 +449,7 @@ li.order-hlist4 > span {
   height: 40px;
   padding: 0 15px;
   line-height: 40px;
-  font-size: 1.6rem;
+  font-size: 1.6px;
   margin-bottom: 0;
 }
 
@@ -379,13 +460,13 @@ li.order-hlist4 > span {
 .order-tsl2 {
   float: right;
   margin-right: 96px;
-  font-size: 1.3rem;
+  font-size: 1.3px;
   line-height: 40px;
 }
 
 .order-tsl3 {
-  width: 7.2rem;
-  font-size: 1.3rem;
+  width: 7.2px;
+  font-size: 1.3px;
   background-color: #FDB330;
   border-radius: 5px;
   color: white;
@@ -426,7 +507,7 @@ li.order-tlist2 em {
   right: 15px;
 }
 
-.order-tlist2 .traveller-wrap{
+.order-tlist2 .traveller-wrap {
   width: 100%;
   height: 50px;
   position: absolute;
@@ -437,10 +518,10 @@ li.order-tlist2 em {
 .order-tlist2 span {
   width: 100%;
   display: block;
-  line-height:22px ;
+  line-height: 22px;
 }
 
-/*联系人？*/
+/*联系人*/
 .order-link {
   width: 100%;
   position: relative;
@@ -455,7 +536,7 @@ li.order-tlist2 em {
 }
 
 .order-llist1 span {
-  font-size: 1.6rem;
+  font-size: 1.6px;
   line-height: 40px;
 }
 
@@ -463,25 +544,25 @@ li.order-tlist2 em {
   position: absolute;
   left: 75px;
   top: 8px;
-  width: 1.75rem;
-  height: 2rem;
+  width: 1.75px;
+  height: 2px;
   background: url("../../images/ui/icons1.png") no-repeat;
   background-size: 620px 180px;
   background-position: -37px -52px;
 }
 
 .order-llist1 .contact-same {
-  font-size: 1.4rem;
+  font-size: 1.4px;
   margin-left: 35px;
 }
 
 .hfcont-tip {
-  width: 2.2rem;
-  height: 2.2rem;
-  font-size: 1.4rem;
+  width: 2.2px;
+  height: 2.2px;
+  font-size: 1.4px;
   position: absolute;
-  right: 2rem;
-  top: 0.7rem;
+  right: 2px;
+  top: 0.7px;
   background-image: url("../../images/ui/icon-t.png");
   background-repeat: no-repeat;
   background-size: 235.8px 142.6px;
@@ -504,16 +585,18 @@ li.order-tlist2 em {
 .order-llist2 input, .order-llist3 input, .order-llist4 input {
   display: inline-block;
   width: 44%;
-  margin-top:10px;
+  margin-top: 10px;
   /*border: 1px solid #900;*/
-  font-size: 1.4rem;
+  font-size: 1.4px;
   height: 20px;
   line-height: 20px;
 }
-.order-llist3 .hf_con_cell{
+
+.order-llist3 .hf_con_cell {
   vertical-align: top;
 }
-.order-llist4 .hf_con_email{
+
+.order-llist4 .hf_con_email {
   width: 70%;
 }
 
@@ -523,8 +606,8 @@ li.order-tlist2 em {
   height: 20px;
   background-color: #ccc;
   vertical-align: top;
-  margin: 0 1.0rem;
-  margin-top: 1rem;
+  margin: 0 1.0px;
+  margin-top: 1px;
 }
 
 .order-llist3 {
@@ -569,8 +652,8 @@ li.order-tlist2 em {
   position: relative;
   width: 8px;
   height: 8px;
-  margin-left:22px;
-  right: 1rem;
+  margin-left: 22px;
+  right: 1px;
   top: 5px;
   border-top: 1px solid #ffb412;
   border-left: 1px solid #ffb412;
@@ -635,7 +718,7 @@ li.order-tlist2 em {
 
 .hf_detail_fare p span:nth-child(2) {
   float: right;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   color: rgb(72, 72, 72)
 }
 
@@ -661,17 +744,6 @@ li.order-tlist2 em {
 .country-cho-wrap-order {
   position: absolute;
   z-index: 1000;
-}
-
-li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul, ol {
-  margin: 0;
-  padding: 0;
 }
 
 .cl_search {
@@ -726,10 +798,10 @@ ul, ol {
   height: auto;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   list-style: none;
   position: fixed;
-  top: 3.8rem;
+  top: 3.8px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -737,19 +809,19 @@ ul, ol {
   background: #f5f4f9;
   margin-bottom: 0;
   overflow-y: scroll;
-  padding-top: 1rem;
+  padding-top: 1px;
 }
 
 .country-list-searched li.country-list-searched-item {
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   list-style: none;
-  height: 3.4rem;
-  line-height: 3.4rem;
+  height: 3.4px;
+  line-height: 3.4px;
   text-align: left;
-  border-bottom: 0.1rem solid #dfdfdd;
+  border-bottom: 0.1px solid #dfdfdd;
   margin-bottom: 0;
-  padding-left: 4rem;
+  padding-left: 4px;
 
 }
 
