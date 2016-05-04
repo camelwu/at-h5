@@ -1,0 +1,54 @@
+/*
+*===============================================
+*@desc  default style reset
+*@author  Jason
+*@time 2016-05-03
+*===============================================
+*/
+html,body{margin: 0;padding: 0;position:relative;width:100%;height:100%;-webkit-tap-highlight-color: rgba(0,0,0,0);font-family:'微软雅黑';}
+img{width:100%;}
+h1,h2,h3,p{margin:0;font-weight:normal;}
+ul{margin:0; padding:0;}
+ul li{ margin:0; padding:0; list-style:none;}
+
+/*
+ *==============================================
+ *@desc  responsive media query: iphones6+ 414*736 iphone6 375*667 iphone5s 320*568 iphone5 320*568    
+ *@author  Jason
+ *@time 2016-05-03
+ *==============================================
+ */
+@media only screen and (min-width: 240px) { html { font-size: 266.66666666%;} } 		/* 42.6666666px */
+@media only screen and (min-width: 320px) { html { font-size: 266.66666666%; } } 	/* 42.6666666px */
+@media only screen and (min-width: 360px) { html { font-size: 300%;  } } 			/* 48px */
+@media only screen and (min-width: 375px) { html { font-size: 312.5%; } } 			/* 50px */
+@media only screen and (min-width: 480px) { html { font-size: 400%;} } 				/* 64px */
+@media only screen and (min-width: 640px) { html { font-size: 533.3333333333%;} } 	/* 85.33333px */
+@media only screen and (min-width: 750px) { html { font-size: 625%;} } 				/* 1rem = 100px */
+
+/*
+*==============================================
+*@desc global css
+×@author Jason
+*@time 
+*==============================================
+*/
+
+.clearfix{
+    overflow: auto;
+    _height : 1%;
+}
+.clearfix:after{
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    zoom : 1;
+}
+a{
+    text-decoration: none;
+}
+
+
+

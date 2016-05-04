@@ -806,7 +806,6 @@ a{
 
 .con-title2 {
     font-size: 16px;
-    margin-top: 6px;
     line-height: normal;
     margin-bottom: 0;
 }
@@ -816,6 +815,23 @@ a{
     font-size: 1.4rem;
     color: #999999;
     margin-bottom: 0;
+}
+
+/*关于我们*/
+.at-introduce{
+  margin-top: 100px;
+  padding: 0 30px;
+}
+.at-logo{
+  height: 100px;
+}
+.at-introduce li{
+  line-height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+.at-introduce .open-arw{
+  top: 10px;
+  right: 10px;
 }
 
 /*
@@ -1594,12 +1610,17 @@ ul, ol {
 #unloginShow{
     width: 150px;
 }
-
-/*历史和收藏*/
-#setPwd a, #browsHis a{
-    color: #999;
+.s_lists.mt-none{
+  margin-top: 0;
 }
 
+.myorder-tip{
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  background-position: -58px -75px;
+}
 /*选择联系人*/
 .con-mobile-tip{
     height: 36px;
