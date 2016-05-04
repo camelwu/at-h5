@@ -1,19 +1,74 @@
 /*header开始*/
-.header{
+.header {
   height: 1rem;
+  line-height: 1rem;
+  background-color: #fcfcfc;
 }
 
+.go_back {
+  /*background: url(../../images/ui/icons.png) no-repeat;*/
+  /*background-size: 243px 160px;*/
+  /*position: absolute;*/
+  /*left: 15px;*/
+  /*top: 10px;*/
+  /*width:12px;*/
+  /*height:22px;*/
+}
 
+.header > h3 {
+  text-align: center;
+  font-size: .33rem;
+}
 
 /*header结束*/
+/*公用开始*/
+.fl {
+  float: left;
+}
 
+.fr {
+  float: right;
+}
 
+/*公共结束*/
 
+/*机票开始*/
+.fli_hd {
+  background-color: #f7f7f7;
+  height: 0.68rem;
+  line-height: 0.68rem;
+  font-size: 0.28rem;
+}
 
+.fli_hd_tit {
+  padding-left: 1.04rem;
 
+}
+.fli_hd_tit >i{
+  width: .8rem;
+  height: .56rem;
+  background-image: url(../../images/ui/ticket_hotel.png);
+  background-position: 2.5rem 2.4rem;
+  background-size: 5.2rem 4.12rem;
+  position: absolute;
+  top: .06rem;
+  left: .28rem;
+}
 
+.fli_hd_det{
+  padding-right: 0.72rem;
+}
+.fli_hd_det >i{
+  background: url(../../images/hotel_flight_tour/flight_det.png) no-repeat -154px -18px;
+  background-size: 250px 150px;
+  width: 20px;
+  height: 36px;
+  position: absolute;
+  top: 3px;
+  right: 15px;
+}
 
-/*footer*/
+/*预定footer*/
 .order-footer {
   position: fixed;
   bottom: 0;
@@ -76,23 +131,19 @@
   color: white;
   font-size: 2.0px;
 }
-.order-submit:hover{
+
+.order-submit:hover {
   color: #ccc;
 }
 
 /*footer结束*/
 /*content开始*/
-.container1 {
+.flight_section {
   width: 100%;
   height: 100%;
-  padding-top: 45px;
   position: relative;
   top: 0;
   left: 0;
-}
-
-.order-bg {
-  background: #E9E9E9;
 }
 
 .order-plane {
@@ -427,7 +478,7 @@ li.order-tlist2 em {
   right: 15px;
 }
 
-.order-tlist2 .traveller-wrap{
+.order-tlist2 .traveller-wrap {
   width: 100%;
   height: 50px;
   position: absolute;
@@ -438,7 +489,7 @@ li.order-tlist2 em {
 .order-tlist2 span {
   width: 100%;
   display: block;
-  line-height:22px ;
+  line-height: 22px;
 }
 
 /*联系人*/
@@ -505,16 +556,18 @@ li.order-tlist2 em {
 .order-llist2 input, .order-llist3 input, .order-llist4 input {
   display: inline-block;
   width: 44%;
-  margin-top:10px;
+  margin-top: 10px;
   /*border: 1px solid #900;*/
   font-size: 1.4px;
   height: 20px;
   line-height: 20px;
 }
-.order-llist3 .hf_con_cell{
+
+.order-llist3 .hf_con_cell {
   vertical-align: top;
 }
-.order-llist4 .hf_con_email{
+
+.order-llist4 .hf_con_email {
   width: 70%;
 }
 
@@ -570,7 +623,7 @@ li.order-tlist2 em {
   position: relative;
   width: 8px;
   height: 8px;
-  margin-left:22px;
+  margin-left: 22px;
   right: 1px;
   top: 5px;
   border-top: 1px solid #ffb412;

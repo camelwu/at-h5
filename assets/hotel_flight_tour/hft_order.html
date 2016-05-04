@@ -25,25 +25,18 @@
   <!--</div>-->
 <!--</div>-->
 <div class="header">
-  <a href="javascript:window.history.go(-1);" class="header-back" id="uo_back">
-    <i class="icons go-back"></i>
+  <a href="javascript:window.history.go(-1);" class="header-back">
+    <i class="go_back"></i>
   </a>
   <h3>订单填写</h3>
 </div>
-<div class="all-elements input-relative">
-  <div class = "container1">
-    <div class="order-bg order-plane">
-      <ul>
-      <li class = "order-lis1">
-      <span class="order-lis1-l">
-      <i></i>
-      <span>机票</span>
-      </span>
-      <span class="order-lis1-r">
-      <span>详情</span>
-      <i></i>
-      </span>
-      </li>
+<div class="content">
+  <div class = "flight_section">
+    <div class = "fli_hd">
+      <span class="fli_hd_tit fl"><i></i>机票</span>
+      <span class="fli_hd_det fr">详情</span>
+    </div>
+    <ul>
       <li class = "order-lis2">
       <span class="order-lis2-l">
       <i></i>
@@ -73,83 +66,81 @@
       头等舱
       </span>
       </li>
-      </ul>
-    </div>
-    <div class="order-bg order-hotel">
-      <ul>
-      <li class = "order-hlist1">
-      <i></i>
-      <span>酒店</span>
-      </li>
-      <li class = "order-hlist2">东京东急涩卓越大酒店</li>
-      <li class = "order-hlist3">
-      <span>11月25日-11月26日</span>
-      <span>共1晚（当地时间为准）</span>
-      </li>
-      <li class = "order-hlist4">
-      <span>房型：经济大床房</span>
-      <span>房间数：2间</span>
-      </li>
-      </ul>
-    </div>
-    <div class="order-bg order-trip">
-      <div class = "order-tlist1" id="traveltab">
-        <span class = "order-tsl1">出行人</span>
-        <a href="javascript:;" class = "order-tsl3 ">添加出行人</a>
-        <span class = "order-tsl2"><i class="adu-choose">0</i>/<i class="adu-tot"></i>成人 <b><i class="chi-choose">0</i>/<i class="chi-tot"></i>儿童</b></span>
-      </div>
-      <ul id="order-twrap" style="display: none">
-        <li class = "order-tlist2" >
-          <i class="tra-delete" onclick="delPassager(this);"></i>
-          <div class="traveller-wrap">
-            <span>姓/名<b class="travel-last" data-elementName="lastName">BAI</b>/<b class="travel-first" data-elementName="firstName">LISA</b></span>
-            <span><em class="card-tra-type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel-sex" data-sex="Ms">女</b></span>
-          </div>
-          <em data-id="" onclick="javascript:editPassager(this)" ><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></em>
-        </li>
-      </ul>
-    </div>
-    <div class="order-bg order-link">
-      <div class = "order-llist1">
-        <span>联系人</span>
-        <em class="con-alike"></em>
-        <span class="contact-same">与第一出行人相同</span>
-        <a href="javascript:;" class="hfcont-tip hf_add_contact"></a>
-      </div>
-      <ul id="hf-add-msg">
-        <li class = "order-llist2">
-          <input type="text"placeholder="姓（如：Zhang）" class="hf_con_lastname" data-elementName="lastName"/>
-          <span class="order-line"></span>
-          <input type="text"placeholder="名（如：Wei）" class="hf_con_firstname" data-elementName="firstName"/>
-        </li>
-        <li class = "order-llist3">
-							<span class = "order-ls">
-								<span class="order-ls-cell">手机号</span>
-								<div class="p_86 tel-btn">
-                  <span data-elementName="countryCode">+86</span>
-                  <i></i>
-                </div>
-							</span>
-          <span class="order-line"></span>
-          <input type="text" placeholder="用于接收通知" class="hf_con_cell" data-elementName="mobilePhone"/>
-        </li>
-        <li class = "order-llist4">
-          <span class="fl">E-mail</span>
-          <input class="hf_con_email" type="text" placeholder="用于接收通知" data-elementName="email"/>
-        </li>
-      </ul>
-    </div>
+    </ul>
   </div>
-  <div class="order-footer">
-    <div class="order-num" >
-      <span class = "num1">订单总额: </span><span class="card1"></span>
-    </div>
-    <p class="order-detail">
-      <span class="">明细</span><i class="detail-fale"></i>
-    </p>
-    <a href="javascript:;" class = "order-submit">预订</a>
-
-  </div>
+  <!--<div class="order-bg order-hotel">-->
+    <!--<ul>-->
+    <!--<li class = "order-hlist1">-->
+    <!--<i></i>-->
+    <!--<span>酒店</span>-->
+    <!--</li>-->
+    <!--<li class = "order-hlist2">东京东急涩卓越大酒店</li>-->
+    <!--<li class = "order-hlist3">-->
+    <!--<span>11月25日-11月26日</span>-->
+    <!--<span>共1晚（当地时间为准）</span>-->
+    <!--</li>-->
+    <!--<li class = "order-hlist4">-->
+    <!--<span>房型：经济大床房</span>-->
+    <!--<span>房间数：2间</span>-->
+    <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div class="order-bg order-trip">-->
+    <!--<div class = "order-tlist1" id="traveltab">-->
+      <!--<span class = "order-tsl1">出行人</span>-->
+      <!--<a href="javascript:;" class = "order-tsl3 ">添加出行人</a>-->
+      <!--<span class = "order-tsl2"><i class="adu-choose">0</i>/<i class="adu-tot"></i>成人 <b><i class="chi-choose">0</i>/<i class="chi-tot"></i>儿童</b></span>-->
+    <!--</div>-->
+    <!--<ul id="order-twrap" style="display: none">-->
+      <!--<li class = "order-tlist2" >-->
+        <!--<i class="tra-delete" onclick="delPassager(this);"></i>-->
+        <!--<div class="traveller-wrap">-->
+          <!--<span>姓/名<b class="travel-last" data-elementName="lastName">BAI</b>/<b class="travel-first" data-elementName="firstName">LISA</b></span>-->
+          <!--<span><em class="card-tra-type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel-sex" data-sex="Ms">女</b></span>-->
+        <!--</div>-->
+        <!--<em data-id="" onclick="javascript:editPassager(this)" ><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></em>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div class="order-bg order-link">-->
+    <!--<div class = "order-llist1">-->
+      <!--<span>联系人</span>-->
+      <!--<em class="con-alike"></em>-->
+      <!--<span class="contact-same">与第一出行人相同</span>-->
+      <!--<a href="javascript:;" class="hfcont-tip hf_add_contact"></a>-->
+    <!--</div>-->
+    <!--<ul id="hf-add-msg">-->
+      <!--<li class = "order-llist2">-->
+        <!--<input type="text"placeholder="姓（如：Zhang）" class="hf_con_lastname" data-elementName="lastName"/>-->
+        <!--<span class="order-line"></span>-->
+        <!--<input type="text"placeholder="名（如：Wei）" class="hf_con_firstname" data-elementName="firstName"/>-->
+      <!--</li>-->
+      <!--<li class = "order-llist3">-->
+            <!--<span class = "order-ls">-->
+              <!--<span class="order-ls-cell">手机号</span>-->
+              <!--<div class="p_86 tel-btn">-->
+                <!--<span data-elementName="countryCode">+86</span>-->
+                <!--<i></i>-->
+              <!--</div>-->
+            <!--</span>-->
+        <!--<span class="order-line"></span>-->
+        <!--<input type="text" placeholder="用于接收通知" class="hf_con_cell" data-elementName="mobilePhone"/>-->
+      <!--</li>-->
+      <!--<li class = "order-llist4">-->
+        <!--<span class="fl">E-mail</span>-->
+        <!--<input class="hf_con_email" type="text" placeholder="用于接收通知" data-elementName="email"/>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div class="order-footer">-->
+    <!--<div class="order-num" >-->
+      <!--<span class = "num1">订单总额: </span><span class="card1"></span>-->
+    <!--</div>-->
+    <!--<p class="order-detail">-->
+      <!--<span class="">明细</span><i class="detail-fale"></i>-->
+    <!--</p>-->
+    <!--<a href="javascript:;" class = "order-submit">预订</a>-->
+  <!--</div>-->
 </div>
 <!--   明细块   -->
 <div class="hf_det_mask"></div>
