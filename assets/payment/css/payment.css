@@ -1,5 +1,5 @@
 *{margin:0;padding:0;}i{font-style:normal}
-/*÷ß∏∂“≥√Êø™ º*/
+/*ÊîØ‰ªòÈ°µÈù¢ÂºÄÂßã*/
 .icon-back{
     width: 36px;
     height: 36px;
@@ -11,6 +11,7 @@
     background-image: url(../../images/hotel_flight/back.png);
 }
 .header h3{
+  font-size: 0.5em;
 
 }
 .android-relative{
@@ -28,7 +29,7 @@
 .p-p1{
     margin-top: 22px;
     margin-left: 15px;
-    font-size:2.1rem;
+    font-size:0.4rem;
     margin-bottom: 0.6rem;
 }
 .p-p11{
@@ -59,7 +60,7 @@
 .hf-anum{
     margin-bottom: 10px;
 }
-/*œÍ«È“≥≤ø∑÷*/
+/*ËØ¶ÊÉÖÈ°µÈÉ®ÂàÜ*/
 .roomPay{
     background-color: white;
     width: 100%;
@@ -137,7 +138,7 @@
     padding-top: 13px;
     padding-bottom: 13px;
     border-bottom: 1px solid #dedede;
-    font-size:1.4rem;
+    font-size:0.4rem
 }
 .p-ul2 li:last-child{
     border:none;
@@ -172,7 +173,7 @@
     -moz-box-flex:3;
     -ms-flex:3;
     -webkit-flex:3;
-    font-size:1.4rem;
+    font-size:0.4rem;
     padding-left: 12px;
 
 }
@@ -211,36 +212,35 @@
     background-color: #fdb330;
     text-align: center;
     color: white;
-    font-size: 1.8rem;
+    font-size:0.5rem;
     line-height: 45px;
     border-radius:4px;
     margin-bottom:25px;
 }
-/*÷ß∏∂“≥Ω· ¯*/
-/*order-pay“≥√Êø™ º*/
+/*ÊîØ‰ªòÈ°µÁªìÊùü*/
+/*order-payÈ°µÈù¢ÂºÄÂßã*/
 .p-home{
     width: 100%;
 }
 .p-home .p-hotelinfo{
-    margin-top: 60px;
-    margin-left: 15px;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 .p-home .p-hotelinfo l{
-    font-size: 1.6rem;
+    font-size: 0.4rem;
 }
 
 
 .p-home .p-hotelinfo li{
     list-style-type: none;
     margin-bottom: 6px;
-    font-size: 1.4rem;
 }
 .p-home .p-hotelinfo li:first-child{
     font-weight: 400;
     font-size:1.6rem;
 }
 .p-home .p-hotelinfo li:last-child{
-    font-size: 1.6rem;
+    font-size: 0.4rem;
     font-weight: 500;
 }
 .p-home .hf-f{
@@ -249,14 +249,14 @@
     line-height: 18px;
 }
 .p-home .hf-f p{
-    font-size: 16px;
+    font-size: 0.4rem;
     margin-bottom:0px;
     display: inline-block;
     color: #A2A2A2;
     line-height: 22px;
 }
 .hf-anum span{
-    font-size: 1.5rem;
+    font-size: 0.4rem;
     color: #A2A2A2;
 }
 .p-pay{
@@ -274,8 +274,8 @@
     background-size: 189px 60px;
     background-position: 49px 26px;
     position: absolute;
-    top: 1rem;
-    left: 1.2rem;
+    top: 0.4rem;
+    left: 1.0rem;
     border-radius: 50%;
 }
 .p-icon2{
@@ -285,8 +285,8 @@
     background-size: 189px 60px;
     background-position: 49px 26px;
     position: absolute;
-    top: 1rem;
-    left: 1.2rem;
+    top: 0.4rem;
+    left:  1.0rem;
     border-radius: 50%;
 }
 .p-icon3{
@@ -296,7 +296,7 @@
     background-size: 280px 120px;
     background-position: 101px 85px;
     position: absolute;
-    top: 1rem;
+    top: 0.4rem;
     left: 1.0rem;
 }
 .p-icon4{
@@ -306,7 +306,7 @@
     background-size: 280px 120px;
     background-position: 200px 85px;
     position: absolute;
-    top: 1rem;
+   top: 0.4rem;
     left: 1.0rem;
 }
 .p-icon6{
@@ -316,13 +316,13 @@
     background-size: 189px 60px;
     background-position: 52px 55px;
     position: absolute;
-    top: 1rem;
-    left: 1.2rem;
+    top: 0.4rem;
+    left: 1.0rem;
 }
 .p-ul1 li{
-    height: 48px;
+
     width: 100%;
-    padding-top:4px;
+
     border-bottom: 1px solid #e9e9e9;;
     position: relative;
 }
@@ -330,12 +330,12 @@
     border-bottom:0 solid #e9e9e9;;
 }
 .p-ul1 span{
-    display: inline-block;
-    display: inline-block;
-    line-height: 3rem;
-    width: 100%;
-    font-size: 1.5rem;
-    margin-left: 4.6rem;
+  display: inline-block;
+  display: inline-block;
+  line-height: 1rem;
+  width: 100%;
+  font-size: 0.4rem;
+  margin-left: 2.1rem;
 }
 .p-icon5{
     width: 22px;
@@ -344,13 +344,13 @@
     background-size: 280px 204px;
     background-position: 66% 2%;
     position: absolute;
-    top: 1rem;
+    top: 0.28rem;
     right: 1rem;
     border-radius: 50%;
 }
 
-/*order-pay“≥√ÊΩ· ¯*/
-/*÷ß∏∂ ß∞‹“≥ø™ º*/
+/*order-payÈ°µÈù¢ÁªìÊùü*/
+/*ÊîØ‰ªòÂ§±Ë¥•È°µÂºÄÂßã*/
 .all-element-other{
     position: relative;
 }
@@ -500,7 +500,7 @@
 }
 .order-price i{
     font-weight: 700;
-    font-size: 1.8rem;
+    font-size: 0.4rem;
 }
 .s-xiala1 {
     width: 13px;
@@ -530,4 +530,4 @@
     right: 10px;
     top: 14px;
 }
-/*÷ß∏∂ ß∞‹“≥Ω· ¯*/
+/*ÊîØ‰ªòÂ§±Ë¥•È°µÁªìÊùü*/

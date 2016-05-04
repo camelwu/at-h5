@@ -13,7 +13,7 @@ ul li{ margin:0; padding:0; list-style:none;}
 
 /*
  *==============================================
- *@desc  responsive media query: iphones6+ 414*736 iphone6 375*667 iphone5s 320*568 iphone5 320*568    
+ *@desc  responsive media query: iphones6+ 414*736 iphone6 375*667 iphone5s 320*568 iphone5 320*568
  *@author  Jason
  *@time 2016-05-03
  *==============================================
@@ -30,7 +30,7 @@ ul li{ margin:0; padding:0; list-style:none;}
 *==============================================
 *@desc global css
 ×@author Jason
-*@time 
+*@time
 *==============================================
 */
 
@@ -48,6 +48,56 @@ ul li{ margin:0; padding:0; list-style:none;}
 }
 a{
     text-decoration: none;
+}
+
+/*
+*==============================================
+*@desc global css
+×@author zhouwei
+*@time
+ 头文件
+*==============================================
+*/
+.header{
+  position:fixed;
+  top: 0px;
+  left: 0px;
+  pointer-events:all;
+  z-index:99;
+  background: -webkit-linear-gradient(#16364f,#194361);
+  background: -o-linear-gradient(#16364f,#194361);
+  background: -moz-linear-gradient(#16364f,#194361);
+  background: linear-gradient(#16364f,#194361);
+  width:100%;
+  min-height:45px;
+  max-height:100%;
+  transform:translateY(0px);
+  -webkit-transform:translateY(0px);
+  transition:all 250ms ease-in-out;
+  border-bottom:solid 1px rgba(0,0,0,0.1);
+}
+
+.header-clear{
+  height:30px;
+}
+.header h3{
+  color:#ffffff;
+  text-align:center;
+  line-height:45px;
+  margin-bottom:0;
+}
+.header a:hover{
+  color:#1f1f1f;
+}
+
+.header a i{
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transition:all 250ms ease;
+}
+.payment-type-list{
+  font-size: 0.5rem;
 }
 
 
