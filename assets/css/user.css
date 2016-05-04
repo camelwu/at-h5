@@ -811,8 +811,8 @@ a{
 }
 
 .con-text {
-    padding: 0 15px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    text-align: center;
     color: #999999;
     margin-bottom: 0;
 }
