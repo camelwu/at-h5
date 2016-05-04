@@ -41,13 +41,13 @@
 		</div>
 		<div class="all-elements">
 			<div id="content" class="snap-content">
-				<div class="slider-container half-bottom">
+				<div class="slider-container">
 					<div class="homepage-slider" data-snap-ignore="true" id="banner">
 						<a> <img src="images/loading_white.gif" class="responsive-image" alt="img"> </a>
 					</div>
 				</div>
 
-				<div class="contenter half-bottom">
+				<div class="contenter ">
 					<div class="portfolio-adaptive adaptive-four">
 						<div class="adaptive-item">
 							<a href="./hotel/index.html" title="Hotels Here"> <img class="responsive-image" src="./images/hotels.png" alt="img">
@@ -64,31 +64,19 @@
 						<div class="adaptive-item">
 							<a href="./scenic/index.html" title="Attractions Here"> <img class="responsive-image" src="./images/tickets.png" alt="img">
 							<div class="center-text">
-								景点/门票
+								景点
 							</div> </a>
 						</div>
-						<div class="adaptive-item">
-							<a href="building.html" title="Cars Here"> <img class="responsive-image" src="./images/cars.png" alt="img">
-							<div class="center-text">
-								我要租车
-							</div> </a>
-						</div>
+						<!--<div class="adaptive-item">-->
+							<!--<a href="building.html" title="Cars Here"> <img class="responsive-image" src="./images/cars.png" alt="img">-->
+							<!--<div class="center-text">-->
+								<!--我要租车-->
+							<!--</div> </a>-->
+						<!--</div>-->
 						<div class="adaptive-item">
 							<a href="building.html" title="Hotels flights attractions Here"> <img class="responsive-image" src="./images/fht.png" alt="img">
 							<div class="center-text">
-								机+酒+景
-							</div> </a>
-						</div>
-						<div class="adaptive-item">
-							<a href="hotel_flight/index.html" title="Tickets Goes Here"> <img class="responsive-image" src="./images/fh.png" alt="img">
-							<div class="center-text">
-								机+酒
-							</div> </a>
-						</div>
-						<div class="adaptive-item">
-							<a href="building.html" title="Transfers Goes Here"> <img class="responsive-image" src="./images/transfers.png" alt="img">
-							<div class="center-text">
-								接送服务
+								自由行
 							</div> </a>
 						</div>
 						<div class="adaptive-item">
@@ -123,12 +111,7 @@
 				<h5 class="index-title-text">玩家推荐</h5>
 				<div class="container" style="border-bottom: none;" id="tuijian">
 				</div>
-				<div class="toper">
-					<a id="toper-gps" class="toper-gps" href="javascript:void(0);">北京</a>
-					<div class="toper-in">
-						<input type="text" class="s-in" placeholder="地点、酒店、景点、机票">
-					</div><a href="tel:4008-902-202" class="toper-tel"><i>&nbsp;</i></a>
-				</div>
+
 				<div class="clearfix"></div>
 			</div>
 			<div class="clearfix"></div>
@@ -220,8 +203,7 @@
 				index.PlayerRecommend();
 
 			})();
-			var gps = document.getElementById("toper-gps");
-			gps.innerHTML = localStorage.province ? localStorage.province : '北京';
+
 		</script>
 	</body>
 </html>

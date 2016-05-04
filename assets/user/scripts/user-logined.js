@@ -59,7 +59,7 @@ function init(){
 
 function mycallback(ret) {
     var myJson = ret;
-    console.log(myJson.data[0].nickName);
+    //console.log(myJson.data[0].nickName);
     vlm.loadend();
     if (myJson.success) {
         var user_name = $("#user_name")[0];
@@ -86,10 +86,7 @@ function mycallback(ret) {
 
 //登录之后点击全部订单的链接会改变
 (function(){
-    var oOrder=document.querySelector('#user_order');
-    var aBtn=oOrder.children;
-
-    aBtn[0].querySelector('a').onclick=function(){
+    document.querySelector('.my-order').onclick=function(){
         if(localStorage.getItem('login') == 1)
         {
             this.href='user-allorder.html';
@@ -119,6 +116,12 @@ function mycallback(ret) {
 
 })();
 
+$('.about-at').click(function(){
+  $('#link_about_us').show();
+  $('#close_page_aboutus').click(function(){
+    $('#link_about_us').hide();
+  });
+});
 //设置里的消息开关
 function ifOpen(){
     var b = window.event.srcElement;

@@ -1124,12 +1124,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .adaptive-four .adaptive-item {
-	width: 19%;
-	margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 3%;
-	transition: all 200ms ease;
-	float: left;
+  width: 13%;
+  margin-left: 4%;
+  margin-right: 3%;
+  margin-top: 3%;
+  transition: all 200ms ease;
+  float: left;
 }
 .adaptive-four .responsive-image {
 	margin-bottom: 10px !important;
