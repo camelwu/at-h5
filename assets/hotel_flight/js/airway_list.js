@@ -82,11 +82,6 @@ var airwayLiat = {
                     $(this).find('b.hf-icon').addClass('cho-gou').parents().siblings().find('b.hf-icon').removeClass('cho-gou');
                     var airwaySetID = $(this).attr('data-airwaySetID');
                     var airwayCacheID = $(this).attr('data-airwayCacheID');
-                    // var flightHotelAllData = JSON.parse(sessionStorage.flightHotelAllData);
-                    /*先不用*/
-                    //flightHotelAllData.data.airwayCacheID = airwayCacheID;
-                    //flightHotelAllData.data.airwaySetID = airwaySetID;
-                    //sessionStorage.flightHotelAllData = JSON.stringify(flightHotelAllData);
                     changeFlightInfo.data.AirwayCacheID = airwayCacheID;
                     changeFlightInfo.data.AirwaySetID = airwaySetID;
                     localStorage.changeFlightParaObj = JSON.stringify(changeFlightInfo);

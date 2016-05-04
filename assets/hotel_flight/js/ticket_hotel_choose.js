@@ -259,7 +259,8 @@ var ticketHotel = {
                 paraObj.ScreenFields=[0];
                 paraObj.DepartDate = that.initParaObj.DepartDate;
                 paraObj.ReturnDate = that.initParaObj.ReturnDate;
-                that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
+           alert(paraObj.AirwaySetID)
+               that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
         });
         this.addHandler(changeHotel, 'click', function (){
             var that = ticketHotel;
@@ -341,8 +342,8 @@ var ticketHotel = {
             } else {
                 that.loadingFade();
                 that.cacheData = resultData.data;
-                originAirIds.airwayCacheID = resultData.data.airwayCacheID;
-                originAirIds.airwaySetID = resultData.data.airwaySetID;
+                originAirIds.AirwayCacheID = resultData.data.airwayCacheID;
+                originAirIds.AirwaySetID = resultData.data.airwaySetID;
                 window.localStorage.setItem('originAirIds',JSON.stringify(originAirIds));
                 if(resultData.data.hotelInfo){
                     that.cacheRoomData = resultData.data.hotelInfo.rooms;
@@ -664,7 +665,7 @@ var ticketHotel = {
         initParaObj.DepartDate = storagePara.DepartDate;
         initParaObj.ReturnDate = storagePara.ReturnDate;
         initParaObj.RoomDetails = storagePara.RoomInfo;
-        initParaObj.flightStartTime=0;
+        initParaObj.flightStartTime = 0;
         this.initTop(storagePara);
         if(temRoomIdStr&&temRoomIdStr!="?init"){
             this.cacheRoomId = temRoomIdStr.slice(temRoomIdStr.indexOf('=')+1)
@@ -680,24 +681,22 @@ var ticketHotel = {
             var flightHotelData = JSON.parse(temFlightHotelData), temObj = {};
             var originAirIds = JSON.parse(window.localStorage.getItem('originAirIds'));
             if (window.location.search.indexOf('init') > -1) {
-                if (flightHotelData.data.airwaySetID !== originAirIds.airwaySetID || flightHotelData.data.airwayCacheID !== originAirIds.airwayCacheID) {
-                    initParaObj.airwayCacheID = flightHotelData.data.airwayCacheID;
-                    initParaObj.airwaySetID = flightHotelData.data.airwaySetID;
+                if (flightHotelData.data.airwaySetID !== originAirIds.AirwaySetID || flightHotelData.data.airwayCacheID !== originAirIds.AirwayCacheID) {
+                    this.initParaObj.AirwayCacheID = flightHotelData.data.airwayCacheID;
+                    this.initParaObj.AirwaySetID = flightHotelData.data.airwaySetID;
                 } else {
-                    initParaObj.airwayCacheID = originAirIds.airwayCacheID;
-                    initParaObj.airwaySetID = originAirIds.airwaySetID;
+                    this.initParaObj.AirwayCacheID = originAirIds.AirwayCacheID;
+                    this.initParaObj.AirwaySetID = originAirIds.AirwaySetID;
                 }
                 $("#status-f").show();
                 $("#preloader").show();
-                this.initParaObj.airwayCacheID = initParaObj.airwayCacheID;
-                this.initParaObj.airwaySetID = initParaObj.airwaySetID;
-                this.tAjax(this.requestUrl, initParaObj, "50100001", 3, this.renderHandler);
+                this.tAjax(this.requestUrl, this.initParaObj, "50100001", 3, this.renderHandler);
             } else{
                 temObj.success = true;
                 temObj.code = 200;
                 temObj.data = {};
                 temObj.data.airwayCacheID = flightHotelData.data.airwayCacheID;
-                temObj.data.airwaySetID = flightHotelData.data.airwaySetID;
+                temObj.data.airwayCacheID = flightHotelData.data.airwaySetID;
                 temObj.data.flightInfo = flightHotelData.data.flightInfo;
                 temObj.data.hotelInfo = flightHotelData.data.hotelInfo;
                 this.renderHandler(temObj);

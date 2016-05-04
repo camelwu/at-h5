@@ -295,6 +295,7 @@ TicketDate.prototype.linkOn = function(){
                             this.querySelector('.live_txt').innerHTML=that._word.f[2];
                             that.linkOver();
                         }
+                      console.log(that.op)
                     }
                 }
             }
