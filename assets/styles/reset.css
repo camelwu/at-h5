@@ -24,7 +24,12 @@ img {
 h1,
 h2,
 h3,
-p {
+h4,
+h5,
+h6,
+p,
+dl,
+dd {
     margin: 0;
     font-weight: normal;
 }
@@ -149,56 +154,101 @@ a {
 }
 
 
-/*
-*==============================================
-*@desc global css
-×@author zhouwei
-*@time
- 头文件
-*==============================================
-*/
+/*======================================loading start==========================================*/
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF;
+    z-index: 99999999;
+}
+
+#status {
+    z-index: 99999999;
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-image: url(../images/loading.gif);
+    background-size: 64px 64px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -125px 0 0 -125px;
+}
+
+
+/*======================================loading end==========================================*/
+
+
+/*===============================all elements, header, site right starts===============================*/
+
+.all_elements {
+    position: absolute;
+    overflow-x: hidden!important;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    padding-top: 1.4rem;
+    font-size: .28rem;
+    color: #484848;
+}
 
 .header {
+    height: 1.4rem;
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
     pointer-events: all;
     z-index: 99;
     background: -webkit-linear-gradient(#16364f, #194361);
     background: -o-linear-gradient(#16364f, #194361);
     background: -moz-linear-gradient(#16364f, #194361);
-    background: linear-gradient(#16364f, #194361);
-    width: 100%;
-    min-height: 45px;
-    max-height: 100%;
+    background: linear-gradient(#fcfcfc, #fcfcfc);
     transform: translateY(0px);
     -webkit-transform: translateY(0px);
     transition: all 250ms ease-in-out;
     border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 }
 
-.header-clear {
-    height: 30px;
+.header .header_back {
+    position: absolute;
+    height: 100%;
+    width: 1.15rem;
+    left: 0;
+}
+
+.header .icon_back {
+    position: absolute;
+    left: .45rem;
+    top: 50%;
+    margin-top: -.2rem;
+    height: .4rem;
+    width: .2rem;
+    background: url(../images/ui/icon_common.png) no-repeat;
+    background-size: 7.89rem 5.07rem;
+    background-position: -0.55rem -0.47rem;
 }
 
 .header h3 {
-    color: #ffffff;
+    color: #484848;
     text-align: center;
-    line-height: 45px;
-    margin-bottom: 0;
+    line-height: 1.4rem;
 }
 
-.header a:hover {
-    color: #1f1f1f;
+.site_right {
+    width: 100%;
+    height: .88rem;
+    line-height: .88rem;
+    background: #18415d;
+    color: #fff;
+    text-align: center;
 }
 
-.header a i {
-    -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-    transition: all 250ms ease;
-}
 
-.payment-type-list {
-    font-size: 0.5rem;
-}
+/*===============================all elements, header, site right end===============================*/
