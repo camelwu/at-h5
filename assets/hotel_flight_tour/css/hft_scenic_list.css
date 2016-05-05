@@ -332,4 +332,22 @@ p.filter_button_checked{
   font-size: .26rem;
   line-height: .44rem;
   padding:0 0 0 .72rem;
+  position: relative;
+}
+.bar_content i{
+  width: .32rem;
+  height: .32rem;
+  position: absolute;
+  left: .2rem;
+  display: inline-block;
+  background-image: url(../../images/hotel_flight_tour/icon_tour.png);
+  background-size: 7.9rem 1.95rem;
+}
+.bar_content_time_schedule{
+  background-position:  -0.6rem -0.8rem;
+  top: .06rem;
+}
+.bar_content_time_travel{
+  background-position:  -1.05rem -0.8rem;
+  top: .5rem;
 }
