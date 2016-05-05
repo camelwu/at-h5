@@ -652,9 +652,6 @@
 		SavaLocalStorge(selectUser,isContact);
 	}
 	function ReplaceData(id,data){
-    if(data.length<=0){
-      return false;
-    }
 		var elementId="#"+id;
 		var htmlObj =$(ifrCilent.parentNode).find(elementId);
 		if(isMulSelect)
@@ -685,8 +682,17 @@
 			}
 			else
 			{
+        if(data.length<=0){
+          var childs = htmlObj[0].children;
+
+          for(var i = childs.length - 1; i >=1; i--) {
+            $(htmlObj[0].children[i]).remove();
+          }
+          htmlObj[0].children[0].hidden=true;
+        }
+
         var children=htmlObj.children().eq(0);
-        htmlObj.children().remove();
+//        htmlObj.children().remove();
         for(var i=0; i<=data.length-1;i++){
           var cloneObj=children.clone(true);
           cloneObj.show();
