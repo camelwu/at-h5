@@ -136,14 +136,16 @@ ul li,li,dd{ margin:0; padding:0; list-style:none;}
   z-index: 20;
 }
 .hotel_pop .sort{
+  bottom:-3.98rem;
+}
+.hotel_pop .sort,.hotel_pop .position ul{
   background: #fff;
   width: 100%;
   position: absolute;
-  bottom:-3.98rem;
   transition:all 0.3s;
   left: 0;
 }
-.hotel_pop .sort li{
+.hotel_pop .sort li,.hotel_pop .position ul li{
   margin: 0 0.28rem;
   font-size: 0.28rem;
   padding: 0 0.12rem;
@@ -251,6 +253,44 @@ ul li,li,dd{ margin:0; padding:0; list-style:none;}
 .hotel_pop .screen_rg li.cur i{
   background: #900;
 }
+.hotel_pop .position{
+  position:absolute;
+  bottom:-4.98rem;
+  left: 0;
+  width: 100%;
+  height: 5.69rem;
+  background: #fff;
+  font-size: 0.28rem;
+}
+.hotel_pop .position ul{
+  height: 4.8rem;
+  bottom:0rem;
+  overflow-y: scroll;
+}
+.hotel_pop .position ul li{
+  margin: 0 0 0 0.28rem;
+}
+.hotel_pop .position ul li:nth-child(1){
+  border-top: 0;
+}
+.hotel_pop .position i{
+  position:absolute;
+  right: 0.39rem;
+  top: 50%;
+  background:url(../../images/ui/icon_common.png);
+  background-size:7.89rem 5.07rem;
+  background-position:-4.40rem -0.48rem;
+  width: 0.44rem;
+  height: 0.42rem;
+  margin-top:-0.21rem;
+}
+.hotel_pop .position li.cur i{
+  background-position:-5.07rem -0.48rem;
+}
+
+
+
+
 /*酒店列表  结束*/
 
 /*酒店详 开始*/
