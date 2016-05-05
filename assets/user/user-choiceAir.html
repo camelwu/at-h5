@@ -682,14 +682,13 @@
 			}
 			else
 			{
-        if(data.length<=0){
           var childs = htmlObj[0].children;
-
           for(var i = childs.length - 1; i >=1; i--) {
             $(htmlObj[0].children[i]).remove();
           }
-          htmlObj[0].children[0].hidden=true;
-        }
+          if(data.length<=0){
+            htmlObj[0].children[0].hidden=true;
+          }
 
         var children=htmlObj.children().eq(0);
 //        htmlObj.children().remove();
