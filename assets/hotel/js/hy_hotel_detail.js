@@ -287,7 +287,7 @@
 			var subRooms = this.$CN('subRoomEvent');
 			var Rooms = this.$CN('roomEvent');
 			//地图暂时不用
-			//var toMap = this.$Id('toMap');
+			var toMap = this.$Id('toMap');
 
 			toHotelDetail.onclick = function() {
 				document.location.href = 'hotel_summary.html';
@@ -298,7 +298,7 @@
 			};
 
 			//地图暂时不用
-			/*
+			
 			 toMap.onclick = function () {
 
 			 var dataObj = {
@@ -313,7 +313,7 @@
 			 paramStr = paramStr.slice(1);
 			 document.location.href = 'jyy_hd_map.html?' + paramStr;
 			 };
-			 */
+			 
 
 			for (var i = 0; i < showListTrigger.length; i++) {
 				showListTrigger[i].onclick = function() {
