@@ -309,3 +309,27 @@ p.filter_button_checked{
 .checked_theme{
   color:#FFB413;
 }
+/*景点详情页开始*/
+.bar_img{
+  width: 100%;
+  height: 381px;
+  overflow: hidden;
+}
+.bar_content{
+  line-height: .44rem;
+  padding:0 .3rem 0 .28rem;
+  border-bottom: 2px solid #EDECEB;
+}
+.bar_content_title{
+  font-size: .26rem;
+  margin:.3rem 0 ;
+  padding-bottom: .24rem;
+  border-bottom: 1px solid #EDECEB;
+}
+.bar_content_time{
+  display: block;
+  margin:.3rem 0 ;
+  font-size: .26rem;
+  line-height: .44rem;
+  padding:0 0 0 .72rem;
+}
