@@ -1068,3 +1068,21 @@ ul,ol{
     width:20px;
     float:right;
 }
+.nav41{
+display: inherit;
+  position: absolute;
+  width: 60px;
+}
+.nav41 .nav4-center{
+  margin-left: 60px;
+  -webkit-flex:initial;
+  -moz-flex:initial;
+  -o-flex:initial;
+  flex:initial;
+}
+
+
+
+
+
+
