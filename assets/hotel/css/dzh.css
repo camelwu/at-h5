@@ -247,6 +247,7 @@
     height: 91px;
     border-top: 1px solid #dedede;
     border-bottom: 1px solid #dedede;
+    overflow-y:visible;
 }
 .nav4{
     display: -moz-box;  /* Firefox */
@@ -258,8 +259,11 @@
     flex-flow: row;
 }
 .nav4-left{
-    width: 60px!important;
-    margin: 9px 15px 9px 15px;
+    /*width: 60px!important;
+    margin: 9px 15px 9px 15px;*/
+    width: 90px;
+    padding-top: 9px;
+    padding-left: 15px;
     line-height: 25px;
     font-size:1.6rem;
     color:#484848;
@@ -278,7 +282,7 @@
     color: #000;
 }
 .nav4-center span{
-    margin-left:25px;
+    margin-left:15px;
     color:#484848;
     font-size:1.6rem;
 }
