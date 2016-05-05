@@ -23,8 +23,9 @@
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="../images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <title>订单支付 - 亚洲旅行网</title>
-    <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
-    <link href="../styles/style.css"		rel="stylesheet" type="text/css">
+    <!--<link href="../styles/framework.css"	rel="stylesheet" type="text/css">-->
+    <!--<link href="../styles/style.css"		rel="stylesheet" type="text/css">-->
+    <link href="../styles/reset.css"		rel="stylesheet" type="text/css">
     <link href="../styles/tips.css" rel="stylesheet"/>
     <link href="css/payment.css" rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
@@ -70,15 +71,21 @@
         <ul class="p-ul2">
             <li>
                 <div>信用卡号</div>
-                <input type="text" onkeyup="setNum(this);" value="" class="cardNumber" maxlength="20" placeholder="输入信用卡卡号">
+                 <div>
+                    <input type="text" onkeyup="setNum(this);" value="" class="cardNumber" maxlength="20" placeholder="输入信用卡卡号">
+                 </div>
             </li>
             <li>
                 <div>持卡人姓名</div>
-                <input type="text" value="" class="cardHolderName" maxlength="20" placeholder="姓名">
+                <div>
+                  <input type="text" value="" class="cardHolderName" maxlength="20" placeholder="姓名">
+                </div>
             </li>
             <li>
                 <div>发卡银行</div>
-                <input type="text" value="" class="bankName" placeholder="招商银行">
+                <div>
+                  <input type="text" value="" class="bankName" placeholder="招商银行">
+                </div>
             </li>
             <li class="countries-wrap">
                 <div>发卡国家</div>
@@ -93,25 +100,35 @@
             </li>
             <li>
                 <div>安全码</div>
-                <input type="text" onkeyup="setNum(this);" value="" class="cardSecurityCode" placeholder="请输入签名栏末尾最后3位">
+                <div>
+                  <input type="text" onkeyup="setNum(this);" value="" class="cardSecurityCode" placeholder="请输入签名栏末尾最后3位">
+                </div>
             </li>
             <li class="fill-tel">
                 <div>持卡人手机号</div>
-                <span  class="tel-btn phone"  value="CN" data-code="86">+86</span>
-                <b class="icons s-xiala3"></b>
-                <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
+                <div>
+                  <span  class="tel-btn phone"  value="CN" data-code="86">+86</span>
+                  <b class="icons s-xiala3"></b>
+                  <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
+                </div>
             </li>
             <li>
                 <div>账单城市</div>
-                <input type="tex" placeholder="请输入持卡人账单城市" class="cardAddressCity"/>
+                <div>
+                  <input type="tex" placeholder="请输入持卡人账单城市" class="cardAddressCity"/>
+                </div>
             </li>
             <li>
                 <div>账单地址</div>
-                <input type="tex" placeholder="请输入持卡人账单地址" class="cardAddress"/>
+                <div>
+                  <input type="tex" placeholder="请输入持卡人账单地址" class="cardAddress"/>
+                </div>
             </li>
             <li>
                 <div>邮政编码</div>
-                <input type="text" placeholder="请输入邮政编码" class="cardAddressPostalCode" onkeyup="setNum(this);" />
+                <div>
+                  <input type="text" placeholder="请输入邮政编码" class="cardAddressPostalCode" onkeyup="setNum(this);" />
+                </div>
             </li>
             <li class="countries-wrap">
                 <div>持卡人国家</div>

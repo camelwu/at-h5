@@ -1,0 +1,593 @@
+
+/*公用开始*/
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+*{
+  box-sizing: border-box;
+}
+.header >h3{
+  font-size: .36rem;
+}
+.content{
+  padding-top: 45px;
+}
+/*公共结束*/
+
+/*机票开始*/
+.fht_hd {
+  background-color: #f7f7f7;
+  height: 0.68rem;
+  line-height: 0.68rem;
+  font-size: 0.28rem;
+  border-top: .01rem solid #ddd;
+  padding: 0 .28rem;
+}
+
+.fht_hd_tit {
+  color: #333;
+
+}
+.fht_hd_tit >i{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .09rem;
+  margin-right: .16rem;
+  width: .5rem;
+  height: .5rem;
+  background-image: url(../../images/ui/ticket_hotel.png);
+  background-position: 2.33rem 2.33rem;
+  background-size: 5.2rem 4.12rem;
+}
+
+.fht_hd_det{
+  font-size: .24rem;
+  color: #999;
+}
+.fht_hd_det >i{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .2rem;
+  margin-right: .12rem;
+  background: url(../../images/hotel_flight_tour/flight_det.png) no-repeat;
+  background-size: .32rem .32rem;
+  width: .32rem;
+  height: .32rem;
+
+}
+
+.fli_cont{
+  font-size: .28rem;
+  height: .32rem;
+  line-height: .32rem;
+  margin-bottom: .32rem;
+}
+.flight_cir_wrap{
+  padding: .4rem .28rem;
+}
+.flight_cir_wrap li:nth-child(2){
+  margin-bottom:0;
+  padding-bottom:.8rem;
+  border-bottom: .01rem solid #e6e6e6;
+}
+.cabin_level{
+  font-size: .28rem;
+  margin-top: .4rem;
+}
+
+/*机票结束*/
+/*酒店开始*/
+.hotel_wrap{
+  font-size: .28rem;
+  margin-left: .28rem;
+  padding: .4rem 0;
+}
+.hotel_wrap li{
+  margin-bottom: .32rem;
+}
+.fht_hd_tit.hotel >i{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .09rem;
+  margin-right: .16rem;
+  width: .5rem;
+  height: .5rem;
+  background-image: url(../../images/ui/ticket_hotel.png);
+  background-position: .8rem 2.33rem;
+  background-size: 5.2rem 4.12rem;
+}
+.hotel_wrap >h3{
+  margin-bottom: .32rem;
+  font-weight: bold;
+}
+
+/*酒店结束*/
+/*景点开始*/
+.tour_wrap > li{
+  padding: .4rem .28rem;
+  font-size: .28rem;
+  border-bottom: .01rem solid #e6e6e6;
+}
+.tour_wrap > li:last-child{
+  border-bottom: none;
+}
+
+/*景点结束*/
+
+/*预定footer*/
+.order-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  display: flex;
+  height: 47px;
+  width: 100%;
+  border-top: 1px solid #d6d6d6;
+  z-index: 105;
+
+}
+
+.order-num {
+  height: 100%;
+  width: 50%;
+  font-size: 1.8px;
+  padding-left: 15px;
+}
+
+.order-num span.card1 {
+  text-align: center;
+  display: inline-block;
+  line-height: 47px;
+  color: #FB6A22;
+  margin-bottom: 10px;
+}
+
+.order-num span.num1 {
+  text-align: center;
+  display: inline-block;
+  font-size: 1.6px;
+}
+
+.order-detail {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 25%;
+  text-align: center;
+  line-height: 47px;
+}
+
+.order-detail span {
+  color: #FDBD4C;
+  text-align: center;
+  font-size: 1.4px;
+}
+
+.order-submit {
+  height: 47px;
+  line-height: 47px;
+  width: 25%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #FDB330;
+  text-align: center;
+  color: white;
+  font-size: 2.0px;
+}
+
+.order-submit:hover {
+  color: #ccc;
+}
+
+/*footer结束*/
+
+/*出行人*/
+#order-twrap{
+ font-size: .28rem;
+}
+#order-twrap b{
+  font-weight: normal;
+}
+
+.order-trip {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.order-trip ul {
+  width: 100%;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  margin-bottom: 0px;
+}
+
+.order-tlist1 {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  line-height: 40px;
+  font-size: 1.6px;
+  margin-bottom: 0;
+}
+
+.order-tsl1 {
+  float: left;
+}
+
+.order-tsl2 {
+  float: right;
+  font-size: 1.3px;
+  line-height: 40px;
+}
+
+.order-tsl3 {
+  width: 7.2px;
+  font-size: 1.3px;
+  background-color: #FDB330;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+  position: absolute;
+  top: 7px;
+  right: 15px;
+}
+
+li.order-tlist2 {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  padding: 0 15px;
+  position: relative;
+}
+
+li.order-tlist2 i {
+  width: 34px;
+  height: 34px;
+  background-image: url(../../images/ui/ticket_hotel.png);
+  background-size: 300px 228px;
+  background-position: 115px 99px;
+  position: absolute;
+  top: 12px;
+  left: 14px;
+}
+
+li.order-tlist2 em {
+  width: 20px;
+  height: 20px;
+  background: url(../../images/ui/icons.png) no-repeat;
+  background-size: 280px 200px;
+  background-position: 67% 1%;
+  position: absolute;
+  top: 16px;
+  right: 15px;
+}
+
+.order-tlist2 .traveller-wrap {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  left: 60px;
+}
+
+.order-tlist2 span {
+  width: 100%;
+  display: block;
+  line-height: 22px;
+}
+
+/*联系人*/
+.order-link {
+  width: 100%;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.order-llist1 {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  margin-bottom: 0;
+}
+
+.order-llist1 span {
+  font-size: 1.6px;
+  line-height: 40px;
+}
+
+.con-alike {
+  position: absolute;
+  left: 75px;
+  top: 8px;
+  width: 1.75px;
+  height: 2px;
+  background: url("../../images/ui/icons1.png") no-repeat;
+  background-size: 620px 180px;
+  background-position: -37px -52px;
+}
+
+.order-llist1 .contact-same {
+  font-size: 1.4px;
+  margin-left: 35px;
+}
+
+.hfcont-tip {
+  width: 2.2px;
+  height: 2.2px;
+  font-size: 1.4px;
+  position: absolute;
+  right: 2px;
+  top: 0.7px;
+  background-image: url("../../images/ui/icon-t.png");
+  background-repeat: no-repeat;
+  background-size: 235.8px 142.6px;
+  background-position: 71% 50%;
+}
+
+.order-llist2, .order-llist3, .order-llist4 {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  background-color: white;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #ccc;
+}
+
+.order-llist4 > span {
+  margin-top: 10px;
+}
+
+.order-llist2 input, .order-llist3 input, .order-llist4 input {
+  display: inline-block;
+  width: 44%;
+  margin-top: 10px;
+  /*border: 1px solid #900;*/
+  font-size: 1.4px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.order-llist3 .hf_con_cell {
+  vertical-align: top;
+}
+
+.order-llist4 .hf_con_email {
+  width: 70%;
+}
+
+.order-line {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background-color: #ccc;
+  vertical-align: top;
+  margin: 0 1.0px;
+  margin-top: 1px;
+}
+
+.order-llist3 {
+  display: inline-block;
+  width: 100%;
+}
+
+.order-ls {
+  display: inline-block;
+  width: 44%;
+  position: relative;
+  overflow: hidden;
+}
+
+.order-ls > div {
+  float: right;
+  margin-right: 15px;
+  margin-top: 7px;
+}
+
+.order-ls-cell {
+  float: left;
+  margin-top: 13px;
+}
+
+.order-ls i {
+  width: 20px;
+  height: 20px;
+  background: url(../../images/ui/icons.png) no-repeat;
+  background-size: 280px 200px;
+  background-position: 73% 1%;
+  display: inline-block;
+}
+
+.order-llist4 span {
+  display: inline-block;
+  width: 25%;
+}
+
+.detail-fale {
+  display: inline-block;
+  position: relative;
+  width: 8px;
+  height: 8px;
+  margin-left: 22px;
+  right: 1px;
+  top: 5px;
+  border-top: 1px solid #ffb412;
+  border-left: 1px solid #ffb412;
+  -webkit-transform: rotate(45deg) translateY(-50%);
+  -o-transform: rotate(45deg) translateY(-50%);
+  -moz-transform: rotate(45deg) translateY(-50%);
+  -ms-transform: rotate(45deg) translateY(-50%);
+  transform: rotate(45deg) translateY(-50%);
+  -webkit-transform-origin: 50% 0;
+  -o-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.detail-fale.open {
+  top: 1px;
+  -webkit-transform: rotate(225deg) translateY(-50%);
+  -o-transform: rotate(225deg) translateY(-50%);
+  -moz-transform: rotate(225deg) translateY(-50%);
+  -ms-transform: rotate(225deg) translateY(-50%);
+  transform: rotate(225deg) translateY(-50%);
+  -webkit-transform-origin: 50% 0;
+  -o-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  transition: all 0.4s ease-in-out;
+
+}
+
+/*明细开始*/
+.hf_det_mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.6;
+  z-index: 100;
+  display: none;
+}
+
+.hf_detail_fare {
+  transition: 300ms all ease;
+  bottom: -80px;
+  padding: 0 15px;
+  width: 100%;
+  position: fixed;
+  z-index: 102;
+  background: #fff;
+}
+
+.hf_detail_fare p {
+  margin-bottom: 0;
+  height: 30px;
+  line-height: 30px;
+  color: rgb(102, 102, 102);
+}
+
+.hf_detail_fare p span:nth-child(2) {
+  float: right;
+  font-size: 1.4px;
+  color: rgb(72, 72, 72)
+}
+
+/*明细结束*/
+
+/*国籍tel*/
+.country-cho-wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200%;
+  z-index: 1000;
+  display: none;
+}
+
+.country-cho-wrap .header {
+  height: 45px;
+  max-height: 45px;
+}
+
+.country-cho-wrap-order {
+  position: absolute;
+  z-index: 1000;
+}
+
+.cl_search {
+  height: 30px;
+  width: 100%;
+  padding-left: 38px;
+  padding-right: 15px;
+  margin-top: 7px;
+  position: relative;
+  left: 0;
+  top: 0;
+  overflow: visible;
+}
+
+.cl_search input {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  padding-left: 24px;
+  font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+}
+
+.cl_search i {
+  position: absolute;
+  left: 47px;
+  top: 10px;
+  display: block;
+  background: url("../../images/city_search.png");
+  background-size: 11px 11px;
+  width: 11px;
+  height: 11px;
+}
+
+.country-list {
+  background-color: #fff;
+}
+
+.country-list li {
+  padding-left: 35px;
+  height: 36px;
+  line-height: 36px;
+  border-bottom: 1px solid #dfdfdd;
+}
+
+.country-hidden {
+  z-index: 100;
+}
+
+/*国籍模糊搜索*/
+.country-list-searched {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-size: 1.4px;
+  list-style: none;
+  position: fixed;
+  top: 3.8px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  background: #f5f4f9;
+  margin-bottom: 0;
+  overflow-y: scroll;
+  padding-top: 1px;
+}
+
+.country-list-searched li.country-list-searched-item {
+  width: 100%;
+  font-size: 1.4px;
+  list-style: none;
+  height: 3.4px;
+  line-height: 3.4px;
+  text-align: left;
+  border-bottom: 0.1px solid #dfdfdd;
+  margin-bottom: 0;
+  padding-left: 4px;
+
+}
+
+/*国籍tel结束*/

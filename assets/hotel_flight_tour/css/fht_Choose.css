@@ -1,0 +1,135 @@
+.content{
+  padding-top:1rem;
+
+}
+.top_info{
+  padding: 0 .28rem;
+  height:.96rem;
+  line-height: .96rem;
+  border-top:.01rem solid #e6e6e6;
+  border-bottom:.01rem solid #e6e6e6;
+  font-size: .28rem;
+  color:#333333;
+  position: relative;
+}
+.top_info>span:nth-child(1){
+  margin-right: .14rem;
+}
+.top_info .person_number{
+  color:#999999;
+  float: right;
+  margin-right: .30rem;
+}
+.top_info i{
+  display: inline-block;
+  position: absolute;
+  right: .28rem;
+  top: .48rem;
+  width: .16rem;
+  height: .16rem;
+  border-bottom: .03rem solid #666;
+  border-left: 0;
+  border-right: .03rem solid #666;
+  -webkit-transform: rotate(-45deg) translateY(-50%);
+  -o-transform: rotate(-45deg) translateY(-50%);
+  -moz-transform: rotate(-45deg) translateY(-50%);
+  -ms-transform: rotate(-45deg) translateY(-50%);
+  transform: rotate(-45deg) translateY(-50%);
+  -webkit-transform-origin: 50% 0;
+  -o-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+}
+.ticket{
+  width: 100%;
+  font-size: .28rem;
+}
+.ticket .statusMoreFlight{
+  padding:0 .28rem;
+  height:.68rem;
+  line-height:.68rem;
+  background:#f5f4f9;
+}
+.statusMoreFlight a{
+  color: rgb(255, 180, 18);
+  text-decoration: underline;
+  float: right;
+}
+.ticket ul{
+  padding: .4rem .28rem;
+}
+.dateWeekCity{
+  height:.42rem;
+  line-height: .42rem;
+  margin-bottom: .32rem;
+}
+.dateWeekCity span{
+  margin-right: .16rem;
+}
+.dateWeekCity span:nth-child(1){
+  margin-right: 0;
+  display: inline-block;
+  width: .38rem;
+  height: .38rem;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-repeat: no-repeat;
+  background-size: 7.5rem 4.54rem;
+  background-position: 16.10% 52%;
+  overflow: hidden;
+  position: relative;
+  top: .06rem;
+}
+.tripGo{
+  width:100%
+}
+.timeAirport{
+  height: 1.48rem;
+  position: relative;
+}
+.timeAirport .left,.timeAirport .right{
+  height: 112px;
+  width: 160px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  overflow: visible;
+}
+.timeAirport .right{
+  right: .28rem;
+}
+.timeAirport .left .startTime,.timeAirport .right .arriveTime{
+  white-space: normal;
+  display: block;
+  font-size: .36rem;
+}
+
+.timeAirport .middle{
+  margin: 0 160px 0 160px;
+  height: 104px;
+  padding: 4px 0;
+}
+.timeAirport .middle .timeCost{
+  position: relative;
+  text-align: center;
+  height: .28rem;
+  line-height: .28rem;
+  font-size: .20rem;
+}
+.timeAirport .middle .toArrow{
+  display: block;
+  margin: 0 auto 0;
+  width: 1.8rem;
+  height: 0.10rem;
+  background: url(../../images/ui/icon-hft.png);
+  background-size: 7.5rem 4.54rem;
+  background-repeat: no-repeat;
+  background-position: 8.1% 68.9%;
+}
+.timeAirport .middle .transferCity{
+  position: relative;
+  text-align: center;
+  height: .28rem;
+  line-height: .28rem;
+  font-size: .20rem;
+}
