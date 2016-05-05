@@ -23,6 +23,7 @@ input{
 }
 .content{
   padding-top: 45px;
+  font-size: .28rem;
 }
 body{
   background-color: #f7f7f7;
@@ -38,8 +39,7 @@ body{
   background-color: #f7f7f7;
   height: 0.68rem;
   line-height: 0.68rem;
-  font-size: 0.28rem;
-  border-top: .01rem solid #ddd;
+  border-top: .02rem solid #ddd;
   padding: 0 .28rem;
 }
 
@@ -67,7 +67,7 @@ body{
   display: inline-block;
   vertical-align: top;
   margin-top: .2rem;
-  margin-right: .12rem;
+  margin-left: .12rem;
   background: url(../../images/hotel_flight_tour/flight_det.png) no-repeat;
   background-size: .32rem .32rem;
   width: .32rem;
@@ -76,13 +76,13 @@ body{
 }
 
 .fli_cont{
-  font-size: .28rem;
   height: .32rem;
   line-height: .32rem;
   margin-bottom: .32rem;
+  padding-right: .28rem;
 }
 .flight_cir_wrap{
-  padding: .4rem .28rem;
+  padding: .4rem 0 .4rem .28rem;
 }
 .flight_cir_wrap li:nth-child(2){
   margin-bottom:0;
@@ -90,7 +90,6 @@ body{
   border-bottom: .01rem solid #e6e6e6;
 }
 .cabin_level{
-  font-size: .28rem;
   margin-top: .4rem;
 }
 
@@ -101,12 +100,12 @@ body{
   background-color: #fff;
 }
 .hotel_wrap{
-  font-size: .28rem;
   margin-left: .28rem;
   padding: .4rem 0;
 }
 .hotel_wrap li{
   margin-bottom: .32rem;
+  color: #666;
 }
 .fht_hd_tit.hotel >i{
   display: inline-block;
@@ -132,7 +131,6 @@ body{
 }
 .tour_wrap > li{
   padding: .4rem .28rem;
-  font-size: .28rem;
   border-bottom: .01rem solid #e6e6e6;
 }
 .tour_wrap > li:last-child{
@@ -144,74 +142,16 @@ body{
 .tour_wrap > li .mb_ten{
   color: #333;
   margin-bottom: .2rem;
+  font-weight: bold;
 }
 
 /*景点结束*/
-
-/*预定footer*/
-.order_footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background: #fcfcfc;
-  height: .98rem;
-  width: 100%;
-  border-top: .01rem solid #e6e6e6;
-  z-index: 105;
-
-}
-.order_num {
-  height: 100%;
-  width: 50%;
-  line-height: .98rem;
-  text-align: center;
-}
-.order_num span.num1 {
-  height: 100%;
-  display: inline-block;
-  vertical-align: top;
-  font-size: .3rem;
-  width: 100%;
-}
-
-.order_detail {
-  width: 25%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 25%;
-  text-align: center;
-  line-height: 47px;
-}
-
-.order_detail span {
-  color: #FDBD4C;
-  text-align: center;
-  font-size: 1.4px;
-}
-
-.order_submit {
-  height: .98rem;
-  line-height: .98rem;
-  width: 50%;
-  background-color: #FDB330;
-  text-align: center;
-  color: white;
-  font-size: .35rem;
-}
-
-.order_submit:hover {
-  color: #ccc;
-}
-
-/*footer结束*/
 
 /*出行人*/
 .traveller_section{
   background-color: #fff;
 }
 .order_twrap{
- font-size: .28rem;
   padding-left: .28rem;
 }
 .order_twrap b{
@@ -229,7 +169,6 @@ li.order_tlist2 {
 }
 
 .traveller_wrap{
-  margin-left: .28rem;
   overflow: hidden;
 }
 .traveller_wrap >span{
@@ -247,7 +186,6 @@ li.order_tlist2 {
   background-color: #fff;
 }
 .fht_contact{
-  font-size: .28rem;
   margin-bottom:1.5rem ;
 }
 .fht_con_hd{
@@ -291,17 +229,6 @@ li.order_tlist2 {
   display: inline-block;
   vertical-align: middle;
 }
-
-.order_s i {
-  width: 20px;
-  height: 20px;
-  background: url(../../images/ui/icons.png) no-repeat;
-  background-size: 280px 200px;
-  background-position: 73% 1%;
-  display: inline-block;
-}
-
-
 .detail_fale {
   display: inline-block;
   position: relative;
@@ -340,6 +267,48 @@ li.order_tlist2 {
   transition: all 0.4s ease-in-out;
 
 }
+
+/*预定footer*/
+.order_footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fcfcfc;
+  height: .98rem;
+  width: 100%;
+  border-top: .01rem solid #e6e6e6;
+  z-index: 105;
+
+}
+.order_num {
+  height: 100%;
+  width: 50%;
+  line-height: .98rem;
+  text-align: center;
+}
+.order_num span.num1 {
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  font-size: .3rem;
+  width: 100%;
+}
+
+.order_submit {
+  height: .98rem;
+  line-height: .98rem;
+  width: 50%;
+  background-color: #FDB330;
+  text-align: center;
+  color: white;
+  font-size: .35rem;
+}
+
+.order_submit:hover {
+  color: #ccc;
+}
+
+/*footer结束*/
 
 /*明细开始*/
 .hft_det_mask {
@@ -481,3 +450,48 @@ li.order_tlist2 {
 }
 
 /*国籍tel结束*/
+
+/*订单详情已支付*/
+.tot_prinum{
+  color: #fb6a22;
+  font-size: .32rem;
+}
+.hft_paid{
+  height: .88rem;
+  line-height: .88rem;
+  font-size: .32rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.order_tot_price{
+  padding: .4rem .28rem;
+  background-color: #fff;
+  border-top: .02rem solid #e6e6e6;
+}
+.order_tot_price .fr{
+  font-size: .24rem;
+  color: #999;
+}
+
+.fht_order_tab{
+  padding: .4rem .28rem 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+.fht_order_tab >li{
+  margin-bottom: .32rem;
+}
+.fht_order_tab p{
+  margin-bottom: .32rem;
+}
+
+.order_cont_way{
+  border-top: .01rem solid #e6e6e6;
+  background-color: #fff;
+  padding-bottom: .32rem;
+}
+.order_cont_way >li{
+  padding: .32rem .28rem 0;
+}
+
