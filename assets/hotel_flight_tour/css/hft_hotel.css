@@ -261,6 +261,7 @@ ul li,li,dd{ margin:0; padding:0; list-style:none;}
   height: 5.69rem;
   background: #fff;
   font-size: 0.28rem;
+  transition:all 0.3s;
 }
 .hotel_pop .position ul{
   height: 4.8rem;
