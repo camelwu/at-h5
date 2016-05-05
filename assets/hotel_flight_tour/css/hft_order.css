@@ -54,9 +54,9 @@ body{
   margin-right: .16rem;
   width: .5rem;
   height: .5rem;
-  background-image: url(../../images/ui/ticket_hotel.png);
-  background-position: 2.33rem 2.33rem;
-  background-size: 5.2rem 4.12rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-position: -20px -61px;
+  background-size: 6.6rem 4.6rem;
 }
 
 .fht_hd_det{
@@ -68,7 +68,7 @@ body{
   vertical-align: top;
   margin-top: .2rem;
   margin-left: .12rem;
-  background: url(../../images/hotel_flight_tour/flight_det.png) no-repeat;
+  background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: .32rem .32rem;
   width: .32rem;
   height: .32rem;
