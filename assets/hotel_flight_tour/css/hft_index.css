@@ -1,0 +1,543 @@
+body{
+  background-color: #f7f7f7;
+}
+.hft_icon {
+  display: inline-block;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-repeat: no-repeat;
+  background-size: 7.5rem 4.54rem;
+}
+i{
+  font-style: normal;
+}
+input{
+  border: none;
+}
+.all_elements{
+  position: absolute;
+  overflow-x: hidden!important;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+.full_box{
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+/*   首页搜索页开始    */
+.index_tab div{
+  width: 50%;
+  height:.8rem;
+  font-size: .32rem;
+  line-height: .8rem;
+  text-align: center;
+  color:rgb(153,153,153);
+  background-color: #fcfcfc;
+  border-bottom:1px solid #e3e3e3;
+}
+.index_tab div:nth-child(1){
+  float: left;
+}
+.index_tab div:nth-child(2){
+  float: right;
+}
+.index_tab .active{
+  color:rgb(253,179,48);
+  border-bottom:4px solid rgb(253,179,48);
+}
+.flight_info .flight_place{
+  width:100%;
+  font-size: .36rem;
+  font-weight: bold;
+  color: #333333;
+  overflow: hidden;
+}
+.flight_info .flight_place .origin{
+  float: left;
+  height: 1.2rem;
+  width: 33%;
+  padding-left: .15rem;
+  line-height: 1.2rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+.flight_info .flight_place .iconTip {
+  float: left;
+  height: 1.2rem;
+  width: 30%;
+  line-height: 1.2rem;
+
+}
+.iconTip > div {
+  position: relative;
+  margin: 0 auto;
+  width: .6rem;
+  height: 100%;
+  overflow: hidden;
+}
+.iconTip span{
+  position: absolute;
+  height: .6rem;
+  width: .6rem;
+  top: .32rem;
+  background-position: 73.5% 31.5%;
+  overflow: hidden;
+}
+.flight_info .flight_place .destination {
+  float: left;
+  height: 1.2rem;
+  width: 33%;
+  line-height: 1.2rem;
+  padding-right: .15rem;
+  text-align: right;
+  border-bottom: 1px solid #dedede;
+}
+.flight_info .date_info{
+  height: 1.2rem;
+  padding: 0 .15rem;
+  border-bottom: 1px solid #dedede;
+}
+.date_info .data_title{
+  padding-top: .2rem;
+  margin-bottom: .1rem;
+  overflow-y: hidden;
+  height: .35rem;
+  color: #999999;
+}
+.date_info .data_title span:nth-child(1){
+  float: left;
+  font-size: .24rem;
+}
+.date_info .data_title span:nth-child(2){
+  float: right;
+  font-size: .24rem;
+}
+.date_info .ori_des_date{
+  overflow: hidden;
+  font-size: 0.32rem;
+}
+.origin_data{
+  float: left;
+}
+.destination_data{
+  float: right;
+}
+.date_box span{
+  color:rgb(51,51,51);
+}
+.date_box span:last-child{
+  font-size: .28rem;
+  color:rgb(72,72,72);
+}
+/*   房间信息   */
+.hotelInfo_numb_room{
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  padding: 0 .15rem;
+  background: #FFFFFF;
+}
+.hotelInfo_numb_room .title{
+  display: block;
+  position: absolute;
+  width: 1.4rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: .28rem;
+  color:rgb(51,51,51);
+  left: .15rem;
+}
+.hotelInfo_numb_people .title{
+  display: block;
+  position: absolute;
+  width: 1.4rem;
+  height: .88rem;
+  line-height: .88rem;
+  font-size: .28rem;
+  color:rgb(51,51,51);
+  left: .15rem;
+}
+.hotelInfo_numb_room .per_price_control {
+  float: right;
+  padding: .38rem 0;
+}
+.hotelInfo_numb_people .per_price_control {
+  float: right;
+  padding: .15rem 0;
+}
+section[class^="hotelInfo_numb"] .per_price_control span {
+  width: .46rem;
+  height:.46rem;
+  float: left;
+  background: url(../../images/ui/icon-hft.png) no-repeat;
+  background-size: 7.5rem 4.54rem;
+  background-position: 32% 31%;
+  /*/!*background-position: 60% 31%;*!/  //置灰*/
+}
+section[class^="hotelInfo_numb"] .per_price_control span:first-child {
+  background-position: 51% 31%;
+  /*/!*background-position: 42% 31%;*!/     高亮*/
+}
+section[class^="hotelInfo_numb"] .per_price_control i {
+  width: .8rem;
+  height: .48rem;
+  line-height:.48rem;
+  float: left;
+  text-align: center;
+  font-size: .32rem;
+  color:rgb(72,72,72);
+}
+section.hotelInfo_numb_people {
+  border-bottom: 1px solid #ddd!important;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+section.hotelInfo_numb_people:last-child{
+  border-bottom: 0;
+}
+section[class^="hotelInfo_numb"] .numbList {
+  margin-left: 1.8rem;
+  font-size: .28rem;
+  overflow: hidden;
+  padding-right: .15rem;
+}
+section[class^="hotelInfo_numb"] .numbList:nth-child(3){
+  border-bottom: 1px solid #ddd;
+}
+section[class^="hotelInfo_numb"] .numbList:last-child {
+  clear: both;
+  border: none;
+}
+section[class^="hotelInfo_numb"] .numbList span.n_tit {
+  float: left;
+  height: .88rem;
+  line-height: .88rem;
+  text-indent: .16rem;
+}
+section[class^="hotelInfo_numb"] .numbList span.child_age {
+  position: relative;
+  font-size: .28rem;
+  color: rgb(153,153,153);
+  top: -.5rem;
+}
+section[class^="hotelInfo_numb"] .extraChild {
+  overflow: hidden;
+  margin-left: 1.8rem;
+}
+section[class^="hotelInfo_numb"] .extraChild span {
+  display: block;
+  height: .88rem;
+  line-height: .88rem;
+  font-size: .28rem;
+  padding-left: .15rem;
+  position: relative;
+  clear: both;
+}
+section[class^="hotelInfo_numb"] .extraChild span:last-child {
+  border: none;
+}
+.spenumbList {
+  clear: both;
+  margin-left: 0 !important;
+}
+.bedList {
+  display: block;
+  height:.88rem;
+  line-height: .88rem;
+  padding-left: .15rem;
+  position: relative;
+}
+.childAge {
+  float: right;
+  width: 1.3rem;
+  font-size: .28rem;
+  margin-top: .18rem;
+  padding-right: .15rem;
+}
+.inp_cage {
+  display: inline-block;
+  height: .4rem;
+  width: 70%;
+  font-size: .32rem;
+}
+.child_sui {
+  display: inline-block;
+}
+.spenumbList{
+  border-top: 1px solid #ddd!important;
+}
+.noselect {
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 8px;
+  width: 21px;
+  height: 22px;
+  background-position: -211px -94.9px
+}
+.ico_select {
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 8px;
+  width: 21px;
+  height: 22px;
+  background-position: -236px -94.9px;
+}
+.search_button {
+  height: .9rem;
+  margin: .4rem .3rem;
+  font-size: .36rem;
+}
+.search_button input {
+  font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+  width: 100%;
+  height: .9rem;
+  color: #fff;
+  font-size: .36rem;
+  font-weight: bold;
+  line-height: .9rem;
+  border-radius: .06rem;
+  text-align: center;
+}
+.button_orange {
+  background-color: #ffb413;
+  color: #FFFFFF;
+}
+.button_orange:hover {
+  background-color: #e67e22;
+}
+.index_fo{
+  margin-bottom: .4rem;
+  font-size: .28rem;
+  text-align: center;
+  color:rgb(153,153,153);
+}
+/*   首页搜索页结束    */
+
+/*   机票列表页开始    */
+.data_info{
+  position: fixed;
+  z-index: 45;
+  top: .9rem;
+  width: 100%;
+  background: #fcfcfc;
+  padding-bottom: .3rem;
+  padding-left:.5rem;
+  padding-right:.5rem;
+  font-size: .24rem;
+  color: #808080;
+  border-bottom: 1px solid #dddddd;
+}
+.data_info span:last-child{
+  color:#999999;
+}
+.fl_content{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding-top: 1.54rem;
+  padding-bottom: 1rem;
+  z-index: 2;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.price_up{
+  width:100%;
+  height: .68rem;
+  background: #f7f7f7;
+  text-align: center;
+  line-height: .68rem;
+  font-size: .24rem;
+  color:rgb(153,153,153);
+}
+.price_up span{
+  font-size: .37rem;
+  color:rgb(255,91,19);
+}
+.air_tickets_detail {
+  width: 100%;
+  background: #fff;
+  position: relative;
+}
+.air_tickets_detail li {
+  width: 98%;
+  padding-top: .4rem;
+  padding-bottom: .2rem;
+  padding-left: .3rem;
+  padding-right: 1rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #dedede;
+}
+.air_tickets_detail .time_airport {
+  width: 92%;
+  float: left;
+}
+.air_tickets_detail .time_airport .go {
+  width: 100%;
+  position: relative;
+  margin-bottom: .2rem;
+}
+.go .ticket_info{
+  width: 100%;
+  padding-top: .04rem;
+  font-size: .28rem;
+  color: #484848;
+}
+.go .ticket_info span:last-child{
+  margin-left: .5rem;
+}
+.gotrip span:first-child{
+  display: inline-block;
+  background-position: 16.5% 52.5%;
+  position: absolute;
+  left: 0;
+  width: .32rem;
+  height: .32rem;
+}
+.backtrip span:first-child{
+  display: inline-block;
+  background-position: 8.5% 52.5%;
+  position: absolute;
+  left: 0;
+  width: .32rem;
+  height: .32rem;
+}
+.time_airport .go .go_info{
+  position: relative;
+  width: 100%;
+  padding-top: .04rem;
+  min-height: 1.2rem;
+  overflow: hidden;
+}
+.go_info .start_time_info {
+  float: left;
+  position: static;
+  width: 32%;
+  font-size: .24rem;
+  padding-top: .08rem;
+}
+.start_time_info .end_icon {
+  display: inline-block;
+  background-position: 1% 1%;
+  position: absolute;
+  width: .32rem;
+  height: .32rem;
+  left: 0;
+  top: .04rem;
+}
+.start_time_info .time_number {
+  display: block;
+  font-size: .28rem;
+  color: #333333;
+  font-weight: bold;
+  width: 1.06rem;
+  margin-right: .6rem;
+}
+.start_time_info .air_port_word {
+  display: block;
+  font-size: .24rem;
+  margin-top: .9rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.total_time_info {
+  width: 28%;
+  float: left;
+  font-size: .2rem;
+  padding: 0.3rem 0;
+  text-align: center;
+}
+.total_time_info .time_hour_minute {
+  display: -moz-box;
+  display: -webkit-box;
+  font-size: .18rem;
+  width: 100%;
+  -webkit-box-pack: center;
+}
+.total_time_info .arrow_time {
+  display: block;
+  margin: 0 auto 0;
+  width: 1.7rem;
+  height: .1rem;
+  background-position: 10% 69%;
+}
+.total_time_info .air_port_word{
+  display: inline-block;
+  font-size: .2rem;
+  max-width: 1.2rem;
+  text-align: center;
+  color: #ffb413;
+  z-index: 7;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+}
+.go_info .end_time_info {
+  position: static;
+  float: left;
+  width: 33%;
+  overflow: visible;
+  text-align: right;
+  font-size: .28rem;
+  padding-top: .08rem;
+}
+.end_time_info .tip_add_days {
+  position: absolute;
+  right: 0;
+  top: .08rem;
+  width: .68rem;
+  font-size: .2rem;
+}
+.end_time_info .time_number {
+  display: inline-block;
+  font-size: .28rem;
+  font-weight: bold;
+  color: #333333;
+  width: 1.06rem;
+  margin-right: .15rem;
+}
+.end_time_info .air_port_word {
+  display: block;
+  position: absolute;
+  right: .58rem;
+  top: 0;
+  font-size: .24rem;
+  margin-top: .9rem;
+}
+.small_info_tip {
+  height: .36rem;
+  line-height: .36rem;
+  margin-top: .2rem;
+  margin-bottom: .08rem;
+  font-size: .2rem;
+  color: #999999;
+}
+.small_info_tip img{
+  float: left;
+  width: .42rem;
+  height: .36rem;
+  margin-right: .1rem;
+}
+.cho_gou{
+  position: absolute;
+  top: 0;
+  width: .42rem;
+  height: .42rem;
+  background-position: 72% 53%;
+}
+/*   列表底部筛选排序    */
+
+/*   机票列表页结束    */

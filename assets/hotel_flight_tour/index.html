@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>自由行首页 - 亚洲旅行网</title>
+    <link href="../styles/reset.css" rel="stylesheet"/>
+    <link href="css/hft_index.css" rel="stylesheet"/>
+</head>
+<body>
+  <!--<div class="all_elements">-->
+  <div class="content">
+      <div class="full_box index_tab">
+        <div class="active">机+酒</div>
+        <div>机+酒+景</div>
+      </div>
+      <!--  机+酒   -->
+      <div id="flightHotelBox">
+          <div class="full_box flight_info">
+              <div class="flight_place">
+                  <div class="origin city-search" data-citycode="BJS">北京</div>
+                  <div class="iconTip"><div><span class="hft_icon"></span></div></div>
+                  <div class="destination city-search " data-citycode="SIN">新加坡</div>
+              </div>
+              <div class="date_info">
+                  <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
+                  <div class="ori_des_date">
+                      <span class="origin_data date_box"><span id="hf_startDay" class="date_number date_one">12月10日</span><span id="hf_startData"></span>&nbsp;<span class="week_one">周四</span></span>
+                      <span class="destination_data date_box"><span id="hf_endDay" class="date_number date_two">12月12日</span><span id="hf_returnData"></span>&nbsp;<span class="week_two">周六</span></span>
+                  </div>
+              </div>
+          </div>
+          <!--  房间   -->
+          <div class="search_hotel">
+              <section class="hotelInfo_numb_room">
+                  <span class="title">房间</span>
+                  <div class="per_price_control" data-type="extraRoom">
+                      <span class="cut_down_btn"></span><i id="hf_roomNum" class="cut_up_cont">1</i><span class="plus-btn"></span>
+                  </div>
+              </section>
+              <section class="hotelInfo_numb_people init_hotel_room_detail">
+                  <span class="title">房间1</span>
+                  <div class="numbList">
+                      <span class="n_tit">成人</span>
+                      <div class="per_price_control" data-type="adult">
+                          <span class="cut_down_btn" style="background-position: 42% 31%;"></span>
+                          <i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>
+                          <span class="plus_btn"></span>
+                      </div>
+                  </div>
+                  <div class="numbList">
+                      <span class="n_tit">儿童</span>
+                      <span class="child_age">(2-12岁)</span>
+                      <div class="per_price_control" data-type="extraChild">
+                          <span class="cut_down_btn"></span>
+                          <i class="cut_up_cont child_number" data-type="childNum">0</i>
+                          <span class="plus_btn"></span>
+                      </div>
+                  </div>
+                  <div class="extraChild">
+                      <span class="bedList" style="float: left"><i>儿童1年龄</i></span>
+                      <div class="childAge">
+                          <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
+                      </div>
+                          <span class="bedList" style="float: left"><i>儿童2年龄</i></span>
+                      <div class="childAge">
+                          <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
+                      </div>
+                      <div class="numbList spenumbList">
+                          <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>
+                      </div>
+                  </div>
+              </section>
+              <div class="search_button">
+                  <input id="hf_searchBtn" type="button" value="查询" class="button_orange" />
+              </div>
+          </div>
+      </div>
+      <!--  机+酒+景   -->
+      <div id="flightHotelTourBox" style="display: none;">
+          <div class="full_box flight_info">
+              <div class="flight_place">
+                  <div class="origin city-search" data-citycode="BJS">北京</div>
+                  <div class="iconTip"><div><span class="hft_icon"></span></div></div>
+                  <div class="destination city-search " data-citycode="SIN">新加坡</div>
+              </div>
+              <div class="date_info">
+                  <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
+                  <div class="ori_des_date">
+                      <span class="origin_data date_box"><span id="hft_startDay" class="date_number date_one">12月10日</span><span id="hft_startData"></span>&nbsp;<span class="week_one">周四</span></span>
+                      <span class="destination_data date_box"><span id="hft_endDay" class="date_number date_two">12月12日</span><span id="hft_returnData"></span>&nbsp;<span class="week_two">周六</span></span>
+                  </div>
+              </div>
+          </div>
+        <!--  房间   -->
+          <div class="search_hotel">
+              <section class="hotelInfo_numb_room">
+                  <span class="title">房间</span>
+                  <div class="per_price_control" data-type="extraRoom">
+                      <span class="cut_down_btn"></span><i id="hft_roomNum" class="cut_up_cont">1</i><span class="plus-btn"></span>
+                  </div>
+              </section>
+              <section class="hotelInfo_numb_people init_hotel_room_detail">
+                  <span class="title">房间1</span>
+                  <div class="numbList">
+                      <span class="n_tit">成人</span>
+                      <div class="per_price_control" data-type="adult">
+                          <span class="cut_down_btn" style="background-position: 42% 31%;"></span>
+                          <i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>
+                          <span class="plus_btn"></span>
+                      </div>
+                  </div>
+                  <div class="numbList">
+                      <span class="n_tit">儿童</span>
+                      <span class="child_age">(2-12岁)</span>
+                      <div class="per_price_control" data-type="extraChild">
+                          <span class="cut_down_btn"></span>
+                          <i class="cut_up_cont child_number" data-type="childNum">0</i>
+                          <span class="plus_btn"></span>
+                      </div>
+                  </div>
+                  <div class="extraChild">
+                      <span class="bedList" style="float: left"><i>儿童1年龄</i></span>
+                      <div class="childAge">
+                          <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
+                      </div>
+                      <span class="bedList" style="float: left"><i>儿童2年龄</i></span>
+                      <div class="childAge">
+                          <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
+                      </div>
+                      <div class="numbList spenumbList">
+                          <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>
+                      </div>
+                  </div>
+              </section>
+              <div class="search_button">
+                  <input id="hft_searchBtn" type="button" value="查询" class="button_orange" />
+              </div>
+          </div>
+      </div>
+      <footer class="index_fo">
+          自由配 预订快 资源全 价格低
+      </footer>
+  </div>
+  <!--</div>-->
+</body>
+</html>
