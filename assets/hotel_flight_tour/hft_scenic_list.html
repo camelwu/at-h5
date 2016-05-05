@@ -18,7 +18,7 @@
     <link href="styles/owl.theme.css"	rel="stylesheet" type="text/css">
     <title>景点列表页</title>
     <link rel="stylesheet" href="../styles/reset.css"/>
-    <link rel="stylesheet" href="css/sceniclist.css"/>
+    <link rel="stylesheet" href="css/hft_scenic_list.css"/>
 </head>
 <body>
 <!--<div id="preloader">-->
@@ -171,16 +171,38 @@
 </div>
 <div class = "shade">
     <!--排序快-->
-    <div class="shade_div"></div>
-    <ul class="rank">
-        <li>价格从高到低</li>
+  <div class="shade_div"></div>
+  <ul class="rank">
+        <li>价格从高到低 <i class = "checked"></i></li>
         <li>价格从低到高</li>
         <li>评分从高到低</li>
         <li>星级从高到低</li>
         <li>星际从低到高</li>
     </ul>
     <!--帅选快-->
-    <div class="shade_div"></div>
+  <div class="shade_div"></div>
+  <div class="filter">
+    <div class = "filter_button">
+      <p class = "filter_button_l">取消</p>
+      <p class = "filter_button_c">清空筛选</p>
+      <p class = "filter_button_r filter_button_checked">确定</p>
+    </div>
+    <div class = "filter_theme">
+      <ul class = "filter_theme_list">
+        <li>景点主题</li>
+      </ul>
+      <div class = "filter_theme_matter">
+          <ul class="filter_theme_box">
+              <li class = "checked_theme"> 不限 <i class = "checked"></i></li>
+              <li>博物馆 <i></i></li>
+              <li>场馆 <i></i></li>
+              <li>古迹遗址 <i></i></li>
+              <li>山水景观 <i></i></li>
+              <li>温泉 <i></i></li>
+          </ul>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
