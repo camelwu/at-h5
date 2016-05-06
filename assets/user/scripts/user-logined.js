@@ -132,7 +132,13 @@ function ifOpen(){
     }
 }
 
-
+//电话
+$('.service_tel').click(function(){
+  $('.jpop_box_tic').show();
+});
+$('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+  $('.jpop_box_tic').hide();
+})
 
 
 
