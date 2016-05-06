@@ -15,6 +15,7 @@ body {
     height: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-family: '微软雅黑';
+    background: #F7F7F7;
 }
 
 img {
@@ -43,6 +44,24 @@ ul li {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+* {
+  appearance: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  vertical-align: baseline;
+  outline: 0;
+  font-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+
+:focus {
+  outline: 0
 }
 
 
@@ -193,22 +212,27 @@ a {
     height: 100%;
     min-height: 100%;
     max-height: 100%;
-    padding-top: .88rem;
+    padding-top: 1.4rem;
     font-size: .28rem;
     color: #484848;
 }
 
 .header {
-    height: .88rem;
+    height: 1.4rem;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     pointer-events: all;
     z-index: 99;
-    background-color: #fcfcfc;
+    background: -webkit-linear-gradient(#16364f, #194361);
+    background: -o-linear-gradient(#16364f, #194361);
+    background: -moz-linear-gradient(#16364f, #194361);
+    background: linear-gradient(#fcfcfc, #fcfcfc);
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+    transition: all 250ms ease-in-out;
     border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-    opacity: 0.95;
 }
 
 .header .header_back {
@@ -223,7 +247,7 @@ a {
     left: .48rem;
     top: 50%;
     margin-top: -.2rem;
-    height: .5rem;
+    height: .4rem;
     width: .2rem;
     background: url(../images/ui/icon_common.png) no-repeat;
     background-size: 7.89rem 5.07rem;
@@ -233,7 +257,7 @@ a {
 .header h3 {
     color: #484848;
     text-align: center;
-    line-height: .88rem;
+    line-height: 1.4rem;
 }
 
 .site_right {
@@ -247,3 +271,12 @@ a {
 
 
 /*===============================all elements, header, site right end===============================*/
+
+/*===============================icon小图标===============================*/
+.icon_common {
+  background-image: url(../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 243px 160px;
+  display: inline-block;
+}
+/*===============================icon===================================*/
