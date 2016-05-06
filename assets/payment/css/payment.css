@@ -11,7 +11,7 @@
     background-image: url(../../images/hotel_flight/back.png);
 }
 .header h3{
-  font-size:0.4em;
+  font-size:0.4rem;
 }
 
 .android-relative{
@@ -511,7 +511,7 @@
   position: absolute;
   width: 36px;
   height: 40px;
-  top: 0.25rem;
+  top: 0.16rem;
   background-position: 0rem 0rem;
 }
 
