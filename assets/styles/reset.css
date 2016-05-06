@@ -270,3 +270,12 @@ a {
 
 
 /*===============================all elements, header, site right end===============================*/
+
+/*===============================icon小图标===============================*/
+.icon_common {
+  background-image: url(../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 243px 160px;
+  display: inline-block;
+}
+/*===============================icon===================================*/
