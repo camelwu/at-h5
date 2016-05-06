@@ -100,7 +100,7 @@ ol{padding:0;margin:0;}
 .hotel_list .car{
   background-position: -1.06rem -0.54rem;
 }
-.hotel_list .price.reduce{
+.hotel_list .price.reduce,.hotel_detail_rooms .price.reduce{
   color: #5abfb6;
 }
 .hotel_list_bottom{
@@ -379,24 +379,27 @@ ol{padding:0;margin:0;}
 }
 .hotel_detail_msg .star{
   font-size: 0.24rem;
+  height: 0.36rem;
+  position: relative;
 }
 .hotel_detail_msg .star span{
-  float: left;
+  position: absolute;
+  line-height: 0.36rem;
+  top:0;
 }
 .hotel_detail_msg .star .park,.hotel_detail_msg .star .car{
   background: url(../../images/hotel_flight_tour/icon_hotel.png);
   background-size: 7.89rem 2.58rem;
   width: 0.3rem;
-  height: 0.3rem;
-  margin-top: 0.04rem;
+  height: 0.36rem;
 }
 .hotel_detail_msg .star .park{
   background-position: -0.64rem -0.54rem;
-  margin-left: 0.28rem;
-  margin-right: 0.12rem;
+  left: 0.8rem;
 }
 .hotel_detail_msg .star .car{
   background-position: -1.06rem -0.54rem;
+  left: 1.18rem;
 }
 .hotel_detail_msg .star .detail{
  position: absolute;
@@ -451,11 +454,16 @@ ol{padding:0;margin:0;}
   margin-right: -0.04rem;
 }
 .hotel_detail_rooms .price .symbol,.hotel_detail_rooms .price .word{
-  position: relative;
+ position: relative;
   top: -0.04rem;
 }
-.hotel_detail_rooms .price .word{
-  color:#999;
+.hotel_detail_rooms .price span{
+  display: inline-block;
+  height: 0.46rem;
+  line-height: 0.46rem;
+}
+.hotel_detail_rooms .price .symbol{
+  left: -0.05rem;
 }
 .hotel_detail_rooms .price p i{
   background:url(../../images/ui/icon_common.png);
@@ -476,13 +484,23 @@ ol{padding:0;margin:0;}
   right: 0;
   background:url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
-  background-position:-4.70rem -1.47rem;
+  background-position:-4.70rem -1.48rem;
   width: 0.47rem;
   height: 0.47rem;
 }
-
-
-
+.hotel_detail_rooms .time{
+  border-bottom:1px solid#e6e6e6;
+  padding: 0.2rem 0.28rem 0.14rem;
+  overflow:hidden ;
+}
+.hotel_detail_rooms .time li{
+  height: 0.4rem;
+  line-height: 0.4rem;
+}
+.hotel_detail_rooms .time span{
+  font-size: 0.32rem;
+  color:#FFB413;
+}
 
 
 
