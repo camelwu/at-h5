@@ -93,6 +93,9 @@
   line-height: .42rem;
   margin-bottom: .32rem;
 }
+.dateWeekCity span{
+  margin-right: .16rem;
+}
 .dateWeekCity span:nth-child(1){
   content: "";
   display: inline-block;
@@ -105,6 +108,7 @@
   overflow: hidden;
   position: relative;
   top: .10rem;
+  margin-right: 0;
 }
 .tripBack .dateWeekCity span:nth-child(1){
   background-position: -3.35rem -1.42rem;
@@ -361,7 +365,7 @@
   display: inline-block;
   height:.6rem;
   line-height: .6rem;
-  width:30%;
+  width:31%;
   border-radius: .3rem;
   border: .03rem solid #D1D1D1;
   text-align: center;
