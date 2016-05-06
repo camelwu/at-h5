@@ -1072,13 +1072,18 @@ ul,ol{
     width:20px;
     float:right;
 }
-.nav41{
+.nav41 {
 display: inherit;
+}
+.nav41 .nav4-left{
   position: absolute;
   width: 60px;
+  height: 91px;
+  padding-top: 0;
+  line-height: 86px;
 }
 .nav41 .nav4-center{
-  margin-left: 60px;
+  margin-left:88px;
   -webkit-flex:initial;
   -moz-flex:initial;
   -o-flex:initial;
