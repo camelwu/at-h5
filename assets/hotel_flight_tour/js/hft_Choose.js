@@ -22,6 +22,7 @@ var  hftChoose = {
        var backI = document.querySelector('.top_info i'), changeFlight =  document.querySelector('.moreFlight'), that = this;
        var flightDetailI = document.querySelector('.flightDetailArrow i'), hotelDetailI =  document.querySelector('.hotelImgInfo i');
        var priceTotal = document.querySelector('.priceTotal i'), preserve =  document.querySelector('.preserve'),iconBack =  document.querySelector('.icon_back');
+       var tourOuter = document.querySelector('.tourOuter'), chooseDateOuter=document.querySelector('.chooseDate'),priceDetailInfo=document.querySelector('.priceDetailInfo');
     this.addHandler(backI, 'click', function () {
       window.location.href = "index.html";
     });
@@ -43,9 +44,38 @@ var  hftChoose = {
     this.addHandler(preserve, 'click', function () {
       window.location.href = "hft_order.html";
     });
-
+    this.addHandler(tourOuter, 'click', function (e) {
+      var e = e || window.event, target = e.target || e.srcElement;
+      if(target.tagName == "SPAN"){
+        chooseDateOuter.style.display = "block";
+      }
+    });
+    this.addHandler(chooseDateOuter, 'click', function (e) {
+      var e = e || window.event, target = e.target || e.srcElement;
+      if(target.innerHTML == "取消"){
+        this.style.display = "none";
+      }else if(target.innerHTML == "确定"){
+        this.style.display = "none";
+      }
+    });
+    this.addHandler(priceTotal, 'click', function (e) {
+      var e = e || window.event, target = e.target || e.srcElement, tem, temEle, shadowEle;
+      if(target.tagName=="I"){
+        tem = priceDetailInfo.style;
+        shadowEle = document.querySelector('shadow')||document.createElement('div');
+        console.log(tem.display)
+        console.log(shadowEle)
+        if(tem.display=="block"){
+          tem.display="none";
+          document.body.removeChild(shadowEle);
+        }else{
+          tem.display="block";
+          shadowEle.className ="shadow";
+          document.body.appendChild(shadowEle);
+        }
+      }
+    });
   },
-
   init:function(){
     this.addEvent();
   }
