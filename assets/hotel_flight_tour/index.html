@@ -30,12 +30,12 @@
             <h3>自由行</h3>
         </div>
         <div class="content">
-            <div class="full_box index_tab">
-                <div class="active">机+酒</div>
-                <div>机+酒+景</div>
+            <div id="indexTab" class="full_box index_tab">
+                <div class="tab">机+酒</div>
+                <div class="tab">机+酒+景</div>
             </div>
             <!--  机+酒   -->
-            <div id="flightHotelBox">
+            <div id="flightHotelBox" style="display: none;">
                 <div class="full_box flight_info">
                     <div class="flight_place">
                         <div class="origin city-search" data-citycode="BJS">北京</div>
@@ -65,7 +65,7 @@
                         <div class="numbList">
                             <span class="n_tit">成人</span>
                             <div class="per_price_control" data-type="adult">
-                                <span class="cut_down_btn" style="background-position: 42% 31%;"></span>
+                                <span class="cut_down_btn" style="background-position:17.5% 68%;"></span>
                                 <i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>
                                 <span class="plus_btn"></span>
                             </div>
@@ -73,6 +73,14 @@
                         <div class="numbList">
                             <span class="n_tit">儿童</span>
                             <span class="child_age">(2-12岁)</span>
+                            <b class="com_icon child_age_state"></b>
+                            <div class="age_state_box">
+                                <div></div>
+                                <div class="state_text">
+                                    <span>·</span>
+                                    <span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>
+                                </div>
+                            </div>
                             <div class="per_price_control" data-type="extraChild">
                                 <span class="cut_down_btn"></span>
                                 <i class="cut_up_cont child_number" data-type="childNum">0</i>
@@ -89,7 +97,7 @@
                                 <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
                             </div>
                             <div class="numbList spenumbList">
-                                <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>
+                                <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>
                             </div>
                         </div>
                     </section>
@@ -129,7 +137,7 @@
                         <div class="numbList">
                             <span class="n_tit">成人</span>
                             <div class="per_price_control" data-type="adult">
-                                <span class="cut_down_btn" style="background-position: 42% 31%;"></span>
+                                <span class="cut_down_btn" style="background-position:17.5% 68%;"></span>
                                 <i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>
                                 <span class="plus_btn"></span>
                             </div>
@@ -137,6 +145,14 @@
                         <div class="numbList">
                             <span class="n_tit">儿童</span>
                             <span class="child_age">(2-12岁)</span>
+                            <b class="com_icon child_age_state"></b>
+                            <div class="age_state_box">
+                                <div></div>
+                                <div class="state_text">
+                                    <span>·</span>
+                                    <span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>
+                                </div>
+                            </div>
                             <div class="per_price_control" data-type="extraChild">
                                 <span class="cut_down_btn"></span>
                                 <i class="cut_up_cont child_number" data-type="childNum">0</i>
@@ -153,7 +169,7 @@
                                 <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
                             </div>
                             <div class="numbList spenumbList">
-                                <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="icon noselect ico_select"></b></span>
+                                <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>
                             </div>
                         </div>
                     </section>
@@ -166,10 +182,14 @@
                 自由配 预订快 资源全 价格低
             </footer>
         </div>
-        <div class="site_right">版权所有@2015Asiatravel 控股有限公司.保留所有权利.</div>
+        <!--<div class="site_right">版权所有@2015Asiatravel 控股有限公司.保留所有权利.</div>-->
     </div>
-
-    <!--</div>-->
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="js/hft_index.js"></script>
 </body>
 
 </html>

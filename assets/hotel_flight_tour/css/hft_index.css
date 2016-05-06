@@ -172,17 +172,18 @@ input{
   padding: .15rem 0;
 }
 section[class^="hotelInfo_numb"] .per_price_control span {
-  width: .46rem;
-  height:.46rem;
+  width: .54rem;
+  height:.54rem;
   float: left;
-  background: url(../../images/ui/icon-hft.png) no-repeat;
-  background-size: 7.5rem 4.54rem;
-  background-position: 32% 31%;
-  /*/!*background-position: 60% 31%;*!/  //置灰*/
+  background-image: url(../../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.9rem 5.13rem;
+  background-position: 41.2% 68%;
+  /*/!*background-position: 29.5% 68%;*!/  //置灰*/
 }
 section[class^="hotelInfo_numb"] .per_price_control span:first-child {
-  background-position: 51% 31%;
-  /*/!*background-position: 42% 31%;*!/     高亮*/
+  background-position: 6.7% 68%;
+  /*/!*    background-position: 17.5% 68%;*!/     高亮*/
 }
 section[class^="hotelInfo_numb"] .per_price_control i {
   width: .8rem;
@@ -224,7 +225,53 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
   position: relative;
   font-size: .28rem;
   color: rgb(153,153,153);
-  top: -.5rem;
+  top: .25rem;
+}
+.child_age_state{
+  position: relative;
+  width: .34rem;
+  height: .34rem;
+  margin-left: .08rem;
+  top: .3rem;
+  background-position: 54% 31.5%;
+}
+.age_state_box{
+  position: absolute;
+  display: none;
+  z-index: 1;
+  left: 3.4rem;
+  margin-top: .24rem;
+}
+.age_state_box div:first-child{
+  width: 0;
+  height: 0;
+  margin-left: .3rem;
+  border-left:  .2rem solid transparent;
+  border-right:  .2rem solid transparent;
+  border-bottom: .2rem solid #fdb330;
+}
+.age_state_box .state_text{
+  width: 3.4rem;
+  padding-left: .15rem;
+  padding-right: .28rem;
+  padding-top: .4rem;
+  padding-bottom: .4rem;
+  margin-top: -1px;
+  background: #fdb330;
+  font-size: .2rem;
+  border-radius: .1rem;
+  color: #FFFFFF;
+  overflow: hidden;
+}
+.age_state_box .state_text span:first-child{
+  float: left;
+  display: block;
+  width: 6%;
+}
+.age_state_box .state_text span:last-child{
+  float: left;
+  display: block;
+  width: 90%;
 }
 section[class^="hotelInfo_numb"] .extraChild {
   overflow: hidden;
@@ -275,20 +322,20 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .noselect {
   display: block;
   position: absolute;
-  right: 5px;
-  top: 8px;
-  width: 21px;
-  height: 22px;
-  background-position: -211px -94.9px
+  right: .1rem;
+  top: .24rem;
+  width: .42rem;
+  height: .42rem;
+  background-position: 59% 11.5%;
 }
 .ico_select {
   display: block;
   position: absolute;
-  right: 5px;
-  top: 8px;
-  width: 21px;
-  height: 22px;
-  background-position: -236px -94.9px;
+  right: .1rem;
+  top: .24rem;
+  width: .42rem;
+  height: .42rem;
+  background-position: 68% 11.5%;
 }
 .search_button {
   height: .9rem;
