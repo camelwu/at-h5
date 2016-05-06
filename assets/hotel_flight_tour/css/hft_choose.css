@@ -365,12 +365,20 @@
   display: inline-block;
   height:.6rem;
   line-height: .6rem;
-  width:31%;
+  width:30%;
   border-radius: .3rem;
   border: .03rem solid #D1D1D1;
   text-align: center;
   margin-right:.12rem ;
 }
+.dateArray  span.active, .months  span.active, .monthsDate span.active{
+  border: .03rem solid #ffb413;
+  color: #ffb413;;
+}
+.monthsDate span{
+  margin-bottom: .3rem;
+}
+
 .imgDate .right .noon button{
   display: inline-block;
   font-size: .28rem;
@@ -441,7 +449,7 @@
   background: #fff;
 }
 .chooseDate{
-  display: none;
+  display: block;
   padding: 0;
 }
 .chooseDate .confirm{
@@ -463,9 +471,10 @@
   float: right;
 }
 .months, .monthsDate{
-  padding: .40rem .28rem;
+  padding: .40rem 0;
+  margin: 0 .28rem;
   border-bottom: .03rem solid #e6e6e6;
 }
 .monthsDate{
-
+  border-bottom: none;
 }
