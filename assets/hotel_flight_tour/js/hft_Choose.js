@@ -61,17 +61,17 @@ var  hftChoose = {
     this.addHandler(priceTotal, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement, tem, temEle, shadowEle;
       if(target.tagName=="I"){
-        tem = priceDetailInfo.style;
-        shadowEle = document.querySelector('shadow')||document.createElement('div');
-        console.log(tem.display)
-        console.log(shadowEle)
-        if(tem.display=="block"){
-          tem.display="none";
-          document.body.removeChild(shadowEle);
+        tem = priceDetailInfo.style.display;
+        shadowEle = document.querySelector('.shadow');
+        console.log(tem)
+        console.log(shadowEle.style.display)
+        if(tem=="block"){
+          tem="none";
+          shadowEle.style.display ="none"
         }else{
-          tem.display="block";
+          tem="block";
           shadowEle.className ="shadow";
-          document.body.appendChild(shadowEle);
+          shadowEle.style.display ="block"
         }
       }
     });
