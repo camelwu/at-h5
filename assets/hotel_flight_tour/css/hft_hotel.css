@@ -172,16 +172,24 @@ ol{padding:0;margin:0;}
   color: #333;
   position: relative;
 }
-.hotel_pop .sort li.curimg i{
-  width: 0.3rem;
-  height: 0.22rem;
+.hotel_pop .sort li i,.hotel_pop .screen_rg li i{
+  width: 0.4rem;
+  height: 0.4rem;
   position:absolute;
   top:50%;
   right: 0.18rem;
-  margin-top:-0.11rem;
+  margin-top:-0.2rem;
+}
+.hotel_pop .screen_rg li.cur i,.hotel_pop .sort li.curimg i{
   background:url(../../images/ui/icon_common.png);
-  background-size:7.89rem 5.07rem;
-  background-position: -6.92rem -0.57rem;
+  background-size:7.9rem 5.13rem;
+  background-position: -6.9rem -0.58rem;
+}
+.hotel_pop .screen_rg li i{
+  right:0.28rem;
+}
+.hotel_pop .sort li i{
+  right: 0.18rem;
 }
 .hotel_pop .screen{
   height: 6.72rem;
@@ -261,19 +269,6 @@ ol{padding:0;margin:0;}
   border-bottom:1px solid #dedede;
   position:relative;
 }
-.hotel_pop .screen_rg li i{
-  position:absolute;
-  right:0.28rem;
-  top:50%;
-  width:0.3rem;
-  height:0.24rem;
-  margin-top: -0.12rem;
-}
-.hotel_pop .screen_rg li.cur i{
-  background:url(../../images/ui/icon_common.png);
-  background-size:7.90rem 5.13rem;
-  background-position: -6.92rem -0.57rem;
-}
 .hotel_pop .position{
   position:absolute;
   bottom:-4.98rem;
@@ -301,16 +296,16 @@ ol{padding:0;margin:0;}
   top: 50%;
   background:url(../../images/ui/icon_common.png);
   background-size:7.9rem 5.13rem;
-  background-position:-4.40rem -0.48rem;
-  width: 0.44rem;
-  height: 0.42rem;
-  margin-top:-0.21rem;
+  background-position:-4.40rem -0.51rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top:-0.25rem;
 }
 .hotel_pop .position li.cur{
   color: #ffb500;
 }
 .hotel_pop .position li.cur i{
-  background-position:-5.07rem -0.48rem;
+  background-position:-5.07rem -0.51rem;
 }
 /*酒店列表  结束*/
 
