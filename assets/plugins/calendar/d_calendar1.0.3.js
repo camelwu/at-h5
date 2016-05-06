@@ -95,7 +95,7 @@ Calender.prototype = {
         '<dt class="date_title">六</dt>',
         '</dl>'
     ],
-    _temptiper: '<div class="first_select tiper"><i class="icon_go"></i><span id="firstSelect"></span><i class="icon_close"></i></div><div class="second_select tiper"><i class="icon_back"></i><span id="secondSelect"></span><i class="icon_close"></i></div><p class="info">点击日期选择</p>',
+    _temptiper: '<div class="first_select tiper"><i class="icon_go"></i><span id="electedTime0"></span><i class="icon_close"></i></div><div class="second_select tiper"><i class="icon_back"></i><span id="electedTime1"></span><i class="icon_close"></i></div><p class="info">点击日期选择</p>',
 
     // 模板数组
     _template: [
@@ -112,12 +112,12 @@ Calender.prototype = {
         this.num = options.num || 13; //显示数量
         this.sClass1 = options.sClass1;
         this.id2 = options.id2;
-        this.fn = options.fn;
+        this.callback = options.callback;
         this.time = options.time || {}; //已有时间  默认选中时间
         this.prefix = options.prefix || "calendar";
         this.op = 0; //已操作次数
-        this.checkInTimeId = options.checkInTimeId;
-        this.checkOutTimeId = options.checkOutTimeId;
+        this.checkInTimeOptId = options.checkInTimeOptId;
+        this.checkOutTimeOptId = options.checkOutTimeOptId;
         this.input = _CalF.$('#' + this.id); // 获取INPUT元素
         this.eventBind();
         //this.inputEvent(); // input的事件绑定，获取焦点事件
@@ -492,14 +492,15 @@ Calender.prototype = {
     showSelected: function () {
         var values = this.result;
         var firstEle = $("#" + this.id + "Date" + " #firstSelect");
-        var secondEle = $("#" + this.id + "Date" + " #secondSelect");
+        var secondEle = $("#" + this.id + "Date" + " #electedTime1");
         var infoEle = $("#" + this.id + "Date" + " .info");
+        for (var i = 0; i < values.length; i++) {
+            $("#" + this.id + "Date" + " #electedTime" + i).html(values[i]).parent().show();;
+        }
         if (values.length === 1) {
-            firstEle.html(values[0]).parent().show();
             secondEle.parent().hide();
             infoEle.addClass("second_info");
         } else {
-            secondEle.html(values[1]).parent().show();
             infoEle.hide();
         }
     },
@@ -533,6 +534,8 @@ Calender.prototype = {
                 this.result[0] = selectValue;
             }
         }
+        console.info(this.result);
+
         //重置选中状态
         this.resetSelected();
         //显示选中日期到页面顶端
@@ -629,13 +632,26 @@ Calender.prototype = {
     comfirmClick: function () {
         var that = this;
         var btn = _CalF.$("#comfirmBtn");
+        var obj = {};
         _CalF.bind(btn, "click", function (event) {
-            _CalF.$('#' + that.checkInTimeId).innerHTML = that.result[0];
-            _CalF.$('#' + that.checkOutTimeId).innerHTML = that.result[1];
+            _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
+            _CalF.$('#' + that.checkOutTimeOptId).innerHTML = that.result[1];
             //
             var times = [that.result[0], that.result[1]];
             _CalF.$('#' + that.id).setAttribute("data-selectedTime", times);
+            //修改calendar传入的参数time的值
+            obj[that.result[0]] = that._word[that.type][0];
+            obj[that.result[1]] = that._word[that.type][1];
+            that.time = obj;
+
             that.removeDate();
+
+            //执行回调函数 将选择的日期作为参数传入
+            if (typeof that.callback === 'function') {
+                that.callback(that.result);
+            }
+            //清空result
+            that.result = [];
         });
     },
     //格式化日期 
