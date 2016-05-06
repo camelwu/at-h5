@@ -676,6 +676,10 @@ Calender.prototype = {
     formatDisplayTime: function (fmt, date) {
 
     },
+    //清除选中日期
+    clearClick: function () {
+        $("")
+    },
     // 表单的事件
     inputEvent: function () {
         var that = this;
@@ -695,9 +699,10 @@ Calender.prototype = {
 
                 }
             }
-            // A link事件绑定
+            //事件绑定
             that.linkOn();
             that.comfirmClick();
+            that.clearClick();
             //初始化日期状态
             that.resetSelected();
             that.showSelected();

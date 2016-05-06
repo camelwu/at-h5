@@ -59,19 +59,27 @@ var  hftChoose = {
       }
     });
     this.addHandler(priceTotal, 'click', function (e) {
-      var e = e || window.event, target = e.target || e.srcElement, tem, temEle, shadowEle;
-      if(target.tagName=="I"){
-        tem = priceDetailInfo.style.display;
-        shadowEle = document.querySelector('.shadow');
-        console.log(tem)
-        console.log(shadowEle.style.display)
-        if(tem=="block"){
-          tem="none";
-          shadowEle.style.display ="none"
+      var e = e || window.event, target = e.target || e.srcElement, tem, shadowEle;
+      var getCurrentStyle=function(node){
+        var style = null;
+        if(window.getComputedStyle) {
+          style = window.getComputedStyle(node, null);
         }else{
-          tem="block";
-          shadowEle.className ="shadow";
-          shadowEle.style.display ="block"
+          style = node.currentStyle;
+        }
+           return style;
+      };
+      if(target.tagName=="I"){
+        shadowEle = document.querySelector('.shadow');
+        tem = getCurrentStyle(shadowEle)['display'];
+        priceDetailInfo.style.transition = 'all 400ms ease-in';
+        priceDetailInfo.style.webkitTransition = 'all 400ms linear';
+        if(tem=="block"){
+          shadowEle.style.display = "none";
+          priceDetailInfo.style.bottom = '-126%';
+        }else{
+          shadowEle.style.display = "block";
+          priceDetailInfo.style.bottom = ".90rem";
         }
       }
     });
