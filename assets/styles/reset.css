@@ -226,7 +226,7 @@ a {
     background: -webkit-linear-gradient(#16364f, #194361);
     background: -o-linear-gradient(#16364f, #194361);
     background: -moz-linear-gradient(#16364f, #194361);
-    /*background: linear-gradient(#fcfcfc, #fcfcfc);*/
+    background: linear-gradient(#fcfcfc, #fcfcfc);
     transform: translateY(0px);
     -webkit-transform: translateY(0px);
     transition: all 250ms ease-in-out;
@@ -269,6 +269,22 @@ a {
     color: #fff;
     text-align: center;
 }
+
+/*======================================icon图标==========================================*/
+.icon_common {
+  background-image: url(../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 243px 160px;
+  display: inline-block;
+}
+.icon-h {
+   background-image: url(../images/ui/icon_common.png);
+   background-repeat: no-repeat;
+   background-size: 243px 160px;
+   display: inline-block;
+ }
+/*======================================loading end==========================================*/
+
 
 
 /*===============================all elements, header, site right end===============================*/

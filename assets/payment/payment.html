@@ -41,7 +41,7 @@
 <div class="paymentype-session snap-content android-relative" style="display: block">
     <div class="header">
         <a href="javascript:history.go(-1);" class="header-back">
-            <i class="icons go-back"></i>
+            <i class="icon_common go-back"></i>
         </a>
         <h3>订单支付</h3>
         <a href="javascript:history.go(-1);" class = "header-call">
@@ -56,16 +56,16 @@
 <div class="credit-session android-relative" style="display: none">
     <div class="header">
         <a href="javascript:;" class="header-back">
-            <i class="icons go-back"></i>
+            <i class="icon_common go-back"></i>
         </a>
         <h3>支付</h3>
-        <a class="tel-icon"></a>
+        <a class="tel_tip"></a>
     </div>
     <!-- Page Content-->
     <div class="snap-content android-relative">
         <!--   总价   -->
         <div class="p-price">
-            <p class="p-p1" id="jp_price_sum">订单总价：￥<span class="total_price">838.00</span></p>
+            <p class="p-p1" id="jp_price_sum">订单总价：<span class="total_price">￥838.00</span></p>
         </div>
         <!--   支付信息   -->
         <ul class="p-ul2">
@@ -89,8 +89,8 @@
             </li>
             <li class="countries-wrap">
                 <div>发卡国家</div>
-                <div><span class="CardCountryCode country-btn" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
-                <b class="icons s-xiala1"></b>
+                <div><span class="CardCountryCode country-btn" data-code="CN" >中国</span><b class="icon_common s-xiala2"></b></div>
+                <b class="icon_common s-xiala1"></b>
                 <!--<a href="#" class="icons open-pho" ></a>-->
                 <!--<div class="second-div" ><span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" >中国</span></div>-->
             </li>
@@ -108,7 +108,7 @@
                 <div>持卡人手机号</div>
                 <div>
                   <span  class="tel-btn phone"  value="CN" data-code="86">+86</span>
-                  <b class="icons s-xiala3"></b>
+                  <b class="icon_common s-xiala3"></b>
                   <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
                 </div>
             </li>
@@ -132,8 +132,8 @@
             </li>
             <li class="countries-wrap">
                 <div>持卡人国家</div>
-                <div><span class="CardIssuanceCountryCode country-btn" data-code="CN" >中国</span><b class="icons s-xiala2"></b></div>
-                <b class="icons s-xiala1"></b>
+                <div><span class="CardIssuanceCountryCode country-btn" data-code="CN" >中国</span><b class="icon_common s-xiala2"></b></div>
+                <b class="icon_common s-xiala1"></b>
             </li>
         </ul>
         <hr width="100%" size="1px" color="#dddddd">
@@ -144,7 +144,7 @@
 <!--国籍选择开始-->
 <div class="all-elements country-cho-wrap">
     <div class="header">
-        <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
+        <a href="javascript:;" class="header-back country-hidden"><i class="icon_common go-back"></i></a>
         <div class="cl_search">
             <input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
             <i></i>
@@ -195,7 +195,7 @@
                     <span><i>{%=hotelDetails.roomDetials.totalChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+            <li class="order-price"> 订单总价：<i>￥{%=totalFlightPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -240,7 +240,7 @@
 
                 </div>
             </li>
-            <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
+            <li class="order-price"> 订单总价：<i>￥{%=totalPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -301,7 +301,7 @@
                     <span><i>{%=numofChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：￥<i>{%=totalFlightPrice%}</i></li>
+            <li class="order-price"> 订单总价：<i>￥{%=totalFlightPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -344,7 +344,7 @@
                     <span><i>{%=numofChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
+            <li class="order-price"> 订单总价：<i>￥{%=totalPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -387,7 +387,7 @@
                     <span><i>{%=numofChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：￥<i>{%=totalPrice%}</i></li>
+            <li class="order-price"> 订单总价：<i>￥{%=totalPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
