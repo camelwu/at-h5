@@ -98,7 +98,7 @@
              <li id="LeaveInfo" class="set-start">
                  <div class="rel-start">
                      <div class="week-city-city">
-                         <span><i></i></span> <span> {%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"hm")%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
+                         <span><i></i></span> <span> {%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"hm")%}</span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
                      </div>
                      <div class="time-arrow-time">
                          <div class="city-time-left">
