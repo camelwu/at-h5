@@ -529,24 +529,21 @@
 }
 .go-back {
   position: absolute;
-  width: 24px;
-  height: 41px;
-  top:0.2rem;
-  /* left: 15px; */
-  /* top: 50%; */
-  /* margin-top: -11px; */
+  width: 36px;
+  height: 40px;
+  top: 0.25rem;
   background-position: 0rem 0rem;
 }
 
 .tel_tip {
   position: absolute;
   right: 0.4rem;
-  top: 0.4rem;
+  top: 0.5rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-position: -4.52rem -1.27rem;
   background-size: 6.6rem 4.55rem;
   width: 0.36rem;
-  height: 2.34rem;
+  height: 0.4rem;
 }
 .total_price{
   color:#FF5B13 ;
