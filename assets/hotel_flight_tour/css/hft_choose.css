@@ -1,19 +1,21 @@
+
+*{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-family: "microsoft yahei", Arial, sans-serif;
+}
 .content{
   padding-top:1rem;
   position: relative;
 
 }
-*{
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
 .top_info{
   padding: 0 .28rem;
   height:.96rem;
   line-height: .96rem;
-  border-top:.01rem solid #e6e6e6;
-  border-bottom:.01rem solid #e6e6e6;
+  border-top:.03rem solid #e6e6e6;
+  border-bottom:.03rem solid #e6e6e6;
   font-size: .28rem;
   color:#333333;
   position: relative;
@@ -199,8 +201,6 @@
 }
 .hotelImgInfo, .imgDate{
   height:1.88rem;
-  padding: 0 .28rem;
-  border:1px solid red;
   margin: .32rem 0;
   position: relative;
   color: #999999;
@@ -217,14 +217,21 @@
   position: absolute;
   left: .28rem;
 }
+.imgDate img{
+  top: 0;
+  left: 0;
+}
 .hotelImgInfo .hotelRightPart, .imgDate .right{
   display: inline-block;
   height:1.68rem;
-  width: 100%;
-  margin: 0 0 0 1.94rem;
+  margin: 0 0 0 2.42rem;
+}
+.imgDate .right{
+  display: block;
+  margin: 0 0 0 1.82rem;
 }
 .hotelRightPart p{
-  margin-top: .01rem;
+  margin-top: .03rem;
 }
 .hotelRightPart h3{
   white-space: nowrap;
@@ -263,7 +270,7 @@
   overflow: hidden;
   height: 1.2rem;
   position: relative;
-  border-bottom:.01rem solid #e6e6e6;
+  border-bottom:.03rem solid #e6e6e6;
 }
 .roomUl li:last-child, .tourOuter li:last-child{
   border-bottom:none;
@@ -312,12 +319,16 @@
   letter-spacing: .04rem;
 }
 .tourOuter{
-  padding: .28rem .28rem;
+  padding: 0 .28rem;
   width: 100%;
   position: relative;
 }
 .tourOuter li{
+  padding: .28rem 0;
   height: 2.96rem;
+}
+.tourOuter li .tourNameDate{
+  position: relative;
 }
 .tourOuter li h4{
   padding: 0;
@@ -332,24 +343,31 @@
   color:#999;
   font-size: .24rem;
 }
+
 .imgDate .right{
-  padding-left: .22rem;
+  padding-left: .32rem;
 }
+
 .dateArray {
   padding: .18rem 0 .28rem 0;
   font-size: .24rem;
 }
+.imgDate .right .noon{
+  width: 100%;
+  text-align: center;
+}
+
 .dateArray  span, .months  span, .monthsDate span{
   display: inline-block;
   height:.6rem;
   line-height: .6rem;
-  width:1.4rem;
+  width:30%;
   border-radius: .3rem;
-  border: .01rem solid #D1D1D1;
+  border: .03rem solid #D1D1D1;
   text-align: center;
-  margin-right:.08rem ;
+  margin-right:.12rem ;
 }
-.right button{
+.imgDate .right .noon button{
   display: inline-block;
   font-size: .28rem;
   border-radius: .04rem;
@@ -357,6 +375,9 @@
   color: #FFFFFF;
   padding: .18rem .78rem;
   border: none;
+}
+.right .noon button:first-child{
+  margin-right: .24rem;
 }
 .bottomPrice{
   width: 100%;
@@ -416,7 +437,7 @@
   background: #fff;
 }
 .chooseDate{
-  display: block;
+  display: none;
   padding: 0;
 }
 .chooseDate .confirm{
@@ -439,7 +460,7 @@
 }
 .months, .monthsDate{
   padding: .40rem .28rem;
-  border-bottom: .01rem solid #e6e6e6;
+  border-bottom: .03rem solid #e6e6e6;
 }
 .monthsDate{
 

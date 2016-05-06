@@ -108,7 +108,7 @@ body{
 .fli_cir_right i{
   display: inline-block;
   vertical-align: top;
-  margin-top: 0.01rem;
+  margin-top: 0.03rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-position: -5.2rem -2.1rem;
   background-size: 6.6rem 4.55rem;
@@ -118,7 +118,7 @@ body{
 .flight_cir_wrap li:nth-child(2){
   margin-bottom:0;
   padding-bottom:.8rem;
-  border-bottom: .01rem solid #e6e6e6;
+  border-bottom: .03rem solid #e6e6e6;
 }
 .cabin_level{
   margin-top: .4rem;
@@ -173,7 +173,7 @@ body{
 }
 .tour_wrap > li{
   padding: .4rem .28rem;
-  border-bottom: .01rem solid #e6e6e6;
+  border-bottom: .03rem solid #e6e6e6;
 }
 .tour_wrap > li:last-child{
   border-bottom: none;
@@ -256,7 +256,7 @@ li.order_tlist2 {
   background-color: #f7f7f7;
   height: 0.68rem;
   line-height: 0.68rem;
-  border-top: .01rem solid #ddd;
+  border-top: .03rem solid #ddd;
   padding: 0 .28rem;
   position: relative;
 }
@@ -264,7 +264,7 @@ li.order_tlist2 {
 .contact_link_wrap li{
   height: .88rem;
   line-height: .88rem;
-  border-bottom:.01rem solid #e6e6e6 ;
+  border-bottom:.03rem solid #e6e6e6 ;
   padding:0 .28rem;
 }
 .contact_link_wrap li input{
@@ -349,7 +349,7 @@ li.order_tlist2 {
   background: #fcfcfc;
   height: .98rem;
   width: 100%;
-  border-top: .01rem solid #e6e6e6;
+  border-top: .03rem solid #e6e6e6;
   z-index: 105;
 
 }
@@ -540,7 +540,7 @@ li.order_tlist2 {
   font-size: .32rem;
 }
 .hft_paid{
-  border-top: .01rem solid #e6e6e6;
+  border-top: .03rem solid #e6e6e6;
   height: .88rem;
   line-height: .88rem;
   font-size: .32rem;
@@ -592,7 +592,7 @@ li.order_tlist2 {
 }
 
 .order_cont_way{
-  border-top: .01rem solid #e6e6e6;
+  border-top: .03rem solid #e6e6e6;
   background-color: #fff;
   padding-bottom: .32rem;
 }
