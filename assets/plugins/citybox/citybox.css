@@ -1,0 +1,18 @@
+/*.search_input{*/
+  /*background:url("../../images/ui/icon_common.png");*/
+  /*background-position: -3.17rem -2.42rem;*/
+  /*background-size: 6.6rem 4.55rem;*/
+/*}*/
+.citylist{
+
+}
+.citylist_header{
+  height: 0.88rem;
+  border-bottom: solid 0.02rem #FCFCFC;
+}
+.citylist_back{
+  width: auto;
+  background:url("../../images/ui/icon_common.png");
+  background-position: -3.17rem -2.42rem;
+  background-size: 6.6rem 4.55rem;
+}
