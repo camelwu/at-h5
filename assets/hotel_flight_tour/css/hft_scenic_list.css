@@ -1,6 +1,6 @@
-/*.snap-content{*/
-  /*padding:1.4rem 0 0;*/
-/*}*/
+.snap-content{
+  padding:.88rem 0 .9rem;
+}
 /*出发返回开始*/
 .time_people_list{
   /*width: 100%;*/
@@ -17,20 +17,21 @@
 .time_people_list_number{
   float:right;
   color:#999999;
-  padding-right: .2rem;
+  padding-right: .46rem;
+  position: relative;
 }
 .time_people_list_number i{
   display: block;
-  width: 20px;
-  height: 21px;
+  width: .26rem;
+  height: .26rem;
   margin: 0 auto;
-  background-position: -112px -93px;
-  background-image: url(../../images/ui/icon-hft.png);
+  background-position: -3.95rem -0.62rem;
+  background-image: url(../../images/ui/icon_common.png);
   background-repeat: no-repeat;
-  background-size: 275px 203px;
+  background-size: 7.9rem 5.13rem;
   position: absolute;
-  top: .26rem;
-  right: .06rem;
+  top: .4rem;
+  right: 0;
 }
 /*城市列表开始*/
 .city_list{
@@ -73,8 +74,8 @@
 .scenic_detile_img{
   width: 1.88rem;
   height: 1.40rem;
-  border-bottom: 1px solid #E6E6E6;
   float:left;
+  position: relative;
 }
 .scenic_detile_content{
   height: 1.4rem;
@@ -92,7 +93,6 @@
   background: black;
   position: absolute;
   top: 1.08rem;
-  left: .26rem;
   color: white;
   text-align: center;
   font-size: .2rem;
@@ -150,6 +150,10 @@
 }
 li.scenic_detile_project_first{
   margin-left: 0;
+}
+.scenic-detile_privilege{
+  font: 700 .2rem/.6rem "FZLTXHK";
+  color:#FFBF4B
 }
 /*footer开始*/
 .footer{
@@ -312,13 +316,13 @@ p.filter_button_checked{
 /*景点详情页开始*/
 .header_scenic{
   height: .66rem;
-  opacity: .1;
-  position: fixed;
+  opacity: 0.5;
+  position: absolute;
 }
 .icon_go_back{
   width: .6rem;
   height: .6rem;
-  position:fixed;
+  position:absolute;
   left: 0;
   top: .1rem;
   display: inline-block;
@@ -346,7 +350,7 @@ p.filter_button_checked{
   color:#fff;
   position: absolute;
   left:40%;
-  top:1rem;
+  top:.6rem;
 }
 .bar_img_page{
   font-size: .2rem;
