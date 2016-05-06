@@ -200,7 +200,7 @@
 <footer class="hotel_list_bottom">
   <dl class="sort" id="hotelSort">
     <dt></dt>
-    <dd>价格排序</dd>
+    <dd>推荐排序</dd>
   </dl>
   <dl class="screen" id="hotelScreen">
     <dt></dt>
@@ -277,20 +277,12 @@
 </div>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script>
-(function(){
-  var hotelSort = document.getElementById('hotelSort');
-  hotelSort.onclick = function(){
-
-  };
-})()
-</script>
-<script>
   $(function(){
     //酒店按钮点击
     $('#hotelSort').on('click',function(){
       $(this).addClass('bg_color').siblings().removeClass('bg_color');
       $('#hotelPop').fadeIn('fast');
-      slideNum('0.98rem','-5.98rem')
+      slideNum('0.98rem','-5.98rem','-4.98rem')
     });
     /*排序*/
     $('.hotel_pop .sort li').on('click',function(e){
@@ -307,7 +299,7 @@
     $('#hotelScreen').on('click',function(){
       $(this).addClass('bg_color').siblings().removeClass('bg_color');
       $('#hotelPop').fadeIn('fast');
-      slideNum('-3.98rem','0.98rem')
+      slideNum('-3.98rem','0.98rem','-4.98rem')
     });
     $('#screenLeft li').on('click',function(){
       $(this).addClass('cur').siblings().removeClass('cur');
@@ -329,11 +321,12 @@
       $('#hotelPop').fadeOut('fast');
       $('#hotelScreen').removeClass('bg_color');
       $('.hotel_list_bottom dl').removeClass('bg_color');
-      slideNum('-3.98rem','-5.98rem')
+      slideNum('-3.98rem','-5.98rem','-4.98rem')
     });
     //位置
     $('#hotelPosition').on('click',function(){
       $('#hotelPop').fadeIn('fast');
+      $(this).addClass('bg_color').siblings().removeClass('bg_color');
       slideNum('-3.98rem','-5.98rem','0.98rem');
     });
     $('#popPosition li').on('click',function(){

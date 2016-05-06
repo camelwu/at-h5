@@ -19,12 +19,12 @@
   <link href="css/hft_order.css" rel="stylesheet" />
 </head>
 <body>
-<!--<div id="preloader">-->
-  <!--<div id="status">-->
-    <!--<p class="center-text"></p>-->
-  <!--</div>-->
-<!--</div>-->
-<div class="header">
+<div id="preloader">
+  <div id="status">
+    <p class="center-text"></p>
+  </div>
+</div>
+<div class="head">
   <a href="javascript:window.history.go(-1);" class="header_back">
     <i class="go_back"></i>
   </a>
@@ -40,7 +40,7 @@
     <ul class="flight_cir_wrap">
       <li class="fli_cont clearfix">
         <div class="fli_cir_left fl">
-          <i></i>
+          <i class="go_tip"></i>
           <span class="fli_go_date">01-08</span>
           <span>周二</span>
           <span>浦东T2-洛杉矶</span>
@@ -52,7 +52,7 @@
       </li>
       <li class="fli_cont clearfix">
         <div class="fli_cir_left fl">
-          <i></i>
+          <i class="back_tip"></i>
           <span class="order-ml">01-08</span>
           <span>周二</span>
           <span>洛杉矶-浦东</span>
@@ -107,7 +107,7 @@
       <span class = "fl fht_travel">出行人</span>
       <div class="fr">
         <span class="order_tsl2"><i class="adu_choose">0</i>/<i class="adu_tot"></i>成人<b><i class="chi_choose">0</i>/<i class="chi_tot"></i>儿童</b></span>
-        <a href="javascript:;"></a>
+        <a href="javascript:;" class="add_traveller"></a>
       </div>
     </div>
     <ul class="order_twrap" style="display: block">
@@ -127,7 +127,7 @@
       <span>联系人</span>
       <em class="con_alike"></em>
       <span class="contact_same">与第一出行人相同</span>
-      <a href="javascript:;" class="hfcont_tip hf_add_contact"></a>
+      <a href="javascript:;" class="add_traveller"></a>
     </div>
     <ul class="contact_link_wrap">
       <li class = "contacts_name">
@@ -176,7 +176,6 @@
       <i></i>
     </div>
   </div>
-
   <!--国籍弹窗开始-->
   <ul class="country-list-searched"></ul>
   <!--国籍弹窗结束-->
@@ -193,7 +192,11 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/countrytel_list.js"></script>
-
+<script>
+  $('.detail_fale').click(function(){
+    $(this).toggleClass('open');
+  });
+</script>
 <!--模板机票-->
 <!--<script id="order-flight" type="text/template" >-->
   <!--<ul>-->
@@ -282,7 +285,7 @@
   <!--{% } %}-->
 <!--</script>-->
 <!--&lt;!&ndash;模板酒店结束&ndash;&gt;-->
-<!--<script src="js/hft_order.js"></script>-->
+<script src="js/hft_order.js"></script>
 <!--<script>-->
   <!--//删除出行人-->
   <!--function delPassager(obj){-->
