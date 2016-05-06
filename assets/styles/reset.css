@@ -15,6 +15,7 @@ body {
     height: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-family: '微软雅黑';
+    background: #F7F7F7;
 }
 
 img {
@@ -43,6 +44,24 @@ ul li {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+* {
+  appearance: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  vertical-align: baseline;
+  outline: 0;
+  font-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+
+:focus {
+  outline: 0
 }
 
 
@@ -193,13 +212,13 @@ a {
     height: 100%;
     min-height: 100%;
     max-height: 100%;
-    padding-top: .88rem;
+    padding-top: 1.4rem;
     font-size: .28rem;
     color: #484848;
 }
 
 .header {
-    height: .88rem;
+    height: 1.4rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -238,7 +257,7 @@ a {
 .header h3 {
     color: #484848;
     text-align: center;
-    line-height: .88rem;
+    line-height: 1.4rem;
 }
 
 .site_right {
@@ -252,3 +271,12 @@ a {
 
 
 /*===============================all elements, header, site right end===============================*/
+
+/*===============================icon小图标===============================*/
+.icon_common {
+  background-image: url(../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 243px 160px;
+  display: inline-block;
+}
+/*===============================icon===================================*/

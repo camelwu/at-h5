@@ -89,8 +89,15 @@
     <script>
         var myTime = new Calender({
             id: "timeClickWrap",
-            checkInTimeId: 'checkInTime',
-            checkOutTimeId: 'checkOutTime'
+            time: {
+                "2016-05-17": "checkinTime",
+                "2016-05-19": "checkoutTime"
+            },
+            checkInTimeOptId: 'checkInTime',
+            checkOutTimeOptId: 'checkOutTime',
+            callback: function() {
+                alert(10)
+            }
         });
 
     </script>
