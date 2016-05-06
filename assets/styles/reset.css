@@ -45,6 +45,24 @@ ul li {
     list-style: none;
 }
 
+* {
+  appearance: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  vertical-align: baseline;
+  outline: 0;
+  font-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+
+:focus {
+  outline: 0
+}
+
 
 /*
  *==============================================
