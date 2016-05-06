@@ -176,7 +176,7 @@
 <script id="tpl_flighthotel_detail" type="text/template">
     <div class = "p-home">
         <ul class="p-hotelinfo">
-            <l>机票+酒店</l>
+            <li>机票+酒店</li>
             {% if(flightInfo.segmentsReturn==null){ %}
                 <li>
                     <span class="hf-f"><i class = "hf-go"></i><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
@@ -227,7 +227,7 @@
 <script id="tpl_hotel_detail" type="text/template">
     <div class = "p-home">
         <ul class="p-hotelinfo">
-            <l>{%=hotelName%}</l>
+            <li>{%=hotelName%}</li>
             <li>
                 <span class="hf-f"><p>{%=vlm.Utils.format_date(checkInDate,"md")%}-{%=vlm.Utils.format_date(checkOutDate,"md")%} 共{%=totalNight%}晚（当地时间为准）</p></span>
             </li>
@@ -333,7 +333,7 @@
 <script id="tpl_tour_detail" type="text/template">
     <div class = "p-home">
         <ul class="p-hotelinfo">
-            <l>酒+景</l>
+            <li>酒+景</li>
             <li>
                 <span class="hf-f"><p>{%=packageName%}</p></span>
             </li>
@@ -376,7 +376,7 @@
 <script id="tpl_scenic_detail" type="text/template">
     <div class = "p-home">
         <ul class="p-hotelinfo">
-            <l>{%=packageName%}</l>
+            <li>{%=packageName%}</li>
             <li>
                 <span class="hf-f"><p>{%=vlm.Utils.format_date(tours[0].travelDate,"cymd")%}（当地时间为准）</p></span>
             </li>

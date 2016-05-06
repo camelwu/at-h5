@@ -12,8 +12,9 @@
 }
 .header h3{
   font-size:0.4em;
-
+   color: #fff;
 }
+
 .android-relative{
     position: relative;
 }
@@ -223,24 +224,26 @@
     width: 100%;
 }
 .p-home .p-hotelinfo{
-  margin-top: 1.5rem;
-  margin-left: 0.5rem;
+  margin-top: 1.8rem;
+  margin-left: 0.46rem;
 }
-.p-home .p-hotelinfo l{
-    font-size: 0.4rem;
-}
-
 
 .p-home .p-hotelinfo li{
     list-style-type: none;
-    margin-bottom: 6px;
+    margin-bottom: 0.1rem;
+    line-height: 0.4rem;
+}
+.p-home .p-hotelinfo li{
+  list-style-type: none;
+  margin-bottom: 0.1rem;
+  line-height: 0.51rem;
+  font-size: 0.28rem;
 }
 .p-home .p-hotelinfo li:first-child{
     font-weight: 400;
-    font-size:1.6rem;
 }
 .p-home .p-hotelinfo li:last-child{
-    font-size: 0.4rem;
+    font-size: 0.28rem;
     font-weight: 500;
 }
 .p-home .hf-f{
@@ -249,14 +252,14 @@
     line-height: 18px;
 }
 .p-home .hf-f p{
-    font-size: 0.4rem;
+    font-size:0.28rem;
     margin-bottom:0px;
     display: inline-block;
     color: #A2A2A2;
-    line-height: 22px;
+    line-height: 0.6rem
 }
 .hf-anum span{
-    font-size: 0.4rem;
+    font-size: 0.28rem;
     color: #A2A2A2;
 }
 .p-pay{
@@ -320,9 +323,8 @@
     left: 1.0rem;
 }
 .p-ul1 li{
-
     width: 100%;
-
+    line-height: 0.8rem;
     border-bottom: 1px solid #e9e9e9;;
     position: relative;
 }
@@ -334,7 +336,7 @@
   display: inline-block;
   line-height: 1rem;
   width: 100%;
-  font-size: 0.4rem;
+  font-size: 0.28rem;
   margin-left: 2.1rem;
 }
 .p-icon5{
@@ -500,7 +502,7 @@
 }
 .order-price i{
     font-weight: 700;
-    font-size: 0.4rem;
+    font-size: 0.36rem;
 }
 .s-xiala1 {
     width: 13px;
