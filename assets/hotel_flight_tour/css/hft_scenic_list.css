@@ -516,10 +516,14 @@ p.filter_button_checked{
 .scenic_content_scheduling ol, .scenic_content_notes ol ,.scenic_content_TOS ol{
   margin-left: .16rem;
   position: relative;
+  margin-bottom: .1rem;
 }
 .scenic_content_scheduling li, .scenic_content_notes li, .scenic_content_TOS li{
   margin:.1rem 0 .1rem 0;
   line-height: .48rem;
+}
+.scenic_content_scheduling ol li:last-child, .scenic_content_notes ol li:last-child, .scenic_content_TOS ol li:last-child{
+  margin-bottom: 0;
 }
 .scenic_content_scheduling .scenic_content_scheduling_down, .scenic_content_notes .scenic_content_scheduling_down, .scenic_content_TOS .scenic_content_scheduling_down{
   width: .32rem;
