@@ -286,29 +286,6 @@ li.order_tlist2 {
   margin-top: .25rem;
 }
 
-.con_alike {
-  display: inline-block;
-  vertical-align: top;
-  margin: .19rem 0 0 .12rem;
-  width: .32rem;
-  height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -5.26rem -.51rem;
-  background-size: 6.56rem 4.5rem;
-}
-.con_alike.on {
-  display: inline-block;
-  vertical-align: top;
-  margin: .18rem 0 0 .12rem;
-  width: .32rem;
-  height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -4.78rem -.51rem;
-  background-size: 6.56rem 4.5rem;
-}
-.contact_same{
-  font-size: .24rem;
-}
 .contacts_tel_code, .hft_con_cell{
   width: 44%;
   display: inline-block;
