@@ -14,6 +14,7 @@ ol{padding:0;margin:0;}
 .hotel_list li{
   border-bottom:1px solid #e6e6e6;
   padding:0.2rem;
+  position: relative;
 }
 .hotel_list li>div{
   position: relative;
@@ -75,7 +76,7 @@ ol{padding:0;margin:0;}
 .hotel_list .price .money{
   font-size: 0.4rem;
 }
-.hotel_list i.active{
+.hotel_list li.cur i{
   position: absolute;
   top: 0;
   right: 0;

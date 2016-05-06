@@ -23,7 +23,7 @@
 
 <div class="contents">
   <ul class="hotel_list">
-    <li>
+    <li class="cur">
       <div>
         <img class="img" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
         <article class="message">
@@ -42,7 +42,7 @@
           </div>
         </article>
       </div>
-      <i class="active"></i>
+      <i></i>
     </li>
     <li>
       <div>
@@ -63,7 +63,7 @@
           </div>
         </article>
       </div>
-      <i class="active"></i>
+      <i></i>
     </li>
     <li>
       <div>
@@ -84,7 +84,7 @@
           </div>
         </article>
       </div>
-      <i class="active"></i>
+      <i></i>
     </li>
     <li>
       <div>
@@ -261,5 +261,14 @@
       $('#hotelPop .position').css({'bottom':position});}
   })
 </script>
+<script>
+  $(function(){
+    $('.hotel_list li').on('click',function(){
+      $(this).addClass('cur').siblings().removeClass('cur');
+      window.location.href = 'hft_hotel_detail.html';
+    })
+  })
+</script>
 </body>
 </html>
+
