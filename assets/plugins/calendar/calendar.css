@@ -34,7 +34,7 @@
     height: .5rem;
     width: .2rem;
     background: url(../../images/ui/icon_common.png) no-repeat;
-    background-size: 7.89rem 5.07rem;
+    background-size: 7.90rem 5.15rem;
     background-position: -0.55rem -0.47rem;
 }
 
@@ -126,21 +126,20 @@
     display: inline-block;
     float: left;
     background: url(../../images/ui/icon_common.png) no-repeat;
-    background-size: 7.89rem 5.07rem;
+    background-size: 7.90rem 5.13rem;
 }
 
 .calendar_tiper .icon_go {
-    background-position: -4.4rem -2.3rem;
+    background-position: -4.4rem -2.35rem;
 }
 
 .calendar_tiper .icon_back {
-    background-position: -5.03rem -2.3rem;
+    background-position: -5.03rem -2.35rem;
 }
 
 .calendar_tiper .icon_close {
-    display: none;
     float: right;
-    background-position: -5.61rem -2.3rem;
+    background-position: -5.61rem -2.35rem;
 }
 
 .calendar_week {
