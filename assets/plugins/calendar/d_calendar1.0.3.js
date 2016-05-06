@@ -228,9 +228,9 @@ Calender.prototype = {
                         d = i < 10 ? '0' + i : i;
                         if (tims[year + '-' + m + '-' + d]) {
                             if (i == nowdate) {
-                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">今天</span><span class="live_txt"><span class="live_txt">' + tims[year + '-' + m + '-' + d] + '</span></a>';
+                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">今天</span></a>';
                             } else {
-                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span><span class="live_txt">' + tims[year + '-' + m + '-' + d] + '</span></a>';
+                                pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
                             }
                         } else {
                             if (i == nowdate) {
@@ -246,7 +246,7 @@ Calender.prototype = {
                     m = month < 10 ? '0' + month : month;
                     d = i < 10 ? '0' + i : i;
                     if (tims[year + '-' + m + '-' + d]) {
-                        pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span><span class="live_txt">' + tims[year + '-' + m + '-' + d] + '</span></a>';
+                        pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
                     } else {
                         pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
                     }
@@ -283,6 +283,9 @@ Calender.prototype = {
         this.date = date = odate.getDate();
         this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
         tims = this.time;
+        for (var key in tims) {
+            this.result.push(key);
+        }
         textNode = document.createTextNode(year + '年' + month + '月');
         titleDate.appendChild(textNode);
         //this.btnEvent();
@@ -330,10 +333,7 @@ Calender.prototype = {
     },
     // 移除日期DIV.calendar
     removeDate: function () {
-        var that = this;
-        var ov = _CalF.$('#' + this.id + 'Header');
-        if (!!ov) ov.parentNode.removeChild(ov);
-        var odiv = _CalF.$('#' + this.id + 'Date');
+        var odiv = _CalF.$('#calendarWrap');
         if (!!odiv) odiv.parentNode.removeChild(odiv);
     },
     // 上一月，下一月按钮事件
@@ -413,7 +413,8 @@ Calender.prototype = {
         var selectedEle = $(".calendar .selected");
         var result = this.result;
         var dateValue = '';
-
+        var sign = false; //选中标识
+        var throughSign = false;
         selectedEle.each(function (index, ele) {
             dateValue = $(ele).attr("data-day");
             if (result.length === 1) {
@@ -429,7 +430,61 @@ Calender.prototype = {
                     $(ele).html($(ele).children().eq(0).html()).removeClass("disabled").removeClass("selected");
                 }
             }
-        })
+        });
+
+        //设置跨越的时间样式
+        selectedEle = $(".calendar .selected");
+        if (selectedEle.length === 2) {
+            selectedEle.each(function (index, ele) {
+                if (sign) {
+                    return;
+                }
+
+                if (index === 0) {
+                    var next = ele.nextSibling;
+                    while (next && next.className.indexOf('selected') === -1) {
+                        throughSign = true;
+                        next.className = next.className + ' through';
+                        next = next.nextSibling;
+                        if (next == null) { //当前月份找不到
+                            break;
+                        }
+                        if (next.className.indexOf("selected") > -1) {
+                            sign = true;
+                            break;
+                        }
+                    }
+                }
+
+
+
+                //跨月的情况
+                if (index === 1) {
+                    var pre = ele.previousSibling;
+                    while (pre && pre.className.indexOf('selected') === -1 && pre.className.indexOf('live') > -1) {
+                        throughSign = true;
+                        pre.className = pre.className + ' through';
+                        pre = pre.previousSibling;
+                        if (pre == null) { //当前月份找不到
+                            break;
+                        }
+                    }
+                }
+                if (throughSign) {
+                    index === 0 ? $(ele).addClass('selectStart') : $(ele).addClass('selectEnd');
+                }
+
+            });
+            if (throughSign) {
+                selectedEle.eq(0).addClass('selectStart');
+                selectedEle.eq(1).addClass('selectEnd');
+            }
+        } else {
+            $(".calendar .through").removeClass('through');
+            $(".calendar .selectStart").removeClass('selectStart');
+            $(".calendar .selectEnd").removeClass('selectEnd');
+
+        }
     },
     /**
      *显示选中的日期显示在指定位置
@@ -568,6 +623,7 @@ Calender.prototype = {
     eventBind: function () {
         this.inputEvent();
         this.outClick();
+
     },
     //确认事件
     comfirmClick: function () {
@@ -576,6 +632,9 @@ Calender.prototype = {
         _CalF.bind(btn, "click", function (event) {
             _CalF.$('#' + that.checkInTimeId).innerHTML = that.result[0];
             _CalF.$('#' + that.checkOutTimeId).innerHTML = that.result[1];
+            //
+            var times = [that.result[0], that.result[1]];
+            _CalF.$('#' + that.id).setAttribute("data-selectedTime", times);
             that.removeDate();
         });
     },
@@ -623,6 +682,9 @@ Calender.prototype = {
             // A link事件绑定
             that.linkOn();
             that.comfirmClick();
+            //初始化日期状态
+            that.resetSelected();
+            that.showSelected();
         });
     },
     // 鼠标在对象区域外点击，移除日期层

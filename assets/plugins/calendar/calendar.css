@@ -144,6 +144,7 @@
 }
 
 .calendar_tiper .icon_close {
+    display: none;
     float: right;
     background-position: -5.61rem -2.3rem;
 }
@@ -213,6 +214,7 @@
     text-decoration: none;
     text-align: center;
     color: #484848;
+    position: relative;
 }
 
 .calendar dd a.disabled {
@@ -248,12 +250,47 @@
     color: #fff;
 }
 
-.calendar a.selected:after {
+.calendar a.through:after {
     content: " ";
     display: inline-block;
-    height: 40px;
+    height: .6rem;
     width: 100%;
-    background-color: red;
+    background-color: #ffd271;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -.3rem;
+    opacity: .5;
+}
+
+.calendar a.selectStart:after {
+    content: " ";
+    display: inline-block;
+    height: .6rem;
+    width: 100%;
+    background-color: #ffd271;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -.3rem;
+    opacity: .5;
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+}
+
+.calendar a.selectEnd:after {
+    content: " ";
+    display: inline-block;
+    height: .6rem;
+    width: 100%;
+    background-color: #ffd271;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -.3rem;
+    opacity: .5;
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
 }
 
 
