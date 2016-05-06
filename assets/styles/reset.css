@@ -130,6 +130,20 @@ ul li {
 *==============================================
 */
 
+*{
+  appearance: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+/* vertical-align: baseline; */
+/* outline: 0; */
+  font-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 .clearfix {
     overflow: hidden;
     _height: 1%;
@@ -201,4 +215,15 @@ a {
 
 .payment-type-list {
     font-size: 0.5rem;
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Microsoft YaHei',STHeiti,Verdana,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #666;
+  background: #f5f4f9;
+  font-size: 1.4rem;
+  line-height: 0.4rem
 }

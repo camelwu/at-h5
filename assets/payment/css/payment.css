@@ -11,7 +11,7 @@
     background-image: url(../../images/hotel_flight/back.png);
 }
 .header h3{
-  font-size: 0.5em;
+  font-size:0.4em;
 
 }
 .android-relative{
@@ -166,7 +166,7 @@
     padding-left: 12px;
 }
 .p-ul2 div{
-    width: 34%;
+    width: 40%;
     color:#484848;
 }
 .p-ul2 li input{
@@ -223,7 +223,7 @@
     width: 100%;
 }
 .p-home .p-hotelinfo{
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   margin-left: 0.5rem;
 }
 .p-home .p-hotelinfo l{
