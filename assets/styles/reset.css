@@ -15,6 +15,7 @@ body {
     height: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-family: '微软雅黑';
+    background: #F7F7F7;
 }
 
 img {
