@@ -193,13 +193,13 @@ a {
     height: 100%;
     min-height: 100%;
     max-height: 100%;
-    padding-top: 1.4rem;
+    padding-top: .88rem;
     font-size: .28rem;
     color: #484848;
 }
 
 .header {
-    height: 1.4rem;
+    height: .88rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -238,7 +238,7 @@ a {
 .header h3 {
     color: #484848;
     text-align: center;
-    line-height: 1.4rem;
+    line-height: .88rem;
 }
 
 .site_right {
