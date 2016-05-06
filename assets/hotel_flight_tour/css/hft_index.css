@@ -1,6 +1,12 @@
 body{
   background-color: #f7f7f7;
 }
+.com_icon{
+  display: inline-block;
+  background-image: url(../../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.9rem 5.13rem;
+}
 .hft_icon {
   display: inline-block;
   background-image: url(../../images/ui/icon-hft.png);
@@ -350,6 +356,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  background-color: #F5F4F9;
 }
 .price_up{
   width:100%;
@@ -539,5 +546,229 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   background-position: 72% 53%;
 }
 /*   列表底部筛选排序    */
-
+.list_footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
+  background: rgba(0,0,0,0.7);
+  text-align: center;
+  font-size: .2rem;
+  color: white;
+  overflow: hidden;
+  z-index: 46;
+}
+.list_footer .red_tip{
+  position: absolute;
+  top: 15%;
+  right: 36%;
+  display: inline-block;
+  width: .08rem;
+  height: .08rem;
+  background: red;
+  border-radius: .08rem;
+}
+.list_footer b{
+  display: block;
+  width: .42rem;
+  height: .3rem;
+  margin: 0 auto;
+  margin-top: .15rem;
+  margin-bottom: .05rem;
+}
+.list_footer div span{
+  position: relative;
+}
+.footer_two div{
+  position: relative;
+  float: left;
+  text-align: center;
+  width: 50%;
+}
+.footer_three div{
+  position: relative;
+  float: left;
+  text-align: center;
+  width: 33.3%;
+}
+.ic_aw{
+  background-position: 35% 91%;
+}
+.ic_rk{
+  background-position: 16% 50%;
+}
+.ic_sn{
+  background-position: 24.5% 50%;
+}
+/*   航空公司列表    */
+.airway_list{
+  width: 100%;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+.airway_list li{
+  position: relative;
+  height: .68rem;
+  padding: .3rem;
+  margin-bottom: 0;
+  font-size: .28em;
+  border-bottom: 1px solid #ddd;
+}
+.airway_list li div:nth-child(1){
+  float: left;
+  width: .4rem;
+  margin-top: .15rem;
+  height: .35rem;
+  overflow: hidden;
+}
+.airway_list li .airway_name{
+  float: left;
+  margin-left: .1rem;
+  font-size: .28rem;
+  line-height:.68rem;
+  color:#333333;
+}
+.airway_list .aw_price{
+  float: right;
+  color: #fb6a22;
+  font-weight: bold;
+  line-height: .68rem;
+}
+.airway_list .aw_price span:first-child{
+  font-size: .12rem;
+}
+.airway_list .aw_price span:last-child{
+  font-size: .28rem;
+}
+.airway_list .cho_gou{
+  right:0;
+}
+.full_shadow{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 45;
+  /*display: none;*/
+}
+/*   排序块    */
+.rank_box{
+  position: fixed;
+  width: 100%;
+  bottom: -126%;
+  /*bottom: 1rem;*/
+  background: #FFFFFF;
+  font-size: .28rem;
+  z-index: 46;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.rank_box li{
+   width: 95%;
+   height: .96rem;
+   line-height: .96rem;
+   margin-left: .28rem;
+   padding-left: .1rem;
+   padding-right: .4rem;
+   color: #333333;
+   border-bottom: 1px solid #e6e6e6;
+ }
+.rank_box .active b{
+  position: absolute;
+  width: .36rem;
+  height: .24rem;
+  top: .35rem;
+  right: .4rem;
+  background-position: 72% 66%;
+}
+/*   筛选块    */
+.screen_box{
+  position: fixed;
+  width: 100%;
+  height:6.72rem;
+  bottom: -126%;
+  /*bottom: 1rem;*/
+  background: #FFFFFF;
+  font-size: .28rem;
+  z-index: 46;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.screen_box .title{
+  width: 92%;
+  overflow: hidden;
+  background: #f7f7f7;
+  padding-left: .3rem;
+  padding-right: .3rem;
+}
+.screen_box .title li{
+  float: left;
+  width: 33.3%;
+  height: .89rem;
+  line-height: .89rem;
+  font-size: .32rem;
+  text-align: center;
+  color:#999999;
+}
+.screen_box .title li:nth-child(1){
+  text-align: left;
+}
+.screen_box .title li:nth-child(3){
+  text-align: right;
+  color: #ffb500;
+}
+.screen_box .detail{
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+.screen_box .detail .detail_title{
+  float: left;
+  width: 30%;
+  height: 100%;
+  background: #f7f7f7;
+  margin-bottom: 0;
+  font-size: .3rem;
+  color:#333333;
+}
+.screen_box .detail .detail_title li{
+  height: .96rem;
+  line-height: .96rem;
+  background: #f7f7f7;
+  text-align: center;
+}
+.screen_box .detail .detail_title .active{
+  background: #FFFFFF;
+  border-left: 5px solid #ffb413;
+}
+.screen_box .detail .detail_list{
+  position: relative;
+  float: left;
+  width: 65%;
+  height: 100%;
+  overflow-y: scroll;
+  background: #FFFFFF;
+  padding-left: .32rem;
+}
+.detail .detail_list ul{
+  width: 100%;
+  font-size: .28rem;
+  color: #333333;
+}
+.detail .detail_list ul li{
+  height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
+  line-height: .96rem;
+}
+.detail .detail_list .active{
+  color: #ffb500;
+}
+.detail .detail_list .active b{
+  position: absolute;
+  width: .36rem;
+  height: .24rem;
+  top: .35rem;
+  right: .3rem;
+  background-position: 72% 66%;
+}
 /*   机票列表页结束    */

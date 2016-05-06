@@ -59,7 +59,7 @@ body{
   width: .5rem;
   height: .5rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -0.4rem -1.22rem;
+  background-position: -0.4rem -1.25rem;
   background-size: 6.6rem 4.55rem;
 }
 
@@ -73,7 +73,7 @@ body{
   margin-left: .12rem;
   margin-top: .2rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -3.38rem -1.3rem;
+  background-position: -3.38rem -1.33rem;
   background-size: 6.6rem 4.55rem;
   width: .34rem;
   height: .34rem;
@@ -91,7 +91,7 @@ body{
   display: inline-block;
   vertical-align: top;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -2.22rem -1.28rem;
+  background-position: -2.22rem -1.33rem;
   background-size: 6.6rem 4.55rem;
   width: .32rem;
   height: .32rem;
@@ -100,7 +100,7 @@ body{
   display: inline-block;
   vertical-align: top;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -2.8rem -1.28rem;
+  background-position: -2.8rem -1.33rem;
   background-size: 6.6rem 4.55rem;
   width: .32rem;
   height: .32rem;
@@ -108,7 +108,7 @@ body{
 .fli_cir_right i{
   display: inline-block;
   vertical-align: top;
-  margin-top: 0.03rem;
+  margin-top: 01px;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-position: -5.2rem -2.1rem;
   background-size: 6.6rem 4.55rem;
@@ -118,7 +118,7 @@ body{
 .flight_cir_wrap li:nth-child(2){
   margin-bottom:0;
   padding-bottom:.8rem;
-  border-bottom: .03rem solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .cabin_level{
   margin-top: .4rem;
@@ -146,7 +146,7 @@ body{
   width: .5rem;
   height: .5rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -0.96rem -1.2rem;
+  background-position: -0.96rem -1.25rem;
   background-size: 6.6rem 4.55rem;
 }
 .hotel_wrap >h3{
@@ -168,12 +168,12 @@ body{
   width: .5rem;
   height: .5rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -1.56rem -1.2rem;
+  background-position: -1.56rem -1.25rem;
   background-size: 6.6rem 4.55rem;
 }
 .tour_wrap > li{
   padding: .4rem .28rem;
-  border-bottom: .03rem solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .tour_wrap > li:last-child{
   border-bottom: none;
@@ -256,7 +256,7 @@ li.order_tlist2 {
   background-color: #f7f7f7;
   height: 0.68rem;
   line-height: 0.68rem;
-  border-top: .03rem solid #ddd;
+  border-top: 1px solid #ddd;
   padding: 0 .28rem;
   position: relative;
 }
@@ -264,7 +264,7 @@ li.order_tlist2 {
 .contact_link_wrap li{
   height: .88rem;
   line-height: .88rem;
-  border-bottom:.03rem solid #e6e6e6 ;
+  border-bottom:1px solid #e6e6e6 ;
   padding:0 .28rem;
 }
 .contact_link_wrap li input{
@@ -286,29 +286,6 @@ li.order_tlist2 {
   margin-top: .25rem;
 }
 
-.con_alike {
-  display: inline-block;
-  vertical-align: top;
-  margin: .19rem 0 0 .12rem;
-  width: .32rem;
-  height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -5.26rem -.46rem;
-  background-size: 6.56rem 4.5rem;
-}
-.con_alike.on {
-  display: inline-block;
-  vertical-align: top;
-  margin: .18rem 0 0 .12rem;
-  width: .32rem;
-  height: .32rem;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -4.78rem -.46rem;
-  background-size: 6.56rem 4.5rem;
-}
-.contact_same{
-  font-size: .24rem;
-}
 .contacts_tel_code, .hft_con_cell{
   width: 44%;
   display: inline-block;
@@ -349,7 +326,7 @@ li.order_tlist2 {
   background: #fcfcfc;
   height: .98rem;
   width: 100%;
-  border-top: .03rem solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
   z-index: 105;
 
 }
@@ -530,17 +507,34 @@ li.order_tlist2 {
   right: .28rem;
   top: .3rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -4.52rem -1.27rem;
+  background-position: -4.52rem -1.33rem;
   background-size: 6.6rem 4.55rem;
   width: .34rem;
   height: .34rem;
+}
+.tot_prinum_wrap{
+  height: .88rem;
+  line-height: .88rem;
+  padding: 0 .28rem;
+  border-bottom: .01rem solid #e6e6e6;
 }
 .tot_prinum{
   color: #fb6a22;
   font-size: .32rem;
 }
+.hft_pri_details{
+  padding: .4rem .28rem;
+  border-bottom: .01rem solid #e6e6e6;
+  margin-bottom: .7rem;
+}
+.hft_pri_details li{
+  margin-bottom: .28rem;
+}
+.hft_pri_details li:last-child{
+  margin-bottom:0;
+}
 .hft_paid{
-  border-top: .03rem solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
   height: .88rem;
   line-height: .88rem;
   font-size: .32rem;
@@ -559,24 +553,32 @@ li.order_tlist2 {
   height: .32rem;
 }
 .order_tot_price{
-  padding: .4rem .28rem;
   background-color: #fff;
-  border-top: .02rem solid #e6e6e6;
 }
-.order_tot_price .fr{
-  font-size: .24rem;
-  color: #999;
-}
+
 .fare_tip{
   display: inline-block;
   vertical-align: top;
   margin-left: .05rem;
+  margin-top: .24rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -3.22rem -.44rem;
+  background-position: -2.3rem -.5rem;
   background-size: 6.6rem 4.55rem;
   width: .32rem;
   height: .32rem;
-  transition:0.3s all ease;
+  transition: 0.3s all ease;
+}
+.fare_tip.on{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: .05rem;
+  margin-top: .24rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-position: -1.84rem -.5rem;
+  background-size: 6.6rem 4.55rem;
+  width: .32rem;
+  height: .32rem;
+  transition: 0.3s all ease;
 }
 
 .fht_order_tab{
@@ -592,7 +594,7 @@ li.order_tlist2 {
 }
 
 .order_cont_way{
-  border-top: .03rem solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
   background-color: #fff;
   padding-bottom: .32rem;
 }
