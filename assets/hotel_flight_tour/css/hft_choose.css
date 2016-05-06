@@ -1,24 +1,84 @@
-
 *{
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   font-family: "microsoft yahei", Arial, sans-serif;
 }
-.content{
-  padding-top:1rem;
+body{
+  background: -webkit-linear-gradient(#16364f, #194361);
+  background: -o-linear-gradient(#16364f, #194361);
+  background: -moz-linear-gradient(#16364f, #194361);
+  background: linear-gradient(#fcfcfc, #fcfcfc);
+}
+/*header部分开始*/
+.header .icon_back, .header .arrowDouble{
+  display: inline-block;
+  position: absolute;
+  left: .48rem;
+  top: 50%;
+  margin-top: -.2rem;
+  height: .4rem;
+  width: .2rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.89rem 5.07rem;
+  background-position: -0.55rem -0.55rem;
+}
+.header .arrowDouble{
   position: relative;
-
+  left: 0;
+  top: .1rem;
+  width: .4rem;
+  background-position: -6.08rem -1.46rem;
+  margin: 0 .18rem;
+}
+.site_right, .header_down_text{
+  width: 100%;
+  background: -webkit-linear-gradient(#16364f, #194361);
+  background: -o-linear-gradient(#16364f, #194361);
+  background: -moz-linear-gradient(#16364f, #194361);
+  background: linear-gradient(#fcfcfc, #fcfcfc);
+  color: #333;
+  text-align: center;
+  font-size: .32rem;
+}
+.header_down_text{
+  position: fixed;
+  top: .88rem;
+  left: 0;
+  pointer-events: all;
+  z-index: 99;
+  font-size: .26rem;
+  padding-bottom: .28rem;
+  background: -webkit-linear-gradient(#16364f, #194361);
+  background: -o-linear-gradient(#16364f, #194361);
+  background: -moz-linear-gradient(#16364f, #194361);
+  background: linear-gradient(#fcfcfc, #fcfcfc);
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  transition: all 250ms ease-in-out;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+}
+.header_down_text span{
+  margin-left: .16rem;
+}
+/*header部分结束*/
+.content{
+  padding-top:.88rem;
+  position: relative;
+}
+.content-down{
+  padding-top:1.52rem;
+  position: relative;
 }
 .top_info{
   padding: 0 .28rem;
   height:.96rem;
   line-height: .96rem;
-  border-top:.03rem solid #e6e6e6;
-  border-bottom:.03rem solid #e6e6e6;
+  border-bottom:1px solid #e6e6e6;
   font-size: .28rem;
   color:#333333;
   position: relative;
+  background: #fff;
 }
 .top_info>span:nth-child(1){
   margin-right: .14rem;
@@ -52,6 +112,7 @@
 .ticket, .hotel, .tour{
   width: 100%;
   font-size: .28rem;
+  background: #fff;
 }
 .tour{
   margin-bottom: .98rem;
@@ -60,7 +121,12 @@
   padding:0 .28rem;
   height:.68rem;
   line-height:.68rem;
-  background:#f5f4f9;
+  background: -webkit-linear-gradient(#16364f, #194361);
+  background: -o-linear-gradient(#16364f, #194361);
+  background: -moz-linear-gradient(#16364f, #194361);
+  background: linear-gradient(#fcfcfc, #fcfcfc);
+  border-top: solid 1px rgba(0, 0, 0, 0.1);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 }
 .statusMoreFlight a, .statusMoreHotel a{
   color: rgb(255, 180, 18);
@@ -71,13 +137,11 @@
 .statusMoreFlight span:first-child:before,.statusMoreHotel span:first-child:before ,.tourListHeader span:first-child:before {
   content: "";
   display: inline-block;
-  width: .40rem;
-  height: .40rem;
-  background: url(../../images/ui/icon_common.png);
-  background-repeat: no-repeat;
-  background-size: 6.0rem auto;
-  background-position: -.36rem -2.33rem;
-  overflow: hidden;
+  width: .43rem;
+  height: .43rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 6.48rem auto;
+  background-position: -1.06rem -2.57rem;
   margin-right: .16rem;
   position: relative;
   top: .10rem;
@@ -85,33 +149,38 @@
 .statusMoreHotel span:before {
   background-position: 41.99% 31.89%;
 }
-.ticket ul{
+.flightOuter{
+  background: #fff;
   padding: .4rem .28rem;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 }
 .dateWeekCity{
   height:.42rem;
   line-height: .42rem;
   margin-bottom: .32rem;
+  position: relative;
 }
 .dateWeekCity span{
   margin-right: .16rem;
 }
 .dateWeekCity span:nth-child(1){
-  content: "";
   display: inline-block;
   width: .40rem;
   height: .40rem;
   background: url(../../images/ui/icon_common.png);
   background-repeat: no-repeat;
-  background-size: 7.89rem auto;
+  background-size: 7.89rem 5.07rem;
   background-position: -2.66rem -1.42rem;
   overflow: hidden;
-  position: relative;
-  top: .10rem;
   margin-right: 0;
+  position: absolute;
+}
+
+.dateWeekCity span:nth-child(2){
+  margin-left: .45rem;
 }
 .tripBack .dateWeekCity span:nth-child(1){
-  background-position: -3.35rem -1.42rem;
+  background-position: -3.35rem -1.45rem;
 }
 .tripGo{
   width:100%
@@ -121,7 +190,7 @@
 }
 .timeAirport .left,.timeAirport .right{
   height: 1.12rem;
-  width: 1.0rem;
+  width: 1.6rem;
   position: absolute;
   top: 0;
   white-space: nowrap;
@@ -148,12 +217,19 @@
   height:.32rem;
   line-height: .32rem;
   position: relative;
+  text-align: center;
+  color: #ffb413;
 }
-
 .flightDetailArrow i {
   position: absolute;
   right: 0;
   top:.16rem
+}
+.flightDetailTransferTime{
+  margin: .28rem 0;
+}
+.flightDetailTransferTime span:first-child{
+  margin-right: .08rem;
 }
 .timeAirport .left span,.timeAirport .right span{
   display: inline-block;
@@ -174,8 +250,14 @@
   position: absolute;
   right:0
 }
+.plusDay{
+  font-size: .20rem;
+  color:rgb(51,51,51);
+  position:relative;
+  top:-.12rem;
+}
 .timeAirport .middle{
-  margin: 0 1.0rem;
+  margin: 0 1.6rem;
   height: 1.12rem;
   padding: 0.04rem 0;
 }
@@ -274,7 +356,10 @@
   overflow: hidden;
   height: 1.2rem;
   position: relative;
-  border-bottom:.03rem solid #e6e6e6;
+  border-bottom:1px solid #e6e6e6;
+}
+.roomUl li:first-child{
+  border-top: solid 1px rgba(0, 0, 0, 0.1);
 }
 .roomUl li:last-child, .tourOuter li:last-child{
   border-bottom:none;
@@ -367,12 +452,12 @@
   line-height: .6rem;
   width:30%;
   border-radius: .3rem;
-  border: .03rem solid #D1D1D1;
+  border: 1px solid #D1D1D1;
   text-align: center;
   margin-right:.12rem ;
 }
 .dateArray  span.active, .months  span.active, .monthsDate span.active{
-  border: .03rem solid #ffb413;
+  border: 1px solid #ffb413;
   color: #ffb413;;
 }
 .monthsDate span{
@@ -473,7 +558,7 @@
 .months, .monthsDate{
   padding: .40rem 0;
   margin: 0 .28rem;
-  border-bottom: .03rem solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .monthsDate{
   border-bottom: none;
