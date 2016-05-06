@@ -1797,6 +1797,7 @@ i{
     right: 10px;
     top: 14px;
 }
+/*电话拨号开始*/
 .jpop_box_tic{
     position: fixed;
     top:0;
@@ -1804,7 +1805,7 @@ i{
     background: rgba(0,0,0,0.4);
     width:100%;
     height:100%;
-    z-index:11;
+    z-index:100;
     display:none;
 }
 .jpop_box_tic dl{
@@ -1845,6 +1846,7 @@ i{
     float:left;
     background:#dfdfdf;
 }
+/*电话拨号结束*/
 .jto_area_code p,.jto_area_code li ul li{
     height: 36px;
     line-height: 36px;
