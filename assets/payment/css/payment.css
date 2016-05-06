@@ -128,49 +128,30 @@
 .p-ul2 li{
     list-style-type: none;
     width: 90%;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
     margin-left: 0.28rem;
     border-bottom: 1px solid #dedede;
     font-size:0.4rem;
     line-height: 0.88rem;
+    height: 0.88rem;
+}
+.p-ul2 li div{
+  float: left;
+  font-size: 0.28rem;
 }
 .p-ul2 li:last-child{
     border:none;
 }
-/*.p-ul2 li div:first-child{*/
-/*-webkit-box-felx:1;*/
-/*-moz-box-flex:1;*/
-/*-ms-flex:1;*/
-/*-webkit-flex:1;*/
-/*flex:1;*/
-/*}*/
 .p-ul2 li div:last-child{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
 }
 .second-div{
-    -webkit-box-felx:2;
-    -moz-box-flex:2;
-    -ms-flex:2;
-    -webkit-flex:2;
-    flex:2;
     padding-left: 12px;
 }
-.p-ul2 div{
+.p-ul2 div:first-child{
     width: 2.58rem;
     color:#484848;
     font-size: 0.28rem;
 }
 .p-ul2 li input{
-    -moz-box-flex:3;
-    -ms-flex:3;
-    -webkit-flex:3;
     font-size:0.28rem;
 
 }
@@ -178,12 +159,11 @@
     display: inline-block;
     height: 18px;
     margin-right: 1px;
+    font-size: 0.28rem;
 }
-.p-ul2 li span.phone{
-    position: relative;
-    display: inline-block;
-    width: 30px;
-    height: 16px;
+
+.MobilePhone{
+  width: 90px;
 }
 .p-ul2 li span.phone i{
     position: absolute;
@@ -496,7 +476,7 @@
   width: 0.5rem;
   height: 0.5rem;
   margin-left: 1rem;
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
   right: 20px;
   position: absolute;
   background-position: 12% 13%;
