@@ -26,7 +26,8 @@
             "Flight":{id: 2, name: "机票", detailCode: "3006", payMentCode: "3004"},
             "Scenic":{id: 3, name: "景点", detailCode: "0095", payMentCode: "0093"},
             "Tour":{id: 4, name: "酒+景", detailCode: "0095", payMentCode: "0203"},
-            "FlightHotle":{id: 5, name: "机+酒", detailCode: "50100007", payMentCode: "50100005"}
+            "FlightHotle":{id: 5, name: "机+酒", detailCode: "50100007", payMentCode: "50100005"},
+            "FlightHotelTour":{id: 6, name: "机+酒+景", detailCode: "60100013", payMentCode: "60100011"}
         };
         /*页面初始化*/
         var _init={
@@ -418,6 +419,10 @@
                 data.data.numofChild=numofChild;
                 var html = template("tpl_tour_detail", data.data);
                 $(".payment-type-list").append(html);
+            }
+            else if(type.id==6){
+              var html = template("tpl_flighthoteltour_detail", data.data);
+              $(".payment-type-list").append(html);
             }
 
             //获取详情价格

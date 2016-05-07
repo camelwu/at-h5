@@ -18,19 +18,6 @@ input{
   border:none;
   outline: none;
 }
-.head{
-  line-height: .88rem;
-  text-align: center;
-}
-.head >h3{
-  font-size: .36rem;
-}
-.content{
-  font-size: .28rem;
-}
-body{
-  background-color: #f7f7f7;
-}
 
 /*公共结束*/
 
@@ -45,6 +32,9 @@ body{
   border-top: .02rem solid #ddd;
   padding: 0 .28rem;
   position: relative;
+}
+.fht_hd.flight_top{
+  border-top:none;
 }
 
 .fht_hd_tit {
@@ -110,7 +100,7 @@ body{
   vertical-align: top;
   margin-top: 01px;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -5.2rem -2.1rem;
+  background-position: -5.2rem -2.14rem;
   background-size: 6.6rem 4.55rem;
   width: .26rem;
   height: .26rem;
