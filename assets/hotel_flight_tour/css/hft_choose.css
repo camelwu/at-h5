@@ -516,11 +516,10 @@ body{
   right:0
 }
 .priceDetailInfo, .chooseDate{
-  display: none;
   position: fixed;
-  padding: 0 .28rem;
+  padding: 0 .28rem .78rem;
   width: 100%;
-  bottom: .90rem;
+  bottom: -126%;
   z-index: 102;
   background: #fff;
 }
@@ -554,7 +553,8 @@ body{
 .monthsDate{
   border-bottom: none;
 }
-/*.shadow{
+.shadow{
+  display: none;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, .6);
@@ -562,4 +562,4 @@ body{
   z-index: 99;
   left: 0;
   top: 0;
-}*/
+}
