@@ -135,7 +135,7 @@ body{
   background-position: -1.06rem -2.57rem;
   margin-right: .16rem;
   position: relative;
-  top: .10rem;
+  top: .08rem;
 }
 .statusMoreHotel span:before {
   background-position: 41.99% 31.89%;
@@ -163,8 +163,8 @@ body{
   background-size: 7.89rem 5.07rem;
   background-position: -2.66rem -1.42rem;
   overflow: hidden;
-  margin-right: 0;
   position: absolute;
+  top:-.033rem
 }
 
 .dateWeekCity span:nth-child(2){
@@ -279,7 +279,7 @@ body{
   font-size: .20rem;
 }
 .hotelImgInfo, .imgDate{
-  height:1.88rem;
+  height:1.6rem;
   margin: .32rem 0;
   position: relative;
   color: #999999;
@@ -289,8 +289,8 @@ body{
 }
 .hotelImgInfo img, .imgDate img{
   display: block;
-  height:1.88rem;
-  width: 1.88rem;
+  height:1.68rem;
+  width: 1.68rem;
   background: url("../../images/loading-hotel.gif") no-repeat 0 0;
   background-size: 100% 100%;
   position: absolute;
@@ -310,7 +310,7 @@ body{
   margin: 0 0 0 1.82rem;
 }
 .hotelRightPart p{
-  margin-top: .03rem;
+  margin-top: .12rem;
 }
 .hotelRightPart h3{
   white-space: nowrap;
@@ -457,9 +457,8 @@ body{
 .imgDate .right{
   padding-left: .32rem;
 }
-
 .dateArray {
-  padding: .18rem 0 .28rem 0;
+  padding: .14rem 0 .22rem 0;
   font-size: .24rem;
   white-space: nowrap;
 }
@@ -467,7 +466,6 @@ body{
   width: 100%;
   text-align: center;
 }
-
 .dateArray  span, .months  span, .monthsDate span{
   display: inline-block;
   height:.6rem;
@@ -492,7 +490,7 @@ body{
   border-radius: .04rem;
   background: #FFB413;
   color: #FFFFFF;
-  padding: .18rem .78rem;
+  padding: .12rem .78rem;
   border: none;
 }
 .right .noon button:first-child{

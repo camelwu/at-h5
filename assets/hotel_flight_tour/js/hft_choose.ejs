@@ -120,9 +120,9 @@
     <ul class="tourOuter">
       <% tours.forEach(function(tour, item){
         var selectTravelDate = tour["selectTravelDate"]; %>
-      <li>
+      <li data-tour-id="<%=tour["tourID"]%>">
         <div class="tourNameDate">
-          <h4><span><%= item + 1 %></span><%= tour["tourName"] %></h4>
+          <h4><span><%= item + 1 %> </span><%= tour["tourName"] %></h4>
           <div class="rightTip">选择日期和时间</div>
         </div>
         <div class="imgDate">
