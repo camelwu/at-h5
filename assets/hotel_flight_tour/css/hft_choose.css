@@ -216,11 +216,13 @@ body{
   right: 0;
   top:.16rem
 }
-.flightDetailTransferTime{
-  margin: .28rem 0;
+
+.flightDetailArrow span{
+  margin-left: .12rem;
 }
+.addMargin{margin: .18rem 0; }
 .flightDetailTransferTime span:first-child{
-  margin-right: .08rem;
+  margin-left: .08rem;
 }
 .timeAirport .left span,.timeAirport .right span{
   display: inline-block;
@@ -368,6 +370,34 @@ body{
   font-size: .32rem;
   color: #333;
 }
+.check-more-room {
+  padding: 0 15px;
+  height: 1.0rem;
+  background: #FFFFFF;
+  line-height: 1.0rem;
+  text-align: center;
+  color: #999999;
+  border-top: 1px solid #dedede;
+}
+.check-more-down, .priceTotal i{
+  display: inline-block;
+  width: .16rem;
+  height: .16rem;
+  border-bottom: .03rem solid #666;
+  border-left: 0;
+  border-right: .03rem solid #666;
+  margin-left: .24rem;
+  -webkit-transform: rotate(45deg) translateY(-50%);
+  -o-transform: rotate(45deg) translateY(-50%);
+  -moz-transform: rotate(45deg) translateY(-50%);
+  -ms-transform: rotate(45deg) translateY(-50%);
+  transform: rotate(45deg) translateY(-50%);
+  -webkit-transform-origin: 50% 0;
+  -o-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+}
 .roomUl .plassPrice{
   position: absolute;
   right:0;
@@ -431,6 +461,7 @@ body{
 .dateArray {
   padding: .18rem 0 .28rem 0;
   font-size: .24rem;
+  white-space: nowrap;
 }
 .imgDate .right .noon{
   width: 100%;
@@ -483,26 +514,6 @@ body{
 }
 .priceTotal span{
   font-size: .32rem;
-}
-
-.priceTotal i{
-  display: inline-block;
-  width: .16rem;
-  height: .16rem;
-  border-bottom: .03rem solid #666;
-  border-left: 0;
-  border-right: .03rem solid #666;
-  margin-left: .24rem;
-  -webkit-transform: rotate(45deg) translateY(-50%);
-  -o-transform: rotate(45deg) translateY(-50%);
-  -moz-transform: rotate(45deg) translateY(-50%);
-  -ms-transform: rotate(45deg) translateY(-50%);
-  transform: rotate(45deg) translateY(-50%);
-  -webkit-transform-origin: 50% 0;
-  -o-transform-origin: 50% 0;
-  -moz-transform-origin: 50% 0;
-  -ms-transform-origin: 50% 0;
-  transform-origin: 50% 0;
 }
 .preserve{
   display: inline-block;
