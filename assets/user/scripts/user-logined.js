@@ -140,6 +140,22 @@ $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
   $('.jpop_box_tic').hide();
 })
 
+//关于亚洲旅游
+$('#atIntroduce').click(function(){
+  $('#link_at').show();
+  $('#close_page_at').click(function(){
+    $('#link_at').hide();
+  });
+});
+
+//协议及声明
+$('#atDeclaration').click(function(){
+  $('#link_declaration').show();
+  $('#close_page_de').click(function(){
+    $('#link_declaration').hide();
+  });
+});
+
 
 
 

@@ -818,20 +818,55 @@ a{
 }
 
 /*关于我们*/
-.at-introduce{
-  margin-top: 100px;
-  padding: 0 30px;
+.at_introduce{
+  margin-top: 40px;
+  padding: 0 40px;
 }
-.at-logo{
+.asiatravel_wrap{
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 48px;
+  font-size: 28px;
+}
+.at_logo{
   height: 100px;
+  margin-bottom: 15px;
 }
-.at-introduce li{
+.at_introduce li{
   line-height: 40px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #e6e6e6;
 }
-.at-introduce .open-arw{
-  top: 10px;
-  right: 10px;
+.at_introduce li a{
+  color: #333;
+}
+.at_introduce .open_arw{
+  background: url("../images/ui/icon-hft.png") no-repeat;
+  background-size: 420px 240px;
+  width: 12px;
+  height: 22px;
+  background-position: 62% 52%;
+  float: right;
+  margin-top: 7px;
+}
+.at_introduction,.at_declaration{
+  padding: 20px;
+  font-size: 14px;
+}
+.at_declaration p{
+  font-size: 1.4rem;
+  margin-bottom: 0;
+}
+.at_declaration ul{
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+.at_declaration ul li{
+  line-height: 1.8rem;
+  margin-bottom: .5rem;
+}
+.at_declaration dt, .at_declaration dd{
+  margin: 1rem 0;
 }
 
 /*
