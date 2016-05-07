@@ -65,7 +65,7 @@
     <div class="snap-content android-relative">
         <!--   总价   -->
         <div class="p-price">
-            <p class="p-p1" id="jp_price_sum">订单总价：<span class="total_price">￥838.00</span></p>
+            <p class="p-p1" id="jp_price_sum">订单总价：<span>￥</span><span class="total_price">￥838.00</span></p>
         </div>
         <!--   支付信息   -->
         <ul class="p-ul2">
@@ -195,7 +195,7 @@
                     <span><i>{%=hotelDetails.roomDetials.totalChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：<i>￥{%=totalFlightPrice%}</i></li>
+            <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -240,7 +240,7 @@
 
                 </div>
             </li>
-            <li class="order-price"> 订单总价：<i>￥{%=totalPrice%}</i></li>
+            <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -301,7 +301,7 @@
                     <span><i>{%=numofChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：<i>￥{%=totalFlightPrice%}</i></li>
+            <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -344,7 +344,7 @@
                     <span><i>{%=numofChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：<i>￥{%=totalPrice%}</i></li>
+            <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -387,7 +387,7 @@
                     <span><i>{%=numofChild%}</i>儿童</span>
                 </div>
             </li>
-            <li class="order-price"> 订单总价：<i>￥{%=totalPrice%}</i></li>
+            <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalPrice%}</i></li>
         </ul>
     </div>
     <!-- 支付方式   -->
@@ -415,6 +415,60 @@
             </li>
         </ul>
     </div>
+</script>
+
+
+<script id="tpl_flighthoteltour_detail" type="text/template">
+  <div class = "p-home">
+    <ul class="p-hotelinfo">
+      <li>机票+酒店+景点</li>
+      {% if(flightInfo.segmentsReturn==null){ %}
+      <li>
+        <span class="hf-f"><i class = "hf-go"></i><p>{%=flightInfo.flightLeaveStartDate%}</p></span>
+      </li>
+      {% }else{ %}
+      <li>
+
+        <span class="hf-f"><i class = "hf-go"></i><p>{%=flightInfo.flightLeaveStartDate.replace('T',' ').substring(0,16)%}</p></span>
+        <span class="hf-f"><i class = "hf-back"></i><p>{%=flightInfo.flightReturnStartDate.replace('T',' ').substring(0,16)%}</p></span>
+      </li>
+      {% } %}
+      <li>
+        <div class = "hf-anum">
+          <span>人数:</span>
+          <span><i>{%=hotelDetails.roomDetials.totalAdult%}</i>成人</span>
+          <span><i>{%=hotelDetails.roomDetials.totalChild%}</i>儿童</span>
+        </div>
+      </li>
+      <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
+    </ul>
+  </div>
+  <!-- 支付方式   -->
+  <div class="p-pay">
+    <ul class="p-ul1">
+      <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
+        <i class="p-icon1"></i>
+        <span class="jp_credit">支付宝支付</span>
+        <i class = "p-icon5"></i>
+      </li>
+      <li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">
+        <i class="p-icon6"></i>
+        <span class="jp_credit" >银联支付</span>
+        <i class = "p-icon5"></i>
+      </li>
+      <li data-paymentmode="CreditCard"  data-cardtype="Visa">
+        <i class="p-icon4"></i>
+        <span class="jp_credit">维萨信用卡支付</span>
+        <i class = "p-icon5"></i>
+      </li>
+      <li data-paymentmode="CreditCard" data-cardtype="Master">
+        <i class="p-icon3"></i>
+        <span class="jp_credit">万事达卡支付</span>
+        <i class = "p-icon5"></i>
+      </li>
+    </ul>
+  </div>
+
 </script>
 <!---------------->
 

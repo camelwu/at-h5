@@ -38,7 +38,7 @@
 }
 .hf-go{
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     width: 22px;
     height: 22px;
     background-image:  url(../../images/ui/ticket_hotel.png);
@@ -48,7 +48,7 @@
 }
 .hf-back{
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     width: 22px;
     height: 22px;
     background-image:  url(../../images/ui/ticket_hotel.png);
@@ -197,6 +197,7 @@
 .p-home .p-hotelinfo{
   margin-top: 1.8rem;
   margin-left: 0.46rem;
+  vertical-align: middle;
 }
 
 .p-home .p-hotelinfo li{
@@ -313,7 +314,7 @@
     background-size: 280px 204px;
     background-position: 66% 2%;
     position: absolute;
-    top: 0.28rem;
+    top:0.24rem;
     right: 1rem;
     border-radius: 50%;
 }
