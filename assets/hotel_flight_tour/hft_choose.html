@@ -119,14 +119,6 @@
         <% hotelInfo["rooms"].forEach(function(room, item){
         if(item > 1) {return}; %>
         <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
-          <div class="roomName">
-            <p><%= room['roomName'] %></p>
-
-            <p>
-              <% if(room['includedBreakfast'] == 1){ %>
-              <span>含早</span>
-              <% } %>
-            </p></div>
           <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
             <%if(window.location.search){%>
             <%if(room['roomID']==window.location.search.substring(1)){%>
@@ -142,6 +134,13 @@
             <% }%>
             <%}%>
           </div>
+          <div class="roomName">
+            <p><%= room['roomName'] %></p>
+            <p>
+              <% if(room['includedBreakfast'] == 1){ %>
+              <span>含早</span>
+              <% } %>
+            </p></div>
         </li>
         <% }) %>
       </ul>
@@ -155,36 +154,24 @@
       </div>
       <ul class="tourOuter">
         <% tours.forEach(function(tour, item){
-        var selectTravelDate = tour["selectTravelDate"]; %>
+        var selectTravelDate = tour["selectTravelDate"];
+        var returnDay = function () {
+        var array = [], arg = arguments[0];
+        array = arg.split('-');
+        array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
+        array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
+        return array[1] + '月' + array[2] + '日';
+        };
+        %>
         <li data-tour-id="<%=tour['tourID']%>">
-        <div class="tourNameDate">
-          <h4><span><%= item + 1 %> </span><%= tour["tourName"] %></h4>
-          <div class="rightTip">选择日期和时间</div>
-        </div>
-        <div class="imgDate">
-          <img src="<%= tour['tourPictureURL'] %>">
+          <h3 class="tour-list-title"><%= tour.tourName %></h3>
 
-          <div class="right">
-            <div class="dateArray">
-              <% tour["travelDates"].forEach(function(travelDate, it){
-              var returnDay = function () {
-              var array = [], arg = arguments[0];
-              array = arg.split('-');
-              array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
-              array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
-              return array[1] + '月' + array[2] + '日';
-              };
-              %>
-              <span class="<%= travelDate == selectTravelDate ? 'active' : '' %>"><%= returnDay(travelDate) %></span>
-              <% }) %>
-            </div>
-            <div class="noon">
-              <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
-              <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>"><%= tourSession["tourSessionName"] %></button>
-              <% }) %>
-            </div>
+          <p class="choose-tour-date"><%= returnDay(selectTravelDate) %><i></i></p>
+          <div class="after-noon">
+            <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
+            <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>"><%= tourSession["tourSessionName"] %></button>
+            <% }) %>
           </div>
-        </div>
         </li>
         <% }) %>
       </ul>
@@ -205,18 +192,12 @@
         </div>
       </div>
     </div>
-    <div class="bottomPrice">
-      <span class="priceTotal">总额:￥<span>1208</span><i></i></span>
-      <span class="preserve">立即预定</span>
-    </div>
     <div class="priceDetailInfo">
-      <p><span>成人</span><span class="priceX">￥<span>56</span>X<span>2</span></span></p>
-
-      <p><span>儿童</span><span class="priceX">￥<span>56</span>X<span>2</span></span></p>
-
-      <p><span>机票差价</span><span class="priceX">￥<span>56</span>X<span>2</span></span></p>
-
-      <p><span>景点差价</span><span class="priceX">￥<span>56</span>X<span>2</span></span></p>
+      <% var selectedRoomIdNum = window.location.search.substring(1), priceRoomTem = null; hftChoose.test = "tst";console.info(hftChoose.test);%>
+    </div>
+    <div class="bottomPrice">
+      <span class="priceTotal">总额:￥<span></span><i></i></span>
+      <span class="preserve">立即预定</span>
     </div>
   </div>
   <div class="shadow"></div>
@@ -228,4 +209,7 @@
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script type="text/javascript" src="js/chooseTestData.js"></script>
 <script type="text/javascript" src="js/hft_Choose.js"></script>
+
+
+
 </html>
