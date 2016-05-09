@@ -1,0 +1,10 @@
+<!--模板tour-->
+  <ul class="tour_wrap">
+    <% for(var i=0; i<tours.length; i++) { %>
+    <li>
+      <p class="mb_ten"><%=tours[i].tourName%></p>
+      <% var date=tours[i].selectTravelDate.substring(5,10).replace('-','月')+'日 '%>
+      <p><%=date+tours[i].tourSessions[0].tourSessionName%></p>
+    </li>
+    <% } %>
+  </ul>
