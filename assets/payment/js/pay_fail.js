@@ -9,7 +9,8 @@
             "Flight":{id: 2,detailCode: "3006",name:"Flight"},
             "Scenic":{id: 3,detailCode: "0095",name:"Scenic"},
             "Tour":{id: 4,detailCode: "0095",name:"Tour"},
-            "FlightHotle":{id: 5,detailCode: "50100007",name:"FlightHotle"}
+            "FlightHotle":{id: 5,detailCode: "50100007",name:"FlightHotle"},
+            "FlightHotelTour":{id: 6, name: "机+酒+景", detailCode: "60100013", payMentCode: "60100011"}
         };
         //页面初始化
         var _init = {
@@ -81,6 +82,10 @@
                     else if(type.id==5){
                         data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
+                    }
+                    else if(type.id==6){
+                      data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
+                      data.data.totalPrice=data.data.totalFlightPrice;
                     }
                     var html = template("vlm_login", data.data);
                     $("#vlm_login").html(html);

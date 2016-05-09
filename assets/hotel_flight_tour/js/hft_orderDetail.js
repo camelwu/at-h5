@@ -1,7 +1,7 @@
 /**
- * Created by qzz on 2016/5/4.
+ * Created by zhouwei on 2016/5/4.
  */
-define(['jquery',"ejs"],function ($,ejs){
+define(['jquery',"ejs","vlm"],function ($,ejs,vlm){
   var init = function (){
     //假数据
     var data={
@@ -143,11 +143,11 @@ define(['jquery',"ejs"],function ($,ejs){
       "firstName":"111",
       "lastName":"111",
       "hotelDetails":{
-      "hotleName":"Hotel Grand Pacific",
+        "hotleName":"Hotel Grand Pacific",
         "checkInDate":"2016-05-24T00:00:00",
         "checkoutDate":"2016-05-28T00:00:00",
         "roomDetials":{
-        "roomName":"Deluxe Room",
+          "roomName":"Deluxe Room",
           "totalAdult":2,
           "totalAdultPrice":10876,
           "unitAdultPrice":5438,
@@ -155,30 +155,37 @@ define(['jquery',"ejs"],function ($,ejs){
           "totalChildPrice":0,
           "unitChildPrice":0,
           "numRoom":1
-      }
-    },
+        }
+      },
       "tours":[
-      {
-        "tourID":166,
-        "tourName":"机场接送服务（ 拼车）",
-        "travelDate":"0001-01-01T00:00:00"
-      },
-      {
-        "tourID":2434,
-        "tourName":"**马来西亚乐高乐园电子门票(SIN)",
-        "travelDate":"2016-05-25T00:00:00"
-      },
-      {
-        "tourID":200,
-        "tourName":"新加坡环球影城?",
-        "travelDate":"2016-05-25T00:00:00"
-      }
-    ]
+        {
+          "tourID":166,
+          "tourName":"机场接送服务（ 拼车）",
+          "travelDate":"0001-01-01T00:00:00"
+        },
+        {
+          "tourID":2434,
+          "tourName":"**马来西亚乐高乐园电子门票(SIN)",
+          "travelDate":"2016-05-25T00:00:00"
+        },
+        {
+          "tourID":200,
+          "tourName":"新加坡环球影城?",
+          "travelDate":"2016-05-25T00:00:00"
+        }
+      ]
     };
-    
-    var _tplPath="../hotel_flight_tour/tpl/t_hft_order_detail_list.ejs"
-    var html = new EJS({url: _tplPath}).render(data)
-    alert("order");
+
+    debugger;
+    var _tplPath="../hotel_flight_tour/tpl/"
+    var flight = new EJS({url: _tplPath+"t_flight_list.ejs"}).render(data);
+    var hotel = new EJS({url: _tplPath+"t_hotle_list.ejs"}).render(data);
+    var tour = new EJS({url: _tplPath+"t_tour_list.ejs"}).render(data);
+
+    $("#flight").html(flight);
+    $("#hotel").html(hotel);
+    $("#tour").html(tour);
+
   };
   return {
     init: init

@@ -562,7 +562,7 @@
 
 	});
 
-}(jQuery));
+});
 
 /*  Menu Slider Mouse Scroll - Test Purpose Only. Can be deleted
 
