@@ -62,7 +62,7 @@
             <dl>
                 <dt>
                     <i class="go"></i>
-                    <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d1.getMonth()+1%}-{%=d1.getDate()%}</span>
+                    <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %}  {%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%}</span>
                     <span>周{%= getWeek[d1.getDay()]%}</span>
                     <span class="more">{%=flightInfo.cityNameFrom%}</span>
                     <span>-</span>
@@ -72,7 +72,8 @@
                 </dt>
                 <dt>
                     <i class="back"></i>
-                    <span>{% var dd=new Date(Date.parse(flightInfo.flightReturnStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=dd.getMonth()+1%}-{%=d1.getDate()%}</span>
+
+                    <span>{% var dd=new Date(Date.parse(flightInfo.flightReturnStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%}</span>
                     <span>周{%= getWeek[dd.getDay()]%}</span>
                     <span class="more">{%=flightInfo.cityNameTo%}</span>
                     <span>-</span>
