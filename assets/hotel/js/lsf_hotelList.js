@@ -1061,7 +1061,7 @@ function styleChange(id, mytext) {
 			var paraObj = new Object();
 			paraObj.HotelID = that.getAttribute('data-hotelCode');
 			paraObj.HotelCode = that.getAttribute('data-hotelCode');
-      
+
 			// paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
 			paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
 			paraObj.AllOccupancy =(that.getAttribute('data-AllOccupancy') != undefined  && that.getAttribute('data-AllOccupancy') != "undefined")? that.getAttribute('data-AllOccupancy') : true;
