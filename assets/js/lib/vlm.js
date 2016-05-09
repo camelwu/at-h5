@@ -239,11 +239,10 @@
 				},
 				//格式化日期
 				format_date : function(dtime, format) {
-
-					var newDate =new Date(dtime.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"))
+					var newDate =new Date(dtime.replace("T"," ").replace("-","/"))
 					var year = newDate.getFullYear();
-					var yy = year.toString(), yy = yy.substr(-2), month = newDate.getMonth() + 1, day = newDate.getDate();
-					var hour = newDate.getHours(), minutes = newDate.getMinutes(), seconds = newDate.getSeconds();
+					var yy = year.toString(), yy = yy.substr(-2), month = parseInt(newDate.getMonth()) + 1, day = parseInt(newDate.getDate());
+					var hour = newDate.getHours(), minutes = parseInt(newDate.getMinutes()), seconds = parseInt(newDate.getSeconds());
 					month = month < 10 ? '0' + month : month;
 					day = day < 10 ? '0' + day : day;
 					hour = hour < 10 ? '0' + hour : hour;
@@ -878,7 +877,7 @@
 						async : false
 					});
 				}
-				
+
 				$.ajax({
 					type : "post",
 					url : _api + '?rnd=' + Math.random(),

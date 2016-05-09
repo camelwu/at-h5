@@ -98,12 +98,11 @@
              <li id="LeaveInfo" class="set-start">
                  <div class="rel-start">
                      <div class="week-city-city">
-                         <span><i></i></span> <span> {%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"hm")%}</span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
+                         <span><i></i></span> <span> {%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
                      </div>
                      <div class="time-arrow-time">
                          <div class="city-time-left">
-
-                             <div class="clock">{% var d2= new Date(Date.parse(flightInfo.segmentsLeave[0].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+                             <div class="clock"> {%=vlm.Utils.format_date(flightInfo.segmentsLeave[0].departDate,"hm")%}</div>
                              <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameFrom%}{%=flightInfo.segmentsLeave[0].TermDepart%}</p>
                          </div>
                          <div class="time-arrow">
@@ -111,7 +110,6 @@
                              <div class="icon-arrow"></div>
                          </div>
                          <div class="city-time-right">
-
                              <div class="clock"> {%=vlm.Utils.format_date(flightInfo.segmentsLeave[0].arriveDate,"hm")%}</div>
                              <p class="port-name">{%=flightInfo.segmentsLeave[0].airportNameTo%}{%=flightInfo.segmentsLeave[0].TermArrive%}</p>
                          </div>
@@ -148,13 +146,14 @@
              <li class="set-start set-back">
                  <div class="rel-start">
                      <div class="week-city-city">
-                         <span><i></i></span> <span>{% var d1=new Date(flightInfo.segmentsReturn[0].departDate.replace("T"," ")); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameTo%}-{%=flightInfo.cityNameFrom%}</span>
+
+                         <span class="rel-back"><i></i></span> <span>  {%=vlm.Utils.format_date(flightInfo.segmentsReturn[0].departDate,"cymd")%}</span> {% var d1=new Date(flightInfo.segmentsReturn[0].departDate.replace("T"," ")); %} <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameTo%}-{%=flightInfo.cityNameFrom%}</span>
                      </div>
 
                      <div class="time-arrow-time">
                          <div class="city-time-left">
 
-                             <div class="clock">{% var d3=new Date(Date.parse(flightInfo.segmentsReturn[0].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+                             <div class="clock">{%=vlm.Utils.format_date(flightInfo.segmentsReturn[0].departDate,"hm")%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[0].airportNameFrom%}{%=flightInfo.segmentsReturn[0].TermArrive%}</p>
                          </div>
                          <div class="time-arrow">
@@ -163,7 +162,7 @@
                          </div>
                          <div class="city-time-right">
 
-                             <div class="clock">{% var d2= new Date(Date.parse(flightInfo.segmentsReturn[0].arriveDate.replace("T"," ").replace(/-/g, "/")));%} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+                             <div class="clock">         {%=vlm.Utils.format_date(flightInfo.segmentsReturn[0].arriveDate,"hm")%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[0].airportNameTo%}{%=flightInfo.segmentsReturn[0].TermArrive%}</p>
                          </div>
                      </div>
@@ -176,7 +175,7 @@
                      <div class="time-arrow-time">
                          <div class="city-time-left">
 
-                             <div class="clock">{% var d3=new Date(Date.parse(flightInfo.segmentsReturn[i].departDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d3.getHours()%}:{%=d3.getMinutes()%}</div>
+                             <div class="clock">{%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].departDate,"hm")%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[i].airportNameFrom%}{%=flightInfo.segmentsReturn[i].TermArrive%}</p>
                          </div>
                          <div class="time-arrow">
@@ -184,7 +183,7 @@
                              <div class="icon-arrow open"></div>
                          </div>
                          <div class="city-time-right">
-                             <div class="clock">{% var d2= new Date(Date.parse(flightInfo.segmentsReturn[i].arriveDate.replace("T"," ").replace(/-/g, "/")));%} {%=d2.getHours()%}:{%=d2.getMinutes()%}</div>
+                             <div class="clock">{%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].arriveDate,"hm")%}</div>
                              <p class="port-name">{%=flightInfo.segmentsReturn[i].airportNameTo%}{%=flightInfo.segmentsReturn[i].TermArrive%}</p>
                          </div>
                      </div>
