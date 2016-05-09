@@ -181,10 +181,12 @@ define(['jquery',"ejs","vlm"],function ($,ejs,vlm){
     var flight = new EJS({url: _tplPath+"t_flight_list.ejs"}).render(data);
     var hotel = new EJS({url: _tplPath+"t_hotle_list.ejs"}).render(data);
     var tour = new EJS({url: _tplPath+"t_tour_list.ejs"}).render(data);
+    var other = new EJS({url: _tplPath+"t_htf_order_detail.ejs"}).render(data);
 
     $("#flight").html(flight);
     $("#hotel").html(hotel);
     $("#tour").html(tour);
+    $("#other").html(other);
 
   };
   return {
