@@ -283,6 +283,7 @@ Calender.prototype = {
         this.date = date = odate.getDate();
         this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
         tims = this.time;
+        this.result.length = 0;
         for (var key in tims) {
             this.result.push(key);
         }
