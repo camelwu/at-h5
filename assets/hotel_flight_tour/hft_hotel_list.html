@@ -20,8 +20,19 @@
 <link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<!--loading-->
+<div id="preloader" style="display: none;">
+  <div id="status">
+  </div>
+</div>
 
-<div class="contents">
+<div class="all_elements">
+  <div class="header">
+    <a href="#" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3>酒店（共50家）</h3>
+  </div>
   <ul class="hotel_list">
     <li class="cur">
       <div>
@@ -189,6 +200,9 @@
   </section>
 </div>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="js/hft_hotelList.js"></script>
 <script>
   $(function(){
     //酒店按钮点击

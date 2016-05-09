@@ -95,7 +95,7 @@ Calender.prototype = {
         '<dt class="date_title">六</dt>',
         '</dl>'
     ],
-    _temptiper: '<div class="first_select tiper"><i class="icon_go"></i><span id="electedTime0"></span><i class="icon_close"></i></div><div class="second_select tiper"><i class="icon_back"></i><span id="electedTime1"></span><i class="icon_close"></i></div><p class="info">点击日期选择</p>',
+    _flightTemptiper: '<div class="first_select tiper"><i class="icon_go"></i><span id="electedTime0"></span><i class="icon_close"></i></div><div class="second_select tiper"><i class="icon_back"></i><span id="electedTime1"></span><i class="icon_close"></i></div><p class="info">点击日期选择出发日期</p><p class="info second_info">请选择返回日期</p>',
 
     // 模板数组
     _template: [
@@ -106,7 +106,7 @@ Calender.prototype = {
         '</dl>'],
     // 初始化对象
     initialize: function (options) {
-        this.type = options.type || 'hotel'; //默认酒店日期组件   hotel || flight
+        this.type = options.type || 'flight'; //默认酒店日期组件   hotel || flight
         this.format = options.format || "yyyy-mm-dd"; //TODO用于显示用的日期格式 yyyy-mm-dd,mm-dd
         this.id = options.id; // input的ID    初始化元素idid
         this.num = options.num || 13; //显示数量
@@ -166,7 +166,7 @@ Calender.prototype = {
 
             var tiperWrap = document.createElement("div");
             tiperWrap.className = "calendar_tiper";
-            tiperWrap.innerHTML = this._temptiper;
+            tiperWrap.innerHTML = this._flightTemptiper;
             container.appendChild(tiperWrap);
 
             var weeker = document.createElement('div');
@@ -491,17 +491,26 @@ Calender.prototype = {
      **/
     showSelected: function () {
         var values = this.result;
-        var firstEle = $("#" + this.id + "Date" + " #firstSelect");
+        var firstEle = $("#" + this.id + "Date" + " #electedTime0");
         var secondEle = $("#" + this.id + "Date" + " #electedTime1");
         var infoEle = $("#" + this.id + "Date" + " .info");
+        var secondInfoEle = $("#" + this.id + "Date" + " .second_info");
+
         for (var i = 0; i < values.length; i++) {
             $("#" + this.id + "Date" + " #electedTime" + i).html(values[i]).parent().show();;
         }
         if (values.length === 1) {
             secondEle.parent().hide();
-            infoEle.addClass("second_info");
+            infoEle.hide();
+            secondInfoEle.show();
+        } else if (values.length === 0) {
+            firstEle.parent().hide();
+            secondEle.parent().hide();
+            infoEle.show();
+            secondInfoEle.hide();
         } else {
             infoEle.hide();
+            secondInfoEle.hide();
         }
     },
     /**
@@ -678,7 +687,17 @@ Calender.prototype = {
     },
     //清除选中日期
     clearClick: function () {
-        $("")
+        var that = this;
+        $(".calendar_tiper").on("click", ".icon_close", function (event) {
+            if ($(this).parent().index() === 0) {
+                that.result.length = 0; //清空选择记录
+            } else {
+                that.result.length = 1; //清空选择记录
+            }
+            console.info(that.result);
+            that.resetSelected();
+            that.showSelected();
+        });
     },
     // 表单的事件
     inputEvent: function () {

@@ -78,9 +78,10 @@ var  hftFlightDetail = {
   },
 
   createTags:function(){
-    var data = arguments[0], that = hftFlightDetail, html="";
-    html = new EJS({url: 'js/hft_flightDetail.ejs'}).render(data);
-    document.body.innerHTML = html;
+    var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
+    tempStr = $("#template").html();
+    outputStr = ejs.render(tempStr,data);
+    $(".all_elements").eq(0).html(outputStr);
     return that;
   },
 

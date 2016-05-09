@@ -8,7 +8,7 @@
     <!--seo-->
     <meta name="Keywords" content="亚洲旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
-    <title>亚洲旅行网</title>
+    <title>ejs demo</title>
 
     <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
     <style>
@@ -17,17 +17,16 @@
             font-size: .28rem;
         }
         
-        .main .header {
-            height: 1rem;
-            background: #999;
-        }
-        
         .main .header .title {
             height: 100%;
             margin: 0 1rem;
-            line-height: 1rem;
+            line-height: 1.4rem;
             text-align: center;
             background: #eeeccc;
+        }
+        
+        .content {
+            margin-top: .88rem;
         }
         
         .siteRight {
@@ -36,20 +35,44 @@
             background: #eee;
             text-align: center;
         }
+        
+        .select_time {
+            /*            margin: .2rem;*/
+        }
+        
+        .select_time .check_in {
+            height: .5rem;
+            width: 5rem;
+            border-bottom: 1px solid #999;
+            float: left;
+        }
+        
+        .select_time .time_icon {
+            float: right;
+            height: 1rem;
+            width: 1rem;
+            background: gold;
+        }
 
     </style>
 </head>
 
 <body>
-    <div class="main">
+    <div class="all_elements">
         <header class="header">
-            <h1 class="title">我是header</h1>
-            <nav></nav>
+            <a href="#" class="header_back">
+                <i class="icon_back"></i>
+            </a>
+            <h3>ejs</h3>
         </header>
         <div class="content">
-            <div class="select_time">
-                <div id=""></div>
+            <div id="output"></div>
+            <div id="output1">
             </div>
+            <div id="output2">
+
+            </div>
+
         </div>
         <div class="siteRight">
             <p>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</p>
@@ -58,6 +81,36 @@
 
         </footer>
     </div>
+    <script id="template" type="text/template">
+        <ul>
+            <% for(var i=0;i<people.length;i++) { %>
+                <li>
+                    <%= people[i] %>
+                </li>
+                <% } %>
+        </ul>
+    </script>
+    <script src="../../js/lib/jquery.js"></script>
+    <script src="../../js/lib/ejs.js"></script>
+    <script>
+        //https://github.com/mde/ejs
+        //方式一：
+        var people = ['geddy', 'neil', 'alex'],
+            html = ejs.render('<%= people.join(", "); %>', {
+                people: people
+            });
+        //方式二：
+        var str = $("#template").html();
+        var output1 = ejs.render(str, {
+            people: people
+        });
+
+        document.getElementById('output1').innerHTML = output1;
+
+        // Vanilla JS:
+        document.getElementById('output').innerHTML = html;
+
+    </script>
 </body>
 
 </html>
