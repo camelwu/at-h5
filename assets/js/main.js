@@ -5,6 +5,7 @@ require.config({
     paths: {
         plugins: 'plugins'
     },
+    waitSeconds: 0,
     $:['jquery'],
     shim: {
     	'plugins':{
@@ -29,7 +30,6 @@ require.config({
 });
 
 require(['jquery','vlm','custom'], function($,vlm) {
-
 	vlm.init();
 	//vlm.checkLogin();
 });

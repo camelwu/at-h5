@@ -13,306 +13,285 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="green">
   <meta name="Keywords" content="亚洲旅行网">
   <meta name="Description" content="境外专业旅行服务提供机构">
-  <title>订单填写</title>
+  <title>自由行-订单填写</title>
   <link href="../styles/reset.css" rel="stylesheet" />
   <link href="../styles/tips.css" rel="stylesheet" />
   <link href="css/hft_order.css" rel="stylesheet" />
 </head>
 <body>
-<div id="preloader">
-  <div id="status">
-    <p class="center-text"></p>
-  </div>
-</div>
-<div class="head">
-  <a href="javascript:window.history.go(-1);" class="header_back">
-    <i class="go_back"></i>
-  </a>
-  <h3>订单填写</h3>
-</div>
-<div class="content">
-  <!--机票-->
-  <div class="flight_section">
-    <div class="fht_hd clearfix">
-      <span class="fht_hd_tit fl"><i></i>机票</span>
-      <span class="fht_hd_det fr">详情<i></i></span>
+  <div id="preloader">
+    <div id="status">
+      <p class="center-text"></p>
     </div>
+  </div>
+  <div class="all_elements">
+    <div class="header">
+      <a href="javascript:window.history.go(-1);" class="header_back">
+        <i class="icon_back"></i>
+      </a>
+      <h3>订单填写</h3>
+    </div>
+    <div class="content">
+      <!--机票-->
+      <div class="flight_section">
+        <div class="fht_hd flight_top clearfix">
+          <span class="fht_hd_tit fl"><i></i>机票</span>
+          <span class="fht_hd_det fr">详情<i></i></span>
+        </div>
+        <div id="flightCirTab">
+          <!--<ul class="flight_cir_wrap">-->
+          <!--<li class="fli_cont clearfix">-->
+          <!--<div class="fli_cir_left fl">-->
+          <!--<i class="go_tip"></i>-->
+          <!--<span class="fli_go_date">01-08</span>-->
+          <!--<span>周二</span>-->
+          <!--<span>浦东T2-洛杉矶</span>-->
+          <!--</div>-->
+          <!--<div class="fli_cir_right fr">-->
+          <!--<i></i>-->
+          <!--<span>11h30m</span>-->
+          <!--</div>-->
+          <!--</li>-->
+          <!--<li class="fli_cont clearfix">-->
+          <!--<div class="fli_cir_left fl">-->
+          <!--<i class="back_tip"></i>-->
+          <!--<span class="fli_back_date">01-08</span>-->
+          <!--<span>周二</span>-->
+          <!--<span>洛杉矶-浦东</span>-->
+          <!--</div>-->
+          <!--<div class="fli_cir_right fr">-->
+          <!--<i></i>-->
+          <!--<span>11h30m</span>-->
+          <!--</div>-->
+          <!--</li>-->
+          <!--<li class="cabin_level">-->
+          <!--<span>头等舱</span>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </div>
+      </div>
+      <!--酒店-->
+      <div class="hotel_section">
+        <div class="fht_hd clearfix">
+          <span class="fht_hd_tit hotel fl"><i></i>酒店</span>
+        </div>
+        <div id="hftHotelTab">
+          <!--<div class="hotel_wrap">-->
+          <!--<h3>东京东急涩卓越大酒店</h3>-->
+          <!--<ul>-->
+          <!--<li class = "hotel_check_wrap">-->
+          <!--<span>11月25日-11月26日</span>-->
+          <!--<span>共1晚（当地时间为准）</span>-->
+          <!--</li>-->
+          <!--<li class = "hotel_room_det">-->
+          <!--<span>房型：经济大床房</span>-->
+          <!--<span>房间数：2间</span>-->
+          <!--</li>-->
+          <!--</ul>-->
+          <!--</div>-->
+        </div>
+      </div>
+      <!--景点-->
+      <div class="tour_section">
+        <div class="fht_hd clearfix">
+          <span class="fht_hd_tit tour fl"><i></i>景点</span>
+        </div>
+        <div id="hftTourTab">
+          <!--<ul class="tour_wrap">-->
+          <!--<li>-->
+          <!--<p class="mb_ten">1 吉隆坡市区半日游</p>-->
+          <!--<p>11月25日 上午</p>-->
+          <!--</li>-->
+          <!--<li>-->
+          <!--<p class="mb_ten">1 吉隆坡市区半日游</p>-->
+          <!--<p>11月25日 上午</p>-->
+          <!--</li>-->
+          <!--</ul>-->
+        </div>
+      </div>
+      <div class="traveller_section">
+        <div class = "fht_hd clearfix" id="traveltab">
+          <span class = "fl fht_travel">出行人</span>
+          <div class="fr">
+            <span class="order_tsl2"><i class="adu_choose">0</i>/<i class="adu_tot"></i>成人<b><i class="chi_choose">0</i>/<i class="chi_tot"></i>儿童</b></span>
+            <a href="javascript:;" class="add_traveller"></a>
+          </div>
+        </div>
+        <ul class="order_twrap" style="display: block">
+          <li class = "order_tlist2" >
+            <i class="tra_delete" onclick="delPassager(this);"></i>
+            <div class="traveller_wrap">
+              <span>姓/名<b class="travel_last" data-elementName="lastName">BAI</b>/<b class="travel_first" data-elementName="firstName">LISA</b></span>
+              <span><em class="card_tra_type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel_sex" data-sex="Ms">女</b></span>
+            </div>
+            <em data-id="" onclick="javascript:editPassager(this)" ><input type="hidden" name="input-zone" class="passport_number" readonly="readonly"  data-elementName="travellerId"></em>
+          </li>
+        </ul>
+      </div>
+      <!--联系人-->
+      <div class="fht_contact">
+        <div class = "fht_con_hd">
+          <span>联系人</span>
+        </div>
+        <ul class="contact_link_wrap">
+          <li class = "contacts_name">
+            <input type="text"placeholder="姓（如：Zhang）" class="hft_con_lastname" data-elementName="lastName"/>
+            <span class="order_line"></span>
+            <input type="text"placeholder="名（如：Wei）" class="hft_con_firstname" data-elementName="firstName"/>
+          </li>
+          <li class = "contacts_tel">
+            <div class = "contacts_tel_code clearfix">
+              <span class="order_ls_cell fl">手机号</span>
+              <div class="p_86 tel-btn">
+                <span data-elementName="countryCode">+86</span>
+                <i class="tel_code_tip"></i>
+              </div>
+            </div>
+            <span class="order_line"></span>
+            <input type="text" placeholder="用于接收通知" class="hft_con_cell" data-elementName="mobilePhone"/>
+          </li>
+          <li class = "contacts_email">
+            <span class="fl">E-mail</span>
+            <input class="hft_con_email fl" type="text" placeholder="用于接收通知" data-elementName="email"/>
+          </li>
+        </ul>
+      </div>
+      <!--预定footer-->
+      <div class="order_footer clearfix">
+        <div class="order_num fl" >
+          <span class = "num1">总额: <i>¥1208</i></span><span class="detail_fale"></span>
+        </div>
+        <a href="javascript:;" class = "order_submit fr">立即预订</a>
+      </div>
+    </div>
+  </div>
+  <!--   明细块   -->
+  <div class="hft_det_mask"></div>
+  <div class="hft_detail_fare">
+    <!--<p>成人费用 x <span>2</span> <span> ￥1134</span></p>-->
+    <!--<p>儿童费用 x <span>2</span> <span> ￥1134</span></p>-->
+  </div>
+
+  <!--国籍选择开始-->
+  <div class="country-cho-wrap">
+    <div class="header" style="background: linear-gradient(#16364f,#194361);">
+      <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
+      <div class="cl_search">
+        <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+        <i></i>
+      </div>
+    </div>
+    <!--国籍弹窗开始-->
+    <ul class="country-list-searched"></ul>
+    <!--国籍弹窗结束-->
+
+    <div class="snap-content" style="padding-top: 45px;">
+      <div class="country-wrap" id="country-wrap">
+      </div>
+    </div>
+  </div>
+  <!--国籍选择结束-->
+
+
+  <!--模板机票-->
+  <script id="orderFlight" type="text/template" >
     <ul class="flight_cir_wrap">
       <li class="fli_cont clearfix">
-        <div class="fli_cir_left fl">
-          <i class="go_tip"></i>
-          <span class="fli_go_date">01-08</span>
-          <span>周二</span>
-          <span>浦东T2-洛杉矶</span>
-        </div>
-        <div class="fli_cir_right fr">
-          <i></i>
-          <span>11h30m</span>
-        </div>
+      <div class="fli_cir_left fl">
+      <i class="go_tip"></i>
+      <% var d1= new Date(),arr=flightInfo.flightLeaveStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
+    <span class="fli_go_date"><%=flightInfo.flightLeaveStartDate.substring(5,10)%></span>
+    <span><%='周'+arr1[d1.getDay()]%></span>
+      <span class="flight_terminal"><%=flightInfo.segmentsLeave[0].airportNameFrom+flightInfo.segmentsLeave[0].termDepart+'-'+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].airportNameTo+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].termArrive%></span>
+      </div>
+      <div class="fli_cir_right fr">
+    <i></i>
+    <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
+      </div>
       </li>
       <li class="fli_cont clearfix">
-        <div class="fli_cir_left fl">
-          <i class="back_tip"></i>
-          <span class="order-ml">01-08</span>
-          <span>周二</span>
-          <span>洛杉矶-浦东</span>
-        </div>
-        <div class="fli_cir_right fr">
-          <i></i>
-          <span>11h30m</span>
-        </div>
+      <div class="fli_cir_left fl">
+      <i class="back_tip"></i>
+      <% var d1= new Date(),arr=flightInfo.flightReturnStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %>
+    <span class="fli_back_date"><%=flightInfo.flightReturnStartDate.substring(5,10)%></span>
+    <span><%='周'+arr1[d1.getDay()]%></span>
+      <span class="flight_terminal"><%=flightInfo.segmentsReturn[0].airportNameFrom+flightInfo.segmentsReturn[0].termDepart+'-'+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].airportNameTo+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].termArrive%></span>
+      </div>
+      <div class="fli_cir_right fr">
+    <i></i>
+    <span><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
+      </div>
       </li>
       <li class="cabin_level">
-        <span>头等舱</span>
-      </li>
+      <% if(flightInfo.cabinClass == 0) { %>
+    <span><%='经济舱'%></span>
+        <% }else if(flightInfo.cabinClass == 1){ %>
+    <span><%='头等舱'%></span>
+        <% }else if(flightInfo.cabinClass == 2){ %>
+    <span><%='商务舱'%></span>
+        <% }else if(flightInfo.cabinClass == 3){ %>
+    <span><%='超级经济舱'%></span>
+        <% } %>
+    </li>
     </ul>
-  </div>
-  <!--酒店-->
-  <div class="hotel_section">
-    <div class="fht_hd clearfix">
-      <span class="fht_hd_tit hotel fl"><i></i>酒店</span>
-    </div>
+  </script>
+  <!--模板机票结束-->
+
+  <!--模板酒店开始-->
+  <script id="orderHotel" type="text/template">
     <div class="hotel_wrap">
-      <h3>东京东急涩卓越大酒店</h3>
+      <h3><%=hotelName%></h3>
       <ul>
         <li class = "hotel_check_wrap">
-          <span>11月25日-11月26日</span>
-          <span>共1晚（当地时间为准）</span>
+          <span><%=DepartDate.substring(5,10).replace('-','月')%>日 - <%=ReturnDate.substring(5,10).replace('-','月')%>日</span>
+          <% function getDayNum(arg1,arg2){
+          var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));
+          return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
+          }
+          var dayNum = getDayNum(DepartDate.substring(0,10),ReturnDate.substring(0,10)); %>
+          <span>共<%=dayNum%>晚（当地时间为准）</span>
         </li>
         <li class = "hotel_room_det">
-          <span>房型：经济大床房</span>
-          <span>房间数：2间</span>
+          <span>房型：双人床</span>
+          <span>房间数：<%=RoomDetails.length%>间</span>
         </li>
       </ul>
     </div>
-  </div>
-  <!--景点-->
-  <div class="tour_section">
-    <div class="fht_hd clearfix">
-      <span class="fht_hd_tit tour fl"><i></i>景点</span>
-    </div>
+  </script>
+  <!--模板酒店结束-->
+
+  <!--模板tour开始-->
+  <script id="orderTour" type="text/template">
     <ul class="tour_wrap">
+      <% for(var i=0; i<tours.length; i++) { %>
       <li>
-        <p class="mb_ten">1 吉隆坡市区半日游</p>
-        <p>11月25日 上午</p>
+        <p class="mb_ten"><%=tours[i].tourName%></p>
+        <% var date=tours[i].selectTravelDate.substring(5,10).replace('-','月')+'日 '%>
+        <p><%=date+tours[i].tourSessions[0].tourSessionName%></p>
       </li>
-      <li>
-        <p class="mb_ten">1 吉隆坡市区半日游</p>
-        <p>11月25日 上午</p>
-      </li>
+      <% } %>
     </ul>
-  </div>
-  <div class="traveller_section">
-    <div class = "fht_hd clearfix" id="traveltab">
-      <span class = "fl fht_travel">出行人</span>
-      <div class="fr">
-        <span class="order_tsl2"><i class="adu_choose">0</i>/<i class="adu_tot"></i>成人<b><i class="chi_choose">0</i>/<i class="chi_tot"></i>儿童</b></span>
-        <a href="javascript:;" class="add_traveller"></a>
-      </div>
-    </div>
-    <ul class="order_twrap" style="display: block">
-      <li class = "order_tlist2" >
-        <i class="tra_delete" onclick="delPassager(this);"></i>
-        <div class="traveller_wrap">
-          <span>姓/名<b class="travel_last" data-elementName="lastName">BAI</b>/<b class="travel_first" data-elementName="firstName">LISA</b></span>
-          <span><em class="card_tra_type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel_sex" data-sex="Ms">女</b></span>
-        </div>
-        <em data-id="" onclick="javascript:editPassager(this)" ><input type="hidden" name="input-zone" class="passport_number" readonly="readonly"  data-elementName="travellerId"></em>
-      </li>
-    </ul>
-  </div>
-  <!--联系人-->
-  <div class="fht_contact">
-    <div class = "fht_con_hd">
-      <span>联系人</span>
-    </div>
-    <ul class="contact_link_wrap">
-      <li class = "contacts_name">
-        <input type="text"placeholder="姓（如：Zhang）" class="hft_con_lastname" data-elementName="lastName"/>
-        <span class="order_line"></span>
-        <input type="text"placeholder="名（如：Wei）" class="hft_con_firstname" data-elementName="firstName"/>
-      </li>
-      <li class = "contacts_tel">
-          <div class = "contacts_tel_code clearfix">
-            <span class="order_ls_cell fl">手机号</span>
-            <div class="p_86 tel-btn fl">
-              <span data-elementName="countryCode">+86</span>
-              <i></i>
-            </div>
-          </div>
-          <span class="order_line"></span>
-          <input type="text" placeholder="用于接收通知" class="hft_con_cell" data-elementName="mobilePhone"/>
-      </li>
-      <li class = "contacts_email">
-        <span class="fl">E-mail</span>
-        <input class="hf_con_email fl" type="text" placeholder="用于接收通知" data-elementName="email"/>
-      </li>
-    </ul>
-  </div>
-  <!--预定footer-->
-  <div class="order_footer clearfix">
-    <div class="order_num fl" >
-      <span class = "num1">总额: <i>¥1208</i></span><span class="detail_fale"></span>
-    </div>
-    <a href="javascript:;" class = "order_submit fr">立即预订</a>
-  </div>
-</div>
-<!--   明细块   -->
-<div class="hft_det_mask"></div>
-<div class="hft_detail_fare">
-  <p>成人费用 x <span>2</span> <span> ￥1134</span></p>
-  <p>儿童费用 x <span>2</span> <span> ￥1134</span></p>
-</div>
+  </script>
+  <!--模板tour结束-->
 
-<!--国籍选择开始-->
-<div class="country-cho-wrap">
-  <div class="header">
-    <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
-    <div class="cl_search">
-      <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
-      <i></i>
-    </div>
-  </div>
-  <!--国籍弹窗开始-->
-  <ul class="country-list-searched"></ul>
-  <!--国籍弹窗结束-->
+  <!--模板fare-->
+  <script id="orderFare" type="text/template">
+    <p>成人费用 x <span>{%=priceDetail.prices[0].quantity%}</span> <span> ￥{%=priceDetail.prices[0].totalAmount%}</span></p>
+    {% if (priceDetail.prices[1]){ %}
+    <p>儿童费用 x <span>{%=priceDetail.prices[1].quantity%}</span> <span> ￥{%=priceDetail.prices[1].totalAmount%}</span></p>
+    {% } %}
+  </script>
 
-  <div class="snap-content" style="padding-top: 45px;">
-    <div class="country-wrap" id="country-wrap">
-    </div>
-  </div>
-</div>
-<!--国籍选择结束-->
-<script src="../js/lib/jquery-1.10.2.min.js"></script>
-<!--填写订单-->
-<script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
-<script src="../js/countrytel_list.js"></script>
-<script>
-  $('.detail_fale').click(function(){
-    $(this).toggleClass('open');
-  });
-</script>
-<!--模板机票-->
-<!--<script id="order-flight" type="text/template" >-->
-  <!--<ul>-->
-    <!--<li class = "order-lis1">-->
-				<!--<span class="order-lis1-l">-->
-					<!--<i></i>-->
-					<!--<span>机票</span>-->
-				<!--</span>-->
-      <!--<a href="ticket-detail.html">-->
-					<!--<span class="order-lis1-r">-->
-					<!--<span>详情</span>-->
-					<!--<i></i>-->
-				<!--</span>-->
-      <!--</a>-->
-    <!--</li>-->
-    <!--<li class = "order-lis2">-->
-				<!--<span class="order-lis2-l">-->
-					<!--<i></i>-->
-					<!--{% var d1= new Date(),arr=flightInfo.flightLeaveStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %}-->
-					<!--<span class = "order-ml">{%=flightInfo.flightLeaveStartDate.substring(5,10)%}</span>-->
-					<!--<span>{%='周'+arr1[d1.getDay()]%}</span>-->
-					<!--<span class="airport-recycle">{%=flightInfo.segmentsLeave[0].airportNameFrom+'-'+flightInfo.segmentsLeave[0].airportNameTo%}</span>-->
-				<!--</span>-->
-				<!--<span class="order-lis2-r">-->
-					<!--<i></i>-->
-					<!--<span>{%=flightInfo.segmentsLeaveTotalTravelTimeString%}</span>-->
-				<!--</span>-->
-    <!--</li>-->
-    <!--<li class = "order-lis3">-->
-				<!--<span class="order-lis3-l">-->
-					<!--<i></i>-->
-					<!--{% var d1= new Date(),arr=flightInfo.flightReturnStartDate.substring(0,10).split('-'),arr1=['日','一','二','三','四','五','六']; d1.setFullYear(arr[0],arr[1]-1,arr[2]); %}-->
-					<!--<span class = "order-ml">{%=flightInfo.flightReturnStartDate.substring(5,10)%}</span>-->
-					<!--<span>{%='周'+arr1[d1.getDay()]%}</span>-->
-					<!--<span class="airport-recycle">{%=flightInfo.segmentsReturn[0].airportNameFrom+'-'+flightInfo.segmentsReturn[0].airportNameTo%}</span>-->
-				<!--</span>-->
-				<!--<span class="order-lis3-r">-->
-					<!--<i></i>-->
-					<!--<span>{%=flightInfo.segmentsReturnTotalTravelTimeString%}</span>-->
-				<!--</span>-->
-    <!--</li>-->
-    <!--<li class = "order-lis4">-->
-      <!--{% if(flightInfo.cabinClass == 0) { %}-->
-      <!--<span>{%='经济舱'%}</span>-->
-      <!--{% }else if(flightInfo.cabinClass == 1){ %}-->
-      <!--<span>{%='头等舱'%}</span>-->
-      <!--{% }else if(flightInfo.cabinClass == 2){ %}-->
-      <!--<span>{%='商务舱'%}</span>-->
-      <!--{% }else if(flightInfo.cabinClass == 3){ %}-->
-      <!--<span>{%='超级经济舱'%}</span>-->
-      <!--{% } %}-->
-    <!--</li>-->
-  <!--</ul>-->
-<!--</script>-->
-<!--模板机票结束-->
-<!--模板酒店开始-->
-<!--<script id="order-hot" type="text/template" >-->
-  <!--<ul>-->
-    <!--<li class = "order-hlist1">-->
-      <!--<i></i>-->
-      <!--<span>酒店</span>-->
-    <!--</li>-->
-    <!--<li class = "order-hlist2">{%=Name%}</li>-->
-    <!--<li class = "order-hlist3">-->
-      <!--<span>{%=DepartDate.substring(5,10).replace('-','月')%}日 - {%=ReturnDate.substring(5,10).replace('-','月')%}日</span>-->
-      <!--{% function getDayNum(arg1,arg2){-->
-      <!--var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));-->
-      <!--return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;-->
-      <!--}-->
-      <!--dayNum = getDayNum(data.DepartDate.substring(0,10),ReturnDate.substring(0,10));%}-->
-      <!--<span>共{%=dayNum%}晚（当地时间为准）</span>-->
-    <!--</li>-->
-    <!--<li class = "order-hlist4">-->
-      <!--<span>房型：{%=RoomName%}</span>-->
 
-      <!--<span>房间数：{%=RoomDetails.length%}间</span>-->
-    <!--</li>-->
-  <!--</ul>-->
-<!--</script>-->
-<!--模板酒店结束-->
+  <script src="../js/lib/jquery-1.10.2.min.js"></script>
+  <!--填写订单-->
+  <script src="../js/lib/jquery.alert.js"></script>
+  <script src="../js/lib/vlm.js"></script>
+  <script src="../js/lib/ejs.js"></script>
+  <script src="../js/countrytel_list.js"></script>
 
-<!--<script id="totamount-det" type="text/template">-->
-  <!--<p>成人费用 x <span>{%=priceDetail.prices[0].quantity%}</span> <span> ￥{%=priceDetail.prices[0].totalAmount%}</span></p>-->
-  <!--{% if (priceDetail.prices[1]){ %}-->
-  <!--<p>儿童费用 x <span>{%=priceDetail.prices[1].quantity%}</span> <span> ￥{%=priceDetail.prices[1].totalAmount%}</span></p>-->
-  <!--{% } %}-->
-<!--</script>-->
-<!--&lt;!&ndash;模板酒店结束&ndash;&gt;-->
-<script src="js/hft_order.js"></script>
-<!--<script>-->
-  <!--//删除出行人-->
-  <!--function delPassager(obj){-->
-    <!--var adn=$('.adu-choose').html();-->
-    <!--var chn=$('.chi-choose').html();-->
-    <!--if($('#order-twrap >li').length <= 1){-->
-      <!--$(obj).parents('.order-tlist2').hide();-->
-    <!--}else{-->
-      <!--$(obj).parents('.order-tlist2').remove();-->
-    <!--}-->
+  <script src="js/hft_data.js"></script>
+  <script src="js/hft_order.js"></script>
 
-    <!--if($(obj).parents('.order-tlist2').attr('passtype') == 'adult'){-->
-      <!--adn&#45;&#45;;-->
-      <!--$('.adu-choose').html(adn);-->
-
-    <!--}else{-->
-      <!--$(obj).parents('.order-tlist2').remove();-->
-      <!--chn&#45;&#45;;-->
-      <!--$('.chi-choose').html(chn);-->
-    <!--}-->
-
-  <!--}-->
-
-  <!--// 编辑出行人-->
-  <!--function editPassager(obj){-->
-    <!--var id=$(obj).find("input").eq(0).val();-->
-    <!--var numofAdult=window.localStorage.adunum;-->
-    <!--var numofChild=window.localStorage.chinum;-->
-    <!--vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);-->
-  <!--}-->
-<!--</script>-->
 </body>
 </html>

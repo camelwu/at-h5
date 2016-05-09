@@ -1,0 +1,18 @@
+<div class="hotel_section">
+  <div class="fht_hd clearfix">
+    <span class="fht_hd_tit hotel fl"><i></i>酒店</span>
+  </div>
+  <div class="hotel_wrap">
+    <h3><%=hotelDetails.hotleName%></h3>
+    <ul>
+      <li class="hotel_check_wrap">
+        <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%></span>
+        <span>共1晚（当地时间为准）</span>
+      </li>
+      <li class="hotel_room_det">
+        <span>房型：<%=hotelDetails.roomDetials.roomName%>/span>
+        <span>房间数：<%=hotelDetails.roomDetials.numRoom%>间</span>
+      </li>
+    </ul>
+  </div>
+</div>

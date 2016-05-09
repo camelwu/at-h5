@@ -1,0 +1,5 @@
+<!--模板fare-->
+<p>成人费用 x <span>{%=priceDetail.prices[0].quantity%}</span> <span> ￥{%=priceDetail.prices[0].totalAmount%}</span></p>
+{% if (priceDetail.prices[1]){ %}
+<p>儿童费用 x <span>{%=priceDetail.prices[1].quantity%}</span> <span> ￥{%=priceDetail.prices[1].totalAmount%}</span></p>
+{% } %}

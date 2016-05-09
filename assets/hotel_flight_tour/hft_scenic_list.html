@@ -132,7 +132,7 @@
             <b class="footer_quicksort footer_icon"></b>
             <p>快速排序</p>
         </div>
-        <div class = "footer_right">
+        <div class = "footer_right" id = "footerRight">
             <b class = "footer_screen footer_icon"></b>
             <p>筛选</p>
         </div>
@@ -140,17 +140,17 @@
 </div>
 <div class = "shade">
     <!--排序快-->
-  <div class="shade_div" id = "shadeDiv"></div>
+  <div class="shade_div" id = "shadeDiv1"></div>
   <ul class="rank" id = "Rank">
-        <li>价格从高到低 <i class = "checked"></i></li>
-        <li>价格从低到高</li>
-        <li>评分从高到低</li>
-        <li>星级从高到低</li>
-        <li>星际从低到高</li>
+        <li>价格从高到低 <i></i></li>
+        <li>价格从低到高 <i></i></li>
+        <li>评分从高到低 <i></i></li>
+        <li>星级从高到低 <i></i></li>
+        <li>星际从低到高 <i></i></li>
     </ul>
     <!--帅选快-->
-  <div class="shade_div"></div>
-  <div class="filter">
+  <div class="shade_div" id = "shadeDiv2"></div>
+  <div class="filter" id = "Filter">
     <div class = "filter_button">
       <p class = "filter_button_l">取消</p>
       <p class = "filter_button_c">清空筛选</p>
@@ -174,5 +174,51 @@
   </div>
 </div>
 </body>
-<script src="js/fht_scenic_list.js"></script>
+<script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script>
+  $(function(){
+          $("#footerLeft").on("click",function(){
+              $("#shadeDiv1").css({'display':'block'});
+              $("#Rank").css({'bottom':'0'});
+          });
+          $("#shadeDiv1").on("click",function(){
+              $("#shadeDiv1").css({'display':'none'});
+              $("#Rank").css({'bottom':-2222+'rem'});
+       });
+          $("#footerRight").on("click",function(){
+             $("#shadeDiv2").css({'display':'block'});
+            $("#Filter").css({'bottom':0});
+          });
+          $("#shadeDiv2").on("click",function(){
+              $("#shadeDiv2").css({'display':'none'});
+            $("#Filter").css({'bottom':-2000+'rem'});
+      });
+    });
+  $(function(){
+      var li  = $("ul#Rank li");
+      var b = $("ul#Rank li i");
+      for(var i = 0;i < li.length;i++){
+        (function(index){
+          li[i].onclick = function(){
+            if(index==0){
+              for(var i = 0;i < li.length;i++){
+                li[i].className = '';
+                b[i].className = '';
+              }
+              li[index].className = 'checked_theme';
+              b[index].className = 'checked';
+            }else{
+              for(var j = 0;j < li.length;j++){
+                li[j].className = '';
+                b[j].className = 'jd-icon scr-gou';
+              }
+              li[0].className = '';
+              li[index].className = 'checked_theme';
+              b[index].className = 'checked';
+            }
+          };
+        })(i);
+      }
+  })
+</script>
 </html>

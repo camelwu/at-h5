@@ -225,14 +225,14 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
   position: relative;
   font-size: .28rem;
   color: rgb(153,153,153);
-  top: .25rem;
+  top: .2rem;
 }
 .child_age_state{
   position: relative;
   width: .34rem;
   height: .34rem;
   margin-left: .08rem;
-  top: .3rem;
+  top: .26rem;
   background-position: 54% 31.5%;
 }
 .age_state_box{
@@ -302,7 +302,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 }
 .childAge {
   float: right;
-  width: 1.3rem;
+  width: 1.4rem;
   font-size: .28rem;
   margin-top: .18rem;
   padding-right: .15rem;
@@ -372,9 +372,9 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .data_info{
   position: fixed;
   z-index: 45;
-  top: .9rem;
+  top: .88rem;
   width: 100%;
-  background: #f7f7f7;
+  background: #fcfcfc;
   padding-bottom: .3rem;
   padding-left:.5rem;
   padding-right:.5rem;
@@ -603,7 +603,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   font-size: .2rem;
   color: white;
   overflow: hidden;
-  z-index: 46;
+  z-index: 100;
 }
 .list_footer .red_tip{
   position: absolute;
@@ -695,8 +695,8 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 45;
-  /*display: none;*/
+  z-index: 99;
+  display: none;
 }
 /*   排序块    */
 .rank_box{
@@ -706,7 +706,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   /*bottom: 1rem;*/
   background: #FFFFFF;
   font-size: .28rem;
-  z-index: 46;
+  z-index: 100;
   margin-bottom: 0;
   overflow: hidden;
 }
@@ -737,7 +737,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   /*bottom: 1rem;*/
   background: #FFFFFF;
   font-size: .28rem;
-  z-index: 46;
+  z-index: 100;
   margin-bottom: 0;
   overflow: hidden;
 }

@@ -1,0 +1,196 @@
+/**
+ * Created by zhouwei on 2016/5/4.
+ */
+define(['jquery',"ejs","vlm"],function ($,ejs,vlm){
+  var init = function (){
+    //假数据
+    var data={
+      "flightInfo":{
+        "segmentsLeaveTotalTravelTimeString":"4h25m",
+        "segmentsReturnTotalTravelTimeString":"4h20m",
+        "cityCodeFrom":"BKK",
+        "cityCodeTo":"SIN",
+        "cityNameFrom":"曼谷",
+        "cityNameTo":"新加坡",
+        "isLeaveShareFlight":0,
+        "isReturnShareFlight":0,
+        "isInternationalFlight":1,
+        "cabinClass":0,
+        "flightLeaveStartDate":"2016-05-24T06:00:00",
+        "flightLeaveEndDate":"2016-05-24T11:25:00",
+        "flightReturnStartDate":"2016-05-28T15:35:00",
+        "flightReturnEndDate":"2016-05-28T18:55:00",
+        "flightLeaveSpacingDay":0,
+        "flightReturnSpacingDay":0,
+        "transferListLeave":null,
+        "transferListReturn":null,
+        "directFlight":1,
+        "segmentsLeave":[
+          {
+            "airportCodeFrom":"BKK",
+            "airportCodeTo":"KUL",
+            "cityCodeFrom":"BKK",
+            "cityCodeTo":"KUL",
+            "airportNameFrom":"曼谷苏瓦纳蓬国际机场",
+            "airportNameTo":"吉隆坡国际机场",
+            "cityNameFrom":"曼谷",
+            "cityNameTo":"曼谷",
+            "airCorpCode":"MH",
+            "airCorpName":"马来西亚航空公司",
+            "cabinClass":0,
+            "flightNo":"797",
+            "departDate":"2016-05-24T06:00:00",
+            "arriveDate":"2016-05-24T09:10:00",
+            "spacingDay":0,
+            "timeSpan":"3h10m",
+            "planeType":"738",
+            "planeName":"波音737-800",
+            "marketingCarrierCode":"MH",
+            "operatingCarrierCode":"MH",
+            "operatingCarrierName":"马来西亚航空公司",
+            "termArrive":"",
+            "termDepart":""
+          },
+          {
+            "airportCodeFrom":"KUL",
+            "airportCodeTo":"SIN",
+            "cityCodeFrom":"KUL",
+            "cityCodeTo":"SIN",
+            "airportNameFrom":"吉隆坡国际机场",
+            "airportNameTo":"新加坡樟宜机场",
+            "cityNameFrom":"吉隆坡",
+            "cityNameTo":"吉隆坡",
+            "airCorpCode":"MH",
+            "airCorpName":"马来西亚航空公司",
+            "cabinClass":0,
+            "flightNo":"627",
+            "departDate":"2016-05-24T10:15:00",
+            "arriveDate":"2016-05-24T11:25:00",
+            "spacingDay":0,
+            "timeSpan":"1h10m",
+            "planeType":"738",
+            "planeName":"波音737-800",
+            "marketingCarrierCode":"MH",
+            "operatingCarrierCode":"MH",
+            "operatingCarrierName":"马来西亚航空公司",
+            "termArrive":"",
+            "termDepart":""
+          }
+        ],
+        "segmentsReturn":[
+          {
+            "airportCodeFrom":"SIN",
+            "airportCodeTo":"KUL",
+            "cityCodeFrom":"SIN",
+            "cityCodeTo":"KUL",
+            "airportNameFrom":"新加坡樟宜机场",
+            "airportNameTo":"吉隆坡国际机场",
+            "cityNameFrom":"新加坡",
+            "cityNameTo":"新加坡",
+            "airCorpCode":"MH",
+            "airCorpName":"马来西亚航空公司",
+            "cabinClass":0,
+            "flightNo":"624",
+            "departDate":"2016-05-28T15:35:00",
+            "arriveDate":"2016-05-28T16:45:00",
+            "spacingDay":0,
+            "timeSpan":"1h10m",
+            "planeType":"738",
+            "planeName":"波音737-800",
+            "marketingCarrierCode":"MH",
+            "operatingCarrierCode":"MH",
+            "operatingCarrierName":"马来西亚航空公司",
+            "termArrive":"",
+            "termDepart":""
+          },
+          {
+            "airportCodeFrom":"KUL",
+            "airportCodeTo":"BKK",
+            "cityCodeFrom":"KUL",
+            "cityCodeTo":"BKK",
+            "airportNameFrom":"吉隆坡国际机场",
+            "airportNameTo":"曼谷苏瓦纳蓬国际机场",
+            "cityNameFrom":"吉隆坡",
+            "cityNameTo":"吉隆坡",
+            "airCorpCode":"MH",
+            "airCorpName":"马来西亚航空公司",
+            "cabinClass":0,
+            "flightNo":"780",
+            "departDate":"2016-05-28T17:50:00",
+            "arriveDate":"2016-05-28T18:55:00",
+            "spacingDay":0,
+            "timeSpan":"1h5m",
+            "planeType":"738",
+            "planeName":"波音737-800",
+            "marketingCarrierCode":"MH",
+            "operatingCarrierCode":"MH",
+            "operatingCarrierName":"马来西亚航空公司",
+            "termArrive":"",
+            "termDepart":""
+          }
+        ],
+        "additionalPrice":0
+      },
+      "currencyCode":"CNY",
+      "totalFlightPrice":10876,
+      "createTime":"2016-05-06T16:53:00",
+      "isContinuePay":0,
+      "bookingRefNo":"TH05BKKFP0024265",
+      "travelers":Array[2],
+      "contactNumber":"86--12385692356",
+      "email":"1111",
+      "sexCode":2,
+      "firstName":"111",
+      "lastName":"111",
+      "hotelDetails":{
+        "hotleName":"Hotel Grand Pacific",
+        "checkInDate":"2016-05-24T00:00:00",
+        "checkoutDate":"2016-05-28T00:00:00",
+        "roomDetials":{
+          "roomName":"Deluxe Room",
+          "totalAdult":2,
+          "totalAdultPrice":10876,
+          "unitAdultPrice":5438,
+          "totalChild":0,
+          "totalChildPrice":0,
+          "unitChildPrice":0,
+          "numRoom":1
+        }
+      },
+      "tours":[
+        {
+          "tourID":166,
+          "tourName":"机场接送服务（ 拼车）",
+          "travelDate":"0001-01-01T00:00:00"
+        },
+        {
+          "tourID":2434,
+          "tourName":"**马来西亚乐高乐园电子门票(SIN)",
+          "travelDate":"2016-05-25T00:00:00"
+        },
+        {
+          "tourID":200,
+          "tourName":"新加坡环球影城?",
+          "travelDate":"2016-05-25T00:00:00"
+        }
+      ]
+    };
+
+    debugger;
+    var _tplPath="../hotel_flight_tour/tpl/"
+    var flight = new EJS({url: _tplPath+"t_flight_list.ejs"}).render(data);
+    var hotel = new EJS({url: _tplPath+"t_hotle_list.ejs"}).render(data);
+    var tour = new EJS({url: _tplPath+"t_tour_list.ejs"}).render(data);
+    var other = new EJS({url: _tplPath+"t_htf_order_detail.ejs"}).render(data);
+
+    $("#flight").html(flight);
+    $("#hotel").html(hotel);
+    $("#tour").html(tour);
+    $("#other").html(other);
+
+  };
+  return {
+    init: init
+  };
+});
+

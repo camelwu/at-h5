@@ -238,7 +238,6 @@
 				},
 				//格式化日期
 				format_date : function(dtime, format) {
-
 					var newDate =new Date(dtime.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"))
 					var year = newDate.getFullYear();
 					var yy = year.toString(), yy = yy.substr(-2), month = newDate.getMonth() + 1, day = newDate.getDate();
@@ -270,6 +269,42 @@
 					}
 					return timeStr;
 				},
+				//获取星期几
+				getWeek:function(dtime,format){
+            var date =new Date(dtime.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")),reslut;
+            switch (date.getDay()){
+              case 0:
+                reslut="日";
+                break;
+              case 1:
+                reslut="一";
+                break;
+              case 2:
+                reslut="二";
+                break;
+              case 3:
+                reslut="三";
+                break;
+              case 4:
+                reslut="四";
+                break;
+              case 5:
+                reslut="五";
+                break;
+              case 6:
+                reslut="六";
+                break;
+            }
+            if(format=="f1"){
+                return "周"+reslut;
+            }
+            else if(format=="f2"){
+              return "星期"+reslut;
+            }
+            else{
+              return "周"+reslut;
+            }
+          },
 				//比较时间串与当前时间的大小
 				compareTime : function(timeStr) {
 					if (timeStr == '' || timeStr == null) {
@@ -829,6 +864,14 @@
 					}
 
 				},
+        getCurrency:function(coin){
+          if(coin=="CNY"){
+            return "￥"
+          }
+          else  if(coin=="USD"){
+            return "$"
+          }
+        },
 				//前端静态分页
 				Jpage : function(containerId, pageObj) {
 					var totalCount = pageObj.totalCount;
