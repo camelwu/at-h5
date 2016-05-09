@@ -40,7 +40,7 @@ input{
   line-height: .8rem;
   text-align: center;
   color:rgb(153,153,153);
-  background-color: #f7f7f7;
+  background-color: #fcfcfc;
   border-bottom:1px solid #e3e3e3;
 }
 .index_tab div:nth-child(1){
@@ -239,7 +239,7 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
   position: absolute;
   display: none;
   z-index: 1;
-  left: 3.4rem;
+  left: 3.34rem;
   margin-top: .24rem;
 }
 .age_state_box div:first-child{
@@ -369,6 +369,11 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 /*   首页搜索页结束    */
 
 /*   机票列表页开始    */
+.header h3 i{
+  width: .34rem;
+  height: .45rem;
+  background-position: 81% 29%;
+}
 .data_info{
   position: fixed;
   z-index: 45;
@@ -635,6 +640,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .footer_three div{
   position: relative;
   float: left;
+  height: 1rem;
   text-align: center;
   width: 33.3%;
 }
@@ -679,6 +685,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   float: right;
   color: #fb6a22;
   font-weight: bold;
+  font-size: .28rem;
   line-height: .68rem;
 }
 .airway_list .aw_price span:first-child{
@@ -711,7 +718,8 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   overflow: hidden;
 }
 .rank_box li{
-   width: 95%;
+  position: relative;
+   width: 90%;
    height: .96rem;
    line-height: .96rem;
    margin-left: .28rem;
@@ -803,6 +811,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   color: #333333;
 }
 .detail .detail_list ul li{
+  position: relative;
   height: .96rem;
   border-bottom: 1px solid #e6e6e6;
   line-height: .96rem;

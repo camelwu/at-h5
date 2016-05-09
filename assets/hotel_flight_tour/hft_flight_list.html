@@ -25,7 +25,7 @@
             <a id="pageBack" href="javascript:window.history.go(-1);" class="header_back">
                 <i class="icon_back"></i>
             </a>
-            <a id="closeAirw" href="#" class="header_back" style="display: none">
+            <a id="closeAirw" href="#" class="header_back" style="display: none;">
                 <i class="icon_back"></i>
             </a>
             <h3>
@@ -153,7 +153,7 @@
         <!--   航空公司列表页    -->
         <div id="awContent" class="fl_content" style="display:none;padding-bottom: 0;">
             <ul id="airwayList" class="airway_list">
-                <li>
+                <li class="airway">
                     <div>
                         <img src="../images/flights.png" />
                     </div>
@@ -166,17 +166,17 @@
             </ul>
         </div>
         <footer class="list_footer footer_three">
-            <div id="foAirway">
+            <div id="foAirway" class="fo_div">
                 <b class="com_icon ic_aw"></b>
                 <i class="red_tip"></i>
                 <span>航空公司</span>
             </div>
-            <div id="foRank">
+            <div id="foRank" class="fo_div">
                 <b class="com_icon ic_rk"></b>
                 <i class="red_tip"></i>
                 <span>快速排序</span>
             </div>
-            <div id="foScreen">
+            <div id="foScreen" class="fo_div">
                 <b class="com_icon ic_sn"></b>
                 <i class="red_tip"></i>
                 <span>筛选</span>
@@ -185,41 +185,41 @@
     <div id="mbShadow" class="full_shadow"></div>
     <!--<div id="">-->
         <ul id="rankBox" class="rank_box">
-            <li class="active">价格从低到高<b class="hft_icon"></b></li>
-            <li>价格从高到低<b class="hft_icon"></b></li>
-            <li>出发时间从早到晚<b class="hft_icon"></b></li>
-            <li>出发时间从晚到早<b class="hft_icon"></b></li>
-            <li>直飞优先<b class="hft_icon"></b></li>
-            <li>耗时最短<b class="hft_icon"></b></li>
+            <li class="rank_item active">价格从低到高<b class="hft_icon"></b></li>
+            <li class="rank_item">价格从高到低<b class="hft_icon"></b></li>
+            <li class="rank_item">出发时间从早到晚<b class="hft_icon"></b></li>
+            <li class="rank_item">出发时间从晚到早<b class="hft_icon"></b></li>
+            <li class="rank_item">直飞优先<b class="hft_icon"></b></li>
+            <li class="rank_item">耗时最短<b class="hft_icon"></b></li>
         </ul>
     <!--</div>-->
     <div id="screenBox" class="screen_box">
         <ul class="title">
-            <li>取消</li>
-            <li>清空筛选</li>
-            <li>确定</li>
+            <li class="screen_btn">取消</li>
+            <li class="screen_btn">清空筛选</li>
+            <li class="screen_btn">确定</li>
         </ul>
         <div class="detail">
             <ul class="detail_title">
-                <li id="directFly" class="active">直飞</li>
-                <li id="share">共享</li>
-                <li id="flyTime">起飞时间</li>
+                <li id="directFly" class="title_li active">直飞</li>
+                <li id="share" class="title_li">共享</li>
+                <li id="flyTime" class="title_li">起飞时间</li>
             </ul>
             <div class="detail_list">
-                <ul id="directFlyDetail">
-                    <li class="active">不限<b class="hft_icon"></b></li>
-                    <li>仅看直飞<b class="hft_icon"></b></li>
+                <ul id="directFlyDetail" class="detail_ul">
+                    <li class="screen_item active">不限<b class="hft_icon"></b></li>
+                    <li class="screen_item">仅看直飞<b class="hft_icon"></b></li>
                 </ul>
-                <ul id="shareDetail" style="display: none">
-                    <li class="active">不限<b class="hft_icon"></b></li>
-                    <li>隐藏共享<b class="hft_icon"></b></li>
+                <ul id="shareDetail" class="detail_ul" style="display: none">
+                    <li class="screen_item active">不限<b class="hft_icon"></b></li>
+                    <li class="screen_item">隐藏共享<b class="hft_icon"></b></li>
                 </ul>
-                <ul id="flyTimeDetail" style="display: none">
-                    <li class="active">不限<b class="hft_icon"></b></li>
-                    <li>0点到6点<b class="hft_icon"></b></li>
-                    <li>6点到12点<b class="hft_icon"></b></li>
-                    <li>12点到18点<b class="hft_icon"></b></li>
-                    <li>18点到24点<b class="hft_icon"></b></li>
+                <ul id="flyTimeDetail" class="detail_ul" style="display: none">
+                    <li class="screen_item active">不限<b class="hft_icon"></b></li>
+                    <li class="screen_item">0点到6点<b class="hft_icon"></b></li>
+                    <li class="screen_item">6点到12点<b class="hft_icon"></b></li>
+                    <li class="screen_item">12点到18点<b class="hft_icon"></b></li>
+                    <li class="screen_item">18点到24点<b class="hft_icon"></b></li>
                 </ul>
             </div>
         </div>
