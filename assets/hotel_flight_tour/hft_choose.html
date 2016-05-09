@@ -151,18 +151,18 @@
     </div>
     <div class="tour">
       <div class="tourListHeader">
-        <span>景点</span><span class="tourNumber">(2)</span>
+        <span>景点</span><span class="tourNumber">(<%= tours.length %>)</span>
       </div>
       <ul class="tourOuter">
         <% tours.forEach(function(tour, item){
         var selectTravelDate = tour["selectTravelDate"]; %>
-        <li data-tour-id="<%=tour["tourID"]%>">
+        <li data-tour-id="<%=tour['tourID']%>">
         <div class="tourNameDate">
           <h4><span><%= item + 1 %> </span><%= tour["tourName"] %></h4>
           <div class="rightTip">选择日期和时间</div>
         </div>
         <div class="imgDate">
-          <img src="<%= tour["tourPictureURL"] %>">
+          <img src="<%= tour['tourPictureURL'] %>">
 
           <div class="right">
             <div class="dateArray">
@@ -180,7 +180,7 @@
             </div>
             <div class="noon">
               <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
-              <button class="<%= tourSession["isSelected"] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession["tourSessionEnumValue"]%>"><%= tourSession["tourSessionName"] %></button>
+              <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>"><%= tourSession["tourSessionName"] %></button>
               <% }) %>
             </div>
           </div>
