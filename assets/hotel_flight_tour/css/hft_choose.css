@@ -377,6 +377,7 @@ body{
 }
 .roomUl .plassPrice .hasChooseButton,.roomUl .plassPrice .noChooseButton{
   display: inline-block;
+  box-sizing: content-box;
   width: 1.28rem;
   height: .58rem;
   line-height: .58rem;
