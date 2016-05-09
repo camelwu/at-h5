@@ -491,7 +491,7 @@ Calender.prototype = {
      **/
     showSelected: function () {
         var values = this.result;
-        var firstEle = $("#" + this.id + "Date" + " #firstSelect");
+        var firstEle = $("#" + this.id + "Date" + " #electedTime0");
         var secondEle = $("#" + this.id + "Date" + " #electedTime1");
         var infoEle = $("#" + this.id + "Date" + " .info");
         for (var i = 0; i < values.length; i++) {
@@ -499,7 +499,11 @@ Calender.prototype = {
         }
         if (values.length === 1) {
             secondEle.parent().hide();
-            infoEle.addClass("second_info");
+            infoEle.addClass("second_info").show();
+        } else if (values.length === 0) {
+            firstEle.parent().hide();
+            secondEle.parent().hide();
+            infoEle.removeClass("second_info").show();
         } else {
             infoEle.hide();
         }
@@ -678,7 +682,17 @@ Calender.prototype = {
     },
     //清除选中日期
     clearClick: function () {
-        $("")
+        var that = this;
+        $(".calendar_tiper").on("click", ".icon_close", function (event) {
+            if ($(this).parent().index() === 0) {
+                that.result.length = 0; //清空选择记录
+            } else {
+                that.result.length = 1; //清空选择记录
+            }
+            console.info(that.result);
+            that.resetSelected();
+            that.showSelected();
+        });
     },
     // 表单的事件
     inputEvent: function () {
