@@ -176,10 +176,11 @@
    },
 
    createTags:function(){
-    var data = arguments[0], that = hftChoose, html="";
-    html = new EJS({url: 'js/hft_choose.ejs'}).render(data);
-    document.body.innerHTML = html;
-    return that;
+     var data = arguments[0], that = hftChoose, tempStr="", outputStr="";
+      tempStr = $("#template").html();
+      outputStr = ejs.render(tempStr,data);
+      $(".all_elements").eq(0).html(outputStr);
+      return that;
   },
 
 
