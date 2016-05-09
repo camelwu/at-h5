@@ -540,7 +540,6 @@ var flight_list = {
                 default :
                     void(0);
             };
-
             var moreOptions = document.querySelector('.reset-action-wrap'), leftWrap = document.querySelector('#filter-modal');
             moreOptions.onclick = function(event){
                 var event = event || window.event;
