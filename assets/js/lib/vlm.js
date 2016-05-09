@@ -864,6 +864,14 @@
 					}
 
 				},
+        getCurrency:function(coin){
+          if(coin=="CNY"){
+            return "￥"
+          }
+          else  if(coin=="USD"){
+            return "$"
+          }
+        },
 				//前端静态分页
 				Jpage : function(containerId, pageObj) {
 					var totalCount = pageObj.totalCount;
