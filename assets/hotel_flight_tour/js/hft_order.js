@@ -1,187 +1,167 @@
-/**
- * Created by qzz on 2016/5/4.
- */
-define(['jquery',"ejs"],function ($,ejs){
-  var init = function (){
-    //假数据
-    var data={
-      "flightInfo":{
-        "segmentsLeaveTotalTravelTimeString":"4h25m",
-        "segmentsReturnTotalTravelTimeString":"4h20m",
-        "cityCodeFrom":"BKK",
-        "cityCodeTo":"SIN",
-        "cityNameFrom":"曼谷",
-        "cityNameTo":"新加坡",
-        "isLeaveShareFlight":0,
-        "isReturnShareFlight":0,
-        "isInternationalFlight":1,
-        "cabinClass":0,
-        "flightLeaveStartDate":"2016-05-24T06:00:00",
-        "flightLeaveEndDate":"2016-05-24T11:25:00",
-        "flightReturnStartDate":"2016-05-28T15:35:00",
-        "flightReturnEndDate":"2016-05-28T18:55:00",
-        "flightLeaveSpacingDay":0,
-        "flightReturnSpacingDay":0,
-        "transferListLeave":null,
-        "transferListReturn":null,
-        "directFlight":1,
-        "segmentsLeave":[
-          {
-            "airportCodeFrom":"BKK",
-            "airportCodeTo":"KUL",
-            "cityCodeFrom":"BKK",
-            "cityCodeTo":"KUL",
-            "airportNameFrom":"曼谷苏瓦纳蓬国际机场",
-            "airportNameTo":"吉隆坡国际机场",
-            "cityNameFrom":"曼谷",
-            "cityNameTo":"曼谷",
-            "airCorpCode":"MH",
-            "airCorpName":"马来西亚航空公司",
-            "cabinClass":0,
-            "flightNo":"797",
-            "departDate":"2016-05-24T06:00:00",
-            "arriveDate":"2016-05-24T09:10:00",
-            "spacingDay":0,
-            "timeSpan":"3h10m",
-            "planeType":"738",
-            "planeName":"波音737-800",
-            "marketingCarrierCode":"MH",
-            "operatingCarrierCode":"MH",
-            "operatingCarrierName":"马来西亚航空公司",
-            "termArrive":"",
-            "termDepart":""
+
+(function () {
+  "use strict";
+  //加载动画
+  function package_detail() {
+
+    $(window).load(function () {
+      $("#status").fadeOut();
+      $("#preloader").delay(400).fadeOut("medium");
+    });
+  };
+  package_detail();
+  //初始化
+  var hftFlightHotelTourInfo=JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+  console.log(hftFlightHotelTourInfo);
+
+  var hftCreateOrderPara=JSON.parse(sessionStorage.hftCreateOrderPara);
+  hftCreateOrderPara.hotelName=hftFlightHotelTourInfo.hotelInfo.hotelName;
+  console.log(hftCreateOrderPara);
+
+  function init() {
+    //机票详情
+    var flightdet = new EJS({url: 'js/hft_flightdata.ejs'}).render(hftFlightHotelTourInfo)
+    $('#flightCirTab').html(flightdet);
+
+    //酒店详情
+    var hoteldet = new EJS({url: 'js/hft_hoteldata.ejs'}).render(hftCreateOrderPara)
+    $('#hftHotelTab').html(hoteldet);
+
+    //景点详情
+    var tourdet = new EJS({url: 'js/hft_tourdata.ejs'}).render(hftFlightHotelTourInfo)
+    $('#hftTourTab').html(tourdet);
+
+    //总价
+    var totamountnum='￥'+hftCreateOrderPara.TotalPrice;
+    $('.num1 >i').html(totamountnum);
+
+    //费用明细
+    var faredet = new EJS({url: 'js/hft_faredata.ejs'}).render(hftCreateOrderPara)
+    $('#fareDetail').html(faredet);
+
+  }
+  init();
+
+
+//下单
+  var orderSub=document.querySelector('.order_submit');
+  function hf_order(obj){
+    obj.onclick=function(){
+
+      var Parmeters = {
+        "Parameters": {
+          "SetID": datahot.SetID,
+          "CacheID": datahot.CacheID,
+          "CityCodeFrom": datahot.CityCodeFrom,
+          "CityCodeTo": datahot.CityCodeTo,
+          "DepartDate": datahot.DepartDate,
+          "ReturnDate": datahot.ReturnDate,
+          "HotelID": datahot.HotelID,
+          "RoomID": datahot.RoomID,
+          "MemberId": localStorage.memberid,
+
+          "ContactDetail": {
+            "SexCode": "Ms",
+            "FirstName": $('.hf_con_firstname').val(),
+            "LastName": $('.hf_con_lastname').val(),
+            "Email": $('.hf_con_email').val(),
+            "CountryNumber": $('.tel-btn span').html().substring(1),
+            "MobilePhone": $('.hf_con_cell').val()
           },
-          {
-            "airportCodeFrom":"KUL",
-            "airportCodeTo":"SIN",
-            "cityCodeFrom":"KUL",
-            "cityCodeTo":"SIN",
-            "airportNameFrom":"吉隆坡国际机场",
-            "airportNameTo":"新加坡樟宜机场",
-            "cityNameFrom":"吉隆坡",
-            "cityNameTo":"吉隆坡",
-            "airCorpCode":"MH",
-            "airCorpName":"马来西亚航空公司",
-            "cabinClass":0,
-            "flightNo":"627",
-            "departDate":"2016-05-24T10:15:00",
-            "arriveDate":"2016-05-24T11:25:00",
-            "spacingDay":0,
-            "timeSpan":"1h10m",
-            "planeType":"738",
-            "planeName":"波音737-800",
-            "marketingCarrierCode":"MH",
-            "operatingCarrierCode":"MH",
-            "operatingCarrierName":"马来西亚航空公司",
-            "termArrive":"",
-            "termDepart":""
-          }
-        ],
-        "segmentsReturn":[
-          {
-            "airportCodeFrom":"SIN",
-            "airportCodeTo":"KUL",
-            "cityCodeFrom":"SIN",
-            "cityCodeTo":"KUL",
-            "airportNameFrom":"新加坡樟宜机场",
-            "airportNameTo":"吉隆坡国际机场",
-            "cityNameFrom":"新加坡",
-            "cityNameTo":"新加坡",
-            "airCorpCode":"MH",
-            "airCorpName":"马来西亚航空公司",
-            "cabinClass":0,
-            "flightNo":"624",
-            "departDate":"2016-05-28T15:35:00",
-            "arriveDate":"2016-05-28T16:45:00",
-            "spacingDay":0,
-            "timeSpan":"1h10m",
-            "planeType":"738",
-            "planeName":"波音737-800",
-            "marketingCarrierCode":"MH",
-            "operatingCarrierCode":"MH",
-            "operatingCarrierName":"马来西亚航空公司",
-            "termArrive":"",
-            "termDepart":""
-          },
-          {
-            "airportCodeFrom":"KUL",
-            "airportCodeTo":"BKK",
-            "cityCodeFrom":"KUL",
-            "cityCodeTo":"BKK",
-            "airportNameFrom":"吉隆坡国际机场",
-            "airportNameTo":"曼谷苏瓦纳蓬国际机场",
-            "cityNameFrom":"吉隆坡",
-            "cityNameTo":"吉隆坡",
-            "airCorpCode":"MH",
-            "airCorpName":"马来西亚航空公司",
-            "cabinClass":0,
-            "flightNo":"780",
-            "departDate":"2016-05-28T17:50:00",
-            "arriveDate":"2016-05-28T18:55:00",
-            "spacingDay":0,
-            "timeSpan":"1h5m",
-            "planeType":"738",
-            "planeName":"波音737-800",
-            "marketingCarrierCode":"MH",
-            "operatingCarrierCode":"MH",
-            "operatingCarrierName":"马来西亚航空公司",
-            "termArrive":"",
-            "termDepart":""
-          }
-        ],
-        "additionalPrice":0
-      },
-      "currencyCode":"CNY",
-      "totalFlightPrice":10876,
-      "createTime":"2016-05-06T16:53:00",
-      "isContinuePay":0,
-      "bookingRefNo":"TH05BKKFP0024265",
-      "travelers":Array[2],
-      "contactNumber":"86--12385692356",
-      "email":"1111",
-      "sexCode":2,
-      "firstName":"111",
-      "lastName":"111",
-      "hotelDetails":{
-      "hotleName":"Hotel Grand Pacific",
-        "checkInDate":"2016-05-24T00:00:00",
-        "checkoutDate":"2016-05-28T00:00:00",
-        "roomDetials":{
-        "roomName":"Deluxe Room",
-          "totalAdult":2,
-          "totalAdultPrice":10876,
-          "unitAdultPrice":5438,
-          "totalChild":0,
-          "totalChildPrice":0,
-          "unitChildPrice":0,
-          "numRoom":1
+          "CurrencyCode": datahot.CurrencyCode,
+          "TotalPrice": datahot.priceDetail.totalAmount
+        },
+        "ForeEndType": 3,
+        "Code": "50100004"
       }
-    },
-      "tours":[
+
+      //房间信息
+      Parmeters.Parameters.RoomDetails=datahot.RoomDetails;
+
+      //出行人
+      var traveller=[];
+      var traInfo_sel=JSON.parse(localStorage.travellerInfo_selected);
+      for(var i=0;i<traInfo_sel.length; i++)
       {
-        "tourID":166,
-        "tourName":"机场接送服务（ 拼车）",
-        "travelDate":"0001-01-01T00:00:00"
-      },
-      {
-        "tourID":2434,
-        "tourName":"**马来西亚乐高乐园电子门票(SIN)",
-        "travelDate":"2016-05-25T00:00:00"
-      },
-      {
-        "tourID":200,
-        "tourName":"新加坡环球影城?",
-        "travelDate":"2016-05-25T00:00:00"
+        var tra={};
+        var person={};
+        person.FirstName=traInfo_sel[i].FirstName;
+        person.LastName=traInfo_sel[i].LastName;
+        person.PassengerType=traInfo_sel[i].PassengerType;
+        person.DateOfBirth=traInfo_sel[i].DateOfBirth;
+        tra.IdNumber=traInfo_sel[i].CertificateInfo.IdNumber;
+        tra.IdCountry=traInfo_sel[i].CertificateInfo.IdCountry;
+        tra.idType=traInfo_sel[i].CertificateInfo.IdType;
+        tra.IdActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
+        person.CertificateInfo=tra;
+        person.SexCode=traInfo_sel[i].SexCode;
+        person.CountryCode=traInfo_sel[i].CountryCode;
+        traveller.push(person);
       }
-    ]
+
+      Parmeters.Parameters.TravellerInfo=traveller;
+
+      if( $('.order-tlist2').length != window.localStorage.peotot){
+        jAlert('请添加出行人');
+        return;
+      }
+      //联系人姓名检验
+      var inputlast=$('.hf_con_lastname');
+      if(! vlm.Utils.validate.engName(inputlast.val())){
+        jAlert('请您输入英文的联系人姓');
+        return;
+      }
+      var inputfir=$('.hf_con_firstname');
+      if(! vlm.Utils.validate.engName(inputfir.val())){
+        jAlert('请您输入英文的联系人名');
+        return;
+      }
+      // 手机号邮箱检验
+      var oMobile = $('.hf_con_cell')[0].value;
+      var oEmail = $('.hf_con_email')[0].value;
+
+      if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+      {
+        jAlert('请输入正确的手机号');
+        return;
+      }
+      if ( ! vlm.Utils.validate.email(oEmail) )
+      {
+        jAlert('请输入正确的邮箱');
+        return;
+      }
+
+      console.log(Parmeters);
+      vlm.loading();
+      vlm.loadJson("", JSON.stringify(Parmeters), hotel_flight_back);
     };
-    
-    var _tplPath="../hotel_flight_tour/tpl/t_hft_order_detail_list.ejs"
-    var html = new EJS({url: _tplPath}).render(data)
-    alert("order");
-  };
-  return {
-    init: init
-  };
-});
+  }
+  hf_order(orderSub);
+
+  //下单回调函数
+  function hotel_flight_back(ret){
+    var json=ret;
+    console.log(json);
+    vlm.loadend();
+    if(json.success)
+    {
+      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
+    }else{
+      jAlert(json.message);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+})();
 
