@@ -203,24 +203,8 @@ var data = {
           }],
         "addtionalPrice": 0.0,
         "totalAmount": 13966.0
-      },
-        {
-          "roomID": 10996872,
-          "roomName": "Standard Room",
-          "roomPictureURL": "http://packages.asiatravel.com/packagebooking/crs.style/img/icon/room-noimage.png",
-          "includedBreakfast": 1,/*是否包含早餐*/
-          "roomDescription": null,/*房间描述*/
-          "prices": [
-            {
-              "category": 1,/*客人类型*/
-              "quantity": 2,/*人数*/
-              "currencyCode": "CNY",
-              "amount": 6983.0,/*单价*/
-              "totalAmount": 13966.0/*总价*/
-            }],
-          "addtionalPrice": 0.0,
-          "totalAmount": 13966.0
-        }
+      }
+
       ],
       "additionalPrice": 0.0,/*和当前所选酒店房间的差价*/
       "hotelAddress": null,

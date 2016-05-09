@@ -86,14 +86,13 @@
         <p class="starWifi"><span class="star"><%= hftChoose.setChineseStar(hotelInfo['starRating']) %></span><span
             class="<%= hotelInfo['isFreeWiFi'] == 1 ? 'WiFi' : '' %>"></span><span
             class="<%= hotelInfo['isFreeBus'] == 1 ? 'car' : '' %>"></span></p>
-
         <p><%= hotelInfo['location'] %></p>
       </div>
       <i></i>
     </div>
     <ul class="roomUl">
       <% hotelInfo["rooms"].forEach(function(room, item){
-      if(item > 2) {return}; %>
+      if(item > 1) {return}; %>
       <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
         <div class="roomName">
           <p><%= room['roomName'] %></p>
@@ -104,13 +103,25 @@
             <% } %>
           </p></div>
         <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
+          <%if(window.location.search){%>
+          <%if(room['roomID']==window.location.search.substring(1)){%>
+               <button class="hasChooseButton">已选择</button>
+          <% }else{%>
+               <button class="noChooseButton>">选择</button>
+          <% }%>
+          <% }else{%>
+          <% if(item==0){%>
           <button class="hasChooseButton">已选择</button>
+          <%}else{%>
+          <button class="noChooseButton>">选择</button>
+          <% }%>
+          <%}%>
         </div>
       </li>
       <% }) %>
     </ul>
-    <%if(hotelInfo["rooms"].length>2){%>
-          <div class="check-more-room">查看更多房型<span>(<%= hotelInfo["rooms"].length-3%>)</span><span class="check-more-down"></span></div>
+    <%if(hotelInfo["rooms"].length>=3){%>
+          <div class="check-more-room">查看更多房型<span>(<%= hotelInfo["rooms"].length-2%>)</span><span class="check-more-down"></span></div>
     <% }%>
   </div>
   <div class="tour">
