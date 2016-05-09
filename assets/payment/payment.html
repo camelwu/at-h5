@@ -361,7 +361,8 @@
         <ul class="p-hotelinfo">
             <l>{%=packageName%}</l>
             <li>
-                <span class="hf-f"><p>{%=vlm.Utils.format_date(tours[0].travelDate,"cymd")%}（当地时间为准）</p></span>
+                {% var travelDate; if(tours[0].travelDate==undefined){ travelDate= tours[tours.length-1].travelDate} else{ travelDate=tours[0].travelDate} %}
+                <span class="hf-f"><p>{%=vlm.Utils.format_date(travelDate,"cymd")%}（当地时间为准）</p></span>
             </li>
             <li>
                 <div class = "hf-anum">
