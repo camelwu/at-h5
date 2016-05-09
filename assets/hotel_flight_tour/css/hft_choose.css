@@ -7,12 +7,24 @@
 body{
   background: #f7f7f7;
 }
+.header_down_text{
+  height: .58rem;
+  position: fixed;
+  top: .88rem;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
+  background-color: #fcfcfc;
+  opacity: .95;
+  text-align: center;
+}
 .content{
   padding-top:.88rem;
   position: relative;
 }
 .content-down{
-  padding-top:1.52rem;
+  padding-top:1.42rem;
   position: relative;
 }
 .top_info{

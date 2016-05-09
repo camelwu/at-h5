@@ -1,4 +1,5 @@
-<html><head>
+<html>
+<head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
   <meta name="screen-orientation" content="portrait">
@@ -11,11 +12,86 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="green">
   <meta name="Keywords" content="亚洲旅行网">
   <meta name="Description" content="境外专业旅行服务提供机构">
-  <title>机票详情页 - 亚洲旅行网</title>
+  <title>资源选择页 - 亚洲旅行网</title>
   <link href="../styles/reset.css" rel="stylesheet" type="text/css">
   <link href="css/hft_choose.css" rel="stylesheet" type="text/css">
 </head>
-<body></body>
+<body>
+<div class="all_elements"></div>
+</body>
+<script id="template" type="text/template">
+  <header class="header">
+    <a href="#" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3><span>北京</span><i class="arrowDouble"></i><span>泰国</span></h3>
+  </header>
+  <p class="header_down_text">交通总耗时<span>2h33m</span></p>
+  <div class="content content-down">
+    <div class="ticket">
+      <ul class="flightOuter">
+        <li class="tripGo">
+          <div class="dateWeekCity">
+            <span></span>
+            <span><%= flightInfo["flightLeaveStartDate"].substring(5, 10) %></span><span><%= hftFlightDetail.setWeekItems(flightInfo["flightLeaveStartDate"]) %></span><span><%= flightInfo["cityNameFrom"] %></span><span>-</span><span><%= flightInfo["cityNameTo"] %></span>
+          </div>
+          <div class="timeAirport">
+            <div class="left">
+              <span class="startTime"><%= flightInfo["flightLeaveStartDate"].substring(11, 16) %></span><span
+              class="startPort"><%= flightInfo["segmentsLeave"][0]["airportNameFrom"] %><%= flightInfo["segmentsLeave"][0]["termDepart"] %></span>
+            </div>
+            <div class="middle">
+              <div class="timeCost"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></div>
+              <div class="toArrow"></div>
+              <div class="transferCity">
+                转<%= flightInfo["transferListLeave"].length < 2 ? flightInfo["transferListLeave"][0] : flightInfo["transferListLeave"].length + '次' %></div>
+            </div>
+            <div class="right">
+            <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %><span
+              class="plusDay">+1天</span></span>
+            <span
+              class="arrivePort"><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["termArrive"] %></span>
+            </div>
+          </div>
+          <p class="flightDetailInfo">
+            <span><%= flightInfo["segmentsLeave"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsLeave"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsLeave"][0]["flightNo"] %></span><span><%= flightInfo["segmentsLeave"][0]["planeName"] %></span>
+          </p>
+        </li>
+        <p class="flightDetailArrow addMargin">
+          中转莫斯科<span>2h33m</span>
+        </p>
+        <li class="tripBack">
+          <div class="dateWeekCity">
+            <span></span>
+            <span><%= flightInfo["flightReturnStartDate"].substring(5, 10) %></span><span><%= hftFlightDetail.setWeekItems(flightInfo["flightReturnStartDate"]) %></span><span><%= flightInfo["cityNameTo"] %></span><span>-</span><span><%= flightInfo["cityNameFrom"] %></span>
+          </div>
+          <div class="timeAirport">
+            <div class="left">
+              <span class="startTime"><%= flightInfo["flightReturnStartDate"].substring(11, 16) %></span>
+            <span
+              class="startPort"><%= flightInfo["segmentsReturn"][0]["airportNameFrom"] %><%= flightInfo["segmentsReturn"][0]["termDepart"] %></span>
+            </div>
+            <div class="middle">
+              <div class="timeCost"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></div>
+              <div class="toArrow"></div>
+              <div class="transferCity">
+                转<%= flightInfo["transferListReturn"].length < 2 ? flightInfo["transferListReturn"][0] : flightInfo["transferListReturn"].length + '次' %></div>
+            </div>
+            <div class="right">
+            <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %><span
+              class="plusDay">+1天</span></span>
+            <span
+              class="arrivePort"><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["termArrive"] %></span>
+            </div>
+          </div>
+          <p class="flightDetailInfo">
+            <span><%= flightInfo["segmentsReturn"][0]["operatingCarrierName"] %></span><span><%= flightInfo["segmentsReturn"][0]["operatingCarrierCode"] %><%= flightInfo["segmentsReturn"][0]["flightNo"] %></span><span><%= flightInfo["segmentsReturn"][0]["planeName"] %></span>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/plugins.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
@@ -23,4 +99,3 @@
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script type="text/javascript" src="js/hft_flightDetail.js"></script>
 </html>
-

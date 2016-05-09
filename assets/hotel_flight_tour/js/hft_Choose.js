@@ -109,8 +109,7 @@
     if(resultJSON.success==1&&resultJSON.code=="200"){
        resultData = resultJSON.data;
        storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
-       //that.createTags(resultData).addEvent();
-       that.createTags(resultData)
+       that.createTags(resultData).addEvent();
     }else{
       //jAlert("没有数据")
     }
@@ -181,12 +180,7 @@
       tempStr = $("#template").html();
       outputStr = ejs.render(tempStr,data);
       $(".all_elements").eq(0).html(outputStr);
-
-    // html = new EJS({url: 'js/hft_choose.ejs'}).render(data);
-    // html = ejs.render('hft_choose.ejs',data);
-    // html = ejs.renderFile('hft_choose.ejs');
-   // document.body.innerHTML = html;
-    return that;
+      return that;
   },
 
 
