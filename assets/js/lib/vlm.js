@@ -239,7 +239,11 @@
 				},
 				//格式化日期
 				format_date : function(dtime, format) {
-					var newDate =new Date(dtime.replace("T"," ").replace("-","/"))
+
+
+          var stringTime=dtime.replace('-',"/").replace('-',"/").replace('T'," ");
+          console.log(stringTime)
+					var newDate =new Date(stringTime);
 					var year = newDate.getFullYear();
 					var yy = year.toString(), yy = yy.substr(-2), month = parseInt(newDate.getMonth()) + 1, day = parseInt(newDate.getDate());
 					var hour = newDate.getHours(), minutes = parseInt(newDate.getMinutes()), seconds = parseInt(newDate.getSeconds());
