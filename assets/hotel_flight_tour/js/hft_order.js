@@ -47,7 +47,7 @@
     $('.hft_det_mask').on('click',function(){
       $('.hft_det_mask').hide();
       $('.detail_fale').removeClass('open');
-      $('.hft_detail_fare').css('bottom','-49px');
+      $('.hft_detail_fare').css('bottom','-150px');
     })
 
     //明细showhide
@@ -75,75 +75,75 @@
 
       var Parmeters = {
         "Parameters": {
-          "SetID": datahot.SetID,
-          "CacheID": datahot.CacheID,
-          "CityCodeFrom": datahot.CityCodeFrom,
-          "CityCodeTo": datahot.CityCodeTo,
-          "DepartDate": datahot.DepartDate,
-          "ReturnDate": datahot.ReturnDate,
-          "HotelID": datahot.HotelID,
-          "RoomID": datahot.RoomID,
+          "SetID": hftCreateOrderPara.SetID,
+          "CacheID": hftCreateOrderPara.CacheID,
+          "CityCodeFrom": hftCreateOrderPara.CityCodeFrom,
+          "CityCodeTo": hftCreateOrderPara.CityCodeTo,
+          "DepartDate": hftCreateOrderPara.DepartDate,
+          "ReturnDate": hftCreateOrderPara.ReturnDate,
+          "HotelID": hftCreateOrderPara.HotelID,
+          "RoomID": hftCreateOrderPara.RoomID,
           "MemberId": localStorage.memberid,
 
           "ContactDetail": {
             "SexCode": "Ms",
-            "FirstName": $('.hf_con_firstname').val(),
-            "LastName": $('.hf_con_lastname').val(),
-            "Email": $('.hf_con_email').val(),
+            "FirstName": $('.hft_con_firstname').val(),
+            "LastName": $('.hft_con_lastname').val(),
+            "Email": $('.hft_con_email').val(),
             "CountryNumber": $('.tel-btn span').html().substring(1),
-            "MobilePhone": $('.hf_con_cell').val()
+            "MobilePhone": $('.hft_con_cell').val()
           },
-          "CurrencyCode": datahot.CurrencyCode,
-          "TotalPrice": datahot.priceDetail.totalAmount
+          "CurrencyCode": hftCreateOrderPara.CurrencyCode,
+          "TotalPrice": hftCreateOrderPara.TotalPrice
         },
         "ForeEndType": 3,
         "Code": "50100004"
       }
 
       //房间信息
-      Parmeters.Parameters.RoomDetails=datahot.RoomDetails;
+      Parmeters.Parameters.RoomDetails=hftCreateOrderPara.RoomDetails;
 
       //出行人
-      var traveller=[];
-      var traInfo_sel=JSON.parse(localStorage.travellerInfo_selected);
-      for(var i=0;i<traInfo_sel.length; i++)
-      {
-        var tra={};
-        var person={};
-        person.FirstName=traInfo_sel[i].FirstName;
-        person.LastName=traInfo_sel[i].LastName;
-        person.PassengerType=traInfo_sel[i].PassengerType;
-        person.DateOfBirth=traInfo_sel[i].DateOfBirth;
-        tra.IdNumber=traInfo_sel[i].CertificateInfo.IdNumber;
-        tra.IdCountry=traInfo_sel[i].CertificateInfo.IdCountry;
-        tra.idType=traInfo_sel[i].CertificateInfo.IdType;
-        tra.IdActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
-        person.CertificateInfo=tra;
-        person.SexCode=traInfo_sel[i].SexCode;
-        person.CountryCode=traInfo_sel[i].CountryCode;
-        traveller.push(person);
-      }
+      //var traveller=[];
+      //var traInfo_sel=JSON.parse(localStorage.travellerInfo_selected);
+      //for(var i=0;i<traInfo_sel.length; i++)
+      //{
+      //  var tra={};
+      //  var person={};
+      //  person.FirstName=traInfo_sel[i].FirstName;
+      //  person.LastName=traInfo_sel[i].LastName;
+      //  person.PassengerType=traInfo_sel[i].PassengerType;
+      //  person.DateOfBirth=traInfo_sel[i].DateOfBirth;
+      //  tra.IdNumber=traInfo_sel[i].CertificateInfo.IdNumber;
+      //  tra.IdCountry=traInfo_sel[i].CertificateInfo.IdCountry;
+      //  tra.idType=traInfo_sel[i].CertificateInfo.IdType;
+      //  tra.IdActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
+      //  person.CertificateInfo=tra;
+      //  person.SexCode=traInfo_sel[i].SexCode;
+      //  person.CountryCode=traInfo_sel[i].CountryCode;
+      //  traveller.push(person);
+      //}
+      //
+      //Parmeters.Parameters.TravellerInfo=traveller;
 
-      Parmeters.Parameters.TravellerInfo=traveller;
-
-      if( $('.order-tlist2').length != window.localStorage.peotot){
-        jAlert('请添加出行人');
-        return;
-      }
+      //if( $('.order-tlist2').length != window.localStorage.peotot){
+      //  jAlert('请添加出行人');
+      //  return;
+      //}
       //联系人姓名检验
-      var inputlast=$('.hf_con_lastname');
+      var inputlast=$('.hft_con_lastname');
       if(! vlm.Utils.validate.engName(inputlast.val())){
         jAlert('请您输入英文的联系人姓');
         return;
       }
-      var inputfir=$('.hf_con_firstname');
+      var inputfir=$('.hft_con_firstname');
       if(! vlm.Utils.validate.engName(inputfir.val())){
         jAlert('请您输入英文的联系人名');
         return;
       }
       // 手机号邮箱检验
-      var oMobile = $('.hf_con_cell')[0].value;
-      var oEmail = $('.hf_con_email')[0].value;
+      var oMobile = $('.hft_con_cell')[0].value;
+      var oEmail = $('.hft_con_email')[0].value;
 
       if ( ! vlm.Utils.validate.mobileNo(oMobile) )
       {
