@@ -13,9 +13,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="green">
     <meta name="Keywords" content="亚洲旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
-    <link href="styles/framework.css"	rel="stylesheet" type="text/css">
-    <link href="styles/style.css"		rel="stylesheet" type="text/css">
-    <link href="styles/owl.theme.css"	rel="stylesheet" type="text/css">
     <title>景点列表页</title>
     <link rel="stylesheet" href="../styles/reset.css"/>
     <link rel="stylesheet" href="css/hft_scenic_list.css"/>
@@ -27,7 +24,12 @@
     <!--</div>-->
 <!--</div>-->
 <div class="contents">
-    <header class="header"></header>
+    <div class="header">
+        <a href="#" class="header_back">
+            <i class="icon_back"></i>
+        </a>
+        <h3>自由行</h3>
+    </div>
     <div class="snap-content">
         <section class="time_people_list">
             <span class = "time_people_list_time">
@@ -141,15 +143,14 @@
 <div class = "shade">
     <!--排序快-->
   <div class="shade_div" id = "shadeDiv1"></div>
-  <ul class="rank" id = "Rank">
-        <li>价格从高到低 <i></i></li>
-        <li>价格从低到高 <i></i></li>
-        <li>评分从高到低 <i></i></li>
-        <li>星级从高到低 <i></i></li>
-        <li>星际从低到高 <i></i></li>
+    <% fpr(var i =0;i< SortTypes.length-1;i++){%>
+     <ul class="rank" id = "Rank">
+        <li><% SortTypes[i].SortText %><i></i></li>
     </ul>
+    <%}%>
     <!--帅选快-->
   <div class="shade_div" id = "shadeDiv2"></div>
+    <% for(var j < Themes.length-1;j++)%>
   <div class="filter" id = "Filter">
     <div class = "filter_button">
       <p class = "filter_button_l">取消</p>
@@ -172,22 +173,21 @@
       </div>
     </div>
   </div>
+    <% }%>
 </div>
 </body>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
 <script>
   $(function(){
           $("#footerLeft").on("click",function(){
               $("#shadeDiv1").css({'display':'block'});
-              $("#Rank").css({'bottom':'0'});
+              $("#Rank").css({'bottom':'.9rem'});
           });
-          $("#shadeDiv1").on("click",function(){
-              $("#shadeDiv1").css({'display':'none'});
-              $("#Rank").css({'bottom':-2222+'rem'});
-       });
           $("#footerRight").on("click",function(){
              $("#shadeDiv2").css({'display':'block'});
-            $("#Filter").css({'bottom':0});
+            $("#Filter").css({'bottom':'.9rem'});
           });
           $("#shadeDiv2").on("click",function(){
               $("#shadeDiv2").css({'display':'none'});
@@ -195,6 +195,7 @@
       });
     });
   $(function(){
+//      价格筛选
       var li  = $("ul#Rank li");
       var b = $("ul#Rank li i");
       for(var i = 0;i < li.length;i++){
@@ -207,6 +208,8 @@
               }
               li[index].className = 'checked_theme';
               b[index].className = 'checked';
+                $("#shadeDiv1").css({'display':'none'});
+                $("#Rank").css({'bottom':-2222+'rem'});
             }else{
               for(var j = 0;j < li.length;j++){
                 li[j].className = '';
@@ -215,10 +218,13 @@
               li[0].className = '';
               li[index].className = 'checked_theme';
               b[index].className = 'checked';
+                $("#shadeDiv1").css({'display':'none'});
+                $("#Rank").css({'bottom':-2222+'rem'});
             }
           };
         })(i);
       }
-  })
+  });
 </script>
+
 </html>
