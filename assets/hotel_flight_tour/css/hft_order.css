@@ -90,6 +90,9 @@ input {
   display: inline-block;
   vertical-align: top;
 }
+.fli_cir_right{
+  width: 1.5rem;
+}
 
 .flight_terminal {
   white-space: nowrap;
@@ -119,9 +122,8 @@ input {
 }
 
 .fli_cir_right i {
-  display: inline-block;
-  vertical-align: top;
   margin-top: 01px;
+  margin-right: .12rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-position: -5.2rem -2.14rem;
   background-size: 6.6rem 4.55rem;
@@ -231,6 +233,7 @@ input {
   font-size: .24rem;
   line-height: .68rem;
   margin-right: .45rem;
+  color: #999;
 }
 
 li.order_tlist2 {
@@ -341,27 +344,19 @@ li.order_tlist2 {
 
 .detail_fale {
   display: inline-block;
-  vertical-align: top;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -3.22rem -.44rem;
-  background-size: 6.6rem 4.55rem;
+  margin-top: .44rem;
+  background: url(../../images/hotel_flight_tour/arrow-down-orange.png) no-repeat;
+  background-size: .24rem .14rem;
   width: .32rem;
-  height: .32rem;
-  transform: rotate(90deg);
+  height: .2rem;
   transition: 0.3s all ease;
 }
 
 .detail_fale.open {
-  display: inline-block;
-  vertical-align: top;
-  background: url(../../images/ui/icon_common.png) no-repeat;
-  background-position: -3.22rem -.44rem;
-  background-size: 6.6rem 4.55rem;
-  width: .32rem;
-  height: .32rem;
-  transform: rotate(270deg);
+  margin-top: .44rem;
+  transform: rotate(180deg);
+  transform-origin: 50% 25%;
   transition: 0.3s all ease;
-
 }
 
 /*预定footer*/
@@ -384,14 +379,26 @@ li.order_tlist2 {
   text-align: center;
 }
 
+.order_num_tab{
+  width: 66%;
+  margin: 0 auto;
+}
+
 .order_num span.num1 {
   height: 100%;
   display: inline-block;
   vertical-align: top;
   font-size: .3rem;
-  width: 60%;
 }
-
+.order_num span.num1 >i{
+  color: #ff5b13;
+  font-weight: 700;
+}
+.num_tip{
+  width: .5rem;
+  height:.5rem;
+  text-align: right;
+}
 .order_submit {
   height: .98rem;
   line-height: .98rem;

@@ -183,7 +183,6 @@
       return that;
   },
 
-
   init:function(){
     this.renderHandler(data);
   }

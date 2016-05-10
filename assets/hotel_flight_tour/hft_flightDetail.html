@@ -20,7 +20,7 @@
 <div class="all_elements"></div>
 </body>
 <script id="template" type="text/template">
-  <header class="header">
+  <header class="header no-shadow">
     <a href="#" class="header_back">
       <i class="icon_back"></i>
     </a>
@@ -46,7 +46,7 @@
               <div class="transferCity">
                 转<%= flightInfo["transferListLeave"].length < 2 ? flightInfo["transferListLeave"][0] : flightInfo["transferListLeave"].length + '次' %></div>
             </div>
-            <div class="right">
+            <div class="right fix_right">
             <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %><span
               class="plusDay">+1天</span></span>
             <span
@@ -77,7 +77,7 @@
               <div class="transferCity">
                 转<%= flightInfo["transferListReturn"].length < 2 ? flightInfo["transferListReturn"][0] : flightInfo["transferListReturn"].length + '次' %></div>
             </div>
-            <div class="right">
+            <div class="right fix_right">
             <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %><span
               class="plusDay">+1天</span></span>
             <span

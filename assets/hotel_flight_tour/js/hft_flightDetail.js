@@ -92,7 +92,6 @@ var  hftFlightDetail = {
     });
   },
 
-
   init:function(){
     var flightData = null, storage = window.sessionStorage;
     flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));

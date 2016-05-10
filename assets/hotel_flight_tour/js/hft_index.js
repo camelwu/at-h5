@@ -132,9 +132,9 @@ var htf_search = {
           } else if (i == 2) {
               age2 = listStr.getElementsByClassName('inp_cage')[1].value;
               if(age2 != ''){
-                  listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age1+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age2+'" onkeyup="setAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>';
+                  listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age1+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age2+'" onkeyup="setAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>';
               }else{
-                  listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age1+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>';
+                  listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age1+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>';
               }
           }
       }else{
@@ -147,7 +147,7 @@ var htf_search = {
           } else if (i == 1) {
               listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect"></b></span>' + '</div>';
           } else if (i == 2) {
-              listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>';
+              listStr.innerHTML ='<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>';
           }
       }
       this.addbed();
@@ -177,7 +177,6 @@ var htf_search = {
                   str = str - 1;
                   m.innerHTML = str;
               }
-
               str == 1 ? n.style.backgroundPosition = '6.7% 68%' : n.style.backgroundPosition = '17.5% 68%';
               str == 3 ? plus.style.backgroundPosition = '29.5% 68%' : plus.style.backgroundPosition = '41.2% 68%';
               var parent = n.parentNode.parentNode.parentNode;
@@ -301,7 +300,7 @@ var htf_search = {
           } else if (i == 1) {
               return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age+'"" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect"></b></span>' + '</div>';
           } else if (i == 2) {
-              return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>';
+              return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value = "'+age+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>';
           }
       }else {
           if (n == 1) {
@@ -313,7 +312,7 @@ var htf_search = {
           } else if (i == 1) {
               return '<span class="bedList" style="float: left"><i>儿童' + i + '年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect"></b></span>' + '</div>';
           } else if (i == 2) {
-              return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>';
+              return '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="' + 2 + '-' + 12 + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>';
           }
       }
       this.addbed();
@@ -336,19 +335,117 @@ var htf_search = {
       }
       next != null ? next.parentNode.insertBefore(el(html), next) : dom.parentNode.appendChild(el(html));
   },
-
   //  页面跳转
   next_page:function(){
-      $('#hft_searchBtn').click(function(){
-          window.location.href = 'hft_choose.html';
-      });
-      $('#hf_searchBtn').click(function(){
-          window.location.href = '../hotel_flight/ticket_hotel_choose.html';
-      })
+      var getByClass = function(box,obj){
+          return box.getElementsByClassName(obj);
+      };
+      var box;
+      var content = document.getElementsByClassName('content_box');
+      if(content[0].style.display != 'none'){
+          box = content[0];
+      }else{
+          box = content[1];
+      }
+      var exaddChild = box.getElementsByClassName('extraChild');
+      for (var v = 0; v < exaddChild.length; v++) {
+          if (exaddChild[v].style.display != 'none') {
+              var input = exaddChild[v].getElementsByClassName("inp_cage");
+              for (var w = 0; w < input.length; w++) {
+                  if(input[w].value == '')
+                  {
+                      jAlert('请输入儿童年龄!');
+                      return;
+                  }
+              }
+          }
+      }
+      var FromCityNameCN = getByClass(box,'origin')[0].innerHTML;
+      var ToCityNameCN = getByClass(box,'destination')[0].innerHTML;
+      var fromCity = getByClass(box,'origin')[0].getAttribute('data-citycode');
+      var toCity = getByClass(box,'destination')[0].getAttribute('data-citycode');
+      var departDate = getByClass(box,'js_startData')[0].getAttribute('data-day') + 'T00:00:00';
+      var returnDate = getByClass(box,'js_returnData')[0].getAttribute('data-day') + 'T00:00:00';
+      var startday = getByClass(box,'js_startDay')[0].innerHTML;
+      var endday = getByClass(box,'js_endDay')[0].innerHTML;
+      var stardWeek = getByClass(box,'week_one')[0].innerHTML;
+      var endWeek = getByClass(box,'week_two')[0].innerHTML;
+      var roomDetails = [],echChildNum = [];
+      var room = getByClass(box,'hotelInfo_numb_people');
+      for(var r = 0;r < room.length;r++){
+          var temObj = {},childWithOutBed = [], childWithBed = [];
+          var temAdultNum = parseInt(room[r].querySelector('.adult_people_number').innerHTML);
+          var temChildNum = parseInt(room[r].querySelector('.child_number').innerHTML);
+          var extraChild = room[r].querySelector('.extraChild');
+          var childChooseParent = extraChild.querySelector('.numbList');
+          if(temAdultNum==1&&temChildNum==1){
+              childWithBed.push(room[r].querySelector('input').value);
+          }else if(temAdultNum==1&&temChildNum==2){
+              childWithBed.push(room[r].querySelectorAll('input')[0].value);
+              childWithOutBed.push(room[r].querySelectorAll('input')[1].value);
+          }else if(temAdultNum == 2||temAdultNum == 3){
+              var tt = childChooseParent.querySelector('.com_icon.noselect');
+              if (temChildNum == 1) {
+                  if (tt.className.indexOf('ico_select') > -1) {
+                      childWithBed.push(childChooseParent.parentNode.querySelector('input').value);
+                  } else {
+                      childWithOutBed.push(childChooseParent.parentNode.querySelector('input').value)
+                  }
+              }else if (temChildNum == 2){
+                  childWithBed.push(room[r].querySelectorAll('input')[0].value);
+                  childWithOutBed.push(room[r].querySelectorAll('input')[1].value);
+              }
+          }
+          childWithBed.length > 0 ? temObj.childWithBed = childWithBed :
+              void (0);
+          childWithOutBed.length > 0 ? temObj.childWithOutBed = childWithOutBed :
+              void (0);
+          temObj.adult = temAdultNum;
+          echChildNum.push(temChildNum);
+          roomDetails.push(temObj);
+      }
+      var allNum = 0;
+      var adultNum = 0;
+      var childNum = 0;
+      for (var kl = 0; kl < roomDetails.length; kl++) {
+          adultNum = adultNum + roomDetails[kl].adult;
+          if (roomDetails[kl]['childWithBed']) {
+              childNum = childNum + roomDetails[kl]['childWithBed'].length;
+          }
+          if (roomDetails[kl]['childWithOutBed']) {
+              childNum = childNum + roomDetails[kl]['childWithOutBed'].length;
+          }
+      }
+      allNum = adultNum + childNum;
+      var searchInfo = {
+          FromCityNameCN:FromCityNameCN,
+          ToCityNameCN:ToCityNameCN,
+          FromCity:fromCity,
+          ToCity:toCity,
+          DepartDate:departDate,
+          ReturnDate:returnDate,
+          PeopleNum:allNum,
+          AdultNum:adultNum,
+          ChildNum:childNum,
+          RoomInfo:roomDetails
+      };
+      var cacheSearch = {
+          FromCityNameCN:FromCityNameCN,
+          ToCityNameCN:ToCityNameCN,
+          FromCityCode:fromCity,
+          ToCityCode:toCity,
+          DepartDay:startday,
+          ReturnDay:endday,
+          StardWeek:stardWeek,
+          EndWeek:endWeek,
+          RoomInfo:roomDetails,
+          EchChildNum:echChildNum
+      };
+      localStorage.setItem('searchInfo', JSON.stringify(searchInfo));
+      sessionStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
   },
   init:function(){
       this.init_title_room();
-      this.next_page();
       this.add_subtract();
   }
 };
@@ -363,3 +460,11 @@ function checkAge(obj){
     obj.value = '';
   }
 }
+$('#hft_searchBtn').click(function(){
+  htf_search.next_page();
+  window.location.href = 'hft_scenic_list.html?type=2';
+});
+$('#hf_searchBtn').click(function(){
+  htf_search.next_page();
+  window.location.href = '../hotel_flight/ticket_hotel_choose.html?type=1';
+});

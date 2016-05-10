@@ -227,7 +227,7 @@ a {
     z-index: 99;
     background-color: #fcfcfc;
     opacity: .95;
-    /*border-bottom: solid 2px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 1px 1px #ddd;
 }
 
 .header .header_back {

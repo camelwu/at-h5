@@ -158,7 +158,9 @@
     <!--预定footer-->
     <div class="order_footer clearfix">
       <div class="order_num fl" >
-        <span class = "num1">总额: <i>¥1208</i></span><span class="detail_fale"></span>
+        <div class="order_num_tab clearfix">
+          <span class = "num1 fl">总额：<i></i></span><div class="fl num_tip"><span class="detail_fale"></span></div>
+        </div>
       </div>
       <a href="javascript:;" class = "order_submit fr">立即预订</a>
     </div>
@@ -212,9 +214,9 @@
           <span><%='周'+arr1[d1.getDay()]%></span>
           <span class="flight_terminal"><%=flightInfo.segmentsLeave[0].airportNameFrom+flightInfo.segmentsLeave[0].termDepart+'-'+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].airportNameTo+flightInfo.segmentsLeave[flightInfo.segmentsLeave.length-1].termArrive%></span>
         </div>
-        <div class="fli_cir_right fr">
-          <i></i>
-          <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
+        <div class="fli_cir_right fr clearfix">
+          <i class="fl"></i>
+          <span class="dl"><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
         </div>
       </li>
       <li class="fli_cont clearfix">
@@ -225,9 +227,9 @@
           <span><%='周'+arr1[d1.getDay()]%></span>
           <span class="flight_terminal"><%=flightInfo.segmentsReturn[0].airportNameFrom+flightInfo.segmentsReturn[0].termDepart+'-'+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].airportNameTo+flightInfo.segmentsReturn[flightInfo.segmentsReturn.length-1].termArrive%></span>
         </div>
-        <div class="fli_cir_right fr">
-          <i></i>
-          <span><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
+        <div class="fli_cir_right fr clearfix">
+          <i class="fl"></i>
+          <span class="fl"><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
         </div>
       </li>
       <li class="cabin_level">
