@@ -25,6 +25,7 @@ body{
 .content{
   padding-top:.88rem;
   position: relative;
+  background: #fcfcfc;
 }
 .content-down{
   padding-top:1.42rem;
@@ -73,7 +74,9 @@ body{
   width: 100%;
   font-size: .28rem;
   background: #fff;
+  margin-top: .20rem
 }
+.fix-margin{margin-top: 0}
 .tour{
   margin-bottom: .98rem;
 }
@@ -81,9 +84,10 @@ body{
   padding:0 .28rem;
   height:.68rem;
   line-height:.68rem;
-  background: #f7f7f7;
-  /*border-top: solid 1px rgba(0, 0, 0, 0.1);*/
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
 }
+
 .statusMoreFlight a, .statusMoreHotel a{
   color: rgb(255, 180, 18);
   position: absolute;
@@ -96,13 +100,16 @@ body{
   height: .43rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 6.48rem auto;
-  background-position: -1.06rem -2.57rem;
+  background-position: -.418rem -1.16rem;
   margin-right: .16rem;
   position: relative;
   top: .08rem;
 }
 .statusMoreHotel span:before {
-  background-position: 41.99% 31.89%;
+  background-position: -.98rem -1.16rem!important;
+}
+.tourListHeader span:first-child:before{
+  background-position: -1.56rem -1.16rem!important;
 }
 .flightOuter{
   background: #fff;
@@ -347,6 +354,10 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.roomName p:nth-child(2){
+  font-size: .20rem;
+  color: #666;
+}
 .check-more-room {
   padding: 0 15px;
   height: .90rem;
@@ -446,7 +457,10 @@ body{
   padding: .28rem 0;
   height: 2.96rem;
   width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e6e6e6;
+}
+.tourOuter li:first-child{
+  border-top: none
 
 }
 .tourOuter li h3, .choose-tour-date{
@@ -470,9 +484,11 @@ body{
 }
 .choose-tour-date i{
   float: right;
-  width:.40rem;
-  height:.40rem;
-  border:1px solid red
+  width: .42rem;
+  height: .42rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-position: -6.778rem -2.379rem;
+  background-size: 7.90rem auto;
 }
 .after-noon{
   width: 100%;
