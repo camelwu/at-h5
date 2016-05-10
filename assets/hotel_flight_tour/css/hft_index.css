@@ -208,9 +208,9 @@ section[class^="hotelInfo_numb"] .numbList {
   overflow: hidden;
   padding-right: .15rem;
 }
-section[class^="hotelInfo_numb"] .numbList:nth-child(3){
-  border-bottom: 1px solid #ddd;
-}
+/*section[class^="hotelInfo_numb"] .numbList:nth-child(3){*/
+  /*border-bottom: 1px solid #ddd;*/
+/*}*/
 section[class^="hotelInfo_numb"] .numbList:last-child {
   clear: both;
   border: none;
@@ -276,6 +276,7 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
 section[class^="hotelInfo_numb"] .extraChild {
   overflow: hidden;
   margin-left: 1.8rem;
+  border-top: 1px solid #ddd;
 }
 section[class^="hotelInfo_numb"] .extraChild span {
   display: block;
@@ -357,9 +358,9 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   background-color: #ffb413;
   color: #FFFFFF;
 }
-.button_orange:hover {
-  background-color: #e67e22;
-}
+/*.button_orange:hover {*/
+  /*background-color: #e67e22;*/
+/*}*/
 .index_fo{
   margin-bottom: .4rem;
   font-size: .28rem;
@@ -523,10 +524,12 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   display: -webkit-box;
   font-size: .18rem;
   width: 100%;
+  margin-bottom: .1rem;
   -webkit-box-pack: center;
 }
 .total_time_info .arrow_time {
   display: block;
+  position: relative;
   margin: 0 auto 0;
   width: 1.7rem;
   height: .1rem;
@@ -537,12 +540,20 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   font-size: .2rem;
   max-width: 1.2rem;
   text-align: center;
-  color: #ffb413;
   z-index: 7;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin: 0 auto;
+  margin: .05rem auto;
+}
+.total_time_info i{
+  position: absolute;
+  display: block;
+  width: .4rem;
+  background: #FFFFFF;
+  color: #ffb413;
+  margin-top: -.15rem;
+  left: .65rem;
 }
 .go_info .end_time_info {
   position: static;
