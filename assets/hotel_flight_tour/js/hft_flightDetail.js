@@ -74,9 +74,7 @@ var  hftFlightDetail = {
         void (0);
     }
     return resultNum;
-
   },
-
   createTags:function(){
     var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
     tempStr = $("#template").html();

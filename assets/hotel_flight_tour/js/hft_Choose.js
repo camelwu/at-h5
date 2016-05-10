@@ -172,9 +172,7 @@
             void (0);
          }
      return resultNum;
-
    },
-
    createTags:function(){
      var data = arguments[0], that = hftChoose, tempStr="", outputStr="";
       tempStr = $("#template").html();
@@ -182,10 +180,8 @@
       $(".all_elements").eq(0).html(outputStr);
       return that;
   },
-
   init:function(){
     this.renderHandler(data);
   }
 };
-
 hftChoose.init();
