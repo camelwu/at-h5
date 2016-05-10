@@ -366,6 +366,8 @@ body{
   text-align: center;
   color: #999999;
   border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  font-size: .24rem;
 }
 .check-more-down, .priceTotal i{
   display: inline-block;
@@ -394,9 +396,12 @@ body{
 .roomUl .plassPrice span{
   color: #fb6a22;
   font-weight: 400;
+  font-size: .24rem;
+  display: inline-block;
+  vertical-align: middle;
 }
 .roomUl .plassPrice span:nth-child(2){
-  font-size: .42rem;
+  font-size: .4rem;
 }
 .roomUl .plassPrice .hasChooseButton,.roomUl .plassPrice .noChooseButton{
   display: inline-block;
@@ -410,6 +415,8 @@ body{
   border-radius: .03rem;
   font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
   font-size: .28rem;
+  margin-left: .2rem;
+  border-radius: 4px;
 }
 .roomUl .plassPrice .noChooseButton{ color: #FFF; background: #fdb330;}
 .tourNumber{
