@@ -447,9 +447,10 @@ body{
   color:rgb(72,72,72);
 }
 .tourOuter li h3:before{
-  content: "|";
-  width: 0.04rem;
-  height: .19rem;
+  display: inline-block;
+  content: "";
+  width: 0.08rem;
+  height: 0.258rem;
   color: #FFB413;
   font-size: .30rem;
   font-weight: bolder;
@@ -493,10 +494,10 @@ body{
   height: .48rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -7.0rem -1.34rem;
+  background-position: -6.99rem -1.339rem;
   position: absolute;
   right: 0;
-  bottom: 0
+  bottom: 0;
 }
 .after-noon span:last-child{
   margin-right: 0;
