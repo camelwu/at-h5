@@ -82,11 +82,10 @@ body{
   height:.68rem;
   line-height:.68rem;
   background: #f7f7f7;
-  border-top: solid 1px rgba(0, 0, 0, 0.1);
+  /*border-top: solid 1px rgba(0, 0, 0, 0.1);*/
 }
 .statusMoreFlight a, .statusMoreHotel a{
   color: rgb(255, 180, 18);
-  text-decoration: underline;
   position: absolute;
   right:.28rem
 }
@@ -170,6 +169,10 @@ body{
   content: "";
   display: none;
 }
+.flightDetailInfo >span{
+  font-size: .2rem;
+  color: #999;
+}
 .flightDetailArrow{
   width: 100%;
   height:.32rem;
@@ -195,6 +198,8 @@ body{
   display: inline-block;
   height: .32rem;
   line-height: .32rem;
+  font-size: .24rem;
+  color: #333;
 }
 
 .timeAirport .left .startTime,.timeAirport .right .arriveTime{
@@ -210,11 +215,12 @@ body{
   position: absolute;
   right:0
 }
-.plusDay{
+.timeAirport .right .plusDay{
   font-size: .20rem;
   color:rgb(51,51,51);
   position:relative;
   top:-.12rem;
+  font-size: .2rem;
 }
 .timeAirport .middle{
   height: 1.12rem;
@@ -292,6 +298,8 @@ body{
 }
 .commit{
   margin-left: .10rem;
+  font-size: .24rem;
+  color: #999;
 }
 .WiFi, .car{
   display: inline-block;
@@ -333,7 +341,7 @@ body{
   color: #666666;
 }
 .roomName p:nth-child(1){
-  font-size: .32rem;
+  font-size: .28rem;
   color: #333;
   white-space: nowrap;
   overflow: hidden;
@@ -447,10 +455,15 @@ body{
   color:rgb(72,72,72);
 }
 .tourOuter li h3:before{
-  content: "|";
-  width: 0.04rem;
-  height: .19rem;
+  display: inline-block;
+  content: "";
+  width: 0.08rem;
+  height: 0.258rem;
   color: #FFB413;
+  font-size: .30rem;
+  font-weight: bolder;
+  background: #ffb413;
+  margin-right: .10rem;
 }
 .choose-tour-date{
   margin:.40rem 0;
@@ -489,10 +502,10 @@ body{
   height: .48rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -7.0rem -1.34rem;
+  background-position: -6.99rem -1.339rem;
   position: absolute;
   right: 0;
-  bottom: 0
+  bottom: 0;
 }
 .after-noon span:last-child{
   margin-right: 0;

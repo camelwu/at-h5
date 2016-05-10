@@ -90,7 +90,8 @@ input {
   display: inline-block;
   vertical-align: top;
 }
-.fli_cir_right{
+
+.fli_cir_right {
   width: 1.5rem;
 }
 
@@ -213,6 +214,16 @@ input {
   font-weight: bold;
 }
 
+.orange_line {
+  width: .06rem;
+  height: .26rem;
+  margin-right: .15rem;
+  vertical-align: top;
+  margin-top: .05rem;
+  background-color: #ffb413;
+  display: inline-block;
+}
+
 /*景点结束*/
 
 /*出行人*/
@@ -284,7 +295,7 @@ li.order_tlist2 {
 }
 
 .fht_contact {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
 }
 
 .fht_con_hd {
@@ -379,7 +390,7 @@ li.order_tlist2 {
   text-align: center;
 }
 
-.order_num_tab{
+.order_num_tab {
   width: 66%;
   margin: 0 auto;
 }
@@ -390,15 +401,18 @@ li.order_tlist2 {
   vertical-align: top;
   font-size: .3rem;
 }
-.order_num span.num1 >i{
+
+.order_num span.num1 > i {
   color: #ff5b13;
   font-weight: 700;
 }
-.num_tip{
+
+.num_tip {
   width: .5rem;
-  height:.5rem;
+  height: .5rem;
   text-align: right;
 }
+
 .order_submit {
   height: .98rem;
   line-height: .98rem;
@@ -605,8 +619,6 @@ li.order_tlist2 {
 
 .hft_pri_details {
   padding: .4rem .28rem;
-  border-bottom: 2px solid #e6e6e6;
-  margin-bottom: .7rem;
 }
 
 .hft_pri_details li {
