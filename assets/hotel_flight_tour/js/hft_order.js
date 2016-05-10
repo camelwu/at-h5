@@ -66,6 +66,49 @@
       }
     });
 
+    //出行人明细
+    function travelDet(){
+      var traAdu={};
+      var traChi={};
+      var room=hftCreateOrderPara.RoomDetails;
+      var traAdultnum=0;
+      var traChildnum=0;
+      for(var i=0;i<room.length; i++)
+      {
+        traAdultnum+=parseInt(room[i].adult);
+        if(room[i].childWithOutBed)
+        {
+          traChildnum+=room[i].childWithOutBed.length;
+        }
+        if(room[i].childWithBed)
+        {
+          traChildnum+=room[i].childWithBed.length;
+        }
+
+      }
+      if(traChildnum == 0){
+        $('.order_tsl2 b').remove();
+      }
+      $('.chi_tot').html(traChildnum);
+      $('.adu_tot').html(traAdultnum);
+      var obj={};
+      obj.adunum=traAdultnum;
+      obj.chinum=traChildnum;
+      return obj;
+    }
+    travelDet();
+    var hft_peotot=travelDet();
+    window.localStorage.hft_eotot=(hft_peotot.adunum+hft_peotot.chinum);
+    window.localStorage.hft_adunum=hft_peotot.adunum;
+    window.localStorage.hft_chinum=hft_peotot.chinum;
+
+    /*添加出行人*/
+    $(document).on('click','.add_traveller',function(){
+      $("#status").show().fadeOut();
+      $("#preloader").show().delay(400).fadeOut("medium");
+      vlm.f_choice('order-twrap', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate);
+    });
+
   }
   init();
 

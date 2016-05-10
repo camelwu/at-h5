@@ -18,26 +18,32 @@
 <link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div id="preloader">
+  <div id="status">
+  </div>
+</div>
 <div class="contents">
   <!--banner-->
   <div class="hotel_dbanner jpr">
-    <img src="../images/03-1_02.jpg" alt="">
-    <a class="goback" href="javascript:window.history.go(-1);"></a>
-    <p>36张</p>
+    <!--<img src="../images/03-1_02.jpg" alt="">-->
+    <!--<a class="goback" href="javascript:window.history.go(-1);"></a>-->
+    <!--<p>36张</p>-->
   </div>
   <section class="hotel_detail_msg">
     <ul>
-      <li class="name"><h3>京东东急涩谷卓越大酒店(Shibuya Excel Hotel Tokyu Tokyo)</h3></li>
-      <li class="mes">1-12-2 Dougenzaka Shibuya-ku</li>
-      <li class="score"><b>4.3</b> 分 <strong>385</strong>人点评<!--<i class="arrow"></i>--></li>
-      <li class="star">
-        <span>3星级</span>
-        <span class="park"></span>
-        <span class="car"></span>
-        <!--<span class="detail">酒店详情</span>-->
-        <!--<i class="arrow"></i>-->
-      </li>
+      <li class="name"></li>
+      <li class="mes mes2"></li>
+      <li class="map" id="map"></li>
+    </ul>
+    <ul class="ul2" style="margin-top: -1.6rem;">
+      <!--<li class="score"><b>4.3</b> 分 <strong>385</strong>人点评&lt;!&ndash;<i class="arrow"></i>&ndash;&gt;</li>-->
+      <!--<li class="star">-->
+        <!--<span>3星级</span>-->
+        <!--<span class="park"></span>-->
+        <!--<span class="car"></span>-->
+        <!--&lt;!&ndash;<span class="detail">酒店详情</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="arrow"></i>&ndash;&gt;-->
+      <!--</li>-->
     </ul>
   </section>
   <section class="hotel_detail_rooms">
@@ -48,61 +54,98 @@
       </ul>
       <!--<p></p>-->
     </div>
-    <ul>
-      <li class="cur">
-        <div class="slide">
-          <div class="lfword">
-            <p><span class="name">高级客房</span><i class="book"></i></p>
-            <p class="gray">32-38㎡ 大/双床</p>
-          </div>
-          <div class="price">
-            <span class="word">+</span>
-            <span class="symbol">￥</span>
-            <span class="num">288</span>
-          </div>
-          <b></b>
-        </div>
-      </li>
-      <li>
-        <div class="slide">
-          <div class="lfword">
-            <p><span class="name">高级客房</span><i class="book"></i></p>
-            <p class="gray">32-38㎡ 大/双床</p>
-          </div>
-          <div class="price">
-            <span class="word">+</span>
-            <span class="symbol">￥</span>
-            <span class="num">288</span>
-          </div>
-          <b></b>
-        </div>
-      </li>
-      <li>
-        <div class="slide">
-          <div class="lfword">
-            <p><span class="name">高级客房</span><i class="book"></i></p>
-            <p class="gray">32-38㎡ 大/双床</p>
-          </div>
-          <div class="price reduce">
-            <span class="word">-</span>
-            <span class="symbol">￥</span>
-            <span class="num">288</span>
-          </div>
-          <b></b>
-        </div>
-      </li>
+    <ul class="ul_room">
+      <!--<li class="cur">-->
+        <!--<div class="slide">-->
+          <!--<div class="lfword">-->
+            <!--<p><span class="name">高级客房</span><i class="book"></i></p>-->
+            <!--<p class="gray">32-38㎡ 大/双床</p>-->
+          <!--</div>-->
+          <!--<div class="price">-->
+            <!--<span class="word">+</span>-->
+            <!--<span class="symbol">￥</span>-->
+            <!--<span class="num">288</span>-->
+          <!--</div>-->
+          <!--<b></b>-->
+        <!--</div>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<div class="slide">-->
+          <!--<div class="lfword">-->
+            <!--<p><span class="name">高级客房</span><i class="book"></i></p>-->
+            <!--<p class="gray">32-38㎡ 大/双床</p>-->
+          <!--</div>-->
+          <!--<div class="price reduce">-->
+            <!--<span class="word">-</span>-->
+            <!--<span class="symbol">￥</span>-->
+            <!--<span class="num">288</span>-->
+          <!--</div>-->
+          <!--<b></b>-->
+        <!--</div>-->
+      <!--</li>-->
     </ul>
   </section>
 </div>
 
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/ATGMSMain.js"></script>
+<script src="../js/ATIcons.js"></script>
+<script src="../js/ATTransform.js"></script>
+<script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBV850tYcTCzqZbZKVWpeGYRm0yNYLt9fc&callback=initialize" type="text/javascript"></script>
+<script src="js/hft_hotelDetail.js"></script>
 <script>
   $(function(){
     $('.hotel_detail_rooms li').on('click',function(){
       $(this).addClass('cur').siblings().removeClass('cur');
       window.location.href = 'hft_choose.html';
-    })
+    });
+
   })
+</script>
+<!--banner-->
+<script id="banner" type="text/template">
+  <img src=<%= hotelPictureURL %> alt="">
+    <a class="goback" href="javascript:window.history.go(-1);"></a>
+    <p><%= images.length %>张</p>
+</script>
+<!--roomList-->
+<script id="ulList" type="text/template">
+  <% for(var i=0;i<rooms.length;i++){ %>
+  <li class="cur">
+    <div class="slide">
+      <div class="lfword">
+        <p><span class="name"><%= rooms[i].roomName %></span><i class="book"></i></p>
+        <p class="gray">32-38㎡ 大/双床</p>
+      </div>
+      <div class="price">
+        <span class="word">+</span>
+        <span class="symbol">￥</span>
+        <span class="num"><%= rooms[i].addtionalPrice %></span>
+      </div>
+      <b></b>
+    </div>
+  </li>
+  <% } %>
+</script>
+<!--酒店名-->
+<script id="hotelName" type="text/template">
+  <h3><%= hotelNameLocale %><%= hotelName %></h3>
+</script>
+<!--hotelAddress-->
+<script id="hotelAddress" type="text/template">
+  <%= hotelAddress %>
+</script>
+<script id="message" type="text/template">
+  <li class="score"><b><%= hotelReviewCount %></b> 分 <strong>385</strong>人点评<!--<i class="arrow"></i>--></li>
+  <li class="star">
+    <span><%= starRating %></span>
+    <span class="park"></span>
+    <span class="car"></span>
+    <!--<span class="detail">酒店详情</span>-->
+    <!--<i class="arrow"></i>-->
+  </li>
 </script>
 </body>
 </html>

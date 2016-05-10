@@ -14,6 +14,7 @@
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>资源选择页 - 亚洲旅行网</title>
   <link href="../styles/reset.css" rel="stylesheet" type="text/css">
+  <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
   <link href="css/hft_choose.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -193,14 +194,60 @@
       </div>
     </div>
     <div class="priceDetailInfo">
-      <% var selectedRoomIdNum = window.location.search.substring(1), priceRoomTem = null; hftChoose.test = "tst";console.info(hftChoose.test);%>
+      <p>成人<span class="price-num-price">￥<span>56X2</span></span></p>
+      <p>儿童<span class="price-num-price">￥<span>56X2</span></span></p>
     </div>
     <div class="bottomPrice">
-      <span class="priceTotal">总额:￥<span></span><i></i></span>
+      <span class="priceTotal">总额:￥<span><%= hftChoose.test%></span><i></i></span>
       <span class="preserve">立即预定</span>
     </div>
   </div>
   <div class="shadow"></div>
+</script>
+<script id="template_room" type="text/template">
+    <% hotelInfo["rooms"].forEach(function(room, item){%>
+    <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
+      <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
+        <%if(window.location.search){%>
+        <%if(room['roomID']==window.location.search.substring(1)){%>
+        <button class="hasChooseButton">已选择</button>
+        <% }else{%>
+        <button class="noChooseButton">选择</button>
+        <% }%>
+        <% }else{%>
+        <% if(item==0){%>
+        <button class="hasChooseButton">已选择</button>
+        <%}else{%>
+        <button class="noChooseButton">选择</button>
+        <% }%>
+        <%}%>
+      </div>
+      <div class="roomName">
+        <p><%= room['roomName'] %></p>
+        <p>
+          <% if(room['includedBreakfast'] == 1){ %>
+          <span>含早</span>
+          <% } %>
+        </p></div>
+    </li>
+    <% }) %>
+</script>
+<script id="template_date_session" type="text/template">
+    <div class="confirm">
+      <span>取消</span>
+      <span>确定</span>
+    </div>
+    <div class="months">
+      <%data.forEach(function(yd){ %>
+         <span data-tag= "<%=yd['name']%>"><%=yd['name']%></span>
+      <% }) %>
+    </div>
+    <div class="monthsDate">
+      <span>6月1日</span>
+      <span class="active">6月2日</span>
+      <span>6月3日</span>
+      <span>6月4日</span>
+    </div>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/plugins.js"></script>
@@ -209,5 +256,4 @@
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script type="text/javascript" src="js/chooseTestData.js"></script>
 <script type="text/javascript" src="js/hft_Choose.js"></script>
-
 </html>

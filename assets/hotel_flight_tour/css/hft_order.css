@@ -32,7 +32,7 @@ input {
   background-color: #f7f7f7;
   height: 0.68rem;
   line-height: 0.68rem;
-  border-top: 2px solid #ddd;
+  border-top: 1px solid #ddd;
   padding: 0 .28rem;
   position: relative;
 }
@@ -83,7 +83,7 @@ input {
 }
 
 .flight_cir_wrap {
-  padding: .4rem 0 .4rem .28rem;
+  padding: .4rem 0 .3rem .28rem;
 }
 
 .fli_cir_left > span {
@@ -139,7 +139,7 @@ input {
 }
 
 .cabin_level {
-  margin-top: .4rem;
+  margin-top: .3rem;
 }
 
 /*机票结束*/
@@ -151,7 +151,7 @@ input {
 
 .hotel_wrap {
   margin-left: .28rem;
-  padding: .4rem 0;
+  padding: .4rem 0 .2rem;
 }
 
 .hotel_wrap li {
@@ -172,7 +172,7 @@ input {
 }
 
 .hotel_wrap > h3 {
-  margin-bottom: .32rem;
+  margin-bottom: .3rem;
   font-weight: bold;
 }
 
@@ -283,6 +283,16 @@ li.order_tlist2 {
   display: block;
   margin-bottom: .3rem;
 }
+.edit_tips{
+  width: .4rem;
+  height: .4rem;
+  background: url(../../images/ui/icons.png) no-repeat;
+  background-size: 5.6rem 4rem;
+  background-position: 67% 1%;
+  position: absolute;
+  top: .2rem;
+  right: .2rem;
+}
 
 .order_tlist2 span {
   width: 100%;
@@ -295,7 +305,7 @@ li.order_tlist2 {
 }
 
 .fht_contact {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
 }
 
 .fht_con_hd {
@@ -356,7 +366,7 @@ li.order_tlist2 {
 .detail_fale {
   display: inline-block;
   margin-top: .44rem;
-  background: url(../../images/hotel_flight_tour/arrow-down-orange.png) no-repeat;
+  background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
   background-size: .24rem .14rem;
   width: .32rem;
   height: .2rem;
@@ -615,6 +625,8 @@ li.order_tlist2 {
 .tot_prinum {
   color: #fb6a22;
   font-size: .32rem;
+  font-weight: 700;
+  margin-left: .1rem;
 }
 
 .hft_pri_details {
@@ -635,6 +647,7 @@ li.order_tlist2 {
   font-size: .32rem;
   background-color: #fff;
   text-align: center;
+  color: #ffb413;
 }
 
 .hft_paid i {
