@@ -95,7 +95,28 @@
   //message
   function message(data){
     var str =$('#message').html();
-    var message = ejs.render(str,data.hotelInfo);
+    var message = ejs.render(str,handleData(data.hotelInfo));
     $('.hotel_detail_msg .ul2').html(message);
+  }
+  //根据模板需要提前处理好data
+  function handleData(data){
+    switch (data.starRating){
+      case "1 星级":
+        data.starRating = '一星级';
+        break;
+      case "2 星级":
+        data.starRating = '二星级';
+        break;
+      case "3 星级":
+        data.starRating = '三星级';
+        break;
+      case "4 星级":
+        data.starRating = '四星级';
+        break;
+      case "5 星级":
+        data.starRating = '五星级';
+        break;
+    }
+    return data;
   }
 })()
