@@ -166,7 +166,7 @@ ol{padding:0;margin:0;}
   left: 0;
 }
 .hotel_pop .sort li,.hotel_pop .position ul li{
-  margin: 0 0.28rem;
+  margin: 0 0 0 0.28rem;
   font-size: 0.28rem;
   padding: 0 0.12rem;
   height: 0.96rem;
@@ -347,13 +347,41 @@ ol{padding:0;margin:0;}
   background-position:-3.19rem -0.44rem;
 }
 .hotel_detail_msg{
-  padding: 0 0.28rem;
   background: #fff;
   color:#333;
   border-bottom:2px solid#e6e6e6;
 }
 .hotel_detail_msg>ul{
   padding:0.261rem 0 0.001rem;
+}
+.hotel_detail_msg ul.ul2{
+  background: #fff;
+  position: relative;
+}
+.hotel_detail_msg>ul>li{
+  margin-left:0.28rem;
+  margin-right:0.28rem;
+}
+.hotel_detail_msg>ul>li.map{
+  margin-left:0;
+  margin-right:0;
+  height:3.6rem;
+  margin-top:-0.86rem;
+}
+.hotel_detail_msg>ul>li.mes{
+  margin-left:0;
+  margin-right:0;
+  padding-left: 0.28rem;
+  position: relative;
+  z-index: 10;
+  background:-webkit-linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  background:-moz-linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  background:-o-linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  background:linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+}
+.hotel_detail_msg>ul>li.mes2{
+  height: 0.6rem;
+  line-height: 0.6rem;
 }
 .hotel_detail_msg li{
   margin-bottom: 0.26rem;
@@ -499,7 +527,9 @@ ol{padding:0;margin:0;}
   font-size: 0.32rem;
   color:#FFB413;
 }
-
+.gmnoprint{
+  display: none!important;
+}
 
 
 
