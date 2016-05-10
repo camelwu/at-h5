@@ -26,8 +26,7 @@ module.exports = function (grunt) {
             files: [{
                 expand: true,
                 cwd: './assets',
-                src: ['**/*.!(coffee|less)',
-             'plugins/*'], //plugins 文件夹不拷贝
+                src: ['**/*.!(coffee|less)'],
                 dest: '.tmp/public'
                 }],
         },
