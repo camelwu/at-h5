@@ -66,6 +66,7 @@ ol{padding:0;margin:0;}
   margin-top: -0.15rem;
   color: #ff5b13;
   font-size: 0.36rem;
+  font-weight: bold;
 }
 .hotel_list .price span{
   float: right;
@@ -73,8 +74,8 @@ ol{padding:0;margin:0;}
 .hotel_list .price .add{
   margin-right: -0.05rem;
 }
-.hotel_list .price .dollar{
-  font-size: 0.3rem;
+.hotel_list .price .dollar,.hotel_list .price .add{
+  font-size: 0.24rem;
 }
 .hotel_list .price .money{
   font-size: 0.4rem;
@@ -446,7 +447,6 @@ ol{padding:0;margin:0;}
 }
 .hotel_detail_rooms{
   margin-top:0.2rem;
-  border-top:1px solid#e6e6e6;
   border-bottom:1px solid#e6e6e6;
   background: #fff;
   font-size: 0.24rem;
@@ -488,6 +488,9 @@ ol{padding:0;margin:0;}
   display: inline-block;
   height: 0.46rem;
   line-height: 0.46rem;
+}
+.hotel_detail_rooms .price span.word{
+  width: 0.2rem;text-align: center;
 }
 .hotel_detail_rooms .price .symbol{
   left: -0.05rem;
