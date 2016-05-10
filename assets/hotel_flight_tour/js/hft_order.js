@@ -133,30 +133,30 @@
       //  return;
       //}
       //联系人姓名检验
-      var inputlast=$('.hft_con_lastname');
-      if(! vlm.Utils.validate.engName(inputlast.val())){
-        jAlert('请您输入英文的联系人姓');
-        return;
-      }
-      var inputfir=$('.hft_con_firstname');
-      if(! vlm.Utils.validate.engName(inputfir.val())){
-        jAlert('请您输入英文的联系人名');
-        return;
-      }
-      // 手机号邮箱检验
-      var oMobile = $('.hft_con_cell')[0].value;
-      var oEmail = $('.hft_con_email')[0].value;
-
-      if ( ! vlm.Utils.validate.mobileNo(oMobile) )
-      {
-        jAlert('请输入正确的手机号');
-        return;
-      }
-      if ( ! vlm.Utils.validate.email(oEmail) )
-      {
-        jAlert('请输入正确的邮箱');
-        return;
-      }
+      //var inputlast=$('.hft_con_lastname');
+      //if(! vlm.Utils.validate.engName(inputlast.val())){
+      //  jAlert('请您输入英文的联系人姓');
+      //  return;
+      //}
+      //var inputfir=$('.hft_con_firstname');
+      //if(! vlm.Utils.validate.engName(inputfir.val())){
+      //  jAlert('请您输入英文的联系人名');
+      //  return;
+      //}
+      //// 手机号邮箱检验
+      //var oMobile = $('.hft_con_cell')[0].value;
+      //var oEmail = $('.hft_con_email')[0].value;
+      //
+      //if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+      //{
+      //  jAlert('请输入正确的手机号');
+      //  return;
+      //}
+      //if ( ! vlm.Utils.validate.email(oEmail) )
+      //{
+      //  jAlert('请输入正确的邮箱');
+      //  return;
+      //}
 
       console.log(Parmeters);
       vlm.loading();
@@ -170,12 +170,13 @@
     var json=ret;
     console.log(json);
     vlm.loadend();
-    if(json.success)
-    {
-      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
-    }else{
-      jAlert(json.message);
-    }
+    window.location.href='../payment/payment.html';
+    //if(json.success)
+    //{
+    //  window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
+    //}else{
+    //  jAlert(json.message);
+    //}
   }
 
 
