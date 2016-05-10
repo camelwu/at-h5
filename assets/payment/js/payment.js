@@ -49,13 +49,13 @@
                       $(".credit-session input").attr("value","");
               })
               //回退按钮
-              $(".credit-session .go-back").on("click",function(){
+              $(".credit-session .icon_back").on("click",function(){
                   $(".paymentype-session").show();
                   $(".credit-session").hide();
 
               })
               //800电话按钮
-              $(".tel-icon").on("click", function () {
+              $(".tel_tip").on("click", function () {
                   $(".jpop_box_tic").show();
               })
               $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
