@@ -34,33 +34,35 @@
     var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
     $('#hftTourTab').html(tourdet);
 
-    //总价
-    var totamountnum='￥'+hftCreateOrderPara.TotalPrice;
-    $('.num1 >i').html(totamountnum);
-
     //费用明细
     var farestr=$('#orderFare').html();
     var faredet = ejs.render(farestr, hftCreateOrderPara)
     $('#fareDetail').html(faredet);
 
+    //总价
+    var totamountnum='￥'+hftCreateOrderPara.TotalPrice;
+    $('.num1 >i').html(totamountnum);
+
     //明细遮罩
     $('.hft_det_mask').on('click',function(){
       $('.hft_det_mask').hide();
       $('.detail_fale').removeClass('open');
-      $('.hft_detail_fare').css('bottom','-150px');
+      $('.hft_detail_fare').css('bottom','-3rem');
     })
 
     //明细showhide
+    var fareFlag=true;
     $('.detail_fale').on('click',function(){
-      if($('.hft_detail_fare').css('bottom') == '-150px')
-      {
+      if(fareFlag){
         $('.hft_det_mask').show();
         $('.detail_fale').addClass('open');
-        $('.hft_detail_fare').css('bottom','49px');
+        $('.hft_detail_fare').css('bottom','.98rem');
+        fareFlag=false;
       }else{
         $('.hft_det_mask').hide();
         $('.detail_fale').removeClass('open');
-        $('.hft_detail_fare').css('bottom','-150px');
+        $('.hft_detail_fare').css('bottom','-3rem');
+        fareFlag=true;
       }
     });
 
