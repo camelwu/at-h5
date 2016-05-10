@@ -451,6 +451,10 @@ body{
   width: 0.04rem;
   height: .19rem;
   color: #FFB413;
+  font-size: .30rem;
+  font-weight: bolder;
+  background: #ffb413;
+  margin-right: .10rem;
 }
 .choose-tour-date{
   margin:.40rem 0;
