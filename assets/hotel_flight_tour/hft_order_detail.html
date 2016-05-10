@@ -57,7 +57,7 @@
   <!--国籍选择结束-->
   <!--模板-->
   <script id="tpl_page" type="text/template">
-    <p class="hft_paid">已支付</p>
+    <p class="hft_paid"><% if (isContinuePay==1) {%>  待支付 <% }else{ %> 已支付 <%}%> </p>
     <!--机票-->
     <section id="flight">
       <div class="flight_section">
@@ -154,8 +154,8 @@
         <% travelers.forEach(function(info){%>
         <ul class="fht_order_tab">
           <li>
-            <p class="clearfix"><span class="fl"></span>登记人1<span class="fr"><%=info.firstName%>/<%=info.lastName%></span></p>
-            <p class="clearfix"> <span class="fl"></span>护照<span class="fr"><%=info.salutation%></span></p>
+            <p class="clearfix"><span class="fl"></span>登记人1<span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+            <p class="clearfix"> <span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
           </li>
         </ul>
         <%})%>
@@ -177,8 +177,8 @@
           <span class="fr fare_tip"></span>
         </div>
         <ul class="hft_pri_details">
-          <li class="clearfix"><span class="fl">成人</span><span class="fr">¥56×2</span></li>
-          <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥56×2</span></li>
+          <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetials.unitAdultPrice%><%=hotelDetails.roomDetials.totalAdult%> </span></li>
+          <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetials.unitChildPrice%><%=hotelDetails.roomDetials.totalChild%> </span></li>
         </ul>
       </div>
     </section>
