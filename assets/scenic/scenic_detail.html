@@ -174,8 +174,8 @@
 
         <li>
             <div class="combo-name">{%=data.packageName%}</div>
-            <div class="combo-price">¥355</div> <i class="minpax2">(成人单价)</i> <i class="minpax">限2人起订</i>
-            <a href="javascript:MT.CCheckLogin({%=packageID%},0,1,1);" class="s-reserve button-orange">预订</a>
+            <div class="combo-price"></div> <!--<i class="minpax2">(成人单价)</i> <i class="minpax">限2人起订</i>-->
+            <a href="javascript:void(0);/*MT.CCheckLogin({%=packageID%},0,1,1);*/" class="stopgray s-reserve button-orange">预订</a>
             <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
             <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预订</a>-->
         </li>
@@ -196,7 +196,7 @@
     (function(){
 
         var val = vlm.parseUrlPara(window.location.href);
-        var themeId = "",OnlyForAdult, MinPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
+        var themeId = "",OnlyForAdult,MinPaxType,OldMinPax, NewMinPax,MaxPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
 
         var tpl1 = [
             '<div>',
@@ -235,7 +235,6 @@
                 "Code": "0088"
             }
 
-//            MT.ajaxJson("",JSON.stringify(Param),MT.GetDetailsCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
             vlm.loadJson("",JSON.stringify(param),MT.GetDetailsCallback);
 
         }
@@ -277,25 +276,70 @@
                 ChildAgeMax = data.childAgeMax;
                 TravelDate = data.defaultDepartStartDate;
                 TourID = data.tours;
-                MinPax = data.minPax;
-
-
-                var SearchPrice=
-                {
+                NewMinPax = data.minPax;
+                MaxPax = data.maxPax;
+                MaxAdult = data.maxAdult;
+                MinPaxType = data.minPaxType;
+                OnlyForAdult = data.onlyForAdult;
+                var SearchPrice;
+                if(OnlyForAdult){//只是成人
+                  SearchPrice=
+                  {
                     "Parameters": {
-                        "PackageID": val.packageID,
-                        "Adult": MinPax,
-                        "Child": [
-                            ChildAgeMin
-                        ],
-                        "Tours": [
+                      "PackageID": val.packageID,
+                      "Adult": NewMinPax,
+                      "Tours": [
 
-                        ]
+                      ]
                     },
                     "ForeEndType": 3,
                     "Code": "0091"
 
+                  }
+                }else{//成人和儿童
+                    if(MinPaxType == 1){//成人和儿童限制
+                      if(MaxPax > -1){
+                        if(MaxPax == NewMinPax){
+                          OldMinPax=NewMinPax;
+                          NewMinPax = NewMinPax -1;
+                        }
+                      }
+                      SearchPrice=
+                      {
+                        "Parameters": {
+                          "PackageID": val.packageID,
+                          "Adult": NewMinPax,
+                          "Child": [
+                            ChildAgeMin
+                          ],
+                          "Tours": [
+                          ]
+                        },
+                        "ForeEndType": 3,
+                        "Code": "0091"
+
+                      }
+                    }else{//成人限制
+
+                        SearchPrice=
+                        {
+                          "Parameters": {
+                            "PackageID": val.packageID,
+                            "Adult": NewMinPax,
+                            "Child": [
+                              ChildAgeMin
+                            ],
+                            "Tours": [
+
+                            ]
+                          },
+                          "ForeEndType": 3,
+                          "Code": "0091"
+
+                        }
+                    }
                 }
+
 
                 for (var i = 0;i<data.tours.length;i++)
                 {
@@ -339,7 +383,6 @@
          */
         MT.CLoadSearchPrice = function(SearchPrice){
 
-//            MT.ajaxJson("",JSON.stringify(SearchPrice),MT.SearchPriceCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
             vlm.loadJson("",JSON.stringify(SearchPrice),MT.SearchPriceCallback);
         }
         /**
@@ -352,12 +395,12 @@
             console.log(json);
             if(json.success){
                 var data=json.data;
-                data.minPax =MinPax;
+                data.minPax =OldMinPax||NewMinPax;
                 var tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);
                 $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
             }else {
                 console.log(json);
-//                jAlert(json.message,"提示");
+                jAlert(json.message,"提示");
                 var data=ExtendData,tpl_GetDetails_Package_ScenicPackageFail = template("tpl_GetDetails_Package_ScenicPackageFail",data);
                 $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackageFail);
             }

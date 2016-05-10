@@ -116,38 +116,38 @@
 						<a id="choHotel" data-key="" class="cho-hotel">请选择酒店</a>
 
 					</div>
-					<div class="gray-block" data-key="flight_page"></div>
-					<dl class="flight_info" data-key="flight_page" style="display: none">
-						<dt>
-							航班信息
-						</dt>
-						<dd>
-							<i class="word">出发</i>
-							<ul >
-								<li>
-									<input type="text" id="departFlightNo" placeholder="航班号">
-								</li>
-								<li id="flight1" >
-									<span class="js-flight-ymd" id="departDateTime">年月日</span>
-									<i class="data_icon"></i>
-								</li>
-							</ul>
+					<!--<div class="gray-block" data-key="flight_page"></div>-->
+					<!--<dl class="flight_info" data-key="flight_page" style="display: none">-->
+						<!--<dt>-->
+							<!--航班信息-->
+						<!--</dt>-->
+						<!--<dd>-->
+							<!--<i class="word">出发</i>-->
+							<!--<ul >-->
+								<!--<li>-->
+									<!--<input type="text" id="departFlightNo" placeholder="航班号">-->
+								<!--</li>-->
+								<!--<li id="flight1" >-->
+									<!--<span class="js-flight-ymd" id="departDateTime">年月日</span>-->
+									<!--<i class="data_icon"></i>-->
+								<!--</li>-->
+							<!--</ul>-->
 
-						</dd>
-						<dd>
-							<i class="word">抵达</i>
-							<ul >
-								<li>
-									<input type="text" id="arrivalFlightNo" placeholder="航班号">
-								</li>
-								<li id="flight2">
-									<span class="js-flight-ymd" id="arrivalDateTime">年月日</span>
-									<i class="data_icon"></i>
-								</li>
-							</ul>
+						<!--</dd>-->
+						<!--<dd>-->
+							<!--<i class="word">抵达</i>-->
+							<!--<ul >-->
+								<!--<li>-->
+									<!--<input type="text" id="arrivalFlightNo" placeholder="航班号">-->
+								<!--</li>-->
+								<!--<li id="flight2">-->
+									<!--<span class="js-flight-ymd" id="arrivalDateTime">年月日</span>-->
+									<!--<i class="data_icon"></i>-->
+								<!--</li>-->
+							<!--</ul>-->
 
-						</dd>
-					</dl>
+						<!--</dd>-->
+					<!--</dl>-->
 
 				</section>
 				<div class="order-notice">
@@ -457,7 +457,7 @@
 			/*景点 预订MT*/
 			(function() {
 				var val = vlm.parseUrlPara(window.location.href);
-				var ChildAgeMin, ChildAgeMax, TravelDate, TourID, MinPax, DetailData, SearchPriceData, globaldata, ExtendData, PickupPointData, StartDate, EndDate, recalSearchPrice;
+				var ChildAgeMin, ChildAgeMax, TravelDate, TourID, MinPax,MaxPax,OnlyForAdult,MinPaxType, DetailData, SearchPriceData, globaldata, ExtendData, PickupPointData, StartDate, EndDate, recalSearchPrice;
 
 
 
@@ -509,7 +509,6 @@
 						"ForeEndType" : 3,
 						"Code" : "0089"
 					}
-//					MT.ajaxJson("", JSON.stringify(param), MT.callbackPickupPoint, MT.ajaxAnimIn, MT.ajaxAnimOut);
 					vlm.loadJson("",JSON.stringify(param),MT.callbackPickupPoint);
 				}
 				/**
@@ -558,7 +557,6 @@
 						"ForeEndType" : 3,
 						"Code" : "0088"
 					}
-//					MT.ajaxJson("", JSON.stringify(param), MT.callbackDetails, MT.ajaxAnimIn, MT.ajaxAnimOut);
 					vlm.loadJson("",JSON.stringify(param),MT.callbackDetails);
 				}
 				/**
@@ -577,33 +575,73 @@
 						TravelDate = data.defaultDepartStartDate;
 						TourID = data.tours;
 						MinPax = data.minPax;
+            MaxPax = data.maxPax;
+            OnlyForAdult = data.onlyForAdult;
+            MinPaxType = data.minPaxType;
+
 						globaldata = {
 							DetailData : DetailData
 						};
 						ExtendData = globaldata;
 
-						var SearchPrice = {
-							"Parameters" : {
-								"PackageID" : val.PackageID,
-								"Adult" : MinPax,
-								"Child" : [ChildAgeMin],
-								"Tours" : []
-							},
-							"ForeEndType" : 3,
-							"Code" : "0091"
 
-						}
+            var SearchPrice;
+            if(OnlyForAdult){//只是成人
+              SearchPrice=
+              {
+                "Parameters": {
+                  "PackageID": val.PackageID,
+                  "Adult": MinPax,
+                  "Tours": [
 
-						var OnlyAdultPrice = {
-							"Parameters" : {
-								"PackageID" : val.PackageID,
-								"Adult" : MinPax,
-								"Tours" : []
-							},
-							"ForeEndType" : 3,
-							"Code" : "0091"
+                  ]
+                },
+                "ForeEndType": 3,
+                "Code": "0091"
+              }
+            }else{//成人和儿童
+              if(MinPaxType == 1){//成人和儿童
+                if(MaxPax > -1){
+                  if(MaxPax == MinPax){
+                    MinPax = MinPax -1;
+                  }
+                }
+                SearchPrice=
+                {
+                  "Parameters": {
+                    "PackageID": val.PackageID,
+                    "Adult": MinPax,
+                    "Child": [
+                      ChildAgeMin
+                    ],
+                    "Tours": [
+                    ]
+                  },
+                  "ForeEndType": 3,
+                  "Code": "0091"
 
-						}
+                }
+              }else{//只限制成人
+
+                SearchPrice=
+                {
+                  "Parameters": {
+                    "PackageID": val.PackageID,
+                    "Adult": MinPax,
+                    "Child": [
+                      ChildAgeMin
+                    ],
+                    "Tours": [
+
+                    ]
+                  },
+                  "ForeEndType": 3,
+                  "Code": "0091"
+
+                }
+              }
+            }
+
 
 						for (var i = 0; i < data.tours.length; i++) {
 							SearchPrice.Parameters.Tours[i] = {
@@ -624,7 +662,6 @@
 				 */
 				MT.getSearchPrice = function(SearchPrice) {
 					recalSearchPrice = SearchPrice;
-//					MT.ajaxJson("", JSON.stringify(SearchPrice), MT.callbackSearchPrice, MT.ajaxAnimIn, MT.ajaxAnimOut);
 					vlm.loadJson("",JSON.stringify(SearchPrice),MT.callbackSearchPrice);
 				}
 				/**
@@ -644,7 +681,7 @@
 					} else {
 
 						if (val.FAIL == 1) {
-							MT.renderFail();
+//							MT.renderFail();
 							return false;
 						} else {
 
@@ -655,101 +692,82 @@
 
 					}
 				}
-				/**
-				 * SearchPrice callback
-				 * @param data
-				 */
-				MT.callbackOnlyAdultSearchPrice = function(data) {
-					var json = data;
-					SearchPriceData = json;
-					//                console.log(json);
-					if (json.success) {
-						ExtendData = $.extend({
-							"OnlyAdultPriceData" : SearchPriceData
-						}, ExtendData);
 
-					} else {
-						console.log(json);
-						jAlert(json.message, "提示");
-
-					}
-
-				}
 				/**
 				 * 渲染模版
 				 */
-				MT.renderFail = function() {
-					var isAudlt = 1;
-
-					if (isAudlt == 1) {
-						ExtendData = $.extend({
-							isAudlt : 1,
-							AudltPrice : 0,
-							ChildPrice : 0,
-							minPax : 0,
-							minPaxType : "",
-							PackageID : 0
-						}, ExtendData);
-					}
-
-					ExtendData.DefaultDate = MT.getYMDMatch(ExtendData.DetailData.data.defaultDepartStartDate);
-					ExtendData.StartDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidFrom);
-					ExtendData.EndDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidTo);
-					ExtendData.minPax = ExtendData.DetailData.data.minPax;
-					ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
-					ExtendData.PackageID = ExtendData.DetailData.data.packageID;
-					//                ExtendData.travelersInput = ExtendData.SearchPriceData.data.bookingFormInfo.travelersInput;
-					//                ExtendData.requiredPickupPoint = ExtendData.SearchPriceData.data.bookingFormInfo.requiredPickupPoint;
-					//                ExtendData.airportTransferType = ExtendData.SearchPriceData.data.bookingFormInfo.airportTransferType;
-					//是否需要接送服务
-					if (false) {
-						$("[data-key=holist_page]").remove();
-					}
-					//是否需要护照
-					if (false) {
-						$("#scenic2_idcard").parent().remove();
-					}
-					//是否需要航班信息
-					if (false) {
-						//None, TwoWay，Arrival，Depart
-						$("[data-key=flight_page]").show();
-						FlightDateChoose();
-
-					} else {
-						$("[data-key=flight_page]").hide();
-					}
-
-					MT.renderViewFail();
-
-					dateHandler();
-
-				}
+//				MT.renderFail = function() {
+//					var isAudlt = 1;
+//
+//					if (isAudlt == 1) {
+//						ExtendData = $.extend({
+//							isAudlt : 1,
+//							AudltPrice : 0,
+//							ChildPrice : 0,
+//							minPax : 0,
+//							minPaxType : "",
+//							PackageID : 0
+//						}, ExtendData);
+//					}
+//
+//					ExtendData.DefaultDate = MT.getYMDMatch(ExtendData.DetailData.data.defaultDepartStartDate);
+//					ExtendData.StartDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidFrom);
+//					ExtendData.EndDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidTo);
+//					ExtendData.minPax = ExtendData.DetailData.data.minPax;
+//					ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
+//					ExtendData.PackageID = ExtendData.DetailData.data.packageID;
+//					//                ExtendData.travelersInput = ExtendData.SearchPriceData.data.bookingFormInfo.travelersInput;
+//					//                ExtendData.requiredPickupPoint = ExtendData.SearchPriceData.data.bookingFormInfo.requiredPickupPoint;
+//					//                ExtendData.airportTransferType = ExtendData.SearchPriceData.data.bookingFormInfo.airportTransferType;
+//					//是否需要接送服务
+//					if (false) {
+//						$("[data-key=holist_page]").remove();
+//					}
+//					//是否需要护照
+//					if (false) {
+//						$("#scenic2_idcard").parent().remove();
+//					}
+//					//是否需要航班信息
+//					if (false) {
+//						//None, TwoWay，Arrival，Depart
+//						$("[data-key=flight_page]").show();
+//						FlightDateChoose();
+//
+//					} else {
+//						$("[data-key=flight_page]").hide();
+//					}
+//
+//					MT.renderViewFail();
+//
+//					dateHandler();
+//
+//				}
 				/**
 				 * 渲染view1
 				 * @constructor
 				 */
-				MT.renderViewFail = function() {
-					var data = ExtendData;
-					var tpl_ScenicView1 = template("tpl_ScenicView1", ExtendData);
-					var tpl_Adult_Child1 = template("tpl_Adult_Child1", ExtendData);
-					//初始化默认时间
-					var defaultTime = ExtendData.DefaultDate;
-					var categoryIndex = 0, categoryTitle;
-					//                console.log(data);
-
-					$(".js-childblock1").after(tpl_ScenicView1);
-
-					var child_one = $(".js-sce-ticket1").append(tpl_Adult_Child1);
-					child_one.find(".sce-ticket:last").attr("data-key", 1);
-					child_one.find(".sce-ticket:last").find(".js-date").attr("id", "jdate0");
-					child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
-					child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.DetailData.data.packageID);
-					child_one.find(".js-sce-introduce-txt:last").html(data.DetailData.data.packageName + "(产品编号 " + data.DetailData.data.packageRefNo + ")");
-					$(".add-ticket").addClass("stopgray");
-					$(".js-per-price-cont1").html("");
-					$(".js-order-total").html("");
-
-				}
+//				MT.renderViewFail = function() {
+//					var data = ExtendData;
+//					var tpl_ScenicView1 = template("tpl_ScenicView1", ExtendData);
+//					var tpl_Adult_Child1 = template("tpl_Adult_Child1", ExtendData);
+//					//初始化默认时间
+//					var defaultTime = ExtendData.DefaultDate;
+//					var categoryIndex = 0, categoryTitle;
+//					//                console.log(data);
+//
+//					$(".js-childblock1").after(tpl_ScenicView1);
+//
+//					var child_one = $(".js-sce-ticket1").append(tpl_Adult_Child1);
+//					child_one.find(".sce-ticket:last").attr("data-key", 1);
+//					child_one.find(".sce-ticket:last").find(".js-date").attr("id", "jdate0");
+//					child_one.find(".js-date > .js-ymd").html(defaultTime).next(".js-week").html(MT.getWeek(defaultTime));
+//					child_one.find(".js-sce-introduce-txt:last").attr("data-key", data.DetailData.data.packageID);
+//					child_one.find(".js-sce-introduce-txt:last").html(data.DetailData.data.packageName + "(产品编号 " + data.DetailData.data.packageRefNo + ")");
+//					$(".add-ticket").addClass("stopgray");
+//					$(".js-per-price-cont1").html("");
+//					$(".js-order-total").html("");
+//
+//				}
 				/*
 				 * 返回年月日
 				 * */
@@ -787,8 +805,10 @@
 					ExtendData.DefaultDate = MT.getYMDMatch(ExtendData.DetailData.data.defaultDepartStartDate);
 					ExtendData.StartDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidFrom);
 					ExtendData.EndDate = MT.getYMDMatch(ExtendData.DetailData.data.departValidTo);
+					ExtendData.maxPax = ExtendData.DetailData.data.maxPax;
 					ExtendData.minPax = ExtendData.DetailData.data.minPax;
 					ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
+					ExtendData.onlyForAdult = ExtendData.DetailData.data.onlyForAdult;
 					ExtendData.PackageID = ExtendData.DetailData.data.packageID;
 					ExtendData.travelersInput = ExtendData.SearchPriceData.data.bookingFormInfo.travelersInput;
 					ExtendData.requiredPickupPoint = ExtendData.SearchPriceData.data.bookingFormInfo.requiredPickupPoint;
@@ -801,15 +821,15 @@
 					if (ExtendData.travelersInput == "0") {
 						$("#scenic2_idcard").parent().remove();
 					}
-					//是否需要航班信息
-					if (ExtendData.airportTransferType != "0") {
-						//None, TwoWay，Arrival，Depart
-						$("[data-key=flight_page]").show();
-						FlightDateChoose();
-
-					} else {
-						$("[data-key=flight_page]").hide();
-					}
+//					//是否需要航班信息
+//					if (ExtendData.airportTransferType != "0") {
+//						//None, TwoWay，Arrival，Depart
+//						$("[data-key=flight_page]").show();
+//						FlightDateChoose();
+//
+//					} else {
+//						$("[data-key=flight_page]").hide();
+//					}
 
 					MT.renderView1();
 
@@ -1294,21 +1314,38 @@
 						}
 						//判断人数
 						var totalP=0;
-						if(ExtendData.minPaxType == "1"){
-							totalP = AdultCount + ChildCount;
-							if(totalP < ExtendData.minPax){
-								jAlert("限定人数为"+ExtendData.minPax+"起订", "提示");
-								return false;
-							}
-						}
+            if(ExtendData.onlyForAdult){//只限制成人
+              if(AdultCount < ExtendData.minPax){
+                jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+                return false;
+              }
+              if(AdultCount > ExtendData.maxPax){
+                jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+                return false;
+              }
+            }else{//限制成人和儿童
+              if(ExtendData.minPaxType == 1){//限制成人和儿童
+                totalP = parseInt(AdultCount) + parseInt(ChildCount);
+                if(totalP < ExtendData.minPax){
+                  jAlert("限定最小人数为"+ExtendData.minPax+"起订", "提示");
+                  return false;
+                }
+                if(totalP > ExtendData.maxPax){
+                  jAlert("限定最大人数为"+ExtendData.maxPax+"起订", "提示");
+                  return false;
+                }
+              }else{//只限制成人
+                if(AdultCount < ExtendData.minPax){
+                  jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
+                  return false;
+                }
+                if(AdultCount > ExtendData.maxPax){
+                  jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
+                  return false;
+                }
+              }
+            }
 
-						if(ExtendData.minPaxType == "0"){
-							totalP = AdultCount;
-							if(totalP < ExtendData.minPax){
-								jAlert("限定成人人数为"+ExtendData.minPax+"起订", "提示");
-								return false;
-							}
-						}
 
 
 
