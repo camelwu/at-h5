@@ -1,5 +1,4 @@
 *{
-  box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   font-family: "microsoft yahei", Arial, sans-serif;
@@ -322,7 +321,6 @@ body{
 }
 .roomName{
   height: 100%;
-  max-width: 72%;
 }
 .roomName p{
   height: .52rem;
@@ -332,12 +330,15 @@ body{
 .roomName p:nth-child(1){
   font-size: .32rem;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .check-more-room {
   padding: 0 15px;
-  height: 1.0rem;
+  height: .90rem;
   background: #FFFFFF;
-  line-height: 1.0rem;
+  line-height: .90rem;
   text-align: center;
   color: #999999;
   border-top: 1px solid #dedede;
@@ -362,11 +363,9 @@ body{
   transform-origin: 50% 0;
 }
 .roomUl .plassPrice{
-  position: absolute;
-  right:0;
-  top:0;
   height: 100%;
   line-height: 1.2rem;
+  float: right;
 }
 .roomUl .plassPrice span{
   color: #fb6a22;
@@ -398,40 +397,8 @@ body{
   width: 100%;
   position: relative;
 }
-.tourOuter li{
-  padding: .28rem 0;
-  height: 2.96rem;
-}
-.tourOuter li .tourNameDate{
-  position: relative;
-}
-.tourOuter li h4{
-  padding: 0;
-  margin: 0;
-  color:#333;
-  font-weight: normal;
-}
-.rightTip{
-  position: absolute;
-  right:0;
-  top:0;
-  color:#999;
-  font-size: .24rem;
-}
 
-.imgDate .right{
-  padding-left: .32rem;
-}
-.dateArray {
-  padding: .14rem 0 .22rem 0;
-  font-size: .24rem;
-  white-space: nowrap;
-}
-.imgDate .right .noon{
-  width: 100%;
-  text-align: center;
-}
-.dateArray  span, .months  span, .monthsDate span{
+.months  span, .monthsDate span{
   display: inline-block;
   height:.6rem;
   line-height: .6rem;
@@ -441,7 +408,7 @@ body{
   text-align: center;
   margin-right:.12rem ;
 }
-.dateArray  span.active, .months  span.active, .monthsDate span.active{
+.months  span.active, .monthsDate span.active{
   border: 1px solid #ffb413;
   color: #ffb413;;
 }
@@ -460,6 +427,70 @@ body{
 }
 .right .noon button:first-child{
   margin-right: .24rem;
+}
+
+.tourOuter li{
+  padding: .28rem 0;
+  height: 2.96rem;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.tourOuter li h3, .choose-tour-date{
+  width: 100%;
+  font-size: .32rem;
+  color:rgb(72,72,72);
+}
+.tourOuter li h3:before{
+  content: "|";
+  width: 0.04rem;
+  height: .19rem;
+  color: #FFB413;
+}
+.choose-tour-date{
+  margin:.40rem 0;
+}
+.choose-tour-date i{
+  float: right;
+  width:.40rem;
+  height:.40rem;
+  border:1px solid red
+}
+.after-noon{
+  width: 100%;
+  text-align: center;
+  color: rgb(51, 51, 51);
+}
+.after-noon button {
+  display: inline-block;
+  font-size: .28rem;
+  border-radius: .04rem;
+  color: rgb(51,51,51);
+  padding: .12rem 0;
+  width: 29%;
+  margin-right: .28rem;
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.after-noon button.active{
+  color: #FFB413;
+  border: 1px solid #FFB413;
+  position: relative;
+}
+.after-noon button.active:after{
+  content: "";
+  display: inline-block;
+  width: .482rem;
+  height: .48rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -7.0rem -1.34rem;
+  position: absolute;
+  right: 0;
+  bottom: 0
+}
+.after-noon span:last-child{
+  margin-right: 0;
 }
 .bottomPrice{
   width: 100%;

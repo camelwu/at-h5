@@ -247,7 +247,7 @@ var data = {
       "travelDateMandatory": 0,
       "tourName": "机场接送服务（ 拼车）",
       "tourPictureURL": "http://packagescontrol.asiatravel.net/packageImage/Tour/166_Asiatravel-coach-135x86.jpg",
-      "tourSessions": [{"tourSessionEnumValue": 4, "tourSessionName": "全天", "isSelected": 1}]
+      "tourSessions": [{"tourSessionEnumValue": 4, "tourSessionName": "上午", "isSelected": 1},{"tourSessionEnumValue": 4, "tourSessionName": "下午", "isSelected": 1}]
     }]
   },
   "code": "200"
