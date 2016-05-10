@@ -18,7 +18,6 @@
 <link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
 <div class="contents">
   <!--banner-->
   <div class="hotel_dbanner jpr">
@@ -29,7 +28,10 @@
   <section class="hotel_detail_msg">
     <ul>
       <li class="name"><h3>京东东急涩谷卓越大酒店(Shibuya Excel Hotel Tokyu Tokyo)</h3></li>
-      <li class="mes">1-12-2 Dougenzaka Shibuya-ku</li>
+      <li class="mes mes2">1-12-2 Dougenzaka Shibuya-ku</li>
+      <li class="map" id="map"></li>
+    </ul>
+    <ul class="ul2" style="margin-top: -1.6rem;">
       <li class="score"><b>4.3</b> 分 <strong>385</strong>人点评<!--<i class="arrow"></i>--></li>
       <li class="star">
         <span>3星级</span>
@@ -40,6 +42,20 @@
       </li>
     </ul>
   </section>
+  <!--<section class="hotel_detail_msg">-->
+    <!--<ul>-->
+      <!--<li class="name"><h3>京东东急涩谷卓越大酒店(Shibuya Excel Hotel Tokyu Tokyo)</h3></li>-->
+      <!--<li class="mes">1-12-2 Dougenzaka Shibuya-ku</li>-->
+      <!--<li class="score"><b>4.3</b> 分 <strong>385</strong>人点评&lt;!&ndash;<i class="arrow"></i>&ndash;&gt;</li>-->
+      <!--<li class="star">-->
+        <!--<span>3星级</span>-->
+        <!--<span class="park"></span>-->
+        <!--<span class="car"></span>-->
+        <!--&lt;!&ndash;<span class="detail">酒店详情</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="arrow"></i>&ndash;&gt;-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</section>-->
   <section class="hotel_detail_rooms">
     <div class="time">
       <ul>
@@ -96,12 +112,19 @@
 </div>
 
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../js/ATGMSMain.js"></script>
+<script src="../js/ATIcons.js"></script>
+<script src="../js/ATTransform.js"></script>
+<script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBV850tYcTCzqZbZKVWpeGYRm0yNYLt9fc&callback=initialize" type="text/javascript"></script>
 <script>
   $(function(){
     $('.hotel_detail_rooms li').on('click',function(){
       $(this).addClass('cur').siblings().removeClass('cur');
       window.location.href = 'hft_choose.html';
-    })
+    });
+    at.map.createMap(1.251192,103.8238);
+    at.map.markHotel(1.251192,103.8238,"");
+    at.map.moveCenterToHotelLocation(1.251192,103.8238);
   })
 </script>
 </body>
