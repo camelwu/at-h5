@@ -1319,7 +1319,7 @@
                 jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
                 return false;
               }
-              if(AdultCount > ExtendData.maxPax){
+              if(AdultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
                 jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
                 return false;
               }
@@ -1330,7 +1330,7 @@
                   jAlert("限定最小人数为"+ExtendData.minPax+"起订", "提示");
                   return false;
                 }
-                if(totalP > ExtendData.maxPax){
+                if(totalP > ExtendData.maxPax && ExtendData.maxPax != -1){
                   jAlert("限定最大人数为"+ExtendData.maxPax+"起订", "提示");
                   return false;
                 }
@@ -1339,7 +1339,7 @@
                   jAlert("限定成人最小数为"+ExtendData.minPax+"起订", "提示");
                   return false;
                 }
-                if(AdultCount > ExtendData.maxPax){
+                if(AdultCount > ExtendData.maxPax && ExtendData.maxPax != -1){
                   jAlert("限定成人最大数为"+ExtendData.maxPax+"起订", "提示");
                   return false;
                 }
