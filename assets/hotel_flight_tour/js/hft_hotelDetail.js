@@ -1,4 +1,6 @@
 (function(){
+  var latitude = 0;
+  var longitude = 0;
   //传数据
   var data = {
     "parameters": {
@@ -43,15 +45,16 @@
   };
   //接数据
   vlm.loadJson('',JSON.stringify(data),dataCallBack);
-  //var result =
   function dataCallBack(result){
     if(result.success){
       var data = result.data;
       console.log(data);
       banner(data)
-
-
-      //message(data)
+      ulList(data)
+      hotelName(data)
+      hotelAddress(data)
+      map(data)
+      message(data)
     }else{
       alert("数据加载错误")
     }
@@ -63,27 +66,36 @@
     var banner = ejs.render(str,data.hotelInfo);
     $('.hotel_dbanner').html(banner);
   }
-  //images
+  //ulList
+  function ulList(data){
+    var str = $('#ulList').html();
+    var ulList = ejs.render(str,data.hotelInfo);
+    $('ul.ul_room').html(ulList);
+  }
+  //hotelName
+  function hotelName(data){
+    var str =$('#hotelName').html();
+    var hotelName = ejs.render(str,data.hotelInfo);
+    $('.hotel_detail_msg li.name').html(hotelName);
+  }
+  //hotelAddress
+  function hotelAddress(data){
+    var str =$('#hotelAddress').html();
+    var hotelAddress = ejs.render(str,data.hotelInfo);
+    $('.hotel_detail_msg li.mes2').html(hotelAddress);
+  }
+  //  map
+  function map(data){
+    latitude = data.hotelInfo.latitude-0;
+    longitude = data.hotelInfo.longitude-0;
+    at.map.createMap(latitude,longitude);
+    at.map.markHotel(latitude,longitude,"");
+    at.map.moveCenterToHotelLocation(latitude,longitude);
+  }
+  //message
   function message(data){
     var str =$('#message').html();
-    var star = data.hotelInfo.starRating;
-    switch (star){
-      case "1 星级":
-            star = "一星级";
-            break;
-      case "2 星级":
-            star = "二星级";
-            break;
-      case "3 星级":
-            star = "三星级";
-            break;
-      case "4 星级":
-            star = "四星级";
-            break;
-      case "5 星级":
-            star = "五星级";
-            break;
-    }
-    var message = ejs.render(str,star)
+    var message = ejs.render(str,data.hotelInfo);
+    $('.hotel_detail_msg .ul2').html(message);
   }
 })()
