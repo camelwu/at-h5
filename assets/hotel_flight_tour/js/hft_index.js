@@ -177,7 +177,6 @@ var htf_search = {
                   str = str - 1;
                   m.innerHTML = str;
               }
-
               str == 1 ? n.style.backgroundPosition = '6.7% 68%' : n.style.backgroundPosition = '17.5% 68%';
               str == 3 ? plus.style.backgroundPosition = '29.5% 68%' : plus.style.backgroundPosition = '41.2% 68%';
               var parent = n.parentNode.parentNode.parentNode;
@@ -378,7 +377,6 @@ var htf_search = {
           var temAdultNum = parseInt(room[r].querySelector('.adult_people_number').innerHTML);
           var temChildNum = parseInt(room[r].querySelector('.child_number').innerHTML);
           var extraChild = room[r].querySelector('.extraChild');
-          //var childChooseParent = extraChild.querySelectorAll('.numbList');
           var childChooseParent = extraChild.querySelector('.numbList');
           if(temAdultNum==1&&temChildNum==1){
               childWithBed.push(room[r].querySelector('input').value);
@@ -443,19 +441,11 @@ var htf_search = {
           RoomInfo:roomDetails,
           EchChildNum:echChildNum
       };
-    console.log(adultNum,childNum,roomDetails,echChildNum);
-
-      //$('#hft_searchBtn').click(function(){
-      //  console.log(adultNum,childNum,roomDetails,echChildNum);
-      //    window.location.href = 'hft_scenic_list.html';
-      //});
-      //$('#hf_searchBtn').click(function(){
-      //    window.location.href = '../hotel_flight/ticket_hotel_choose.html';
-      //})
+      localStorage.setItem('searchInfo', JSON.stringify(searchInfo));
+      sessionStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
   },
   init:function(){
       this.init_title_room();
-      //this.next_page();
       this.add_subtract();
   }
 };
@@ -474,5 +464,7 @@ $('#hft_searchBtn').click(function(){
   htf_search.next_page();
   window.location.href = 'hft_scenic_list.html?type=2';
 });
-//$('#hft_searchBtn').click(hf_search.nextPage);
-//$('#hf_searchBtn').click(hf_search.nextPage);
+$('#hf_searchBtn').click(function(){
+  htf_search.next_page();
+  window.location.href = '../hotel_flight/ticket_hotel_choose.html?type=1';
+});
