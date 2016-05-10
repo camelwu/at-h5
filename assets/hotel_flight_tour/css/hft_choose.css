@@ -517,13 +517,14 @@ body{
 .preserve{
   display: inline-block;
   height: 100%;
-  padding:0  .72rem;
+  padding: 0 0;
   background: #FFB413;
   color: #FFFFFF;
   text-align: center;
   font-size: .28rem;
   position: absolute;
-  right:0
+  right: 0;
+  width: 50%
 }
 .priceDetailInfo, .chooseDate{
   position: fixed;
