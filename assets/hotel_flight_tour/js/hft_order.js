@@ -66,6 +66,49 @@
       }
     });
 
+    //出行人明细
+    function travelDet(){
+      var traAdu={};
+      var traChi={};
+      var room=hftCreateOrderPara.RoomDetails;
+      var traAdultnum=0;
+      var traChildnum=0;
+      for(var i=0;i<room.length; i++)
+      {
+        traAdultnum+=parseInt(room[i].adult);
+        if(room[i].childWithOutBed)
+        {
+          traChildnum+=room[i].childWithOutBed.length;
+        }
+        if(room[i].childWithBed)
+        {
+          traChildnum+=room[i].childWithBed.length;
+        }
+
+      }
+      if(traChildnum == 0){
+        $('.order_tsl2 b').remove();
+      }
+      $('.chi_tot').html(traChildnum);
+      $('.adu_tot').html(traAdultnum);
+      var obj={};
+      obj.adunum=traAdultnum;
+      obj.chinum=traChildnum;
+      return obj;
+    }
+    travelDet();
+    var hft_peotot=travelDet();
+    window.localStorage.hft_eotot=(hft_peotot.adunum+hft_peotot.chinum);
+    window.localStorage.hft_adunum=hft_peotot.adunum;
+    window.localStorage.hft_chinum=hft_peotot.chinum;
+
+    /*添加出行人*/
+    $(document).on('click','.add_traveller',function(){
+      $("#status").show().fadeOut();
+      $("#preloader").show().delay(400).fadeOut("medium");
+      vlm.f_choice('order-twrap', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate);
+    });
+
   }
   init();
 
@@ -133,30 +176,30 @@
       //  return;
       //}
       //联系人姓名检验
-      var inputlast=$('.hft_con_lastname');
-      if(! vlm.Utils.validate.engName(inputlast.val())){
-        jAlert('请您输入英文的联系人姓');
-        return;
-      }
-      var inputfir=$('.hft_con_firstname');
-      if(! vlm.Utils.validate.engName(inputfir.val())){
-        jAlert('请您输入英文的联系人名');
-        return;
-      }
-      // 手机号邮箱检验
-      var oMobile = $('.hft_con_cell')[0].value;
-      var oEmail = $('.hft_con_email')[0].value;
-
-      if ( ! vlm.Utils.validate.mobileNo(oMobile) )
-      {
-        jAlert('请输入正确的手机号');
-        return;
-      }
-      if ( ! vlm.Utils.validate.email(oEmail) )
-      {
-        jAlert('请输入正确的邮箱');
-        return;
-      }
+      //var inputlast=$('.hft_con_lastname');
+      //if(! vlm.Utils.validate.engName(inputlast.val())){
+      //  jAlert('请您输入英文的联系人姓');
+      //  return;
+      //}
+      //var inputfir=$('.hft_con_firstname');
+      //if(! vlm.Utils.validate.engName(inputfir.val())){
+      //  jAlert('请您输入英文的联系人名');
+      //  return;
+      //}
+      //// 手机号邮箱检验
+      //var oMobile = $('.hft_con_cell')[0].value;
+      //var oEmail = $('.hft_con_email')[0].value;
+      //
+      //if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+      //{
+      //  jAlert('请输入正确的手机号');
+      //  return;
+      //}
+      //if ( ! vlm.Utils.validate.email(oEmail) )
+      //{
+      //  jAlert('请输入正确的邮箱');
+      //  return;
+      //}
 
       console.log(Parmeters);
       vlm.loading();
@@ -170,12 +213,13 @@
     var json=ret;
     console.log(json);
     vlm.loadend();
-    if(json.success)
-    {
-      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
-    }else{
-      jAlert(json.message);
-    }
+    window.location.href='../payment/payment.html';
+    //if(json.success)
+    //{
+    //  window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
+    //}else{
+    //  jAlert(json.message);
+    //}
   }
 
 

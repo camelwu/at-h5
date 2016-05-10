@@ -4,7 +4,8 @@
 var changeFlightInfo;
 var oldFlightInfo;
 var flight_list = {
-    requestUrl:"http://10.6.11.28:1337/api/GetServiceApiResult",
+    requestUrl:"",
+    //requestUrl:"http://10.6.11.28:1337/api/GetServiceApiResult",
     getById:function(obj){
         return document.getElementById(obj);
     },
@@ -51,6 +52,7 @@ var flight_list = {
         week = ["日","一","二","三","四","五","六"];
         return week[date];
     },
+    //   替换数组元素
     replaceElement:function(array,element,ch){
         for(var i = 0;i < array.length;i++){
             if(array[i] == element){
@@ -276,7 +278,8 @@ var flight_list = {
             ForeEndType: ForeEndType,
             Code: Code
         };
-        questUrl = questUrl?questUrl:that.requestUrl;
+        questUrl = questUrl || that.requestUrl;
+        //questUrl = questUrl?questUrl:that.requestUrl;
         vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
     },
     addHandler: function (target, eventType, handle) {

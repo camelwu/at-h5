@@ -23,7 +23,9 @@
     padding: 1px;
     background-color: #F7F7F7;
     font-weight: 500;
-    margin-top:1.4rem
+}
+.p-price span{
+  color: red;
 }
 .p-p1{
   margin-left: 15px;
@@ -195,7 +197,7 @@
     width: 100%;
 }
 .p-home .p-hotelinfo{
-  margin-top: 1.8rem;
+  margin-top: 0.32rem;
   margin-left: 0.46rem;
   vertical-align: middle;
 }
@@ -468,6 +470,9 @@
 .order-price{
     margin-top: 15px;
 }
+.order-price span{
+  color: red;
+}
 .order-price i{
     font-weight: 700;
     font-size: 0.36rem;
@@ -519,7 +524,7 @@
 .tel_tip {
   position: absolute;
   right: 0.4rem;
-  top: 0.5rem;
+  top: 0.2rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-position: -4.52rem -1.27rem;
   background-size: 6.6rem 4.55rem;
