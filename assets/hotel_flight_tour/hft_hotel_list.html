@@ -194,9 +194,9 @@
       <img class="img" src=<%= hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
         <h3><%= hotels[i].hotelName %></h3>
-        <p><span class="score"><%= hotels[i].starRating %></span>分&nbsp;<i>422人点评</i></p>
+        <p><span class="score"><%= hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>
         <p class="equipment clearfix">
-          <span><%= hotels[i].hotelReviewScore %>星级</span>
+          <span><%= hotels[i].starRating %></span>
           <!--<span class="park"></span>-->
           <!--<span class="car"></span>-->
         </p>
