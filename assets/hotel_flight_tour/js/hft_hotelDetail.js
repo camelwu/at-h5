@@ -55,6 +55,7 @@
       hotelAddress(data)
       map(data)
       message(data)
+      vlm.init()
     }else{
       alert("数据加载错误")
     }
