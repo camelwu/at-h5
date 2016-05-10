@@ -165,10 +165,10 @@ var data = {
             "quantity": 2,/*人数*/
             "currencyCode": "CNY",
             "amount": 6983.0,/*单价*/
-            "totalAmount": 13966.0/*总价*/
+            "totalAmount": 13766.0/*总价*/
           }],
         "addtionalPrice": 0.0,
-        "totalAmount": 13966.0
+        "totalAmount": 13766.0
       },
         {
         "roomID": 10996872,
@@ -184,7 +184,7 @@ var data = {
             "amount": 6983.0,/*单价*/
             "totalAmount": 13966.0/*总价*/
           }],
-        "addtionalPrice": 0.0,
+        "addtionalPrice": 2,
         "totalAmount": 13966.0
       },
         {
@@ -216,7 +216,7 @@ var data = {
       {
       "tourID": 134,
       "travelDates": /*可游玩时间*/
-        ["2016-06-05T00:00:00", "2016-06-06T00:00:00", "2016-06-07T00:00:00", "2016-06-08T00:00:00", "2016-06-09T00:00:00", "2016-06-10T00:00:00"],
+        ["2016-05-05T00:00:00","2016-06-05T00:00:00", "2016-06-06T00:00:00", "2016-06-07T00:00:00", "2016-06-08T00:00:00", "2016-06-09T00:00:00", "2016-06-10T00:00:00"],
       "selectTravelDate": "2016-06-05T00:00:00",/*选中游玩时间*/
       "tourOptions": null,/*可选TourOption*/
       "selectOptionCode": null,

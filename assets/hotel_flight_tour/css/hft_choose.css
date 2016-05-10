@@ -499,7 +499,7 @@ body{
 }
 .after-noon{
   width: 100%;
-  text-align: center;
+  text-align: left;
   color: rgb(51, 51, 51);
 }
 .after-noon button {
@@ -571,8 +571,9 @@ body{
   background: #fff;
 }
 .chooseDate{
-  display: none;
+  display: block;
   padding: 0;
+  min-height: 5.3rem;
 }
 .chooseDate .confirm{
   padding: 0 .28rem;
@@ -589,6 +590,7 @@ body{
   font-size: .28rem;
   color: #333333;
 }
+.price-num-price{display:inline-block;float: right}
 .priceX{
   float: right;
 }
@@ -599,6 +601,8 @@ body{
 }
 .monthsDate{
   border-bottom: none;
+  position: absolute;
+  width: 100%;
 }
 .shadow{
   display: none;
