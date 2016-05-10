@@ -1348,8 +1348,6 @@
 
 
 
-
-
 						//景点
 						TourCount = $(".js-sce").length;
 						if (TourCount > 0) {
@@ -1371,7 +1369,7 @@
 						var regx = /[^a-zA-Z]+/g;
 						//国籍
 						NationalityCode = $("#jp_bank_country").attr("data-code");
-						CountryCode = $("#jp_tel_country").html();
+						CountryCode = $("#jp_tel_country").attr("data-tel-code");
 
 						TravelerType = ExtendData.isAudlt == 1 ? "Adult" : "Child";
 						Salutation = "Mr";
