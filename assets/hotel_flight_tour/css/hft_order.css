@@ -283,6 +283,16 @@ li.order_tlist2 {
   display: block;
   margin-bottom: .3rem;
 }
+.edit_tips{
+  width: .4rem;
+  height: .4rem;
+  background: url(../../images/ui/icons.png) no-repeat;
+  background-size: 5.6rem 4rem;
+  background-position: 67% 1%;
+  position: absolute;
+  top: .2rem;
+  right: .2rem;
+}
 
 .order_tlist2 span {
   width: 100%;
