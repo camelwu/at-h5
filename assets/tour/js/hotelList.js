@@ -476,7 +476,6 @@ function url2json(url) {
 			}
 			console.log(newPara);
 			hotelList.tAjax('',newPara,'0208',3,hotelList.callBack);
-
 		}
 
 		/*   位置筛选  */
@@ -492,5 +491,4 @@ function url2json(url) {
 	}
 	h_l_s();
 	//页面没有展示前页面展示的页面
-
 })();

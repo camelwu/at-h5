@@ -125,7 +125,7 @@ body{
 .dateWeekCity span{
   margin-right: .16rem;
 }
-.dateWeekCity span:nth-child(1){
+.dateWeekCity span.icon{
   display: inline-block;
   width: .40rem;
   height: .40rem;
@@ -141,7 +141,7 @@ body{
 .dateWeekCity span:nth-child(2){
   margin-left: .45rem;
 }
-.tripBack .dateWeekCity span:nth-child(1){
+.tripBack .dateWeekCity span.icon{
   background-position: -3.35rem -1.45rem;
 }
 .tripGo{
@@ -429,7 +429,7 @@ body{
   position: relative;
 }
 
-.months  span, .monthsDate span{
+.months span, .monthsDate span{
   display: inline-block;
   height:.6rem;
   line-height: .6rem;
@@ -525,7 +525,7 @@ body{
   height: .48rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -6.99rem -1.339rem;
+  background-position: -6.99rem -1.312rem;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -594,16 +594,20 @@ body{
 .priceX{
   float: right;
 }
-.months, .monthsDate{
+.months{
   padding: .40rem 0;
   margin: 0 .28rem;
   border-bottom: 1px solid #e6e6e6;
+  position: relative;
 }
 .monthsDate{
+  display: none;
+  width: 100%;
   border-bottom: none;
   position: absolute;
-  width: 100%;
+  top: 1.84rem;
 }
+.show{display: block}
 .shadow{
   display: none;
   width: 100%;
