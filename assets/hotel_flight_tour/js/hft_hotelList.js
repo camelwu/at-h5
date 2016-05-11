@@ -53,6 +53,7 @@
       title(data);
       list(data);
       console.log(data);
+      vlm.init();
     }else{
       alert("数据加载错误")
     }

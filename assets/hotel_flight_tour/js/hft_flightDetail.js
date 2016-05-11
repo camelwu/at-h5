@@ -94,6 +94,8 @@ var  hftFlightDetail = {
     var flightData = null, storage = window.sessionStorage;
     flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
     this.createTags(flightData);
+    $("#status").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
     //this.addEvent();
   }
 };
