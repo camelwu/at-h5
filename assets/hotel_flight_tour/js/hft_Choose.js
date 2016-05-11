@@ -194,7 +194,7 @@ var hftChoose = {
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
         "packageID":  that.initParaObj.packageID,
-        "departDate": that.initParaObj.cityCodeTo,
+        "departDate": that.initParaObj.departDate,
         "returnDate": that.initParaObj.returnDate,
         "setID": that.curData.flightInfo.setID,
         "cacheID": that.curData.flightInfo.cacheID,

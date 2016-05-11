@@ -147,9 +147,10 @@ body{
 .tripGo, .tripBack{
   width:100%
 }
-.addMargin{
+.addMargin_{
   margin-top: .40rem;
 }
+.fix-margin-left{margin-left: 0!important;}
 .timeAirport{
   position: relative;
 }
