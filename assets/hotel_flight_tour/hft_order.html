@@ -113,18 +113,18 @@
 
       <!--出行人-->
       <div class="traveller_section">
-      <div class = "fht_hd clearfix" id="traveltab">
+      <div class = "fht_hd clearfix" id="hftTravelTab">
         <span class = "fl fht_travel">出行人</span>
         <div class="fr">
           <span class="order_tsl2"><i class="adu_choose">0</i>/<i class="adu_tot"></i>成人<b><i class="chi_choose">0</i>/<i class="chi_tot"></i>儿童</b></span>
           <a href="javascript:;" class="add_traveller"></a>
         </div>
       </div>
-      <ul class="order_twrap" style="display: block">
+      <ul id="orderTraveller"  style="display: none;">
         <li class = "order_tlist2" >
           <i class="tra_delete" onclick="delPassager(this);"></i>
           <div class="traveller_wrap">
-            <span>姓/名<b class="travel_last" data-elementName="lastName">BAI</b>/<b class="travel_first" data-elementName="firstName">LISA</b></span>
+            <span><em class="card_tra_type">姓/名</em><b class="travel_last" data-elementName="lastName">BAI</b>/<b class="travel_first" data-elementName="firstName">LISA</b></span>
             <span><em class="card_tra_type" card-type="1">护照</em><b class="idnumber" data-elementName="idNumber">12345678910</b> <b class="travel_sex" data-sex="Ms">女</b></span>
           </div>
           <em class="edit_tips" data-id="" onclick="javascript:editPassager(this)" ><input type="hidden" name="input-zone" class="passport_number" readonly="readonly"  data-elementName="travellerId"></em>
