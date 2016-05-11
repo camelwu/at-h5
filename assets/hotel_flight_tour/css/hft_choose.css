@@ -144,8 +144,11 @@ body{
 .tripBack .dateWeekCity span.icon{
   background-position: -3.35rem -1.45rem;
 }
-.tripGo{
+.tripGo, .tripBack{
   width:100%
+}
+.addMargin{
+  margin-top: .40rem;
 }
 .timeAirport{
   position: relative;
