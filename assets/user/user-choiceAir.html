@@ -964,8 +964,15 @@
 
 
 	function closeAddAir_page() {
-		var addAir_page = document.getElementById("addAir-page");
-		addAir_page.style.display = "none";
+		if(localStorage.contactedit != 1){
+      var addAir_page = document.getElementById("addAir-page");
+      addAir_page.style.display = "none";
+    }else{
+      localStorage.contactedit = 0;
+      ifrCilent.parentNode.removeChild(ifrCilent);
+
+    }
+
 	}
 
 	function showChild_page() {
