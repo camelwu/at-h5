@@ -1,4 +1,8 @@
 (function(){
+  var sesstion = sessionStorage.getItem("hftChangeHotelPara");
+  var json = eval('(' + sesstion + ')');
+  console.log(json)
+
   //传数据
   var data = {
     "parameters": {

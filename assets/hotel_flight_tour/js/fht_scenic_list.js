@@ -65,7 +65,8 @@
                                 {   var SortList = $("#SortList");
                                     $("#shadeDiv1").css({'display':'none'});
                                     SortList.css({'bottom':-2222+'rem'});
-                                    $("#SortList").style.transition="all 400ms";}
+                                    SortList.style.transition="all 400ms";
+                                }
                             });
 
                         }
@@ -107,9 +108,8 @@
                             $("#shadeDiv2").css({'display':'none'});
                             $("#Filter").css({'bottom':-200+'rem'});
                             filter.style.transition="all 400ms";
-                            var sortValue=$(this).attr("data-sort");
-                            var  themeId=$(this).attr("data-sort");
-                            FilterTheme(themeId);
+                            var themeId =$(this).attr("data-id");
+                            filterTheme(themeId);
                         };
                         //关闭筛选
                         cancel.onclick = function(){
@@ -137,6 +137,7 @@
                                         b[index].className = 'Fchecked';
                                         $("#shadeDiv1").css({'display':'none'});
                                         $("#FilterList").css({'bottom':-2222+'rem'});
+                                        var themeId =$(this).attr("data-id");
                                     }else{
                                         for(var j = 0;j < li.length;j++){
                                             li[j].className = '';
@@ -159,7 +160,7 @@
             });
         };
 //价格排序调数据
-        var priceSort = function(sortType,themeId){
+        var priceSort = function(sortType){
                 var destCityCode=vlm.getpara("destCityCode");
                 var departCityCode=vlm.getpara("departCityCode");
                 //var sortType=vlm.getpara("sortType");
@@ -188,10 +189,8 @@
                 });
             };
 //根据主题筛选调数据
-            var FilterTheme = function(themeid){
-                var val = vlm.parseUrlPara(window.location.href);
+        var filterTheme = function(themeId){
                 var destCityCode=vlm.getpara("departCityCode");
-                var sortType=vlm.getpara("sortType");
                 var Tparameter=
                 {
                     "Parameters": {

@@ -107,16 +107,16 @@
             <% if(lists){ for( var i=0;i< lists.length; i++){ %>
                 <li class = "scenic-detile_list">
                 <div class = "scenic-detile_list_matter clearfix">
-                <div class="scenic_detile_img ">
-                <img src = "../images/01.png" data-src="<%= lists[i].pictureURL %>" alt = "丹嫩沙多水上市场" class = "scenic_detile_img_po"/>
-                <p class = "scenic-detile_list_theme">主题</p>
-                </div>
-                <div class="scenic_detile_content">
-                <p class="scenic_detile_content_name"><%= lists[i].packageName %></p>
-                <p class = "scenic_detile_content_after">￥<%= lists[i].leadinPrice %>/人起</p>
-        </div>
-        </div>
-        <div class="scenic_detile_project">
+                    <div class="scenic_detile_img ">
+                        <img src = "<%= lists[i].pictureURL%>"alt = "丹嫩沙多水上市场" class = "scenic_detile_img_po"/>
+                        <!--<p class = "scenic-detile_list_theme">主题</p>-->
+                    </div>
+                    <div class="scenic_detile_content">
+                        <p class="scenic_detile_content_name"><%= lists[i].packageName %></p>
+                        <p class = "scenic_detile_content_after">￥<%= lists[i].leadinPrice %>/人起</p>
+                    </div>
+                    </div>
+                    <div class="scenic_detile_project">
                 <ul>
                     <% for( var j=0;j < lists[i].inclusiveItems.length;j++){ %>
                 <li class = "scenic_detile_project_first"><i></i><%= lists[i].inclusiveItems[j] %></li>
@@ -146,7 +146,7 @@
     <div class = "filter_theme_matter">
         <ul class="filter_theme_box" id = "filterDiv">
             <% for(var i=0; i< themes.length;i++){ %>
-            <li data-id=<%= themes[i].themeID%>> <%= themes[i].themeName%><i></i></li>
+            <li data-id=<%= themes[i].themeID %>> <%= themes[i].themeName%><i></i></li>
            <% } %>
         </ul>
     </div>

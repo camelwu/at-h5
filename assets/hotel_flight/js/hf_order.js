@@ -120,8 +120,19 @@
                   $(this).css('backgroundPosition', '-3px -52px');
                   $('.hf_con_lastname').val(traInfo_sel[0].LastName);
                   $('.hf_con_firstname').val(traInfo_sel[0].FirstName);
-                  $('.hf_con_cell').val(JSON.parse(localStorage.travellerInfo_selected)[0].mobile);
-                  $('.hf_con_email').val(JSON.parse(localStorage.travellerInfo_selected)[0].email);
+                  //if( ! JSON.parse(localStorage.travellerInfo_selected)[0].mobile){
+                  //  $('.hf_con_cell').val('');
+                  //  $('.hf_con_cell').css('placeholder','用于接收通知');
+                  //}else{
+                  //  $('.hf_con_cell').val(JSON.parse(localStorage.travellerInfo_selected)[0].mobile);
+                  //}
+                  //if( ! JSON.parse(localStorage.travellerInfo_selected)[0].email){
+                  //  $('.hf_con_email').val('');
+                  //  $('.hf_con_email').css('placeholder','用于接收通知');
+                  //}else{
+                  //  $('.hf_con_email').val(JSON.parse(localStorage.travellerInfo_selected)[0].email);
+                  //}
+
                   bFlag = false;
                 }else{
                   $(this).css('backgroundPosition', '-37px -52px');

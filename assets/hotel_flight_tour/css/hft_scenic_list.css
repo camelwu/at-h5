@@ -454,6 +454,12 @@ p.filter_button_checked{
   padding-left: .26rem;
   position: relative;
 }
+.feature{
+  margin-bottom: .2rem;
+  color: #666;
+  padding-left: .26rem;
+  position: relative;
+}
 .scenic_content_feature li i{
   position: absolute;
   top:.14rem;
@@ -538,16 +544,18 @@ p.filter_button_checked{
   background-position:  -4.18rem -0.8rem;
   top: .06rem;
 }
-.scenic_content_scheduling ol, .scenic_content_notes ol ,.scenic_content_TOS ol{
+.scenic_content_scheduling ul, .scenic_content_notes ul ,.scenic_content_TOS ul{
   margin-left: .16rem;
   position: relative;
   margin-bottom: .1rem;
+
 }
+
 .scenic_content_scheduling li, .scenic_content_notes li, .scenic_content_TOS li{
   margin:.1rem 0 .1rem 0;
   line-height: .48rem;
 }
-.scenic_content_scheduling ol li:last-child, .scenic_content_notes ol li:last-child, .scenic_content_TOS ol li:last-child{
+.scenic_content_scheduling ul li:last-child, .scenic_content_notes ol li:last-child, .scenic_content_TOS ul li:last-child{
   margin-bottom: 0;
 }
 .scenic_content_scheduling .scenic_content_scheduling_down, .scenic_content_notes .scenic_content_scheduling_down, .scenic_content_TOS .scenic_content_scheduling_down{
@@ -560,6 +568,11 @@ p.filter_button_checked{
   background-image: url(../../images/ui/icon-hft.png);
   background-size: 7.5rem 4.54rem;
   background-position:  -3.71rem -2.26rem;
+}
+li.scenic_height{
+  height: 2.4rem;
+  overflow: hidden;
+  margin-top: .4rem;
 }
 .scenic_content_notes i{
   background-position:  -3.02rem -0.8rem;
