@@ -398,14 +398,13 @@ var hftChoose = {
       temEle.forEach(function (arr, item) {
         if (arr['roomID'] == selectedRoomId) {
           priceRoom = arr;
-          that.roomPriceInfo = arr;
           return;
         }
       })
     } else {
       priceRoom = temEle[0];
-      that.roomPriceInfo = temEle[0];
     }
+    that.roomPriceInfo = priceRoom;
     priceRoom.prices.forEach(function (a, ii) {
       if (a['category'] == 1) {
         str += '<p>成人<span class="price-num-price">￥<span>' + a['amount'] + 'X' + a['quantity'] + '</span></span></p>';
@@ -504,7 +503,7 @@ var hftChoose = {
         "roomDetails": [{"adult": 2}]
       };
     this.initParaObj = paraObj;
-    this.tAjax("", paraObj, "60100004", 3, this.renderHandler)
+    this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
     //this.renderHandler(data);
   }
 };

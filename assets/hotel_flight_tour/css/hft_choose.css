@@ -290,7 +290,7 @@ body{
   margin: 0 0 0 1.82rem;
 }
 .hotelRightPart p{
-  margin-top: .12rem;
+ /* margin-top: .12rem;*/
 }
 .hotelRightPart h3{
   white-space: nowrap;
