@@ -41,10 +41,9 @@ var hftChoose = {
       var storage = window.sessionStorage, that = hftChoose;
       that.createOrderPara.memberID = window.localStorage.getItem('memberid');
       storage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
-      console.log(that.createOrderPara)
-      that.timer = setTimeout(function(){
-        window.clearTimeout(that.timer);
-        that.timer = null;
+      that.timer0 = setTimeout(function(){
+        window.clearTimeout(that.timer0);
+        that.timer0 = null;
         window.location.href = "../hotel_flight_tour/hft_order.html?type=hft";
       },500);
     }
@@ -59,7 +58,6 @@ var hftChoose = {
     }
     return style;
   },
-
   addEvent: function () {
     var backI = document.querySelector('.top_info i'), changeFlight = document.querySelector('.moreFlight'), moreHotel = document.querySelector('.moreHotel'), that = this;
     var flightDetailI = document.querySelector('.flightDetailArrow i'), hotelDetailI = document.querySelector('.hotelImgInfo i');
@@ -115,7 +113,11 @@ var hftChoose = {
         "roomDetails": that.initParaObj.roomDetails
       };
       storage.setItem('hftChangeFlightPara', JSON.stringify(hftChangeFlightPara));
-      window.location.href = "hft_flight_list.html?type=hft";
+      that.timer1 = setTimeout(function(){
+        window.clearTimeout(that.timer1);
+        that.timer1 = null;
+        window.location.href = "hft_flight_list.html?type=hft";
+      },500);
     });
 
     /*更换酒店*/
@@ -141,7 +143,11 @@ var hftChoose = {
         "roomDetails": that.initParaObj.roomDetails
       };
       storage.setItem('hftChangeHotelPara', JSON.stringify(hftChangeHotelPara));
-      window.location.href = "hft_hotel_list.html?type=hft";
+      that.timer2 = setTimeout(function(){
+        window.clearTimeout(that.timer2);
+        that.timer2 = null;
+        window.location.href = "hft_hotel_list.html?type=hft";
+      },500);
     });
     /*更换酒店结束*/
 
@@ -169,9 +175,12 @@ var hftChoose = {
         "roomDetails": that.initParaObj.roomDetails
       };
       storage.setItem('hftHotelDetailPara', JSON.stringify(hftHotelDetailPara));
-      window.location.href = "hft_hotel_detail.html?type=hft";
+      that.timer3 = setTimeout(function(){
+        window.clearTimeout(that.timer3);
+        that.timer3 = null;
+        window.location.href = "hft_hotel_detail.html?type=hft";
+      },500);
     });
-
     this.addHandler(preserve, 'click', function () {
       var tempTours = that.curData.tours, hftCreateOrder = {}, toursArray = [];
       tempTours.forEach(function (array) {
@@ -185,7 +194,7 @@ var hftChoose = {
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
         "packageID":  that.initParaObj.packageID,
-        "departDate": that.initParaObj.cityCodeTo,
+        "departDate": that.initParaObj.departDate,
         "returnDate": that.initParaObj.returnDate,
         "setID": that.curData.flightInfo.setID,
         "cacheID": that.curData.flightInfo.cacheID,
@@ -196,9 +205,10 @@ var hftChoose = {
         "currencyCode": "CNY",
         "totalPrice": that['roomPriceInfo']['totalAmount'],
         "memberID": "",
+        "priceRoomInfo":that.roomPriceInfo,
         "track": {
-          "browserType": "Chrome",
-          "deviceID": "111"
+          "browserType": "",
+          "deviceID": ""
         }
       };
       that.createOrderPara = hftCreateOrder;
@@ -398,14 +408,13 @@ var hftChoose = {
       temEle.forEach(function (arr, item) {
         if (arr['roomID'] == selectedRoomId) {
           priceRoom = arr;
-          that.roomPriceInfo = arr;
           return;
         }
       })
     } else {
       priceRoom = temEle[0];
-      that.roomPriceInfo = temEle[0];
     }
+    that.roomPriceInfo = priceRoom;
     priceRoom.prices.forEach(function (a, ii) {
       if (a['category'] == 1) {
         str += '<p>成人<span class="price-num-price">￥<span>' + a['amount'] + 'X' + a['quantity'] + '</span></span></p>';
@@ -504,7 +513,7 @@ var hftChoose = {
         "roomDetails": [{"adult": 2}]
       };
     this.initParaObj = paraObj;
-    this.tAjax("", paraObj, "60100004", 3, this.renderHandler)
+    this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
     //this.renderHandler(data);
   }
 };

@@ -173,7 +173,7 @@ var ticketOrder = {
             contactInfoCache.Email =document.querySelector('#email-label').value;
             contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
             contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
-            
+
             if(contactInfoCache.FirstName==""){
                 jAlert('请输入姓!', '提示');
                 return;
@@ -536,7 +536,7 @@ var ticketOrder = {
                    toCity = arg.segmentsLeave.length>1?arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameFrom:arg.segmentsLeave[0].airportNameTo;
                    str+='<p class="go-line  go-line-return">' +
                    '<i class="icon-go"></i>'+that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
-                   '<span class="icon-clock"></span></p>';
+                 '<span class="icon-clock"></span></p>';
                }else{
                    toCity = arg.segmentsLeave.length>1?arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameFrom:arg.segmentsLeave[0].airportNameTo;
                    str+='<p class="go-line" style="padding-left:0;">' +
