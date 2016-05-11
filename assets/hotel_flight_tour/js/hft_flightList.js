@@ -1,6 +1,36 @@
 /**
  * Created by Venson on 2016/5/9.
  */
+var sendData = {
+  "flightCacheID": 3010900,
+  "flightSetID": 30000023,
+  "returnDate": "2016-05-27T00:00:00",
+  "packageID": 486978,
+  "roomDetails": [
+    {
+      "adult": 2
+    }
+  ],
+  "cityCodeTo": "SIN",
+  "departDate": "2016-05-22T00:00:00",
+  "cityCodeFrom": "BJS",
+  "pageNo": 1,
+  "tours": [
+    {
+      "travelDateSpecified": false,
+      "travelDate": "2016-05-22T00:00:00",
+      "optionCode": "",
+      "tourID": "166"
+    },
+    {
+      "travelDateSpecified": true,
+      "travelDate": "2016-05-23T00:00:00",
+      "optionCode": "",
+      "tourID": "2609"
+    }
+  ],
+  "pageSize": 20
+};
 var flightList = {
     requestUrl:"",
     getWeekDay:function(date){
@@ -49,40 +79,34 @@ var flightList = {
   },
   getFlightList:function(){
       var that = this;
-      var sendData = {
-        "flightCacheID": 3010900,
-        "flightSetID": 30000023,
-        "returnDate": "2016-05-27T00:00:00",
-        "packageID": 486978,
-        "roomDetails": [
-          {
-            "adult": 2
-          }
-        ],
-        "cityCodeTo": "SIN",
-        "departDate": "2016-05-22T00:00:00",
-        "cityCodeFrom": "BJS",
-        "pageNo": 1,
-        "tours": [
-          {
-            "travelDateSpecified": false,
-            "travelDate": "2016-05-22T00:00:00",
-            "optionCode": "",
-            "tourID": "166"
-          },
-          {
-            "travelDateSpecified": true,
-            "travelDate": "2016-05-23T00:00:00",
-            "optionCode": "",
-            "tourID": "2609"
-          }
-        ],
-        "pageSize": 20
-      };
       var flightListBack = function(ret){
           var json = ret, that = flightList;
           console.log(json);
           var data = json.data;
+          var str1 = $("#tplFlightList").html();
+          var flight_list = ejs.render(str1, data);
+          document.getElementById('fligtList').innerHTML = flight_list;
+          var str2 = $('#tplAirwayList').html();
+          var airway_list = ejs.render(str2, data);
+          document.getElementById('airwayList').innerHTML = airway_list;
+          var airway = document.getElementsByClassName('airway');
+          for(var i = 0;i < airway.length;i++){
+              if(airway[i].getAttribute('data-airwaySetID') == sendData.flightSetID){
+                  airway[i].getElementsByClassName('hft_icon')[0].className = 'hft_icon cho_gou';
+                console.log(airway[i])
+              }
+          }
+           $('.airway').click(function(){
+             $(this).find('b').addClass('cho_gou');
+             $(this).siblings().find('b').removeClass('cho_gou');
+             $('#foAirway').removeAttr('style');
+             $('#awContent').hide();
+             $('#closeAirw').hide();
+             $('#pageBack').show();
+             sendData.flightSetID = $(this).attr('data-airwaySetID');
+             sendData.flightCacheID = $(this).attr('data-airwayCacheID');
+             that.tAjax("",sendData,"60100005","2",flightListBack);
+           })
       };
       this.tAjax("",sendData,"60100005","2",flightListBack);
   },

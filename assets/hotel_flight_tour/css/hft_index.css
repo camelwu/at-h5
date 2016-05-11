@@ -314,8 +314,23 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   height: .4rem;
   width: 70%;
   font-size: .32rem;
-  color: #d1d1d1;
+  color: #333333;
 }
+input.inp_cage::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #333333;
+}
+input.inp_cage:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #333333;
+}
+
+input.inp_cage::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #333333;
+}
+
+input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #333333;
+}
+
 .child_sui {
   display: inline-block;
 }
@@ -411,7 +426,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  background-color: #F5F4F9;
+  background-color: #F5F4F9;overflow-x: hidden;
 }
 .price_up{
   width:100%;
@@ -423,7 +438,8 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   color:rgb(153,153,153);
 }
 .price_up span{
-  font-size: .37rem;
+  font-size: .32rem;
+  font-weight: bold;
   color:rgb(255,91,19);
 }
 .air_tickets_detail {
@@ -478,7 +494,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 .time_airport .go .go_info{
   position: relative;
   width: 100%;
-  padding-top: .04rem;
+  padding-top: .1rem;
   min-height: 1.2rem;
   overflow: hidden;
 }
@@ -518,7 +534,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   width: 28%;
   float: left;
   font-size: .2rem;
-  padding: 0.3rem 0;
+  padding: 0.2rem 0;
   text-align: center;
 }
 .total_time_info .time_hour_minute {
@@ -526,8 +542,13 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   display: -webkit-box;
   font-size: .18rem;
   width: 100%;
-  margin-bottom: .1rem;
   -webkit-box-pack: center;
+}
+.total_time_info img{
+  display: block;
+  width: 1.65rem;
+  height: .24rem;
+  margin: 0 auto;
 }
 .total_time_info .arrow_time {
   display: block;
@@ -548,15 +569,15 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   text-overflow: ellipsis;
   margin: .05rem auto;
 }
-.total_time_info i{
-  position: absolute;
-  display: block;
-  width: .4rem;
-  background: #FFFFFF;
-  color: #ffb413;
-  margin-top: -.15rem;
-  left: .65rem;
-}
+/*.total_time_info i{*/
+  /*position: absolute;*/
+  /*display: block;*/
+  /*width: .4rem;*/
+  /*background: #FFFFFF;*/
+  /*color: #ffb413;*/
+  /*margin-top: -.15rem;*/
+  /*left: .65rem;*/
+/*}*/
 .go_info .end_time_info {
   position: static;
   float: left;
@@ -605,7 +626,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 }
 .cho_gou{
   position: absolute;
-  top: 0;
+  top: -.02rem;
   width: .42rem;
   height: .42rem;
   background-position: 72% 53%;
@@ -669,6 +690,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 /*   航空公司列表    */
 .airway_list{
   width: 100%;
+  padding-bottom: 1rem;
   overflow: hidden;
   background: #FFFFFF;
 }
@@ -763,7 +785,7 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
   overflow: hidden;
 }
 .screen_box .title{
-  width: 92%;
+  width: 94%;
   overflow: hidden;
   background: #f7f7f7;
   padding-left: .3rem;
