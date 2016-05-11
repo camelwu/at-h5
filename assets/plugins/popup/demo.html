@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+
+    <!--seo-->
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>亚洲旅行网</title>
+
+    <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="../../plugins/popup/popup.css" rel="stylesheet" type="text/css">
+    <style>
+        .main {
+            margin: 0 auto;
+            font-size: .28rem;
+        }
+        
+        .main .header .title {
+            height: 100%;
+            margin: 0 1rem;
+            line-height: 1.4rem;
+            text-align: center;
+            background: #eeeccc;
+        }
+        
+        .content {
+            margin-top: .88rem;
+        }
+        
+        .siteRight {
+            height: 1rem;
+            line-height: 1rem;
+            background: #eee;
+            text-align: center;
+        }
+        
+        .select_time {
+            /* margin: .2rem;*/
+        }
+        
+        .select_time .check_in {
+            height: .5rem;
+            width: 5rem;
+            border-bottom: 1px solid #999;
+            float: left;
+        }
+        
+        .select_time .time_icon {
+            float: right;
+            height: 1rem;
+            width: 1rem;
+            background: gold;
+        }
+        
+        .list_items li {
+            display: block;
+            box-sizing: border-box;
+            padding: .2rem;
+            line-height: .22rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="all_elements">
+        <header class="header">
+            <a href="#" class="header_back">
+                <i class="icon_back"></i>
+            </a>
+            <h3>popup</h3>
+        </header>
+        <div class="content">
+            <ul class="list_items">
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+            </ul>
+        </div>
+        <div class="siteRight">
+            <p>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</p>
+        </div>
+        <footer class="bottomFixNav">
+
+        </footer>
+    </div>
+    <script src="../../js/lib/jquery.js"></script>
+    <script src="../../plugins/popup/popup.js"></script>
+    <script>
+        var popup = new window.widget.popup({
+            //title: "清空历史记录",
+            cnt: "确定清空当前账号下所有搜索历史记录?",
+            btnl: "取消",
+            btnr: "确定",
+            cbs: [function() {
+                console.info("cancel click1");
+                popup.hide()
+            }, function() {
+                console.info("comfirm click1");
+                popup.hide()
+            }]
+        });
+        popup.show();
+
+    </script>
+</body>
+
+</html>

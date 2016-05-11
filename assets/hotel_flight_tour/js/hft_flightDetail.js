@@ -74,9 +74,7 @@ var  hftFlightDetail = {
         void (0);
     }
     return resultNum;
-
   },
-
   createTags:function(){
     var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
     tempStr = $("#template").html();
@@ -96,6 +94,8 @@ var  hftFlightDetail = {
     var flightData = null, storage = window.sessionStorage;
     flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
     this.createTags(flightData);
+    $("#status").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
     //this.addEvent();
   }
 };

@@ -6,7 +6,7 @@
  *===============================================
  * */
 
-_CalF = {
+_CalF =    {
     // 选择元素
     $: function (arg, context) {
         var tagAll, n, eles = [],
@@ -664,16 +664,16 @@ Calender.prototype = {
             that.result = [];
         });
     },
-    //格式化日期 
+    //格式化日期
     formatTime: function (fmt, date) {
         var o = {
-            "M+": date.getMonth() + 1, //月份   
-            "d+": date.getDate(), //日   
-            "h+": date.getHours(), //小时   
-            "m+": date.getMinutes(), //分   
-            "s+": date.getSeconds(), //秒   
-            "q+": Math.floor((this.getMonth() + 3) / 3), //季度   
-            "S": date.getMilliseconds() //毫秒   
+            "M+": date.getMonth() + 1, //月份
+            "d+": date.getDate(), //日
+            "h+": date.getHours(), //小时
+            "m+": date.getMinutes(), //分
+            "s+": date.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": date.getMilliseconds() //毫秒
         };
         if (/(y+)/.test(fmt))
             fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));

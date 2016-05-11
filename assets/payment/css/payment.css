@@ -24,6 +24,9 @@
     background-color: #F7F7F7;
     font-weight: 500;
 }
+.p-price span{
+  color: red;
+}
 .p-p1{
   margin-left: 15px;
   font-size: 0.4rem;
@@ -466,6 +469,9 @@
 }
 .order-price{
     margin-top: 15px;
+}
+.order-price span{
+  color: red;
 }
 .order-price i{
     font-weight: 700;
