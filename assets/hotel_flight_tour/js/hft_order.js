@@ -120,30 +120,40 @@
 
       var Parmeters = {
         "Parameters": {
-          "SetID": hftCreateOrderPara.setID,
-          "CacheID": hftCreateOrderPara.cacheID,
-          "CityCodeFrom": hftCreateOrderPara.cityCodeFrom,
-          "CityCodeTo": hftCreateOrderPara.cityCodeTo,
-          "DepartDate": hftCreateOrderPara.departDate,
-          "ReturnDate": hftCreateOrderPara.returnDate,
-          "HotelID": hftCreateOrderPara.hotelID,
-          "RoomID": hftCreateOrderPara.roomID,
-          "MemberId": localStorage.memberid,
+          "cityCodeFrom": hftCreateOrderPara.cityCodeFrom,
+          "packageID": hftCreateOrderPara.packageID,
+          "departDate": hftCreateOrderPara.departDate,
+          "returnDate": hftCreateOrderPara.returnDate,
+          "setID": hftCreateOrderPara.setID,
+          "cacheID": hftCreateOrderPara.cacheID,
+          "hotelID": hftCreateOrderPara.hotelID,
+          "roomID": hftCreateOrderPara.roomID,
 
-          "ContactDetail": {
-            "SexCode": "Ms",
-            "FirstName": $('.hft_con_firstname').val(),
-            "LastName": $('.hft_con_lastname').val(),
-            "Email": $('.hft_con_email').val(),
-            "CountryNumber": $('.tel-btn span').html().substring(1),
-            "MobilePhone": $('.hft_con_cell').val()
+          "contactDetail": {
+            "sexCode": "Ms",
+            "firstName": $('.hft_con_firstname').val(),
+            "lastName": $('.hft_con_lastname').val(),
+            "email": $('.hft_con_email').val(),
+            "countryNumber": $('.tel-btn span').html().substring(1),
+            "mobilePhone": $('.hft_con_cell').val()
           },
-          "CurrencyCode": hftCreateOrderPara.currencyCode,
-          "TotalPrice": hftCreateOrderPara.totalPrice
-
+          //"tours":[
+          //  {
+          //    "tourID":hftFlightHotelTourInfo.tours.tourID,
+          //    "travelDate":"2016-05-25T00:00:00",
+          //    "tourSession":"MorningTour"
+          //  }
+          //],
+          "currencyCode": hftCreateOrderPara.currencyCode,
+          "totalPrice": hftCreateOrderPara.totalPrice,
+          "track": {
+            "browserType":"Chrome",
+            "deviceID":"111"
+          },
+          "memberID": localStorage.memberid,
         },
-        "ForeEndType": 3,
-        "Code": "50100004"
+        "foreEndType": 2,
+        "code": "60100010"
       }
 
       //房间信息
@@ -157,21 +167,43 @@
         {
           var tra={};
           var person={};
-          person.FirstName=traInfo_sel[i].FirstName;
-          person.LastName=traInfo_sel[i].LastName;
-          person.PassengerType=traInfo_sel[i].PassengerType;
-          person.DateOfBirth=traInfo_sel[i].DateOfBirth;
-          tra.IdNumber=traInfo_sel[i].CertificateInfo.IdNumber;
-          tra.IdCountry=traInfo_sel[i].CertificateInfo.IdCountry;
+          person.firstName=traInfo_sel[i].FirstName;
+          person.lastName=traInfo_sel[i].LastName;
+          person.passengerType=traInfo_sel[i].PassengerType;
+          person.dateOfBirth=traInfo_sel[i].DateOfBirth;
+          tra.idNumber=traInfo_sel[i].CertificateInfo.IdNumber;
+          tra.idCountry=traInfo_sel[i].CertificateInfo.IdCountry;
           tra.idType=traInfo_sel[i].CertificateInfo.IdType;
-          tra.IdActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
-          person.CertificateInfo=tra;
-          person.SexCode=traInfo_sel[i].SexCode;
-          person.CountryCode=traInfo_sel[i].CountryCode;
+          tra.idActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
+          person.certificateInfo=tra;
+          person.sexCode=traInfo_sel[i].SexCode;
+          person.countryCode=traInfo_sel[i].CountryCode;
           traveller.push(person);
         }
-        Parmeters.Parameters.TravellerInfo=traveller;
+        Parmeters.Parameters.travellerInfo=traveller;
       }
+
+      //景点信息
+      var tours=[];
+      for(var i=0;i<hftFlightHotelTourInfo.tours.length; i++)
+      {
+        var sceWrap=hftFlightHotelTourInfo.tours[i];
+        var scenic={};
+        scenic.tourID=sceWrap.tourID;
+        scenic.travelDate=sceWrap.travelDates[0];
+        var sceArr=[];
+        for(var j=0; j<sceWrap.tourSessions.length; j++)
+        {
+            var session={};
+            if( sceWrap.tourSessions[j].isSelected == 1){
+              session.tourSession=sceWrap.tourSessions[j].tourSessionName;
+            }
+          sceArr.push(session);
+        }
+        scenic.tourSession=sceArr[0].tourSession;
+        tours.push(scenic);
+      }
+      Parmeters.Parameters.tours=tours;
 
       if( $('.order_tlist2').length != localStorage.hft_peotot){
         jAlert('请添加出行人');
@@ -217,7 +249,7 @@
     vlm.loadend();
     if(json.success)
     {
-      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
+      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
     }else{
       jAlert(json.message);
     }
