@@ -313,7 +313,27 @@
 			<a href="../hotel_flight/order_detail_pay.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
 		</div>
 	</div>
-	{% } %}
+  <!--机+酒+景-->
+  {% }else if (productType=="Package_FHT") { %}
+  <div class="order-div scenic-div">
+    <div style="border-bottom: 1px solid #dedede;">
+      <b class="icon user-fligthotle"></b>
+      <div class="order-title">机+酒+景</div>
+      <div class="if_pay">{%=getCN[paymentStatus]%}</div>
+      <div class="order-Amount">￥{%=bookingAmount%}</div>
+    </div>
+    <div>
+      <p class="info-title">{%=productName%}</p>
+      <ul class="air-date">
+        {% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
+        <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
+      </ul>
+    </div>
+    <div style="border-top: 1px solid #dedede;">
+      <a href="../hotel_flight_tour/hft_order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+    </div>
+  </div>
+  {% } %}
 </script>
 
 
