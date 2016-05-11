@@ -84,7 +84,16 @@ Scroller.prototype = {
             document.body.appendChild(container);
             //头部按钮绑定
             this.btnEvent();
+            //阻止滑动遮挡层事件
+            this.stopEvent();
+
         }
+    },
+    stopEvent: function () {
+        $("#overlay").on("touchstart", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
     },
     // 渲染内容
     drawData: function (id, t) {
