@@ -1,5 +1,5 @@
 /**
- * @name Slider Widget
+ * @name Slider Widget   depend on jquery scrollstop   vlm
  * @constructor
  * @created by wusong
  * */
@@ -84,7 +84,16 @@ Scroller.prototype = {
             document.body.appendChild(container);
             //头部按钮绑定
             this.btnEvent();
+            //阻止滑动遮挡层事件
+            this.stopEvent();
+
         }
+    },
+    stopEvent: function () {
+        $("#overlay").on("touchstart", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
     },
     // 渲染内容
     drawData: function (id, t) {
@@ -303,10 +312,7 @@ Scroller.prototype = {
         if (/^(textarea|input|div)$/i.test(ele.nodeName)) {
             if (that.type == "birth") {
                 var birthstr = arr.join("").replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
-                if (!vlm.Utils.compareBirth(birthstr)) {
-                    jAlert('您选择的出生日期大于当前日期');
-                    return;
-                }
+
                 arr[0] = arr[0].replace('年', '');
                 arr[1] = that.addZero(parseInt(arr[1]));
                 arr[2] = that.addZero(parseInt(arr[2]));

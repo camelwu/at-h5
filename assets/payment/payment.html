@@ -21,15 +21,11 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="../images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="../images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="../images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-    <link href="../css/user.css"	rel="stylesheet" type="text/css">
     <title>订单支付 - 亚洲旅行网</title>
-    <!--<link href="../styles/framework.css"	rel="stylesheet" type="text/css">-->
-    <!--<link href="../styles/style.css"		rel="stylesheet" type="text/css">-->
     <link href="../styles/reset.css"		rel="stylesheet" type="text/css">
     <link href="../styles/tips.css" rel="stylesheet"/>
     <link href="css/payment.css" rel="stylesheet" type="text/css">
-    <!--<link href="../css/user.css"	rel="stylesheet" type="text/css">-->
-    <link href="../css/date_select.css" rel="stylesheet" type="text/css">
+    <link href="../css/plugins/scroller/scroller1.1.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="preloader">
@@ -140,8 +136,8 @@
 <!--信用卡信息-->
 <!--国籍选择开始-->
 <div class="all-elements country-cho-wrap">
-    <div class="header">
-        <a href="javascript:;" class="header-back country-hidden"><i class="icon_common go-back"></i></a>
+    <div class="header" style="background: -webkit-linear-gradient(#16364f,#194361);">
+        <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
         <div class="cl_search">
             <input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
             <i></i>
@@ -433,8 +429,8 @@
       <li>
         <div class = "hf-anum">
           <span>人数:</span>
-          <span><i>{%=hotelDetails.roomDetials.totalAdult%}</i>成人</span>
-          <span><i>{%=hotelDetails.roomDetials.totalChild%}</i>儿童</span>
+          <span><i>{%=hotelDetails.roomDetails.totalAdult%}</i>成人</span>
+          <span><i>{%=hotelDetails.roomDetails.totalChild%}</i>儿童</span>
         </div>
       </li>
       <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalFlightPrice%}</i></li>
@@ -474,7 +470,7 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/plugins.js"></script>
-<script src="../js/lib/scroller.js"></script>
+<script src="../js/plugins/scroller/scroller1.1.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/country_list.js"></script>
