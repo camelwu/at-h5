@@ -60,31 +60,35 @@
       alert("数据加载错误")
     }
   }
-  //根据模板需要提前处理好data
+
   //banner img
   function banner(data){
     var str = $('#banner').html();
     var banner = ejs.render(str,data.hotelInfo);
     $('.hotel_dbanner').html(banner);
   }
+
   //ulList
   function ulList(data){
     var str = $('#ulList').html();
     var ulList = ejs.render(str,data.hotelInfo);
     $('ul.ul_room').html(ulList);
   }
+
   //hotelName
   function hotelName(data){
     var str =$('#hotelName').html();
     var hotelName = ejs.render(str,data.hotelInfo);
     $('.hotel_detail_msg li.name').html(hotelName);
   }
+
   //hotelAddress
   function hotelAddress(data){
     var str =$('#hotelAddress').html();
     var hotelAddress = ejs.render(str,data.hotelInfo);
     $('.hotel_detail_msg li.mes2').html(hotelAddress);
   }
+
   //  map
   function map(data){
     latitude = data.hotelInfo.latitude-0;
@@ -92,13 +96,18 @@
     at.map.createMap(latitude,longitude);
     at.map.markHotel(latitude,longitude,"");
     at.map.moveCenterToHotelLocation(latitude,longitude);
+    $('#map').on('click',function(){
+      window.location.href = 'hft_hotel_detail_map.html';
+    })
   }
+
   //message
   function message(data){
     var str =$('#message').html();
     var message = ejs.render(str,handleData(data.hotelInfo));
     $('.hotel_detail_msg .ul2').html(message);
   }
+
   //根据模板需要提前处理好data
   function handleData(data){
     switch (data.starRating){
