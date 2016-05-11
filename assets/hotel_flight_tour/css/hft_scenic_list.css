@@ -569,7 +569,7 @@ p.filter_button_checked{
   background-size: 7.5rem 4.54rem;
   background-position:  -3.71rem -2.26rem;
 }
-li.scenic_height{
+li.scenic_height1, li.scenic_height2, li.scenic_height3{
   height: 2.4rem;
   overflow: hidden;
   margin-top: .4rem;

@@ -139,11 +139,8 @@
                                         $("#FilterList").css({'bottom':-2222+'rem'});
                                         var themeId =$(this).attr("data-id");
                                     }else{
-                                        for(var j = 0;j < li.length;j++){
-                                            li[j].className = '';
-                                            b[j].className = 'jd-icon scr-gou';
-                                        }
                                         li[0].className = '';
+                                        b[0].className = ''
                                         li[index].className = 'checked_theme2';
                                         b[index].className = 'Fchecked';
                                         $("#shadeDiv1").css({'display':'none'});
