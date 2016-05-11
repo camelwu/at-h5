@@ -659,7 +659,7 @@
 		var htmlObj =$(ifrCilent.parentNode).find(elementId);
 		if(isMulSelect)
 		{
-			if(htmlObj.attr('id') == 'order-twrap'){
+			if(htmlObj.attr('id') == 'order-twrap' || htmlObj.attr('id') == 'orderTraveller'){
 
 				var children=htmlObj.children().eq(0);
 				htmlObj.children().remove();
@@ -682,6 +682,7 @@
 					htmlObj.append(cloneObj);
 					htmlObj.show();
 				}
+
 			}
 			else
 			{
@@ -782,12 +783,19 @@
 					if(ifrCilent.parentNode.getElementsByClassName('order-tlist2').length >0){
 						ifrCilent.parentNode.getElementsByClassName('order-tlist2')[i].setAttribute('passtype','adult');
 					}
+          if(ifrCilent.parentNode.getElementsByClassName('order_tlist2').length >0){
+            ifrCilent.parentNode.getElementsByClassName('order_tlist2')[i].setAttribute('passtype','adult');
+          }
 				}
 				if(selData[i].PassengerType == 'CHILD'){
 					numChi++;
 					if(ifrCilent.parentNode.getElementsByClassName('order-tlist2').length >0) {
 						ifrCilent.parentNode.getElementsByClassName('order-tlist2')[i].setAttribute('passtype', 'child');
 					}
+          if(ifrCilent.parentNode.getElementsByClassName('order_tlist2').length >0) {
+            ifrCilent.parentNode.getElementsByClassName('order_tlist2')[i].setAttribute('passtype', 'child');
+          }
+
 				}
 			}
 			if( localStorage.createOrderParaPart)
@@ -807,6 +815,33 @@
 				}
 			}
 
+      if( sessionStorage.hftCreateOrderPara){
+
+        var datahot=JSON.parse(sessionStorage.hftCreateOrderPara);
+        if($(ifrCilent.parentNode).find('#hftTravelTab').length == 1){
+
+          var traveltab =$(ifrCilent.parentNode).find('#hftTravelTab');
+          if(datahot.roomDetails[0].childWithOutBed != undefined ){
+            var str='<i class="adu_choose">'+numAdu+'</i>/<i class="adu_tot">'+localStorage.hft_adunum+'</i>成人 <b><i class="chi_choose">'+numChi+'</i>/<i class="chi_tot">'+localStorage.hft_chinum+'</i>儿童</b>';
+          }else if(datahot.roomDetails[0].childWithBed != undefined){
+            var str='<i class="adu_choose">'+numAdu+'</i>/<i class="adu_tot">'+localStorage.hft_adunum+'</i>成人 <b><i class="chi_choose">'+numChi+'</i>/<i class="chi_choose">'+localStorage.hft_chinum+'</i>儿童</b>';
+          }else {
+
+            var str='<i class="adu_choose">'+numAdu+'</i>/<i class="adu_tot">'+localStorage.hft_adunum+'</i>成人 <b>';
+          }
+
+          traveltab.find('.order_tsl2').html(str);
+        }
+
+      }
+
+      if(ifrCilent.parentNode.getElementsByClassName('fht_contact').length >0){
+        var per=JSON.parse(localStorage.travellerInfo_selected);
+        $(ifrCilent.parentNode).find('.hft_con_lastname').val(per[0].LastName);
+        $(ifrCilent.parentNode).find('.hft_con_firstname').val(per[0].FirstName);
+        $(ifrCilent.parentNode).find('.hft_con_cell').val(per[0].mobile);
+        $(ifrCilent.parentNode).find('.hft_con_email').val(per[0].email);
+      }
 		}
 		else
 		{

@@ -1,4 +1,8 @@
 (function(){
+  var sesstion = sessionStorage.getItem("hftChangeHotelPara");
+  var json = eval('(' + sesstion + ')');
+  console.log(json)
+
   //传数据
   var data = {
     "parameters": {
@@ -47,13 +51,13 @@
   };
   //接数据
   vlm.loadJson('',JSON.stringify(data),dataCallBack);
-  //var result =
   function dataCallBack(result){
     if(result.success){
       var data = result.data;
       title(data);
       list(data);
       console.log(data);
+      vlm.init();
     }else{
       alert("数据加载错误")
     }
@@ -93,5 +97,9 @@
     var str = $('#templateList').html();
     var hotels = ejs.render(str, handleData(data));
     $('.hotel_list').html(hotels);
+    $('.hotel_list li').on('click',function(){
+      $(this).addClass('cur').siblings().removeClass('cur');
+      //window.location.href = 'hft_hotel_detail.html';
+    })
   }
 })()

@@ -14,7 +14,8 @@ var htf_search = {
       var search_hotel = document.getElementsByClassName('search_hotel');
       var hotelInfo_hf = search_hotel[0].querySelector('.hotelInfo_numb_room');
       var hotelInfo_hft = search_hotel[1].querySelector('.hotelInfo_numb_room');
-      if(val.isInit){
+      if(localStorage.cacheSearch){
+          var cacheSearch = JSON.parse(localStorage.cacheSearch);
 
       }else{
           tab[0].className = 'tab active';
@@ -384,8 +385,8 @@ var htf_search = {
               childWithBed.push(room[r].querySelectorAll('input')[0].value);
               childWithOutBed.push(room[r].querySelectorAll('input')[1].value);
           }else if(temAdultNum == 2||temAdultNum == 3){
-              var tt = childChooseParent.querySelector('.com_icon.noselect');
               if (temChildNum == 1) {
+                  var tt = childChooseParent.querySelector('.noselect');
                   if (tt.className.indexOf('ico_select') > -1) {
                       childWithBed.push(childChooseParent.parentNode.querySelector('input').value);
                   } else {
@@ -417,6 +418,71 @@ var htf_search = {
           }
       }
       allNum = adultNum + childNum;
+
+
+      //var hf_searchInfo = {};
+      //var hf_FromCityNameCN = getByClass(box[0],'origin')[0].innerHTML;
+      //var hf_ToCityNameCN = getByClass(box[0],'destination')[0].innerHTML;
+      //var hf_fromCity = getByClass(box[0],'origin')[0].getAttribute('data-citycode');
+      //var hf_toCity = getByClass(box[0],'destination')[0].getAttribute('data-citycode');
+      //var hf_startday = getByClass(box[0],'js_startDay')[0].innerHTML;
+      //var hf_endday = getByClass(box[0],'js_endDay')[0].innerHTML;
+      //var hf_stardWeek = getByClass(box[0],'week_one')[0].innerHTML;
+      //var hf_endWeek = getByClass(box[0],'week_two')[0].innerHTML;
+      //var hf_roomDetails = [],hf_echChildNum = [];
+      //var hf_room = getByClass(box,'hotelInfo_numb_people');
+      //for(var m = 0;m < hf_room.length;m++){
+      //    var hf_temObj = {},hf_childWithOutBed = [], hf_childWithBed = [];
+      //    var hf_temAdultNum = parseInt(hf_room[m].querySelector('.adult_people_number').innerHTML);
+      //    var hf_temChildNum = parseInt(hf_room[m].querySelector('.child_number').innerHTML);
+      //    var hf_extraChild = hf_room[m].querySelector('.extraChild');
+      //    var hf_childChooseParent = hf_extraChild.querySelector('.numbList');
+      //    if(hf_temAdultNum==1 && hf_temChildNum==1){
+      //        hf_childWithOutBed.push(hf_room[m].querySelector('input').value);
+      //    }else if(hf_temAdultNum==1&&hf_temChildNum==2){
+      //        hf_childWithBed.push(hf_room[m].querySelectorAll('input')[0].value);
+      //        hf_childWithOutBed.push(hf_room[m].querySelectorAll('input')[1].value);
+      //    }else if(hf_temAdultNum == 2||hf_temAdultNum == 3){
+      //        var bb = hf_childChooseParent.querySelector('.com_icon.noselect');
+      //        if (hf_temChildNum == 1) {
+      //            if (bb.className.indexOf('ico_select') > -1) {
+      //                hf_childWithBed.push(hf_childChooseParent.parentNode.querySelector('input').value);
+      //            } else {
+      //                hf_childWithOutBed.push(hf_childChooseParent.parentNode.querySelector('input').value)
+      //            }
+      //        }else if (hf_temChildNum == 2){
+      //            hf_childWithBed.push(hf_room[m].querySelectorAll('input')[0].value);
+      //            hf_childWithOutBed.push(hf_room[m].querySelectorAll('input')[1].value);
+      //        }
+      //    }
+      //    hf_childWithBed.length > 0 ? hf_temObj.childWithBed = hf_childWithBed :
+      //        void (0);
+      //    hf_childWithOutBed.length > 0 ? hf_temObj.childWithOutBed = hf_childWithOutBed :
+      //        void (0);
+      //    hf_temObj.adult = hf_temAdultNum;
+      //    hf_echChildNum.push(hf_temChildNum);
+      //    hf_roomDetails.push(hf_temObj);
+      //}
+      //var hf_adultNum = 0;
+      //var hf_childNum = 0;
+      //for (var k = 0; k < hf_roomDetails.length; k++) {
+      //    hf_adultNum = hf_adultNum + hf_roomDetails[k].adult;
+      //    if (roomDetails[k]['childWithBed']) {
+      //        childNum = childNum + hf_roomDetails[k]['childWithBed'].length;
+      //    }
+      //    if (roomDetails[kl]['childWithOutBed']) {
+      //        hf_childNum = hf_childNum + hf_roomDetails[k]['childWithOutBed'].length;
+      //    }
+      //}
+      //hf_searchInfo.FromCityNameCN = hf_FromCityNameCN;
+      //hf_searchInfo.ToCityNameCN = hf_ToCityNameCN;
+      //hf_searchInfo.FromCityCode = hf_fromCity;
+      //hf_searchInfo.ToCityCode = hf_toCity;
+      //hf_searchInfo.DepartDay = hf_startday;
+      //hf_searchInfo.ReturnDay = hf_endday;
+      //hf_searchInfo.StardWeek = hf_stardWeek;
+      //hf_searchInfo.EndWeek = hf_endWeek;
+      //hf_searchInfo.RoomInfo = hf_endWeek;
       var searchInfo = {
           FromCityNameCN:FromCityNameCN,
           ToCityNameCN:ToCityNameCN,
@@ -430,6 +496,7 @@ var htf_search = {
           RoomInfo:roomDetails
       };
       var cacheSearch = {
+          //hfSearchInfo:hf_searchInfo,
           FromCityNameCN:FromCityNameCN,
           ToCityNameCN:ToCityNameCN,
           FromCityCode:fromCity,
@@ -439,10 +506,11 @@ var htf_search = {
           StardWeek:stardWeek,
           EndWeek:endWeek,
           RoomInfo:roomDetails,
-          EchChildNum:echChildNum
+          EchChildNum:echChildNum,
+          //Box:box
       };
       localStorage.setItem('searchInfo', JSON.stringify(searchInfo));
-      sessionStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
+      localStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
   },
   init:function(){
       this.init_title_room();

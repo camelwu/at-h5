@@ -46,6 +46,11 @@ var  hftFlightDetail = {
     return week;
   },
 
+  getMinutes:function (arg1, arg2) {
+  var time1 = Date.parse(arg1.replace(/-/g, "/").replace(/T/," ")), time2 = Date.parse(arg2.replace(/-/g, "/").replace(/T/," ")), dayCount;
+  return dayCount = (Math.abs(time2 - time1)) / 1000 / 60;
+},
+
   setChineseStar:function(){
     var strNumber = arguments[0].substr(0,1), resultNum='';
     switch (strNumber.charCodeAt(0)) {
@@ -77,24 +82,25 @@ var  hftFlightDetail = {
   },
   createTags:function(){
     var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
+    console.log(data);
     tempStr = $("#template").html();
     outputStr = ejs.render(tempStr,data);
     $(".all_elements").eq(0).html(outputStr);
+    that.addEvent();
     return that;
   },
-
   addEvent:function(){
     var iconBack =  document.querySelector('.icon_back');
     this.addHandler(iconBack, 'click', function () {
       window.history.go(-1);
     });
   },
-
   init:function(){
     var flightData = null, storage = window.sessionStorage;
     flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
-    this.createTags(flightData);
-    //this.addEvent();
+    this.createTags({flightInfo:flightData.flightInfo});
+    $("#status").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
   }
 };
 
