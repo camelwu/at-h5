@@ -20,7 +20,7 @@
             if (0 === $(that.mask).size() && $("body").append('<div class="' + that.mask.slice(1) + '"></div>'), 0 === $(that.popid).size()) {
                 var i = '<div id="' + that.popid.slice(1) + '" class="' + that.pop.slice(1) + '">';
                 popup = ['<div class="title">' + that.title + "</div>",
-                '<div class="content">' + that.content + "</div>",
+                '<div class="content scroll">' + that.content + "</div>",
                 '<div class="bar"><div class="btn_l">' + that.btnl + "</div>",
                 '<div class="btn_r">' + that.btnr + "</div>",
                 "</div>"].join("");

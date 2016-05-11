@@ -41,6 +41,8 @@
     background-color: #fff;
     /*border-radius: 3px;*/
     min-width: 290px;
+    pointer-events: none;
+    -webkit-pointer-events: none;
 }
 
 .layer {
@@ -54,8 +56,10 @@
     font-size: 12px;
     line-height: 16px;
     color: #484848;
-    max-height: 322px;
+    max-height: 200px;
     overflow-y: scroll;
+    pointer-events: none;
+    -webkit-pointer-events: none;
 }
 
 #popup_message {
