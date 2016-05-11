@@ -81,6 +81,10 @@ address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
   float:left;
   position: relative;
 }
+.scenic_detile_img img{
+  width: 100%;
+  height: 100%;
+}
 .scenic_detile_content{
   height: 1.4rem;
   margin-left: .2rem;

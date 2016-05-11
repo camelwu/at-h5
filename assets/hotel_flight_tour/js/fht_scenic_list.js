@@ -108,7 +108,9 @@
                             $("#shadeDiv2").css({'display':'none'});
                             $("#Filter").css({'bottom':-200+'rem'});
                             filter.style.transition="all 400ms";
-                            var themeId =$(this).attr("data-id");
+
+                            var themeId=$(".Fchecked").attr("data-id");
+                            console.log(themeId);
                             filterTheme(themeId);
                         };
                         //关闭筛选
@@ -150,8 +152,16 @@
                             })(i);
                         }
                     })();
+                    //城市列表父宽
+                    (function(){
+                        var sum=0;
+                        for(var i=0;i<data.recommendCities.length;i++){
+                        sum+=i;}
+                        $(".city_list ul").css({'width':sum+'%'});
+                    })()
+
                 }
-                else {
+          else {
                     jAlert(data.message,"提示");
                 }
             });
