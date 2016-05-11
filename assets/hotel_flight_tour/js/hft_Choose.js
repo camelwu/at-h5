@@ -205,9 +205,10 @@ var hftChoose = {
         "currencyCode": "CNY",
         "totalPrice": that['roomPriceInfo']['totalAmount'],
         "memberID": "",
+        "priceRoomInfo":that.roomPriceInfo,
         "track": {
-          "browserType": "Chrome",
-          "deviceID": "111"
+          "browserType": "",
+          "deviceID": ""
         }
       };
       that.createOrderPara = hftCreateOrder;

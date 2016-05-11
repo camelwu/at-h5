@@ -60,8 +60,8 @@
                 转<%= flightInfo["transferListLeave"].length < 2 ? flightInfo["transferListLeave"][0] : flightInfo["transferListLeave"].length + '次' %></div>
             </div>
             <div class="right">
-            <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %><span
-              class="plusDay">+1天</span></span>
+            <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %></span>
+              <span class="plusDay">+1天</span>
             <span
               class="arrivePort"><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["termArrive"] %></span>
             </div>
@@ -89,8 +89,8 @@
                 转<%= flightInfo["transferListReturn"].length < 2 ? flightInfo["transferListReturn"][0] : flightInfo["transferListReturn"].length + '次' %></div>
             </div>
             <div class="right">
-            <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %><span
-              class="plusDay">+1天</span></span>
+            <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %></span>
+              <span class="plusDay">+1天</span>
             <span
               class="arrivePort"><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["termArrive"] %></span>
             </div>
