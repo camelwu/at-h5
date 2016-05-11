@@ -2,7 +2,22 @@
  * Created by zhouwei on 2016/5/4.
  */
 define(['jquery',"ejs","vlm"],function (){
+
+  var bindEvent=function(){
+
+    $(".fare_tip").on("click",function(){
+       $(".hft_pri_details").toggle();
+    })
+
+    $(".fht_hd").on("click",function(){
+        window.location.href="hft_flightDetail.html";
+
+    })
+
+  }
+
   var init = function (){
+
     var bookingRefNo=vlm.getpara("bookingRefNo");
     var  para={
       "Parameters": {"BookingRefNo": bookingRefNo},
@@ -15,6 +30,7 @@ define(['jquery',"ejs","vlm"],function (){
       if (data.success) {
         var html = ejs.render($("#tpl_page").html(), data.data);
         $("#order_detail").html(html);
+        bindEvent();
       }
       else{
         alert("接口错误！");
