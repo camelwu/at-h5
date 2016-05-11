@@ -26,8 +26,8 @@
             background: #eeeccc;
         }
         
-        .content {
-            margin-top: .88rem;
+        .all_elements .content {
+            overflow-y: scroll;
         }
         
         .siteRight {
@@ -63,6 +63,7 @@
         }
 
     </style>
+
 </head>
 
 <body>
@@ -73,8 +74,34 @@
             </a>
             <h3>popup</h3>
         </header>
-        <div class="content">
+        <div class="content test scroll">
             <ul class="list_items">
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
                 <li>list item</li>
                 <li>list item</li>
                 <li>list item</li>
@@ -118,8 +145,8 @@
     <script src="../../plugins/popup/popup.js"></script>
     <script>
         var popup = new window.widget.popup({
-            //title: "清空历史记录",
-            cnt: "确定清空当前账号下所有搜索历史记录?",
+            title: "清空历史记录",
+            cnt: '<ul><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li><li>test</li></ul>',
             btnl: "取消",
             btnr: "确定",
             cbs: [function() {
@@ -130,7 +157,12 @@
                 popup.hide()
             }]
         });
+
         popup.show();
+
+    </script>
+    <script type="text/javascript">
+
 
     </script>
 </body>

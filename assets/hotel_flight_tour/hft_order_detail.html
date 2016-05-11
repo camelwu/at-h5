@@ -106,15 +106,15 @@
       <span class="fht_hd_tit hotel fl"><i></i>酒店</span>
       </div>
       <div class="hotel_wrap">
-      <h3><%=hotelDetails.hotleName%></h3>
+      <h3><%=hotelDetails.hotelName%></h3>
       <ul>
       <li class="hotel_check_wrap">
       <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%></span>
       <span>共1晚（当地时间为准）</span>
       </li>
       <li class="hotel_room_det">
-      <span>房型：<%=hotelDetails.roomDetials.roomName%></span>
-      <span>房间数：<%=hotelDetails.roomDetials.numRoom%>间</span>
+      <span>房型：<%=hotelDetails.roomDetails.roomName%></span>
+      <span>房间数：<%=hotelDetails.roomDetails.numRoom%>间</span>
       </li>
       </ul>
       </div>
@@ -145,7 +145,7 @@
         <div class="fht_hd">订单信息</div>
         <ul class="fht_order_tab">
           <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
-          <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=createTime%></span></li>
+          <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHis")%></span></li>
         </ul>
       </div>
       <div class="fht_order_detail">
@@ -177,8 +177,8 @@
           <span class="fr fare_tip"></span>
         </div>
         <ul class="hft_pri_details">
-          <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetials.unitAdultPrice%>*<%=hotelDetails.roomDetials.totalAdult%> </span></li>
-          <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetials.unitChildPrice%>*<%=hotelDetails.roomDetials.totalChild%> </span></li>
+          <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>*<%=hotelDetails.roomDetails.totalAdult%> </span></li>
+          <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>*<%=hotelDetails.roomDetails.totalChild%> </span></li>
         </ul>
       </div>
     </section>
