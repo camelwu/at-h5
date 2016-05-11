@@ -38,5 +38,9 @@
     "url": "git@10.6.10.32:lichengjun/at-h5-nodejs.git"
   },
   "author": "asiatravel FE",
-  "license": "asiatravel"
+  "license": "asiatravel",
+  "devDependencies": {
+    "grunt-filerev": "^2.3.1",
+    "webpack": "^1.13.0"
+  }
 }

@@ -11,11 +11,13 @@
  *   http://sailsjs.org/documentation/anatomy/my-app/tasks/register/prod-js
  *
  */
-module.exports = function(grunt) {
-  grunt.registerTask('prod', [
+module.exports = function (grunt) {
+    grunt.registerTask('prod', [
     'compileAssets',
-    'uglify:dev',   //临时压缩静态资源中的js
-    'cssmin:dev'
+    'uglify:dev', //临时压缩静态资源中的js
+    'cssmin:dev',
+    'clean:demo', //删除不能访问的资源
+    'clean:plugins' //删除不能访问的资源
 //    'concat',
 //    'uglify',
 //    'cssmin',

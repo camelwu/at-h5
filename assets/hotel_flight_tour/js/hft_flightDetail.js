@@ -74,13 +74,12 @@ var  hftFlightDetail = {
         void (0);
     }
     return resultNum;
-
   },
-
   createTags:function(){
-    var data = arguments[0], that = hftFlightDetail, html="";
-    html = new EJS({url: 'js/hft_flightDetail.ejs'}).render(data);
-    document.body.innerHTML = html;
+    var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
+    tempStr = $("#template").html();
+    outputStr = ejs.render(tempStr,data);
+    $(".all_elements").eq(0).html(outputStr);
     return that;
   },
 
@@ -90,7 +89,6 @@ var  hftFlightDetail = {
       window.history.go(-1);
     });
   },
-
 
   init:function(){
     var flightData = null, storage = window.sessionStorage;

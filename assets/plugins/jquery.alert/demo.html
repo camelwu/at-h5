@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+
+    <!--seo-->
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>亚洲旅行网</title>
+
+    <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="../../plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
+    <style>
+        .main {
+            margin: 0 auto;
+            font-size: .28rem;
+        }
+        
+        .main .header .title {
+            height: 100%;
+            margin: 0 1rem;
+            line-height: 1.4rem;
+            text-align: center;
+            background: #eeeccc;
+        }
+        
+        .content {
+            margin-top: .88rem;
+        }
+        
+        .siteRight {
+            height: 1rem;
+            line-height: 1rem;
+            background: #eee;
+            text-align: center;
+        }
+        
+        .select_time {
+            /* margin: .2rem;*/
+        }
+        
+        .select_time .check_in {
+            height: .5rem;
+            width: 5rem;
+            border-bottom: 1px solid #999;
+            float: left;
+        }
+        
+        .select_time .time_icon {
+            float: right;
+            height: 1rem;
+            width: 1rem;
+            background: gold;
+        }
+        
+        .list_items li {
+            display: block;
+            box-sizing: border-box;
+            padding: .2rem;
+            line-height: .22rem;
+        }
+        
+        .button {
+            display: inline-block;
+            float: left;
+            height: .46rem;
+            max-width: 1rem;
+            overflow: hidden;
+            padding: .2rem .4rem;
+            line-height: .36rem;
+            border-radius: .1rem;
+            background: cadetblue;
+            margin-right: .2rem;
+            margin-bottom: .2rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="all_elements">
+        <header class="header">
+            <a href="#" class="header_back">
+                <i class="icon_back"></i>
+            </a>
+            <h3>popup</h3>
+        </header>
+        <div class="content clearfix">
+            <div class="clearfix" id="buttonList">
+                <div class="button" id="alert">alert</div>
+                <div class="button" id="confirm">confirm</div>
+                <div class="button" id="prompt">prompt</div>
+                <div class="button" id="code">code</div>
+                <div class="button" id="layer">layer</div>
+                <div class="button" id="tiper">tiper</div>
+            </div>
+
+            <ul class="list_items">
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+                <li>list item</li>
+            </ul>
+        </div>
+        <div class="siteRight">
+            <p>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</p>
+        </div>
+        <footer class="bottomFixNav">
+
+        </footer>
+    </div>
+    <script src="../../js/lib/jquery.js"></script>
+    <script src="../../plugins/jquery.alert/jqueryAlert.js"></script>
+    <script>
+        var message = "jquery.alert test case message";
+        var title = "jquery alert title";
+        var callback = function(result) {
+            console.info(result);
+        }
+        $("#buttonList").on("click", ".button", function(event) {
+
+            var id = $(this).attr("id");
+            switch (id) {
+                case "alert":
+                    jAlert(message, title);
+                    break;
+                case "confirm":
+                    jConfirm(message, title);
+                    break;
+                case "prompt":
+                    jPrompt();
+                    break;
+                case "code":
+                    jCode();
+                    break;
+                case "layer":
+                    jLayer();
+                    break;
+                case "tiper":
+                    jTiper();
+                    break;
+                default:
+                    break;
+            }
+        });
+
+    </script>
+</body>
+
+</html>

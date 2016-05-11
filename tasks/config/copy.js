@@ -19,26 +19,45 @@
  *   https://github.com/gruntjs/grunt-contrib-copy
  *
  */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  grunt.config.set('copy', {
-    dev: {
-      files: [{
-        expand: true,
-        cwd: './assets',
-        src: ['**/*.!(coffee|less)'],
-        dest: '.tmp/public'
+    grunt.config.set('copy', {
+        dev: {
+            files: [{
+                expand: true,
+                cwd: './assets',
+                src: ['**/*.!(coffee|less)'],
+                dest: '.tmp/public'
+                }],
+        },
+        pluginsjs: {
+            files: [{
+                expand: true,
+                cwd: './assets/plugins',
+                src: ['**/*.js',
+                     '!**/*.min.js',
+                     '!**/Gruntfile.js'],
+                dest: './assets/js/plugins'
+            }]
+        },
+        pluginscss: {
+            files: [{
+                expand: true,
+                cwd: './assets/plugins',
+                src: ['**/*.css',
+                     '!**/*.min.css'],
+                dest: './assets/css/plugins'
+            }]
+        },
+        build: {
+            files: [{
+                expand: true,
+                cwd: '.tmp/public',
+                src: ['**/*'],
+                dest: 'www'
       }]
-    },
-    build: {
-      files: [{
-        expand: true,
-        cwd: '.tmp/public',
-        src: ['**/*'],
-        dest: 'www'
-      }]
-    }
-  });
+        }
+    });
 
-  grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 };

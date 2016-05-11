@@ -16,194 +16,281 @@
     <link href="css/hft_index.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="data_info">
-        <span id="departData">04月29日</span>&nbsp;<span id="departWeek">周五</span> -
-        <span id="returnData">05月04日</span>&nbsp;<span id="returnWeek">周三</span>
-        <span>（查询日期为出发地日期）</span>
+    <div id="preloader" style="display: none;">
+        <div id="status">
+        </div>
     </div>
-    <div class="fl_content">
-        <div class="price_up">以下航班需<span>+￥811.20</span></div>
+    <div class="all_elements">
+        <div class="header" style="box-shadow: none;">
+            <a id="pageBack" href="javascript:window.history.go(-1);" class="header_back">
+                <i class="icon_back"></i>
+            </a>
+            <a id="closeAirw" href="#" class="header_back" style="display: none;">
+                <i class="icon_back"></i>
+            </a>
+            <h3>
+              <span class="go_place">北京</span>
+              <i class="com_icon"></i>
+              <span class="to_place">曼谷</span>
+            </h3>
+            <!--<h3>自由行</h3>-->
+        </div>
+        <div class="data_info">
+            <span id="departData">04月29日</span>&nbsp;<span id="departWeek">周五</span> -
+            <span id="returnData">05月04日</span>&nbsp;<span id="returnWeek">周三</span>
+            <span>（查询日期为出发地日期）</span>
+        </div>
+        <div class="fl_content">
+            <div class="price_up">以下航班需<span>+￥811.20</span></div>
+            <ul class="air_tickets_detail">
+                <li class="seat_detail" data-set-id="1">
+                    <div class="time_airport">
+                        <div class="go">
+                            <div class="ticket_info gotrip">
+                                <span class="hft_icon"></span>
+                                <span>01-08 周二 北京-泰国</span>
+                            </div>
+                            <div class="go_info">
+                                <div class="start_time_info">
+                                    <!--<span class="hft_icon start_icon"></span>-->
+                                    <span class="time_number">07:00</span>
+                                    <span class="air_port_word">浦东机场T2</span>
+                                </div>
+                                <div class="total_time_info">
+                                    <span class="time_hour_minute">11h30m</span>
+                                    <span class="hft_icon arrow_time"><i>转</i></span>
+                                    <span class="air_port_word">莫斯科</span>
+                                </div>
+                                <div class="end_time_info">
+                                    <span class="time_number">09:15</span>
+                                    <span class="air_port_word">洛杉矶机场</span>
+                                    <span class="tip_add_days">+1天</span>
+                                </div>
+                            </div>
+                            <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
+                        </div>
+                        <div class="go">
+                            <div class="ticket_info backtrip">
+                                <span class="hft_icon"></span>
+                                <span>01-08 周二 洛杉矶-上海</span>
+                            </div>
+                            <div class="go_info">
+                                <div class="start_time_info">
+                                    <span class="hft_icon end_icon"></span>
+                                    <span class="time_number">07:00</span>
+                                    <span class="air_port_word">浦东T2</span>
+                                </div>
+                                <div class="total_time_info">
+                                    <span class="time_hour_minute">11h30m</span>
+                                    <span class="hft_icon arrow_time"><i>转</i></span>
+                                    <span class="air_port_word">莫斯科</span>
+                                </div>
+                                <div class="end_time_info">
+                                    <span class="tip_add_days">+1天</span>
+                                    <span class="time_number">09:15</span>
+                                    <span class="air_port_word">洛杉矶B</span>
+                                </div>
+                            </div>
+                            <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
+                          </div>
+                    </div>
+                    <b class="hft_icon cho_gou"></b>
+                </li>
+              <li class="seat_detail" data-set-id="1">
+                <div class="time_airport">
+                  <div class="go">
+                    <div class="ticket_info gotrip">
+                      <span class="hft_icon"></span>
+                      <span>01-08 周二 北京-泰国</span>
+                    </div>
+                    <div class="go_info">
+                      <div class="start_time_info">
+                        <span class="time_number">07:00</span>
+                        <span class="air_port_word">浦东机场T2</span>
+                      </div>
+                      <div class="total_time_info">
+                        <span class="time_hour_minute">11h30m</span>
+                        <span class="hft_icon arrow_time"><i>转</i></span>
+                        <span class="air_port_word">莫斯科</span>
+                      </div>
+                      <div class="end_time_info">
+                        <span class="time_number">09:15</span>
+                        <span class="air_port_word">洛杉矶机场</span>
+                        <span class="tip_add_days">+1天</span>
+                      </div>
+                    </div>
+                    <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
+                  </div>
+                  <div class="go">
+                    <div class="ticket_info backtrip">
+                      <span class="hft_icon"></span>
+                      <span>01-08 周二 洛杉矶-上海</span>
+                    </div>
+                    <div class="go_info">
+                      <div class="start_time_info">
+                        <span class="hft_icon end_icon"></span>
+                        <span class="time_number">07:00</span>
+                        <span class="air_port_word">浦东T2</span>
+                      </div>
+                      <div class="total_time_info">
+                        <span class="time_hour_minute">11h30m</span>
+                        <span class="hft_icon arrow_time"><i>转</i></span>
+                        <span class="air_port_word">莫斯科</span>
+                      </div>
+                      <div class="end_time_info">
+                        <span class="tip_add_days">+1天</span>
+                        <span class="time_number">09:15</span>
+                        <span class="air_port_word">洛杉矶B</span>
+                      </div>
+                    </div>
+                    <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
+                  </div>
+                </div>
+                <b class="hft_icon cho_gou"></b>
+              </li>
+            </ul>
+        </div>
+        <!--   航空公司列表页    -->
+        <div id="awContent" class="fl_content" style="display:none;padding-bottom: 0;">
+            <ul id="airwayList" class="airway_list">
+                <li class="airway">
+                    <div>
+                        <img src="../images/flights.png" />
+                    </div>
+                    <span class="airway_name">中国航空</span>
+                    <div class="aw_price">
+                        <apan>+￥</apan><apnn>100</apnn>
+                    </div>
+                    <b class="hft_icon cho_gou"></b>
+                </li>
+            </ul>
+        </div>
+        <footer class="list_footer footer_three">
+            <div id="foAirway" class="fo_div">
+                <b class="com_icon ic_aw"></b>
+                <i class="red_tip"></i>
+                <span>航空公司</span>
+            </div>
+            <div id="foRank" class="fo_div">
+                <b class="com_icon ic_rk"></b>
+                <i class="red_tip"></i>
+                <span>快速排序</span>
+            </div>
+            <div id="foScreen" class="fo_div">
+                <b class="com_icon ic_sn"></b>
+                <i class="red_tip"></i>
+                <span>筛选</span>
+            </div>
+        </footer>
+    <div id="mbShadow" class="full_shadow"></div>
+    <!--<div id="">-->
+        <ul id="rankBox" class="rank_box">
+            <li class="rank_item active">价格从低到高<b class="hft_icon"></b></li>
+            <li class="rank_item">价格从高到低<b class="hft_icon"></b></li>
+            <li class="rank_item">出发时间从早到晚<b class="hft_icon"></b></li>
+            <li class="rank_item">出发时间从晚到早<b class="hft_icon"></b></li>
+            <li class="rank_item">直飞优先<b class="hft_icon"></b></li>
+            <li class="rank_item">耗时最短<b class="hft_icon"></b></li>
+        </ul>
+    <!--</div>-->
+    <div id="screenBox" class="screen_box">
+        <ul class="title">
+            <li class="screen_btn">取消</li>
+            <li class="screen_btn">清空筛选</li>
+            <li class="screen_btn">确定</li>
+        </ul>
+        <div class="detail">
+            <ul class="detail_title">
+                <li id="directFly" class="title_li active">直飞</li>
+                <li id="share" class="title_li">共享</li>
+                <li id="flyTime" class="title_li">起飞时间</li>
+            </ul>
+            <div class="detail_list">
+                <ul id="directFlyDetail" class="detail_ul">
+                    <li class="screen_item active">不限<b class="hft_icon"></b></li>
+                    <li class="screen_item">仅看直飞<b class="hft_icon"></b></li>
+                </ul>
+                <ul id="shareDetail" class="detail_ul" style="display: none">
+                    <li class="screen_item active">不限<b class="hft_icon"></b></li>
+                    <li class="screen_item">隐藏共享<b class="hft_icon"></b></li>
+                </ul>
+                <ul id="flyTimeDetail" class="detail_ul" style="display: none">
+                    <li class="screen_item active">不限<b class="hft_icon"></b></li>
+                    <li class="screen_item">0点到6点<b class="hft_icon"></b></li>
+                    <li class="screen_item">6点到12点<b class="hft_icon"></b></li>
+                    <li class="screen_item">12点到18点<b class="hft_icon"></b></li>
+                    <li class="screen_item">18点到24点<b class="hft_icon"></b></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="js/hft_flightList.js"></script>
+    <script id="tplFlightList" type="text/template">
+        <% for(var i = 0;i < flightInfoListGroup.length;i++){ %>
+        <div class="price_up">以下航班需<span>+￥<%=flightInfoListGroup[i].additionalPrice%></span></div>
         <ul class="air_tickets_detail">
+            <% for(var j = 0;j < flightInfoListGroup[i].flightInfoList.length;j++){ %>
             <li class="seat_detail" data-set-id="1">
                 <div class="time_airport">
                     <div class="go">
                         <div class="ticket_info gotrip">
                             <span class="hft_icon"></span>
-                            <span>01-08 周二 北京-泰国</span>
+                            <span><%=flightInfoListGroup[i].flightInfoList[j].flightLeaveStartDate%> 周二 北京-泰国</span>
                         </div>
                         <div class="go_info">
                             <div class="start_time_info">
-                                <!--<span class="hft_icon start_icon"></span>-->
                                 <span class="time_number">07:00</span>
                                 <span class="air_port_word">浦东机场T2</span>
                             </div>
-                            <div class="total_time_info">
-                                <span class="time_hour_minute">11h30m</span>
-                                <span class="hft_icon arrow_time"></span>
-                                <span class="air_port_word">转莫斯科</span>
-                            </div>
-                            <div class="end_time_info">
-                                <span class="time_number">09:15</span>
-                                <span class="air_port_word">洛杉矶机场</span>
-                                <span class="tip_add_days">+1天</span>
-                            </div>
-                        </div>
-                        <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
-                    </div>
-                    <div class="go">
-                        <div class="ticket_info backtrip">
-                            <span class="hft_icon"></span>
-                            <span>01-08 周二 洛杉矶-上海</span>
-                        </div>
-                        <div class="go_info">
-                            <div class="start_time_info">
-                                <span class="hft_icon end_icon"></span>
-                                <span class="time_number">07:00</span>
-                                <span class="air_port_word">浦东T2</span>
-                            </div>
-                            <div class="total_time_info">
-                                <span class="time_hour_minute">11h30m</span>
-                                <span class="hft_icon arrow_time"></span>
-                                <span class="air_port_word">转莫斯科</span>
-                            </div>
-                            <div class="end_time_info">
-                                <span class="tip_add_days">+1天</span>
-                                <span class="time_number">09:15</span>
-                                <span class="air_port_word">洛杉矶B</span>
-                            </div>
-                        </div>
-                        <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
+                          <div class="total_time_info">
+                              <span class="time_hour_minute">11h30m</span>
+                              <span class="hft_icon arrow_time"><i>转</i></span>
+                              <span class="air_port_word">莫斯科</span>
+                          </div>
+                          <div class="end_time_info">
+                              <span class="time_number">09:15</span>
+                              <span class="air_port_word">洛杉矶机场</span>
+                              <span class="tip_add_days">+1天</span>
+                          </div>
                       </div>
+                      <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
+                  </div>
+                  <div class="go">
+                    <div class="ticket_info backtrip">
+                      <span class="hft_icon"></span>
+                      <span>01-08 周二 洛杉矶-上海</span>
+                    </div>
+                    <div class="go_info">
+                      <div class="start_time_info">
+                        <span class="hft_icon end_icon"></span>
+                        <span class="time_number">07:00</span>
+                        <span class="air_port_word">浦东T2</span>
+                      </div>
+                      <div class="total_time_info">
+                        <span class="time_hour_minute">11h30m</span>
+                        <span class="hft_icon arrow_time"><i>转</i></span>
+                        <span class="air_port_word">莫斯科</span>
+                      </div>
+                      <div class="end_time_info">
+                        <span class="tip_add_days">+1天</span>
+                        <span class="time_number">09:15</span>
+                        <span class="air_port_word">洛杉矶B</span>
+                      </div>
+                    </div>
+                    <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
+                  </div>
                 </div>
                 <b class="hft_icon cho_gou"></b>
             </li>
-          <li class="seat_detail" data-set-id="1">
-            <div class="time_airport">
-              <div class="go">
-                <div class="ticket_info gotrip">
-                  <span class="hft_icon"></span>
-                  <span>01-08 周二 北京-泰国</span>
-                </div>
-                <div class="go_info">
-                  <div class="start_time_info">
-                    <span class="time_number">07:00</span>
-                    <span class="air_port_word">浦东机场T2</span>
-                  </div>
-                  <div class="total_time_info">
-                    <span class="time_hour_minute">11h30m</span>
-                    <span class="hft_icon arrow_time"></span>
-                    <span class="air_port_word">转莫斯科</span>
-                  </div>
-                  <div class="end_time_info">
-                    <span class="time_number">09:15</span>
-                    <span class="air_port_word">洛杉矶机场</span>
-                    <span class="tip_add_days">+1天</span>
-                  </div>
-                </div>
-                <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
-              </div>
-              <div class="go">
-                <div class="ticket_info backtrip">
-                  <span class="hft_icon"></span>
-                  <span>01-08 周二 洛杉矶-上海</span>
-                </div>
-                <div class="go_info">
-                  <div class="start_time_info">
-                    <span class="hft_icon end_icon"></span>
-                    <span class="time_number">07:00</span>
-                    <span class="air_port_word">浦东T2</span>
-                  </div>
-                  <div class="total_time_info">
-                    <span class="time_hour_minute">11h30m</span>
-                    <span class="hft_icon arrow_time"></span>
-                    <span class="air_port_word">转莫斯科</span>
-                  </div>
-                  <div class="end_time_info">
-                    <span class="tip_add_days">+1天</span>
-                    <span class="time_number">09:15</span>
-                    <span class="air_port_word">洛杉矶B</span>
-                  </div>
-                </div>
-                <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/>南航CZ9270 | CA983 | 波音787(大)</p>
-              </div>
-            </div>
-            <b class="hft_icon cho_gou"></b>
-          </li>
+            <% } %>
         </ul>
-    </div>
-    <!--   航空公司列表页    -->
-    <div id="awContent" class="fl_content" style="display:none;padding-bottom: 0;">
-        <ul id="airwayList" class="airway_list">
-            <li>
-                <div>
-                    <img src="../images/flights.png" />
-                </div>
-                <span class="airway_name">中国航空</span>
-                <div class="aw_price">
-                    <apan>+￥</apan><apnn>100</apnn>
-                </div>
-                <b class="hft_icon cho_gou"></b>
-            </li>
-        </ul>
-    </div>
-    <footer class="list_footer footer_three">
-        <div id="foAirway">
-            <b class="com_icon ic_aw"></b>
-            <i class="red_tip"></i>
-            <span>航空公司</span>
-        </div>
-        <div id="foRank">
-            <b class="com_icon ic_rk"></b>
-            <i class="red_tip"></i>
-            <span>快速排序</span>
-        </div>
-        <div id="foScreen">
-            <b class="com_icon ic_sn"></b>
-            <i class="red_tip"></i>
-            <span>筛选</span>
-        </div>
-    </footer>
-    <div id="mbShadow" class="full_shadow" style="display: none"></div>
-    <!--<div id="">-->
-        <ul id="rankBox" class="rank_box">
-            <li class="active">价格从低到高<b class="hft_icon"></b></li>
-            <li>价格从高到低<b class="hft_icon"></b></li>
-            <li>出发时间从早到晚<b class="hft_icon"></b></li>
-            <li>出发时间从晚到早<b class="hft_icon"></b></li>
-            <li>直飞优先<b class="hft_icon"></b></li>
-            <li>耗时最短<b class="hft_icon"></b></li>
-        </ul>
-    <!--</div>-->
-    <div id="screenBox" class="screen_box">
-        <ul class="title">
-            <li>取消</li>
-            <li>清空筛选</li>
-            <li>确定</li>
-        </ul>
-        <div class="detail">
-            <ul class="detail_title">
-                <li id="directFly" class="active">直飞</li>
-                <li id="share">共享</li>
-                <li id="flyTime">起飞时间</li>
-            </ul>
-            <div class="detail_list">
-                <ul id="directFlyDetail">
-                    <li class="active">不限<b class="hft_icon"></b></li>
-                    <li>仅看直飞<b class="hft_icon"></b></li>
-                </ul>
-                <ul id="shareDetail" style="display: none">
-                    <li class="active">不限<b class="hft_icon"></b></li>
-                    <li>隐藏共享<b class="hft_icon"></b></li>
-                </ul>
-                <ul id="flyTimeDetail" style="display: none">
-                    <li class="active">不限<b class="hft_icon"></b></li>
-                    <li>0点到6点<b class="hft_icon"></b></li>
-                    <li>6点到12点<b class="hft_icon"></b></li>
-                    <li>12点到18点<b class="hft_icon"></b></li>
-                    <li>18点到24点<b class="hft_icon"></b></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+        <% } %>
+    </script>
 </body>
 </html>

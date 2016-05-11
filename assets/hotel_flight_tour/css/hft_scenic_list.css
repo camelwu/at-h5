@@ -1,6 +1,7 @@
 address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
 .snap-content{
   padding:.88rem 0 .9rem;
+  background-color: white;
 }
 /*出发返回开始*/
 .time_people_list{
@@ -9,8 +10,8 @@ address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
   background-color: #f7f7f7;
   padding:0 .26rem;
   line-height: 1rem;
-  font-size:.24rem;
-  border-bottom: 2px solid #E6E6E6;
+  font-size:.28rem;
+  border-bottom: 1px solid #E6E6E6;
 }
 .time_people_list_time{
   float:left;
@@ -43,9 +44,10 @@ address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
 }
 .city_list .city_list1{
   height: .68rem;
+  min-width: 1.64rem;
   text-align: center;
   line-height: .68rem;
-  font-size:.26rem ;
+  font-size:.28rem ;
   border-radius: 1rem;
   float:left;
   padding:0 .2rem;
@@ -63,6 +65,7 @@ address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
 }
 /*景点信息开始*/
 .scenic-detile{
+  background: white;
   padding:0 .26rem ;
   position: relative;
   top: 0rem;
@@ -172,7 +175,8 @@ li.scenic_detile_project_first{
   height: 100%;
   text-align: center;
   color: white;
-  background-color: #484848;
+  background-color: #000;
+  opacity: .7;
   font-size:.2rem;
   overflow: hidden;
   display: inline-block;
@@ -237,7 +241,19 @@ div.footer_right{
   color: #333333;
   line-height: .96rem;
 }
-.checked{
+.Schecked{
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  position: absolute;
+  right:.4rem;
+  margin-left: -78px;
+  margin-top: 12px;
+  background-image: url(../../images/ui/icons1.png);
+  background-size: 400px 120px;
+  background-position: 77% 4%;
+}
+.Fchecked{
   display: inline-block;
   width: 18px;
   height: 16px;
@@ -255,7 +271,7 @@ div.footer_right{
   background: #F7F7F7;
   position: fixed;
   z-index: 2001;
-  bottom: -2000px;
+  bottom: -200rem;
 }
 .filter_button{
   height: .89rem;
@@ -299,19 +315,27 @@ p.filter_button_checked{
 .filter_theme_matter {
   float:left;
   width: 76%;
+  height: 6rem;
+  overflow: scroll;
 }
 .filter_theme_box{
   background: #fff;
   width: 100% ;
 }
+
 .filter_theme_box li{
   width: 100%;
   margin-left:.32rem;
   border-bottom:.01rem solid #e6e6e6;
   font-size: .28rem;
   line-height: .96rem;
+  overflow: scroll;
+  position: relative;
 }
-.checked_theme{
+.checked_theme1{
+  color:#FFB413;
+}
+.checked_theme2{
   color:#FFB413;
 }
 /*景点详情页开始*/

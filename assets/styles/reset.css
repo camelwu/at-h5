@@ -227,7 +227,7 @@ a {
     z-index: 99;
     background-color: #fcfcfc;
     opacity: .95;
-    border-bottom: solid 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px #ddd;
 }
 
 .header .header_back {
@@ -254,7 +254,18 @@ a {
     text-align: center;
     line-height: .88rem;
 }
-
+.header h3 .arrowDouble{
+  display: inline-block;
+  height: .4rem;
+  width: .4rem;
+  background: url(../images/ui/icon_common.png) no-repeat;
+  background-size: 7.89rem 5.07rem;
+  background-position: -6.08rem -1.46rem;
+  position: relative;
+  left: 0;
+  top: .1rem;
+  margin: 0 .18rem;
+}
 .content {
     padding-top: .88rem;
 }
