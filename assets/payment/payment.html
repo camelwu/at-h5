@@ -101,7 +101,7 @@
                 <div>持卡人手机号</div>
                 <div>
                   <span  class="tel-btn phone"  value="CN" data-code="86">+86</span>
-                  <b class="icon_common s-xiala3"></b>
+                  <b class="s-xiala3"></b>
                   <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
                 </div>
             </li>
@@ -176,7 +176,6 @@
                 </li>
             {% }else{ %}
                 <li>
-
                     <span class="hf-f"><i class = "hf-go"></i><p>{%=flightInfo.flightLeaveStartDate.replace('T',' ').substring(0,16)%}</p></span>
                     <span class="hf-f"><i class = "hf-back"></i><p>{%=flightInfo.flightReturnStartDate.replace('T',' ').substring(0,16)%}</p></span>
                 </li>
