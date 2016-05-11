@@ -35,7 +35,7 @@
     <div class="top_info">
       <span>出发:<span class="start"> <%=hftChoose.returnDay(hftChoose.initParaObj.departDate)%></span></span>
       <span>返程:<span class="arrive"> <%=hftChoose.returnDay(hftChoose.initParaObj.returnDate)%></span></span>
-      <span class="person_number"><span>2</span>成人 <span>1</span>儿童</span>
+      <span class="person_number"><span><%=hftChoose.cacheOtherInfo.adult%></span>成人 <span><%=hftChoose.cacheOtherInfo.child%></span>儿童</span>
       <i></i>
     </div>
     <div class="ticket">
@@ -101,7 +101,7 @@
         </li>
       </ul>
     </div>
-    <div class="hotel">
+    <div class="hotel" id="hotel">
       <div class="statusMoreHotel"><span>酒店</span> <a href="javascript:void(0);" class="moreHotel" title="更多酒店">更换酒店</a>
       </div>
       <div class="hotelImgInfo">
@@ -153,42 +153,8 @@
       <div class="check-more-room">查看更多房型<span>(<%= hotelInfo["rooms"].length-2%>)</span><span class="check-more-down"></span></div>
       <% }%>
     </div>
-    <div class="tour">
-      <div class="tourListHeader">
-        <span>景点</span><span class="tourNumber">(<%= tours.length %>)</span>
-      </div>
-      <ul class="tourOuter">
-        <% tours.forEach(function(tour, item){
-        var selectTravelDate = tour["selectTravelDate"];
-        %>
-        <li data-tour-id="<%=tour['tourID']%>">
-          <h3 class="tour-list-title"><%= tour.tourName %></h3>
-          <p class="choose-tour-date"><span data-date="<%= selectTravelDate%>"><%= hftChoose.returnDay(selectTravelDate)%></span><i></i></p>
-          <div class="after-noon">
-            <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
-            <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>"><%= tourSession["tourSessionName"] %></button>
-            <% }) %>
-          </div>
-        </li>
-        <% }) %>
-      </ul>
-      <div class="chooseDate">
-        <div class="confirm">
-          <span>取消</span>
-          <span>确定</span>
-        </div>
-        <div class="months">
-          <span>4月</span>
-          <span class="active">5月</span>
-        </div>
-        <div class="monthsDate">
-          <span>5月1日</span>
-          <span class="active">5月2日</span>
-          <span>5月3日</span>
-          <span>5月4日</span>
-        </div>
-      </div>
-    </div>
+
+
     <div class="priceDetailInfo">
       <p>成人<span class="price-num-price">￥<span>56X2</span></span></p>
       <p>儿童<span class="price-num-price">￥<span>56X2</span></span></p>
@@ -243,6 +209,44 @@
       </div>
       <% }) %>
     </div>
+</script>
+<script id="template_tour" type="text/template">
+  <div class="tour">
+    <div class="tourListHeader">
+      <span>景点</span><span class="tourNumber">(<%= tours.length %>)</span>
+    </div>
+    <ul class="tourOuter">
+      <% tours.forEach(function(tour, item){
+      var selectTravelDate = tour["selectTravelDate"];
+      %>
+      <li data-tour-id="<%=tour['tourID']%>">
+        <h3 class="tour-list-title"><%= tour.tourName %></h3>
+        <p class="choose-tour-date"><span data-date="<%= selectTravelDate%>"><%= hftChoose.returnDay(selectTravelDate)%></span><i></i></p>
+        <div class="after-noon">
+          <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
+          <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>"><%= tourSession["tourSessionName"] %></button>
+          <% }) %>
+        </div>
+      </li>
+      <% }) %>
+    </ul>
+    <div class="chooseDate">
+      <div class="confirm">
+        <span>取消</span>
+        <span>确定</span>
+      </div>
+      <div class="months">
+        <span>4月</span>
+        <span class="active">5月</span>
+      </div>
+      <div class="monthsDate">
+        <span>5月1日</span>
+        <span class="active">5月2日</span>
+        <span>5月3日</span>
+        <span>5月4日</span>
+      </div>
+    </div>
+  </div>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/plugins.js"></script>

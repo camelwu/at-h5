@@ -417,15 +417,14 @@ li.order_tlist2 {
 }
 
 .order_num_tab {
-  width: 66%;
+  width: 85%;
   margin: 0 auto;
 }
 
 .order_num span.num1 {
   height: 100%;
-  display: inline-block;
-  vertical-align: top;
   font-size: .3rem;
+  margin-left: .43rem;
 }
 
 .order_num span.num1 > i {
@@ -434,9 +433,8 @@ li.order_tlist2 {
 }
 
 .num_tip {
-  width: .5rem;
-  height: .5rem;
-  text-align: right;
+  width: .7rem;
+  height: .98rem;
 }
 
 .order_submit {
@@ -470,10 +468,10 @@ li.order_tlist2 {
 
 .hft_detail_fare {
   transition: 300ms all ease;
-  /*bottom: .78rem;*/
-  bottom: -3rem;
+  bottom: -8rem;
   padding: .28rem;
   width: 100%;
+  height: 4.72rem;
   position: fixed;
   z-index: 102;
   background: #fff;
