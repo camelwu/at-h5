@@ -442,7 +442,7 @@ var htf_search = {
           EchChildNum:echChildNum
       };
       localStorage.setItem('searchInfo', JSON.stringify(searchInfo));
-      sessionStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
+      localStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
   },
   init:function(){
       this.init_title_room();
