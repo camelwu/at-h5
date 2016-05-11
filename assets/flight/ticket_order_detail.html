@@ -48,7 +48,7 @@
                   <div class="rel-start">
                       <div class="week-city-city">
 
-                          <span><i></i></span> <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d1.getMonth()%}-{%=d1.getDate()%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
+                          <span><i></i></span> <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %}  {%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"cymd")%}</span> <span>周{%=getWeek[d1.getDay()]%} {%=flightInfo.cityNameFrom%} - {%=flightInfo.cityNameTo%}</span>
                       </div>
                       <div class="time-arrow-time">
                           <div class="city-time-left">
@@ -168,7 +168,7 @@
                      </div>
 
                       <div class="nation-flight-number back-flight">
-                        <div class="p"><div class="left-item"> <span>{%=flightInfo.segmentsReturn[0].airCorpName%}</span><span>|</span><span>{%=flightInfo.segmentsReturn[0].marketingCarrierCode%}{%=flightInfo.segmentsReturn[0].flightNo%}</span><span>|</span><span>{%=flightInfo.segmentsLeave[0].planeName%}<span></span></span></div><div class="right-item"></div></div>
+                        <div class="p"><div class="left-item"> <span>{%=flightInfo.segmentsReturn[0].airCorpName%}</span><span>|</span><span>{%=flightInfo.segmentsReturn[0].marketingCarrierCode%}{%=flightInfo.segmentsReturn[0].flightNo%}</span><span>|</span><span>{%=flightInfo.segmentsReturn[0].planeName%}<span></span></span></div><div class="right-item"></div></div>
                       </div>
                      {% if(flightInfo.segmentsReturn.length>1){  for(var i=1; i<=flightInfo.segmentsReturn.length-1;i++){ %}
                      <p class="transit-word-city">中转{%=flightInfo.segmentsReturn[1].cityNameFrom%}</p>
