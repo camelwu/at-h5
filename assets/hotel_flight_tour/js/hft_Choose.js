@@ -233,10 +233,10 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
-      window.location.href = "index.html?type=hft&isInit=1";
+      window.location.href = "index.html?type="+that.type;
     });
     this.addHandler(iconBack, 'click', function () {
-      window.location.href = "index.html?type=hft&isInit=1";
+      window.location.href = "index.html?type="+that.type;
     });
     this.addHandler(changeFlight, 'click', function () {
       var tempTours = that.curData.tours, hftChangeFlightPara = {}, toursArray = [];
@@ -278,18 +278,18 @@ var hftChoose = {
     this.addHandler(moreHotel, 'click', function () {
       var tempTours = that.curData.tours, hftChangeHotelPara = {}, toursArray = [];
       hftChangeHotelPara = {
-
-        "tours": toursArray,
-        "packageID": that.initParaObj.packageID,
-
-
         "flightCacheID": that.curData.flightInfo.cacheID,
         "flightSetID": that.curData.flightInfo.setID,
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
         "departDate": that.initParaObj.departDate,
         "returnDate": that.initParaObj.returnDate,
-        "roomDetails": that.initParaObj.roomDetails
+        "roomDetails": that.initParaObj.roomDetails,
+        "selectedHotelID": that.curData.hotelInfo.hotelID,
+        "selectedRoomID": that.roomPriceInfo.roomID,
+        "sortFields": [0],
+        "pageNo": 1,
+        "pageSize":20
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -300,15 +300,10 @@ var hftChoose = {
           temObj['travelDateSpecified'] = array['travelDateMandatory'];
           toursArray.push(temObj);
         });
+        hftChangeHotelPara.packageID = that.initParaObj.packageID;
         hftChangeHotelPara.tours = toursArray;
         hftChangeHotelPara.packageID = that.initParaObj.packageID;
-      } else {
-        hftChangeHotelPara.selectedHotelID = that.curData.hotelInfo.hotelID;
-        hftChangeHotelPara.selectedRoomID = that.roomPriceInfo.roomID;
-        hftChangeHotelPara.sortFields = [0] || [];
-        hftChangeHotelPara.pageNo = 1;
-        hftChangeHotelPara.pageSize = 20;
-      }
+      };
       storage.setItem('hftChangeHotelPara', JSON.stringify(hftChangeHotelPara));
       that.timer2 = setTimeout(function () {
         window.clearTimeout(that.timer2);
@@ -316,8 +311,6 @@ var hftChoose = {
         window.location.href = that.type == 2?"hft_hotel_list.html?type=" + that.type+"&packageId="+that.initParaObj.packageID:"hft_hotel_list.html?type=" + that.type;
       }, 500);
     });
-    /*更换酒店结束*/
-
     this.addHandler(flightDetailI, 'click', function () {
       window.location.href = "hft_flightDetail.html?type=" + that.type;
     });
@@ -456,7 +449,7 @@ var hftChoose = {
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
     } else {
-      //jAlert("没有数据")
+      alert(resultJSON.message)
     }
   },
 
@@ -611,7 +604,7 @@ var hftChoose = {
     this.type = urlParseObj.type;
     this.cacheOtherInfo = {adult: temObj['AdultNum'], child: temObj['ChildNum']};
     if (urlParseObj.type == "2") {
-      this.initParaObj.packageID = urlParseObj.packageId;
+      this.initParaObj.packageID = urlParseObj['packageId'];
       this.getNewPricePara.packageID = this.initParaObj.packageID;
       this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
     }else if(urlParseObj.type == "1") {
