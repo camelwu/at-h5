@@ -78,7 +78,7 @@ body{
 }
 .fix-margin{margin-top: 0}
 .tour{
-  margin-bottom: .94rem;
+  margin-bottom: .98rem;
 }
 .ticket .statusMoreFlight, .hotel .statusMoreHotel, .tour .tourListHeader, .confirm{
   padding:0 .28rem;
@@ -430,7 +430,7 @@ body{
   margin-left: .2rem;
   border-radius: 4px;
 }
-.roomUl .plassPrice .noChooseButton{ color: #FFF; background: #fdb330;}
+.roomUl .plassPrice .hasChooseButton{ color: #FFF; background: #fdb330;}
 .tourNumber{
   margin-left: .04rem;
   letter-spacing: .04rem;
@@ -559,8 +559,8 @@ body{
   font-size: .28rem;
   position: fixed;
   background-color: #fff;
-  height: .90rem;
-  line-height:.90rem;
+  height: .98rem;
+  line-height:.98rem;
   bottom: 0;
   border-top: 1px solid #dedede;
   z-index: 105;
@@ -580,7 +580,7 @@ body{
 .priceTotal .detail_fare {
   display: inline-block;
   vertical-align: top;
-  margin-top: .38rem;
+  margin-top: .42rem;
   background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
   background-size: .24rem .14rem;
   width: .32rem;
@@ -589,7 +589,7 @@ body{
 }
 
 .priceTotal .detail_fare.open {
-  margin-top: .42rem;
+  margin-top: .48rem;
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform-origin: 40% 25%;
@@ -604,7 +604,7 @@ body{
   background: #FFB413;
   color: #FFFFFF;
   text-align: center;
-  font-size: .28rem;
+  font-size: .36rem;
   position: absolute;
   right: 0;
   width: 50%
