@@ -380,7 +380,8 @@ p.filter_button_checked{
   color:#fff;
   position: absolute;
   left:40%;
-  top:.6rem;
+  top:.28rem;
+  opacity: 0.8;
 }
 .bar_img_page{
   font-size: .2rem;
