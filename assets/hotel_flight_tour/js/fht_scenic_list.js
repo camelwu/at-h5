@@ -168,7 +168,7 @@
                   };
                   localStorage.setItem('scenicItem', JSON.stringify(scenicItem));
                   $(".scenic-detile_list").on("click",function(){
-                      window.location.href = 'hft_choose.html?type=2';
+                      window.location.href = 'hft_choose.html?type=2&packageId='+packageid;
                   })
                 }
           else {
