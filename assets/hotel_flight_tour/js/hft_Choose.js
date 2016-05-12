@@ -135,6 +135,8 @@ var hftChoose = {
           outputString = ejs.render(tempString, {data: resultEnd});
           $(".chooseDate").eq(0).html(outputString);
           that.dateArrayShow();
+        }else if(target.className == "tour-list-title"){
+          document.location.href ="../hotel_flight_tour/hft_scenic_content.html?tourId=" + target.parentNode.getAttribute('data-tour-id')+"&packageId="+that.urlParseObj.packageID;
         }
       });
 
@@ -324,9 +326,11 @@ var hftChoose = {
         "cityCodeTo": that.initParaObj.cityCodeTo,
         "departDate": that.initParaObj.departDate,
         "returnDate": that.initParaObj.returnDate,
+        "selectedHotelID": that.curData.hotelInfo.hotelID,
+        "selectedRoomID": that.roomPriceInfo.roomID,
+        "hotelID": that.curData.hotelInfo.hotelID,
         "roomDetails": that.initParaObj.roomDetails
       };
-
       if (that.type == 2) {
         tempTours.forEach(function (array) {
           var temObj = {};
@@ -339,9 +343,6 @@ var hftChoose = {
         hftHotelDetailPara.tours = toursArray;
         hftHotelDetailPara.packageID = that.initParaObj.packageID;
       } else {
-        hftHotelDetailPara.selectedHotelID = that.curData.hotelInfo.hotelID;
-        hftHotelDetailPara.selectedRoomID = that.roomPriceInfo.roomID;
-        hftHotelDetailPara.hotelID = that.curData.hotelInfo.hotelID;
         hftHotelDetailPara.hotelAdditionalPrice = that.roomPriceInfo.addtionalPrice;
       }
       storage.setItem('hftHotelDetailPara', JSON.stringify(hftHotelDetailPara));
@@ -447,6 +448,9 @@ var hftChoose = {
       resultData = resultJSON.data;
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
+      if(that.type == "2"){
+        originAirIds.packageId = this.urlParseObj.packageId;
+      }
       that.curData = resultData;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds',JSON.stringify(originAirIds));
@@ -466,7 +470,7 @@ var hftChoose = {
       that.roomPriceInfo = result.data.prices;
       that.curData.hotelInfo.rooms =result.data.roomsPrice;
       console.log(that.curData)
-      that.renderHandler({success:1, code:200, data:that.curData})
+      //that.renderHandler({success:1, code:200, data:that.curData})
     }else{
       alert(result.message)
     }
