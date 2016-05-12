@@ -9,7 +9,7 @@
         '<img src="<%= pictureURL%>" alt="image"/>',
         '<% }else{ %>' +
         '<a href="<%= images[0].imageURL%>" class="swipebox" title="1/<%=(images.length)%>">',
-        '<img src="<%= images[0].imageURL %>" alt="image"/ ></a> '+
+        '<img src="<%= images[0].imageURL %>" alt="image" style="height:100%;"/ ></a> '+
         '<% for(var i=1;i<images.length;i++){ %>',
         '<a href="<%= images[i].imageURL%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
         '<img src="<%= images[i].imageURL%>" alt="image"/></a>',
@@ -22,17 +22,18 @@
 
     var  core = function(){
         var ContentList = function(){
-            var packageID=vlm.getpara("packageID");
-            var cityCodeFrom=vlm.getpara("cityCodeFrom");
+            var packageID=vlm.getpara("packageId");
+            var cityCodeFrom=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
             var Cparam=
             {
                 "Parameters": {
                     "PackageID": packageID,
-                    "cityCodeFrom": cityCodeFrom
+                    "cityCodeFrom":cityCodeFrom
                 },
                 "ForeEndType": 2,
                 "Code": "60100003"
             };
+            console.log(JSON.stringify(Cparam));
             vlm.loadJson("",JSON.stringify(Cparam),callback);
         };
         var callback = function(data){
@@ -73,7 +74,7 @@
                     $("#Sheight3").css({'display':'none'});
                 };
             }else {
-                jAlert(json.message,"提示");
+                alert(data.message,"提示");
             }
         };
         return {
