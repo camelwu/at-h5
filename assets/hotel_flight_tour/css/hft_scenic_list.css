@@ -1,4 +1,4 @@
-address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+address, cite, dfn, em, var { font-style: normal; }body{background: white} /* 将斜体扶正 */
 .snap-content{
   padding:.88rem 0 .9rem;
   background-color: white;

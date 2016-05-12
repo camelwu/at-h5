@@ -20,7 +20,6 @@
 <body>
 <div id="preloader">
     <div id="status">
-
     </div>
 </div>
 <div class="contents">
@@ -84,6 +83,7 @@
                         <img src = "<%= lists[i].pictureURL%>"alt = "丹嫩沙多水上市场" class = "scenic_detile_img_po"/>
                         <!--<p class = "scenic-detile_list_theme">主题</p>-->
                     </div>
+
                     <div class="scenic_detile_content">
                         <p class="scenic_detile_content_name"><%= lists[i].packageName %></p>
                         <p class = "scenic_detile_content_after">￥<%= lists[i].leadinPrice %>/人起</p>
@@ -101,11 +101,13 @@
     </ul>
 </script>
 <script id = "CityDetile" type="text/template">
+  <% if(recommendCities.length > 1){ %>
     <ul>
         <% for(var i=0;i< recommendCities.length;i++){%>
         <li class = "city_list1"><%= recommendCities[i].cityName %><i></i></li>
         <% } %>
     </ul>
+  <% } %>
 </script>
 <script id = "SortDetile" type = "text/template">
         <% for(var i =0;i< sortTypes.length;i++){ %>

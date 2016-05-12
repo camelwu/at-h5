@@ -6,7 +6,6 @@
     var core = function() {
         var url = "";
         var themeId = "";
-        vlm.init();
 //获取附近城市列表
 //获取景点列表
 
@@ -23,6 +22,7 @@
           };
             console.log(JSON.stringify(SParameter));
             vlm.loadJson(url,JSON.stringify(SParameter),function(data){
+              vlm.init();
                 if(data.success){
                     console.log(data);
                     var htmlp = $("#scenicDetile").html();
