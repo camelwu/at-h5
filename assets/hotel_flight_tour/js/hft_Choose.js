@@ -450,9 +450,6 @@ var hftChoose = {
       resultData = resultJSON.data;
       originAirIds.airwayCacheID = resultData.airwayCacheID;
       originAirIds.airwaySetID = resultData.airwaySetID;
-      if(that.type == "2"){
-        originAirIds.packageId = this.urlParseObj.packageId;
-      }
       that.curData = resultData;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
       storage.setItem('originAirIds',JSON.stringify(originAirIds));
