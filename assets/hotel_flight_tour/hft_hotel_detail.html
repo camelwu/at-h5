@@ -113,7 +113,7 @@
 <!--roomList-->
 <script id="ulList" type="text/template">
   <% for(var i=0;i<rooms.length;i++){ %>
-  <li class="cur">
+  <li data-hotelId="<%= rooms[i].roomID %>">
     <div class="slide">
       <div class="lfword">
         <p><span class="name"><%= rooms[i].roomName %></span><i class="book"></i></p>

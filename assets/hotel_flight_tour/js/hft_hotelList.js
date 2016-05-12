@@ -3,7 +3,8 @@
   var parametersStorage = JSON.parse(sessionStorage.getItem("hftChangeHotelPara")) || {};
   console.log(parametersStorage);
   //获取资源选择页的url保存下来，再传过去
-  console.log()
+  var chooseUrl = window.location.search;
+  sessionStorage.setItem("hftHotelChooseUrl",chooseUrl);
   //传数据
   var dataPull = {
     "parameters":parametersStorage ,

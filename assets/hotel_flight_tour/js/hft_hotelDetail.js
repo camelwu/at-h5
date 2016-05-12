@@ -1,8 +1,11 @@
 (function(){
   //获取本地存储数据
   var sStorage = JSON.parse(sessionStorage.getItem("hftHotelDetailPara")) || {};
-  console.log(sStorage);
+  //console.log(sStorage);
+  //取url再传给资源选择页
+  var chooseUrl = sessionStorage.getItem("hftHotelChooseUrl");
 
+  //经纬度
   var latitude = 0;
   var longitude = 0;
   var tpl1 = [
@@ -66,8 +69,9 @@
     var ulList = ejs.render(str,data.hotelInfo);
     $('ul.ul_room').html(ulList);
     $('.hotel_detail_rooms li').on('click',function(){
+      var roomID = $(this).attr('data-hotelId');
       $(this).addClass('cur').siblings().removeClass('cur');
-      window.location.href = 'hft_choose.html';
+      window.location.href = 'hft_choose.html'+chooseUrl+'&roomID='+roomID;
     });
   }
 
