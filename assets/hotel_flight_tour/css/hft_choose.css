@@ -289,6 +289,13 @@ body{
   height:1.68rem;
   margin: 0 0 0 2.42rem;
 }
+.hotelRightPart{
+  width: 58%;
+}
+.hotelRightPart >p{
+  line-height: .50rem;
+}
+
 .imgDate .right{
   display: block;
   margin: 0 0 0 1.82rem;
@@ -302,6 +309,7 @@ body{
   text-overflow: ellipsis;
   font-weight: 300;
   color: #000;
+  margin-bottom: .1rem;
 }
 .score{
   font-size: .32rem;
