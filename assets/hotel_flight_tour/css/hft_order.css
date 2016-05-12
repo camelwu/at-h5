@@ -730,3 +730,60 @@ li.order_tlist2 {
   padding: .32rem .28rem 0;
 }
 
+/*电话拨号开始*/
+.jpop_box_tic {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: none;
+}
+
+.jpop_box_tic dl {
+  position: fixed;
+  width: 64%;
+  height: 118px;
+  top: 50%;
+  left: 50%;
+  margin: -59px 0 0 -32%;
+  z-index: 5;
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: -1px 1px 3px #c7c7c7;
+}
+
+.jpop_box_tic dt {
+  padding: .36rem 0 .2rem;
+  font-size: .36rem;
+  color: #5abdb7;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: .24rem;
+}
+
+.jpop_box_tic dd {
+  overflow: hidden;
+  margin: 0 10%;
+  font-size: .28rem;
+}
+
+.jpop_box_tic dd a, .jpop_box_tic dd span {
+  padding: 8px 20px;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.jpop_box_tic dd a {
+  float: right;
+  background: #ffb413;
+}
+
+.jpop_box_tic dd span {
+  float: left;
+  background: #dfdfdf;
+}
+
+/*电话拨号结束*/
