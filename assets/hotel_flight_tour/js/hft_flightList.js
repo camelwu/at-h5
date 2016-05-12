@@ -90,6 +90,11 @@ var flightList = {
           var str2 = $('#tplAirwayList').html();
           var airway_list = ejs.render(str2, data);
           document.getElementById('airwayList').innerHTML = airway_list;
+          $.each($('.seat_detail'),function(i,item){
+              if($(this).attr('data-setID')==oldFlightInfo.flightSetID){
+                  $(this).find('b').addClass('cho_gou').siblings().find('b').removeClass('cho_gou');
+              }
+          });
           var airway = document.getElementsByClassName('airway');
           for(var i = 0;i < airway.length;i++){
               if(airway[i].getAttribute('data-airwaySetID') == changeFlightInfo.flightSetID){
@@ -107,9 +112,27 @@ var flightList = {
              changeFlightInfo.flightSetID = $(this).attr('data-airwaySetID');
              changeFlightInfo.flightCacheID = $(this).attr('data-airwayCacheID');
              that.tAjax("",changeFlightInfo,"60100005","2",flightListBack);
-           })
+           });
+          //  页面跳转
+          $(".seat_detail").click(function(){
+              $(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
+              var hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+              var setid = $(this).attr('data-setID');
+              for(var i = 0;i < data.flightInfoListGroup.length;i++) {
+                for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
+                  if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
+                    hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
+                    hftFlightHotelTourInfo.flightInfo.setID = data.flightInfoListGroup[i].flightInfoList[j].setID;
+                    hftFlightHotelTourInfo.flightInfo.cacheID =data.flightInfoListGroup[i].flightInfoList[j].cacheID;
+                  }
+                }
+              }
+              sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
+              hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+              window.location.href = 'hft_choose.html?type=2';
+          });
       };
-      this.tAjax("",sendData,"60100005","2",flightListBack);
+      this.tAjax("",oldFlightInfo,"60100005","2",flightListBack);
   },
     bottomEvent:function(){
         var shadow = document.getElementById('mbShadow');
