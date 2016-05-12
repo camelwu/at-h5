@@ -136,7 +136,7 @@ var hftChoose = {
           $(".chooseDate").eq(0).html(outputString);
           that.dateArrayShow();
         }else if(target.className == "tour-list-title"){
-          document.location.href ="../hotel_flight_tour/hft_scenic_content.html?tourId=" + target.parentNode.getAttribute('data-tour-id')+"&packageId="+that.urlParseObj.packageID;
+          document.location.href ="../hotel_flight_tour/hft_scenic_content.html?tourId=" + target.parentNode.getAttribute('data-tour-id')+"&packageId="+that.initParaObj.packageID;
         }
       });
 
