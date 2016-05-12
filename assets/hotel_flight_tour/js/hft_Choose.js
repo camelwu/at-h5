@@ -233,10 +233,10 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
-      window.location.href = "index.html?type=hft&isInit=1";
+      window.location.href = "index.html?type="+that.type;
     });
     this.addHandler(iconBack, 'click', function () {
-      window.location.href = "index.html?type=hft&isInit=1";
+      window.location.href = "index.html?type="+that.type;
     });
     this.addHandler(changeFlight, 'click', function () {
       var tempTours = that.curData.tours, hftChangeFlightPara = {}, toursArray = [];
@@ -311,8 +311,6 @@ var hftChoose = {
         window.location.href = that.type == 2?"hft_hotel_list.html?type=" + that.type+"&packageId="+that.initParaObj.packageID:"hft_hotel_list.html?type=" + that.type;
       }, 500);
     });
-    /*更换酒店结束*/
-
     this.addHandler(flightDetailI, 'click', function () {
       window.location.href = "hft_flightDetail.html?type=" + that.type;
     });
@@ -606,7 +604,7 @@ var hftChoose = {
     this.type = urlParseObj.type;
     this.cacheOtherInfo = {adult: temObj['AdultNum'], child: temObj['ChildNum']};
     if (urlParseObj.type == "2") {
-      this.initParaObj.packageID = urlParseObj.packageId;
+      this.initParaObj.packageID = urlParseObj['packageId'];
       this.getNewPricePara.packageID = this.initParaObj.packageID;
       this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
     }else if(urlParseObj.type == "1") {
