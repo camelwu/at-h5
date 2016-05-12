@@ -354,7 +354,8 @@ li.order_tlist2 {
 
 .tel_code_tip {
   display: inline-block;
-  margin-left: .32rem;
+  vertical-align: top;
+  margin: .2rem 0 0 .32rem;
   width: .4rem;
   height: .4rem;
   background: url(../../images/ui/icons.png) no-repeat;
@@ -395,7 +396,9 @@ li.order_tlist2 {
 .detail_fale.open {
   margin-top: .42rem;
   transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
   transform-origin: 40% 25%;
+  -webkit-transform-origin: 40% 25%;
   transition: 0.3s all ease;
 }
 
@@ -436,7 +439,7 @@ li.order_tlist2 {
 }
 
 .num_tip {
-  width: .7rem;
+  width: .6rem;
   height: .98rem;
 }
 
