@@ -38,6 +38,7 @@
       hotelAddress(data);
       map(data);
       message(data);
+      date();
       vlm.init();
     }else{
       alert("数据加载错误")
@@ -64,6 +65,10 @@
     var str = $('#ulList').html();
     var ulList = ejs.render(str,data.hotelInfo);
     $('ul.ul_room').html(ulList);
+    $('.hotel_detail_rooms li').on('click',function(){
+      $(this).addClass('cur').siblings().removeClass('cur');
+      window.location.href = 'hft_choose.html';
+    });
   }
 
   //hotelName
@@ -120,4 +125,10 @@
     }
     return data;
   }
+  //日期
+  function date(){
+    $('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
+    $('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
+  }
+
 })()
