@@ -42,14 +42,16 @@
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
+<script src="../js/lib/plugins.js"></script>
 <script src="js/hft_scenic_content.js"></script>
-<script type ="text/template" id = "Barimg">
-    <% for( var i=0;i< images.length;i++){ %>
-    <img src="<%= images[i].thumbnailPhotoURL%>"alt="景点详情"/>
-    <span class = "bar_img_num">编号：<%= packageRefNo %></span>
-    <span class = "bar_img_page">1/20</span>
-    <% }%>
-</script>
+
+<!--<script type ="text/template" id = "Barimg">-->
+    <!--<% for( var i=0;i< images.length;i++){ %>-->
+    <!--<img src="<%= images[i].thumbnailPhotoURL%>"alt="景点详情"/>-->
+    <!--<span class = "bar_img_num">编号：<%= packageRefNo %></span>-->
+    <!--<span class = "bar_img_page">1/20</span>-->
+    <!--<% }%>-->
+<!--</script>-->
 <script type ="text/template" id = "Barcontent">
     <h3 class = "bar_content_title"><%= packageName%></h3>
     <div class="bar_content_time">
@@ -76,31 +78,25 @@
     <div class="scenic_content_scheduling">
         <h3><i></i>行程安排</h3>
         <ul>
-            <li class = "scenic_height"><%- tours[i].overview%></li>
+            <li class = "scenic_height1"><%- tours[i].overview%></li>
         </ul>
-        <i class = "scenic_content_scheduling_down"></i>
+        <i class = "scenic_content_scheduling_down" id = "Sheight1"></i>
     </div>
     <div class="scenic_content_notes">
         <h3><i></i>注意事项</h3>
         <ul>
-            <li class = "scenic_height"><%- tours[i].importantNotes%></li>
+            <li class = "scenic_height2"><%- tours[i].importantNotes%></li>
         </ul>
-        <i class = "scenic_content_scheduling_down"></i>
+        <i class = "scenic_content_scheduling_down" id = "Sheight2"></i>
     </div>
     <% }} %>
     <div class="scenic_content_TOS">
         <h3><i></i>服务条款</h3>
         <ul>
-            <li class = "scenic_height"><%- termsConditions%></li>
+            <li class = "scenic_height3"><%- termsConditions%></li>
         </ul>
-        <i class = "scenic_content_scheduling_down"></i>
+        <i class = "scenic_content_scheduling_down" id = "Sheight3"></i>
     </div>
 </script>
-<script>
-    $(function(){
-        $(".scenic_content_scheduling_down").on("click",function(){
-            $("li.scenic_height"),style.height = "100%";
-        })
-    });
-</script>
+
 </html>

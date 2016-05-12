@@ -9,7 +9,7 @@ require.config({
     $:['jquery'],
     shim: {
     	'plugins':{
-    		deps: ['jquery'],
+    		deps: ['./jquery',"./vim"],
     		init:function(){
     			return{
     				WOW:WOW,

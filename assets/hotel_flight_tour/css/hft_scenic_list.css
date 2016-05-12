@@ -81,6 +81,10 @@ address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
   float:left;
   position: relative;
 }
+.scenic_detile_img img{
+  width: 100%;
+  height: 100%;
+}
 .scenic_detile_content{
   height: 1.4rem;
   margin-left: .2rem;
@@ -343,13 +347,14 @@ p.filter_button_checked{
   height: .66rem;
   opacity: 0.5;
   position: absolute;
+  z-index: 1;
 }
 .icon_go_back{
   width: .6rem;
   height: .6rem;
   position:absolute;
-  left: 0;
-  top: .1rem;
+  left: .28rem;
+  top: .28rem;
   display: inline-block;
   background-image: url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
@@ -569,7 +574,7 @@ p.filter_button_checked{
   background-size: 7.5rem 4.54rem;
   background-position:  -3.71rem -2.26rem;
 }
-li.scenic_height{
+li.scenic_height1, li.scenic_height2, li.scenic_height3{
   height: 2.4rem;
   overflow: hidden;
   margin-top: .4rem;

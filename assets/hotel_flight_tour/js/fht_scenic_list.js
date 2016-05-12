@@ -11,17 +11,16 @@
 //获取景点列表
 
         var ScenicList = function(){
-            var val = vlm.parseUrlPara(window.location.href);
-            var departCityCode=vlm.getpara("departCityCode");
-            var destCityCode=vlm.getpara("destCityCode");
-            var SParameter = {
-                "Parameters": {
-                    "departCityCode": val.departCityCode,
-                    "destCityCode":val.destCityCode
-                },
-                "ForeEndType": 3,
-                "Code":"60100002"
-            };
+          var destCityCode=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
+          var departCityCode=JSON.parse(localStorage.getItem("searchInfo")).ToCity;
+          var SParameter = {
+            "Parameters": {
+              "departCityCode": destCityCode,
+              "destCityCode":departCityCode
+            },
+            "ForeEndType": 3,
+            "Code":"60100002"
+          };
             console.log(JSON.stringify(SParameter));
             vlm.loadJson(url,JSON.stringify(SParameter),function(data){
                 if(data.success){
@@ -108,7 +107,9 @@
                             $("#shadeDiv2").css({'display':'none'});
                             $("#Filter").css({'bottom':-200+'rem'});
                             filter.style.transition="all 400ms";
-                            var themeId =$(this).attr("data-id");
+
+                            var themeId=$(".Fchecked").parent().attr("data-id");
+                            console.log(themeId);
                             filterTheme(themeId);
                         };
                         //关闭筛选
@@ -139,11 +140,8 @@
                                         $("#FilterList").css({'bottom':-2222+'rem'});
                                         var themeId =$(this).attr("data-id");
                                     }else{
-                                        for(var j = 0;j < li.length;j++){
-                                            li[j].className = '';
-                                            b[j].className = 'jd-icon scr-gou';
-                                        }
                                         li[0].className = '';
+                                        b[0].className = ''
                                         li[index].className = 'checked_theme2';
                                         b[index].className = 'Fchecked';
                                         $("#shadeDiv1").css({'display':'none'});
@@ -153,9 +151,24 @@
                             })(i);
                         }
                     })();
+                    //城市列表父宽
+                    //(function(){
+                    //    var sum=0;
+                    //    for(var i=0;i<data.recommendCities.length;i++){
+                    //    sum+=i;}
+                    //    $(".city_list ul").css({'width':sum+'%'});
+                    //})();
+                  var packageid=$(".scenic-detile_list").attr("data-packageid");
+                  var scenicItem = {
+                    packageid:packageid
+                  };
+                  localStorage.setItem('scenicItem', JSON.stringify(scenicItem));
+                  $(".scenic-detile_list").on("click",function(){
+                      window.location.href = 'hft_choose.html';
+                  })
                 }
-                else {
-                    jAlert(data.message,"提示");
+          else {
+                    alert(data.message,"提示");
                 }
             });
         };
