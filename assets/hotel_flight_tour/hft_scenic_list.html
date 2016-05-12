@@ -70,11 +70,22 @@
 </body>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="js/fht_scenic_list.js"></script>
 <script id = "timeDetile" type="text/template">
             <span class = "time_people_list_time">
             <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>
             </span>
             <span class = "time_people_list_number"><%= AdultNum %>成人<%= ChildNum %>儿童<i></i></span>
+</script>
+<script id = "CityDetile" type="text/template">
+  <% if(recommendCities.length > 1){ %>
+  <ul>
+    <% for(var i=0;i< recommendCities.length;i++){%>
+    <li class = "city_list1"><%= recommendCities[i].cityName %><i></i></li>
+    <% } %>
+  </ul>
+  <% } %>
 </script>
 <script id = "scenicDetile"  type="text/template">
             <ul>
@@ -102,15 +113,6 @@
         <% }} %>
     </ul>
 </script>
-<script id = "CityDetile" type="text/template">
-  <% if(recommendCities.length > 1){ %>
-    <ul>
-        <% for(var i=0;i< recommendCities.length;i++){%>
-        <li class = "city_list1"><%= recommendCities[i].cityName %><i></i></li>
-        <% } %>
-    </ul>
-  <% } %>
-</script>
 <script id = "SortDetile" type = "text/template">
         <% for(var i =0;i< sortTypes.length;i++){ %>
         <li data-sort=<%= sortTypes[i].sortValue %>><%= sortTypes[i].sortText %><i></i></li>
@@ -128,8 +130,6 @@
         </ul>
     </div>
 </script>
-<script src="../js/lib/ejs.js"></script>
-<script src="js/fht_scenic_list.js"></script>
 <script>
   $(function(){
           $("#footerLeft").on("click",function(){
