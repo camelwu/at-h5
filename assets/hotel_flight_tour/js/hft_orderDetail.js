@@ -23,7 +23,7 @@ define(['jquery',"ejs","vlm"],function (){
     })
 
     //拨号
-    $(".tel_tip").on("click", function () {
+    $(".tel_tip").on("click", function(){
       $(".jpop_box_tic").show();
     })
     $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
