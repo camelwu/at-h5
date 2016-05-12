@@ -9,8 +9,9 @@
 </body>
 <script src="../../js/require.js" data-main="../../js/main"></script>
 <script type="application/javascript">
-  require(['../hotel_flight_tour/js/hft_orderDetail'], function (pager){
-    pager.init();
+  require(['plugins/usercontact/usercontact'], function (pager){
+    debugger;
+    pager.init("FHT",true,1,1,"2015-01-01");
   });
 </script>
 </html>
