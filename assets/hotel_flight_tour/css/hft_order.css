@@ -37,6 +37,9 @@ input {
   position: relative;
   color: #333;
 }
+.fht_hd.travell_msg{
+  margin-bottom: .4rem;
+}
 
 .fht_hd.flight_top {
   border-top: none;

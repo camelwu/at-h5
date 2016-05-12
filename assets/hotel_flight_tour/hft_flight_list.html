@@ -184,7 +184,7 @@
         <div class="price_up">以下航班需<span>+￥<%=flightInfoListGroup[i].additionalPrice%></span></div>
         <ul class="air_tickets_detail">
             <% for(var j = 0;j < flightInfoListGroup[i].flightInfoList.length;j++){ %>
-            <li class="seat_detail" data-set-id="1">
+            <li class="seat_detail" data-setID="<%=flightInfoListGroup[i].flightInfoList[j].setID%>">
                 <div class="time_airport">
                     <div class="go">
                         <div class="ticket_info gotrip">
@@ -246,7 +246,7 @@
                       <p class="small_info_tip"><img src="../images/ui/bg-user.png" alt=""/><%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].airCorpName%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeType%> | <%=flightInfoListGroup[i].flightInfoList[j].segmentsReturn[0].planeName%></p>
                     </div>
                 </div>
-                <b class="hft_icon cho_gou"></b>
+                <b class="hft_icon"></b>
             </li>
             <% } %>
         </ul>

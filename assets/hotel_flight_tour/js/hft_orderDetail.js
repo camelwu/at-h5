@@ -5,10 +5,6 @@ define(['jquery',"ejs","vlm"],function (){
 
   var bindEvent=function(){
 
-    $(".fare_tip").on("click",function(){
-       $(".hft_pri_details").toggle();
-    })
-
     $(".fht_hd").on("click",function(){
         window.location.href="hft_flightDetail.html";
 
@@ -16,14 +12,14 @@ define(['jquery',"ejs","vlm"],function (){
 
     //折叠订单价格
     $('.fare_tip').toggle(function(){
-      $('.hft_pri_details').slideUp();
+      $('.hft_pri_details').hide();
     },function(){
-      $('.hft_pri_details').slideDown();
+      $('.hft_pri_details').show();
       $('.all_elements').scrollTop($('.all_elements').height());
     })
 
     //拨号
-    $(".tel_tip").on("click", function () {
+    $(".tel_tip").on("click", function(){
       $(".jpop_box_tic").show();
     })
     $('.jpop_box_tic span,.jpop_box_tic a').click(function(){

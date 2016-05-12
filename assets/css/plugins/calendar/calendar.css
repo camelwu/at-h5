@@ -236,12 +236,14 @@
 .calendar dd a span.live_circle {
     width: .6rem;
     height: .6rem;
+    position: relative;
     line-height: .6rem;
     text-align: center;
     border-radius: 50%;
     margin: .15rem auto;
     background: #FFB413;
     color: #fff;
+    z-index: 10;
 }
 
 .calendar a.through:after {
@@ -265,7 +267,7 @@
     background-color: #ffd271;
     position: absolute;
     top: 50%;
-    left: 0;
+    left: .3rem;
     margin-top: -.3rem;
     opacity: .5;
     border-top-left-radius: .3rem;
@@ -280,7 +282,7 @@
     background-color: #ffd271;
     position: absolute;
     top: 50%;
-    left: 0;
+    left: -.3rem;
     margin-top: -.3rem;
     opacity: .5;
     border-top-right-radius: .3rem;
