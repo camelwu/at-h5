@@ -73,8 +73,8 @@ body{
 .ticket, .hotel, .tour{
   width: 100%;
   font-size: .28rem;
-  background: #fff;
-  margin-top: .20rem
+  background: #f7f7f7;
+  padding-top: .2rem;
 }
 .fix-margin{margin-top: 0}
 .tour{
@@ -96,8 +96,9 @@ body{
 .statusMoreFlight span:first-child:before,.statusMoreHotel span:first-child:before ,.tourListHeader span:first-child:before {
   content: "";
   display: inline-block;
-  width: .43rem;
-  height: .43rem;
+  vertical-align: top;
+  width: .5rem;
+  height: .5rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 6.48rem auto;
   background-position: -.418rem -1.16rem;
@@ -372,7 +373,7 @@ body{
   border-bottom: 1px solid #dedede;
   font-size: .24rem;
 }
-.check-more-down, .priceTotal i{
+.check-more-down{
   display: inline-block;
   width: .16rem;
   height: .16rem;
@@ -536,6 +537,15 @@ body{
 .after-noon span:last-child{
   margin-right: 0;
 }
+.priceDetailInfo{
+  position: fixed;
+  padding: 0.4rem .28rem;
+  height: 4.12rem;
+  width: 100%;
+  bottom: -126%;
+  z-index: 102;
+  background: #fff;
+}
 .bottomPrice{
   width: 100%;
   font-size: .28rem;
@@ -550,9 +560,35 @@ body{
 .priceTotal{
   margin-left: .56rem;
 }
-.priceTotal span{
-  font-size: .32rem;
+.tot_tips_rmb{
+  color: #ff5b13;
 }
+.priceTotal > span{
+  font-size: .32rem;
+  color: #ff5b13;
+  margin-right: .2rem;
+}
+
+.priceTotal .detail_fare {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .38rem;
+  background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
+  background-size: .24rem .14rem;
+  width: .32rem;
+  height: .2rem;
+  transition: 0.3s all ease;
+}
+
+.priceTotal .detail_fare.open {
+  margin-top: .42rem;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform-origin: 40% 25%;
+  -webkit-transform-origin: 40% 25%;
+  transition: 0.3s all ease;
+}
+
 .preserve{
   display: inline-block;
   height: 100%;
@@ -565,7 +601,7 @@ body{
   right: 0;
   width: 50%
 }
-.priceDetailInfo, .chooseDate{
+.chooseDate{
   position: fixed;
   padding: 0 .28rem .78rem;
   width: 100%;

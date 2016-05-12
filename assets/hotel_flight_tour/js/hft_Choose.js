@@ -394,10 +394,13 @@ var hftChoose = {
         priceDetailInfo.style.webkitTransition = 'all 400ms linear';
         if (tem == "block") {
           shadowEle.style.display = "none";
+          target.className='detail_fare';
           priceDetailInfo.style.bottom = '-126%';
+
         } else {
           shadowEle.style.display = "block";
-          priceDetailInfo.style.bottom = ".90rem";
+          target.className='detail_fare open';
+          priceDetailInfo.style.bottom = ".89rem";
         }
       }
     });
