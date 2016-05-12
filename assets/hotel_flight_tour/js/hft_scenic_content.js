@@ -9,7 +9,7 @@
         '<% }else{ %>' +
         '<a href="<%= images[0].imageURL%>" class="swipebox" title="1/<%=(images.length)%>">',
         '<img src="<%= images[0].imageURL %>" alt="image"/ ></a> '+
-        '<% for(var i=0;i<images.length;i++){ %>',
+        '<% for(var i=1;i<images.length;i++){ %>',
         '<a href="<%= images[i].imageURL%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
         '<img src="<%= images[i].imageURL%>" alt="image"/></a>',
         '<% }%>',
