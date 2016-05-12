@@ -13,9 +13,9 @@
   <meta name="Keywords" content="亚洲旅行网">
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>资源选择页 - 亚洲旅行网</title>
-  <link href="../styles/reset.css" rel="stylesheet" type="text/css">
-  <link href="../styles/reset.css" rel="stylesheet" type="text/css">
-  <link href="css/hft_choose.css" rel="stylesheet" type="text/css">
+  <link href="../styles/reset.css" rel="stylesheet" type="text/css" />
+  <link href="../styles/tips.css" rel="stylesheet" type="text/css" />
+  <link href="css/hft_choose.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="preloader">
@@ -30,7 +30,7 @@
     <a href="#" class="header_back">
       <i class="icon_back"></i>
     </a>
-    <h3><span>北京</span><i class="arrowDouble"></i><span>泰国</span></h3>
+    <h3><span><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span><%=hftChoose.cacheOtherInfo.cityNameTo%></span></h3>
   </header>
   <div class="content">
     <div class="top_info">
@@ -248,6 +248,19 @@
       </div>
     </div>
   </div>
+</script>
+<script id="template_no_result" type="text/template">
+   <header class="header">
+    <a href="#" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+     <h3><span><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span><%=hftChoose.cacheOtherInfo.cityNameTo%></span></h3>
+  </header>
+  <div class="content">
+    <div class="no-result-search">
+      <p>没有找到符合条件的产品</p>
+    </div>
+    </div>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/plugins.js"></script>

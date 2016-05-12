@@ -665,3 +665,20 @@ body{
   left: 0;
   top: 0;
 }
+.no-result-search {
+  height: 100px;
+  background: pink;
+  margin: 51% 15%;
+  position: relative;
+  background: url(../../images/hotel_flight/no_result@2x.png) no-repeat;
+  background-size: 164px 50px;
+  background-position: 50% 50%;
+}
+.no-result-search p {
+  margin-bottom: 0;
+  width: 100%;
+  color: #aeadaf;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+}

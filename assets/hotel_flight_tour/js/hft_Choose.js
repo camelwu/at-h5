@@ -446,7 +446,7 @@ var hftChoose = {
   },
 
   renderHandler: function () {
-    var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds={};
+    var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds={}, tempStrc="", outputStrc="";
     console.log(resultJSON)
     if (resultJSON.success == 1 && resultJSON.code == "200") {
       resultData = resultJSON.data;
@@ -459,7 +459,10 @@ var hftChoose = {
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
     } else {
-      alert(resultJSON.message)
+      tempStrc = $("#template_no_result").html();
+      outputStrc = ejs.render(tempStrc, {});
+      $(".all_elements").eq(0).html(outputStrc);
+      jAlert(resultJSON.message);
     }
   },
 
@@ -471,7 +474,7 @@ var hftChoose = {
       that.roomPriceInfo = result.data.prices;
       that.curData.hotelInfo.rooms =result.data.roomsPrice;
       console.log(that.curData)
-      //that.renderHandler({success:1, code:200, data:that.curData})
+      that.renderHandler({success:1, code:200, data:that.curData})
     }else{
       alert(result.message)
     }
@@ -601,7 +604,6 @@ var hftChoose = {
     var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj={}, storage = window.sessionStorage, originAirIds={}, hftFlightHotelTourInfo={};
     originAirIds = JSON.parse(storage.getItem('originAirIds'));
     hftFlightHotelTourInfo = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
-    console.log(hftFlightHotelTourInfo)
     urlParseObj = this.parseUrlPara(document.location.search, true);
     var paraObj = {
       "cityCodeFrom": temObj['FromCity'],
@@ -619,7 +621,7 @@ var hftChoose = {
     this.initParaObj = paraObj;
     this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
-    this.cacheOtherInfo = {adult: temObj['AdultNum'], child: temObj['ChildNum']};
+    this.cacheOtherInfo = {adult: temObj['AdultNum'], child: temObj['ChildNum'], cityNameForm:temObj['FromCityNameCN'],cityNameTo:temObj['ToCityNameCN']};
     if(originAirIds&&hftFlightHotelTourInfo){
       if(originAirIds['airwaySetID']!=hftFlightHotelTourInfo['airwaySetID']||originAirIds['airwayCacheID']!=hftFlightHotelTourInfo['airwayCacheID']){
         if (this.type == "2") {
