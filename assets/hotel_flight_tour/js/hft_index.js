@@ -16,7 +16,109 @@ var htf_search = {
       var hotelInfo_hft = search_hotel[1].querySelector('.hotelInfo_numb_room');
       if(localStorage.cacheSearch){
           var cacheSearch = JSON.parse(localStorage.cacheSearch);
-
+          console.log(cacheSearch);
+          switch(cacheSearch.Box){
+              case 1:
+                  tab[0].className = 'tab active';
+                  $('#flightHotelBox').show();
+                  break;
+              case 2:
+                  tab[1].className = 'tab active';
+                  $('#flightHotelTourBox').show();
+                  break;
+              default :
+                void(0);
+          }
+          $('.content_box').eq(0).find('.origin').html(cacheSearch.hfSearchInfo.FromCityNameCN);
+          $('.content_box').eq(0).find('.destination').html(cacheSearch.hfSearchInfo.ToCityNameCN);
+          $('.content_box').eq(1).find('.origin').attr("data-citycode",cacheSearch.hftSearchInfo.FromCityCode);
+          $('.content_box').eq(1).find('.destination').attr("data-citycode",cacheSearch.hftSearchInfo.ToCityCode);
+          $('.content_box').eq(0).find('#hf_roomNum').html(cacheSearch.hfSearchInfo.RoomInfo.length);
+          $('.content_box').eq(1).find('#hft_roomNum').html(cacheSearch.hftSearchInfo.RoomInfo.length);
+          var room;
+          var echRoom;
+          for(var i = 0;i < cacheSearch.hfSearchInfo.RoomInfo.length;i++) {
+              if(i==0) {
+                  if (cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed && cacheSearch.hfSearchInfo.RoomInfo[i].adult == 1) {
+                      initStr_hf = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="' + cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed[0] + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '</div>';
+                  } else if (cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed && cacheSearch.hfSearchInfo.EchChildNum[i] == 1) {
+                      initStr_hf = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect"></b></span>' + '</div>' + '</div>';
+                  } else if (cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed && cacheSearch.hfSearchInfo.EchChildNum[i] == 2) {
+                      initStr_hf = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="' + cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed[0] + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>' + '</div>';
+                  } else if (cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed && cacheSearch.hfSearchInfo.EchChildNum[i].adult == 1) {
+                      initStr_hf = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '</div>';
+                  } else if (cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed && cacheSearch.hfSearchInfo.EchChildNum[i] == 1) {
+                      initStr_hf = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>' + '</div>';
+                  } else {
+                      initStr_hf = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">0</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>';
+                  }
+              }else{
+                  if(cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed&&cacheSearch.hfSearchInfo.RoomInfo[i].adult == 1){
+                      initStr_hf = '<span class="title">房间' + (i+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed&&cacheSearch.hfSearchInfo.EchChildNum[i] == 1){
+                      initStr_hf = '<span class="title">房间' + (i+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect"></b></span>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed&&cacheSearch.hfSearchInfo.EchChildNum[i] == 2){
+                      initStr_hf = '<span class="title">房间' + (i+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed&&cacheSearch.hfSearchInfo.RoomInfo[i].adult == 1){
+                      initStr_hf = '<span class="title">房间' + (i+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_ui">岁</i>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed&&cacheSearch.hfSearchInfo.EchChildNum[i] == 1){
+                      initStr_hf = '<span class="title">房间' + (i+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hfSearchInfo.RoomInfo[i].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>' + '</div>';
+                  }else{
+                      initStr_hf = '<span class="title">房间' + (i+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hfSearchInfo.RoomInfo[i].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">0</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(2-12)" onkeyup="setAge(this);" onblur="checkAge(this)";><i class="child_sui">岁</i>' + '</div>';
+                  }
+              }
+              section = document.createElement('section');
+              section.innerHTML = initStr_hf;
+              section.className = 'hotelInfo_numb_people';
+              room = $('.content_box').eq(0).find('.hotelInfo_numb_people').length;
+              echRoom = $('.content_box').eq(0).find('.hotelInfo_numb_people');
+              if(room){
+                search_hotel[0].insertBefore(section, echRoom[room-1].nextSibling);
+              }else{
+                search_hotel[0].insertBefore(section, hotelInfo_hf.nextSibling);
+              }
+          }
+          for(var j = 0;j < cacheSearch.hftSearchInfo.RoomInfo.length;j++) {
+              if(j==0) {
+                if (cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed && cacheSearch.hftSearchInfo.RoomInfo[j].adult == 1) {
+                    initStr_hft = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="' + cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed[0] + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '</div>';
+                } else if (cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed && cacheSearch.hftSearchInfo.EchChildNum[j] == 1) {
+                    initStr_hft = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect"></b></span>' + '</div>' + '</div>';
+                } else if (cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed && cacheSearch.hftSearchInfo.EchChildNum[j] == 2) {
+                    initStr_hft = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="' + cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed[0] + '" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>' + '</div>';
+                } else if (cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed && cacheSearch.hftSearchInfo.EchChildNum[j].adult == 1) {
+                    initStr_hft = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '</div>';
+                } else if (cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed && cacheSearch.hftSearchInfo.EchChildNum[j] == 1) {
+                    initStr_hft = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>' + '</div>';
+                } else {
+                    initStr_hft = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adultDown"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' +'<b class="com_icon child_age_state"></b>'+ '<div class="age_state_box"><div></div><div class="state_text"><span>·</span><span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span></div></div>'+'<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">0</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" placeholder="(2-12)" onkeyup="setAge(this);" onblur="checkAge(this);"><i class="child_sui">岁</i>' + '</div>';
+                }
+              }else{
+                  if(cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed&&cacheSearch.hftSearchInfo.RoomInfo[j].adult == 1){
+                      initStr_hft = '<span class="title">房间' + (j+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed&&cacheSearch.hftSearchInfo.EchChildNum[j] == 1){
+                      initStr_hft = '<span class="title">房间' + (j+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect"></b></span>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed&&cacheSearch.hftSearchInfo.EchChildNum[j] == 2){
+                      initStr_hft = '<span class="title">房间' + (j+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">2</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<span class="bedList" style="float: left"><i>儿童2年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithOutBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon ico_select"></b></span>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed&&cacheSearch.hftSearchInfo.RoomInfo[j].adult == 1){
+                      initStr_hft = '<span class="title">房间' + (j+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_ui">岁</i>' + '</div>' + '</div>';
+                  }else if(cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed&&cacheSearch.hftSearchInfo.EchChildNum[j] == 1){
+                      initStr_hft = '<span class="title">房间' + (j+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">1</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp_cage" type="tel" value="'+cacheSearch.hftSearchInfo.RoomInfo[j].childWithBed[0]+'" onkeyup="setAge(this);" onblur="checkAge(this)"><i class="child_sui">岁</i>' + '</div>' + '<div class="numbList spenumbList">' + '<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>' + '</div>' + '</div>';
+                  }else{
+                      initStr_hft = '<span class="title">房间' + (j+1) + '</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per_price_control" data-type="adult"><span class="cut_down_btn" id="adult-down"></span><i class="cut_up_cont adult_people_number" data-type="adultNum" id="adult_people_number">' + cacheSearch.hftSearchInfo.RoomInfo[j].adult + '</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child_age">(2-12)岁</span>' + '<div class="per_price_control" data-type="extraChild"><span class="cut_down_btn"></span><i class="cut_up_cont child_number" data-type="childNum">0</i><span class="plus_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童1年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(2-12)" onkeyup="setAge(this);" onblur="checkAge(this)";><i class="child_sui">岁</i>' + '</div>';
+                  }
+              }
+              section = document.createElement('section');
+              section.innerHTML = initStr_hft;
+              section.className = 'hotelInfo_numb_people';
+              room = $('.content_box').eq(1).find('.hotelInfo_numb_people').length;
+              echRoom = $('.content_box').eq(1).find('.hotelInfo_numb_people');
+              if(room){
+                search_hotel[1].insertBefore(section, echRoom[room-1].nextSibling);
+              }else{
+                search_hotel[1].insertBefore(section, hotelInfo_hft.nextSibling);
+              }
+          }
       }else{
           tab[0].className = 'tab active';
           $('#flightHotelBox').show();
@@ -35,7 +137,6 @@ var htf_search = {
           search_hotel[1].insertBefore(section, hotelInfo_hft.nextSibling);
       }
       $('.tab').click(function(){
-
           $(this).addClass('active').siblings().removeClass('active');
           if($(this).index() == 0){
               $('#flightHotelBox').show();
@@ -160,7 +261,7 @@ var htf_search = {
       n.onclick = function() {
           var str = m.innerHTML;
           str = Number(str);
-          if (n.id == 'roomDown') {
+          if (n.id == 'hf_roomDown'||n.id == 'hft_roomDown') {
               if (str <= 1) {
                   m.innerHTML = 1;
                   return;
@@ -342,12 +443,17 @@ var htf_search = {
           return box.getElementsByClassName(obj);
       };
       var box;
+      var type;
       var content = document.getElementsByClassName('content_box');
       if(content[0].style.display != 'none'){
           box = content[0];
+          type = 1;
       }else{
           box = content[1];
+          type = 2;
       }
+      var box_hf = content[0];
+      var box_hft = content[1];
       var exaddChild = box.getElementsByClassName('extraChild');
       for (var v = 0; v < exaddChild.length; v++) {
           if (exaddChild[v].style.display != 'none') {
@@ -361,6 +467,7 @@ var htf_search = {
               }
           }
       }
+      //   传输查询数据
       var FromCityNameCN = getByClass(box,'origin')[0].innerHTML;
       var ToCityNameCN = getByClass(box,'destination')[0].innerHTML;
       var fromCity = getByClass(box,'origin')[0].getAttribute('data-citycode');
@@ -418,71 +525,6 @@ var htf_search = {
           }
       }
       allNum = adultNum + childNum;
-
-
-      //var hf_searchInfo = {};
-      //var hf_FromCityNameCN = getByClass(box[0],'origin')[0].innerHTML;
-      //var hf_ToCityNameCN = getByClass(box[0],'destination')[0].innerHTML;
-      //var hf_fromCity = getByClass(box[0],'origin')[0].getAttribute('data-citycode');
-      //var hf_toCity = getByClass(box[0],'destination')[0].getAttribute('data-citycode');
-      //var hf_startday = getByClass(box[0],'js_startDay')[0].innerHTML;
-      //var hf_endday = getByClass(box[0],'js_endDay')[0].innerHTML;
-      //var hf_stardWeek = getByClass(box[0],'week_one')[0].innerHTML;
-      //var hf_endWeek = getByClass(box[0],'week_two')[0].innerHTML;
-      //var hf_roomDetails = [],hf_echChildNum = [];
-      //var hf_room = getByClass(box,'hotelInfo_numb_people');
-      //for(var m = 0;m < hf_room.length;m++){
-      //    var hf_temObj = {},hf_childWithOutBed = [], hf_childWithBed = [];
-      //    var hf_temAdultNum = parseInt(hf_room[m].querySelector('.adult_people_number').innerHTML);
-      //    var hf_temChildNum = parseInt(hf_room[m].querySelector('.child_number').innerHTML);
-      //    var hf_extraChild = hf_room[m].querySelector('.extraChild');
-      //    var hf_childChooseParent = hf_extraChild.querySelector('.numbList');
-      //    if(hf_temAdultNum==1 && hf_temChildNum==1){
-      //        hf_childWithOutBed.push(hf_room[m].querySelector('input').value);
-      //    }else if(hf_temAdultNum==1&&hf_temChildNum==2){
-      //        hf_childWithBed.push(hf_room[m].querySelectorAll('input')[0].value);
-      //        hf_childWithOutBed.push(hf_room[m].querySelectorAll('input')[1].value);
-      //    }else if(hf_temAdultNum == 2||hf_temAdultNum == 3){
-      //        var bb = hf_childChooseParent.querySelector('.com_icon.noselect');
-      //        if (hf_temChildNum == 1) {
-      //            if (bb.className.indexOf('ico_select') > -1) {
-      //                hf_childWithBed.push(hf_childChooseParent.parentNode.querySelector('input').value);
-      //            } else {
-      //                hf_childWithOutBed.push(hf_childChooseParent.parentNode.querySelector('input').value)
-      //            }
-      //        }else if (hf_temChildNum == 2){
-      //            hf_childWithBed.push(hf_room[m].querySelectorAll('input')[0].value);
-      //            hf_childWithOutBed.push(hf_room[m].querySelectorAll('input')[1].value);
-      //        }
-      //    }
-      //    hf_childWithBed.length > 0 ? hf_temObj.childWithBed = hf_childWithBed :
-      //        void (0);
-      //    hf_childWithOutBed.length > 0 ? hf_temObj.childWithOutBed = hf_childWithOutBed :
-      //        void (0);
-      //    hf_temObj.adult = hf_temAdultNum;
-      //    hf_echChildNum.push(hf_temChildNum);
-      //    hf_roomDetails.push(hf_temObj);
-      //}
-      //var hf_adultNum = 0;
-      //var hf_childNum = 0;
-      //for (var k = 0; k < hf_roomDetails.length; k++) {
-      //    hf_adultNum = hf_adultNum + hf_roomDetails[k].adult;
-      //    if (roomDetails[k]['childWithBed']) {
-      //        childNum = childNum + hf_roomDetails[k]['childWithBed'].length;
-      //    }
-      //    if (roomDetails[kl]['childWithOutBed']) {
-      //        hf_childNum = hf_childNum + hf_roomDetails[k]['childWithOutBed'].length;
-      //    }
-      //}
-      //hf_searchInfo.FromCityNameCN = hf_FromCityNameCN;
-      //hf_searchInfo.ToCityNameCN = hf_ToCityNameCN;
-      //hf_searchInfo.FromCityCode = hf_fromCity;
-      //hf_searchInfo.ToCityCode = hf_toCity;
-      //hf_searchInfo.DepartDay = hf_startday;
-      //hf_searchInfo.ReturnDay = hf_endday;
-      //hf_searchInfo.StardWeek = hf_stardWeek;
-      //hf_searchInfo.EndWeek = hf_endWeek;
-      //hf_searchInfo.RoomInfo = hf_endWeek;
       var searchInfo = {
           FromCityNameCN:FromCityNameCN,
           ToCityNameCN:ToCityNameCN,
@@ -495,21 +537,119 @@ var htf_search = {
           ChildNum:childNum,
           RoomInfo:roomDetails
       };
-      var cacheSearch = {
-          //hfSearchInfo:hf_searchInfo,
-          FromCityNameCN:FromCityNameCN,
-          ToCityNameCN:ToCityNameCN,
-          FromCityCode:fromCity,
-          ToCityCode:toCity,
-          DepartDay:startday,
-          ReturnDay:endday,
-          StardWeek:stardWeek,
-          EndWeek:endWeek,
-          RoomInfo:roomDetails,
-          EchChildNum:echChildNum,
-          //Box:box
-      };
       localStorage.setItem('searchInfo', JSON.stringify(searchInfo));
+      //   缓存查询数据
+      var hf_searchInfo = {},hft_searchInfo = {};
+      var hf_FromCityNameCN = getByClass(box_hf,'origin')[0].innerHTML;
+      var hf_ToCityNameCN = getByClass(box_hf,'destination')[0].innerHTML;
+      var hf_fromCity = getByClass(box_hf,'origin')[0].getAttribute('data-citycode');
+      var hf_toCity = getByClass(box_hf,'destination')[0].getAttribute('data-citycode');
+      var hf_startday = getByClass(box_hf,'js_startDay')[0].innerHTML;
+      var hf_endday = getByClass(box_hf,'js_endDay')[0].innerHTML;
+      var hf_stardWeek = getByClass(box_hf,'week_one')[0].innerHTML;
+      var hf_endWeek = getByClass(box_hf,'week_two')[0].innerHTML;
+      var hf_roomDetails = [],hf_echChildNum = [];
+      var hf_room = getByClass(box_hf,'hotelInfo_numb_people');
+      for(var m = 0;m < hf_room.length;m++){
+          var hf_temObj = {},hf_childWithOutBed = [], hf_childWithBed = [];
+          var hf_temAdultNum = parseInt(hf_room[m].querySelector('.adult_people_number').innerHTML);
+          var hf_temChildNum = parseInt(hf_room[m].querySelector('.child_number').innerHTML);
+          var hf_extraChild = hf_room[m].querySelector('.extraChild');
+          var hf_childChooseParent = hf_extraChild.querySelector('.numbList');
+          if(hf_temAdultNum==1 && hf_temChildNum==1){
+              hf_childWithOutBed.push(hf_room[m].querySelector('input').value);
+          }else if(hf_temAdultNum==1&&hf_temChildNum==2){
+              hf_childWithBed.push(hf_room[m].querySelectorAll('input')[0].value);
+              hf_childWithOutBed.push(hf_room[m].querySelectorAll('input')[1].value);
+          }else if(hf_temAdultNum == 2||hf_temAdultNum == 3){
+              if (hf_temChildNum == 1) {
+                  var bb = hf_childChooseParent.querySelector('.noselect');
+                  if (bb.className.indexOf('ico_select') > -1) {
+                      hf_childWithBed.push(hf_childChooseParent.parentNode.querySelector('input').value);
+                  } else {
+                      hf_childWithOutBed.push(hf_childChooseParent.parentNode.querySelector('input').value)
+                  }
+              }else if (hf_temChildNum == 2){
+                  hf_childWithBed.push(hf_room[m].querySelectorAll('input')[0].value);
+                  hf_childWithOutBed.push(hf_room[m].querySelectorAll('input')[1].value);
+              }
+          }
+          hf_childWithBed.length > 0 ? hf_temObj.childWithBed = hf_childWithBed :
+              void (0);
+          hf_childWithOutBed.length > 0 ? hf_temObj.childWithOutBed = hf_childWithOutBed :
+              void (0);
+          hf_temObj.adult = hf_temAdultNum;
+          hf_echChildNum.push(hf_temChildNum);
+          hf_roomDetails.push(hf_temObj);
+      }
+      hf_searchInfo.FromCityNameCN = hf_FromCityNameCN;
+      hf_searchInfo.ToCityNameCN = hf_ToCityNameCN;
+      hf_searchInfo.FromCityCode = hf_fromCity;
+      hf_searchInfo.ToCityCode = hf_toCity;
+      hf_searchInfo.DepartDay = hf_startday;
+      hf_searchInfo.ReturnDay = hf_endday;
+      hf_searchInfo.StardWeek = hf_stardWeek;
+      hf_searchInfo.EndWeek = hf_endWeek;
+      hf_searchInfo.RoomInfo = hf_roomDetails;
+      hf_searchInfo.EchChildNum = hf_echChildNum;
+
+      var hft_FromCityNameCN = getByClass(box_hft,'origin')[0].innerHTML;
+      var hft_ToCityNameCN = getByClass(box_hft,'destination')[0].innerHTML;
+      var hft_fromCity = getByClass(box_hft,'origin')[0].getAttribute('data-citycode');
+      var hft_toCity = getByClass(box_hft,'destination')[0].getAttribute('data-citycode');
+      var hft_startday = getByClass(box_hft,'js_startDay')[0].innerHTML;
+      var hft_endday = getByClass(box_hft,'js_endDay')[0].innerHTML;
+      var hft_stardWeek = getByClass(box_hft,'week_one')[0].innerHTML;
+      var hft_endWeek = getByClass(box_hft,'week_two')[0].innerHTML;
+      var hft_roomDetails = [],hft_echChildNum = [];
+      var hft_room = getByClass(box_hft,'hotelInfo_numb_people');
+      for(var n = 0;n < hft_room.length;n++){
+          var hft_temObj = {},hft_childWithOutBed = [], hft_childWithBed = [];
+          var hft_temAdultNum = parseInt(hft_room[n].querySelector('.adult_people_number').innerHTML);
+          var hft_temChildNum = parseInt(hft_room[n].querySelector('.child_number').innerHTML);
+          var hft_extraChild = hft_room[n].querySelector('.extraChild');
+          var hft_childChooseParent = hft_extraChild.querySelector('.numbList');
+          if(hft_temAdultNum==1 && hft_temChildNum==1){
+              hft_childWithOutBed.push(hft_room[n].querySelector('input').value);
+          }else if(hft_temAdultNum==1&&hft_temChildNum==2){
+              hft_childWithBed.push(hft_room[n].querySelectorAll('input')[0].value);
+              hft_childWithOutBed.push(hft_room[n].querySelectorAll('input')[1].value);
+          }else if(hft_temAdultNum == 2||hft_temAdultNum == 3){
+              if (hft_temChildNum == 1) {
+                  var gg = hft_childChooseParent.querySelector('.noselect');
+                  if (gg.className.indexOf('ico_select') > -1) {
+                      hft_childWithBed.push(hft_childChooseParent.parentNode.querySelector('input').value);
+                  } else {
+                      hft_childWithOutBed.push(hft_childChooseParent.parentNode.querySelector('input').value)
+                  }
+              }else if (hft_temChildNum == 2){
+                  hft_childWithBed.push(hft_room[n].querySelectorAll('input')[0].value);
+                  hft_childWithOutBed.push(hft_room[n].querySelectorAll('input')[1].value);
+              }
+          }
+          hft_childWithBed.length > 0 ? hft_temObj.childWithBed = hft_childWithBed :
+              void (0);
+          hft_childWithOutBed.length > 0 ? hft_temObj.childWithOutBed = hft_childWithOutBed :
+              void (0);
+          hft_temObj.adult = hft_temAdultNum;
+          hft_echChildNum.push(hft_temChildNum);
+          hft_roomDetails.push(hft_temObj);
+      }
+      hft_searchInfo.FromCityNameCN = hft_FromCityNameCN;
+      hft_searchInfo.ToCityNameCN = hft_ToCityNameCN;
+      hft_searchInfo.FromCityCode = hft_fromCity;
+      hft_searchInfo.ToCityCode = hft_toCity;
+      hft_searchInfo.DepartDay = hft_startday;
+      hft_searchInfo.ReturnDay = hft_endday;
+      hft_searchInfo.StardWeek = hft_stardWeek;
+      hft_searchInfo.EndWeek = hft_endWeek;
+      hft_searchInfo.RoomInfo = hft_roomDetails;
+      hft_searchInfo.EchChildNum = hft_echChildNum;
+      var cacheSearch = {
+          hfSearchInfo:hf_searchInfo,
+          hftSearchInfo:hft_searchInfo,
+          Box:type
+      };
       localStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
   },
   init:function(){
@@ -534,5 +674,5 @@ $('#hft_searchBtn').click(function(){
 });
 $('#hf_searchBtn').click(function(){
   htf_search.next_page();
-  window.location.href = '../hotel_flight/ticket_hotel_choose.html?type=1';
+  window.location.href = 'hft_choose.html?type=1';
 });
