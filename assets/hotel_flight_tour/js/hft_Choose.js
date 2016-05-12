@@ -482,7 +482,6 @@ var hftChoose = {
       priceRoom = temEle[0];
     }
     that.roomPriceInfo = priceRoom;
-    console.log(that.roomPriceInfo)
     priceRoom.prices.forEach(function (a, ii) {
       if (a['category'] == 1) {
         str += '<p>成人<span class="price-num-price">￥<span>' + a['amount'] + 'X' + a['quantity'] + '</span></span></p>';
@@ -603,6 +602,7 @@ var hftChoose = {
     }
     this.getNewPricePara = newPrice;
     this.initParaObj = paraObj;
+    this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
     this.cacheOtherInfo = {adult: temObj['AdultNum'], child: temObj['ChildNum']};
     if (urlParseObj.type == "2") {
