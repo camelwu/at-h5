@@ -165,15 +165,18 @@
       </div>
       <div class="fht_order_detail">
         <div class="fht_hd">出行人信息</div>
-        <% if(travelers.length>0){ %>
+        <% if(travelers.length>0){  var i=1;%>
+
         <% travelers.forEach(function(info){%>
+
         <ul class="fht_order_tab">
           <li>
-            <p class="clearfix"><span class="fl"></span>登记人1<span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+            <p class="clearfix"><span class="fl"></span>登记人<%=i%><span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
             <p class="clearfix"> <span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
           </li>
         </ul>
-        <%})%>
+
+        <%  i++;})%>
         <% } %>
         <ul class="order_cont_way">
           <li  class="clearfix">
