@@ -3,7 +3,7 @@
   console.log(parametersStorage);
 
   //传数据
-  var data = {
+  var dataPull = {
     "parameters": {
       "selectedHotelID":1023696,
       "selectedRoomID":10996872,
@@ -13,7 +13,7 @@
       ],
       "flightCacheID":3511203,
       "flightSetID":30000001,
-      "sortFields":[0,1,2,3,4],
+      "sortFields":2,
       "tours": [
         {
           "tourID": 134,
@@ -49,7 +49,7 @@
     "code": "60100007"
   };
   //接数据
-  vlm.loadJson('',JSON.stringify(data),dataCallBack);
+  vlm.loadJson('',JSON.stringify(dataPull),dataCallBack);
   function dataCallBack(result){
     if(result.success){
       var data = result.data;
@@ -99,10 +99,13 @@
     $('.hotel_list li').on('click',function(){
       $(this).addClass('cur').siblings().removeClass('cur');
       var hotelID = $(this).attr("data-hotelId");
-      parametersStorage.hotelID = hotelID;
-      console.log(parametersStorage);
-      sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
-      window.location.href = 'hft_hotel_detail.html';
+      //parametersStorage.hotelID = hotelID;
+      //console.log(parametersStorage);
+      //sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
+      //window.location.href = 'hft_hotel_detail.html';
+      //跳转到详情页用
+      dataPull.parameters.hotelID = hotelID;
+      sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(dataPull));
     })
   }
 })()
