@@ -78,7 +78,7 @@
 <script id = "scenicDetile"  type="text/template">
             <ul>
             <% if(lists){ for( var i=0;i< lists.length; i++){ %>
-                <li class = "scenic-detile_list">
+                <li class = "scenic-detile_list" data-packageID = "<%= lists[i].packageID%>">
                 <div class = "scenic-detile_list_matter clearfix">
                     <div class="scenic_detile_img ">
                         <img src = "<%= lists[i].pictureURL%>"alt = "丹嫩沙多水上市场" class = "scenic_detile_img_po"/>
