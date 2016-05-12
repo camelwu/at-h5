@@ -12,6 +12,7 @@
         var ScenicList = function(){
           var destCityCode=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
           var departCityCode=JSON.parse(localStorage.getItem("searchInfo")).ToCity;
+            var localStoragedata = JSON.parse(localStorage.getItem("searchInfo"));
           var SParameter = {
             "Parameters": {
               "departCityCode": destCityCode,
@@ -25,6 +26,9 @@
               vlm.init();
                 if(data.success){
                     console.log(data);
+                    var htmlt = $("#timeDetile").html();
+                    var htmlT = ejs.render(htmlt,localStoragedata);
+                    $("#TimeList").html(htmlT);
                     var htmlp = $("#scenicDetile").html();
                     var html = ejs.render(htmlp,data.data);
                     $("#scenicList").html(html);
@@ -164,7 +168,7 @@
                   };
                   localStorage.setItem('scenicItem', JSON.stringify(scenicItem));
                   $(".scenic-detile_list").on("click",function(){
-                      window.location.href = 'hft_choose.html';
+                      window.location.href = 'hft_choose.html?type=2';
                   })
                 }
           else {

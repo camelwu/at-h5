@@ -30,11 +30,7 @@
         <h3>自由行</h3>
     </div>
     <div class="snap-content">
-        <section class="time_people_list">
-            <span class = "time_people_list_time">
-                <p>出发：<time>01月20日</time>  返回：<time>01日24日</time></p>
-            </span>
-            <span class = "time_people_list_number">2成人1儿童<i></i></span>
+        <section class="time_people_list" id = "TimeList">
         </section>
         <section class="city_list" id =  "CityList">
         </section>
@@ -74,6 +70,12 @@
 </body>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script id = "timeDetile" type="text/template">
+            <span class = "time_people_list_time">
+            <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>
+            </span>
+            <span class = "time_people_list_number"><%= AdultNum %>成人<%= ChildNum %>儿童<i></i></span>
+</script>
 <script id = "scenicDetile"  type="text/template">
             <ul>
             <% if(lists){ for( var i=0;i< lists.length; i++){ %>
