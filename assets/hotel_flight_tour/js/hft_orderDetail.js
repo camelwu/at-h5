@@ -14,6 +14,22 @@ define(['jquery',"ejs","vlm"],function (){
 
     })
 
+    //折叠订单价格
+    $('.fare_tip').toggle(function(){
+      $('.hft_pri_details').slideUp();
+    },function(){
+      $('.hft_pri_details').slideDown();
+      $(window).scrollTop($(window).scrollHeight);
+    })
+
+    //拨号
+    $(".tel_tip").on("click", function () {
+      $(".jpop_box_tic").show();
+    })
+    $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+      $('.jpop_box_tic').hide();
+    })
+
   }
 
   var init = function (){
