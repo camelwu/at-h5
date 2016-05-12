@@ -211,3 +211,105 @@ var data = {
   },
   "code": 200
 };
+
+var para = {
+  "Parameters": {
+    "cityCodeFrom": "BJS",
+    "cityCodeTo": "SIN",
+    "departDate": "2016-05-22T00:00:00",
+    "returnDate": "2016-05-27T00:00:00",
+    "roomDetails": [{"adult": 2}],
+    "packageID": "483297",
+    "tours": [
+      {
+      "tourID": 134,
+      "travelDate": "2016-05-22T00:00:00",
+      "optionCode": null,
+      "travelDateSpecified": 1
+    },
+      {"tourID": 136, "travelDate": "2016-05-23T00:00:00", "optionCode": null, "travelDateSpecified": 1}, {
+      "tourID": 166,
+      "travelDate": "2016-05-24T00:00:00",
+      "optionCode": null,
+      "travelDateSpecified": 0
+    }],
+    "flightCacheID": 3011347,
+    "flightSetID": 30000021,
+    "selectedHotelID": 16360,
+    "selectedRoomID": 126642
+  }, "ForeEndType": 3, "Code": "60100009"
+}
+
+var price = {
+  "success": 1,
+  "message": "",
+  "data": {
+    "roomsPrice": [
+      {
+        "roomID": 126642,
+        "roomName": "Private Twin Room",
+        "roomPictureURL": "http://images.asiatravel.com/Hotel/16360/16360_Private-Twin-Room.jpg",
+        "includedBreakfast": 0,
+        "roomDescription": null,
+        "prices": [
+          {
+            "category": 1,
+            "quantity": 2,
+            "currencyCode": "CNY",
+            "amount": 4658,
+            "totalAmount": 9316
+          }
+        ],
+        "addtionalPrice": 0,
+        "totalAmount": 9316
+      },
+      {
+        "roomID": 126643,
+        "roomName": "Private Twin plus One Room",
+        "roomPictureURL": "http://images.asiatravel.com/Hotel/16360/16360_Private-Twin-plus-One-Room.jpg",
+        "includedBreakfast": 0,
+        "roomDescription": null,
+        "prices": [
+          {
+            "category": 1,
+            "quantity": 2,
+            "currencyCode": "CNY",
+            "amount": 4893,
+            "totalAmount": 9786
+          }
+        ],
+        "addtionalPrice": 470,
+        "totalAmount": 9786
+      },
+      {
+        "roomID": 126646,
+        "roomName": "Private Triple Room",
+        "roomPictureURL": "http://images.asiatravel.com/Hotel/16360/16360_Private-Triple-Room.jpg",
+        "includedBreakfast": 0,
+        "roomDescription": null,
+        "prices": [
+          {
+            "category": 1,
+            "quantity": 2,
+            "currencyCode": "CNY",
+            "amount": 4951,
+            "totalAmount": 9902
+          }
+        ],
+        "addtionalPrice": 586,
+        "totalAmount": 9902
+      }
+    ],
+    "prices": [
+      {
+        "category": 1,
+        "quantity": 2,
+        "currencyCode": "CNY",
+        "amount": 4658,
+        "totalAmount": 9316
+      }
+    ],
+    "totalAmount": 9316
+  },
+  "code": 200
+}
