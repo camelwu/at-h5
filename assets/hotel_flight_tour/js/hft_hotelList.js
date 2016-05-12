@@ -1,7 +1,6 @@
 (function(){
-  var sesstion = sessionStorage.getItem("hftChangeHotelPara");
-  var json = eval('(' + sesstion + ')');
-  console.log(json)
+  var parametersStorage = JSON.parse(sessionStorage.getItem("hftChangeHotelPara")) || {};
+  console.log(parametersStorage);
 
   //传数据
   var data = {
@@ -99,7 +98,11 @@
     $('.hotel_list').html(hotels);
     $('.hotel_list li').on('click',function(){
       $(this).addClass('cur').siblings().removeClass('cur');
-      //window.location.href = 'hft_hotel_detail.html';
+      var hotelID = $(this).attr("data-hotelId");
+      parametersStorage.hotelID = hotelID;
+      console.log(parametersStorage);
+      sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
+      window.location.href = 'hft_hotel_detail.html';
     })
   }
 })()
