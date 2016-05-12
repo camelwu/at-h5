@@ -146,15 +146,18 @@
           //],
           "currencyCode": hftCreateOrderPara.currencyCode,
           "totalPrice": hftCreateOrderPara.totalPrice,
-          "track": {
-            "browserType":"Chrome",
-            "deviceID":"111"
-          },
+          //"track": {
+          //  "browserType":"Chrome",
+          //  "deviceID":"111"
+          //},
           "memberID": localStorage.memberid,
         },
         "foreEndType": 2,
         "code": "60100010"
       }
+
+      //追踪信息
+      Parmeters.Parameters.track=hftCreateOrderPara.track;
 
       //房间信息
       Parmeters.Parameters.RoomDetails=hftCreateOrderPara.roomDetails;
