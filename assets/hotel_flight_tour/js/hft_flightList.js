@@ -99,7 +99,6 @@ var flightList = {
           for(var i = 0;i < airway.length;i++){
               if(airway[i].getAttribute('data-airwaySetID') == changeFlightInfo.flightSetID){
                   airway[i].getElementsByClassName('hft_icon')[0].className = 'hft_icon cho_gou';
-                console.log(airway[i])
               }
           }
            $('.airway').click(function(){
