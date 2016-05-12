@@ -271,7 +271,7 @@ var hftChoose = {
       that.timer1 = setTimeout(function () {
         window.clearTimeout(that.timer1);
         that.timer1 = null;
-        window.location.href = "hft_flight_list.html?type=" + that.type;
+        window.location.href = that.type == 2?"hft_flight_list.html?type=" + that.type+"&packageId="+that.initParaObj.packageID:"hft_flight_list.html?type=" + that.type;
       }, 500);
     });
     /*更换酒店*/
@@ -313,7 +313,7 @@ var hftChoose = {
       that.timer2 = setTimeout(function () {
         window.clearTimeout(that.timer2);
         that.timer2 = null;
-        window.location.href = "hft_hotel_list.html?type=" + that.type;
+        window.location.href = that.type == 2?"hft_hotel_list.html?type=" + that.type+"&packageId="+that.initParaObj.packageID:"hft_hotel_list.html?type=" + that.type;
       }, 500);
     });
     /*更换酒店结束*/
@@ -353,7 +353,7 @@ var hftChoose = {
       that.timer3 = setTimeout(function () {
         window.clearTimeout(that.timer3);
         that.timer3 = null;
-        window.location.href = "hft_hotel_detail.html?type=" + that.type;
+        window.location.href = that.type == 2?"hft_hotel_detail.html?type=" + that.type+"&packageId="+that.initParaObj.packageID:"hft_hotel_detail.html?type=" + that.type;
       }, 500);
     });
     this.addHandler(preserve, 'click', function () {
@@ -443,13 +443,15 @@ var hftChoose = {
   },
 
   renderHandler: function () {
-    var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage;
+    var resultJSON = arguments[0], that = hftChoose, resultData = null, storage = window.sessionStorage, originAirIds={};
     console.log(resultJSON)
     if (resultJSON.success == 1 && resultJSON.code == "200") {
       resultData = resultJSON.data;
+      originAirIds.airwayCacheID = resultData.airwayCacheID;
+      originAirIds.airwaySetID = resultData.airwaySetID;
       that.curData = resultData;
       storage.setItem('hftFlightHotelTourInfo', JSON.stringify(resultData));
-      //that.createTags(resultData)
+      storage.setItem('originAirIds',JSON.stringify(originAirIds));
       that.createTags(resultData).createPriceEle().addEvent();
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
