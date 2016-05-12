@@ -11,17 +11,16 @@
 //获取景点列表
 
         var ScenicList = function(){
-            var val = vlm.parseUrlPara(window.location.href);
-            var departCityCode=vlm.getpara("departCityCode");
-            var destCityCode=vlm.getpara("destCityCode");
-            var SParameter = {
-                "Parameters": {
-                    "departCityCode": val.departCityCode,
-                    "destCityCode":val.destCityCode
-                },
-                "ForeEndType": 3,
-                "Code":"60100002"
-            };
+          var destCityCode=JSON.parse(localStorage.getItem("searchInfo")).ToCity;
+          var departCityCode=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
+          var SParameter = {
+            "Parameters": {
+              "departCityCode": destCityCode,
+              "destCityCode":departCityCode
+            },
+            "ForeEndType": 3,
+            "Code":"60100002"
+          };
             console.log(JSON.stringify(SParameter));
             vlm.loadJson(url,JSON.stringify(SParameter),function(data){
                 if(data.success){
@@ -109,7 +108,7 @@
                             $("#Filter").css({'bottom':-200+'rem'});
                             filter.style.transition="all 400ms";
 
-                            var themeId=$(".Fchecked").attr("data-id");
+                            var themeId=$(".Fchecked").parent().attr("data-id");
                             console.log(themeId);
                             filterTheme(themeId);
                         };
@@ -153,16 +152,16 @@
                         }
                     })();
                     //城市列表父宽
-                    (function(){
-                        var sum=0;
-                        for(var i=0;i<data.recommendCities.length;i++){
-                        sum+=i;}
-                        $(".city_list ul").css({'width':sum+'%'});
-                    })()
+                    //(function(){
+                    //    var sum=0;
+                    //    for(var i=0;i<data.recommendCities.length;i++){
+                    //    sum+=i;}
+                    //    $(".city_list ul").css({'width':sum+'%'});
+                    //})()
 
                 }
           else {
-                    jAlert(data.message,"提示");
+                    alert(data.message,"提示");
                 }
             });
         };
