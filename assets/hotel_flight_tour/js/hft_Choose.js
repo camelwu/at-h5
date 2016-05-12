@@ -278,18 +278,18 @@ var hftChoose = {
     this.addHandler(moreHotel, 'click', function () {
       var tempTours = that.curData.tours, hftChangeHotelPara = {}, toursArray = [];
       hftChangeHotelPara = {
-
-        "tours": toursArray,
-        "packageID": that.initParaObj.packageID,
-
-
         "flightCacheID": that.curData.flightInfo.cacheID,
         "flightSetID": that.curData.flightInfo.setID,
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
         "departDate": that.initParaObj.departDate,
         "returnDate": that.initParaObj.returnDate,
-        "roomDetails": that.initParaObj.roomDetails
+        "roomDetails": that.initParaObj.roomDetails,
+        "selectedHotelID": that.curData.hotelInfo.hotelID,
+        "selectedRoomID": that.roomPriceInfo.roomID,
+        "sortFields": [0],
+        "pageNo": 1,
+        "pageSize":20
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -300,15 +300,10 @@ var hftChoose = {
           temObj['travelDateSpecified'] = array['travelDateMandatory'];
           toursArray.push(temObj);
         });
+        hftChangeHotelPara.packageID = that.initParaObj.packageID;
         hftChangeHotelPara.tours = toursArray;
         hftChangeHotelPara.packageID = that.initParaObj.packageID;
-      } else {
-        hftChangeHotelPara.selectedHotelID = that.curData.hotelInfo.hotelID;
-        hftChangeHotelPara.selectedRoomID = that.roomPriceInfo.roomID;
-        hftChangeHotelPara.sortFields = [0] || [];
-        hftChangeHotelPara.pageNo = 1;
-        hftChangeHotelPara.pageSize = 20;
-      }
+      };
       storage.setItem('hftChangeHotelPara', JSON.stringify(hftChangeHotelPara));
       that.timer2 = setTimeout(function () {
         window.clearTimeout(that.timer2);
