@@ -5,10 +5,10 @@
     '<% if(images.length==0){ %>',
     '<img src="<%= hotelPictureURL%>" alt="image"/>',
     '<% }else{ %>' +
-    '<a href="<%= images[0].hotelPictureURL%>" class="swipebox" title="1/<%=(images.length)%>">',
-    '<img src="<%= images[0].hotelPictureURL %>" alt="image"/ ></a> '+
+    '<a href="<%= images[0].imageFileName%>" class="swipebox" title="1/<%=(images.length)%>">',
+    '<img src="<%= images[0].imageFileName %>" alt="image"/ ></a> '+
     '<% for(var i=0;i<images.length;i++){ %>',
-    '<a href="<%= images[i].imageFileName%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
+    '<a style="display:none;" href="<%= images[i].imageFileName%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
     '<img src="<%= images[i].imageFileName%>" alt="image"/></a>',
     '<% } %>',
     '<a class="goback" href="javascript:window.history.go(-1);"></a>',
