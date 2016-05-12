@@ -478,9 +478,10 @@ var hftChoose = {
   },
 
   createPriceEle: function () {
-    var selectedRoomId = window.location.search.indexOf('roomId')>-1 || arguments[0], priceRoom = null, that = hftChoose, temEle = null, str = '';
+    var selectedRoomId = "", priceRoom = null, that = hftChoose, temEle = null, str = '';
     var priceE = document.querySelector('.priceTotal span'), priceOuter = document.querySelector('.priceDetailInfo');
-    var priceTemp = ' <p>成人<span class="price-num-price">￥<span>56X2</span></span></p><p>儿童<span class="price-num-price">￥<span>56X2</span></span></p>';
+    var priceTemp = ' <p>成人<span class="price-num-price">￥<span></span></span></p><p>儿童<span class="price-num-price">￥<span></span></span></p>';
+    selectedRoomId = this.urlParseObj["selectedRoomId"] || arguments[0];
     temEle = that.curData.hotelInfo.rooms;
     if (selectedRoomId) {
       temEle.forEach(function (arr, item) {
