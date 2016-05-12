@@ -37,41 +37,85 @@
         <section class="scenic-detile" id = "scenicList">
         </section>
     </div>
-    <footer class="footer">
-        <div class="footer_left" id = "footerLeft">
-            <b class="footer_quicksort footer_icon"></b>
-            <p>快速排序</p>
-        </div>
-        <div class = "footer_right" id = "footerRight">
-            <b class = "footer_screen footer_icon"></b>
-            <p>筛选</p>
-        </div>
-    </footer>
-</div>
-<div class = "shade">
-    <!--排序快-->
-  <div class="shade_div" id = "shadeDiv1"></div>
-     <ul class="rank" id = "SortList">
-        <!--<li><%= SortTypes[i].SortText %><i></i></li>-->
-    </ul>
-    <!--帅选快-->
-  <div class="shade_div" id = "shadeDiv2"></div>
 
-  <div class="filter" id = "Filter">
-    <div class = "filter_button">
-      <p class = "filter_button_l" id = "filter_button_l">取消</p>
-      <p class = "filter_button_c" id = "filter_button_c">清空筛选</p>
-      <p class = "filter_button_r filter_button_checked"  id = "filter_button_r">确定</p>
-    </div>
-    <div class = "filter_theme" id = "FilterList">
-    </div>
-  </div>
+</div>
+<!--底部-->
+<footer class="hotel_list_bottom">
+    <dl class="sort" id="hotelSort">
+        <dt></dt>
+        <dd>推荐排序</dd>
+    </dl>
+    <dl class="screen" id="hotelScreen">
+        <dt></dt>
+        <dd>筛选</dd>
+    </dl>
+</footer>
+<!--弹框-->
+<div class="hotel_pop" id="hotelPop" style="display: none;">
+    <!-- sort pop-->
+    <ul class="sort" id = "SortList">
+    </ul>
+    <!--sort screen-->
+    <section class="screen">
+        <div class="screen_btn">
+            <p class="cancel">取消</p>
+            <p class="clears">清空筛选</p>
+            <p class="sure">确定</p>
+        </div>
+        <div class="screen_box">
+            <ul class="screen_lf"id="screenLeft">
+                <li class="cur">星级档次</li>
+                <li>酒店类型</li>
+            </ul>
+            <div class="screen_rg" id="screenRight">
+                <ul>
+                    <li class="cur">不限<i></i></li>
+                    <li>二星级以下<i></i></li>
+                    <li>三星<i></i></li>
+                    <li>四星级<i></i></li>
+                    <li>五星级<i></i></li>
+                </ul>
+                <ul>
+                    <li class="cur">不限<i></i></li>
+                    <li>商务型<i></i></li>
+                    <li>度假型<i></i></li>
+                    <li>会议型<i></i></li>
+                    <li>观光型<i></i></li>
+                    <li>经济型<i></i></li>
+                    <li>连锁型<i></i></li>
+                    <li>公寓式<i></i></li>
+                    <li>长住型<i></i></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- position-->
+    <section class="position" id="popPosition">
+        <div class="screen_btn">
+            <p class="cancel">取消</p>
+            <p class="clears">清空筛选</p>
+            <p class="sure">确定</p>
+        </div>
+        <ul>
+            <li class="cur">不限<i></i></li>
+            <li>涩谷<i></i></li>
+            <li>银座<i></i></li>
+            <li>银座<i></i></li>
+            <li>涩谷<i></i></li>
+            <li>银座<i></i></li>
+            <li>银座<i></i></li>
+            <li>涩谷<i></i></li>
+            <li>银座<i></i></li>
+            <li>银座<i></i></li>
+        </ul>
+    </section>
 </div>
 </body>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="js/hft_scenic_list.js"></script>
+<script src="../plugins/footer/footer.js"></script>
 <script id = "timeDetile" type="text/template">
             <span class = "time_people_list_time">
             <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>

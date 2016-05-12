@@ -164,183 +164,211 @@ li.scenic_detile_project_first{
   color:#FFBF4B
 }
 /*footer开始*/
-.footer{
-  width: 100%;
-  height:.9rem;
+.hotel_list_bottom{
   position: fixed;
-  bottom: 0;
-  text-align: center;
-  font-size: 10em;
-  color: white;
-  z-index: 999;
+  bottom:0;
+  left: 0;
+  height: 0.98rem;
+  width: 100%;
+  font-size: 0.24rem;
+  background: #4a4a4a;
+  z-index: 130;
 }
-.footer div{
-  width: 50%;
-  height: 100%;
-  text-align: center;
-  color: white;
-  background-color: #000;
-  opacity: .7;
-  font-size:.2rem;
-  overflow: hidden;
-  display: inline-block;
-}
-div.footer_right{
-  float:right;
-}
-.footer_left{
+.hotel_list_bottom dl{
   float:left;
-}
-.footer_quicksort{
-  display: block;
-  width: .45rem;
-  height: .45rem;
-  margin: 0 auto;
-  background-position: -164px -19px;
-}
-.footer_icon {
-  background-image: url(../../images/ui/jd-icon.png);
-  background-repeat: no-repeat;
-  background-size: 256px 71px;
-}
-.footer_screen{
-  display: block;
-  width: .45rem;
-  height: .45rem;
-  margin: 0 auto;
-  background-position: -164px 2px;
-}
-/*排序筛选开始*/
-.contents{
-  position: absolute;
-  overflow-x: hidden!important;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
-}
-.shade_div{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-color: black;
-  opacity: 0.5;
-  display: none;
-  z-index: 2000;
-}
-.rank{
-  width: 100%;
-  background-color: white;
-  position: fixed;
-  z-index: 2001;
-  bottom: -2222rem;
-}
-.rank li{
-  margin-left:.28rem;
-  padding-left:.12rem;
-  width: 100%;
-  height: .96rem;
-  border-bottom: 1px solid #d0d0d3;
-  font-size: .26em;
-  color: #333333;
-  line-height: .96rem;
-}
-.Schecked{
-  display: inline-block;
-  width: 18px;
-  height: 16px;
-  position: absolute;
-  right:.4rem;
-  margin-left: -78px;
-  margin-top: 12px;
-  background-image: url(../../images/ui/icons1.png);
-  background-size: 400px 120px;
-  background-position: 77% 4%;
-}
-.Fchecked{
-  display: inline-block;
-  width: 18px;
-  height: 16px;
-  position: absolute;
-  right:.4rem;
-  margin-left: -78px;
-  margin-top: 12px;
-  background-image: url(../../images/ui/icons1.png);
-  background-size: 400px 120px;
-  background-position: 77% 4%;
-}
-/*筛选开始*/
-.filter{
-  width: 100%;
-  background: #F7F7F7;
-  position: fixed;
-  z-index: 2001;
-  bottom: -200rem;
-}
-.filter_button{
-  height: .89rem;
-  width: 90%;
-  line-height: .89rem;
-  font-size: .3rem;
-  padding: 0 8%;
-}
-.filter_button p{
-  width: 31%;
-  display: inline-block;
-  color:#999999;
-}
-.filter_button_c{
+  width:33.3333333333333%;
   text-align: center;
+  height: 0.98rem;
+  color: #fff;
+  font-family: FZLTXHK;
+  background: #4a4a4a;
 }
-.filter_button_r{
-  text-align: right;
+.hotel_list_bottom dl.bg_color{
+  background: #2a2a2a;
 }
-p.filter_button_checked{
-  color:#FFB500;
+.hotel_list_bottom dl dt{
+  width: 0.34rem;
+  height: 0.37rem;
+  background:url(../../images/ui/icon_common.png);
+  background-size:7.89rem 5.07rem;
+  margin:0.12rem auto 0.05rem;
 }
-.filter_theme{
-  color:#484848;
+.hotel_list_bottom dl.sort dt{
+  background-position:-0.59rem -2.32rem;
 }
-.filter_theme_list {
-  width: 1.80rem;
+.hotel_list_bottom dl.screen dt{
+  background-position:-1.87rem -2.32rem;
+}
+.hotel_list_bottom dl.position dt{
+  background:url(../../images/hotel_flight_tour/icon_hotel.png);
+  background-size:7.89rem 2.58rem;
+  background-position:-2.19rem -0.46rem;
+}
+/*footer部分*/
+/*弹层部分开始*/
+.hotel_pop{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  float: left;
-  background: #F7F7F7;
+  background: rgba(0,0,0,0.4);
+  z-index: 100;
 }
-.filter_theme_list li{
-  width: 100%;
-  height: .96rem;
-  border-left:.05rem solid #FFB413;
-  font-size: .26rem;
-  line-height: .96rem;
-  text-align: center;
+.hotel_pop .sort{
+  bottom:-3.98rem;
+}
+.hotel_pop .sort,.hotel_pop .position ul{
   background: #fff;
-}
-.filter_theme_matter {
-  float:left;
-  width: 76%;
-  height: 6rem;
-  overflow: scroll;
-}
-.filter_theme_box{
-  background: #fff;
-  width: 100% ;
-}
-
-.filter_theme_box li{
   width: 100%;
-  margin-left:.32rem;
-  border-bottom:.01rem solid #e6e6e6;
-  font-size: .28rem;
-  line-height: .96rem;
-  overflow: scroll;
+  position: absolute;
+  transition:all 0.3s;
+  left: 0;
+}
+.hotel_pop .sort li,.hotel_pop .position ul li{
+  margin: 0 0 0 0.28rem;
+  font-size: 0.28rem;
+  padding: 0 0.12rem;
+  height: 0.96rem;
+  line-height: 0.96rem;
+  border-top: 1px solid #e6e6e6;
+  color: #333;
   position: relative;
 }
-.checked_theme1{
-  color:#FFB413;
+.hotel_pop .sort li i,.hotel_pop .screen_rg li i{
+  width: 0.4rem;
+  height: 0.4rem;
+  position:absolute;
+  top:50%;
+  right: 0.18rem;
+  margin-top:-0.2rem;
 }
-.checked_theme2{
-  color:#FFB413;
+.hotel_pop .screen_rg li.cur i,.hotel_pop .sort li.curimg i{
+  background:url(../../images/ui/icon_common.png);
+  background-size:7.9rem 5.13rem;
+  background-position: -6.9rem -0.58rem;
+}
+.hotel_pop .screen_rg li i{
+  right:0.28rem;
+}
+.hotel_pop .sort li i{
+  right: 0.18rem;
+}
+.hotel_pop .screen{
+  height: 6.72rem;
+  width: 100%;
+  position: absolute;
+  bottom:-5.98rem;
+  left: 0;
+  background: #fff;
+  font-size: 0.28rem;
+  transition:all 0.3s;
+}
+.hotel_pop .screen_btn{
+  height:0.89rem;
+  line-height: 0.89rem;
+  background: #f7f7f7;
+  position: relative;
+}
+.hotel_pop .screen_btn p{
+  top:0;
+  text-align: center;
+  color: #999;
+}
+.hotel_pop .screen_btn p:first-child,.hotel_pop .screen_btn p:last-child{
+  position: absolute;
+  width: 1.5rem;
+}
+.hotel_pop .screen_btn p:first-child{
+  left:0;
+}
+.hotel_pop .screen_btn p:nth-child(2){
+  margin: 0 1.5rem;
+}
+.hotel_pop .screen_btn p:last-child{
+  right:0;
+  color: #ffb500;
+}
+
+.hotel_pop .screen_box{
+  position: relative;
+  height: 5.83rem;
+}
+.hotel_pop .screen_lf{
+  position:absolute;
+  top:0;
+  left:0;
+  width:2rem;
+  height: 5.83rem;
+  overflow-y:scroll;
+}
+.hotel_pop .screen li{
+  height: 0.96rem;
+  line-height: 0.96rem;
+  color:#333;
+}
+.hotel_pop .screen_lf {
+  background: #f7f7f7;
+}
+.hotel_pop .screen_lf li{
+  padding-left:0.23rem;
+  border-left:3px solid #f7f7f7;
+  background: #f7f7f7;
+}
+.hotel_pop .screen_lf li.cur{
+  border-left:3px solid #fdb330;
+  background:#fff;
+  font-weight: bold;
+}
+.hotel_pop .screen_rg{
+  background:#fff;
+  margin-left:2.32rem;
+}
+.hotel_pop .screen_rg ul{
+  height:5.83rem;
+  overflow-y:scroll;
+}
+.hotel_pop .screen_rg li{
+  border-bottom:1px solid #dedede;
+  position:relative;
+}
+.hotel_pop .position{
+  position:absolute;
+  bottom:-4.98rem;
+  left: 0;
+  width: 100%;
+  height: 5.69rem;
+  background: #fff;
+  font-size: 0.28rem;
+  transition:all 0.3s;
+}
+.hotel_pop .position ul{
+  height: 4.8rem;
+  bottom:0rem;
+  overflow-y: scroll;
+}
+.hotel_pop .position ul li{
+  margin: 0 0 0 0.28rem;
+}
+.hotel_pop .position ul li:nth-child(1){
+  border-top: 0;
+}
+.hotel_pop .position i{
+  position:absolute;
+  right: 0.39rem;
+  top: 50%;
+  background:url(../../images/ui/icon_common.png);
+  background-size:7.9rem 5.13rem;
+  background-position:-4.40rem -0.51rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top:-0.25rem;
+}
+.hotel_pop .position li.cur{
+  color: #ffb500;
+}
+.hotel_pop .position li.cur i{
+  background-position:-5.07rem -0.51rem;
 }
 /*景点详情页开始*/
 .header_scenic{
