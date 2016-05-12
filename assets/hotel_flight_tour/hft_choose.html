@@ -126,7 +126,7 @@
         if(item > 1) {return}; %>
         <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
           <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
-            <%if(hftChoose ['urlParseObj']['selectedRoomId']){%>
+            <%if(hftChoose['urlParseObj']['selectedRoomId']){%>
             <%if(room['roomID']==hftChoose['urlParseObj']['selectedRoomId']){hftChoose['roomPriceInfo']=room%>
             <button class="hasChooseButton">已选择</button>
             <% }else{%>
@@ -171,8 +171,8 @@
     <% hotelInfo["rooms"].forEach(function(room, item){%>
     <li class="hasChosen" data-room-id="<%= room['roomID'] %>">
       <div class="plassPrice"><span>+￥</span><span><%= room['addtionalPrice'] %></span>
-        <%if(hftChoose ['urlParseObj']['selectedRoomId']){alert(0)%>
-        <%if(room['roomID']==hftChoose ['urlParseObj']['selectedRoomId']){%>
+        <%if(hftChoose['urlParseObj']['selectedRoomId']){alert(0)%>
+        <%if(room['roomID']==hftChoose['urlParseObj']['selectedRoomId']){%>
         <button class="hasChooseButton">已选择</button>
         <% }else{%>
         <button class="noChooseButton">选择</button>

@@ -271,6 +271,8 @@ var hftChoose = {
       that.timer1 = setTimeout(function () {
         window.clearTimeout(that.timer1);
         that.timer1 = null;
+        console.log(that.initParaObj)
+        console.log(that.initParaObj.packageID)
         window.location.href = that.type == 2?"hft_flight_list.html?type=" + that.type+"&packageId="+that.initParaObj.packageID:"hft_flight_list.html?type=" + that.type;
       }, 500);
     });
@@ -589,7 +591,10 @@ var hftChoose = {
   },
 
   init: function () {
-    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj={};
+    var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj={}, storage = window.sessionStorage, originAirIds={}, hftFlightHotelTourInfo={};
+    originAirIds = JSON.parse(storage.getItem('originAirIds'));
+    hftFlightHotelTourInfo = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
+    console.log(hftFlightHotelTourInfo)
     urlParseObj = this.parseUrlPara(document.location.search, true);
     var paraObj = {
       "cityCodeFrom": temObj['FromCity'],
@@ -608,15 +613,33 @@ var hftChoose = {
     this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
     this.cacheOtherInfo = {adult: temObj['AdultNum'], child: temObj['ChildNum']};
-    if (urlParseObj.type == "2") {
-      this.initParaObj.packageID = urlParseObj['packageId'];
-      this.getNewPricePara.packageID = this.initParaObj.packageID;
-      this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
-    }else if(urlParseObj.type == "1") {
-      delete this.initParaObj.packageID;
-      this.tAjax("", paraObj, "50100001", 3, this.renderHandler);
+    if(originAirIds&&hftFlightHotelTourInfo){
+      if(originAirIds['airwaySetID']!=hftFlightHotelTourInfo['airwaySetID']||originAirIds['airwayCacheID']!=hftFlightHotelTourInfo['airwayCacheID']){
+        if (this.type == "2") {
+          this.initParaObj.packageID = urlParseObj['packageId'];
+          this.getNewPricePara.packageID = this.initParaObj.packageID;
+          this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
+        }else if(this.type == "1"){
+          delete this.initParaObj.packageID;
+          this.tAjax("", paraObj, "50100001", 3, this.renderHandler);
+        }
+      }else{
+        if (this.type == "2") {
+           this.initParaObj.packageID = urlParseObj['packageId'];
+           this.getNewPricePara.packageID = this.initParaObj.packageID;
+        }
+        this.renderHandler({code:200, success:1, data:hftFlightHotelTourInfo})
+      }
+    }else{
+      if (this.type == "2") {
+          this.initParaObj.packageID = urlParseObj['packageId'];
+          this.getNewPricePara.packageID = this.initParaObj.packageID;
+          this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
+      }else if(this.type == "1") {
+          delete this.initParaObj.packageID;
+          this.tAjax("", paraObj, "50100001", 3, this.renderHandler);
+      }
     }
-    //this.renderHandler(data);
   }
 };
 hftChoose.init();
