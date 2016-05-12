@@ -263,10 +263,61 @@
                 } catch (e) { /* requires jQuery UI draggables */ }
             }
 
+            //阻止遮罩层事件传递
             $("#popup_overlay").on("touchstart", function (event) {
                 event.preventDefault();
                 event.stopPropagation();
             });
+
+
+            var touchX, touchY;
+            var popupContainer = $("#popup_more")[0];
+            window.ontouchstart = function (e) {
+                if ($("#popup_more").length === 0) {
+                    return;
+                }
+
+                var touch = e.changedTouches[0];
+
+                touchX = touch.screenX;
+                touchY = touch.screenY;
+
+                if (!popupContainer.contains(e.target) || dialog.scrollTop === 0 || dialog.scrollTop === dialog.scrollHeight - dialog.clientHeight) {
+                    e.preventDefault();
+                }
+            };
+
+            window.ontouchend = function (e) {
+                var touch = e.changedTouches[0];
+
+                if (Math.abs(touch.screenY - touchY) > 10 || Math.abs(touch.screenX - touchX) > 10)
+                    return;
+                touchX = 0;
+                touchY = 0;
+            };
+
+            window.ontouchcancel = function (e) {
+                touchX = 0;
+                touchY = 0;
+            };
+
+            var padding = 1;
+
+            requestAnimationFrame(function frame() {
+                var min = 0,
+                    max = popupContainer.scrollHeight - popupContainer.clientHeight;
+
+                var val = popupContainer.scrollTop;
+
+                if (val === min) {
+                    popupContainer.scrollTop += padding;
+                } else if (val === max) {
+                    popupContainer.scrollTop -= padding;
+                }
+
+                requestAnimationFrame(frame);
+            });
+
         },
 
         _remove: function () {
