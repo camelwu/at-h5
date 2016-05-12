@@ -62,7 +62,7 @@ var hftChoose = {
   addEvent: function () {
     var backI = document.querySelector('.top_info i'), changeFlight = document.querySelector('.moreFlight'), moreHotel = document.querySelector('.moreHotel'), that = this;
     var flightDetailI = document.querySelector('.flightDetailArrow i'), hotelDetailI = document.querySelector('.hotelImgInfo i');
-    var priceTotal = document.querySelector('.priceTotal i'), preserve = document.querySelector('.preserve'), iconBack = document.querySelector('.icon_back');
+    var priceTotal = document.querySelector('.priceTotal i'), preserve = document.querySelector('.preserve'), iconBack = document.querySelector('.header_back');
     var tourOuter = null, chooseDateOuter = null, priceDetailInfo = document.querySelector('.priceDetailInfo');
     var roomUl = document.querySelector('.roomUl'), checkMoreData = document.querySelector('.check-more-room'), shadowEle = document.querySelector('.shadow'), storage = window.sessionStorage;
     if (that.type == 2) {
@@ -233,11 +233,10 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
-
-      window.location.href = "index.html?type="+that.type;
+      window.location.href = that.type == 1?"index.html?type="+that.type:"hft_scenic_list.html?="+that.type;
     });
     this.addHandler(iconBack, 'click', function () {
-      window.location.href = "index.html?type="+that.type;
+      window.location.href = that.type == 1?"index.html?type="+that.type:"hft_scenic_list.html?="+that.type;
     });
     this.addHandler(changeFlight, 'click', function () {
       var tempTours = that.curData.tours, hftChangeFlightPara = {}, toursArray = [];
