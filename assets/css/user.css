@@ -1658,13 +1658,17 @@ ul, ol {
 .s_lists.mt-none{
   margin-top: 0;
 }
+.icon_person{
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 243px 160px;
+}
 
 .myorder-tip{
   position: absolute;
   width: 22px;
   height: 22px;
   top: 10px;
-  background-position: -58px -75px;
+  background-position: -10px -10px;
 }
 /*选择联系人*/
 .con-mobile-tip{
