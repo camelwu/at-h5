@@ -23,12 +23,14 @@
     var  core = function(){
         var ContentList = function(){
             var packageID=vlm.getpara("packageId");
+            var tourId=vlm.getpara("tourId");
             var cityCodeFrom=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
             var Cparam=
             {
                 "Parameters": {
                     "PackageID": packageID,
-                    "cityCodeFrom":cityCodeFrom
+                    "cityCodeFrom":cityCodeFrom,
+                    "tourId":tourId
                 },
                 "ForeEndType": 2,
                 "Code": "60100003"
