@@ -11,8 +11,8 @@
 //获取景点列表
 
         var ScenicList = function(){
-          var destCityCode=JSON.parse(localStorage.getItem("searchInfo")).ToCity;
-          var departCityCode=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
+          var destCityCode=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
+          var departCityCode=JSON.parse(localStorage.getItem("searchInfo")).ToCity;
           var SParameter = {
             "Parameters": {
               "departCityCode": destCityCode,
@@ -157,8 +157,15 @@
                     //    for(var i=0;i<data.recommendCities.length;i++){
                     //    sum+=i;}
                     //    $(".city_list ul").css({'width':sum+'%'});
-                    //})()
-
+                    //})();
+                  var packageid=$(".scenic-detile_list").attr("data-packageid");
+                  var scenicItem = {
+                    packageid:packageid
+                  };
+                  localStorage.setItem('scenicItem', JSON.stringify(scenicItem));
+                  $(".scenic-detile_list").on("click",function(){
+                      window.location.href = 'hft_choose.html';
+                  })
                 }
           else {
                     alert(data.message,"提示");
