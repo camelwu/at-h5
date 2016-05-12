@@ -61,7 +61,7 @@ var hftChoose = {
 
   addEvent: function () {
     var backI = document.querySelector('.top_info i'), changeFlight = document.querySelector('.moreFlight'), moreHotel = document.querySelector('.moreHotel'), that = this;
-    var flightDetailI = document.querySelector('.flightDetailArrow i'), hotelDetailI = document.querySelector('.hotelImgInfo i');
+    var flightDetailI = document.querySelector('.flightOuter'), hotelDetailI = document.querySelector('.hotelImgInfo i');
     var priceTotal = document.querySelector('.priceTotal i'), preserve = document.querySelector('.preserve'), iconBack = document.querySelector('.header_back');
     var tourOuter = null, chooseDateOuter = null, priceDetailInfo = document.querySelector('.priceDetailInfo');
     var roomUl = document.querySelector('.roomUl'), checkMoreData = document.querySelector('.check-more-room'), shadowEle = document.querySelector('.shadow'), storage = window.sessionStorage;
@@ -342,6 +342,8 @@ var hftChoose = {
           temObj['travelDateSpecified'] = array['travelDateMandatory'];
           toursArray.push(temObj);
         });
+        hftHotelDetailPara.flightCacheID = that.curData.flightInfo.cacheID;
+        hftHotelDetailPara.flightSetID = that.curData.flightInfo.setID;
         hftHotelDetailPara.tours = toursArray;
         hftHotelDetailPara.packageID = that.initParaObj.packageID;
       } else {
