@@ -563,7 +563,9 @@
                 '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',
                 '{% } %}',
                 '<div class="detail-span">成人票 '+info.adultNum+'张</div>',
+                '{% if(JSON.parse(localStorage.info).childNum != 0){ %}',
                 '<div class="detail-span">儿童票 '+info.childNum+'张</div>',
+                '{% } %}',
                 '</div>',
                 '{% } %}'
             ].join('');
