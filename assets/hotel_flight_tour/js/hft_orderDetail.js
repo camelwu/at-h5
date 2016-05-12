@@ -19,7 +19,7 @@ define(['jquery',"ejs","vlm"],function (){
       $('.hft_pri_details').slideUp();
     },function(){
       $('.hft_pri_details').slideDown();
-      $(window).scrollTop($(window).scrollHeight);
+      $('.all_elements').scrollTop($('.all_elements').height());
     })
 
     //拨号
