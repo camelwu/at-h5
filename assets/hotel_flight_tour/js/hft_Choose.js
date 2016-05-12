@@ -233,6 +233,7 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
+
       window.location.href = "index.html?type="+that.type;
     });
     this.addHandler(iconBack, 'click', function () {
@@ -596,7 +597,9 @@ var hftChoose = {
       "returnDate": temObj['ReturnDate'],
       "roomDetails": temObj['RoomInfo']
     };
-    for (var tem in paraObj) {
+      paraObj.departDate = "2016-06-15T00:00:00";
+      paraObj.returnDate = "2016-06-20T00:00:00";
+    for (var tem in paraObj){
       newPrice[tem] = paraObj[tem];
     }
     this.getNewPricePara = newPrice;
