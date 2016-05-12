@@ -150,7 +150,7 @@
             var id = $(this).attr("id");
             switch (id) {
                 case "alert":
-                    jAlert(message, title);
+                    jAlert(message, title, callback);
                     break;
                 case "confirm":
                     jConfirm(message, title);

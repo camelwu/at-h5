@@ -1,5 +1,5 @@
 /**
- *@desc
+ *@desc   depend on jquery
  *@time
  *@author
  **/
