@@ -1,4 +1,8 @@
 (function(){
+  //获取本地存储数据
+  var sStorage = JSON.parse(sessionStorage.getItem("hftHotelDetailPara")) || {};
+  console.log(sStorage);
+
   var latitude = 0;
   var longitude = 0;
   var tpl1 = [
@@ -7,7 +11,7 @@
     '<% }else{ %>' +
     '<a href="<%= images[0].imageFileName%>" class="swipebox" title="1/<%=(images.length)%>">',
     '<img src="<%= images[0].imageFileName %>" alt="image"/ ></a> '+
-    '<% for(var i=0;i<images.length;i++){ %>',
+    '<% for(var i=1;i<images.length;i++){ %>',
     '<a style="display:none;" href="<%= images[i].imageFileName%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
     '<img src="<%= images[i].imageFileName%>" alt="image"/></a>',
     '<% } %>',
@@ -18,43 +22,7 @@
   ].join('');
   //传数据
   var data = {
-    "parameters": {
-      "selectedHotelID":1023696,
-      "selectedRoomID":10996872,
-      "hotelID":1023716,
-      "flightCacheID":3511203,
-      "flightSetID":30000001,
-      "tours": [
-        {
-          "tourID": 134,
-          "travelDate": "2016-06-15T00:00:00",
-          "optionCode": "",
-          "travelDateSpecified": 1
-        },
-        {
-          "tourID": 136,
-          "travelDate":"2016-06-16T00:00:00",
-          "optionCode": "",
-          "travelDateSpecified": 1
-        },
-        {
-          "tourID": 166,
-          "travelDate":"2016-06-17T00:00:00",
-          "optionCode": "",
-          "travelDateSpecified": 1
-        }
-      ],
-      "packageID": 483297,
-      "cityCodeFrom": "BJS",
-      "cityCodeTo": "SIN",
-      "departDate": "2016-06-15T00:00:00",
-      "returnDate": "2016-06-20T00:00:00",
-      "roomDetails": [
-        {
-          "adult": 2
-        }
-      ]
-    },
+    "parameters": sStorage,
     "foreEndType": 2,
     "code": "60100008"
   };

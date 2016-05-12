@@ -165,19 +165,16 @@
       </div>
       <div class="fht_order_detail">
         <div class="fht_hd">出行人信息</div>
-        <% if(travelers.length>0){  var i=1;%>
-
-        <% travelers.forEach(function(info){%>
-
         <ul class="fht_order_tab">
+          <% if(travelers.length>0){ %>
+          <% travelers.forEach(function(info){%>
           <li>
-            <p class="clearfix"><span class="fl"></span>登机人<%=i%><span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+            <p class="clearfix"><span class="fl"></span>登记人1<span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
             <p class="clearfix"> <span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
           </li>
+          <%})%>
+          <% } %>
         </ul>
-
-        <%  i++;})%>
-        <% } %>
         <ul class="order_cont_way">
           <li  class="clearfix">
             <span class="fl"></span>联系电话<span class="fr"><%=contactNumber%></span>
@@ -195,8 +192,8 @@
           <span class="fr fare_tip"></span>
         </div>
         <ul class="hft_pri_details">
-          <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>×<%=hotelDetails.roomDetails.totalAdult%> </span></li>
-          <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>×<%=hotelDetails.roomDetails.totalChild%> </span></li>
+          <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>*<%=hotelDetails.roomDetails.totalAdult%> </span></li>
+          <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>*<%=hotelDetails.roomDetails.totalChild%> </span></li>
         </ul>
       </div>
     </section>

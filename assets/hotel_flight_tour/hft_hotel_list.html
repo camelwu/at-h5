@@ -192,7 +192,7 @@
 <!--list-->
 <script id="templateList" type="text/template">
   <% for(var i=0;i<hotels.length;i++) { %>
-  <li>
+  <li data-hotelId="<%= hotels[i].hotelID %>">
     <div>
       <img class="img" src=<%= hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">

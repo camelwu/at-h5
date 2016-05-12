@@ -6,7 +6,7 @@
  *===============================================
  * */
 
-_CalF =    {
+_CalF = {
     // 选择元素
     $: function (arg, context) {
         var tagAll, n, eles = [],
@@ -698,6 +698,7 @@ Calender.prototype = {
             console.info(that.result);
             that.resetSelected();
             that.showSelected();
+            that.showComfirmBtn(0);
         });
     },
     // 表单的事件
