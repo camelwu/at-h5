@@ -1,7 +1,9 @@
 /**
  * Created by zhouwei on 2016/5/4.
  */
-define([''],function (){
+define(['../vim'],function (){
+
+  jAlert(111);
 
   /* 抽象业务类型对象*/
   var typeArray= {

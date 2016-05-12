@@ -130,8 +130,9 @@
                     $("#popup_ok").focus();
                     break;
                 case 'code':
+                    var basePath = "http://m.yazhoulvyou.cn";
                     var imgsrc = basePath + "/validate/getImage?rnd=" + Math.random();
-                    $("#popup_message").append('<input type="text" id="popup_prompt" maxlength="4" placeholder="请输入图片中的验证码" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div style="display:inline-block;width:160px;margin-top:10px;"><img id="getImg" src="' + imgsrc + '" width="90" height="30" style="display:inline"> <a href="javascript:;" id="change" style="display:inline;margin-left:10px;">换一张</a></div><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"</div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok"></div></div>');
+                    $("#popup_message").append('<input type="text" id="popup_prompt" maxlength="4" placeholder="请输入图片中的验证码" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div style="display:inline-block;width:160px;margin-top:10px;"><img id="getImg" src="' + imgsrc + '" width="90" height="30" style="display:inline"> <a href="javascript:;" id="change" style="display:inline;margin-left:10px;">换一张</a></div><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"></div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok"></div></div>');
                     $("#change").click(function () {
                         $("#getImg").attr("src", basePath + "/validate/getImage?rnd=" + Math.random());
                     });
@@ -243,6 +244,7 @@
                         if (callback)
                             callback(false);
                     });
+                    //setTimeout("$.alerts._reposition()", "80");
                     break;
 
             }

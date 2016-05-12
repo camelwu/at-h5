@@ -659,6 +659,16 @@ a{
     background-size: 412px 125px;
     background-position: 89.5% -2%;
 }
+.user-fligthotletour{
+  float: left;
+  margin: 8px;
+  width: 25px;
+  height: 25px;
+  background-image: url(../images/ui/icons.png);
+  background-repeat: no-repeat;
+  background-size: 217px 185px;
+  background-position: 1.5% 96.5%;
+}
 
 .user-hotel1 {
     float: left;

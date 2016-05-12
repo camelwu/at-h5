@@ -9,7 +9,7 @@ require.config({
     $:['jquery'],
     shim: {
     	'plugins':{
-    		deps: ['jquery'],
+    		deps: ['./jquery',"./vlm"],
     		init:function(){
     			return{
     				WOW:WOW,
