@@ -102,10 +102,14 @@
       //parametersStorage.hotelID = hotelID;
       //console.log(parametersStorage);
       //sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
-      //window.location.href = 'hft_hotel_detail.html';
+
       //跳转到详情页用
-      dataPull.parameters.hotelID = hotelID;
-      sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(dataPull));
+      console.log(hotelID);
+      parametersStorage.selectedHotelID=1023696;
+      parametersStorage.selectedRoomID=10996872;
+      parametersStorage.hotelID = hotelID;
+      sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
+      window.location.href = 'hft_hotel_detail.html';
     })
   }
 })()
