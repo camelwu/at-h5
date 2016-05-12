@@ -24,9 +24,12 @@
     margin: 0px;
     top: 170.5px;
     left: 15px;
+    pointer-events: none;
+    -webkit-pointer-events: none;
 }
 
 #popup_title {
+    box-sizing: border-box;
     width: 100%;
     padding: 13px 15px;
     background-color: #ffb413;
@@ -41,8 +44,6 @@
     background-color: #fff;
     /*border-radius: 3px;*/
     min-width: 290px;
-    pointer-events: none;
-    -webkit-pointer-events: none;
 }
 
 .layer {
@@ -58,8 +59,8 @@
     color: #484848;
     max-height: 200px;
     overflow-y: scroll;
-    pointer-events: none;
-    -webkit-pointer-events: none;
+    pointer-events: auto;
+    -webkit-pointer-events: auto;
 }
 
 #popup_message {
@@ -79,6 +80,8 @@
     font-size: 15px;
     font-weight: 700;
     border-top: 1px #dedede solid;
+    pointer-events: auto;
+    -webkit-pointer-events: auto;
 }
 
 #popup_panel .half {
@@ -129,6 +132,8 @@
     display: inline-block;
     width: 40px;
     height: 40px;
+    pointer-events: auto;
+    -webkit-pointer-events: auto;
 }
 
 #popup_title .d-close:after {
