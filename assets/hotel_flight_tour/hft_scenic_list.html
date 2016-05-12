@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="css/hft_scenic_list.css"/>
 </head>
 <body>
-<!--<div id="preloader">-->
-    <!--<div id="status">-->
+<div id="preloader">
+    <div id="status">
 
-    <!--</div>-->
-<!--</div>-->
+    </div>
+</div>
 <div class="contents">
     <div class="header">
         <a href="javascript:history.go(-1);" class="header_back" id = "g_back">
@@ -38,35 +38,8 @@
             <span class = "time_people_list_number">2成人1儿童<i></i></span>
         </section>
         <section class="city_list" id =  "CityList">
-            <!--<ul>-->
-                <!--<li class = "city_list1 active">吉隆坡 </i></li>-->
-            <!--</ul>-->
         </section>
         <section class="scenic-detile" id = "scenicList">
-            <!--<ul>-->
-              <!--<% if(lists){ for( var i=0;i< lists.length; i++){ %>-->
-                <!--<li class = "scenic-detile_list">-->
-                    <!--<div class = "scenic-detile_list_matter clearfix">-->
-                        <!--<div class="scenic_detile_img ">-->
-                            <!--<img src = "../images/01.png" data-src="images/0.png" alt = "丹嫩沙多水上市场" class = "scenic_detile_img_po"/>-->
-                            <!--<p class = "scenic-detile_list_theme">主题</p>-->
-                        <!--</div>-->
-                        <!--<div class="scenic_detile_content">-->
-                            <!--<p class="scenic_detile_content_name"><% lists[i].packageName %></p>-->
-                            <!--<p class = "scenic_detile_content_after">￥<% lists[i].LeadinPrice %>/人起</p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="scenic_detile_project">-->
-                        <!--<ul>-->
-                            <!--<li class = "scenic_detile_project_first"><i></i></li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                    <!--<div class="scenic-detile_privilege">-->
-                        <!--<span>11.02 -11.11 每单立减100园</span>-->
-                    <!--</div>-->
-                <!--</li>-->
-              <!--<% }} %>-->
-            <!--</ul>-->
         </section>
     </div>
     <footer class="footer">
@@ -107,16 +80,16 @@
             <% if(lists){ for( var i=0;i< lists.length; i++){ %>
                 <li class = "scenic-detile_list">
                 <div class = "scenic-detile_list_matter clearfix">
-                <div class="scenic_detile_img ">
-                <img src = "../images/01.png" data-src="<%= lists[i].pictureURL %>" alt = "丹嫩沙多水上市场" class = "scenic_detile_img_po"/>
-                <p class = "scenic-detile_list_theme">主题</p>
-                </div>
-                <div class="scenic_detile_content">
-                <p class="scenic_detile_content_name"><%= lists[i].packageName %></p>
-                <p class = "scenic_detile_content_after">￥<%= lists[i].leadinPrice %>/人起</p>
-        </div>
-        </div>
-        <div class="scenic_detile_project">
+                    <div class="scenic_detile_img ">
+                        <img src = "<%= lists[i].pictureURL%>"alt = "丹嫩沙多水上市场" class = "scenic_detile_img_po"/>
+                        <!--<p class = "scenic-detile_list_theme">主题</p>-->
+                    </div>
+                    <div class="scenic_detile_content">
+                        <p class="scenic_detile_content_name"><%= lists[i].packageName %></p>
+                        <p class = "scenic_detile_content_after">￥<%= lists[i].leadinPrice %>/人起</p>
+                    </div>
+                    </div>
+                    <div class="scenic_detile_project">
                 <ul>
                     <% for( var j=0;j < lists[i].inclusiveItems.length;j++){ %>
                 <li class = "scenic_detile_project_first"><i></i><%= lists[i].inclusiveItems[j] %></li>
@@ -146,7 +119,7 @@
     <div class = "filter_theme_matter">
         <ul class="filter_theme_box" id = "filterDiv">
             <% for(var i=0; i< themes.length;i++){ %>
-            <li data-id=<%= themes[i].themeID%>> <%= themes[i].themeName%><i></i></li>
+            <li data-id=<%= themes[i].themeID %>> <%= themes[i].themeName%><i></i></li>
            <% } %>
         </ul>
     </div>
@@ -158,17 +131,12 @@
           $("#footerLeft").on("click",function(){
               $("#shadeDiv1").css({'display':'block'});
               $("#SortList").css({'bottom':'.9rem'});
-
           });
           $("#footerRight").on("click",function(){
              $("#shadeDiv2").css({'display':'block'});
             $("#Filter").css({'bottom':'.9rem'});
 
           });
-//          $("#shadeDiv2").on("click",function(){
-//              $("#shadeDiv2").css({'display':'none'});
-//            $("#Filter").css({'bottom':-200+'rem'});
-//      });
     });
 </script>
 </html>

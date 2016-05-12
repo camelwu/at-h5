@@ -815,20 +815,24 @@
 				}
 			}
 
-      if( localStorage.hftCreateOrderPara){
-        var datahot=JSON.parse(localStorage.hftCreateOrderPara);
-        var str=numAdu+'/'+datahot.RoomDetails[0].adult+'成人';
+      if( sessionStorage.hftCreateOrderPara){
+
+        var datahot=JSON.parse(sessionStorage.hftCreateOrderPara);
         if($(ifrCilent.parentNode).find('#hftTravelTab').length == 1){
+
           var traveltab =$(ifrCilent.parentNode).find('#hftTravelTab');
-          if(datahot.RoomDetails[0].ChildWithoutBed != undefined ){
+          if(datahot.roomDetails[0].childWithOutBed != undefined ){
             var str='<i class="adu_choose">'+numAdu+'</i>/<i class="adu_tot">'+localStorage.hft_adunum+'</i>成人 <b><i class="chi_choose">'+numChi+'</i>/<i class="chi_tot">'+localStorage.hft_chinum+'</i>儿童</b>';
-          }else if(datahot.RoomDetails[0].ChildWithBed != undefined){
+          }else if(datahot.roomDetails[0].childWithBed != undefined){
             var str='<i class="adu_choose">'+numAdu+'</i>/<i class="adu_tot">'+localStorage.hft_adunum+'</i>成人 <b><i class="chi_choose">'+numChi+'</i>/<i class="chi_choose">'+localStorage.hft_chinum+'</i>儿童</b>';
           }else {
+
             var str='<i class="adu_choose">'+numAdu+'</i>/<i class="adu_tot">'+localStorage.hft_adunum+'</i>成人 <b>';
           }
+
           traveltab.find('.order_tsl2').html(str);
         }
+
       }
 
       if(ifrCilent.parentNode.getElementsByClassName('fht_contact').length >0){
@@ -960,8 +964,15 @@
 
 
 	function closeAddAir_page() {
-		var addAir_page = document.getElementById("addAir-page");
-		addAir_page.style.display = "none";
+		if(localStorage.contactedit != 1){
+      var addAir_page = document.getElementById("addAir-page");
+      addAir_page.style.display = "none";
+    }else{
+      localStorage.contactedit = 0;
+      ifrCilent.parentNode.removeChild(ifrCilent);
+
+    }
+
 	}
 
 	function showChild_page() {

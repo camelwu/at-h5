@@ -253,17 +253,17 @@
       <h3><%=hotelName%></h3>
       <ul>
         <li class = "hotel_check_wrap">
-          <span><%=DepartDate.substring(5,10).replace('-','月')%>日 - <%=ReturnDate.substring(5,10).replace('-','月')%>日</span>
+          <span><%=departDate.substring(5,10).replace('-','月')%>日 - <%=returnDate.substring(5,10).replace('-','月')%>日</span>
           <% function getDayNum(arg1,arg2){
           var time1 = new Date(arg1.replace(/-/g,'/')), time2 = new Date(arg2.replace(/-/g,'/'));
           return  dayCount = (Math.abs(time2 - time1))/1000/60/60/24;
           }
-          var dayNum = getDayNum(DepartDate.substring(0,10),ReturnDate.substring(0,10)); %>
+          var dayNum = getDayNum(departDate.substring(0,10),returnDate.substring(0,10)); %>
           <span>共<%=dayNum%>晚（当地时间为准）</span>
         </li>
         <li class = "hotel_room_det">
           <span>房型：双人床</span>
-          <span>房间数：<%=RoomDetails.length%>间</span>
+          <span>房间数：<%=roomDetails.length%>间</span>
         </li>
       </ul>
     </div>
@@ -286,14 +286,17 @@
 
   <!--模板明细开始-->
   <script id="orderFare" type="text/template" >
-    <p>成人费用 x <span>{%=priceDetail.prices[0].quantity%}</span> <span> ￥{%=priceDetail.prices[0].totalAmount%}</span></p>
-    {% if (priceDetail.prices[1]){ %}
-    <p>儿童费用 x <span>{%=priceDetail.prices[1].quantity%}</span> <span> ￥{%=priceDetail.prices[1].totalAmount%}</span></p>
-    {% } %}
+    <% if( priceRoomInfo.prices.length == 1){ %>
+      <% if( priceRoomInfo.prices[0].category == 1){ %>
+        <p>成人费用 x <span><%=priceRoomInfo.prices[0].quantity%></span> <span> ￥<%=priceRoomInfo.prices[0].amount%></span></p>
+      <% } %>
+    <% } else if (priceRoomInfo.prices.length == 2){ %>
+    <p>成人费用 x <span><%=priceRoomInfo.prices[0].quantity %></span><span>￥<%=priceRoomInfo.prices[0].amount %></span></p>
+    <p>儿童费用 x <span><%=priceRoomInfo.prices[1].quantity %></span><span>￥<%=priceRoomInfo.prices[1].amount %></span></p>
+    <% } %>
   </script>
   <!--模板明细结束-->
 
-  <script src="js/hft_data.js"></script>
   <script src="js/hft_order.js"></script>
   <script>
     //删除出行人

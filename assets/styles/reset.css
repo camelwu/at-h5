@@ -154,7 +154,12 @@ ul li {
 *@time
 *==============================================
 */
-
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
 .clearfix {
     overflow: hidden;
     _height: 1%;

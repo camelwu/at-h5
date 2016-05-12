@@ -49,7 +49,7 @@ $(document).ready()
 //    else{
 //        $("#statusDiv").addClass("status");
 //    }
-    
+
     var data = {
         "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
         "ForeEndType": 3
@@ -92,7 +92,13 @@ $(document).ready()
                 "Code": "50100006"
             }
         }
-
+        else if(business==6){
+          data= {
+            "Parameters": {"BookingRefNo":bookingRefNo,"gtid":pgtid},
+            "ForeEndType": 3,
+            "Code": "60100012"
+          }
+        }
 
         else if(business==1){
             var refID=vlm.getpara("rid");
@@ -159,6 +165,14 @@ $(document).ready()
                     else{
                         window.location.href = 'payment/pay_fail.html?bookingRefNo=' + bookingRefNo+"&type=FlightHotle"
                     }
+                }
+                else if(business==6){
+                  if(data.data.paymentStatus) {
+                    window.location.href = 'payment/pay_success.html?bookingRefNo=' + bookingRefNo+"&type=FlightHotelTour"
+                  }
+                  else{
+                    window.location.href = 'payment/pay_fail.html?bookingRefNo=' + bookingRefNo+"&type=FlightHotelTour"
+                  }
                 }
             } else {
                  alert(data.message);

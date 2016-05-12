@@ -1,6 +1,21 @@
 (function(){
   var latitude = 0;
   var longitude = 0;
+  var tpl1 = [
+    '<% if(images.length==0){ %>',
+    '<img src="<%= hotelPictureURL%>" alt="image"/>',
+    '<% }else{ %>' +
+    '<a href="<%= images[0].imageFileName%>" class="swipebox" title="1/<%=(images.length)%>">',
+    '<img src="<%= images[0].imageFileName %>" alt="image"/ ></a> '+
+    '<% for(var i=0;i<images.length;i++){ %>',
+    '<a style="display:none;" href="<%= images[i].imageFileName%>" class="swipebox" title="<%= (i+1)%>/<%=(images.length)%>">',
+    '<img src="<%= images[i].imageFileName%>" alt="image"/></a>',
+    '<% } %>',
+    '<a class="goback" href="javascript:window.history.go(-1);"></a>',
+    '<% if(images.length>0) %>',
+    '<p class = "bar_img_page"><%=(images.length)%>张</p>',
+    '<% } %>'
+  ].join('');
   //传数据
   var data = {
     "parameters": {
@@ -49,13 +64,13 @@
     if(result.success){
       var data = result.data;
       console.log(data);
-      banner(data)
-      ulList(data)
-      hotelName(data)
-      hotelAddress(data)
-      map(data)
-      message(data)
-      vlm.init()
+      banner(data);
+      ulList(data);
+      hotelName(data);
+      hotelAddress(data);
+      map(data);
+      message(data);
+      vlm.init();
     }else{
       alert("数据加载错误")
     }
@@ -63,9 +78,17 @@
 
   //banner img
   function banner(data){
-    var str = $('#banner').html();
-    var banner = ejs.render(str,data.hotelInfo);
-    $('.hotel_dbanner').html(banner);
+    //图片点击事件
+    var htmlB = ejs.render(tpl1,data.hotelInfo);
+    $("#htmlB").html(htmlB);
+    $(".swipebox").click(function() {
+      $('.gallery').hide(0);
+      $('.portfolio-wide').hide(0);
+    });
+    $(".swipebox").swipebox({
+      useCSS : true,
+      hideBarsDelay : 0
+    });
   }
 
   //ulList

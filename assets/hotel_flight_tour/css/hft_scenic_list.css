@@ -81,6 +81,10 @@ address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
   float:left;
   position: relative;
 }
+.scenic_detile_img img{
+  width: 100%;
+  height: 100%;
+}
 .scenic_detile_content{
   height: 1.4rem;
   margin-left: .2rem;
@@ -343,13 +347,14 @@ p.filter_button_checked{
   height: .66rem;
   opacity: 0.5;
   position: absolute;
+  z-index: 1;
 }
 .icon_go_back{
   width: .6rem;
   height: .6rem;
   position:absolute;
-  left: 0;
-  top: .1rem;
+  left: .28rem;
+  top: .28rem;
   display: inline-block;
   background-image: url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
@@ -454,6 +459,12 @@ p.filter_button_checked{
   padding-left: .26rem;
   position: relative;
 }
+.feature{
+  margin-bottom: .2rem;
+  color: #666;
+  padding-left: .26rem;
+  position: relative;
+}
 .scenic_content_feature li i{
   position: absolute;
   top:.14rem;
@@ -538,16 +549,18 @@ p.filter_button_checked{
   background-position:  -4.18rem -0.8rem;
   top: .06rem;
 }
-.scenic_content_scheduling ol, .scenic_content_notes ol ,.scenic_content_TOS ol{
+.scenic_content_scheduling ul, .scenic_content_notes ul ,.scenic_content_TOS ul{
   margin-left: .16rem;
   position: relative;
   margin-bottom: .1rem;
+
 }
+
 .scenic_content_scheduling li, .scenic_content_notes li, .scenic_content_TOS li{
   margin:.1rem 0 .1rem 0;
   line-height: .48rem;
 }
-.scenic_content_scheduling ol li:last-child, .scenic_content_notes ol li:last-child, .scenic_content_TOS ol li:last-child{
+.scenic_content_scheduling ul li:last-child, .scenic_content_notes ol li:last-child, .scenic_content_TOS ul li:last-child{
   margin-bottom: 0;
 }
 .scenic_content_scheduling .scenic_content_scheduling_down, .scenic_content_notes .scenic_content_scheduling_down, .scenic_content_TOS .scenic_content_scheduling_down{
@@ -560,6 +573,11 @@ p.filter_button_checked{
   background-image: url(../../images/ui/icon-hft.png);
   background-size: 7.5rem 4.54rem;
   background-position:  -3.71rem -2.26rem;
+}
+li.scenic_height1, li.scenic_height2, li.scenic_height3{
+  height: 2.4rem;
+  overflow: hidden;
+  margin-top: .4rem;
 }
 .scenic_content_notes i{
   background-position:  -3.02rem -0.8rem;

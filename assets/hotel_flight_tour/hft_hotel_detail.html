@@ -15,6 +15,7 @@
 <meta name="Description" content="境外专业旅行服务提供机构">
 <title>首页 - 亚洲旅行网</title>
 <link href="../styles/reset.css" rel="stylesheet" type="text/css">
+<link href="../styles/swipebox.css"	rel="stylesheet">
 <link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -22,9 +23,10 @@
   <div id="status">
   </div>
 </div>
-<div class="contents">
+<section class="contents">
   <!--banner-->
-  <div class="hotel_dbanner jpr">
+  <div class="hotel_dbanner jpr " id="htmlB">
+
     <!--<img src="../images/03-1_02.jpg" alt="">-->
     <!--<a class="goback" href="javascript:window.history.go(-1);"></a>-->
     <!--<p>36张</p>-->
@@ -85,11 +87,13 @@
       <!--</li>-->
     </ul>
   </section>
-</div>
+</section>
+
 
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
+<script src="../js/lib/plugins.js"></script>
 <script src="../js/ATGMSMain.js"></script>
 <script src="../js/ATIcons.js"></script>
 <script src="../js/ATTransform.js"></script>
@@ -104,12 +108,7 @@
 
   })
 </script>
-<!--banner-->
-<script id="banner" type="text/template">
-  <img src=<%= hotelPictureURL %> alt="">
-    <a class="goback" href="javascript:window.history.go(-1);"></a>
-    <p><%= images.length %>张</p>
-</script>
+
 <!--roomList-->
 <script id="ulList" type="text/template">
   <% for(var i=0;i<rooms.length;i++){ %>
@@ -137,6 +136,7 @@
 <script id="hotelAddress" type="text/template">
   <%= hotelAddress %>
 </script>
+<!--点评  评分-->
 <script id="message" type="text/template">
   <li class="score"><b><%= hotelReviewCount %></b> 分 <strong>385</strong>人点评<!--<i class="arrow"></i>--></li>
   <li class="star">
@@ -147,5 +147,7 @@
     <!--<i class="arrow"></i>-->
   </li>
 </script>
+
+
 </body>
 </html>

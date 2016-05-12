@@ -318,6 +318,8 @@ ol{padding:0;margin:0;}
 .hotel_dbanner{
   height: 5rem;
   position: relative;
+  background:url(../../images/hotelDetailerrorpic.png) no-repeat;
+  background-size: 100% 100%;
 }
 .hotel_dbanner img{
   position: absolute;

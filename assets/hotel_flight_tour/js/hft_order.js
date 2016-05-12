@@ -11,10 +11,10 @@
   };
   package_detail();
   //初始化
-  var hftFlightHotelTourInfo=JSON.parse(localStorage.hftFlightHotelTourInfo);
+  var hftFlightHotelTourInfo=JSON.parse(sessionStorage.hftFlightHotelTourInfo);
   console.log(hftFlightHotelTourInfo);
 
-  var hftCreateOrderPara=JSON.parse(localStorage.hftCreateOrderPara);
+  var hftCreateOrderPara=JSON.parse(sessionStorage.hftCreateOrderPara);
   hftCreateOrderPara.hotelName=hftFlightHotelTourInfo.hotelInfo.hotelName;
   console.log(hftCreateOrderPara);
 
@@ -40,19 +40,19 @@
     $('#fareDetail').html(faredet);
 
     //总价
-    var totamountnum='￥'+hftCreateOrderPara.TotalPrice;
+    var totamountnum='￥'+hftCreateOrderPara.totalPrice;
     $('.num1 >i').html(totamountnum);
 
     //明细遮罩
     $('.hft_det_mask').on('click',function(){
       $('.hft_det_mask').hide();
       $('.detail_fale').removeClass('open');
-      $('.hft_detail_fare').css('bottom','-3rem');
+      $('.hft_detail_fare').css('bottom','-8rem');
     })
 
     //明细showhide
     var fareFlag=true;
-    $('.detail_fale').on('click',function(){
+    $('.num_tip').on('click',function(){
       if(fareFlag){
         $('.hft_det_mask').show();
         $('.detail_fale').addClass('open');
@@ -61,7 +61,7 @@
       }else{
         $('.hft_det_mask').hide();
         $('.detail_fale').removeClass('open');
-        $('.hft_detail_fare').css('bottom','-3rem');
+        $('.hft_detail_fare').css('bottom','-8rem');
         fareFlag=true;
       }
     });
@@ -70,19 +70,19 @@
     function travelDet(){
       var traAdu={};
       var traChi={};
-      var room=hftCreateOrderPara.RoomDetails;
+      var room=hftCreateOrderPara.roomDetails;
       var traAdultnum=0;
       var traChildnum=0;
       for(var i=0;i<room.length; i++)
       {
-        traAdultnum+=parseInt(room[i].Adult);
-        if(room[i].ChildWithoutBed)
+        traAdultnum+=parseInt(room[i].adult);
+        if(room[i].childWithOutBed)
         {
-          traChildnum+=room[i].ChildWithoutBed.length;
+          traChildnum+=room[i].childWithOutBed.length;
         }
-        if(room[i].ChildWithBed)
+        if(room[i].childWithBed)
         {
-          traChildnum+=room[i].ChildWithBed.length;
+          traChildnum+=room[i].childWithBed.length;
         }
 
       }
@@ -120,33 +120,44 @@
 
       var Parmeters = {
         "Parameters": {
-          "SetID": hftCreateOrderPara.SetID,
-          "CacheID": hftCreateOrderPara.CacheID,
-          "CityCodeFrom": hftCreateOrderPara.CityCodeFrom,
-          "CityCodeTo": hftCreateOrderPara.CityCodeTo,
-          "DepartDate": hftCreateOrderPara.DepartDate,
-          "ReturnDate": hftCreateOrderPara.ReturnDate,
-          "HotelID": hftCreateOrderPara.HotelID,
-          "RoomID": hftCreateOrderPara.RoomID,
-          "MemberId": localStorage.memberid,
+          "cityCodeFrom": hftCreateOrderPara.cityCodeFrom,
+          "packageID": hftCreateOrderPara.packageID,
+          "departDate": hftCreateOrderPara.departDate,
+          "returnDate": hftCreateOrderPara.returnDate,
+          "setID": hftCreateOrderPara.setID,
+          "cacheID": hftCreateOrderPara.cacheID,
+          "hotelID": hftCreateOrderPara.hotelID,
+          "roomID": hftCreateOrderPara.roomID,
 
-          "ContactDetail": {
-            "SexCode": "Ms",
-            "FirstName": $('.hft_con_firstname').val(),
-            "LastName": $('.hft_con_lastname').val(),
-            "Email": $('.hft_con_email').val(),
-            "CountryNumber": $('.tel-btn span').html().substring(1),
-            "MobilePhone": $('.hft_con_cell').val()
+          "contactDetail": {
+            "sexCode": "Ms",
+            "firstName": $('.hft_con_firstname').val(),
+            "lastName": $('.hft_con_lastname').val(),
+            "email": $('.hft_con_email').val(),
+            "countryNumber": $('.tel-btn span').html().substring(1),
+            "mobilePhone": $('.hft_con_cell').val()
           },
-          "CurrencyCode": hftCreateOrderPara.CurrencyCode,
-          "TotalPrice": hftCreateOrderPara.TotalPrice
+          //"tours":[
+          //  {
+          //    "tourID":hftFlightHotelTourInfo.tours.tourID,
+          //    "travelDate":"2016-05-25T00:00:00",
+          //    "tourSession":"MorningTour"
+          //  }
+          //],
+          "currencyCode": hftCreateOrderPara.currencyCode,
+          "totalPrice": hftCreateOrderPara.totalPrice,
+          "track": {
+            "browserType":"Chrome",
+            "deviceID":"111"
+          },
+          "memberID": localStorage.memberid,
         },
-        "ForeEndType": 3,
-        "Code": "50100004"
+        "foreEndType": 2,
+        "code": "60100010"
       }
 
       //房间信息
-      Parmeters.Parameters.RoomDetails=hftCreateOrderPara.RoomDetails;
+      Parmeters.Parameters.RoomDetails=hftCreateOrderPara.roomDetails;
 
       //出行人
       var traveller=[];
@@ -156,21 +167,43 @@
         {
           var tra={};
           var person={};
-          person.FirstName=traInfo_sel[i].FirstName;
-          person.LastName=traInfo_sel[i].LastName;
-          person.PassengerType=traInfo_sel[i].PassengerType;
-          person.DateOfBirth=traInfo_sel[i].DateOfBirth;
-          tra.IdNumber=traInfo_sel[i].CertificateInfo.IdNumber;
-          tra.IdCountry=traInfo_sel[i].CertificateInfo.IdCountry;
+          person.firstName=traInfo_sel[i].FirstName;
+          person.lastName=traInfo_sel[i].LastName;
+          person.passengerType=traInfo_sel[i].PassengerType;
+          person.dateOfBirth=traInfo_sel[i].DateOfBirth;
+          tra.idNumber=traInfo_sel[i].CertificateInfo.IdNumber;
+          tra.idCountry=traInfo_sel[i].CertificateInfo.IdCountry;
           tra.idType=traInfo_sel[i].CertificateInfo.IdType;
-          tra.IdActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
-          person.CertificateInfo=tra;
-          person.SexCode=traInfo_sel[i].SexCode;
-          person.CountryCode=traInfo_sel[i].CountryCode;
+          tra.idActivatedDate=traInfo_sel[i].CertificateInfo.IdActivatedDate;
+          person.certificateInfo=tra;
+          person.sexCode=traInfo_sel[i].SexCode;
+          person.countryCode=traInfo_sel[i].CountryCode;
           traveller.push(person);
         }
-        Parmeters.Parameters.TravellerInfo=traveller;
+        Parmeters.Parameters.travellerInfo=traveller;
       }
+
+      //景点信息
+      var tours=[];
+      for(var i=0;i<hftFlightHotelTourInfo.tours.length; i++)
+      {
+        var sceWrap=hftFlightHotelTourInfo.tours[i];
+        var scenic={};
+        scenic.tourID=sceWrap.tourID;
+        scenic.travelDate=sceWrap.travelDates[0];
+        var sceArr=[];
+        for(var j=0; j<sceWrap.tourSessions.length; j++)
+        {
+            var session={};
+            if( sceWrap.tourSessions[j].isSelected == 1){
+              session.tourSession=sceWrap.tourSessions[j].tourSessionName;
+            }
+          sceArr.push(session);
+        }
+        scenic.tourSession=sceArr[0].tourSession;
+        tours.push(scenic);
+      }
+      Parmeters.Parameters.tours=tours;
 
       if( $('.order_tlist2').length != localStorage.hft_peotot){
         jAlert('请添加出行人');
@@ -216,7 +249,7 @@
     vlm.loadend();
     if(json.success)
     {
-      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
+      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
     }else{
       jAlert(json.message);
     }
