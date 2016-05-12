@@ -460,12 +460,13 @@ var hftChoose = {
 
   renderHandler_: function () {
     var result = arguments[0], that = hftChoose;
-    if (result.code == 200&&result.data) {
+    if (result.code == 200&&result.success == 1) {
+      console.log(result)
       var priceNum = result.data.totalAmount;
       that.roomPriceInfo = result.data.prices;
-      that.curData.hotelInfo.rooms = data.roomsPrice;
+      that.curData.hotelInfo.rooms =result.data.roomsPrice;
       console.log(that.curData)
-     // that.renderHandler({success:1, code:200, data:that.curData})
+      that.renderHandler({success:1, code:200, data:that.curData})
     }else{
       alert(result.message)
     }

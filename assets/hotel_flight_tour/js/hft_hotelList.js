@@ -1,7 +1,9 @@
 (function(){
+  //获取资源选择页传过来的数据
   var parametersStorage = JSON.parse(sessionStorage.getItem("hftChangeHotelPara")) || {};
   console.log(parametersStorage);
-
+  //获取资源选择页的url保存下来，再传过去
+  console.log()
   //传数据
   var dataPull = {
     "parameters":parametersStorage ,
@@ -18,7 +20,7 @@
       console.log(data);
       vlm.init();
     }else{
-      alert("数据加载错误")
+      jAlert('暂无酒店数据,请稍后再试', "提示");
     }
   }
   //根据模板需要提前处理好data
@@ -59,14 +61,9 @@
     $('.hotel_list li').on('click',function(){
       $(this).addClass('cur').siblings().removeClass('cur');
       var hotelID = $(this).attr("data-hotelId");
-      //parametersStorage.hotelID = hotelID;
-      //console.log(parametersStorage);
-      //sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
 
       //跳转到详情页用
       console.log(hotelID);
-      parametersStorage.selectedHotelID=1023696;
-      parametersStorage.selectedRoomID=10996872;
       parametersStorage.hotelID = hotelID;
       sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersStorage));
       window.location.href = 'hft_hotel_detail.html';
