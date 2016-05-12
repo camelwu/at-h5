@@ -11,7 +11,6 @@
         var ScenicList = function(){
           var destCityCode=JSON.parse(localStorage.getItem("searchInfo")).FromCity;
           var departCityCode=JSON.parse(localStorage.getItem("searchInfo")).ToCity;
-
           var SParameter = {
             "Parameters": {
               "departCityCode": destCityCode,
@@ -43,8 +42,6 @@
                     var htmlf = $("#FilterDetile").html();
                     var htmlF = ejs.render(htmlf,data.data);
                     $("#FilterList").html(htmlF);
-                    PriceSort();
-                    FilterTheme();
                     PWidth(data);
                     var packageid=$(".scenic-detile_list").attr("data-packageid");
                     console.log(packageid);
