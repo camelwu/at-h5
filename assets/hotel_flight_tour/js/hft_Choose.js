@@ -235,9 +235,11 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
+      window.sessionStorage.removeItem('hftFlightHotelTourInfo');
       window.location.href = that.type == 1?"index.html?type="+that.type:"hft_scenic_list.html?="+that.type;
     });
     this.addHandler(iconBack, 'click', function () {
+      window.sessionStorage.removeItem('hftFlightHotelTourInfo');
       window.location.href = that.type == 1?"index.html?type="+that.type:"hft_scenic_list.html?="+that.type;
     });
     this.addHandler(changeFlight, 'click', function () {
@@ -349,7 +351,7 @@ var hftChoose = {
       that.timer3 = setTimeout(function () {
         window.clearTimeout(that.timer3);
         that.timer3 = null;
-        window.location.href = that.type == 2?"hft_hotel_detail.html?type=" + that.type+"&packageId="+that.initParaObj.packageID:"hft_hotel_detail.html?type=" + that.type;
+        window.location.href = that.type == 2?"hft_hotel_detail.html?type=" + that.type+"&packageId="+that.initParaObj.packageID+"&selectedRoomId="+that.roomPriceInfo.roomID:"hft_hotel_detail.html?type=" + that.type+"&selectedRoomId="+that.roomPriceInfo.roomID;
       }, 500);
     });
     this.addHandler(preserve, 'click', function () {
