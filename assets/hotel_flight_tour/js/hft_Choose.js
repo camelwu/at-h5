@@ -449,7 +449,7 @@ var hftChoose = {
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
     } else {
-      //jAlert("没有数据")
+      alert(resultJSON.message)
     }
   },
 
