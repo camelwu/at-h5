@@ -459,9 +459,16 @@ var hftChoose = {
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
     } else {
+      var backFun = function(){
+        var backEle = document.querySelector('.header_back');
+        that.addHandler(backEle, 'click', function () {
+          window.location.href = that.type == 1?"index.html?type="+that.type:"hft_scenic_list.html?type="+that.type;
+        });
+      };
       tempStrc = $("#template_no_result").html();
       outputStrc = ejs.render(tempStrc, {});
       $(".all_elements").eq(0).html(outputStrc);
+      backFun();
       jAlert(resultJSON.message);
     }
   },
