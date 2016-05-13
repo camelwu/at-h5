@@ -241,6 +241,8 @@ var footer = (function() {
 				sec.style.zIndex = 110;
 				sec.style.left = 0;
 				sec.style.top = 0;
+				sec.style.right = 0;
+				sec.style.bottom = 0;
 				document.body.appendChild(sec);
 			} else {
 				return false;
@@ -291,7 +293,7 @@ var footer = (function() {
 				str = ulstr;
 				break;
 			case 2:
-				str = '<div class="screen_btn"><p class="cancel">取消</p><p class="clears">清空筛选</p><p class="sure">确定</p></div>';
+				str = '<div class="foot_screen_btn"><p class="cancel">取消</p><p class="clears">清空筛选</p><p class="sure">确定</p></div>';
 				if (cache.length > 0) {
 					str += '<div class="screen_box">';
 					str += left[0] + cache.join('') + left[1];
@@ -303,40 +305,40 @@ var footer = (function() {
 				break;
 			case 3:
 				// 航空公司列表
-			/*<section class="flight_company" style="bottom: 0.98rem;">
-				<ul>
-				<li class="cur">
-				<div>
-				<img src="../images/flights.png"/>
-				</div>
-				<span class="airway_name">中国航空</span>
-				<div class="aw_price">
-				<span>+￥</span><span>100</span>
-			</div>
-			<b class="hft_icon"></b>
-				</li>
-				<li>
-				<div>
-				<img src="../images/flights.png"/>
-				</div>
-				<span class="airway_name">中国航空</span>
-				<div class="aw_price">
-				<span>+￥</span><span>100</span>
-			</div>
-			<b class="hft_icon"></b>
-				</li>
-				<li>
-				<div>
-				<img src="../images/flights.png"/>
-				</div>
-				<span class="airway_name">中国航空</span>
-				<div class="aw_price">
-				<span>+￥</span><span>100</span>
-			</div>
-			<b class="hft_icon"></b>
-				</li>
-				</ul>
-				</section>*/
+			//<section class="flight_company" style="bottom: 0.98rem;">
+			//	<ul>
+			//	<li class="cur">
+			//	<div>
+			//	<img src="../images/flights.png"/>
+			//	</div>
+			//	<span class="airway_name">中国航空</span>
+			//	<div class="aw_price">
+			//	<span>+￥</span><span>100</span>
+			//</div>
+			//<b class="hft_icon"></b>
+			//	</li>
+			//	<li>
+			//	<div>
+			//	<img src="../images/flights.png"/>
+			//	</div>
+			//	<span class="airway_name">中国航空</span>
+			//	<div class="aw_price">
+			//	<span>+￥</span><span>100</span>
+			//</div>
+			//<b class="hft_icon"></b>
+			//	</li>
+			//	<li>
+			//	<div>
+			//	<img src="../images/flights.png"/>
+			//	</div>
+			//	<span class="airway_name">中国航空</span>
+			//	<div class="aw_price">
+			//	<span>+￥</span><span>100</span>
+			//</div>
+			//<b class="hft_icon"></b>
+			//	</li>
+			//	</ul>
+			//	</section>
 				break;
 			default:
 				// 非单击类型

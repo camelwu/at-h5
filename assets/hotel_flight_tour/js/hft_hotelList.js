@@ -20,6 +20,18 @@
       list(data);
       //footer();
       var menu_data = {
+            hotelPosition : {
+              title : "航空公司",
+              c : "flight_company",
+              type :3,
+              listData : [
+                {
+                  key: 'flightSetID,flightCacheID',
+                  val: ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"],
+                  type: 1
+                }
+              ]
+            },
             hotelSort : {
               title : "推荐排序",
               c : "foot_hotel_sort",
@@ -51,17 +63,17 @@
                   type: 2
                 }
               ]
-            },
-            hotelPosition : {
-              title : "位置",
-              c : "foot_hotel_position",
-              type : 2,
-              listData : [{
-                key: 'position',
-                val: ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"],
-                type: 2
-              }]
             }
+            //hotelPosition : {
+            //  title : "位置",
+            //  c : "foot_hotel_position",
+            //  type : 2,
+            //  listData : [{
+            //    key: 'position',
+            //    val: ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"],
+            //    type: 2
+            //  }]
+            //}
           },
           menu_call = function() {
             alert("js request json.");
