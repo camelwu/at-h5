@@ -456,16 +456,7 @@ var hftChoose = {
       $("#status").fadeOut();
       $("#preloader").delay(400).fadeOut("medium");
     } else {
-      var backFun = function () {
-        var backEle = document.querySelector('.header_back');
-        that.addHandler(backEle, 'click', function () {
-          window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
-        });
-      };
-      tempStrc = $("#template_no_result").html();
-      outputStrc = ejs.render(tempStrc, {});
-      $(".all_elements").eq(0).html(outputStrc);
-      backFun();
+      that.noResult();
       jAlert(resultJSON.message);
     }
   },
@@ -478,24 +469,41 @@ var hftChoose = {
       that.curData.hotelInfo.rooms = result.data.roomsPrice;
       that.renderHandler({success: 1, code: 200, data: that.curData})
     } else {
-      alert(result.message)
+      that.noResult();
+      jAlert(result.message);
     }
   },
 
   renderHandler_f: function () {
     var result = arguments[0], that = hftChoose;
     if (result.code == 200 && result.success == 1) {
-      console.log(result)
-      // var priceNum = result.data.totalAmount;
-      //that.roomPriceInfo = result.data.prices;
-      // that.curData.hotelInfo.rooms =result.data.roomsPrice;
-      //that.renderHandler({success:1, code:200, data:that.curData})
+      that.curData.hotelInfo =result.data.hotelInfo;
+      that.curData.flightInfo =result.data.flightInfo;
+      that.curData.airwayCacheID =result.data.airwayCacheID;
+      that.curData.airwaySetID =result.data.airwaySetID;
+      that.renderHandler({success:1, code:200, data:that.curData})
     } else {
-      alert(result.message)
+      that.noResult();
+      jAlert(result.message);
     }
   },
 
-  createPriceEle: function () {
+   noResult:function(){
+     $("#status").fadeOut();
+     $("#preloader").delay(400).fadeOut("medium");
+     var backFun = function () {
+       var backEle = document.querySelector('.header_back');
+       that.addHandler(backEle, 'click', function () {
+         window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?type=" + that.type;
+       });
+     }, tempStrc="", outputStrc="", that = hftChoose;
+     tempStrc = $("#template_no_result").html();
+     outputStrc = ejs.render(tempStrc, {});
+     $(".all_elements").eq(0).html(outputStrc);
+     backFun();
+   },
+
+   createPriceEle: function () {
     var selectedRoomId = "", priceRoom = null, that = hftChoose, temEle = null, str = '';
     var priceE = document.querySelector('.priceTotal span'), priceOuter = document.querySelector('.priceDetailInfo');
     var priceTemp = ' <p>成人<span class="price-num-price">￥<span></span></span></p><p>儿童<span class="price-num-price">￥<span></span></span></p>';
@@ -645,6 +653,7 @@ var hftChoose = {
     this.initParaObj = paraObj;
     this.urlParseObj = urlParseObj;
     this.type = urlParseObj.type;
+    this.curData = hftFlightHotelTourInfo;
     this.cacheOtherInfo = {
       adult: temObj['AdultNum'],
       child: temObj['ChildNum'],
@@ -653,8 +662,8 @@ var hftChoose = {
     };
     if (originAirIds && hftFlightHotelTourInfo) {
       if (originAirIds['airwaySetID'] != hftFlightHotelTourInfo['airwaySetID'] || originAirIds['airwayCacheID'] != hftFlightHotelTourInfo['airwayCacheID']) {
-        this.initParaObj.flightCacheID = hftFlightHotelTourInfo['airwaySetID'];
-        this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwayCacheID'];
+        this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwaySetID'];
+        this.initParaObj.flightCacheID = hftFlightHotelTourInfo['airwayCacheID'];
         if (this.type == "2") {
           this.initParaObj.tours = this.tourParaObjHandler(hftFlightHotelTourInfo);
           this.initParaObj.packageID = urlParseObj['packageId'];
