@@ -101,6 +101,13 @@
 <script src="./footer.js"></script>
 <script>
   var menu_data = {
+            hotelPosition : {
+              title : "航空公司",
+              c : "flight_company",
+              type :3,
+              key : 0,
+              listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+            },
             hotelSort : {
               title : "推荐排序",
               c : "footer_filter_hotel_sort",
@@ -118,14 +125,8 @@
               }, {
                 "酒店类型" : ["商务", "度假"]
               }]
-            },
-            hotelPosition : {
-              title : "位置",
-              c : "flight_company",
-              type :3,
-              key : 0,
-              listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
             }
+
           },
 //
           menu_call = function() {
