@@ -3,7 +3,6 @@
  */
 var val = vlm.parseUrlPara(window.location.href);
 var changeFlightInfo,oldFlightInfo;
-var airwayData = [];
 //var sendData = {
 //  "flightCacheID": 3010900,
 //  "flightSetID": 30000023,
@@ -86,17 +85,12 @@ var flightList = {
           var json = ret, that = flightList;
           console.log(json);
           var data = json.data;
-          airwayData = data.airways;
-          for(var a = 0;a < data.airways.length;a++){
-
-          }
           var str1 = $("#tplFlightList").html();
           var flight_list = ejs.render(str1, data);
           document.getElementById('fligtList').innerHTML = flight_list;
           var str2 = $('#tplAirwayList').html();
           var airway_list = ejs.render(str2, data);
           document.getElementById('airwayList').innerHTML = airway_list;
-          that.bottom();
           $.each($('.seat_detail'),function(i,item){
               if($(this).attr('data-setID')==oldFlightInfo.flightSetID){
                   $(this).find('b').addClass('cho_gou').siblings().find('b').removeClass('cho_gou');
@@ -117,7 +111,7 @@ var flightList = {
              $('#pageBack').show();
              changeFlightInfo.flightSetID = $(this).attr('data-airwaySetID');
              changeFlightInfo.flightCacheID = $(this).attr('data-airwayCacheID');
-             that.tAjax("",changeFlightInfo,"60100005","2",flightListBack);
+             that.tAjax("",changeFlightInfo,"60100005","3",flightListBack);
            });
           //  页面跳转
           $(".seat_detail").click(function(){
@@ -138,8 +132,8 @@ var flightList = {
               window.location.href = 'hft_choose.html'+window.location.search;
           });
       };
-      this.tAjax("",oldFlightInfo,"60100005","2",flightListBack);
-
+      this.tAjax("",oldFlightInfo,"60100005","3",flightListBack);
+      that.bottom();
   },
   bottom:function(){
     var menu_data = {
@@ -147,8 +141,8 @@ var flightList = {
           title : "航空公司",
           c : "airway",
           type : 1,
-          key : 0,
-          listData : airwayData
+          key : 'airway',
+          listData : data.airways
         },
         hotelScreen : {
           title : "快速排序",

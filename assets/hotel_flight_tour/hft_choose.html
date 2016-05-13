@@ -62,7 +62,9 @@
             </div>
             <div class="right">
             <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %></span>
-              <span class="plusDay">+1天</span>
+              <% if(flightInfo["flightReturnSpacingDay"]){ %>
+              <span class="plusDay">+<%=flightInfo["flightReturnSpacingDay"]%>天</span>
+              <% }%>
             <span
               class="arrivePort"><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["termArrive"] %></span>
             </div>
@@ -91,7 +93,9 @@
             </div>
             <div class="right">
             <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %></span>
-              <span class="plusDay">+1天</span>
+              <% if(flightInfo["flightLeaveSpacingDay"]){ %>
+                   <span class="plusDay">+<%=flightInfo["flightLeaveSpacingDay"]%>天</span>
+              <% }%>
             <span
               class="arrivePort"><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["termArrive"] %></span>
             </div>
