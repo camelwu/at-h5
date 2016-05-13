@@ -334,6 +334,8 @@ ol{padding:0;margin:0;}
   padding-bottom: 1rem;
   overflow: hidden;
   background: #FFFFFF;
+  position: fixed;
+  bottom:-100%;
 }
 .footer_filter .flight_company li{
   position: relative;
