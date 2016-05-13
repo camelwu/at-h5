@@ -13,6 +13,7 @@ var footer = (function() {
 	// 遮罩
 	masker,
 	// 菜单盒子
+    maskerSc,
 	box,
 	// 盒子中选择
 	sec,
@@ -153,6 +154,7 @@ var footer = (function() {
 		create : function() {
 			//overlay
 			this.createMask("hotelPop", "footer_filter");
+      this.createMaskSc("footer_filter_masker");
 			//create menu
 			box = document.createElement('footer');
 			box.className = 'footer_filter_btn ';
@@ -178,7 +180,7 @@ var footer = (function() {
 		},
 		// masker
 		createMask : function(id, c) {
-			if (!masker) {
+			if (!maskerSc) {
 				masker = document.createElement('div');
 				id ? masker.id = id : null;
 				c ? masker.className = c : null;
@@ -198,6 +200,11 @@ var footer = (function() {
 				return false;
 			}
 		},
+    createMaskSc :function(S){
+      maskerSc = document.createElement('div');
+      document.body.appendChild(maskerSc);
+      maskerSc.className =S;
+  },
 		// section
 		createSec : function(c, d, t) {
 			var str = '', mysec = document.createElement('section'), i = 0, l = d.length;
@@ -263,6 +270,7 @@ var footer = (function() {
 		},
 		remove : function() {
 			masker.style.display = "none";
+      maskerSc.style.display = "none";
 			return this;
 		},
 		request : function() {
@@ -293,6 +301,7 @@ var footer = (function() {
 				sec = masker.getElementsByTagName("section");
 				if (masker.style.display == "none") {
 					masker.style.display = "block";
+          maskerSc.style.display = "block";
 					masker.children[n].style.bottom = "0.98rem";
 				} else {
 					if (masker.children[n].style.bottom == "0.98rem") {
