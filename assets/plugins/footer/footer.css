@@ -488,6 +488,56 @@ section.foot_hotel_screen{
 	left: 0;
 	bottom: 0.98rem;
 }
+section.foot_hotel_screen .screen_btn{
+	height: 0.89rem;
+	line-height: 0.89rem;
+	background: #f7f7f7;
+	position: relative;
+}
+section.foot_hotel_screen .screen_btn p{
+	top: 0;
+	text-align: center;
+	color: #999;
+}
+section.foot_hotel_screen .cancel{
+	left: 0;
+}
+section.foot_hotel_screen .clears{
+	margin: 0 1.5rem;
+}
+section.foot_hotel_screen .sure{
+	right: 0;
+	color: #ffb500;
+}
+section.foot_hotel_screen .screen_box{
+	position: relative;
+	height: 5.83rem;
+}
+section.foot_hotel_screen .screen_lf{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2rem;
+	height: 5.83rem;
+	overflow-y: scroll;
+	background: #f7f7f7;
+}
+section.foot_hotel_screen .screen_lf{
+	height: 0.96rem;
+	line-height: 0.96rem;
+	color: #333;
+	padding-left: 0.23rem;
+	border-left: 3px solid #f7f7f7;
+	background: #f7f7f7;
+}
+
+section.foot_hotel_screen
+
+section.foot_hotel_screen
+
+section.foot_hotel_screen
+
+
 
 
 
