@@ -125,7 +125,7 @@ ol{padding:0;margin:0;}
   z-index: 130;
 }
 /*酒店的  开始*/
-.footer_filter_btn  dl{
+.footer_filter_btn  dl.footer_filter_hotel_screen,.footer_filter_btn  dl.footer_filter_hotel_sort,.footer_filter_btn  dl.footer_filter_hotel_position{
   float:left;
   width:33.3333333333333%;
   text-align: center;
