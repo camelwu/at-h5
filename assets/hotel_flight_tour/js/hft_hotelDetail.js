@@ -89,7 +89,7 @@
       var roomID = $(this).attr('data-hotelId');
       $(this).addClass('cur').siblings().removeClass('cur');
       if(ulrRoom){
-        window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24)+'selectedRoomId='+roomID;
+        window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24)+'&selectedRoomId='+roomID;
       }else{
         window.location.href = 'hft_choose.html'+chooseUrl+'&selectedRoomId='+roomID;
       }
