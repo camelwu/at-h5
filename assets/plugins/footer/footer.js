@@ -91,7 +91,7 @@ var footer = (function() {
 			});
 			// masker层里的各种点击：取消，确定按钮
 			that.on(masker, 'click', function() {
-				event = event || window.event;
+				var event = event || window.event;
 				var target = event.target || event.srcElement, src, index, cur;
 				src = target.parentNode;
 				if (target == masker) {

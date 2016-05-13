@@ -3,7 +3,6 @@
  */
 var val = vlm.parseUrlPara(window.location.href);
 var changeFlightInfo,oldFlightInfo;
-var data;
 //var sendData = {
 //  "flightCacheID": 3010900,
 //  "flightSetID": 30000023,
@@ -85,7 +84,7 @@ var flightList = {
       var flightListBack = function(ret){
           var json = ret, that = flightList;
           console.log(json);
-          data = json.data;
+          var data = json.data;
           var str1 = $("#tplFlightList").html();
           var flight_list = ejs.render(str1, data);
           document.getElementById('fligtList').innerHTML = flight_list;
@@ -123,15 +122,14 @@ var flightList = {
                 for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
                   if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
                     hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
-                    hftFlightHotelTourInfo.flightInfo.setID = data.flightInfoListGroup[i].flightInfoList[j].setID;
-                    hftFlightHotelTourInfo.flightInfo.cacheID =data.flightInfoListGroup[i].flightInfoList[j].cacheID;
+                    hftFlightHotelTourInfo.airwaySetID = data.flightInfoListGroup[i].flightInfoList[j].setID;
+                    hftFlightHotelTourInfo.airwayCacheID =data.flightInfoListGroup[i].flightInfoList[j].cacheID;
                   }
                 }
               }
               sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
               hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
-              var packageID = val.packageId;
-              window.location.href = 'hft_choose.html?type=2';
+              window.location.href = 'hft_choose.html'+window.location.search;
           });
       };
       this.tAjax("",oldFlightInfo,"60100005","2",flightListBack);

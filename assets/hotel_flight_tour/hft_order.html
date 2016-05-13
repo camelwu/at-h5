@@ -324,6 +324,7 @@
     // 编辑出行人
     function editPassager(obj){
       var id=$(obj).find("input").eq(0).val();
+      localStorage.contactedit=1;
       var numofAdult=window.localStorage.adunum;
       var numofChild=window.localStorage.chinum;
       vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);

@@ -1,8 +1,15 @@
 (function(){
   //获取本地存储数据
   var sStorage = JSON.parse(sessionStorage.getItem("hftHotelDetailPara")) || {};
-  console.log(sStorage);
-
+  //console.log(sStorage);
+  //取url再传给资源选择页
+  var chooseUrl = sessionStorage.getItem("hftHotelChooseUrl");
+  //添加当前选中样式  资源选择页有roomId、列表页没有，所以用判断
+  var ulrRoom = window.location.search;
+  if(ulrRoom){
+    var ulrRoomId = ulrRoom.substring(40);
+  }
+  //经纬度
   var latitude = 0;
   var longitude = 0;
   var tpl1 = [
@@ -29,18 +36,20 @@
   //接数据
   vlm.loadJson('',JSON.stringify(data),dataCallBack);
   function dataCallBack(result){
-    if(result.success){
-      var data = result.data;
-      console.log(data);
+    if(result.success == 1&&result.code == 200){
+      var data = result.data, hftFlightHotelTourInfo =JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
+      hftFlightHotelTourInfo['hotelInfo'] = data['hotelInfo']; //替换酒店信息
+      window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(hftFlightHotelTourInfo));
       banner(data);
       ulList(data);
       hotelName(data);
       hotelAddress(data);
       map(data);
       message(data);
+      date();
       vlm.init();
     }else{
-      alert("数据加载错误")
+      jAlert('暂无酒店详细数据,请稍后再试', "提示");
     }
   }
 
@@ -64,8 +73,28 @@
     var str = $('#ulList').html();
     var ulList = ejs.render(str,data.hotelInfo);
     $('ul.ul_room').html(ulList);
-  }
+    //添加当前选中
+    //判断  从资源选择页跳转 有选中，列表页过来没有选中
+    if(ulrRoom){
+      $('.ul_room li').each(function(i){
+        var attr = $('.ul_room li').eq(i).attr('data-hotelid');
+        if( attr == ulrRoomId ){
+          $('.ul_room li').eq(i).addClass('cur');
+        }
+      })
+    }
 
+    //点击事件  跳转
+    $('.hotel_detail_rooms li').on('click',function(){
+      var roomID = $(this).attr('data-hotelId');
+      $(this).addClass('cur').siblings().removeClass('cur');
+      if(ulrRoom){
+        window.location.href = 'hft_choose.html'+ulrRoom.substring(0,24)+'&selectedRoomId='+roomID;
+      }else{
+        window.location.href = 'hft_choose.html'+chooseUrl+'&selectedRoomId='+roomID;
+      }
+    });
+  }
   //hotelName
   function hotelName(data){
     var str =$('#hotelName').html();
@@ -120,4 +149,10 @@
     }
     return data;
   }
+  //日期
+  function date(){
+    $('.hotel_detail_rooms .departDate').html(sStorage.departDate.substring(5,10));
+    $('.hotel_detail_rooms .returnDate').html(sStorage.returnDate.substring(5,10));
+  }
+
 })()

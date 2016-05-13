@@ -385,7 +385,7 @@ li.order_tlist2 {
 
 .detail_fale {
   display: inline-block;
-  margin-top: .42rem;
+  vertical-align: top;
   background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
   background-size: .24rem .14rem;
   width: .32rem;
@@ -394,7 +394,7 @@ li.order_tlist2 {
 }
 
 .detail_fale.open {
-  margin-top: .42rem;
+  margin-top: .05rem;
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform-origin: 40% 25%;
@@ -441,6 +441,7 @@ li.order_tlist2 {
 .num_tip {
   width: .6rem;
   height: .98rem;
+  padding-top: .4rem;
 }
 
 .order_submit {
@@ -450,7 +451,7 @@ li.order_tlist2 {
   background-color: #FDB330;
   text-align: center;
   color: white;
-  font-size: .35rem;
+  font-size: .36rem;
 }
 
 .order_submit:hover {
