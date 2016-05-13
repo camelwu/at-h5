@@ -211,6 +211,7 @@ var footer = (function() {
 			//menu
 			box = document.createElement('footer');
 			box.className = 'footer_' + numToEn(size(footer.data));
+			addClass('footer_filter_btn',box);
 			if (1) {
 				box.style.position = 'fixed';
 				box.style.left = 0;
@@ -236,7 +237,10 @@ var footer = (function() {
 			if (!sec) {
 				sec = document.createElement('span');
 				sec.style.display = "inline";
+				sec.style.position = "fixed";
 				sec.style.zIndex = 110;
+				sec.style.left = 0;
+				sec.style.top = 0;
 				document.body.appendChild(sec);
 			} else {
 				return false;
@@ -299,6 +303,7 @@ var footer = (function() {
 				break;
 			case 3:
 				// 航空公司列表
+
 				break;
 			default:
 				// 非单击类型

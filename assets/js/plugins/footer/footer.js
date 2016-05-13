@@ -147,15 +147,14 @@ var footer = (function() {
 
         });
         // 遮罩层点击，隐藏
-
       },
       // 新建筛选：列表&菜单
       create : function() {
         //overlay
-        this.createMask("hotelPop", "hotel_pop");
+        this.createMask("hotelPop", "footer_filter");
         //create menu
         box = document.createElement('footer');
-        box.className = 'hotel_list_bottom';
+        box.className = 'footer_filter_btn';
         if (!1) {
           box.style.position = 'fixed';
           box.style.left = 0;
@@ -325,41 +324,41 @@ var footer = (function() {
  * c：className
  * type：0底部按钮直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，但为多选，点击确认按钮进行查询
  */
-var menu_data = {
-    hotelSort : {
-      title : "推荐排序",
-      c : "sort bg_color",
-      type : 1,
-      key : 'sort',
-      listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
-    },
-    hotelScreen : {
-      title : "筛选",
-      c : "screen",
-      type : 2,
-      key : 'starRatingList',
-      listData : [{
-        "星级档次" : ["二星", "三星", "四星"]
-      }, {
-        "酒店类型" : ["商务", "度假"]
-      }]
-    },
-    hotelPosition : {
-      title : "位置",
-      c : "position",
-      type : 2,
-      key : 0,
-      listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
-    }
-  },
+//var menu_data = {
+//    hotelSort : {
+//      title : "推荐排序",
+//      c : "sort bg_color",
+//      type : 1,
+//      key : 'sort',
+//      listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
+//    },
+//    hotelScreen : {
+//      title : "筛选",
+//      c : "screen",
+//      type : 2,
+//      key : 'starRatingList',
+//      listData : [{
+//        "星级档次" : ["二星", "三星", "四星"]
+//      }, {
+//        "酒店类型" : ["商务", "度假"]
+//      }]
+//    },
+//    hotelPosition : {
+//      title : "位置",
+//      c : "position",
+//      type : 2,
+//      key : 0,
+//      listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+//    }
+//  },
+////
+//  menu_call = function() {
+//    alert("js request json.");
+//  };
+//;
 //
-  menu_call = function() {
-    alert("js request json.");
-  };
-;
-
-if (footer) {
-  footer.data = menu_data;
-  footer.callback = menu_call;
-}
-footer.filters.init();
+//if (footer) {
+//  footer.data = menu_data;
+//  footer.callback = menu_call;
+//}
+//footer.filters.init();
