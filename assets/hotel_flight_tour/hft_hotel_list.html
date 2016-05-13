@@ -17,6 +17,7 @@
 <link href="../styles/reset.css" rel="stylesheet" type="text/css">
 <link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
 <link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
+<link href="../plugins/footer/footer.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!--loading-->
@@ -99,19 +100,19 @@
   </ul>
 </div>
 <!--底部-->
-<footer class="hotel_list_bottom">
-  <dl class="sort" id="hotelSort">
-    <dt></dt>
-    <dd>推荐排序</dd>
-  </dl>
-  <dl class="screen" id="hotelScreen">
-    <dt></dt>
-    <dd>筛选</dd>
-  </dl>
-  <dl class="position" id="hotelPosition">
-    <dt></dt>
-    <dd>位置</dd>
-  </dl></footer>
+<!--<footer class="hotel_list_bottom">-->
+  <!--<dl class="sort" id="hotelSort">-->
+    <!--<dt></dt>-->
+    <!--<dd>推荐排序</dd>-->
+  <!--</dl>-->
+  <!--<dl class="screen" id="hotelScreen">-->
+    <!--<dt></dt>-->
+    <!--<dd>筛选</dd>-->
+  <!--</dl>-->
+  <!--<dl class="position" id="hotelPosition">-->
+    <!--<dt></dt>-->
+    <!--<dd>位置</dd>-->
+  <!--</dl></footer>-->
 <!--弹框-->
 <!--<div class="hotel_pop" id="hotelPop" style="display: none;">-->
   <!--&lt;!&ndash; sort pop&ndash;&gt;-->
@@ -184,7 +185,7 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/plugins/footer/footer.js"></script>
+<script src="../plugins/footer/foot.js"></script>
 <script src="js/hft_hotelList.js"></script>
 <!--title-->
 <script id="title" type="text/template">
@@ -217,78 +218,7 @@
   <% } %>
 
 </script>
-<script>
-  $(function(){
-    //酒店按钮点击
-    $('#hotelSort').on('click',function(){
-      $(this).addClass('bg_color').siblings().removeClass('bg_color');
-      $('#hotelPop').fadeIn('fast');
-      slideNum('0.98rem','-5.98rem','-4.98rem')
-    });
-    /*排序*/
-    $('.hotel_pop .sort li').on('click',function(e){
-      e.stopPropagation();
-      $(this).addClass('curimg').siblings().removeClass('curimg');
-      $('#hotelSort').removeClass('bg_color');
-      $('#hotelPop .sort').css({'bottom':'-3.98rem'});
-      $('#hotelPop').fadeOut('fast');
-    })
-    //筛选
-    $('section.screen,section.position').on('click',function(e){
-      e.stopPropagation();
-    });
-    $('#hotelScreen').on('click',function(){
-      $(this).addClass('bg_color').siblings().removeClass('bg_color');
-      $('#hotelPop').fadeIn('fast');
-      slideNum('-3.98rem','0.98rem','-4.98rem')
-    });
-    $('#screenLeft li').on('click',function(){
-      $(this).addClass('cur').siblings().removeClass('cur');
-      $('#screenRight ul').eq($(this).index()).show().siblings().hide();
-    });
-    $('#screenRight li').on('click',function(){
-      $(this).addClass('cur').siblings().removeClass('cur');
-    });
-    //清空
-    $('.hotel_pop .clears').on('click',function(){
-      $('#screenLeft li').eq(0).addClass('cur').siblings().removeClass('cur');
-      $('#screenRight ul').eq(0).show().siblings().hide();
-      $('#screenRight ul').each(function(i){
-        $('#screenRight ul').eq(i).find('li').eq(0).addClass('cur').siblings().removeClass('cur');
-      })
-    });
-    //取消 确认  遮罩层点击事件
-    $('.hotel_pop .screen .cancel,.hotel_pop .screen .sure,.hotel_pop').on('click',function(){
-      $('#hotelPop').fadeOut('fast');
-      $('#hotelScreen').removeClass('bg_color');
-      $('.hotel_list_bottom dl').removeClass('bg_color');
-      slideNum('-3.98rem','-5.98rem','-4.98rem')
-    });
-    //位置
-    $('#hotelPosition').on('click',function(){
-      $('#hotelPop').fadeIn('fast');
-      $(this).addClass('bg_color').siblings().removeClass('bg_color');
-      slideNum('-3.98rem','-5.98rem','0.98rem');
-    });
-    $('#popPosition li').on('click',function(){
-      $(this).addClass('cur').siblings().removeClass('cur');
-    })
-    //位置清空
-    $('#popPosition .clears').on('click',function(){
-      $('#popPosition li').eq(0).addClass('cur').siblings().removeClass('cur');
-    })
-    //位置取消  确认
-    $('#popPosition .cancel,#popPosition .sure').on('click',function(){
-      $('#hotelPop').fadeOut('fast');
-      $('.hotel_list_bottom dl').removeClass('bg_color');
-      slideNum('-3.98rem','-5.98rem','-4.98rem')
-    })
-    function slideNum(sort,screen,position){
-      $('#hotelPop .sort').css({'bottom':sort});
-      $('#hotelPop .screen').css({'bottom':screen});
-      $('#hotelPop .position').css({'bottom':position});}
-  })
-</script>
+
 </body>
 </html>
 

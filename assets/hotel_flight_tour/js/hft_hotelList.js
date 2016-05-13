@@ -22,36 +22,51 @@
       var menu_data = {
             hotelSort : {
               title : "推荐排序",
-              c : "sort bg_color",
+              c : "footer_filter_hotel_sort",
               type : 1,
-              key : 'sort',
-              listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
+              listData : [
+                {
+                  key: 'sort',
+                  val: ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"],
+                  type: 1
+                }
+              ]
             },
             hotelScreen : {
               title : "筛选",
-              c : "screen",
+              c : "footer_filter_hotel_screen",
               type : 2,
               key : 'starRatingList',
-              listData : [{
-                "星级档次" : ["二星", "三星", "四星"]
-              }, {
-                "酒店类型" : ["商务", "度假"]
-              }]
+              listData : [
+                {
+                  key: 'start',
+                  val: ["3", "4", "4+"],
+                  title: "星级档次",
+                  type: 2
+                },
+                {
+                  key: 'htype',
+                  val: ["度假", "亲子", "随便"],
+                  title: "酒店类型",
+                  type: 2
+                }
+              ]
             },
             hotelPosition : {
               title : "位置",
-              c : "position",
+              c : "footer_filter_hotel_position",
               type : 2,
-              key : 0,
-              listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+              listData : [{
+                key: 'position',
+                val: ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"],
+                type: 2
+              }]
             }
           },
-//
           menu_call = function() {
             alert("js request json.");
           };
       ;
-
       if (footer) {
         footer.data = menu_data;
         footer.callback = menu_call;

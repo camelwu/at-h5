@@ -211,7 +211,7 @@ var footer = (function() {
 			//menu
 			box = document.createElement('footer');
 			box.className = 'footer_' + numToEn(size(footer.data));
-			addClass('footer_filter_btn',box);
+			//addClass('footer_filter_btn',box);
 			if (1) {
 				box.style.position = 'fixed';
 				box.style.left = 0;
