@@ -356,7 +356,7 @@ var footer = (function() {
 				// 默认第一个选中？
 				var li = t == 2 ? '<li class="cur">不限<i></i></li>' : '<li class="cur">' + arg[0] + '<i></i></li>';
 				for (var j = 1; j < arg.length; j++) {
-					li += '<li>' + arg[j] + '<i></i></li>';
+					li += '<li >' + arg[j] + '<i></i></li>';
 				}
 				return li;
 			}
