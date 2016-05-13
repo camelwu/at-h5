@@ -577,7 +577,7 @@ section.foot_hotel_position li.cur i{
 	width: 50%;
 }
 /*航空公司  开始*/
-.footer_filter .flight_company {
+section.flight_company{
 	width: 100%;
 	padding-bottom: 1rem;
 	overflow: hidden;
@@ -585,7 +585,7 @@ section.foot_hotel_position li.cur i{
 	position: fixed;
 	bottom: -100%;
 }
-.footer_filter .flight_company li {
+section.flight_company li {
 	position: relative;
 	height: .68rem;
 	padding: .3rem;
@@ -593,34 +593,34 @@ section.foot_hotel_position li.cur i{
 	font-size: .28em;
 	border-bottom: 1px solid #ddd;
 }
-.footer_filter .flight_company li div:nth-child(1) {
+section.flight_company li div:nth-child(1) {
 	float: left;
 	width: .4rem;
 	margin-top: .15rem;
 	height: .35rem;
 	overflow: hidden;
 }
-.footer_filter .flight_company li .airway_name {
+section.flight_company li .airway_name {
 	float: left;
 	margin-left: .1rem;
 	font-size: .28rem;
 	line-height: .68rem;
 	color: #333333;
 }
-.footer_filter .flight_company .aw_price {
+section.flight_company .aw_price {
 	float: right;
 	color: #fb6a22;
 	font-weight: bold;
 	font-size: .28rem;
 	line-height: .68rem;
 }
-.footer_filter .flight_company .aw_price span:first-child {
+section.flight_company .aw_price span:first-child {
 	font-size: .12rem;
 }
-.footer_filter .flight_company .aw_price span:last-child {
+section.flight_company .aw_price span:last-child {
 	font-size: .28rem;
 }
-.footer_filter .flight_company li.cur b.hft_icon {
+section.flight_company li.cur b.hft_icon {
 	display: inline-block;
 	background-image: url(../../images/ui/icon-hft.png);
 	background-repeat: no-repeat;
@@ -632,7 +632,6 @@ section.foot_hotel_position li.cur i{
 	width: 0.5rem;
 }
 /*航空公司 结束*/
-
 
 
 
