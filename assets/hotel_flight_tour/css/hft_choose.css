@@ -221,7 +221,7 @@ body{
 }
 
 .startPort, .arrivePort{
-  margin-top: .32rem;
+  margin-top: .38rem;
 }
 .arrivePort{
   position: absolute;
