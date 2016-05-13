@@ -128,7 +128,7 @@ var flightList = {
               }
               sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
               hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
-              window.location.href = 'hft_choose.html?type=2';
+              window.location.href = 'hft_choose.html'+window.location.search;
           });
       };
       this.tAjax("",oldFlightInfo,"60100005","2",flightListBack);
