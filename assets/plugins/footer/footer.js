@@ -155,7 +155,7 @@ var footer = (function() {
 			this.createMask("hotelPop", "footer_filter");
 			//create menu
 			box = document.createElement('footer');
-			box.className = 'hotel_list_bottom';
+			box.className = 'footer_filter_btn ';
 			if (!1) {
 				box.style.position = 'fixed';
 				box.style.left = 0;

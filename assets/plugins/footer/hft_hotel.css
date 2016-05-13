@@ -110,8 +110,11 @@ ol{padding:0;margin:0;}
 }
 
 
-/*底部开始的css*/
-.hotel_list_bottom{
+
+
+
+/*--------底部开始的css-----------*/
+.footer_filter_btn {
   position: fixed;
   bottom:0;
   left: 0;
@@ -122,7 +125,7 @@ ol{padding:0;margin:0;}
   z-index: 130;
 }
 /*酒店的  开始*/
-.hotel_list_bottom dl{
+.footer_filter_btn  dl{
   float:left;
   width:33.3333333333333%;
   text-align: center;
@@ -131,23 +134,23 @@ ol{padding:0;margin:0;}
   font-family: FZLTXHK;
   background: #4a4a4a;
 }
-.hotel_list_bottom dl.cur{
+.footer_filter_btn  dl.cur{
   background: #2a2a2a;
 }
-.hotel_list_bottom dl dt{
+.footer_filter_btn  dl dt{
   width: 0.34rem;
   height: 0.37rem;
   background:url(../../images/ui/icon_common.png);
   background-size:7.89rem 5.07rem;
   margin:0.12rem auto 0.05rem;
 }
-.hotel_list_bottom dl.footer_filter_hotel_sort dt{
+.footer_filter_btn  dl.footer_filter_hotel_sort dt{
   background-position:-0.59rem -2.32rem;
 }
-.hotel_list_bottom dl.footer_filter_hotel_screen dt{
+.footer_filter_btn  dl.footer_filter_hotel_screen dt{
   background-position:-1.87rem -2.32rem;
 }
-.hotel_list_bottom dl.footer_filter_hotel_position dt{
+.footer_filter_btn  dl.footer_filter_hotel_position dt{
   background:url(../../images/hotel_flight_tour/icon_hotel.png);
   background-size:7.89rem 2.58rem;
   background-position:-2.19rem -0.46rem;
@@ -316,6 +319,13 @@ ol{padding:0;margin:0;}
 .footer_filter .footer_filter_hotel_position li.cur i{
   background-position:-5.07rem -0.51rem;
 }
+/*----------酒店的  结束------------*/
+
+
+
+
+
+
 /*底部css  结束*/
 
 
