@@ -274,17 +274,19 @@ var footer = (function() {
 			}
 		},
 		// 重置选中的属性，回归到1
-		resec : function() {
-			var cur = masker.getElementsByClassName("cur"), l = cur.length;
-			for (var i = 0; i < cur.length; i++) {
-				cur[i].className = '';
-			}
-			var ul = masker.getElementsByTagName("ul");
-			for ( i = 0; i < ul.length; i++) {
-				ul[i].firstChild.className = 'cur';
-			}
-			return this;
-		},
+    resec : function() {
+      var cur = masker.getElementsByClassName("cur");
+      var ul = masker.getElementsByTagName("ul");
+      for ( var i = 1; i < ul.length; i++) {
+        var uls = ul[i+1];
+        var li = uls.getElementsByTagName("li");
+        for(var k=0; k < li.length;k++){
+          li[k].className = '';
+        }
+        li[0].className = 'cur';
+      }
+      return this;
+    },
 		showItems : function(n) {
 			// 显示要筛选的列表内容
 			if (masker) {
