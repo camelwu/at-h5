@@ -131,8 +131,8 @@ ol{padding:0;margin:0;}
   background: #2a2a2a;
 }
 .hotel_list_bottom dl dt{
-  width: 0.34rem;
-  height: 0.37rem;
+  width: 0.42rem;
+  height: 0.4rem;
   background:url(../../images/ui/icon_common.png);
   background-size:7.89rem 5.07rem;
   margin:0.12rem auto 0.05rem;
@@ -157,7 +157,7 @@ ol{padding:0;margin:0;}
   background: rgba(0,0,0,0.4);
   z-index: 100;
 }
-.hotel_pop .sort{
+.hotel_pop .sort,.oLay .sort{
   bottom:-3.98rem;
 }
 .hotel_pop .sort,.hotel_pop .position ul{

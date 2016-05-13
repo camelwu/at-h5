@@ -687,6 +687,9 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .ic_sn{
   background-position: 24.5% 50%;
 }
+.hotel_list_bottom dl.airway dt{
+  background-position: 35% 92%;
+}
 /*   航空公司列表    */
 .airway_list{
   width: 100%;

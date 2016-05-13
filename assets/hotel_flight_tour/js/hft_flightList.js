@@ -1,7 +1,9 @@
 /**
  * Created by Venson on 2016/5/9.
  */
+var val = vlm.parseUrlPara(window.location.href);
 var changeFlightInfo,oldFlightInfo;
+var data;
 //var sendData = {
 //  "flightCacheID": 3010900,
 //  "flightSetID": 30000023,
@@ -83,7 +85,7 @@ var flightList = {
       var flightListBack = function(ret){
           var json = ret, that = flightList;
           console.log(json);
-          var data = json.data;
+          data = json.data;
           var str1 = $("#tplFlightList").html();
           var flight_list = ejs.render(str1, data);
           document.getElementById('fligtList').innerHTML = flight_list;
@@ -128,10 +130,50 @@ var flightList = {
               }
               sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
               hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+              var packageID = val.packageId;
               window.location.href = 'hft_choose.html?type=2';
           });
       };
       this.tAjax("",oldFlightInfo,"60100005","2",flightListBack);
+      that.bottom();
+  },
+  bottom:function(){
+    var menu_data = {
+        hotelSort : {
+          title : "航空公司",
+          c : "airway",
+          type : 1,
+          key : 'airway',
+          listData : data.airways
+        },
+        hotelScreen : {
+          title : "快速排序",
+          c : "sort",
+          type : 1,
+          key : 'starRatingList',
+          listData : [{
+            "星级档次" : ["二星", "三星", "四星"]
+          }, {
+            "酒店类型" : ["商务", "度假"]
+          }]
+        },
+        hotelPosition : {
+          title : "筛选",
+          c : "screen",
+          type : 2,
+          key : 0,
+          listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+        }
+      },
+      menu_call = function() {
+        alert("js request json.");
+      };
+
+    if (footer) {
+      footer.data = menu_data;
+      footer.callback = menu_call;
+    }
+    footer.filters.init();
   },
     bottomEvent:function(){
         var shadow = document.getElementById('mbShadow');
@@ -248,7 +290,7 @@ var flightList = {
         changeFlightInfo =  JSON.parse(sessionStorage.hftChangeFlightPara);
         console.log(changeFlightInfo);
         oldFlightInfo =  JSON.parse(sessionStorage.hftChangeFlightPara);
-        this.bottomEvent();
+        //this.bottomEvent();
         this.getFlightList();
     }
 };
