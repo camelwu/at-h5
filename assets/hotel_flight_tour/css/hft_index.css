@@ -249,7 +249,7 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
   margin-left: .3rem;
   border-left:  .2rem solid transparent;
   border-right:  .2rem solid transparent;
-  border-bottom: .2rem solid #fdb330;
+  border-bottom: .2rem solid #474747;
 }
 .age_state_box .state_text{
   width: 3.4rem;
@@ -258,7 +258,7 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
   padding-top: .4rem;
   padding-bottom: .4rem;
   margin-top: -1px;
-  background: #fdb330;
+  background: #474747;
   font-size: .2rem;
   border-radius: .1rem;
   color: #FFFFFF;
