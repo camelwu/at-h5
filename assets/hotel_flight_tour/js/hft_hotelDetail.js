@@ -5,7 +5,8 @@
   //取url再传给资源选择页
   var chooseUrl = sessionStorage.getItem("hftHotelChooseUrl");
   //添加当前选中样式  资源选择页和列表页都有roomId，所以不用判断
-  var ulrRoomId = parseInt(chooseUrl.substring(15));
+  var ulrRoomId = window.location.search.substring(40);
+  console.log(ulrRoomId+'----'+ typeof ulrRoomId)
 
   //经纬度
   var latitude = 0;
@@ -71,19 +72,20 @@
     var ulList = ejs.render(str,data.hotelInfo);
     $('ul.ul_room').html(ulList);
     //添加当前选中
-    $('.hotel_detail_rooms li').each(function(i){
-      //if(ulrRoomId == data.hotelInfo.rooms[i].roomID){
-      //  $('.hotel_detail_rooms li').eq(i).addClass('cur');
-      //}
+    $('.ul_room li').each(function(i){
+      var attr = $('.ul_room li').eq(i).attr('data-hotelid');
+      if( attr == ulrRoomId ){
+        $('.ul_room li').eq(i).addClass('cur');
+      }
     })
+
     //点击事件  跳转
     $('.hotel_detail_rooms li').on('click',function(){
       var roomID = $(this).attr('data-hotelId');
       $(this).addClass('cur').siblings().removeClass('cur');
-      window.location.href = 'hft_choose.html'+chooseUrl+'&roomID='+roomID;
+      window.location.href = 'hft_choose.html'+chooseUrl+'&selectedRoomId='+roomID;
     });
   }
-
   //hotelName
   function hotelName(data){
     var str =$('#hotelName').html();
