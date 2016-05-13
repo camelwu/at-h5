@@ -199,8 +199,8 @@ var htf_search = {
             var startDate, endDate;
             //F+H
             //保存缓存日期
-            startDate = new Date(fhStartDate.replace("-", "/"));
-            endDate = new Date(fhEndDate.replace("-", "/"));
+            startDate = new Date(fhStartDate.replace(/-/g, "/"));
+            endDate = new Date(fhEndDate.replace(/-/g, "/"));
             if (startDate < initStartDate) {
                 startDate = initStartDate;
                 endDate = initEndDate;
@@ -221,8 +221,8 @@ var htf_search = {
             fhtStartDayData.attr('data-day', fhtStartDate);
             fhtReturnDayData.attr('data-day', fhtEndDate);
             //显示选择的日期
-            startDate = new Date(fhtStartDate.replace("-", "/"));
-            endDate = new Date(fhtEndDate.replace("-", "/"));
+            startDate = new Date(fhtStartDate.replace(/-/g, "/"));
+            endDate = new Date(fhtEndDate.replace(/-/g, "/"));
             if (startDate < initStartDate) {
                 startDate = initStartDate;
                 endDate = initEndDate;
@@ -279,8 +279,8 @@ var htf_search = {
                 fhStartDayData.attr('data-day', result[0]);
                 fhReturnDayData.attr('data-day', result[1]);
                 //显示选择的日期
-                var startDate = new Date(result[0].replace("-", "/"));
-                var endDate = new Date(result[1].replace("-", "/"));
+                var startDate = new Date(result[0].replace(/-/g, "/"));
+                var endDate = new Date(result[1].replace(/-/g, "/"));
                 fhStartDay.html((startDate.getMonth() + 1) + "月" + startDate.getDate() + "日");
                 fhStartWeekDay.html(vlm.Utils.getWeek(startDate.toDateString()));
                 fhEndDay.html((endDate.getMonth() + 1) + "月" + endDate.getDate() + "日");
@@ -296,8 +296,8 @@ var htf_search = {
                 fhtStartDayData.attr('data-day', result[0]);
                 fhtReturnDayData.attr('data-day', result[1]);
                 //显示选择的日期
-                var startDate = new Date(result[0].replace("-", "/"));
-                var endDate = new Date(result[1].replace("-", "/"));
+                var startDate = new Date(result[0].replace(/-/g, "/"));
+                var endDate = new Date(result[1].replace(/-/g, "/"));
                 fhtStartDay.html((startDate.getMonth() + 1) + "月" + startDate.getDate() + "日");
                 fhtStartWeekDay.html(vlm.Utils.getWeek(startDate.toDateString()));
                 fhtEndDay.html((endDate.getMonth() + 1) + "月" + endDate.getDate() + "日");
