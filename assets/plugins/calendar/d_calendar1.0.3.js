@@ -644,8 +644,11 @@ Calender.prototype = {
         var btn = _CalF.$("#comfirmBtn");
         var obj = {};
         _CalF.bind(btn, "click", function (event) {
-            _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
-            _CalF.$('#' + that.checkOutTimeOptId).innerHTML = that.result[1];
+            if ($('#' + that.checkInTimeOptId).length > 0 && $("#" + that.checkOutTimeOptId).length > 0) {
+                _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
+                _CalF.$('#' + that.checkOutTimeOptId).innerHTML = that.result[1];
+            }
+
             //
             var times = [that.result[0], that.result[1]];
             _CalF.$('#' + that.id).setAttribute("data-selectedTime", times);
