@@ -356,7 +356,17 @@ var footer = (function() {
 				// 默认第一个选中？
 				var li = t == 2 ? '<li class="cur">不限<i></i></li>' : '<li class="cur">' + arg[0] + '<i></i></li>';
 				for (var j = 1; j < arg.length; j++) {
-					li += '<li >' + arg[j] + '<i></i></li>';
+					if(typeof arg[j]==="string"){//普通数组
+						li += '<li data-val="'+j+'">' + arg[j] + '<i></i></li>';
+					}else{//对象
+						var ob = arg[j];
+						for(var p in ob){
+							if(ob[p]){
+								
+							}
+							li += '<li data-val="'+j+'">' + ob[p] + '<i></i></li>';
+						}
+					}
 				}
 				return li;
 			}
