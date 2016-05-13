@@ -303,7 +303,40 @@ var footer = (function() {
 				break;
 			case 3:
 				// 航空公司列表
-
+			/*<section class="flight_company" style="bottom: 0.98rem;">
+				<ul>
+				<li class="cur">
+				<div>
+				<img src="../images/flights.png"/>
+				</div>
+				<span class="airway_name">中国航空</span>
+				<div class="aw_price">
+				<span>+￥</span><span>100</span>
+			</div>
+			<b class="hft_icon"></b>
+				</li>
+				<li>
+				<div>
+				<img src="../images/flights.png"/>
+				</div>
+				<span class="airway_name">中国航空</span>
+				<div class="aw_price">
+				<span>+￥</span><span>100</span>
+			</div>
+			<b class="hft_icon"></b>
+				</li>
+				<li>
+				<div>
+				<img src="../images/flights.png"/>
+				</div>
+				<span class="airway_name">中国航空</span>
+				<div class="aw_price">
+				<span>+￥</span><span>100</span>
+			</div>
+			<b class="hft_icon"></b>
+				</li>
+				</ul>
+				</section>*/
 				break;
 			default:
 				// 非单击类型

@@ -22,7 +22,7 @@
       var menu_data = {
             hotelSort : {
               title : "推荐排序",
-              c : "footer_filter_hotel_sort",
+              c : "foot_hotel_sort",
               type : 1,
               listData : [
                 {
@@ -34,7 +34,7 @@
             },
             hotelScreen : {
               title : "筛选",
-              c : "footer_filter_hotel_screen",
+              c : "foot_hotel_screen",
               type : 2,
               key : 'starRatingList',
               listData : [
@@ -54,7 +54,7 @@
             },
             hotelPosition : {
               title : "位置",
-              c : "footer_filter_hotel_position",
+              c : "foot_hotel_position",
               type : 2,
               listData : [{
                 key: 'position',
