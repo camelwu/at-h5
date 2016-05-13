@@ -262,6 +262,12 @@ body{
   line-height: .28rem;
   font-size: .20rem;
 }
+.fixedMargin .middle{
+  margin: 0 2.12rem 0 1.6rem!important;
+}
+.fixedMargin .right{
+  right: .52rem!important;
+}
 .hotelImgInfo, .imgDate{
   height:1.6rem;
   margin: .32rem 0;

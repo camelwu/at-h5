@@ -43,7 +43,7 @@
             <span><%= leaveItem["departDate"].substring(5, 10) %></span><span class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span>
           </div>
           <%}%>
-          <div class="timeAirport">
+          <div class="timeAirport fixedMargin">
             <div class="left">
               <span class="startTime"><%= leaveItem["departDate"].substring(11, 16) %></span><span
               class="startPort"><%= leaveItem["airportNameFrom"] %><%= leaveItem["termDepart"] %></span>
@@ -88,7 +88,7 @@
           <span><%= returnItem["departDate"].substring(5, 10) %></span><span class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
         </div>
         <%}%>
-          <div class="timeAirport">
+          <div class="timeAirport fixedMargin">
             <div class="left">
               <span class="startTime"><%= returnItem["departDate"].substring(11, 16) %></span><span
               class="startPort"><%= returnItem["airportNameFrom"] %><%= returnItem["termDepart"] %></span>
