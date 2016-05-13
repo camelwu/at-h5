@@ -282,7 +282,7 @@ var footer = (function() {
 				ulstr += '<ul data-theme=' + obj.type + ' data-key=' + obj.key + '>' + ilist(obj.val) + '</ul>';
 				if (obj.title) {
 					css = s == 0 ? ' class="cur"' : '';
-					cache.push['<li' + css + '>' + obj.title + '</li>'];
+					cache.push('<li' + css + '>' + obj.title + '</li>');
 					s++;
 				}
 			}
