@@ -293,7 +293,7 @@ var footer = (function() {
 				str = ulstr;
 				break;
 			case 2:
-				str = '<div class="screen_btn"><p class="cancel">取消</p><p class="clears">清空筛选</p><p class="sure">确定</p></div>';
+				str = '<div class="foot_screen_btn"><p class="cancel">取消</p><p class="clears">清空筛选</p><p class="sure">确定</p></div>';
 				if (cache.length > 0) {
 					str += '<div class="screen_box">';
 					str += left[0] + cache.join('') + left[1];

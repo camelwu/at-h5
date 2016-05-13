@@ -214,32 +214,31 @@ ol {
 	font-size: 0.28rem;
 	transition: all 0.3s;
 }
-.footer_filter .screen_btn {
+.foot_screen_btn{
 	height: 0.89rem;
 	line-height: 0.89rem;
 	background: #f7f7f7;
 	position: relative;
 }
-.footer_filter .screen_btn p {
+.foot_screen_btn p {
 	top: 0;
 	text-align: center;
 	color: #999;
 }
-.footer_filter .screen_btn p:first-child, .footer_filter .screen_btn p:last-child {
+.foot_screen_btn p:first-child,.foot_screen_btn p:last-child {
 	position: absolute;
 	width: 1.5rem;
 }
-.footer_filter .screen_btn p:first-child {
+.foot_screen_btn p:first-child {
 	left: 0;
 }
-.footer_filter .screen_btn p:nth-child(2) {
+.foot_screen_btn p:nth-child(2) {
 	margin: 0 1.5rem;
 }
-.footer_filter .screen_btn p:last-child {
+.foot_screen_btn p:last-child {
 	right: 0;
 	color: #ffb500;
 }
-
 .footer_filter .screen_box {
 	position: relative;
 	height: 5.83rem;
@@ -467,8 +466,7 @@ section.foot_hotel_sort{
 	position: absolute;
 	transition: all 0.3s;
 	left: 0;
-	bottom: 0.98rem;
-	display: none;
+	bottom: -3.98rem;
 }
 section.foot_hotel_sort li{
 	margin: 0 0 0 0.28rem;
@@ -481,12 +479,14 @@ section.foot_hotel_sort li{
 	position: relative;
 }
 section.foot_hotel_screen{
-	background: #fff;
+	height: 6.72rem;
 	width: 100%;
 	position: absolute;
-	transition: all 0.3s;
+	bottom: -5.98rem;
 	left: 0;
-	bottom: 0.98rem;
+	background: #fff;
+	font-size: 0.28rem;
+	transition: all 0.3s;
 }
 section.foot_hotel_screen .screen_btn{
 	height: 0.89rem;
@@ -499,13 +499,17 @@ section.foot_hotel_screen .screen_btn p{
 	text-align: center;
 	color: #999;
 }
+section.foot_hotel_screen .cancel,section.foot_hotel_screen .sure{
+	position: absolute;
+	width: 1.5rem;
+}
 section.foot_hotel_screen .cancel{
 	left: 0;
 }
 section.foot_hotel_screen .clears{
 	margin: 0 1.5rem;
 }
-section.foot_hotel_screen .sure{
+section.foot_hotel_screen .screen_btn .sure{
 	right: 0;
 	color: #ffb500;
 }
@@ -523,6 +527,14 @@ section.foot_hotel_screen .screen_lf{
 	background: #f7f7f7;
 }
 section.foot_hotel_screen .screen_lf{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2rem;
+	height: 5.83rem;
+	overflow-y: scroll;
+}
+section.foot_hotel_screen .screen_lf li{
 	height: 0.96rem;
 	line-height: 0.96rem;
 	color: #333;
@@ -530,12 +542,100 @@ section.foot_hotel_screen .screen_lf{
 	border-left: 3px solid #f7f7f7;
 	background: #f7f7f7;
 }
+section.foot_hotel_screen .screen_lf li.cur{
+	border-left: 3px solid #fdb330;
+	background: #fff;
+	font-weight: bold;
+}
+section.foot_hotel_screen .screen_rg{
+	background: #fff;
+	margin-left: 2.32rem;
+}
+section.foot_hotel_screen .screen_rg ul{
+	height: 5.83rem;
+	overflow-y: scroll;
+}
+section.foot_hotel_screen .screen_rg li{
+	height: 0.96rem;
+	line-height: 0.96rem;
+	color: #333;
+	border-bottom: 1px solid #dedede;
+	position: relative;
+}
+section.foot_hotel_screen .screen_rg i{
+	width: 0.4rem;
+	height: 0.4rem;
+	position: absolute;
+	top: 50%;
+	right: 0.28rem;
+	margin-top: -0.2rem;
+}
+section.foot_hotel_screen .screen_rg li.cur i{
+	background: url(../../images/ui/icon_common.png);
+	background-size: 7.9rem 5.13rem;
+	background-position: -6.9rem -0.58rem;
+}
+section.foot_hotel_position{
+	position: absolute;
+	bottom: -4.98rem;
+	left: 0;
+	width: 100%;
+	height: 5.69rem;
+	background: #fff;
+	font-size: 0.28rem;
+	transition: all 0.3s;
+}
+section.foot_hotel_position ul{
+	background: #fff;
+	width: 100%;
+	position: absolute;
+	transition: all 0.3s;
+	left: 0;
+	height: 4.8rem;
+	bottom: 0rem;
+	overflow-y: scroll;
+}
+section.foot_hotel_position li{
+	font-size: 0.28rem;
+	padding: 0 0.12rem;
+	height: 0.96rem;
+	line-height: 0.96rem;
+	border-top: 1px solid #e6e6e6;
+	color: #333;
+	position: relative;
+	margin: 0 0 0 0.28rem;
+}
+section.foot_hotel_position li i{
+	position: absolute;
+	right: 0.39rem;
+	top: 50%;
+	background:url(../../images/ui/icon_common.png);
+	background-size: 7.9rem 5.13rem;
+	background-position: -4.40rem -0.51rem;
+	width: 0.5rem;
+	height: 0.5rem;
+	margin-top: -0.25rem;
+}
+section.foot_hotel_position li:nth-child(0){
+	border-top: 0;
+}
+section.foot_hotel_position li.cur{
+	color: #ffb500;
+}
+section.foot_hotel_position li.cur i{
+	background-position: -5.07rem -0.51rem;
+}
 
-section.foot_hotel_screen
 
-section.foot_hotel_screen
 
-section.foot_hotel_screen
+
+
+
+
+
+
+
+
 
 
 
