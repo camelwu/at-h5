@@ -91,7 +91,7 @@ var footer = (function() {
 			});
 			// masker层里的各种点击：取消，确定按钮
 			that.on(masker, 'click', function() {
-				var event = event || window.event;
+				event = event || window.event;
 				var target = event.target || event.srcElement, src, index, cur;
 				src = target.parentNode;
 				if (target == masker) {
@@ -152,10 +152,7 @@ var footer = (function() {
 		// 新建筛选：列表&菜单
 		create : function() {
 			//overlay
-			this.createMask("hotelPop", "hotel_pop");
-      // create sec容器
-      sec = document.createElement('span');
-      sec.className = "sort";
+			this.createMask("hotelPop", "footer_filter");
 			//create menu
 			box = document.createElement('footer');
 			box.className = 'hotel_list_bottom';
@@ -176,7 +173,6 @@ var footer = (function() {
 			}
 			box.innerHTML = ca.join('');
 			document.body.appendChild(box);
-      document.body.appendChild(sec);
 			this.bindEvent();
 			return this;
 		},
@@ -211,10 +207,7 @@ var footer = (function() {
 			}
 
 			if ( typeof d[0] == "string") {// 普通数组
-        if(mysec.className == 'airway'){
-          str += '<ul data-theme="0">' + ilist(d) + '</ul>';
-        }
-				str += '<ul data-theme="'+t+'">' + ilist(d) + '</ul>';
+				str += '<ul>' + ilist(d) + '</ul>';
 			} else {// json对象
 				var left, right, css, s = 0;
 				str += '<div class="screen_box">';
@@ -222,7 +215,7 @@ var footer = (function() {
 				left = '<ul class="screen_lf" id="screenLeft">';
 				right = '<div class="screen_rg">';
 				for (; i < l; i++) {
-					right += '<ul data-theme="'+t+'">';
+					right += '<ul>';
 					for (var k in d[i]) {
 						right += ilist(d[i][k]);
 						css = s == 0 ? ' class="cur"' : '';
@@ -236,8 +229,8 @@ var footer = (function() {
 			}
 
 			mysec.innerHTML = str;
-			if (sec) {
-				sec.appendChild(mysec);
+			if (masker) {
+				masker.appendChild(mysec);
 			} else {
 				document.body.appendChild(mysec);
 			}
@@ -295,18 +288,13 @@ var footer = (function() {
 		showItems : function(n) {
 			// 显示要筛选的列表内容
 			if (masker) {
+				sec = masker.getElementsByTagName("section");
 				if (masker.style.display == "none") {
-					var dd =  sec.children[n].children[0];
-          if(dd.getAttribute('data-theme')=='0'){
-            sec.children[n].style.display = "block";
-          }else {
-            masker.style.display = "block";
-            sec.children[n].style.bottom = "0.98rem";
-          }
-
+					masker.style.display = "block";
+					masker.children[n].style.bottom = "0.98rem";
 				} else {
-					if (sec.children[n].style.bottom == "0.98rem") {
-						sec.children[n].style.bottom = "";
+					if (masker.children[n].style.bottom == "0.98rem") {
+						masker.children[n].style.bottom = "";
 						this.remove();
 					} else {
 						for (var i = 0; i < sec.length; i++) {
@@ -315,7 +303,7 @@ var footer = (function() {
 								break;
 							}
 						}
-						sec.children[n].style.bottom = "0.98rem";
+						masker.children[n].style.bottom = "0.98rem";
 					}
 				}
 
@@ -335,43 +323,43 @@ var footer = (function() {
  * id作为键值
  * title：显示中文
  * c：className
- * type：0底部按钮直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，但为多选，点击确认按钮进行查询,3
+ * type：0底部按钮直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，但为多选，点击确认按钮进行查询
  */
-//var menu_data = {
-//	hotelSort : {
-//		title : "推荐排序",
-//		c : "sort bg_color",
-//		type : 1,
-//		key : 'sort',
-//		listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
-//	},
-//	hotelScreen : {
-//		title : "筛选",
-//		c : "screen",
-//		type : 2,
-//		key : 'starRatingList',
-//		listData : [{
-//			"星级档次" : ["二星", "三星", "四星"]
-//		}, {
-//			"酒店类型" : ["商务", "度假"]
-//		}]
-//	},
-//	hotelPosition : {
-//		title : "位置",
-//		c : "position",
-//		type : 2,
-//		key : 0,
-//		listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
-//	}
-//},
-////
-//menu_call = function() {
-//	alert("js request json.");
-//};
-//;
+var menu_data = {
+	hotelSort : {
+		title : "推荐排序",
+		c : "footer_filter_hotel_sort",
+		type : 1,
+		key : 'sort',
+		listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
+	},
+	hotelScreen : {
+		title : "筛选",
+		c : "footer_filter_hotel_screen",
+		type : 2,
+		key : 'starRatingList',
+		listData : [{
+			"星级档次" : ["二星", "三星", "四星"]
+		}, {
+			"酒店类型" : ["商务", "度假"]
+		}]
+	},
+	hotelPosition : {
+		title : "位置",
+		c : "footer_filter_hotel_position",
+		type : 2,
+		key : 0,
+		listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+	}
+},
 //
-//if (footer) {
-//	footer.data = menu_data;
-//	footer.callback = menu_call;
-//}
-//footer.filters.init();
+menu_call = function() {
+	alert("js request json.");
+};
+;
+
+if (footer) {
+	footer.data = menu_data;
+	footer.callback = menu_call;
+}
+footer.filters.init();
