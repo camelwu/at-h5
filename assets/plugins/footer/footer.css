@@ -442,7 +442,7 @@ ol {
 
 
 /*btn*/
-footer.footer_three dt{
+footer.footer_three dt,footer.footer_two dt{
 	width: 0.34rem;
 	height: 0.37rem;
 	background: url(../../images/ui/icon_common.png);
@@ -625,7 +625,10 @@ section.foot_hotel_position li.cur{
 section.foot_hotel_position li.cur i{
 	background-position: -5.07rem -0.51rem;
 }
-
+/*景点*/
+.footer_two dl{
+	width: 50%;
+}
 
 
 
