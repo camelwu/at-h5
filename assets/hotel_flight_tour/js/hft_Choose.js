@@ -481,6 +481,19 @@ var hftChoose = {
     }
   },
 
+  renderHandler_f: function () {
+    var result = arguments[0], that = hftChoose;
+    if (result.code == 200&&result.success == 1) {
+      console.log(result)
+     // var priceNum = result.data.totalAmount;
+      //that.roomPriceInfo = result.data.prices;
+     // that.curData.hotelInfo.rooms =result.data.roomsPrice;
+      //that.renderHandler({success:1, code:200, data:that.curData})
+    }else{
+      alert(result.message)
+    }
+  },
+
   createPriceEle: function () {
     var selectedRoomId = "", priceRoom = null, that = hftChoose, temEle = null, str = '';
     var priceE = document.querySelector('.priceTotal span'), priceOuter = document.querySelector('.priceDetailInfo');
@@ -600,7 +613,18 @@ var hftChoose = {
     });
     return obj;
   },
-
+  tourParaObjHandler:function(){
+    var tourPaObj=[], data = arguments[0];
+    data.tours.forEach(function (array) {
+      var temObj = {};
+      temObj['tourID'] = array['tourID'];
+      temObj['travelDate'] = array['selectTravelDate'];
+      temObj['optionCode'] = "";
+      temObj['travelDateSpecified'] = 1;
+      tourPaObj.push(temObj);
+    });
+    return tourPaObj;
+  },
   init: function () {
     var temObj = JSON.parse(window.localStorage.getItem('searchInfo')), newPrice = {}, urlParseObj={}, storage = window.sessionStorage, originAirIds={}, hftFlightHotelTourInfo={};
     originAirIds = JSON.parse(storage.getItem('originAirIds'));
@@ -613,8 +637,6 @@ var hftChoose = {
       "returnDate": temObj['ReturnDate'],
       "roomDetails": temObj['RoomInfo']
     };
-      paraObj.departDate = "2016-06-15T00:00:00";
-      paraObj.returnDate = "2016-06-20T00:00:00";
     for (var tem in paraObj){
       newPrice[tem] = paraObj[tem];
     }
@@ -625,13 +647,16 @@ var hftChoose = {
     this.cacheOtherInfo = {adult: temObj['AdultNum'], child: temObj['ChildNum'], cityNameForm:temObj['FromCityNameCN'],cityNameTo:temObj['ToCityNameCN']};
     if(originAirIds&&hftFlightHotelTourInfo){
       if(originAirIds['airwaySetID']!=hftFlightHotelTourInfo['airwaySetID']||originAirIds['airwayCacheID']!=hftFlightHotelTourInfo['airwayCacheID']){
+        this.initParaObj.flightCacheID = hftFlightHotelTourInfo['airwaySetID'];
+        this.initParaObj.flightSetID = hftFlightHotelTourInfo['airwayCacheID'];
         if (this.type == "2") {
+          this.initParaObj.tours = this.tourParaObjHandler(hftFlightHotelTourInfo);
           this.initParaObj.packageID = urlParseObj['packageId'];
           this.getNewPricePara.packageID = this.initParaObj.packageID;
-          this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
+          this.tAjax("", this.initParaObj, "60100006", 3, this.renderHandler_f);
         }else if(this.type == "1"){
           delete this.initParaObj.packageID;
-          this.tAjax("", paraObj, "50100001", 3, this.renderHandler);
+          this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
         }
       }else{
         if (this.type == "2") {
@@ -644,10 +669,10 @@ var hftChoose = {
       if (this.type == "2") {
           this.initParaObj.packageID = urlParseObj['packageId'];
           this.getNewPricePara.packageID = this.initParaObj.packageID;
-          this.tAjax("", paraObj, "60100004", 3, this.renderHandler);
+          this.tAjax("", this.initParaObj, "60100004", 3, this.renderHandler);
       }else if(this.type == "1") {
           delete this.initParaObj.packageID;
-          this.tAjax("", paraObj, "50100001", 3, this.renderHandler);
+          this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
       }
     }
   }
