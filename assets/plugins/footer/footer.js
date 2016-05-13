@@ -328,14 +328,14 @@ var footer = (function() {
 var menu_data = {
 	hotelSort : {
 		title : "推荐排序",
-		c : "footer_filter_t_sort",
+		c : "footer_filter_hotel_sort",
 		type : 1,
 		key : 'sort',
 		listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
 	},
 	hotelScreen : {
 		title : "筛选",
-		c : "footer_filter_t_screen",
+		c : "footer_filter_hotel_screen",
 		type : 2,
 		key : 'starRatingList',
 		listData : [{
@@ -344,13 +344,13 @@ var menu_data = {
 			"酒店类型" : ["商务", "度假"]
 		}]
 	},
-	//hotelPosition : {
-	//	title : "位置",
-	//	c : "footer_filter_hotel_position",
-	//	type : 2,
-	//	key : 0,
-	//	listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
-	//}
+	hotelPosition : {
+		title : "位置",
+		c : "flight_company",
+		type :3,
+		key : 0,
+		listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+	}
 },
 //
 menu_call = function() {
