@@ -160,18 +160,18 @@ var flightList = {
           c : "footer_filter_hotel_sort",
           type : 1,
           key : 0,
-          listData : [{
-            "星级档次" : ["二星", "三星", "四星"]
-          }, {
-            "酒店类型" : ["商务", "度假"]
-          }]
+          listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
         },
         flightScreen : {
           title : "筛选",
           c : "footer_filter_hotel_screen",
           type : 2,
           key : 0,
-          listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+          listData : [{
+            "星级档次" : ["二星", "三星", "四星"]
+          }, {
+            "酒店类型" : ["商务", "度假"]
+          }]
         }
       },
       menu_call = function() {
