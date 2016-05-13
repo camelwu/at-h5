@@ -125,7 +125,7 @@ ol{padding:0;margin:0;}
   z-index: 130;
 }
 /*酒店的  开始*/
-.footer_filter_btn  dl.footer_filter_hotel_screen,.footer_filter_btn  dl.footer_filter_hotel_sort,.footer_filter_btn  dl.footer_filter_hotel_position{
+.footer_filter_btn  dl{
   float:left;
   width:33.3333333333333%;
   text-align: center;
@@ -144,10 +144,10 @@ ol{padding:0;margin:0;}
   background-size:7.89rem 5.07rem;
   margin:0.12rem auto 0.05rem;
 }
-.footer_filter_btn  dl.footer_filter_hotel_sort dt{
+.footer_filter_btn  dl.footer_filter_hotel_sort dt,.footer_filter_btn  dl.footer_filter_t_sort dt{
   background-position:-0.59rem -2.32rem;
 }
-.footer_filter_btn  dl.footer_filter_hotel_screen dt{
+.footer_filter_btn  dl.footer_filter_hotel_screen dt,.footer_filter_btn  dl.footer_filter_t_screen dt{
   background-position:-1.87rem -2.32rem;
 }
 .footer_filter_btn  dl.footer_filter_hotel_position dt{
@@ -320,7 +320,9 @@ ol{padding:0;margin:0;}
   background-position:-5.07rem -0.51rem;
 }
 /*----------酒店的  结束------------*/
-
+.footer_filter_btn dl.footer_filter_t_sort,.footer_filter_btn dl.footer_filter_t_screen{
+  width: 50%;
+}
 
 
 
