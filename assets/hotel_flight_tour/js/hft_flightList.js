@@ -4,6 +4,9 @@
 var val = vlm.parseUrlPara(window.location.href);
 var changeFlightInfo,oldFlightInfo;
 var airwayData = [];
+var sortDate = [];
+var screenData = [];
+var screenTitle = [];
 //var sendData = {
 //  "flightCacheID": 3010900,
 //  "flightSetID": 30000023,
@@ -87,14 +90,24 @@ var flightList = {
           console.log(json);
           var data = json.data;
           for(var a = 0;a < data.airways.length;a++) {
-            var airwayInfo = [];
-            airwayInfo.push(data.airways[a].airwayLogo);
-            airwayInfo.push(data.airways[a].chineseName);
-            airwayInfo.push(data.airways[a].additionalPrice);
-            airwayInfo.push(data.airways[a].airwaySetID);
-            airwayInfo.push(data.airways[a].noLogo);
-            airwayData.push(airwayInfo);
+            //var airwayInfo = [];
+            //airwayInfo.push(data.airways[a].airwayLogo);
+            airwayData.push(data.airways[a].chineseName);
+            //airwayInfo.push(data.airways[a].additionalPrice);
+            //airwayInfo.push(data.airways[a].airwaySetID);
+            //airwayInfo.push(data.airways[a].noLogo);
+            //airwayData.push(airwayInfo);
           }
+          for(var so = 0;so < data.sortTypes.length;so++){
+            sortDate.push(data.sortTypes[so].sortText);
+          }
+        for(var sc = 0;sc < data.filters.length;sc++){
+          screenTitle.push(data.filters[sc].title);
+          screenData[sc] = [];
+          for(var scit = 0;scit < data.filters[sc].item.length;scit++){
+            screenData[sc].push(data.filters[sc].item[scit].filterValue);
+          }
+        }
           var str1 = $("#tplFlightList").html();
           var flight_list = ejs.render(str1, data);
           document.getElementById('fligtList').innerHTML = flight_list;
@@ -147,35 +160,62 @@ var flightList = {
 
   },
   bottom:function(){
+    var that = this;
     var menu_data = {
-        flightAirway : {
+        hotelPosition : {
           title : "航空公司",
           c : "flight_company",
-          type : 3,
-          key : 0,
-          listData : airwayData
+          type :3,
+          listData : [
+            {
+              key: 'flightSetID,flightCacheID',
+              val: airwayData,
+              type: 1
+            }
+          ]
         },
-        flightSort : {
+        hotelSort : {
           title : "快速排序",
           c : "footer_filter_hotel_sort",
           type : 1,
-          key : 0,
-          listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
+          listData : [
+            {
+              key: 'sortFields',
+              val: sortDate,
+              type: 1
+            }
+          ]
         },
-        flightScreen : {
+        hotelScreen : {
           title : "筛选",
           c : "footer_filter_hotel_screen",
           type : 2,
-          key : 0,
-          listData : [{
-            "星级档次" : ["二星", "三星", "四星"]
-          }, {
-            "酒店类型" : ["商务", "度假"]
-          }]
+          listData : [
+            {
+              key: 'screenFields',
+              val: screenData[0],
+              title: screenTitle[0],
+              type: 1
+            },
+            {
+              key: 'screenFields',
+              val: screenData[1],
+              title: screenTitle[1],
+              type: 1
+            },
+            {
+              key: 'flightStartTime',
+              val: screenData[2],
+              title: screenTitle[2],
+              type: 1
+            }
+          ]
         }
       },
       menu_call = function() {
-        alert("js request json.");
+        //changeFlightInfo.flightSetID = $(this).attr('data-airwaySetID');
+        //changeFlightInfo.flightCacheID = $(this).attr('data-airwayCacheID');
+        //that.tAjax("",changeFlightInfo,"60100005","2",flightListBack);
       };
 
     if (footer) {
