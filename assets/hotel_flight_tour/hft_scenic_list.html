@@ -16,6 +16,7 @@
     <title>景点列表页</title>
     <link rel="stylesheet" href="../styles/reset.css"/>
     <link rel="stylesheet" href="css/hft_scenic_list.css"/>
+    <link rel="stylesheet" href="../plugins/footer/footer.css"/>
 </head>
 <body>
 <div id="preloader">
@@ -40,82 +41,14 @@
 
 </div>
 <!--底部-->
-<footer class="hotel_list_bottom">
-    <dl class="sort" id="hotelSort">
-        <dt></dt>
-        <dd>推荐排序</dd>
-    </dl>
-    <dl class="screen" id="hotelScreen">
-        <dt></dt>
-        <dd>筛选</dd>
-    </dl>
+<footer class="footer_filter_btn">
 </footer>
-<!--弹框-->
-<div class="hotel_pop" id="hotelPop" style="display: none;">
-    <!-- sort pop-->
-    <ul class="sort" id = "SortList">
-    </ul>
-    <!--sort screen-->
-    <section class="screen">
-        <div class="screen_btn">
-            <p class="cancel">取消</p>
-            <p class="clears">清空筛选</p>
-            <p class="sure">确定</p>
-        </div>
-        <div class="screen_box">
-            <ul class="screen_lf"id="screenLeft">
-                <li class="cur">星级档次</li>
-                <li>酒店类型</li>
-            </ul>
-            <div class="screen_rg" id="screenRight">
-                <ul>
-                    <li class="cur">不限<i></i></li>
-                    <li>二星级以下<i></i></li>
-                    <li>三星<i></i></li>
-                    <li>四星级<i></i></li>
-                    <li>五星级<i></i></li>
-                </ul>
-                <ul>
-                    <li class="cur">不限<i></i></li>
-                    <li>商务型<i></i></li>
-                    <li>度假型<i></i></li>
-                    <li>会议型<i></i></li>
-                    <li>观光型<i></i></li>
-                    <li>经济型<i></i></li>
-                    <li>连锁型<i></i></li>
-                    <li>公寓式<i></i></li>
-                    <li>长住型<i></i></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <!-- position-->
-    <section class="position" id="popPosition">
-        <div class="screen_btn">
-            <p class="cancel">取消</p>
-            <p class="clears">清空筛选</p>
-            <p class="sure">确定</p>
-        </div>
-        <ul>
-            <li class="cur">不限<i></i></li>
-            <li>涩谷<i></i></li>
-            <li>银座<i></i></li>
-            <li>银座<i></i></li>
-            <li>涩谷<i></i></li>
-            <li>银座<i></i></li>
-            <li>银座<i></i></li>
-            <li>涩谷<i></i></li>
-            <li>银座<i></i></li>
-            <li>银座<i></i></li>
-        </ul>
-    </section>
-</div>
 </body>
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="js/hft_scenic_list.js"></script>
-<script src="../plugins/footer/footer.js"></script>
+<script src="../plugins/footer/foot.js"></script>
 <script id = "timeDetile" type="text/template">
             <span class = "time_people_list_time">
             <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>
@@ -186,6 +119,44 @@
 
           });
     });
+</script>
+<script>
+    var menu_data = {
+                hotelSort : {
+                    title : "推荐排序",
+                    c : "foot_hotel_sort",
+                    type : 1,
+                    listData : [
+                        {
+                            key: 'sortValue',
+                            val:["按价格从低到高","按价格从高到低"],
+                            type: 1
+                        }
+                    ]
+                },
+                hotelScreen : {
+                    title : "筛选",
+                    c : "foot_hotel_screen",
+                    type : 2,
+                    key : 'themeID',
+                    listData : [
+                        {
+                            key: 'themeID',
+                            val: 'themeName',
+                            title: "景点主题",
+                            type: 2
+                        }
+                    ]
+                }
+            },
+            menu_call = function() {
+                alert("js request json.");
+            };
+    if (footer) {
+        footer.data = menu_data;
+        footer.callback = menu_call;
+    }
+    footer.filters.init();
 </script>
 </html>
 
