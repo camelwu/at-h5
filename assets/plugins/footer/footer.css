@@ -164,17 +164,17 @@ ol{padding:0;margin:0;}
   background: rgba(0,0,0,0.4);
   z-index: 100;
 }
-.footer_filter .footer_filter_hotel_sort{
+.footer_filter .footer_filter_hotel_sort,.footer_filter .footer_filter_t_sort{
   bottom:-3.98rem;
 }
-.footer_filter .footer_filter_hotel_sort,.footer_filter .footer_filter_hotel_position ul{
+.footer_filter .footer_filter_hotel_sort,.footer_filter .footer_filter_hotel_position ul,.footer_filter .footer_filter_t_sort,.footer_filter .footer_filter_t_position ul{
   background: #fff;
   width: 100%;
   position: absolute;
   transition:all 0.3s;
   left: 0;
 }
-.footer_filter .footer_filter_hotel_sort li,.footer_filter .footer_filter_hotel_position ul li{
+.footer_filter .footer_filter_hotel_sort li,.footer_filter .footer_filter_hotel_position ul li,.footer_filter .footer_filter_t_sort li,.footer_filter .footer_filter_t_position ul li{
   margin: 0 0 0 0.28rem;
   font-size: 0.28rem;
   padding: 0 0.12rem;
@@ -184,7 +184,7 @@ ol{padding:0;margin:0;}
   color: #333;
   position: relative;
 }
-.footer_filter .footer_filter_hotel_sort li i,.footer_filter .screen_rg li i{
+.footer_filter .footer_filter_hotel_sort li i,.footer_filter .footer_filter_t_sort li i,.footer_filter .screen_rg li i{
   width: 0.4rem;
   height: 0.4rem;
   position:absolute;
@@ -192,7 +192,7 @@ ol{padding:0;margin:0;}
   right: 0.18rem;
   margin-top:-0.2rem;
 }
-.footer_filter .screen_rg li.cur i,.footer_filter .footer_filter_hotel_sort li.curimg i{
+.footer_filter .screen_rg li.cur i,.footer_filter .footer_filter_hotel_sort li.curimg i,.footer_filter .footer_filter_t_sort li.curimg i{
   background:url(../../images/ui/icon_common.png);
   background-size:7.9rem 5.13rem;
   background-position: -6.9rem -0.58rem;
@@ -200,10 +200,10 @@ ol{padding:0;margin:0;}
 .footer_filter .screen_rg li i{
   right:0.28rem;
 }
-.footer_filter .footer_filter_hotel_sort li i{
+.footer_filter .footer_filter_hotel_sort li i,.footer_filter .footer_filter_t_sort li i{
   right: 0.18rem;
 }
-.footer_filter .footer_filter_hotel_screen{
+.footer_filter .footer_filter_hotel_screen,.footer_filter .footer_filter_t_screen{
   height: 6.72rem;
   width: 100%;
   position: absolute;
@@ -251,7 +251,7 @@ ol{padding:0;margin:0;}
   height: 5.83rem;
   overflow-y:scroll;
 }
-.footer_filter .footer_filter_hotel_screen li{
+.footer_filter .footer_filter_hotel_screen li,.footer_filter .footer_filter_t_screen li{
   height: 0.96rem;
   line-height: 0.96rem;
   color:#333;
