@@ -1,7 +1,7 @@
 (function(){
   //获取资源选择页传过来的数据
   var parametersStorage = JSON.parse(sessionStorage.getItem("hftChangeHotelPara")) || {};
-  console.log(parametersStorage);
+  //console.log(parametersStorage);
   //获取资源选择页的url保存下来，再传过去
   var chooseUrl = window.location.search;
   sessionStorage.setItem("hftHotelChooseUrl",chooseUrl);
@@ -18,6 +18,45 @@
       var data = result.data;
       title(data);
       list(data);
+      //footer();
+      var menu_data = {
+            hotelSort : {
+              title : "推荐排序",
+              c : "sort bg_color",
+              type : 1,
+              key : 'sort',
+              listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
+            },
+            hotelScreen : {
+              title : "筛选",
+              c : "screen",
+              type : 2,
+              key : 'starRatingList',
+              listData : [{
+                "星级档次" : ["二星", "三星", "四星"]
+              }, {
+                "酒店类型" : ["商务", "度假"]
+              }]
+            },
+            hotelPosition : {
+              title : "位置",
+              c : "position",
+              type : 2,
+              key : 0,
+              listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+            }
+          },
+//
+          menu_call = function() {
+            alert("js request json.");
+          };
+      ;
+
+      if (footer) {
+        footer.data = menu_data;
+        footer.callback = menu_call;
+      }
+      footer.filters.init();
       console.log(data);
       vlm.init();
     }else{
@@ -70,4 +109,8 @@
       window.location.href = 'hft_hotel_detail.html';
     })
   }
+  //底部  插件
+
+
+
 })()
