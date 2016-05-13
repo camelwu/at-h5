@@ -164,7 +164,7 @@ body{
   overflow: visible;
 }
 .timeAirport .right{
-  right:.52rem;
+  right:.80rem;
   text-align: right;
 }
 .fix_right{right: 0!important;}
@@ -221,7 +221,7 @@ body{
 }
 
 .startPort, .arrivePort{
-  margin-top: .32rem;
+  margin-top: .38rem;
 }
 .arrivePort{
   position: absolute;
@@ -235,7 +235,7 @@ body{
 }
 .timeAirport .middle{
   height: 1.12rem;
-  margin: 0 2.12rem 0 1.6rem;
+  margin: 0 2.40rem 0 1.6rem;
   padding: 0.04rem 0;
 }
 .timeAirport .middle .timeCost{
