@@ -36,9 +36,10 @@
   //接数据
   vlm.loadJson('',JSON.stringify(data),dataCallBack);
   function dataCallBack(result){
-    if(result.success){
-      var data = result.data;
-      console.log(data);
+    if(result.success == 1&&result.code == 200){
+      var data = result.data, hftFlightHotelTourInfo =JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
+      hftFlightHotelTourInfo['hotelInfo'] = data['hotelInfo']; //替换酒店信息
+      window.sessionStorage.setItem('hftFlightHotelTourInfo', JSON.stringify(hftFlightHotelTourInfo));
       banner(data);
       ulList(data);
       hotelName(data);
