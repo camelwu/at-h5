@@ -49,6 +49,7 @@
       date();
       vlm.init();
     }else{
+      vlm.init();
       jAlert('暂无酒店详细数据,请稍后再试', "提示");
     }
   }

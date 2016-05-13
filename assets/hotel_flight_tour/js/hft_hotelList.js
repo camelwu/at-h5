@@ -60,6 +60,7 @@
       console.log(data);
       vlm.init();
     }else{
+      vlm.init();
       jAlert('暂无酒店数据,请稍后再试', "提示");
     }
   }
