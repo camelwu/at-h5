@@ -348,8 +348,8 @@ var menu_data = {
 	},
 	hotelPosition : {
 		title : "位置",
-		c : "flight_company",
-		type :3,
+		c : "footer_filter_hotel_position",
+		type :2,
 		key : 0,
 		listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
 	}

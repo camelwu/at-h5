@@ -3,6 +3,7 @@
  */
 var val = vlm.parseUrlPara(window.location.href);
 var changeFlightInfo,oldFlightInfo;
+var airwayData = [];
 //var sendData = {
 //  "flightCacheID": 3010900,
 //  "flightSetID": 30000023,
@@ -85,12 +86,22 @@ var flightList = {
           var json = ret, that = flightList;
           console.log(json);
           var data = json.data;
+          for(var a = 0;a < data.airways.length;a++) {
+            var airwayInfo = [];
+            airwayInfo.push(data.airways[a].airwayLogo);
+            airwayInfo.push(data.airways[a].chineseName);
+            airwayInfo.push(data.airways[a].additionalPrice);
+            airwayInfo.push(data.airways[a].airwaySetID);
+            airwayInfo.push(data.airways[a].noLogo);
+            airwayData.push(airwayInfo);
+          }
           var str1 = $("#tplFlightList").html();
           var flight_list = ejs.render(str1, data);
           document.getElementById('fligtList').innerHTML = flight_list;
           var str2 = $('#tplAirwayList').html();
           var airway_list = ejs.render(str2, data);
           document.getElementById('airwayList').innerHTML = airway_list;
+          that.bottom();
           $.each($('.seat_detail'),function(i,item){
               if($(this).attr('data-setID')==oldFlightInfo.flightSetID){
                   $(this).find('b').addClass('cho_gou').siblings().find('b').removeClass('cho_gou');
@@ -111,7 +122,7 @@ var flightList = {
              $('#pageBack').show();
              changeFlightInfo.flightSetID = $(this).attr('data-airwaySetID');
              changeFlightInfo.flightCacheID = $(this).attr('data-airwayCacheID');
-             that.tAjax("",changeFlightInfo,"60100005","3",flightListBack);
+             that.tAjax("",changeFlightInfo,"60100005","2",flightListBack);
            });
           //  页面跳转
           $(".seat_detail").click(function(){
@@ -132,32 +143,32 @@ var flightList = {
               window.location.href = 'hft_choose.html'+window.location.search;
           });
       };
-      this.tAjax("",oldFlightInfo,"60100005","3",flightListBack);
-      that.bottom();
+      this.tAjax("",oldFlightInfo,"60100005","2",flightListBack);
+
   },
   bottom:function(){
     var menu_data = {
-        hotelSort : {
+        flightAirway : {
           title : "航空公司",
-          c : "airway",
-          type : 1,
-          key : 'airway',
-          listData : data.airways
+          c : "flight_company",
+          type : 3,
+          key : 0,
+          listData : airwayData
         },
-        hotelScreen : {
+        flightSort : {
           title : "快速排序",
-          c : "sort",
+          c : "footer_filter_hotel_sort",
           type : 1,
-          key : 'starRatingList',
+          key : 0,
           listData : [{
             "星级档次" : ["二星", "三星", "四星"]
           }, {
             "酒店类型" : ["商务", "度假"]
           }]
         },
-        hotelPosition : {
+        flightScreen : {
           title : "筛选",
-          c : "screen",
+          c : "footer_filter_hotel_screen",
           type : 2,
           key : 0,
           listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
