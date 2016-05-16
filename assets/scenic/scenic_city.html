@@ -76,13 +76,13 @@
         </div>
     </div>
     <div class="sc-contents">
-            <div class="gui-tab-view" id="ui-view-2">
-                <ul class="gui-tab-mod">
-                    <li data-key="1" class="gui-tab-current cp">海外城市</li>
-                    <li data-key="2" class="cp stopgray">国内城市</li>
-                    <i class="gui-tab-scrollbar gui-tab"></i>
-                </ul>
-            </div>
+            <!--<div class="gui-tab-view" id="ui-view-2">-->
+                <!--<ul class="gui-tab-mod">-->
+                    <!--<li data-key="1" class="gui-tab-current cp">海外城市</li>-->
+                    <!--<li data-key="2" class="cp stopgray">国内城市</li>-->
+                    <!--<i class="gui-tab-scrollbar gui-tab"></i>-->
+                <!--</ul>-->
+            <!--</div>-->
     </div>
     <div id="ui-view-3">
         <ul id="CharColumn" class="tags-cut">
@@ -356,7 +356,7 @@
                  $('#CharColumn>li').eq(i).click(function(){
                      var object_li = $('#js_oversea>li').eq(i).offset().top;
 //                     console.log(i)
-                     $('html,body').animate({scrollTop:object_li-89},300)
+                     $('html,body').animate({scrollTop:object_li-45},300)
                  })
              })
 
@@ -385,7 +385,7 @@
         $('#seach_up').focus();
         $('body').css('overflow-y','hidden');
         data = globalData.data.destCities;
-        console.log(data);
+//        console.log(data);
     })
     $('.pop_box #js_back_btn,.pop_box a.cancelBtn').click(function(){
         $('.pop_box_dis,.pop_box .not_exist,span#close_empty').hide();

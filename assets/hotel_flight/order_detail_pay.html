@@ -29,11 +29,11 @@
 </head>
 
 <body>
-<!--<div id="preloader">-->
-    <!--<div id="status-h">-->
-        <!--<p class="center-text"></p>-->
-    <!--</div>-->
-<!--</div>-->
+<div id="preloader">
+    <div id="status">
+        <p class="center-text"></p>
+    </div>
+</div>
 <div class="jhf-box">
     <!--nav-->
     <div class="jhf-nav">
@@ -62,7 +62,7 @@
             <dl>
                 <dt>
                     <i class="go"></i>
-                    <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=d1.getMonth()+1%}-{%=d1.getDate()%}</span>
+                    <span>{% var d1=new Date(Date.parse(flightInfo.flightLeaveStartDate.replace("T"," ").replace(/-/g, "/"))); %}  {%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%}</span>
                     <span>周{%= getWeek[d1.getDay()]%}</span>
                     <span class="more">{%=flightInfo.cityNameFrom%}</span>
                     <span>-</span>
@@ -72,7 +72,8 @@
                 </dt>
                 <dt>
                     <i class="back"></i>
-                    <span>{% var dd=new Date(Date.parse(flightInfo.flightReturnStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=dd.getMonth()+1%}-{%=d1.getDate()%}</span>
+
+                    <span>{% var dd=new Date(Date.parse(flightInfo.flightReturnStartDate.replace("T"," ").replace(/-/g, "/"))); %} {%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%}</span>
                     <span>周{%= getWeek[dd.getDay()]%}</span>
                     <span class="more">{%=flightInfo.cityNameTo%}</span>
                     <span>-</span>
@@ -263,7 +264,7 @@
                     <span class="start">{%=flightInfo.cityNameTo%}</span>
                     <span class="line">-</span>
                     <span class="end">{%=flightInfo.cityNameFrom%}</span>
-                    <span class="detail-hour">{%=flightInfo.segmentsLeaveTotalTravelTimeString%}</span>
+                    <span class="detail-hour">{%=flightInfo.segmentsReturnTotalTravelTimeString%}</span>
                 </div><div class="go-trip start">
                 {% if(flightInfo.segmentsReturn.length>0){ for(var i =0;i<=flightInfo.segmentsReturn.length-1;i++){ %}
                 <div class="time-airport-info">
@@ -338,6 +339,7 @@
             "ForeEndType":3};
         vlm.loadJson("http://10.6.11.21:1337/api/GetServiceApiResult",JSON.stringify(Parameters), function(data){
             if(data.success) {
+                vlm.init();
                 console.log(data.data)
                 data.data.hotelDetails.dayNum = getDayNum(data.data.hotelDetails.checkInDate.replace(/T.*/,''),data.data.hotelDetails.checkoutDate.replace(/T.*/,''))
                 console.log(data.data.hotelDetails.dayNum)
