@@ -25,7 +25,7 @@
 </div>
 <div class="contents">
     <div class="header">
-        <a href="javascript:history.go(-1);" class="header_back" id = "g_back">
+        <a href="javascript:window.history.go(-1);" class="header_back" id = "g_back">
             <i class="icon_back"></i>
         </a>
         <h3>自由行</h3>
@@ -51,7 +51,7 @@
             <span class = "time_people_list_time">
             <p>出发：<time><%= vlm.Utils.format_date(DepartDate ,"md")%></time>  返回：<time><%= vlm.Utils.format_date(ReturnDate ,"md")%></time></p>
             </span>
-            <span class = "time_people_list_number"><%= AdultNum %>成人<%= ChildNum %>儿童<i></i></span>
+            <span class = "time_people_list_number" id = "Time"><%= AdultNum %>成人<%= ChildNum %>儿童<i></i></span>
 </script>
 <script id = "CityDetile" type="text/template">
   <% if(recommendCities.length > 1){ %>

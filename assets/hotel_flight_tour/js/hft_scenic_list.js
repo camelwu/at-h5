@@ -3,6 +3,7 @@
  */
 (function() {
 	var webkit = this;
+	var filterSign = false;
 	var core = function() {
 		var url = "";
 		var themeId = "";
@@ -16,7 +17,7 @@
 					"departCityCode" : destCityCode,
 					"destCityCode" : departCityCode
 				},
-				"ForeEndType" : 3,
+				"ForeEndType" : 2,
 				"Code" : "60100002"
 			};
 			console.log(JSON.stringify(SParameter));
@@ -25,6 +26,8 @@
 		var callback = function(data) {
 			vlm.init();
 			if (data.success) {
+
+				filterData = data;
 				var localStoragedata = JSON.parse(localStorage.getItem("searchInfo"));
 				console.log(data);
 				var htmlt = $("#timeDetile").html();
@@ -47,37 +50,53 @@
 					var packageid = $(this).attr("data-packageid");
 					window.location.href = 'hft_choose.html?type=2&packageId=' + packageid;
 				});
-				// 添加底部筛选
-				var f_data = {
-					sortTypes : {
-						title : "推荐排序",
-						c : "foot_sort",
-            s : 1,
-						type : 1,
-						key : 'sortTypes',
-						listData : data.data.sortTypes
-					},
-          hotelScreen : {
-            title : "筛选",
-            c : "foot_screen",
-            s : 2,
-            type : 2,
-            key : 'filters',
-            listData : data.data.filters
-          }
-				}, menu_call = function() {
-					//alert("js request json.");
-					//vlm.loadJson("", JSON.stringify(data.data.SortTypes.SortValue), callback);
-					//vlm.loadJson("", JSON.stringify(data.data.themeID), callback);
-				};
-				if (footer) {
-					footer.data = f_data;
-					footer.callback = menu_call;
+				$('#Time').on("click",function() {
+					window.location.href = 'index.html';
+				});
+				if(!filterSign){
+					filterSign = true;
+					initFilter(data);
 				}
-				footer.filters.init();
 			} else {
 				alert(data.message, "提示");
 			}
+		};
+		//init filter
+		var initFilter = function(data){
+			// 添加底部筛选
+			var f_data = {
+				sortTypes : {
+					title : "推荐排序",
+					c : "foot_sort",
+					s : 1,
+					type : 1,
+					key : 'sortTypes',
+					listData : data.data.sortTypes
+				},
+				hotelScreen : {
+					title : "筛选",
+					c : "foot_screen",
+					s : 2,
+					type : 2,
+					key : 'filters',
+					listData : data.data.filters
+				}
+			},menu_call = function(obj) {
+				console.log(obj);
+				var Para={};
+				var departCityCode = JSON.parse(localStorage.getItem("searchInfo")).FromCity;
+				var destCityCode = JSON.parse(localStorage.getItem("searchInfo")).ToCity;
+				Para.departCityCode = departCityCode;
+				Para.destCityCode = destCityCode;
+				Para.sortType = obj.sortTypes[0];
+				Para.filterFields = obj.filters[0][0];
+				tAjax("",Para,"60100002","2",callback);
+			};
+			if (footer) {
+				footer.data = f_data;
+				footer.callback = menu_call;
+			}
+				footer.filters.init();
 		};
 		//ajax请求
 		var tAjax= function(questUrl, data, Code, ForeEndType, Callback) {
@@ -111,7 +130,8 @@
 })();
 vlm.load();
 //城市返回记录已访问过
-$('#g_back').click(function() {
-	var isInit = window.location.search;
-	window.location.href = 'index.html' + isInit;
-});
+//$('#g_back').click(function() {
+//	var isInit = window.location.search;
+//	window.location.href = 'index.html' + isInit;
+//});
+
