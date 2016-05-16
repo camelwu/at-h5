@@ -19,18 +19,19 @@
     <link href="../styles/swipebox.css"	rel="stylesheet">
 </head>
 <body>
-<!--<div id="preloader">-->
-<!--<div id="status">-->
+<div id="preloader">
+<div id="status">
 
-<!--</div>-->
-<!--</div>-->
+</div>
+</div>
 <div class="contents">
     <div class="header_scenic">
+        <a href="javascript:history.go(-1);" class="header_back" id = "g_back">
         <div class="icon_go_back"></div>
+            </a>
     </div>
     <div>
         <section class="bar_img" id = "barImg">
-            <span class="bar_img_theme">景点详情</span>
         </section>
         <section class = "bar_content" id = "barContent">
         </section>
@@ -44,7 +45,6 @@
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="js/hft_scenic_content.js"></script>
-
 <!--<script type ="text/template" id = "Barimg">-->
     <!--<% for( var i=0;i< images.length;i++){ %>-->
     <!--<img src="<%= images[i].thumbnailPhotoURL%>"alt="景点详情"/>-->

@@ -37,13 +37,13 @@
       <ul class="flightOuter">
         <%flightInfo.segmentsLeave.forEach(function(leaveItem,item){ var length = flightInfo.segmentsLeave.length %>
         <li class="tripGo">
+          <%if(item==0){ %>
           <div class="dateWeekCity">
-            <%if(item==0){ %>
             <span class="icon"></span>
-            <% } %>
             <span><%= leaveItem["departDate"].substring(5, 10) %></span><span class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span>
           </div>
-          <div class="timeAirport">
+          <%}%>
+          <div class="timeAirport fixedMargin">
             <div class="left">
               <span class="startTime"><%= leaveItem["departDate"].substring(11, 16) %></span><span
               class="startPort"><%= leaveItem["airportNameFrom"] %><%= leaveItem["termDepart"] %></span>
@@ -54,7 +54,10 @@
               <div class="transferCity"></div>
             </div>
             <div class="right">
-            <span class="arriveTime"><%= leaveItem["arriveDate"].substring(11, 16) %></span><span class="plusDay">+1天</span>
+            <span class="arriveTime"><%= leaveItem["arriveDate"].substring(11, 16) %></span>
+              <% if(leaveItem["spacingDay"]){ %>
+              <span class="plusDay">+<%=leaveItem["spacingDay"]%>天</span>
+              <% }%>
             <span
               class="arrivePort"><%=  leaveItem["airportNameTo"] %><%=  leaveItem["termArrive"] %></span>
             </div>
@@ -79,13 +82,13 @@
           <%}else{%>
         <li class="tripBack">
         <%}%>
+        <%if(item_==0){ %>
         <div class="dateWeekCity">
-            <%if(item_==0){ %>
-            <span class="icon"></span>
-            <% } %>
-            <span><%= returnItem["departDate"].substring(5, 10) %></span><span class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
-          </div>
-          <div class="timeAirport">
+          <span class="icon"></span>
+          <span><%= returnItem["departDate"].substring(5, 10) %></span><span class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
+        </div>
+        <%}%>
+          <div class="timeAirport fixedMargin">
             <div class="left">
               <span class="startTime"><%= returnItem["departDate"].substring(11, 16) %></span><span
               class="startPort"><%= returnItem["airportNameFrom"] %><%= returnItem["termDepart"] %></span>
@@ -97,7 +100,9 @@
             </div>
             <div class="right">
             <span class="arriveTime"><%= returnItem["arriveDate"].substring(11, 16) %></span>
-              <span class="plusDay">+1天</span>
+              <% if(returnItem["spacingDay"]){ %>
+              <span class="plusDay">+<%=returnItem["spacingDay"]%>天</span>
+              <% }%>
             <span
               class="arrivePort"><%=  returnItem["airportNameTo"] %><%=  returnItem["termArrive"] %></span>
             </div>

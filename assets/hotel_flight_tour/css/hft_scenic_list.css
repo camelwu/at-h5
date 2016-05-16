@@ -1,4 +1,4 @@
-address, cite, dfn, em, var { font-style: normal; }body{background: white} /* 将斜体扶正 */
+address, cite, dfn, em, var { font-style: normal; } html,body{background: white} /* 将斜体扶正 */
 .snap-content{
   padding:.88rem 0 .9rem;
   background-color: white;
@@ -163,185 +163,7 @@ li.scenic_detile_project_first{
   font: 700 .2rem/.6rem "FZLTXHK";
   color:#FFBF4B
 }
-/*footer开始*/
-.footer{
-  width: 100%;
-  height:.9rem;
-  position: fixed;
-  bottom: 0;
-  text-align: center;
-  font-size: 10em;
-  color: white;
-  z-index: 999;
-}
-.footer div{
-  width: 50%;
-  height: 100%;
-  text-align: center;
-  color: white;
-  background-color: #000;
-  opacity: .7;
-  font-size:.2rem;
-  overflow: hidden;
-  display: inline-block;
-}
-div.footer_right{
-  float:right;
-}
-.footer_left{
-  float:left;
-}
-.footer_quicksort{
-  display: block;
-  width: .45rem;
-  height: .45rem;
-  margin: 0 auto;
-  background-position: -164px -19px;
-}
-.footer_icon {
-  background-image: url(../../images/ui/jd-icon.png);
-  background-repeat: no-repeat;
-  background-size: 256px 71px;
-}
-.footer_screen{
-  display: block;
-  width: .45rem;
-  height: .45rem;
-  margin: 0 auto;
-  background-position: -164px 2px;
-}
-/*排序筛选开始*/
-.contents{
-  position: absolute;
-  overflow-x: hidden!important;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
-}
-.shade_div{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-color: black;
-  opacity: 0.5;
-  display: none;
-  z-index: 2000;
-}
-.rank{
-  width: 100%;
-  background-color: white;
-  position: fixed;
-  z-index: 2001;
-  bottom: -2222rem;
-}
-.rank li{
-  margin-left:.28rem;
-  padding-left:.12rem;
-  width: 100%;
-  height: .96rem;
-  border-bottom: 1px solid #d0d0d3;
-  font-size: .26em;
-  color: #333333;
-  line-height: .96rem;
-}
-.Schecked{
-  display: inline-block;
-  width: 18px;
-  height: 16px;
-  position: absolute;
-  right:.4rem;
-  margin-left: -78px;
-  margin-top: 12px;
-  background-image: url(../../images/ui/icons1.png);
-  background-size: 400px 120px;
-  background-position: 77% 4%;
-}
-.Fchecked{
-  display: inline-block;
-  width: 18px;
-  height: 16px;
-  position: absolute;
-  right:.4rem;
-  margin-left: -78px;
-  margin-top: 12px;
-  background-image: url(../../images/ui/icons1.png);
-  background-size: 400px 120px;
-  background-position: 77% 4%;
-}
-/*筛选开始*/
-.filter{
-  width: 100%;
-  background: #F7F7F7;
-  position: fixed;
-  z-index: 2001;
-  bottom: -200rem;
-}
-.filter_button{
-  height: .89rem;
-  width: 90%;
-  line-height: .89rem;
-  font-size: .3rem;
-  padding: 0 8%;
-}
-.filter_button p{
-  width: 31%;
-  display: inline-block;
-  color:#999999;
-}
-.filter_button_c{
-  text-align: center;
-}
-.filter_button_r{
-  text-align: right;
-}
-p.filter_button_checked{
-  color:#FFB500;
-}
-.filter_theme{
-  color:#484848;
-}
-.filter_theme_list {
-  width: 1.80rem;
-  height: 100%;
-  float: left;
-  background: #F7F7F7;
-}
-.filter_theme_list li{
-  width: 100%;
-  height: .96rem;
-  border-left:.05rem solid #FFB413;
-  font-size: .26rem;
-  line-height: .96rem;
-  text-align: center;
-  background: #fff;
-}
-.filter_theme_matter {
-  float:left;
-  width: 76%;
-  height: 6rem;
-  overflow: scroll;
-}
-.filter_theme_box{
-  background: #fff;
-  width: 100% ;
-}
 
-.filter_theme_box li{
-  width: 100%;
-  margin-left:.32rem;
-  border-bottom:.01rem solid #e6e6e6;
-  font-size: .28rem;
-  line-height: .96rem;
-  overflow: scroll;
-  position: relative;
-}
-.checked_theme1{
-  color:#FFB413;
-}
-.checked_theme2{
-  color:#FFB413;
-}
 /*景点详情页开始*/
 .header_scenic{
   height: .66rem;
@@ -380,7 +202,8 @@ p.filter_button_checked{
   color:#fff;
   position: absolute;
   left:40%;
-  top:.6rem;
+  top:.28rem;
+  opacity: 0.8;
 }
 .bar_img_page{
   font-size: .2rem;

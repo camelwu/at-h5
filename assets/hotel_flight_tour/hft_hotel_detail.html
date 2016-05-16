@@ -16,6 +16,7 @@
 <title>首页 - 亚洲旅行网</title>
 <link href="../styles/reset.css" rel="stylesheet" type="text/css">
 <link href="../styles/swipebox.css"	rel="stylesheet">
+<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
 <link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -51,7 +52,7 @@
   <section class="hotel_detail_rooms">
     <div class="time">
       <ul>
-        <li><span>12月22</span>&nbsp;入住&nbsp;&nbsp;<span>12月30</span>&nbsp;离店&nbsp;&nbsp;共&nbsp;<span>9</span>&nbsp;晚</li>
+        <li><span class="departDate">12月22</span>&nbsp;入住&nbsp;&nbsp;<span class="returnDate">12月30</span>&nbsp;离店&nbsp;&nbsp;共&nbsp;<span>9</span>&nbsp;晚</li>
         <li><span>1</span>&nbsp;房间&nbsp;&nbsp;<span>1</span>&nbsp;成人&nbsp;&nbsp;<span>0</span>&nbsp;儿童</li>
       </ul>
       <!--<p></p>-->
@@ -94,25 +95,17 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/ATGMSMain.js"></script>
 <script src="../js/ATIcons.js"></script>
 <script src="../js/ATTransform.js"></script>
 <script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBV850tYcTCzqZbZKVWpeGYRm0yNYLt9fc&callback=initialize" type="text/javascript"></script>
 <script src="js/hft_hotelDetail.js"></script>
-<script>
-  $(function(){
-    $('.hotel_detail_rooms li').on('click',function(){
-      $(this).addClass('cur').siblings().removeClass('cur');
-      window.location.href = 'hft_choose.html';
-    });
-
-  })
-</script>
 
 <!--roomList-->
 <script id="ulList" type="text/template">
   <% for(var i=0;i<rooms.length;i++){ %>
-  <li class="cur">
+  <li data-hotelId="<%= rooms[i].roomID %>">
     <div class="slide">
       <div class="lfword">
         <p><span class="name"><%= rooms[i].roomName %></span><i class="book"></i></p>

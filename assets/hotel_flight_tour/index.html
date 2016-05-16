@@ -15,6 +15,7 @@
     <title>自由行首页 - 亚洲旅行网</title>
     <link href="../styles/reset.css" rel="stylesheet" />
     <link href="css/hft_index.css" rel="stylesheet" />
+    <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -28,10 +29,10 @@
                 <i class="icon_back"></i>
             </a>
             <h3>自由行</h3>
-          <div id="indexTab" class="full_box index_tab">
-            <div class="tab">机+酒</div>
-            <div class="tab">机+酒+景</div>
-          </div>
+            <div id="indexTab" class="full_box index_tab">
+                <div class="tab">机+酒</div>
+                <div class="tab">机+酒+景</div>
+            </div>
         </div>
         <div style="padding-top: 1.64rem;">
             <!--  机+酒   -->
@@ -44,7 +45,7 @@
                         </div>
                         <div class="destination city-search " data-citycode="SIN">新加坡</div>
                     </div>
-                    <div class="date_info">
+                    <div class="date_info" id="fhCalendar">
                         <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
                         <div class="ori_des_date">
                             <span class="origin_data date_box"><span class="date_number date_one js_startDay">06月22日</span><span class="js_startData" data-day="2016-06-22"></span>&nbsp;<span class="week_one">周四</span></span>
@@ -61,45 +62,45 @@
                         </div>
                     </section>
                     <!--<section class="hotelInfo_numb_people init_hotel_room_detail">-->
-                        <!--<span class="title">房间1</span>-->
-                        <!--<div class="numbList">-->
-                            <!--<span class="n_tit">成人</span>-->
-                            <!--<div class="per_price_control" data-type="adult">-->
-                                <!--<span id="adultDown" class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
-                                <!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
-                                <!--<span class="plus_btn"></span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="numbList">-->
-                            <!--<span class="n_tit">儿童</span>-->
-                            <!--<span class="child_age">(2-12岁)</span>-->
-                            <!--<b class="com_icon child_age_state"></b>-->
-                            <!--<div class="age_state_box">-->
-                                <!--<div></div>-->
-                                <!--<div class="state_text">-->
-                                    <!--<span>·</span>-->
-                                    <!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="per_price_control" data-type="extraChild">-->
-                                <!--<span class="cut_down_btn"></span>-->
-                                <!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
-                                <!--<span class="plus_btn"></span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="extraChild" style="display: none;">-->
-                            <!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
-                            <!--<div class="childAge">-->
-                                <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                            <!--</div>-->
-                            <!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
-                            <!--<div class="childAge">-->
-                                <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                            <!--</div>-->
-                            <!--<div class="numbList spenumbList">-->
-                                <!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                    <!--<span class="title">房间1</span>-->
+                    <!--<div class="numbList">-->
+                    <!--<span class="n_tit">成人</span>-->
+                    <!--<div class="per_price_control" data-type="adult">-->
+                    <!--<span id="adultDown" class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
+                    <!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
+                    <!--<span class="plus_btn"></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="numbList">-->
+                    <!--<span class="n_tit">儿童</span>-->
+                    <!--<span class="child_age">(2-12岁)</span>-->
+                    <!--<b class="com_icon child_age_state"></b>-->
+                    <!--<div class="age_state_box">-->
+                    <!--<div></div>-->
+                    <!--<div class="state_text">-->
+                    <!--<span>·</span>-->
+                    <!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="per_price_control" data-type="extraChild">-->
+                    <!--<span class="cut_down_btn"></span>-->
+                    <!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
+                    <!--<span class="plus_btn"></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="extraChild" style="display: none;">-->
+                    <!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
+                    <!--<div class="childAge">-->
+                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+                    <!--</div>-->
+                    <!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
+                    <!--<div class="childAge">-->
+                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+                    <!--</div>-->
+                    <!--<div class="numbList spenumbList">-->
+                    <!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
                     <!--</section>-->
                 </div>
                 <div class="search_button">
@@ -116,11 +117,11 @@
                         </div>
                         <div class="destination city-search " data-citycode="SIN">新加坡</div>
                     </div>
-                    <div class="date_info">
+                    <div class="date_info" id="fhtCalendar">
                         <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
                         <div class="ori_des_date">
-                            <span class="origin_data date_box"><span class="date_number date_one js_startDay">05月15日</span><span class="js_startData" data-day="2016-05-15"></span>&nbsp;<span class="week_one">周四</span></span>
-                            <span class="destination_data date_box"><span class="date_number date_two js_endDay">05月20日</span><span class="js_returnData" data-day="2016-05-20"></span>&nbsp;<span class="week_two">周六</span></span>
+                            <span class="origin_data date_box"><span class="date_number date_one js_startDay">07月15日</span><span class="js_startData" data-day="2016-07-15"></span>&nbsp;<span class="week_one">周四</span></span>
+                            <span class="destination_data date_box"><span class="date_number date_two js_endDay">07月20日</span><span class="js_returnData" data-day="2016-07-20"></span>&nbsp;<span class="week_two">周六</span></span>
                         </div>
                     </div>
                 </div>
@@ -133,45 +134,45 @@
                         </div>
                     </section>
                     <!--<section class="hotelInfo_numb_people init_hotel_room_detail">-->
-                        <!--<span class="title">房间1</span>-->
-                        <!--<div class="numbList">-->
-                            <!--<span class="n_tit">成人</span>-->
-                            <!--<div class="per_price_control" data-type="adult">-->
-                                <!--<span class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
-                                <!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
-                                <!--<span class="plus_btn"></span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="numbList">-->
-                            <!--<span class="n_tit">儿童</span>-->
-                            <!--<span class="child_age">(2-12岁)</span>-->
-                            <!--<b class="com_icon child_age_state"></b>-->
-                            <!--<div class="age_state_box">-->
-                                <!--<div></div>-->
-                                <!--<div class="state_text">-->
-                                    <!--<span>·</span>-->
-                                    <!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="per_price_control" data-type="extraChild">-->
-                                <!--<span class="cut_down_btn"></span>-->
-                                <!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
-                                <!--<span class="plus_btn"></span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="extraChild">-->
-                            <!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
-                            <!--<div class="childAge">-->
-                                <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                            <!--</div>-->
-                            <!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
-                            <!--<div class="childAge">-->
-                                <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                            <!--</div>-->
-                            <!--<div class="numbList spenumbList">-->
-                                <!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                    <!--<span class="title">房间1</span>-->
+                    <!--<div class="numbList">-->
+                    <!--<span class="n_tit">成人</span>-->
+                    <!--<div class="per_price_control" data-type="adult">-->
+                    <!--<span class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
+                    <!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
+                    <!--<span class="plus_btn"></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="numbList">-->
+                    <!--<span class="n_tit">儿童</span>-->
+                    <!--<span class="child_age">(2-12岁)</span>-->
+                    <!--<b class="com_icon child_age_state"></b>-->
+                    <!--<div class="age_state_box">-->
+                    <!--<div></div>-->
+                    <!--<div class="state_text">-->
+                    <!--<span>·</span>-->
+                    <!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="per_price_control" data-type="extraChild">-->
+                    <!--<span class="cut_down_btn"></span>-->
+                    <!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
+                    <!--<span class="plus_btn"></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="extraChild">-->
+                    <!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
+                    <!--<div class="childAge">-->
+                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+                    <!--</div>-->
+                    <!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
+                    <!--<div class="childAge">-->
+                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+                    <!--</div>-->
+                    <!--<div class="numbList spenumbList">-->
+                    <!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
+                    <!--</div>-->
+                    <!--</div>-->
                     <!--</section>-->
 
                 </div>
@@ -186,10 +187,13 @@
         <!--<div class="site_right">版权所有@2015Asiatravel 控股有限公司.保留所有权利.</div>-->
     </div>
     <script src="../js/lib/jquery.js"></script>
+    <!--
     <script src="../js/lib/plugins.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
+-->
     <script src="../js/lib/vlm.js"></script>
-    <script src="../js/lib/template.js"></script>
+    <!--    <script src="../js/lib/template.js"></script>-->
+    <script src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
     <script src="js/hft_index.js"></script>
 </body>
 

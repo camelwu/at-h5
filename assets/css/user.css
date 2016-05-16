@@ -1658,13 +1658,57 @@ ul, ol {
 .s_lists.mt-none{
   margin-top: 0;
 }
+.icon_person{
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 400px 220px;
+}
 
-.myorder-tip{
+.myorder_tip{
   position: absolute;
   width: 22px;
   height: 22px;
   top: 10px;
-  background-position: -58px -75px;
+  background-position: -23px -6px;
+}
+.open_info{
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  background-position: 0 -6px;
+}
+
+.open_msg{
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  background-position: -67px -6px;
+}
+
+.open_set{
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  background-position: -23px -6px;
+}
+.open_about{
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 10px;
+  background-position: -45px -6px;
+}
+.open_arw{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: url("../images/ui/icon-hft.png") no-repeat;
+  background-size: 420px 240px;
+  width: 12px;
+  height: 22px;
+  background-position: 62% 52%;
 }
 /*选择联系人*/
 .con-mobile-tip{
