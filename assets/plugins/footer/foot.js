@@ -299,16 +299,16 @@ var footer = (function() {
 			case "filters":
 				// 筛选
 				for (; i < l; i++) {
-					var a = d[i], item = a.item;
+					var a = d[i], item = a.item,li='';
 					css = i == 0 ? ' class="cur"' : '';
 					cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
 					s = a.allowMultiSelect == 1 ? 2 : 1;
-					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">';
+					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + k + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];
-						listr += '<li data-val="' + o.filterValue + '">' + o.filterText + '<i></i></li>';
+						li += '<li data-val="' + o.filterValue + '">' + o.filterText + '<i></i></li>';
 					}
-					ulstr += wrapper[0] + listr + wrapper[1];
+					ulstr += wrapper[0] + li + wrapper[1];
 				}
 				break;
 			case "locationList":
@@ -337,6 +337,9 @@ var footer = (function() {
 				for (; i < l; i++) {
 					listr += '<li data-val="' + i + '">' + d[i] + '</li>';
 				}
+				/*for(var key in d){
+					listr += '<li data-val="' + key + '">' + d[key] + '</li>';
+				}*/
 				ulstr = wrapper[0] + listr + wrapper[1];
 				break;
 			}
@@ -417,7 +420,7 @@ var footer = (function() {
 					obj[node[i].getAttribute("data-key")] = cache;
 				}
 			}
-			footer.result = obj;
+			footer.result = obj;console.log(obj);
 			this.remove();
 			if (footer.callback) {
 				footer.callback(obj);
@@ -444,8 +447,12 @@ var footer = (function() {
 			if (sec) {
 				if (t == 3) {
 					// 航空公司
-					this.remove();
-					sec.firstChild.style.bottom = "0.98rem";
+					masker.style.display = "none";//this.remove();
+					if (sec.firstChild.style.bottom == "0.98rem") {
+						sec.firstChild.style.bottom = "";
+					}else{
+						sec.firstChild.style.bottom = "0.98rem";
+					}
 				} else {
 					if (masker.style.display == "none") {
 						masker.style.display = "block";
