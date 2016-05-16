@@ -66,7 +66,7 @@ var flightList = {
 			var str1 = $("#tplFlightList").html();
 			var flight_list = ejs.render(str1, data);
 			document.getElementById('fligtList').innerHTML = flight_list;
-			that.bottom(data);
+			bottom(data);
 			$.each($('.seat_detail'), function(i, item) {
 				if ($(this).attr('data-setID') == oldFlightInfo.flightSetID) {
 					$(this).find('b').addClass('cho_gou').siblings().find('b').removeClass('cho_gou');
@@ -78,17 +78,6 @@ var flightList = {
 					airway[i].getElementsByClassName('hft_icon')[0].className = 'hft_icon cho_gou';
 				}
 			}
-			$('.airway').click(function() {
-				$(this).find('b').addClass('cho_gou');
-				$(this).siblings().find('b').removeClass('cho_gou');
-				$('#foAirway').removeAttr('style');
-				$('#awContent').hide();
-				$('#closeAirw').hide();
-				$('#pageBack').show();
-				changeFlightInfo.flightSetID = $(this).attr('data-airwaySetID');
-				changeFlightInfo.flightCacheID = $(this).attr('data-airwayCacheID');
-				that.tAjax("", changeFlightInfo, "60100005", "2", flightListBack);
-			});
 			//  页面跳转
 			$(".seat_detail").click(function() {
 				$(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
@@ -108,12 +97,8 @@ var flightList = {
 				window.location.href = 'hft_choose.html' + window.location.search;
 			});
 		};
-		this.tAjax("", oldFlightInfo, "60100005", "2", flightListBack);
-
-  },
-  bottom:function(d){
-    var that = this;
-    var menu_data = {
+    var bottom = function(d){
+      var menu_data = {
         hotelPosition : {
           title : "航空公司",
           c : "flight_company",
@@ -138,20 +123,71 @@ var flightList = {
           key : 'filters',
           listData : d.filters
         }
-      },
-      menu_call = function() {
-        alert(11);
-        //changeFlightInfo.flightSetID = $(this).attr('data-airwaySetID');
-        //changeFlightInfo.flightCacheID = $(this).attr('data-airwayCacheID');
-        //that.tAjax("",changeFlightInfo,"60100005","2",flightListBack);
       };
+      var menu_call = function(back) {
+        console.log(back);
+        changeFlightInfo.flightSetID = back.airways.airwaySetID;
+        changeFlightInfo.flightCacheID = back.airways.airwayCacheID;
+        changeFlightInfo.sortFields = back.sortTypes;
+        changeFlightInfo.filterFields = back.filters;
+        console.log(changeFlightInfo);
+        that.tAjax("",changeFlightInfo,"60100005","2",flightListBack);
+      };
+      if (footer) {
+        footer.data = menu_data;
+        footer.callback = menu_call;
+      }
+      footer.filters.init();
+    };
+		this.tAjax("", oldFlightInfo, "60100005", "2", flightListBack);
 
-		if (footer) {
-			footer.data = menu_data;
-			footer.callback = menu_call;
-		}
-		footer.filters.init();
-	},
+
+  },
+  //bottom:function(d){
+  //  var that = this;
+  //  var menu_data = {
+  //      hotelPosition : {
+  //        title : "航空公司",
+  //        c : "flight_company",
+  //        type : 3,
+  //        s:1,
+  //        key : 'airways',
+  //        listData : d.airways
+  //      },
+  //      hotelSort : {
+  //        title : "快速排序",
+  //        c : "foot_sort",
+  //        type : 1,
+  //        s:1,
+  //        key : 'sortTypes',
+  //        listData : d.sortTypes
+  //      },
+  //      hotelScreen : {
+  //        title : "筛选",
+  //        c : "foot_screen",
+  //        type : 2,
+  //        s:2,
+  //        key : 'filters',
+  //        listData : d.filters
+  //      }
+  //    },
+  //    menu_call = function(back) {
+  //      console.log(back);
+  //      changeFlightInfo.flightSetID = back.airwaySetID;
+  //      changeFlightInfo.flightCacheID = back.airwayCacheID;
+  //      changeFlightInfo.sortFields = back.sortTypes;
+  //      changeFlightInfo.filterFields = back.filters;
+  //      console.log(changeFlightInfo);
+  //      console.log(that.getFlightList.flightListBack);
+  //      that.tAjax("",changeFlightInfo,"60100005","2",that.getFlightList.flightListBack);
+  //    };
+  //
+	//	if (footer) {
+	//		footer.data = menu_data;
+	//		footer.callback = menu_call;
+	//	}
+	//	footer.filters.init();
+	//},
 	tAjax : function(questUrl, data, Code, ForeEndType, Callback) {
 		var that = this, dataObj = {
 			Parameters : data,
