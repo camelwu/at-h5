@@ -22,26 +22,27 @@
 			var menu_data = {
 				hotelSort : {
 					title : "推荐排序",
-					c : "foot_hotel_sort",
+					c : "foot_sort",
 					type : 1,
 					key : 'sortTypes',
 					listData : data.sortTypes
 				},
 				hotelScreen : {
 					title : "筛选",
-					c : "foot_hotel_screen",
+					c : "foot_screen",
 					type : 2,
 					key : 'filters',
 					listData : data.filters
 				},
 				hotelPosition : {
 					title : "位置",
-					c : "foot_hotel_position",
+					c : "foot_position",
 					type : 2,
 					key : 'locationList',
 					listData : data.locationList
 				}
 			}, menu_call = function() {
+
 				alert("js request json.");
 			};
 
@@ -50,6 +51,10 @@
 				footer.callback = menu_call;
 			}
 			footer.filters.init();
+			//排序默认选中第一个
+			$('section.foot_hotel_sort li').eq(0).addClass('cur');
+
+
 			console.log(data);
 			vlm.init();
 		} else {
@@ -95,7 +100,6 @@
 		var str = $('#templateList').html();
 		var hotels = ejs.render(str, handleData(data));
 		$('.hotel_list').html(hotels);
-		$('.hotel_list li').eq(0).addClass('cur');
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');
 			var hotelID = $(this).attr("data-hotelId");

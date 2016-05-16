@@ -57,14 +57,14 @@
 				var f_data = {
 					sortTypes : {
 						title : "推荐排序",
-						c : "foot_hotel_sort",
+						c : "foot_sort",
 						type : 1,
 						key : 'sortTypes',
 						listData : data.data.sortTypes
 					},
 					themes : {
 						title : "筛选",
-						c : "foot_hotel_screen",
+						c : "foot_screen",
 						type : 2,
 						key : 'themes',
 						listData : data.data.themes
