@@ -65,12 +65,14 @@ var hftChoose = {
     var priceTotal = document.querySelector('.priceTotal i'), preserve = document.querySelector('.preserve'), iconBack = document.querySelector('.header_back');
     var tourOuter = null, chooseDateOuter = null, priceDetailInfo = document.querySelector('.priceDetailInfo');
     var roomUl = document.querySelector('.roomUl'), checkMoreData = document.querySelector('.check-more-room'), shadowEle = document.querySelector('.shadow'), storage = window.sessionStorage;
+    that.curChosenTourInfo = {tourId:'', chosenDate:''};
     if (that.type == 2) {
       tourOuter = document.querySelector('.tourOuter');
       chooseDateOuter = document.querySelector('.chooseDate')
       this.addHandler(tourOuter, 'click', function (e) {
         var e = e || window.event, target = e.target || e.srcElement;
         if (target.tagName == "I") {
+          that.curChosenTourInfo.tourId = target.parentNode.parentNode.getAttribute('data-tour-id');
           chooseDateOuter.style.transition = 'all 400ms ease-in';
           chooseDateOuter.style.webkitTransition = 'all 400ms linear';
           shadowEle.style.display = "block";
@@ -160,6 +162,9 @@ var hftChoose = {
               break;
             }
           }
+          that.curChosenTourInfo.chosenDate = that.curChooseDate;
+          storage.setItem('tourChosenInfo', JSON.stringify(that.curChosenTourInfo));
+          console.log(that.curChosenTourInfo)
           that.dateWrap.innerHTML = '<span data-date="' + that.curChooseDate + '">' + that.returnDay(that.curChooseDate) + '</span><i></i>';
           shadowEle.style.display = "none";
           chooseDateOuter.style.bottom = '-126%';
@@ -462,7 +467,17 @@ var hftChoose = {
     var result = arguments[0], that = hftChoose;
     if (result.code == 200 && result.success == 1) {
       console.log(result)
-      var priceNum = result.data.totalAmount;
+      var priceNum = result.data.totalAmount, tourTem = [],tourChosenInfo = JSON.parse(window.sessionStorage.getItem('tourChosenInfo'));
+      tourTem = that.curData.tours;
+      if(tourChosenInfo){
+       console.log(tourChosenInfo);
+        tourTem.forEach(function(arrayItem){
+                if(arrayItem['tourID'] == tourChosenInfo["tourId"]){
+                  arrayItem['selectTravelDate'] = tourChosenInfo["chosenDate"];
+                }
+      })
+      };
+      that.curData.tours = tourTem;
       that.roomPriceInfo = result.data.prices;
       that.curData.hotelInfo.rooms = result.data.roomsPrice;
       that.renderHandler({success: 1, code: 200, data: that.curData})
