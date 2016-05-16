@@ -189,7 +189,7 @@ var footer = (function() {
 								//单击
 								break;
 							}
-							if (theme == 1||theme == 3) {// 显示类型确认操作
+							if (theme == 1 || theme == 3) {// 显示类型确认操作
 								that.request();
 							}
 						}
@@ -235,7 +235,7 @@ var footer = (function() {
 			var data = footer.data, ca = [];
 			for (var p in data) {
 				ca.push('<dl class=' + data[p].c + ' id=' + p + ' data-type=' + data[p].type + '><dt></dt><dd>' + data[p].title + '</dd></dl>');
-				this.createSec(data[p].c, data[p].type, data[p].key, data[p].listData);
+				this.createSec(data[p].s, data[p].c, data[p].type, data[p].key, data[p].listData);
 			}
 			box.innerHTML = ca.join('');
 			document.body.appendChild(box);
@@ -274,8 +274,8 @@ var footer = (function() {
 			}
 		},
 		// section
-		createSec : function(c, t, k, d) {
-			var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = 1, cache = [],
+		createSec : function(s, c, t, k, d) {
+			var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = s ? s : 1, cache = [],
 			// 容器
 			wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">', '</ul>'],
 			// 左侧容器
@@ -299,10 +299,10 @@ var footer = (function() {
 			case "filters":
 				// 筛选
 				for (; i < l; i++) {
-					var a = d[i], item = a.item,li='';
+					var a = d[i], item = a.item, li = '';
 					css = i == 0 ? ' class="cur"' : '';
 					cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
-					s = a.allowMultiSelect == 1 ? 2 : 1;
+					s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : 1;
 					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + k + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];
@@ -338,8 +338,8 @@ var footer = (function() {
 					listr += '<li data-val="' + i + '">' + d[i] + '</li>';
 				}
 				/*for(var key in d){
-					listr += '<li data-val="' + key + '">' + d[key] + '</li>';
-				}*/
+				 listr += '<li data-val="' + key + '">' + d[key] + '</li>';
+				 }*/
 				ulstr = wrapper[0] + listr + wrapper[1];
 				break;
 			}
@@ -408,19 +408,32 @@ var footer = (function() {
 		},
 		request : function() {
 			// 选中的属性
-			var node = sec.getElementsByTagName("ul"), cache = [], obj = {};
+			var node = sec.getElementsByTagName("ul"), obj = {};
 			for (var i = 0; i < node.length; i++) {
-				var chk = node[i].getElementsByClassName("cur");
-				for (var j = 0; j < chk.length; j++) {
-					cache.push(chk[j].getAttribute("data-val"));
-				}
-				if (node[i].getAttribute("data-sel") == 1) {// 单选
-					obj[node[i].getAttribute("data-key")] = cache[0];
-				} else {// 多选
-					obj[node[i].getAttribute("data-key")] = cache;
+				if (node[i].getAttribute("data-key")) {
+					var cache = [], chk = node[i].getElementsByClassName("cur"), mykey = node[i].getAttribute("data-key");
+					for (var j = 0; j < chk.length; j++) {
+						cache.push(chk[j].getAttribute("data-val"));
+					}
+					if (mykey == "airways") {// 航空公司处理
+						obj.airways = {
+							airwaySetID:chk[0].getAttribute("airwayCacheID"),
+							airwaySetID:chk[0].getAttribute("airwayCacheID")
+						};
+					} else if (mykey == "filters") {// 过滤处理
+						if(obj[node[i].getAttribute("data-key")]){
+							obj[node[i].getAttribute("data-key")].push([node[i].getAttribute("data-type"), cache]);
+						}else{
+							obj[node[i].getAttribute("data-key")]=[];
+							obj[node[i].getAttribute("data-key")].push([node[i].getAttribute("data-type"), cache]);
+						}
+					} else {
+						obj[node[i].getAttribute("data-key")] = cache;
+					}
 				}
 			}
-			footer.result = obj;console.log(obj);
+			footer.result = obj;
+			console.log(obj);
 			this.remove();
 			if (footer.callback) {
 				footer.callback(obj);
@@ -447,10 +460,11 @@ var footer = (function() {
 			if (sec) {
 				if (t == 3) {
 					// 航空公司
-					masker.style.display = "none";//this.remove();
+					masker.style.display = "none";
+					console.log("3333");
 					if (sec.firstChild.style.bottom == "0.98rem") {
 						sec.firstChild.style.bottom = "";
-					}else{
+					} else {
 						sec.firstChild.style.bottom = "0.98rem";
 					}
 				} else {
@@ -464,7 +478,7 @@ var footer = (function() {
 							for (var i = 0; i < sec.childNodes.length; i++) {
 								if (sec.childNodes[i].style.bottom == "0.98rem") {
 									sec.childNodes[i].style.bottom = "";
-									break;
+									//break;
 								}
 							}
 							sec.childNodes[n].style.bottom = "0.98rem";
