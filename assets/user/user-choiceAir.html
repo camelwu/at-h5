@@ -657,10 +657,6 @@
 	}
 	function ReplaceData(id,data){
 
-    if(data.length<=0){
-      return false;
-    }
-
 		var elementId="#"+id;
 		var htmlObj =$(ifrCilent.parentNode).find(elementId);
 		if(isMulSelect)
@@ -693,14 +689,27 @@
 			}
 			else
 			{
+          var childs = htmlObj[0].children;
+          for(var i = childs.length - 1; i >=1; i--) {
+            $(htmlObj[0].children[i]).remove();
+          }
+          if(data.length<=0){
+            htmlObj[0].children[0].hidden=true;
+          }
+
 				var children=htmlObj.children().eq(0);
-				htmlObj.children().remove();
+//        htmlObj.children().remove();
 				for(var i=0; i<=data.length-1;i++){
 					var cloneObj=children.clone(true);
 					cloneObj.show();
 					cloneObj.find('input').each(function(){
+<<<<<<< .mine
 
 						if($(this).attr("data-elementName")!= undefined ){
+=======
+            if($(this).attr("data-elementName")!="undefined"){
+
+>>>>>>> .theirs
 
 							if($(this).attr("data-elementName")=="idNumber") {
 								$(this).attr("value",data[i].listTravellerIdInfo[0].idNumber);
@@ -711,8 +720,13 @@
 						}
 					});
 					children.find('span').each(function(){
+<<<<<<< .mine
 
 						if(typeof($(this).attr("data-elementName"))!=undefined){
+=======
+            if(typeof($(this).attr("data-elementName"))!="undefined"){
+
+>>>>>>> .theirs
 
 							var d=data[0].traveller[$(this).attr("data-elementName")];
 							var Country=getCountryName(d);

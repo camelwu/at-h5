@@ -218,6 +218,7 @@
                         guestNameList.push(guestInfo);
                     }
                     var param;
+                    debugger;
                     Parameters = {
                         "availability": true,
                         "bankName": model.bankName,
@@ -258,7 +259,7 @@
                         "roomTypeCode": json.RoomTypeCode,
                         "roomTypeName": json.RoomTypeName,
                         "sessionID": "",
-                        "totalPrice": json.totalPriceCNY,
+                        "totalPrice": json.totalPriceCNY*parseInt(json.NumOfRoom),
                         "trck": ""
                     }
                      param = {
