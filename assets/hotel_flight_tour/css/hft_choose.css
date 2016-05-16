@@ -76,10 +76,11 @@ body{
   background: #fff;
   margin-top: .2rem;
 }
-.fix-margin{margin-top: 0}
-.tour{
-  margin-bottom: .98rem;
+.addMarginBottom{
+  height:1.2rem;
+  width:100%;
 }
+.fix-margin{margin-top: 0}
 .ticket .statusMoreFlight, .hotel .statusMoreHotel, .tour .tourListHeader, .confirm{
   padding:0 .28rem;
   height:.68rem;

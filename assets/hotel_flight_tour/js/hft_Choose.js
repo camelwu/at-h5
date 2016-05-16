@@ -208,9 +208,7 @@ var hftChoose = {
             temEles[j].className = temEles[j] == target ? 'active' : '';
           }
         }
-
       });
-
     }
     if (checkMoreData) {
       if (that.getCurrentStyle(checkMoreData).display == "block") {
