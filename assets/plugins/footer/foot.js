@@ -214,7 +214,6 @@ var footer = (function() {
 		},
 		// 新建筛选：列表&菜单
 		create : function() {
-			console.log(size("filter number=" + footer.data));
 			//overlay
 			this.createMask();
 			//container
@@ -316,7 +315,7 @@ var footer = (function() {
 			case "locationList":
 				// 位置
 				for (; i < l; i++) {
-					css = i == 0 ? ' class="cur"' : '';
+					css = '';
 					listr += '<li' + css + ' data-val="' + i + '">' + d[i] + '<i></i></li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
@@ -438,7 +437,7 @@ var footer = (function() {
 					}
 				}
 			}
-			footer.result = obj;
+			footer.result = obj;console.log(obj);
 			this.remove();
 			if (footer.callback) {
 				footer.callback(obj);
