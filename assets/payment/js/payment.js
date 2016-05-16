@@ -349,6 +349,19 @@
 
             //机+酒详情tpl
             if(type.id==5){
+                //var numofAdult=0;
+                //var numofChild=0;
+                //for (var i = 0;i<data.data.chargeDetails.length;i++){
+                //  if(data.data.chargeDetails[i].category=="ADULT"){
+                //    numofAdult+=1
+                //    totalPrice+=data.data.chargeDetails[i].totalAmount;
+                //  }else if(data.data.chargeDetails[i].category=="CHILD"){
+                //    numofChild+=1;
+                //    totalPrice+=data.data.chargeDetails[i].totalAmount;
+                //  }
+                //}
+                //data.data.numofAdult=numofAdult;
+                //data.data.numofChild=numofChild;
                 var html = template("tpl_flighthotel_detail", data.data);
                 $(".payment-type-list").append(html);
             }
@@ -421,6 +434,19 @@
                 $(".payment-type-list").append(html);
             }
             else if(type.id==6){
+              var numofAdult=0;
+              var numofChild=0;
+              for (var i = 0;i<data.data.chargeDetails.length;i++){
+                if(data.data.chargeDetails[i].category=="ADULT"){
+                  numofAdult+=1
+                  totalPrice+=data.data.chargeDetails[i].totalAmount;
+                }else if(data.data.chargeDetails[i].category=="CHILD"){
+                  numofChild+=1;
+                  totalPrice+=data.data.chargeDetails[i].totalAmount;
+                }
+              }
+              data.data.numofAdult=numofAdult;
+              data.data.numofChild=numofChild;
               var html = template("tpl_flighthoteltour_detail", data.data);
               $(".payment-type-list").append(html);
             }
