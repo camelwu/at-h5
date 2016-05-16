@@ -190,21 +190,21 @@
 </script>
 <!--list-->
 <script id="templateList" type="text/template">
-  <% for(var i=0;i<hotels.length;i++) { %>
-  <li data-hotelId="<%= hotels[i].hotelID %>">
+  <% for(var i=0;i<data.hotels.length;i++) { %>
+  <li data-hotelId="<%= data.hotels[i].hotelID %>">
     <div>
-      <img class="img" src=<%= hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
+      <img class="img" src=<%= data.hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
-        <h3><%= hotels[i].hotelName %></h3>
-        <p><span class="score"><%= hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>
+        <h3><%= data.hotels[i].hotelName %></h3>
+        <p><span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>
         <p class="equipment clearfix">
-          <span><%= hotels[i].starRating %></span>
+          <span><%= data.hotels[i].starRating %></span>
           <!--<span class="park"></span>-->
           <!--<span class="car"></span>-->
         </p>
-        <p class="address"><%= hotels[i].country %>（<%= hotels[i].city %>）</p>
+        <p class="address"><%= data.hotels[i].country %>（<%= data.hotels[i].city %>）</p>
         <div class="price">
-          <span class="money"><%= hotels[i].additionalPrice %></span>
+          <span class="money"><%= data.hotels[i].additionalPrice %></span>
           <span class="dollar">￥</span>
           <span class="add">+</span>
         </div>

@@ -125,7 +125,9 @@ var footer = (function() {
 				if (target.className == "cancel") {
 					that.remove();
 				} else if (target.className == "clears") {
-					that.resec();
+					var node = src.parentNode;
+					//previousSibling
+					that.resec(node);
 				} else if (target.className == "sure") {
 					that.request();
 				} else {
@@ -203,7 +205,13 @@ var footer = (function() {
 				var target = event.target || event.srcElement, src = target.parentNode;
 				if (target.className.indexOf("header_back") > -1 || src.className.indexOf("header_back") > -1) {
 					if (masker.style.display == "none" && sec.firstChild.style.top == "1.48rem") {
-						that.remove();
+						that.showItems(0,3);
+						// 阻止默认链接跳转
+						if (event && event.preventDefault) {
+							event.preventDefault();
+						} else {
+							window.event.returnValue = false;
+						}
 						return false;
 					}
 				}
@@ -331,7 +339,7 @@ var footer = (function() {
 			case "themes":
 				// 主题
 				for (; i < l; i++) {
-					css = i == 0 ? ' class="cur"' : '';
+					css = '';
 					listr += '<li' + css + ' data-val="' + d[i].themeID + '">' + d[i].themeName + '</li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
@@ -384,11 +392,7 @@ var footer = (function() {
 		},
 
 		current : function() {
-			if (sec) {
-				return sec.getElementsByClassName("cur");
-			} else {
-				return document.getElementsByClassName("cur");
-			}
+			return box;
 		},
 
 		init : function() {
@@ -406,10 +410,10 @@ var footer = (function() {
 				masker.style.display = "none";
 			}
 			var node = sec.getElementsByTagName("section");
-			for (var i = 0; i < node.length; i++) {
+			node[0].className == "flight_company" ? node[0].style.top = "" : node[0].style.bottom = "";
+			for (var i = 1; i < node.length; i++) {
 				node[i].style.bottom = "";
 			}
-			// return this;
 		},
 		request : function() {
 			// 选中的属性
@@ -437,21 +441,34 @@ var footer = (function() {
 					}
 				}
 			}
-			footer.result = obj;console.log(obj);
+			footer.result = obj;
+			console.log(obj);
 			this.remove();
 			if (footer.callback) {
 				footer.callback(obj);
 			}
 		},
-		// 重置选中的属性，回归到1
-		resec : function() {
-			var cur = sec.getElementsByClassName("cur");
-			for (var i = 0; i < cur.length; i++) {
-				cur[i].className = '';
-			}
-			var ul = sec.getElementsByTagName("ul");
-			for ( i = 0; i < ul.length; i++) {
-				ul[i].firstChild.className = 'cur';
+		// 重置选中
+		resec : function(w) {
+			var cur = w.getElementsByClassName("cur");
+			/*for (var i = 0; i < cur.length; i++) {
+			 cur[i].className=='cur'?cur[i].className = '':null;
+			 }*/
+			var ul = w.getElementsByTagName("ul");
+			for (var i = 0; i < ul.length; i++) {
+				if (ul[i].getAttribute("data-key")) {
+					var li = ul[i].getElementsByTagName("li"), fst = li[0].innerHTML;
+					// 第一个判断
+					if (fst.indexOf("不限") > -1) {
+						li[0].className = 'cur';
+					} else {
+						li[0].className = '';
+					}
+					// 后续循环
+					for (var j = 1; j < li.length; j++) {
+						li[j].className == 'cur' ? li[j].className = '' : null;
+					}
+				}
 			}
 		},
 		showItems : function(n, t) {
@@ -464,17 +481,12 @@ var footer = (function() {
 				if (t == 3) {
 					// 航空公司
 					this.remove();
-					var foot = document.getElementsByTagName('footer')[0];
-					var closeAirw = document.getElementById('closeAirw');
-
 					if (sec.firstChild.style.top == "1.48rem") {
 						sec.firstChild.style.top = "";
-						foot.style.display = "block";
-						//closeAirw.style.display = "none";
+						box.style.display = "block";
 					} else {
 						sec.firstChild.style.top = "1.48rem";
-						foot.style.display = "none";
-						//closeAirw.style.display = "block";
+						box.style.display = "none";
 					}
 				} else {
 					if (masker.style.display == "none") {
