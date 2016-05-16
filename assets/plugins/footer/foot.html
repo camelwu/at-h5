@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+	</head>
+	<link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+	<link href="../../hotel_flight_tour/css/hft_order.css" rel="stylesheet" type="text/css">
+	<link href="../../hotel_flight_tour/css/hft_hotel.css" rel="stylesheet" type="text/css">
+	<style>
+		.footer_two dl {
+			width: 50%;
+			float: left;
+			text-align: center;
+			height: 0.98 rem;
+			color: #fff;
+			font-family: FZLTXHK;
+		}
+
+		.footer_three dl {
+			width: 33.3333333%;
+			float: left;
+			text-align: center;
+			height: 0.98 rem;
+			color: #fff;
+			font-family: FZLTXHK;
+		}
+
+		.footer-four dl {
+			width: 25%;
+			float: left;
+			text-align: center;
+			height: 0.98 rem;
+			color: #fff;
+			font-family: FZLTXHK;
+		}
+
+		.footer-five dl {
+			width: 20%;
+			float: left;
+			text-align: center;
+			height: 0.98 rem;
+			color: #fff;
+			font-family: FZLTXHK;
+		}
+
+		.footer-six dl {
+			width: 16.666667%;
+			float: left;
+			text-align: center;
+			height: 0.98 rem;
+			color: #fff;
+			font-family: FZLTXHK;
+		}
+
+	</style>
+	<body>
+
+	</body>
+	<div class="contents">
+		<ul class="hotel_list">
+			<li class="cur">
+				<div>
+					<img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+					<article class="message">
+						<h3>东京(银座)千禧三井花园饭店</h3>
+						<p>
+							<span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评
+						</p>
+						<p class="equipment clearfix">
+							<span>三星级</span>
+							<span class="park"></span>
+							<span class="car"></span>
+						</p>
+						<p class="address">
+							东京（品川区）
+						</p>
+						<div class="price">
+							<span class="money">100</span>
+							<span class="dollar">￥</span>
+							<span class="add">+</span>
+						</div>
+					</article>
+				</div>
+				<i></i>
+			</li>
+			<li>
+				<div>
+					<img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+					<article class="message">
+						<h3>东京(银座)千禧三井花园饭店</h3>
+						<p>
+							<span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评
+						</p>
+						<p class="equipment clearfix">
+							<span>三星级</span>
+							<span class="park"></span>
+							<span class="car"></span>
+						</p>
+						<p class="address">
+							东京（品川区）
+						</p>
+						<div class="price">
+							<span class="money">100</span>
+							<span class="dollar">￥</span>
+							<span class="add">+</span>
+						</div>
+					</article>
+				</div>
+				<i></i>
+			</li>
+			<li>
+				<div>
+					<img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+					<article class="message">
+						<h3>东京(银座)千禧三井花园饭店</h3>
+						<p>
+							<span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评
+						</p>
+						<p class="equipment clearfix">
+							<span>三星级</span>
+							<span class="park"></span>
+							<span class="car"></span>
+						</p>
+						<p class="address">
+							东京（品川区）
+						</p>
+						<div class="price">
+							<span class="money">100</span>
+							<span class="dollar">￥</span>
+							<span class="add">+</span>
+						</div>
+					</article>
+				</div>
+				<i></i>
+			</li>
+			<li>
+				<div>
+					<img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+					<article class="message">
+						<h3>东京(银座)千禧三井花园饭店</h3>
+						<p>
+							<span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评
+						</p>
+						<p class="equipment clearfix">
+							<span>三星级</span>
+							<span class="park"></span>
+							<span class="car"></span>
+						</p>
+						<p class="address">
+							东京（品川区）
+						</p>
+						<div class="price reduce">
+							<span class="money">100</span>
+							<span class="dollar">￥</span>
+							<span class="add">-</span>
+						</div>
+					</article>
+				</div>
+				<i class=""></i>
+			</li>
+		</ul>
+	</div>
+	<script src="./foot.js"></script>
+	<script>
+		var menu_data = {
+			hotelSort : {
+				title : "推荐排序",
+				c : "sort bg_color",
+				type : 1,
+				listData : [{
+					key : "sort",
+					val : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"],
+					type : 1
+				}]
+			},
+			hotelScreen : {
+				title : "筛选",
+				c : "screen",
+				type : 2,
+				listData : [{
+					key : "star",
+					val : ["二星", "三星", "四星"],
+					title : "星级档次",
+					type : 2
+				}, {
+					key : "htype",
+					val : ["度假", "休闲", "农家乐"],
+					title : "酒店类型",
+					type : 2
+				}]
+			},
+			hotelPosition : {
+				title : "位置",
+				c : "position",
+				type : 2,
+				listData : [{
+					key : "pos",
+					val : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"],
+					type : 2
+				}]
+			}
+		},
+		//
+		menu_call = function() {
+			alert("js request json.");
+		};
+
+		if (footer) {
+			footer.data = menu_data;
+			footer.callback = menu_call;
+		}
+		footer.filters.init();
+	</script>
+</html>
