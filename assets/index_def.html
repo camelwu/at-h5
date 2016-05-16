@@ -26,89 +26,95 @@
 		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
 		<title>首页 - 亚洲旅行网</title>
-		<link href="styles/reset.css"		rel="stylesheet" type="text/css">
+
+		<link href="styles/framework.css"	rel="stylesheet" type="text/css">
+		<link href="styles/style.css"		rel="stylesheet" type="text/css">
 		<link href="styles/owl.theme.css"	rel="stylesheet" type="text/css">
+		<!--<link href="css/user.css"	rel="stylesheet" type="text/css">-->
 		<link href="styles/tips.css"	rel="stylesheet">
-		<link href="css/index.css"	rel="stylesheet">
 	</head>
 	<body>
 		<div id="preloader">
-			<div id="status"></div>
+			<div id="status">
+
+			</div>
 		</div>
-		<div class="all_elements">
-			<div id="content" class="content no_header">
-        <!--头部banner开始-->
+		<div class="all-elements">
+			<div id="content" class="snap-content">
 				<div class="slider-container">
-          <div class="index_bg"></div>
 					<div class="homepage-slider" data-snap-ignore="true" id="banner">
-						<a><img src="images/loading_white.gif" class="responsive_image" alt="img"></a>
+						<a> <img src="images/loading_white.gif" class="responsive-image" alt="img"> </a>
 					</div>
 				</div>
-        <!--头部banner结束-->
-        <!--column开始-->
-				<div class="column_wrap clearfix">
-						<div class="adaptive_item">
-							<a href="./hotel/index.html" title="Hotels Here"> <img class="res_image" src="images/index/hotel_guide.png" alt="img">
-							<span class="center_text">酒店</span></a>
+
+				<div class="contenter ">
+					<div class="portfolio-adaptive adaptive-four">
+						<div class="adaptive-item">
+							<a href="./hotel/index.html" title="Hotels Here"> <img class="responsive-image" src="./images/hotels.png" alt="img">
+							<div class="center-text">
+								酒店
+							</div> </a>
 						</div>
-						<div class="adaptive_item">
-							<a href="./flight/index.html" title="Flights Goes Here"> <img class="res_image" src="images/index/flight_guide.png" alt="img">
-							<span class="center_text">机票</span></a>
+						<div class="adaptive-item">
+							<a href="./flight/index.html" title="Flights Goes Here"> <img class="responsive-image" src="./images/flights.png" alt="img">
+							<div class="center-text">
+								机票
+							</div> </a>
 						</div>
-						<div class="adaptive_item">
-							<a href="./scenic/index.html" title="Attractions Here"> <img class="res_image" src="images/index/scenic_guide.png" alt="img">
-							<span class="center_text">景点</span></a>
+						<div class="adaptive-item">
+							<a href="./scenic/index.html" title="Attractions Here"> <img class="responsive-image" src="./images/tickets.png" alt="img">
+							<div class="center-text">
+								景点
+							</div> </a>
 						</div>
-						<div class="adaptive_item">
-							<a href="hotel_flight_tour/index.html" title="Hotels flights attractions Here"> <img class="res_image" src="images/index/fht_guide.png" alt="img">
-							<span class="center_text">自由行</span></a>
+						<!--<div class="adaptive-item">-->
+							<!--<a href="building.html" title="Cars Here"> <img class="responsive-image" src="./images/cars.png" alt="img">-->
+							<!--<div class="center-text">-->
+								<!--我要租车-->
+							<!--</div> </a>-->
+						<!--</div>-->
+						<div class="adaptive-item">
+							<a href="hotel_flight_tour/index.html" title="Hotels flights attractions Here"> <img class="responsive-image" src="./images/fht.png" alt="img">
+							<div class="center-text">
+								自由行
+							</div> </a>
 						</div>
-						<div class="adaptive_item">
-							<a href="tour/index.html" title="Hotels attractions Here"> <img class="res_image" src="images/index/tour_guide.png" alt="img">
-							<span class="center_text">酒+景</span></a>
+						<div class="adaptive-item">
+							<a href="tour/index.html" title="Hotels attractions Here"> <img class="responsive-image" src="./images/ht.png" alt="img">
+							<div class="center-text">
+								酒+景
+							</div> </a>
+						</div>
 					</div>
 				</div>
-        <!--column开始-->
-        <!--当月热玩海外门票开始-->
+
 				<div class="container">
 					<div class="recommends" id="recommend">
-						<ul class="recommends_tab clearfix">
-              <a href="index-hotplay.html" class="fl">
-                <li>
-                    <div class="hot_sea_bg"></div>
-                    <img src="images/index/hot_play.jpg" class="hot_sea">
-                    <div class="hot_sea_text">
-                      <h5>当月热玩</h5>
-                      <p>人少景更美最优之选</p>
-                    </div>
-                </li>
-              </a>
-              <a href="index-hotplay.html" class="fl">
-                <li>
-                    <img src="images/index/sea_ticket.jpg" class="hot_sea">
-                    <div class="hot_sea_text">
-                      <h5>海外门票</h5>
-                      <p>去感受异国风情</p>
-                    </div>
-                </li>
-              </a>
+						<ul class="list-length-3" id="rewan">
+							<li>
+								<h5>当月热玩</h5>
+								<p>
+									人少景更美最优之选
+								</p>
+								<a href="index-hotplay.html"><img src="images/i_29.jpg" class="fr" width="100%"></a>
+							</li>
+							<li>
+								<h5>海外门票</h5>
+								<p>
+									去感受异国风情
+								</p>
+								<a><img src="images/hhg_03.jpg" class="fr" width="100%"></a>
+							</li>
 						</ul>
 					</div>
 				</div>
-        <!--当月热玩海外门票结束-->
-        <!--玩家推荐-->
-				<div class="player_recommend">
-          <div class="player_rec_title">
-            <h5 class="play_rec_text">
-              <span class="player_line"></span>
-              玩家推荐
-              <span class="player_line right"></span>
-            </h5>
+				<h5 class="index-title-text">玩家推荐</h5>
+				<div class="container" style="border-bottom: none;" id="tuijian">
+				</div>
 
-          </div>
-          <div class="container" id="tuijian"></div>
-        </div>
+				<div class="clearfix"></div>
 			</div>
+			<div class="clearfix"></div>
 		</div>
 		<div id="menu"></div>
 		<script src="js/lib/jquery.js"></script>
@@ -134,7 +140,7 @@
 				var index = function() {
 					//banner
 					function LoadBanner() {
-						var tpl0 = ['<a href = "{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a>'].join('');
+						var tpl0 = ['<a href = "{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive-image" alt="img">', '</a>'].join('');
 						var tmp = {
 							"Parameters" : {
 								"BannerType" : 1
@@ -165,7 +171,8 @@
 
 					//playerRecommend
 					function PlayerRecommend() {
-            var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+//						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
+            var tpl1 = ['<div class="half-top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
 						var tmp = {
 							"Parameters" : {
 								"PageNo" : 1,
@@ -194,6 +201,7 @@
 				//页面内容加载
 				index.LoadBanner();
 				index.PlayerRecommend();
+
 			})();
 
 		</script>
