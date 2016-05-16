@@ -95,6 +95,7 @@
 		var str = $('#templateList').html();
 		var hotels = ejs.render(str, handleData(data));
 		$('.hotel_list').html(hotels);
+		$('.hotel_list li').eq(0).addClass('cur');
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');
 			var hotelID = $(this).attr("data-hotelId");
@@ -107,6 +108,5 @@
 		});
 	}
 
-	//底部  插件
 
 })();

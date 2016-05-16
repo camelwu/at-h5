@@ -168,6 +168,7 @@
       <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span><%= hftChoose.test%></span><i class="detail_fare"></i></span>
       <span class="preserve">立即预定</span>
     </div>
+    <div class="addMarginBottom"></div>
   </div>
   <div class="shadow"></div>
 </script>
@@ -206,6 +207,7 @@
     </div>
     <div class="months">
       <%data.forEach(function(yd){ %>
+      <% console.log(yd)%>
          <span class="month-title" data-m="<%=yd['name']%>"><%=yd['name'].substring(6,7)%>月</span>
             <div class="monthsDate" data-md="<%=yd['name']%>">
               <%yd['values'].forEach(function(yv){ %>
@@ -271,6 +273,5 @@
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
-<script type="text/javascript" src="js/chooseTestData.js"></script>
 <script type="text/javascript" src="js/hft_Choose.js"></script>
 </html>
