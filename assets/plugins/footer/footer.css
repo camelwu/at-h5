@@ -27,11 +27,11 @@ ol {
 	position: relative;
 	height: 1.68rem;
 }
-.hotel_list .img {
-	width: 1.68rem;
-	height: 1.68rem;
-	position: absolute;
-}
+/*.hotel_list .img {*/
+	/*width: 1.68rem;*/
+	/*height: 1.68rem;*/
+	/*position: absolute;*/
+/*}*/
 .hotel_list .message {
 	margin-left: 1.88rem;
 	font-size: 0.2rem;
@@ -424,6 +424,19 @@ section.foot_hotel_sort li{
 	color: #333;
 	position: relative;
 }
+section.foot_hotel_sort li.cur i{
+	width: 0.4rem;
+	height: 0.4rem;
+	position:absolute;
+	top:50%;
+	right: 0.18rem;
+	margin-top:-0.2rem;
+}
+section.foot_hotel_sort li i{
+	background:url(../../images/ui/icon_common.png);
+	background-size:7.9rem 5.13rem;
+	background-position: -6.9rem -0.58rem;
+}
 section.foot_hotel_screen{
 	height: 6.72rem;
 	width: 100%;
@@ -523,7 +536,8 @@ section.foot_hotel_screen .screen_rg li.cur i{
 }
 section.foot_hotel_position{
 	position: absolute;
-	bottom: -4.98rem;
+	/*bottom: -4.98rem;*/
+	bottom:-400%;
 	left: 0;
 	width: 100%;
 	height: 5.69rem;
@@ -630,6 +644,10 @@ section.flight_company li.cur b.hft_icon {
 .footer_filter_btn dl.flight_company dt {
 	background-position: -2.6rem -4.33rem;
 	width: 0.5rem;
+}
+footer dl.flight_company dt{
+	background-position: -4.34rem -2.38rem;
+	width: 0.44rem;
 }
 /*航空公司 结束*/
 

@@ -321,7 +321,7 @@ var footer = (function() {
 			case "sortTypes":
 				// 排序
 				for (; i < l; i++) {
-					listr += '<li data-val="' + d[i].sortValue + '">' + d[i].sortText + '</li>';
+					listr += '<li data-val="' + d[i].sortValue + '">' + d[i].sortText + '<i></i></li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
 				break;
