@@ -460,13 +460,31 @@ var footer = (function() {
 			if (sec) {
 				if (t == 3) {
 					// 航空公司
-					masker.style.display = "none";
-					console.log("3333");
-					if (sec.firstChild.style.bottom == "0.98rem") {
-						sec.firstChild.style.bottom = "";
-					} else {
-						sec.firstChild.style.bottom = "0.98rem";
+					//masker.style.display = "none";
+					//console.log("3333");
+					//if (sec.firstChild.style.bottom == "0.98rem") {
+					//	sec.firstChild.style.bottom = "";
+					//} else {
+					//	sec.firstChild.style.bottom = "0.98rem";
+					//}
+					var footer = document.getElementsByTagName('footer')[0];
+					var closeAirw = document.getElementById('closeAirw');
+					masker.style.display = "none";//this.remove();
+					if (sec.firstChild.style.top == "1.48rem") {
+						sec.firstChild.style.top = "";
+						footer.style.display = "block";
+						closeAirw.style.display = "none";
+					}else{
+						sec.firstChild.style.top = "1.48rem";
+						footer.style.display = "none";
+						closeAirw.style.display = "block";
 					}
+					//返回按钮还需要加个点击事件
+					//closeAirw.onclick = function(){
+					//	sec.firstChild.style.top = "";
+					//	footer.style.display = "block";
+					//	closeAirw.style.display = "none";
+					//};
 				} else {
 					if (masker.style.display == "none") {
 						masker.style.display = "block";
