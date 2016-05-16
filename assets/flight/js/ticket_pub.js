@@ -493,6 +493,7 @@ var  conditionalFiltering = {
         }
         this.addHandler(target, eventType, handle);
     },
+
     createTags:function(tripType, sinOrDou, callback){
         var tripType = this.tripType, sinOrDou = this.sinOrDou, fn = this.fn;
         var backShadow = document.createElement('div');
@@ -718,6 +719,7 @@ var  conditionalFiltering = {
         document.body.appendChild(oDiv);
         return this;
     },
+
     addEvent:function(){
         var titleWrap = document.querySelector('.hl-bottom'), that = this;
         var shadowEle = document.querySelector('#r-shadow');
@@ -1301,6 +1303,7 @@ var  conditionalFiltering = {
             }
         }
     },
+
     checkRedTip:function(){
         var leftEle = document.querySelector('#fo_sc'),middleEle = document.querySelector('#fo_ra'),rightEle = document.querySelector('#fo_lo');
         if( this.tripType == 'international'){
@@ -1371,6 +1374,7 @@ var  conditionalFiltering = {
 
         }
     },
+
     init:function(tripType,sinOrDou, infoObj, callback1, callback2, context){
         this.tripType = tripType;
         this.sinOrDou = sinOrDou;

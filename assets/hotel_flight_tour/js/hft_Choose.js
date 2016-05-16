@@ -164,7 +164,6 @@ var hftChoose = {
           }
           that.curChosenTourInfo.chosenDate = that.curChooseDate;
           storage.setItem('tourChosenInfo', JSON.stringify(that.curChosenTourInfo));
-          console.log(that.curChosenTourInfo)
           that.dateWrap.innerHTML = '<span data-date="' + that.curChooseDate + '">' + that.returnDay(that.curChooseDate) + '</span><i></i>';
           shadowEle.style.display = "none";
           chooseDateOuter.style.bottom = '-126%';
@@ -251,7 +250,9 @@ var hftChoose = {
         "cityCodeTo": that.initParaObj.cityCodeTo,
         "departDate": that.initParaObj.departDate,
         "returnDate": that.initParaObj.returnDate,
-        "roomDetails": that.initParaObj.roomDetails
+        "roomDetails": that.initParaObj.roomDetails,
+        "flightCacheID":that.curData.flightInfo.cacheID,
+        "flightSetID":that.curData.flightInfo.setID
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -264,8 +265,6 @@ var hftChoose = {
         });
         hftChangeFlightPara.tours = toursArray;
         hftChangeFlightPara.packageID = that.initParaObj.packageID;
-        hftChangeFlightPara.flightCacheID = that.curData.flightInfo.cacheID;
-        hftChangeFlightPara.flightSetID = that.curData.flightInfo.setID;
       } else {
         hftChangeFlightPara.airwaySetID = that.curData.flightInfo.setID;
         hftChangeFlightPara.airwayCacheID = that.curData.flightInfo.cacheID;
@@ -470,13 +469,12 @@ var hftChoose = {
       var priceNum = result.data.totalAmount, tourTem = [],tourChosenInfo = JSON.parse(window.sessionStorage.getItem('tourChosenInfo'));
       tourTem = that.curData.tours;
       if(tourChosenInfo){
-       console.log(tourChosenInfo);
         tourTem.forEach(function(arrayItem){
                 if(arrayItem['tourID'] == tourChosenInfo["tourId"]){
                   arrayItem['selectTravelDate'] = tourChosenInfo["chosenDate"];
                 }
       })
-      };
+      }
       that.curData.tours = tourTem;
       that.roomPriceInfo = result.data.prices;
       that.curData.hotelInfo.rooms = result.data.roomsPrice;
@@ -703,6 +701,7 @@ var hftChoose = {
         this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
       }
     }
+    //this.renderHandler(result)
   }
 };
 hftChoose.init();

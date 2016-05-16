@@ -207,7 +207,6 @@
     </div>
     <div class="months">
       <%data.forEach(function(yd){ %>
-      <% console.log(yd)%>
          <span class="month-title" data-m="<%=yd['name']%>"><%=yd['name'].substring(6,7)%>月</span>
             <div class="monthsDate" data-md="<%=yd['name']%>">
               <%yd['values'].forEach(function(yv){ %>

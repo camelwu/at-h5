@@ -255,12 +255,13 @@ var ticketHotel = {
             var paraObj = that.initParaObj;
                 paraObj.AirwayCacheID = that.cacheData.airwayCacheID;
                 paraObj.AirwaySetID = that.cacheData.airwaySetID;
+                paraObj.FlightCacheID = that.cacheData.airwayCacheID;
+                paraObj.FlightSetID = that.cacheData.airwaySetID;
                 paraObj.SortFields = [0];
                 paraObj.ScreenFields=[0];
                 paraObj.DepartDate = that.initParaObj.DepartDate;
                 paraObj.ReturnDate = that.initParaObj.ReturnDate;
-           alert(paraObj.AirwaySetID)
-               that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
+                that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
         });
         this.addHandler(changeHotel, 'click', function (){
             var that = ticketHotel;
