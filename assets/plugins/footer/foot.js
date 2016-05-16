@@ -417,8 +417,8 @@ var footer = (function() {
 					}
 					if (mykey == "airways") {// 航空公司处理
 						obj.airways = {
-							airwaySetID:chk[0].getAttribute("airwayCacheID"),
-							airwaySetID:chk[0].getAttribute("airwayCacheID")
+							airwaySetID:chk[0].getAttribute("airwaySetID"),
+							airwayCacheID:chk[0].getAttribute("airwayCacheID")
 						};
 					} else if (mykey == "filters") {// 过滤处理
 						if(obj[node[i].getAttribute("data-key")]){
