@@ -205,7 +205,7 @@ var footer = (function() {
 				var target = event.target || event.srcElement, src = target.parentNode;
 				if (target.className.indexOf("header_back") > -1 || src.className.indexOf("header_back") > -1) {
 					if (masker.style.display == "none" && sec.firstChild.style.top == "1.48rem") {
-						that.remove();
+						that.showItems(0,3);
 						// 阻止默认链接跳转
 						if (event && event.preventDefault) {
 							event.preventDefault();
@@ -392,11 +392,7 @@ var footer = (function() {
 		},
 
 		current : function() {
-			if (sec) {
-				return sec.getElementsByClassName("cur");
-			} else {
-				return document.getElementsByClassName("cur");
-			}
+			return box;
 		},
 
 		init : function() {
@@ -485,17 +481,12 @@ var footer = (function() {
 				if (t == 3) {
 					// 航空公司
 					this.remove();
-					var foot = document.getElementsByTagName('footer')[0];
-					var closeAirw = document.getElementById('closeAirw');
-
 					if (sec.firstChild.style.top == "1.48rem") {
 						sec.firstChild.style.top = "";
-						foot.style.display = "block";
-						//closeAirw.style.display = "none";
+						box.style.display = "block";
 					} else {
 						sec.firstChild.style.top = "1.48rem";
-						foot.style.display = "none";
-						//closeAirw.style.display = "block";
+						box.style.display = "none";
 					}
 				} else {
 					if (masker.style.display == "none") {
