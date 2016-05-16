@@ -125,7 +125,9 @@ var footer = (function() {
 				if (target.className == "cancel") {
 					that.remove();
 				} else if (target.className == "clears") {
-					that.resec();
+					var node = src.parentNode;
+					//previousSibling
+					that.resec(node);
 				} else if (target.className == "sure") {
 					that.request();
 				} else {
@@ -331,7 +333,7 @@ var footer = (function() {
 			case "themes":
 				// 主题
 				for (; i < l; i++) {
-					css = i == 0 ? ' class="cur"' : '';
+					css = '';
 					listr += '<li' + css + ' data-val="' + d[i].themeID + '">' + d[i].themeName + '</li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
@@ -437,21 +439,35 @@ var footer = (function() {
 					}
 				}
 			}
-			footer.result = obj;console.log(obj);
+			footer.result = obj;
+			console.log(obj);
 			this.remove();
 			if (footer.callback) {
 				footer.callback(obj);
 			}
 		},
-		// 重置选中的属性，回归到1
-		resec : function() {
-			var cur = sec.getElementsByClassName("cur");
-			for (var i = 0; i < cur.length; i++) {
-				cur[i].className = '';
-			}
-			var ul = sec.getElementsByTagName("ul");
-			for ( i = 0; i < ul.length; i++) {
-				ul[i].firstChild.className = 'cur';
+		// 重置选中
+		resec : function(w) {
+			var cur = w.getElementsByClassName("cur");
+			/*for (var i = 0; i < cur.length; i++) {
+			 cur[i].className=='cur'?cur[i].className = '':null;
+			 }*/
+			var ul = w.getElementsByTagName("ul");
+			for (var i = 0; i < ul.length; i++) {
+				if (ul[i].getAttribute("data-key")) {
+					var li = ul[i].getElementsByTagName("li"), fst = li[0].innerHTML;
+					// 第一个判断
+					if (fst.indexOf("不限")) {
+						li[0].className = 'cur';
+					} else {
+						li[0].className = '';
+					}
+					// 后续循环
+					for (var j = 1; j < li.length; j++) {
+						li[j].className == 'cur' ? li[j].className = '' : null;
+					}
+					//ul[i].firstChild.className = 'cur';
+				}
 			}
 		},
 		showItems : function(n, t) {
