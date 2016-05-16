@@ -179,14 +179,14 @@ var flightList = {
         },
         hotelSort : {
           title : "快速排序",
-          c : "foot_hotel_sort",
+          c : "foot_sort",
           type : 1,
           key : 'sortTypes',
           listData : d.sortTypes
         },
         hotelScreen : {
           title : "筛选",
-          c : "foot_hotel_screen",
+          c : "foot_screen",
           type : 2,
           key : 'filters',
           listData : d.filters
