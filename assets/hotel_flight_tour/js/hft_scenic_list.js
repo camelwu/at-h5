@@ -36,12 +36,6 @@
 				var htmlc = $("#CityDetile").html();
 				var htmlC = ejs.render(htmlc, data.data);
 				$("#CityList").html(htmlC);
-				var htmls = $("#SortDetile").html();
-				var htmlS = ejs.render(htmls, data.data);
-				$("#SortList").html(htmlS);
-				var htmlf = $("#FilterDetile").html();
-				var htmlF = ejs.render(htmlf, data.data);
-				$("#FilterList").html(htmlF);
 				PWidth(data);
 				var packageid = $(".scenic-detile_list").attr("data-packageid");
 				console.log(packageid);
@@ -58,19 +52,25 @@
 					sortTypes : {
 						title : "推荐排序",
 						c : "foot_sort",
+            s:1,
 						type : 1,
 						key : 'sortTypes',
 						listData : data.data.sortTypes
 					},
-					themes : {
-						title : "筛选",
-						c : "foot_screen",
-						type : 2,
-						key : 'themes',
-						listData : data.data.themes
-					}
+          hotelScreen : {
+            title : "筛选",
+            c : "foot_screen",
+            s:2,
+            type : 2,
+            key : 'filters',
+            listData : data.data.filters
+          }
 				}, menu_call = function() {
-					alert("js request json.");
+					//alert("js request json.");
+					//vlm.loadJson("", JSON.stringify(data.data.SortTypes.SortValue), callback);
+                    //
+					//vlm.loadJson("", JSON.stringify(data.data.themeID), callback);
+
 				};
 				if (footer) {
 					footer.data = f_data;
@@ -81,6 +81,16 @@
 				alert(data.message, "提示");
 			}
 		};
+		//ajax请求
+		var tAjax= function(questUrl, data, Code, ForeEndType, Callback) {
+			var that = this, dataObj = {
+				Parameters : data,
+				ForeEndType : ForeEndType,
+				Code : Code
+			};
+			questUrl = questUrl || that.requestUrl;
+			vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+		};
 		//城市列表父宽
 		var PWidth = function(data) {
 			var sum = 0, ride = 0;
@@ -90,58 +100,6 @@
 			ride = sum * 2;
 			$(".city_list ul").css({
 				'width' : ride + 'rem'
-			});
-		};
-		//价格排序调数据
-		var priceSort = function(sortType) {
-			var destCityCode = vlm.getpara("destCityCode");
-			var departCityCode = vlm.getpara("departCityCode");
-			//var sortType=vlm.getpara("sortType");
-			var PParamenter = {
-				"Parameters" : {
-					"destCityCode" : destCityCode,
-					"departCityCode" : departCityCode,
-					"sortType" : sortType
-				},
-				"ForeEndType" : 3,
-				"Code" : "60100002"
-			};
-			vlm.loadJson("", JSON.stringify(PParamenter), function(data) {
-				if (data.success) {
-					var htmlp = $("#scenicDetile").html();
-					var html = ejs.render(htmlp, data.data);
-					$("#scenicList").html(html);
-					if (themeId != "") {
-						PParamenter.Parameters.ThemeID = themeId;
-					}
-				} else {
-					console.log(data);
-					jAlert(data.message, "提示");
-				}
-			});
-		};
-		//根据主题筛选调数据
-		var filterTheme = function(themeId) {
-			var destCityCode = vlm.getpara("departCityCode");
-			var Tparameter = {
-				"Parameters" : {
-					"destCityCode" : destCityCode,
-					"themeID" : themeId
-				},
-				"foreEndType" : 3,
-				"code" : "60100002"
-			};
-			console.log(JSON.stringify(Tparameter));
-			vlm.loadJson("", JSON.stringify(Tparameter), function(data) {
-				if (data.success) {
-					var htmlp = $("#scenicDetile").html();
-					var html = ejs.render(htmlp, data.data);
-					$("#scenicList").html(html);
-					if (themes.length == 0) {
-						jAlert("抱歉暂时没有数据", "提示");
-					}
-				} else {
-				}
 			});
 		};
 		return {

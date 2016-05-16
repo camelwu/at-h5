@@ -23,6 +23,7 @@
 				hotelSort : {
 					title : "推荐排序",
 					c : "foot_sort",
+					s:1,
 					type : 1,
 					key : 'sortTypes',
 					listData : data.sortTypes
@@ -30,6 +31,7 @@
 				hotelScreen : {
 					title : "筛选",
 					c : "foot_screen",
+					s:2,
 					type : 2,
 					key : 'filters',
 					listData : data.filters
@@ -37,6 +39,7 @@
 				hotelPosition : {
 					title : "位置",
 					c : "foot_position",
+					s:2,//select
 					type : 2,
 					key : 'locationList',
 					listData : data.locationList
