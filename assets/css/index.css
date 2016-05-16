@@ -27,6 +27,8 @@ body{
 }
 
 .column_wrap {
+  position: relative;
+  z-index: 1000;
   padding: .4rem 0;
 }
 
@@ -67,8 +69,11 @@ body{
 .hot_sea_text > p {
   font-size: .24rem;
 }
-
+.recommends_tab{
+  padding: 0 .2rem;
+}
 .recommends_tab li {
+  float: left;
   position: relative;
   height: 2.42rem;
 }

@@ -26,14 +26,15 @@
 
     <title>当月热玩 - 亚洲旅行网</title>
 
-    <link href="styles/framework.css"	rel="stylesheet" type="text/css">
-    <link href="styles/style.css"		rel="stylesheet" type="text/css">
+    <!--<link href="styles/framework.css"	rel="stylesheet" type="text/css">-->
+    <!--<link href="styles/style.css"		rel="stylesheet" type="text/css">-->
+    <link href="styles/reset.css"		rel="stylesheet" type="text/css">
     <link href="scenic/css/scenic.css"		rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="preloader">
         <div id="status">
-            
+
         </div>
     </div>
     <div class="all-elements">
@@ -157,7 +158,7 @@
                              menu[j].className = '';
                         }
                         target.className = 'menu-active';
-                        
+
                         num = target.getAttribute("data-num");
                         var tmp={
                             "Parameters":{"SiteType":num,"PageNo":1,"PageSize":10},

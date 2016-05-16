@@ -44,6 +44,7 @@
 					</div>
 				</div>
         <!--头部banner结束-->
+
         <!--column开始-->
 				<div class="column_wrap clearfix">
 						<div class="adaptive_item">
@@ -68,29 +69,30 @@
 					</div>
 				</div>
         <!--column开始-->
+
         <!--当月热玩海外门票开始-->
 				<div class="container">
 					<div class="recommends" id="recommend">
 						<ul class="recommends_tab clearfix">
-              <a href="index-hotplay.html" class="fl">
                 <li>
+                  <a href="index-hotplay.html">
                     <div class="hot_sea_bg"></div>
                     <img src="images/index/hot_play.jpg" class="hot_sea">
                     <div class="hot_sea_text">
                       <h5>当月热玩</h5>
                       <p>人少景更美最优之选</p>
                     </div>
+                  </a>
                 </li>
-              </a>
-              <a href="index-hotplay.html" class="fl">
                 <li>
+                  <a href="index-hotplay.html" class="fl">
                     <img src="images/index/sea_ticket.jpg" class="hot_sea">
                     <div class="hot_sea_text">
                       <h5>海外门票</h5>
                       <p>去感受异国风情</p>
                     </div>
+                  </a>
                 </li>
-              </a>
 						</ul>
 					</div>
 				</div>
@@ -145,7 +147,6 @@
 							if (json.success) {
 								var data = json.data, html_b = template(tpl0, data.bannerList);
 								$("#banner").html(html_b);
-								//document.getElementById("banner").innerHTML = html_b;
 								$("#banner").owlCarousel({
 									slideSpeed : 500,
 									paginationSpeed : 500,
