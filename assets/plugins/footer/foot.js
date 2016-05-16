@@ -306,7 +306,7 @@ var footer = (function() {
 					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];
-						listr += '<li data-val="' + o.filterValue + '">' + o.filterText + '</li>';
+						listr += '<li data-val="' + o.filterValue + '">' + o.filterText + '<i></i></li>';
 					}
 					ulstr += wrapper[0] + listr + wrapper[1];
 				}
@@ -314,7 +314,7 @@ var footer = (function() {
 			case "locationList":
 				// 位置
 				for (; i < l; i++) {
-					listr += '<li data-val="' + i + '">' + d[i] + '</li>';
+					listr += '<li data-val="' + i + '">' + d[i] + '<i></i></li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
 				break;

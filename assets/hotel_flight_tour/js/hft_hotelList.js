@@ -42,6 +42,7 @@
 					listData : data.locationList
 				}
 			}, menu_call = function() {
+
 				alert("js request json.");
 			};
 
@@ -50,6 +51,10 @@
 				footer.callback = menu_call;
 			}
 			footer.filters.init();
+			//排序默认选中第一个
+			$('section.foot_hotel_sort li').eq(0).addClass('cur');
+
+
 			console.log(data);
 			vlm.init();
 		} else {
@@ -95,7 +100,6 @@
 		var str = $('#templateList').html();
 		var hotels = ejs.render(str, handleData(data));
 		$('.hotel_list').html(hotels);
-		$('.hotel_list li').eq(0).addClass('cur');
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');
 			var hotelID = $(this).attr("data-hotelId");
