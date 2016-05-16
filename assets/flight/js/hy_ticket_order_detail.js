@@ -7,7 +7,7 @@ var ticketOrderDetail = {
     addHandler: function (target, eventType, handle) {
         if (document.addEventListener) {
             this.addHandler = function (target, eventType, handle) {
-                target.addEventListener(eventType, handle, false);
+                //target.addEventListener(eventType, handle, false);
             }
         } else if (document.attachEvent) {
             this.addHandler = function (target, eventType, handle) {

@@ -48,23 +48,23 @@
             {
                 var oSection=document.createElement('section');
                 oSection.className='li_section_box';
-                if(travelersInput == 0)
-                {
-                    oSection.innerHTML='<li>'
-                        +'<span class="list_tit">成人'+(k+1)+'：</span>'
-                        +'<b class="add_icon"><a href="javascript:;" data-c-id="0" class="add-passager0" ></a></b></span>'
-                        +'</li>'
-                        +"<ul id='trave"+k+"'>"
-                        +'<li class="trave-li trave-li-adu ">'
-                        +'<span class="list_tit2 ">姓：</span>'
-                        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
-                        +'<span class="list_tit2 ">名：</span>'
-                        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
-                        +'</li>'
-                        +"</ul>"
-                }
-                else
-                {
+                //if(travelersInput == 0)
+                //{
+                //    oSection.innerHTML='<li>'
+                //        +'<span class="list_tit">成人'+(k+1)+'：</span>'
+                //        +'<b class="add_icon"><a href="javascript:;" data-c-id="0" class="add-passager0" ></a></b></span>'
+                //        +'</li>'
+                //        +"<ul id='trave"+k+"'>"
+                //        +'<li class="trave-li trave-li-adu ">'
+                //        +'<span class="list_tit2 ">姓：</span>'
+                //        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
+                //        +'<span class="list_tit2 ">名：</span>'
+                //        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                //        +'</li>'
+                //        +"</ul>"
+                //}
+                //else
+                //{
                     oSection.innerHTML='<li>'
                         +'<span class="list_tit">成人'+(k+1)+'：</span>'
                         +'<b class="add_icon"><a href="javascript:;" data-c-id="'+k+'" class="add-passager'+k+'" ></a></b></span>'
@@ -77,7 +77,7 @@
                         +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
                         +'</li>'
                         +"</ul>"
-                }
+                //}
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
 
                 $(".add-passager"+k).on("click",function(){
@@ -563,7 +563,9 @@
                 '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',
                 '{% } %}',
                 '<div class="detail-span">成人票 '+info.adultNum+'张</div>',
+                '{% if(JSON.parse(localStorage.info).childNum != 0){ %}',
                 '<div class="detail-span">儿童票 '+info.childNum+'张</div>',
+                '{% } %}',
                 '</div>',
                 '{% } %}'
             ].join('');

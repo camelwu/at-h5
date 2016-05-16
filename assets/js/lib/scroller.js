@@ -144,7 +144,7 @@ Scroller.prototype = {
                     for(var i=0;i<num;i++){
                         var date = new Date(year,month,day + i);
                         var yearNew = date.getFullYear();
-                        var monthNew = date.getMonth() + 1;
+                        var monthNew = date.getMonth();
                         var dayNew = date.getDate();
                         var monthNewZero = monthNew < 10 ? "0"+monthNew : monthNew;
                         var dayNewZero = dayNew < 10 ? "0"+dayNew : dayNew;
@@ -152,7 +152,7 @@ Scroller.prototype = {
                         Y.push("<span data-temp="+yearNew+"-"+monthNewZero+"-"+dayNewZero+">" + monthNew +"月" + dayNew + "日" + that.week[weekNew] + "</span>");
                     }
                 break;
-                case "h" : 
+                case "h" :
                     for(var i=0;i<24;i++){
                         var hour = i<10 ? "0"+i : i;
                         Y.push("<span data-temp="+hour+">" + hour +"时</span>");
@@ -199,7 +199,7 @@ Scroller.prototype = {
                         for(var i =0,d = that._template['dateTime'],len=d.length;i<len;i++){
                             var str = setDateTime(i,d[i]);
                             Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
-                        }    
+                        }
                         break;
                     case 'cardExpirationDate':
                         for (var i = 0, d = that._template['cardExpirationDate'], len = d.length; i < len; i++) {
@@ -325,7 +325,7 @@ Scroller.prototype = {
                 } else if(ele.nodeName == 'INPUT'){
                     ele.value = arr.join("-");
                 }
-                
+
             } else if (that.type == 'cardExpirationDate') {
                 ele.setAttribute("data-expire", arr[0].replace('年', '') + "-" + that.addZero(parseInt(arr[1])) + "-01");
                 var sYear = arr[0];
@@ -337,7 +337,7 @@ Scroller.prototype = {
                 } else if(ele.nodeName == 'INPUT') {
                     ele.value = arr.join("/");
                 }
-                
+
             } else if(that.type == 'dateTime'){
                 //TODO 其他组件页面显示内容与实际值分离
                 var values = [];
