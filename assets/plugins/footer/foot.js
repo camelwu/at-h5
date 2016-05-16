@@ -206,6 +206,12 @@ var footer = (function() {
 				if (target.className.indexOf("header_back") > -1 || src.className.indexOf("header_back") > -1) {
 					if (masker.style.display == "none" && sec.firstChild.style.top == "1.48rem") {
 						that.remove();
+						// 阻止默认链接跳转
+						if (event && event.preventDefault) {
+							event.preventDefault();
+						} else {
+							window.event.returnValue = false;
+						}
 						return false;
 					}
 				}
@@ -408,10 +414,10 @@ var footer = (function() {
 				masker.style.display = "none";
 			}
 			var node = sec.getElementsByTagName("section");
-			for (var i = 0; i < node.length; i++) {
+			node[0].className == "flight_company" ? node[0].style.top = "" : node[0].style.bottom = "";
+			for (var i = 1; i < node.length; i++) {
 				node[i].style.bottom = "";
 			}
-			// return this;
 		},
 		request : function() {
 			// 选中的属性
@@ -457,7 +463,7 @@ var footer = (function() {
 				if (ul[i].getAttribute("data-key")) {
 					var li = ul[i].getElementsByTagName("li"), fst = li[0].innerHTML;
 					// 第一个判断
-					if (fst.indexOf("不限")) {
+					if (fst.indexOf("不限") > -1) {
 						li[0].className = 'cur';
 					} else {
 						li[0].className = '';
@@ -466,7 +472,6 @@ var footer = (function() {
 					for (var j = 1; j < li.length; j++) {
 						li[j].className == 'cur' ? li[j].className = '' : null;
 					}
-					//ul[i].firstChild.className = 'cur';
 				}
 			}
 		},
