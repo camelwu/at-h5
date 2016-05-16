@@ -52,7 +52,7 @@
 					sortTypes : {
 						title : "推荐排序",
 						c : "foot_sort",
-            s:1,
+            s : 1,
 						type : 1,
 						key : 'sortTypes',
 						listData : data.data.sortTypes
@@ -60,7 +60,7 @@
           hotelScreen : {
             title : "筛选",
             c : "foot_screen",
-            s:2,
+            s : 2,
             type : 2,
             key : 'filters',
             listData : data.data.filters
@@ -68,9 +68,7 @@
 				}, menu_call = function() {
 					//alert("js request json.");
 					//vlm.loadJson("", JSON.stringify(data.data.SortTypes.SortValue), callback);
-                    //
 					//vlm.loadJson("", JSON.stringify(data.data.themeID), callback);
-
 				};
 				if (footer) {
 					footer.data = f_data;
