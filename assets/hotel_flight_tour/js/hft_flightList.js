@@ -3,40 +3,6 @@
  */
 var val = vlm.parseUrlPara(window.location.href);
 var changeFlightInfo,oldFlightInfo;
-var airwayData = [];
-//var sortDate = [];
-//var screenData = [];
-//var screenTitle = [];
-//var sendData = {
-//  "flightCacheID": 3010900,
-//  "flightSetID": 30000023,
-//  "returnDate": "2016-05-27T00:00:00",
-//  "packageID": 486978,
-//  "roomDetails": [
-//    {
-//      "adult": 2
-//    }
-//  ],
-//  "cityCodeTo": "SIN",
-//  "departDate": "2016-05-22T00:00:00",
-//  "cityCodeFrom": "BJS",
-//  "pageNo": 1,
-//  "tours": [
-//    {
-//      "travelDateSpecified": false,
-//      "travelDate": "2016-05-22T00:00:00",
-//      "optionCode": "",
-//      "tourID": "166"
-//    },
-//    {
-//      "travelDateSpecified": true,
-//      "travelDate": "2016-05-23T00:00:00",
-//      "optionCode": "",
-//      "tourID": "2609"
-//    }
-//  ],
-//  "pageSize": 20
-//};
 var flightList = {
 	requestUrl : "",
 	getWeekDay : function(date) {
@@ -97,31 +63,9 @@ var flightList = {
 			var json = ret, that = flightList;
 			console.log(json);
 			var data = json.data;
-			for (var a = 0; a < data.airways.length; a++) {
-				//var airwayInfo = [];
-				//airwayInfo.push(data.airways[a].airwayLogo);
-				//airwayData.push(data.airways[a].chineseName);
-				//airwayInfo.push(data.airways[a].additionalPrice);
-				//airwayInfo.push(data.airways[a].airwaySetID);
-				//airwayInfo.push(data.airways[a].noLogo);
-				//airwayData.push(airwayInfo);
-			}
-			//for (var so = 0; so < data.sortTypes.length; so++) {
-			//	sortDate.push(data.sortTypes[so].sortText);
-			//}
-			//for (var sc = 0; sc < data.filters.length; sc++) {
-			//	screenTitle.push(data.filters[sc].title);
-			//	screenData[sc] = [];
-			//	for (var scit = 0; scit < data.filters[sc].item.length; scit++) {
-			//		screenData[sc].push(data.filters[sc].item[scit].filterValue);
-			//	}
-			//}
 			var str1 = $("#tplFlightList").html();
 			var flight_list = ejs.render(str1, data);
 			document.getElementById('fligtList').innerHTML = flight_list;
-			var str2 = $('#tplAirwayList').html();
-			var airway_list = ejs.render(str2, data);
-			document.getElementById('airwayList').innerHTML = airway_list;
 			that.bottom(data);
 			$.each($('.seat_detail'), function(i, item) {
 				if ($(this).attr('data-setID') == oldFlightInfo.flightSetID) {
@@ -218,7 +162,6 @@ var flightList = {
 		changeFlightInfo = JSON.parse(sessionStorage.hftChangeFlightPara);
 		console.log(changeFlightInfo);
 		oldFlightInfo = JSON.parse(sessionStorage.hftChangeFlightPara);
-		//this.bottomEvent();
 		this.getFlightList();
 	}
 };

@@ -596,7 +596,6 @@ section.flight_company{
 	overflow: hidden;
 	background: #FFFFFF;
 	position: fixed;
-	bottom: -100%;
 }
 section.flight_company li {
 	position: relative;

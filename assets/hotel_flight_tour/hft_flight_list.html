@@ -255,24 +255,6 @@
         </ul>
         <% } %>
     </script>
-    <script id="tplAirwayList" type="text/template">
-        <% for(var i=0;i < airways.length;i++){ %>
-        <li class="airway" data-airwaySetID="<%=airways[i].airwaySetID%>" data-airwayCacheID="{%=airways[i].airwayCacheID%}">
-            <div>
-                <% if(airways[i].airwayLogo!=''){ %>
-                <img src="<%= airways[i].airwayLogo %>"/>
-                <% }else{ %>
-                <img src="<%= airways[i].noLogo %>" />
-                <% } %>
-            </div>
-            <span class="airway_name"><%=airways[i].chineseName%></span>
-            <div class="aw_price">
-                <apan>+￥</apan><apnn><%=airways[i].additionalPrice%></apnn>
-            </div>
-            <b class="hft_icon"></b>
-        </li>
-        <% } %>
-    </script>
     <!--<script type="text/javascript">-->
       <!--var airData;-->
       <!--var menu_data = {-->
