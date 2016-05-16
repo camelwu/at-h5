@@ -118,6 +118,7 @@ var flightList = {
           title : "航空公司",
           c : "flight_company",
           type : 3,
+          s:1,
           key : 'airways',
           listData : d.airways
         },
@@ -125,6 +126,7 @@ var flightList = {
           title : "快速排序",
           c : "foot_sort",
           type : 1,
+          s:1,
           key : 'sortTypes',
           listData : d.sortTypes
         },
@@ -132,6 +134,7 @@ var flightList = {
           title : "筛选",
           c : "foot_screen",
           type : 2,
+          s:1,
           key : 'filters',
           listData : d.filters
         }
