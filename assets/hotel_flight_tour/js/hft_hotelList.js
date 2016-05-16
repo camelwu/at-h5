@@ -65,10 +65,8 @@
 				parametersStorage.filterFields = data.filters;
 				console.log(parametersStorage);
 				console.log(result.data.hotels.length)
-				tAjax("", parametersStorage, "60100007", "3", list);
-				//vlm.init();
+				tAjax("", parametersStorage, "60100007", "2", list);
 			};
-
 			if (footer) {
 				footer.data = menu_data;
 				footer.callback = menu_call;
@@ -85,30 +83,30 @@
 	}
 
 	//根据模板需要提前处理好data
-	//function handleData(data) {
-	//	console.log(data)
-	//	var star = data.hotels;
-	//	for (var i = 0; i < star.length; i++) {
-	//		switch (star[i].starRating) {
-	//		case "1 星级":
-	//			star[i].starRating = '一星级';
-	//			break;
-	//		case "2 星级":
-	//			star[i].starRating = '二星级';
-	//			break;
-	//		case "3 星级":
-	//			star[i].starRating = '三星级';
-	//			break;
-	//		case "4 星级":
-	//			star[i].starRating = '四星级';
-	//			break;
-	//		case "5 星级":
-	//			star[i].starRating = '五星级';
-	//			break;
-	//		}
-	//	}
-	//	return data;
-	//}
+	function handleData(result) {
+		console.log(result.data)
+		var star = result.data.hotels;
+		for (var i = 0; i < star.length; i++) {
+			switch (star[i].starRating) {
+			case "1 星级":
+				star[i].starRating = '一星级';
+				break;
+			case "2 星级":
+				star[i].starRating = '二星级';
+				break;
+			case "3 星级":
+				star[i].starRating = '三星级';
+				break;
+			case "4 星级":
+				star[i].starRating = '四星级';
+				break;
+			case "5 星级":
+				star[i].starRating = '五星级';
+				break;
+			}
+		}
+		return result;
+	}
 
 	//title
 	function title(data) {
@@ -120,7 +118,7 @@
 	//数据加载部分
 	function list(result) {
 		var str = $('#templateList').html();
-		var hotels = ejs.render(str, result);
+		var hotels = ejs.render(str, handleData(result));
 		$('.hotel_list').html(hotels);
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');

@@ -10,7 +10,6 @@ i{ font-style: normal;}
 /*酒店列表  开始*/
 .hotel_list{
   background: #fff;
-  margin-bottom: 0.98rem;
   margin-top: 0.88rem;
   border-top: 1px solid #dddddd;
 }
@@ -111,7 +110,12 @@ i{ font-style: normal;}
 .hotel_list .price.reduce,.hotel_detail_rooms .price.reduce{
   color: #5abfb6;
 }
-
+.hotel_more{
+  text-align: center;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  margin-bottom: 0.98rem;
+}
 /*酒店列表  结束*/
 
 /*酒店详 开始*/
