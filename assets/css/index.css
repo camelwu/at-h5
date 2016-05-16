@@ -180,18 +180,15 @@ body{
   bottom:0px;
   border-top:2px solid #d1d1d1;
   padding: .12rem 0 .08rem;
+  /*模糊*/
+  /*filter: url(blur.svg#blur); /!* FireFox, Chrome, Opera *!/*/
+  /*-webkit-filter: blur(1px); /!* Chrome, Opera *!/*/
+  /*-moz-filter: blur(1px);*/
+  /*-ms-filter: blur(1px);*/
+  /*filter: blur(1px);*/
+  /*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /!* IE6~IE9 *!/*/
 
 }
-.footer-menu .blur{
-/*模糊*/
-  filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
-  -webkit-filter: blur(1px); /* Chrome, Opera */
-  -moz-filter: blur(1px);
-  -ms-filter: blur(1px);
-  filter: blur(1px);
-  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
-}
-
 .footer-menu a{
   text-align:center;
   padding-top:.06rem;
@@ -230,30 +227,9 @@ a.foot-homes, a.foot-users{
 .foot-users i{
   background-position:-126px 2px;
 }
-.footer-menu-clear{
-  height:60px;
-}
 
 .footer-menu-three-icons a{
   width:50%;
-  float:left;
-  text-align:center;
-}
-
-.footer-menu-four-icons a{
-  width:25%;
-  float:left;
-  text-align:center;
-}
-
-.footer-menu-five-icons a{
-  width:20%;
-  float:left;
-  text-align:center;
-}
-
-.footer-menu-six-icons a{
-  width:16.7%;
   float:left;
   text-align:center;
 }
