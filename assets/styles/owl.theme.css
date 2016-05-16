@@ -1,4 +1,4 @@
-﻿/* 
+﻿/*
  * 	Core Owl Carousel CSS File
  *	v1.24
  */
@@ -36,7 +36,7 @@
 	-o-transition: height 500ms ease-in-out;
 	transition: height 500ms ease-in-out;
 }
-	
+
 .owl-carousel .owl-item{
 	float: left;
 }
@@ -54,7 +54,7 @@
 }
 
 /* mouse grab icon */
-.grabbing { 
+.grabbing {
     cursor:url(../images/ui/grabbing.png) 8 8, move;
 }
 
@@ -231,7 +231,7 @@
 }
 
 /*
-* 	Owl Carousel Owl  Theme 
+* 	Owl Carousel Owl  Theme
 *	v1.24
 */
 
@@ -287,7 +287,7 @@
     background-position: 13px 15px;
 	position:absolute;
 	left:0px;
-	margin-top:20%;	
+	margin-top:20%;
     border-radius:45px;
     transition:all 400ms ease;
 }
@@ -308,33 +308,33 @@
     background-position: 16px 15px;
 	position:absolute;
 	right:0px;
-	margin-top:20%;		
+	margin-top:20%;
     border-radius:45px;
     transition:all 400ms ease;
 }
 
 .next-staff:hover, .next-quote:hover{
      background-color:rgba(0,0,0,0.1);
-    transition:all 400ms ease;   
+    transition:all 400ms ease;
 }
 
 @media screen and (orientation:landscape) {
 	.next-staff{
 		margin-top:24%;
 	}
-	
+
 	.prev-staff{
-		margin-top:24%;	
+		margin-top:24%;
 	}
-	
+
 	.next-quote{
-		margin-top:4%;	
+		margin-top:4%;
 	}
-	
+
 	.prev-quote{
-		margin-top:4%;	
+		margin-top:4%;
 	}
-	
+
 	.staff-item strong{
 		width:180px;
 		margin-left:auto;
@@ -342,25 +342,25 @@
 	}
 }
 
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape) { 
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
 	.next-staff{
 		margin-top:12.1%;
 	}
 	.prev-staff{
-		margin-top:12.1%;	
+		margin-top:12.1%;
 	}
-	
+
 	.next-quote{
-		margin-top:4%;	
+		margin-top:4%;
 	}
-	
+
 	.prev-quote{
-		margin-top:4%;	
+		margin-top:4%;
 	}
-	
+
 	.staff-item strong{
 		width:180px;
 		margin-left:auto;
@@ -368,25 +368,25 @@ and (orientation : landscape) {
 	}
 }
 
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait) { 
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
 	.next-staff{
 		margin-top:17.3%;
 	}
 	.prev-staff{
-		margin-top:17.3%;	
+		margin-top:17.3%;
 	}
-	
+
 	.next-quote{
-		margin-top:8%;	
+		margin-top:8%;
 	}
-	
+
 	.prev-quote{
-		margin-top:8%;	
+		margin-top:8%;
 	}
-	
+
 	.staff-item strong{
 		width:180px;
 		margin-left:auto;
@@ -442,7 +442,8 @@ and (orientation : portrait) {
 	width: 12px;
 	height: 12px;
 	margin: 5px 7px;
-	filter: Alpha(Opacity=50);/*IE7 fix*/
+  opacity: 0.4;
+	filter: Alpha(Opacity=40);/*IE7 fix*/
 	/*opacity: 0.5;*/
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -454,7 +455,7 @@ and (orientation : portrait) {
 .owl-theme .owl-controls.clickable .owl-page:hover span{
 	filter: Alpha(Opacity=100);/*IE7 fix*/
 	opacity: 1;
-	background-color: #f9fa71;
+	background-color: #fff;
 }
 
 /* If PaginationNumbers is true */
@@ -537,16 +538,16 @@ and (orientation : portrait) {
 
 @media (min-width:768px){
 	.homepage-slider-caption{
-		bottom:10px;	
+		bottom:10px;
 	}
-	
+
 	.homepage-slider-caption h3{
-		padding-left:50px;	
+		padding-left:50px;
         padding-right:50px;
 		font-size:18px;
 	}
 	.homepage-slider-caption p{
-		padding-left:50px;	
+		padding-left:50px;
         padding-right:50px;
 		font-size:12px;
 	}
