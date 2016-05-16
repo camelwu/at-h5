@@ -22,21 +22,21 @@
 			var menu_data = {
 				hotelSort : {
 					title : "推荐排序",
-					c : "foot_hotel_sort",
+					c : "foot_sort",
 					type : 1,
 					key : 'sortTypes',
 					listData : data.sortTypes
 				},
 				hotelScreen : {
 					title : "筛选",
-					c : "foot_hotel_screen",
+					c : "foot_screen",
 					type : 2,
 					key : 'filters',
 					listData : data.filters
 				},
 				hotelPosition : {
 					title : "位置",
-					c : "foot_hotel_position",
+					c : "foot_position",
 					type : 2,
 					key : 'locationList',
 					listData : data.locationList

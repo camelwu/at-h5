@@ -395,10 +395,10 @@ footer.footer_three dt,footer.footer_two dt{
 	background-size: 7.89rem 5.07rem;
 	margin: 0.12rem auto 0.05rem;
 }
-dl.foot_hotel_sort dt{
+dl.foot_sort dt{
 	background-position: -0.59rem -2.32rem;
 }
-dl.foot_hotel_screen dt{
+dl.foot_screen dt{
 	background-position: -1.87rem -2.32rem;
 }
 dl.foot_hotel_position dt{
@@ -406,15 +406,15 @@ dl.foot_hotel_position dt{
 	background-size: 7.89rem 2.58rem;
 	background-position: -2.19rem -0.46rem;
 }
-section.foot_hotel_sort{
+section.foot_sort{
 	background: #fff;
 	width: 100%;
 	position: absolute;
 	transition: all 0.3s;
 	left: 0;
-	bottom: -3.98rem;
+	bottom: -7.98rem;
 }
-section.foot_hotel_sort li{
+section.foot_sort li{
 	margin: 0 0 0 0.28rem;
 	font-size: 0.28rem;
 	padding: 0 0.12rem;
@@ -424,7 +424,7 @@ section.foot_hotel_sort li{
 	color: #333;
 	position: relative;
 }
-section.foot_hotel_sort li.cur i{
+section.foot_sort li.cur i{
 	width: 0.4rem;
 	height: 0.4rem;
 	position:absolute;
@@ -432,12 +432,12 @@ section.foot_hotel_sort li.cur i{
 	right: 0.18rem;
 	margin-top:-0.2rem;
 }
-section.foot_hotel_sort li i{
+section.foot_sort li i{
 	background:url(../../images/ui/icon_common.png);
 	background-size:7.9rem 5.13rem;
 	background-position: -6.9rem -0.58rem;
 }
-section.foot_hotel_screen{
+section.foot_screen{
 	height: 6.72rem;
 	width: 100%;
 	position: absolute;
@@ -472,11 +472,11 @@ section.foot_hotel_screen{
 	right: 0;
 	color: #ffb500;
 }
-section.foot_hotel_screen .screen_box{
+section.foot_screen .screen_box{
 	position: relative;
 	height: 5.83rem;
 }
-section.foot_hotel_screen .screen_lf{
+section.foot_screen .screen_lf{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -485,7 +485,7 @@ section.foot_hotel_screen .screen_lf{
 	overflow-y: scroll;
 	background: #f7f7f7;
 }
-section.foot_hotel_screen .screen_lf{
+section.foot_screen .screen_lf{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -493,7 +493,7 @@ section.foot_hotel_screen .screen_lf{
 	height: 5.83rem;
 	overflow-y: scroll;
 }
-section.foot_hotel_screen .screen_lf li{
+section.foot_screen .screen_lf li{
 	height: 0.96rem;
 	line-height: 0.96rem;
 	color: #333;
@@ -501,27 +501,27 @@ section.foot_hotel_screen .screen_lf li{
 	border-left: 3px solid #f7f7f7;
 	background: #f7f7f7;
 }
-section.foot_hotel_screen .screen_lf li.cur{
+section.foot_screen .screen_lf li.cur{
 	border-left: 3px solid #fdb330;
 	background: #fff;
 	font-weight: bold;
 }
-section.foot_hotel_screen .screen_rg{
+section.foot_screen .screen_rg{
 	background: #fff;
 	margin-left: 2.32rem;
 }
-section.foot_hotel_screen .screen_rg ul{
+section.foot_screen .screen_rg ul{
 	height: 5.83rem;
 	overflow-y: scroll;
 }
-section.foot_hotel_screen .screen_rg li{
+section.foot_screen .screen_rg li{
 	height: 0.96rem;
 	line-height: 0.96rem;
 	color: #333;
 	border-bottom: 1px solid #dedede;
 	position: relative;
 }
-section.foot_hotel_screen .screen_rg i{
+section.foot_screen .screen_rg i{
 	width: 0.4rem;
 	height: 0.4rem;
 	position: absolute;
@@ -529,7 +529,7 @@ section.foot_hotel_screen .screen_rg i{
 	right: 0.28rem;
 	margin-top: -0.2rem;
 }
-section.foot_hotel_screen .screen_rg li.cur i{
+section.foot_screen .screen_rg li.cur i{
 	background: url(../../images/ui/icon_common.png);
 	background-size: 7.9rem 5.13rem;
 	background-position: -6.9rem -0.58rem;
