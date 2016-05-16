@@ -176,7 +176,7 @@ var flightList = {
         },
         hotelSort : {
           title : "快速排序",
-          c : "footer_filter_hotel_sort",
+          c : "foot_hotel_sort",
           type : 1,
           listData : [
             {
@@ -188,7 +188,7 @@ var flightList = {
         },
         hotelScreen : {
           title : "筛选",
-          c : "footer_filter_hotel_screen",
+          c : "foot_hotel_screen",
           type : 2,
           listData : [
             {
