@@ -599,9 +599,6 @@ section.flight_company{
 	overflow-y: scroll;
 	position: fixed;
 }
-section.flight_company ul{
-	padding-bottom: 0.98rem;
-}
 section.flight_company li {
 	position: relative;
 	height: .68rem;
