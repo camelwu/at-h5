@@ -23,10 +23,8 @@
  */
 var footer = (function() {
 	"use strict";
-	// 定义全局cache，随时替换
-	var node,
-	// 遮罩
-	masker,
+	// 遮罩容器
+	var masker,
 	// 菜单容器
 	box,
 	// 选择容器
@@ -53,11 +51,6 @@ var footer = (function() {
 	// 添加样式
 	addClass = function(c, node) {
 		node.className = node.className + ' ' + c;
-	},
-	// 移除样式名
-	removeClass = function(c, node) {
-		var reg = new RegExp("(^|\\s+)" + c + "(\\s+|$)", "g");
-		node.className = node.className.replace(reg, '');
 	},
 	// 绑定事件
 	on = function(node, type, handler) {
@@ -117,11 +110,12 @@ var footer = (function() {
 					src = src.parentNode;
 				}
 				index = 0;
+				returnVal = target.getAttribute("data-type");
 				while ( target = target.previousSibling) {
 					if (target.nodeType == 1)
 						index++;
 				}
-				that.showItems(index);
+				that.showItems(index, returnVal);
 			});
 			// 容器里的各种点击：取消，确定按钮
 			on(sec, 'click', function(event) {
@@ -160,8 +154,8 @@ var footer = (function() {
 							}
 							ul[index].style.display = "block";
 						} else {
-							var theme = src.getAttribute("data-theme");
-							switch(theme) {
+							var sel = parseInt(src.getAttribute("data-sel")), theme = parseInt(src.getAttribute("data-theme"));
+							switch(sel) {
 							case 1:
 								//单选
 								var cur = src.getElementsByClassName("cur");
@@ -175,12 +169,28 @@ var footer = (function() {
 								break;
 							case 2:
 								//多选
-								target.className = target.className == "cur" ? "" : "cur";
+								if (src.firstChild.innerHTML == "不限") {//不限互斥
+									if (target == src.firstChild) {
+										for (var i = 0; i < cur.length; i++) {
+											if (cur[i].className == "cur") {
+												cur[i].className = "";
+												// break;
+											}
+										}
+										target.className = "cur";
+									} else {
+										target.className = target.className == "cur" ? "" : "cur";
+									}
+								} else {
+									target.className = target.className == "cur" ? "" : "cur";
+								}
 								break;
 							default:
 								//单击
-								that.request();
 								break;
+							}
+							if (theme == 1||theme == 3) {// 显示类型确认操作
+								that.request();
 							}
 						}
 					}
@@ -192,12 +202,12 @@ var footer = (function() {
 				event = event || window.event;
 				var target = event.target || event.srcElement, src = target.parentNode;
 				if (target.className.indexOf("header_back") > -1 || src.className.indexOf("header_back") > -1) {
-					if (masker.style.display == "none") {
-						that.removeDate();
+					if (masker.style.display == "none" && sec.style.display != "none") {
+						that.remove();
 					}
 				}
-				if (target == masker) {
-					that.removeDate();
+				if (target == masker || target == sec) {
+					that.remove();
 				}
 			});
 		},
@@ -225,7 +235,7 @@ var footer = (function() {
 			var data = footer.data, ca = [];
 			for (var p in data) {
 				ca.push('<dl class=' + data[p].c + ' id=' + p + ' data-type=' + data[p].type + '><dt></dt><dd>' + data[p].title + '</dd></dl>');
-				this.createSec(data[p].c, data[p].listData, data[p].type);
+				this.createSec(data[p].c, data[p].type, data[p].key, data[p].listData);
 			}
 			box.innerHTML = ca.join('');
 			document.body.appendChild(box);
@@ -236,18 +246,15 @@ var footer = (function() {
 		createContainer : function() {
 			if (!sec) {
 				sec = document.createElement('span');
-				sec.style.display = "inline";
 				sec.style.position = "fixed";
 				sec.style.zIndex = 110;
+				sec.style.width = '100%';
 				sec.style.left = 0;
-				sec.style.top = 0;
-				sec.style.right = 0;
 				sec.style.bottom = 0;
 				document.body.appendChild(sec);
 			} else {
-				return false;
+				return sec;
 			}
-			return this;
 		},
 		// masker
 		createMask : function() {
@@ -263,31 +270,77 @@ var footer = (function() {
 				masker.style.zIndex = 100;
 				document.body.appendChild(masker);
 			} else {
-				return false;
+				return masker;
 			}
-			return this;
 		},
 		// section
-		createSec : function(c, d, t) {
-			var str = '', ulstr = '', i = 0, l = d.length, css = '', s = 0, cache = [],
-			// 类型2容器
-			wrapper = '',
+		createSec : function(c, t, k, d) {
+			var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = 1, cache = [],
+			// 容器
+			wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">', '</ul>'],
 			// 左侧容器
 			left = ['<ul class="screen_lf">', '</ul>'],
 			// 右侧容器
 			right = ['<div class="screen_rg">', '</div>'],
+			// 列表容器
+			ulstr = '',
 			// 新建section
 			mysec = document.createElement('section');
 			c ? mysec.className = c : null;
-			for (; i < l; i++) {
-				var obj = d[i];
-				ulstr += '<ul data-theme=' + obj.type + ' data-key=' + obj.key + '>' + ilist(obj.val) + '</ul>';
-				if (obj.title) {
-					css = s == 0 ? ' class="cur"' : '';
-					cache.push('<li' + css + '>' + obj.title + '</li>');
-					s++;
+			switch(k) {
+			case "airways":
+				// 航空公司
+				for (; i < l; i++) {
+					css = i == 0 ? ' class="cur"' : '';
+					listr += '<li' + css + ' data-val="' + d[i].airwayCacheID + '" airwayCacheID="' + d[i].airwayCacheID + '" airwaySetID="' + d[i].airwaySetID + '"><div><img src="' + d[i].airwayLogo + '"></div><span class="airway_name">' + d[i].chineseName + '</span><div class="aw_price"><span>+￥</span><span>' + d[i].additionalPrice + '</span></div><b class="hft_icon"></b></li>';
 				}
+				ulstr = wrapper[0] + listr + wrapper[1];
+				break;
+			case "filters":
+				// 筛选
+				for (; i < l; i++) {
+					var a = d[i], item = a.item;
+					css = i == 0 ? ' class="cur"' : '';
+					cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
+					s = a.allowMultiSelect == 1 ? 2 : 1;
+					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">';
+					for (var j = 0; j < item.length; j++) {
+						var o = item[j];
+						listr += '<li data-val="' + o.filterValue + '">' + o.filterText + '</li>';
+					}
+					ulstr += wrapper[0] + listr + wrapper[1];
+				}
+				break;
+			case "locationList":
+				// 位置
+				for (; i < l; i++) {
+					listr += '<li data-val="' + i + '">' + d[i] + '</li>';
+				}
+				ulstr = wrapper[0] + listr + wrapper[1];
+				break;
+			case "sortTypes":
+				// 排序
+				for (; i < l; i++) {
+					listr += '<li data-val="' + d[i].sortValue + '">' + d[i].sortText + '</li>';
+				}
+				ulstr = wrapper[0] + listr + wrapper[1];
+				break;
+			case "themes":
+				// 主题
+				for (; i < l; i++) {
+					listr += '<li data-val="' + d[i].themeID + '">' + d[i].themeName + '</li>';
+				}
+				ulstr = wrapper[0] + listr + wrapper[1];
+				break;
+			default:
+				// 默认，按普通数组处理
+				for (; i < l; i++) {
+					listr += '<li data-val="' + i + '">' + d[i] + '</li>';
+				}
+				ulstr = wrapper[0] + listr + wrapper[1];
+				break;
 			}
+			// 根据type判断显示类型
 			switch(t) {
 			case 1:
 				str = ulstr;
@@ -304,41 +357,8 @@ var footer = (function() {
 				}
 				break;
 			case 3:
-				// 航空公司列表
-			//<section class="flight_company" style="bottom: 0.98rem;">
-			//	<ul>
-			//	<li class="cur">
-			//	<div>
-			//	<img src="../images/flights.png"/>
-			//	</div>
-			//	<span class="airway_name">中国航空</span>
-			//	<div class="aw_price">
-			//	<span>+￥</span><span>100</span>
-			//</div>
-			//<b class="hft_icon"></b>
-			//	</li>
-			//	<li>
-			//	<div>
-			//	<img src="../images/flights.png"/>
-			//	</div>
-			//	<span class="airway_name">中国航空</span>
-			//	<div class="aw_price">
-			//	<span>+￥</span><span>100</span>
-			//</div>
-			//<b class="hft_icon"></b>
-			//	</li>
-			//	<li>
-			//	<div>
-			//	<img src="../images/flights.png"/>
-			//	</div>
-			//	<span class="airway_name">中国航空</span>
-			//	<div class="aw_price">
-			//	<span>+￥</span><span>100</span>
-			//</div>
-			//<b class="hft_icon"></b>
-			//	</li>
-			//	</ul>
-			//	</section>
+				// 航空公司列表，单选
+				str = ulstr;
 				break;
 			default:
 				// 非单击类型
@@ -353,30 +373,16 @@ var footer = (function() {
 				sec.appendChild(mysec);
 			}
 			return this;
-			// 数组获取值
-			function ilist(arg) {
-				// 默认第一个选中？
-				var li = t == 2 ? '<li class="cur">不限<i></i></li>' : '<li class="cur">' + arg[0] + '<i></i></li>';
-				for (var j = 1; j < arg.length; j++) {
-					if(typeof arg[j]==="string"){//普通数组
-						li += '<li data-val="'+j+'">' + arg[j] + '<i></i></li>';
-					}else{//对象
-						var ob = arg[j];
-						for(var p in ob){
-							if(ob[p]){
-								
-							}
-							li += '<li data-val="'+j+'">' + ob[p] + '<i></i></li>';
-						}
-					}
-				}
-				return li;
-			}
 		},
 
 		current : function() {
-			return instance;
+			if (sec) {
+				return sec.getElementsByClassName("cur");
+			} else {
+				return document.getElementsByClassName("cur");
+			}
 		},
+
 		init : function() {
 			var i = 1, key, args = [].slice.call(arguments);
 			if (args.length > 0) {
@@ -391,58 +397,73 @@ var footer = (function() {
 			if (masker.style.display != "none") {
 				masker.style.display = "none";
 			}
-			for (var i = 0; i < sec.length; i++) {
-				if (sec[i].style.bottom == "0.98rem") {
-					sec[i].style.bottom == "";
-					break;
-				}
+			var node = sec.getElementsByTagName("section");
+			for (var i = 0; i < node.length; i++) {
+				node[i].style.bottom = "";
 			}
-			return this;
+			// return this;
 		},
 		request : function() {
-			instance = document.getElementsByClassName("cur");
-			// 选中的属性？
-			footer.result = {};
+			// 选中的属性
+			var node = sec.getElementsByTagName("ul"), cache = [], obj = {};
+			for (var i = 0; i < node.length; i++) {
+				var chk = node[i].getElementsByClassName("cur");
+				for (var j = 0; j < chk.length; j++) {
+					cache.push(chk[j].getAttribute("data-val"));
+				}
+				if (node[i].getAttribute("data-sel") == 1) {// 单选
+					obj[node[i].getAttribute("data-key")] = cache[0];
+				} else {// 多选
+					obj[node[i].getAttribute("data-key")] = cache;
+				}
+			}
+			footer.result = obj;
+			this.remove();
 			if (footer.callback) {
-				footer.callback();
+				footer.callback(obj);
 			}
 		},
 		// 重置选中的属性，回归到1
 		resec : function() {
-			var cur = masker.getElementsByClassName("cur"), l = cur.length;
+			var cur = sec.getElementsByClassName("cur");
 			for (var i = 0; i < cur.length; i++) {
 				cur[i].className = '';
 			}
-			var ul = masker.getElementsByTagName("ul");
+			var ul = sec.getElementsByTagName("ul");
 			for ( i = 0; i < ul.length; i++) {
 				ul[i].firstChild.className = 'cur';
 			}
-			return this;
 		},
 		showItems : function(n, t) {
+			console.log(n + "," + t + "," + sec.childNodes.length);
 			if (t == 0) {
-				//that.request();
-			}// 显示要筛选的列表内容
+				that.request();
+				return;
+			}
+			// 显示要筛选的列表内容
 			if (sec) {
-				//sec = masker.getElementsByTagName("section");
-				if (masker.style.display == "none") {
-					masker.style.display = "block";
-					sec.children[n].style.bottom = "0.98rem";
+				if (t == 3) {
+					// 航空公司
+					this.remove();
+					sec.firstChild.style.bottom = "0.98rem";
 				} else {
-					if (sec.children[n].style.bottom == "0.98rem") {
-						sec.children[n].style.bottom = "";
-						this.remove();
+					if (masker.style.display == "none") {
+						masker.style.display = "block";
+						sec.childNodes[n].style.bottom = "0.98rem";
 					} else {
-						for (var i = 0; i < sec.length; i++) {
-							if (sec[i].style.bottom == "0.98rem") {
-								sec[i].style.bottom = "";
-								break;
+						if (sec.childNodes[n].style.bottom == "0.98rem") {
+							this.remove();
+						} else {
+							for (var i = 0; i < sec.childNodes.length; i++) {
+								if (sec.childNodes[i].style.bottom == "0.98rem") {
+									sec.childNodes[i].style.bottom = "";
+									break;
+								}
 							}
+							sec.childNodes[n].style.bottom = "0.98rem";
 						}
-						sec.children[n].style.bottom = "0.98rem";
 					}
 				}
-
 			} else {
 				return "没找到section。";
 			}
