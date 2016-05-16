@@ -438,11 +438,9 @@
               var numofChild=0;
               for (var i = 0;i<data.data.chargeDetails.length;i++){
                 if(data.data.chargeDetails[i].category=="ADULT"){
-                  numofAdult+=1
-                  totalPrice+=data.data.chargeDetails[i].totalAmount;
+                  numofAdult+=parseInt(data.data.chargeDetails[i].quantity)
                 }else if(data.data.chargeDetails[i].category=="CHILD"){
-                  numofChild+=1;
-                  totalPrice+=data.data.chargeDetails[i].totalAmount;
+                  numofChild+=parseInt(data.data.chargeDetails[i].quantity);
                 }
               }
               data.data.numofAdult=numofAdult;
