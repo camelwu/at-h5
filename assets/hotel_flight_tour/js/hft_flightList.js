@@ -134,7 +134,7 @@ var flightList = {
           title : "筛选",
           c : "foot_screen",
           type : 2,
-          s:2,
+          s:1,
           key : 'filters',
           listData : d.filters
         }
