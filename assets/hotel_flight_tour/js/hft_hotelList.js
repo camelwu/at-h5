@@ -1,7 +1,7 @@
 (function() {
 	//获取资源选择页传过来的数据
 	var parametersStorage = JSON.parse(sessionStorage.getItem("hftChangeHotelPara")) || {};
-	//console.log(parametersStorage);
+	console.log( typeof parametersStorage);
 	//获取资源选择页的url保存下来，再传过去
 	var chooseUrl = window.location.search;
 	sessionStorage.setItem("hftHotelChooseUrl", chooseUrl);
@@ -13,11 +13,24 @@
 	};
 	//接数据
 	vlm.loadJson('', JSON.stringify(dataPull), dataCallBack);
+	function tAjax(questUrl, data, Code, ForeEndType, Callback) {
+		var that = this, dataObj = {
+			Parameters : data,
+			ForeEndType : ForeEndType,
+			Code : Code
+		};
+		questUrl = questUrl || that.requestUrl;
+		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+	};
+
+
+
 	function dataCallBack(result) {
 		if (result.success) {
+			console.log(result)
 			var data = result.data;
 			title(data);
-			list(data);
+			list(result);
 			//footer();
 			var menu_data = {
 				hotelSort : {
@@ -44,9 +57,16 @@
 					key : 'locationList',
 					listData : data.locationList
 				}
-			}, menu_call = function() {
-
-				alert("js request json.");
+			}, menu_call = function(data) {
+				console.log(data);
+				console.log(parametersStorage)
+				parametersStorage.sortFields = data.sortTypes;
+				parametersStorage.location = data.locationList;
+				parametersStorage.filterFields = data.filters;
+				console.log(parametersStorage);
+				console.log(result.data.hotels.length)
+				tAjax("", parametersStorage, "60100007", "3", list);
+				//vlm.init();
 			};
 
 			if (footer) {
@@ -56,8 +76,6 @@
 			footer.filters.init();
 			//排序默认选中第一个
 			$('section.foot_hotel_sort li').eq(0).addClass('cur');
-
-
 			console.log(data);
 			vlm.init();
 		} else {
@@ -67,29 +85,30 @@
 	}
 
 	//根据模板需要提前处理好data
-	function handleData(data) {
-		var star = data.hotels;
-		for (var i = 0; i < star.length; i++) {
-			switch (star[i].starRating) {
-			case "1 星级":
-				star[i].starRating = '一星级';
-				break;
-			case "2 星级":
-				star[i].starRating = '二星级';
-				break;
-			case "3 星级":
-				star[i].starRating = '三星级';
-				break;
-			case "4 星级":
-				star[i].starRating = '四星级';
-				break;
-			case "5 星级":
-				star[i].starRating = '五星级';
-				break;
-			}
-		}
-		return data;
-	}
+	//function handleData(data) {
+	//	console.log(data)
+	//	var star = data.hotels;
+	//	for (var i = 0; i < star.length; i++) {
+	//		switch (star[i].starRating) {
+	//		case "1 星级":
+	//			star[i].starRating = '一星级';
+	//			break;
+	//		case "2 星级":
+	//			star[i].starRating = '二星级';
+	//			break;
+	//		case "3 星级":
+	//			star[i].starRating = '三星级';
+	//			break;
+	//		case "4 星级":
+	//			star[i].starRating = '四星级';
+	//			break;
+	//		case "5 星级":
+	//			star[i].starRating = '五星级';
+	//			break;
+	//		}
+	//	}
+	//	return data;
+	//}
 
 	//title
 	function title(data) {
@@ -99,9 +118,9 @@
 	}
 
 	//数据加载部分
-	function list(data) {
+	function list(result) {
 		var str = $('#templateList').html();
-		var hotels = ejs.render(str, handleData(data));
+		var hotels = ejs.render(str, result);
 		$('.hotel_list').html(hotels);
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');
