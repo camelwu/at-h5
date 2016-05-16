@@ -150,6 +150,9 @@ function u_perInfo(){
     function amendNick(obj){
         obj.onclick = function() {
             var input = document.getElementById("nickForm").getElementsByTagName("input");
+
+            input[0].value=input[0].value.replace(/^\s*/,'');
+
             var oNickname=input[0].value;
             console.log(oNickname);
             if(vlm.Utils.validate.nickName(oNickname))
@@ -191,6 +194,9 @@ function u_perInfo(){
         obj.onclick = function(){
 
             var oInputName = document.getElementById("realName");
+
+            oInputName.value=oInputName.value.replace(/^\s*/,'');
+
             u_realname = oInputName.value;
             if(vlm.Utils.validate.chiName(u_realname))
             {

@@ -43,7 +43,13 @@
                 traAdultnum+=parseInt(room[i].adult);
                 if(room[i].childWithOutBed)
                 {
-                    traChildnum+=(room[i].childWithOutBed.length)
+
+                    traChildnum+=room[i].childWithOutBed.length;
+                }
+                if(room[i].childWithBed)
+                {
+                  traChildnum+=room[i].childWithBed.length;
+
                 }
 
             }
@@ -105,30 +111,34 @@
     init();
 
     //与第一出行人相同图标
-    if(localStorage.travellerInfo_selected){
-        var traInfo_sel=JSON.parse(localStorage.travellerInfo_selected);
-        firstsame();
+
         function firstsame(){
             var bFlag=true;
             $('.con-alike').click(function(){
-                if(bFlag){
-                    $(this).css('backgroundPosition','-3px -52px');
-                    $('.hf_con_lastname').val(traInfo_sel[0].LastName);
-                    $('.hf_con_firstname').val(traInfo_sel[0].FirstName);
-                    $('.hf_con_cell').val(JSON.parse(localStorage.travellerInfo_selected)[0].mobile);
-                    $('.hf_con_email').val(JSON.parse(localStorage.travellerInfo_selected)[0].email);
-                    bFlag=false;
+            if( ! localStorage.travellerInfo_selected ){
+                return;
+            }else{
+                var traInfo_sel = JSON.parse(localStorage.travellerInfo_selected);
+                if (bFlag) {
+                  $(this).css('backgroundPosition', '-3px -52px');
+                  $('.hf_con_lastname').val(traInfo_sel[0].LastName);
+                  $('.hf_con_firstname').val(traInfo_sel[0].FirstName);
+                  $('.hf_con_cell').val(JSON.parse(localStorage.travellerInfo_selected)[0].mobile);
+                  $('.hf_con_email').val(JSON.parse(localStorage.travellerInfo_selected)[0].email);
+                  bFlag = false;
                 }else{
-                    $(this).css('backgroundPosition','-37px -52px');
-                    $('.hf_con_lastname').val('');
-                    $('.hf_con_firstname').val('');
-                    $('.hf_con_cell').val('');
-                    $('.hf_con_email').val('');
-                    bFlag=true;
+                  $(this).css('backgroundPosition', '-37px -52px');
+                  $('.hf_con_lastname').val('');
+                  $('.hf_con_firstname').val('');
+                  $('.hf_con_cell').val('');
+                  $('.hf_con_email').val('');
+                  bFlag = true;
                 }
+              }
             });
         }
-    }
+        firstsame();
+
 
 
 
@@ -240,4 +250,6 @@
         }
     }
 
+
 })();
+

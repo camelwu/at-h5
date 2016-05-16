@@ -256,7 +256,9 @@ var ticketHotel = {
                 paraObj.AirwayCacheID = that.cacheData.airwayCacheID;
                 paraObj.AirwaySetID = that.cacheData.airwaySetID;
                 paraObj.SortFields = [0];
-                paraObj.ScreenFileds=[1];
+
+                paraObj.ScreenFields=[0];
+
                 paraObj.DepartDate = that.initParaObj.DepartDate;
                 paraObj.ReturnDate = that.initParaObj.ReturnDate;
                 that.storageUtil.set('local', 'changeFlightParaObj',paraObj);
@@ -363,7 +365,9 @@ var ticketHotel = {
                     '<div class="time-port-day">',
                     '<div class="left">',
                     '<span class="start-time">{%=flightLeaveStartDate_clock%}</span>',
-                    '<span class="start-port">{%=flightLeaveStartAirportNameFrom%}</span>',
+
+                    '<span class="start-port">{%=flightLeaveStartAirportNameFrom%}{%=flightLeaveStartTermDepart%}</span>',
+
                     '</div>',
                     '<div class="middle">',
                     '<div class="time-cost">{%=segmentsLeaveTotalTravelTimeString%}</div>',
@@ -373,9 +377,11 @@ var ticketHotel = {
                     '<div class="right">',
                     '<span class="arrive-time">{%=flightLeaveEndtDate_clock%}</span>' +
                     '{% if(data["flightLeaveSpacingDay"]){ %}<span class="tip">+{%=flightLeaveSpacingDay%}天</span>{% } %}',
-                    '<span class="arrive-port">{%=flightLeaveStartAirportNameTo%}</span>',
+
+                    '<span class="arrive-port">{%=flightLeaveStartAirportNameTo%}{%=flightLeaveStartTermArrive%}</span>',
                     '</div>',
-                    '<p><span>{%=flightLeaveStartOperatingCarrierName%}</span><span> | {%=flightLeaveStartPlaneType%}</span><span> | {%=flightLeaveStartPlaneName%}</span><span> | {%=cabinClass%}</span></p>',
+                    '<p><span>{%=flightLeaveStartOperatingCarrierName%}</span><span> | {%=flightLeaveStartAirCorpCode%}{%=flightLeaveStartFlightNo%}</span><span> | {%=flightLeaveStartPlaneName%}</span></p>',
+
                     '</div>',
                     '</div>',
                     '<div class="spend-line">',
@@ -393,7 +399,9 @@ var ticketHotel = {
                     '<div class="time-port-day">',
                     '<div class="left">',
                     '<span class="start-time">{%=flightReturnStartDate_clock%}</span>',
-                    '<span class="start-port">{%=flightReturnStartOperatingCarrierName%}</span>',
+
+                    '<span class="start-port">{%=flightReturnStartAirportNameFrom%}{%=flightReturnStartTermDepart%}</span>',
+
                     '</div>',
                     '<div class="middle">',
                     '<div class="time-cost">{%=segmentsReturnTotalTravelTimeString%}</div>',
@@ -403,9 +411,11 @@ var ticketHotel = {
                     '<div class="right">',
                     '<span class="arrive-time">{%=flightReturnEndDate_clock%}</span>' +
                     '{% if(data["flightReturnSpacingDay"]){ %}<span class="tip">+{%=flightReturnSpacingDay%}天</span>{% } %}',
-                    '<span class="arrive-port">{%=flightReturnStartAirportNameTo%}</span>',
+
+                    '<span class="arrive-port">{%=flightReturnStartAirportNameTo%}{%=flightReturnStartTermArrive%}</span>',
                     '</div>',
-                    '<p><span>{%=flightReturnStartOperatingCarrierName%}</span><span> | {%=flightReturnStartPlaneType%}</span><span> | {%=flightReturnStartPlaneName%}</span><span> | {%=cabinClass%}</span></p>',
+                    '<p><span>{%=flightReturnStartOperatingCarrierName%}</span><span> | {%=flightReturnStartAirCorpCode%}{%=flightReturnStartFlightNo%}</span></span><span> | {%=flightReturnStartPlaneName%}</span></span></p>',
+
                     '</div>',
                     '</div>'].join('');
                 var temp_hotelInfo = [
@@ -529,19 +539,17 @@ var ticketHotel = {
                     result.cabinClass = cabin;
                     result.flightLeaveStartCityNameFrom  = arg.cityNameFrom;
                     result.flightLeaveStartCityNameTo  = arg.cityNameTo;
-                    if(arg.segmentsLeave.length==1){
-                        result.flightLeaveStartOperatingCarrierName = arg.segmentsLeave[0].operatingCarrierName;
-                        result.flightLeaveStartPlaneType = arg.segmentsLeave[0].planeType;
-                        result.flightLeaveStartPlaneName = arg.segmentsLeave[0].planeName;
-                    }else if(arg.segmentsLeave.length==2){
-                        result.flightLeaveStartOperatingCarrierName = arg.segmentsLeave[1].operatingCarrierName;
-                        result.flightLeaveStartPlaneType = arg.segmentsLeave[1].planeType;
-                        result.flightLeaveStartPlaneName = arg.segmentsLeave[1].planeName;
-                    }else if(arg.segmentsLeave.length>2){
-                        result.flightLeaveStartOperatingCarrierName = arg.segmentsLeave[arg.segmentsLeave.length-1].operatingCarrierName;
-                        result.flightLeaveStartPlaneType = arg.segmentsLeave[arg.segmentsLeave.length-1].planeType;
-                        result.flightLeaveStartPlaneName = arg.segmentsLeave[arg.segmentsLeave.length-1].planeName;
-                    }
+
+                    result.flightLeaveStartAirportNameFrom  = arg.segmentsLeave[0].airportNameFrom;
+                    result.flightLeaveStartTermDepart  = arg.segmentsLeave[0].termDepart;
+                    result.flightLeaveStartAirportNameTo  = arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo;
+                    result.flightLeaveStartTermArrive  = arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive;
+                    result.flightLeaveStartAirCorpCode = arg.segmentsLeave[arg.segmentsLeave.length-1].airCorpCode;
+                    result.flightLeaveStartFlightNo = arg.segmentsLeave[arg.segmentsLeave.length-1].flightNo;
+                    result.flightLeaveStartOperatingCarrierName = arg.segmentsLeave[arg.segmentsLeave.length-1].operatingCarrierName;
+                    result.flightLeaveStartPlaneType = arg.segmentsLeave[arg.segmentsLeave.length-1].planeType;
+                    result.flightLeaveStartPlaneName = arg.segmentsLeave[arg.segmentsLeave.length-1].planeName;
+
                     if(arg.transferListLeave){
                         if(arg.transferListLeave.length==1){
                             result.flightLeaveTransercity = '转'+arg.transferListLeave[0]
@@ -563,19 +571,17 @@ var ticketHotel = {
                     }
                     result.flightReturnStartCityNameFrom  = arg.cityNameTo;
                     result.flightReturnStartCityNameTo  = arg.cityNameFrom;
-                    if(arg.segmentsReturn.length==1){
-                        result.flightReturnStartOperatingCarrierName = arg.segmentsReturn[0].operatingCarrierName;
-                        result.flightReturnStartPlaneType = arg.segmentsReturn[0].planeType;
-                        result.flightReturnStartPlaneName = arg.segmentsReturn[0].planeName;
-                    }else if(arg.segmentsReturn.length==2){
-                        result.flightReturnStartOperatingCarrierName = arg.segmentsReturn[1].operatingCarrierName;
-                        result.flightReturnStartPlaneType = arg.segmentsReturn[1].planeType;
-                        result.flightReturnStartPlaneName = arg.segmentsReturn[1].planeName;
-                    }else if(arg.segmentsLeave.length>2){
-                        result.flightReturnStartOperatingCarrierName = arg.segmentsReturn[arg.segmentsReturn.length-1].operatingCarrierName;
-                        result.flightReturnStartPlaneType = arg.segmentsReturn[arg.segmentsReturn.length-1].planeType;
-                        result.flightReturnStartPlaneName = arg.segmentsReturn[arg.segmentsReturn.length-1].planeName;
-                    }
+
+                    result.flightReturnStartAirportNameFrom  = arg.segmentsReturn[0].airportNameFrom;
+                    result.flightReturnStartTermDepart  = arg.segmentsReturn[0].termDepart;
+                    result.flightReturnStartAirportNameTo  = arg.segmentsReturn[arg.segmentsReturn.length-1].airportNameTo;
+                    result.flightReturnStartTermArrive  = arg.segmentsReturn[arg.segmentsLeave.length-1].termArrive;
+                    result.flightReturnStartAirCorpCode = arg.segmentsReturn[arg.segmentsReturn.length-1].airCorpCode;
+                    result.flightReturnStartFlightNo = arg.segmentsReturn[arg.segmentsReturn.length-1].flightNo;
+                    result.flightReturnStartOperatingCarrierName = arg.segmentsReturn[arg.segmentsReturn.length-1].operatingCarrierName;
+                    result.flightReturnStartPlaneType = arg.segmentsReturn[arg.segmentsReturn.length-1].planeType;
+                    result.flightReturnStartPlaneName = arg.segmentsReturn[arg.segmentsReturn.length-1].planeName;
+
                     return result;
                 };
                 var hotelDateHandler = function(arg){
@@ -657,7 +663,9 @@ var ticketHotel = {
                 return array[1]+'月'+array[2]+'日';
             };
         startEle.innerHTML= '出发:'+returnWeek(arg.DepartDate.replace(/T.*/,''));
-        endEle.innerHTML= '返回:'+returnWeek(arg.ReturnDate.replace(/T.*/,''));
+
+        endEle.innerHTML= '返程:'+returnWeek(arg.ReturnDate.replace(/T.*/,''));
+
         adult.innerHTML= arg.AdultNum+'成人';
         child.innerHTML= arg.ChildNum+'儿童';
         startP.innerHTML= arg.FromCityNameCN;
@@ -713,4 +721,6 @@ var ticketHotel = {
         }
     }
 };
+
 ticketHotel.init();
+

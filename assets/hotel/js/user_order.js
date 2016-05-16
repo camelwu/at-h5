@@ -665,7 +665,10 @@ uoHisData();
         window.localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
-        uo_form.submit();
+
+        //uo_form.submit();
+        location.href = "/payment/payment.html?type=Hotle";
+
     });
     
     //取消说明点击事件

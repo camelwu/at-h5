@@ -149,7 +149,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     sexName = "女";
                 }
                 // 手机号邮箱检验
+
+                $('#mobile-cell-add')[0].value=$('#mobile-cell-add')[0].value.replace(/^\s*/,'');
                 var oMobile = $('#mobile-cell-add')[0].value;
+                $('#email-cell-add')[0].value=$('#email-cell-add')[0].value.replace(/^\s*/,'');
+
                 var oEmail = $('#email-cell-add')[0].value;
 
                 if ( ! vlm.Utils.validate.mobileNo(oMobile) )
@@ -293,7 +297,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
 
                 // 手机号邮箱检验
+
+                $('#mobile-cell')[0].value=$('#mobile-cell')[0].value.replace(/^\s*/,'');
                 var oMobile = $('#mobile-cell')[0].value;
+                $('#email-cell')[0].value=$('#email-cell')[0].value.replace(/^\s*/,'');
+
                 var oEmail = $('#email-cell')[0].value;
 
                 if ( ! vlm.Utils.validate.mobileNo(oMobile) )
@@ -625,32 +633,36 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     var myDate7 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
     function cardcallback(){
-        console.log();
+
         if($('.date-selected').html() == '护照')
         {
             function cardnum(){
-                var arr1=travJson.data[index].listTravellerIdInfo;
-                for(var i=0;i<arr1.length; i++)
-                {
+                if(travJson != undefined){
+                  var arr1=travJson.data[index].listTravellerIdInfo;
+                  for(var i=0;i<arr1.length; i++)
+                  {
                     if(arr1[i].idType == 1)
                     {
-                        return arr1[i].idNumber;
+                      return arr1[i].idNumber;
                     }
+                  }
+
                 }
             }
             var idnumber=cardnum();
             $('.postNum').val(idnumber);
-        }else if($('.date-selected').html() == '身份证')
-        {
+
+        }else if($('.date-selected').html() == '身份证'){
             function cardnum(){
-                var arr1=travJson.data[index].listTravellerIdInfo;
-                for(var i=0;i<arr1.length; i++)
-                {
-                    if(arr1[i].idType == 2)
-                    {
-                        return arr1[i].idNumber;
-                    }
+              if(travJson != undefined) {
+                var arr1 = travJson.data[index].listTravellerIdInfo;
+                for (var i = 0; i < arr1.length; i++) {
+                  if (arr1[i].idType == 2) {
+                    return arr1[i].idNumber;
+                  }
                 }
+              }
+
             }
             var idnumber=cardnum();
             $('.postNum').val(idnumber);

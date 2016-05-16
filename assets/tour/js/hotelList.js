@@ -78,6 +78,32 @@ var hotelList = {
 				$('#lsf_list').html(tpl_GetList);
 				$('#h-level').html(tpl_getStar);
 				$('#l-ul').html(tpl_getLocation);
+
+        //  恢复上次选中的酒店星级
+        if(newPara.StarRating != ''){
+          var li = document.getElementById('h-level').getElementsByTagName('li');
+          var star = newPara.StarRating.split('$');
+          for(var i = 0;i < li.length;i++){
+            for(var j = 0;j < star.length-1;j++){
+              if(li[i].innerHTML == star[j]){
+                li[0].className = 's-li';
+                li[i].className = 's-li1';
+              }
+            }
+          }
+        }
+        // 恢复上次选中的酒店位置
+        var oldLocation = newPara.Location.replace('$', '');
+          oldLocation = oldLocation ? oldLocation : '不限';
+          $('#l-ul .l-li').find('b').removeClass('l-icon1').addClass('l-icon');
+          $('#l-ul .l-li').each(function (index, item) {
+            var $item = $(item);
+            if($item.text().trim() === oldLocation){
+              $item.find('b').addClass('l-icon1').removeClass('l-icon');
+              return;
+            }
+        });
+
 				that.delayLoadImage().addEvent()
 			}
 		}else{
@@ -352,10 +378,10 @@ function url2json(url) {
 				for (var i = 0; i < rli.length; i++) {
 					rli[i].addEventListener("click", selectRank);
 				}
-				lli = document.getElementsByClassName("l-li");
-				for(var r=0;r < lli.length;r++){
-					lli[r].addEventListener("click",selectLocation);
-				}
+
+        $('#l-ul').off('click');
+        $('#l-ul').on('click', '.l-li', selectLocation);
+
 			}
 		}
 
@@ -458,25 +484,17 @@ function url2json(url) {
 		}
 
 		/*   位置筛选  */
-		function selectLocation(){
-			 var obj = window.event.srcElement;
-			 var array = [];
-			 array = document.getElementsByClassName("l-li");
-			if($(this).index() == 0){
-				obj.firstElementChild.className = 'l-icon1';
-				for(var i = 1;i < array.length;i++){
-					array[i].firstElementChild.className = "l-icon";
-				}
-			}else{
-				if(obj.firstElementChild.className == "l-icon1"){
-					obj.firstElementChild.className = "l-icon"
-				}else{
-					obj.firstElementChild.className = 'l-icon1';
-				}
-				array[0].firstElementChild.className = "l-icon";
 
-			}
-		 }
+    function selectLocation(e) {
+      var $this = $(this);
+      var b = $this.find('b');
+      var selected = b.hasClass('l-icon1');
+      if (!selected) {
+        b.removeClass('l-icon').addClass('l-icon1');
+        $this.siblings().find('b').addClass('l-icon').removeClass('l-icon1');
+      }
+    }
+
 	}
 	h_l_s();
 	//页面没有展示前页面展示的页面

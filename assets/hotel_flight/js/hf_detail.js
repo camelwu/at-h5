@@ -33,6 +33,7 @@
 
 
         var tmp = localdata;
+
         for (var i = 0;i < tmp.flightInfo.segmentsLeave.length;i++){
             tmp.flightInfo.segmentsLeave[i].departDate = formatDate(tmp.flightInfo.segmentsLeave[i].departDate,"hh:mm");
             tmp.flightInfo.segmentsLeave[i].arriveDate = formatDate(tmp.flightInfo.segmentsLeave[i].arriveDate,"hh:mm");
@@ -42,9 +43,11 @@
             tmp.flightInfo.segmentsReturn[i].arriveDate = formatDate(tmp.flightInfo.segmentsReturn[i].arriveDate,"hh:mm");
         }
 
-        console.log(tmp);
-        tpl_SegmentsLeave = template("tpl_SegmentsLeave",localdata);
-        tpl_SegmentsReturn = template("tpl_SegmentsReturn",localdata);
+
+        //console.log(localdata.flightInfo.segmentsLeave);
+        tpl_SegmentsLeave = template("tpl_SegmentsLeave",tmp);
+        tpl_SegmentsReturn = template("tpl_SegmentsReturn",tmp);
+
         $(".js-go-trip").html(tpl_SegmentsLeave);
         $(".js-back-trip").html(tpl_SegmentsReturn);
 
@@ -159,4 +162,6 @@
     }
 
     initialize();
+
 }());
+

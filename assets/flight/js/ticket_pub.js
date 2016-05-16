@@ -1273,7 +1273,9 @@ var  conditionalFiltering = {
                             this.tempStates.CabinClass = seatConditionLis_is[hy].getAttribute('data-i');
                             break;
                         }
-                    } }
+
+                    }
+                }
 
                 for(var ty = 0; ty < timeMiddleLis_is.length; ty++) {
                     if(type=="set"){
@@ -1383,4 +1385,6 @@ var  conditionalFiltering = {
         this.fn_ = callback2;
         this.createTags().addEvent().stateEvent('set');
     }
+
 };
+

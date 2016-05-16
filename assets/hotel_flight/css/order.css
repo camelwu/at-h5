@@ -304,15 +304,17 @@ li.order-hlist1 {
 }
 
 li.order-hlist1 i {
-    width: 34px;
-    height: 34px;
-    display: inline-block;
-    background-image: url(../../images/ui/ticket_hotel.png);
-    background-size: 300px 240px;
-    background-position: 46px 141px;
-    position: absolute;
-    top: 2px;
-    left: 10px;
+
+  width: 34px;
+  height: 34px;
+  display: inline-block;
+  background-image: url(../../images/ui/ticket_hotel.png);
+  background-size: 276px 206px;
+  background-position: 44px 123px;
+  position: absolute;
+  top: 2px;
+  left: 10px;
+
 }
 
 li.order-hlist1 span {
@@ -490,6 +492,9 @@ li.order-tlist2 em {
 
 .order-llist2, .order-llist3, .order-llist4 {
     width: 100%;
+
+    height: 40px;
+
     padding: 0 15px;
     background-color: white;
     margin-bottom: 0px;
@@ -502,10 +507,20 @@ li.order-tlist2 em {
 
 .order-llist2 input, .order-llist3 input, .order-llist4 input {
     display: inline-block;
-    vertical-align: top;
-    height: 40px;
+
     width: 44%;
+    margin-top:10px;
+  /*border: 1px solid #900;*/
     font-size: 1.4rem;
+  height: 20px;
+  line-height: 20px;
+}
+.order-llist3 .hf_con_cell{
+  vertical-align: top;
+}
+.order-llist4 .hf_con_email{
+  width: 70%;
+
 }
 
 .order-line {
@@ -744,4 +759,6 @@ ul, ol {
 
 }
 
+
 /*国籍tel结束*/
+

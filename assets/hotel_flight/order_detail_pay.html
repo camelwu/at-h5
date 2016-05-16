@@ -41,7 +41,11 @@
         <div class="j-title">
             <p class="bigtit">订单详情</p>
         </div>
+<<<<<<< HEAD
         <a class="j-lick phone jpa" href="tel:4008058888" id=" "></a>
+=======
+        <a class="j-lick phone jpa" href="tel:4008058888" id="jPone"></a>
+>>>>>>> bugfix-20160503
     </div>
     <!--content-->
     <div class="j-content jpr" id = "jpr">
@@ -188,6 +192,16 @@
         {% } %}
     </div>
 </div>
+<<<<<<< HEAD
+=======
+<!--客服电话-->
+<div class="jpop_box_tic">
+    <dl>
+        <dt>400 805 8888</dt>
+        <dd><span>取消</span><a href="tel:4008058888">拨打</a></dd>
+    </dl>
+</div>
+>>>>>>> bugfix-20160503
 <!--详情-->
 <div class="summary-cost-shadow-two"  id = "bg_detail"></div>
 <div class="ticket-detail-modal" id = "ticket_detail">
@@ -372,14 +386,41 @@
             fdetail.onclick=function(){
                 bgDetail.style.display = "block";
                 ticketDetail.style.display = "block";
+<<<<<<< HEAD
             }
             ticketDetail.onclick=function(){
                 bgDetail.style.display = "none";
                 ticketDetail.style.display = "none";
             }
+=======
+            };
+            ticketDetail.onclick=function(){
+                bgDetail.style.display = "none";
+                ticketDetail.style.display = "none";
+            };
+
+>>>>>>> bugfix-20160503
         }
         bgdetail();
     })()
 </script>
+<<<<<<< HEAD
+=======
+<script>
+    (function(){
+        function tPhone(){
+            var jPone = $("#jPone")[0];
+            var jpopboxtic = $(".jpop_box_tic")[0];
+            jPone.onclick = function(){
+                jpopboxtic.style.display = "block";
+            };
+            jpopboxtic.onclick = function(){
+                jpopboxtic.style.display = "none";
+            }
+        }
+        tPhone();
+    })()
+</script>
+>>>>>>> bugfix-20160503
 </body>
 </html>

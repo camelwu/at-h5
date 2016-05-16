@@ -44,6 +44,35 @@ html {
     display: inline-block;
 }
 
+
+.h-wifi, .h-transfer {
+	display: inline-block;
+	width: 20px;
+	height: 15px;
+	background-image: url(../../images/icon-h.png);
+	background-repeat: no-repeat;
+	background-size: 402px 174px;
+	background-position: -75px -14px;
+	vertical-align: -4px;
+}
+
+.h-transfer {
+	background-position: -37px -14px;
+}
+
+.h-div1{
+	float: right;
+	padding:0 3px;
+	height:15px;
+	line-height:15px;
+	color: white;
+	text-align: center;
+	-webkit-text-size-adjust:none;font-size: 1rem;
+	background-color: #55bfb7;
+	margin-right:4px;
+}
+
+
 .d-icon {
     background-image: url(../../images/ui/icons.png);
     background-repeat: no-repeat;
@@ -791,7 +820,9 @@ html {
     /*border-bottom: 1px solid rgba(121, 111, 121, 0.39)*/
 }
 #popup_more{
-    max-height: 234px;
+
+    max-height: 344px;
+
 }
 div#popup_container{
     position: fixed;

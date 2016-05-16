@@ -34,7 +34,7 @@
 <body>
 <div id="preloader">
     <div id="status">
-        
+
     </div>
 </div>
 <div class="all-elements">
@@ -74,6 +74,14 @@
             <!--<span class="conlist">游玩时间：2018.12.25 上午</span>-->
             <!--</section>-->
         </div>
+
+      <div id="sendInfo">
+      </div>
+      <ul id="confirmBox">
+        <!--<div>电子确认单<span>（酒店入住，景点入园时提示）</span></div>-->
+        <!--<li><a href="confirm-page.html?hotel=1">酒店确认单</a></li>-->
+      </ul>
+
         <section id="totlePrice" class="order_total">
             <!--订单总额：<b class="orange">¥</b><i class="orange">5,296</i>-->
             <!--<a href="#">费用明细</a>-->
@@ -128,8 +136,39 @@
         <span class="conlist">游玩时间：{%=tours[i].travelDate.substr(0,10)%}</span>
     </section>
     {% } %}
+
+    <section class="trip_box">
+      <span class="conlist">成人票{%=adultNum%}张；儿童票{%=childNum%}张</span>
+    </section>
     {% } %}
 </script>
+<script id="tpl_sendServe" type="text/template">
+  <section class="all_title">
+    <h3><i>接送服务</i></h3>
+    {%=console.log(flightDetails)%}
+    {% if(flightDetails.arrivalFlightNo != "None"){ %}
+    <section class="trip_box">
+      <span class="conlist">航班号：{%=flightDetails.arrivalFlightNo%}</span>
+      <span class="conlist">接机时间：{%=flightDetails.arrivalDateTime.substr(0,10)%} {%=flightDetails.arrivalDateTime.substr(12,5)%}</span>
+    </section>
+    {% } %}
+    {% if(flightDetails.departFlightNo != "None"){ %}
+    <section class="trip_box">
+      <span class="conlist">航班号：{%=flightDetails.departFlightNo%}</span>
+      <span class="conlist">接机时间：{%=flightDetails.departDateTime.substr(0,10)%} {%=flightDetails.departDateTime.substr(12,5)%}</span>
+    </section>
+    {% } %}
+  </section>
+</script>
+<script id="tpl_confirmCard" type="text/template">
+  <div>电子确认单<span>（酒店入住，景点入园时提示）</span></div>
+  <li><a href="confirm-page.html?hotel=1">酒店确认单</a></li>
+  <li><a href="confirm-page.html?tour=1">旅行确认单</a></li>
+  {% for(var i = 0;i < tours.length;i++){ %}
+  <li><a href="confirm-page.html?spot=1">景点确认单{%=i+1%}</a></li>
+  {% } %}
+</script>
+
 <script id="tpl_payStatus" type="text/template">
     {% if(paymentStatus){  %}
     <section class="order_type"><i class="orange">已支付</i></section>
@@ -144,7 +183,11 @@
 </script>
 <script>
 //    var tourNoon = [];
-    (function(){
+
+  var adultNum = 0;
+  var childNum = 0;
+  (function(){
+
         var ww = this;
         var sh_orderDetail = function(){
             //   获取详情
@@ -264,6 +307,14 @@
                         });
                         data.totel=sum;
 
+                        for(var i = 0;i < data.travelers.length;i++){
+                          if(data.travelers[i].travelerType == '0'){
+                            adultNum++;
+                          }else{
+                            childNum++;
+                          }
+                        }
+
                         var html_pi = template(tpl1,data);
                         var html_hi = template(tpl2,data);
                         var tpl_GetTourInfo = template("tpl_GetTourInfo",data);
@@ -273,9 +324,17 @@
                         var html_pd_list = template(tpl5,data);
                         var tpl_payStatus = template("tpl_payStatus",data);
                         var tpl_payBtn = template("tpl_payBtn",data);
+
+                        var tpl_confirm = template("tpl_confirmCard",data);
                         $('#packageInfo').html(html_pi);
                         $('#hotelInfo').html(html_hi);
                         $('#tourInfo').html(tpl_GetTourInfo);
+                        $('#confirmBox').html(tpl_confirm);
+                      if(data.flightDetails){
+                        var tpl_sendServe =  template("tpl_sendServe",data);
+                        $('#sendInfo').html(tpl_sendServe);
+                      }
+
                         $('#totlePrice').html(html_tp);
                         $('#orderInfo').html(html_oi);
                         $('#pd_list').html(html_pd_list);
