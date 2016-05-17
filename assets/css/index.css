@@ -50,25 +50,7 @@ body{
 }
 
 /*当月热玩*/
-.hot_sea_text {
-  width: 3.2rem;
-  height: 1rem;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  text-align: center;
-  margin-left: -1.6rem;
-  margin-top: -.5rem;
-  color: #fff;
-}
 
-.hot_sea_text > h5 {
-  font-size: .32rem;
-}
-
-.hot_sea_text > p {
-  font-size: .24rem;
-}
 .recommends_tab{
   padding: 0 .2rem;
 }
@@ -80,17 +62,6 @@ body{
 
 .recommends_tab li:last-child {
   margin-left: .18rem;
-}
-
-.hot_sea_bg {
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  opacity: 0.3;
-  filter: alpha(opacity:30);
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 
 .hot_sea {
