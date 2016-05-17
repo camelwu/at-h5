@@ -17,5 +17,4 @@
   $("#hf_des").click(function(){
     VM.Load("hf_des");
   });
-
 })();
