@@ -4,7 +4,7 @@
 	//console.log( typeof parametersStorage);
 	//获取资源选择页的url保存下来，再传过去
 	var chooseUrl = window.location.search;
-	console.log(chooseUrl.substring(6,7))
+	console.log(chooseUrl)
 	sessionStorage.setItem("hftHotelChooseUrl", chooseUrl);
 	//传数据
 	var dataPull = {
