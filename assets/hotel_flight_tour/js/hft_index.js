@@ -622,8 +622,8 @@ var htf_search = {
         //   传输查询数据
         var FromCityNameCN = getByClass(box, 'origin')[0].innerHTML;
         var ToCityNameCN = getByClass(box, 'destination')[0].innerHTML;
-        var fromCity = getByClass(box, 'origin')[0].getAttribute('data-citycode');
-        var toCity = getByClass(box, 'destination')[0].getAttribute('data-citycode');
+        var fromCity = getByClass(box, 'origin')[0].getAttribute('data-code');
+        var toCity = getByClass(box, 'destination')[0].getAttribute('data-code');
         var departDate = getByClass(box, 'js_startData')[0].getAttribute('data-day') + 'T00:00:00';
         var returnDate = getByClass(box, 'js_returnData')[0].getAttribute('data-day') + 'T00:00:00';
         var startday = getByClass(box, 'js_startDay')[0].innerHTML;
