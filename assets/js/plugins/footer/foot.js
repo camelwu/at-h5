@@ -302,7 +302,7 @@ var footer = (function() {
 					var a = d[i], item = a.item, li = '';
 					css = i == 0 ? ' class="cur"' : '';
 					cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
-					s = a.allowMultiSelect == 1 ? 2 : 1;
+					s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : 1;
 					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + k + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];
@@ -408,20 +408,30 @@ var footer = (function() {
 		},
 		request : function() {
 			// 选中的属性
-			console.log(sec);
-			var node = sec.getElementsByTagName("ul"), cache = [], obj = {};
-			console.log(node.length);
+			var node = sec.getElementsByTagName("ul"), obj = {};
 			for (var i = 0; i < node.length; i++) {
-				var chk = node[i].getElementsByClassName("cur");
-				for (var j = 0; j < chk.length; j++) {
-					cache.push(chk[j].getAttribute("data-val"));
+				if (node[i].getAttribute("data-key")) {
+					var cache = [], chk = node[i].getElementsByClassName("cur"), mykey = node[i].getAttribute("data-key");
+					for (var j = 0; j < chk.length; j++) {
+						cache.push(chk[j].getAttribute("data-val"));
+					}
+					if (mykey == "airways") {// 航空公司处理
+						obj.airways = {
+							airwaySetID:chk[0].getAttribute("airwaySetID"),
+							airwayCacheID:chk[0].getAttribute("airwayCacheID")
+						};
+					} else if (mykey == "filters") {// 过滤处理
+						if(obj[node[i].getAttribute("data-key")]){
+							obj[node[i].getAttribute("data-key")].push([node[i].getAttribute("data-type"), cache]);
+						}else{
+							obj[node[i].getAttribute("data-key")]=[];
+							obj[node[i].getAttribute("data-key")].push([node[i].getAttribute("data-type"), cache]);
+						}
+					} else {
+						obj[node[i].getAttribute("data-key")] = cache;
+					}
 				}
-				//if (node[i].getAttribute("data-sel") == 1) {// 单选
-					// obj[node[i].getAttribute("data-key")] = cache[0];
-				// } else {// 多选			
-					obj[node[i].getAttribute("data-key")] = cache;
-				}
-			// }
+			}
 			footer.result = obj;
 			console.log(obj);
 			this.remove();
@@ -450,13 +460,31 @@ var footer = (function() {
 			if (sec) {
 				if (t == 3) {
 					// 航空公司
-					masker.style.display = "none";
-					console.log("3333");
-					if (sec.firstChild.style.bottom == "0.98rem") {
-						sec.firstChild.style.bottom = "";
-					} else {
-						sec.firstChild.style.bottom = "0.98rem";
+					//masker.style.display = "none";
+					//console.log("3333");
+					//if (sec.firstChild.style.bottom == "0.98rem") {
+					//	sec.firstChild.style.bottom = "";
+					//} else {
+					//	sec.firstChild.style.bottom = "0.98rem";
+					//}
+					var footer = document.getElementsByTagName('footer')[0];
+					var closeAirw = document.getElementById('closeAirw');
+					masker.style.display = "none";//this.remove();
+					if (sec.firstChild.style.top == "1.48rem") {
+						sec.firstChild.style.top = "";
+						footer.style.display = "block";
+						closeAirw.style.display = "none";
+					}else{
+						sec.firstChild.style.top = "1.48rem";
+						footer.style.display = "none";
+						closeAirw.style.display = "block";
 					}
+					//返回按钮还需要加个点击事件
+					//closeAirw.onclick = function(){
+					//	sec.firstChild.style.top = "";
+					//	footer.style.display = "block";
+					//	closeAirw.style.display = "none";
+					//};
 				} else {
 					if (masker.style.display == "none") {
 						masker.style.display = "block";

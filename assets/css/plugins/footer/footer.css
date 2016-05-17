@@ -412,7 +412,7 @@ section.foot_sort{
 	position: absolute;
 	transition: all 0.3s;
 	left: 0;
-	bottom: -7.98rem;
+	bottom: -8.98rem;
 }
 section.foot_sort li{
 	margin: 0 0 0 0.28rem;
@@ -441,7 +441,7 @@ section.foot_screen{
 	height: 6.72rem;
 	width: 100%;
 	position: absolute;
-	bottom: -5.98rem;
+	bottom: -6.98rem;
 	left: 0;
 	background: #fff;
 	font-size: 0.28rem;
@@ -595,6 +595,8 @@ section.flight_company{
 	padding-bottom: 1rem;
 	overflow: hidden;
 	background: #FFFFFF;
+	height: 100%;
+	overflow-y: scroll;
 	position: fixed;
 }
 section.flight_company li {
