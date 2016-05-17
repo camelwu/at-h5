@@ -23,15 +23,14 @@
 		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 	};
 
-
-
 	function dataCallBack(result) {
-		if (result.success) {
+		if (result.success && result.code == '200') {
 			console.log(result)
 			var data = result.data;
 			title(data);
 			list(result);
-			//footer();
+			clickMore(data);
+			//footer  begin
 			var menu_data = {
 				hotelSort : {
 					title : "推荐排序",
@@ -72,8 +71,8 @@
 				footer.callback = menu_call;
 			}
 			footer.filters.init();
-			//排序默认选中第一个
-			$('section.foot_hotel_sort li').eq(0).addClass('cur');
+			//footer  end
+
 			console.log(data);
 			vlm.init();
 		} else {
@@ -132,5 +131,15 @@
 		});
 	}
 
+	//点击加载更多
+	function clickMore(data){
+		if (data.pageNo < data.pageCount) {
+			$("#loadMore").attr("data-more", "").html("点击加载更多").show();
+		} else if (data.pageNo >= data.pageCount) {
+			$("#loadMore").attr("data-more", "no").html("没有更多数据了！").show();
+		} else {
+			$("#loadMore").attr("data-more", "").html("点击加载更多").hide();
+		}
+	}
 
 })();

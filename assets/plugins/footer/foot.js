@@ -324,7 +324,7 @@ var footer = (function() {
 				// 位置
 				for (; i < l; i++) {
 					css = '';
-					listr += '<li' + css + ' data-val="' + i + '">' + d[i] + '<i></i></li>';
+					listr += '<li' + css + ' data-val="' + d[i] + '">' + d[i] + '<i></i></li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
 				break;
