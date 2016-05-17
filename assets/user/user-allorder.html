@@ -155,7 +155,7 @@
 			"ForeEndType": 3,
 			"Code": "0062"
 		}
-		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+		vlm.loadJson("", JSON.stringify(Parameters), function(data){
 			if(data.success) {
 				if(data.data !=null && data.data.length>0 ) {
 					var html = template("tpl_ticket", data.data);

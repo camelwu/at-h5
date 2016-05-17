@@ -120,7 +120,7 @@ function url2json(url){
             "ForeEndType": 3
         };
         //alert(data.Parameters);
-        return  c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+        return  c.loadJson("", JSON.stringify(data), mycallback);
     }
 
 

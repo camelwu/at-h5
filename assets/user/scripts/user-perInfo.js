@@ -22,7 +22,7 @@ function u_perInfo(){
     }
 
     console.log(Parameters);
-    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    vlm.loadJson("", JSON.stringify(Parameters), mycallback);
 
     var close_page = $("#close_page")[0];
     var amend_info = $("#amend_info")[0];
@@ -129,7 +129,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
+                vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
             }else{
                 sex.className="info-sex";
                 block.innerHTML = "男";
@@ -139,7 +139,7 @@ function u_perInfo(){
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
+                vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
             }
 
         };
@@ -161,7 +161,7 @@ function u_perInfo(){
                     "Code": "0059"
                 };
                 console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_nick);
+                vlm.loadJson("", JSON.stringify(Parameters), mycallback_nick);
             }
             else
             {
@@ -202,7 +202,7 @@ function u_perInfo(){
                     "Code": "0056"
                 };
                 console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+                vlm.loadJson("", JSON.stringify(Parameters), mycallback_info);
             }
             else
             {
@@ -245,7 +245,7 @@ function u_perInfo(){
                     "Code": "0056"
                 };
                 //console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_info);
+                vlm.loadJson("", JSON.stringify(Parameters), mycallback_info);
             }
         }
     }
@@ -279,7 +279,7 @@ function u_perInfo(){
                 };
                 //console.log(Parameters);
                 $('#preloader').remove();
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_infoemail);
+                vlm.loadJson("", JSON.stringify(Parameters), mycallback_infoemail);
 
             };
 
@@ -320,7 +320,7 @@ function u_perInfo(){
             $('#preloader').remove();
             phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
             timedown_regcy(120);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
+            vlm.loadJson("", JSON.stringify(Parameters), mycallback_phoneVeri);
         }
     }
     phone_veri(phone_ver);
@@ -353,7 +353,7 @@ function u_perInfo(){
             };
 
             console.log(Parameters);
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_newKey);
+            vlm.loadJson("", JSON.stringify(Parameters), mycallback_newKey);
         }
     }
     changeKey(newkey_btn);
@@ -386,7 +386,7 @@ function u_perInfo(){
                     "Code": "0056"
                 };
                 console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_birth);
+                vlm.loadJson("", JSON.stringify(Parameters),mycallback_birth);
             }
             selDate(oPerBack);
         },1000)

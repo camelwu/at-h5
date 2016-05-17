@@ -1,15 +1,15 @@
 /**
  * Created by zhouwei on 2016/2/17.
  */
-/*ÀàÃû£º  Ö§¸¶½Ó¿Ú²å¼ş
-* ¹¦ÄÜÃèÊö£º
+/*ç±»åï¼š  æ”¯ä»˜æ¥å£æ’ä»¶
+* åŠŸèƒ½æè¿°ï¼š
 * */
 
 function paymentObj(data,callback) {
-    $.alerts.confirm("Ö§¸¶Íê³ÉÇ°£¬Çë²»Òª¹Ø±Õ´ËÖ§¸¶ÑéÖ¤´°¿Ú </br> Ö§¸¶Íê³Éºó£¬Çë¸ù¾İÄãÖ§¸¶µÄÇé¿öµã»÷ÏÂÃæµÄ°´Å¥¡£","ÍøÉÏÖ§¸¶ÌáÊ¾",null,"Ö§¸¶Íê³É","Ö§¸¶³öÏÖÎÊÌâ");
-    this.data = data;    //post²ÎÊı¶ÔÏó
+    $.alerts.confirm("æ”¯ä»˜å®Œæˆå‰ï¼Œè¯·ä¸è¦å…³é—­æ­¤æ”¯ä»˜éªŒè¯çª—å£ </br> æ”¯ä»˜å®Œæˆåï¼Œè¯·æ ¹æ®ä½ æ”¯ä»˜çš„æƒ…å†µç‚¹å‡»ä¸‹é¢çš„æŒ‰é’®ã€‚","ç½‘ä¸Šæ”¯ä»˜æç¤º",null,"æ”¯ä»˜å®Œæˆ","æ”¯ä»˜å‡ºç°é—®é¢˜");
+    this.data = data;    //postå‚æ•°å¯¹è±¡
     this.handlePayment = function () {
-       return  vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), callback);
+       return  vlm.loadJson("", JSON.stringify(data), callback);
     };
 }
 

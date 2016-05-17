@@ -121,7 +121,7 @@ $(document).ready()
         }
         console.log(data);
 
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), function(data){
+        vlm.loadJson("", JSON.stringify(data), function(data){
             if (data.success) {
                 vlm.init();
 

@@ -458,7 +458,7 @@
 				$("#toper h3").html("已选:0/" + numofAdult + "成人");
 			}
 		}
-		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),function(json){
+		vlm.loadJson("", JSON.stringify(Parameters),function(json){
 			travJson = json;
 			for(var i=0;i<= json.data.length-1;i++){
 				json.data[i].traveller.travellerAge=GetAgeByBrithday(json.data[i].traveller.dateOfBirth);
@@ -1066,7 +1066,7 @@
 			}
 		}
 		console.log(JSON.stringify(Parameters));
-		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+		vlm.loadJson("", JSON.stringify(Parameters), function(data){
 			var data=data;
 
 			if(data.success) {
@@ -1147,7 +1147,7 @@
 			"ForeEndType" : 3,
 			"Code" : "0073"
 		};
-		vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+		vlm.loadJson("", JSON.stringify(Parameters), function(data){
 			var myJson = data;
 			if (myJson.success) {
 				//window.location.reload();
