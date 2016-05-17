@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>重置密码</title>
+    <script src="/js/lib/jquery.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        //JSON.stringify({ Parameters: { SerialNumber: 'b3c29442-6354-4191-9b22-08fd54ebc857', NewPassword: $("#txtPwd").val() }, ForeEndType: 3, Code: '0061' })
+        //获取url参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+            if (r != null) return unescape(r[2]);
+            return null; //返回参数值
+        }
+
+        function changePwd() {
+            //上线替换为域名 m.yazhoulvyou.cn
+            var postUrl = "http://10.7.2.111/api/GetServiceApiResult?rnd=" + Math.random();
+            var serialNumber = getUrlParam("sn");
+            if ($("#txtPwd").val() != $("#txtPwd2").val()) {
+                //alert("密码填写不一致！");
+                $("#divResult").html("<h3 style='color:red'>密码填写不一致！</h3>");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: postUrl,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    Parameters: {
+                        SerialNumber: serialNumber,
+                        NewPassword: $("#txtPwd").val()
+                    },
+                    ForeEndType: 3,
+                    Code: '70100016'
+                }),
+                dataType: "json",
+                success: function(result, status, jqXHR) {
+                    //debugger;
+                    if (result.success) {
+                        //alert("重设密码成功！")
+                        $("#divResult").html("<h3 style='color:yellowgreen'>修改密码成功！</h3>");
+                    } else {
+                        //alert("重设密码失败！");
+                        $("#divResult").html("<h3 style='color:red'>修改密码失败！</h3>");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    //debugger;
+                    //$.messager.alert("错误", jqXHR.responseJSON, "error");
+                }
+            })
+
+        }
+
+    </script>
+    <style type="text/css">
+            input::-webkit-input-placeholder {
+            color: #333333 !important;
+            /* WebKit browsers /
+        }
+
+    </style>
+</head>
+
+<body>
+    <div style="width:438px;height:346px;border: solid 1px #dedede;">
+        <div style="padding:16px 0px 16px 30px;background-color: #dedede;font-size: 16px;">重设您的密码</div>
+        <div>
+            <input type="password" id="txtPwd" placeholder="新密码" style="width:362px;height: 46px;margin-top: 40px;margin-left: 22px;
+        padding: 0 0 0 18px;" value="" />
+            <input type="password" id="txtPwd2" placeholder="确认密码" style="width: 362px;height: 46px;margin-left: 22px;margin-top: 12px;
+        padding: 0 0 0 18px;" value="" />
+            <input type="button" onclick="changePwd()" style="width: 382px;height: 48px;margin-left: 22px;margin-top: 30px;
+        background-color: #fe5a65;color: white;border: none;font-size: 16px;" value="保存并继续" />
+            <div style="margin-top: 14px;margin-left: 36px;width:380px;height:auto;font-size: 12px;text-align: center;">
+                点击"保存并继续",即表示您确认接受<a href="#" style="color: #fe5a65;">服务条款</a>和
+                <a href="#" style="color: #fe5a65;">隐私政策</a>
+            </div>
+            <div id="divResult" style="margin-top: 14px;margin-left: 36px;width:380px;height:auto;">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

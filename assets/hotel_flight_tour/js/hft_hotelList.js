@@ -1,9 +1,10 @@
 (function() {
 	//获取资源选择页传过来的数据
 	var parametersStorage = JSON.parse(sessionStorage.getItem("hftChangeHotelPara")) || {};
-	console.log( typeof parametersStorage);
+	//console.log( typeof parametersStorage);
 	//获取资源选择页的url保存下来，再传过去
 	var chooseUrl = window.location.search;
+	console.log(chooseUrl.substring(6,7))
 	sessionStorage.setItem("hftHotelChooseUrl", chooseUrl);
 	//传数据
 	var dataPull = {
@@ -42,7 +43,7 @@
 				},
 				hotelScreen : {
 					title : "筛选",
-					c : "foot_screen",
+					c : "foot_screen  aa",
 					s:2,
 					type : 2,
 					key : 'filters',
@@ -57,13 +58,9 @@
 					listData : data.locationList
 				}
 			}, menu_call = function(data) {
-				console.log(data);
-				console.log(parametersStorage)
 				parametersStorage.sortFields = data.sortTypes;
 				parametersStorage.location = data.locationList;
 				parametersStorage.filterFields = data.filters;
-				console.log(parametersStorage);
-				console.log(result.data.hotels.length)
 				tAjax("", parametersStorage, "60100007", "2", list);
 			};
 			if (footer) {
@@ -72,8 +69,6 @@
 			}
 			footer.filters.init();
 			//footer  end
-
-			console.log(data);
 			vlm.init();
 		} else {
 			vlm.init();
