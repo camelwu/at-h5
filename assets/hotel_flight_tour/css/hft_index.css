@@ -243,20 +243,17 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
   left: 3.34rem;
   margin-top: .24rem;
 }
-.age_state_box div:first-child{
+.age_state_box div:last-child{
   width: 0;
   height: 0;
   margin-left: .3rem;
   border-left:  .2rem solid transparent;
   border-right:  .2rem solid transparent;
-  border-bottom: .2rem solid #474747;
+  border-top: .2rem solid #474747;
 }
 .age_state_box .state_text{
   width: 3.4rem;
-  padding-left: .15rem;
-  padding-right: .28rem;
-  padding-top: .4rem;
-  padding-bottom: .4rem;
+  padding: .2rem;
   margin-top: -1px;
   background: #474747;
   font-size: .2rem;

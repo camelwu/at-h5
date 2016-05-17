@@ -450,6 +450,9 @@ var footer = (function() {
 			footer.result = obj;
 			console.log(obj);
 			this.remove();
+      if(box.style.display == 'none'){
+        box.style.display = 'block';
+      }
 			if (footer.callback) {
 				footer.callback(obj);
 			}
@@ -486,13 +489,13 @@ var footer = (function() {
 			if (sec) {
 				if (t == 3) {
 					// 航空公司
-					this.remove();
 					if (sec.firstChild.style.top == "1.48rem") {
-						sec.firstChild.style.top = "";
-						//box.style.display = "block";
+            this.remove();
+            box.style.display = "block";
 					} else {
-						sec.firstChild.style.top = "1.48rem";
-						//box.style.display = "none";
+            this.remove();
+            sec.firstChild.style.top = "1.48rem";
+						box.style.display = "none";
 					}
 				} else {
 					if (masker.style.display == "none") {
