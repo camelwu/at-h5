@@ -23,55 +23,27 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-
-    <title>当月热玩 - 亚洲旅行网</title>
-
-    <link href="styles/framework.css"	rel="stylesheet" type="text/css">
-    <link href="styles/style.css"		rel="stylesheet" type="text/css">
-    <!--<link href="styles/reset.css"		rel="stylesheet" type="text/css">-->
-    <link href="scenic/css/scenic.css"		rel="stylesheet" type="text/css">
+    <title>海外门票 - 亚洲旅行网</title>
+    <link href="styles/reset.css"		rel="stylesheet" type="text/css">
+    <link href="css/index.css"		rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="preloader">
-        <div id="status">
-
-        </div>
+        <div id="status"></div>
     </div>
-    <div class="all-elements">
-        <div id="content" class="snap-content">
-            <a href="javascript:history.go(-1)" class="top-back"><i class="icons"></i></a>
-            <h3 class="top-title">当月热玩</h3>
-            <div class="top-ban s-active">
-                <a href="#">
-                    <img src="images/pictures/hotplay1.png" class="banner-image" alt="img">
-                </a>
+    <div class="all_elements">
+        <div id="content" class="content no_header">
+            <div class="head_hot">
+              <a href="index.html" class="top_back"><i class="icons"></i></a>
+              <h3 class="top_title">海外门票</h3>
             </div>
-            <div class="s-type-four">
-                <div class="menu-active" data-num="1">海岛</div>
-                <div data-num="2">亲子</div>
-                <div data-num="3">户外</div>
-                <div data-num="4">人文</div>
+            <div class="s_type_four">
+                <div class="menu_active" data-num="1">新加坡</div>
+                <div data-num="3">泰国</div>
+                <div data-num="2">马来西亚</div>
+                <div data-num="4">香港</div>
             </div>
-            <ul class = "hotspot" id="hotspot">
-                <li>
-                    <div class="hp-atten"><span>199</span>人已关注</div>
-                    <div>
-                        <img src="scenic/images/greatwall-sun.jpg" class="banner-image" alt="img">
-                        <div class="hp-block">
-                        八达岭长城+秋季采摘水果一日游
-                        </div>
-                    </div>
-                    <div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>
-                    <div class="hp-sale">
-                        <img src="images/zhekou.png">
-                        <span>8.5折</span>
-                    </div>
-                    <div>
-                        <span>￥</span><span class="pay-num">168</span>
-                        <span class="old-num">268元</span>
-                    </div>
-                </li>
-            </ul>
+            <ul class="hotspot" id="hotspot"></ul>
         </div>
     </div>
     <script src="js/lib/jquery.js"></script>
@@ -87,16 +59,12 @@
             {% }else if(productType==3){ %}
             <a href = "scenic/scenic_detail.html?packageID={%=productID%}">
             {% } %}
-            <div>
-                <img src="{%=productPicUrl%}" class="banner-image" alt="img">
-                <div class="hp-block">
-                    {%=productName%}
-                </div>
-            </div>
-            <div class="spotDesc">{%=productDesc%}</div>
-            <div>
-                <span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>
-            </div>
+              <div class="hotplay_wrap">
+                <img src="{%=productPicUrl%}" class="banner_image" alt="img">
+                <div class="rec_price"><span class="rec_price_tit"><i>￥</i>{%=productDiscountPrice%}<i> 起</i></span></div>
+              </div>
+              <div class="hp_block">{%=productName%}</div>
+              <div class="spotDesc">{%=productDesc%}</div>
             </a>
             </a>
         </li>
@@ -118,21 +86,21 @@
                     var tmp={
                         "Parameters":{"SiteType":1,"PageNo":1,"PageSize":10},
                         "ForeEndType":3,
-                        "Code":"001304"
+                        "Code":"80100007"
                     };
-                    vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
+                    vlm.loadJson("",JSON.stringify(tmp),seaticket_back);
                     var tpl = [
                         '<li>',
                         '<div>',
-                        '<img src="{%=productPicUrl%}" class="banner-image" alt="img">',
-                        '<div class="hp-block">{%=productName%}</div>',
+                        '<img src="{%=productPicUrl%}" class="banner_image" alt="img">',
+                        '<div class="hp_block">{%=productName%}</div>',
                         '</div>',
                         '<div class="spotDesc">{%=productDesc%}</div>',
                         '<div>',
-                        '<span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>',
+                        '<span>￥</span><span class="pay_num">{%=productDiscountPrice%}</span>',
                         '</div>',
                         '</li>'].join('');
-                    function hotplay_back(ret){
+                    function seaticket_back(ret){
                         var json = ret;
                         console.log(json);
                         if(json.success) {
@@ -149,32 +117,32 @@
                 }
                 //   切换选项卡
                 var changeMenu = function(){
-                    var ele =document.querySelector('.s-type-four') ;
-                    var menu = document.getElementsByClassName('s-type-four')[0].children;
+                    var ele =document.querySelector('.s_type_four') ;
+                    var menu = document.getElementsByClassName('s_type_four')[0].children;
                     ele.onclick = function(event){
                         var event = event||window.event;
                         var target = event.target||event.srcElement,num;
                         for(var j = 0;j < menu.length;j++){
                              menu[j].className = '';
                         }
-                        target.className = 'menu-active';
+                        target.className = 'menu_active';
 
                         num = target.getAttribute("data-num");
                         var tmp={
                             "Parameters":{"SiteType":num,"PageNo":1,"PageSize":10},
                             "ForeEndType":3,
-                            "Code":"001304"
+                            "Code":"80100007"
                         };
                         vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
                         var tpl = [
                             '<li>',
                             '<div>',
-                                '<img src="{%=productPicUrl%}" class="banner-image" alt="img">',
+                                '<img src="{%=productPicUrl%}" class="banner_image" alt="img">',
                                 '<div class="hp-block">{%=productName%}</div>',
                              '</div>',
                             '<div class="spotDesc">{%=productDesc%}</div>',
                             '<div>',
-                            '<span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>',
+                            '<span>￥</span><span class="pay_num">{%=productDiscountPrice%}</span>',
                             '</div>',
                             '</li>'].join('');
                         function hotplay_back(ret){
