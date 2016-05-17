@@ -48,6 +48,11 @@ var footer = (function() {
 	addClass = function(c, node) {
 		node.className = node.className + ' ' + c;
 	},
+	// 删除样式
+	removeClass = function(c, node) {
+		var reg = new RegExp("(^|\\s+)" + c + "(\\s+|$)", "g");
+		node.className = node.className.replace(reg, '');
+	},
 	// 绑定事件
 	on = function(node, type, handler) {
 		node.addEventListener ? node.addEventListener(type, handler, false) : node.attachEvent('on' + type, handler);
@@ -95,7 +100,7 @@ var footer = (function() {
 	filters = {
 		bindEvent : function() {
 			var that = this;
-			//底部三按钮
+			//底部
 			on(box, 'click', function(event) {
 				event = event || window.event;
 				var target = event.target || event.srcElement, src, index, returnVal;
@@ -107,6 +112,9 @@ var footer = (function() {
 				}
 				index = 0;
 				returnVal = target.getAttribute("data-type");
+				//底部样式增加
+				//c = "classname";
+				//target.className.indexOf("cur")?removerClass(c,target):addClass(c,target);
 				while ( target = target.previousSibling) {
 					if (target.nodeType == 1)
 						index++;
@@ -310,7 +318,7 @@ var footer = (function() {
 					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + a.filterType + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];
-						css = j == 0 ? ' class="cur"' : '';
+						css = o.filterText == '不限' ? ' class="cur"' : '';
 						li += '<li' + css + ' data-val="' + o.filterValue + '">' + o.filterText + '<i></i></li>';
 					}
 					ulstr += wrapper[0] + li + wrapper[1];

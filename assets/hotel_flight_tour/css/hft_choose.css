@@ -127,19 +127,26 @@ body{
 .dateWeekCity span{
   margin-right: .16rem;
 }
-.dateWeekCity span.icon{
+.dateWeekCity span.icon, .arrow{
   display: inline-block;
   width: .40rem;
   height: .40rem;
   background: url(../../images/ui/icon_common.png);
   background-repeat: no-repeat;
-  background-size: 7.89rem 5.07rem;
+  background-size: 7.90rem 5.13rem;
   background-position: -2.66rem -1.42rem;
   overflow: hidden;
   position: absolute;
   top:-.033rem
 }
-
+.arrow{
+  display: block;
+  width: 1.68rem;
+  height: .20rem;
+  position: static;
+  background-position: -.488rem -4.460rem;
+  margin: 0 auto;
+}
 .dateWeekCity span:nth-child(2){
   margin-left: .45rem;
 }
@@ -222,7 +229,7 @@ body{
 }
 
 .startPort, .arrivePort{
-  margin-top: .38rem;
+  margin-top: .58rem;
 }
 .arrivePort{
   position: absolute;
@@ -237,7 +244,7 @@ body{
 .timeAirport .middle{
   height: 1.12rem;
   margin: 0 2.40rem 0 1.6rem;
-  padding: 0.04rem 0;
+  padding: 0.08rem 0;
 }
 .timeAirport .middle .timeCost{
   position: relative;
@@ -246,15 +253,14 @@ body{
   line-height: .28rem;
   font-size: .20rem;
 }
-.timeAirport .middle .toArrow{
+.timeAirport .middle .toArrowWord{
   display: block;
   margin: 0 auto 0;
-  width: 1.8rem;
-  height: 0.10rem;
-  background: url(../../images/ui/icon_common.png);
-  background-size: 6.0rem auto;
+  width: 1.68rem;
+  height: 0.20rem;
+  background: url(../../images/ui/change-arrow.png);
+  background-size: 1.68rem auto;
   background-repeat: no-repeat;
-  background-position: 2.1% 89.1%;
 }
 .timeAirport .middle .transferCity{
   position: relative;

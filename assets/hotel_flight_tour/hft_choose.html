@@ -56,9 +56,16 @@
             </div>
             <div class="middle">
               <div class="timeCost"><%= flightInfo["segmentsLeaveTotalTravelTimeString"] %></div>
-              <div class="toArrow"></div>
-              <div class="transferCity">
-                转<%= flightInfo["transferListLeave"].length < 2 ? flightInfo["transferListLeave"][0] : flightInfo["transferListLeave"].length + '次' %></div>
+              <%if(!flightInfo["transferListLeave"]){%>
+                    <div class="arrow"></div>
+              <%}else{%>
+               <div class="toArrowWord"></div>
+                <%if(flightInfo["transferListLeave"].length < 2){%>
+                <div class="transferCity"><%= flightInfo["transferListLeave"][0] %></div>
+                <%}else{%>
+                <div class="transferCity"><%= flightInfo["transferListLeave"].length %>次</div>
+                <%}%>
+              <%}%>
             </div>
             <div class="right">
             <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %></span>
@@ -87,10 +94,17 @@
             </div>
             <div class="middle">
               <div class="timeCost"><%= flightInfo["segmentsReturnTotalTravelTimeString"] %></div>
-              <div class="toArrow"></div>
-              <div class="transferCity">
-                转<%= flightInfo["transferListReturn"].length < 2 ? flightInfo["transferListReturn"][0] : flightInfo["transferListReturn"].length + '次' %></div>
-            </div>
+              <%if(!flightInfo["transferListReturn"]){%>
+                     <div class="arrow"></div>
+              <%}else{%>
+                 <div class="toArrowWord"></div>
+                <%if(flightInfo["transferListReturn"].length < 2){%>
+                <div class="transferCity"><%= flightInfo["transferListReturn"][0] %></div>
+                <%}else{%>
+                <div class="transferCity"><%= flightInfo["transferListReturn"].length %>次</div>
+                <%}%>
+              <%}%>
+              </div>
             <div class="right">
             <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %></span>
               <% if(flightInfo["flightLeaveSpacingDay"]){ %>
