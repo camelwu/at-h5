@@ -205,7 +205,7 @@ var footer = (function() {
 				var target = event.target || event.srcElement, src = target.parentNode;
 				if (target.className.indexOf("header_back") > -1 || src.className.indexOf("header_back") > -1) {
 					if (masker.style.display == "none" && sec.firstChild.style.top == "1.48rem") {
-						that.showItems(0,3);
+						that.showItems(0, 3);
 						// 阻止默认链接跳转
 						if (event && event.preventDefault) {
 							event.preventDefault();
@@ -431,10 +431,16 @@ var footer = (function() {
 						};
 					} else if (mykey == "filters") {// 过滤处理
 						if (obj[node[i].getAttribute("data-key")]) {
-							obj[node[i].getAttribute("data-key")].push([node[i].getAttribute("data-type"), cache]);
+							obj[node[i].getAttribute("data-key")].push({
+								FilterType : node[i].getAttribute("data-type"),
+								FilterValues : cache
+							});
 						} else {
 							obj[node[i].getAttribute("data-key")] = [];
-							obj[node[i].getAttribute("data-key")].push([node[i].getAttribute("data-type"), cache]);
+							obj[node[i].getAttribute("data-key")].push({
+								FilterType : node[i].getAttribute("data-type"),
+								FilterValues : cache
+							});
 						}
 					} else {
 						obj[node[i].getAttribute("data-key")] = cache;
@@ -483,10 +489,10 @@ var footer = (function() {
 					this.remove();
 					if (sec.firstChild.style.top == "1.48rem") {
 						sec.firstChild.style.top = "";
-						box.style.display = "block";
+						//box.style.display = "block";
 					} else {
 						sec.firstChild.style.top = "1.48rem";
-						box.style.display = "none";
+						//box.style.display = "none";
 					}
 				} else {
 					if (masker.style.display == "none") {
