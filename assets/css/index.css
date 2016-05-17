@@ -200,11 +200,11 @@ body {
 
 .footer-menu i {
   display: block;
-  margin: 0 auto 3px auto;
-  width: .48rem;
-  height: .48rem;
+  margin: 0 auto .06rem auto;
+  width: .565rem;
+  height: .565rem;
   background: url(../images/ui/icon.png) no-repeat;
-  background-size: 397px 118px; /*243px 160px*/;
+  background-size: 9.5rem 2.8rem;
 }
 
 a.foot-homes, a.foot-users {
@@ -212,19 +212,19 @@ a.foot-homes, a.foot-users {
 }
 
 .foot-home i {
-  background-position: 0 2px;
+  background-position: 0 .04rem;
 }
 
 .foot-homes i {
-  background-position: -23px 2px;
+  background-position: -.6rem .04rem;
 }
 
 .foot-user i {
-  background-position: -100px 2px;
+  background-position: -2.45rem .04rem;
 }
 
 .foot-users i {
-  background-position: -124px 2px;
+  background-position: -2.48rem .04rem;
 }
 
 .footer-menu-three-icons a {
@@ -275,7 +275,7 @@ a.foot-homes, a.foot-users {
 }
 .menu_active {
   color: #ffb413 !important;
-  border-bottom: 4px solid #ffb500 !important;
+  border-bottom: .08rem solid #ffb500 !important;
 }
 .s_type_four div {
   float: left;

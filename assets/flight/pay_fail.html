@@ -75,7 +75,7 @@
         var memberId=JSON.parse(localStorage.getItem('memberid'));
         var bookingRefNo=vlm.getpara("bookingRefNo");
         var Parameters= {"Parameters": {"bookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+        vlm.loadJson("", JSON.stringify(Parameters), function(data){
             if(data.success) {
                 var html = template("tpl", data.data);
                 $(".content-div").html(html)

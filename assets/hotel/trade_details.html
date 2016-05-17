@@ -23,7 +23,7 @@
 <body>
 <div id="preloader">
     <div id="status">
-        
+
     </div>
 </div>
 <div class="all-elements" >
@@ -76,7 +76,7 @@
             "Parameters":{"bookingReferenceNo":bookingRefNo},
             "Code":"0013",
             "ForeEndType":3}
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+        vlm.loadJson("", JSON.stringify(Parameters), function(data){
             debugger;
             if(data.success) {
                 var html = template("elements", data.data);

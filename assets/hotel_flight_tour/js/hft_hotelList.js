@@ -4,7 +4,7 @@
 	//console.log( typeof parametersStorage);
 	//获取资源选择页的url保存下来，再传过去
 	var chooseUrl = window.location.search;
-	console.log(typeof chooseUrl)
+	console.log(chooseUrl.substring(6,7))
 	sessionStorage.setItem("hftHotelChooseUrl", chooseUrl);
 	//传数据
 	var dataPull = {
@@ -43,7 +43,7 @@
 				},
 				hotelScreen : {
 					title : "筛选",
-					c : "foot_screen",
+					c : "foot_screen  aa",
 					s:2,
 					type : 2,
 					key : 'filters',

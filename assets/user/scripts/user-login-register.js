@@ -141,7 +141,7 @@ window.onload = function() {
 					"ForeEndType" : 3,
 					"Code" : "0051"
 				};
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_register);
 
 			} else {
 				password = r_p_password;
@@ -164,7 +164,7 @@ window.onload = function() {
 					"ForeEndType" : 3,
 					"Code" : "0051"
 				};
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_register);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_register);
 
 			}
 
@@ -192,7 +192,7 @@ window.onload = function() {
 			console.log(Parameters);
 			phone_reg.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
 			timedown_reg(120);
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_verify);
+			vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
 		};
 	}
 
@@ -218,7 +218,7 @@ window.onload = function() {
 					"Code" : "0052"
 				};
 				console.log(Parameters);
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_login);
 
 			} else {
 				login_pass = p_password;
@@ -239,7 +239,7 @@ window.onload = function() {
 
 				};
 				//console.log(Parameters);
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_login);
 			}
 
 		};
@@ -274,7 +274,7 @@ window.onload = function() {
 					"Code" : "0055"
 				};
 				console.log(Parameters);
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_findkey);
 			} else {
 				var input = email_find.getElementsByTagName('input')[0];
 
@@ -288,7 +288,7 @@ window.onload = function() {
 					"Code" : "0055"
 				};
 				console.log(Parameters);
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey_email);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_findkey_email);
 			}
 		};
 	}
@@ -315,7 +315,7 @@ window.onload = function() {
 			phone_verify.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
 			timedown_forget(120);
 			//vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
+			vlm.loadJson("", JSON.stringify(Parameters), mycallback_findver);
 		};
 	}
 
@@ -330,7 +330,7 @@ window.onload = function() {
 				"ForeEndType" : 3,
 				"Code" : "0061"
 			};
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findkey);
+			vlm.loadJson("", JSON.stringify(Parameters), mycallback_findkey);
 		} else {
 			jAlert(myJson.message);
 		}
@@ -390,7 +390,7 @@ function cb_register() {
 	};
 
 	console.log(Parameters);
-	vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_login);
+	vlm.loadJson("", JSON.stringify(Parameters), mycallback_login);
 }
 
 //登录成功回调函数

@@ -51,7 +51,7 @@ function init(){
     }
     vlm.checkUser();
     vlm.loading();
-    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    vlm.loadJson("", JSON.stringify(Parameters), mycallback);
 
 
 }

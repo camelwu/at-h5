@@ -237,49 +237,7 @@ Calender.prototype = {
             }
             ddHtml.push(pstr);
         }
-        //            if (year < nowyear) {
-        //                ddHtml.push('<a class="disabled">' + i + '</a>');
-        //            } else if (year == nowyear) {
-        //                if (month < nowmonth + 1) {
-        //                    ddHtml.push('<a class="live disabled">' + i + '</a>');
-        //                } else if (month == nowmonth + 1) {
-        //                    if (i < nowdate) {
-        //                        ddHtml.push('<a class="live disabled">' + i + '</a>');
-        //                    } else {
-        //                        m = month < 10 ? '0' + month : month;
-        //                        d = i < 10 ? '0' + i : i;
-        //                        if (tims[year + '-' + m + '-' + d]) {
-        //                            if (i == nowdate) {
-        //                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">今天</span></a>';
-        //                            } else {
-        //                                pstr = '<a class="live selected" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
-        //                            }
-        //                        } else {
-        //                            if (i == nowdate) {
-        //                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">今天</a>';
-        //                            } else {
-        //                                pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
-        //                            }
-        //                        }
-        //                        //i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
-        //                        ddHtml.push(pstr);
-        //                    }
-        //                } else if (month == nowmonth + 2) {
-        //                    m = month < 10 ? '0' + month : month;
-        //                    d = i < 10 ? '0' + i : i;
-        //                    if (tims[year + '-' + m + '-' + d]) {
-        //                        pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '"><span class="live_circle">' + i + '</span></a>';
-        //                    } else {
-        //                        pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
-        //                    }
-        //                    ddHtml.push(pstr);
-        //                } else {
-        //                    ddHtml.push('<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>');
-        //                }
-        //            } else if (year > nowyear) {
-        //                ddHtml.push('<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>');
-        //            }
-        //        }
+
         dd.innerHTML = ddHtml.join('');
 
         // 添加

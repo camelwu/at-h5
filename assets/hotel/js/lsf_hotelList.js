@@ -519,9 +519,9 @@ function styleChange(id, mytext) {
         document.getElementById("lsf_list").setAttribute("data-index", json.pageIndex);
 
         if(json.pageIndex == 1){
-            return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+            return vlm.loadJson("", JSON.stringify(data), mycallback);
         }else{
-            return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback,false,false,true);
+            return vlm.loadJson("", JSON.stringify(data), mycallback,false,false,true);
         }
 
 	}

@@ -7,11 +7,12 @@ window.onload = function () {
     console.log(JSON.parse(hotelMessage));
     //交互部分
     var data = {
-        "Parameters": "{\"HotelID\":"+hotelCode+",\"CultureName\":\"ZH-CN\" }",
+        "Parameters": "{\"HotelID\":"+hotelCode+",\"CultureName\":\"ZH-CN\" }",
+
         "ForeEndType": 3,
         "Code": "0009"
     };
-    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+    vlm.loadJson("", JSON.stringify(data), mycallback);
     function mycallback(result){
         var hoteFeatureDesc=result.data;
         console.log(hoteFeatureDesc);

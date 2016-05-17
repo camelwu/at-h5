@@ -6,7 +6,7 @@
 		tempStart : 0,
 		isAnimation : false,
         currentIndex : 0,
-		requestUrl : "http://10.2.22.239:8888/api/GetServiceApiResult",
+		requestUrl : "",
 
 		myData : {
 			"getByUrl" : {},
@@ -298,7 +298,7 @@
 			};
 
 			//地图暂时不用
-			
+
 			 toMap.onclick = function () {
 
 			 var dataObj = {
@@ -313,7 +313,7 @@
 			 paramStr = paramStr.slice(1);
 			 document.location.href = 'jyy_hd_map.html?' + paramStr;
 			 };
-			 
+
 
 			for (var i = 0; i < showListTrigger.length; i++) {
 				showListTrigger[i].onclick = function() {
@@ -338,7 +338,7 @@
 			hotelDetail.addHandler(window, 'resize', function() {
 				hotelDetail.widthCorrecting(hotelDetail.sourceData);
 			});
-            
+
             hotelDetail.addHandler(window, 'orientationchange', function() {
 				hotelDetail.orientationchange();
 			});
@@ -394,7 +394,7 @@
 				}
 			}
 		},
-        
+
         orientationchange : function(event){
             var showZone = document.getElementsByClassName("showZone")[0];
             var indexShow = document.getElementsByClassName("indexShow")[0];
@@ -548,7 +548,7 @@
 					outerDiv.style.display = 'none'
 				}
 			};
-            
+
 			faceImg.onclick = function(event) {
 				document.getElementById('imageContainer').style.display = 'block';
 				//默认先加载两张图片
@@ -585,7 +585,7 @@
 			var minLeftValue = (document.querySelectorAll('.imageLi').length - 1) * window.innerWidth;
 			var endLeftValue = parseFloat(document.getElementsByClassName('imgUl')[0].style.left);
 			var distance = endLeftValue - hotelDetail.tempCurLeft, time = 1000, targetLeft, indexNUm;
-           
+
 			if (distance < 0 && Math.abs(distance) >= window.innerWidth / 4) {
                  //向左滑动
 				targetLeft = hotelDetail.tempCurLeft - window.innerWidth;
@@ -604,7 +604,7 @@
 			indexNUm = Math.abs(Math.floor(targetLeft / window.innerWidth)) + 1;
             hotelDetail.currentIndex = indexNUm;  //记下当前页面
 			time = Math.abs((targetLeft - parseFloat(document.getElementsByClassName('imgUl')[0].style.left)) / window.innerWidth) * time;
-            
+
 			hotelDetail.tempCurLeft = targetLeft;
 			$('.imgUl').animate({
 				'left' : targetLeft
@@ -771,7 +771,7 @@
 			 };*/
 			var message = '<div class="owl-carousel">' + showPic(result.data[0].hotelRoomFeaturesList) + '</div><hr size="1" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">' + showFeature(result.data[0].hotelRoomAmenitiesList) + '</ul>';
 			jLayer(message, "房间信息");
-            
+
             //图片懒加载
             var images = document.getElementsByClassName('hotelPic2');
 			function loadImage(url,error_url, index, callback,errorFunc) {
@@ -798,7 +798,7 @@
                     });
 				})(i,re_url)
 			}
-            
+
 			//如果图片没有加载出来就显示默认图片
 			var aImg = oDiv.getElementsByTagName('img');
 			var hdRoomDesc = document.getElementById('hdRoomDesc');

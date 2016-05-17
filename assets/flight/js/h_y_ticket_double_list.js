@@ -2,7 +2,7 @@ var ticketDouble = {
 
     CultureName: "zh-CN",
 
-    requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
+    requestUrl: "",
 
     dateInit: function (arg) {
         var spans = document.querySelectorAll('.ticket-double-date');

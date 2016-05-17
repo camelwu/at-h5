@@ -68,7 +68,7 @@
 (function(win, doc) {
 
         var _prv = {
-            url: "http://10.2.22.239:8888/api/GetServiceApiResult"
+            url: ""
         };
         //国际城市
         var _ExHotCity = {
