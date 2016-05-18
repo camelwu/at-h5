@@ -374,12 +374,12 @@ function styleChange(id, mytext) {
 	//贾燕云的js结束
 
 	//返回按钮事件
-	var hl_back = document.getElementById('hl_back');
-	lsf_myweb.bind(hl_back, 'click', function() {
-        //清空筛选条件
-        lsf_myweb.setSession('asiaHlHistory', {});
-		window.location.href = 'index.html';
-	});
+	//var hl_back = document.getElementById('hl_back');
+	//lsf_myweb.bind(hl_back, 'click', function() {
+     //   //清空筛选条件
+     //   lsf_myweb.setSession('asiaHlHistory', {});
+	//	window.location.href = 'index.html';
+	//});
 	//页面没有展示前页面展示的页面
 	var oUl = document.getElementById('lsf_list');
 	$(window).load(function() {
