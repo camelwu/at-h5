@@ -95,44 +95,43 @@
 
 <script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
-<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/template.js"></script>
-<script src="../js/lib/d_calendar1.0.2.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/ejs.js"></script>
 <script src="js/hf_hotelDetail.js"></script>
-<!--nav中英文标题-->
-<script id="tpl_seoul" type="text/template">
-        <p class="titcn">{%=hotelName%}</p>
-        <p class="titen">{%=hotelNameLocale%}</p>
-</script>
 <!--banner-->
 <script id="banner" type="text/template">
-    <img class="hotelPic" src={%=hotelPictureURL%} alt="">
+    <img class="hotelPic" src=<%=hotelPictureURL%> alt="">
 </script>
 <!--评分、星级、wifi-->
 <script id="jhf_score" type="text/template">
-    <li class="jpr"><span class="score">{%=hotelReviewScore%}</span>&nbsp;分&nbsp;/&nbsp;{%=hotelReviewCount%}人点评<i class="arrow"></i></li>
-    <li><i></i>{%=location%}</li>
-    <li>{%=starRating%}星级{% if(isFreeWiFi){ %}<span class="wifi"></span>{% }else{ %}{% } %}<!--<span class="park"></span>--><i class="arrow"></i></li>
+    <li class="jpr"><span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotelReviewCount %>人点评<i class="arrow"></i></li>
+    <li><i></i><%=location%></li>
+    <li><%=starRating%>星级<% if(isFreeWiFi){ %><span class="wifi"></span><% }else{ %><% } %><!--<span class="park"></span>--><i class="arrow"></i></li>
 </script>
 <!--房间列表页-->
 <script id="jhf_room" type="text/template">
-    {% for(var i=0;i<roomdata.length;i++){ %}
+    <% for(var i=0;i<roomdata.length;i++){ %>
     <li class="showh">
         <div class="slide jpr">
             <div class="lfword">
-                <p><span class="name">{%=roomdata[i].roomName%}</span></p>
-                <p>{% if(roomdata[i].includedBreakfast){ %}双早{% }else{ %}无早{% } %}</p>
+                <p><span class="name"> <%= roomdata[i].roomName %></span></p>
+                <p><% if(roomdata[i].includedBreakfast){%>
+                    双早
+                    <% }else{ %>
+                    无早
+                    <% } %>
+                </p>
             </div>
             <div class="jhf-drg">
-                {% if(roomdata[i].addtionalPrice>=0){ %}<p>{% }else{ %}<p class="reduce">{% } %}
-                    <span>{% if(roomdata[i].addtionalPrice>=0){ %}+{% }else{ %}-{% } %}</span>
+                <% if(roomdata[i].addtionalPrice>=0){ %><p><% }else{ %><p class="reduce"><% } %>
+                    <span><% if(roomdata[i].addtionalPrice>=0){ %>+<% }else{ %>-<% } %></span>
                     <span>￥</span>
                     <span>
-                        {% if(roomdata[i].addtionalPrice>=0){ %}
-                            {%=roomdata[i].addtionalPrice%}
-                        {% }else{ %}
-                            {%=roomdata[i].addtionalPrice.toString().substring(1)-0%}
-                        {% } %}
+                        <% if(roomdata[i].addtionalPrice>=0){ %>
+                            <%=roomdata[i].addtionalPrice%>
+                        <% }else{ %>
+                            <%=roomdata[i].addtionalPrice.toString().substring(1)-0%>
+                        <% } %>
                     </span>
                 </p>
                 <b></b>
@@ -150,7 +149,7 @@
             <!--</li>-->
         <!--</ol>-->
     </li>
-    {% } %}
+    <% } %>
 </script>
 
 
