@@ -61,46 +61,56 @@ var flightList = {
 	},
 	getFlightList : function() {
 		var that = this;
+    $('#departData').html(that.formatDate(oldFlightInfo.departDate,"MM-dd"));
+    $('#returnData').html(that.formatDate(oldFlightInfo.returnDate,"MM-dd"));
+    $('#departWeek').html(that.getWeekDay(that.formatDate(oldFlightInfo.departDate,"d")));
+    $('#returnWeek').html(that.getWeekDay(that.formatDate(oldFlightInfo.returnDate,"d")));
 		var flightListBack = function(ret) {
 			var json = ret, that = flightList;
       console.log(json);
       var data = json.data;
-      var str1 = $("#tplFlightList").html();
-      var flight_list = ejs.render(str1, data);
-      document.getElementById('fligtList').innerHTML = flight_list;
-      if(!filterSign){
-        filterSign = true;
-        bottom(data);
-      }
-      $.each($('.seat_detail'), function(i, item) {
-        if ($(this).attr('data-setID') == oldFlightInfo.flightSetID) {
-          $(this).find('b').addClass('cho_gou').siblings().find('b').removeClass('cho_gou');
+        if(json.success && json.code == '200'&&data.flightInfoListGroup.length>0) {
+          $('.go_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
+          $('.to_place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
+          var str1 = $("#tplFlightList").html();
+          var flight_list = ejs.render(str1, data);
+          document.getElementById('fligtList').innerHTML = flight_list;
+          if (!filterSign) {
+            filterSign = true;
+            bottom(data);
+          }
+          //$.each($('.seat_detail'), function (i, item) {
+          //  if ($(this).attr('data-setid') == oldFlightInfo.flightSetID) {
+          //    $(this).find('b').addClass('cho_gou').siblings().find('b').removeClass('cho_gou');
+          //  }
+          //});
+          var airway = document.getElementsByClassName('airway');
+          for (var i = 0; i < airway.length; i++) {
+            if (airway[i].getAttribute('data-airwaySetID') == changeFlightInfo.flightSetID) {
+              airway[i].getElementsByClassName('hft_icon')[0].className = 'hft_icon cho_gou';
+            }
+          }
+          //  页面跳转
+          $(".seat_detail").click(function () {
+            $(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
+            var hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+            var setid = $(this).attr('data-setID');
+            for (var i = 0; i < data.flightInfoListGroup.length; i++) {
+              for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
+                if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
+                  hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
+                  hftFlightHotelTourInfo.airwaySetID = data.flightInfoListGroup[i].flightInfoList[j].setID;
+                  hftFlightHotelTourInfo.airwayCacheID = data.flightInfoListGroup[i].flightInfoList[j].cacheID;
+                }
+              }
+            }
+            sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
+            hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
+            window.location.href = 'hft_choose.html' + window.location.search;
+          });
+        }else{
+          that.noResult();
         }
-      });
-      var airway = document.getElementsByClassName('airway');
-      for (var i = 0; i < airway.length; i++) {
-        if (airway[i].getAttribute('data-airwaySetID') == changeFlightInfo.flightSetID) {
-          airway[i].getElementsByClassName('hft_icon')[0].className = 'hft_icon cho_gou';
-        }
-      }
-			//  页面跳转
-			$(".seat_detail").click(function() {
-				$(this).find('b').addClass('cho_gou').parents().siblings().find('b').removeClass('cho_gou');
-				var hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
-				var setid = $(this).attr('data-setID');
-				for (var i = 0; i < data.flightInfoListGroup.length; i++) {
-					for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
-						if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
-							hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
-							hftFlightHotelTourInfo.airwaySetID = data.flightInfoListGroup[i].flightInfoList[j].setID;
-							hftFlightHotelTourInfo.airwayCacheID = data.flightInfoListGroup[i].flightInfoList[j].cacheID;
-						}
-					}
-				}
-				sessionStorage.hftFlightHotelTourInfo = JSON.stringify(hftFlightHotelTourInfo);
-				hftFlightHotelTourInfo = JSON.parse(sessionStorage.hftFlightHotelTourInfo);
-				window.location.href = 'hft_choose.html' + window.location.search;
-			});
 		};
     var bottom = function(d){
       var menu_data = {
@@ -155,9 +165,14 @@ var flightList = {
 		questUrl = questUrl || that.requestUrl;
 		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 	},
+  noResult :function(){
+    var ele = document.createElement('div'), eventEle, flight_hotel_no_result;
+    ele.className = "flight_hotel_no_result";
+    ele.innerHTML = '<div class="header" style="box-shadow: none;"><a id="pageBack" href="javascript:window.history.go(-1);" class="header_back"><i class="icon_back"></i></a><h3>自由行</h3></div><div class="no_result_search"><p>没有找到符合条件的产品</p></div> </div>';
+    document.body.appendChild(ele);
+    flight_hotel_no_result = document.querySelector('.flight_hotel_no_result');
+  },
 	init : function() {
-    type = val.type;
-
 		changeFlightInfo = JSON.parse(sessionStorage.hftChangeFlightPara);
 		console.log(changeFlightInfo);
 		oldFlightInfo = JSON.parse(sessionStorage.hftChangeFlightPara);
