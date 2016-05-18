@@ -680,7 +680,6 @@ var hftChoose = {
           this.getNewPricePara.packageID = this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "60100006", 3, this.renderHandler_f);
         } else if (this.type == "1") {
-          console.log(111)
           delete this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
         }
@@ -701,7 +700,6 @@ var hftChoose = {
         this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
       }
     }
-    //this.renderHandler(result)
   }
 };
 hftChoose.init();

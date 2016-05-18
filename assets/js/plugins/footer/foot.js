@@ -6,17 +6,13 @@
  * 传入参数说明：
  *
  {
- hotelSort : {//键值既是传入也是返回结果
+ hotelSort : {//传入标识
  title : "推荐排序",//中文名称
- c : "sort bg_color", //底部菜单样式
- type : 1,//类型：0底部按钮直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，多条件筛选，点击确认按钮进行查询
- listData : [
- {
- key : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"],
- title : "中文",
- type : 0|1 选择：单选，多选
- }
- ]//统一为数组，内里为对象key返回的对象名，内容
+ s : 1|2,//单|多选
+ c : "sort bg_color", //样式
+ type : 1,//类型：0底部按钮直接点击，1按钮触发列表显示 点击列表直接查询回调，2同1，多条件筛选，点击确认按钮进行查询，3航空公司，特殊处理方式
+ key : 'filters',//键值，返回数据的key值
+ listData : [{}]//统一为数组，内为对象内容
  }
  }
  *
@@ -51,6 +47,11 @@ var footer = (function() {
 	// 添加样式
 	addClass = function(c, node) {
 		node.className = node.className + ' ' + c;
+	},
+	// 删除样式
+	removeClass = function(c, node) {
+		var reg = new RegExp("(^|\\s+)" + c + "(\\s+|$)", "g");
+		node.className = node.className.replace(reg, '');
 	},
 	// 绑定事件
 	on = function(node, type, handler) {
@@ -99,7 +100,7 @@ var footer = (function() {
 	filters = {
 		bindEvent : function() {
 			var that = this;
-			//底部三按钮
+			//底部
 			on(box, 'click', function(event) {
 				event = event || window.event;
 				var target = event.target || event.srcElement, src, index, returnVal;
@@ -111,6 +112,9 @@ var footer = (function() {
 				}
 				index = 0;
 				returnVal = target.getAttribute("data-type");
+				//底部样式增加
+				//c = "classname";
+				//target.className.indexOf("cur")?removerClass(c,target):addClass(c,target);
 				while ( target = target.previousSibling) {
 					if (target.nodeType == 1)
 						index++;
@@ -314,7 +318,7 @@ var footer = (function() {
 					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + a.filterType + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];
-						css = j == 0 ? ' class="cur"' : '';
+						css = o.filterText == '不限' ? ' class="cur"' : '';
 						li += '<li' + css + ' data-val="' + o.filterValue + '">' + o.filterText + '<i></i></li>';
 					}
 					ulstr += wrapper[0] + li + wrapper[1];
@@ -400,6 +404,7 @@ var footer = (function() {
 			if (args.length > 0) {
 				box = document.querySelector(args[0]);
 			} else {
+				if(!box)
 				this.create();
 			}
 			//缓存数据&导入
@@ -450,6 +455,9 @@ var footer = (function() {
 			footer.result = obj;
 			console.log(obj);
 			this.remove();
+      if(box.style.display == 'none'){
+        box.style.display = 'block';
+      }
 			if (footer.callback) {
 				footer.callback(obj);
 			}
@@ -486,13 +494,13 @@ var footer = (function() {
 			if (sec) {
 				if (t == 3) {
 					// 航空公司
-					this.remove();
 					if (sec.firstChild.style.top == "1.48rem") {
-						sec.firstChild.style.top = "";
-						//box.style.display = "block";
+            this.remove();
+            box.style.display = "block";
 					} else {
-						sec.firstChild.style.top = "1.48rem";
-						//box.style.display = "none";
+            this.remove();
+            sec.firstChild.style.top = "1.48rem";
+						box.style.display = "none";
 					}
 				} else {
 					if (masker.style.display == "none") {
