@@ -92,8 +92,8 @@ var flight_list = {
               for (var j = 0; j < data.flightInfoListGroup[i].flightInfoList.length; j++) {
                 if (data.flightInfoListGroup[i].flightInfoList[j].setID == setid) {
                   hftFlightHotelTourInfo.flightInfo = data.flightInfoListGroup[i].flightInfoList[j];
-                  hftFlightHotelTourInfo.flightSetID = data.flightInfoListGroup[i].flightInfoList[j].setID;
-                  hftFlightHotelTourInfo.flightCacheID = data.flightInfoListGroup[i].flightInfoList[j].cacheID;
+                  hftFlightHotelTourInfo.airwaySetID = data.flightInfoListGroup[i].flightInfoList[j].setID;
+                  hftFlightHotelTourInfo.airwayCacheID = data.flightInfoListGroup[i].flightInfoList[j].cacheID;
                 }
               }
             }
