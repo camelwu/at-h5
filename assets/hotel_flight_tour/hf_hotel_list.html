@@ -23,8 +23,9 @@
 <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 <title>酒店搜索列表-筛选</title>
-<link href="../styles/framework.css" rel="stylesheet" type="text/css">
-<link href="../styles/style.css" rel="stylesheet" type="text/css">
+<!--<link href="../styles/framework.css" rel="stylesheet" type="text/css">-->
+<!--<link href="../styles/style.css" rel="stylesheet" type="text/css">-->
+<link href="../styles/reset.css" rel="stylesheet" type="text/css">
 <link href="css/hf_hotel.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -35,11 +36,17 @@
 </div>
 <div class="jhf-box">
     <!--nav-->
-    <div class="jhf-nav jlist-nav">
-        <a class="j-back jpa"><i></i></a>
-        <div class="j-title">
-            <p class="bigtit">酒店（共<span id="totalHotels"></span>家）</p>
-        </div>
+    <!--<div class="jhf-nav jlist-nav">-->
+        <!--<a class="j-back jpa"><i></i></a>-->
+        <!--<div class="j-title">-->
+            <!--<p class="bigtit">酒店（共<span id="totalHotels"></span>家）</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="header">
+        <a href="javascript:window.history.go(-1);" class="header_back">
+            <i class="icon_back"></i>
+        </a>
+        <h3>酒店（共<span></span>家）</h3>
     </div>
     <!--content-->
     <div class="j-content jpr">

@@ -144,7 +144,7 @@ a:link {
 
 .j-content {
     z-index: 1;
-    padding-top: 44px;
+    padding-top: 38px;
 }
 
 .j-content .more {
@@ -630,15 +630,16 @@ a:link {
 }
 .j-content .hotelConNo div p{
     float:left;
-    font-size:1.6rem;color:#a0a0a0;
+    font-size:0.16rem;
+    color:#a0a0a0;
 }
 .j-content .hotelConNo div .hotelConSorry1{
     margin-top:16px;
-    margin-left:8px;
+    margin-left:36px;
 }
 .j-content .hotelConNo div .hotelConSorry2{
     margin-top:6px;
-    margin-left:40px;
+    margin-left:62px;
 }
 
 /*ji+jiu sort-pop jyj*/

@@ -72,7 +72,9 @@
 			vlm.init();
 		} else {
 			vlm.init();
-			jAlert('暂无酒店数据,请稍后再试', "提示");
+			showNodata();
+			return;
+			//jAlert('暂无酒店数据,请稍后再试', "提示");
 		}
 	}
 
@@ -135,6 +137,18 @@
 		} else {
 			$("#loadMore").attr("data-more", "").html("点击加载更多").hide();
 		}
+	}
+
+	//没有数据或者异常提示
+	function showNodata(){
+		$("#loadMore").hide();
+		var oLi = document.createElement('li');
+		oLi.innerHTML = '<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+		oLi.className = 'hotelConNo';
+		$("#hj_jList").empty().append(oLi).css({
+			width: '100%',
+			height: '100%'
+		});
 	}
 
 })();
