@@ -1,8 +1,4 @@
 @charset "utf-8";
-
-/* CSS Document */
-
-
 /*ji+jiu hotel-detail jyj*/
 li {
     list-style: none;
@@ -33,34 +29,34 @@ a:link {
 .jpop_box_tic dl {
     position: fixed;
     width: 64%;
-    height: 118px;
+    height:1.18rem;
     top: 50%;
     left: 50%;
-    margin: -59px 0 0 -32%;
+    margin: -0.59rem 0 0 -32%;
     z-index: 5;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 0.055rem;
     text-align: center;
-    box-shadow: -1px 1px 3px #c7c7c7;}
+    box-shadow: -0.01rem 0.01rem 0.03rem #c7c7c7;}
 .jpop_box_tic dt {
-    padding: 18px 0 10px;
-    font-size: 1.86rem;
+    padding: 0.18rem 0 0.10rem;
+    font-size: 0.18rem;
     color: #5abdb7;
     border-bottom: 1px solid #e1e1e1;
-    margin-bottom: 12px;}
+    margin-bottom: 0.12rem;}
 .jpop_box_tic dd {
     overflow: hidden;
     margin: 0 10%;
-    font-size: 1.2rem;
+    font-size:0.12rem;
 }
 .jpop_box_tic dd span {
     float: left;
     background: #dfdfdf;
 }
 .jpop_box_tic dd a, .jpop_box_tic dd span {
-    padding: 8px 20px;
+    padding: 0.08rem 0.20rem;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 0.03rem;
 }
 .jpop_box_tic dd a {
     float: right;
@@ -71,13 +67,11 @@ a:link {
 }
 
 .jhf-box {
-    max-width: 640px;
-    margin: 0 auto;
     color: #484848;
 }
 
 .jhf-nav {
-    height: 44px;
+    height: 0.44rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -128,7 +122,7 @@ a:link {
 }
 
 .jhf-nav .j-title p.titcn {
-    font-size: 14px;
+    font-size: 0.14px;
     margin-top: 7px;
 }
 
@@ -139,12 +133,13 @@ a:link {
 .jhf-nav .j-title p.bigtit {
     line-height: 44px;
     height: 44px;
-    font-size: 1.6rem;
+    font-size: 0.16rem;
 }
 
 .j-content {
     z-index: 1;
     padding-top: 38px;
+    font-size: 0.3rem;
 }
 
 .j-content .more {
@@ -194,8 +189,8 @@ a:link {
 
 .jhf-ul li {
     border-bottom: 1px solid #dfdfdd;
-    height: 4.8rem;
-    line-height: 4.8rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
     margin-bottom: 0;
 }
 
@@ -228,7 +223,7 @@ a:link {
 }
 
 .jhf-score li span.score {
-    font-size: 1.8rem;
+    font-size: 0.44rem;
     color: #55bfb7;
 }
 
@@ -297,7 +292,7 @@ a:link {
 
 .jhf-mes div.slide {
     width: 100%;
-    height: 4.8rem;
+    height:1.2rem;
     border-bottom: 1px solid #dfdfdd;
 }
 
@@ -320,7 +315,7 @@ a:link {
 }
 
 .jhf-mes .jhf-drg p {
-    font-size: 1.6rem;
+    font-size:0.16rem;
     color: #fe4716;
     text-align: right;
     padding-right: 15px;
@@ -333,7 +328,7 @@ a:link {
 
 .jhf-mes .jhf-drg p span {
     display: inline-block;
-    line-height: 4.8rem;
+    line-height:0.96rem;
 }
 
 .jhf-mes .jhf-drg p i {
@@ -364,10 +359,10 @@ a:link {
     margin-right:80px;
 }
 .jhf-mes .lfword p:nth-child(1) {
-    font-size: 1.4rem;
+    font-size: 0.14rem;
     margin-bottom: -0.4rem;
-    padding-top: 0.6rem;
-    height: 31px;
+    padding-top: 0.06rem;
+    height: 0.62rem;
     overflow: hidden;
 }
 
@@ -386,7 +381,7 @@ a:link {
     border-bottom:0 ;
 }
 .jhf-mes ol.show li:nth-child(1) {
-    font-size: 1.4rem;
+    font-size: 0.14rem;
 }
 
 .jhf-mes ol.show li.lfword p:nth-child(2) {
@@ -401,7 +396,7 @@ a:link {
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 1.6rem;
+    font-size: 0.16rem;
     width: 60px;
     text-align: right;
 }
@@ -417,7 +412,7 @@ a:link {
 
 .jhf-mes .jhf-drg p span:nth-child(2) {
     margin-left: -6px;
-    font-size: 1.2rem;
+    font-size: 0.12rem;
 }
 
 .jhf-mes .jhf-drg p span:nth-child(3) {
@@ -435,7 +430,7 @@ a:link {
 
 .price span:nth-child(2) {
     margin-left: -6px;
-    font-size: 1.2rem;
+    font-size: 0.12rem;
 }
 
 .price span:nth-child(3) {
@@ -458,11 +453,12 @@ a:link {
 }
 
 .jhf-mes .lfword span.name {
-    height: 24px;
+    height:0.48rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 90%;
+    line-height: 0.7rem;
 }
 
 /*ji+jiu hotel seach list jyj*/
@@ -500,7 +496,7 @@ a:link {
 }
 
 .jlist .imgrt dt {
-    font-size: 1.6rem;
+    font-size: 0.16rem;
     font-weight: bold;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -514,7 +510,7 @@ a:link {
 }
 
 .jlist span.score {
-    font-size: 1.6rem;
+    font-size:0.16rem;
     color: #5abfb6;
 }
 
@@ -696,7 +692,7 @@ a:link {
     border-bottom: 1px solid #dfdfdd;
     line-height: 44px;
     padding-left: 15px;
-    font-size: 14px;
+    font-size: 0.14rem;
 }
 .jpop .location{
     position: fixed;
@@ -731,7 +727,7 @@ a:link {
 .jpop .location .l-p{
     float: left;
     margin-top: 15px;
-    font-size: 14px;
+    font-size: 0.14rem;
     color: #999999;
 }
 
@@ -789,7 +785,7 @@ a:link {
     margin-bottom: 20px;
     text-align: center;
     line-height: 35px;
-    font-size: 16px;
+    font-size: 0.16rem;
     color: white;
     border-radius: 5px;
     background-color: #ffb413;
@@ -824,7 +820,7 @@ a:link {
 .jpop .screen .hl_sc_chil h4 {
     margin-top: 13px;
     margin-left: 15px;
-    font-size: 14px;
+    font-size: 0.14rem;
 }
 
 .jpop .screen .s-ul {
@@ -845,7 +841,7 @@ a:link {
     text-align: center;
     border-radius: 5px;
     border: 1px solid #d0d0d3;
-    font-size: 13px;
+    font-size: 0.13rem;
     color: #686869;
     line-height: 30px;
 }
@@ -859,7 +855,7 @@ a:link {
     text-align: center;
     border-radius: 5px;
     border: 1px solid #ffb412;
-    font-size: 13px;
+    font-size: 0.13rem;
     color: #ffb412;
     line-height: 30px;
 }
@@ -872,7 +868,7 @@ a:link {
     margin-bottom: 20px;
     text-align: center;
     line-height: 35px;
-    font-size: 16px;
+    font-size: 0.16rem;
     color: white;
     border-radius: 5px;
     background-color: #ffb413;
@@ -922,7 +918,7 @@ a:link {
 
 .jpay-tit p {
     line-height: 40px;
-    font-size: 16px;
+    font-size: 0.16rem;
 }
 
 .jpay-tit p.hadpay {
@@ -939,7 +935,7 @@ a:link {
 
 .jpay-tit span.willpay-span {
     color: #fdb330;
-    font-size: 14px;
+    font-size: 0.14rem;
     font-weight: normal;
     height: 40px;
     line-height: 40px;
@@ -962,11 +958,11 @@ a:link {
 .jpay-t a {
     float: right;
     color: #fdb330;
-    font-size: 12px;
+    font-size: 0.12rem;
 }
 
 .jpay-t p {
-    font-size: 14px;
+    font-size: 0.14rem;
 }
 
 .jpay-t p,
@@ -1102,11 +1098,11 @@ a:link {
 }
 
 .jpay-c4 .money {
-    font-size: 12px;
+    font-size: 0.12rem;
 }
 
 .jpay-c4 .num {
-    font-size: 16px;
+    font-size: 0.16rem;
 }
 
 .jpay-c4 .icon {
@@ -1157,7 +1153,7 @@ a:link {
 
 .jpay-c5 dd p {
     margin-left: 70px;
-    font-size: 14px;
+    font-size: 0.14rem;
 }
 .jpay-c5 .contacts{
     border-top: 1px solid #dedede;
@@ -1178,7 +1174,7 @@ a:link {
     color: #fb6a22
 }
 .jpay-c41 span.num{
-    font-size: 17px;
+    font-size: 0.17rem;
     margin-left:-3px;
 }
 .jpay-c41 span.cost{
@@ -1299,14 +1295,14 @@ a:link {
 .top-line{
     width: 100%;
     position: relative;
-    font-size: 1.55rem;
+    font-size: 0.155rem;
     height: 2.0rem;
     line-height: 2.0rem;
     color: #000000;
     padding-left: 1.4rem;
 }
 .top-line span{
-font-size: 14px;
+font-size: 0.14rem;
 color: #45494b;
 margin-left: 6px;
 }
@@ -1329,7 +1325,7 @@ margin-left: 6px;
 }
 .top-line .detail-hour{
     float: right;
-    font-size: 1.0rem;
+    font-size: 0.1rem;
     color: #000000;
 }
 .go-trip{
@@ -1347,7 +1343,7 @@ margin-left: 6px;
 }
 .go-trip .bottom-word {
     line-height: 1.4rem;
-    font-size: 1.3rem;
+    font-size: 0.13rem;
     color: #2C2C2C;
 }
 .time-airport-info .start-time-info {
@@ -1361,7 +1357,7 @@ margin-left: 6px;
 }
 .start-time-info span.air-port-word {
     display: block;
-    font-size: 1.1rem;
+    font-size: 0.11rem;
     margin-top: 4.8rem;
     position: absolute;
     left: 0;
@@ -1369,14 +1365,14 @@ margin-left: 6px;
 }
 .end-time-info .time-number {
     display: inline-block;
-    font-size: 1.8rem;
+    font-size: 0.18rem;
     color: #000000;
     width: 52.55px;
     float: right;
 }
 .end-time-info .air-port-word-right {
     display: block;
-    font-size: 1.1rem;
+    font-size: 0.11rem;
     margin-top: 4.8rem;
     position: absolute;
     right: 0;
@@ -1392,7 +1388,7 @@ margin-left: 6px;
 }
 .start-time-info span.time-number {
     display: inline-block;
-    font-size: 1.8rem;
+    font-size: 0.18rem;
     color: #000000;
     left: 60%;}
 .top-line span.icon-back {
@@ -1412,6 +1408,6 @@ margin-left: 6px;
     height: 0.5rem;
     line-height: 16px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 0.12rem;
     background-size: 100% 100%;
 }
