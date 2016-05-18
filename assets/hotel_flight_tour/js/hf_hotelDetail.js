@@ -1,20 +1,22 @@
 var data2 = '',roomdata = '';
 (function () {
-    var temObj = eval("temObj="+localStorage.getItem("hotelDetailInfo")).data;
+    //var temObj = eval("temObj="+localStorage.getItem("hotelDetailInfo")).data;
+    var temObj = JSON.parse(localStorage.getItem("hotelDetailInfo"));
+    console.log(temObj)
     var ulrRoomId = parseInt(window.location.search.substring(15));
-    var departDate = temObj.DepartDate.substring(0,10);
-    var enterDate = temObj.ReturnDate.substring(0,10);
-    temObj.DepartDate = departDate;
-    temObj.ReturnDate = enterDate;
-    if(!ulrRoomId){delete temObj.SelectedRoomID}
+    var departDate = temObj.departDate.substring(0,10);
+    var enterDate = temObj.returnDate.substring(0,10);
+    temObj.departDate = departDate;
+    temObj.returnDate = enterDate;
+    if(!ulrRoomId){delete temObj.selectedRoomID}
     //data中入住离店时间必须去掉时分秒
     var data = {
         "Code":"50100009",
         "ForeEndType":2,
         "Parameters":temObj
     };
-    var departDateHtml = temObj.DepartDate.substring(5);
-    var enterDateHtml = temObj.ReturnDate.substring(5);
+    var departDateHtml = temObj.departDate.substring(5);
+    var enterDateHtml = temObj.returnDate.substring(5);
     $('.jhf-mes span.departDate').html(departDateHtml);
     $('.jhf-mes span.returnDate').html(enterDateHtml);
 
@@ -26,13 +28,13 @@ var data2 = '',roomdata = '';
     }
     vlm.loadJson('', JSON.stringify(data), dataCallBack);//url统一改vlm中的，此处可以为空
     function dataCallBack(result) {
+        console.log(result)
         $("#preloader").hide();
-        console.log(result.data.hotelInfo.hotelID)
-        console.log(result.data.hotelInfo.hotelID!=0)
         if(result.success&&result.data.hotelInfo.hotelID){
-            var flightHotelAllData = JSON.parse(window.sessionStorage.getItem('flightHotelAllData'));
+            var flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
+            //console.log(flightHotelAllData)
             if(!window.location.search){
-                flightHotelAllData.data.hotelInfo = result.data.hotelInfo;
+                flightHotelAllData.hotelInfo = result.data.hotelInfo;
                 window.sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
             }
             data2 = result.data;
@@ -97,7 +99,7 @@ var data2 = '',roomdata = '';
                 //$('.jhf-mes ol.show').eq(i).slideToggle();
                 $(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
                 var roomID = roomdata[i].roomID;
-                window.location.href = 'ticket_hotel_choose.html?selectedRoomID='+roomID;
+                window.location.href = 'hft_choose.html?type=1&selectedRoomID='+roomID;
             })
         });
     }
