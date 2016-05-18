@@ -23,8 +23,6 @@
 <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 <title>酒店搜索列表-筛选</title>
-<!--<link href="../styles/framework.css" rel="stylesheet" type="text/css">-->
-<!--<link href="../styles/style.css" rel="stylesheet" type="text/css">-->
 <link href="../styles/reset.css" rel="stylesheet" type="text/css">
 <link href="css/hf_hotel.css" rel="stylesheet" type="text/css">
 </head>
@@ -34,7 +32,7 @@
     <div id="status">
     </div>
 </div>
-<div class="jhf-box">
+<div class="all_elements jhf-box">
     <!--nav-->
     <!--<div class="jhf-nav jlist-nav">-->
         <!--<a class="j-back jpa"><i></i></a>-->
@@ -49,33 +47,8 @@
         <h3>酒店（共<span></span>家）</h3>
     </div>
     <!--content-->
-    <div class="j-content jpr">
+    <div class="content j-content jpr">
         <ul class="jlist" id="hj_jList">
-                
-<!--
-            <li class="hotelli">
-            	<img class="jimg" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">
-                <dl class="imgrt">
-                	<dt>东京(银座)千禧三井花园饭店</dt>
-                    <dd><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评</i></dd>
-                    <dd>
-                        <span>三星级</span>
-                        <span class="wifi"></span>
-                        <span class="car"></span>
-                    </dd>
-                    <dd>
-                        <span>东京（品川区）</span>
-                        <div class="price">
-                            <span>+</span>
-                            <span>￥</span>
-                            <span>100</span>
-                        </div>
-                    </dd>
-                </dl>
-                <i class="active"></i>
-            </li>
--->
-           
         </ul>
         <div class="more" id="loadMore">点击加载更多</div>
         <div style="height: 40px; width: 100%;"></div>
@@ -250,36 +223,39 @@
 -->
 </div>
 <script type="text/template" id="hj_list_template">
-    <li class="cur" data-hotelId="{%= hotelID %}">
-        <img class="jimg" src="../images/hotelListNo.jpg" data-src="{%= hotelPictureURL %}" alt="">
+    <% for(var i=0;i<hotels.length;i++) { %>
+    <li class="cur" data-hotelId="<%= hotels[i].hotelID %>">
+        <img class="jimg" src="../images/hotelListNo.jpg" data-src="<%= hotels[i].hotelPictureURL %>" alt="">
         <dl class="imgrt">
-            <dt>{%= hotelName %}</dt>
-            <dd><span class="score">{%= hotelReviewScore %}</span>&nbsp;分&nbsp;/&nbsp;{%= hotelReviewCount %}人点评</i></dd>
+            <dt><%= hotels[i].hotelName %></dt>
+            <dd><span class="score"><%= hotels[i].hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotels[i].hotelReviewCount %>人点评</i></dd>
             <dd>
-                <span>{%= starRating %}星级</span>
-                {% if(isFreeWiFi) { %}
+                <span><%= hotels[i].starRating %>星级</span>
+                <% if(hotels[i].isFreeWiFi) { %>
                     <span class="wifi"></span>
-                {% } %}
-                {% if(false) { %}
+                <% } %>
+                <% if(false) { %>
                     <span class="car"></span>
-                {% } %}
+                <% } %>
             </dd>
             <dd>
-                <span>{%= city %}</span>
+                <span><%= hotels[i].city %></span>
                 <div class="price">
                     <span>+</span>
                     <span>￥</span>
-                    <span>{%= additionalPrice %}</span>
+                    <span><%= hotels[i].additionalPrice %></span>
                 </div>
             </dd>
         </dl>
         <i class=""></i>
     </li>
+    <% } %>
 </script>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/lazyLoad.js"></script>
-<script src="../js/lib/template.js"></script>
+<script src="../plugins/footer/foot.js"></script>
+<script src="../js/lib/ejs.js"></script>
 <script src="js/hf_hotelList.js"></script>
 </body>
 </html>

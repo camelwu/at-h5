@@ -1,4 +1,17 @@
 /*index  banner*/
+.index_scroll {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 i {
   font-style: normal;
 }
@@ -13,12 +26,11 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background: url('../images/index/index_bg.png') no-repeat;
+  background: url('../images/index/indexbg.png') no-repeat;
 }
 
 .slider-container {
   position: relative;
-  height: 4.88rem;
 }
 
 .owl-controls {
@@ -37,14 +49,14 @@ body {
 .adaptive_item {
   text-align: center;
   float: left;
-  width: .9rem;
-  margin-left: .5rem;
+  width: 20%;
+  /*margin-left: .5rem;*/
 }
 
 .res_image {
-  width: 100%;
-  height: .9rem;
-  margin-bottom: .16rem;
+  width: 60%;
+  margin: 0 auto .16rem;
+  display: block;
 }
 
 .center_text {
@@ -52,28 +64,25 @@ body {
 }
 
 /*当月热玩index*/
-.recommends{
+.recommends {
   width: 100%;
-  padding: 0 .2rem;
   overflow: hidden;
 }
+
 .recommends_tab {
-  width:10rem;
+  padding: 0 .2rem;
 }
 
 .recommends_tab li {
-  float: left;
   position: relative;
   height: 2.42rem;
-}
-
-.recommends_tab li:last-child {
-  margin-left: .18rem;
+  width: 48.8%;
 }
 
 .hot_sea {
-  width: 3.46rem;
-  height: 2.4rem;
+  /*width: 3.46rem;*/
+  /*height: 2.4rem;*/
+  width: 100%;
 }
 
 /*玩家推荐*/
@@ -130,7 +139,6 @@ body {
 }
 
 .rec_price_tit {
-  padding-left: .25rem;
   font-size: .44rem;
   font-weight: 500;
   position: relative;
@@ -141,14 +149,13 @@ body {
 }
 
 .rec_price_tit i:first-child {
-  position: absolute;
-  left: 0;
-  top: -.11rem;
-  font-weight: 500;
+  font-size: .42rem;
+  margin-right: .05rem;
 }
 
 .to_rec_tit {
-  margin: .3rem 0 .15rem;
+  margin-top: .3rem;
+  margin-left: .08rem;
   font-size: .32rem;
   color: #333;
   font-weight: bold;
@@ -156,10 +163,9 @@ body {
 
 .to_recommend {
   overflow: hidden;
+  margin-left: .08rem;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
   color: #666;
   margin-bottom: .5rem;
   line-height: .5rem;
@@ -171,10 +177,10 @@ body {
   position: fixed;
   z-index: 98;
   background-color: #fff;
-  opacity: 0.9;
+  opacity: 0.98;
   bottom: 0px;
-  border-top: 2px solid #d1d1d1;
-  padding: .12rem 0 .08rem;
+  border-top: 1px solid #e6e6e6;
+  padding: .06rem 0 .04rem;
   /*模糊*/
   /*filter: url(blur.svg#blur); /!* FireFox, Chrome, Opera *!/*/
   /*-webkit-filter: blur(1px); /!* Chrome, Opera *!/*/
@@ -187,7 +193,6 @@ body {
 
 .footer-menu a {
   text-align: center;
-  padding-top: .06rem;
   font-size: .2rem;
   color: #999;
   overflow: hidden;
@@ -200,11 +205,10 @@ body {
 
 .footer-menu i {
   display: block;
-  margin: 0 auto .06rem auto;
-  width: .565rem;
-  height: .565rem;
-  background: url(../images/ui/icon.png) no-repeat;
-  background-size: 9.5rem 2.8rem;
+  margin: 0 auto 0 auto;
+  width: .48rem;
+  height: .48rem;
+
 }
 
 a.foot-homes, a.foot-users {
@@ -212,19 +216,23 @@ a.foot-homes, a.foot-users {
 }
 
 .foot-home i {
-  background-position: 0 .04rem;
+  background: url(../images/index/home_def.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .foot-homes i {
-  background-position: -.6rem .04rem;
+  background: url(../images/index/home_act.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .foot-user i {
-  background-position: -2.45rem .04rem;
+  background: url(../images/index/user_def.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .foot-users i {
-  background-position: -2.48rem .04rem;
+  background: url(../images/index/user_act.png) no-repeat;
+  background-size: .48rem .48rem;
 }
 
 .footer-menu-three-icons a {
@@ -240,6 +248,7 @@ a.foot-homes, a.foot-users {
   height: 1.2rem;
   background-color: #fcfcfc;
 }
+
 .top_back {
   position: absolute;
   width: 1rem;
@@ -247,6 +256,7 @@ a.foot-homes, a.foot-users {
   left: 0;
   top: .2rem;
 }
+
 .top_back .icons {
   width: .48rem;
   height: .48rem;
@@ -256,6 +266,7 @@ a.foot-homes, a.foot-users {
   background-position: -.28rem -.48rem;
   display: inline-block;
 }
+
 .top_title {
   height: 1.2rem;
   line-height: 1.2rem;
@@ -273,10 +284,12 @@ a.foot-homes, a.foot-users {
   margin-bottom: .32rem;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, .15);
 }
+
 .menu_active {
   color: #ffb413 !important;
   border-bottom: .08rem solid #ffb500 !important;
 }
+
 .s_type_four div {
   float: left;
   width: 25%;
@@ -285,6 +298,7 @@ a.foot-homes, a.foot-users {
   text-align: center;
   color: #999;
 }
+
 .hotspot {
   background-color: #fff;
 }

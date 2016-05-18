@@ -1,9 +1,10 @@
 var data2 = '',roomdata = '';
 (function () {
-    //var temObj = eval("temObj="+localStorage.getItem("hotelDetailInfo")).data;
     var temObj = JSON.parse(localStorage.getItem("hotelDetailInfo"));
-    console.log(temObj)
-    var ulrRoomId = parseInt(window.location.search.substring(15));
+    var urlIf = window.location.search;
+
+    var ulrRoomId = urlIf.substring(23)-0;
+
     var departDate = temObj.departDate.substring(0,10);
     var enterDate = temObj.returnDate.substring(0,10);
     temObj.departDate = departDate;
@@ -52,12 +53,12 @@ var data2 = '',roomdata = '';
     }
     //nav标题部分
     function nav(){
-        var tpl_seoul = template("tpl_seoul", data2.hotelInfo);
-        $('.j-title').html(tpl_seoul);
+        $('.header h3').html(data2.hotelInfo.hotelName);
     }
     //banner
     function banner(){
-        var banner = template("banner", data2.hotelInfo);
+        var str = $('#banner').html();
+        var banner = ejs.render(str, data2.hotelInfo);
         $('.jhf-banner').html(banner);
     }
     //日历部分
@@ -78,19 +79,22 @@ var data2 = '',roomdata = '';
     //    }
     //}
     //地址 星级 wifi
+
     function adress(){
-        var jhf_score = template("jhf_score", data2.hotelInfo);
+        var str = $('#jhf_score').html();
+        var jhf_score = ejs.render(str, data2.hotelInfo);
         $('.jhf-score').html(jhf_score);
     }
 
     //客房部分
     function room(){
-        var jhf_room = template("jhf_room", data2.hotelInfo);
+        var str = $('#jhf_room').html();
+        var jhf_room = ejs.render(str, data2.hotelInfo);
         $('.jhf-mes').append(jhf_room);
-
+        console.log(roomdata[0].roomID)
         $('.jhf-mes li.showh .slide').each(function(i){
-
             if( ulrRoomId == roomdata[i].roomID ){
+                console.log('true')
                 $('.jhf-mes li.showh .slide').eq(i).find('b').addClass('cur');
             }
 
