@@ -195,26 +195,26 @@ a:link {
 }
 
 .jhf-ul li .arrow {
-    background: url(../../images/ui/icons.png) no-repeat;
-    width: 10px;
-    height: 14px;
+    background: url(../../images/ui/icon_common.png) no-repeat;
+    width:0.2rem;
+    height:0.28rem;
     position: absolute;
     right: 0;
     top: 50%;
-    margin-top: -8px;
-    background-position: -152px -5px;
-    background-size: 243px 161px;
+    margin-top: -0.16rem;
+    background-position: -1.13rem -0.63rem;
+    background-size: 7.9rem 5.13rem;
 }
 
 .jhf-ul li:nth-of-type(1) .arrow {
-    margin-top: -6px;
+    margin-top: -0.12rem;
 }
 
 .jhf-score {
-    padding: 0 15px;
+    padding: 0 0.3rem;
     background: #fff;
     border-bottom: 1px solid #dfdfdd;
-    margin-bottom: 10px;
+    margin-bottom: 0.2rem;
 }
 
 .jhf-score li:last-child {
@@ -242,19 +242,19 @@ a:link {
 }
 
 .jhf-score li:nth-child(2) i {
-    background-position: -324px -117px;
-    background-size: 402px 174px;
-    width: 24px;
-    height: 21px;
-    top: 5px;
+    background-position: -6.48rem -2.34rem;
+    background-size: 8.04rem 3.48rem;
+    width:0.48rem;
+    height:0.5rem;
+    top:0.1rem;
 }
 
 .jhf-score li span.wifi {
-    background-position: -93px -15px;
-    background-size: 500px 216px;
-    width: 20px;
-    height: 21px;
-    top: 5px;
+    background-position: -1.95rem -0.33rem;
+    background-size: 10rem 4.33rem;
+    width:0.4rem;
+    height:0.5rem;
+    top:0.2rem;
 }
 
 .jhf-score li span.park {
@@ -315,10 +315,10 @@ a:link {
 }
 
 .jhf-mes .jhf-drg p {
-    font-size:0.16rem;
+    font-size:0.32rem;
     color: #fe4716;
     text-align: right;
-    padding-right: 15px;
+    padding-right:0.3rem;
 }
 
 .jhf-mes .jhf-drg p.reduce,
