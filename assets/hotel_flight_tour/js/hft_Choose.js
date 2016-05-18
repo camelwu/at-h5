@@ -329,7 +329,9 @@ var hftChoose = {
         "selectedHotelID": that.curData.hotelInfo.hotelID,
         "selectedRoomID": that.roomPriceInfo.roomID,
         "hotelID": that.curData.hotelInfo.hotelID,
-        "roomDetails": that.initParaObj.roomDetails
+        "roomDetails": that.initParaObj.roomDetails,
+        "flightCacheID":that.curData.flightInfo.cacheID,
+        "flightSetID":that.curData.flightInfo.setID
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -340,8 +342,6 @@ var hftChoose = {
           temObj['travelDateSpecified'] = array['travelDateMandatory'];
           toursArray.push(temObj);
         });
-        hftHotelDetailPara.flightCacheID = that.curData.flightInfo.cacheID;
-        hftHotelDetailPara.flightSetID = that.curData.flightInfo.setID;
         hftHotelDetailPara.tours = toursArray;
         hftHotelDetailPara.packageID = that.initParaObj.packageID;
       } else {
@@ -680,6 +680,7 @@ var hftChoose = {
           this.getNewPricePara.packageID = this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "60100006", 3, this.renderHandler_f);
         } else if (this.type == "1") {
+          console.log(111)
           delete this.initParaObj.packageID;
           this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
         }
