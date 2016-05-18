@@ -308,7 +308,6 @@ var hftChoose = {
         hftChangeHotelPara.packageID = that.initParaObj.packageID;
         hftChangeHotelPara.tours = toursArray;
       }
-      ;
       storage.setItem('hftChangeHotelPara', JSON.stringify(hftChangeHotelPara));
       that.timer2 = setTimeout(function () {
         window.clearTimeout(that.timer2);

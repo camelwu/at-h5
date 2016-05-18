@@ -59,7 +59,7 @@
                         </div>
                         <div class="right">
                             <span class="arriveTime"><%= leaveItem["arriveDate"].substring(11, 16) %></span>
-                            <% if(leaveItem["spacingDay"]){ %>
+                            <% if(leaveItem["spacingDay"]>=1){ %>
                             <span class="plusDay">+<%=leaveItem["spacingDay"]%>天</span>
                             <% }%>
             <span
@@ -108,7 +108,7 @@
                         </div>
                         <div class="right">
                             <span class="arriveTime"><%= returnItem["arriveDate"].substring(11, 16) %></span>
-                            <% if(returnItem["spacingDay"]){ %>
+                            <% if(returnItem["spacingDay"]>=1){ %>
                             <span class="plusDay">+<%=returnItem["spacingDay"]%>天</span>
                             <% }%>
             <span

@@ -30,7 +30,6 @@
         <a href="#" class="header_back">
             <i class="icon_back"></i>
         </a>
-
         <h3><span><%=hftChoose.cacheOtherInfo.cityNameForm%></span><i class="arrowDouble"></i><span><%=hftChoose.cacheOtherInfo.cityNameTo%></span>
         </h3>
     </header>
@@ -71,11 +70,10 @@
                         </div>
                         <div class="right">
                             <span class="arriveTime"><%= flightInfo["flightLeaveEndDate"].substring(11, 16) %></span>
-                            <% if(flightInfo["flightReturnSpacingDay"]){ %>
-                            <span class="plusDay">+<%=flightInfo["flightReturnSpacingDay"]%>天</span>
+                            <% if(flightInfo["flightLeaveSpacingDay"] >= 1){ %>
+                            <span class="plusDay">+<%=flightInfo["flightLeaveSpacingDay"]%>天</span>
                             <% }%>
-            <span
-                    class="arrivePort"><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["termArrive"] %></span>
+            <span class="arrivePort"><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsLeave"][flightInfo["segmentsLeave"].length - 1]["termArrive"] %></span>
                         </div>
                     </div>
                     <p class="flightDetailInfo">
@@ -109,11 +107,10 @@
                         </div>
                         <div class="right">
                             <span class="arriveTime"><%= flightInfo["flightReturnEndDate"].substring(11, 16) %></span>
-                            <% if(flightInfo["flightLeaveSpacingDay"]){ %>
-                            <span class="plusDay">+<%=flightInfo["flightLeaveSpacingDay"]%>天</span>
+                            <% if(flightInfo["flightReturnSpacingDay"] >=1 ){ %>
+                            <span class="plusDay">+<%=flightInfo["flightReturnSpacingDay"]%>天</span>
                             <% }%>
-            <span
-                    class="arrivePort"><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["termArrive"] %></span>
+            <span class="arrivePort"><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["airportNameTo"] %><%= flightInfo["segmentsReturn"][flightInfo["segmentsReturn"].length - 1]["termArrive"] %></span>
                         </div>
                     </div>
                     <p class="flightDetailInfo">
@@ -205,7 +202,7 @@
             <button class="noChooseButton">选择</button>
             <% }%>
             <% }else{%>
-            <% if(item==0){alert(1)%>
+            <% if(item==0){%>
             <button class="hasChooseButton">已选择</button>
             <%}else{%>
             <button class="noChooseButton">选择</button>
