@@ -19,49 +19,30 @@
 //    
 //});
 (function () {
-    var parametersStorage = JSON.parse(localStorage.getItem("changeHotelParaObj")) || {};
-    var parametersS = parametersStorage.data;
+    //var parametersStorage = JSON.parse(localStorage.getItem("changeHotelParaObj")) || {};
+    //var parametersS = parametersStorage.data;
+    var parametersS = JSON.parse(sessionStorage.getItem("hftChangeHotelPara")) || {};
+    console.log(parametersS)
     var locationList = null;
     var StarRating = JSON.parse(localStorage.getItem("filterStarRating")) || "0";
     var firstTime = 1;
-    //    var params = {
-    //            "Code": "50100003",
-    //            "ForeEndType": 2,
-    //            "Parameters": {
-    //                "SelectedHotelID": "1005455",
-    //                "FlightCacheID": "13767",
-    //                "FlightSetID": "1002001",
-    //                "CityCodeFrom": "SIN",
-    //                "CityCodeTo": "BKK",
-    //                "DepartDate": "2016-05-07",
-    //                "ReturnDate": "2016-05-08",
-    //                "SortFields": "",
-    //                "StarRating": 0,
-    //                "Location":"",
-    //                "PageNo": 1,
-    //                "PageSize": 20,
-    //                "RoomDetails": [{
-    //                    "Adult": 2
-    //            }]
-    //            }
-    //        },
     var params = {
             "Code": "50100003",
             "ForeEndType": 2,
             "Parameters": {
-                "SelectedHotelID": parametersS.SelectedHotelID || "",
-                "FlightCacheID": parametersS.FlightCacheID || "",
-                "FlightSetID": parametersS.FlightSetID || "",
-                "CityCodeFrom": parametersS.CityCodeFrom || "",
-                "CityCodeTo": parametersS.CityCodeTo || "",
-                "DepartDate": parametersS.DepartDate || "",
-                "ReturnDate": parametersS.ReturnDate || "",
-                "SortFields": parametersS.SortFields || [0],
-                "StarRating":  0,   //默认不限
-                "PageNo": parametersS.PageNo || "",
-                "PageSize": parametersS.PageSize || "",
-                "RoomDetails": parametersS.RoomDetails || [],
-                "Location": parametersS.Location || ""
+                "selectedHotelID": parametersS.selectedHotelID || "",
+                "flightCacheID": parametersS.flightCacheID || "",
+                "flightSetID": parametersS.flightSetID || "",
+                "cityCodeFrom": parametersS.cityCodeFrom || "",
+                "cityCodeTo": parametersS.cityCodeTo || "",
+                "departDate": parametersS.departDate || "",
+                "returnDate": parametersS.returnDate || "",
+                "sortFields": parametersS.sortFields || [0],
+                "starRating":  0,   //默认不限
+                "pageNo": parametersS.pageNo || "",
+                "pageSize": parametersS.pageSize || "",
+                "roomDetails": parametersS.roomDetails || [],
+                "location": parametersS.location || ""
             }
         },
         currentPage;
@@ -96,6 +77,7 @@
     
     //页面显示
     function dataCallBack(result) {
+        console.log(result)
         var loadMoreSign = ($("#loadMore").attr("data-more") == "yes") ? true : false;
         if (result.success && result.code == '200') {
             if (!loadMoreSign && result.data.hotels.length == 0) {
@@ -152,14 +134,14 @@
     //更新筛选状态
     function displayFilterStatus() {
         var StarRating = localStorage.getItem('filterStarRating') || [0]; 
-        var locations = params.Parameters.Location;
-        var sort = params.Parameters.SortFields;
-        var start = params.Parameters.StarRating;
+        var locations = params.Parameters.location;
+        var sort = params.Parameters.sortFields;
+        var start = params.Parameters.starRating;
         locations != "" ? $(".fo-location i").addClass("red-tip") : $(".fo-location i").removeClass("red-tip");
         sort[0] != 0 ? $(".fo-sort i").addClass("red-tip") : $(".fo-sort i").removeClass("red-tip");
         StarRating != "0" ? $(".fo-filter i").addClass("red-tip") : $(".fo-filter i").removeClass("red-tip");
         
-        console.info(sort + "---" + StarRating);
+        //console.info(sort + "---" + StarRating);
         $(sort).each(function(indexSort,sortValue){
             $(".jpop .sort li").each(function(index,sortLi){
                 if($(sortLi).attr("data-sort")  == sortValue){
@@ -170,7 +152,7 @@
         });
         //星级选择状态
         $("#h-level li").each(function(index,startLi){
-            console.info("$(startLi).attr('data-start') :" + $(startLi).attr("data-start"));
+            //console.info("$(startLi).attr('data-start') :" + $(startLi).attr("data-start"));
             var starts = StarRating;
             for(var i=0;i<starts.length;i++){
                 if($(startLi).attr("data-start")  == starts[i]){
@@ -271,7 +253,7 @@
         var paramsString = '';
         //排序条件
         var currentSort = $(".jpop .sort .cur").attr("data-sort") || 0; //0 标识默认排序
-        params.Parameters.SortFields = [currentSort];
+        params.Parameters.sortFields = [currentSort];
         //筛选条件
 
         var hl_star_type = $("#screen .s-li1");
@@ -577,11 +559,11 @@
             //var flightHotelAllData = JSON.parse(sessionStorage.getItem('flightHotelAllData'));
             //flightHotelAllData.data.hotelInfo = JSON.parse(hotelInfo);
             //sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
-            parametersStorage.data.HotelID = hotelId;
-            localStorage.setItem("hotelDetailInfo", JSON.stringify(parametersStorage));
+            parametersS.HotelID = hotelId;
+            localStorage.setItem("hotelDetailInfo", JSON.stringify(parametersS));
             var timer = setTimeout(function () {
                 //window.history.go(-1);
-                window.location.href = 'hotel_detail.html';
+                window.location.href = 'hf_hotel_detail.html';
                 clearTimeout(timer);
             }, 500)
         });
