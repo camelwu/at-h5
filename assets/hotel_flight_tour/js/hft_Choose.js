@@ -236,11 +236,9 @@ var hftChoose = {
       }
     }
     this.addHandler(backI, 'click', function () {
-      window.sessionStorage.removeItem('hftFlightHotelTourInfo');
       window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?=" + that.type;
     });
     this.addHandler(iconBack, 'click', function () {
-      window.sessionStorage.removeItem('hftFlightHotelTourInfo');
       window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?=" + that.type;
     });
     this.addHandler(changeFlight, 'click', function () {
