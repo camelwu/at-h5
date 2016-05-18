@@ -85,7 +85,10 @@
                 return;
             }
             var data = result.data;
-            var str = template("hj_list_template", handleData(data.hotels));
+            //var str = template("hj_list_template", handleData(data.hotels));
+            var str2 = $("#hj_list_template").html();
+            var str = ejs.render(str2, handleData(result.data));
+
             if (loadMoreSign) {
                 $("#hj_jList").html($("#hj_jList").html() + str);
             } else {
