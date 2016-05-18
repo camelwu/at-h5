@@ -439,8 +439,8 @@ and (orientation : portrait) {
 }
 .owl-theme .owl-controls .owl-page span{
 	display: block;
-	width: 12px;
-	height: 12px;
+	width: 8px;
+	height: 8px;
 	margin: 5px 7px;
   opacity: 0.4;
 	filter: Alpha(Opacity=40);/*IE7 fix*/
