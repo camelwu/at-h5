@@ -25,8 +25,7 @@
     //"onevar": false
     //依赖
     "jquery": true,
-    "browser": true,
-    //"node" : true,
+    "node": true,
     //"es5": true,
     //环境设置
     "devel": true,

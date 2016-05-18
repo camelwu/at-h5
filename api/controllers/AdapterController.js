@@ -62,7 +62,7 @@ module.exports = {
         //headers.flag = 0;  //非加密
         headers.flag = headers.flag || 1; //加密传输
         if (headers.flag == 1) {
-            var reqeustStartTime,requestEndTime,spendTime;
+            var reqeustStartTime, requestEndTime, spendTime;
             //http://10.6.11.20:6666/api/GetServiceApiResult
             //http://123.56.190.34:8888/api/GetServiceApiResult
             //http://10.6.11.20:11111/api/GetServiceApiResult  hotel_flight
@@ -70,33 +70,33 @@ module.exports = {
 
             //自定义请求header和body
             var option = {
-                    method: method,
-                    //json : true,
-                    //encoding : null,
-                    gzip: true,
-                    //headers : headers,
-                    headers: {
-                        "Content-Type": headers["content-type"],
-                        "Sign": sign,
-                        "Token": timeBase64
-                    },
-                    body: bodyAesBase64
-                }
+                method: method,
+                //json : true,
+                //encoding : null,
+                gzip: true,
+                //headers : headers,
+                headers: {
+                    "Content-Type": headers["content-type"],
+                    "Sign": sign,
+                    "Token": timeBase64
+                },
+                body: bodyAesBase64
+            };
             reqeustStartTime = new Date().getTime();
-                //接口调用
+            //接口调用
             request(_api, option, function (err, httpResponse, body) {
                 requestEndTime = new Date().getTime();
                 spendTime = requestEndTime - reqeustStartTime;
-                if(parseInt(spendTime) > 5000){
+                if (parseInt(spendTime) > 5000) {
                     console.log(bodyString);
-                    console.log(new Date() + "--api 接口访问时间：" + (requestEndTime-reqeustStartTime));
+                    console.log(new Date() + "--api 接口访问时间：" + (requestEndTime - reqeustStartTime));
                 }
 
                 if (!err && httpResponse.statusCode == 200) {
                     res.header("Access-Control-Allow-Origin", "*");
                     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-                    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-                    res.header("X-Powered-By",' 3.2.1')
+                    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+                    res.header("X-Powered-By", ' 3.2.1');
                     res.header("Content-Type", "application/json;charset=utf-8");
                     res.type('application/json'); //设置返回content-type
                     res.send(body);
@@ -109,4 +109,4 @@ module.exports = {
             //TODO 不加密
         }
     }
-}
+};

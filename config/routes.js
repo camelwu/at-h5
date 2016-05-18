@@ -22,7 +22,7 @@
 
 
 module.exports.routes = {
-    
+
     /***************************************************************************
      *                                                                          *
      * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
@@ -44,9 +44,11 @@ module.exports.routes = {
      * for configuration options and examples.                                  *
      *                                                                          *
      ***************************************************************************/
-    
-    
+
+
     //server api
-    'POST /api/GetServiceApiResult' : 'AdapterController.api'
+    'POST /api/GetServiceApiResult': 'AdapterController.api',
+    //server log
+    'GET /log/logRecord': 'LogController.logRecord'
 
 };

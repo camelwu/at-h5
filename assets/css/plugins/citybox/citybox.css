@@ -34,7 +34,7 @@
   width: 0.8rem;
   overflow: hidden;
   display: inline-block;
-  background: url(../../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
   background-position: -0.35rem -0.3rem;
 }
@@ -67,7 +67,7 @@
   width: 0.8rem;
   overflow: hidden;
   display: inline-block;
-  background: url(../../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.9rem 5.13rem;
   background-position: -2.3rem -2.12rem;
 }
@@ -199,7 +199,7 @@
   width: 0.8rem;
   overflow: hidden;
   display: inline-block;
-  background: url(../../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.9rem 5.13rem;
   background-position: -2.3rem -2.12rem;
 }
@@ -250,7 +250,7 @@
   width: 0.5rem;
   overflow: hidden;
   display: inline-block;
-  background: url(../../../images/ui/icon_common.png) no-repeat;
+  background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.9rem 5.13rem;
   background-position: -2.5rem -2.1rem;
   margin-left: 0.28rem;
