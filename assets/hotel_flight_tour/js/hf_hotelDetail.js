@@ -52,7 +52,7 @@ var data2 = '',roomdata = '';
     }
     //nav标题部分
     function nav(){
-        $('.header h3').html(data2.hotelInfo.hotelName);
+        $('.header h3').html(data2.hotelInfo.hotelNameLocale);
     }
     //banner
     function banner(){
