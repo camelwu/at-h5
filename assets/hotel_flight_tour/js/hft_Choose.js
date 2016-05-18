@@ -269,7 +269,7 @@ var hftChoose = {
         hftChangeFlightPara.airwaySetID = that.curData.flightInfo.setID;
         hftChangeFlightPara.airwayCacheID = that.curData.flightInfo.cacheID;
         hftChangeFlightPara.SortFields = [0];
-        hftChangeFlightPara.ScreenFields = [1];
+        hftChangeFlightPara.ScreenFields = [0];
         hftChangeFlightPara.FlightStartTime = 0;
       }
       storage.setItem('hftChangeFlightPara', JSON.stringify(hftChangeFlightPara));
