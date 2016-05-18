@@ -1681,6 +1681,7 @@ ul, ol {
   background-position: -45px -6px;
 }
 .open_arw{
+  
   position: absolute;
   right: 10px;
   top: 10px;
