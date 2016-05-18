@@ -12,7 +12,6 @@
 			var _api = "http://10.7.2.111/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 
 				home : ['首页', basePath],
-				find : ['目的地', basePath + '/building.html'],
 				user : ['我的', basePath + '/user/user.html']
 			},  _codeDic={
 				//1.酒店(10)
