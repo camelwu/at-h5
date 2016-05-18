@@ -224,13 +224,13 @@ var hftChoose = {
             te.hotelInfo.rooms = that.curData.hotelInfo.rooms;
             output = ejs.render(tempStr, te);
             $(".roomUl").eq(0).html(output);
-            this.innerHTML = '收起更多房型<span class="check-more-down"></span>';
+            this.innerHTML = '收起更多房型<span class="check-more-up"></span>';
           } else if (text.indexOf('收起') > -1) {
             te.hotelInfo.rooms = that.curData.hotelInfo.rooms.slice(0, 2);
             output = ejs.render(tempStr, te);
             $(".roomUl").eq(0).html(output);
             temNum = that.curData.hotelInfo.rooms.length - 2;
-            this.innerHTML = '查看更多房型<span>(' + temNum + ')</span><span class="check-more-down"></span>';
+            this.innerHTML = '查看更多房型<span class="letter-space">(' + temNum + ')</span><span class="check-more-down"></span>';
           }
         });
       }
