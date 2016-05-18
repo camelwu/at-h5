@@ -127,9 +127,6 @@
     line-height: 20px;
     color: white;
 }
-a{
-    font-size: 1.4rem;
-}
 .user-menu li:first-child {
     border: none;
 }

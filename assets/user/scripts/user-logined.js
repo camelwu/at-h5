@@ -50,10 +50,8 @@ function init(){
         return;
     }
     vlm.checkUser();
-
     vlm.loading();
-
-    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+    vlm.loadJson("", JSON.stringify(Parameters), mycallback);
 
 
 }
@@ -61,10 +59,8 @@ function init(){
 
 function mycallback(ret) {
     var myJson = ret;
-
-    console.log(myJson.data[0].nickName);
+    //console.log(myJson.data[0].nickName);
     vlm.loadend();
-
     if (myJson.success) {
         var user_name = $("#user_name")[0];
         var user_sex = $("#user_sex")[0];
@@ -73,9 +69,7 @@ function mycallback(ret) {
         user_name.innerHTML = myJson.data[0].nickName;
         localStorage.sex=myJson.data[0].salutation;
         localStorage.email=myJson.data[0].emailAddress;
-
         if(myJson.data[0].nickName == ''){
-
             user_name.innerHTML='点击头像设置个人资料';
             userIcon.src = "../images/ui/photo-man.png";
         }else{
@@ -92,10 +86,7 @@ function mycallback(ret) {
 
 //登录之后点击全部订单的链接会改变
 (function(){
-    var oOrder=document.querySelector('#user_order');
-    var aBtn=oOrder.children;
-
-    aBtn[0].querySelector('a').onclick=function(){
+    document.querySelector('.my-order').onclick=function(){
         if(localStorage.getItem('login') == 1)
         {
             this.href='user-allorder.html';
@@ -125,6 +116,12 @@ function mycallback(ret) {
 
 })();
 
+$('.about-at').click(function(){
+  $('#link_about_us').show();
+  $('#close_page_aboutus').click(function(){
+    $('#link_about_us').hide();
+  });
+});
 //设置里的消息开关
 function ifOpen(){
     var b = window.event.srcElement;
@@ -135,7 +132,29 @@ function ifOpen(){
     }
 }
 
+//电话
+$('.service_tel').click(function(){
+  $('.jpop_box_tic').show();
+});
+$('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+  $('.jpop_box_tic').hide();
+})
 
+//关于亚洲旅游
+$('#atIntroduce').click(function(){
+  $('#link_at').show();
+  $('#close_page_at').click(function(){
+    $('#link_at').hide();
+  });
+});
+
+//协议及声明
+$('#atDeclaration').click(function(){
+  $('#link_declaration').show();
+  $('#close_page_de').click(function(){
+    $('#link_declaration').hide();
+  });
+});
 
 
 
