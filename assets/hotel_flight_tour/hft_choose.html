@@ -171,7 +171,7 @@
                 <% }) %>
             </ul>
             <%if(hotelInfo["rooms"].length>=3){%>
-            <div class="check-more-room">查看更多房型<span>(<%= hotelInfo["rooms"].length-2%>)</span><span
+            <div class="check-more-room">查看更多房型<span class="letter-space">(<%= hotelInfo["rooms"].length-2%>)</span><span
                     class="check-more-down"></span></div>
             <% }%>
         </div>
@@ -240,7 +240,7 @@
 <script id="template_tour" type="text/template">
     <div class="tour">
         <div class="tourListHeader">
-            <span>景点</span><span class="tourNumber">(<%= tours.length %>)</span>
+            <span>景点</span><span class="letter-space">(<%= tours.length %>)</span>
         </div>
         <ul class="tourOuter">
             <% tours.forEach(function(tour, item){
