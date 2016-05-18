@@ -563,7 +563,7 @@
             //flightHotelAllData.data.hotelInfo = JSON.parse(hotelInfo);
             //sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
             parametersS.HotelID = hotelId;
-            localStorage.setItem("hotelDetailInfo", JSON.stringify(parametersS));
+            sessionStorage.setItem("hftHotelDetailPara", JSON.stringify(parametersS));
             var timer = setTimeout(function () {
                 //window.history.go(-1);
                 window.location.href = 'hf_hotel_detail.html';

@@ -1,21 +1,20 @@
 var data2 = '',roomdata = '';
 (function () {
-    var temObj = JSON.parse(localStorage.getItem("hotelDetailInfo"));
+    var temObj = JSON.parse(sessionStorage.getItem("hftHotelDetailPara"));
     var urlIf = window.location.search;
-
     var ulrRoomId = urlIf.substring(23)-0;
-
     var departDate = temObj.departDate.substring(0,10);
     var enterDate = temObj.returnDate.substring(0,10);
     temObj.departDate = departDate;
     temObj.returnDate = enterDate;
     if(!ulrRoomId){delete temObj.selectedRoomID}
     //data中入住离店时间必须去掉时分秒
+    console.log(temObj)
     var data = {
-        "Code":"50100009",
-        "ForeEndType":2,
-        "Parameters":temObj
-    };
+        "Code": "50100009",
+        "ForeEndType": 2,
+        "Parameters": temObj
+    }
     var departDateHtml = temObj.departDate.substring(5);
     var enterDateHtml = temObj.returnDate.substring(5);
     $('.jhf-mes span.departDate').html(departDateHtml);
@@ -36,7 +35,7 @@ var data2 = '',roomdata = '';
             //console.log(flightHotelAllData)
             if(!window.location.search){
                 flightHotelAllData.hotelInfo = result.data.hotelInfo;
-                window.sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
+                window.sessionStorage.setItem('hftFlightHotelTourInfo',JSON.stringify(flightHotelAllData));
             }
             data2 = result.data;
             console.log(data2);
