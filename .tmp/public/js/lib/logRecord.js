@@ -16,7 +16,6 @@
             ut: null,
             rt: null
         },
-        pt = performance.timing || null,
         dataPara = ['data-statc', 'data-statl', 'data-statm', 'data-statp'];
     //收集统计参数
     /*
@@ -83,11 +82,6 @@
     });
     bind(w, "load", function (event) {
         meta.lt = new Date().getTime();
-        if (pt) {
-            meta.st = pt.responseEnd; //页面dom
-            meta.rt = pt.domContentLoadedEventEnd;
-            meta.lt = pt.loadEventEnd;
-        }
     });
 
     function bind(ele, type, fn) {

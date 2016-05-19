@@ -271,7 +271,7 @@ var htf_search = {
         }
 
         //F+H 日历初始化
-        var fhCalendar = new Calender({
+        var fhCalendar = new ATplugins.Calender({
             id: "fhCalendar",
             time: initFhDate,
             callback: function (result) {
@@ -288,7 +288,7 @@ var htf_search = {
             }
         });
 
-        var fhtCalendar = new Calender({
+        var fhtCalendar = new ATplugins.Calender({
             id: "fhtCalendar",
             time: initFhtDate,
             callback: function (result) {

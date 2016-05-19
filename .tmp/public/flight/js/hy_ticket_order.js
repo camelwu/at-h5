@@ -209,6 +209,7 @@ var ticketOrder = {
                 contactInfo[tv] = contactInfoCache[tv];
             }
             window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
+            that.backParaObj.track={"browserType":"","deviceID":vlm.getDeviceID()}
             that.backParaObj.ContactDetail =contactInfo;
             $("#preloader").show();
             $("#status-f").show();

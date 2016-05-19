@@ -28,7 +28,7 @@ var ticketHotel = {
             ForeEndType: ForeEndType,
             Code: Code
         };
-        questUrl = questUrl ? questUrl :"";
+        questUrl = questUrl ? questUrl : that.requestUrl;
         if (loadMoreSign) {
             vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
         } else {
@@ -330,9 +330,9 @@ var ticketHotel = {
         });
     },
     testLogin:function(){
-        if(vlm.checkLogin('ticketHotel.testLogin')){
+        //if(vlm.checkLogin('ticketHotel.testLogin')){
             window.top.location.href='../hotel_flight/user_order.html';
-        }
+        //}
     },
     renderHandler:function(arg){
         var resultData = arg, that = ticketHotel, originAirIds={};

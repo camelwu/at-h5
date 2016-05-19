@@ -119,6 +119,7 @@
             this.id2 = options.id2;
             this.callback = options.callback;
             this.time = options.time || {}; //已有时间  默认选中时间   默认时间必须是大于今天日期
+            this.disableDate = options.disableDate || []; //默认不可用的日期
             this.prefix = options.prefix || "calendar";
             this.op = 0; //已操作次数
             this.checkInTimeOptId = options.checkInTimeOptId;
@@ -183,11 +184,12 @@
         // 渲染日期
         drawDate: function (odate) { // 参数 odate 为日期对象格式
             var dateWarp, titleDate, dd, year, month, date, days, weekStart, i, l, ddHtml = [],
-                textNode;
+                textNode, disableDate;
             var nowDate = new Date(),
                 nowyear = nowDate.getFullYear(),
                 nowmonth = nowDate.getMonth(),
                 nowdate = nowDate.getDate();
+            disableDate = this.disableDate;
             this.dateWarp = dateWarp = document.createElement('div');
             dateWarp.className = 'calendar';
             dateWarp.innerHTML = this._template.join('');
@@ -228,7 +230,15 @@
                         if (month == nowmonth + 1 && i < nowdate) {
                             pstr = '<a class="live disabled">' + i + '</a>';
                         } else {
-                            pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
+                            for (var j = 0; j < disableDate.length; j++) {
+                                if (disableDate[j] === year + "-" + m + "-" + d) {
+                                    pstr = '<a class="live disabled">' + i + '</a>';
+                                    break;
+                                } else {
+                                    pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
+                                }
+                            }
+
                         }
                     }
                 }

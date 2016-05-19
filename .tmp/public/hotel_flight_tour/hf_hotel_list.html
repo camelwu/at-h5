@@ -105,15 +105,8 @@
     <div>
       <img class="img" src=<%= data.hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
       <article class="message">
-        <h3><% if(data.hotels[i].hotelNameLocale!='' && data.hotels[i].hotelName!=''){ %>
-            <%= data.hotels[i].hotelNameLocale %> ( <%= data.hotels[i].hotelName %> )
-          <% }else if( data.hotels[i].hotelNameLocale == ''){ %>
-            <%= data.hotels[i].hotelName %>
-          <% }else if(data.hotels[i].hotelName == ''){ %>
-            <%= data.hotels[i].hotelNameLocale %>
-          <% } %>
-        </h3>
-        <!--<p><span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>-->
+        <h3><%= data.hotels[i].hotelNameLocale %></h3>
+        <p><span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>
         <p class="equipment clearfix">
           <span><%= data.hotels[i].starRating %></span>
           <!--<span class="park"></span>-->
