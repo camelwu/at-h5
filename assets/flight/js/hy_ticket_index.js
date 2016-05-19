@@ -196,7 +196,8 @@ var  ticketIndexModal = {
                            paramStr+="&"+attr+"="+paraObj[attr];
                        }
                        paramStr=paramStr.slice(1);
-                       document.location.href='ticket_double_list.html?'+paramStr;
+                     console.log(paramStr)
+                       //document.location.href='ticket_double_list.html?'+paramStr;
                    } else {
                        NumofAdult = parseInt(document.querySelector('.adult-number').innerHTML);
                        NumofChild = parseInt(document.querySelector('.child-number').innerHTML);
@@ -481,7 +482,7 @@ var  ticketIndexModal = {
            wrapDiv.innerHTML = frameStr;
            allWrap.appendChild(wrapDiv);
        },
-          
+
        selectCity : function (data) {
             var _city;
             if(data.filterColumn=="countryCode" && data.value == "NOTCN"){
@@ -499,7 +500,7 @@ var  ticketIndexModal = {
            filter.filterColumn = "countryCode";
            filter.value = type;
            var _city = this.selectCity(filter);
-           
+
            var  data = JSON.stringify(_city);
            vlm.loadJson("",data,fns);
 

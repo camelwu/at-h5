@@ -41,7 +41,7 @@ var hotelList = {
 			ForeEndType : ForeEndType,
 			Code : Code
 		};
-		questUrl = questUrl ? questUrl : that.requestUrl;
+		questUrl = questUrl ? questUrl :"";
 		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 		return this;
 	},
