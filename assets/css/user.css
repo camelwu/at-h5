@@ -52,16 +52,18 @@ i, em {
 }
 
 .f_btn {
-  width: 94%;
-  margin-left: 3%;
-  margin-top: 20px;
-  border-radius: 5px;
-  display: inline-block;
-  text-align: center;
+  margin: .96rem .4rem 0;
+  display: block;
+  height: .88rem;
+  background-color: #ffb413;
   color: #fff;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 600;
+  -webkit-border-radius: .04rem;
+  -moz-border-radius: .04rem;
+  border-radius: .04rem;
+  text-align: center;
+  line-height: .88rem;
+  font-size: .36rem;
+  font-weight: 500;
 }
 
 .coun-find > div {
@@ -118,6 +120,7 @@ i, em {
   height: .88rem;
   line-height: .88rem;
 }
+
 .user_info #userIcon {
   border-radius: 50%;
   width: 1.2rem;
@@ -238,34 +241,40 @@ i, em {
 }
 
 /*关于我们*/
-.at_introduce{
+.at_introduce {
   margin-top: 40px;
   padding: 0 40px;
 }
-.asiatravel_wrap{
+
+.asiatravel_wrap {
   width: 100px;
   margin: 0 auto;
   text-align: center;
   margin-top: 48px;
   font-size: 28px;
 }
-.asiatravel_wrap h4{
+
+.asiatravel_wrap h4 {
   font-size: .28rem;
   color: #333;
 }
-.at_logo{
+
+.at_logo {
   height: 100px;
   margin-bottom: 15px;
 }
-.at_introduce li{
+
+.at_introduce li {
   position: relative;
   line-height: 40px;
   border-bottom: 1px solid #e6e6e6;
 }
-.at_introduce li a{
+
+.at_introduce li a {
   color: #333;
 }
-.at_introduce .open_arw{
+
+.at_introduce .open_arw {
   background: url("../images/ui/icon-hft.png") no-repeat;
   background-size: 8.4rem 4.8rem;
   width: .24rem;
@@ -273,25 +282,31 @@ i, em {
   background-position: 62% 52%;
   float: right;
 }
-.at_introduction,.at_declaration{
+
+.at_introduction, .at_declaration {
   padding: .4rem;
   line-height: .48rem;
 }
-.at_declaration h3{
+
+.at_declaration h3 {
   margin-bottom: .1rem;
 }
-.at_declaration p{
+
+.at_declaration p {
   margin-bottom: 0;
 }
-.at_declaration ul{
+
+.at_declaration ul {
   margin: .2rem 0;
   /*font-size: 1.3rem;*/
 }
-.at_declaration ul li{
+
+.at_declaration ul li {
   line-height: .36rem;
   margin-bottom: .1rem;
 }
-.at_declaration dt, .at_declaration dd{
+
+.at_declaration dt, .at_declaration dd {
   margin: .1rem 0;
 }
 
@@ -325,9 +340,11 @@ i, em {
   font-size: .32rem;
   color: #fff;
 }
-.user_content > ul li:last-child{
+
+.user_content > ul li:last-child {
   line-height: .6rem;
 }
+
 .open-sexw {
   width: 12px;
   height: 12px;
@@ -408,75 +425,56 @@ i, em {
   background-position: 62% 52%;
 }
 
-.info-name {
+.info_name {
   float: right;
-  margin-right: 15px;
-  font-size: 13px;
-  color: #FFB413;
+  margin-right: .4rem;
+  width: 4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
 }
 
-.info-quit {
-  width: 94%;
-  height: 42px;
-  margin-top: 15px;
-  margin-left: 3%;
-  border-radius: 5px;
-  border: 1px solid #ffb413;
-  background-color: white;
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffb413;
+.info_quit {
+  margin: .96rem .4rem 0;
+  display: block;
+  height: .88rem;
+  background-color: #ffb413;
+  color: #fff;
+  -webkit-border-radius: .04rem;
+  -moz-border-radius: .04rem;
+  border-radius: .04rem;
   text-align: center;
-  line-height: 42px;
+  line-height: .88rem;
+  font-size: .36rem;
+  font-weight: 500;
 }
 
-.info-sex, .info-sex-on {
+.info_sex{
   position: absolute;
-  top: 8px;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  right: 15px;
-  width: 68px;
-  height: 27px;
-  border: 1px solid #ffb413;
-  border-radius: 3px;
+  top: .2rem;
+  right: 0;
+  width: 1.56rem;
+  height: .64rem;
+  border: 1px solid #fdb330;
+  border-radius: .04rem;
   overflow: hidden;
   background-color: #ffb413;;
 }
 
-.sex-div {
-  -webkit-box-felx: 1;
-  -moz-box-flex: 1 -ms-flex : 1;
-  -webkit-flex: 1;
-  flex: 1;
-  width: 34px;
-  height: 27px;
+.sex_div {
+  float: left;
+  width: .76rem;
+  height: .64rem;
+  line-height: .64rem;
   text-align: center;
-  color: white;
-  line-height: 25px;
-}
+  color: #fdb330;
+  background-color: #fff;
 
-.white-div {
-  position: absolute;
-  z-index: 2;
-  width: 34px;
-  height: 27px;
-  background-color: white;
-  color: #ffb413;
-  text-align: center;
-  line-height: 25px;
-  transform: translateX(0px);
-  -webkit-transform: translateX(0px);
-  transition: all 200ms ease;
 }
-
-.info-sex-on .white-div {
-  transform: translateX(34px);
-  -webkit-transform: translateX(34px);
-  transition: all 200ms ease;
+.sex_act{
+  color: #fff;
+  background-color: #fdb330;
 }
 
 .user-mb {
@@ -557,31 +555,16 @@ i, em {
   padding-top: 16px;
   padding-bottom: 16px;
   font-size: 14px;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  justify-content: space-between;
   border-bottom: 1px solid #dedede;
 }
 
 .amendkey div {
   font-size: 15px;
   color: #484848;
-  -webkit-box-felx: 1;
-  -moz-box-flex: 1;
-  -ms-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
 }
 
 .amendkey input {
-  -webkit-box-felx: 2;
-  -moz-box-flex: 2;
-  -ms-flex: 2;
-  -webkit-flex: 2;
-  flex: 2;
+
 }
 
 .showkey {
@@ -626,35 +609,33 @@ i, em {
          修改昵称页css
 */
 .u_name {
-  height: 1.24rem;
-  padding-top: .3rem;
+  height: .96rem;
+  line-height: .96rem;
+  margin: .42rem .4rem .2rem;
   border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
+.u_name >input{
+  height: 90%;
+  width: 100%;
+  font-size: .28rem;
+}
 
 .u_name > p {
-margin-bottom: .05rem;
+  margin-bottom: .05rem;
 }
 
-.u_name #name {
-  width: 100%;
-}
-
-.u_name #realName {
-  width: 100%;
-  font-size: 1.4rem;
-}
-
-.name-close {
+.icon_person.name_close {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  top: 10px;
-  right: 10px;
-  background-position: 40% 35%;
+  width: .35rem;
+  height: .35rem;
+  top: .3rem;
+  right: 0;
+  background-position: -6.74rem -.18rem;
 }
 
 .name_text {
+  padding: 0 .4rem;
   color: #999;
   font-size: .24rem;
 
@@ -866,15 +847,16 @@ margin-bottom: .05rem;
   background-position: 65.5% 4%;
 }
 
-.u_remark li .icon_per{
+.u_remark li .icon_per {
   display: inline-block;
   width: .72rem;
-  height:.72rem;
+  height: .72rem;
   margin-top: .05rem;
   background: url(../images/ui/icon_person.png) no-repeat;
   background-size: 9rem 5rem;
 
 }
+
 .u_remark li .user_service {
   background-position: 96.8% 2.1%;
 }
@@ -889,7 +871,6 @@ margin-bottom: .05rem;
   background-size: 8.2rem 4.8rem;
 }
 
-
 .user_us {
   width: 40px;
   height: 40px;
@@ -900,7 +881,8 @@ margin-bottom: .05rem;
   padding: 1px;
   margin-left: 13px;
 }
-.con_info >span{
+
+.con_info > span {
   display: block;
   color: #999;
   margin-bottom: .3rem;
@@ -1398,11 +1380,6 @@ margin-bottom: .05rem;
   border-radius: 3px;
   margin-top: 10px;
   font-size: 10px;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
 }
 
 .name-example2 {
@@ -1412,47 +1389,6 @@ margin-bottom: .05rem;
   border: 1px solid #dedede;
   border-top: none;
   font-size: 10px;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-}
-
-.name-example div:first-child {
-  color: #a0a0a0;
-  -webkit-box-felx: 1;
-  -moz-box-flex: 1;
-  -ms-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-}
-
-.name-example div:last-child {
-  color: #484848;
-  -webkit-box-felx: 2;
-  -moz-box-flex: 2;
-  -ms-flex: 2;
-  -webkit-flex: 2;
-  flex: 2;
-}
-
-.name-example2 div:first-child {
-  color: #a0a0a0;
-  -webkit-box-felx: 1;
-  -moz-box-flex: 1;
-  -ms-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-}
-
-.name-example2 div:last-child {
-  color: #484848;
-  -webkit-box-felx: 2;
-  -moz-box-flex: 2;
-  -ms-flex: 2;
-  -webkit-flex: 2;
-  flex: 2;
 }
 
 /*
@@ -1545,14 +1481,14 @@ margin-bottom: .05rem;
   margin-left: 3px;
 }
 
-.login-clear {
+.login_clear {
   display: none;
   position: absolute;
   right: 13px;
   background-position: -85px -35px;
 }
 
-.login-clear.get-code-del {
+.login_clear.get_code_del {
   right: 125px;
 }
 
@@ -1686,23 +1622,26 @@ ul, ol {
 }
 
 /*个人信息页出生日期*/
-.user_it{
+.user_it {
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 50%;
-  margin-right: .2rem;
+  margin-right: .4rem;
 }
-.user_info_top{
-  padding:.2rem .4rem;
+
+.user_info_top {
+  padding: .2rem .3rem .2rem .4rem;
   border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
-.user_info_top >span{
+
+.user_info_top > span {
   margin-top: .42rem;
- }
-.user_info_top .open_rg{
+}
+
+.user_info_top .open_rg {
   position: absolute;
-  right: 0;
+  right: .4rem;
   top: .6rem;
   background: url("../images/ui/icon-hft.png") no-repeat;
   background-size: 8.4rem 4.8rem;
@@ -1710,10 +1649,12 @@ ul, ol {
   height: .24rem;
   background-position: 62% 52%;
 }
-.userper_lists{
+
+.userper_lists {
   padding: 0 .4rem;
 }
-.userper_lists >li{
+
+.userper_lists > li {
   position: relative;
   height: .96rem;
   line-height: .96rem;
@@ -1730,7 +1671,6 @@ ul, ol {
   margin-right: 15px;
   color: #ffb413;
 }
-
 
 .user_lists li > b {
   position: absolute;
@@ -1770,9 +1710,11 @@ ul, ol {
   background-position: 62% 52%;
 }
 
-.birth-cont {
+.birth_cont {
   color: #666;
-  width: 120px;
+  width: 4rem;
+  text-align: right;
+  margin-right: .4rem;
   float: right;
 }
 
