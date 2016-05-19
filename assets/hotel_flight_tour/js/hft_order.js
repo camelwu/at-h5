@@ -10,7 +10,7 @@
     });
   };
   package_detail();
-  //初始化
+
   var hftFlightHotelTourInfo=JSON.parse(sessionStorage.hftFlightHotelTourInfo);
   console.log(hftFlightHotelTourInfo);
 
@@ -18,7 +18,26 @@
   hftCreateOrderPara.hotelName=hftFlightHotelTourInfo.hotelInfo.hotelName;
   console.log(hftCreateOrderPara);
 
+  var freetype=vlm.getpara('type');
+
+  //初始化
   function init() {
+
+    if(freetype == 2){
+
+      //景点详情
+      var tourstr=$('#orderTour').html();
+      var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
+      $('#hftTourTab').html(tourdet);
+
+    }else if(freetype == 1){
+
+      $('.tour_section').remove();
+
+    }else{
+      alert('上一步是type=undefined');
+    }
+
     //机票详情
     var flightstr=$('#orderFlight').html();
     var flightdet = ejs.render(flightstr , hftFlightHotelTourInfo)
@@ -28,11 +47,6 @@
     var hotelstr=$('#orderHotel').html();
     var hoteldet = ejs.render(hotelstr, hftCreateOrderPara)
     $('#hftHotelTab').html(hoteldet);
-
-    //景点详情
-    var tourstr=$('#orderTour').html();
-    var tourdet = ejs.render(tourstr, hftFlightHotelTourInfo)
-    $('#hftTourTab').html(tourdet);
 
     //费用明细
     var farestr=$('#orderFare').html();
@@ -156,8 +170,42 @@
         "code": "60100010"
       }
 
-      //追踪信息
-      Parmeters.Parameters.track=hftCreateOrderPara.track;
+      if(freetype == 2){
+
+        //追踪信息
+        Parmeters.Parameters.track=hftCreateOrderPara.track;
+
+        //景点信息
+        var tours=[];
+        for(var i=0;i<hftFlightHotelTourInfo.tours.length; i++)
+        {
+          var sceWrap=hftFlightHotelTourInfo.tours[i];
+          var scenic={};
+          scenic.tourID=sceWrap.tourID;
+          scenic.travelDate=sceWrap.travelDates[0];
+          var sceArr=[];
+          for(var j=0; j<sceWrap.tourSessions.length; j++)
+          {
+            var session={};
+            if( sceWrap.tourSessions[j].isSelected == 1){
+              session.tourSession=sceWrap.tourSessions[j].tourSessionName;
+            }
+            sceArr.push(session);
+          }
+          scenic.tourSession=sceArr[0].tourSession;
+          tours.push(scenic);
+        }
+        Parmeters.Parameters.tours=tours;
+
+        //hft请求码
+        Parmeters.foreEndType = 2;
+        Parmeters.code = 60100010;
+      }else{
+        //hf请求码
+        Parmeters.foreEndType = 3;
+        Parmeters.code = 50100004;
+      }
+
 
       //房间信息
       Parmeters.Parameters.RoomDetails=hftCreateOrderPara.roomDetails;
@@ -186,27 +234,6 @@
         Parmeters.Parameters.travellerInfo=traveller;
       }
 
-      //景点信息
-      var tours=[];
-      for(var i=0;i<hftFlightHotelTourInfo.tours.length; i++)
-      {
-        var sceWrap=hftFlightHotelTourInfo.tours[i];
-        var scenic={};
-        scenic.tourID=sceWrap.tourID;
-        scenic.travelDate=sceWrap.travelDates[0];
-        var sceArr=[];
-        for(var j=0; j<sceWrap.tourSessions.length; j++)
-        {
-            var session={};
-            if( sceWrap.tourSessions[j].isSelected == 1){
-              session.tourSession=sceWrap.tourSessions[j].tourSessionName;
-            }
-          sceArr.push(session);
-        }
-        scenic.tourSession=sceArr[0].tourSession;
-        tours.push(scenic);
-      }
-      Parmeters.Parameters.tours=tours;
 
       if( $('.order_tlist2').length != localStorage.hft_peotot){
         jAlert('请添加出行人');
@@ -240,7 +267,6 @@
 
       console.log(Parmeters);
       vlm.loading();
-      debugger;
       vlm.loadJson(vlm.apiWithDeviceID, JSON.stringify(Parmeters), hotel_flight_back);
     };
   }
