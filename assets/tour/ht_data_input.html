@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚洲旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>酒+景输入资料页 - 亚洲旅行网</title>
+  <link href="../styles/reset.css" rel="stylesheet" />
+  <link href="css/ht_data_input.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="preloader" style="display: none;">
+        <div id="status">
+        </div>
+    </div>
+    <div class="all_elements">
+      <!--   顶部   -->
+      <div class="header">
+          <a href="javascript:history.go(-1);" class="header_back">
+              <i class="icon_back"></i>
+          </a>
+          <h3>资料输入</h3>
+      </div>
+      <!--   内容   -->
+      <div class="content">
+          <section class="section_box">
+              <h3 class="hotel">酒店</h3>
+              <div class="dataInfo">
+                  <div class="hotel_data">
+                      <span>入住</span>
+                      <span>05月31日</span>
+                      <span>周二</span>
+                  </div>
+                  <div>共3晚</div>
+                  <div class="hotel_data">
+                      <span>离店</span>
+                      <span>06月09日</span>
+                      <span>周五</span>
+                  </div>
+              </div>
+              <div class="search_hotel">
+                  <section class="hotelInfo_numb_room">
+                      <span class="title">房间</span>
+                      <div class="per_price_control" data-type="extraRoom">
+                          <span id="hf_roomDown" class="cut_down_btn"></span><i id="hf_roomNum" class="cut_up_cont">1</i><span class="plus_btn"></span>
+                      </div>
+                  </section>
+                  <section class="hotelInfo_numb_people init_hotel_room_detail">
+                      <span class="title">房间1</span>
+                      <div class="numbList">
+                          <span class="n_tit">成人</span>
+                          <div class="per_price_control" data-type="adult">
+                              <span id="adultDown" class="cut_down_btn" style="background-position:17.5% 68%;"></span>
+                              <i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>
+                              <span class="plus_btn"></span>
+                          </div>
+                      </div>
+                      <div class="numbList">
+                          <span class="n_tit">儿童</span>
+                          <span class="child_age">(2-12岁)</span>
+                          <b class="com_icon child_age_state"></b>
+                          <div class="age_state_box">
+                              <div class="state_text">儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</div>
+                              <div></div>
+                          </div>
+                          <div class="per_price_control" data-type="extraChild">
+                              <span class="cut_down_btn"></span>
+                              <i class="cut_up_cont child_number" data-type="childNum">0</i>
+                              <span class="plus_btn"></span>
+                          </div>
+                      </div>
+                      <div class="extraChild" style="display: none;">
+                          <span class="bedList" style="float: left"><i>儿童1年龄</i></span>
+                          <div class="childAge">
+                              <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
+                          </div>
+                          <span class="bedList" style="float: left"><i>儿童2年龄</i></span>
+                          <div class="childAge">
+                              <input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>
+                          </div>
+                          <div class="numbList spenumbList">
+                              <span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>
+                          </div>
+                      </div>
+                  </section>
+              </div>
+          </section>
+          <section class="section_box">
+              <h3 class="tour">景点</h3>
+              <section class="tour_info">
+                  <div class="tour_title">八达岭长城</div>
+                  <div class="tour_data">
+                      <span>06月01日</span>
+                      <span class="com_icon"></span>
+                  </div>
+                  <div class="tour_frame">
+                      <div class="active">全天<b class="com_icon"></b></div>
+                  </div>
+              </section>
+              <section class="tour_info">
+                  <div class="tour_title">军事博物馆</div>
+                  <div class="tour_data">
+                      <span>06月02日</span>
+                      <span class="com_icon"></span>
+                  </div>
+                  <div class="tour_frame">
+                      <div class="active">上午<b class="com_icon"></b></div>
+                      <div>下午<b class="com_icon"></b></div>
+                      <div>晚上<b class="com_icon"></b></div>
+                  </div>
+              </section>
+          </section>
+          <div class="search_button">
+              <input type="button" value="预订" class="button_orange" />
+          </div>
+      </div>
+    </div>
+</body>
+</html>

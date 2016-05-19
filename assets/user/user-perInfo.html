@@ -25,14 +25,8 @@
 		<link href="../styles/tips.css"		rel="stylesheet" type="text/css">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
 		<link href="../css/date_select.css"	rel="stylesheet" type="text/css">
-		<script>
-			lStorage = window.localStorage;
-			if (!lStorage.memberid || lStorage.memberid == '' || !lStorage.login || lStorage.login != 1) {//need login
-				window.location.href='user.html';
-			}
-		</script>
 	</head>
-	<body onload="u_perInfo()">
+	<body>
 		<div id="preloader">
 			<div id="status"></div>
 		</div>
@@ -52,69 +46,60 @@
 				</div>
 				<ul class="userper_lists">
 					<li id="a_nick">
-						昵称 <span id="nickname" class="info-name"></span><b class="open_rg"></b>
+						昵称 <span id="nickname" class="info_name"></span><b class="open_rg"></b>
 					</li>
 					<li id="a_name">
-						姓名 <span id="hostname" class="info-name"></span><b class="open_rg"></b>
+						姓名 <span id="hostname" class="info_name"></span><b class="open_rg"></b>
 					</li>
 					<li>
 						性别
-						<div class="info-sex" id="sex">
-							<div id="block" class="white-div">男</div>
-							<div class="sex-div" style="color: #fff">
-								男
-							</div>
-							<div class="sex-div">
-								女
-							</div>
+						<div class="info_sex" id="sex">
+							<div class="sex_div">男</div>
+							<div class="sex_act sex_div">女</div>
 						</div>
 					</li>
 					<li  class="sex-alter" id="ppp">
 						<div class="birth_date fl">出生日期</div>
-						<div id="birth-cont-per" class="birth-cont" data-cache="1990年-1月-1日">1990-01-01</div>
+						<div id="birth-cont-per" class="birth_cont" data-cache="1990年-1月-1日">1990-01-01</div>
 						<b class="open_rg"></b>
 					</li>
 					<li id="a_phone">
-						手机 <span id="hostmobile" class="info-name"></span><b class="open_rg"></b>
+						手机 <span id="hostmobile" class="info_name"></span><b class="open_rg"></b>
 					</li>
 					<li id="a_email">
-						邮箱 <span id="hostemail" class="info-name"></span><b class="open_rg"></b>
+						邮箱 <span id="hostemail" class="info_name"></span><b class="open_rg"></b>
 					</li>
 					<li id="a_key">
 						修改密码<b class="open_rg"></b>
 					</li>
 				</ul>
-				<div><a href="javascript:void(0);" class="info-quit">退出登录</a></div>
-				<div class="full-bottom"></div>
+				<a href="javascript:;" class="info_quit">退出登录</a>
 			</div>
 		</div>
 		<!--     修改信息浮层     -->
-		<div id="amend_info" class="all-elements" style="display: none;">
-			<div class="header">
-				<a id="close_page" class="header-back"><i class="icons go-back"></i></a>
-				<h3 id="title">修改昵称/填写姓名/手机号验证/邮箱/修改密码</h3>
-			</div>
+		<div id="amend_info" class="all_elements" style="display: none;">
+      <div class="header">
+        <a id="close_page" class="header_back"><i class="icon_back"></i></a>
+        <h3 id="title">修改昵称/填写姓名/手机号验证/邮箱/修改密码</h3>
+      </div>
 			<ul id="info_content">
 				<li id="changename" style="display: none;">
 					<form id="nickForm" action="user-perInfo.html" method="get">
 						<div class="u_name">
 							<input id="name" name="name" type="text" value="" maxlength="20"/>
-							<b class="icon name-close" onclick="clearname()"></b>
+							<b class="icon_person name_close"></b>
 						</div>
-						<div class="name-text">
-							4-20个字符，可由中英文字母，数字、“_”组成。
-						</div>
-						<input id="nick_btn" class="f_btn button-orange" type="button" value="保存"/>
+						<div class="name_text">4-20个字符，可由中英文字母，数字、“_”组成。</div>
+            <a id="nick_btn" href="javascript:" class="f_btn">保存</a>
 					</form>
 				</li>
 				<form id="infoForm" action="user-perInfo.html" method="get">
 					<li id="fillname" style="display: none;">
 						<div class="u_name">
 							<input id="realName" type="text" value placeholder="请填写真实姓名" maxlength="20" data-type="code">
+              <b class="icon_person name_close"></b>
 						</div>
-						<div class="name-text">
-							不超过10个汉字或者20个英文字符，支持空格和“.”
-						</div>
+						<div class="name_text">不超过10个汉字或者20个英文字符，支持空格和“.”</div>
 					</li>
 					<li id="phoneverify" style="display: none;">
 						<ul class="f_key">
@@ -123,40 +108,32 @@
 							</li>
 							<li style="padding-right: 0;">
 								<input class="fk_put mob-code" type="text" value placeholder="请输入验证码" data-type="code">
-								<div class="fk_div" id="phone_ver">
-									发送验证码
-								</div>
+								<div class="fk_div" id="phone_ver">发送验证码</div>
 							</li>
 						</ul>
 					</li>
 					<li id="useremail" style="display: none;">
 						<div class="u_name">
-							<input id="email" type="text" style="font-size: 1.4rem" placeholder="请输入邮箱" data-type="email">
+							<input id="email" type="text" placeholder="请输入邮箱" data-type="email">
 						</div>
 					</li>
-					<input id="amend_btn_0" class="f_btn button-orange" type="button" value="保存"/>
-					<input id="amend_btn_1" class="f_btn button-orange" type="button" value="保存"/>
-					<input id="amend_btn_2" class="f_btn button-orange" type="button" value="保存"/>
+          <a id="amend_btn_0" href="javascript:;" class="f_btn">保存</a>
+          <a id="amend_btn_1" href="javascript:;" class="f_btn">保存</a>
+          <a id="amend_btn_2" href="javascript:;" class="f_btn">保存</a>
 				</form>
 				<li id="amendkey" style="display: none;">
 					<form id="keyForm" action="user-perInfo.html" method="get">
 						<ul class="f_key">
 							<li class = "amendkey">
-								<div>
-									当前密码
-								</div>
+								<div>当前密码</div>
 								<input type="password" placeholder="6-20位字符" data-type="pass"/>
 							</li>
 							<li class = "amendkey">
-								<div>
-									新密码
-								</div>
+								<div>新密码</div>
 								<input type="password" placeholder="6-20位字符" data-type="pass"/>
 							</li>
 							<li class = "amendkey">
-								<div>
-									确认密码
-								</div>
+								<div>确认密码</div>
 								<input type="password" placeholder="6-20位字符" data-type="pass"/>
 							</li>
 						</ul>
@@ -165,7 +142,7 @@
 						<b class="show-key"></b><span class="pas-showhide">显示密码</span>
 					</div>
 					<input id="newkey_btn" class="f_btn button-orange" type="button" value="完成"/>
-					<div class="con-text" style="margin-top: 15px;">
+					<div class="con-text">
 						注意：密码需要填写6-20位字符，可由英文字母，数字和符号组成，不能含空格
 					</div>
 				</li>
