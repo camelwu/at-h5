@@ -165,7 +165,7 @@ section[class^="hotelInfo_numb"] .numbList span.child_age {
   position: relative;
   font-size: .28rem;
   color: rgb(153,153,153);
-  top: .24rem;
+  top: .26rem;
 }
 .child_age_state{
   position: absolute;
@@ -498,6 +498,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .qp_mengban{
   width: 100%;height:100%;
   position: fixed;
+  top:0;
   background-color: black;
   opacity: 0.5;
   display: none;
@@ -588,3 +589,114 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
     /**/
 /*景点列表页结束*/
+/*套餐详情页开始*/
+.pic_box{overflow:hidden;position:relative;}
+.pic_box img{width:100%;height:auto;}
+.pic_box .go_back{
+  position: absolute;
+  width: .64rem;
+  height: .64rem;
+  left:.3rem;
+  top: .36rem;
+  background-position: 44% 10%;
+}
+.pic_box .title{
+  position: absolute;
+  left: 50%;
+  margin-left: -.8rem;
+  width:1.6rem;
+  top:.3rem;
+  font-size: .36rem;
+  text-align: center;
+  color: #FFFFFF;
+}
+.pd_mb{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  padding: 0 .3rem;
+  color: white;
+}
+.pd_mb div:nth-child(1){
+  font-size: .32rem;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.pd_mb div:nth-child(2){
+  font-size: .2rem;
+}
+.s_you {
+  position: relative;
+  top: .04rem;
+  width: .32rem;
+  height: .32rem;
+  margin-right: .4rem;
+  background-position: 22% 41%;
+}
+.pd_contitle{
+  padding:.1rem 0;
+  color:#555;
+}
+.page_tag{
+  height:.66rem;line-height:.66rem;overflow:hidden;
+}
+.page_tag span{float:left;width:33%;height:.64rem;text-align:center;}
+.page_tag span.current{color:#fdb330;border-bottom:1px solid #fdb330;}
+
+.page_title{background:#fff;}
+.page_title h3,.page_title h4{
+  font-weight:normal;font-size:.26rem;
+  border-bottom:1px solid #ddd;color:#888;padding:.1rem .2rem;margin:0;
+}
+.page_title h4{margin:0 .2rem;padding:0;}
+.page_title h4 i{float:right;}
+.detail_box{
+  background:#fff;overflow:hidden;padding:0 .2rem;line-height:.44rem;padding-bottom:.2rem;
+}
+.detail_box strong{
+  display: block;
+  text-indent: 0;
+  margin-bottom: .2rem;
+  font-size: .32rem;line-height:.44rem;color: #000;
+}
+.detail_box ul{margin:0;}
+.detail_box ul li{
+  line-height: .36rem;
+  color: #000;
+  list-style: disc inside;
+  font-size: .26rem;
+}
+.note_content{
+  text-indent: 0;
+  margin-bottom: 0;
+  font-size: .26rem;color: #000;
+}
+.package_reserve{
+  position:fixed;left:0;bottom:0;z-index:999;width:100%;background:#fff;height:.84rem;
+}
+.package_reserve span{padding-left:.2rem;display:block;overflow:hidden;font-size:.26rem;}
+.package_reserve span.all_num{
+  line-height:.72rem;
+}
+.package_reserve span.all_num i{color:#fb6014;font-size:.32rem;}
+.package_reserve span.all_num i:before{
+  content:'\00A5';font-size:.26rem;
+}
+.package_reserve span.separate_num{
+  height:.42rem;line-height:.36rem;font-size:.24rem;color:#aaa;text-decoration:line-through;
+}
+.package_reserve span.separate_num i{color:#555;}
+.package_reserve span.separate_num i:before{
+  content:'\00A5';
+}
+.package_reserve a.reserve{
+  position:absolute;right:0;top:0;width:24%;height:.84rem;background:#fdb330;
+  color:#fff;text-align:center;line-height:.84rem;font-size:.32rem;
+}
+/*套餐详情页结束*/

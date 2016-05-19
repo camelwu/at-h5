@@ -85,34 +85,34 @@
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script src="../js/lib/lazyLoad.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script id="tpl_Localtxt" type="text/template">
-    {%=destCity%}
+    <%=destCity%>
 </script>
 <script id="tpl_SpotScreen" type="text/template">
     <li class="spot-slected">不限<b class="jd_icon scr_gou s_active"></b></li>
-    {% for(var i=0,len=data.themes.length;i<len;i++){ %}
-    <li title="{%=data.themes[i].themeID%}">{%=data.themes[i].themeName%}<b class="jd_icon scr_gou"></b></li>
-    {% } %}
+    <% for(var i=0;i<themes.length;i++){ %>
+    <li title="<%=themes[i].themeID%>"><%=themes[i].themeName%><b class="jd_icon scr_gou"></b></li>
+    <% } %>
 </script>
 <script id="tpl_SearchAvailableToursAttractions" type="text/template">
-    {% for(var i=0,len=data.lists.length;i<len;i++){ %}
+    <% for(var i=0;i<lists.length;i++){ %>
     <li>
-        <a href="packages_detail.html?packageID={%=data.lists[i].packageID%}&productPrice={%=data.lists[i].leadinPrice%}&status=1">
+        <a href="packages_detail.html?packageID=<%=lists[i].packageID%>&productPrice=<%=lists[i].leadinPrice%>&status=1">
             <div class="sce_img_box">
-                <img src="{%=data.lists[i].pictureURL%}" alt="景点图片">
+                <img src="<%=lists[i].pictureURL%>" alt="景点图片">
             </div>
             <div class="sce_detail">
-                <p>{%=data.lists[i].packageName%}</p>
+                <p><%=lists[i].packageName%></p>
                 <div class="sce_det_fare">
-                    <i>{%=data.lists[i].leadinPrice%}</i> 元起/人
+                    ￥<i><%=lists[i].leadinPrice%></i> 起/人
                 </div>
             </div>
         </a>
     </li>
-    {% } %}
+    <% } %>
 
 </script>
 <script>
@@ -247,9 +247,13 @@
                 if(json.success){
                     var data=json.data;
                     console.log(data);
-                    var tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data),
-                            tpl_Localtxt = template("tpl_Localtxt",data),
-                            tpl_SpotScreen = template("tpl_SpotScreen",data);
+
+                    var str1 = $('#tpl_SearchAvailableToursAttractions').html(),
+                            str2 = $('#tpl_Localtxt').html(),
+                            str3 = $('#tpl_SpotScreen').html();
+                    var tpl_SearchAvailableToursAttractions = ejs.render(str1, data);
+                    var tpl_Localtxt = ejs.render(str2, data);
+                    var tpl_SpotScreen = ejs.render(str3, data);
                     $("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
                     $("#Localtxt").html(tpl_Localtxt);
                     $("#SpotScreen").html(tpl_SpotScreen);
@@ -323,12 +327,16 @@
                 var json=data;
                 console.log(json);
                 if(json.success){
-                    var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data),
-                            tpl_Localtxt = template("tpl_Localtxt",data),
-                            tpl_SpotScreen = template("tpl_SpotScreen",data);
-                    $("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
-                    $("#Localtxt").html(tpl_Localtxt);
-                    $("#SpotScreen").html(tpl_SpotScreen);
+                    var data=json.data;
+                  var str1 = $('#tpl_SearchAvailableToursAttractions').html(),
+                    str2 = $('#tpl_Localtxt').html(),
+                    str3 = $('#tpl_SpotScreen').html();
+                  var tpl_SearchAvailableToursAttractions = ejs.render(str1, data);
+                  var tpl_Localtxt = ejs.render(str2, data);
+                  var tpl_SpotScreen = ejs.render(str3, data);
+                  $("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
+                  $("#Localtxt").html(tpl_Localtxt);
+                  $("#SpotScreen").html(tpl_SpotScreen);
                     CBot_screen();
 //                    Loadmore();
                     if(data.lists.length == 0){
@@ -368,7 +376,9 @@
                 var json=data;
                 console.log(json);
                 if(json.success){
-                    var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data);
+                    var data=json.data;
+                    var str = $('#tpl_SearchAvailableToursAttractions').html();
+                    var tpl_SearchAvailableToursAttractions = ejs.render(str,data);
                     $("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
 //                    Loadmore();
                     if(data.lists.length == 0){
