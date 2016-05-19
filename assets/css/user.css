@@ -13,33 +13,61 @@ i, em {
   font-style: normal;
 }
 
-.f_key {
-  width: 94%;
-  margin: 0 auto;
-  margin-top: 10px;
-  border: 1px solid #dfdfdd;
-  border-radius: 5px;
-}
-
-.f_key li {
-  list-style: none;
-  font-size: 1.4rem;
-  padding: 12px 15px;
-  border-bottom: 1px solid #dfdfdd;
-  margin-bottom: 0;
+.uset_name {
+  height: 1.24rem;
+  border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
 
-.f_key li > input {
-  color: #484848;
-  font-size: 1.4rem;
+.uset_name .new_msg {
+  margin-top: .2rem;
+  margin-bottom: .06rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.uset_text {
+  color: #999;
+  font-size: .24rem;
+}
+
+.name_text {
+  padding: 0 .4rem;
+  color: #999;
+  font-size: .24rem;
+
+}
+
+.f_key {
+  margin: .42rem .4rem .96rem;
+}
+
+.mb_none {
+  margin-bottom: 0;
+}
+
+.f_key > li {
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
+  position: relative;
+}
+.f_key > li span{
+  width: 2.3rem;
+  display: inline-block;
+}
+
+.f_key > li input{
+  height: 90%;
+  width: 60%;
+  font-size: .28rem;
 }
 
 #find_phone {
   width: 100%;
 }
 
-.mob-cell {
+.mob_cell {
   width: 100%;
 }
 
@@ -47,12 +75,8 @@ i, em {
   width: 100%;
 }
 
-.f_key li:last-child {
-  border: none;
-}
-
 .f_btn {
-  margin: .96rem .4rem 0;
+  margin: .96rem .4rem .2rem;
   display: block;
   height: .88rem;
   background-color: #ffb413;
@@ -91,21 +115,24 @@ i, em {
 }
 
 .fk_put {
-  font-size: 1.4rem;
-  color: #d1d1d1;
-  background-color: transparent;
+  height: 90%;
+  width: 100%;
+  font-size: .28rem;
+  color: #333;
 }
 
 .fk_div {
-  float: right;
-  min-width: 107px;
-  height: 42px;
-  margin-top: -30px;
-  border-left: 1px solid #dfdfdd;
+  padding: 0 .2rem;
+  height: .68rem;
   text-align: center;
-  line-height: 44px;
-  color: #ffb413;
-  display: inline-block;
+  line-height: .68rem;
+  background-color: #ffb500;
+  border-radius: .04rem;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: .12rem;
+
 }
 
 /*
@@ -241,17 +268,12 @@ i, em {
 }
 
 /*关于我们*/
-.at_introduce {
-  margin-top: 40px;
-  padding: 0 40px;
-}
-
 .asiatravel_wrap {
-  width: 100px;
-  margin: 0 auto;
+  margin-top: .4rem;
   text-align: center;
-  margin-top: 48px;
-  font-size: 28px;
+}
+.asiatravel_wrap >img{
+  width: auto;
 }
 
 .asiatravel_wrap h4 {
@@ -259,14 +281,18 @@ i, em {
   color: #333;
 }
 
+.at_introduce {
+  margin-top: .5rem;
+  padding: 0 .4rem;
+}
+
 .at_logo {
-  height: 100px;
-  margin-bottom: 15px;
+  margin-bottom: .2rem;
 }
 
 .at_introduce li {
   position: relative;
-  line-height: 40px;
+  line-height: .96rem;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -275,6 +301,7 @@ i, em {
 }
 
 .at_introduce .open_arw {
+  margin-top: .15rem;
   background: url("../images/ui/icon-hft.png") no-repeat;
   background-size: 8.4rem 4.8rem;
   width: .24rem;
@@ -342,7 +369,7 @@ i, em {
 }
 
 .user_content > ul li:last-child {
-  line-height: .6rem;
+  line-height: 1.24rem;
 }
 
 .open-sexw {
@@ -450,19 +477,19 @@ i, em {
   font-weight: 500;
 }
 
-.info_sex{
+.info_sex {
   position: absolute;
   top: .2rem;
   right: 0;
-  width: 1.56rem;
   height: .64rem;
   border: 1px solid #fdb330;
   border-radius: .04rem;
   overflow: hidden;
-  background-color: #ffb413;;
+  background-color: #fff;
+  color: #fdb330;
 }
 
-.sex_div {
+.per_man, .per_woman {
   float: left;
   width: .76rem;
   height: .64rem;
@@ -472,7 +499,8 @@ i, em {
   background-color: #fff;
 
 }
-.sex_act{
+
+.info_sex .sex_act {
   color: #fff;
   background-color: #fdb330;
 }
@@ -529,7 +557,7 @@ i, em {
 
 #info_content {
   position: absolute;
-  top: 45px;
+  top: .88rem;
   right: 0;
   bottom: 0;
   left: 0;
@@ -546,63 +574,42 @@ i, em {
   background-color: white;
 }
 
-#info_content li {
-  list-style-type: none;
-}
-
-.amendkey {
-  list-style-type: none;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  font-size: 14px;
-  border-bottom: 1px solid #dedede;
-}
-
-.amendkey div {
-  font-size: 15px;
-  color: #484848;
-}
-
-.amendkey input {
-
+#keyForm {
+  overflow: hidden;
 }
 
 .showkey {
-  float: right;
-  margin-right: 3%;
-  margin-top: 10px;
-  padding-bottom: 5px;
+  margin: .2rem .4rem .96rem;
 }
 
-.show-key {
+.show_key {
   position: relative;
   display: inline-block;
-  width: 22px;
-  height: 24px;
-  top: 5px;
-  margin-right: 3px;
-  background: url(../images/ui/icons.png) no-repeat;
-  background-position: 14% 101%;
-  background-size: 230px 152px;
+  width: 0.36rem;
+  height: .36rem;
+  top: .1rem;
+  margin-right: .12rem;
+  background: url(../images/ui/icon_common.png) no-repeat;
+  background-position: -5.92rem -.55rem;
+  background-size: 7.4rem 4.8rem;
 }
 
-.show-keys {
+.show_keys {
   position: relative;
   display: inline-block;
-  width: 22px;
-  height: 24px;
-  top: 5px;
-  margin-right: 3px;
-  background: url(../images/ui/icons.png) no-repeat;
-  background-position: 2% 101%;
-  background-size: 230px 152px;
-
+  width: 0.36rem;
+  height: .36rem;
+  top: .1rem;
+  margin-right: .12rem;
+  background: url(../images/ui/icon_common.png) no-repeat;
+  background-position: -5.4rem -.55rem;
+  background-size: 7.4rem 4.8rem;
 }
 
-.pas-showhide {
+.pas_showhide {
   display: inline-block;
   vertical-align: middle;
-  margin-top: -3px;
+  margin-top: -.06rem;
 }
 
 /*
@@ -615,7 +622,8 @@ i, em {
   border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
-.u_name >input{
+
+.u_name > input {
   height: 90%;
   width: 100%;
   font-size: .28rem;
@@ -632,13 +640,6 @@ i, em {
   top: .3rem;
   right: 0;
   background-position: -6.74rem -.18rem;
-}
-
-.name_text {
-  padding: 0 .4rem;
-  color: #999;
-  font-size: .24rem;
-
 }
 
 /*
@@ -905,6 +906,12 @@ i, em {
 
 .con_text {
   text-align: center;
+  font-size: .24rem;
+  color: #999;
+}
+.con_pass{
+  margin: 0 .4rem;
+  line-height: .36rem;
   font-size: .24rem;
   color: #999;
 }
@@ -1855,6 +1862,7 @@ ul, ol {
   top: 14px;
 }
 
+/*电话拨号开始*/
 .jpop_box_tic {
   position: fixed;
   top: 0;
@@ -1862,7 +1870,7 @@ ul, ol {
   background: rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100%;
-  z-index: 11;
+  z-index: 100;
   display: none;
 }
 
@@ -1881,17 +1889,17 @@ ul, ol {
 }
 
 .jpop_box_tic dt {
-  padding: 18px 0 10px;
-  font-size: 1.86rem;
+  padding: .36rem 0 .2rem;
+  font-size: .36rem;
   color: #5abdb7;
   border-bottom: 1px solid #e1e1e1;
-  margin-bottom: 12px;
+  margin-bottom: .24rem;
 }
 
 .jpop_box_tic dd {
   overflow: hidden;
   margin: 0 10%;
-  font-size: 1.2rem;
+  font-size: .28rem;
 }
 
 .jpop_box_tic dd a, .jpop_box_tic dd span {
@@ -1909,6 +1917,8 @@ ul, ol {
   float: left;
   background: #dfdfdf;
 }
+
+/*电话拨号结束*/
 
 .jto_area_code p, .jto_area_code li ul li {
   height: 36px;

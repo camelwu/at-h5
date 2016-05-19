@@ -52,25 +52,26 @@
     closeAmend(close_page);
     //  是否显示密码
     function ifShowkey(obj){
-      obj.onclick = function(){
-        var b = ifshowkey.firstElementChild;
+      console.log(obj);
+      obj.click(function(){
         var input;
-        if(b.className == "show-key"){
-          b.className = "show-keys";
+        if(obj.find('b').attr('class') == "show_key"){
+          obj.find('b').attr('class','show_keys');
           input = document.getElementById("keyForm").getElementsByTagName("input");
           for(var i = 0;i < input.length;i++){
             input[i].type = "text";
           }
         }else{
-          b.className = "show-key";
+          obj.find('b').attr('class','show_key');
           input = document.getElementById("keyForm").getElementsByTagName("input");
           for(var j = 0;j < input.length;j++){
             input[j].type = "password";
           }
         }
-      }
+      });
     }
-    ifShowkey(ifshowkey);
+    var showkey=$('.showkey_tab');
+    ifShowkey(showkey);
     //  点击链接页面跳转
     function amendInfo(obj1,obj2,obj3){
       obj1.onclick = function(){
@@ -119,12 +120,10 @@
     });
     //  性别选择
     function changeSex(obj){
-      obj.onclick = function(e) {
-          if(e.target.className == "sex_div"){
-            for(var i=0;i<obj.children.length; i++){
-              obj.children[i].className = "sex_div";
-            }
-            e.target.className="sex_act sex_div";
+      obj.click(function(e) {
+          if(e.target.className == "per_man"){
+            oSex.children().eq(0).addClass('sex_act');
+            oSex.children().eq(1).removeClass('sex_act');
             UserSex=26;
             var Parameters={
               "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
@@ -132,10 +131,21 @@
               "Code": "0056"
             };
             vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
+          }else if(e.target.className == "per_woman"){
+            oSex.children().eq(0).removeClass('sex_act');
+            oSex.children().eq(1).addClass('sex_act');
+            UserSex=27;
+            var Parameters={
+              "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
+              "ForeEndType": 3,
+              "Code": "0056"
+            };
+            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters),mycallback_sex);
           }
-      };
+      });
     }
-    changeSex(sex);
+    var oSex=$('#sex');
+    changeSex(oSex);
     //  修改昵称
     var nick_btn = $("#nick_btn")[0];
     function amendNick(obj){
@@ -210,8 +220,28 @@
     //绑定新手机号
     function changeInfo_mobile(obj){
       obj.onclick = function(){
-        var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob-cell")[0];
-        var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob-code")[0];
+        //input输入内容变色
+        //function changeInputValue(obj,defaultValue){
+        //  alert(obj.val());
+        //  if($(this).val() != defaultValue){
+        //    $(this).css('color','#d1d1d1');
+        //  }else {
+        //    $(this).css('color','#333');
+        //  }
+        //  obj.on('input propertychange focus',function(){
+        //    if($(this).attr('value') == defaultValue){
+        //      $(this).css('color','#d1d1d1');
+        //    }else {
+        //      $(this).css('color','#333');
+        //    }
+        //  })
+        //}
+        //var mob_cell=$('.mob_cell');
+        //var defaultValue='请输入手机号';
+        //changeInputValue(mob_cell,defaultValue);
+
+        var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob_cell")[0];
+        var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob_code")[0];
         u_phone = oInputMobile.value;
         if ( ! check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
         {
@@ -284,8 +314,8 @@
     var phone_ver = $("#phone_ver")[0];
     function phone_veri(obj){
       obj.onclick = function(){
-        var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob-cell")[0];
-        var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob-code")[0];
+        var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob_cell")[0];
+        var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob_code")[0];
 
         if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
         {
@@ -588,5 +618,7 @@
 
   clearValue('#name');
   clearValue('#realName');
+
+
 })();
 
