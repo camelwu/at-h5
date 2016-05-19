@@ -1,66 +1,7 @@
-*{margin:0;padding:0;}
-html {
-    font-size:62.5%;
+ul,li{
+    list-style: none;
 }
-
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x:hidden;
-    /*font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;*/
-    -webkit-font-smoothing: antialiased;
-    color:#666;
-    /*background:#f5f4f9;*/
-    /*font-size:1.4rem;*/
-    /*line-height:2.0rem;*/
-}
-#preloader {
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color:#FFF;
-    z-index:99999999;
-}
-
-#status {
-    z-index:99999999;
-    width:250px;
-    height:250px;
-    position:absolute;
-    left:50%;
-    top:50%;
-    background-image:url(../images/loading.gif);
-    background-size:64px 64px;
-    background-repeat:no-repeat;
-    background-position:center;
-    margin:-125px 0 0 -125px;
-}
-
-#preloader p{
-    top:60%;
-}
-
-#preloader em{
-    font-size:10px!important;
-    display:block;
-    font-style:normal;
-}
-#status-h{
-    z-index:99999999;
-    width:250px;
-    height:250px;
-    position:absolute;
-    left:50%;
-    top:50%;
-    background-image:url(../../images/loading-hotel.gif);
-    background-size:125px;
-    background-repeat:no-repeat;
-    background-position:center;
-    margin:-125px 0 0 -125px;
-}
-.snap-content {
+.snap-content{
     position: absolute;
     top: 0;
     right: 0;
@@ -70,187 +11,87 @@ body {
     height: auto;
     z-index: 2;
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
-.top {
+.hotel_lists{
     width: 100%;
-    height: 45px;
-    padding: 1px;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    position: fixed;
-    z-index: 100;
-    background: #173c58;
-}
-.header h3{
-    font-size:17px;
-    font-weight:700;
-    width:100%;height:100%;
-    font-family:'Microsoft YaHei', STHeiti, Verdana, sans-serif;
-}
-.icons{
-    background-image: url(../../images/ui/icons.png);
-    background-repeat: no-repeat;
-    background-size: 243px 160px;
-    display:inline-block;
-}
-.search{
-    width:86%;height:35px;
-    margin-left: 40px;
-    margin-top:0.5rem;
-    background-color: white;
-    border-radius: 0.5rem;
-}
-.fdj{
-    width:1.4rem;height: 1.4rem;
-    margin-left: 10px;
-    margin-top:10px;
-}
-.sousuo{
-    height:24px ;
-    font-size: 1.4rem;
-    position: absolute;
-    margin:0.5rem 0 0 1rem;
-    border:none;
-    outline:none;
-    background: none;
-    color: #d1d1d1;
-}
-.hotelcontent{
-    /*position: absolute;*/
-    width: 100%;
-    margin-top: 45px;
+    margin-top: 0.88rem;
     list-style-type: none;
+    background: #fff;
+    border-top: 1px solid #dddddd;
 }
-.hotelConNo{
-    position:relative;
-    width:100%;
-    height:100%;
-    background:#f5f4f9;
+.hotel_list{
+    position: relative;
+    margin-right: 0.15rem;
+    height: 1.7rem;
 }
-.hotelConNo div{
-    position:absolute;
-    left:50%;top:50%;
-    margin-left:-115px;margin-top:-100px;
-    overflow:hidden;
-    width:235px;
-    /*height:120px;*/
+.hotel_picture{
+    position: absolute;
+    width: 1.7rem;
+    height: 1.7rem;
 }
-.hotelConNo div img{
-    float:left;margin-left:85px;
-    width:69px;height:60px;
+.hotel_picture img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url("../../images/hotelListerrorpic.png") no-repeat;
+    background-size: 100% 100%;
 }
-.hotelConNo div p{
-    float:left;
-    font-size:1.6rem;color:#a0a0a0;
-}
-.hotelConNo div .hotelConSorry1{
-    margin-top:16px;
-    margin-left:8px;
-}
-.hotelConNo div .hotelConSorry2{
-    margin-top:6px;
-    margin-left:40px;
-}
-.h-li{
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-}
-.hdiv{
-    width:82px;height:115px;
-}
-.hotelPic{
-    width:100%;height:100%;
-}
-.detail{
-    margin-left: 1rem;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
-}
-.hname{
-    margin-top: 1rem;
-    font-size:1.6rem;
-    font-weight:bold;
-    color:#484848;
-    line-height:normal;
-    margin-bottom:0;
-}
-.h-score{
-    margin-top: 0.5rem;
-
-    width:100%;
-}
-.hl_price{
-    float: right;
-    /*margin-right: 15px;*/
-    line-height:normal;
-    margin-bottom:0;
-}
-.h-grade{
-    margin-top: 0.7rem;
-    width:100%;
-}
-.hl-icon1{
+.hotel_content{
     display: inline-block;
-    width:15px;
-    height:10px;
-    background-image: url(../../images/ui/icons1.png);
-    background-size: 400px 120px;
-    background-position:27% 8%;
+    margin-right: 0;
+    overflow: hidden;
+    margin-left: 1.88rem;
+    border-bottom: 1px solid #e6e6e6;
 }
-.hl-icon2{
-    display: inline-block;
-    width:15px;
-    height:10px;
-    background-image: url(../../images/ui/icons1.png);
-    background-size: 400px 120px;
-    background-position:33% 8%;
+.hotel_name{
+    width:5.2rem;
+    font-size: 0.28rem;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #333;
+    margin-top: .1rem;
 }
-.h-wifi,.h-transfer{
-    display: inline-block;
-    width: 20px;
-    height: 15px;
-    background-image: url(../../images/icon-h.png);
-    background-repeat: no-repeat;
-    background-size: 402px 174px;
-    background-position: -77px -14px;
-    vertical-align: -4px;
+.hotel_content_score{
+    color: #999;
+    font-size: 0.24rem;
+    margin-top: 0.08rem;
 }
-.h-transfer{
-    background-position: -37px -14px;
+.hotel_content_price{
+    position: absolute;
+    right: 0.2rem;
+    text-align: right;
+    top: 50%;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    margin-top: -0.15rem;
+    color: #ff5b13;
+    font-size: 0.36rem;
+    font-weight: bold;
 }
-.h-div1{
-    float: right;
-    padding:0 3px;
-    height:15px;
-    line-height:15px;
+.hotel_content_grade{
+    color: #999;
+    font-size: 0.24rem;
+    margin-top: 0.08rem;
+}
+.hotel_content_div1{
+    height: .3rem;
+    width: .7rem;
+    line-height: .3rem;
     color: white;
     text-align: center;
-    -webkit-text-size-adjust:none;font-size: 1rem;
-    background-color: #55bfb7;
-    margin-right:4px;
+    background-color: #ffb412;
+    margin-right: .04rem;
+    position: absolute;right:.2rem;
+
 }
-.h-address{
-    margin-top: 0.9rem;
-    color:#999999;
-    font-size:1em;
-    /*margin-bottom: 0.6rem;*/
-    line-height:normal;
+.hotel_content_address{
+    font-size: 0.2rem;
+    line-height: .4rem;
 }
+/*footer开始*/
 .hl-bottom{
     width:100%;
     height:44px;
@@ -273,14 +114,6 @@ body {
     background-repeat: no-repeat;
     background-size: 243px 160px;
     display:inline-block;
-}
-.header-back{
-	/*
-    width:12px;
-    height:22px;
-    margin-top: 4px;
-	fixed H5-102
-	*/
 }
 .fo-div{
     text-align: center;
@@ -318,55 +151,10 @@ body {
     right: 36%;
     top: 15%;
 }
-.ho_list{
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    border-bottom: 1px solid #CCCCCC;
-    margin-right:15px;
-}
-.ho_pic{
-    width:96px;height:105px;
-    position: relative;
-}
-.ho_pic img{
-    width:100%;height:100%;
-    /*background:url("../../images/hotelListerrorpic.png") no-repeat 0 0;*/
-    /*background-size: 100% 100%;*/
-}
-.ho_infor{
-    /*width: 100%;*/
-    margin-left: 1rem;
-    -webkit-box-felx:1;
-    -moz-box-flex:1;
-    -ms-flex:1;
-    -webkit-flex:1;
-    flex:1;
-    margin-right:0;
-    overflow:hidden;
-}
-.ho_infor h2{
-    font-size:1.2rem;color:#484848;
-    margin-top:0.8rem;font-weight:normal;
-}
-.fenshu{
-    color:#8ed1cc;
-    font-size:1.5rem;
-    font-weight: 600;
-}
 .h-font1{
     color:#999999;
     font-size:0.8rem;
 }
-.fangjia{
-    font-size:2rem;
-    font-weight: 600;
-    color:#fe4716;
-}
-
-
 /*
     �����
 */
@@ -456,6 +244,7 @@ body {
     font-size: 1.4em;
     color: #686869;
     line-height: 30px;
+    overflow: hidden;
 }
 .s-li1{
     float: left;

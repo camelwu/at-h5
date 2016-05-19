@@ -374,12 +374,12 @@ function styleChange(id, mytext) {
 	//贾燕云的js结束
 
 	//返回按钮事件
-	var hl_back = document.getElementById('hl_back');
-	lsf_myweb.bind(hl_back, 'click', function() {
-        //清空筛选条件
-        lsf_myweb.setSession('asiaHlHistory', {});
-		window.location.href = 'index.html';
-	});
+	//var hl_back = document.getElementById('hl_back');
+	//lsf_myweb.bind(hl_back, 'click', function() {
+     //   //清空筛选条件
+     //   lsf_myweb.setSession('asiaHlHistory', {});
+	//	window.location.href = 'index.html';
+	//});
 	//页面没有展示前页面展示的页面
 	var oUl = document.getElementById('lsf_list');
 	$(window).load(function() {
@@ -549,17 +549,17 @@ function styleChange(id, mytext) {
 				var str4 = '';
 				if (data[i].isFreeWiFi) {
 					//str2+='<b class="hl-icon1">免费wifi</b>';
-					str2 += '<span class="h-wifi"></span>';
+					str2 += '<span class="h-wifi hotel_content_wifi"></span>';
 				}
 				if (data[i].isFreeTransfer) {
 					//str2+='<b class="hl-icon2">免费接送</b>';
-					str2 += '<span class="h-transfer"></span>';
+					str2 += '<span class="h-transfer hotel_content_transfer"></span>';
 				}
 				if (data[i].isCashRebate) {
-					str3 = '<div class="h-div1" style="background-color: #ffb412">返现</div>';
+					str3 = '<div class="h-div1 hotel_content_div1">返现</div>';
 				}
 				if (data[i].isFreeCityTour) {
-					str4 = '<div class="h-div1">免费景点</div>';
+					str4 = '<div class="h-div1 hotel_content_div1">免费景点</div>';
 				}
 
 				//有地区地址就给地址加括号，没有就不加
@@ -567,7 +567,7 @@ function styleChange(id, mytext) {
 					data[i].location = '(' + data[i].location + ')';
 				}*/
 
-				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list" data-hotelCode="'+data[i].hotelCode+'" data-InstantConfirmation="'+data[i].InstantConfirmation+'" data-AllOccupancy="'+data[i].AllOccupancy+'">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + namestr + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:12px;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].location + '</p>' + '</div>' + '</li>';
+				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list hotel_list" data-hotelCode="'+data[i].hotelCode+'" data-InstantConfirmation="'+data[i].InstantConfirmation+'" data-AllOccupancy="'+data[i].AllOccupancy+'">' + '<div class="ho_pic hotel_picture">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor hotel_content">' + '<h3 class="hname hotel_name">' + namestr + '</h3>' + '<div class="hotel_content_score">' + '<span>' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span>分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span>分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hotel_content_price">' + '<span>￥</span>' + '<span >' + data[i].avgPriceCNY + '</span>' + '<span>起</span>' + '</p>' + '</div>' + '<div class="hotel_content_grade">' + '<span>' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address hotel_content_address">' + data[i].location + '</p>' + '</div>' + '</li>';
 
                 liHtml += str;
 			}
