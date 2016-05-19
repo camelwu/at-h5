@@ -4,6 +4,7 @@ em{ font-style:normal}
     height: 100%;
     position: relative;
     overflow: auto;
+    padding-bottom: .88rem;
 }
 .hotel_user_box{
     width: 100%;
@@ -62,19 +63,27 @@ i.right{
     background: #fff;
 }
 .hotel_user_detail_name,.hotel_user_detail_phone,.hotel_user_detail_Email{
-    padding:.2rem .2rem.15rem;
+    padding:.2rem .2rem 0;
     border-bottom:1px solid #dedede;
     position: relative;
 }
 .hotel_user_detail_name1{
     border-bottom:1px solid #dedede;
-    padding-bottom: .2rem;
+    padding: .2rem;
 }
 .hotel_user_detail_name2{
     line-height: .68rem;
 }
+.hotel_user_detail_border{
+    border-bottom:1px solid #dedede;
+}
 .hotel_user_detail_name2 input{
     width: 44%;
+    margin: .2rem;
+    border-right: 1px solid #ccc;
+}
+.hotel_user_detail_name2 input:last-child{
+    border-right: 0 solid #ccc;
 }
 .hotel_user_detail_phone,.hotel_user_detail_Email{
     height: .58rem;
@@ -84,6 +93,7 @@ i.right{
     line-height: .68rem;
     position: absolute;
     top:.16rem;
+    margin-left: .15rem;
 }
 .hotel_user_detail_phone input,.hotel_user_detail_Email input{
     background: none;
