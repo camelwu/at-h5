@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<head lang="zh">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>订单填写</title>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
+    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+    <link href="../styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="css/air_ticket.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="preloader">
+    <div id="status">
+
+    </div>
+</div>
+<div class="all-elements" id="ticket-wrap">
+    <header class="clearfix"><i class="fl" onclick="window.history.go(-1)"></i>订单填写<a href="tel:4008-902-202" class="ticket-order-tel"><i>&nbsp;</i></a></header>
+    <div class="air_content">
+
+        <div class="order-top">
+            <div class="go-line-outer">
+                <div class="go-line-outer-sub">
+                    <p class="go-line"><i class="icon-go"></i><span class="date">01-08</span> &nbsp;<span>周二&nbsp;</span> <span>浦东T2</span>&nbsp;-&nbsp;<span>洛杉矶</span> <span class="icon-clock"></span><span class="hour">11h30m</span></p>
+                    <p class="go-line back"><i class="icon-go"></i><span class="date">01-08</span> &nbsp;<span>周二&nbsp;</span> <span>洛杉矶</span>&nbsp;-&nbsp;<span>浦东</span> <span class="icon-clock"></span><span class="hour">11h30m</span></p>
+                </div>
+                <div class="go-line-outer-right"><i></i></div>
+
+            </div>
+            <div class="seat-condition">
+                <div class="left">
+                    <span>头等舱</span>
+                    <p><span>往返票价</span>&nbsp;￥<span>117785</span><span>&nbsp;税费</span>￥<span>1957</span></p>
+                </div>
+                <div class="right">
+                    <p><span class="tag">￥<strong>11942</strong></span>
+                    </p><p><span class="tip-word">退改签说明</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ride-user">
+            <div class="ride-user-first">
+                <span>乘机人</span>
+                    <a id="add-Passenger" class="add-Passenger" href="javascript:void(0);" onclick=" vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild,null,JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.DepartDate)">添加乘机人</a>
+            </div>
+            <section id="passenger-list">
+            <ul style="display: none">
+                 <li class="ride-user-info">
+                  <span class="icon-add"><i class="del-passager" onclick="javascript:delPassager(this)"></i></span>
+                  <div class="middle">
+                      <p class="name">
+                          <label for="first-name-passenger" class="name-label-passenger">姓</label><input type="text" name="name" id="first-name-passenger"  readonly="readonly" data-elementName="lastName" >
+                          <label for="last-name-passenger" class="name-label-passenger">名</label><input type="text" name="name" id="last-name-passenger"  readonly="readonly" data-elementName="firstName"  >
+                      </p>
+                      <div class="passport">
+                          <span>护照</span><input type="text" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="idNumber"><span class="passenger-sex"></span>
+                      </div>
+                  </div>
+                  <i class="edit-passager" data-id="" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></i>
+              </li>
+          </ul>
+            </section>
+        </div>
+        <div class="ride-user contact">
+            <div class="ride-user-first">
+                <span>联系人</span>
+                <a href="javascript:void(0);" class="icon contact-person" id="addPassenger" onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></a>
+            </div>
+            <div class="table contact-table" id="contact-table">
+                <div class="unit name">
+                    <div class="nleft">
+                        <label for="first-name" class="name-label">姓</label><input type="text" name="name" id="first-name" placeholder="BAI"  data-elementName="lastName" />
+                    </div>
+                    <span class="fly-line"></span>
+                    <div class="nright">
+                        <label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" data-elementName="firstName" />
+                    </div>
+                </div>
+                <div class="unit tel">
+                    <div class="left">
+                        <span class="jiphone">手机号</span>
+                        <div class="center jcenters" >
+                            <p><span id="country-code" data-elementName="countryCode" class="tel-btn"  >+86</span></p>
+                            <p><span id="slider-country-choose" ></span></p>
+                        </div>
+                    </div>
+                    <span class="fly-line"></span>
+                    <div class="right">
+                        <input type="tel" name="tel"  id="tel-num" placeholder="用于接收通知" data-elementName="mobilePhone"   />
+                    </div>
+                </div>
+
+                <div class="unit email">
+                    <label for="email-label">E-mail</label><input type="email" name="email" id="email-label" placeholder="用于接收通知"  data-elementName="email"  />
+                </div>
+            </div>
+        </div>
+       <!-- <div class="read-tip" style="margin-bottom: 100px">
+            我已阅读并同意<span id="buy-ticket-tip">购票须知</span>
+        </div>-->
+    </div>
+
+    <footer class="footer-filter">
+        <div class="sum">
+            <p class="total-price-number">订单总额：<span>￥<strong>1,293</strong></span></p>
+            <p class="total-person-price">5人总价</p>
+        </div>
+        <p class="detail clearfixs detail-tangle"><span id="details">明细</span><span class="icon-arrow"></span></p>
+        <div class="confirm-order"><input type="button" id="confirm-button" value="确认预订"/></div>
+    </footer>
+
+    <!--遮罩-->
+    <div class="summary-cost-shadow-one" style="display: none"></div>
+    <div class="summary-cost-shadow-two" style="display: none"></div>
+
+    <div class="summary-cost-modal summary-cost-modal-hide">
+        <div class="first-line">费用明细</div>
+        <div class="second-line">
+        </div>
+    </div>
+    <!--注意事项开始-->
+    <div class="buy-ticket-notice buy-tip" style="display: none">
+
+        <div class="header close-buy-tip">
+            <span>购票须知</span>
+            <span><i></i></span>
+        </div>
+        <div class="content-notice">
+            <p>
+                1.下单前务必核实乘客姓名与信息正确，如不正确导致无法乘机，本公司概不服负责
+            </p>
+            <p>
+                2.请确保证件的有效性，若因证件等原因产生的损失请自行承担
+            </p>
+            <p>
+                3.请确保旅行结束日期至少比证件有效期早6个月，若因证件有效期等原因产生的损失请自行承担
+            </p>
+            <p>
+                4.行李金额规定：根据航空公司规定执行
+            </p>
+            <p>
+                5.误机罚金：根据航空公司规定执行
+            </p>
+            <p>
+                6.不允许修改证件信息
+            </p>
+            <p>
+                7.团队签证无法单独购买机票，详情请咨询签证办理方
+            </p>
+            <p>
+                8.如需机票报销凭证，请致电客服
+            </p>
+            <p>
+                9.我已知晓航司乘机规定无异议
+            </p>
+        </div>
+
+    </div>
+    <!--注意事项结束-->
+    <!--机票详情开始-->
+    <div class="ticket-detail-modal" style="display: none">
+        <ul class="detail-outer">
+        </ul>
+    </div>
+    <!--机票详情结束-->
+    <div class="flight-result-tip order-result-tip"></div>
+    </div>
+
+    <!--国籍选择开始-->
+    <div class="all-elements country-cho-wrap" style="background:#fff;">
+        <div class="header">
+            <a href="javascript:;" class="header-back country-hidden">
+                <i class="icons go-back"></i>
+            </a>
+            <div class="cl_search">
+                <input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
+                <i></i>
+            </div>
+        </div>
+        <div class="snap-content" style="padding-top: 45px;">
+            <div class="country-wrap">
+                <ul class="inter-list jto_area_code" id="jto_area_code">
+                    <li>
+                        <p name="dq">当前</p>
+                        <ul>
+                            <li code="86"><i>中国</i><span>86</span></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p name="rm">热门城市</p>
+                        <ul>
+                            <li code="65"><i>新加坡</i><span>65</span></li>
+                            <li code="852"><i>香港</i><span>852</span></li>
+                            <li code="81"><i>日本</i><span>81</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="jto_letter_list">
+            <ul id="jto_letter_list">
+                <li><a href="#dq">当前</a></li>
+                <li><a href="#rm">热门</a></li>
+            </ul>
+        </div>
+        <div class="jto_seach" id="jto_seach">
+        </div>
+    </div>
+    <!--国籍选择结束-->
+</div>
+</body>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/country_list.js"></script>
+<!--<script src="../js/countrytel_list.js"></script>-->
+<script src="../scenic/js/pinyin.js"></script>
+<script src="js/countrytel_list.js"></script>
+<script src="js/hy_ticket_order.js"></script>
+
+<script>
+	vlm.l_contact();
+
+    localStorage.removeItem("travellerInfo_selected");
+    localStorage.removeItem("contact_selected");
+
+    function callback(){
+        ticketOrder.countrySlider();
+    }
+
+    function delPassager(obj){
+        var ul=$(obj).parent().parent().parent();
+        if(ul.siblings().length>=1){
+            ul.remove();
+
+        }else{
+            ul.hide();
+        }
+    }
+    function editPassager(obj){
+        var id=$(obj).find("input").eq(0).val();
+        var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
+        var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
+        vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+
+    }
+
+
+    function SelectPersonInformation(html,isContact){
+        if(html !="") {
+            if (!isContact ) {
+                $(".passenger-list-data li").remove();
+                $(".passenger-list-data").append(html);
+                $(".edit-passager").on("click",function(){
+                    var id=$(this).attr("data-id");
+                    var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
+                    var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
+                    vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+                });
+                $(".del-passager").on("click",function(){
+                    $(this).parent().parent().remove()
+                })
+
+            }
+            else {
+                $(".contact-table div").remove();
+                $(".contact-table").append(html);
+                ticketOrder.countrySlider();
+            }
+        }
+    }
+
+
+    $('.country-hidden').on('click',function(){
+        $('.country-cho-wrap').hide();
+    })
+</script>
+</html>

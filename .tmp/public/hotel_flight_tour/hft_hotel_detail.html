@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+<meta name="screen-orientation" content="portrait">
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="green">
+<meta name="Keywords" content="亚洲旅行网">
+<meta name="Description" content="境外专业旅行服务提供机构">
+<title>首页 - 亚洲旅行网</title>
+<link href="../styles/reset.css" rel="stylesheet" type="text/css">
+<link href="../styles/swipebox.css"	rel="stylesheet">
+<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
+<link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="preloader">
+  <div id="status">
+  </div>
+</div>
+<section class="contents">
+  <!--banner-->
+  <div class="hotel_dbanner jpr " id="htmlB">
+
+    <!--<img src="../images/03-1_02.jpg" alt="">-->
+    <!--<a class="goback" href="javascript:window.history.go(-1);"></a>-->
+    <!--<p>36张</p>-->
+  </div>
+  <section class="hotel_detail_msg">
+    <ul>
+      <li class="name"></li>
+      <li class="mes mes2"></li>
+      <li class="map" id="map"></li>
+    </ul>
+    <ul class="ul2" style="margin-top: -1.6rem;">
+      <!--<li class="score"><b>4.3</b> 分 <strong>385</strong>人点评&lt;!&ndash;<i class="arrow"></i>&ndash;&gt;</li>-->
+      <!--<li class="star">-->
+        <!--<span>3星级</span>-->
+        <!--<span class="park"></span>-->
+        <!--<span class="car"></span>-->
+        <!--&lt;!&ndash;<span class="detail">酒店详情</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="arrow"></i>&ndash;&gt;-->
+      <!--</li>-->
+    </ul>
+  </section>
+  <section class="hotel_detail_rooms">
+    <div class="time">
+      <ul>
+        <li><span class="departDate">12月22</span>&nbsp;入住&nbsp;&nbsp;<span class="returnDate">12月30</span>&nbsp;离店&nbsp;&nbsp;共&nbsp;<span>9</span>&nbsp;晚</li>
+        <li><span>1</span>&nbsp;房间&nbsp;&nbsp;<span>1</span>&nbsp;成人&nbsp;&nbsp;<span>0</span>&nbsp;儿童</li>
+      </ul>
+      <!--<p></p>-->
+    </div>
+    <ul class="ul_room">
+      <!--<li class="cur">-->
+        <!--<div class="slide">-->
+          <!--<div class="lfword">-->
+            <!--<p><span class="name">高级客房</span><i class="book"></i></p>-->
+            <!--<p class="gray">32-38㎡ 大/双床</p>-->
+          <!--</div>-->
+          <!--<div class="price">-->
+            <!--<span class="word">+</span>-->
+            <!--<span class="symbol">￥</span>-->
+            <!--<span class="num">288</span>-->
+          <!--</div>-->
+          <!--<b></b>-->
+        <!--</div>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<div class="slide">-->
+          <!--<div class="lfword">-->
+            <!--<p><span class="name">高级客房</span><i class="book"></i></p>-->
+            <!--<p class="gray">32-38㎡ 大/双床</p>-->
+          <!--</div>-->
+          <!--<div class="price reduce">-->
+            <!--<span class="word">-</span>-->
+            <!--<span class="symbol">￥</span>-->
+            <!--<span class="num">288</span>-->
+          <!--</div>-->
+          <!--<b></b>-->
+        <!--</div>-->
+      <!--</li>-->
+    </ul>
+  </section>
+</section>
+
+
+<script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/ATGMSMain.js"></script>
+<script src="../js/ATIcons.js"></script>
+<script src="../js/ATTransform.js"></script>
+<script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBV850tYcTCzqZbZKVWpeGYRm0yNYLt9fc&callback=initialize" type="text/javascript"></script>
+<script src="js/hft_hotelDetail.js"></script>
+
+<!--roomList-->
+<script id="ulList" type="text/template">
+  <% for(var i=0;i<rooms.length;i++){ %>
+  <li data-hotelId="<%= rooms[i].roomID %>">
+    <div class="slide">
+      <div class="lfword">
+        <p><span class="name"><%= rooms[i].roomName %></span><i class="book"></i></p>
+        <p class="gray">32-38㎡ 大/双床</p>
+      </div>
+      <div class="price">
+        <span class="word">+</span>
+        <span class="symbol">￥</span>
+        <span class="num"><%= rooms[i].addtionalPrice %></span>
+      </div>
+      <b></b>
+    </div>
+  </li>
+  <% } %>
+</script>
+<!--酒店名-->
+<script id="hotelName" type="text/template">
+  <h3><%= hotelNameLocale %><%= hotelName %></h3>
+</script>
+<!--hotelAddress-->
+<script id="hotelAddress" type="text/template">
+  <%= hotelAddress %>
+</script>
+<!--点评  评分-->
+<script id="message" type="text/template">
+  <li class="score"><b><%= hotelReviewCount %></b> 分 <strong>385</strong>人点评<!--<i class="arrow"></i>--></li>
+  <li class="star">
+    <span><%= starRating %></span>
+    <!--<span class="park"></span>-->
+    <!--<span class="car"></span>-->
+    <!--<span class="detail">酒店详情</span>-->
+    <!--<i class="arrow"></i>-->
+  </li>
+</script>
+
+
+</body>
+</html>

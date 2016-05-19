@@ -1,0 +1,2 @@
+/*! asiatravel FE team at-h5-nodejs-----2016-05-19T15:21:43 */
+!function(){function a(a,b){var c=document.getElementsByClassName(a)[0],d=document.getElementsByClassName(b)[0];d.onclick=function(){var a=c.innerHTML;a=Number(a),a+=1,c.innerHTML=a}}function b(a,b){var c=document.getElementsByClassName(a)[0],d=document.getElementsByClassName(b)[0];d.onclick=function(){var a=c.innerHTML;a=Number(a),1>=a?c.innerHTML=1:(a-=1,c.innerHTML=a)}}a("cut-up-cont","plus-btn"),b("cut-up-cont","cut-down-btn")}();

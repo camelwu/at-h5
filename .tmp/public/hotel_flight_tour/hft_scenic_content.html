@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>景点详情</title>
+    <link rel="stylesheet" href="../styles/reset.css"/>
+    <link rel="stylesheet" href="css/hft_scenic_list.css"/>
+    <link href="../styles/swipebox.css"	rel="stylesheet">
+</head>
+<body>
+<div id="preloader">
+<div id="status">
+
+</div>
+</div>
+<div class="contents">
+    <div class="header_scenic">
+        <a href="javascript:history.go(-1);" class="header_back" id = "g_back">
+        <div class="icon_go_back"></div>
+            </a>
+    </div>
+    <div>
+        <section class="bar_img" id = "barImg">
+        </section>
+        <section class = "bar_content" id = "barContent">
+        </section>
+        <section class = "scenic_content" id = "scenicContent">
+        </section>
+    </div>
+</div>
+</body>
+<script src="../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="js/hft_scenic_content.js"></script>
+<!--<script type ="text/template" id = "Barimg">-->
+    <!--<% for( var i=0;i< images.length;i++){ %>-->
+    <!--<img src="<%= images[i].thumbnailPhotoURL%>"alt="景点详情"/>-->
+    <!--<span class = "bar_img_num">编号：<%= packageRefNo %></span>-->
+    <!--<span class = "bar_img_page">1/20</span>-->
+    <!--<% }%>-->
+<!--</script>-->
+<script type ="text/template" id = "Barcontent">
+    <h3 class = "bar_content_title"><%= packageName%></h3>
+    <div class="bar_content_time">
+        <p><i class = "bar_content_time_schedule"></i>预定时间: <span><%= vlm.Utils.format_date(salesFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(salesTo ,"Ymd")%></span></p>
+        <p><i class = "bar_content_time_travel"></i>预定时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
+    </div>
+</script>
+<script type ="text/template"  id = "Sceniccontent">
+    <div class = "scenic_content_feature">
+        <h3><i class = "scenic_content_feature_start"></i>特色亮点</h3>
+        <ul>
+            <li><%- inclusiveItem%></li>
+        </ul>
+    </div>
+    <div class="scenic_content_time">
+        <h3><i></i>营业时间</h3>
+        <span><%= vlm.Utils.format_date(defaultDepartStartDate ,"hm")%></span>
+    </div>
+    <div class="scenic_content_address">
+        <h3><i></i>营业地址</h3>
+        <address><%= destCityName%></address>
+    </div>
+    <% if(tours.length){for(var i=0 ;i< tours.length;i++){ %>
+    <div class="scenic_content_scheduling">
+        <h3><i></i>行程安排</h3>
+        <ul>
+            <li class = "scenic_height1"><%- tours[i].overview%></li>
+        </ul>
+        <i class = "scenic_content_scheduling_down" id = "Sheight1"></i>
+    </div>
+    <div class="scenic_content_notes">
+        <h3><i></i>注意事项</h3>
+        <ul>
+            <li class = "scenic_height2"><%- tours[i].importantNotes%></li>
+        </ul>
+        <i class = "scenic_content_scheduling_down" id = "Sheight2"></i>
+    </div>
+    <% }} %>
+    <div class="scenic_content_TOS">
+        <h3><i></i>服务条款</h3>
+        <ul>
+            <li class = "scenic_height3"><%- termsConditions%></li>
+        </ul>
+        <i class = "scenic_content_scheduling_down" id = "Sheight3"></i>
+    </div>
+</script>
+
+</html>

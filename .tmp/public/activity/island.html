@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>海岛游</title>
+    <link href="../styles/framework.css" rel="stylesheet"/>
+    <link href="../styles/style.css" rel="stylesheet"/>
+    <link href="css/activity.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="preloader" style="">
+    <div id="status">
+        
+    </div>
+</div>
+
+<div class="is_box">
+    <img class="is_banner" src="../images/activity/banner1.jpg" alt="">
+    <img class="is_banner"  src="../images/activity/banner2.jpg" alt="">
+    <img class="is_banner"  src="../images/activity/banner3.gif" alt="">
+    <ul class="is_list" id="act-list">
+
+    </ul>
+    <img class="is_banner" src="../images/activity/isfooter.gif" alt="">
+</div>
+
+
+<script id="tpl_seoul" type="text/template">
+    <li>
+        <a href="javascript:void(0);" onclick="jumpto({%=ProductID%},\'{%=ProductType%}\',\'{%=ProductPrice%}\',\'{%=ProductDesc%}\')"><img class="loadimg" src="{%=ProductPicUrl%}" alt="img"/></a>
+        <dl>
+            <dt>{%=ProductName%}</dt>
+            <dd>￥<span>{%=ProductPrice.replace(/起/,"")%}</span>起</dd>
+        </dl>
+    </li>
+</script>
+<script src="../js/lib/jquery.js"></script>
+
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script>
+    (function() {
+
+        $(document).ready(function() {
+            window.addEventListener('load', function() {
+//                    FastClick.attach(document.body);
+            }, false);
+        });
+        var data = [
+            {
+                "ProductName":"兰卡威 4天3晚 环岛自由行+市区半日游",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/301/Langkawi%20Island%20Hopping%20Tour%206.jpg",
+                "ProductIndex":"1",
+                "ProductStartDate":"2010/5/27",
+                "ProductEndDate":"2017/3/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK00519LGK09",
+                "ProductDesc":"4天3晚 酒店+机场接送+兰卡威市区半日游+兰卡威环岛游",
+                "ProductSite":"马来西亚",
+                "ProductPrice":"480起",
+                "ProductDiscountPrice":"",
+                "ProductID":"717",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=717"
+            },
+            {
+                "ProductName":"兰卡威 3天2晚 探秘红树林+洞穴游",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/302/Mangrove%20&%20Cave%20Exploration%20Tour%206.jpg",
+                "ProductIndex":"2",
+                "ProductStartDate":"2010/5/27",
+                "ProductEndDate":"2017/3/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK00522LGK09",
+                "ProductDesc":"3天2晚 酒店+机场接送+红树林&洞穴游",
+                "ProductSite":"马来西亚",
+                "ProductPrice":"391起",
+                "ProductDiscountPrice":"",
+                "ProductID":"720",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=720"
+            },
+            {
+                "ProductName":"巴厘岛西部 3天2晚嘉梯露伊之旅",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/3411/Jatiluwih%20Village%201.jpg",
+                "ProductIndex":"3",
+                "ProductStartDate":"2014/6/3",
+                "ProductEndDate":"2016/10/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK0498280DPS89",
+                "ProductDesc":"3天2晚 酒店+机场接送+巴厘岛西部嘉梯露伊之旅",
+                "ProductSite":"巴厘岛",
+                "ProductPrice":"498起",
+                "ProductDiscountPrice":"",
+                "ProductID":"501582",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=501582"
+            },
+            {
+                "ProductName":"巴厘岛 3天2晚 Bumi Gora库塔海滩之旅",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/22422/tanjung-aan_opt.jpg",
+                "ProductIndex":"4",
+                "ProductStartDate":"2014/10/3",
+                "ProductEndDate":"2016/3/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK0499916AMI89",
+                "ProductDesc":"3天2晚 酒店+机场接送+Bumi Gora库塔之旅",
+                "ProductSite":"巴厘岛",
+                "ProductPrice":"697起",
+                "ProductDiscountPrice":"",
+                "ProductID":"503221",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=503221"
+            },
+            {
+                "ProductName":"印尼 3天2晚 畅游吉利三岛之旅",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/22426/Gili%20Meno,%20Air%20&%20Trawangan_opt.jpg",
+                "ProductIndex":"5",
+                "ProductStartDate":"2014/10/8",
+                "ProductEndDate":"2016/3/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK0499964AMI89",
+                "ProductDesc":"3天2晚 酒店+机场接送+吉利三岛（吉利阿尔/吉利美诺岛/吉利特拉旺安岛)之旅 ",
+                "ProductSite":"印度尼西亚",
+                "ProductPrice":"1102起",
+                "ProductDiscountPrice":"",
+                "ProductID":"503269",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=503269"
+            },
+            {
+                "ProductName":"印尼 3天2 晚吉利苏达克或吉利南古航行之旅",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/22427/Gili%20Nanggu%202_opt.jpg",
+                "ProductIndex":"6",
+                "ProductStartDate":"2014/10/8",
+                "ProductEndDate":"2016/3/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK0499967AMI89",
+                "ProductDesc":"3天2晚 酒店+机场接送+吉利苏达克或吉利南古航行之旅",
+                "ProductSite":"印度尼西亚",
+                "ProductPrice":"834起",
+                "ProductDiscountPrice":"",
+                "ProductID":"503272",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=503272"
+            },
+            {
+                "ProductName":"普吉岛+皮皮岛 4天3晚 环岛游",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/191/Phi%20Phi%20Island%20Tour%20by%20Big%20Boat%20(Ferry)%201.jpg",
+                "ProductIndex":"7",
+                "ProductStartDate":"2014/9/15",
+                "ProductEndDate":"2016/10/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK00234HKT05",
+                "ProductDesc":"4天3晚普吉岛酒店+机场接送+普吉岛城市观光游+皮皮岛游",
+                "ProductSite":"普吉岛",
+                "ProductPrice":"1168起",
+                "ProductDiscountPrice":"",
+                "ProductID":"432",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=432"
+            },
+            {
+                "ProductName":"普吉岛 4天3晚 精选自由行套餐",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/191/Phi%20Phi%20Island%20Tour%20by%20Big%20Boat%20(Ferry)%206.jpg",
+                "ProductIndex":"8",
+                "ProductStartDate":"2014/9/15",
+                "ProductEndDate":"2016/10/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK00111HKT05",
+                "ProductDesc":"4天3晚普吉岛精选套餐（酒店+机场接送+皮皮岛+攀牙湾+普吉岛幻多奇秀）",
+                "ProductSite":"普吉岛",
+                "ProductPrice":"1750起",
+                "ProductDiscountPrice":"",
+                "ProductID":"309",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=309"
+            },
+            {
+                "ProductName":"苏梅岛 4天3晚 乘客车游览苏梅岛+乘坐快艇游玩乌龟岛和南园岛",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/982/Koh%20Tao%20&%20Koh%20Nang%20Yuan%20Tour%20by%20Speed%20Boat%203.jpg",
+                "ProductIndex":"9",
+                "ProductStartDate":"2012/11/1",
+                "ProductEndDate":"2016/10/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK00306USM05",
+                "ProductDesc":"4天3晚 酒店+机场接送+乘客车游览苏梅岛+乘坐快艇游玩乌龟岛和南园岛",
+                "ProductSite":"苏梅岛",
+                "ProductPrice":"1253起",
+                "ProductDiscountPrice":"",
+                "ProductID":"504",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=504"
+            },
+            {
+                "ProductName":"珊瑚群岛 3天2晚 珊瑚群岛一日游 ",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/26739/2.jpg",
+                "ProductIndex":"10",
+                "ProductStartDate":"2015/7/2",
+                "ProductEndDate":"2016/10/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK0503578USM05",
+                "ProductDesc":"3天2晚 酒店+珊瑚群岛一日游",
+                "ProductSite":"苏梅岛",
+                "ProductPrice":"564起",
+                "ProductDiscountPrice":"",
+                "ProductID":"506889",
+                "ProductAttentionNum":"",
+                "ProductType":"HT",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=506889"
+            }
+        ];
+        var  html_tj = template("tpl_seoul", data);
+        $("#act-list").html(html_tj);
+        vlm.init();
+    })();
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    }
+    function AddDays(date,days){
+        var nd = new Date(date);
+        nd = nd.valueOf();
+        nd = nd + days * 24 * 60 * 60 * 1000;
+        nd = new Date(nd);
+        //alert(nd.getFullYear() + "年" + (nd.getMonth() + 1) + "月" + nd.getDate() + "日");
+        var y = nd.getFullYear();
+        var m = nd.getMonth()+1;
+        var d = nd.getDate();
+        if(m <= 9) m = "0"+m;
+        if(d <= 9) d = "0"+d;
+        var cdate = y+"-"+m+"-"+d;
+        return cdate;
+    }
+    function jumpto(ProductID,ProductType,ProductPrice,ProductDesc){
+        ProductID = parseInt(ProductID);
+        var day = ProductDesc.substring(0,1);
+        var currentdate = getNowFormatDate();
+        var newdate = AddDays(currentdate,day);
+
+        var linkurl = {
+            1:"../hotel/hotel_detail.html?productType="+ProductType+"HotelID="+ProductID+"&HotelCode="+ProductID+"&CheckInDate="+currentdate+"&CheckOutDate="+newdate+"&NumRoom=1&NumAdult=1&NumChild=1",
+            2:"../flight/ticket_seat_choose.html?productType="+ProductType+"&setId="+ProductType,
+            3:"../scenic/scenic_detail.html?productType="+ProductType+"&packageID="+ProductID,
+            'T':"../scenic/scenic_detail.html?productType="+ProductType+"&packageID="+ProductID,
+            4:"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1",
+            'HT':"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1"
+        };
+        var url=linkurl[ProductType];
+
+        window.location.href= url;
+    }
+</script>
+
+
+
+</body>
+</html>

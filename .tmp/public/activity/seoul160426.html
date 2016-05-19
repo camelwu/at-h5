@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>新加坡环球影城</title>
+    <link href="../styles/framework.css" rel="stylesheet"/>
+    <link href="../styles/style.css" rel="stylesheet"/>
+    <link href="css/activity.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="preloader" style="">
+    <div id="status">
+    </div>
+</div>
+
+<!-- <div class="all-elements"> -->
+    <div class="content-container">
+        <section class="header-picture">
+            <img src="../images/activity/header-picture.jpg" alt=""/>
+        </section>
+        <section class="wrap">
+            <ul class="wrap-list" id="seo-list">
+                <li >
+                    <div class="wrap-list-1">
+                        <img src="../images/activity/1.jpg" alt=""/>
+                        <span class = "wrap-list-r">
+                            <h3>兴家坡何有电子船票</h3>
+                            <p class = "wrap-list-p1">体验震撼3D电影魔幻世界</p>
+                            <p class = "wrap-list-p2">活动开始: <i>2010.4.30</i></p>
+                            <p class = "wrap-list-p2">结束时间: <i>2010.4.30</i></p>
+                            <div>
+                                <span class = "wrap-list-span1">￥108起</span>
+                                <span class = "wrap-list-span2">立即预订</span>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+                <li class = "wrap-line"></li>
+            </ul>
+            <img src="../images/activity/2.jpg" alt="" class="footer-picture"/>
+        </section>
+    </div>
+<!-- </div> -->
+
+
+<script id="tpl_seoul" type="text/template">
+    <li >
+        <div class="wrap-list-1">
+            <!--<img src="../images/activity/1.jpg" alt=""/>-->
+            <img src="{%=ProductPicUrl%}" alt="img"/>
+            <span class = "wrap-list-r">
+                <h3>{%=ProductName%}</h3>
+                <p class = "wrap-list-p1">{%=ProductDesc%}</p>
+                <p class = "wrap-list-p2">活动开始: <i>{%=ProductStartDate%}</i></p>
+                <p class = "wrap-list-p2">结束时间: <i>{%=ProductEndDate%}</i></p>
+                <div>
+                    <span class = "wrap-list-span1">￥{%=ProductPrice.replace(/起/,"")%}起</span>
+                    <a class = "wrap-list-span2" href="javascript:void(0);" onclick="jumpto({%=ProductID%},{%=ProductType%},\'{%=ProductPrice%}\',\'{%=ProductDesc%}\')">立即预订</a>
+                </div>
+            </span>
+        </div>
+    </li>
+    <li class = "wrap-line"></li>
+</script>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script>
+    (function() {
+        $(document).ready(function() {
+            window.addEventListener('load', function() {
+//                    FastClick.attach(document.body);
+            }, false);
+        });
+
+        var data = [
+            {
+            "ProductName":"新加坡环球影城电子票",
+            "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/200/USS.jpg",
+            "ProductIndex":"1",
+            "ProductStartDate":"2014/1/14",
+            "ProductEndDate":"2016/6/30",
+            "IsEnabled":"1",
+            "ProductCode":"PK0496013SIN17",
+            "ProductDesc":"进入惊心动魄的电影魔幻世界，身临其境的娱乐体验，让人身心愉悦",
+            "ProductSite":"新加坡",
+            "ProductPrice":"357起",
+            "ProductDiscountPrice":"",
+            "ProductID":"499305",
+            "ProductAttentionNum":"",
+            "ProductType":"3",
+            "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=499305"
+        },
+            {
+                "ProductName":"滨海湾花园电子票",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/2433/7-compressed.jpg",
+                "ProductIndex":"2",
+                "ProductStartDate":"2013/1/23",
+                "ProductEndDate":"2016/6/30",
+                "IsEnabled":"1",
+                "ProductCode":"PK0382360SIN17",
+                "ProductDesc":"欣赏世界上最大的玻璃温室",
+                "ProductSite":"新加坡",
+                "ProductPrice":"137起",
+                "ProductDiscountPrice":"",
+                "ProductID":"382792",
+                "ProductAttentionNum":"",
+                "ProductType":"3",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=382792"
+            },
+            {
+                "ProductName":"圣淘沙名胜世界综合景点电子票",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/24627/USS%209.jpg",
+                "ProductIndex":"3",
+                "ProductStartDate":"2015/4/20",
+                "ProductEndDate":"2016/6/19",
+                "IsEnabled":"1",
+                "ProductCode":"PK0502003SIN17",
+                "ProductDesc":"3D效果震撼体验电影魔幻世界417起",
+                "ProductSite":"新加坡",
+                "ProductPrice":"417起",
+                "ProductDiscountPrice":"",
+                "ProductID":"505314",
+                "ProductAttentionNum":"",
+                "ProductType":"3",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=505314"
+            },
+            {
+                "ProductName":"S.E.A.水族馆电子票",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/2542/S.E.A%20Aquarium%201.jpg",
+                "ProductIndex":"4",
+                "ProductStartDate":"2013/3/11",
+                "ProductEndDate":"2016/7/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK0449906SIN17",
+                "ProductDesc":"沉浸海洋世界",
+                "ProductSite":"新加坡",
+                "ProductPrice":"118起",
+                "ProductDiscountPrice":"",
+                "ProductID":"453034",
+                "ProductAttentionNum":"",
+                "ProductType":"3",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=453034"
+            },
+            {
+                "ProductName":"城市观光旅游巴士电子车票",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/2209/City%20Sightseeing%20Tour%20Bus%201.jpg",
+                "ProductIndex":"5",
+                "ProductStartDate":"2012/11/27",
+                "ProductEndDate":"2016/9/30",
+                "IsEnabled":"1",
+                "ProductCode":"PK24834SIN17",
+                "ProductDesc":"感受全景新加坡",
+                "ProductSite":"新加坡",
+                "ProductPrice":"108起",
+                "ProductDiscountPrice":"",
+                "ProductID":"24853",
+                "ProductAttentionNum":"",
+                "ProductType":"3",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&pid=24853&scode=ACX98110SG"
+            },
+            {
+                "ProductName":"新加坡夜间野生动物园游",
+                "ProductPicUrl":"http://packages.asiatravel.com/packageImage/Tour/AddtlImages/137/Night%20Safari.jpg",
+                "ProductIndex":"6",
+                "ProductStartDate":"2010/4/30",
+                "ProductEndDate":"2017/3/31",
+                "IsEnabled":"1",
+                "ProductCode":"PK00347SIN17",
+                "ProductDesc":"与小动物亲密接触，感受自然之美",
+                "ProductSite":"新加坡",
+                "ProductPrice":"296起",
+                "ProductDiscountPrice":"",
+                "ProductID":"545",
+                "ProductAttentionNum":"",
+                "ProductType":"3",
+                "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=545"
+            }
+        ];
+        var  html_tj = template("tpl_seoul", data);
+        $("#seo-list").html(html_tj);
+        vlm.init();
+    })();
+
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    }
+    function AddDays(date,days){
+        var nd = new Date(date);
+        nd = nd.valueOf();
+        nd = nd + days * 24 * 60 * 60 * 1000;
+        nd = new Date(nd);
+        //alert(nd.getFullYear() + "年" + (nd.getMonth() + 1) + "月" + nd.getDate() + "日");
+        var y = nd.getFullYear();
+        var m = nd.getMonth()+1;
+        var d = nd.getDate();
+        if(m <= 9) m = "0"+m;
+        if(d <= 9) d = "0"+d;
+        var cdate = y+"-"+m+"-"+d;
+        return cdate;
+    }
+    function jumpto(ProductID,ProductType,ProductPrice,ProductDesc){
+        ProductID = parseInt(ProductID);
+        var day = ProductDesc.substring(0,1);
+        var currentdate = getNowFormatDate();
+        var newdate = AddDays(currentdate,day);
+
+        var linkurl = {
+            1:"../hotel/hotel_detail.html?productType="+ProductType+"HotelID="+ProductID+"&HotelCode="+ProductID+"&CheckInDate="+currentdate+"&CheckOutDate="+newdate+"&NumRoom=1&NumAdult=1&NumChild=1",
+            2:"../flight/ticket_seat_choose.html?productType="+ProductType+"&setId="+ProductType,
+            3:"../scenic/scenic_detail.html?packageID="+ProductID,
+            4:"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1"
+        };
+        var url=linkurl[ProductType];
+
+        window.location.href= url;
+    }
+</script>
+<script>
+    $(function(){
+        $('#seo-list li:last').remove()
+    })
+</script>
+</body>
+</html>

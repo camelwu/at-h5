@@ -1,0 +1,2 @@
+/*! asiatravel FE team at-h5-nodejs-----2016-05-19T15:21:43 */
+function init(){var a=document.getElementById("p-ul1");array=a.getElementsByTagName("b")}function selectThis(){var a=window.event.srcElement,b=a.className;if("p-icon2"==b){for(var c=0;c<array.length;c++)"p-icon1"==array[c].className&&(array[c].className="p-icon2");a.className="p-icon1"}else a.className="p-icon2"}var array=[];
