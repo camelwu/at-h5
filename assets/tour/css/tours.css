@@ -1,7 +1,37 @@
+.pr{
+    position: relative;
+}
+.pa{
+    position: absolute;
+}
+.header .header_back{
+    position: absolute;
+    height: 100%;
+    width: 1.15rem;
+    left: 0;
+}
 .content_bgfff{
     background: #fff;
 }
 /*index  beigin*/
+.header .tour_more{
+    height: 0.88rem;
+    line-height: 0.88rem;
+    position:absolute;
+    right:0.56rem;
+    top: 0;
+}
+.header .location_tip{
+    width:0.3rem;
+    height:0.32rem;
+    margin-top: -0.16rem;
+    background-image: url(../../images/ui/icons.png);
+    background-position: -3.0rem -0.10rem;
+    background-size:4.86rem 3.21rem;
+    position: absolute;
+    right:-0.3rem;
+    top: 50%;
+}
 .index_abroad{
     color:#333;
 }
@@ -9,16 +39,13 @@
     color: #333;
 }
 .index_abroad .title{
-    height: 32px;
-    line-height: 0.8rem;
+    height:0.64rem;
+    line-height: 0.64rem;
     color: #666;
-    font-size: 0.28rem;
+    font-size: 0.3rem;
     font-weight: 700;
-    padding: 0 0.26rem;
+    padding: 0.28rem 0.26rem 0 0.26rem;
     margin: 0;
-}
-.index_abroad_box {
-    padding-top: 10px;
 }
 .index_abroad_box li{
     width:2.12rem;
@@ -26,7 +53,7 @@
     line-height:0.68rem;
     text-align: center;
     margin-left: 0.25rem;
-    margin-bottom:0.28rem;
+    margin-top:0.28rem;
     border: 1px solid #d1d1d1;
     border-radius:0.3rem;
     overflow: hidden;
@@ -39,14 +66,45 @@
 .index_abroad_box li.jjin-active a{
     color: #ffb413;
 }
-
-
-
-
-
-
-
-
+.index_hotspot{
+    padding:0.3rem 0.2rem 0;
+}
+.index_hotspot  .hp-block{
+    height: 0.72rem;
+    line-height: 0.72rem;
+    color:#fff;
+    padding: 0 0.2rem;
+    left: 0;
+    bottom:0.36rem;
+    background: rgba(0,0,0,0.7);
+}
+.index_hotspot .spotDesc{
+    padding:0.3rem 0 0.5rem 0;
+}
+.index_hotspot .spotDesc p.name{
+    font-size: 0.3rem;
+    font-weight: bold;
+}
+.index_hotspot .spotDesc p.desc{
+    color: #666;
+    font-size: 0.26rem;
+    padding-top:0.14rem
+}
+.index_price{
+    font-size: 0.1rem;
+}
+.index_price span{
+    display: inline-block;
+}
+.index_price span:nth-child(1){
+    margin-top: -0.1rem;
+    position: relative;
+    top: -0.1rem;
+}
+.index_hotspot .img_box .pay_num{
+    font-size: 0.4rem;
+    margin: 0 -0.02rem 0 -0.1rem;
+}
 /*index  end*/
 
 

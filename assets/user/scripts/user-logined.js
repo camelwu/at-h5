@@ -52,109 +52,104 @@ function init(){
     vlm.checkUser();
     vlm.loading();
     vlm.loadJson("", JSON.stringify(Parameters), mycallback);
-
-
 }
 
+  function mycallback(ret) {
+      var myJson = ret;
+      //console.log(myJson.data[0].nickName);
+      vlm.loadend();
+      if (myJson.success) {
+          var user_name = $("#user_name")[0];
+          var user_sex = $("#user_sex")[0];
+          var userIcon = $("#userIcon")[0];
 
-function mycallback(ret) {
-    var myJson = ret;
-    //console.log(myJson.data[0].nickName);
-    vlm.loadend();
-    if (myJson.success) {
-        var user_name = $("#user_name")[0];
-        var user_sex = $("#user_sex")[0];
-        var userIcon = $("#userIcon")[0];
+          user_name.innerHTML = myJson.data[0].nickName;
+          localStorage.sex=myJson.data[0].salutation;
+          localStorage.email=myJson.data[0].emailAddress;
+          if(myJson.data[0].nickName == ''){
+              user_name.innerHTML='点击头像设置个人资料';
+              userIcon.src = "../images/ui/photo-man.png";
+          }else{
+              if (myJson.data[0].salutation == "26") {
+                  user_sex.className = "icon open-sexm";
+                  userIcon.src = "../images/ui/photo-man.png";
+              } else {
+                  user_sex.className = "icon open-sexw";
+                  userIcon.src = "../images/ui/photo-woman.png";
+              }
+          }
+      }
+  }
 
-        user_name.innerHTML = myJson.data[0].nickName;
-        localStorage.sex=myJson.data[0].salutation;
-        localStorage.email=myJson.data[0].emailAddress;
-        if(myJson.data[0].nickName == ''){
-            user_name.innerHTML='点击头像设置个人资料';
-            userIcon.src = "../images/ui/photo-man.png";
-        }else{
-            if (myJson.data[0].salutation == "26") {
-                user_sex.className = "icon open-sexm";
-                userIcon.src = "../images/ui/photo-man.png";
-            } else {
-                user_sex.className = "icon open-sexw";
-                userIcon.src = "../images/ui/photo-woman.png";
-            }
-        }
-    }
-}
+  //登录之后点击全部订单的链接会改变
+  (function(){
+      document.querySelector('.my-order').onclick=function(){
+          if(localStorage.getItem('login') == 1)
+          {
+              this.href='user-allorder.html';
+          }else{
+              this.href="user-login.html?allorder";
+          }
+      };
+      document.querySelector('#common-msg').onclick=function(){
 
-//登录之后点击全部订单的链接会改变
-(function(){
-    document.querySelector('.my-order').onclick=function(){
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-allorder.html';
-        }else{
-            this.href="user-login.html?allorder";
-        }
-    };
+          if(localStorage.getItem('login') == 1)
+          {
+              this.href='user-oftenInfo.html';
+          }else{
+              this.href="user-login.html?oftenInfo";
+          }
+      };
 
-
-    document.querySelector('#common-msg').onclick=function(){
-
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-oftenInfo.html';
-        }else{
-            this.href="user-login.html?oftenInfo";
-        }
-    };
-
-    document.querySelector('#unloginShow').onclick=function(){
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-perInfo.html';
-        }
-    };
+      document.querySelector('#unloginShow').onclick=function(){
+          if(localStorage.getItem('login') == 1)
+          {
+              this.href='user-perInfo.html';
+          }
+      };
 
 
-})();
+  })();
 
-$('.about-at').click(function(){
-  $('#link_about_us').show();
-  $('#close_page_aboutus').click(function(){
-    $('#link_about_us').hide();
+  $('#about_at').click(function(){
+    $('#link_about_us').show();
+    $('#close_page_aboutus').click(function(){
+      $('#link_about_us').hide();
+    });
   });
-});
-//设置里的消息开关
-function ifOpen(){
-    var b = window.event.srcElement;
-    if(b.className == "icon set_chose1"){
-        b.className = "icon set_chose2";
-    }else{
-        b.className = "icon set_chose1";
-    }
-}
+  //设置里的消息开关
+  function ifOpen(){
+      var b = window.event.srcElement;
+      if(b.className == "icon set_chose1"){
+          b.className = "icon set_chose2";
+      }else{
+          b.className = "icon set_chose1";
+      }
+  }
 
-//电话
-$('.service_tel').click(function(){
-  $('.jpop_box_tic').show();
-});
-$('.jpop_box_tic span,.jpop_box_tic a').click(function(){
-  $('.jpop_box_tic').hide();
-})
-
-//关于亚洲旅游
-$('#atIntroduce').click(function(){
-  $('#link_at').show();
-  $('#close_page_at').click(function(){
-    $('#link_at').hide();
+  //电话
+  $('.service_tel').click(function(){
+    $('.jpop_box_tic').show();
   });
-});
+  $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
+    $('.jpop_box_tic').hide();
+  })
 
-//协议及声明
-$('#atDeclaration').click(function(){
-  $('#link_declaration').show();
-  $('#close_page_de').click(function(){
-    $('#link_declaration').hide();
+  //关于亚洲旅游
+  $('#atIntroduce').click(function(){
+    $('#link_at').show();
+    $('#close_page_at').click(function(){
+      $('#link_at').hide();
+    });
   });
-});
+
+  //协议及声明
+  $('#atDeclaration').click(function(){
+    $('#link_declaration').show();
+    $('#close_page_de').click(function(){
+      $('#link_declaration').hide();
+    });
+  });
 
 
 

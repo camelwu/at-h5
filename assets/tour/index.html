@@ -34,17 +34,17 @@
 
         </div>
     </div>
-    <div class="all-elements">
+    <div class="all_elements">
         <!--   顶部   -->
         <header class="header">
-            <a href="javascript:history.go(-1);" class="header-back" id="ht-back"><i class="icons go-back"></i></a>
-            <h3>酒+景</h3>
-            <a onclick="MT.CurrentPageTolist()" class="location-wrap">
-                <span id="Localtxt" class="location-txt">更多</span>
-                <i class="location-tip"></i>
+            <a href="javascript:history.go(-1);" class="header_back" id="ht-back">
+                <i class="icon_back"></i>
             </a>
-            <!--<a onclick="MT.CurrentPageTolist()" style="position: absolute;color:#fff;width:50px;top: 0;right: 0;text-align: center;height: 45px;line-height: 45px;">更多</a>-->
-            <!--<i class="location-tip"></i>-->
+            <h3>酒+景</h3>
+            <a onclick="MT.CurrentPageTolist()" class="location-wrap tour_more">
+                <span id="Localtxt" class="location-txt">更多</span>
+                <i class="location_tip"></i>
+            </a>
         </header>
         <!--   内容   -->
         <div class="content content_bgfff">
@@ -133,27 +133,36 @@
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
+<script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script id="tpl_GetHotCity" type="text/template">
-   {% for(var i=0;i<9;i++){ %}
-   <li title="{%=data.destCities[i].cityCode%}" ><a href="scenic_list.html?DestCityCode={%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</a></li>
-   {% } %}
+   <% for(var i=0;i<9;i++){ %>
+   <li title="<%= data.destCities[i].cityCode %>" ><a href="scenic_list.html?DestCityCode=<%= data.destCities[i].cityCode %>"><%= data.destCities[i].cityName %></a></li>
+   <% } %>
 </script>
 <script id="tpl_GetHotSpot" type="text/template">
-    {% for(var i = 0;i < hotelAndScenicList.length;i++){ %}
-        <li>
-            <a href="packages_detail.html?packageID={%=hotelAndScenicList[i].productID%}&productPrice={%=hotelAndScenicList[i].productPrice%}&status=1">
-                <div>
-                    <img src="{%=hotelAndScenicList[i].productPicUrl%}" class="banner-image" alt="img">
-                    <div class="hp-block">
-                        <b class = "icon1 s-location"></b>{%=hotelAndScenicList[i].productSite%}
-                    </div>
+    <% for(var i = 0;i < hotelAndScenicList.length;i++){ %>
+    <li>
+        <a href="packages_detail.html?packageID=<%= hotelAndScenicList[i].productID %>&productPrice=<%= hotelAndScenicList[i].productPrice %>&status=1">
+            <div class="img_box pr">
+                <img src="<%= hotelAndScenicList[i].productPicUrl %>" class="banner-image" alt="img">
+                <div class="hp-block index_price pa">
+                    <span>￥</span>
+                    <span class="pay-num pay_num"><%= hotelAndScenicList[i].productPrice %></span>
+                    <span>起</span>
+                    <!--<b class = "icon1 s-location"></b>{%=hotelAndScenicList[i].productSite%}-->
                 </div>
-                <div class="spotDesc">{%=hotelAndScenicList[i].productDesc%}</div>
-                <div><span>￥</span><span class="pay-num">{%=hotelAndScenicList[i].productPrice%}</span><span>起</span></div>
-            </a>
-        </li>
-    {% } %}
+            </div>
+            <div class="spotDesc">
+                <p class="name"><%= hotelAndScenicList[i].productName %></p>
+                <p class="desc"><%= hotelAndScenicList[i].productDesc %></p>
+            </div>
+            <!--<div>-->
+            <!--<span>￥</span><span class="pay-num">{%=hotelAndScenicList[i].productPrice%}</span><span>起</span>-->
+            <!--</div>-->
+        </a>
+    </li>
+    <% } %>
 </script>
 <script>
     (function(){
@@ -181,7 +190,11 @@
                 var json=ret;
                 if(json.success){
                     var data=json;
-                    var tpl_GetExHotCity = template("tpl_GetHotCity",data);
+
+                    var str = $('#tpl_GetHotCity').html();
+                    var tpl_GetExHotCity = ejs.render(str,data);
+                    $('#hotPlace').append(tpl_GetExHotCity);
+
                     console.log(data);
                     $("#hotPlace").html(tpl_GetExHotCity);
                     //记录哪个城市被浏览
@@ -224,7 +237,13 @@
                 function getHotSpotCallback(ret){
                     var json=ret;
                     if(json.success){
-                        var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
+
+                        var data = json.data;
+                        var str = $('#tpl_GetHotSpot').html();
+                        var tpl_GetHotSpot = ejs.render(str,data);
+                        $('#hotSpot').html(tpl_GetHotSpot);
+
+
                         console.log(data);
                         $("#hotSpot").html(tpl_GetHotSpot);
                         if(data.hotelAndScenicList.length == 0){
