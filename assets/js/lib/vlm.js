@@ -445,7 +445,7 @@
 						//var pattern = /^[a-zA-Z0-9-_]{4,20}$/;
 						var pattern1 = /^[\u4E00-\u9FA5a-zA-Z0-9][\u4E00-\u9FA5a-zA-Z0-9_]{3,19}$/;
 						var pattern2 = /^[\u4E00-\u9FA5]{2,10}$/;
-						var pattern3 = /^[\u4E00-\u9FA5][a-zA-Z0-9_]{2,18}$/;
+						var pattern3 = /^[\u4E00-\u9FA5][\u4E00-\u9FA5a-zA-Z0-9_]{2,18}$/;
 						//4-20个字符，可由中英文字母，数字、"_"组成，不能以'_'开头
 						if (pattern1.test(name) || pattern2.test(name) || pattern3.test(name)) {
 							return true;

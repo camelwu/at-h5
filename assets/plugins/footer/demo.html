@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+</head>
+<link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+<link href="footer.css" rel="stylesheet" type="text/css">
+<body>
+		
+</body>
+<div class="contents">
+<ul class="hotel_list">
+<li class="cur">
+  <div>
+    <img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+    <article class="message">
+      <h3>东京(银座)千禧三井花园饭店</h3>
+      <p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</p>
+      <p class="equipment clearfix">
+        <span>三星级</span>
+        <span class="park"></span>
+        <span class="car"></span>
+      </p>
+      <p class="address">东京（品川区）</p>
+      <div class="price">
+        <span class="money">100</span>
+        <span class="dollar">￥</span>
+        <span class="add">+</span>
+      </div>
+    </article>
+  </div>
+  <i></i>
+</li>
+<li>
+  <div>
+    <img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+    <article class="message">
+      <h3>东京(银座)千禧三井花园饭店</h3>
+      <p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</p>
+      <p class="equipment clearfix">
+        <span>三星级</span>
+        <span class="park"></span>
+        <span class="car"></span>
+      </p>
+      <p class="address">东京（品川区）</p>
+      <div class="price">
+        <span class="money">100</span>
+        <span class="dollar">￥</span>
+        <span class="add">+</span>
+      </div>
+    </article>
+  </div>
+  <i></i>
+</li>
+<li>
+  <div>
+    <img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+    <article class="message">
+      <h3>东京(银座)千禧三井花园饭店</h3>
+      <p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</p>
+      <p class="equipment clearfix">
+        <span>三星级</span>
+        <span class="park"></span>
+        <span class="car"></span>
+      </p>
+      <p class="address">东京（品川区）</p>
+      <div class="price">
+        <span class="money">100</span>
+        <span class="dollar">￥</span>
+        <span class="add">+</span>
+      </div>
+    </article>
+  </div>
+  <i></i>
+</li>
+<li>
+  <div>
+    <img class="img" src="../../images/hotelListNo.jpg" data-src="images/0.png" alt="">
+    <article class="message">
+      <h3>东京(银座)千禧三井花园饭店</h3>
+      <p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</p>
+      <p class="equipment clearfix">
+        <span>三星级</span>
+        <span class="park"></span>
+        <span class="car"></span>
+      </p>
+      <p class="address">东京（品川区）</p>
+      <div class="price reduce">
+        <span class="money">100</span>
+        <span class="dollar">￥</span>
+        <span class="add">-</span>
+      </div>
+    </article>
+  </div>
+  <i class=""></i>
+</li>
+</ul>
+</div>
+<script src="./footer.js"></script>
+<script>
+  var menu_data = {
+            hotelPosition : {
+              title : "航空公司",
+              c : "flight_company",
+              type :3,
+              key : 0,
+              listData : ["Sentosa Island", "Bugis", "Orchard Vicinity", "Marina", "Geylang", "City Hall", "Chinatown", "Orchard"]
+            },
+            hotelSort : {
+              title : "推荐排序",
+              c : "footer_filter_hotel_sort",
+              type : 1,
+              key : 'sort',
+              listData : ["价格从高到低", "价格从低到高", "评分从高到低", "星级从高到低", "星级从低到高"]
+            },
+            hotelScreen : {
+              title : "筛选",
+              c : "footer_filter_hotel_screen",
+              type : 2,
+              key : 'starRatingList',
+              listData : [{
+                "星级档次" : ["二星", "三星", "四星"]
+              }, {
+                "酒店类型" : ["商务", "度假"]
+              }]
+            }
+
+          },
+//
+          menu_call = function() {
+            alert("js request json.");
+          };
+  ;
+
+  if (footer) {
+    footer.data = menu_data;
+    footer.callback = menu_call;
+  }
+  footer.filters.init();
+</script>
+</html>
