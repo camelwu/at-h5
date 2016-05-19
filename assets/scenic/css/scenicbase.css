@@ -1,0 +1,40 @@
+.header_more {
+  position: absolute;
+  right: 15px;
+  top: 0;
+  margin-top: 0.5rem;
+  height: 35px;
+  line-height: 35px;
+  text-align: right;
+}
+
+.header_more_title {
+  color: #fff;
+  height: 35px;
+  font-size: 1.4rem;
+  display: inline-block;
+  overflow: hidden;
+  margin-right: 24px;
+}
+
+.header_more_icon {
+  position: absolute;
+  right:4px;
+  top: 0;
+  width: 20px;
+  height: 16px;
+  background-image: url(../images/ui/icons.png);
+  /*background-position: 74% 6%;*/
+  background-size: 200px 110px;
+  margin-top: 0.8rem;
+}
+
+
+.T_index_city{
+  font-size: .28rem;
+  color: #0b84fe;
+}
+
+.T_index_city .city_title{
+
+}

@@ -1,358 +1,269 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚洲旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="x5-fullscreen" content="true">
-
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
-    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
-    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
-    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
-    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
-    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-
-    <title>景点主页 - 亚洲旅行网</title>
-
-    <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
-    <link href="../styles/style.css"		rel="stylesheet" type="text/css">
-    <link href="css/scenic.css" rel="stylesheet"/>
-    <link href="../styles/owl.theme.css"	rel="stylesheet" type="text/css">
-    <!--<link href="css/user.css"	rel="stylesheet" type="text/css">-->
-
-
-    <link href="../styles/tips.css"	rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚洲旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>资源选择页 - 亚洲旅行网</title>
+  <link href="../styles/reset.css" rel="stylesheet" type="text/css"/>
+  <link href="../styles/tips.css" rel="stylesheet" type="text/css"/>
+  <link href="css/scenicbase.css" rel="stylesheet" media="all"/>
 </head>
 <body>
 <div id="preloader">
-    <div id="status">
-        <p class="center-text">
-            <br>
-            <em></em>
-        </p>
-    </div>
+  <div id="status">
+    <p class="center-text"></p>
+  </div>
 </div>
-    <!--     banner     -->
-    <div class="all-elements">
-        <!--   顶部   -->
-        <div class="header" id="vlm-login">
-            <a href="../" class="header-back"><i class="icons go-back"></i></a>
-            <h3>景点/门票</h3>
-            <a href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html" class="location-wrap">
-                <span id="Localtxt" class="location-txt">更多</span>
-                <i class="location-tip"></i>
-            </a>
-        </div>
-        <div id="content" class="snap-content">
-
-            <!--<a href="../" class="icons top-back"> </a>-->
-            <!--<div class="top-ban s-active">-->
-                <!--<a href="#">-->
-                    <!--&lt;!&ndash;<div class="ban-desc">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div>电影照进现实</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div>—— · 新加坡环球影城 · ——</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--<img src="images/scenic_top1.png" class="banner-image" alt="img">-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="top-ban">-->
-                <!--<a href="#">-->
-
-                        <!--&lt;!&ndash;<div>任烟花几月,不辞扬州</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div>—— · 扬州悠闲两日游 · ——</div>&ndash;&gt;-->
-
-                    <!--<img src="images/scenic_top2.png" class="banner-image" alt="img">-->
-                <!--</a>-->
-            <!--</div>-->
-
-            <!--<div class="homepage-slider unactive" data-snap-ignore="true" id="banner">-->
-                <!--<a href="#">-->
-                    <!--<div class="ban-desc">-->
-                        <!--<p>电影照进现实</p>-->
-                        <!--<p>—— · 新加坡环球影城 · ——</p>-->
-                    <!--</div>-->
-                    <!--<img src="images/jdzhuye1_01.jpg" class="responsive-image" alt="img">-->
-                <!--</a>-->
-                <!--<a href="#">-->
-                    <!--<img src="images/jdzhuye2_04.jpg" class="responsive-image" alt="img">-->
-                <!--</a>-->
-                <!--<a href="#">-->
-                    <!--<img src="images/jdzhuye3_03.jpg" class="responsive-image" alt="img">-->
-                <!--</a>-->
-                <!--<a href="#">-->
-                    <!--<img src="images/jdzhuye4_03.jpg" class="responsive-image" alt="img">-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="s-type">-->
-                <!--<div class="menu-active">出境游</div>-->
-                <!--<span class="menu-line"></span>-->
-                <!--<div class="stopgray">国内游</div>-->
-            <!--</div>-->
-
-            <div class="out-content s-active" style="padding-top: 10px;">
-
-                <div class="sin-title">国外热游地</div>
-                <ul id="out_place">
-
-                </ul>
-                <div class = "sin-title">国外热门景点</div>
-                <ul class = "hotspot" id="abroad_hotspot">
-                    <li>
-                        <div>
-                            <img src="images/jdzhuye2_04.jpg" class="banner-image" alt="img">
-                            <div class="hp-block">
-                                <b class = "icon1 s-location"></b>
-                                吉隆坡
-                            </div>
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天吉隆坡城市游览</div>
-                        <div><span>￥</span><span class="pay-num">1680</span><span>起</span></div>
-                    </li>
-                </ul>
-            </div>
-            <div class="out-content">
-                <div class="sin-title">国内热游地</div>
-                <ul id="in_place">
-
-                </ul>
-                <div class = "sin-title">国内热门景点</div>
-                <ul class = "hotspot" id="domestic_hotspot">
-                    <li>
-                        <div>
-                            <img src="images/jdzhuye6_06.jpg" class="banner-image" alt="img">
-                            <div class="hp-block">
-                                <b class = "icon1 s-location"></b>
-                                扬州
-                            </div>
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天扬州城市游览</div>
-                        <div><span>￥</span><span class="pay-num">1680</span><span>起</span></div>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="images/jdzhuye7_07.jpg" class="banner-image" alt="img">
-                            <div class="hp-block">
-                                <b class = "icon1 s-location"></b>
-                                扬州
-                            </div>
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天扬州城市游览</div>
-                        <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="images/jdzhuye8_08.jpg" class="banner-image" alt="img">
-                            <div class="hp-block">
-                                <b class = "icon1 s-location"></b>
-                                扬州
-                            </div>
-                        </div>
-                        <div class="spotDesc">两天一夜酒店+半天扬州城市游览</div>
-                        <div><span>￥</span><span class="pay-num">26380</span><span>起</span></div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<div class="all_elements">
+  <!--header-->
+  <div class="header">
+    <a href="../" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3>景点/门票</h3>
+    <a href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html" class="header_more">
+      <span id="Localtxt" class="header_more_title">更多</span>
+      <i class="header_more_icon"></i>
+    </a>
+  </div>
+  <!--header-->
+  <!--content-->
+  <div class="content">
+    <!--国外热游地-->
+    <div class="T_index_city">
+      <div class="city_title">国外热游地</div>
+      <div class="city_list">
+        <ul class="city_content">
+          <li class="city_content_item">
+            <div class="city_content_itemtitle"></div>
+          </li>
+        </ul>
+      </div>
     </div>
-
-    <script src="../js/lib/jquery.js"></script>
-    <script src="../js/lib/plugins.js"></script>
-    <script src="../js/lib/jquery.alert.js"></script>
-    <script src="../js/lib/vlm.js"></script>
-    <script src="../js/lib/template.js"></script>
-    <script src="../js/lib/custom.js"></script>
-    <script src="js/scenic_pub.js"></script>
-    <script id="tpl_GetHotCity" type="text/template">
-        {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i<len;i++){ %}
-            <li class = "hotplace" title="{%=data.destCities[i].cityCode%}" >{%=data.destCities[i].cityName%}</li>
-        {% } %}
-        <!--<li class = "hotplace" title="more">更多</li>-->
-    </script>
-    <script id="tpl_GetHotSpot" type="text/template">
-        {% for(var i = 0;i < hotScenicList.length;i++){ %}
+    <!--国外热游地-->
+    <!--国外热门景点-->
+    <div class="T_index_product">
+      <div class="product_title">国外热门景点</div>
+      <ul class="product_list">
         <li>
-            <a href="../scenic/scenic_detail.html?packageID={%=hotScenicList[i].productID%}">
-                    <img src="{%=hotScenicList[i].productPicUrl%}" class="banner-image" alt="img">
-                    <div class="hp-block">
-                        <b class="icon1 s-location"></b>
-                        {%=hotScenicList[i].productSite%}
-                    </div>
-            </a>
-            <div class="spotDesc">{%=hotScenicList[i].productName%}</div>
-            <div><span>￥</span><span class="pay-num">{%=hotScenicList[i].productPrice%}</span><span>起</span></div>
+          <a href="#">
+            <div class="product_itemtop">
+              <div class="product_image">
+                <img src="images/img01.jpg">
+              </div>
+            </div>
+            <div class="product_price">
+              ￥<em>2480</em>起
+            </div>
+            <div class="product_itembottom">
+              <h5 class="product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>
+              <p class="product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>
+            </div>
+          </a>
         </li>
-        {% } %}
-    </script>
+      </ul>
+    </div>
+    <!--国外热门景点-->
+  </div>
+  <!--content-->
 
-    <script>
-        /*景点首页MT*/
-        (function(){
+</div>
+
+
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/plugins.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="js/scenic.js"></script>
+<script id="tpl_GetHotCity" type="text/template">
+  {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i
+  <len;i++){ %}
+  <li class="hotplace" title="{%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</li>
+  {% } %}
+  <!--<li class = "hotplace" title="more">更多</li>-->
+</script>
+<script id="tpl_GetHotSpot" type="text/template">
+  {% for(var i = 0;i < hotScenicList.length;i++){ %}
+  <li>
+    <a href="../scenic/scenic_detail.html?packageID={%=hotScenicList[i].productID%}">
+      <img src="{%=hotScenicList[i].productPicUrl%}" class="banner-image" alt="img">
+      <div class="hp-block">
+        <b class="icon1 s-location"></b>
+        {%=hotScenicList[i].productSite%}
+      </div>
+    </a>
+    <div class="spotDesc">{%=hotScenicList[i].productName%}</div>
+    <div><span>￥</span><span class="pay-num">{%=hotScenicList[i].productPrice%}</span><span>起</span></div>
+  </li>
+  {% } %}
+</script>
+
+<script>
+  /*景点首页MT*/
+  (function () {
 //            var nowindex = 0;//点击事件获取当前下标值
 //            localStorage.setItem('clickli','');//点击事件存储下标key名字
-            vlm.init();
-            /**
-             * 切换选项卡
-             * @constructor
-             */
-            MT.CTab = function(){
-                var aBtn=document.getElementsByClassName('s-type')[0].children;
-                var con=document.getElementsByClassName('out-content');
-                var ban=document.getElementsByClassName('top-ban');
-                for(var i=0; i<aBtn.length; i++)
-                {
-                    (function(index){
+    vlm.init();
+    /**
+     * 切换选项卡
+     * @constructor
+     */
+    MT.CTab = function () {
+      var aBtn = document.getElementsByClassName('s-type')[0].children;
+      var con = document.getElementsByClassName('out-content');
+      var ban = document.getElementsByClassName('top-ban');
+      for (var i = 0; i < aBtn.length; i++) {
+        (function (index) {
 
-                        aBtn[i].onclick=function(){
-                            for(var i=0; i<aBtn.length; i++)
-                            {
-                                aBtn[i].className='';
-                                ban[i].className='top-ban';
-                                con[i].className='out-content';
-                            }
-
-                            this.className='menu-active';
-                            ban[index].className='top-ban s-active';
-                            con[index].className='out-content s-active';
-                        };
-                    })(i);
-                }
+          aBtn[i].onclick = function () {
+            for (var i = 0; i < aBtn.length; i++) {
+              aBtn[i].className = '';
+              ban[i].className = 'top-ban';
+              con[i].className = 'out-content';
             }
 
-            /**
-             * 热门城市绑定事件
-             * @constructor
-             */
-            MT.reloadHotCity = function(){
-                var outplace = $("#out_place")[0].getElementsByTagName("li");
-                var inplace = $("#in_place")[0].getElementsByTagName("li");
-                //添加返回页面的当前点击状态
+            this.className = 'menu-active';
+            ban[index].className = 'top-ban s-active';
+            con[index].className = 'out-content s-active';
+          };
+        })(i);
+      }
+    }
+
+    /**
+     * 热门城市绑定事件
+     * @constructor
+     */
+    MT.reloadHotCity = function () {
+      var outplace = $("#out_place")[0].getElementsByTagName("li");
+      var inplace = $("#in_place")[0].getElementsByTagName("li");
+      //添加返回页面的当前点击状态
 //                var listindex = localStorage.getItem('clickli');
 //                if(listindex){
 //                    for(var i=0; i < outplace.length; i++){
 //                        outplace[listindex].className='hotplace pl-active';
 //                    }
 //                }
-                for(var i=0; i < outplace.length; i++){
+      for (var i = 0; i < outplace.length; i++) {
 //                    outplace[i].index = i;
-                    outplace[i].onclick = function(){
+        outplace[i].onclick = function () {
 //                        nowindex = this.index;
 //                        for(var i=0; i<outplace.length; i++){
 //                            outplace[i].className = "hotplace";
 //                        }
 //                        this.className='hotplace pl-active';
 //                        localStorage.setItem('clickli',nowindex);
-                        MT.CurrentPageTolist(this.title);
-                    }
-                }
-                for(var j=0; j < inplace.length; j++){
-                    inplace[j].onclick = function(){
+          MT.CurrentPageTolist(this.title);
+        }
+      }
+      for (var j = 0; j < inplace.length; j++) {
+        inplace[j].onclick = function () {
 //                        for(var j=0; j<inplace.length; j++){
 //                            inplace[j].className = "hotplace";
 //                        }
 //                        this.className='hotplace pl-active';
-                        MT.CurrentPageTolist(this.title);
-                    }
-                }
-            }
+          MT.CurrentPageTolist(this.title);
+        }
+      }
+    }
 
-            /**
-             * 热门城市跳转
-             * @param cityCode
-             * @returns {boolean}
-             * @constructor
-             */
-            MT.CurrentPageTolist = function(cityCode){
-                MT.AnimIn();
-                if(cityCode == "more"){
+    /**
+     * 热门城市跳转
+     * @param cityCode
+     * @returns {boolean}
+     * @constructor
+     */
+    MT.CurrentPageTolist = function (cityCode) {
+      MT.AnimIn();
+      if (cityCode == "more") {
 //                    window.location.href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html";
-                    return false;
-                }
-                window.location.href="../scenic/scenic_list.html?DestCityCode="+cityCode;
-            }
+        return false;
+      }
+      window.location.href = "../scenic/scenic_list.html?DestCityCode=" + cityCode;
+    }
 
-            /**
-             * 加载国外热门城市
-             * @constructor
-             */
-            MT.CGetExHotCity = function(){
-                var param=
-                {
-                    "Parameters": {
-                        "SubProduct": "All"
-                    },
-                    "ForeEndType": 3,
-                    "Code": "0096"
-                }
+    /**
+     * 加载国外热门城市
+     * @constructor
+     */
+    MT.CGetExHotCity = function () {
+      var param =
+      {
+        "Parameters": {
+          "SubProduct": "All"
+        },
+        "ForeEndType": 3,
+        "Code": "0096"
+      }
 //                MT.ajaxJson("",JSON.stringify(param),MT.GetExHotCityCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
-                vlm.loadJson("",JSON.stringify(param),MT.GetExHotCityCallback);
-            }
+      vlm.loadJson("", JSON.stringify(param), MT.GetExHotCityCallback);
+    }
 
-            /**
-             * 加载国外热门城市 [CGetExHotCity Callback]
-             * @param data
-             * @constructor
-             */
-            MT.GetExHotCityCallback = function(data){
+    /**
+     * 加载国外热门城市 [CGetExHotCity Callback]
+     * @param data
+     * @constructor
+     */
+    MT.GetExHotCityCallback = function (data) {
 
-                var json=data;
-                console.log(json);
-                if(json.success){
-                    var data=json,tpl_GetExHotCity = template("tpl_GetHotCity",data);
-                    $("#out_place").html(tpl_GetExHotCity);
-                    MT.reloadHotCity();
-                    if(data.data.destCities.length == 0){
-                        jAlert("抱歉暂时没有数据","提示");
-                    }
-                }else {
-                    console.log(json);
-                    jAlert(json.message,"提示");
-                }
-            }
-            //   获取热门景点
-            MT.getHotSpot = function() {
-                var tmp = {
-                    "Parameters":{"Isinternational":true,"PageNo":1,"PageSize":10}
-                    ,"ForeEndType":3,
-                    "Code":"001305"
-                };
+      var json = data;
+      console.log(json);
+      if (json.success) {
+        var data = json, tpl_GetExHotCity = template("tpl_GetHotCity", data);
+        $("#out_place").html(tpl_GetExHotCity);
+        MT.reloadHotCity();
+        if (data.data.destCities.length == 0) {
+          jAlert("抱歉暂时没有数据", "提示");
+        }
+      } else {
+        console.log(json);
+        jAlert(json.message, "提示");
+      }
+    }
+    //   获取热门景点
+    MT.getHotSpot = function () {
+      var tmp = {
+        "Parameters": {"Isinternational": true, "PageNo": 1, "PageSize": 10}
+        , "ForeEndType": 3,
+        "Code": "001305"
+      };
 //                MT.ajaxJson("",JSON.stringify(tmp),MT.getHotSpotCallback,MT.ajaxAnimIn,MT.ajaxAnimOut);
-                vlm.loadJson("",JSON.stringify(tmp),MT.getHotSpotCallback);
-            };
+      vlm.loadJson("", JSON.stringify(tmp), MT.getHotSpotCallback);
+    };
 
-             MT.getHotSpotCallback = function(ret){
-                var json=ret;
-                 vlm.init();
-                if(json.success){
-                    var data=json.data,tpl_GetHotSpot = template("tpl_GetHotSpot",data);
-                    console.log(data);
-                    if(data.hotScenicList.length == 0){
-                        jAlert("抱歉暂时没有数据","提示");
-                    }
-                    $("#abroad_hotspot").html(tpl_GetHotSpot);
+    MT.getHotSpotCallback = function (ret) {
+      var json = ret;
+      vlm.init();
+      if (json.success) {
+        var data = json.data, tpl_GetHotSpot = template("tpl_GetHotSpot", data);
+        console.log(data);
+        if (data.hotScenicList.length == 0) {
+          jAlert("抱歉暂时没有数据", "提示");
+        }
+        $("#abroad_hotspot").html(tpl_GetHotSpot);
 
-                }else {
-                    jAlert(json.message,"提示");
-                }
-            }
+      } else {
+        jAlert(json.message, "提示");
+      }
+    }
 
-            MT.CGetExHotCity();
+    MT.CGetExHotCity();
 //            MT.CTab();
-            MT.getHotSpot();
+    MT.getHotSpot();
 
-        })();
-    </script>
+  })();
+</script>
 
 
 </body>
