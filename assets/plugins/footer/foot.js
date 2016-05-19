@@ -175,16 +175,19 @@ var footer = (function() {
 								break;
 							case 2:
 								//多选
-								if (src.firstChild.innerHTML == "不限") {//不限互斥
-									if (target == src.firstChild) {
-										for (var i = 0; i < cur.length; i++) {
-											if (cur[i].className == "cur") {
-												cur[i].className = "";
-												// break;
-											}
+								var sss = src.firstChild.innerHTML;
+								if (sss.indexOf("不限")>-1) {//不限互斥
+									if (target == src.firstChild) {//如果点击是第一个
+										var cur = src.getElementsByTagName("li");
+										for (var i = 1; i < cur.length; i++) {
+											//if (cur[i].className == "cur") {
+											cur[i].className = "";
+											// break;
+											//}
 										}
-										target.className = "cur";
-									} else {
+										target.className = target.className == "cur" ? "" : "cur";
+									} else {//点击是其他（非不限选项）
+										src.firstChild.className=="cur"?src.firstChild.className= "":null;//判断比直接赋空值内存性能优化方面好
 										target.className = target.className == "cur" ? "" : "cur";
 									}
 								} else {
@@ -314,7 +317,7 @@ var footer = (function() {
 					var a = d[i], item = a.item, li = '';
 					css = i == 0 ? ' class="cur"' : '';
 					cache.push('<li' + css + ' data-filterType="' + a.filterType + '">' + a.title + '</li>');
-					s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : 1;
+					s = a.allowMultiSelect == 1 || a.allowMultiSelect == "1" ? 2 : s;
 					wrapper[0] = '<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '" data-type="' + a.filterType + '">';
 					for (var j = 0; j < item.length; j++) {
 						var o = item[j];
@@ -335,7 +338,7 @@ var footer = (function() {
 			case "sortTypes":
 				// 排序
 				for (; i < l; i++) {
-					css = i == 0 ? ' class="cur"' : '';
+					css = i == 0&&i == "不限" ? ' class="cur"' : '';
 					listr += '<li' + css + ' data-val="' + d[i].sortValue + '">' + d[i].sortText + '<i></i></li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
