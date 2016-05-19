@@ -1,0 +1,353 @@
+* {margin: 0px;padding: 0px;}
+html {font-size: 62.5%;background-color: #f5f4f9;}
+li{list-style: none;}
+
+.clearFix:after{content:'';clear: both;display: block;}
+i{font-style: normal;}
+.top {
+    width: 100%;
+    height: 45px;
+    padding: 1px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    position: fixed;
+    z-index: 100;
+    background: linear-gradient(#16364f, #194361);
+}
+.top span.title{
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+}
+
+.top .icons {
+    background-image: url(../images/ui/icons.png);
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    display: inline-block;
+}
+
+.top .header-back {
+    width: 12px;
+    height: 22px;
+}
+.top span.location{
+    color: #fff;
+    height:22px;line-height:22px;
+    font-size:14px;
+    display:block;
+    overflow: hidden;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+.top span.location i{display:block;}
+.top span.location i:after{
+    content:'';background:url(../images/icon1.png) no-repeat -177px -10px;
+    background-size:254px auto;float:right;width:12px;height:12px;
+    margin:7px 0 0 4px;
+}
+
+/*tag标签*/
+.hot_tagBox{
+    height:38px;line-height:38px;background:#fff;overflow:hidden;
+}
+.hot_tagBox span{float:left;width:49.8%;height:38px;text-align:center;font-size:17px;color:#999;}
+.hot_tagBox span.current{
+    border-bottom:3px solid #ffb500;color:#ffb500;overflow:hidden;
+}
+.hot_tagBox span a{display:block;color:#999;}
+
+/*内容*/
+.conBox h3.title{
+    background:#e9e9e9;height:32px;line-height:32px;font-size:12px;
+    font-weight:normal;padding:0 13px;color:#666;margin:0;
+}
+.conBox .cityListBox{padding-top:10px;}
+.conBox .cityListBox ul{padding:0;margin:0;overflow:hidden;}
+.conBox .cityListBox ul li{
+    float:left;width:33.2%;height:38px;overflow:hidden;margin:0;
+}
+.conBox .cityListBox ul li span,
+.conBox .cityListBox ul li a{
+    margin:0 15px;display:block;height:30px;overflow:hidden;
+    text-align:center;line-height:30px;
+}
+.conBox .cityListBox .active{
+    background: #ffb413;
+}
+
+.conBox .cityListBox ul li span{background:#ffb413;color:#fff;font-weight:normal;}
+.conBox .cityListBox ul li a{border:1px solid #c9c8cb;color:#999;}
+.conBox .tourListBox ul{
+    padding:0 15px;margin:0;
+}
+.conBox .tourListBox ul li{
+    margin:6px 0 4px 0;background:#fff;
+}
+.conBox .tourListBox ul li span{display:block;}
+.conBox .tourListBox ul li span.img img{
+    width:100%;height:auto;
+}
+.conBox .tourListBox ul li span.title{
+    height:28px;line-height:28px;padding:0 5px;overflow:hidden;color:#555;
+}
+.conBox .tourListBox ul li span.info{
+    height:20px;line-height:20px;position:relative;
+}
+.conBox .tourListBox ul li span.info i{
+    position:absolute;left:5px;top:0;display:block;height:20px;font-size:16px;
+    color:#fe6a03;
+}
+.conBox .tourListBox ul li span.info i:before{
+    content:"\00A5";font-size:12px;padding-right:2px;
+}
+.conBox .tourListBox ul li span.info i:after{
+    content:attr(data-text);font-size:12px;padding-left:3px;
+}
+.conBox .tourListBox ul li span.info b{
+    position:absolute;right:5px;top:0;display:block;height:20px;
+    font-weight:normal;color:#aaa;font-size:12px;
+}
+.conBox .tourListBox ul li span.info b:before{
+    content:'';background:url(../images/icon1.png) no-repeat -75px -62px;
+    background-size:139px auto;float:left;width:12px;height:12px;margin:5px 3px 0 0;
+}
+
+/*底部筛选*/
+.hl-bottom{
+    width:100%;
+    height:44px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    background: linear-gradient(#16364f,#194361);
+    opacity: 0.9;
+    position:fixed;
+    bottom: 0;
+    text-align: center;
+    font-size: 10em;
+    color:white;
+    z-index: 999999;
+}
+.icons{
+    background-image: url(../images/ui/icons.png);
+    background-repeat: no-repeat;
+    background-size: 243px 160px;
+    display:inline-block;
+}
+.fo-div{
+    line-height:12px;
+    text-align: center;
+    width: 33.3%;
+    color: white;
+    font-size: 12px;
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+}
+.hl-icon3{
+    display:block;
+    width:13px;
+    height:13px;
+    margin:6px auto 5px;
+    background-image: url(../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position:41% 8%;
+}
+
+
+
+
+/*地区景点开始*/
+.sear-tab {
+    width: 100%;
+    background-color: #f5f4f9;
+}
+
+.search-box {
+    box-sizing: border-box;
+    height: 54px;
+    padding-top: 10px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.location-msg {
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    color: #fff;
+
+}
+
+.ellip-tip {
+    display: inline-block;
+    position: absolute;
+    right:0;
+    top: 0.6rem;
+    margin-right: 20px;
+    width: 32px;
+    height: 20px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 10% 6%;
+    background-size: 300px 200px;
+    margin-top: 1rem;
+}
+
+.city-tit {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.search-box-s {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.sousuo-search {
+    height: 34px;
+    line-height: 34px;
+    border: none;
+    vertical-align: top;
+    margin-left: 30px;
+    width: 80%;
+}
+
+.sousuo-search-wrap {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.search-box-s-tip {
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 28px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 34% 30%;
+    background-size: 400px 120px;
+    z-index: 1;
+}
+
+.search-logo{
+    position: absolute;
+    left: 30%;
+    width: 24px;
+    height: 28px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 34% 30%;
+    background-size: 400px 120px;
+    z-index: 1;
+}
+
+.sousuo-sear{
+    height: 34px;
+    line-height: 34px;
+    border: none;
+    vertical-align: top;
+    margin-left: 40%;
+    width: 80%;
+}
+
+.hot-recommend {
+    font-weight: normal;
+    font-size: 1.5rem;
+    height: 30px;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    background-color: #e9e9e9;
+    color: #333;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+/*地区景点结束*/
+
+/*地区景点-筛选开始*/
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    opacity: 0.6;
+    filter: alpha(opacity:60);
+    z-index: 99;
+    display: none;
+
+}
+.screen,.sortBox{
+    width: 100%;
+    padding: 1px;
+    background-color: white;
+    position: fixed;
+    bottom:-100%;
+    transition: all 350ms;
+    z-index: 2000000;
+}
+.screen .tagBox{
+    position:absolute;
+    left:0;top:0;width:86px;height:100%;background:#f5f4f9;
+}
+.screen .tagBox li{
+    height:38px;border-bottom:1px solid #efeff0;margin:0;padding:0;
+    line-height:38px;text-align:center;
+}
+.screen .tagBox li.current{background:#fff;border-left:2px solid #fdb330;}
+.screen .tagBox li:last-child{border-bottom:none;}
+.screen .tagList{
+    padding-left:88px;margin:0 8px;
+}
+.screen .tagList li{
+    height:38px;line-height:38px;border-bottom:1px solid #efeff0;margin:0;
+}
+.screen .tagList li.current{color:#484848;}
+.screen .tagList li.current:after{
+    content:'';float:right;width:15px;height:11px;margin-top:13px;
+    background:url(../images/icon_checkmark_yellow.png) no-repeat;
+    background-size:100% auto;
+}
+/*
+    排序块
+*/
+.rank{
+    width: 100%;margin:0;
+    background-color: white;
+}
+.rank li{
+    width: 100%;height:40px;margin:0;
+    border-bottom: 1px solid #d0d0d3;
+    text-align: center;
+    font-size:14px;
+    color:#b3b2b4;
+    line-height: 40px;
+}
+.rank li:last-child{border-bottom:none;}
+.rank li.current{color:#484848;position:relative;}
+.rank li.current:before{
+    content:'';display:block;width:15px;height:11px;position:absolute;left:50%;top:15px;margin-left:-50px;
+    background:url(../images/icon_checkmark_yellow.png) no-repeat;
+    background-size:100% auto;
+}

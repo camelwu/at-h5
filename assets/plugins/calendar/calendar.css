@@ -5,6 +5,14 @@
 *@time  2016-05-04
 **/
 
+.calendar_Wrap {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
 .calendar_header {
     position: fixed;
     top: 0;
@@ -45,6 +53,29 @@
     color: #484848;
 }
 
+<<<<<<< HEAD
+=======
+.calendar_date {
+    position: absolute;
+    z-index: 100;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 2.68rem;
+    padding-bottom: 1.18rem;
+    background: rgb(255, 255, 255);
+}
+
+.calendar_date.no_tiper {
+    top: 1.48rem;
+}
+
+.calendar_date.no_tiper .calendar_week {
+    top: 0.88rem;
+}
+
+>>>>>>> b783dd668cb77c88603190f11bca27f03ec1eeb6
 .calendar_tiper {
     position: fixed;
     top: .88rem;

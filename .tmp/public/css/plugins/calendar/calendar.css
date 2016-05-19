@@ -1,0 +1,343 @@
+/**
+*=================================================
+*@desc  style for calendar   
+*@author Jason
+*@time  2016-05-04
+**/
+
+.calendar_Wrap {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+.calendar_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: all;
+    z-index: 101;
+    background-color: #fcfcfc;
+    width: 100%;
+    min-height: .88rem;
+    max-height: 100%;
+    border-bottom: solid 2px rgba(0, 0, 0, .1);
+}
+
+.calendar_header .header_back {
+    position: absolute;
+    width: 1rem;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.calendar_header .go_back {
+    position: absolute;
+    left: .48rem;
+    top: 50%;
+    margin-top: -.2rem;
+    height: .5rem;
+    width: .2rem;
+    background: url(/images/ui/icon_common.png) no-repeat;
+    background-size: 7.90rem 5.15rem;
+    background-position: -0.55rem -0.47rem;
+}
+
+.calendar_header h3 {
+    font-size: .36rem;
+    line-height: .88rem;
+    text-align: center;
+    color: #484848;
+}
+
+.calendar_date {
+    position: absolute;
+    z-index: 100;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 2.68rem;
+    padding-bottom: 1.18rem;
+    background: rgb(255, 255, 255);
+}
+
+.calendar_date.no_tiper {
+    top: 1.48rem;
+}
+
+.calendar_date.no_tiper .calendar_week {
+    top: 0.88rem;
+}
+
+.calendar_tiper {
+    position: fixed;
+    top: .88rem;
+    height: 1.2rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    /*    margin-top: 1.4rem;
+    */
+    border-bottom: 1px solid #e6e6e6;
+    padding: .2rem .22rem;
+    font-family: Tahoma;
+    font-size: .16rem;
+    z-index: 100;
+}
+
+.calendar_tiper .info {
+    font-size: .3rem;
+    text-align: center;
+    color: #d1d1d1;
+    line-height: .8rem;
+}
+
+.calendar_tiper .second_info {
+    width: 50%;
+    float: right;
+}
+
+.calendar_comfirm {
+    display: none;
+    width: 100%;
+    background: rgba(0, 0, 0, .6);
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+
+.calendar_comfirm .btn {
+    display: block;
+    width: 94%;
+    margin: 3%;
+    height: .9rem;
+    line-height: .9rem;
+    background-color: #fdb330;
+    border-radius: 8px;
+    font-size: .36rem;
+    text-align: center;
+    color: #fff;
+}
+
+.calendar_tiper .tiper {
+    box-sizing: border-box;
+    display: none;
+    height: .8rem;
+    line-height: .8rem;
+    width: 3.28rem;
+    background-color: #ffb413;
+    border-radius: .1rem;
+    padding-left: .6rem;
+    font-size: .3rem;
+    color: #fff;
+}
+
+.calendar_tiper .first_select {
+    float: left;
+}
+
+.calendar_tiper .second_select {
+    float: right;
+}
+
+.calendar_tiper .icon_go,
+.calendar_tiper .icon_back,
+.calendar_tiper .icon_close {
+    width: .4rem;
+    height: .4rem;
+    margin-top: .2rem;
+    margin-right: .15rem;
+    display: inline-block;
+    float: left;
+    background: url(/images/ui/icon_common.png) no-repeat;
+    background-size: 7.90rem 5.13rem;
+}
+
+.calendar_tiper .icon_go {
+    background-position: -4.4rem -2.35rem;
+}
+
+.calendar_tiper .icon_back {
+    background-position: -5.03rem -2.35rem;
+}
+
+.calendar_tiper .icon_close {
+    float: right;
+    background-position: -5.61rem -2.35rem;
+}
+
+.calendar_week {
+    position: fixed;
+    top: 2.08rem;
+    width: 100%;
+    background: #f7f7f7;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.calendar_week .date_title {
+    float: left;
+    width: 14.2%;
+    height: .6rem;
+    line-height: .6rem;
+    color: #000;
+    text-align: center;
+}
+
+.calendar_week dt:last-child {
+    width: 14.8%;
+}
+
+.calendar_week dt.date_title {
+    font-size: .28rem;
+}
+
+.calendar {
+    font-family: Tahoma;
+    font-size: .16rem;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.calendar .ca_month {
+    margin: 0 .2rem;
+}
+
+.calendar dt.title-date {
+    display: block;
+    width: 100%;
+    height: .6rem;
+    line-height: .6rem;
+    color: #000;
+    text-align: center;
+    font-size: .28rem;
+    position: relative;
+}
+
+.calendar dd {
+    display: inline-block;
+    width: 100%;
+    clear: both;
+    background: #fff;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+}
+
+.calendar dd a {
+    width: 14.2%;
+    height: .9rem;
+    float: left;
+    line-height: .9rem;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    color: #484848;
+    position: relative;
+}
+
+.calendar dd a.disabled {
+    color: #999;
+    display: inline-block;
+}
+
+.calendar dd a.tody {
+    color: red;
+}
+
+.calendar dd a span {
+    display: block;
+}
+
+.calendar dd a.on {
+    background: #59c895;
+    color: #fff;
+}
+
+.calendar dd a.live {
+    cursor: pointer
+}
+
+.calendar dd a span.live_circle {
+    width: .6rem;
+    height: .6rem;
+    position: relative;
+    line-height: .6rem;
+    text-align: center;
+    border-radius: 50%;
+    margin: .15rem auto;
+    background: #FFB413;
+    color: #fff;
+    z-index: 10;
+}
+
+.calendar a.through:after {
+    content: " ";
+    display: inline-block;
+    height: .6rem;
+    width: 100%;
+    background-color: #ffd271;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -.3rem;
+    opacity: .5;
+}
+
+.calendar a.selectStart:after {
+    content: " ";
+    display: inline-block;
+    height: .6rem;
+    width: 100%;
+    background-color: #ffd271;
+    position: absolute;
+    top: 50%;
+    left: .3rem;
+    margin-top: -.3rem;
+    opacity: .5;
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+}
+
+.calendar a.selectEnd:after {
+    content: " ";
+    display: inline-block;
+    height: .6rem;
+    width: 100%;
+    background-color: #ffd271;
+    position: absolute;
+    top: 50%;
+    left: -.3rem;
+    margin-top: -.3rem;
+    opacity: .5;
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+}
+
+
+/*
+.calendar dd a span.live_txt {
+    color: #FFB413;
+    font-size: 12px;
+    line-height: 21px;
+}
+*/
+
+.tipers {
+    display: none;
+    width: 163px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background: rgba(0, 0, 0, .6);
+    position: fixed;
+    left: 50%;
+    margin-left: -81px;
+    z-index: 4;
+    text-align: center;
+    border-radius: 3px;
+    bottom: 58px;
+}
