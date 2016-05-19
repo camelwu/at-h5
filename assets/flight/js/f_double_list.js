@@ -1,4 +1,4 @@
-var fIndexModal = {
+var fDoubleList = {
 
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {
@@ -21,7 +21,6 @@ var fIndexModal = {
 
   eventHandler: function () {
     var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
     that.deg = 0;
     this.addHandler(content, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
@@ -30,15 +29,11 @@ var fIndexModal = {
         that.type = "oneWay";
         target.className = "singleTrip light-title";
         target.nextSibling.nextSibling.className = "doubleTrip grey-title";
-        singleWrap.style.display = "block";
-        doubleWrap.style.display = "none";
         document.querySelector('.dateInfo').className = "dateInfo white single_date";
       } else if (target.innerHTML == "往返") {
         that.type = "return";
         target.className = "doubleTrip light-title";
         target.previousSibling.previousSibling.className = "singleTrip grey-title";
-        singleWrap.style.display = "none";
-        doubleWrap.style.display = "block";
         document.querySelector('.dateInfo').className = "dateInfo white";
       } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
         var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "";
@@ -100,7 +95,7 @@ var fIndexModal = {
           }
         }
       } else if (target.id == "ticket-search-button") {
-        var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'),doubleDateArrive = document.querySelector('#arriveDate');
+        var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), dateEles = document.querySelectorAll('.month-day');
         var adultValue = document.querySelector('.adultNumber').innerHTML, childValue = document.querySelector('.childNumber').innerHTML, seatValue = document.querySelector('#seats').innerHTML;
         var reFixedSeat = function (arg) {
           var cabinStr = "";
@@ -126,7 +121,7 @@ var fIndexModal = {
           paraObj = {
             "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
             "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": singleDateSet.getAttribute('date-full-value'),
+            "DepartDate": dateEles[0].getAttribute('date-full-value'),
             "CabinClass": reFixedSeat(seatValue),
             "RouteType": that.type,
             "IsHideSharedFlight": "false",
@@ -153,8 +148,8 @@ var fIndexModal = {
           paraObj = {
             "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
             "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": doubleDateSet.getAttribute('date-full-value'),
-            "ReturnDate": doubleDateArrive.getAttribute('date-full-value'),
+            "DepartDate": dateEles[0].getAttribute('date-full-value'),
+            "ReturnDate": dateEles[1].getAttribute('date-full-value'),
             "CabinClass": reFixedSeat(seatValue),
             "RouteType": that.type,
             "IsHideSharedFlight": "false",
@@ -166,7 +161,7 @@ var fIndexModal = {
             "PriorityRule": 0,
             "pageNo": 1,
             "pageSize": 10,
-            "interNationalOrDomestic": "international", /*国际或者国内*/
+            "interNationalOrDomestic": "international",/*国际或者国内*/
             "hasTax": "true",
             "IsDesc": "false",
             "fromCity": cityEles[0].innerHTML,
@@ -220,140 +215,8 @@ var fIndexModal = {
     return array[1] + '月' + array[2] + '日';
   },
 
-  initShowInfo: function () {
-    var data = arguments[0], tripTitles = document.querySelectorAll('.hTab div'),
-      dates = document.querySelectorAll('.month-day'), weeks = document.querySelectorAll('.weekWord'),
-      adultValue = document.querySelector('.adultNumber'), childValue = document.querySelector('.childNumber'),
-      seatValue = document.querySelector('#seats'), timeClickWrap = document.querySelector('#timeClickWrap'),
-      singleDateSet = document.querySelector('#setOffDateSingle'),
-      doubleDateSet = document.querySelector('#setOffDate'),
-      doubleDateArrive = document.querySelector('#arriveDate');
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
-    var reSeat = function (arg) {
-      var cabinStr = "";
-      switch (arg) {
-        case "economy":
-          cabinStr = "经济舱";
-          break;
-        case "business":
-          cabinStr = "商务舱";
-          break;
-        case "first":
-          cabinStr = "头等舱";
-          break;
-        case "economyPremium":
-          cabinStr = "豪华经济舱";
-          break;
-        default :
-          void (0);
-      }
-      return cabinStr;
-    };
-    if (this.type == "oneWay") {
-      tripTitles[0].className = "singleTrip light-title";
-      tripTitles[1].className = "doubleTrip grey-title";
-      singleWrap.style.display = "block";
-      doubleWrap.style.display = "none";
-      singleDateSet.innerHTML = this.returnDay(data.DepartDate);
-      singleDateSet.setAttribute('date-full-value', data.DepartDate);
-    } else {
-      tripTitles[0].className = "singleTrip grey-title";
-      tripTitles[1].className = "doubleTrip light-title";
-      singleWrap.style.display = "none";
-      doubleWrap.style.display = "block";
-      doubleDateSet.innerHTML = this.returnDay(data.DepartDate);
-      doubleDateSet.setAttribute('date-full-value', data.DepartDate);
-      doubleDateArrive.innerHTML = this.returnDay(data.ReturnDate);
-      doubleDateArrive.setAttribute('date-full-value', data.ReturnDate);
-    }
-    adultValue.innerHTML = data.NumofAdult;
-    childValue.innerHTML = data.NumofChild;
-    seatValue.innerHTML = reSeat(data.CabinClass)
-  },
-
-  initDate: function () {
-    var d = new Date(), s = new Date(d.setDate(d.getDate() + 1)), r = new Date(d.setDate(d.getDate() + 2)),
-      startDay, endDay, startStrMonth = '', startStrDate = '', endStrMonth = '', endStrDate = '',
-      dates = document.querySelectorAll('.month-day'), weeks = document.querySelectorAll('.weekWord');
-    startStrMonth = parseInt(s.getMonth() + 1) >= 10 ? parseInt(s.getMonth() + 1) : '0' + parseInt(s.getMonth() + 1);
-    startStrDate = parseInt(s.getDate()) >= 10 ? parseInt(s.getDate()) : '0' + parseInt(s.getDate());
-    endStrMonth = parseInt(r.getMonth() + 1) >= 10 ? parseInt(r.getMonth() + 1) : '0' + parseInt(r.getMonth() + 1);
-    endStrDate = parseInt(r.getDate()) >= 10 ? parseInt(r.getDate()) : '0' + parseInt(r.getDate());
-    startDay = s.getFullYear() + "-" + startStrMonth + "-" + startStrDate;
-    endDay = r.getFullYear() + "-" + endStrMonth + "-" + endStrDate;
-    dates[0].setAttribute('date-full-value', startDay);
-    dates[0].innerHTML = this.returnDay(startDay);
-    weeks[0].innerHTML = this.setWeekItems(startDay);
-    dates[1].setAttribute('date-full-value', endDay);
-    dates[1].innerHTML = this.returnDay(endDay);
-    weeks[1].innerHTML = this.setWeekItems(endDay);
-  },
-
   init: function () {
-    $("#status").fadeOut();
-    $("#preloader").delay(400).fadeOut("medium");
-    var storage = window.sessionStorage, fIndexInfo = {},  dateInfoObj = {},dateInfo = document.querySelectorAll('.month-day');
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
-    this.type = "oneWay";
-    this.time1 = {};
-    this.time2 = {};
-    if (window.location.search) {
-      this.type = window.location.search.substring(6);
-      fIndexInfo = JSON.parse(storage.getItem('fIndexInfo'));
-      this.initShowInfo(fIndexInfo);
-      if (new Date(fIndexInfo.DepartDate.replace(/-/g, '/')) < new Date()) {
-        this.initDate();
-      }
-    } else {
-      this.initDate()
-    }
-    if (this.type == "oneWay") {
-      singleWrap.style.display = "block";
-      doubleWrap.style.display = "none";
-    } else {
-      singleWrap.style.display = "none";
-      doubleWrap.style.display = "block";
-    }
-    dateInfoObj.start = dateInfo[0].getAttribute('date-full-value');
-    dateInfoObj.end = dateInfo[1].getAttribute('date-full-value');
-    this.time1[dateInfoObj.start] = "checkinTime";
-    this.time2[dateInfoObj.start] = "checkinTime";
-    this.time2[dateInfoObj.end] = "checkoutTime";
-    var myTime2 = new ATplugins.Calender({
-      id: "timeSingleWrap",
-      selectTime: 1,
-      time: this.time1,
-      checkInTimeOptId: 'setOffDateSingle',
-      callback: function () {
-        var dates = document.querySelectorAll('#timeSingleWrap .month-day'), weeks = document.querySelectorAll('#timeSingleWrap .weekWord'), dateSource = arguments[0], that = fIndexModal;
-        dateSource.forEach(function (array, index) {
-          dates[index].setAttribute('date-full-value', array);
-          dates[index].innerHTML = that.returnDay(array);
-          weeks[index].innerHTML = that.setWeekItems(array);
-        });
-      }
-    });
-    var myTime1 = new ATplugins.Calender({
-      id: "timeDoubleWrap",
-      time: this.time2,
-      checkInTimeOptId: 'setOffDate',
-      checkOutTimeOptId: 'arriveDate',
-      callback: function () {
-        var dates = document.querySelectorAll('#timeDoubleWrap .month-day'), weeks = document.querySelectorAll('#timeDoubleWrap .weekWord'), dateSource = arguments[0], that = fIndexModal;
-        dateSource.forEach(function (array, index) {
-          dates[index].setAttribute('date-full-value', array);
-          dates[index].innerHTML = that.returnDay(array);
-          weeks[index].innerHTML = that.setWeekItems(array);
-        });
-      }
-    });
-    var mySeat = new Scroller({
-      id: "seats",
-      type: "seat",
-      cont: "uuun1"
-    });
 
-    this.eventHandler()
   }
 };
-fIndexModal.init();
+fDoubleList.init();
