@@ -3,7 +3,6 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-
   var show1 = 0,show2 = 0,scrollTopPx = 44;
   var globalType = "";
   var returnType = "";
@@ -33,9 +32,9 @@
     var adapter = {
       /**
        * 机+酒+景 热门城市 数据转化
-   * @param data
+       * @param data
        * @returns {Array}
-   */
+       */
       hft_ori:function(){
         var hft_HotCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100014'};
         var hft_OriCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100001'};
@@ -74,7 +73,7 @@
         var hf_DesCityListData = {"Parameters":{"CityType":"2","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
         vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hfDesHotCityListDataCallback"]);
         vlm.loadJson("",JSON.stringify(hf_DesCityListData),Method["hfDesCityListDataCallback"]);
-    }
+      }
     }
 
 
@@ -95,21 +94,21 @@
        */
       addAjaxAdapter:function(type,fn){
         adapter[type] = fn;
-  }
+      }
     }
   };
 
   /**
    * 数据过滤策略层
    * @returns {{callAdapter: callAdapter, addAdapter: addAdapter}}
-   */
+     */
   var dataAdapter = function(){
     var adapter = {
       /**
        * 机+酒+景 热门城市 数据转化
        * @param data
        * @returns {Array}
-       */
+         */
       hftHotCity:function(data){
         //data数据处理转化
         var obj = {};
@@ -287,7 +286,7 @@
     /**
      * 回调方法 机+酒+景 城市列表 热门城市
      * @param json
-       */
+     */
     hftDesHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
@@ -484,8 +483,8 @@
                   fragment.appendChild(thin_border_li);
               }
 
-        }
-        dom.appendChild(fragment);
+            }
+          dom.appendChild(fragment);
 
         });
     },
@@ -576,7 +575,7 @@
      * @param from
      * @param to
      * @returns {Number|*}
-     */
+       */
     remove: function(array, from, to) {
       var rest = array.slice((to || from) + 1 || array.length);
       array.length = from < 0 ? array.length + from : from;
@@ -764,9 +763,11 @@
 })();
 //获取数据
 //数据转换接口
+//热门城市
 //城市列表
 //城市字母列表
 //城市搜索
+
 
 
 
