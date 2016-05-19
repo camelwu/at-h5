@@ -224,23 +224,21 @@ var hftChoose = {
             te.hotelInfo.rooms = that.curData.hotelInfo.rooms;
             output = ejs.render(tempStr, te);
             $(".roomUl").eq(0).html(output);
-            this.innerHTML = '收起更多房型<span class="check-more-down"></span>';
+            this.innerHTML = '收起更多房型<span class="check-more-up"></span>';
           } else if (text.indexOf('收起') > -1) {
             te.hotelInfo.rooms = that.curData.hotelInfo.rooms.slice(0, 2);
             output = ejs.render(tempStr, te);
             $(".roomUl").eq(0).html(output);
             temNum = that.curData.hotelInfo.rooms.length - 2;
-            this.innerHTML = '查看更多房型<span>(' + temNum + ')</span><span class="check-more-down"></span>';
+            this.innerHTML = '查看更多房型<span class="letter-space">(' + temNum + ')</span><span class="check-more-down"></span>';
           }
         });
       }
     }
     this.addHandler(backI, 'click', function () {
-      window.sessionStorage.removeItem('hftFlightHotelTourInfo');
       window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?=" + that.type;
     });
     this.addHandler(iconBack, 'click', function () {
-      window.sessionStorage.removeItem('hftFlightHotelTourInfo');
       window.location.href = that.type == 1 ? "index.html?type=" + that.type : "hft_scenic_list.html?=" + that.type;
     });
     this.addHandler(changeFlight, 'click', function () {
@@ -269,7 +267,7 @@ var hftChoose = {
         hftChangeFlightPara.airwaySetID = that.curData.flightInfo.setID;
         hftChangeFlightPara.airwayCacheID = that.curData.flightInfo.cacheID;
         hftChangeFlightPara.SortFields = [0];
-        hftChangeFlightPara.ScreenFields = [1];
+        hftChangeFlightPara.ScreenFields = [0];
         hftChangeFlightPara.FlightStartTime = 0;
       }
       storage.setItem('hftChangeFlightPara', JSON.stringify(hftChangeFlightPara));
@@ -308,7 +306,6 @@ var hftChoose = {
         hftChangeHotelPara.packageID = that.initParaObj.packageID;
         hftChangeHotelPara.tours = toursArray;
       }
-      ;
       storage.setItem('hftChangeHotelPara', JSON.stringify(hftChangeHotelPara));
       that.timer2 = setTimeout(function () {
         window.clearTimeout(that.timer2);
@@ -330,7 +327,9 @@ var hftChoose = {
         "selectedHotelID": that.curData.hotelInfo.hotelID,
         "selectedRoomID": that.roomPriceInfo.roomID,
         "hotelID": that.curData.hotelInfo.hotelID,
-        "roomDetails": that.initParaObj.roomDetails
+        "roomDetails": that.initParaObj.roomDetails,
+        "flightCacheID":that.curData.flightInfo.cacheID,
+        "flightSetID":that.curData.flightInfo.setID
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {
@@ -341,8 +340,6 @@ var hftChoose = {
           temObj['travelDateSpecified'] = array['travelDateMandatory'];
           toursArray.push(temObj);
         });
-        hftHotelDetailPara.flightCacheID = that.curData.flightInfo.cacheID;
-        hftHotelDetailPara.flightSetID = that.curData.flightInfo.setID;
         hftHotelDetailPara.tours = toursArray;
         hftHotelDetailPara.packageID = that.initParaObj.packageID;
       } else {
@@ -701,7 +698,6 @@ var hftChoose = {
         this.tAjax("", this.initParaObj, "50100001", 3, this.renderHandler);
       }
     }
-    //this.renderHandler(result)
   }
 };
 hftChoose.init();

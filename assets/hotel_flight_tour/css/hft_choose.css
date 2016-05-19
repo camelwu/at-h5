@@ -121,7 +121,7 @@ body {
     background-position: -.418rem -1.16rem;
     margin-right: .16rem;
     position: relative;
-    top: .08rem;
+    top: .128rem;
 }
 
 .statusMoreHotel span:before {
@@ -307,11 +307,11 @@ body {
 
 .timeAirport .middle .toArrowWord {
     display: block;
-    margin: 0 auto 0;
-    width: 1.68rem;
-    height: 0.20rem;
+    margin: 0.04rem auto 0.04rem;
+    width: 1.888rem;
+    height: 0.24rem;
     background: url(../../images/ui/change-arrow.png);
-    background-size: 1.68rem auto;
+    background-size: 1.88rem auto;
     background-repeat: no-repeat;
 }
 
@@ -471,25 +471,32 @@ body {
     border-bottom: 1px solid #dedede;
     font-size: .24rem;
 }
-
-.check-more-down {
+.check-more-down, .check-more-up{
     display: inline-block;
     width: .16rem;
     height: .16rem;
     border-bottom: .03rem solid #666;
-    border-left: 0;
+    border-left: none;
     border-right: .03rem solid #666;
-    margin-left: .24rem;
-    -webkit-transform: rotate(45deg) translateY(-50%);
-    -o-transform: rotate(45deg) translateY(-50%);
-    -moz-transform: rotate(45deg) translateY(-50%);
-    -ms-transform: rotate(45deg) translateY(-50%);
-    transform: rotate(45deg) translateY(-50%);
-    -webkit-transform-origin: 50% 0;
-    -o-transform-origin: 50% 0;
-    -moz-transform-origin: 50% 0;
-    -ms-transform-origin: 50% 0;
-    transform-origin: 50% 0;
+    margin-left: .18rem;
+    position: relative;
+    top:.02rem;
+   -webkit-transform: rotate(45deg) translateY(-50%);
+   -o-transform: rotate(45deg) translateY(-50%);
+   -moz-transform: rotate(45deg) translateY(-50%);
+   -ms-transform: rotate(45deg) translateY(-50%);
+   transform: rotate(45deg) translateY(-50%);
+}
+.check-more-up{
+  border-top: .03rem solid #666;
+  border-bottom:none;
+  top:.088rem;
+  margin-left: .28rem;
+  -webkit-transform: rotate(-45deg) translateY(-50%);
+  -o-transform: rotate(-45deg) translateY(-50%);
+  -moz-transform: rotate(-45deg) translateY(-50%);
+  -ms-transform: rotate(-45deg) translateY(-50%);
+  transform: rotate(-45deg) translateY(-50%);
 }
 
 .roomUl .plassPrice {
@@ -531,7 +538,7 @@ body {
     background: #fdb330;
 }
 
-.tourNumber {
+.letter-space {
     margin-left: .04rem;
     letter-spacing: .04rem;
 }

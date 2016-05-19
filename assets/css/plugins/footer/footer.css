@@ -14,7 +14,6 @@ ol {
 /*酒店列表  开始*/
 .hotel_list {
 	background: #fff;
-	margin-bottom: 0.98rem;
 	margin-top: 0.88rem;
 	border-top: 1px solid #dddddd;
 }
@@ -635,11 +634,14 @@ section.flight_company .aw_price span:last-child {
 	font-size: .28rem;
 }
 section.flight_company li.cur b.hft_icon {
-	display: inline-block;
-	background-image: url(../../images/ui/icon-hft.png);
-	background-repeat: no-repeat;
+	position: absolute;
+	background-image: url(../../images/ui/icon_common.png);
 	background-size: 7.5rem 4.54rem;
+	background-position:-4.47rem -1.29rem;
+	width: 0.42rem;
+	height: 0.42rem;
 	right: 0;
+	top: 0;
 }
 .footer_filter_btn dl.flight_company dt {
 	background-position: -2.6rem -4.33rem;

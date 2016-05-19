@@ -1,20 +1,22 @@
 var data2 = '',roomdata = '';
 (function () {
-    var temObj = eval("temObj="+localStorage.getItem("hotelDetailInfo")).data;
-    var ulrRoomId = parseInt(window.location.search.substring(15));
-    var departDate = temObj.DepartDate.substring(0,10);
-    var enterDate = temObj.ReturnDate.substring(0,10);
-    temObj.DepartDate = departDate;
-    temObj.ReturnDate = enterDate;
-    if(!ulrRoomId){delete temObj.SelectedRoomID}
+    var temObj = JSON.parse(sessionStorage.getItem("hftHotelDetailPara"));
+    var urlIf = window.location.search;
+    var ulrRoomId = urlIf.substring(23)-0;
+    var departDate = temObj.departDate.substring(0,10);
+    var enterDate = temObj.returnDate.substring(0,10);
+    temObj.departDate = departDate;
+    temObj.returnDate = enterDate;
+    if(!ulrRoomId){delete temObj.selectedRoomID}
     //data中入住离店时间必须去掉时分秒
+    console.log(temObj)
     var data = {
-        "Code":"50100009",
-        "ForeEndType":2,
-        "Parameters":temObj
-    };
-    var departDateHtml = temObj.DepartDate.substring(5);
-    var enterDateHtml = temObj.ReturnDate.substring(5);
+        "Code": "50100009",
+        "ForeEndType": 2,
+        "Parameters": temObj
+    }
+    var departDateHtml = temObj.departDate.substring(5);
+    var enterDateHtml = temObj.returnDate.substring(5);
     $('.jhf-mes span.departDate').html(departDateHtml);
     $('.jhf-mes span.returnDate').html(enterDateHtml);
 
@@ -26,14 +28,14 @@ var data2 = '',roomdata = '';
     }
     vlm.loadJson('', JSON.stringify(data), dataCallBack);//url统一改vlm中的，此处可以为空
     function dataCallBack(result) {
+        console.log(result)
         $("#preloader").hide();
-        console.log(result.data.hotelInfo.hotelID)
-        console.log(result.data.hotelInfo.hotelID!=0)
         if(result.success&&result.data.hotelInfo.hotelID){
-            var flightHotelAllData = JSON.parse(window.sessionStorage.getItem('flightHotelAllData'));
+            var flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
+            //console.log(flightHotelAllData)
             if(!window.location.search){
-                flightHotelAllData.data.hotelInfo = result.data.hotelInfo;
-                window.sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
+                flightHotelAllData.hotelInfo = result.data.hotelInfo;
+                window.sessionStorage.setItem('hftFlightHotelTourInfo',JSON.stringify(flightHotelAllData));
             }
             data2 = result.data;
             console.log(data2);
@@ -50,12 +52,12 @@ var data2 = '',roomdata = '';
     }
     //nav标题部分
     function nav(){
-        var tpl_seoul = template("tpl_seoul", data2.hotelInfo);
-        $('.j-title').html(tpl_seoul);
+        $('.header h3').html(data2.hotelInfo.hotelNameLocale);
     }
     //banner
     function banner(){
-        var banner = template("banner", data2.hotelInfo);
+        var str = $('#banner').html();
+        var banner = ejs.render(str, data2.hotelInfo);
         $('.jhf-banner').html(banner);
     }
     //日历部分
@@ -76,19 +78,22 @@ var data2 = '',roomdata = '';
     //    }
     //}
     //地址 星级 wifi
+
     function adress(){
-        var jhf_score = template("jhf_score", data2.hotelInfo);
+        var str = $('#jhf_score').html();
+        var jhf_score = ejs.render(str, data2.hotelInfo);
         $('.jhf-score').html(jhf_score);
     }
 
     //客房部分
     function room(){
-        var jhf_room = template("jhf_room", data2.hotelInfo);
+        var str = $('#jhf_room').html();
+        var jhf_room = ejs.render(str, data2.hotelInfo);
         $('.jhf-mes').append(jhf_room);
-
+        console.log(roomdata[0].roomID)
         $('.jhf-mes li.showh .slide').each(function(i){
-
             if( ulrRoomId == roomdata[i].roomID ){
+                console.log('true')
                 $('.jhf-mes li.showh .slide').eq(i).find('b').addClass('cur');
             }
 
@@ -97,7 +102,7 @@ var data2 = '',roomdata = '';
                 //$('.jhf-mes ol.show').eq(i).slideToggle();
                 $(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
                 var roomID = roomdata[i].roomID;
-                window.location.href = 'ticket_hotel_choose.html?selectedRoomID='+roomID;
+                window.location.href = 'hft_choose.html?type=1&selectedRoomID='+roomID;
             })
         });
     }

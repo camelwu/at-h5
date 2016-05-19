@@ -125,6 +125,7 @@
 	webkit.vlm = webkit.vlm || {};
 	webkit.vlm.load = function() {
 		core.ScenicList();
+    window.sessionStorage.removeItem('hftFlightHotelTourInfo'); //清空历史数据
 	};
 })();
 vlm.load();

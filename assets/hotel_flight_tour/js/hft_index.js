@@ -817,6 +817,7 @@ var htf_search = {
     init: function () {
         this.init_title_room();
         this.add_subtract();
+        window.sessionStorage.removeItem('hftFlightHotelTourInfo'); //清空历史数据
     }
 };
 htf_search.init();

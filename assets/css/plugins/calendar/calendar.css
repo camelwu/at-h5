@@ -1,6 +1,6 @@
 /**
 *=================================================
-*@desc  style for calendar   
+*@desc  style for calendar
 *@author Jason
 *@time  2016-05-04
 **/
@@ -288,7 +288,6 @@
     border-top-right-radius: .3rem;
     border-bottom-right-radius: .3rem;
 }
-
 
 /*
 .calendar dd a span.live_txt {
