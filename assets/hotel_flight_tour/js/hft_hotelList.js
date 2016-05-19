@@ -12,8 +12,11 @@
 		"foreEndType" : 3,
 		"code" : "60100007"
 	};
+	var currentPage;//页码
 	//接数据
 	vlm.loadJson('', JSON.stringify(dataPull), dataCallBack);
+
+	//footer插件方法必须写
 	function tAjax(questUrl, data, Code, ForeEndType, Callback) {
 		var that = this, dataObj = {
 			Parameters : data,
@@ -30,7 +33,13 @@
 			var data = result.data;
 			title(data);
 			list(result);
+			//点击加载更多
+			$('#loadMore').on("click", function () {
+				console.log('111')
+				loadMore();
+			})
 			clickMore(data);
+
 			//footer  begin
 			var menu_data = {
 				hotelSort : {
@@ -115,7 +124,9 @@
 	function list(result) {
 		var str = $('#templateList').html();
 		var hotels = ejs.render(str, handleData(result));
-		$('.hotel_list').html(hotels);
+		$('.hotel_list').append(hotels);
+		//去掉loading
+		$('.status').fadeOut('fast');
 		$('.hotel_list li').on('click', function() {
 			$(this).addClass('cur').siblings().removeClass('cur');
 			var hotelID = $(this).attr("data-hotelId");
@@ -128,9 +139,25 @@
 		});
 	}
 
+	//加载更多
+	function loadMore() {
+		//设置参数
+		var loadMoreBtn = $("#loadMore");
+		if (loadMoreBtn.attr("data-more") == "no") {
+			return;
+		}
+		loadMoreBtn.attr("data-more", "yes");
+		dataPull.parameters.pageNo = currentPage + 1;
+
+		$("#loadMore").html("正在加载...");
+		vlm.loadJson('', JSON.stringify(dataPull), dataCallBack);
+		//vlm.loadJson("", data, dataCallBack, false, false, true);
+	}
+
 	//点击加载更多
 	function clickMore(data){
-		if (data.pageNo < data.pageCount) {
+		currentPage = data.pageNo;
+		if (data.hotels.length>0 && (data.pageNo < data.pageCount)) {
 			$("#loadMore").attr("data-more", "").html("点击加载更多").show();
 		} else if (data.pageNo >= data.pageCount) {
 			$("#loadMore").attr("data-more", "no").html("没有更多数据了！").show();

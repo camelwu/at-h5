@@ -338,7 +338,7 @@ var footer = (function() {
 			case "sortTypes":
 				// 排序
 				for (; i < l; i++) {
-					css = i == 0&&i == "不限" ? ' class="cur"' : '';
+					css = i == 0 ? ' class="cur"' : '';
 					listr += '<li' + css + ' data-val="' + d[i].sortValue + '">' + d[i].sortText + '<i></i></li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
