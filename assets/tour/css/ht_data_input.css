@@ -1,0 +1,373 @@
+i{
+  font-style: normal;
+}
+input{
+  border: none;
+}
+.com_icon{
+  display: inline-block;
+  background-image: url(../../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.9rem 5.13rem;
+}
+/*资料输入页开始*/
+.content{
+  padding-top: .88rem;
+}
+.section_box{
+  width: 100%;
+  margin-top: .3rem;
+  background: #FFFFFF;
+}
+.section_box h3{
+  font-size: .3rem;
+  color: #555;
+  height: .95rem;
+  padding-left: .3rem;
+  line-height: .95rem;
+  overflow: hidden;
+  border-bottom: 1px solid #e6e6e6;
+}
+.section_box h3:before{
+  position: relative;
+  content: '';
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.9rem 5.13rem;
+  display: inline-block;
+  height: .52rem;
+  width: .52rem;
+  top: .16rem;
+  margin-right: .15rem;
+}
+.section_box h3.hotel:before {
+  background-position: 16.3% 31%;
+}
+.section_box h3.tour:before {
+  background-position: 25.6% 31%;
+}
+.section_box .dataInfo{
+  padding: .4rem .3rem;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: .24rem;
+  color: #666666;
+  overflow: hidden;
+}
+.section_box .dataInfo div:nth-child(1){
+  float: left;
+  width: 2.28rem;
+}
+.section_box .dataInfo div:nth-child(2){
+  float: left;
+  width: 2.1rem;
+  margin-top: .55rem;
+  text-align: center;
+}
+.section_box .dataInfo div:nth-child(3){
+  float: right;
+  width: 2.4rem;
+}
+.section_box .dataInfo .hotel_data span:nth-child(1){
+  display: block;
+  margin-bottom: .1rem;
+}
+.section_box .dataInfo .hotel_data span:nth-child(2){
+  font-size: .36rem;
+  color: #333333;
+  font-weight: bold;
+  margin-top: .1rem;
+}
+.section_box .dataInfo .hotel_data span:nth-child(3){
+  color:#333333;
+}
+/*   房间信息   */
+.hotelInfo_numb_room{
+   border-bottom: 1px solid #e6e6e6;
+   overflow: hidden;
+   padding: 0 .15rem;
+   background: #FFFFFF;
+ }
+.hotelInfo_numb_room .title{
+  display: block;
+  position: absolute;
+  width: 1.4rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: .3rem;
+  color:rgb(51,51,51);
+  left: .3rem;
+}
+.hotelInfo_numb_people .title{
+  display: block;
+  position: absolute;
+  width: 1.4rem;
+  height: .88rem;
+  line-height: .88rem;
+  font-size: .3rem;
+  color:rgb(51,51,51);
+  left: .3rem;
+}
+.hotelInfo_numb_room .per_price_control {
+  float: right;
+  padding: .38rem 0;
+}
+.hotelInfo_numb_people .per_price_control {
+  float: right;
+  padding: .15rem 0;
+}
+section[class^="hotelInfo_numb"] .per_price_control span {
+  width: .54rem;
+  height:.54rem;
+  float: left;
+  background-image: url(../../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.9rem 5.13rem;
+  background-position: 41.2% 68%;
+  /*/!*background-position: 29.5% 68%;*!/  //置灰*/
+}
+section[class^="hotelInfo_numb"] .per_price_control span:first-child {
+  background-position: 6.7% 68%;
+  /*/!*    background-position: 17.5% 68%;*!/     高亮*/
+}
+section[class^="hotelInfo_numb"] .per_price_control i {
+  width: .8rem;
+  height: .48rem;
+  line-height:.54rem;
+  float: left;
+  text-align: center;
+  font-size: .32rem;
+  color:rgb(72,72,72);
+}
+section.hotelInfo_numb_people {
+  border-bottom: 1px solid #e6e6e6!important;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+section.hotelInfo_numb_people:last-child{
+  border-bottom: 0;
+}
+section[class^="hotelInfo_numb"] .numbList {
+  margin-left: 1.8rem;
+  font-size: .28rem;
+  overflow: hidden;
+  padding-right: .15rem;
+}
+section[class^="hotelInfo_numb"] .numbList:last-child {
+  clear: both;
+  border: none;
+}
+section[class^="hotelInfo_numb"] .numbList span.n_tit {
+  float: left;
+  height: .88rem;
+  line-height: .88rem;
+  text-indent: .16rem;
+}
+section[class^="hotelInfo_numb"] .numbList span.child_age {
+  position: relative;
+  font-size: .28rem;
+  color: rgb(153,153,153);
+  top: .24rem;
+}
+.child_age_state{
+  position: absolute;
+  width: .34rem;
+  height: .34rem;
+  margin-left: .08rem;
+  margin-top: .26rem;
+  background-position: 54% 31.5%;
+}
+.age_state_box{
+  position: absolute;
+  display: none;
+  width: 4rem;
+  z-index: 1;
+  margin-left: 1.55rem;
+  margin-top: -1.45rem;
+}
+.age_state_box div:last-child{
+  width: 0;
+  height: 0;
+  margin-left: .3rem;
+  border-left:  .2rem solid transparent;
+  border-right:  .2rem solid transparent;
+  border-top: .2rem solid #474747;
+}
+.age_state_box .state_text{
+  padding: .2rem;
+  margin-top: -1px;
+  background: #474747;
+  font-size: .2rem;
+  border-radius: .1rem;
+  color: #FFFFFF;
+  overflow: hidden;
+}
+.age_state_box .state_text span:first-child{
+  float: left;
+  display: block;
+  width: 6%;
+}
+.age_state_box .state_text span:last-child{
+  float: left;
+  display: block;
+  width: 90%;
+}
+section[class^="hotelInfo_numb"] .extraChild {
+  overflow: hidden;
+  margin-left: 1.8rem;
+  border-top: 1px solid #ddd;
+}
+section[class^="hotelInfo_numb"] .extraChild span {
+  display: block;
+  height: .88rem;
+  line-height: .88rem;
+  font-size: .28rem;
+  padding-left: .15rem;
+  position: relative;
+  clear: both;
+}
+section[class^="hotelInfo_numb"] .extraChild span:last-child {
+  border: none;
+}
+.spenumbList {
+  clear: both;
+  margin-left: 0 !important;
+}
+.bedList {
+  display: block;
+  height:.88rem;
+  line-height: .88rem;
+  padding-left: .15rem;
+  position: relative;
+}
+.childAge {
+  float: right;
+  width: 1.4rem;
+  font-size: .28rem;
+  margin-top: .18rem;
+  padding-right: .15rem;
+}
+.inp_cage {
+  display: inline-block;
+  height: .4rem;
+  width: 70%;
+  font-size: .32rem;
+  color: #333333;
+}
+input.inp_cage::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #333333;
+}
+input.inp_cage:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #333333;
+}
+
+input.inp_cage::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #333333;
+}
+
+input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #333333;
+}
+
+.child_sui {
+  display: inline-block;
+}
+.spenumbList{
+  border-top: 1px solid #ddd!important;
+}
+.noselect {
+  display: block;
+  position: absolute;
+  right: .1rem;
+  top: .24rem;
+  width: .42rem;
+  height: .42rem;
+  background-position: 59% 11.5%;
+}
+.ico_select {
+  display: block;
+  position: absolute;
+  right: .1rem;
+  top: .24rem;
+  width: .42rem;
+  height: .42rem;
+  background-position: 68% 11.5%;
+}
+.tour_info{
+  position: relative;
+  padding: .35rem .25rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+.tour_info .tour_title:before{
+  content: '';
+  width: .06rem;
+  height: .25rem;
+  top: .4rem;
+  margin-right: .1rem;
+  background: #ffb413;
+  display: inline-block;
+}
+.tour_info .tour_data{
+  overflow: hidden;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+}
+.tour_info .tour_data span:nth-child(1){
+  display: block;
+  float: left;
+  font-size: .32rem;
+}
+.tour_info .tour_data span:nth-child(2){
+  display: block;
+  float: right;
+  width: .38rem;
+  height: .4rem;
+  background-position: 90% 50%;
+}
+.tour_info .tour_frame{
+  overflow: hidden;
+  font-size: .28rem;
+}
+.tour_info .tour_frame div{
+  position: relative;
+  float: left;
+  width:30%;
+  height: .62rem;
+  margin-right: .18rem;
+  text-align: center;
+  line-height: .62rem;
+  border: 1px solid #d1d1d1;
+  border-radius:.05rem;
+  overflow: hidden;
+}
+.tour_info .tour_frame  .active{
+  color: #fdb330;
+  border: 1px solid #fdb330;
+}
+.tour_info .tour_frame  .active b{
+  position: absolute;
+  width: .5rem;
+  height: .4rem;
+  right: 0;
+  bottom: 0;
+  background-position: 94% 29.5%;
+}
+.search_button {
+  height: .9rem;
+  margin: .4rem .3rem;
+  font-size: .36rem;
+}
+.search_button input {
+  font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+  width: 100%;
+  height: .9rem;
+  color: #fff;
+  font-size: .36rem;
+  font-weight: bold;
+  line-height: .9rem;
+  border-radius: .06rem;
+  text-align: center;
+}
+.button_orange {
+  background-color: #ffb413;
+  color: #FFFFFF;
+}
+/*资料输入页结束*/
