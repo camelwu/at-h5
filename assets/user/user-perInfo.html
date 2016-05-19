@@ -20,10 +20,8 @@
 		<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
 		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-
 		<title>个人资料 - 亚洲旅行网</title>
-		<link href="../styles/framework.css"	rel="stylesheet" type="text/css">
-		<link href="../styles/style.css"		rel="stylesheet" type="text/css">
+		<link href="../styles/reset.css"		rel="stylesheet" type="text/css">
 		<link href="../styles/tips.css"		rel="stylesheet" type="text/css">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
 		<link href="../css/date_select.css"	rel="stylesheet" type="text/css">
@@ -38,23 +36,26 @@
 		<div id="preloader">
 			<div id="status"></div>
 		</div>
-		<div class="all-elements">
-			<div class="header">
-				<a href="user.html" class="header-back"><i class="icons go-back"></i></a>
-				<h3>个人资料</h3>
-			</div>
+		<div class="all_elements">
+      <div class="header">
+        <a href="user.html" class="header_back">
+          <i class="icon_back"></i>
+        </a>
+        <h3>个人资料</h3>
+      </div>
 			<!-- Page Content-->
-			<div id="content" class="snap-content">
-				<div id="infolist" class="user-info-top">
-					头像<img id="userIcon" src="../images/ui/photo-man.png" class="user-it"/>
-					<b class="icons open-rg" style="margin-top: 25px;"></b>
+			<div id="content" class="content">
+				<div id="infolist" class="user_info_top clearfix">
+          <span class="fl">头像</span>
+					<img id="userIcon" src="../images/ui/photo-man.png" class="user_it fr"/>
+					<b class="open_rg"></b>
 				</div>
-				<ul class="s_lists">
+				<ul class="userper_lists">
 					<li id="a_nick">
-						昵称 <span id="nickname" class="info-name"></span><b class="icons open-rg"></b>
+						昵称 <span id="nickname" class="info-name"></span><b class="open_rg"></b>
 					</li>
 					<li id="a_name">
-						姓名 <span id="hostname" class="info-name"></span><b class="icons open-rg"></b>
+						姓名 <span id="hostname" class="info-name"></span><b class="open_rg"></b>
 					</li>
 					<li>
 						性别
@@ -69,18 +70,18 @@
 						</div>
 					</li>
 					<li  class="sex-alter" id="ppp">
-						<div class="birth-date">出生日期</div>
+						<div class="birth_date fl">出生日期</div>
 						<div id="birth-cont-per" class="birth-cont" data-cache="1990年-1月-1日">1990-01-01</div>
-						<b class="icons open-rg"></b>
+						<b class="open_rg"></b>
 					</li>
 					<li id="a_phone">
-						手机 <span id="hostmobile" class="info-name"></span><b class="icons open-rg"></b>
+						手机 <span id="hostmobile" class="info-name"></span><b class="open_rg"></b>
 					</li>
 					<li id="a_email">
-						邮箱 <span id="hostemail" class="info-name"></span><b class="icons open-rg"></b>
+						邮箱 <span id="hostemail" class="info-name"></span><b class="open_rg"></b>
 					</li>
 					<li id="a_key">
-						修改密码<b class="icons open-rg"></b>
+						修改密码<b class="open_rg"></b>
 					</li>
 				</ul>
 				<div><a href="javascript:void(0);" class="info-quit">退出登录</a></div>
