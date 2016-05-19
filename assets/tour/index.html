@@ -34,17 +34,17 @@
 
         </div>
     </div>
-    <div class="all-elements">
+    <div class="all_elements">
         <!--   顶部   -->
         <header class="header">
-            <a href="javascript:history.go(-1);" class="header-back" id="ht-back"><i class="icons go-back"></i></a>
-            <h3>酒+景</h3>
-            <a onclick="MT.CurrentPageTolist()" class="location-wrap">
-                <span id="Localtxt" class="location-txt">更多</span>
-                <i class="location-tip"></i>
+            <a href="javascript:history.go(-1);" class="header_back" id="ht-back">
+                <i class="icon_back"></i>
             </a>
-            <!--<a onclick="MT.CurrentPageTolist()" style="position: absolute;color:#fff;width:50px;top: 0;right: 0;text-align: center;height: 45px;line-height: 45px;">更多</a>-->
-            <!--<i class="location-tip"></i>-->
+            <h3>酒+景</h3>
+            <a onclick="MT.CurrentPageTolist()" class="location-wrap tour_more">
+                <span id="Localtxt" class="location-txt">更多</span>
+                <i class="location_tip"></i>
+            </a>
         </header>
         <!--   内容   -->
         <div class="content content_bgfff">
@@ -145,8 +145,10 @@
             <a href="packages_detail.html?packageID={%=hotelAndScenicList[i].productID%}&productPrice={%=hotelAndScenicList[i].productPrice%}&status=1">
                 <div class="img_box pr">
                     <img src="{%=hotelAndScenicList[i].productPicUrl%}" class="banner-image" alt="img">
-                    <div class="hp-block pa">
-                        <span>￥</span><span class="pay-num">{%=hotelAndScenicList[i].productPrice%}</span><span>起</span>
+                    <div class="hp-block index_price pa">
+                        <span>￥</span>
+                        <span class="pay-num pay_num">{%=hotelAndScenicList[i].productPrice%}</span>
+                        <span>起</span>
                         <!--<b class = "icon1 s-location"></b>{%=hotelAndScenicList[i].productSite%}-->
                     </div>
                 </div>
