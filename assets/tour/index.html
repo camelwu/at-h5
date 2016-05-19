@@ -143,14 +143,20 @@
     {% for(var i = 0;i < hotelAndScenicList.length;i++){ %}
         <li>
             <a href="packages_detail.html?packageID={%=hotelAndScenicList[i].productID%}&productPrice={%=hotelAndScenicList[i].productPrice%}&status=1">
-                <div>
+                <div class="img_box pr">
                     <img src="{%=hotelAndScenicList[i].productPicUrl%}" class="banner-image" alt="img">
-                    <div class="hp-block">
-                        <b class = "icon1 s-location"></b>{%=hotelAndScenicList[i].productSite%}
+                    <div class="hp-block pa">
+                        <span>￥</span><span class="pay-num">{%=hotelAndScenicList[i].productPrice%}</span><span>起</span>
+                        <!--<b class = "icon1 s-location"></b>{%=hotelAndScenicList[i].productSite%}-->
                     </div>
                 </div>
-                <div class="spotDesc">{%=hotelAndScenicList[i].productDesc%}</div>
-                <div><span>￥</span><span class="pay-num">{%=hotelAndScenicList[i].productPrice%}</span><span>起</span></div>
+                <div class="spotDesc">
+                    <p class="name">{%=hotelAndScenicList[i].productName%}</p>
+                    <p class="desc">{%=hotelAndScenicList[i].productDesc%}</p>
+                </div>
+                <!--<div>-->
+                    <!--<span>￥</span><span class="pay-num">{%=hotelAndScenicList[i].productPrice%}</span><span>起</span>-->
+                <!--</div>-->
             </a>
         </li>
     {% } %}

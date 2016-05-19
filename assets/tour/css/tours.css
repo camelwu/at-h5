@@ -1,3 +1,9 @@
+.pr{
+    position: relative;
+}
+.pa{
+    position: absolute;
+}
 .content_bgfff{
     background: #fff;
 }
@@ -12,7 +18,7 @@
     height: 32px;
     line-height: 0.8rem;
     color: #666;
-    font-size: 0.28rem;
+    font-size: 0.3rem;
     font-weight: 700;
     padding: 0 0.26rem;
     margin: 0;
@@ -39,10 +45,30 @@
 .index_abroad_box li.jjin-active a{
     color: #ffb413;
 }
-
-
-
-
+.index_hotspot{
+    padding:0 0.2rem;
+}
+.index_hotspot  .hp-block{
+    height: 0.72rem;
+    line-height: 0.72rem;
+    color:#fff;
+    padding: 0 0.2rem;
+    left: 0;
+    bottom:0.36rem;
+    background: rgba(0,0,0,0.7);
+}
+.index_hotspot .spotDesc{
+    padding:0.3rem 0 0.5rem 0;
+}
+.index_hotspot .spotDesc p.name{
+    font-size: 0.3rem;
+    font-weight: bold;
+}
+.index_hotspot .spotDesc p.desc{
+    color: #666;
+    font-size: 0.26rem;
+    padding-top:0.14rem
+}
 
 
 
