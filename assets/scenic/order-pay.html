@@ -209,7 +209,7 @@
             var  Parameters=GetParameters(type,code);
             if(Parameters) {
                 console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function (data) {
+                vlm.loadJson("", JSON.stringify(Parameters), function (data) {
                     if (data.success) {
                         var url = data.data.paymentRedirectURL;
                         self.location.href=url;
@@ -326,7 +326,7 @@
                 "ForeEndType": 3,
                 "Code": "0095"
             }
-            vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+            vlm.loadJson("", JSON.stringify(Parameters), function(data){
                 if(data.success) {
                     var d=new Date(Date.parse(data.data.bookingDate.replace("T"," ").replace(/-/g, "/")));
                     d.setMinutes(d.getMinutes()+30);

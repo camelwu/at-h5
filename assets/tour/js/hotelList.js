@@ -13,7 +13,7 @@ var hotelList = {
 
 	CultureName : "zh-CN",
 
-	requestUrl : "http://10.2.22.239:8888/api/GetServiceApiResult",
+	requestUrl : "",
 
 	eventHandler : function(target, eventType, handle) {
 		if (document.addEventListener) {

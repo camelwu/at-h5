@@ -8,7 +8,9 @@
  */
 (function(e, t) {
 	var n = n || (function(n) {//123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111
-			var _api = "http://10.7.2.111/api/GetServiceApiResult", lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
+			var _api = "http://10.7.2.111/api/GetServiceApiResult",
+         _apiWithDeviceID = "http://127.0.0.1:1337/apiWihtDeviceID/GetServiceApiResult",
+        lStorage = window.localStorage, sStorage = window.sessionStorage, basePath = basePath == undefined ? "http://" + window.location.host : basePath, menus = {
 				home : ['首页', basePath],
 				user : ['我的', basePath + '/user/user.html']
 			},  _codeDic={
@@ -923,7 +925,7 @@
 						async : false
 					});
 				}
-
+          _api==""?_api:url
 				$.ajax({
 					type : "post",
 					url : _api + '?rnd=' + Math.random(),
@@ -1081,6 +1083,7 @@
 			//out api
 			return {
 				api : _api,
+        apiWithDeviceID:_apiWithDeviceID,
 				getpara : getpara,
 				setUrlPara : setUrlPara,
 				arr_t : arr_t,

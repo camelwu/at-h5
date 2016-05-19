@@ -1,129 +1,140 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-  <meta name="screen-orientation" content="portrait">
-  <meta name="full-screen" content="yes">
-  <meta name="browsermode" content="application">
-  <meta name="x5-orientation" content="portrait">
-  <meta name="x5-fullscreen" content="true">
-  <meta name="x5-page-mode" content="app">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="green">
-  <meta name="Keywords" content="亚洲旅行网">
-  <meta name="Description" content="境外专业旅行服务提供机构">
-  <title>资源选择页 - 亚洲旅行网</title>
-  <link href="../styles/reset.css" rel="stylesheet" type="text/css">
-  <link href="css/hft_choose.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>资源选择页 - 亚洲旅行网</title>
+    <link href="../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/hft_choose.css" rel="stylesheet" type="text/css">
 </head>
 <body>
- <div id="preloader">
-  <div id="status">
-    <p class="center-text"></p>
-  </div>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text"></p>
+    </div>
 </div>
 <div class="all_elements"></div>
 </body>
 <script id="template" type="text/template">
-  <header class="header no-shadow">
-    <a href="#" class="header_back">
-      <i class="icon_back"></i>
-    </a>
-    <h3><span><%= flightInfo["cityNameFrom"]%></span><i class="arrowDouble"></i><span><%= flightInfo["cityNameTo"]%></span></h3>
-  </header>
-  <p class="header_down_text">交通总耗时<span><%= flightInfo["segmentsTotalTravelTime"]%></span></p>
-  <div class="content content-down">
-    <div class="ticket fix-margin">
-      <ul class="flightOuter">
-        <%flightInfo.segmentsLeave.forEach(function(leaveItem,item){ var length = flightInfo.segmentsLeave.length %>
-        <li class="tripGo">
-          <%if(item==0){ %>
-          <div class="dateWeekCity">
-            <span class="icon"></span>
-            <span><%= leaveItem["departDate"].substring(5, 10) %></span><span class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span>
-          </div>
-          <%}%>
-          <div class="timeAirport fixedMargin">
-            <div class="left">
-              <span class="startTime"><%= leaveItem["departDate"].substring(11, 16) %></span><span
-              class="startPort"><%= leaveItem["airportNameFrom"] %><%= leaveItem["termDepart"] %></span>
-            </div>
-            <div class="middle">
-              <div class="timeCost"><%= leaveItem["segmentsLeaveTotalTravelTimeString"] %></div>
-              <div class="arrow"></div>
-              <div class="transferCity"></div>
-            </div>
-            <div class="right">
-            <span class="arriveTime"><%= leaveItem["arriveDate"].substring(11, 16) %></span>
-              <% if(leaveItem["spacingDay"]){ %>
-              <span class="plusDay">+<%=leaveItem["spacingDay"]%>天</span>
-              <% }%>
+    <header class="header no-shadow">
+        <a href="#" class="header_back">
+            <i class="icon_back"></i>
+        </a>
+
+        <h3><span><%= flightInfo["cityNameFrom"]%></span><i
+                class="arrowDouble"></i><span><%= flightInfo["cityNameTo"]%></span></h3>
+    </header>
+    <p class="header_down_text">交通总耗时<span><%= flightInfo["segmentsTotalTravelTime"]%></span></p>
+    <div class="content content-down">
+        <div class="ticket fix-margin">
+            <ul class="flightOuter">
+                <%flightInfo.segmentsLeave.forEach(function(leaveItem,item){ var length =
+                flightInfo.segmentsLeave.length %>
+                <li class="tripGo">
+                    <%if(item==0){ %>
+                    <div class="dateWeekCity">
+                        <span class="icon"></span>
+                        <span><%= leaveItem["departDate"].substring(5, 10) %></span><span
+                            class="<%= item>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span>
+                    </div>
+                    <%}%>
+                    <div class="timeAirport fixedMargin">
+                        <div class="left">
+                            <span class="startTime"><%= leaveItem["departDate"].substring(11, 16) %></span><span
+                                class="startPort"><%= leaveItem["airportNameFrom"] %><%= leaveItem["termDepart"] %></span>
+                        </div>
+                        <div class="middle">
+                            <div class="timeCost"><%= leaveItem["segmentsLeaveTotalTravelTimeString"] %></div>
+                            <div class="arrow"></div>
+                            <div class="transferCity"></div>
+                        </div>
+                        <div class="right">
+                            <span class="arriveTime"><%= leaveItem["arriveDate"].substring(11, 16) %></span>
+                            <% if(leaveItem["spacingDay"]>=1){ %>
+                            <span class="plusDay">+<%=leaveItem["spacingDay"]%>天</span>
+                            <% }%>
             <span
-              class="arrivePort"><%=  leaveItem["airportNameTo"] %><%=  leaveItem["termArrive"] %></span>
-            </div>
-          </div>
-          <p class="flightDetailInfo">
-            <span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><span><%=  leaveItem["planeName"] %></span>
-          </p>
-        </li>
-        <%if(item<length-1){
-        var endDate=flightInfo.segmentsLeave[item+1]['departDate'],leaveTransferMins="", leaveTransferHm="";
-        leaveTransferMins = hftFlightDetail["getMinutes"](leaveItem["arriveDate"],endDate);
-        leaveTransferHm = parseInt(leaveTransferMins / 60) + 'h' + leaveTransferMins % 60 + 'm';
-        %>
-        <p class="flightDetailArrow addMargin">
-          中转<%=leaveItem["cityNameTo"]%><span><%=leaveTransferHm%></span>
-        </p>
-        <%}%>
-        <%})%>
-        <%flightInfo.segmentsReturn.forEach(function(returnItem,item_){ var len = flightInfo.segmentsReturn.length %>
-        <%if(item_==0){%>
-        <li class="tripBack addMargin_">
-          <%}else{%>
-        <li class="tripBack">
-        <%}%>
-        <%if(item_==0){ %>
-        <div class="dateWeekCity">
-          <span class="icon"></span>
-          <span><%= returnItem["departDate"].substring(5, 10) %></span><span class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
+                    class="arrivePort"><%=  leaveItem["airportNameTo"] %><%=  leaveItem["termArrive"] %></span>
+                        </div>
+                    </div>
+                    <p class="flightDetailInfo">
+                        <span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><span><%=  leaveItem["planeName"] %></span>
+                    </p>
+                </li>
+                <%if(item
+                <length-1
+                ){
+                var endDate=flightInfo.segmentsLeave[item+1]['departDate'],leaveTransferMins="", leaveTransferHm="";
+                leaveTransferMins = hftFlightDetail["getMinutes"](leaveItem["arriveDate"],endDate);
+                leaveTransferHm = parseInt(leaveTransferMins / 60) + 'h' + leaveTransferMins % 60 + 'm';
+                %>
+                <p class="flightDetailArrow addMargin">
+                    中转<%=leaveItem["cityNameTo"]%><span><%=leaveTransferHm%></span>
+                </p>
+                <%}%>
+                <%})%>
+                <%flightInfo.segmentsReturn.forEach(function(returnItem,item_){ var len =
+                flightInfo.segmentsReturn.length %>
+                <%if(item_==0){%>
+                <li class="tripBack addMargin_">
+                    <%}else{%>
+                <li class="tripBack">
+                    <%}%>
+                    <%if(item_==0){ %>
+                    <div class="dateWeekCity">
+                        <span class="icon"></span>
+                        <span><%= returnItem["departDate"].substring(5, 10) %></span><span
+                            class="<%= item_>0?'fix-margin-left':''%>"><%= hftFlightDetail.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
+                    </div>
+                    <%}%>
+                    <div class="timeAirport fixedMargin">
+                        <div class="left">
+                            <span class="startTime"><%= returnItem["departDate"].substring(11, 16) %></span><span
+                                class="startPort"><%= returnItem["airportNameFrom"] %><%= returnItem["termDepart"] %></span>
+                        </div>
+                        <div class="middle">
+                            <div class="timeCost"><%= returnItem["segmentsLeaveTotalTravelTimeString"] %></div>
+                            <div class="arrow"></div>
+                            <div class="transferCity"></div>
+                        </div>
+                        <div class="right">
+                            <span class="arriveTime"><%= returnItem["arriveDate"].substring(11, 16) %></span>
+                            <% if(returnItem["spacingDay"]>=1){ %>
+                            <span class="plusDay">+<%=returnItem["spacingDay"]%>天</span>
+                            <% }%>
+            <span
+                    class="arrivePort"><%=  returnItem["airportNameTo"] %><%=  returnItem["termArrive"] %></span>
+                        </div>
+                    </div>
+                    <p class="flightDetailInfo">
+                        <span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><span><%=  returnItem["planeName"] %></span>
+                    </p>
+                </li>
+                <%if(item_
+                <len-1
+                ){
+                var endDate_=flightInfo.segmentsReturn[item_+1]['departDate'],returnTransferMins="",
+                returnTransferHm="";
+                returnTransferMins = hftFlightDetail["getMinutes"](returnItem["arriveDate"],endDate_);
+                returnTransferHm = parseInt(returnTransferMins / 60) + 'h' + returnTransferMins % 60 + 'm';
+                %>
+                <p class="flightDetailArrow addMargin">
+                    中转<%=returnItem["cityNameTo"]%><span><%= returnTransferHm%></span>
+                </p>
+                <%}%>
+                <%})%>
+            </ul>
         </div>
-        <%}%>
-          <div class="timeAirport fixedMargin">
-            <div class="left">
-              <span class="startTime"><%= returnItem["departDate"].substring(11, 16) %></span><span
-              class="startPort"><%= returnItem["airportNameFrom"] %><%= returnItem["termDepart"] %></span>
-            </div>
-            <div class="middle">
-              <div class="timeCost"><%= returnItem["segmentsLeaveTotalTravelTimeString"] %></div>
-              <div class="arrow"></div>
-              <div class="transferCity"></div>
-            </div>
-            <div class="right">
-            <span class="arriveTime"><%= returnItem["arriveDate"].substring(11, 16) %></span>
-              <% if(returnItem["spacingDay"]){ %>
-              <span class="plusDay">+<%=returnItem["spacingDay"]%>天</span>
-              <% }%>
-            <span
-              class="arrivePort"><%=  returnItem["airportNameTo"] %><%=  returnItem["termArrive"] %></span>
-            </div>
-          </div>
-          <p class="flightDetailInfo">
-            <span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><span><%=  returnItem["planeName"] %></span>
-          </p>
-        </li>
-        <%if(item_<len-1){
-        var endDate_=flightInfo.segmentsReturn[item_+1]['departDate'],returnTransferMins="", returnTransferHm="";
-        returnTransferMins = hftFlightDetail["getMinutes"](returnItem["arriveDate"],endDate_);
-        returnTransferHm = parseInt(returnTransferMins / 60) + 'h' + returnTransferMins % 60 + 'm';
-        %>
-        <p class="flightDetailArrow addMargin">
-          中转<%=returnItem["cityNameTo"]%><span><%= returnTransferHm%></span>
-        </p>
-        <%}%>
-        <%})%>
-      </ul>
     </div>
-  </div>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/plugins.js"></script>

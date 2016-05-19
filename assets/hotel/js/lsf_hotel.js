@@ -329,7 +329,7 @@ function inpChange(id, myText) {
 	var domestic_target_city = document.getElementById('input2');
 	var abroad_target_place = document.getElementById('arr1');
 	var abroad_target_city = document.getElementById('input1');
-	var api = 'http://10.2.22.239:8888/api/GetServiceApiResult';
+	var api = '';
 	var cl_box_box = document.getElementById('cl_box_box');
 	var dcl_box_box = document.getElementById('dcl_box_box');
 	var cl_back = document.getElementById('cl_back');
@@ -353,7 +353,7 @@ function inpChange(id, myText) {
 		"ForeEndType" : 3
 	};
 	//城市列表
-	vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(cityListData), function(d) {
+	vlm.loadJson("", JSON.stringify(cityListData), function(d) {
 		var listJson = d;
 		if (!listJson.success) {
 			jAlert(listJson.message);
@@ -394,13 +394,13 @@ function inpChange(id, myText) {
 		sortBy(listJson);
 		function cityShow(oData, doData, cityJson, dcityJson, obj, dobj) {
 			//国际
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(oData), function(d) {
+			vlm.loadJson("", JSON.stringify(oData), function(d) {
 				var json = d;
 				var str = template("cl_citysHot", json.data);
 				$("#cl_citysHot").html(str);
 			});
 			//国内
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(doData), function(d) {
+			vlm.loadJson("", JSON.stringify(doData), function(d) {
 				var json = d;
 				var dstr = template("dcl_citysHot", json.data);
 				$("#dcl_citysHot").html(dstr);
@@ -871,7 +871,7 @@ function inpChange(id, myText) {
 		return week;
 	};
 	var obj = {};
-    
+
     //网页还原用户上一次选择内容
     var hotelStorage = JSON.parse(localStorage.getItem('hotelStorage12345'));
 	//国际
@@ -962,7 +962,7 @@ function inpChange(id, myText) {
 		obj2[DomCheckInDate.value]="入住";
 		obj2[DomCheckOutDate.value]="离店";
 	}
-    
+
 	function Calender2() {
 		Calender.apply(this, arguments);
 		this.idTotal = arguments[0].idTotal;

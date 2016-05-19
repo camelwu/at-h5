@@ -1,7 +1,7 @@
 
 var ticketSeatChoose = {
 
-    requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
+    requestUrl: "",
 
     addHandler: function (target, eventType, handle) {
         if (document.addEventListener) {

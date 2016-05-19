@@ -60,7 +60,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
             "Code": "0074"
         };
         //console.log(Parameters);
-        vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+        vlm.loadJson("", JSON.stringify(Parameters), mycallback);
 
         var addtra_page = $("#addtra_page")[0];
         var addUser = $("#addUser")[0];
@@ -173,7 +173,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
 
                 console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
+                vlm.loadJson("", JSON.stringify(Parameters), mycallback_addtrav);
             }
             //新增常旅取消按钮提示
             var input = document.getElementById("addForm").getElementsByTagName("input");
@@ -316,7 +316,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     "Code": "0072"
                 };
                 console.log(Parameters);
-                vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
+                vlm.loadJson("", JSON.stringify(Parameters), mycallback_uptrav);
 
             }
         }
@@ -337,7 +337,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                              "Code": "0073"
                          };
                          //console.log(Parameters);
-                         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+                         vlm.loadJson("", JSON.stringify(Parameters), mycallback_deltrav);
 
                      }
                 }

@@ -57,7 +57,7 @@ var lsf_myweb = {
 		}, false);
 		vlm.loadend();
 	});
-	
+
 	lsf_myweb.getbyid('TAAvgRating').innerHTML = Rating.toFixed(1);
 	lsf_myweb.getbyid('TAReviewCount').innerHTML = lsf_myweb.url2json(url).TAReviewCount + '人点评';
 	//alert(HotelID);
@@ -103,7 +103,7 @@ var lsf_myweb = {
 			"ForeEndType" : 3,
 			"Code" : "0011"
 		};
-		return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+		return vlm.loadJson("", JSON.stringify(data), mycallback);
 	}
 
 	M({

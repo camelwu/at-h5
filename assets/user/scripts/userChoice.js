@@ -17,7 +17,7 @@ $(function() {
 		"Code" : "0074"
 	};
 	//console.log(Parameters);
-	vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback);
+	vlm.loadJson("", JSON.stringify(Parameters), mycallback);
 
 	var addtra_page = $("#addtra_page")[0];
 	var addUser = $("#addUser")[0];
@@ -103,7 +103,7 @@ $(function() {
 					"Code" : "0071"
 				};
 
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_addtrav);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_addtrav);
 			} else {
 				alert('请输入正确的邮箱和电话号码');
 			}
@@ -173,7 +173,7 @@ $(function() {
 					"Code" : "0072"
 				};
 				//console.log(Parameters);
-				vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_uptrav);
+				vlm.loadJson("", JSON.stringify(Parameters), mycallback_uptrav);
 
 			} else {
 				alert('请输入正确的手机号和邮箱');
@@ -196,7 +196,7 @@ $(function() {
 				"ForeEndType" : 3,
 				"Code" : "0073"
 			};
-			vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_deltrav);
+			vlm.loadJson("", JSON.stringify(Parameters), mycallback_deltrav);
 		}
 	}
 

@@ -240,7 +240,8 @@
 
       console.log(Parmeters);
       vlm.loading();
-      vlm.loadJson("", JSON.stringify(Parmeters), hotel_flight_back);
+      debugger;
+      vlm.loadJson(vlm.apiWithDeviceID, JSON.stringify(Parmeters), hotel_flight_back);
     };
   }
   hf_order(orderSub);

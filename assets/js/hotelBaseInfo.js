@@ -23,7 +23,7 @@
     };
 
     var c = new vcm();
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), myCallback);
+    c.loadJson("", JSON.stringify(data), myCallback);
 
 
     function myCallback(d) {
@@ -275,7 +275,7 @@ function showDetail() {
     console.log(JSON.stringify(data))
 
     var c = new vcm();
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), myCallback);
+    c.loadJson("", JSON.stringify(data), myCallback);
 
 
     var room = document.getElementById("room");
@@ -353,7 +353,7 @@ function getRoomInfor(HotelID, indexInfo) {
         "Code": "0010"
     }
     var c = new vcm();
-    c.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameter), myCallbackRoom);
+    c.loadJson("", JSON.stringify(Parameter), myCallbackRoom);
     function myCallbackRoom(result) {
         var result = JSON.parse(result)
         var str = '';

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
@@ -23,6 +24,7 @@
     <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png">
     <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png" media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png" media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)" />
     <title>首页 - 亚洲旅行网</title>
@@ -31,13 +33,15 @@
     <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
     <link href="styles/tips.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
+
 </head>
 
 <body>
     <div id="preloader">
         <div id="status"></div>
     </div>
-    <div class="all_elements">
+
+		<div class="all_elements index_scroll">
         <div id="content" class="content no_header">
             <!--头部banner开始-->
             <div class="slider-container">
@@ -77,14 +81,18 @@
             <div class="container">
                 <div class="recommends" id="recommend">
                     <ul class="recommends_tab clearfix">
-                        <li>
+
+                <li class="fl">
                             <a href="index-hotplay.html">
-                                <img src="images/index/hot_play.jpg" class="hot_sea">
+                   
+                    <img src="images/index/hot_play.png" class="hot_sea">
                             </a>
                         </li>
-                        <li>
+
+                <li class="fr">
                             <a href="index-seaticket.html">
-                                <img src="images/index/sea_ticket.jpg" class="hot_sea">
+                   
+                    <img src="images/index/sea_ticket.png" class="hot_sea">
                             </a>
                         </li>
                         </a>
@@ -100,7 +108,6 @@
               玩家推荐
               <span class="player_line right"></span>
             </h5>
-
                 </div>
                 <div class="container" id="tuijian"></div>
             </div>
@@ -115,6 +122,7 @@
 
     <script>
         var linkurl = {
+				
             1: "./hotel/hotel_detail.html?HotelID=",
             2: "./flight/ticket_seat_choose.html?setId=",
             3: "./scenic/scenic_detail.html?packageID=",
@@ -132,18 +140,22 @@
                 function LoadBanner() {
                     var tpl0 = ['<a href = "{%=bannerChangeLink%}">', '<img src="{%=bannerPicUrl%}" class="responsive_image" alt="img">', '</a>'].join('');
                     var tmp = {
+							
                         "Parameters": {
                             "BannerType": 1
                         },
+							
                         "ForeEndType": 3,
                         "Code": "001302"
                     };
                     vlm.loadJson("", JSON.stringify(tmp), function(json) {
                         if (json.success) {
+
                             var data = json.data,
                                 html_b = template(tpl0, data.bannerList);
                             $("#banner").html(html_b);
                             $("#banner").owlCarousel({
+									
                                 slideSpeed: 500,
                                 paginationSpeed: 500,
                                 lazyLoad: true,
@@ -161,16 +173,20 @@
                 function PlayerRecommend() {
                     var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
                     var tmp = {
+
                         "Parameters": {
                             "PageNo": 1,
                             "PageSize": 10
                         },
+
+
                         "ForeEndType": 3,
                         "Code": "001303"
                     };
                     vlm.loadJson("", JSON.stringify(tmp), function(json) {
                         console.log(json);
                         if (json.success) {
+
                             var data = json.data,
                                 html_tj = template(tpl1, data.playerRecommendList);
                             $("#tuijian").html(html_tj);
@@ -182,16 +198,19 @@
                 }
 
                 return {
+
+
                     LoadBanner: LoadBanner,
                     PlayerRecommend: PlayerRecommend
                 };
             }();
             //页面内容加载
-            //index.LoadBanner();
+				index.LoadBanner();
             index.PlayerRecommend();
         })();
 
     </script>
+
 </body>
 
 </html>

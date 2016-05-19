@@ -22,10 +22,10 @@ $(document).ready(function(){
     $('.jpop_box_tic span,.jpop_box_tic a').click(function(){
         $('.jpop_box_tic').hide();
     })
-    
+
     //初始化有效期选择组件
     var expityDate = new Scroller({
-        id: "CardExpiryDate", 
+        id: "CardExpiryDate",
         type:"cardExpirationDate",
         cont:"cardExpirationDate1234",
         callback: function(){
@@ -40,7 +40,7 @@ $(document).ready(function(){
     });
 
     var Parameters={"Parameters": {"BookingRefNo":bookingRefNo },"ForeEndType": 3, "Code": "3006"}
-    vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), function(data){
+    vlm.loadJson("", JSON.stringify(Parameters), function(data){
         if(data.success) {
             var tpl=template("payDetail",data.data);
             $("#payDetail").html(tpl);
@@ -72,7 +72,7 @@ $(document).ready(function(){
 
     var ticketPayDetail = {
 
-        requestUrl: "http://10.2.22.239:8888/api/GetServiceApiResult",
+        requestUrl: "",
 
         addHandler: function (target, eventType, handle) {
             if (document.addEventListener) {
