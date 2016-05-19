@@ -18,9 +18,6 @@
  */
 module.exports = function (grunt) {
     grunt.registerTask('default', ['linkAssets', 'compileAssets', 'watch']);
-<<<<<<< HEAD
-=======
-    grunt.registerTask('test', ['linkAssets', 'compileAssets', 'uglify:dev', 'cssmin:dev', 'watch']);
->>>>>>> b783dd668cb77c88603190f11bca27f03ec1eeb6
+    //grunt.registerTask('test', ['linkAssets', 'compileAssets', 'uglify:dev', 'cssmin:dev', 'watch']);
     //grunt.registerTask('default', ['filerev']);
 };
