@@ -23,7 +23,9 @@ ol {
 	z-index: 2;
 	display: none;
 }
-
+.footer_three dl.cur,.footer_two dl.cur{
+	background: #0d0d0d;
+}
 .footer_two dl {
 	width: 50%;
 	float: left;

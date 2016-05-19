@@ -28,11 +28,12 @@
 		if (result.success && result.code == '200') {
 			console.log(result)
 			var data = result.data;
-			//console.log(data)
 			title(data);
 			list(result);
 			clickMore(data);
+
 			//footer  begin
+			//处理一下星级筛选
 			var menu_data = {
 				hotelSort : {
 					title : "推荐排序",
@@ -51,7 +52,7 @@
 					listData : [{
 						title: "星级",
 						filterType: 1,
-						item: [{filterText: "不限", filterValue: "0"},{filterText:"二星级以下", filterValue:"1"},{filterText:"三星级", filterValue: "2"},{filterText:"四星级", filterValue: "4"},{filterText:"五星级", filterValue: "8"}]
+						item: starChoose(data)
 					}]
 				},
 				hotelPosition : {
@@ -64,13 +65,11 @@
 				}
 			}, menu_call = function(data) {
 				parametersStorage.sortFields = data.sortTypes;
-				parametersStorage.Location = data.locationList.join(',');
+				parametersStorage.Location = data.locationList;
 				var arrNum = data.filters,filter = 0;
-				//console.log(arrNum)
 				for(var i=0;i<arrNum.length;i++){
 					filter += arrNum[i].FilterValues[0]-0;
 				}
-				//console.log(filter)
 				parametersStorage.StarRating = filter;
 				//加loading
 				$('.status').fadeIn('fast');
@@ -90,11 +89,40 @@
 			//jAlert('暂无酒店数据,请稍后再试', "提示");
 		}
 	}
-
+	//处理一下筛选中的星级
+	function starChoose(data){
+		var starArr =[];
+		var starJson = {};
+		var star = data.starRatingList;
+		for(var i=0;i<star.length;i++){
+			switch (star[i].starRatingName){
+				case "1":
+					star[i].starRatingName = '不限';
+					break;
+				case "2":
+					star[i].starRatingName = '二星以下';
+					break;
+				case "3":
+					star[i].starRatingName = '三星级';
+					break;
+				case "4":
+					star[i].starRatingName = '四星级';
+					break;
+				case "5":
+					star[i].starRatingName = '五星级';
+					break;
+			}
+			starJson = {
+				"filterText": star[i].starRatingName,
+				"filterValue": star[i].starRatingValue
+			}
+			starArr.push(starJson)
+		}
+		console.log(starArr);
+		return starArr
+	}
 	//根据模板需要提前处理好data
 	function handleData(result) {
-		console.log(result)
-		console.log(result.data)
 		var star = result.data.hotels;
 		for (var i = 0; i < star.length; i++) {
 			switch (star[i].starRating) {
@@ -157,7 +185,7 @@
 
 	//没有数据或者异常提示
 	function showNodata(){
-		$("#loadMore").hide();
+		$("#loadMore,.status").hide();
 		var oLi = document.createElement('li');
 		oLi.innerHTML = '<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
 		oLi.className = 'hotelConNo';
