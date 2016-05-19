@@ -47,8 +47,9 @@ module.exports.routes = {
 
 
     //server api
-    'POST /api/GetServiceApiResult': 'AdapterController.api',
-    //server log
-    'GET /log/logRecord': 'LogController.logRecord'
+  'POST /api/GetServiceApiResult' : 'AdapterController.api',
+
+   //server api
+  'POST /apiWihtDeviceID/GetServiceApiResult' : 'AdapterController.apiWihtDeviceID'
 
 };

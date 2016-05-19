@@ -330,9 +330,9 @@ var ticketHotel = {
         });
     },
     testLogin:function(){
-        if(vlm.checkLogin('ticketHotel.testLogin')){
+        //if(vlm.checkLogin('ticketHotel.testLogin')){
             window.top.location.href='../hotel_flight/user_order.html';
-        }
+        //}
     },
     renderHandler:function(arg){
         var resultData = arg, that = ticketHotel, originAirIds={};

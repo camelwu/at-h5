@@ -30,9 +30,9 @@ var hftChoose = {
     };
     questUrl = questUrl ? questUrl : that.requestUrl;
     if (loadMoreSign) {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), callBack, false, false, loadMoreSign);
+      vlm.loadJson("", JSON.stringify(dataObj), callBack, false, false, loadMoreSign);
     } else {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), callBack);
+      vlm.loadJson("", JSON.stringify(dataObj), callBack);
     }
   },
 
@@ -369,7 +369,7 @@ var hftChoose = {
         "priceRoomInfo": that.roomPriceInfo,
         "track": {
           "browserType": "",
-          "deviceID": ""
+          "deviceID": vlm.getDeviceID()
         }
       };
       if (that.type == 2) {

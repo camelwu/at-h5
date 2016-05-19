@@ -50,6 +50,7 @@ module.exports.policies = {
 	// }
     AdapterController:{
         "*" : false,
-        api : 'encodeHttpRequest'
+        api : 'encodeHttpRequest',
+        apiWihtDeviceID : 'encodeHttpRequest'
     }
 };
