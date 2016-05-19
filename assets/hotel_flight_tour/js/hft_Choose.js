@@ -348,7 +348,7 @@ var hftChoose = {
       that.timer3 = setTimeout(function () {
         window.clearTimeout(that.timer3);
         that.timer3 = null;
-        window.location.href = that.type == 2 ? "hft_hotel_detail.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID + "&selectedRoomId=" + that.roomPriceInfo.roomID : "hf_hotel_detail.html?type=" + that.type + "&selectedRoomId=" + that.roomPriceInfo.roomID;
+        window.location.href = that.type == 2 ? "hft_hotel_detail.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID: "hft_hotel_detail.html?type=" + that.type
       }, 500);
     });
     this.addHandler(preserve, 'click', function () {
