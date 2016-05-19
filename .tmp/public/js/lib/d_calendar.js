@@ -1,2 +1,325 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function Calender(){arguments.length&&this.initialize.apply(this,arguments)}_CalF={$:function(a,b){var c,d,e,f=[],g=a.substring(1);if(b=b||document,"string"==typeof a)switch(a.charAt(0)){case"#":return document.getElementById(g);case".":if(b.getElementsByClassName)return b.getElementsByClassName(g);for(c=_CalF.$("*",b),d=c.length,e=0;d>e;e++)c[e].className.indexOf(g)>-1&&f.push(c[e]);return f;default:return b.getElementsByTagName(a)}},bind:function(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent("on"+b,c)},getPos:function(a){var b=document.documentElement.scrollLeft||document.body.scrollLeft,c=document.documentElement.scrollTop||document.body.scrollTop;return pos=a.getBoundingClientRect(),{top:pos.top+c,right:pos.right+b,bottom:pos.bottom+c,left:pos.left+b}},addClass:function(a,b){b.className=b.className+" "+a},removeClass:function(a,b){var c=new RegExp("(^|\\s+)"+a+"(\\s+|$)","g");b.className=b.className.replace(c,"")},stopPropagation:function(a){a=a||window.event,a.stopPropagation?a.stopPropagation():a.cancelBubble=!0}},Calender.prototype={constructor:Calender,_word:{h:["入住","离店"],f:["去程","回程"],t:"游玩"},_tempmonth:['<span class="prevmonth">prevmonth</span>','<span class="nextmonth">nextmonth</span>'],_tempweek:['<dt class="date_title">日</dt>','<dt class="date_title">一</dt>','<dt class="date_title">二</dt>','<dt class="date_title">三</dt>','<dt class="date_title">四</dt>','<dt class="date_title">五</dt>','<dt class="date_title">六</dt>'],_template:['<dt class="title-date">',"</dt><dd>","</dd>"],initialize:function(a){if(this.num=a.num,this.time=a.time,this.type=a.type,this.range=a.range,this.fn=a.fn,this.id=a.id,this.input=document.getElementById(""+this.id),this.output=_CalF.$(a.output),this.op=0,"string"==typeof a.time)this.ops=1;else if("object"==typeof a.time){var b=Object.keys(a.time);this.ops=b.length}this.inputEvent(),this.outClick()},createContainer:function(){for(var a=this,b=_CalF.$("#"+this.id+"-date"),c=this.output,d={},e=new Date,f=e.getFullYear(),g=e.getMonth(),h=(e.getDate(),0);h<c.length;h++)d[c[h].innerHTML]="t"!=a.type?a._word[a.type][h]:a._word[a.type];a.time=d,b&&b.parentNode.removeChild(b);var i=this.header=document.createElement("div");i.id=this.id+"-header",i.className="header",i.innerHTML='<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>',document.body.appendChild(i);var j=this.container=document.createElement("div");j.id=this.id+"-date",j.style.position="absolute",j.style.zIndex=98,j.style.background="#f5f4f9",_CalF.bind(j,"click",this.stopPropagation),j.style.overflow="auto",j.style.width=j.style.height="100%",j.style.left="0",j.style.top="0",j.style.paddingBottom="118px";var k=this.tiper=document.createElement("div");k.id=this.id+"-tiper",k.className="tipers",k.innerHTML="请选择"+a._word[a.type]+"日期",j.appendChild(k);var l=document.createElement("div");l.className="calendar",l.style.marginTop="45px",j.appendChild(l);var m=document.createElement("dl");if(m.innerHTML=this._tempweek.join(""),l.appendChild(m),a.range){if("[object Array]"===Object.prototype.toString.call(a.range)){var n=new Date(a.range[1]),o=n.getFullYear(),p=n.getMonth();o==f?nums=p-g+1:o>f&&(nums=13-g+p,nums=nums>13?13:nums)}a.num=nums}else nums=a.num;for(h=0;h<nums;h++){var n=new Date(f,g+h,1),q=n.getFullYear(),r=n.getMonth()+1;m.innerHTML+=this._template[0]+q+"年"+r+"月"+this._template[1]+this._template[2]}document.body.appendChild(j)},drawDate:function(){var a,b,c,e,f,g,h,i=this,j=new Date,k=j.getFullYear(),l=j.getMonth(),n=j.getDate(),o=this.time;a=this.dateWarp=_CalF.$("dl",i.container)[0],b=_CalF.$(".title-date",a),c=_CalF.$("dd",a);for(var p=0;p<b.length;p++){var q=b[p].innerHTML.replace(/年/,"/").replace(/月/,"/")+"01",r=new Date(q);e=r.getFullYear(),f=r.getMonth()+1,g=new Date(e,f,0).getDate(),h=new Date(e,f-1,1).getDay();for(var s=[],t=0;h>t;t++)s.push("<a>&nbsp;</a>");for(t=1;g>=t;t++)if(k>e)s.push('<a class="disabled">'+t+"</a>");else if(e==k)if(l+1>f)s.push('<a class="live disabled">'+t+"</a>");else if(f==l+1)if(n>t)s.push('<a class="live disabled">'+t+"</a>");else{m=10>f?"0"+f:f,d=10>t?"0"+t:t;var u=t==n?"今天":t;if(o[e+"-"+m+"-"+d]||o[e+"-"+f+"-"+t]){var v=o[e+"-"+m+"-"+d]?o[e+"-"+m+"-"+d]:o[e+"-"+f+"-"+t];pstr='<a class="live" data-day="'+e+"-"+f+"-"+t+'"><span class="live_circle">'+u+'</span><span class="live_txt">'+v+"</span></a>"}else pstr='<a class="live" data-day="'+e+"-"+f+"-"+t+'">'+u+"</a>";s.push(pstr)}else{if(m=10>f?"0"+f:f,d=10>t?"0"+t:t,o[e+"-"+m+"-"+d]||o[e+"-"+f+"-"+t]){var v=o[e+"-"+m+"-"+d]?o[e+"-"+m+"-"+d]:o[e+"-"+f+"-"+t];pstr='<a class="live" data-day="'+e+"-"+f+"-"+t+'"><span class="live_circle">'+t+'</span><span class="live_txt">'+v+"</span></a>"}else pstr='<a class="live" data-day="'+e+"-"+f+"-"+t+'">'+t+"</a>";s.push(pstr)}else s.push('<a class="live" data-day="'+e+"-"+f+"-"+t+'">'+t+"</a>");c[p].innerHTML=s.join("")}this.linkOn()},removeDate:function(){var a=this,b=_CalF.$("#"+a.id+"-date");a.header&&a.header.parentNode.removeChild(a.header),b&&b.parentNode.removeChild(b)},linkOn:function(){var a,b=_CalF.$(".live",this.dateWarp),c=b.length,d=this,e=d._word[d.type];for(a=0;c>a;a++)b[a].index=a,b[a].onclick=function(){if("input"===d.input.tagName)$(this).css("border","1px solid #ff6a2f").css("z-index","9999999"),$(this).siblings().css("border","").css("z-index","");else if(!(this.className.indexOf("disabled")>-1))if(d.op<d.ops){d.tiper.innerHTML="请选择"+d._word.h[1]+"日期",d.linkReset(this.index);var a=this.innerHTML,b="string"==typeof e?e:e[d.op];$(this).html('<span class="live_circle">'+a+'</span><span class="live_txt">'+b+"</span>"),d.op++,d.op==d.ops?d.linkOver():void 0}else{var a=this.innerHTML,b="string"==typeof e?e:e[d.op];$(this).html('<span class="live_circle">'+a+'</span><span class="live_txt">'+b+"</span>"),d.linkOver()}}},linkOver:function(){var a,b=$("#"+this.id+"-date .live_circle"),c=b.length,d=this,e=[];d.op==d.ops?d.op=0:null;var f=d.output?d.output:_CalF.$("input",d.input),g=_CalF.$("#total_day",d.input)?_CalF.$("#total_day",d.input):_CalF.$("#total_day",d.output);for(a=0;c>a;a++)e.push(b[a].parentNode.getAttribute("data-day")),"input"===f[a].tagName?f[a].value=b[a].parentNode.getAttribute("data-day"):f[a].innerHTML=b[a].parentNode.getAttribute("data-day");d.removeDate(),d.fn?d.fn(!0):g?g.innerHTML=Math.round((new Date(e[1])-new Date(e[0]))/864e5):void 0},linkReset:function(a){var b=this,c=$(".live_circle"),d=c.length,e=_CalF.$(".live",this.dd),f=e.length;if(0==b.op){for(var g=0;d>g;g++){var h=c[g].parentNode.getAttribute("data-day"),i=h.split("-");c[g].parentNode.innerHTML=i[i.length-1]}for(g=0;a>g;g++)_CalF.addClass("disabled",e[g]);for(g=a+30;f>g;g++)_CalF.addClass("disabled",e[g]);return!1}},inputEvent:function(){var a=this;_CalF.bind(this.input,"click",function(){a.createContainer(),a.drawDate()})},outClick:function(){var a=this;_CalF.bind(document,"click",function(b){b=b||window.event;var c=b.target||b.srcElement;c.className.indexOf("header-back")>-1&&a.removeDate()})}};
+/**
+ * @namespace _CalF
+ * 日历控件所用便捷函数
+ * */
+_CalF = {
+	// 选择元素
+	$ : function(arg, context) {
+		var tagAll, n, eles = [], i, sub = arg.substring(1);
+		context = context || document;
+		if ( typeof arg == 'string') {
+			switch(arg.charAt(0)) {
+			case '#':
+				return document.getElementById(sub);
+				break;
+			case '.':
+				if (context.getElementsByClassName)
+					return context.getElementsByClassName(sub);
+				tagAll = _CalF.$('*', context);
+				n = tagAll.length;
+				for ( i = 0; i < n; i++) {
+					if (tagAll[i].className.indexOf(sub) > -1)
+						eles.push(tagAll[i]);
+				}
+				return eles;
+				break;
+			default:
+				return context.getElementsByTagName(arg);
+				break;
+			}
+		}
+	},
+	// 绑定事件
+	bind : function(node, type, handler) {
+		node.addEventListener ? node.addEventListener(type, handler, false) : node.attachEvent('on' + type, handler);
+	},
+	// 获取元素位置
+	getPos : function(node) {
+		var scrollx = document.documentElement.scrollLeft || document.body.scrollLeft, scrollt = document.documentElement.scrollTop || document.body.scrollTop;
+		pos = node.getBoundingClientRect();
+		return {
+			top : pos.top + scrollt,
+			right : pos.right + scrollx,
+			bottom : pos.bottom + scrollt,
+			left : pos.left + scrollx
+		};
+	},
+	// 添加样式名
+	addClass : function(c, node) {
+		node.className = node.className + ' ' + c;
+	},
+	// 移除样式名
+	removeClass : function(c, node) {
+		var reg = new RegExp("(^|\\s+)" + c + "(\\s+|$)", "g");
+		node.className = node.className.replace(reg, '');
+	},
+	// 阻止冒泡
+	stopPropagation : function(event) {
+		event = event || window.event;
+		event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
+	}
+};
+/**
+ * @name Calender
+ * @constructor
+ * @created by wusong
+ * @parameter :id[]||'',num:Number,time[timestamp]||timestring,type:h||f||t,fn:callback
+ * */
+function Calender() {
+	if (!arguments.length)
+		return;
+	this.initialize.apply(this, arguments);
+}
+
+Calender.prototype = {
+	constructor : Calender,
+	_word : {
+		h : ['入住', '离店'],
+		f : ['去程', '回程'],
+		t : '游玩'
+	},
+	_tempmonth : ['<span class="prevmonth">prevmonth</span>', '<span class="nextmonth">nextmonth</span>'],
+	_tempweek : ['<dt class="date_title">日</dt>', '<dt class="date_title">一</dt>', '<dt class="date_title">二</dt>', '<dt class="date_title">三</dt>', '<dt class="date_title">四</dt>', '<dt class="date_title">五</dt>', '<dt class="date_title">六</dt>'],
+	_template : ['<dt class="title-date">', '</dt><dd>', '</dd>'],
+	initialize : function(options) {
+		this.num = options.num;
+		this.time = options.time;
+		this.type = options.type;
+		this.range = options.range;
+		this.fn = options.fn;
+		this.id = options.id;
+		this.input = document.getElementById("" + this.id);
+		this.output = _CalF.$(options.output);
+		this.op = 0;
+		if ( typeof options.time === "string") {
+			this.ops = 1;
+		} else {
+			if ( typeof options.time === "object") {
+				var arr = Object.keys(options.time);
+				this.ops = arr.length;
+			}
+		}
+		this.inputEvent();
+		this.outClick();
+		function isArray(obj) {
+			return Object.prototype.toString.call(obj) === '[object Array]';
+		}
+
+	},
+	createContainer : function() {
+		// 如果存在，则移除整个日期层Container
+		var that = this, odiv = _CalF.$('#' + this.id + '-date'), intime = this.output, timobj = {}, date = new Date(), nowY = date.getFullYear(), nowM = date.getMonth(), nowD = date.getDate();
+		for (var i = 0; i < intime.length; i++) {
+			timobj[intime[i].innerHTML] = that.type != "t" ? that._word[that.type][i] : that._word[that.type];
+		}
+		that.time = timobj;
+		if (!!odiv)
+			odiv.parentNode.removeChild(odiv);
+		//头部
+		var header = this.header = document.createElement('div');
+		header.id = this.id + "-header";
+		header.className = 'header';
+		header.innerHTML = '<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>';
+		document.body.appendChild(header);
+		var container = this.container = document.createElement('div');
+		container.id = this.id + '-date';
+		container.style.position = "absolute";
+		container.style.zIndex = 98;
+		container.style.background = "#f5f4f9";
+		_CalF.bind(container, 'click', this.stopPropagation);
+		//整体容器
+		container.style.overflow = 'auto';
+		container.style.width = container.style.height = '100%';
+		container.style.left = '0';
+		container.style.top = '0';
+		container.style.paddingBottom = '118px';
+		//提示
+		var tiper = this.tiper = document.createElement('div');
+		tiper.id = this.id + '-tiper';
+		tiper.className = 'tipers';
+		tiper.innerHTML = "请选择" + that._word[that.type] + "日期";
+		container.appendChild(tiper);
+		//内容
+		var calendar = document.createElement('div');
+		calendar.className = 'calendar';
+		calendar.style.marginTop = '45px';
+		container.appendChild(calendar);
+		//星期
+		var dl = document.createElement('dl');
+		dl.innerHTML = this._tempweek.join('');
+		calendar.appendChild(dl);
+		if (that.range) {
+			if (Object.prototype.toString.call(that.range) === '[object Array]') {
+				var d = new Date(that.range[1]);
+				var ly = d.getFullYear(), lm = d.getMonth();
+				if (ly == nowY) {
+					nums = lm - nowM + 1;
+				} else if (ly > nowY) {
+					nums = 13 - nowM + lm;
+					nums = nums > 13 ? 13 : nums;
+				}
+			}
+			that.num = nums;
+		} else {
+			nums = that.num;
+		}
+		for ( i = 0; i < nums; i++) {
+			var d = new Date(nowY, nowM + i, 01), year = d.getFullYear(), month = d.getMonth() + 1;
+			dl.innerHTML += this._template[0] + year + '年' + month + '月' + this._template[1] + '' + this._template[2];
+		}
+		//
+		document.body.appendChild(container);
+	},
+	// 渲染日期
+	drawDate : function() {
+		var that = this, date = new Date(), nowY = date.getFullYear(), nowM = date.getMonth(), nowD = date.getDate(), dateWarp, titleDate, dd, year, month, days, weekStart, tims = this.time;
+		dateWarp = this.dateWarp = _CalF.$('dl', that.container)[0];
+		titleDate = _CalF.$('.title-date', dateWarp);
+		dd = _CalF.$('dd', dateWarp);
+		for (var j = 0; j < titleDate.length; j++) {
+			console.log(titleDate[j].innerHTML.replace(/年/,"-").replace(/月/, "-") + "01");
+			var tmp = titleDate[j].innerHTML.replace(/年/,"/").replace(/月/, "/") + "01";
+			var od = new Date(tmp);
+			year = od.getFullYear();
+			month = od.getMonth() + 1;
+			days = new Date(year, month, 0).getDate();
+			weekStart = new Date(year, month - 1, 1).getDay();
+
+			console.log(days);
+			var ddHtml = [];
+			for (var i = 0; i < weekStart; i++) {
+				console.log(1);
+				ddHtml.push('<a>&nbsp;</a>');
+			}
+			for ( i = 1; i <= days; i++) {
+				if (year < nowY) {
+					ddHtml.push('<a class="disabled">' + i + '</a>');
+				} else if (year == nowY) {
+					if (month < nowM + 1) {
+						ddHtml.push('<a class="live disabled">' + i + '</a>');
+					} else if (month == nowM + 1) {
+						if (i < nowD) {
+							ddHtml.push('<a class="live disabled">' + i + '</a>');
+						} else {
+							m = month < 10 ? '0' + month : month;
+							d = i < 10 ? '0' + i : i;
+							var istr = i == nowD ? '今天' : i;
+
+							if (tims[year + '-' + m + '-' + d] || tims[year + '-' + month + '-' + i]) {
+								var strs = tims[year + '-' + m + '-' + d] ? tims[year + '-' + m + '-' + d] : tims[year + '-' + month + '-' + i];
+								pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '"><span class="live_circle">' + istr + '</span><span class="live_txt">' + strs + '</span></a>';
+							} else {
+								pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + istr + '</a>';
+							}
+							ddHtml.push(pstr);
+						}
+					} else {
+						m = month < 10 ? '0' + month : month;
+						d = i < 10 ? '0' + i : i;
+						if (tims[year + '-' + m + '-' + d] || tims[year + '-' + month + '-' + i]) {
+							var strs = tims[year + '-' + m + '-' + d] ? tims[year + '-' + m + '-' + d] : tims[year + '-' + month + '-' + i];
+							pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '"><span class="live_circle">' + i + '</span><span class="live_txt">' + strs + '</span></a>';
+						} else {
+							pstr = '<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>';
+						}
+						ddHtml.push(pstr);
+					}
+				} else {
+					ddHtml.push('<a class="live" data-day="' + year + '-' + month + '-' + i + '">' + i + '</a>');
+				}
+			}
+			//console.log(ddHtml);
+			dd[j].innerHTML = ddHtml.join('');
+		}
+		// A link事件绑定
+		this.linkOn();
+	},
+	// 移除日期DIV.calendar
+	removeDate : function() {
+		var that = this, odiv = _CalF.$('#' + that.id + '-date');
+		if (!!that.header)
+			that.header.parentNode.removeChild(that.header);
+		if (!!odiv)
+			odiv.parentNode.removeChild(odiv);
+	},
+	// A 的事件
+	linkOn : function() {
+		var links = _CalF.$('.live', this.dateWarp), i, l = links.length, that = this, ary = that._word[that.type];
+		for ( i = 0; i < l; i++) {
+			links[i].index = i;
+			links[i].onclick = function() {
+				if (that.input.tagName === 'input') {
+					$(this).css("border", "1px solid #ff6a2f").css("z-index", "9999999");
+					$(this).siblings().css("border", "").css("z-index", "");
+				} else {
+					if (!(this.className.indexOf("disabled") > -1)) {
+						if (that.op < that.ops) {
+							that.tiper.innerHTML = '请选择' + that._word.h[1] + '日期';
+							that.linkReset(this.index);
+							var cache = this.innerHTML, word = ( typeof ary === "string") ? ary : ary[that.op];
+							$(this).html('<span class="live_circle">' + cache + '</span><span class="live_txt">' + word + '</span>');
+							that.op++;
+							that.op == that.ops ? that.linkOver() :
+							void (0);
+						} else {
+							var cache = this.innerHTML, word = ( typeof ary === "string") ? ary : ary[that.op];
+							$(this).html('<span class="live_circle">' + cache + '</span><span class="live_txt">' + word + '</span>');
+							that.linkOver();
+						}
+					}
+				}
+			};
+		}
+	},
+	linkOver : function() {
+		var sels = $('#' + this.id + '-date .live_circle'), i, l = sels.length, that = this, arr = [];
+		that.op == that.ops ? that.op = 0 : null;
+		var out = that.output ? that.output : _CalF.$('input', that.input);
+		var tal = _CalF.$('#total_day', that.input) ? _CalF.$('#total_day', that.input) : _CalF.$('#total_day', that.output);
+		for ( i = 0; i < l; i++) {
+			arr.push(sels[i].parentNode.getAttribute("data-day"));
+			out[i].tagName === 'input' ? out[i].value = sels[i].parentNode.getAttribute("data-day") : out[i].innerHTML = sels[i].parentNode.getAttribute("data-day");
+		}
+		that.removeDate();
+		if (that.fn) {
+			that.fn(true);
+		} else {
+			tal ? tal.innerHTML = (Math.round((new Date(arr[1]) - new Date(arr[0])) / (1000 * 60 * 60 * 24))) :
+			void (0);
+		}
+	},
+	linkReset : function(ele) {
+		var that = this, ospan = $('.live_circle'), l = ospan.length, links = _CalF.$('.live', this.dd), len = links.length;
+		if (that.op == 0) {
+			for (var i = 0; i < l; i++) {
+				var v = ospan[i].parentNode.getAttribute("data-day");
+				var a = v.split("-");
+				ospan[i].parentNode.innerHTML = a[a.length - 1];
+			}
+			for ( i = 0; i < ele; i++) {
+				_CalF.addClass("disabled", links[i]);
+			}
+			for ( i = ele + 30; i < len; i++) {
+				_CalF.addClass("disabled", links[i]);
+			}
+			return false;
+		}
+	},
+	inputEvent : function() {
+		var that = this;
+		_CalF.bind(this.input, 'click', function() {
+			that.createContainer();
+			that.drawDate();
+		});
+	},
+	outClick : function() {
+		var that = this;
+		_CalF.bind(document, 'click', function(event) {
+			event = event || window.event;
+			var target = event.target || event.srcElement;
+			if (target.className.indexOf("header-back") > -1) {
+				that.removeDate();
+			}
+		});
+	}
+};

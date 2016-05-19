@@ -1,2 +1,143 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-var Stats=function(){var a=Date.now(),b=a,c=0,d=1/0,e=0,f=0,g=1/0,h=0,i=0,j=0,k=document.createElement("div");k.id="stats",k.addEventListener("mousedown",function(a){a.preventDefault(),s(++j%2)},!1),k.style.cssText="width:80px;opacity:0.9;cursor:pointer";var l=document.createElement("div");l.id="fps",l.style.cssText="padding:0 0 3px 3px;text-align:left;background-color:#002",k.appendChild(l);var m=document.createElement("div");m.id="fpsText",m.style.cssText="color:#0ff;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px",m.innerHTML="FPS",l.appendChild(m);var n=document.createElement("div");for(n.id="fpsGraph",n.style.cssText="position:relative;width:74px;height:30px;background-color:#0ff",l.appendChild(n);n.children.length<74;){var o=document.createElement("span");o.style.cssText="width:1px;height:30px;float:left;background-color:#113",n.appendChild(o)}var p=document.createElement("div");p.id="ms",p.style.cssText="padding:0 0 3px 3px;text-align:left;background-color:#020;display:none",k.appendChild(p);var q=document.createElement("div");q.id="msText",q.style.cssText="color:#0f0;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px",q.innerHTML="MS",p.appendChild(q);var r=document.createElement("div");for(r.id="msGraph",r.style.cssText="position:relative;width:74px;height:30px;background-color:#0f0",p.appendChild(r);r.children.length<74;){var o=document.createElement("span");o.style.cssText="width:1px;height:30px;float:left;background-color:#131",r.appendChild(o)}var s=function(a){switch(j=a){case 0:l.style.display="block",p.style.display="none";break;case 1:l.style.display="none",p.style.display="block"}},t=function(a,b){var c=a.appendChild(a.firstChild);c.style.height=b+"px"};return{REVISION:11,domElement:k,setMode:s,begin:function(){a=Date.now()},end:function(){var j=Date.now();return c=j-a,d=Math.min(d,c),e=Math.max(e,c),q.textContent=c+" MS ("+d+"-"+e+")",t(r,Math.min(30,30-c/200*30)),i++,j>b+1e3&&(f=Math.round(1e3*i/(j-b)),g=Math.min(g,f),h=Math.max(h,f),m.textContent=f+" FPS ("+g+"-"+h+")",t(n,Math.min(30,30-f/100*30)),b=j,i=0),j},update:function(){a=this.end()}}};
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
+var Stats = function () {
+
+	var startTime = Date.now(), prevTime = startTime;
+	var ms = 0, msMin = Infinity, msMax = 0;
+	var fps = 0, fpsMin = Infinity, fpsMax = 0;
+	var frames = 0, mode = 0;
+
+	var container = document.createElement( 'div' );
+	container.id = 'stats';
+	container.addEventListener( 'mousedown', function ( event ) { event.preventDefault(); setMode( ++ mode % 2 ) }, false );
+	container.style.cssText = 'width:80px;opacity:0.9;cursor:pointer';
+
+	var fpsDiv = document.createElement( 'div' );
+	fpsDiv.id = 'fps';
+	fpsDiv.style.cssText = 'padding:0 0 3px 3px;text-align:left;background-color:#002';
+	container.appendChild( fpsDiv );
+
+	var fpsText = document.createElement( 'div' );
+	fpsText.id = 'fpsText';
+	fpsText.style.cssText = 'color:#0ff;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px';
+	fpsText.innerHTML = 'FPS';
+	fpsDiv.appendChild( fpsText );
+
+	var fpsGraph = document.createElement( 'div' );
+	fpsGraph.id = 'fpsGraph';
+	fpsGraph.style.cssText = 'position:relative;width:74px;height:30px;background-color:#0ff';
+	fpsDiv.appendChild( fpsGraph );
+
+	while ( fpsGraph.children.length < 74 ) {
+
+		var bar = document.createElement( 'span' );
+		bar.style.cssText = 'width:1px;height:30px;float:left;background-color:#113';
+		fpsGraph.appendChild( bar );
+
+	}
+
+	var msDiv = document.createElement( 'div' );
+	msDiv.id = 'ms';
+	msDiv.style.cssText = 'padding:0 0 3px 3px;text-align:left;background-color:#020;display:none';
+	container.appendChild( msDiv );
+
+	var msText = document.createElement( 'div' );
+	msText.id = 'msText';
+	msText.style.cssText = 'color:#0f0;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px';
+	msText.innerHTML = 'MS';
+	msDiv.appendChild( msText );
+
+	var msGraph = document.createElement( 'div' );
+	msGraph.id = 'msGraph';
+	msGraph.style.cssText = 'position:relative;width:74px;height:30px;background-color:#0f0';
+	msDiv.appendChild( msGraph );
+
+	while ( msGraph.children.length < 74 ) {
+
+		var bar = document.createElement( 'span' );
+		bar.style.cssText = 'width:1px;height:30px;float:left;background-color:#131';
+		msGraph.appendChild( bar );
+
+	}
+
+	var setMode = function ( value ) {
+
+		mode = value;
+
+		switch ( mode ) {
+
+			case 0:
+				fpsDiv.style.display = 'block';
+				msDiv.style.display = 'none';
+				break;
+			case 1:
+				fpsDiv.style.display = 'none';
+				msDiv.style.display = 'block';
+				break;
+		}
+
+	}
+
+	var updateGraph = function ( dom, value ) {
+
+		var child = dom.appendChild( dom.firstChild );
+		child.style.height = value + 'px';
+
+	}
+
+	return {
+
+		REVISION: 11,
+
+		domElement: container,
+
+		setMode: setMode,
+
+		begin: function () {
+
+			startTime = Date.now();
+
+		},
+
+		end: function () {
+
+			var time = Date.now();
+
+			ms = time - startTime;
+			msMin = Math.min( msMin, ms );
+			msMax = Math.max( msMax, ms );
+
+			msText.textContent = ms + ' MS (' + msMin + '-' + msMax + ')';
+			updateGraph( msGraph, Math.min( 30, 30 - ( ms / 200 ) * 30 ) );
+
+			frames ++;
+
+			if ( time > prevTime + 1000 ) {
+
+				fps = Math.round( ( frames * 1000 ) / ( time - prevTime ) );
+				fpsMin = Math.min( fpsMin, fps );
+				fpsMax = Math.max( fpsMax, fps );
+
+				fpsText.textContent = fps + ' FPS (' + fpsMin + '-' + fpsMax + ')';
+				updateGraph( fpsGraph, Math.min( 30, 30 - ( fps / 100 ) * 30 ) );
+
+				prevTime = time;
+				frames = 0;
+
+			}
+
+			return time;
+
+		},
+
+		update: function () {
+
+			startTime = this.end();
+
+		}
+
+	}
+
+};

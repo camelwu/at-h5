@@ -1,2 +1,360 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(a){a.alerts={verticalOffset:-75,horizontalOffset:0,repositionOnResize:!0,overlayOpacity:.5,overlayColor:"#000",draggable:!0,okButton:"确定",cancelButton:"取消",resetButton:"重新输入",dialogClass:null,alert:function(b,c,d,e){null==c&&(c="Alert"),a.alerts.okButton=null==e?a.alerts.okButton:e,a.alerts._show(c,b,null,"alert",function(a){d&&d(a)})},confirm:function(b,c,d,e,f){null==c&&(c="Confirm"),a.alerts.okButton=null==e?a.alerts.okButton:e,a.alerts.cancelButton=null==f?a.alerts.cancelButton:f,a.alerts._show(c,b,null,"confirm",function(a){d&&d(a)})},prompt:function(b,c,d,e){null==d&&(d="Prompt"),a.alerts._show(d,b,c,"prompt",function(a){e&&e(a)})},code:function(b,c,d,e){null==d&&(d="输入验证码"),a.alerts._show(d,b,c,"code",function(a){e&&e(a)})},layer:function(b,c){null==c&&(c="1"),a.alerts._show(c,b,null,"layer",function(a){})},tiper:function(b,c){null==c&&(c="1"),a.alerts._show(c,b,null,"tiper",function(a){})},_show:function(b,c,d,e,f){a.alerts._hide(),a.alerts._overlay("show"),"layer"==e||"tiper"==e?a("BODY").append('<div id="popup_container"><div id="popup_title">'+b+'</div><div id="popup_content"><div id="popup_more">'+c+"</div></div></div>"):(a("BODY").append('<div id="popup_container"><div id="popup_content"><div id="popup_message"></div></div></div>'),a("#popup_message").text(c),a("#popup_message").html(a("#popup_message").text().replace(/\n/g,"<br />"))),a.alerts.dialogClass&&a("#popup_container").addClass(a.alerts.dialogClass);var g="undefined"==typeof document.body.style.maxHeight?"absolute":"fixed";switch("tiper"==e?a("#popup_container").addClass("popup_container"):a("#popup_container").css({position:g,zIndex:1111,padding:0,margin:0}),a("#popup_content").addClass(e),"layer"==e&&a("#popup_container").css({maxWidth:a("#popup_container").outerWidth()-24}),"tiper"!=e&&(a.alerts._reposition(),a.alerts._maintainPosition(!0)),e){case"alert":a("#popup_message").after('<div id="popup_error"></div> <div id="popup_panel"><input type="button" class="d-ok" value="'+a.alerts.okButton+'" id="popup_ok" /></div>'),a("#popup_ok").click(function(){a.alerts._hide(),f(!0)});break;case"confirm":a("#popup_message").after('<div id="popup_error"></div><div id="popup_panel"><div class="half"> <button class="d-esc" id="popup_cancel">'+a.alerts.cancelButton+'</button></div><div class="half"><button class="d-ok" id="popup_ok" >'+a.alerts.okButton+"</button></div></div>"),a("#popup_ok").click(function(){a.alerts._hide(),f&&f(!0)}),a("#popup_cancel").click(function(){a.alerts._hide(),f&&f(!1)}),a("#popup_ok").focus();break;case"code":var h=basePath+"/validate/getImage?rnd="+Math.random();a("#popup_message").append('<input type="text" id="popup_prompt" maxlength="4" placeholder="请输入图片中的验证码" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div style="display:inline-block;width:160px;margin-top:10px;"><img id="getImg" src="'+h+'" width="90" height="30" style="display:inline"> <a href="javascript:;" id="change" style="display:inline;margin-left:10px;">换一张</a></div><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="'+a.alerts.cancelButton+'" id="popup_cancel"</div><div class="half"><input type="button" class="d-ok" value="'+a.alerts.okButton+'" id="popup_ok"></div></div>'),a("#change").click(function(){a("#getImg").attr("src",basePath+"/validate/getImage?rnd="+Math.random())}),a("#popup_prompt").keyup(function(b){a(this).val().length>0?(a("#reset-a").show(),a("#popup_error").html(""),4==a(this).val().length&&(a("#popup_ok").attr("disabled","disabled"),a("#popup_error").html("校验中，请稍候……"),a.getJSON(basePath+"/validate/check_vcode1?vcode="+a(this).val(),function(b){1==b.code?(a("#popup_ok").removeAttr("disabled"),a("#popup_error").html(b.msg)):a("#popup_error").html(b.msg)}))):a("#reset-a").hide()}),a("#reset-a").click(function(){a("#popup_prompt").val(""),a("#reset-a").hide()}),a("#popup_ok").click(function(){var b=a("#popup_prompt").val();""!=b?4!=b.length?a("#popup_error").html('<div class="user-circle border-yellow">!</div>验证码是4个字符，请正确输入！'):(a.alerts._hide(),f&&f(b)):(a("#popup_error").html('<div class="user-circle border-yellow">!</div>请输入验证码！'),a("#popup_prompt").focus())}),a("#popup_cancel").click(function(){a.alerts._hide()}),d&&a("#popup_prompt").val(d),a("#popup_prompt").focus().select();break;case"prompt":a("#popup_message").append('<input type="password" id="popup_prompt" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="'+a.alerts.cancelButton+'" id="popup_cancel"></div><div class="half"><input type="button" class="d-ok" value="'+a.alerts.okButton+'" id="popup_ok"></div></div>'),a("#popup_prompt").width(a("#popup_message").width()),a("#popup_prompt").keyup(function(b){a(this).val().length>0?(a("#reset-a").show(),a("#popup_error").html("")):a("#reset-a").hide()}),a("#reset-a").click(function(){a("#popup_prompt").val(""),a("#reset-a").hide()}),a("#popup_ok").click(function(){var b=a("#popup_prompt").val();""!=b?b.length<6||b.length>16?a("#popup_error").html('<div class="user-circle border-yellow">!</div>密码为6-16个字符'):(a.alerts._hide(),f&&f(b)):(a("#popup_error").html('<div class="user-circle border-yellow">!</div>密码不能为空，请输入！'),a("#popup_prompt").focus())}),a("#popup_cancel").click(function(){a.alerts._hide()}),d&&a("#popup_prompt").val(d),a("#popup_prompt").focus().select();break;case"layer":a("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>'),a("#popup_overlay").click(function(){a.alerts._hide()}),a("#popup_cancel").click(function(){a.alerts._hide(),f&&f(!1)}),setTimeout("$.alerts._reposition()","80");break;case"tiper":a("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>'),a("#popup_overlay").click(function(){a.alerts._hide()}),a("#popup_cancel").click(function(){a.alerts._hide(),f&&f(!1)})}if(a(".snap-content")&&a(".snap-content").css("overflow","hidden"),a.alerts.draggable)try{a("#popup_container").draggable({handle:a("#popup_title")}),a("#popup_title").css({cursor:"move"})}catch(i){}},_remove:function(){a("#popup-overlay").remove(),a(".snap-content").css("overflow","auto")},_hide:function(){a("#popup_container").remove(),a.alerts._overlay("hide"),a.alerts._maintainPosition(!1),a(".snap-content").css("overflow","auto")},_overlay:function(b){switch(b){case"show":a.alerts._overlay("hide"),a("BODY").append('<div id="popup_overlay"></div>'),a("#popup_overlay").css({position:"fixed",zIndex:1010,top:"0",left:"0",width:"100%",height:"100%",background:a.alerts.overlayColor,opacity:a.alerts.overlayOpacity}),a(document.body).css("overflowY","hidden");break;case"hide":a("#popup_overlay").remove(),a(document.body).css("overflowY","auto")}},_reposition:function(){var b=a(window).height()/2-a("#popup_container").outerHeight(!0)/2+a.alerts.verticalOffset,c=a(window).width()/2-a("#popup_container").outerWidth()/2+a.alerts.horizontalOffset;a(document).height()-200;if(0>b&&(b=0),0>c&&(c=0),"undefined"==typeof document.body.style.maxHeight&&(b+=a(window).scrollTop()),a("#popup_more")[0]){b=120;var d=a(window).height()-a("#popup_title").outerHeight(!0);a("#popup_more").css("height",d),a("#popup_container").css({top:b+"px",left:c+"px"})}else a("#popup_container").css({top:b+"px",left:c+"px"})},_maintainPosition:function(b){if(a.alerts.repositionOnResize)switch(b){case!0:a(window).bind("resize",function(){a.alerts._reposition()});break;case!1:a(window).unbind("resize")}}},jAlert=function(b,c,d,e){a.alerts.alert(b,c,d,e)},jConfirm=function(b,c,d,e,f){a.alerts.confirm(b,c,d,e,f)},jPrompt=function(b,c,d,e,f,g){a.alerts.prompt(b,c,d,e,f,g)},jCode=function(b,c,d,e,f,g){a.alerts.code(b,c,d,e,f,g)},jLayer=function(b,c){a.alerts.layer(b,c)},jTiper=function(b,c){a.alerts.tiper(b,c)}}(jQuery);
+(function($) {
+
+	$.alerts = {
+		verticalOffset : -75, // vertical offset of the dialog from center screen, in pixels
+		horizontalOffset : 0, // horizontal offset of the dialog from center screen, in pixels/
+		repositionOnResize : true, // re-centers the dialog on window resize
+		overlayOpacity : 0.5, // transparency level of overlay
+		overlayColor : '#000', // base color of overlay
+		draggable : true, // make the dialogs draggable (requires UI Draggables plugin)
+		okButton : '确定', // text for the OK button
+		cancelButton : '取消', // text for the Cancel button
+		resetButton : '重新输入', // text for the esc button
+		dialogClass : null, // if specified, this class will be applied to all dialogs
+		// Public methods
+		alert : function(message, title, callback, okstr) {
+			if (title == null)
+				title = 'Alert';
+			$.alerts.okButton = okstr == null ? $.alerts.okButton : okstr;
+			$.alerts._show(title, message, null, 'alert', function(result) {
+				if (callback)
+					callback(result);
+			});
+		},
+		confirm : function(message, title, callback, okstr, escstr) {
+			if (title == null)
+				title = 'Confirm';
+			$.alerts.okButton = okstr == null ? $.alerts.okButton : okstr;
+			$.alerts.cancelButton = escstr == null ? $.alerts.cancelButton : escstr;
+
+			$.alerts._show(title, message, null, 'confirm', function(result) {
+				if (callback)
+					callback(result);
+			});
+		},
+		prompt : function(message, value, title, callback) {
+			if (title == null)
+				title = 'Prompt';
+			$.alerts._show(title, message, value, 'prompt', function(result) {
+				if (callback)
+					callback(result);
+			});
+		},
+		code : function(message, value, title, callback) {
+			if (title == null)
+				title = '输入验证码';
+			$.alerts._show(title, message, value, 'code', function(result) {
+				if (callback)
+					callback(result);
+			});
+		},
+		layer : function(message, title) {
+			if (title == null)
+				title = '1';
+			$.alerts._show(title, message, null, 'layer', function(result) {
+				//if (callback) callback(result);
+			});
+		},
+		tiper : function(message, title) {
+			if (title == null)
+				title = '1';
+			$.alerts._show(title, message, null, 'tiper', function(result) {
+				//if (callback) callback(result);
+			});
+		},
+		// Private methods
+		_show : function(title, msg, value, type, callback) {
+			$.alerts._hide();
+			$.alerts._overlay('show');
+			if (type == "layer"||type == "tiper") {
+				$("BODY").append('<div id="popup_container">' + '<div id="popup_title">' + title + '</div>' + '<div id="popup_content">' + '<div id="popup_more">' + msg + '</div>' + '</div>' + '</div>');
+				console.log(title);
+				//$("#popup_title").text(title);$("#popup-more").text(moreMsg);
+			} else {
+				$("BODY").append('<div id="popup_container"><div id="popup_content"><div id="popup_message"></div></div></div>');
+				$("#popup_message").text(msg);
+				$("#popup_message").html($("#popup_message").text().replace(/\n/g, '<br />'));
+			}
+			if ($.alerts.dialogClass)
+				$("#popup_container").addClass($.alerts.dialogClass);
+
+			// IE6 Fix var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
+			var pos = ('undefined' == typeof (document.body.style.maxHeight)) ? 'absolute' : 'fixed';
+			if(type == "tiper"){
+				$("#popup_container").addClass('popup_container')
+			}else{
+				$("#popup_container").css({
+					position : pos,
+					zIndex : 1111,
+					padding : 0,
+					margin : 0
+				});
+			}
+			//
+			$("#popup_content").addClass(type);
+			if (type == "layer") {
+				$("#popup_container").css({
+					//minHeight : $("#popup_container").outerHeight(true),
+					maxWidth : $("#popup_container").outerWidth() - 24
+				});
+			}
+			if(type != "tiper"){
+				$.alerts._reposition();
+				$.alerts._maintainPosition(true);
+			}
+			switch( type ) {
+				case 'alert':
+					$("#popup_message").after('<div id="popup_error"></div> <div id="popup_panel"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
+					$("#popup_ok").click(function() {
+						$.alerts._hide();
+						callback(true);
+					});
+					break;
+				case 'confirm':
+					$("#popup_message").after('<div id="popup_error"></div><div id="popup_panel"><div class="half"> <button class="d-esc" id="popup_cancel">' + $.alerts.cancelButton + '</button></div><div class="half"><button class="d-ok" id="popup_ok" >' + $.alerts.okButton + '</button></div></div>');
+					$("#popup_ok").click(function() {
+						$.alerts._hide();
+						if (callback)
+							callback(true);
+					});
+					$("#popup_cancel").click(function() {
+						$.alerts._hide();
+						if (callback)
+							callback(false);
+					});
+					$("#popup_ok").focus();
+					break;
+				case 'code':
+					var imgsrc = basePath + "/validate/getImage?rnd=" + Math.random();
+					$("#popup_message").append('<input type="text" id="popup_prompt" maxlength="4" placeholder="请输入图片中的验证码" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div style="display:inline-block;width:160px;margin-top:10px;"><img id="getImg" src="' + imgsrc + '" width="90" height="30" style="display:inline"> <a href="javascript:;" id="change" style="display:inline;margin-left:10px;">换一张</a></div><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"</div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok"></div></div>');
+					$("#change").click(function() {
+						$("#getImg").attr("src", basePath + "/validate/getImage?rnd=" + Math.random());
+					});
+					$("#popup_prompt").keyup(function(e) {
+						if ($(this).val().length > 0) {
+							$("#reset-a").show();
+							$("#popup_error").html("");
+							if ($(this).val().length == 4) {
+								$('#popup_ok').attr('disabled', "disabled");
+								$("#popup_error").html('校验中，请稍候……');
+								$.getJSON(basePath + '/validate/check_vcode1?vcode=' + $(this).val(), function(jsondata) {
+									if (jsondata.code == 1) {
+										$("#popup_ok").removeAttr('disabled');
+										$("#popup_error").html(jsondata.msg);
+									} else {
+										$("#popup_error").html(jsondata.msg);
+									}
+								});
+							}
+						} else {
+							$("#reset-a").hide();
+						}
+					});
+					$("#reset-a").click(function() {
+						$("#popup_prompt").val('');
+						$("#reset-a").hide();
+					});
+					$("#popup_ok").click(function() {
+						var val = $("#popup_prompt").val();
+						if (val != "") {
+							if (val.length != 4) {
+								$("#popup_error").html('<div class="user-circle border-yellow">!</div>验证码是4个字符，请正确输入！');
+							} else {
+								$.alerts._hide();
+								if (callback)
+									callback(val);
+							}
+						} else {
+							$("#popup_error").html('<div class="user-circle border-yellow">!</div>请输入验证码！');
+							$("#popup_prompt").focus();
+						}
+					});
+					$("#popup_cancel").click(function() {
+						$.alerts._hide();
+					});
+
+					if (value)
+						$("#popup_prompt").val(value);
+					$("#popup_prompt").focus().select();
+					break;
+
+				case 'prompt':
+					$("#popup_message").append('<input type="password" id="popup_prompt" /><a id="reset-a" href="javascript:;"><div class="reset-ball"></div></a><div id="popup_error"></div>').after('<div id="popup_panel"><div class="half"><input type="button" class="d-esc" value="' + $.alerts.cancelButton + '" id="popup_cancel"></div><div class="half"><input type="button" class="d-ok" value="' + $.alerts.okButton + '" id="popup_ok"></div></div>');
+					$("#popup_prompt").width($("#popup_message").width());
+					$("#popup_prompt").keyup(function(e) {
+						if ($(this).val().length > 0) {
+							$("#reset-a").show();
+							$("#popup_error").html("");
+						} else {
+							$("#reset-a").hide();
+						}
+					});
+					$("#reset-a").click(function() {
+						$("#popup_prompt").val('');
+						$("#reset-a").hide();
+					});
+					$("#popup_ok").click(function() {
+						var val = $("#popup_prompt").val();
+						if (val != "") {
+							if (val.length < 6 || val.length > 16) {
+								$("#popup_error").html('<div class="user-circle border-yellow">!</div>密码为6-16个字符');
+							} else {
+								$.alerts._hide();
+								if (callback)
+									callback(val);
+							}
+						} else {
+							$("#popup_error").html('<div class="user-circle border-yellow">!</div>密码不能为空，请输入！');
+							$("#popup_prompt").focus();
+						}
+					});
+					$("#popup_cancel").click(function() {
+						$.alerts._hide();
+					});
+
+					if (value)
+						$("#popup_prompt").val(value);
+					$("#popup_prompt").focus().select();
+					break;
+				case 'layer':
+					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
+					$("#popup_overlay").click(function() {
+						$.alerts._hide();
+					});
+					$("#popup_cancel").click(function() {
+						$.alerts._hide();
+						if (callback)
+							callback(false);
+					});
+					setTimeout("$.alerts._reposition()", "80");
+					break;
+				case 'tiper':
+					$("#popup_title").append('<a class="d-close" id="popup_cancel"> </a>');
+					$("#popup_overlay").click(function() {
+						$.alerts._hide();
+					});
+					$("#popup_cancel").click(function() {
+						$.alerts._hide();
+						if (callback)
+							callback(false);
+					});
+					break;
+
+			}
+			if ($(".snap-content")) {
+				$(".snap-content").css("overflow", "hidden")
+			}
+			// Make draggable
+			if ($.alerts.draggable) {
+				try {
+					$("#popup_container").draggable({
+						handle : $("#popup_title")
+					});
+					$("#popup_title").css({
+						cursor : 'move'
+					});
+				} catch(e) {/* requires jQuery UI draggables */
+				}
+			}
+		},
+		_remove : function() {
+			$("#popup-overlay").remove();
+			$(".snap-content").css("overflow", "auto");
+			//$.alerts._overlay('hide');
+			//$.alerts._maintainPosition(false);
+		},
+		_hide : function() {
+			$("#popup_container").remove();
+			$.alerts._overlay('hide');
+			$.alerts._maintainPosition(false);
+			$(".snap-content").css("overflow", "auto");
+		},
+		_overlay : function(status) {
+			switch( status ) {
+				case 'show':
+					$.alerts._overlay('hide');
+					$("BODY").append('<div id="popup_overlay"></div>');
+					$("#popup_overlay").css({
+						position : 'fixed',
+						zIndex : 1010,
+						top : '0',
+						left : '0',
+						width : '100%',
+						height : '100%',
+						background : $.alerts.overlayColor,
+						opacity : $.alerts.overlayOpacity
+					});
+					$(document.body).css('overflowY','hidden');
+					break;
+				case 'hide':
+					$("#popup_overlay").remove();
+					$(document.body).css('overflowY','auto');
+					break;
+			}
+		},
+		_reposition : function() {
+			var top = (($(window).height() / 2) - ($("#popup_container").outerHeight(true) / 2)) + $.alerts.verticalOffset, left = (($(window).width() / 2) - ($("#popup_container").outerWidth() / 2)) + $.alerts.horizontalOffset, h = $(document).height() - 200;
+			console.log(top);
+			if (top < 0)
+				top = 0;
+			if (left < 0)
+				left = 0;
+
+			// IE6 fix
+			if ('undefined' == typeof (document.body.style.maxHeight))
+				top = top + $(window).scrollTop();
+
+			if ($("#popup_more")[0]) {
+				//top = ($(window).height() - $("#popup_container").outerHeight(true)) / 2;
+                //top = top < 0 ? 0 : top;
+                top = 120;
+                var containerHeight = $(window).height() - $("#popup_title").outerHeight(true);
+                $("#popup_more").css("height",containerHeight);
+				$("#popup_container").css({
+					top : top + 'px',
+					left : left + 'px'
+				});
+			} else {
+				$("#popup_container").css({
+					top : top + 'px',
+					left : left + 'px'
+				});
+			}
+		},
+		_maintainPosition : function(status) {
+			if ($.alerts.repositionOnResize) {
+				switch(status) {
+					case true:
+						$(window).bind('resize', function() {
+							$.alerts._reposition();
+						});
+						break;
+					case false:
+						$(window).unbind('resize');
+						break;
+				}
+			}
+		}
+	};
+	// Shortuct functions
+	jAlert = function(message, title, callback, okstr) {
+		$.alerts.alert(message, title, callback, okstr);
+	};
+	jConfirm = function(message, title, callback, okstr, escstr) {
+		$.alerts.confirm(message, title, callback, okstr, escstr);
+	};
+
+	jPrompt = function(message, value, title, callback, okstr, escstr) {
+		$.alerts.prompt(message, value, title, callback, okstr, escstr);
+	};
+	jCode = function(message, value, title, callback, okstr, escstr) {
+		$.alerts.code(message, value, title, callback, okstr, escstr);
+	};
+	jLayer = function(message, title) {
+		$.alerts.layer(message, title);
+	};
+	jTiper = function(message, title) {
+		$.alerts.tiper(message, title);
+	};
+})(jQuery);
+

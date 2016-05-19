@@ -1,2 +1,56 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(a){function b(){k.setAttribute("content",n),o=!0}function c(){k.setAttribute("content",m),o=!1}function d(d){j=d.accelerationIncludingGravity,g=Math.abs(j.x),h=Math.abs(j.y),i=Math.abs(j.z),a.orientation&&180!==a.orientation||!(g>7||(i>6&&8>h||8>i&&h>6)&&g>5)?o||b():o&&c()}var e=navigator.userAgent;if(/iPhone|iPad|iPod/.test(navigator.platform)&&/OS [1-5]_[0-9_]* like Mac OS X/i.test(e)&&e.indexOf("AppleWebKit")>-1){var f=a.document;if(f.querySelector){var g,h,i,j,k=f.querySelector("meta[name=viewport]"),l=k&&k.getAttribute("content"),m=l+",maximum-scale=1",n=l+",maximum-scale=10",o=!0;k&&(a.addEventListener("orientationchange",b,!1),a.addEventListener("devicemotion",d,!1))}}}(this);
+/*! A fix for the iOS orientationchange zoom bug.
+ Script by @scottjehl, rebound by @wilto.
+ MIT / GPLv2 License.
+*/
+(function(w){
+	
+	// This fix addresses an iOS bug, so return early if the UA claims it's something else.
+	var ua = navigator.userAgent;
+	if( !( /iPhone|iPad|iPod/.test( navigator.platform ) && /OS [1-5]_[0-9_]* like Mac OS X/i.test(ua) && ua.indexOf( "AppleWebKit" ) > -1 ) ){
+		return;
+	}
+
+    var doc = w.document;
+
+    if( !doc.querySelector ){ return; }
+
+    var meta = doc.querySelector( "meta[name=viewport]" ),
+        initialContent = meta && meta.getAttribute( "content" ),
+        disabledZoom = initialContent + ",maximum-scale=1",
+        enabledZoom = initialContent + ",maximum-scale=10",
+        enabled = true,
+		x, y, z, aig;
+
+    if( !meta ){ return; }
+
+    function restoreZoom(){
+        meta.setAttribute( "content", enabledZoom );
+        enabled = true;
+    }
+
+    function disableZoom(){
+        meta.setAttribute( "content", disabledZoom );
+        enabled = false;
+    }
+	
+    function checkTilt( e ){
+		aig = e.accelerationIncludingGravity;
+		x = Math.abs( aig.x );
+		y = Math.abs( aig.y );
+		z = Math.abs( aig.z );
+				
+		// If portrait orientation and in one of the danger zones
+        if( (!w.orientation || w.orientation === 180) && ( x > 7 || ( ( z > 6 && y < 8 || z < 8 && y > 6 ) && x > 5 ) ) ){
+			if( enabled ){
+				disableZoom();
+			}        	
+        }
+		else if( !enabled ){
+			restoreZoom();
+        }
+    }
+	
+	w.addEventListener( "orientationchange", restoreZoom, false );
+	w.addEventListener( "devicemotion", checkTilt, false );
+
+})( this );

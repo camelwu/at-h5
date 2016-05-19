@@ -1,3 +1,1391 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function TicketDate(a){Calender.call(this,a)}TicketDate.prototype=new Calender,TicketDate.prototype.linkColor=function(a,b){var c,d,e=_CalF.$(".live",this.dd);if("Return"==a){for(var f=0;f<e.length;f++)e[f].querySelector(".live_txt")&&"去程"==e[f].querySelector(".live_txt").innerHTML&&(c=f),e[f].querySelector(".live_txt")&&"返程"==e[f].querySelector(".live_txt").innerHTML&&(d=f);for(var g=c;d>g;g++)_CalF.addClass("yellow",e[g])}else for(var h=0;h<e.length;h++){var i=/(\d{1,2})/g.exec(e[h].innerHTML);i&&(e[h].getAttribute("data-day")==b?e[h].innerHTML='<span class="live_circle">'+i[0]+"</span>":e[h].innerHTML=null!=i[0]?i[0]:""),"今天"==e[h].innerHTML&&b==e[h].getAttribute("data-day")&&(e[h].innerHTML='<span class="live_circle">今天</span>')}return!1},TicketDate.prototype._word={h:["入住","离店"],f:["去程","返程","去+返"]},TicketDate.prototype.inputEvent=function(){var a=this,b=new Date,c=b.getFullYear(),d=b.getMonth();b.getDate();_CalF.bind(this.input,"click",function(){a.createContainer();for(var b=0;b<a.num;b++)if(b==a.num-1){var e=new Date(c,d+b,1);a.drawLastDate(e)}else{var e=new Date(c,d+b,1);if("Oneway"==a.type)a.drawDate(e),a.linkColor("Oneway",a.singleDate);else{var f=a.doubleDate.start,g=a.doubleDate.end;a.time={},f!=g?(a.time[f]="去程",a.time[g]="返程"):a.time[f]="去+返",a.drawDate(e)}}})},TicketDate.prototype.initialize=function(a){this.type=a.type,this.id=a.id,this.num=a.num,this.sClass1=a.sClass1,this.id2=a.id2,this.fn=a.fn,this.op=0,this.input=_CalF.$("#"+this.id),this.inputEvent(),this.outClick(),"Oneway"==this.type?this.singleDate=a.time.start:this.doubleDate=a.dateObj},TicketDate.prototype.createContainer=function(a){var b=_CalF.$("#"+this.id+"-date");b&&b.parentNode.removeChild(b);var c=this.container=document.createElement("div");if(c.id=this.id+"-date",c.style.position="absolute",c.style.zIndex=98,"input"===this.input.tagName){var d=_CalF.getPos(this.input);c.style.left=d.left+"px",c.style.top=d.bottom-1+"px",_CalF.bind(c,"click",this.stopPropagation)}else{c.style.background="#f5f4f9",c.style.overflow="auto",c.style.width=c.style.height="100%",c.style.left="0",c.style.top="0",c.style.paddingBottom="118px";var e=this.header=document.createElement("div");e.id=this.id+"-header",e.className="header",e.innerHTML='<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>',document.body.appendChild(e);var f=document.createElement("div");f.className="calendar",f.style.height="108px",f.innerHTML=this._tempweek.join(""),c.appendChild(f);var g=this.tiper=document.createElement("div");g.id=this.id+"-tiper",g.className="tipers",g.innerHTML="请选择去程日期","Oneway"==this.type?void 0:c.appendChild(g)}document.body.appendChild(c)},TicketDate.prototype.drawDate=function(a){var b,c,d,e,f,g,h,i,j,k,l=[],m=new Date,n=m.getFullYear(),o=m.getMonth(),p=m.getDate(),q="",r="";for(this.dateWarp=b=document.createElement("div"),b.className="calendar",b.innerHTML=this._template.join(""),this.year=e=a.getFullYear(),this.month=f=a.getMonth()+1,this.date=g=a.getDate(),this.titleDate=c=_CalF.$(".title-date",b)[0],tims=this.time,k=document.createTextNode(e+"年"+f+"月"),c.appendChild(k),d=_CalF.$("dd",b)[0],h=new Date(e,f,0).getDate(),i=new Date(e,f-1,1).getDay(),j=0;i>j;j++)l.push("<a>&nbsp;</a>");for(j=1;h>=j;j++)r=parseInt(j)<10?"0"+parseInt(j):parseInt(j),q=parseInt(f)<10?"0"+parseInt(f):parseInt(f),n>e?l.push('<a class="disabled">'+j+"</a>"):e==n?o+1>f?l.push('<a class="live disabled">'+j+"</a>"):f==o+1?p>j?l.push('<a class="live disabled">'+j+"</a>"):(tims&&tims[e+"-"+q+"-"+r]&&"Return"==this.type?pstr='<a class="live" data-day="'+e+"-"+q+"-"+r+'"><span class="live_circle">'+j+'</span><span class="live_txt">'+tims[e+"-"+q+"-"+r]+"</span></a>":tims&&tims[e+"-"+q+"-"+r]&&"Oneway"==this.type?pstr='<a class="live" data-day="'+e+"-"+q+"-"+r+'"><span class="live_circle">'+j+"</span></a>":pstr='<a class="live" data-day="'+e+"-"+q+"-"+r+'">'+j+"</a>",j==p?l.push('<a class="live" data-day="'+e+"-"+q+"-"+r+'">今天</a>'):l.push(pstr)):f==o+2?(tims&&tims[e+"-"+q+"-"+r]&&"Return"==this.type?pstr='<a class="live" data-day="'+e+"-"+q+"-"+r+'"><span class="live_circle">'+j+'</span><span class="live_txt">'+tims[e+"-"+q+"-"+r]+"</span></a>":tims&&tims[e+"-"+q+"-"+r]&&"Oneway"==this.type?pstr='<a class="live" data-day="'+e+"-"+q+"-"+r+'"><span class="live_circle">'+j+"</span></a>":pstr='<a class="live" data-day="'+e+"-"+q+"-"+r+'">'+j+"</a>",l.push(pstr)):l.push('<a class="live" data-day="'+e+"-"+q+"-"+r+'">'+j+"</a>"):e>n&&l.push('<a class="live" data-day="'+e+"-"+q+"-"+r+'">'+j+"</a>");d.innerHTML=l.join(""),this.container.appendChild(b);var s=!!window.ActiveXObject&&!window.XMLHttpRequest;s&&b.appendChild(this.createIframe()),this.linkOn(),"Oneway"==this.type?document.querySelector("#chooseDate-single-header")?document.querySelector("#chooseDate-single-header").onclick=function(a){var a=a||window.event,b=a.target||a.srcElement,c=null,d=null;("A"==b.tagName&&"ticket-header-back"==b.className||"I"==b.tagName&&"icons ticket-go-back"==b.className)&&(c=document.querySelector("#chooseDate-single-date"),d=document.querySelector("#chooseDate-single-header"),document.body.removeChild(c),document.body.removeChild(d))}:document.querySelector("#dateIcon-header")&&(document.querySelector("#dateIcon-header").onclick=function(a){var a=a||window.event,b=a.target||a.srcElement,c=null,d=null;("A"==b.tagName&&"ticket-header-back"==b.className||"I"==b.tagName&&"icons ticket-go-back"==b.className)&&(c=document.querySelector("#dateIcon-header"),d=document.querySelector("#dateIcon-date"),document.body.removeChild(c),document.body.removeChild(d))}):document.querySelector("#ori-des-Date-header")?document.querySelector("#ori-des-Date-header").onclick=function(a){var a=a||window.event,b=a.target||a.srcElement,c=null,d=null;("A"==b.tagName&&"ticket-header-back"==b.className||"I"==b.tagName&&"icons ticket-go-back"==b.className)&&(c=document.querySelector("#ori-des-Date-header"),d=document.querySelector("#ori-des-Date-date"),document.body.removeChild(c),document.body.removeChild(d))}:document.querySelector("#dateIcon-header")&&(document.querySelector("#dateIcon-header").onclick=function(a){var a=a||window.event,b=a.target||a.srcElement,c=null,d=null;("A"==b.tagName&&"ticket-header-back"==b.className||"I"==b.tagName&&"icons ticket-go-back"==b.className)&&(c=document.querySelector("#dateIcon-header"),d=document.querySelector("#dateIcon-date"),document.body.removeChild(c),document.body.removeChild(d))})},TicketDate.prototype.linkOn=function(){var a,b=_CalF.$(".live",this.dd),c=b.length,d=this;for(a=0;c>a;a++)b[a].index=a,b[a].onclick=function(a){"input"===d.input.tagName?($(this).css("border","1px solid #ff6a2f").css("z-index","9999999"),$(this).siblings().css("border","").css("z-index","")):this.className.indexOf("disabled")>-1||("Oneway"==d.type?d.linkOver(a):0==d.op?(null!=d.timer&&(window.clearTimeout(d.timer),d.timer=null),d.tiper.innerHTML="请选择"+d._word.f[1]+"日期",d.linkReset(this.index),$(this).html('<span class="live_circle">'+this.innerHTML+'</span><span class="live_txt">'+d._word.f[d.op]+"</span>"),d.op++,d.cache=this.getAttribute("data-day"),d.doubleDate.start=this.getAttribute("data-day")):1==d.op&&this.getAttribute("data-day")!=d.cache?(null!=d.timer&&(window.clearTimeout(d.timer),d.timer=null),d.doubleDate.end=this.getAttribute("data-day"),$(this).html('<span class="live_circle">'+this.innerHTML+'</span><span class="live_txt">'+d._word.f[d.op]+"</span>"),d.tiper.style.display="none",d.linkOver(),d.linkColor("Return")):1==d.op&&this.getAttribute("data-day")==d.cache&&(null!=d.timer&&(window.clearTimeout(d.timer),d.timer=null),d.tiper.style.display="none",d.doubleDate.end=this.getAttribute("data-day"),this.querySelector(".live_txt").innerHTML=d._word.f[2],d.linkOver()))};this.linkColor("Return")},TicketDate.prototype.linkOver=function(a){function b(a){if(a){var b,c,d=new Date(a.replace(/-/g,"/")).getDay();switch(d){case 0:b="周日";break;case 1:b="周一";break;case 2:b="周二";break;case 3:b="周三";break;case 4:b="周四";break;case 5:b="周五";break;case 6:b="周六"}return c=a.split("-"),c[1]=c[1]<10?"0"+parseInt(c[1]):parseInt(c[1]),c[2]=c[2]<10?"0"+parseInt(c[2]):parseInt(c[2]),'<span class="dateNumber">'+c[1]+"月"+c[2]+"日</span> <span>"+b+"</span>"}}var c,d=$("#"+this.id+"-date .live_circle"),e=(d.length,this),f=[],g=_CalF.$("input",e.input);if(g.length||(g=_CalF.$("."+this.sClass1,document)),"Oneway"!=this.type){var h=_CalF.$("#"+this.id2,e.input);if("INPUT"==g[0].tagName)for(c=0;2>c;c++)f.push(d[c].parentNode.getAttribute("data-day")),g[c].value=d[c].parentNode.getAttribute("data-day");else 1==d.length?(f.push(d[0].parentNode.getAttribute("data-day")),f.push(d[0].parentNode.getAttribute("data-day")),g[0].innerHTML=b(d[0].parentNode.getAttribute("data-day")),e.doubleChosenDateOne=d[0].parentNode.getAttribute("data-day"),g[1]&&(e.doubleChosenDateTwo=d[0].parentNode.getAttribute("data-day"),g[1].innerHTML=b(d[0].parentNode.getAttribute("data-day")))):(f.push(d[0].parentNode.getAttribute("data-day")),f.push(d[1].parentNode.getAttribute("data-day")),g[0].innerHTML=b(d[0].parentNode.getAttribute("data-day")),e.doubleChosenDateOne=d[0].parentNode.getAttribute("data-day"),g[1]&&(e.doubleChosenDateTwo=d[1].parentNode.getAttribute("data-day"),g[1].innerHTML=b(d[1].parentNode.getAttribute("data-day"))));h&&(h.innerHTML=Math.round((new Date(f[1])-new Date(f[0]))/864e5))}else{var a=a||window.event,i=a.target||a.srcElement;"A"==i.tagName?(e.singleDate=i.getAttribute("data-day"),e.linkColor("Oneway",e.singleDate),g[0].innerHTML=b(e.singleDate)):"SPAN"==i.tagName&&(e.singleDate=i.parentNode.getAttribute("data-day"),e.linkColor("Oneway",e.singleDate),g[0].innerHTML=b(e.singleDate)),g[0].setAttribute("data-date",e.singleDate)}e.timer=window.setTimeout(function(){e.op>=1?e.op=0:null,e.removeDate(),e.header.parentNode&&e.header.parentNode.removeChild(e.header),"function"==typeof e.fn&&(e.fn(),window.clearTimeout(e.timer),e.timer=null)},1e3)},TicketDate.prototype.linkReset=function(a){var b=this,c=$(".live_circle"),d=_CalF.$(".live",this.dd);if(0==b.op){for(var e=0;e<c.length;e++){var f=c[e].parentNode.getAttribute("data-day"),g=f.split("-");c[e].parentNode.innerHTML=g[g.length-1]}for(e=0;a>e;e++)_CalF.addClass("disabled",d[e]);for(e=a+30;e<d.length;e++)_CalF.addClass("disabled",d[e]);return!1}},TicketDate.prototype.drawLastDate=function(a){var b,c,d,e,f,g,h,i,j,k,l=[],m=new Date,n=(m.getFullYear(),m.getMonth(),m.getDate()),o="",p="";for(this.dateWarp=b=document.createElement("div"),b.className="calendar",b.innerHTML=this._template.join(""),this.year=e=a.getFullYear(),this.month=f=a.getMonth()+1,this.date=g=a.getDate(),this.titleDate=c=_CalF.$(".title-date",b)[0],tims=this.time,k=document.createTextNode(e+"年"+f+"月"),c.appendChild(k),d=_CalF.$("dd",b)[0],h=new Date(e,f,0).getDate(),i=new Date(e,f-1,1).getDay(),j=0;i>j;j++)l.push("<a>&nbsp;</a>");for(o=Number(f)<10?"0"+Number(f):Number(f),j=1;h>=j;j++)n>=j?(p=Number(j)<10?"0"+Number(j):Number(j),l.push('<a class="live" data-day="'+e+"-"+o+"-"+p+'">'+j+"</a>")):l.push('<a class="disabled">'+j+"</a>");d.innerHTML=l.join(""),this.container.appendChild(b);var q=!!window.ActiveXObject&&!window.XMLHttpRequest;q&&b.appendChild(this.createIframe()),this.linkOn()};var conditionalFiltering={addHandler:function(a,b,c){document.addEventListener?this.addHandler=function(a,b,c){a.addEventListener(b,c,!1)}:document.attachEvent?this.addHandler=function(a,b,c){a.attachEvent("on"+b,function(){c.call(a)})}:this.addHandler=function(a,b,c){a["on"+b]=c},this.addHandler(a,b,c)},createTags:function(a,b,c){var a=this.tripType,b=this.sinOrDou,d=(this.fn,document.createElement("div"));d.className="r-shadow",d.id="r-shadow";var e=document.createElement("div");e.className="filter-wrap";var f=document.createElement("div");f.className="hl-bottom";var g=document.createElement("div");g.className="reset-action",g.id="filter-modal";var h=document.createElement("ul");h.id="time-modal";var i=document.createElement("ul");return i.id="price-modal","domestic"==a?"Oneway"==b?(f.innerHTML='<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span class="filter-select">筛选</span></div><div class="fo-div" id="fo_ra" data-time-type="domestic"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span  class="filter-select">起飞早到晚</span></div><div class="fo-div" id="fo_lo" data-price-type="domestic" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span class="filter-select">价格</span></div>',g.innerHTML='    <div class="reset-action-wrap"><div class="reset-action-item hot">取消</div><div class="reset-action-item">清空筛选</div><div class="reset-action-item">确定</div></div><div class="reaction-detail" id="reaction-detail"><ul class="filter-bottom" id="filter-bottom"><li class="filter-title clear-background" data-info="df">直飞</li><li class="filter-title" data-info="sh">共享</li><li class="filter-title" data-info="du">起飞时段</li><li class="filter-title" data-info="se">舱位</li></ul><div class="detail-list" style="color: rgb(102, 102, 102);"><ul class="add only-direct-fly" id="only-direct-fly"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">仅看直飞<b class=""></b></li></ul><ul class="add filter-share" id="filter-share" style="display: none"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">隐藏共享<b class=""></b></li></ul><ul class="add set-time-duration" id="set-time-duration" style="display: none"><li class="tag-item active" data-i="0024">不限<b></b></li><li class="tag-item" data-i="0006">00:00-06:00<b class=""></b></li><li class="tag-item" data-i="0612">06:00-12:00<b class=""></b></li><li class="tag-item" data-i="1218">12:00-18:00<b class=""></b></li><li class="tag-item" data-i="1824">18:00-24:00<b class=""></b></li></ul><ul class="add seat-condition" id="seat-condition" style="display: none"><li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li><li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li><li class="tag-item" data-i="Business">商务舱<b class=""></b></li><li class="tag-item" data-i="First">头等舱<b class=""></b></li></ul></div></div>',h.innerHTML="",i.innerHTML=""):(f.innerHTML='<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span class="filter-select">筛选</span></div><div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span class="filter-select">优选</span></div><div class="fo-div" id="fo_lo" data-price-type="domestic"><b class="hl-icon3 filter-price"></b><i class=""></i><span class="filter-select">价格</span></div>',g.innerHTML='    <div class="reset-action-wrap"><div class="reset-action-item hot">取消</div><div class="reset-action-item">清空筛选</div><div class="reset-action-item">确定</div></div><div class="reaction-detail" id="reaction-detail"><ul class="filter-bottom" id="filter-bottom"><li class="filter-title clear-background" data-info="df">直飞</li><li class="filter-title" data-info="sh">共享</li><li class="filter-title" data-info="se">舱位</li></ul><div class="detail-list" style="color: rgb(102, 102, 102);"><ul class="add only-direct-fly" id="only-direct-fly"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">仅看直飞<b class=""></b></li></ul><ul class="add filter-share" id="filter-share" style="display: none"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">隐藏共享<b class=""></b></li></ul><ul class="add seat-condition" id="seat-condition" style="display: none"><li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li><li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li><li class="tag-item" data-i="Business">商务舱<b class=""></b></li><li class="tag-item" data-i="First">头等舱<b class=""></b></li></ul></div></div>',h.innerHTML='    <li class="time-modal-item active" data-i="0"><b></b>不限</li>    <li class="time-modal-item" data-i="1"><b></b>直飞优先</li>    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>',i.innerHTML=""):"Oneway"==b?(f.innerHTML='<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span class="filter-select">筛选</span></div><div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span class="filter-select">起飞早到晚</span></div><div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class="red-tip"></i><span class="filter-select">价格</span></div>',g.innerHTML='    <div class="reset-action-wrap"><div class="reset-action-item hot">取消</div><div class="reset-action-item">清空筛选</div><div class="reset-action-item">确定</div></div><div class="reaction-detail" id="reaction-detail"><ul class="filter-bottom" id="filter-bottom"><li class="filter-title clear-background" data-info="df">直飞</li><li class="filter-title" data-info="sh">共享</li><li class="filter-title" data-info="du">起飞时段</li><li class="filter-title" data-info="se">舱位</li></ul><div class="detail-list" style="color: rgb(102, 102, 102);"><ul class="add only-direct-fly" id="only-direct-fly"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">仅看直飞<b class=""></b></li></ul><ul class="add filter-share" id="filter-share" style="display: none"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">隐藏共享<b class=""></b></li></ul><ul class="add set-time-duration" id="set-time-duration" style="display: none"><li class="tag-item active" data-i="0024">不限<b></b></li><li class="tag-item" data-i="0006">00:00-06:00<b class=""></b></li><li class="tag-item" data-i="0612">06:00-12:00<b class=""></b></li><li class="tag-item" data-i="1218">12:00-18:00<b class=""></b></li><li class="tag-item" data-i="1824">18:00-24:00<b class=""></b></li></ul><ul class="add seat-condition" id="seat-condition" style="display: none"><li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li><li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li><li class="tag-item" data-i="Business">商务舱<b class=""></b></li><li class="tag-item" data-i="First">头等舱<b class=""></b></li></ul></div></div>',h.innerHTML='    <li class="time-modal-item active" data-i="1"><b></b>直飞优先</li>    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>    <li class="time-modal-item" data-i="isDesc_false"><b></b>起飞早到晚</li>    <li class="time-modal-item" data-i="isDesc_true"><b></b>起飞晚到早</li>',i.innerHTML=""):(f.innerHTML='<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span class="filter-select">筛选</span></div><div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span class="filter-select">优选</span></div><div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class="red-tip"></i><span class="filter-select">含税价</span></div>',g.innerHTML='    <div class="reset-action-wrap"><div class="reset-action-item hot">取消</div><div class="reset-action-item">清空筛选</div><div class="reset-action-item">确定</div></div><div class="reaction-detail" id="reaction-detail"><ul class="filter-bottom" id="filter-bottom"><li class="filter-title clear-background" data-info="df">直飞</li><li class="filter-title" data-info="sh">共享</li><li class="filter-title" data-info="se">舱位</li></ul><div class="detail-list" style="color: rgb(102, 102, 102);"><ul class="add only-direct-fly" id="only-direct-fly"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">仅看直飞<b class=""></b></li></ul><ul class="add filter-share" id="filter-share" style="display: none"><li class="tag-item active" data-i="false">不限<b></b></li><li class="tag-item" data-i="true">隐藏共享<b class=""></b></li></ul><ul class="add seat-condition" id="seat-condition" style="display: none"><li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li><li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li><li class="tag-item" data-i="Business">商务舱<b class=""></b></li><li class="tag-item" data-i="First">头等舱<b class=""></b></li></ul></div></div>',h.innerHTML='    <li class="time-modal-item active" data-i="0"><b></b>不限</li>    <li class="time-modal-item" data-i="1"><b></b>直飞优先</li>    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>',i.innerHTML=""),e.appendChild(f),e.appendChild(g),e.appendChild(h),e.appendChild(i),document.body.appendChild(d),document.body.appendChild(e),this},addEvent:function(){var a=document.querySelector(".hl-bottom"),b=this,c=document.querySelector("#r-shadow");return a.onclick=function(d){var e,d=d||window.event,f=f||d.srcElement,g=function(){var a=document.querySelector("#filter-modal");a.style.transition="all 300ms ease-in",a.style.webkitTransition="all 300ms linear",a.style.bottom=0},h=function(d){if("Oneway"==b.sinOrDou&&"domestic"==b.tripType){var e=a.querySelector("#fo_lo"),f=e.querySelector("i"),g=e.querySelector("SPAN");g.innerHTML="价格",f.className="",b.tempStates.PriorityRule="0","起飞早到晚"==d.querySelector(".filter-select").innerHTML?(d.querySelector(".filter-select").innerHTML="起飞晚到早",b.tempStates.IsDesc=!0):(d.querySelector(".filter-select").innerHTML="起飞早到晚",b.tempStates.IsDesc=!1),b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn(b.tempStates),b.checkRedTip()}else if("Oneway"==b.sinOrDou&&"international"==b.tripType){c.style.display="block";var h=document.querySelector("#time-modal"),i=document.querySelector("#fo_ra");h.style.transition="all 300ms ease-in",h.style.webkitTransition="all 300ms linear",h.style.bottom=0,h.onclick=function(){var a=a||window.event,d=d||a.srcElement,e=i.querySelector("SPAN");i.querySelector("i");if("LI"==d.tagName){for(var f=d.parentNode.querySelectorAll("li"),g=0;g<f.length;g++)f[g].className="tag-item";"不限"==d.innerText?e.innerHTML="优选":e.innerHTML=d.innerText,d.className="tag-item active"}b.stateEvent("get"),b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn(b.tempStates),b.checkRedTip(),this.style.transition="all 300ms ease-in",this.style.webkitTransition="all 300ms linear",this.style.bottom="-126%",c.style.display="none"}}else if("Return"==b.sinOrDou&&"domestic"==b.tripType){c.style.display="block";var h=document.querySelector("#time-modal"),i=document.querySelector("#fo_ra"),j=a.querySelector("#fo_lo"),f=j.querySelector("i"),g=j.querySelector("SPAN");g.innerHTML="价格",f.className="",d.querySelector("i").className="red-tip",b.tempStates.PriorityRule="0",h.style.transition="all 300ms ease-in",h.style.webkitTransition="all 300ms linear",h.style.bottom=0,h.onclick=function(){var a=a||window.event,d=d||a.srcElement,e=i.querySelector("SPAN");i.querySelector("i");if("LI"==d.tagName){for(var f=d.parentNode.querySelectorAll("li"),g=0;g<f.length;g++)f[g].className="tag-item";"不限"==d.innerText?e.innerHTML="优选":e.innerHTML=d.innerText,d.className="tag-item active"}b.stateEvent("get"),b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn(b.tempStates),b.checkRedTip(),this.style.transition="all 300ms ease-in",this.style.webkitTransition="all 300ms linear",this.style.bottom="-126%",c.style.display="none"}}else if("Return"==b.sinOrDou&&"international"==b.tripType){c.style.display="block";var k=document.querySelector("#time-modal"),l=document.querySelector("#fo_ra");k.style.transition="all 300ms ease-in",k.style.webkitTransition="all 300ms linear",k.style.bottom=0,k.onclick=function(){var a=a||window.event,d=d||a.srcElement,e=l.querySelector("SPAN");l.querySelector("i");if("LI"==d.tagName){for(var f=d.parentNode.querySelectorAll("li"),g=0;g<f.length;g++)f[g].className="tag-item";"不限"==d.innerText?e.innerHTML="优选":e.innerHTML=d.innerText,d.className="tag-item active"}b.stateEvent("get"),b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn(b.tempStates),b.checkRedTip(),this.style.transition="all 300ms ease-in",this.style.webkitTransition="all 300ms linear",this.style.bottom="-126%",c.style.display="none"}}},i=function(c){if("Oneway"==b.sinOrDou&&"domestic"==b.tripType){var d=a.querySelector("#fo_ra"),e=d.querySelector("i"),f=d.querySelector("SPAN");f.innerHTML="时间",e.className="",b.tempStates.IsDesc=!1,c.querySelector(".filter-select").innerHTML="从低到高",b.tempStates.PriorityRule="2",b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn(b.tempStates),b.checkRedTip()}else if("Return"==b.sinOrDou&&"domestic"==b.tripType){var g=a.querySelector("#fo_ra"),h=g.querySelector("i"),i=g.querySelector("SPAN");i.innerHTML="优选",h.className="",b.tempStates.PriorityRule="0",c.querySelector(".filter-select").innerHTML="从低到高",b.tempStates.PriorityRule="2",b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.stateEvent("set"),b.fn(b.tempStates),b.checkRedTip()}else if("Oneway"==b.sinOrDou&&"international"==b.tripType){var j=a.querySelector("#fo_lo"),k=(j.querySelector("i"),j.querySelector("SPAN"));"含税价"==k.innerHTML?(k.innerHTML="不含税价",b.tempStates.hasTax="false"):(k.innerHTML="含税价",b.tempStates.hasTax="true"),b.stateEvent("set"),b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn_(b.tempStates),b.checkRedTip()}else if("Return"==b.sinOrDou&&"international"==b.tripType){var l=a.querySelector("#fo_lo"),m=(l.querySelector("i"),l.querySelector("SPAN"));"含税价"==m.innerHTML?(m.innerHTML="不含税价",b.tempStates.hasTax="false"):(m.innerHTML="含税价",b.tempStates.hasTax="true"),b.stateEvent("set"),b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn_(b.tempStates),b.checkRedTip()}};switch("B"==f.tagName||"SPAN"==f.tagName?e=f.parentNode:"fo-div"==f.className&&(e=f),e.id){case"fo_sc":c.style.display="block",g();break;case"fo_ra":h(e);break;case"fo_lo":i(e)}var j=document.querySelector(".reset-action-wrap"),k=document.querySelector("#filter-modal");j.onclick=function(a){var a=a||window.event,d=d||a.srcElement;if(d.className.indexOf("reset-action-item")>-1){for(var e=d.parentNode.querySelectorAll(".reset-action-item"),f=0;f<e.length;f++)e[f].className="reset-action-item";d.className="reset-action-item hot";var g=function(){b.stateEvent("set"),k.style.transition="all 300ms ease-in",k.style.webkitTransition="all 300ms linear",k.style.bottom="-126%"},h=function(){for(var a=document.querySelectorAll(".only-direct-fly li"),b=document.querySelectorAll(".filter-share li"),c=document.querySelectorAll(".set-time-duration li"),d=document.querySelectorAll(".seat-condition li"),e=0;e<a.length;e++)a[e].className=0==e?"tag-item active":"tag-item";for(var f=0;f<b.length;f++)b[f].className=0==f?"tag-item active":"tag-item";for(var g=0;g<c.length;g++)c[g].className=0==g?"tag-item active":"tag-item";for(var h=0;h<d.length;h++)d[h].className=0==h?"tag-item active":"tag-item"},i=function(){b.stateEvent("get"),b.tempStates.pageSize=Number(b.tempStates.pageSize)>10?Number(b.tempStates.pageSize):10*Number(b.tempStates.pageNo),b.tempStates.pageNo=1,b.context.isClearAll=!0,b.fn(b.tempStates),b.checkRedTip(),k.style.transition="all 300ms ease-in",k.style.webkitTransition="all 300ms linear",k.style.bottom="-126%"};switch(d.innerHTML){case"取消":g(),c.style.display="none";break;case"清空筛选":h();break;case"确定":i(),c.style.display="none"}}};var l=document.querySelector("#reaction-detail");l.onclick=function(a){var a=a||window.event,b=b||a.srcElement;if(b.className.indexOf("filter-title")>-1){for(var c,d=b.parentNode.querySelectorAll("li"),e=0;e<d.length;e++)d[e].className=d[e]==b?"filter-title clear-background":"filter-title";var f=b.getAttribute("data-info"),g=this.querySelectorAll(".add");switch(f){case"df":c=document.querySelector("#only-direct-fly");break;case"sh":c=document.querySelector("#filter-share");break;case"du":c=document.querySelector("#set-time-duration");break;case"se":c=document.querySelector("#seat-condition")}for(var h=0;h<g.length;h++)g[h].style.display="none";c.style.display="block"}else if(b.className.indexOf("tag-item")>-1)for(var i=b.parentNode.querySelectorAll("li"),j=0;j<i.length;j++)i[j].className=i[j]==b?"tag-item active":"tag-item"},c.onclick=function(a){var a=a||window.event,b=b||a.srcElement,c=document.querySelector("#filter-modal"),d=document.querySelector("#time-modal"),e=document.querySelector("#price-modal");b.className.indexOf("r-shadow")>-1&&(c.style.transition="all 300ms ease-in",c.style.webkitTransition="all 300ms linear",c.style.bottom="-126%",e.style.transition="all 300ms ease-in",e.style.webkitTransition="all 300ms linear",e.style.bottom="-126%",this.style.display="none",d.style.transition="all 300ms ease-in",d.style.webkitTransition="all 300ms linear",d.style.bottom="-126%")}},this},stateEvent:function(a){if("domestic"==this.tripType)if("Return"==this.sinOrDou){for(var b=document.querySelectorAll(".only-direct-fly li"),c=document.querySelectorAll(".filter-share li"),d=document.querySelectorAll("#seat-condition li"),e=document.querySelectorAll("#time-modal li"),f=document.querySelector("#fo_lo"),g=0;g<b.length;g++)if("set"==a)b[g].className=b[g].getAttribute("data-i")==this.tempStates.IsDirectFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==b[g].className){this.tempStates.IsDirectFlight=b[g].getAttribute("data-i");break}for(var h=0;h<c.length;h++)if("set"==a)c[h].className=c[h].getAttribute("data-i")==this.tempStates.IsHideSharedFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==c[h].className){this.tempStates.IsHideSharedFlight=c[h].getAttribute("data-i");break}for(var i=0;i<d.length;i++)if("set"==a)d[i].className=d[i].getAttribute("data-i")==this.tempStates.CabinClass?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==d[i].className){this.tempStates.CabinClass=d[i].getAttribute("data-i");break}for(var j=0;j<e.length;j++)if("set"==a)e[j].className=e[j].getAttribute("data-i")==this.tempStates.PriorityRule?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==e[j].className){this.tempStates.PriorityRule=e[j].getAttribute("data-i");break}"2"==this.tempStates.PriorityRule?f.querySelector(".filter-select").innerHTML="从低到高":f.querySelector(".filter-select").innerHTML="价格"}else{for(var k=document.querySelectorAll(".only-direct-fly li"),l=document.querySelectorAll(".filter-share li"),m=document.querySelectorAll(".set-time-duration li"),n=document.querySelectorAll("#seat-condition li"),o=document.querySelectorAll("#time-modal li"),p=(document.querySelector("#fo_lo"),0);p<k.length;p++)if("set"==a)k[p].className=k[p].getAttribute("data-i")==this.tempStates.IsDirectFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==k[p].className){this.tempStates.IsDirectFlight=k[p].getAttribute("data-i");break}for(var q=0;q<l.length;q++)if("set"==a)l[q].className=l[q].getAttribute("data-i")==this.tempStates.IsHideSharedFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==l[q].className){this.tempStates.IsHideSharedFlight=l[q].getAttribute("data-i");break}for(var r=0;r<m.length;r++)if("set"==a)m[r].className=m[r].getAttribute("data-i")==""+this.tempStates.DepartStartHour+this.tempStates.DepartEndHour?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==m[r].className){
-this.tempStates.DepartStartHour=m[r].getAttribute("data-i").substring(0,2),this.tempStates.DepartEndHour=m[r].getAttribute("data-i").substring(2);break}for(var s=0;s<n.length;s++)if("set"==a)n[s].className=n[s].getAttribute("data-i")==this.tempStates.CabinClass?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==n[s].className){this.tempStates.CabinClass=n[s].getAttribute("data-i");break}for(var t=0;t<o.length;t++)if("set"==a)o[t].className=o[t].getAttribute("data-i")==this.tempStates.IsDesc?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==o[t].className){this.tempStates.IsDesc=o[t].getAttribute("data-i");break}}else if("Return"==this.sinOrDou){for(var u=document.querySelectorAll(".only-direct-fly li"),v=document.querySelectorAll(".filter-share li"),w=document.querySelectorAll("#seat-condition li"),x=document.querySelectorAll("#time-modal li"),y=document.querySelector("#fo_lo"),z=0;z<u.length;z++)if("set"==a)u[z].className=u[z].getAttribute("data-i")==this.tempStates.IsDirectFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==u[z].className){this.tempStates.IsDirectFlight=u[z].getAttribute("data-i");break}for(var A=0;A<v.length;A++)if("set"==a)v[A].className=v[A].getAttribute("data-i")==this.tempStates.IsHideSharedFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==v[A].className){this.tempStates.IsHideSharedFlight=v[A].getAttribute("data-i");break}for(var B=0;B<w.length;B++)if("set"==a)w[B].className=w[B].getAttribute("data-i")==this.tempStates.CabinClass?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==w[B].className){this.tempStates.CabinClass=w[B].getAttribute("data-i");break}for(var C=0;C<x.length;C++)if("set"==a)x[C].className=x[C].getAttribute("data-i")==this.tempStates.PriorityRule?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==x[C].className){this.tempStates.PriorityRule=x[C].getAttribute("data-i");break}"true"==this.tempStates.hasTax?y.querySelector(".filter-select").innerHTML="含税价":y.querySelector(".filter-select").innerHTML="不含税价"}else{for(var D=document.querySelectorAll(".only-direct-fly li"),E=document.querySelectorAll(".filter-share li"),F=document.querySelectorAll(".set-time-duration li"),G=document.querySelectorAll("#seat-condition li"),H=document.querySelectorAll("#time-modal li"),I=document.querySelector("#fo_lo"),J=0;J<D.length;J++)if("set"==a)D[J].className=D[J].getAttribute("data-i")==this.tempStates.IsDirectFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==D[J].className){this.tempStates.IsDirectFlight=D[J].getAttribute("data-i");break}for(var K=0;K<E.length;K++)if("set"==a)E[K].className=E[K].getAttribute("data-i")==this.tempStates.IsHideSharedFlight?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==E[K].className){this.tempStates.IsHideSharedFlight=E[K].getAttribute("data-i");break}for(var L=0;L<F.length;L++)if("set"==a)F[L].className=F[L].getAttribute("data-i")==this.tempStates.DepartStartHour+this.tempStates.DepartEndHour?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==F[L].className){this.tempStates.DepartStartHour=F[L].getAttribute("data-i").substring(0,2),this.tempStates.DepartEndHour=F[L].getAttribute("data-i").substring(2);break}for(var M=0;M<G.length;M++)if("set"==a)G[M].className=G[M].getAttribute("data-i")==this.tempStates.CabinClass?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==G[M].className){this.tempStates.CabinClass=G[M].getAttribute("data-i");break}for(var N=0;N<H.length;N++)if("set"==a)H[N].getAttribute("data-i").indexOf("isDesc")>-1?H[N].className=H[N].getAttribute("data-i").substring(7)==this.tempStates.IsDesc?"tag-item active":"tag-item":H[N].className=H[N].getAttribute("data-i")==this.tempStates.PriorityRule?"tag-item active":"tag-item";else if("get"==a&&"tag-item active"==H[N].className){H[N].getAttribute("data-i").indexOf("isDesc")>-1?(this.tempStates.IsDesc=H[N].getAttribute("data-i").substring(7),this.tempStates.PriorityRule="0"):(this.tempStates.PriorityRule=H[N].getAttribute("data-i"),delete this.tempStates.IsDesc);break}"true"==this.tempStates.hasTax?I.querySelector(".filter-select").innerHTML="含税价":I.querySelector(".filter-select").innerHTML="不含税价"}},checkRedTip:function(){var a=document.querySelector("#fo_sc"),b=document.querySelector("#fo_ra"),c=document.querySelector("#fo_lo");"international"==this.tripType?"Oneway"==this.sinOrDou?(this.tempStates.IsDirectFlight!=this.originInfo.IsDirectFlight||this.tempStates.IsHideSharedFlight!=this.originInfo.IsHideSharedFlight||this.tempStates.DepartStartHour!=this.originInfo.DepartStartHour||this.tempStates.DepartEndHour!=this.originInfo.DepartEndHour||this.tempStates.CabinClass!=this.originInfo.CabinClass?a.querySelector("i").className="red-tip":a.querySelector("i").className="",b.querySelector("i").className="red-tip",c.querySelector("i").className="red-tip"):(this.tempStates.IsDirectFlight!=this.originInfo.IsDirectFlight||this.tempStates.IsHideSharedFlight!=this.originInfo.IsHideSharedFlight||this.tempStates.CabinClass!=this.originInfo.CabinClass?a.querySelector("i").className="red-tip":a.querySelector("i").className="",b.querySelector("i").className="red-tip",c.querySelector("i").className="red-tip"):"Oneway"==this.sinOrDou?(this.tempStates.IsDirectFlight!=this.originInfo.IsDirectFlight||this.tempStates.IsHideSharedFlight!=this.originInfo.IsHideSharedFlight||this.tempStates.DepartStartHour!=this.originInfo.DepartStartHour||this.tempStates.DepartEndHour!=this.originInfo.DepartEndHour||this.tempStates.CabinClass!=this.originInfo.CabinClass?a.querySelector("i").className="red-tip":a.querySelector("i").className="","时间"==b.querySelector("SPAN").innerHTML?b.querySelector("i").className="":b.querySelector("i").className="red-tip","价格"==c.querySelector("SPAN").innerHTML?c.querySelector("i").className="":c.querySelector("i").className="red-tip"):(this.tempStates.IsDirectFlight!=this.originInfo.IsDirectFlight||this.tempStates.IsHideSharedFlight!=this.originInfo.IsHideSharedFlight||this.tempStates.CabinClass!=this.originInfo.CabinClass?a.querySelector("i").className="red-tip":a.querySelector("i").className="","优选"==b.querySelector("SPAN").innerHTML&&"从低到高"==c.querySelector("SPAN").innerHTML?b.querySelector("i").className="":b.querySelector("i").className="red-tip","价格"==c.querySelector("SPAN").innerHTML?c.querySelector("i").className="":c.querySelector("i").className="red-tip")},init:function(a,b,c,d,e,f){this.tripType=a,this.sinOrDou=b,this.tempStates=c,this.context=f,this.originInfo={};for(var g in c)this.originInfo[g]=c[g];this.fn=d,this.fn_=e,this.createTags().addEvent().stateEvent("set")}};
+//日期函数及修改函数
+function TicketDate(argument){
+    Calender.call(this,argument)
+}
+TicketDate.prototype = new Calender();
+
+TicketDate.prototype.linkColor=function(type,date){
+    var that = this, links = _CalF.$('.live',this.dd), startIndex,endIndex;
+    if(type == 'Return'){
+        for(var st = 0;st < links.length;st++) {
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='去程'){
+                startIndex=st;
+            }
+            if(links[st].querySelector('.live_txt')&&links[st].querySelector('.live_txt').innerHTML=='返程'){
+                endIndex=st;
+            }
+        }
+        for(var t = startIndex; t < endIndex;t++){
+            _CalF.addClass("yellow",links[t]);
+        }
+    }else{
+        for(var sn = 0;sn < links.length;sn++) {
+            var temStr = /(\d{1,2})/g.exec(links[sn].innerHTML);
+            if(temStr){
+                    if(links[sn].getAttribute('data-day') == date){
+                         links[sn].innerHTML = '<span class="live_circle">'+temStr[0]+'</span>';
+                    }else{
+                         links[sn].innerHTML =temStr[0]!=null?temStr[0]:'';
+                       }
+                  }
+            if(links[sn].innerHTML=='今天'&&date==links[sn].getAttribute('data-day')){
+                links[sn].innerHTML = '<span class="live_circle">今天</span>';
+            }
+        }
+    }
+    return false;
+};
+
+TicketDate.prototype._word = {h:['入住','离店'],f:['去程','返程','去+返']};
+
+TicketDate.prototype.inputEvent=function(){
+    var that = this;
+    var date = new Date();
+    var nowY = date.getFullYear();
+    var nowM = date.getMonth();
+    var nowD = date.getDate();
+    var reShowDate = function(arg){
+
+    };
+    _CalF.bind(this.input, 'click',function(){
+        that.createContainer();
+        for(var i=0;i<that.num;i++){
+            if(i==(that.num-1)){
+                var idate=new Date(nowY, nowM+i ,01);
+                that.drawLastDate(idate);
+            }else{
+                var idate = new Date(nowY , nowM+i, 01);
+                if(that.type=="Oneway"){
+                    that.drawDate(idate);
+                    that.linkColor("Oneway",that.singleDate)
+                }else{
+                    var start=that.doubleDate.start,end=that.doubleDate.end;
+                    that.time={};
+                    if(start!=end){
+                        that.time[start]='去程';
+                        that.time[end]='返程';
+                    }else{
+                        that.time[start]='去+返';
+                    }
+                    that.drawDate(idate);
+                }
+            }
+        }
+    });
+},
+
+TicketDate.prototype.initialize =function (options) {
+    this.type = options.type;
+    this.id = options.id;
+    this.num = options.num;
+    this.sClass1=options.sClass1;
+    this.id2=options.id2;
+    this.fn = options.fn;
+    this.op = 0;
+    this.input = _CalF.$('#'+ this.id);
+    this.inputEvent();
+    this.outClick();
+    this.type=="Oneway"?this.singleDate=options.time.start:this.doubleDate=options.dateObj;
+};
+
+TicketDate.prototype.createContainer = function(odate){
+    var odiv = _CalF.$('#'+ this.id + '-date');
+    if(!!odiv) odiv.parentNode.removeChild(odiv);
+    var container = this.container = document.createElement('div');
+    container.id = this.id + '-date';
+    container.style.position = "absolute";
+    container.style.zIndex = 98;
+    if(this.input.tagName === 'input'){
+        //PC输入框
+        var inputPos = _CalF.getPos(this.input);
+        // 根据input的位置设置container高度
+        container.style.left = inputPos.left + 'px';
+        container.style.top = inputPos.bottom - 1 + 'px';
+        // 设置日期层上的单击事件，仅供阻止冒泡，用途在日期层外单击关闭日期层
+        _CalF.bind(container, 'click', this.stopPropagation);
+
+    }else{
+        //M站层
+        container.style.background = "#f5f4f9";
+        container.style.overflow = 'auto';
+        container.style.width = container.style.height = '100%';
+        container.style.left = '0';
+        container.style.top = '0';
+        container.style.paddingBottom = '118px';
+        var header = this.header = document.createElement('div');
+        header.id = this.id+"-header";
+        header.className = 'header';
+        header.innerHTML = '<a href="javascript:void(0);" class="ticket-header-back"><i class="icons ticket-go-back"></i></a><h3>选择日期</h3><p class="choose-week-tip">选择日期为出发地日期</p>';
+        document.body.appendChild(header);
+        var weeker = document.createElement('div');
+        weeker.className = 'calendar';
+        weeker.style.height='108px';
+        weeker.innerHTML = this._tempweek.join('');
+        container.appendChild(weeker);
+
+        var tiper = this.tiper = document.createElement('div');
+        tiper.id = this.id + '-tiper';
+        tiper.className = 'tipers';
+
+        tiper.innerHTML = "请选择去程日期";
+        this.type=='Oneway'?void(0):container.appendChild(tiper);
+    }
+    document.body.appendChild(container);
+};
+
+TicketDate.prototype.drawDate = function (odate) {
+    var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+    var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+    var mWor='',dWor='';
+    this.dateWarp = dateWarp = document.createElement('div');
+    dateWarp.className = 'calendar';
+    dateWarp.innerHTML = this._template.join('');
+    this.year = year = odate.getFullYear();
+    this.month = month = odate.getMonth()+1;
+    this.date = date = odate.getDate();
+    this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+    tims = this.time;
+    textNode = document.createTextNode(year + '年' + month + '月');
+    titleDate.appendChild(textNode);
+
+    // 获取模板中唯一的DD元素
+    dd = _CalF.$('dd',dateWarp)[0];
+    // 获取本月天数
+    days = new Date(year, month, 0).getDate();
+    // 获取本月第一天是星期几
+    weekStart = new Date(year, month-1,1).getDay();
+    // 开头显示空白段
+    for (i = 0; i < weekStart; i++) {
+        ddHtml.push('<a>&nbsp;</a>');
+    }
+    // 循环显示日期
+    for (i = 1; i <= days; i++) {
+        dWor=parseInt(i)<10?'0'+parseInt(i):parseInt(i);
+        mWor=parseInt(month)<10?'0'+parseInt(month):parseInt(month);
+        if (year < nowyear) {
+            ddHtml.push('<a class="disabled">' + i + '</a>');
+        } else if (year == nowyear) {
+            if (month < nowmonth + 1) {
+                ddHtml.push('<a class="live disabled">' + i + '</a>');
+            } else if (month == nowmonth + 1) {
+                if (i < nowdate){
+                    ddHtml.push('<a class="live disabled">' + i + '</a>');
+                }else{
+                    if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Return"){
+                        pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+mWor+'-'+dWor] +'</span></a>';
+                    }else if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Oneway"){
+                        pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span></a>';
+                    }else{
+                        pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>';
+                    }
+                    i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">今天</a>'):ddHtml.push(pstr);
+                }
+            } else if (month == nowmonth + 2) {
+                if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Return"){
+                    pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+mWor+'-'+dWor] +'</span></a>';
+                }else if(tims&&tims[year+'-'+mWor+'-'+dWor]&&this.type=="Oneway"){
+                    pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'"><span class="live_circle">' + i + '</span></a>';
+                }else{
+                    pstr = '<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>';
+                }
+                ddHtml.push(pstr);
+            } else {
+                ddHtml.push('<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>');
+            }
+        } else if (year > nowyear) {
+            ddHtml.push('<a class="live" data-day="'+year+'-'+mWor+'-'+dWor+'">' + i + '</a>');
+        }
+    }
+    dd.innerHTML = ddHtml.join('');
+    // 添加
+    this.container.appendChild(dateWarp);
+    var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+    if(ie6) dateWarp.appendChild(this.createIframe());
+    this.linkOn();
+
+    if(this.type=='Oneway'){
+        if(document.querySelector('#chooseDate-single-header')){
+            document.querySelector('#chooseDate-single-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#chooseDate-single-date'), op2= document.querySelector('#chooseDate-single-header');
+                    document.body.removeChild(op);
+                    document.body.removeChild(op2)
+                }
+            }
+        }else if(document.querySelector('#dateIcon-header')){
+            document.querySelector('#dateIcon-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#dateIcon-header'), op2= document.querySelector('#dateIcon-date');
+                    document.body.removeChild(op)
+                    document.body.removeChild(op2)
+                }
+            }
+        }
+
+    }else{
+        if(document.querySelector('#ori-des-Date-header')){
+            document.querySelector('#ori-des-Date-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#ori-des-Date-header'), op2= document.querySelector('#ori-des-Date-date');
+                    document.body.removeChild(op)
+                    document.body.removeChild(op2)
+                }
+            }
+        }else if(document.querySelector('#dateIcon-header')){
+            document.querySelector('#dateIcon-header').onclick = function(event){
+                var event = event||window.event;
+                var target = event.target||event.srcElement, op = null, op2= null;
+                if((target.tagName == 'A'&&target.className=='ticket-header-back')||(target.tagName == 'I'&&target.className=='icons ticket-go-back')){
+                    op = document.querySelector('#dateIcon-header'), op2= document.querySelector('#dateIcon-date');
+                    document.body.removeChild(op)
+                    document.body.removeChild(op2)
+                }
+            }
+        }
+    }
+};
+
+TicketDate.prototype.linkOn = function(){
+    var links = _CalF.$('.live',this.dd),i,l=links.length,that=this;
+    for(i = 0;i<l;i++){
+        links[i].index = i;
+        links[i].onclick = function(event){
+            if(that.input.tagName === 'input'){
+                $(this).css("border","1px solid #ff6a2f").css("z-index","9999999");
+                $(this).siblings().css("border","").css("z-index","");
+            }else{
+                if(!(this.className.indexOf("disabled")>-1)){
+                    if(that.type == 'Oneway'){
+                        that.linkOver(event);
+                    }else{
+                        if(that.op==0){
+                            if(that.timer!=null){
+                                window.clearTimeout(that.timer);
+                                that.timer = null;
+                            }
+                            that.tiper.innerHTML = '请选择'+that._word.f[1]+'日期';
+                            that.linkReset(this.index);
+                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
+                            that.op++;
+                            that.cache = this.getAttribute('data-day');
+                            that.doubleDate.start = this.getAttribute('data-day');
+                        }else if(that.op==1&&this.getAttribute('data-day')!=that.cache){
+                            if(that.timer!=null){
+                                window.clearTimeout(that.timer);
+                                that.timer = null;
+                            }
+                            that.doubleDate.end = this.getAttribute('data-day');
+                            $(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word.f[that.op]+'</span>');
+                            that.tiper.style.display = 'none';
+                            that.linkOver();
+                            that.linkColor('Return');
+                        }else if(that.op==1&&this.getAttribute('data-day')==that.cache){
+                            if(that.timer!=null){
+                                window.clearTimeout(that.timer);
+                                that.timer = null;
+                            }
+                            that.tiper.style.display = 'none';
+                            that.doubleDate.end = this.getAttribute('data-day');
+                            this.querySelector('.live_txt').innerHTML=that._word.f[2];
+                            that.linkOver();
+                        }
+                      console.log(that.op)
+                    }
+                }
+            }
+        };
+    }
+    this.linkColor('Return')
+};
+
+TicketDate.prototype.linkOver = function(event){
+    var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[];
+    var out = _CalF.$('input',that.input);
+    if(!out.length){
+        out=_CalF.$('.'+this.sClass1,document);
+    }
+
+    if(this.type != 'Oneway'){
+        var tal = _CalF.$('#'+this.id2,that.input);
+        if(out[0].tagName=='INPUT'){
+            for(i = 0;i<2;i++){
+                arr.push(sels[i].parentNode.getAttribute("data-day"));
+                out[i].value = sels[i].parentNode.getAttribute("data-day");
+            }
+        }else{
+            if(sels.length==1){
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
+                if(out[1]){
+                    that.doubleChosenDateTwo = sels[0].parentNode.getAttribute("data-day");
+                    out[1].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                }
+            }else{
+                arr.push(sels[0].parentNode.getAttribute("data-day"));
+                arr.push(sels[1].parentNode.getAttribute("data-day"));
+                out[0].innerHTML=returnWeek(sels[0].parentNode.getAttribute("data-day"));
+                that.doubleChosenDateOne = sels[0].parentNode.getAttribute("data-day");
+                if(out[1]){
+                    that.doubleChosenDateTwo = sels[1].parentNode.getAttribute("data-day");
+                    out[1].innerHTML=returnWeek(sels[1].parentNode.getAttribute("data-day"));
+                }
+            }
+        }
+        if(tal){
+            tal.innerHTML = (Math.round((new Date(arr[1])-new Date(arr[0]))/(1000*60*60*24)));
+        }
+    }else{
+        var event = event || window.event;
+        var target = event.target || event.srcElement;
+        if(target.tagName == 'A'){
+            that.singleDate = target.getAttribute('data-day');
+            that.linkColor('Oneway',that.singleDate);
+            out[0].innerHTML=returnWeek(that.singleDate);
+        }else if(target.tagName == 'SPAN'){
+            that.singleDate = target.parentNode.getAttribute('data-day');
+            that.linkColor('Oneway',that.singleDate);
+            out[0].innerHTML=returnWeek(that.singleDate);
+        }
+        out[0].setAttribute('data-date',that.singleDate)
+    }
+    that.timer = window.setTimeout(function(){
+        that.op>=1?that.op=0:null;
+        that.removeDate();
+        if(that.header.parentNode){
+            that.header.parentNode.removeChild(that.header);
+        }
+        if(typeof that.fn==='function'){
+            that.fn();
+            window.clearTimeout(that.timer);
+            that.timer = null;
+        }
+    },1000);
+
+    function returnWeek(arg){
+        if(arg){
+            var week,array,index = new Date(arg.replace(/-/g, "/")).getDay();
+            switch (index){
+                case 0 :
+                    week = '周日';
+                    break;
+                case 1 :
+                    week = '周一';
+                    break;
+                case 2 :
+                    week = '周二';
+                    break;
+                case 3 :
+                    week = '周三';
+                    break;
+                case 4 :
+                    week = '周四';
+                    break;
+                case 5 :
+                    week = '周五';
+                    break;
+                case 6 :
+                    week = '周六';
+                    break;
+                default :
+                    void(0);
+            }
+            array = arg.split('-');
+            array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
+            array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
+            return '<span class="dateNumber">'+array[1]+'月'+array[2]+'日'+'</span>'+' '+'<span>'+week+'</span>';
+        }
+    }
+};
+
+TicketDate.prototype.linkReset =function(ele){
+    var that = this,
+        ospan = $('.live_circle'),
+        links = _CalF.$('.live',this.dd),
+        startIndex,endIndex;
+
+    if(that.op==0){
+        for(var i=0;i<ospan.length;i++){
+
+            var v = ospan[i].parentNode.getAttribute("data-day");
+            var a = v.split("-");
+            ospan[i].parentNode.innerHTML = a[a.length-1];
+        }
+        for(i=0;i<ele;i++){
+            _CalF.addClass("disabled",links[i]);
+        }
+        for(i=ele+30;i<links.length;i++){
+            _CalF.addClass("disabled",links[i]);
+        }
+        return false;
+    }
+};
+
+TicketDate.prototype.drawLastDate =function (odate) { // 参数 odate 为日期对象格式
+    var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+    var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate(), MonWord='', dayWord='';
+    this.dateWarp = dateWarp = document.createElement('div');
+    dateWarp.className = 'calendar';
+    dateWarp.innerHTML = this._template.join('');
+    this.year = year = odate.getFullYear();
+    this.month = month = odate.getMonth()+1;
+    this.date = date = odate.getDate();
+    this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+    tims = this.time;
+    textNode = document.createTextNode(year + '年' + month + '月');
+    titleDate.appendChild(textNode);
+    //this.btnEvent();
+    // 获取模板中唯一的DD元素
+    dd = _CalF.$('dd',dateWarp)[0];
+    // 获取本月天数
+    days = new Date(year, month, 0).getDate();
+    // 获取本月第一天是星期几
+    weekStart = new Date(year, month-1,1).getDay();
+    // 开头显示空白段
+    for (i = 0; i < weekStart; i++) {
+        ddHtml.push('<a>&nbsp;</a>');
+    }
+    // 循环显示日期
+    MonWord = Number(month)<10?'0'+Number(month):Number(month);
+    for (i = 1; i <= days; i++) {
+        if(i<=nowdate){
+            dayWord = Number(i)<10?'0'+Number(i):Number(i);
+            ddHtml.push('<a class="live" data-day="'+year+'-'+MonWord+'-'+dayWord+'">' + i + '</a>');
+        }else{
+            ddHtml.push('<a class="disabled">' + i + '</a>');
+        }
+    }
+    dd.innerHTML = ddHtml.join('');
+
+    // 添加
+    this.container.appendChild(dateWarp);
+    //IE6 select遮罩
+    var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+    if(ie6) dateWarp.appendChild(this.createIframe());
+    // A link事件绑定
+    this.linkOn();
+};
+
+var  conditionalFiltering = {
+
+    addHandler: function (target, eventType, handle) {
+        if (document.addEventListener) {
+            this.addHandler = function (target, eventType, handle) {
+                target.addEventListener(eventType, handle, false);
+            }
+        } else if (document.attachEvent) {
+            this.addHandler = function (target, eventType, handle) {
+                target.attachEvent('on' + eventType, function () {
+                    handle.call(target);
+                });
+            }
+        } else {
+            this.addHandler = function (target, eventType, handle) {
+                target['on' + eventType] = handle;
+            }
+        }
+        this.addHandler(target, eventType, handle);
+    },
+
+    createTags:function(tripType, sinOrDou, callback){
+        var tripType = this.tripType, sinOrDou = this.sinOrDou, fn = this.fn;
+        var backShadow = document.createElement('div');
+        backShadow.className = 'r-shadow';
+        backShadow.id = 'r-shadow';
+        var oDiv = document.createElement('div');
+        oDiv.className = "filter-wrap";
+
+        var baseTitle =  document.createElement('div');
+        baseTitle.className = "hl-bottom";
+
+        var leftModal =  document.createElement('div');
+        leftModal.className = "reset-action";
+        leftModal.id = "filter-modal";
+
+        var middleModal =  document.createElement('ul');
+        middleModal.id = "time-modal";
+
+        var rightModal =  document.createElement('ul');
+        rightModal.id = "price-modal";
+
+        if(tripType =='domestic'){
+            if(sinOrDou == 'Oneway'){  //国内单程
+                baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i>' +
+                '<span class="filter-select">筛选</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_ra" data-time-type="domestic"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
+                '  class="filter-select">起飞早到晚</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_lo" data-price-type="domestic" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
+                ' class="filter-select">价格</span>'+
+                '</div>';
+
+                leftModal.innerHTML = '    <div class="reset-action-wrap">'+
+                '<div class="reset-action-item hot">取消</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
+                '<div class="reset-action-item">确定</div>'+
+                '</div>'+
+                '<div class="reaction-detail" id="reaction-detail">'+
+                '<ul class="filter-bottom" id="filter-bottom">'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
+                '<li class="filter-title" data-info="du">起飞时段</li>'+
+                '<li class="filter-title" data-info="se">舱位</li>'+
+                '</ul>'+
+                '<div class="detail-list" style="color: rgb(102, 102, 102);">'+
+                '<ul class="add only-direct-fly" id="only-direct-fly">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">仅看直飞<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add filter-share" id="filter-share" style="display: none">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add set-time-duration" id="set-time-duration" style="display: none">'+
+                '<li class="tag-item active" data-i="0024">不限<b></b></li>'+
+                '<li class="tag-item" data-i="0006">00:00-06:00<b class=""></b></li>'+
+                '<li class="tag-item" data-i="0612">06:00-12:00<b class=""></b></li>'+
+                '<li class="tag-item" data-i="1218">12:00-18:00<b class=""></b></li>'+
+                '<li class="tag-item" data-i="1824">18:00-24:00<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
+                '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
+                '</ul>'+
+                '</div>'+
+                '</div>';
+                middleModal.innerHTML = '';
+                rightModal.innerHTML =''
+            }else{                   //国内往返
+                baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i>' +
+                '<span class="filter-select">筛选</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i>' +
+                '<span class="filter-select">优选</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_lo" data-price-type="domestic"><b class="hl-icon3 filter-price"></b><i class=""></i><span'+
+                ' class="filter-select">价格</span>'+   // /*点击价格弹出框（含税与不含税，前端计算）/
+                '</div>';
+                leftModal.innerHTML = '    <div class="reset-action-wrap">'+
+                '<div class="reset-action-item hot">取消</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
+                '<div class="reset-action-item">确定</div>'+
+                '</div>'+
+
+                '<div class="reaction-detail" id="reaction-detail">'+
+                '<ul class="filter-bottom" id="filter-bottom">'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
+                '<li class="filter-title" data-info="se">舱位</li>'+
+                '</ul>'+
+                '<div class="detail-list" style="color: rgb(102, 102, 102);">'+
+                '<ul class="add only-direct-fly" id="only-direct-fly">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">仅看直飞<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add filter-share" id="filter-share" style="display: none">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
+                '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
+                '</ul>'+
+                '</div>'+
+                '</div>';
+                middleModal.innerHTML =
+                    '    <li class="time-modal-item active" data-i="0"><b></b>不限</li>'+
+                    '    <li class="time-modal-item" data-i="1"><b></b>直飞优先</li>'+
+                    '    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>'+
+                    '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'
+                rightModal.innerHTML =''
+            }
+        }else{
+            if(sinOrDou == 'Oneway'){  //国际单程
+
+                baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span'+
+                ' class="filter-select">筛选</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
+                ' class="filter-select">起飞早到晚</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class="red-tip"></i><span'+
+                ' class="filter-select">价格</span>'+  /*点击价格有弹出框，包含含税与不含税*/
+                '</div>';
+                leftModal.innerHTML = '    <div class="reset-action-wrap">'+
+                '<div class="reset-action-item hot">取消</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
+                '<div class="reset-action-item">确定</div>'+
+                '</div>'+
+                '<div class="reaction-detail" id="reaction-detail">'+
+                '<ul class="filter-bottom" id="filter-bottom">'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
+                '<li class="filter-title" data-info="du">起飞时段</li>'+
+                '<li class="filter-title" data-info="se">舱位</li>'+
+                '</ul>'+
+                '<div class="detail-list" style="color: rgb(102, 102, 102);">'+
+                '<ul class="add only-direct-fly" id="only-direct-fly">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">仅看直飞<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add filter-share" id="filter-share" style="display: none">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add set-time-duration" id="set-time-duration" style="display: none">'+
+                '<li class="tag-item active" data-i="0024">不限<b></b></li>'+
+                '<li class="tag-item" data-i="0006">00:00-06:00<b class=""></b></li>'+
+                '<li class="tag-item" data-i="0612">06:00-12:00<b class=""></b></li>'+
+                '<li class="tag-item" data-i="1218">12:00-18:00<b class=""></b></li>'+
+                '<li class="tag-item" data-i="1824">18:00-24:00<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
+                '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
+                '</ul>'+
+                '</div>'+
+                '</div>';
+                middleModal.innerHTML =
+                    '    <li class="time-modal-item active" data-i="1"><b></b>直飞优先</li>'+
+                    '    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>'+
+                    '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'+
+                    '    <li class="time-modal-item" data-i="isDesc_false"><b></b>起飞早到晚</li>'+
+                    '    <li class="time-modal-item" data-i="isDesc_true"><b></b>起飞晚到早</li>'
+                rightModal.innerHTML =''
+            }else{
+                baseTitle.innerHTML = '<div class="fo-div" id="fo_sc"><b class="hl-icon3 filter"></b><i class=""></i><span'+
+                ' class="filter-select">筛选</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_ra"><b class="hl-icon3 direct-fly"></b><i class="red-tip"></i><span'+
+                ' class="filter-select">优选</span>'+
+                '</div>'+
+                '<div class="fo-div" id="fo_lo" data-info="openShadow"><b class="hl-icon3 filter-price"></b><i class="red-tip"></i><span'+
+                ' class="filter-select">含税价</span>'+  /*点击价格有弹出框，包含含税与不含税*/'</div>';
+                leftModal.innerHTML = '    <div class="reset-action-wrap">'+
+                '<div class="reset-action-item hot">取消</div>'+
+                '<div class="reset-action-item">清空筛选</div>'+
+                '<div class="reset-action-item">确定</div>'+
+                '</div>'+
+                '<div class="reaction-detail" id="reaction-detail">'+
+                '<ul class="filter-bottom" id="filter-bottom">'+
+                '<li class="filter-title clear-background" data-info="df">直飞</li>'+
+                '<li class="filter-title" data-info="sh">共享</li>'+
+                '<li class="filter-title" data-info="se">舱位</li>'+
+                '</ul>'+
+                '<div class="detail-list" style="color: rgb(102, 102, 102);">'+
+                '<ul class="add only-direct-fly" id="only-direct-fly">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">仅看直飞<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add filter-share" id="filter-share" style="display: none">'+
+                '<li class="tag-item active" data-i="false">不限<b></b></li>'+
+                '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
+                '</ul>'+
+                '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
+                '<li class="tag-item active" data-i="Economy">经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="EconomyPremium">超级经济舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="Business">商务舱<b class=""></b></li>'+
+                '<li class="tag-item" data-i="First">头等舱<b class=""></b></li>'+
+                '</ul>'+
+                '</div>'+
+                '</div>';
+                middleModal.innerHTML =
+                    '    <li class="time-modal-item active" data-i="0"><b></b>不限</li>'+
+                    '    <li class="time-modal-item" data-i="1"><b></b>直飞优先</li>'+
+                    '    <li class="time-modal-item" data-i="2"><b></b>低价优先</li>'+
+                    '    <li class="time-modal-item" data-i="3"><b></b>耗时短优先</li>'
+                rightModal.innerHTML =""
+            }
+        }
+        oDiv.appendChild(baseTitle);
+        oDiv.appendChild(leftModal);
+        oDiv.appendChild(middleModal);
+        oDiv.appendChild(rightModal);
+        document.body.appendChild(backShadow);
+        document.body.appendChild(oDiv);
+        return this;
+    },
+
+    addEvent:function(){
+        var titleWrap = document.querySelector('.hl-bottom'), that = this;
+        var shadowEle = document.querySelector('#r-shadow');
+        titleWrap.onclick = function(event){
+            var event = event || window.event;
+            var target =target||event.srcElement, lineEle;
+            var leftModalHandle =function(){
+                var leftModal = document.querySelector('#filter-modal');
+                leftModal.style.transition = 'all 300ms ease-in';
+                leftModal.style.webkitTransition = 'all 300ms linear';
+                leftModal.style.bottom = 0;
+            };
+            var  middleModalHandle =function (arg){
+                if(that.sinOrDou=="Oneway"&&that.tripType == "domestic"){
+                    var rightCock = titleWrap.querySelector('#fo_lo');
+                    var iEle = rightCock.querySelector('i');
+                    var spEle = rightCock.querySelector('SPAN');
+                    spEle.innerHTML ='价格';
+                    iEle.className ='';
+                    that.tempStates.PriorityRule = '0';
+                    if(arg.querySelector('.filter-select').innerHTML=='起飞早到晚'){
+                        arg.querySelector('.filter-select').innerHTML='起飞晚到早';
+                        that.tempStates.IsDesc = true;
+                    }else{
+                        arg.querySelector('.filter-select').innerHTML='起飞早到晚';
+                        that.tempStates.IsDesc = false;
+                    }
+                    that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                    that.tempStates.pageNo = 1;
+                    that.context.isClearAll = true;
+                    that.fn(that.tempStates);
+                    that.checkRedTip();
+
+                }else if(that.sinOrDou=="Oneway"&&that.tripType == "international"){
+                    shadowEle.style.display='block';
+                    var middleModal = document.querySelector('#time-modal');
+                    var middleCock = document.querySelector('#fo_ra');
+                    middleModal.style.transition = 'all 300ms ease-in';
+                    middleModal.style.webkitTransition = 'all 300ms linear';
+                    middleModal.style.bottom = 0;
+                    middleModal.onclick = function(){
+                        var event = event || window.event;
+                        var target =target||event.srcElement, lineEle;
+                        var SP = middleCock.querySelector('SPAN');
+                        var iO = middleCock.querySelector('i');
+                        if(target.tagName == 'LI'){
+                            var twoEles = target.parentNode.querySelectorAll('li');
+                            for(var s = 0;s < twoEles.length;s++){
+                                twoEles[s].className = 'tag-item';
+                            }
+                            if(target.innerText=='不限'){
+                                SP.innerHTML = '优选';
+                            }else{SP.innerHTML = target.innerText; }
+                            target.className = 'tag-item active';
+                        }
+                        that.stateEvent('get');
+                        that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                        that.tempStates.pageNo = 1;
+                        that.context.isClearAll = true;
+                        that.fn(that.tempStates);
+                        that.checkRedTip();
+                        this.style.transition = 'all 300ms ease-in';
+                        this.style.webkitTransition = 'all 300ms linear';
+                        this.style.bottom = "-126%";
+                        shadowEle.style.display='none';
+                    }
+
+                } else if(that.sinOrDou=="Return"&&that.tripType == "domestic"){
+                    shadowEle.style.display='block';
+                    var middleModal = document.querySelector('#time-modal');
+                    var middleCock = document.querySelector('#fo_ra');
+                    var rightCock2 = titleWrap.querySelector('#fo_lo');
+                    var iEle = rightCock2.querySelector('i');
+                    var spEle = rightCock2.querySelector('SPAN');
+                    spEle.innerHTML ='价格';
+                    iEle.className ='';
+                     arg.querySelector('i').className='red-tip';
+                    that.tempStates.PriorityRule = '0';
+                     middleModal.style.transition = 'all 300ms ease-in';
+                     middleModal.style.webkitTransition = 'all 300ms linear';
+                     middleModal.style.bottom = 0;
+                     middleModal.onclick = function(){
+                        var event = event || window.event;
+                        var target =target||event.srcElement, lineEle;
+                        var SP = middleCock.querySelector('SPAN');
+                        var iO = middleCock.querySelector('i');
+                        if(target.tagName == 'LI'){
+                            var twoEles = target.parentNode.querySelectorAll('li');
+                            for(var s = 0;s < twoEles.length;s++){
+                                twoEles[s].className = 'tag-item';
+                            }
+                            if(target.innerText=='不限'){
+                                SP.innerHTML = '优选';
+                            }else{SP.innerHTML = target.innerText; }
+                                target.className = 'tag-item active';
+                        }
+                         that.stateEvent('get');
+                         that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                         that.tempStates.pageNo = 1;
+                         that.context.isClearAll = true;
+                        that.fn(that.tempStates);
+                        that.checkRedTip();
+                        this.style.transition = 'all 300ms ease-in';
+                        this.style.webkitTransition = 'all 300ms linear';
+                        this.style.bottom = "-126%";
+                         shadowEle.style.display='none';
+                    }
+                }else if(that.sinOrDou=="Return"&&that.tripType == "international"){
+                    shadowEle.style.display='block';
+                    var middleModal4 = document.querySelector('#time-modal');
+                    var middleCock4 = document.querySelector('#fo_ra');
+                    middleModal4.style.transition = 'all 300ms ease-in';
+                    middleModal4.style.webkitTransition = 'all 300ms linear';
+                    middleModal4.style.bottom = 0;
+                    middleModal4.onclick = function(){
+                        var event = event || window.event;
+                        var target =target||event.srcElement, lineEle;
+                        var SP = middleCock4.querySelector('SPAN');
+                        var iO = middleCock4.querySelector('i');
+                        if(target.tagName == 'LI'){
+                            var twoEles4 = target.parentNode.querySelectorAll('li');
+                            for(var s = 0;s < twoEles4.length;s++){
+                                twoEles4[s].className = 'tag-item';
+                            }
+                            if(target.innerText=='不限'){
+                                SP.innerHTML = '优选';
+                            }else{SP.innerHTML = target.innerText; }
+                            target.className = 'tag-item active';
+                        }
+                        that.stateEvent('get');
+                        that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                        that.tempStates.pageNo = 1;
+                        that.context.isClearAll = true;
+                        that.fn(that.tempStates);
+                        that.checkRedTip();
+                        this.style.transition = 'all 300ms ease-in';
+                        this.style.webkitTransition = 'all 300ms linear';
+                        this.style.bottom = "-126%";
+                        shadowEle.style.display='none';
+                    }
+                }
+            };
+            var  rightModalHandle = function(arg){
+                if(that.sinOrDou=="Oneway"&&that.tripType == "domestic"){
+                     var middleCock = titleWrap.querySelector('#fo_ra');
+                     var iEle = middleCock.querySelector('i');
+                     var spEle = middleCock.querySelector('SPAN');
+                     spEle.innerHTML ='时间';
+                     iEle.className ='';
+                     that.tempStates.IsDesc = false;
+                     arg.querySelector('.filter-select').innerHTML='从低到高';
+                        that.tempStates.PriorityRule = '2';
+                    that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                    that.tempStates.pageNo = 1;
+                    that.context.isClearAll = true;
+                    that.fn(that.tempStates);
+                    that.checkRedTip();
+                }else if(that.sinOrDou=="Return"&&that.tripType == "domestic"){
+                    var middleCock2 = titleWrap.querySelector('#fo_ra');
+                    var iEle7 = middleCock2.querySelector('i');
+                    var spEle7 = middleCock2.querySelector('SPAN');
+                    spEle7.innerHTML ='优选';
+                    iEle7.className ='';
+                    that.tempStates.PriorityRule = '0';
+                    arg.querySelector('.filter-select').innerHTML='从低到高';
+                    that.tempStates.PriorityRule = '2';
+                    that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                    that.tempStates.pageNo = 1;
+                    that.context.isClearAll = true;
+                    that.stateEvent('set');
+                    that.fn(that.tempStates);
+                    that.checkRedTip();
+                }else if(that.sinOrDou=="Oneway"&&that.tripType == "international"){
+                    var rightCock2 = titleWrap.querySelector('#fo_lo');
+                    var iEle2 = rightCock2.querySelector('i');
+                    var spEle2 = rightCock2.querySelector('SPAN');
+                    if(spEle2.innerHTML=='含税价'){
+                        spEle2.innerHTML='不含税价';
+                        that.tempStates.hasTax = "false"
+                    }else{
+                        spEle2.innerHTML='含税价';
+                        that.tempStates.hasTax = "true"
+                    }
+                    that.stateEvent('set');
+                    that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                    that.tempStates.pageNo = 1;
+                    that.context.isClearAll = true;
+                    that.fn_(that.tempStates);
+                    that.checkRedTip();
+                }else if(that.sinOrDou=="Return"&&that.tripType == "international"){
+                    var rightCock5 = titleWrap.querySelector('#fo_lo');
+                    var iEle5 = rightCock5.querySelector('i');
+                    var spEle5 = rightCock5.querySelector('SPAN');
+                    if(spEle5.innerHTML=='含税价'){
+                        spEle5.innerHTML='不含税价';
+                        that.tempStates.hasTax = "false"
+                    }else{
+                        spEle5.innerHTML='含税价';
+                        that.tempStates.hasTax = "true"
+                    }
+                    that.stateEvent('set');
+                    that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                    that.tempStates.pageNo = 1;
+                    that.context.isClearAll = true;
+                    that.fn_(that.tempStates);
+                    that.checkRedTip();
+                }
+            };
+            if(target.tagName == 'B'||target.tagName == 'SPAN'){
+                lineEle = target.parentNode;
+            }else if(target.className == 'fo-div'){
+                lineEle = target;
+            }
+            switch (lineEle.id){
+                case 'fo_sc':
+                    shadowEle.style.display = 'block';
+                    leftModalHandle();
+                    break;
+                case 'fo_ra':
+                    middleModalHandle(lineEle);
+                    break;
+                case 'fo_lo':
+                    rightModalHandle(lineEle);
+                    break;
+                default :
+                    void(0);
+            };
+
+            var moreOptions = document.querySelector('.reset-action-wrap'), leftWrap = document.querySelector('#filter-modal');
+            moreOptions.onclick = function(event){
+                var event = event || window.event;
+                var target =target||event.srcElement, lineEle;
+                if(target.className.indexOf('reset-action-item')>-1){
+                    var threeEle = target.parentNode.querySelectorAll('.reset-action-item');
+                    for(var m = 0;m < threeEle.length;m++){
+                        threeEle[m].className = 'reset-action-item';
+                    }
+                    target.className = 'reset-action-item hot';
+                    var  cancelFunction = function(){
+                        that.stateEvent('set');
+                        leftWrap.style.transition = 'all 300ms ease-in';
+                        leftWrap.style.webkitTransition = 'all 300ms linear';
+                        leftWrap.style.bottom = '-126%';
+                        //shadowBox.style.display = 'none';
+                    }
+                    var resetFunction=function(){
+                        var directFlyLis = document.querySelectorAll('.only-direct-fly li');
+                        var filterShareLis = document.querySelectorAll('.filter-share li');
+                        var setTimeDurationLis = document.querySelectorAll('.set-time-duration li');
+                        var seatConditionLis = document.querySelectorAll('.seat-condition li');
+                        for (var i = 0; i < directFlyLis.length; i++) {
+                            directFlyLis[i].className = (i == 0)?"tag-item active" :"tag-item";
+                        }
+
+                        for (var j = 0; j < filterShareLis.length; j++) {
+                            filterShareLis[j].className = (j == 0)?"tag-item active" :"tag-item";
+                        }
+
+                        for (var n = 0; n < setTimeDurationLis.length; n++) {
+                            setTimeDurationLis[n].className = (n == 0)?"tag-item active" :"tag-item";
+                        }
+
+                        for (var l = 0; l < seatConditionLis.length; l++) {
+                            seatConditionLis[l].className =(l == 0)?"tag-item active" :"tag-item";
+                        }
+                    };
+                    var confirmFunction=function(){
+                        that.stateEvent('get');
+                        that.tempStates.pageSize = Number(that.tempStates.pageSize)>10?Number(that.tempStates.pageSize):Number(that.tempStates.pageNo)*10;
+                        that.tempStates.pageNo = 1;
+                        that.context.isClearAll = true;
+                        that.fn(that.tempStates);
+                        that.checkRedTip();
+                        leftWrap.style.transition = 'all 300ms ease-in';
+                        leftWrap.style.webkitTransition = 'all 300ms linear';
+                        leftWrap.style.bottom = '-126%';
+                    };
+
+                    switch (target.innerHTML){
+                        case "取消" :
+                            cancelFunction();
+                            shadowEle.style.display = 'none';
+                            break;
+                        case "清空筛选" :
+                            resetFunction();
+                            break;
+                        case "确定" :
+                            confirmFunction();
+                            shadowEle.style.display = 'none';
+                            break;
+                        default :void(0);
+                    }
+                };
+            }
+            //左边弹出框的相应
+            var reactionDetail = document.querySelector('#reaction-detail');
+            reactionDetail.onclick = function(event){
+                var event = event || window.event;
+                var target =target||event.srcElement, lineEle;
+                if(target.className.indexOf('filter-title')>-1){
+                    var allLeLi = target.parentNode.querySelectorAll('li'),operRation;
+                    for(var i = 0; i< allLeLi.length; i++){
+                        allLeLi[i].className = allLeLi[i]==target?"filter-title clear-background":"filter-title"
+                    }
+                    var tipLetter = target.getAttribute('data-info'), that =this,allUl = this.querySelectorAll('.add');
+                    switch (tipLetter){
+                        case 'df':
+                            operRation = document.querySelector('#only-direct-fly');
+                            break;
+                        case 'sh':
+                            operRation = document.querySelector('#filter-share');
+                            break;
+                        case 'du':
+                            operRation = document.querySelector('#set-time-duration');
+                            break;
+                        case 'se':
+                            operRation = document.querySelector('#seat-condition');
+                            break;
+                        default :
+                            void(0);
+                    };
+                    for(var j = 0;j < allUl.length;j++){
+                        allUl[j].style.display = 'none';
+                    }
+                    operRation.style.display = 'block';
+                }else if(target.className.indexOf('tag-item')>-1){
+                    var allLi =  target.parentNode.querySelectorAll('li');
+                    for(var n = 0; n< allLi.length; n++){
+                        allLi[n].className = allLi[n]==target?"tag-item active":"tag-item"}
+                }
+            };
+            shadowEle.onclick = function(event) {
+                var event = event || window.event;
+                var target = target || event.srcElement, lineEle, that=conditionalFiltering;
+                var leftModal = document.querySelector('#filter-modal');
+                var timeModal = document.querySelector('#time-modal');
+                var priceModal = document.querySelector('#price-modal');
+                if (target.className.indexOf('r-shadow') > -1) {
+                    leftModal.style.transition = 'all 300ms ease-in';
+                    leftModal.style.webkitTransition = 'all 300ms linear';
+                    leftModal.style.bottom = '-126%';
+                    priceModal.style.transition = 'all 300ms ease-in';
+                    priceModal.style.webkitTransition = 'all 300ms linear';
+                    priceModal.style.bottom = '-126%';
+                    this.style.display = 'none';
+                    timeModal.style.transition = 'all 300ms ease-in';
+                    timeModal.style.webkitTransition = 'all 300ms linear';
+                    timeModal.style.bottom = '-126%';
+                }
+            }
+        };
+        return this;
+    },
+
+    stateEvent:function(type){
+        if(this.tripType=="domestic"){
+            if(this.sinOrDou == "Return") {  //国内往返
+                var directFlyLis = document.querySelectorAll('.only-direct-fly li');
+                var filterShareLis = document.querySelectorAll('.filter-share li');
+                var seatConditionLis = document.querySelectorAll('#seat-condition li');
+                var timeMiddleLis = document.querySelectorAll('#time-modal li');
+                var priceModalEle = document.querySelector('#fo_lo');
+                for (var i = 0; i < directFlyLis.length; i++) {
+                    if(type=="set"){
+                        directFlyLis[i].className = directFlyLis[i].getAttribute('data-i') == this.tempStates.IsDirectFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(directFlyLis[i].className == "tag-item active"){
+                            this.tempStates.IsDirectFlight = directFlyLis[i].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+                for (var j = 0; j < filterShareLis.length; j++) {
+                    if(type=="set"){
+                        filterShareLis[j].className = filterShareLis[j].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(filterShareLis[j].className == "tag-item active"){
+                            this.tempStates.IsHideSharedFlight =filterShareLis[j].getAttribute('data-i');
+                            break;
+                        }
+                    }  }
+
+                for (var x = 0; x < seatConditionLis.length; x++) {
+                    if(type=="set"){
+                        seatConditionLis[x].className = seatConditionLis[x].getAttribute('data-i') == this.tempStates.CabinClass ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(seatConditionLis[x].className == "tag-item active"){
+                            this.tempStates.CabinClass = seatConditionLis[x].getAttribute('data-i');
+                            break;
+                        }
+                    } }
+
+                for(var m = 0; m < timeMiddleLis.length; m++) {
+                    if(type=="set"){
+                        timeMiddleLis[m].className = timeMiddleLis[m].getAttribute('data-i') == this.tempStates.PriorityRule ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(timeMiddleLis[m].className == "tag-item active"){
+                            this.tempStates.PriorityRule =timeMiddleLis[m].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+                (this.tempStates.PriorityRule == '2') ? priceModalEle.querySelector('.filter-select').innerHTML = '从低到高' : priceModalEle.querySelector('.filter-select').innerHTML = '价格';
+            }else{ //国内单程
+                var directFlyLis__ = document.querySelectorAll('.only-direct-fly li');
+                var filterShareLis__ = document.querySelectorAll('.filter-share li');
+                var setTimeDurationLis__ = document.querySelectorAll('.set-time-duration li');
+                var seatConditionLis__ = document.querySelectorAll('#seat-condition li');
+                var timeMiddleLis__ = document.querySelectorAll('#time-modal li');
+                var priceModalEle__ = document.querySelector('#fo_lo');
+                for (var bn = 0; bn < directFlyLis__.length; bn++) {
+                    if(type=="set"){
+                        directFlyLis__[bn].className = directFlyLis__[bn].getAttribute('data-i') == this.tempStates.IsDirectFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(directFlyLis__[bn].className == "tag-item active"){
+                            this.tempStates.IsDirectFlight = directFlyLis__[bn].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+                for (var js = 0; js < filterShareLis__.length; js++) {
+                    if(type=="set"){
+                        filterShareLis__[js].className = filterShareLis__[js].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(filterShareLis__[js].className == "tag-item active"){
+                            this.tempStates.IsHideSharedFlight =filterShareLis__[js].getAttribute('data-i');
+                            break;
+                        }
+                    }  }
+
+                for (var jp = 0; jp < setTimeDurationLis__.length; jp++) {
+                    if(type=="set"){
+                        setTimeDurationLis__[jp].className = setTimeDurationLis__[jp].getAttribute('data-i') == (''+this.tempStates.DepartStartHour+this.tempStates.DepartEndHour)? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(setTimeDurationLis__[jp].className == "tag-item active"){
+                            this.tempStates.DepartStartHour =setTimeDurationLis__[jp].getAttribute('data-i').substring(0,2);
+                            this.tempStates.DepartEndHour =setTimeDurationLis__[jp].getAttribute('data-i').substring(2);
+                            break;
+                        }
+                    }  }
+                for (var xv = 0; xv < seatConditionLis__.length; xv++) {
+                    if(type=="set"){
+                        seatConditionLis__[xv].className = seatConditionLis__[xv].getAttribute('data-i') == this.tempStates.CabinClass ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(seatConditionLis__[xv].className == "tag-item active"){
+                            this.tempStates.CabinClass = seatConditionLis__[xv].getAttribute('data-i');
+                            break;
+                        }
+                    } }
+
+                for(var mm = 0; mm < timeMiddleLis__.length; mm++) {
+                    if(type=="set"){
+                        timeMiddleLis__[mm].className = timeMiddleLis__[mm].getAttribute('data-i') == this.tempStates.IsDesc ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(timeMiddleLis__[mm].className == "tag-item active"){
+                            this.tempStates.IsDesc =timeMiddleLis__[mm].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+            }
+        }else{
+            if(this.sinOrDou == "Return"){ //国际往返
+                var directFlyLis_ = document.querySelectorAll('.only-direct-fly li');
+                var filterShareLis_ = document.querySelectorAll('.filter-share li');
+                var seatConditionLis_ = document.querySelectorAll('#seat-condition li');
+                var timeMiddleLis_ = document.querySelectorAll('#time-modal li');
+                var priceModalLis_ = document.querySelector('#fo_lo');
+                for (var q = 0; q < directFlyLis_.length; q++) {
+                    if(type=="set"){
+                        directFlyLis_[q].className = directFlyLis_[q].getAttribute('data-i') == this.tempStates.IsDirectFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(directFlyLis_[q].className == "tag-item active"){
+                            this.tempStates.IsDirectFlight = directFlyLis_[q].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+
+                for (var jz = 0; jz < filterShareLis_.length; jz++) {
+                    if(type=="set"){
+                        filterShareLis_[jz].className = filterShareLis_[jz].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(filterShareLis_[jz].className == "tag-item active"){
+                            this.tempStates.IsHideSharedFlight =filterShareLis_[jz].getAttribute('data-i');
+                            break;
+                        }
+                    }  }
+
+                for (var xa = 0; xa < seatConditionLis_.length; xa++) {
+                    if(type=="set"){
+                        seatConditionLis_[xa].className = seatConditionLis_[xa].getAttribute('data-i') == this.tempStates.CabinClass ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(seatConditionLis_[xa].className == "tag-item active"){
+                            this.tempStates.CabinClass = seatConditionLis_[xa].getAttribute('data-i');
+                            break;
+                        }
+                    } }
+
+                for(var mb = 0; mb < timeMiddleLis_.length; mb++) {
+                    if(type=="set"){
+                        timeMiddleLis_[mb].className = timeMiddleLis_[mb].getAttribute('data-i') == this.tempStates.PriorityRule ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(timeMiddleLis_[mb].className == "tag-item active"){
+                            this.tempStates.PriorityRule =timeMiddleLis_[mb].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+                (this.tempStates.hasTax == "true") ? priceModalLis_.querySelector('.filter-select').innerHTML = '含税价' : priceModalLis_.querySelector('.filter-select').innerHTML = '不含税价';
+            }else{   //国际单程
+                var directFlyLis_is = document.querySelectorAll('.only-direct-fly li');
+                var filterShareLis_is = document.querySelectorAll('.filter-share li');
+                var setTimeDurationLis_is = document.querySelectorAll('.set-time-duration li');
+                var seatConditionLis_is = document.querySelectorAll('#seat-condition li');
+                var timeMiddleLis_is = document.querySelectorAll('#time-modal li');
+                var priceModalLis_is = document.querySelector('#fo_lo');
+                for (var qq = 0; qq < directFlyLis_is.length; qq++) {
+                    if(type=="set"){
+                        directFlyLis_is[qq].className = directFlyLis_is[qq].getAttribute('data-i') == this.tempStates.IsDirectFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(directFlyLis_is[qq].className == "tag-item active"){
+                            this.tempStates.IsDirectFlight = directFlyLis_is[qq].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+                for (var jl = 0; jl < filterShareLis_is.length; jl++) {
+                    if(type=="set"){
+                        filterShareLis_is[jl].className = filterShareLis_is[jl].getAttribute('data-i') == this.tempStates.IsHideSharedFlight ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(filterShareLis_is[jl].className == "tag-item active"){
+                            this.tempStates.IsHideSharedFlight =filterShareLis_is[jl].getAttribute('data-i');
+                            break;
+                        }
+                    }  }
+
+                for (var cv = 0; cv < setTimeDurationLis_is.length; cv++) {
+                    if(type=="set"){
+                        setTimeDurationLis_is[cv].className = setTimeDurationLis_is[cv].getAttribute('data-i') == this.tempStates.DepartStartHour+this.tempStates.DepartEndHour? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(setTimeDurationLis_is[cv].className == "tag-item active"){
+                            this.tempStates.DepartStartHour =setTimeDurationLis_is[cv].getAttribute('data-i').substring(0,2);
+                            this.tempStates.DepartEndHour =setTimeDurationLis_is[cv].getAttribute('data-i').substring(2);
+                            break;
+                        }
+                    }  }
+
+                for (var hy = 0; hy < seatConditionLis_is.length; hy++) {
+                    if(type=="set"){
+                        seatConditionLis_is[hy].className = seatConditionLis_is[hy].getAttribute('data-i') == this.tempStates.CabinClass ? "tag-item active" : "tag-item";
+                    }else if(type =='get'){
+                        if(seatConditionLis_is[hy].className == "tag-item active"){
+                            this.tempStates.CabinClass = seatConditionLis_is[hy].getAttribute('data-i');
+                            break;
+                        }
+                    }
+                }
+                for(var ty = 0; ty < timeMiddleLis_is.length; ty++) {
+                    if(type=="set"){
+                        if(timeMiddleLis_is[ty].getAttribute('data-i').indexOf('isDesc')>-1){
+                            timeMiddleLis_is[ty].className = timeMiddleLis_is[ty].getAttribute('data-i').substring(7) == this.tempStates.IsDesc ? "tag-item active" : "tag-item";
+
+                        }else{
+                            timeMiddleLis_is[ty].className = timeMiddleLis_is[ty].getAttribute('data-i') == this.tempStates.PriorityRule ? "tag-item active" : "tag-item";
+                        }
+                    }else if(type =='get'){
+                        if(timeMiddleLis_is[ty].className == "tag-item active"){
+                            if(timeMiddleLis_is[ty].getAttribute('data-i').indexOf('isDesc')>-1){
+                                this.tempStates.IsDesc =timeMiddleLis_is[ty].getAttribute('data-i').substring(7);
+                                this.tempStates.PriorityRule ="0";
+                            }else{
+                                this.tempStates.PriorityRule =timeMiddleLis_is[ty].getAttribute('data-i');
+                                delete this.tempStates.IsDesc;
+                            }
+                            break;
+                        }
+                    }
+                }
+                (this.tempStates.hasTax == "true") ? priceModalLis_is.querySelector('.filter-select').innerHTML = '含税价' : priceModalLis_is.querySelector('.filter-select').innerHTML = '不含税价';
+            }
+        }
+    },
+
+    checkRedTip:function(){
+        var leftEle = document.querySelector('#fo_sc'),middleEle = document.querySelector('#fo_ra'),rightEle = document.querySelector('#fo_lo');
+        if( this.tripType == 'international'){
+             if(this.sinOrDou == 'Oneway'){ //单程国际
+                 if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
+                     this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
+                     this.tempStates['DepartStartHour']!= this.originInfo['DepartStartHour']||
+                     this.tempStates['DepartEndHour']!= this.originInfo['DepartEndHour']||
+                     this.tempStates['CabinClass']!= this.originInfo['CabinClass']){
+                     leftEle.querySelector('i').className = 'red-tip'
+                 }else{
+                     leftEle.querySelector('i').className = ''
+                 }
+                 middleEle.querySelector('i').className = 'red-tip'
+                 rightEle.querySelector('i').className = 'red-tip'
+             }else{  //双程国际
+                 if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
+                     this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
+                     this.tempStates['CabinClass']!= this.originInfo['CabinClass']){
+                     leftEle.querySelector('i').className = 'red-tip';
+                 }else{
+                     leftEle.querySelector('i').className = ''
+                 };
+                     middleEle.querySelector('i').className = 'red-tip';
+                     rightEle.querySelector('i').className = 'red-tip'
+             }
+        }else{
+            if(this.sinOrDou == 'Oneway'){  //单程国内
+                if(this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
+                    this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
+                    this.tempStates['DepartStartHour']!= this.originInfo['DepartStartHour']||
+                    this.tempStates['DepartEndHour']!= this.originInfo['DepartEndHour']||
+                    this.tempStates['CabinClass']!= this.originInfo['CabinClass']){
+                    leftEle.querySelector('i').className = 'red-tip'
+                }else{
+                    leftEle.querySelector('i').className = ''
+                };
+                if(middleEle.querySelector('SPAN').innerHTML =='时间'){
+                    middleEle.querySelector('i').className = '';
+                }else{
+                    middleEle.querySelector('i').className = 'red-tip';
+                }
+                if(rightEle.querySelector('SPAN').innerHTML =='价格'){
+                    rightEle.querySelector('i').className = ''
+                }else{
+                    rightEle.querySelector('i').className = 'red-tip'
+                }
+            }else{
+                if( this.tempStates['IsDirectFlight']!= this.originInfo['IsDirectFlight']||
+                    this.tempStates['IsHideSharedFlight']!= this.originInfo['IsHideSharedFlight']||
+                    this.tempStates['CabinClass']!= this.originInfo['CabinClass']){
+                    leftEle.querySelector('i').className = 'red-tip'
+                }else{
+                    leftEle.querySelector('i').className = ''
+                };
+                if(middleEle.querySelector('SPAN').innerHTML=='优选'&&rightEle.querySelector('SPAN').innerHTML =='从低到高'){
+                    middleEle.querySelector('i').className = '';
+                }else{
+                    middleEle.querySelector('i').className = 'red-tip';
+                }
+
+                if(rightEle.querySelector('SPAN').innerHTML =='价格'){
+                    rightEle.querySelector('i').className = ''
+                }else{
+                    rightEle.querySelector('i').className = 'red-tip'
+                }
+            }
+
+        }
+    },
+
+    init:function(tripType,sinOrDou, infoObj, callback1, callback2, context){
+        this.tripType = tripType;
+        this.sinOrDou = sinOrDou;
+        this.tempStates = infoObj;
+        this.context = context;
+        this.originInfo = {};
+        for(var tem in infoObj){
+            this.originInfo[tem] = infoObj[tem]
+        }
+        this.fn = callback1;
+        this.fn_ = callback2;
+        this.createTags().addEvent().stateEvent('set');
+    }
+};

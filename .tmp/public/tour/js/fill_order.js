@@ -1,2 +1,620 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(){function a(){$(window).load(function(){$("#status").fadeOut(),$("#preloader").delay(400).fadeOut("medium")})}function b(){function a(){if(window.location.search){var a=window.location.search.substring(1),b=a.split("&");g=b[0].split("=")[1];var c=b[2].split("=")[1],d=JSON.parse(window.localStorage.info),e=({start:d.CheckInDate.replace(/T.*/,""),end:d.CheckOutDate.replace(/T.*/,"")},d.CheckInDate.split("T")[0].split("-")),f=d.CheckOutDate.split("T")[0].split("-");switch(c){case"0":$("#flight-air").remove();break;case"1":new Scroller({id:"content3_CheckInDate",type:"dateTime",cont:"content3_CheckInDate",startDate:new Date(e[0],e[1],e[2]),num:2}),new Scroller({id:"content4_CheckInDate",type:"dateTime",cont:"content4_CheckInDate",startDate:new Date(f[0],f[1],f[2]),num:1});break;case"2":$("#content3").remove();new Scroller({id:"content3_CheckInDate",type:"dateTime",cont:"content3_CheckInDate",startDate:new Date(e[0],e[1],e[2]),num:2});break;case"3":$("#content4").remove();new Scroller({id:"content4_CheckInDate",type:"dateTime",cont:"content4_CheckInDate",startDate:new Date(f[0],f[1],f[2]),num:1})}h=b[3].split("=")[1],i=h,$(".all_num i").html(i),j=b[4].split("=")[1]}}function b(a){function b(a){var b=a;b.success?(localStorage.bookingID=b.data.bookingID,localStorage.bookingRefNo=b.data.bookingRefNo,window.location.href="../payment/payment.html?bookingRefNo="+b.data.bookingRefNo+"&type=Tour"):jAlert(b.message)}a.onclick=function(){if("rgb(221, 221, 221)"!=this.style.backgroundColor){this.style.backgroundColor="#ff9313";for(var a=document.querySelectorAll(".per_data"),c=document.querySelectorAll("#personal_data .list_inp2"),d=c[0].value,f=c[1].value,h=c[2].value,l=c[3].value,m=(document.querySelector(".all_num i").innerHTML,{Parameters:{PackageID:localStorage.packageID,CheckinDate:k.CheckInDate,CheckoutDate:k.CheckOutDate,HotelID:g,RoomID:j,ContactDetails:{Salutation:"Mr",FirstName:f,LastName:d,Email:l,ContactNo:{CountryCode:"65",PhoneNo:h},MemberID:localStorage.memberid},ChargeDetails:{CurrencyCode:"CNY",TotalPrice:i}},ForeEndType:3,Code:"0204"}),n=[],o=0;o<a.length;o++){var p={};if(p.Adult=k.roomDetails[o].adult,k.roomDetails[0].childWithBed){for(var q=[],r=0;r<k.roomDetails[0].childWithBed.length;r++)q.push(7);p.ChildwithBed=q}if(k.roomDetails[0].childWithOutBed){for(var s=[],t=0;t<k.roomDetails[0].childWithOutBed.length;t++)s.push(7);p.ChildwithoutBed=s}n.push(p)}m.Parameters.RoomDetails=n;for(var u=[],o=0;o<k.tours.length;o++){var v={};v.TourID=k.tours[o].tourID,v.TravelDate=k.tours[o].travelDate,v.TourSession="None",u.push(v),m.Parameters.Tours=u}for(var w=[],o=0;o<a.length;o++){for(var x=a[o].querySelectorAll(".trave-li-adu"),y=0;y<x.length;y++){var z=x[y].querySelectorAll(".list-adult"),A=z[0].value,B=z[1].value;if(!vlm.Utils.validate.engName(A))return void jAlert("请您输入英文的旅行人姓名");if(!vlm.Utils.validate.engName(B))return void jAlert("请您输入英文的旅行人姓名");var C={};C.RoomSeqNo=o+1,C.TravelerType="Adult",C.Salutation="Mr",C.FirstName=B,C.LastName=A,w.push(C)}for(var D=a[o].querySelectorAll(".trave-li-child"),t=0;t<D.length;t++){var E=a[o].querySelectorAll(".list-child"),F=E[0].value,G=E[1].value;if(!vlm.Utils.validate.engName(F))return void jAlert("请您输入英文的旅行人姓名");if(!vlm.Utils.validate.engName(G))return void jAlert("请您输入英文的旅行人姓名");var C={};C.RoomSeqNo=t+1,C.TravelerType="Child",C.Salutation="None",C.FirstName=G,C.LastName=F,C.DOB="2009-2-1",w.push(C)}}m.Parameters.Travelers=w,m.Parameters.Travelers[0].NationalityCode=$("#trave0 .country-btn").attr("data-code");var H=$(".list_inp_name");if(!vlm.Utils.validate.engName(H.eq(0).val()))return void jAlert("请您输入英文的联系人姓名");if(!vlm.Utils.validate.engName(H.eq(1).val()))return void jAlert("请您输入英文的联系人姓名");var I=$("#list_con_tel")[0].value,J=$("#list_con_email")[0].value;if(!vlm.Utils.validate.mobileNo(I))return void jAlert("请输入正确的手机号");if(!vlm.Utils.validate.email(J))return void jAlert("请输入正确的邮箱");var K=JSON.parse(window.localStorage.info),L=K.CheckInDate,M=K.CheckOutDate;if("block"==$("#flight-air").css("display")){var N={};if("block"==$("#content3").css("display")){var O=document.querySelector("#content3 .input_flight input").value,P=document.querySelector("#content3_CheckInDate").value,Q=P?P.split("-"):L;(O="")?N.ArrivalFlightNo="None":(N.ArrivalFlightNo=O,Q.indexOf("T")>-1?N.ArrivalDateTime=Q:N.ArrivalDateTime=Q[0]+"-"+Q[1]+"-"+Q[2]+"T"+Q[3]+":"+Q[4]+":00")}if("block"==$("#content4").css("display")){var R=document.querySelector("#content4 .input_flight input").value,S=document.querySelector("#content4_CheckInDate").value,T=S?S.split("-"):M;(R="")?N.ArrivalFlightNo="None":(N.DepartFlightNo=R,T.indexOf("T")>-1?N.DepartDateTime=T:N.DepartDateTime=T[0]+"-"+T[1]+"-"+T[2]+"T"+T[3]+":"+T[4]+":00")}m.Parameters.FlightDetails=N}e(),vlm.loadJson("",JSON.stringify(m),b)}}}var d={Parameters:{PackageID:localStorage.packageID},ForeEndType:3,Code:"0202"};vlm.loadJson("",JSON.stringify(d),c);for(var l=(window.location.search.substring(1).split("&")[5].split("=")[1],k.roomDetails.length),m=0;l>m;m++){var n=document.createElement("div");n.className="per_data",n.innerHTML='<span class="title"><i>房间'+(m+1)+"</i></span><ul></ul>",$("#per-room-wrap")[0].appendChild(n);for(var o=document.querySelectorAll(".per_data"),p=parseInt(k.roomDetails[m].adult),q=0;p>q;q++){var r=document.createElement("section");r.className="li_section_box",r.innerHTML='<li><span class="list_tit">成人'+(q+1)+'：</span><b class="add_icon"><a href="javascript:;" data-c-id="'+q+'" class="add-passager'+q+"\" ></a></b></span></li><ul id='trave"+q+'\'><li class="trave-li trave-li-adu"><span class="list_tit2 ">姓：</span><span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span><span class="list_tit2 ">名：</span><span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span></li></ul>',o[m].querySelector("ul").appendChild(r),$(".add-passager"+q).on("click",function(){var a=$(this).attr("data-c-id");vlm.f_choice("trave"+a,"ht","traver","",!1,!1,null,null,null,null)})}var s=0,t=0,u=0;k.roomDetails[m].childWithOutBed&&(t=parseInt(k.roomDetails[m].childWithOutBed.length)),k.roomDetails[m].childWithBed&&(u=parseInt(k.roomDetails[m].childWithBed.length)),s=t+u;for(var v=0;s>v;v++){var r=document.createElement("section");r.className="li_section_box",r.innerHTML='<li><span class="list_tit">儿童'+(v+1)+'：</span><b class="add_icon"><a href="javascript:;" data-c-id="'+v+'" class="add-cpassage'+v+"\"></a></b></span></li><ul id='traveC"+v+'\'><li class="trave-li trave-li-child"><span class="list_tit2 ">姓：</span><span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" data-elementName="firstName"  /></span><span class="list_tit2 ">名：</span><span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span></li></ul></section>',o[m].querySelector("ul").appendChild(r),$(".add-cpassage"+v).on("click",function(){var a=$(this).attr("data-c-id");vlm.f_choice("traveC"+a,"ht","traver","",!1,!1,null,null,null,null)})}}var w=$('<li class="clearFix countries-wrap"><b class="icons open-pho-tour"></b><span class="list_country fl">国籍：</span><div class="country-btn"  data-code="CN" data-tel-code="86">中国</div></li>');w.appendTo($("#trave0")),a(),$(".add-contact").click(function(){vlm.f_choice("contact","ht","contact","",!1,!1,null,null,null,null)}),b(f);var x=document.querySelector(".order-notice-btn"),y=!0;x.onclick=function(){y?(x.style.background="url(../images/ui/icons1.png) -26.6rem -0.4rem",x.style.backgroundSize="40rem 12rem",f.style.backgroundColor="#ddd",b(f),y=!1):(x.style.background="url(../images/ui/icons1.png) -23.7rem -0.4rem",x.style.backgroundSize="40rem 12rem",f.style.backgroundColor="#fdb330",f.style.color="#fff",y=!0)}}function c(a){var b=a;if(b.success){var c=b.data.packageName,d=b.data.packageRefNo;$(".sce-introduce-txt")[0].innerHTML=c+'<span class="sce-introduce-span">(产品编号：'+d+")</span>",$(".package-tit").html(c)}else jAlert(b.message)}function d(a){var b=a;if(b.success){var c=b.data,d=JSON.parse(localStorage.week),e=JSON.parse(localStorage.noon);c=$.extend({weekday:d,noon:e},c);for(var f,g=0;g<c.hotels[0].rooms.length;g++)c.hotels[0].rooms[g].roomID==j&&(f=g);var h,i,k=["<li>费用明细</li>","{% for(var i=0; i<hotels[0].rooms["+f+"].prices.length;i++){  if(hotels[0].rooms["+f+'].prices[i].category=="ADULT"){ %}',"<li>","<div>成人</div>","<div>￥{%=hotels[0].rooms["+f+"].prices[i].amountInCNY%}×{%=hotels[0].rooms["+f+"].prices[i].quantity%}人</div>","</li>","{% } else if(hotels[0].rooms["+f+'].prices[i].category=="CHILD"){ %}',"<li>","<div>儿童</div>","<div>￥{%=hotels[0].rooms["+f+"].prices[i].amountInCNY%}×{%=hotels[0].rooms["+f+"].prices[i].quantity%}人</div>","</li>","{% } %}","{% } %}"].join("");h="T"==l.CheckInDate.substr(9,1)?l.CheckInDate.substr(0,9):l.CheckInDate.substr(0,10),i="T"==l.CheckOutDate.substr(9,1)?l.CheckOutDate.substr(0,9):l.CheckOutDate.substr(0,10);var m=['<div class="sce-introduce-txt">{%=hotels[0].hotelName%}</div>',"{% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=="+j+"){ %}",'<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}'+l.roomDetails.length+"间</div>","{% } %}","{% } %}",'<div class="detail-span">'+h+" 至 "+i+" "+l.nightNum+"晚</div>"].join(""),n=["{% for(var i=0;i<tourInfos.length;i++){ %}","<div>",'<div class="sce-introduce-txt">{%=tourInfos[i].tourName%}</div>',"{% if(tourInfos[i].travelDateSpecified){ %}",'<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',"{% } %}",'<div class="detail-span">成人票 '+l.adultNum+"张</div>","{% if(JSON.parse(localStorage.info).childNum != 0){ %}",'<div class="detail-span">儿童票 '+l.childNum+"张</div>","{% } %}","</div>","{% } %}"].join(""),o=template(k,c),p=template(m,c),q=template(n,c);$("#fillDetail").html(o),$("#hotel_detail").html(p),$("#tour_detail").html(q),vlm.init()}else jAlert(b.message,"提示")}function e(){var a=new Date,b=a.getFullYear(),c=a.getMonth()+1,d=a.getDate(),e=a.getHours(),f=a.getMinutes(),g=a.getSeconds();localStorage.orderTime=b+"-"+c+"-"+d+" "+e+":"+f+":"+g}var f=document.querySelector(".reserve"),g="",h=0,i=0,j="";a();var k=JSON.parse(localStorage.info);b();var l=JSON.parse(localStorage.info),m={Parameters:{PackageID:l.packageID,CheckinDate:l.CheckInDate,CheckoutDate:l.CheckOutDate,HotelID:g,RoomDetails:l.roomDetails,Tours:l.tours},ForeEndType:3,Code:"0208"};vlm.loadJson("",JSON.stringify(m),d),$(".open-close").click(function(){$("#detailBox").toggle(),$(".icons.de-close").toggleClass("de-open")})}();
+/**
+ * Created by qzz on 2016/3/2.
+ */
+
+(function(){
+
+    var oReserve=document.querySelector('.reserve');
+    var hotelID='',perPrice=0,totPrice=0,roomID='';
+    //加载动画
+    function package_detail(){
+
+        $(window).load(function () {
+            $("#status").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
+    };
+    package_detail();
+
+    //localStorage.Info
+    var jsonPackage=JSON.parse(localStorage.info);
+    function init(){
+        var Parmeters=
+        {
+            "Parameters": {
+                "PackageID": localStorage.packageID
+            },
+            "ForeEndType": 3,
+            "Code": "0202"
+        }
+        //console.log(Parmeters);
+        vlm.loadJson("",JSON.stringify(Parmeters),package_tit_back);
+
+        var travelersInput=window.location.search.substring(1).split('&')[5].split('=')[1];
+        //根据房间数创建房间信息
+        var roomNumber=jsonPackage.roomDetails.length;
+        for(var i=0;i<roomNumber; i++)
+        {
+            var oRoom=document.createElement('div');
+            oRoom.className='per_data';
+            oRoom.innerHTML='<span class="title"><i>房间'+(i+1)+'</i></span>'
+                +'<ul></ul>'
+            $('#per-room-wrap')[0].appendChild(oRoom);
+            var oRoomNum=document.querySelectorAll('.per_data');
+
+            //每个房间成人数
+            var tAdult=parseInt(jsonPackage.roomDetails[i].adult);
+            for(var k=0;k<tAdult;k++)
+            {
+                var oSection=document.createElement('section');
+                oSection.className='li_section_box';
+                //if(travelersInput == 0)
+                //{
+                //    oSection.innerHTML='<li>'
+                //        +'<span class="list_tit">成人'+(k+1)+'：</span>'
+                //        +'<b class="add_icon"><a href="javascript:;" data-c-id="0" class="add-passager0" ></a></b></span>'
+                //        +'</li>'
+                //        +"<ul id='trave"+k+"'>"
+                //        +'<li class="trave-li trave-li-adu ">'
+                //        +'<span class="list_tit2 ">姓：</span>'
+                //        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
+                //        +'<span class="list_tit2 ">名：</span>'
+                //        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                //        +'</li>'
+                //        +"</ul>"
+                //}
+                //else
+                //{
+                    oSection.innerHTML='<li>'
+                        +'<span class="list_tit">成人'+(k+1)+'：</span>'
+                        +'<b class="add_icon"><a href="javascript:;" data-c-id="'+k+'" class="add-passager'+k+'" ></a></b></span>'
+                        +'</li>'
+                        +"<ul id='trave"+k+"'>"
+                        +'<li class="trave-li trave-li-adu">'
+                        +'<span class="list_tit2 ">姓：</span>'
+                        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
+                        +'<span class="list_tit2 ">名：</span>'
+                        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                        +'</li>'
+                        +"</ul>"
+                //}
+                oRoomNum[i].querySelector('ul').appendChild(oSection);
+
+                $(".add-passager"+k).on("click",function(){
+                    var id=$(this).attr("data-c-id");
+                    vlm.f_choice('trave'+id,"ht",'traver','',false,false,null,null,null,null);
+                })
+            }
+
+            //每个房间儿童数
+            var totChiNUm= 0,t1= 0,t2=0;
+            if(jsonPackage.roomDetails[i].childWithOutBed){
+                t1=parseInt(jsonPackage.roomDetails[i].childWithOutBed.length);
+            }
+            if(jsonPackage.roomDetails[i].childWithBed){
+                t2=parseInt(jsonPackage.roomDetails[i].childWithBed.length);
+            }
+
+            totChiNUm=t1+t2;
+            for(var j=0;j<totChiNUm; j++)
+            {
+                var oSection=document.createElement('section');
+                oSection.className='li_section_box';
+                oSection.innerHTML='<li>'
+                    +'<span class="list_tit">儿童'+(j+1)+'：</span>'
+                    +'<b class="add_icon"><a href="javascript:;" data-c-id="'+j+'" class="add-cpassage'+j+'"></a></b></span>'
+                    +'</li>'
+                    +"<ul id='traveC"+j+"'>"
+                    +'<li class="trave-li trave-li-child">'
+                    +'<span class="list_tit2 ">姓：</span>'
+                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" data-elementName="firstName"  /></span>'
+                    +'<span class="list_tit2 ">名：</span>'
+                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                    +'</li>'
+                    +"</ul>"
+                    +'</section>';
+                oRoomNum[i].querySelector('ul').appendChild(oSection);
+                $(".add-cpassage"+j).on("click",function(){
+                    var id=$(this).attr("data-c-id");
+                    vlm.f_choice('traveC'+id,"ht",'traver','',false,false,null,null,null,null);
+                })
+
+            }
+        }
+        //第一个房间的第一个人添加国籍
+        var oCountry=$('<li class="clearFix countries-wrap">'
+            +'<b class="icons open-pho-tour"></b>'
+            +'<span class="list_country fl">国籍：</span>'
+            +'<div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>'
+            +'</li>')
+        oCountry.appendTo($('#trave0'));
+
+        //处理地址栏信息
+        function urlShow(){
+            if(window.location.search){
+                var winhref=window.location.search.substring(1);
+                var arr2=winhref.split('&');
+                //hotel
+                hotelID=arr2[0].split('=')[1];
+                //航班信息
+                var airFli=arr2[2].split('=')[1];
+                var dateObj = JSON.parse(window.localStorage.info);
+                var paraObj = {
+                    start:dateObj.CheckInDate.replace(/T.*/,''),
+                    end:dateObj.CheckOutDate.replace(/T.*/,'')
+                };
+                var checkInDate = dateObj.CheckInDate.split("T")[0].split("-");
+                var checkOutDate = dateObj.CheckOutDate.split("T")[0].split("-");
+
+                switch (airFli){
+                    case '0':   // None => 0
+                        $('#flight-air').remove();
+                        break;
+                    case '1': // TwoWay => 1
+//                        document.querySelector('#content3_CheckInDate').value=paraObj.start;
+//                        document.querySelector('#content4_CheckInDate').value=paraObj.end;
+//                        var myDate= new TicketDate({
+//                            id: 'nav2-center-dep',
+//                            num: 13,
+//                            time: paraObj,
+//                            sClass1: 'CheckInDate',
+//                            type:'Oneway',
+//                            _word:{tip:['出发']}
+//                        });
+//                        var myDate2= new TicketDate({
+//                            id: 'nav2-center-arr',
+//                            num: 13,
+//                            time: paraObj,
+//                            sClass1: 'CheckInDate',
+//                            type:'Oneway',
+//                            _word:{tip:['出发']}
+//                        });
+                        //初始化content3_CheckInDate scroller组件
+                        console.info(localStorage.info);
+
+                        var arriveDate = new Scroller({id: "content3_CheckInDate", type:"dateTime",cont:"content3_CheckInDate",startDate:new Date(checkInDate[0],checkInDate[1],checkInDate[2]),num:2});
+                        var leftDate = new Scroller({id: "content4_CheckInDate", type:"dateTime",cont:"content4_CheckInDate",startDate:new Date(checkOutDate[0],checkOutDate[1],checkOutDate[2]),num:1});
+
+                        break;
+                    case '2': // Arrival => 2
+                        $('#content3').remove();
+//                        document.querySelector('#content3_CheckInDate').value=paraObj.start;
+//                        var myDate= new TicketDate({
+//                            id: 'nav2-center-dep',
+//                            num: 13,
+//                            time: paraObj,
+//                            sClass1: 'CheckInDate',
+//                            type:'Oneway',
+//                            _word:{tip:['出发']}
+//                        });
+                        var arriveDate = new Scroller({id: "content3_CheckInDate", type:"dateTime",cont:"content3_CheckInDate",startDate:new Date(checkInDate[0],checkInDate[1],checkInDate[2]),num:2});
+                        break;
+                    case '3':  // Depart => 3
+                        $('#content4').remove();
+                        var leftDate = new Scroller({id: "content4_CheckInDate", type:"dateTime",cont:"content4_CheckInDate",startDate:new Date(checkOutDate[0],checkOutDate[1],checkOutDate[2]),num:1});
+
+                        break;
+                    default:;
+                }
+                //订单总价
+                perPrice=arr2[3].split('=')[1];
+                //totPrice=perPrice*(tAdult+totChiNUm);
+                totPrice=perPrice;
+                $('.all_num i').html(totPrice);
+                //roomID
+                roomID=arr2[4].split('=')[1];
+            }
+        }
+        urlShow();
+
+        //$('.add-passager').each(function(index,element){
+        //    $(this).click(function(){
+        //        vlm.f_choice('trave'+index,"ht",'traver','',false,false,null,null,null,null);
+        //    })
+        //});
+        $('.add-contact').click(function(){
+                vlm.f_choice('contact',"ht",'contact','',false,false,null,null,null,null);
+        });
+
+        sentPackage(oReserve);
+        //同意条款
+        var oAgree=document.querySelector('.order-notice-btn');
+        var bOk=true;
+        oAgree.onclick=function(){
+            if(bOk){
+                oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
+                oAgree.style.backgroundSize='40rem 12rem';
+                oReserve.style.backgroundColor='#ddd';
+                sentPackage(oReserve);
+                bOk=false;
+            }else{
+                oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
+                oAgree.style.backgroundSize='40rem 12rem';
+                oReserve.style.backgroundColor='#fdb330';
+                oReserve.style.color='#fff';
+
+                bOk=true;
+            }
+        };
+
+        //   订单数据
+        function sentPackage(obj){
+            obj.onclick=function(){
+
+                if(this.style.backgroundColor == 'rgb(221, 221, 221)'){
+                    return;
+                }
+                else
+                {
+                    this.style.backgroundColor='#ff9313';
+                }
+                var roomNum=document.querySelectorAll('.per_data');
+                //联系人信息
+                var conInput=document.querySelectorAll('#personal_data .list_inp2');
+                var conLasName=conInput[0].value;
+                var conFirName=conInput[1].value;
+                var conPhone=conInput[2].value;
+                var conEmail=conInput[3].value;
+
+                //总价
+                var totalPrice=document.querySelector('.all_num i').innerHTML;
+                var Parmeters={
+                    "Parameters": {
+                        "PackageID": localStorage.packageID,
+                        "CheckinDate": jsonPackage.CheckInDate,
+                        "CheckoutDate": jsonPackage.CheckOutDate,
+                        "HotelID": hotelID,
+                        "RoomID": roomID,
+
+                        "ContactDetails": {
+                            "Salutation": "Mr",
+                            "FirstName": conFirName,
+                            "LastName": conLasName,
+                            "Email": conEmail,
+                            "ContactNo": {
+                                "CountryCode": "65",
+                                "PhoneNo": conPhone
+                            },
+                            "MemberID": localStorage.memberid
+                        },
+                        "ChargeDetails": {
+                            "CurrencyCode": "CNY",
+                            "TotalPrice": totPrice
+                        }
+                    },
+
+                    //"Method": null,
+                    "ForeEndType": 3,
+                    "Code": "0204"
+                };
+
+                //每个房间
+                var roomdet=[];
+                for(var i=0;i<roomNum.length;i++)
+                {
+                    //成人
+                    var roomdetail={};
+                    roomdetail.Adult=jsonPackage.roomDetails[i].adult;
+                    //儿童
+                    if(jsonPackage.roomDetails[0].childWithBed){
+                        var arrWithbed=[];
+                        for(var k=0;k<jsonPackage.roomDetails[0].childWithBed.length;k++)
+                        {
+                            //arrWithbed.push(jsonPackage.roomDetails[0].childWithBed[k]);
+                            arrWithbed.push(7);
+
+                        }
+                        roomdetail.ChildwithBed=arrWithbed;
+                    }
+                    if(jsonPackage.roomDetails[0].childWithOutBed){
+                        var arrWithoutbed=[];
+                        for(var m=0;m<jsonPackage.roomDetails[0].childWithOutBed.length;m++)
+                        {
+                            //arrWithoutbed.push(jsonPackage.roomDetails[0].childWithOutBed[m]);
+                            arrWithoutbed.push(7);
+
+                        }
+                        roomdetail.ChildwithoutBed=arrWithoutbed;
+                    }
+                    roomdet.push(roomdetail);
+                }
+                Parmeters.Parameters.RoomDetails=roomdet;
+
+                //添加景点信息
+                var Tour=[];
+                for(var i=0;i<jsonPackage.tours.length; i++)
+                {
+                    var tour={};
+                    tour.TourID=jsonPackage.tours[i].tourID;
+                    tour.TravelDate=jsonPackage.tours[i].travelDate;
+                    tour.TourSession="None";
+                    Tour.push(tour);
+                    Parmeters.Parameters.Tours=Tour;
+                }
+
+                //添加旅客姓名等信息
+                var traveler=[];
+                for(var i=0;i<roomNum.length; i++)
+                {
+                    //每个房间的成人信息
+                    var oLiAdult=roomNum[i].querySelectorAll('.trave-li-adu');
+                    for(var n=0;n<oLiAdult.length;n++)
+                    {
+                        var inputAdult=oLiAdult[n].querySelectorAll('.list-adult');
+                        var lastNameAdu=inputAdult[0].value;
+                        var firstNameAdu=inputAdult[1].value;
+                        if(! vlm.Utils.validate.engName(lastNameAdu)){
+                            jAlert('请您输入英文的旅行人姓名');
+                            return;
+                        }
+                        if(! vlm.Utils.validate.engName(firstNameAdu)){
+                            jAlert('请您输入英文的旅行人姓名');
+                            return;
+                        }
+                        var tra={};
+                        tra.RoomSeqNo=i+1;
+                        tra.TravelerType="Adult";
+                        tra.Salutation="Mr";
+                        tra.FirstName=firstNameAdu;
+                        tra.LastName=lastNameAdu;
+                        traveler.push(tra);
+                    }
+
+                    //每个房间的儿童信息
+                    var oLiChild=roomNum[i].querySelectorAll('.trave-li-child');
+                    for(var m=0;m<oLiChild.length;m++) {
+                        var inputChild = roomNum[i].querySelectorAll('.list-child');
+                        var lastNameChi = inputChild[0].value;
+                        var firstNameChi = inputChild[1].value;
+                        if(! vlm.Utils.validate.engName(lastNameChi)){
+                            jAlert('请您输入英文的旅行人姓名');
+                            return;
+                        }
+                        if(! vlm.Utils.validate.engName(firstNameChi)){
+                            jAlert('请您输入英文的旅行人姓名');
+                            return;
+                        }
+                        var tra = {};
+                        tra.RoomSeqNo = (m + 1);
+                        tra.TravelerType = "Child";
+                        tra.Salutation = "None";
+                        tra.FirstName = firstNameChi;
+                        tra.LastName = lastNameChi;
+                        tra.DOB ="2009-2-1";
+                        traveler.push(tra);
+                    }
+
+                }
+                Parmeters.Parameters.Travelers=traveler;
+                Parmeters.Parameters.Travelers[0].NationalityCode=$('#trave0 .country-btn').attr('data-code');
+
+
+                //联系人姓名检验
+                var inputCon=$('.list_inp_name');
+                if(! vlm.Utils.validate.engName(inputCon.eq(0).val())){
+                    jAlert('请您输入英文的联系人姓名');
+                    return;
+                }
+                if(! vlm.Utils.validate.engName(inputCon.eq(1).val())){
+                    jAlert('请您输入英文的联系人姓名');
+                    return;
+                }
+                // 手机号邮箱检验
+                var oMobile = $('#list_con_tel')[0].value;
+                var oEmail = $('#list_con_email')[0].value;
+
+                if ( ! vlm.Utils.validate.mobileNo(oMobile) )
+                {
+                    jAlert('请输入正确的手机号');
+                    return;
+                }
+                if ( ! vlm.Utils.validate.email(oEmail) )
+                {
+                    jAlert('请输入正确的邮箱');
+                    return;
+                }
+                //接机信息
+                var dateObj = JSON.parse(window.localStorage.info);
+
+                var checkInDate = dateObj.CheckInDate;
+                var checkOutDate = dateObj.CheckOutDate;
+                if($('#flight-air').css('display') == 'block'){
+                    var fli={};
+                    if($('#content3').css('display') == 'block')
+                    {
+                        var arrivalFlightNo=document.querySelector('#content3 .input_flight input').value;
+                        var arrivalDateTime=document.querySelector('#content3_CheckInDate').value;
+                        var dateTime = arrivalDateTime ? arrivalDateTime.split("-") : checkInDate;
+                        if(arrivalFlightNo = ''){
+                            fli.ArrivalFlightNo = "None";
+                        }else{
+                            fli.ArrivalFlightNo=arrivalFlightNo;
+                            if(dateTime.indexOf("T") > -1){
+                                fli.ArrivalDateTime=dateTime;
+                            }else{
+                                fli.ArrivalDateTime=dateTime[0]+'-' + dateTime[1]+'-'+dateTime[2]+'T'+dateTime[3]+':'+dateTime[4]+':00';
+                            }
+
+                        }
+                    }
+                    if($('#content4').css('display') == 'block')
+                    {
+                        var departFlightNo=document.querySelector('#content4 .input_flight input').value;
+                        var departDateTime=document.querySelector('#content4_CheckInDate').value;
+                        var departDate = departDateTime ? departDateTime.split("-") : checkOutDate;
+                        if(departFlightNo = ''){
+                            fli.ArrivalFlightNo = "None";
+                        }else{
+                            fli.DepartFlightNo=departFlightNo;
+                            if(departDate.indexOf("T") > -1){
+                                fli.DepartDateTime=departDate;
+                            }else{
+                                fli.DepartDateTime=departDate[0]+'-' + departDate[1]+'-'+departDate[2]+'T'+departDate[3]+':'+departDate[4]+':00';
+                            }
+
+                        }
+                    }
+                    Parmeters.Parameters.FlightDetails=fli;
+                }
+
+                console.log(Parmeters);
+                setOrderTime();
+                vlm.loadJson("",JSON.stringify(Parmeters),package_back);
+            }
+
+            function package_back(ret){
+                var json = ret;
+                console.log(json);
+                if(json.success) {
+                    localStorage.bookingID=json.data.bookingID;
+                    localStorage.bookingRefNo=json.data.bookingRefNo;
+                    window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=Tour";
+                }else{
+                    jAlert(json.message);
+                }
+            }
+        };
+    }
+    init();
+
+    //初始化函数回调
+    function package_tit_back(ret){
+        var json = ret;
+        if(json.success) {
+            //套餐名称
+            console.log(json);
+            var sceTit=json.data.packageName;
+            var sceCpde=json.data.packageRefNo;
+            $('.sce-introduce-txt')[0].innerHTML=sceTit+'<span class="sce-introduce-span">(产品编号：'+sceCpde+')</span>';
+            $('.package-tit').html(sceTit);
+        }else{
+            jAlert(json.message);
+        }
+    }
+    //   获取明细
+    var info = JSON.parse(localStorage.info);
+    //var hotelID=vlm.getpara("hotelID");
+    var tmp = {
+        "Parameters": {
+            "PackageID": info.packageID,
+            "CheckinDate": info.CheckInDate,
+            "CheckoutDate": info.CheckOutDate,
+            "HotelID": hotelID,
+            "RoomDetails":info.roomDetails,
+            "Tours": info.tours
+        },
+        "ForeEndType": 3,
+        "Code": "0208"
+    };
+    vlm.loadJson("", JSON.stringify(tmp), getDetail_back);
+    function getDetail_back(ret){
+        var json = ret;
+        if(json.success) {
+            var data = json.data;
+            var weekday = JSON.parse(localStorage.week);
+            var noon = JSON.parse(localStorage.noon);
+            data= $.extend({"weekday":weekday,"noon":noon},data);
+            console.log(data);
+            var n;
+            for(var k = 0;k < data.hotels[0].rooms.length;k++){
+                if(data.hotels[0].rooms[k].roomID == roomID){
+                    n = k;
+                }
+            }
+            var tpl1 = [
+                '<li>费用明细</li>',
+                '{% for(var i=0; i<hotels[0].rooms['+n+'].prices.length;i++){  if(hotels[0].rooms['+n+'].prices[i].category=="ADULT"){ %}',
+                '<li>',
+                '<div>成人</div>',
+                '<div>￥{%=hotels[0].rooms['+n+'].prices[i].amountInCNY%}×{%=hotels[0].rooms['+n+'].prices[i].quantity%}人</div>',
+                '</li>',
+                '{% } else if(hotels[0].rooms['+n+'].prices[i].category=="CHILD"){ %}',
+                '<li>',
+                '<div>儿童</div>',
+                '<div>￥{%=hotels[0].rooms['+n+'].prices[i].amountInCNY%}×{%=hotels[0].rooms['+n+'].prices[i].quantity%}人</div>',
+                '</li>',
+                '{% } %}',
+                '{% } %}'
+            ].join('');
+            var CheckInDate,CheckOutDate;
+            if(info.CheckInDate.substr(9,1) == 'T'){
+                CheckInDate = info.CheckInDate.substr(0,9);
+            }else{
+                CheckInDate = info.CheckInDate.substr(0,10);
+            }
+            if(info.CheckOutDate.substr(9,1) == 'T'){
+                CheckOutDate = info.CheckOutDate.substr(0,9);
+            }else{
+                CheckOutDate = info.CheckOutDate.substr(0,10);
+            }
+            var tpl2 = [
+                '<div class="sce-introduce-txt">{%=hotels[0].hotelName%}</div>',
+                '{% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %}',
+                '<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}' + info.roomDetails.length+'间</div>',
+                '{% } %}',
+                '{% } %}',
+                '<div class="detail-span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>'
+            ].join('');
+            var tpl3 = [
+                '{% for(var i=0;i<tourInfos.length;i++){ %}',
+                '<div>',
+                '<div class="sce-introduce-txt">{%=tourInfos[i].tourName%}</div>',
+                '{% if(tourInfos[i].travelDateSpecified){ %}',
+                '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',
+                '{% } %}',
+                '<div class="detail-span">成人票 '+info.adultNum+'张</div>',
+                '{% if(JSON.parse(localStorage.info).childNum != 0){ %}',
+                '<div class="detail-span">儿童票 '+info.childNum+'张</div>',
+                '{% } %}',
+                '</div>',
+                '{% } %}'
+            ].join('');
+            var html_fd = template(tpl1,data);
+            var html_dh = template(tpl2,data);
+            var html_dt = template(tpl3,data);
+            //$('.separate_num i').html(data.hotels[0].avgRatePerPaxSeparatelyInCNY);
+            $('#fillDetail').html(html_fd);
+            $('#hotel_detail').html(html_dh);
+            $('#tour_detail').html(html_dt);
+            vlm.init();
+        }else{
+            console.log(json);
+            jAlert(json.message,"提示");
+        }
+    }
+    ////上午下午
+    //var aNoon=$('.travel-noon a');
+    //aNoon.click(function(){
+    //    $(this).addClass('on').siblings().removeClass('on');
+    //    if(aNoon.attr('class') == 'fa-noon on')
+    //    {
+    //        localStorage.noon=0;
+    //    }
+    //    else
+    //    {
+    //        localStorage.noon=1;
+    //    }
+    //});
+    $('.open-close').click(function(){
+        $('#detailBox').toggle();
+        $('.icons.de-close').toggleClass('de-open');
+        //if($('#detailBox').display == 'none'){
+        //    $('#detailBox').show();
+        //}else{
+        //    $('#detailBox').hide();
+        //}
+    });
+
+    function setOrderTime(){
+        var oDate=new Date();
+        var year=oDate.getFullYear();
+        var mon=oDate.getMonth()+1;
+        var day=oDate.getDate();
+        var h=oDate.getHours();
+        var m=oDate.getMinutes();
+        var s=oDate.getSeconds();
+        localStorage.orderTime=year+'-'+mon+'-'+day+' '+h+':'+m+':'+s;
+    }
+
+
+})()

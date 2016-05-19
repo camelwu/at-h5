@@ -1,2 +1,158 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(){function a(a){p[a].onclick=function(){for(var b=0;b<q.length;b++)q[b].style.display="none";for(var b=0;b<p.length;b++)p[b].className="";q[a].style.display="block",p[a].className="current"}}function b(){var a,b=this.id;"fo_sc"==b?a=document.getElementById("screen"):"fo_ra"==b&&(a=document.getElementById("rank")),d(a,"0%")}function c(){function a(){c.className="itemized"}var b=document.getElementById("detail_expenses"),c=this;b.querySelector(".package-tit"),document.querySelectorAll(".trave-li");"itemized"==this.className?(d(b,"42px",a),c.className="itemized_d"):e(b,a)}function d(a,b,c){v.style.display="block",a.style.bottom=b,v.onclick=function(){e(a,c)}}function e(a,b){v.style.display="none",a.style.bottom="-100%",b&&b(),v.onclick=null}function f(){for(var a=w.getElementsByTagName("span"),b=0;b<a.length;b++)""!=a[b].getAttribute("data-c-id")&&g(a[b])}function g(a){a.onclick=function(){var a=this.getAttribute("data-c-id"),b=this.parentNode.getElementsByTagName("span");if("current"!=this.className){for(var c=0;c<b.length;c++){b[c].className="";var d=b[c].getAttribute("data-c-id"),e=document.getElementById(d);e.style.display="none"}this.className="current",document.getElementById(a).style.display="block"}}}function h(a,b,c){var d=b.parentNode.getAttribute("data-type");b.onclick=function(){var e=a.innerHTML;e=Number(e),e+=1,a.innerHTML=e,0==e?c.style.backgroundPosition="-26px 2px":c.style.backgroundPosition="-51px 2px","extraBed"==d&&j(b.parentNode.parentNode,e)}}function i(a,b){var c=b.parentNode.getAttribute("data-type");b.onclick=function(){var d=a.innerHTML;d=Number(d),0>=d?a.innerHTML=0:(d-=1,a.innerHTML=d),0==d?b.style.backgroundPosition="-26px 2px":b.style.backgroundPosition="-51px 2px","extraBed"==c&&j(b.parentNode.parentNode,d)}}function j(a,b){var c=a.parentNode.getElementsByClassName("extraBed"),d="";if(0==b&&1==c.length)c[0].parentNode.removeChild(c[0]);else{for(var e="",f=1;b>=f;f++)e+=k(f);0==c.length?(d='<div class="extraBed">',l(a,d+e+"</div>")):c[0].innerHTML=e}}function k(a){return'<span class="bedList"><i>儿童加床'+a+'</i><b class="ico_select"></b></span>'}function l(a,b){var c=a.nextSibling;if(null!=c)for(;void 0==c.tagName;){if(null==c.nextSibling){c=null;break}c=c.nextSibling}null!=c?c.parentNode.insertBefore(m(b),c):a.parentNode.appendChild(m(b))}var m=function(a){var b=new Array,c=document.createDocumentFragment();if("string"!=typeof a)b.push(a);else{var d=document.createElement("div");d.innerHTML=a;for(var e=0;e<d.childNodes.length;e++)b.push(d.childNodes[e])}for(var f=0;f<b.length;f++)c.appendChild(b[f]);return c},n=document.getElementById("screen_tagBox"),o=[],p=[],q=[];n&&(p=n.getElementsByTagName("li"),o=n.parentNode.getElementsByTagName("ul"));for(var r=0;r<o.length;r++)"tagList"==o[r].className&&q.push(o[r]);for(var r=0;r<p.length;r++)a(r);var s=document.getElementById("fo_sc"),t=document.getElementById("fo_ra"),u=document.getElementById("show_de"),v=document.getElementById("r-mb");s&&(s.onclick=b),t&&(t.onclick=b),u&&(u.onclick=c);var w=document.getElementById("pageTag");w&&f();for(var x=document.getElementsByClassName("cut-up-cont"),y=document.getElementsByClassName("plus-btn"),z=document.getElementsByClassName("cut-down-btn"),r=0;r<x.length;r++){h(x[r],y[r],z[r]),i(x[r],z[r]);var A=parseInt(x[r].innerHTML);0==A?z[r].style.backgroundPosition="-26px 2px":z[r].style.backgroundPosition="-51px 2px"}}();
+(function(){
+    var el = function(Doms){var domArray = new Array();var oFrag=document.createDocumentFragment();if(typeof Doms != "string"){domArray.push(Doms);}else{var dd = document.createElement("div");dd.innerHTML = Doms;for(var ds=0;ds<dd.childNodes.length;ds++){domArray.push(dd.childNodes[ds]);}}for(var d=0;d<domArray.length;d++){oFrag.appendChild(domArray[d]);}return oFrag;}
+    /*****
+        景点 js
+    ******/
+    var _screen_tagBox = document.getElementById("screen_tagBox"),tagBox_ul=[],_tagList=[],_listCon=[];
+    if(_screen_tagBox){
+        _tagList=_screen_tagBox.getElementsByTagName("li");
+        tagBox_ul=_screen_tagBox.parentNode.getElementsByTagName("ul");
+    }
+    for(var i=0;i<tagBox_ul.length;i++){
+        if(tagBox_ul[i].className=="tagList"){_listCon.push(tagBox_ul[i]);}
+    }
+    for(var i=0;i<_tagList.length;i++){changeTagList(i);}
+    function changeTagList(n){
+        _tagList[n].onclick = function(){
+            for(var i=0;i<_listCon.length;i++){_listCon[i].style.display="none";}
+            for(var i=0;i<_tagList.length;i++){_tagList[i].className="";}
+            _listCon[n].style.display="block";
+            _tagList[n].className="current";
+        }
+    }
+
+    /*筛选按钮*/
+    var _fo_sc = document.getElementById("fo_sc"),
+    _fo_ra = document.getElementById("fo_ra"),
+    _show_de = document.getElementById("show_de"), _mask = document.getElementById("r-mb");
+    _fo_sc&&(_fo_sc.onclick=show_sc_ra);
+    _fo_ra&&(_fo_ra.onclick=show_sc_ra);
+    _show_de&&(_show_de.onclick=show_detail_expenses);
+    function show_sc_ra(){
+        var _id = this.id , showDom;
+        if(_id=="fo_sc"){
+            showDom = document.getElementById("screen");
+        }else if(_id=="fo_ra"){
+            showDom = document.getElementById("rank");
+        }
+        isShow(showDom,'0%');
+    }
+
+    function show_detail_expenses(){
+        var showDom = document.getElementById("detail_expenses"),_t=this;
+        var packageTit=showDom.querySelector('.package-tit');
+
+        var traNum=document.querySelectorAll('.trave-li');
+        //var str1='';
+        //for(var i=0;i<traNum.length; i++)
+        //{
+        //    var inputAdult=traNum[i].querySelectorAll('.list_con2 input');
+        //    var lastName=inputAdult[0].value;
+        //    var firstName=inputAdult[1].value;
+        //    str1+='<li><span>'+'出行人'+(i+1)+'</span><i>'+lastName+firstName+'</i></li>';
+        //}
+        //var perPrice=window.location.search.substring(1).split('&')[3].split('=')[1];
+        //document.querySelector('#detail_expenses ul').innerHTML='<li><span class="package-tit">'+packageTit.innerHTML+'</span><i data-unit="&#165;">'+perPrice+' x '+traNum.length+'</i></li>'+str1;
+
+        function showChangeClass(){_t.className='itemized';}
+        this.className=="itemized"?(isShow(showDom,'42px',showChangeClass),_t.className='itemized_d'):isHide(showDom,showChangeClass);
+    }
+    function isShow(showDom,value,cb){
+        _mask.style.display="block";
+        showDom.style.bottom = value;
+        _mask.onclick = function(){isHide(showDom,cb);}
+    }
+    function isHide(showDom,cb){
+        _mask.style.display="none";
+        showDom.style.bottom = "-100%";
+        cb&&cb();
+        _mask.onclick = null;
+    }
+
+    /*套餐tag标签*/
+    var _pageTag = document.getElementById('pageTag');
+    _pageTag&&(tc_pageTagShow());
+    function tc_pageTagShow(){
+        var _tagL = _pageTag.getElementsByTagName("span");
+        for(var i=0;i<_tagL.length;i++){
+            _tagL[i].getAttribute("data-c-id")!=""&&tagClick(_tagL[i]);
+        }        
+    }
+    function tagClick(dom){
+        dom.onclick = function(){
+            var conId = this.getAttribute("data-c-id"),_tagL = this.parentNode.getElementsByTagName("span");
+            if(this.className!="current"){
+                for(var i=0;i<_tagL.length;i++){
+                    _tagL[i].className = "";
+                    var _isConId = _tagL[i].getAttribute("data-c-id"),_isCon = document.getElementById(_isConId);
+                    _isCon.style.display="none";
+                }
+                this.className="current";
+                document.getElementById(conId).style.display="block";
+            }
+        }
+    }
+
+    /**/
+    function toUp(m,n,n_1){
+        var _type = n.parentNode.getAttribute("data-type");
+        n.onclick=function(){
+            var str=m.innerHTML;
+            str=Number(str);
+            str=str+1;
+            m.innerHTML=str;
+            str==0?n_1.style.backgroundPosition = '-26px 2px':n_1.style.backgroundPosition = '-51px 2px';
+            _type=="extraBed"&&extraBed(n.parentNode.parentNode,str);
+        };
+    }
+    function toDown(m,n){
+        var _type = n.parentNode.getAttribute("data-type");
+        n.onclick=function(){
+            var str=m.innerHTML;
+            str=Number(str);
+            if(str<=0){m.innerHTML=0;}else{str=str-1;m.innerHTML=str;}
+            str==0?n.style.backgroundPosition = '-26px 2px':n.style.backgroundPosition = '-51px 2px';
+            _type=="extraBed"&&extraBed(n.parentNode.parentNode,str);
+        };
+    }
+    function extraBed(dom,numb){
+        var _bedBox = dom.parentNode.getElementsByClassName('extraBed') , _html='';
+        if(numb==0&&_bedBox.length==1){_bedBox[0].parentNode.removeChild(_bedBox[0]);}else{
+            var _listHtml = '';
+            for(var i=1;i<=numb;i++){_listHtml+=extraBedTemp(i);}
+            if(_bedBox.length==0){
+                _html='<div class="extraBed">';                
+                domAfter(dom,_html+_listHtml+'</div>');
+            }else{
+                _bedBox[0].innerHTML = _listHtml;
+            }
+        }
+        
+    }
+    function extraBedTemp(i){
+        return '<span class="bedList"><i>儿童加床'+i+'</i><b class="ico_select"></b></span>';
+    }
+    var oNum=document.getElementsByClassName('cut-up-cont'),
+        _plus_btn=document.getElementsByClassName('plus-btn'),
+        _cut_down_btn=document.getElementsByClassName('cut-down-btn');
+    for(var i=0;i<oNum.length;i++){
+        toUp(oNum[i],_plus_btn[i],_cut_down_btn[i]);
+        toDown(oNum[i],_cut_down_btn[i]);
+        var str=parseInt(oNum[i].innerHTML);
+        str==0?_cut_down_btn[i].style.backgroundPosition = '-26px 2px':_cut_down_btn[i].style.backgroundPosition = '-51px 2px';
+    }
+    function domAfter(dom,html){
+        var next = dom.nextSibling;
+        if(next!=null){
+            while(next.tagName==undefined){
+                if(next.nextSibling!=null){
+                    next = next.nextSibling;
+                }else{
+                    next = null;break;
+                }
+            }
+        }
+        next!=null?next.parentNode.insertBefore(el(html),next):dom.parentNode.appendChild(el(html));
+    }
+
+})()

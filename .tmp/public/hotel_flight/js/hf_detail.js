@@ -1,2 +1,163 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(a){a(document).ready(function(){window.addEventListener("load",function(){FastClick.attach(document.body)},!1)})}(jQuery),function(){function a(){f||(window.location.href="../");var a,b,g,h=f.data;$(".js-set-place").html(h.flightInfo.cityNameFrom),$(".js-to-place").html(h.flightInfo.cityNameTo),g=c(h.flightInfo.segmentsLeaveTotalTravelTimeString,h.flightInfo.segmentsReturnTotalTravelTimeString),$(".js-segmentsTotalTravelTimeString").html(g);for(var i=h,j=0;j<i.flightInfo.segmentsLeave.length;j++)i.flightInfo.segmentsLeave[j].departDate=d(i.flightInfo.segmentsLeave[j].departDate,"hh:mm"),i.flightInfo.segmentsLeave[j].arriveDate=d(i.flightInfo.segmentsLeave[j].arriveDate,"hh:mm");for(var j=0;j<i.flightInfo.segmentsReturn.length;j++)i.flightInfo.segmentsReturn[j].departDate=d(i.flightInfo.segmentsReturn[j].departDate,"hh:mm"),i.flightInfo.segmentsReturn[j].arriveDate=d(i.flightInfo.segmentsReturn[j].arriveDate,"hh:mm");a=template("tpl_SegmentsLeave",i),b=template("tpl_SegmentsReturn",i),$(".js-go-trip").html(a),$(".js-back-trip").html(b),$(".js-month-day1").html(d(h.flightInfo.flightLeaveStartDate,"MM-dd")),$(".js-week-day-item1").html("周"+e(d(h.flightInfo.flightLeaveStartDate,"d"))),$(".js-start1").html(h.flightInfo.cityNameFrom),$(".js-end1").html(h.flightInfo.cityNameTo),$(".js-detail-hour1").html(h.flightInfo.segmentsLeaveTotalTravelTimeString),$(".js-month-day2").html(d(h.flightInfo.flightReturnStartDate,"MM-dd")),$(".js-week-day-item2").html("周"+e(d(h.flightInfo.flightReturnStartDate,"d"))),$(".js-start2").html(h.flightInfo.cityNameFrom),$(".js-end2").html(h.flightInfo.cityNameTo),$(".js-detail-hour2").html(h.flightInfo.segmentsReturnTotalTravelTimeString)}function b(a){return a=a.replace(/((\d{1,4})h)((\d{1,4})m)|((\d{1,2})m)/gi,function(){var a=0;return void 0!=arguments[2]?(a=60*parseInt(arguments[2])+parseInt(arguments[4]),[a]):void 0!=arguments[6]?[arguments[6]]:void 0})}function c(a,c){var d,e,f;if(e=b(a),f=b(c),parseInt(e)+parseInt(f)<60)d=parseInt(e)+parseInt(f)+"m";else{var g=Math.round((parseInt(e)+parseInt(f))/60),h=(parseInt(e)+parseInt(f))%60;d=g+"h"+h+"m"}return d}function d(a,b){a.indexOf("T")>-1&&(a=a.replace("T"," "),a.indexOf("-")>-1&&(a=a.replace(/-/g,"/")),a=new Date(a));var c=function(a){return a+="",a.replace(/^(\d)$/,"0$1")},d={yyyy:a.getFullYear(),yy:a.getFullYear().toString().substring(2),M:a.getMonth()+1,MM:c(a.getMonth()+1),d:a.getDay(),dd:c(a.getDate()),hh:c(a.getHours()),mm:c(a.getMinutes()),ss:c(a.getSeconds())};return b||(b="yyyy-MM-dd hh:mm:ss"),b.replace(/([a-z])(\1)*/gi,function(a){return d[a]})}function e(a){return week=["日","一","二","三","四","五","六"],week[a]}var f=JSON.parse(sessionStorage.getItem("flightHotelAllData"));a()}();
+/**
+ * Created by apple on 16/4/21.
+ */
+(function($) {
+    $(document).ready(function() {
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
+    });
+}(jQuery));
+(function() {
+    var detailData = JSON.parse(sessionStorage.getItem("flightHotelAllData"));
+    /**
+     * 初始化数据
+     * @param
+     * @constructor
+     * @return
+     */
+    function initialize(){
+        //console.log(detailData);
+        if(!detailData){
+           window.location.href = "../";
+        }
+        var tpl_SegmentsLeave,tpl_SegmentsReturn;
+        var localdata = detailData.data,totaltime;
+        $(".js-set-place").html(localdata.flightInfo.cityNameFrom);
+        $(".js-to-place").html(localdata.flightInfo.cityNameTo);
+        totaltime = segmentsTotalTravelTimeString(localdata.flightInfo.segmentsLeaveTotalTravelTimeString,
+            localdata.flightInfo.segmentsReturnTotalTravelTimeString);
+        $(".js-segmentsTotalTravelTimeString").html(totaltime);
+
+
+
+
+        var tmp = localdata;
+
+        for (var i = 0;i < tmp.flightInfo.segmentsLeave.length;i++){
+            tmp.flightInfo.segmentsLeave[i].departDate = formatDate(tmp.flightInfo.segmentsLeave[i].departDate,"hh:mm");
+            tmp.flightInfo.segmentsLeave[i].arriveDate = formatDate(tmp.flightInfo.segmentsLeave[i].arriveDate,"hh:mm");
+        }
+        for (var i = 0;i < tmp.flightInfo.segmentsReturn.length;i++){
+            tmp.flightInfo.segmentsReturn[i].departDate = formatDate(tmp.flightInfo.segmentsReturn[i].departDate,"hh:mm");
+            tmp.flightInfo.segmentsReturn[i].arriveDate = formatDate(tmp.flightInfo.segmentsReturn[i].arriveDate,"hh:mm");
+        }
+
+        //console.log(localdata.flightInfo.segmentsLeave);
+        tpl_SegmentsLeave = template("tpl_SegmentsLeave",tmp);
+        tpl_SegmentsReturn = template("tpl_SegmentsReturn",tmp);
+        $(".js-go-trip").html(tpl_SegmentsLeave);
+        $(".js-back-trip").html(tpl_SegmentsReturn);
+
+        $(".js-month-day1").html(formatDate(localdata.flightInfo.flightLeaveStartDate,"MM-dd"));
+        $(".js-week-day-item1").html("周"+getweekly(formatDate(localdata.flightInfo.flightLeaveStartDate,"d")));
+        $(".js-start1").html(localdata.flightInfo.cityNameFrom);
+        $(".js-end1").html(localdata.flightInfo.cityNameTo);
+        $(".js-detail-hour1").html(localdata.flightInfo.segmentsLeaveTotalTravelTimeString);
+
+        $(".js-month-day2").html(formatDate(localdata.flightInfo.flightReturnStartDate,"MM-dd"));
+        $(".js-week-day-item2").html("周"+getweekly(formatDate(localdata.flightInfo.flightReturnStartDate,"d")));
+        $(".js-start2").html(localdata.flightInfo.cityNameFrom);
+        $(".js-end2").html(localdata.flightInfo.cityNameTo);
+        $(".js-detail-hour2").html(localdata.flightInfo.segmentsReturnTotalTravelTimeString);
+
+
+
+
+
+
+
+
+    }
+    /**
+     * 14h20m or 30h 时间格式转换
+     * @param time
+     * @constructor 交通总耗时
+     * @return time
+     */
+    function segmentsTotalTravelTime(time){
+        time = time.replace(/((\d{1,4})h)((\d{1,4})m)|((\d{1,2})m)/ig,function(){
+            //包含小时与分钟
+            //@param arguments[2] 小时
+            //@param arguments[4] 分钟
+            var m_tmp = 0;
+            if(arguments[2] != undefined){
+                m_tmp = (parseInt(arguments[2]) * 60)+parseInt(arguments[4]);
+                //console.log(m_tmp);
+                return [m_tmp];
+
+            }
+            //仅又分钟
+            //@param arguments[6] 分钟
+            if(arguments[6] != undefined){
+                //console.log(arguments[6]);
+                return [arguments[6]];
+
+            }
+        });
+        return time;
+    }
+    /**
+     * 交通总耗时
+     * @param 去程时间
+     * @param 返程时间
+     * @constructor segmentsTotalTravelTimeString
+     * @return 总时间
+     */
+    function segmentsTotalTravelTimeString(leavetime,returntime){
+        var time,leavetime_tmp,returntime_tmp;
+        leavetime_tmp = segmentsTotalTravelTime(leavetime);
+        returntime_tmp = segmentsTotalTravelTime(returntime);
+
+        if(parseInt(leavetime_tmp)+parseInt(returntime_tmp) < 60){
+
+            time = parseInt(leavetime_tmp)+parseInt(returntime_tmp) +"m";
+        }else{
+            var num1 = Math.round((parseInt(leavetime_tmp)+parseInt(returntime_tmp))/60);
+            var num2 = (parseInt(leavetime_tmp)+parseInt(returntime_tmp))%60;
+            time =  num1 + "h" + num2 +"m";
+        }
+
+        return time;
+    }
+
+    //格式化日期,
+     function formatDate(date,format) {
+        if(date.indexOf('T')  > -1){
+            date = date.replace("T"," ");
+            if(date.indexOf("-") > -1){
+                date = date.replace(/-/g,"/");
+            }
+            date = new Date(date);
+        }
+
+        var paddNum = function (num) {
+            num += "";
+            return num.replace(/^(\d)$/, "0$1");
+        }
+        //指定格式字符
+        var cfg = {
+            yyyy: date.getFullYear() //年 : 4位
+            , yy: date.getFullYear().toString().substring(2)//年 : 2位
+            , M: date.getMonth() + 1  //月 : 如果1位的时候不补0
+            , MM: paddNum(date.getMonth() + 1) //月 : 如果1位的时候补0
+            , d: date.getDay()   //日 : 如果1位的时候不补0
+            , dd: paddNum(date.getDate())//日 : 如果1位的时候补0
+            , hh: paddNum(date.getHours())  //时
+            , mm: paddNum(date.getMinutes()) //分
+            , ss: paddNum(date.getSeconds()) //秒
+        }
+         //console.log(cfg);
+        format || (format = "yyyy-MM-dd hh:mm:ss");
+        return format.replace(/([a-z])(\1)*/ig, function (m) {
+            return cfg[m];
+        });
+    }
+
+    function getweekly(date){
+        week = ["日","一","二","三","四","五","六"];
+        return week[date];
+    }
+
+    initialize();
+}());

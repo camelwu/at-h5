@@ -1,3 +1,728 @@
-/*!asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:37 */
+* {
+    margin: 0px;
+    padding: 0px;
+}
 
-*{margin:0;padding:0}html{font-size:62.5%;background-color:#f5f4f9}li{list-style:none}.clearFix:after{content:'';clear:both;display:block}i{font-style:normal}.search-tip{display:inline-block;position:absolute;left:0;width:24px;height:28px;background-image:url(../images/ui/icon.png);background-position:34% 30%;background-size:400px 120px;margin-left:20%}.location-wrap{position:absolute;right:15px;top:0;width:4em;margin-top:.5rem;height:35px;line-height:35px;text-align:right}.location-tip{position:absolute;right:0;top:0;width:20px;height:16px;background-image:url(../images/ui/icons.png);background-position:74% 6%;background-size:250px 180px;margin-top:1.2rem}.location-txt{color:#fff;height:35px;font-size:1.3rem;display:inline-block;overflow:hidden;margin-right:24px}.scenic-list-box{background-color:#f5f4f9;height:100%}.scenic-list-choi-wrap{display:-moz-box;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:box;display:flexbox;display:flex;background:#FFF none repeat scroll 0 0;margin-bottom:10px}.scenic-list-choi-wrap a{-webkit-box-flex:1;-moz-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;text-align:center;line-height:40px;font-size:1.4rem}.scenic-list-choi-wrap .active{margin-bottom:-1px;border-bottom:2px solid #ffb500;color:#ffb500}.scenic-list-cont{border-top:1px solid #dedede;background-color:#fff;display:none}.scenic-list-content{border-top:1px solid #dedede;background-color:#fff}.scenic-list-cont.active{display:block}.s-li{border-bottom:1px solid #dedede;padding:10px 0;padding-left:2%}.s-li a{display:-moz-box;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:flex}.sce-detail{-webkit-box-felx:1;-moz-box-flex:1;-ms-flex:1;-webkit-flex:1;flex:1;overflow:hidden;margin-left:1rem}.sce-name-all{font-size:1.3rem;line-height:1.9rem;overflow:hidden;margin-bottom:1.4rem}.sce-img-box{width:85px}.sce-img{width:100%;height:auto}.sale-fare{color:#fe6a03;font-size:1.3rem}.sale-fare i{font-size:1.8rem;color:#fe6a03}.old-fare{text-decoration:line-through;color:#999;font-size:1.4rem}.sear-tab{width:100%;background-color:#f5f4f9}.search-box{box-sizing:border-box;height:54px;padding-top:10px;width:90%;margin:0 auto}.location-msg{display:inline-block;height:45px;line-height:45px;text-align:center;width:100%;font-size:2rem;color:#fff}.ellip-tip{display:inline-block;position:absolute;right:0;top:.6rem;margin-right:20px;width:32px;height:20px;background-image:url(../images/ui/icons.png);background-position:10% 6%;background-size:300px 200px;margin-top:1rem}.city-tit{position:fixed;left:0;top:0;width:100%}.search-box-s{background-color:#fff;border-radius:5px;border:1px solid #dedede;width:90%;margin:0 auto;position:relative}.sousuo-search{height:34px;line-height:34px;border:none;vertical-align:top;margin-left:30px;width:80%}.sousuo-search-wrap{margin:0 auto;width:50%}.search-box-s-tip{position:absolute;left:0;width:24px;height:28px;background-image:url(../images/ui/icon.png);background-position:34% 30%;background-size:400px 120px;z-index:1}.search-logo{position:absolute;left:30%;width:24px;height:28px;background-image:url(../images/ui/icon.png);background-position:34% 30%;background-size:400px 120px;z-index:1}.sousuo-sear{height:34px;line-height:34px;border:none;vertical-align:top;margin-left:40%;width:80%}.hot-recommend{font-weight:400;font-size:1.5rem;height:30px;border-top:1px solid #dedede;border-bottom:1px solid #dedede;background-color:#e9e9e9;color:#333;line-height:30px;padding-left:10px}.mask{width:100%;height:100%;position:fixed;left:0;top:0;background-color:#000;opacity:.6;filter:alpha(opacity:60);z-index:99;display:none}.sce-level{display:-moz-box;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:flex;width:100%;position:fixed;bottom:-220px;transition:.7s all ease;left:0;z-index:100;height:216px}.sce-level-box .btn{color:#333;border-left:2px solid #f5f4f9;font-size:1.3rem;padding:0}.sce-level-box .btn.active{color:#ffb413;background-color:#fff;border-left:2px solid #fdb330}.sce-level-box{-webkit-box-felx:1.5;-moz-box-flex:1.5;-ms-flex:1.5;-webkit-flex:1.5;flex:1.5;background-color:#f5f4f9}.sce-level-cont{-webkit-box-felx:3;-moz-box-flex:3;-ms-flex:3;-webkit-flex:3;flex:3;background-color:#fff}.sce-level-cont .cont{display:none}.sce-level-cont .cont.active{display:block}.sce-level-cont ul{margin-bottom:0}.sce-level-cont ul li{box-sizing:border-box;border-bottom:1px solid #f5f4f9;height:36px;line-height:36px;padding-left:2rem;margin-bottom:0;position:relative}.sce-level-cont ul li span{color:#999;font-size:1.3rem}.sce-level-box>span{display:block;color:#484848;height:36px;line-height:36px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:center}.sce-topic-suc{position:absolute;right:20px;top:0;width:40px;height:28px;background-image:url(../images/ui/icons.png);background-position:32% 98%;background-size:350px 250px;display:none}.sce-topic-suc.on{display:block}.gn-hot{margin-bottom:.5rem}.gn-hot span{font-size:1.3rem;color:#999}.dis-price-wrap{display:-moz-box;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:flex}.pos-distance{-webkit-box-felx:2;-moz-box-flex:2;-ms-flex:2;-webkit-flex:2;flex:2}.pos-distance span{font-size:1.4rem;color:#999}.price-sale{text-align:right;-webkit-box-felx:3 -moz-box-flex:3;-ms-flex:3;-webkit-flex:3;flex:3;margin-right:.4em}.price-sale-pre{text-decoration:line-through;font-size:1.3rem;color:#999}.price-sale-bac{color:#fe6a03;font-size:1.3rem}.price-sale-bac i{color:#fe6a03;font-size:1.8rem}.sce-detail-tit{margin-bottom:0;font-size:1.4rem}.min320{min-width:320px}.region-spot-search{display:-moz-box;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:flex;margin-bottom:-2000px;padding-bottom:2000px}.region-spot-choi{-webkit-box-felx:1;-moz-box-flex:1;-ms-flex:1;-webkit-flex:1;flex:1}.region-spot-search>.cont{-webkit-box-felx:2.5;-moz-box-flex:2.5;-ms-flex:2.5;-webkit-flex:2.5;flex:2.5;background-color:#fff;padding-top:.5rem;padding-left:1rem;display:none}.region-spot-search>.cont.active{display:block;margin-bottom:-2000px;padding-bottom:2000px}.region-spot-choi li{border-left:2px solid #f5f4f9;text-align:center;line-height:36px;list-style:none;font-size:1.4rem}.region-spot-choi li.active{border-left:2px solid #ffb413;background-color:#fff}.search-his{text-align:center;line-height:30px;font-size:1.3rem;margin-bottom:0}.search-his>i{font-style:normal;padding:0 .4em;color:#ffb932}.search-his .yn-gren{color:#55bfb7}.region-spot-tab span{font-size:1.3rem;display:inline-block;border:1px solid #dedede;padding:0 1.2rem;margin:.6rem;border-radius:5px}.sl-bottom{width:100%;height:44px;display:-moz-box;display:-ms-flexbox;display:-webkit-box;display:-webkit-flex;display:flex;background:#173c58;opacity:.8;position:fixed;bottom:0;text-align:center;font-size:10em;color:#fff;z-index:999999}.sl-bottom div{text-align:center;color:#fff;font-size:11px;-webkit-box-felx:1;-moz-box-flex:1;-ms-flex:1;-webkit-flex:1;flex:1;overflow:hidden}
+html {
+    font-size: 62.5%;
+    background-color: #f5f4f9;
+}
+
+li{
+    list-style: none;
+}
+
+.clearFix:after{
+    content:'';
+    clear: both;
+    display: block;
+}
+i{
+    font-style: normal;
+}
+/*.top {*/
+    /*width: 100%;*/
+    /*height: 45px;*/
+    /*padding: 1px;*/
+    /*display: -moz-box;*/
+    /*display: -ms-flexbox;*/
+    /*display: -webkit-box;*/
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+    /*position: fixed;*/
+    /*z-index: 100;*/
+    /*background: linear-gradient(#16364f, #194361);*/
+/*}*/
+
+/*.icons {*/
+    /*background-image: url(../images/ui/icons.png);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 243px 160px;*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.header-back {*/
+    /*width: 12px;*/
+    /*height: 22px;*/
+    /*margin-left: 1rem;*/
+/*}*/
+
+/*.scro-container{*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+/*}*/
+/*.search {*/
+    /*width:62%;*/
+    /*height: 27px;*/
+    /*margin:0 auto;*/
+    /*margin-top: 0.7rem;*/
+    /*background-color: white;*/
+    /*border-radius: 0.5rem;*/
+/*}*/
+
+/*.sousuo {*/
+    /*width: 80%;*/
+    /*height: 27px;*/
+    /*line-height: 27px;*/
+    /*font-size: 1.3rem;*/
+    /*margin-left: 1rem;*/
+    /*border: none;*/
+    /*background: none;*/
+    /*color: #999999;*/
+    /*padding-left: 28%;*/
+/*}*/
+
+/*景点css*/
+.search-tip {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 28px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 34% 30%;
+    background-size: 400px 120px;
+    margin-left: 20%;
+}
+
+.location-wrap {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    width: 4em;
+    margin-top: 0.5rem;
+    height: 35px;
+    line-height: 35px;
+    text-align: right;
+}
+
+.location-tip {
+    position: absolute;
+    right:0;
+    top: 0;
+    width: 20px;
+    height: 16px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 74% 6%;
+    background-size: 250px 180px;
+    margin-top: 1.2rem;
+}
+
+.location-txt {
+    color: #fff;
+    height: 35px;
+    font-size: 1.3rem;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 24px;
+
+}
+
+/*.cont-exhibition img {*/
+    /*width: 100%;*/
+    /*height: auto;*/
+/*}*/
+
+.scenic-list-box {
+    background-color: #f5f4f9;
+    height: 100%;
+
+}
+
+.scenic-list-choi-wrap {
+    display: -moz-box;  /* Firefox */
+    display: -ms-flexbox;    /* IE10 */
+    display: -webkit-box;    /* Safari */
+    display: -webkit-flex;    /* Chrome, WebKit */
+    display: box;
+    display: flexbox;
+    display: flex;
+    background: #FFF none repeat scroll 0% 0%;
+    margin-bottom: 10px;
+}
+
+.scenic-list-choi-wrap a{
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1.0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 1.4rem;
+
+}
+
+.scenic-list-choi-wrap .active {
+    margin-bottom: -1px;
+    border-bottom: 2px solid #ffb500;
+    color: #ffb500;
+}
+
+.scenic-list-cont {
+    border-top: 1px solid #dedede;
+    background-color: #fff;
+    display: none;
+}
+
+.scenic-list-content {
+    border-top: 1px solid #dedede;
+    background-color: #fff;
+}
+
+.scenic-list-cont.active{
+    display: block;
+}
+.s-li {
+    border-bottom: 1px solid #dedede;
+    padding: 10px 0;
+    padding-left: 2%;
+}
+
+.s-li a {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.sce-detail {
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    overflow: hidden;
+    margin-left: 1rem;
+}
+
+.sce-name-all {
+    font-size: 1.3rem;
+    line-height: 1.9rem;
+    overflow: hidden;
+    margin-bottom: 1.4rem;
+}
+
+.sce-img-box {
+    width: 85px;
+}
+
+.sce-img {
+    width: 100%;
+    height: auto;
+}
+
+.sale-fare {
+    color: #fe6a03;
+    font-size: 1.3rem;
+}
+
+.sale-fare i {
+    font-size: 1.8rem;
+    color: #fe6a03;
+
+}
+
+.old-fare {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 1.4rem;
+}
+
+/*底部筛选*/
+/*.sce-bottom {*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*z-index: 120;*/
+/*}*/
+
+/*.sce-filter {*/
+
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    /*background-color: #2e4a61;*/
+    /*opacity: 0.9;*/
+    /*filter: alpha(opacity:90);*/
+/*}*/
+
+/*.sce-filter > a {*/
+    /*position: relative;*/
+    /*float: left;*/
+    /*width: 25%;*/
+    /*text-align: center;*/
+/*}*/
+
+/*.sce-filter > a span {*/
+    /*color: #fff;*/
+    /*font-size: 1.4rem;*/
+/*}*/
+
+/*.cp-recommend {*/
+    /*-webkit-box-felx:2.8;*/
+    /*-moz-box-flex:2.8;*/
+    /*-ms-flex:2.8;*/
+    /*-webkit-flex:2.8;*/
+    /*flex: 2.8;*/
+
+/*}*/
+
+/*.well-rate {*/
+    /*-webkit-box-felx:2;*/
+    /*-moz-box-flex:2;*/
+    /*-ms-flex:2;*/
+    /*-webkit-flex:2;*/
+    /*flex: 2;*/
+/*}*/
+
+/*.price-sort {*/
+    /*-webkit-box-felx:2.3;*/
+    /*-moz-box-flex:2.3;*/
+    /*-ms-flex:2.3;*/
+    /*-webkit-flex:2.3;*/
+    /*flex: 2.3;*/
+/*}*/
+
+/*.gl-filter {*/
+    /*-webkit-box-felx:1.4;*/
+    /*-moz-box-flex:1.4;*/
+    /*-ms-flex:1.4;*/
+    /*-webkit-flex:1.4;*/
+    /*flex: 1.4;*/
+/*}*/
+
+/*.price-sort-tip {*/
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    /*width: 24px;*/
+    /*height: 16px;*/
+    /*background-image: url(../images/ui/icons1.png);*/
+    /*background-position: 40% 7%;*/
+    /*background-size: 400px 120px;*/
+    /*margin-top: 1.2rem;*/
+
+/*}*/
+
+/*.gl-filter-tip {*/
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    /*width: 24px;*/
+    /*height: 16px;*/
+    /*background-image: url(../images/ui/icons1.png);*/
+    /*background-position: 46% 7%;*/
+    /*background-size: 400px 120px;*/
+    /*margin-top: 1.2rem;*/
+
+/*}*/
+
+/*地区景点开始*/
+.sear-tab {
+    width: 100%;
+    background-color: #f5f4f9;
+}
+
+.search-box {
+    box-sizing: border-box;
+    height: 54px;
+    padding-top: 10px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.location-msg {
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    color: #fff;
+
+}
+
+.ellip-tip {
+    display: inline-block;
+    position: absolute;
+    right:0;
+    top: 0.6rem;
+    margin-right: 20px;
+    width: 32px;
+    height: 20px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 10% 6%;
+    background-size: 300px 200px;
+    margin-top: 1rem;
+}
+
+.city-tit {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.search-box-s {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.sousuo-search {
+    height: 34px;
+    line-height: 34px;
+    border: none;
+    vertical-align: top;
+    margin-left: 30px;
+    width: 80%;
+}
+
+.sousuo-search-wrap {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.search-box-s-tip {
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 28px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 34% 30%;
+    background-size: 400px 120px;
+    z-index: 1;
+}
+
+.search-logo{
+    position: absolute;
+    left: 30%;
+    width: 24px;
+    height: 28px;
+    background-image: url(../images/ui/icon.png);
+    background-position: 34% 30%;
+    background-size: 400px 120px;
+    z-index: 1;
+}
+
+.sousuo-sear{
+    height: 34px;
+    line-height: 34px;
+    border: none;
+    vertical-align: top;
+    margin-left: 40%;
+    width: 80%;
+}
+
+.hot-recommend {
+    font-weight: normal;
+    font-size: 1.5rem;
+    height: 30px;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    background-color: #e9e9e9;
+    color: #333;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+/*地区景点结束*/
+
+/*地区景点-筛选开始*/
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    opacity: 0.6;
+    filter: alpha(opacity:60);
+    z-index: 99;
+    display: none;
+
+}
+
+.sce-level {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    position: fixed;
+    bottom: -220px;
+    transition: 0.7s all ease;
+    left: 0;
+    z-index: 100;
+    height: 216px;
+}
+
+.sce-level-box .btn {
+    color: #333;
+    border-left: 2px solid #f5f4f9;
+    font-size: 1.3rem;
+    padding: 0;
+}
+
+.sce-level-box .btn.active {
+    color: #ffb413;
+    background-color: #fff;
+    border-left: 2px solid #fdb330;
+}
+
+.sce-level-box {
+    -webkit-box-felx:1.5;
+    -moz-box-flex:1.5;
+    -ms-flex:1.5;
+    -webkit-flex:1.5;
+    flex:1.5;
+    background-color: #f5f4f9;
+
+}
+
+.sce-level-cont {
+    -webkit-box-felx:3;
+    -moz-box-flex:3;
+    -ms-flex:3;
+    -webkit-flex:3;
+    flex:3;
+    background-color: #fff;
+}
+
+.sce-level-cont .cont{
+    display: none;
+}
+
+.sce-level-cont .cont.active{
+    display: block;
+}
+
+.sce-level-cont ul{
+    margin-bottom: 0;
+}
+
+.sce-level-cont ul li {
+    box-sizing: border-box;
+    border-bottom: 1px solid #f5f4f9;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 2rem;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.sce-level-cont ul li span {
+    color: #999;
+    font-size: 1.3rem;
+}
+
+.sce-level-box > span {
+    display: block;
+    color: #484848;
+    height: 36px;
+    line-height: 36px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.sce-topic-suc {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    width: 40px;
+    height: 28px;
+    background-image: url(../images/ui/icons.png);
+    background-position: 32% 98%;
+    background-size: 350px 250px;
+    display: none;
+}
+
+.sce-topic-suc.on{
+    display: block;
+}
+/*地区景点-筛选结束*/
+
+/*周边-开始*/
+.gn-hot {
+    margin-bottom: 0.5rem;
+}
+.gn-hot span{
+    font-size: 1.3rem;
+    color: #999;
+}
+.dis-price-wrap {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.pos-distance {
+    -webkit-box-felx:2;
+    -moz-box-flex:2;
+    -ms-flex:2;
+    -webkit-flex:2;
+    flex:2;
+}
+.pos-distance span{
+    font-size: 1.4rem;
+    color: #999;
+}
+.price-sale {
+    text-align: right;
+    -webkit-box-felx:3
+    -moz-box-flex:3;
+    -ms-flex:3;
+    -webkit-flex:3;
+    flex:3;
+}
+
+.price-sale {
+    margin-right: 0.4em;
+}
+
+.price-sale-pre {
+    text-decoration: line-through;
+    font-size: 1.3rem;
+    color: #999;
+}
+
+.price-sale-bac {
+    color: #fe6a03;
+    font-size: 1.3rem;
+}
+
+.price-sale-bac i {
+    color: #fe6a03;
+    font-size: 1.8rem;
+}
+
+.sce-detail-tit {
+    margin-bottom: 0;
+    font-size: 1.4rem;
+}
+
+/*周边-结束*/
+
+.min320 {
+    min-width: 320px;
+}
+
+/*景点搜索*/
+.region-spot-search {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    margin-bottom: -2000px;
+    padding-bottom: 2000px;
+
+}
+
+.region-spot-choi {
+    -webkit-box-felx: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.region-spot-search > .cont{
+    -webkit-box-felx: 2.5;
+    -moz-box-flex: 2.5;
+    -ms-flex: 2.5;
+    -webkit-flex: 2.5;
+    flex: 2.5;
+    background-color: #fff;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    display: none;
+
+}
+
+.region-spot-search > .cont.active{
+    display: block;
+    margin-bottom: -2000px;
+    padding-bottom: 2000px;
+}
+
+.region-spot-choi li {
+    border-left: 2px solid #f5f4f9;
+    text-align: center;
+    line-height: 36px;
+    list-style: none;
+    font-size: 1.4rem;
+}
+
+.region-spot-choi li.active {
+    border-left: 2px solid #ffb413;
+    background-color: #fff;
+}
+
+.search-his {
+    text-align: center;
+    line-height: 30px;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+}
+
+.search-his > i {
+    font-style: normal;
+    padding: 0 0.4em;
+    color: #ffb932;
+}
+
+.search-his .yn-gren {
+    color: #55bfb7;
+}
+
+.region-spot-tab span {
+    font-size: 1.3rem;
+    display: inline-block;
+    border: 1px solid #dedede;
+    padding: 0 1.2rem;
+    margin: 0.6rem;
+    border-radius: 5px;
+}
+
+.sl-bottom{
+    width:100%;
+    height:44px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    background:#173c58;
+    opacity: 0.8;
+    position:fixed;
+    bottom: 0;
+    text-align: center;
+    font-size: 10em;
+    color:white;
+    z-index: 999999;
+}
+.sl-bottom div{
+    text-align: center;
+    /*width: 33.3%;*/
+    color: white;
+    font-size: 11px;
+    -webkit-box-felx:1;
+    -moz-box-flex:1;
+    -ms-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    overflow:hidden;
+}

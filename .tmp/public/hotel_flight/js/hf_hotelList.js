@@ -1,2 +1,596 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(){function a(a){for(var b=a.length,c=0;b>c;c++)switch(a[c].starRating){case"1":a[c].starRating="一";break;case"2":a[c].starRating="二";break;case"3":a[c].starRating="三";break;case"4":a[c].starRating="四";break;case"5":a[c].starRating="五"}return a}function b(b){var f="yes"==$("#loadMore").attr("data-more");if(b.success&&"200"==b.code){if(!f&&0==b.data.hotels.length)return void c();var g=b.data,h=template("hj_list_template",a(g.hotels));f?$("#hj_jList").html($("#hj_jList").html()+h):$("#hj_jList").html(h),s=g.locationList,$("#totalHotels").html(g.totelHotelCount),1==t&&(e(s),t++);new lazyLoad("hj_jList");p=g.pageNo,g.pageNo<g.pageCount?$("#loadMore").attr("data-more","").html("点击加载更多").show():g.pageNo>=g.pageCount?$("#loadMore").attr("data-more","no").html("没有更多数据了！").show():$("#loadMore").attr("data-more","").html("点击加载更多").hide(),d()}else c()}function c(){$("#loadMore").hide();var a=document.createElement("li");a.innerHTML='<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>',a.className="hotelConNo",$("#hj_jList").empty().append(a).css({width:"100%",height:"100%"})}function d(){var a=localStorage.getItem("filterStarRating")||[0],b=u.Parameters.Location,c=u.Parameters.SortFields;u.Parameters.StarRating;""!=b?$(".fo-location i").addClass("red-tip"):$(".fo-location i").removeClass("red-tip"),0!=c[0]?$(".fo-sort i").addClass("red-tip"):$(".fo-sort i").removeClass("red-tip"),"0"!=a?$(".fo-filter i").addClass("red-tip"):$(".fo-filter i").removeClass("red-tip"),$(c).each(function(a,b){$(".jpop .sort li").each(function(a,c){$(c).attr("data-sort")==b&&$(c).addClass("cur")})}),$("#h-level li").each(function(b,c){for(var d=a,e=0;e<d.length;e++){if($(c).attr("data-start")==d[e]){$(c)[0].className="s-li1";break}$(c)[0].className="s-li"}}),$(b.split("||")).each(function(a,b){$("#locationList li").each(function(a,c){$(c).attr("data-location")==b&&$(c).trigger("click")})})}function e(a){var b=a||[],c=document.getElementById("locationList");c.innerHTML='<li class="l-li l-liFirst"><p class="l-p">不限</p><b class="l-icon1 l-icon1First"></b></li>';for(var d="",e=0;e<b.length;e++)d+='<li class="l-li" data-location="'+b[e]+'"><p class="l-p">'+b[e]+'</p><b class="l-icon1"></b></li>';c.innerHTML+=d;for(var f=$("#locationList .l-liFirst"),g=$("#locationList .l-li"),h=($("#locationList .l-icon1"),$("#locationList .l-icon1First")[0],!0),i={},e=1;e<g.length;e++)i[e]=!0;f.on("click",function(a){f.removeClass("l-li3");for(var b=1;b<g.length;b++)g.eq(b).removeClass("l-li2");for(var b=1;b<g.length;b++)i[b]=!0});for(var e=1;e<g.length;e++)!function(a){g.eq(a).on("click",function(b){i[a]?g.eq(a).addClass("l-li2"):g.eq(a).removeClass("l-li2"),i[a]=!i[a];for(var c=0,d=1;d<g.length;d++)i[d]?c++:(f.addClass("l-li3"),h=!1);c==g.length-1&&(f.removeClass("l-li3"),h=!0)})}(e)}function f(){var a=localStorage.getItem("flighHotelParams"),c="";a?(c=a,u=JSON.parse(a)):c=JSON.stringify(u),vlm.loadJson("",c,b)}function g(){var a="",b=$(".jpop .sort .cur").attr("data-sort")||0;u.Parameters.SortFields=[b];for(var c=$("#screen .s-li1"),d=[],e="",f="",g="",i="",j=0;j<c.length;j++)switch(c[j].innerText){case"不限":d.push("0"),e+="不限$",f+="0$";break;case"二星级以下":d.push("1"),e+="二星级以下$",f+="1$";break;case"三星":d.push("2"),e+="三星$",f+="2$";break;case"四星":d.push("4"),e+="四星$",f+="4$";break;case"五星":d.push("8"),e+="五星$",f+="8$";break;case"酒店":g+="1$",e+="酒店$",i+="1$";break;case"汽车旅馆":g+="2$",e+="汽车旅馆$",i+="2$";break;case"酒店式公寓":g+="3$",e+="酒店式公寓$",i+="2$";break;case"家庭旅馆":g+="4$",e+="家庭旅馆$",i+="4$";break;case"背包客栈":g+="5$",e+="背包客栈$",i+="5$";break;case"宾馆/招待所":g+="6$",e+="宾馆/招待所$",i+="6$";break;case"精品酒店":g+="7$",e+="精品酒店$",i+="7$";break;case"度假类酒店":g+="8$",e+="度假类酒店$",i+="8$";break;case"游轮度假酒店":g+="9$",e+="游轮度假酒店$",i+="9$";break;case"别墅型酒店":g+="10$",e+="别墅型酒店$",i+="10$";break;case"乡村平房酒店":g+="11$",e+="乡村平房酒店$",i+="11$";break;case"家庭寄宿":g+="12$",e+="家庭寄宿$",i+="12$";break;case"农舍式房子":g+="13$",e+="农舍式房子$",i+="13$";break;case"豪华露营地":g+="14$",e+="豪华露营地$",i+="14$";break;case"标准露营地":g+="15$",e+="标准露营地$",i+="15$"}var k=$("#locationList .l-li2"),l=[];return k.each(function(a,b){l.push($(b).text())}),localStorage.setItem("filterStarRating",d.join("")),u.Parameters.StarRating=h(d),u.Parameters.Location=l.join("||"),a=JSON.stringify(u),localStorage.setItem("flighHotelParams",a),a}function h(a){for(var b=0,c=0,d=a.length;d>c;c++)b+=parseInt(a[c]);return b}function i(){var a=g();vlm.loadJson("",a,b)}function j(){var a=g();vlm.loadJson("",a,b)}function k(){var a=g();vlm.loadJson("",a,b),vlm.loadJ}function l(){var a=$("#loadMore");if("no"!=a.attr("data-more")){a.attr("data-more","yes"),u.Parameters.PageNo=p+1;var c=g();$("#loadMore").html("正在加载..."),vlm.loadJson("",c,b,!1,!1,!0)}}function m(a){var b=a.target||window.event.srcElement,c=b.className,d=[],e=[];if("不限"==b.innerText){d=document.getElementById("h-level").childNodes;for(var f=1;f<d.length;f++)d[f].className="s-li"}"不限"!=b.innerText&&(document.getElementById("h-level").firstElementChild.className="s-li"),"s-li"==c?b.className="s-li1":b.className="s-li",d=document.getElementById("h-level").childNodes;for(var g=0,h=d.length;h>g;g++)"s-li1"==d[g].className&&e.push(d[g].innerText);0==e.length&&(document.getElementById("h-level").firstElementChild.className="s-li1")}function n(){function a(a){var a=a||window.event;$(".jpop,.jpop .screen,.jpop .sort,.jpop .location").hide(),a.preventDefault()}$("#loadMore").on("click",function(){l()}),$(".j-bottom .fo-sort").on("click",function(){$(".jpop,.jpop .sort").show()}),$(".jpop .sort").on("click","li",function(){$(this).addClass("cur").siblings().removeClass("cur"),$(".jpop,.jpop .sort").hide(),i()}),$(".j-bottom .fo-filter").on("click",function(){$(".jpop,.jpop .screen").show()}),$("#h-level").on("click","li",m),$("#s_but").on("click",function(a){$(".jpop,.jpop .screen").hide(),j()}),$(".j-bottom .fo-location").on("click",function(){$(".jpop,.jpop .location").show()}),$("#sureBtn").on("click",function(a){$(".jpop,.jpop .location").hide(),k()}),$(".j-back").on("click",function(){localStorage.removeItem("flighHotelParams"),window.history.go(-1)});var b=document.getElementById("mask");b.addEventListener("touchstart",a,!1),$("#hj_jList").on("click","li",function(a){var b=$(this),c=b.attr("data-hotelid");if(c){b.find("i").addClass("active"),q.data.HotelID=c,localStorage.setItem("hotelDetailInfo",JSON.stringify(q));var d=setTimeout(function(){window.location.href="hotel_detail.html",clearTimeout(d)},500)}})}function o(){f(),n()}var p,q=JSON.parse(localStorage.getItem("changeHotelParaObj"))||{},r=q.data,s=null,t=(JSON.parse(localStorage.getItem("filterStarRating"))||"0",1),u={Code:"50100003",ForeEndType:2,Parameters:{SelectedHotelID:r.SelectedHotelID||"",FlightCacheID:r.FlightCacheID||"",FlightSetID:r.FlightSetID||"",CityCodeFrom:r.CityCodeFrom||"",CityCodeTo:r.CityCodeTo||"",DepartDate:r.DepartDate||"",ReturnDate:r.ReturnDate||"",SortFields:r.SortFields||[0],StarRating:0,PageNo:r.PageNo||"",PageSize:r.PageSize||"",RoomDetails:r.RoomDetails||[],Location:r.Location||""}};o()}();
+/*
+ *@desc 机票+酒店 酒店搜索列表页   
+ *       TODO requirejs   depend on jquery.js and vlm.js
+ *@time
+ *@author Jason
+ */
+//require.config({
+//    baseUrl: '../js/lib',
+//    paths: {
+//        jquery: 'jquery',
+//        vlm: 'vlm',
+//        template : 'template',
+//        plugins: 'plugins'
+//    }
+//});
+//
+//require(['jquery','vlm'], function($,vlm) {
+//    
+//    
+//});
+(function () {
+    var parametersStorage = JSON.parse(localStorage.getItem("changeHotelParaObj")) || {};
+    var parametersS = parametersStorage.data;
+    var locationList = null;
+    var StarRating = JSON.parse(localStorage.getItem("filterStarRating")) || "0";
+    var firstTime = 1;
+    //    var params = {
+    //            "Code": "50100003",
+    //            "ForeEndType": 2,
+    //            "Parameters": {
+    //                "SelectedHotelID": "1005455",
+    //                "FlightCacheID": "13767",
+    //                "FlightSetID": "1002001",
+    //                "CityCodeFrom": "SIN",
+    //                "CityCodeTo": "BKK",
+    //                "DepartDate": "2016-05-07",
+    //                "ReturnDate": "2016-05-08",
+    //                "SortFields": "",
+    //                "StarRating": 0,
+    //                "Location":"",
+    //                "PageNo": 1,
+    //                "PageSize": 20,
+    //                "RoomDetails": [{
+    //                    "Adult": 2
+    //            }]
+    //            }
+    //        },
+    var params = {
+            "Code": "50100003",
+            "ForeEndType": 2,
+            "Parameters": {
+                "SelectedHotelID": parametersS.SelectedHotelID || "",
+                "FlightCacheID": parametersS.FlightCacheID || "",
+                "FlightSetID": parametersS.FlightSetID || "",
+                "CityCodeFrom": parametersS.CityCodeFrom || "",
+                "CityCodeTo": parametersS.CityCodeTo || "",
+                "DepartDate": parametersS.DepartDate || "",
+                "ReturnDate": parametersS.ReturnDate || "",
+                "SortFields": parametersS.SortFields || [0],
+                "StarRating":  0,   //默认不限
+                "PageNo": parametersS.PageNo || "",
+                "PageSize": parametersS.PageSize || "",
+                "RoomDetails": parametersS.RoomDetails || [],
+                "Location": parametersS.Location || ""
+            }
+        },
+        currentPage;
+
+    //vlm.init();
+
+    //根据模板需要提前处理好data
+    function handleData(data) {
+        var len = data.length;
+        for (var i = 0; i < len; i++) {
+            //data[i].hotelInfo = encodeURI(JSON.stringify(data[i]));
+            switch (data[i].starRating) {
+                case "1":
+                    data[i].starRating = "一";
+                    break;
+                case "2":
+                    data[i].starRating = "二";
+                    break;
+                case "3":
+                    data[i].starRating = "三";
+                    break;
+                case "4":
+                    data[i].starRating = "四";
+                    break;
+                case "5":
+                    data[i].starRating = "五";
+                    break;
+            }
+        }
+        return data;
+    }
+    
+    //页面显示
+    function dataCallBack(result) {
+        var loadMoreSign = ($("#loadMore").attr("data-more") == "yes") ? true : false;
+        if (result.success && result.code == '200') {
+            if (!loadMoreSign && result.data.hotels.length == 0) {
+                showNodata();
+                return;
+            }
+            var data = result.data;
+            var str = template("hj_list_template", handleData(data.hotels));
+            if (loadMoreSign) {
+                $("#hj_jList").html($("#hj_jList").html() + str);
+            } else {
+                $("#hj_jList").html(str);
+            }
+            locationList = data.locationList;
+            $("#totalHotels").html(data.totelHotelCount); //更新酒店数量 
+            //页面第一加载时初始化位置信息
+            if (firstTime == 1) {
+                initLocationInfo(locationList);
+                firstTime++;
+            }
+
+            //图片懒加载
+            var c = new lazyLoad('hj_jList');
+
+            currentPage = data.pageNo;
+            if (data.pageNo < data.pageCount) {
+                $("#loadMore").attr("data-more", "").html("点击加载更多").show();
+            } else if (data.pageNo >= data.pageCount) {
+                $("#loadMore").attr("data-more", "no").html("没有更多数据了！").show();
+            } else {
+                $("#loadMore").attr("data-more", "").html("点击加载更多").hide();
+            }
+
+            //显示筛选状态
+            displayFilterStatus();
+
+        } else {
+            showNodata();
+        }
+    }
+    
+    //没有数据或者异常提示
+    function showNodata(){
+        $("#loadMore").hide();
+        var oLi = document.createElement('li');
+        oLi.innerHTML = '<div><img src="../images/hotelListNo.jpg" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+        oLi.className = 'hotelConNo';
+        $("#hj_jList").empty().append(oLi).css({
+            width: '100%',
+            height: '100%'
+        });
+    }
+    
+    //更新筛选状态
+    function displayFilterStatus() {
+        var StarRating = localStorage.getItem('filterStarRating') || [0]; 
+        var locations = params.Parameters.Location;
+        var sort = params.Parameters.SortFields;
+        var start = params.Parameters.StarRating;
+        locations != "" ? $(".fo-location i").addClass("red-tip") : $(".fo-location i").removeClass("red-tip");
+        sort[0] != 0 ? $(".fo-sort i").addClass("red-tip") : $(".fo-sort i").removeClass("red-tip");
+        StarRating != "0" ? $(".fo-filter i").addClass("red-tip") : $(".fo-filter i").removeClass("red-tip");
+        
+        console.info(sort + "---" + StarRating);
+        $(sort).each(function(indexSort,sortValue){
+            $(".jpop .sort li").each(function(index,sortLi){
+                if($(sortLi).attr("data-sort")  == sortValue){
+                    $(sortLi).addClass("cur");
+                    console.info("sort list click");
+                }
+            });
+        });
+        //星级选择状态
+        $("#h-level li").each(function(index,startLi){
+            console.info("$(startLi).attr('data-start') :" + $(startLi).attr("data-start"));
+            var starts = StarRating;
+            for(var i=0;i<starts.length;i++){
+                if($(startLi).attr("data-start")  == starts[i]){
+                    $(startLi)[0].className = "s-li1";
+                    break;
+                }else{
+                    $(startLi)[0].className = "s-li";
+                }
+            }
+        });
+        
+        $(locations.split("||")).each(function(locationIndex,locationValue){
+            $("#locationList li").each(function(index,locationLi){
+                if($(locationLi).attr("data-location")  == locationValue){
+                    $(locationLi).trigger("click");
+                }
+            });
+        });
+    }
+    
+    //初始化位置信息
+    function initLocationInfo(dataList) {
+        var data_address = dataList || [];
+        var oUl = document.getElementById('locationList');
+        //模板添加内容
+        //console.log(data_address);
+        oUl.innerHTML = '<li class="l-li l-liFirst">' + '<p class="l-p">不限</p>' + '<b class="l-icon1 l-icon1First"></b>' + '</li>';
+        var locationsLi = "";
+        for (var i = 0; i < data_address.length; i++) {
+            locationsLi += '<li class="l-li" data-location="'+data_address[i]+'">' + '<p class="l-p">'+data_address[i]+'</p>' + '<b class="l-icon1"></b>' + '</li>';
+        }
+        oUl.innerHTML += locationsLi;
+        
+        var liFirst = $('#locationList .l-liFirst');
+        var aLi = $('#locationList .l-li');
+        var aB = $('#locationList .l-icon1');
+        var oB = $('#locationList .l-icon1First')[0];
+        var bOk = true;
+        var aOk = {};
+        for (var i = 1; i < aLi.length; i++) {
+            aOk[i] = true;
+        }
+        //联动选项
+        //“不限”点击事件
+        liFirst.on("click", function (event) {
+            liFirst.removeClass("l-li3");
+            for (var i = 1; i < aLi.length; i++) {
+                aLi.eq(i).removeClass("l-li2");
+            }
+            for (var i = 1; i < aLi.length; i++) {
+                aOk[i] = true;
+            }
+        });
+
+        //每个地区的点击事件
+        for (var i = 1; i < aLi.length; i++) {
+            (function (index) {
+                aLi.eq(index).on("click", function (event) {
+                    if (aOk[index]) {
+                        aLi.eq(index).addClass('l-li2');
+                    } else {
+                        aLi.eq(index).removeClass('l-li2');
+                    }
+                    aOk[index] = !aOk[index];
+                    var n = 0;
+                    for (var j = 1; j < aLi.length; j++) {
+                        if (!aOk[j]) {
+                            liFirst.addClass("l-li3");
+                            bOk = false;
+                        } else {
+                            n++;
+                        }
+                    }
+                    if (n == aLi.length - 1) {
+                        liFirst.removeClass("l-li3");
+                        bOk = true;
+                    }
+                });
+            })(i);
+        }
+    }
+
+    //初始化数据 优先使用历史筛选条件
+    function initData() {
+        var filterHistory = localStorage.getItem("flighHotelParams");
+        var data = "";
+        if (filterHistory) {
+            data = filterHistory;
+            params = JSON.parse(filterHistory);
+        } else {
+            data = JSON.stringify(params);
+        }
+        vlm.loadJson('', data, dataCallBack);
+        // dataCallBack();
+    }
+    //获取参数  所有的筛选条件
+    function getParams() {
+        var paramsString = '';
+        //排序条件
+        var currentSort = $(".jpop .sort .cur").attr("data-sort") || 0; //0 标识默认排序
+        params.Parameters.SortFields = [currentSort];
+        //筛选条件
+
+        var hl_star_type = $("#screen .s-li1");
+        var hl_star_str = [];
+        var hl_filter_chinese = "";
+        var hl_filter_star = "";
+        var hl_type_str = "";
+        var hl_filter_type = "";
+
+        for (var i = 0; i < hl_star_type.length; i++) {
+            switch (hl_star_type[i].innerText) {
+                case '不限':
+                    hl_star_str.push("0");
+                    hl_filter_chinese += '不限$';
+                    hl_filter_star += '0$';
+                    break;
+                case '二星级以下':
+                    hl_star_str.push("1");
+                    hl_filter_chinese += '二星级以下$';
+                    hl_filter_star += '1$';
+                    break;
+                case '三星':
+                    hl_star_str.push("2");
+                    hl_filter_chinese += '三星$';
+                    hl_filter_star += '2$';
+                    break;
+                case '四星':
+                    hl_star_str.push("4");
+                    hl_filter_chinese += '四星$';
+                    hl_filter_star += '4$';
+                    break;
+                case '五星':
+                    hl_star_str.push("8");
+                    hl_filter_chinese += '五星$';
+                    hl_filter_star += '8$';
+                    break;
+                case '酒店':
+                    hl_type_str += '1$';
+                    hl_filter_chinese += '酒店$';
+                    hl_filter_type += '1$';
+                    break;
+                case '汽车旅馆':
+                    hl_type_str += '2$';
+                    hl_filter_chinese += '汽车旅馆$';
+                    hl_filter_type += '2$';
+                    break;
+                case '酒店式公寓':
+                    hl_type_str += '3$';
+                    hl_filter_chinese += '酒店式公寓$';
+                    hl_filter_type += '2$';
+                    break;
+                case '家庭旅馆':
+                    hl_type_str += '4$';
+                    hl_filter_chinese += '家庭旅馆$';
+                    hl_filter_type += '4$';
+                    break;
+                case '背包客栈':
+                    hl_type_str += '5$';
+                    hl_filter_chinese += '背包客栈$';
+                    hl_filter_type += '5$';
+                    break;
+                case '宾馆/招待所':
+                    hl_type_str += '6$';
+                    hl_filter_chinese += '宾馆/招待所$';
+                    hl_filter_type += '6$';
+                    break;
+                case '精品酒店':
+                    hl_type_str += '7$';
+                    hl_filter_chinese += '精品酒店$';
+                    hl_filter_type += '7$';
+                    break;
+                case '度假类酒店':
+                    hl_type_str += '8$';
+                    hl_filter_chinese += '度假类酒店$';
+                    hl_filter_type += '8$';
+                    break;
+                case '游轮度假酒店':
+                    hl_type_str += '9$';
+                    hl_filter_chinese += '游轮度假酒店$';
+                    hl_filter_type += '9$';
+                    break;
+                case '别墅型酒店':
+                    hl_type_str += '10$';
+                    hl_filter_chinese += '别墅型酒店$';
+                    hl_filter_type += '10$';
+                    break;
+                case '乡村平房酒店':
+                    hl_type_str += '11$';
+                    hl_filter_chinese += '乡村平房酒店$';
+                    hl_filter_type += '11$';
+                    break;
+                case '家庭寄宿':
+                    hl_type_str += '12$';
+                    hl_filter_chinese += '家庭寄宿$';
+                    hl_filter_type += '12$';
+                    break;
+                case '农舍式房子':
+                    hl_type_str += '13$';
+                    hl_filter_chinese += '农舍式房子$';
+                    hl_filter_type += '13$';
+                    break;
+                case '豪华露营地':
+                    hl_type_str += '14$';
+                    hl_filter_chinese += '豪华露营地$';
+                    hl_filter_type += '14$';
+                    break;
+                case '标准露营地':
+                    hl_type_str += '15$';
+                    hl_filter_chinese += '标准露营地$';
+                    hl_filter_type += '15$';
+                    break;
+            };
+        }
+
+        var selectLocation = $("#locationList .l-li2");
+        var locationString = [];
+        selectLocation.each(function (index, ele) {
+            locationString.push($(ele).text());
+        });
+        //设置星级   多个星级参数和
+        //前端本地保存一份星级筛选
+        localStorage.setItem("filterStarRating",hl_star_str.join(""));
+        params.Parameters.StarRating = getStartParams(hl_star_str);
+        
+        //设置位置
+        params.Parameters.Location = locationString.join("||");
+
+        //保存筛选记录
+        paramsString = JSON.stringify(params);
+        localStorage.setItem("flighHotelParams", paramsString);
+        return paramsString;
+    }
+    //星级参数相加
+    function getStartParams(arrList){
+        var starts = 0; 
+        for(var i=0,len=arrList.length;i<len;i++){
+            starts += parseInt(arrList[i]);
+        }
+        return starts;
+    }
+    
+    //排序查询
+    function displaySortResult() {
+        //TODO 获取参数
+
+        var data = getParams();
+        vlm.loadJson("", data, dataCallBack);
+
+    }
+    //筛选查询
+    function displayFilterResult() {
+        //TODO 获取参数
+        var data = getParams();
+        vlm.loadJson("", data, dataCallBack);
+    }
+
+    //位置查询
+    function displayLocationResult() {
+        var data = getParams();
+        vlm.loadJson("", data, dataCallBack);
+        vlm.loadJ
+    }
+    //加载更多
+    function loadMore() {
+        //设置参数
+        var loadMoreBtn = $("#loadMore");
+        if (loadMoreBtn.attr("data-more") == "no") {
+            return;
+        }
+        
+        loadMoreBtn.attr("data-more", "yes");
+        params.Parameters.PageNo = currentPage + 1;
+
+        var data = getParams();
+        $("#loadMore").html("正在加载...");
+        vlm.loadJson("", data, dataCallBack, false, false, true);
+    }
+    //选择酒店类型
+    function selectType() {
+        var obj = window.event.srcElement;
+        var oName = obj.className;
+        var array = [];
+        var selected = [];
+        if (obj.innerText == "不限") {
+            array = document.getElementById("h-type").childNodes;
+            for (var i = 1; i < array.length; i++) {
+                array[i].className = "s-li";
+            }
+        }
+        if (obj.innerText != "不限") {
+            document.getElementById("h-type").firstElementChild.className = "s-li";
+        }
+        if (oName == "s-li") {
+            obj.className = "s-li1";
+        } else {
+            obj.className = "s-li";
+        }
+        //如果一个都没有选中的情况，显示不限；
+        array = document.getElementById("h-type").childNodes;
+        for (var j = 0, len = array.length; j < len; j++) {
+            if (array[j].className == "s-li1") {
+                selected.push(array[j].innerText);
+            }
+        }
+        if (selected.length == 0) {
+            document.getElementById("h-type").firstElementChild.className = "s-li1";
+        }
+    }
+    //选择酒店星级
+    function selectLevel(event) {
+        var obj = event.target || window.event.srcElement;
+        var oName = obj.className;
+        var array = [];
+        var selected = [];
+        if (obj.innerText == "不限") {
+            array = document.getElementById("h-level").childNodes;
+            for (var i = 1; i < array.length; i++) {
+                array[i].className = "s-li";
+            }
+        }
+        if (obj.innerText != "不限") {
+            document.getElementById("h-level").firstElementChild.className = "s-li";
+        }
+        if (oName == "s-li") {
+            obj.className = "s-li1";
+        } else {
+            obj.className = "s-li";
+        }
+        //如果一个都没有选中的情况，显示不限；
+        array = document.getElementById("h-level").childNodes;
+        for (var j = 0, len = array.length; j < len; j++) {
+            if (array[j].className == "s-li1") {
+                selected.push(array[j].innerText);
+            }
+        }
+        if (selected.length == 0) {
+            document.getElementById("h-level").firstElementChild.className = "s-li1";
+        }
+    }
+    //绑定事件
+    function bindEvent() {
+        //加载更多
+        $('#loadMore').on("click", function () {
+                loadMore();
+            })
+            //        $('.jlist li').on('click', function () {
+            //                $(this).addClass('cur').siblings().removeClass('cur');
+            //            })
+            /*排序*/
+        $('.j-bottom .fo-sort').on('click', function () {
+            $('.jpop,.jpop .sort').show();
+        })
+        $('.jpop .sort').on('click', 'li', function () {
+                $(this).addClass('cur').siblings().removeClass('cur');
+                $('.jpop,.jpop .sort').hide();
+                displaySortResult();
+            })
+            /*筛选*/
+        $('.j-bottom .fo-filter').on('click', function () {
+            $('.jpop,.jpop .screen').show();
+        })
+        $("#h-level").on("click", 'li', selectLevel);
+        //$("#h-type").on("click", 'li', selectType);  //暂时没有酒店类型筛选
+        $("#s_but").on("click", function (event) {
+            $('.jpop,.jpop .screen').hide();
+            displayFilterResult();
+        });
+
+        //位置
+        $('.j-bottom .fo-location').on('click', function () {
+            $('.jpop,.jpop .location').show();
+        });
+        $("#sureBtn").on("click", function (event) {
+            $('.jpop,.jpop .location').hide();
+            displayLocationResult();
+        });
+
+        //返回
+        $(".j-back").on("click", function () {
+            //清除历史记录
+            localStorage.removeItem("flighHotelParams");
+            window.history.go(-1);
+        });
+
+        /*遮罩层事件*/
+        var mask = document.getElementById('mask');
+        mask.addEventListener('touchstart', fn, false);
+
+        function fn(event) {
+            var event = event || window.event;
+            $('.jpop,.jpop .screen,.jpop .sort,.jpop .location').hide();
+            event.preventDefault();
+        }
+        // 酒店选择 页面跳转 将选择的酒店信息存入sessionStorage
+        $('#hj_jList').on("click", "li", function (evnt) {
+            var that = $(this);
+            var hotelId = that.attr("data-hotelid");
+            if(!hotelId){
+                return;
+            }
+            that.find('i').addClass("active");
+            //var hotelInfo = decodeURI(that.attr("data-hotelInfo"));
+            //var flightHotelAllData = JSON.parse(sessionStorage.getItem('flightHotelAllData'));
+            //flightHotelAllData.data.hotelInfo = JSON.parse(hotelInfo);
+            //sessionStorage.setItem('flightHotelAllData',JSON.stringify(flightHotelAllData));
+            parametersStorage.data.HotelID = hotelId;
+            localStorage.setItem("hotelDetailInfo", JSON.stringify(parametersStorage));
+            var timer = setTimeout(function () {
+                //window.history.go(-1);
+                window.location.href = 'hotel_detail.html';
+                clearTimeout(timer);
+            }, 500)
+        });
+    }
+
+    function init() {
+        initData();
+        bindEvent();
+    }
+
+    init();
+})();

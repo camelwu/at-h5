@@ -1,2 +1,677 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-var ticketOrder={requestUrl:"",addHandler:function(a,b,c){document.addEventListener?ticketOrder.addHandler=function(a,b,c){a.addEventListener(b,c,!1)}:document.attachEvent?ticketOrder.addHandler=function(a,b,c){a.attachEvent("on"+b,function(){c.call(a)})}:ticketOrder.addHandler=function(a,b,c){a["on"+b]=c},ticketOrder.addHandler(a,b,c)},loadingFade:function(){$(window).load(function(){$("#status-f").fadeOut(),$("#preloader").delay(400).fadeOut("medium")})},telSlider:function(){$(".custom-select").each(function(){var a=$(this).attr("class"),b=($(this).attr("id"),$(this).attr("name"),'<div class="'+a+'">');b+='<span class="custom-select-trigger">'+$(this).attr("placeholder")+"</span>",b+='<div class="custom-options">',$(this).find("option").each(function(){b+='<span class="custom-option '+$(this).attr("class")+'" data-value="'+$(this).attr("value")+'">'+$(this).html()+"</span>"}),b+="</div></div>",$(this).wrap('<div class="custom-select-wrapper"></div>'),$(this).hide(),$(this).after(b)}),$(".custom-option:first-of-type").hover(function(){$(this).parents(".custom-options").addClass("option-hover")},function(){$(this).parents(".custom-options").removeClass("option-hover")}),$(".custom-select-trigger").on("click",function(){$(this).parents(".custom-select").toggleClass("opened")}),$(".custom-option").on("click",function(){$(this).parents(".custom-select-wrapper").find("select").val($(this).data("value")),$(this).parents(".custom-options").find(".custom-option").removeClass("selection"),$(this).addClass("selection"),$(this).parents(".custom-select").removeClass("opened"),$(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text())})},storageUtil:{set:function(a,b){var c=window.localStorage;c.setItem(a,JSON.stringify({data:b}))},get:function(a){var b=window.localStorage,c=b.getItem(a),d=JSON.parse(c);return null!=d?d.data:void 0}},timeCut:function(a){var b=/\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g,c=b.exec(a);return c[1]+":"+c[2]},addEvent:function(){for(var a=document.querySelector(".close-buy-tip"),b=document.querySelector(".tip-word"),c=(document.querySelector(".back-meal-close"),document.querySelector(".go-line-outer")),d=document.querySelector("#confirm-button"),e=document.querySelector(".summary-cost-shadow-two"),f=document.querySelector(".detail-tangle"),g=document.querySelector(".summary-cost-modal"),h=document.querySelector(".summary-cost-shadow-one"),i=document.querySelector(".trigger-button"),j=(document.querySelector(".trigger-button2 "),document.querySelector(".add-Passenger"),document.querySelector(".contact-person"),document.querySelector("#passenger-list")),k=document.querySelectorAll(".next-icon"),l=(document.querySelectorAll(".icon-add"),JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofAdult),m=JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofChild,n=this,o=0;o<k.length;o++)this.addHandler(k[o],"click",function(){document.location.href="../user/user-choiceAir.html?type=edit&NumofAdult="+n.costFinaListData.NumofAdult+"&NumofChild="+n.costFinaListData.NumofChild});this.addHandler(i,"click",function(){$("#preloader").show(),$("#status-f").show(),$("#status-f").delay(400).fadeOut("medium"),$("#preloader").delay(400).fadeOut("medium"),document.querySelector(".summary-cost-shadow-two").style.display="block",document.querySelector(".ticket-detail-modal").style.display="block"}),$(".match span.trigger-button2").on("click",function(){$("#preloader").show(),$("#status-f").show(),$("#status-f").delay(400).fadeOut("medium"),$("#preloader").delay(400).fadeOut("medium"),document.querySelector(".summary-cost-shadow-two").style.display="block",document.querySelector(".ticket-detail-modal").style.display="block"}),this.addHandler(d,"click",function(){var a=a||window.event,b=(a.target||a.srcElement,ticketOrder),c={};b.backParaObj=b.reverseInformation;window.localStorage.travellerInfo_selected;if(!window.localStorage.travellerInfo_selected)return void jAlert("请选择"+l+"名成人,"+m+"名儿童!","提示");var d=JSON.parse(window.localStorage.travellerInfo_selected),e={},f=j.querySelectorAll("LI"),g=[],h=0,i=0;if(f)for(var k=0;k<f.length;k++)for(var n=f[k].querySelector(".passport-number").value,o=0;o<d.length;o++)d[o].CertificateInfo.IdNumber==n&&g.push(d[o]);for(var p=0;p<g.length;p++)"ADULT"==g[p].PassengerType&&h++,"CHILD"==g[p].PassengerType&&i++;if(h!=l||i!=m)return void jAlert("请选择"+l+"名成人,"+m+"名儿童!","提示");if(b.backParaObj.TravellerInfo=g,c=window.localStorage.contact_selected?JSON.parse(window.localStorage.contact_selected):{ContactNumber:"",CountryNumber:"",Email:"",FirstName:"",LastName:"",MobilePhone:"",SexCode:"Mr"},e.FirstName=document.querySelector("#first-name").value,e.LastName=document.querySelector("#last-name").value,e.Email=document.querySelector("#email-label").value,e.MobilePhone=document.querySelector("#tel-num").value,e.CountryNumber=document.querySelector("#country-code").innerHTML.substring(1),""==e.FirstName)return void jAlert("请输入姓!","提示");if(""==e.LastName)return void jAlert("请输入名!","提示");if(""==e.Email)return void jAlert("请输入邮箱!","提示");if(""==e.Email)return void jAlert("请输入邮箱!","提示");if(!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(e.Email))return void jAlert("请输入正确格式邮箱!","提示");if(""==e.MobilePhone)return void jAlert("请输入手机号!","提示");if(!/^1\d{10}$/.test(e.MobilePhone))return void jAlert("请输入正确格式手机号!","提示");for(var q in e)c[q]=e[q];window.localStorage.contact_selected=JSON.stringify(c),b.backParaObj.ContactDetail=c,$("#preloader").show(),$("#status-f").show(),b.tAjax(b.requestUrl,b.backParaObj,"3002",3,function(a){$("#preloader").hide(),$("#status-f").hide();var b=ticketOrder,d=document.querySelector(".order-result-tip"),a=a;if(a.success&&200==a.code){var e={};e.orderTime=new Date,e.TotalPrice=b.reverseInformation.TotalPrice,e.CurrencyCode=b.reverseInformation.CurrencyCode,e.NumofAdult=b.reverseInformation.WapOrder.NumofAdult,e.NumofChild=b.reverseInformation.WapOrder.NumofChild,e.RouteType=b.reverseInformation.WapOrder.RouteType,e.flightInfo=b.orderFlightData,e.TravellerInfo=g,e.ContactDetail=c,e.bookingID=a.data.bookingID,e.bookingRefNo=a.data.bookingRefNo,b.storageUtil.set("orderResultInfo",e),document.location.href="../payment/payment.html?bookingRefNo="+e.bookingRefNo+"&type=Flight"}else a.message.indexOf("失败")>-1&&a.message.indexOf("重新")>-1?jConfirm("预订失败,需要重新预订?","提示",function(a){1==a&&window.history.go(-2)},"确定","取消"):a.message.indexOf("过期")>-1?jConfirm("航班信息过期,需要重新预订?","提示",function(a){1==a&&window.history.go(-2)},"确定","取消"):(d.innerHTML=a.message,d.style.display="block",b.timer7=window.setTimeout(function(){d.style.display="none",window.clearTimeout(b.timer7),b.timer7=null},3e3))})}),this.addHandler(a,"click",function(a){var a=a||window.event,b=a.target||a.srcElement;"I"==b.tagName&&(document.querySelector(".summary-cost-shadow-two").style.display="none",document.querySelector(".buy-tip").style.display="none")}),this.addHandler(b,"click",function(a){var a=a||window.event;document.all?a.cancelBubble=!0:a.stopPropagation(),jTiper('<p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p>',"退改签说明",function(){})}),this.addHandler(document,"click",function(a){var a=a||window.event,b=a.target||a.srcElement;"popup_overlay"==b.id?document.querySelector("#popup_container")&&(document.body.removeChild(document.querySelector("#popup_container")),document.body.removeChild(document.querySelector("#popup_overlay"))):"summary-cost-shadow-two"==b.className&&(b.style.display="none",document.querySelector(".buy-ticket-notice").style.display="none")}),c&&this.addHandler(c,"click",function(a){document.querySelector(".summary-cost-shadow-two").style.display="block",document.querySelector(".ticket-detail-modal").style.display="block"}),this.addHandler(e,"click",function(a){this.style.display="none",document.querySelector(".ticket-detail-modal").style.display="none"}),this.addHandler(f,"click",function(a){function b(){g.className="summary-cost-modal summary-cost-modal-hide",h.style.display="none",f.className="detail clearfixs detail-tangle"}function c(){g.className="summary-cost-modal summary-cost-modal-show",h.style.display="block",f.className="detail clearfixs detail-tangle opened"}g.style.webkitTransition="all 300ms","summary-cost-modal summary-cost-modal-show"==g.className?b():c()})},countrySlider:function(){var a=document.querySelector(".country-trigger"),b=this;a.onclick=function(){var a=document.createElement("div"),c=function(){var a=document.querySelector("#country-input-zone"),b=document.querySelector(".country-list-searched-order"),c=(document.querySelector(".country-list-init-show"),[]),d=/[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/,e=a.value,f="";if(Array.prototype.distinct=function(){for(var a=function(b,c){var d=!0;if(!b||!c)return!1;for(var e in b){if(!c[e])return!1;if("object"==typeof b[e])d=a(b[e],c[e]);else if(b[e]!==c[e])return!1}return d},b=[],c={},d=0,e=this.length;e>d;d++)a(c[typeof this[d]+this[d]],this[d])||(b.push(this[d]),c[typeof this[d]+this[d]]=this[d]);return b},d.test(e)){for(var g=String(e).toLowerCase(),h=0;h<arrCountry.length;h++){var i=String(arrCountry[h].CountryEN).toLowerCase();(i.indexOf(g)>-1||arrCountry[h].CountryName.indexOf(e)>-1)&&c.push(arrCountry[h])}if(c=c.distinct(),c.length){for(var j=0;j<c.length;j++)f+='<li data-tel-code="'+c[j].TelCode+'" data-Country-code="'+c[j].CountryCode+'">'+c[j].CountryName+"</li>";b.innerHTML=f,b.style.display="block"}else f+="<li>无搜索结果</li>",b.style.display="none"}};a.className="all-elements country-cho-wrap-order",a.innerHTML='<div class="header country-list-header"><a href="javascript:void(0)" class="icons header-back country-hidden"></a><div class="cl_search"><input type="text" placeholder="中国/China/zhongguo" id="country-input-zone"/><i></i></div></div><ul class="country-list-searched country-list-searched-order"></ul><div class="snap-content country-list country-list-init-show" style="padding-top: 45px"><div class="country-wrap" id="country-wrap"><ul class="country-list counter-list-to-order"></ul></div></div>',document.body.appendChild(a);var d=document.querySelector("#country-input-zone"),e=document.querySelector(".country-hidden"),f=document.querySelector(".counter-list-to-order"),g="";Array.prototype.distinct=function(){for(var a=function(b,c){var d=!0;if(!b||!c)return!1;for(var e in b){if(!c[e])return!1;if("object"==typeof b[e])d=a(b[e],c[e]);else if(b[e]!==c[e])return!1}return d},b=[],c={},d=0,e=this.length;e>d;d++)a(c[typeof this[d]+this[d]],this[d])||(b.push(this[d]),c[typeof this[d]+this[d]]=this[d]);return b},arrCountry=arrCountry.distinct();for(var h=0,i=arrCountry.length;i>h;h++)g+='<li data-tel-code="'+arrCountry[h].TelCode+'" data-code="'+arrCountry[h].CountryCode+'">'+arrCountry[h].CountryName+"</li>";f.innerHTML=g,d.addEventListener?d.addEventListener("input",c,!1):d.attachEvent("onpropertychange",c),e.onclick=function(){document.querySelector(".country-cho-wrap-order")&&document.body.removeChild(document.querySelector(".country-cho-wrap-order"))},b.addCountryCodeHandler()}},addCountryCodeHandler:function(){var a=document.querySelector(".country-cho-wrap-order"),b=document.querySelector("#country-input-zone");a.onclick=function(a){var a=a||window.event,c=a.target||a.srcElement,d=document.querySelector("#country-code"),e=this;"LI"==c.tagName&&(b.value=c.innerHTML,d.innerHTML="+"+c.getAttribute("data-tel-code"),e.timer9=window.setTimeout(function(){d.innerHTML="+"+c.getAttribute("data-tel-code"),window.clearTimeout(e.timer9),e.timer9=null,document.body.removeChild(e)},1e3))}},tAjax:function(a,b,c,d,e){var f=this,g={Parameters:b,ForeEndType:d,Code:c};a=a?a:f.requestUrl,vlm.loadJson(a,JSON.stringify(g),e)},returnDate:function(a){var b=/(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(a),c=b[1]+"-"+b[2]+"-"+b[3],d=new Date(c.replace(/-/g,"/")).getDay(),e="";switch(d){case 0:e="周日";break;case 1:e="周一";break;case 2:e="周二";break;case 3:e="周三";break;case 4:e="周四";break;case 5:e="周五";break;case 6:e="周六";break;default:return""}return array=a.split("-"),array[1]=array[1]<10?"0"+parseInt(array[1]):parseInt(array[1]),array[2]=array[2]<10?"0"+parseInt(array[2]):parseInt(array[2]),'<span class="date">'+b[1]+"-"+b[2]+"-"+b[3]+'</span><span class="order-week">'+e+"</span>"},addContent:function(a){function b(a){var b="",c="";return a.segmentsReturn?(c=a.segmentsLeave.length>1?a.segmentsLeave[a.segmentsLeave.length-1].airportNameFrom:a.segmentsLeave[0].airportNameTo,b+='<p class="go-line  go-line-return"><i class="icon-go"></i>'+l.returnDate(a.flightLeaveStartDate)+'</span><span class="fix-width">'+a.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+c+'</span><span class="hour">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+'m</span><span class="icon-clock"></span></p>'):(c=a.segmentsLeave.length>1?a.segmentsLeave[a.segmentsLeave.length-1].airportNameFrom:a.segmentsLeave[0].airportNameTo,b+='<p class="go-line" style="padding-left:0;">'+l.returnDate(a.flightLeaveStartDate)+'</span><span class="fix-width">'+a.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+c+'</span><span class="trigger-button right-arrow"></span><span class="hour">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+'m</span><span class="icon-clock"></span></p>'),b}function c(a){var b="",c="";return a.segmentsReturn&&(c=a.segmentsReturn.length>1?a.segmentsReturn[a.segmentsReturn.length-1].airportNameFrom:a.segmentsReturn[0].airportNameTo,b+='<p class="go-line go-line-return"><i class="icon-go-return"></i>'+l.returnDate(a.flightReturnStartDate)+'</span><span class="fix-width">'+a.segmentsReturn[0].airportNameFrom+'</span><span class="line-order">-</span></span><span class="fix-width" style="margin-left: 0">'+c+'</span><i class="icon-clock"></i><span class="hour">'+parseInt(a.segmentsReturnTotalTravelTime/60)+"h"+a.segmentsReturnTotalTravelTime%60+"m</span></p>"),b}function d(a){var b=null!=a.segmentsReturn?"往返票价":"单程票价",c="";return c+='<div class="seat-condition"><div class="left"><span>'+a.segmentsLeave[0].cabinClassName+"</span><p><span>"+b+"</span>&nbsp;￥<span>"+parseInt(m(a.totalFareAmountADT))+"</span><span>&nbsp;税费</span>￥<span>"+parseInt(m(a.totalTaxAmountADT))+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+parseInt(m(a.totalFareAmountExc))+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>'}function e(a){var b="";return b+=a.segmentsReturn?'<li class="detail-start"><div class="top-line"><span class="icon-go"></span>'+l.returnDate(a.flightLeaveStartDate)+'<span class="start">'+a.cityNameFrom+'</span><span class="line">-</span><span class="end">'+a.cityNameTo+'</span><span class="detail-hour">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+"m</span></div>"+g(a.segmentsLeave)+"</div></li>":'<li class="detail-start"><div class="top-line top-pad-no">'+l.returnDate(a.flightLeaveStartDate)+'<span class="start">'+a.cityNameFrom+'</span><span class="line">-</span><span class="end">'+a.cityNameTo+'</span><span class="detail-hour">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+"m</span></div>"+g(a.segmentsLeave)+"</div></li>"}function f(a){var b="";return a.segmentsReturn&&(b+='<li class="detail-start"><div class="top-line"><span class="icon-back"></span>'+l.returnDate(a.flightReturnStartDate)+'<span class="start">'+a.cityNameTo+'</span><span class="line">-</span><span class="end">'+a.cityNameFrom+'</span><span class="detail-hour">'+parseInt(a.segmentsReturnTotalTravelTime/60)+"h"+a.segmentsReturnTotalTravelTime%60+"m</span></div>"+g(a.segmentsReturn)+"</div></li>"),b}function g(a){if(a)for(var b="",c="",d="",e=ticketOrder,f=0;f<a.length;f++)c=void 0!=a[f+1]?'<div class="transit-city-hour">中转'+a[f].cityNameTo+"</div>":"",d=Math.floor((new Date(a[f].arriveDate.replace(/-/g,"/"))-new Date(a[f].departDate.replace(/-/g,"/")))/1e3/60/60/24)>=1?Math.floor((new Date(a[f].arriveDate.replace(/-/g,"/"))-new Date(a[f].departDate.replace(/-/g,"/")))/1e3/60/60/24)+"天":"",b+='<div class="go-trip start"><div class="time-airport-info"><div class="start-time-info"><span class="time-number">'+e.timeCut(a[f].departDate)+'</span><span class="air-port-word">'+a[f].airportNameFrom+a[f].termDepart+'</span></div><div class="total-time-info detail-time-info"><span class="time-hour-minute"></span><span class="arrow-time"></span></div><div class="end-time-info"><span class="tip-add-days-seat">'+d+'</span><span class="time-number">'+e.timeCut(a[f].arriveDate)+'</span><span class="air-port-word-right">'+a[f].airportNameTo+a[f].termArrive+'</span></div></div><div class="bottom-word"><span>'+a[f].airCorpName+"</span><span>|</span><span>"+a[f].flightNo+"</span><span>|</span><span>"+a[f].planeName+"</span></div></div>"+c;return b}var h=document.querySelector(".order-top"),i=document.querySelector(".detail-outer"),j="",k="",l=this,m=(this.storageUtil.get("reverseInformationCache"),function(a){return String(a).indexOf(".")>-1?2==String(a).substring(String(a).indexOf(".")).length?String(a)+"0":String(a).substring(0,String(a).indexOf(".")+3):String(a)+".00"});a.segmentsReturn?(j+='<div class="go-line-outer-sub">'+b(a)+'<p class="go-line go-line-return-middle"><span class="trigger-button right-arrow"></span></p>'+c(a)+"</div>",k+=d(a),h.innerHTML=j+k):(j+='<div class="go-line-outer-sub match">'+b(a)+c(a)+'<p class="go-line go-line-return-middle"><span class="trigger-button2 right-arrow"></span></p></div>',k+=d(a),h.innerHTML=j+k),i.innerHTML=e(a)+f(a)},costFinaList:function(){var a=document.querySelector(".second-line"),b={},c=document.querySelector(".total-price-number strong"),d="",e=this.storageUtil.get("curFlightListData"),f=this.reverseInformation,g=function(a){return String(a).indexOf(".")>-1?2==String(a).substring(String(a).indexOf(".")).length?String(a)+"0":String(a).substring(0,String(a).indexOf(".")+3):String(a)+".00"},h=document.querySelector(".total-person-price"),i=0;b.totalFareAmountADT=e.totalFareAmountADT,b.totalFareAmountCHD=e.totalFareAmountCHD,b.totalFareAmountExc=e.totalFareAmountExc,b.totalTaxAmountADT=e.totalTaxAmountADT,b.totalTaxAmountCHD=e.totalTaxAmountCHD,b.NumofAdult=parseInt(f.WapOrder.NumofAdult),b.NumofChild=parseInt(f.WapOrder.NumofChild),this.costFinaListData=b,d+="<p>成人票<span>￥<span>"+g(b.totalFareAmountADT)+"</span> x"+b.NumofAdult+" 人</span></p>",d+="<p>税费<span>￥<span>"+g(b.totalTaxAmountADT)+"</span> x"+b.NumofAdult+" 人</span></p>",this.orderFlightData.totalFareAmountCHD?(d+=0!=b.NumofChild?"<p>儿童票<span>￥<span>"+g(b.totalFareAmountCHD)+"</span> x"+b.NumofChild+" 人</span></p>":"",d+=0!=b.NumofChild?"<p>税费<span>￥<span>"+g(b.totalTaxAmountCHD)+"</span> x"+b.NumofChild+" 人</span></p>":"",i=b.NumofAdult+b.NumofChild):i=b.NumofAdult,a.innerHTML=d,c.innerHTML=parseInt(g(b.totalFareAmountExc*b.NumofAdult+(b.totalFareAmountCHD+b.totalTaxAmountCHD)*b.NumofChild)),h.innerHTML=i+"人总价"},init:function(){var a=this.storageUtil.get("reverseInformationCache");this.reverseInformation=a,this.telSlider(),this.loadingFade(),this.orderFlightData=this.storageUtil.get("curFlightListData"),this.addContent(this.orderFlightData),this.addEvent(),this.costFinaList()}};ticketOrder.init();
+var ticketOrder = {
+
+    requestUrl: "",
+
+    addHandler: function (target, eventType, handle) {
+
+        if (document.addEventListener) {
+            ticketOrder.addHandler = function (target, eventType, handle) {
+                target.addEventListener(eventType, handle, false);
+            }
+        } else if (document.attachEvent) {
+            ticketOrder.addHandler = function (target, eventType, handle) {
+                target.attachEvent('on' + eventType, function () {
+                    handle.call(target);
+                });
+            }
+        } else {
+            ticketOrder.addHandler = function (target, eventType, handle) {
+                target['on' + eventType] = handle;
+            }
+        }
+        ticketOrder.addHandler(target, eventType, handle);
+    },
+    loadingFade:function(){
+        $(window).load(function () {
+            $("#status-f").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
+    },
+    telSlider:function(){
+        $(".custom-select").each(function() {
+            var classes = $(this).attr("class"),
+                id = $(this).attr("id"),
+                name = $(this).attr("name");
+            var template = '<div class="' + classes + '">';
+            template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
+            template += '<div class="custom-options">';
+            $(this).find("option").each(function() {
+                template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
+            });
+            template += '</div></div>';
+
+            $(this).wrap('<div class="custom-select-wrapper"></div>');
+            $(this).hide();
+            $(this).after(template);
+        });
+        $(".custom-option:first-of-type").hover(function() {
+            $(this).parents(".custom-options").addClass("option-hover");
+        }, function() {
+            $(this).parents(".custom-options").removeClass("option-hover");
+        });
+        $(".custom-select-trigger").on("click", function() {
+            $(this).parents(".custom-select").toggleClass("opened");
+        });
+        $(".custom-option").on("click", function() {
+            $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
+            $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
+            $(this).addClass("selection");
+            $(this).parents(".custom-select").removeClass("opened");
+            $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
+        });
+    },
+
+    storageUtil: {
+        set: function (key, v) {
+            var localStorage = window.localStorage;
+            localStorage.setItem(key, JSON.stringify({data: v}))
+        },
+        get: function (key) {
+            var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
+            if(dataObj!=null){
+                return dataObj.data;
+            }
+        }
+    },
+    timeCut:function(arg){
+        var reg = /\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g,result = reg.exec(arg);
+        return result[1]+':'+result[2];
+    },
+    addEvent:function(){
+        var closeTag = document.querySelector('.close-buy-tip');
+        var tipWord = document.querySelector('.tip-word');
+        var backMealClose = document.querySelector('.back-meal-close');
+        var goLineOuter = document.querySelector('.go-line-outer');
+        var confirmButton = document.querySelector('#confirm-button');
+        var summaryCostShadowTwo = document.querySelector('.summary-cost-shadow-two');
+        var detailTangle = document.querySelector('.detail-tangle');
+        var summaryCostModal = document.querySelector('.summary-cost-modal');
+        var summaryCostShadowOne = document.querySelector('.summary-cost-shadow-one');
+        var rightArrow = document.querySelector('.trigger-button');
+        var rightArrowDan = document.querySelector('.trigger-button2 ');
+        var addPassenger = document.querySelector('.add-Passenger');
+        var contactPerson = document.querySelector('.contact-person');
+        var passengerWrap = document.querySelector('#passenger-list');
+        var toEditPassengers = document.querySelectorAll('.next-icon');
+        var deletePassenger = document.querySelectorAll('.icon-add');
+        var adultNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofAdult;
+        var childNum = JSON.parse(window.localStorage.ticketSearchedInfo).data.NumofChild;
+        var that = this;
+        for(var i = 0;i<toEditPassengers.length;i++){
+            this.addHandler(toEditPassengers[i],'click', function(){
+                document.location.href = '../user/user-choiceAir.html?type=edit&NumofAdult='+that.costFinaListData.NumofAdult+'&NumofChild='+that.costFinaListData.NumofChild;
+            });
+        }
+        this.addHandler(rightArrow,'click', function(){
+            $("#preloader").show();
+            $("#status-f").show();
+            $("#status-f").delay(400).fadeOut("medium");
+            $("#preloader").delay(400).fadeOut("medium");
+            document.querySelector('.summary-cost-shadow-two').style.display = 'block';
+            document.querySelector('.ticket-detail-modal').style.display = 'block';
+        });
+        $('.match span.trigger-button2').on('click',function(){
+            $("#preloader").show();
+            $("#status-f").show();
+            $("#status-f").delay(400).fadeOut("medium");
+            $("#preloader").delay(400).fadeOut("medium");
+            document.querySelector('.summary-cost-shadow-two').style.display = 'block';
+            document.querySelector('.ticket-detail-modal').style.display = 'block';
+        })
+        this.addHandler(confirmButton,'click', function(){
+            var event = event || window.event;
+            var target =event.target || event.srcElement;
+            var that = ticketOrder,contactInfo={};
+            that.backParaObj = that.reverseInformation;
+            var selectTravellerList=window['localStorage']['travellerInfo_selected'];
+            if(!window['localStorage']['travellerInfo_selected']){
+                jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
+                return;
+            }else{
+                var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']),contactInfoCache = {};
+            }
+            //乘客信息核对
+            var passengerLis = passengerWrap.querySelectorAll('LI'), realPara=[], tempAdult= 0, tempChild=0;
+              if(passengerLis){
+                  for(var li=0; li<passengerLis.length;li++){
+                        var passPortNumber = passengerLis[li].querySelector('.passport-number').value;
+                        for(var ki=0;ki<storageInfo.length;ki++){
+                                if(storageInfo[ki].CertificateInfo.IdNumber == passPortNumber){
+                                    realPara.push(storageInfo[ki])
+                                }
+                        }
+                  }
+              }
+             for(var dd=0;dd<realPara.length;dd++){
+                if(realPara[dd].PassengerType == 'ADULT'){
+                    tempAdult++;
+                }
+                if(realPara[dd].PassengerType == 'CHILD'){
+                    tempChild++;
+                }
+            }
+             if(tempAdult!=adultNum||tempChild!=childNum){
+                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
+                 return;
+             }
+
+            that.backParaObj.TravellerInfo =realPara;
+
+            if(window['localStorage']['contact_selected']){
+                contactInfo =JSON.parse(window['localStorage']['contact_selected']);
+                }else{
+                contactInfo={ContactNumber: "",
+                CountryNumber: "",
+                Email: "",
+                FirstName: "",
+                LastName: "",
+                MobilePhone: "",
+                SexCode: "Mr"}
+            }
+            contactInfoCache.FirstName = document.querySelector('#first-name').value;
+            contactInfoCache.LastName = document.querySelector('#last-name').value;
+            contactInfoCache.Email =document.querySelector('#email-label').value;
+            contactInfoCache.MobilePhone = document.querySelector('#tel-num').value;
+            contactInfoCache.CountryNumber = document.querySelector('#country-code').innerHTML.substring(1);
+
+            if(contactInfoCache.FirstName==""){
+                jAlert('请输入姓!', '提示');
+                return;
+            }
+            if(contactInfoCache.LastName==""){
+                jAlert('请输入名!', '提示');
+                return;
+            }
+            /* H5-764
+            if(contactInfoCache.FirstName=="" && contactInfoCache.LastName==""){
+                jAlert('请输入姓或者名!', '提示');
+                return;
+            }*/
+            if(contactInfoCache.Email==""){
+                jAlert('请输入邮箱!', '提示');
+                return;
+            }
+            if(contactInfoCache.Email==""){
+                jAlert('请输入邮箱!', '提示');
+                return;
+            }else if(!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)){
+                jAlert('请输入正确格式邮箱!', '提示');
+                return;
+            }
+            if(contactInfoCache.MobilePhone==""){
+                jAlert('请输入手机号!', '提示');
+                return;
+            }else if(!/^1\d{10}$/.test(contactInfoCache.MobilePhone)){
+                jAlert('请输入正确格式手机号!', '提示');
+                return;
+            }
+            for(var tv in contactInfoCache){
+                contactInfo[tv] = contactInfoCache[tv];
+            }
+            window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
+            that.backParaObj.ContactDetail =contactInfo;
+            $("#preloader").show();
+            $("#status-f").show();
+            console.log(that.backParaObj);
+            that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
+                $("#preloader").hide();
+                $("#status-f").hide();
+                var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
+                var arg = arg;
+                if(arg.success&&arg.code==200){
+                    var orderResultInfo = {};
+                    orderResultInfo['orderTime'] = new Date();
+                    orderResultInfo['TotalPrice'] = that.reverseInformation['TotalPrice'];
+                    orderResultInfo['CurrencyCode'] = that.reverseInformation['CurrencyCode'];
+                    orderResultInfo['NumofAdult'] = that.reverseInformation['WapOrder']['NumofAdult'];
+                    orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];
+                    orderResultInfo['RouteType'] = that.reverseInformation['WapOrder']['RouteType'];
+                    orderResultInfo['flightInfo'] = that.orderFlightData;
+                    orderResultInfo['TravellerInfo'] = realPara;
+                    orderResultInfo['ContactDetail'] = contactInfo;
+                    orderResultInfo['bookingID'] = arg['data']['bookingID'];
+                    orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
+                    that.storageUtil.set('orderResultInfo',orderResultInfo);
+                    document.location.href = '../payment/payment.html?bookingRefNo='+orderResultInfo.bookingRefNo+"&type=Flight";
+                }else{
+                     if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
+                         jConfirm('预订失败,需要重新预订?', '提示', function(status){
+                             if(status == true){
+                                 window.history.go(-2);
+                             }
+                         }, '确定', '取消');
+                     }else if(arg.message.indexOf('过期')>-1){
+                        jConfirm('航班信息过期,需要重新预订?', '提示', function(status){
+                            if(status == true){
+                                window.history.go(-2);
+                            }
+                        }, '确定','取消');
+                    }else{
+                         orderResultTip.innerHTML = arg.message;
+                         orderResultTip.style.display = 'block';
+                         that.timer7 = window.setTimeout(function(){
+                             orderResultTip.style.display = 'none';
+                             window.clearTimeout(that.timer7);
+                             that.timer7 = null;
+                         },3000);
+                     }
+                }
+            });
+        });
+        this.addHandler(closeTag,'click', function(event){
+            var event = event || window.event;
+            var target =event.target || event.srcElement;
+            if(target.tagName == 'I'){
+                document.querySelector('.summary-cost-shadow-two').style.display = 'none';
+                document.querySelector('.buy-tip').style.display = 'none';
+            }
+        });
+        this.addHandler(tipWord,'click', function(event){
+            var event = event || window.event;
+            if (document.all) {
+                event.cancelBubble = true;
+            } else {
+                event.stopPropagation();
+            }
+            jTiper('<p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0 15px;margin-bottom:0">退改签规则，以航司为准!</p>',
+                '退改签说明',function(){})
+        });
+
+        this.addHandler(document,'click', function(event){
+            var event = event || window.event;
+            var target =event.target || event.srcElement;
+            if(target.id == 'popup_overlay'){
+                if(document.querySelector('#popup_container')){
+                    document.body.removeChild(document.querySelector('#popup_container'));
+                    document.body.removeChild(document.querySelector('#popup_overlay'));
+                }
+            }else if(target.className == 'summary-cost-shadow-two'){
+                     target.style.display = 'none';
+                     document.querySelector('.buy-ticket-notice').style.display = 'none'
+            }
+
+        });
+        if(goLineOuter){
+            this.addHandler(goLineOuter,'click', function(event){
+                document.querySelector('.summary-cost-shadow-two').style.display = 'block';
+                document.querySelector('.ticket-detail-modal').style.display = 'block';
+            });
+        }
+        this.addHandler(summaryCostShadowTwo,'click', function(event){
+                this.style.display = 'none';
+                document.querySelector('.ticket-detail-modal').style.display = 'none';
+
+        });
+        this.addHandler(detailTangle,'click', function(event){
+            summaryCostModal.style.webkitTransition = "all 300ms";
+            summaryCostModal.className=="summary-cost-modal summary-cost-modal-show"?hide():show();
+            function hide(){
+                summaryCostModal.className="summary-cost-modal summary-cost-modal-hide";
+                summaryCostShadowOne.style.display='none';
+                detailTangle.className="detail clearfixs detail-tangle"}
+
+            function show(){
+                summaryCostModal.className="summary-cost-modal summary-cost-modal-show";
+                summaryCostShadowOne.style.display='block';
+                detailTangle.className="detail clearfixs detail-tangle opened"
+            }
+        });
+
+    },
+
+    countrySlider:function (){
+        var countryTrigger = document.querySelector('.country-trigger'),that= this;
+        countryTrigger.onclick = function(){
+            var div = document.createElement('div');
+            var searchHandler=function(){
+                var countryInputZone = document.querySelector('#country-input-zone');
+                var cityListSearched = document.querySelector('.country-list-searched-order');
+                var countryListInitShow = document.querySelector('.country-list-init-show');
+                var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+                Array.prototype.distinct=function(){
+                    var sameObj=function(a,b){
+                        var tag = true;
+                        if(!a||!b)return false;
+                        for(var x in a){
+                            if(!b[x])
+                                return false;
+                            if(typeof(a[x])==='object'){
+                                tag=sameObj(a[x],b[x]);
+                            }else{
+                                if(a[x]!==b[x])
+                                    return false;
+                            }
+                        }
+                        return tag;
+                    };
+                    var newArr=[],obj={};
+                    for(var i=0,len=this.length;i<len;i++){
+                        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+                            newArr.push(this[i]);
+                            obj[typeof(this[i])+this[i]]=this[i];
+                        }
+                    }
+                    return newArr;
+                };
+
+                if(reg.test(valueStr)){
+                    console.log(22)
+                    var mb = String(valueStr).toLowerCase();
+                    for(var p = 0; p < arrCountry.length; p++){
+                        var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
+                        if(ma.indexOf(mb)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
+                            searchResult.push(arrCountry[p]);
+                        }
+                    }
+                    searchResult = searchResult.distinct();
+                    if(!searchResult.length){
+                        resultStr +='<li>无搜索结果</li>';
+                        cityListSearched.style.display = 'none';
+                    }else{
+                        for(var l = 0;l<searchResult.length;l++){
+                            resultStr += '<li data-tel-code="'+searchResult[l].TelCode+'" data-Country-code="'+searchResult[l].CountryCode+'">'+searchResult[l].CountryName+'</li>'
+                        }
+                        cityListSearched.innerHTML = resultStr;
+                        cityListSearched.style.display = 'block';
+                    }
+                }
+            };
+            div.className = 'all-elements country-cho-wrap-order';
+            div.innerHTML = '<div class="header country-list-header">'+
+            '<a href="javascript:void(0)" class="icons header-back country-hidden"></a>'+
+            '<div class="cl_search">'+
+            '<input type="text" placeholder="中国/China/zhongguo" id="country-input-zone"/>'+
+            '<i></i>'+
+            '</div>'+
+            '</div>'+
+            '<ul class="country-list-searched country-list-searched-order"></ul>'+
+            '<div class="snap-content country-list country-list-init-show" style="padding-top: 45px">'+
+            '<div class="country-wrap" id="country-wrap">'+
+            '<ul class="country-list counter-list-to-order">'+
+            '</ul>'+
+            '</div>'+
+            '</div>';
+            document.body.appendChild(div);
+
+            var  cityInputZone = document.querySelector('#country-input-zone');
+            var  countryHidden = document.querySelector('.country-hidden');
+            var  ulLi = document.querySelector('.counter-list-to-order'),liStr = '' ;
+            Array.prototype.distinct=function(){
+                var sameObj=function(a,b){
+                    var tag = true;
+                    if(!a||!b)return false;
+                    for(var x in a){
+                        if(!b[x])
+                            return false;
+                        if(typeof(a[x])==='object'){
+                            tag=sameObj(a[x],b[x]);
+                        }else{
+                            if(a[x]!==b[x])
+                                return false;
+                        }
+                    }
+                    return tag;
+                };
+                var newArr=[],obj={};
+                for(var i=0,len=this.length;i<len;i++){
+                    if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+                        newArr.push(this[i]);
+                        obj[typeof(this[i])+this[i]]=this[i];
+                    }
+                }
+                return newArr;
+            };
+            arrCountry = arrCountry .distinct();
+            for(var ji= 0, len =arrCountry.length;ji<len; ji++){
+                    liStr += '<li data-tel-code="'+arrCountry[ji].TelCode+'" data-code="'+arrCountry[ji].CountryCode+'">'+arrCountry[ji].CountryName+'</li>'
+                 }
+            ulLi.innerHTML = liStr;
+            if(cityInputZone.addEventListener){
+                cityInputZone.addEventListener('input',searchHandler,false)
+            }else{
+                cityInputZone.attachEvent('onpropertychange',searchHandler)
+            }
+             countryHidden.onclick=function(){
+                    if(document.querySelector('.country-cho-wrap-order')){
+                             document.body.removeChild(document.querySelector('.country-cho-wrap-order'));
+                    }
+            };
+            that.addCountryCodeHandler();
+        };
+    },
+    addCountryCodeHandler:function(){
+        var  countryChoWrapOrder = document.querySelector('.country-cho-wrap-order');
+        var  cityInputZone = document.querySelector('#country-input-zone');
+        countryChoWrapOrder.onclick=function(event){
+            var event = event || window.event;
+            var target = event.target ||event.srcElement;
+            var countryCode = document.querySelector('#country-code'), that =this;
+            if(target.tagName=='LI'){
+                cityInputZone.value = target.innerHTML;
+                countryCode.innerHTML ='+'+target.getAttribute('data-tel-code');
+                that.timer9 = window.setTimeout(function(){
+                    countryCode.innerHTML ='+'+target.getAttribute('data-tel-code');
+                    window.clearTimeout(that.timer9);
+                    that.timer9 = null;
+                    document.body.removeChild(that);
+                },1000)
+            }
+        };
+    },
+
+    tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
+        var that=this,dataObj =
+        {
+            Parameters: data,
+            ForeEndType: ForeEndType,
+            Code: Code
+        };
+        questUrl = questUrl?questUrl:that.requestUrl;
+        vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    },
+
+    returnDate:function(arg){
+        var argArray = /(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(arg);
+        var transferData = argArray[1]+'-'+argArray[2]+'-'+argArray[3];
+        var index = new Date(transferData.replace(/-/g, "/")).getDay(),week='';
+        switch (index){
+            case 0 :
+                week = '周日';
+                break;
+            case 1 :
+                week = '周一';
+                break;
+            case 2 :
+                week = '周二';
+                break;
+            case 3 :
+                week = '周三';
+                break;
+            case 4 :
+                week = '周四';
+                break;
+            case 5 :
+                week = '周五';
+                break;
+            case 6 :
+                week = '周六';
+                break;
+            default :
+                return ''
+        }
+        array = arg.split('-');
+        array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
+        array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
+        return '<span class="date">'+argArray[1]+'-'+argArray[2]+'-'+argArray[3]+'</span>'+'<span class="order-week">'+week+'</span>';
+    },
+    addContent:function(arg){
+        var orderTop = document.querySelector('.order-top');
+        var detailOuter = document.querySelector('.detail-outer');
+        var goLineOuterHtml = '',seatConditionHtml ='', detailOuterHtml='',costStr='',that = this;
+        var cacheInfo = this.storageUtil.get('reverseInformationCache');
+        var myFixed = function(arg){
+            if(String(arg).indexOf('.')>-1){
+                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                    return String(arg)+'0';
+                }
+                return String(arg).substring(0,String(arg).indexOf('.')+3)
+            }else{
+                return String(arg)+'.00';
+            }
+        };
+
+        if(arg.segmentsReturn){
+            goLineOuterHtml+= '<div class="go-line-outer-sub">' + createTopGo(arg)+'<p class="go-line go-line-return-middle"><span class="trigger-button right-arrow"></span></p>'+createTopBack(arg)+'</div>';
+            seatConditionHtml += createSeatCondition(arg);
+            orderTop.innerHTML = goLineOuterHtml + seatConditionHtml;
+        }else{
+            goLineOuterHtml+= '<div class="go-line-outer-sub match">' + createTopGo(arg)+createTopBack(arg)+'<p class="go-line go-line-return-middle"><span class="trigger-button2 right-arrow"></span></p>'+'</div>';
+            seatConditionHtml += createSeatCondition(arg);
+            orderTop.innerHTML = goLineOuterHtml + seatConditionHtml;
+        }
+        detailOuter.innerHTML = detailGo(arg) + detailBack(arg);
+        function createTopGo(arg){
+                var str = '',toCity = '';
+               if(arg.segmentsReturn){
+                   toCity = arg.segmentsLeave.length>1?arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameFrom:arg.segmentsLeave[0].airportNameTo;
+                   str+='<p class="go-line  go-line-return">' +
+                   '<i class="icon-go"></i>'+that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
+                 '<span class="icon-clock"></span></p>';
+               }else{
+                   toCity = arg.segmentsLeave.length>1?arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameFrom:arg.segmentsLeave[0].airportNameTo;
+                   str+='<p class="go-line" style="padding-left:0;">' +
+                   that.returnDate(arg.flightLeaveStartDate)+'</span><span class="fix-width">'+arg.segmentsLeave[0].airportNameFrom+'</span><span class="line-order">-</span><span class="order-city-end fix-width">'+toCity+'</span><span class="trigger-button right-arrow"></span><span class="hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
+                   '<span class="icon-clock"></span></p>';
+               }
+               return str;
+        }
+
+        function createTopBack(arg){
+             var str ='',toCity ='';
+             if(arg.segmentsReturn){
+                toCity = arg.segmentsReturn.length>1?arg.segmentsReturn[arg.segmentsReturn.length-1].airportNameFrom:arg.segmentsReturn[0].airportNameTo;
+                str+='<p class="go-line go-line-return">' +
+                        '<i class="icon-go-return"></i>'+that.returnDate(arg.flightReturnStartDate)+'</span><span class="fix-width">'+arg.segmentsReturn[0].airportNameFrom+'</span><span class="line-order">-</span></span><span class="fix-width" style="margin-left: 0">'+toCity+'</span><i class="icon-clock"></i><span class="hour">'+parseInt(arg.segmentsReturnTotalTravelTime/60)+'h'+arg.segmentsReturnTotalTravelTime%60+'m</span>' +
+                     '</p>'
+            }
+            return str;
+        }
+
+        function createSeatCondition(arg){
+            var tipStr = arg.segmentsReturn!=null?'往返票价':'单程票价';
+            var str ='';
+             str +='<div class="seat-condition"><div class="left">' +
+                   '<span>'+arg.segmentsLeave[0].cabinClassName+'</span><p><span>'+tipStr+'</span>&nbsp;￥<span>'+parseInt(myFixed(arg.totalFareAmountADT))+'</span><span>&nbsp;税费</span>￥<span>'+parseInt(myFixed(arg.totalTaxAmountADT))+'</span></p></div> <div class="right"> <p><span class="tag">￥<strong>'+parseInt(myFixed(arg.totalFareAmountExc))+'</strong></span></p><p><span class="tip-word">退改签说明</span></p></div></div>';
+            return str;
+
+        }
+
+        function detailGo(arg){
+            var str = '';
+            if(arg.segmentsReturn) {
+                str += '<li class="detail-start">' +
+                '<div class="top-line"><span class="icon-go"></span>' + that.returnDate(arg.flightLeaveStartDate) + '<span class="start">' + arg.cityNameFrom + '</span><span class="line">-</span><span class="end">' + arg.cityNameTo + '</span>' +
+                '<span class="detail-hour">' + parseInt(arg.segmentsLeaveTotalTravelTime / 60) + 'h' + arg.segmentsLeaveTotalTravelTime % 60 + 'm</span></div>' + createFlightUnit(arg.segmentsLeave) + '</div></li>';
+            }else{
+                str += '<li class="detail-start">' +
+                '<div class="top-line top-pad-no">' + that.returnDate(arg.flightLeaveStartDate) + '<span class="start">' + arg.cityNameFrom + '</span><span class="line">-</span><span class="end">' + arg.cityNameTo + '</span>' +
+                '<span class="detail-hour">' + parseInt(arg.segmentsLeaveTotalTravelTime / 60) + 'h' + arg.segmentsLeaveTotalTravelTime % 60 + 'm</span></div>' + createFlightUnit(arg.segmentsLeave) + '</div></li>';
+
+            }
+            return str;
+
+        }
+        function detailBack(arg){
+            var str = '';
+            if(arg.segmentsReturn) {
+                str += '<li class="detail-start">' +
+                '<div class="top-line"><span class="icon-back"></span>' + that.returnDate(arg.flightReturnStartDate) + '<span class="start">' + arg.cityNameTo + '</span><span class="line">-</span><span class="end">' + arg.cityNameFrom + '</span>' +
+                '<span class="detail-hour">' + parseInt(arg.segmentsReturnTotalTravelTime / 60) + 'h' + arg.segmentsReturnTotalTravelTime % 60 + 'm</span></div>' + createFlightUnit(arg.segmentsReturn) + '</div></li>';
+            }
+            return str;
+        }
+        function createFlightUnit(arg){
+            if(arg){
+                var str = '',transferStr='',dayStr='',that = ticketOrder;
+                for(var j = 0;j<arg.length;j++){
+                    transferStr= arg[j+1]!=undefined?'<div class="transit-city-hour">中转'+arg[j].cityNameTo+'</div>':'';
+                    dayStr= Math.floor((new Date(arg[j].arriveDate.replace(/-/g, "/")) - new Date(arg[j].departDate.replace(/-/g, "/")))/1000/60/60/24)>=1?Math.floor((new Date(arg[j].arriveDate.replace(/-/g, "/")) - new Date(arg[j].departDate.replace(/-/g, "/")))/1000/60/60/24)+'天':'';
+                    str+='<div class="go-trip start">' +
+                    '<div class="time-airport-info">'+
+                    '<div class="start-time-info">'+
+                    '<span class="time-number">'+that.timeCut(arg[j].departDate)+'</span>'+
+                    '<span class="air-port-word">'+arg[j].airportNameFrom+arg[j].termDepart+'</span>'+
+                    '</div>'+
+                    '<div class="total-time-info detail-time-info">'+
+                    '<span class="time-hour-minute"></span>'+
+                    '<span class="arrow-time"></span>'+
+                    '</div>'+
+                    '<div class="end-time-info">'+
+                    '<span class="tip-add-days-seat">'+dayStr+'</span>'+
+                    '<span class="time-number">'+that.timeCut(arg[j].arriveDate)+'</span>'+
+                    '<span class="air-port-word-right">'+arg[j].airportNameTo+arg[j].termArrive+'</span>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="bottom-word">'+
+                    '<span>'+arg[j].airCorpName+'</span>'+
+                    '<span>|</span>'+
+                    '<span>'+arg[j].flightNo+'</span>'+
+                    '<span>|</span>'+
+                    '<span>'+arg[j].planeName+'</span>'+
+                    '</div>'+
+                    '</div>'+transferStr;
+                }
+            }
+            return str;
+        }
+    },
+    costFinaList:function(){
+       var that = this, costTotal = document.querySelector('.second-line'),temObj = {},totalCost = document.querySelector('.total-price-number strong');
+       var costStr = '',curFlightListData = this.storageUtil.get('curFlightListData'),reverseInformation=this.reverseInformation ;
+       var myFixed = function(arg){
+            if(String(arg).indexOf('.')>-1){
+                if(String(arg).substring(String(arg).indexOf('.')).length ==2){
+                    return String(arg)+'0';
+                }
+                return String(arg).substring(0,String(arg).indexOf('.')+3)
+            }else{
+                return String(arg)+'.00';
+            }
+        };
+        var totalPerson = document.querySelector('.total-person-price'),totalPersonNum = 0;
+       temObj.totalFareAmountADT = curFlightListData.totalFareAmountADT;
+       temObj.totalFareAmountCHD = curFlightListData.totalFareAmountCHD;
+       temObj.totalFareAmountExc = curFlightListData.totalFareAmountExc;
+       temObj.totalTaxAmountADT = curFlightListData.totalTaxAmountADT;
+       temObj.totalTaxAmountCHD = curFlightListData.totalTaxAmountCHD;
+       temObj.NumofAdult = parseInt(reverseInformation.WapOrder.NumofAdult);
+       temObj.NumofChild = parseInt(reverseInformation.WapOrder.NumofChild);
+       this.costFinaListData = temObj;
+       costStr+= '<p>成人票<span>￥<span>'+myFixed(temObj.totalFareAmountADT)+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+       costStr+= '<p>税费<span>￥<span>'+myFixed(temObj.totalTaxAmountADT)+'</span> x'+temObj.NumofAdult+' 人</span></p>';
+        if(this.orderFlightData.totalFareAmountCHD){
+            costStr+= temObj.NumofChild!=0?'<p>儿童票<span>￥<span>'+myFixed(temObj.totalFareAmountCHD)+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            costStr+= temObj.NumofChild!=0?'<p>税费<span>￥<span>'+myFixed(temObj.totalTaxAmountCHD)+'</span> x'+temObj.NumofChild+' 人</span></p>':'';
+            totalPersonNum = temObj.NumofAdult+temObj.NumofChild
+        }else{
+            totalPersonNum = temObj.NumofAdult;
+        }
+       costTotal.innerHTML = costStr;
+       totalCost.innerHTML = parseInt(myFixed(temObj.totalFareAmountExc*temObj.NumofAdult + (temObj.totalFareAmountCHD + temObj.totalTaxAmountCHD)*temObj.NumofChild));
+       totalPerson.innerHTML = totalPersonNum+'人总价';
+    },
+    init:function(){
+       var reverseInformation = this.storageUtil.get('reverseInformationCache');
+       this.reverseInformation = reverseInformation;
+        console.log(this.reverseInformation)
+       this.telSlider();
+       this.loadingFade();
+       this.orderFlightData = this.storageUtil.get('curFlightListData');
+       this.addContent(this.orderFlightData);
+       this.addEvent();
+       this.costFinaList();
+       //this.countrySlider();
+    }
+};
+
+ticketOrder.init();

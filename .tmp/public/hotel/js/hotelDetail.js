@@ -1,2 +1,44 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-window.onload=function(){function a(a){function b(a){var b="";if(a.scenicSpotData)for(var c=0;c<a.scenicSpotData.length;c++)b+='<li class="ul1-li"><p class="f-l">'+a.scenicSpotData[c].a+'</p><p class="f-r">'+a.scenicSpotData[c].b+"</p></li>";else b+='<li class="ul1-li"><p class="f-l">暂无附近酒店信息</p></li>';return b}function c(a){var b="";if(a.hotelFeature)for(var c=0;c<a.length;c++)b+='<li class="ul2-li"><b class="s-icon3" style="margin-bottom:0px"></b><p class="s-p4">'+a[c].Feature+"</p></li>";else b+='<li class="ul2-li"><p class="s-p4">暂无酒店特色信息</p></li>';return b}var d=document.querySelector(".s-content1"),e=document.querySelectorAll(".s-ul1")[0],e=document.querySelectorAll(".s-ul1")[0],f=document.querySelectorAll(".s-ul2")[0];a=JSON.parse(a).data.Data[0].HotelGenInfo,d.innerText=a.HotelDesc,e.innerHTML=b(a),f.innerHTML=c(a)}if(window.localStorage)var b=window.localStorage.getItem("hotelDetailData");a(b)};
+window.onload = function () {
+    if (window.localStorage) {
+        var hotelMessage = window.localStorage.getItem('hotelDetailData');
+    }
+
+    addContent(hotelMessage);
+    function addContent(hotelMessage) {
+        var hotelDesc = document.querySelector('.s-content1');
+        var scenicSpot = document.querySelectorAll('.s-ul1')[0];
+        var scenicSpot = document.querySelectorAll('.s-ul1')[0];
+        var hotelFeature = document.querySelectorAll('.s-ul2')[0];
+
+        hotelMessage = JSON.parse(hotelMessage).data.Data[0].HotelGenInfo;
+        hotelDesc.innerText = hotelMessage.HotelDesc;
+        scenicSpot.innerHTML = getAllSpot(hotelMessage);
+        hotelFeature.innerHTML = getFeature(hotelMessage);
+
+        function getAllSpot(arg) {
+            var str = '';
+            if (arg.scenicSpotData) {
+                for (var i = 0; i < arg.scenicSpotData.length; i++) {
+                    str += '<li class="ul1-li"><p class="f-l">' + arg.scenicSpotData[i].a + '</p><p class="f-r">' + arg.scenicSpotData[i].b + '</p></li>';
+                }
+            } else {
+                str += '<li class="ul1-li"><p class="f-l">暂无附近酒店信息</p></li>';
+            }
+            return str;
+        }
+
+        function getFeature(arg) {
+            var str = '';
+            if (arg.hotelFeature) {
+                for (var i = 0; i < arg.length; i++) {
+                    str += '<li class="ul2-li"><b class="s-icon3" style="margin-bottom:0px"></b><p class="s-p4">' + arg[i].Feature + '</p></li>';
+                }
+            } else {
+                str += '<li class="ul2-li"><p class="s-p4">暂无酒店特色信息</p></li>'
+            }
+
+            return str;
+        }
+
+    }
+}

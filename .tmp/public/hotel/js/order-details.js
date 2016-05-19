@@ -1,2 +1,60 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(){var a={getbyid:function(a){return document.getElementById(a)},getbytag:function(a,b){return a.getElementsByTagName(b)},getbyclass:function(a,b){if(a.getElementsByClassName)return a.getElementsByClassName(b);for(var c=[],d=a.getElementsByTagName("*"),e=new RegExp("\\b"+b+"\\b","g"),f=0;f<d.length;f++)-1!=d[f].className.search(e)&&c.push(d[f]);return c},bind:function(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent("on"+b,c)},stopPropagation:function(a){var b=ev||a;b.stopPropagation?b.stopPropagation():b.cancelBubble=!0},addClass:function(a,b){if(a.className){var c=new RegExp("\\b"+b+"\\b","g");-1==a.className.search(c)&&(a.className+=" "+b)}else a.className=b},removeClass:function(a,b){if(a.className){var c=new RegExp("\\b"+b+"\\b","g");-1!=a.className.search(c)&&(a.className=a.className.replace(c,"").replace(/^\s+|\s+$/g,"").replace(/\s+/g," "),a.className||a.removeAttribute("class"))}}},b=document.getElementById("td_back");a.bind(b,"click",function(){window.history.go(-1)})}();
+/**
+ * Created by Asiatravel on 2016/1/21.
+ */
+;(function(){
+    var lsf_myweb={
+        "getbyid":function(id){
+            return document.getElementById(id);
+        },
+        "getbytag":function(obj,tag){
+            return obj.getElementsByTagName(tag);
+        },
+        "getbyclass":function(obj,sClass){
+            if(obj.getElementsByClassName){
+                return obj.getElementsByClassName(sClass);
+            }else{
+                var aResult=[];
+                var aEle=obj.getElementsByTagName('*');
+                var reg=new RegExp('\\b'+sClass+'\\b','g');
+                for(var i=0;i<aEle.length;i++){
+                    if(aEle[i].className.search(reg)!=-1){
+                        aResult.push(aEle[i]);
+                    }
+                }
+                return aResult;
+            }
+        },
+        "bind":function(obj,sEv,fn){
+            obj.addEventListener?obj.addEventListener(sEv,fn,false):obj.attachEvent('on'+sEv,fn);
+        },
+        "stopPropagation":function(event){
+            var oEvent=ev||event;
+            oEvent.stopPropagation?oEvent.stopPropagation():oEvent.cancelBubble=true;
+        },
+        "addClass":function(obj,sClass){
+            if(obj.className){
+                var reg=new RegExp('\\b'+sClass+'\\b','g');
+                if(obj.className.search(reg)==-1){
+                    obj.className+=' '+sClass;
+                }
+            }else{
+                obj.className=sClass;
+            }
+        },
+        "removeClass":function(obj,sClass){
+            if(obj.className){
+                var reg=new RegExp('\\b'+sClass+'\\b','g');
+                if(obj.className.search(reg)!=-1){
+                    obj.className=obj.className.replace(reg,'').replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
+                    if(!obj.className){
+                        obj.removeAttribute('class');
+                    }
+                }
+            }
+        }
+    };
+    var td_back=document.getElementById('td_back');
+    lsf_myweb.bind(td_back,'click',function(){
+        window.history.go(-1);
+    })
+})();

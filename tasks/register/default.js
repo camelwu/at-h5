@@ -17,6 +17,7 @@
  *
  */
 module.exports = function (grunt) {
-    grunt.registerTask('default', ['linkAssets', 'compileAssets', 'uglify:dev', 'cssmin:dev', 'watch']);
+    grunt.registerTask('default', ['linkAssets', 'compileAssets', 'watch']);
+    grunt.registerTask('test', ['linkAssets', 'compileAssets', 'uglify:dev', 'cssmin:dev', 'watch']);
     //grunt.registerTask('default', ['filerev']);
 };

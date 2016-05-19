@@ -1,2 +1,459 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function Calender(){arguments.length&&(this.initialize.apply(this,arguments),this.result=[])}_CalF={$:function(a,b){var c,d,e,f=[],g=a.substring(1);if(b=b||document,"string"==typeof a)switch(a.charAt(0)){case"#":return document.getElementById(g);case".":if(b.getElementsByClassName)return b.getElementsByClassName(g);for(c=_CalF.$("*",b),d=c.length,e=0;d>e;e++)c[e].className.indexOf(g)>-1&&f.push(c[e]);return f;default:return b.getElementsByTagName(a)}},bind:function(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent("on"+b,c)},getPos:function(a){var b=document.documentElement.scrollLeft||document.body.scrollLeft,c=document.documentElement.scrollTop||document.body.scrollTop;return pos=a.getBoundingClientRect(),{top:pos.top+c,right:pos.right+b,bottom:pos.bottom+c,left:pos.left+b}},addClass:function(a,b){b.className=b.className+" "+a},removeClass:function(a,b){var c=new RegExp("(^|\\s+)"+a+"(\\s+|$)","g");b.className=b.className.replace(c,"")},stopPropagation:function(a){a=a||window.event,a.stopPropagation?a.stopPropagation():a.cancelBubble=!0}},Calender.prototype={constructor:Calender,_word:{hotel:["入住","离店"],flight:["去程","回程"]},_tempmonth:['<span class="prevmonth">prevmonth</span>','<span class="nextmonth">nextmonth</span>'],_tempweek:['<dl class="ca_week">','<dt class="date_title">日</dt>','<dt class="date_title">一</dt>','<dt class="date_title">二</dt>','<dt class="date_title">三</dt>','<dt class="date_title">四</dt>','<dt class="date_title">五</dt>','<dt class="date_title">六</dt>',"</dl>"],_template:["<dl>",'<dt class="title-date">',"</dt>","<dd></dd>","</dl>"],initialize:function(a){this.type=a.type||"hotel",this.format=a.format||"yyyy-mm-dd",this.id=a.id,this.num=a.num,this.sClass1=a.sClass1,this.id2=a.id2,this.fn=a.fn,this.time=a.time,this.op=0,this.input=_CalF.$("#"+this.id),this.inputEvent(),this.outClick()},createContainer:function(a){var b=_CalF.$("#"+this.id+"-date");b&&b.parentNode.removeChild(b);var c=this.container=document.createElement("div");if(c.id=this.id+"-date",c.style.position="absolute",c.style.zIndex=100,"input"===this.input.tagName){var d=_CalF.getPos(this.input);c.style.left=d.left+"px",c.style.top=d.bottom-1+"px",_CalF.bind(c,"click",this.stopPropagation)}else{c.style.background="#f5f4f9",c.style.overflow="auto",c.style.width=c.style.height="100%",c.style.left="0",c.style.top="0",c.style.paddingBottom="118px";var e=this.header=document.createElement("div");e.id=this.id+"-header",e.className="header",e.style.zIndex=101,e.innerHTML='<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>',document.body.appendChild(e);var f=document.createElement("div");f.className="calendar",f.style.marginTop="45px",f.innerHTML=this._tempweek.join(""),c.appendChild(f);var g=this.tiper=document.createElement("div");g.id=this.id+"-tiper",g.className="tipers",g.innerHTML="请选择入住日期",c.appendChild(g)}document.body.appendChild(c)},drawDate:function(a){var b,c,e,f,g,h,i,j,k,l,n=[],o=new Date,p=o.getFullYear(),q=o.getMonth(),r=o.getDate();for(this.dateWarp=b=document.createElement("div"),b.className="calendar",b.innerHTML=this._template.join(""),this.year=f=a.getFullYear(),this.month=g=a.getMonth()+1,this.date=h=a.getDate(),this.titleDate=c=_CalF.$(".title-date",b)[0],tims=this.time,l=document.createTextNode(f+"年"+g+"月"),c.appendChild(l),e=_CalF.$("dd",b)[0],i=new Date(f,g,0).getDate(),j=new Date(f,g-1,1).getDay(),k=0;j>k;k++)n.push("<a>&nbsp;</a>");for(k=1;i>=k;k++)p>f?n.push('<a class="disabled">'+k+"</a>"):f==p?q+1>g?n.push('<a class="live disabled">'+k+"</a>"):g==q+1?r>k?n.push('<a class="live disabled">'+k+"</a>"):(m=10>g?"0"+g:g,d=10>k?"0"+k:k,tims[f+"-"+m+"-"+d]?k==r?pstr='<a class="live" data-day="'+f+"-"+g+"-"+k+'"><span class="live_circle">今天</span><span class="live_txt"><span class="live_txt">'+tims[f+"-"+m+"-"+d]+"</span></a>":pstr='<a class="live" data-day="'+f+"-"+g+"-"+k+'"><span class="live_circle">'+k+'</span><span class="live_txt">'+tims[f+"-"+m+"-"+d]+"</span></a>":k==r?pstr='<a class="live" data-day="'+f+"-"+g+"-"+k+'">今天</a>':pstr='<a class="live" data-day="'+f+"-"+g+"-"+k+'">'+k+"</a>",n.push(pstr)):g==q+2?(m=10>g?"0"+g:g,d=10>k?"0"+k:k,tims[f+"-"+m+"-"+d]?pstr='<a class="live" data-day="'+f+"-"+g+"-"+k+'"><span class="live_circle">'+k+'</span><span class="live_txt">'+tims[f+"-"+m+"-"+d]+"</span></a>":pstr='<a class="live" data-day="'+f+"-"+g+"-"+k+'">'+k+"</a>",n.push(pstr)):n.push('<a class="live" data-day="'+f+"-"+g+"-"+k+'">'+k+"</a>"):f>p&&n.push('<a class="live" data-day="'+f+"-"+g+"-"+k+'">'+k+"</a>");e.innerHTML=n.join(""),this.container.appendChild(b);var s=!!window.ActiveXObject&&!window.XMLHttpRequest;s&&b.appendChild(this.createIframe()),this.linkOn()},drawLastDate:function(a){var b,c,d,e,f,g,h,i,j,k,l=[],m=new Date,n=(m.getFullYear(),m.getMonth(),m.getDate());for(this.dateWarp=b=document.createElement("div"),b.className="calendar",b.innerHTML=this._template.join(""),this.year=e=a.getFullYear(),this.month=f=a.getMonth()+1,this.date=g=a.getDate(),this.titleDate=c=_CalF.$(".title-date",b)[0],tims=this.time,k=document.createTextNode(e+"年"+f+"月"),c.appendChild(k),d=_CalF.$("dd",b)[0],h=new Date(e,f,0).getDate(),i=new Date(e,f-1,1).getDay(),j=0;i>j;j++)l.push("<a>&nbsp;</a>");for(j=1;h>=j;j++)n>=j?l.push('<a class="live" data-day="'+e+"-"+f+"-"+j+'">'+j+"</a>"):l.push('<a class="disabled">'+j+"</a>");d.innerHTML=l.join(""),this.container.appendChild(b);var o=!!window.ActiveXObject&&!window.XMLHttpRequest;o&&b.appendChild(this.createIframe()),this.linkOn()},createIframe:function(){var a=document.createElement("iframe");return a.src="about:blank",a.style.position="absolute",a.style.zIndex="-1",a.style.left="-1px",a.style.top=0,a.style.border=0,a.style.filter="alpha(opacity= 0 )",a.style.width=this.container.offsetWidth+"px",a.style.height=this.container.offsetHeight+"px",a},removeDate:function(){var a=_CalF.$("#"+this.id+"-header");a&&a.parentNode.removeChild(a);var b=_CalF.$("#"+this.id+"-date");b&&b.parentNode.removeChild(b)},btnEvent:function(){var a=this,b=_CalF.$(".prevmonth",this.dateWarp)[0],c=_CalF.$(".nextmonth",this.dateWarp)[0];b.onclick=function(){var b=new Date(a.year,a.month-2,a.date);a.drawDate(b)},c.onclick=function(){var b=new Date(a.year,a.month,a.date);a.drawDate(b)}},linkOn:function(){var a,b=_CalF.$(".live",this.dd),c=b.length,d=this;for(a=0;c>a;a++)b[a].index=a,b[a].onclick=function(){"input"===d.input.tagName?($(this).css("border","1px solid #ff6a2f").css("z-index","9999999"),$(this).siblings().css("border","").css("z-index","")):this.className.indexOf("disabled")>-1||(0==d.op?(d.tiper.innerHTML="请选择"+d._word[d.type][1]+"日期",d.linkReset(this.index),$(this).html('<span class="live_circle">'+this.innerHTML+'</span><span class="live_txt">'+d._word[d.type][d.op]+"</span>"),$(this).addClass("disabled"),d.op++):($(this).html('<span class="live_circle">'+this.innerHTML+'</span><span class="live_txt">'+d._word[d.type][d.op]+"</span>"),d.op>=1?d.op=0:null,d.linkOver()))}},linkOver:function(){for(var a,b=$("#"+this.id+"-date .live_circle"),c=(b.length,this),d=[],e={},f=_CalF.$("input",c.input),g=b[0].parentNode.getAttribute("data-day").split("-"),h=b[1].parentNode.getAttribute("data-day").split("-"),a=0;a<g.length;a++)g[a]=g[a]<10?"0"+g[a]:g[a];for(var a=0;a<h.length;a++)h[a]=h[a]<10?"0"+h[a]:h[a];g=g.join("-"),h=h.join("-"),f.length||(f=_CalF.$("."+this.sClass1,c.input));var i=_CalF.$("#"+this.id2,c.input);if("INPUT"==f[0].tagName)for(a=0;2>a;a++)d.push(b[a].parentNode.getAttribute("data-day")),f[a].value=b[a].parentNode.getAttribute("data-day");else d.push(g),d.push(h),f[0].innerHTML=g,f[1].innerHTML=h;var j=d[0].split("-")[0],k=d[0].split("-")[1]-1,l=d[0].split("-")[2],m=d[1].split("-")[0],n=d[1].split("-")[1]-1,o=d[1].split("-")[2];i&&(i.innerHTML=Math.round((new Date(m,n,o)-new Date(j,k,l))/864e5)),e[d[0]]=this._word[c.type][0],e[d[1]]=this._word[c.type][1],this.time=e,c.removeDate(),"function"==typeof c.fn&&c.fn()},linkReset:function(a){var b=this,c=$(".live_circle"),d=c.length,e=_CalF.$(".live",this.dd),f=e.length;if(0==b.op){for(var g=0;d>g;g++){var h=c[g].parentNode.getAttribute("data-day"),i=h.split("-");c[g].parentNode.innerHTML=i[i.length-1]}for(g=0;a>g;g++)_CalF.addClass("disabled",e[g]);for(g=a+30;f>g;g++)_CalF.addClass("disabled",e[g]);return!1}},inputEvent:function(){var a=this,b=new Date,c=b.getFullYear(),d=b.getMonth();b.getDate();_CalF.bind(this.input,"click",function(){a.createContainer();for(var b=0;b<a.num;b++)if(b==a.num-1){var e=new Date(c,d+b,1);a.drawLastDate(e)}else{var e=new Date(c,d+b,1);a.drawDate(e)}})},outClick:function(){var a=this;_CalF.bind(document,"click",function(b){b=b||window.event;var c=b.target||b.srcElement;(c.className.indexOf("header-back")>-1||c.className.indexOf("go-back")>-1)&&a.removeDate()})}};
+/**
+ * @namespace _CalF
+ * 日历控件所用便捷函数
+ * */
+_CalF = {
+    // 选择元素
+    $:function(arg,context){
+        var tagAll,n,eles=[],i,sub = arg.substring(1);
+        context = context||document;
+        if(typeof arg =='string'){
+            switch(arg.charAt(0)){
+                case '#':
+                    return document.getElementById(sub);
+                    break;
+                case '.':
+                    if(context.getElementsByClassName) return context.getElementsByClassName(sub);
+                    tagAll = _CalF.$('*',context);
+                    n = tagAll.length;
+                    for(i = 0;i<n;i++){
+                        if(tagAll[i].className.indexOf(sub) > -1) eles.push(tagAll[i]);
+                    }
+                    return eles;
+                    break;
+                default:
+                    return context.getElementsByTagName(arg);
+                    break;
+            }
+        }
+    },
+    // 绑定事件
+    bind:function(node,type,handler){
+        node.addEventListener?node.addEventListener(type, handler, false):node.attachEvent('on'+ type, handler);
+    },
+    // 获取元素位置
+    getPos:function (node) {
+        var scrollx = document.documentElement.scrollLeft || document.body.scrollLeft,
+                scrollt = document.documentElement.scrollTop || document.body.scrollTop;
+        pos = node.getBoundingClientRect();
+        return {top:pos.top + scrollt, right:pos.right + scrollx, bottom:pos.bottom + scrollt, left:pos.left + scrollx }
+    },
+    // 添加样式名
+    addClass:function(c,node){
+        node.className = node.className + ' ' + c;
+    },
+    // 移除样式名
+    removeClass:function(c,node){
+        var reg = new RegExp("(^|\\s+)" + c + "(\\s+|$)","g");
+        node.className = node.className.replace(reg, '');
+    },
+    // 阻止冒泡
+    stopPropagation:function(event){
+        event = event || window.event;
+        event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
+    }
+};
+/**
+ * @name Calender
+ * @constructor
+ * @created by wusong
+ * */
+function Calender() {
+	if(!arguments.length)return;
+    this.initialize.apply(this, arguments);
+	this.result=[];
+}
+Calender.prototype = {
+    constructor:Calender,
+    // 文字数组
+    _word :{
+    	hotel:['入住','离店'],
+    	flight:['去程','回程']
+    },
+    _tempmonth:[
+        '<span class="prevmonth">prevmonth</span>',
+        '<span class="nextmonth">nextmonth</span>',
+    ],
+    _tempweek:[
+        '<dl class="ca_week">',
+        '<dt class="date_title">日</dt>',
+        '<dt class="date_title">一</dt>',
+        '<dt class="date_title">二</dt>',
+        '<dt class="date_title">三</dt>',
+        '<dt class="date_title">四</dt>',
+        '<dt class="date_title">五</dt>',
+        '<dt class="date_title">六</dt>',
+        '</dl>'
+    ],
+    // 模板数组
+    _template :[
+        '<dl>',
+        '<dt class="title-date">',
+        '</dt>',
+        '<dd></dd>',
+        '</dl>'],
+    // 初始化对象
+    initialize :function (options) {
+        this.type = options.type || 'hotel'; //默认酒店日期组件   hotel || flight
+        this.format = options.format || "yyyy-mm-dd"; //TODO用于显示用的日期格式 yyyy-mm-dd,mm-dd
+        this.id = options.id; // input的ID
+        this.num = options.num;//显示数量
+        this.sClass1=options.sClass1;
+        this.id2=options.id2;
+        this.fn = options.fn;
+        this.time = options.time;//已有时间  默认选中时间
+        this.op = 0;//已操作次数
+        this.input = _CalF.$('#'+ this.id); // 获取INPUT元素
+		this.inputEvent(); // input的事件绑定，获取焦点事件
+        this.outClick(); // 区域外事件绑定
+    },
+    // 创建日期最外层盒子，并设置盒子的绝对定位
+    createContainer:function(odate){
+        // 如果存在，则移除整个日期层Container
+        var odiv = _CalF.$('#'+ this.id + '-date');
+        if(!!odiv) odiv.parentNode.removeChild(odiv);
+        var container = this.container = document.createElement('div');
+        container.id = this.id + '-date';
+        container.style.position = "absolute";
+        container.style.zIndex = 100;
+        if(this.input.tagName === 'input'){
+	        //PC输入框
+	        var inputPos = _CalF.getPos(this.input);
+	        // 根据input的位置设置container高度
+	        container.style.left = inputPos.left + 'px';
+	        container.style.top = inputPos.bottom - 1 + 'px';
+        	// 设置日期层上的单击事件，仅供阻止冒泡，用途在日期层外单击关闭日期层
+        	_CalF.bind(container, 'click', this.stopPropagation);
+        	
+        }else{
+			//M站层
+			container.style.background = "#f5f4f9";
+	        container.style.overflow = 'auto';
+	        container.style.width = container.style.height = '100%';
+	        container.style.left = '0';
+	        container.style.top = '0';
+			container.style.paddingBottom = '118px';
+	        //
+	        var header = this.header = document.createElement('div');
+	        header.id = this.id+"-header";
+	        header.className = 'header';
+            header.style.zIndex = 101;
+	        header.innerHTML = '<a href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a><h3>选择日期</h3>';
+	        document.body.appendChild(header);
+	        
+	        var weeker = document.createElement('div');
+        	weeker.className = 'calendar';
+        	weeker.style.marginTop = '45px';
+        	weeker.innerHTML = this._tempweek.join('');
+	        container.appendChild(weeker);
+	        
+	        var tiper = this.tiper = document.createElement('div');
+	        tiper.id = this.id + '-tiper';
+	        tiper.className = 'tipers';
+	        tiper.innerHTML = "请选择入住日期";
+	        container.appendChild(tiper);
+        }
+        document.body.appendChild(container);
+    },
+    // 渲染日期
+    drawDate:function (odate) { // 参数 odate 为日期对象格式
+        var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+        var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+        this.dateWarp = dateWarp = document.createElement('div');
+        dateWarp.className = 'calendar';
+        dateWarp.innerHTML = this._template.join('');
+        this.year = year = odate.getFullYear();
+        this.month = month = odate.getMonth()+1;
+        this.date = date = odate.getDate();
+        this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+		tims = this.time;
+		textNode = document.createTextNode(year + '年' + month + '月');
+		titleDate.appendChild(textNode);
+		//this.btnEvent();
+
+        // 获取模板中唯一的DD元素
+        dd = _CalF.$('dd',dateWarp)[0];
+        // 获取本月天数
+        days = new Date(year, month, 0).getDate();
+        // 获取本月第一天是星期几
+        weekStart = new Date(year, month-1,1).getDay();
+        // 开头显示空白段
+        for (i = 0; i < weekStart; i++) {
+            ddHtml.push('<a>&nbsp;</a>');
+        }
+        // 循环显示日期
+        for (i = 1; i <= days; i++) {
+            if (year < nowyear) {
+                ddHtml.push('<a class="disabled">' + i + '</a>');
+            } else if (year == nowyear) {
+                if (month < nowmonth + 1) {
+                    ddHtml.push('<a class="live disabled">' + i + '</a>');
+                } else if (month == nowmonth + 1) {
+                    if (i < nowdate){
+                    	ddHtml.push('<a class="live disabled">' + i + '</a>');
+                    }else{
+						m=month<10?'0'+month:month;
+						d=i<10?'0'+i:i;
+						if(tims[year+'-'+m+'-'+d]){
+                            if(i == nowdate){
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">今天</span><span class="live_txt"><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                            }else{
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+ tims[year+'-'+m+'-'+d] +'</span></a>';
+                            }
+						}else{
+                            if(i == nowdate){
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>';
+                            }else{
+                                pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+                            }
+						}
+						//i == nowdate?ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">今天</a>'):ddHtml.push(pstr);
+                        ddHtml.push(pstr);
+					}
+                } else if (month == nowmonth + 2) {
+					m=month<10?'0'+month:month;
+					d=i<10?'0'+i:i;
+					if(tims[year+'-'+m+'-'+d]){
+						pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'"><span class="live_circle">' + i + '</span><span class="live_txt">'+tims[year+'-'+m+'-'+d] +'</span></a>';
+					}else{
+						pstr = '<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>';
+					}
+					ddHtml.push(pstr);
+				} else {
+                    ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+                }
+            } else if (year > nowyear) {
+                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+            }
+        }
+        dd.innerHTML = ddHtml.join('');
+        
+        // 添加
+        this.container.appendChild(dateWarp);
+        //IE6 select遮罩
+        var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+        if(ie6) dateWarp.appendChild(this.createIframe());
+        // A link事件绑定
+        this.linkOn();
+    },
+    drawLastDate:function (odate) { // 参数 odate 为日期对象格式
+        var dateWarp, titleDate, dd, year, month, date, days, weekStart,i,l,ddHtml=[],textNode;
+        var nowDate = new Date(),nowyear = nowDate.getFullYear(),nowmonth = nowDate.getMonth(),nowdate = nowDate.getDate();
+        this.dateWarp = dateWarp = document.createElement('div');
+        dateWarp.className = 'calendar';
+        dateWarp.innerHTML = this._template.join('');
+        this.year = year = odate.getFullYear();
+        this.month = month = odate.getMonth()+1;
+        this.date = date = odate.getDate();
+        this.titleDate = titleDate = _CalF.$('.title-date', dateWarp)[0];
+        tims = this.time;
+        textNode = document.createTextNode(year + '年' + month + '月');
+        titleDate.appendChild(textNode);
+        //this.btnEvent();
+
+        // 获取模板中唯一的DD元素
+        dd = _CalF.$('dd',dateWarp)[0];
+        // 获取本月天数
+        days = new Date(year, month, 0).getDate();
+        // 获取本月第一天是星期几
+        weekStart = new Date(year, month-1,1).getDay();
+        // 开头显示空白段
+        for (i = 0; i < weekStart; i++) {
+            ddHtml.push('<a>&nbsp;</a>');
+        }
+        // 循环显示日期
+        for (i = 1; i <= days; i++) {
+            if(i<=nowdate){
+                ddHtml.push('<a class="live" data-day="'+year+'-'+month+'-'+i+'">' + i + '</a>');
+            }else{
+                ddHtml.push('<a class="disabled">' + i + '</a>');
+            }
+        }
+        dd.innerHTML = ddHtml.join('');
+
+        // 添加
+        this.container.appendChild(dateWarp);
+        //IE6 select遮罩
+        var ie6  = !!window.ActiveXObject && !window.XMLHttpRequest;
+        if(ie6) dateWarp.appendChild(this.createIframe());
+        // A link事件绑定
+        this.linkOn();
+    },
+    createIframe:function(){
+        var myIframe =  document.createElement('iframe');
+        myIframe.src = 'about:blank';
+        myIframe.style.position = 'absolute';
+        myIframe.style.zIndex = '-1';
+        myIframe.style.left = '-1px';
+        myIframe.style.top = 0;
+        myIframe.style.border = 0;
+        myIframe.style.filter = 'alpha(opacity= 0 )';
+        myIframe.style.width = this.container.offsetWidth + 'px';
+        myIframe.style.height = this.container.offsetHeight + 'px';
+        return myIframe;
+    },
+    // 移除日期DIV.calendar
+    removeDate:function(){
+        var that=this;
+        var ov = _CalF.$('#'+ this.id + '-header');
+        if(!!ov) ov.parentNode.removeChild(ov);
+        var odiv = _CalF.$('#'+ this.id + '-date');
+        if(!!odiv) odiv.parentNode.removeChild(odiv);
+    },
+    // 上一月，下一月按钮事件
+    btnEvent:function(){
+        var that = this,
+        prevmonth = _CalF.$('.prevmonth',this.dateWarp)[0],
+		nextmonth = _CalF.$('.nextmonth',this.dateWarp)[0];
+        prevmonth.onclick = function(){
+            var idate = new Date(that.year, that.month-2,that.date);
+            that.drawDate(idate);
+        };
+        nextmonth.onclick = function(){
+            var idate = new Date(that.year , that.month, that.date);
+            that.drawDate(idate);
+        };
+    },
+    // A 的事件
+    linkOn:function(){
+        var links = _CalF.$('.live',this.dd),i,l=links.length,that=this;
+        for(i = 0;i<l;i++){
+            links[i].index = i;
+            // links[i].onmouseover = function(){
+                // $(this).addClass("on");
+            // };
+            // links[i].onmouseout = function(){
+                // $(this).removeClass("on");
+            // };
+            links[i].onclick = function(){
+                if(that.input.tagName === 'input'){
+                	$(this).css("border","1px solid #ff6a2f").css("z-index","9999999");
+					$(this).siblings().css("border","").css("z-index","");
+				}else{
+					if(!(this.className.indexOf("disabled")>-1)){
+						if(that.op==0){
+							that.tiper.innerHTML = '请选择'+that._word[that.type][1]+'日期';
+							that.linkReset(this.index);
+							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word[that.type][that.op]+'</span>');
+                            $(this).addClass("disabled");
+							that.op++;
+						}else{
+							$(this).html('<span class="live_circle">'+(this.innerHTML)+'</span><span class="live_txt">'+that._word[that.type][that.op]+'</span>');that.op>=1?that.op=0:null;
+							that.linkOver();
+						}
+					}
+				}
+           };
+        }
+    },
+    linkOver:function(){
+    	var sels = $('#'+ this.id +'-date .live_circle'),i,l=sels.length,that=this,arr=[],obj ={};
+		var out = _CalF.$('input',that.input);
+        var liveDate = sels[0].parentNode.getAttribute("data-day").split("-");
+        var leaveDate = sels[1].parentNode.getAttribute("data-day").split("-");
+        for (var i = 0; i < liveDate.length; i++) {
+			liveDate[i] = liveDate[i] < 10 ? '0' + liveDate[i] : liveDate[i];
+		}
+		for (var i = 0; i < leaveDate.length; i++) {
+			leaveDate[i] = leaveDate[i] < 10 ? '0' + leaveDate[i] : leaveDate[i];
+		}
+		
+		liveDate = liveDate.join('-');
+		leaveDate = leaveDate.join('-');
+        
+        if(!out.length){
+            out=_CalF.$('.'+this.sClass1,that.input);
+        }
+		var tal = _CalF.$('#'+this.id2,that.input);
+        if(out[0].tagName=='INPUT'){
+            for(i = 0;i<2;i++){
+                arr.push(sels[i].parentNode.getAttribute("data-day"));
+                out[i].value = sels[i].parentNode.getAttribute("data-day");
+            }
+        }else{
+            arr.push(liveDate);
+            arr.push(leaveDate);
+            out[0].innerHTML=liveDate;
+            out[1].innerHTML=leaveDate;
+        }
+        console.log(out[0]+':'+out[1]);
+        var live_y=arr[0].split('-')[0];
+        var live_m=arr[0].split('-')[1]-1;
+        var live_d=arr[0].split('-')[2];
+        var leave_y=arr[1].split('-')[0];
+        var leave_m=arr[1].split('-')[1]-1;
+        var leave_d=arr[1].split('-')[2];
+        if(tal){
+            tal.innerHTML = (Math.round((new Date(leave_y,leave_m,leave_d)-new Date(live_y,live_m,live_d))/(1000*60*60*24)));
+        }
+        
+        //修改calendar传入的参数obj的值
+		console.log(out[0].value + ':' + out[1].value);
+		obj[arr[0]] = this._word[that.type][0];
+		obj[arr[1]] = this._word[that.type][1];
+		this.time = obj;
+        
+    	that.removeDate();
+    	//that.header.parentNode.removeChild(that.header);
+        if(typeof that.fn==='function'){
+            that.fn();
+        }
+    },
+	linkReset:function(ele){
+		var that = this,
+		ospan = $('.live_circle'),
+		l=ospan.length,
+		links = _CalF.$('.live',this.dd),
+		len=links.length;
+		//console.log(ospan[1].parentNode.outerHTML+ospan.length);
+		if(that.op==0){
+			for(var i=0;i<l;i++){
+				var v = ospan[i].parentNode.getAttribute("data-day");
+                //alert(v);
+				var a = v.split("-");
+				ospan[i].parentNode.innerHTML = a[a.length-1];
+			}
+			for(i=0;i<ele;i++){
+				_CalF.addClass("disabled",links[i]);
+			}
+			for(i=ele+30;i<len;i++){
+				_CalF.addClass("disabled",links[i]);
+			}
+			return false;
+		}
+	},
+    // 表单的事件
+    inputEvent:function(){
+        var that = this;
+        var date = new Date();
+        var nowY = date.getFullYear();
+        var nowM = date.getMonth();
+        var nowD = date.getDate();
+		_CalF.bind(this.input, 'click',function(){
+            that.createContainer();
+	        for(var i=0;i<that.num;i++){
+                if(i==(that.num-1)){
+                    var idate=new Date(nowY, nowM+i ,01);
+                    that.drawLastDate(idate);
+                }else{
+                    var idate = new Date(nowY , nowM+i, 01);
+                    that.drawDate(idate);
+
+                }
+	        }
+		});
+    },
+    // 鼠标在对象区域外点击，移除日期层
+    outClick:function(){
+        var that = this;
+        _CalF.bind(document, 'click',function(event){
+            event = event || window.event;
+            var target = event.target || event.srcElement;
+            if(target.className.indexOf("header-back")>-1 || target.className.indexOf("go-back")>-1){
+            	that.removeDate();
+            }
+        });
+    }
+};
+
+// var myDate1 = new Calender({id:'j_Date1'});

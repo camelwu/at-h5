@@ -1,2 +1,1171 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function num2chin(a){switch(a){case"0":return"零";case"1":return"一";case"2":return"二";case"3":return"三";case"4":return"四";case"5":return"五";default:return"二"}}function url2json(a){if(a){for(var b={},c=a.split("?"),d=c[1].split("&"),e=0;e<d.length;e++){var f=d[e].split("=");b[f[0]]=f[1]}return b}}function styleChange(a,b){var c=document.getElementById(a);c.onfocus=function(){this.value==b&&(this.value="",this.style.color="#484848")},c.onblur=function(){this.value||(this.value=b,this.style.color="#d1d1d1")}}!function(a){a(document).ready(function(){window.addEventListener("load",function(){FastClick.attach(document.body)},!1)})}(jQuery);var lsf_myweb={getbyid:function(a){return document.getElementById(a)},getbytag:function(a,b){return a.getElementsByTagName(b)},getbyclass:function(a,b){if(a.getElementsByClassName)return a.getElementsByClassName(b);for(var c=[],d=a.getElementsByTagName("*"),e=new RegExp("\\b"+b+"\\b","g"),f=0;f<d.length;f++)-1!=d[f].className.search(e)&&c.push(d[f]);return c},addClass:function(a,b){if(a.className){var c=RegExp("\\b"+b+"\\b","g");-1==a.className.search(c)&&(a.className+=" "+b)}else a.className=b},removeClass:function(a,b){if(a.className){var c=new RegExp("\\b"+b+"\\b","g");-1!=a.className.search(c)&&(a.className=a.className.replace(c,"").replace(/^\s+|\s+$/g,"").replace(/\s+/g," "),a.className||a.removeAttribute("class"))}},bind:function(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent("on"+b,c)},removeBind:function(a,b,c){a.removeEventListener?a.removeEventListener(b,c,!1):a.detachEvent("on"+b,c)},setSession:function(a,b){window.sessionStorage.setItem(a,JSON.stringify(b))},getSession:function(a){return JSON.parse(window.sessionStorage.getItem(a))}},hlHis=lsf_myweb.getSession("asiaHlHistory")||{};lsf_myweb.setSession("asiaHlHistory",hlHis),function(){function a(){$("#fo_lo").on("click",function(){$("#l_but").addClass("s-but-checked"),$("#s_but1").addClass("s-but-checked")})}function b(){$("#l_but").on("click",function(){$("#l_but").removeClass("s-but-checked"),$("#s_but1").removeClass("s-but-checked")})}function c(){function a(a){return document.getElementById(a)}function b(a){j=document.getElementById("r-mb"),j.style.display="block",a.style.bottom="0",a.style.transition="all 350ms"}function c(a){var b=window.innerHeight;j=document.getElementById("r-mb"),j.style.display="none",a.style.bottom=-b+"px",a.style.transition="all 350ms"}function d(){var a=window.innerHeight;j=document.getElementById("r-mb"),j=document.getElementById("r-mb"),j.style.display="none",""!=n.style.display&&"block"!=n.style.display||(n.style.bottom=-a+"px",n.style.transition="all 350ms",$("#l_but").removeClass("s-but-checked"),$("#s_but1").removeClass("s-but-checked")),""!=o.style.display&&"block"!=o.style.display||(o.style.bottom=-a+"px",o.style.transition="all 350ms",$("#l_but").removeClass("s-but-checked"),$("#s_but1").removeClass("s-but-checked")),""!=p.style.display&&"block"!=p.style.display||(p.style.bottom=-a+"px",p.style.transition="all 350ms",$("#l_but").removeClass("s-but-checked"),$("#s_but1").removeClass("s-but-checked"))}function e(){var a=window.event.srcElement,b=a.className,c=[],d=[];if("不限"==a.innerText){c=document.getElementById("h-type").childNodes;for(var e=1;e<c.length;e++)c[e].className="s-li"}"不限"!=a.innerText&&(document.getElementById("h-type").firstElementChild.className="s-li"),"s-li"==b?a.className="s-li1":a.className="s-li",c=document.getElementById("h-type").childNodes;for(var f=0,g=c.length;g>f;f++)"s-li1"==c[f].className&&d.push(c[f].innerText);0==d.length&&(document.getElementById("h-type").firstElementChild.className="s-li1")}function f(){var a=window.event.srcElement,b=a.className,c=[],d=[];if("不限"==a.innerText){c=document.getElementById("h-level").childNodes;for(var e=1;e<c.length;e++)c[e].className="s-li"}"不限"!=a.innerText&&(document.getElementById("h-level").firstElementChild.className="s-li"),"s-li"==b?a.className="s-li1":a.className="s-li",c=document.getElementById("h-level").childNodes;for(var f=0,g=c.length;g>f;f++)"s-li1"==c[f].className&&d.push(c[f].innerText);0==d.length&&(document.getElementById("h-level").firstElementChild.className="s-li1")}function g(a,c){a.onclick=function(){b(c),j.addEventListener("click",d)}}function h(a,b){a.onclick=function(){c(b)}}function i(){var a=window.event.srcElement,b=document.getElementById("rank"),c=document.getElementById("r-mb"),d=a.style.color;if("rgb(252, 148, 100)"==d)c.style.display="none",b.style.bottom="-550px",b.style.transition="all 350ms";else{for(var e=0;e<k.length;e++){if("rgb(252, 148, 100)"==k[e].style.color){var f=k[e].getElementsByTagName("b")[0];k[e].removeChild(f)}k[e].style.color="#b3b2b4"}a.style.color="#fc9464";var g=document.createElement("b");g.className="hl-icon5",a.appendChild(g),c.style.display="none",b.style.bottom="-550px",b.style.transition="all 350ms"}}var j,k=[],l=[],m=[],n=a("rank"),o=a("screen"),p=a("location"),q=a("fo_ra"),r=a("fo_sc"),s=a("fo_lo"),t=a("s_but"),u=a("l_but");this.init=function(a){l=document.getElementById("h-level").childNodes;for(var b=0;b<l.length;b++)l[b].addEventListener("click",f);m=document.getElementById("h-type").childNodes;for(var c=0;c<m.length;c++)m[c].addEventListener("click",e);k=document.getElementsByClassName("r-li");for(var d=0;d<k.length;d++)k[d].addEventListener("click",i)},init(),g(q,n),g(r,o),g(s,p),h(t,o),h(u,p)}function d(a){function b(a){return-1!=a.indexOf("(")&&(a=a.substring(0,a.indexOf("("))),a}s.style.display="block";document.getElementById("lsf_list");a=a||{},a.rank=a.rank||"",a.InterCityName=decodeURIComponent(a.InterCityName)||"Singapore",a.DomCityName=decodeURIComponent(a.DomCityName)||"北京",a.NumRoom=a.NumRoom||"1",a.NumChild=a.NumChild||"1",a.NumAdult=a.NumAdult||"1",a.Category=a.Category||"",a.StarRating=a.StarRating||"",a.LocationList=a.LocationList||"",a.CountryISOCode=a.CountryISOCode||"SG",a.pageIndex=a.pageIndex||1,a.pageSize=a.pageSize||20;var c=new Date,d=c.getFullYear(),e=c.getMonth()+1,f=c.getDate();a.InterCheckInDate=a.InterCheckInDate||d+"-"+e+"-"+f,a.InterCheckOutDate=a.InterCheckOutDate||d+"-"+e+"-"+(f+1);var g=localStorage.getItem("hoPos"),h=JSON.parse(window.localStorage.getItem("cityListInfo")),j=document.getElementById("fo_ra"),k=document.getElementById("fo_sc"),l=document.getElementById("fo_lo");if(""!=a.rank&&"PriorityDESC"!=a.rank?j.querySelector("i").className="red-tip":j.querySelector("i").className="",""!=a.Category||""!=a.StarRating?k.querySelector("i").className="red-tip":k.querySelector("i").className="",""!=a.LocationList?l.querySelector("i").className="red-tip":l.querySelector("i").className="",a.InterCityName=b(a.InterCityName),a.DomCityName=b(a.DomCityName),"inter"==g){var m=/^([\u4e00-\u9fa5])*$/;if(m.test(a.InterCityName))for(var n=0;n<h.length;n++)if(a.InterCityName==h[n].cityNameCN){a.InterCityName=h[n].cityNameEN,a.CountryISOCode=h[n].countryISOCode;break}var o={Parameters:'{"CultureName":"zh-CN","PartnerCode":"1000","CountryISOCode":"'+a.CountryISOCode+'","CityName":"'+a.InterCityName+'","CheckInDate":"'+a.InterCheckInDate+'T00:00:00","CheckOutDate":"'+a.InterCheckOutDate+'T00:00:00","NumRoom":'+a.NumRoom+',"NumAdult":'+a.NumAdult+',"NumChild":'+a.NumChild+',"InstantConfirmation":true,"AllOccupancy":true,"PageIndex":"'+a.pageIndex+'","PageSize":"'+a.pageSize+'","sorttype":"'+a.rank+'","Category":"'+a.Category+'","StarRating":"'+a.StarRating+'","LocationList":"'+a.LocationList+'"}',Code:"0007",ForeEndType:3}}else if(g="dom"){for(var n=0;n<h.length;n++)if(a.DomCityName==h[n].cityNameCN){a.DomCityName=h[n].cityNameEN,a.CountryISOCode=h[n].countryISOCode;break}var o={Parameters:'{"CultureName":"zh-CN","PartnerCode":"1000","CountryISOCode":"'+a.CountryISOCode+'","CityName":"'+a.DomCityName+'","CheckInDate":"'+a.DomCheckInDate+'T00:00:00","CheckOutDate":"'+a.DomCheckOutDate+'T00:00:00","NumRoom":"","NumAdult":"","NumChild":"","InstantConfirmation":true,"AllOccupancy":true,"PageIndex":"'+a.pageIndex+'","PageSize":"'+a.pageSize+'","sorttype":"'+a.rank+'","Category":"'+a.Category+'","StarRating":"'+a.StarRating+'","LocationList":"'+a.LocationList+'"}',Code:"0007",ForeEndType:3}}return document.getElementById("lsf_list").setAttribute("data-index",a.pageIndex),1==a.pageIndex?vlm.loadJson("",JSON.stringify(o),i):vlm.loadJson("",JSON.stringify(o),i,!1,!1,!0)}function e(a){function b(){var a=document.getElementById("l-ul");a.innerHTML='<li class="l-li l-liFirst"><p class="l-p">不限</p><b class="l-icon1 l-icon1First"></b></li>';for(var b=0;b<c.length;b++){var d='<li class="l-li"><p class="l-p">{$adress$}</p><b class="l-icon1"></b></li>';d=d.replace(/\{\$\w+\$\}/g,function(a){return c[b]}),a.innerHTML+=d}for(var e=lsf_myweb.getbyclass(a,"l-liFirst")[0],f=lsf_myweb.getbyclass(a,"l-li"),g=(lsf_myweb.getbyclass(a,"l-icon1"),lsf_myweb.getbyclass(a,"l-icon1First")[0],!0),h={},b=1;b<f.length;b++)h[b]=!0;lsf_myweb.bind(e,"click",function(){lsf_myweb.removeClass(e,"l-li3");for(var a=1;a<f.length;a++)lsf_myweb.removeClass(f[a],"l-li2");for(var a=1;a<f.length;a++)h[a]=!0});for(var b=1;b<f.length;b++)!function(a){lsf_myweb.bind(f[a],"click",function(){h[a]?lsf_myweb.addClass(f[a],"l-li2"):lsf_myweb.removeClass(f[a],"l-li2"),h[a]=!h[a];for(var b=0,c=1;c<f.length;c++)h[c]?b++:(lsf_myweb.addClass(e,"l-li3"),g=!1);b==f.length-1&&(lsf_myweb.removeClass(e,"l-li3"),g=!0)})}(b)}if(a){var c=a.locationList,a=a.hotelList,d=null,e=lsf_myweb.getbyid("lsf_list"),f="",g=document.getElementById("lsf_list").getAttribute("data-index")>1;if(g||(m.innerHTML=""),a.length){for(var i=0;i<a.length;i++){var k=a[i].starRating.substring(0,1),l="",o="",q="";a[i].isFreeWiFi&&(l+='<span class="h-wifi"></span>'),a[i].isFreeTransfer&&(l+='<span class="h-transfer"></span>'),a[i].isCashRebate&&(o='<div class="h-div1" style="background-color: #ffb412">返现</div>'),a[i].isFreeCityTour&&(q='<div class="h-div1">免费景点</div>');var s=null!=a[i].hotelNameLocale&&""!=a[i].hotelNameLocale?a[i].hotelNameLocale+"("+a[i].hotelName+")":a[i].hotelName,t='<li class="ho_list" data-hotelCode="'+a[i].hotelCode+'" data-InstantConfirmation="'+a[i].InstantConfirmation+'" data-AllOccupancy="'+a[i].AllOccupancy+'"><div class="ho_pic"><img  src="../images/loading-hotel.gif" data-src="'+a[i].frontPgImage+'" class="ho_img"/ data-all="'+a[i]+'"></div><div class="ho_infor"><p class="hname"  style="font-size:1.6rem;width:'+n+'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">'+s+'</p><div class="h-score"><span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">'+(parseFloat(a[i].hotelReviewScore)?a[i].hotelReviewScore+'</span><span style="color:#999999;font-size:1rem;">分/'+(parseFloat(a[i].hotelReviewCount)?a[i].hotelReviewCount:"")+"人点评</span>":'</span><span style="color:#fff;font-size:1rem;">分/'+(parseFloat(a[i].hotelReviewCount)?a[i].hotelReviewCount:"")+"人点评</span>")+'<p class="hl_price"><span style="font-size:12px;color:#fe4716;">￥</span><span style="font-size:2rem;font-weight: 600;color:#fe4716;">'+a[i].avgPriceCNY+'</span><span style="font-size:1.2rem;color:#999999;">起</span></p></div><div class="h-grade"><span style="color:#999999;font-size:1rem;">'+num2chin(k)+"星级</span>"+l+o+q+'</div><p class="h-address">'+a[i].location+"</p></div></li>";f+=t}e.style.height="";var d=setTimeout(function(){m.innerHTML+=f;var b=document.getElementById("loadMore");b.style.display="block",a.length<p.pageSize?(b.setAttribute("data-more","no"),b.innerHTML="没有更多数据了"):(b.setAttribute("data-more","yes"),b.innerHTML="点击加载更多");m.children,lsf_myweb.getbyclass(m,"hname"),new lazyLoad("lsf_list");j(a),clearTimeout(d)},50)}else if(p.pageIndex>1)document.getElementById("loadMore").innerHTML="没有更多数据了";else{document.getElementById("loadMore").style.display="none";var u=document.createElement("li");u.innerHTML='<div><img src="../images/hotelListerrorpic.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>',u.className="hotelConNo",e.style.width="100%",e.style.height="100%",e.appendChild(u)}r&&b(),r=!1,h(),$(function(){var a=null;clearInterval(a),a=setInterval(function(){$("#lsf_list").children().length&&($("#status-h").fadeOut(),$("#preloader").delay(400).fadeOut("medium"),clearInterval(a))},30)})}}function f(){var a=lsf_myweb.getbyid("rank").children,b=JSON.parse(window.sessionStorage.getItem("asiaHlHistory"));if(b.hlSort)for(var c=0;c<a.length;c++)if(b.hlSort.chinese&&-1!=a[c].innerHTML.indexOf(b.hlSort.chinese)){p.rank=b.hlSort.english;for(var d=0;d<a.length;d++){a[d].style.color="#b3b2b4";var e=a[d].getElementsByTagName("b");e.length&&a[d].removeChild(e[0])}a[c].style.color="#fc9464";var f=document.createElement("b");f.className="hl-icon5",a[c].appendChild(f)}}function g(){function a(a){for(var c=!1,d=0;d<a.length;d++)-1!=b.hlFilter.chinese.indexOf(a[d].innerText)?(c=!0,a[d].className="s-li1"):a[d].className="s-li";c||(a[0].className="s-li1")}var b=JSON.parse(window.sessionStorage.getItem("asiaHlHistory"));if(b.hlFilter){var c=document.getElementById("h-level"),d=document.getElementById("h-type"),e=c.children,f=d.children;a(e),a(f),p.StarRating=b.hlFilter.star,p.Category=b.hlFilter.hotelType}}function h(){function a(a){var c=b.hlLocation.list.split("$"),e=c.length;e>1&&d[0]&&d[0].classList.add("l-li3");for(var f=0;f<a.length;f++)for(var g=0;e>g;g++)a[f].firstChild.innerText==c[g]&&a[f].classList.add("l-li2")}var b=JSON.parse(window.sessionStorage.getItem("asiaHlHistory"));if(b.hlLocation){var c=document.getElementById("l-ul"),d=c.children;a(d),p.LocationList=b.hlLocation.list}}function i(a){var b=a;if(b.success){var c=b.data[0];e(c)}else if("There is no hotel on the selected destination."==b.message){var c={hotelList:[],locationList:[]};e(c)}else{var c={hotelList:[],locationList:[]};e(c)}}function j(a){for(var b=document.getElementsByClassName("ho_list"),c=function(a){var b=new Object;b.HotelID=a.getAttribute("data-hotelCode"),b.HotelCode=a.getAttribute("data-hotelCode"),b.InstantConfirmation=void 0!=a.getAttribute("data-InstantConfirmation")&&"undefined"!=a.getAttribute("data-InstantConfirmation")?a.getAttribute("data-InstantConfirmation"):!1,b.AllOccupancy=void 0!=a.getAttribute("data-AllOccupancy")&&"undefined"!=a.getAttribute("data-AllOccupancy")?a.getAttribute("data-AllOccupancy"):!0,b.CheckInDate=p.InterCheckInDate,b.CheckOutDate=p.InterCheckOutDate,b.NumRoom=p.NumRoom,b.NumAdult=p.NumAdult,b.NumChild=p.NumChild;var c="";for(var d in b)c+="&"+d+"="+b[d];c=c.slice(1),window.location.href="hotel_detail.html?"+c},d=0;d<b.length;d++)b[d].onclick=function(){var a=this;c(a)}}function k(){var a=document.getElementById("loadMore"),b=p.pageIndex+1,c=a.getAttribute("data-more");"no"!=c&&(a.innerHTML="正在加载...",p.pageIndex=b,d(p))}a(),b(),c();var l=document.getElementById("hl_back");lsf_myweb.bind(l,"click",function(){lsf_myweb.setSession("asiaHlHistory",{}),window.location.href="index.html"});document.getElementById("lsf_list");$(window).load(function(){var a=null;a=setInterval(function(){$("#lsf_list").children().length&&($("#status-h").fadeOut(),$("#preloader").delay(400).fadeOut("medium"),clearInterval(a))},30)});var m=lsf_myweb.getbyid("lsf_list"),n=m.offsetWidth-125,o=window.location.href,p=url2json(o),q=document.getElementsByTagName("body")[0],r=(document.getElementById("s_but"),!0),s=document.getElementById("preloader");document.getElementById("status");f(),g(),h(),d(p),lsf_myweb.bind(q,"click",function(a){var b=a||event,c=b.srcElement||b.target;if(hlHis.hlSort=hlHis.hlSort||{},hlHis.hlSort.chinese=hlHis.hlSort.chinese||"",hlHis.hlSort.english=hlHis.hlSort.english||"","r-li"==c.className){var e=c.innerHTML;-1!=e.indexOf("推荐排序")?(p.rank="PriorityDESC",hlHis.hlSort.chinese="推荐排序",hlHis.hlSort.english="PriorityDESC"):-1!=e.indexOf("价格升序")?(p.rank="PriceASC",hlHis.hlSort.chinese="价格升序",hlHis.hlSort.english="PriceASC"):-1!=e.indexOf("价格降序")?(p.rank="PriceDESC",hlHis.hlSort.chinese="价格降序",hlHis.hlSort.english="PriceDESC"):-1!=e.indexOf("好评优先")&&(p.rank="ReviewscoreDESC",hlHis.hlSort.chinese="好评优先",hlHis.hlSort.english="ReviewscoreDESC"),lsf_myweb.setSession("asiaHlHistory",hlHis),p.pageIndex=1,d(p)}}),lsf_myweb.bind(q,"click",function(a){var b=a||event,c=document.getElementById("screen"),e=b.srcElement||b.target,f=document.documentElement.clientHeight;if(c.style.maxHeight=f-45+"px","s_but"==e.getAttribute("id")){var g="",h="",i="",j="",k="",l=lsf_myweb.getbyclass(lsf_myweb.getbyid("screen"),"s-li1");hlHis.hlFilter=hlHis.hlFilter||{},hlHis.hlFilter.chinese=hlHis.hlFilter.chinese||"",hlHis.hlFilter.star=hlHis.hlFilter.star||"",hlHis.hlFilter.hotelType=hlHis.hlFilter.hotelType||"";for(var m=0;m<l.length;m++)switch(l[m].innerText){case"二星级以下":g+="2$",i+="二星级以下$",j+="2$";break;case"三星":g+="3$",i+="三星$",j+="3$";break;case"四星":g+="4$",i+="四星$",j+="4$";break;case"五星":g+="5$",i+="五星$",j+="5$";break;case"酒店":h+="1$",i+="酒店$",k+="1$";break;case"汽车旅馆":h+="2$",i+="汽车旅馆$",k+="2$";break;case"酒店式公寓":h+="3$",i+="酒店式公寓$",k+="2$";break;case"家庭旅馆":h+="4$",i+="家庭旅馆$",k+="4$";break;case"背包客栈":h+="5$",i+="背包客栈$",k+="5$";break;case"宾馆/招待所":h+="6$",i+="宾馆/招待所$",k+="6$";break;case"精品酒店":h+="7$",i+="精品酒店$",k+="7$";break;case"度假类酒店":h+="8$",i+="度假类酒店$",k+="8$";break;case"游轮度假酒店":h+="9$",i+="游轮度假酒店$",k+="9$";break;case"别墅型酒店":h+="10$",i+="别墅型酒店$",k+="10$";break;case"乡村平房酒店":h+="11$",i+="乡村平房酒店$",k+="11$";break;case"家庭寄宿":h+="12$",i+="家庭寄宿$",k+="12$";break;case"农舍式房子":h+="13$",i+="农舍式房子$",k+="13$";break;case"豪华露营地":h+="14$",i+="豪华露营地$",k+="14$";break;case"标准露营地":h+="15$",i+="标准露营地$",k+="15$"}g=g.substring(0,g.length-1),h=h.substring(0,h.length-1),hlHis.hlFilter.chinese=i.substring(0,i.length-1),hlHis.hlFilter.hotelType=k.substring(0,k.length-1),hlHis.hlFilter.star=j.substring(0,j.length-1),lsf_myweb.setSession("asiaHlHistory",hlHis),p.StarRating=g,p.Category=h,p.pageIndex=1,d(p)}}),lsf_myweb.bind(q,"click",function(a){var b=a||event,c=document.getElementById("location"),e=document.getElementById("loca_con"),f=document.getElementById("loca_conBro");hlHis.hlLocation=hlHis.hlLocation||{},hlHis.hlLocation.list=hlHis.hlLocation.list||"";var g=document.documentElement.clientHeight;f.style.height=e.offsetHeight+"px",e.style.bottom="0",c.style.maxHeight=g-45+"px";var h=b.srcElement||b.target,i="";if("l_but"==h.getAttribute("id")){for(var j=lsf_myweb.getbyclass(lsf_myweb.getbyid("l-ul"),"l-li2"),k=0;k<j.length;k++){var l=j[k].children[0];i+=l.innerHTML+"$",k==j.length-1&&(i+=l.innerHTML)}hlHis.hlLocation.list=i,lsf_myweb.setSession("asiaHlHistory",hlHis),p.LocationList=i,p.pageIndex=1,d(p)}}),lsf_myweb.bind(document.getElementById("loadMore"),"click",function(a){k()})}();
+//解决300毫秒延迟问题
+( function($) {
+		$(document).ready(function() {
+			window.addEventListener('load', function() {
+				FastClick.attach(document.body);
+			}, false);
+		});
+	}(jQuery));
+
+var lsf_myweb = {
+	"getbyid" : function(id) {
+		return document.getElementById(id);
+	},
+	"getbytag" : function(obj, tag) {
+		return obj.getElementsByTagName(tag);
+	},
+	"getbyclass" : function(obj, sClass) {
+		if (obj.getElementsByClassName) {
+			return obj.getElementsByClassName(sClass);
+		} else {
+			var aResult = [];
+			var aEle = obj.getElementsByTagName('*');
+			var reg = new RegExp('\\b' + sClass + '\\b', 'g');
+			for (var i = 0; i < aEle.length; i++) {
+				if (aEle[i].className.search(reg) != -1) {
+					aResult.push(aEle[i]);
+				}
+			}
+			return aResult;
+		}
+	},
+	"addClass" : function(obj, sClass) {
+		if (obj.className) {
+			var reg = RegExp('\\b' + sClass + '\\b', 'g');
+			if (obj.className.search(reg) == -1) {
+				obj.className += ' ' + sClass;
+			}
+		} else {
+			obj.className = sClass;
+		}
+	},
+	"removeClass" : function(obj, sClass) {
+		if (obj.className) {
+			var reg = new RegExp('\\b' + sClass + '\\b', 'g');
+			if (obj.className.search(reg) != -1) {
+				obj.className = obj.className.replace(reg, '').replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
+				if (!obj.className) {
+					obj.removeAttribute('class');
+				}
+			}
+		}
+	},
+	"bind" : function(obj, sEv, fn) {
+		if (obj.addEventListener) {
+			obj.addEventListener(sEv, fn, false);
+		} else {
+			obj.attachEvent('on' + sEv, fn);
+		}
+	},
+	"removeBind" : function(obj, sEv, fn) {
+		if (obj.removeEventListener) {
+			obj.removeEventListener(sEv, fn, false);
+		} else {
+			obj.detachEvent('on' + sEv, fn);
+		}
+	},
+	"setSession" : function(name, json) {
+		window.sessionStorage.setItem(name, JSON.stringify(json));
+	},
+	"getSession" : function(name) {
+		return JSON.parse(window.sessionStorage.getItem(name));
+	}
+};
+//storage存储
+var hlHis = lsf_myweb.getSession('asiaHlHistory') || {};
+lsf_myweb.setSession('asiaHlHistory', hlHis);
+//把星级英文数字换成汉字
+function num2chin(num) {
+	switch(num) {
+		case '0':
+			return '零';
+			break;
+		case '1':
+			return '一';
+			break;
+		case '2':
+			return '二';
+			break;
+		case '3':
+			return '三';
+			break;
+		case '4':
+			return '四';
+			break;
+		case '5':
+			return '五';
+			break;
+		default:
+			return '二';  //默认二星级  H5-726
+			break;
+	};
+}
+
+//把url字符串变成json
+function url2json(url) {
+	if (!url)
+		return;
+	var json = {};
+	var arr = url.split('?');
+	var arr2 = arr[1].split('&');
+	for (var i = 0; i < arr2.length; i++) {
+		var arr3 = arr2[i].split('=');
+		json[arr3[0]] = arr3[1];
+	}
+	return json;
+}
+
+//输入框获得焦点和失去焦点的变化
+function styleChange(id, mytext) {
+	var oInp = document.getElementById(id);
+	oInp.onfocus = function() {
+		if (this.value == mytext) {
+			this.value = '';
+			this.style.color = '#484848';
+		}
+	};
+	oInp.onblur = function() {
+		if (!this.value) {
+			this.value = mytext;
+			this.style.color = '#d1d1d1';
+		}
+	};
+}
+////解决位置搜索部分确定按钮太靠下的问题
+//;(function(){
+////		var inst = document.getElementById("fo_lo");
+////		var submit = document.getElementById("l_but");
+//	$("#fo_lo").on("click",function(){
+//		$("#l_but").addClass("s-but-checked");
+//		$("#s_but1").addClass("s-but-checked");
+//		console.log("111");
+//	});
+//	$("#l_but").on("click",function(){
+//		$("#l_but").removeClass("s-but-checked");
+//		$("#s_but1").removeClass("s-but-checked");
+//	});
+//
+//})();
+(function() {
+	function checked(){
+		$("#fo_lo").on("click",function(){
+			$("#l_but").addClass("s-but-checked");
+			$("#s_but1").addClass("s-but-checked");
+			console.log("111");
+		});
+	}
+	function submit(){
+		$("#l_but").on("click",function(){
+			$("#l_but").removeClass("s-but-checked");
+			$("#s_but1").removeClass("s-but-checked");
+		});
+	}
+	checked();submit();
+	//贾燕云的js
+	function h_l_s() {
+		var rli = [], sli1 = [], sli2 = [], lb = [];
+		var mb;
+		function _(s) {
+			return document.getElementById(s);
+		}
+
+		var rank = _("rank");
+		var screen = _("screen");
+		var location = _("location");
+		var fo_ra = _("fo_ra");
+		var fo_sc = _("fo_sc");
+		var fo_lo = _("fo_lo");
+		var s_but = _("s_but");
+		var l_but = _("l_but");
+		function show(obj) {
+			mb = document.getElementById("r-mb");
+			mb.style.display = "block";
+			obj.style.bottom = "0";
+			obj.style.transition = "all 350ms";
+		}
+
+		function close(obj) {
+            var windowHeight = window.innerHeight;
+			mb = document.getElementById("r-mb");
+			mb.style.display = "none";
+			obj.style.bottom = -windowHeight+ 'px';
+			obj.style.transition = "all 350ms";
+		}
+
+		function mb_close() {
+            var windowHeight = window.innerHeight;
+			mb = document.getElementById("r-mb");
+			mb = document.getElementById("r-mb");
+			mb.style.display = "none";
+			if (rank.style.display == "" || rank.style.display == "block") {
+				rank.style.bottom = -windowHeight + 'px';
+				rank.style.transition = "all 350ms";
+				$("#l_but").removeClass("s-but-checked");
+				$("#s_but1").removeClass("s-but-checked");
+			}
+			if (screen.style.display == "" || screen.style.display == "block") {
+				screen.style.bottom = -windowHeight + 'px';
+				screen.style.transition = "all 350ms";
+				$("#l_but").removeClass("s-but-checked");
+				$("#s_but1").removeClass("s-but-checked");
+			}
+			if (location.style.display == "" || location.style.display == "block") {
+				location.style.bottom = -windowHeight + 'px';
+				location.style.transition = "all 350ms";
+				$("#l_but").removeClass("s-but-checked");
+				$("#s_but1").removeClass("s-but-checked");
+			}
+		}
+
+		/*   酒店筛选  */
+		function selectType() {
+			var obj = window.event.srcElement;
+			var oName = obj.className;
+			var array = [];
+            var selected = [];
+			if (obj.innerText == "不限") {
+				array = document.getElementById("h-type").childNodes;
+				for (var i = 1; i < array.length; i++) {
+					array[i].className = "s-li";
+				}
+			}
+			if (obj.innerText != "不限") {
+				document.getElementById("h-type").firstElementChild.className = "s-li";
+			}
+			if (oName == "s-li") {
+				obj.className = "s-li1";
+			} else {
+				obj.className = "s-li";
+			}
+            //如果一个都没有选中的情况，显示不限；
+            array = document.getElementById("h-type").childNodes;
+            for(var j=0,len=array.length;j<len;j++){
+                if(array[j].className == "s-li1"){
+                    selected.push(array[j].innerText);
+                }
+            }
+            if(selected.length == 0){
+                document.getElementById("h-type").firstElementChild.className = "s-li1";
+            }
+		}
+
+		function selectLevel() {
+			var obj = window.event.srcElement;
+			var oName = obj.className;
+			var array = [];
+            var selected = [];
+			if (obj.innerText == "不限") {
+				array = document.getElementById("h-level").childNodes;
+				for (var i = 1; i < array.length; i++) {
+					array[i].className = "s-li";
+				}
+			}
+			if (obj.innerText != "不限") {
+				document.getElementById("h-level").firstElementChild.className = "s-li";
+			}
+			if (oName == "s-li") {
+				obj.className = "s-li1";
+			} else {
+				obj.className = "s-li";
+			}
+            //如果一个都没有选中的情况，显示不限；
+            array = document.getElementById("h-level").childNodes;
+            for(var j=0,len=array.length;j<len;j++){
+                if(array[j].className == "s-li1"){
+                    selected.push(array[j].innerText);
+                }
+            }
+            if(selected.length == 0){
+                document.getElementById("h-level").firstElementChild.className = "s-li1";
+            }
+		}
+
+		function openClick(obj1, obj2) {
+			obj1.onclick = function() {
+				show(obj2);
+				mb.addEventListener("click", mb_close);
+			}
+		}
+
+		function closeClick(obj1, obj2) {
+			obj1.onclick = function() {
+				close(obj2);
+			}
+		}
+
+
+		this.init = function(s) {
+			//insert
+			sli1 = document.getElementById("h-level").childNodes;
+			for (var j = 0; j < sli1.length; j++) {
+				sli1[j].addEventListener("click", selectLevel);
+			}
+			sli2 = document.getElementById("h-type").childNodes;
+			for (var k = 0; k < sli2.length; k++) {
+				sli2[k].addEventListener("click", selectType);
+			}
+			rli = document.getElementsByClassName("r-li");
+			for (var i = 0; i < rli.length; i++) {
+				rli[i].addEventListener("click", selectRank);
+			}
+			/*lli = document.getElementsByClassName("l-li");
+			 for(var r=0;r < lli.length;r++){
+			 lli[r].addEventListener("click",selectLocation);
+			 }*/
+		};
+		init();
+		openClick(fo_ra, rank);
+		openClick(fo_sc, screen);
+		openClick(fo_lo, location);
+		closeClick(s_but, screen);
+		closeClick(l_but, location);
+		/*   排序筛选   */
+		function selectRank() {
+			var obj = window.event.srcElement;
+			var rank = document.getElementById("rank");
+			var mb = document.getElementById("r-mb");
+			var color = obj.style.color;
+			if (color == "rgb(252, 148, 100)") {
+				mb.style.display = "none";
+				rank.style.bottom = -550 + 'px';
+				rank.style.transition = "all 350ms";
+			} else {
+				for (var i = 0; i < rli.length; i++) {
+					if (rli[i].style.color == "rgb(252, 148, 100)") {
+						var bb = rli[i].getElementsByTagName("b")[0];
+						rli[i].removeChild(bb);
+					}
+					rli[i].style.color = "#b3b2b4";
+				}
+				obj.style.color = "#fc9464";
+				var b = document.createElement("b");
+				b.className = "hl-icon5";
+				obj.appendChild(b);
+				mb.style.display = "none";
+				rank.style.bottom = -550 + 'px';
+				rank.style.transition = "all 350ms";
+			}
+		}
+
+		/*   位置筛选  */
+		/*function selectLocation(){
+		 var obj = window.event.srcElement;
+		 var p = obj.firstElementChild;
+		 var b = obj.lastElementChild;
+		 var array = [];
+		 array = document.getElementsByClassName("l-li");
+		 if(p.innerHTML == "不限"){
+		 for(var i=1;i < array.length;i++){
+		 array[i].lastElementChild.className = "l-icon";
+		 }
+		 }if(p.innerHTML != "不限"){
+		 document.getElementById("l-ul").firstElementChild.lastElementChild.className = "l-icon";
+		 }
+		 if(b.className == "l-icon"){
+		 b.className = "l-icon1";
+		 }else{
+		 b.className = "l-icon";
+		 }
+		 }
+		 */
+	}
+
+	h_l_s();
+	//贾燕云的js结束
+
+	//返回按钮事件
+	var hl_back = document.getElementById('hl_back');
+	lsf_myweb.bind(hl_back, 'click', function() {
+        //清空筛选条件
+        lsf_myweb.setSession('asiaHlHistory', {});
+		window.location.href = 'index.html';
+	});
+	//页面没有展示前页面展示的页面
+	var oUl = document.getElementById('lsf_list');
+	$(window).load(function() {
+		//$("#status-h").fadeOut();
+		//$("#preloader").delay(400).fadeOut("medium");
+		var timer = null;
+		timer = setInterval(function() {
+			if ($('#lsf_list').children().length) {
+				$("#status-h").fadeOut();
+				$("#preloader").delay(400).fadeOut("medium");
+				clearInterval(timer);
+			}
+			//console.log($('#lsf_list').children().length);
+		}, 30);
+
+	});
+	//输入框样式改变
+	//styleChange('sousou','酒店名/位置')
+
+	var list_oUl = lsf_myweb.getbyid('lsf_list');
+	var pWidth = list_oUl.offsetWidth - 125;
+	var str = window.location.href;
+	var url_json = url2json(str);
+	var oBody = document.getElementsByTagName('body')[0];
+	var oBtn = document.getElementById('s_but');
+	var addressBok = true;
+	console.log(url_json);
+
+	var preloader = document.getElementById('preloader');
+	var status_h = document.getElementById('status');
+	//交互部分
+	function M(json) {
+		console.log('这是传入的数据');
+		console.log(json);
+		preloader.style.display = 'block';
+		//status_h.style.display = 'block';
+		var lsf_list = document.getElementById('lsf_list');
+		//lsf_list.innerHTML = '';
+		json = json || {};
+		json.rank = json.rank || '';  //使用默认排序
+		json.InterCityName = decodeURIComponent(json.InterCityName) || 'Singapore';
+		json.DomCityName = decodeURIComponent(json.DomCityName) || '北京';
+		json.NumRoom = json.NumRoom || '1';
+		json.NumChild = json.NumChild || '1';
+		json.NumAdult = json.NumAdult || '1';
+		json.Category = json.Category || '';
+		json.StarRating = json.StarRating || '';
+		json.LocationList = json.LocationList || '';
+		json.CountryISOCode = json.CountryISOCode || 'SG';
+        json.pageIndex = json.pageIndex || 1;
+        json.pageSize = json.pageSize || 20;
+		var oDate = new Date();
+		var y = oDate.getFullYear();
+		var m = oDate.getMonth() + 1;
+		var d = oDate.getDate();
+		json.InterCheckInDate = json.InterCheckInDate || y + '-' + m + '-' + d;
+		json.InterCheckOutDate = json.InterCheckOutDate || y + '-' + m + '-' + (d + 1);
+		var hoPos = localStorage.getItem('hoPos');
+		//获得的目的地名字在城市列表里面进行搜索，然后获得英文名字
+		var hl_cityListInfo = JSON.parse(window.localStorage.getItem('cityListInfo'));
+
+		//对获取的城市名字进行处理，得到汉字名字
+		function cityNameChange(cityName) {
+			if (cityName.indexOf('(') != -1) {
+				cityName = cityName.substring(0, cityName.indexOf('('));
+			}
+			return cityName;
+		}
+
+
+        //显示筛选状态
+        var leftEle = document.getElementById('fo_ra'),middleEle = document.getElementById('fo_sc'),rightEle = document.getElementById('fo_lo');
+        if(json.rank != "" && json.rank != "PriorityDESC"){
+            leftEle.querySelector("i").className = "red-tip";
+        }else{
+            leftEle.querySelector("i").className = "";
+        }
+        if(json.Category != "" || json.StarRating != ""){
+            middleEle.querySelector("i").className = "red-tip";
+        }else{
+            middleEle.querySelector("i").className = "";
+        }
+        if(json.LocationList != ""){
+            rightEle.querySelector("i").className = "red-tip";
+        }else{
+            rightEle.querySelector("i").className = "";
+        }
+
+		json.InterCityName = cityNameChange(json.InterCityName);
+		json.DomCityName = cityNameChange(json.DomCityName);
+		//对得到的汉字名字进行处理，得到英文名字和三字码
+		/*for(var i=0;i<hl_cityListInfo.length;i++){
+
+		if(json.DomCityName==hl_cityListInfo[i].cityNameCN){
+		json.DomCityName=hl_cityListInfo[i].cityNameEN;
+		json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
+		}
+		if((json.InterCityName==hl_cityListInfo[i].cityNameEN)||(json.DomCityName==hl_cityListInfo[i].cityNameEN)){
+		json.CountryISOCode=hl_cityListInfo[i].countryISOCode;
+		}
+		}*/
+
+		//判断点击的是国际酒店按钮还是国内酒店按钮
+		if (hoPos == 'inter') {
+			var pattern = /^([\u4e00-\u9fa5])*$/
+			//中文,需要匹配
+			if (pattern.test(json.InterCityName)) {
+				for (var i = 0; i < hl_cityListInfo.length; i++) {
+					if (json.InterCityName == hl_cityListInfo[i].cityNameCN) {
+						json.InterCityName = hl_cityListInfo[i].cityNameEN;
+						json.CountryISOCode = hl_cityListInfo[i].countryISOCode;
+						break;
+					}
+				}
+			}
+			var data = {
+				"Parameters" : "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"" + json.CountryISOCode + "\",\"CityName\":\"" + json.InterCityName + "\",\"CheckInDate\":\"" + json.InterCheckInDate + "T00:00:00\",\"CheckOutDate\":\"" + json.InterCheckOutDate + "T00:00:00\",\"NumRoom\":" + json.NumRoom + ",\"NumAdult\":" + json.NumAdult + ",\"NumChild\":" + json.NumChild + ",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":\""+json.pageIndex+"\",\"PageSize\":\""+json.pageSize+"\",\"sorttype\":\"" + json.rank + "\",\"Category\":\"" + json.Category + "\",\"StarRating\":\"" + json.StarRating + "\",\"LocationList\":\"" + json.LocationList + "\"}",
+				"Code" : "0007",
+				"ForeEndType" : 3
+			};
+		} else if ( hoPos = 'dom') {
+			for (var i = 0; i < hl_cityListInfo.length; i++) {
+				if (json.DomCityName == hl_cityListInfo[i].cityNameCN) {
+					json.DomCityName = hl_cityListInfo[i].cityNameEN;
+					json.CountryISOCode = hl_cityListInfo[i].countryISOCode;
+					break;
+				}
+			}
+			var data = {
+				"Parameters" : "{\"CultureName\":\"zh-CN\",\"PartnerCode\":\"1000\",\"CountryISOCode\":\"" + json.CountryISOCode + "\",\"CityName\":\"" + json.DomCityName + "\",\"CheckInDate\":\"" + json.DomCheckInDate + "T00:00:00\",\"CheckOutDate\":\"" + json.DomCheckOutDate + "T00:00:00\",\"NumRoom\":\"\",\"NumAdult\":\"\",\"NumChild\":\"\",\"InstantConfirmation\":true,\"AllOccupancy\":true,\"PageIndex\":\""+json.pageIndex+"\",\"PageSize\":\""+json.pageSize+"\",\"sorttype\":\"" + json.rank + "\",\"Category\":\"" + json.Category + "\",\"StarRating\":\"" + json.StarRating + "\",\"LocationList\":\"" + json.LocationList + "\"}",
+				"Code" : "0007",
+				"ForeEndType" : 3
+			};
+		}
+
+        //设置pageIndex 在酒店列表容器上 用于判断是加载更多还是正常加载
+        document.getElementById("lsf_list").setAttribute("data-index", json.pageIndex);
+
+        if(json.pageIndex == 1){
+            return vlm.loadJson("", JSON.stringify(data), mycallback);
+        }else{
+            return vlm.loadJson("", JSON.stringify(data), mycallback,false,false,true);
+        }
+
+	}
+
+	//数据展示部分
+	function V(data) {
+		if (!data)
+			return;
+		//console.log(data);
+		var data_address = data.locationList;
+		var data = data.hotelList;
+		var timer = null;
+		var oUl = lsf_myweb.getbyid('lsf_list');
+        var liHtml = "";
+        var loadSign = document.getElementById("lsf_list").getAttribute("data-index") > 1 ? true : false;  //true 加载更多
+        //如果不是加载更多，清空节点内容
+        if(!loadSign){
+            list_oUl.innerHTML = "";
+        }
+		if (data.length) {
+			for (var i = 0; i < data.length; i++) {
+				var str1 = data[i].starRating.substring(0, 1);
+				var str2 = '';
+				var str3 = '';
+				var str4 = '';
+				if (data[i].isFreeWiFi) {
+					//str2+='<b class="hl-icon1">免费wifi</b>';
+					str2 += '<span class="h-wifi"></span>';
+				}
+				if (data[i].isFreeTransfer) {
+					//str2+='<b class="hl-icon2">免费接送</b>';
+					str2 += '<span class="h-transfer"></span>';
+				}
+				if (data[i].isCashRebate) {
+					str3 = '<div class="h-div1" style="background-color: #ffb412">返现</div>';
+				}
+				if (data[i].isFreeCityTour) {
+					str4 = '<div class="h-div1">免费景点</div>';
+				}
+
+				//有地区地址就给地址加括号，没有就不加
+				/*if (data[i].location) {
+					data[i].location = '(' + data[i].location + ')';
+				}*/
+
+				var namestr=data[i].hotelNameLocale!=null&&data[i].hotelNameLocale!=""?data[i].hotelNameLocale+'('+data[i].hotelName+')':data[i].hotelName,str = '<li class="ho_list" data-hotelCode="'+data[i].hotelCode+'" data-InstantConfirmation="'+data[i].InstantConfirmation+'" data-AllOccupancy="'+data[i].AllOccupancy+'">' + '<div class="ho_pic">' + '<img  src="../images/loading-hotel.gif" data-src="' + data[i].frontPgImage + '" class="ho_img"/ data-all="' + data[i] + '">' + '</div>' + '<div class="ho_infor">' + '<p class="hname"  style="font-size:1.6rem;width:' + pWidth + 'px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis">' + namestr + '</p>' + '<div class="h-score">' + '<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">' + (parseFloat(data[i].hotelReviewScore) ? data[i].hotelReviewScore + '</span>' + '<span style="color:#999999;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>' : '</span>' + '<span style="color:#fff;font-size:1rem;">分/' + (parseFloat(data[i].hotelReviewCount) ? data[i].hotelReviewCount : '') + '人点评</span>') + '<p class="hl_price">' + '<span style="font-size:12px;color:#fe4716;">￥</span>' + '<span style="font-size:2rem;font-weight: 600;color:#fe4716;">' + data[i].avgPriceCNY + '</span>' + '<span style="font-size:1.2rem;color:#999999;">起</span>' + '</p>' + '</div>' + '<div class="h-grade">' + '<span style="color:#999999;font-size:1rem;">' + num2chin(str1) + '星级</span>' + str2 + str3 + str4 + '</div>' + '<p class="h-address">' + data[i].location + '</p>' + '</div>' + '</li>';
+
+                liHtml += str;
+			}
+            //筛选无结果到有结果时样式调整
+            oUl.style.height = '';
+
+            //fixed 页面滑动到底部后 清空内容重新赋值时页面还在底部
+            var timer =setTimeout(function(){
+                list_oUl.innerHTML += liHtml;
+
+                var moreEle = document.getElementById("loadMore");
+                moreEle.style.display = "block";
+                if(data.length < url_json.pageSize){
+                    moreEle.setAttribute("data-more","no");
+                    moreEle.innerHTML = "没有更多数据了";
+                }else{
+                    moreEle.setAttribute("data-more","yes");
+                    moreEle.innerHTML = "点击加载更多";
+                }
+
+                //横屏竖屏时改变酒店名宽度
+                var hl_aLi = list_oUl.children;
+                var hl_hname = lsf_myweb.getbyclass(list_oUl, 'hname');
+
+                //懒加载
+                var c = new lazyLoad('lsf_list');
+
+                //绑定跳转事件
+                getDetail(data);
+
+                clearTimeout(timer);
+            },50)
+
+
+
+			//function screenDir(){
+			//    if(window.orientation==180||window.orientation==0){
+			//        //alert('竖屏状态');
+			//        var hnameWidth=(list_oUl.offsetWidth-140);
+			//    }
+			//    if(window.orientation==90||window.orientation==-90){
+			//        //alert('横屏状态');
+			//        var hnameWidth=(list_oUl.offsetWidth-140);
+			//    }
+			//    for(var j=0;j<hl_hname.length;j++){
+			//        hl_hname[j].style.width=hnameWidth+'px';
+			//    }
+			//}
+			//window.addEventListener('onorientationchange' in window?'onorientationchange':'resize',screenDir,false);
+
+
+		} else {
+            if(url_json.pageIndex > 1){
+                document.getElementById("loadMore").innerHTML = "没有更多数据了";
+            }else{
+                document.getElementById("loadMore").style.display = "none";
+                var oLi = document.createElement('li');
+                oLi.innerHTML = '<div><img src="../images/hotelListerrorpic.png" /><p class="hotelConSorry1">非常抱歉，无符合要求的酒店。</p><p class="hotelConSorry2">建议您扩大搜索范围</p></div>';
+                oLi.className = 'hotelConNo';
+                oUl.style.width = '100%';
+                oUl.style.height = '100%';
+                oUl.appendChild(oLi);
+            }
+		}
+		//位置交互部分
+		function hlAddress() {
+			var oUl = document.getElementById('l-ul');
+			//模板添加内容
+			//console.log(data_address);
+			oUl.innerHTML = '<li class="l-li l-liFirst">' + '<p class="l-p">不限</p>' + '<b class="l-icon1 l-icon1First"></b>' + '</li>';
+
+			for (var i = 0; i < data_address.length; i++) {
+				var str = '<li class="l-li">' + '<p class="l-p">{$adress$}</p>' + '<b class="l-icon1"></b>' + '</li>';
+				str = str.replace(/\{\$\w+\$\}/g, function(s) {
+					return data_address[i];
+				});
+				oUl.innerHTML += str;
+			}
+			var liFirst = lsf_myweb.getbyclass(oUl,'l-liFirst')[0];
+			var aLi = lsf_myweb.getbyclass(oUl, 'l-li');
+			var aB = lsf_myweb.getbyclass(oUl, 'l-icon1');
+			var oB = lsf_myweb.getbyclass(oUl,'l-icon1First')[0];
+			var bOk = true;
+			var aOk = {};
+			for (var i = 1; i < aLi.length; i++) {
+				aOk[i] = true;
+			}
+			//联动选项
+			//“不限”点击事件
+
+			lsf_myweb.bind(liFirst, 'click', function() {
+                lsf_myweb.removeClass(liFirst, 'l-li3');
+                for (var i = 1; i < aLi.length; i++) {
+                    lsf_myweb.removeClass(aLi[i], 'l-li2')
+                }
+                for (var i = 1; i < aLi.length; i++) {
+                    aOk[i] = true;
+                }
+			});
+
+			//每个地区的点击事件
+			for (var i = 1; i < aLi.length; i++) {
+				(function(index) {
+					lsf_myweb.bind(aLi[index], 'click', function() {
+						if (aOk[index]) {
+							lsf_myweb.addClass(aLi[index], 'l-li2');
+						} else {
+							lsf_myweb.removeClass(aLi[index], 'l-li2');
+						}
+						aOk[index] = !aOk[index];
+						var n = 0;
+						for (var j = 1; j < aLi.length; j++) {
+							if (!aOk[j]) {
+								lsf_myweb.addClass(liFirst, 'l-li3');
+								bOk = false;
+							} else {
+								n++;
+							}
+						}
+						if (n == aLi.length - 1) {
+							lsf_myweb.removeClass(liFirst, 'l-li3');
+							bOk = true;
+						}
+					});
+				})(i);
+			}
+		}
+
+		//如果是第一次执行就加载城市，如果不是第一次执行就不用二次加载了，间接实现历史记忆功能
+		if (addressBok) {
+			hlAddress();
+		}
+		addressBok = false;
+        //位置信息实现记忆功能   获取到数据后  再执行一次
+        locationHistory();
+
+		$(function() {
+			//$("#status-h").fadeOut();
+			//$("#preloader").delay(400).fadeOut("medium");
+			var timer = null;
+			clearInterval(timer);
+			timer = setInterval(function() {
+				if ($('#lsf_list').children().length) {
+					$("#status-h").fadeOut();
+					$("#preloader").delay(400).fadeOut("medium");
+					clearInterval(timer);
+				}
+				//console.log($('#lsf_list').children().length);
+			}, 30);
+		});
+
+	}
+
+	//历史记忆功能
+	//推荐排序实现记忆功能
+	function sortHistory() {
+		var hlSortLi = lsf_myweb.getbyid('rank').children;
+		var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+		console.log(myAsiaHlHistory);
+		if (!myAsiaHlHistory.hlSort)
+			return;
+		for (var i = 0; i < hlSortLi.length; i++) {
+			if (myAsiaHlHistory.hlSort.chinese && hlSortLi[i].innerHTML.indexOf(myAsiaHlHistory.hlSort.chinese) != -1) {
+				url_json.rank = myAsiaHlHistory.hlSort.english;
+				for (var j = 0; j < hlSortLi.length; j++) {
+					hlSortLi[j].style.color = '#b3b2b4';
+					var oB = hlSortLi[j].getElementsByTagName('b');
+					if (oB.length) {
+						hlSortLi[j].removeChild(oB[0]);
+					}
+				}
+				hlSortLi[i].style.color = '#fc9464';
+				var b = document.createElement("b");
+				b.className = "hl-icon5";
+				hlSortLi[i].appendChild(b);
+			}
+		}
+	}
+
+	sortHistory();
+	//筛选实现记忆功能
+	function filterHistory() {
+		var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+		console.log(myAsiaHlHistory.hlFilter);
+		if (!myAsiaHlHistory.hlFilter)
+			return;
+		var hLevel = document.getElementById('h-level');
+		var hType = document.getElementById('h-type');
+		var hLevelLi = hLevel.children;
+		var hTypeLi = hType.children;
+		function filterAli(obj) {
+            var sign = false;
+			for (var i = 0; i < obj.length; i++) {
+				if (myAsiaHlHistory.hlFilter.chinese.indexOf(obj[i].innerText) != -1) {
+                    sign = true;
+					obj[i].className = 's-li1';
+				}else{
+                    obj[i].className = 's-li';
+                }
+			}
+            if(!sign){
+                obj[0].className = 's-li1';
+            }
+		}
+
+		filterAli(hLevelLi);
+		filterAli(hTypeLi);
+		url_json.StarRating = myAsiaHlHistory.hlFilter.star;
+		url_json.Category = myAsiaHlHistory.hlFilter.hotelType;
+	}
+
+	filterHistory();
+
+    //位置信息实现记忆功能   获取到数据后  再执行一次
+    function locationHistory() {
+        var myAsiaHlHistory = JSON.parse(window.sessionStorage.getItem('asiaHlHistory'));
+        if (!myAsiaHlHistory.hlLocation)
+            return;
+        var hLocation= document.getElementById('l-ul');
+        var hLocationLi = hLocation.children
+        function resetStatus(obj){
+            var locationList = myAsiaHlHistory.hlLocation.list.split("$");
+            var locationLen = locationList.length;
+            if(locationLen > 1 && hLocationLi[0]){
+                hLocationLi[0].classList.add("l-li3");
+            }
+            for (var i = 0; i < obj.length; i++) {
+                for(var j=0; j < locationLen; j++){
+                    if(obj[i].firstChild.innerText == locationList[j]){
+                        obj[i].classList.add('l-li2');
+                    }
+                }
+            }
+        }
+        resetStatus(hLocationLi);
+        url_json.LocationList = myAsiaHlHistory.hlLocation.list;
+    }
+
+    locationHistory();
+
+
+	console.log(url_json);
+	console.log('22222');
+	M(url_json);
+	function mycallback(d) {
+		//console.log(d);
+		var json = d;
+		console.log(json);
+		//console.log(1);
+		//alert(arr.Success);
+		if (json.success) {
+			//console.log(json.Data);
+			var data = json.data[0];
+			console.log(data);
+			console.log(2);
+			//console.log(data.HotelList);
+			V(data);
+
+		} else {
+			if (json.message == 'There is no hotel on the selected destination.') {
+				var data = {
+					'hotelList' : [],
+					'locationList' : []
+				};
+				V(data);
+			} else {
+				//alert(json.message);
+				//console.log(json.message);
+				var data = {
+					'hotelList' : [],
+					'locationList' : []
+				};
+				V(data);
+			}
+			//window.history.go(-1);
+		}
+
+	}
+
+	//推荐排序里面的点击事件（交互）
+	lsf_myweb.bind(oBody, 'click', function(ev) {
+		var oEvent = ev || event;
+		var oSrc = oEvent.srcElement || oEvent.target;
+        hlHis.hlSort = hlHis.hlSort || {};
+        hlHis.hlSort.chinese = hlHis.hlSort.chinese || "";
+        hlHis.hlSort.english = hlHis.hlSort.english || "";
+
+		if (oSrc.className == 'r-li') {
+			var oSrc_str = oSrc.innerHTML;
+			if (oSrc_str.indexOf('推荐排序') != -1) {
+				url_json.rank = 'PriorityDESC';
+				hlHis.hlSort.chinese = '推荐排序';
+				hlHis.hlSort.english = 'PriorityDESC';
+			} else if (oSrc_str.indexOf('价格升序') != -1) {
+				url_json.rank = 'PriceASC';
+				hlHis.hlSort.chinese = '价格升序';
+				hlHis.hlSort.english = 'PriceASC';
+			} else if (oSrc_str.indexOf('价格降序') != -1) {
+				url_json.rank = 'PriceDESC';
+				hlHis.hlSort.chinese = '价格降序';
+				hlHis.hlSort.english = 'PriceDESC';
+			} else if (oSrc_str.indexOf('好评优先') != -1) {
+				url_json.rank = 'ReviewscoreDESC';
+				hlHis.hlSort.chinese = '好评优先';
+				hlHis.hlSort.english = 'ReviewscoreDESC';
+			}
+			lsf_myweb.setSession('asiaHlHistory', hlHis);
+            //页码重置
+            url_json.pageIndex = 1;
+			M(url_json);
+		}
+	});
+	//筛选里面确定按钮的点击事件（交互）
+	lsf_myweb.bind(oBody, 'click', function(ev) {
+		var oEvent = ev || event;
+		var oFilter = document.getElementById('screen');
+		var oSrc = oEvent.srcElement || oEvent.target;
+		//设置弹出框的最大高度
+		var clienH = document.documentElement.clientHeight;
+		oFilter.style.maxHeight = (clienH - 45) + 'px';
+
+		//确定按钮点击事件
+		if (oSrc.getAttribute('id') == 's_but') {
+			var hl_star_str = '';
+			var hl_type_str = '';
+            var hl_filter_chinese = '';
+            var hl_filter_star = '';
+            var hl_filter_type = '';
+
+			var hl_star_type = lsf_myweb.getbyclass(lsf_myweb.getbyid('screen'), 's-li1');
+            hlHis.hlFilter = hlHis.hlFilter || {};
+            hlHis.hlFilter.chinese = hlHis.hlFilter.chinese || "";
+            hlHis.hlFilter.star = hlHis.hlFilter.star || "";
+            hlHis.hlFilter.hotelType = hlHis.hlFilter.hotelType || "";
+
+			for (var i = 0; i < hl_star_type.length; i++) {
+				switch(hl_star_type[i].innerText) {
+					case '二星级以下':
+						hl_star_str += '2$';
+						hl_filter_chinese += '二星级以下$';
+						hl_filter_star += '2$';
+						break;
+					case '三星':
+						hl_star_str += '3$';
+						hl_filter_chinese += '三星$';
+						hl_filter_star += '3$';
+						break;
+					case '四星':
+						hl_star_str += '4$';
+						hl_filter_chinese += '四星$';
+						hl_filter_star += '4$';
+						break;
+					case '五星':
+						hl_star_str += '5$';
+						hl_filter_chinese += '五星$';
+						hl_filter_star += '5$';
+						break;
+					case '酒店':
+						hl_type_str += '1$';
+						hl_filter_chinese += '酒店$';
+						hl_filter_type += '1$';
+						break;
+					case '汽车旅馆':
+						hl_type_str += '2$';
+						hl_filter_chinese += '汽车旅馆$';
+						hl_filter_type += '2$';
+						break;
+					case '酒店式公寓':
+						hl_type_str += '3$';
+						hl_filter_chinese += '酒店式公寓$';
+						hl_filter_type += '2$';
+						break;
+					case '家庭旅馆':
+						hl_type_str += '4$';
+						hl_filter_chinese += '家庭旅馆$';
+						hl_filter_type += '4$';
+						break;
+					case '背包客栈':
+						hl_type_str += '5$';
+						hl_filter_chinese += '背包客栈$';
+						hl_filter_type += '5$';
+						break;
+					case '宾馆/招待所':
+						hl_type_str += '6$';
+						hl_filter_chinese += '宾馆/招待所$';
+						hl_filter_type += '6$';
+						break;
+					case '精品酒店':
+						hl_type_str += '7$';
+						hl_filter_chinese += '精品酒店$';
+						hl_filter_type += '7$';
+						break;
+					case '度假类酒店':
+						hl_type_str += '8$';
+						hl_filter_chinese += '度假类酒店$';
+						hl_filter_type += '8$';
+						break;
+					case '游轮度假酒店':
+						hl_type_str += '9$';
+						hl_filter_chinese += '游轮度假酒店$';
+						hl_filter_type += '9$';
+						break;
+					case '别墅型酒店':
+						hl_type_str += '10$';
+						hl_filter_chinese += '别墅型酒店$';
+						hl_filter_type += '10$';
+						break;
+					case '乡村平房酒店':
+						hl_type_str += '11$';
+						hl_filter_chinese += '乡村平房酒店$';
+						hl_filter_type += '11$';
+						break;
+					case '家庭寄宿':
+						hl_type_str += '12$';
+						hl_filter_chinese += '家庭寄宿$';
+						hl_filter_type += '12$';
+						break;
+					case '农舍式房子':
+						hl_type_str += '13$';
+						hl_filter_chinese += '农舍式房子$';
+						hl_filter_type += '13$';
+						break;
+					case '豪华露营地':
+						hl_type_str += '14$';
+						hl_filter_chinese += '豪华露营地$';
+						hl_filter_type += '14$';
+						break;
+					case '标准露营地':
+						hl_type_str += '15$';
+						hl_filter_chinese += '标准露营地$';
+						hl_filter_type += '15$';
+						break;
+				};
+			}
+            hl_star_str = hl_star_str.substring(0, (hl_star_str.length - 1));
+			hl_type_str = hl_type_str.substring(0, (hl_type_str.length - 1));
+
+			hlHis.hlFilter.chinese = hl_filter_chinese.substring(0, (hl_filter_chinese.length - 1));
+			hlHis.hlFilter.hotelType = hl_filter_type.substring(0, (hl_filter_type.length - 1));
+			hlHis.hlFilter.star = hl_filter_star.substring(0, (hl_filter_star.length - 1));
+			lsf_myweb.setSession('asiaHlHistory', hlHis);
+
+			url_json.StarRating = hl_star_str;
+			url_json.Category = hl_type_str;
+            //页码重置
+            url_json.pageIndex = 1;
+			M(url_json);
+			//alert(hl_star_str+'---'+hl_type_str);
+		}
+	});
+	//位置按钮里面的城市实现筛选交互
+	lsf_myweb.bind(oBody, 'click', function(ev) {
+		var oEvent = ev || event;
+		var oLocation = document.getElementById('location');
+		var loca_con = document.getElementById('loca_con');
+		var loca_conBro = document.getElementById('loca_conBro');
+        hlHis.hlLocation = hlHis.hlLocation || {};
+        hlHis.hlLocation.list = hlHis.hlLocation.list || "";
+		//设置弹出框的最大高度
+		var clienH = document.documentElement.clientHeight;
+		loca_conBro.style.height = loca_con.offsetHeight + 'px';
+		//bottom:0为了实现滑动效果,如果没有bottom:0;内容就不可滑动
+		loca_con.style.bottom = '0';
+		oLocation.style.maxHeight = (clienH - 45) + 'px';
+		var oSrc = oEvent.srcElement || oEvent.target;
+		var locationList = '';
+		if (oSrc.getAttribute('id') == 'l_but') {
+			var targetLi = lsf_myweb.getbyclass(lsf_myweb.getbyid('l-ul'), 'l-li2');
+			for (var i = 0; i < targetLi.length; i++) {
+				var cityName = targetLi[i].children[0];
+				locationList += cityName.innerHTML + '$';
+				if (i == targetLi.length - 1) {
+					locationList += cityName.innerHTML;
+				}
+			}
+            hlHis.hlLocation.list = locationList;
+            lsf_myweb.setSession('asiaHlHistory', hlHis);
+			url_json.LocationList = locationList;
+            //页码重置
+            url_json.pageIndex = 1;
+			M(url_json);
+		}
+	});
+	//获取酒店详情
+	function getDetail(data) {
+		//console.log(url_json);
+		//console.log(data);
+		//data = data.hotelList;
+		var hotelRefers = document.getElementsByClassName('ho_list');
+		var toDetail = function(that) {
+			var paraObj = new Object();
+			paraObj.HotelID = that.getAttribute('data-hotelCode');
+			paraObj.HotelCode = that.getAttribute('data-hotelCode');
+
+			// paraObj.PartnerCode=data[that.index].PartnerCode!=null?data[that.index].PartnerCode:1000;
+			paraObj.InstantConfirmation = (that.getAttribute('data-InstantConfirmation') != undefined && that.getAttribute('data-InstantConfirmation') != "undefined") ? that.getAttribute('data-InstantConfirmation') : false;
+			paraObj.AllOccupancy =(that.getAttribute('data-AllOccupancy') != undefined  && that.getAttribute('data-AllOccupancy') != "undefined")? that.getAttribute('data-AllOccupancy') : true;
+
+			paraObj.CheckInDate = url_json.InterCheckInDate;
+			paraObj.CheckOutDate = url_json.InterCheckOutDate;
+			paraObj.NumRoom = url_json.NumRoom;
+			paraObj.NumAdult = url_json.NumAdult;
+			paraObj.NumChild = url_json.NumChild;
+
+			var paramStr = "";
+			for (var attr in paraObj) {
+				paramStr += "&" + attr + "=" + paraObj[attr];
+			}
+			paramStr = paramStr.slice(1);
+			window.location.href = 'hotel_detail.html?' + paramStr;
+		}
+		for (var i = 0; i < hotelRefers.length; i++) {
+			hotelRefers[i].onclick = function() {
+				var that = this;
+				toDetail(that);
+			}
+		}
+	}
+
+	//为了阻止遮罩层下面的内容被滑动
+    /*
+    //这样会导致浮层不能滑动 内容显示不全
+	$('#hl_hiddenBox').bind("touchmove", function(ev) {
+		ev.preventDefault();
+	});
+    */
+
+    //加载更多
+    function loadMore(){
+        var loadMore = document.getElementById("loadMore");
+        var pageIndex = url_json.pageIndex + 1;
+       //没有更多 数据加载标识
+        var loadMoreSign = loadMore.getAttribute("data-more");
+        if(loadMoreSign == "no"){
+            return;
+        }
+
+        loadMore.innerHTML = "正在加载..."
+        url_json.pageIndex = pageIndex;
+        //TODO set page size  defualt set 20
+        //url_json.pageSize;
+        M(url_json);
+    }
+    lsf_myweb.bind(document.getElementById("loadMore"), 'click',function(event){
+        loadMore();
+    });
+    /*
+    function loadMore(scrollContainerId){
+        var listContainer = lsf_myweb.getbyid(scrollContainerId);
+        var listContainerHeight = 0;
+        var loadMore = lsf_myweb.getbyid("load-more");
+        var loadMoreRect = "";
+        var windowHeight = window.innerHeight;
+        var pageIndex = 1;
+        var loadMoreSign = "";
+        var topAfter = 0;
+        var ua = navigator.userAgent;
+
+        lsf_myweb.bind(listContainer,'touchstart',function(event){
+            //event.preventDefault();// fixed the touchmove and touchend event not fire in android default browser;
+            //for android
+
+            //如果是android浏览器
+            if(ua.indexOf("Android") > -1 || ua.indexOf('Linux') > -1){
+                topAfter = loadMore.getBoundingClientRect().top;
+                load();
+            }
+        });
+        lsf_myweb.bind(listContainer,'touchmove',function(event){
+
+        });
+        lsf_myweb.bind(listContainer,'touchend',function(event){
+            topAfter = loadMore.getBoundingClientRect().top;
+            load();
+        });
+
+        function load(){
+            //没有更多 数据加载标识
+            loadMoreSign = loadMore.getAttribute("data-more");
+            if(loadMoreSign == "no"){
+                return;
+            }
+
+            //滑动到离底部30px距离使触发加载更多
+            if(windowHeight - topAfter > 44){
+               // alert("topAfter:" + topAfter + "windowHeight:" + windowHeight);
+                loadMore.innerHTML = "加载中..."
+                pageIndex = pageIndex + 1;
+                url_json.pageIndex = pageIndex;
+                //TODO set page size  defualt set 20
+                //url_json.pageSize;
+                M(url_json);
+            }
+        }
+
+        //TODO 页面滚动到底部时选择筛选  页面没有回滚到顶部
+    };
+
+    loadMore("lsf_list");
+    */
+})();

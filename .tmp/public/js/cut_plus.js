@@ -1,2 +1,30 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(){function a(a,b){var c=document.getElementsByClassName(a)[0],d=document.getElementsByClassName(b)[0];d.onclick=function(){var a=c.innerHTML;a=Number(a),a+=1,c.innerHTML=a}}function b(a,b){var c=document.getElementsByClassName(a)[0],d=document.getElementsByClassName(b)[0];d.onclick=function(){var a=c.innerHTML;a=Number(a),1>=a?c.innerHTML=1:(a-=1,c.innerHTML=a)}}a("cut-up-cont","plus-btn"),b("cut-up-cont","cut-down-btn")}();
+
+/*Æ±Êý¼Ó¼õ*/
+(function(){
+    function toUp(m,n){
+        var oNum=document.getElementsByClassName(m)[0];
+        var oBtn=document.getElementsByClassName(n)[0];
+        oBtn.onclick=function(){
+            var str=oNum.innerHTML;
+            str=Number(str);
+            str=str+1;
+            oNum.innerHTML=str;
+        };
+    }
+    function toDown(m,n){
+        var oNum=document.getElementsByClassName(m)[0];
+        var oBtn=document.getElementsByClassName(n)[0];
+        oBtn.onclick=function(){
+            var str=oNum.innerHTML;
+            str=Number(str);
+            if(str<=1){
+                oNum.innerHTML=1;
+            }else{
+                str=str-1;
+                oNum.innerHTML=str;
+            }
+        };
+    }
+    toUp('cut-up-cont','plus-btn');
+    toDown('cut-up-cont','cut-down-btn');
+})();

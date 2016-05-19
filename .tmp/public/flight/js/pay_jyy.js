@@ -1,2 +1,22 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function init(){var a=document.getElementById("p-ul1");array=a.getElementsByTagName("b")}function selectThis(){var a=window.event.srcElement,b=a.className;if("p-icon2"==b){for(var c=0;c<array.length;c++)"p-icon1"==array[c].className&&(array[c].className="p-icon2");a.className="p-icon1"}else a.className="p-icon2"}var array=[];
+/**
+ * Created by changlv on 2015/12/14.
+ */
+var array = [];
+function init(){
+    var ul = document.getElementById("p-ul1");
+    array = ul.getElementsByTagName("b");
+}
+function selectThis(){
+    var obj = window.event.srcElement;
+    var cname = obj.className;
+    if(cname == "p-icon2"){
+        for(var j=0;j<array.length;j++){
+            if(array[j].className == "p-icon1"){
+                array[j].className = "p-icon2";
+            }
+        }
+        obj.className = "p-icon1";
+    }else{
+        obj.className = "p-icon2";
+    }
+}

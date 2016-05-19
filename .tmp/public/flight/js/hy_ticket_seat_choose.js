@@ -1,2 +1,426 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-var ticketSeatChoose={requestUrl:"",addHandler:function(a,b,c){document.addEventListener?ticketSeatChoose.addHandler=function(a,b,c){a.addEventListener(b,c,!1)}:document.attachEvent?ticketSeatChoose.addHandler=function(a,b,c){a.attachEvent("on"+b,function(){c.call(a)})}:ticketSeatChoose.addHandler=function(a,b,c){a["on"+b]=c},ticketSeatChoose.addHandler(a,b,c)},tAjax:function(a,b,c,d,e){var f=this,g={Parameters:b,ForeEndType:d,Code:c};a=a?a:f.requestUrl,vlm.loadJson(a,JSON.stringify(g),e)},storageUtil:{set:function(a,b){var c=window.localStorage;c.setItem(a,JSON.stringify({data:b}))},get:function(a){var b=window.localStorage,c=b.getItem(a),d=JSON.parse(c);return null!=d?d.data:void 0}},test:function(a){},loadingFade:function(){$(window).load(function(){$("#status-f").fadeOut(),$("#preloader").delay(400).fadeOut("medium")})},addEvent:function(){var a=document.querySelector("#reserve-button"),b=document.querySelector("#change-explain"),c=document.querySelector(".ticket-shadow"),d=document.querySelector(".detail-word");this.addHandler(a,"click",function(){var a=ticketSeatChoose,b=0==a.curFlightListData.totalTaxAmountADT?a.curFlightListData.totalFareAmountExc*parseInt(a.assistInfo.NumofAdult):a.curFlightListData.totalFareAmountExc*parseInt(a.assistInfo.NumofAdult)+(a.curFlightListData.totalFareAmountCHD+a.curFlightListData.totalTaxAmountCHD)*parseInt(a.assistInfo.NumofChild),c={WapOrder:{SetID:a.currentFlightData.setID,CacheID:a.currentFlightData.cacheID,CityCodeFrom:a.currentFlightData.cityCodeFrom,CityCodeTo:a.currentFlightData.cityCodeTo,NumofAdult:a.assistInfo.NumofAdult,NumofChild:0==a.curFlightListData.totalTaxAmountADT?0:a.assistInfo.NumofChild,RouteType:a.assistInfo.RouteType,CabinClass:a.assistInfo.CabinClass,SourceType:"H5"},TravellerInfo:[],ContactDetail:{},CurrencyCode:"CNY",TotalPrice:b};a.reverseInformationCache=c,a.testLogin()}),this.addHandler(b,"click",function(a){var a=a||window.event;document.all?a.cancelBubble=!0:a.stopPropagation(),jTiper('<p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p>',"退改签说明",function(){})}),d&&this.addHandler(d,"click",function(a){$("#preloader").show(),$("#status-f").show(),$("#status-f").delay(400).fadeOut("medium"),$("#preloader").delay(400).fadeOut("medium"),c.style.display="block",document.querySelector(".ticket-detail-modal").style.display="block"}),this.addHandler(c,"click",function(a){var a=a||window.event,b=a.target||a.srcElement;"ticket-shadow"==b.className&&(c.style.display="none",document.querySelector(".ticket-detail-modal").style.display="none")})},testLogin:function(){vlm.checkLogin("ticketSeatChoose.testLogin")&&(ticketSeatChoose.reverseInformationCache.WapOrder.MemberId=window.localStorage.memberid,ticketSeatChoose.storageUtil.set("reverseInformationCache",ticketSeatChoose.reverseInformationCache),window.top.location.href="../flight/ticket_order.html")},returnDate:function(a){var b=/(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(a),c=b[1]+"-"+b[2]+"-"+b[3],d=new Date(c.replace(/-/g,"/")).getDay(),e="";switch(d){case 0:e="周日";break;case 1:e="周一";break;case 2:e="周二";break;case 3:e="周三";break;case 4:e="周四";break;case 5:e="周五";break;case 6:e="周六";break;default:return""}return array=a.split("-"),array[1]=array[1]<10?"0"+parseInt(array[1]):parseInt(array[1]),array[2]=array[2]<10?"0"+parseInt(array[2]):parseInt(array[2]),'<span class="month-day">'+b[1]+"-"+b[2]+"-"+b[3]+'</span><span class="week-day-item">'+e+"</span>"},timeCut:function(a){var b=/\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g,c=b.exec(a);return c[1]+":"+c[2]},returnTransferCity:function(a){var b="";return a.length<2?b="":2==a.length?b='<span class="air-port-word">转'+a[0].cityNameTo+"</span>":a.length>=3&&(b='<span class="air-port-word">中转'+(a.length-1)+"次</span>"),b},createGoTripHtml:function(a){var b,c,d,e=ticketSeatChoose,f=a.flightLeaveSpacingDay>=1?"+"+a.flightLeaveSpacingDay+"天":"",g="",h="",i="";if(i=0==a.isLeaveShareFlight?"":'<div class="right"><span>实际乘坐</span><span>'+a.segmentsLeave[0].operatingCarrierName+"</span><span>"+a.segmentsLeave[0].planeName+"</span></div>",null==a.segmentsReturn){c=1==a.isLeaveStop?' | <span class="green-word">经停</span></span>':"";for(var j=0,k=a.segmentsLeave.length;k>j;j++)if(a.segmentsLeave[j].techStopTotal>=1){h='<span class="air-port-word">经停'+a.segmentsLeave[j].techStopAirportName+"</span>";break}d=1==a.isLeaveShareFlight?'<span> | </span><span class="green-word">共享</span></span>':"",b=a.segmentsLeave.length<=1?"":'<span class="detail-word">详情<i></i></span>',g='<div class="go-trip no-return-trip"><div class="top-line top-pad-no""></span>'+e.returnDate(a.flightLeaveStartDate)+'<span class="start">'+a.cityNameFrom+'</span><span class="line">-</span><span class="end">'+a.cityNameTo+"</span>"+b+'</div><div class="time-airport-info"><div class="start-time-info"><span class="time-number">'+e.timeCut(a.flightLeaveStartDate)+'</span><span class="air-port-word">'+a.segmentsLeave[0].airportNameFrom+a.segmentsLeave[0].termDepart+'</span></div><div class="total-time-info"><span class="time-hour-minute">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+'m</span><span class="arrow-time"></span>'+h+e.returnTransferCity(a.segmentsLeave)+'</div><div class="end-time-info"> <span class="tip-add-days-seat">'+f+'</span><span class="time-number">'+e.timeCut(a.flightLeaveEndDate)+'</span><span class="air-port-word-right">'+a.segmentsLeave[a.segmentsLeave.length-1].airportNameTo+a.segmentsLeave[a.segmentsLeave.length-1].termArrive+'</span></div></div><div class="bottom-word"><div class="left"><span>'+a.segmentsLeave[0].airCorpName+"</span><span>| "+a.segmentsLeave[0].airCorpCode+a.segmentsLeave[0].flightNo+"</span><span> | </span><span>"+a.segmentsLeave[0].planeName+"</span></span>"+c+d+"</div>"+i+"</div></div>"}else c="",h=1==a.isLeaveStop?'<span class="air-port-word">经停'+a.segmentsLeave[0].techStopAirportName+"</span>":"",d=1==a.isLeaveShareFlight?'<span> | </span><span class="green-word">共享</span></span>':"",b=a.segmentsLeave.length<=1&&a.segmentsReturn.length<=1?"":'<span class="detail-word">详情<i></i></span>',g='<div class="go-trip"><div class="top-line"><span class="icon-go"></span>'+e.returnDate(a.flightLeaveStartDate)+'<span class="start">'+a.cityNameFrom+'</span><span class="line">-</span><span class="end">'+a.cityNameTo+"</span>"+b+'</div><div class="time-airport-info"><div class="start-time-info"><span class="time-number">'+e.timeCut(a.flightLeaveStartDate)+'</span><span class="air-port-word">'+a.segmentsLeave[0].airportNameFrom+a.segmentsLeave[0].termDepart+'</span></div><div class="total-time-info"><span class="time-hour-minute">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+'m</span><span class="arrow-time"></span>'+h+e.returnTransferCity(a.segmentsLeave)+'</div><div class="end-time-info"> <span class="tip-add-days-seat">'+f+'</span><span class="time-number">'+e.timeCut(a.flightLeaveEndDate)+'</span><span class="air-port-word-right">'+a.segmentsLeave[a.segmentsLeave.length-1].airportNameTo+a.segmentsLeave[a.segmentsLeave.length-1].termArrive+'</span></div></div><div class="bottom-word"><div class="left"><span>'+a.segmentsLeave[0].airCorpName+"</span><span> | </span><span>"+a.segmentsLeave[0].airCorpCode+a.segmentsLeave[0].flightNo+"</span><span> | </span><span>"+a.segmentsLeave[0].planeName+"</span></span>"+c+d+"</div>"+i+"</div></div>";return g},createBackTripHtml:function(a){var b="",c="",d="",e="";if(e=0==a.isReturnShareFlight?"":'<div class="right"><span>实际乘坐</span><span>'+a.segmentsReturn[0].operatingCarrierName+"</span><span>"+a.segmentsReturn[0].planeName+"</span></div>",a.segmentsReturn){b=1==a.isReturnStop?' | <span class="green-word">经停</span></span>':"";for(var f=0,g=a.segmentsReturn.length;g>f;f++)if(a.segmentsReturn[f].techStopTotal>=1){d='<span class="air-port-word">经停'+a.segmentsReturn[f].techStopAirportName+"</span>";break}c=1==a.isReturnShareFlight?'<span> | </span><span class="green-word">共享</span></span>':"";var h=a.flightReturnSpacingDay>=1?"+"+a.flightReturnSpacingDay+"天":"",i="",j=this;i='<div class="back-trip"><div class="top-line"><span class="icon-back"></span>'+j.returnDate(a.flightReturnStartDate)+'<span class="start">'+a.cityNameTo+'</span><span class="line">-</span><span class="end">'+a.cityNameFrom+'</span></div><div class="time-airport-info"><div class="start-time-info"><span class="time-number">'+j.timeCut(a.flightReturnStartDate)+'</span><span class="air-port-word">'+a.segmentsReturn[0].airportNameFrom+a.segmentsReturn[0].termDepart+'</span></div><div class="total-time-info"><span class="time-hour-minute">'+parseInt(a.segmentsReturnTotalTravelTime/60)+"h"+a.segmentsReturnTotalTravelTime%60+'m</span><span class="arrow-time"></span>'+d+j.returnTransferCity(a.segmentsReturn)+'</div><div class="end-time-info"><span class="tip-add-days-seat">'+h+'</span><span class="time-number">'+j.timeCut(a.flightReturnEndDate)+'</span><span class="air-port-word-right">'+a.segmentsReturn[a.segmentsReturn.length-1].airportNameTo+a.segmentsReturn[a.segmentsReturn.length-1].termArrive+'</span></div></div><div class="bottom-word"><div class="left"><span>'+a.segmentsReturn[0].operatingCarrierName+"</span><span> | </span><span>"+a.segmentsReturn[0].operatingCarrierCode+a.segmentsReturn[0].flightNo+"</span><span> | </span><span>"+a.segmentsReturn[0].planeName+a.segmentsReturn[0].planeType+"</span></span>"+b+c+"</div>"+e+"</div></div>"}else i="";return i},createDetailModal:function(a){function b(a){var b,c="";return b=1==a.isLeaveShareFlight?'<span> | </span><span class="green-word">共享</span></span>':"",c+=null==a.segmentsReturn?'<li class="detail-start"><div class="top-line top-pad-no">'+e.returnDate(a.flightLeaveStartDate)+'<span class="start">'+a.cityNameFrom+'</span><span class="line">-</span><span class="end">'+a.cityNameTo+'</span><span class="detail-hour">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+"m</span></div>"+d(a.segmentsLeave,b)+"</li>":'<li class="detail-start"><div class="top-line"><span class="icon-go"></span>'+e.returnDate(a.flightLeaveStartDate)+'<span class="start">'+a.cityNameFrom+'</span><span class="line">-</span><span class="end">'+a.cityNameTo+'</span><span class="detail-hour">'+parseInt(a.segmentsLeaveTotalTravelTime/60)+"h"+a.segmentsLeaveTotalTravelTime%60+"m</span></div>"+d(a.segmentsLeave,b)+"</li>"}function c(a){var b,a=a,c="";return b=1==a.isReturnShareFlight?'<span> | </span><span class="green-word">共享</span></span>':"",a.segmentsReturn&&(c+='<li class="detail-start"><div class="top-line"><span class="icon-back"></span>'+e.returnDate(a.flightReturnStartDate)+'<span class="start">'+a.cityNameTo+'</span><span class="line">-</span><span class="end">'+a.cityNameFrom+'</span><span class="detail-hour">'+parseInt(a.segmentsReturnTotalTravelTime/60)+"h"+a.segmentsReturnTotalTravelTime%60+"m</span></div>"+d(a.segmentsReturn,b)+"</li>"),c}function d(a,b){var c="",d="",e="",f=ticketSeatChoose,g="";if(a)for(var h=0;h<a.length;h++){if(d="",transferHour="",leaveStopTag="",a[h+1]&&(transferHour=Math.abs(Date.parse(a[h+1].departDate)-Date.parse(a[h].arriveDate))/1e3/60,d='<div class="transit-city-hour">中转'+a[h].cityNameTo+" "+parseInt(transferHour/60)+"h"+transferHour%60+"m</div>"),a[h].techStopTotal>=1){var i=""!=a[h].techStopDepartDate&&""!=a[h].techStopArriveDate?Math.abs(Date.parse(a[h].techStopArriveDate)-Date.parse(a[h].techStopDepartDate))/1e3/60:"";leaveStopTag=""!=i?'<span class="leave-stop-word">经停'+a[h].techStopAirportName+'</span><span class="air-port-hour">'+parseInt(i/60)+"h"+i%60+"m</span>":'<span class="leave-stop-word">经停'+a[h].techStopAirportName+"</span>"}else leaveStopTag="";g=""==a[h].planeName?"":"<span>| "+a[h].planeName+"</span>",e=Math.floor((new Date(a[h].arriveDate)-new Date(a[h].departDate))/1e3/60/60/24)>=1?"+"+Math.floor((new Date(a[h].arriveDate)-new Date(a[h].departDate))/1e3/60/60/24)+"天":"",c+='<div class="go-trip start"><div class="time-airport-info"><div class="start-time-info"><span class="time-number">'+f.timeCut(a[h].departDate)+'</span><span class="air-port-word">'+a[h].airportNameFrom+a[h].termDepart+'</span></div><div class="total-time-info detail-time-info"><span class="arrow-time"></span>'+leaveStopTag+'</div><div class="end-time-info"><span class="tip-add-days-seat">'+e+'</span><span class="time-number">'+f.timeCut(a[h].arriveDate)+'</span><span class="air-port-word-right">'+a[h].airportNameTo+a[h].termArrive+'</span></div></div><div class="bottom-word"><span>'+a[h].airCorpName+"</span><span>| "+a[h].airCorpCode+a[h].flightNo+"</span>"+g+b+"</div></div>"+d}return c}var e=ticketSeatChoose,f='<div class="ticket-detail-modal" style="display: none;"><ul class="detail-outer">'+b(a)+c(a)+"</ul></div>";return f},parseUrlPara:function(a,b){var b=b||!1,c=/([^=&?]+)=([^=&?]+)/g,d={};return a.replace(c,function(){var a=arguments;d[a[1]]=b?decodeURIComponent(a[2]):a[2]}),d},createHtml:function(){var a=JSON.parse(window.localStorage.getItem("flightListData")),b={},c=this,d=this.assistInfo.setId,e=document.querySelector(".all-elements"),f={},g="";a.forEach(function(a){return a.setID==d?void(b=a):void 0}),f=b,this.curFlightListData=f,this.storageUtil.set("curFlightListData",f),this.currentFlightData=f;var h="Return"==this.assistInfo.RouteType?"direction-double":"direction-single",i="",j='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+f.cityNameFrom+'</span><i class="'+h+'"></i><span class="to-place">'+f.cityNameTo+"</span></header>",k="";k="domestic"==this.assistInfo.interNationalOrDomestic?'<div class="money-show-data money-show-data-domestic"><span class="tag-one"> ￥</span><span class="money-number">'+f.totalFareAmountADT+"</span></div>":"true"==this.assistInfo.hasTax?'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+f.totalFareAmountExc+"</span><p>含税费</p></div>":'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+f.totalFareAmountADT+"</span><p>税费￥"+f.totalTaxAmountADT+"</p></div>";var l='<div class="air_content" style="background:#f5f4f9;"><ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+c.createGoTripHtml(f)+c.createBackTripHtml(f)+'</li></ul><div class="price-important"><div class="left-part"><h4>'+f.segmentsLeave[0].cabinClassName+'</h4><p><span class="change" id="change-explain">退改签说明</span>'+i+"</p></div>"+k+'<button type="button" id="reserve-button">预订</button></div></div>';g='<div class="ticket-shadow" style="display: none"></div><div class="buy-ticket-notice back-meal" style="display: none;"><div class="header back-meal-close"><span>退改签说明</span><span><i></i></span></div><div class="content-notice "><p>退改签规则，以航司为准!</p></div></div>',e.innerHTML=j+l+g+this.createDetailModal(f)},init:function(){this.assistInfo=this.parseUrlPara(document.location.search,!0),this.createHtml(),this.loadingFade(),this.addEvent()}};ticketSeatChoose.init();
+
+var ticketSeatChoose = {
+
+    requestUrl: "",
+
+    addHandler: function (target, eventType, handle) {
+        if (document.addEventListener) {
+            ticketSeatChoose.addHandler = function (target, eventType, handle) {
+                target.addEventListener(eventType, handle, false);
+            }
+        } else if (document.attachEvent) {
+            ticketSeatChoose.addHandler = function (target, eventType, handle) {
+                target.attachEvent('on' + eventType, function () {
+                    handle.call(target);
+                });
+            }
+        } else {
+            ticketSeatChoose.addHandler = function (target, eventType, handle) {
+                target['on' + eventType] = handle;
+            }
+        }
+        ticketSeatChoose.addHandler(target, eventType, handle);
+    },
+
+    tAjax: function (questUrl, data, Code, ForeEndType, Callback) {
+        var that=this,dataObj =
+        {
+            Parameters: data,
+            ForeEndType: ForeEndType,
+            Code: Code
+        };
+        questUrl = questUrl?questUrl:that.requestUrl;
+        vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    },
+
+    storageUtil: {
+        set: function (key, v) {
+            var localStorage = window.localStorage;
+            localStorage.setItem(key, JSON.stringify({data: v}))
+        },
+        get: function (key) {
+            var localStorage = window.localStorage,data = localStorage.getItem(key),dataObj = JSON.parse(data);
+            if(dataObj!=null){
+                return dataObj.data;
+            }
+        }
+    },
+
+    test:function(arg){
+        console.log(arg)
+    },
+    loadingFade:function(){
+        $(window).load(function () {
+            $("#status-f").fadeOut();
+            $("#preloader").delay(400).fadeOut("medium");
+        });
+    },
+    addEvent:function(){
+        var reserveButton = document.querySelector('#reserve-button');
+        var changeExplain = document.querySelector('#change-explain');
+        var ticketShadow = document.querySelector('.ticket-shadow');
+        var detailWord = document.querySelector('.detail-word');
+        var that = this;
+
+        this.addHandler(reserveButton,'click', function(){
+            var that = ticketSeatChoose,login;
+            var totalCountCost = that.curFlightListData.totalTaxAmountADT ==0?that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult):
+            that.curFlightListData.totalFareAmountExc*parseInt(that.assistInfo.NumofAdult) + (that.curFlightListData.totalFareAmountCHD+that.curFlightListData.totalTaxAmountCHD)*parseInt(that.assistInfo.NumofChild);
+            var reverseInformationCache = {
+                WapOrder:{
+                    SetID:that.currentFlightData.setID,
+                    CacheID:that.currentFlightData.cacheID,
+                    CityCodeFrom: that.currentFlightData.cityCodeFrom,
+                    CityCodeTo: that.currentFlightData.cityCodeTo,
+                    NumofAdult: that.assistInfo.NumofAdult,
+                    NumofChild: that.curFlightListData.totalTaxAmountADT ==0?0:that.assistInfo.NumofChild,
+                    RouteType: that.assistInfo.RouteType,
+                    CabinClass: that.assistInfo.CabinClass,
+                    SourceType:"H5" //非必需
+                },
+                TravellerInfo:[],
+                ContactDetail:{},
+                CurrencyCode: "CNY",
+                TotalPrice: totalCountCost
+            };
+            that.reverseInformationCache = reverseInformationCache;
+            that.testLogin();
+        });
+
+
+        this.addHandler(changeExplain,'click', function(event){
+            var event = event || window.event;
+            if (document.all) {
+                event.cancelBubble = true;
+            } else {
+                event.stopPropagation();
+            }
+
+            jTiper('<p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p><p style="padding:15px 15px 0">退改签规则，以航司为准!</p>',
+                '退改签说明',function(){})
+        });
+        if(detailWord){
+            this.addHandler(detailWord,'click', function(event){
+                $("#preloader").show();
+                $("#status-f").show();
+                $("#status-f").delay(400).fadeOut("medium");
+                $("#preloader").delay(400).fadeOut("medium");
+                ticketShadow.style.display = 'block';
+                document.querySelector('.ticket-detail-modal').style.display = 'block';
+            });
+        }
+        this.addHandler(ticketShadow,'click', function(event){
+            var event = event || window.event;
+            var target =event.target || event.srcElement;
+            if(target.className == 'ticket-shadow'){
+                ticketShadow.style.display = 'none';
+                document.querySelector('.ticket-detail-modal').style.display = 'none';
+            }
+        });
+    },
+
+    testLogin:function(){
+        if(vlm.checkLogin('ticketSeatChoose.testLogin')){
+            ticketSeatChoose.reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
+            ticketSeatChoose.storageUtil.set('reverseInformationCache',ticketSeatChoose.reverseInformationCache);
+            window.top.location.href='../flight/ticket_order.html';
+        }
+    },
+    returnDate:function(arg){
+        var argArray = /(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(arg);
+        var transferData = argArray[1]+'-'+argArray[2]+'-'+argArray[3];
+        var index = new Date(transferData.replace(/-/g,'/')).getDay(),week='';
+        switch (index){
+            case 0 :
+                week = '周日';
+                break;
+            case 1 :
+                week = '周一';
+                break;
+            case 2 :
+                week = '周二';
+                break;
+            case 3 :
+                week = '周三';
+                break;
+            case 4 :
+                week = '周四';
+                break;
+            case 5 :
+                week = '周五';
+                break;
+            case 6 :
+                week = '周六';
+                break;
+            default :
+                return ''
+        }
+        array = arg.split('-');
+        array[1] = array[1]<10?'0'+parseInt(array[1]):parseInt(array[1]);
+        array[2] = array[2]<10?'0'+parseInt(array[2]):parseInt(array[2]);
+        return '<span class="month-day">'+argArray[1]+'-'+argArray[2]+'-'+argArray[3]+'</span>'+'<span class="week-day-item">'+week+'</span>';
+
+    },
+    timeCut:function(arg){
+        var reg = /\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g,result = reg.exec(arg);
+        return result[1]+':'+result[2];
+    },
+
+    returnTransferCity:function(arg){
+        var str = '';
+        if(arg.length<2){
+            str = ''
+        }else if(arg.length==2){
+            str = '<span class="air-port-word">转'+arg[0].cityNameTo+'</span>'
+        }else if(arg.length>=3){
+            str = '<span class="air-port-word">中转'+(arg.length-1)+'次</span>'
+        }
+        return str;
+    },
+
+    createGoTripHtml:function(arg){
+        var that = ticketSeatChoose, detailButton;
+        var tipDay = arg.flightLeaveSpacingDay>=1?'+'+arg.flightLeaveSpacingDay+'天':'',str='',isLeaveStopStr,isLeaveShareFlight, leaveStopTag='', realUseStr = '';
+        realUseStr = arg.isLeaveShareFlight==false?'':'<div class="right"><span>实际乘坐</span><span>'+arg.segmentsLeave[0].operatingCarrierName+'</span><span>'+arg.segmentsLeave[0].planeName+'</span></div>';
+        if(arg.segmentsReturn == null){
+             isLeaveStopStr = (arg.isLeaveStop == true)?' | <span class="green-word">经停</span></span>':'';
+            for(var mj= 0,len=arg.segmentsLeave.length;mj<len;mj++){
+                if(arg.segmentsLeave[mj].techStopTotal>=1){
+                    leaveStopTag = '<span class="air-port-word">经停'+arg.segmentsLeave[mj].techStopAirportName+'</span>';
+                    break;
+                }
+            }
+             isLeaveShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
+             detailButton = (arg.segmentsLeave.length<=1)?'':'<span class="detail-word">详情<i></i></span>';
+             str = '<div class="go-trip no-return-trip">' +
+                '<div class="top-line top-pad-no"">' +
+                '</span>'+that.returnDate(arg.flightLeaveStartDate)+
+                '<span class="start">'+arg.cityNameFrom+'</span>'+
+                '<span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                detailButton+'</div>' +
+                '<div class="time-airport-info"><div class="start-time-info">' +
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
+                '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
+                '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
+                '<span class="arrow-time"></span>'+leaveStopTag+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
+                '<div class="end-time-info">'+
+                ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
+                '<span class="air-port-word-right">'+arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo+arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive+'</span>'+
+                '</div>'+
+                '</div>'+
+                '<div class="bottom-word">'+
+                '<div class="left">'+
+                '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
+                '<span>| '+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
+                '<span> | </span>'+
+                '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+isLeaveStopStr+isLeaveShareFlight+
+                '</div>'+realUseStr+
+                '</div>'+
+                '</div>';
+        }else{
+            isLeaveStopStr = "";
+            leaveStopTag = (arg.isLeaveStop == true)?'<span class="air-port-word">经停'+arg.segmentsLeave[0].techStopAirportName+'</span>':'';
+            isLeaveShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
+            detailButton = (arg.segmentsLeave.length<=1&&arg.segmentsReturn.length<=1)?'':'<span class="detail-word">详情<i></i></span>';
+            str = '<div class="go-trip">' +
+                '<div class="top-line">' +
+                '<span class="icon-go"></span>'+that.returnDate(arg.flightLeaveStartDate)+
+                '<span class="start">'+arg.cityNameFrom+'</span>'+
+                '<span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                detailButton+'</div>' +
+                '<div class="time-airport-info"><div class="start-time-info">' +
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveStartDate)+'</span>' +
+                '<span class="air-port-word">'+arg.segmentsLeave[0].airportNameFrom+arg.segmentsLeave[0].termDepart+'</span></div>' +
+                '<div class="total-time-info"><span class="time-hour-minute">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span>'+
+                '<span class="arrow-time"></span>'+leaveStopTag+that.returnTransferCity(arg.segmentsLeave)+'</div>'+
+                '<div class="end-time-info">'+
+                ' <span class="tip-add-days-seat">'+tipDay+'</span>'+
+                '<span class="time-number">'+that.timeCut(arg.flightLeaveEndDate)+'</span>'+
+                '<span class="air-port-word-right">'+arg.segmentsLeave[arg.segmentsLeave.length-1].airportNameTo+arg.segmentsLeave[arg.segmentsLeave.length-1].termArrive+'</span>'+
+                '</div>'+
+                '</div>'+
+                '<div class="bottom-word">'+
+                '<div class="left">'+
+                '<span>'+arg.segmentsLeave[0].airCorpName+'</span>'+
+                '<span> | </span>'+
+                '<span>'+arg.segmentsLeave[0].airCorpCode+arg.segmentsLeave[0].flightNo+'</span>'+
+                '<span> | </span>'+
+                '<span>'+arg.segmentsLeave[0].planeName+'</span></span>'+isLeaveStopStr+isLeaveShareFlight+
+                '</div>'+realUseStr+
+                '</div>'+
+                '</div>';
+        }
+        return str
+    },
+    createBackTripHtml:function(arg){
+        var isReturnStopStr='',isReturnShareFlight='', returnStopTag='', realUseStr = '';
+        realUseStr = arg.isReturnShareFlight==false?'':'<div class="right"><span>实际乘坐</span><span>'+arg.segmentsReturn[0].operatingCarrierName+'</span><span>'+arg.segmentsReturn[0].planeName+'</span></div>';
+        if(arg.segmentsReturn){
+            isReturnStopStr = (arg.isReturnStop == true)?' | <span class="green-word">经停</span></span>':'';
+            for(var df= 0,len=arg.segmentsReturn.length;df<len;df++){
+                if(arg.segmentsReturn[df].techStopTotal>=1){
+                    returnStopTag = '<span class="air-port-word">经停'+arg.segmentsReturn[df].techStopAirportName+'</span>';
+                    break;
+                }
+            }
+            isReturnShareFlight = (arg.isReturnShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
+            var tipDay = (arg.flightReturnSpacingDay>=1)?'+'+arg.flightReturnSpacingDay+'天':'',str='',that =this;
+            str='<div class="back-trip">'+
+            '<div class="top-line">'+
+            '<span class="icon-back"></span>'+that.returnDate(arg.flightReturnStartDate)+
+            '<span class="start">'+arg.cityNameTo+'</span>'+
+            '<span class="line">-</span>'+
+            '<span class="end">'+arg.cityNameFrom+'</span>'+
+            '</div>'+
+            '<div class="time-airport-info">'+
+            '<div class="start-time-info">'+
+            '<span class="time-number">'+that.timeCut(arg.flightReturnStartDate)+'</span>'+
+            '<span class="air-port-word">'+arg.segmentsReturn[0].airportNameFrom+arg.segmentsReturn[0].termDepart+'</span>'+
+            '</div>'+
+            '<div class="total-time-info">'+
+            '<span class="time-hour-minute">'+parseInt(arg.segmentsReturnTotalTravelTime/60)+'h'+arg.segmentsReturnTotalTravelTime%60+'m</span>'+
+            '<span class="arrow-time"></span>'+returnStopTag+that.returnTransferCity(arg.segmentsReturn)+'</div><div class="end-time-info">'+
+            '<span class="tip-add-days-seat">'+tipDay+'</span>'+
+            '<span class="time-number">'+that.timeCut(arg.flightReturnEndDate)+'</span>'+
+            '<span class="air-port-word-right">'+arg.segmentsReturn[arg.segmentsReturn.length-1].airportNameTo+arg.segmentsReturn[arg.segmentsReturn.length-1].termArrive+'</span>'+
+            '</div>'+
+            '</div>'+
+            '<div class="bottom-word">'+
+            '<div class="left">'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierName+'</span>'+
+            '<span> | </span>'+
+            '<span>'+arg.segmentsReturn[0].operatingCarrierCode+arg.segmentsReturn[0].flightNo+'</span>'+
+            '<span> | </span>'+
+            '<span>'+arg.segmentsReturn[0].planeName+arg.segmentsReturn[0].planeType+'</span></span>'+isReturnStopStr +isReturnShareFlight+
+            '</div>'+realUseStr+'</div></div>';
+        }else{
+            str=''
+        }
+        return str;
+    },
+    createDetailModal:function(arg){
+        var that = ticketSeatChoose;
+        var strModal='<div class="ticket-detail-modal" style="display: none;"><ul class="detail-outer">'+detailGo(arg)+detailBack(arg)+'</ul></div>';
+      console.log(arg)
+        return strModal;
+        function detailGo(arg){
+            var str = '', isStopStr, isShareFlight;
+            isShareFlight = (arg.isLeaveShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
+            if(arg.segmentsReturn == null)
+            {
+                str += '<li class="detail-start">' +
+                    '<div class="top-line top-pad-no">'+that.returnDate(arg.flightLeaveStartDate)+'<span class="start">'+arg.cityNameFrom+'</span><span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                    '<span class="detail-hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsLeave,isShareFlight)+'</li>';
+            }
+            else{
+                str += '<li class="detail-start">' +
+                    '<div class="top-line"><span class="icon-go"></span>'+that.returnDate(arg.flightLeaveStartDate)+'<span class="start">'+arg.cityNameFrom+'</span><span class="line">-</span><span class="end">'+arg.cityNameTo+'</span>' +
+                    '<span class="detail-hour">'+parseInt(arg.segmentsLeaveTotalTravelTime/60)+'h'+arg.segmentsLeaveTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsLeave,isShareFlight)+'</li>';
+            }
+            return str;
+        }
+        function detailBack(arg){
+            var arg = arg, str = '',isShareFlight;
+            isShareFlight = (arg.isReturnShareFlight == true)?'<span> | </span><span class="green-word">共享</span></span>':'';
+            if(arg.segmentsReturn){
+                str += '<li class="detail-start">' +
+                '<div class="top-line"><span class="icon-back"></span>'+that.returnDate(arg.flightReturnStartDate)+'<span class="start">'+arg.cityNameTo+'</span><span class="line">-</span><span class="end">'+arg.cityNameFrom+'</span>' +
+                '<span class="detail-hour">'+parseInt(arg.segmentsReturnTotalTravelTime/60)+'h'+arg.segmentsReturnTotalTravelTime%60+'m</span></div>'+createFlightUnit(arg.segmentsReturn ,isShareFlight)+'</li>';
+            }
+            return str;
+            }
+        function createFlightUnit(arg,isShareFlight){
+               var str = '',transferStr='',dayStr='',that = ticketSeatChoose, planeNameStr='', isStopStr='';
+               if(arg){
+                for(var j = 0;j<arg.length;j++){
+                     transferStr='', transferHour='',leaveStopTag='';
+                     if(arg[j+1]){
+                        transferHour = (Math.abs(Date.parse(arg[j+1].departDate) -Date.parse(arg[j].arriveDate)))/1000/60;
+                        transferStr='<div class="transit-city-hour">中转'+arg[j].cityNameTo+' '+parseInt(transferHour/60)+'h'+transferHour%60+'m</div>';
+                    }
+                    if(arg[j].techStopTotal>=1){
+                         var stopHour = (arg[j].techStopDepartDate!=''&&arg[j].techStopArriveDate!='')?(Math.abs(Date.parse(arg[j].techStopArriveDate) -Date.parse(arg[j].techStopDepartDate)))/1000/60:'';
+                         leaveStopTag=stopHour!=''?'<span class="leave-stop-word">经停'+arg[j].techStopAirportName+'</span><span class="air-port-hour">'+parseInt(stopHour/60)+'h'+stopHour%60+'m</span>':'<span class="leave-stop-word">经停'+arg[j].techStopAirportName+'</span>';
+                    }else{
+                        leaveStopTag='';
+                    }
+                    planeNameStr = arg[j].planeName==''?'':'<span>| '+arg[j].planeName+'</span>';
+                    dayStr= Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)>=1?'+'+Math.floor((new Date(arg[j].arriveDate) - new Date(arg[j].departDate))/1000/60/60/24)+'天':'';
+                    str+='<div class="go-trip start">' +
+                    '<div class="time-airport-info">'+
+                    '<div class="start-time-info">'+
+                    '<span class="time-number">'+that.timeCut(arg[j].departDate)+'</span>'+
+                    '<span class="air-port-word">'+arg[j].airportNameFrom+arg[j].termDepart+'</span>'+
+                    '</div>'+
+                    '<div class="total-time-info detail-time-info">'+
+                    '<span class="arrow-time"></span>'+leaveStopTag+
+                    '</div>'+
+                    '<div class="end-time-info">'+
+                    '<span class="tip-add-days-seat">'+dayStr+'</span>'+
+                    '<span class="time-number">'+that.timeCut(arg[j].arriveDate)+'</span>'+
+                    '<span class="air-port-word-right">'+arg[j].airportNameTo+arg[j].termArrive+'</span>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="bottom-word">'+
+                    '<span>'+arg[j].airCorpName+'</span>'+
+                    '<span>| '+arg[j].airCorpCode+arg[j].flightNo+'</span>'+planeNameStr+isShareFlight+'</div></div>'+transferStr;
+                }
+            }
+               return str;
+           }
+    },
+    parseUrlPara: function (url, isEncode) {
+        var isEncode = isEncode || false;
+        var reg = /([^=&?]+)=([^=&?]+)/g, obj = {};
+        url.replace(reg, function () {
+            var arg = arguments;
+            obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
+        });
+        return obj;
+    },
+    createHtml:function(){
+        var dataPools = JSON.parse(window.localStorage.getItem('flightListData')), resultData = {},that = this,setID = this.assistInfo.setId,summaryHtml='';
+        var allEle = document.querySelector('.all-elements'),itemObj={},backMeal ='';
+             dataPools.forEach(function(obj) {
+               if (obj.setID == setID) {
+                 resultData = obj;
+                  return;
+               }
+             });
+        itemObj = resultData;
+        this.curFlightListData = itemObj;
+        this.storageUtil.set('curFlightListData',itemObj);
+        this.currentFlightData = itemObj;
+        var classNameStr = this.assistInfo.RouteType == 'Return'?'direction-double':'direction-single',childOrderStr = /*this.curFlightListData.totalFareAmountCHD==0?' <span>儿童不可定</span>':*/'';
+        var headerHtml ='<header class="big-title"><i class="fl" onclick="window.history.go(-1)"></i><span class="set-place">'+itemObj.cityNameFrom+'</span><i class="'+classNameStr+'"></i><span class="to-place">'+itemObj.cityNameTo+'</span></header>';
+        var priceAndTaxStr='';
+        if(this.assistInfo.interNationalOrDomestic=="domestic"){
+            priceAndTaxStr='<div class="money-show-data money-show-data-domestic"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountADT+'</span></div>';
+        }else{
+            priceAndTaxStr=this.assistInfo.hasTax=='true'?'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountExc+'</span><p>含税费</p></div>':'<div class="money-show-data"><span class="tag-one"> ￥</span><span class="money-number">'+itemObj.totalFareAmountADT+'</span><p>税费￥'+itemObj.totalTaxAmountADT+'</p></div>';
+        }
+        var contentHtml ='<div class="air_content" style="background:#f5f4f9;">' +
+            '<ul class="air-tickets-detail berths"><li class="air-tickets-detail-berths">'+that.createGoTripHtml(itemObj)+that.createBackTripHtml(itemObj)+'</li></ul>'+
+            '<div class="price-important">' +
+            '<div class="left-part"><h4>'+itemObj.segmentsLeave[0].cabinClassName+'</h4>' +
+            '<p><span class="change" id="change-explain">退改签说明</span>'+childOrderStr+'</p>' +
+            '</div>'+priceAndTaxStr+
+            '<button type="button" id="reserve-button">预订</button></div></div>';
+        backMeal ='<div class="ticket-shadow" style="display: none"></div><div class="buy-ticket-notice back-meal" style="display: none;">' +
+        '<div class="header back-meal-close"><span>退改签说明</span><span><i></i></span></div><div class="content-notice ">' +
+        '<p>退改签规则，以航司为准!</p>' +
+        '</div>' +
+        '</div>';
+        allEle.innerHTML = headerHtml + contentHtml + backMeal + this.createDetailModal(itemObj);
+    },
+
+    init:function(){
+        this.assistInfo = this.parseUrlPara(document.location.search, true);
+        this.createHtml();
+        this.loadingFade();
+        this.addEvent();
+    }
+};
+
+ticketSeatChoose.init();

@@ -339,50 +339,8 @@
                     target.classList.add("disabled");
                     target.classList.add('selected');
                     that.linkOver(target);
-                    //                if (that.op == 0) {
-                    //                    //that.tiper.innerHTML = '请选择' + that._word[that.type][1] + '日期';
-                    //                    //that.linkReset(this.index);
-                    //
-                    //                    that.op++;
-                    //                } else {
-                    //                    target.innerHTML = '<span class="live_circle">' + (target.innerHTML) + '</span>';
-                    //                    that.op >= 1 ? that.op = 0 : null;
-                    //                    //
-                    //                }
                 }
             });
-            //        var links = _CalF.$('.live', this.dd),
-            //            i, l = links.length,
-            //            that = this;
-            //        for (i = 0; i < l; i++) {
-            //            links[i].index = i;
-            //            // links[i].onmouseover = function(){
-            //            // $(this).addClass("on");
-            //            // };
-            //            // links[i].onmouseout = function(){
-            //            // $(this).removeClass("on");
-            //            // };
-            //            links[i].onclick = function () {
-            //                if (that.input.tagName === 'input') {
-            //                    $(this).css("border", "1px solid #ff6a2f").css("z-index", "9999999");
-            //                    $(this).siblings().css("border", "").css("z-index", "");
-            //                } else {
-            //                    if (!(this.className.indexOf("disabled") > -1)) {
-            //                        if (that.op == 0) {
-            //                            that.tiper.innerHTML = '请选择' + that._word[that.type][1] + '日期';
-            //                            that.linkReset(this.index);
-            //                            $(this).html('<span class="live_circle">' + (this.innerHTML) + '</span><span class="live_txt">' + that._word[that.type][that.op] + '</span>');
-            //                            $(this).addClass("disabled");
-            //                            that.op++;
-            //                        } else {
-            //                            $(this).html('<span class="live_circle">' + (this.innerHTML) + '</span><span class="live_txt">' + that._word[that.type][that.op] + '</span>');
-            //                            that.op >= 1 ? that.op = 0 : null;
-            //                            that.linkOver();
-            //                        }
-            //                    }
-            //                }
-            //            };
-            //        }
         },
         /**
          *重置选中状态
@@ -508,7 +466,11 @@
             if (this.result.length === 0 || this.result.length === this.selectTime) {
                 this.result = [];
                 this.result.push(selectValue);
-                this.showComfirmBtn(0);
+                if (this.selectTime === 1) {
+                    this.showComfirmBtn(1);
+                } else {
+                    this.showComfirmBtn(0);
+                }
             } else {
                 var oneSelect = new Date(this.result[0]);
                 var twoSelect = new Date(selectValue);
@@ -561,18 +523,25 @@
             var btn = _CalF.$("#comfirmBtn");
             var obj = {};
             _CalF.bind(btn, "click", function (event) {
-                if ($('#' + that.checkInTimeOptId).length > 0 && $("#" + that.checkOutTimeOptId).length > 0) {
-                    _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
-                    _CalF.$('#' + that.checkOutTimeOptId).innerHTML = that.result[1];
+                if (that.selectTime === 2) {
+                    if ($('#' + that.checkInTimeOptId).length > 0 && $("#" + that.checkOutTimeOptId).length > 0) {
+                        _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
+                        _CalF.$('#' + that.checkOutTimeOptId).innerHTML = that.result[1];
+                    }
+                    var times = [that.result[0], that.result[1]];
+                    obj[that.result[0]] = that._word[that.type][0];
+                    obj[that.result[1]] = that._word[that.type][1];
+                    that.time = obj;
+                } else {
+                    if ($('#' + that.checkInTimeOptId).length > 0) {
+                        _CalF.$('#' + that.checkInTimeOptId).innerHTML = that.result[0];
+                    }
+                    var times = [that.result[0]];
+                    obj[that.result[0]] = that._word[that.type][0];
+                    that.time = obj;
                 }
-
-                //
-                var times = [that.result[0], that.result[1]];
                 _CalF.$('#' + that.id).setAttribute("data-selectedTime", times);
                 //修改calendar传入的参数time的值
-                obj[that.result[0]] = that._word[that.type][0];
-                obj[that.result[1]] = that._word[that.type][1];
-                that.time = obj;
 
                 that.removeDate();
 
@@ -662,4 +631,4 @@
         }
     };
     exports.Calender = Calender;
-}(typeof exports === 'undefined' ? this : exports));
+}(typeof exports === 'undefined' ? (this.ATplugins = {}) : exports));

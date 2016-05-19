@@ -1,2 +1,72 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function(a){var b=a.event.special,c="D"+ +new Date,d="D"+(+new Date+1);b.scrollstart={setup:function(){var d,e=function(c){var e=this,f=arguments;d?clearTimeout(d):(c.type="scrollstart",a.event.handle.apply(e,f)),d=setTimeout(function(){d=null},b.scrollstop.latency)};a(this).bind("scroll",e).data(c,e)},teardown:function(){a(this).unbind("scroll",a(this).data(c))}},b.scrollstop={latency:300,setup:function(){var c,e=function(d){var e=this,f=arguments;c&&clearTimeout(c),c=setTimeout(function(){c=null,d.type="scrollstop",a.event.handle.apply(e,f)},b.scrollstop.latency)};a(this).bind("scroll",e).data(d,e)},teardown:function(){a(this).unbind("scroll",a(this).data(d))}}}(jQuery);
+/**
+ *@desc   depend on jquery
+ *@time
+ *@author
+ **/
+(function (jQuery) {
+    var special = jQuery.event.special,
+        uid1 = 'D' + (+new Date()),
+        uid2 = 'D' + (+new Date() + 1);
+
+    special.scrollstart = {
+        setup: function () {
+
+            var timer,
+                handler = function (evt) {
+
+                    var _self = this,
+                        _args = arguments;
+
+                    if (timer) {
+                        clearTimeout(timer);
+                    } else {
+                        evt.type = 'scrollstart';
+                        jQuery.event.handle.apply(_self, _args);
+                    }
+
+                    timer = setTimeout(function () {
+                        timer = null;
+                    }, special.scrollstop.latency);
+
+                };
+
+            jQuery(this).bind('scroll', handler).data(uid1, handler);
+
+        },
+        teardown: function () {
+            jQuery(this).unbind('scroll', jQuery(this).data(uid1));
+        }
+    };
+
+    special.scrollstop = {
+        latency: 300,
+        setup: function () {
+
+            var timer,
+                handler = function (evt) {
+
+                    var _self = this,
+                        _args = arguments;
+
+                    if (timer) {
+                        clearTimeout(timer);
+                    }
+
+                    timer = setTimeout(function () {
+
+                        timer = null;
+                        evt.type = 'scrollstop';
+                        jQuery.event.handle.apply(_self, _args);
+
+                    }, special.scrollstop.latency);
+
+                };
+
+            jQuery(this).bind('scroll', handler).data(uid2, handler);
+
+        },
+        teardown: function () {
+            jQuery(this).unbind('scroll', jQuery(this).data(uid2));
+        }
+    };
+})(jQuery);

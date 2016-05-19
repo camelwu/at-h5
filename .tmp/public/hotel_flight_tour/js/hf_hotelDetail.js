@@ -1,2 +1,127 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-var data2="",roomdata="";!function(){function a(a,b){var c,d=Date.parse(a.replace(/-/g,"/")),e=Date.parse(b.replace(/-/g,"/"));return c=Math.abs(e-d)/1e3/60/60/24}function b(a){if($("#preloader").hide(),a.success&&a.data.hotelInfo.hotelID){var b=JSON.parse(window.sessionStorage.getItem("hftFlightHotelTourInfo"));window.location.search||(b.hotelInfo=a.data.hotelInfo,window.sessionStorage.setItem("hftFlightHotelTourInfo",JSON.stringify(b))),data2=a.data,roomdata=data2.hotelInfo.rooms,c(),d(),e(),f(),$(".jhf-date").show(),vlm.init()}else jAlert("暂无酒店详细数据,请稍后再试","提示")}function c(){$(".header h3").html(data2.hotelInfo.hotelNameLocale)}function d(){var a=$("#banner").html(),b=ejs.render(a,data2.hotelInfo);$(".jhf-banner").html(b)}function e(){var a=$("#jhf_score").html(),b=ejs.render(a,data2.hotelInfo);$(".jhf-score").html(b)}function f(){var a=$("#jhf_room").html(),b=ejs.render(a,data2.hotelInfo);$(".jhf-mes").append(b),$(".jhf-mes li.showh .slide").each(function(a){i==roomdata[a].roomID&&$(".jhf-mes li.showh .slide").eq(a).find("b").addClass("cur"),$(".jhf-mes li.showh .slide").eq(a).click(function(){$(this).find("b").addClass("cur").parents("li.showh").siblings().find("b").removeClass("cur");var b=roomdata[a].roomID;window.location.href="hft_choose.html?type=1&selectedRoomID="+b})})}var g=JSON.parse(sessionStorage.getItem("hftHotelDetailPara")),h=window.location.search,i=h.substring(23)-0,j=g.departDate.substring(0,10),k=g.returnDate.substring(0,10);g.departDate=j,g.returnDate=k,i||delete g.selectedRoomID;var l={Code:"50100009",ForeEndType:2,Parameters:g},m=g.departDate.substring(5),n=g.returnDate.substring(5);$(".jhf-mes span.departDate").html(m),$(".jhf-mes span.returnDate").html(n),$("#nightNum").html(a(j,k)),vlm.loadJson("",JSON.stringify(l),b)}();
+var data2 = '',roomdata = '';
+(function () {
+    var temObj = JSON.parse(sessionStorage.getItem("hftHotelDetailPara"));
+    var urlIf = window.location.search;
+    var ulrRoomId = urlIf.substring(23)-0;
+    var departDate = temObj.departDate.substring(0,10);
+    var enterDate = temObj.returnDate.substring(0,10);
+    temObj.departDate = departDate;
+    temObj.returnDate = enterDate;
+    if(!ulrRoomId){delete temObj.selectedRoomID}
+    //data中入住离店时间必须去掉时分秒
+    console.log(temObj)
+    var data = {
+        "Code": "50100009",
+        "ForeEndType": 2,
+        "Parameters": temObj
+    }
+    var departDateHtml = temObj.departDate.substring(5);
+    var enterDateHtml = temObj.returnDate.substring(5);
+    $('.jhf-mes span.departDate').html(departDateHtml);
+    $('.jhf-mes span.returnDate').html(enterDateHtml);
+
+    //getDayNum计算天数
+    $('#nightNum').html(getDayNum(departDate, enterDate))
+    function getDayNum(arg1, arg2) {
+        var time1 = Date.parse(arg1.replace(/-/g, "/")), time2 = Date.parse(arg2.replace(/-/g, "/")), dayCount;
+        return dayCount = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
+    }
+    vlm.loadJson('', JSON.stringify(data), dataCallBack);//url统一改vlm中的，此处可以为空
+    function dataCallBack(result) {
+        console.log(result)
+        $("#preloader").hide();
+        if(result.success&&result.data.hotelInfo.hotelID){
+            var flightHotelAllData = JSON.parse(window.sessionStorage.getItem('hftFlightHotelTourInfo'));
+            //console.log(flightHotelAllData)
+            if(!window.location.search){
+                flightHotelAllData.hotelInfo = result.data.hotelInfo;
+                window.sessionStorage.setItem('hftFlightHotelTourInfo',JSON.stringify(flightHotelAllData));
+            }
+            data2 = result.data;
+            console.log(data2);
+            roomdata = data2.hotelInfo.rooms;
+            nav();
+            banner();
+            adress();
+            room();
+            $('.jhf-date').show();
+            vlm.init();
+        }else{
+            jAlert('暂无酒店详细数据,请稍后再试', "提示");
+        }
+    }
+    //nav标题部分
+    function nav(){
+        $('.header h3').html(data2.hotelInfo.hotelNameLocale);
+    }
+    //banner
+    function banner(){
+        var str = $('#banner').html();
+        var banner = ejs.render(str, data2.hotelInfo);
+        $('.jhf-banner').html(banner);
+    }
+    //日历部分
+    //
+    //
+    //rili();
+    //function rili(){
+    //    var dateInitObj = new Object();
+    //    var myDate2 = new Calender({
+    //        id : 'chooseDate',
+    //        num : 13,
+    //        time : dateInitObj,
+    //        sClass1 : 'enterDate',
+    //        id2 : 'nightNum',
+    //        fn : upDateContent
+    //    });
+    //    function upDateContent(){
+    //    }
+    //}
+    //地址 星级 wifi
+
+    function adress(){
+        var str = $('#jhf_score').html();
+        var jhf_score = ejs.render(str, data2.hotelInfo);
+        $('.jhf-score').html(jhf_score);
+    }
+
+    //客房部分
+    function room(){
+        var str = $('#jhf_room').html();
+        var jhf_room = ejs.render(str, data2.hotelInfo);
+        $('.jhf-mes').append(jhf_room);
+        console.log(roomdata[0].roomID)
+        $('.jhf-mes li.showh .slide').each(function(i){
+            if( ulrRoomId == roomdata[i].roomID ){
+                console.log('true')
+                $('.jhf-mes li.showh .slide').eq(i).find('b').addClass('cur');
+            }
+
+            $('.jhf-mes li.showh .slide').eq(i).click(function(){
+                //$(this).find('i').toggleClass('cur');
+                //$('.jhf-mes ol.show').eq(i).slideToggle();
+                $(this).find('b').addClass('cur').parents('li.showh').siblings().find('b').removeClass('cur');
+                var roomID = roomdata[i].roomID;
+                window.location.href = 'hft_choose.html?type=1&selectedRoomID='+roomID;
+            })
+        });
+    }
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

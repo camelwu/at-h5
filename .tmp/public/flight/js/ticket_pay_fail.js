@@ -1,2 +1,38 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-var ticketPayFail={addHandler:function(a,b,c){document.addEventListener?ticketPayFail.addHandler=function(a,b,c){a.addEventListener(b,c,!1)}:document.attachEvent?ticketPayFail.addHandler=function(a,b,c){a.attachEvent("on"+b,function(){c.call(a)})}:ticketPayFail.addHandler=function(a,b,c){a["on"+b]=c},ticketPayFail.addHandler(a,b,c)},addEvent:function(){var a=document.querySelector(".back-home-page"),b=document.querySelector(".check-order");this.addHandler(b,"click",function(){document.location.href="ticket_order_detail.html"}),this.addHandler(a,"click",function(){document.location.href="ticket_index.html"})},init:function(){this.addEvent()}};ticketPayFail.init();
+var ticketPayFail = {
+    addHandler: function (target, eventType, handle) {
+        if (document.addEventListener) {
+            ticketPayFail.addHandler = function (target, eventType, handle) {
+                target.addEventListener(eventType, handle, false);
+            }
+        } else if (document.attachEvent) {
+            ticketPayFail.addHandler = function (target, eventType, handle) {
+                target.attachEvent('on' + eventType, function () {
+                    handle.call(target);
+                });
+            }
+        } else {
+            ticketPayFail.addHandler = function (target, eventType, handle) {
+                target['on' + eventType] = handle;
+            }
+        }
+        ticketPayFail.addHandler(target, eventType, handle);
+    },
+
+    addEvent:function(){
+        var backHomePage = document.querySelector('.back-home-page');
+        var checkOrder = document.querySelector('.check-order');
+        this.addHandler(checkOrder,'click', function(){
+            document.location.href = 'ticket_order_detail.html';
+        });
+        this.addHandler(backHomePage,'click', function(){
+            document.location.href = 'ticket_index.html';
+        });
+
+    },
+
+    init:function(){
+        this.addEvent();
+    }
+};
+
+ticketPayFail.init();

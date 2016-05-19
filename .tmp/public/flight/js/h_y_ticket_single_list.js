@@ -1,2 +1,573 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-var ticketSingle={CultureName:"zh-CN",requestUrl:"",dateInit:function(a){var b={start:this.backParaObj.DepartDate};new TicketDate({id:"dateIcon",num:13,time:b,sClass1:"num-wrap",type:"Oneway",fn:this.dateChangeRender});document.querySelector(".single-ticket-input").innerHTML=this.returnWeek(a.DepartDate)},addHandler:function(a,b,c){document.addEventListener?this.addHandler=function(a,b,c){a.addEventListener(b,c,!1)}:document.attachEvent?this.addHandler=function(a,b,c){a.attachEvent("on"+b,function(){c.call(a)})}:this.addHandler=function(a,b,c){a["on"+b]=c},this.addHandler(a,b,c)},dateChangeRender:function(){var a=ticketSingle,b=document.querySelector(".num-wrap").getAttribute("data-date"),c=/(\d{4})-(\d{1,2}-\d{1,2})/g,d=c.exec(b),e=function(a){var c,d=new Date(b.replace(/-/g,"/")).getDay();switch(d){case 0:c="周日";break;case 1:c="周一";break;case 2:c="周二";break;case 3:c="周三";break;case 4:c="周四";break;case 5:c="周五";break;case 6:c="周六"}return c};d[1]=parseInt(d[1])<10?"0"+parseInt(d[1]):parseInt(d[1]),d[2]=parseInt(d[2])<10?"0"+parseInt(d[2]):parseInt(d[2]),document.querySelector(".single-ticket-input").innerHTML=d[1]+"&nbsp;<span>"+e((new Date).getFullYear()+"-"+d[1]+"-"+d[2])+"</span>",a.backParaObj.DepartDate=b;var f=vlm.setUrlPara("","DepartDate",a.backParaObj.DepartDate);window.location.href=f},tAjax:function(a,b,c,d,e,f){var g={Parameters:b,ForeEndType:d,Code:c};a=a?a:"",f?vlm.loadJson(a,JSON.stringify(g),e,!1,!1,f):vlm.loadJson(a,JSON.stringify(g),e)},storageUtil:{set:function(a,b){var c=window.localStorage;c.setItem(a,JSON.stringify({data:b}))},get:function(a){var b=window.localStorage,c=b.getItem(a),d=JSON.parse(c);return JSON.stringify(d.data)}},returnWeek:function(a){var b,c=new Date(a.replace(/-/g,"/")).getDay();switch(c){case 0:b="周日";break;case 1:b="周一";break;case 2:b="周二";break;case 3:b="周三";break;case 4:b="周四";break;case 5:b="周五";break;case 6:b="周六"}return array=a.split("-"),array[1]=array[1]<10?"0"+parseInt(array[1]):parseInt(array[1]),array[2]=array[2]<10?"0"+parseInt(array[2]):parseInt(array[2]),array[1]+"-"+array[2]+" <span>"+b+"</span>"},parseUrlPara:function(a,b){var b=b||!1,c=/([^=&?]+)=([^=&?]+)/g,d={};return a.replace(c,function(){var a=arguments;d[a[1]]=b?decodeURIComponent(a[2]):a[2]}),d},preAndNex:function(){var a=document.querySelectorAll(".unit"),b=this;ticketSingle.addHandler(a[0],"click",function(){var c,d=document.querySelector(".num-wrap").getAttribute("data-date"),e=new Date(d.replace(/-/g,"/"));c=new Date(e.setDate(e.getDate()-1));var f=c.getMonth()+1<10?"0"+parseInt(c.getMonth()+1):c.getMonth()+1,g=c.getDate()<10?"0"+parseInt(c.getDate()):c.getDate();c=c.getFullYear()+"-"+f+"-"+g;(new Date).getFullYear()+1+"/"+((new Date).getMonth()+1)+"/"+(new Date).getDate();if(new Date(c.replace(/-/g,"/")+" 23:59:59")>=new Date){var h=ticketSingle.returnWeek(c);a[0].className="unit previous-day",document.querySelector(".single-ticket-input").innerHTML=h,b.backParaObj.DepartDate=c,b.backParaObj.pageNo=1,b.backParaObj.pageSize=10,document.querySelector("#preloader").style.display="block";var i=vlm.setUrlPara("","DepartDate",c);window.location.href=i}else a[0].className="unit previous-day disabled-date-choose"}),ticketSingle.addHandler(a[1],"click",function(c){var d,e=document.querySelector(".num-wrap").getAttribute("data-date"),f=new Date(e.replace(/-/g,"/"));d=new Date(f.setDate(f.getDate()+1));var g,h,i=d.getMonth()+1<10?"0"+parseInt(d.getMonth()+1):d.getMonth()+1,j=d.getDate()<10?"0"+parseInt(d.getDate()):d.getDate();d=d.getFullYear()+"-"+i+"-"+j;var k=(new Date).getFullYear()+1+"/"+((new Date).getMonth()+1)+"/"+(new Date).getDate();new Date(d.replace(/-/g,"/")+" 00:00:00")>new Date&&new Date(d.replace(/-/g,"/"))<new Date(k+" 00:00:00")?(g=ticketSingle.returnWeek(d),a[0].className="unit previous-day",document.querySelector(".single-ticket-input").innerHTML=g,b.backParaObj.DepartDate=d,b.backParaObj.pageNo=1,b.backParaObj.pageSize=10,document.querySelector("#preloader").style.display="block",h=vlm.setUrlPara("","DepartDate",d),window.location.href=h):new Date(d.replace(/-/g,"/")+" 00:00:00")-new Date(k+" 00:00:00")==0?(g=ticketSingle.returnWeek(d),a[0].className="unit previous-day",document.querySelector(".single-ticket-input").innerHTML=g,b.backParaObj.DepartDate=d,b.backParaObj.pageNo=1,b.backParaObj.pageSize=10,document.querySelector("#preloader").style.display="block",a[1].className="unit next-day disabled-date-choose",h=vlm.setUrlPara("","DepartDate",d),window.location.href=h):a[1].className="unit next-day disabled-date-choose"})},renderHandler:function(a){var b,a=a,c=ticketSingle,d=document.querySelector(".air-tickets-detail-wrapper"),e=document.querySelector(".flight-result-tip"),f="";f=c.isClearAll,b=window.localStorage,document.querySelector("#preloader").style.display="none",a.success&&200==a.code&&a.data.flightInfos.length>0?(document.querySelector(".tip-button-para").style.display="none",e.style.display="none",c.lastBackData=a,c.pageNo=a.data.pageNo,c.pageCount=a.data.pageCount,b.setItem("flightListData",JSON.stringify(a.data.flightInfos)),c.changeFlightList(a,f),c.eventHandler(),c.taxDeal(a.data.flightInfos)):0==a.success&&a.message.indexOf("greater")>-1?(document.querySelector(".no-flight-word").innerHTML="未搜到航班信息，请扩大搜索范围!",document.querySelector(".tip-button-para").style.display="block",d.innerHTML="",e.style.display="block",c.timer7=window.setTimeout(function(){e.style.display="none",window.clearTimeout(c.timer7),c.timer7=null},3e3)):(e.style.display="none",c.isClearAll=!0,d.innerHTML="",document.querySelector(".tip-button-para").style.display="block")},taxDeal:function(a){for(var b=[],c=[],d=[],e=[],f=0;f<a.length;f++)0==a[f].totalTaxAmountADT?c.push(a[f]):b.push(a[f]);d=a.sort(function(a,b){return parseFloat(a.totalFareAmountExc)-parseFloat(b.totalFareAmountExc)}),e=d.reverse(),this.cacheTypeData={taxData:b,freeTaxData:c,priceDesc:d,priceAsic:e}},checkTip:function(){for(var a=document.querySelectorAll(".detail-list li"),b="",c=document.querySelectorAll("#time-modal li"),d="",e=document.querySelectorAll("#price-modal li"),f="",g=0;g<a.length;g++)a[g].className.indexOf("active")>-1&&(b+=g);for(var h=0;h<c.length;h++)c[h].className.indexOf("active")>-1&&(d+=h);for(var i=0;i<e.length;i++)e[i].className.indexOf("active")>-1&&(f+=i);return{left:b,middle:d,right:f}},timeCut:function(a){var b=/\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g,c=b.exec(a);return c[1]+":"+c[2]},returnTransferCity:function(a){var b="";return a.length<2?b="":2==a.length?b='<span class="air-port-word">转'+a[0].cityNameTo+"</span>":a.length>=3&&(b='<span class="air-port-word">中转'+(a.length-1)+"次</span>"),b},changeFlightList:function(a,b){if(a){var c,a=a,d=ticketSingle,e=document.querySelector(".air-tickets-detail-wrapper"),f="",g="",h="",i="";e.innerHTML=1==b?"":e.innerHTML;var j=function(){var b="";return b+="domestic"==d.backParaObj.interNationalOrDomestic?'<div class="price-tax single-side"><div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="single-price-pull-right">'+a.data.flightInfos[k].totalFareAmountADT+"</span></div></div>":"true"==d.backParaObj.hasTax?'<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+a.data.flightInfos[k].totalFareAmountExc+'</span></div><div class="single-price-tax-info"><span class="tax-word">含税总价</div></div>':'<div class="price-tax single-side"><div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">'+a.data.flightInfos[k].totalFareAmountADT+'</span></div><div class="single-price-tax-info"><span class="tax-word">税费</span> ￥'+a.data.flightInfos[k].totalTaxAmountADT+"</div>"};c="";for(var k=0;k<a.data.flightInfos.length;k++)f=1==a.data.flightInfos[k].isReturnShareFlight?'&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|':"",g=1==a.data.flightInfos[k].isLeaveStop?' | <span class="green-tip">经停</span>':"",i=a.data.flightInfos[k].flightLeaveSpacingDay>=1?"+"+a.data.flightInfos[k].flightLeaveSpacingDay+"天":"",h=d.returnTransferCity(a.data.flightInfos[k].segmentsLeave),c+='<li class="air-tickets-detail seat-detail" data-set-id="'+a.data.flightInfos[k].setID+'"><div class="time-airport" ><div class = "go" ><div class = "go-info" ><div class="start-time-info" ><span class= "time-number" >'+d.timeCut(a.data.flightInfos[k].flightLeaveStartDate)+'</span><span class="air-port-word">'+a.data.flightInfos[k].segmentsLeave[0].airportNameFrom+a.data.flightInfos[k].segmentsLeave[0].termDepart+'</span ></div><div class="total-time-info"><span class="time-hour-minute">'+parseInt(a.data.flightInfos[k].segmentsLeaveTotalTravelTime/60)+"h"+a.data.flightInfos[k].segmentsLeaveTotalTravelTime%60+'m</span><span class="arrow-time"></span>'+h+'</div ><div class= "end-time-info" ><span class="tip-add-days" >'+i+'</span><span class="time-number">'+d.timeCut(a.data.flightInfos[k].flightLeaveEndDate)+'</span ><span class= "air-port-word" >'+a.data.flightInfos[k].segmentsLeave[a.data.flightInfos[k].segmentsLeave.length-1].airportNameTo+a.data.flightInfos[k].segmentsLeave[0].termArrive+'</span></div ></div><p class="small-info"></span >'+a.data.flightInfos[k].segmentsLeave[0].operatingCarrierName+a.data.flightInfos[k].segmentsLeave[0].operatingCarrierCode+a.data.flightInfos[k].segmentsLeave[0].flightNo+"&nbsp;|&nbsp;"+a.data.flightInfos[k].segmentsLeave[0].cabinClassName+f+g+"</p></div ></div>"+j()+"</li>";e.innerHTML+=c,this.loadMoreHandler(a.data.pageNo,a.data.pageCount),this.eventHandler()}},loadMoreHandler:function(a,b){var c=document.getElementById("loadMore");c.innerHTML="点击加载更多",c.style.display="block",a==b&&(c.innerHTML="没有更多数据了")},loadMoreBtnEvent:function(){var a=document.getElementById("loadMore");this.addHandler(a,"click",function(){ticketSingle.loadMoreData()})},callRender:function(a){var b={},c=ticketSingle;switch(b.IsDirectFlight="unlimitedPlane"==a.directFly?"false":"true",b.IsHideSharedFlight="hideShareFlight"==a.IsHideSharedFlight?"false":"true",b.DepartStartHour=a.filterTime.substr(0,2),b.DepartEndHour=a.filterTime.substr(2,2),b.CabinClass=a.CabinClass,b.pageNo=1,b.pageSize=10,a.paraMiddle){case"directFirst":b.PriorityRule=1;break;case"lowPriceFirst":b.PriorityRule=2;break;case"shortTimeFirst":b.PriorityRule=3;break;case"earlyAsLate":b.IsDesc="true";break;case"lateAsEarly":b.IsDesc="false";break;default:b.PriorityRule=0}for(var d in b)c.backParaObj[d]=b[d];document.querySelector("#preloader").style.display="block",c.tAjax(this.requestUrl,c.backParaObj,"3001",3,c.renderHandler);var e=c.checkTip();c.initLeftState.left!=e.left?document.querySelector("#fo_sc i").className="red-tip":document.querySelector("#fo_sc i").className="",c.initLeftState.middle!=e.middle?document.querySelector("#fo_ra i").className="red-tip":document.querySelector("#fo_ra i").className="",c.initLeftState.right!=e.right?document.querySelector("#fo_lo i").className="red-tip":document.querySelector("#fo_lo i").className=""},alertNoFlightNotice:function(a,b){var c,d=document.createElement("div"),e=document.querySelector(".all-elements"),f=ticketSingle,g="single"==b?"direction-single":"direction-double";d.className="no-flight-notice",d.innerHTML='<header class="big-title"><i class="fl close-no-flight"></i><span class="set-place">'+a.fromCity+'</span><i class="'+g+'"></i><span class="to-place">'+a.toCity+'</span></header><div class="tip-button-para"><p class="no-flight-word">没有找到符合条件的航班!</p></div>',e.appendChild(d),c=document.querySelector(".close-no-flight"),f.addHandler(c,"click",function(){e.removeChild(d)})},eventHandler:function(){for(var a=document.querySelectorAll(".seat-detail"),b=ticketSingle,c=document.querySelector("#r-shadow"),d=document.querySelector("#filter-modal"),e=document.querySelector("#time-modal"),f=document.querySelector("#price-modal"),g=0;g<a.length;g++)this.addHandler(a[g],"click",function(){b.storageUtil.set("currentListPara",b.backParaObj),document.location.href="ticket_seat_choose.html?setId="+this.getAttribute("data-set-id")+"&RouteType="+b.backParaObj.RouteType+"&hasTax="+b.backParaObj.hasTax+"&CabinClass="+b.backParaObj.CabinClass+"&NumofAdult="+b.backParaObj.NumofAdult+"&NumofChild="+b.backParaObj.NumofChild+"&interNationalOrDomestic="+b.backParaObj.interNationalOrDomestic});this.addHandler(c,"click",function(){"0px"==d.style.bottom?(d.style.transition="all 300ms ease-in",d.style.webkitTransition="all 300ms linear",d.style.bottom="-126%"):"0px"==e.style.bottom?(e.style.transition="all 300ms ease-in",e.style.webkitTransition="all 300ms linear",e.style.bottom="-126%"):"0px"==f.style.bottom&&(f.style.transition="all 300ms ease-in",f.style.webkitTransition="all 300ms linear",f.style.bottom="-126%"),this.style.display="none"})},taxHandler:function(){var a=document.querySelector("#price-modal");this.addHandler(a,"click",function(a){var b=document.querySelector("#r-shadow"),c=ticketSingle,a=a||window.event,d=d||a.srcElement,e=d.parentNode.querySelectorAll("li"),f={data:{flightInfos:[]}};if("noTax"==d.getAttribute("data-i"))if(0==c.cacheTypeData.freeTaxData.length)jAlert("当前航班均含税，换种条件试试!","",function(){});else{f.data.flightInfos=c.cacheTypeData.freeTaxData,c.changeFlightList(f,!0);for(var g=0,h=e.length;h>g;g++)e[g].className=e[g]==d?"price-modal-item active":"price-modal-item"}else if("hasTax"==d.getAttribute("data-i")){f.data.flightInfos=c.cacheTypeData.taxData,c.changeFlightList(f,!0);for(var g=0,h=e.length;h>g;g++)e[g].className=e[g]==d?"price-modal-item active":"price-modal-item"}else if("priceHighToLow"==d.getAttribute("data-i")){f.data.flightInfos=c.cacheTypeData.priceDesc,c.changeFlightList(f,!0);for(var g=0,h=e.length;h>g;g++)e[g].className=e[g]==d?"price-modal-item active":"price-modal-item"}else if("priceLowToHigh"==d.getAttribute("data-i")){f.data.flightInfos=c.cacheTypeData.priceAsic,c.changeFlightList(f,!0);for(var g=0,h=e.length;h>g;g++)e[g].className=e[g]==d?"price-modal-item active":"price-modal-item"}this.style.transition="all 300ms ease-in",this.style.webkitTransition="all 300ms linear",this.style.bottom="-126%",b.style.display="none"})},loadMoreData:function(){var a=ticketSingle,b=document.getElementById("loadMore");a.pageNo>=a.pageCount?($("#loadMore").fadeOut(1e3),jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>',"",function(){})):a.pageNo<a.pageCount&&(a.isClearAll=!1,a.backParaObj.pageNo++,b.innerHTML="正在加载...",a.tAjax(this.requestUrl,a.backParaObj,"3001",3,a.renderHandler,!0))},handler1:function(a){var b=ticketSingle;b.backParaObj=a,document.querySelector("#preloader").style.display="block",b.tAjax(b.requestUrl,b.backParaObj,"3001",3,b.renderHandler)},handler2:function(a){var b=ticketSingle;b.backParaObj=a,b.changeFlightList(b.lastBackData,!0)},fixColor:function(){var a=(new Date).getFullYear()+1+"/"+((new Date).getMonth()+1)+"/"+(new Date).getDate(),b=document.querySelectorAll(".unit");new Date(this.backParaObj.DepartDate+" 00:00:00")-new Date(a+" 00:00:00")==0&&(b[1].className="unit next-day disabled-date-choose")},init:function(){var a=this.parseUrlPara(document.location.search,!0);document.querySelector(".set-place").innerHTML=a.fromCity,document.querySelector(".to-place").innerHTML=a.toCity,document.querySelector(".num-wrap").setAttribute("data-date",a.DepartDate),this.tripType=a.interNationalOrDomestic,a.NumofAdult=parseInt(a.NumofAdult),a.NumofChild=parseInt(a.NumofChild),a.PriorityRule=parseInt(a.PriorityRule),a.pageNo=parseInt(a.pageNo),a.pageSize=parseInt(a.pageSize),this.backParaObj=a,this.isClearAll=!0,this.tAjax(this.requestUrl,a,"3001",3,this.renderHandler),this.fixColor(),this.dateInit(a),this.preAndNex(),conditionalFiltering.init(this.tripType,this.backParaObj.RouteType,this.backParaObj,this.handler1,this.handler2,this),this.eventHandler(),this.taxHandler(),this.initLeftState=this.checkTip(),this.loadMoreBtnEvent()}};ticketSingle.init();
+var ticketSingle = {
+
+  CultureName: "zh-CN",
+
+  requestUrl: "",
+
+  dateInit: function (arg) {
+    var paraObj = {
+      start: this.backParaObj.DepartDate
+    };
+    var myDate = new TicketDate({
+      id: 'dateIcon',
+      num: 13,
+      time: paraObj,
+      sClass1: 'num-wrap',
+      type: 'Oneway',
+      fn: this.dateChangeRender
+    });
+    document.querySelector('.single-ticket-input').innerHTML = this.returnWeek(arg.DepartDate);
+  },
+
+  addHandler: function (target, eventType, handle) {
+    if (document.addEventListener) {
+      this.addHandler = function (target, eventType, handle) {
+        target.addEventListener(eventType, handle, false);
+      }
+    } else if (document.attachEvent) {
+      this.addHandler = function (target, eventType, handle) {
+        target.attachEvent('on' + eventType, function () {
+          handle.call(target);
+        });
+      }
+    } else {
+      this.addHandler = function (target, eventType, handle) {
+        target['on' + eventType] = handle;
+      }
+    }
+    this.addHandler(target, eventType, handle);
+  },
+
+  dateChangeRender: function () {
+    var that = ticketSingle, dateStr = document.querySelector('.num-wrap').getAttribute('data-date');
+    var reg = /(\d{4})-(\d{1,2}-\d{1,2})/g, tStr = reg.exec(dateStr);
+    console.log(tStr)
+    var returnWeek = function (arg) {
+      var index = new Date(dateStr.replace(/-/g, '/')).getDay(), week;
+      switch (index) {
+        case 0 :
+          week = '周日';
+          break;
+        case 1 :
+          week = '周一';
+          break;
+        case 2 :
+          week = '周二';
+          break;
+        case 3 :
+          week = '周三';
+          break;
+        case 4 :
+          week = '周四';
+          break;
+        case 5 :
+          week = '周五';
+          break;
+        case 6 :
+          week = '周六';
+          break;
+        default :
+          void(0)
+      }
+      return week
+    };
+    tStr[1] = parseInt(tStr[1]) < 10 ? '0' + parseInt(tStr[1]) : parseInt(tStr[1]);
+    tStr[2] = parseInt(tStr[2]) < 10 ? '0' + parseInt(tStr[2]) : parseInt(tStr[2]);
+    document.querySelector('.single-ticket-input').innerHTML = tStr[1] + '&nbsp;<span>' + returnWeek(new Date().getFullYear() + '-' + tStr[1] + '-' + tStr[2]) + '</span>';
+    that.backParaObj.DepartDate = dateStr;
+    //document.querySelector('#preloader').style.display = 'block';
+    //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+    //重置URL  DepartDate
+    var newUrl = vlm.setUrlPara("", "DepartDate", that.backParaObj.DepartDate);
+    window.location.href = newUrl;
+  },
+
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+    var that = this, dataObj =
+    {
+      Parameters: data,
+      ForeEndType: ForeEndType,
+      Code: Code
+    };
+    questUrl = questUrl ? questUrl :"";
+    if (loadMoreSign) {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
+    } else {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    }
+  },
+
+  storageUtil: {
+    set: function (key, v) {
+      var localStorage = window.localStorage;
+      localStorage.setItem(key, JSON.stringify({data: v}))
+    },
+    get: function (key) {
+      var localStorage = window.localStorage, data = localStorage.getItem(key), dataObj = JSON.parse(data);
+      return JSON.stringify(dataObj.data);
+    }
+  },
+
+  returnWeek: function (arg) {
+
+    var index = new Date(arg.replace(/-/g, "/")).getDay(), week;
+    switch (index) {
+      case 0 :
+        week = '周日';
+        break;
+      case 1 :
+        week = '周一';
+        break;
+      case 2 :
+        week = '周二';
+        break;
+      case 3 :
+        week = '周三';
+        break;
+      case 4 :
+        week = '周四';
+        break;
+      case 5 :
+        week = '周五';
+        break;
+      case 6 :
+        week = '周六';
+        break;
+      default :
+        void(0)
+    }
+    array = arg.split('-');
+    array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
+    array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
+    return array[1] + '-' + array[2] + ' ' + '<span>' + week + '</span>';
+  },
+  parseUrlPara: function (url, isEncode) {
+    var isEncode = isEncode || false;
+    var reg = /([^=&?]+)=([^=&?]+)/g, obj = {};
+    url.replace(reg, function () {
+      var arg = arguments;
+      obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
+    });
+    return obj;
+  },
+  preAndNex: function () {
+    var oDivs = document.querySelectorAll('.unit'), that = this;
+    ticketSingle.addHandler(oDivs[0], 'click', function () {
+      var arg_ = document.querySelector('.num-wrap').getAttribute('data-date'), arg;
+      var tem = new Date(arg_.replace(/-/g, "/"));
+      arg = new Date(tem.setDate(tem.getDate() - 1));
+      var monthNum = (arg.getMonth() + 1) < 10 ? "0" + parseInt((arg.getMonth() + 1)) : arg.getMonth() + 1;
+      var dateNum = (arg.getDate()) < 10 ? "0" + parseInt(arg.getDate()) : arg.getDate();
+      arg = arg.getFullYear() + '-' + monthNum + '-' + dateNum;
+      var lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+      if (new Date(arg.replace(/-/g, "/") + ' 23:59:59') >= new Date()) {
+        var result_ = ticketSingle.returnWeek(arg);
+        oDivs[0].className = 'unit previous-day';
+        document.querySelector('.single-ticket-input').innerHTML = result_;
+        that.backParaObj.DepartDate = arg;
+        that.backParaObj.pageNo = 1;
+        that.backParaObj.pageSize = 10;
+        document.querySelector('#preloader').style.display = 'block';
+        //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        //重置URL  DepartDate
+        var newUrl = vlm.setUrlPara("", "DepartDate", arg);
+        window.location.href = newUrl;
+      } else {
+        oDivs[0].className = 'unit previous-day disabled-date-choose'
+      }
+    });
+    ticketSingle.addHandler(oDivs[1], 'click', function (event) {
+      var arg_ = document.querySelector('.num-wrap').getAttribute('data-date'), arg;
+      var tem = new Date(arg_.replace(/-/g, "/"));
+      arg = new Date(tem.setDate(tem.getDate() + 1));
+      var monthNum = (arg.getMonth() + 1) < 10 ? "0" + parseInt((arg.getMonth() + 1)) : arg.getMonth() + 1;
+      var dateNum = (arg.getDate()) < 10 ? "0" + parseInt(arg.getDate()) : arg.getDate(), result_, newUrl;
+      arg = arg.getFullYear() + '-' + monthNum + '-' + dateNum;
+      var lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+      console.log(lineMaxDate)
+      if (new Date(arg.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(arg.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
+        result_ = ticketSingle.returnWeek(arg);
+        oDivs[0].className = 'unit previous-day';
+        document.querySelector('.single-ticket-input').innerHTML = result_;
+        that.backParaObj.DepartDate = arg;
+        that.backParaObj.pageNo = 1;
+        that.backParaObj.pageSize = 10;
+        document.querySelector('#preloader').style.display = 'block';
+        newUrl = vlm.setUrlPara("", "DepartDate", arg);
+        window.location.href = newUrl;
+      } else if (new Date(arg.replace(/-/g, "/") + ' 00:00:00') - new Date(lineMaxDate + ' 00:00:00') == 0) {
+        result_ = ticketSingle.returnWeek(arg);
+        oDivs[0].className = 'unit previous-day';
+        document.querySelector('.single-ticket-input').innerHTML = result_;
+        that.backParaObj.DepartDate = arg;
+        that.backParaObj.pageNo = 1;
+        that.backParaObj.pageSize = 10;
+        document.querySelector('#preloader').style.display = 'block';
+        oDivs[1].className = 'unit next-day disabled-date-choose';
+        //that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+        //重置URL  DepartDate
+        newUrl = vlm.setUrlPara("", "DepartDate", arg);
+        window.location.href = newUrl;
+      } else {
+        oDivs[1].className = 'unit next-day disabled-date-choose'
+      }
+    });
+  },
+  renderHandler: function (arg) {
+    var arg = arg;
+    var that = ticketSingle, airTicketsListWrapper = document.querySelector('.air-tickets-detail-wrapper');
+    var tipEle = document.querySelector('.flight-result-tip'), noFlightInfo = null, clearTag = '', localStorage;
+    clearTag = that.isClearAll, localStorage = window.localStorage;
+    document.querySelector('#preloader').style.display = 'none';
+    if (arg.success && arg.code == 200 && arg.data.flightInfos.length > 0) {
+      document.querySelector('.tip-button-para').style.display = 'none';
+      tipEle.style.display = 'none';
+      that.lastBackData = arg;
+      that.pageNo = arg.data.pageNo;
+      that.pageCount = arg.data.pageCount;
+      localStorage.setItem('flightListData', JSON.stringify(arg.data.flightInfos));
+      that.changeFlightList(arg, clearTag);
+      that.eventHandler();
+      that.taxDeal(arg.data.flightInfos);
+    } else if (arg.success == false && arg.message.indexOf('greater') > -1) {
+      document.querySelector('.no-flight-word').innerHTML = '未搜到航班信息，请扩大搜索范围!';
+      document.querySelector('.tip-button-para').style.display = 'block';
+      airTicketsListWrapper.innerHTML = "";
+      tipEle.style.display = 'block';
+      that.timer7 = window.setTimeout(function () {
+        tipEle.style.display = 'none';
+        window.clearTimeout(that.timer7);
+        that.timer7 = null;
+      }, 3000);
+    } else {
+      tipEle.style.display = 'none';
+      that.isClearAll = true;
+      airTicketsListWrapper.innerHTML = "";
+      document.querySelector('.tip-button-para').style.display = 'block';
+    }
+  },
+
+  taxDeal: function (arg) {
+    var taxData = [], freeTaxData = [], priceDesc = [], priceAsic = [];
+    for (var i = 0; i < arg.length; i++) {
+      arg[i].totalTaxAmountADT == 0 ? freeTaxData.push(arg[i]) : taxData.push(arg[i])
+    }
+    priceDesc = arg.sort(function (a, b) {
+      return parseFloat(a.totalFareAmountExc) - parseFloat(b.totalFareAmountExc)
+    });
+    priceAsic = priceDesc.reverse();
+    this.cacheTypeData = {
+      taxData: taxData,
+      freeTaxData: freeTaxData,
+      priceDesc: priceDesc,
+      priceAsic: priceAsic
+    }
+  },
+
+  checkTip: function () {
+    var lis = document.querySelectorAll('.detail-list li'), temArray = '';
+    var tLis = document.querySelectorAll('#time-modal li'), tTemArray = '';
+    var pLis = document.querySelectorAll('#price-modal li'), pTemArray = '';
+    for (var i = 0; i < lis.length; i++) {
+      if (lis[i].className.indexOf('active') > -1) {
+        temArray += i;
+      }
+    }
+
+    for (var j = 0; j < tLis.length; j++) {
+      if (tLis[j].className.indexOf('active') > -1) {
+        tTemArray += j;
+      }
+    }
+    for (var k = 0; k < pLis.length; k++) {
+      if (pLis[k].className.indexOf('active') > -1) {
+        pTemArray += k;
+      }
+    }
+    return {left: temArray, middle: tTemArray, right: pTemArray};
+  },
+
+  timeCut: function (arg) {
+    var reg = /\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2}):\d{2}/g, result = reg.exec(arg);
+    return result[1] + ':' + result[2];
+  },
+
+  returnTransferCity: function (arg) {
+    var str = '';
+    if (arg.length < 2) {
+      str = ''
+    } else if (arg.length == 2) {
+      str = '<span class="air-port-word">转' + arg[0].cityNameTo + '</span>'
+    } else if (arg.length >= 3) {
+      str = '<span class="air-port-word">中转' + (arg.length - 1) + '次</span>'
+    }
+    return str;
+  },
+
+  changeFlightList: function (arg, type) {
+    if(!arg){return};
+    var arg = arg, that = ticketSingle, ticketDetailUl = document.querySelector('.air-tickets-detail-wrapper');
+    var ticketListStr, ShareFlightStr = '', passByStr = '', transferCity = '', tipDay = '', li;
+    ticketDetailUl.innerHTML = type == true ? "" : ticketDetailUl.innerHTML;
+    var returnRightTax = function () {
+      var str = '';
+      if (that.backParaObj.interNationalOrDomestic == "domestic") {
+        str += '<div class="price-tax single-side">' +
+          '<div class="price-info price-info-domestic"><span class="price-icon">￥</span><span class="single-price-pull-right">' + arg.data.flightInfos[i].totalFareAmountADT + '</span></div>' +
+          '</div>'
+      } else {
+        if (that.backParaObj.hasTax == "true") {
+          str += '<div class="price-tax single-side">' +
+            '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">' + arg.data.flightInfos[i].totalFareAmountExc + '</span></div>' +
+            '<div class="single-price-tax-info"><span class="tax-word">含税总价</div>' +
+            '</div>'
+        } else {
+          str += '<div class="price-tax single-side">' +
+            '<div class="price-info"><span class="price-icon">￥</span><span class="single-price-pull-right">' + arg.data.flightInfos[i].totalFareAmountADT + '</span></div>' +
+            '<div class="single-price-tax-info"><span class="tax-word">税费</span> ￥' + arg.data.flightInfos[i].totalTaxAmountADT + '</div>'
+        }
+      }
+      return str;
+    };
+    ticketListStr = '';
+    for (var i = 0; i < arg.data.flightInfos.length; i++) {
+      ShareFlightStr = arg.data.flightInfos[i].isReturnShareFlight == true ? '&nbsp;|&nbsp;<span class="green-tip">共享</span>&nbsp;|' : '';
+      passByStr = arg.data.flightInfos[i].isLeaveStop == true ? ' | <span class="green-tip">经停</span>' : '';
+      tipDay = arg.data.flightInfos[i].flightLeaveSpacingDay >= 1 ? '+' + arg.data.flightInfos[i].flightLeaveSpacingDay + '天' : '';
+      transferCity = that.returnTransferCity(arg.data.flightInfos[i].segmentsLeave);
+      ticketListStr += '<li class="air-tickets-detail seat-detail" data-set-id="' + arg.data.flightInfos[i].setID + '"><div class="time-airport" >' +
+        '<div class = "go" >' +
+        '<div class = "go-info" >' +
+        '<div class="start-time-info" >' +
+        '<span class= "time-number" >' + that.timeCut(arg.data.flightInfos[i].flightLeaveStartDate) + '</span>' +
+        '<span class="air-port-word">' + arg.data.flightInfos[i].segmentsLeave[0].airportNameFrom + arg.data.flightInfos[i].segmentsLeave[0].termDepart + '</span >' +
+        '</div>' +
+        '<div class="total-time-info">' +
+        '<span class="time-hour-minute">' + parseInt(arg.data.flightInfos[i].segmentsLeaveTotalTravelTime / 60) + 'h' + arg.data.flightInfos[i].segmentsLeaveTotalTravelTime % 60 + 'm</span>' +
+        '<span class="arrow-time"></span>' + transferCity + '</div >' +
+        '<div class= "end-time-info" >' +
+        '<span class="tip-add-days" >' + tipDay + '</span>' +
+        '<span class="time-number">' + that.timeCut(arg.data.flightInfos[i].flightLeaveEndDate) + '</span >' +
+        '<span class= "air-port-word" >' + arg.data.flightInfos[i].segmentsLeave[arg.data.flightInfos[i].segmentsLeave.length - 1].airportNameTo + arg.data.flightInfos[i].segmentsLeave[0].termArrive + '</span>' +
+        '</div ></div>' +
+        '<p class="small-info"></span >' + arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierName + arg.data.flightInfos[i].segmentsLeave[0].operatingCarrierCode + arg.data.flightInfos[i].segmentsLeave[0].flightNo + '&nbsp;|&nbsp;' + arg.data.flightInfos[i].segmentsLeave[0].cabinClassName + ShareFlightStr + passByStr + '</p>' +
+        '</div ></div>' + returnRightTax() + '</li>';
+      //li.innerHTML = ticketListStr;
+      //ticketDetailUl.appendChild(li);
+    }
+    ticketDetailUl.innerHTML += ticketListStr;
+    this.loadMoreHandler(arg.data.pageNo, arg.data.pageCount);
+    this.eventHandler();
+    return;
+  },
+
+  loadMoreHandler: function (pageNo, pageCount) {
+    var loadMoreBtn = document.getElementById("loadMore");
+    loadMoreBtn.innerHTML = "点击加载更多";
+    loadMoreBtn.style.display = "block";
+    if (pageNo == pageCount) {
+      loadMoreBtn.innerHTML = "没有更多数据了";
+    }
+  },
+
+  loadMoreBtnEvent: function () {
+    var loadMoreBtn = document.getElementById("loadMore");
+    this.addHandler(loadMoreBtn, "click", function () {
+      ticketSingle.loadMoreData();
+    })
+  },
+
+  callRender: function (arg) {
+    var paraObj = {}, that = ticketSingle;
+    paraObj.IsDirectFlight = arg.directFly == 'unlimitedPlane' ? 'false' : 'true';
+    paraObj.IsHideSharedFlight = arg.IsHideSharedFlight == 'hideShareFlight' ? 'false' : 'true';
+    paraObj.DepartStartHour = arg.filterTime.substr(0, 2);
+    paraObj.DepartEndHour = arg.filterTime.substr(2, 2);
+    paraObj.CabinClass = arg.CabinClass;
+    paraObj.pageNo = 1;
+    paraObj.pageSize = 10;
+    switch (arg.paraMiddle) {
+      case "directFirst":
+        paraObj.PriorityRule = 1;
+        break;
+      case"lowPriceFirst":
+        paraObj.PriorityRule = 2;
+        break;
+      case "shortTimeFirst":
+        paraObj.PriorityRule = 3;
+        break;
+      case "earlyAsLate":
+        paraObj.IsDesc = "true";
+        break;
+      case "lateAsEarly":
+        paraObj.IsDesc = "false";
+        break;
+      default :
+        paraObj.PriorityRule = 0;
+    }
+
+    for (var tem in paraObj) {
+      that.backParaObj[tem] = paraObj[tem];
+    }
+    console.log(that.backParaObj)
+    document.querySelector('#preloader').style.display = 'block';
+    that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+    var temObj = that.checkTip();
+    that.initLeftState.left != temObj.left ? document.querySelector('#fo_sc i').className = 'red-tip' : document.querySelector('#fo_sc i').className = '';
+    that.initLeftState.middle != temObj.middle ? document.querySelector('#fo_ra i').className = 'red-tip' : document.querySelector('#fo_ra i').className = '';
+    that.initLeftState.right != temObj.right ? document.querySelector('#fo_lo i').className = 'red-tip' : document.querySelector('#fo_lo i').className = '';
+  },
+
+  alertNoFlightNotice: function (citys, type) {
+    var div = document.createElement('div'), allEleWrap = document.querySelector('.all-elements'), backButton, that = ticketSingle;
+    var arrowIcon = type == 'single' ? 'direction-single' : 'direction-double';
+    div.className = 'no-flight-notice';
+    div.innerHTML = '<header class="big-title"><i class="fl close-no-flight"></i>' +
+      '<span class="set-place">' + citys.fromCity + '</span>' +
+      '<i class="' + arrowIcon + '"></i>' +
+      '<span class="to-place">' + citys.toCity + '</span>' +
+      '</header>' +
+      '<div class="tip-button-para">' +
+      '<p class="no-flight-word">没有找到符合条件的航班!</p></div>';
+    allEleWrap.appendChild(div);
+    backButton = document.querySelector('.close-no-flight');
+    that.addHandler(backButton, "click", function () {
+      allEleWrap.removeChild(div)
+    })
+
+  },
+
+  eventHandler: function () {
+    var oLis = document.querySelectorAll('.seat-detail'), that = ticketSingle, shadowBox = document.querySelector('#r-shadow'),
+      filterModal = document.querySelector('#filter-modal'), timeModal = document.querySelector('#time-modal'), priceModal = document.querySelector('#price-modal');
+    for (var i = 0; i < oLis.length; i++) {
+      this.addHandler(oLis[i], 'click', function () {
+        that.storageUtil.set('currentListPara', that.backParaObj);
+        document.location.href = 'ticket_seat_choose.html?setId=' + this.getAttribute('data-set-id') + '&RouteType=' + that.backParaObj.RouteType + '&hasTax=' + that.backParaObj.hasTax +
+          '&CabinClass=' + that.backParaObj.CabinClass + '&NumofAdult=' + that.backParaObj.NumofAdult + '&NumofChild=' + that.backParaObj.NumofChild + '&interNationalOrDomestic=' + that.backParaObj.interNationalOrDomestic;
+      })
+    }
+    this.addHandler(shadowBox, 'click', function () {
+      if (filterModal.style.bottom == '0px') {
+        filterModal.style.transition = 'all 300ms ease-in';
+        filterModal.style.webkitTransition = 'all 300ms linear';
+        filterModal.style.bottom = '-126%';
+      } else if (timeModal.style.bottom == '0px') {
+        timeModal.style.transition = 'all 300ms ease-in';
+        timeModal.style.webkitTransition = 'all 300ms linear';
+        timeModal.style.bottom = '-126%';
+      } else if (priceModal.style.bottom == '0px') {
+        priceModal.style.transition = 'all 300ms ease-in';
+        priceModal.style.webkitTransition = 'all 300ms linear';
+        priceModal.style.bottom = '-126%';
+      }
+      this.style.display = 'none';
+    });
+  },
+
+  taxHandler: function () {
+    var priceModal = document.querySelector('#price-modal');
+    this.addHandler(priceModal, 'click', function (event) {
+      var shadowBox = document.querySelector('#r-shadow'), that = ticketSingle;
+      var event = event || window.event;
+      var target = target || event.srcElement;
+      var sibLis = target.parentNode.querySelectorAll('li'), temParaObject = {data: {flightInfos: []}};
+      if (target.getAttribute('data-i') == 'noTax') {
+        if (that.cacheTypeData.freeTaxData.length == 0) {
+          jAlert('当前航班均含税，换种条件试试!', '', function () {
+          })
+        } else {
+          temParaObject.data.flightInfos = that.cacheTypeData.freeTaxData;
+          that.changeFlightList(temParaObject, true);
+          for (var l = 0, length = sibLis.length; l < length; l++) {
+            sibLis[l].className = sibLis[l] == target ? "price-modal-item active" : "price-modal-item";
+          }
+        }
+      } else if (target.getAttribute('data-i') == 'hasTax') {
+        temParaObject.data.flightInfos = that.cacheTypeData.taxData;
+        that.changeFlightList(temParaObject, true);
+        for (var l = 0, length = sibLis.length; l < length; l++) {
+          sibLis[l].className = sibLis[l] == target ? "price-modal-item active" : "price-modal-item";
+        }
+      } else if (target.getAttribute('data-i') == 'priceHighToLow') {
+        temParaObject.data.flightInfos = that.cacheTypeData.priceDesc;
+        that.changeFlightList(temParaObject, true);
+        for (var l = 0, length = sibLis.length; l < length; l++) {
+          sibLis[l].className = sibLis[l] == target ? "price-modal-item active" : "price-modal-item";
+        }
+      } else if (target.getAttribute('data-i') == 'priceLowToHigh') {
+        temParaObject.data.flightInfos = that.cacheTypeData.priceAsic;
+        that.changeFlightList(temParaObject, true);
+        for (var l = 0, length = sibLis.length; l < length; l++) {
+          sibLis[l].className = sibLis[l] == target ? "price-modal-item active" : "price-modal-item";
+        }
+      }
+      this.style.transition = 'all 300ms ease-in';
+      this.style.webkitTransition = 'all 300ms linear';
+      this.style.bottom = '-126%';
+      shadowBox.style.display = 'none';
+    });
+  },
+
+  loadMoreData: function () {
+    var that = ticketSingle;
+    var loadMore = document.getElementById("loadMore");
+    if (that.pageNo >= that.pageCount) {
+      $('#loadMore').fadeOut(1000);
+      jAlert('<div class="no-more-flight-tip">没有更多航班信息了</div>', '', function () {
+      })
+    } else if (that.pageNo < that.pageCount) {
+      that.isClearAll = false;
+      that.backParaObj["pageNo"]++;
+      console.log(that.backParaObj)
+      loadMore.innerHTML = "正在加载...";
+      that.tAjax(this.requestUrl, that.backParaObj, "3001", 3, that.renderHandler, true);
+    }
+  },
+
+  handler1: function (arg) { //后台请求
+    var that = ticketSingle;
+    that.backParaObj = arg;
+    document.querySelector('#preloader').style.display = 'block';
+    that.tAjax(that.requestUrl, that.backParaObj, "3001", 3, that.renderHandler);
+  },
+
+  handler2: function (arg) { //自己缓存的数据重新展现
+    var that = ticketSingle;
+    that.backParaObj = arg;
+    that.changeFlightList(that.lastBackData, true);
+  },
+
+  fixColor: function () {
+    var lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+    var oDivs = document.querySelectorAll('.unit');
+    if (new Date(this.backParaObj.DepartDate + ' 00:00:00') - new Date(lineMaxDate + ' 00:00:00') == 0) {
+      oDivs[1].className = 'unit next-day disabled-date-choose';
+    }
+  },
+  init: function () {
+    var backParaObj = this.parseUrlPara(document.location.search, true);
+    var generatedCount = 0, that = ticketSingle;
+    document.querySelector('.set-place').innerHTML = backParaObj.fromCity;
+    document.querySelector('.to-place').innerHTML = backParaObj.toCity;
+    document.querySelector('.num-wrap').setAttribute('data-date', backParaObj.DepartDate);
+    this.tripType = backParaObj.interNationalOrDomestic;
+    backParaObj.NumofAdult = parseInt(backParaObj.NumofAdult);
+    backParaObj.NumofChild = parseInt(backParaObj.NumofChild);
+    backParaObj.PriorityRule = parseInt(backParaObj.PriorityRule);
+    backParaObj.pageNo = parseInt(backParaObj.pageNo);
+    backParaObj.pageSize = parseInt(backParaObj.pageSize);
+    this.backParaObj = backParaObj;
+    this.isClearAll = true;
+    this.tAjax(this.requestUrl, backParaObj, "3001", 3, this.renderHandler);
+    this.fixColor();
+    this.dateInit(backParaObj);
+    this.preAndNex();
+    conditionalFiltering.init(this.tripType, this.backParaObj.RouteType, this.backParaObj, this.handler1, this.handler2, this);
+    this.eventHandler();
+    this.taxHandler();
+    this.initLeftState = this.checkTip();
+    this.loadMoreBtnEvent();
+  }
+};
+ticketSingle.init();

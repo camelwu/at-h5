@@ -1,2 +1,171 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function h_l_s(){function a(a){return document.getElementById(a)}function b(a){k=document.getElementById("r-mb"),k.style.display="block",a.style.bottom="0",a.style.transition="all 350ms"}function c(a){k=document.getElementById("r-mb"),k.style.display="none",a.style.bottom="-450px",a.style.transition="all 350ms"}function d(){k=document.getElementById("r-mb"),k.style.display="none",""!=o.style.display&&"block"!=o.style.display||(o.style.bottom="-450px",o.style.transition="all 350ms"),""!=p.style.display&&"block"!=p.style.display||(p.style.bottom="-450px",p.style.transition="all 350ms"),""!=q.style.display&&"block"!=q.style.display||(q.style.bottom="-450px",q.style.transition="all 350ms")}function e(){var a=window.event.srcElement,b=a.className,c=[];if("不限"==a.innerHTML){c=document.getElementById("h-type").childNodes;for(var d=1;d<c.length;d++)c[d].className="s-li"}"不限"!=a.innerHTML&&(document.getElementById("h-type").firstElementChild.className="s-li"),"s-li"==b?a.className="s-li1":a.className="s-li"}function f(){var a=window.event.srcElement,b=a.className,c=[];if("不限"==a.innerHTML){c=document.getElementById("h-level").childNodes;for(var d=1;d<c.length;d++)c[d].className="s-li"}"不限"!=a.innerHTML&&(document.getElementById("h-level").firstElementChild.className="s-li"),"s-li"==b?a.className="s-li1":a.className="s-li"}function g(a,c){a.onclick=function(){b(c),k.addEventListener("click",d)}}function h(a,b){a.onclick=function(){c(b)}}function i(){var a=window.event.srcElement,b=document.getElementById("rank"),c=document.getElementById("r-mb"),d=a.style.color;if("rgb(252, 148, 100)"==d)c.style.display="none",b.style.bottom="-450px",b.style.transition="all 350ms";else{for(var e=0;e<l.length;e++){if("rgb(252, 148, 100)"==l[e].style.color){var f=l[e].getElementsByTagName("b")[0];l[e].removeChild(f)}l[e].style.color="#b3b2b4"}a.style.color="#fc9464";var g=document.createElement("b");g.className="hl-icon5",a.appendChild(g),c.style.display="none",b.style.bottom="-450px",b.style.transition="all 350ms"}}function j(){var a=window.event.srcElement,b=a.firstElementChild,c=a.lastElementChild,d=[];if(d=document.getElementsByClassName("l-li"),"不限"==b.innerHTML)for(var e=1;e<d.length;e++)d[e].lastElementChild.className="l-icon";"不限"!=b.innerHTML&&(document.getElementById("l-ul").firstElementChild.lastElementChild.className="l-icon"),"l-icon"==c.className?c.className="l-icon1":c.className="l-icon"}var k,l=[],m=[],n=[],o=a("rank"),p=a("screen"),q=a("location"),r=a("fo_ra"),s=a("fo_sc"),t=a("fo_lo"),u=a("s_but"),v=a("l_but");this.init=function(a){m=document.getElementById("h-level").childNodes;for(var b=0;b<m.length;b++)m[b].addEventListener("click",f);n=document.getElementById("h-type").childNodes;for(var c=0;c<n.length;c++)n[c].addEventListener("click",e);l=document.getElementsByClassName("r-li");for(var d=0;d<l.length;d++)l[d].addEventListener("click",i);lli=document.getElementsByClassName("l-li");for(var g=0;g<lli.length;g++)lli[g].addEventListener("click",j)},init(),g(r,o),g(s,p),g(t,q),h(u,p),h(v,q)}
+
+function h_l_s(){
+    var rli = [],
+        sli1 = [],
+        sli2 = [],
+        lb = [];
+    var mb;
+    function _(s){
+        return document.getElementById(s);
+    }
+    var rank=_("rank");
+    var screen=_("screen");
+    var location=_("location");
+    var fo_ra = _("fo_ra");
+    var fo_sc = _("fo_sc");
+    var fo_lo =_("fo_lo");
+    var s_but = _("s_but");
+    var l_but = _("l_but");
+    function show(obj){
+        mb=document.getElementById("r-mb");
+        mb.style.display="block";
+        obj.style.bottom="0";
+        obj.style.transition="all 350ms";
+    }
+    function close(obj){
+        mb=document.getElementById("r-mb");
+        mb.style.display="none";
+        obj.style.bottom=-450+'px';
+        obj.style.transition="all 350ms";
+    }
+    function mb_close(){
+        mb=document.getElementById("r-mb");
+        mb.style.display="none";
+        if(rank.style.display==""||rank.style.display=="block"){
+            rank.style.bottom=-450+'px';
+            rank.style.transition="all 350ms";
+        }if(screen.style.display==""||screen.style.display=="block"){
+            screen.style.bottom=-450+'px';
+            screen.style.transition="all 350ms";
+        }if(location.style.display==""||location.style.display=="block"){
+            location.style.bottom=-450+'px';
+            location.style.transition="all 350ms";
+        }
+    }
+    /*   酒店筛选  */
+    function selectType(){
+        var obj = window.event.srcElement;
+        var oName = obj.className;
+        var array = [];
+        if(obj.innerHTML == "不限"){
+            array = document.getElementById("h-type").childNodes;
+            for(var i=1;i<array.length;i++){
+                array[i].className = "s-li";
+            }
+        }if(obj.innerHTML != "不限"){
+            document.getElementById("h-type").firstElementChild.className = "s-li";
+        }
+        if(oName == "s-li"){
+            obj.className = "s-li1";
+        }else{
+            obj.className = "s-li";
+        }
+    }
+    function selectLevel(){
+        var obj = window.event.srcElement;
+        var oName = obj.className;
+        var array = [];
+        if(obj.innerHTML == "不限"){
+            array = document.getElementById("h-level").childNodes;
+            for(var i=1;i<array.length;i++){
+                array[i].className = "s-li";
+            }
+        }if(obj.innerHTML != "不限"){
+            document.getElementById("h-level").firstElementChild.className = "s-li";
+        }
+        if(oName == "s-li"){
+            obj.className = "s-li1";
+        }else{
+            obj.className = "s-li";
+        }
+    }
+    function openClick(obj1,obj2){
+        obj1.onclick = function(){
+            show(obj2);
+            mb.addEventListener("click",mb_close);
+        }
+    }
+    function closeClick(obj1,obj2){
+        obj1.onclick = function(){
+            close(obj2);
+        }
+    }
+    this.init=function(s){
+        //insert
+        sli1 = document.getElementById("h-level").childNodes;
+        for(var j=0;j < sli1.length;j++){
+            sli1[j].addEventListener("click",selectLevel);
+        }
+        sli2 = document.getElementById("h-type").childNodes;
+        for(var k=0;k < sli2.length;k++){
+            sli2[k].addEventListener("click",selectType);
+        }
+        rli = document.getElementsByClassName("r-li");
+        for(var i=0;i < rli.length;i++){
+            rli[i].addEventListener("click",selectRank);
+        }
+        lli = document.getElementsByClassName("l-li");
+        for(var r=0;r < lli.length;r++){
+            lli[r].addEventListener("click",selectLocation);
+        }
+    };
+    init();
+    openClick(fo_ra,rank);
+    openClick(fo_sc,screen);
+    openClick(fo_lo,location);
+    closeClick(s_but,screen);
+    closeClick(l_but,location);
+    /*   排序筛选   */
+    function selectRank(){
+        var obj = window.event.srcElement;
+        var rank=document.getElementById("rank");
+        var mb=document.getElementById("r-mb");
+        var color = obj.style.color;
+        if(color == "rgb(252, 148, 100)"){
+            mb.style.display="none";
+            rank.style.bottom=-450+'px';
+            rank.style.transition="all 350ms";
+        }else{
+            for(var i=0;i < rli.length;i++){
+                if(rli[i].style.color == "rgb(252, 148, 100)"){
+                    var bb = rli[i].getElementsByTagName("b")[0];
+                    rli[i].removeChild(bb);
+                }
+                rli[i].style.color="#b3b2b4";
+            }
+            obj.style.color="#fc9464";
+            var b = document.createElement("b");
+            b.className = "hl-icon5";
+            obj.appendChild(b);
+            mb.style.display="none";
+            rank.style.bottom=-450+'px';
+            rank.style.transition="all 350ms";
+        }
+    }
+    /*   位置筛选  */
+    function selectLocation(){
+        var obj = window.event.srcElement;
+        var p = obj.firstElementChild;
+        var b = obj.lastElementChild;
+        var array = [];
+        array = document.getElementsByClassName("l-li");
+        if(p.innerHTML == "不限"){
+            for(var i=1;i < array.length;i++){
+                array[i].lastElementChild.className = "l-icon";
+            }
+        }if(p.innerHTML != "不限"){
+            document.getElementById("l-ul").firstElementChild.lastElementChild.className = "l-icon";
+        }
+        if(b.className == "l-icon"){
+            b.className = "l-icon1";
+        }else{
+            b.className = "l-icon";
+        }
+    }
+}
+
+
+
+
+
+

@@ -1,2 +1,537 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function Scroller(){arguments.length&&(jQuery?this.init.apply(this,arguments):alert("需要jQuery!"))}Scroller.prototype={constructor:Scroller,cache:{},_btn:['<span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span>','<span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span>'],_template:{dateTime:["date","h","m"],card:['<span data-code="2">护照</span>','<span data-code="1">身份证</span>'],date:["年","月","日"],time:["<span>上午</span>","<span>下午</span>"],comp:["<span>&nbsp;</span>","<span>&nbsp;</span>"],comp1:["<span>&nbsp;</span>"],seat:["<span>经济舱</span>","<span>超级经济舱</span>","<span>商务舱</span>","<span>头等舱</span>"],cardExpirationDate:["年","月"]},_time:["birth","validity","cardExpirationDate","dateTime"],days:[29,31,28,31,30,31,30,31,31,30,31,30,31],week:["周日","周一","周二","周三","周四","周五","周六"],init:function(a){this.id=a.id,this.type=a.type,this.cont=a.cont,this.cache[a.id]="",this.num=a.num||100,this.startDate=a.startDate,this.callback=a.callback,this.inputEvent(a.id,a.type,a.cont),this.outClick()},createContainer:function(a){var b=this,c=document.getElementById("selbox");if(document.body.style.overflowY="hidden",c)this.masker=document.getElementById("overlay"),this.container=c,this.opeater=document.getElementById("opeater");else{var d=this.masker=document.createElement("div");d.id="overlay",d.className="mask",d.style.top="0",document.body.appendChild(d),document.body.style.overflowY="hidden";var e=this.container=document.createElement("div");e.id="selbox",e.className="selbox-footer";var f=document.createElement("div");f.id="header",f.innerHTML=b._btn.join(""),e.appendChild(f);var g=this.opeater=document.createElement("ul");g.id="opeater",g.className="selbox-ul",g.setAttribute("data-id",a),g.setAttribute("data-type",b.type),e.appendChild(g),document.body.appendChild(e),this.btnEvent()}},drawData:function(a,b){function c(a,b){var c=[];(new Date).getMonth(),(new Date).getDate();if("年"==b){j.type==j._time[0]&&(a=0),j.type!=j._time[1]&&j.type!=j._time[2]||(a=1);var d=(new Date).getFullYear();if(0>=a)for(var e=1900,f=d;f>=e;e++)c.push("<span>"+e+b+"</span>");else if(1==a)var e=d,f=d+30;else var e=d,f=d+1;for(;f>=e;e++)c.push("<span>"+e+b+"</span>")}else if("月"==b)for(var e=1;12>=e;e++)c.push("<span>"+e+b+"</span>");else for(var e=1;e<=j.days[1];e++)c.push("<span>"+e+b+"</span>");return c.join("")}function d(a,b){var c=[],d=j.num,e=j.startDate?j.startDate:new Date,f=e.getFullYear(),g=e.getMonth(),h=e.getDate(),i=["00","10","20","30","40","50"];switch(b){case"date":for(var k=0;d>k;k++){var l=new Date(f,g,h+k),m=l.getFullYear(),n=l.getMonth(),o=l.getDate(),p=10>n?"0"+n:n,q=10>o?"0"+o:o,r=l.getDay();c.push("<span data-temp="+m+"-"+p+"-"+q+">"+n+"月"+o+"日"+j.week[r]+"</span>")}break;case"h":for(var k=0;24>k;k++){var s=10>k?"0"+k:k;c.push("<span data-temp="+s+">"+s+"时</span>")}break;case"m":for(var k=0;k<i.length;k++)c.push("<span data-temp="+i[k]+">"+i[k]+"分</span>")}return c.join("")}function e(a){f=document.createElement("li"),g=document.createElement("div"),g.className="sel-time",g.innerHTML=a,f.appendChild(g),h=document.createElement("div"),h.className="sel-box",f.appendChild(h),j.opeater.appendChild(f)}var f,g,h,i,j=this;if(i=document.getElementById("opeater"),i.getAttribute("data-id")!=a&&""!=i.innerHTML&&this.selCache(a),""==j.selGetC(a)){if(""==i.innerHTML)switch(b){case"card":var k=j._template.comp.join("")+j._template.card.join("")+j._template.comp1.join("");e(k);break;case"seat":var k=j._template.comp.join("")+j._template.seat.join("")+j._template.comp1.join("");e(k);break;case"dateTime":for(var l=0,m=j._template.dateTime,n=m.length;n>l;l++){var k=d(l,m[l]);e(j._template.comp.join("")+k+j._template.comp1.join(""))}break;case"cardExpirationDate":for(var l=0,m=j._template.cardExpirationDate,n=m.length;n>l;l++){var k=c(l,m[l]);e(j._template.comp.join("")+k+j._template.comp1.join(""))}break;default:for(var l=0,m=j._template.date,n=m.length;n>l;l++){var k=c(l,m[l]);e(j._template.comp.join("")+k+j._template.comp1.join(""))}}g=$(".sel-time");for(var o=0,p=g.length;p>o;o++){for(var q=g[o].childNodes,r=!1,s=0,t=q.length;t>s;s++)if(q[s]&&"date-selected"==q[s].className){r=!0;break}r||(q[2].className="date-selected")}}else{i.innerHTML=j.selGetC(a),g=$(".date-selected");for(var o=0,n=g.length;n>o;o++){var u=g[o].parentNode,v=g[o].offsetTop-98;$(u).scrollTop(v)}}this.scrollOn(),i.setAttribute("data-id",a),i.setAttribute("data-type",b),this.selShow(1)},selCache:function(a){var b=this,c=document.getElementById("opeater");""!=c.innerHTML&&(b.cache[c.getAttribute("data-id")]=c.innerHTML,c.innerHTML="")},selShow:function(a){var b=this,c=document.getElementById("overlay"),d=document.getElementById("selbox");b.masker||(b.masker=c),b.container||(b.container=d),a?(b.masker.style.display="block",b.container.style.bottom=0,document.body.style.overflowY="hidden"):(b.masker.style.display="none",b.container.setAttribute("style",""),setTimeout(function(){$("#selbox").remove(),$("#overlay").remove()},200),document.body.style.overflowY="auto")},selResetDay:function(){},selOver:function(){for(var a=this,b=$(".sel-time .date-selected"),c=0,d=b.length,e=document.getElementById("opeater"),f=[],g=document.getElementById(""+e.getAttribute("data-id"));d>c;c++)f.push(b[c].innerHTML);if(g.setAttribute("data-cache",f.join("-")),g.innerHTML=f.join("-"),/^(textarea|input|div)$/i.test(g.nodeName))if("birth"==a.type){var h=f.join("").replace("年","-").replace("月","-").replace("号","").replace("日","");if(!vlm.Utils.compareBirth(h))return void jAlert("您选择的出生日期大于当前日期");f[0]=f[0].replace("年",""),f[1]=a.addZero(parseInt(f[1])),f[2]=a.addZero(parseInt(f[2])),"DIV"==g.nodeName?g.innerHTML=f.join("-"):"INPUT"==g.nodeName&&(g.value=f.join("-"))}else if("validity"==a.type)f[0]=f[0].replace("年",""),f[1]=a.addZero(parseInt(f[1])),f[2]=a.addZero(parseInt(f[2])),"DIV"==g.nodeName?g.innerHTML=f.join("-"):"INPUT"==g.nodeName&&(g.value=f.join("-"));else if("cardExpirationDate"==a.type){g.setAttribute("data-expire",f[0].replace("年","")+"-"+a.addZero(parseInt(f[1]))+"-01");var i=f[0];f[0]=a.addZero(parseInt(f[1])),f[1]=parseInt(i.substring(2)),"DIV"==g.nodeName?g.innerHTML=f.join("/"):"INPUT"==g.nodeName&&(g.value=f.join("/"))}else if("dateTime"==a.type){for(var j=[],k=0;d>k;k++)j.push(b[k].getAttribute("data-temp"));"DIV"==g.nodeName?g.innerHTML=j.join("/"):"INPUT"==g.nodeName&&(g.value=j.join("-"))}else $(g).attr("data-code",$(b).attr("data-code")),g.innerHTML=f.join("");a.callback&&"function"==typeof a.callback&&a.callback(),this.selShow(0)},selGetC:function(a){var b=this,c="";for(var d in b.cache)if(d==a){c=b.cache[d];break}return c},scrollTo:function(){var a=document.getElementById("opeater"),b=document.getElementById(""+a.getAttribute("data-id")).getAttribute("data-cache");if(b)for(var c=b.split("-"),d=c[0],e=c[1],f=c.length>2?c[2]:"",g=$(".sel-time"),h=0;h<g.length;h++)for(var i=g[h].childNodes,j=0;j<i.length;j++){var k=49*(j-2);switch(i[j].innerText){case d:$(g[0]).animate({scrollTop:k});break;case e:$(g[1]).animate({scrollTop:k});break;case f:2==h&&$(g[2]).animate({scrollTop:k})}}},scrollOn:function(){function a(a){for(var d=b.eq(2),e=d.scrollTop(),f=parseInt(e/49),g=[],h=1;a+1>h;h++)g.push("<span>"+h+"日</span>");d.html(c._template.comp.join("")+g.join("")+c._template.comp.join("")),f+=e/49-f>.5?3:2,d.children("span").eq(f).toggleClass("date-selected")}var b=$(".sel-time"),c=(b.length,this),d=1;$(".sel-time").bind("scrollstart",function(){}),$(".sel-time").bind("scrollstop",function(){var e=$(this),f=this.childNodes,g=this.scrollTop,h=parseInt(g/49),i=.5>=g/49-h?49*h:49*(h+1);g/49-h>.5&&h++,$(this).animate({scrollTop:i},300);for(var j=0,k=f.length;k>j;j++)f[j]&&(f[j].className=j==h+2?"date-selected":"");if("birth"==c.type||"time"==c.type)if(0==e.parent().index()){var l=parseInt(e.children("span").eq(h+2).html()),m=0==b.eq(1).scrollTop()?1:parseInt(b.eq(1).children(".date-selected").html());0==b.eq(2).scrollTop()?1:parseInt(b.eq(2).children(".date-selected").html());(l%4==0&&l%100!=0||l%400==0)&&(d=0),a(2==m&&0==d?c.days[0]:c.days[m])}else if(1==e.parent().index()){var m=parseInt(e.children("span").eq(h+2).html());a(2==m&&0==d?c.days[0]:c.days[m])}})},btnEvent:function(){var a=this;$(".cabin-cancel").on("click",function(){a.selShow(0),$(document.body).css("overflowY","auto")}),$(".cabin-sure").on("click",function(){a.selOver(),$("#popup_overlay")&&$(document.body).css("overflowY","hidden"),$(document.body).css("overflowY","auto")})},inputEvent:function(a,b,c){var d,e=this;d=document.getElementById(c)?c:a,$("#"+d).bind("click",function(){e.createContainer(a,b),e.drawData(a,b),e.type=b,e.scrollTo()})},outClick:function(){var a=this;$(document).bind("click",function(b){b=b||window.event;var c=b.target||b.srcElement;c.className.indexOf("mask")>-1&&a.selShow(0)})},addZero:function(a){return 10>a?"0"+a:""+a}};
+/**
+ * @name Slider Widget
+ * @constructor
+ * @created by wusong
+ * */
+function Scroller() {
+    if (!arguments.length)
+        return;
+    if (jQuery) {
+        this.init.apply(this, arguments);
+    } else {
+        alert("需要jQuery!");
+    }
+}
+
+Scroller.prototype = {
+    constructor: Scroller,
+    // 缓存
+    cache: {},
+    // 按钮数组
+    _btn: ['<span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span>', '<span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span>'],
+    // 模板数组
+    _template: {
+        dateTime : ['date', 'h', 'm'],
+        card: ['<span data-code="2">护照</span>', '<span data-code="1">身份证</span>'],
+        date: ['年', '月', '日'],
+        time: ['<span>上午</span>', '<span>下午</span>'],
+        comp: ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],
+        comp1: ['<span>&nbsp;</span>'],
+        seat: ['<span>经济舱</span>', '<span>超级经济舱</span>', '<span>商务舱</span>', '<span>头等舱</span>'],
+        cardExpirationDate: ['年', '月']
+
+    },
+    _time: ['birth', 'validity', "cardExpirationDate","dateTime"],
+    days: [29, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    week: ['周日','周一','周二','周三','周四','周五','周六'],
+    // 初始化对象
+    init: function (options) {
+        this.id = options.id;
+        this.type = options.type;
+        this.cont = options.cont;
+        this.cache[options.id] = "";
+        this.num = options.num || 100; //日期默认显示日期的天数
+        this.startDate = options.startDate; //默认显示的起始日期
+        this.callback = options.callback;
+        this.inputEvent(options.id, options.type, options.cont);
+        this.outClick();
+        // 区域外事件绑定
+    },
+    // 创建最外层盒子，并设置盒子的样式&定位，绑定头部按钮事件
+    createContainer: function (t) {
+        var that = this,
+            odiv = document.getElementById("selbox");
+        document.body.style.overflowY = 'hidden';
+        if (!!odiv) {
+            this.masker = document.getElementById("overlay");
+            this.container = odiv;
+            this.opeater = document.getElementById("opeater");
+        } else { //不存在
+            //新增遮罩层并设定样式
+            var masker = this.masker = document.createElement('div');
+            masker.id = "overlay";
+            masker.className = "mask";
+            masker.style.top = '0';
+            document.body.appendChild(masker);
+            document.body.style.overflowY = 'hidden';
+            //新增容器层并设定样式、属性
+            var container = this.container = document.createElement('div');
+            container.id = "selbox";
+            container.className = "selbox-footer";
+            //新增头部按钮层并设定样式
+            var header = document.createElement('div');
+            header.id = "header";
+            header.innerHTML = that._btn.join('');
+            container.appendChild(header);
+            //新增选择框并设定样式
+            var opeater = this.opeater = document.createElement('ul');
+            opeater.id = "opeater";
+            opeater.className = 'selbox-ul';
+            opeater.setAttribute("data-id", t);
+            opeater.setAttribute("data-type", that.type);
+            //自定义属性
+            container.appendChild(opeater);
+            document.body.appendChild(container);
+            //头部按钮绑定
+            this.btnEvent();
+        }
+    },
+    // 渲染内容
+    drawData: function (id, t) {
+        var that = this,
+            Warper, dataNode, lineNode, opeater;
+
+        function setTime(t, s) {
+            var Y = [];
+            var m = new Date().getMonth(),
+                d = new Date().getDate();
+            if (s == "年") {
+                if (that.type == that._time[0]) {
+                    t = 0;
+                }
+                if (that.type == that._time[1] || that.type == that._time[2]) {
+                    t = 1;
+                }
+                var years = new Date().getFullYear();
+                if (t <= 0) { //生日
+                    var i = 1900,
+                        l = years;
+                    for (; i <= l; i++) {
+                        Y.push("<span>" + i + s + "</span>");
+                    }
+                } else if (t == 1) { //有效期
+                    var i = years,
+                        l = years + 30;
+                } else { //游玩时间
+                    var i = years,
+                        l = years + 1;
+                }
+                for (; i <= l; i++) {
+                    Y.push("<span>" + i + s + "</span>");
+                }
+            } else if (s == "月") {
+                for (var i = 1; i <= 12; i++) {
+                    Y.push("<span>" + i + s + "</span>");
+                }
+            } else {
+                for (var i = 1; i <= that.days[1]; i++) {
+                    Y.push("<span>" + i + s + "</span>");
+                }
+            }
+            return Y.join('');
+        }
+        //design for dateTime
+        function setDateTime(t,type) {
+            var Y = [];
+            var num = that.num;
+            var now = that.startDate ? that.startDate : new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth();
+            var day = now.getDate();
+            var munites = ["00",'10','20','30','40','50'];
+            switch(type){
+                case "date":
+                    for(var i=0;i<num;i++){
+                        var date = new Date(year,month,day + i);
+                        var yearNew = date.getFullYear();
+                        var monthNew = date.getMonth();
+                        var dayNew = date.getDate();
+                        var monthNewZero = monthNew < 10 ? "0"+monthNew : monthNew;
+                        var dayNewZero = dayNew < 10 ? "0"+dayNew : dayNew;
+                        var weekNew = date.getDay();
+                        Y.push("<span data-temp="+yearNew+"-"+monthNewZero+"-"+dayNewZero+">" + monthNew +"月" + dayNew + "日" + that.week[weekNew] + "</span>");
+                    }
+                break;
+                case "h" :
+                    for(var i=0;i<24;i++){
+                        var hour = i<10 ? "0"+i : i;
+                        Y.push("<span data-temp="+hour+">" + hour +"时</span>");
+                    }
+                break;
+                case "m" :
+                    for(var i=0;i<munites.length;i++){
+                        Y.push("<span data-temp="+munites[i]+">" + munites[i] +"分</span>");
+                    }
+                break;
+            }
+            return Y.join('');
+        }
+
+        function Creatwaprer(str) {
+            Warper = document.createElement('li');
+            // 添加内容
+            dataNode = document.createElement('div');
+            dataNode.className = 'sel-time';
+            dataNode.innerHTML = str;
+            Warper.appendChild(dataNode);
+            // 添加横线
+            lineNode = document.createElement('div');
+            lineNode.className = 'sel-box';
+            Warper.appendChild(lineNode);
+            that.opeater.appendChild(Warper);
+        }
+        opeater = document.getElementById("opeater");
+        if (opeater.getAttribute("data-id") != id && opeater.innerHTML != "") { //类型不同需缓存
+            this.selCache(id);
+        }
+        if (that.selGetC(id) == "") {
+            if (opeater.innerHTML == "") {
+                switch (t) {
+                    case 'card':
+                        var str = that._template['comp'].join('') + that._template['card'].join('') + that._template['comp1'].join('');
+                        Creatwaprer(str);
+                        break;
+                    case 'seat':
+                        var str = that._template['comp'].join('') + that._template['seat'].join('') + that._template['comp1'].join('');
+                        Creatwaprer(str);
+                        break;
+                    case 'dateTime':
+                        for(var i =0,d = that._template['dateTime'],len=d.length;i<len;i++){
+                            var str = setDateTime(i,d[i]);
+                            Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
+                        }
+                        break;
+                    case 'cardExpirationDate':
+                        for (var i = 0, d = that._template['cardExpirationDate'], len = d.length; i < len; i++) {
+                            var str = setTime(i, d[i]);
+                            Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
+                        }
+                        break;
+                    default:
+                        //time
+                        for (var i = 0, d = that._template['date'], len = d.length; i < len; i++) {
+                            var str = setTime(i, d[i]);
+                            Creatwaprer(that._template['comp'].join('') + str + that._template['comp1'].join(''));
+                        }
+                        break;
+                }
+            }
+            dataNode = $('.sel-time');
+            // 默认选中
+            for (var j = 0, length = dataNode.length; j < length; j++) {
+                var _s = dataNode[j].childNodes,
+                    tem = false;
+                for (var g = 0, lengt = _s.length; g < lengt; g++) {
+                    if (_s[g] && _s[g].className == 'date-selected') {
+                        tem = true;
+                        break;
+                    }
+                }
+                if (!tem) {
+                    _s[2].className = "date-selected";
+                }
+            }
+        } else {
+            opeater.innerHTML = that.selGetC(id);
+            dataNode = $('.date-selected');
+            // 默认选中
+            for (var j = 0, len = dataNode.length; j < len; j++) {
+                var pNode = dataNode[j].parentNode,
+                    pos = dataNode[j].offsetTop - 49 * 2;
+                $(pNode).scrollTop(pos);
+            }
+        }
+        // 事件绑定
+        this.scrollOn();
+        //内容更新完毕，重定义属性
+        opeater.setAttribute("data-id", id);
+        opeater.setAttribute("data-type", t);
+        this.selShow(1);
+    },
+    selCache: function (t) {
+        var that = this,
+            opeater = document.getElementById("opeater");
+        if (opeater.innerHTML != "") { //原来有内容需缓存
+            that.cache[opeater.getAttribute("data-id")] = opeater.innerHTML;
+            opeater.innerHTML = "";
+        }
+    },
+    // 显示隐藏
+    selShow: function (s) {
+        var that = this,
+            masker = document.getElementById("overlay"),
+            container = document.getElementById("selbox");
+        if (!that.masker) {
+            that.masker = masker;
+        }
+        if (!that.container) {
+            that.container = container;
+        }
+        if (s) {
+            that.masker.style.display = 'block';
+            that.container.style.bottom = 0;
+            document.body.style.overflowY = 'hidden';
+        } else {
+            that.masker.style.display = 'none';
+            that.container.setAttribute("style", "");
+            setTimeout(function () {
+                $('#selbox').remove();
+                $('#overlay').remove();
+            }, 200)
+            document.body.style.overflowY = 'auto';
+        }
+    },
+    // 重置
+    selResetDay: function () {
+        var that = this;
+    },
+    //选择结束
+    selOver: function () {
+        var that = this;
+        var box = $('.sel-time .date-selected'),
+            i = 0,
+            len = box.length,
+            opeater = document.getElementById("opeater"),
+            arr = [];
+        var ele = document.getElementById('' + opeater.getAttribute("data-id"));
+        for (; i < len; i++) {
+            arr.push(box[i].innerHTML);
+        }
+        //缓存用户选择的内容
+        ele.setAttribute("data-cache", arr.join("-"));
+        ele.innerHTML = arr.join("-");
+        if (/^(textarea|input|div)$/i.test(ele.nodeName)) {
+            if (that.type == "birth") {
+                var birthstr = arr.join("").replace('年', '-').replace('月', '-').replace('号', '').replace('日', '');
+                if (!vlm.Utils.compareBirth(birthstr)) {
+                    jAlert('您选择的出生日期大于当前日期');
+                    return;
+                }
+                arr[0] = arr[0].replace('年', '');
+                arr[1] = that.addZero(parseInt(arr[1]));
+                arr[2] = that.addZero(parseInt(arr[2]));
+                if (ele.nodeName == 'DIV') {
+                    ele.innerHTML = arr.join("-");
+                }else if(ele.nodeName == 'INPUT'){
+                    ele.value = arr.join("-");
+                }
+            } else if (that.type == "validity") {
+
+                arr[0] = arr[0].replace('年', '');
+                arr[1] = that.addZero(parseInt(arr[1]));
+                arr[2] = that.addZero(parseInt(arr[2]));
+                if (ele.nodeName == 'DIV') {
+                    ele.innerHTML = arr.join("-");
+                } else if(ele.nodeName == 'INPUT'){
+                    ele.value = arr.join("-");
+                }
+
+            } else if (that.type == 'cardExpirationDate') {
+                ele.setAttribute("data-expire", arr[0].replace('年', '') + "-" + that.addZero(parseInt(arr[1])) + "-01");
+                var sYear = arr[0];
+                arr[0] = that.addZero(parseInt(arr[1]));
+                arr[1] = parseInt(sYear.substring(2));
+
+                if (ele.nodeName == 'DIV') {
+                    ele.innerHTML = arr.join("/");
+                } else if(ele.nodeName == 'INPUT') {
+                    ele.value = arr.join("/");
+                }
+
+            } else if(that.type == 'dateTime'){
+                //TODO 其他组件页面显示内容与实际值分离
+                var values = [];
+                for (var j=0; j < len; j++) {
+                    values.push(box[j].getAttribute("data-temp"));
+                }
+                if (ele.nodeName == 'DIV') {
+                    ele.innerHTML = values.join("/");
+                } else if(ele.nodeName == 'INPUT') {
+                    ele.value = values.join("-");
+                }
+            } else {
+                $(ele).attr("data-code", $(box).attr("data-code")) //添加data-code属性
+                ele.innerHTML = arr.join("");
+            }
+        }
+        //编辑常旅中证件类型回调
+        if (that.callback && typeof that.callback == 'function') {
+            that.callback();
+        }
+        this.selShow(0);
+    },
+    //选择重置
+    selGetC: function (t) {
+        var that = this,
+            str = '';
+        for (var i in that.cache) {
+            if (i == t) {
+                str = that.cache[i];
+                break;
+            }
+        }
+        return str;
+    },
+    //时间缓存
+    scrollTo: function () {
+        var opeater = document.getElementById("opeater");
+        var time = document.getElementById('' + opeater.getAttribute("data-id")).getAttribute("data-cache");
+        console.log(time);
+        if (!time) {
+            return
+        };
+        var arr = time.split("-");
+        var year = arr[0];
+        var month = arr[1];
+        var day = arr.length > 2 ? arr[2] : "";
+
+        var sels = $(".sel-time");
+        for (var i = 0; i < sels.length; i++) {
+            var nodes = sels[i].childNodes;
+            for (var j = 0; j < nodes.length; j++) {
+                var h = (j - 2) * 49; //减去两个空节点
+                switch (nodes[j].innerText) {
+                    case year:
+                        $(sels[0]).animate({
+                            scrollTop: h
+                        });
+                        break;
+                    case month:
+                        $(sels[1]).animate({
+                            scrollTop: h
+                        });
+                        break;
+                    case day:
+                        if (i == 2) {
+                            $(sels[2]).animate({
+                                scrollTop: h
+                            });
+                        }
+                        break;
+                }
+            }
+        }
+
+    },
+    // 滑动事件
+    scrollOn: function () {
+        var sels = $('.sel-time'),
+            i = 0,
+            l = sels.length,
+            that = this,
+            m = 1;
+        $(".sel-time").bind("scrollstart", function () {
+
+        });
+        //绑定滑动
+        $(".sel-time").bind("scrollstop", function () {
+            var obj = $(this),
+                Nodes = this.childNodes,
+                posY = this.scrollTop,
+                p = parseInt(posY / 49),
+                h = posY / 49 - p <= 0.5 ? p * 49 : (p + 1) * 49;
+            if (posY / 49 - p > 0.5) {
+                p++;
+            }
+            $(this).animate({
+                scrollTop: h
+            }, 300);
+            for (var i = 0, l = Nodes.length; i < l; i++) {
+                //console.log(i);
+                if (Nodes[i])
+                    Nodes[i].className = i == p + 2 ? "date-selected" : "";
+            }
+            // 类型为时间，进行闰年闰月判定
+            if (that.type == "birth" || that.type == "time") {
+                //年滑动时
+                if (obj.parent().index() == 0) {
+                    var oYear = parseInt(obj.children('span').eq((p + 2)).html());
+                    var oMonth = sels.eq(1).scrollTop() == 0 ? 1 : parseInt(sels.eq(1).children(".date-selected").html());
+                    var oDay = sels.eq(2).scrollTop() == 0 ? 1 : parseInt(sels.eq(2).children(".date-selected").html());
+                    // 闰年
+                    if ((oYear % 4 == 0 && oYear % 100 != 0) || oYear % 400 == 0) {
+                        m = 0;
+                    }
+                    if (oMonth == 2 && m == 0)
+                        ResetDay(that.days[0]);
+                    else
+                        ResetDay(that.days[oMonth]);
+                }
+                //月滑动时
+                else if (obj.parent().index() == 1) {
+                    var oMonth = parseInt(obj.children("span").eq(p + 2).html());
+                    if (oMonth == 2 && m == 0)
+                        ResetDay(that.days[0]);
+                    else
+                        ResetDay(that.days[oMonth]);
+                }
+            }
+        });
+        //
+        function ResetDay(day) {
+            var oLiDay = sels.eq(2),
+                pos = oLiDay.scrollTop(),
+                page = parseInt(pos / 49),
+                arr3 = [];
+            for (var i = 1; i < day + 1; i++) {
+                arr3.push('<span>' + i + '日</span>');
+            }
+            oLiDay.html(that._template['comp'].join('') + arr3.join('') + that._template['comp'].join(''));
+            if (pos / 49 - page > 0.5) {
+                page += 3;
+            } else {
+                page += 2;
+            }
+            oLiDay.children("span").eq(page).toggleClass('date-selected');
+        }
+
+    },
+    // 确认和取消按钮事件
+    btnEvent: function () {
+        var that = this;
+        $('.cabin-cancel').on("click", function () {
+            that.selShow(0);
+            $(document.body).css('overflowY', 'auto');
+        });
+        $('.cabin-sure').on("click", function () {
+            that.selOver();
+            if ($('#popup_overlay')) {
+                $(document.body).css('overflowY', 'hidden');
+            }
+            $(document.body).css('overflowY', 'auto');
+        });
+    },
+    // 绑定操作对象的事件
+    inputEvent: function (id, t, cid) {
+        var that = this,
+            cont;
+        if (document.getElementById(cid)) {
+            cont = cid;
+        } else {
+            cont = id;
+        }
+        $("#" + cont).bind('click', function () {
+            that.createContainer(id, t);
+            that.drawData(id, t);
+            that.type = t;
+            that.scrollTo();
+        });
+    },
+    // 对象区域外点击，隐藏
+    outClick: function () {
+        var that = this;
+        $(document).bind('click', function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement;
+            if (target.className.indexOf("mask") > -1) {
+                that.selShow(0);
+            }
+        });
+    },
+
+
+    //补零
+    addZero: function (n) {
+        return n < 10 ? '0' + n : '' + n;
+    }
+};

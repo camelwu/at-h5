@@ -1,2 +1,1201 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i="function"==typeof require&&require;if(!h&&i)return i(g,!0);if(f)return f(g,!0);var j=new Error("Cannot find module '"+g+"'");throw j.code="MODULE_NOT_FOUND",j}var k=c[g]={exports:{}};b[g][0].call(k.exports,function(a){var c=b[g][1][a];return e(c?c:a)},k,k.exports,a,b,c,d)}return c[g].exports}for(var f="function"==typeof require&&require,g=0;g<d.length;g++)e(d[g]);return e}({1:[function(a,b,c){"use strict";function d(a,b){var d,e=a.filename,f=arguments.length>1;if(a.cache){if(!e)throw new Error("cache option requires a filename");if(d=c.cache.get(e))return d;f||(b=j.readFileSync(e).toString().replace(s,""))}else if(!f){if(!e)throw new Error("Internal EJS error: no file name or template provided");b=j.readFileSync(e).toString().replace(s,"")}return d=c.compile(b,a),a.cache&&c.cache.set(e,d),d}function e(a,b){var e=k.shallowCopy({},b);if(!e.filename)throw new Error("`include` requires the 'filename' option.");return e.filename=c.resolveInclude(a,e.filename),d(e)}function f(a,b){var d,e,f=k.shallowCopy({},b);if(!f.filename)throw new Error("`include` requires the 'filename' option.");d=c.resolveInclude(a,f.filename),e=j.readFileSync(d).toString().replace(s,""),f.filename=d;var g=new i(e,f);return g.generateSource(),g.source}function g(a,b,c,d){var e=b.split("\n"),f=Math.max(d-3,0),g=Math.min(e.length,d+3),h=e.slice(f,g).map(function(a,b){var c=b+f+1;return(c==d?" >> ":"    ")+c+"| "+a}).join("\n");throw a.path=c,a.message=(c||"ejs")+":"+d+"\n"+h+"\n\n"+a.message,a}function h(a,b){q.forEach(function(c){"undefined"!=typeof a[c]&&(b[c]=a[c])})}function i(a,b){b=b||{};var d={};this.templateText=a,this.mode=null,this.truncate=!1,this.currentLine=1,this.source="",this.dependencies=[],d.client=b.client||!1,d.escapeFunction=b.escape||k.escapeXML,d.compileDebug=b.compileDebug!==!1,d.debug=!!b.debug,d.filename=b.filename,d.delimiter=b.delimiter||c.delimiter||n,d._with="undefined"!=typeof b._with?b._with:!0,d.context=b.context,d.cache=b.cache||!1,d.rmWhitespace=b.rmWhitespace,this.opts=d,this.regex=this.createRegex()}var j=a("fs"),k=a("./utils"),l=!1,m=a("../package.json").version,n="%",o="locals",p="(<%%|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)",q=["cache","filename","delimiter","scope","context","debug","compileDebug","client","_with","rmWhitespace"],r=/;\s*$/,s=/^\uFEFF/;c.cache=k.cache,c.localsName=o,c.resolveInclude=function(b,c){var d=a("path"),e=d.dirname,f=d.extname,g=d.resolve,h=g(e(c),b),i=f(b);return i||(h+=".ejs"),h},c.compile=function(a,b){var c;return b&&b.scope&&(l||(l=!0),b.context||(b.context=b.scope),delete b.scope),c=new i(a,b),c.compile()},c.render=function(a,b,c){b=b||{},c=c||{};return 2==arguments.length&&h(b,c),d(c,a)(b)},c.renderFile=function(){var a,b=Array.prototype.slice.call(arguments),c=b.shift(),e=b.pop(),f=b.shift()||{},g=b.pop()||{};g=k.shallowCopy({},g),3==arguments.length&&h(f,g),g.filename=c;try{a=d(g)(f)}catch(i){return e(i)}return e(null,a)},c.clearCache=function(){c.cache.reset()},i.modes={EVAL:"eval",ESCAPED:"escaped",RAW:"raw",COMMENT:"comment",LITERAL:"literal"},i.prototype={createRegex:function(){var a=p,b=k.escapeRegExpChars(this.opts.delimiter);return a=a.replace(/%/g,b),new RegExp(a)},compile:function(){var a,b,d=this.opts,f="",h="",i=d.escapeFunction;d.rmWhitespace&&(this.templateText=this.templateText.replace(/\r/g,"").replace(/^\s+|\s+$/gm,"")),this.templateText=this.templateText.replace(/[ \t]*<%_/gm,"<%_").replace(/_%>[ \t]*/gm,"_%>"),this.source||(this.generateSource(),f+="  var __output = [], __append = __output.push.bind(__output);\n",d._with!==!1&&(f+="  with ("+c.localsName+" || {}) {\n",h+="  }\n"),h+='  return __output.join("");\n',this.source=f+this.source+h),a=d.compileDebug?"var __line = 1\n  , __lines = "+JSON.stringify(this.templateText)+"\n  , __filename = "+(d.filename?JSON.stringify(d.filename):"undefined")+";\ntry {\n"+this.source+"} catch (e) {\n  rethrow(e, __lines, __filename, __line);\n}\n":this.source,d.debug,d.client&&(a="escape = escape || "+i.toString()+";\n"+a,d.compileDebug&&(a="rethrow = rethrow || "+g.toString()+";\n"+a));try{b=new Function(c.localsName+", escape, include, rethrow",a)}catch(j){throw j instanceof SyntaxError&&(d.filename&&(j.message+=" in "+d.filename),j.message+=" while compiling ejs"),j}if(d.client)return b.dependencies=this.dependencies,b;var l=function(a){var c=function(b,c){var f=k.shallowCopy({},a);return c&&(f=k.shallowCopy(f,c)),e(b,d)(f)};return b.apply(d.context,[a||{},i,c,g])};return l.dependencies=this.dependencies,l},generateSource:function(){var a=this,b=this.parseTemplateText(),d=this.opts.delimiter;b&&b.length&&b.forEach(function(e,g){var h,i,j,l,m;if(0===e.indexOf("<"+d)&&0!==e.indexOf("<"+d+d)&&(i=b[g+2],i!=d+">"&&i!="-"+d+">"&&i!="_"+d+">"))throw new Error('Could not find matching close tag for "'+e+'".');return(j=e.match(/^\s*include\s+(\S+)/))&&(h=b[g-1],h&&(h=="<"+d||h=="<"+d+"-"||h=="<"+d+"_"))?(l=k.shallowCopy({},a.opts),m=f(j[1],l),m="    ; (function(){\n"+m+"    ; })()\n",a.source+=m,void a.dependencies.push(c.resolveInclude(j[1],l.filename))):void a.scanLine(e)})},parseTemplateText:function(){for(var a,b,c=this.templateText,d=this.regex,e=d.exec(c),f=[];e;)a=e.index,b=d.lastIndex,0!==a&&(f.push(c.substring(0,a)),c=c.slice(a)),f.push(e[0]),c=c.slice(e[0].length),e=d.exec(c);return c&&f.push(c),f},scanLine:function(a){function b(){c.truncate?(a=a.replace("\n",""),c.truncate=!1):c.opts.rmWhitespace&&(a=a.replace(/^\n/,"")),a&&(a=a.replace(/\\/g,"\\\\"),a=a.replace(/\n/g,"\\n"),a=a.replace(/\r/g,"\\r"),a=a.replace(/"/g,'\\"'),c.source+='    ; __append("'+a+'")\n')}var c=this,d=this.opts.delimiter,e=0;switch(e=a.split("\n").length-1,a){case"<"+d:case"<"+d+"_":this.mode=i.modes.EVAL;break;case"<"+d+"=":this.mode=i.modes.ESCAPED;break;case"<"+d+"-":this.mode=i.modes.RAW;break;case"<"+d+"#":this.mode=i.modes.COMMENT;break;case"<"+d+d:this.mode=i.modes.LITERAL,this.source+='    ; __append("'+a.replace("<"+d+d,"<"+d)+'")\n';break;case d+">":case"-"+d+">":case"_"+d+">":this.mode==i.modes.LITERAL&&b(),this.mode=null,this.truncate=0===a.indexOf("-")||0===a.indexOf("_");break;default:if(this.mode){switch(this.mode){case i.modes.EVAL:case i.modes.ESCAPED:case i.modes.RAW:a.lastIndexOf("//")>a.lastIndexOf("\n")&&(a+="\n")}switch(this.mode){case i.modes.EVAL:this.source+="    ; "+a+"\n";break;case i.modes.ESCAPED:this.source+="    ; __append(escape("+a.replace(r,"").trim()+"))\n";break;case i.modes.RAW:this.source+="    ; __append("+a.replace(r,"").trim()+")\n";break;case i.modes.COMMENT:break;case i.modes.LITERAL:b()}}else b()}c.opts.compileDebug&&e&&(this.currentLine+=e,this.source+="    ; __line = "+this.currentLine+"\n")}},c.__express=c.renderFile,a.extensions&&(a.extensions[".ejs"]=function(a,b){b=b||a.filename;var d={filename:b,client:!0},e=j.readFileSync(b).toString(),f=c.compile(e,d);a._compile("module.exports = "+f.toString()+";",b)}),c.VERSION=m,"undefined"!=typeof window&&(window.ejs=c)},{"../package.json":6,"./utils":2,fs:3,path:4}],2:[function(a,b,c){"use strict";function d(a){return f[a]||a}var e=/[|\\{}()[\]^$+*?.]/g;c.escapeRegExpChars=function(a){return a?String(a).replace(e,"\\$&"):""};var f={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&#34;","'":"&#39;"},g=/[&<>\'"]/g,h='var _ENCODE_HTML_RULES = {\n      "&": "&amp;"\n    , "<": "&lt;"\n    , ">": "&gt;"\n    , \'"\': "&#34;"\n    , "\'": "&#39;"\n    }\n  , _MATCH_HTML = /[&<>\'"]/g;\nfunction encode_char(c) {\n  return _ENCODE_HTML_RULES[c] || c;\n};\n';c.escapeXML=function(a){return void 0==a?"":String(a).replace(g,d)},c.escapeXML.toString=function(){return Function.prototype.toString.call(this)+";\n"+h},c.shallowCopy=function(a,b){b=b||{};for(var c in b)a[c]=b[c];return a},c.cache={_data:{},set:function(a,b){this._data[a]=b},get:function(a){return this._data[a]},reset:function(){this._data={}}}},{}],3:[function(a,b,c){},{}],4:[function(a,b,c){(function(a){function b(a,b){for(var c=0,d=a.length-1;d>=0;d--){var e=a[d];"."===e?a.splice(d,1):".."===e?(a.splice(d,1),c++):c&&(a.splice(d,1),c--)}if(b)for(;c--;c)a.unshift("..");return a}function d(a,b){if(a.filter)return a.filter(b);for(var c=[],d=0;d<a.length;d++)b(a[d],d,a)&&c.push(a[d]);return c}var e=/^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/,f=function(a){return e.exec(a).slice(1)};c.resolve=function(){for(var c="",e=!1,f=arguments.length-1;f>=-1&&!e;f--){var g=f>=0?arguments[f]:a.cwd();if("string"!=typeof g)throw new TypeError("Arguments to path.resolve must be strings");g&&(c=g+"/"+c,e="/"===g.charAt(0))}return c=b(d(c.split("/"),function(a){return!!a}),!e).join("/"),(e?"/":"")+c||"."},c.normalize=function(a){var e=c.isAbsolute(a),f="/"===g(a,-1);return a=b(d(a.split("/"),function(a){return!!a}),!e).join("/"),a||e||(a="."),a&&f&&(a+="/"),(e?"/":"")+a},c.isAbsolute=function(a){return"/"===a.charAt(0)},c.join=function(){var a=Array.prototype.slice.call(arguments,0);return c.normalize(d(a,function(a,b){if("string"!=typeof a)throw new TypeError("Arguments to path.join must be strings");return a}).join("/"))},c.relative=function(a,b){function d(a){for(var b=0;b<a.length&&""===a[b];b++);for(var c=a.length-1;c>=0&&""===a[c];c--);return b>c?[]:a.slice(b,c-b+1)}a=c.resolve(a).substr(1),b=c.resolve(b).substr(1);for(var e=d(a.split("/")),f=d(b.split("/")),g=Math.min(e.length,f.length),h=g,i=0;g>i;i++)if(e[i]!==f[i]){h=i;break}for(var j=[],i=h;i<e.length;i++)j.push("..");return j=j.concat(f.slice(h)),j.join("/")},c.sep="/",c.delimiter=":",c.dirname=function(a){var b=f(a),c=b[0],d=b[1];return c||d?(d&&(d=d.substr(0,d.length-1)),c+d):"."},c.basename=function(a,b){var c=f(a)[2];return b&&c.substr(-1*b.length)===b&&(c=c.substr(0,c.length-b.length)),c},c.extname=function(a){return f(a)[3]};var g="b"==="ab".substr(-1)?function(a,b,c){return a.substr(b,c)}:function(a,b,c){return 0>b&&(b=a.length+b),a.substr(b,c)}}).call(this,a("_process"))},{_process:5}],5:[function(a,b,c){function d(){if(!h){h=!0;for(var a,b=g.length;b;){a=g,g=[];for(var c=-1;++c<b;)a[c]();b=g.length}h=!1}}function e(){}var f=b.exports={},g=[],h=!1;f.nextTick=function(a){g.push(a),h||setTimeout(d,0)},f.title="browser",f.browser=!0,f.env={},f.argv=[],f.version="",f.on=e,f.addListener=e,f.once=e,f.off=e,f.removeListener=e,f.removeAllListeners=e,f.emit=e,f.binding=function(a){throw new Error("process.binding is not supported")},f.cwd=function(){return"/"},f.chdir=function(a){throw new Error("process.chdir is not supported")},f.umask=function(){return 0}},{}],6:[function(a,b,c){b.exports={name:"ejs",description:"Embedded JavaScript templates",keywords:["template","engine","ejs"],version:"2.3.3",author:"Matthew Eernisse <mde@fleegix.org> (http://fleegix.org)",contributors:["Timothy Gu <timothygu99@gmail.com> (https://timothygu.github.io)"],license:"Apache-2.0",main:"./lib/ejs.js",repository:{type:"git",url:"git://github.com/mde/ejs.git"},bugs:"https://github.com/mde/ejs/issues",homepage:"https://github.com/mde/ejs",dependencies:{},devDependencies:{browserify:"^8.0.3",istanbul:"~0.3.5",jake:"^8.0.0",jsdoc:"^3.3.0-beta1","lru-cache":"^2.5.0",mocha:"^2.1.0",rimraf:"^2.2.8","uglify-js":"^2.4.16"},engines:{node:">=0.10.0"},scripts:{test:"mocha",coverage:"istanbul cover node_modules/mocha/bin/_mocha",doc:"rimraf out && jsdoc -c jsdoc.json lib/* docs/jsdoc/*",devdoc:"rimraf out && jsdoc -p -c jsdoc.json lib/* docs/jsdoc/*"}}},{}]},{},[1]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*
+ * EJS Embedded JavaScript templates
+ * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+*/
+
+'use strict';
+
+/**
+ * @file Embedded JavaScript templating engine.
+ * @author Matthew Eernisse <mde@fleegix.org>
+ * @author Tiancheng "Timothy" Gu <timothygu99@gmail.com>
+ * @project EJS
+ * @license {@link http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0}
+ */
+
+/**
+ * EJS internal functions.
+ *
+ * Technically this "module" lies in the same file as {@link module:ejs}, for
+ * the sake of organization all the private functions re grouped into this
+ * module.
+ *
+ * @module ejs-internal
+ * @private
+ */
+
+/**
+ * Embedded JavaScript templating engine.
+ *
+ * @module ejs
+ * @public
+ */
+
+var fs = require('fs')
+  , utils = require('./utils')
+  , scopeOptionWarned = false
+  , _VERSION_STRING = require('../package.json').version
+  , _DEFAULT_DELIMITER = '%'
+  , _DEFAULT_LOCALS_NAME = 'locals'
+  , _REGEX_STRING = '(<%%|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)'
+  , _OPTS = [ 'cache', 'filename', 'delimiter', 'scope', 'context'
+            , 'debug', 'compileDebug', 'client', '_with', 'rmWhitespace'
+            ]
+  , _TRAILING_SEMCOL = /;\s*$/
+  , _BOM = /^\uFEFF/;
+
+/**
+ * EJS template function cache. This can be a LRU object from lru-cache NPM
+ * module. By default, it is {@link module:utils.cache}, a simple in-process
+ * cache that grows continuously.
+ *
+ * @type {Cache}
+ */
+
+exports.cache = utils.cache;
+
+/**
+ * Name of the object containing the locals.
+ *
+ * This variable is overriden by {@link Options}`.localsName` if it is not
+ * `undefined`.
+ *
+ * @type {String}
+ * @public
+ */
+
+exports.localsName = _DEFAULT_LOCALS_NAME;
+
+/**
+ * Get the path to the included file from the parent file path and the
+ * specified path.
+ *
+ * @param {String} name     specified path
+ * @param {String} filename parent file path
+ * @return {String}
+ */
+
+exports.resolveInclude = function(name, filename) {
+  var path = require('path')
+    , dirname = path.dirname
+    , extname = path.extname
+    , resolve = path.resolve
+    , includePath = resolve(dirname(filename), name)
+    , ext = extname(name);
+  if (!ext) {
+    includePath += '.ejs';
+  }
+  return includePath;
+};
+
+/**
+ * Get the template from a string or a file, either compiled on-the-fly or
+ * read from cache (if enabled), and cache the template if needed.
+ *
+ * If `template` is not set, the file specified in `options.filename` will be
+ * read.
+ *
+ * If `options.cache` is true, this function reads the file from
+ * `options.filename` so it must be set prior to calling this function.
+ *
+ * @memberof module:ejs-internal
+ * @param {Options} options   compilation options
+ * @param {String} [template] template source
+ * @return {(TemplateFunction|ClientFunction)}
+ * Depending on the value of `options.client`, either type might be returned.
+ * @static
+ */
+
+function handleCache(options, template) {
+  var fn
+    , path = options.filename
+    , hasTemplate = arguments.length > 1;
+
+  if (options.cache) {
+    if (!path) {
+      throw new Error('cache option requires a filename');
+    }
+    fn = exports.cache.get(path);
+    if (fn) {
+      return fn;
+    }
+    if (!hasTemplate) {
+      template = fs.readFileSync(path).toString().replace(_BOM, '');
+    }
+  }
+  else if (!hasTemplate) {
+    // istanbul ignore if: should not happen at all
+    if (!path) {
+      throw new Error('Internal EJS error: no file name or template '
+                    + 'provided');
+    }
+    template = fs.readFileSync(path).toString().replace(_BOM, '');
+  }
+  fn = exports.compile(template, options);
+  if (options.cache) {
+    exports.cache.set(path, fn);
+  }
+  return fn;
+}
+
+/**
+ * Get the template function.
+ *
+ * If `options.cache` is `true`, then the template is cached.
+ *
+ * @memberof module:ejs-internal
+ * @param {String}  path    path for the specified file
+ * @param {Options} options compilation options
+ * @return {(TemplateFunction|ClientFunction)}
+ * Depending on the value of `options.client`, either type might be returned
+ * @static
+ */
+
+function includeFile(path, options) {
+  var opts = utils.shallowCopy({}, options);
+  if (!opts.filename) {
+    throw new Error('`include` requires the \'filename\' option.');
+  }
+  opts.filename = exports.resolveInclude(path, opts.filename);
+  return handleCache(opts);
+}
+
+/**
+ * Get the JavaScript source of an included file.
+ *
+ * @memberof module:ejs-internal
+ * @param {String}  path    path for the specified file
+ * @param {Options} options compilation options
+ * @return {String}
+ * @static
+ */
+
+function includeSource(path, options) {
+  var opts = utils.shallowCopy({}, options)
+    , includePath
+    , template;
+  if (!opts.filename) {
+    throw new Error('`include` requires the \'filename\' option.');
+  }
+  includePath = exports.resolveInclude(path, opts.filename);
+  template = fs.readFileSync(includePath).toString().replace(_BOM, '');
+
+  opts.filename = includePath;
+  var templ = new Template(template, opts);
+  templ.generateSource();
+  return templ.source;
+}
+
+/**
+ * Re-throw the given `err` in context to the `str` of ejs, `filename`, and
+ * `lineno`.
+ *
+ * @implements RethrowCallback
+ * @memberof module:ejs-internal
+ * @param {Error}  err      Error object
+ * @param {String} str      EJS source
+ * @param {String} filename file name of the EJS file
+ * @param {String} lineno   line number of the error
+ * @static
+ */
+
+function rethrow(err, str, filename, lineno){
+  var lines = str.split('\n')
+    , start = Math.max(lineno - 3, 0)
+    , end = Math.min(lines.length, lineno + 3);
+
+  // Error context
+  var context = lines.slice(start, end).map(function (line, i){
+    var curr = i + start + 1;
+    return (curr == lineno ? ' >> ' : '    ')
+      + curr
+      + '| '
+      + line;
+  }).join('\n');
+
+  // Alter exception message
+  err.path = filename;
+  err.message = (filename || 'ejs') + ':'
+    + lineno + '\n'
+    + context + '\n\n'
+    + err.message;
+
+  throw err;
+}
+
+/**
+ * Copy properties in data object that are recognized as options to an
+ * options object.
+ *
+ * This is used for compatibility with earlier versions of EJS and Express.js.
+ *
+ * @memberof module:ejs-internal
+ * @param {Object}  data data object
+ * @param {Options} opts options object
+ * @static
+ */
+
+function cpOptsInData(data, opts) {
+  _OPTS.forEach(function (p) {
+    if (typeof data[p] != 'undefined') {
+      opts[p] = data[p];
+    }
+  });
+}
+
+/**
+ * Compile the given `str` of ejs into a template function.
+ *
+ * @param {String}  template EJS template
+ *
+ * @param {Options} opts     compilation options
+ *
+ * @return {(TemplateFunction|ClientFunction)}
+ * Depending on the value of `opts.client`, either type might be returned.
+ * @public
+ */
+
+exports.compile = function compile(template, opts) {
+  var templ;
+
+  // v1 compat
+  // 'scope' is 'context'
+  // FIXME: Remove this in a future version
+  if (opts && opts.scope) {
+    if (!scopeOptionWarned){
+      console.warn('`scope` option is deprecated and will be removed in EJS 3');
+      scopeOptionWarned = true;
+    }
+    if (!opts.context) {
+      opts.context = opts.scope;
+    }
+    delete opts.scope;
+  }
+  templ = new Template(template, opts);
+  return templ.compile();
+};
+
+/**
+ * Render the given `template` of ejs.
+ *
+ * If you would like to include options but not data, you need to explicitly
+ * call this function with `data` being an empty object or `null`.
+ *
+ * @param {String}   template EJS template
+ * @param {Object}  [data={}] template data
+ * @param {Options} [opts={}] compilation and rendering options
+ * @return {String}
+ * @public
+ */
+
+exports.render = function (template, data, opts) {
+  data = data || {};
+  opts = opts || {};
+  var fn;
+
+  // No options object -- if there are optiony names
+  // in the data, copy them to options
+  if (arguments.length == 2) {
+    cpOptsInData(data, opts);
+  }
+
+  return handleCache(opts, template)(data);
+};
+
+/**
+ * Render an EJS file at the given `path` and callback `cb(err, str)`.
+ *
+ * If you would like to include options but not data, you need to explicitly
+ * call this function with `data` being an empty object or `null`.
+ *
+ * @param {String}             path     path to the EJS file
+ * @param {Object}            [data={}] template data
+ * @param {Options}           [opts={}] compilation and rendering options
+ * @param {RenderFileCallback} cb callback
+ * @public
+ */
+
+exports.renderFile = function () {
+  var args = Array.prototype.slice.call(arguments)
+    , path = args.shift()
+    , cb = args.pop()
+    , data = args.shift() || {}
+    , opts = args.pop() || {}
+    , result;
+
+  // Don't pollute passed in opts obj with new vals
+  opts = utils.shallowCopy({}, opts);
+
+  // No options object -- if there are optiony names
+  // in the data, copy them to options
+  if (arguments.length == 3) {
+    cpOptsInData(data, opts);
+  }
+  opts.filename = path;
+
+  try {
+    result = handleCache(opts)(data);
+  }
+  catch(err) {
+    return cb(err);
+  }
+  return cb(null, result);
+};
+
+/**
+ * Clear intermediate JavaScript cache. Calls {@link Cache#reset}.
+ * @public
+ */
+
+exports.clearCache = function () {
+  exports.cache.reset();
+};
+
+function Template(text, opts) {
+  opts = opts || {};
+  var options = {};
+  this.templateText = text;
+  this.mode = null;
+  this.truncate = false;
+  this.currentLine = 1;
+  this.source = '';
+  this.dependencies = [];
+  options.client = opts.client || false;
+  options.escapeFunction = opts.escape || utils.escapeXML;
+  options.compileDebug = opts.compileDebug !== false;
+  options.debug = !!opts.debug;
+  options.filename = opts.filename;
+  options.delimiter = opts.delimiter || exports.delimiter || _DEFAULT_DELIMITER;
+  options._with = typeof opts._with != 'undefined' ? opts._with : true;
+  options.context = opts.context;
+  options.cache = opts.cache || false;
+  options.rmWhitespace = opts.rmWhitespace;
+  this.opts = options;
+
+  this.regex = this.createRegex();
+}
+
+Template.modes = {
+  EVAL: 'eval'
+, ESCAPED: 'escaped'
+, RAW: 'raw'
+, COMMENT: 'comment'
+, LITERAL: 'literal'
+};
+
+Template.prototype = {
+  createRegex: function () {
+    var str = _REGEX_STRING
+      , delim = utils.escapeRegExpChars(this.opts.delimiter);
+    str = str.replace(/%/g, delim);
+    return new RegExp(str);
+  }
+
+, compile: function () {
+    var src
+      , fn
+      , opts = this.opts
+      , prepended = ''
+      , appended = ''
+      , escape = opts.escapeFunction;
+
+    if (opts.rmWhitespace) {
+      // Have to use two separate replace here as `^` and `$` operators don't
+      // work well with `\r`.
+      this.templateText =
+        this.templateText.replace(/\r/g, '').replace(/^\s+|\s+$/gm, '');
+    }
+
+    // Slurp spaces and tabs before <%_ and after _%>
+    this.templateText =
+      this.templateText.replace(/[ \t]*<%_/gm, '<%_').replace(/_%>[ \t]*/gm, '_%>');
+
+    if (!this.source) {
+      this.generateSource();
+      prepended += '  var __output = [], __append = __output.push.bind(__output);' + '\n';
+      if (opts._with !== false) {
+        prepended +=  '  with (' + exports.localsName + ' || {}) {' + '\n';
+        appended += '  }' + '\n';
+      }
+      appended += '  return __output.join("");' + '\n';
+      this.source = prepended + this.source + appended;
+    }
+
+    if (opts.compileDebug) {
+      src = 'var __line = 1' + '\n'
+          + '  , __lines = ' + JSON.stringify(this.templateText) + '\n'
+          + '  , __filename = ' + (opts.filename ?
+                JSON.stringify(opts.filename) : 'undefined') + ';' + '\n'
+          + 'try {' + '\n'
+          + this.source
+          + '} catch (e) {' + '\n'
+          + '  rethrow(e, __lines, __filename, __line);' + '\n'
+          + '}' + '\n';
+    }
+    else {
+      src = this.source;
+    }
+
+    if (opts.debug) {
+      console.log(src);
+    }
+
+    if (opts.client) {
+      src = 'escape = escape || ' + escape.toString() + ';' + '\n' + src;
+      if (opts.compileDebug) {
+        src = 'rethrow = rethrow || ' + rethrow.toString() + ';' + '\n' + src;
+      }
+    }
+
+    try {
+      fn = new Function(exports.localsName + ', escape, include, rethrow', src);
+    }
+    catch(e) {
+      // istanbul ignore else
+      if (e instanceof SyntaxError) {
+        if (opts.filename) {
+          e.message += ' in ' + opts.filename;
+        }
+        e.message += ' while compiling ejs';
+      }
+      throw e;
+    }
+
+    if (opts.client) {
+      fn.dependencies = this.dependencies;
+      return fn;
+    }
+
+    // Return a callable function which will execute the function
+    // created by the source-code, with the passed data as locals
+    // Adds a local `include` function which allows full recursive include
+    var returnedFn = function (data) {
+      var include = function (path, includeData) {
+        var d = utils.shallowCopy({}, data);
+        if (includeData) {
+          d = utils.shallowCopy(d, includeData);
+        }
+        return includeFile(path, opts)(d);
+      };
+      return fn.apply(opts.context, [data || {}, escape, include, rethrow]);
+    };
+    returnedFn.dependencies = this.dependencies;
+    return returnedFn;
+  }
+
+, generateSource: function () {
+    var self = this
+      , matches = this.parseTemplateText()
+      , d = this.opts.delimiter;
+
+    if (matches && matches.length) {
+      matches.forEach(function (line, index) {
+        var opening
+          , closing
+          , include
+          , includeOpts
+          , includeSrc;
+        // If this is an opening tag, check for closing tags
+        // FIXME: May end up with some false positives here
+        // Better to store modes as k/v with '<' + delimiter as key
+        // Then this can simply check against the map
+        if ( line.indexOf('<' + d) === 0        // If it is a tag
+          && line.indexOf('<' + d + d) !== 0) { // and is not escaped
+          closing = matches[index + 2];
+          if (!(closing == d + '>' || closing == '-' + d + '>' || closing == '_' + d + '>')) {
+            throw new Error('Could not find matching close tag for "' + line + '".');
+          }
+        }
+        // HACK: backward-compat `include` preprocessor directives
+        if ((include = line.match(/^\s*include\s+(\S+)/))) {
+          opening = matches[index - 1];
+          // Must be in EVAL or RAW mode
+          if (opening && (opening == '<' + d || opening == '<' + d + '-' || opening == '<' + d + '_')) {
+            includeOpts = utils.shallowCopy({}, self.opts);
+            includeSrc = includeSource(include[1], includeOpts);
+            includeSrc = '    ; (function(){' + '\n' + includeSrc +
+                '    ; })()' + '\n';
+            self.source += includeSrc;
+            self.dependencies.push(exports.resolveInclude(include[1],
+                includeOpts.filename));
+            return;
+          }
+        }
+        self.scanLine(line);
+      });
+    }
+
+  }
+
+, parseTemplateText: function () {
+    var str = this.templateText
+      , pat = this.regex
+      , result = pat.exec(str)
+      , arr = []
+      , firstPos
+      , lastPos;
+
+    while (result) {
+      firstPos = result.index;
+      lastPos = pat.lastIndex;
+
+      if (firstPos !== 0) {
+        arr.push(str.substring(0, firstPos));
+        str = str.slice(firstPos);
+      }
+
+      arr.push(result[0]);
+      str = str.slice(result[0].length);
+      result = pat.exec(str);
+    }
+
+    if (str) {
+      arr.push(str);
+    }
+
+    return arr;
+  }
+
+, scanLine: function (line) {
+    var self = this
+      , d = this.opts.delimiter
+      , newLineCount = 0;
+
+    function _addOutput() {
+      if (self.truncate) {
+        line = line.replace('\n', '');
+        self.truncate = false;
+      }
+      else if (self.opts.rmWhitespace) {
+        // Gotta me more careful here.
+        // .replace(/^(\s*)\n/, '$1') might be more appropriate here but as
+        // rmWhitespace already removes trailing spaces anyway so meh.
+        line = line.replace(/^\n/, '');
+      }
+      if (!line) {
+        return;
+      }
+
+      // Preserve literal slashes
+      line = line.replace(/\\/g, '\\\\');
+
+      // Convert linebreaks
+      line = line.replace(/\n/g, '\\n');
+      line = line.replace(/\r/g, '\\r');
+
+      // Escape double-quotes
+      // - this will be the delimiter during execution
+      line = line.replace(/"/g, '\\"');
+      self.source += '    ; __append("' + line + '")' + '\n';
+    }
+
+    newLineCount = (line.split('\n').length - 1);
+
+    switch (line) {
+      case '<' + d:
+      case '<' + d + '_':
+        this.mode = Template.modes.EVAL;
+        break;
+      case '<' + d + '=':
+        this.mode = Template.modes.ESCAPED;
+        break;
+      case '<' + d + '-':
+        this.mode = Template.modes.RAW;
+        break;
+      case '<' + d + '#':
+        this.mode = Template.modes.COMMENT;
+        break;
+      case '<' + d + d:
+        this.mode = Template.modes.LITERAL;
+        this.source += '    ; __append("' + line.replace('<' + d + d, '<' + d) + '")' + '\n';
+        break;
+      case d + '>':
+      case '-' + d + '>':
+      case '_' + d + '>':
+        if (this.mode == Template.modes.LITERAL) {
+          _addOutput();
+        }
+
+        this.mode = null;
+        this.truncate = line.indexOf('-') === 0 || line.indexOf('_') === 0;
+        break;
+      default:
+        // In script mode, depends on type of tag
+        if (this.mode) {
+          // If '//' is found without a line break, add a line break.
+          switch (this.mode) {
+            case Template.modes.EVAL:
+            case Template.modes.ESCAPED:
+            case Template.modes.RAW:
+              if (line.lastIndexOf('//') > line.lastIndexOf('\n')) {
+                line += '\n';
+              }
+          }
+          switch (this.mode) {
+            // Just executing code
+            case Template.modes.EVAL:
+              this.source += '    ; ' + line + '\n';
+              break;
+            // Exec, esc, and output
+            case Template.modes.ESCAPED:
+              this.source += '    ; __append(escape(' +
+                line.replace(_TRAILING_SEMCOL, '').trim() + '))' + '\n';
+              break;
+            // Exec and output
+            case Template.modes.RAW:
+              this.source += '    ; __append(' +
+                line.replace(_TRAILING_SEMCOL, '').trim() + ')' + '\n';
+              break;
+            case Template.modes.COMMENT:
+              // Do nothing
+              break;
+            // Literal <%% mode, append as raw output
+            case Template.modes.LITERAL:
+              _addOutput();
+              break;
+          }
+        }
+        // In string mode, just add the output
+        else {
+          _addOutput();
+        }
+    }
+
+    if (self.opts.compileDebug && newLineCount) {
+      this.currentLine += newLineCount;
+      this.source += '    ; __line = ' + this.currentLine + '\n';
+    }
+  }
+};
+
+/**
+ * Express.js support.
+ *
+ * This is an alias for {@link module:ejs.renderFile}, in order to support
+ * Express.js out-of-the-box.
+ *
+ * @func
+ */
+
+exports.__express = exports.renderFile;
+
+// Add require support
+/* istanbul ignore else */
+if (require.extensions) {
+  require.extensions['.ejs'] = function (module, filename) {
+    filename = filename || /* istanbul ignore next */ module.filename;
+    var options = {
+          filename: filename
+        , client: true
+        }
+      , template = fs.readFileSync(filename).toString()
+      , fn = exports.compile(template, options);
+    module._compile('module.exports = ' + fn.toString() + ';', filename);
+  };
+}
+
+/**
+ * Version of EJS.
+ *
+ * @readonly
+ * @type {String}
+ * @public
+ */
+
+exports.VERSION = _VERSION_STRING;
+
+/* istanbul ignore if */
+if (typeof window != 'undefined') {
+  window.ejs = exports;
+}
+
+},{"../package.json":6,"./utils":2,"fs":3,"path":4}],2:[function(require,module,exports){
+/*
+ * EJS Embedded JavaScript templates
+ * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+*/
+
+/**
+ * Private utility functions
+ * @module utils
+ * @private
+ */
+
+'use strict';
+
+var regExpChars = /[|\\{}()[\]^$+*?.]/g;
+
+/**
+ * Escape characters reserved in regular expressions.
+ *
+ * If `string` is `undefined` or `null`, the empty string is returned.
+ *
+ * @param {String} string Input string
+ * @return {String} Escaped string
+ * @static
+ * @private
+ */
+exports.escapeRegExpChars = function (string) {
+  // istanbul ignore if
+  if (!string) {
+    return '';
+  }
+  return String(string).replace(regExpChars, '\\$&');
+};
+
+var _ENCODE_HTML_RULES = {
+      '&': '&amp;'
+    , '<': '&lt;'
+    , '>': '&gt;'
+    , '"': '&#34;'
+    , "'": '&#39;'
+    }
+  , _MATCH_HTML = /[&<>\'"]/g;
+
+function encode_char(c) {
+  return _ENCODE_HTML_RULES[c] || c;
+};
+
+/**
+ * Stringified version of constants used by {@link module:utils.escapeXML}.
+ *
+ * It is used in the process of generating {@link ClientFunction}s.
+ *
+ * @readonly
+ * @type {String}
+ */
+
+var escapeFuncStr =
+  'var _ENCODE_HTML_RULES = {\n'
++ '      "&": "&amp;"\n'
++ '    , "<": "&lt;"\n'
++ '    , ">": "&gt;"\n'
++ '    , \'"\': "&#34;"\n'
++ '    , "\'": "&#39;"\n'
++ '    }\n'
++ '  , _MATCH_HTML = /[&<>\'"]/g;\n'
++ 'function encode_char(c) {\n'
++ '  return _ENCODE_HTML_RULES[c] || c;\n'
++ '};\n';
+
+/**
+ * Escape characters reserved in XML.
+ *
+ * If `markup` is `undefined` or `null`, the empty string is returned.
+ *
+ * @implements {EscapeCallback}
+ * @param {String} markup Input string
+ * @return {String} Escaped string
+ * @static
+ * @private
+ */
+
+exports.escapeXML = function (markup) {
+  return markup == undefined
+    ? ''
+    : String(markup)
+        .replace(_MATCH_HTML, encode_char);
+};
+exports.escapeXML.toString = function () {
+  return Function.prototype.toString.call(this) + ';\n' + escapeFuncStr
+};
+
+/**
+ * Copy all properties from one object to another, in a shallow fashion.
+ *
+ * @param  {Object} to   Destination object
+ * @param  {Object} from Source object
+ * @return {Object}      Destination object
+ * @static
+ * @private
+ */
+exports.shallowCopy = function (to, from) {
+  from = from || {};
+  for (var p in from) {
+    to[p] = from[p];
+  }
+  return to;
+};
+
+/**
+ * Simple in-process cache implementation. Does not implement limits of any
+ * sort.
+ *
+ * @implements Cache
+ * @static
+ * @private
+ */
+exports.cache = {
+  _data: {},
+  set: function (key, val) {
+    this._data[key] = val;
+  },
+  get: function (key) {
+    return this._data[key];
+  },
+  reset: function () {
+    this._data = {};
+  }
+};
+
+
+},{}],3:[function(require,module,exports){
+
+},{}],4:[function(require,module,exports){
+(function (process){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// Split a filename into [root, dir, basename, ext], unix version
+// 'root' is just a slash, or nothing.
+var splitPathRe =
+    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+var splitPath = function(filename) {
+  return splitPathRe.exec(filename).slice(1);
+};
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function(path) {
+  var result = splitPath(path),
+      root = result[0],
+      dir = result[1];
+
+  if (!root && !dir) {
+    // No dirname whatsoever
+    return '.';
+  }
+
+  if (dir) {
+    // It has a dirname, strip trailing slash
+    dir = dir.substr(0, dir.length - 1);
+  }
+
+  return root + dir;
+};
+
+
+exports.basename = function(path, ext) {
+  var f = splitPath(path)[2];
+  // TODO: make this comparison case-insensitive on windows?
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+
+exports.extname = function(path) {
+  return splitPath(path)[3];
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+}).call(this,require('_process'))
+},{"_process":5}],5:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+var queue = [];
+var draining = false;
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    draining = true;
+    var currentQueue;
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        var i = -1;
+        while (++i < len) {
+            currentQueue[i]();
+        }
+        len = queue.length;
+    }
+    draining = false;
+}
+process.nextTick = function (fun) {
+    queue.push(fun);
+    if (!draining) {
+        setTimeout(drainQueue, 0);
+    }
+};
+
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+// TODO(shtylman)
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],6:[function(require,module,exports){
+module.exports={
+  "name": "ejs",
+  "description": "Embedded JavaScript templates",
+  "keywords": [
+    "template",
+    "engine",
+    "ejs"
+  ],
+  "version": "2.3.3",
+  "author": "Matthew Eernisse <mde@fleegix.org> (http://fleegix.org)",
+  "contributors": [
+    "Timothy Gu <timothygu99@gmail.com> (https://timothygu.github.io)"
+  ],
+  "license": "Apache-2.0",
+  "main": "./lib/ejs.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mde/ejs.git"
+  },
+  "bugs": "https://github.com/mde/ejs/issues",
+  "homepage": "https://github.com/mde/ejs",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^8.0.3",
+    "istanbul": "~0.3.5",
+    "jake": "^8.0.0",
+    "jsdoc": "^3.3.0-beta1",
+    "lru-cache": "^2.5.0",
+    "mocha": "^2.1.0",
+    "rimraf": "^2.2.8",
+    "uglify-js": "^2.4.16"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha",
+    "doc": "rimraf out && jsdoc -c jsdoc.json lib/* docs/jsdoc/*",
+    "devdoc": "rimraf out && jsdoc -p -c jsdoc.json lib/* docs/jsdoc/*"
+  }
+}
+},{}]},{},[1]);

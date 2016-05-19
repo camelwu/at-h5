@@ -1,2 +1,107 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-var hftFlightDetail={addHandler:function(a,b,c){document.addEventListener?this.addHandler=function(a,b,c){a.addEventListener(b,c,!1)}:document.attachEvent?this.addHandler=function(a,b,c){a.attachEvent("on"+b,function(){c.call(a)})}:this.addHandler=function(a,b,c){a["on"+b]=c},this.addHandler(a,b,c)},setWeekItems:function(){var a=arguments[0].replace(/T.*/,""),b=new Date(a.replace(/-/g,"/")).getDay(),c="";switch(b){case 0:c="周日";break;case 1:c="周一";break;case 2:c="周二";break;case 3:c="周三";break;case 4:c="周四";break;case 5:c="周五";break;case 6:c="周六"}return c},getMinutes:function(a,b){var c,d=Date.parse(a.replace(/-/g,"/").replace(/T/," ")),e=Date.parse(b.replace(/-/g,"/").replace(/T/," "));return c=Math.abs(e-d)/1e3/60},setChineseStar:function(){var a=arguments[0].substr(0,1),b="";switch(a.charCodeAt(0)){case 49:b="一星级";break;case 50:b="二星级";break;case 51:b="三星级";break;case 52:b="四星级";break;case 53:b="五星级";break;case 54:b="六星级";break;case 55:b="七星级"}return b},createTags:function(){var a=arguments[0],b=hftFlightDetail,c="",d="";return c=$("#template").html(),d=ejs.render(c,a),$(".all_elements").eq(0).html(d),b.addEvent(),b},addEvent:function(){var a=document.querySelector(".icon_back");this.addHandler(a,"click",function(){window.history.go(-1)})},init:function(){var a=null,b=window.sessionStorage;a=JSON.parse(b.getItem("hftFlightHotelTourInfo")),this.createTags({flightInfo:a.flightInfo}),$("#status").fadeOut(),$("#preloader").delay(400).fadeOut("medium")}};hftFlightDetail.init();
+var  hftFlightDetail = {
+  addHandler: function (target, eventType, handle) {
+    if (document.addEventListener) {
+      this.addHandler = function (target, eventType, handle) {
+        target.addEventListener(eventType, handle, false);
+      }
+    } else if (document.attachEvent) {
+      this.addHandler = function (target, eventType, handle) {
+        target.attachEvent('on' + eventType, function () {
+          handle.call(target);
+        });
+      }
+    } else {
+      this.addHandler = function (target, eventType, handle) {
+        target['on' + eventType] = handle;
+      }
+    }
+    this.addHandler(target, eventType, handle);
+  },
+  setWeekItems:function(){
+    var arg = arguments[0].replace(/T.*/,''), index = new Date(arg.replace(/-/g,'/')).getDay(), week='';
+    switch (index){
+      case 0 :
+        week = '周日';
+        break;
+      case 1 :
+        week = '周一';
+        break;
+      case 2 :
+        week = '周二';
+        break;
+      case 3 :
+        week = '周三';
+        break;
+      case 4 :
+        week = '周四';
+        break;
+      case 5 :
+        week = '周五';
+        break;
+      case 6 :
+        week = '周六';
+        break;
+      default :void(0)
+    }
+    return week;
+  },
+
+  getMinutes:function (arg1, arg2) {
+  var time1 = Date.parse(arg1.replace(/-/g, "/").replace(/T/," ")), time2 = Date.parse(arg2.replace(/-/g, "/").replace(/T/," ")), dayCount;
+  return dayCount = (Math.abs(time2 - time1)) / 1000 / 60;
+},
+
+  setChineseStar:function(){
+    var strNumber = arguments[0].substr(0,1), resultNum='';
+    switch (strNumber.charCodeAt(0)) {
+      case 49:
+        resultNum = '一星级';
+        break;
+      case 50:
+        resultNum = '二星级';
+        break;
+      case 51:
+        resultNum = '三星级';
+        break;
+      case 52:
+        resultNum = '四星级';
+        break;
+      case 53:
+        resultNum = '五星级';
+        break;
+      case 54:
+        resultNum = '六星级';
+        break;
+      case 55:
+        resultNum = '七星级';
+        break;
+      default:
+        void (0);
+    }
+    return resultNum;
+  },
+  createTags:function(){
+    var data = arguments[0], that = hftFlightDetail, tempStr="", outputStr="";
+    console.log(data);
+    tempStr = $("#template").html();
+    outputStr = ejs.render(tempStr,data);
+    $(".all_elements").eq(0).html(outputStr);
+    that.addEvent();
+    return that;
+  },
+  addEvent:function(){
+    var iconBack =  document.querySelector('.icon_back');
+    this.addHandler(iconBack, 'click', function () {
+      window.history.go(-1);
+    });
+  },
+  init:function(){
+    var flightData = null, storage = window.sessionStorage;
+    flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
+    this.createTags({flightInfo:flightData.flightInfo});
+    $("#status").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
+  }
+};
+
+hftFlightDetail.init();

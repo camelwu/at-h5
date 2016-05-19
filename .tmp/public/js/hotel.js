@@ -1,2 +1,57 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function showRank(){var a=document.getElementById("rank"),b=document.getElementById("r-mb");b.style.display="block",a.style.bottom="0",a.style.transition="all 2s"}function hiddenRank(){var a=document.getElementById("rank"),b=document.getElementById("r-mb");b.style.display="none",a.style.bottom="-350px",a.style.transition="all 3s"}function showScreen(){var a=document.getElementById("screen"),b=document.getElementById("s-mb");b.style.display="block",a.style.bottom="0",a.style.transition="all 2s"}function hiddenScreen(){var a=document.getElementById("screen"),b=document.getElementById("s-mb");b.style.display="none",a.style.bottom="-350px",a.style.transition="all 3s"}function showLocation(){var a=document.getElementById("location"),b=document.getElementById("l-mb");b.style.display="block",a.style.bottom="0",a.style.transition="all 2s"}function hiddenLocation(){var a=document.getElementById("location"),b=document.getElementById("l-mb");b.style.display="none",a.style.bottom="-350px",a.style.transition="all 3s"}
+/**
+ * Created by changlv on 2015/12/11.
+ */
+//window.onload=fonction()
+//{
+//    function showBlock(obj) {
+//        obj.onclick = function () {
+//            var rank=document.getElementById("rank");
+//            var mb=document.getElementById("r-mb");
+//            mb.style.display="block";
+//            rank.style.bottom="0";
+//            rank.style.transition="all 2s";
+//        }
+//    }
+//}
+function showRank(){
+    var rank=document.getElementById("rank");
+    var mb=document.getElementById("r-mb");
+    mb.style.display="block";
+    rank.style.bottom="0";
+    rank.style.transition="all 2s";
+}
+function hiddenRank(){
+    var rank=document.getElementById("rank");
+    var mb=document.getElementById("r-mb");
+    mb.style.display="none";
+    rank.style.bottom=-350+'px';
+    rank.style.transition="all 3s";
+}
+function showScreen(){
+    var rank=document.getElementById("screen");
+    var mb=document.getElementById("s-mb");
+    mb.style.display="block";
+    rank.style.bottom="0";
+    rank.style.transition="all 2s";
+}
+function hiddenScreen(){
+    var rank=document.getElementById("screen");
+    var mb=document.getElementById("s-mb");
+    mb.style.display="none";
+    rank.style.bottom=-350+'px';
+    rank.style.transition="all 3s";
+}
+function showLocation(){
+    var rank=document.getElementById("location");
+    var mb=document.getElementById("l-mb");
+    mb.style.display="block";
+    rank.style.bottom="0";
+    rank.style.transition="all 2s";
+}
+function hiddenLocation(){
+    var rank=document.getElementById("location");
+    var mb=document.getElementById("l-mb");
+    mb.style.display="none";
+    rank.style.bottom=-350+'px';
+    rank.style.transition="all 3s";
+}

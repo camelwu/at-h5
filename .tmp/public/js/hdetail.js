@@ -1,2 +1,18 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
-function showDetail(){var a=document.getElementById("room"),b=document.getElementById("roomAll"),c=document.getElementById("r-mb");a.style.display="block",b.style.display="block",c.style.display="block"}function closeRoom(){var a=document.getElementById("room"),b=document.getElementById("roomAll"),c=document.getElementById("r-mb");a.style.display="none",c.style.display="none",b.style.display="none"}
+function showDetail(){
+
+    var room=document.getElementById("room");
+    var roomAll=document.getElementById("roomAll");
+    var mb=document.getElementById("r-mb");
+    room.style.display="block";
+    roomAll.style.display="block";
+    mb.style.display="block";
+
+}
+function closeRoom(){
+    var room=document.getElementById("room");
+    var roomAll=document.getElementById("roomAll");
+    var mb=document.getElementById("r-mb");
+    room.style.display="none";
+    mb.style.display="none";
+    roomAll.style.display="none";
+}
