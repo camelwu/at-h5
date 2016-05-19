@@ -19,7 +19,11 @@
   console.log(hftCreateOrderPara);
 
   var freetype=vlm.getpara('type');
-
+  var hft_backstr=window.location.href.split('?')[1];
+  //返回资源选择页
+  $('#hftFreeBack').click(function(){
+      window.location.href='../hotel_flight_tour/hft_choose.html?'+ hft_backstr;
+  });
   //初始化
   function init() {
 
@@ -35,7 +39,8 @@
       $('.tour_section').remove();
 
     }else{
-      alert('上一步是type=undefined');
+      
+      jAlert('资源选择页url:type=undefined');
     }
 
     //机票详情
