@@ -109,6 +109,15 @@ i, em {
 /*
          个人中心未登录页css
 */
+.user_lists {
+  padding: .4rem .28rem;
+}
+
+.user_lists > li {
+  position: relative;
+  height: .88rem;
+  line-height: .88rem;
+}
 .user_info #userIcon {
   border-radius: 50%;
   width: 1.2rem;
@@ -388,13 +397,15 @@ i, em {
 /*
          个人资料页css
 */
-.open-rg {
+.open_rg {
   position: absolute;
-  right: 15px;
-  margin-top: 2px;
-  width: 8px;
-  height: 14px;
-  background-position: 65% 3%;
+  right: 0;
+  top: .38rem;
+  background: url("../images/ui/icon-hft.png") no-repeat;
+  background-size: 8.4rem 4.8rem;
+  width: .24rem;
+  height: .24rem;
+  background-position: 62% 52%;
 }
 
 .info-name {
@@ -1675,14 +1686,38 @@ ul, ol {
 }
 
 /*个人信息页出生日期*/
-.user_lists {
-  padding: .4rem .28rem;
+.user_it{
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  margin-right: .2rem;
 }
-
-.user_lists > li {
+.user_info_top{
+  padding:.2rem .4rem;
+  border-bottom: 1px solid #e6e6e6;
   position: relative;
-  height: .88rem;
-  line-height: .88rem;
+}
+.user_info_top >span{
+  margin-top: .42rem;
+ }
+.user_info_top .open_rg{
+  position: absolute;
+  right: 0;
+  top: .6rem;
+  background: url("../images/ui/icon-hft.png") no-repeat;
+  background-size: 8.4rem 4.8rem;
+  width: .24rem;
+  height: .24rem;
+  background-position: 62% 52%;
+}
+.userper_lists{
+  padding: 0 .4rem;
+}
+.userper_lists >li{
+  position: relative;
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .user_lists li > a {
@@ -1736,9 +1771,9 @@ ul, ol {
 }
 
 .birth-cont {
-  font-size: 1.5rem;
   color: #666;
   width: 120px;
+  float: right;
 }
 
 #unloginShow {
