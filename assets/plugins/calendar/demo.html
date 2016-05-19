@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+
+    <!--seo-->
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>亚洲旅行网</title>
+
+    <link href="../../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="../../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
+    <!--    <link href="../../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">-->
+    <style>
+        .main {
+            margin: 0 auto;
+            font-size: .28rem;
+        }
+
+        .main .header .title {
+            height: 100%;
+            margin: 0 1rem;
+            line-height: 1.4rem;
+            text-align: center;
+            background: #eeeccc;
+        }
+
+        .content {
+            margin-top: .88rem;
+        }
+
+        .siteRight {
+            height: 1rem;
+            line-height: 1rem;
+            background: #eee;
+            text-align: center;
+        }
+
+        .select_time {
+            /* margin: .2rem;*/
+        }
+
+        .select_time .check_in {
+            height: .5rem;
+            width: 5rem;
+            border-bottom: 1px solid #999;
+            float: left;
+        }
+
+        .select_time .time_icon {
+            float: right;
+            height: 1rem;
+            width: 1rem;
+            background: gold;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="all_elements">
+        <header class="header">
+            <a href="#" class="header_back">
+                <i class="icon_back"></i>
+            </a>
+            <h3>日期控件</h3>
+        </header>
+        <div class="content">
+            <code></code>
+            <div class="select_time clearfix">
+                <h2>选择日期</h2>
+                <div id="timeClickWrap">
+                    <div id="checkInTime" class="check_in"></div>
+                    <div id="checkOutTime" class="check_out"></div>
+                    <div class="time_icon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="siteRight">
+            <p>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</p>
+        </div>
+        <footer class="bottomFixNav">
+
+        </footer>
+    </div>
+    <script src="../../js/lib/jquery.js"></script>
+    <script src="../../plugins/calendar/d_calendar1.0.3.js"></script>
+    <script>
+        var myTime = new Calender({
+            id: "timeClickWrap",
+            time: {
+                "2016-05-11": "checkinTime",
+                "2016-05-19": "checkoutTime"
+            },
+            checkInTimeOptId: 'checkInTime',
+            checkOutTimeOptId: 'checkOutTime',
+            callback: function(result) {
+                console.info(result);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

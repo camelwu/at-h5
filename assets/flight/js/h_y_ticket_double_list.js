@@ -63,7 +63,7 @@ var ticketDouble = {
             ForeEndType: ForeEndType,
             Code: Code
         };
-        questUrl = questUrl ? questUrl : that.requestUrl;
+        questUrl = questUrl ? questUrl :"";
         if (noShowLoading) {
             vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, noShowLoading);
         } else {
