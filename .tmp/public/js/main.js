@@ -1,2 +1,2 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T15:21:43 */
+/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
 require.config({baseUrl:"../js/lib",paths:{plugins:"plugins"},waitSeconds:0,$:["jquery"],shim:{plugins:{deps:["./jquery","./vlm"],init:function(){return{WOW:WOW,FastClick:FastClick,owlCarousel:owlCarousel,countdown:countdown,swipebox:swipebox,ScrollIt:ScrollIt,Snap:Snap,usercontact:usercontact}}},custom:{deps:["jquery","plugins"]}},urlArgs:"bust="+(new Date).getTime()}),require(["jquery","vlm","custom"],function(a,b){b.init()});

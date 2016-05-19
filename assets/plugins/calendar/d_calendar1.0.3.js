@@ -136,16 +136,11 @@
             var calendarWrap = document.createElement('div');
             calendarWrap.id = "calendarWrap";
             calendarWrap.className = 'calendar_Wrap';
-            calendarWrap.style.position = "absolute";
-            calendarWrap.style.zIndex = 100;
-            calendarWrap.style.width = '100%';
-            calendarWrap.style.height = '100%';
-            calendarWrap.style.backgroundColor = '#fff';
             var container = this.container = document.createElement('div');
             container.id = this.id + 'Date';
             container.className = "calendar_date"
-            container.style.position = "absolute";
-            container.style.zIndex = 100;
+                //container.style.position = "absolute";
+                //container.style.zIndex = 100;
             if (this.input.tagName === 'input') {
                 //PC输入框
                 var inputPos = _CalF.getPos(this.input);
@@ -157,17 +152,9 @@
 
             } else {
                 //M站层
-                container.style.background = "#fff";
-                container.style.overflow = 'auto';
-                container.style.width = container.style.height = '100%';
-                container.style.left = '0';
-                container.style.top = '2.68rem';
-                container.style.paddingBottom = '1.18rem';
-                //
                 var header = this.header = document.createElement('div');
                 header.id = this.id + "Header";
                 header.className = this.prefix + '_header';
-                header.style.zIndex = 100;
                 header.innerHTML = '<a href="javascript:void(0);" class="header_back"><i class="icons go_back"></i></a><h3>选择日期</h3>';
                 calendarWrap.appendChild(header);
                 if (this.selectTime === 2) {
@@ -175,6 +162,8 @@
                     tiperWrap.className = "calendar_tiper";
                     tiperWrap.innerHTML = this._flightTemptiper;
                     container.appendChild(tiperWrap);
+                } else {
+                    container.className = container.className + " no_tiper";
                 }
 
                 var weeker = document.createElement('div');
@@ -516,7 +505,7 @@
          **/
         linkOver: function (target) {
             var selectValue = target.getAttribute("data-day");
-            if (this.result.length === 0 || this.result.length === 2) {
+            if (this.result.length === 0 || this.result.length === this.selectTime) {
                 this.result = [];
                 this.result.push(selectValue);
                 this.showComfirmBtn(0);

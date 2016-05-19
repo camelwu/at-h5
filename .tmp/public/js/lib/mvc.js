@@ -1,2 +1,2 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T15:21:43 */
+/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
 $(function(){var a=a||{};a.model=function(){var a={};return a.data={},a.conf={},{getData:function(b){return a.data[b]},getConf:function(b){return a.conf[b]},setData:function(b,c){return a.data[b]=c,this},setConf:function(b,c){return a.conf[b]=c,this}}}(),a.view=function(){var b=(a.model,{});return function(a){b[a]()}}(),a.ctrl=function(){a.model,a.view}()});

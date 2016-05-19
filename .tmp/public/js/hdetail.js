@@ -1,2 +1,2 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T15:21:43 */
+/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
 function showDetail(){var a=document.getElementById("room"),b=document.getElementById("roomAll"),c=document.getElementById("r-mb");a.style.display="block",b.style.display="block",c.style.display="block"}function closeRoom(){var a=document.getElementById("room"),b=document.getElementById("roomAll"),c=document.getElementById("r-mb");a.style.display="none",c.style.display="none",b.style.display="none"}

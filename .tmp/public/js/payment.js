@@ -1,2 +1,2 @@
-/*! asiatravel FE team at-h5-nodejs-----2016-05-19T15:21:43 */
+/*! asiatravel FE team at-h5-nodejs-----2016-05-19T16:09:38 */
 function paymentObj(a,b){$.alerts.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",null,"支付完成","支付出现问题"),this.data=a,this.handlePayment=function(){return vlm.loadJson("",JSON.stringify(a),b)}}
