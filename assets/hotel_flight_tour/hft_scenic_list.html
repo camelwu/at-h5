@@ -78,11 +78,11 @@
                     </div>
                     </div>
                     <div class="scenic_detile_project">
-                <ul>
-                    <% for( var j=0;j < lists[i].inclusiveItems.length;j++){ %>
-                <li class = "scenic_detile_project_first"><i></i><%= lists[i].inclusiveItems[j] %></li>
-                    <% } %>
-        </ul>
+                     <p>
+                        <% for( var j=0;j < lists[i].inclusiveItems.length;j++){ %>
+                            . <%= lists[i].inclusiveItems[j]%>
+                        <% } %>
+                    </p>
         </div>
         </li>
         <% }} %>
