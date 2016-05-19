@@ -1,0 +1,67 @@
+.content_bgfff{
+    background: #fff;
+}
+/*index  beigin*/
+.index_abroad{
+    color:#333;
+}
+.index_abroad a{
+    color: #333;
+}
+.index_abroad .title{
+    height: 32px;
+    line-height: 0.8rem;
+    color: #666;
+    font-size: 0.28rem;
+    font-weight: 700;
+    padding: 0 0.26rem;
+    margin: 0;
+}
+.index_abroad_box {
+    padding-top: 10px;
+}
+.index_abroad_box li{
+    width:2.12rem;
+    height:0.68rem;
+    line-height:0.68rem;
+    text-align: center;
+    margin-left: 0.25rem;
+    margin-bottom:0.28rem;
+    border: 1px solid #d1d1d1;
+    border-radius:0.3rem;
+    overflow: hidden;
+    float: left;
+}
+.index_abroad_box li.jjin-active{
+    background: #fff;
+    border: 1px solid #ffb413!important;
+}
+.index_abroad_box li.jjin-active a{
+    color: #ffb413;
+}
+
+
+
+
+
+
+
+
+/*index  end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
