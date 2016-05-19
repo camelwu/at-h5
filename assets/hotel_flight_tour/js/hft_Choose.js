@@ -28,7 +28,7 @@ var hftChoose = {
       ForeEndType: ForeEndType,
       Code: Code
     };
-    questUrl = questUrl ? questUrl : that.requestUrl;
+    questUrl = questUrl ? questUrl :"";
     if (loadMoreSign) {
       vlm.loadJson(questUrl, JSON.stringify(dataObj), callBack, false, false, loadMoreSign);
     } else {
