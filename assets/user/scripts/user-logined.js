@@ -87,12 +87,14 @@ function mycallback(ret) {
 //登录之后点击全部订单的链接会改变
 (function(){
     document.querySelector('.my-order').onclick=function(){
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-allorder.html';
-        }else{
-            this.href="user-login.html?allorder";
-        }
+      //去除登录
+      //if(localStorage.getItem('login') == 1)
+      //{
+      //    this.href='user-allorder.html';
+      //}else{
+      //    this.href="user-login.html?allorder";
+      //}
+      this.href='user-allorder.html';
     };
 
 
