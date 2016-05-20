@@ -19,6 +19,7 @@
   position: fixed;
   bottom: 0;
 }
+.addPaddingTop{padding-top: 1.76rem;}
 
 .singleTrip, .doubleTrip {
   float: left;
@@ -119,6 +120,8 @@
   padding: 0 .28rem;
 
 }
+#timeSingleWrap{display: none}
+#timeDoubleWrap{display: block}
 .single_date .to-word,.single_date .set-to{visibility: hidden}
 
 .date-word {
@@ -177,7 +180,8 @@
   display:inline-block;
   width: .80rem;
   text-align: center;
-  font-size: .32rem;color: rgb(51, 51, 51), }
+  font-size: .32rem;color: rgb(51, 51, 51)
+}
 .cabin-wrap{ margin: 0; padding: 0 .28rem}
 .adult{border-top: 1px solid #e6e6e6;}
 .cabin-arrow{
@@ -210,3 +214,114 @@
   font-size: .36rem;
 }
 .float-right{float: right}
+.searchZone{
+  height: .88rem;
+  line-height: .88rem;
+  padding: 0 .28rem;
+  font-size: .24rem;
+  color: #999999;
+  position: fixed;
+  top: .88rem;
+  left: 0;
+  right: 0;
+  pointer-events: all;
+  z-index: 99;
+  background-color: #fcfcfc;
+  opacity: .95;
+  box-shadow: 0 1px 1px #e6e6e6;
+  text-align: center;
+}
+.previousDay{
+   float: left;
+}
+.nextDay{
+  float: right;
+}
+.middle_input{
+  display: block;
+  border: 1px solid #999;
+  margin: .14rem 1.22rem;
+  background: #fff;
+  border-radius: .44rem;
+  height: .60rem;
+  line-height: .60rem;
+  color: #666666;
+}
+.middle_input .weekWord{margin-left: .06rem}
+.middle_input i{
+  display: inline-block;
+  width: .242rem;
+  height: .122rem;
+  background: url(../../images/ui/icon_hft.png) no-repeat;
+  background-size: 7.50rem auto;
+  background-position: 51.18% 51.58%;
+  margin-left: .16rem;
+  position: relative;
+  top: -.04rem;
+}
+.flight_ul{
+  background: #fff;
+  padding:0 .28rem ;
+}
+.flight_ul li, .time_airport,.left_info{
+  position: relative;
+}
+.left_info {
+  height: 1.8rem;
+}
+.flight_ul li{
+  padding: .40rem 0;
+  height:2.20rem;
+  border:1px solid red;
+}
+.seat_price{
+  width: 1.72rem;
+  height:100%;
+  float:right;
+  border:1px solid blue
+}
+.time_airport{
+  height:100%;
+  margin-right: 1.72rem;
+  border: 1px solid yellow;
+}
+.flight_detail{
+  height:0.4rem;
+  border:1px solid black;
+}
+.flight_detail .airCropIcon{width:.40rem;height: 100%}
+.flight_detail .airCropIcon img{width:.40rem;height: auto}
+.left_info .left, .left_info .right{
+  width:1rem;
+  height: 1.8rem;
+  float: left;
+}
+.left_info .right{
+  float: right;
+  text-align: right;
+  margin-right: .38rem;
+  position: relative;
+}
+.left_info .middle{
+  margin: 0 1.32rem 0 1rem;
+  height: 1.8rem;
+  text-align: center;
+  box-sizing: border-box;
+  padding: .2rem 0;
+  border: 1px solid red;
+
+}
+.left_info .middle span{
+  display: inline-block;
+  width: 100%;
+}
+.left_info .starPort,.left_info .endPort{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: right;
+}
+.spaceDay{
+  position: absolute;
+
+}
