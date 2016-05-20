@@ -108,24 +108,33 @@
 /*index  end*/
 /*æ∆µÍ¡–±Ì  begin*/
 .hotel_list li{
-    height: 114px;
+    height:2.08rem;
     border-bottom: 1px solid #CCC;
     clear: both;
     position: relative;
 }
 .hotel_list .h_choose{
+    width: 0.42rem;
+    height: 0.42rem;
     position: absolute;
     right: 0;
     display: none;
 }
 .hotel_list .ho_pic{
-    float: left;
     width: 32%;
-    height: 115px;
-    position: relative;
+    height: 1.68rem;
+    position: absolute;
+    left:0.2rem;
+    top: 0.2rem;
 }
-
-
+.hotel_list img.ho_img{
+    width: 1.68rem;
+    height: 1.68rem;
+}
+.hotel_list .ho_infor{
+    position: absolute;
+    left: 2.08rem;
+}
 
 
 
