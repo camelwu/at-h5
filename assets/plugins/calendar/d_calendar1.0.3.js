@@ -229,7 +229,7 @@
                     } else {
                         if (month == nowmonth + 1 && i < nowdate) {
                             pstr = '<a class="live disabled">' + i + '</a>';
-                        } else {
+                        } else if (disableDate.length > 0) {
                             for (var j = 0; j < disableDate.length; j++) {
                                 if (disableDate[j] === year + "-" + m + "-" + d) {
                                     pstr = '<a class="live disabled">' + i + '</a>';
@@ -238,7 +238,8 @@
                                     pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
                                 }
                             }
-
+                        } else {
+                            pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
                         }
                     }
                 }
