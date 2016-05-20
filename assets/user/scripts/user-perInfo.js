@@ -469,8 +469,13 @@
       $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
 
       if(infoJson.data[0].salutation == 26){
+        $('#sex').children().eq(0).attr('class', 'per_man sex_act');
+        $('#sex').children().eq(1).attr('class', 'per_woman');
         userIcon.src = "../images/ui/photo-man.png";
+
       }else{
+        $('#sex').children().eq(0).attr('class', 'per_man');
+        $('#sex').children().eq(1).attr('class', 'per_woman sex_act');
         userIcon.src = "../images/ui/photo-woman.png";
       }
     }

@@ -124,19 +124,19 @@ var fIndexModal = {
         };
         if (that.type == "oneWay") { /*单程*/
           paraObj = {
-            "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": singleDateSet.getAttribute('date-full-value'),
-            "CabinClass": reFixedSeat(seatValue),
-            "RouteType": that.type,
-            "IsHideSharedFlight": "false",
-            "IsDirectFlight": "false",
-            "NumofAdult": adultValue,
-            "NumofChild": childValue,
-            "DepartStartHour": "00",
-            "DepartEndHour": "24",
-            "PriorityRule": 0,
-            "IsDesc": "false",
+            "cityCodeFrom": cityEles[0].getAttribute('data-city-code'),
+            "cityCodeTo": cityEles[1].getAttribute('data-city-code'),
+            "departDate": singleDateSet.getAttribute('date-full-value'),
+            "cabinClass": reFixedSeat(seatValue),
+            "routeType": that.type,
+            "isHideSharedFlight": "false",
+            "isDirectFlight": "false",
+            "numofAdult": adultValue,
+            "numofChild": childValue,
+            "departStartHour": "00",
+            "departEndHour": "24",
+            "priorityRule": 0,
+            "isDesc": "false",
             "pageNo": 1,
             "pageSize": 10,
             "interNationalOrDomestic": "international", /*国际或者国内*/
@@ -148,27 +148,27 @@ var fIndexModal = {
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];
           }
-          document.location.href = 'ticket_single_list.html?' + urlStr;
+          document.location.href = 'f_single_list.html?' + urlStr;
         } else {   /*往返*/
           paraObj = {
-            "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": doubleDateSet.getAttribute('date-full-value'),
-            "ReturnDate": doubleDateArrive.getAttribute('date-full-value'),
-            "CabinClass": reFixedSeat(seatValue),
-            "RouteType": that.type,
-            "IsHideSharedFlight": "false",
-            "IsDirectFlight": "false",
-            "NumofAdult": adultValue,
-            "NumofChild": childValue,
-            "DepartStartHour": "00",
-            "DepartEndHour": "24",
-            "PriorityRule": 0,
+            "cityCodeFrom": cityEles[0].getAttribute('data-city-code'),
+            "cityCodeTo": cityEles[1].getAttribute('data-city-code'),
+            "departDate": doubleDateSet.getAttribute('date-full-value'),
+            "returnDate": doubleDateArrive.getAttribute('date-full-value'),
+            "cabinClass": reFixedSeat(seatValue),
+            "routeType": that.type,
+            "isHideSharedFlight": "false",
+            "isDirectFlight": "false",
+            "numofAdult": adultValue,
+            "numofChild": childValue,
+            "departStartHour": "00",
+            "departEndHour": "24",
+            "priorityRule": 0,
             "pageNo": 1,
             "pageSize": 10,
             "interNationalOrDomestic": "international", /*国际或者国内*/
             "hasTax": "true",
-            "IsDesc": "false",
+            "isDesc": "false",
             "fromCity": cityEles[0].innerHTML,
             "toCity": cityEles[1].innerHTML
           };
@@ -272,7 +272,7 @@ var fIndexModal = {
         }
         return cabinStr;
       };
-    defaultDate = this.createDefaultDate(data.DepartDate);
+    defaultDate = this.createDefaultDate(data.departDate);
     if (this.type == "oneWay") {
       tripTitles[0].className = "singleTrip light-title";
       tripTitles[1].className = "doubleTrip grey-title";
@@ -294,9 +294,9 @@ var fIndexModal = {
     doubleDateArrive.innerHTML = this.returnDay(defaultDate.endDay);
     doubleDateArrive.setAttribute('date-full-value', defaultDate.endDay);
     weeks[2].innerHTML = this.setWeekItems(defaultDate.endDay);
-    adultValue.innerHTML = data.NumofAdult;
-    childValue.innerHTML = data.NumofChild;
-    seatValue.innerHTML = reSeat(data.CabinClass)
+    adultValue.innerHTML = data.numofAdult;
+    childValue.innerHTML = data.numofChild;
+    seatValue.innerHTML = reSeat(data.cabinClass)
   },
 
   initDate: function () {
@@ -324,7 +324,7 @@ var fIndexModal = {
     if (fIndexInfoObj) {
       this.type = fIndexInfoObj.type;
       this.initShowInfo(fIndexInfoObj.data);
-      if (new Date(fIndexInfoObj.data.DepartDate.replace(/-/g, '/')) < new Date()) {
+      if (new Date(fIndexInfoObj.data.departDate.replace(/-/g, '/')) < new Date()) {
         this.initDate();
       }
     } else {

@@ -106,7 +106,33 @@
     margin: 0 -0.02rem 0 -0.1rem;
 }
 /*index  end*/
+/*酒店列表  begin*/
+.hotel_list li{
+    height: 114px;
+    border-bottom: 1px solid #CCC;
+    clear: both;
+    position: relative;
+}
+.hotel_list .h_choose{
+    position: absolute;
+    right: 0;
+    display: none;
+}
+.hotel_list .ho_pic{
+    float: left;
+    width: 32%;
+    height: 115px;
+    position: relative;
+}
 
+
+
+
+
+
+
+
+/*酒店列表  end*/
 
 
 
