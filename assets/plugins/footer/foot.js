@@ -490,7 +490,10 @@ var footer = (function() {
 		},
 		showItems : function(n, t) {
 			if (t == 0) {
-				that.request();
+				if(box.childNodes[n].id==0){
+
+        }
+        that.request();
 				return;
 			}
 			// 显示要筛选的列表内容

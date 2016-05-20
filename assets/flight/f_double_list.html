@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚洲旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>机票往返列表页 - 亚洲旅行网</title>
+  <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
+  <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
+  <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="preloader">
+  <div id="status">
+    <p class="center-text"></p>
+  </div>
+</div>
+<div class="all_elements">
+  <header class="header clear_shadow">
+    <a href="#" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3>机票</h3>
+  </header>
+  <div class="content">
+    <div class="hTab">
+      <div class="singleTrip light-title">单程</div>
+      <div class="doubleTrip grey-title">往返</div>
+    </div>
+    <div class="place">
+      <div class="origin"><div class="citySearch" data-city-code="BJS">北京</div></div>
+      <div class="iconTip"><div><span class="span-target"></span></div></div>
+      <div class="destination"><div class="citySearch" data-city-code="SIN">新加坡</div></div>
+    </div>
+    <div class="dateInfo white single_date" id="timeClickWrap">
+      <div class="date-word"><span class="from-word">出发日期</span><span class="to-word">返程日期</span></div>
+      <div class="date-value">
+        <div class="set-from"><span class="month-day" id="setOffDate" date-full-value="2016-06-15">06月15日</span> <span class="weekWord">周三</span></div>
+        <div class="set-to"><span class="month-day" id="arriveDate" date-full-value="2016-06-17">06月17日</span> <span class="weekWord">周五</span></div>
+      </div>
+    </div>
+    <!--乘客人数开始-->
+    <div class="pas-num-wrap white">
+      <div class="adult"><span>成人</span>  <span class="float-right"><i class="adu minus minus_grey"></i><span class="adultNumber">2</span><i class="adu plus"></i></span></div>
+      <div class="child"><span>儿童</span>  <span class="float-right"><i class="chi minus minus_grey"></i><span class="childNumber">0</span><i class="chi plus"></i></span></div>
+    </div>
+    <!--乘客人数结束-->
+    <!--舱位开始-->
+    <div class="cabin-wrap white">
+      <b class="icons"></b>
+      <span class="cabin-wrap-level">舱位等级</span>
+      <i class="cabin-arrow"></i>
+      <span id="seats">经济舱</span>
+    </div>
+    <!--舱位结束-->
+    <div class="search-button">
+      <input type="button" value="查询"  id="ticket-search-button">
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>
+<script type="text/javascript" src="js/f_double_list.js"></script>
+</html>

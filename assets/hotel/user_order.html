@@ -16,7 +16,7 @@
 	<title>订单填写页 - 亚洲旅行网</title>
 	<!--<link href="../styles/framework.css" rel="stylesheet" />-->
 	<!--<link href="../styles/style.css" rel="stylesheet" />-->
-	<!--<link href="css/user_order.css" rel="stylesheet" />-->
+	<link href="css/user_order.css" rel="stylesheet" />
 	<link href="../styles/tips.css" rel="stylesheet" />
 	<link rel="stylesheet" href="../styles/reset.css"/>
 
@@ -65,7 +65,7 @@
 		</div>
 		<form class="uo_con3 hotel_user_detail" id="uo_con3" action="../payment/payment.html?type=Hotle" method="post">
 			<div class="uo_c3_peoBox hotel_user_detail_name" id="uo_c3_peoBox">
-				<!--<div class="uo_c3_peo ">
+				<!--<div class="uo_c3_peo hotel_user_detail_border ">
                 <div class="uo_c3_div1">房间1入住人</div>
                 <div class="uo_c3_infor">
                 <input type="text" value="姓（如：Timberlake）" class="uo_lastname"  />
@@ -138,18 +138,18 @@
 				￥<span id="uo_or_sum"></span>
 			</div>
 		</div>
-		<!--<div class="uo_or_sum" id="uo_or_sumBox2">-->
-			<!--<em class="fl uo_or_assure">订单总额：</em>-->
-			<!--<div class="uo_or_pr uo_or_pr2 fl">-->
-				<!--<p>-->
-					<!--SGD<span id="uo_or_sum2"></span>-->
-				<!--</p>-->
-				<!--<p id="uo_or_sum2CNY">-->
-					<!--约￥-->
-				<!--</p>-->
-			<!--</div>-->
-		<!--</div>-->
-		<p class="uo_or_infor" id="uo_or_infor">
+		<div class="uo_or_sum hotel_footer_sum" id="uo_or_sumBox2">
+			<em class="fl uo_or_assure">订单总额：</em>
+			<div class="uo_or_pr uo_or_pr2 fl">
+				<p>
+					SGD<span id="uo_or_sum2"></span>
+				</p>
+				<p id="uo_or_sum2CNY">
+					约￥
+				</p>
+			</div>
+		</div>
+		<p class="uo_or_infor hotel_footer_detail" id="uo_or_infor">
 			<span class="fl">明细</span><i class="fl"></i>
 		</p>
 		<input type="button" value="确认订单" id="uo_confirm" class = "hotel_footer_button" />
