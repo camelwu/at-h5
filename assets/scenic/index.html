@@ -32,7 +32,7 @@
     </a>
     <h3>景点/门票</h3>
     <a href="../scenic/scenic_city.html?citycode=0&callback=scenic/scenic_list.html" class="header_more">
-      <span id="Localtxt" class="header_more_title">更多</span>
+      <span class="header_more_title">更多</span>
       <i class="header_more_icon"></i>
     </a>
   </div>
@@ -40,34 +40,68 @@
   <!--content-->
   <div class="content">
     <!--国外热游地-->
-    <div class="T_index_city">
-      <div class="city_title">国外热游地</div>
-      <div class="city_list">
-        <ul class="city_content">
-          <li class="city_content_item">
-            <div class="city_content_itemtitle"></div>
+    <div class="t_city">
+      <div class="t_city_title">国外热游地</div>
+      <div class="t_city_list">
+        <ul class="t_city_content">
+          <li class="t_city_content_item active">
+            <div class="t_city_content_itemtitle">新加坡</div>
+          </li>
+          <li class="t_city_content_item">
+            <div class="t_city_content_itemtitle">新加坡</div>
+          </li>
+          <li class="t_city_content_item">
+            <div class="t_city_content_itemtitle">新加坡</div>
+          </li>
+          <li class="t_city_content_item">
+            <div class="t_city_content_itemtitle">新加坡</div>
+          </li>
+          <li class="t_city_content_item">
+            <div class="t_city_content_itemtitle">新加坡</div>
+          </li>
+          <li class="t_city_content_item">
+            <div class="t_city_content_itemtitle">新加坡</div>
+          </li>
+          <li class="t_city_content_item">
+            <div class="t_city_content_itemtitle">新加坡</div>
           </li>
         </ul>
       </div>
     </div>
     <!--国外热游地-->
     <!--国外热门景点-->
-    <div class="T_index_product">
-      <div class="product_title">国外热门景点</div>
-      <ul class="product_list">
-        <li>
+    <div class="t_product">
+      <div class="t_product_title">国外热门景点</div>
+      <ul class="t_product_list">
+        <li class="t_product_item">
           <a href="#">
-            <div class="product_itemtop">
-              <div class="product_image">
+            <div class="t_product_itemtop">
+              <div class="t_product_image">
                 <img src="images/img01.jpg">
               </div>
             </div>
-            <div class="product_price">
-              ￥<em>2480</em>起
+            <div class="t_product_price">
+              ￥<span>2480</span>起
             </div>
-            <div class="product_itembottom">
-              <h5 class="product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>
-              <p class="product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>
+            <div class="t_product_itembottom">
+              <h5 class="t_product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>
+              <p class="t_product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>
+            </div>
+          </a>
+        </li>
+        <li class="t_product_item">
+          <a href="#">
+            <div class="t_product_itemtop">
+              <div class="t_product_image">
+                <img src="images/img01.jpg">
+              </div>
+            </div>
+            <div class="t_product_price">
+              ￥<span>2480</span>起
+            </div>
+            <div class="t_product_itembottom">
+              <h5 class="t_product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>
+              <p class="t_product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>
             </div>
           </a>
         </li>
@@ -76,7 +110,6 @@
     <!--国外热门景点-->
   </div>
   <!--content-->
-
 </div>
 
 
@@ -86,32 +119,12 @@
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script type="text/javascript" src="js/scenic.js"></script>
-<script id="tpl_GetHotCity" type="text/template">
-  {% for(var i=0,len=data.destCities.length>=9?9:data.destCities.length;i
-  <len;i++){ %}
-  <li class="hotplace" title="{%=data.destCities[i].cityCode%}">{%=data.destCities[i].cityName%}</li>
-  {% } %}
-  <!--<li class = "hotplace" title="more">更多</li>-->
-</script>
-<script id="tpl_GetHotSpot" type="text/template">
-  {% for(var i = 0;i < hotScenicList.length;i++){ %}
-  <li>
-    <a href="../scenic/scenic_detail.html?packageID={%=hotScenicList[i].productID%}">
-      <img src="{%=hotScenicList[i].productPicUrl%}" class="banner-image" alt="img">
-      <div class="hp-block">
-        <b class="icon1 s-location"></b>
-        {%=hotScenicList[i].productSite%}
-      </div>
-    </a>
-    <div class="spotDesc">{%=hotScenicList[i].productName%}</div>
-    <div><span>￥</span><span class="pay-num">{%=hotScenicList[i].productPrice%}</span><span>起</span></div>
-  </li>
-  {% } %}
-</script>
 
 <script>
   /*景点首页MT*/
   (function () {
+//    var arr= [{title:"let"},{name:"more"},{pass:"list"}];
+//    console.log(arr.join(","));
 //            var nowindex = 0;//点击事件获取当前下标值
 //            localStorage.setItem('clickli','');//点击事件存储下标key名字
     vlm.init();

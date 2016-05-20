@@ -19,169 +19,117 @@ var fSingleList = {
     this.addHandler(target, eventType, handle);
   },
 
-  eventHandler: function () {
-    var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
-    that.deg = 0;
-    this.addHandler(content, 'click', function (e) {
-      var e = e || window.event, target = e.target || e.srcElement;
-      var temTitle = null;
-      if (target.innerHTML == "单程") {
-        that.type = "oneWay";
-        target.className = "singleTrip light-title";
-        target.nextSibling.nextSibling.className = "doubleTrip grey-title";
-        singleWrap.style.display = "block";
-        doubleWrap.style.display = "none";
-        document.querySelector('.dateInfo').className = "dateInfo white single_date";
-      } else if (target.innerHTML == "往返") {
-        that.type = "return";
-        target.className = "doubleTrip light-title";
-        target.previousSibling.previousSibling.className = "singleTrip grey-title";
-        singleWrap.style.display = "none";
-        doubleWrap.style.display = "block";
-        document.querySelector('.dateInfo').className = "dateInfo white";
-      } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
-        var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "";
-        oSpan.style.transition = '0.7s all ease';
-        oSpan.style.webkitTransition = '0.7s all ease';
-        that.deg += 180;
-        oSpan.style.transform = 'rotate(' + that.deg + 'deg)';
-        oSpan.style.webkitTransform = 'rotate(' + that.deg + 'deg)';
-        tem = cityName[0].innerHTML, temCode = cityName[0].getAttribute('data-city-code');
-        cityName[0].innerHTML = cityName[1].innerHTML;
-        cityName[0].setAttribute('data-city-code', cityName[1].getAttribute('data-city-code'));
-        cityName[1].innerHTML = tem;
-        cityName[0].setAttribute('data-city-code', temCode);
-      } else if (target.className == "citySearch") {
-        //打开城市列表复层
-
-
-      } else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
-        var adultNumEle = document.querySelector('.adultNumber'), childNumEle = document.querySelector('.childNumber'), adultNum = Number(adultNumEle.innerHTML), childNum = Number(childNumEle.innerHTML);
-        var adultIs = document.querySelectorAll(".adult i"), childIs = document.querySelectorAll(".child i");
-        if (target.className == "adu plus") {
-          if (adultNum + childNum < 9) {
-            adultNum++;
-            adultNumEle.innerHTML = adultNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-          }
-        } else if (target.className == "chi plus") {
-          if (adultNum + childNum < 9) {
-            if (adultNum / childNum > 1 / 2) {
-              childNum++;
-              childNumEle.innerHTML = childNum;
-              adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-              childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-              adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-              childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-            }
-          }
-        } else if (target.className == "adu minus") {
-          if (adultNum >= 3) {
-            adultNum--;
-            adultNumEle.innerHTML = adultNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-            childNumEle.innerHTML = adultNum / childNum < 1 / 2 ? adultNum * 2 : childNum;
-          }
-        } else if (target.className == "chi minus") {
-          if (childNum >= 1) {
-            childNum--;
-            childNumEle.innerHTML = childNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-          }
-        }
-      } else if (target.id == "ticket-search-button") {
-        var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'), doubleDateArrive = document.querySelector('#arriveDate');
-        var adultValue = document.querySelector('.adultNumber').innerHTML, childValue = document.querySelector('.childNumber').innerHTML, seatValue = document.querySelector('#seats').innerHTML;
-        var reFixedSeat = function (arg) {
-          var cabinStr = "";
-          switch (arg) {
-            case "经济舱":
-              cabinStr = "economy";
-              break;
-            case "商务舱":
-              cabinStr = "business";
-              break;
-            case "头等舱":
-              cabinStr = "first";
-              break;
-            case "豪华经济舱":
-              cabinStr = "economyPremium";
-              break;
-            default :
-              void (0);
-          }
-          return cabinStr;
-        };
-        if (that.type == "oneWay") { /*单程*/
-          paraObj = {
-            "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": singleDateSet.getAttribute('date-full-value'),
-            "CabinClass": reFixedSeat(seatValue),
-            "RouteType": that.type,
-            "IsHideSharedFlight": "false",
-            "IsDirectFlight": "false",
-            "NumofAdult": adultValue,
-            "NumofChild": childValue,
-            "DepartStartHour": "00",
-            "DepartEndHour": "24",
-            "PriorityRule": 0,
-            "IsDesc": "false",
-            "pageNo": 1,
-            "pageSize": 10,
-            "interNationalOrDomestic": "international", /*国际或者国内*/
-            "hasTax": "true",
-            "fromCity": cityEles[0].innerHTML,
-            "toCity": cityEles[1].innerHTML
-          };
-          storage.setItem('fIndexInfo', JSON.stringify(paraObj));
-          for (var att_ in paraObj) {
-            urlStr += "&" + att_ + "=" + paraObj[att_];
-          }
-          document.location.href = 'ticket_single_list.html?' + urlStr;
-        } else {   /*往返*/
-          paraObj = {
-            "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": doubleDateSet.getAttribute('date-full-value'),
-            "ReturnDate": doubleDateArrive.getAttribute('date-full-value'),
-            "CabinClass": reFixedSeat(seatValue),
-            "RouteType": that.type,
-            "IsHideSharedFlight": "false",
-            "IsDirectFlight": "false",
-            "NumofAdult": adultValue,
-            "NumofChild": childValue,
-            "DepartStartHour": "00",
-            "DepartEndHour": "24",
-            "PriorityRule": 0,
-            "pageNo": 1,
-            "pageSize": 10,
-            "interNationalOrDomestic": "international", /*国际或者国内*/
-            "hasTax": "true",
-            "IsDesc": "false",
-            "fromCity": cityEles[0].innerHTML,
-            "toCity": cityEles[1].innerHTML
-          };
-          storage.setItem('fIndexInfo', JSON.stringify(paraObj));
-          for (var att_ in paraObj) {
-            urlStr += "&" + att_ + "=" + paraObj[att_];
-          }
-          document.location.href = 'ticket_double_list.html?' + urlStr;
-        }
-      }
-    })
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+    var that = this, dataObj =
+    {
+      Parameters: data,
+      ForeEndType: ForeEndType,
+      Code: Code
+    };
+    questUrl = questUrl ? questUrl :"";
+    if (loadMoreSign) {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
+    } else {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    }
   },
 
+  eventHandler: function () {
+    var content = document.querySelector('.content'), searchZone = document.querySelector('.searchZone'),flightUl =  document.querySelector('.flight_ul'),  that = this, tem = {}, storage = window.sessionStorage;
+    this.addHandler(flightUl, 'click', function (e) {
+      var e = e || window.event, target = e.target || e.srcElement;
+      var setId = "";
+      console.log(target.tagName)
+       if(target.tagName == "LI"){
+             setId = target.getAttribute('data-set-id');
+             that.currrentFlightList.flightInfos.forEach(function(item, index){
+                       if(item.setID == setId){
+                            tem = item;
+                            return
+                       }
+             });
+            storage.setItem('currentFlight', JSON.stringify(tem));
+            window.location.href = "f_seat_choose.html?setId="+setId;
+       }
+  })
+    this.addHandler(searchZone, 'click', function (e) {
+      var e = e || window.event, target = e.target || e.srcElement, temDate = "", lineMaxDate = "", newUrl = "";
+      var tem = "", plusOne = "", minusOne = "", monthNum= "", dateNum= "";
+      temDate = document.querySelector('#setOffDateSingle').getAttribute('date-full-value');
+      if(target.className == "previousDay"){
+          lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+          tem = new Date(temDate.replace(/-/g, "/"));
+          minusOne = new Date(tem.setDate(tem.getDate() - 1));
+          monthNum = (minusOne.getMonth() + 1) < 10 ? "0" + parseInt((minusOne.getMonth() + 1)) : minusOne.getMonth() + 1;
+          dateNum = (minusOne.getDate()) < 10 ? "0" + parseInt(minusOne.getDate()) : minusOne.getDate();
+          minusOne = minusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
+         if (new Date(minusOne.replace(/-/g, "/") + ' 23:59:59') >= new Date()) {
+           newUrl = vlm.setUrlPara("", "departDate", minusOne);
+           newUrl = vlm.setUrlPara(newUrl, "pageNo", 1);
+           newUrl = vlm.setUrlPara(newUrl, "pageSize", 10);
+           window.location.href = newUrl;
+        }
+      }else if(target.className == "nextDay"){
+        lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
+        tem = new Date(temDate.replace(/-/g, "/"));
+        plusOne = new Date(tem.setDate(tem.getDate() + 1));
+        monthNum = (plusOne.getMonth() + 1) < 10 ? "0" + parseInt((plusOne.getMonth() + 1)) : plusOne.getMonth() + 1;
+        dateNum = (plusOne.getDate()) < 10 ? "0" + parseInt(plusOne.getDate()) : plusOne.getDate();
+        plusOne = plusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
+        if (new Date(plusOne.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(plusOne.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
+            newUrl = vlm.setUrlPara("", "departDate", plusOne);
+            newUrl = vlm.setUrlPara(newUrl, "pageNo", 1);
+            newUrl = vlm.setUrlPara(newUrl, "pageSize", 10);
+            window.location.href = newUrl;
+        }
+      }
+    });
+    return this;
+  },
+
+  createTags:function(){
+    var data = arguments[0];
+    var tempString="", outputString="", that = fSingleList;
+    tempString = $("#template_flight_list").html();
+    outputString = ejs.render(tempString, data);
+    $(".flight_ul").eq(0).html(outputString);
+    return this;
+  },
+
+  renderHandler:function(){
+    var result = arguments[0],that = fSingleList, storage = window.sessionStorage;
+    console.log(result)
+    if(result.success&&result.code == "200"){
+         that.currrentFlightList = result.data;
+         that.createTags(that.currrentFlightList).eventHandler().dateCalender();
+    }
+  },
+
+  dateCalender: function(){
+    var tem = {start:this.postObj.departDate}, timeObj = {};
+    timeObj[tem.start] = tem.start;
+    var dates = document.querySelectorAll('#timeSingle .monthDay'), weeks = document.querySelectorAll('#timeSingle .weekWord');
+    var myTime2 = new ATplugins.Calender({
+      id: "timeSingle",
+      selectTime: 1,
+      time: timeObj,
+      checkInTimeOptId: 'setOffDateSingle',
+      callback: function () {
+        var  dateSource = arguments[0], that = fSingleList;
+        console.log(dates)
+        dateSource.forEach(function (array, index) {
+          dates[index].setAttribute('date-full-value', array);
+          dates[index].innerHTML = that.returnDay(array);
+          weeks[index].innerHTML = that.setWeekItems(array);
+        });
+        var newUrl = vlm.setUrlPara("", "departDate", dateSource);
+        window.location.href = newUrl;
+      }
+    });
+    dates[0].setAttribute('date-full-value', this.postObj.departDate);
+    dates[0].innerHTML = this.returnDay(this.postObj.departDate);
+    weeks[0].innerHTML = this.setWeekItems(this.postObj.departDate);
+  },
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
     switch (index) {
@@ -220,11 +168,57 @@ var fSingleList = {
     return array[1] + '月' + array[2] + '日';
   },
 
+  fadeHandler: function () {
+    var tag = arguments[0] || "hide";
+    if (tag == "show") {
+      $("#preloader").fadeIn();
+      $("#status").delay(400).fadeIn("medium");
+    } else {
+      $("#status").fadeOut();
+      $("#preloader").delay(400).fadeOut("medium");
+    }
+    return this;
+  },
+
+  parseUrlHandler: function (url, isEncode) {
+    var isEncode = isEncode || false, reg = /([^=&?]+)=([^=&?]+)/g, obj = {}, url =url;
+    url.replace(reg, function () {
+      var arg = arguments;
+      obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
+    });
+    return obj;
+  },
 
   init: function () {
-    $("#status").fadeOut();
-    $("#preloader").delay(400).fadeOut("medium");
-
+      var postObj = this.parseUrlHandler(window.location.href,true);
+      console.log(postObj)
+         /* postObj={
+              "cityCodeFrom": "BJS",
+              "cityCodeTo": "SIN",
+              "departDate": "2016-06-18",
+             /!* "returnDate": "2016-06-17",*!/
+              "cabinClass": "economy",
+              "routeType": "oneWay",
+              "isHideSharedFlight": "false", /!*是否隐藏共享航班*!/
+              "isDirectFlight": "false",
+              "numofAdult": 2,
+              "numofChild": 0,
+              "departStartHour": "00",
+              "departEndHour": "24",
+              "priorityRule": 0, /!*	0 - 无优先规则，1 - 直飞优先，2 - 低价优先，3 - 总耗时优先*!/
+              "pageNo": 1,
+              "pageSize": 10,
+              "hasTax": "true",
+              "isDesc": "false", /!*是否降序，默认升序*!/
+              /!* "AirCorpCode":"MH",*!//!*航空公司赛选参数，不传不限航空公司*!/
+              "fromCity": "北京",
+              "toCity": "新加坡",
+              "interNationalOrDomestic": "international"
+          };
+*/
+      console.log(postObj)
+      this.postObj = postObj;
+      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 
 };

@@ -18,52 +18,64 @@
   <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div id="preloader">
+<!--<div id="preloader">
   <div id="status">
     <p class="center-text"></p>
   </div>
-</div>
+</div>-->
 <div class="all_elements">
-  <header class="header clear_shadow">
+  <header class="header">
     <a href="#" class="header_back">
       <i class="icon_back"></i>
     </a>
-    <h3>机票</h3>
+    <h3><span>北京</span><i class="arrowDouble"></i><span>新加坡</span>
+    </h3>
   </header>
-  <div class="content">
-    <div class="hTab">
-      <div class="singleTrip light-title">单程</div>
-      <div class="doubleTrip grey-title">往返</div>
+  <div class="content addPaddingTop">
+    <!--输入框-->
+    <div class="searchZone">
+      <span class="previousDay">前一天</span>
+      <span class="nextDay">后一天</span>
+         <span class="middle_input">
+           <span class="monthDay">4月29日</span><span class="weekWord">周五</span><i></i>
+         </span>
     </div>
-    <div class="place">
-      <div class="origin"><div class="citySearch" data-city-code="BJS">北京</div></div>
-      <div class="iconTip"><div><span class="span-target"></span></div></div>
-      <div class="destination"><div class="citySearch" data-city-code="SIN">新加坡</div></div>
-    </div>
-    <div class="dateInfo white single_date" id="timeClickWrap">
-      <div class="date-word"><span class="from-word">出发日期</span><span class="to-word">返程日期</span></div>
-      <div class="date-value">
-        <div class="set-from"><span class="month-day" id="setOffDate" date-full-value="2016-06-15">06月15日</span> <span class="weekWord">周三</span></div>
-        <div class="set-to"><span class="month-day" id="arriveDate" date-full-value="2016-06-17">06月17日</span> <span class="weekWord">周五</span></div>
-      </div>
-    </div>
-    <!--乘客人数开始-->
-    <div class="pas-num-wrap white">
-      <div class="adult"><span>成人</span>  <span class="float-right"><i class="adu minus minus_grey"></i><span class="adultNumber">2</span><i class="adu plus"></i></span></div>
-      <div class="child"><span>儿童</span>  <span class="float-right"><i class="chi minus minus_grey"></i><span class="childNumber">0</span><i class="chi plus"></i></span></div>
-    </div>
-    <!--乘客人数结束-->
-    <!--舱位开始-->
-    <div class="cabin-wrap white">
-      <b class="icons"></b>
-      <span class="cabin-wrap-level">舱位等级</span>
-      <i class="cabin-arrow"></i>
-      <span id="seats">经济舱</span>
-    </div>
-    <!--舱位结束-->
-    <div class="search-button">
-      <input type="button" value="查询"  id="ticket-search-button">
-    </div>
+    <ul class="flight_ul">
+      <li>
+        <div class="seat_price">
+          <p class="seat">经济舱</p>
+          <p class="priceNumber">2200</p>
+        </div>
+        <div class="time_airport">
+          <div class="left_info">
+            <div class="left">
+              <span class="starTime">07:00</span>
+              <span class="starPort">浦东机场T2</span>
+            </div>
+            <div class="right">
+              <span class="endTime">09:15</span>
+              <span class="endPort">浦东机场T2</span>
+              <span class="spaceDay">+1天</span>
+            </div>
+            <div class="middle">
+              <span class="timeCost">11h30m</span>
+              <span class="arrow_word"></span>
+              <span class="transferCity">莫斯科</span>
+            </div>
+
+          </div>
+          <p class="flight_detail">
+            <span class="airCropIcon"><img  src="" /></span>
+            <span class="airCropName">中国国航</span>
+            <span>CA983</span>
+            <span>波音787</span>
+            <span>经济舱</span>
+            <span>共享</span>
+          </p>
+        </div>
+      </li>
+
+    </ul>
   </div>
 </div>
 </body>
