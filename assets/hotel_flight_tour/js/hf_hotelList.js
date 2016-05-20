@@ -71,12 +71,18 @@
 					listData : data.locationList
 				}
 			}, menu_call = function(data) {
-				parametersStorage.sortFields = data.sortTypes;
-				parametersStorage.Location = data.locationList;
+				//位置重构
+				var toString = [];
+				toString= data.locationList;
+				var locationList = toString.join(",");
+
+				//筛选重构
 				var arrNum = data.filters,filter = 0;
 				for(var i=0;i<arrNum.length;i++){
 					filter += arrNum[i].FilterValues[0]-0;
 				}
+				parametersStorage.sortFields = data.sortTypes;
+				parametersStorage.Location = locationList;
 				parametersStorage.StarRating = filter;
 				//加loading
 				$('.status').fadeIn('fast');

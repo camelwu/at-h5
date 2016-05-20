@@ -3,21 +3,19 @@
  *
  * ---------------------------------------------------------------
  *
- * This is the default Grunt tasklist that will be executed if you
- * run `grunt` in the top level directory of your app.  It is also
- * called automatically when you start Sails in development mode using
- * `sails lift` or `node app`.
- *
- * Note that when lifting your app in a production environment (with the
- * `NODE_ENV` environment variable set to 'production') the `prod` task
- * will be run instead of this one.
+ * 默认的grunt只执行拷贝工作，给测试的代码需要压缩css js等
  *
  * For more information see:
  *   http://sailsjs.org/documentation/anatomy/my-app/tasks/register/default-js
  *
  */
 module.exports = function (grunt) {
-    grunt.registerTask('default', ['linkAssets', 'compileAssets', 'watch']);
-    //grunt.registerTask('test', ['linkAssets', 'compileAssets', 'uglify:dev', 'cssmin:dev', 'watch']);
-    //grunt.registerTask('default', ['filerev']);
+    grunt.registerTask('test', [
+        'linkAssets',
+        'compileAssets',
+        'uglify:dev',
+        'cssmin:dev',
+        'clean:demo', //删除不能访问的资源
+        'clean:plugins' //删除不能访问的资源
+        ]);
 };
