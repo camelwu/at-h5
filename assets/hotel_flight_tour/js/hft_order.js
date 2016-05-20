@@ -39,7 +39,7 @@
       $('.tour_section').remove();
 
     }else{
-      
+
       jAlert('资源选择页url:type=undefined');
     }
 
@@ -203,10 +203,14 @@
         Parmeters.Parameters.tours=tours;
 
         //hft请求码
-        Parmeters.foreEndType = 2;
+        Parmeters.foreEndType = 3;
         Parmeters.code = 60100010;
       }else{
         //hf请求码
+        Parmeters.Parameters.track={
+          "browserType": "",
+           "deviceID": vlm.getDeviceID()
+        }
         Parmeters.foreEndType = 3;
         Parmeters.code = 50100004;
       }
