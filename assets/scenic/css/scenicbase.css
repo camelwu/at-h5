@@ -1,0 +1,164 @@
+/*首页_背景*/
+.content{
+  background-color: #ffffff;
+}
+/*首页_更多*/
+.header_more {
+  font-size: .28rem;
+  color: #333333;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: .88rem;
+  line-height: .88rem;
+  width: 1.15rem;
+}
+
+.header_more .header_more_title {
+  font-size: .32rem;
+}
+
+.header_more .header_more_icon {
+  position: absolute;
+  margin-top: -0.16rem;
+  top: 50%;
+  right: .2rem;
+  height: 0.32rem;
+  width: .29rem;
+  overflow: hidden;
+  display: inline-block;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1.08rem -0.59rem;
+}
+/*首页_更多*/
+
+/*首页_国外热游地*/
+.t_city{
+  margin: 0.4rem 0 0 0.28rem;
+  font-size: 0.28rem;
+  color: #333333;
+  overflow: hidden
+}
+
+.t_city .t_city_title{
+  margin: 0 0 0.34rem 0;
+  font-size: 0.32rem;
+}
+
+.t_city_list{
+
+}
+
+.t_city_content{
+
+}
+
+.t_city_content_item{
+  box-sizing: border-box;
+  width: 33.3%;
+  float: left;
+  padding-bottom: 0.4rem;
+  padding-right: 0.28rem;
+}
+
+.t_city_content_item.active .t_city_content_itemtitle{
+  border: 1px solid #ffb413;
+  color: #FFB413;
+}
+
+.t_city_content_itemtitle{
+  position: relative;
+  line-height: 0.66rem;
+  padding-left: 0.03rem;
+  padding-right: 0.03rem;
+  border-radius: 0.32rem;
+  font-size: 0.28rem;
+  color: #333;
+  text-align: center;
+  border: 1px solid #d1d1d1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*首页_国外热游地*/
+
+/*首页_国外热门景点*/
+.t_product{
+  margin: .18rem 0.28rem 0 0.28rem;
+  font-size: .28rem;
+  color: #333;
+  overflow: hidden;
+}
+
+.t_product_title{
+  font-size: .32rem;
+}
+
+.t_product_list{
+
+}
+
+.t_product_item{
+  margin: 0.4rem 0 0 0;
+  position: relative;
+}
+
+.t_product_item a{
+  color: #333;
+  text-decoration: none;
+}
+
+.t_product_itemtop{
+  position: relative;
+}
+
+.t_product_image{
+  height: 4.3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.t_product_image img{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+.t_product_price{
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  color: #fff;
+  font-size: .28rem;
+  background: #333;
+  height: .72rem;
+  line-height: .72rem;
+}
+.t_product_price span{
+  font-size: .4rem;
+}
+
+.t_product_itembottom{
+  padding: .4rem .15rem .2rem .15rem;
+}
+
+.t_product_title{
+  font-size: .32rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: .2rem;
+  line-height: .4rem;
+}
+
+.t_product_describe{
+  font-size: .28rem;
+  color: #666;
+  line-height: .3rem;
+}
+/*首页_国外热门景点*/

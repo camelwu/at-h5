@@ -232,7 +232,7 @@ a {
     z-index: 99;
     background-color: #fcfcfc;
     opacity: .95;
-    box-shadow: 0 1px 1px #ddd;
+    box-shadow: 0 1px 1px #e6e6e6;
 }
 
 .header .header_back {
@@ -259,18 +259,19 @@ a {
     text-align: center;
     line-height: .88rem;
 }
-.header h3 .arrowDouble{
+.header h3 .arrowDouble, .header h3 .arrowSingle{
   display: inline-block;
   height: .4rem;
   width: .4rem;
-  background: url(../images/ui/icon_common.png) no-repeat;
-  background-size: 7.89rem 5.07rem;
-  background-position: -6.08rem -1.46rem;
+  background: url(../images/ui/icon_hft.png) no-repeat;
+  background-size: 7.50rem 4.54rem;
+  background-position: 8% 10.4%;
   position: relative;
   left: 0;
   top: .1rem;
   margin: 0 .18rem;
 }
+.header h3 .arrowSingle{background-position: 17.3% 11.4%;}
 .content {
     padding-top: .88rem;
 }

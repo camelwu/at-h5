@@ -24,7 +24,7 @@
 		<link href="../styles/reset.css"		rel="stylesheet" type="text/css">
 		<link href="../styles/tips.css"		rel="stylesheet" type="text/css">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
-		<link href="../css/date_select.css"	rel="stylesheet" type="text/css">
+		<link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="preloader">
@@ -54,8 +54,8 @@
 					<li>
 						性别
 						<div class="info_sex" id="sex">
-							<div class="sex_div">男</div>
-							<div class="sex_act sex_div">女</div>
+							<div class="per_man sex_act">男</div>
+							<div class="per_woman">女</div>
 						</div>
 					</li>
 					<li  class="sex-alter" id="ppp">
@@ -82,7 +82,7 @@
         <a id="close_page" class="header_back"><i class="icon_back"></i></a>
         <h3 id="title">修改昵称/填写姓名/手机号验证/邮箱/修改密码</h3>
       </div>
-			<ul id="info_content">
+			<ul id="info_content" class="user_content">
 				<li id="changename" style="display: none;">
 					<form id="nickForm" action="user-perInfo.html" method="get">
 						<div class="u_name">
@@ -94,25 +94,25 @@
 					</form>
 				</li>
 				<form id="infoForm" action="user-perInfo.html" method="get">
-					<li id="fillname" style="display: none;">
+					<li id="fillname">
 						<div class="u_name">
 							<input id="realName" type="text" value placeholder="请填写真实姓名" maxlength="20" data-type="code">
               <b class="icon_person name_close"></b>
 						</div>
 						<div class="name_text">不超过10个汉字或者20个英文字符，支持空格和“.”</div>
 					</li>
-					<li id="phoneverify" style="display: none;">
+					<li id="phoneverify">
 						<ul class="f_key">
 							<li>
-								<input id="phone" class="fk_put  mob-cell" type="text" value placeholder="请输入手机号" data-type="tel">
+								<input id="phone" class="fk_put  mob_cell" type="text" value placeholder="请输入手机号" data-type="tel">
 							</li>
-							<li style="padding-right: 0;">
-								<input class="fk_put mob-code" type="text" value placeholder="请输入验证码" data-type="code">
+							<li>
+								<input class="fk_put mob_code" type="text" value placeholder="请输入验证码" data-type="code">
 								<div class="fk_div" id="phone_ver">发送验证码</div>
 							</li>
 						</ul>
 					</li>
-					<li id="useremail" style="display: none;">
+					<li id="useremail">
 						<div class="u_name">
 							<input id="email" type="text" placeholder="请输入邮箱" data-type="email">
 						</div>
@@ -121,30 +121,28 @@
           <a id="amend_btn_1" href="javascript:;" class="f_btn">保存</a>
           <a id="amend_btn_2" href="javascript:;" class="f_btn">保存</a>
 				</form>
-				<li id="amendkey" style="display: none;">
+				<li id="amendkey">
 					<form id="keyForm" action="user-perInfo.html" method="get">
-						<ul class="f_key">
-							<li class = "amendkey">
-								<div>当前密码</div>
+						<ul class="f_key mb_none">
+							<li>
+								<span>当前密码</span>
 								<input type="password" placeholder="6-20位字符" data-type="pass"/>
 							</li>
-							<li class = "amendkey">
-								<div>新密码</div>
+							<li>
+								<span>新密码</span>
 								<input type="password" placeholder="6-20位字符" data-type="pass"/>
 							</li>
-							<li class = "amendkey">
-								<div>确认密码</div>
+							<li>
+								<span>确认密码</span>
 								<input type="password" placeholder="6-20位字符" data-type="pass"/>
 							</li>
 						</ul>
 					</form>
-					<div id="ifshowkey" class="showkey">
-						<b class="show-key"></b><span class="pas-showhide">显示密码</span>
+					<div id="ifshowkey" class="showkey clearfix">
+						<div class="showkey_tab fr"><b class="show_key"></b><span class="pas_showhide">显示密码</span></div>
 					</div>
-					<input id="newkey_btn" class="f_btn button-orange" type="button" value="完成"/>
-					<div class="con-text">
-						注意：密码需要填写6-20位字符，可由英文字母，数字和符号组成，不能含空格
-					</div>
+          <a id="newkey_btn" href="javascript:;" class="f_btn">完成</a>
+					<div class="con_pass">注意：密码需要填写6-20位字符，可由英文字母，数字和符号组成，不能含空格</div>
 				</li>
 			</ul>
 		</div>
@@ -153,5 +151,6 @@
 		<script src="../js/lib/vlm.js"></script>
 		<script src="scripts/user-perInfo.js"></script>
 		<script src="../js/require.js" data-main="../js/user.js"></script>
+    <script src="../js/plugins/scroller/scroller1.1.js"></script>
 	</body>
 </html>

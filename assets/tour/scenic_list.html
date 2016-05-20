@@ -1,72 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>景点</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚洲旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="x5-fullscreen" content="true">
-
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
-    <link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
-    <link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
-    <link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
-    <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
-    <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
-    <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-    <link href="../styles/framework.css" rel="stylesheet"/>
-    <link href="../styles/style.css" type="text/css" rel="stylesheet">
-    <link href="../scenic/css/scenic.css" rel="stylesheet"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚洲旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>酒+景景点列表页 - 亚洲旅行网</title>
+    <!--<link href="../scenic/css/scenic.css" rel="stylesheet"/>-->
     <!--<link rel="stylesheet" type="text/css" href="css/sceniclist.css">-->
-    <link href="../styles/owl.theme.css"	rel="stylesheet" type="text/css">
-    <link href="../styles/tips.css"	rel="stylesheet">
+    <link href="css/ht_tour.css" rel="stylesheet" />
+  <link href="../styles/reset.css" rel="stylesheet" />
+  <link href="../styles/owl.theme.css"	rel="stylesheet" type="text/css">
+  <link href="../styles/tips.css"	rel="stylesheet">
 </head>
 <body>
-<div id="preloader">
+    <div id="preloader">
         <div id="status">
-            
+
         </div>
     </div>
 <div class="all-elements">
     <!--   顶部   -->
-    <div class="header" id="vlm-login">
-        <a href="javascript:;" id="city-back-tip" class="header-back"><i class="icons go-back"></i></a>
-        <h3>酒+景</h3>
-        <a href="../scenic/scenic_city.html?citycode=1&callback=tour/scenic_list.html" class="location-wrap">
-            <span id="Localtxt" class="location-txt"></span>
-            <i class="location-tip"></i>
+    <div class="header">
+        <a href="javascript:history.go(-1);" class="header_back">
+            <i class="icon_back"></i>
         </a>
+        <h3>酒+景</h3>
     </div>
-    <!--<header class="top">-->
-    <!--<a href="javascript:;" class="icons header-back"></a>-->
-    <!--<h3>特色当地游</h3>-->
-    <!--<a href="javascript:;" class="location-wrap">-->
-    <!--<span class="location-txt">北京</span>-->
-    <!--<i class="location-tip"></i>-->
-    <!--</a>-->
-    <!--</header>-->
     <!--   内容   -->
-    <div class="sc-content">
-        <section>
-            <!--<div class="cont-exhibition">-->
-            <!--<img src="images/palace.jpg" alt=""/>-->
-            <!--</div>-->
-            <div class="scenic-list-box">
-                <!--<div class="scenic-list-choi-wrap">-->
-                <!--<a class="active">北京景点</a>-->
-                <!--<a>周边景点</a>-->
-                <!--</div>-->
-                <ul id="scenic-list-cont" class="scenic-list-cont active">
+    <div class="content">
+                <ul id="scenicListCont" class="scenic_list_cont">
                 </ul>
                 <!--<ul class="scenic-list-cont">-->
                 <!--<li class="s-li">-->
@@ -84,40 +53,30 @@
                 <!--</a>-->
                 <!--</li>-->
                 <!--</ul>-->
-            </div>
-        </section>
     </div>
     <!--   底部   -->
     <footer class="sl-bottom">
-        <!--<div>
-            <b class="jd-icon s-good"></b>
-            产品经理推荐
-        </div>
-        <div>
-            <b class="jd-icon s-remark"></b>
-            好评率
-        </div>-->
         <div id="priceSort">
-            <b id="psort" class="jd-icon s-rank"></b>
+            <b id="psort" class="jd_icon s_rank"></b>
             <i></i>
             价格排序
         </div>
         <div id="screen">
-            <b class="jd-icon s-fil"></b>
+            <b class="jd_icon s_fil"></b>
             <i></i>
             过滤
         </div>
     </footer>
     <!--      筛选块      -->
-    <div id="screen_mb" class="qp-mengban"></div>
-    <div id="list_screen" class="list-screen">
-        <div id="quit_screen" title="chancel">取消</div>
-        <div id="clear_screen" title="clear">清除筛选</div>
-        <div id="sure_screen" title="confirm">确定</div>
-        <ul class="scr-title">
-            <li class="sctit-active">景点主题</li>
+    <div id="screen_mb" class="qp_mengban"></div>
+    <div id="listScreen" class="list_screen">
+        <div id="quitScreen" title="chancel">取消</div>
+        <div id="clearScreen" title="clear">清除筛选</div>
+        <div id="sureScreen" title="confirm">确定</div>
+        <ul class="scr_title">
+            <li class="sctit_active">景点主题</li>
         </ul>
-        <ul id="SpotScreen" class="spot-screen">
+        <ul id="SpotScreen" class="spot_screen">
 
         </ul>
     </div>
@@ -126,34 +85,34 @@
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script src="../js/lib/lazyLoad.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script id="tpl_Localtxt" type="text/template">
-    {%=destCity%}
+    <%=destCity%>
 </script>
 <script id="tpl_SpotScreen" type="text/template">
-    <li class="spot-slected">不限<b class="jd-icon scr-gou s-active"></b></li>
-    {% for(var i=0,len=data.themes.length;i<len;i++){ %}
-    <li title="{%=data.themes[i].themeID%}">{%=data.themes[i].themeName%}<b class="jd-icon scr-gou"></b></li>
-    {% } %}
+    <li class="spot-slected">不限<b class="jd_icon scr_gou s_active"></b></li>
+    <% for(var i=0;i<themes.length;i++){ %>
+    <li title="<%=themes[i].themeID%>"><%=themes[i].themeName%><b class="jd_icon scr_gou"></b></li>
+    <% } %>
 </script>
 <script id="tpl_SearchAvailableToursAttractions" type="text/template">
-    {% for(var i=0,len=data.lists.length;i<len;i++){ %}
-    <li class="s-li">
-        <a href="packages_detail.html?packageID={%=data.lists[i].packageID%}&productPrice={%=data.lists[i].leadinPrice%}&status=1">
-            <div class="sce-img-box">
-                <img src="{%=data.lists[i].pictureURL%}" alt="" class="sce-img">
+    <% for(var i=0;i<lists.length;i++){ %>
+    <li>
+        <a href="packages_detail.html?packageID=<%=lists[i].packageID%>&productPrice=<%=lists[i].leadinPrice%>&status=1">
+            <div class="sce_img_box">
+                <img src="<%=lists[i].pictureURL%>" alt="景点图片">
             </div>
-            <div class="sce-detail">
-                <p class="sce-name-all">{%=data.lists[i].packageName%}</p>
-                <div class="sce-det-fare">
-                    <span class="sale-fare"><i>{%=data.lists[i].leadinPrice%}</i> 元起/人</span>
+            <div class="sce_detail">
+                <p><%=lists[i].packageName%></p>
+                <div class="sce_det_fare">
+                    ￥<i><%=lists[i].leadinPrice%></i> 起/人
                 </div>
             </div>
         </a>
     </li>
-    {% } %}
+    <% } %>
 
 </script>
 <script>
@@ -288,10 +247,14 @@
                 if(json.success){
                     var data=json.data;
                     console.log(data);
-                    var tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data),
-                            tpl_Localtxt = template("tpl_Localtxt",data),
-                            tpl_SpotScreen = template("tpl_SpotScreen",data);
-                    $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+
+                    var str1 = $('#tpl_SearchAvailableToursAttractions').html(),
+                            str2 = $('#tpl_Localtxt').html(),
+                            str3 = $('#tpl_SpotScreen').html();
+                    var tpl_SearchAvailableToursAttractions = ejs.render(str1, data);
+                    var tpl_Localtxt = ejs.render(str2, data);
+                    var tpl_SpotScreen = ejs.render(str3, data);
+                    $("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
                     $("#Localtxt").html(tpl_Localtxt);
                     $("#SpotScreen").html(tpl_SpotScreen);
                     CBot_screen();
@@ -324,12 +287,12 @@
                 priceSort.toggle(function(){
                     console.log(defineProperty.themeId);
                     priceSort[0].style.opacity = "1";
-                    psort.className ="jd-icon s-rank";
-                    priceSort.find("i").addClass("red-tip");
+                    psort.className ="jd_icon s_rank";
+                    priceSort.find("i").addClass("red_tip");
                     CLoadPriceSort("HighToLow",defineProperty.themeId);
                 },function() {
-                    psort.className ="s-ranks";
-                    priceSort.find("i").addClass("red-tip");
+                    psort.className ="s_ranks";
+                    priceSort.find("i").addClass("red_tip");
                     CLoadPriceSort("LowToHigh", defineProperty.themeId);
                 });
             }
@@ -364,12 +327,16 @@
                 var json=data;
                 console.log(json);
                 if(json.success){
-                    var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data),
-                            tpl_Localtxt = template("tpl_Localtxt",data),
-                            tpl_SpotScreen = template("tpl_SpotScreen",data);
-                    $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
-                    $("#Localtxt").html(tpl_Localtxt);
-                    $("#SpotScreen").html(tpl_SpotScreen);
+                    var data=json.data;
+                  var str1 = $('#tpl_SearchAvailableToursAttractions').html(),
+                    str2 = $('#tpl_Localtxt').html(),
+                    str3 = $('#tpl_SpotScreen').html();
+                  var tpl_SearchAvailableToursAttractions = ejs.render(str1, data);
+                  var tpl_Localtxt = ejs.render(str2, data);
+                  var tpl_SpotScreen = ejs.render(str3, data);
+                  $("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
+                  $("#Localtxt").html(tpl_Localtxt);
+                  $("#SpotScreen").html(tpl_SpotScreen);
                     CBot_screen();
 //                    Loadmore();
                     if(data.lists.length == 0){
@@ -409,8 +376,10 @@
                 var json=data;
                 console.log(json);
                 if(json.success){
-                    var data=json.data,tpl_SearchAvailableToursAttractions = template("tpl_SearchAvailableToursAttractions",data);
-                    $("#scenic-list-cont").html(tpl_SearchAvailableToursAttractions);
+                    var data=json.data;
+                    var str = $('#tpl_SearchAvailableToursAttractions').html();
+                    var tpl_SearchAvailableToursAttractions = ejs.render(str,data);
+                    $("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
 //                    Loadmore();
                     if(data.lists.length == 0){
                         jAlert("抱歉暂时没有数据","提示");
@@ -431,10 +400,10 @@
             var CBot_screen = function(){
                 var screen = $("#screen")[0];
                 var mb = $("#screen_mb")[0];
-                var screenBlock = $("#list_screen")[0];
-                var quit = $("#quit_screen")[0];
-                var sure = $("#sure_screen")[0];
-                var clear = $("#clear_screen")[0];
+                var screenBlock = $("#listScreen")[0];
+                var quit = $("#quitScreen")[0];
+                var sure = $("#sureScreen")[0];
+                var clear = $("#clearScreen")[0];
 
                 //    点击筛选
                 screen.onclick = function(e){
@@ -451,7 +420,7 @@
                 };
                 //点击蒙版关闭
                 $(document).click(function(e){
-                    if(e.target.className == 'qp-mengban')
+                    if(e.target.className == 'qp_mengban')
                     {
                         closeblock();
                     }
@@ -461,7 +430,7 @@
                 function closeblock(){
                     mb.style.display="none";
                     screen.style.opacity = "0.8";
-                    screenBlock.style.bottom=-500+'px';
+                    screenBlock.style.bottom='-126%';
                     screenBlock.style.transition="all 400ms";
 
                     if(this.title == "confirm"){
@@ -488,8 +457,8 @@
                 quit.onclick = closeblock;
                 sure.onclick = closeblock;
                 //   筛选选择
-                var li  = document.getElementsByClassName('spot-screen')[0].getElementsByTagName('li');
-                var b = document.getElementsByClassName('jd-icon scr-gou');
+                var li  = document.getElementsByClassName('spot_screen')[0].getElementsByTagName('li');
+                var b = document.getElementsByClassName('jd_icon scr_gou');
                 for(var i = 0;i < li.length;i++){
 
                     (function(index){
@@ -497,18 +466,18 @@
                             if(index==0){
                                 for(var i = 0;i < li.length;i++){
                                     li[i].className = '';
-                                    b[i].className = 'jd-icon scr-gou';
+                                    b[i].className = 'jd_icon scr_gou';
                                 }
-                                li[index].className = 'spot-slected';
-                                b[index].className = 'jd-icon scr-gou s-active';
+                                li[index].className = 'spot_slected';
+                                b[index].className = 'jd_icon scr_gou s_active';
                             }else{
                                 for(var j = 0;j < li.length;j++){
                                     li[j].className = '';
-                                    b[j].className = 'jd-icon scr-gou';
+                                    b[j].className = 'jd_icon scr_gou';
                                 }
                                 li[0].className = '';
-                                li[index].className = 'spot-slected';
-                                b[index].className = 'jd-icon scr-gou s-active';
+                                li[index].className = 'spot_slected';
+                                b[index].className = 'jd_icon scr_gou s_active';
                             }
                         };
                     })(i);
@@ -516,11 +485,11 @@
                 }
                 //   清除筛选
                 clear.onclick = function(){
-                    li[0].className = 'spot-slected';
-                    b[0].className = 'jd-icon scr-gou s-active';
+                    li[0].className = 'spot_slected';
+                    b[0].className = 'jd_icon scr_gou s_active';
                     for(var i = 1;i < li.length;i++){
                         li[i].className = '';
-                        b[i].className = 'jd-icon scr-gou';
+                        b[i].className = 'jd_icon scr_gou';
                     }
                 };
 
