@@ -122,61 +122,43 @@ var fIndexModal = {
           }
           return cabinStr;
         };
+        paraObj = {
+          "cityCodeFrom": cityEles[0].getAttribute('data-city-code'),
+          "cityCodeTo": cityEles[1].getAttribute('data-city-code'),
+          "cabinClass": reFixedSeat(seatValue),
+          "routeType": that.type,
+          "isHideSharedFlight": "false",
+          "isDirectFlight": "false",
+          "numofAdult": adultValue,
+          "numofChild": childValue,
+          "departStartHour": "00",
+          "departEndHour": "24",
+          "priorityRule": 0,
+          "isDesc": "false",
+          "pageNo": 1,
+          "pageSize": 10,
+          "interNationalOrDomestic": "international", /*国际或者国内*/
+          "hasTax": "true",
+          "fromCity": cityEles[0].innerHTML,
+          "toCity": cityEles[1].innerHTML
+        };
         if (that.type == "oneWay") { /*单程*/
-          paraObj = {
-            "cityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "cityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "departDate": singleDateSet.getAttribute('date-full-value'),
-            "cabinClass": reFixedSeat(seatValue),
-            "routeType": that.type,
-            "isHideSharedFlight": "false",
-            "isDirectFlight": "false",
-            "numofAdult": adultValue,
-            "numofChild": childValue,
-            "departStartHour": "00",
-            "departEndHour": "24",
-            "priorityRule": 0,
-            "isDesc": "false",
-            "pageNo": 1,
-            "pageSize": 10,
-            "interNationalOrDomestic": "international", /*国际或者国内*/
-            "hasTax": "true",
-            "fromCity": cityEles[0].innerHTML,
-            "toCity": cityEles[1].innerHTML
-          };
+          paraObj.departDate = singleDateSet.getAttribute('date-full-value');
+          paraObj.interNationalOrDomestic = "international" /*国际或者国内*/
           storage.setItem('fIndexInfo', JSON.stringify({type: "oneWay", data: paraObj}));
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];
           }
           document.location.href = 'f_single_list.html?' + urlStr;
         } else {   /*往返*/
-          paraObj = {
-            "cityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "cityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "departDate": doubleDateSet.getAttribute('date-full-value'),
-            "returnDate": doubleDateArrive.getAttribute('date-full-value'),
-            "cabinClass": reFixedSeat(seatValue),
-            "routeType": that.type,
-            "isHideSharedFlight": "false",
-            "isDirectFlight": "false",
-            "numofAdult": adultValue,
-            "numofChild": childValue,
-            "departStartHour": "00",
-            "departEndHour": "24",
-            "priorityRule": 0,
-            "pageNo": 1,
-            "pageSize": 10,
-            "interNationalOrDomestic": "international", /*国际或者国内*/
-            "hasTax": "true",
-            "isDesc": "false",
-            "fromCity": cityEles[0].innerHTML,
-            "toCity": cityEles[1].innerHTML
-          };
+          paraObj.departDate = doubleDateSet.getAttribute('date-full-value');
+          paraObj.returnDate = doubleDateArrive.getAttribute('date-full-value');
+          paraObj.interNationalOrDomestic = "international" /*国际或者国内*/
           storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: paraObj}));
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];
           }
-          document.location.href = 'ticket_double_list.html?' + urlStr;
+          document.location.href = 'f_double_list.html?' + urlStr;
         }
       }
     })
@@ -279,7 +261,7 @@ var fIndexModal = {
       singleWrap.style.display = "block";
       doubleWrap.style.display = "none";
     } else {
-      defaultDate.endDay = data.ReturnDate;
+      defaultDate.endDay = data.returnDate;
       tripTitles[0].className = "singleTrip grey-title";
       tripTitles[1].className = "doubleTrip light-title";
       singleWrap.style.display = "none";
