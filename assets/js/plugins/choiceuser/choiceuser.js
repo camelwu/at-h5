@@ -5,9 +5,8 @@
  * Created by zhouwei on 2016/5/22.
  */
 
-define(['../vim'],function (){
+define(['vlm'],function (){
 
-  jAlert(111);
 
   /* 抽象业务类型对象*/
   var typeArray= {
