@@ -214,7 +214,7 @@
   font-size: .36rem;
 }
 .float-right{float: right}
-.searchZone{
+.searchZone, .date-top{
   height: .88rem;
   line-height: .88rem;
   padding: 0 .28rem;
@@ -248,7 +248,7 @@
   color: #666666;
 }
 .middle_input .weekWord{margin-left: .06rem}
-.middle_input i{
+.middle_input i, .date-top i{
   display: inline-block;
   width: .242rem;
   height: .122rem;
@@ -258,6 +258,18 @@
   margin-left: .16rem;
   position: relative;
   top: -.04rem;
+}
+.date-top i{
+  margin-left: 0;
+}
+.date-top .weekWord{
+  margin: 0 .08rem;
+}
+.date-top span:nth-child(2){
+  margin-right: 0
+}
+.date-top .v-line{
+  font-size: .36rem;
 }
 .flight_ul{
   background: #fff;

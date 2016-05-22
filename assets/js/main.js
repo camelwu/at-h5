@@ -17,7 +17,8 @@ require.config({
     				countdown:countdown,
     				swipebox:swipebox,
     				ScrollIt:ScrollIt,
-    				Snap:Snap
+    				Snap:Snap,
+            ChoiceUser:choiceuser
     			}
     		}
     	},

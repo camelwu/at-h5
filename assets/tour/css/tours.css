@@ -107,31 +107,79 @@
 }
 /*index  end*/
 /*酒店列表  begin*/
+.hotel_list{
+    background: #fff;
+}
 .hotel_list li{
-    height: 114px;
+    height:2.08rem;
     border-bottom: 1px solid #CCC;
     clear: both;
     position: relative;
 }
 .hotel_list .h_choose{
+    width: 0.42rem;
+    height: 0.42rem;
     position: absolute;
     right: 0;
     display: none;
 }
 .hotel_list .ho_pic{
-    float: left;
-    width: 32%;
-    height: 115px;
-    position: relative;
+    width: 1.68rem;
+    height: 1.68rem;
+    position: absolute;
+    left:0.2rem;
+    top: 0.2rem;
 }
-
-
-
-
-
-
-
-
+.hotel_list img.ho_img{
+    width: 1.68rem;
+    height: 1.68rem;
+}
+.hotel_list .ho_infor{
+    position: absolute;
+    left: 2.08rem;
+    top: 0.22rem;
+}
+.hotel_list .name{
+    width: 3.8rem;
+    font-size: 0.32rem;
+    color: #333;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.hotel_list .grade{
+    padding-top:0.42rem;
+}
+.hotel_list .price{
+    height: 0.8rem;
+    line-height: 0.8rem;
+    color: #ff5b13;
+    font-size: 0.4rem;
+    margin-top: -0.4rem;
+    position: absolute;
+    right:0.38rem;
+    top: 50%;
+}
+.hotel_list .price span:nth-child(2){
+    font-size: 0.3rem;
+    margin-left:-0.08rem;
+    margin-right:-0.08rem;
+}
+.hotel_list .price span:nth-child(1),.hotel_list .price span:nth-child(2){
+    position: relative;
+    top: -0.02rem;
+}
+/*酒店footer*/
+.hotel_footer{
+    width: 100%;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    color: ##fff;
+    background: #4a4a4a;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
 /*酒店列表  end*/
 
 
