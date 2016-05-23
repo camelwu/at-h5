@@ -735,16 +735,17 @@
 
 .trip_go_ .addUp, .trip_back_ .addUp{
   position: relative;
-  top: -.1rem;
+  top: -.12rem;
 }
 .trip_go_ span.cityName, .trip_back_ span.cityName{
   display: inline-block;
   width: 1.48rem;
-  height: .42rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: .42rem;
+  position: relative;
+  top: -.02rem
 }
 .trip_back_, .seat-price-cost p:nth-child(2){margin-top: .16rem}
 
@@ -764,9 +765,6 @@
     padding: .32rem .28rem;
     background: #FFFFFF;
 }
-.seat-price-cost{
-   border-bottom: 1px solid #e6e6e6;
-}
 .seat-price-cost .cost_value{margin: 0 .08rem}
 .seat-price-cost .explain{float: right}
 .passengers_wrap{
@@ -779,6 +777,7 @@
   line-height: .68rem;
   padding: 0 .28rem;
   position: relative;
+  border-top: 1px solid #e6e6e6;
 }
 .passengers_wrap h4 i, .passengers_wrap .add_icon , .contact_wrap .arrow_down ,.contact_wrap h4 i,.contact_wrap .arrow_right{
   display: inline-block;
@@ -841,9 +840,9 @@
   left: 0;
   top: 0;
 }
-.contact_wrap{background: #FFFFFF}
+.contact_wrap{background: #FFFFFF;border-bottom: 1px solid #e6e6e6;}
 .contact_wrap .glay_word{
- color: #999999;
+  color: #999999;
   font-size: .24rem
 }
 .contact_wrap p{

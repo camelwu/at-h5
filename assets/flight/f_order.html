@@ -32,7 +32,7 @@
   </header>
   <div class="content">
          <div class="date-week-port">
-           <p class="trip_go_">
+          <!-- <p class="trip_go_">
              <span class="icon"></span>
              <span>01-08</span>
              <span class="week_value">周二</span>
@@ -51,13 +51,13 @@
              <span>洛杉矶</span>
              <span class="time_minutes">11h30m</span>
              <i class="clock"></i>
-           </p>
+           </p>-->
          </div>
          <div class="seat-price-cost">
-            <p>头等舱+往返舱</p>
+          <!--  <p>头等舱+往返舱</p>
             <p>往返票价<span class="cost_value">￥111678</span>税费<span class="cost_value">￥1957</span>
               <span class="explain">退改签说明</span>
-            </p>
+            </p>-->
        </div>
 
     <!--乘机人-->
@@ -95,22 +95,28 @@
       <span class="cityName"><%= segmentsLeave[0]["airportNameFrom"] %><%=segmentsLeave[0]["termDepart"] %></span>
       <span class="addUp">-</span>
       <span class="cityName"><%= segmentsLeave[segmentsLeave.length - 1]["airportNameTo"] %></span>
-      <span class="time_minutes">11h30m</span>
+      <span class="time_minutes"><%= parseInt(segmentsLeaveTotalTravelTime / 60) + 'h' + segmentsLeaveTotalTravelTime % 60 + 'm' %></span>
       <i class="clock"></i>
     </p>
-    <p class="trip_back_">
-      <span class="icon"></span>
-      <span class="week_value addUp"><%= flightReturnStartDate.substring(5, 10) %></span>
-      <span class="addUp"><%= fOrder.setWeekItems(flightReturnStartDate) %></span>
-      <span class="cityName"><%= segmentsReturn[0]["airportNameFrom"] %><%=segmentsReturn[0]["termDepart"] %></span>
-      <span class="addUp">-</span>
-      <span class="cityName"><%= segmentsReturn[segmentsReturn.length - 1]["airportNameTo"] %></span>
-      <span class="time_minutes">11h30m</span>
-      <i class="clock"></i>
-    </p>
+    <% if(segmentsReturn){ %>
+      <p class="trip_back_">
+        <span class="icon"></span>
+        <span class="week_value addUp"><%= flightReturnStartDate.substring(5, 10) %></span>
+        <span class="addUp"><%= fOrder.setWeekItems(flightReturnStartDate) %></span>
+        <span class="cityName"><%= segmentsReturn[0]["airportNameFrom"] %><%=segmentsReturn[0]["termDepart"] %></span>
+        <span class="addUp">-</span>
+        <span class="cityName"><%= segmentsReturn[segmentsReturn.length - 1]["airportNameTo"] %></span>
+        <span class="time_minutes"><%= parseInt(segmentsReturnTotalTravelTime / 60) + 'h' + segmentsReturnTotalTravelTime % 60 + 'm' %></span>
+        <i class="clock"></i>
+      </p>
+    <% } %>
 </script>
 <script id="template_flight_cost_seat" type="text/template">
-    <p><%= segmentsLeave[0]["cabinClassName"] %>+<%=segmentsReturn[0]["cabinClassName"] %></p>
+    <p><%= segmentsLeave[0]["cabinClassName"] %>
+      <%if(segmentsReturn){%>
+       +<%=segmentsReturn[0]["cabinClassName"] %>
+      <%}%>
+    </p>
     <p>往返票价<span class="cost_value">￥<%= totalFareAmountADT %></span>税费<span class="cost_value">￥<%= totalTaxAmountADT %></span>
       <span class="explain">退改签说明</span>
     </p>

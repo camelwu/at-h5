@@ -81,14 +81,14 @@ var fOrder = {
 
   createTags:function(){
     var data = arguments[0];
-    console.log(data)
+    console.log(data);
     var tempString1="", outputString1="",tempString2="", outputString2="", that = fOrder;
     tempString1 = $("#template_flight_summary").html();
     outputString1 = ejs.render(tempString1, data);
     tempString2 = $("#template_flight_cost_seat").html();
     outputString2 = ejs.render(tempString2, data);
     $(".date-week-port").eq(0).html(outputString1);
-    $(".date-week-seat-price-cost").eq(0).html(outputString2);
+    $(".seat-price-cost").eq(0).html(outputString2);
     return this;
   },
 

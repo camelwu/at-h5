@@ -47,11 +47,11 @@ var fIndexModal = {
         that.deg += 180;
         oSpan.style.transform = 'rotate(' + that.deg + 'deg)';
         oSpan.style.webkitTransform = 'rotate(' + that.deg + 'deg)';
-        tem = cityName[0].innerHTML, temCode = cityName[0].getAttribute('data-city-code');
+        tem = cityName[0].innerHTML, temCode = cityName[0].getAttribute('data-code');
         cityName[0].innerHTML = cityName[1].innerHTML;
-        cityName[0].setAttribute('data-city-code', cityName[1].getAttribute('data-city-code'));
+        cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[1].innerHTML = tem;
-        cityName[0].setAttribute('data-city-code', temCode);
+        cityName[0].setAttribute('data-code', temCode);
       } else if (target.className == "citySearch") {
         //打开城市列表复层
 
@@ -123,8 +123,8 @@ var fIndexModal = {
           return cabinStr;
         };
         paraObj = {
-          "cityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-          "cityCodeTo": cityEles[1].getAttribute('data-city-code'),
+          "cityCodeFrom": cityEles[0].getAttribute('data-code'),
+          "cityCodeTo": cityEles[1].getAttribute('data-code'),
           "cabinClass": reFixedSeat(seatValue),
           "routeType": that.type,
           "isHideSharedFlight": "false",
