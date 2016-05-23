@@ -394,6 +394,21 @@ a.hotel_detail_pic{
     padding: 0.20rem 0.27rem;
     position: relative;
 }
+.hotel_detail_list li.name{
+    font-size: 0.32rem;
+    font-weight: bold;
+}
+.hotel_detail_list li.data p{
+    float: left;
+}
+.hotel_detail_list li.data p.d_p3{
+    margin-right:0.15rem;
+}
+.hotel_detail_list li.data span{
+    color: #ffb413;
+    font-size: 0.32rem;
+    padding: 0 0.05rem;
+}
 .hotel_room_list li p.p5{
     line-height: 0.5rem;
 }

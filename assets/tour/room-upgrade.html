@@ -73,6 +73,12 @@
         <i></i>
     </a>
     <ul id="hd_list" class="hotel_detail_list">
+        <li class="name">
+            <p class="d-score score">
+                <b class="d-icon4 icon4"></b>
+                <%= htls.hotelName %>
+            </p>
+        </li>
         <li>
             <p class="d-score score">
                 <b class="d-icon4 icon4"></b>
@@ -83,10 +89,10 @@
             <p class="d-score"><%= htls.starRating %>星级</p>
             <a href="<%= htls.moreInfoLink %>" class="d-icon1"></a>
         </li>
-        <li>
-            <p class="d-p3 date-in">3月22入住</p>
-            <p class="d-p3 date-out" style="margin-left: 5px;">3月30离店</p>
-            <p class="d-p2 day-number">共8晚</p>
+        <li class="data">
+            <p class="d-p3 date-in d_p3"><span>3月22</span>入住</p>
+            <p class="d-p3 date-out d_p3"><span>3月30</span>离店</p>
+            <p class="d-p2 day-number">共<span>8</span>晚</p>
         </li>
         <li class="last">
             <ul class="room-list hotel_room_list" id="room-list">
