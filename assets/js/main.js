@@ -2,13 +2,19 @@
 
 require.config({
     baseUrl: '../js/lib',
+
     paths: {
-        plugins: 'plugins'
+        baseCss:"../../styles",
+        plugins: 'plugins',
+        pluginsCss:"../../css/plugins"
+
     },
     $:['jquery'],
     shim: {
     	'plugins':{
-    		deps: ['jquery'],
+    		deps: [
+          'jquery'
+        ],
     		init:function(){
     			return{
     				WOW:WOW,
@@ -17,7 +23,8 @@ require.config({
     				countdown:countdown,
     				swipebox:swipebox,
     				ScrollIt:ScrollIt,
-    				Snap:Snap
+    				Snap:Snap,
+            ChoiceUser:choiceuser
     			}
     		}
     	},
