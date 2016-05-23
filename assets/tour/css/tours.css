@@ -176,7 +176,7 @@
     height: 0.98rem;
     line-height: 0.98rem;
     color: #fff;
-    background:rgba(0,0,0,0.8);
+    background:rgb(74, 74, 74);
     overflow: hidden;
     position: fixed;
     bottom: 0;
@@ -223,26 +223,136 @@
     z-index: 100;
 }
 .screen_box .font{
+    width: 100%;
+    background-color: #fff;
     -webkit-transition:all ease 0.3s;
     -moz-transition:all ease 0.3s;
     -ms-transition:all ease 0.3s;
     -o-transition:all ease 0.3s;
     transition:all ease 0.3s;
+    position: fixed;
+    z-index: 102;
 }
 .screen_box .rank{
-    width: 100%;
-    background-color: #fff;
-    position: fixed;
     bottom: -550px;
-    z-index: 2000000;
+}
+.screen_box .rank li{
+    margin: 0 0 0 0.28rem;
+    font-size: 0.28rem;
+    padding: 0 0.12rem;
+    height: 0.96rem;
+    line-height: 0.96rem;
+    border-top: 1px solid #e6e6e6;
+    color: #333;
+    position: relative;
+}
+.screen_box .rank li b{
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    top: 50%;
+    right: 0.18rem;
+    margin-top: -0.2rem;
+    background: url(../../images/ui/icon_common.png);
+    background-size: 7.9rem 5.13rem;
+    background-position: -6.9rem -0.58rem;
 }
 .screen_box .screen{
-
+    padding: 1px;
+    bottom: -550px;
 }
-
+.screen_box .screen h4{
+    margin-top: 13px;
+    margin-left: 15px;
+    font-size: 1.4em;
+}
+.screen_box .screen ul{
+    margin-top: 12px;
+    margin-left: 15px;
+    margin-right: 15px;
+    list-style-type: none;
+    overflow: hidden;
+}
+.screen_box .screen ul li{
+    float: left;
+    width: 29%;
+    height: 24px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #d0d0d3;
+    font-size: 1.1em;
+    color: #686869;
+    line-height: 25px;
+}
+.screen_box .screen ul li.s_li1{
+    border: 1px solid #ffb412;
+    color: #ffb412;
+}
+.screen_box .screen .s_but{
+    width: 94%;
+    height: 36px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 1.6em;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #ffb413;
+}
 .screen_box .location{
-
+    padding: 1px;
+    bottom: -550px;
 }
+.screen_box .location ul{
+    width: 94%;
+    height: 300px;
+    overflow-y: scroll;
+    margin-left: 3%;
+    margin-right: 3%;
+    list-style-type: none;
+}
+.screen_box .location li{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #d0d0d3;
+}
+.screen_box .location li b{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;
+    height: 17px;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position: 69% 4.5%;
+}
+.screen_box .location li b.l_icon1{
+    background-position: 62% 4.5%;
+}
+.screen_box .location .s_but{
+    width: 94%;
+    height: 36px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 1.6em;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #ffb413;
+}
+
+
+
+
 
 /*æ∆µÍ¡–±Ì  end*/
 
