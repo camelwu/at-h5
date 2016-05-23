@@ -1,6 +1,4 @@
-/*
-         找回密码页css
-*/
+
 body {
   background-color: #fff;
 }
@@ -33,10 +31,11 @@ i, em {
   font-size: .36rem;
 }
 
-#fkey_page{
+#fkey_page {
   display: none;
 }
-.header_fd{
+
+.header_fd {
   height: .88rem;
   position: fixed;
   top: 0;
@@ -50,6 +49,7 @@ i, em {
   position: relative;
 
 }
+
 .header_fd h3 {
   text-align: center;
   line-height: .9rem;
@@ -57,7 +57,7 @@ i, em {
   font-size: .36rem;
 }
 
-.header_back{
+.header_back {
   position: absolute;
   width: 1rem;
   height: 100%;
@@ -66,12 +66,14 @@ i, em {
 }
 
 .icon_person {
+  width: .34rem;
+  height: .34rem;
   display: inline-block;
   background: url(../images/ui/icon_person.png) no-repeat;
   background-size: 8.2rem 4.8rem;
 }
 
-.find_go_back{
+.find_go_back {
   position: absolute;
   width: .36rem;
   height: .36rem;
@@ -90,7 +92,7 @@ i, em {
   background-position: -2.92rem -.16rem;
 }
 
-.go_back.icon_person{
+.go_back.icon_person {
   position: absolute;
   width: .36rem;
   height: .36rem;
@@ -99,15 +101,34 @@ i, em {
   background-position: -3.36rem -.16rem;
 }
 
-#phone_login, #email_login{
+#phone_login, #email_login {
   margin-top: 1rem;
   padding: 0 .4rem;
 }
+
 .login_input {
   border-bottom: solid 1px rgba(255, 255, 255, 0.3);
   width: 100%;
   height: 1.08rem;
   position: relative;
+}
+
+.login_phone{
+  margin-top: .34rem;
+  vertical-align: top;
+  background-size: 8.48rem 4.8rem;
+  background-position: -5.3rem -.2rem;
+}
+
+.login_pass{
+  margin-top: .34rem;
+  vertical-align: top;
+  background-size: 8.48rem 4.8rem;
+  background-position: -4.94rem -.2rem;
+}
+
+.login_mail {
+  background-position: -247px -10px;
 }
 
 .login_input input {
@@ -125,7 +146,7 @@ i, em {
   font-size: .28rem;
 }
 
-.login_btn_wrap, .change_way, .register_btn_wrap{
+.login_btn_wrap, .change_way, .register_btn_wrap {
   padding: 0 .4rem;
   overflow: hidden;
 }
@@ -143,14 +164,22 @@ i, em {
   margin: .96rem .4rem 0;
 }
 
-.login_button:hover{
-  background-color: #e67e22;
+.f_btns {
+  display: block;
+  font-size: .32rem;
+  border-radius: .04rem;
+  height: .96rem;
+  line-height: .96rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  background-color: #ffb413;
+  margin: .96rem .4rem 0;
 }
 
-
-
-
-
+.login_button:hover {
+  background-color: #e67e22;
+}
 
 .uset_name {
   height: 1.24rem;
@@ -174,7 +203,6 @@ i, em {
   padding: 0 .4rem;
   color: #999;
   font-size: .24rem;
-
 }
 
 .f_key {
@@ -191,26 +219,19 @@ i, em {
   border-bottom: 1px solid #e6e6e6;
   position: relative;
 }
-.f_key > li span{
+
+.f_key > li span {
   width: 2.3rem;
   display: inline-block;
 }
 
-.f_key > li input{
+.f_key > li input {
   height: 90%;
   width: 60%;
   font-size: .28rem;
 }
 
-#find_phone {
-  width: 100%;
-}
-
-.mob_cell {
-  width: 100%;
-}
-
-#email ,#r_email{
+#email, #r_email {
   width: 80%;
 }
 
@@ -218,19 +239,7 @@ i, em {
   width: 88%;
 }
 
-#e_password {
-  width: 100%;
-}
-
-#r_p_password {
-  width: 100%;
-}
-
-#r_e_password {
-  width: 100%;
-}
-
-#rs_e_password {
+#e_password, #r_p_password, #find_phone, #r_e_password, #rs_e_password, .mob_cell {
   width: 100%;
 }
 
@@ -250,7 +259,7 @@ i, em {
   -webkit-transform: rotate(270deg);
 }
 
-.open-pho {
+.open_pho {
   position: absolute;
   width: 10px;
   height: 20px;
@@ -279,9 +288,7 @@ i, em {
 
 }
 
-/*
-         个人中心未登录页css
-*/
+/*个人中心未登录页css*/
 .user_lists {
   padding: .4rem .28rem;
 }
@@ -398,14 +405,6 @@ i, em {
   background-position: 4% 51%;
 }
 
-.blank-con {
-  display: none;
-  margin: 0 auto;
-  margin-top: 30%;
-  text-align: center;
-  color: #999999;
-}
-
 /*联接*/
 #link_page, #link_about_us, #link_at, #link_declaration, .jpop_box_tic {
   display: none;
@@ -416,7 +415,8 @@ i, em {
   margin-top: .4rem;
   text-align: center;
 }
-.asiatravel_wrap >img{
+
+.asiatravel_wrap > img {
   width: auto;
 }
 
@@ -585,16 +585,6 @@ i, em {
 /*
          个人资料页css
 */
-.open_rg {
-  position: absolute;
-  right: 0;
-  top: .38rem;
-  background: url("../images/ui/icon-hft.png") no-repeat;
-  background-size: 8.4rem 4.8rem;
-  width: .24rem;
-  height: .24rem;
-  background-position: 62% 52%;
-}
 
 .info_name {
   float: right;
@@ -1023,11 +1013,18 @@ i, em {
 }
 
 .con_text {
+  margin: 0 .15rem;
   text-align: center;
   font-size: .24rem;
   color: #999;
 }
-.con_pass{
+
+#delTra {
+  margin-bottom: .5rem;
+  margin-top: .6rem;
+}
+
+.con_pass {
   margin: .25rem .4rem;
   line-height: .36rem;
   font-size: .24rem;
@@ -1037,54 +1034,25 @@ i, em {
 /*
          常用信息页css
 */
-.user-add {
-  width: 21px;
-  height: 20px;
-  position: relative;
-  margin-right: 12px;
-  top: 4px;
-  background-position: 54.4% -139px;
+.user_add {
+  width: .4rem;
+  height: .4rem;
+  margin: .32rem .2rem 0 0;
+  vertical-align: top;
+  background-position: -4.28rem -.16rem;
 }
 
 .often-traveler {
   width: 100%;
   margin-bottom: 15px;
   overflow: scroll;
-
 }
 
-/*.often-traveler li:first-child{*/
-/*border-top:1px solid #dedede;*/
-/*}*/
 .eve-traveler {
   list-style-type: none;
   padding: 12px 15px;
   border-bottom: 1px solid #dedede;
   background-color: #fff;
-}
-
-.often_user {
-  margin-bottom: 0;
-}
-
-.often_user li {
-  list-style-type: none;
-  border: none;
-
-}
-
-.often_user .passport-num {
-  color: #999999;
-  margin-left: 31px;
-}
-
-.often_user .passport-tips {
-  color: red;
-}
-
-.often_user li:first-child {
-  font-size: 14px;
-  color: #484848;
 }
 
 .traveler-text {
@@ -1094,466 +1062,36 @@ i, em {
   line-height: normal;
 }
 
-.user-edit {
-  width: 22px;
-  height: 22px;
-  float: right;
-  background-position: 49% 0.5%;
-}
-
-.user-edits {
-  width: 22px;
-  height: 22px;
-  float: right;
-  background: url(../images/ui/icon.png) no-repeat;
-  background-size: 370px 110px;
-  background-position: 49% 0%;
-}
-
 .statement {
   padding: 8px 15px;
   color: #484848;
 }
 
-/*
-         新增常旅页css
-*/
-.addtra-page {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/*fix H5-171 android手机面板遮挡问题*/
-#addtra_page, #uptra_page {
-  position: relative;
-}
-
-#addtra_page .relative-for-android, #uptra_page .relative-for-android {
-  position: relative;
-}
-
-#addtra_page .header, #uptra_page .header {
-  z-index: 999;
-}
-
-#addtra_page .user-content, #uptra_page .user-content {
-  position: relative;
-  margin-top: 45px;
-  top: 0px;
-}
-
-.header-quit {
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 17px;
-  color: white;
-  width: 80px;
-  padding-left: 15px;
-  height: 45px;
-  line-height: 45px;
-  z-index: 1000;
-}
-
-.header_finish {
-  position: absolute;
-  right: .28rem;
-  top: .23rem;
-}
-
-.header_finish.white{
-  color: #fff;
-}
-
-.addtra-title {
-  width: 100%;
-  padding: 10px 15px;
-  font-size: 12px;
-  background-color: #e9e9e9;
-}
-
-.user-must {
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 11px;
-  margin-left: 5px;
-  background-position: 28% 35%;
-}
-
-.user-must2 {
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  right: 5px;
-  background-position: 28% 35%;
-}
-
-.addtra-info {
-  border-bottom: 1px solid #dedede;
-  margin-bottom: 10px;
-}
-
-.addtra-info li {
-  list-style-type: none;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  margin-left: 15px;
-  font-size: 14px;
-  border-bottom: 1px solid #dedede;
-  overflow: hidden;
-}
-
-.addtra-info li:last-child {
-  border: none;
-}
-
-.addtra-info div {
-  font-size: 15px;
-  float: left;
-  width: 80px;
-}
-
-.addtra-info .postCard {
-  width: 60%;
-  float: left;
-  margin-left: 12%;
-}
-
-.addtra-info .country-btn {
-  width: 60%;
-  float: left;
-  height: 20px;
-  margin-left: 12%;
-}
-
-.addtra-info .sex-cho-wrap {
-  width: 50%;
-  float: left;
-  margin-left: 12%;
-}
-
-.traveler-contect #mobile-cell {
-  width: 50%;
-  height: 20px;
-  margin-top: 15px;
-  display: inline-block;
-}
-
-.traveler-contect #email-cell {
-  width: 60%;
-  float: left;
-  margin-left: 26%;
-}
-
-.traveler-contect #mobile-cell-add {
-  width: 50%;
-  height: 20px;
-  margin-top: 15px;
-  display: inline-block;
-
-}
-
-.traveler-contect #email-cell-add {
-  width: 50%;
-  float: left;
-  margin-left: 26%;
-}
-
-.addtra-info input {
-  float: left;
-  margin-left: 12%;
-  width: 60%;
-}
-
-.addtra-info .birth-cont {
-  float: left;
-  margin-left: 12%;
-  width: 60%;
-}
-
-.icon-h {
-  background-image: url(../images/ui/icon-h.png);
-  background-repeat: no-repeat;
-  background-size: 402px 174px;
-  display: inline-block;
-}
-
-.traveler-sex1 {
-  width: 11px;
-  height: 11px;
-  margin-right: 5px;
-  background-position: 10% 38%;
-}
-
-.traveler-sex2 {
-  width: 11px;
-  height: 11px;
-  margin-right: 5px;
-  background-position: 4.8% 38%;
-}
-
-.traveler-contect {
-  border-bottom: 1px solid #dedede;
-  margin-bottom: 10px;
-}
-
-.traveler-contect li {
-  list-style-type: none;
-  margin-left: 15px;
-  font-size: 14px;
-  border-bottom: 1px solid #dedede;
-}
-
-.traveler-contect li {
-  border-bottom: 1px solid #dedede;
-}
-
-.traveler-contect li:first-child input {
-  margin-left: 15px;
-}
-
-.traveler-contect li:last-child {
-  padding-top: 16px;
-  padding-bottom: 16px;
-  margin-left: 15px;
-  font-size: 14px;
-  justify-content: space-between;
-  border: none;
-}
-
-.con-phone {
-  width: 45%;
-  line-height: 50px;
-  border-right: 1px solid #dedede;
-}
-
-.con-phone span {
-  float: right;
-  margin-right: 10px;
-}
-
-.phonenum {
-  float: right;
-  background-color: #0b84fe;
-}
-
-/*
-         选择乘机人页css
-*/
-.choiceAir-page {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.user-choice1 {
-  width: 21px;
-  height: 21px;
-  float: left;
-  margin-top: 10px;
-  margin-right: 10px;
-  background-position: 62.8% 97.2%;
-}
-
-.user-choice2 {
-  width: 21px;
-  height: 21px;
-  float: left;
-  margin-top: 10px;
-  margin-right: 10px;
-  background-position: 56% 97.5%;
-}
-
-.ifbaby {
-  width: 35px;
-  height: 17px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  display: inline-block;
-  margin-left: 8px;
-  text-align: center;
-  color: #ffb413;
-  font-size: 10px;
-  line-height: 15px;
-}
-
-/*
-         新增乘机人页css
-*/
-.addAir-page {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.addAir-info {
-  border-top: 1px solid #dedede;
-  border-bottom: 1px solid #dedede;
-  margin-top: 12px;
-  margin-bottom: 0;
-}
-
-.addAir-info li {
-  list-style-type: none;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  margin-left: 15px;
-  font-size: 14px;
-  border-bottom: 1px solid #dedede;
-  overflow: hidden;
-}
-
-.addAir-info li:last-child {
-  border: none;
-}
-
-.addAir-info div {
-  font-size: 15px;
-  float: left;
-  width: 80px;
-}
-
-.addAir-info .country-btn {
-  width: 60%;
-  float: left;
-  height: 20px;
-  margin-left: 12%;
-}
-
-.addAir-info .sex-cho-wrap {
-  width: 60%;
-  margin-left: 12%;
-}
-
-.addAir-info input {
-  float: left;
-  margin-left: 12%;
-  width: 60%;
-}
-
-.addAir-info .postCard {
-  width: 60%;
-  float: left;
-  margin-left: 12%;
-}
-
-.user-account {
-  float: right;
-  margin-right: 15px;
-  margin-top: 10px;
-  color: #ffb413;
-  font-size: 10px;
-}
-
-/*
-         填写姓名说明页css
-*/
-.fillName-page {
-  display: none;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-}
-
-.ch_account {
-  width: 100%;
-  height: auto;
-}
-
-.ch_account li {
-  list-style: none;
-  list-style-type: decimal;
-  margin-top: 15px;
-  margin-left: 30px;
-  padding-right: 10px;
-}
-
-.name_ul {
-  font-size: 12px;
-  color: #999999;
-}
-
-.name_ul li {
-  list-style: none;
-  list-style-type: disc;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 0;
-  padding-left: 0;
-}
-
-.name-example {
-  width: 100%;
-  height: 40px;
-  padding: 10px 15px;
-  border: 1px solid #dedede;
-  border-radius: 3px;
-  margin-top: 10px;
-  font-size: 10px;
-}
-
-.name-example2 {
-  width: 100%;
-  height: 40px;
-  padding: 10px 15px;
-  border: 1px solid #dedede;
-  border-top: none;
-  font-size: 10px;
-}
-
-/*
-         儿童购票说明页css
-*/
-.childen-page {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.child_detail {
-  font-size: 12px;
-  color: #999999;
-}
-
-/*
-         登录页css
-*/
-.login-phone {
-  background-position: -24px -35px;
-}
-
-.login-mail {
-  background-position: -46px -35px;
-}
+/*登录页css*/
 
 .p_86 {
   display: inline-block;
   vertical-align: top;
   color: white;
-  margin-left: 29px;
-  margin-top: 16px;
+  margin-top: .32rem;
   border-right: 1px solid rgba(255, 255, 255, 0.5);
-  padding-right: 40px;
+
   position: relative;
+}
+.p_86 >span{
+  margin-left: .2rem;
+  margin-right:.7rem;
+}
+.open_arw.int_tel{
+  width: .28rem;
+  height: .32rem;
+  top: 0;
+  right: .2rem;
+  background-size: 8.4rem 5.2rem;
+}
+
+#p_password{
+  padding-left: .25rem;
 }
 
 .login-input .in-phone {
@@ -1563,10 +1101,9 @@ i, em {
   width: 50%;
 }
 
-
 .forgotkey {
   float: left;
-  margin: 15px 12px 15px;
+  margin: .3rem .24rem .3rem 0;
   color: rgba(255, 255, 255, 255);
 }
 
@@ -1756,6 +1293,13 @@ ul, ol {
   padding: 0 .4rem;
 }
 
+.userper_lists .open_arw{
+  top: .32rem;
+}
+.user_info_top .open_arw{
+  right: .4rem;
+  top: .65rem;
+}
 .userper_lists > li {
   position: relative;
   height: .96rem;
@@ -1789,6 +1333,11 @@ ul, ol {
   background-position: -.02rem -.18rem;
 }
 
+#common-msg em {
+  float: right;
+  margin-right: .4rem;
+}
+
 .open_msg {
   background-position: -1.9rem -.18rem;
 }
@@ -1804,15 +1353,15 @@ ul, ol {
 .open_arw {
   position: absolute;
   right: 0;
-  top: .2rem;
+  top: .26rem;
   background: url("../images/ui/icon_common.png") no-repeat;
   background-size: 8.4rem 4.8rem;
   width: .28rem;
   height: .28rem;
-  background-position: -1.12rem -.52rem;
+  background-position: -1.12rem -.57rem;
 }
 
-.tip_right{
+.tip_right {
   top: .3rem;
 }
 
@@ -1830,135 +1379,6 @@ ul, ol {
   margin: 0 auto;
   text-align: center;
 
-}
-
-/*新增乘机人*/
-.bor-updown {
-  background-color: #f5f4f9;
-  height: 20px;
-}
-
-.addtra-info .chn-switch {
-  width: 62px;
-  height: 30px;
-  border-radius: 2px;
-  border: 1px solid #ffb413;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: #ffb413;
-}
-
-.addtra-info .eng-switch {
-  width: 62px;
-  height: 30px;
-  border-radius: 2px;
-  border: 1px solid #ffb413;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: #ffb413;
-}
-
-.chn {
-  display: inline-block;
-  width: 30px;
-  text-align: center;
-  line-height: 30px;
-}
-
-.foreign {
-  display: inline-block;
-  width: 30px;
-  text-align: center;
-  line-height: 30px;
-}
-
-.chn-switch .chn {
-  color: #fff;
-  height: 100%;
-  display: inline-block;
-  background-color: #ffb413;
-}
-
-.eng-switch .foreign {
-  color: #fff;
-  height: 100%;
-  display: inline-block;
-  background-color: #ffb413;
-}
-
-.mart-non {
-  margin-top: 0;
-}
-
-#eng-name {
-  display: none;
-}
-
-.nameche-wrap {
-  margin-bottom: 0;
-}
-
-.nameche-wrap li {
-  position: relative;
-}
-
-.nameche-wrap li:nth-child(2) {
-  border-bottom: none;
-}
-
-.name-notes {
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 0;
-  background-position: 28% 35%;
-}
-
-.name-eng-note {
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background-position: 28% 35%;
-}
-
-.chn-eng-wrap {
-  border-top: 1px solid #dedede;
-}
-
-.country-list {
-  z-index: 6;
-}
-
-.country-list-header {
-  height: 3.8rem;
-}
-
-.country-list-searched-order {
-  display: none;
-}
-
-.country-list-searched-order li {
-  padding-left: 35px;
-  height: 36px;
-  line-height: 36px;
-  border-bottom: 1px solid #dfdfdd;
-}
-
-.tel-icon {
-  display: block;
-  background-image: url(../images/ui/icons.png);
-  background-position: -218px -73px;
-  background-repeat: no-repeat;
-  background-size: 243px 160px;
-  width: 17px;
-  height: 27px;
-  position: absolute;
-  right: 10px;
-  top: 14px;
 }
 
 /*电话拨号开始*/
@@ -2018,8 +1438,6 @@ ul, ol {
 }
 
 /*电话拨号结束*/
-
-
 
 .per-type {
   display: inline-block;
@@ -2106,3 +1524,388 @@ a.foot-homes, a.foot-users {
 }
 
 /*首页footer结束*/
+
+/*新增常旅页开始*/
+#addUser {
+  margin-top: .2rem;
+  font-size: .32rem;
+}
+
+.blank_con {
+  display: none;
+  margin: 0 auto;
+  margin-top: 30%;
+  text-align: center;
+  color: #999999;
+}
+
+.header_finish {
+  position: absolute;
+  right: .28rem;
+  top: .23rem;
+  font-size: .3rem;
+}
+
+.header_finish.white {
+  color: #fff;
+}
+
+.user_edit {
+  width: .44rem;
+  height: .44rem;
+  float: right;
+  background: url(../images/ui/icon.png) no-repeat;
+  background-size: 7.4rem 2.2rem;
+  background-position: 49% 0.5%;
+}
+
+.user_edits {
+  width: .44rem;
+  height: .44rem;
+  float: right;
+  background: url(../images/ui/icon.png) no-repeat;
+  background-size: 7.4rem 2.2rem;
+  background-position: 49% 0%;
+}
+
+.header_quit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6rem;
+  padding-left: .3rem;
+  height: .9rem;
+  line-height: .9rem;
+  z-index: 1000;
+  color: #333;
+  font-size: .3rem;
+}
+
+.addtra_page {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+.addtra_title {
+  width: 100%;
+  padding: .2rem .28rem;
+  font-size: .24rem;
+  background-color: #f7f7f7;
+  position: relative;
+}
+
+.traveler_contect {
+  background-color: #fff;
+  margin-bottom: .32rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.traveler_contect li {
+  margin-left: .28rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.traveler_contect li:last-child {
+  border-bottom: none;
+
+}
+
+.traveler_contect li > div {
+  width: 45%;
+  line-height: .96rem;
+  border-right: 1px solid #e6e6e6;
+  position: relative;
+}
+
+.phone_pre {
+  float: right;
+  margin-right: .6rem;
+}
+
+.mobile_tip_right {
+  right: .2rem;
+  top: .34rem;
+}
+
+.traveler_contect input {
+  width: 50%;
+  height: .96rem;
+  margin-left: .32rem;
+}
+
+.user-must2 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  right: 5px;
+  background-position: 28% 35%;
+}
+
+.addtra_info {
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: .2rem;
+}
+
+.addtra_info li {
+  margin-left: 15px;
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
+}
+
+.addtra_info li:last-child {
+  border: none;
+}
+
+.addtra_info div {
+  float: left;
+  width: 1.6rem;
+}
+
+.addtra_info .postCard {
+  width: 60%;
+  float: left;
+  margin-left: 12%;
+}
+
+.addtra_info .country-btn {
+  width: 60%;
+  float: left;
+  height: 20px;
+  margin-left: 12%;
+}
+
+.addtra_info .sex_cho_wrap {
+  width: 60%;
+  margin-left: 12%;
+}
+
+.sex_cho_wrap span:first-child {
+  margin-right: 15%;
+}
+
+.addAir_page {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+.addAir_info {
+  background-color: #fff;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.addAir_info li {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-left: 15px;
+  font-size: 14px;
+  border-bottom: 1px solid #dedede;
+  overflow: hidden;
+  position: relative;
+}
+
+.addAir_info li:last-child {
+  border: none;
+}
+
+.addAir_info div {
+  float: left;
+  width: 1.6rem;
+}
+
+.addAir_info .country-btn {
+  width: 60%;
+  float: left;
+  height: .4rem;
+  margin-left: 12%;
+}
+
+.addAir_info .sex_cho_wrap {
+  width: 60%;
+  margin-left: 12%;
+}
+
+.sex_cho_wrap span:first-child {
+  margin-right: 15%;
+}
+
+.addAir_info input {
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+  height: 90%;
+  font-size: .28rem;
+
+}
+
+.addAir_info .postCard {
+  width: 60%;
+  float: left;
+  margin-left: 12%;
+}
+
+.addtra_info input {
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+  height: 90%;
+  font-size: .28rem;
+}
+
+.addtra_info .birth-cont {
+  float: left;
+  margin-left: 12%;
+  width: 60%;
+}
+
+.icon_h {
+  background: url(../images/ui/icon-h.png) no-repeat;
+  background-size: 8.04rem 3.48rem;
+  display: inline-block;
+}
+
+.traveler_sex1 {
+  width: .22rem;
+  height: .22rem;
+  margin-right: .1rem;
+  background-position: 10% 38%;
+}
+
+.traveler_sex2 {
+  width: .22rem;
+  height: .22rem;
+  margin-right: .1rem;
+  background-position: 4.8% 38%;
+}
+
+.chn_eng_wrap {
+  border-top: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+
+.user_must {
+  width: .32rem;
+  height: .32rem;
+  position: absolute;
+  margin-left: .1rem;
+  background-size: 7rem 4.66rem;
+  background-position: -3.6rem -1.36rem;
+}
+
+.con_text_tip {
+  margin: 0 .15rem 1rem;
+  text-align: center;
+  font-size: .24rem;
+  color: #999;
+}
+
+/*新增常旅结束*/
+
+/*填写姓名说明页css*/
+.fillName_page {
+  display: none;
+
+}
+
+.ch_account {
+  width: 100%;
+  height: auto;
+  padding: .4rem;
+}
+
+#en_account {
+  padding-top: 0;
+}
+
+.ch_account > li {
+  margin-bottom: .32rem;
+}
+
+.ch_account > li:last-child {
+  margin-bottom: 0;
+}
+
+.name_ul {
+  margin: .2rem 0 0 .32rem;
+}
+
+.name_ul li {
+  list-style: none;
+  list-style-type: disc;
+  color: #999;
+  font-size: .24rem;
+
+}
+
+.name_ul li p {
+  line-height: .4rem;
+}
+
+.example_floor_down {
+  margin-bottom: .32rem;
+}
+
+.example_floor {
+  margin: .32rem 0;
+}
+
+.name_example {
+  width: 100%;
+  height: .8rem;
+  padding: .2rem .28rem;
+  border: 1px solid #e6e6e6;
+  border-radius: .04rem;
+  color: #333;
+  font-size: .28rem;
+}
+
+.name_example span:first-child {
+  width: 1.2rem;
+  display: inline-block;
+  margin-right: 1.08rem;
+}
+
+.name_example2 {
+  width: 100%;
+  height: 1.6rem;
+  border-radius: .04rem;
+  border: 1px solid #e6e6e6;
+  color: #333;
+  font-size: .28rem;
+}
+
+.name_example2 span:first-child {
+  width: 1.6rem;
+  display: inline-block;
+  margin-right: .65rem;
+}
+
+.name_ul .name_example2 p {
+  height: .8rem;
+  line-height: .8rem;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 0 .28rem;
+}
+
+.name_example2 p:last-child {
+  border-bottom: none;
+}
+
+/*填写姓名说明页结束*/
+
+
+
+

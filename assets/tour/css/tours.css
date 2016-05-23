@@ -258,59 +258,59 @@
     background-position: -6.9rem -0.58rem;
 }
 .screen_box .screen{
-    padding: 1px;
-    bottom: -550px;
+    padding:0.01rem;
+    bottom: -11rem;
 }
 .screen_box .screen h4{
-    margin-top: 13px;
-    margin-left: 15px;
-    font-size: 1.4em;
+    margin-top:0.26rem;
+    margin-left:0.3rem;
+    font-size:0.28rem;
 }
 .screen_box .screen ul{
-    margin-top: 12px;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-top:0.24rem;
+    margin-left:0.3rem;
+    margin-right:0.3rem;
     list-style-type: none;
     overflow: hidden;
 }
 .screen_box .screen ul li{
     float: left;
     width: 29%;
-    height: 24px;
-    margin-bottom: 10px;
-    margin-right: 10px;
+    height:0.48rem;
+    margin-bottom:0.2rem;
+    margin-right:0.2rem;
     text-align: center;
-    border-radius: 5px;
-    border: 1px solid #d0d0d3;
+    border-radius:0.1rem;
+    border:0.01rem solid #d0d0d3;
     font-size: 1.1em;
     color: #686869;
-    line-height: 25px;
+    line-height:0.5rem;
 }
 .screen_box .screen ul li.s_li1{
-    border: 1px solid #ffb412;
+    border:0.01rem solid #ffb412;
     color: #ffb412;
 }
 .screen_box .screen .s_but{
     width: 94%;
-    height: 36px;
+    height:0.72rem;
     margin-left: 3%;
     margin-right: 3%;
-    margin-top: 15px;
-    margin-bottom: 20px;
+    margin-top:0.3rem;
+    margin-bottom:0.4rem;
     text-align: center;
-    line-height: 35px;
+    line-height:0.7rem;
     font-size: 1.6em;
     color: #fff;
-    border-radius: 5px;
+    border-radius:0.1rem;
     background-color: #ffb413;
 }
 .screen_box .location{
-    padding: 1px;
-    bottom: -550px;
+    padding:0.01rem;
+    bottom: -11rem;
 }
 .screen_box .location ul{
     width: 94%;
-    height: 300px;
+    height:6rem;
     overflow-y: scroll;
     margin-left: 3%;
     margin-right: 3%;
@@ -318,16 +318,16 @@
 }
 .screen_box .location li{
     width: 100%;
-    height: 40px;
-    line-height: 40px;
-    border-bottom: 1px solid #d0d0d3;
+    height:0.8rem;
+    line-height:0.8rem;
+    border-bottom:0.01rem solid #d0d0d3;
 }
 .screen_box .location li b{
     float: right;
     display: block;
-    margin-top: 15px;
-    width: 17px;
-    height: 17px;
+    margin-top:0.3rem;
+    width:0.34rem;
+    height:0.34rem;
     background-image: url(../../images/ui/icons1.png);
     background-size: 400px 120px;
     background-position: 69% 4.5%;
@@ -337,25 +337,124 @@
 }
 .screen_box .location .s_but{
     width: 94%;
-    height: 36px;
+    height:0.72rem;
     margin-left: 3%;
     margin-right: 3%;
-    margin-top: 15px;
-    margin-bottom: 20px;
+    margin-top:0.3rem;
+    margin-bottom:0.4rem;
     text-align: center;
-    line-height: 35px;
+    line-height:0.7rem;
     font-size: 1.6em;
     color: #fff;
-    border-radius: 5px;
+    border-radius:0.1rem;
     background-color: #ffb413;
+}
+/*æ∆µÍ¡–±Ì  end*/
+/*æ∆µÍœÍ«È begin*/
+a.hotel_detail_pic{
+    width: 100%;
+    overflow: hidden;
+    height: 4.8rem;
+    display: block;
+    overflow: hidden;
+}
+.hotel_detail_pic img{
+    width: 100%;
+    height: 100%;
+}
+.hotel_detail_list{
+    background: #fff;
+}
+.hotel_detail_list>li{
+    list-style: none;
+    height:1rem;
+    line-height: 1rem;
+    padding: 0 0.27rem;
+    border-bottom:0.01rem solid #dfdfdd;
+    overflow: hidden;
+    position: relative;
+}
+.hotel_detail_list>li.last{
+    height: auto;
+    padding: 0;
+}
+.hotel_room_list img.choose{
+    width: 0.43rem;
+    height: 0.43rem;
+    position: absolute;
+    top: 0;
+    right:0rem;
+    display: none;
+}
+.hotel_room_list li.cur img.choose{
+    display: block;
+}
+.hotel_room_list li{
+    border-bottom:0.01rem solid #dfdfdd;
+    padding: 0.20rem 0.27rem;
+    position: relative;
+}
+.hotel_detail_list li.name{
+    font-size: 0.32rem;
+    font-weight: bold;
+}
+.hotel_detail_list li.data p{
+    float: left;
+}
+.hotel_detail_list li.data p.d_p3{
+    margin-right:0.15rem;
+}
+.hotel_detail_list li.data span{
+    color: #ffb413;
+    font-size: 0.32rem;
+    padding: 0 0.05rem;
+}
+.hotel_room_list li p.p5{
+    line-height: 0.5rem;
+}
+.hotel_room_list li p.price{
+    color: #fc5b1f;
+    position: absolute;
+    right:0.27rem;
+    top: 50%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    margin-top: -0.3rem;
+}
+.hotel_room_list li p.price span{
+    float: left;
+    height: 0.6rem;
+    line-height: 0.6rem;
+}
+.hotel_room_list li p.price span.money{
+    font-size: 0.46rem;
+}
+.hotel_detail_back{
+    position: absolute;
+    height:0.88rem;
+    width: 1.15rem;
+    left: 0;
+    top: 0;
+}
+.hotel_detail_back i{
+    width: 0.64rem;
+    height: 0.64rem;
+    position: absolute;
+    left:0.2rem;
+    top:0.2rem;
+    /* margin-top: -0.32rem; */
+    /* margin-left: 0.32rem; */
+    background: url(../../images/ui/icon_common.png) no-repeat;
+    background-size: 7.90rem 5.13rem;
+    background-position: -3.18rem -0.44rem;
 }
 
 
 
 
 
-/*æ∆µÍ¡–±Ì  end*/
 
+/*æ∆µÍœÍ«È  end*/
 
 
 

@@ -459,6 +459,7 @@ var footer = (function() {
 			}
 		},
 		showItems : function(n, t) {
+			var that = this;
 			if (t == 0) {
 				that.request();
 				return;

@@ -95,9 +95,10 @@ var fSingleList = {
 
   renderHandler:function(){
     var result = arguments[0],that = fSingleList, storage = window.sessionStorage;
-    console.log(result)
+    console.log(result);
     if(result.success&&result.code == "200"){
          that.currrentFlightList = result.data;
+         show_filter(result.data.airCorpCodeList);
          that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
     }
   },
