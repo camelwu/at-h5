@@ -14,7 +14,7 @@
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>机票订单填写页 - 亚洲旅行网</title>
   <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
-  <link href="../plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
+  <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
   <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -24,18 +24,65 @@
   </div>
 </div>
 <div class="all_elements">
-  <header class="header clear_shadow">
-    <a href="#" class="header_back">
+  <header class="header">
+    <a href="javascript:window.history.go(-1);" class="header_back">
       <i class="icon_back"></i>
     </a>
     <h3>订单填写</h3>
   </header>
   <div class="content">
+         <div class="date-week-port">
+           <p class="trip_go_">
+             <span class="icon"></span>
+             <span>01-08</span>
+             <span class="week_value">周二</span>
+             <span>浦东T2</span>
+             <span>-</span>
+             <span>洛杉矶</span>
+             <span class="time_minutes">11h30m</span>
+             <i class="clock"></i>
+           </p>
+           <p  class="trip_back_">
+             <span class="icon"></span>
+             <span class="week_value">01-08</span>
+             <span>周二</span>
+             <span>浦东T2</span>
+             <span>-</span>
+             <span>洛杉矶</span>
+             <span class="time_minutes">11h30m</span>
+             <i class="clock"></i>
+           </p>
+         </div>
+       <div class="seat-price-cost">
+            <p>头等舱+往返舱</p>
+            <p>往返票价<span class="cost_value">￥111678</span>税费<span class="cost_value">￥1957</span>
+              <span class="explain">退改签说明</span>
+            </p>
+       </div>
+
+    <!--乘机人-->
+    <div class="passengers_wrap">
+        <h4>乘机人<i></i></h4>
+         <ul>
+           <li>
+             <p class="name_infos"><span class="tip_word">姓/名</span><input class="input" placeholder="BAI LISA" /><i class="add_icon passenger"></i></p>
+             <p class="passport_sex"><span class="tip_word">护照</span><input class="input" placeholder="1234567" /><span class="sex_value">女</span></p>
+           </li>
+           </ul>
+    </div>
+
+    <!--联系人-->
+    <div class="contact_wrap">
+      <h4>乘机人<i></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact"></i> </h4>
+      <p class="input_line"><input class="first_name" placeholder="名(如：San)" /><input class="last_name" placeholder="姓(如：Zhang)" /></p>
+      <p class="input_line"><span class="tel_number">手机号<span class="nation_code">+<span class="value_nation_code">86</span><i class="more_info"></i></span> </span><input class="last_name" placeholder="用于接收通知" /></p>
+      <p class="input_line"><span>E_mail</span><input class="email_value" placeholder="用于接收通知" /></p>
+    </div>
 
   </div>
 </div>
 </body>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
-<script type="text/javascript" src="../plugins/jquery.alert/jqueryAlert.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="js/f_order.js"></script>
 </html>

@@ -34,18 +34,6 @@ var fDoubleList = {
     }
   },
 
-  fadeHandler: function () {
-    var tag = arguments[0] || "hide";
-    if (tag == "show") {
-      $("#preloader").fadeIn();
-      $("#status").delay(400).fadeIn("medium");
-    } else {
-      $("#status").fadeOut();
-      $("#preloader").delay(400).fadeOut("medium");
-    }
-    return this;
-  },
-
   eventHandler: function () {
     var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage,loadMore = document.querySelector("#loadMore");;
     console.log(lis)
@@ -69,7 +57,7 @@ var fDoubleList = {
     var data = arguments[0];
     var tempString="", outputString="", that = fDoubleList;
     tempString = $("#template_flight_double_list").html();
-    outputString = ejs.render(tempString, data);
+    outputString = this.isClear == 1?ejs.render(tempString, data):$(".flight_ul").eq(0).html()+ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
@@ -159,9 +147,9 @@ var fDoubleList = {
     } else {
       this.postObj.pageNo++;
       loadMore.innerHTML = "正在加载...";
-      storage.setItem('fIndexInfo', JSON.stringify(this.postObj));
-      var newUrl = vlm.setUrlPara("", "pageNo",  this.postObj.pageNo);
-      window.location.href = newUrl;
+      storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
+      this.isClear = 0;
+      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
 
@@ -196,7 +184,9 @@ var fDoubleList = {
 
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href,true);
+    console.log(postObj)
     this.postObj = postObj;
+    this.isClear = 1;
     this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 
