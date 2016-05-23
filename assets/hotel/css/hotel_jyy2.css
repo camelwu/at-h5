@@ -46,7 +46,7 @@ ul,li{
 }
 .hotel_name{
     width:5.2rem;
-    font-size: 0.28rem;
+    font-size: 0.34rem;
     font-weight: bold;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -75,6 +75,27 @@ ul,li{
     color: #999;
     font-size: 0.24rem;
     margin-top: 0.08rem;
+}
+.hotel_content_wifi{
+    display: inline-block;
+    width: .4rem;
+    height: .4rem;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -77px -14px;
+    vertical-align: -0.16rem;
+    margin-left: .2rem;
+}
+.hotel_content_transfer{
+    display: inline-block;
+    width: .4rem;
+    height: .4rem;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size: 402px 174px;
+    background-position: -37px -14px;
+    vertical-align: -0.16rem;
 }
 .hotel_content_div1{
     height: .3rem;
