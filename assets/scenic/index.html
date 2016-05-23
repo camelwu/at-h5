@@ -40,10 +40,10 @@
   <!--content-->
   <div class="content">
     <!--国外热游地-->
-    <div id="js_t_city" class="t_city" data-bind="type:'m_t_city',AjaxAdapter:'m_t_city'">
-      <!--<div class="t_city_title">国外热游地</div>-->
-      <!--<div class="t_city_list">-->
-        <!--<ul class="t_city_content">-->
+    <div  class="t_city">
+      <div class="t_city_title">国外热游地</div>
+      <div class="t_city_content">
+        <ul id="js_city_list" class="t_city_list" data-bind="type:'m_city_list',AjaxAdapter:'m_city_list'">
           <!--<li class="t_city_content_item active">-->
             <!--<div class="t_city_content_itemtitle">新加坡</div>-->
           <!--</li>-->
@@ -65,69 +65,86 @@
           <!--<li class="t_city_content_item">-->
             <!--<div class="t_city_content_itemtitle">新加坡</div>-->
           <!--</li>-->
-        <!--</ul>-->
-      <!--</div>-->
+        </ul>
+      </div>
     </div>
     <!--国外热游地-->
     <!--国外热门景点-->
-    <div class="t_product">
+    <div class="t_product" >
       <div class="t_product_title">国外热门景点</div>
-      <ul class="t_product_list">
-        <li class="t_product_item">
-          <a href="#">
-            <div class="t_product_itemtop">
-              <div class="t_product_image">
-                <img src="images/img01.jpg">
-              </div>
-            </div>
-            <div class="t_product_price">
-              ￥<span>2480</span>起
-            </div>
-            <div class="t_product_itembottom">
-              <h5 class="t_product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>
-              <p class="t_product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>
-            </div>
-          </a>
-        </li>
-        <li class="t_product_item">
-          <a href="#">
-            <div class="t_product_itemtop">
-              <div class="t_product_image">
-                <img src="images/img01.jpg">
-              </div>
-            </div>
-            <div class="t_product_price">
-              ￥<span>2480</span>起
-            </div>
-            <div class="t_product_itembottom">
-              <h5 class="t_product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>
-              <p class="t_product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>
-            </div>
-          </a>
-        </li>
+      <ul id="js_product_list" class="t_product_list" data-bind="type:'m_product_list',AjaxAdapter:'m_product_list'">
+        <!--<li class="t_product_item">-->
+          <!--<a href="#">-->
+            <!--<div class="t_product_itemtop">-->
+              <!--<div class="t_product_image">-->
+                <!--<img src="images/img01.jpg">-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="t_product_price">-->
+              <!--￥<span>2480</span>起-->
+            <!--</div>-->
+            <!--<div class="t_product_itembottom">-->
+              <!--<h5 class="t_product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>-->
+              <!--<p class="t_product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>-->
+            <!--</div>-->
+          <!--</a>-->
+        <!--</li>-->
+        <!--<li class="t_product_item">-->
+          <!--<a href="#">-->
+            <!--<div class="t_product_itemtop">-->
+              <!--<div class="t_product_image">-->
+                <!--<img src="images/img01.jpg">-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="t_product_price">-->
+              <!--￥<span>2480</span>起-->
+            <!--</div>-->
+            <!--<div class="t_product_itembottom">-->
+              <!--<h5 class="t_product_title">&lt;新马泰9晚10或11日游&gt;畅游三国 自愿自费 不走回头路 上海往返</h5>-->
+              <!--<p class="t_product_describe">公主号 快艇金沙岛 船游湄南河 泰式古法按摩 水上清真寺 超高性价比</p>-->
+            <!--</div>-->
+          <!--</a>-->
+        <!--</li>-->
       </ul>
     </div>
     <!--国外热门景点-->
   </div>
   <!--content-->
 </div>
-<script id="tpl_t_city" type="text/template">
-  <div class="t_city_title">国外热游地</div>
-  <div class="t_city_list">
-    <ul class="t_city_content">
+<div id="some-id" title="123" data-bind="type:'123'"></div>
+<script id="tpl_city_list" type="text/template">
       <% for(var i = 0;i<data.destCities.length;i++){ %>
-      <li class="t_city_content_item active">
-        <div class="t_city_content_itemtitle">新加坡</div>
+      <li class="t_city_content_item <% if(i==0){%>active<%}%>" >
+        <div class="t_city_content_itemtitle" data-code="<%=data.destCities[i].cityCode%>"><%=data.destCities[i].cityName%></div>
       </li>
       <% } %>
-    </ul>
-  </div>
+</script>
+<script id="tpl_product_list" type="text/template">
+    <% for(var i = 0;i<data.hotScenicList.length;i++){ %>
+    <li class="t_product_item">
+      <a href="../scenic/scenic_detail.html?packageID=<%=data.hotScenicList[i].productID%>">
+        <div class="t_product_itemtop">
+          <div class="t_product_image">
+            <img src="<%=data.hotScenicList[i].productPicUrl%>">
+          </div>
+        </div>
+        <div class="t_product_price">
+          ￥<span><%=data.hotScenicList[i].productPrice%></span>起
+        </div>
+        <div class="t_product_itembottom">
+          <h5 class="t_product_title"><%=data.hotScenicList[i].productName%></h5>
+          <p class="t_product_describe"><%=data.hotScenicList[i].productSite%></p>
+        </div>
+      </a>
+    </li>
+    <% } %>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/plugins.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
+
 <script type="text/javascript" src="js/scenic.js"></script>
 
 <script>
@@ -137,7 +154,7 @@
 ////    console.log(arr.join(","));
 ////            var nowindex = 0;//点击事件获取当前下标值
 ////            localStorage.setItem('clickli','');//点击事件存储下标key名字
-    vlm.init();
+//    vlm.init();
 //    /**
 //     * 切换选项卡
 //     * @constructor

@@ -18,4 +18,8 @@
     VM.Load("hf_des");
   });
 
+  $("#t_des").click(function(){
+    VM.Load("t_des");
+  });
+
 })();
