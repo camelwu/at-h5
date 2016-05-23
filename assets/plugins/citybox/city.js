@@ -26,4 +26,19 @@
     VM.Load("ht_des");
   });
 
+  $("#f_inori").click(function(){
+    VM.Load("f_inori");
+  });
+
+  $("#f_indes").click(function(){
+    VM.Load("f_indes");
+  });
+
+  $("#f_outori").click(function(){
+    VM.Load("f_outori");
+  });
+
+  $("#f_outdes").click(function(){
+    VM.Load("f_outdes");
+  });
 })();
