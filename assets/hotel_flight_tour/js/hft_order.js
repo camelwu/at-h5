@@ -171,9 +171,7 @@
           //  "deviceID":"111"
           //},
           "memberID": localStorage.memberid,
-        },
-        "foreEndType": 2,
-        "code": "60100010"
+        }
       }
 
       if(freetype == 2){
@@ -289,7 +287,11 @@
     vlm.loadend();
     if(json.success)
     {
-      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
+      if( freetype == 2 ){
+        window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
+      }else{
+        window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
+      }
     }else{
       jAlert(json.message);
     }
