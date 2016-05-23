@@ -370,7 +370,7 @@ a.hotel_detail_pic{
     height:1rem;
     line-height: 1rem;
     padding: 0 0.27rem;
-    border-bottom: 1px solid #dfdfdd;
+    border-bottom:0.01rem solid #dfdfdd;
     overflow: hidden;
     position: relative;
 }
@@ -390,7 +390,7 @@ a.hotel_detail_pic{
     display: block;
 }
 .hotel_room_list li{
-    border-bottom: 1px solid #dfdfdd;
+    border-bottom:0.01rem solid #dfdfdd;
     padding: 0.20rem 0.27rem;
     position: relative;
 }
@@ -414,7 +414,25 @@ a.hotel_detail_pic{
 .hotel_room_list li p.price span.money{
     font-size: 0.46rem;
 }
-
+.hotel_detail_back{
+    position: absolute;
+    height:0.88rem;
+    width: 1.15rem;
+    left: 0;
+    top: 0;
+}
+.hotel_detail_back i{
+    width: 0.64rem;
+    height: 0.64rem;
+    position: absolute;
+    left:0.2rem;
+    top:0.2rem;
+    /* margin-top: -0.32rem; */
+    /* margin-left: 0.32rem; */
+    background: url(../../images/ui/icon_common.png) no-repeat;
+    background-size: 7.90rem 5.13rem;
+    background-position: -3.18rem -0.44rem;
+}
 
 
 
