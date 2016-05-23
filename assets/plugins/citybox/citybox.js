@@ -38,8 +38,8 @@
       hft_ori:function(){
         var hft_HotCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100014'};
         var hft_OriCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100001'};
-        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hftOriHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hft_OriCityListData),Method["hftOriCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hft_oriHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_OriCityListData),Method["hft_oriCityListDataCallback"]);
       },
       /**
        * 机+酒+景 通信
@@ -49,8 +49,8 @@
       hft_des:function(){
         var hft_HotCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100014'};
         var hft_DesCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100001'};
-        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hftDesHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hft_DesCityListData),Method["hftDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hft_desHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_DesCityListData),Method["hft_desCityListDataCallback"]);
       },
       /**
        * 机+酒 通信
@@ -60,8 +60,8 @@
       hf_ori:function(){
         var hf_HotCityListData = {"Parameters":{},"ForeEndType":3,"Code":"50100010"};
         var hf_OriCityListData = {"Parameters":{"CityType":"1","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
-        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hfOriHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hf_OriCityListData),Method["hfOriCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hf_oriHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_OriCityListData),Method["hf_oriCityListDataCallback"]);
       },
       /**
        * 机+酒 通信
@@ -71,8 +71,8 @@
       hf_des:function(){
         var hf_HotCityListData = {"Parameters":{},"ForeEndType":3,"Code":"50100010"};
         var hf_DesCityListData = {"Parameters":{"CityType":"2","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
-        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hfDesHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hf_DesCityListData),Method["hfDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hf_desHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_DesCityListData),Method["hf_desCityListDataCallback"]);
       },
       /**
        * 景 通信
@@ -80,8 +80,8 @@
       t_des:function(){
         var t_HotCityListData = { "Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0096"};
         var t_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0086"};
-        vlm.loadJson("",JSON.stringify(t_HotCityListData),Method["tHotCityListDataDataCallback"]);
-        vlm.loadJson("",JSON.stringify(t_DesCityListData),Method["tDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(t_HotCityListData),Method["t_desHotCityListDataDataCallback"]);
+        vlm.loadJson("",JSON.stringify(t_DesCityListData),Method["t_desCityListDataCallback"]);
       },
       /**
        * 酒+景 通信
@@ -89,8 +89,8 @@
       ht_des:function(){
         var ht_HotCityListData = { "Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0209"};
         var ht_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0201"};
-        vlm.loadJson("",JSON.stringify(ht_HotCityListData),Method["htHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(ht_DesCityListData),Method["htDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(ht_HotCityListData),Method["ht_desHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(ht_DesCityListData),Method["ht_desCityListDataCallback"]);
       },
       /**
        * 机票 国内 去程 通信
@@ -922,7 +922,7 @@
      * 回调方法 机+酒+景 城市列表 热门城市
      * @param json
      */
-    hftOriHotCityListDataCallback:function(json){
+    hft_oriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hftHotCity",json.data.hotCitysCN);
@@ -939,7 +939,7 @@
      * 回调方法 机+酒+景 城市列表 热门城市
      * @param json
      */
-    hftDesHotCityListDataCallback:function(json){
+    hft_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hftHotCity",json.data.hotCitysInternational);
@@ -955,7 +955,7 @@
      * 回调方法 机+酒+景 城市列表 去程
      * @param json
      */
-    hftOriCityListDataCallback:function(json){
+    hft_oriCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hftCityList",json.data.departCities);
@@ -971,7 +971,7 @@
      * 回调方法 机+酒+景 城市列表 返程
      * @param json
      */
-    hftDesCityListDataCallback:function(json){
+    hft_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hftCityList",json.data.destCities);
@@ -986,7 +986,7 @@
      * 回调方法 机+酒 城市列表 热门城市
      * @param json
      */
-    hfOriHotCityListDataCallback:function(json){
+    hf_oriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hfHotCity",json.data.hotCitysCN);
@@ -1001,7 +1001,7 @@
      * 回调方法 机+酒 城市列表 热门城市
      * @param json
      */
-    hfDesHotCityListDataCallback:function(json){
+    hf_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hfHotCity",json.data.hotCitysInternational);
@@ -1016,7 +1016,7 @@
      * 回调方法 机+酒 城市列表 去程
      * @param json
      */
-    hfOriCityListDataCallback:function(json){
+    hf_oriCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hfCityList",json.data.citys);
@@ -1031,7 +1031,7 @@
      * 回调方法 机+酒 城市列表 返程
      * @param json
      */
-    hfDesCityListDataCallback:function(json){
+    hf_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hfCityList",json.data.citys);
@@ -1046,7 +1046,7 @@
      * 景 热门城市
      * @param json
        */
-    tHotCityListDataDataCallback:function(json){
+    t_desHotCityListDataDataCallback:function(json){
       //console.log(json);
       if(json.success){
         show1 = 1;
@@ -1061,7 +1061,7 @@
      * 景 城市列表
      * @param json
        */
-    tDesCityListDataCallback:function(json){
+    t_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         show2 = 1;
@@ -1076,7 +1076,7 @@
      * 酒+景 热门城市
      * @param json
        */
-    htHotCityListDataCallback:function(json){
+    ht_desHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
         show1 = 1;
@@ -1091,7 +1091,7 @@
      * 酒+景 城市列表
      * @param json
        */
-    htDesCityListDataCallback:function(json){
+    ht_desCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
         show2 = 1;

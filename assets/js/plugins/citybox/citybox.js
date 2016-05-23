@@ -38,8 +38,8 @@
       hft_ori:function(){
         var hft_HotCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100014'};
         var hft_OriCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100001'};
-        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hftOriHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hft_OriCityListData),Method["hftOriCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hft_oriHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_OriCityListData),Method["hft_oriCityListDataCallback"]);
       },
       /**
        * 机+酒+景 通信
@@ -49,8 +49,8 @@
       hft_des:function(){
         var hft_HotCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100014'};
         var hft_DesCityListData = {'Parameters':{},'ForeEndType':3,'Code':'60100001'};
-        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hftDesHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hft_DesCityListData),Method["hftDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_HotCityListData),Method["hft_desHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hft_DesCityListData),Method["hft_desCityListDataCallback"]);
       },
       /**
        * 机+酒 通信
@@ -60,8 +60,8 @@
       hf_ori:function(){
         var hf_HotCityListData = {"Parameters":{},"ForeEndType":3,"Code":"50100010"};
         var hf_OriCityListData = {"Parameters":{"CityType":"1","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
-        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hfOriHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hf_OriCityListData),Method["hfOriCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hf_oriHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_OriCityListData),Method["hf_oriCityListDataCallback"]);
       },
       /**
        * 机+酒 通信
@@ -71,8 +71,8 @@
       hf_des:function(){
         var hf_HotCityListData = {"Parameters":{},"ForeEndType":3,"Code":"50100010"};
         var hf_DesCityListData = {"Parameters":{"CityType":"2","LastTime":"2016-04-15"},"ForeEndType":3,"Code":"50100008"};
-        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hfDesHotCityListDataCallback"]);
-        vlm.loadJson("",JSON.stringify(hf_DesCityListData),Method["hfDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hf_desHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(hf_DesCityListData),Method["hf_desCityListDataCallback"]);
       },
       /**
        * 景 通信
@@ -80,8 +80,8 @@
       t_des:function(){
         var t_HotCityListData = { "Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0096"};
         var t_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0086"};
-        vlm.loadJson("",JSON.stringify(t_HotCityListData),Method["tHotCityListDataDataCallback"]);
-        vlm.loadJson("",JSON.stringify(t_DesCityListData),Method["tDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(t_HotCityListData),Method["t_desHotCityListDataDataCallback"]);
+        vlm.loadJson("",JSON.stringify(t_DesCityListData),Method["t_desCityListDataCallback"]);
       },
       /**
        * 酒+景 通信
@@ -89,8 +89,46 @@
       ht_des:function(){
         var ht_HotCityListData = { "Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0209"};
         var ht_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0201"};
-        vlm.loadJson("",JSON.stringify(ht_HotCityListData),Method["htHotCityListDataDataCallback"]);
-        vlm.loadJson("",JSON.stringify(ht_DesCityListData),Method["htDesCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(ht_HotCityListData),Method["ht_desHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(ht_DesCityListData),Method["ht_desCityListDataCallback"]);
+      },
+      /**
+       * 机票 国内 去程 通信
+       */
+      f_inori:function(){
+        var f_inoriHotCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100013"};
+        var f_inoriCityListData = {"success": true, "message": "", "data":domesticCities};;
+        vlm.loadJson("",JSON.stringify(f_inoriHotCityListData),Method["f_inoriHotCityListDataCallback"]);
+        Method["f_inoriCityListDataCallback"](f_inoriCityListData);
+      }
+      ,
+      /**
+       * 机票 国内 去程 通信
+       */
+      f_indes:function(){
+        var f_indesHotCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100012"};
+        var f_indesCityListData = {"success": true, "message": "", "data":internationalCities};
+        vlm.loadJson("",JSON.stringify(f_indesHotCityListData),Method["f_indesHotCityListDataCallback"]);
+        Method["f_indesCityListDataCallback"](f_indesCityListData);
+      },
+      /**
+       * 机票 国内 去程 通信
+       */
+      f_outori:function(){
+        var f_outoriHotCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100013"};
+        var f_outoriCityListData = {"success": true, "message": "", "data":domesticCities};;
+        vlm.loadJson("",JSON.stringify(f_outoriHotCityListData),Method["f_outoriHotCityListDataCallback"]);
+        Method["f_outoriCityListDataCallback"](f_outoriCityListData);
+      }
+      ,
+      /**
+       * 机票 国内 去程 通信
+       */
+      f_outdes:function(){
+        var f_outdesHotCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100012"};
+        var f_outdesCityListData = {"success": true, "message": "", "data":internationalCities};
+        vlm.loadJson("",JSON.stringify(f_outdesHotCityListData),Method["f_outdesHotCityListDataCallback"]);
+        Method["f_outdesCityListDataCallback"](f_outdesCityListData);
       }
     }
 
@@ -138,7 +176,6 @@
             countryCode : data[i].countryCode || "",
             countryName : data[i].countryName || "",
             fullSpellingName : data[i].fullSpellingName || ""
-
           };
           newObj.push(obj);
         }
@@ -298,6 +335,186 @@
           newObj.push(obj);
         }
         return newObj;
+      },
+      /**
+       * 机票 国内 去程 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_inoriHotCity:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityChineseName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryChineseName || "",
+            fullSpellingName : data[i].fullSpellingName || ""
+
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 机票 国内 去程 城市列表 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_inoriCityList:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityNameCN || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryName || "",
+            fullSpellingName : data[i].pingYin || "",
+            shortSpellingName : data[i].hyKeyWord  || "",
+            cityNameEn : data[i].cityNameEn  || ""
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 机票 国内 返程 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_indesHotCity:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityChineseName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryChineseName || "",
+            fullSpellingName : data[i].fullSpellingName || ""
+
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 机票 国内 返程 城市列表 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_indesCityList:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityNameCN || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryName || "",
+            fullSpellingName : data[i].pingYin || "",
+            shortSpellingName : data[i].hyKeyWord  || "",
+            cityNameEn : data[i].cityNameEn  || ""
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 机票 国际 去程 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_outoriHotCity:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityChineseName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryChineseName || "",
+            fullSpellingName : data[i].fullSpellingName || ""
+
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 机票 国际 去程 城市列表 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_outoriCityList:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityNameCN || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryName || "",
+            fullSpellingName : data[i].pingYin || "",
+            shortSpellingName : data[i].hyKeyWord  || "",
+            cityNameEn : data[i].cityNameEn  || ""
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 机票 国际 返程 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_outdesHotCity:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityChineseName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryChineseName || "",
+            fullSpellingName : data[i].fullSpellingName || ""
+
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 机票 国际 返程 城市列表 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      f_outdesCityList:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityNameCN || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryName || "",
+            fullSpellingName : data[i].pingYin || "",
+            shortSpellingName : data[i].hyKeyWord  || "",
+            cityNameEn : data[i].cityNameEn  || ""
+          };
+          newObj.push(obj);
+        }
+        return newObj;
       }
     }
 
@@ -344,6 +561,13 @@
         var searchVal  = cityCode+cityName+countryCode+countryName+fullSpellingName+shortSpellingName+cityNameEn;
         return searchVal;
       },
+      /**
+       * 酒+景 城市搜索
+       * @param dom
+       * @param data
+       * @param i
+       * @returns {string}
+       */
       ht_desSearchSuggest:function(dom,data,i){
         var cityCode = data[i].cityCode.toLowerCase();
         var cityName = data[i].cityName.toLowerCase();
@@ -353,6 +577,78 @@
         var shortSpellingName = data[i].shortSpellingName.toLowerCase();
         var cityNameEn = data[i].cityNameEn.toLowerCase();
         var searchVal  = cityCode+cityName+countryCode+countryName+fullSpellingName+shortSpellingName+cityNameEn;
+        return searchVal;
+      },
+      /**
+       * 机票 国内 去程 城市搜索
+       * @param dom
+       * @param data
+       * @param i
+       * @returns {string}
+       */
+      f_inoriSearchSuggest:function(dom,data,i){
+        var cityCode = data[i].cityCode.toLowerCase();
+        var cityName = data[i].cityName.toLowerCase();
+        //var countryCode = data[i].countryCode.toLowerCase();
+        var countryName = data[i].countryName.toLowerCase();
+        var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+        var shortSpellingName = data[i].shortSpellingName.toLowerCase();
+        var cityNameEn = data[i].cityNameEn.toLowerCase();
+        var searchVal  = cityCode+cityName+countryName+fullSpellingName+shortSpellingName+cityNameEn;
+        return searchVal;
+      },
+      /**
+       * 机票 国内 返程 城市搜索
+       * @param dom
+       * @param data
+       * @param i
+       * @returns {string}
+       */
+      f_indesSearchSuggest:function(dom,data,i){
+        var cityCode = data[i].cityCode.toLowerCase();
+        var cityName = data[i].cityName.toLowerCase();
+        //var countryCode = data[i].countryCode.toLowerCase();
+        var countryName = data[i].countryName.toLowerCase();
+        var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+        var shortSpellingName = data[i].shortSpellingName.toLowerCase();
+        var cityNameEn = data[i].cityNameEn.toLowerCase();
+        var searchVal  = cityCode+cityName+countryName+fullSpellingName+shortSpellingName+cityNameEn;
+        return searchVal;
+      },
+      /**
+       * 机票 国际 去程 城市搜索
+       * @param dom
+       * @param data
+       * @param i
+       * @returns {string}
+       */
+      f_outoriSearchSuggest:function(dom,data,i){
+        var cityCode = data[i].cityCode.toLowerCase();
+        var cityName = data[i].cityName.toLowerCase();
+        //var countryCode = data[i].countryCode.toLowerCase();
+        var countryName = data[i].countryName.toLowerCase();
+        var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+        var shortSpellingName = data[i].shortSpellingName.toLowerCase();
+        var cityNameEn = data[i].cityNameEn.toLowerCase();
+        var searchVal  = cityCode+cityName+countryName+fullSpellingName+shortSpellingName+cityNameEn;
+        return searchVal;
+      },
+      /**
+       * 机票 国际 返程 城市搜索
+       * @param dom
+       * @param data
+       * @param i
+       * @returns {string}
+       */
+      f_outdesSearchSuggest:function(dom,data,i){
+        var cityCode = data[i].cityCode.toLowerCase();
+        var cityName = data[i].cityName.toLowerCase();
+        //var countryCode = data[i].countryCode.toLowerCase();
+        var countryName = data[i].countryName.toLowerCase();
+        var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+        var shortSpellingName = data[i].shortSpellingName.toLowerCase();
+        var cityNameEn = data[i].cityNameEn.toLowerCase();
+        var searchVal  = cityCode+cityName+countryName+fullSpellingName+shortSpellingName+cityNameEn;
         return searchVal;
       },
       /**
@@ -484,6 +780,42 @@
         $(data.returnType).html(data.cityName);
       },
       /**
+       * 机票 国内 去程
+       * @param data
+       * @returns {Array}
+       */
+      f_inoriExec:function(data){
+        $(data.returnType).attr("data-code",data.cityCode);
+        $(data.returnType).html(data.cityName);
+      },
+      /**
+       * 机票 国内 返程
+       * @param data
+       * @returns {Array}
+       */
+      f_indesExec:function(data){
+        $(data.returnType).attr("data-code",data.cityCode);
+        $(data.returnType).html(data.cityName);
+      },
+      /**
+       * 机票 国际 去程
+       * @param data
+       * @returns {Array}
+       */
+      f_outoriExec:function(data){
+        $(data.returnType).attr("data-code",data.cityCode);
+        $(data.returnType).html(data.cityName);
+      },
+      /**
+       * 机票 国际 返程
+       * @param data
+       * @returns {Array}
+       */
+      f_outdesExec:function(data){
+        $(data.returnType).attr("data-code",data.cityCode);
+        $(data.returnType).html(data.cityName);
+      },
+      /**
        * 景
        * @param data
        * @returns {Array}
@@ -590,7 +922,7 @@
      * 回调方法 机+酒+景 城市列表 热门城市
      * @param json
      */
-    hftOriHotCityListDataCallback:function(json){
+    hft_oriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hftHotCity",json.data.hotCitysCN);
@@ -607,7 +939,7 @@
      * 回调方法 机+酒+景 城市列表 热门城市
      * @param json
      */
-    hftDesHotCityListDataCallback:function(json){
+    hft_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hftHotCity",json.data.hotCitysInternational);
@@ -623,7 +955,7 @@
      * 回调方法 机+酒+景 城市列表 去程
      * @param json
      */
-    hftOriCityListDataCallback:function(json){
+    hft_oriCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hftCityList",json.data.departCities);
@@ -639,7 +971,7 @@
      * 回调方法 机+酒+景 城市列表 返程
      * @param json
      */
-    hftDesCityListDataCallback:function(json){
+    hft_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hftCityList",json.data.destCities);
@@ -654,7 +986,7 @@
      * 回调方法 机+酒 城市列表 热门城市
      * @param json
      */
-    hfOriHotCityListDataCallback:function(json){
+    hf_oriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hfHotCity",json.data.hotCitysCN);
@@ -669,7 +1001,7 @@
      * 回调方法 机+酒 城市列表 热门城市
      * @param json
      */
-    hfDesHotCityListDataCallback:function(json){
+    hf_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["HotCityListData"]= dataAdapter().callAdapter("hfHotCity",json.data.hotCitysInternational);
@@ -684,7 +1016,7 @@
      * 回调方法 机+酒 城市列表 去程
      * @param json
      */
-    hfOriCityListDataCallback:function(json){
+    hf_oriCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hfCityList",json.data.citys);
@@ -699,7 +1031,7 @@
      * 回调方法 机+酒 城市列表 返程
      * @param json
      */
-    hfDesCityListDataCallback:function(json){
+    hf_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         config["CityListData"]= dataAdapter().callAdapter("hfCityList",json.data.citys);
@@ -710,7 +1042,11 @@
         console.log(json);
       }
     },
-    tHotCityListDataDataCallback:function(json){
+    /**
+     * 景 热门城市
+     * @param json
+     */
+    t_desHotCityListDataDataCallback:function(json){
       //console.log(json);
       if(json.success){
         show1 = 1;
@@ -721,7 +1057,11 @@
         console.log(json);
       }
     },
-    tDesCityListDataCallback:function(json){
+    /**
+     * 景 城市列表
+     * @param json
+     */
+    t_desCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         show2 = 1;
@@ -732,7 +1072,11 @@
         console.log(json);
       }
     },
-    htHotCityListDataDataCallback:function(json){
+    /**
+     * 酒+景 热门城市
+     * @param json
+     */
+    ht_desHotCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
         show1 = 1;
@@ -743,11 +1087,135 @@
         console.log(json);
       }
     },
-    htDesCityListDataCallback:function(json){
+    /**
+     * 酒+景 城市列表
+     * @param json
+     */
+    ht_desCityListDataCallback:function(json){
       console.log(json);
       if(json.success){
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("htCityList",json.data.destCities);
+        VM("citybox_citylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国内 去程 热门城市
+     * @param json
+     */
+    f_inoriHotCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show1 = 1;
+        config["HotCityListData"]= dataAdapter().callAdapter("f_inoriHotCity",json.data);
+        VM("citybox_hotcitylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国内 去程 城市列表
+     * @param json
+     */
+    f_inoriCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show2 = 1;
+        config["CityListData"]= dataAdapter().callAdapter("f_inoriCityList",json.data);
+        VM("citybox_citylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国内 返程 热门城市
+     * @param json
+     */
+    f_indesHotCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show1 = 1;
+        config["HotCityListData"]= dataAdapter().callAdapter("f_indesHotCity",json.data);
+        VM("citybox_hotcitylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国内 返程 城市列表
+     * @param json
+     */
+    f_indesCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show2 = 1;
+        config["CityListData"]= dataAdapter().callAdapter("f_indesCityList",json.data);
+        VM("citybox_citylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国际 去程 热门城市
+     * @param json
+     */
+    f_outoriHotCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show1 = 1;
+        config["HotCityListData"]= dataAdapter().callAdapter("f_inoriHotCity",json.data);
+        VM("citybox_hotcitylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国际 去程 城市列表
+     * @param json
+     */
+    f_outoriCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show2 = 1;
+        config["CityListData"]= dataAdapter().callAdapter("f_inoriCityList",json.data);
+        VM("citybox_citylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国际 返程 热门城市
+     * @param json
+     */
+    f_outdesHotCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show1 = 1;
+        config["HotCityListData"]= dataAdapter().callAdapter("f_indesHotCity",json.data);
+        VM("citybox_hotcitylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 机票 国际 返程 城市列表
+     * @param json
+     */
+    f_outdesCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show2 = 1;
+        config["CityListData"]= dataAdapter().callAdapter("f_indesCityList",json.data);
         VM("citybox_citylist");
         Method["loadingCityBox"]();
       }else{
