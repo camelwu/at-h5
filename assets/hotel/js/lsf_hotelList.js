@@ -822,7 +822,6 @@ function styleChange(id, mytext) {
 			//console.log(json.Data);
 			var data = json.data[0];
 			console.log(data);
-			console.log(2);
 			//console.log(data.HotelList);
 			V(data);
 

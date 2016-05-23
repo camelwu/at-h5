@@ -1,4 +1,15 @@
 /*rem  css*/
+/*日历组件*/
+.calendar dl dt.title-date{
+  font-size: .28rem;
+}
+/*header*/
+.header{
+  background: white;
+}
+.header p{
+  color:#484848;
+}
 .hotel_img{
     position: relative;
 }
@@ -74,6 +85,11 @@
 }
 .hotel_content > li:first-child{
   padding:.2rem;
+}
+.hotel_content > li:first-child em{
+  font-style: normal;
+  float: right;
+  color: #ffb413;
 }
 .hotel_content > li:last-child{
   border-bottom: 0px solid #dfdfdd;
