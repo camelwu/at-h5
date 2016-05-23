@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>填写订单</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link href="../styles/framework.css" type="text/css" rel="stylesheet">
-    <link href="../styles/style.css" type="text/css" rel="stylesheet">
-    <link href="../styles/tips.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/fill-in-order.css">
-    <link rel="stylesheet" type="text/css" href="../css/date_select.css">
+<meta charset="UTF-8">
+<title>填写订单</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link type="text/css" rel="stylesheet" href="../styles/reset.css">
+<link rel="stylesheet" type="text/css" href="css/tours.css">
 </head>
 <body>
     <div id="preloader">
@@ -19,27 +16,29 @@
     <div class="all-elements">
         <!--   顶部   -->
         <header class="header">
-            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
+            <a href="javascript:history.go(-1);" class="header_back" id="ht-back">
+                <i class="icon_back"></i>
+            </a>
             <h3>填写订单</h3>
         </header>
         <!--   内容   -->
-        <div class="sc-content">
-            <section class="sce-ticket-wrap min320">
-                <div class="sce-ticket">
-                    <section class="sce-introduce">
-                        <p class="sce-introduce-txt fl"><span class="sce-introduce-span"></span></p>
+        <div class="sc-content content">
+            <section class="sce-ticket-wrap min320 order_fill">
+                <div class="sce-ticket order_ticket">
+                    <section class="sce-introduce order_introduce">
+                        <p class="sce-introduce-txt fl txt"><span class="sce-introduce-span"></span></p>
                         <!--<div class="travel-noon fl">-->
                             <!--<a href="javascript:;" class="fa-noon on">上午</a>-->
                             <!--<a href="javascript:;" class="fa-noon">下午</a>-->
                         <!--</div>-->
                     </section>
-                    <div id="detailBox">
-                        <section id="hotel_detail" class="sce-ticket">
+                    <div id="detailBox" class="order_detail_box">
+                        <section id="hotel_detail" class="sce-ticket hotel_detail">
                             <!--<div class="sce-introduce-txt">曼谷王子皇宫酒店</div>-->
                             <!--<div class="detail-span">房型 豪华海景房2间</div>-->
                             <!--<div class="detail-span">2016-03-31 至 2016-04-02 2晚</div>-->
                         </section>
-                        <section id="tour_detail" class="sce-ticket">
+                        <section id="tour_detail" class="sce-ticket tour_detail">
                             <!--<div>-->
                                 <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
                                 <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
@@ -54,15 +53,15 @@
                             <!--</div>-->
                         </section>
                      </div>
-                    <div class="open-close">
-                        <b class="icons de-close"></b>
+                    <div class="open-close order_toggle_btn">
+                        <b></b>
                     </div>
                 </div>
             </section>
 			<section class="sce-line"></section>
             <!--出行人资料-->
-            <section class="personal_data_box">
-                <div class="personal_data" id="per-room-wrap">
+            <section class="personal_data_box order_data_box">
+                <div class="personal_data order_data" id="per-room-wrap">
                     <!--<div class="per_data">-->
                         <!--<span class="title"><i>房间1</i></span>-->
                         <!--<ul>-->
@@ -99,18 +98,26 @@
                 </div>
             </section>
             <!--联系人资料-->
-            <section class="personal_data_box">
+            <section class="personal_data_box order_data_box">
                 <div class="personal_data" id="personal_data">
                     <span class="title"><i>联系人资料</i><b><a href="javascript:;" class="add-contact"></a></b></span>
-                    <ul id="contact">
+                    <ul id="contact" class="order_trave">
                         <li>
-                            <span class="list_tit">姓：</span><input class="list_inp_name list_inp2" id="list-lastname" type="text" placeholder="Li"  data-elementName="lastName"  />
-                            <span class="list_tit">名：</span><input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="Shimin" data-elementName="firstName"  />
+                            <span class="list_tit">姓：</span>
+                            <span class="list_con2">
+                                <input class="list_inp_name list_inp2" id="list-lastname" type="text" placeholder="Li"  data-elementName="lastName"  />
+                            </span>
 
+                            <span class="list_tit">名：</span>
+                            <span class="list_con2">
+                                <input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="Shimin" data-elementName="firstName"  />
+                            </span>
                         </li>
                         <li>
                             <span class="list_tit">手机：</span>
-                            <span class="list_con"><input class="list_inp2" id="list_con_tel" type="tel" placeholder="用于接收短信通知" data-elementName="mobilePhone"  /></span>
+                            <span class="list_con">
+                                <input class="list_inp2" id="list_con_tel" type="tel" placeholder="用于接收短信通知" data-elementName="mobilePhone"  />
+                            </span>
                         </li>
                         <li>
                             <span class="list_tit">邮箱：</span>
@@ -152,13 +159,13 @@
                 </div>
             </section>
 
-            <div class="order-notice">
+            <div class="order-notice" style="display: none;">
                 <i class="order-notice-btn"></i>
                 <span class="order-notice-txt">已经阅读亚洲旅行网<span id="state_btn" style="color: #ffbf4b">旅行须知</span></span>
             </div>
         </div>
         <!--   底部预订   -->
-       <div class="package_reserve">
+       <div class="package_reserve order_reserve">
             <span class="all_num">套餐总额：<i></i></span>
             <!--<span class="separate_num">分开预订：<i></i></span>-->
             <i class="itemized" id="show_de">明细</i>
@@ -215,7 +222,7 @@
         </div>
     </div>
     <!--国籍选择开始-->
-    <div class="all-elements country-cho-wrap">
+    <div class="all-elements country-cho-wrap" style="display: none;">
         <div class="header">
             <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
             <div class="cl_search">

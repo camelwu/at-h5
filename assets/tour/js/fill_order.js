@@ -36,7 +36,7 @@
         for(var i=0;i<roomNumber; i++)
         {
             var oRoom=document.createElement('div');
-            oRoom.className='per_data';
+            oRoom.className='per_data order_per_data';
             oRoom.innerHTML='<span class="title"><i>房间'+(i+1)+'</i></span>'
                 +'<ul></ul>'
             $('#per-room-wrap')[0].appendChild(oRoom);
@@ -65,17 +65,18 @@
                 //}
                 //else
                 //{
-                    oSection.innerHTML='<li>'
+                    oSection.innerHTML='<li class="first">'
                         +'<span class="list_tit">成人'+(k+1)+'：</span>'
                         +'<b class="add_icon"><a href="javascript:;" data-c-id="'+k+'" class="add-passager'+k+'" ></a></b></span>'
                         +'</li>'
-                        +"<ul id='trave"+k+"'>"
+                        +'<ul class="order_trave" id="trave"+k+>'
                         +'<li class="trave-li trave-li-adu">'
                         +'<span class="list_tit2 ">姓：</span>'
                         +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
                         +'<span class="list_tit2 ">名：</span>'
                         +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
                         +'</li>'
+                        +'<li class="clearFix countries-wrap"><b class="icons open-pho-tour"></b><span class="list_country fl">国籍：</span><div class="country-btn" data-code="CN" data-tel-code="86">中国</div></li>'
                         +"</ul>"
                 //}
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
@@ -552,23 +553,23 @@
                 CheckOutDate = info.CheckOutDate.substr(0,10);
             }
             var tpl2 = [
-                '<div class="sce-introduce-txt">{%=hotels[0].hotelName%}</div>',
+                '<div class="txt">{%=hotels[0].hotelName%}</div>',
                 '{% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %}',
-                '<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}' + info.roomDetails.length+'间</div>',
+                '<div class="detail_span">房型 {%=hotels[0].rooms[i].roomName%}' + info.roomDetails.length+'间</div>',
                 '{% } %}',
                 '{% } %}',
-                '<div class="detail-span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>'
+                '<div class="detail_span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>'
             ].join('');
             var tpl3 = [
                 '{% for(var i=0;i<tourInfos.length;i++){ %}',
                 '<div>',
-                '<div class="sce-introduce-txt">{%=tourInfos[i].tourName%}</div>',
+                '<div class="txt">{%=tourInfos[i].tourName%}</div>',
                 '{% if(tourInfos[i].travelDateSpecified){ %}',
-                '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',
+                '<div class="detail_span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',
                 '{% } %}',
-                '<div class="detail-span">成人票 '+info.adultNum+'张</div>',
+                '<div class="detail_span">成人票 '+info.adultNum+'张</div>',
                 '{% if(JSON.parse(localStorage.info).childNum != 0){ %}',
-                '<div class="detail-span">儿童票 '+info.childNum+'张</div>',
+                '<div class="detail_span">儿童票 '+info.childNum+'张</div>',
                 '{% } %}',
                 '</div>',
                 '{% } %}'
@@ -601,7 +602,7 @@
     //});
     $('.open-close').click(function(){
         $('#detailBox').toggle();
-        $('.icons.de-close').toggleClass('de-open');
+        $('.icons').toggleClass('cur');
         //if($('#detailBox').display == 'none'){
         //    $('#detailBox').show();
         //}else{
