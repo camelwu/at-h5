@@ -46,14 +46,14 @@
     <div class="all_elements">
       <!-- Page Content-->
       <div class="content">
-        <a href="javascript:;" class="f_btn" onclick="showAddAir_page('new')">
+        <a href="javascript:;" class="f_btns" onclick="showAddAir_page('new')">
           <b class="icon_person user_add"></b><span class="newTitle"></span>
         </a>
         <ul class="often_traveler choosed-traveler"></ul>
 
         <ul class="often_traveler list-traveler" id="allList"></ul>
 
-        <div class="con_text" id="con-text">
+        <div class="con_text_tips" id="con-text">
           <!--为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月-->
         </div>
       </div>
@@ -89,7 +89,7 @@
             <div class="addtra_title">证件</div>
             <ul class="addAir_info">
               <li>
-                <b class="icons open_pho"></b>
+                <b class="open_arw open_pho"></b>
                 <div>证件类型</div>
                 <div id="postCard" class="postCard" data-code="1">护照</div>
               </li>
@@ -98,22 +98,22 @@
                 <input type="text" placeholder="确保与乘机证件一致" class="cardNumber">
               </li>
               <li>
-                <b class="icons open_pho"></b>
+                <b class="open_arw  open_pho"></b>
                 <div class="birth-date">证件有效期</div>
-                <input id="time-cont" type="text" class="birth-cont cardDateLimit" data-cache="1990年-1月-1日" value="1990年1月9号" readonly />
+                <input id="time-cont" type="text" class="birth-cont cardDateLimit" readonly />
               </li>
               <li class="countries-wrap">
-                <b class="icons open_pho"></b>
+                <b class="open_arw open_pho"></b>
                 <div>发证国家</div>
-                <div class="country-btn cardCountry" data-code="CN" >中国</div>
+                <div class="country_btn cardCountry" data-code="CN" >中国</div>
               </li>
             </ul>
             <div class="addtra_title">其他信息</div>
             <ul class="addAir_info mart-non">
               <li class="countries-wrap">
-                <b class="icons open_pho"></b>
+                <b class="open_arw open_pho"></b>
                 <div>国籍</div>
-                <div class="country-btn country" data-code="CN" >中国</div>
+                <div class="country_btn country" data-code="CN" >中国</div>
               </li>
               <li>
                 <div>性别</div>
@@ -123,7 +123,7 @@
                 </div>
               </li>
               <li>
-                <b class="icons open_pho"></b>
+                <b class="open_arw open_pho"></b>
                 <div class="birth-date">出生日期</div>
                 <input id="birth-cont" type="text" class="birth-cont birthDay" data-cache="1990年-1月-1日" value="1990年1月9号" readonly />
               </li>
@@ -144,20 +144,20 @@
               <!--</li>-->
             <!--</ul>-->
 
-            <div class="name_text" id="name-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+            <div class="name_text_tips" id="name-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
             <!--<div class="user-account" onclick="showChild_page()">-->
             <!--儿童婴儿购票说明>-->
             <!--</div>-->
 
-            <div id="delTra" class="f_btn button_grey">删除常旅客</div>
+            <div id="delTra" class="f_btns">删除常旅客</div>
           </div>
         </div>
       </div>
       <!-- 儿童购票说明页-->
-      <div class="childen-page" id="childen-page">
+      <div class="childen_page" id="childen-page">
         <div class="all_elements">
           <div class="header">
-            <a class="icons header-back closedOfChindDescript" onclick="closeChild_page()"></a>
+            <div id="childExplanation" class="header_quit"><i class="icon_back"></i></div>
             <h3>儿童购票说明</h3>
           </div>
           <div class="content">
@@ -203,89 +203,91 @@
       </div>
     </div>
 
-
     <!-- 填写姓名说明页-->
-    <!-- 中文姓名-->
-    <div class="fillName_page" id="fillName_page">
-      <div class="all_elements">
-        <div class="header">
-          <!--<a id="close_name" href="#" class="icons header-back"></a>-->
-          <a ihref="#" class="header-back"><i class="icons go-back closedOfFillName"></i></a>
-          <h3>填写姓名说明</h3>
-        </div>
-        <div class="user_content">
-          <ol class="ch_account" id="ch_account">
-          <li>姓名要与所持证件的姓名一致</li>
-          <li>中文姓名
+    <div class="fillName_page all_elements" id="fillName_page">
+      <div class="header">
+        <div id="closeName" class="header_quit"><i class="icon_back"></i></div>
+        <h3>填写姓名说明</h3>
+      </div>
+      <div class="content">
+        <!-- 中文姓名-->
+        <ol class="ch_account" id="ch_account">
+          <li>1. 姓名要与所持证件的姓名一致</li>
+          <li>2. 中文姓名
             <ul class="name_ul">
-              <li>若持护照乘机，必须确认护照上有中文姓名<br/>
-                生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”
-                <div class="name_example clearfix">
-                  <div>中文姓名</div>
-                  <div>王ben</div>
+              <li>
+                <p>若持护照乘机，必须确认护照上有中文姓名</p>
+                <p class="example_floor_down">生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”</p>
+                <div class="name_example">
+                  <span>中文姓名</span><span>王ben</span>
                 </div>
               </li>
               <li>
-                姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”
-                <div class="name_example clearfix">
-                  <div>中文姓名</div>
-                  <div>汉族然买买提</div>
+                <p class="example_floor">姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”</p>
+                <div class="name_example">
+                  <span>中文姓名</span><span>汉族然买买提</span>
                 </div>
               </li>
+              <li><p class="example_floor">香港、台湾、澳门的护照不支持国内航班，请改用其他证件。</p></li>
+            </ul>
+          </li>
+        </ol>
+        <!-- 英文姓名-->
+        <ol class="ch_account" id="en_account">
+          <li>1. 必须用英文字母填写，并确保与所持证件的姓名一致</li>
+          <li>2. 中文姓名
+            <ul class="name_ul">
               <li>
-                香港、台湾、澳门的护照不支持国内航班，请改用其他证件。
+                <p class="example_floor_down">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming</p>
+                <div class="name_example2">
+                  <p>
+                    <span>Surname</span>
+                    <span>Zhuge</span>
+                  </p>
+                  <p>
+                    <span>Given name</span>
+                    <span>Kongming</span>
+                  </p>
+                </div>
               </li>
             </ul>
           </li>
-          </ol>
-          <!-- 英文姓名-->
-          <ol class="ch_account" id="en_account">
-            <li>必须用英文字母填写，并确保与所持证件的姓名一致</li>
-            <li>中文姓名
-              <ul class="name_ul">
-                <li style="list-style-type: none;">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming
-                  <div class="name_example">
-                    <div>Surname</div>
-                    <div>Zhuge</div>
-                  </div>
-                  <div class="name_example2" >
-                    <div>Given name</div>
-                    <div>Kongming</div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li>英文姓名
-              <ul class="name_ul">
-                <li>若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
-                  例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad
-                  <div class="name_example">
-                    <div>Surname</div>
-                    <div>Potter</div>
-                  </div>
-                  <div class="name_example2" >
-                    <div>Given nam</div>
-                    <div>joerad</div>
-                  </div>
-                </li>
-              </ul>
-              <ul class="name_ul">
-                <li>姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
+          <li>3. 英文姓名
+            <ul class="name_ul">
+              <li>
+                <p class="example_floor_down">若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
+                  例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad</p>
+                <div class="name_example2">
+                  <p>
+                    <span>Surname</span>
+                    <span>Potter</span>
+                  </p>
+                  <p>
+                    <span>Given nam</span>
+                    <span>joerad</span>
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <ul class="name_ul">
+              <li>
+                <p class="example_floor_down">姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
                   在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
-                  jame M C
-                  <div class="name_example">
-                    <div>Surname</div>
-                    <div>BlackSA</div>
-                  </div>
-                  <div class="name_example2" >
-                    <div>Given nam</div>
-                    <div>jame M C</div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ol>
-        </div>
+                  jame M C</p>
+                <div class="name_example2">
+                  <p>
+                    <span>Surname</span>
+                    <span>BlackSA</span>
+                  </p>
+                  <p>
+                    <span>Given nam</span>
+                    <span>jame M C</span>
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ol>
       </div>
     </div>
 
@@ -297,7 +299,7 @@
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/plugins.js"></script>
     <script src="../js/lib/template.js"></script>
-    <script src="../js/lib/scroller.js"></script>
+    <script src="../js/plugins/scroller/scroller1.1.js"></script>
     <!--<script src="scripts/userChoice.js"></script>-->
     <script>
       var urlobj = vlm.parseUrlPara(window.location.href),isMulSelect=vlm.getpara("isMulSelect").toLowerCase()=="true"?true:false//是否多选
@@ -1212,6 +1214,12 @@
           }
         }
       })
+    </script>
+
+    <script>
+      $('#childExplanation').click(function(){
+        $('#childen-page').hide();
+      });
     </script>
 
 </body>
