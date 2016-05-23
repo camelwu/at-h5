@@ -559,14 +559,14 @@ uoHisData();
                 oI.style.background='url(../images/ui/icons1.png) -51px -38px ';
                 oI.style.backgroundSize='400px 120px';
                 lsf_myweb.getbyid('uo_hid').style.height='0';
-                lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38rem';
+                lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38.88rem';
                 bOk2=true;
             });
         }else{
             oI.style.background='url(../images/ui/icons1.png) -51px -38px ';
             oI.style.backgroundSize='400px 120px';
             lsf_myweb.getbyid('uo_hid').style.height='0';
-            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38rem';
+            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38.88rem';
         }
         bOk2=!bOk2;
     });
