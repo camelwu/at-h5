@@ -18,7 +18,7 @@
    * @param b
    * @returns {number}
    * @constructor
-   */
+     */
   var ByCitylist = function(a,b){
     return a.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
   };
@@ -101,14 +101,14 @@
   /**
    * 数据过滤策略层
    * @returns {{callAdapter: callAdapter, addAdapter: addAdapter}}
-   */
+     */
   var dataAdapter = function(){
     var adapter = {
       /**
        * 机+酒+景 热门城市 数据转化
        * @param data
        * @returns {Array}
-       */
+         */
       hftHotCity:function(data){
         //data数据处理转化
         var obj = {};
@@ -255,7 +255,7 @@
      * 设置城市接口
      * @param dom
      * @param data
-     */
+       */
     setCityBox:function(dom,data){
       console.log(data);
       globalType = data.data;
@@ -270,7 +270,7 @@
     /**
      * 回调方法 机+酒+景 城市列表 热门城市
      * @param json
-     */
+       */
     hftOriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
@@ -393,7 +393,7 @@
      * Header设置
      * @param dom
      * @param data
-     */
+       */
     cityboxHeader:function(dom,data){
 
     },
@@ -401,7 +401,7 @@
      * 当前城市地理位置模块
      * @param dom
      * @param data
-     */
+       */
     cityboxLocation:function(dom,data){
       dom.innerHTML = "";
       var citybox_content_title = document.createElement("div");
@@ -430,69 +430,69 @@
      * 搜索列表
      * @param dom
      * @param data
-     */
+       */
     cityboxSearchSuggest:function(dom,data){
       dom.innerHTML = "";
       $('#js_citybox_searchactive_input').val("");
 
 
-      $("#js_citybox_searchactive_input").bind("keyup , input propertychange",function(){
-        var data = config["CityListData"];
-        var strValue = $('#js_citybox_searchactive_input').val();
-        dom.innerHTML = "";
-        if(strValue == ""){
-          return;
-        }
-        strValue = strValue.replace(/\s+/g,"");
-        strValue = strValue.toLowerCase();
-
-
-        var fragment = document.createDocumentFragment();
-        for (var i =0;i<data.length;i++){
-
-          var cityCode = data[i].cityCode.toLowerCase();
-          var cityName = data[i].cityName.toLowerCase();
-          var countryCode = data[i].countryCode.toLowerCase();
-          var countryName = data[i].countryName.toLowerCase();
-          var fullSpellingName = data[i].fullSpellingName.toLowerCase();
-          var searchVal  = cityCode+cityName+countryCode+countryName+fullSpellingName;
-
-          if(searchVal.indexOf(strValue) > -1){
-            var thin_border_li = document.createElement("li");
-            thin_border_li.setAttribute("class","thin_border");
-
-            var citybox_searchactive_li_icon_span = document.createElement("span");
-            citybox_searchactive_li_icon_span.setAttribute("class","citybox_searchactive_li_icon");
-            thin_border_li.appendChild(citybox_searchactive_li_icon_span);
-
-            var citybox_searchactive_li_p = document.createElement("p");
-            citybox_searchactive_li_p.setAttribute("class","citybox_searchactive_li_p");
-            citybox_searchactive_li_p.setAttribute("data-code",data[i].cityCode);
-            citybox_searchactive_li_p.setAttribute("data-name",data[i].cityName);
-            citybox_searchactive_li_p.setAttribute("data-letter",data[i].fullSpellingName);
-            citybox_searchactive_li_p.innerHTML = data[i].cityName;
-            citybox_searchactive_li_p.onclick = function(){
-              var cityName = this.getAttribute("data-name");
-              var cityCode = this.getAttribute("data-code");
-              $(returnType).attr("data-code",cityCode);
-              $(returnType).html(cityName);
-              Method['hideAllCityBox']();
-            }
-            thin_border_li.appendChild(citybox_searchactive_li_p);
-
-            fragment.appendChild(thin_border_li);
+        $("#js_citybox_searchactive_input").bind("keyup , input propertychange",function(){
+          var data = config["CityListData"];
+          var strValue = $('#js_citybox_searchactive_input').val();
+          dom.innerHTML = "";
+          if(strValue == ""){
+            return;
           }
+          strValue = strValue.replace(/\s+/g,"");
+          strValue = strValue.toLowerCase();
 
-        }
-        dom.appendChild(fragment);
 
-      });
+          var fragment = document.createDocumentFragment();
+          for (var i =0;i<data.length;i++){
+
+            var cityCode = data[i].cityCode.toLowerCase();
+            var cityName = data[i].cityName.toLowerCase();
+            var countryCode = data[i].countryCode.toLowerCase();
+            var countryName = data[i].countryName.toLowerCase();
+            var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+            var searchVal  = cityCode+cityName+countryCode+countryName+fullSpellingName;
+
+              if(searchVal.indexOf(strValue) > -1){
+                  var thin_border_li = document.createElement("li");
+                  thin_border_li.setAttribute("class","thin_border");
+
+                  var citybox_searchactive_li_icon_span = document.createElement("span");
+                  citybox_searchactive_li_icon_span.setAttribute("class","citybox_searchactive_li_icon");
+                  thin_border_li.appendChild(citybox_searchactive_li_icon_span);
+
+                  var citybox_searchactive_li_p = document.createElement("p");
+                  citybox_searchactive_li_p.setAttribute("class","citybox_searchactive_li_p");
+                  citybox_searchactive_li_p.setAttribute("data-code",data[i].cityCode);
+                  citybox_searchactive_li_p.setAttribute("data-name",data[i].cityName);
+                  citybox_searchactive_li_p.setAttribute("data-letter",data[i].fullSpellingName);
+                  citybox_searchactive_li_p.innerHTML = data[i].cityName;
+                  citybox_searchactive_li_p.onclick = function(){
+                    var cityName = this.getAttribute("data-name");
+                    var cityCode = this.getAttribute("data-code");
+                    $(returnType).attr("data-code",cityCode);
+                    $(returnType).html(cityName);
+                    Method['hideAllCityBox']();
+                  }
+                  thin_border_li.appendChild(citybox_searchactive_li_p);
+
+                  fragment.appendChild(thin_border_li);
+              }
+
+            }
+          dom.appendChild(fragment);
+
+        });
     },
     /**
      * 城市历史记录
      * @param dom
      * @param data
-     */
+       */
     cityboxHistory:function(dom,data){
       dom.innerHTML = "";
       var cityboxHistoryData = localStorage.getItem(""+globalType+"_history");
@@ -575,7 +575,7 @@
      * @param from
      * @param to
      * @returns {Number|*}
-     */
+       */
     remove: function(array, from, to) {
       var rest = array.slice((to || from) + 1 || array.length);
       array.length = from < 0 ? array.length + from : from;
@@ -585,7 +585,7 @@
      * 热门城市列表
      * @param dom
      * @param data
-     */
+       */
     cityboxHotCityList:function(dom,data){
       dom.innerHTML = "";
       var data = data.data;
@@ -626,7 +626,7 @@
      * 城市列表
      * @param dom
      * @param data
-     */
+       */
     cityboxCityList:function(dom,data){
       dom.innerHTML = "";
       var data = data.data.sort(ByCitylist);
@@ -674,7 +674,7 @@
      * 城市字母导航
      * @param dom
      * @param data
-     */
+       */
     cityboxLetterIndex:function(dom,data){
       dom.innerHTML = "";
       var data = data.data;
@@ -761,6 +761,13 @@
   webkit.VM.Method = Method;
   webkit.VM.Config = config;
 })();
+//获取数据
+//数据转换接口
+//热门城市
+//城市列表
+//城市字母列表
+//城市搜索
+
 
 
 

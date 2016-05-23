@@ -280,7 +280,8 @@
                         "ChargeDetails": {
                             "CurrencyCode": "CNY",
                             "TotalPrice": totPrice
-                        }
+                        },
+                       "track":{"browserType":"","deviceID":vlm.getDeviceID()}
                     },
 
                     //"Method": null,

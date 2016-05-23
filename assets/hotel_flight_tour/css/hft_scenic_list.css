@@ -159,6 +159,9 @@ address, cite, dfn, em, var { font-style: normal; } html,body{background: white}
 li.scenic_detile_project_first{
   margin-left: 0;
 }
+.scenic_detile_project p{
+  line-height: .6rem;
+}
 .scenic-detile_privilege{
   font: 700 .2rem/.6rem "FZLTXHK";
   color:#FFBF4B

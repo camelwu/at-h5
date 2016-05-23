@@ -348,10 +348,10 @@
 			var code = this.getAttribute("room-code");
 
             try{
-                var sign = vlm.checkLogin('../hotel/user_order.html?' + 'roomCode=' + code);
-                if(sign){
+                //var sign = vlm.checkLogin('../hotel/user_order.html?' + 'roomCode=' + code);
+                //if(sign){
                     document.location.href = 'user_order.html?' + 'roomCode=' + code;
-                }
+                //}
             }catch(e){
                 console.info(e);
             }

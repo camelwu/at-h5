@@ -195,10 +195,10 @@
         }
         /*支付方法  paymentType(支付宝，信用卡)，bussinessType（机票，酒店....）*/
         var _paymentEvent=function() {
-            var parameters
+            var parameters,url=""
             //Todo 酒店支付特殊处理（目前为不影响酒店支付流程，暂时单独处理，后期等后台接口重构去掉）
             if (type.id == 1){
-
+                url=vlm.apiWithDeviceID;
                 var model=_get_modle();
                 var guestNameList = [];
                 //酒店订单未生成
@@ -259,7 +259,9 @@
                         "roomTypeName": json.RoomTypeName,
                         "sessionID": "",
                         "totalPrice": json.totalPriceCNY*parseInt(json.NumOfRoom),
-                        "trck": ""
+                        "trck": "",
+                        "browserType":"",
+                        "deviceID":vlm.getDeviceID()
                     }
                      param = {
                          "Code": type.payMentCode,
@@ -322,7 +324,7 @@
 
             //$.jAlert.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",null,"支付完成","支付出现问题");
             console.log(JSON.stringify(param));
-            vlm.loadJson("", JSON.stringify(param), function(data){
+            vlm.loadJson(url, JSON.stringify(param), function(data){
                     if (data.success) {
                         if(type.id==1){
                             vlm.loading();

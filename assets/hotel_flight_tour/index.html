@@ -12,12 +12,13 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <title>自由行首页 - 亚洲旅行网</title>
+    <script src="/js/lib/logRecord.js"></script>
     <link href="../styles/reset.css" rel="stylesheet" />
     <link href="css/hft_index.css" rel="stylesheet" />
     <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
     <link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body data-statp="index">
     <div id="preloader" style="display: none;">
         <div id="status">
         </div>
@@ -35,16 +36,19 @@
         </div>
         <div style="padding-top: 1.64rem;">
             <!--  机+酒   -->
-            <div id="flightHotelBox" class="content_box" style="display: none;">
+
+            <div id="flightHotelBox" class="content_box" style="display: none;" data-statm="fh">
                 <div class="full_box flight_info">
-                    <div class="flight_place">
+
+                    <div class="flight_place" data-statL="city">
                         <div class="origin city-search" id="hf_ori" data-bind="type:'setCityBox',data:'hf_ori',returnId:'#hf_ori'" data-code="BJS">北京</div>
                         <div class="iconTip">
                             <div><span class="hft_icon"></span></div>
                         </div>
                         <div class="destination city-search " id="hf_des" data-bind="type:'setCityBox',data:'hf_des',returnId:'#hf_des'" data-code="SIN">新加坡</div>
                     </div>
-                    <div class="date_info" id="fhCalendar">
+
+                    <div class="date_info" id="fhCalendar" data-statl="calendar">
                         <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
                         <div class="ori_des_date">
                             <span class="origin_data date_box"><span class="date_number date_one js_startDay">06月22日</span><span class="js_startData" data-day="2016-06-22"></span>&nbsp;<span class="week_one">周四</span></span>
@@ -107,16 +111,21 @@
                 </div>
             </div>
             <!--  机+酒+景   -->
-            <div id="flightHotelTourBox" class="content_box" style="display: none;">
+
+            <div id="flightHotelTourBox" class="content_box" style="display: none;" data-statM="fht">
                 <div class="full_box flight_info">
-                    <div class="flight_place">
+
+                    <div class="flight_place" data-statl="city">
+
                         <div class="origin city-search" id="hft_ori" data-bind="type:'setCityBox',data:'hft_ori',returnId:'#hft_ori'" data-code="BJS">北京</div>
                         <div class="iconTip">
                             <div><span class="hft_icon"></span></div>
                         </div>
+
                         <div class="destination city-search " id="hft_des" data-bind="type:'setCityBox',data:'hft_des',returnId:'#hft_des'" data-code="SIN">新加坡</div>
                     </div>
-                    <div class="date_info" id="fhtCalendar">
+
+                    <div class="date_info" id="fhtCalendar" data-statl="calendar">
                         <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
                         <div class="ori_des_date">
                             <span class="origin_data date_box"><span class="date_number date_one js_startDay">07月15日</span><span class="js_startData" data-day="2016-07-15"></span>&nbsp;<span class="week_one">周四</span></span>
@@ -187,79 +196,79 @@
     </div>
     <!--整体城市列表-->
     <div id="citybox_search_container" class="citybox_search_container citybox_search_state">
-      <div id="citybox_header" data-bind="type:'cityboxHeader'">
-        <!--默认搜索-->
-        <div class="citybox_header citybox_header_fixed js_citybox_header_default">
-          <div class="citybox_header_left">
-            <a id="js_citybox_header_goback" href="javascript:VM.Method['hideAllCityBox']();" class="citybox_header_btn">
-              <span class="citybox_header_return citybox_header_return_icon"></span>
-            </a>
-          </div>
-          <div class="citybox_search_relative">
-            <span class="citybox_search_icon"></span>
-            <input type="search" class="citybox_search_input" placeholder="中文/英文" onclick="VM.Method['hideCityBox']();">
-          </div>
+        <div id="citybox_header" data-bind="type:'cityboxHeader'">
+            <!--默认搜索-->
+            <div class="citybox_header citybox_header_fixed js_citybox_header_default">
+                <div class="citybox_header_left">
+                    <a id="js_citybox_header_goback" href="javascript:VM.Method['hideAllCityBox']();" class="citybox_header_btn">
+                        <span class="citybox_header_return citybox_header_return_icon"></span>
+                    </a>
+                </div>
+                <div class="citybox_search_relative">
+                    <span class="citybox_search_icon"></span>
+                    <input type="search" class="citybox_search_input" placeholder="中文/英文" onclick="VM.Method['hideCityBox']();">
+                </div>
+            </div>
+            <!--搜索头部-->
+            <div class="citybox_header citybox_header_fixed js_citybox_header_search">
+                <div class="citybox_searchactive_relative">
+                    <span class="citybox_searchactive_icon"></span>
+                    <input type="search" id="js_citybox_searchactive_input" class="citybox_searchactive_input" placeholder="中文/英文">
+                </div>
+                <div class="citybox_header_right">
+                    <a id="js_citybox_header_cancel" href="javascript:VM.Method['showCityBox']();" class="citybox_header_btn">
+                        <span class="citybox_searchactive_return">取消</span>
+                    </a>
+                </div>
+            </div>
         </div>
-        <!--搜索头部-->
-        <div class="citybox_header citybox_header_fixed js_citybox_header_search">
-          <div class="citybox_searchactive_relative">
-            <span class="citybox_searchactive_icon"></span>
-            <input type="search" id="js_citybox_searchactive_input" class="citybox_searchactive_input" placeholder="中文/英文">
-          </div>
-          <div class="citybox_header_right">
-            <a id="js_citybox_header_cancel" href="javascript:VM.Method['showCityBox']();" class="citybox_header_btn">
-              <span class="citybox_searchactive_return">取消</span>
-            </a>
-          </div>
+        <!--搜索列表-->
+        <div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'">
         </div>
-      </div>
-      <!--搜索列表-->
-      <div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'">
-      </div>
-      <!--搜索列表-->
-      <!--城市列表和字母定位-->
-      <div class="citybox_content">
-        <!--当前-->
-        <div id="citybox_location" data-bind="type:'cityboxLocation'">
-          <div class="citybox_content_title" id="js_location">当前</div>
-          <ul class="citybox_content_container">
-            <li class="citybox_content_item selected" data-code="200" data-name="北京" data-letter="bj">
-              <div class="citybox_content_itemtitle">
-                北京
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!--当前-->
-        <!--历史选择-->
-        <div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
-          <div class="citybox_content_title" id="js_history">历史选择</div>
-        </div>
-        <!--历史选择-->
-        <!--热门城市-->
-        <div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
-          <div class="citybox_content_title" id="js_hotcity">热门城市</div>
-        </div>
-        <!--热门城市-->
-        <!--城市列表-->
-        <div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
+        <!--搜索列表-->
+        <!--城市列表和字母定位-->
+        <div class="citybox_content">
+            <!--当前-->
+            <div id="citybox_location" data-bind="type:'cityboxLocation'">
+                <div class="citybox_content_title" id="js_location">当前</div>
+                <ul class="citybox_content_container">
+                    <li class="citybox_content_item selected" data-code="200" data-name="北京" data-letter="bj">
+                        <div class="citybox_content_itemtitle">
+                            北京
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--当前-->
+            <!--历史选择-->
+            <div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
+                <div class="citybox_content_title" id="js_history">历史选择</div>
+            </div>
+            <!--历史选择-->
+            <!--热门城市-->
+            <div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
+                <div class="citybox_content_title" id="js_hotcity">热门城市</div>
+            </div>
+            <!--热门城市-->
+            <!--城市列表-->
+            <div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
 
+            </div>
+            <!--城市列表-->
+            <!--城市字母定位-->
+            <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
+                <li class="citybox_summary_item" data-key="location">
+                    当前
+                </li>
+                <li class="citybox_summary_item" data-key="history">
+                    历史
+                </li>
+                <li class="citybox_summary_item" data-key="hotcity">
+                    热门
+                </li>
+            </div>
+            <!--城市字母定位-->
         </div>
-        <!--城市列表-->
-        <!--城市字母定位-->
-        <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
-          <li class="citybox_summary_item" data-key="location">
-            当前
-          </li>
-          <li class="citybox_summary_item" data-key="history">
-            历史
-          </li>
-          <li class="citybox_summary_item" data-key="hotcity">
-            热门
-          </li>
-        </div>
-        <!--城市字母定位-->
-      </div>
     </div>
     <!--整体城市列表-->
 

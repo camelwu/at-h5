@@ -149,12 +149,14 @@
 		})
 
 
-		var memberId=JSON.parse(localStorage.getItem('memberid'));
-		var Parameters= {
-			"Parameters": "{\"MemberId\":\""+memberId+"\"}",
-			"ForeEndType": 3,
-			"Code": "0062"
-		}
+    var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
+    var deviceID=vlm.Utils.CookieUtil.get("deviceID");
+
+    var Parameters= {
+      "Parameters": '{"MemberId":"'+memberId+'",DeviceId:"'+deviceID+'"}',
+      "ForeEndType": 3,
+      "Code": "0062"
+    }
 		vlm.loadJson("", JSON.stringify(Parameters), function(data){
 			if(data.success) {
 				if(data.data !=null && data.data.length>0 ) {
@@ -330,7 +332,7 @@
       </ul>
     </div>
     <div style="border-top: 1px solid #dedede;">
-      <a href="../hotel_flight_tour/hft_order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+      <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
     </div>
   </div>
   {% } %}

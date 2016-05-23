@@ -19,4 +19,12 @@
 module.exports = function (grunt) {
     grunt.registerTask('default', ['linkAssets', 'compileAssets', 'watch']);
     //grunt.registerTask('default', ['filerev']);
+//    grunt.registerTask('default', [
+//        'linkAssets',
+//        'compileAssets',
+//        'uglify:dev',
+//        'cssmin:dev',
+//        'clean:demo', //删除不能访问的资源
+//        'clean:plugins' //删除不能访问的资源
+//        ]);
 };

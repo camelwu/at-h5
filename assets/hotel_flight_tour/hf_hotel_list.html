@@ -1,261 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+<meta name="screen-orientation" content="portrait">
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="green">
 <meta name="Keywords" content="亚洲旅行网">
 <meta name="Description" content="境外专业旅行服务提供机构">
-<meta name="screen-orientation" content="portrait">
-<meta name="x5-orientation" content="portrait">
-<meta name="full-screen" content="yes">
-<meta name="x5-fullscreen" content="true">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
-<link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six.png" media="(device-width: 375px)">
-<link rel="apple-touch-startup-image" href="images/splash/splash-screen-six-plus.png" media="(device-width: 414px)">
-<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
-<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
-<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
-<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
-<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-<title>酒店搜索列表-筛选</title>
+<title>首页 - 亚洲旅行网</title>
 <link href="../styles/reset.css" rel="stylesheet" type="text/css">
-<link href="css/hf_hotel.css" rel="stylesheet" type="text/css">
+<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
+<link href="css/hft_hotel.css" rel="stylesheet" type="text/css">
+<link href="../plugins/footer/footer.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
+<!--loading-->
 <div id="preloader">
-    <div id="status">
-    </div>
+  <div id="status">
+  </div>
 </div>
-<div class="all_elements jhf-box">
-    <!--nav-->
-    <!--<div class="jhf-nav jlist-nav">-->
-        <!--<a class="j-back jpa"><i></i></a>-->
-        <!--<div class="j-title">-->
-            <!--<p class="bigtit">酒店（共<span id="totalHotels"></span>家）</p>-->
-        <!--</div>-->
-    <!--</div>-->
-    <div class="header">
-        <a href="javascript:window.history.go(-1);" class="header_back">
-            <i class="icon_back"></i>
-        </a>
-        <h3>酒店（共<span></span>家）</h3>
-    </div>
-    <!--content-->
-    <div class="content j-content jpr">
-        <ul class="jlist" id="hj_jList">
-        </ul>
-        <div class="more" id="loadMore">点击加载更多</div>
-        <div style="height: 40px; width: 100%;"></div>
-	</div>
-</div>
-<!--footer-->
-<div class="j-bottom">
-	<div class="fo-div fo-sort">
-        <i class=""></i>
-    	<p class="icon3"></p>
-        <p>快速排序</p>
-    </div>
-    <div class="fo-div fo-filter">
-        <i class=""></i>
-    	<p class="icon3"></p>
-        <p>筛选</p>
-    </div>
-    <div class="fo-div fo-location">
-        <i class=""></i>
-    	<p class="icon3"></p>
-        <p>位置</p>
-    </div>
+<!--loading  筛选-->
+<div class="status">
 </div>
 
-<!-- pop-->
-<div class="jpop">
-	<p class="mask" id="mask"></p>
-    <!--sort pop-->
-    <ul class="sort">
-    	<li data-sort="4"><i></i><p>价格从高至低</p></li>
-        <li data-sort="3"><i></i><p>价格从低至高</p></li>
-<!--        <li data-sort="0"><i></i><p>评分从高到低</p></li>-->
-        <li data-sort="2"><i></i><p>星级从高到低</p></li>
-        <li data-sort="1"><i></i><p>星级从低到高</p></li>
+
+<div class="all_elements">
+  <div class="header">
+    <a href="javascript:window.history.go(-1);" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3>酒店（共<span></span>家）</h3>
+  </div>
+  <div class="content">
+    <ul class="hotel_list" id="hj_jList">
+      <!--<li class="cur">-->
+        <!--<div>-->
+          <!--<img class="img" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">-->
+          <!--<article class="message">-->
+            <!--<h3>东京(银座)千禧三井花园饭店</h3>-->
+            <!--<p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</i></p>-->
+            <!--<p class="equipment clearfix">-->
+              <!--<span>三星级</span>-->
+              <!--<span class="park"></span>-->
+              <!--<span class="car"></span>-->
+            <!--</p>-->
+            <!--<p class="address">东京（品川区）</p>-->
+            <!--<div class="price">-->
+              <!--<span class="money">100</span>-->
+              <!--<span class="dollar">￥</span>-->
+              <!--<span class="add">+</span>-->
+            <!--</div>-->
+          <!--</article>-->
+        <!--</div>-->
+        <!--<i></i>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<div>-->
+          <!--<img class="img" src="../images/hotelListNo.jpg" data-src="images/0.png" alt="">-->
+          <!--<article class="message">-->
+            <!--<h3>东京(银座)千禧三井花园饭店</h3>-->
+            <!--<p><span class="score">4.5</span>&nbsp;分&nbsp;&nbsp;422人点评</i></p>-->
+            <!--<p class="equipment clearfix">-->
+              <!--<span>三星级</span>-->
+              <!--<span class="park"></span>-->
+              <!--<span class="car"></span>-->
+            <!--</p>-->
+            <!--<p class="address">东京（品川区）</p>-->
+            <!--<div class="price reduce">-->
+              <!--<span class="money">100</span>-->
+              <!--<span class="dollar">￥</span>-->
+              <!--<span class="add">-</span>-->
+            <!--</div>-->
+          <!--</article>-->
+        <!--</div>-->
+        <!--<i class=""></i>-->
+      <!--</li>-->
     </ul>
-    <!--screen pop-->
-    <div class="screen" id="screen">
-        <div class="hl_sc_chil">
-            <h4>星级档次</h4>
-            <ul class="s-ul" id="h-level">
-                <li class="s-li1" data-start="0">不限</li>
-                <li class="s-li" data-start="1">二星级以下</li>
-                <li class="s-li" data-start="2">三星</li>
-                <li class="s-li" data-start="4">四星</li>
-                <li class="s-li" data-start="8">五星</li>
-            </ul>
-<!--
-            <h4>酒店类型</h4>
-            <ul class="s-ul" id="h-type">
-                <li class="s-li1">
-                    不限
-                </li>
-                <li class="s-li">
-                    酒店
-                </li>
-                <li class="s-li">
-                    汽车旅馆
-                </li>
-                <li class="s-li">
-                    酒店式公寓
-                </li>
-                <li class="s-li">
-                    家庭旅馆
-                </li>
-                <li class="s-li">
-                    背包客栈
-                </li>
-                <li class="s-li">
-                    宾馆/招待所
-                </li>
-                <li class="s-li">
-                    精品酒店
-                </li>
-                <li class="s-li">
-                    度假类酒店
-                </li>
-                <li class="s-li">
-                    游轮度假酒店
-                </li>
-                <li class="s-li">
-                    别墅型酒店
-                </li>
-                <li class="s-li">
-                    乡村平房酒店
-                </li>
-                <li class="s-li">
-                    家庭寄宿
-                </li>
-                <li class="s-li">
-                    农舍式房子
-                </li>
-                <li class="s-li">
-                    豪华露营地
-                </li>
-                <li class="s-li">
-                    标准露营地
-                </li>
-            </ul>
--->
-            <div class="s-but" id="s_but">
-                确定
-            </div>
-        </div>
-    </div>
-    <div class="location" id="location">
-        <ul id="locationList">
-        </ul>
-        <div class="tempSubmit"></div>
-        <div class="submitWrap">
-            <div class="sureBtn" id="sureBtn">确定</div>
-        </div>
-    </div>
-    <!--
-    <div class="screen">
-        <div class="j-list">
-            <ul class="screen-lf">
-                <li class="cur">星级</li>
-                <li>早餐</li>
-                <li>评分</li>
-                <li>床型</li>
-                <li>设施</li>
-                <li>区域</li>
-            </ul>
-            <div class="screen-rg">
-                <ul>
-                    <li class="cur">三星级以下<i></i></li>
-                    <li>四星级<i></i></li>
-                    <li>五星级<i></i></li>
-                </ul>
-                <ul>
-                	<li class="cur">油条<i></i></li>
-                    <li>豆浆<i></i></li>
-                    <li>豆腐脑<i></i></li>
-                    <li>小笼包<i></i></li>
-                    <li>鸡蛋汤<i></i></li>
-                </ul>
-                <ul>
-                	<li class="cur">1分以下<i></i></li>
-                    <li>2分<i></i></li>
-                    <li>3分<i></i></li>
-                    <li>4分<i></i></li>
-                    <li>5分<i></i></li>
-                </ul>
-                <ul>
-                	<li class="cur">大床<i></i></li>
-                    <li>单人床<i></i></li>
-                    <li>双人床<i></i></li>
-                    <li>超大床<i></i></li>
-                </ul>
-                <ul>
-                	<li class="cur">床<i></i></li>
-                    <li>柜子<i></i></li>
-                    <li>空调<i></i></li>
-                    <li>电视<i></i></li>
-                    <li>电脑<i></i></li>
-                    <li>浴池<i></i></li>
-                    <li>wifi<i></i></li>
-                    <li>停车场<i></i></li>
-                    <li>暖气<i></i></li>
-                </ul>
-                <ul>
-                	<li class="cur">北京<i></i></li>
-                    <li>上海<i></i></li>
-                    <li>广州<i></i></li>
-                    <li>重庆<i></i></li>
-                    <li>厦门<i></i></li>
-                </ul>
-            </div>
-        </div>
-        <p class="j-btn"><a href="javascript:;">确定</a></p>
-    </div>
--->
+    <div class="hotel_more" id="loadMore">点击加载更多</div>
+  </div>
 </div>
-<script type="text/template" id="hj_list_template">
-    <% for(var i=0;i<hotels.length;i++) { %>
-    <li class="cur" data-hotelId="<%= hotels[i].hotelID %>">
-        <img class="jimg" src="../images/hotelListNo.jpg" data-src="<%= hotels[i].hotelPictureURL %>" alt="">
-        <dl class="imgrt">
-            <dt><%= hotels[i].hotelName %></dt>
-            <dd><span class="score"><%= hotels[i].hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotels[i].hotelReviewCount %>人点评</i></dd>
-            <dd>
-                <span><%= hotels[i].starRating %>星级</span>
-                <% if(hotels[i].isFreeWiFi) { %>
-                    <span class="wifi"></span>
-                <% } %>
-                <% if(false) { %>
-                    <span class="car"></span>
-                <% } %>
-            </dd>
-            <dd>
-                <span><%= hotels[i].city %></span>
-                <div class="price">
-                    <span>+</span>
-                    <span>￥</span>
-                    <span><%= hotels[i].additionalPrice %></span>
-                </div>
-            </dd>
-        </dl>
-        <i class=""></i>
-    </li>
-    <% } %>
-</script>
-<script src="../js/lib/jquery.js"></script>
+<!--底部-->
+
+<script src="../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/ejs.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/lazyLoad.js"></script>
 <script src="../plugins/footer/foot.js"></script>
-<script src="../js/lib/ejs.js"></script>
 <script src="js/hf_hotelList.js"></script>
+<!--title-->
+<script id="title" type="text/template">
+  <%= totelHotelCount %>
+</script>
+<!--list-->
+<script id="templateList" type="text/template">
+  <% for(var i=0;i<data.hotels.length;i++) { %>
+  <li data-hotelId="<%= data.hotels[i].hotelID %>">
+    <div>
+      <img class="img" src=<%= data.hotels[i].hotelPictureURL %> data-src="../images/hotelListNo.jpg" alt="">
+      <article class="message">
+        <h3><%= data.hotels[i].hotelNameLocale %></h3>
+        <p><span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>
+        <p class="equipment clearfix">
+          <span><%= data.hotels[i].starRating %></span>
+          <!--<span class="park"></span>-->
+          <!--<span class="car"></span>-->
+        </p>
+        <p class="address"><%= data.hotels[i].city %>（<%= data.hotels[i].location %>）</p>
+        <div class="price">
+          <span class="money"><%= data.hotels[i].additionalPrice %></span>
+          <span class="dollar">￥</span>
+          <span class="add">+</span>
+        </div>
+      </article>
+    </div>
+    <i></i>
+  </li>
+  <% } %>
+
+</script>
+
 </body>
 </html>
+

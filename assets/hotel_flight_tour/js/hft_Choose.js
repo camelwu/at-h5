@@ -30,25 +30,24 @@ var hftChoose = {
     };
     questUrl = questUrl ? questUrl : that.requestUrl;
     if (loadMoreSign) {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), callBack, false, false, loadMoreSign);
+      vlm.loadJson("", JSON.stringify(dataObj), callBack, false, false, loadMoreSign);
     } else {
-      vlm.loadJson(questUrl, JSON.stringify(dataObj), callBack);
+      vlm.loadJson("", JSON.stringify(dataObj), callBack);
     }
   },
 
   testLogin: function () {
-    if (vlm.checkLogin('hftChoose.testLogin')) {
+   /* if (vlm.checkLogin('hftChoose.testLogin')) {*/
       var storage = window.sessionStorage, that = hftChoose;
       that.createOrderPara.memberID = window.localStorage.getItem('memberid');
       storage.setItem('hftCreateOrderPara', JSON.stringify(that.createOrderPara));
       that.timer0 = setTimeout(function () {
         window.clearTimeout(that.timer0);
         that.timer0 = null;
-        window.location.href = "../hotel_flight_tour/hft_order.html?type=" + that.type;
+        window.location.href = that.type == 2 ? "../hotel_flight_tour/hft_order.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID : "../hotel_flight_tour/hft_order.html?type=" + that.type;
       }, 500);
-    }
+  /*  }*/
   },
-
   getCurrentStyle: function (node) {
     var style = null;
     if (window.getComputedStyle) {
@@ -314,7 +313,7 @@ var hftChoose = {
       }, 500);
     });
     this.addHandler(flightDetailI, 'click', function () {
-      window.location.href = "hft_flightDetail.html?type=" + that.type;
+      window.location.href = that.type == 2 ? "hft_flightDetail.html?type=" + that.type + "&packageId=" + that.initParaObj.packageID : "hft_flightDetail.html?type=" + that.type;
     });
 
     this.addHandler(hotelDetail, 'click', function () {
@@ -370,7 +369,7 @@ var hftChoose = {
         "priceRoomInfo": that.roomPriceInfo,
         "track": {
           "browserType": "",
-          "deviceID": ""
+          "deviceID": vlm.getDeviceID()
         }
       };
       if (that.type == 2) {

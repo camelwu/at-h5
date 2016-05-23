@@ -165,7 +165,6 @@
                     "HotelID": datahot.HotelID,
                     "RoomID": datahot.RoomID,
                     "MemberId": localStorage.memberid,
-
                     "ContactDetail": {
                         "SexCode": "Ms",
                         "FirstName": $('.hf_con_firstname').val(),
@@ -180,7 +179,6 @@
                 "ForeEndType": 3,
                 "Code": "50100004"
             }
-
             //房间信息
             Parmeters.Parameters.RoomDetails=datahot.RoomDetails;
 
