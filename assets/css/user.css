@@ -113,14 +113,14 @@ i, em {
   position: relative;
 }
 
-.login_phone{
+.login_phone {
   margin-top: .34rem;
   vertical-align: top;
   background-size: 8.48rem 4.8rem;
   background-position: -5.3rem -.2rem;
 }
 
-.login_pass{
+.login_pass {
   margin-top: .34rem;
   vertical-align: top;
   background-size: 8.48rem 4.8rem;
@@ -128,6 +128,8 @@ i, em {
 }
 
 .login_mail {
+  vertical-align: top;
+  margin-top: .35rem;
   background-position: -275px -10px;
 }
 
@@ -146,7 +148,7 @@ i, em {
   font-size: .28rem;
 }
 
-.login_btn_wrap, .change_way, .register_btn_wrap {
+.change_way {
   padding: 0 .4rem;
   overflow: hidden;
 }
@@ -231,16 +233,17 @@ i, em {
   font-size: .28rem;
 }
 
-#email, #r_email {
+#email, #r_email, #e_password, #r_p_password, #p_password,#find_phone, #r_e_password, #rs_e_password, .mob_cell {
   width: 80%;
 }
 
-#p_password {
-  width: 88%;
+#phone {
+  width: 65%;
 }
 
-#e_password, #r_p_password, #find_phone, #r_e_password, #rs_e_password, .mob_cell {
-  width: 100%;
+#phone_register, #email_register {
+  margin: 0 .4rem;
+  margin-top: 1rem;
 }
 
 .coun-find > div {
@@ -1078,11 +1081,13 @@ i, em {
 
   position: relative;
 }
-.p_86 >span{
+
+.p_86 > span {
   margin-left: .2rem;
-  margin-right:.7rem;
+  margin-right: .7rem;
 }
-.open_arw.int_tel{
+
+.open_arw.int_tel {
   width: .28rem;
   height: .32rem;
   top: 0;
@@ -1090,7 +1095,7 @@ i, em {
   background-size: 8.4rem 5.2rem;
 }
 
-#p_password{
+#p_password {
   padding-left: .25rem;
 }
 
@@ -1113,13 +1118,13 @@ i, em {
   color: rgba(255, 255, 255, 255);
 }
 
-.login-change {
-  width: 17px;
-  height: 17px;
-  background-position: -2px -35px;
+.login_change {
+  width: .34rem;
+  height: .34rem;
+  background-position: -5.94rem -.2rem;
   position: relative;
-  top: 3px;
-  margin-left: 3px;
+  top: .06rem;
+  margin-left: .06rem;
 }
 
 .login_clear {
@@ -1159,7 +1164,6 @@ i, em {
   bottom: 0;
   z-index: 1000;
   display: none;
-  overflow: hidden;
 }
 
 .country-cho-wrap .header {
@@ -1293,13 +1297,15 @@ ul, ol {
   padding: 0 .4rem;
 }
 
-.userper_lists .open_arw{
+.userper_lists .open_arw {
   top: .32rem;
 }
-.user_info_top .open_arw{
+
+.user_info_top .open_arw {
   right: .4rem;
   top: .65rem;
 }
+
 .userper_lists > li {
   position: relative;
   height: .96rem;
