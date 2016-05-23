@@ -547,28 +547,37 @@ a.hotel_detail_pic{
 }
 .order_per_data>ul li span.list_tit{
     display: inline-block;
-    width: 62px;
+    width:1.24rem;
 }
-.order_per_data>ul li .add_icon{
+.order_per_data>ul li .add_icon,.order_data_box .title b{
     position: absolute;
-    right: 15px;
-    top: 10px;
-    width: 18px;
-    height: 18px;
+    right:0.3rem;
+    top:0.2rem;
+    width:0.36rem;
+    height:0.36rem;
     background: url(../../images/icon_people_plus.png) no-repeat;
     background-size: 100%;
 }
+.order_per_data>ul li .add_icon a,.order_data_box .title b a{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width:0.36rem;
+    height:0.36rem;
+    padding: 0;
+    margin: 0;
+}
 .order_per_data>ul li .add_icon i{
-    width: 18px;
-    height: 18px;
+    width:0.36rem;
+    height:0.36rem;
     padding: 0;
     margin: 0;
 }
 .order_per_data>ul li.first{
-    padding-left: 12px;
+    padding-left: 0.24rem;
 }
 .order_per_data ul.order_trave{
-    padding: 0 0 0 12px;
+    padding: 0 0 0 0.24rem;
     margin: 0;
 }
 .order_per_data ul.order_trave span.list_con2,.order_data_box .order_trave .list_con2{
@@ -579,24 +588,24 @@ a.hotel_detail_pic{
 .order_per_data ul.order_trave input.list_inp2{
     border: none;
     color: #666;
-    font-size: 14px;
+    font-size:0.28rem;
     width: 100%;
 }
 .order_data_box{
     background: #fff;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
+    margin-bottom:0.2rem;
+    border-bottom:0.01rem solid #ddd;
 }
 .order_data_box .personal_data{
     overflow: hidden;
-    border-top: 1px solid #ddd;
+    border-top:0.01rem solid #ddd;
 }
 .order_data_box .title{
-    height: 42px;
-    line-height: 42px;
-    border-bottom: 1px solid #ddd;
+    height:0.84rem;
+    line-height:0.84rem;
+    border-bottom:0.01rem solid #ddd;
     display: block;
-    padding: 0 12px 0 24px;
+    padding: 0 0.24rem 0 0.48rem;
     position: relative;
 }
 .order_data_box ul.order_trave{
@@ -613,54 +622,104 @@ a.hotel_detail_pic{
     z-index: 98;
     width: 100%;
     background: #fff;
-    height: 42px;
+    height:0.98rem;
 }
 .order_reserve span.all_num{
-    padding-left: 10px;
+    padding-left:0.2rem;
     display: block;
     overflow: hidden;
-    font-size: 13px;
-    height: 36px;
-    line-height: 42px;
+    font-size:0.26rem;
+    height:0.98rem;
+    line-height:0.98rem;
+    border-top:0.01rem solid #ddd;
 }
 .order_reserve span.all_num i{
     color: #fb6014;
-    font-size: 16px;
+    font-size:0.32rem;
 }
-.order_reserve .itemized{
+.order_reserve .itemized,.order_reserve .itemized_d{
     position: absolute;
-    right: 96px;
-    top: 10px;
-    width: 38px;
-    height: 22px;
+    right: 1.92rem;
+    top: 0rem;
+    width: 0.86rem;
+    height: 0.98rem;
     color: #fdb330;
-    line-height: 22px;
-    font-size: 12px;
+    line-height: 0.98rem;
+    font-size: 0.24rem;
 }
 .order_reserve .itemized:after{
     content: '';
-    width: 10px;
-    height: 7px;
-    float: right;
+    width: 0.2rem;
+    height: 0.14rem;
     background: url(../../images/icons1.png) no-repeat -44px -34px;
     background-size: 348px auto;
-    margin-top: 8px;
+    position: absolute;
+    right: 0;
+    top: 0.4rem;
 }
 .order_reserve a.reserve{
     position: absolute;
     right: 0;
     top: 0;
-    width: 88px;
-    height: 42px;
+    width:1.76rem;
+    height:0.84rem;
     background: #fdb330;
     color: #fff;
     text-align: center;
-    line-height: 42px;
-    font-size: 16px;
+    line-height:0.84rem;
+    font-size:0.32rem;
 }
-
-
-
+.order_detail_expenses{
+    width: 100%;
+    padding:0.01rem;
+    background-color: #fff;
+    position: fixed;
+    bottom: -100%;
+    border-bottom: 1px solid #ddd;
+    transition: all 350ms;
+    z-index: 90;
+}
+.order_detail_expenses ul{
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 0;
+}
+.order_detail_expenses ul li{
+    height:0.8rem;
+    margin-bottom:0.1rem;
+    line-height:0.8rem;
+    border-bottom:0.01rem solid #d6d6d6;
+}
+.order_detail_expenses ul li:first-child {
+    color: #484848;
+    font-weight: 700;
+}
+.order_detail_expenses ul li:last-child {
+    border: none;
+    height:0.88rem;
+}
+.order_detail_expenses ul li div:nth-child(1) {
+    float: left;
+    color: #fb763b;
+}
+.order_detail_expenses ul li div:nth-child(2) {
+    float: right;
+    color: #fb763b;
+}
+.order_box2{
+    margin-bottom: 1.84rem;
+}
+.mask{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .5;
+    z-index: 999;
+    display: none;
+}
 /*∂©µ•ÃÓ–¥  end*/
 
 
