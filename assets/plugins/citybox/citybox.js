@@ -31,7 +31,7 @@
   var AjaxAdapter = function(){
     var adapter = {
       /**
-       * 机+酒+景 热门城市 数据转化
+       * 机+酒+景 通信
        * @param data
        * @returns {Array}
        */
@@ -42,7 +42,7 @@
         vlm.loadJson("",JSON.stringify(hft_OriCityListData),Method["hftOriCityListDataCallback"]);
       },
       /**
-       * 机+酒+景 城市列表 数据转化
+       * 机+酒+景 通信
        * @param data
        * @returns {Array}
        */
@@ -53,7 +53,7 @@
         vlm.loadJson("",JSON.stringify(hft_DesCityListData),Method["hftDesCityListDataCallback"]);
       },
       /**
-       * 机+酒 热门城市 数据转化
+       * 机+酒 通信
        * @param data
        * @returns {Array}
        */
@@ -64,7 +64,7 @@
         vlm.loadJson("",JSON.stringify(hf_OriCityListData),Method["hfOriCityListDataCallback"]);
       },
       /**
-       * 机+酒 城市列表 数据转化
+       * 机+酒 通信
        * @param data
        * @returns {Array}
        */
@@ -74,11 +74,23 @@
         vlm.loadJson("",JSON.stringify(hf_HotCityListData),Method["hfDesHotCityListDataCallback"]);
         vlm.loadJson("",JSON.stringify(hf_DesCityListData),Method["hfDesCityListDataCallback"]);
       },
+      /**
+       * 景 通信
+       */
       t_des:function(){
         var t_HotCityListData = { "Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0096"};
         var t_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0086"};
         vlm.loadJson("",JSON.stringify(t_HotCityListData),Method["tHotCityListDataDataCallback"]);
         vlm.loadJson("",JSON.stringify(t_DesCityListData),Method["tDesCityListDataCallback"]);
+      },
+      /**
+       * 酒+景 通信
+       */
+      ht_des:function(){
+        var ht_HotCityListData = { "Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0209"};
+        var ht_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0201"};
+        vlm.loadJson("",JSON.stringify(ht_HotCityListData),Method["htHotCityListDataDataCallback"]);
+        vlm.loadJson("",JSON.stringify(ht_DesCityListData),Method["htDesCityListDataCallback"]);
       }
     }
 
@@ -241,6 +253,51 @@
           newObj.push(obj);
         }
         return newObj;
+      },
+      /**
+       * 景 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      htHotCity:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryName || "",
+            fullSpellingName : data[i].fullSpellingName || ""
+
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 景 城市列表 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      htCityList:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryName || "",
+            fullSpellingName : data[i].cityNamePY || "",
+            shortSpellingName : data[i].cityNameInitial  || "",
+            cityNameEn : data[i].cityNameEn  || ""
+          };
+          newObj.push(obj);
+        }
+        return newObj;
       }
     }
 
@@ -277,6 +334,17 @@
        * @returns {Array}
        */
       t_desSearchSuggest:function(dom,data,i){
+        var cityCode = data[i].cityCode.toLowerCase();
+        var cityName = data[i].cityName.toLowerCase();
+        var countryCode = data[i].countryCode.toLowerCase();
+        var countryName = data[i].countryName.toLowerCase();
+        var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+        var shortSpellingName = data[i].shortSpellingName.toLowerCase();
+        var cityNameEn = data[i].cityNameEn.toLowerCase();
+        var searchVal  = cityCode+cityName+countryCode+countryName+fullSpellingName+shortSpellingName+cityNameEn;
+        return searchVal;
+      },
+      ht_desSearchSuggest:function(dom,data,i){
         var cityCode = data[i].cityCode.toLowerCase();
         var cityName = data[i].cityName.toLowerCase();
         var countryCode = data[i].countryCode.toLowerCase();
@@ -346,7 +414,6 @@
 
     }
 
-
     return {
       /**
        * 调用数据过滤方法
@@ -398,6 +465,14 @@
        */
       t_desExec:function(data){
         window.location.href = "/scenic/scenic_list.html?DestCityCode="+data.cityCode;
+      },
+      /**
+       * 酒+景
+       * @param data
+       * @returns {Array}
+       */
+      ht_desExec:function(data){
+        window.location.href = "/tour/scenic_list.html?DestCityCode="+data.cityCode;
       },
       /**
        * 景
@@ -651,6 +726,28 @@
       if(json.success){
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("tCityList",json.data.destCities);
+        VM("citybox_citylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    htHotCityListDataDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show1 = 1;
+        config["HotCityListData"]= dataAdapter().callAdapter("htHotCity",json.data.destCities);
+        VM("citybox_hotcitylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    htDesCityListDataCallback:function(json){
+      console.log(json);
+      if(json.success){
+        show2 = 1;
+        config["CityListData"]= dataAdapter().callAdapter("htCityList",json.data.destCities);
         VM("citybox_citylist");
         Method["loadingCityBox"]();
       }else{

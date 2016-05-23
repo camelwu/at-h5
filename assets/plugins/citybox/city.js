@@ -22,4 +22,8 @@
     VM.Load("t_des");
   });
 
+  $("#ht_des").click(function(){
+    VM.Load("ht_des");
+  });
+
 })();
