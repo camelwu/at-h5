@@ -88,7 +88,7 @@ var fSingleList = {
     var data = arguments[0];
     var tempString="", outputString="", that = fSingleList;
     tempString = $("#template_flight_single_list").html();
-    outputString = ejs.render(tempString, data);
+    outputString = this.isClear == 1? ejs.render(tempString, data): $(".flight_ul").eq(0).html()+ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
@@ -125,18 +125,6 @@ var fSingleList = {
     weeks[0].innerHTML = this.setWeekItems(this.postObj.departDate);
   },
 
-  fadeHandler: function () {
-    var tag = arguments[0] || "hide";
-    if (tag == "show") {
-      $("#preloader").fadeIn();
-      $("#status").delay(400).fadeIn("medium");
-    } else {
-      $("#status").fadeOut();
-      $("#preloader").delay(400).fadeOut("medium");
-    }
-    return this;
-  },
-
   loadMoreHandler:function(){
     var loadMore = document.querySelector("#loadMore"), that = fSingleList;
     if(this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
@@ -156,9 +144,9 @@ var fSingleList = {
     } else {
       this.postObj.pageNo++;
       loadMore.innerHTML = "正在加载...";
-      storage.setItem('fIndexInfo', JSON.stringify(this.postObj));
-      var newUrl = vlm.setUrlPara("", "pageNo",  this.postObj.pageNo);
-      window.location.href = newUrl;
+      storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
+      this.isClear = 0;
+      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
 
@@ -224,7 +212,6 @@ var fSingleList = {
 
   init: function () {
       var postObj = this.parseUrlHandler(window.location.href,true);
-      console.log(postObj)
          /* postObj={
               "cityCodeFrom": "BJS",
               "cityCodeTo": "SIN",
@@ -249,8 +236,8 @@ var fSingleList = {
               "interNationalOrDomestic": "international"
           };
 */
-      console.log(postObj)
       this.postObj = postObj;
+      this.isClear = 1;
       this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 

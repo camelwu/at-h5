@@ -1,5 +1,4 @@
 var fSeatChoose = {
-
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {
       this.addHandler = function (target, eventType, handle) {
@@ -19,14 +18,56 @@ var fSeatChoose = {
     this.addHandler(target, eventType, handle);
   },
 
-  eventHandler: function () {
-    var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
-    that.deg = 0;
-    this.addHandler(content, 'click', function (e) {
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+    var that = this, dataObj =
+    {
+      Parameters: data,
+      ForeEndType: ForeEndType,
+      Code: Code
+    };
+    questUrl = questUrl ? questUrl :"";
+    if (loadMoreSign) {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
+    } else {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    }
+  },
+
+  getMinutes:function (arg1, arg2) {
+    var time1 = Date.parse(arg1.replace(/-/g, "/").replace(/T/," ")), time2 = Date.parse(arg2.replace(/-/g, "/").replace(/T/," ")), dayCount;
+    return dayCount = (Math.abs(time2 - time1)) / 1000 / 60;
+  },
+
+  eventHandler:function(){
+    var forBottom = document.querySelector('.for_bottom');
+    this.addHandler(forBottom, "click", function(e){
       var e = e || window.event, target = e.target || e.srcElement;
-      var temTitle = null;
+        if(target.className == "explain"){
+      //退改签说明
+        }else if(target.tagName == "BUTTON"){
+         window.location.href = "f_order.html"
+        }
     })
+  },
+  createTags:function(){
+    var data = arguments[0];
+    var tempString="", outputString="", that = fSeatChoose;
+    tempString = $("#template_seat_choose").html();
+    outputString = ejs.render(tempString, data);
+    $(".all_elements").eq(0).html(outputString);
+    return this;
+  },
+
+  fadeHandler: function () {
+    var tag = arguments[0] || "hide";
+    if (tag == "show") {
+      $("#preloader").fadeIn();
+      $("#status").delay(400).fadeIn("medium");
+    } else {
+      $("#status").fadeOut();
+      $("#preloader").delay(400).fadeOut("medium");
+    }
+    return this;
   },
 
   setWeekItems: function () {
@@ -67,11 +108,13 @@ var fSeatChoose = {
     return array[1] + '月' + array[2] + '日';
   },
 
-
   init: function () {
-    $("#status").fadeOut();
-    $("#preloader").delay(400).fadeOut("medium");
+    var flightData = {}, storage = window.sessionStorage;
+    flightData = JSON.parse(storage.getItem('currentFlight'));
+    console.log(flightData)
+    this.fadeHandler().createTags({flightInfo:flightData}).eventHandler();
 
   }
 };
 fSeatChoose.init();
+

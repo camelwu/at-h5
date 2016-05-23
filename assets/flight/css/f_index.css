@@ -384,7 +384,13 @@
   float: left;
   position: relative
 }
-.trip_go .left span.icon, .trip_back .left span.icon{
+.date-week-port{
+  border-bottom:1px solid #e6e6e6;
+  color: #333333;
+  font-size: .28rem;
+  position: relative;
+}
+.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon{
   display: inline-block;
   width: .32rem;
   height: .32rem;
@@ -395,14 +401,26 @@
   left: -.42rem;
   top: .05rem;
 }
-.trip_back .left span.icon{
+.trip_back .left span.icon, .trip_back_ span.icon{
   background-position: 44.564% 31.61%;
 }
+.trip_go_ span.icon, .trip_back_ span.icon{
+  left: 0;
+  top: .0316rem;
+}
+.trip_go_ span:nth-child(2), .trip_back_ span:nth-child(2){
+  margin-left: .48rem;
+}
+
+
 .left_info .right{
   float: right;
   text-align: right;
   margin-right: .48rem;
   position: relative;
+}
+.double_ul .right{
+  margin-right: 0;
 }
 .left_info .middle{
   margin: 0 1.42rem 0 1rem;
@@ -412,6 +430,9 @@
   text-align: center;
   box-sizing: border-box;
   padding: .1rem 0;
+}
+.double_ul .middle{
+  margin-right: 1rem;
 }
 .left_info .middle .arrow,.left_info .middle .arrow_word {
   display: block;
@@ -454,4 +475,329 @@
   font-size: .28rem;
   text-align: center;
   border-bottom: 1px solid #e6e6e6;
+}
+.for_bottom{
+  height: 1.46rem;
+  padding: 0 .28rem;
+  background: #FFFFFF;
+  margin: 0.20rem 0 .40rem 0;
+  font-size: .20rem;
+}
+.for_bottom .right_button_zone{
+  float: right;
+  width: 1.4rem;
+  line-height: 1.46rem;
+  height: 1.46rem;
+  margin-left: .32rem;
+  color: rgb(153, 153, 153);
+  position: relative;
+}
+.for_bottom .left_small_word{
+  margin: 0 1.72rem 0 0;
+  height: 1.46rem;
+  border: 1px solid #fff;
+}
+.for_bottom .left_small_word div:nth-child(1){
+  height: .40rem;
+  margin: .32rem 0 .12rem 0;
+}
+.seat_word{font-size: .28rem;
+  color: rgb(51,51,51);}
+.for_bottom .left_small_word .prices{
+  color: rgb(255, 91,19);
+  font-size: .32rem;
+}
+.left_small_word .explain, .seat-price-cost .explain{
+  color: rgb(116, 200, 194);
+}
+.left_small_word .taxFair{
+  color: rgb(153, 153,153);
+}
+
+.for_bottom .right_button_zone button{
+  display: inline-block;
+  height: .60rem;
+  width: 1.40rem;
+  background: #ffb413;
+  color: #FFFFFF;
+  font-size: .36rem;
+  position: absolute;
+  top:50%;
+  margin-top: -.30rem;
+  border-radius: .04rem;
+  -webkit-border-radius: .04rem;
+  font-family: "microsoft yahei", Arial, sans-serif;
+}
+.left_small_word .seat_word{
+  font-size: .28rem;
+  color: rgb(51,51,51);
+}
+.left_small_word .prices,.left_small_word .taxFair {
+ float: right;
+}
+.left_small_word p:first-child{
+  margin: .32rem 0 .20rem 0;
+}
+
+/*摘抄hft开始*/
+.flightOuter {
+  background: #fff;
+  padding: .4rem .28rem;
+}
+.tripGo, .tripBack{
+    margin: .28rem 0;
+}
+.dateWeekCity {
+  height: .42rem;
+  line-height: .42rem;
+  margin-bottom: .32rem;
+  position: relative;
+}
+
+.dateWeekCity span {
+  margin-right: .16rem;
+}
+
+.dateWeekCity span.icon, .arrow {
+  display: inline-block;
+  width: .40rem;
+  height: .40rem;
+  background: url(../../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -2.66rem -1.42rem;
+  overflow: hidden;
+  position: absolute;
+  top: -.033rem
+}
+
+.arrow {
+  display: block;
+  width: 1.68rem;
+  height: .20rem;
+  position: static;
+  background-position: -.488rem -4.460rem;
+  margin: 0 auto;
+}
+
+.dateWeekCity span:nth-child(2) {
+  margin-left: .45rem;
+}
+
+.tripBack .dateWeekCity span.icon {
+  background-position: -3.35rem -1.45rem;
+}
+
+.fix-margin-left {
+  margin-left: 0 !important;
+}
+
+.timeAirport {
+  position: relative;
+}
+
+.timeAirport .left, .timeAirport .right {
+  height: 1.12rem;
+  width: 1.6rem;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.timeAirport .right {
+  right: .80rem;
+  text-align: right;
+}
+
+.fix_right {
+  right: 0 !important;
+}
+
+.flightDetailInfo {
+  margin: .28rem 0 .08rem 0;
+  color: #999999;
+}
+
+.flightDetailInfo span:before {
+  content: "|";
+  display: inline-block;
+  margin: 0 .08rem;
+}
+
+.flightDetailInfo span:first-child:before {
+  content: "";
+  display: none;
+}
+
+.flightDetailInfo > span {
+  font-size: .2rem;
+  color: #999;
+}
+
+.flightDetailArrow {
+  width: 100%;
+  height: .32rem;
+  line-height: .32rem;
+  position: relative;
+  text-align: center;
+  color: #ffb413;
+}
+
+.flightDetailArrow i {
+  position: absolute;
+  right: 0;
+  top: .16rem
+}
+
+.flightDetailArrow span {
+  margin-left: .12rem;
+}
+
+.flightDetailTransferTime span:first-child {
+  margin-left: .08rem;
+}
+
+.timeAirport .left span, .timeAirport .right span {
+  display: inline-block;
+  height: .32rem;
+  line-height: .32rem;
+  font-size: .24rem;
+  color: #333;
+}
+
+.timeAirport .left .startTime, .timeAirport .right .arriveTime {
+  white-space: normal;
+  display: block;
+  font-size: .36rem;
+}
+
+.startPort, .arrivePort {
+  margin-top: .58rem;
+}
+
+.arrivePort {
+  position: absolute;
+  right: 0
+}
+
+.timeAirport .right .plusDay {
+  font-size: .20rem;
+  color: rgb(51, 51, 51);
+  position: absolute;
+  top: -.12rem;
+}
+
+.timeAirport .middle {
+  height: 1.12rem;
+  margin: 0 2.40rem 0 1.6rem;
+  padding: 0.08rem 0;
+}
+
+.timeAirport .middle .timeCost {
+  position: relative;
+  text-align: center;
+  height: .28rem;
+  line-height: .28rem;
+  font-size: .20rem;
+}
+
+.timeAirport .middle .toArrowWord {
+  display: block;
+  margin: 0.04rem auto 0.04rem;
+  width: 1.888rem;
+  height: 0.24rem;
+  background: url(../../images/ui/change-arrow.png);
+  background-size: 1.88rem auto;
+  background-repeat: no-repeat;
+}
+
+.timeAirport .middle .transferCity {
+  position: relative;
+  text-align: center;
+  height: .28rem;
+  line-height: .28rem;
+  font-size: .20rem;
+}
+.trip_go_, .trip_back_{border: 1px solid red;
+  position: relative;
+  height: .4rem;
+  line-height: .4rem;}
+.trip_back_, .seat-price-cost p:nth-child(2){margin-top: .16rem}
+
+.trip_go_ .time_minutes, .trip_back_ .time_minutes{
+   float: right;
+}
+.trip_go_ .week_value, .trip_back_ .week_value{margin: 0 .08rem}
+.fixedMargin .middle {
+  margin: 0 2.12rem 0 1.6rem !important;
+}
+
+.fixedMargin .right {
+  right: .52rem !important;
+}
+/*摘抄结束*/
+.date-week-port, .seat-price-cost{
+    padding: .32rem .28rem;
+    background: #FFFFFF;
+}
+.seat-price-cost .cost_value{margin: 0 .08rem}
+.seat-price-cost .explain{float: right}
+.passengers_wrap{
+  padding: 0;
+  background: #FFFFFF;
+}
+.passengers_wrap h4{
+  background: pink;
+  height: .68rem;
+  line-height: .68rem;
+  padding: 0 .28rem;
+  position: relative;
+}
+.passengers_wrap h4 i, .passengers_wrap .add_icon {
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui/icon_hft.png) no-repeat;
+  background-size: 7.50rem 4.54rem;
+  background-position: 35.564% 31.61%;
+  position: absolute;
+  right: .28rem;
+  top: 50%;
+  margin-top: -.16rem;
+  border: 1px solid red;
+}
+.passengers_wrap ul{
+   padding-left: .60rem;
+   font-size: .28rem;
+   color: rgb(51,51,51);
+}
+.passengers_wrap ul li{
+  padding: .32rem .28rem;
+}
+.passengers_wrap ul p{
+  border:1px solid red;
+  position: relative;
+  height:.58rem;
+  line-height: .58rem;
+  box-sizing: border-box;
+}
+.passengers_wrap ul p:nth-child(1){
+  padding-top: .16rem;
+  margin-bottom: .16rem;
+}
+.passengers_wrap ul p input{
+    margin-left: 1.2rem;
+    max-width: 2.6rem;
+    height: 100%;
+}
+.passengers_wrap .tip_word{
+  display: inline-block;
+  width: 1.2rem;
+  height: 100%;
+  border: 1px solid red;
+  letter-spacing: .08rem;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
