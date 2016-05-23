@@ -374,19 +374,46 @@ a.hotel_detail_pic{
     overflow: hidden;
     position: relative;
 }
-.hotel_detail_list img.choose{
+.hotel_detail_list>li.last{
+    height: auto;
+    padding: 0;
+}
+.hotel_room_list img.choose{
     width: 0.43rem;
     height: 0.43rem;
     position: absolute;
     top: 0;
-    right: 0;
+    right:0rem;
+    display: none;
+}
+.hotel_room_list li.cur img.choose{
+    display: block;
 }
 .hotel_room_list li{
-    height: 1.8rem;
+    border-bottom: 1px solid #dfdfdd;
+    padding: 0.20rem 0.27rem;
+    position: relative;
 }
-
-
-
+.hotel_room_list li p.p5{
+    line-height: 0.5rem;
+}
+.hotel_room_list li p.price{
+    color: #fc5b1f;
+    position: absolute;
+    right:0.27rem;
+    top: 50%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    margin-top: -0.3rem;
+}
+.hotel_room_list li p.price span{
+    float: left;
+    height: 0.6rem;
+    line-height: 0.6rem;
+}
+.hotel_room_list li p.price span.money{
+    font-size: 0.46rem;
+}
 
 
 

@@ -26,6 +26,7 @@
 
     <title>房间升级 - 亚洲旅行网</title>
     <link href="../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="../styles/swipebox.css" rel="stylesheet" type="text/css">
     <link href="css/tours.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -85,7 +86,7 @@
             <p class="d-p3 date-out" style="margin-left: 5px;">3月30离店</p>
             <p class="d-p2 day-number">共8晚</p>
         </li>
-        <li style=height:auto>
+        <li class="last">
             <ul class="room-list hotel_room_list" id="room-list">
 
             </ul>
@@ -110,7 +111,7 @@
         </div>
         <p class="hd-price price">
             <span>+￥</span>
-            <span><%= rooms[i].markUp %>/间</span>
+            <span class="money"><%= rooms[i].markUp %></span>
         </p>
     </li>
     <% } %>
