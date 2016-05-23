@@ -54,14 +54,14 @@
     text-align: center;
     margin-left: 0.25rem;
     margin-top:0.28rem;
-    border: 1px solid #d1d1d1;
+    border:0.01rem solid #d1d1d1;
     border-radius:0.3rem;
     overflow: hidden;
     float: left;
 }
 .index_abroad_box li.jjin-active{
     background: #fff;
-    border: 1px solid #ffb413!important;
+    border:0.01rem solid #ffb413!important;
 }
 .index_abroad_box li.jjin-active a{
     color: #ffb413;
@@ -109,10 +109,11 @@
 /*酒店列表  begin*/
 .hotel_list{
     background: #fff;
+    margin-bottom:0.98rem;
 }
 .hotel_list li{
     height:2.08rem;
-    border-bottom: 1px solid #CCC;
+    border-bottom:0.01rem solid #CCC;
     clear: both;
     position: relative;
 }
@@ -175,11 +176,46 @@
     height: 0.98rem;
     line-height: 0.98rem;
     color: #fff;
-    background: #4a4a4a;
+    background:rgba(0,0,0,0.8);
+    overflow: hidden;
     position: fixed;
     bottom: 0;
     left: 0;
 }
+.hotel_footer .fo{
+    width: 33.33333333333%;
+    text-align: center;
+    line-height: 0.44rem;
+    float: left;
+}
+.hotel_footer .icon{
+    display: block;
+    width:0.36rem;
+    height:0.30rem;
+    margin: 0.16rem auto 0;
+    background-image: url(../../images/ui/icon_common.png);
+    background-size:7.9rem 5.13rem;
+}
+.hotel_footer .hl_icon1{
+    background-position:-1.2rem -2.42rem;
+}
+.hotel_footer .hl_icon2{
+    background-position:-1.84rem -2.42rem;
+}
+.hotel_footer .hl_icon3{
+    height: 0.38rem;
+    margin-top: 0.12rem;
+    margin-bottom:-0.03rem;
+    background-image: url(../../images/ui/icon-hft.png);
+    background-size:7.5rem 4.54rem;
+    background-position:-3.4rem -2.87rem;
+}
+
+
+
+
+
+
 /*酒店列表  end*/
 
 
