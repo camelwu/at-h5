@@ -48,19 +48,74 @@ var hotelList = {
 
 	callBack : function(arg) {
 		console.log(arg)
-		var tpl1 = ['<li class="ho_list" data-id="{%=hotelID%}">', '<img class="h-choose h_choose" src="../images/ui/choose.png">', '<div class="ho_pic">', '<img src="../images/hotelDetailerrorpic.png" real-src="{%=hotelPictureURL%}" class="ho_img" />', '</div>', '<div class="ho_infor">', '<p class="name">{%=hotelName%}</p>', '{% if(data["score"]||data["comments"]){ %}<div class="h-score">{% if(data["score"]){ %}<span>{%=score%}</span>{% } %} {% if(data["comments"]){ %}<span>分/{%=comments%}人点评</span>{% } %}</div> {% }else{ %}{% } %}', '<div class="grade">', '<span>{%=starRating%}星级</span>', '{% if(data["freeWifi"]){ %}<b class="hl-icon1"></b>{% } %}', '{% if(data["freeBus"]){ %}<b class="hl-icon2"></b>{% } %}', '<p class="h-address">{%=location%}</p>', '</div>', '</div>', '<div class="price">', '<span>+</span><span>{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>', '<span class="price-num">{%=avgRatePerPaxInCNY%}</span>', '</div>', '</li>'].join('');
-		var tpl2 = [
-			'<li class="s-li1"> 不限 </li>',
-			'{% for(var i=0;i < starRatingList.length;i++){ %}',
-			'<li class="s-li">{%=starRatingList[i]%}</li>',
-			'{% } %}'
-		].join('');
-		var tpl3 = [
-			'<li class="l-li">不限 <b class="l-icon1"></b></li>',
-			'{% for(var i=0;i < locationList.length;i++){ %}',
-			'<li class="l-li">{%=locationList[i]%}<b class="l-icon"></b></li>',
-			'{% } %}'
-		].join('');
+		var tpl1 =
+			'<li class="ho_list" data-id="{%=hotelID%}">'+
+			'<img class="h-choose h_choose" src="../images/ui/choose.png">'+
+			'<div class="ho_pic">'+
+			'<img src="../images/hotelDetailerrorpic.png" real-src="{%=hotelPictureURL%}" class="ho_img" />'+
+			'</div>'+
+			'<div class="ho_infor">'+
+			'<p class="name">{%=hotelName%}</p>'+
+			'{% if(data["score"]||data["comments"]){ %}' +
+			'<div class="h-score">' +
+			'{% if(data["score"]){ %}' +
+			'<span>{%=score%}</span>' +
+			'{% } %}' +
+			'{% if(data["comments"]){ %}' +
+			'<span>分/{%=comments%}人点评</span>' +
+			'{% } %}' +
+			'</div> {% }else{ %}{% } %}'+
+			'<div class="grade">'+
+			'<span>{%=starRating%}星级</span>'+
+			'{% if(data["freeWifi"]){ %}<b class="hl-icon1"></b>{% } %}'+
+			'{% if(data["freeBus"]){ %}<b class="hl-icon2"></b>{% } %}'+
+			'<p class="h-address">{%=location%}</p>'+
+			'</div>'+
+			'</div>'+
+			'<div class="price">'+
+			'<span>+</span><span>{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>'+
+			'<span class="price-num">{%=avgRatePerPaxInCNY%}</span>'+
+			'</div>'+
+			'</li>';
+		//	var tpl1 =
+		//	'<li class="ho_list" data-id="<%= hotelID %>">'+
+		//	'<img class="h-choose h_choose" src="../images/ui/choose.png">'+
+		//	'<div class="ho_pic">'+
+		//	'<img src="../images/hotelDetailerrorpic.png" real-src="<%= hotelPictureURL %>" class="ho_img" />'+
+		//	'</div>'+
+		//	'<div class="ho_infor">'+
+		//	'<p class="name"><%= hotelName %></p>'+
+		//	'<% if(data["score"]||data["comments"]){ %>' +
+		//	'<div class="h-score">' +
+		//	'<% if(data["score"]){ %>' +
+		//	'<span><%= score %></span>' +
+		//	'<% } %>' +
+		//	'<% if(data["comments"]){ %>' +
+		//	'<span>分/<%= comments %>人点评</span>' +
+		//	'<% } %>' +
+		//	'</div> <% }else{ %><% } %>'+
+		//	'<div class="grade">'+
+		//	'<span><%= starRating %>星级</span>'+
+		//	'<% if(data["freeWifi"]){ %><b class="hl-icon1"></b><% } %>'+
+		//	'<% if(data["freeBus"]){ %><b class="hl-icon2"></b><% } %>'+
+		//	'<p class="h-address"><%= location %></p>'+
+		//	'</div>'+
+		//	'</div>'+
+		//	'<div class="price">'+
+		//	'<span>+</span><span><% if(currencyCode=="CNY"){ %>￥ <% }else{ %> $ <% } %></span>'+
+		//	'<span class="price-num"><%= avgRatePerPaxInCNY %></span>'+
+		//	'</div>'+
+		//	'</li>';
+		var tpl2 =
+			'<li class="s_li1"> 不限 </li>'+
+			'<% for(var i=0;i < starRatingList.length;i++){ %>'+
+			'<li class="s_li"><%=starRatingList[i]%></li>'+
+			'<% } %>';
+		var tpl3 =
+			'<li class="l-li">不限 <b class="l_icon1"></b></li>'+
+			'<% for(var i=0;i < locationList.length;i++){ %>'+
+			'<li class="l-li"><%=locationList[i]%><b class="l_icon"></b></li>'+
+			'<% } %>';
 		var resultData = arg.data, that = hotelList;
 		if(arg.success){
 			if (resultData.hotels.length == 0) {
@@ -72,8 +127,8 @@ var hotelList = {
 				var hotels = resultData.hotels;
 				hotels = that.resetData(hotels);
 				var tpl_GetList = template(tpl1, hotels);
-				var tpl_getStar = template(tpl2,resultData);
-				var tpl_getLocation = template(tpl3,resultData);
+				var tpl_getStar = ejs.render(tpl2,resultData);
+				var tpl_getLocation = ejs.render(tpl3,resultData);
 				$("#preloader").fadeOut();
 				$('#lsf_list').html(tpl_GetList);
 				$('#h-level').html(tpl_getStar);
@@ -86,8 +141,8 @@ var hotelList = {
           for(var i = 0;i < li.length;i++){
             for(var j = 0;j < star.length-1;j++){
               if(li[i].innerHTML == star[j]){
-                li[0].className = 's-li';
-                li[i].className = 's-li1';
+                li[0].className = 's_li';
+                li[i].className = 's_li1';
               }
             }
           }
@@ -95,11 +150,11 @@ var hotelList = {
         // 恢复上次选中的酒店位置
         var oldLocation = newPara.Location.replace('$', '');
           oldLocation = oldLocation ? oldLocation : '不限';
-          $('#l-ul .l-li').find('b').removeClass('l-icon1').addClass('l-icon');
+          $('#l-ul .l-li').find('b').removeClass('l_icon1').addClass('l_icon');
           $('#l-ul .l-li').each(function (index, item) {
             var $item = $(item);
             if($item.text().trim() === oldLocation){
-              $item.find('b').addClass('l-icon1').removeClass('l-icon');
+              $item.find('b').addClass('l_icon1').removeClass('l_icon');
               return;
             }
         });
@@ -296,7 +351,7 @@ function url2json(url) {
 		function show(obj) {
 			mb = document.getElementById("r-mb");
 			mb.style.display = "block";
-			obj.style.bottom = "0";
+			obj.style.bottom = "0.98rem";
 			obj.style.transition = "all 350ms";
 		}
 
@@ -343,26 +398,26 @@ function url2json(url) {
 			if (obj.innerText == "不限") {
 				array = document.getElementById("h-level").childNodes;
 				for (var i = 1; i < array.length; i++) {
-					array[i].className = "s-li";
+					array[i].className = "s_li";
 				}
 			}
 			if (obj.innerText != "不限") {
-				document.getElementById("h-level").firstElementChild.className = "s-li";
+				document.getElementById("h-level").firstElementChild.className = "s_li";
 			}
-			if (oName == "s-li") {
-				obj.className = "s-li1";
+			if (oName == "s_li") {
+				obj.className = "s_li1";
 			} else {
-				obj.className = "s-li";
+				obj.className = "s_li";
 			}
 			//如果一个都没有选中的情况，显示不限；
 			array = document.getElementById("h-level").childNodes;
 			for(var j=0,len=array.length;j<len;j++){
-				if(array[j].className == "s-li1"){
+				if(array[j].className == "s_li1"){
 					selected.push(array[j].innerText);
 				}
 			}
 			if(selected.length == 0){
-				document.getElementById("h-level").firstElementChild.className = "s-li1";
+				document.getElementById("h-level").firstElementChild.className = "s_li1";
 			}
 		}
 
@@ -391,11 +446,11 @@ function url2json(url) {
 				if(obj1 == s_but){
 					newPara.StarRating = '';
 					li = document.getElementById('h-level').getElementsByTagName('li');
-					if(li[0].className == 's-li1'){
+					if(li[0].className == 's_li1'){
 						newPara.StarRating = '';
 					}
 					for(var j = 1;j < li.length;j++){
-						if(li[j].className == 's-li1'){
+						if(li[j].className == 's_li1'){
 							newPara.StarRating += li[j].innerHTML + '$';
 						}
 					}
@@ -404,11 +459,11 @@ function url2json(url) {
 				if(obj1 == l_but){
 					newPara.Location = '';
 					li = document.getElementById('l-ul').getElementsByTagName('li');
-					if(li[0].firstElementChild.className == 'l-icon1'){
+					if(li[0].firstElementChild.className == 'l_icon1'){
 						newPara.Location = '';
 					}
 					for(var n = 1;n < li.length;n++){
-						if(li[n].firstElementChild.className == 'l-icon1'){
+						if(li[n].firstElementChild.className == 'l_icon1'){
 							console.log(li[n].innerText);
 							newPara.Location += li[n].innerText + '$';
 						}
@@ -488,10 +543,10 @@ function url2json(url) {
     function selectLocation(e) {
       var $this = $(this);
       var b = $this.find('b');
-      var selected = b.hasClass('l-icon1');
+      var selected = b.hasClass('l_icon1');
       if (!selected) {
-        b.removeClass('l-icon').addClass('l-icon1');
-        $this.siblings().find('b').addClass('l-icon').removeClass('l-icon1');
+        b.removeClass('l_icon').addClass('l_icon1');
+        $this.siblings().find('b').addClass('l_icon').removeClass('l_icon1');
       }
     }
 

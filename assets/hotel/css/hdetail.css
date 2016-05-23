@@ -190,15 +190,14 @@
   text-overflow: ellipsis;
   max-width: 50%;
   min-width: 5%;
-  color: #484848;
   margin-top: .18rem;
 }
 .hotel_content_roomDetail_price{
   width: 1rem;
   height: 36px;
   position: absolute;
-  top:.2rem;
-  right: 0px;
+  top:.16rem;
+  right: 0;
   border-radius: 3px;
   border: 1px solid #ffb412;
 }
@@ -237,7 +236,7 @@
   color: #fe4716;
   position: absolute;
   top: .18rem;
-  right: -0.14rem;
+  right: -0.2rem;
 }
 .hotel_content_roomDetail_money span.TaxChange{
   color: #a1a1a1;
@@ -314,30 +313,45 @@
   margin-bottom: 0;
 }
 #popup_more {
-  max-height: 344px;
-  min-width: 300px;
-  font-size: 12px;
-  line-height: 16px;
+  max-height: 6.8rem;
+  min-width: 3rem;
   color: #484848;
   overflow-y: scroll;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*·¿¼äÄÚÈÝµ¯²ã*/
+.ro-info-item{
+  padding: .2rem;
+  border-bottom: 1px solid rgba(121, 111, 121, 0.39);
+}
+.ro-info{
+  padding: .2rem;
+}
+.item-name{
+  display: inline-block;
+  width: 20%;
+  text-align: left;
+}
+.info-div-1{
+  width: 100%;
+  list-style: none;
+  text-align: left;
+  padding-left: .2rem;
+  border-bottom: 1px solid rgba(121, 111, 121, 0.39);
+}
+.rate-rule{
+  margin:.2rem .2rem .2rem 0;
+  font-weight: bold;
+}
+.info-text{
+  line-height: .4rem;
+  margin: .2rem .2rem .2rem 0;
+}
+.info-text span {
+  background: #ffb413;
+  padding:0 .2rem;
+  color: white;
+  margin-right: .1rem;
+}
 /*Í¼Æ¬ÂÖ²¥µ¯²ã*/
 #imageContainer {
   width: 100%;
@@ -359,7 +373,6 @@
   top: 21%;
   background: #000000;
   width: 100%;
-  text-align: center;
 }
 #imageContainer .showZone {
   height: 38.5%;

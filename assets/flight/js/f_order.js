@@ -67,11 +67,40 @@ var fOrder = {
     return array[1] + '月' + array[2] + '日';
   },
 
+  fadeHandler: function () {
+    var tag = arguments[0] || "hide";
+    if (tag == "show") {
+      $("#preloader").fadeIn();
+      $("#status").delay(400).fadeIn("medium");
+    } else {
+      $("#status").fadeOut();
+      $("#preloader").delay(400).fadeOut("medium");
+    }
+    return this;
+  },
+
+  createTags:function(){
+    var data = arguments[0];
+    console.log(data)
+    var tempString1="", outputString1="",tempString2="", outputString2="", that = fOrder;
+    tempString1 = $("#template_flight_summary").html();
+    outputString1 = ejs.render(tempString1, data);
+    tempString2 = $("#template_flight_cost_seat").html();
+    outputString2 = ejs.render(tempString2, data);
+    $(".date-week-port").eq(0).html(outputString1);
+    $(".date-week-seat-price-cost").eq(0).html(outputString2);
+    return this;
+  },
+
+  innitData:function(){
+      var flightData = {}, storage = window.sessionStorage;
+      flightData = JSON.parse(storage.getItem('currentFlight'));
+      this.createTags(flightData);
+      return this;
+  },
 
   init: function () {
-    $("#status").fadeOut();
-    $("#preloader").delay(400).fadeOut("medium");
-
+    this.innitData().fadeHandler()
   }
 };
 fOrder.init();

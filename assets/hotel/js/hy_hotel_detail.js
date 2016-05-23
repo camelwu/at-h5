@@ -469,7 +469,7 @@
 
 			footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
 
-			contentStr = '<div id="content" class="snap-content" style="padding-top: 45px;">' + frontImgStr + firstUl + secondUl + footer + '</div>';
+			contentStr = '<div id="content" class="snap-content" style="padding-top: .88rem;">' + frontImgStr + firstUl + secondUl + footer + '</div>';
 
 			allStr += headerStr + contentStr;
 
@@ -684,8 +684,8 @@
 			var modalStr = '', couponStr = '', adultNumStr = '', childNumStr = '';
 			//oDiv.className = "roomAll";
 			//oDiv.id = "infoAll";
-			modalStr += '<div class="info-div"><ul class="ro-info">';
-			modalStr += arg.roomSize ? '<li class="ro-info-item"><span class="item-name">房屋面积</span><span class="item-content">' + arg.roomSize + '</span></li>' : '';
+			modalStr += '<div class="info-div hotel_room_layer"><ul class="ro-info">';
+			modalStr += arg.roomSize ? '<li class="ro-info-item hotel_room_layer_item"><span class="item-name hotel_room_layer_name">房屋面积</span><span class="item-content hotel_room_layer_content">' + arg.roomSize + '</span></li>' : '';
 			modalStr += arg.bedType ? '<li class="ro-info-item"><span class="item-name">床型</span><span class="item-content">' + arg.bedType + '</span></li>' : '';
 			modalStr += arg.isFreeWifi ? '<li class="ro-info-item"><span class="item-name">wifi</span><span class="item-content">有</span></li>' : '';
 			modalStr += arg.isFreeTransfer ? '<li class="ro-info-item"><span class="item-name">免费接送</span><span class="item-content">有</span></li>' : '';

@@ -35,23 +35,20 @@ var fSingleList = {
   },
 
   eventHandler: function () {
-    var content = document.querySelector('.content'), searchZone = document.querySelector('.searchZone'),flightUl =  document.querySelector('.flight_ul'),  that = this, tem = {}, storage = window.sessionStorage;
-    this.addHandler(flightUl, 'click', function (e) {
-      var e = e || window.event, target = e.target || e.srcElement;
-      var setId = "";
-      console.log(target.tagName)
-       if(target.tagName == "LI"){
-             setId = target.getAttribute('data-set-id');
-             that.currrentFlightList.flightInfos.forEach(function(item, index){
-                       if(item.setID == setId){
-                            tem = item;
-                            return
-                       }
-             });
-            storage.setItem('currentFlight', JSON.stringify(tem));
-            window.location.href = "f_seat_choose.html?setId="+setId;
-       }
-  })
+    var content = document.querySelector('.content'), searchZone = document.querySelector('.searchZone'),lis = document.querySelectorAll('.flight_ul li'),  that = this, tem = {}, storage = window.sessionStorage;
+    for (var i = 0, len = lis.length; i < len; i++) {
+      this.addHandler(lis[i], 'click', function () {
+        var setId = this.getAttribute('data-set-id');
+        that.currrentFlightList.flightInfos.forEach(function(item, index){
+          if(item.setID == setId){
+            tem = item;
+            return false;
+          }
+        });
+        storage.setItem('currentFlight', JSON.stringify(tem));
+        window.location.href = "f_seat_choose.html";
+      })
+    }
     this.addHandler(searchZone, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement, temDate = "", lineMaxDate = "", newUrl = "";
       var tem = "", plusOne = "", minusOne = "", monthNum= "", dateNum= "";
@@ -90,8 +87,8 @@ var fSingleList = {
   createTags:function(){
     var data = arguments[0];
     var tempString="", outputString="", that = fSingleList;
-    tempString = $("#template_flight_list").html();
-    outputString = ejs.render(tempString, data);
+    tempString = $("#template_flight_single_list").html();
+    outputString = this.isClear == 1? ejs.render(tempString, data): $(".flight_ul").eq(0).html()+ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
@@ -101,12 +98,13 @@ var fSingleList = {
     console.log(result)
     if(result.success&&result.code == "200"){
          that.currrentFlightList = result.data;
-         that.createTags(that.currrentFlightList).eventHandler().dateCalender();
+         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
     }
   },
 
   dateCalender: function(){
-    var tem = {start:this.postObj.departDate}, timeObj = {};
+    var tem = {start:this.postObj.departDate}, timeObj = {},fIndexInfoObj = {}, storage = window.sessionStorage;
+    fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
     timeObj[tem.start] = tem.start;
     var dates = document.querySelectorAll('#timeSingle .monthDay'), weeks = document.querySelectorAll('#timeSingle .weekWord');
     var myTime2 = new ATplugins.Calender({
@@ -116,12 +114,8 @@ var fSingleList = {
       checkInTimeOptId: 'setOffDateSingle',
       callback: function () {
         var  dateSource = arguments[0], that = fSingleList;
-        console.log(dates)
-        dateSource.forEach(function (array, index) {
-          dates[index].setAttribute('date-full-value', array);
-          dates[index].innerHTML = that.returnDay(array);
-          weeks[index].innerHTML = that.setWeekItems(array);
-        });
+        fIndexInfoObj.data.departDate = dateSource[0];
+        storage.setItem('fIndexInfo', JSON.stringify(fIndexInfoObj));
         var newUrl = vlm.setUrlPara("", "departDate", dateSource);
         window.location.href = newUrl;
       }
@@ -130,6 +124,34 @@ var fSingleList = {
     dates[0].innerHTML = this.returnDay(this.postObj.departDate);
     weeks[0].innerHTML = this.setWeekItems(this.postObj.departDate);
   },
+
+  loadMoreHandler:function(){
+    var loadMore = document.querySelector("#loadMore"), that = fSingleList;
+    if(this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
+      $('#loadMore').html("没有更多信息了!").fadeOut(3000);
+    }else{
+      loadMore.innerHTML = "点击查看更多...";
+      this.addHandler(loadMore, 'click', function () {
+        that.loadMoreData();
+      });
+    }
+    return this;
+  },
+
+  loadMoreData: function () {
+    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage;
+    if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
+      $('#loadMore').html("没有更多信息了!").fadeOut(3000);
+    } else {
+      this.postObj.pageNo++;
+      loadMore.innerHTML = "正在加载...";
+      storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
+      this.isClear = 0;
+      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    }
+  },
+
+
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
     switch (index) {
@@ -191,7 +213,6 @@ var fSingleList = {
 
   init: function () {
       var postObj = this.parseUrlHandler(window.location.href,true);
-      console.log(postObj)
          /* postObj={
               "cityCodeFrom": "BJS",
               "cityCodeTo": "SIN",
@@ -216,8 +237,8 @@ var fSingleList = {
               "interNationalOrDomestic": "international"
           };
 */
-      console.log(postObj)
       this.postObj = postObj;
+      this.isClear = 1;
       this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 

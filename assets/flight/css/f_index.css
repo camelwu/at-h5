@@ -276,8 +276,13 @@
   padding:0 .28rem ;
   border-bottom: 1px solid #e6e6e6;
 }
+
+.flight_ul .trip_go,.flight_ul .trip_back {
+  height:2.0rem;
+}
+.flight_ul .trip_back{margin-top: .36rem}
 .flight_ul .starTime, .flight_ul .endTime{
-  font-size: .36rem;
+  font-size: .32rem;
 }
 .flight_ul .starPort, .flight_ul .endPort{
   font-size: .28rem;
@@ -287,13 +292,14 @@
   position: relative;
 }
 .left_info {
-  height: 1.74rem;
+  height: 1.54rem;
 }
 .flight_ul li{
-  padding: .40rem 0;
+  padding: .32rem 0;
   height:2.20rem;
   border-bottom: 1px solid #e6e6e6; ;
 }
+.double_ul li{height:4.4rem}
 .flight_ul li:last-child{
   border-bottom: none
 }
@@ -302,22 +308,49 @@
   height:100%;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  padding-top: 1.2rem;
+  padding-top: 1.0rem;
   float:right;
-  text-align: center;
+  text-align: right
 }
-.seat_price .seat{font-size: .18rem;color: #999}
+.double_ul .seat_price{padding-top: 1.182rem;}
+.seat_price .seat{font-size: .18rem;color: #999;}
 .seat_price .priceNumber{
   font-size: .36rem;
   color:#ff5b13;
-  margin-top: .16rem
+  margin-top: .16rem;
+  position: relative
 }
+.seat_price .priceNumber .double_tip, .seat_price .priceNumber .tax_cost, .double_tip, .seat_price .priceNumber .seat_condition{
+  display: block;
+  font-size: .20rem;
+  color:#999;
+}
+.seat_price .priceNumber .double_tip{
+  display: inline-block;
+  width: .20rem;
+  line-height: .26rem;
+  margin-left: .04rem
+}
+
+.seat_price .priceNumber .tax_cost, .seat_price .priceNumber .seat_condition{
+  position: absolute;
+  right:0;
+  top:.64rem;
+  text-align: right;
+}
+.seat_price .priceNumber .seat_condition{
+  top:1.12rem;
+}
+
 .seat_price .priceNumber span.money{
   font-size: .18rem;
 }
 .time_airport{
   height:100%;
   margin-right: 1.72rem;
+}
+.double_ul .time_airport{
+  padding-left: .48rem;
 }
 .flight_detail{
   width: 100%;
@@ -347,14 +380,56 @@
 }
 .left_info .left, .left_info .right{
   width:1rem;
-  height: 1.74rem;
+  height: 1.54rem;
   float: left;
+  position: relative
 }
+.date-week-port{
+  border-bottom:1px solid #e6e6e6;
+  color: #333333;
+  font-size: .28rem;
+  position: relative;
+}
+.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon{
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.95rem auto;
+  background-position: 35.564% 31.61%;
+  position: absolute;
+  left: -.42rem;
+  top: .05rem;
+}
+
+.trip_back .left span.icon, .trip_back_ span.icon{
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.95rem auto;
+  background-position: 44.564% 31.61%;
+  position: absolute;
+  left: -.42rem;
+  top: .05rem;
+}
+.trip_go_ span.icon, .trip_back_ span.icon{
+  left: 0;
+  top: .0316rem;
+}
+.trip_go_ span:nth-child(2), .trip_back_ span:nth-child(2){
+  margin-left: .48rem;
+}
+
+
 .left_info .right{
   float: right;
   text-align: right;
   margin-right: .48rem;
   position: relative;
+}
+.double_ul .right{
+  margin-right: 0;
 }
 .left_info .middle{
   margin: 0 1.42rem 0 1rem;
@@ -365,15 +440,26 @@
   box-sizing: border-box;
   padding: .1rem 0;
 }
-.left_info .middle .arrow_word{
+.double_ul .middle{
+  margin-right: 1rem;
+}
+.left_info .middle .arrow,.left_info .middle .arrow_word {
   display: block;
   margin: 0 auto;
   width: 1.888rem;
-  height: 0.24rem;
+  height: 0.20rem;
+  background: url(../../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.5rem 5.13rem;
+  background-position: 5.8% 90.004%;
+}
+.left_info .middle .arrow_word {
   background: url(../../images/ui/change-arrow.png);
   background-size: 1.88rem auto;
-  background-repeat: no-repeat;
+  background-position: 0 0;
 }
+
+
 .left_info .middle span{
   display: block;
 }
@@ -390,3 +476,411 @@
   top: 0;
   font-size: .18rem;
 }
+#loadMore{
+  height: .48rem;
+  line-height: .48rem;
+  background: #FFFFFF;
+  color: #666666;
+  font-size: .28rem;
+  text-align: center;
+  border-bottom: 1px solid #e6e6e6;
+}
+.for_bottom{
+  height: 1.46rem;
+  padding: 0 .28rem;
+  background: #FFFFFF;
+  margin: 0.20rem 0 .40rem 0;
+  font-size: .20rem;
+}
+.for_bottom .right_button_zone{
+  float: right;
+  width: 1.4rem;
+  line-height: 1.46rem;
+  height: 1.46rem;
+  margin-left: .32rem;
+  color: rgb(153, 153, 153);
+  position: relative;
+}
+.for_bottom .left_small_word{
+  margin: 0 1.72rem 0 0;
+  height: 1.46rem;
+  border: 1px solid #fff;
+}
+.for_bottom .left_small_word div:nth-child(1){
+  height: .40rem;
+  margin: .32rem 0 .12rem 0;
+}
+.seat_word{font-size: .28rem;
+  color: rgb(51,51,51);}
+.for_bottom .left_small_word .prices{
+  color: rgb(255, 91,19);
+  font-size: .32rem;
+}
+.left_small_word .explain, .seat-price-cost .explain{
+  color: rgb(116, 200, 194);
+}
+.left_small_word .taxFair{
+  color: rgb(153, 153,153);
+}
+
+.for_bottom .right_button_zone button{
+  display: inline-block;
+  height: .60rem;
+  width: 1.40rem;
+  background: #ffb413;
+  color: #FFFFFF;
+  font-size: .32rem;
+  position: absolute;
+  top:50%;
+  margin-top: -.30rem;
+  border-radius: .04rem;
+  -webkit-border-radius: .04rem;
+  font-family: "microsoft yahei", Arial, sans-serif;
+}
+.left_small_word .seat_word{
+  font-size: .28rem;
+  color: rgb(51,51,51);
+}
+.left_small_word .prices,.left_small_word .taxFair {
+ float: right;
+}
+.left_small_word p:first-child{
+  margin: .32rem 0 .20rem 0;
+}
+
+/*摘抄hft开始*/
+.flightOuter {
+  background: #fff;
+  padding: .4rem .28rem;
+}
+.tripGo, .tripBack{
+    margin: .28rem 0;
+}
+.dateWeekCity {
+  height: .42rem;
+  line-height: .42rem;
+  margin-bottom: .32rem;
+  position: relative;
+}
+
+.dateWeekCity span {
+  margin-right: .16rem;
+}
+
+.dateWeekCity span.icon, .arrow {
+  display: inline-block;
+  width: .40rem;
+  height: .40rem;
+  background: url(../../images/ui/icon_common.png);
+  background-repeat: no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -2.66rem -1.42rem;
+  overflow: hidden;
+  position: absolute;
+  top: -.033rem
+}
+
+.arrow {
+  display: block;
+  width: 1.68rem;
+  height: .20rem;
+  position: static;
+  background-position: -.488rem -4.460rem;
+  margin: 0 auto;
+}
+
+.dateWeekCity span:nth-child(2) {
+  margin-left: .45rem;
+}
+
+.tripBack .dateWeekCity span.icon {
+  background-position: -3.35rem -1.45rem;
+}
+
+.fix-margin-left {
+  margin-left: 0 !important;
+}
+
+.timeAirport {
+  position: relative;
+}
+
+.timeAirport .left, .timeAirport .right {
+  height: 1.12rem;
+  width: 1.6rem;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.timeAirport .right {
+  right: .80rem;
+  text-align: right;
+}
+
+.fix_right {
+  right: 0 !important;
+}
+
+.flightDetailInfo {
+  margin: .28rem 0 .08rem 0;
+  color: #999999;
+}
+
+.flightDetailInfo span:before {
+  content: "|";
+  display: inline-block;
+  margin: 0 .08rem;
+}
+
+.flightDetailInfo span:first-child:before {
+  content: "";
+  display: none;
+}
+
+.flightDetailInfo > span {
+  font-size: .2rem;
+  color: #999;
+}
+
+.flightDetailArrow {
+  width: 100%;
+  height: .32rem;
+  line-height: .32rem;
+  position: relative;
+  text-align: center;
+  color: #ffb413;
+}
+
+.flightDetailArrow i {
+  position: absolute;
+  right: 0;
+  top: .16rem
+}
+
+.flightDetailArrow span {
+  margin-left: .12rem;
+}
+
+.flightDetailTransferTime span:first-child {
+  margin-left: .08rem;
+}
+
+.timeAirport .left span, .timeAirport .right span {
+  display: inline-block;
+  height: .32rem;
+  line-height: .32rem;
+  font-size: .24rem;
+  color: #333;
+}
+
+.timeAirport .left .startTime, .timeAirport .right .arriveTime {
+  white-space: normal;
+  display: block;
+  font-size: .36rem;
+}
+
+.startPort, .arrivePort {
+  margin-top: .58rem;
+}
+
+.arrivePort {
+  position: absolute;
+  right: 0
+}
+
+.timeAirport .right .plusDay {
+  font-size: .20rem;
+  color: rgb(51, 51, 51);
+  position: absolute;
+  top: -.12rem;
+}
+
+.timeAirport .middle {
+  height: 1.12rem;
+  margin: 0 2.40rem 0 1.6rem;
+  padding: 0.08rem 0;
+}
+
+.timeAirport .middle .timeCost {
+  position: relative;
+  text-align: center;
+  height: .28rem;
+  line-height: .28rem;
+  font-size: .20rem;
+}
+
+.timeAirport .middle .toArrowWord {
+  display: block;
+  margin: 0.04rem auto 0.04rem;
+  width: 1.888rem;
+  height: 0.24rem;
+  background: url(../../images/ui/change-arrow.png);
+  background-size: 1.88rem auto;
+  background-repeat: no-repeat;
+}
+
+.timeAirport .middle .transferCity {
+  position: relative;
+  text-align: center;
+  height: .28rem;
+  line-height: .28rem;
+  font-size: .20rem;
+}
+.trip_go_, .trip_back_{
+  position: relative;
+  height: .4rem;
+  line-height: .4rem;}
+
+.trip_go_ .addUp, .trip_back_ .addUp{
+  position: relative;
+  top: -.1rem;
+}
+.trip_go_ span.cityName, .trip_back_ span.cityName{
+  display: inline-block;
+  width: 1.48rem;
+  height: .42rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: .42rem;
+}
+.trip_back_, .seat-price-cost p:nth-child(2){margin-top: .16rem}
+
+.trip_go_ .time_minutes, .trip_back_ .time_minutes{
+   float: right;
+}
+.trip_go_ .week_value, .trip_back_ .week_value{margin: 0 .08rem}
+.fixedMargin .middle {
+  margin: 0 2.12rem 0 1.6rem !important;
+}
+
+.fixedMargin .right {
+  right: .52rem !important;
+}
+/*摘抄结束*/
+.date-week-port, .seat-price-cost{
+    padding: .32rem .28rem;
+    background: #FFFFFF;
+}
+.seat-price-cost{
+   border-bottom: 1px solid #e6e6e6;
+}
+.seat-price-cost .cost_value{margin: 0 .08rem}
+.seat-price-cost .explain{float: right}
+.passengers_wrap{
+  padding: 0;
+  background: #FFFFFF;
+}
+.passengers_wrap h4, .contact_wrap h4{
+  background: #f7f7f7;
+  height: .68rem;
+  line-height: .68rem;
+  padding: 0 .28rem;
+  position: relative;
+}
+.passengers_wrap h4 i, .passengers_wrap .add_icon , .contact_wrap .arrow_down ,.contact_wrap h4 i,.contact_wrap .arrow_right{
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui/icon_hft.png) no-repeat;
+  background-size: 7.50rem auto;
+  background-position: 44.564% 51.61%;
+  position: absolute;
+  right:0;
+  top: 50%;
+  margin-top: -.16rem;
+}
+.contact_wrap .arrow_down{
+  width: .328rem;
+  height: .328rem;
+  background-position: 86.564% 52.377%;
+  position: relative;
+  top: .04rem;
+  margin:0 .12rem 0 .20rem;
+}
+.contact_wrap .arrow_right{
+  margin-left: .08rem;
+  position: relative;
+  top: .04rem
+}
+.passengers_wrap h4 i, .contact_wrap h4 i{
+  right: .28rem;
+  background-position: 83.564% 31.61%;
+}
+.passengers_wrap ul{
+   padding-left: .60rem;
+   font-size: .28rem;
+   color: rgb(51,51,51);
+}
+.passengers_wrap ul li{
+  padding: .32rem .28rem;
+}
+.passengers_wrap ul p{
+  position: relative;
+  height:.58rem;
+  line-height: .58rem;
+  box-sizing: border-box;
+}
+.passengers_wrap ul p:nth-child(1){
+  padding-top: .16rem;
+  margin-bottom: .16rem;
+}
+.passengers_wrap ul p input{
+    margin-left: 1.2rem;
+    max-width: 2.6rem;
+    height: 100%;
+}
+.passengers_wrap .tip_word{
+  display: inline-block;
+  width: 1.2rem;
+  height: 100%;
+  letter-spacing: .08rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.contact_wrap{background: #FFFFFF}
+.contact_wrap .glay_word{
+ color: #999999;
+  font-size: .24rem
+}
+.contact_wrap p{
+    height:.96rem;
+    line-height: .96rem;
+    color: #D1D1D1;
+    font-size: .28rem;
+    position: relative;
+    padding: 0 .28rem;
+}
+.contact_wrap p input{
+  height:.96rem;
+  line-height: .96rem;
+  color: #D1D1D1;
+  font-size: .28rem;
+  width: 50%;
+  float: right;
+}
+.contact_wrap .more_black{
+   display: inline-block;
+   width: 50%;
+   color:rgb(51,51,51);
+}
+.email_line .more_black{
+  width: 16%;
+}
+.contact_wrap p input.padding_has{
+  padding-left: .28rem;
+}
+.contact_wrap p .s_line{
+  display: inline-block;
+  height:.96rem;
+  width:.01rem;
+  color: #D1D1D1;
+  background: #D1D1D1;
+}
+.contact_wrap p.email_line  span, .contact_wrap p.email_line  input{
+      float: left;
+}
+.contact_wrap p.email_line  input{width: 76%}

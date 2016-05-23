@@ -19,164 +19,86 @@ var fDoubleList = {
     this.addHandler(target, eventType, handle);
   },
 
-  eventHandler: function () {
-    var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
-    that.deg = 0;
-    this.addHandler(content, 'click', function (e) {
-      var e = e || window.event, target = e.target || e.srcElement;
-      var temTitle = null;
-      if (target.innerHTML == "单程") {
-        that.type = "oneWay";
-        target.className = "singleTrip light-title";
-        target.nextSibling.nextSibling.className = "doubleTrip grey-title";
-        document.querySelector('.dateInfo').className = "dateInfo white single_date";
-      } else if (target.innerHTML == "往返") {
-        that.type = "return";
-        target.className = "doubleTrip light-title";
-        target.previousSibling.previousSibling.className = "singleTrip grey-title";
-        document.querySelector('.dateInfo').className = "dateInfo white";
-      } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
-        var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "";
-        oSpan.style.transition = '0.7s all ease';
-        oSpan.style.webkitTransition = '0.7s all ease';
-        that.deg += 180;
-        oSpan.style.transform = 'rotate(' + that.deg + 'deg)';
-        oSpan.style.webkitTransform = 'rotate(' + that.deg + 'deg)';
-        tem = cityName[0].innerHTML, temCode = cityName[0].getAttribute('data-city-code');
-        cityName[0].innerHTML = cityName[1].innerHTML;
-        cityName[0].setAttribute('data-city-code', cityName[1].getAttribute('data-city-code'));
-        cityName[1].innerHTML = tem;
-        cityName[0].setAttribute('data-city-code', temCode);
-      } else if (target.className == "citySearch") {
-        //打开城市列表复层
-
-
-      } else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
-        var adultNumEle = document.querySelector('.adultNumber'), childNumEle = document.querySelector('.childNumber'), adultNum = Number(adultNumEle.innerHTML), childNum = Number(childNumEle.innerHTML);
-        var adultIs = document.querySelectorAll(".adult i"), childIs = document.querySelectorAll(".child i");
-        if (target.className == "adu plus") {
-          if (adultNum + childNum < 9) {
-            adultNum++;
-            adultNumEle.innerHTML = adultNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-          }
-        } else if (target.className == "chi plus") {
-          if (adultNum + childNum < 9) {
-            if (adultNum / childNum > 1 / 2) {
-              childNum++;
-              childNumEle.innerHTML = childNum;
-              adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-              childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-              adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-              childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-            }
-          }
-        } else if (target.className == "adu minus") {
-          if (adultNum >= 3) {
-            adultNum--;
-            adultNumEle.innerHTML = adultNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-            childNumEle.innerHTML = adultNum / childNum < 1 / 2 ? adultNum * 2 : childNum;
-          }
-        } else if (target.className == "chi minus") {
-          if (childNum >= 1) {
-            childNum--;
-            childNumEle.innerHTML = childNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
-          }
-        }
-      } else if (target.id == "ticket-search-button") {
-        var urlStr = "", paraObj = {}, cityEles = document.querySelectorAll('.citySearch'), dateEles = document.querySelectorAll('.month-day');
-        var adultValue = document.querySelector('.adultNumber').innerHTML, childValue = document.querySelector('.childNumber').innerHTML, seatValue = document.querySelector('#seats').innerHTML;
-        var reFixedSeat = function (arg) {
-          var cabinStr = "";
-          switch (arg) {
-            case "经济舱":
-              cabinStr = "economy";
-              break;
-            case "商务舱":
-              cabinStr = "business";
-              break;
-            case "头等舱":
-              cabinStr = "first";
-              break;
-            case "豪华经济舱":
-              cabinStr = "economyPremium";
-              break;
-            default :
-              void (0);
-          }
-          return cabinStr;
-        };
-        if (that.type == "oneWay") { /*单程*/
-          paraObj = {
-            "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": dateEles[0].getAttribute('date-full-value'),
-            "CabinClass": reFixedSeat(seatValue),
-            "RouteType": that.type,
-            "IsHideSharedFlight": "false",
-            "IsDirectFlight": "false",
-            "NumofAdult": adultValue,
-            "NumofChild": childValue,
-            "DepartStartHour": "00",
-            "DepartEndHour": "24",
-            "PriorityRule": 0,
-            "IsDesc": "false",
-            "pageNo": 1,
-            "pageSize": 10,
-            "interNationalOrDomestic": "international", /*国际或者国内*/
-            "hasTax": "true",
-            "fromCity": cityEles[0].innerHTML,
-            "toCity": cityEles[1].innerHTML
-          };
-          storage.setItem('fIndexInfo', JSON.stringify(paraObj));
-          for (var att_ in paraObj) {
-            urlStr += "&" + att_ + "=" + paraObj[att_];
-          }
-          document.location.href = 'ticket_single_list.html?' + urlStr;
-        } else {   /*往返*/
-          paraObj = {
-            "CityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-            "CityCodeTo": cityEles[1].getAttribute('data-city-code'),
-            "DepartDate": dateEles[0].getAttribute('date-full-value'),
-            "ReturnDate": dateEles[1].getAttribute('date-full-value'),
-            "CabinClass": reFixedSeat(seatValue),
-            "RouteType": that.type,
-            "IsHideSharedFlight": "false",
-            "IsDirectFlight": "false",
-            "NumofAdult": adultValue,
-            "NumofChild": childValue,
-            "DepartStartHour": "00",
-            "DepartEndHour": "24",
-            "PriorityRule": 0,
-            "pageNo": 1,
-            "pageSize": 10,
-            "interNationalOrDomestic": "international",/*国际或者国内*/
-            "hasTax": "true",
-            "IsDesc": "false",
-            "fromCity": cityEles[0].innerHTML,
-            "toCity": cityEles[1].innerHTML
-          };
-          storage.setItem('fIndexInfo', JSON.stringify(paraObj));
-          for (var att_ in paraObj) {
-            urlStr += "&" + att_ + "=" + paraObj[att_];
-          }
-          document.location.href = 'ticket_double_list.html?' + urlStr;
-        }
-      }
-    })
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+    var that = this, dataObj =
+    {
+      Parameters: data,
+      ForeEndType: ForeEndType,
+      Code: Code
+    };
+    questUrl = questUrl ? questUrl :"";
+    if (loadMoreSign) {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
+    } else {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    }
   },
 
+  eventHandler: function () {
+    var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage,loadMore = document.querySelector("#loadMore");;
+    console.log(lis)
+    for (var i = 0, len = lis.length; i < len; i++) {
+      this.addHandler(lis[i], 'click', function () {
+        var setId = this.getAttribute('data-set-id');
+        that.currrentFlightList.flightInfos.forEach(function(item, index){
+          if(item.setID == setId){
+            tem = item;
+            return false;
+          }
+        });
+        storage.setItem('currentFlight', JSON.stringify(tem));
+        window.location.href = "f_seat_choose.html";
+      })
+    }
+    return this;
+  },
+
+  createTags:function(){
+    var data = arguments[0];
+    var tempString="", outputString="", that = fDoubleList;
+    tempString = $("#template_flight_double_list").html();
+    outputString = this.isClear == 1?ejs.render(tempString, data):$(".flight_ul").eq(0).html()+ejs.render(tempString, data);
+    $(".flight_ul").eq(0).html(outputString);
+    return this;
+  },
+
+  renderHandler:function(){
+    var result = arguments[0],that = fDoubleList, storage = window.sessionStorage;
+    console.log(result)
+    if(result.success&&result.code == "200"){
+      that.currrentFlightList = result.data;
+      that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+    }
+  },
+
+  dateCalender: function(){
+    var tem = {start:this.postObj.departDate, end:this.postObj.returnDate}, timeObj = {}, fIndexInfoObj = {}, storage = window.sessionStorage;
+    fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
+    timeObj[tem.start] = tem.start;
+    timeObj[tem.end] = tem.end;
+    var dates = document.querySelectorAll('.month-day'), weeks = document.querySelectorAll('.weekWord');
+    var myTime1 = new ATplugins.Calender({
+      id: "date_top",
+      time: timeObj,
+      checkInTimeOptId: 'setOffDate',
+      checkOutTimeOptId: 'arriveDate',
+      callback: function () {
+        var  dateSource = arguments[0], that = fDoubleList;
+        fIndexInfoObj.data.departDate = dateSource[0];
+        fIndexInfoObj.data.returnDate = dateSource[1];
+        storage.setItem('fIndexInfo', JSON.stringify(fIndexInfoObj));
+        var newUrl = vlm.setUrlPara("", "departDate", dateSource[0]);
+            newUrl = vlm.setUrlPara(newUrl, "returnDate", dateSource[1]);
+            window.location.href = newUrl;
+      }
+    });
+    dates[0].setAttribute('date-full-value', this.postObj.departDate);
+    dates[0].innerHTML = this.returnDay(this.postObj.departDate);
+    weeks[0].innerHTML = this.setWeekItems(this.postObj.departDate);
+    dates[1].setAttribute('date-full-value', this.postObj.returnDate);
+    dates[1].innerHTML = this.returnDay(this.postObj.returnDate);
+    weeks[1].innerHTML = this.setWeekItems(this.postObj.returnDate);
+  },
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
     switch (index) {
@@ -207,6 +129,31 @@ var fDoubleList = {
     return week;
   },
 
+  loadMoreHandler:function(){
+    var loadMore = document.querySelector("#loadMore"), that = fDoubleList;
+       if(this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
+         $('#loadMore').html("没有更多信息了!").fadeOut(3000);
+       }else{
+         loadMore.innerHTML = "点击查看更多...";
+         this.addHandler(loadMore, 'click', function () {
+              that.loadMoreData();
+         });
+       }
+    return this;
+  },
+  loadMoreData: function () {
+    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage;
+    if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
+      $('#loadMore').html("没有更多信息了!").fadeOut(3000);
+    } else {
+      this.postObj.pageNo++;
+      loadMore.innerHTML = "正在加载...";
+      storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
+      this.isClear = 0;
+      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    }
+  },
+
   returnDay: function () {
     var array = [], arg = arguments[0];
     array = arg.split('-');
@@ -215,8 +162,34 @@ var fDoubleList = {
     return array[1] + '月' + array[2] + '日';
   },
 
-  init: function () {
+  fadeHandler: function () {
+    var tag = arguments[0] || "hide";
+    if (tag == "show") {
+      $("#preloader").fadeIn();
+      $("#status").delay(400).fadeIn("medium");
+    } else {
+      $("#status").fadeOut();
+      $("#preloader").delay(400).fadeOut("medium");
+    }
+    return this;
+  },
 
+  parseUrlHandler: function (url, isEncode) {
+    var isEncode = isEncode || false, reg = /([^=&?]+)=([^=&?]+)/g, obj = {}, url =url;
+    url.replace(reg, function () {
+      var arg = arguments;
+      obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
+    });
+    return obj;
+  },
+
+  init: function () {
+    var postObj = this.parseUrlHandler(window.location.href,true);
+    console.log(postObj)
+    this.postObj = postObj;
+    this.isClear = 1;
+    this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
+
 };
 fDoubleList.init();

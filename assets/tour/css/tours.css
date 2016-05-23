@@ -54,14 +54,14 @@
     text-align: center;
     margin-left: 0.25rem;
     margin-top:0.28rem;
-    border: 1px solid #d1d1d1;
+    border:0.01rem solid #d1d1d1;
     border-radius:0.3rem;
     overflow: hidden;
     float: left;
 }
 .index_abroad_box li.jjin-active{
     background: #fff;
-    border: 1px solid #ffb413!important;
+    border:0.01rem solid #ffb413!important;
 }
 .index_abroad_box li.jjin-active a{
     color: #ffb413;
@@ -109,10 +109,11 @@
 /*酒店列表  begin*/
 .hotel_list{
     background: #fff;
+    margin-bottom:0.98rem;
 }
 .hotel_list li{
     height:2.08rem;
-    border-bottom: 1px solid #CCC;
+    border-bottom:0.01rem solid #CCC;
     clear: both;
     position: relative;
 }
@@ -174,12 +175,185 @@
     width: 100%;
     height: 0.98rem;
     line-height: 0.98rem;
-    color: ##fff;
-    background: #4a4a4a;
+    color: #fff;
+    background:rgb(74, 74, 74);
+    overflow: hidden;
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 110;
 }
+.hotel_footer .fo{
+    width: 33.33333333333%;
+    text-align: center;
+    line-height: 0.44rem;
+    float: left;
+}
+.hotel_footer .icon{
+    display: block;
+    width:0.36rem;
+    height:0.30rem;
+    margin: 0.16rem auto 0;
+    background-image: url(../../images/ui/icon_common.png);
+    background-size:7.9rem 5.13rem;
+}
+.hotel_footer .hl_icon1{
+    background-position:-1.2rem -2.42rem;
+}
+.hotel_footer .hl_icon2{
+    background-position:-1.84rem -2.42rem;
+}
+.hotel_footer .hl_icon3{
+    height: 0.38rem;
+    margin-top: 0.12rem;
+    margin-bottom:-0.03rem;
+    background-image: url(../../images/ui/icon-hft.png);
+    background-size:7.5rem 4.54rem;
+    background-position:-3.4rem -2.87rem;
+}
+.screen_box .r_div{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    background-color: #000;
+    opacity: .5;
+    display: none;
+    z-index: 100;
+}
+.screen_box .font{
+    width: 100%;
+    background-color: #fff;
+    -webkit-transition:all ease 0.3s;
+    -moz-transition:all ease 0.3s;
+    -ms-transition:all ease 0.3s;
+    -o-transition:all ease 0.3s;
+    transition:all ease 0.3s;
+    position: fixed;
+    z-index: 102;
+}
+.screen_box .rank{
+    bottom: -550px;
+}
+.screen_box .rank li{
+    margin: 0 0 0 0.28rem;
+    font-size: 0.28rem;
+    padding: 0 0.12rem;
+    height: 0.96rem;
+    line-height: 0.96rem;
+    border-top: 1px solid #e6e6e6;
+    color: #333;
+    position: relative;
+}
+.screen_box .rank li b{
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    top: 50%;
+    right: 0.18rem;
+    margin-top: -0.2rem;
+    background: url(../../images/ui/icon_common.png);
+    background-size: 7.9rem 5.13rem;
+    background-position: -6.9rem -0.58rem;
+}
+.screen_box .screen{
+    padding: 1px;
+    bottom: -550px;
+}
+.screen_box .screen h4{
+    margin-top: 13px;
+    margin-left: 15px;
+    font-size: 1.4em;
+}
+.screen_box .screen ul{
+    margin-top: 12px;
+    margin-left: 15px;
+    margin-right: 15px;
+    list-style-type: none;
+    overflow: hidden;
+}
+.screen_box .screen ul li{
+    float: left;
+    width: 29%;
+    height: 24px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #d0d0d3;
+    font-size: 1.1em;
+    color: #686869;
+    line-height: 25px;
+}
+.screen_box .screen ul li.s_li1{
+    border: 1px solid #ffb412;
+    color: #ffb412;
+}
+.screen_box .screen .s_but{
+    width: 94%;
+    height: 36px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 1.6em;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #ffb413;
+}
+.screen_box .location{
+    padding: 1px;
+    bottom: -550px;
+}
+.screen_box .location ul{
+    width: 94%;
+    height: 300px;
+    overflow-y: scroll;
+    margin-left: 3%;
+    margin-right: 3%;
+    list-style-type: none;
+}
+.screen_box .location li{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #d0d0d3;
+}
+.screen_box .location li b{
+    float: right;
+    display: block;
+    margin-top: 15px;
+    width: 17px;
+    height: 17px;
+    background-image: url(../../images/ui/icons1.png);
+    background-size: 400px 120px;
+    background-position: 69% 4.5%;
+}
+.screen_box .location li b.l_icon1{
+    background-position: 62% 4.5%;
+}
+.screen_box .location .s_but{
+    width: 94%;
+    height: 36px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 1.6em;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #ffb413;
+}
+
+
+
+
+
 /*酒店列表  end*/
 
 
