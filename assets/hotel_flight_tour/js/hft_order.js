@@ -140,6 +140,7 @@
       var Parmeters = {
         "Parameters": {
           "cityCodeFrom": hftCreateOrderPara.cityCodeFrom,
+          "cityCodeTo": hftCreateOrderPara.cityCodeFrom,
           "packageID": hftCreateOrderPara.packageID,
           "departDate": hftCreateOrderPara.departDate,
           "returnDate": hftCreateOrderPara.returnDate,
