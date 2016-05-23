@@ -18,7 +18,7 @@
    * @param b
    * @returns {number}
    * @constructor
-     */
+   */
   var ByCitylist = function(a,b){
     return a.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0) - b.fullSpellingName.replace(/(^\s*)|(\s*$)/g,'').substr(0,1).toLowerCase().charCodeAt(0);
   };
@@ -107,14 +107,14 @@
   /**
    * 数据过滤策略层
    * @returns {{callAdapter: callAdapter, addAdapter: addAdapter}}
-     */
+   */
   var dataAdapter = function(){
     var adapter = {
       /**
        * 机+酒+景 热门城市 数据转化
        * @param data
        * @returns {Array}
-         */
+       */
       hftHotCity:function(data){
         //data数据处理转化
         var obj = {};
@@ -268,7 +268,7 @@
   /**
    * 城市列表 生成策略 (globalType)id+HotCity = t_desHotCity & id+CityList = t_desCityList
    * @returns {{callCityList: callCityList, addCityList: addCityList, multiCityList: multiCityList}}
-     */
+   */
   var dataSearchSuggest = function(){
     var city = {
       /**
@@ -377,7 +377,7 @@
        *  });
        * @param msg
        * @returns {*}
-         */
+       */
       multiCityList:function(msg){
         msg.param = Object.prototype.toString.call(msg.param) === "[object Array]"?msg.param : [msg.param];
         return city[msg.command].apply(city,msg.param);
@@ -499,7 +499,7 @@
      * 设置城市接口
      * @param dom
      * @param data
-       */
+     */
     setCityBox:function(dom,data){
       console.log(data);
       globalType = data.data;
@@ -514,7 +514,7 @@
     /**
      * 回调方法 机+酒+景 城市列表 热门城市
      * @param json
-       */
+     */
     hftOriHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
@@ -661,7 +661,7 @@
      * Header设置
      * @param dom
      * @param data
-       */
+     */
     cityboxHeader:function(dom,data){
 
     },
@@ -669,7 +669,7 @@
      * 当前城市地理位置模块
      * @param dom
      * @param data
-       */
+     */
     cityboxLocation:function(dom,data){
       dom.innerHTML = "";
       var citybox_content_title = document.createElement("div");
@@ -698,7 +698,7 @@
      * 城市历史记录
      * @param dom
      * @param data
-       */
+     */
     cityboxHistory:function(dom,data){
       dom.innerHTML = "";
       var cityboxHistoryData = localStorage.getItem(""+globalType+"_history");
@@ -784,7 +784,7 @@
      * @param from
      * @param to
      * @returns {Number|*}
-       */
+     */
     remove: function(array, from, to) {
       var rest = array.slice((to || from) + 1 || array.length);
       array.length = from < 0 ? array.length + from : from;
@@ -855,7 +855,7 @@
      * 热门城市列表
      * @param dom
      * @param data
-       */
+     */
     cityboxHotCityList:function(dom,data){
       dom.innerHTML = "";
       var data = data.data;
@@ -899,7 +899,7 @@
      * 城市列表
      * @param dom
      * @param data
-       */
+     */
     cityboxCityList:function(dom,data){
       dom.innerHTML = "";
       var data = data.data.sort(ByCitylist);
@@ -950,7 +950,7 @@
      * 城市字母导航
      * @param dom
      * @param data
-       */
+     */
     cityboxLetterIndex:function(dom,data){
       dom.innerHTML = "";
       var data = data.data;
@@ -1021,6 +1021,7 @@
    */
   var VM = function () {
     function getBindData(dom) {
+      if(!dom)return;
       var data = dom.getAttribute("data-bind");
       return !!data && (new Function("return ({" + data + "})"))();
     }
@@ -1037,8 +1038,3 @@
   webkit.VM.Method = Method;
   webkit.VM.Config = config;
 })();
-
-
-
-
-

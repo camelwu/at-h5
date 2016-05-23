@@ -1038,8 +1038,3 @@
   webkit.VM.Method = Method;
   webkit.VM.Config = config;
 })();
-
-
-
-
-

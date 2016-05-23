@@ -113,6 +113,7 @@
   <!--content-->
 </div>
 
+<!--整体城市列表-->
 <div id="citybox_search_container" class="citybox_search_container citybox_search_state">
   <div id="citybox_header" data-bind="type:'cityboxHeader'">
     <!--默认搜索-->
@@ -142,10 +143,11 @@
   </div>
   <!--搜索列表-->
   <div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'">
-
   </div>
+  <!--搜索列表-->
   <!--城市列表和字母定位-->
   <div class="citybox_content">
+    <!--当前-->
     <div id="citybox_location" data-bind="type:'cityboxLocation'">
       <div class="citybox_content_title" id="js_location">当前</div>
       <ul class="citybox_content_container">
@@ -156,22 +158,38 @@
         </li>
       </ul>
     </div>
+    <!--当前-->
+    <!--历史选择-->
     <div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
       <div class="citybox_content_title" id="js_history">历史选择</div>
     </div>
+    <!--历史选择-->
+    <!--热门城市-->
     <div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
       <div class="citybox_content_title" id="js_hotcity">热门城市</div>
     </div>
+    <!--热门城市-->
+    <!--城市列表-->
     <div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
 
     </div>
-
+    <!--城市列表-->
+    <!--城市字母定位-->
     <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
+      <li class="citybox_summary_item" data-key="location">
+        当前
+      </li>
+      <li class="citybox_summary_item" data-key="history">
+        历史
+      </li>
+      <li class="citybox_summary_item" data-key="hotcity">
+        热门
+      </li>
     </div>
+    <!--城市字母定位-->
   </div>
 </div>
-
-<div id="some-id" title="123" data-bind="type:'123'"></div>
+<!--整体城市列表-->
 <script id="tpl_city_list" type="text/template">
       <% for(var i = 0;i<data.destCities.length;i++){ %>
       <li class="t_city_content_item <% if(i==0){%>active<%}%>" >
