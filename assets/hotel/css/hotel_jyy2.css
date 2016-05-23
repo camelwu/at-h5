@@ -176,15 +176,16 @@ ul,li{
     line-height: .8rem;
     border-bottom: 1px solid #d0d0d3;
     color:#b3b2b4;
-    margin-left: .4rem;
+    padding-left: .4rem;
+    position: relative;
 }
 .hl-icon4{
     display:inline-block;
     width:18px;
     height:16px;
     position: absolute;
-    margin-left: -20px;
-    margin-top: 12px;
+    right:.4rem;
+    top:.2rem;
     background-image: url(../../images/ui/icons1.png);
     background-size: 400px 120px;
     background-position:77% 4%;
@@ -194,8 +195,8 @@ ul,li{
     width:18px;
     height:16px;
     position: absolute;
-    top: .2rem;
     right:.4rem;
+    top:.2rem;
     background-image: url(../../images/ui/icons1.png);
     background-size: 400px 120px;
     background-position:77% 4%;
