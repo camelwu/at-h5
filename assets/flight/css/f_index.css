@@ -401,8 +401,17 @@
   left: -.42rem;
   top: .05rem;
 }
+
 .trip_back .left span.icon, .trip_back_ span.icon{
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.95rem auto;
   background-position: 44.564% 31.61%;
+  position: absolute;
+  left: -.42rem;
+  top: .05rem;
 }
 .trip_go_ span.icon, .trip_back_ span.icon{
   left: 0;
