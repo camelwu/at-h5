@@ -129,17 +129,17 @@ body {
     width: .36rem;
     height: .36rem;
     position: absolute;
-    right: 2.5rem;
+    right: 1.8rem;
     top: 0;
 }
 .hotel_roomNum_add{
      background-position: 0 -56px;
-     right: 1.8rem;
+     right: 1.1rem;
      top: 0;
  }
 .hotel_roomNum_reduce{
     background-position: 0 -28px;
-    right: 3.26rem;
+    right: 2.6rem;
     top:0;
 }
 /*人数*/
@@ -179,15 +179,15 @@ body {
     width: .36rem;
     height: .36rem;
     position: absolute;
-    right:1.6rem;
+    right:0.9rem;
 }
 .hotel_people_right_adult_add,.hotel_people_right_child_add{
     background-position: 0 -28px;
-    right: 0.9rem;
+    right: 0.2rem;
 }
 .hotel_people_right_adult_minus,.hotel_people_right_child_minus{
     background-position: 0 -56px;
-    right: 2.4rem;
+    right: 1.7rem;
 }
 .hotel_submit{
     height: .6rem;
