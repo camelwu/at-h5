@@ -183,13 +183,19 @@ var fDoubleList = {
     return obj;
   },
 
+  titleInit:function(){
+    var spans = document.querySelectorAll('.header h3 span');
+    spans[0].innerHTML = this.postObj.fromCity;
+    spans[1].innerHTML = this.postObj.toCity;
+    return this;
+  },
+
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href,true);
     console.log(postObj)
     this.postObj = postObj;
     this.isClear = 1;
-    this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
-
 };
 fDoubleList.init();

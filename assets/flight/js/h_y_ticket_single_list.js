@@ -358,7 +358,7 @@ var ticketSingle = {
     ticketDetailUl.innerHTML += ticketListStr;
     this.loadMoreHandler(arg.data.pageNo, arg.data.pageCount);
     this.eventHandler();
-    return;
+    return false;
   },
 
   loadMoreHandler: function (pageNo, pageCount) {

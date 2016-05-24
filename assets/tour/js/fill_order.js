@@ -602,7 +602,7 @@
     //});
     $('.open-close').click(function(){
         $('#detailBox').toggle();
-        $('.icons').toggleClass('cur');
+        $(this).find('b').toggleClass('cur');
         //if($('#detailBox').display == 'none'){
         //    $('#detailBox').show();
         //}else{
