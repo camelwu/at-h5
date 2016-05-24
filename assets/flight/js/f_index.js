@@ -26,6 +26,7 @@ var fIndexModal = {
     this.addHandler(content, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
       var temTitle = null;
+      var js_origin = "",js_destination = "";
       if (target.innerHTML == "单程") {
         that.type = "oneWay";
         target.className = "singleTrip light-title";
@@ -33,6 +34,16 @@ var fIndexModal = {
         singleWrap.style.display = "block";
         doubleWrap.style.display = "none";
         document.querySelector('.dateInfo').className = "dateInfo white single_date";
+        js_origin = document.querySelector(".js_origin");
+        js_origin.setAttribute("id","f_inori");
+        js_destination = document.querySelector(".js_destination");
+        js_destination.setAttribute("id","f_indes");
+
+        $("#f_inori").attr("data-bind","type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
+        $("#f_indes").attr("data-bind","type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
+        $("#f_inori").bind('click',fIndexModal.f_inoriFunc);
+        $("#f_indes").bind('click',fIndexModal.f_indesFunc);
+
       } else if (target.innerHTML == "往返") {
         that.type = "return";
         target.className = "doubleTrip light-title";
@@ -40,6 +51,16 @@ var fIndexModal = {
         singleWrap.style.display = "none";
         doubleWrap.style.display = "block";
         document.querySelector('.dateInfo').className = "dateInfo white";
+
+        js_origin = document.querySelector(".js_origin");
+        js_origin.setAttribute("id","f_outori");
+        js_destination = document.querySelector(".js_destination");
+        js_destination.setAttribute("id","f_outdes");
+
+        $("#f_outori").attr("data-bind","type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
+        $("#f_outdes").attr("data-bind","type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
+        $("#f_outori").bind('click',fIndexModal.f_outoriFunc);
+        $("#f_outdes").bind('click',fIndexModal.f_outdesFunc);
       } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
         var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "";
         oSpan.style.transition = '0.7s all ease';
@@ -47,16 +68,12 @@ var fIndexModal = {
         that.deg += 180;
         oSpan.style.transform = 'rotate(' + that.deg + 'deg)';
         oSpan.style.webkitTransform = 'rotate(' + that.deg + 'deg)';
-        tem = cityName[0].innerHTML, temCode = cityName[0].getAttribute('data-city-code');
+        tem = cityName[0].innerHTML, temCode = cityName[0].getAttribute('data-code');
         cityName[0].innerHTML = cityName[1].innerHTML;
-        cityName[0].setAttribute('data-city-code', cityName[1].getAttribute('data-city-code'));
+        cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[1].innerHTML = tem;
-        cityName[0].setAttribute('data-city-code', temCode);
-      } else if (target.className == "citySearch") {
-        //打开城市列表复层
-
-
-      } else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
+        cityName[0].setAttribute('data-code', temCode);
+      }else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
         var adultNumEle = document.querySelector('.adultNumber'), childNumEle = document.querySelector('.childNumber'), adultNum = Number(adultNumEle.innerHTML), childNum = Number(childNumEle.innerHTML);
         var adultIs = document.querySelectorAll(".adult i"), childIs = document.querySelectorAll(".child i");
         if (target.className == "adu plus") {
@@ -123,8 +140,8 @@ var fIndexModal = {
           return cabinStr;
         };
         paraObj = {
-          "cityCodeFrom": cityEles[0].getAttribute('data-city-code'),
-          "cityCodeTo": cityEles[1].getAttribute('data-city-code'),
+          "cityCodeFrom": cityEles[0].getAttribute('data-code'),
+          "cityCodeTo": cityEles[1].getAttribute('data-code'),
           "cabinClass": reFixedSeat(seatValue),
           "routeType": that.type,
           "isHideSharedFlight": "false",
@@ -359,9 +376,47 @@ var fIndexModal = {
     });
     return this;
   },
-
+  cityInit:function(){
+    var js_origin ="",js_destination = "";
+    if(this.type == 'oneWay' ){
+      js_origin = document.querySelector(".js_origin");
+      js_origin.setAttribute("id","f_inori");
+      js_destination = document.querySelector(".js_destination");
+      js_destination.setAttribute("id","f_indes");
+      $("#f_inori").attr("data-bind","type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
+      $("#f_indes").attr("data-bind","type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
+      $("#f_inori").bind('click',fIndexModal.f_inoriFunc);
+      $("#f_indes").bind('click',fIndexModal.f_indesFunc);
+    }else{
+      js_origin = document.querySelector(".js_origin");
+      js_origin.setAttribute("id","f_outori");
+      js_destination = document.querySelector(".js_destination");
+      js_destination.setAttribute("id","f_outdes");
+      $("#f_outori").attr("data-bind","type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
+      $("#f_outdes").attr("data-bind","type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
+      $("#f_outori").bind('click',fIndexModal.f_outoriFunc);
+      $("#f_outdes").bind('click',fIndexModal.f_outdesFunc);
+    }
+    return this;
+  },
+  f_inoriFunc:function(){
+    if(fIndexModal.type != 'oneWay')return;
+    VM.Load("f_inori");
+  },
+  f_indesFunc:function(){
+    if(fIndexModal.type != 'oneWay')return;
+    VM.Load("f_indes");
+  },
+  f_outoriFunc:function(){
+    if(fIndexModal.type == 'oneWay')return;
+    VM.Load("f_outori");
+  },
+  f_outdesFunc:function(){
+    if(fIndexModal.type == 'oneWay')return;
+    VM.Load("f_outdes");
+  },
   init: function () {
-    this.fadeHandler().initHandler().eventHandler();
+    this.fadeHandler().initHandler().cityInit().eventHandler();
   }
 };
 fIndexModal.init();

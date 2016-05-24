@@ -1,95 +1,199 @@
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
-  <meta name="screen-orientation" content="portrait">
-  <meta name="full-screen" content="yes">
-  <meta name="browsermode" content="application">
-  <meta name="x5-orientation" content="portrait">
-  <meta name="x5-fullscreen" content="true">
-  <meta name="x5-page-mode" content="app">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="green">
-  <meta name="Keywords" content="亚洲旅行网">
-  <meta name="Description" content="境外专业旅行服务提供机构">
-  <title>机票单程列表页 - 亚洲旅行网</title>
-  <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
-  <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
-  <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
-</head>
-<body>
-<div id="preloader">
-  <div id="status">
-    <p class="center-text"></p>
-  </div>
-</div>
-<div class="all_elements">
-  <header class="header">
-    <a href="f_index.html" class="header_back">
-      <i class="icon_back"></i>
-    </a>
-    <h3><span>北京</span><i class="arrowSingle"></i><span>新加坡</span>
-    </h3>
-  </header>
-  <div class="content addPaddingTop">
-    <!--输入框-->
-      <div class="searchZone">
-         <span class="previousDay">前一天</span>
-         <span class="nextDay">后一天</span>
-         <span class="middle_input" id="timeSingle">
-           <span class="monthDay" id="setOffDateSingle">4月29日</span><span class="weekWord">周五</span><i></i>
-         </span>
-      </div>
-       <ul class="flight_ul"></ul>
-    <div id="loadMore">点击加载更多信息...</div>
-  </div>
-</div>
-</body>
-<script id="template_flight_single_list" type="text/template">
-     <% flightInfos.forEach(function(item, index){%>
-        <li data-set-id ="<%=item.setID %>">
-          <div class="seat_price">
-            <p class="seat"><%= item["segmentsLeave"][0].cabinClassName %></p>
-            <p class="priceNumber"><span class="money">￥</span><%= item["totalFareAmountExc"] %></p>
-          </div>
-          <div class="time_airport">
-            <div class="left_info">
-              <div class="left">
-                <span class="starTime"><%= item["flightLeaveStartDate"].substring(11, 16) %></span>
-                <span class="starPort"><%= item["segmentsLeave"][0]["airportNameFrom"] %><%= item["segmentsLeave"][0]["termDepart"] %></span>
-              </div>
-              <div class="right">
-                <span class="endTime"><%= item["flightLeaveEndDate"].substring(11, 16) %></span>
-                <span class="endPort"><%= item["segmentsLeave"][item.segmentsLeave.length-1]["airportNameTo"] %><%= item["segmentsLeave"][item.segmentsLeave.length-1]["termArrive"] %></span>
-                <%if(item["flightLeaveSpacingDay"]>=1){%>
-                   <span class="spaceDay">+<%= item["flightLeaveSpacingDay"] %>天</span>
-                <%}%>
-              </div>
-              <div class="middle">
-                <span class="timeCost"><%= parseInt(item["segmentsLeaveTotalTravelTime"] / 60) + 'h' + item["segmentsLeaveTotalTravelTime"] % 60 + 'm' %></span>
-                <span class="arrow_word"></span>
-                <span class="transferCity">莫斯科</span>
-              </div>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+		<meta name="screen-orientation" content="portrait">
+		<meta name="full-screen" content="yes">
+		<meta name="browsermode" content="application">
+		<meta name="x5-orientation" content="portrait">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="x5-page-mode" content="app">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="green">
+		<meta name="Keywords" content="亚洲旅行网">
+		<meta name="Description" content="境外专业旅行服务提供机构">
+		<title>机票单程列表页 - 亚洲旅行网</title>
+		<link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
+		<link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
+		<link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
+		<link href="../plugins/footer/footer.css"  rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div id="preloader">
+			<div id="status">
+				<p class="center-text"></p>
+			</div>
+		</div>
+		<div class="all_elements">
+			<header class="header">
+				<a href="f_index.html" class="header_back"> <i class="icon_back"></i> </a>
+				<h3><span>北京</span><i class="arrowSingle"></i><span>新加坡</span></h3>
+			</header>
+			<div class="content addPaddingTop">
+				<!--输入框-->
+				<div class="searchZone">
+					<span class="previousDay">前一天</span>
+					<span class="nextDay">后一天</span>
+					<span class="middle_input" id="timeSingle"> <span class="monthDay" id="setOffDateSingle">4月29日</span><span class="weekWord">周五</span><i></i> </span>
+				</div>
+				<ul class="flight_ul"></ul>
+				<div id="loadMore">
+					点击加载更多信息...
+				</div>
+			</div>
+		</div>
+	</body>
+	<script id="template_flight_single_list" type="text/template">
+		<% flightInfos.forEach(function(item, index){%>
+		<li data-set-id ="<%=item.setID %>">
+		<div class="seat_price">
+		<p class="seat"><%= item["segmentsLeave"][0].cabinClassName %></p>
+		<p class="priceNumber"><span class="money">￥</span><%= item["totalFareAmountExc"] %></p>
+		</div>
+		<div class="time_airport">
+		<div class="left_info">
+		<div class="left">
+		<span class="starTime"><%= item["flightLeaveStartDate"].substring(11, 16) %></span>
+		<span class="starPort"><%= item["segmentsLeave"][0]["airportNameFrom"] %><%= item["segmentsLeave"][0]["termDepart"] %></span>
+		</div>
+		<div class="right">
+		<span class="endTime"><%= item["flightLeaveEndDate"].substring(11, 16) %></span>
+		<span class="endPort"><%= item["segmentsLeave"][item.segmentsLeave.length-1]["airportNameTo"] %><%= item["segmentsLeave"][item.segmentsLeave.length-1]["termArrive"] %></span>
+		<%if(item["flightLeaveSpacingDay"]>=1){%>
+		<span class="spaceDay">+<%= item["flightLeaveSpacingDay"] %>天</span>
+		<%}%>
+		</div>
+		<div class="middle">
+		<span class="timeCost"><%= parseInt(item["segmentsLeaveTotalTravelTime"] / 60) + 'h' + item["segmentsLeaveTotalTravelTime"] % 60 + 'm' %></span>
+		<span class="arrow_word"></span>
+		<span class="transferCity">莫斯科</span>
+		</div>
 
-            </div>
-            <p class="flight_detail">
-             <!-- <span class="airCropIcon"><img  src="" /></span>-->
-              <span class="airCropName"><%= item["segmentsLeave"][0].airCorpName %></span>
-              <span><%= item["segmentsLeave"][0].airCorpCode %><%= item["segmentsLeave"][0].flightNo %></span>
-              <span><%= item["segmentsLeave"][0].planeName %></span>
-             <!-- <span>经济舱</span>-->
-              <%if(item["isLeaveShareFlight"]){%>
-              <span>共享</span>
-              <%}%>
-            </p>
-          </div>
-        </li>
-     <%})%>
-</script>
-<script type="text/javascript" src="../js/lib/jquery.js"></script>
-<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
-<script type="text/javascript" src="../js/lib/vlm.js"></script>
-<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>
-<script type="text/javascript" src="../js/lib/ejs.js"></script>
-<script type="text/javascript" src="js/f_single_list.js"></script>
+		</div>
+		<p class="flight_detail">
+		<!-- <span class="airCropIcon"><img  src="" /></span>-->
+		<span class="airCropName"><%= item["segmentsLeave"][0].airCorpName %></span>
+		<span><%= item["segmentsLeave"][0].airCorpCode %><%= item["segmentsLeave"][0].flightNo %></span>
+		<span><%= item["segmentsLeave"][0].planeName %></span>
+		<!-- <span>经济舱</span>-->
+		<%if(item["isLeaveShareFlight"]){%>
+		<span>共享</span>
+		<%}%>
+		</p>
+		</div>
+		</li>
+		<%})%>
+	</script>
+	<script type="text/javascript" src="../js/lib/jquery.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
+	<script type="text/javascript" src="../js/lib/vlm.js"></script>
+	<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>
+	<script type="text/javascript" src="../js/lib/ejs.js"></script>
+	<script type="text/javascript" src="js/f_single_list.js"></script>
+	<script type="text/javascript" src="../plugins/footer/footer.js"></script>
+	<script>
+		function show_filter() {
+			var f_data = {
+				Screen : {
+					title : "筛选",
+					c : "foot_screen",
+					type : 2,
+					key : 'filters',
+					listData : [{
+						allowMultiSelect : 0,
+						filterType : 4,
+						item : [{
+							filterText : "不限",
+							filterValue : "0"
+						}, {
+							filterText : "仅看直飞",
+							filterValue : "1"
+						}],
+						sortNumber : 0,
+						title : "直飞"
+					}, {
+						allowMultiSelect : 0,
+						filterType : 3,
+						item : [{
+							filterText : "不限",
+							filterValue : "0"
+						}, {
+							filterText : "隐藏共享",
+							filterValue : "1"
+						}],
+						sortNumber : 1,
+						title : "共享"
+					}, {
+						allowMultiSelect : 0,
+						filterType : 2,
+						item : [{
+							filterText : "不限",
+							filterValue : "0"
+						}, {
+							filterText : "00:00 - 06:00",
+							filterValue : "1"
+						}, {
+							filterText : "06:00 - 12:00",
+							filterValue : "1"
+						}, {
+							filterText : "12:00 - 18:00",
+							filterValue : "2"
+						}, {
+							filterText : "18:00 - 24:00",
+							filterValue : "3"
+						}],
+						sortNumber : 2,
+						title : "起飞时段"
+					}, {
+						allowMultiSelect : 0,
+						filterType : 1,
+						item : [{
+							filterText : "经济舱",
+							filterValue : "0"
+						}, {
+							filterText : "隐藏共享",
+							filterValue : "1"
+						}],
+						sortNumber : 3,
+						title : "舱位"
+					}]
+				},
+				Sort : {
+					title : "起飞早到晚",
+					c : "foot_sort",
+					type : 1,
+					key : sort,
+					listData : //[{sortText: "直飞优先", sortValue: 0}, {sortText: "按价格从高到低", sortValue: 1}]
+					[{
+						1 : "直飞优先"
+					}, {
+						2 : "低价优先"
+					}, {
+						3 : "耗时短优先"
+					}, {
+						ASC : "起飞早到晚"
+					}, {
+						Desc : "起飞晚到早"
+					}]
+				},
+				Tax : {
+					title : "含税价",
+					c : "foot_sort",
+					type : 0,
+					key : 'tax',
+					listData : ["含税价", "不含税价"]
+				}
+
+			}, f_call = function(o) {
+				alert("js request json.");
+				console.log(o);
+			};
+
+			if (footer) {
+				footer.data = f_data;
+				footer.callback = f_call;
+			}
+			footer.filters.init();
+		}
+	</script>
 </html>

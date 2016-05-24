@@ -134,6 +134,7 @@ var fDoubleList = {
        if(this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
          $('#loadMore').html("没有更多信息了!").fadeOut(3000);
        }else{
+         loadMore.innerHTML = "点击查看更多...";
          this.addHandler(loadMore, 'click', function () {
               that.loadMoreData();
          });

@@ -401,8 +401,17 @@
   left: -.42rem;
   top: .05rem;
 }
+
 .trip_back .left span.icon, .trip_back_ span.icon{
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  background-size: 7.95rem auto;
   background-position: 44.564% 31.61%;
+  position: absolute;
+  left: -.42rem;
+  top: .05rem;
 }
 .trip_go_ span.icon, .trip_back_ span.icon{
   left: 0;
@@ -520,7 +529,7 @@
   width: 1.40rem;
   background: #ffb413;
   color: #FFFFFF;
-  font-size: .36rem;
+  font-size: .32rem;
   position: absolute;
   top:50%;
   margin-top: -.30rem;
@@ -719,10 +728,25 @@
   line-height: .28rem;
   font-size: .20rem;
 }
-.trip_go_, .trip_back_{border: 1px solid red;
+.trip_go_, .trip_back_{
   position: relative;
   height: .4rem;
   line-height: .4rem;}
+
+.trip_go_ .addUp, .trip_back_ .addUp{
+  position: relative;
+  top: -.12rem;
+}
+.trip_go_ span.cityName, .trip_back_ span.cityName{
+  display: inline-block;
+  width: 1.48rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: .42rem;
+  position: relative;
+  top: -.02rem
+}
 .trip_back_, .seat-price-cost p:nth-child(2){margin-top: .16rem}
 
 .trip_go_ .time_minutes, .trip_back_ .time_minutes{
@@ -747,26 +771,52 @@
   padding: 0;
   background: #FFFFFF;
 }
-.passengers_wrap h4{
-  background: pink;
+.passengers_wrap h4, .contact_wrap h4{
+  background: #f7f7f7;
   height: .68rem;
   line-height: .68rem;
   padding: 0 .28rem;
   position: relative;
+  border-top: 1px solid #e6e6e6;
 }
-.passengers_wrap h4 i, .passengers_wrap .add_icon {
+.passengers_wrap h4 i, .passengers_wrap .add_icon , .contact_wrap .arrow_down ,.contact_wrap h4 i,.contact_wrap .arrow_right,.passengers_wrap .minus_person{
   display: inline-block;
   width: .32rem;
   height: .32rem;
   background: url(../../images/ui/icon_hft.png) no-repeat;
-  background-size: 7.50rem 4.54rem;
-  background-position: 35.564% 31.61%;
+  background-size: 7.50rem auto;
+  background-position: 44.564% 51.61%;
   position: absolute;
-  right: .28rem;
+  right:0;
   top: 50%;
   margin-top: -.16rem;
-  border: 1px solid red;
 }
+.passengers_wrap .minus_person{
+  background-position: 42.1% 32.03%;
+  width: .40rem;
+  height: .40rem;
+  left: -.60rem;
+  top: .28rem;
+}
+
+.contact_wrap .arrow_down{
+  width: .328rem;
+  height: .328rem;
+  background-position: 86.564% 52.377%;
+  position: relative;
+  top: .04rem;
+  margin:0 .12rem 0 .20rem;
+}
+.contact_wrap .arrow_right{
+  margin-left: .08rem;
+  position: relative;
+  top: .04rem
+}
+.passengers_wrap h4 i, .contact_wrap h4 i{
+  right: .28rem;
+  background-position: 83.564% 31.61%;
+}
+
 .passengers_wrap ul{
    padding-left: .60rem;
    font-size: .28rem;
@@ -776,7 +826,6 @@
   padding: .32rem .28rem;
 }
 .passengers_wrap ul p{
-  border:1px solid red;
   position: relative;
   height:.58rem;
   line-height: .58rem;
@@ -785,6 +834,7 @@
 .passengers_wrap ul p:nth-child(1){
   padding-top: .16rem;
   margin-bottom: .16rem;
+  position: relative
 }
 .passengers_wrap ul p input{
     margin-left: 1.2rem;
@@ -795,9 +845,153 @@
   display: inline-block;
   width: 1.2rem;
   height: 100%;
-  border: 1px solid red;
   letter-spacing: .08rem;
   position: absolute;
+  left: 0;
+  top: 0;
+}
+.contact_wrap{background: #FFFFFF;border-bottom: 1px solid #e6e6e6;}
+.contact_wrap .glay_word{
+  color: #999999;
+  font-size: .24rem
+}
+.contact_wrap p{
+    height:.96rem;
+    line-height: .96rem;
+    color: #D1D1D1;
+    font-size: .28rem;
+    position: relative;
+    padding: 0 .28rem;
+}
+.contact_wrap p input{
+  height:.96rem;
+  line-height: .96rem;
+  color: #D1D1D1;
+  font-size: .28rem;
+  width: 50%;
+  float: right;
+  font-family: "microsoft yahei", Arial, sans-serif
+}
+.contact_wrap .more_black{
+   display: inline-block;
+   width: 50%;
+   color:rgb(51,51,51);
+}
+.email_line .more_black{
+  width: 16%;
+}
+.contact_wrap p input.padding_has{
+  padding-left: .28rem;
+}
+.contact_wrap p .s_line{
+  display: inline-block;
+  height:.96rem;
+  width:.01rem;
+  color: #D1D1D1;
+  background: #D1D1D1;
+}
+.contact_wrap p.email_line  span, .contact_wrap p.email_line  input{
+      float: left;
+}
+.contact_wrap p.email_line  input{width: 76%}
+.bottomPrice {
+  width: 100%;
+  font-size: .28rem;
+  position: fixed;
+  background-color: #fff;
+  height: .98rem;
+  line-height: .98rem;
+  bottom: 0;
+  border-top: 1px solid #dedede;
+  z-index: 105;
+}
+.priceTotal {
+  margin-left: .56rem;
+}
+.bottomPrice {
+  width: 100%;
+  font-size: .28rem;
+  position: fixed;
+  background-color: #fff;
+  height: .98rem;
+  line-height: .98rem;
+  bottom: 0;
+  border-top: 1px solid #dedede;
+  z-index: 105;
+}
+.preserve {
+  display: inline-block;
+  height: 100%;
+  padding: 0 0;
+  background: #FFB413;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: .36rem;
+  position: absolute;
+  right: 0;
+  width: 50%;
+}
+.addMarginBottom {
+  height: 1.2rem;
+  width: 100%;
+}
+.tot_tips_rmb {
+  color: #ff5b13;
+}
+.priceTotal > span {
+  font-size: .32rem;
+  color: #ff5b13;
+  margin-right: .2rem;
+}
+.priceTotal .detail_fare {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .42rem;
+  background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
+  background-size: .24rem .14rem;
+  width: .32rem;
+  height: .2rem;
+  transition: 0.3s all ease;
+}
+.priceTotal .detail_fare.open {
+  margin-top: .48rem;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform-origin: 40% 25%;
+  -webkit-transform-origin: 40% 25%;
+  transition: 0.3s all ease;
+}
+.priceTotal {
+  margin-left: .56rem;
+}
+.priceDetailInfo {
+  position: fixed;
+  padding: 0.4rem .28rem;
+  height: 4.12rem;
+  width: 100%;
+  bottom: -126%;
+  z-index: 102;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.priceDetailInfo p {
+  height: .52rem;
+  line-height: 0.52rem;
+  font-size: .28rem;
+  color: #333333;
+}
+.price-num-price {
+  display: inline-block;
+  float: right;
+}
+.shadow {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .6);
+  position: fixed;
+  z-index: 99;
   left: 0;
   top: 0;
 }

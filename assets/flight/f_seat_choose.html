@@ -23,26 +23,17 @@
   </div>
 </div>
 <div class="all_elements">
-  <header class="header">
-    <a href="#" class="header_back">
-      <i class="icon_back"></i>
-    </a>
-    <h3><span>北京</span><i class="arrowDouble"></i><span>新加坡</span>
-    </h3>
-  </header>
   <div class="content">
-
   </div>
 </div>
 </body>
 <script id="template_seat_choose" type="text/template">
   <header class="header no-shadow">
-    <a href="#" class="header_back">
+    <a href="javascript:window.history.go(-1);" class="header_back">
       <i class="icon_back"></i>
     </a>
-
-    <h3><span><%= flightInfo["cityNameFrom"]%></span><i
-      class="arrowDouble"></i><span><%= flightInfo["cityNameTo"]%></span></h3>
+    <h3><span><%= flightInfo["cityNameFrom"]%></span><i class=" <%= flightInfo.segmentsReturn !=null ? 'arrowDouble' : 'arrowSingle' %> "></i>
+      <span><%= flightInfo["cityNameTo"]%></span></h3>
   </header>
   <div class="content content-down">
     <div class="ticket">
@@ -92,8 +83,8 @@
         </p>
         <%}%>
         <%})%>
-        <%flightInfo.segmentsReturn.forEach(function(returnItem,item_){ var len =
-        flightInfo.segmentsReturn.length %>
+        <%if(flightInfo.segmentsReturn){%>
+        <%flightInfo.segmentsReturn.forEach(function(returnItem,item_){ var len =flightInfo.segmentsReturn.length %>
         <%if(item_==0){%>
         <li class="tripBack">
           <%}else{%>
@@ -142,6 +133,7 @@
         </p>
         <%}%>
         <%})%>
+        <%}%>
       </ul>
       <div class="for_bottom">
           <div class="right_button_zone">

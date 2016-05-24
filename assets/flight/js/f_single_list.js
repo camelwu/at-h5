@@ -95,9 +95,10 @@ var fSingleList = {
 
   renderHandler:function(){
     var result = arguments[0],that = fSingleList, storage = window.sessionStorage;
-    console.log(result)
+    console.log(result);
     if(result.success&&result.code == "200"){
          that.currrentFlightList = result.data;
+         show_filter(result.data.airCorpCodeList);
          that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
     }
   },
@@ -130,6 +131,7 @@ var fSingleList = {
     if(this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     }else{
+      loadMore.innerHTML = "点击查看更多...";
       this.addHandler(loadMore, 'click', function () {
         that.loadMoreData();
       });

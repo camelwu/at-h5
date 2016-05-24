@@ -4,6 +4,74 @@
 (function(){
   var webkit = this || (0, eval)('this');
 
+  /**
+   *     监听某个节点属性是否改变
+   *     //选择目标节点
+   *     var target = document.querySelector('#some-id');
+   *     Listener().callWatch("watch",target);
+   *     setTimeout(function(){
+   *        $("#some-id").attr("data-bind","type:'selectMethod'");
+   *     },1000);
+   * @returns {{callWatch: callWatch, addWatch: addWatch, multiWatch: multiWatch}}
+   * @constructor
+     */
+  var Listener = function(){
+    var watcher = {
+      watch:function(target){
+        // Firefox和Chrome早期版本中带有前缀
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+        // 配置观察选项:
+        var config = { attributes: true };
+
+        // 创建观察者对象
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            //console.log(mutation.attributeName);
+            //console.log(mutation.target.id);
+          });
+        });
+        // 传入目标节点和观察选项
+        return observer.observe(target, config);
+      }
+    }
+    return {
+      /**
+       * 调用数据过滤方法
+       * @param type
+       * @param data
+       * @returns {string}
+       */
+      callWatch:function(type,data){
+        return watcher[type]?watcher[type](data):'';
+      },
+      /**
+       * 添加策略
+       * @param type
+       * @param fn
+       */
+      addWatch:function(type,fn){
+        watcher[type] = fn;
+      },
+      /**
+       * 通信适配器Command
+       *  var titleData = {
+       *    title:'夏日',
+       *    tips:'暖暖夏日'
+       *  }
+       *  listener().multiWatch({
+       *    command:'watch',
+       *    param:['#title']
+       *  });
+       * @returns {*}
+       */
+      multiWatch:function(msg){
+        msg.param = Object.prototype.toString.call(msg.param) === "[object Array]"?msg.param : [msg.param];
+        return watcher[msg.command].apply(watcher,msg.param);
+      }
+    }
+  }
+
+
 
   /**
    * 数据通信策略层
@@ -13,13 +81,21 @@
   var AjaxAdapter = function(){
     var Adapter = {
       /**
-       * 机+酒+景 热门城市 数据转化
+       * 景 首页 热门城市
        * @param data
        * @returns {Array}
        */
-      m_t_city:function(param){
-        var param = param;
-        vlm.loadJson("",JSON.stringify(param),Method["m_t_cityCallback"]);
+      m_city_list:function(param){
+        var parameters = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3, "Code": "0096"};
+        vlm.loadJson("",JSON.stringify(parameters),Method["m_city_listCallback"]);
+      },
+      /**
+       * 景 首页 热门景点
+       * @param param
+         */
+      m_product_list:function(param){
+        var parameters = {"Parameters": {"Isinternational": true, "PageNo": 1, "PageSize": 10}, "ForeEndType": 3, "Code": "001305"};
+        vlm.loadJson("",JSON.stringify(parameters),Method["m_product_listCallback"]);
       }
     }
 
@@ -61,23 +137,71 @@
   };
 
   var Method = {
-    m_t_city:function(dom,data){
+    /**
+     * 景 首页 热门城市
+     * @param dom
+     * @param data
+       */
+    m_city_list:function(dom,data){
       var Ajax = data.AjaxAdapter;
-      var param = [{"Parameters": {"SubProduct": "All"}, "ForeEndType": 3, "Code": "0096"}];
+      var param = [];
       AjaxAdapter().execAjaxAdapter({
         command:Ajax,
         param:param
       });
     },
-    m_t_cityCallback:function(json){
-      var tpl = "";
+    /**
+     * 景 首页 热门城市
+     * @param json
+       */
+    m_city_listCallback:function(json){
+      var tplString = "",outString = "";
       console.log(json);
       if(json.success){
-        tpl = ejs.render("tpl_t_city",{data:json.data});
+        tplString = $("#tpl_city_list").html();
+        outString = ejs.render(tplString,{data:json.data});
+        $("#js_city_list").html(outString).click(function(e){
+          var e = e || window.event,
+            tar = e.target || e.srcElement;
+          if(tar.nodeName.toLowerCase() === 'div'){
+            var cityCode = (e.target).getAttribute("data-code");
+            //console.log(cityCode);
+            window.location.href = "../scenic/scenic_list.html?DestCityCode=" + cityCode;
+          }
+
+        });
       }else{
         console.log(json);
       }
-    }
+    },
+    /**
+     * 景 首页 热门景点
+     * @param dom
+     * @param data
+       */
+    m_product_list:function(dom,data){
+      var Ajax = data.AjaxAdapter;
+      var param = [];
+      AjaxAdapter().execAjaxAdapter({
+        command:Ajax,
+        param:param
+      });
+    },
+    /**
+     * 景 首页 热门景点
+     * @param json
+       */
+    m_product_listCallback:function(json){
+      var tplString = "",outString = "";
+      console.log(json);
+      if(json.success){
+        tplString = $("#tpl_product_list").html();
+        outString = ejs.render(tplString,{data:json.data});
+        $("#js_product_list").html(outString);
+      }else{
+        console.log(json);
+      }
+    },
   };
 
   /**
@@ -104,5 +228,9 @@
 })();
 
 (function(){
-  T.Load("js_t_city");
+  T.Load("js_city_list");
+  T.Load("js_product_list");
+  $("#t_des").click(function(e){
+    VM.Load("t_des");
+  });
 })();

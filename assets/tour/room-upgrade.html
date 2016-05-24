@@ -25,60 +25,106 @@
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
     <title>房间升级 - 亚洲旅行网</title>
-    <link href="../styles/framework.css" rel="stylesheet" type="text/css">
-    <link href="../styles/style.css" rel="stylesheet" type="text/css">
-    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <link href="../styles/reset.css" rel="stylesheet" type="text/css">
     <link href="../styles/swipebox.css" rel="stylesheet" type="text/css">
-    <link href="css/tour.css" rel="stylesheet" type="text/css">
-    <style type="text/css">
-        #popup_panel .d-ok {
-            background: none;
-            font-size: 15px;
-            font-weight: 700;
-            color: #ffb413;
-            width: 80px;
-            margin: 13px auto;
-            display: block;
-            position: relative;
-            overflow: hidden;
-            border: none;
-        }
-        #popup_message {
-            width:auto!important;
-            padding: 29px 22px;
-            font-size: 14px;
-            color: #484848;
-            text-align: center;
-            display: block;
-            position: relative;
-            overflow: hidden;
-        }
-    </style>
+    <link href="css/tours.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div id="preloader">
-        <div id="status">
+<div id="preloader">
+    <div id="status">
 
-        </div>
     </div>
-    <div class="all-elements" id="allElements">
-        <!--   顶部   -->
-        <div class="header">
-            <a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
-            <h3 class="head-h3">房间升级</h3>
-        </div>
-        <!--   内容   -->
-        <div class="sc-content" id="sc-content">
-        </div>
+</div>
+
+<div class="all-elements" id="allElements">
+    <!--   顶部   -->
+    <!--<div class="header">-->
+        <!--<a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>-->
+        <!--<h3 class="head-h3">房间升级</h3>-->
+    <!--</div>-->
+    <!--   内容   -->
+    <div class="sc-content" id="sc-content">
     </div>
+</div>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
+<script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script src="js/roomUpgreade.js"></script>
-<script>
+<script id="tpl1" type="text/template">
+    <% var imgs=tourInfos, htls=roomUpGrade.resetData(hotels[0]);imgl = imgs.length; if(imgl==0){ %>
+    <a class="top-pic hotel_detail_pic">
+        <img src="../images/hotelDetailerrorpic.png" real-src="<%= htls.hotelPictureURL%>" class="hotelPic" alt="image">
+    </a>
+    <% }else{ %>
+    <a href="<%= imgs[0].tourPictureURL %>" class="top-pic hotel_detail_pic swipebox" title="1/<%= (imgl) %>">
+        <img class="hotelPic" src="../images/hotelDetailerrorpic.png" real-src="<%= htls.hotelPictureURL %>">
+    </a>
+    <div style="display: none;">
+        <% for(var i=1;i < imgl;i++){ %>
+        <a href="<%= imgs[i].tourPictureURL %>" class="swipebox" title="<%= (i+1) %>/<%= (imgl) %>">
+            <img src="<%= imgs[i].tourPictureURL %>" alt="image"></a>
+        <% } %>
+    </div>
+    <% } %>
+    <a class="hotel_detail_back" href="javascript:history.go(-1);">
+        <i></i>
+    </a>
+    <ul id="hd_list" class="hotel_detail_list">
+        <li class="name">
+            <p class="d-score score">
+                <b class="d-icon4 icon4"></b>
+                <%= htls.hotelName %>
+            </p>
+        </li>
+        <li>
+            <p class="d-score score">
+                <b class="d-icon4 icon4"></b>
+                <%= htls.location %>
+            </p>
+        </li>
+        <li>
+            <p class="d-score"><%= htls.starRating %>星级</p>
+            <a href="<%= htls.moreInfoLink %>" class="d-icon1"></a>
+        </li>
+        <li class="data">
+            <p class="d-p3 date-in d_p3"><span>3月22</span>入住</p>
+            <p class="d-p3 date-out d_p3"><span>3月30</span>离店</p>
+            <p class="d-p2 day-number">共<span>8</span>晚</p>
+        </li>
+        <li class="last">
+            <ul class="room-list hotel_room_list" id="room-list">
+
+            </ul>
+        </li>
+    </ul>
 </script>
+<script id="tpl2" type="text/template">
+    <% for(var i=0;i <rooms.length;i++){ %>
+    <li class="hd-hotel hotel" data-roomId="<%= rooms[i].roomID %>">
+        <img class="hd-choose choose" src="../images/ui/choose.png">
+        <div class="d-div3 div3">
+            <p class="d-p5 p5">
+                <%= rooms[i].roomName %>
+            </p>
+            <p class="d-p5 p5">
+                <% if( rooms[i].includedBreakfast ){ %>
+                含早
+                <% }else{ %>
+                无早
+                <% } %>
+            </p>
+        </div>
+        <p class="hd-price price">
+            <span>+￥</span>
+            <span class="money"><%= rooms[i].markUp %></span>
+        </p>
+    </li>
+    <% } %>
+</script>
+
+
 </body>
 </html>

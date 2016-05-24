@@ -141,7 +141,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var man = $("#man")[0];
                 var sexCode;
                 var sexName;
-                if (man.className == "icon-h traveler-sex1") {
+                if (man.className == "icon_h traveler_sex1") {
                     sexCode = "Mr";
                     sexName = "男";
                 } else {
@@ -351,16 +351,16 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     });
 
     //性别
-    var aSel = document.querySelectorAll('.sex-cho-wrap');
+    var aSel = document.querySelectorAll('.sex_cho_wrap');
     for (var i = 0; i < aSel.length; i++) {
         (function (index) {
             var aSpan = aSel[index].querySelectorAll('b');
             for (j = 0; j < aSpan.length; j++) {
                 aSpan[j].onclick = function () {
                     for (i = 0; i < aSpan.length; i++) {
-                        aSpan[i].className = 'icon-h traveler-sex2';
+                        aSpan[i].className = 'icon_h traveler_sex2';
                     }
-                    this.className = 'icon-h traveler-sex1';
+                    this.className = 'icon_h traveler_sex1';
                 }
             }
         })(i);
@@ -411,8 +411,8 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     //给li添加自定义属性
                     li.setAttribute('idtype',array[i]);
                     var b = document.createElement("b");
-                    b.className = "user-edits";
-                    b.style.marginTop = li.clientHeight + 20 + 'px';
+                    b.className = "user_edits";
+                    b.style.marginTop = li.clientHeight + '.4rem';
                     li.appendChild(b);
                     var ul = document.createElement("ul");
                     ul.className = "often_user";
@@ -462,7 +462,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
     //  编辑常旅客页面
     function updateTra(e) {
-        if($(e.target).parent().attr('class') == 'often_user' || $(e.target).attr('class') == 'user-edits')
+        if($(e.target).parent().attr('class') == 'often_user' || $(e.target).attr('class') == 'user_edits')
         {
             index=$(e.target).parents('.eve-traveler').attr('index');
         }else{
@@ -484,9 +484,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var telCode=getTelCode(travJson.data[index].traveller.countryCode);
         if(telCode == undefined)
         {
-            $('#uptra_page .phone-pre').html('+86');
+            $('#uptra_page .phone_pre').html('+86');
         }else{
-            $('#uptra_page .phone-pre').html('+'+telCode.TelCode);
+            $('#uptra_page .phone_pre').html('+'+telCode.TelCode);
         }
         $('#uptra_page .country-btn').eq(0).attr('data-code',travJson.data[index].listTravellerIdInfo[0].idCountry);
         //证件生日有效期缓存函数
@@ -548,11 +548,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         oldsendName=getCountryName(idCountry).CountryName;
         $('#country-name').html(oldsendName);
         if (travJson.data[index].traveller.sexCode == "Mr") {
-            man2.className = "icon-h traveler-sex1";
-            woman2.className = "icon-h traveler-sex2";
+            man2.className = "icon_h traveler_sex1";
+            woman2.className = "icon_h traveler_sex2";
         } else {
-            man2.className = "icon-h traveler-sex2";
-            woman2.className = "icon-h traveler-sex1";
+            man2.className = "icon_h traveler_sex2";
+            woman2.className = "icon_h traveler_sex1";
         }
 
         //编辑常旅取消按钮提示
@@ -671,26 +671,26 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     }
 
     //姓名说明新增
-    $('#aname_state').click(function(){
+    $('#anameState').click(function(){
         $('#content-wrap').css('visibility','hidden');
         $('#addtra_page').css('visibility','hidden');
         $('#fillName_page').show();
     })
 
-    $('#close_name').click(function(){
+    $('#closeName').click(function(){
         $('#content-wrap').css('visibility','visible');
         $('#addtra_page').css('visibility','visible');
         $('#fillName_page').hide();
     });
 
     //编辑
-    $('#name_state').click(function(){
+    $('#nameState').click(function(){
         $('#content-wrap').css('visibility','hidden');
         $('#uptra_page').css('visibility','hidden');
         $('#fillName_page').show();
     })
 
-    $('#close_name').click(function(){
+    $('#closeName').click(function(){
         $('#content-wrap').css('visibility','visible');
         $('#uptra_page').css('visibility','visible');
         $('#fillName_page').hide();

@@ -26,6 +26,7 @@
 
 <title>酒+景首页 - 亚洲旅行网</title>
 <link href="../styles/reset.css" rel="stylesheet"/>
+<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>
 <link href="css/tours.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -41,7 +42,7 @@
                 <i class="icon_back"></i>
             </a>
             <h3>酒+景</h3>
-            <a onclick="MT.CurrentPageTolist()" class="location-wrap tour_more">
+            <a class="location-wrap tour_more"  id="ht_des" data-bind="type:'setCityBox',data:'ht_des'">
                 <span id="Localtxt" class="location-txt">更多</span>
                 <i class="location_tip"></i>
             </a>
@@ -92,49 +93,91 @@
             <!--</div>-->
         <!--</footer>-->
     </div>
-    <!--&lt;!&ndash;   背景块   &ndash;&gt;-->
-    <!--<div class="mask" id="r-mb"></div>-->
-    <!--&lt;!&ndash;   筛选块   &ndash;&gt;-->
-    <!--<div class="screen" id="screen">-->
-        <!--<ul class="tagBox" id="screen_tagBox">-->
-            <!--<li class="current">景点主题</li>-->
-            <!--<li>景点活动</li>-->
-        <!--</ul>-->
-        <!--<ul class="tagList" id="tagList_1">-->
-            <!--<li class="current">不限</li>-->
-            <!--<li><a href="#">博物馆</a></li>-->
-            <!--<li><a href="#">场馆</a></li>-->
-            <!--<li><a href="#">古迹遗迹</a></li>-->
-            <!--<li><a href="#">山水景观</a></li>-->
-            <!--<li><a href="#">温泉</a></li>-->
-            <!--<li><a href="#">宾馆/招待所</a></li>-->
-        <!--</ul>-->
-        <!--<ul class="tagList" id="tagList_2" style="display:none;">-->
-            <!--<li>不限</li>-->
-            <!--<li><a href="#">全部景点</a></li>-->
-            <!--<li><a href="#">全部景点</a></li>-->
-            <!--<li><a href="#">全部景点</a></li>-->
-            <!--<li><a href="#">山水景观</a></li>-->
-            <!--<li><a href="#">温泉</a></li>-->
-            <!--<li><a href="#">宾馆/招待所</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <!--&lt;!&ndash; 排序块 &ndash;&gt;-->
-    <!--<div class="sortBox" id="rank">-->
-        <!--<ul class="rank">-->
-            <!--<li class="current">推荐排序</li>-->
-            <!--<li><a href="#">价格升序</a></li>-->
-            <!--<li><a href="#">价格降序</a></li>-->
-            <!--<li><a href="#">好评优先</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
+
+    <!--整体城市列表-->
+    <div id="citybox_search_container" class="citybox_search_container citybox_search_state">
+        <div id="citybox_header" data-bind="type:'cityboxHeader'">
+            <!--默认搜索-->
+            <div class="citybox_header citybox_header_fixed js_citybox_header_default">
+                <div class="citybox_header_left">
+                    <a id="js_citybox_header_goback" href="javascript:VM.Method['hideAllCityBox']();" class="citybox_header_btn">
+                        <span class="citybox_header_return citybox_header_return_icon"></span>
+                    </a>
+                </div>
+                <div class="citybox_search_relative">
+                    <span class="citybox_search_icon"></span>
+                    <input type="search" class="citybox_search_input" placeholder="中文/英文" onclick="VM.Method['hideCityBox']();">
+                </div>
+            </div>
+            <!--搜索头部-->
+            <div class="citybox_header citybox_header_fixed js_citybox_header_search">
+                <div class="citybox_searchactive_relative">
+                    <span class="citybox_searchactive_icon"></span>
+                    <input type="search" id="js_citybox_searchactive_input" class="citybox_searchactive_input" placeholder="中文/英文">
+                </div>
+                <div class="citybox_header_right">
+                    <a id="js_citybox_header_cancel" href="javascript:VM.Method['showCityBox']();" class="citybox_header_btn">
+                        <span class="citybox_searchactive_return">取消</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--搜索列表-->
+        <div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'">
+        </div>
+        <!--搜索列表-->
+        <!--城市列表和字母定位-->
+        <div class="citybox_content">
+            <!--当前-->
+            <div id="citybox_location" data-bind="type:'cityboxLocation'">
+                <div class="citybox_content_title" id="js_location">当前</div>
+                <ul class="citybox_content_container">
+                    <li class="citybox_content_item selected" data-code="200" data-name="北京" data-letter="bj">
+                        <div class="citybox_content_itemtitle">
+                            北京
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--当前-->
+            <!--历史选择-->
+            <div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
+                <div class="citybox_content_title" id="js_history">历史选择</div>
+            </div>
+            <!--历史选择-->
+            <!--热门城市-->
+            <div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
+                <div class="citybox_content_title" id="js_hotcity">热门城市</div>
+            </div>
+            <!--热门城市-->
+            <!--城市列表-->
+            <div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
+
+            </div>
+            <!--城市列表-->
+            <!--城市字母定位-->
+            <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
+                <li class="citybox_summary_item" data-key="location">
+                    当前
+                </li>
+                <li class="citybox_summary_item" data-key="history">
+                    历史
+                </li>
+                <li class="citybox_summary_item" data-key="hotcity">
+                    热门
+                </li>
+            </div>
+            <!--城市字母定位-->
+        </div>
+    </div>
+    <!--整体城市列表-->
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/custom.js"></script>
+<script type="text/javascript" src="../js/plugins/citybox/citybox.js"></script>
 <script id="tpl_GetHotCity" type="text/template">
    <% for(var i=0;i<9;i++){ %>
    <li title="<%= data.destCities[i].cityCode %>" ><a href="scenic_list.html?DestCityCode=<%= data.destCities[i].cityCode %>"><%= data.destCities[i].cityName %></a></li>
@@ -167,7 +210,10 @@
 <script>
     (function(){
         var ww = this;
-        vlm.init();
+//        vlm.init();
+        $("#ht_des").click(function(){
+            VM.Load("ht_des");
+        });
         var tour_index = function(){
             //   加载动画
             var flashLoad = function(){

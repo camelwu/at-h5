@@ -14,6 +14,7 @@
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>机票订单填写页 - 亚洲旅行网</title>
   <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
+  <link href="../styles/tips.css" rel="stylesheet" type="text/css">
   <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
   <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
 </head>
@@ -32,7 +33,7 @@
   </header>
   <div class="content">
          <div class="date-week-port">
-           <p class="trip_go_">
+          <!-- <p class="trip_go_">
              <span class="icon"></span>
              <span>01-08</span>
              <span class="week_value">周二</span>
@@ -51,38 +52,84 @@
              <span>洛杉矶</span>
              <span class="time_minutes">11h30m</span>
              <i class="clock"></i>
-           </p>
+           </p>-->
          </div>
-       <div class="seat-price-cost">
-            <p>头等舱+往返舱</p>
+         <div class="seat-price-cost">
+          <!--  <p>头等舱+往返舱</p>
             <p>往返票价<span class="cost_value">￥111678</span>税费<span class="cost_value">￥1957</span>
               <span class="explain">退改签说明</span>
-            </p>
+            </p>-->
        </div>
 
     <!--乘机人-->
     <div class="passengers_wrap">
         <h4>乘机人<i></i></h4>
-         <ul>
+         <ul class="passenger_outer">
            <li>
-             <p class="name_infos"><span class="tip_word">姓/名</span><input class="input" placeholder="BAI LISA" /><i class="add_icon passenger"></i></p>
-             <p class="passport_sex"><span class="tip_word">护照</span><input class="input" placeholder="1234567" /><span class="sex_value">女</span></p>
+             <p class="name_infos"><i class="minus_person"></i><span class="tip_word">姓/名</span><input class="input" placeholder="BAI LISA" /><i class="add_icon passenger"></i></p>
+             <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567" /><span class="sex_value">女</span></p>
            </li>
            </ul>
     </div>
 
     <!--联系人-->
     <div class="contact_wrap">
-      <h4>乘机人<i></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact"></i> </h4>
-      <p class="input_line"><input class="first_name" placeholder="名(如：San)" /><input class="last_name" placeholder="姓(如：Zhang)" /></p>
-      <p class="input_line"><span class="tel_number">手机号<span class="nation_code">+<span class="value_nation_code">86</span><i class="more_info"></i></span> </span><input class="last_name" placeholder="用于接收通知" /></p>
-      <p class="input_line"><span>E_mail</span><input class="email_value" placeholder="用于接收通知" /></p>
+      <h4>联系人<i class="arrow_down"></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact"></i> </h4>
+      <p class="input_line">
+      <!-- <span class="s_line"></span>--><input class="last_name padding_has" id="first-name" placeholder="姓(如：Zhang)" /> <input class="first_name" id="last-name" placeholder="名(如：San)" />
+      </p>
+      <p class="input_line">
+         <span class="tel more_black">手机号  <span class="mis_right">+<span class="nation_code_value" id="country-code">86</span><i class="arrow_right"></i> </span> </span>
+        <input class="tel_number padding_has" id="tel-num" placeholder="用于接收通知" />
+      </p>
+      <p class="input_line email_line"><span class="more_black">E_mail</span><input class="email_value padding_has" id="email-label" placeholder="用于接收通知" /></p>
     </div>
-
+    <div class="priceDetailInfo"><p>成人<span class="price-num-price">￥<span>31414X2</span></span></p></div>
+    <div class="bottomPrice">
+      <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span>62828</span><i class="detail_fare open"></i></span>
+      <span class="preserve">立即预定</span>
+    </div>
   </div>
 </div>
+<div class="shadow"></div>
 </body>
+<script id="template_flight_summary" type="text/template">
+    <p class="trip_go_">
+      <span class="icon"></span>
+      <span class="addUp"><%= flightLeaveStartDate.substring(5, 10) %></span>
+      <span class="week_value addUp"><%= fOrder.setWeekItems(flightLeaveStartDate) %></span>
+      <span class="cityName"><%= segmentsLeave[0]["airportNameFrom"] %><%=segmentsLeave[0]["termDepart"] %></span>
+      <span class="addUp">-</span>
+      <span class="cityName"><%= segmentsLeave[segmentsLeave.length - 1]["airportNameTo"] %></span>
+      <span class="time_minutes"><%= parseInt(segmentsLeaveTotalTravelTime / 60) + 'h' + segmentsLeaveTotalTravelTime % 60 + 'm' %></span>
+      <i class="clock"></i>
+    </p>
+    <% if(segmentsReturn){ %>
+      <p class="trip_back_">
+        <span class="icon"></span>
+        <span class="week_value addUp"><%= flightReturnStartDate.substring(5, 10) %></span>
+        <span class="addUp"><%= fOrder.setWeekItems(flightReturnStartDate) %></span>
+        <span class="cityName"><%= segmentsReturn[0]["airportNameFrom"] %><%=segmentsReturn[0]["termDepart"] %></span>
+        <span class="addUp">-</span>
+        <span class="cityName"><%= segmentsReturn[segmentsReturn.length - 1]["airportNameTo"] %></span>
+        <span class="time_minutes"><%= parseInt(segmentsReturnTotalTravelTime / 60) + 'h' + segmentsReturnTotalTravelTime % 60 + 'm' %></span>
+        <i class="clock"></i>
+      </p>
+    <% } %>
+</script>
+<script id="template_flight_cost_seat" type="text/template">
+    <p><%= segmentsLeave[0]["cabinClassName"] %>
+      <%if(segmentsReturn){%>
+       +<%=segmentsReturn[0]["cabinClassName"] %>
+      <%}%>
+    </p>
+    <p>往返票价<span class="cost_value">￥<%= totalFareAmountADT %></span>税费<span class="cost_value">￥<%= totalTaxAmountADT %></span>
+      <span class="explain">退改签说明</span>
+    </p>
+</script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script type="text/javascript" src="js/f_order.js"></script>
 </html>
