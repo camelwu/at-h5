@@ -235,3 +235,30 @@ body {
     background:url("../../images/hotelbtn.png") 0 -28px no-repeat;
     background-size:23px 150px;
 }
+/*弹层*/
+#popup_content {
+    position: relative;
+    background-color: #fff;
+    min-width: 4rem;
+}
+#popup_message {
+    padding:.6rem;
+    font-size: .32rem;
+    color: #484848;
+    text-align: center;
+}
+#popup_panel {
+    width: 100%;
+    overflow: hidden;
+    font-size: .32rem;
+    font-weight: 700;
+    border-top: 1px #dedede solid;
+}
+#popup_panel .d-ok {
+    display: block;
+    background: none;
+    font-size: .32rem;
+    font-weight: 700;
+    color: #ffb413;
+    margin: .3rem auto;
+}
