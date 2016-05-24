@@ -82,8 +82,8 @@
     <% if(segmentsReturn){ %>
       <p class="trip_back_">
         <span class="icon"></span>
-        <span class="week_value addUp"><%= flightReturnStartDate.substring(5, 10) %></span>
-        <span class="addUp"><%= fOrder.setWeekItems(flightReturnStartDate) %></span>
+        <span class="addUp"><%= flightReturnStartDate.substring(5, 10) %></span>
+        <span class="week_value addUp"><%= fOrder.setWeekItems(flightReturnStartDate) %></span>
         <span class="cityName"><%= segmentsReturn[0]["airportNameFrom"] %><%=segmentsReturn[0]["termDepart"] %></span>
         <span class="addUp">-</span>
         <span class="cityName"><%= segmentsReturn[segmentsReturn.length - 1]["airportNameTo"] %></span>

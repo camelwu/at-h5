@@ -248,7 +248,6 @@ var fSingleList = {
       this.postObj = postObj;
       this.isClear = 1;
       this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
-      this.renderHandler(data2)
   }
 
 };
