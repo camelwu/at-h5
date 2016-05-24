@@ -401,8 +401,8 @@ a.hotel_detail_pic{
     font-size: 0.32rem;
     font-weight: bold;
 }
-.hotel_room_list li .div3{
-    width: 5.2rem;
+.hotel_room_list li .div3 p{
+    width: 5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
