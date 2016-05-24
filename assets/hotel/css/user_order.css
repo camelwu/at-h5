@@ -33,7 +33,7 @@ em{ font-style:normal}
 }
 .hotel_user_container_house{
     overflow: hidden;
-    height: .4rem;
+    height: .6rem;
     padding-bottom: .2rem;
     color: rgb(153,153,153);
     font-size: .26rem;
@@ -85,7 +85,7 @@ i.right{
     border-right: 0 solid #ccc;
 }
 .hotel_user_detail_phone,.hotel_user_detail_Email{
-    height: .58rem;
+    height: 1rem;
 }
 .hotel_user_detail_phone p,.hotel_user_detail_Email p{
     width: 1.2rem;
