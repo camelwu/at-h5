@@ -545,7 +545,7 @@
         var newObj = [];
         for(var i = 0;i < data.length;i++){
           obj = {
-            cityCode : data[i].cityCode || "",
+            cityCode : data[i].cityEnglishName || "",
             cityName : data[i].cityChineseName || "",
             countryCode : data[i].countryCode || "",
             countryName : data[i].countryChineseName || "",
@@ -567,13 +567,13 @@
         for(var i = 0;i < data.length;i++){
           if(data[i].countryISOCode.toLowerCase() == "cn"){
             obj = {
-              cityCode : data[i].cityCode || "",
+              cityCode : data[i].cityNameEN  || "",
               cityName : data[i].cityNameCN || "",
               countryCode : data[i].countryISOCode || "",
               countryName : data[i].countryName || "",
               fullSpellingName : data[i].pingYin || "",
               shortSpellingName : data[i].acronym  || "",
-              cityNameEn : data[i].cityNameEN  || ""
+              cityNameEn : data[i].cityCode || ""
             };
             newObj.push(obj);
           }
@@ -593,7 +593,7 @@
         var newObj = [];
         for(var i = 0;i < data.length;i++){
           obj = {
-            cityCode : data[i].cityCode || "",
+            cityCode : data[i].cityEnglishName || "",
             cityName : data[i].cityChineseName || "",
             countryCode : data[i].countryCode || "",
             countryName : data[i].countryChineseName || "",
@@ -616,13 +616,13 @@
         for(var i = 0;i < data.length;i++){
           if(data[i].countryISOCode.toLowerCase() != "cn"){
             obj = {
-              cityCode : data[i].cityCode || "",
+              cityCode : data[i].cityNameEN || "",
               cityName : data[i].cityNameCN || "",
               countryCode : data[i].countryISOCode || "",
               countryName : data[i].countryName || "",
               fullSpellingName : data[i].pingYin || "",
               shortSpellingName : data[i].acronym  || "",
-              cityNameEn : data[i].cityNameEN  || ""
+              cityNameEn : data[i].cityCode  || ""
             };
             newObj.push(obj);
           }
