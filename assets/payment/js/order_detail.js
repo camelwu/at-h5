@@ -7,8 +7,8 @@ define(['jquery',"ejs","vlm"],function (){
   var _bussinessType= {
     "Hotle":{id: 1, name: "酒店", detailCode: "0013", payMentCode: "0012",tplKey:"tpl_h"},
     "Flight":{id: 2, name: "机票", detailCode: "3006", payMentCode: "3004" ,tplKey:"tpl_f"},
-    "Scenic":{id: 3, name: "景点", detailCode: "0095", payMentCode: "0093",tplKey:"tpl_s" },
-    "Tour":{id: 4, name: "酒+景", detailCode: "0095", payMentCode: "0203",tplKey:"tpl_t"},
+    "Scenic":{id: 3, name: "景点", detailCode: "0095", payMentCode: "0093",tplKey:"tpl_t" },
+    "Tour":{id: 4, name: "酒+景", detailCode: "40100006", payMentCode: "0203",tplKey:"tpl_ht"},
     "FlightHotle":{id: 5, name: "机+酒", detailCode: "50100007", payMentCode: "50100005",tplKey:"tpl_fh"},
     "FlightHotelTour":{id: 6, name: "机+酒+景", detailCode: "60100013", payMentCode: "60100011",tplKey:"tpl_fht"}
   };
