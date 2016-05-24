@@ -32,10 +32,6 @@ i, em {
   font-size: .36rem;
 }
 
-#fkey_page {
-  display: none;
-}
-
 .header_fd {
   height: .88rem;
   position: fixed;
@@ -291,9 +287,88 @@ i, em {
 
 }
 
+.p_86 {
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  margin-top: .32rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+
+  position: relative;
+}
+
+.p_86 > span {
+  margin-left: .2rem;
+  margin-right: .7rem;
+}
+
+.open_arw.int_tel {
+  width: .28rem;
+  height: .32rem;
+  top: 0;
+  right: .2rem;
+  background-size: 8.4rem 5.2rem;
+}
+
+#p_password {
+  padding-left: .25rem;
+}
+
+.login-input .in-phone {
+  display: inline-block;
+  padding-top: 2px;
+  font-size: 1.3rem;
+  width: 50%;
+}
+
+.forgotkey {
+  float: left;
+  margin: .3rem .24rem .3rem 0;
+  color: rgba(255, 255, 255, 255);
+}
+
+.changelogin {
+  float: right;
+  margin: 15px 12px 30px 0;
+  color: rgba(255, 255, 255, 255);
+}
+
+.login_change {
+  width: .34rem;
+  height: .34rem;
+  background-position: -5.94rem -.2rem;
+  position: relative;
+  top: .06rem;
+  margin-left: .06rem;
+}
+
+.login_clear {
+  display: none;
+  position: absolute;
+  right: 13px;
+  background-position: -85px -35px;
+}
+
+.login_clear.get_code_del {
+  right: 125px;
+}
+
+.regist-code {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 107px;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+  color: white;
+  margin-top: 13px;
+}
+
 /*登录注册结束*/
 
-/*个人中心未登录页css*/
+/*个人中心首页user开始*/
+
 .user_lists {
   padding: .4rem .28rem;
 }
@@ -370,8 +445,8 @@ i, em {
   margin-left: 25%
 }
 
-/*联接*/
-#link_page, #link_about_us, #link_at, #link_declaration {
+/*链接*/
+#link_page, #link_about_us, #link_at, #link_declaration，#fkey_page, #black_page {
   display: none;
 }
 
@@ -434,7 +509,6 @@ i, em {
 
 .at_declaration ul {
   margin: .2rem 0;
-  /*font-size: 1.3rem;*/
 }
 
 .at_declaration ul li {
@@ -446,9 +520,6 @@ i, em {
   margin: .1rem 0;
 }
 
-/*
-         个人中心已登录页css
-*/
 .user_content {
   position: absolute;
   background-color: white;
@@ -466,10 +537,6 @@ i, em {
   -ms-transform: translate3d(0, 0, 0);
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-}
-
-#black_page {
-  display: none;
 }
 
 #noOrder {
@@ -556,7 +623,9 @@ i, em {
   background-position: 94.5% 76%;
 }
 
-/*个人资料页css*/
+/*个人中心首页user结束*/
+
+/*个人资料页开始*/
 
 .info_name {
   float: right;
@@ -726,38 +795,52 @@ i, em {
   background-position: -6.74rem -.18rem;
 }
 
-/*全部订单页css*/
-.ticket_div{
+/*个人资料页结束*/
+
+/*全部订单页开始*/
+
+.ticket_div {
   background-color: #f7f7f7;
 }
+
 .order_div {
   background-color: #fff;
+  border-bottom: 2px solid #e6e6e6;
 }
 
 .all_order_title {
   height: .8rem;
   margin-top: .32rem;
-  border-bottom: 1px solid #e6e6e6;
-}
-
-.all_order_wrap{
   padding: 0 .28rem;
+  border-bottom: 1px solid #e6e6e6;
+  overflow: hidden;
 }
 
-.all_order_tab{
+.all_order_title b {
+  float: left;
+}
+
+.icon_allorder {
+  background: url(../images/ui/icon.png) no-repeat;
+  background-size: 7.86rem 2.36rem;
+  display: inline-block;
+  width: .5rem;
+  height: .5rem;
+  margin: .14rem .2rem 0 0;
+}
+
+.all_order_tab {
   border-bottom: 1px solid #e6e6e6;
   padding: .4rem .28rem;
 }
+
 .user_air {
-  float: left;
-  width:.5rem;
-  height: .5rem;
   background-position: 0.2% 99%;
 }
 
 .order_title {
   float: left;
-  padding-top: 10px;
+  padding-top: .2rem;
 }
 
 .if_pay {
@@ -769,8 +852,7 @@ i, em {
 
 .order_Amount {
   float: right;
-  padding-top: 10px;
-  padding-right: 10px;
+  margin-top: .2rem;
   color: red;
 }
 
@@ -778,27 +860,28 @@ i, em {
   font-weight: bold;
 }
 
-.air_date {
-
-}
-
 .air_date li {
-  list-style-type: none;
-  margin-top: 10px;
+  margin-top: .2rem;
 }
-.find_order{
 
+.find_order {
+  padding: .2rem .28rem;
 }
+
 .paybtn {
   float: right;
   width: 1.52rem;
   height: .64rem;
   text-align: center;
   line-height: .64rem;
-  margin-right: .28rem;
   border: 1px solid #ffb413;
   color: #ffb413;
   border-radius: .04rem;
+}
+
+.paybtn:hover {
+  background-color: #ffb413;
+  color: #fff;
 }
 
 .quitbtn {
@@ -816,40 +899,26 @@ i, em {
 }
 
 .user_spot {
-  float: left;
-  width: 25px;
-  height: 25px;
   background-position: 8.5% 99%;
 }
 
 .user_fligthotle {
-  float: left;
-  width:.5rem;
-  height: .5rem;
-  background-image: url(../images/ui/icon.png);
-  background-repeat: no-repeat;
-  background-size: 412px 125px;
-  background-position: 89.5% -2%;
+  background-size: 8.6rem 2.6rem;
+  background-position: 89.7% -1.2%;
 }
 
 .user_hotel1 {
-  float: left;
-  width:.5rem;
-  height: .5rem;
   background-position: 16.3% 99%;
 }
 
 .user_hotel2 {
-  float: left;
-  width:.5rem;
-  height: .5rem;
-  margin: .2rem .2rem 0 0;
   background-position: 40.3% 99%;
 }
 
-/*
-         设置页css
-*/
+/*全部订单页结束*/
+
+/*设置页开始*/
+
 .set_chose1 {
   width: 1.04rem;
   height: .62rem;
@@ -868,9 +937,10 @@ i, em {
   background-position: 51% 69.8%;
 }
 
-/*
-         联系我们页css
-*/
+/*设置页结束*/
+
+/*联系我们开始*/
+
 .user_wechat {
   width: 40px;
   height: 40px;
@@ -955,6 +1025,8 @@ i, em {
   color: #999;
 }
 
+/*联系我们结束*/
+
 /*常用信息页css*/
 .user_add {
   width: .4rem;
@@ -964,109 +1036,16 @@ i, em {
   background-position: -4.28rem -.16rem;
 }
 
-.often-traveler {
+.often_traveler {
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: .3rem;
   overflow: scroll;
 }
 
-.eve-traveler {
-  list-style-type: none;
-  padding: 12px 15px;
-  border-bottom: 1px solid #dedede;
+.eve_traveler {
+  padding: .24rem .3rem;
+  border-bottom: 1px solid #e6e6e6;
   background-color: #fff;
-}
-
-.traveler-text {
-  text-align: center;
-  font-size: 12px;
-  color: #999999;
-  line-height: normal;
-}
-
-.statement {
-  padding: 8px 15px;
-  color: #484848;
-}
-
-/*登录页css*/
-
-.p_86 {
-  display: inline-block;
-  vertical-align: top;
-  color: white;
-  margin-top: .32rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
-
-  position: relative;
-}
-
-.p_86 > span {
-  margin-left: .2rem;
-  margin-right: .7rem;
-}
-
-.open_arw.int_tel {
-  width: .28rem;
-  height: .32rem;
-  top: 0;
-  right: .2rem;
-  background-size: 8.4rem 5.2rem;
-}
-
-#p_password {
-  padding-left: .25rem;
-}
-
-.login-input .in-phone {
-  display: inline-block;
-  padding-top: 2px;
-  font-size: 1.3rem;
-  width: 50%;
-}
-
-.forgotkey {
-  float: left;
-  margin: .3rem .24rem .3rem 0;
-  color: rgba(255, 255, 255, 255);
-}
-
-.changelogin {
-  float: right;
-  margin: 15px 12px 30px 0;
-  color: rgba(255, 255, 255, 255);
-}
-
-.login_change {
-  width: .34rem;
-  height: .34rem;
-  background-position: -5.94rem -.2rem;
-  position: relative;
-  top: .06rem;
-  margin-left: .06rem;
-}
-
-.login_clear {
-  display: none;
-  position: absolute;
-  right: 13px;
-  background-position: -85px -35px;
-}
-
-.login_clear.get_code_del {
-  right: 125px;
-}
-
-.regist-code {
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 107px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  text-align: center;
-  color: white;
-  margin-top: 13px;
 }
 
 /*国籍选择*/
@@ -1734,7 +1713,6 @@ a.foot-homes, a.foot-users {
 /*填写姓名说明页css*/
 .fillName_page {
   display: none;
-
 }
 
 .ch_account {
@@ -1764,7 +1742,6 @@ a.foot-homes, a.foot-users {
   list-style-type: disc;
   color: #999;
   font-size: .24rem;
-
 }
 
 .name_ul li p {
@@ -1820,7 +1797,6 @@ a.foot-homes, a.foot-users {
 .name_example2 p:last-child {
   border-bottom: none;
 }
-
 /*填写姓名说明页结束*/
 
 
