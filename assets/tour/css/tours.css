@@ -356,8 +356,7 @@ i,em{
 /*พฦต๊ฯ๊ว้ begin*/
 a.hotel_detail_pic{
     width: 100%;
-    overflow: hidden;
-    height: 4.8rem;
+    height: 4.4rem;
     display: block;
     overflow: hidden;
 }

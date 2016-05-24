@@ -831,7 +831,7 @@ i, em {
   display: inline-block;
   width: .5rem;
   height: .5rem;
-  margin: .13rem .2rem 0 0;
+  margin: .12rem .2rem 0 0;
 }
 
 .all_order_tab {
@@ -900,15 +900,15 @@ i, em {
 }
 
 .user_hotel1 {
-  background-position: -7.34rem -2.94rem;
+  background-position: -7.2rem -2.9rem;
 }
 
 .user_hotel2 {
-  background-position: .04rem -.52rem;
+  background-position: 0 -.56rem;
 }
 
 .user_air {
-  background-position: -7.34rem -1.62rem;
+  background-position: -7.2rem -1.52rem;
 }
 
 .user_spot {
@@ -916,15 +916,15 @@ i, em {
 }
 
 .user_hoteltour {
-  background-position: -3.32rem -.54rem;
+  background-position: -3.27rem -.58rem;
 }
 
 .user_fligthotle {
-  background-position: -4.42rem -.54rem;
+  background-position: -4.3rem -.58rem;
 }
 
 .user_fligthotletour {
-  background-position: -3.88rem -.54rem;
+  background-position: -3.78rem -.58rem;
 }
 
 /*全部订单页结束*/
