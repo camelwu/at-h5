@@ -225,7 +225,7 @@
         <li class="fli_cont clearfix">
           <div class="fli_cir_left fl">
             <i class="go_tip"></i>
-            <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"hm")%></span>
+            <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%></span>
             <span><%=vlm.Utils.getWeek(flightInfo.flightLeaveStartDate)%></span>
             <span><%=flightInfo.cityNameFrom%>-<%=flightInfo.cityNameTo%></span>
           </div>
@@ -238,7 +238,7 @@
         <li class="fli_cont clearfix">
           <div class="fli_cir_left fl">
             <i class="back_tip"></i>
-            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"hm")%></span>
+            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%></span>
             <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
             <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
           </div>
