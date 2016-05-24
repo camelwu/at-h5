@@ -15,11 +15,15 @@
 .clear_shadow {
   box-shadow: none;
 }
+
 .bottomFix {
   position: fixed;
   bottom: 0;
 }
-.addPaddingTop{padding-top: 1.76rem;}
+
+.addPaddingTop {
+  padding-top: 1.76rem;
+}
 
 .singleTrip, .doubleTrip {
   float: left;
@@ -40,7 +44,7 @@
 
 .grey-title {
   border-bottom: none;
-  color:rgb(153, 153 ,153)
+  color: rgb(153, 153, 153)
 }
 
 .place {
@@ -120,9 +124,18 @@
   padding: 0 .28rem;
 
 }
-#timeSingleWrap{display: none}
-#timeDoubleWrap{display: block}
-.single_date .to-word,.single_date .set-to{visibility: hidden}
+
+#timeSingleWrap {
+  display: none
+}
+
+#timeDoubleWrap {
+  display: block
+}
+
+.single_date .to-word, .single_date .set-to {
+  visibility: hidden
+}
 
 .date-word {
   padding: .240rem 0;
@@ -157,13 +170,15 @@
   font-size: 0.24rem;
   color: rgb(51, 51, 51)
 }
-.adult, .child,.cabin-wrap, .search-button{
-  height:.96rem;
+
+.adult, .child, .cabin-wrap, .search-button {
+  height: .96rem;
   line-height: .96rem;
   margin: 0 .28rem;
   border-bottom: 1px solid #e6e6e6;
 }
-.pas-num-wrap .minus, .pas-num-wrap .plus{
+
+.pas-num-wrap .minus, .pas-num-wrap .plus {
   display: inline-block;
   width: .54rem;
   height: .54rem;
@@ -171,20 +186,39 @@
   background-size: 7.9rem 5.13rem;
   background-position: 41.2% 68%;
   position: relative;
-  top:.156rem
+  top: .156rem
 }
-.pas-num-wrap .plus_grey{background-position: 29.5% 68%}
-.pas-num-wrap .minus{background-position: 17.5% 68%;  }
-.pas-num-wrap .minus_grey{background-position: 6.7% 68%}
-.adultNumber, .childNumber{
-  display:inline-block;
+
+.pas-num-wrap .plus_grey {
+  background-position: 29.5% 68%
+}
+
+.pas-num-wrap .minus {
+  background-position: 17.5% 68%;
+}
+
+.pas-num-wrap .minus_grey {
+  background-position: 6.7% 68%
+}
+
+.adultNumber, .childNumber {
+  display: inline-block;
   width: .80rem;
   text-align: center;
-  font-size: .32rem;color: rgb(51, 51, 51)
+  font-size: .32rem;
+  color: rgb(51, 51, 51)
 }
-.cabin-wrap{ margin: 0; padding: 0 .28rem}
-.adult{border-top: 1px solid #e6e6e6;}
-.cabin-arrow{
+
+.cabin-wrap {
+  margin: 0;
+  padding: 0 .28rem
+}
+
+.adult {
+  border-top: 1px solid #e6e6e6;
+}
+
+.cabin-arrow {
   display: inline-block;
   width: .142rem;
   height: .236rem;
@@ -196,12 +230,17 @@
   position: relative;
   top: .3899rem
 }
-#seats{float: right;}
-.search-button{
+
+#seats {
+  float: right;
+}
+
+.search-button {
   margin: .40rem .28rem;
   height: .96rem;
 }
-.search-button input{
+
+.search-button input {
   font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
   width: 100%;
   height: .96rem;
@@ -213,8 +252,12 @@
   background: rgb(255, 180, 19);
   font-size: .36rem;
 }
-.float-right{float: right}
-.searchZone, .date-top{
+
+.float-right {
+  float: right
+}
+
+.searchZone, .date-top {
   height: .88rem;
   line-height: .88rem;
   padding: 0 .28rem;
@@ -231,13 +274,16 @@
   box-shadow: 0 1px 1px #e6e6e6;
   text-align: center;
 }
-.previousDay{
-   float: left;
+
+.previousDay {
+  float: left;
 }
-.nextDay{
+
+.nextDay {
   float: right;
 }
-.middle_input{
+
+.middle_input {
   display: block;
   border: 1px solid #e6e6e6;
   margin: .14rem 1.22rem;
@@ -247,8 +293,12 @@
   line-height: .60rem;
   color: #666666;
 }
-.middle_input .weekWord{margin-left: .06rem}
-.middle_input i, .date-top i{
+
+.middle_input .weekWord {
+  margin-left: .06rem
+}
+
+.middle_input i, .date-top i {
   display: inline-block;
   width: .242rem;
   height: .122rem;
@@ -259,100 +309,131 @@
   position: relative;
   top: -.04rem;
 }
-.date-top i{
+
+.date-top i {
   margin-left: 0;
 }
-.date-top .weekWord{
+
+.date-top .weekWord {
   margin: 0 .08rem;
 }
-.date-top span:nth-child(2){
+
+.date-top span:nth-child(2) {
   margin-right: 0
 }
-.date-top .v-line{
+
+.date-top .v-line {
   font-size: .36rem;
 }
-.flight_ul{
+
+.flight_ul {
   background: #fff;
-  padding:0 .28rem ;
+  padding: 0 .28rem;
   border-bottom: 1px solid #e6e6e6;
 }
 
-.flight_ul .trip_go,.flight_ul .trip_back {
-  height:2.0rem;
+.flight_ul .trip_go, .flight_ul .trip_back {
+  height: 2.0rem;
 }
-.flight_ul .trip_back{margin-top: .36rem}
-.flight_ul .starTime, .flight_ul .endTime{
+
+.flight_ul .trip_back {
+  margin-top: .36rem
+}
+
+.flight_ul .starTime, .flight_ul .endTime {
   font-size: .32rem;
 }
-.flight_ul .starPort, .flight_ul .endPort{
+
+.flight_ul .starPort, .flight_ul .endPort {
   font-size: .28rem;
 }
 
-.flight_ul li, .time_airport,.left_info{
+.flight_ul li, .time_airport, .left_info {
   position: relative;
 }
+
 .left_info {
   height: 1.54rem;
 }
-.flight_ul li{
+
+.flight_ul li {
   padding: .32rem 0;
-  height:2.20rem;
-  border-bottom: 1px solid #e6e6e6; ;
+  height: 2.20rem;
+  border-bottom: 1px solid #e6e6e6;;
 }
-.double_ul li{height:4.4rem}
-.flight_ul li:last-child{
+
+.double_ul li {
+  height: 4.4rem
+}
+
+.flight_ul li:last-child {
   border-bottom: none
 }
-.seat_price{
+
+.seat_price {
   width: 1.72rem;
-  height:100%;
+  height: 100%;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   padding-top: 1.0rem;
-  float:right;
+  float: right;
   text-align: right
 }
-.double_ul .seat_price{padding-top: 1.182rem;}
-.seat_price .seat{font-size: .18rem;color: #999;}
-.seat_price .priceNumber{
+
+.double_ul .seat_price {
+  padding-top: 1.182rem;
+}
+
+.seat_price .seat {
+  font-size: .18rem;
+  color: #999;
+}
+
+.seat_price .priceNumber {
   font-size: .36rem;
-  color:#ff5b13;
+  color: #ff5b13;
   margin-top: .16rem;
   position: relative
 }
-.seat_price .priceNumber .double_tip, .seat_price .priceNumber .tax_cost, .double_tip, .seat_price .priceNumber .seat_condition{
+
+.seat_price .priceNumber .double_tip, .seat_price .priceNumber .tax_cost, .double_tip, .seat_price .priceNumber .seat_condition {
   display: block;
   font-size: .20rem;
-  color:#999;
+  color: #999;
 }
-.seat_price .priceNumber .double_tip{
+
+.seat_price .priceNumber .double_tip {
   display: inline-block;
   width: .20rem;
   line-height: .26rem;
   margin-left: .04rem
 }
 
-.seat_price .priceNumber .tax_cost, .seat_price .priceNumber .seat_condition{
+.seat_price .priceNumber .tax_cost, .seat_price .priceNumber .seat_condition {
   position: absolute;
-  right:0;
-  top:.64rem;
+  right: 0;
+  top: .64rem;
   text-align: right;
 }
-.seat_price .priceNumber .seat_condition{
-  top:1.12rem;
+
+.seat_price .priceNumber .seat_condition {
+  top: 1.12rem;
 }
 
-.seat_price .priceNumber span.money{
+.seat_price .priceNumber span.money {
   font-size: .18rem;
 }
-.time_airport{
-  height:100%;
+
+.time_airport {
+  height: 100%;
   margin-right: 1.72rem;
 }
-.double_ul .time_airport{
+
+.double_ul .time_airport {
   padding-left: .48rem;
 }
-.flight_detail{
+
+.flight_detail {
   width: 100%;
   height: 0.4rem;
   line-height: .40rem;
@@ -363,34 +444,40 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.flight_detail span:before{
+
+.flight_detail span:before {
   content: "|";
   display: inline-block;
   font-size: .08rem;
   margin: 0 .08rem 0 0;
 }
-.flight_detail .airCropIcon{
-  width:.80rem;
+
+.flight_detail .airCropIcon {
+  width: .80rem;
   height: 100%;
   float: left;
 }
-.flight_detail .airCropIcon:before,.flight_detail .airCropName:before{
-    content: "";
-    display: none;
+
+.flight_detail .airCropIcon:before, .flight_detail .airCropName:before {
+  content: "";
+  display: none;
 }
-.left_info .left, .left_info .right{
-  width:1rem;
+
+.left_info .left, .left_info .right {
+  width: 1rem;
   height: 1.54rem;
   float: left;
   position: relative
 }
-.date-week-port{
-  border-bottom:1px solid #e6e6e6;
+
+.date-week-port {
+  border-bottom: 1px solid #e6e6e6;
   color: #333333;
   font-size: .28rem;
   position: relative;
 }
-.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon{
+
+.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon {
   display: inline-block;
   width: .32rem;
   height: .32rem;
@@ -402,7 +489,7 @@
   top: .05rem;
 }
 
-.trip_back .left span.icon, .trip_back_ span.icon{
+.trip_back .left span.icon, .trip_back_ span.icon {
   display: inline-block;
   width: .32rem;
   height: .32rem;
@@ -413,25 +500,28 @@
   left: -.42rem;
   top: .05rem;
 }
-.trip_go_ span.icon, .trip_back_ span.icon{
+
+.trip_go_ span.icon, .trip_back_ span.icon {
   left: 0;
   top: .0316rem;
 }
-.trip_go_ span:nth-child(2), .trip_back_ span:nth-child(2){
+
+.trip_go_ span:nth-child(2), .trip_back_ span:nth-child(2) {
   margin-left: .48rem;
 }
 
-
-.left_info .right{
+.left_info .right {
   float: right;
   text-align: right;
   margin-right: .48rem;
   position: relative;
 }
-.double_ul .right{
+
+.double_ul .right {
   margin-right: 0;
 }
-.left_info .middle{
+
+.left_info .middle {
   margin: 0 1.42rem 0 1rem;
   height: 1.74rem;
   font-size: .18rem;
@@ -440,10 +530,12 @@
   box-sizing: border-box;
   padding: .1rem 0;
 }
-.double_ul .middle{
+
+.double_ul .middle {
   margin-right: 1rem;
 }
-.left_info .middle .arrow,.left_info .middle .arrow_word {
+
+.left_info .middle .arrow, .left_info .middle .arrow_word {
   display: block;
   margin: 0 auto;
   width: 1.888rem;
@@ -453,30 +545,36 @@
   background-size: 7.5rem 5.13rem;
   background-position: 5.8% 90.004%;
 }
+
 .left_info .middle .arrow_word {
   background: url(../../images/ui/change-arrow.png);
   background-size: 1.88rem auto;
   background-position: 0 0;
 }
 
-
-.left_info .middle span{
+.left_info .middle span {
   display: block;
 }
-.left_info .starPort,.left_info .endPort{
+
+.left_info .starPort, .left_info .endPort {
   display: block;
   white-space: nowrap;
   overflow: visible;
   margin-top: .46rem;
 }
-.left_info .endPort{float: right}
-.spaceDay{
+
+.left_info .endPort {
+  float: right
+}
+
+.spaceDay {
   position: absolute;
   right: -.54rem;
   top: 0;
   font-size: .18rem;
 }
-#loadMore{
+
+#loadMore {
   height: .48rem;
   line-height: .48rem;
   background: #FFFFFF;
@@ -485,14 +583,16 @@
   text-align: center;
   border-bottom: 1px solid #e6e6e6;
 }
-.for_bottom{
+
+.for_bottom {
   height: 1.46rem;
   padding: 0 .28rem;
   background: #FFFFFF;
   margin: 0.20rem 0 .40rem 0;
   font-size: .20rem;
 }
-.for_bottom .right_button_zone{
+
+.for_bottom .right_button_zone {
   float: right;
   width: 1.4rem;
   line-height: 1.46rem;
@@ -501,29 +601,37 @@
   color: rgb(153, 153, 153);
   position: relative;
 }
-.for_bottom .left_small_word{
+
+.for_bottom .left_small_word {
   margin: 0 1.72rem 0 0;
   height: 1.46rem;
   border: 1px solid #fff;
 }
-.for_bottom .left_small_word div:nth-child(1){
+
+.for_bottom .left_small_word div:nth-child(1) {
   height: .40rem;
   margin: .32rem 0 .12rem 0;
 }
-.seat_word{font-size: .28rem;
-  color: rgb(51,51,51);}
-.for_bottom .left_small_word .prices{
-  color: rgb(255, 91,19);
-  font-size: .32rem;
-}
-.left_small_word .explain, .seat-price-cost .explain{
-  color: rgb(116, 200, 194);
-}
-.left_small_word .taxFair{
-  color: rgb(153, 153,153);
+
+.seat_word {
+  font-size: .28rem;
+  color: rgb(51, 51, 51);
 }
 
-.for_bottom .right_button_zone button{
+.for_bottom .left_small_word .prices {
+  color: rgb(255, 91, 19);
+  font-size: .32rem;
+}
+
+.left_small_word .explain, .seat-price-cost .explain {
+  color: rgb(116, 200, 194);
+}
+
+.left_small_word .taxFair {
+  color: rgb(153, 153, 153);
+}
+
+.for_bottom .right_button_zone button {
   display: inline-block;
   height: .60rem;
   width: 1.40rem;
@@ -531,20 +639,23 @@
   color: #FFFFFF;
   font-size: .32rem;
   position: absolute;
-  top:50%;
+  top: 50%;
   margin-top: -.30rem;
   border-radius: .04rem;
   -webkit-border-radius: .04rem;
   font-family: "microsoft yahei", Arial, sans-serif;
 }
-.left_small_word .seat_word{
+
+.left_small_word .seat_word {
   font-size: .28rem;
-  color: rgb(51,51,51);
+  color: rgb(51, 51, 51);
 }
-.left_small_word .prices,.left_small_word .taxFair {
- float: right;
+
+.left_small_word .prices, .left_small_word .taxFair {
+  float: right;
 }
-.left_small_word p:first-child{
+
+.left_small_word p:first-child {
   margin: .32rem 0 .20rem 0;
 }
 
@@ -553,9 +664,11 @@
   background: #fff;
   padding: .4rem .28rem;
 }
-.tripGo, .tripBack{
-    margin: .28rem 0;
+
+.tripGo, .tripBack {
+  margin: .28rem 0;
 }
+
 .dateWeekCity {
   height: .42rem;
   line-height: .42rem;
@@ -728,16 +841,19 @@
   line-height: .28rem;
   font-size: .20rem;
 }
-.trip_go_, .trip_back_{
+
+.trip_go_, .trip_back_ {
   position: relative;
   height: .4rem;
-  line-height: .4rem;}
+  line-height: .4rem;
+}
 
-.trip_go_ .addUp, .trip_back_ .addUp{
+.trip_go_ .addUp, .trip_back_ .addUp {
   position: relative;
   top: -.12rem;
 }
-.trip_go_ span.cityName, .trip_back_ span.cityName{
+
+.trip_go_ span.cityName, .trip_back_ span.cityName {
   display: inline-block;
   width: 1.48rem;
   white-space: nowrap;
@@ -747,12 +863,19 @@
   position: relative;
   top: -.02rem
 }
-.trip_back_, .seat-price-cost p:nth-child(2){margin-top: .16rem}
 
-.trip_go_ .time_minutes, .trip_back_ .time_minutes{
-   float: right;
+.trip_back_, .seat-price-cost p:nth-child(2) {
+  margin-top: .16rem
 }
-.trip_go_ .week_value, .trip_back_ .week_value{margin: 0 .08rem}
+
+.trip_go_ .time_minutes, .trip_back_ .time_minutes {
+  float: right;
+}
+
+.trip_go_ .week_value, .trip_back_ .week_value {
+  margin: 0 .08rem
+}
+
 .fixedMargin .middle {
   margin: 0 2.12rem 0 1.6rem !important;
 }
@@ -760,18 +883,27 @@
 .fixedMargin .right {
   right: .52rem !important;
 }
+
 /*摘抄结束*/
-.date-week-port, .seat-price-cost{
-    padding: .32rem .28rem;
-    background: #FFFFFF;
+.date-week-port, .seat-price-cost {
+  padding: .32rem .28rem;
+  background: #FFFFFF;
 }
-.seat-price-cost .cost_value{margin: 0 .08rem}
-.seat-price-cost .explain{float: right}
-.passengers_wrap{
+
+.seat-price-cost .cost_value {
+  margin: 0 .08rem
+}
+
+.seat-price-cost .explain {
+  float: right
+}
+
+.passengers_wrap {
   padding: 0;
   background: #FFFFFF;
 }
-.passengers_wrap h4, .contact_wrap h4{
+
+.passengers_wrap h4, .contact_wrap h4 {
   background: #f7f7f7;
   height: .68rem;
   line-height: .68rem;
@@ -779,7 +911,8 @@
   position: relative;
   border-top: 1px solid #e6e6e6;
 }
-.passengers_wrap h4 i, .passengers_wrap .add_icon , .contact_wrap .arrow_down ,.contact_wrap h4 i,.contact_wrap .arrow_right,.passengers_wrap .minus_person{
+
+.passengers_wrap h4 i, .passengers_wrap .add_icon, .contact_wrap .arrow_down, .contact_wrap h4 i, .contact_wrap .arrow_right, .passengers_wrap .minus_person {
   display: inline-block;
   width: .32rem;
   height: .32rem;
@@ -787,11 +920,12 @@
   background-size: 7.50rem auto;
   background-position: 44.564% 51.61%;
   position: absolute;
-  right:0;
+  right: 0;
   top: 50%;
   margin-top: -.16rem;
 }
-.passengers_wrap .minus_person{
+
+.passengers_wrap .minus_person {
   background-position: 42.1% 32.03%;
   width: .40rem;
   height: .40rem;
@@ -799,49 +933,56 @@
   top: .28rem;
 }
 
-.contact_wrap .arrow_down{
+.contact_wrap .arrow_down {
   width: .328rem;
   height: .328rem;
   background-position: 86.564% 52.377%;
   position: relative;
   top: .04rem;
-  margin:0 .12rem 0 .20rem;
+  margin: 0 .12rem 0 .20rem;
 }
-.contact_wrap .arrow_right{
-  margin-left: .08rem;
+
+.contact_wrap .arrow_right {
+  margin-left: .25rem;
   position: relative;
   top: .04rem
 }
-.passengers_wrap h4 i, .contact_wrap h4 i{
+
+.passengers_wrap h4 i, .contact_wrap h4 i {
   right: .28rem;
   background-position: 83.564% 31.61%;
 }
 
-.passengers_wrap ul{
-   padding-left: .60rem;
-   font-size: .28rem;
-   color: rgb(51,51,51);
+.passengers_wrap ul {
+  padding-left: .60rem;
+  font-size: .28rem;
+  color: rgb(51, 51, 51);
 }
-.passengers_wrap ul li{
+
+.passengers_wrap ul li {
   padding: .32rem .28rem;
 }
-.passengers_wrap ul p{
+
+.passengers_wrap ul p {
   position: relative;
-  height:.58rem;
+  height: .58rem;
   line-height: .58rem;
   box-sizing: border-box;
 }
-.passengers_wrap ul p:nth-child(1){
+
+.passengers_wrap ul p:nth-child(1) {
   padding-top: .16rem;
   margin-bottom: .16rem;
   position: relative
 }
-.passengers_wrap ul p input{
-    margin-left: 1.2rem;
-    max-width: 2.6rem;
-    height: 100%;
+
+.passengers_wrap ul p input {
+  margin-left: 1.2rem;
+  max-width: 2.6rem;
+  height: 100%;
 }
-.passengers_wrap .tip_word{
+
+.passengers_wrap .tip_word {
   display: inline-block;
   width: 1.2rem;
   height: 100%;
@@ -850,50 +991,73 @@
   left: 0;
   top: 0;
 }
-.contact_wrap{background: #FFFFFF;border-bottom: 1px solid #e6e6e6;}
-.contact_wrap .glay_word{
+
+.contact_wrap {
+  background: #FFFFFF;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.contact_wrap .glay_word {
   color: #999999;
   font-size: .24rem
 }
-.contact_wrap p{
-    height:.96rem;
-    line-height: .96rem;
-    color: #D1D1D1;
-    font-size: .28rem;
-    position: relative;
-    padding: 0 .28rem;
-}
-.contact_wrap p input{
-  height:.96rem;
+
+.contact_wrap p {
+  height: .96rem;
   line-height: .96rem;
   color: #D1D1D1;
   font-size: .28rem;
-  width: 50%;
-  float: right;
+  position: relative;
+  padding: 0 .28rem;
+}
+
+.contact_wrap p input {
+  height: .96rem;
+  line-height: .96rem;
+  color: #D1D1D1;
+  font-size: .28rem;
+  width: 49%;
   font-family: "microsoft yahei", Arial, sans-serif
 }
-.contact_wrap .more_black{
-   display: inline-block;
-   width: 50%;
-   color:rgb(51,51,51);
-}
-.email_line .more_black{
-  width: 16%;
-}
-.contact_wrap p input.padding_has{
+
+.first_name, .padding_has {
   padding-left: .28rem;
 }
-.contact_wrap p .s_line{
+
+.contact_wrap .more_black {
   display: inline-block;
-  height:.96rem;
-  width:.01rem;
-  color: #D1D1D1;
-  background: #D1D1D1;
+  width: 49%;
+  color: rgb(51, 51, 51);
 }
-.contact_wrap p.email_line  span, .contact_wrap p.email_line  input{
-      float: left;
+
+.mis_right {
+  margin-left: .8rem;
 }
-.contact_wrap p.email_line  input{width: 76%}
+
+.country-trigger {
+  margin-left: .1rem;
+}
+
+.email_line .more_black {
+  width: 16%;
+}
+
+.contact_wrap p .s_line {
+  height: .4rem;
+  width: 1px;
+  margin-top: .3rem;
+  color: #d1d1d1;
+  background-color: #d1d1d1;
+}
+
+.contact_wrap p.email_line span, .contact_wrap p.email_line input {
+  float: left;
+}
+
+.contact_wrap p.email_line input {
+  width: 76%
+}
+
 .bottomPrice {
   width: 100%;
   font-size: .28rem;
@@ -905,9 +1069,11 @@
   border-top: 1px solid #dedede;
   z-index: 105;
 }
+
 .priceTotal {
   margin-left: .56rem;
 }
+
 .bottomPrice {
   width: 100%;
   font-size: .28rem;
@@ -919,6 +1085,7 @@
   border-top: 1px solid #dedede;
   z-index: 105
 }
+
 .preserve {
   display: inline-block;
   height: 100%;
@@ -931,18 +1098,22 @@
   right: 0;
   width: 50%;
 }
+
 .addMarginBottom {
   height: 1.2rem;
   width: 100%;
 }
+
 .tot_tips_rmb {
   color: #ff5b13;
 }
+
 .priceTotal > span {
   font-size: .32rem;
   color: #ff5b13;
   margin-right: .2rem;
 }
+
 .priceTotal .detail_fare {
   display: inline-block;
   vertical-align: top;
@@ -973,9 +1144,11 @@
   -webkit-transform-origin: 40% 25%;
   transition: 0.3s all ease;
 }
+
 .priceTotal {
   margin-left: .56rem;
 }
+
 .priceDetailInfo {
   position: fixed;
   padding: 0.4rem .28rem;
@@ -987,16 +1160,19 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .priceDetailInfo p {
   height: .52rem;
   line-height: 0.52rem;
   font-size: .28rem;
   color: #333333;
 }
+
 .price-num-price {
   display: inline-block;
   float: right;
 }
+
 .shadow {
   display: none;
   width: 100%;
@@ -1007,3 +1183,169 @@
   left: 0;
   top: 0;
 }
+
+/*国籍选择开始*/
+
+.country_header {
+  opacity: 1;
+}
+
+.country-cho-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #fff;
+  display: block;
+}
+
+.jto_letter_list li {
+  line-height: .4rem;
+  font-size: .24rem;
+  text-align: center;
+
+}
+
+.jto_letter_list li a {
+  color: #ffb413;
+}
+
+.recent_title {
+  background-color: #f7f7f7;
+  color: #666;
+  padding: 0 .28rem;
+  height: .68rem;
+  line-height: .68rem;
+  border-top: 1px solid #e6e6e6;
+}
+
+.inter-list .hot_code > li {
+  height: .96rem;
+  line-height: .96rem;
+  font-size: .32rem;
+  color: #333;
+  padding: 0 .28rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.inter-list .hot_code > li:last-child, .country_lists ul li:last-child {
+  border: none;
+}
+
+.country_lists ul li {
+  height: .96rem;
+  line-height: .96rem;
+  font-size: .32rem;
+  border-bottom: 1px solid #e6e6e6;;
+  margin: 0 .28rem;
+  overflow: hidden;
+}
+
+.country_lists span, .hot_code span {
+  float: right;
+  margin-right: .5rem;
+}
+
+.jto_seach {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 11;
+  display: none;
+  overflow-y: scroll;
+}
+
+.jto_letter_list {
+  position: fixed;
+  right: 0;
+  top: 1.2rem;
+  background: rgba(255, 255, 255, .5);
+  padding: 0 .16rem;
+  height: 100%;
+  z-index: 11;
+  -webkit-overflow-scrolling: touch;
+}
+
+.country-cho-wrap-order {
+  position: absolute;
+  z-index: 1000;
+}
+
+.country-cho-wrap ul, .country-cho-wrap ol {
+  margin: 0;
+  padding: 0;
+}
+
+.cl_search {
+  height: .6rem;
+  width: 100%;
+  padding-left: 1.04rem;
+  padding-right: .28rem;
+  margin-top: .16rem;
+  position: relative;
+  left: 0;
+  top: 0;
+  overflow: visible;
+}
+
+.cl_search input {
+  width: 100%;
+  height: 100%;
+  border-radius: .3rem;
+  padding-left: .48rem;
+  background-color: #e6e6e6;
+}
+
+.cl_search i {
+  position: absolute;
+  left: 1.2rem;
+  top: .13rem;
+  background-position: -2.28rem -1.64rem;
+  background-size: 5.8rem 3.6rem;
+  width: .34rem;
+  height: .34rem;
+}
+
+.country-list {
+  background-color: #fff;
+}
+
+.country-list li {
+  padding-left: .48rem;
+  height: .68rem;
+  line-height: .68rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.country-hidden {
+  z-index: 100;
+}
+
+/*国籍模糊搜索*/
+.country-list-searched {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: .88rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  background: #f5f4f9;
+  overflow-y: scroll;
+}
+.country-list-searched li.country-list-searched-item {
+  width: 100%;
+  height: .68rem;
+  line-height: .68rem;
+  text-align: left;
+  border-bottom: 1px solid #e6e6e6;
+  padding-left: .48rem;
+}
+
+/*国籍选择结束*/
