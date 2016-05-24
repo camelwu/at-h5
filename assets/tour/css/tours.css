@@ -550,8 +550,7 @@ a.hotel_detail_pic{
     line-height:0.96rem;
     border-bottom:0.01rem solid #ddd;
     margin: 0;
-    padding: 0;
-    /*width: 100%;*/
+    padding: 0 0.24rem 0 0;
     position: relative;
 }
 .order_per_data ul .li_section_box{
@@ -844,8 +843,8 @@ a.hotel_detail_pic{
     height:7rem;
     margin-top:-3.5rem;
     box-sizing: border-box;
-    border: 1px solid #d1d1d1;
-    border-radius: 5px;
+    border:0.01rem solid #d1d1d1;
+    border-radius:0.1rem;
     background: #fff;
     position: absolute;
     left:5%;
@@ -880,6 +879,37 @@ a.hotel_detail_pic{
     padding-bottom:0.1rem;
     list-style: decimal;
 }
+/*手机区号*/
+.order_data_box .phone .list_tit,.order_data_box .phone .tel-btn,.order_data_box .phone .list_con{
+    float: left;
+}
+.order_data_box .phone .list_con{
+    width: 50%;
+    float: right;
+    border-left:0.01rem solid #ddd;
+}
+.order_data_box .phone .list_con input{
+    padding-left: 0.3rem;
+}
+.order_data_box .tel-btn{
+    width: 30%;
+    text-align: center;
+    position: relative;
+}
+.order_data_box .tel-btn .open_arw{
+    width: 0.28rem;
+    height: 0.34rem;
+    background: url("../../images/ui/icon_common.png") no-repeat;
+    background-size: 7.9rem 5.13rem;
+    background-position: -3.90rem -0.57rem;
+    position: absolute;
+    top:50%;
+    right: 0.2rem;
+    margin-top: -0.17rem;
+}
+
+
+
 /*国籍选择开始*/
 .country_header{
     opacity: 1;
@@ -949,7 +979,7 @@ a.hotel_detail_pic{
     padding-left:.48rem;
     height: .68rem;
     line-height: .68rem;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom:0.01rem solid #e6e6e6;
 }
 
 .country-hidden {
@@ -975,7 +1005,7 @@ a.hotel_detail_pic{
     height: .68rem;
     line-height: .68rem;
     text-align: left;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom:0.01rem solid #e6e6e6;
     padding-left: .48rem;
 
 }

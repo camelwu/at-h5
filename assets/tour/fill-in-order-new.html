@@ -114,8 +114,12 @@
                                 <input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="Shimin" data-elementName="firstName"  />
                             </span>
                         </li>
-                        <li>
+                        <li class="phone clearfix">
                             <span class="list_tit">手机：</span>
+                            <div class="p_86 tel-btn">
+                                <span>+86</span>
+                                <i class="open_arw int_tel">&nbsp;</i>
+                            </div>
                             <span class="list_con">
                                 <input class="list_inp2" id="list_con_tel" type="tel" placeholder="用于接收短信通知" data-elementName="mobilePhone"  />
                             </span>
@@ -298,6 +302,7 @@
     <script src="../js/lib/scroller.js"></script>
     <script src="js/fill_order.js"></script>
     <script src="../js/country_list.js"></script>
+    <script src="../js/countrytel_list.js"></script>
 
 <script id="tpl3" type="text/template">
     <% var info = JSON.parse(localStorage.info); %>
