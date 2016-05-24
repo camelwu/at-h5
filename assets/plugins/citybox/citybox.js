@@ -6,6 +6,7 @@
   var show1 = 0,show2 = 0,scrollTopPx = 44;
   var globalType = "";
   var returnType = "";
+  var returnAttr = "";
   var config = {
     HistoryData:{},
     HotCityListData:{},
@@ -925,7 +926,11 @@
        * @returns {Array}
        */
       hft_oriExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -934,7 +939,11 @@
        * @returns {Array}
        */
       f_inoriExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -943,7 +952,11 @@
        * @returns {Array}
        */
       f_indesExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -952,7 +965,11 @@
        * @returns {Array}
        */
       f_outoriExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -970,7 +987,11 @@
        * @returns {Array}
        */
       h_inExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -979,7 +1000,11 @@
        * @returns {Array}
        */
       h_outExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -988,7 +1013,11 @@
        * @returns {Array}
        */
       hft_desExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -997,7 +1026,11 @@
        * @returns {Array}
        */
       hf_oriExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       },
       /**
@@ -1006,7 +1039,11 @@
        * @returns {Array}
        */
       hf_desExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
         $(data.returnType).html(data.cityName);
       }
 
@@ -1078,6 +1115,7 @@
       console.log(data);
       globalType = data.data;
       returnType = data.returnId;
+      returnAttr = data.returnAttr || "";
       show1 = 0;
       show2 = 0;
       $("#preloader").show();
@@ -1514,6 +1552,7 @@
             var cityName = this.getAttribute("data-name");
             var cityCode = this.getAttribute("data-code");
             cityData.returnType = returnType;
+            cityData.returnAttr = returnAttr;
             cityData.cityName = cityName;
             cityData.cityCode = cityCode;
             Method["setcityboxHistory"](this,cityCode,cityName);
@@ -1626,6 +1665,7 @@
               var cityName = this.getAttribute("data-name");
               var cityCode = this.getAttribute("data-code");
               cityData.returnType = returnType;
+              cityData.returnAttr = returnAttr;
               cityData.cityName = cityName;
               cityData.cityCode = cityCode;
               Method["setcityboxHistory"](this,cityCode,cityName);
@@ -1671,6 +1711,7 @@
           var cityName = this.getAttribute("data-name");
           var cityCode = this.getAttribute("data-code");
           cityData.returnType = returnType;
+          cityData.returnAttr = returnAttr;
           cityData.cityName = cityName;
           cityData.cityCode = cityCode;
           Method["setcityboxHistory"](this,cityCode,cityName);
@@ -1724,6 +1765,7 @@
           var cityName = this.getAttribute("data-name");
           var cityCode = this.getAttribute("data-code");
           cityData.returnType = returnType;
+          cityData.returnAttr = returnAttr;
           cityData.cityName = cityName;
           cityData.cityCode = cityCode;
           Method["setcityboxHistory"](this,cityCode,cityName);
