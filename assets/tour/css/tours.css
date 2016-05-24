@@ -401,6 +401,12 @@ a.hotel_detail_pic{
     font-size: 0.32rem;
     font-weight: bold;
 }
+.hotel_room_list li .div3{
+    width: 5.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
 .hotel_detail_list li.data p{
     float: left;
 }
@@ -462,18 +468,21 @@ a.hotel_detail_pic{
     background-color: #fff;
     padding-bottom: 0.15rem;
 }
+.tour_detail>div{
+    margin-bottom: 0.1rem;
+}
 .hotel_detail{
-    padding-bottom: 0.2rem;
+    padding-bottom: 0.24rem;
 }
 .order_introduce{
     overflow: hidden;
-    padding: 0.3rem 0;
+    padding: 0.3rem 0 0.2rem;
 }
 .order_introduce .txt{
     margin: 0;
     padding: 0 0.28rem;
     font-size: 0.32rem;
-    line-height: 0.42rem;
+    line-height: 0.46rem;
 }
 .order_introduce .txt span{
     color: #999999;
@@ -490,6 +499,7 @@ a.hotel_detail_pic{
     padding-left:0.28rem;
     color: #999999;
     font-size:0.24rem;
+    line-height: 0.42rem;
 }
 .order_toggle_btn{
     width: 100%;

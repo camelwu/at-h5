@@ -555,7 +555,15 @@
             var tpl2 =
                 '<div class="txt"><%= hotels[0].hotelName %></div>'+
                 '<% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %>'+
-                '<div class="detail_span">房型 <%= hotels[0].rooms[i].roomName %>' + info.roomDetails.length+'间</div>'+
+                '<div class="detail_span">房型 <%= hotels[0].rooms[i].roomName %>&nbsp;' +
+                '<% if( hotels[0].rooms[i].includedBreakfast ){ %>'+
+                    '含早'+
+                '<% }else{ %>'+
+                    '无早'+
+                '<% } %>'+
+                '&nbsp;'+
+                info.roomDetails.length+
+                '间</div>'+
                 '<% } %>'+
                 '<% } %>'+
                 '<div class="detail_span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>';
