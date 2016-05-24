@@ -106,7 +106,7 @@
                     +'<b class="add_icon"><a href="javascript:;" data-c-id="'+j+'" class="add-cpassage'+j+'"></a></b></span>'
                     +'</li>'
                     +"<ul id='traveC"+j+"'>"
-                    +'<li class="trave-li trave-li-child">'
+                    +'<li class="trave-li trave-li-child child">'
                     +'<span class="list_tit2 ">姓：</span>'
                     +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" data-elementName="firstName"  /></span>'
                     +'<span class="list_tit2 ">名：</span>'
