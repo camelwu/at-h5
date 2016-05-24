@@ -378,9 +378,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 blank.style.display = "none";
                 var content = $("#content")[0];
                 var UL = document.createElement("ul");
-                UL.className = "often-traveler";
-                UL.style.borderTop = "1px solid #dedede";
-                UL.style.marginTop = "10px";
+                UL.className = "often_traveler";
+                UL.style.borderTop = "1px solid #e6e6e6";
+                UL.style.marginTop = ".2rem";
 
                 for (var i = 0; i < travJson.data.length; i++) {
                     var idtype_num=travJson.data[i].listTravellerIdInfo.length;
@@ -407,7 +407,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     }
 
                     var li = document.createElement("li");
-                    li.className = "eve-traveler";
+                    li.className = "eve_traveler";
                     //给li添加自定义属性
                     li.setAttribute('idtype',array[i]);
                     var b = document.createElement("b");
