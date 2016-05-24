@@ -433,9 +433,19 @@
 
 <!--机票模板-->
 <script id="tpl_f" type="text/template">
-  <p class="hft_paid"><% if (isContinuePay==1) {%> 待支付 <% }else{ %> 已支付 <%}%> </p>
+
+  <% if (isContinuePay==1) {%>
+  <section id="flight-status">
+    <ul class="fli-status">
+      <li><span>待支付</span></li>
+      <li><span>请在</span><span class="lasttime"><%=vlm.Utils.get30Minutes(createTime)%></span>之前完成支付</li>
+    </ul>
+  </section>
+  <% }else{ %>
+  <p class="hft_paid">已支付</p>
+  <%}%>
   <!--机票-->
-  <section id="flight">
+  <section id="flight" style="clear: both">
     <div class="flight_section">
       <ul class="flight_cir_wrap flight_cir_wrap1">
         <% if(flightInfo.segmentsLeave.length>=1) {%>

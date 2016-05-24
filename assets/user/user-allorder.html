@@ -232,7 +232,7 @@
 		</div>
 		<div class="quitbtn">联系客服</div>
 		<div style="border-top: 1px solid #dedede;">
-			<a href="../flight/ticket_order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+			<a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Flight" class="paybtn button-yellow">查看订单</a>
 		</div>
 	</div>
 	{% } else if (productType=="Hotel" && bookingStatus!="Canceled" ) { %}
@@ -252,7 +252,7 @@
 			</ul>
 		</div>
 		<div style="border-top: 1px solid #dedede;">
-			<a href="../hotel/order-details.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+			<a href="../payment/order-order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Hotel" class="paybtn button-yellow">查看订单</a>
 		</div>
 	</div>
 	<!--酒店+景-->
