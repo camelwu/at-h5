@@ -23,10 +23,9 @@
 		<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
 		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-		<link href="../styles/framework.css" rel="stylesheet" type="text/css">
-		<link href="../styles/style.css" rel="stylesheet" type="text/css">
-		<link href="../styles/tips.css" rel="stylesheet" type="text/css">
 		<link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../styles/reset.css"/>
+		<link rel="stylesheet" href="../plugins/calendar/calendar.css"/>
     <link href="css/dzh.css?ver=050601" rel="stylesheet" type="text/css">
 	</head>
 	<body>
@@ -37,141 +36,135 @@
 		</div>
 		<div class="all-elements">
 			<div class="box">
-				<div class="header">
-					<a href="../index.html" class="header-back" id="ho_back">
-                        <i class="icons go-back"></i>
-                    </a>
+				<div class="header" style="box-shadow: none">
+					<a href="#" class="header_back">
+						<i class="icon_back"></i>
+					</a>
 					<h3>酒店</h3>
 				</div>
-				<div id="content ddd" class="snap-content" style="padding-top: 45px;">
-					<div id="h-Tab">
+				<div id="content ddd" class="snap-content" style="padding-top: .88rem;">
+					<div id="h-Tab" class = "hotel_city">
 						<a class="on" id="Inter">国际</a>
 						<a id="Dom">国内</a>
 					</div>
 					<form action="hotel_list.html" method="get" id="hotel_search">
 						<div class="quote-slider full-bottom" data-snap-ignore="true">
-							<div class="content1" id="content1">
-
-								<div  id="arr1" class="nav1">
-									<div class="nav111">
+							<div class="content1 hotel_content" id="content1">
+								<div  id="arr1" class="nav1 hotel_destination">
+									<div class="nav111 hotel_destination_left">
 										目的地
 									</div>
-									<div class="nav112">
+									<div class="nav112 hotel_destination_right">
 										<div class="choose-aim">
 											<input type="text" value="新加坡" id="input1" name="InterCityName" readonly />
-											<i class="icons open-arw"></i>
+											<i class="icons open-arw i_more"></i>
 										</div>
 									</div>
 								</div>
-
-								<div class="content2" id="content2">
-									<div class="nav2-left">
-										<span class="nav2-lefttop">日期</span>
+								<div class="content2 hotel_time" id="content2">
+									<div class="nav2-left hotel_time_left">
+										<span class="nav2-lefttop">日 期</span>
 										<span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
 									</div>
-									<div class="nav2-center" id="nav2-center1">
-										<div class="nav2-centertop">
+									<div class="nav2-center hotel_time_center" id="nav2-center1">
+										<div class="nav2-centertop hotel_time_center_start">
 											<p>
 												<input name="InterCheckInDate" id="CheckInDate"  readonly="readonly" class="fl"  value="2015-11-03">
 												<span id="week_span1" class="fl">周二 入住</span>
 											</p>
 										</div>
-										<div class="nav2-centerbottom">
+										<div class="nav2-centerbottom hotel_time_center_end">
 											<p>
 												<input name="InterCheckOutDate" id="CheckOutDate"  readonly="readonly" class="fl" value="2015-11-06">
 												<span id="week_span2" class="fl">周五 离店</span>
 											</p>
 										</div>
 									</div>
-									<div class="nav2-centerright">
+									<div class="nav2-centerright hotel_time_right">
 										<i></i>
 									</div>
 								</div>
-
-								<div id="room" class="content3">
-									<div class="nav3-left">
+								<div id="room" class="content3 hotel_roomNum">
+									<div class="nav3-left hotel_roomNum_left">
 										房间
 									</div>
-									<div class="nav3-right">
+									<div class="nav3-right hotel_roomNum_right">
 										<input type="text" id="count1" name="NumRoom" value="1" readonly data-min="1">
-										<i class="add" id="ho_i1"></i>
-										<i class="minus" id="ho_i2"></i>
+										<i class="add hotel_roomNum_add" id="ho_i1"></i>
+										<i class="minus hotel_roomNum_reduce" id="ho_i2"></i>
 									</div>
 								</div>
-
-								<div id="people" class="content4">
-									<div class="nav4 nav41">
-										<div class="nav4-left">
+								<div id="people" class="content4 hotel_people">
+									<div class="nav4 nav41 hotel_people-content">
+										<div class="nav4-left hotel_people_left">
 											人数
 										</div>
-										<div class="nav4-center">
-											<div class="nav4-centertop" id="nav4-centertop">
+										<div class="nav4-center hotel_people_right">
+											<div class="nav4-centertop hotel_people_right_adult" id="nav4-centertop">
 												<p>
 													<input type="text" value="1" name="NumAdult" id="count2" readonly data-min="1">
 													<span>成人</span>
-													<i class="add" id="ho_i7"></i>
-													<i class="minus" id="ho_i6"></i>
+													<i class="add hotel_people_right_adult_add" id="ho_i7"></i>
+													<i class="minus hotel_people_right_adult_minus" id="ho_i6"></i>
 												</p>
 											</div>
-											<div class="nav4-centerbottom" id="nav4-centerbottom">
+											<div class="nav4-centerbottom hotel_people_right_child" id="nav4-centerbottom">
 												<p>
 													<input type="text" value="0" name="NumChild" id="count3" readonly data-min="0">
 													<span>儿童</span>
-													<i class="add" id="ho_i3"></i>
-													<i class="minus" id="ho_i4"></i>
+													<i class="add hotel_people_right_child_add" id="ho_i3"></i>
+													<i class="minus hotel_people_right_child_minus" id="ho_i4"></i>
 												</p>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="aa">
+								<div class="aa hotel_submit">
 									<div>
-										<input type="submit"  id="InterBtn" value="查询" class="button-yellow hotelInter">
+										<input type="submit"  id="InterBtn" value="查询" class="button-yellow hotelInter hotel_submit_refer">
 									</div>
 
 								</div>
 							</div>
-							<div class="content1">
-								<div  id="arr2" class="nav1">
-									<div class="nav111">
+							<div class="content1 hotel_content">
+								<div  id="arr2" class="nav1 hotel_destination">
+									<div class="nav111 hotel_destination_left">
 										目的地
 									</div>
-									<div class="nav112">
+									<div class="nav112 hotel_destination_right">
 										<div class="choose-aim1" >
 											<input type="text"  value="北京" id="input2" name="DomCityName"  readonly="readonly" />
-											<i class="icons right1"></i>
-											<i class="position"></i>
+											<i class="position i_position"></i>
 										</div>
 									</div>
 								</div>
-
-								<div class="content2" id="domesticCalender">
-									<div class="nav2-left">
+								<div class="content2 hotel_time" id="domesticCalender">
+									<div class="nav2-left hotel_time_left">
 										<span class="nav2-lefttop">日期</span>
 										<span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
 									</div>
-									<div class="nav2-center" id="nav2-center2">
-										<div class="nav2-centertop">
+									<div class="nav2-center hotel_time_center" id="nav2-center2">
+										<div class="nav2-centertop hotel_time_center_start">
 											<p>
 												<input name="DomCheckInDate" id="DomCheckInDate"  readonly="readonly"   value="2015-11-03" class="fl">
 												<span id="weekSpan3" class="fl">周二 入住</span>
 											</p>
 
 										</div>
-										<div class="nav2-centerbottom" onclick="focus3()">
+										<div class="nav2-centerbottom hotel_time_center_end" onclick="focus3()">
 											<p>
 												<input name="DomCheckOutDate" id="DomCheckOutDate"  readonly="readonly" value="2015-11-06" class="fl">
 												<span id="weekSpan4" class="fl">周五 离店</span>
 											</p>
 										</div>
 									</div>
-									<div class="nav2-centerright">
+									<div class="nav2-centerright hotel_time_right">
 										<i></i>
 									</div>
 								</div>
-								<div class="aa">
+								<div class="aa hotel_submit">
 									<div>
-										<input type="submit" value="查询" id="domBtn" class="button-yellow hotelInter">
+										<input type="submit" value="查询" id="domBtn" class="button-yellow hotelInter hotel_submit_refer">
 									</div>
 								</div>
 							</div>
@@ -1048,5 +1041,6 @@
 	<script src="../js/lib/d_calendar1.0.2.js"></script>
 	<script src="../js/lib/template.js"></script>
 	<script src="../js/lib/jquery.alert.js"></script>
+	<script src="../plugins/calendar/d_calendar1.0.3.js"></script>
 	<script src="js/lsf_hotel.js"></script>
 </html>

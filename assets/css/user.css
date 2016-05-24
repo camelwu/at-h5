@@ -11,7 +11,8 @@ i, em {
   font-style: normal;
 }
 
-/*loginregister*/
+/*登录注册开始*/
+
 .login_page {
   background-size: cover;
   background-position: center center;
@@ -47,7 +48,6 @@ i, em {
   box-shadow: 0 1px 1px #e6e6e6;
   color: #333;
   position: relative;
-
 }
 
 .header_fd h3 {
@@ -113,14 +113,14 @@ i, em {
   position: relative;
 }
 
-.login_phone{
+.login_phone {
   margin-top: .34rem;
   vertical-align: top;
   background-size: 8.48rem 4.8rem;
   background-position: -5.3rem -.2rem;
 }
 
-.login_pass{
+.login_pass {
   margin-top: .34rem;
   vertical-align: top;
   background-size: 8.48rem 4.8rem;
@@ -128,7 +128,9 @@ i, em {
 }
 
 .login_mail {
-  background-position: -247px -10px;
+  vertical-align: top;
+  margin-top: .35rem;
+  background-position: -275px -10px;
 }
 
 .login_input input {
@@ -146,7 +148,7 @@ i, em {
   font-size: .28rem;
 }
 
-.login_btn_wrap, .change_way, .register_btn_wrap {
+.change_way {
   padding: 0 .4rem;
   overflow: hidden;
 }
@@ -231,16 +233,17 @@ i, em {
   font-size: .28rem;
 }
 
-#email, #r_email {
+#email, #r_email, #e_password, #r_p_password, #p_password, #find_phone, #r_e_password, #rs_e_password, .mob_cell {
   width: 80%;
 }
 
-#p_password {
-  width: 88%;
+#phone {
+  width: 65%;
 }
 
-#e_password, #r_p_password, #find_phone, #r_e_password, #rs_e_password, .mob_cell {
-  width: 100%;
+#phone_register, #email_register {
+  margin: 0 .4rem;
+  margin-top: 1rem;
 }
 
 .coun-find > div {
@@ -288,6 +291,8 @@ i, em {
 
 }
 
+/*登录注册结束*/
+
 /*个人中心未登录页css*/
 .user_lists {
   padding: .4rem .28rem;
@@ -326,64 +331,15 @@ i, em {
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.user-menu {
-  height: 20px;
-  width: 100%;
-  margin: 10px 0;
-}
-
-.user-menu li {
-  position: relative;
-  float: left;
-  width: 25%;
-  list-style-type: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  margin-bottom: initial;
-  text-align: center;
-  line-height: 20px;
-  color: white;
-}
-
-.user-menu li:first-child {
-  border: none;
-}
-
 .icon {
   background: url(../images/ui/icon.png) no-repeat;
   background-size: 7.86rem 2.36rem;
   display: inline-block;
 }
 
-.open-his {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  top: 10px;
-  background-position: 0 65%;
-}
-
-.open-set {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  top: 10px;
-  background-position: 6.5% 65%;
-}
-
-.header-msg {
-  position: absolute;
-  overflow: visible;
-  width: 23px;
-  height: 23px;
-  right: 15px;
-  top: 10px;
-  background-position: 41% 2%;
-}
-
 .bu_icon {
-  background-image: url(../images/ui/bu.png);
-  background-repeat: no-repeat;
-  background-size: 159px 245px;
+  background: url(../images/ui/bu.png) no-repeat;
+  background-size: 3.18rem 4.9rem;
   display: inline-block;
 }
 
@@ -394,19 +350,28 @@ i, em {
 }
 
 .wifi {
-  width: 105px;
-  height: 76px;
+  width: 2.1rem;
+  height: 1.52rem;
   background-position: 9% 101%;
 }
 
 .order {
-  width: 67px;
-  height: 80px;
+  width: 1.34rem;
+  height: 1.6rem;
   background-position: 4% 51%;
+  position: absolute;
+  left: 50%;
+  margin-left: -.7rem;
+  top: 0;
+}
+
+.buyOrder {
+  width: 50%;
+  margin-left: 25%
 }
 
 /*联接*/
-#link_page, #link_about_us, #link_at, #link_declaration, .jpop_box_tic {
+#link_page, #link_about_us, #link_at, #link_declaration {
   display: none;
 }
 
@@ -503,6 +468,23 @@ i, em {
   transform: translate3d(0, 0, 0);
 }
 
+#black_page {
+  display: none;
+}
+
+#noOrder {
+  margin-top: 2.5rem;
+}
+
+#noOrder p {
+  text-align: center;
+}
+
+.black_con {
+  height: 2.2rem;
+  position: relative;
+}
+
 .user_content > ul {
   margin: 0 .28rem;
 }
@@ -574,17 +556,7 @@ i, em {
   background-position: 94.5% 76%;
 }
 
-.open-gray {
-  position: absolute;
-  width: 10px;
-  height: 20px;
-  right: 0;
-  background-position: 98.5% 76%;
-}
-
-/*
-         个人资料页css
-*/
+/*个人资料页css*/
 
 .info_name {
   float: right;
@@ -631,7 +603,6 @@ i, em {
   text-align: center;
   color: #fdb330;
   background-color: #fff;
-
 }
 
 .info_sex .sex_act {
@@ -727,9 +698,7 @@ i, em {
   margin-top: -.06rem;
 }
 
-/*
-         修改昵称页css
-*/
+/*修改昵称页css*/
 .u_name {
   height: .96rem;
   line-height: .96rem;
@@ -757,74 +726,79 @@ i, em {
   background-position: -6.74rem -.18rem;
 }
 
-/*
-         全部订单页css
-*/
-.order-div {
-  width: 94%;
-  margin: 0 auto;
-  margin-top: 10px;
-  border: 1px solid #dfdfdd;
-  border-radius: 5px;
+/*全部订单页css*/
+.ticket_div{
+  background-color: #f7f7f7;
+}
+.order_div {
+  background-color: #fff;
 }
 
-.user-air {
+.all_order_title {
+  height: .8rem;
+  margin-top: .32rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.all_order_wrap{
+  padding: 0 .28rem;
+}
+
+.all_order_tab{
+  border-bottom: 1px solid #e6e6e6;
+  padding: .4rem .28rem;
+}
+.user_air {
   float: left;
-  margin: 8px;
-  width: 25px;
-  height: 25px;
+  width:.5rem;
+  height: .5rem;
   background-position: 0.2% 99%;
 }
 
-.order-title {
+.order_title {
   float: left;
   padding-top: 10px;
 }
 
 .if_pay {
-  /*float: right;*/
   display: inline-block;
-  padding-top: 10px;
-  padding-left: 40px;
+  margin: .2rem;
+  padding-left: .2rem;
+  border-left: 1px solid #e6e6e6;
 }
 
-.order-Amount {
+.order_Amount {
   float: right;
   padding-top: 10px;
   padding-right: 10px;
   color: red;
 }
 
-.info-title {
-  padding-right: 10px;
+.info_title {
   font-weight: bold;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-bottom: 5px;
 }
 
-.air-date {
-  margin-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 15px;
+.air_date {
+
 }
 
-.air-date li {
+.air_date li {
   list-style-type: none;
   margin-top: 10px;
 }
+.find_order{
 
+}
 .paybtn {
   float: right;
-  margin-right: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 76px;
-  height: 31px;
-  color: white;
+  width: 1.52rem;
+  height: .64rem;
   text-align: center;
-  line-height: 31px;
-  border-radius: 5px;
+  line-height: .64rem;
+  margin-right: .28rem;
+  border: 1px solid #ffb413;
+  color: #ffb413;
+  border-radius: .04rem;
 }
 
 .quitbtn {
@@ -841,94 +815,36 @@ i, em {
   border: 1px solid #ffb413;
 }
 
-.user-spot {
+.user_spot {
   float: left;
-  margin: 8px;
   width: 25px;
   height: 25px;
   background-position: 8.5% 99%;
 }
 
-.user-fligthotle {
+.user_fligthotle {
   float: left;
-  margin: 8px;
-  width: 25px;
-  height: 25px;
+  width:.5rem;
+  height: .5rem;
   background-image: url(../images/ui/icon.png);
   background-repeat: no-repeat;
   background-size: 412px 125px;
   background-position: 89.5% -2%;
 }
 
-.user-hotel1 {
+.user_hotel1 {
   float: left;
-  margin: 8px;
-  width: 25px;
-  height: 25px;
+  width:.5rem;
+  height: .5rem;
   background-position: 16.3% 99%;
 }
 
-.user-hotel2 {
+.user_hotel2 {
   float: left;
-  margin: 8px;
-  width: 25px;
-  height: 25px;
+  width:.5rem;
+  height: .5rem;
+  margin: .2rem .2rem 0 0;
   background-position: 40.3% 99%;
-}
-
-/*
-         点评页css
-*/
-.u_remark {
-  width: 100%;
-  margin-bottom: .32rem;
-}
-
-.u_remark li {
-  padding: .4rem .28rem 0;
-  border-bottom: 1px solid #e6e6e6;
-}
-
-.u_score {
-  position: absolute;
-  right: 33px;
-  top: 60px;
-}
-
-.icon-star-val {
-  background-image: url(../images/ui/bu.png);
-  background-repeat: no-repeat;
-  background-size: 140px 240px;
-  display: inline-block;
-}
-
-.user-empty {
-  margin-right: 20px;
-  width: 18px;
-  height: 18px;
-  background-position: 19% 29%;
-}
-
-.re_text {
-  width: 100%;
-  height: 80px;
-  padding-left: 15px;
-  padding-top: 10px;
-  color: #d1d1d1;
-  border-bottom: 1px solid #dedede;
-}
-
-.u_pic {
-  border-bottom: 1px solid #dedede;
-  line-height: 90px;
-}
-
-.send_pic {
-  margin: 10px 15px;
-  float: left;
-  width: 70px;
-  height: 70px;
-  background-position: 99% 4%;
 }
 
 /*
@@ -962,6 +878,20 @@ i, em {
   background-position: 65.5% 4%;
 }
 
+.u_remark {
+  padding: 0 .28rem;
+  margin-bottom: .3rem;
+}
+
+.u_remark li {
+  padding: .4rem 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.con_info {
+  margin-left: .4rem;
+}
+
 .u_remark li .icon_per {
   display: inline-block;
   width: .72rem;
@@ -986,15 +916,9 @@ i, em {
   background-position: 78.2% 61%;
 }
 
-.con_info {
-  padding: 1px;
-  margin-left: 13px;
-}
-
 .con_info > span {
   display: block;
   color: #999;
-  margin-bottom: .3rem;
 }
 
 .con_info div {
@@ -1031,9 +955,7 @@ i, em {
   color: #999;
 }
 
-/*
-         常用信息页css
-*/
+/*常用信息页css*/
 .user_add {
   width: .4rem;
   height: .4rem;
@@ -1078,11 +1000,13 @@ i, em {
 
   position: relative;
 }
-.p_86 >span{
+
+.p_86 > span {
   margin-left: .2rem;
-  margin-right:.7rem;
+  margin-right: .7rem;
 }
-.open_arw.int_tel{
+
+.open_arw.int_tel {
   width: .28rem;
   height: .32rem;
   top: 0;
@@ -1090,7 +1014,7 @@ i, em {
   background-size: 8.4rem 5.2rem;
 }
 
-#p_password{
+#p_password {
   padding-left: .25rem;
 }
 
@@ -1113,13 +1037,13 @@ i, em {
   color: rgba(255, 255, 255, 255);
 }
 
-.login-change {
-  width: 17px;
-  height: 17px;
-  background-position: -2px -35px;
+.login_change {
+  width: .34rem;
+  height: .34rem;
+  background-position: -5.94rem -.2rem;
   position: relative;
-  top: 3px;
-  margin-left: 3px;
+  top: .06rem;
+  margin-left: .06rem;
 }
 
 .login_clear {
@@ -1146,7 +1070,7 @@ i, em {
 }
 
 /*国籍选择*/
-.gj-header {
+.gj_header {
   z-index: 9999;
   visibility: hidden;
 }
@@ -1159,7 +1083,6 @@ i, em {
   bottom: 0;
   z-index: 1000;
   display: none;
-  overflow: hidden;
 }
 
 .country-cho-wrap .header {
@@ -1293,13 +1216,15 @@ ul, ol {
   padding: 0 .4rem;
 }
 
-.userper_lists .open_arw{
+.userper_lists .open_arw {
   top: .32rem;
 }
-.user_info_top .open_arw{
+
+.user_info_top .open_arw {
   right: .4rem;
   top: .65rem;
 }
+
 .userper_lists > li {
   position: relative;
   height: .96rem;
@@ -1375,7 +1300,7 @@ ul, ol {
 
 #unloginShow {
   display: block;
-  width: 150px;
+  width: 4rem;
   margin: 0 auto;
   text-align: center;
 
@@ -1463,14 +1388,6 @@ ul, ol {
   bottom: 0px;
   border-top: 1px solid #e6e6e6;
   padding: .06rem 0 .04rem;
-  /*模糊*/
-  /*filter: url(blur.svg#blur); /!* FireFox, Chrome, Opera *!/*/
-  /*-webkit-filter: blur(1px); /!* Chrome, Opera *!/*/
-  /*-moz-filter: blur(1px);*/
-  /*-ms-filter: blur(1px);*/
-  /*filter: blur(1px);*/
-  /*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /!* IE6~IE9 *!/*/
-
 }
 
 .footer-menu a {
