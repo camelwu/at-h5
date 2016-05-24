@@ -3,7 +3,7 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-  var show1 = 0,show2 = 0,scrollTopPx = 0.88+"rem";
+  var show1 = 0,show2 = 0,scrollTopPx = 44;
   var globalType = "";
   var returnType = "";
   var config = {
