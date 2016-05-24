@@ -908,11 +908,94 @@ function inpChange(id, myText) {
 		obj[checkIn.value] = "入住";
 		obj[checkOut.value] = "离店";
     }
+	//日历初始化
+	//日历初始化
+ function initCalendar() {
+		var initFhDate = {},
+			initFhtDate = {},
+			fhStartDate, fhEndDate, fhtStartDate, fhtEndDate, now = new Date(),
+			initStartDate, initEndDate;
+		//F+H
+		var fhStartDay = $("#fhCalendar .js_startDay"); //显示出发日期
+		var fhEndDay = $("#fhCalendar .js_endDay"); //显示返程日期
+		var fhStartDayData = $("#fhCalendar .js_startData"); //保存出发日期
+		var fhReturnDayData = $("#fhCalendar .js_returnData"); //保存返程日期
+		var fhStartWeekDay = $("#fhCalendar .week_one");
+		var fhEndWeekDay = $("#fhCalendar .week_two");
+
+		//默认时间为T+2~T+4
+		initStartDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2);
+		initEndDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4);
+
+		if (localStorage.cacheSearch) {
+			var cacheSearch = JSON.parse(localStorage.cacheSearch);
+			var fhStartDate = cacheSearch.hfSearchInfo.DepartDay;
+			var fhEndDate = cacheSearch.hfSearchInfo.ReturnDay;
+
+			var fhtStartDate = cacheSearch.hftSearchInfo.DepartDay;
+			var fhtEndDate = cacheSearch.hftSearchInfo.ReturnDay;
+
+			var startDate, endDate;
+			//F+H
+			//保存缓存日期
+			startDate = new Date(fhStartDate.replace(/-/g, "/"));
+			endDate = new Date(fhEndDate.replace(/-/g, "/"));
+			if (startDate < initStartDate) {
+				startDate = initStartDate;
+				endDate = initEndDate;
+			}
+			fhStartDayData.attr('data-day', fhStartDate);
+			fhReturnDayData.attr('data-day', fhEndDate);
+			fhStartDay.html((startDate.getMonth() + 1) + "月" + startDate.getDate() + "日");
+			fhStartWeekDay.html(vlm.Utils.getWeek(startDate.toDateString()));
+			fhEndDay.html((endDate.getMonth() + 1) + "月" + endDate.getDate() + "日");
+			fhEndWeekDay.html(vlm.Utils.getWeek(endDate.toDateString()));
+			startDate = vlm.Utils.format_date(startDate.toDateString(), 'Ymd');
+			endDate = vlm.Utils.format_date(endDate.toDateString(), 'Ymd');
+			initFhDate[startDate] = "checkin day";
+			initFhDate[endDate] = "checkout day";
+		} else {
+			//F+H
+			fhStartDate = initStartDate;
+			//显示出发日期
+			fhStartDay.html((fhStartDate.getMonth() + 1) + "月" + fhStartDate.getDate() + "日");
+			fhStartWeekDay.html(vlm.Utils.getWeek(fhStartDate.toDateString()));
+			fhStartDate = vlm.Utils.format_date(fhStartDate.toDateString(), 'Ymd');
+			fhStartDayData.attr("data-day", fhStartDate);
+			fhEndDate = initEndDate;
+			//显示返程日期
+			fhEndDay.html((fhEndDate.getMonth() + 1) + "月" + fhEndDate.getDate() + "日");
+			fhEndWeekDay.html(vlm.Utils.getWeek(fhEndDate.toDateString()));
+			fhEndDate = vlm.Utils.format_date(fhEndDate.toDateString(), 'Ymd');
+			fhReturnDayData.attr("data-day", fhEndDate);
+			initFhDate[fhStartDate] = "checkin day";
+			initFhDate[fhEndDate] = "checkout day";
+		}
+
+		//F+H 日历初始化
+		var fhCalendar = new Calender({
+			id: "fhCalendar",
+			time: initFhDate,
+			callback: function (result) {
+				//保存选择日期
+				fhStartDayData.attr('data-day', result[0]);
+				fhReturnDayData.attr('data-day', result[1]);
+				//显示选择的日期
+				var startDate = new Date(result[0].replace(/-/g, "/"));
+				var endDate = new Date(result[1].replace(/-/g, "/"));
+				fhStartDay.html((startDate.getMonth() + 1) + "月" + startDate.getDate() + "日");
+				fhStartWeekDay.html(vlm.Utils.getWeek(startDate.toDateString()));
+				fhEndDay.html((endDate.getMonth() + 1) + "月" + endDate.getDate() + "日");
+				fhEndWeekDay.html(vlm.Utils.getWeek(endDate.toDateString()));
+			}
+		});
+	}
+	//日历初始化结束
 	window.onload = function() {
 		//lsf_myweb.getbyid('count1').value = 1;
 		//lsf_myweb.getbyid('count2').value = 1;
 		//lsf_myweb.getbyid('count3').value = 0;
-	}
+	};
     //还原减号状态
     function recoverStatus(itemIdString){
         var itemIdAarr = itemIdString.split(",");
