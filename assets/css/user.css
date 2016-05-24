@@ -126,7 +126,7 @@ i, em {
 .login_mail {
   vertical-align: top;
   margin-top: .35rem;
-  background-position: -275px -10px;
+  background-position: -5.5rem -.2rem;
 }
 
 .login_input input {
@@ -495,7 +495,7 @@ i, em {
   background-size: 8.4rem 4.8rem;
   width: .28rem;
   height: .28rem;
-  background-position: -1.12rem -.52rem;
+  background-position: -1.12rem -.58rem;
   float: right;
 }
 
@@ -976,20 +976,19 @@ i, em {
 
 .u_remark li .icon_per {
   display: inline-block;
-  width: .72rem;
-  height: .72rem;
-  margin-top: .05rem;
+  width: .78rem;
+  height: .78rem;
   background: url(../images/ui/icon_person.png) no-repeat;
   background-size: 9rem 5rem;
 
 }
 
 .u_remark li .user_service {
-  background-position: 96.8% 2.1%;
+  background-position: -8rem -.06rem;
 }
 
 .u_remark li .service_phone {
-  background-position: 96.8% 19%;
+  background-position: -8rem -.8rem;
 }
 
 .user_us {
@@ -1051,7 +1050,10 @@ i, em {
 .often_traveler {
   width: 100%;
   margin-bottom: .3rem;
+  margin-top: .2rem;
+  border-top: 1px solid #e6e6e6;
   overflow: scroll;
+  overflow-x: hidden;
 }
 
 .eve_traveler {
@@ -1083,15 +1085,6 @@ i, em {
 .country-cho-wrap-order {
   position: absolute;
   z-index: 1000;
-}
-
-.country-cho-wrap li {
-  list-style: none;
-}
-
-.country-cho-wrap ul, .country-cho-wrap ol {
-  margin: 0;
-  padding: 0;
 }
 
 .cl_search {
@@ -1260,7 +1253,7 @@ i, em {
 .open_arw {
   position: absolute;
   right: 0;
-  top: .26rem;
+  top: .22rem;
   background: url("../images/ui/icon_common.png") no-repeat;
   background-size: 8.4rem 4.8rem;
   width: .28rem;
@@ -1495,7 +1488,12 @@ a.foot-homes, a.foot-users {
   padding: .2rem .28rem;
   font-size: .24rem;
   background-color: #f7f7f7;
-  position: relative;
+}
+
+.addtra_title > span {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .1rem;
 }
 
 .traveler_contect {
@@ -1677,17 +1675,21 @@ a.foot-homes, a.foot-users {
 }
 
 .traveler_sex1 {
-  width: .22rem;
-  height: .22rem;
+  width: .28rem;
+  height: .28rem;
   margin-right: .1rem;
-  background-position: 10% 38%;
+  margin-top: .34rem;
+  vertical-align: top;
+  background-position: 9.58% 38%;
 }
 
 .traveler_sex2 {
-  width: .22rem;
-  height: .22rem;
+  width: .28rem;
+  height: .28rem;
   margin-right: .1rem;
-  background-position: 4.8% 38%;
+  margin-top: .34rem;
+  vertical-align: top;
+  background-position: 4.6% 38%;
 }
 
 .chn_eng_wrap {
@@ -1696,12 +1698,12 @@ a.foot-homes, a.foot-users {
 }
 
 .user_must {
-  width: .32rem;
-  height: .32rem;
-  position: absolute;
+  width: .38rem;
+  height: .38rem;
+  margin-top: .05rem;
   margin-left: .1rem;
   background-size: 7rem 4.66rem;
-  background-position: -3.6rem -1.36rem;
+  background-position: -3.58rem -1.34rem;
 }
 
 .con_text_tip {
