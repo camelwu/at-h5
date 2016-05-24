@@ -237,7 +237,7 @@ i,em{
     z-index: 102;
 }
 .screen_box .rank{
-    bottom: -550px;
+    bottom: -11rem;
 }
 .screen_box .rank li{
     margin: 0 0 0 0.28rem;
@@ -245,7 +245,7 @@ i,em{
     padding: 0 0.12rem;
     height: 0.96rem;
     line-height: 0.96rem;
-    border-top: 1px solid #e6e6e6;
+    border-top:0.01rem solid #e6e6e6;
     color: #333;
     position: relative;
 }
@@ -455,7 +455,7 @@ a.hotel_detail_pic{
 /*∂©µ•ÃÓ–¥  begin*/
 .order_fill{
     color: #333;
-    border-bottom: 1px solid #dedede;
+    border-bottom:0.01rem solid #dedede;
     margin-bottom: 0.2rem;
 }
 .order_ticket,.hotel_detail,.tour_detail{
@@ -647,15 +647,21 @@ a.hotel_detail_pic{
     line-height: 0.98rem;
     font-size: 0.24rem;
 }
-.order_reserve .itemized:after{
+.order_reserve .itemized:after,.order_reserve .itemized_d:after{
     content: '';
     width: 0.27rem;
     height: 0.14rem;
-    background: url(../../images/icons1.png) no-repeat -44px -34px;
-    background-size: 348px auto;
+    background: url(../../images/ui/icon_common.png) no-repeat;
+    background-size:7.9rem 5.13rem;
     position: absolute;
     right: 0;
     top: 0.4rem;
+}
+.order_reserve .itemized:after{
+    background-position:-5.56rem -3.35rem;
+}
+.order_reserve .itemized_d:after{
+    background-position:-5.19rem -3.35rem;
 }
 .order_reserve a.reserve{
     position: absolute;
@@ -675,7 +681,7 @@ a.hotel_detail_pic{
     background-color: #fff;
     position: fixed;
     bottom: -100%;
-    border-bottom: 1px solid #ddd;
+    border-bottom:0.01rem solid #ddd;
     transition: all 350ms;
     z-index: 90;
 }
