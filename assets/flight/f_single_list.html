@@ -87,29 +87,29 @@
 	<script type="text/javascript" src="../js/lib/vlm.js"></script>
 	<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>
 	<script type="text/javascript" src="../js/lib/ejs.js"></script>
-	<script type="text/javascript" src="js/f_single_list.js"></script>
 	<script type="text/javascript" src="../plugins/footer/footer.js"></script>
-	<script>
+  <script type="text/javascript" src="js/f_single_list.js"></script>
+	<script type="text/javascript">
 		function show_filter() {
 			var f_data = {
 				Screen : {
-					title : "筛选",
+					title : "筛选", /*名字*/
 					c : "foot_screen",
-					type : 2,
+					type :2,  /*类型*/
 					key : 'filters',
-					listData : [{
-						allowMultiSelect : 0,
+					listData : [
+            {allowMultiSelect : 0,
 						filterType : 4,
 						item : [{
-							filterText : "不限",
-							filterValue : "0"
-						}, {
-							filterText : "仅看直飞",
-							filterValue : "1"
-						}],
-						sortNumber : 0,
-						title : "直飞"
-					}, {
+						      	filterText : "不限",
+						       	filterValue : "0"
+					        	}, {
+                      filterText : "仅看直飞",
+                      filterValue : "1"
+					         	}],
+					       	sortNumber : 0,
+					      	title : "直飞"
+				        	}, {
 						allowMultiSelect : 0,
 						filterType : 3,
 						item : [{
@@ -160,7 +160,7 @@
 					title : "起飞早到晚",
 					c : "foot_sort",
 					type : 1,
-					key : sort,
+					key : "sort",
 					listData : //[{sortText: "直飞优先", sortValue: 0}, {sortText: "按价格从高到低", sortValue: 1}]
 					[{
 						1 : "直飞优先"
@@ -183,8 +183,7 @@
 				}
 
 			}, f_call = function(o) {
-				alert("js request json.");
-				console.log(o);
+			       console.log(o)
 			};
 
 			if (footer) {

@@ -420,7 +420,7 @@ var fOrder = {
           priceDetailInfo.style.bottom = '-126%';
         } else {
           shadow.style.display = "block";
-          detailFare.className = "detail_fare open";
+          detailFare.className = "detail_fare";
           priceDetailInfo.style.bottom = ".89rem";
         }
       }
