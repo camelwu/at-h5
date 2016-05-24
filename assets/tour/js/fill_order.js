@@ -225,14 +225,14 @@
         var bOk=true;
         oAgree.onclick=function(){
             if(bOk){
-                oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
-                oAgree.style.backgroundSize='40rem 12rem';
+                oAgree.style.background='url(../images/ui/icons1.png) -5.29rem -0.07rem';
+                oAgree.style.backgroundSize='8.00rem 2.40rem';
                 oReserve.style.backgroundColor='#ddd';
                 sentPackage(oReserve);
                 bOk=false;
             }else{
-                oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
-                oAgree.style.backgroundSize='40rem 12rem';
+                oAgree.style.background='url(../images/ui/icons1.png) -4.7rem -0.07rem';
+                oAgree.style.backgroundSize='8.00rem 2.40rem';
                 oReserve.style.backgroundColor='#fdb330';
                 oReserve.style.color='#fff';
 

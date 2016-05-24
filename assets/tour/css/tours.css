@@ -731,9 +731,6 @@ a.hotel_detail_pic{
     float: right;
     color: #fb763b;
 }
-.order_box2{
-    margin-bottom: 1.84rem;
-}
 .mask{
     position: fixed;
     top: 0;
@@ -811,6 +808,28 @@ a.hotel_detail_pic{
     background-size:8.04rem 3.48rem;
     background-position:-4.92rem -0.27rem;
 }
+.order_notice{
+    padding-left:0.4rem;
+    margin-bottom: 1.84rem;
+}
+.order_notice .btn{
+    display: inline-block;
+    width: 0.38rem;
+    height: 0.38rem;
+    background: url(../../images/ui/icons1.png) no-repeat;
+    background-position: -4.7rem -0.07rem;
+    background-size:8.00rem 2.40rem;
+    margin-top:0.06rem;
+}
+.order_notice .txt{
+    display: inline-block;
+    vertical-align: top;
+    margin-top:0.06rem;
+    color: #999;
+    font-size: 0.13rem;
+}
+
+
 
 
 
