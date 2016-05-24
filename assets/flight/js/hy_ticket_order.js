@@ -233,7 +233,8 @@ var ticketOrder = {
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    document.location.href = '../payment/payment.html?bookingRefNo='+orderResultInfo.bookingRefNo+"&type=Flight";
+                  console.log(orderResultInfo)
+                   // document.location.href = '../payment/payment.html?bookingRefNo='+orderResultInfo.bookingRefNo+"&type=Flight";
                 }else{
                      if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
                          jConfirm('预订失败,需要重新预订?', '提示', function(status){
