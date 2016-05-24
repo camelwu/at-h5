@@ -290,8 +290,7 @@
         <a href="../scenic/order-detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
       </div>
     </div>
-    <!--&lt;!&ndash;机+酒&ndash;&gt;-->
-
+    <!--机+酒-->
     {% }else if (productType=="Package_FH") { %}
     <div class="order_div scenic_div">
       <div class="all_order_title">
@@ -309,6 +308,26 @@
       </div>
       <div class="clearfix find_order">
         <a href="../hotel_flight/order_detail_pay.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
+      </div>
+    </div>
+    <!--机+酒+景-->
+    {% }else if (productType=="Package_FHT") { %}
+    <div class="order_div scenic_div">
+      <div class="all_order_title">
+        <b class="icon_allorder user_fligthotletour"></b>
+        <div class="order_title">机+酒+景</div>
+        <div class="if_pay">{%=getCN[paymentStatus]%}</div>
+        <div class="order_Amount">￥{%=bookingAmount%}</div>
+      </div>
+      <div class="all_order_tab">
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
+          {% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
+          <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
+        </ul>
+      </div>
+      <div class="clearfix find_order">
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
       </div>
     </div>
     {% } %}
