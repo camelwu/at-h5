@@ -272,9 +272,13 @@ i, em {
   font-size: .28rem;
   color: #333;
 }
+#phone_num{
+  width: 100%;
+}
 
 .fk_div {
   padding: 0 .2rem;
+  width: 1.85rem;
   height: .68rem;
   text-align: center;
   line-height: .68rem;
@@ -446,7 +450,7 @@ i, em {
 }
 
 /*链接*/
-#link_page, #link_about_us, #link_at, #link_declaration，#fkey_page, #black_page {
+#link_page, #link_about_us, #link_at, #link_declaration, #fkey_page, #black_page, #link_declaration{
   display: none;
 }
 
@@ -1048,7 +1052,11 @@ i, em {
   background-color: #fff;
 }
 
-/*国籍选择*/
+/*国籍选择开始*/
+.country_header{
+  opacity: 1;
+}
+
 .gj_header {
   z-index: 9999;
   visibility: hidden;
@@ -1063,12 +1071,6 @@ i, em {
   z-index: 1000;
   display: none;
 }
-
-.country-cho-wrap .header {
-  height: 45px;
-  max-height: 45px;
-}
-
 .country-cho-wrap-order {
   position: absolute;
   z-index: 1000;
@@ -1076,21 +1078,13 @@ i, em {
 
 li {
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
-
-ul, ol {
-  margin: 0;
-  padding: 0;
-}
-
 .cl_search {
-  height: 30px;
+  height: .6rem;
   width: 100%;
-  padding-left: 38px;
-  padding-right: 15px;
-  margin-top: 7px;
+  padding-left: 1.04rem;
+  padding-right: .28rem;
+  margin-top: .2rem;
   position: relative;
   left: 0;
   top: 0;
@@ -1100,20 +1094,19 @@ ul, ol {
 .cl_search input {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
-  padding-left: 24px;
-  font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+  border-radius: .04rem;
+  padding-left: .48rem;
+  background-color: #e6e6e6;
 }
 
 .cl_search i {
   position: absolute;
-  left: 47px;
-  top: 10px;
-  display: block;
-  background: url("../images/city_search.png");
-  background-size: 11px 11px;
-  width: 11px;
-  height: 11px;
+  left: 1.2rem;
+  top: .13rem;
+  background-position: -2.28rem -1.64rem;
+  background-size: 5.8rem 3.6rem;
+  width: .34rem;
+  height: .34rem;
 }
 
 .country-list {
@@ -1121,10 +1114,10 @@ ul, ol {
 }
 
 .country-list li {
-  padding-left: 35px;
-  height: 36px;
-  line-height: 36px;
-  border-bottom: 1px solid #dfdfdd;
+  padding-left:.48rem;
+  height: .68rem;
+  line-height: .68rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .country-hidden {
@@ -1135,32 +1128,27 @@ ul, ol {
 .country-list-searched {
   width: 100%;
   height: auto;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  list-style: none;
   position: fixed;
-  top: 3.8rem;
+  top: .88rem;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 9;
   background: #f5f4f9;
-  margin-bottom: 0;
   overflow-y: scroll;
-  padding-top: 1rem;
 }
 
 .country-list-searched li.country-list-searched-item {
   width: 100%;
-  list-style: none;
-  height: 3.4rem;
-  line-height: 3.4rem;
+  height: .68rem;
+  line-height: .68rem;
   text-align: left;
-  border-bottom: 0.1rem solid #dfdfdd;
-  margin-bottom: 0;
-  padding-left: 4rem;
+  border-bottom: 1px solid #e6e6e6;
+  padding-left: .48rem;
 
 }
+
+/*国籍选择结束*/
 
 /*个人信息页出生日期*/
 .user_it {

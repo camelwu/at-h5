@@ -190,7 +190,8 @@ window.onload = function() {
         "Code" : "0058"
       };
       console.log(Parameters);
-      phone_reg.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
+      phone_reg.style.width='2.4rem';
+      phone_reg.innerHTML = '120秒重新发送';
       timedown_reg(120);
       vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_verify);
     };
@@ -312,7 +313,8 @@ window.onload = function() {
         "Code" : "0058"
       };
       console.log(Parameters);
-      phone_verify.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
+      phone_verify.style.width='2.4rem';
+      phone_verify.innerHTML = '120秒重新发送';
       timedown_forget(120);
       //vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
       vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_findver);
@@ -539,16 +541,13 @@ function timedown_forget(seconds){
       if(Math.ceil(120- (newtime-lasttime)/1000 ) < 1)
       {
         phone_verify.innerHTML = '发送验证码';
-        phone_verify.style.color = '#ffb413';
         clearInterval(timer);
         Bflag_forget = false;
         return;
       }
       phone_verify.innerHTML =Math.ceil(120- (newtime-lasttime)/1000 )+ '秒重新发送';
-      phone_verify.style.color = 'rgb(204,204,204)';
     }else{
       phone_verify.innerHTML =seconds+ '秒重新发送';
-      phone_verify.style.color = 'rgb(204,204,204)';
     }
   },1000);
 }
