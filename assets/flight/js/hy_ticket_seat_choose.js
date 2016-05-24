@@ -120,11 +120,11 @@ var ticketSeatChoose = {
     },
 
     testLogin:function(){
-        //if(vlm.checkLogin('ticketSeatChoose.testLogin')){
+        if(vlm.checkLogin('ticketSeatChoose.testLogin')){
             ticketSeatChoose.reverseInformationCache["WapOrder"]["MemberId"] = window.localStorage.memberid;
             ticketSeatChoose.storageUtil.set('reverseInformationCache',ticketSeatChoose.reverseInformationCache);
             window.top.location.href='../flight/ticket_order.html';
-        //}
+        }
     },
     returnDate:function(arg){
         var argArray = /(\d{4})-(\d{2})-(\d{2})T\d{2}:\d{2}:\d{2}/.exec(arg);
