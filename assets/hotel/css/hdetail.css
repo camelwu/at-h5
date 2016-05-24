@@ -59,6 +59,16 @@
     background-size: 243px 160px;
     display: inline-block;
 }
+.hotel_shoulder_wifi{
+  display: inline-block;
+  width: 20px;
+  height: 15px;
+  background-image: url(../../images/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 402px 174px;
+  background-position: -75px -14px;
+  vertical-align: -4px;
+}
 .hotel_shoulder_address{
     min-width: 10%;
     max-width: 90%;
@@ -160,7 +170,7 @@
   display: inline-block;
   width: 15px;
   height: 15px;
-  margin-left: .05rem;
+  margin-left: .1rem;
   background-image: url(../../images/ui/icons1.png);
   background-position: 27% 33.5%;
   background-size: 400px 120px;
