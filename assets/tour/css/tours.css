@@ -498,14 +498,13 @@ a.hotel_detail_pic{
 .order_toggle_btn b{
     width: 0.3rem;
     height:0.2rem;
-    background-position: 81% 5%;
-    background-image: url(../../images/ui/icons.png);
-    background-repeat: no-repeat;
-    background-size: 243px 160px;
+    background:url(../../images/ui/icon_common.png) no-repeat;
+    background-size:7.9rem 5.13rem;
+    background-position:-2.8rem -0.67rem;
     display: inline-block;
 }
 .order_toggle_btn b.cur{
-    background-position: 74% 5% ;
+    background-position:-2.22rem -0.67rem;
 }
 .order_per_data{
     background: #fff;
@@ -526,7 +525,7 @@ a.hotel_detail_pic{
     height:0.32rem;
     position: absolute;
     left:0.24rem;
-    top:0.34rem;
+    top:0.24rem;
     background: #ffb413;
     display: block;
     -moz-border-radius:0.04rem;
@@ -542,7 +541,7 @@ a.hotel_detail_pic{
     border-bottom:0.01rem solid #ddd;
     margin: 0;
     padding: 0;
-    width: 100%;
+    /*width: 100%;*/
     position: relative;
 }
 .order_per_data>ul li span.list_tit{
@@ -575,6 +574,7 @@ a.hotel_detail_pic{
 }
 .order_per_data>ul li.first{
     padding-left: 0.24rem;
+    padding-right: 0.24rem;
 }
 .order_per_data ul.order_trave{
     padding: 0 0 0 0.24rem;
@@ -609,7 +609,7 @@ a.hotel_detail_pic{
     position: relative;
 }
 .order_data_box ul.order_trave{
-    padding: 0 0 0 12px;
+    padding: 0 0 0 0.24rem;
     margin: 0;
 }
 .order_data_box ul li:last-child {
@@ -649,7 +649,7 @@ a.hotel_detail_pic{
 }
 .order_reserve .itemized:after{
     content: '';
-    width: 0.2rem;
+    width: 0.27rem;
     height: 0.14rem;
     background: url(../../images/icons1.png) no-repeat -44px -34px;
     background-size: 348px auto;
