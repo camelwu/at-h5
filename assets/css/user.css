@@ -461,7 +461,7 @@ i, em {
 }
 
 .asiatravel_wrap > img {
-  width: auto;
+  width: 2rem;
 }
 
 .asiatravel_wrap h4 {
@@ -1078,6 +1078,10 @@ i, em {
 
 li {
   list-style: none;
+}
+ul, ol{
+  margin: 0;
+  padding: 0;
 }
 .cl_search {
   height: .6rem;
