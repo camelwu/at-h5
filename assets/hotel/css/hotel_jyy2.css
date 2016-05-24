@@ -46,7 +46,7 @@ ul,li{
 }
 .hotel_name{
     width:5.2rem;
-    font-size: 0.34rem;
+    font-size: 0.32rem;
     font-weight: bold;
     white-space: nowrap;
     text-overflow: ellipsis;

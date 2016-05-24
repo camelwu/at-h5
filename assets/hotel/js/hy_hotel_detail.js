@@ -287,7 +287,7 @@
 			var subRooms = this.$CN('subRoomEvent');
 			var Rooms = this.$CN('roomEvent');
 			//地图暂时不用
-			//var toMap = this.$Id('toMap');
+			var toMap = this.$Id('toMap');
 
 			toHotelDetail.onclick = function() {
 				document.location.href = 'hotel_summary.html';
@@ -298,22 +298,22 @@
 			};
 
 			//地图暂时不用
-			/*
-			 toMap.onclick = function () {
 
-			 var dataObj = {
-			 HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelName,
-			 Latitude: hotelDetail.sourceData.data[0].hotelGenInfo.latitude,
-			 Longitude: hotelDetail.sourceData.data[0].hotelGenInfo.longitude
-			 }
-			 var paramStr = "";
-			 for (var attr in dataObj) {
-			 paramStr += "&" + attr + "=" + dataObj[attr];
-			 }
-			 paramStr = paramStr.slice(1);
-			 document.location.href = 'jyy_hd_map.html?' + paramStr;
+			 toMap.onclick = function () {
+				 window.location.href ="hotel_map.html";
+				 //var dataObj = {
+				 //HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelName,
+				 //Latitude: hotelDetail.sourceData.data[0].hotelGenInfo.latitude,
+				 //Longitude: hotelDetail.sourceData.data[0].hotelGenInfo.longitude
+				 //}
+				 //var paramStr = "";
+				 //for (var attr in dataObj) {
+				 //paramStr += "&" + attr + "=" + dataObj[attr];
+				 //}
+				 //paramStr = paramStr.slice(1);
+				 //document.location.href = 'jyy_hd_map.html?' + paramStr;
 			 };
-			 */
+
 
 			for (var i = 0; i < showListTrigger.length; i++) {
 				showListTrigger[i].onclick = function() {
@@ -462,7 +462,7 @@
             //H5-410 点评为0时不显示该模块
             rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li  onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
 
-			firstUl += '<ul class="d-ul1 hotel_shoulder">' +rateStr+ '<li id="toMap"><span class="address-text hotel_shoulder_address">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate hotel_shoulder_wifi"></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
+			firstUl += '<ul class="d-ul1 hotel_shoulder">' +rateStr+ '<li id="toMap"><span class="address-text hotel_shoulder_address">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
 
 
 			secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>离店<em>共<span id="nightNum">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg"></b></li>' + hotelDetail.showRoomList(result) + '</ul>';
