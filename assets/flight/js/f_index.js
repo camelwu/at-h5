@@ -139,6 +139,23 @@ var fIndexModal = {
           }
           return cabinStr;
         };
+        var getTripType = function(){
+              var cityCodeFrom = cityEles[0].getAttribute('data-code'), cityCodeTo = cityEles[1].getAttribute('data-code'), codePool = internationalCities, tag1 = "inter", tag2 = "dome";
+              codePool.forEach(function(index){
+                        if(index.cityCode == cityCodeFrom){
+                                  tag1 = "inter";
+                                  return false;
+                          }
+               });
+                codePool.forEach(function(index){
+                  if(index.cityCode == cityCodeTo){
+                      tag2 = "inter";
+                      return false;
+                  }
+                });
+               return (tag1 == tag2)? "international":"domestic";
+        };
+
         paraObj = {
           "cityCodeFrom": cityEles[0].getAttribute('data-code'),
           "cityCodeTo": cityEles[1].getAttribute('data-code'),
@@ -154,14 +171,13 @@ var fIndexModal = {
           "isDesc": "false",
           "pageNo": 1,
           "pageSize": 10,
-          "interNationalOrDomestic": "international", /*国际或者国内*/
+          "internationalOrDomestic": getTripType(), /*国际或者国内*/
           "hasTax": "true",
           "fromCity": cityEles[0].innerHTML,
           "toCity": cityEles[1].innerHTML
         };
         if (that.type == "oneWay") { /*单程*/
           paraObj.departDate = singleDateSet.getAttribute('date-full-value');
-          paraObj.interNationalOrDomestic = "international" /*国际或者国内*/
           storage.setItem('fIndexInfo', JSON.stringify({type: "oneWay", data: paraObj}));
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];
@@ -170,7 +186,6 @@ var fIndexModal = {
         } else {   /*往返*/
           paraObj.departDate = doubleDateSet.getAttribute('date-full-value');
           paraObj.returnDate = doubleDateArrive.getAttribute('date-full-value');
-          paraObj.interNationalOrDomestic = "international" /*国际或者国内*/
           storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: paraObj}));
           for (var att_ in paraObj) {
             urlStr += "&" + att_ + "=" + paraObj[att_];

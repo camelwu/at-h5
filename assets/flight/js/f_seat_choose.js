@@ -39,13 +39,13 @@ var fSeatChoose = {
   },
 
   eventHandler:function(){
-    var forBottom = document.querySelector('.for_bottom');
+    var forBottom = document.querySelector('.for_bottom'),that = fSeatChoose;
     this.addHandler(forBottom, "click", function(e){
       var e = e || window.event, target = e.target || e.srcElement;
         if(target.className == "explain"){
       //退改签说明
         }else if(target.tagName == "BUTTON"){
-         window.location.href = "f_order.html"
+          that.testLogin();
         }
     })
   },
@@ -98,6 +98,12 @@ var fSeatChoose = {
         void(0)
     }
     return week;
+  },
+
+  testLogin:function(){
+    if(vlm.checkLogin('fSeatChoose.testLogin')){
+      window.top.location.href='../flight/f_order.html';
+    }
   },
 
   returnDay: function () {

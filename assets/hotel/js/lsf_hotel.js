@@ -6,6 +6,14 @@
 		});
 	}(jQuery));
 
+$("#h_in").click(function(){
+  VM.Load("h_in");
+});
+
+$("#h_out").click(function(){
+  VM.Load("h_out");
+});
+
 var lsf_myweb = {
 	"getbyid" : function(id) {
 		return document.getElementById(id);
@@ -252,15 +260,15 @@ function inpChange(id, myText) {
 (function() {
 	var hoPos = '';
 	//目的地输入框去掉光标
-	var address_broad = document.getElementById('input1');
-	var address_demosic = document.getElementById('input2');
+	//var address_broad = document.getElementById('input1');
+	//var address_demosic = document.getElementById('input2');
 	//目的地解决光标问题
-	lsf_myweb.bind(address_broad, 'focus', function() {
-		this.blur();
-	});
-	lsf_myweb.bind(address_demosic, 'focus', function() {
-		this.blur();
-	});
+	//lsf_myweb.bind(address_broad, 'focus', function() {
+	//	this.blur();
+	//});
+	//lsf_myweb.bind(address_demosic, 'focus', function() {
+	//	this.blur();
+	//});
 	//日期日历去掉光标
 	lsf_myweb.bind(lsf_myweb.getbyid('CheckInDate'), 'focus', function() {
 		this.blur();
@@ -485,30 +493,30 @@ function inpChange(id, myText) {
 				}
 				dgetInpCity();
 			};
-			if (obj.getAttribute('id') == 'input1') {
-				citySearchBox.setAttribute('placeholder', '新加坡');
-				//判断国际国内酒店改变placeholder
-				var cityListHis = window.localStorage.getItem('interCityName');
-				if (cityListHis) {
-					cityHisArr = cityListHis.split(',');
-					cityHisArr.shift();
-				}
-				//for(var i=0;i<dataIN.length;i++){
-				//    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'('+dataIN[i].cityNameEN+')'+'"></option>';
-				//}
-			}
-			if (dobj.getAttribute('id') == 'input2') {
-				dcitySearchBox.setAttribute('placeholder', '北京/beijing/bj/bjs/中国');
-				//判断国际国内酒店改变placeholder
-				var dcityListHis = window.localStorage.getItem('domCityName');
-				if (dcityListHis) {
-					dcityHisArr = dcityListHis.split(',');
-					dcityHisArr.shift();
-				}
+			//if (obj.getAttribute('id') == 'input1') {
+			//	citySearchBox.setAttribute('placeholder', '新加坡');
+			//	//判断国际国内酒店改变placeholder
+			//	var cityListHis = window.localStorage.getItem('interCityName');
+			//	if (cityListHis) {
+			//		cityHisArr = cityListHis.split(',');
+			//		cityHisArr.shift();
+			//	}
+			//	//for(var i=0;i<dataIN.length;i++){
+			//	//    searchCity.innerHTML+='<option value="'+dataIN[i].cityNameCN+'('+dataIN[i].cityNameEN+')'+'"></option>';
+			//	//}
+			//}
+			//if (dobj.getAttribute('id') == 'input2') {
+			//	dcitySearchBox.setAttribute('placeholder', '北京/beijing/bj/bjs/中国');
+			//	//判断国际国内酒店改变placeholder
+			//	var dcityListHis = window.localStorage.getItem('domCityName');
+			//	if (dcityListHis) {
+			//		dcityHisArr = dcityListHis.split(',');
+			//		dcityHisArr.shift();
+			//	}
 				//for(var i=0;i<dataCN.length;i++){
 				//    dsearchCity.innerHTML+='<option value="'+dataCN[i].cityNameCN+'"></option>';
 				//}
-			}
+			//}
 			//历史选择数组去重
 			var json = {};
 			for (var i = 0; i < cityHisArr.length; i++) {
@@ -785,38 +793,38 @@ function inpChange(id, myText) {
 			}
 		}
 		cityShow(interHotData, domHotData, dataWorIN, dataWorCN, abroad_target_city, domestic_target_city);
-		//国际城市
-		lsf_myweb.bind(abroad_target_city, 'click', function() {
-			//allElements.style.visibility = 'hidden';
-			cl_box_box.style.display = 'block';
-			vlm_login.style.display = 'block';
-		});
-		//国内城市
-		lsf_myweb.bind(domestic_target_city, 'click', function() {
-			//allElements.style.visibility = 'hidden';
-			dcl_box_box.style.display = 'block';
-			dvlm_login.style.display = 'block';
-		});
+		////国际城市
+		//lsf_myweb.bind(abroad_target_city, 'click', function() {
+		//	//allElements.style.visibility = 'hidden';
+		//	cl_box_box.style.display = 'block';
+		//	vlm_login.style.display = 'block';
+		//});
+		////国内城市
+		//lsf_myweb.bind(domestic_target_city, 'click', function() {
+		//	//allElements.style.visibility = 'hidden';
+		//	dcl_box_box.style.display = 'block';
+		//	dvlm_login.style.display = 'block';
+		//});
 		//国际城市列表返回按钮点击事件
-		lsf_myweb.bind(cl_back, 'click', function() {
-			var arr1 = document.getElementById('arr1');
-			var arr2 = document.getElementById('arr2');
-			var inter = arr1.parentNode.parentNode;
-			var dom = arr2.parentNode.parentNode;
-			cl_box_box.style.display = 'none';
-			vlm_login.style.display = 'none';
-			//allElements.style.visibility = 'visible';
-		});
-		//国内城市列表返回按钮点击事件
-		lsf_myweb.bind(dcl_back, 'click', function() {
-			var arr1 = document.getElementById('arr1');
-			var arr2 = document.getElementById('arr2');
-			var inter = arr1.parentNode.parentNode;
-			var dom = arr2.parentNode.parentNode;
-			dcl_box_box.style.display = 'none';
-			dvlm_login.style.display = 'none';
-			//allElements.style.visibility = 'visible';
-		});
+		//lsf_myweb.bind(cl_back, 'click', function() {
+		//	var arr1 = document.getElementById('arr1');
+		//	var arr2 = document.getElementById('arr2');
+		//	var inter = arr1.parentNode.parentNode;
+		//	var dom = arr2.parentNode.parentNode;
+		//	cl_box_box.style.display = 'none';
+		//	vlm_login.style.display = 'none';
+		//	//allElements.style.visibility = 'visible';
+		//});
+		////国内城市列表返回按钮点击事件
+		//lsf_myweb.bind(dcl_back, 'click', function() {
+		//	var arr1 = document.getElementById('arr1');
+		//	var arr2 = document.getElementById('arr2');
+		//	var inter = arr1.parentNode.parentNode;
+		//	var dom = arr2.parentNode.parentNode;
+		//	dcl_box_box.style.display = 'none';
+		//	dvlm_login.style.display = 'none';
+		//	//allElements.style.visibility = 'visible';
+		//});
 	});
 
 	var checkIn = lsf_myweb.getbyid('CheckInDate');
@@ -876,11 +884,11 @@ function inpChange(id, myText) {
     var hotelStorage = JSON.parse(localStorage.getItem('hotelStorage12345'));
 	//国际
     if (hotelStorage) {
-        lsf_myweb.getbyid('input1').value = hotelStorage.InterDes;
+        //lsf_myweb.getbyid('input1').value = hotelStorage.InterDes;
         lsf_myweb.getbyid('count1').value = hotelStorage.NumRoom;
         lsf_myweb.getbyid('count2').value = hotelStorage.NumAdult;
         lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
-        lsf_myweb.getbyid('input2').value = hotelStorage.DomDes;
+        //lsf_myweb.getbyid('input2').value = hotelStorage.DomDes;
 		if(new Date(hotelStorage.InterBeginDate.replace(/-/g,'/'))<js){
 			checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
 			checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;

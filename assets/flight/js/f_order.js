@@ -19,16 +19,6 @@ var fOrder = {
     this.addHandler(target, eventType, handle);
   },
 
-  eventHandler: function () {
-    var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
-    var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
-    that.deg = 0;
-    this.addHandler(content, 'click', function (e) {
-      var e = e || window.event, target = e.target || e.srcElement;
-      var temTitle = null;
-    })
-  },
-
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
     switch (index) {
@@ -90,16 +80,148 @@ var fOrder = {
     vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 
   },
+
+  getCurrentStyle: function (node) {
+    var style = null;
+    if (window.getComputedStyle) {
+      style = window.getComputedStyle(node, null);
+    } else {
+      style = node.currentStyle;
+    }
+    return style;
+  },
+
+  countrySlider: function () {
+    var countryTrigger = document.querySelector('.country-trigger'), that = this;
+    countryTrigger.onclick = function () {
+      var div = document.createElement('div');
+      var searchHandler = function () {
+        var countryInputZone = document.querySelector('#country-input-zone');
+        var cityListSearched = document.querySelector('.country-list-searched-order');
+        var countryListInitShow = document.querySelector('.country-list-init-show');
+        var searchResult = [], reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr = '';
+        Array.prototype.distinct = function () {
+          var sameObj = function (a, b) {
+            var tag = true;
+            if (!a || !b)return false;
+            for (var x in a) {
+              if (!b[x])
+                return false;
+              if (typeof(a[x]) === 'object') {
+                tag = sameObj(a[x], b[x]);
+              } else {
+                if (a[x] !== b[x])
+                  return false;
+              }
+            }
+            return tag;
+          };
+          var newArr = [], obj = {};
+          for (var i = 0, len = this.length; i < len; i++) {
+            if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+              newArr.push(this[i]);
+              obj[typeof(this[i]) + this[i]] = this[i];
+            }
+          }
+          return newArr;
+        };
+
+        if (reg.test(valueStr)) {
+          console.log(22)
+          var mb = String(valueStr).toLowerCase();
+          for (var p = 0; p < arrCountry.length; p++) {
+            var ma = String(arrCountry[p]['CountryEN']).toLowerCase();
+            if (ma.indexOf(mb) > -1 || arrCountry[p]['CountryName'].indexOf(valueStr) > -1) {
+              searchResult.push(arrCountry[p]);
+            }
+          }
+          searchResult = searchResult.distinct();
+          if (!searchResult.length) {
+            resultStr += '<li>无搜索结果</li>';
+            cityListSearched.style.display = 'none';
+          } else {
+            for (var l = 0; l < searchResult.length; l++) {
+              resultStr += '<li data-tel-code="' + searchResult[l].TelCode + '" data-Country-code="' + searchResult[l].CountryCode + '">' + searchResult[l].CountryName + '</li>'
+            }
+            cityListSearched.innerHTML = resultStr;
+            cityListSearched.style.display = 'block';
+          }
+        }
+      };
+      div.className = 'all-elements country-cho-wrap-order';
+      div.innerHTML = '<div class="header country-list-header">' +
+        '<a href="javascript:void(0)" class="icons header-back country-hidden"></a>' +
+        '<div class="cl_search">' +
+        '<input type="text" placeholder="中国/China/zhongguo" id="country-input-zone"/>' +
+        '<i></i>' +
+        '</div>' +
+        '</div>' +
+        '<ul class="country-list-searched country-list-searched-order"></ul>' +
+        '<div class="snap-content country-list country-list-init-show" style="padding-top: 45px">' +
+        '<div class="country-wrap" id="country-wrap">' +
+        '<ul class="country-list counter-list-to-order">' +
+        '</ul>' +
+        '</div>' +
+        '</div>';
+      document.body.appendChild(div);
+
+      var cityInputZone = document.querySelector('#country-input-zone');
+      var countryHidden = document.querySelector('.country-hidden');
+      var ulLi = document.querySelector('.counter-list-to-order'), liStr = '';
+      Array.prototype.distinct = function () {
+        var sameObj = function (a, b) {
+          var tag = true;
+          if (!a || !b)return false;
+          for (var x in a) {
+            if (!b[x])
+              return false;
+            if (typeof(a[x]) === 'object') {
+              tag = sameObj(a[x], b[x]);
+            } else {
+              if (a[x] !== b[x])
+                return false;
+            }
+          }
+          return tag;
+        };
+        var newArr = [], obj = {};
+        for (var i = 0, len = this.length; i < len; i++) {
+          if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+            newArr.push(this[i]);
+            obj[typeof(this[i]) + this[i]] = this[i];
+          }
+        }
+        return newArr;
+      };
+      arrCountry = arrCountry.distinct();
+      for (var ji = 0, len = arrCountry.length; ji < len; ji++) {
+        liStr += '<li data-tel-code="' + arrCountry[ji].TelCode + '" data-code="' + arrCountry[ji].CountryCode + '">' + arrCountry[ji].CountryName + '</li>'
+      }
+      ulLi.innerHTML = liStr;
+      if (cityInputZone.addEventListener) {
+        cityInputZone.addEventListener('input', searchHandler, false)
+      } else {
+        cityInputZone.attachEvent('onpropertychange', searchHandler)
+      }
+      countryHidden.onclick = function () {
+        if (document.querySelector('.country-cho-wrap-order')) {
+          document.body.removeChild(document.querySelector('.country-cho-wrap-order'));
+        }
+      };
+      that.addCountryCodeHandler();
+    };
+  },
+
   eventHandler: function () {
-    var getPrice = document.querySelector('.preserve'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, contactWrap = document.querySelector('.contact_wrap'), temObject = {};
-    console.log(searchInfo)
+    var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
+    var postPara = {}, temObject = {};
     postPara.wapOrder = {};
     postPara.travellerInfo = [];
     postPara.contactDetail = {};
     postPara.currencyCode = "CNY";
-    postPara.totalPrice = 4875;
+    postPara.totalPrice = this.priceData.priceTotal;
     postPara.track = {browserType: "", deviceID: ""/*vlm.getDeviceID()*/};
+    postPara.wapOrder.memberId = window.localStorage.memberid;
     postPara.wapOrder.setID = that.curFlightData.setID;
     postPara.wapOrder.cacheID = that.curFlightData.cacheID;
     postPara.wapOrder.cityCodeFrom = searchInfo.cityCodeFrom;
@@ -109,213 +231,200 @@ var fOrder = {
     postPara.wapOrder.routeType = searchInfo.routeType;
     postPara.wapOrder.cabinClass = searchInfo.cabinClass;
     postPara.wapOrder.sourceType = "H5";
-    this.addHandler(getPrice,'click', function(e){
-      var e = e || window.event;
-      var target =e.target || e.srcElement;
-      var that = fOrder,contactInfo={};
-      var selectTravellerList=window['localStorage']['travellerInfo_selected'];
-      if(!window['localStorage']['travellerInfo_selected']){
-        jAlert('请选择'+searchInfo.numofAdult+'名成人,'+searchInfo.numofChild+'名儿童!', '提示');
-        return;
-      }else{
-        var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']),contactInfoCache = {};
-      }
-      //乘客信息核对
-      var passengerLis = document.querySelectorAll('.passenger_outer li'), realPara=[], tempAdult= 0, tempChild=0;
-      if(passengerLis){
-        for(var li=0; li<passengerLis.length;li++){
-          var passPortNumber = passengerLis[li].querySelector('.passportValue').value;
-          for(var ki=0;ki<storageInfo.length;ki++){
-            if(storageInfo[ki].CertificateInfo.IdNumber == passPortNumber){
-              realPara.push(storageInfo[ki])
+    this.addHandler(bottomPrice, 'click', function (e) {
+      var e = e || window.event, target = e.target || e.srcElement, contactInfo = {}, selectTravellerList = window['localStorage']['travellerInfo_selected'];
+      if (target.className == "preserve") {
+        if (!window['localStorage']['travellerInfo_selected']) {
+          jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
+          return;
+        } else {
+          var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']), contactInfoCache = {};
+        }
+        //乘客信息核对
+        var passengerLis = document.querySelectorAll('.passenger_outer li'), realPara = [], tempAdult = 0, tempChild = 0;
+        if (passengerLis) {
+          for (var li = 0; li < passengerLis.length; li++) {
+            var passPortNumber = passengerLis[li].querySelector('.passportValue').value;
+            for (var ki = 0; ki < storageInfo.length; ki++) {
+              if (storageInfo[ki].CertificateInfo.IdNumber == passPortNumber) {
+                realPara.push(storageInfo[ki])
+              }
             }
           }
         }
-      }
-      for(var dd=0;dd<realPara.length;dd++){
-        if(realPara[dd].passengerType == 'ADULT'){
-          tempAdult++;
-        }
-        if(realPara[dd].passengerType == 'CHILD'){
-          tempChild++;
-        }
-      }
-      if(tempAdult!=searchInfo.numofAdult||tempChild!=searchInfo.numofChild){
-        jAlert('请选择'+searchInfo.numofAdult+'名成人,'+searchInfo.numofChild+'名儿童!', '提示');
-        return;
-      }
-
-      postPara.travellerInfo =realPara;
-
-      if(window['localStorage']['contact_selected']){
-        contactInfo =JSON.parse(window['localStorage']['contact_selected']);
-      }else{
-        contactInfo={
-          contactNumber: "",
-          countryNumber: "",
-          email: "",
-          firstName: "",
-          lastName: "",
-          mobilePhone: "",
-          sexCode: "Mr"}
-      }
-      contactInfoCache.firstName = document.querySelector('#first-name').value;
-      contactInfoCache.lastName = document.querySelector('#last-name').value;
-      contactInfoCache.email =document.querySelector('#email-label').value;
-      contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
-      contactInfoCache.countryNumber = document.querySelector('#country-code').innerHTML;
-      if(contactInfoCache.firstName==""){
-        jAlert('请输入姓!', '提示');
-        return;
-      }
-      if(contactInfoCache.lastName==""){
-        jAlert('请输入名!', '提示');
-        return;
-      }
-
-      if(contactInfoCache.email==""){
-        jAlert('请输入邮箱!', '提示');
-        return;
-      }
-      if(contactInfoCache.email==""){
-        jAlert('请输入邮箱!', '提示');
-        return;
-      }else if(!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)){
-        jAlert('请输入正确格式邮箱!', '提示');
-        return;
-      }
-      if(contactInfoCache.mobilePhone==""){
-        jAlert('请输入手机号!', '提示');
-        return;
-      }else if(!/^1\d{10}$/.test(contactInfoCache.mobilePhone)){
-        jAlert('请输入正确格式手机号!', '提示');
-        return;
-      }
-      for(var tv in contactInfoCache){
-        contactInfo[tv] = contactInfoCache[tv];
-      }
-      window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
-      postPara.contactDetail =contactInfo;
-      this.fadeHandler("show");
-      this.postPara = postPara;
-      console.log(postPara);
-      that.tAjax("", this.postPara, "3002", 3, function(arg){
-        this.fadeHandler();
-        var that = fOrder,orderResultTip = document.querySelector('.order-result-tip');
-        var arg = arg;
-        if(arg.success&&arg.code==200){
-          var orderResultInfo = {};
-          orderResultInfo['orderTime'] = new Date();
-          orderResultInfo['totalPrice'] = that.curFlightData.totalFareAmountExc;
-          orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
-          orderResultInfo['numofAdult'] = that.postPara['wapOrder']['numofAdult'];
-          orderResultInfo['numofChild'] = that.postPara['wapOrder']['numofChild'];
-          orderResultInfo['routeType'] = that.postPara['wapOrder']['routeType'];
-          orderResultInfo['flightInfo'] = that.curFlightData;
-          orderResultInfo['travellerInfo'] = realPara;
-          orderResultInfo['contactDetail'] = contactInfo;
-          orderResultInfo['bookingID'] = arg['data']['bookingID'];
-          orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
-          that.storageUtil.set('orderResultInfo',orderResultInfo);
-          console.log(orderResultInfo)
-           document.location.href = '../payment/payment.html?bookingRefNo='+orderResultInfo.bookingRefNo+"&type=Flight";
-        }else{
-          if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
-            jConfirm('预订失败,需要重新预订?', '提示', function(status){
-              if(status == true){
-                window.history.go(-2);
-              }
-            }, '确定', '取消');
-          }else if(arg.message.indexOf('过期')>-1){
-            jConfirm('航班信息过期,需要重新预订?', '提示', function(status){
-              if(status == true){
-                window.history.go(-2);
-              }
-            }, '确定','取消');
-          }else{
-            orderResultTip.innerHTML = arg.message;
-            orderResultTip.style.display = 'block';
-            that.timer7 = window.setTimeout(function(){
-              orderResultTip.style.display = 'none';
-              window.clearTimeout(that.timer7);
-              that.timer7 = null;
-            },3000);
+        for (var dd = 0; dd < realPara.length; dd++) {
+          if (realPara[dd].PassengerType == 'ADULT') {
+            tempAdult++;
+          }
+          if (realPara[dd].PassengerType == 'CHILD') {
+            tempChild++;
           }
         }
-      });
+        if (tempAdult != searchInfo.numofAdult || tempChild != searchInfo.numofChild) {
+          jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
+          return;
+        }
+
+        postPara.travellerInfo = realPara;
+
+        if (window['localStorage']['contact_selected']) {
+          contactInfo = JSON.parse(window['localStorage']['contact_selected']);
+        } else {
+          contactInfo = {
+            contactNumber: "",
+            countryNumber: "",
+            email: "",
+            firstName: "",
+            lastName: "",
+            mobilePhone: "",
+            sexCode: "Mr"
+          }
+        }
+        contactInfoCache.firstName = document.querySelector('#first-name').value;
+        contactInfoCache.lastName = document.querySelector('#last-name').value;
+        contactInfoCache.email = document.querySelector('#email-label').value;
+        contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
+        contactInfoCache.countryNumber = document.querySelector('#country-code').innerHTML;
+        if (contactInfoCache.firstName == "") {
+          jAlert('请输入姓!', '提示');
+          return;
+        }
+        if (contactInfoCache.lastName == "") {
+          jAlert('请输入名!', '提示');
+          return;
+        }
+
+        if (contactInfoCache.email == "") {
+          jAlert('请输入邮箱!', '提示');
+          return;
+        }
+        if (contactInfoCache.email == "") {
+          jAlert('请输入邮箱!', '提示');
+          return;
+        } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)) {
+          jAlert('请输入正确格式邮箱!', '提示');
+          return;
+        }
+        if (contactInfoCache.mobilePhone == "") {
+          jAlert('请输入手机号!', '提示');
+          return;
+        } else if (!/^1\d{10}$/.test(contactInfoCache.mobilePhone)) {
+          jAlert('请输入正确格式手机号!', '提示');
+          return;
+        }
+        for (var tv in contactInfoCache) {
+          contactInfo[tv] = contactInfoCache[tv];
+        }
+        window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
+        postPara.contactDetail = contactInfo;
+        this.fadeHandler("show");
+        this.postPara = postPara;
+        console.log(postPara);
+        /* this.postPara = { 成单参数格式
+         "WapOrder": {
+         "SetID": 30000025,
+         "CacheID": 3514054,
+         "CityCodeFrom": "BJS",
+         "CityCodeTo": "SIN",
+         "NumofAdult": "1",
+         "NumofChild": "0",
+         "RouteType": "Return",
+         "CabinClass": "Economy",
+         "SourceType": "H5",
+         "MemberId": "84738"
+         },
+         "TravellerInfo": [{
+         "PassengerType": "ADULT",
+         "Id": 2419,
+         "SexCode": "Ms",
+         "FirstName": "Chang",
+         "LastName": "Liu",
+         "DateOfBirth": "1990-01-09T00:00:00",
+         "email": "undefined",
+         "mobile": "undefined",
+         "CertificateInfo": {
+         "IdType": 1,
+         "IdCountry": "CN",
+         "IdNumber": "111111111111111111",
+         "IdActivatedDate": "2018-01-01T00:00:00"
+         },
+         "BaggageCode": "",
+         "CountryCode": "CN"
+         }],
+         "ContactDetail": {
+         "SexCode": "Ms",
+         "FirstName": "Liu",
+         "LastName": "San",
+         "Email": "11111111111@qq.com",
+         "CountryNumber": "86",
+         "ContactNumber": "5689",
+         "MobilePhone": "11111111111"
+         },
+         "CurrencyCode": "CNY",
+         "TotalPrice": 2377,
+         "track": {"browserType": "", "deviceID": ""}
+         };*/
+        that.tAjax("", this.postPara, "3002", 3, function () {
+          var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
+          var result = arguments[0];
+          that.fadeHandler();
+          if (result.success && result.code == 200) {
+            var orderResultInfo = {};
+            orderResultInfo['orderTime'] = new Date();
+            orderResultInfo['totalPrice'] = that.postPara['totalPrice'];
+            orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
+            orderResultInfo['numofAdult'] = that.postPara['wapOrder']['numofAdult'];
+            orderResultInfo['numofChild'] = that.postPara['wapOrder']['numofChild'];
+            orderResultInfo['routeType'] = that.postPara['wapOrder']['routeType'];
+            orderResultInfo['flightInfo'] = that.curFlightData;
+            orderResultInfo['travellerInfo'] = realPara;
+            orderResultInfo['contactDetail'] = contactInfo;
+            orderResultInfo['bookingID'] = result['data']['bookingID'];
+            orderResultInfo['bookingRefNo'] = result['data']['bookingRefNo'];
+            /* that.storageUtil.set('orderResultInfo',orderResultInfo);*/
+            window.localStorage.setItem('orderResultInfo', JSON.stringify(orderResultInfo));
+            console.log(orderResultInfo)
+            document.location.href = '../payment/payment.html?bookingRefNo=' + orderResultInfo.bookingRefNo + "&type=Flight";
+          } else {
+            if (result.message.indexOf('失败') > -1 && result.message.indexOf('重新') > -1) {
+              jConfirm('预订失败,需要重新预订?', '提示', function (status) {
+                if (status == true) {
+                  window.history.go(-2);
+                }
+              }, '确定', '取消');
+            } else if (result.message.indexOf('过期') > -1) {
+              jConfirm('航班信息过期,需要重新预订?', '提示', function (status) {
+                if (status == true) {
+                  window.history.go(-2);
+                }
+              }, '确定', '取消');
+            } else {
+              orderResultTip.innerHTML = result.message;
+              orderResultTip.style.display = 'block';
+              that.timer7 = window.setTimeout(function () {
+                orderResultTip.style.display = 'none';
+                window.clearTimeout(that.timer7);
+                that.timer7 = null;
+              }, 3000);
+            }
+          }
+        });
+      } else if (target.className == "tot_tips_rmb" || target.className == "money_number" || target.className.indexOf('detail_fare') > -1) {
+        var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
+        priceDetailInfo.style.transition = 'all 400ms ease-in';
+        priceDetailInfo.style.webkitTransition = 'all 400ms linear';
+        tag = that.getCurrentStyle(shadow).display;
+        if (tag == "block") {
+          shadow.style.display = "none";
+          detailFare.className = "detail_fare open";
+          priceDetailInfo.style.bottom = '-126%';
+        } else {
+          shadow.style.display = "block";
+          detailFare.className = "detail_fare open";
+          priceDetailInfo.style.bottom = ".89rem";
+        }
+      }
     });
-
-
-
-/*    that.postObj = {
-        "WapOrder": {
-          "SetID": 30000107,
-          "CacheID": 3013513,
-          "CityCodeFrom": "BJS",
-          "CityCodeTo": "SIN",
-          "NumofAdult": "1",
-          "NumofChild": "0",
-          "RouteType": "Return",
-          "CabinClass": "Economy",
-          "SourceType": "H5"
-        },
-        "TravellerInfo": [{
-          "PassengerType": "ADULT",
-          "Id": 2296,
-          "SexCode": "Mr",
-          "FirstName": "kng",
-          "LastName": "amy",
-          "DateOfBirth": "1990-01-09T00:00:00",
-          "email": "12422532@qq.com",
-          "mobile": "13601107741",
-          "CertificateInfo": {
-            "IdType": 1,
-            "IdCountry": "CN",
-            "IdNumber": "110226199878659090",
-            "IdActivatedDate": "2018-01-01T00:00:00"
-          },
-          "BaggageCode": "",
-          "CountryCode": "CN"
-        }],
-        "ContactDetail": {
-          "SexCode": "Ms",
-          "FirstName": "shen",
-          "LastName": "dongjie",
-          "Email": "vvv@qq.com",
-          "CountryNumber": "86",
-          "ContactNumber": "5689",
-          "MobilePhone": "15123957486"
-        },
-        "CurrencyCode": "CNY",
-        "TotalPrice": 4875,
-        "track": {"browserType": "", "deviceID": ""}
-    };*/
-    this.tAjax("", that.postObj, "3002", 3, function (arg) {
-      console.log(arg)
-
-      /* var that = ticketOrder,orderResultTip = document.querySelector('.order-result-tip');
-       var arg = arg;
-       if(arg.success&&arg.code==200){
-       var orderResultInfo = {};
-       orderResultInfo['orderTime'] = new Date();
-       orderResultInfo['TotalPrice'] = that.reverseInformation['TotalPrice'];
-       orderResultInfo['CurrencyCode'] = that.reverseInformation['CurrencyCode'];
-       orderResultInfo['NumofAdult'] = that.reverseInformation['WapOrder']['NumofAdult'];
-       orderResultInfo['NumofChild'] = that.reverseInformation['WapOrder']['NumofChild'];
-       orderResultInfo['RouteType'] = that.reverseInformation['WapOrder']['RouteType'];
-       orderResultInfo['flightInfo'] = that.orderFlightData;
-       orderResultInfo['TravellerInfo'] = realPara;
-       orderResultInfo['ContactDetail'] = contactInfo;
-       orderResultInfo['bookingID'] = arg['data']['bookingID'];
-       orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
-       that.storageUtil.set('orderResultInfo',orderResultInfo);
-       document.location.href = '../payment/payment.html?bookingRefNo='+orderResultInfo.bookingRefNo+"&type=Flight";
-
-       }*/
-
-
-    });
-
   },
 
   createTags: function () {
@@ -331,11 +440,36 @@ var fOrder = {
     return this;
   },
 
+  priceTags: function () {
+    var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.money_number');
+    tempString1 = $("#template_flight_price").html();
+    outputString1 = ejs.render(tempString1, data);
+    $(".priceDetailInfo").eq(0).html(outputString1);
+    moneyNumber.innerHTML = data.priceTotal;
+    return this;
+  },
+
   innitData: function () {
-    var flightData = {}, storage = window.sessionStorage;
+    var flightData = {}, fIndexInfo = {}, storage = window.sessionStorage, priceTotal = "", priceData = {};
     flightData = JSON.parse(storage.getItem('currentFlight'));
+    fIndexInfo = JSON.parse(storage.getItem("fIndexInfo")).data;
+    priceData.numofAdult = fIndexInfo.numofAdult;
+    priceData.numofChild = fIndexInfo.numofChild;
+    priceData.totalFareAmountADT = flightData.totalFareAmountADT;
+    priceData.totalTaxAmountADT = flightData.totalTaxAmountADT;
+    priceData.totalFareAmountExc = flightData.totalFareAmountExc;
+    if (flightData.totalFareAmountCHD) {
+      priceData.totalFareAmountCHD = flightData.totalFareAmountCHD;
+      priceData.totalTaxAmountCHD = flightData.totalTaxAmountCHD;
+      priceData.totalFareAmountExc = Number(flightData.totalFareAmountCHD) + Number(flightData.totalTaxAmountCHD);
+      priceData.priceTotal = flightData.totalFareAmountExc * Number(fIndexInfo.numofAdult) + (flightData.totalFareAmountCHD + flightData.totalTaxAmountCHD) * Number(fIndexInfo.numofChild);
+    } else {
+      priceData.priceTotal = flightData.totalFareAmountExc * Number(fIndexInfo.numofAdult)
+    }
     this.curFlightData = flightData;
-    this.createTags(flightData);
+    this.fIndexInfo = fIndexInfo;
+    this.priceData = priceData;
+    this.createTags(flightData).priceTags(priceData);
     return this;
   },
 

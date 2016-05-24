@@ -913,11 +913,11 @@
   font-size: .28rem;
   position: fixed;
   background-color: #fff;
-  height: .98rem;
-  line-height: .98rem;
+  height: .89rem;
+  line-height: .89rem;
   bottom: 0;
   border-top: 1px solid #dedede;
-  z-index: 105;
+  z-index: 105
 }
 .preserve {
   display: inline-block;
