@@ -7,6 +7,8 @@
   var globalType = "";
   var returnType = "";
   var returnAttr = "";
+  var returnStrType = "";
+  var returnStrAttr = "";
   var config = {
     HistoryData:{},
     HotCityListData:{},
@@ -905,6 +907,27 @@
   var dataCityExec = function(){
     var cityexec = {
       /**
+       *
+       * @param data
+         */
+      pub_Exec:function(data){
+        if(data.returnAttr!=""){
+          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
+        }else{
+          $(data.returnType).attr("data-code",data.cityCode);
+        }
+
+        if(data.returnStrType != ""){
+          if(data.returnStrAttr != ""){
+            $(data.returnStrType).attr(""+data.returnStrAttr+"",data.cityName);
+          }else{
+            $(data.returnStrType).html(data.cityName);
+          }
+        }else{
+          $(data.returnType).html(data.cityName);
+        }
+      },
+      /**
        * 景
        * @param data
        * @returns {Array}
@@ -921,17 +944,20 @@
         window.location.href = "/tour/scenic_list.html?DestCityCode="+data.cityCode;
       },
       /**
-       * 景
+       * 机+酒+景
        * @param data
        * @returns {Array}
        */
       hft_oriExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
+      },
+      /**
+       * 机+酒+景
+       * @param data
+       * @returns {Array}
+       */
+      hft_desExec:function(data){
+        cityexec.pub_Exec(data);
       },
       /**
        * 机票 国内 去程
@@ -939,12 +965,7 @@
        * @returns {Array}
        */
       f_inoriExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
       },
       /**
        * 机票 国内 返程
@@ -952,12 +973,7 @@
        * @returns {Array}
        */
       f_indesExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
       },
       /**
        * 机票 国际 去程
@@ -965,12 +981,7 @@
        * @returns {Array}
        */
       f_outoriExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
       },
       /**
        * 机票 国际 返程
@@ -978,8 +989,7 @@
        * @returns {Array}
        */
       f_outdesExec:function(data){
-        $(data.returnType).attr("data-code",data.cityCode);
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
       },
       /**
        * 酒 国内
@@ -987,12 +997,9 @@
        * @returns {Array}
        */
       h_inExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+
+        cityexec.pub_Exec(data);
+
       },
       /**
        * 酒 国际
@@ -1000,51 +1007,23 @@
        * @returns {Array}
        */
       h_outExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
       },
       /**
-       * 景
-       * @param data
-       * @returns {Array}
-       */
-      hft_desExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
-      },
-      /**
-       * 景
+       * 机+酒
        * @param data
        * @returns {Array}
        */
       hf_oriExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
       },
       /**
-       * 景
+       * 机+酒
        * @param data
        * @returns {Array}
        */
       hf_desExec:function(data){
-        if(data.returnAttr!=""){
-          $(data.returnType).attr(""+data.returnAttr+"",data.cityCode);
-        }else{
-          $(data.returnType).attr("data-code",data.cityCode);
-        }
-        $(data.returnType).html(data.cityName);
+        cityexec.pub_Exec(data);
       }
 
     }
@@ -1116,6 +1095,8 @@
       globalType = data.data;
       returnType = data.returnId;
       returnAttr = data.returnAttr || "";
+      returnStrType = data.returnStrId || "";
+      returnStrAttr = data.returnStrVal || "";
       show1 = 0;
       show2 = 0;
       $("#preloader").show();
@@ -1553,6 +1534,8 @@
             var cityCode = this.getAttribute("data-code");
             cityData.returnType = returnType;
             cityData.returnAttr = returnAttr;
+            cityData.returnStrType = returnStrType;
+            cityData.returnStrAttr = returnStrAttr;
             cityData.cityName = cityName;
             cityData.cityCode = cityCode;
             Method["setcityboxHistory"](this,cityCode,cityName);
@@ -1666,6 +1649,8 @@
               var cityCode = this.getAttribute("data-code");
               cityData.returnType = returnType;
               cityData.returnAttr = returnAttr;
+              cityData.returnStrType = returnStrType;
+              cityData.returnStrAttr = returnStrAttr;
               cityData.cityName = cityName;
               cityData.cityCode = cityCode;
               Method["setcityboxHistory"](this,cityCode,cityName);
@@ -1712,6 +1697,8 @@
           var cityCode = this.getAttribute("data-code");
           cityData.returnType = returnType;
           cityData.returnAttr = returnAttr;
+          cityData.returnStrType = returnStrType;
+          cityData.returnStrAttr = returnStrAttr;
           cityData.cityName = cityName;
           cityData.cityCode = cityCode;
           Method["setcityboxHistory"](this,cityCode,cityName);
@@ -1766,6 +1753,8 @@
           var cityCode = this.getAttribute("data-code");
           cityData.returnType = returnType;
           cityData.returnAttr = returnAttr;
+          cityData.returnStrType = returnStrType;
+          cityData.returnStrAttr = returnStrAttr;
           cityData.cityName = cityName;
           cityData.cityCode = cityCode;
           Method["setcityboxHistory"](this,cityCode,cityName);
