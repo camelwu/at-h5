@@ -139,7 +139,7 @@
                 <dt>{%=hotelDetails.hotleName%}</dt>
                 <dd><span>{%=hotelDetails.checkInDate.substring(0,10)%}</span> - <span>{%=hotelDetails.checkoutDate.substring(0,10)%}</span>
                     共<span>{%=hotelDetails.dayNum%}</span>晚（当地时间为准）</dd>
-                <dd>房型：<span>{%=hotelDetails.roomDetials.roomName%}</span> 房间数：<span>{%=hotelDetails.roomDetials.numRoom%}</span>间</dd>
+                <dd>房型：<span>{%=hotelDetails.roomDetails.roomName%}</span> 房间数：<span>{%=hotelDetails.roomDetails.numRoom%}</span>间</dd>
             </dl>
         </div>
         <div class="jpay-c jpay-c41">
@@ -302,16 +302,16 @@
             <div>费用明细</div>
         </li>
         <li>
-            <div>成人×{%=hotelDetails.roomDetials.totalAdult%}</div>
-            <div>￥{%=hotelDetails.roomDetials.unitAdultPrice%}</div>
+            <div>成人×{%=hotelDetails.roomDetails.totalAdult%}</div>
+            <div>￥{%=hotelDetails.roomDetails.unitAdultPrice%}</div>
         </li>
         <li>
-            <div>儿童×{%=hotelDetails.roomDetials.totalChild%}</div>
-            <div>￥{%=hotelDetails.roomDetials.unitChildPrice%}</div>
+            <div>儿童×{%=hotelDetails.roomDetails.totalChild%}</div>
+            <div>￥{%=hotelDetails.roomDetails.unitChildPrice%}</div>
         </li>
         <li>
             <div>总价</div>
-            <div>￥{%=hotelDetails.roomDetials.totalAdultPrice%}</div>
+            <div>￥{%=hotelDetails.roomDetails.totalAdultPrice%}</div>
         </li>
     </ul>
 </div>
@@ -337,7 +337,7 @@
             "Parameters":{"BookingRefNo":bookingRefNo},
             "Code":"50100007",
             "ForeEndType":3};
-        vlm.loadJson("http://10.6.11.21:1337/api/GetServiceApiResult",JSON.stringify(Parameters), function(data){
+        vlm.loadJson("",JSON.stringify(Parameters), function(data){
             if(data.success) {
                 vlm.init();
                 console.log(data.data)

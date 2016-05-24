@@ -14,9 +14,9 @@
   <meta name="Keywords" content="亚洲旅行网">
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>订单详情</title>
-  <link href="../styles/reset.css" rel="stylesheet" />
-  <link href="../styles/tips.css" rel="stylesheet" />
-  <link href="css/hft_order.css" rel="stylesheet" />
+  <link href="../styles/reset.css" rel="stylesheet"/>
+  <link href="../styles/tips.css" rel="stylesheet"/>
+  <link href="css/order_detail.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="preloader">
@@ -29,6 +29,7 @@
     <a href="javascript:window.history.go(-1);" class="header_back">
       <i class="icon_back"></i>
     </a>
+
     <h3>订单详情</h3>
     <a href="javascript:;" class="tel_tip"></a>
   </div>
@@ -46,6 +47,7 @@
 <div class="country-cho-wrap">
   <div class="header">
     <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
+
     <div class="cl_search">
       <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
       <i></i>
@@ -62,9 +64,10 @@
   </div>
 </div>
 <!--国籍选择结束-->
-<!--模板-->
-<script id="tpl_page" type="text/template">
-  <p class="hft_paid"><% if (isContinuePay==1) {%>  待支付 <% }else{ %> 已支付 <%}%> </p>
+
+<!--机酒景模板-->
+<script id="tpl_fht" type="text/template">
+  <p class="hft_paid"><% if (isContinuePay==1) {%> 待支付 <% }else{ %> 已支付 <%}%> </p>
   <!--机票-->
   <section id="flight">
     <div class="flight_section">
@@ -147,6 +150,7 @@
         <% tours.forEach(function(info){%>
         <li>
           <p class="mb_ten"><%=info.tourName%></p>
+
           <p><%=vlm.Utils.format_date(info.travelDate,"md")%> </p>
         </li>
         <%})%>
@@ -160,7 +164,8 @@
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
         <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
-        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHis")%></span></li>
+        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createdTime,"YmdHis")%></span>
+        </li>
       </ul>
     </div>
     <div class="fht_order_detail">
@@ -169,17 +174,19 @@
         <% if(travelers.length>0){ %>
         <% travelers.forEach(function(info){%>
         <li>
-          <p class="clearfix"><span class="fl"></span>登记人1<span class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
-          <p class="clearfix"> <span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
+          <p class="clearfix"><span class="fl"></span>登记人1<span
+            class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+
+          <p class="clearfix"><span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
         </li>
         <%})%>
         <% } %>
       </ul>
       <ul class="order_cont_way">
-        <li  class="clearfix">
+        <li class="clearfix">
           <span class="fl"></span>联系电话<span class="fr"><%=contactNumber%></span>
         </li>
-        <li  class="clearfix">
+        <li class="clearfix">
           <span class="fl"></span>邮箱<span class="fr"><%=email%>.com</span>
         </li>
       </ul>
@@ -192,21 +199,529 @@
         <span class="fr fare_tip"></span>
       </div>
       <ul class="hft_pri_details">
-        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>*<%=hotelDetails.roomDetails.totalAdult%> </span></li>
-        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>*<%=hotelDetails.roomDetails.totalChild%> </span></li>
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>*<%=hotelDetails.roomDetails.totalAdult%> </span>
+        </li>
+        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>*<%=hotelDetails.roomDetails.totalChild%> </span>
+        </li>
       </ul>
     </div>
   </section>
 
 </script>
+
+
+<!--机酒模板-->
+<script id="tpl_fh" type="text/template">
+  <p class="hft_paid"><% if (isContinuePay==1) {%> 待支付 <% }else{ %> 已支付 <%}%> </p>
+  <!--机票-->
+  <section id="flight">
+    <div class="flight_section">
+      <div class="fht_hd clearfix">
+        <span class="fht_hd_tit fl"><i></i>机票</span>
+        <span class="fht_hd_det fr">详情<i></i></span>
+      </div>
+      <ul class="flight_cir_wrap">
+
+        <li class="fli_cont clearfix">
+          <div class="fli_cir_left fl">
+            <i class="go_tip"></i>
+            <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%></span>
+            <span><%=vlm.Utils.getWeek(flightInfo.flightLeaveStartDate)%></span>
+            <span><%=flightInfo.cityNameFrom%>-<%=flightInfo.cityNameTo%></span>
+          </div>
+          <div class="fli_cir_right fr">
+            <i></i>
+            <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
+          </div>
+        </li>
+
+        <li class="fli_cont clearfix">
+          <div class="fli_cir_left fl">
+            <i class="back_tip"></i>
+            <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%></span>
+            <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
+            <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
+          </div>
+          <div class="fli_cir_right fr">
+            <i></i>
+            <span><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
+          </div>
+        </li>
+        <li class="cabin_level">
+          <% if(flightInfo.cabinClass == 0) { %>
+          <span><%='经济舱'%></span>
+          <% }else if(flightInfo.cabinClass == 1){ %>
+          <span><%='头等舱'%></span>
+          <% }else if(flightInfo.cabinClass == 2){ %>
+          <span><%='商务舱'%></span>
+          <% }else if(flightInfo.cabinClass == 3){ %>
+          <span><%='超级经济舱'%></span>
+          <% } %>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <!--酒店-->
+  <section id="hotel">
+    <div class="hotel_section">
+      <div class="fht_hd clearfix">
+        <span class="fht_hd_tit hotel fl"><i></i>酒店</span>
+      </div>
+      <div class="hotel_wrap">
+        <h3><%=hotelDetails.hotelName%></h3>
+        <ul>
+          <li class="hotel_check_wrap">
+            <span><%=vlm.Utils.format_date(hotelDetails.checkInDate,"md")%>-<%=vlm.Utils.format_date(hotelDetails.checkoutDate,"md")%></span>
+            <span>共1晚（当地时间为准）</span>
+          </li>
+          <li class="hotel_room_det">
+            <span>房型：<%=hotelDetails.roomDetails.roomName%></span>
+            <span>房间数：<%=hotelDetails.roomDetails.numRoom%>间</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+  <section id="tpl_order_detail">
+    <div class="fht_order_detail">
+      <div class="fht_hd">订单信息</div>
+      <ul class="fht_order_tab">
+        <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
+        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHis")%></span>
+        </li>
+      </ul>
+    </div>
+    <div class="fht_order_detail">
+      <div class="fht_hd">出行人信息</div>
+      <ul class="fht_order_tab">
+        <% if(travelers.length>0){ %>
+        <% travelers.forEach(function(info){%>
+        <li>
+          <p class="clearfix"><span class="fl"></span>登记人1<span
+            class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+
+          <p class="clearfix"><span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
+        </li>
+        <%})%>
+        <% } %>
+      </ul>
+      <ul class="order_cont_way">
+        <li class="clearfix">
+          <span class="fl"></span>联系电话<span class="fr"><%=contactNumber%></span>
+        </li>
+        <li class="clearfix">
+          <span class="fl"></span>邮箱<span class="fr"><%=email%>.com</span>
+        </li>
+      </ul>
+    </div>
+    <!--订单总额-->
+    <div class="order_tot_price">
+      <div class="fht_hd">订单总额</div>
+      <div class="tot_prinum_wrap clearfix">
+        <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalFlightPrice%></i></span>
+        <span class="fr fare_tip"></span>
+      </div>
+      <ul class="hft_pri_details">
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>*<%=hotelDetails.roomDetails.totalAdult%> </span>
+        </li>
+        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>*<%=hotelDetails.roomDetails.totalChild%> </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</script>
+
+<!--酒店模板-->
+<script id="tpl_h" type="text/template">
+
+  <section id="order-status">
+
+    <% if(orderStatus==0){ %>
+    <div class="sure1">订单已提交</div>
+    <div class="sure2">
+      <div class="sure21">
+        <div class="tenor">
+          <div class="q1">
+            <div class="q2">
+              <div class="q11"><p>提交订单</p></div>
+              <div class="q22"></div>
+            </div>
+            <div class="q2">
+              <div class="q12"><p>支付订单</p></div>
+              <div class="q23"></div>
+            </div>
+            <div class="q2">
+              <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q23"></div>
+              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% } else if (orderStatus==1) { %>
+    <div class="sure1">订单已支付</div>
+    <div class="sure2">
+      <div class="sure21">
+        <div class="tenor">
+          <div class="q1">
+            <div class="q2">
+              <div class="q11"><p>提交订单</p></div>
+              <div class="q22"></div>
+            </div>
+            <div class="q2">
+              <div class="q11"><p>支付订单</p></div>
+              <div class="q23"></div>
+            </div>
+            <div class="q2">
+              <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q23"></div>
+              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } else if (orderStatus==2) { %>
+    <div class="sure1">已入住</div>
+    <div class="sure2">
+      <div class="sure21">
+        <div class="tenor">
+          <div class="q1">
+            <div class="q2">
+              <div class="q11"><p>提交订单</p></div>
+              <div class="q22"></div>
+            </div>
+            <div class="q2">
+              <div class="q11"><p>支付订单</p></div>
+              <div class="q22"></div>
+            </div>
+            <div class="q2">
+              <div class="q11"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q23"></div>
+              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } else if (orderStatus==3) { %>
+    <div class="sure1">已离店</div>
+    <div class="sure2">
+      <div class="sure21">
+        <div class="tenor">
+          <div class="q1">
+            <div class="q2">
+              <div class="q11"><p>提交订单</p></div>
+              <div class="q22"></div>
+            </div>
+            <div class="q2">
+              <div class="q11"><p>支付订单</p></div>
+              <div class="q22"></div>
+            </div>
+            <div class="q2">
+              <div class="q11"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q22"></div>
+              <div class="q112"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } else if (orderStatus==4) { %>
+    <div class="sure1">已取消</div>
+    <div class="sure2">
+      <div class="sure21">
+        <div class="tenor">
+          <div class="q1">
+            <div class="q2">
+              <div class="q12"><p>提交订单</p></div>
+              <div class="q23"></div>
+            </div>
+            <div class="q2">
+              <div class="q12"><p>支付订单</p></div>
+              <div class="q23"></div>
+            </div>
+            <div class="q2">
+              <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q23"></div>
+              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <!--<ul class="order-status-header">-->
+    <!--<li><p class="hft_paid"><% if (orderStatus==0) {%>  待支付 <% }else{ %> 已支付 <%}%> </p></li>-->
+    <!--<li>-->
+    <!--<div class="sure21">-->
+    <!--<div class="tenor">-->
+    <!--<div class="q1">-->
+    <!--<div class="q2">-->
+    <!--<div class="q11"><p>提交订单</p></div>-->
+    <!--<div class="q22"></div>-->
+    <!--</div>-->
+    <!--<div class="q2">-->
+    <!--<div class="q12"><p>支付订单</p></div>-->
+    <!--<div class="q23"></div>-->
+    <!--</div>-->
+    <!--<div class="q2">-->
+    <!--<div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>-->
+    <!--<div class="q23"></div>-->
+    <!--<div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</ul>-->
+  </section>
+  <!--酒店-->
+  <section id="hotel">
+    <div class="hotel_section">
+      <!--<div class="fht_hd clearfix">-->
+      <!--<span class="fht_hd_tit hotel fl"><i></i>酒店</span>-->
+      <!--</div>-->
+      <div class="hotel_wrap">
+        <h3><%=hotelName%></h3>
+        <ul>
+          <li class="hotel_check_wrap">
+            <span><%=vlm.Utils.format_date(checkInDate,"md")%>-<%=vlm.Utils.format_date(checkOutDate,"md")%></span>
+            <span>共1晚（当地时间为准）</span>
+          </li>
+          <li class="hotel_room_det">
+            <span>房型：<%=roomType%></span>
+            <span>房间数：<%=noOfRooms%>间</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="tpl_order_detail">
+    <div class="fht_order_detail">
+      <div class="fht_hd">订单信息</div>
+      <ul class="fht_order_tab">
+        <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingReferenceNo%></span></li>
+        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createdTime,"YmdHis")%></span>
+        </li>
+      </ul>
+    </div>
+    <div class="fht_order_detail">
+      <div class="fht_hd">入住人信息</div>
+      <ul class="fht_order_tab">
+        <% if(guestNameList.length>0){ %>
+        <% guestNameList.forEach(function(info){%>
+        <li>
+          <p class="clearfix"><span class="fl"></span>房间人1入住人<span class="fr"><%=info.guestFirstName%>/<%=info.guestLastName%></span>
+          </p>
+        </li>
+        <%})%>
+        <% } %>
+      </ul>
+      <ul class="order_cont_way">
+        <li class="clearfix">
+          <span class="fl"></span>联系电话<span class="fr"><%=guestContactNo%></span>
+        </li>
+        <li class="clearfix">
+          <span class="fl"></span>邮箱<span class="fr"><%=guestEmail%>.com</span>
+        </li>
+      </ul>
+    </div>
+    <!--订单总额-->
+    <div class="order_tot_price">
+      <div class="fht_hd">订单总额</div>
+      <div class="tot_prinum_wrap clearfix">
+        <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalRoomRate%></i></span>
+        <span class="fr fare_tip"></span>
+      </div>
+      <ul class="hft_pri_details">
+        <li class="clearfix"><span class="fl">房费</span><span class="fr">¥<%=totalSeriveCharge%> </span></li>
+        <li class="clearfix"><span class="fl">税和服务费</span><span class="fr">¥<%=totalTaxCharge%></span></li>
+        <li class="clearfix"><span class="fl">付款方式：</span><span class="fr1">预付</span></li>
+      </ul>
+    </div>
+  </section>
+  <% if(orderStatus==1 ){ %>
+  <div class="p-but cancelOrder"><a href="#">取消订单</a></div>
+  <% } else if(orderStatus==0){ %>
+  <div class="p-but payOrder"><a href="payment.html?bookingRefNo=<%=bookingReferenceNo%>&type=Hotle">支付订单</a></div>
+  <% } %>
+</script>
+
+<!--机票模板-->
+<script id="tpl_f" type="text/template">
+
+  <% if (isContinuePay==1) {%>
+  <section id="flight-status">
+    <ul class="fli-status">
+      <li><span>待支付</span></li>
+      <li><span>请在</span><span class="lasttime"><%=vlm.Utils.get30Minutes(createTime)%></span>之前完成支付</li>
+    </ul>
+  </section>
+  <% }else{ %>
+  <p class="hft_paid">已支付</p>
+  <%}%>
+  <!--机票-->
+  <section id="flight" style="clear: both">
+    <div class="flight_section">
+      <ul class="flight_cir_wrap flight_cir_wrap1">
+        <% if(flightInfo.segmentsLeave.length>=1) {%>
+            <!--去程-->
+            <li class="fli_cont fli_cont1">
+              <div class="fli_infp">
+                <div class="fli_cir_left">
+                  <i class="go_tip"></i>
+                  <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%></span>
+                  <span><%=vlm.Utils.getWeek(flightInfo.flightLeaveStartDate)%></span>
+                  <span><%=flightInfo.cityNameFrom%>-<%=flightInfo.cityNameTo%></span>
+                </div>
+                <div class="fli_cir_right">
+                  <i></i>
+                  <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
+                </div>
+              </div>
+              <% for(var i=0; i<flightInfo.segmentsLeave.length; i++){ %>
+              <div class="fli_list">
+                <div class="time-arrow-time" style="overflow: hidden">
+                  <div class="city-time-left">
+                    <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsLeave[i].departDate,'hm')%></div>
+                    <p class="port-name"><%=flightInfo.segmentsLeave[i].airportNameFrom%><%=flightInfo.segmentsLeave[i].termDepart%></p>
+                  </div>
+                  <div class="time-arrow">
+                    <div class="icon-arrow"><span></span></div>
+                  </div>
+                  <div class="city-time-right">
+                    <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsLeave[i].arriveDate,'hm')%></div>
+                    <p class="port-name"><%=flightInfo.segmentsLeave[i].airportNameTo%><%=flightInfo.segmentsLeave[i].termArrive%></p>
+                  </div>
+                </div>
+                <div class="fli_info ">
+                  <span><%=flightInfo.segmentsLeave[i].airCorpName%></span><span>|</span><span><%=flightInfo.segmentsLeave[i].airCorpCode%><%=flightInfo.segmentsLeave[i].flightNo%></span><span>|</span><span><%=flightInfo.segmentsLeave[i].planeName%><span></span></span>
+                </div>
+              </div>
+              <% if(flightInfo.segmentsLeave.length>=2 &&  i<flightInfo.segmentsLeave.length-1) {%>
+                  <div class="fli-stop">中转<%=flightInfo.segmentsLeave[i].cityNameTo%></div>
+              <% } %>
+            </li>
+          <% } %>
+        <% } %>
+
+        <% if( flightInfo.segmentsReturn  &&flightInfo.segmentsReturn.length>=1) {%>
+
+              <!--返程-->
+              <li class="fli_cont fli_cont1 fli_retrun">
+                <div class="fli_infp">
+                  <div class="fli_cir_left">
+                    <i class="back_tip"></i>
+                    <span class="order-ml"><%=vlm.Utils.format_date(flightInfo.flightReturnStartDate)%></span>
+                    <span><%=vlm.Utils.getWeek(flightInfo.flightReturnStartDate)%></span>
+                    <span><%=flightInfo.cityNameTo%>-<%=flightInfo.cityNameFrom%></span>
+                  </div>
+                  <div class="fli_cir_right">
+                    <i></i>
+                    <span><%=flightInfo.segmentsReturnTotalTravelTimeString%></span>
+                  </div>
+                </div>
+                <% for(var i=0; i<flightInfo.segmentsReturn.length; i++){ %>
+                <div class="fli_list">
+                    <div class="time-arrow-time" style="overflow: hidden">
+                      <div class="city-time-left">
+                        <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].departDate,'hm')%></div>
+                        <p class="port-name"><%=flightInfo.segmentsReturn[i].airportNameFrom%><%=flightInfo.segmentsReturn[i].termDepart%></p>
+                      </div>
+                      <div class="time-arrow">                             <!--<h6>2h3m</h6>-->
+                        <div class="icon-arrow"></div>
+                      </div>
+                      <div class="city-time-right">
+                        <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].arriveDate,'hm')%></div>
+                        <p class="port-name"><%=flightInfo.segmentsReturn[i].airportNameTo%><%=flightInfo.segmentsReturn[i].termArrive%></p>
+                      </div>
+                    </div>
+                    <div class="fli_info">
+                      <span><%=flightInfo.segmentsReturn[i].airCorpName%></span><span>|</span><span><%=flightInfo.segmentsReturn[i].airCorpCode%><%=flightInfo.segmentsReturn[i].flightNo%></span><span>|</span><span><%=flightInfo.segmentsReturn[i].planeName%><span></span></span>
+                    </div>
+                </div>
+                <% if(flightInfo.segmentsReturn.length>=2 &&  i<flightInfo.segmentsReturn.length-1) {%>
+                <div class="fli-stop">中转<%=flightInfo.segmentsReturn[i].cityNameTo%></div>
+                <% } %>
+                <% } %>
+              </li>
+
+        <% } %>
+      </ul>
+    </div>
+
+  </section>
+
+  <section id="tpl_order_detail">
+    <div class="fht_order_detail">
+      <div class="fht_hd">订单信息</div>
+      <ul class="fht_order_tab">
+        <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
+        <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(createTime,"YmdHis")%></span>
+        </li>
+      </ul>
+    </div>
+    <div class="fht_order_detail">
+      <div class="fht_hd">出行人信息</div>
+      <ul class="fht_order_tab">
+        <% if(travelers.length>0){  var i=1;%>
+        <% travelers.forEach(function(info){%>
+        <li>
+          <p class="clearfix"><span class="fl"></span>登机人<%=i%><span
+            class="fr"><%=info.travelerName%>/<%=info.lastName%></span></p>
+          <p class="clearfix"><span class="fl"></span>护照<span class="fr"><%=info.idNumber%></span></p>
+          <% i++ %>
+        </li>
+        <%})%>
+        <% } %>
+      </ul>
+      <ul class="order_cont_way">
+        <li class="clearfix">
+          <span class="fl"></span>联系电话<span class="fr"><%=contactNumber%></span>
+        </li>
+        <li class="clearfix">
+          <span class="fl"></span>邮箱<span class="fr"><%=email%>.com</span>
+        </li>
+      </ul>
+    </div>
+    <!--订单总额-->
+    <div class="order_tot_price">
+      <div class="fht_hd">订单总额</div>
+      <div class="tot_prinum_wrap clearfix">
+        <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalFlightPrice%></i></span>
+        <span class="fr fare_tip"></span>
+      </div>
+      <ul class="hft_pri_details">
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=flightInfo.totalFareAmountADT%>×<%=numofAdult%> </span></li>
+        <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountADT%>×<%=numofAdult%> </span></li>
+        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=flightInfo.totalFareAmountCHD%>×<%=numofChild%> </span>
+        <li class="clearfix"><span class="fl">税费</span><span class="fr">¥<%=flightInfo.totalTaxAmountCHD%>×<%=numofChild%> </span></li>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <% if (isContinuePay==1) {%>
+      <div class="p-but payOrder">
+        <a href="payment.html?bookingRefNo=<%=bookingRefNo%>&type=Flight">支付订单</a>
+      </div>
+  <% } %>
+
+</script>
+
 <script src="../js/require.js" data-main="../js/main"></script>
 <script type="application/javascript">
-  require(['../payment/js/order_detail'], function (pager){
+  require(['../payment/js/order_detail'], function (pager) {
     pager.init();
   });
 </script>
-
-
 
 
 </body>
