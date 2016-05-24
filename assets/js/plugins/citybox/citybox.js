@@ -3,7 +3,7 @@
  */
 (function () {
   var webkit = this || (0, eval)('this');
-  var show1 = 0,show2 = 0,scrollTopPx = 44;
+  var show1 = 0,show2 = 0,scrollTopPx = 0.88+"rem";
   var globalType = "";
   var returnType = "";
   var config = {
@@ -80,7 +80,7 @@
       t_des:function(){
         var t_HotCityListData = { "Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0096"};
         var t_DesCityListData = {"Parameters": {"SubProduct": "All"}, "ForeEndType": 3,"Code":"0086"};
-        vlm.loadJson("",JSON.stringify(t_HotCityListData),Method["t_desHotCityListDataDataCallback"]);
+        vlm.loadJson("",JSON.stringify(t_HotCityListData),Method["t_desHotCityListDataCallback"]);
         vlm.loadJson("",JSON.stringify(t_DesCityListData),Method["t_desCityListDataCallback"]);
       },
       /**
@@ -129,6 +129,24 @@
         var f_outdesCityListData = {"success": true, "message": "", "data":internationalCities};
         vlm.loadJson("",JSON.stringify(f_outdesHotCityListData),Method["f_outdesHotCityListDataCallback"]);
         Method["f_outdesCityListDataCallback"](f_outdesCityListData);
+      },
+      /**
+       * 酒 国内 通信
+       */
+      h_in:function(){
+        var h_inHotCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100013"};
+        var h_inCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100014"};
+        vlm.loadJson("",JSON.stringify(h_inHotCityListData),Method["h_inHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(h_inCityListData),Method["h_inCityListDataCallback"]);
+      },
+      /**
+       * 酒 国际 通信
+       */
+      h_out:function(){
+        var h_outHotCityListData ={"Parameters":"","ForeEndType":3,"Code":"10100012"};
+        var h_outCityListData = {"Parameters":"","ForeEndType":3,"Code":"10100014"};
+        vlm.loadJson("",JSON.stringify(h_outHotCityListData),Method["h_outHotCityListDataCallback"]);
+        vlm.loadJson("",JSON.stringify(h_outCityListData),Method["h_outCityListDataCallback"]);
       }
     }
 
@@ -515,6 +533,101 @@
           newObj.push(obj);
         }
         return newObj;
+      },
+      /**
+       * 酒 国内 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      h_inHotCity:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityChineseName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryChineseName || "",
+            fullSpellingName : data[i].fullSpellingName || ""
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 酒 国内 城市列表 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      h_inCityList:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          if(data[i].countryISOCode.toLowerCase() == "cn"){
+            obj = {
+              cityCode : data[i].cityCode || "",
+              cityName : data[i].cityNameCN || "",
+              countryCode : data[i].countryISOCode || "",
+              countryName : data[i].countryName || "",
+              fullSpellingName : data[i].pingYin || "",
+              shortSpellingName : data[i].acronym  || "",
+              cityNameEn : data[i].cityNameEN  || ""
+            };
+            newObj.push(obj);
+          }
+
+        }
+
+        return newObj;
+      },
+      /**
+       * 酒 国际 热门城市 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      h_outHotCity:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          obj = {
+            cityCode : data[i].cityCode || "",
+            cityName : data[i].cityChineseName || "",
+            countryCode : data[i].countryCode || "",
+            countryName : data[i].countryChineseName || "",
+            fullSpellingName : data[i].fullSpellingName || ""
+
+          };
+          newObj.push(obj);
+        }
+        return newObj;
+      },
+      /**
+       * 酒 国际 城市列表 数据转化
+       * @param data
+       * @returns {Array}
+       */
+      h_outCityList:function(data){
+        //data数据处理转化
+        var obj = {};
+        var newObj = [];
+        for(var i = 0;i < data.length;i++){
+          if(data[i].countryISOCode.toLowerCase() != "cn"){
+            obj = {
+              cityCode : data[i].cityCode || "",
+              cityName : data[i].cityNameCN || "",
+              countryCode : data[i].countryISOCode || "",
+              countryName : data[i].countryName || "",
+              fullSpellingName : data[i].pingYin || "",
+              shortSpellingName : data[i].acronym  || "",
+              cityNameEn : data[i].cityNameEN  || ""
+            };
+            newObj.push(obj);
+          }
+        }
+        return newObj;
       }
     }
 
@@ -641,6 +754,42 @@
        * @returns {string}
        */
       f_outdesSearchSuggest:function(dom,data,i){
+        var cityCode = data[i].cityCode.toLowerCase();
+        var cityName = data[i].cityName.toLowerCase();
+        //var countryCode = data[i].countryCode.toLowerCase();
+        var countryName = data[i].countryName.toLowerCase();
+        var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+        var shortSpellingName = data[i].shortSpellingName.toLowerCase();
+        var cityNameEn = data[i].cityNameEn.toLowerCase();
+        var searchVal  = cityCode+cityName+countryName+fullSpellingName+shortSpellingName+cityNameEn;
+        return searchVal;
+      },
+      /**
+       * 酒 国内 城市搜索
+       * @param dom
+       * @param data
+       * @param i
+       * @returns {string}
+       */
+      h_inSearchSuggest:function(dom,data,i){
+        var cityCode = data[i].cityCode.toLowerCase();
+        var cityName = data[i].cityName.toLowerCase();
+        //var countryCode = data[i].countryCode.toLowerCase();
+        var countryName = data[i].countryName.toLowerCase();
+        var fullSpellingName = data[i].fullSpellingName.toLowerCase();
+        var shortSpellingName = data[i].shortSpellingName.toLowerCase();
+        var cityNameEn = data[i].cityNameEn.toLowerCase();
+        var searchVal  = cityCode+cityName+countryName+fullSpellingName+shortSpellingName+cityNameEn;
+        return searchVal;
+      },
+      /**
+       * 酒 国际 城市搜索
+       * @param dom
+       * @param data
+       * @param i
+       * @returns {string}
+       */
+      h_outSearchSuggest:function(dom,data,i){
         var cityCode = data[i].cityCode.toLowerCase();
         var cityName = data[i].cityName.toLowerCase();
         //var countryCode = data[i].countryCode.toLowerCase();
@@ -812,6 +961,24 @@
        * @returns {Array}
        */
       f_outdesExec:function(data){
+        $(data.returnType).attr("data-code",data.cityCode);
+        $(data.returnType).html(data.cityName);
+      },
+      /**
+       * 酒 国内
+       * @param data
+       * @returns {Array}
+       */
+      h_inExec:function(data){
+        $(data.returnType).attr("data-code",data.cityCode);
+        $(data.returnType).html(data.cityName);
+      },
+      /**
+       * 酒 国际
+       * @param data
+       * @returns {Array}
+       */
+      h_outExec:function(data){
         $(data.returnType).attr("data-code",data.cityCode);
         $(data.returnType).html(data.cityName);
       },
@@ -1046,7 +1213,7 @@
      * 景 热门城市
      * @param json
      */
-    t_desHotCityListDataDataCallback:function(json){
+    t_desHotCityListDataCallback:function(json){
       //console.log(json);
       if(json.success){
         show1 = 1;
@@ -1216,6 +1383,65 @@
       if(json.success){
         show2 = 1;
         config["CityListData"]= dataAdapter().callAdapter("f_indesCityList",json.data);
+        VM("citybox_citylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 酒 国内 热门城市
+     * @param json
+     */
+    h_inHotCityListDataCallback:function(json){
+      //console.log(json);
+      if(json.success){
+        show1 = 1;
+        config["HotCityListData"]= dataAdapter().callAdapter("h_inHotCity",json.data);
+        VM("citybox_hotcitylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 酒 国内 城市列表
+     * @param json
+     */
+    h_inCityListDataCallback:function(json){
+      //console.log(json);
+      if(json.success){
+        show2 = 1;
+        config["CityListData"]= dataAdapter().callAdapter("h_inCityList",json.data);
+        VM("citybox_citylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },/**
+     * 酒 国际 热门城市
+     * @param json
+     */
+    h_outHotCityListDataCallback:function(json){
+      //console.log(json);
+      if(json.success){
+        show1 = 1;
+        config["HotCityListData"]= dataAdapter().callAdapter("h_outHotCity",json.data);
+        VM("citybox_hotcitylist");
+        Method["loadingCityBox"]();
+      }else{
+        console.log(json);
+      }
+    },
+    /**
+     * 酒 国际 城市列表
+     * @param json
+     */
+    h_outCityListDataCallback:function(json){
+      //console.log(json);
+      if(json.success){
+        show2 = 1;
+        config["CityListData"]= dataAdapter().callAdapter("h_outCityList",json.data);
         VM("citybox_citylist");
         Method["loadingCityBox"]();
       }else{

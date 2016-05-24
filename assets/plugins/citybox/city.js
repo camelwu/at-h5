@@ -41,4 +41,12 @@
   $("#f_outdes").click(function(){
     VM.Load("f_outdes");
   });
+
+  $("#h_in").click(function(){
+    VM.Load("h_in");
+  });
+
+  $("#h_out").click(function(){
+    VM.Load("h_out");
+  });
 })();
