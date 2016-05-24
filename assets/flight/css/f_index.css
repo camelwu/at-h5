@@ -953,8 +953,20 @@
   height: .2rem;
   transition: 0.3s all ease;
 }
+
+.priceTotal .detail_fare {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: .356rem;
+  background: url(../../images/hotel_flight_tour/arrow-up-orange.png) no-repeat;
+  background-size: .24rem .14rem;
+  width: .32rem;
+  height: .2rem;
+  transition: 0.3s all ease;
+}
+
 .priceTotal .detail_fare.open {
-  margin-top: .48rem;
+  margin-top: .42rem;
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform-origin: 40% 25%;

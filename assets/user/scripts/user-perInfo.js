@@ -7,7 +7,7 @@
   var u_email;
   var u_realname;
   var phoneBflag=false;
-  var r_phone=$('#phone')[0];
+  var r_phone=$('#phone_num')[0];
   var UserSex=localStorage.salutation;
   var phone_verify=$('#phone_ver')[0];
   function u_perInfo(){
@@ -220,26 +220,6 @@
     //绑定新手机号
     function changeInfo_mobile(obj){
       obj.onclick = function(){
-        //input输入内容变色
-        //function changeInputValue(obj,defaultValue){
-        //  alert(obj.val());
-        //  if($(this).val() != defaultValue){
-        //    $(this).css('color','#d1d1d1');
-        //  }else {
-        //    $(this).css('color','#333');
-        //  }
-        //  obj.on('input propertychange focus',function(){
-        //    if($(this).attr('value') == defaultValue){
-        //      $(this).css('color','#d1d1d1');
-        //    }else {
-        //      $(this).css('color','#333');
-        //    }
-        //  })
-        //}
-        //var mob_cell=$('.mob_cell');
-        //var defaultValue='请输入手机号';
-        //changeInputValue(mob_cell,defaultValue);
-
         var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob_cell")[0];
         var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob_code")[0];
         u_phone = oInputMobile.value;
@@ -341,6 +321,7 @@
         };
         console.log(Parameters.Parameters);
         $('#preloader').remove();
+        phone_verify.style.width='2.4rem';
         phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
         timedown_regcy(120);
         vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(Parameters), mycallback_phoneVeri);
@@ -435,7 +416,7 @@
     var name = $("#name")[0];
     var realName = $("#realName")[0];
     var user_email = $("#email")[0];
-    var user_phone = $("#phone")[0];
+    var user_phone = $("#phone_num")[0];
     var sex = $("#sex")[0];
     var userIcon = $("#userIcon")[0];
     var birthCont=$('#birth-cont-per')[0];
@@ -590,16 +571,13 @@
         if(Math.ceil(120- (newtime-lasttime)/1000 ) < 1)
         {
           phone_verify.innerHTML = '发送验证码';
-          phone_verify.style.color = '#ffb413';
           clearInterval(timer);
           phoneBflag=false;
           return;
         }
         phone_verify.innerHTML =Math.ceil(120- (newtime-lasttime)/1000 )+ '秒重新发送';
-        phone_verify.style.color = 'rgb(204,204,204)';
       }else{
         phone_verify.innerHTML =seconds+ '秒重新发送';
-        phone_verify.style.color = 'rgb(204,204,204)';
       }
     },1000);
   }

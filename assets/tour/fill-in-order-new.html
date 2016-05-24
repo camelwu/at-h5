@@ -98,7 +98,7 @@
                 </div>
             </section>
             <!--联系人资料-->
-            <section class="personal_data_box order_data_box order_box2">
+            <section class="personal_data_box order_data_box">
                 <div class="personal_data" id="personal_data">
                     <span class="title"><i>联系人资料</i><b><a href="javascript:;" class="add-contact"></a></b></span>
                     <ul id="contact" class="order_trave">
@@ -127,30 +127,32 @@
                 </div>
             </section>
 			<!--航班信息-->
-            <section class="personal_data_box" id="flight-air">
+            <section class="personal_data_box order_data_box" id="flight-air">
                 <div class="personal_data">
-                    <span class="title"><i>接送服务（选填）</i><i id="send_btn" class="send-impo"></i></span>
+                    <span class="title"><i>接送服务（选填）</i>
+                        <i id="send_btn" class="send-impo send_btn"></i>
+                    </span>
                     <div class="content2" id="content3">
-						<div class="nav2-left">
+						<div class="nav2-left nav2_left">
 							<span class="nav2-lefttop">抵达</span>
 						</div>
                         <div class="input_flight">
                             <input class="checkInDate" name="" value="" placeholder="航班号">
                         </div>
-                        <div class="nav2-center" id="nav2-center-dep">
-                            <div class="nav2-centertop">
+                        <div class="nav2-center nav2_center" id="nav2-center-dep">
+                            <div class="nav2-centertop nav2_centertop">
                                 <input name="CheckInDate" id="content3_CheckInDate" class="content3_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
                             </div>
                         </div>
 					</div>
 					<div class="content2" id="content4">
-						<div class="nav2-left">
+						<div class="nav2-left nav2_left">
 							<span class="nav2-lefttop">离开</span>
 						</div>
                         <div class="input_flight">
                             <input class="" name=""value="" placeholder="航班号">
                         </div>
-                        <div class="nav2-center" id="nav2-center-arr">
+                        <div class="nav2-center nav2_center" id="nav2-center-arr">
                             <div class="nav2-centertop">
                                 <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
                             </div>
@@ -159,9 +161,9 @@
                 </div>
             </section>
 
-            <div class="order-notice" style="display: none;">
-                <i class="order-notice-btn"></i>
-                <span class="order-notice-txt">已经阅读亚洲旅行网<span id="state_btn" style="color: #ffbf4b">旅行须知</span></span>
+            <div class="order-notice order_notice">
+                <i class="order-notice-btn btn"></i>
+                <span class="order-notice-txt txt">已经阅读亚洲旅行网<span id="state_btn" style="color: #ffbf4b">旅行须知</span></span>
             </div>
         </div>
         <!--   底部预订   -->
@@ -300,23 +302,12 @@
         <% if(tourInfos[i].travelDateSpecified){ %>
         <div class="detail_span">游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %> <%= weekday[i] %> <%= noon[i] %></div>
         <% } %>
-        <div class="detail_span">成人票 '+info.adultNum+'张</div>
+        <div class="detail_span">成人票<%= info.adultNum %>张</div>
         <% if(JSON.parse(localStorage.info).childNum != 0){ %>
-        <div class="detail_span">儿童票 '+info.childNum+'张</div>
+        <div class="detail_span">儿童票<%= info.childNum %>张</div>
         <% } %>
     </div>
     <% } %>
 </script>
-<!--<script id="tpl2" type="text/template">-->
-    <!--{% var checkInDate = dateObj.CheckInDate.split("T")[0].split("-");-->
-    <!--var checkOutDate = dateObj.CheckOutDate.split("T")[0].split("-"); %}-->
-    <!--<div class="txt">{%= hotels[0].hotelName %}</div>-->
-    <!--{% for(var i=0;i<hotels[0].rooms.length;i++){ %}-->
-        <!--{% if(hotels[0].rooms[i].roomID=='+roomID+'){ %}-->
-        <!--<div class="detail_span">房型 {%=hotels[0].rooms[i].roomName%}' + info.roomDetails.length+'间</div>-->
-        <!--{% } %}-->
-    <!--{% } %}-->
-    <!--<div class="detail_span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>-->
-<!--</script>-->
 </body>
 </html>

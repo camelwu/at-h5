@@ -464,7 +464,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     function updateTra(e) {
         if($(e.target).parent().attr('class') == 'often_user' || $(e.target).attr('class') == 'user_edits')
         {
-            index=$(e.target).parents('.eve-traveler').attr('index');
+            index=$(e.target).parents('.eve_traveler').attr('index');
         }else{
             index= $(e.target).attr('index');
         }

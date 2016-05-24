@@ -396,6 +396,7 @@ var footer = (function() {
 		request : function() {
 			// 选中的属性
 			var node = sec.getElementsByTagName("ul"), obj = {};
+      console.log(node)
 			for (var i = 0; i < node.length; i++) {
 				if (node[i].getAttribute("data-key")) {
 					var cache = [], chk = node[i].getElementsByClassName("cur"), mykey = node[i].getAttribute("data-key");
@@ -432,7 +433,7 @@ var footer = (function() {
         box.style.display = 'block';
       }
 			if (footer.callback) {
-				footer.callback(obj);
+				  footer.callback(obj);
 			}
 		},
 		// 重置选中
@@ -506,4 +507,5 @@ var footer = (function() {
 		results : results
 	};
 })();
+
 

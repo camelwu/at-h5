@@ -401,6 +401,12 @@ a.hotel_detail_pic{
     font-size: 0.32rem;
     font-weight: bold;
 }
+.hotel_room_list li .div3{
+    width: 5.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
 .hotel_detail_list li.data p{
     float: left;
 }
@@ -462,18 +468,21 @@ a.hotel_detail_pic{
     background-color: #fff;
     padding-bottom: 0.15rem;
 }
+.tour_detail>div{
+    margin-bottom: 0.1rem;
+}
 .hotel_detail{
-    padding-bottom: 0.2rem;
+    padding-bottom: 0.24rem;
 }
 .order_introduce{
     overflow: hidden;
-    padding: 0.3rem 0;
+    padding: 0.3rem 0 0.2rem;
 }
 .order_introduce .txt{
     margin: 0;
     padding: 0 0.28rem;
     font-size: 0.32rem;
-    line-height: 0.42rem;
+    line-height: 0.46rem;
 }
 .order_introduce .txt span{
     color: #999999;
@@ -490,6 +499,7 @@ a.hotel_detail_pic{
     padding-left:0.28rem;
     color: #999999;
     font-size:0.24rem;
+    line-height: 0.42rem;
 }
 .order_toggle_btn{
     width: 100%;
@@ -544,6 +554,12 @@ a.hotel_detail_pic{
     /*width: 100%;*/
     position: relative;
 }
+.order_per_data ul .li_section_box{
+    border-bottom: 0.01rem solid #ddd;
+}
+.order_per_data ul .li_section_box>li,.order_per_data ul .li_section_box ul li.child{
+    padding-left: 0.24rem;
+}
 .order_per_data>ul li span.list_tit{
     display: inline-block;
     width:1.24rem;
@@ -580,7 +596,7 @@ a.hotel_detail_pic{
     padding: 0 0 0 0.24rem;
     margin: 0;
 }
-.order_per_data ul.order_trave span.list_con2,.order_data_box .order_trave .list_con2{
+.order_per_data ul.order_trave span.list_con2,.order_data_box .list_con2{
     display: inline-block;
     vertical-align: middle;
     width: 25%;
@@ -592,6 +608,7 @@ a.hotel_detail_pic{
     width: 100%;
 }
 .order_data_box{
+    font-size: 0.3rem;
     background: #fff;
     margin-bottom:0.2rem;
     border-bottom:0.01rem solid #ddd;
@@ -601,6 +618,7 @@ a.hotel_detail_pic{
     border-top:0.01rem solid #ddd;
 }
 .order_data_box .title{
+    font-size: 0.32rem;
     height:0.84rem;
     line-height:0.84rem;
     border-bottom:0.01rem solid #ddd;
@@ -713,9 +731,6 @@ a.hotel_detail_pic{
     float: right;
     color: #fb763b;
 }
-.order_box2{
-    margin-bottom: 1.84rem;
-}
 .mask{
     position: fixed;
     top: 0;
@@ -726,6 +741,98 @@ a.hotel_detail_pic{
     z-index: 999;
     display: none;
 }
+.order_data_box .send_btn{
+    display: inline-block;
+    position: relative;
+    top:0.08rem;
+    width:0.4rem;
+    height:0.4rem;
+    background-image: url(../../images/ui/icon.png);
+    background-size:7.93rem 2.36rem;
+    background-position: -2.12rem -0.68rem;
+}
+.order_data_box .content2{
+    height: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom:0.01rem solid #dedede;
+}
+.order_data_box .nav2_left{
+    width:1.56rem;
+    height: 0.84rem;
+    line-height: 0.84rem;
+    margin: 0;
+    text-indent:0.3rem;
+    color: #484848;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.order_data_box .nav2_center,.order_data_box .input_flight{
+    margin-left:1.56rem;
+}
+.order_data_box .input_flight{
+    height:0.84rem;
+    border-bottom:0.01rem solid #dedede;
+}
+.order_data_box .input_flight input{
+    width: 92%;
+    color: #000;
+    height:0.48rem;
+    line-height:0.48rem;
+    margin-top:0.16rem;
+    font-family: 'Microsoft YaHei',STHeiti,Verdana,sans-serif;
+    display: inline-block;
+}
+.order_data_box .nav2_center div{
+    height:0.92rem;
+    position: relative;
+}
+.order_data_box .nav2_center input{
+    width: 100%;
+    height:0.9rem;
+    color: #fdb330;
+    line-height:0.9rem;
+    font-family: 'Microsoft YaHei',STHeiti,Verdana,sans-serif;
+    display: inline-block;
+}
+.order_data_box .nav2_center i{
+    width:0.42rem;
+    height:0.42rem;
+    position: absolute;
+    right:0.27rem;
+    top: 50%;
+    margin-top:-0.2rem;
+    background-image: url(../../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size:8.04rem 3.48rem;
+    background-position:-4.92rem -0.27rem;
+}
+.order_notice{
+    padding-left:0.4rem;
+    margin-bottom: 1.84rem;
+}
+.order_notice .btn{
+    display: inline-block;
+    width: 0.38rem;
+    height: 0.38rem;
+    background: url(../../images/ui/icons1.png) no-repeat;
+    background-position: -4.7rem -0.07rem;
+    background-size:8.00rem 2.40rem;
+    margin-top:0.06rem;
+}
+.order_notice .txt{
+    display: inline-block;
+    vertical-align: top;
+    margin-top:0.06rem;
+    color: #999;
+    font-size: 0.13rem;
+}
+
+
+
+
+
 /*∂©µ•ÃÓ–¥  end*/
 
 

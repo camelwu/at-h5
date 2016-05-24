@@ -106,7 +106,7 @@
                     +'<b class="add_icon"><a href="javascript:;" data-c-id="'+j+'" class="add-cpassage'+j+'"></a></b></span>'
                     +'</li>'
                     +"<ul id='traveC"+j+"'>"
-                    +'<li class="trave-li trave-li-child">'
+                    +'<li class="trave-li trave-li-child child">'
                     +'<span class="list_tit2 ">姓：</span>'
                     +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" data-elementName="firstName"  /></span>'
                     +'<span class="list_tit2 ">名：</span>'
@@ -225,14 +225,14 @@
         var bOk=true;
         oAgree.onclick=function(){
             if(bOk){
-                oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
-                oAgree.style.backgroundSize='40rem 12rem';
+                oAgree.style.background='url(../images/ui/icons1.png) -5.29rem -0.07rem';
+                oAgree.style.backgroundSize='8.00rem 2.40rem';
                 oReserve.style.backgroundColor='#ddd';
                 sentPackage(oReserve);
                 bOk=false;
             }else{
-                oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
-                oAgree.style.backgroundSize='40rem 12rem';
+                oAgree.style.background='url(../images/ui/icons1.png) -4.7rem -0.07rem';
+                oAgree.style.backgroundSize='8.00rem 2.40rem';
                 oReserve.style.backgroundColor='#fdb330';
                 oReserve.style.color='#fff';
 
@@ -555,7 +555,15 @@
             var tpl2 =
                 '<div class="txt"><%= hotels[0].hotelName %></div>'+
                 '<% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %>'+
-                '<div class="detail_span">房型 <%= hotels[0].rooms[i].roomName %>' + info.roomDetails.length+'间</div>'+
+                '<div class="detail_span">房型 <%= hotels[0].rooms[i].roomName %>&nbsp;' +
+                '<% if( hotels[0].rooms[i].includedBreakfast ){ %>'+
+                    '含早'+
+                '<% }else{ %>'+
+                    '无早'+
+                '<% } %>'+
+                '&nbsp;'+
+                info.roomDetails.length+
+                '间</div>'+
                 '<% } %>'+
                 '<% } %>'+
                 '<div class="detail_span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>';
