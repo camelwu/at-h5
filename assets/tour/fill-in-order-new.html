@@ -305,12 +305,15 @@
     <script src="../js/countrytel_list.js"></script>
 
 <script id="tpl3" type="text/template">
-    <% var info = JSON.parse(localStorage.info); %>
+    <% var info = JSON.parse(localStorage.info);
+        var playTime =localStorage.getItem('noon').substring(2,4);
+        console.log(playTime);
+    %>
     <% for(var i=0;i<tourInfos.length;i++){ %>
     <div>
         <div class="txt"><%= tourInfos[i].tourName %></div>
         <% if(tourInfos[i].travelDateSpecified){ %>
-        <div class="detail_span">游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %> <%= weekday[i] %> <%= noon[i] %></div>
+        <div class="detail_span">游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %> <%= weekday[i] %> <%= noon[i] %> <%= playTime  %></div>
         <% } %>
         <div class="detail_span">成人票<%= info.adultNum %>张</div>
         <% if(JSON.parse(localStorage.info).childNum != 0){ %>
