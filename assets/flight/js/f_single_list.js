@@ -203,6 +203,13 @@ var fSingleList = {
     return this;
   },
 
+  titleInit:function(){
+    var spans = document.querySelectorAll('.header h3 span');
+    spans[0].innerHTML = this.postObj.fromCity;
+    spans[1].innerHTML = this.postObj.toCity
+    return this;
+  },
+
   parseUrlHandler: function (url, isEncode) {
     var isEncode = isEncode || false, reg = /([^=&?]+)=([^=&?]+)/g, obj = {}, url =url;
     url.replace(reg, function () {
@@ -240,7 +247,8 @@ var fSingleList = {
 */
       this.postObj = postObj;
       this.isClear = 1;
-      this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+      this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+      this.renderHandler(data2)
   }
 
 };
