@@ -3,7 +3,7 @@
  */
 var changeFlightInfo;
 var airwayLiat = {
-    requestUrl:"http://10.6.11.28:1337/api/GetServiceApiResult",
+    requestUrl:"",
     getWeekDay:function(date){
         var final_date = date.substr(0,10).replace(/-/g,'/');
         var week = "周" + "日一二三四五六".split("")[new Date(final_date).getDay()];
