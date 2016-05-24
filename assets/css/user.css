@@ -272,7 +272,8 @@ i, em {
   font-size: .28rem;
   color: #333;
 }
-#phone_num{
+
+#phone_num {
   width: 100%;
 }
 
@@ -450,7 +451,7 @@ i, em {
 }
 
 /*链接*/
-#link_page, #link_about_us, #link_at, #link_declaration, #fkey_page, #black_page, #link_declaration{
+#link_page, #link_about_us, #link_at, #link_declaration, #fkey_page, #black_page, #link_declaration {
   display: none;
 }
 
@@ -825,21 +826,17 @@ i, em {
 }
 
 .icon_allorder {
-  background: url(../images/ui/icon.png) no-repeat;
-  background-size: 7.86rem 2.36rem;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 8rem 4.6rem;
   display: inline-block;
   width: .5rem;
   height: .5rem;
-  margin: .14rem .2rem 0 0;
+  margin: .13rem .2rem 0 0;
 }
 
 .all_order_tab {
   border-bottom: 1px solid #e6e6e6;
   padding: .4rem .28rem;
-}
-
-.user_air {
-  background-position: 0.2% 99%;
 }
 
 .order_title {
@@ -902,21 +899,32 @@ i, em {
   border: 1px solid #ffb413;
 }
 
-.user_spot {
-  background-position: 8.5% 99%;
-}
-
-.user_fligthotle {
-  background-size: 8.6rem 2.6rem;
-  background-position: 89.7% -1.2%;
-}
-
 .user_hotel1 {
-  background-position: 16.3% 99%;
+  background-position: -7.34rem -2.94rem;
 }
 
 .user_hotel2 {
-  background-position: 40.3% 99%;
+  background-position: .04rem -.52rem;
+}
+
+.user_air {
+  background-position: -7.34rem -1.62rem;
+}
+
+.user_spot {
+  background-position: -3.34rem -.54rem;
+}
+
+.user_hoteltour {
+  background-position: -3.32rem -.54rem;
+}
+
+.user_fligthotle {
+  background-position: -4.42rem -.54rem;
+}
+
+.user_hft {
+  background-position: -3.88rem -.54rem;
 }
 
 /*全部订单页结束*/
@@ -1053,7 +1061,7 @@ i, em {
 }
 
 /*国籍选择开始*/
-.country_header{
+.country_header {
   opacity: 1;
 }
 
@@ -1071,6 +1079,7 @@ i, em {
   z-index: 1000;
   display: none;
 }
+
 .country-cho-wrap-order {
   position: absolute;
   z-index: 1000;
@@ -1079,10 +1088,12 @@ i, em {
 .country-cho-wrap li {
   list-style: none;
 }
-.country-cho-wrap ul, .country-cho-wrap ol{
+
+.country-cho-wrap ul, .country-cho-wrap ol {
   margin: 0;
   padding: 0;
 }
+
 .cl_search {
   height: .6rem;
   width: 100%;
@@ -1118,7 +1129,7 @@ i, em {
 }
 
 .country-list li {
-  padding-left:.48rem;
+  padding-left: .48rem;
   height: .68rem;
   line-height: .68rem;
   border-bottom: 1px solid #e6e6e6;
@@ -1789,6 +1800,7 @@ a.foot-homes, a.foot-users {
 .name_example2 p:last-child {
   border-bottom: none;
 }
+
 /*填写姓名说明页结束*/
 
 

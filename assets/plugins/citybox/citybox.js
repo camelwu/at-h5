@@ -1059,6 +1059,7 @@
     showCityBox:function(){
       $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").css("display","block");
       $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").css("display","none");
+      $(document).scrollTop(0);
     },
     /**
      * 隐藏城市列表 并 显示城市搜索列表
@@ -1066,6 +1067,7 @@
     hideCityBox:function(){
       $(".citybox_search_container.citybox_search_state .citybox_content,.js_citybox_header_default").css("display","none");
       $(".citybox_search_container.citybox_search_state .citybox_search_suggest,.js_citybox_header_search").css("display","block");
+      $(document).scrollTop(0);
       VM("citybox_suggest_list");
     },
     /**

@@ -254,7 +254,7 @@
     {% }else if (productType=="Package_HT") { %}
     <div class="order_div scenic_div">
       <div class="all_order_title">
-        <b class="icon_allorder user_spot"></b>
+        <b class="icon_allorder user_hoteltour"></b>
         <div class="order_title">酒+景</div>
         <div class="if_pay">{%=getCN[paymentStatus]%}</div>
         <div class="order_Amount">￥{%=bookingAmount%}</div>
@@ -270,7 +270,7 @@
         <a href="../tour/order_pay_page.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
       </div>
     </div>
-    <!--&lt;!&ndash;景点&ndash;&gt;-->
+    <!--景点-->
     {% }else if (productType=="Package_T") { %}
     <div class="order_div scenic_div">
       <div class="all_order_title">
