@@ -125,42 +125,30 @@
 
 
 <script id="hotel_list" type="text/template">
-    {% for(var i=0;i < hotels.length;i++){
-    var dd = hotels[i]; %}
-    <li class="ho_list">
+    <% for(var i=0;i<hotels.length;i++){ %>
+    <li class="ho_list" data-id="<%= hotels[i].hotelID %>">
         <img class="h-choose h_choose" src="../images/ui/choose.png">
         <div class="ho_pic">
-            <img src="{%=dd.hotelPictureURL%}" />
-        </div>
+            <img src="../images/hotelDetailerrorpic.png" real-src="<%= hotels[i].hotelPictureURL %>" class="ho_img" />
+            </div>
         <div class="ho_infor">
-            <p class="hname">
-                {%=data.hotels[i].hotelName%}
-            </p>
-            <div class="h-score h_score">
-            <span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;"> {%=data.hotels[i].score%}</span>
-            <span style="color:#999999;font-size:0.8rem;">分/{%=data.hotels[i].personNum%}人点评</span>
-
+            <p class="name"><%= hotels[i].hotelName %></p>
+            <div class="grade">
+                <span><%= hotels[i].starRating %>星级</span>
+                <p class="h-address"><%= hotels[i].location %></p>
+                </div>
             </div>
-            <div class="h-grade h_grade">
-                <span style="color:#999999;font-size:1rem;">{%=data.hotels[i].starRating%}</span>
-                <b class="hl-icon1 icon1"></b>
-                <b class="hl-icon2 icon2"></b>
-                <p class="h-address address">{%=hotels[i]['location']%}</p>
+        <div class="price">
+            <span>+</span><span><% if(hotels[i].currencyCode=="CNY"){ %>￥ <% }else{ %> $ <% } %></span>
+            <span class="price-num"><%= hotels[i].avgRatePerPaxInCNY %></span>
             </div>
-            <div class="l-price l_price">
-                <span style="font-size:0.8em;color:#fe4716;">￥</span>
-                <span class="price-num price_num">{%=hotels[i]['avgRatePerPax']%}</span>
-                <a class="choose-no choose">选择</a>
-            </div>
-        </div>
-    </li>
-    {% } %}
+        </li>
+    <% } %>
 </script>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/plugins.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
 <script src="../js/lib/ejs.js"></script>
 <script src="../js/lib/custom.js"></script>
 <script src="js/hotelList.js"></script>

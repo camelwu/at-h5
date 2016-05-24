@@ -48,68 +48,11 @@ var hotelList = {
 
 	callBack : function(arg) {
 		console.log(arg)
-		var tpl1 =
-			'<li class="ho_list" data-id="{%=hotelID%}">'+
-			'<img class="h-choose h_choose" src="../images/ui/choose.png">'+
-			'<div class="ho_pic">'+
-			'<img src="../images/hotelDetailerrorpic.png" real-src="{%=hotelPictureURL%}" class="ho_img" />'+
-			'</div>'+
-			'<div class="ho_infor">'+
-			'<p class="name">{%=hotelName%}</p>'+
-			'{% if(data["score"]||data["comments"]){ %}' +
-			'<div class="h-score">' +
-			'{% if(data["score"]){ %}' +
-			'<span>{%=score%}</span>' +
-			'{% } %}' +
-			'{% if(data["comments"]){ %}' +
-			'<span>分/{%=comments%}人点评</span>' +
-			'{% } %}' +
-			'</div> {% }else{ %}{% } %}'+
-			'<div class="grade">'+
-			'<span>{%=starRating%}星级</span>'+
-			'{% if(data["freeWifi"]){ %}<b class="hl-icon1"></b>{% } %}'+
-			'{% if(data["freeBus"]){ %}<b class="hl-icon2"></b>{% } %}'+
-			'<p class="h-address">{%=location%}</p>'+
-			'</div>'+
-			'</div>'+
-			'<div class="price">'+
-			'<span>+</span><span>{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>'+
-			'<span class="price-num">{%=avgRatePerPaxInCNY%}</span>'+
-			'</div>'+
-			'</li>';
-		//	var tpl1 =
-		//	'<li class="ho_list" data-id="<%= hotelID %>">'+
-		//	'<img class="h-choose h_choose" src="../images/ui/choose.png">'+
-		//	'<div class="ho_pic">'+
-		//	'<img src="../images/hotelDetailerrorpic.png" real-src="<%= hotelPictureURL %>" class="ho_img" />'+
-		//	'</div>'+
-		//	'<div class="ho_infor">'+
-		//	'<p class="name"><%= hotelName %></p>'+
-		//	'<% if(data["score"]||data["comments"]){ %>' +
-		//	'<div class="h-score">' +
-		//	'<% if(data["score"]){ %>' +
-		//	'<span><%= score %></span>' +
-		//	'<% } %>' +
-		//	'<% if(data["comments"]){ %>' +
-		//	'<span>分/<%= comments %>人点评</span>' +
-		//	'<% } %>' +
-		//	'</div> <% }else{ %><% } %>'+
-		//	'<div class="grade">'+
-		//	'<span><%= starRating %>星级</span>'+
-		//	'<% if(data["freeWifi"]){ %><b class="hl-icon1"></b><% } %>'+
-		//	'<% if(data["freeBus"]){ %><b class="hl-icon2"></b><% } %>'+
-		//	'<p class="h-address"><%= location %></p>'+
-		//	'</div>'+
-		//	'</div>'+
-		//	'<div class="price">'+
-		//	'<span>+</span><span><% if(currencyCode=="CNY"){ %>￥ <% }else{ %> $ <% } %></span>'+
-		//	'<span class="price-num"><%= avgRatePerPaxInCNY %></span>'+
-		//	'</div>'+
-		//	'</li>';
+		var tpl1 = $('#hotel_list').html();
 		var tpl2 =
 			'<li class="s_li1"> 不限 </li>'+
 			'<% for(var i=0;i < starRatingList.length;i++){ %>'+
-			'<li class="s_li"><%=starRatingList[i]%></li>'+
+			'<li class="s_li"><%= starRatingList[i] %></li>'+
 			'<% } %>';
 		var tpl3 =
 			'<li class="l-li">不限 <b class="l_icon1"></b></li>'+
@@ -126,7 +69,8 @@ var hotelList = {
 				that.bookingFormInfo = resultData.bookingFormInfo;
 				var hotels = resultData.hotels;
 				hotels = that.resetData(hotels);
-				var tpl_GetList = template(tpl1, hotels);
+				console.log(resultData.hotels)
+				var tpl_GetList = ejs.render(tpl1, resultData);
 				var tpl_getStar = ejs.render(tpl2,resultData);
 				var tpl_getLocation = ejs.render(tpl3,resultData);
 				$("#preloader").fadeOut();
