@@ -198,7 +198,7 @@ var fDoubleList = {
   filerCallBack:function(){
     console.log(arguments);
     var transferData = arguments, that =fDoubleList, newUrl = window.location.href;
-    if(that.postObj.internationalOrDomestic == "international"){
+    /*if(that.postObj.internationalOrDomestic == "international"){*/
       if(arguments[1].id == "Tax"){
         var dd =  arguments[1].querySelector('dd');
         if(dd.innerHTML== "含税费"){
@@ -235,12 +235,9 @@ var fDoubleList = {
         newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
         newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
         newUrl = that.pageHandler(newUrl);
-       // window.location.href = newUrl;
+        window.location.href = newUrl;
       }
-    }else{
-
-
-    }
+   /* }*/
   },
 
   filterHandler: function(data){
