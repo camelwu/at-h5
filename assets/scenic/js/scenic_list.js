@@ -144,23 +144,19 @@
      */
     m_scenic_listCallback:function(json){
       var tplString = "",outString = "";
-      //console.log(json);
+      console.log(json);
       if(json.success){
-        tplString = $("#tpl_city_list").html();
-        outString = ejs.render(tplString,{data:json.data});
-        $("#js_city_list").html(outString).click(function(e){
-          var e = e || window.event,
-            tar = e.target || e.srcElement;
-          if(tar.nodeName.toLowerCase() === 'div'){
-            var cityCode = (e.target).getAttribute("data-code");
-            //console.log(cityCode);
-            window.location.href = "../scenic/scenic_list.html?DestCityCode=" + cityCode;
-          }
-
-        });
+        Method['m_scenic_setHeaderMoreTitle'](json);
+        tplString = $("#tpl_scenic_list").html();
+        //console.log(json.data.lists);
+        outString = ejs.render(tplString,{lists:json.data.lists});
+        $("#js_scenic_list").html(outString);
       }else{
         console.log(json);
       }
+    },
+    m_scenic_setHeaderMoreTitle:function(data){
+      $(".header_more_title").html(data.data.destCity);
     }
   };
 
@@ -190,9 +186,8 @@
  * 入口
  */
 (function(){
-
-
   $("#t_des").click(function(e){
     VM.Load("t_des");
   });
+  T.Load("js_scenic_list");
 })();
