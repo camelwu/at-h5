@@ -143,6 +143,8 @@
   color: rgb(153, 153, 153);
   height: .24rem;
   line-height: .24rem;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
 }
 
 .date-word .from-word {
@@ -254,7 +256,8 @@
 }
 
 .float-right {
-  float: right
+  position: absolute;
+  right: .28rem
 }
 
 .searchZone, .date-top {

@@ -57,7 +57,7 @@ var fDoubleList = {
     var data = arguments[0];
     var tempString="", outputString="", that = fDoubleList;
     tempString = $("#template_flight_double_list").html();
-    outputString = this.isClear == 1?ejs.render(tempString, data):$(".flight_ul").eq(0).html()+ejs.render(tempString, data);
+    outputString = this.postObj.isClearAll == 1?ejs.render(tempString, data):$(".flight_ul").eq(0).html()+ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
@@ -67,6 +67,7 @@ var fDoubleList = {
     console.log(result)
     if(result.success&&result.code == "200"){
       that.currrentFlightList = result.data;
+        that.filterHandler(result.data);
       that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
     }
   },
@@ -149,7 +150,7 @@ var fDoubleList = {
       this.postObj.pageNo++;
       loadMore.innerHTML = "正在加载...";
       storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
-      this.isClear = 0;
+      this.postObj.isClearAll = 0;
       this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
@@ -183,6 +184,163 @@ var fDoubleList = {
     return obj;
   },
 
+  pageHandler:function(url){
+     var newUrl = url, that = fDoubleList;
+     that.postObj.pageSize = Number(that.postObj.pageSize)>10?Number(that.postObj.pageSize):Number(that.postObj.pageNo)*10;
+     that.postObj.pageNo = 1;
+     that.postObj.isClearAll = 1;
+      newUrl = vlm.setUrlPara(newUrl, "isClearAll", that.postObj.isClearAll);
+      newUrl = vlm.setUrlPara(newUrl, "pageNo", that.postObj.pageNo);
+      newUrl = vlm.setUrlPara(newUrl, "pageSize",that.postObj.pageSize);
+     return newUrl;
+  },
+
+  filerCallBack:function(){
+    console.log(arguments);
+    var transferData = arguments, that =fDoubleList, newUrl = window.location.href;
+    if(that.postObj.internationalOrDomestic == "international"){
+      if(arguments[1].id == "Tax"){
+        var dd =  arguments[1].querySelector('dd');
+        if(dd.innerHTML== "含税费"){
+          dd.innerHTML = "不含税费";
+          that.postObj.hasTax = 0;  /*本地重新渲染*/
+          newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
+          newUrl = that.pageHandler(newUrl);
+          window.location.href = newUrl;
+        }else if(dd.innerHTML== "不含税费"){
+          dd.innerHTML = "含税费";
+          that.postObj.hasTax = 1; /*本地重新渲染*/
+          newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
+          newUrl = that.pageHandler(newUrl);
+          window.location.href = newUrl;
+        }
+      }else{
+        console.log(transferData[0])
+        that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
+        that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
+        that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substr(0,2);
+        that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substr(3);
+        that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
+        if(transferData[0].sortTypes[0].indexOf('isDesc')> -1){
+          that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
+        }else{
+          that.postObj.priorityRule = transferData[0].sortTypes[0];
+        }
+        newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
+        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
+        newUrl = vlm.setUrlPara(newUrl, "departStartHour", that.postObj.departStartHour);
+        newUrl = vlm.setUrlPara(newUrl, "departEndHour", that.postObj.departEndHour);
+        newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
+        newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+        newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
+        newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
+        newUrl = that.pageHandler(newUrl);
+       // window.location.href = newUrl;
+      }
+    }else{
+
+
+    }
+  },
+
+  filterHandler: function(data){
+    var dataTransfer = data.airCorpCodeList, tempArray = [], f_data = {}, that = this;
+    dataTransfer.forEach(function(array, item){
+             var temObj = {}
+             temObj.filterText = array.airCorpName;
+             temObj.filterValue = array.airCorpCode;
+             tempArray.push(temObj);
+    });
+     f_data = {
+      Sort : {
+        title : "起飞早到晚",
+        c : "f_foot_sort",
+        type : 1,
+        key : "sortTypes",
+        listData : [
+          {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+          {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
+          {sortText: "起飞晚到早", sortValue: "isDesc_true"}
+        ]
+      },
+      Screen : {
+        title : "筛选", /*名字*/
+        c : "foot_screen",
+        type :2,  /*类型*/
+        key : 'filters',
+        listData : [
+          {allowMultiSelect : 0,
+            filterType : 4,
+            item : [{
+              filterText : "不限",
+              filterValue : "false"
+            }, {
+              filterText : "仅看直飞",
+              filterValue : "true"
+            }],
+            sortNumber : 0,
+            title : "直飞"
+          }, {
+            allowMultiSelect : 0,
+            filterType : 3,
+            item : [{
+              filterText : "不限",
+              filterValue : "false"
+            }, {
+              filterText : "隐藏共享",
+              filterValue : "true"
+            }],
+            sortNumber : 1,
+            title : "共享航班"
+          }, {
+            allowMultiSelect : 0,
+            filterType : 2,
+            item : [
+              {
+                filterText : "经济舱",
+                filterValue : "economy"
+              },
+              {
+                filterText : "超级经济舱",
+                filterValue : "economyPremium"
+              },
+              {
+                filterText : "商务舱",
+                filterValue : "business"
+              },
+              {
+                filterText : "头等舱",
+                filterValue : "first"
+              }
+
+            ],
+            sortNumber : 3,
+            title : "舱位"
+          },
+          {
+            allowMultiSelect : 0,
+            filterType : 1,
+            item : tempArray,
+            sortNumber : 3,
+            title : "航空公司"
+          }
+        ]
+      },
+      Tax : {
+        title : "不含税费",
+        c : "f_tax_sort",
+        type : 0,
+        key : 'tax',
+        listData : ["含税费", "不含税费"]
+      }
+    };
+    if (footer) {
+      footer.data = f_data;
+      footer.callback = that.filerCallBack;
+    }
+    footer.filters.init();
+  },
+
   titleInit:function(){
     var spans = document.querySelectorAll('.header h3 span');
     spans[0].innerHTML = this.postObj.fromCity;
@@ -194,8 +352,9 @@ var fDoubleList = {
     var postObj = this.parseUrlHandler(window.location.href,true);
     console.log(postObj)
     this.postObj = postObj;
-    this.isClear = 1;
-    this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+    this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler); //data1
+   // this.renderHandler(data1)
+
   }
 };
 fDoubleList.init();

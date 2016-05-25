@@ -172,7 +172,8 @@ var fIndexModal = {
           "pageNo": 1,
           "pageSize": 10,
           "internationalOrDomestic": getTripType(), /*国际或者国内*/
-          "hasTax": "true",
+          "hasTax": 0,
+          "isClearAll":1,
           "fromCity": cityEles[0].innerHTML,
           "toCity": cityEles[1].innerHTML
         };
@@ -261,7 +262,7 @@ var fIndexModal = {
   initShowInfo: function () {
     var data = arguments[0], tripTitles = document.querySelectorAll('.hTab div'),
       weeks = document.querySelectorAll('.weekWord'), adultValue = document.querySelector('.adultNumber'),
-      childValue = document.querySelector('.childNumber'),
+      childValue = document.querySelector('.childNumber'),cityEle = document.querySelectorAll(".citySearch"),
       seatValue = document.querySelector('#seats'), timeClickWrap = document.querySelector('#timeClickWrap'),
       singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'),
       doubleDateArrive = document.querySelector('#arriveDate'), singleWrap = document.querySelector('#timeSingleWrap'),
@@ -299,6 +300,10 @@ var fIndexModal = {
       singleWrap.style.display = "none";
       doubleWrap.style.display = "block";
     }
+    cityEle[0].innerHTML = data.fromCity;
+    cityEle[0].setAttribute('data-code', data.cityCodeFrom);
+    cityEle[1].innerHTML =  data.toCity;
+    cityEle[1].setAttribute('data-code', data.cityCodeTo);
     singleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
     singleDateSet.setAttribute('date-full-value', defaultDate.startDay);
     weeks[0].innerHTML = this.setWeekItems(defaultDate.startDay);
