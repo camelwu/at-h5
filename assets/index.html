@@ -30,7 +30,6 @@
     <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
     <link href="styles/tips.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -104,7 +103,6 @@
 
     <script>
         var linkurl = {
-
             1: "./hotel/hotel_detail.html?HotelID=",
             2: "./flight/ticket_seat_choose.html?setId=",
             3: "./scenic/scenic_detail.html?packageID=",
@@ -153,52 +151,41 @@
                 }
                 //playerRecommend
                 function PlayerRecommend() {
+                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
+                  var tmp = {
+                      "Parameters": {
+                          "PageNo": 1,
+                          "PageSize": 10
+                      },
 
-//						var tpl1 = ['<div class="half_top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
-            var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
-
-                    var tmp = {
-
-                        "Parameters": {
-                            "PageNo": 1,
-                            "PageSize": 10
-                        },
-
-
-                        "ForeEndType": 3,
-                        "Code": "001303"
-                    };
-                    vlm.loadJson("", JSON.stringify(tmp), function(json) {
-                        console.log(json);
-                        if (json.success) {
-
-                            var data = json.data,
-                                html_tj = template(tpl1, data.playerRecommendList);
-                            $("#tuijian").html(html_tj);
-                        } else {
-                            console.log(json);
-                            jAlert("数据格式错误", "提示");
-                        }
-                    });
+                      "ForeEndType": 3,
+                      "Code": "001303"
+                  };
+                  vlm.loadJson("", JSON.stringify(tmp), function(json) {
+                      console.log(json);
+                      if (json.success) {
+                          var data = json.data,
+                              html_tj = template(tpl1, data.playerRecommendList);
+                          $("#tuijian").html(html_tj);
+                      } else {
+                          console.log(json);
+                          jAlert("数据格式错误", "提示");
+                      }
+                  });
                 }
 
                 return {
-
-
                     LoadBanner: LoadBanner,
                     PlayerRecommend: PlayerRecommend
                 };
             }();
             //页面内容加载
-				index.LoadBanner();
+				    index.LoadBanner();
             index.PlayerRecommend();
         })();
 
     </script>
 
-
 </body>
-
-
 </html>
 
