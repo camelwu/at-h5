@@ -50,22 +50,16 @@
       return;
     }
     vlm.checkUser();
-    vlm.loading();
     vlm.loadJson("", JSON.stringify(Parameters), mycallback);
-
-
   }
-
 
   function mycallback(ret) {
     var myJson = ret;
     //console.log(myJson.data[0].nickName);
-    vlm.loadend();
     if (myJson.success) {
       var user_name = $("#user_name")[0];
       var user_sex = $("#user_sex")[0];
       var userIcon = $("#userIcon")[0];
-
       user_name.innerHTML = myJson.data[0].nickName;
       localStorage.sex=myJson.data[0].salutation;
       localStorage.email=myJson.data[0].emailAddress;
@@ -118,7 +112,7 @@
 
   })();
 
-  $('.about-at').click(function(){
+  $('#about_at').click(function(){
     $('#link_about_us').show();
     $('#close_page_aboutus').click(function(){
       $('#link_about_us').hide();
