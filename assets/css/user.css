@@ -258,12 +258,10 @@ i, em {
   -webkit-transform: rotate(270deg);
 }
 
-.open_pho {
+.open_pho.open_arw {
   position: absolute;
-  width: 10px;
-  height: 20px;
-  right: 10px;
-  background-position: 65% 3%;
+  right: .28rem;
+  top: .3rem;
 }
 
 .fk_put {
@@ -662,6 +660,7 @@ i, em {
   top: .2rem;
   right: 0;
   height: .64rem;
+  width: auto;
   border: 1px solid #fdb330;
   border-radius: .04rem;
   overflow: hidden;
@@ -669,7 +668,7 @@ i, em {
   color: #fdb330;
 }
 
-.per_man, .per_woman {
+.info_sex .per_man{
   float: left;
   width: .76rem;
   height: .64rem;
@@ -683,7 +682,32 @@ i, em {
   color: #fff;
   background-color: #fdb330;
 }
+.info_sex_tab{
+  position: absolute;
+  top: .2rem;
+  right: .28rem;
+  height: .64rem;
+  width: auto;
+  border: 1px solid #fdb330;
+  border-radius: .04rem;
+  overflow: hidden;
+  background-color: #fff;
+  color: #fdb330;
+}
+.info_sex_tab .per_man{
+  float: left;
+  width: .78rem;
+  height: .64rem;
+  line-height: .64rem;
+  text-align: center;
+  color: #fdb330;
+  background-color: #fff;
+}
 
+.info_sex_tab .sex_act {
+  color: #fff;
+  background-color: #fdb330;
+}
 .user-mb {
   display: none;
   width: 100%;
@@ -798,6 +822,7 @@ i, em {
   top: .3rem;
   right: 0;
   background-position: -6.74rem -.18rem;
+  display: none;
 }
 
 /*个人资料页结束*/
@@ -1524,6 +1549,11 @@ a.foot-homes, a.foot-users {
   position: relative;
 }
 
+.traveler_contect li .email_code{
+  width: 1.8rem;
+  border: none;
+}
+
 .phone_pre {
   float: right;
   margin-right: .6rem;
@@ -1560,6 +1590,7 @@ a.foot-homes, a.foot-users {
   line-height: .96rem;
   border-bottom: 1px solid #e6e6e6;
   overflow: hidden;
+  position: relative;
 }
 
 .addtra_info li:last-child {
@@ -1582,15 +1613,6 @@ a.foot-homes, a.foot-users {
   float: left;
   height: 20px;
   margin-left: 12%;
-}
-
-.addtra_info .sex_cho_wrap {
-  width: 60%;
-  margin-left: 12%;
-}
-
-.sex_cho_wrap span:first-child {
-  margin-right: 15%;
 }
 
 .addAir_page {
@@ -1672,31 +1694,6 @@ a.foot-homes, a.foot-users {
   margin-left: 12%;
   width: 60%;
 }
-
-.icon_h {
-  background: url(../images/ui/icon-h.png) no-repeat;
-  background-size: 8.04rem 3.48rem;
-  display: inline-block;
-}
-
-.traveler_sex1 {
-  width: .28rem;
-  height: .28rem;
-  margin-right: .1rem;
-  margin-top: .34rem;
-  vertical-align: top;
-  background-position: 9.58% 38%;
-}
-
-.traveler_sex2 {
-  width: .28rem;
-  height: .28rem;
-  margin-right: .1rem;
-  margin-top: .34rem;
-  vertical-align: top;
-  background-position: 4.6% 38%;
-}
-
 .chn_eng_wrap {
   border-top: 1px solid #e6e6e6;
   background-color: #fff;

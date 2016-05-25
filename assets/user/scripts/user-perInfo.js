@@ -1,6 +1,8 @@
 /**
  * Created by changlv on 2016/1/13.
  */
+
+
 (function(){
   var infoJson;
   var u_phone;
@@ -121,27 +123,27 @@
     //  性别选择
     function changeSex(obj){
       obj.click(function(e) {
-          if(e.target.className == "per_man"){
+          if(e.target.getAttribute('id') == "man" && e.target.className == "per_man"){
             oSex.children().eq(0).addClass('sex_act');
             oSex.children().eq(1).removeClass('sex_act');
-                UserSex=26;
-                var Parameters={
-                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
-                    "ForeEndType": 3,
-                    "Code": "0056"
-                };
-                vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
-          }else if(e.target.className == "per_woman"){
+            UserSex=26;
+            var Parameters={
+                "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
+                "ForeEndType": 3,
+                "Code": "0056"
+            };
+            vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
+          }else if(e.target.getAttribute('id') == "woman" && e.target.className == "per_man"){
             oSex.children().eq(0).removeClass('sex_act');
             oSex.children().eq(1).addClass('sex_act');
-                UserSex=27;
-                var Parameters={
-                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
-                    "ForeEndType": 3,
-                    "Code": "0056"
-                };
-                vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
-            }
+            UserSex=27;
+            var Parameters={
+                "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
+                "ForeEndType": 3,
+                "Code": "0056"
+            };
+            vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
+          }
       });
     }
     var oSex=$('#sex');
@@ -449,14 +451,14 @@
             $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
 
             if(infoJson.data[0].salutation == 26){
-        $('#sex').children().eq(0).attr('class', 'per_man sex_act');
-        $('#sex').children().eq(1).attr('class', 'per_woman');
-                userIcon.src = "../images/ui/photo-man.png";
+              $('#sex').children().eq(0).attr('class', 'per_man sex_act');
+              $('#sex').children().eq(1).attr('class', 'per_man');
+              userIcon.src = "../images/ui/photo-man.png";
 
             }else{
-        $('#sex').children().eq(0).attr('class', 'per_man');
-        $('#sex').children().eq(1).attr('class', 'per_woman sex_act');
-                userIcon.src = "../images/ui/photo-woman.png";
+              $('#sex').children().eq(0).attr('class', 'per_man');
+              $('#sex').children().eq(1).attr('class', 'per_man sex_act');
+              userIcon.src = "../images/ui/photo-woman.png";
             }
         }
 
