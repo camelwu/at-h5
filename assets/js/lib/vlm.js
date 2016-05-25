@@ -1122,8 +1122,8 @@
                 //var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
                 var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate);
                 document.body.appendChild(choice);
-                if (window.parent.document.getElementById("ticket-wrap")) {
-                    window.parent.document.getElementById("ticket-wrap").style.display = "none";
+                if (window.parent.document.getElementById("hftPage")) {
+                    window.parent.document.getElementById("hftPage").style.visibility = "hidden";
                 }
 
                 //choice.location = urls;

@@ -451,7 +451,7 @@ i, em {
 }
 
 /*链接*/
-#link_page, #link_about_us, #link_at, #link_declaration, #fkey_page, #black_page, #link_declaration {
+#link_page, #link_about_us, #link_at, #link_declaration, #fkey_page, #black_page, #link_declaration,#header_phone {
   display: none;
 }
 

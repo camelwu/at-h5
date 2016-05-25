@@ -103,7 +103,7 @@ var lsf_myweb = {
       "ForeEndType" : 3,
       "Code" : "0011"
     };
-    return vlm.loadJson("http://10.2.22.239:8888/api/GetServiceApiResult", JSON.stringify(data), mycallback);
+    return vlm.loadJson("", JSON.stringify(data), mycallback);
   }
 
   M({
