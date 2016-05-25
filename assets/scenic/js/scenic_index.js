@@ -165,7 +165,6 @@
             tar = e.target || e.srcElement;
           if(tar.nodeName.toLowerCase() === 'div'){
             var cityCode = (e.target).getAttribute("data-code");
-            //console.log(cityCode);
             window.location.href = "../scenic/scenic_list.html?DestCityCode=" + cityCode;
           }
 

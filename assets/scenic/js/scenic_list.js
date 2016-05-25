@@ -150,7 +150,15 @@
         tplString = $("#tpl_scenic_list").html();
         //console.log(json.data.lists);
         outString = ejs.render(tplString,{lists:json.data.lists});
-        $("#js_scenic_list").html(outString);
+        $("#js_scenic_list").html(outString).click(function(e){
+          var e = e || window.event,
+            tar = e.target || e.srcElement;
+            tar = $(tar).closest("li")[0];
+          if(tar.nodeName.toLowerCase() === 'li') {
+            var packageid = tar.getAttribute("data-code");
+            window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;
+          }
+        });
       }else{
         console.log(json);
       }
