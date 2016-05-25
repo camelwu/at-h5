@@ -88,7 +88,7 @@ div#h-Tab .off{
 .hotel_time_center_start>p,.hotel_time_center_end >p{
   height: .8rem;
   border-bottom: 1px solid #dedede;
-  padding-left:.4rem;
+  padding-left:.1rem;
 }
 .hotel_time_center_start>p input,.hotel_time_center_end>p input{
   width:1.6rem;
