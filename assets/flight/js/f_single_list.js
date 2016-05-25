@@ -138,14 +138,14 @@ var fSingleList = {
   },
 
   loadMoreData: function () {
-    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage;
+    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage, newUrl = "";
     if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {
       this.postObj.pageNo++;
+      this.postObj.isClearAll = 0;
       loadMore.innerHTML = "正在加载...";
       storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
-      this.isClear = 0;
       this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
@@ -258,8 +258,9 @@ var fSingleList = {
             that.postObj.priorityRule = 0;
           }else{
             that.postObj.priorityRule = transferData[0].sortTypes[0];
-            delete  that.postObj.isDesc;
-            newUrl = vlm.setUrlPara(newUrl, "isDesc", "");
+            //delete  that.postObj.isDesc;
+            that.postObj.isDesc = "none"
+            newUrl = vlm.setUrlPara(newUrl, "isDesc",that.postObj.isDesc);
           }
           newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
           newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);

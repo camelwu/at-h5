@@ -310,6 +310,7 @@ var fIndexModal = {
     doubleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
     doubleDateSet.setAttribute('date-full-value', defaultDate.startDay);
     weeks[1].innerHTML = this.setWeekItems(defaultDate.startDay);
+
     doubleDateArrive.innerHTML = this.returnDay(defaultDate.endDay);
     doubleDateArrive.setAttribute('date-full-value', defaultDate.endDay);
     weeks[2].innerHTML = this.setWeekItems(defaultDate.endDay);

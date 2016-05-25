@@ -24,6 +24,9 @@
 .addPaddingTop {
   padding-top: 1.76rem;
 }
+.addMarginBottomHigh{
+  margin-bottom: 1.96rem;
+}
 
 .singleTrip, .doubleTrip {
   float: left;
@@ -1191,6 +1194,7 @@
 
 .country_header {
   opacity: 1;
+  display: none;
 }
 
 .country-cho-wrap {
@@ -1201,7 +1205,7 @@
   bottom: 0;
   z-index: 1000;
   background-color: #fff;
-  display: block;
+  display: none;
 }
 
 .jto_letter_list li {
