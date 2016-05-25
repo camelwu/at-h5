@@ -6,10 +6,8 @@
 (function () {
     "use strict";
     var fs = require("fs");
-    //window dev env
-    var logPath = "C:/log/";
-    //linux 
-    //var logPath = '/mydata/logs/';
+    //window dev env C:/logs/   //linux  /mydata/logs/
+    var logPath = process.platform.indexOf("win") > -1 ? "C:/logs/" : '/mydata/logs/';
     var now = new Date();
     var logFileName = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate() + ".json";
     var fileName = logPath + logFileName;
@@ -26,12 +24,12 @@
                                 if (err) {
                                     console.error(err);
                                 }
-                                //close file
-                                fs.close(fileName, function (err) {
-                                    if (err) {
-                                        console.error(err);
-                                    }
-                                });
+                                //                                //close file
+                                //                                fs.close(fileName, function (err) {
+                                //                                    if (err) {
+                                //                                        console.error(err);
+                                //                                    }
+                                //                                });
                             });
                         } else {
                             fs.writeFile(fileName, parameter + "\n", function (err) {
@@ -39,11 +37,11 @@
                                     console.error(err);
                                 }
                                 //close file
-                                fs.close(fileName, function (err) {
-                                    if (err) {
-                                        console.error(err);
-                                    }
-                                });
+                                //                                fs.close(fileName, function (err) {
+                                //                                    if (err) {
+                                //                                        console.error(err);
+                                //                                    }
+                                //                                });
                             });
                         }
                     });
@@ -54,12 +52,13 @@
                                 if (err) {
                                     console.error(err);
                                 }
-                                //close file
-                                fs.close(fileName, function (err) {
-                                    if (err) {
-                                        console.error(err);
-                                    }
-                                });
+                                //                                //close file
+                                //                                console.info(fileName);
+                                //                                fs.close(fileName, function (err) {
+                                //                                    if (err) {
+                                //                                        console.error(err);
+                                //                                    }
+                                //                                });
                             });
                         } else {
                             console.error("mkdir error in LogController");
