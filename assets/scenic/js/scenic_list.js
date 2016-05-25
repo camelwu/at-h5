@@ -82,7 +82,7 @@
   var AjaxAdapter = function(){
     var Adapter = {
       /**
-       * 景 列表页
+       * 景 列表
        * @param data
        * @returns {Array}
        */
@@ -131,7 +131,7 @@
 
   var Method = {
     /**
-     * 景 首页 热门城市
+     * 景 列表
      * @param dom
      * @param data
      */
@@ -139,7 +139,7 @@
       AjaxAdapter().callAjaxAdapter("m_scenic_list",{});
     },
     /**
-     * 景 首页 热门城市
+     * 景 列表
      * @param json
      */
     m_scenic_listCallback:function(json){
