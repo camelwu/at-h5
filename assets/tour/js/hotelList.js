@@ -14,7 +14,7 @@ var hotelList = {
 
 	CultureName : "zh-CN",
 
-	requestUrl : "",
+	requestUrl : "http://10.2.22.239:8888/api/GetServiceApiResult",
 
 	eventHandler : function(target, eventType, handle) {
 		if (document.addEventListener) {
@@ -133,26 +133,33 @@ var hotelList = {
 							filterType: 1,
 							item: starChoose(resultData)
 						}]
+					},
+					hotelPosition : {
+						title : "位置",
+						c : "foot_position",
+						s:2,//select
+						type : 2,
+						key : 'locationList',
+						listData :resultData.locationList
 					}
 				}, menu_call = function(data) {
-					console.log(data)
-					////位置重构
-					//var toString = [];
-					//toString= data.locationList;
-					//var locationList = toString.join(",");
-                    //
+					//入参位置重构
+					var toString ="";
+					toString= data.locationList;
+					console.log(toString)
+					var locationList = toString.join("$");
+					console.log(locationList)
+
 					//筛选入参重构
 					var arrNum = data.filters[0].FilterValues,filter ="";
 					for(var i=0;i<arrNum.length;i++){
 						filter = filter + arrNum[i]+'$';
 					}
 					//排序获取当前点击事件
-					//console.log($('.foot_sort .cur').eq());
 					oldInfo.SortType = data.sortTypes[0];
-					//parametersStorage.Location = locationList;
+					oldInfo.Location = locationList;
 					oldInfo.StarRating = filter;
-					////加loading
-					//$('.status').fadeIn('fast');
+
 					tAjax("", oldInfo, "40100008", "3", list);
 				};
 				if (footer) {
@@ -166,30 +173,30 @@ var hotelList = {
 
 
 
-        //  恢复上次选中的酒店星级
-        if(newPara.StarRating != ''){
-          var li = document.getElementById('h-level').getElementsByTagName('li');
-          var star = newPara.StarRating.split('$');
-          for(var i = 0;i < li.length;i++){
-            for(var j = 0;j < star.length-1;j++){
-              if(li[i].innerHTML == star[j]){
-                li[0].className = 's_li';
-                li[i].className = 's_li1';
-              }
-            }
-          }
-        }
-        // 恢复上次选中的酒店位置
-        var oldLocation = newPara.Location.replace('$', '');
-          oldLocation = oldLocation ? oldLocation : '不限';
-          $('#l-ul .l-li').find('b').removeClass('l_icon1').addClass('l_icon');
-          $('#l-ul .l-li').each(function (index, item) {
-            var $item = $(item);
-            if($item.text().trim() === oldLocation){
-              $item.find('b').addClass('l_icon1').removeClass('l_icon');
-              return;
-            }
-        });
+				//  恢复上次选中的酒店星级
+				if(newPara.StarRating != ''){
+					var li = document.getElementById('h-level').getElementsByTagName('li');
+					var star = newPara.StarRating.split('$');
+					for(var i = 0;i < li.length;i++){
+						for(var j = 0;j < star.length-1;j++){
+							if(li[i].innerHTML == star[j]){
+								li[0].className = 's_li';
+								li[i].className = 's_li1';
+							}
+						}
+					}
+				}
+				// 恢复上次选中的酒店位置
+				var oldLocation = newPara.Location.replace('$', '');
+				oldLocation = oldLocation ? oldLocation : '不限';
+				$('#l-ul .l-li').find('b').removeClass('l_icon1').addClass('l_icon');
+				$('#l-ul .l-li').each(function (index, item) {
+					var $item = $(item);
+					if($item.text().trim() === oldLocation){
+						$item.find('b').addClass('l_icon1').removeClass('l_icon');
+						return;
+					}
+				});
 
 				that.delayLoadImage().addEvent()
 			}
@@ -202,29 +209,29 @@ var hotelList = {
 		var starWord = function(arg) {
 			var star = "";
 			switch(arg[0]) {
-			case "0":
-				star = "";
-				break;
-			case "1":
-				star = "一";
-				break;
-			case "2":
-				star = "二";
-				break;
-			case "3":
-				star = "三";
-				break;
-			case "4":
-				star = "四";
-				break;
-			case "5":
-				star = "五";
-				break;
-			case "6":
-				star = "六";
-				break;
-			default :
-				star = "";
+				case "0":
+					star = "";
+					break;
+				case "1":
+					star = "一";
+					break;
+				case "2":
+					star = "二";
+					break;
+				case "3":
+					star = "三";
+					break;
+				case "4":
+					star = "四";
+					break;
+				case "5":
+					star = "五";
+					break;
+				case "6":
+					star = "六";
+					break;
+				default :
+					star = "";
 			}
 			return star;
 		};
@@ -466,8 +473,8 @@ function url2json(url) {
 					rli[i].addEventListener("click", selectRank);
 				}
 
-        $('#l-ul').off('click');
-        $('#l-ul').on('click', '.l-li', selectLocation);
+				$('#l-ul').off('click');
+				$('#l-ul').on('click', '.l-li', selectLocation);
 
 			}
 		}
@@ -567,21 +574,23 @@ function url2json(url) {
 			}
 			console.log(newPara);
 			hotelList.tAjax('',newPara,'0208',3,hotelList.callBack);
+
 		}
 
 		/*   位置筛选  */
 
-    function selectLocation(e) {
-      var $this = $(this);
-      var b = $this.find('b');
-      var selected = b.hasClass('l_icon1');
-      if (!selected) {
-        b.removeClass('l_icon').addClass('l_icon1');
-        $this.siblings().find('b').addClass('l_icon').removeClass('l_icon1');
-      }
-    }
+		function selectLocation(e) {
+			var $this = $(this);
+			var b = $this.find('b');
+			var selected = b.hasClass('l_icon1');
+			if (!selected) {
+				b.removeClass('l_icon').addClass('l_icon1');
+				$this.siblings().find('b').addClass('l_icon').removeClass('l_icon1');
+			}
+		}
 
 	}
 	h_l_s();
 	//页面没有展示前页面展示的页面
+
 })();

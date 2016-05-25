@@ -23,11 +23,7 @@ ol {
 	z-index: 2;
 	display: none;
 }
-<<<<<<< HEAD
-.footer_three dl.classname,.footer_two dl.classname{
-=======
 .footer_three dl.curBtn,.footer_two dl.curBtn{
->>>>>>> rem
 	background: #0d0d0d;
 }
 .footer_two dl {
@@ -87,27 +83,9 @@ footer.footer_three dt,footer.footer_two dt{
 	background-size: 7.89rem 5.07rem;
 	margin: 0.12rem auto 0.05rem;
 }
-<<<<<<< HEAD
 dl.foot_sort dt{
 	background-position: -0.59rem -2.32rem;
 }
-=======
-
-dl.foot_sort dt{
-	background-position: -0.59rem -2.32rem;
-}
-dl.f_tax_sort dt{
-  width: 0.34rem;
-  height: 0.37rem;
-  background: url(../../images/ui/price.png) no-repeat;
-  background-size: .40rem .40rem;
-  background-position: -.04rem 0;
-  margin: 0.12rem auto 0.05rem;
-}
-dl.f_foot_sort dt {
-  background-position: -1.236rem -2.32rem;
-}
->>>>>>> rem
 dl.foot_screen dt{
 	background-position: -1.87rem -2.32rem;
 }
@@ -116,11 +94,7 @@ dl.foot_position dt{
 	background-size: 7.89rem 2.58rem;
 	background-position: -2.19rem -0.46rem;
 }
-<<<<<<< HEAD
 section.foot_sort{
-=======
-section.foot_sort,section.f_foot_sort{
->>>>>>> rem
 	background: #fff;
 	width: 100%;
 	position: absolute;
@@ -128,11 +102,7 @@ section.foot_sort,section.f_foot_sort{
 	left: 0;
 	bottom: -8.98rem;
 }
-<<<<<<< HEAD
 section.foot_sort li{
-=======
-section.foot_sort li, section.f_foot_sort li{
->>>>>>> rem
 	margin: 0 0 0 0.28rem;
 	font-size: 0.28rem;
 	padding: 0 0.12rem;
@@ -142,11 +112,7 @@ section.foot_sort li, section.f_foot_sort li{
 	color: #333;
 	position: relative;
 }
-<<<<<<< HEAD
 section.foot_sort li.cur i{
-=======
-section.foot_sort li.cur i, section.f_foot_sort li.cur i{
->>>>>>> rem
 	width: 0.4rem;
 	height: 0.4rem;
 	position:absolute;
@@ -154,11 +120,7 @@ section.foot_sort li.cur i, section.f_foot_sort li.cur i{
 	right: 0.18rem;
 	margin-top:-0.2rem;
 }
-<<<<<<< HEAD
 section.foot_sort li i{
-=======
-section.foot_sort li i,section.f_foot_sort li i{
->>>>>>> rem
 	background:url(../../images/ui/icon_common.png);
 	background-size:7.9rem 5.13rem;
 	background-position: -6.9rem -0.58rem;

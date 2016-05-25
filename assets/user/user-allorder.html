@@ -204,7 +204,7 @@
 			</ul>
 		</div>
       <div class="clearfix find_order">
-        <a href="../hotel/order-details.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Hotle" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	{% } %}
@@ -229,7 +229,7 @@
 		</div>
 		<div class="quitbtn">联系客服</div>
       <div class="clearfix find_order">
-        <a href="../flight/ticket_order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Flight" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	{% } else if (productType=="Hotel" && bookingStatus!="Canceled" ) { %}
@@ -249,7 +249,7 @@
 			</ul>
 		</div>
       <div class="clearfix find_order">
-        <a href="../hotel/order-details.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Hotle" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	<!--酒店+景-->
@@ -269,7 +269,7 @@
 			</ul>
 		</div>
       <div class="clearfix find_order">
-        <a href="../tour/order_pay_page.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Tour" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	<!--景点-->
@@ -289,7 +289,7 @@
 			</ul>
 		</div>
       <div class="clearfix find_order">
-        <a href="../scenic/order-detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Scenic" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	<!--机+酒-->
@@ -329,7 +329,7 @@
         </ul>
       </div>
       <div class="clearfix find_order">
-        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=FlightHotelTour" class="paybtn button-yellow">查看订单</a>
       </div>
     </div>
     {% } %}

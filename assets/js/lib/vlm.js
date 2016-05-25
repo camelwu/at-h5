@@ -312,7 +312,6 @@
                 },
 
                 get30Minutes: function (data) {
-                    debugger;
                     var stringTime = data.replace('-', "/").replace('-', "/").replace('T', " ");
                     var newDate = new Date(stringTime);
                     var str = newDate.setMinutes(newDate.getMinutes() + 30, newDate.getSeconds(), 0);
