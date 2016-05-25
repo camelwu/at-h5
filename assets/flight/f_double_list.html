@@ -16,6 +16,7 @@
   <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
   <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
   <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
+  <link href="../plugins/footer/footer.css"  rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="preloader">
@@ -31,7 +32,7 @@
     <h3><span>北京</span><i class="arrowDouble"></i><span>新加坡</span>
     </h3>
   </header>
-  <div class="content addPaddingTop">
+  <div class="content addPaddingTop addMarginBottomHigh">
     <div class="date-top" id="date_top">
       <span class="month-day" id="setOffDate">04月29日</span><span class="weekWord">周五</span>
       <span class="v-line">-</span>
@@ -50,10 +51,17 @@
     <div class="trip_go">
       <div class="seat_price">
         <p class="priceNumber">
-          <span class="money">￥</span><%= item["totalFareAmountADT"] %>
-          <span class="double_tip">往返</span>
-          <span class="tax_cost">税费￥<%= item["totalTaxAmountADT"] %></span>
-          <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
+          <%if(Number(fDoubleList.postObj.hasTax)){%>
+              <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+              <span class="double_tip">往返</span>
+              <span class="tax_cost">含税总价</span>
+              <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
+          <%}else{%>
+              <span class="money">￥</span><%= item["totalFareAmountADT"] %>
+              <span class="double_tip">往返</span>
+              <span class="tax_cost">税费￥<%= item["totalTaxAmountADT"] %></span>
+              <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
+          <% }%>
         </p>
       </div>
       <div class="time_airport">
@@ -129,5 +137,7 @@
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="../plugins/footer/footer.js"></script>
+<script type="text/javascript" src="js/doubleListData.js"></script>
 <script type="text/javascript" src="js/f_double_list.js"></script>
 </html>

@@ -865,6 +865,11 @@ var arrCountry= [{"CountryEN":"Angola",
                             });
                         }
                         oInput.value='';
+
+                        if($('#uptra_page').length >0){
+                          $('#uptra_page').css('visibility','visible');
+                        }
+                      
                     },500)
                     if($('#addtra_page').length>0)
                     {
@@ -942,6 +947,11 @@ var arrCountry= [{"CountryEN":"Angola",
                             });
                         }
                         oInput.value='';
+
+                        if($('#uptra_page').length >0){
+                          $('#uptra_page').css('visibility','visible');
+                        }
+
                     },500)
 
                     if($('#addtra_page').length>0) {

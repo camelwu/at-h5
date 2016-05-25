@@ -137,16 +137,31 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     jAlert('请输入证件号')
                     return;
                 }
+
+                //证件有效期验证
+                var card_validity=$('#time-cont').html();
+                if(card_validity == ''){
+                  jAlert('请选择有效的证件有效期');
+                  return;
+                }else if( ! vlm.Utils.compareTime(card_validity)){
+                  jAlert('证件有效期无效，请重新选择!');
+                  return;
+                }
+
                 //  判断性别
                 var man = $("#man")[0];
+                var woman = $("#woman")[0];
                 var sexCode;
                 var sexName;
                 if (man.className == "icon_h traveler_sex1") {
                     sexCode = "Mr";
                     sexName = "男";
-                } else {
+                }else if(woman.className == "icon_h traveler_sex1") {
                     sexCode = "Mrs";
                     sexName = "女";
+                }else{
+                  jAlert('请选择性别!');
+                  return;
                 }
                 // 手机号邮箱检验
 
@@ -211,6 +226,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     $('#man').attr('class','icon-h traveler-sex1');
                     $('#woman').attr('class','icon-h traveler-sex2');
                     addtra_page.style.display='none';
+                    $('#content-wrap').css('visibility','visible');
                 }
             }
         }
@@ -262,6 +278,17 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     jAlert('请输入证件号')
                     return;
                 }
+
+                //证件有效期验证
+                var card_validity=$('#time-cont-edit').html();
+                if(card_validity == ''){
+                  jAlert('请选择有效的证件有效期');
+                  return;
+                }else if( ! vlm.Utils.compareTime(card_validity)){
+                  jAlert('证件有效期无效，请重新选择!');
+                  return;
+                }
+
                 //  判断性别
                 var man = $("#man2")[0];
                 var sexCode;
@@ -379,8 +406,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var content = $("#content")[0];
                 var UL = document.createElement("ul");
                 UL.className = "often_traveler";
-                UL.style.borderTop = "1px solid #e6e6e6";
-                UL.style.marginTop = ".2rem";
 
                 for (var i = 0; i < travJson.data.length; i++) {
                     var idtype_num=travJson.data[i].listTravellerIdInfo.length;

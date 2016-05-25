@@ -62,8 +62,7 @@ var fSingleList = {
           minusOne = minusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
          if (new Date(minusOne.replace(/-/g, "/") + ' 23:59:59') >= new Date()) {
            newUrl = vlm.setUrlPara("", "departDate", minusOne);
-           newUrl = vlm.setUrlPara(newUrl, "pageNo", 1);
-           newUrl = vlm.setUrlPara(newUrl, "pageSize", 10);
+           newUrl = that.pageHandler(newUrl);
            window.location.href = newUrl;
         }
       }else if(target.className == "nextDay"){
@@ -75,8 +74,7 @@ var fSingleList = {
         plusOne = plusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
         if (new Date(plusOne.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(plusOne.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
             newUrl = vlm.setUrlPara("", "departDate", plusOne);
-            newUrl = vlm.setUrlPara(newUrl, "pageNo", 1);
-            newUrl = vlm.setUrlPara(newUrl, "pageSize", 10);
+            newUrl = that.pageHandler(newUrl);
             window.location.href = newUrl;
         }
       }
@@ -88,7 +86,7 @@ var fSingleList = {
     var data = arguments[0];
     var tempString="", outputString="", that = fSingleList;
     tempString = $("#template_flight_single_list").html();
-    outputString = this.isClear == 1? ejs.render(tempString, data): $(".flight_ul").eq(0).html()+ejs.render(tempString, data);
+    outputString = this.postObj.isClearAll == 1? ejs.render(tempString, data): $(".flight_ul").eq(0).html()+ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
@@ -98,7 +96,7 @@ var fSingleList = {
     console.log(result);
     if(result.success&&result.code == "200"){
          that.currrentFlightList = result.data;
-         show_filter(result.data.airCorpCodeList);
+         that.filterHandler();
          that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
     }
   },
@@ -140,14 +138,14 @@ var fSingleList = {
   },
 
   loadMoreData: function () {
-    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage;
+    var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage, newUrl = "";
     if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
       $('#loadMore').html("没有更多信息了!").fadeOut(3000);
     } else {
       this.postObj.pageNo++;
+      this.postObj.isClearAll = 0;
       loadMore.innerHTML = "正在加载...";
       storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
-      this.isClear = 0;
       this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
@@ -219,35 +217,173 @@ var fSingleList = {
     return obj;
   },
 
+  pageHandler:function(url){
+    var newUrl = url, that = fSingleList;
+    that.postObj.pageSize = Number(that.postObj.pageSize)>10?Number(that.postObj.pageSize):Number(that.postObj.pageNo)*10;
+    that.postObj.pageNo = 1;
+    that.postObj.isClearAll = 1;
+    newUrl = vlm.setUrlPara(newUrl, "isClearAll", that.postObj.isClearAll);
+    newUrl = vlm.setUrlPara(newUrl, "pageNo", that.postObj.pageNo);
+    newUrl = vlm.setUrlPara(newUrl, "pageSize",that.postObj.pageSize);
+    return newUrl;
+  },
+
+  filerCallBack:function(){
+      console.log(arguments);
+      var transferData = arguments, that =fSingleList, newUrl = window.location.href;
+      if(that.postObj.internationalOrDomestic == "international"&&that.postObj.routeType == "oneWay"){
+        if(arguments[1].id == "Price"){
+          var dd =  arguments[1].querySelector('dd');
+          if(dd.innerHTML== "价格"){
+            dd.innerHTML = "从低到高";
+            that.postObj.priorityRule = 2;
+            newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+            newUrl = that.pageHandler(newUrl);
+            window.location.href = newUrl;
+          }else if(dd.innerHTML== "从低到高"){
+            dd.innerHTML = "价格";
+            that.postObj.priorityRule = 0;
+            newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+            newUrl = that.pageHandler(newUrl);
+            window.location.href = newUrl;
+          }
+        }else{
+          that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
+          that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
+          that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substr(0,2);
+          that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substr(3);
+          that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
+          if(transferData[0].sortTypes[0].indexOf('isDesc')> -1){
+            that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
+            that.postObj.priorityRule = 0;
+          }else{
+            that.postObj.priorityRule = transferData[0].sortTypes[0];
+            //delete  that.postObj.isDesc;
+            that.postObj.isDesc = "none"
+            newUrl = vlm.setUrlPara(newUrl, "isDesc",that.postObj.isDesc);
+          }
+          newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
+          newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
+          newUrl = vlm.setUrlPara(newUrl, "departStartHour", that.postObj.departStartHour);
+          newUrl = vlm.setUrlPara(newUrl, "departEndHour", that.postObj.departEndHour);
+          newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
+          newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+          newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
+          newUrl = that.pageHandler(newUrl);
+          window.location.href = newUrl;
+        }
+      }
+  },
+
+  filterHandler: function(){
+      var f_data = {
+        Sort : {
+          title : "起飞早到晚",
+          c : "f_foot_sort",
+          type : 1,
+          key : "sortTypes",
+          listData : [
+            {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
+            {sortText: "起飞晚到早", sortValue: "isDesc_true"}
+          ]
+        },
+        Screen : {
+          title : "筛选", /*名字*/
+          c : "foot_screen",
+          type :2,  /*类型*/
+          key : 'filters',
+          listData : [
+            {allowMultiSelect : 0,
+              filterType : 4,
+              item : [{
+                filterText : "不限",
+                filterValue : "false"
+              }, {
+                filterText : "仅看直飞",
+                filterValue : "true"
+              }],
+              sortNumber : 0,
+              title : "直飞"
+            }, {
+              allowMultiSelect : 0,
+              filterType : 3,
+              item : [{
+                filterText : "不限",
+                filterValue : "false"
+              }, {
+                filterText : "隐藏共享",
+                filterValue : "true"
+              }],
+              sortNumber : 1,
+              title : "共享"
+            }, {
+              allowMultiSelect : 0,
+              filterType : 2,
+              item : [{
+                filterText : "不限",
+                filterValue : "00-24"
+              }, {
+                filterText : "00:00 - 06:00",
+                filterValue : "00-06"
+              }, {
+                filterText : "06:00 - 12:00",
+                filterValue : "06-12"
+              }, {
+                filterText : "12:00 - 18:00",
+                filterValue : "12-18"
+              }, {
+                filterText : "18:00 - 24:00",
+                filterValue : "18-24"
+              }],
+              sortNumber : 2,
+              title : "起飞时段"
+            }, {
+              allowMultiSelect : 0,
+              filterType : 1,
+              item : [
+                {
+                  filterText : "经济舱",
+                  filterValue : "economy"
+                },
+                {
+                  filterText : "超级经济舱",
+                  filterValue : "economyPremium"
+                },
+                {
+                  filterText : "商务舱",
+                  filterValue : "business"
+                },
+                {
+                  filterText : "头等舱",
+                  filterValue : "first"
+                }
+
+              ],
+              sortNumber : 3,
+              title : "舱位"
+            }]
+        },
+        Price : {
+          title : "价格",
+          c : "f_tax_sort",
+          type : 0,
+          key : 'tax',
+          listData : ["从低到高", "从高到低"]
+        }
+      }, that = this;
+      if (footer) {
+        footer.data = f_data;
+        footer.callback = that.filerCallBack;
+      }
+      footer.filters.init();
+      },
   init: function () {
       var postObj = this.parseUrlHandler(window.location.href,true);
-         /* postObj={
-              "cityCodeFrom": "BJS",
-              "cityCodeTo": "SIN",
-              "departDate": "2016-06-18",
-             /!* "returnDate": "2016-06-17",*!/
-              "cabinClass": "economy",
-              "routeType": "oneWay",
-              "isHideSharedFlight": "false", /!*是否隐藏共享航班*!/
-              "isDirectFlight": "false",
-              "numofAdult": 2,
-              "numofChild": 0,
-              "departStartHour": "00",
-              "departEndHour": "24",
-              "priorityRule": 0, /!*	0 - 无优先规则，1 - 直飞优先，2 - 低价优先，3 - 总耗时优先*!/
-              "pageNo": 1,
-              "pageSize": 10,
-              "hasTax": "true",
-              "isDesc": "false", /!*是否降序，默认升序*!/
-              /!* "AirCorpCode":"MH",*!//!*航空公司赛选参数，不传不限航空公司*!/
-              "fromCity": "北京",
-              "toCity": "新加坡",
-              "interNationalOrDomestic": "international"
-          };
-*/
+      console.log(postObj)
       this.postObj = postObj;
-      this.isClear = 1;
       this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
+      //this.renderHandler(data2)
   }
 
 };

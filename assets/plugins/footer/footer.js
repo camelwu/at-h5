@@ -75,12 +75,24 @@ var footer = (function() {
 	// 筛选
 	filters = {
 		bindEvent : function() {
-			var that = this;
+			var that = this, dls = document.querySelectorAll('footer dl');
 			//底部三按钮
 			on(box, 'click', function(event) {
 				event = event || window.event;
 				var target = event.target || event.srcElement, src, index, returnVal;
-				src = target.parentNode;
+        while (target.tagName!= "DL") {
+          target = target.parentNode;
+        }
+        returnVal = target.getAttribute("data-type");
+        for(var i = 0;i<dls.length;i++){
+          if(dls[i] == target ){
+            index = i;
+            break
+          }
+        }
+        that.target = target;
+        that.showItems(index, returnVal);
+		/*		src = target.parentNode;
 				//当前dom元素等于事件绑定的dom元素的时候，停止“冒泡”
 				while (src && src !== box) {
 					target = src;
@@ -91,8 +103,10 @@ var footer = (function() {
 				while ( target = target.previousSibling) {
 					if (target.nodeType == 1)
 						index++;
-				}
-				that.showItems(index, returnVal);
+				};*/
+
+
+			//	that.showItems(index, returnVal);
 			});
 			// 容器里的各种点击：取消，确定按钮
 			on(sec, 'click', function(event) {
@@ -169,6 +183,7 @@ var footer = (function() {
 								break;
 							}
 							if (theme == 1 || theme == 3) {// 显示类型确认操作
+                console.log(111)
 								that.request();
 							}
 						}
@@ -218,6 +233,7 @@ var footer = (function() {
 				box.style.fontSize = '0.24rem';
 			}
 			var data = footer.data, ca = [];
+      console.log(data)
 			for (var p in data) {
 				ca.push('<dl class=' + data[p].c + ' id=' + p + ' data-type=' + data[p].type + '><dt></dt><dd>' + data[p].title + '</dd></dl>');
 				this.createSec(data[p].s, data[p].c, data[p].type, data[p].key, data[p].listData);
@@ -259,7 +275,7 @@ var footer = (function() {
 			}
 		},
 		// section
-		createSec : function(s, c, t, k, d) {
+		createSec : function(s, c, t, k, d) {  //this.createSec(data[p].s, data[p].c, data[p].type, data[p].key, data[p].listData);
 			var str = '', ulstr = '', listr = '', i = 0, l = d.length, css = '', s = s ? s : 1, cache = [],
 			// 容器
 			wrapper = ['<ul data-sel="' + s + '" data-theme="' + t + '" data-key="' + k + '">', '</ul>'],
@@ -367,6 +383,66 @@ var footer = (function() {
 			}
 			return this;
 		},
+    chooseStatus:function(){
+         var outerObj ={};
+         if(typeof fSingleList == "undefined"){
+           outerObj = fDoubleList;
+         }else{
+           outerObj = fSingleList;
+         }
+         if(outerObj.postObj.internationalOrDomestic == "international"){
+           var dls = document.querySelectorAll('footer dl'),leftUl = document.querySelector('.f_foot_sort ul');
+           var middlesUls = document.querySelectorAll('.screen_rg ul'), temp1,temp2,temp3,temp4,temp5;
+           var postObj = outerObj.postObj;
+           temp1 = leftUl.querySelectorAll('li');
+           temp1 = [].slice.call(temp1);
+           temp1.forEach(function(item, number){
+             if(number<3){
+               item.className =  item.getAttribute('data-val') == postObj.priorityRule?"cur":"";
+             }else{
+               item.className =  item.getAttribute('data-val').substring(7) == postObj.isDesc?"cur":"";
+             }
+           });
+           temp2 = middlesUls[0].querySelectorAll('li');
+           temp2 = [].slice.call(temp2);
+           temp2.forEach(function(item, number){
+             console.log(item.getAttribute('data-val'));
+             console.log( postObj.isDirectFlight);
+             item.className =  item.getAttribute('data-val') == postObj.isDirectFlight?"cur":"";
+           });
+           temp3 = middlesUls[1].querySelectorAll('li');
+           temp3 = [].slice.call(temp3);
+           temp3.forEach(function(item, number){
+             item.className =  item.getAttribute('data-val') == postObj.isHideSharedFlight?"cur":"";
+           });
+           if(outerObj.postObj.routeType == "oneWay"){
+             temp4 = middlesUls[2].querySelectorAll('li');
+             temp4 = [].slice.call(temp4);
+             temp4.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.departStartHour+'-'+postObj.departEndHour?"cur":"";
+             });
+             temp5 = middlesUls[3].querySelectorAll('li');
+             temp5 = [].slice.call(temp5);
+             temp5.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.cabinClass?"cur":"";
+             });
+             dls[2].querySelector('dd').innerHTML = postObj.priorityRule=="2"?"从低到高":"价格";
+           }else{
+             temp4 = middlesUls[2].querySelectorAll('li');
+             temp4 = [].slice.call(temp4);
+             temp4.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.cabinClass?"cur":"";
+             });
+             temp5 = middlesUls[3].querySelectorAll('li');
+             temp5 = [].slice.call(temp5);
+             temp5.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.airCorpCode?"cur":"";
+             });
+             dls[0].querySelector('dd').innerHTML = Number(fDoubleList.postObj.hasTax)==1?"含税费":"不含税费";
+             dls[2].querySelector('dd').innerHTML = Number(fDoubleList.postObj.hasTax)==1?"含税费":"不含税费";
+           }
+         }
+          },
 
 		current : function() {
 			return box;
@@ -379,6 +455,7 @@ var footer = (function() {
 			} else {
 				if(!box)
 				this.create();
+        this.chooseStatus();
 			}
 			//缓存数据&导入
 		},
@@ -396,7 +473,6 @@ var footer = (function() {
 		request : function() {
 			// 选中的属性
 			var node = sec.getElementsByTagName("ul"), obj = {};
-      console.log(node)
 			for (var i = 0; i < node.length; i++) {
 				if (node[i].getAttribute("data-key")) {
 					var cache = [], chk = node[i].getElementsByClassName("cur"), mykey = node[i].getAttribute("data-key");
@@ -427,14 +503,11 @@ var footer = (function() {
 				}
 			}
 			footer.result = obj;
-			console.log(obj);
 			this.remove();
       if(box.style.display == 'none'){
         box.style.display = 'block';
       }
-			if (footer.callback) {
-				  footer.callback(obj);
-			}
+     footer.callback(obj, filters.target);
 		},
 		// 重置选中
 		resec : function(w) {
@@ -462,7 +535,7 @@ var footer = (function() {
 		showItems : function(n, t) {
 			var that = this;
 			if (t == 0) {
-				that.request();
+				that.request("void");
 				return;
 			}
 			// 显示要筛选的列表内容

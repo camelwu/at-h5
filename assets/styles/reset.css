@@ -50,11 +50,6 @@ ul li {
 i,em{
   font-style: normal;
 }
-
-div, p{
-  box-sizing: border-box;
-}
-
 * {
     appearance: normal;
     -webkit-appearance: none;

@@ -111,15 +111,18 @@
 					return decodeURIComponent(r[2]);
 				return null;
 			}, setUrlPara = function(url, key, value) {
-				var originalUrl = url ? url : window.location.href;
-				var url = originalUrl;
-				var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-				var result = url.match(reg);
-				if (result) {
-					return url.replace(result[0], "&" + key + "=" + value + "&")
-				} else {
-					return originalUrl;
-				}
+          var originalUrl = url ? url : window.location.href , newUrl = "",reg = new RegExp(key + "=([^&]*)(&|$)"),result =[] ;
+          newUrl = originalUrl;
+          result = newUrl.match(reg);
+          if(result){
+            if(!value){
+              return  newUrl.replace(result[0], "")
+            }else{
+              return  newUrl.replace(result[0], key + "=" + value + result[2])
+            }
+          }else{
+            return newUrl.indexOf('?')>-1?newUrl+"&"+key+"="+value:newUrl+"?"+key+"="+value
+          }
 			}, parseUrlPara = function(url, isEncode) {
 				var isEncode = isEncode || false;
 				var reg = /([^=&?]+)=([^=&?]+)/g, obj = {};
