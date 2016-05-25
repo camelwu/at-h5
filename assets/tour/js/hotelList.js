@@ -14,7 +14,7 @@ var hotelList = {
 
 	CultureName : "zh-CN",
 
-	requestUrl : "http://10.2.22.239:8888/api/GetServiceApiResult",
+	requestUrl : "",
 
 	eventHandler : function(target, eventType, handle) {
 		if (document.addEventListener) {
@@ -109,7 +109,7 @@ var hotelList = {
 						ForeEndType : ForeEndType,
 						Code : Code
 					};
-					questUrl = questUrl || that.requestUrl;
+					questUrl = "";
 					vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 				};
 				//footer  begin
