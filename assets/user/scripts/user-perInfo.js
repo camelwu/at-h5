@@ -197,7 +197,7 @@ function u_perInfo(){
             if(vlm.Utils.validate.chiName(u_realname))
             {
                 var Parameters={
-                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\",\"Salutation\":\""+UserSex+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
