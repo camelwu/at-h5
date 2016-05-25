@@ -139,6 +139,32 @@
 
   </section>
   <section id="tpl_order_detail">
+    <% if(vouchers!=null && vouchers.length>=1){ %>
+    <div class="fht_order_detail">
+      <div class="fht_hd">电子确认单<span class="tourticket_tip">（酒店入住，景点入园时出示）</span></div>
+      <ul class="fht_order_tab">
+        <% var i=0; tourNum=1; vouchers.forEach(function(info){ %>
+        <% if(info.code=="HOTEL") {%>
+        <li class="elecheck" <% if (i>0) {%> style=" border-top: 1px solid #ddd;" <%}%> >
+        <span class="fl">酒店确认单</span>
+        <a href="<%=info.link%>"><span class="fr icon_left"></span></a>
+        </li>
+        <% } else if(info.code=="TOUR"){%>
+        <li class="elecheck" <% if (i>0) {%> style=" border-top: 1px solid #ddd;" <%}%> >
+        <span class="fl">景点确认单<%=tourNum%></span>
+        <a href="<%=info.link%>"><span class="fr icon_left"></span></a>
+        </li>
+        <% tourNum++; } else{ %>
+        <li class="elecheck" <% if (i>0) {%> style=" border-top: 1px solid #ddd;" <%}%> >
+        <span class="fl">旅行确认单</span>
+        <a href="<%=info.link%>"><span class="fr icon_left"></span></a>
+        </li>
+        <% } %>
+        <% i++; }) %>
+      </ul>
+    </div>
+    <% } %>
+
     <div class="fht_order_detail">
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
@@ -178,13 +204,18 @@
         <span class="fr fare_tip"></span>
       </div>
       <ul class="hft_pri_details">
-        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>*<%=hotelDetails.roomDetails.totalAdult%> </span>
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>×<%=hotelDetails.roomDetails.totalAdult%> </span>
         </li>
-        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>*<%=hotelDetails.roomDetails.totalChild%> </span>
+        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>×<%=hotelDetails.roomDetails.totalChild%> </span>
         </li>
       </ul>
     </div>
   </section>
+  <% if (isContinuePay==1) {%>
+  <div class="p-but payOrder">
+    <a href="payment.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotelTour">支付订单</a>
+  </div>
+  <% } %>
 
 </script>
 
@@ -263,6 +294,31 @@
 
   </section>
   <section id="tpl_order_detail">
+    <% if(isContinuePay !=1 && vouchers!=null && vouchers.length>=1){ %>
+    <div class="fht_order_detail">
+      <div class="fht_hd">电子确认单<span class="tourticket_tip">（酒店入住，景点入园时出示）</span></div>
+      <ul class="fht_order_tab">
+        <% var i=0; tourNum=1; vouchers.forEach(function(info){ %>
+        <% if(info.code=="HOTEL") {%>
+        <li class="elecheck" <% if (i>0) {%> style=" border-top: 1px solid #ddd;" <%}%> >
+        <span class="fl">酒店确认单</span>
+        <a href="<%=info.link%>"><span class="fr icon_left"></span></a>
+        </li>
+        <% } else if(info.code=="TOUR"){%>
+        <li class="elecheck" <% if (i>0) {%> style=" border-top: 1px solid #ddd;" <%}%> >
+        <span class="fl">景点确认单<%=tourNum%></span>
+        <a href="<%=info.link%>"><span class="fr icon_left"></span></a>
+        </li>
+        <% tourNum++; } else{ %>
+        <li class="elecheck" <% if (i>0) {%> style=" border-top: 1px solid #ddd;" <%}%> >
+        <span class="fl">旅行确认单</span>
+        <a href="<%=info.link%>"><span class="fr icon_left"></span></a>
+        </li>
+        <% } %>
+        <% i++; }) %>
+      </ul>
+    </div>
+    <% } %>
     <div class="fht_order_detail">
       <div class="fht_hd">订单信息</div>
       <ul class="fht_order_tab">
@@ -302,13 +358,18 @@
         <span class="fr fare_tip"></span>
       </div>
       <ul class="hft_pri_details">
-        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>*<%=hotelDetails.roomDetails.totalAdult%> </span>
+        <li class="clearfix"><span class="fl">成人</span><span class="fr">¥<%=hotelDetails.roomDetails.unitAdultPrice%>×<%=hotelDetails.roomDetails.totalAdult%> </span>
         </li>
-        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>*<%=hotelDetails.roomDetails.totalChild%> </span>
+        <li class="clearfix"><span class="fl">儿童</span><span class="fr">¥<%=hotelDetails.roomDetails.unitChildPrice%>×<%=hotelDetails.roomDetails.totalChild%> </span>
         </li>
       </ul>
     </div>
   </section>
+  <% if (isContinuePay==1) {%>
+  <div class="p-but payOrder">
+    <a href="payment.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotle">支付订单</a>
+  </div>
+  <% } %>
 
 </script>
 
