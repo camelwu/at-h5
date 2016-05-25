@@ -1,8 +1,10 @@
-/*首页_背景*/
+/*通用_content*/
 .content{
+  padding:.88rem 0 .9rem;
   background-color: #ffffff;
 }
-/*首页_更多*/
+/*通用_content*/
+/*通用_头部*/
 .header_more {
   font-size: .28rem;
   color: #333333;
@@ -11,11 +13,12 @@
   right: 0;
   height: .88rem;
   line-height: .88rem;
-  width: 1.15rem;
 }
 
 .header_more .header_more_title {
   font-size: .32rem;
+  position: relative;
+  right: 0.5rem;
 }
 
 .header_more .header_more_icon {
@@ -31,7 +34,7 @@
   background-size: 7.90rem 5.13rem;
   background-position: -1.08rem -0.59rem;
 }
-/*首页_更多*/
+/*通用_头部*/
 
 /*首页_国外热游地*/
 .t_city{
@@ -163,3 +166,7 @@
   line-height: .3rem;
 }
 /*首页_国外热门景点*/
+
+/*列表页*/
+
+/*列表页*/
