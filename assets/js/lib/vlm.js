@@ -9,7 +9,7 @@
 
 (function (e, t) {
     var n = n || (function (n) { //123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111
-        var _api = "http://10.7.2.111/api/GetServiceApiResult",
+        var _api = "http://10.7.2.119/api/GetServiceApiResult",
             _apiWithDeviceID = "http://127.0.0.1/apiWihtDeviceID/GetServiceApiResult",
             lStorage = window.localStorage,
             sStorage = window.sessionStorage,
@@ -308,20 +308,20 @@
                     return timeStr;
                 },
 
-                get30Minutes:function(data){
-                  debugger;
-                  var stringTime = data.replace('-', "/").replace('-', "/").replace('T', " ");
-                  var newDate = new Date(stringTime);
-                  var str=newDate.setMinutes(newDate.getMinutes()+30,newDate.getSeconds(), 0);
+                get30Minutes: function (data) {
+                    debugger;
+                    var stringTime = data.replace('-', "/").replace('-', "/").replace('T', " ");
+                    var newDate = new Date(stringTime);
+                    var str = newDate.setMinutes(newDate.getMinutes() + 30, newDate.getSeconds(), 0);
 
-                  var hour = newDate.getHours(),
-                    minutes = parseInt(newDate.getMinutes()),
-                    seconds = parseInt(newDate.getSeconds());
+                    var hour = newDate.getHours(),
+                        minutes = parseInt(newDate.getMinutes()),
+                        seconds = parseInt(newDate.getSeconds());
 
                     hour = hour < 10 ? '0' + hour : hour;
                     minutes = minutes < 10 ? '0' + minutes : minutes;
 
-                  return hour + ':' + minutes;
+                    return hour + ':' + minutes;
 
                 },
                 //获取星期几

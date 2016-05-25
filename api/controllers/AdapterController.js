@@ -20,7 +20,6 @@
 var request = require("request");
 var md5 = require("md5");
 var crypto = require("crypto");
-var uuid = require('node-uuid');
 
 //AES加密body
 var algorithm = 'aes-256-cbc';
@@ -28,16 +27,6 @@ var key = 'YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4';
 var iv = 'YWJjZGVmZ2hpamts';
 var cipherEncoding = 'base64';
 var clearEncoding = 'utf8';
-
-//各业务类型订单Order-Code
-var apiOrderDic={
-  "10100006":{tpye:"H",name:"酒店",apiName:"酒店生成单接口"},
-  "20100007":{tpye:"T",name:"景点",apiName:"景点生成单接口"},
-  "30100002":{tpye:"F",name:"机票",apiName:"机票生成单接口"},
-  "50100004":{tpye:"FH",name:"机酒",apiName:"机酒生成单接口"},
-  "40100004":{tpye:"HT",name:"酒景",apiName:"酒景生成单接口"},
-  "60100010":{tpye:"FHT",name:"机酒景" ,apiName:"机酒景生成单接口"},
-}
 
 var getWithTrickParam=function(res,res,param){
   console.log(param);
@@ -146,90 +135,4 @@ module.exports = {
             //TODO 不加密
         }
     },
-
-    apiWihtDeviceID: function (req, res) {
-    var method = req.method;
-    var headers = req.headers;
-    var postJson = req.body;
-    var timestamp = new Date().getTime();
-
-
-    //console.log(orderType);
-    var bodyString = JSON.stringify(getWithTrickParam(req,res,postJson));
-      console.log(bodyString);
-
-    var sign = md5(timestamp + bodyString);
-    var timeBase64 = new Buffer(timestamp + '').toString('base64');
-
-    var cipher = crypto.createCipheriv(algorithm, key, iv);
-    var cipherChunks = [];
-    var bodyBuffer = new Buffer(bodyString);
-    cipherChunks.push(cipher.update(bodyBuffer, clearEncoding, cipherEncoding));
-    // if data is buffer then input_encoding is  ignored
-    cipherChunks.push(cipher.final(cipherEncoding));
-
-    var bodyAesBase64 = cipherChunks.join("");
-    //cipherChunks.join('');
-    /*
-     console.log(cipherEncoding + ' ciphertext: ' + cipherChunks.join(''));
-
-     var decipher = crypto.createDecipheriv(algorithm, key,iv);
-     var plainChunks = [];
-     for (var i = 0;i < cipherChunks.length;i++) {
-     plainChunks.push(decipher.update(cipherChunks[i], cipherEncoding, clearEncoding));
-
-     }
-     plainChunks.push(decipher.final(clearEncoding));
-     console.log("UTF8 plaintext deciphered: " + plainChunks.join(''));
-     */
-    //headers.flag = 0;  //非加密
-    headers.flag = headers.flag || 1; //加密传输
-    if (headers.flag == 1) {
-      var reqeustStartTime,requestEndTime,spendTime;
-      //http://10.6.11.20:6666/api/GetServiceApiResult
-      //http://123.56.190.34:8888/api/GetServiceApiResult
-      //http://10.6.11.20:11111/api/GetServiceApiResult  hotel_flight
-      var _api = 'http://10.7.2.100:8888/api/GetServiceApiResult' + '?rnd=' + Math.random();
-
-      //自定义请求header和body
-      var option = {
-        method: method,
-        //json : true,
-        //encoding : null,
-        gzip: true,
-        //headers : headers,
-        headers: {
-          "Content-Type": headers["content-type"],
-          "Sign": sign,
-          "Token": timeBase64
-        },
-        body: bodyAesBase64
-      }
-      reqeustStartTime = new Date().getTime();
-      //接口调用
-      request(_api, option, function (err, httpResponse, body) {
-        requestEndTime = new Date().getTime();
-        spendTime = requestEndTime - reqeustStartTime;
-        if(parseInt(spendTime) > 5000){
-          console.log(bodyString);
-          console.log(new Date() + "--apiWihtDevice 接口访问时间：" + (requestEndTime-reqeustStartTime));
-        }
-
-        if (!err && httpResponse.statusCode == 200) {
-          res.header("Access-Control-Allow-Origin", "*");
-          res.header("Access-Control-Allow-Headers", "X-Requested-With");
-          res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-          res.header("X-Powered-By",' 3.2.1')
-          res.header("Content-Type", "application/json;charset=utf-8");
-          res.type('application/json'); //设置返回content-type
-          res.send(body);
-        } else {
-          console.info(err);
-          //TODO response error data
-        }
-      });
-    } else {
-      //TODO 不加密
-    }
-  }
 }
