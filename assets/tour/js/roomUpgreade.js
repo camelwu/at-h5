@@ -115,17 +115,27 @@ var roomUpGrade = {
 				console.log(resultData.data);
 				var rooms = resultData.data.hotels[0].rooms;
 				var tpl1 = $('#tpl1').html();
+				var tpl12 = $('#tpl12').html();
+				var tpl13 = $('#tpl13').html();
 				var tpl2 = $('#tpl2').html();
 				var tpl_GetList = ejs.render(tpl1, resultData.data);
+				var tpl_GetList12 = ejs.render(tpl12, resultData.data);
+				var tpl_GetList13 = ejs.render(tpl13, resultData.data);
 				var tpl_GetRooms = ejs.render(tpl2,resultData.data.hotels[0]);
 				that.dataInfo = resultData.data;
 				that.roomsData = rooms;
 				$("#preloader").fadeOut();
-				$('#sc-content').html(tpl_GetList);
+				$('.hotel_detail_banner').html(tpl_GetList);
+				$('.hdl_up').html(tpl_GetList12);
+				$('.hdl_down').html(tpl_GetList13);
 				$('#room-list').html(tpl_GetRooms);
 				var travelersInput = resultData.data.bookingFormInfo.travelersInput;
 				that.chooseRoom(travelersInput);
 				that.dateDeal().delayLoadImage().addEvent(travelersInput);
+				//map
+				at.map.createMap(1.297839,103.848437);
+				at.map.markHotel(1.297839,103.848437,"");
+				at.map.moveCenterToHotelLocation(1.297839,103.848437);
 			}
 		} else {
 			$("#preloader").fadeOut();
