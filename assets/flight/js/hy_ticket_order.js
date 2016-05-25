@@ -118,11 +118,39 @@ var ticketOrder = {
             document.querySelector('.summary-cost-shadow-two').style.display = 'block';
             document.querySelector('.ticket-detail-modal').style.display = 'block';
         })
+
+
+
+
+
+
+
         this.addHandler(confirmButton,'click', function(){
             var event = event || window.event;
             var target =event.target || event.srcElement;
             var that = ticketOrder,contactInfo={};
             that.backParaObj = that.reverseInformation;
+          /*获取上一步发过来的格式*/
+        var  reverseInformation = {
+            "data": {
+            "WapOrder": {
+              "SetID": 30000107,
+                "CacheID": 3013513,
+                "CityCodeFrom": "BJS",
+                "CityCodeTo": "SIN",
+                "NumofAdult": "1",
+                "NumofChild": "0",
+                "RouteType": "Return",
+                "CabinClass": "Economy",
+                "SourceType": "H5"
+            },
+            "TravellerInfo": [],
+              "ContactDetail": {},
+            "CurrencyCode": "CNY", //关键
+              "TotalPrice": 4875  //价格
+          }
+          };
+          /*选择乘机人后带回来的数据*/
             var selectTravellerList=window['localStorage']['travellerInfo_selected'];
             if(!window['localStorage']['travellerInfo_selected']){
                 jAlert('请选择'+adultNum+'名成人,'+childNum+'名儿童!', '提示');
@@ -130,7 +158,8 @@ var ticketOrder = {
             }else{
                 var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']),contactInfoCache = {};
             }
-            //乘客信息核对
+
+            //乘客信息核对（通过护照号比较）
             var passengerLis = passengerWrap.querySelectorAll('LI'), realPara=[], tempAdult= 0, tempChild=0;
               if(passengerLis){
                   for(var li=0; li<passengerLis.length;li++){
@@ -142,6 +171,7 @@ var ticketOrder = {
                         }
                   }
               }
+
              for(var dd=0;dd<realPara.length;dd++){
                 if(realPara[dd].PassengerType == 'ADULT'){
                     tempAdult++;
@@ -182,11 +212,7 @@ var ticketOrder = {
                 jAlert('请输入名!', '提示');
                 return;
             }
-            /* H5-764
-            if(contactInfoCache.FirstName=="" && contactInfoCache.LastName==""){
-                jAlert('请输入姓或者名!', '提示');
-                return;
-            }*/
+
             if(contactInfoCache.Email==""){
                 jAlert('请输入邮箱!', '提示');
                 return;
@@ -208,12 +234,12 @@ var ticketOrder = {
             for(var tv in contactInfoCache){
                 contactInfo[tv] = contactInfoCache[tv];
             }
-            window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
+            window['localStorage']['contact_selected'] = JSON.stringify(contactInfo); /*重新存取联系人信息*/
             that.backParaObj.track={"browserType":"","deviceID":vlm.getDeviceID()}
             that.backParaObj.ContactDetail =contactInfo;
             $("#preloader").show();
             $("#status-f").show();
-            console.log(that.backParaObj);
+
             that.tAjax(that.requestUrl, that.backParaObj, "3002", 3, function(arg){
                 $("#preloader").hide();
                 $("#status-f").hide();
@@ -233,7 +259,8 @@ var ticketOrder = {
                     orderResultInfo['bookingID'] = arg['data']['bookingID'];
                     orderResultInfo['bookingRefNo'] = arg['data']['bookingRefNo'];
                     that.storageUtil.set('orderResultInfo',orderResultInfo);
-                    document.location.href = '../payment/payment.html?bookingRefNo='+orderResultInfo.bookingRefNo+"&type=Flight";
+                  console.log(orderResultInfo)
+                   // document.location.href = '../payment/payment.html?bookingRefNo='+orderResultInfo.bookingRefNo+"&type=Flight";
                 }else{
                      if(arg.message.indexOf('失败')>-1&&arg.message.indexOf('重新')>-1){
                          jConfirm('预订失败,需要重新预订?', '提示', function(status){
@@ -259,6 +286,12 @@ var ticketOrder = {
                 }
             });
         });
+
+
+
+
+
+
         this.addHandler(closeTag,'click', function(event){
             var event = event || window.event;
             var target =event.target || event.srcElement;

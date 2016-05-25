@@ -712,7 +712,9 @@
               if (adultNum > maxAdult && maxAdult != -1) {
                 jAlert('最多选择' + maxAdult + '名成人!');
               } else if (adultNum < minPax) {
+
                 jAlert(minPax+'人起订，请添加更多出行人!');
+
                 // tipBox.innerHTML = '最少选择' + minPax + '人!';
                 // tipBox.style.display = 'block';
                 // window.timer1 = window.setTimeout(function() {
@@ -784,7 +786,9 @@
               if (adultNum > maxAdult && maxAdult != -1) {
                 jAlert('最多选择' + maxAdult + '名成人!', "提示");
               } else if (allNum < minPax) {
+
                 jAlert(minPax+'人起订，请添加更多出行人!', "提示");
+
               } else if (minPax > 1 && adultNum == 1 && childNum == 0) {
                 jAlert('人数太少，不能预订!', "提示");
               } else {
@@ -1014,4 +1018,6 @@
       }
     </script>
 	</body>
+
 </html>
+

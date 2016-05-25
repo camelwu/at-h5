@@ -1,15 +1,16 @@
 /**
  * Created by changlv on 2016/1/13.
  */
-var infoJson;
-var u_phone;
-var u_email;
-var u_realname;
-var phoneBflag=false;
-var r_phone=$('#phone')[0];
-var UserSex=localStorage.salutation;
-var phone_verify=$('#phone_ver')[0];
-function u_perInfo(){
+(function(){
+  var infoJson;
+  var u_phone;
+  var u_email;
+  var u_realname;
+  var phoneBflag=false;
+  var r_phone=$('#phone_num')[0];
+  var UserSex=localStorage.salutation;
+  var phone_verify=$('#phone_ver')[0];
+  function u_perInfo(){
     var email = localStorage.email;
     var phone = localStorage.phone;
     var memberid = localStorage.memberid;
@@ -39,7 +40,6 @@ function u_perInfo(){
     var useremail = $("#useremail")[0];
     var amendkey = $("#amendkey")[0];
     var sex = $("#sex")[0];
-    var block = $("#block")[0];
     var ifshowkey = $("#ifshowkey")[0];
     var array = title.innerHTML;
     var head = array.split("/");
@@ -52,25 +52,26 @@ function u_perInfo(){
     closeAmend(close_page);
     //  是否显示密码
     function ifShowkey(obj){
-        obj.onclick = function(){
-            var b = ifshowkey.firstElementChild;
+      console.log(obj);
+      obj.click(function(){
             var input;
-            if(b.className == "show-key"){
-                b.className = "show-keys";
+        if(obj.find('b').attr('class') == "show_key"){
+          obj.find('b').attr('class','show_keys');
                 input = document.getElementById("keyForm").getElementsByTagName("input");
                 for(var i = 0;i < input.length;i++){
                     input[i].type = "text";
                 }
             }else{
-                b.className = "show-key";
+          obj.find('b').attr('class','show_key');
                 input = document.getElementById("keyForm").getElementsByTagName("input");
                 for(var j = 0;j < input.length;j++){
                     input[j].type = "password";
                 }
             }
+      });
         }
-    }
-    ifShowkey(ifshowkey);
+    var showkey=$('.showkey_tab');
+    ifShowkey(showkey);
     //  点击链接页面跳转
     function amendInfo(obj1,obj2,obj3){
         obj1.onclick = function(){
@@ -102,15 +103,15 @@ function u_perInfo(){
     });
 
     $('#a_name').click(function(){
-        $('#amend_btn_0').show().siblings('input').hide();
+      $('#amend_btn_0').show().siblings('.f_btn').hide();
     });
 
     $('#a_phone').click(function(){
-        $('#amend_btn_1').show().siblings('input').hide();
+      $('#amend_btn_1').show().siblings('.f_btn').hide();
     });
 
     $('#a_email').click(function(){
-        $('#amend_btn_2').show().siblings('input').hide();
+      $('#amend_btn_2').show().siblings('.f_btn').hide();
     });
 
     $('#a_key').click(function(){
@@ -119,10 +120,10 @@ function u_perInfo(){
     });
     //  性别选择
     function changeSex(obj){
-        obj.onclick = function() {
-            if(sex.className != "info-sex-on"){
-                sex.className="info-sex-on";
-                block.innerHTML = "女";
+      obj.click(function(e) {
+          if(e.target.className == "per_man"){
+            oSex.children().eq(0).addClass('sex_act');
+            oSex.children().eq(1).removeClass('sex_act');
                 UserSex=26;
                 var Parameters={
                     "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
@@ -130,9 +131,9 @@ function u_perInfo(){
                     "Code": "0056"
                 };
                 vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
-            }else{
-                sex.className="info-sex";
-                block.innerHTML = "男";
+          }else if(e.target.className == "per_woman"){
+            oSex.children().eq(0).removeClass('sex_act');
+            oSex.children().eq(1).addClass('sex_act');
                 UserSex=27;
                 var Parameters={
                     "Parameters": "{\"MemberId\":\""+memberid+"\",\"Salutation\":\""+UserSex+"\"}",
@@ -141,10 +142,10 @@ function u_perInfo(){
                 };
                 vlm.loadJson("", JSON.stringify(Parameters),mycallback_sex);
             }
-
-        };
+      });
     }
-    changeSex(sex);
+    var oSex=$('#sex');
+    changeSex(oSex);
     //  修改昵称
     var nick_btn = $("#nick_btn")[0];
     function amendNick(obj){
@@ -192,12 +193,14 @@ function u_perInfo(){
         obj.onclick = function(){
 
             var oInputName = document.getElementById("realName");
+
             oInputName.value=oInputName.value.replace(/^\s*/,'');
+
             u_realname = oInputName.value;
             if(vlm.Utils.validate.chiName(u_realname))
             {
                 var Parameters={
-                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\",\"Salutation\":\""+UserSex+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
@@ -213,12 +216,11 @@ function u_perInfo(){
     }
     changeInfo_name(amend_btn);
 
-
     //绑定新手机号
     function changeInfo_mobile(obj){
         obj.onclick = function(){
-            var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob-cell")[0];
-            var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob-code")[0];
+        var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob_cell")[0];
+        var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob_code")[0];
             u_phone = oInputMobile.value;
             if ( ! check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
@@ -291,8 +293,8 @@ function u_perInfo(){
     var phone_ver = $("#phone_ver")[0];
     function phone_veri(obj){
         obj.onclick = function(){
-            var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob-cell")[0];
-            var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob-code")[0];
+        var oInputMobile = document.getElementById("infoForm").getElementsByClassName("mob_cell")[0];
+        var oInputCode = document.getElementById("infoForm").getElementsByClassName("mob_code")[0];
 
             if (!check(oInputMobile.getAttribute('data-type'), oInputMobile.value))
             {
@@ -318,6 +320,7 @@ function u_perInfo(){
             };
             console.log(Parameters.Parameters);
             $('#preloader').remove();
+        phone_verify.style.width='2.4rem';
             phone_verify.innerHTML='<span style="color: rgb(204,204,204)">120秒重新发送</span>';
             timedown_regcy(120);
             vlm.loadJson("", JSON.stringify(Parameters), mycallback_phoneVeri);
@@ -358,8 +361,8 @@ function u_perInfo(){
     }
     changeKey(newkey_btn);
 
-}
-
+  }
+  u_perInfo();
     //修改出生日期
     $('#birth-cont-per').click(function(){
         setTimeout(function(){
@@ -412,9 +415,8 @@ function u_perInfo(){
         var name = $("#name")[0];
         var realName = $("#realName")[0];
         var user_email = $("#email")[0];
-        var user_phone = $("#phone")[0];
+    var user_phone = $("#phone_num")[0];
         var sex = $("#sex")[0];
-        var block = $("#block")[0];
         var userIcon = $("#userIcon")[0];
         var birthCont=$('#birth-cont-per')[0];
         if(infoJson.data == null)
@@ -447,12 +449,13 @@ function u_perInfo(){
             $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
 
             if(infoJson.data[0].salutation == 26){
-                sex.className="info-sex-on";
-                block.innerHTML = "女";
+        $('#sex').children().eq(0).attr('class', 'per_man sex_act');
+        $('#sex').children().eq(1).attr('class', 'per_woman');
                 userIcon.src = "../images/ui/photo-man.png";
+
             }else{
-                sex.className="info-sex";
-                block.innerHTML = "男";
+        $('#sex').children().eq(0).attr('class', 'per_man');
+        $('#sex').children().eq(1).attr('class', 'per_woman sex_act');
                 userIcon.src = "../images/ui/photo-woman.png";
             }
         }
@@ -460,6 +463,7 @@ function u_perInfo(){
         user_email.value = localStorage.email;
         memberid = localStorage.memberid;
     }
+
     function mycallback_nick(ret){
         var myJson = ret;
         //console.log(myJson);
@@ -470,6 +474,7 @@ function u_perInfo(){
             jAlert(myJson.message);
         }
     }
+
     function mycallback_info(ret){
         var myJson = ret;
         console.log(myJson);
@@ -511,6 +516,7 @@ function u_perInfo(){
             jAlert('修改失败');
         }
     }
+
     function mycallback_phoneVeri(ret){
         var phone_ver = $("#phone_ver")[0];
         console.log(ret);
@@ -522,6 +528,7 @@ function u_perInfo(){
             jAlert(myJson.message);
         }
     }
+
     function mycallback_newKey(ret){
         var myJson = ret;
         console.log(myJson);
@@ -537,7 +544,7 @@ function u_perInfo(){
     }
 
     /*退出账户清除localStorage*/
-    $('.info-quit').click(function(){
+  $('.info_quit').click(function(){
         jConfirm("确认退出当前帐号?","",logout);
         function logout(arg){
             if(arg){
@@ -563,24 +570,37 @@ function u_perInfo(){
             if(Math.ceil(120- (newtime-lasttime)/1000 ) < 1)
             {
                 phone_verify.innerHTML = '发送验证码';
-                phone_verify.style.color = '#ffb413';
                 clearInterval(timer);
                 phoneBflag=false;
                 return;
             }
             phone_verify.innerHTML =Math.ceil(120- (newtime-lasttime)/1000 )+ '秒重新发送';
-            phone_verify.style.color = 'rgb(204,204,204)';
         }else{
             phone_verify.innerHTML =seconds+ '秒重新发送';
-            phone_verify.style.color = 'rgb(204,204,204)';
         }
     },1000);
-}
+  }
 
 
     //清除昵称输入内容
-    function clearname(){
-        var name = document.getElementById("name");
-        name.value = "";
+  function clearValue(id){
+    $(id).on('input propertychange focus',function(){
+      if($(id).val() == ''){
+        $(this).parent().find('.name_close').hide();
+      }else{
+        $(this).parent().find('.name_close').show();
     }
+    })
+
+    $(id).parent().find('.name_close').click(function(){
+      $(this).hide();
+      $(id).val('');
+    });
+  }
+
+  clearValue('#name');
+  clearValue('#realName');
+
+
+})();
 

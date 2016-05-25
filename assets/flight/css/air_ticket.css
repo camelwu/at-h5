@@ -701,9 +701,11 @@ h1, h2, h3, h4, h5, h6 {
 .i-his-city-ele, .d-his-city-ele {
     display: none;
 }
+
 .all-elements .city-content .city-classifying .title-tip .city-content li.city-content-item.focus{
   border: 0.1rem solid rgb(255, 180, 19);
 }
+
 .focus {
     color: rgb(255, 180, 19) !important;
 }
@@ -1210,6 +1212,7 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 0.125rem solid #dedede;
     padding-bottom: 1rem
 }
+
 .no-return-trip{
     border-bottom: none;
    padding-bottom:0
@@ -2477,6 +2480,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .fix-width {
     max-width: 4rem;
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

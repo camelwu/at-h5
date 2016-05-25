@@ -184,12 +184,19 @@
         // 渲染日期
         drawDate: function (odate) { // 参数 odate 为日期对象格式
             var dateWarp, titleDate, dd, year, month, date, days, weekStart, i, l, ddHtml = [],
+<<<<<<< HEAD
                 textNode, disableDate;
+=======
+                textNode;
+>>>>>>> rem
             var nowDate = new Date(),
                 nowyear = nowDate.getFullYear(),
                 nowmonth = nowDate.getMonth(),
                 nowdate = nowDate.getDate();
+<<<<<<< HEAD
             disableDate = this.disableDate;
+=======
+>>>>>>> rem
             this.dateWarp = dateWarp = document.createElement('div');
             dateWarp.className = 'calendar';
             dateWarp.innerHTML = this._template.join('');
@@ -229,7 +236,8 @@
                     } else {
                         if (month == nowmonth + 1 && i < nowdate) {
                             pstr = '<a class="live disabled">' + i + '</a>';
-                        } else {
+<<<<<<< HEAD
+                        } else if (disableDate.length > 0) {
                             for (var j = 0; j < disableDate.length; j++) {
                                 if (disableDate[j] === year + "-" + m + "-" + d) {
                                     pstr = '<a class="live disabled">' + i + '</a>';
@@ -238,7 +246,10 @@
                                     pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
                                 }
                             }
-
+=======
+>>>>>>> rem
+                        } else {
+                            pstr = '<a class="live" data-day="' + year + '-' + m + '-' + d + '">' + i + '</a>';
                         }
                     }
                 }

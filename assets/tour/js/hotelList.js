@@ -1,4 +1,5 @@
 var oldInfo= JSON.parse(localStorage.getItem('info'));
+console.log(oldInfo)
 var newPara = {
 	"StarRating": "",
 	"Location": "",
@@ -41,43 +42,130 @@ var hotelList = {
 			ForeEndType : ForeEndType,
 			Code : Code
 		};
-		questUrl = questUrl ? questUrl : that.requestUrl;
+		questUrl = questUrl ? questUrl :"";
 		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 		return this;
 	},
 
 	callBack : function(arg) {
 		console.log(arg)
-		var tpl1 = ['<li class="ho_list" data-id="{%=hotelID%}">', '<img class="h-choose" src="../images/ui/choose.png">', '<div class="ho_pic">', '<img src="../images/hotelDetailerrorpic.png" real-src="{%=hotelPictureURL%}" class="ho_img" />', '</div>', '<div class="ho_infor">', '<p class="hname">{%=hotelName%}</p>', '{% if(data["score"]||data["comments"]){ %}<div class="h-score">{% if(data["score"]){ %}<span style="color:#8ed1cc;font-size:1.5rem;font-weight: 600;">{%=score%}</span>{% } %} {% if(data["comments"]){ %}<span style="color:#999999;font-size:0.8rem;">分/{%=comments%}人点评</span>{% } %}</div> {% }else{ %}{% } %}', '<div class="h-grade">', '<span style="color:#999999;font-size:1rem;">{%=starRating%}星级</span>', '{% if(data["freeWifi"]){ %}<b class="hl-icon1"></b>{% } %}', '{% if(data["freeBus"]){ %}<b class="hl-icon2"></b>{% } %}', '<p class="h-address">{%=location%}</p>', '</div>', '</div>', '<div class="l-price">', '<span style="font-size:0.8em;color:#fe4716;">{% if(currencyCode=="CNY"){ %}￥ {% }else{ %} $ {% } %}</span>', '<span class="price-num">{%=avgRatePerPaxInCNY%}</span><span style="font-size:0.8em;color:#fe4716;">起/人</span>', '</div>', '</li>'].join('');
-		var tpl2 = [
-			'<li class="s-li1"> 不限 </li>',
-			'{% for(var i=0;i < starRatingList.length;i++){ %}',
-			'<li class="s-li">{%=starRatingList[i]%}</li>',
-			'{% } %}'
-		].join('');
-		var tpl3 = [
-			'<li class="l-li">不限 <b class="l-icon1"></b></li>',
-			'{% for(var i=0;i < locationList.length;i++){ %}',
-			'<li class="l-li">{%=locationList[i]%}<b class="l-icon"></b></li>',
-			'{% } %}'
-		].join('');
+
+		var tpl2 =
+			'<li class="s_li1"> 不限 </li>'+
+			'<% for(var i=0;i < starRatingList.length;i++){ %>'+
+			'<li class="s_li"><%= starRatingList[i] %></li>'+
+			'<% } %>';
+		var tpl3 =
+			'<li class="l-li">不限 <b class="l_icon1"></b></li>'+
+			'<% for(var i=0;i < locationList.length;i++){ %>'+
+			'<li class="l-li"><%=locationList[i]%><b class="l_icon"></b></li>'+
+			'<% } %>';
+
 		var resultData = arg.data, that = hotelList;
+		console.log(resultData)
+		//筛选星级处理
+		function starChoose(resultData){
+			console.log(resultData)
+			var starArr =[];
+			var starJson = {};
+			var star = resultData.starRatingList;
+			for(var i=0;i<star.length;i++){
+				starJson = {
+					"filterText": star[i],
+					"filterValue": star[i]
+				}
+				starArr.push(starJson)
+			}
+			console.log(starArr);
+			return starArr
+		}
 		if(arg.success){
 			if (resultData.hotels.length == 0) {
 				jAlert("抱歉暂时没有数据", "提示");
 			} else {
-				console.log(resultData);
 				that.packageID = resultData.packageID;
 				that.bookingFormInfo = resultData.bookingFormInfo;
-				var hotels = resultData.hotels;
-				hotels = that.resetData(hotels);
-				var tpl_GetList = template(tpl1, hotels);
-				var tpl_getStar = template(tpl2,resultData);
-				var tpl_getLocation = template(tpl3,resultData);
+				//var hotels = resultData.hotels;
+				var tpl_getStar = ejs.render(tpl2,resultData);
+				var tpl_getLocation = ejs.render(tpl3,resultData);
 				$("#preloader").fadeOut();
-				$('#lsf_list').html(tpl_GetList);
+				list(resultData);
 				$('#h-level').html(tpl_getStar);
 				$('#l-ul').html(tpl_getLocation);
+				function list(resultData){
+					console.log(resultData.data);
+					if(resultData.data){
+						resultData = resultData.data;
+					}
+					var tpl1 = $('#hotel_list').html();
+					var tpl_GetList = ejs.render(tpl1, resultData);
+					$('#lsf_list').html(tpl_GetList);
+				}
+
+				//footer插件方法必须写
+				function tAjax(questUrl, data, Code, ForeEndType, Callback) {
+					var that = this, dataObj = {
+						Parameters : data,
+						ForeEndType : ForeEndType,
+						Code : Code
+					};
+					questUrl = questUrl || that.requestUrl;
+					vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+				};
+				//footer  begin
+				var menu_data = {
+					hotelSort : {
+						title : "推荐排序",
+						c : "foot_sort",
+						s:1,
+						type :1,
+						key : 'sortTypes',
+						listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
+					},
+					hotelScreen : {
+						title : "筛选",
+						c : "foot_screen",
+						s:2,
+						type : 2,
+						key : 'filters',
+						listData : [{
+							title: "星级",
+							filterType: 1,
+							item: starChoose(resultData)
+						}]
+					}
+				}, menu_call = function(data) {
+					console.log(data)
+					////位置重构
+					//var toString = [];
+					//toString= data.locationList;
+					//var locationList = toString.join(",");
+                    //
+					//筛选入参重构
+					var arrNum = data.filters[0].FilterValues,filter ="";
+					for(var i=0;i<arrNum.length;i++){
+						filter = filter + arrNum[i]+'$';
+					}
+					//排序获取当前点击事件
+					//console.log($('.foot_sort .cur').eq());
+					oldInfo.SortType = data.sortTypes[0];
+					//parametersStorage.Location = locationList;
+					oldInfo.StarRating = filter;
+					////加loading
+					//$('.status').fadeIn('fast');
+					tAjax("", oldInfo, "40100008", "3", list);
+				};
+				if (footer) {
+					footer.data = menu_data;
+					footer.callback = menu_call;
+				}
+				footer.filters.init();
+				//footer  end
+
+
+
+
+
         //  恢复上次选中的酒店星级
         if(newPara.StarRating != ''){
           var li = document.getElementById('h-level').getElementsByTagName('li');
@@ -85,8 +173,8 @@ var hotelList = {
           for(var i = 0;i < li.length;i++){
             for(var j = 0;j < star.length-1;j++){
               if(li[i].innerHTML == star[j]){
-                li[0].className = 's-li';
-                li[i].className = 's-li1';
+                li[0].className = 's_li';
+                li[i].className = 's_li1';
               }
             }
           }
@@ -94,14 +182,15 @@ var hotelList = {
         // 恢复上次选中的酒店位置
         var oldLocation = newPara.Location.replace('$', '');
           oldLocation = oldLocation ? oldLocation : '不限';
-          $('#l-ul .l-li').find('b').removeClass('l-icon1').addClass('l-icon');
+          $('#l-ul .l-li').find('b').removeClass('l_icon1').addClass('l_icon');
           $('#l-ul .l-li').each(function (index, item) {
             var $item = $(item);
             if($item.text().trim() === oldLocation){
-              $item.find('b').addClass('l-icon1').removeClass('l-icon');
+              $item.find('b').addClass('l_icon1').removeClass('l_icon');
               return;
             }
         });
+
 				that.delayLoadImage().addEvent()
 			}
 		}else{
@@ -221,8 +310,8 @@ var hotelList = {
 		var paraObj = JSON.parse(window.localStorage.info);
 		var hotelResultData = JSON.parse(localStorage.getItem('hotelResultData')), initObj={};
 		oldInfo = JSON.parse(localStorage.getItem('info'));
-		console.log(oldInfo);
-		this.oldInfo = paraObj;
+		//console.log(oldInfo);
+		//this.oldInfo = paraObj;
 		that.hasChoosed = false;
 		console.log(hotelResultData);
 		initObj.data = hotelResultData;
@@ -294,7 +383,7 @@ function url2json(url) {
 		function show(obj) {
 			mb = document.getElementById("r-mb");
 			mb.style.display = "block";
-			obj.style.bottom = "0";
+			obj.style.bottom = "0.98rem";
 			obj.style.transition = "all 350ms";
 		}
 
@@ -341,26 +430,26 @@ function url2json(url) {
 			if (obj.innerText == "不限") {
 				array = document.getElementById("h-level").childNodes;
 				for (var i = 1; i < array.length; i++) {
-					array[i].className = "s-li";
+					array[i].className = "s_li";
 				}
 			}
 			if (obj.innerText != "不限") {
-				document.getElementById("h-level").firstElementChild.className = "s-li";
+				document.getElementById("h-level").firstElementChild.className = "s_li";
 			}
-			if (oName == "s-li") {
-				obj.className = "s-li1";
+			if (oName == "s_li") {
+				obj.className = "s_li1";
 			} else {
-				obj.className = "s-li";
+				obj.className = "s_li";
 			}
 			//如果一个都没有选中的情况，显示不限；
 			array = document.getElementById("h-level").childNodes;
 			for(var j=0,len=array.length;j<len;j++){
-				if(array[j].className == "s-li1"){
+				if(array[j].className == "s_li1"){
 					selected.push(array[j].innerText);
 				}
 			}
 			if(selected.length == 0){
-				document.getElementById("h-level").firstElementChild.className = "s-li1";
+				document.getElementById("h-level").firstElementChild.className = "s_li1";
 			}
 		}
 
@@ -376,8 +465,10 @@ function url2json(url) {
 				for (var i = 0; i < rli.length; i++) {
 					rli[i].addEventListener("click", selectRank);
 				}
+
         $('#l-ul').off('click');
         $('#l-ul').on('click', '.l-li', selectLocation);
+
 			}
 		}
 
@@ -387,11 +478,11 @@ function url2json(url) {
 				if(obj1 == s_but){
 					newPara.StarRating = '';
 					li = document.getElementById('h-level').getElementsByTagName('li');
-					if(li[0].className == 's-li1'){
+					if(li[0].className == 's_li1'){
 						newPara.StarRating = '';
 					}
 					for(var j = 1;j < li.length;j++){
-						if(li[j].className == 's-li1'){
+						if(li[j].className == 's_li1'){
 							newPara.StarRating += li[j].innerHTML + '$';
 						}
 					}
@@ -400,11 +491,11 @@ function url2json(url) {
 				if(obj1 == l_but){
 					newPara.Location = '';
 					li = document.getElementById('l-ul').getElementsByTagName('li');
-					if(li[0].firstElementChild.className == 'l-icon1'){
+					if(li[0].firstElementChild.className == 'l_icon1'){
 						newPara.Location = '';
 					}
 					for(var n = 1;n < li.length;n++){
-						if(li[n].firstElementChild.className == 'l-icon1'){
+						if(li[n].firstElementChild.className == 'l_icon1'){
 							console.log(li[n].innerText);
 							newPara.Location += li[n].innerText + '$';
 						}
@@ -479,15 +570,17 @@ function url2json(url) {
 		}
 
 		/*   位置筛选  */
+
     function selectLocation(e) {
       var $this = $(this);
       var b = $this.find('b');
-      var selected = b.hasClass('l-icon1');
+      var selected = b.hasClass('l_icon1');
       if (!selected) {
-        b.removeClass('l-icon').addClass('l-icon1');
-        $this.siblings().find('b').addClass('l-icon').removeClass('l-icon1');
+        b.removeClass('l_icon').addClass('l_icon1');
+        $this.siblings().find('b').addClass('l_icon').removeClass('l_icon1');
       }
     }
+
 	}
 	h_l_s();
 	//页面没有展示前页面展示的页面

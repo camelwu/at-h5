@@ -43,11 +43,13 @@
                 traAdultnum+=parseInt(room[i].adult);
                 if(room[i].childWithOutBed)
                 {
+
                     traChildnum+=room[i].childWithOutBed.length;
                 }
                 if(room[i].childWithBed)
                 {
                   traChildnum+=room[i].childWithBed.length;
+
                 }
 
             }
@@ -109,6 +111,7 @@
     init();
 
     //与第一出行人相同图标
+
         function firstsame(){
             var bFlag=true;
             $('.con-alike').click(function(){
@@ -149,6 +152,7 @@
 
 
 
+
     //下单
     var orderSub=document.querySelector('.order-submit');
     function hf_order(obj){
@@ -165,7 +169,6 @@
                     "HotelID": datahot.HotelID,
                     "RoomID": datahot.RoomID,
                     "MemberId": localStorage.memberid,
-
                     "ContactDetail": {
                         "SexCode": "Ms",
                         "FirstName": $('.hf_con_firstname').val(),
@@ -180,7 +183,6 @@
                 "ForeEndType": 3,
                 "Code": "50100004"
             }
-
             //房间信息
             Parmeters.Parameters.RoomDetails=datahot.RoomDetails;
 
@@ -257,4 +259,6 @@
         }
     }
 
+
 })();
+

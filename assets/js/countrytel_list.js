@@ -843,6 +843,7 @@ var arrCountry= [{"CountryEN":"Angola",
     {
         (function(index){
             aBtn[i].onclick=function(){
+
                 var _this=this;
                 countryListSearched.onclick=function(e){
                     countryInputZone.value=$(e.target).attr("data-tel-code");

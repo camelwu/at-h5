@@ -2,14 +2,20 @@
 
 require.config({
     baseUrl: '../js/lib',
+
     paths: {
-        plugins: 'plugins'
+        baseCss:"../../styles",
+        plugins: 'plugins',
+        pluginsCss:"../../css/plugins"
+
     },
     waitSeconds: 0,
     $:['jquery'],
     shim: {
     	'plugins':{
-    		deps: ['./jquery',"./vlm"],
+    		deps: [
+          'jquery'
+        ],
     		init:function(){
     			return{
     				WOW:WOW,
@@ -19,7 +25,7 @@ require.config({
     				swipebox:swipebox,
     				ScrollIt:ScrollIt,
     				Snap:Snap,
-            usercontact:usercontact
+            ChoiceUser:choiceuser
     			}
     		}
     	},

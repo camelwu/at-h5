@@ -39,7 +39,7 @@
       $('.tour_section').remove();
 
     }else{
-      
+
       jAlert('资源选择页url:type=undefined');
     }
 
@@ -140,6 +140,7 @@
       var Parmeters = {
         "Parameters": {
           "cityCodeFrom": hftCreateOrderPara.cityCodeFrom,
+          "cityCodeTo": hftCreateOrderPara.cityCodeFrom,
           "packageID": hftCreateOrderPara.packageID,
           "departDate": hftCreateOrderPara.departDate,
           "returnDate": hftCreateOrderPara.returnDate,
@@ -170,9 +171,7 @@
           //  "deviceID":"111"
           //},
           "memberID": localStorage.memberid,
-        },
-        "foreEndType": 2,
-        "code": "60100010"
+        }
       }
 
       if(freetype == 2){
@@ -203,10 +202,14 @@
         Parmeters.Parameters.tours=tours;
 
         //hft请求码
-        Parmeters.foreEndType = 2;
+        Parmeters.foreEndType = 3;
         Parmeters.code = 60100010;
       }else{
         //hf请求码
+        Parmeters.Parameters.track={
+          "browserType": "",
+           "deviceID": vlm.getDeviceID()
+        }
         Parmeters.foreEndType = 3;
         Parmeters.code = 50100004;
       }
@@ -284,7 +287,11 @@
     vlm.loadend();
     if(json.success)
     {
-      window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
+      if( freetype == 2 ){
+        window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotelTour";
+      }else{
+        window.location.href='../payment/payment.html?bookingRefNo='+json.data.bookingRefNo+"&type=FlightHotle";
+      }
     }else{
       jAlert(json.message);
     }

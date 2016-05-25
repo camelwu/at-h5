@@ -49,10 +49,10 @@ window.onload = function () {
                     var str = '';
                     if (arg.length) {
                         for (var i = 0; i < arg.length; i++) {
-                            str += '<li class="ul2-li"><b class="s-icon3" style="margin-bottom:0px"></b><p class="s-p4">' + arg[i].featureDesc + '</p></li>';
+                            str += '<li class="ul2-li"><b class="s-icon3 hotel_feature_li_icon" style="margin-bottom:0px"></b><p class="s-p4 hotel_feature_li_p">' + arg[i].featureDesc + '</p></li>';
                         }
                     } else {
-                        str += '<li class="ul2-li"><p class="s-p4">暂无酒店特色信息</p></li>'
+                        str += '<li class="ul2-li"><p class="s-p4 hotel_feature_li_p">暂无酒店特色信息</p></li>'
                     }
 
                     return str;

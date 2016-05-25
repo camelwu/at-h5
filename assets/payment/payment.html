@@ -42,8 +42,7 @@
     <h3>订单支付</h3>
   </div>
     <!--  详情信息   -->
-    <div  class="content payment-type-list">
-    </div>
+    <div  class="content payment-type-list"></div>
 </div>
 <!--2信用卡信息-->
 <div class="credit-session android-relative" style="display: none">
@@ -64,9 +63,9 @@
         <ul class="p-ul2">
             <li>
                 <div>信用卡号</div>
-                 <div>
-                    <input type="tel" onkeyup="setNum(this);" value="" class="cardNumber" maxlength="20" placeholder="输入信用卡卡号">
-                 </div>
+
+                <input type="text" onkeyup="setNum(this);" value="" class="cardNumber" maxlength="20" placeholder="输入信用卡卡号">
+
             </li>
             <li>
                 <div>持卡人姓名</div>
@@ -89,6 +88,7 @@
             </li>
             <li>
                 <div>有效期</div>
+
                 <div id="jp_limit_time"  class="cardExpiryDate" readonly style="color: #a9a9a9;font-family: FZLTXHK;">月/年，如：09/12</div>
             </li>
             <li>
@@ -96,14 +96,16 @@
                 <div>
                   <input type="tel" onkeyup="setNum(this);" value="" class="cardSecurityCode" placeholder="请输入签名栏末尾最后3位">
                 </div>
+
             </li>
             <li class="fill-tel">
                 <div>持卡人手机号</div>
                 <div>
                   <span  class="tel-btn phone"  value="CN" data-code="86">+86</span>
                   <b class="s-xiala3"></b>
+
                   <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
-                </div>
+
             </li>
             <li>
                 <div>账单城市</div>
@@ -119,9 +121,9 @@
             </li>
             <li>
                 <div>邮政编码</div>
-                <div>
-                  <input type="tel" placeholder="请输入邮政编码" class="cardAddressPostalCode" onkeyup="setNum(this);" />
-                </div>
+
+                <input type="text" placeholder="请输入邮政编码" class="cardAddressPostalCode" onkeyup="setNum(this);" />
+
             </li>
             <li class="countries-wrap">
                 <div>持卡人国家</div>
@@ -160,8 +162,10 @@
 <!--客服电话-->
 <div class="jpop_box_tic" style="display: none;">
     <dl>
-        <dt>4008-909-202</dt>
-        <dd><span>取消</span><a href="tel:4008-909-202">拨打</a></dd>
+
+        <dt>4008-902-202</dt>
+        <dd><span>取消</span><a href="tel:4008-902-202">拨打</a></dd>
+
     </dl>
 </div>
 
@@ -194,22 +198,22 @@
     <div class="p-pay">
         <ul class="p-ul1">
             <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                <i class="p-icon1"></i>
+                <i class="icon_pay p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">
-                <i class="p-icon6"></i>
+                <i class="icon_pay p-icon6"></i>
                 <span class="jp_credit" >银联支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard"  data-cardtype="Visa">
-                <i class="p-icon4"></i>
+                <i class="icon_pay p-icon4"></i>
                 <span class="jp_credit">维萨信用卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard" data-cardtype="Master">
-                <i class="p-icon3"></i>
+                <i class="icon_pay p-icon3"></i>
                 <span class="jp_credit">万事达卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
@@ -240,23 +244,23 @@
         <ul class="p-ul1">
             {% if(paymentModeID==1){ %}
             <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                <i class="p-icon1"></i>
+                <i class="icon_pay p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">
-                <i class="p-icon6"></i>
+                <i class="icon_pay p-icon6"></i>
                 <span class="jp_credit" >银联支付</span>
                 <i class = "p-icon5"></i>
             </li>
             {% } %}
             <li data-paymentmode="CreditCard"  data-cardtype="Visa">
-                <i class="p-icon4"></i>
+                <i class="icon_pay p-icon4"></i>
                 <span class="jp_credit">维萨信用卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard" data-cardtype="Master">
-                <i class="p-icon3"></i>
+                <i class="icon_pay p-icon3"></i>
                 <span class="jp_credit">万事达卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
@@ -268,18 +272,18 @@
         <ul class="p-hotelinfo">
             <li>
                 {% if(flightInfo.segmentsReturn==null){ %}
-                    <l>
+                    <li>
                         单程 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
-                    <l>
+                    </li>
                     <li>
                         <span class="hf-f"><i class = "hf-go"></i><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"YmdHi")%}</p></span>
                     </li>
 
                  {% } else{ %}
-                    <l>
+                    <li>
                         往返 {%=flightInfo.cityNameFrom%}-{%=flightInfo.cityNameTo%}
 
-                    <li>
+                    </li>
                     <li>
                         <span class="hf-f"><i class = "hf-go"></i><p>{%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate,"YmdHi")%}</p></span>
                         <span class="hf-f"><i class = "hf-back"></i><p>{%=vlm.Utils.format_date(flightInfo.flightReturnStartDate,"YmdHi")%}</p></span>
@@ -300,22 +304,22 @@
     <div class="p-pay">
         <ul class="p-ul1">
             <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                <i class="p-icon1"></i>
+                <i class="icon_pay p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">
-                <i class="p-icon6"></i>
+                <i class="icon_pay p-icon6"></i>
                 <span class="jp_credit" >银联支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard"  data-cardtype="Visa">
-                <i class="p-icon4"></i>
+                <i class="icon_pay p-icon4"></i>
                 <span class="jp_credit">维萨信用卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard" data-cardtype="Master">
-                <i class="p-icon3"></i>
+                <i class="icon_pay p-icon3"></i>
                 <span class="jp_credit">万事达卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
@@ -332,8 +336,10 @@
             <li>
                 <div class = "hf-anum">
                     <span>人数:</span>
+
                     <span><i>{%=numofAdult%}</i>成人</span>
                     <span><i>{%=numofChild%}</i>儿童</span>
+
                 </div>
             </li>
             <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalPrice%}</i></li>
@@ -343,22 +349,22 @@
     <div class="p-pay">
         <ul class="p-ul1">
             <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                <i class="p-icon1"></i>
+                <i class="icon_pay p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">
-                <i class="p-icon6"></i>
+                <i class="icon_pay p-icon6"></i>
                 <span class="jp_credit" >银联支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard"  data-cardtype="Visa">
-                <i class="p-icon4"></i>
+                <i class="icon_pay p-icon4"></i>
                 <span class="jp_credit">维萨信用卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard" data-cardtype="Master">
-                <i class="p-icon3"></i>
+                <i class="icon_pay p-icon3"></i>
                 <span class="jp_credit">万事达卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
@@ -387,22 +393,22 @@
     <div class="p-pay">
         <ul class="p-ul1">
             <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-                <i class="p-icon1"></i>
+                <i class="icon_pay p-icon1"></i>
                 <span class="jp_credit">支付宝支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">
-                <i class="p-icon6"></i>
+                <i class="icon_pay p-icon6"></i>
                 <span class="jp_credit" >银联支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard"  data-cardtype="Visa">
-                <i class="p-icon4"></i>
+                <i class="icon_pay p-icon4"></i>
                 <span class="jp_credit">维萨信用卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
             <li data-paymentmode="CreditCard" data-cardtype="Master">
-                <i class="p-icon3"></i>
+                <i class="icon_pay p-icon3"></i>
                 <span class="jp_credit">万事达卡支付</span>
                 <i class = "p-icon5"></i>
             </li>
@@ -440,22 +446,22 @@
   <div class="p-pay">
     <ul class="p-ul1">
       <li data-paymentmode="AliPayCNY" data-cardtype="AliPayCNY">
-        <i class="p-icon1"></i>
+        <i class="icon_pay p-icon1"></i>
         <span class="jp_credit">支付宝支付</span>
         <i class = "p-icon5"></i>
       </li>
       <li data-paymentmode="UnionPayCNY" data-cardtype="UnionPayCNY">
-        <i class="p-icon6"></i>
+        <i class="icon_pay p-icon6"></i>
         <span class="jp_credit" >银联支付</span>
         <i class = "p-icon5"></i>
       </li>
       <li data-paymentmode="CreditCard"  data-cardtype="Visa">
-        <i class="p-icon4"></i>
+        <i class="icon_pay p-icon4"></i>
         <span class="jp_credit">维萨信用卡支付</span>
         <i class = "p-icon5"></i>
       </li>
       <li data-paymentmode="CreditCard" data-cardtype="Master">
-        <i class="p-icon3"></i>
+        <i class="icon_pay p-icon3"></i>
         <span class="jp_credit">万事达卡支付</span>
         <i class = "p-icon5"></i>
       </li>
@@ -476,12 +482,14 @@
 <script src="../js/country_list.js"></script>
 <script src="../js/countrytel_list.js"></script>
 
+
 <script>
  // 输入只能纯数字
   function setNum(obj) {
     obj.value = obj.value.replace(/\D/ig, '');
   }
 </script>
+
 
 
 </body>

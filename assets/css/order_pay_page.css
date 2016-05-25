@@ -184,6 +184,8 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
     color:#fff;background:#fdb330;border-radius: 3px;text-align:center;
     height:36px;line-height:36px;font-size:16px;
 }
+
+/* ·ÑÓÃÃ÷Ï¸¿é */
 /* è´¹ç”¨æ˜ç»†å— */
 .od-mb{
     width: 100%;height:100%;
@@ -256,6 +258,7 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
     color:#fb763b;
     height: 44px;
 }
+
 #confirmBox{
   list-style-type: none;
   background: #FFFFFF;
@@ -287,3 +290,4 @@ b.orange,i.orange{color:#f64906;font-weight:normal;}
   top: 50%;
   margin-top: -6px;
 }
+

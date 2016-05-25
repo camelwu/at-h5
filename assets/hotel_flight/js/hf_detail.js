@@ -43,9 +43,11 @@
             tmp.flightInfo.segmentsReturn[i].arriveDate = formatDate(tmp.flightInfo.segmentsReturn[i].arriveDate,"hh:mm");
         }
 
+
         //console.log(localdata.flightInfo.segmentsLeave);
         tpl_SegmentsLeave = template("tpl_SegmentsLeave",tmp);
         tpl_SegmentsReturn = template("tpl_SegmentsReturn",tmp);
+
         $(".js-go-trip").html(tpl_SegmentsLeave);
         $(".js-back-trip").html(tpl_SegmentsReturn);
 
@@ -160,4 +162,6 @@
     }
 
     initialize();
+
 }());
+

@@ -1,13 +1,14 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 i {
   font-style: normal
 }
 
-/*支付页面开始*/
+/*鏀粯椤甸潰寮�濮�*/
 .icon-back {
   width: 36px;
   height: 36px;
@@ -100,7 +101,7 @@ i {
   margin-bottom: 10px;
 }
 
-/*详情页部分*/
+/*璇︽儏椤甸儴鍒�*/
 .roomPay {
   background-color: white;
   width: 100%;
@@ -154,6 +155,10 @@ i {
 .hf-rack i {
   display: inline-block;
   margin-left: 4px;
+}
+
+.payment-type-list {
+  overflow-x: hidden;
 }
 
 .down-tri {
@@ -253,15 +258,15 @@ i {
   line-height: 1.1rem
 }
 
-/*支付页结束*/
-/*order-pay页面开始*/
+/*鏀粯椤电粨鏉�*/
+/*order-pay椤甸潰寮�濮�*/
 .p-home {
   width: 100%;
 }
 
 .p-home .p-hotelinfo {
   margin-top: 0.32rem;
-  margin-left: 0.46rem;
+  margin-left: 0.28rem;
   vertical-align: middle;
 }
 
@@ -315,56 +320,29 @@ i {
   margin-top: 15px;
 }
 
-.p-icon1 {
-  width: 22px;
-  height: 22px;
-  background-image: url(../../images/ui/jd-icon.png);
-  background-size: 189px 60px;
-  background-position: 49px 26px;
+.icon_pay {
   position: absolute;
   top: 0.2rem;
-  border-radius: 50%;
+  width: .44rem;
+  height: .44rem;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-size: 6.14rem 3.6rem;
 }
 
-.p-icon2 {
-  width: 22px;
-  height: 22px;
-  background-image: url(../../images/ui/jd-icon.png);
-  background-size: 189px 60px;
-  background-position: 49px 26px;
-  position: absolute;
-  top: 0.2rem;
-  border-radius: 50%;
+.p-icon1 {
+  background-position: -4.56rem -2.86rem;
 }
 
 .p-icon3 {
-  width: 30px;
-  height: 22px;
-  background-image: url(../../images/ui/icon-h.png);
-  background-size: 280px 120px;
-  background-position: 101px 85px;
-  position: absolute;
-  top: 0.2rem;
+  background-position: -2.86rem -2.86rem;
 }
 
 .p-icon4 {
-  width: 30px;
-  height: 22px;
-  background-image: url(../../images/ui/icon-h.png);
-  background-size: 280px 120px;
-  background-position: 200px 85px;
-  position: absolute;
-  top: 0.2rem;
+  background-position: -5.16rem -2.86rem;
 }
 
 .p-icon6 {
-  width: 26px;
-  height: 22px;
-  background-image: url(../../images/ui/jd-icon.png);
-  background-size: 189px 60px;
-  background-position: 52px 55px;
-  position: absolute;
-  top: 0.2rem;
+  background-position: -4.04rem -2.86rem;
 }
 
 .p-ul1 li {
@@ -373,7 +351,7 @@ i {
   height: 0.88rem;
   border-bottom: 1px solid #e9e9e9;;
   position: relative;
-  margin-left: 0.28rem;
+  padding: 0 .28rem;
 }
 
 .p-ul1 li:last-child {
@@ -396,12 +374,12 @@ i {
   background-position: 66% 2%;
   position: absolute;
   top: 0.24rem;
-  right: 1rem;
+  right: .28rem;
   border-radius: 50%;
 }
 
-/*order-pay页面结束*/
-/*支付失败页开始*/
+/*order-pay*/
+/*鏀粯澶辫触椤靛紑濮�*/
 .all-element-other {
   position: relative;
 }
@@ -642,9 +620,9 @@ i {
   color: #FF5B13;
 }
 
-/*支付失败页结束*/
+/*鏀粯澶辫触椤电粨鏉�*/
 
-/*国籍tel*/
+/*鍥界睄tel*/
 .country-cho-wrap {
   position: absolute;
   top: 0;
@@ -735,7 +713,7 @@ i {
   display: inline-block;
 }
 
-/*国籍模糊搜索*/
+/*鍥界睄妯＄硦鎼滅储*/
 .country-list-searched {
   width: 100%;
   height: auto;
@@ -768,9 +746,9 @@ i {
 
 }
 
-/*国籍tel结束*/
+/*鍥界睄tel缁撴潫*/
 
-/*电话拨号开始*/
+/*鐢佃瘽鎷ㄥ彿寮�濮�*/
 .jpop_box_tic {
   position: fixed;
   top: 0;
@@ -826,4 +804,4 @@ i {
   background: #dfdfdf;
 }
 
-/*电话拨号结束*/
+/*鐢佃瘽鎷ㄥ彿缁撴潫*/

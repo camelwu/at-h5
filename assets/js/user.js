@@ -137,21 +137,38 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     jAlert('请输入证件号')
                     return;
                 }
+
+                //证件有效期验证
+                var card_validity=$('#time-cont').html();
+                if(card_validity == ''){
+                  jAlert('请选择有效的证件有效期');
+                  return;
+                }else if( ! vlm.Utils.compareTime(card_validity)){
+                  jAlert('证件有效期无效，请重新选择!');
+                  return;
+                }
+
                 //  判断性别
                 var man = $("#man")[0];
+                var woman = $("#woman")[0];
                 var sexCode;
                 var sexName;
-                if (man.className == "icon-h traveler-sex1") {
+                if (man.className == "icon_h traveler_sex1") {
                     sexCode = "Mr";
                     sexName = "男";
-                } else {
+                }else if(woman.className == "icon_h traveler_sex1") {
                     sexCode = "Mrs";
                     sexName = "女";
+                }else{
+                  jAlert('请选择性别!');
+                  return;
                 }
                 // 手机号邮箱检验
+
                 $('#mobile-cell-add')[0].value=$('#mobile-cell-add')[0].value.replace(/^\s*/,'');
                 var oMobile = $('#mobile-cell-add')[0].value;
                 $('#email-cell-add')[0].value=$('#email-cell-add')[0].value.replace(/^\s*/,'');
+
                 var oEmail = $('#email-cell-add')[0].value;
 
                 if ( ! vlm.Utils.validate.mobileNo(oMobile) )
@@ -209,6 +226,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     $('#man').attr('class','icon-h traveler-sex1');
                     $('#woman').attr('class','icon-h traveler-sex2');
                     addtra_page.style.display='none';
+                    $('#content-wrap').css('visibility','visible');
                 }
             }
         }
@@ -260,6 +278,17 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     jAlert('请输入证件号')
                     return;
                 }
+
+                //证件有效期验证
+                var card_validity=$('#time-cont-edit').html();
+                if(card_validity == ''){
+                  jAlert('请选择有效的证件有效期');
+                  return;
+                }else if( ! vlm.Utils.compareTime(card_validity)){
+                  jAlert('证件有效期无效，请重新选择!');
+                  return;
+                }
+
                 //  判断性别
                 var man = $("#man2")[0];
                 var sexCode;
@@ -295,9 +324,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
 
                 // 手机号邮箱检验
+
                 $('#mobile-cell')[0].value=$('#mobile-cell')[0].value.replace(/^\s*/,'');
                 var oMobile = $('#mobile-cell')[0].value;
                 $('#email-cell')[0].value=$('#email-cell')[0].value.replace(/^\s*/,'');
+
                 var oEmail = $('#email-cell')[0].value;
 
                 if ( ! vlm.Utils.validate.mobileNo(oMobile) )
@@ -347,16 +378,16 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     });
 
     //性别
-    var aSel = document.querySelectorAll('.sex-cho-wrap');
+    var aSel = document.querySelectorAll('.sex_cho_wrap');
     for (var i = 0; i < aSel.length; i++) {
         (function (index) {
             var aSpan = aSel[index].querySelectorAll('b');
             for (j = 0; j < aSpan.length; j++) {
                 aSpan[j].onclick = function () {
                     for (i = 0; i < aSpan.length; i++) {
-                        aSpan[i].className = 'icon-h traveler-sex2';
+                        aSpan[i].className = 'icon_h traveler_sex2';
                     }
-                    this.className = 'icon-h traveler-sex1';
+                    this.className = 'icon_h traveler_sex1';
                 }
             }
         })(i);
@@ -374,9 +405,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 blank.style.display = "none";
                 var content = $("#content")[0];
                 var UL = document.createElement("ul");
-                UL.className = "often-traveler";
-                UL.style.borderTop = "1px solid #dedede";
-                UL.style.marginTop = "10px";
+                UL.className = "often_traveler";
 
                 for (var i = 0; i < travJson.data.length; i++) {
                     var idtype_num=travJson.data[i].listTravellerIdInfo.length;
@@ -403,12 +432,12 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                     }
 
                     var li = document.createElement("li");
-                    li.className = "eve-traveler";
+                    li.className = "eve_traveler";
                     //给li添加自定义属性
                     li.setAttribute('idtype',array[i]);
                     var b = document.createElement("b");
-                    b.className = "user-edits";
-                    b.style.marginTop = li.clientHeight + 20 + 'px';
+                    b.className = "user_edits";
+                    b.style.marginTop = li.clientHeight + '.4rem';
                     li.appendChild(b);
                     var ul = document.createElement("ul");
                     ul.className = "often_user";
@@ -458,9 +487,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
 
     //  编辑常旅客页面
     function updateTra(e) {
-        if($(e.target).parent().attr('class') == 'often_user' || $(e.target).attr('class') == 'user-edits')
+        if($(e.target).parent().attr('class') == 'often_user' || $(e.target).attr('class') == 'user_edits')
         {
-            index=$(e.target).parents('.eve-traveler').attr('index');
+            index=$(e.target).parents('.eve_traveler').attr('index');
         }else{
             index= $(e.target).attr('index');
         }
@@ -480,9 +509,9 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         var telCode=getTelCode(travJson.data[index].traveller.countryCode);
         if(telCode == undefined)
         {
-            $('#uptra_page .phone-pre').html('+86');
+            $('#uptra_page .phone_pre').html('+86');
         }else{
-            $('#uptra_page .phone-pre').html('+'+telCode.TelCode);
+            $('#uptra_page .phone_pre').html('+'+telCode.TelCode);
         }
         $('#uptra_page .country-btn').eq(0).attr('data-code',travJson.data[index].listTravellerIdInfo[0].idCountry);
         //证件生日有效期缓存函数
@@ -544,11 +573,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         oldsendName=getCountryName(idCountry).CountryName;
         $('#country-name').html(oldsendName);
         if (travJson.data[index].traveller.sexCode == "Mr") {
-            man2.className = "icon-h traveler-sex1";
-            woman2.className = "icon-h traveler-sex2";
+            man2.className = "icon_h traveler_sex1";
+            woman2.className = "icon_h traveler_sex2";
         } else {
-            man2.className = "icon-h traveler-sex2";
-            woman2.className = "icon-h traveler-sex1";
+            man2.className = "icon_h traveler_sex2";
+            woman2.className = "icon_h traveler_sex1";
         }
 
         //编辑常旅取消按钮提示
@@ -629,6 +658,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     var myDate7 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
     function cardcallback(){
+
         if($('.date-selected').html() == '护照')
         {
             function cardnum(){
@@ -641,10 +671,12 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                       return arr1[i].idNumber;
                     }
                   }
+
                 }
             }
             var idnumber=cardnum();
             $('.postNum').val(idnumber);
+
         }else if($('.date-selected').html() == '身份证'){
             function cardnum(){
               if(travJson != undefined) {
@@ -655,6 +687,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                   }
                 }
               }
+
             }
             var idnumber=cardnum();
             $('.postNum').val(idnumber);
@@ -663,26 +696,26 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     }
 
     //姓名说明新增
-    $('#aname_state').click(function(){
+    $('#anameState').click(function(){
         $('#content-wrap').css('visibility','hidden');
         $('#addtra_page').css('visibility','hidden');
         $('#fillName_page').show();
     })
 
-    $('#close_name').click(function(){
+    $('#closeName').click(function(){
         $('#content-wrap').css('visibility','visible');
         $('#addtra_page').css('visibility','visible');
         $('#fillName_page').hide();
     });
 
     //编辑
-    $('#name_state').click(function(){
+    $('#nameState').click(function(){
         $('#content-wrap').css('visibility','hidden');
         $('#uptra_page').css('visibility','hidden');
         $('#fillName_page').show();
     })
 
-    $('#close_name').click(function(){
+    $('#closeName').click(function(){
         $('#content-wrap').css('visibility','visible');
         $('#uptra_page').css('visibility','visible');
         $('#fillName_page').hide();

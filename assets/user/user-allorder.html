@@ -9,7 +9,6 @@
 	<meta name="x5-orientation" content="portrait">
 	<meta name="full-screen" content="yes">
 	<meta name="x5-fullscreen" content="true">
-
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
 	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
 	<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 	media="screen and (max-device-width: 320px)" />
@@ -21,32 +20,31 @@
 	<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
 	<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 	<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-
 	<title>全部订单 - 亚洲旅行网</title>
-	<link href="../styles/framework.css"	rel="stylesheet" type="text/css">
-	<link href="../styles/style.css"		rel="stylesheet" type="text/css">
+	<link href="../styles/reset.css"		rel="stylesheet" type="text/css">
 	<link href="../css/user.css"	rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="preloader">
+
+  <div id="preloader">
 	<div id="status"></div>
-</div>
-<div class="all-elements" id="all-order">
+  </div>
+  <div class="all_elements" id="all-order">
 	<div class="header">
-		<a href="javascript:window.history.go(-1);"  class="header-back"><i class="icons go-back"></i></a>
-		<h3>全部订单</h3>
+      <a href="javascript:window.history.go(-1);" class="header_back"><i class="icon_back"></i></a>
+      <h3 id="title_aboutus">全部订单</h3>
 	</div>
 	<!-- Page Content-->
-	<div id="content" class="snap-content ticket-div" style="padding-top: 45px">
-		<!--<div class="order-div flight-div">-->
-		<!--<div style="border-bottom: 1px solid #dedede;">-->
+    <div id="content" class="content ticket_div">
+      <!--<div class="order_div flight-div">-->
+      <!--<div >-->
 		<!--<b class="icon user-air"></b>-->
-		<!--<div class="order-title">机票</div>-->
+      <!--<div class="order_title">机票</div>-->
 		<!--<div class="if_pay">未支付</div>-->
 		<!--</div>-->
 		<!--<div>-->
-		<!--<p class="info-title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
-		<!--<ul class="air-date">-->
+      <!--<p class="info_title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
+      <!--<ul class="air_date">-->
 		<!--<li>出行日期：10-22 18:00至21:05</li>-->
 		<!--<li>返回日期：10-22 18:00至21:05</li>-->
 		<!--</ul>-->
@@ -56,15 +54,15 @@
 		<!--<div class="quitbtn">取消订单</div>-->
 		<!--</div>-->
 		<!--</div>-->
-		<!--<div class="order-div scenic-div">-->
-		<!--<div style="border-bottom: 1px solid #dedede;">-->
-		<!--<b class="icon user-spot"></b>-->
-		<!--<div class="order-title">景点</div>-->
+      <!--<div class="order_div scenic_div">-->
+      <!--<div >-->
+      <!--<b class="icon user_spot"></b>-->
+      <!--<div class="order_title">景点</div>-->
 		<!--<div class="if_pay">已支付</div>-->
 		<!--</div>-->
 		<!--<div>-->
-		<!--<p class="info-title">崇礼得乐滑雪周日全日票【成人票】2张+崇礼温泉门票 2张</p>-->
-		<!--<ul class="air-date">-->
+      <!--<p class="info_title">崇礼得乐滑雪周日全日票【成人票】2张+崇礼温泉门票 2张</p>-->
+      <!--<ul class="air_date">-->
 		<!--<li>有效期至：2015-12-30</li>-->
 		<!--</ul>-->
 		<!--</div>-->
@@ -72,15 +70,15 @@
 		<!--<div class="quitbtn">退票</div>-->
 		<!--</div>-->
 		<!--</div>-->
-		<!--<div class="order-div hotel-div">-->
-		<!--<div style="border-bottom: 1px solid #dedede;">-->
+      <!--<div class="order_div hotel-div">-->
+      <!--<div >-->
 		<!--<b class="icon user-hotel1"></b>-->
-		<!--<div class="order-title">酒店</div>-->
+      <!--<div class="order_title">酒店</div>-->
 		<!--<div class="if_pay">已完成</div>-->
 		<!--</div>-->
 		<!--<div>-->
-		<!--<p class="info-title">东京东急涩谷卓越大酒店</p>-->
-		<!--<ul class="air-date">-->
+      <!--<p class="info_title">东京东急涩谷卓越大酒店</p>-->
+      <!--<ul class="air_date">-->
 		<!--<li>11-25至11-26 共1晚</li>-->
 		<!--<li style="font-size: 1.2rem">房型：经济大床房 房间数：2件</li>-->
 		<!--</ul>-->
@@ -89,15 +87,15 @@
 		<!--<div class="quitbtn"><a href="user-amendInfo.html#userremark">评价</a></div>-->
 		<!--</div>-->
 		<!--</div>-->
-		<!--<div class="order-div hotel-div-cancel" style="color: #999999">-->
-		<!--<div style="border-bottom: 1px solid #dedede;">-->
+      <!--<div class="order_div hotel-div-cancel" style="color: #999999">-->
+      <!--<div >-->
 		<!--<b class="icon user-hotel2"></b>-->
-		<!--<div class="order-title">酒店</div>-->
+      <!--<div class="order_title">酒店</div>-->
 		<!--<div class="if_pay">已取消</div>-->
 		<!--</div>-->
 		<!--<div>-->
-		<!--<p class="info-title">东京东急涩谷卓越大酒店</p>-->
-		<!--<ul class="air-date">-->
+      <!--<p class="info_title">东京东急涩谷卓越大酒店</p>-->
+      <!--<ul class="air_date">-->
 		<!--<li>11-25至11-26 共1晚</li>-->
 		<!--<li style="font-size: 1.2rem">房型：经济大床房 房间数：2件</li>-->
 		<!--</ul>-->
@@ -105,13 +103,13 @@
 		<!--</div>-->
 	</div>
 	<!--    无订单页   -->
-	<div id="black_page" class="user-content" style="display: none">
-		<div id="noOrder" style="margin: 0 auto; width: 250px; margin-top: 150px">
-			<div class="black-con" style="position: relative; height: 110px;" >
-				<div class="bu_icon order" style="position: absolute; left: 50%; margin-left: -35px; top: 0;" ></div>
+    <div id="black_page" class="user_content">
+      <div id="noOrder">
+        <div class="black_con">
+          <div class="bu_icon order"></div>
 			</div>
-			<span style="display: block; text-align: center">暂时没有相关订单，快去下单吧！</span>
-			<input class="f_btn button-yellow  buyOrder" type="button" style="width: 50%;margin-left: 25%" value="马上下单"/>
+        <p>暂时没有相关订单，快去下单吧！</p>
+        <input class="f_btn buyOrder" type="button" value="马上下单"/>
 		</div>
 		<!--<div id="noSignal">-->
 			<!--<div class="black-con">-->
@@ -122,19 +120,19 @@
 	</div>
 
 	<!--客服电话-->
-	<div class="jpop_box_tic" style="display: none;">
+    <div class="jpop_box_tic">
 		<dl>
 			<dt>4008-902-202</dt>
 			<dd><span>取消</span><a href="tel:4008-902-202">拨打</a></dd>
 		</dl>
 	</div>
-</div>
-<script src="../js/lib/jquery.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/plugins.js"></script>
-<script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
-<script>
+  </div>
+  <script src="../js/lib/jquery.js"></script>
+  <script src="../js/lib/jquery.alert.js"></script>
+  <script src="../js/lib/plugins.js"></script>
+  <script src="../js/lib/vlm.js"></script>
+  <script src="../js/lib/template.js"></script>
+  <script>
 
 	var getCN = {
 		"Paid": "已支付",
@@ -149,17 +147,19 @@
 		})
 
 
-		var memberId=JSON.parse(localStorage.getItem('memberid'));
-		var Parameters= {
-			"Parameters": "{\"MemberId\":\""+memberId+"\"}",
-			"ForeEndType": 3,
-			"Code": "0062"
-		}
+    var memberId=JSON.parse(localStorage.getItem('memberid'))==null?"":JSON.parse(localStorage.getItem('memberid'));
+    var deviceID=vlm.Utils.CookieUtil.get("deviceID");
+
+    var Parameters= {
+      "Parameters": '{"MemberId":"'+memberId+'",DeviceId:"'+deviceID+'"}',
+      "ForeEndType": 3,
+      "Code": "0062"
+    }
 		vlm.loadJson("", JSON.stringify(Parameters), function(data){
 			if(data.success) {
 				if(data.data !=null && data.data.length>0 ) {
 					var html = template("tpl_ticket", data.data);
-					$(".ticket-div").html(html);
+					$(".ticket_div").html(html);
 					$(".hotel-div-cancel").on("click", function () {
 						location.href = "../hotel/order-details.html?bookingRefNo=" + $(this).attr("data-code");
 					})
@@ -180,162 +180,163 @@
 		})
 	})
 
-
-
 </script>
 
-<!--模板-->
-<script id="tpl_ticket" type="text/template" version="20160330">
-	<!--未支付酒店-->
+  <!--模板-->
+  <script id="tpl_ticket" type="text/template" version="20160330">
+
 	{% if(productType=="Hotel" && bookingStatus=="Canceled"){ %}
 	<!--取消酒店-->
-	<div class="order-div hotel-div-cancel" style="color: #999999" data-code="{%=bookingRefNo%}">
-		<div style="border-bottom: 1px solid #dedede;">
-			<b class="icon user-hotel2"></b>
-			<div class="order-title">酒店</div>
+    <div class="order_div hotel-div-cancel" data-code="{%=bookingRefNo%}">
+      <div class="all_order_title">
+        <div>
+          <b class="icon_allorder user_hotel2"></b>
+          <div class="order_title">酒店</div>
 			<div class="if_pay">已取消</div>
-			<div class="order-Amount">￥{%=bookingAmount%}</div>
+          <div class="order_Amount">￥{%=bookingAmount%}</div>
 		</div>
-		<div>
-
-			<p class="info-title">{%=productName%}</p>
-			<ul class="air-date">
+      </div>
+      <div class="all_order_tab">
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
 				{% var d1= new Date(travelStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; var d2=new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")); %}
-				<li  style="font-size: 1.2rem">{%= d1.getMonth()+1 %}-{%= d1.getDate() %} 至{%= d2.getMonth()+1 %}-{%= d2.getDate() %} 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
+          <li>{%= d1.getMonth()+1 %}-{%= d1.getDate() %} 至{%= d2.getMonth()+1 %}-{%= d2.getDate() %} 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
 			</ul>
-
 		</div>
-		<div style="border-top: 1px solid #dedede;">
-			<a href="../hotel/order-details.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+      <div class="clearfix find_order">
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Hotle" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	{% } %}
 
+
+    {% if(productType=="Flight"){ %}
 	<!--机票-->
-	{% if(productType=="Flight"){ %}
-	<div class="order-div flight-div">
-		<div style="border-bottom: 1px solid #dedede;">
-			<b class="icon user-air"></b>
-			<div class="order-title">机票</div>
+    <div class="order_div flight_div">
+      <div class="all_order_title">
+        <b class="icon_allorder user_air"></b>
+        <div class="order_title">机票</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-			<div class="order-Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">￥{%=bookingAmount%}</div>
 		</div>
-		<div>
-			<!--<p class="info-title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
-			<p class="info-title">{%=productName%}</p>
-			<ul class="air-date">
+      <div class="all_order_tab">
+        <!--<p class="info_title">广州白云机场T1 - 北京首都机场（KN5899）</p>-->
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
 				<li>出行日期：{%=travelStartDate.replace("T"," ")%}</li>
 				<!--<li>返回日期：10-22 18:00至21:05</li>-->
 			</ul>
 		</div>
 		<div class="quitbtn">联系客服</div>
-		<div style="border-top: 1px solid #dedede;">
-			<a href="../flight/ticket_order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+      <div class="clearfix find_order">
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Flight" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	{% } else if (productType=="Hotel" && bookingStatus!="Canceled" ) { %}
 	<!--酒店-->
-	<div class="order-div scenic-div">
-		<div style="border-bottom: 1px solid #dedede;">
-			<b class="icon user-hotel1"></b>
-			<div class="order-title">酒店</div>
+    <div class="order_div scenic_div">
+      <div class="all_order_title">
+        <b class="icon_allorder user_hotel1"></b>
+        <div class="order_title">酒店</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-			<div class="order-Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">￥{%=bookingAmount%}</div>
 		</div>
-		<div>
-			<p class="info-title">{%=productName%}</p>
-			<ul class="air-date">
+      <div class="all_order_tab">
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
 				{% var d1= new Date(travelStartDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; var d2=new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")); %}
 				<li>{%= d1.getMonth()+1 %}-{%= d1.getDate() %} 至{%= d2.getMonth()+1 %}-{%= d2.getDate() %} 共{%= Math.floor((d2-d1)/(24*60*60*1000)) %}晚</li>
 			</ul>
 		</div>
-		<div style="border-top: 1px solid #dedede;">
-			<a href="../hotel/order-details.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+      <div class="clearfix find_order">
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Hotle" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	<!--酒店+景-->
 	{% }else if (productType=="Package_HT") { %}
-	<div class="order-div scenic-div">
-		<div style="border-bottom: 1px solid #dedede;">
-			<b class="icon user-spot"></b>
-			<div class="order-title">酒+景</div>
+    <div class="order_div scenic_div">
+      <div class="all_order_title">
+        <b class="icon_allorder user_hoteltour"></b>
+        <div class="order_title">酒+景</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-			<div class="order-Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">￥{%=bookingAmount%}</div>
 		</div>
-		<div>
-			<p class="info-title">{%=productName%}</p>
-			<ul class="air-date">
+      <div class="all_order_tab">
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
 				{% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
 				<li>出行日期：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
 			</ul>
 		</div>
-		<div style="border-top: 1px solid #dedede;">
-			<a href="../tour/order_pay_page.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+      <div class="clearfix find_order">
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Tour" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	<!--景点-->
 	{% }else if (productType=="Package_T") { %}
-	<div class="order-div scenic-div">
-		<div style="border-bottom: 1px solid #dedede;">
-			<b class="icon user-spot"></b>
-			<div class="order-title">景点</div>
+    <div class="order_div scenic_div">
+      <div class="all_order_title">
+        <b class="icon_allorder user_spot"></b>
+        <div class="order_title">景点</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-			<div class="order-Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">￥{%=bookingAmount%}</div>
 		</div>
-		<div>
-			<p class="info-title">{%=productName%}</p>
-			<ul class="air-date">
+      <div class="all_order_tab">
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
 				{% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
 				<li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
 			</ul>
 		</div>
-		<div style="border-top: 1px solid #dedede;">
-			<a href="../scenic/order-detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+      <div class="clearfix find_order">
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=Scenic" class="paybtn">查看订单</a>
 		</div>
 	</div>
 	<!--机+酒-->
 	{% }else if (productType=="Package_FH") { %}
-	<div class="order-div scenic-div">
-		<div style="border-bottom: 1px solid #dedede;">
-			<b class="icon user-fligthotle"></b>
-			<div class="order-title">机+酒</div>
+    <div class="order_div scenic_div">
+      <div class="all_order_title">
+        <b class="icon_allorder user_fligthotle"></b>
+        <div class="order_title">机+酒</div>
 			<div class="if_pay">{%=getCN[paymentStatus]%}</div>
-			<div class="order-Amount">￥{%=bookingAmount%}</div>
+        <div class="order_Amount">￥{%=bookingAmount%}</div>
 		</div>
-		<div>
-			<p class="info-title">{%=productName%}</p>
-			<ul class="air-date">
+      <div class="all_order_tab">
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
 				{% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
 				<li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
 			</ul>
 		</div>
-		<div style="border-top: 1px solid #dedede;">
-			<a href="../hotel_flight/order_detail_pay.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
+      <div class="clearfix find_order">
+        <a href="../hotel_flight/order_detail_pay.html?bookingRefNo={%=bookingRefNo%}" class="paybtn">查看订单</a>
 		</div>
 	</div>
-  <!--机+酒+景-->
-  {% }else if (productType=="Package_FHT") { %}
-  <div class="order-div scenic-div">
-    <div style="border-bottom: 1px solid #dedede;">
-      <b class="icon user-fligthotletour"></b>
-      <div class="order-title">机+酒+景</div>
-      <div class="if_pay">{%=getCN[paymentStatus]%}</div>
-      <div class="order-Amount">￥{%=bookingAmount%}</div>
+    <!--机+酒+景-->
+    {% }else if (productType=="Package_FHT") { %}
+    <div class="order_div scenic_div">
+      <div class="all_order_title">
+        <b class="icon_allorder user_fligthotletour"></b>
+        <div class="order_title">机+酒+景</div>
+        <div class="if_pay">{%=getCN[paymentStatus]%}</div>
+        <div class="order_Amount">￥{%=bookingAmount%}</div>
+      </div>
+      <div class="all_order_tab">
+        <p class="info_title">{%=productName%}</p>
+        <ul class="air_date">
+          {% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
+          <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
+        </ul>
+      </div>
+      <div class="clearfix find_order">
+        <a href="../payment/order_detail.html?bookingRefNo={%=bookingRefNo%}&type=FlightHotelTour" class="paybtn button-yellow">查看订单</a>
+      </div>
     </div>
-    <div>
-      <p class="info-title">{%=productName%}</p>
-      <ul class="air-date">
-        {% var d3= new Date(travelEndDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4")) ; %}
-        <li>有效期至：{%= d3.getFullYear()%}-{%= d3.getMonth()+1 %}-{%= d3.getDate() %}</li>
-      </ul>
-    </div>
-    <div style="border-top: 1px solid #dedede;">
-      <a href="../hotel_flight_tour/hft_order_detail.html?bookingRefNo={%=bookingRefNo%}" class="paybtn button-yellow">查看订单</a>
-    </div>
-  </div>
-  {% } %}
-</script>
+    {% } %}
+  </script>
 
 
 </body>
+
 </html>
+
