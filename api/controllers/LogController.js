@@ -26,12 +26,12 @@
                                 if (err) {
                                     console.error(err);
                                 }
-                                //close file
-                                fs.close(fileName, function (err) {
-                                    if (err) {
-                                        console.error(err);
-                                    }
-                                });
+                                //                                //close file
+                                //                                fs.close(fileName, function (err) {
+                                //                                    if (err) {
+                                //                                        console.error(err);
+                                //                                    }
+                                //                                });
                             });
                         } else {
                             fs.writeFile(fileName, parameter + "\n", function (err) {
@@ -54,12 +54,13 @@
                                 if (err) {
                                     console.error(err);
                                 }
-                                //close file
-                                fs.close(fileName, function (err) {
-                                    if (err) {
-                                        console.error(err);
-                                    }
-                                });
+                                //                                //close file
+                                //                                console.info(fileName);
+                                //                                fs.close(fileName, function (err) {
+                                //                                    if (err) {
+                                //                                        console.error(err);
+                                //                                    }
+                                //                                });
                             });
                         } else {
                             console.error("mkdir error in LogController");
