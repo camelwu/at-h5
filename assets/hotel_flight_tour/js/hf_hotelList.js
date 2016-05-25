@@ -23,7 +23,7 @@
 			ForeEndType : ForeEndType,
 			Code : Code
 		};
-		questUrl = questUrl || that.requestUrl;
+		questUrl = questUrl || that.requestUrl||"";
 		vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 	};
 
