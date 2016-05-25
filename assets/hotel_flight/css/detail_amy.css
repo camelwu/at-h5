@@ -20,6 +20,7 @@ a:link {
 .jpa {
     position: absolute;
 }
+
 .jpop_box_tic{
     position: fixed;
     top: 0;
@@ -66,6 +67,7 @@ a:link {
     float: right;
     background: #ffb413;
 }
+
 .jfw {
     font-weight: bold;
 }

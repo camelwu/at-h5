@@ -1,0 +1,50 @@
+﻿// JavaScript Document
+
+require.config({
+    baseUrl: '../js/lib',
+
+    paths: {
+        baseCss:"../../styles",
+        plugins: 'plugins',
+        pluginsCss:"../../css/plugins"
+
+    },
+    waitSeconds: 0,
+    $:['jquery'],
+    shim: {
+    	'plugins':{
+<<<<<<< HEAD
+    		deps: ['./jquery',"./vlm"],
+=======
+    		deps: [
+          'jquery'
+        ],
+>>>>>>> rem
+    		init:function(){
+    			return{
+    				WOW:WOW,
+    				FastClick:FastClick,
+    				owlCarousel:owlCarousel,
+    				countdown:countdown,
+    				swipebox:swipebox,
+    				ScrollIt:ScrollIt,
+    				Snap:Snap,
+<<<<<<< HEAD
+            usercontact:usercontact
+=======
+            ChoiceUser:choiceuser
+>>>>>>> rem
+    			}
+    		}
+    	},
+    	'custom':{
+    		deps: ['jquery','plugins']
+    	}
+	},
+	urlArgs: "bust=" +  (new Date()).getTime()
+});
+
+require(['jquery','vlm','custom'], function($,vlm) {
+	vlm.init();
+	//vlm.checkLogin();
+});

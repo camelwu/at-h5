@@ -13,9 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="green">
 		<meta name="Keywords" content="亚洲旅行网">
 		<meta name="Description" content="境外专业旅行服务提供机构">
-		<link href="../styles/framework.css"  rel="stylesheet" type="text/css">
-		<link href="../styles/style.css"  rel="stylesheet" type="text/css">
-		<link href="../styles/tips.css"  rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../styles/reset.css"/>
 		<link href="css/lsf_hotelReviews.css" rel="stylesheet" type="text/css">
 		<title>首页 - 亚洲旅行网</title>
 
@@ -23,23 +21,29 @@
 	<body>
 		<div id="preloader">
 			<div id="status">
-				
+
 			</div>
 		</div>
 		<div class="all-elements">
-			<div class="header" id="vlm-login">
-				<a href="javascript:;" class="header-back" id="hr_back">
-                    <i class="icons go-back"></i>
-                </a>
+			<!--<div class="header" id="vlm-login">-->
+				<!--<a href="javascript:;" class="header-back" id="hr_back">-->
+                    <!--<i class="icons go-back"></i>-->
+                <!--</a>-->
+				<!--<h3>酒店点评</h3>-->
+			<!--</div>-->
+			<div class="header" style="box-shadow: none">
+				<a href="#" class="header_back" id="hr_back">
+					<i class="icon_back"></i>
+				</a>
 				<h3>酒店点评</h3>
 			</div>
-			<div class="hr_con_box" id="content">
-				<section class="lsf_reAll_grade clearfix">
-					<span class="fl lsf_grade1" id="TAAvgRating">0</span>
+			<div class="hr_con_box hotel_grade" id="content">
+				<section class="lsf_reAll_grade clearfix hotel_grade_num">
+					<span class="fl lsf_grade1 hotel_grade_num_score" id="TAAvgRating">0</span>
 					<i class="fl">分/</i>
 					<span class="fl" id="TAReviewCount">0人点评</span>
 				</section>
-				<section class="lsf_reDetail_grade" id="lsf_reDetail_grade">
+				<section class="lsf_reDetail_grade hotel_grade_score" id="lsf_reDetail_grade">
 					<section>
 					<p>设施&nbsp;<i>0</i>分</p>
 					<p class="lsf_gra_p2">客房&nbsp;<i>0</i>分</p>
@@ -53,7 +57,7 @@
 					<p class="lsf_gra_p2">性价比&nbsp;<i>0</i>分</p>
 					</section>
 				</section>
-				<section class="lsf_reDiscuss" id="lsf_reDiscuss">
+				<section class="lsf_reDiscuss hotel_grade_content" id="lsf_reDiscuss">
 					<!--<div class="reBox">
 					<div class="clearfix lsf_reTitle">
 					<h2 class="fl">床品蛮不错，睡得很舒服</h2>

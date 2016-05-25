@@ -1,5 +1,6 @@
 var ticketSingle = {
 
+
   CultureName: "zh-CN",
 
   requestUrl: "",
@@ -89,7 +90,7 @@ var ticketSingle = {
       ForeEndType: ForeEndType,
       Code: Code
     };
-    questUrl = questUrl ? questUrl : that.requestUrl;
+    questUrl = questUrl ? questUrl :"";
     if (loadMoreSign) {
       vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
     } else {
@@ -184,7 +185,6 @@ var ticketSingle = {
       var dateNum = (arg.getDate()) < 10 ? "0" + parseInt(arg.getDate()) : arg.getDate(), result_, newUrl;
       arg = arg.getFullYear() + '-' + monthNum + '-' + dateNum;
       var lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
-      console.log(lineMaxDate)
       if (new Date(arg.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(arg.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
         result_ = ticketSingle.returnWeek(arg);
         oDivs[0].className = 'unit previous-day';
@@ -358,7 +358,7 @@ var ticketSingle = {
     ticketDetailUl.innerHTML += ticketListStr;
     this.loadMoreHandler(arg.data.pageNo, arg.data.pageCount);
     this.eventHandler();
-    return;
+    return false;
   },
 
   loadMoreHandler: function (pageNo, pageCount) {
@@ -571,3 +571,4 @@ var ticketSingle = {
   }
 };
 ticketSingle.init();
+

@@ -190,7 +190,8 @@ window.onload = function() {
 				"Code" : "0058"
 			};
 			console.log(Parameters);
-			phone_reg.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
+      phone_reg.style.width='2.4rem';
+      phone_reg.innerHTML = '120秒重新发送';
 			timedown_reg(120);
 			vlm.loadJson("", JSON.stringify(Parameters), mycallback_verify);
 		};
@@ -312,7 +313,8 @@ window.onload = function() {
 				"Code" : "0058"
 			};
 			console.log(Parameters);
-			phone_verify.innerHTML = '<span style="color: rgb(204,204,204)">120秒重新发送</span>';
+      phone_verify.style.width='2.4rem';
+      phone_verify.innerHTML = '120秒重新发送';
 			timedown_forget(120);
 			//vlm.Utils.timeCountDown('120', time_reciprocals, phone_timeout);
 			vlm.loadJson("", JSON.stringify(Parameters), mycallback_findver);
@@ -502,34 +504,34 @@ function mycallback_findver(ret) {
 }
 
 //登录和注册清除内容图标
-	function clearValue(id){
+function clearValue(id){
 		$(id).on('input propertychange focus',function(){
 			if($(id).val() == ''){
-				$(this).parent().find('.login-clear').hide();
+      $(this).parent().find('.login_clear').hide();
 			}else{
-				$(this).parent().find('.login-clear').show();
+      $(this).parent().find('.login_clear').show();
 			}
 		})
 
-		$(id).parent().find('.login-clear').click(function(){
+  $(id).parent().find('.login_clear').click(function(){
 			$(this).hide();
 			$(id).val('');
 		});
-	}
+}
 
-	clearValue('#phone');
-	clearValue('#p_password');
-	clearValue('#email');
-	clearValue('#e_password');
-	clearValue('#r_phone');
-	clearValue('#verify');
-	clearValue('#r_p_password');
-	clearValue('#r_email');
-	clearValue('#rs_e_password');
-	clearValue('#r_e_password');
+clearValue('#phone');
+clearValue('#p_password');
+clearValue('#email');
+clearValue('#e_password');
+clearValue('#r_phone');
+clearValue('#verify');
+clearValue('#r_p_password');
+clearValue('#r_email');
+clearValue('#rs_e_password');
+clearValue('#r_e_password');
 
-	//忘记密码倒计时
-	function timedown_forget(seconds){
+//忘记密码倒计时
+function timedown_forget(seconds){
 		var lasttime=new Date();
 		var newtime;
 		var timer=setInterval(function(){
@@ -539,21 +541,18 @@ function mycallback_findver(ret) {
 				if(Math.ceil(120- (newtime-lasttime)/1000 ) < 1)
 				{
 					phone_verify.innerHTML = '发送验证码';
-					phone_verify.style.color = '#ffb413';
 					clearInterval(timer);
 					Bflag_forget = false;
 					return;
 				}
 				phone_verify.innerHTML =Math.ceil(120- (newtime-lasttime)/1000 )+ '秒重新发送';
-				phone_verify.style.color = 'rgb(204,204,204)';
 			}else{
 				phone_verify.innerHTML =seconds+ '秒重新发送';
-				phone_verify.style.color = 'rgb(204,204,204)';
 			}
 		},1000);
-	}
-	//注册倒计时
-	function timedown_reg(seconds){
+}
+//注册倒计时
+function timedown_reg(seconds){
 		var lasttime=new Date();
 		var newtime;
 		var timer=setInterval(function(){
@@ -575,4 +574,4 @@ function mycallback_findver(ret) {
 				phone_reg.style.color = 'rgb(204,204,204)';
 			}
 		},1000);
-	}
+}
