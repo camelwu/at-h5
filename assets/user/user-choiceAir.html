@@ -24,230 +24,164 @@
 	<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 	<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 	<title>个人中心选择乘机人 - 亚洲旅行网</title>
-	<link href="../styles/framework.css"	rel="stylesheet" type="text/css">
-	<link href="../styles/style.css"		rel="stylesheet" type="text/css">
+
+	<link href="../styles/reset.css"		rel="stylesheet" type="text/css">
 	<link href="../styles/tips.css"		rel="stylesheet" type="text/css">
-	<link href="../css/user.css"	rel="stylesheet" type="text/css">
-	<link href="../css/date_select.css"	rel="stylesheet" type="text/css">
-	<style type="text/css">
-		.user-choice {
-			width: 21px;
-			height: 21px;
-			float: left;
-			margin-top: 10px;
-			margin-right: 10px;
-			background-position: 56% 97.5%;
-		}
-
-		.choiced {
-			background-position: 62.8% 97.2%;
-		}
-
-		.passport-tips{
-			margin-left: 30px;
-			color: red;
-		}
-	</style>
+  <link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css">
+  <link href="../css/choiceAir.css"	rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="preloader">
+    <div id="preloader">
 	<div id="status"></div>
-</div>
-<div class="header" id="toper">
-	<a href="#" class="header-back name-illustrate closedWin"><i class="icons go-back"></i></a>
+    </div>
+
+    <div class="header" id="toper">
+      <a href="javascript:;" id="close_page" class="header_back name-illustrate closedWin">
+        <i class="icon_back"></i>
+      </a>
 	<h3>已选：<span class="adult-number"></span></h3>
-	<div class="header-finish" onclick="submit_t();">
-		完成
+      <div class="header_finish" onclick="submit_t();">完成</div>
 	</div>
-</div>
-<div class="all-elements" style="overflow: hidden;">
 
+    <div class="all_elements">
 	<!-- Page Content-->
-	<div class="snap-content" style="padding-top: 45px;background-color: white; ">
-		<div class="f_btn button-orange" style="margin-top: 10px" onclick="showAddAir_page('new')">
-			<b class="icons user-add"></b><span class="newTitle"></span>
-		</div>
-		<ul class="often-traveler choosed-traveler"></ul>
-		<!--<div class="name-text" style="margin-bottom: 0;margin-top: -15px;">-->
-			<!--首字母排序-->
-		<!--</div>-->
-		<ul class="often-traveler list-traveler" id="allList">
+      <div class="content">
+        <a href="javascript:;" class="f_btns" onclick="showAddAir_page('new')">
+          <b class="icon_person user_add"></b><span class="newTitle"></span>
+        </a>
+        <ul class="often_traveler choosed-traveler"></ul>
 
-		</ul>
-		<div class="con-text" id="con-text">
+        <ul class="often_traveler list-traveler" id="allList"></ul>
+
+        <div class="con_text_tips" id="con-text">
 			<!--为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月-->
 		</div>
 	</div>
+
 	<!-- 新增乘机人页-->
-	<div class="addAir-page" id="addAir-page">
-		<div class="all-elements">
+      <div class="addAir_page" id="addAir-page">
+        <div class="all_elements">
 			<div class="header">
-				<div class="header-quit" onclick="closeAddAir_page()">
-					取消
-				</div>
+            <div class="header_quit" onclick="closeAddAir_page()">取消</div>
 				<h3>新增乘机人</h3>
-				<div class="header-finish addFinish">
-					完成
+            <div class="header_finish addFinish">完成</div>
 				</div>
-			</div>
-			<div class="snap-content" style="padding-top: 45px;background-color: white;">
-				<div class="chn-eng-wrap">
-					<div class="addtra-title">旅客姓名<b id="name_state" class="icon user-must"></b></div>
-					<ul class="addtra-info nameche-wrap">
+          <div class="content">
+            <div class="chn_eng_wrap">
+              <div class="addtra_title">旅客姓名<b id="name_state" class="icon_common user_must"></b></div>
+              <ul class="addtra_info nameche_wrap">
 						<li>
-							<div>
-								中文姓名
-							</div>
+                  <div>中文姓名</div>
 							<input type="text" placeholder="与乘机人姓名一致" class="cnName">
 						</li>
 					</ul>
-					<ul class="addtra-info nameche-wrap">
+              <ul class="addtra_info nameche_wrap">
 						<li>
-							<div>
-								姓（英文）
-							</div>
+                  <div>姓（英文 )</div>
 							<input type="text" placeholder="Surname,如Li" class="lastName">
-							<br/>
 						</li>
 						<li>
-							<div>
-								名（英文）
-							</div>
+                  <div>名（英文 )</div>
 							<input type="text" placeholder="Given name,如Shimin" class="firstName">
 						</li>
 					</ul>
 				</div>
-				<div class="addtra-title">证件</div>
-				<ul class="addAir-info mart-non">
+            <div class="addtra_title">证件</div>
+            <ul class="addAir_info">
 					<li>
-						<b class="icons open-pho"></b>
-						<div>
-							证件类型
-						</div>
-						<div id="postCard" class="postCard" data-code="1">
-							护照
-						</div>
+                <b class="open_arw open_pho"></b>
+                <div>证件类型</div>
+                <div id="postCard" class="postCard" data-code="1">护照</div>
 					</li>
 					<li>
-						<div>
-							证件号
-						</div>
+                <div>证件号</div>
 						<input type="text" placeholder="确保与乘机证件一致" class="cardNumber">
 					</li>
 					<li>
-						<b class="icons open-pho"></b>
-						<div class="birth-date">
-							证件有效期
-						</div>
-						<input id="time-cont" type="text" class="birth-cont cardDateLimit" data-cache="1990年-1月-1日" value="1990年1月9号" readonly />
+                <b class="open_arw  open_pho"></b>
+                <div class="birth-date">证件有效期</div>
+                <input id="time-cont" type="text" class="birth-cont cardDateLimit" readonly />
 					</li>
 					<li class="countries-wrap">
-						<b class="icons open-pho"></b>
-						<div>
-							发证国家
-						</div>
-						<div class="country-btn cardCountry" data-code="CN" >中国</div>
+                <b class="open_arw open_pho"></b>
+                <div>发证国家</div>
+                <div class="country_btn cardCountry" data-code="CN" >中国</div>
 					</li>
 				</ul>
-				<div class="addtra-title">其他信息</div>
-				<ul class="addAir-info mart-non">
+            <div class="addtra_title">其他信息</div>
+            <ul class="addAir_info mart-non">
 					<li class="countries-wrap">
-						<b class="icons open-pho"></b>
-						<div>
-							国籍
-						</div>
-						<div class="country-btn country" data-code="CN" >中国</div>
+                <b class="open_arw open_pho"></b>
+                <div>国籍</div>
+                <div class="country_btn country" data-code="CN" >中国</div>
 					</li>
 					<li>
-						<div>
-							性别
-						</div>
-						<div class="sex-cho-wrap">
-							<span style="margin-right:15%" ><b class="icon-h traveler-sex2" id="man"></b>男士</span>
-							<span><b class="icon-h traveler-sex2" id="woman"></b>女士</span>
+                <div>性别</div>
+                <div class="sex_cho_wrap">
+                  <span><b class="icon_h traveler_sex2" id="man"></b>男士</span>
+                  <span><b class="icon_h traveler_sex2" id="woman"></b>女士</span>
 						</div>
 					</li>
 					<li>
-						<b class="icons open-pho"></b>
-						<div class="birth-date">
-							出生日期
-						</div>
-						<input id="birth-cont" type="text" class="birth-cont birthDay" value="1990年1月9号" readonly />
+                <b class="open_arw open_pho"></b>
+                <div class="birth-date">出生日期</div>
+                <input id="birth-cont" type="text" class="birth-cont birthDay" data-cache="1990年-1月-1日" value="1990年1月9号" readonly />
 					</li>
 				</ul>
-				<div class="addtra-title">联系方式</div>
-				<ul class="traveler-contect">
-					<li class="clearFix">
-						<div class="con-phone fl">
-							手机号
-							<span class="phone-pre">+86</span>
-						</div>
-						<input type="text" placeholder="请确保手机号无误" id="mobile-cell-add" class="telNum">
-					</li>
-					<li class="clearFix">
-						<div class="fl">邮箱</div>
-						<input type="text" placeholder="常用邮箱" id="email-cell-add" class="txtEmail">
-					</li>
-				</ul>
-				<div class="name-text" id="name-text">
-					为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月
-				</div>
+
+            <!--<div class="addtra_title">联系方式</div>-->
+            <!--<ul class="traveler-contect">-->
+              <!--<li class="clearFix">-->
+                <!--<div class="con-phone fl">-->
+                  <!--手机号-->
+                  <!--<span class="phone-pre">+86</span>-->
+                <!--</div>-->
+                <!--<input type="text" placeholder="请确保手机号无误" id="mobile-cell-add" class="telNum">-->
+              <!--</li>-->
+              <!--<li class="clearFix">-->
+                <!--<div class="fl">邮箱</div>-->
+                <!--<input type="text" placeholder="常用邮箱" id="email-cell-add" class="txtEmail">-->
+              <!--</li>-->
+            <!--</ul>-->
+
+            <div class="name_text_tips" id="name-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
 				<!--<div class="user-account" onclick="showChild_page()">-->
 				<!--儿童婴儿购票说明>-->
 				<!--</div>-->
 
-				<div id="delTra" class="f_btn button-grey" style="display:none">删除常旅客</div>
+            <div id="delTra" class="f_btns">删除常旅客</div>
 			</div>
 		</div>
 	</div>
 	<!-- 儿童购票说明页-->
-	<div class="childen-page" id="childen-page">
-		<div class="all-elements">
+      <div class="childen_page" id="childen-page">
+        <div class="all_elements">
 			<div class="header">
-				<a class="icons header-back closedOfChindDescript" onclick="closeChild_page()"></a>
+            <div id="childExplanation" class="header_quit"><i class="icon_back"></i></div>
 				<h3>儿童购票说明</h3>
 			</div>
-			<div class="snap-content" style="padding-top: 45px;background-color: white;">
+          <div class="content">
 				<ol class="ch_account">
-					<li>
-						航班起飞前当日出生日期未满14天的婴儿，请至航空公司柜台申请购买机票
+              <li>航班起飞前当日出生日期未满14天的婴儿，请至航空公司柜台申请购买机票</li>
+              <li>婴儿/儿童年龄区分
+                <div class="child_detail">婴儿：14天-2周岁；</div>
+                <div class="child_detail">儿童：2-12周岁（按照航班起飞当日实际年龄区分）</div>
 					</li>
-					<li>
-						婴儿/儿童年龄区分
-						<div class="child_detail">
-							婴儿：14天-2周岁；
+              <li>婴儿票价格：航线标准价格的10%，不收机建费和燃油费（注：婴儿票无座。如需座位，可购买儿童票或成人票）</li>
+              <li>儿童票价格：航线标准价格的50%，不收机建费，燃油费为承认的50%</li>
+              <li>儿童、婴儿须要成人陪同登机。儿童如果单独乘机，需要至航空公司柜台申请购买机票</li>
+              <li>儿童婴儿购票可用证件：身份证、护照、户口簿、出生证明等</li>
+              <li>儿童婴儿购票可同时购买一份航意险</li>
+              <li>部分成人价格允许儿童婴儿购买，根据航空公司公布的成人价格政策确认儿童婴儿是否允许购买成人票</li>
+            </ol>
 						</div>
-						<div class="child_detail">
-							儿童：2-12周岁（按照航班起飞当日实际年龄区分）
 						</div>
-					</li>
-					<li>
-						婴儿票价格：航线标准价格的10%，不收机建费和燃油费（注：婴儿票无座。如需座位，可购买儿童票或成人票）
-					</li>
-					<li>
-						儿童票价格：航线标准价格的50%，不收机建费，燃油费为承认的50%
-					</li>
-					<li>
-						儿童、婴儿须要成人陪同登机。儿童如果单独乘机，需要至航空公司柜台申请购买机票
-					</li>
-					<li>
-						儿童婴儿购票可用证件：身份证、护照、户口簿、出生证明等
-					</li>
-					<li>
-						儿童婴儿购票可同时购买一份航意险
-					</li>
-					<li>
-						部分成人价格允许儿童婴儿购买，根据航空公司公布的成人价格政策确认儿童婴儿是否允许购买成人票
-					</li>
-				</ol>
 			</div>
 		</div>
-	</div>
-</div>
 
 
-<!--国籍选择开始-->
-<div class="all-elements country-cho-wrap">
+    <!--国籍选择开始-->
+    <div class="all_elements country-cho-wrap">
 	<div class="header">
 		<a href="javascript:;" class="header-back name-illustrate country-hidden "><i class="icons go-back"></i></a>
 		<div class="cl_search">
@@ -260,92 +194,95 @@
 	<ul class="country-list-searched"></ul>
 	<!--国籍弹窗结束-->
 
-	<div class="snap-content" style="padding-top: 45px;">
+      <div class="content">
 		<div class="country-wrap" id="country-wrap">
 			<!--<ul class="country-list">-->
 			<!--<li></li>-->
 			<!--</ul>-->
 		</div>
 	</div>
-</div>
+    </div>
 
-
-<!-- 填写姓名说明页-->
-<!-- 中文姓名-->
-<div class="fillName-page" id="fillName_page">
-	<div class="all-elements">
+    <!-- 填写姓名说明页-->
+    <div class="fillName_page all_elements" id="fillName_page">
 		<div class="header">
-			<!--<a id="close_name" href="#" class="icons header-back"></a>-->
-			<a ihref="#" class="header-back"><i class="icons go-back closedOfFillName"></i></a>
+        <div id="closeName" class="header_quit"><i class="icon_back"></i></div>
 			<h3>填写姓名说明</h3>
 		</div>
-		<div class="user-content">
+      <div class="content">
+        <!-- 中文姓名-->
 			<ol class="ch_account" id="ch_account">
-			<li>姓名要与所持证件的姓名一致</li>
-			<li>中文姓名
+          <li>1. 姓名要与所持证件的姓名一致</li>
+          <li>2. 中文姓名
 				<ul class="name_ul">
-					<li>若持护照乘机，必须确认护照上有中文姓名<br/>
-						生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”
-						<div class="name-example">
-							<div>中文姓名</div>
-							<div>王ben</div>
+              <li>
+                <p>若持护照乘机，必须确认护照上有中文姓名</p>
+                <p class="example_floor_down">生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”</p>
+                <div class="name_example">
+                  <span>中文姓名</span><span>王ben</span>
 						</div>
 					</li>
 					<li>
-						姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”
-						<div class="name-example">
-							<div>中文姓名</div>
-							<div>汉族然买买提</div>
+                <p class="example_floor">姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”</p>
+                <div class="name_example">
+                  <span>中文姓名</span><span>汉族然买买提</span>
 						</div>
 					</li>
-					<li>
-						香港、台湾、澳门的护照不支持国内航班，请改用其他证件。
-					</li>
+              <li><p class="example_floor">香港、台湾、澳门的护照不支持国内航班，请改用其他证件。</p></li>
 				</ul>
 			</li>
 			</ol>
 			<!-- 英文姓名-->
 			<ol class="ch_account" id="en_account">
-				<li>必须用英文字母填写，并确保与所持证件的姓名一致</li>
-				<li>中文姓名
+          <li>1. 必须用英文字母填写，并确保与所持证件的姓名一致</li>
+          <li>2. 中文姓名
 					<ul class="name_ul">
-						<li style="list-style-type: none;">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming
-							<div class="name-example">
-								<div>Surname</div>
-								<div>Zhuge</div>
-							</div>
-							<div class="name-example2" >
-								<div>Given name</div>
-								<div>Kongming</div>
+              <li>
+                <p class="example_floor_down">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming</p>
+                <div class="name_example2">
+                  <p>
+                    <span>Surname</span>
+                    <span>Zhuge</span>
+                  </p>
+                  <p>
+                    <span>Given name</span>
+                    <span>Kongming</span>
+                  </p>
 							</div>
 						</li>
 					</ul>
 				</li>
-				<li>英文姓名
+          <li>3. 英文姓名
 					<ul class="name_ul">
-						<li>若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
-							例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad
-							<div class="name-example">
-								<div>Surname</div>
-								<div>Potter</div>
-							</div>
-							<div class="name-example2" >
-								<div>Given nam</div>
-								<div>joerad</div>
+              <li>
+                <p class="example_floor_down">若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
+                  例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad</p>
+                <div class="name_example2">
+                  <p>
+                    <span>Surname</span>
+                    <span>Potter</span>
+                  </p>
+                  <p>
+                    <span>Given nam</span>
+                    <span>joerad</span>
+                  </p>
 							</div>
 						</li>
 					</ul>
 					<ul class="name_ul">
-						<li>姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
+              <li>
+                <p class="example_floor_down">姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
 							在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
-							jame M C
-							<div class="name-example">
-								<div>Surname</div>
-								<div>BlackSA</div>
-							</div>
-							<div class="name-example2" >
-								<div>Given nam</div>
-								<div>jame M C</div>
+                  jame M C</p>
+                <div class="name_example2">
+                  <p>
+                    <span>Surname</span>
+                    <span>BlackSA</span>
+                  </p>
+                  <p>
+                    <span>Given nam</span>
+                    <span>jame M C</span>
+                  </p>
 							</div>
 						</li>
 					</ul>
@@ -353,18 +290,18 @@
 			</ol>
 		</div>
 	</div>
-</div>
-<div id="menu"></div>
 
-<script src="../js/lib/jquery.js"></script>
-<script src="../js/country_list.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/vlm.js"></script>
-<script src="../js/lib/plugins.js"></script>
-<script src="../js/lib/template.js"></script>
-<script src="../js/lib/scroller.js"></script>
-<!--<script src="scripts/userChoice.js"></script>-->
-<script>
+
+
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/country_list.js"></script>
+    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/lib/vlm.js"></script>
+    <script src="../js/lib/plugins.js"></script>
+    <script src="../js/lib/template.js"></script>
+    <script src="../js/plugins/scroller/scroller1.1.js"></script>
+    <!--<script src="scripts/userChoice.js"></script>-->
+    <script>
 	var urlobj = vlm.parseUrlPara(window.location.href),isMulSelect=vlm.getpara("isMulSelect").toLowerCase()=="true"?true:false//是否多选
 	,isNeedPassport=vlm.getpara("isNeedPassport").toLowerCase()=="true"?true:false//是否需要护照
 	, titleType=vlm.getpara("title").substr(2)//是否多选title;
@@ -403,18 +340,18 @@
 		"Code" : "0074"
 	}, tpl_traveler = ['{% for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
 		'{% if (dd.listTravellerIdInfo.length>0) %}'+
-		'<li class="eve-traveler"  index={%=i%}>', '<b class="icon user-choice" data-id={%=dd.traveller.travellerId%} data-age="{%=dd.traveller.travellerAge%}"></b>',
-		'<b class="icon user-edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
+        '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id={%=dd.traveller.travellerId%} data-age="{%=dd.traveller.travellerAge%}"></b>',
+        '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
 		'<ul class="often_user">',
 		'<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
 		'<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
 		'<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
 		'{% if (dd.traveller.travellerAge<2){ %}'+
-		'<i class="per-type">婴儿</i></li>'+'{% } %}'+
+        '<i class="per_type">婴儿</i></li>'+'{% } %}'+
 		'{% if (dd.traveller.travellerAge<12 && dd.traveller.travellerAge>=2 ){ %}'+
-		'<i class="per-type">儿童</i></li>'+'{% } %}'+
+        '<i class="per_type">儿童</i></li>'+'{% } %}'+
 		'{% if (dd.traveller.travellerAge>=12){ %}'+
-		'<i class="per-type">成人</i></li>',
+        '<i class="per_type">成人</i></li>',
 		'{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ %}',
 			'<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
 		'{% } %}',
@@ -435,9 +372,9 @@
 		$(".telNum").attr("value","");
 		$(".txtEmail").attr("value","");
 		$("#delTra").hide();
-		$('.sex-cho-wrap span b.icon-h').each(function(i){
-			if($('.sex-cho-wrap span b.icon-h').eq(i).hasClass("traveler-sex1")){
-				$('.sex-cho-wrap span b.icon-h').eq(i).removeClass("traveler-sex1").addClass('traveler-sex2')
+        $('.sex_cho_wrap span b.icon_h').each(function(i){
+          if($('.sex_cho_wrap span b.icon_h').eq(i).hasClass("traveler_sex1")){
+            $('.sex_cho_wrap span b.icon_h').eq(i).removeClass("traveler_sex1").addClass('traveler_sex2')
 			}
 		});
 
@@ -447,7 +384,7 @@
 	var selectChild=0;
 	function get_allList() {
 		//get_hisList();
-		$(".user-must").on("click",function(){
+        $(".user_must").on("click",function(){
 			$("#fillName_page").show();
 		})
 		if(isMulSelect){
@@ -473,7 +410,7 @@
 					var personList = JSON.parse(localStorage.getItem("travellerInfo_selected"));
 					$(personList).each(function () {
 						var id = this.Id;
-						$("#allList").find(".user-choice").each(function(){
+                $("#allList").find(".user_choice").each(function(){
 						   var dataId=  $(this).attr("data-id");
 						   if(dataId==id){
 							   $(this).addClass("choiced");
@@ -483,12 +420,12 @@
 				}
 
 
-				$(".list-traveler .eve-traveler .user-edit").on("click",function(){
+            $(".list-traveler .eve_traveler .user_edit").on("click",function(){
 					id=$(this).attr("data-id")
 					showAddAir_page("edit",id);
 				})
 				if(isNeedPassport=="true") {
-					$(".list-traveler .eve-traveler").each(function () {
+              $(".list-traveler .eve_traveler").each(function () {
 						var cardType = $(this).find(".often_user li").attr("data-card");
 						if (cardType != 1) {
 							$(this).find(".often_user").append("<li class='passport-tips'>护照号信息不全！</li>");
@@ -506,7 +443,7 @@
 					for(var i=0;i<$('.choiced').length;i++)
 					{
 
-						if($('.choiced').eq(i).parents('.eve-traveler').find('.per-type').html() == '成人'){
+                if($('.choiced').eq(i).parents('.eve_traveler').find('.per_type').html() == '成人'){
 							adNumber++;
 						}else{
 							chNumber++;
@@ -528,14 +465,14 @@
 	get_allList();
 
 	function check_box() {
-		$(".user-choice").click(function() {
+        $(".user_choice").click(function() {
 			selectAdult=0;
 			selectChild=0;
 
-			if(this.className == "icon user-choice choiced"){
-				this.className = "icon user-choice";
+          if(this.className == "icon_common user_choice choiced"){
+            this.className = "icon_common user_choice";
 			}else{
-				this.className = "icon user-choice choiced";
+            this.className = "icon_common user_choice choiced";
 			}
 
 			if(!isMulSelect)
@@ -554,7 +491,7 @@
 					if(age<2){
 						jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
 						$(this).removeClass("choiced");
-						$(this).addClass("user-choice");
+                $(this).addClass("user_choice");
 						return false;
 					}
 					else if(age>=2 && age<12) {
@@ -652,6 +589,7 @@
 		SavaLocalStorge(selectUser,isContact);
 	}
 	function ReplaceData(id,data){
+
 		var elementId="#"+id;
 		var htmlObj =$(ifrCilent.parentNode).find(elementId);
 		if(isMulSelect)
@@ -665,6 +603,7 @@
 					cloneObj.show();
 					cloneObj.find('b').each(function(){
 
+
 						if($(this).attr("data-elementName")!= undefined){
 							if($(this).attr("data-elementName")=="idNumber") {
 								$(this).html(data[i].listTravellerIdInfo[0].idNumber);
@@ -674,6 +613,7 @@
 						}else{
               $(this).html(data[i].traveller.sexName);
             }
+
 					});
 					cloneObj.find('input').val(data[i].traveller.travellerId);
 					htmlObj.append(cloneObj);
@@ -692,12 +632,13 @@
           }
 
         var children=htmlObj.children().eq(0);
-//        htmlObj.children().remove();
+    //        htmlObj.children().remove();
         for(var i=0; i<=data.length-1;i++){
           var cloneObj=children.clone(true);
           cloneObj.show();
           cloneObj.find('input').each(function(){
             if($(this).attr("data-elementName")!="undefined"){
+
               if($(this).attr("data-elementName")=="idNumber") {
                 $(this).attr("value",data[i].listTravellerIdInfo[0].idNumber);
               }
@@ -708,6 +649,7 @@
           });
           children.find('span').each(function(){
             if(typeof($(this).attr("data-elementName"))!="undefined"){
+
               var d=data[0].traveller[$(this).attr("data-elementName")];
               var Country=getCountryName(d);
               $(this).attr("data-tel-code",Country.CountryCode);
@@ -721,7 +663,9 @@
     }
     else{
       htmlObj.find('input').each(function(){
+
         if($(this).attr("data-elementName")!=undefined && data.length>0){
+
           if($(this).attr("data-elementName")=="idNumber") {
             $(this).attr("value",data[0].listTravellerIdInfo[0].idNumber);
           }
@@ -731,7 +675,9 @@
         }
       })
       htmlObj.find('span').each(function(){
+
         if($(this).attr("data-elementName")!=undefined && data.length>0){
+
           $(this).attr("value", data[0].traveller[$(this).attr("data-elementName")]);
 
         }
@@ -790,7 +736,7 @@
 					}
           if(ifrCilent.parentNode.getElementsByClassName('order_tlist2').length >0){
             ifrCilent.parentNode.getElementsByClassName('order_tlist2')[i].setAttribute('passtype','adult');
-          }
+            }
 				}
 				if(selData[i].PassengerType == 'CHILD'){
 					numChi++;
@@ -799,9 +745,9 @@
 					}
           if(ifrCilent.parentNode.getElementsByClassName('order_tlist2').length >0) {
             ifrCilent.parentNode.getElementsByClassName('order_tlist2')[i].setAttribute('passtype', 'child');
-          }
+            }
 
-				}
+          }
 			}
 			if( localStorage.createOrderParaPart)
 			{
@@ -809,6 +755,7 @@
 				var str=numAdu+'/'+datahot.RoomDetails[0].adult+'成人';
 				if($(ifrCilent.parentNode).find('#traveltab').length == 1){
 					var traveltab =$(ifrCilent.parentNode).find('#traveltab');
+
 					if(datahot.RoomDetails[0].childWithOutBed != undefined ){
 						var str='<i class="adu-choose">'+numAdu+'</i>/<i class="adu-tot">'+datahot.RoomDetails[0].adult+'</i>成人 <b><i class="chi-choose">'+numChi+'</i>/<i class="chi-tot">'+datahot.RoomDetails[0].childWithOutBed.length+'</i>儿童</b>';
 					}else if(datahot.RoomDetails[0].childWithBed != undefined){
@@ -816,6 +763,7 @@
           }else {
 						var str='<i class="adu-choose">'+numAdu+'</i>/<i class="adu-tot">'+datahot.RoomDetails[0].adult+'</i>成人 <b>';
 					}
+
 					traveltab.find('.order-tsl2').html(str);
 				}
 			}
@@ -833,7 +781,7 @@
           }else {
 
             var str='<i class="adu_choose">'+numAdu+'</i>/<i class="adu_tot">'+localStorage.hft_adunum+'</i>成人 <b>';
-          }
+        }
 
           traveltab.find('.order_tsl2').html(str);
         }
@@ -863,7 +811,7 @@
 				ContactDetail.LastName=list[i].traveller.lastName;  //名
 				ContactDetail.Email=list[i].traveller.email;//邮箱
 				ContactDetail.MobilePhone==list[i].traveller.mobilePhone;        //手机号
-//				ContactDetail.CountryNumber=list[i].traveller.countryCode
+    //				ContactDetail.CountryNumber=list[i].traveller.countryCode
 				ContactDetail.CountryNumber="86";
 				ContactDetail.ContactNumber="5689";
 				ContactDetail.MobilePhone="13454345654"
@@ -917,7 +865,7 @@
 			$(".cnName").attr("value",tralJsonObj[id].traveller.idName);
 			$(".firstName").attr("value",tralJsonObj[id].traveller.firstName);
 			$(".lastName").attr("value",tralJsonObj[id].traveller.lastName);
-			$(".nameche-wrap").attr("data-id",tralJsonObj[id].traveller.travellerId)
+          $(".nameche_wrap").attr("data-id",tralJsonObj[id].traveller.travellerId)
 			$(".telNum").attr("value",tralJsonObj[id].traveller.mobilePhone);
 			$(".txtEmail").attr("value",tralJsonObj[id].traveller.email);
 			$(".country").html(tralJsonObj[id].traveller.countryName)
@@ -932,18 +880,18 @@
 			$(".birthDay").attr("value",tralJsonObj[id].traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号');
 			$(".country").attr("data-code",tralJsonObj[id].traveller.countryCode);
 			if (tralJsonObj[id].traveller.sexCode == "Mr") {
-				$("#woman").removeClass("traveler-sex1");
-				$("#woman").addClass("traveler-sex2");
-				$("#man").removeClass("traveler-sex2");
-				$("#man").addClass("traveler-sex1");
+            $("#woman").removeClass("traveler_sex1");
+            $("#woman").addClass("traveler_sex2");
+            $("#man").removeClass("traveler_sex2");
+            $("#man").addClass("traveler_sex1");
 
 			} else {
 
-				$("#man").removeClass("traveler-sex1");
-				$("#man").addClass("traveler-sex2");
+            $("#man").removeClass("traveler_sex1");
+            $("#man").addClass("traveler_sex2");
 
-				$("#woman").removeClass("traveler-sex2");
-				$("#woman").addClass("traveler-sex1");
+            $("#woman").removeClass("traveler_sex2");
+            $("#woman").addClass("traveler_sex1");
 			}
 			if (tralJsonObj[id].listTravellerIdInfo[0].idType == "1") {
 				$(".postCard").html("护照");
@@ -970,13 +918,13 @@
 
 	function closeAddAir_page() {
 		if(localStorage.contactedit != 1){
-      var addAir_page = document.getElementById("addAir-page");
-      addAir_page.style.display = "none";
+        var addAir_page = document.getElementById("addAir-page");
+        addAir_page.style.display = "none";
     }else{
       localStorage.contactedit = 0;
       ifrCilent.parentNode.removeChild(ifrCilent);
 
-    }
+      }
 
 	}
 
@@ -995,7 +943,7 @@
 		var man = $("#man")[0];
 		var sexCode;
 		var sexName;
-		if (man.className == "icon-h traveler-sex1") {
+        if (man.className == "icon_h traveler_sex1") {
 			sexCode = "Mr";
 			sexName = "男";
 		} else {
@@ -1014,7 +962,7 @@
 		var man = $("#man")[0];
 		var sexCode;
 		var sexName;
-		if (man.className == "icon-h traveler-sex1") {
+        if (man.className == "icon_h traveler_sex1") {
 			sexCode = "Mr";
 			sexName = "男";
 		} else {
@@ -1141,7 +1089,7 @@
 	}
 
 	$("#delTra").on("click",function(){
-		var travelId = $(".addtra-info").attr("data-id");
+        var travelId = $(".addtra_info").attr("data-id");
 		var Parameters = {
 			"Parameters" : "{\"travellerId\":" + travelId + "}",
 			"ForeEndType" : 3,
@@ -1204,9 +1152,9 @@
 			return -1;
 		}
 	}
-</script>
-<!--机票-获取乘客信息-->
-<script id="tpl_f_passager" type="text/template">
+    </script>
+    <!--机票-获取乘客信息-->
+    <script id="tpl_f_passager" type="text/template">
 	<li class="ride-user-info">
 		<span class="icon-add"><i class="del-passager" data-id="{%=traveller.travellerId%}" onclick="javascript:delPassager(this);" ></i></span>
 		<div class="middle">
@@ -1220,10 +1168,10 @@
 		</div>
 		<i class="edit-passager" data-id="{%=traveller.travellerId%}" onclick="javascript:editPassager({%=traveller.travellerId%});"></i>
 	</li>
-</script>
+    </script>
 
-<!--机票-获取联系人信息-->
-<script id="tpl_f_contact" type="text/template">
+    <!--机票-获取联系人信息-->
+    <script id="tpl_f_contact" type="text/template">
 	<div class="unit name">
 		<label for="first-name" class="name-label">姓123</label><input type="text" name="name" id="first-name" placeholder="BAI" value="{%=traveller.firstName%}"/>
 		<label for="last-name" class="name-label">名</label><input type="text" name="name" id="last-name" placeholder="LISA" value="{%=traveller.lastName%}"/>
@@ -1242,10 +1190,10 @@
 	<div class="unit email">
 		<label for="email-label">E-mail</label><input type="email" name="email" id="email-label" placeholder="用于接收通知" value=" {%=traveller.email%}"/>
 	</div>
-</script>
+    </script>
 
-<!--景点-获取乘客信息-->
-<script id="tpl_t_passager" type="text/template">
+    <!--景点-获取乘客信息-->
+    <script id="tpl_t_passager" type="text/template">
 	<li>
 		<span class="tourist-name tour-short">姓：</span><input id="scenic2_name1" style="width:20%;display: inline-block;" placeholder="Liou" value="{%=traveller.lastName%}">
 		<span class="tourist-name tour-short">名：</span><input id="scenic2_name2" style="width:20%;display: inline-block;" placeholder="Venson" value="{%=traveller.firstName%}">
@@ -1255,18 +1203,16 @@
 		<span class="country-btn CardCountryCode" id="jp_bank_country" data-code="{%=traveller.countryCode%}" data-tel-code="86">中国</span>
 	</li>
 
-</script>
-<!--景点-获取联系人信息-->
-<script id="tpl_t_contact" type="text/template">
+    </script>
+    <!--景点-获取联系人信息-->
+    <script id="tpl_t_contact" type="text/template">
 	<li><span class="tourist-name tour-short">姓名：</span><input id="scenic2_name" style="display: inline-block;" value="{%=traveller.idName%}"></li>
 	<li><span class="tourist-name tour-short">手机：</span>+<span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">86</span><input type="text" name="phone" id="scenic_phone" style="width: 65%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" value="{%=traveller.mobilePhone%}"></li>
 	<li><span class="tourist-name tour-short">邮箱：</span><input id="scenic2_email" style="display: inline-block;"   value="{%=traveller.email%}"></li>
-</script>
+    </script>
 
-
-
-<!--酒+景获取联系人信息-->
-<script id="tpl_ht_passager" type="text/template">
+    <!--酒+景获取联系人信息-->
+    <script id="tpl_ht_passager" type="text/template">
 	<li class="trave-li trave-li-adu">
 		<span class="list_tit2 ">姓：</span><span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" value="{%=traveller.lastName%}"></span>
 		<span class="list_tit2 ">名：</span><span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" value="{%=traveller.firstName%}"></span>
@@ -1274,9 +1220,9 @@
 	 <li>
 		 <span class="list_tit">护照：</span> <span class="list_con"><input class="list_inp" type="text" placeholder="2088833" value="{%=listTravellerIdInfo[0].idNumber%}"></span>
 	 </li>
-</script>
-<!--酒+景获取联系人信息-->
-<script id="tpl_ht_contact" type="text/template">
+    </script>
+    <!--酒+景获取联系人信息-->
+    <script id="tpl_ht_contact" type="text/template">
 	<li>
 		<span class="list_tit">姓：</span><input class="list_inp_name list_inp2" id="list-lastname" type="text" placeholder="姚" value="{%=traveller.lastName%}">
 		<span class="list_tit">名：</span><input class="list_inp_name list_inp2" id="list-firstname" type="text" placeholder="军华" value="{%=traveller.firstName%}">
@@ -1290,14 +1236,14 @@
 		<span class="list_tit">邮箱：</span>
 		<span class="list_con"><input class="list_inp2" id="list_con_email" type="text" placeholder="morningtour@163.com" value="{%=traveller.email%}"></span>
 	</li>
-</script>
+    </script>
 
 
-<!--国籍选择结束-->
-<script src="../js/require.js" data-main="../js/user.js"></script>
+    <!--国籍选择结束-->
+    <script src="../js/require.js" data-main="../js/user.js"></script>
 
-<!--国内航班不需要护照过期提示-->
-<script>
+    <!--国内航班不需要护照过期提示-->
+    <script>
 	$(function(){
 		var olocal = localStorage.getItem('curFlightListData');
 		var json = eval('('+olocal+')');
@@ -1310,7 +1256,15 @@
 			}
 		}
 	})
-</script>
+    </script>
+
+    <script>
+      $('#childExplanation').click(function(){
+        $('#childen-page').hide();
+      });
+    </script>
 
 </body>
+
 </html>
+

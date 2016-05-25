@@ -2,7 +2,9 @@
  * Created by Venson on 2016/4/18.
  */
 var changeFlightInfo;
+
 var oldFlightInfo;
+
 var flight_list = {
     requestUrl:"",
     //requestUrl:"http://10.6.11.28:1337/api/GetServiceApiResult",
@@ -29,7 +31,9 @@ var flight_list = {
         var paddNum = function (num) {
             num += "";
             return num.replace(/^(\d)$/, "0$1");
+
         };
+
         //指定格式字符
         var cfg = {
             yyyy: date.getFullYear() //年 : 4位
@@ -41,7 +45,9 @@ var flight_list = {
             , hh: paddNum(date.getHours())  //时
             , mm: paddNum(date.getMinutes()) //分
             , ss: paddNum(date.getSeconds()) //秒
+
         };
+
         //console.log(cfg);
         format || (format = "yyyy-MM-dd hh:mm:ss");
         return format.replace(/([a-z])(\1)*/ig, function (m) {
@@ -72,7 +78,9 @@ var flight_list = {
         $('#returnWeek').html("周"+that.getweekly(that.formatDate(sendData.ReturnDate,"d")));
         var tpl1 = [
             '{% for(var i=0;i < flightInfoListGroup.length;i++){ %}',
+
             '<div class="price-up">以下航班需加<span>￥{%=flightInfoListGroup[i].additionalPrice%}</span></div>',
+
             '<ul class="js-air-list air-tickets-detail air-tickets-detail-wrapper">',
             '{% for(var j=0;j < flightInfoListGroup[i].flightInfoList.length;j++){ %}',
             '<li class="js-air-item air-tickets-detail seat-detail" data-setID="{%=flightInfoListGroup[i].flightInfoList[j].setID%}" data-cacheID="{%=flightInfoListGroup[i].flightInfoList[j].cacheID%}">',
@@ -169,7 +177,9 @@ var flight_list = {
             '</p>',
             '</div>',
             '</div>',
+
             '{% if(i==0&&j==0){ %}',
+
             '<b class="hf-icon hf-gou cho-gou"></b>',
             '{% }else{ %}',
             '<b class="hf-icon hf-gou"></b>',
@@ -179,6 +189,7 @@ var flight_list = {
             '</ul>',
             '{% } %}'
         ].join('');
+
         var tpl2 = [
           '{% for(var i = 0;i < airways.length;i++){ %}',
           '<li class="airway" data-airwaySetID="{%=airways[i].airwaySetID%}" data-airwayCacheID="{%=airways[i].airwayCacheID%}" data-type="{%=i%}">',
@@ -193,15 +204,19 @@ var flight_list = {
           '</li>',
           '{% } %}'
         ].join('');
+
         var ticketList_callback = function(ret){
             var json = ret, that=flight_list;
             var data = json.data;
             //json = {}
+
             if(json.success && json.code == '200'&&data.flightInfoListGroup.length>0){
+
                 $('.set-place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameFrom);
                 $('.to-place').html(data.flightInfoListGroup[0].flightInfoList[0].cityNameTo);
                 var html_c = template(tpl1,data);
                 $('#content').html(html_c);
+
                 var html_aw = template(tpl2,data);
                 $('#airway_list').html(html_aw);
               //   选中的航空公司
@@ -214,6 +229,7 @@ var flight_list = {
                 }
               }
                 //}
+
                 //  页面跳转
                 $(".js-air-item").click(function(){
                     $(this).find('.hf-gou').addClass('cho-gou').parents().siblings().find('.hf-gou').removeClass('cho-gou');
@@ -231,6 +247,7 @@ var flight_list = {
                     sessionStorage.flightHotelAllData = JSON.stringify(flightHotelAllData);
                     flightHotelAllData = JSON.parse(sessionStorage.flightHotelAllData);
                     window.location.href = 'ticket_hotel_choose.html?init';
+
                 });
                 //  选择航空公司，页面跳转
                 $('.airway').click(function(){
@@ -250,6 +267,7 @@ var flight_list = {
                   $('#aw_content').hide();
                   $('#aw_back').hide();
                   $('#list_back').show();
+
                 });
                 vlm.init();
             }else{
@@ -352,7 +370,9 @@ var flight_list = {
             '<li class="tag-item" data-i="true">隐藏共享<b class=""></b></li>'+
             '</ul>'+
             '<ul class="add seat-condition" id="seat-condition" style="display: none">'+
+
             '<li class="tag-item" data-i="false">不限<b class=""></b></li>'+
+
             '<li class="tag-item" data-i="1">0点到6点<b class=""></b></li>'+
             '<li class="tag-item" data-i="2">6点到12点<b class=""></b></li>'+
             '<li class="tag-item" data-i="3">12点到18点<b class=""></b></li>'+
@@ -361,7 +381,9 @@ var flight_list = {
             '</div>'+
             '</div>';
         middleModal.innerHTML =
+
             '<li class="time-modal-item" data-i="0"><b></b>不限</li>'+
+
             '<li class="time-modal-item" data-i="1"><b></b>价格从低到高</li>'+
             '<li class="time-modal-item" data-i="2"><b></b>价格从高到低</li>'+
             '<li class="time-modal-item" data-i="3"><b></b>出发时间从早到晚</li>'+
@@ -373,6 +395,7 @@ var flight_list = {
         oDiv.appendChild(rightModal);
         document.body.appendChild(backShadow);
         document.body.appendChild(oDiv);
+
       var filter = document.getElementById('only-direct-fly').getElementsByClassName('tag-item');
       var share = document.getElementById('filter-share').getElementsByClassName('tag-item');
       var time = document.getElementById('seat-condition').getElementsByClassName('tag-item');
@@ -467,6 +490,7 @@ var flight_list = {
           }
         }
       }
+>>>>>>> bugfix-20160503
         return this;
     },
     addEvent:function(){
@@ -527,9 +551,11 @@ var flight_list = {
                 lineEle = target;
             }
             $('#fo_aw').click(function(e){
+
                 $('#aw_content').show();
                 $('#list_back').hide();
                 $('#aw_back').show();
+
                 e.stopPropagation();
             });
             switch (lineEle.id){
@@ -593,7 +619,9 @@ var flight_list = {
                                         changeFlightInfo.data.ScreenFields = flight_list.replaceElement(changeFlightInfo.data.ScreenFields,1,0);
                                         break;
                                     case "true" :
+
                                       console.log(changeFlightInfo.data);
+
                                         changeFlightInfo.data.ScreenFields.push(1);
                                         break;
                                     default :void(0);
@@ -666,7 +694,9 @@ var flight_list = {
                             break;
                         default :void(0);
                     }
+
                 }
+
             };
             //左边弹出框的相应
             var reactionDetail = document.querySelector('#reaction-detail');
@@ -694,7 +724,9 @@ var flight_list = {
                             break;
                         default :
                             void(0);
+
                     }
+
                     for(var j = 0;j < allUl.length;j++){
                         allUl[j].style.display = 'none';
                     }
@@ -723,13 +755,16 @@ var flight_list = {
             }
         };
         return this;
+
+
     },
 
     //  排序or筛选结束
     init:function(){
         changeFlightInfo =  JSON.parse(localStorage.changeFlightParaObj);
-      console.log(changeFlightInfo)
+
         oldFlightInfo =  JSON.parse(localStorage.changeFlightParaObj);
+
         this.getTicketList();
         this.createTags().addEvent();
     }

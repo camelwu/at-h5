@@ -58,9 +58,11 @@
                     <a href="./hotel/index.html" title="Hotels Here"> <img class="res_image" src="images/index/hotel_guide.png" alt="img">
                         <span class="center_text">酒店</span></a>
                 </div>
-                <div class="adaptive_item">
-                    <a href="./flight/index.html" title="Flights Goes Here"> <img class="res_image" src="images/index/flight_guide.png" alt="img">
-                        <span class="center_text">机票</span></a>
+						<div class="adaptive-item">
+							<a href="./flight/f_index.html" title="Flights Goes Here"> <img class="responsive-image" src="./images/flights.png" alt="img">
+							<div class="center-text">
+								机票
+							</div> </a>
                 </div>
                 <div class="adaptive_item">
                     <a href="./scenic/index.html" title="Attractions Here"> <img class="res_image" src="images/index/scenic_guide.png" alt="img">
@@ -109,7 +111,13 @@
               <span class="player_line right"></span>
             </h5>
                 </div>
-                <div class="container" id="tuijian"></div>
+				<div class="toper">
+					<a id="toper-gps" class="toper-gps" href="javascript:void(0);">北京</a>
+					<div class="toper-in">
+						<input type="text" class="s-in" placeholder="地点、酒店、景点、机票">
+
+					</div><a href="tel:4008-902-202" class="toper-tel"><i>&nbsp;</i></a>
+
             </div>
         </div>
     </div>
@@ -171,7 +179,10 @@
                 }
                 //playerRecommend
                 function PlayerRecommend() {
-                    var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+
+//						var tpl1 = ['<div class="half-top"><div class="c-ad">今日<br>爆款</div><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
+            var tpl1 = ['<div class="half-top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to-rec-tit">{%=productName%}</h5>', '<p class="to-recommend">{%=productDesc%}</p>'].join('');
+
                     var tmp = {
 
                         "Parameters": {
@@ -213,4 +224,6 @@
 
 </body>
 
+
 </html>
+

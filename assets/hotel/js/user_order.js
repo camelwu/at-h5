@@ -304,8 +304,8 @@ uoHisData();
     //酒店名称/时间/房型
     var uo_con2_chil1=document.getElementById('uo_con2_chil1');
     uo_con2_chil1.innerHTML='<h3>'+fake_data.HotelGenInfo.hotelName+'</h3>'+
-        '<p class="uo_c2_infor">'+fake_data.dateInfo.CheckInDate.split('-')[0]+'年'+fake_data.dateInfo.CheckInDate.split('-')[1]+'月'+fake_data.dateInfo.CheckInDate.split('-')[2]+'日'+'-'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+' -'+fake_data.dateInfo.totalNight+'晚（目的地时间为准）</p>'+
-        '<p class="uo_house">房型：'+fake_data.RoomTypeName+'</p>';
+        '<p class="uo_c2_infor hotel_user_container_time">'+fake_data.dateInfo.CheckInDate.split('-')[0]+'年'+fake_data.dateInfo.CheckInDate.split('-')[1]+'月'+fake_data.dateInfo.CheckInDate.split('-')[2]+'日'+'-'+fake_data.dateInfo.CheckOutDate.split('-')[0]+'年'+fake_data.dateInfo.CheckOutDate.split('-')[1]+'月'+fake_data.dateInfo.CheckOutDate.split('-')[2]+'日'+' -'+fake_data.dateInfo.totalNight+'晚（目的地时间为准）</p>'+
+        '<p class="uo_house hotel_user_container_type">房型：'+fake_data.RoomTypeName+'</p>';
 
     //房间数列表
     uo_c2_num.innerHTML=fake_data.NumOfRoom;
@@ -318,17 +318,17 @@ uoHisData();
     var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
     for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
         if(hoPos=='inter'){
-            uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
-                '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-                '<div class="uo_c3_infor">'+
+            uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo hotel_user_detail_border">'+
+                '<div class="uo_c3_div1 hotel_user_detail_name1">房间'+(i+1)+'入住人</div>'+
+                '<div class="uo_c3_infor hotel_user_detail_name2">'+
                 '<input type="text" value="" placeholder="姓（如：Li）" class="uo_lastname"  />'+
                 '<input type="text" value="" placeholder="名（如：Shimin）" class="uo_firstname"  />'+
                 '</div>'+
                 '</div>';
         }else if(hoPos=='dom'){
             uo_c3_peoBox.innerHTML+='<div class="uo_c3_peo">'+
-                '<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-                '<div class="uo_c3_infor">'+
+                '<div class="uo_c3_div1 hotel_user_detail_name1">房间'+(i+1)+'入住人</div>'+
+                '<div class="uo_c3_infor hotel_user_detail_name2">'+
                 '<input type="text"  placeholder="姓（如：李）" class="uo_lastname"  />'+
                 '<input type="text"  placeholder="名（如：世民）" class="uo_firstname"  />'+
                 '</div>'+
@@ -495,14 +495,14 @@ uoHisData();
                 oDiv.className='uo_c3_peo';
                 //判断是国际酒店搜索还是国内酒店搜索
                 if(hoPos=='inter'){
-                    oDiv.innerHTML='<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-                        '<div class="uo_c3_infor">'+
+                    oDiv.innerHTML='<div class="uo_c3_div1 hotel_user_detail_name1">房间'+(i+1)+'入住人</div>'+
+                        '<div class="uo_c3_infor hotel_user_detail_name2">'+
                         '<input type="text" value="姓（如：Zhang）" class="uo_lastname"  />'+
                         '<input type="text" value="名（如：San）" class="uo_firstname"  />'+
                         '</div>';
                 }else if(hoPos=='dom'){
-                    oDiv.innerHTML='<div class="uo_c3_div1">房间'+(i+1)+'入住人</div>'+
-                        '<div class="uo_c3_infor">'+
+                    oDiv.innerHTML='<div class="uo_c3_div1 hotel_user_detail_name1">房间'+(i+1)+'入住人</div>'+
+                        '<div class="uo_c3_infor hotel_user_detail_name2">'+
                         '<input type="text" value="姓（如：张）" class="uo_lastname"  />'+
                         '<input type="text" value="名（如：三）" class="uo_firstname"  />'+
                         '</div>';
@@ -552,21 +552,21 @@ uoHisData();
             oI.style.background='url(../images/ui/icons1.png) -76px -38px ';
             oI.style.backgroundSize='400px 120px';
             lsf_myweb.getbyid('uo_hid').style.height='100%';
-            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='38px';
+            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='38.88rem';
             //点击阴影区域
             var uo_hid_shadow=document.getElementById('uo_hid_shadow');
             lsf_myweb.bind(uo_hid_shadow,'click',function(){
                 oI.style.background='url(../images/ui/icons1.png) -51px -38px ';
                 oI.style.backgroundSize='400px 120px';
                 lsf_myweb.getbyid('uo_hid').style.height='0';
-                lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-320px';
+                lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38.88rem';
                 bOk2=true;
             });
         }else{
             oI.style.background='url(../images/ui/icons1.png) -51px -38px ';
             oI.style.backgroundSize='400px 120px';
             lsf_myweb.getbyid('uo_hid').style.height='0';
-            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-320px';
+            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38.88rem';
         }
         bOk2=!bOk2;
     });
@@ -665,8 +665,10 @@ uoHisData();
         window.localStorage.setItem('user_order_storage12345',JSON.stringify(fake_data));
         console.log(fake_data);
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
+
         //uo_form.submit();
         location.href = "/payment/payment.html?type=Hotle";
+
     });
     
     //取消说明点击事件

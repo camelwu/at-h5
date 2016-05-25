@@ -36,7 +36,7 @@
         for(var i=0;i<roomNumber; i++)
         {
             var oRoom=document.createElement('div');
-            oRoom.className='per_data';
+            oRoom.className='per_data order_per_data';
             oRoom.innerHTML='<span class="title"><i>房间'+(i+1)+'</i></span>'
                 +'<ul></ul>'
             $('#per-room-wrap')[0].appendChild(oRoom);
@@ -65,17 +65,18 @@
                 //}
                 //else
                 //{
-                    oSection.innerHTML='<li>'
+                    oSection.innerHTML='<li class="first">'
                         +'<span class="list_tit">成人'+(k+1)+'：</span>'
                         +'<b class="add_icon"><a href="javascript:;" data-c-id="'+k+'" class="add-passager'+k+'" ></a></b></span>'
                         +'</li>'
-                        +"<ul id='trave"+k+"'>"
+                        +'<ul class="order_trave" id="trave"+k+>'
                         +'<li class="trave-li trave-li-adu">'
                         +'<span class="list_tit2 ">姓：</span>'
                         +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
                         +'<span class="list_tit2 ">名：</span>'
                         +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
                         +'</li>'
+                        +'<li class="clearFix countries-wrap"><b class="icons open-pho-tour"></b><span class="list_country fl">国籍：</span><div class="country-btn" data-code="CN" data-tel-code="86">中国</div></li>'
                         +"</ul>"
                 //}
                 oRoomNum[i].querySelector('ul').appendChild(oSection);
@@ -105,7 +106,7 @@
                     +'<b class="add_icon"><a href="javascript:;" data-c-id="'+j+'" class="add-cpassage'+j+'"></a></b></span>'
                     +'</li>'
                     +"<ul id='traveC"+j+"'>"
-                    +'<li class="trave-li trave-li-child">'
+                    +'<li class="trave-li trave-li-child child">'
                     +'<span class="list_tit2 ">姓：</span>'
                     +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" data-elementName="firstName"  /></span>'
                     +'<span class="list_tit2 ">名：</span>'
@@ -145,6 +146,8 @@
                 };
                 var checkInDate = dateObj.CheckInDate.split("T")[0].split("-");
                 var checkOutDate = dateObj.CheckOutDate.split("T")[0].split("-");
+
+
 
                 switch (airFli){
                     case '0':   // None => 0
@@ -222,14 +225,14 @@
         var bOk=true;
         oAgree.onclick=function(){
             if(bOk){
-                oAgree.style.background='url(../images/ui/icons1.png) -26.6rem -0.4rem';
-                oAgree.style.backgroundSize='40rem 12rem';
+                oAgree.style.background='url(../images/ui/icons1.png) -5.29rem -0.07rem';
+                oAgree.style.backgroundSize='8.00rem 2.40rem';
                 oReserve.style.backgroundColor='#ddd';
                 sentPackage(oReserve);
                 bOk=false;
             }else{
-                oAgree.style.background='url(../images/ui/icons1.png) -23.7rem -0.4rem';
-                oAgree.style.backgroundSize='40rem 12rem';
+                oAgree.style.background='url(../images/ui/icons1.png) -4.7rem -0.07rem';
+                oAgree.style.backgroundSize='8.00rem 2.40rem';
                 oReserve.style.backgroundColor='#fdb330';
                 oReserve.style.color='#fff';
 
@@ -429,7 +432,9 @@
                         if(arrivalFlightNo = ''){
                             fli.ArrivalFlightNo = "None";
                         }else{
+
                             fli.ArrivalFlightNo=arrivalFlightNo;
+
                             if(dateTime.indexOf("T") > -1){
                                 fli.ArrivalDateTime=dateTime;
                             }else{
@@ -522,21 +527,21 @@
                     n = k;
                 }
             }
-            var tpl1 = [
-                '<li>费用明细</li>',
-                '{% for(var i=0; i<hotels[0].rooms['+n+'].prices.length;i++){  if(hotels[0].rooms['+n+'].prices[i].category=="ADULT"){ %}',
-                '<li>',
-                '<div>成人</div>',
-                '<div>￥{%=hotels[0].rooms['+n+'].prices[i].amountInCNY%}×{%=hotels[0].rooms['+n+'].prices[i].quantity%}人</div>',
-                '</li>',
-                '{% } else if(hotels[0].rooms['+n+'].prices[i].category=="CHILD"){ %}',
-                '<li>',
-                '<div>儿童</div>',
-                '<div>￥{%=hotels[0].rooms['+n+'].prices[i].amountInCNY%}×{%=hotels[0].rooms['+n+'].prices[i].quantity%}人</div>',
-                '</li>',
-                '{% } %}',
-                '{% } %}'
-            ].join('');
+            var tpl1 =
+                '<li>费用明细</li>'+
+                '<% for(var i=0; i<hotels[0].rooms['+n+'].prices.length;i++){  if(hotels[0].rooms['+n+'].prices[i].category=="ADULT"){ %>'+
+                '<li>'+
+                '<div>成人</div>'+
+                '<div>￥<%= hotels[0].rooms['+n+'].prices[i].amountInCNY %>×<%= hotels[0].rooms['+n+'].prices[i].quantity %>人</div>'+
+                '</li>'+
+                '<% } else if(hotels[0].rooms['+n+'].prices[i].category=="CHILD"){ %>'+
+                '<li>'+
+                '<div>儿童</div>'+
+                '<div>￥<%= hotels[0].rooms['+n+'].prices[i].amountInCNY %>×<%= hotels[0].rooms['+n+'].prices[i].quantity %>人</div>'+
+                '</li>'+
+                '<% } %>'+
+                '<% } %>';
+
             var CheckInDate,CheckOutDate;
             if(info.CheckInDate.substr(9,1) == 'T'){
                 CheckInDate = info.CheckInDate.substr(0,9);
@@ -548,31 +553,26 @@
             }else{
                 CheckOutDate = info.CheckOutDate.substr(0,10);
             }
-            var tpl2 = [
-                '<div class="sce-introduce-txt">{%=hotels[0].hotelName%}</div>',
-                '{% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %}',
-                '<div class="detail-span">房型 {%=hotels[0].rooms[i].roomName%}' + info.roomDetails.length+'间</div>',
-                '{% } %}',
-                '{% } %}',
-                '<div class="detail-span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>'
-            ].join('');
-            var tpl3 = [
-                '{% for(var i=0;i<tourInfos.length;i++){ %}',
-                '<div>',
-                '<div class="sce-introduce-txt">{%=tourInfos[i].tourName%}</div>',
-                '{% if(tourInfos[i].travelDateSpecified){ %}',
-                '<div class="detail-span">游玩时间 {%=tourInfos[i].travelDate.substr(0,10)%} {%=weekday[i]%} {%=noon[i]%}</div>',
-                '{% } %}',
-                '<div class="detail-span">成人票 '+info.adultNum+'张</div>',
-                '{% if(JSON.parse(localStorage.info).childNum != 0){ %}',
-                '<div class="detail-span">儿童票 '+info.childNum+'张</div>',
-                '{% } %}',
-                '</div>',
-                '{% } %}'
-            ].join('');
-            var html_fd = template(tpl1,data);
-            var html_dh = template(tpl2,data);
-            var html_dt = template(tpl3,data);
+            var tpl2 =
+                '<div class="txt"><%= hotels[0].hotelName %></div>'+
+                '<% for(var i=0;i<hotels[0].rooms.length;i++){ if(hotels[0].rooms[i].roomID=='+roomID+'){ %>'+
+                '<div class="detail_span">房型 <%= hotels[0].rooms[i].roomName %>&nbsp;' +
+                '<% if( hotels[0].rooms[i].includedBreakfast ){ %>'+
+                    '含早'+
+                '<% }else{ %>'+
+                    '无早'+
+                '<% } %>'+
+                '&nbsp;'+
+                info.roomDetails.length+
+                '间</div>'+
+                '<% } %>'+
+                '<% } %>'+
+                '<div class="detail_span">'+CheckInDate+' 至 '+CheckOutDate+' '+info.nightNum+'晚</div>';
+
+            var tpl3 = $('#tpl3').html();
+            var html_fd = ejs.render(tpl1,data);
+            var html_dh = ejs.render(tpl2,data);
+            var html_dt = ejs.render(tpl3,data);
             //$('.separate_num i').html(data.hotels[0].avgRatePerPaxSeparatelyInCNY);
             $('#fillDetail').html(html_fd);
             $('#hotel_detail').html(html_dh);
@@ -598,7 +598,7 @@
     //});
     $('.open-close').click(function(){
         $('#detailBox').toggle();
-        $('.icons.de-close').toggleClass('de-open');
+        $(this).find('b').toggleClass('cur');
         //if($('#detailBox').display == 'none'){
         //    $('#detailBox').show();
         //}else{
@@ -618,4 +618,6 @@
     }
 
 
+
 })()
+

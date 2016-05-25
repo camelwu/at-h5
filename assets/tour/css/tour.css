@@ -123,8 +123,10 @@ i {
     color: #484848;
     overflow: hidden;
     text-overflow: ellipsis;
+
     display: -webkit-box;
     -webkit-line-clamp:3;
+
     -webkit-box-orient: vertical;
 }
 
@@ -1176,4 +1178,6 @@ section[class^="hotelInfo_numb"] .extraChild span:last-child {
 }
 .room-list > li:last-child{
     border-bottom: none;
+
 }
+

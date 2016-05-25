@@ -71,9 +71,9 @@ var roomUpGrade = {
 		var outStr = dateD2[1] + '-' + dateD2[2];
 		var time1 = new Date(dateD1[0].replace('-', '/').replace('-', '/').replace('T00:00:00', '')), time2 = new Date(dateD2[0].replace('-', '/').replace('-', '/').replace('T00:00:00', ''));
 		var dayNum = (Math.abs(time2 - time1)) / 1000 / 60 / 60 / 24;
-		document.querySelector('.date-in').innerHTML = inStr.replace('-', '月') + '日入住';
-		document.querySelector('.date-out').innerHTML = outStr.replace('-', '月') + '日离店';
-		document.querySelector('.day-number').innerHTML = "共" + dayNum + "晚";
+		document.querySelector('.date-in').innerHTML = '<span>'+inStr.replace('-', '月') + '</span>日入住';
+		document.querySelector('.date-out').innerHTML ='<span>'+ outStr.replace('-', '月') + '</span>日离店';
+		document.querySelector('.day-number').innerHTML = "共" +'<span>'+  dayNum + "</span>晚";
 		return this;
 	},
 	addEvent : function(travelersInput) {
@@ -106,18 +106,7 @@ var roomUpGrade = {
 	},
 	callBack : function() {
 		var that = roomUpGrade;
-		var tpl1 = [
-		'{% var imgs = tourInfos,htls=roomUpGrade.resetData(hotels[0]);imgl = imgs.length; if(imgl==0){ %}',
-		'<a class="top-pic"><img src="../images/hotelDetailerrorpic.png" real-src="{%=htls.hotelPictureURL%}" class="hotelPic" alt="image"></a>',
-        '{% }else{ %}',
-        '<a href="{%=imgs[0].tourPictureURL%}" class="top-pic swipebox" title="1/{%=(imgl)%}"><img class="hotelPic" src="../images/hotelDetailerrorpic.png" real-src="{%=htls.hotelPictureURL%}"></a>',
-		'<div style="display: none;">','{% for(var i=1;i < imgl;i++){ %}',
-		'<a href="{%=imgs[i].tourPictureURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}"><img src="{%=imgs[i].tourPictureURL%}" alt="image"></a>',
-		'{% } %}','</div>',
-		'{% } %}',
-		'<ul id="hd_list" class="d-list">', '<li>', '<p class="d-score">', '<b class="d-icon4"></b> {%=htls.location%}</p>', '</li>', '<li>', '<p class="d-score">{%=htls.starRating%}星级</p>', '{% if(data["freeWifi"]){ %}<b class="d-icon2"></b>{% } %}', '<a href="{%=htls.moreInfoLink%}" class="d-icon1"></a>', '</li>', '<li>', '<p class="d-p3 date-in">3月22入住</p><p class="d-p3 date-out" style="margin-left: 5px;">3月30离店</p>', '<p class="d-p2 day-number">共8晚</p>', '</li>', '<li style=height:auto>', '<ul class="room-list" id="room-list">', '</ul>', '</li>', '</ul>'].join('')
-		,tpl2 = ['<li class="hd-hotel" data-roomId="{%=roomID%}">', '<img class="hd-choose" src="../images/ui/choose.png">', '<div class="d-div3">', '<p class="d-p5">' + '{% if(includedBreakfast){ %}', '{%=roomName%}(含早)', '{% }else{ %}', '{%=roomName%}(无早)', '{% } %}', '</p>', '</div>', '<p class="hd-price">', '<span>+￥</span>', '<span>{%=markUp%}/间</span>', '</p>', '</li>'].join('')
-		;
+
 		var resultData = arguments[0], that = roomUpGrade;
 		if (resultData.success) {
 			if (resultData.data.hotels.length == 0) {
@@ -125,8 +114,10 @@ var roomUpGrade = {
 			} else {
 				console.log(resultData.data);
 				var rooms = resultData.data.hotels[0].rooms;
-				var tpl_GetList = template(tpl1, resultData.data);
-				var tpl_GetRooms = template(tpl2, rooms);
+				var tpl1 = $('#tpl1').html();
+				var tpl2 = $('#tpl2').html();
+				var tpl_GetList = ejs.render(tpl1, resultData.data);
+				var tpl_GetRooms = ejs.render(tpl2,resultData.data.hotels[0]);
 				that.dataInfo = resultData.data;
 				that.roomsData = rooms;
 				$("#preloader").fadeOut();

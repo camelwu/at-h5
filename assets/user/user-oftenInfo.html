@@ -24,29 +24,26 @@
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 
     <title>个人中心常用信息 - 亚洲旅行网</title>
-    <link href="../styles/framework.css"	rel="stylesheet" type="text/css">
-    <link href="../styles/style.css"		rel="stylesheet" type="text/css">
+    <link href="../styles/reset.css"		rel="stylesheet" type="text/css">
     <link href="../styles/tips.css"		rel="stylesheet" type="text/css">
+    <link href="../css/plugins/scroller/scroller1.1.css"	rel="stylesheet" type="text/css">
     <link href="../css/user.css"	rel="stylesheet" type="text/css">
-    <link href="../css/date_select.css"	rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="preloader">
         <div id="status"></div>
     </div>
-    <div class="all-elements" id="content-wrap">
+    <div class="all_elements" id="content-wrap">
         <div class="header" id="vlm-login">
-            <a href="user.html" class="header-back"><i class="icons go-back"></i></a>
-            <h3>常用信息维护</h3>
+          <a href="user.html" class="header_back"><i class="icon_back"></i></a>
+          <h3>常用信息维护</h3>
         </div>
         <!-- Page Content-->
-        <div id="content" class="snap-content">
-            <div id="addUser" class="f_btn button-orange" style="margin-top: 10px;font-weight: 100;">
-                <b class="icons user-add"></b>新增常用旅客
+        <div id="content" class="content">
+            <div id="addUser" class="f_btns">
+                <b class="icon_person user_add"></b>新增常用旅客
             </div>
-            <div id="blank" class="blank-con">
-                您还没有设置常旅客，快添加吧！
-            </div>
+            <div id="blank" class="blank_con">您还没有设置常旅客，快添加吧！</div>
             <!--<ul id="oftenTrav" class="often-traveler">-->
                 <!--<li class="eve-traveler" style="border-top:1px solid #dedede;">-->
                     <!--<b class="bu_icon user-edits"></b>-->
@@ -71,23 +68,23 @@
     </div>
 
     <!--    新增常用旅客页   -->
-    <div class="addtra-page" id="addtra_page">
-        <div class="all-elements relative-for-android">
+    <div class="addtra_page" id="addtra_page">
+        <div class="all_elements relative-for-android">
             <div class="header">
-                <div id="add_quit" class="header-quit">取消</div>
+                <div id="add_quit" class="header_quit">取消</div>
                 <h3>新增常用旅客</h3>
-                <div id="add_finish" class="header-finish">完成</div>
+                <div id="add_finish" class="header_finish">完成</div>
             </div>
             <!-- Page Content-->
-            <div class="user-content">
-                <div class="addtra-title">旅客姓名<b id="aname_state" class="icon user-must"></b></div>
+            <div class="content">
+                <div class="addtra_title"><span>旅客姓名</span><b class="icon_common user_must" id="anameState"></b></div>
                 <form id="addForm" action="user-oftenInfo.html" method="get">
-                    <ul class="addtra-info">
+                    <ul class="addtra_info">
                         <li>
                             <div>中文姓名</div>
                             <input type="text" placeholder="确保与证件保持一致">
                         </li>
-                        <li style="border: none;padding-bottom: 0;">
+                        <li>
                             <div>英文姓</div>
                             <input type="text" placeholder="Surname,如Li"><br/>
                         </li>
@@ -96,10 +93,10 @@
                             <input type="text" placeholder="Given name,如Shimin">
                         </li>
                     </ul>
-                    <div class="addtra-title">证件</div>
-                    <ul class="addtra-info">
+                    <div class="addtra_title">证件</div>
+                    <ul class="addtra_info">
                         <li id="uuu">
-                            <b class="icons open-pho"></b>
+                            <b class="icons open_pho"></b>
                             <div>证件类型</div>
                             <div id="postCard" class="postCard" >护照</div>
                         </li>
@@ -108,245 +105,258 @@
                             <input type="text" placeholder="确保与证件保持一致">
                         </li>
                         <li id="uuun2">
-                            <b class="icons open-pho" ></b>
+                            <b class="icons open_pho" ></b>
                             <div class="birth-date">证件有效期</div><div id="time-cont" class="birth-cont"></div>
                         </li>
                         <li class="countries-wrap">
-                            <b class="icons open-pho"></b>
+                            <b class="icons open_pho"></b>
                             <div>发证国家</div>
                             <div class="country-btn" data-code="CN" data-tel-code="86">中国</div>
                         </li>
                     </ul>
-                    <div class="addtra-title">其他信息</div>
-                    <ul class="addtra-info">
+                    <div class="addtra_title">其他信息</div>
+                    <ul class="addtra_info">
                         <li class="countries-wrap">
-                            <b class="icons open-pho"></b>
+                            <b class="icons open_pho"></b>
                             <div>国籍</div>
                             <div class="country-btn"  data-code="CN" data-tel-code="86">中国</div>
                         </li>
                         <li>
-                            <div>性别</div>
-                            <div class="sex-cho-wrap">
-                                <span style="margin-right:15%" ><b class="icon-h traveler-sex2" id="man"></b>男</span>
-                                <span><b class="icon-h traveler-sex2" id="woman"></b>女</span>
-                            </div>
+                          <div>性别</div>
+                          <div class="sex_cho_wrap">
+                            <span><b class="icon_h traveler_sex2" id="man"></b>男士</span>
+                            <span><b class="icon_h traveler_sex2" id="woman"></b>女士</span>
+                          </div>
                         </li>
                         <li id="uuun1">
-                            <b class="icons open-pho" ></b>
+                            <b class="icons open_pho" ></b>
                             <div class="birth-date">出生日期</div><div id="birth-cont" class="birth-cont" data-cache="1990年-1月-1日">1990-01-01</div>
                         </li>
                     </ul>
-                    <div class="addtra-title">联系方式</div>
-                    <ul class="traveler-contect">
-                        <li class="clearFix">
-                            <div class="con-phone fl">
-                                手机号
-                                <span class="phone-pre">+86</span>
+                    <div class="addtra_title">联系方式</div>
+                    <ul class="traveler_contect">
+                        <li class="clearfix">
+                            <div class="con_phone fl">手机号
+                              <span class="phone_pre tel-btn">+86</span>
+                              <em class="open_arw mobile_tip_right"></em>
                             </div>
                             <input type="text" placeholder="请确保手机号无误" id="mobile-cell-add">
                         </li>
-                        <li class="clearFix">
+                        <li class="clearfix">
                             <div class="fl">邮箱</div>
                             <input type="text" placeholder="常用邮箱" id="email-cell-add">
                         </li>
                     </ul>
                 </form>
-                <div class="con-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+                <div class="con_text_tip">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
             </div>
         </div>
     </div>
-    <!--    更新常用旅客页   -->
-    <div class="addtra-page" id="uptra_page">
-        <div class="all-elements relative-for-android">
+    <!--    编辑常用旅客   -->
+    <div class="addtra_page" id="uptra_page">
+        <div class="all_elements relative-for-android">
             <div class="header">
-                <div id="update_quit" class="header-quit">取消</div>
+                <div id="update_quit" class="header_quit">取消</div>
                 <h3>编辑常用旅客</h3>
-                <div id="upadate_finish" class="header-finish">完成</div>
+                <div id="upadate_finish" class="header_finish">完成</div>
             </div>
             <!-- Page Content-->
-            <div class="user-content">
-                <div class="addtra-title">旅客姓名<b id="name_state" class="icon user-must"></b></div>
-                <form id="updateForm" action="user-oftenInfo.html" method="get">
-                    <ul class="addtra-info">
-                        <li>
-                            <div>中文姓名</div>
-                            <input type="text" placeholder="确保与证件保持一致">
-                        </li>
-                        <li style="border: none;padding-bottom: 0;">
-                            <div>英文姓</div>
-                            <input type="text" placeholder="Surname,如Li"><br/>
-                        </li>
-                        <li>
-                            <div>英文名</div>
-                            <input type="text" placeholder="Given name,如Shimin">
-                        </li>
-                    </ul>
-                    <div class="addtra-title">证件</div>
-                    <ul class="addtra-info">
-                        <li id="eee3">
-                            <b class="icons open-pho"></b>
-                            <div>证件类型</div>
-                            <div id="cardType" class="postCard"></div>
-                        </li>
-                        <li>
-                            <div>证件号</div>
-                            <input type="text" class="postNum" placeholder="确保与证件保持一致">
-                        </li>
-                        <li id="eee2">
-                            <b class="icons open-pho"></b>
-                            <div class="birth-date">证件有效期</div><div id="time-cont-edit" class="birth-cont" ></div>
-                        </li>
-                        <li class="countries-wrap">
-                            <b class="icons open-pho"></b>
-                            <div>发证国家</div>
-                            <div class="country-btn" id="country-name" data-code="CN" data-tel-code="86"></div>
-                        </li>
-                    </ul>
-                    <div class="addtra-title">其他信息</div>
-                    <ul class="addtra-info">
-                        <li class="countries-wrap">
-                            <b class="icons open-pho"></b>
-                            <div>国籍</div>
-                            <div id="countryName" data-code="CN" class="country-btn" data-tel-code="86"></div>
-                        </li>
-                        <li>
-                            <div>性别</div>
-                            <div class="sex-cho-wrap">
-                                <span style="margin-right:15%" ><b class="icon-h traveler-sex1" id="man2"></b>男</span>
-                                <span><b class="icon-h traveler-sex2" id="woman2"></b>女</span>
-                            </div>
-                        </li>
-                        <li id="eee1" >
-                            <b class="icons open-pho"></b>
-                            <div class="birth-date">出生日期</div><div id="birth-cont-edit" class="birth-cont" data-cache="1990年-1月-1日">1990-01-01</div>
-                        </li>
-                    </ul>
-                    <div class="addtra-title">联系方式</div>
-                    <ul class="traveler-contect">
-                        <li class="clearFix">
-                            <div class="con-phone fl">
-                                手机号
-                                <span class="phone-pre">+86</span>
-                            </div>
-                            <input type="text" placeholder="请确保手机号无误" id="mobile-cell">
-                        </li>
-                        <li class="clearFix">
-                            <div class="fl">邮箱</div>
-                            <input type="text" placeholder="常用邮箱" id="email-cell">
-                        </li>
-                    </ul>
-                </form>
-                <div class="con-text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
-                <div id="delTra" class="f_btn button-grey" style="width:40%;margin: 20px 0;margin-left: 30%">删除常旅客</div>
+            <div class="content">
+              <div class="addtra_title"><span>旅客姓名</span><b class="icon_common user_must" id="nameState"></b></div>
+              <form id="updateForm" action="user-oftenInfo.html" method="get">
+                  <ul class="addtra_info">
+                      <li>
+                          <div>中文姓名</div>
+                          <input type="text" placeholder="确保与证件保持一致">
+                      </li>
+                      <li style="border: none;padding-bottom: 0;">
+                          <div>英文姓</div>
+                          <input type="text" placeholder="Surname,如Li"><br/>
+                      </li>
+                      <li>
+                          <div>英文名</div>
+                          <input type="text" placeholder="Given name,如Shimin">
+                      </li>
+                  </ul>
+                  <div class="addtra_title">证件</div>
+                  <ul class="addtra_info">
+                      <li id="eee3">
+                          <b class="icons open_pho"></b>
+                          <div>证件类型</div>
+                          <div id="cardType" class="postCard"></div>
+                      </li>
+                      <li>
+                          <div>证件号</div>
+                          <input type="text" class="postNum" placeholder="确保与证件保持一致">
+                      </li>
+                      <li id="eee2">
+                          <b class="icons open_pho"></b>
+                          <div class="birth-date">证件有效期</div><div id="time-cont-edit" class="birth-cont" ></div>
+                      </li>
+                      <li class="countries-wrap">
+                          <b class="icons open_pho"></b>
+                          <div>发证国家</div>
+                          <div class="country-btn" id="country-name" data-code="CN" data-tel-code="86"></div>
+                      </li>
+                  </ul>
+                  <div class="addtra_title">其他信息</div>
+                  <ul class="addtra_info">
+                      <li class="countries-wrap">
+                          <b class="icons open_pho"></b>
+                          <div>国籍</div>
+                          <div id="countryName" data-code="CN" class="country-btn" data-tel-code="86"></div>
+                      </li>
+                      <li>
+                        <div>性别</div>
+                        <div class="sex_cho_wrap">
+                          <span><b class="icon_h traveler_sex2" id="man2"></b>男士</span>
+                          <span><b class="icon_h traveler_sex2" id="woman2"></b>女士</span>
+                        </div>
+                      </li>
+                      <li id="eee1" >
+                          <b class="icons open_pho"></b>
+                          <div class="birth-date">出生日期</div><div id="birth-cont-edit" class="birth-cont" data-cache="1990年-1月-1日">1990-01-01</div>
+                      </li>
+                  </ul>
+                  <div class="addtra_title">联系方式</div>
+                  <ul class="traveler_contect">
+                    <li class="clearfix">
+                      <div class="con_phone fl">手机号
+                        <span class="phone_pre">+86</span>
+                        <em class="open_arw mobile_tip_right"></em>
+                      </div>
+                      <input type="text" placeholder="请确保手机号无误" id="mobile-cell">
+                    </li>
+                    <li class="clearfix">
+                      <div class="fl">邮箱</div>
+                      <input type="text" placeholder="常用邮箱" id="email-cell">
+                    </li>
+                </ul>
+              </form>
+              <div class="con_text">为了您能顺利出行，请确保旅行结束日期至少比证件有效期早6个月</div>
+              <div id="delTra" class="f_btns">删除常旅客</div>
             </div>
         </div>
     </div>
 
     <!-- 填写姓名说明页-->
-    <div class="fillName-page" id="fillName_page">
-        <div class="header">
-            <a href="#" id="close_name" class="header-back"><i class="icons go-back"></i></a>
-            <h3>填写姓名说明</h3>
-        </div>
-        <div class="user-content">
-            <ol class="ch_account" id="ch_account">
-                <li>姓名要与所持证件的姓名一致</li>
-                <li>中文姓名
-                    <ul class="name_ul">
-                        <li>若持护照乘机，必须确认护照上有中文姓名<br/>
-                            生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”
-                            <div class="name-example">
-                                <div>中文姓名</div>
-                                <div>王ben</div>
-                            </div>
-                        </li>
-                        <li>
-                            姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”
-                            <div class="name-example">
-                                <div>中文姓名</div>
-                                <div>汉族然买买提</div>
-                            </div>
-                        </li>
-                        <li>
-                            香港、台湾、澳门的护照不支持国内航班，请改用其他证件。
-                        </li>
-                    </ul>
-                </li>
-            </ol>
-            <!-- 英文姓名-->
-            <ol class="ch_account" id="en_account">
-                <li>必须用英文字母填写，并确保与所持证件的姓名一致</li>
-                <li>中文姓名
-                    <ul class="name_ul">
-                        <li style="list-style-type: none;">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming
-                            <div class="name-example">
-                                <div>Surname</div>
-                                <div>Zhuge</div>
-                            </div>
-                            <div class="name-example2" >
-                                <div>Given name</div>
-                                <div>Kongming</div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li>英文姓名
-                    <ul class="name_ul">
-                        <li>若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
-                            例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad
-                            <div class="name-example">
-                                <div>Surname</div>
-                                <div>Potter</div>
-                            </div>
-                            <div class="name-example2" >
-                                <div>Given nam</div>
-                                <div>joerad</div>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="name_ul">
-                        <li>姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
-                            在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
-                            jame M C
-                            <div class="name-example">
-                                <div>Surname</div>
-                                <div>BlackSA</div>
-                            </div>
-                            <div class="name-example2" >
-                                <div>Given nam</div>
-                                <div>jame M C</div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ol>
-        </div>
+    <div class="fillName_page all_elements" id="fillName_page">
+      <div class="header">
+        <div id="closeName" class="header_quit"><i class="icon_back"></i></div>
+        <h3>填写姓名说明</h3>
+      </div>
+      <div class="content">
+        <!-- 中文姓名-->
+          <ul class="ch_account" id="ch_account">
+            <li>1. 姓名要与所持证件的姓名一致</li>
+            <li>2. 中文姓名
+                <ul class="name_ul">
+                    <li>
+                      <p>若持护照乘机，必须确认护照上有中文姓名</p>
+                      <p class="example_floor_down">生僻字可以用拼音替代，拼音之后不可再输入汉字，需要用拼音替代。例如“王犇”可输入为“王ben”</p>
+                      <div class="name_example">
+                          <span>中文姓名</span><span>王ben</span>
+                      </div>
+                    </li>
+                    <li>
+                        <p class="example_floor">姓名中有特殊符号的“.”“-”等，可不用输入，例如“汉族然.买买提”可输入为“汉族然买买提”</p>
+                        <div class="name_example">
+                            <span>中文姓名</span><span>汉族然买买提</span>
+                        </div>
+                    </li>
+                    <li><p class="example_floor">香港、台湾、澳门的护照不支持国内航班，请改用其他证件。</p></li>
+                </ul>
+            </li>
+          </ul>
+          <!-- 英文姓名-->
+          <ul class="ch_account" id="en_account">
+              <li>1. 必须用英文字母填写，并确保与所持证件的姓名一致</li>
+              <li>2. 中文姓名
+                  <ul class="name_ul">
+                      <li>
+                        <p class="example_floor_down">如乘客的姓名为诸葛孔明，则在Surname（姓）处输入Zhuge,在Given name（名）处输入Kongming</p>
+                        <div class="name_example2">
+                          <p>
+                            <span>Surname</span>
+                            <span>Zhuge</span>
+                          </p>
+                          <p>
+                            <span>Given name</span>
+                            <span>Kongming</span>
+                          </p>
+                        </div>
+                      </li>
+                  </ul>
+              </li>
+              <li>3. 英文姓名
+                  <ul class="name_ul">
+                      <li>
+                        <p class="example_floor_down">若持护照登机，必须按照护照显示区分姓与名，Middlename填写在Given name（名）栏中，不区分大小写。
+                          例如joe jerad/potter，在Surname（姓）处输入Potter，在Given name（名）处输入joe jerad</p>
+                        <div class="name_example2">
+                          <p>
+                            <span>Surname</span>
+                            <span>Potter</span>
+                          </p>
+                          <p>
+                            <span>Given nam</span>
+                            <span>joerad</span>
+                          </p>
+                        </div>
+                      </li>
+                  </ul>
+                  <ul class="name_ul">
+                      <li>
+                        <p class="example_floor_down">姓与名总长度小于26个字符，若过长请使用缩写，姓名中有特殊符号“.”“-”，在Surname中可不用输入，
+                          在Given name中用空格代替。例如“jame.M-C/Black.S-A”，在Surname中输入BlackSA，在Given name中输入
+                          jame M C</p>
+                        <div class="name_example2">
+                          <p>
+                            <span>Surname</span>
+                            <span>BlackSA</span>
+                          </p>
+                          <p>
+                            <span>Given nam</span>
+                            <span>jame M C</span>
+                          </p>
+                        </div>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
     </div>
+
     <div id="menu"></div>
 
     <!--国籍选择开始-->
-    <div class="header gj-header">
-        <a href="javascript:;" class="header-back country-hidden"><i class="icons go-back"></i></a>
+    <div class="all_elements country-cho-wrap">
+      <div class="header country_header">
+        <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
         <div class="cl_search">
-            <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
-            <i></i>
+          <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+          <i class="icon_common"></i>
         </div>
-    </div>
-    <div class="all-elements country-cho-wrap">
-        <!--国籍弹窗开始-->
-        <ul class="country-list-searched"></ul>
-        <!--国籍弹窗结束-->
+      </div>
+      <!--国籍弹窗开始-->
+      <ul class="country-list-searched"></ul>
+      <!--国籍弹窗结束-->
 
-        <div class="snap-content" style="padding-top: 45px;">
-            <div class="country-wrap" id="country-wrap">
-            </div>
+      <div class="content">
+        <div class="country-wrap" id="country-wrap">
         </div>
+      </div>
     </div>
     <!--国籍选择结束-->
+
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/country_list.js"></script>
+    <script src="../js/countrytel_list.js"></script>
     <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/plugins/scroller/scroller1.1.js"></script>
     <script src="../js/require.js" data-main="../js/user.js"></script>
 
 </body>
+
 </html>
+

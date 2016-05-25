@@ -43,11 +43,13 @@
                 traAdultnum+=parseInt(room[i].adult);
                 if(room[i].childWithOutBed)
                 {
+
                     traChildnum+=room[i].childWithOutBed.length;
                 }
                 if(room[i].childWithBed)
                 {
                   traChildnum+=room[i].childWithBed.length;
+
                 }
 
             }
@@ -109,6 +111,7 @@
     init();
 
     //与第一出行人相同图标
+
         function firstsame(){
             var bFlag=true;
             $('.con-alike').click(function(){
@@ -146,6 +149,7 @@
             });
         }
         firstsame();
+
 
 
 
@@ -255,4 +259,6 @@
         }
     }
 
+
 })();
+

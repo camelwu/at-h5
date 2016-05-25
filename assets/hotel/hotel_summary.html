@@ -12,9 +12,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="green">
 		<title>酒店概述</title>
-
-		<link href="../styles/style.css" rel="stylesheet">
-		<link href="../styles/framework.css" rel="stylesheet">
+		<link rel="stylesheet" href="../styles/reset.css"/>
 		<link href="css/hsum.css" rel="stylesheet">
 	</head>
 	<body>
@@ -27,24 +25,24 @@
 
 		<div class="all-elements">
 			<!--  顶部   -->
-			<header class="header" id="vlm-login">
-				<a href="javascript:window.history.go(-1)" class="header-back">
-                    <i class="icons go-back"></i>
-                </a>
+			<div class="header" style="box-shadow: none">
+				<a href="javascript:window.history.go(-1);" class="header_back">
+					<i class="icon_back"></i>
+				</a>
 				<h3>酒店详情</h3>
-			</header>
+			</div>
 			<div id="content" class="snap-content contentBox">
-				<div class="hotelinfo">
+				<div class="hotelinfo hotel_info">
 					<p class="s-p1">
 						酒店介绍
 					</p>
 
 					<!--<p class="s-p2"><a href="#" style="color: #ffb412;">联系酒店<b class="s-icon1"></b></a></p>-->
 				</div>
-				<article class="s-content1">
+				<article class="s-content1 hotel_content1">
 
 				</article>
-				<hr width="100%" size="3px" color="#dfdfdd"/>
+				<!--<hr width="100%" size="3px" color="#dfdfdd"/>-->
 
 				<!--  附近景点   -->
 				<!--
@@ -61,12 +59,12 @@
 				<hr width="100%" size="3px" color="#dfdfdd"/>
 				-->
 				<!--  酒店特色   -->
-				<div class="hotelinfo" style="margin-top: 10px;">
+				<div class="hotelinfo hotel_info1">
 					<p class="s-p1">
 						酒店特色
 					</p>
 				</div>
-				<ul class="s-ul2 clearfix">
+				<ul class="s-ul2 clearfix hotel_feature">
 
 				</ul>
                 <!--   底部   -->

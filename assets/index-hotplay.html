@@ -37,11 +37,22 @@
               <a href="index.html" class="top_back"><i class="icons"></i></a>
               <h3 class="top_title">当月热玩</h3>
             </div>
-            <div class="s_type_four">
-                <div class="menu_active" data-num="1">海岛</div>
+    <div class="all-elements">
+        <div id="content" class="snap-content">
+            <a href="javascript:history.go(-1)" class="top-back"><i class="icons"></i></a>
+            <h3 class="top-title">当月热玩</h3>
+            <div class="top-ban s-active">
+                <a href="#">
+                    <img src="images/pictures/hotplay1.png" class="banner-image" alt="img">
+                </a>
+            </div>
+            <div class="s-type-four">
+
+                <div class="menu-active" data-num="1">海岛</div>
                 <div data-num="2">亲子</div>
                 <div data-num="3">户外</div>
                 <div data-num="4">人文</div>
+
             </div>
             <ul class = "hotspot" id="hotspot">
                 <!--<li>-->
@@ -78,12 +89,20 @@
             {% }else if(productType==3){ %}
             <a href = "scenic/scenic_detail.html?packageID={%=productID%}">
             {% } %}
-              <div class="hotplay_wrap">
-                <img src="{%=productPicUrl%}" class="banner_image" alt="img">
-                <div class="rec_price"><span class="rec_price_tit"><i>￥</i>{%=productDiscountPrice%}<i> 起</i></span></div>
+
+
+            <div>
+                <img src="{%=productPicUrl%}" class="banner-image" alt="img">
+                <div class="hp-block">
+                    {%=productName%}
               </div>
               <div class="hp_block">{%=productName%}</div>
               <div class="spotDesc">{%=productDesc%}</div>
+
+            <div>
+                <span>￥</span><span class="pay-num">{%=productDiscountPrice%}</span>
+
+            </div>
             </a>
             </a>
         </li>
@@ -110,13 +129,16 @@
                     vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
                     var tpl = [
                         '<li>',
+
                         '<div>',
                         '<img src="{%=productPicUrl%}" class="banner_image" alt="img">',
                         '<div class="hp_block">{%=productName%}</div>',
                         '</div>',
                         '<div class="spotDesc">{%=productDesc%}</div>',
+
                         '<div>',
                         '<span>￥</span><span class="pay_num">{%=productDiscountPrice%}</span>',
+
                         '</div>',
                         '</li>'].join('');
                     function hotplay_back(ret){
@@ -144,9 +166,11 @@
                         for(var j = 0;j < menu.length;j++){
                              menu[j].className = '';
                         }
-                        target.className = 'menu_active';
+                        target.className = 'menu-active';
 
+                        
                         num = target.getAttribute("data-num");
+
                         var tmp={
                             "Parameters":{"SiteType":num,"PageNo":1,"PageSize":10},
                             "ForeEndType":3,
@@ -155,13 +179,16 @@
                         vlm.loadJson("",JSON.stringify(tmp),hotplay_back);
                         var tpl = [
                             '<li>',
+
                             '<div>',
                                 '<img src="{%=productPicUrl%}" class="banner_image" alt="img">',
                                 '<div class="hp-block">{%=productName%}</div>',
                              '</div>',
                             '<div class="spotDesc">{%=productDesc%}</div>',
+
                             '<div>',
                             '<span>￥</span><span class="pay_num">{%=productDiscountPrice%}</span>',
+
                             '</div>',
                             '</li>'].join('');
                         function hotplay_back(ret){
