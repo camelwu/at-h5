@@ -1229,6 +1229,11 @@ i, em {
   background-position: -.48rem -.18rem;
 }
 
+.my-order{
+  display: block;
+  width: 100%;
+}
+
 .open_info {
   background-position: -.02rem -.18rem;
 }
