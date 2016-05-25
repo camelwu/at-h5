@@ -197,13 +197,6 @@ var flight_list = {
     };
     this.tAjax("", oldFlightInfo, "50100002", "3", flightListBack);
   },
-
-
-
-
-
-
-
     noResult :function(){
         var ele = document.createElement('div'), eventEle, flight_hotel_no_result;
         ele.className = "flight_hotel_no_result";
@@ -222,9 +215,6 @@ var flight_list = {
         //questUrl = questUrl?questUrl:that.requestUrl;
         vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
     },
-
-
-
 
     //  排序or筛选结束
     init:function(){

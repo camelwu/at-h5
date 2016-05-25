@@ -82,7 +82,7 @@ var fIndexModal = {
             adultNumEle.innerHTML = adultNum;
             adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
             childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
+            adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
             childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
           }
         } else if (target.className == "chi plus") {
@@ -92,17 +92,17 @@ var fIndexModal = {
               childNumEle.innerHTML = childNum;
               adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
               childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-              adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
+              adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
               childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
             }
           }
         } else if (target.className == "adu minus") {
-          if (adultNum >= 3) {
+          if (adultNum >= 2) {
             adultNum--;
             adultNumEle.innerHTML = adultNum;
             adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
             childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
+            adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
             childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
             childNumEle.innerHTML = adultNum / childNum < 1 / 2 ? adultNum * 2 : childNum;
           }
@@ -112,7 +112,7 @@ var fIndexModal = {
             childNumEle.innerHTML = childNum;
             adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
             childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 2 ? "adu minus" : "adu minus minus_grey";
+            adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
             childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
           }
         }

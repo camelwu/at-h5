@@ -1,3 +1,4 @@
+input,button,select,textarea{outline:none}
 .hTab {
   width: 100%;
   height: .88rem;
@@ -12,6 +13,9 @@
   background: #FFFFFF
 }
 
+.paddingTop{
+   padding-top: .88rem;
+}
 .clear_shadow {
   box-shadow: none;
 }
@@ -233,7 +237,7 @@
   float: right;
   margin-left: .32rem;
   position: relative;
-  top: .3899rem
+  top: .360rem
 }
 
 #seats {
@@ -256,6 +260,7 @@
   text-align: center;
   background: rgb(255, 180, 19);
   font-size: .36rem;
+  outline: none;
 }
 
 .float-right {
@@ -387,8 +392,13 @@
 }
 
 .double_ul .seat_price {
-  padding-top: 1.182rem;
+  padding-top: 1.182rem!important;
 }
+
+.singleFlight .seat_price{
+  padding-top: 1.29rem!important;
+}
+.singleFlight .seat_condition{}
 
 .seat_price .seat {
   font-size: .18rem;
@@ -425,6 +435,13 @@
 .seat_price .priceNumber .seat_condition {
   top: 1.12rem;
 }
+.domi .seat_condition{
+  top: -0.44rem!important;
+}
+
+.singleFlight .tax_cost{
+  top: -.34rem!important;
+}
 
 .seat_price .priceNumber span.money {
   font-size: .18rem;
@@ -459,9 +476,10 @@
 }
 
 .flight_detail .airCropIcon {
-  width: .80rem;
+  width: .40rem;
   height: 100%;
   float: left;
+  margin-right: .10rem;
 }
 
 .flight_detail .airCropIcon:before, .flight_detail .airCropName:before {
@@ -564,9 +582,11 @@
 
 .left_info .starPort, .left_info .endPort {
   display: block;
-  white-space: nowrap;
-  overflow: visible;
   margin-top: .46rem;
+  width: 1.42rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .left_info .endPort {
@@ -1356,3 +1376,19 @@
 }
 
 /*国籍选择结束*/
+#Tax dt, #Price dt{
+  width: 0.34rem;
+  height: 0.37rem;
+  background: url(../../images/ui/price.png);
+  background-size: .40rem .40rem;
+  background-position: -.04rem 0;
+}
+#no_flight_data{
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  top: 40%;
+  font-size: .24rem;
+  color: #333;
+  display: none;
+}

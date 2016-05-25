@@ -31,7 +31,7 @@
       </a>
       <h3>订单填写</h3>
     </header>
-    <div class="content">
+    <div class="content paddingTop">
            <div class="date-week-port"></div>
            <div class="seat-price-cost"></div>
 
@@ -114,45 +114,46 @@
 
 </body>
 <script id="template_flight_summary" type="text/template">
-    <p class="trip_go_">
-      <span class="icon"></span>
-      <span class="addUp"><%= flightLeaveStartDate.substring(5, 10) %></span>
-      <span class="week_value addUp"><%= fOrder.setWeekItems(flightLeaveStartDate) %></span>
-      <span class="cityName"><%= segmentsLeave[0]["airportNameFrom"] %><%=segmentsLeave[0]["termDepart"] %></span>
-      <span class="addUp">-</span>
-      <span class="cityName"><%= segmentsLeave[segmentsLeave.length - 1]["airportNameTo"] %></span>
-      <span class="time_minutes"><%= parseInt(segmentsLeaveTotalTravelTime / 60) + 'h' + segmentsLeaveTotalTravelTime % 60 + 'm' %></span>
-      <i class="clock"></i>
-    </p>
-    <% if(segmentsReturn){ %>
-      <p class="trip_back_">
-        <span class="icon"></span>
-        <span class="addUp"><%= flightReturnStartDate.substring(5, 10) %></span>
-        <span class="week_value addUp"><%= fOrder.setWeekItems(flightReturnStartDate) %></span>
-        <span class="cityName"><%= segmentsReturn[0]["airportNameFrom"] %><%=segmentsReturn[0]["termDepart"] %></span>
-        <span class="addUp">-</span>
-        <span class="cityName"><%= segmentsReturn[segmentsReturn.length - 1]["airportNameTo"] %></span>
-        <span class="time_minutes"><%= parseInt(segmentsReturnTotalTravelTime / 60) + 'h' + segmentsReturnTotalTravelTime % 60 + 'm' %></span>
-        <i class="clock"></i>
-      </p>
-    <% } %>
+  <p class="trip_go_">
+    <span class="icon"></span>
+    <span class="addUp"><%= flightInfo.flightLeaveStartDate.substring(5, 10) %></span>
+    <span class="week_value addUp"><%= fOrder.setWeekItems(flightInfo.flightLeaveStartDate) %></span>
+    <span class="cityName"><%= flightInfo.segmentsLeave[0]["airportNameFrom"] %><%=flightInfo.segmentsLeave[0]["termDepart"] %></span>
+    <span class="addUp">-</span>
+    <span class="cityName"><%= flightInfo.segmentsLeave[flightInfo.segmentsLeave.length - 1]["airportNameTo"] %></span>
+    <span class="time_minutes"><%= parseInt(flightInfo.segmentsLeaveTotalTravelTime / 60) + 'h' + flightInfo.segmentsLeaveTotalTravelTime % 60 + 'm' %></span>
+    <i class="clock"></i>
+  </p>
+  <% if(flightInfo.segmentsReturn){ %>
+  <p class="trip_back_">
+    <span class="icon"></span>
+    <span class="addUp"><%= flightInfo.flightReturnStartDate.substring(5, 10) %></span>
+    <span class="week_value addUp"><%= fOrder.setWeekItems(flightInfo.flightReturnStartDate) %></span>
+    <span class="cityName"><%= flightInfo.segmentsReturn[0]["airportNameFrom"] %><%=flightInfo.segmentsReturn[0]["termDepart"] %></span>
+    <span class="addUp">-</span>
+    <span class="cityName"><%= flightInfo.segmentsReturn[flightInfo.segmentsReturn.length - 1]["airportNameTo"] %></span>
+    <span class="time_minutes"><%= parseInt(flightInfo.segmentsReturnTotalTravelTime / 60) + 'h' + flightInfo.segmentsReturnTotalTravelTime % 60 + 'm' %></span>
+    <i class="clock"></i>
+  </p>
+  <% } %>
+
 </script>
 <script id="template_flight_cost_seat" type="text/template">
-    <p><%= segmentsLeave[0]["cabinClassName"] %>
-      <%if(segmentsReturn){%>
-       +<%=segmentsReturn[0]["cabinClassName"] %>
+    <p><%= flightInfo.segmentsLeave[0]["cabinClassName"] %>
+      <%if(flightInfo.segmentsReturn){%>
+       +<%=flightInfo.segmentsReturn[0]["cabinClassName"] %>
       <%}%>
     </p>
-    <p>往返票价<span class="cost_value">￥<%= totalFareAmountADT %></span>税费<span class="cost_value">￥<%= totalTaxAmountADT %></span>
+    <p>往返票价<span class="cost_value">￥<%= flightInfo.totalFareAmountADT %></span>税费<span class="cost_value">￥<%= flightInfo.totalTaxAmountADT %></span>
       <span class="explain">退改签说明</span>
     </p>
 </script>
 <script id="template_flight_price" type="text/template">
-    <p>成人单价<span class="price-num-price">￥<span><%= totalFareAmountADT %>X<%= numofAdult %></span></span></p>
-    <p>成人税费<span class="price-num-price">￥<span><%= totalTaxAmountADT %>X<%= numofAdult %></span></span></p>
-    <%if(Number(numofChild)>0){ %>
-    <p>儿童单价<span class="price-num-price">￥<span><%= totalFareAmountCHI %>X<%= numofChild %></span></span></p>
-    <p>儿童税费<span class="price-num-price">￥<span><%= totalTaxAmountCHI %>X<%= numofChild %></span></span></p>
+    <p>成人单价<span class="price-num-price">￥<span><%= flightInfo.totalFareAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
+    <p>成人税费<span class="price-num-price">￥<span><%= flightInfo.totalTaxAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
+    <%if(parseInt(flightInfo.numofChild)>0){ %>
+    <p>儿童单价<span class="price-num-price">￥<span><%= flightInfo.totalFareAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
+    <p>儿童税费<span class="price-num-price">￥<span><%= flightInfo.totalTaxAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
     <%} %>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>

@@ -92,12 +92,14 @@ var fSingleList = {
   },
 
   renderHandler:function(){
-    var result = arguments[0],that = fSingleList, storage = window.sessionStorage;
+    var result = arguments[0],that = fSingleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
     console.log(result);
     if(result.success&&result.code == "200"){
          that.currrentFlightList = result.data;
-         that.filterHandler();
+         that.filterHandler(result.data);
          that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+    }else{
+          no_result.display = "block";
     }
   },
 
@@ -229,65 +231,102 @@ var fSingleList = {
   },
 
   filerCallBack:function(){
-      console.log(arguments);
-      var transferData = arguments, that =fSingleList, newUrl = window.location.href;
-      /*if(that.postObj.internationalOrDomestic == "international"){*/
-        if(arguments[1].id == "Price"){
-          var dd =  arguments[1].querySelector('dd');
-          var dd =  arguments[1].querySelector('dd');
-          if(dd.innerHTML== "价格"){
-            dd.innerHTML = "从低到高";
-            that.postObj.priorityRule = 2;
-            newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
-            newUrl = that.pageHandler(newUrl);
-            window.location.href = newUrl;
-          }else if(dd.innerHTML== "从低到高"){
-            dd.innerHTML = "价格";
-            that.postObj.priorityRule = 0;
-            newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
-            newUrl = that.pageHandler(newUrl);
-            window.location.href = newUrl;
-          }
-        }else{
-          that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
-          that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
-          that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substr(0,2);
-          that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substr(3);
-          that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
-          if(transferData[0].sortTypes[0].indexOf('isDesc')> -1){
-            that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
-            that.postObj.priorityRule = 0;
-          }else{
-            that.postObj.priorityRule = transferData[0].sortTypes[0];
-            //delete  that.postObj.isDesc;
-            that.postObj.isDesc = "none"
-            newUrl = vlm.setUrlPara(newUrl, "isDesc",that.postObj.isDesc);
-          }
-          newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
-          newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
-          newUrl = vlm.setUrlPara(newUrl, "departStartHour", that.postObj.departStartHour);
-          newUrl = vlm.setUrlPara(newUrl, "departEndHour", that.postObj.departEndHour);
-          newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
-          newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
-          newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
+    console.log(arguments);
+    var transferData = arguments, that =fSingleList, newUrl = window.location.href;
+    if(that.postObj.internationalOrDomestic == "international"){
+      if(arguments[1].id == "Tax"){
+        var dd =  arguments[1].querySelector('dd');
+        if(dd.innerHTML== "含税价"){
+          dd.innerHTML = "不含税价";
+          that.postObj.hasTax = 0;
+          newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
+          newUrl = that.pageHandler(newUrl);
+          window.location.href = newUrl;
+        }else if(dd.innerHTML== "不含税价"){
+          dd.innerHTML = "含税价";
+          that.postObj.hasTax = 1;
+          newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
           newUrl = that.pageHandler(newUrl);
           window.location.href = newUrl;
         }
-     /* }*/
+      }else{
+        console.log(transferData[0])
+        that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
+        that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
+        that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
+        that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
+        that.postObj.priorityRule = transferData[0].sortTypes[0];
+        newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
+        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
+        newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
+        newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+        newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
+        newUrl = vlm.setUrlPara(newUrl, "airCorpCode", that.postObj.airCorpCode);
+        newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
+        newUrl = that.pageHandler(newUrl);
+        window.location.href = newUrl;
+      }
+    }else{
+      if(arguments[1].id == "Price"){
+        var dd =  arguments[1].querySelector('dd');
+        if(dd.innerHTML== "价格"){
+          dd.innerHTML = "从低到高";
+          that.postObj.priorityRule = 2;
+          newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+          newUrl = that.pageHandler(newUrl);
+          window.location.href = newUrl;
+        }else if(dd.innerHTML== "从低到高"){
+          dd.innerHTML = "价格";
+          that.postObj.priorityRule = 0;
+          newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+          newUrl = that.pageHandler(newUrl);
+          window.location.href = newUrl;
+        }
+      }else{
+        that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
+        that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
+        that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0,2);
+        that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
+        that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
+        if(transferData[0].sortTypes[0].indexOf('isDesc')> -1){
+          that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
+          that.postObj.priorityRule = 0;
+        }else{
+          that.postObj.priorityRule = transferData[0].sortTypes[0];
+          that.postObj.isDesc = "none";//或删除属性
+          newUrl = vlm.setUrlPara(newUrl, "isDesc",that.postObj.isDesc);
+        }
+        newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
+        newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
+        newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
+        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
+        newUrl = vlm.setUrlPara(newUrl, "departStartHour",that.postObj.departStartHour);
+        newUrl = vlm.setUrlPara(newUrl, "departEndHour",that.postObj.departEndHour);
+        newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
+        newUrl = that.pageHandler(newUrl);
+        window.location.href = newUrl;
+      }
+    }
   },
 
-  filterHandler: function(){
-      var f_data = {
+  filterHandler: function(data){
+    var dataTransfer = data.airCorpCodeList, tempArray = [], f_data = {}, that = this;
+    dataTransfer.forEach(function(array, item){
+      var temObj = {}
+      temObj.filterText = array.airCorpName;
+      temObj.filterValue = array.airCorpCode;
+      tempArray.push(temObj);
+    });
+    if(this.postObj.internationalOrDomestic== "international"){
+      f_data = {
         Sort : {
-          title : "起飞早到晚",
+          title : "低价优先",
           c : "f_foot_sort",
           type : 1,
           key : "sortTypes",
           listData : [
             {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
-            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
-            {sortText: "起飞晚到早", sortValue: "isDesc_true"}
-          ]
+            {sortText: "耗时短优先", sortValue: 3}]
         },
         Screen : {
           title : "筛选", /*名字*/
@@ -317,31 +356,10 @@ var fSingleList = {
                 filterValue : "true"
               }],
               sortNumber : 1,
-              title : "共享"
+              title : "共享航班"
             }, {
               allowMultiSelect : 0,
               filterType : 2,
-              item : [{
-                filterText : "不限",
-                filterValue : "00-24"
-              }, {
-                filterText : "00:00 - 06:00",
-                filterValue : "00-06"
-              }, {
-                filterText : "06:00 - 12:00",
-                filterValue : "06-12"
-              }, {
-                filterText : "12:00 - 18:00",
-                filterValue : "12-18"
-              }, {
-                filterText : "18:00 - 24:00",
-                filterValue : "18-24"
-              }],
-              sortNumber : 2,
-              title : "起飞时段"
-            }, {
-              allowMultiSelect : 0,
-              filterType : 1,
               item : [
                 {
                   filterText : "经济舱",
@@ -363,16 +381,123 @@ var fSingleList = {
               ],
               sortNumber : 3,
               title : "舱位"
-            }]
+            },
+            {
+              allowMultiSelect : 0,
+              filterType : 1,
+              item : tempArray,
+              sortNumber : 3,
+              title : "航空公司"
+            }
+          ]
         },
-        Price : {
-          title : "价格",
+        Tax : {
+          title : "不含税费",
           c : "f_tax_sort",
           type : 0,
           key : 'tax',
-          listData : ["从低到高", "从高到低"]
+          listData : ["含税费", "不含税费"]
         }
-      }, that = this;
+      };
+    }else{
+      f_data = {
+        Sort: {
+          title: "起飞早到晚",
+          c: "f_foot_sort",
+          type: 1,
+          key: "sortTypes",
+          listData: [
+            {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+            {sortText: "耗时短优先", sortValue: 3}, {sortText: "起飞早到晚", sortValue: "isDesc_false"},
+            {sortText: "起飞晚到早", sortValue: "isDesc_true"}
+          ]
+        },
+        Screen: {
+          title: "筛选", /*名字*/
+          c: "foot_screen",
+          type: 2, /*类型*/
+          key: 'filters',
+          listData: [
+            {
+              allowMultiSelect: 0,
+              filterType: 4,
+              item: [{
+                filterText: "不限",
+                filterValue: "false"
+              }, {
+                filterText: "仅看直飞",
+                filterValue: "true"
+              }],
+              sortNumber: 0,
+              title: "直飞"
+            }, {
+              allowMultiSelect: 0,
+              filterType: 3,
+              item: [{
+                filterText: "不限",
+                filterValue: "false"
+              }, {
+                filterText: "隐藏共享",
+                filterValue: "true"
+              }],
+              sortNumber: 1,
+              title: "共享"
+            }, {
+              allowMultiSelect: 0,
+              filterType: 2,
+              item: [{
+                filterText: "不限",
+                filterValue: "00-24"
+              }, {
+                filterText: "00:00 - 06:00",
+                filterValue: "00-06"
+              }, {
+                filterText: "06:00 - 12:00",
+                filterValue: "06-12"
+              }, {
+                filterText: "12:00 - 18:00",
+                filterValue: "12-18"
+              }, {
+                filterText: "18:00 - 24:00",
+                filterValue: "18-24"
+              }],
+              sortNumber: 2,
+              title: "起飞时段"
+            }, {
+              allowMultiSelect: 0,
+              filterType: 1,
+              item: [
+                {
+                  filterText: "经济舱",
+                  filterValue: "economy"
+                },
+                {
+                  filterText: "超级经济舱",
+                  filterValue: "economyPremium"
+                },
+                {
+                  filterText: "商务舱",
+                  filterValue: "business"
+                },
+                {
+                  filterText: "头等舱",
+                  filterValue: "first"
+                }
+
+              ],
+              sortNumber: 3,
+              title: "舱位"
+            }]
+        },
+        Price: {
+          title: "价格",
+          c: "f_tax_sort",
+          type: 0,
+          key: 'tax',
+          listData: ["从低到高", "价格"]
+        }
+      }
+    }
       if (footer) {
         footer.data = f_data;
         footer.callback = that.filerCallBack;

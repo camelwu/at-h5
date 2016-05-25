@@ -38,15 +38,31 @@
 				</div>
 				<ul class="flight_ul"></ul>
 				<div id="loadMore">点击加载更多信息...</div>
+				<P id="no_flight_data">没有找到符合条件的航班!</P>
 			</div>
 		</div>
 	</body>
 	<script id="template_flight_single_list" type="text/template">
 		<% flightInfos.forEach(function(item, index){%>
-		<li data-set-id ="<%=item.setID %>">
+		<li class = " singleFlight" data-set-id ="<%=item.setID %>">
 		<div class="seat_price">
-		<p class="seat"><%= item["segmentsLeave"][0].cabinClassName %></p>
-		<p class="priceNumber"><span class="money">￥</span><%= item["totalFareAmountExc"] %></p>
+      <%if(fSingleList.postObj.internationalOrDomestic == "international"){%>
+      <%if(Number(fSingleList.postObj.hasTax)){%>
+      <p class="priceNumber">
+        <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+        <span class="tax_cost">含税总价</span>
+      </p>
+      <%}else{%>
+      <p class="priceNumber">
+        <span class="money">￥</span><%= item["totalFareAmountADT"] %>
+        <span class="tax_cost">税费￥<%= item["totalTaxAmountADT"] %></span>
+      </p>
+      <% }%>
+      <% }else{%>
+      <p class="priceNumber domi">
+        <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+      </p>
+      <% }%>
 		</div>
 		<div class="time_airport">
 		<div class="left_info">
@@ -63,16 +79,20 @@
 		</div>
 		<div class="middle">
 		<span class="timeCost"><%= parseInt(item["segmentsLeaveTotalTravelTime"] / 60) + 'h' + item["segmentsLeaveTotalTravelTime"] % 60 + 'm' %></span>
-		<span class="arrow_word"></span>
-		<span class="transferCity">莫斯科</span>
+      <%if(item.segmentsLeave.length>1){%>
+        <span class="arrow_word"></span>
+        <span class="transferCity"><%= item.segmentsLeave[0].cityNameTo %></span>
+      <%}else{%>
+         <span class="arrow"></span>
+      <% }%>
 		</div>
-
 		</div>
 		<p class="flight_detail">
-		<!-- <span class="airCropIcon"><img  src="" /></span>-->
+		 <span class="airCropIcon"><img  src=" <%= item.airwayLogo %>" /></span>
 		<span class="airCropName"><%= item["segmentsLeave"][0].airCorpName %></span>
 		<span><%= item["segmentsLeave"][0].airCorpCode %><%= item["segmentsLeave"][0].flightNo %></span>
 		<span><%= item["segmentsLeave"][0].planeName %></span>
+    <span><%= item["segmentsLeave"][0].cabinClassName %></span>
 		<!-- <span>经济舱</span>-->
 		<%if(item["isLeaveShareFlight"]){%>
 		<span>共享</span>
