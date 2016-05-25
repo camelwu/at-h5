@@ -133,9 +133,13 @@ var roomUpGrade = {
 				that.chooseRoom(travelersInput);
 				that.dateDeal().delayLoadImage().addEvent(travelersInput);
 				//map
-				at.map.createMap(1.297839,103.848437);
-				at.map.markHotel(1.297839,103.848437,"");
-				at.map.moveCenterToHotelLocation(1.297839,103.848437);
+				var dataMap = resultData.data.hotels[0].hotelGenInfo;
+				console.log(dataMap)
+				latitude = dataMap.latitude-0;
+				longitude = dataMap.longitude-0;
+				at.map.createMap(latitude,longitude);
+				at.map.markHotel(latitude,longitude,"");
+				at.map.moveCenterToHotelLocation(latitude,longitude);
 			}
 		} else {
 			$("#preloader").fadeOut();
