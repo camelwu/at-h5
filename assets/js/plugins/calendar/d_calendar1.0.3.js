@@ -189,7 +189,9 @@
                 nowyear = nowDate.getFullYear(),
                 nowmonth = nowDate.getMonth(),
                 nowdate = nowDate.getDate();
+
             disableDate = this.disableDate;
+
             this.dateWarp = dateWarp = document.createElement('div');
             dateWarp.className = 'calendar';
             dateWarp.innerHTML = this._template.join('');

@@ -43,12 +43,8 @@
 #popup_content {
     background-color: #fff;
     /*border-radius: 3px;*/
-<<<<<<< HEAD
     width: 100%;
     min-width: 280px;
-=======
-    min-width: 290px;
->>>>>>> rem
 }
 
 .layer {
@@ -58,11 +54,7 @@
 }
 
 #popup_more {
-<<<<<<< HEAD
     width: 100%;
-=======
-    min-width: 300px;
->>>>>>> rem
     font-size: 12px;
     line-height: 16px;
     color: #484848;
@@ -70,7 +62,6 @@
     overflow-y: scroll;
     pointer-events: auto;
     -webkit-pointer-events: auto;
-<<<<<<< HEAD
     overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
 }
@@ -78,8 +69,6 @@
 #popup_more.overflow_touch {
     overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
-=======
->>>>>>> rem
 }
 
 #popup_message {

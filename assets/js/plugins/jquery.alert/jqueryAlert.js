@@ -263,15 +263,11 @@
                 } catch (e) { /* requires jQuery UI draggables */ }
             }
 
-<<<<<<< HEAD
             //阻止遮罩层事件传递
-=======
->>>>>>> rem
             $("#popup_overlay").on("touchstart", function (event) {
                 event.preventDefault();
                 event.stopPropagation();
             });
-<<<<<<< HEAD
 
             //ios safari 浏览器浮层滑动问题   如果浮层有可滑动内容时才处理
             if (this._checkIosSafari() && $("#popup_more").length > 0) {
@@ -329,10 +325,6 @@
             var ua = navigator.userAgent;
             return !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) && ua.indexOf('AppleWebKit') > -1;
         },
-=======
-        },
-
->>>>>>> rem
         _remove: function () {
             $("#popup-overlay").remove();
             $(".snap-content").css("overflow", "auto");

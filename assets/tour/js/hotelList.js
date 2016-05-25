@@ -14,7 +14,7 @@ var hotelList = {
 
 	CultureName : "zh-CN",
 
-	requestUrl : "",
+	requestUrl : "http://10.2.22.239:8888/api/GetServiceApiResult",
 
 	eventHandler : function(target, eventType, handle) {
 		if (document.addEventListener) {
@@ -109,7 +109,7 @@ var hotelList = {
 						ForeEndType : ForeEndType,
 						Code : Code
 					};
-					questUrl = "";
+					questUrl = questUrl || that.requestUrl || "";
 					vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 				};
 				//footer  begin
@@ -168,9 +168,6 @@ var hotelList = {
 				}
 				footer.filters.init();
 				//footer  end
-
-
-
 
 
 				//  恢复上次选中的酒店星级
