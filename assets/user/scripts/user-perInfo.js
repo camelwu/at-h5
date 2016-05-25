@@ -213,7 +213,6 @@ function u_perInfo(){
     }
     changeInfo_name(amend_btn);
 
-
     //绑定新手机号
     function changeInfo_mobile(obj){
         obj.onclick = function(){
