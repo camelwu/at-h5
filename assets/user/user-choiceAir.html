@@ -105,7 +105,7 @@
 					<li class="countries-wrap">
                 <b class="open_arw open_pho"></b>
                 <div>发证国家</div>
-                <div class="country_btn cardCountry" data-code="CN" >中国</div>
+                <div class="country-btn cardCountry" data-code="CN" >中国</div>
 					</li>
 				</ul>
             <div class="addtra_title">其他信息</div>
@@ -113,7 +113,7 @@
 					<li class="countries-wrap">
                 <b class="open_arw open_pho"></b>
                 <div>国籍</div>
-                <div class="country_btn country" data-code="CN" >中国</div>
+                <div class="country-btn country" data-code="CN" >中国</div>
 					</li>
 					<li>
                 <div>性别</div>
@@ -182,26 +182,23 @@
 
     <!--国籍选择开始-->
     <div class="all_elements country-cho-wrap">
-	<div class="header">
-		<a href="javascript:;" class="header-back name-illustrate country-hidden "><i class="icons go-back"></i></a>
-		<div class="cl_search">
-			<input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
-			<i></i>
-		</div>
-	</div>
-
-	<!--国籍弹窗开始-->
-	<ul class="country-list-searched"></ul>
-	<!--国籍弹窗结束-->
+      <div class="header country_header">
+        <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
+        <div class="cl_search">
+          <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+          <i class="icon_common"></i>
+        </div>
+      </div>
+      <!--国籍弹窗开始-->
+      <ul class="country-list-searched"></ul>
+      <!--国籍弹窗结束-->
 
       <div class="content">
-		<div class="country-wrap" id="country-wrap">
-			<!--<ul class="country-list">-->
-			<!--<li></li>-->
-			<!--</ul>-->
-		</div>
-	</div>
+        <div class="country-wrap" id="country-wrap">
+        </div>
+      </div>
     </div>
+    <!--国籍选择结束-->
 
     <!-- 填写姓名说明页-->
     <div class="fillName_page all_elements" id="fillName_page">
@@ -547,8 +544,8 @@
 		if (window.opener) {
 			window.close();
 		} else {
-			if(window.parent.document.getElementById("ticket-wrap") !=null) {
-				window.parent.document.getElementById("ticket-wrap").style.display = "block";
+			if(window.parent.document.getElementById("hftPage") !=null) {
+				window.parent.document.getElementById("hftPage").style.visibility = "visible";
 			}
 			ifrCilent.parentNode.removeChild(ifrCilent);
 		}
@@ -560,8 +557,8 @@
 	})
 
 	function submit_t() {
-		if(window.parent.document.getElementById("ticket-wrap") !=null) {
-			window.parent.document.getElementById("ticket-wrap").style.display = "block";
+		if(window.parent.document.getElementById("hftPage") !=null) {
+			window.parent.document.getElementById("hftPage").style.visibility = "visible";
 		}
 		 GoBackData();
 		ifrCilent.parentNode.removeChild(ifrCilent);
