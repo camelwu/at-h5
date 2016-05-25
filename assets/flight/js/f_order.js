@@ -432,9 +432,9 @@ var fOrder = {
     console.log(data);
     var tempString1 = "", outputString1 = "", tempString2 = "", outputString2 = "", that = fOrder;
     tempString1 = $("#template_flight_summary").html();
-    outputString1 = ejs.render(tempString1, data);
+    outputString1 = ejs.render(tempString1, {flightInfo: data});
     tempString2 = $("#template_flight_cost_seat").html();
-    outputString2 = ejs.render(tempString2, data);
+    outputString2 = ejs.render(tempString2,  {flightInfo: data});
     $(".date-week-port").eq(0).html(outputString1);
     $(".seat-price-cost").eq(0).html(outputString2);
     return this;
@@ -443,7 +443,7 @@ var fOrder = {
   priceTags: function () {
     var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.money_number');
     tempString1 = $("#template_flight_price").html();
-    outputString1 = ejs.render(tempString1, data);
+    outputString1 = ejs.render(tempString1, {flightInfo: data});
     $(".priceDetailInfo").eq(0).html(outputString1);
     moneyNumber.innerHTML = data.priceTotal;
     return this;

@@ -320,7 +320,7 @@ var fSingleList = {
     if(this.postObj.internationalOrDomestic== "international"){
       f_data = {
         Sort : {
-          title : "起飞早到晚",
+          title : "低价优先",
           c : "f_foot_sort",
           type : 1,
           key : "sortTypes",
