@@ -200,7 +200,7 @@
             if(vlm.Utils.validate.chiName(u_realname))
             {
                 var Parameters={
-                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\"}",
+                    "Parameters": "{\"MemberId\":\""+memberid+"\",\"CultureName\":\"\",\"FirstName\":\""+u_realname+"\",\"Salutation\":\""+UserSex+"\"}",
                     "ForeEndType": 3,
                     "Code": "0056"
                 };
@@ -215,7 +215,6 @@
         }
     }
     changeInfo_name(amend_btn);
-
 
     //绑定新手机号
     function changeInfo_mobile(obj){
