@@ -46,16 +46,16 @@ em{ font-style:normal}
     text-align: center;
 }
 .hotel_user_icon{
-    width: 24px;
-    height: 24px;
+    width: .48rem;
+    height: .48rem;
     background: url("../../images/hotelbtn.png") no-repeat;
-    background-size: 23px 150px;
+    background-size: .46rem 3rem;
 }
 i.left{
-    background-position:  0 -55px;
+  background-position: 0 -1rem;
 }
 i.right{
-    background-position: 0 -27px;
+  background-position: 0 -0.57rem;
 }
 .hotel_user_detail{
     width: 100%;
@@ -85,7 +85,7 @@ i.right{
     border-right: 0 solid #ccc;
 }
 .hotel_user_detail_phone,.hotel_user_detail_Email{
-    height: 1rem;
+    height: 0.8rem;
 }
 .hotel_user_detail_phone p,.hotel_user_detail_Email p{
     width: 1.2rem;
@@ -152,7 +152,7 @@ i.right{
     margin-top: 18px;
     margin-left: 2px;
 }
-/*费用明细*/
+/*璐圭敤鏄庣粏*/
 .hotel_detail{
     display: none;
 }
@@ -173,7 +173,7 @@ i.right{
     left: 0;
     bottom: 0;
 }
-/*原先*/
+/*鍘熷厛*/
 .uo_hid{
     width:100%;
     border-bottom:1px solid #d6d6d6;

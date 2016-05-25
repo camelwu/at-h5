@@ -82,7 +82,7 @@
   var AjaxAdapter = function(){
     var Adapter = {
       /**
-       * 景 列表页
+       * 景 列表
        * @param data
        * @returns {Array}
        */
@@ -131,7 +131,7 @@
 
   var Method = {
     /**
-     * 景 首页 热门城市
+     * 景 列表
      * @param dom
      * @param data
      */
@@ -139,7 +139,7 @@
       AjaxAdapter().callAjaxAdapter("m_scenic_list",{});
     },
     /**
-     * 景 首页 热门城市
+     * 景 列表
      * @param json
      */
     m_scenic_listCallback:function(json){
@@ -150,7 +150,15 @@
         tplString = $("#tpl_scenic_list").html();
         //console.log(json.data.lists);
         outString = ejs.render(tplString,{lists:json.data.lists});
-        $("#js_scenic_list").html(outString);
+        $("#js_scenic_list").html(outString).click(function(e){
+          var e = e || window.event,
+            tar = e.target || e.srcElement;
+            tar = $(tar).closest("li")[0];
+          if(tar.nodeName.toLowerCase() === 'li') {
+            var packageid = tar.getAttribute("data-code");
+            window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;
+          }
+        });
       }else{
         console.log(json);
       }
