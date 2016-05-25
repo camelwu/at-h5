@@ -338,7 +338,11 @@ var footer = (function() {
 			case "sortTypes":
 				// 排序
 				for (; i < l; i++) {
+<<<<<<< HEAD
 					css = i == 0 ? ' class="cur"' : '';
+=======
+					css = i == 0&&i == "不限" ? ' class="cur"' : '';
+>>>>>>> rem
 					listr += '<li' + css + ' data-val="' + d[i].sortValue + '">' + d[i].sortText + '<i></i></li>';
 				}
 				ulstr = wrapper[0] + listr + wrapper[1];
@@ -490,7 +494,14 @@ var footer = (function() {
 		},
 		showItems : function(n, t) {
 			if (t == 0) {
+<<<<<<< HEAD
 				that.request();
+=======
+				if(box.childNodes[n].id==0){
+
+        }
+        that.request();
+>>>>>>> rem
 				return;
 			}
 			// 显示要筛选的列表内容
