@@ -1,13 +1,11 @@
 /**
  * Created by changlv on 2016/1/13.
  */
-function init(){
+  function init(){
     var email = localStorage.email;
     var phone = localStorage.phone;
     var password = localStorage.password;
     var memberid = localStorage.memberid;
-    localStorage.news = "true";
-    localStorage.promotion = "true";
     var Parameters={
         "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
         "ForeEndType": 3,
@@ -27,23 +25,23 @@ function init(){
     var array = title.innerHTML;
     var head = array.split("/");
     function link(obj1,obj2,obj3){
-        obj1.onclick = function(){
-            link_page.style.display = "block";
-            u_setting.style.display = "none";
-            contactus.style.display = "none";
-            title.innerHTML = obj2;
-            obj3.style.display = "block";
-        }
+      obj1.onclick = function(){
+        link_page.style.display = "block";
+        u_setting.style.display = "none";
+        contactus.style.display = "none";
+        title.innerHTML = obj2;
+        obj3.style.display = "block";
+      }
     }
     link(setting,head[0],u_setting);
     link(verifyName,head[1],contactus);
+
     function close(obj){
         obj.onclick = function(){
             link_page.style.display = "none";
         };
     }
     close(close_page);
-
 
     if(localStorage.getItem('login') != 1)
     {
@@ -56,7 +54,6 @@ function init(){
 
   function mycallback(ret) {
     var myJson = ret;
-      //console.log(myJson.data[0].nickName);
     vlm.loadend();
     if (myJson.success) {
         var user_name = $("#user_name")[0];
@@ -82,30 +79,27 @@ function init(){
   }
 
   //登录之后点击全部订单的链接会改变
-  (function(){
-      document.querySelector('.my-order').onclick=function(){
-          if(localStorage.getItem('login') == 1)
-          {
-              this.href='user-allorder.html';
-    };
-    document.querySelector('#common-msg').onclick=function(){
+  (function() {
+    document.querySelector('.my-order').onclick = function () {
+      if (localStorage.getItem('login') == 1) {
+        this.href = 'user-allorder.html';
+      }
+      ;
+      document.querySelector('#common-msg').onclick = function () {
 
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-oftenInfo.html';
-        }else{
-            this.href="user-login.html?oftenInfo";
+        if (localStorage.getItem('login') == 1) {
+          this.href = 'user-oftenInfo.html';
+        } else {
+          this.href = "user-login.html?oftenInfo";
         }
-    };
+      };
 
-    document.querySelector('#unloginShow').onclick=function(){
-        if(localStorage.getItem('login') == 1)
-        {
-            this.href='user-perInfo.html';
+      document.querySelector('#unloginShow').onclick = function () {
+        if (localStorage.getItem('login') == 1) {
+          this.href = 'user-perInfo.html';
         }
-    };
-
-
+      };
+    }
   })();
 
   $('#about_at').click(function(){
@@ -114,6 +108,7 @@ function init(){
       $('#link_about_us').hide();
     });
   });
+
   //设置里的消息开关
   function ifOpen(){
     var b = window.event.srcElement;
