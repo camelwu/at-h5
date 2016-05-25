@@ -1,397 +1,403 @@
 ul,li{
-    list-style: none;
+  list-style: none;
 }
 .snap-content{
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    z-index: 2;
-    overflow: auto;
-    transform: translate3d(0, 0, 0);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  overflow: auto;
+  transform: translate3d(0, 0, 0);
 }
 .hotel_lists{
-    width: 100%;
-    margin-top: 0.88rem;
-    list-style-type: none;
-    background: #fff;
-    border-top: 1px solid #dddddd;
+  width: 100%;
+  margin-top: 0.88rem;
+  list-style-type: none;
+  background: #fff;
+  border-top: 1px solid #dddddd;
 }
 .hotel_list{
-    position: relative;
-    margin-right: 0.15rem;
-    height: 1.7rem;
+  position: relative;
+  margin-right: 0.15rem;
+  height: 2rem;
 }
 .hotel_picture{
-    position: absolute;
-    width: 1.7rem;
-    height: 1.7rem;
+  position: absolute;
+  width: 1.7rem;
+  height: 2rem;
 }
 .hotel_picture img{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: url("../../images/hotelListerrorpic.png") no-repeat;
-    background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: url("../../images/hotelListerrorpic.png") no-repeat;
+  background-size: 100% 100%;
 }
 .hotel_content{
-    display: inline-block;
-    margin-right: 0;
-    overflow: hidden;
-    margin-left: 1.88rem;
-    border-bottom: 1px solid #e6e6e6;
+  height: 2rem;
+  display: inline-block;
+  margin-right: 0;
+  overflow: hidden;
+  margin-left: 1.88rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 .hotel_name{
-    width:5.2rem;
-    font-size: 0.32rem;
-    font-weight: bold;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: #333;
-    margin-top: .1rem;
+  width:5.2rem;
+  font-size: 0.32rem;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #333;
+  margin-top: .1rem;
 }
 .hotel_content_score{
-    color: #999;
-    font-size: 0.24rem;
-    margin-top: 0.08rem;
+  color: #999;
+  font-size: 0.24rem;
+  margin-top: 0.08rem;
 }
 .hotel_content_price{
-    position: absolute;
-    right: 0.2rem;
-    text-align: right;
-    top: 50%;
-    height: 0.3rem;
-    line-height: 0.3rem;
-    margin-top: -0.15rem;
-    color: #ff5b13;
-    font-size: 0.36rem;
-    font-weight: bold;
+  position: absolute;
+  right: 0.2rem;
+  text-align: right;
+  top: 50%;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  margin-top: -0.15rem;
+  color: #ff5b13;
+  font-size: 0.36rem;
+  font-weight: bold;
 }
 .hotel_content_grade{
-    color: #999;
-    font-size: 0.24rem;
-    margin-top: 0.08rem;
+  color: #999;
+  font-size: 0.24rem;
+  margin-top: 0.08rem;
 }
 .hotel_content_wifi{
-    display: inline-block;
-    width: .4rem;
-    height: .4rem;
-    background-image: url(../../images/icon-h.png);
-    background-repeat: no-repeat;
-    background-size: 402px 174px;
-    background-position: -77px -14px;
-    vertical-align: -0.16rem;
-    margin-left: .2rem;
+  display: inline-block;
+  width: .4rem;
+  height: .4rem;
+  background-image: url(../../images/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 402px 174px;
+  background-position: -77px -14px;
+  vertical-align: -0.16rem;
+  margin-left: .2rem;
 }
 .hotel_content_transfer{
-    display: inline-block;
-    width: .4rem;
-    height: .4rem;
-    background-image: url(../../images/icon-h.png);
-    background-repeat: no-repeat;
-    background-size: 402px 174px;
-    background-position: -37px -14px;
-    vertical-align: -0.16rem;
+  display: inline-block;
+  width: .4rem;
+  height: .4rem;
+  background-image: url(../../images/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 402px 174px;
+  background-position: -37px -14px;
+  vertical-align: -0.16rem;
 }
 .hotel_content_div1{
-    height: .3rem;
-    width: .7rem;
-    line-height: .3rem;
-    color: white;
-    text-align: center;
-    background-color: #ffb412;
-    margin-right: .04rem;
-    position: absolute;right:.2rem;
+  height: .3rem;
+  width: .7rem;
+  line-height: .3rem;
+  color: white;
+  text-align: center;
+  background-color: #ffb412;
+  margin-right: .04rem;
+  padding: .04rem;
+  position: absolute;right:.2rem;
 
 }
 .hotel_content_address{
-    font-size: 0.2rem;
-    line-height: .4rem;
+  font-size: 0.2rem;
+  line-height: .4rem;
 }
 /*没有更多数据*/
 .load-more{
-    margin-bottom: .98rem;
-    text-align: center;
-    height: .6rem;
-    line-height: .8rem;
+  margin-bottom: .98rem;
+  text-align: center;
+  height: .6rem;
+  line-height: .8rem;
 }
 /*footer开始*/
 .hl-bottom{
-    width:100%;
-    height: .98rem;;
-    position:fixed;
-    bottom: 0;
-    text-align: center;
-    color:white;
-    z-index: 999999;
-    display: flex;
+  width:100%;
+  height: .98rem;;
+  position:fixed;
+  bottom: 0;
+  text-align: center;
+  color:white;
+  z-index: 999999;
+  display: flex;
 }
 .icons{
-    background-image: url(../../images/ui/icons.png);
-    background-repeat: no-repeat;
-    background-size: 243px 160px;
-    display:inline-block;
+  background-image: url(../../images/ui/icons.png);
+  background-repeat: no-repeat;
+  background-size: 243px 160px;
+  display:inline-block;
 }
 .fo-div{
-    text-align: center;
-    width: 33.3333%;
-    color: white;
-    overflow:hidden;
-    position: relative;
-    background: rgb(74, 74, 74);
+  text-align: center;
+  width: 33.3333%;
+  color: white;
+  overflow:hidden;
+  position: relative;
+  background: rgb(74, 74, 74);
 }
 .hl-icon3{
-    display:block;
-    width:15px;
-    height:15px;
-    margin:0 auto;
-    margin-top: 6px;
-    margin-bottom: 5px;
-    background:url("../../images/ui/sort.png");
-    background-size: 15px 15px;
+  display:block;
+  width:15px;
+  height:15px;
+  margin:0 auto;
+  margin-top: 6px;
+  margin-bottom: 5px;
+  background:url("../../images/ui/sort.png");
+  background-size: 15px 15px;
 }
 .hl-icon-4{
-    background:url("../../images/ui/filter.png");
-    background-size: 15px 15px;
+  background:url("../../images/ui/filter.png");
+  background-size: 15px 15px;
 }
 .hl-icon-5{
-    background:url("../../images/ui/location.png");
-    background-size: 15px 15px;
+  background:url("../../images/ui/location.png");
+  background-size: 15px 15px;
 }
 .fo-div .red-tip{
-    position: absolute;
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    background: red;
-    border-radius: 4px;
-    right: 36%;
-    top: 15%;
+  position: absolute;
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: red;
+  border-radius: 4px;
+  right: 36%;
+  top: 15%;
 }
 .h-font1{
-    color:#999999;
+  color:#999999;
 }
 /*弹层*/
 .r-div{
-    width: 100%;height:100%;
-    position: fixed;
-    background-color: black;
-    opacity: 0.5;
-    display: none;
-    z-index: 2000;
+  width: 100%;height:100%;
+  position: fixed;
+  background-color: black;
+  opacity: 0.5;
+  display: none;
+  z-index: 2000;
 }
 .rank{
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    bottom:-550px;
-    z-index: 2000000;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  bottom:-550px;
+  z-index: 2000000;
 }
 .r-li{
-    width: 100%;
-    height:.8rem;
-    line-height: .8rem;
-    border-bottom: 1px solid #d0d0d3;
-    color:#b3b2b4;
-    padding-left: .4rem;
-    position: relative;
+  width: 100%;
+  height:.8rem;
+  line-height: .8rem;
+  border-bottom: 1px solid #d0d0d3;
+  color:#b3b2b4;
+  padding-left: .4rem;
+  position: relative;
 }
 .hl-icon4{
-    display:inline-block;
-    width:18px;
-    height:16px;
-    position: absolute;
-    right:.4rem;
-    top:.2rem;
-    background-image: url(../../images/ui/icons1.png);
-    background-size: 400px 120px;
-    background-position:77% 4%;
+  display:inline-block;
+  width:18px;
+  height:16px;
+  position: absolute;
+  right:.4rem;
+  top:.2rem;
+  background-image: url(../../images/ui/icons1.png);
+  background-size: 400px 120px;
+  background-position:77% 4%;
 }
 .hl-icon5{
-    display:inline-block;
-    width:18px;
-    height:16px;
-    position: absolute;
-    right:.4rem;
-    top:.2rem;
-    background-image: url(../../images/ui/icons1.png);
-    background-size: 400px 120px;
-    background-position:77% 4%;
+  display:inline-block;
+  width:18px;
+  height:16px;
+  position: absolute;
+  right:.4rem;
+  top:.2rem;
+  background-image: url(../../images/ui/icons1.png);
+  background-size: 400px 120px;
+  background-position:77% 4%;
 }
 /*
-    ɸѡ��
+    ????
 */
 .screen{
-    width: 100%;
-    padding: 1px;
-    background-color: white;
-    position: fixed;
-    bottom:-550px;
-    z-index: 2000000;
-    height:490px;
+  width: 100%;
+  padding: 1px;
+  background-color: white;
+  position: fixed;
+  bottom:-550px;
+  z-index: 2000000;
+  height:490px;
 }
 .hl_sc_chil{
-    position:absolute;
-    left:0;top:0;right:0;bottom:0;
-    overflow:auto;
+  position:absolute;
+  left:0;top:0;right:0;bottom:0;
+  overflow:auto;
 }
 .screen h4{
-    margin-top: 13px;
-    margin-left: 15px;
+  margin-top: 13px;
+  margin-left: 15px;
 }
 .s-ul{
-    margin-top: 12px;
-    margin-left: 15px;
-    margin-right: 15px;
-    list-style-type: none;
-    overflow: hidden;
-    border-bottom: 1px solid #d0d0d3;
+  margin-top: 12px;
+  margin-left: 15px;
+  margin-right: 15px;
+  list-style-type: none;
+  overflow: hidden;
+  border-bottom: 1px solid #d0d0d3;
 }
 .s-li{
-    float: left;
-    width:29%;height: 30px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid #d0d0d3;
-    color: #686869;
-    line-height: 30px;
-    overflow: hidden;
+  float: left;
+  width:29%;height: 30px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #d0d0d3;
+  color: #686869;
+  line-height: 30px;
+  overflow: hidden;
 }
 .s-li1{
-    float: left;
-    width:29%;height: 30px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid #ffb412;
-    color: #ffb412;
-    line-height: 30px;
+  float: left;
+  width:29%;height: 30px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ffb412;
+  color: #ffb412;
+  line-height: 30px;
 }
 .s-but{
-    width: 94%;height: 36px;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-    line-height:35px;
-    color: white;
-    border-radius: 5px;
-    background-color:#ffb413;
+  width: 94%;height: 36px;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height:35px;
+  color: white;
+  border-radius: 5px;
+  background-color:#ffb413;
 
 }
 .s-submit{
-    width: 94%;height: 36px;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-top: 15px;
-    margin-bottom: 20px;
+  width: 94%;height: 36px;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 .s-but-checked{
-    position: fixed;
-    left:0;
-    bottom:0;
+  position: fixed;
+  left:0;
+  bottom:0;
 }
 .s-but1{
-    width: 100%;
-    height: 70px;
-    background-color: white;
-    opacity: 1;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  opacity: 1;
 
 }
 /*
-    λ�ÿ�
+    λ???
 */
 .location{
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    bottom:-1550px;
-    z-index: 2000000;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  bottom:-1550px;
+  z-index: 2000000;
 }
 .loca_con{
-    position:absolute;
-    left:0;top:0;
-    right: 0;
-    overflow:auto;
+  position:absolute;
+  left:0;top:0;
+  right: 0;
+  overflow:auto;
 
 }
 .r-container{
-    padding-bottom: 100px;
+  padding-bottom: 100px;
 }
 .l-ul{
-    width: 94%;
-    margin-left: 3%;
-    margin-right: 3%;
-    list-style-type: none;
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  list-style-type: none;
 }
 .l-li{
-    width: 100%;height:44px;
-    border-bottom: 1px solid #d0d0d3;
-    overflow:hidden;
+  width: 100%;height:44px;
+  border-bottom: 1px solid #d0d0d3;
+  overflow:hidden;
 }
 .l-liFirst p {
-    color:#000;
+  color:#000;
 }
 #l-liTem {
-    display:none;
+  display:none;
 }
 .l-p{
-    float: left;
-    margin-top: 15px;
-    color: #999999;
+  float: left;
+  margin-top: 15px;
+  color: #999999;
 }
 .l-icon{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background-image: url(../../images/ui/icons1.png);
-    background-size: 400px 120px;
-    background-position:69% 4.5%;
+  float: right;
+  display: block;
+  margin-top: 15px;
+  width: 17px;height:17px;
+  background-image: url(../../images/ui/icons1.png);
+  background-size: 400px 120px;
+  background-position:69% 4.5%;
 }
 .l-icon1{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background: url(../../images/ui/icons1.png) -265px -6px;
-    background-size: 400px 120px;
+  float: right;
+  display: block;
+  margin-top: 15px;
+  width: 17px;height:17px;
+  background: url(../../images/ui/icons1.png) -265px -6px;
+  background-size: 400px 120px;
 }
 .l-li2 .l-icon1{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background:url(../../images/ui/icons1.png) -236px -6px;
-    background-size:400px 120px;
+  float: right;
+  display: block;
+  margin-top: 15px;
+  width: 17px;height:17px;
+  background:url(../../images/ui/icons1.png) -236px -6px;
+  background-size:400px 120px;
 }
 .l-icon1First{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background: url(../../images/ui/icons1.png) -236px -6px;
-    background-size: 400px 120px;
+  float: right;
+  display: block;
+  margin-top: 15px;
+  width: 17px;height:17px;
+  background: url(../../images/ui/icons1.png) -236px -6px;
+  background-size: 400px 120px;
 }
 .l-li3 .l-icon1First{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;height:17px;
-    background: url(../../images/ui/icons1.png) -265px -6px;
-    background-size: 400px 120px;
+  float: right;
+  display: block;
+  margin-top: 15px;
+  width: 17px;height:17px;
+  background: url(../../images/ui/icons1.png) -265px -6px;
+  background-size: 400px 120px;
 }
 
 /*加载更多样式*/
-
+.hotelConNo{
+  width: 2rem;
+  height: 2rem;
+  margin:auto;
+}
 
 
 
