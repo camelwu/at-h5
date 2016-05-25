@@ -5,6 +5,7 @@
   var webkit = this || (0, eval)('this');
   var val = vlm.parseUrlPara(window.location.href);
 
+
   /**
    *     监听某个节点属性是否改变
    *     //选择目标节点
@@ -86,9 +87,16 @@
        * @param data
        * @returns {Array}
        */
-      m_scenic_list:function(param){
-        var parameters =  {"Parameters" : {"DestCityCode" : val.DestCityCode}, "ForeEndType" : 3, "Code" : "0087"};
-        vlm.loadJson("",JSON.stringify(parameters),Method["m_scenic_listCallback"]);
+      m_scenic_detail:function(param){
+        var parameters=
+        {
+          "Parameters": {
+            "PackageID": val.packageID
+          },
+          "ForeEndType": 3,
+          "Code": "0088"
+        }
+        vlm.loadJson("",JSON.stringify(parameters),Method["m_scenic_detailCallback"]);
       }
     }
 
@@ -129,49 +137,7 @@
     }
   };
 
-  //init filter
-  var initFilter = function(data){
-    // 添加底部筛选
-    var f_data = {
-      sortTypes : {
-        title : "推荐排序",
-        c : "foot_sort",
-        s : 1,
-        type : 1,
-        key : 'sortTypes',
-        listData : data.data.sortTypes
-      },
-      hotelScreen : {
-        title : "筛选",
-        c : "foot_screen",
-        s : 2,
-        type : 2,
-        key : 'filters',
-        listData : data.data.filters
-      }
-    },menu_call = function(obj) {
-      Para.DestCityCode = val.DestCityCode;
-      Para.priceSortType = obj.sortTypes[0] || {};
-      Para.themeID = obj.filters || {};
-      tAjax("",Para,"0087","3",Method["m_scenic_listCallback"]);
-    };
-    if (footer) {1
-      footer.data = f_data;
-      footer.callback = menu_call;
-    }
-    footer.filters.init();
-  };
 
-  //ajax请求
-  var tAjax= function(questUrl, data, Code, ForeEndType, Callback) {
-    var that = this, dataObj = {
-      Parameters : data,
-      ForeEndType : ForeEndType,
-      Code : Code
-    };
-    questUrl = questUrl || that.requestUrl;
-    vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
-  };
 
   var Method = {
     /**
@@ -179,31 +145,51 @@
      * @param dom
      * @param data
      */
-    m_scenic_list:function(dom,data){
-      AjaxAdapter().callAjaxAdapter("m_scenic_list",{});
+    m_scenic_detail:function(dom,data){
+      AjaxAdapter().callAjaxAdapter("m_scenic_detail",{});
     },
     /**
      * 景 列表
      * @param json
      */
-    m_scenic_listCallback:function(json){
+    m_scenic_detailCallback:function(json){
       var tplString = "",outString = "";
       console.log(json);
       if(json.success){
-        Method['m_scenic_setHeaderMoreTitle'](json);
-        tplString = $("#tpl_scenic_list").html();
-        //console.log(json.data.lists);
-        outString = ejs.render(tplString,{lists:json.data.lists});
-        $("#js_scenic_list").html(outString).click(function(e){
-          var e = e || window.event,
-            tar = e.target || e.srcElement;
-            tar = $(tar).closest("li")[0];
-          if(tar.nodeName.toLowerCase() === 'li') {
-            var packageid = tar.getAttribute("data-code");
-            window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;
-          }
+        var htmlc = $("#Barcontent").html();
+        var htmlC = ejs.render(htmlc,json.data);
+        $("#barContent").html(htmlC);
+        var htmls = $("#Sceniccontent").html();
+        var htmlS = ejs.render(htmls,json.data);
+        //图片点击事件
+        var htmlb = $("#Barimages").html();
+        var htmlB = ejs.render(htmlb,{images:json.data});
+        $("#barImg").html(htmlB);
+        $(".swipebox").click(function() {
+          $('.gallery').hide(0);
+          $('.portfolio-wide').hide(0);
         });
-        initFilter(json);
+        $(".swipebox").swipebox({
+          useCSS : true,
+          hideBarsDelay : 0
+        });
+        //加载更多点击事件
+        $("#scenicContent").html(htmlS);
+        var Sheight1=$("#Sheight1")[0];
+        var Sheight2=$("#Sheight2")[0];
+        var Sheight3=$("#Sheight3")[0];
+        Sheight1.onclick =function(){
+          $(".scenic_height1").css({'height':'100%'});
+          $("#Sheight1").css({'display':'none'});
+        };
+        Sheight2.onclick =function(){
+          $(".scenic_height2").css({'height':'100%'});
+          $("#Sheight2").css({'display':'none'});
+        };
+        Sheight3.onclick =function(){
+          $(".scenic_height3").css({'height':'100%'});
+          $("#Sheight3").css({'display':'none'});
+        };
       }else{
         console.log(json);
       }
@@ -239,9 +225,5 @@
  * 入口
  */
 (function(){
-  $("#t_des").click(function(e){
-    VM.Load("t_des");
-  });
-  T.Load("js_scenic_list");
-
+  T.Load("js_scenic_detail");
 })();

@@ -1071,5 +1071,12 @@ function inpChange(id, myText) {
     }
   });
 
+  $("#h_in").click(function(){
+    VM.Load("h_in");
+  });
+
+  $("#h_out").click(function(){
+    VM.Load("h_out");
+  });
 })();
 

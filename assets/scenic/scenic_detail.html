@@ -1,447 +1,150 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚洲旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="x5-fullscreen" content="true">
-    <title>景点详情 - 亚洲旅行网</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link href="../styles/framework.css" type="text/css" rel="stylesheet">
-    <link href="../styles/style.css" type="text/css" rel="stylesheet">
-    <!--<link rel="stylesheet" type="text/css" href="css/sce_detail.css">-->
-    <link href="css/scenic.css" rel="stylesheet"/>
-    <link href="../styles/tips.css"	rel="stylesheet">
-    <link href="../css/user.css"	rel="stylesheet">
-    <link href="../styles/swipebox.css"	rel="stylesheet">
-
+<head lang="en">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="Keywords" content="亚洲旅行网">
+  <meta name="Description" content="境外专业旅行服务提供机构">
+  <title>景点详情</title>
+  <link rel="stylesheet" href="../styles/reset.css"/>
+  <link rel="stylesheet" href="css/scenicbase.css"/>
+  <link href="../styles/swipebox.css"	rel="stylesheet">
 </head>
 <body>
 <div id="preloader">
-    <div id="status">
-        <p class="center-text">
-            <br>
-            <em></em>
-        </p>
-    </div>
+  <div id="status">
+
+  </div>
+</div>
+<div class="content_detail">
+  <div class="header_scenic">
+    <a href="javascript:history.go(-1);" class="header_back" id = "g_back">
+      <div class="icon_go_back"></div>
+    </a>
+  </div>
+  <div id="js_scenic_detail" data-bind="type:'m_scenic_detail'">
+    <section class="bar_img" id = "barImg">
+    </section>
+    <section class = "bar_content" id = "barContent">
+    </section>
+    <section class = "scenic_content" id = "scenicContent">
+    </section>
+  </div>
 </div>
 
-    <div class="all-elements">
-        <div id="content" class="snap-content">
-            <a href="javascript:history.go(-1)" class="top-back"><i class="icons"></i></a>
-            <div class="sce-detail-exhi">
-                <h3>景点详情</h3>
-                <section id="packageBox" class="picBox">
-                    <div>
-                    <img src="../images/hotelDetailerrorpic.png" alt="">
-                    </div>
-                </section>
-                <!--<div id="Title" class="black-block">-->
 
-                <!--</div>-->
-            </div>
-            <ul class="sd-time">
-                <li>
-                    <b class="jd-icon s-you"></b>
-                    旅行时间：<span id="ParadeTimeFrom"> </span>至<span id="ParadeTimeTo"> </span>
-                </li>
-            </ul>
-            <ul class="spot-info">
-                <li class="no-class">
-                    <b class="jd-icon s-spe"></b>
-                    特色亮点
-                    <b class="jd-icon s-up"></b>
-                </li>
-                <li id="Feature" class="state-detail s-active">
-
-                </li>
-
-
-                <!--<li>-->
-                    <!--<b class="jd-icon s-open"></b>-->
-                    <!--营业时间-->
-                    <!--<div class="spe-state"> </div>-->
-                <!--</li>-->
-                <li>
-                    <b class="jd-icon s-addr"></b>
-                    营业地址
-                    <div id="BusinessAddress" class="spe-state"></div>
-                </li>
-                <li class="no-class">
-                    <b class="jd-icon s-combo"></b>
-                    景点费用
-                    <b class="jd-icon s-up"></b>
-                </li>
-                <li id="ScenicPackage" class="state-detail s-active" style="padding:0;margin:0;border:none;">
-
-                </li>
-
-                <li class="no-class">
-                    <b class="jd-icon s-plan"></b>
-                    行程概述
-                    <b class="jd-icon s-up"></b>
-                </li>
-                <li id="TripPlan" class="state-detail s-active">
-
-                </li>
-                <li class="no-class">
-                    <b class="jd-icon s-atten"></b>
-                    注意事项
-                    <b class="jd-icon s-down"></b>
-                </li>
-                <li id="Attention" class="state-detail">
-
-                </li>
-                <li class="no-class">
-                    <b class="jd-icon s-service"></b>
-                    服务条款
-                    <b class="jd-icon s-down"></b>
-                </li>
-                <li id="ServTerm" class="state-detail">
-
-                </li>
-                <!--<li class="no-class">-->
-                    <!--<b class="jd-icon s-spdet"></b>-->
-                    <!--景点详情-->
-                    <!--<b class="jd-icon s-down"></b>-->
-                <!--</li>-->
-                <!--<li id="spotDetail" class="state-detail">-->
-                    <!--<ul class="spe-detail">-->
-                        <!--<li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>-->
-                        <!--<li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>-->
-                        <!--<li>八达岭长城，位于北京市延庆县军都山关沟古道北口是中国古代伟大的防御工程位于北京市延庆县军防御工程位于北京市延庆县</li>-->
-                    <!--</ul>-->
-                <!--</li>-->
-            </ul>
-        </div>
-    </div>
-    <script src="../js/lib/jquery.js"></script>
-    <script src="../js/lib/plugins.js"></script>
-    <script src="../js/lib/jquery.alert.js"></script>
-    <script src="../js/lib/vlm.js"></script>
-    <script src="../js/lib/template.js"></script>
-    <script src="../js/lib/custom.js"></script>
-    <script src="js/scenic_pub.js"></script>
-<script id="tpl_GetDetails_Package_Title" type="text/template">
-    {%=packageName%}
+<!--<script type ="text/template" id = "Barimg">-->
+  <!--<% for( var i=0;i< images.length;i++){ %>-->
+  <!--<img src="<%= images[i].thumbnailPhotoURL%>"alt="景点详情"/>-->
+  <!--<span class = "bar_img_num">编号：<%= packageRefNo %></span>-->
+  <!--<span class = "bar_img_page">1/20</span>-->
+  <!--<% }%>-->
+<!--</script>-->
+<script type="text/template" id="Barimages">
+  <%=console.log(images.imageGalleries.length);%>
+  <span class="bar_img_theme">景点详情</span>
+  <% if(images.imageGalleries.length==0){ %>
+  <img src="<%= images.pictureURL%>" alt="image"/>
+  <% }else{ %>
+  <a href="<%= images.imageGalleries[0].imageURL%>" class="swipebox" title="1/<%=(images.imageGalleries.length)%>">
+    <img src="<%= images.imageGalleries[0].imageURL %>" alt="image" style="height:100%;"/></a>
+  <% for(var i=1;i<images.imageGalleries.length;i++){ %>
+  <a href="<%= images.imageGalleries[i].imageURL%>" class="swipebox" title="<%= (i+1)%>/<%=(images.imageGalleries.length)%>">
+    <img src="<%= images.imageGalleries[i].imageURL%>" alt="image"/></a>
+  <% }%>
+  <span class = "bar_img_num">编号：<%= images.packageRefNo %></span>
+  <% if(images.imageGalleries.length>0) %>
+  <span class = "bar_img_page"><%=(images.imageGalleries.length)%>张</span>
+  <% } %>
 </script>
-<script id="tpl_GetDetails_Package_ScheduledTimeFrom" type="text/template">
-    {%=salesFrom%}
+<script type ="text/template" id = "Barcontent">
+  <h3 class = "bar_content_title"><%= packageName%></h3>
+  <div class="bar_content_time">
+    <p><i class = "bar_content_time_schedule"></i>预定时间: <span><%= vlm.Utils.format_date(salesFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(salesTo ,"Ymd")%></span></p>
+    <p><i class = "bar_content_time_travel"></i>预定时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
+  </div>
 </script>
-<script id="tpl_GetDetails_Package_ScheduledTimeTo" type="text/template">
-    {%=salesTo%}
-</script>
-<script id="tpl_GetDetails_Package_ParadeTimeFrom" type="text/template">
-    {%=departValidFrom%}
-</script>
-<script id="tpl_GetDetails_Package_ParadeTimeTo" type="text/template">
-    {%=departValidTo%}
-</script>
-<script id="tpl_GetDetails_Package_Feature" type="text/template">
-    <ul class="spe-detail">
-        {%=inclusiveItem%}
+<script type ="text/template"  id = "Sceniccontent">
+  <div class = "scenic_content_feature">
+    <h3><i class = "scenic_content_feature_start"></i>特色亮点</h3>
+    <ul>
+      <li><%- inclusiveItem%></li>
     </ul>
-
+  </div>
+  <!--<div class="scenic_content_time">-->
+    <!--<h3><i></i>营业时间</h3>-->
+    <!--<span><%= vlm.Utils.format_date(defaultDepartStartDate ,"hm")%></span>-->
+  <!--</div>-->
+  <div class="scenic_content_address">
+    <h3><i></i>营业地址</h3>
+    <span><%=country%> <%= destCity%></span>
+  </div>
+  <div class="scenic_content_booking">
+    <h3><i></i>景点费用</h3>
+    <ul>
+      <li class="scenic_content_booking_li">
+        <div class="scenic_content_booking_div">
+          <p class="scenic_content_booking_title">八达岭长城一日游[周一、周五使用]</p>
+          <p class="scenic_content_booking_p">
+            <span class="scenic_content_booking_dollar">￥</span>
+            <span class="scenic_content_booking_price">1208</span>
+            <span class="scenic_content_booking_pre">2人起订</span>
+          </p>
+        </div>
+        <a class="scenic_content_booking_btn">预订</a>
+      </li>
+      <li class="scenic_content_booking_li">
+        <div class="scenic_content_booking_div">
+          <p class="scenic_content_booking_title">八达岭长城一日游[周一、周五使用]</p>
+          <p class="scenic_content_booking_p">
+            <span class="scenic_content_booking_dollar">￥</span>
+            <span class="scenic_content_booking_price">1208</span>
+            <span class="scenic_content_booking_pre">2人起订</span>
+          </p>
+        </div>
+        <a class="scenic_content_booking_btn">预订</a>
+      </li>
+    </ul>
+  </div>
+  <% if(tours.length){for(var i=0 ;i< tours.length;i++){ %>
+  <div class="scenic_content_scheduling">
+    <h3><i></i>行程安排</h3>
+    <ul>
+      <li class = "scenic_height1"><%- tours[i].overview%></li>
+    </ul>
+    <i class = "scenic_content_scheduling_down" id = "Sheight1"></i>
+  </div>
+  <div class="scenic_content_notes">
+    <h3><i></i>注意事项</h3>
+    <ul>
+      <li class = "scenic_height2"><%- tours[i].importantNotes%></li>
+    </ul>
+    <i class = "scenic_content_scheduling_down" id = "Sheight2"></i>
+  </div>
+  <% }} %>
+  <div class="scenic_content_TOS">
+    <h3><i></i>服务条款</h3>
+    <ul>
+      <li class = "scenic_height3"><%- termsConditions%></li>
+    </ul>
+    <i class = "scenic_content_scheduling_down" id = "Sheight3"></i>
+  </div>
 </script>
-<script id="tpl_GetDetails_Package_BusinessAddress" type="text/template">
-    {% if(country==destCity){ %}
-        {%=destCity%}
-    {% }else{ %}
-        {%=country%} {%=destCity%}
-    {% } %}
-</script>
-<script id="tpl_GetDetails_Package_ScenicPackage" type="text/template">
 
-    {% for(var i=0,len=data.prices.length;i<len;i++){ %}
-    <li>
-        <div class="combo-name">{%=data.packageName%}</div>
-        <div class="combo-price">¥{%=data.prices[i].amount%}</div> <i class="minpax2">{% if(data.prices[i].category=="ADULT"){ %}(成人单价){% }else{ %}(儿童单价){% } %}</i> <i class="minpax">限{%=data.minPax%}人起订</i>
-        <a href="javascript:MT.CCheckLogin({%=packageID%},{% if(data.bookingFormInfo.requiredPickupPoint){ %}1{% }else{ %}0{% } %}
-        ,{% if(data.prices[i].category=="ADULT"){ %}1{% }else{ %}0{% } %},0);" class="s-reserve button-orange">预订</a>
-        <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
-        <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预订</a>-->
-    </li>
-    {% } %}
-</script>
-    <script id="tpl_GetDetails_Package_ScenicPackageFail" type="text/template">
-
-
-        <li>
-            <div class="combo-name">{%=data.packageName%}</div>
-            <div class="combo-price"></div> <!--<i class="minpax2">(成人单价)</i> <i class="minpax">限2人起订</i>-->
-            <a href="javascript:void(0);/*MT.CCheckLogin({%=packageID%},0,1,1);*/" class="stopgray s-reserve button-orange">预订</a>
-            <!--Object {email: "test@qq.com", Password: "123456", CultureName: ""}-->
-            <!--<a href="../scenic/scenic_order_detail.html?PackageID={%=packageID%}" class="s-reserve button-orange">预订</a>-->
-        </li>
-
-    </script>
-<script id="tpl_GetDetails_Package_TripPlan" type="text/template">
-    {%=overview%}
-</script>
-<script id="tpl_GetDetails_Package_Attention" type="text/template">
-    {%=importantNotes%}
-</script>
-<script id="tpl_GetDetails_Package_ServTerm" type="text/template">
-    {%=termsConditions%}
-</script>
-
-<script>
-    /*景点 目标城市列表页MT*/
-    (function(){
-
-        var val = vlm.parseUrlPara(window.location.href);
-        var themeId = "",OnlyForAdult,MinPaxType,OldMinPax, NewMinPax,MaxPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
-
-        var tpl1 = [
-            '<div>',
-            '{% var imgs = imageGalleries;imgl = imgs.length; if(imgl==0){ %}',
-            '<img src="{%=pictureURL%}" alt="image">',
-            '{% }else{ %}',
-            '<a href="{%=imgs[0].imageURL%}" class="swipebox" title="1/{%=(imgl)%}">' +
-            '<img src="{%=imgs[0].imageURL%}" alt="image">',
-            '{% for(var i=1;i < imgl;i++){ %}',
-            '<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}">' +
-            '<img src="{%=imgs[i].imageURL%}" alt="image"></a>',
-            '{% }} %}',
-            '<div class="pd-mb">',
-            '<div>{%=packageName%}</div>',
-            '<div>产品编号：{%=packageRefNo%}</div>',
-            '</div>',
-            '{% if(imgl>0){ %}',
-            '<div style="position:absolute;top:12%;right:15px;font-size: 1.6rem;color:#ffffff;">{%=(imgl)%}张</div>',
-            '{% } %}',
-            '</div>'
-        ].join('');
-
-        /**
-         * 加载详情
-         * @constructor
-         */
-        MT.CLoadGetDetails = function(){
-
-
-            var param=
-            {
-                "Parameters": {
-                    "PackageID": val.packageID
-                },
-                "ForeEndType": 3,
-                "Code": "0088"
-            }
-
-            vlm.loadJson("",JSON.stringify(param),MT.GetDetailsCallback);
-
-        }
-
-        MT.getTime = function(date){
-            return date.replace(/(\d{2,4}-\d{1,2}-\d{1,2})T(\d{2}:\d{2}:\d{2})/,function(){
-                return arguments[1];
-            });
-        }
-        /**
-         * 加载详情 [CLoadGetDetails Callback]
-         * @param data
-         * @constructor
-         */
-        MT.GetDetailsCallback = function(data){
-            var json=data;
-            console.log(json);
-            if(json.success){
-                var data=json.data;
-                ExtendData = data;
-                data.departValidFrom = MT.getTime(data.departValidFrom);
-                data.departValidTo = MT.getTime(data.departValidTo);
-                data.salesFrom = MT.getTime(data.salesFrom);
-                data.salesTo = MT.getTime(data.salesTo);
-
-
-                var tpl_GetDetails_Package_Title = template("tpl_GetDetails_Package_Title",data),
-                        tpl_GetDetails_Package_ScheduledTimeFrom = template("tpl_GetDetails_Package_ScheduledTimeFrom",data),
-                        tpl_GetDetails_Package_ScheduledTimeTo = template("tpl_GetDetails_Package_ScheduledTimeTo",data),
-                        tpl_GetDetails_Package_ParadeTimeFrom = template("tpl_GetDetails_Package_ParadeTimeFrom",data),
-                        tpl_GetDetails_Package_ParadeTimeTo = template("tpl_GetDetails_Package_ParadeTimeTo",data),
-                        tpl_GetDetails_Package_BusinessAddress = template("tpl_GetDetails_Package_BusinessAddress",data),
-                        tpl_GetDetails_Package_Feature = template("tpl_GetDetails_Package_Feature",data),
-                        tpl_GetDetails_Package_TripPlan = template("tpl_GetDetails_Package_TripPlan",data.tours),
-                        tpl_GetDetails_Package_Attention = template("tpl_GetDetails_Package_Attention",data.tours),
-                        tpl_GetDetails_Package_ServTerm = template("tpl_GetDetails_Package_ServTerm",data);
-
-                ChildAgeMin = data.childAgeMin;
-                ChildAgeMax = data.childAgeMax;
-                TravelDate = data.defaultDepartStartDate;
-                TourID = data.tours;
-                NewMinPax = data.minPax;
-                MaxPax = data.maxPax;
-                MaxAdult = data.maxAdult;
-                MinPaxType = data.minPaxType;
-                OnlyForAdult = data.onlyForAdult;
-                var SearchPrice;
-                if(OnlyForAdult){//只是成人
-                  SearchPrice=
-                  {
-                    "Parameters": {
-                      "PackageID": val.packageID,
-                      "Adult": NewMinPax,
-                      "Tours": [
-
-                      ]
-                    },
-                    "ForeEndType": 3,
-                    "Code": "0091"
-
-                  }
-                }else{//成人和儿童
-                    if(MinPaxType == 1){//成人和儿童限制
-                      if(MaxPax > -1){
-                        if(MaxPax == NewMinPax){
-                          OldMinPax=NewMinPax;
-                          NewMinPax = NewMinPax -1;
-                        }
-                      }
-                      SearchPrice=
-                      {
-                        "Parameters": {
-                          "PackageID": val.packageID,
-                          "Adult": NewMinPax,
-                          "Child": [
-                            ChildAgeMin
-                          ],
-                          "Tours": [
-                          ]
-                        },
-                        "ForeEndType": 3,
-                        "Code": "0091"
-
-                      }
-                    }else{//成人限制
-
-                        SearchPrice=
-                        {
-                          "Parameters": {
-                            "PackageID": val.packageID,
-                            "Adult": NewMinPax,
-                            "Child": [
-                              ChildAgeMin
-                            ],
-                            "Tours": [
-
-                            ]
-                          },
-                          "ForeEndType": 3,
-                          "Code": "0091"
-
-                        }
-                    }
-                }
-
-
-                for (var i = 0;i<data.tours.length;i++)
-                {
-                    SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
-                }
-
-                console.log(data);
-                var html_pb = template(tpl1, data);
-                $("#packageBox").html(html_pb);
-
-                $('.swipebox').click(function() {
-                    $('.gallery').hide(0);
-                    $('.portfolio-wide').hide(0);
-                });
-                $(".swipebox").swipebox({
-                    useCSS : true,
-                    hideBarsDelay : 0
-                });
-
-                $("#ScheduledTimeFrom").html(tpl_GetDetails_Package_ScheduledTimeFrom);
-                $("#ScheduledTimeTo").html(tpl_GetDetails_Package_ScheduledTimeTo);
-                $("#ParadeTimeFrom").html(tpl_GetDetails_Package_ParadeTimeFrom);
-                $("#ParadeTimeTo").html(tpl_GetDetails_Package_ParadeTimeTo);
-                $("#BusinessAddress").html(tpl_GetDetails_Package_BusinessAddress);
-                $("#Feature").html(tpl_GetDetails_Package_Feature).find("ul").addClass("s-special");
-                $("#TripPlan").html(tpl_GetDetails_Package_TripPlan).find("ul").addClass("s-special");
-                $("#Attention").html(tpl_GetDetails_Package_Attention).find("ul").addClass("s-special");
-                $("#ServTerm").html(tpl_GetDetails_Package_ServTerm).find("ul").addClass("s-special");
-
-                MT.CLoadSearchPrice(SearchPrice);
-            }else {
-                console.log(json);
-                jAlert(json.message,"提示");
-            }
-        }
-
-
-        /**
-         * 查询价格
-         * @constructor
-         */
-        MT.CLoadSearchPrice = function(SearchPrice){
-
-            vlm.loadJson("",JSON.stringify(SearchPrice),MT.SearchPriceCallback);
-        }
-        /**
-         * 查询价格回调方法
-         * @param data
-         * @constructor
-         */
-        MT.SearchPriceCallback = function(data){
-            var json=data;
-            console.log(json);
-            if(json.success){
-                var data=json.data;
-                data.minPax =OldMinPax||NewMinPax;
-                var tpl_GetDetails_Package_ScenicPackage = template("tpl_GetDetails_Package_ScenicPackage",data);
-                $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackage);
-            }else {
-                console.log(json);
-                jAlert(json.message,"提示");
-                var data=ExtendData,tpl_GetDetails_Package_ScenicPackageFail = template("tpl_GetDetails_Package_ScenicPackageFail",data);
-                $("#ScenicPackage").html(tpl_GetDetails_Package_ScenicPackageFail);
-            }
-        }
-
-        //判断是否登录
-        MT.CCheckLogin = function(packageId,RequiredPickupPoint,Adult,fail){
-          var that=this,returnUrl = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+Adult+"&FAIL="+fail;
-           console.log(vlm.checkLogin(returnUrl))
-//            if(vlm.checkLogin(returnUrl)){
-                window.location.href = returnUrl;
-//            }
-        }
-
-        MT.CrefreshTab=function(){
-            var li = document.getElementsByClassName('no-class');
-            var li_ul = document.getElementsByClassName('state-detail');
-            for(var i = 0;i < li.length;i++){
-                {
-                    (function(index){
-                        li[i].onclick=function(){
-                            var b = li[index].getElementsByTagName('b')[1];
-                            if(li_ul[index].className == 'state-detail'){
-                                li_ul[index].className = 'state-detail s-active';
-                                b.className = 'jd-icon s-up';
-                            }else{
-                                li_ul[index].className = 'state-detail';
-                                b.className = 'jd-icon s-down';
-                            }
-                        };
-                    })(i);
-                }
-            }
-        }
-
-
-        MT.CLoadGetDetails();
-        MT.CrefreshTab();
-
-    })();
-</script>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/plugins.js"></script>
+<script type="text/javascript" src="../js/lib/vlm.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="js/scenic_detail.js"></script>
 
 </body>
 </html>
