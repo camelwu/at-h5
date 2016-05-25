@@ -421,6 +421,9 @@
 			console.log(hotelDetail.myData);
 			if (result.success == true) {
 				hotelDetail.$Id('preloader') ? document.body.removeChild(hotelDetail.$Id('preloader')) : '';
+        data = hotelDetail.myData[0];
+        console.log(data);
+        //map(result);
 			} else {
 				alert(result.message);
 				return;
@@ -462,16 +465,18 @@
             //H5-410 点评为0时不显示该模块
       rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li  onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
 
-			firstUl += '<ul class="d-ul1 hotel_shoulder">' + rateStr+'<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
-			function map(data){
+			firstUl += '<ul class="d-ul1 hotel_shoulder">' + '<li id="map" class = "map"><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>'+rateStr+'<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
+
+      at.map.createMap(1.297839,103.848437);
+      function map(data){
 				latitude = data.hotelInfo.latitude-0;
 				longitude = data.hotelInfo.longitude-0;
 				at.map.createMap(latitude,longitude);
-				at.map.markHotel(latitude,longitude,"");
-				at.map.moveCenterToHotelLocation(latitude,longitude);
-				$('#map').on('click',function(){
-					window.location.href = 'hft_hotel_detail_map.html';
-				})
+				//at.map.markHotel(latitude,longitude,"");
+				//at.map.moveCenterToHotelLocation(latitude,longitude);
+				//$('#map').on('click',function(){
+				//	window.location.href = 'hft_hotel_detail_map.html';
+				//})
 			}
 
 			secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>离店<em>共<span id="nightNum">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg"></b></li>' + hotelDetail.showRoomList(result) + '</ul>';

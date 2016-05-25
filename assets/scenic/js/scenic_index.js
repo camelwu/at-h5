@@ -1,5 +1,5 @@
 /**
- * Created by apple on 16/5/19.
+ * Created by Venson on 16/5/24.
  */
 (function(){
   var webkit = this || (0, eval)('this');
@@ -14,8 +14,8 @@
    *     },1000);
    * @returns {{callWatch: callWatch, addWatch: addWatch, multiWatch: multiWatch}}
    * @constructor
-     */
-  var Listener = function(){
+   */
+  var well = function(){
     var watcher = {
       watch:function(target){
         // Firefox和Chrome早期版本中带有前缀
@@ -41,16 +41,8 @@
        * @param data
        * @returns {string}
        */
-      callWatch:function(type,data){
+      oneWatch:function(type,data){
         return watcher[type]?watcher[type](data):'';
-      },
-      /**
-       * 添加策略
-       * @param type
-       * @param fn
-       */
-      addWatch:function(type,fn){
-        watcher[type] = fn;
       },
       /**
        * 通信适配器Command
@@ -67,6 +59,14 @@
       multiWatch:function(msg){
         msg.param = Object.prototype.toString.call(msg.param) === "[object Array]"?msg.param : [msg.param];
         return watcher[msg.command].apply(watcher,msg.param);
+      },
+      /**
+       * 添加策略
+       * @param type
+       * @param fn
+       */
+      addWatch:function(type,fn){
+        watcher[type] = fn;
       }
     }
   }
@@ -92,7 +92,7 @@
       /**
        * 景 首页 热门景点
        * @param param
-         */
+       */
       m_product_list:function(param){
         var parameters = {"Parameters": {"Isinternational": true, "PageNo": 1, "PageSize": 10}, "ForeEndType": 3, "Code": "001305"};
         vlm.loadJson("",JSON.stringify(parameters),Method["m_product_listCallback"]);
@@ -141,7 +141,7 @@
      * 景 首页 热门城市
      * @param dom
      * @param data
-       */
+     */
     m_city_list:function(dom,data){
       var Ajax = data.AjaxAdapter;
       var param = [];
@@ -153,10 +153,10 @@
     /**
      * 景 首页 热门城市
      * @param json
-       */
+     */
     m_city_listCallback:function(json){
       var tplString = "",outString = "";
-      console.log(json);
+      //console.log(json);
       if(json.success){
         tplString = $("#tpl_city_list").html();
         outString = ejs.render(tplString,{data:json.data});
@@ -178,7 +178,7 @@
      * 景 首页 热门景点
      * @param dom
      * @param data
-       */
+     */
     m_product_list:function(dom,data){
       var Ajax = data.AjaxAdapter;
       var param = [];
@@ -190,10 +190,10 @@
     /**
      * 景 首页 热门景点
      * @param json
-       */
+     */
     m_product_listCallback:function(json){
       var tplString = "",outString = "";
-      console.log(json);
+      //console.log(json);
       if(json.success){
         tplString = $("#tpl_product_list").html();
         outString = ejs.render(tplString,{data:json.data});
@@ -226,7 +226,9 @@
   webkit.T.AjaxAdapter = AjaxAdapter;
 
 })();
-
+/**
+ * 入口
+ */
 (function(){
   T.Load("js_city_list");
   T.Load("js_product_list");
