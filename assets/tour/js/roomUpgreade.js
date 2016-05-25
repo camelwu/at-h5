@@ -140,6 +140,11 @@ var roomUpGrade = {
 				at.map.createMap(latitude,longitude);
 				at.map.markHotel(latitude,longitude,"");
 				at.map.moveCenterToHotelLocation(latitude,longitude);
+				//var mapJson = {"latitude":latitude,"longitude":longitude};
+				$('#map').on('click',function(){
+					sessionStorage.setItem("detailMap",mapJson)
+					window.location.href = 'hotel_detail_map.html';
+				})
 			}
 		} else {
 			$("#preloader").fadeOut();
