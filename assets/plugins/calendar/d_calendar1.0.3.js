@@ -119,10 +119,7 @@
             this.id2 = options.id2;
             this.callback = options.callback;
             this.time = options.time || {}; //已有时间  默认选中时间   默认时间必须是大于今天日期
-<<<<<<< HEAD
             this.disableDate = options.disableDate || []; //默认不可用的日期
-=======
->>>>>>> rem
             this.prefix = options.prefix || "calendar";
             this.op = 0; //已操作次数
             this.checkInTimeOptId = options.checkInTimeOptId;
