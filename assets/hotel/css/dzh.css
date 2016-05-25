@@ -47,21 +47,21 @@ div#h-Tab .off{
   width: 100%;
 }
 .hotel_destination_right i{
-    position: absolute;
+  position: absolute;
   right: .4rem;
   top: .38rem;
   width: .4rem;
   height: .5rem;
   background-image: url(../../images/icons.png);
   background-repeat: no-repeat;
-  background-size: 233px 160px;
+  background-size: 4rem 2.8rem;
   display: inline-block;
 }
 .i_more{
-    background-position: -96px -44px;
+  background-position: -1.6rem -0.7rem;
 }
 .i_position{
-    background-position: -127px -104px;
+    background-position: -1.6rem -0.7rem;
 }
 /*第二栏*/
 .hotel_time{
@@ -88,7 +88,7 @@ div#h-Tab .off{
 .hotel_time_center_start>p,.hotel_time_center_end >p{
     height: .8rem;
     border-bottom: 1px solid #dedede;
-    padding-left:.4rem;
+    padding-left:.1rem;
 }
 .hotel_time_center_start>p input,.hotel_time_center_end>p input{
     width:1.6rem;
@@ -101,15 +101,15 @@ div#h-Tab .off{
     right:1.3rem;
 }
 .hotel_time_right i{
-    background-image: url(../../images/icon-h.png);
-    background-repeat: no-repeat;
-    background-size: 402px 174px;
-    background-position: -245px 0;
-    position: absolute;
-    width: .4rem;
-    height: .8rem;
-    right:-0.8rem;
-    top: .36rem;
+  background-image: url(../../images/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 8rem 3.4rem;
+  background-position: -4.9rem 0;
+  position: absolute;
+  width: .4rem;
+  height: .8rem;
+  right: -0.8rem;
+  top: .36rem;
 }
 /*第三栏*/
 .hotel_roomNum{
@@ -228,18 +228,18 @@ div#h-Tab .off{
 }
 /*.tubiao*/
 .add{
-    width: .46rem;
-    height: .46rem;
-    position: absolute;
-    background:url("../../images/hotelbtn.png") 0 -56px no-repeat;
-    background-size:23px 150px;
+  width: .48rem;
+  height: .5rem;
+  position: absolute;
+  background: url("../../images/hotelbtn.png") -0.01rem -1.2rem no-repeat;
+  background-size: 0.5rem 3.2rem;
 }
 .minus{
-    width: .46rem;
-    height: .46rem;
-    position: absolute;
-    background:url("../../images/hotelbtn.png") 0 -28px no-repeat;
-    background-size:23px 150px;
+  width: .48rem;
+  height: .5rem;
+  position: absolute;
+  background: url("../../images/hotelbtn.png") 0rem -0.6rem no-repeat;
+  background-size: 0.5rem 3.2rem;
 }
 /*弹层*/
 #popup_content {
