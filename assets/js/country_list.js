@@ -869,7 +869,7 @@ var arrCountry= [{"CountryEN":"Angola",
                         if($('#uptra_page').length >0){
                           $('#uptra_page').css('visibility','visible');
                         }
-                      
+
                     },500)
                     if($('#addtra_page').length>0)
                     {
