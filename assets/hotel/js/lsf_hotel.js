@@ -885,28 +885,28 @@ function inpChange(id, myText) {
       checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
       checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
       lsf_myweb.getbyid('total_day').innerHTML=1;
-      week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
-      week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
-      obj[checkIn.value] = "入住";
-      obj[checkOut.value] = "离店";
+      //week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
+      //week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
+      //obj[checkIn.value] = "入住";
+      //obj[checkOut.value] = "离店";
     }else {
       checkIn.value = hotelStorage.InterBeginDate;
       checkOut.value = hotelStorage.InterLeaveDate;
       lsf_myweb.getbyid('total_day').innerHTML = hotelStorage.InterTotalDay;
       week_span1.innerHTML = hotelStorage.InterBeginDateWeek;
       week_span2.innerHTML = hotelStorage.InterLeaveDateWeek;
-      obj[hotelStorage.InterBeginDate] = "入住";
-      obj[hotelStorage.InterLeaveDate] = "离店";
+      //obj[hotelStorage.InterBeginDate] = "入住";
+      //obj[hotelStorage.InterLeaveDate] = "离店";
     }
     recoverStatus("count1,count2,count3");
   }else{
     checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
     checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
     lsf_myweb.getbyid('total_day').innerHTML=1;
-    week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
-    week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
-    obj[checkIn.value] = "入住";
-    obj[checkOut.value] = "离店";
+    //week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
+    //week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
+    //obj[checkIn.value] = "入住";
+    //obj[checkOut.value] = "离店";
   }
   window.onload = function() {
     //lsf_myweb.getbyid('count1').value = 1;
@@ -942,8 +942,8 @@ function inpChange(id, myText) {
       DomCheckInDate.value=yearDS +'-'+smonthStr+'-'+sdayStr;
       DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
       lsf_myweb.getbyid('domeTotalDay').innerHTML=1;
-      week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
-      week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
+      //week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
+      //week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
     }else{
       DomCheckInDate.value=hotelStorage.DomCheckInDate;
       DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
@@ -951,16 +951,16 @@ function inpChange(id, myText) {
       week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
       week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
     }
-    obj2[hotelStorage.DomCheckInDate]="入住";
-    obj2[hotelStorage.DomCheckOutDate]="离店";
+    //obj2[hotelStorage.DomCheckInDate]="入住";
+    //obj2[hotelStorage.DomCheckOutDate]="离店";
   }else{
     DomCheckInDate.value.value=yearDS +'-'+smonthStr+'-'+sdayStr;
     DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
     lsf_myweb.getbyid('domeTotalDay').innerHTML=1;
-    week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
-    week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
-    obj2[DomCheckInDate.value]="入住";
-    obj2[DomCheckOutDate.value]="离店";
+    //week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
+    //week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
+    //obj2[DomCheckInDate.value]="入住";
+    //obj2[DomCheckOutDate.value]="离店";
   }
 
   function Calender2() {
@@ -1009,8 +1009,8 @@ function inpChange(id, myText) {
     var oDate2 = new Date(arr[1].split('-')[0], (arr[1].split('-')[1] - 1), arr[1].split('-')[2]);
     var oday2 = oDate2.getDay();
     //alert(oDate1+'---'+oDate2);
-    lsf_myweb.getbyid(that.idLive).innerHTML = '周' + n2c(oday1) + ' 入住';
-    lsf_myweb.getbyid(that.idLeave).innerHTML = '周' + n2c(oday2) + ' 离店';
+    //lsf_myweb.getbyid(that.idLive).innerHTML = '周' + n2c(oday1) + ' 入住';
+    //lsf_myweb.getbyid(that.idLeave).innerHTML = '周' + n2c(oday2) + ' 离店';
   }
   var myDate1 = new Calender2({
     id : "nav2-center1",
