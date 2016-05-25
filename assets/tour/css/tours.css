@@ -395,7 +395,7 @@ a.hotel_detail_pic{
 .hotel_detail_list.hdl_down{
     position: relative;
     z-index: 20;
-    margin-top:-1.5rem;
+    margin-top:-1.3rem;
 }
 .hotel_detail_list.hdl_down{
     background: #fff;
@@ -1047,7 +1047,7 @@ a.hotel_detail_pic{
 /*¶©µ¥ÌîÐ´  end    map¿ªÊ¼*/
 .hotel_detail_map{
     width: 100%;
-    height: 4.2rem;
+    height: 3.6rem;
     margin-top:-0.6rem;
     z-index: 10;
 }
