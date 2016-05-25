@@ -299,20 +299,20 @@
 
 			//地图暂时不用
 
-			 toMap.onclick = function () {
-				 window.location.href ="hotel_map.html";
-				 //var dataObj = {
-				 //HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelName,
-				 //Latitude: hotelDetail.sourceData.data[0].hotelGenInfo.latitude,
-				 //Longitude: hotelDetail.sourceData.data[0].hotelGenInfo.longitude
-				 //}
-				 //var paramStr = "";
-				 //for (var attr in dataObj) {
-				 //paramStr += "&" + attr + "=" + dataObj[attr];
-				 //}
-				 //paramStr = paramStr.slice(1);
-				 //document.location.href = 'jyy_hd_map.html?' + paramStr;
-			 };
+			 //toMap.onclick = function () {
+				// window.location.href ="hotel_map.html";
+				// //var dataObj = {
+				// //HotelName: hotelDetail.sourceData.data[0].hotelGenInfo.hotelName,
+				// //Latitude: hotelDetail.sourceData.data[0].hotelGenInfo.latitude,
+				// //Longitude: hotelDetail.sourceData.data[0].hotelGenInfo.longitude
+				// //}
+				// //var paramStr = "";
+				// //for (var attr in dataObj) {
+				// //paramStr += "&" + attr + "=" + dataObj[attr];
+				// //}
+				// //paramStr = paramStr.slice(1);
+				// //document.location.href = 'jyy_hd_map.html?' + paramStr;
+			 //};
 
 
 			for (var i = 0; i < showListTrigger.length; i++) {
@@ -338,7 +338,7 @@
 			hotelDetail.addHandler(window, 'resize', function() {
 				hotelDetail.widthCorrecting(hotelDetail.sourceData);
 			});
-            
+
             hotelDetail.addHandler(window, 'orientationchange', function() {
 				hotelDetail.orientationchange();
 			});
@@ -394,7 +394,7 @@
 				}
 			}
 		},
-        
+
         orientationchange : function(event){
             var showZone = document.getElementsByClassName("showZone")[0];
             var indexShow = document.getElementsByClassName("indexShow")[0];
@@ -460,10 +460,19 @@
 			frontImgStr = '';
 			frontImgStr += '<div class="d-div1 faceImg hotel_img"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum hotel_imgBox"><div class="d-p4 hotel_imgBog_num">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
             //H5-410 点评为0时不显示该模块
-            rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li  onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
+      rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li  onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
 
-			firstUl += '<ul class="d-ul1 hotel_shoulder">' +rateStr+ '<li id="toMap"><span class="address-text hotel_shoulder_address">' + result.data[0].hotelGenInfo.hotelAddress + '</span></li>' + '<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
-
+			firstUl += '<ul class="d-ul1 hotel_shoulder">' + rateStr+'<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
+			function map(data){
+				latitude = data.hotelInfo.latitude-0;
+				longitude = data.hotelInfo.longitude-0;
+				at.map.createMap(latitude,longitude);
+				at.map.markHotel(latitude,longitude,"");
+				at.map.moveCenterToHotelLocation(latitude,longitude);
+				$('#map').on('click',function(){
+					window.location.href = 'hft_hotel_detail_map.html';
+				})
+			}
 
 			secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>离店<em>共<span id="nightNum">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg"></b></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
@@ -552,7 +561,7 @@
 					outerDiv.style.display = 'none'
 				}
 			};
-            
+
 			faceImg.onclick = function(event) {
 				document.getElementById('imageContainer').style.display = 'block';
 				//默认先加载两张图片
@@ -589,7 +598,7 @@
 			var minLeftValue = (document.querySelectorAll('.imageLi').length - 1) * window.innerWidth;
 			var endLeftValue = parseFloat(document.getElementsByClassName('imgUl')[0].style.left);
 			var distance = endLeftValue - hotelDetail.tempCurLeft, time = 1000, targetLeft, indexNUm;
-           
+
 			if (distance < 0 && Math.abs(distance) >= window.innerWidth / 4) {
                  //向左滑动
 				targetLeft = hotelDetail.tempCurLeft - window.innerWidth;
@@ -608,7 +617,7 @@
 			indexNUm = Math.abs(Math.floor(targetLeft / window.innerWidth)) + 1;
             hotelDetail.currentIndex = indexNUm;  //记下当前页面
 			time = Math.abs((targetLeft - parseFloat(document.getElementsByClassName('imgUl')[0].style.left)) / window.innerWidth) * time;
-            
+
 			hotelDetail.tempCurLeft = targetLeft;
 			$('.imgUl').animate({
 				'left' : targetLeft
@@ -775,7 +784,7 @@
 			 };*/
 			var message = '<div class="owl-carousel">' + showPic(result.data[0].hotelRoomFeaturesList) + '</div><hr size="1" width="100%" color="#ececec"> <p class="r-p2" style="">房间设施</p> <ul class="r-ul">' + showFeature(result.data[0].hotelRoomAmenitiesList) + '</ul>';
 			jLayer(message, "房间信息");
-            
+
             //图片懒加载
             var images = document.getElementsByClassName('hotelPic2');
 			function loadImage(url,error_url, index, callback,errorFunc) {
@@ -802,7 +811,7 @@
                     });
 				})(i,re_url)
 			}
-            
+
 			//如果图片没有加载出来就显示默认图片
 			var aImg = oDiv.getElementsByTagName('img');
 			var hdRoomDesc = document.getElementById('hdRoomDesc');

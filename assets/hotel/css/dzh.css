@@ -2,23 +2,26 @@
 body {
     background-color: #f7f7f7;
 }
-.hotel_city{
+div#h-Tab{
     display: flex;
     background: #fff;
 }
-
-.hotel_city a{
+/*日历*/
+.calendar dt.title-date {
+  font-size:.28rem;
+}
+div#h-Tab a{
     font-size: .32rem;
     flex: 1.0;
     text-align: center;
     line-height: 1rem;
     color:rgb(153,153,153);
 }
-.hotel_city .on{
+div#h-Tab .on{
     color: #ffb413;
     border-bottom: 2px solid #ffb413;
 }
-.hotel_city .off{
+div#h-Tab .off{
     color: #484848;
     border-bottom: 2px solid #fff;
 }
