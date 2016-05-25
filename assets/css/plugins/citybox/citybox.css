@@ -58,6 +58,7 @@
   -webkit-appearance: none;
   border-radius: 0.32rem;
   display: inline-block;
+  border: 0;
 }
 
 .citybox_search_icon {
@@ -216,6 +217,7 @@
   -webkit-appearance: none;
   border-radius: 0.32rem;
   display: inline-block;
+  border: 0;
 }
 
 .citybox_searchactive_return {
@@ -241,10 +243,7 @@
   font-size: 0.28rem;
   list-style: none;
   color: #333;
-<<<<<<< HEAD
-=======
-  background: #FFFFFF;
->>>>>>> rem
+  background: #fcfcfc;
 }
 
 .citybox_searchactive_li_icon {
@@ -267,14 +266,25 @@
 .citybox_search_container {
   background: #fcfcfc;
   position: absolute;
-  z-index: 100;
+  z-index: 199;
   width: 100%;
   top: 0;
   left: 0;
 }
 .citybox_search_suggest{
   background: #fcfcfc;
-  height: 667rem;
+  /*height: 667rem;*/
+}
+
+.citybox_search_suggestBG{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: #fcfcfc;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  display: none;
 }
 .citybox_search_container.citybox_search_state .citybox_search_suggest,
 .js_citybox_header_search {

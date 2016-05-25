@@ -187,8 +187,7 @@
     <% for(var i = 0;i < hotelAndScenicList.length;i++){ %>
     <li>
         <a href="packages_detail.html?packageID=<%= hotelAndScenicList[i].productID %>&productPrice=<%= hotelAndScenicList[i].productPrice %>&status=1">
-            <div class="img_box pr">
-                <img src="<%= hotelAndScenicList[i].productPicUrl %>" class="banner-image" alt="img">
+            <div class="img_box pr" style="background-image:url(<%= hotelAndScenicList[i].productPicUrl %>)">
                 <div class="hp-block index_price pa">
                     <span>￥</span>
                     <span class="pay-num pay_num"><%= hotelAndScenicList[i].productPrice %></span>
