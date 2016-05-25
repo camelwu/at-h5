@@ -6,7 +6,10 @@
 (function () {
     "use strict";
     var fs = require("fs");
+    //window dev env
     var logPath = "d:/log/";
+    //linux 
+    //var logPath = '/mydada/logs/';
     var now = new Date();
     var logFileName = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate() + ".json";
     var fileName = logPath + logFileName;
