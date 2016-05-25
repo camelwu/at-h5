@@ -131,6 +131,8 @@
 
   //init filter
   var initFilter = function(data){
+    var themes = [{allowMultiSelect:0,filterType:5,item:data.data.themes,title:"主题",sortNumber:0}];
+    console.log(themes);
     // 添加底部筛选
     var f_data = {
       sortTypes : {
@@ -139,7 +141,7 @@
         s : 1,
         type : 1,
         key : 'sortTypes',
-        listData : data.data.sortTypes
+        listData : [{sortText: "按价格从低到高",sortValue:0},{sortText: "按价格从高到低",sortValue:1}]
       },
       hotelScreen : {
         title : "筛选",
@@ -147,7 +149,7 @@
         s : 2,
         type : 2,
         key : 'filters',
-        listData : data.data.filters
+        listData : themes
       }
     },menu_call = function(obj) {
       Para.DestCityCode = val.DestCityCode;
@@ -155,7 +157,7 @@
       Para.themeID = obj.filters || {};
       tAjax("",Para,"0087","3",Method["m_scenic_listCallback"]);
     };
-    if (footer) {1
+    if (footer) {
       footer.data = f_data;
       footer.callback = menu_call;
     }

@@ -552,7 +552,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 /*预订*/
 .scenic_content_booking{
   margin: .4rem 0 0 0.28rem;
-  padding: 0 0 .4rem 0;
+  padding: 0 0 0 0;
   font-size: .28rem;
   position: relative;
   border-bottom: 1px solid #EDECEB;
@@ -568,7 +568,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   padding: 0.32rem 0 0 0.6rem;
 }
 
-.scenic_content_booking_li:last-child{
+.scenic_content_booking_li:last-child div{
   border:0;
 }
 
