@@ -71,6 +71,7 @@
 					listData : data.locationList
 				}
 			}, menu_call = function(data) {
+				console.log(data);
 				//位置重构
 				var toString = [];
 				toString= data.locationList;
@@ -81,7 +82,12 @@
 				for(var i=0;i<arrNum.length;i++){
 					filter += arrNum[i].FilterValues[0]-0;
 				}
-				parametersStorage.sortFields = data.sortTypes;
+				//排序入参重置
+				var sortArr = [];
+				var sortFilter = data.sortTypes[0]-0;
+				sortArr.push(sortFilter);
+				console.log(sortArr)
+				parametersStorage.sortFields = sortArr;
 				parametersStorage.Location = locationList;
 				parametersStorage.StarRating = filter;
 				//加loading
