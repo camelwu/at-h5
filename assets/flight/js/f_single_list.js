@@ -231,8 +231,9 @@ var fSingleList = {
   filerCallBack:function(){
       console.log(arguments);
       var transferData = arguments, that =fSingleList, newUrl = window.location.href;
-      if(that.postObj.internationalOrDomestic == "international"&&that.postObj.routeType == "oneWay"){
+      /*if(that.postObj.internationalOrDomestic == "international"){*/
         if(arguments[1].id == "Price"){
+          var dd =  arguments[1].querySelector('dd');
           var dd =  arguments[1].querySelector('dd');
           if(dd.innerHTML== "价格"){
             dd.innerHTML = "从低到高";
@@ -272,7 +273,7 @@ var fSingleList = {
           newUrl = that.pageHandler(newUrl);
           window.location.href = newUrl;
         }
-      }
+     /* }*/
   },
 
   filterHandler: function(){
@@ -383,7 +384,6 @@ var fSingleList = {
       console.log(postObj)
       this.postObj = postObj;
       this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
-      //this.renderHandler(data2)
   }
 
 };
