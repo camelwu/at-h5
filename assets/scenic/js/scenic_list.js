@@ -82,7 +82,7 @@
   var AjaxAdapter = function(){
     var Adapter = {
       /**
-       * 景 列表页
+       * 景 列表
        * @param data
        * @returns {Array}
        */
@@ -131,7 +131,7 @@
 
   var Method = {
     /**
-     * 景 首页 热门城市
+     * 景 列表
      * @param dom
      * @param data
      */
@@ -139,28 +139,32 @@
       AjaxAdapter().callAjaxAdapter("m_scenic_list",{});
     },
     /**
-     * 景 首页 热门城市
+     * 景 列表
      * @param json
      */
     m_scenic_listCallback:function(json){
       var tplString = "",outString = "";
-      //console.log(json);
+      console.log(json);
       if(json.success){
-        tplString = $("#tpl_city_list").html();
-        outString = ejs.render(tplString,{data:json.data});
-        $("#js_city_list").html(outString).click(function(e){
+        Method['m_scenic_setHeaderMoreTitle'](json);
+        tplString = $("#tpl_scenic_list").html();
+        //console.log(json.data.lists);
+        outString = ejs.render(tplString,{lists:json.data.lists});
+        $("#js_scenic_list").html(outString).click(function(e){
           var e = e || window.event,
             tar = e.target || e.srcElement;
-          if(tar.nodeName.toLowerCase() === 'div'){
-            var cityCode = (e.target).getAttribute("data-code");
-            //console.log(cityCode);
-            window.location.href = "../scenic/scenic_list.html?DestCityCode=" + cityCode;
+            tar = $(tar).closest("li")[0];
+          if(tar.nodeName.toLowerCase() === 'li') {
+            var packageid = tar.getAttribute("data-code");
+            window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;
           }
-
         });
       }else{
         console.log(json);
       }
+    },
+    m_scenic_setHeaderMoreTitle:function(data){
+      $(".header_more_title").html(data.data.destCity);
     }
   };
 
@@ -190,9 +194,8 @@
  * 入口
  */
 (function(){
-
-
   $("#t_des").click(function(e){
     VM.Load("t_des");
   });
+  T.Load("js_scenic_list");
 })();
