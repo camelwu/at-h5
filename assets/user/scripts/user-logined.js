@@ -6,10 +6,12 @@
     var phone = localStorage.phone;
     var password = localStorage.password;
     var memberid = localStorage.memberid;
+    localStorage.news = "true";
+    localStorage.promotion = "true";
     var Parameters={
-        "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
-        "ForeEndType": 3,
-        "Code": "0053"
+      "Parameters": "{\"CultureName\":\"\",\"MemberId\":\""+memberid+"\",\"Email\":\""+email+"\",\"Mobile\":\""+phone+"\"}",
+      "ForeEndType": 3,
+      "Code": "0053"
     };
 
     //console.log(Parameters);
@@ -35,87 +37,100 @@
     }
     link(setting,head[0],u_setting);
     link(verifyName,head[1],contactus);
-
     function close(obj){
-        obj.onclick = function(){
-            link_page.style.display = "none";
-        };
+      obj.onclick = function(){
+        link_page.style.display = "none";
+      };
     }
     close(close_page);
 
+
     if(localStorage.getItem('login') != 1)
     {
-        return;
+      return;
     }
     vlm.checkUser();
     vlm.loading();
     vlm.loadJson("", JSON.stringify(Parameters), mycallback);
-}
+
+
+  }
+
 
   function mycallback(ret) {
     var myJson = ret;
+    //console.log(myJson.data[0].nickName);
     vlm.loadend();
     if (myJson.success) {
-        var user_name = $("#user_name")[0];
-        var user_sex = $("#user_sex")[0];
-        var userIcon = $("#userIcon")[0];
+      var user_name = $("#user_name")[0];
+      var user_sex = $("#user_sex")[0];
+      var userIcon = $("#userIcon")[0];
 
-        user_name.innerHTML = myJson.data[0].nickName;
-        localStorage.sex=myJson.data[0].salutation;
-        localStorage.email=myJson.data[0].emailAddress;
-        if(myJson.data[0].nickName == ''){
-            user_name.innerHTML='点击头像设置个人资料';
-            userIcon.src = "../images/ui/photo-man.png";
-        }else{
-            if (myJson.data[0].salutation == "26") {
-                user_sex.className = "icon open-sexm";
-                userIcon.src = "../images/ui/photo-man.png";
-            } else {
-                user_sex.className = "icon open-sexw";
-                userIcon.src = "../images/ui/photo-woman.png";
-            }
+      user_name.innerHTML = myJson.data[0].nickName;
+      localStorage.sex=myJson.data[0].salutation;
+      localStorage.email=myJson.data[0].emailAddress;
+      if(myJson.data[0].nickName == ''){
+        user_name.innerHTML='点击头像设置个人资料';
+        userIcon.src = "../images/ui/photo-man.png";
+      }else{
+        if (myJson.data[0].salutation == "26") {
+          user_sex.className = "icon open-sexm";
+          userIcon.src = "../images/ui/photo-man.png";
+        } else {
+          user_sex.className = "icon open-sexw";
+          userIcon.src = "../images/ui/photo-woman.png";
         }
+      }
     }
   }
 
   //登录之后点击全部订单的链接会改变
-  (function() {
-    document.querySelector('.my-order').onclick = function () {
-      if (localStorage.getItem('login') == 1) {
-        this.href = 'user-allorder.html';
+  (function(){
+    document.querySelector('.my-order').onclick=function(){
+      //去除登录
+      //if(localStorage.getItem('login') == 1)
+      //{
+      //    this.href='user-allorder.html';
+      //}else{
+      //    this.href="user-login.html?allorder";
+      //}
+      this.href='user-allorder.html';
+    };
+
+
+    document.querySelector('#common-msg').onclick=function(){
+
+      if(localStorage.getItem('login') == 1)
+      {
+        this.href='user-oftenInfo.html';
+      }else{
+        this.href="user-login.html?oftenInfo";
       }
-      ;
-      document.querySelector('#common-msg').onclick = function () {
+    };
 
-        if (localStorage.getItem('login') == 1) {
-          this.href = 'user-oftenInfo.html';
-        } else {
-          this.href = "user-login.html?oftenInfo";
-        }
-      };
+    document.querySelector('#unloginShow').onclick=function(){
+      if(localStorage.getItem('login') == 1)
+      {
+        this.href='user-perInfo.html';
+      }
+    };
 
-      document.querySelector('#unloginShow').onclick = function () {
-        if (localStorage.getItem('login') == 1) {
-          this.href = 'user-perInfo.html';
-        }
-      };
-    }
+
   })();
 
-  $('#about_at').click(function(){
+  $('.about-at').click(function(){
     $('#link_about_us').show();
     $('#close_page_aboutus').click(function(){
       $('#link_about_us').hide();
     });
   });
-
   //设置里的消息开关
   function ifOpen(){
     var b = window.event.srcElement;
-      if(b.className == "icon set_chose1"){
-          b.className = "icon set_chose2";
+    if(b.className == "icon set-chose1"){
+      b.className = "icon set-chose2";
     }else{
-          b.className = "icon set_chose1";
+      b.className = "icon set-chose1";
     }
   }
 
@@ -142,18 +157,5 @@
       $('#link_declaration').hide();
     });
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
