@@ -109,7 +109,7 @@ var hotelList = {
 						ForeEndType : ForeEndType,
 						Code : Code
 					};
-					questUrl = questUrl || that.requestUrl;
+					questUrl = questUrl || that.requestUrl || "";
 					vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
 				};
 				//footer  begin
@@ -168,9 +168,6 @@ var hotelList = {
 				}
 				footer.filters.init();
 				//footer  end
-
-
-
 
 
 				//  恢复上次选中的酒店星级
