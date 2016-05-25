@@ -83,7 +83,7 @@ footer.footer_three dt,footer.footer_two dt{
 	background-size: 7.89rem 5.07rem;
 	margin: 0.12rem auto 0.05rem;
 }
-dl.foot_sort dt{
+dl.foot_sort dt, dl.f_foot_sort dt{
 	background-position: -0.59rem -2.32rem;
 }
 dl.foot_screen dt{
@@ -94,7 +94,7 @@ dl.foot_position dt{
 	background-size: 7.89rem 2.58rem;
 	background-position: -2.19rem -0.46rem;
 }
-section.foot_sort{
+section.foot_sort,section.f_foot_sort {
 	background: #fff;
 	width: 100%;
 	position: absolute;
@@ -102,7 +102,7 @@ section.foot_sort{
 	left: 0;
 	bottom: -8.98rem;
 }
-section.foot_sort li{
+section.foot_sort li, section.f_foot_sort li{
 	margin: 0 0 0 0.28rem;
 	font-size: 0.28rem;
 	padding: 0 0.12rem;
@@ -112,7 +112,7 @@ section.foot_sort li{
 	color: #333;
 	position: relative;
 }
-section.foot_sort li.cur i{
+section.foot_sort li.cur i,section.f_foot_sort li.cur i{
 	width: 0.4rem;
 	height: 0.4rem;
 	position:absolute;
@@ -120,7 +120,7 @@ section.foot_sort li.cur i{
 	right: 0.18rem;
 	margin-top:-0.2rem;
 }
-section.foot_sort li i{
+section.foot_sort li i,section.f_foot_sort li i{
 	background:url(../../images/ui/icon_common.png);
 	background-size:7.9rem 5.13rem;
 	background-position: -6.9rem -0.58rem;

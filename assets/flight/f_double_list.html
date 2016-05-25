@@ -50,19 +50,28 @@
   <li data-set-id ="<%=item.setID %>">
     <div class="trip_go">
       <div class="seat_price">
-        <p class="priceNumber">
-          <%if(Number(fDoubleList.postObj.hasTax)){%>
-              <span class="money">￥</span><%= item["totalFareAmountExc"] %>
-              <span class="double_tip">往返</span>
-              <span class="tax_cost">含税总价</span>
-              <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
-          <%}else{%>
-              <span class="money">￥</span><%= item["totalFareAmountADT"] %>
-              <span class="double_tip">往返</span>
-              <span class="tax_cost">税费￥<%= item["totalTaxAmountADT"] %></span>
-              <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
-          <% }%>
-        </p>
+          <%if(fDoubleList.postObj.internationalOrDomestic == "international"){%>
+                <%if(Number(fDoubleList.postObj.hasTax)){%>
+               <p class="priceNumber">
+                <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+                <span class="double_tip">往返</span>
+                <span class="tax_cost">含税总价</span>
+                <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
+               </p>
+                <%}else{%>
+               <p class="priceNumber">
+                <span class="money">￥</span><%= item["totalFareAmountADT"] %>
+                <span class="double_tip">往返</span>
+                <span class="tax_cost">税费￥<%= item["totalTaxAmountADT"] %></span>
+                <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
+                </p>
+                <% }%>
+          <% }else{%>
+                <p class="priceNumber domi">
+                   <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+                   <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
+                </p>
+        <% }%>
       </div>
       <div class="time_airport">
         <div class="left_info">
@@ -80,8 +89,12 @@
           </div>
           <div class="middle">
             <span class="timeCost"><%= parseInt(item["segmentsLeaveTotalTravelTime"] / 60) + 'h' + item["segmentsLeaveTotalTravelTime"] % 60 + 'm' %></span>
+            <%if(item.segmentsLeave.length>1){%>
             <span class="arrow_word"></span>
-            <span class="transferCity">莫斯科</span>
+            <span class="transferCity"><%= item.segmentsLeave[0].cityNameTo %></span>
+            <%}else{%>
+            <span class="arrow"></span>
+            <% }%>
           </div>
 
         </div>
@@ -114,8 +127,12 @@
           </div>
           <div class="middle">
             <span class="timeCost"><%= parseInt(item["segmentsReturnTotalTravelTime"] / 60) + 'h' + item["segmentsReturnTotalTravelTime"] % 60 + 'm' %></span>
+            <%if(item.segmentsReturn.length>1){%>
             <span class="arrow_word"></span>
-            <span class="transferCity">莫斯科</span>
+            <span class="transferCity"><%= item.segmentsReturn[0].cityNameTo %></span>
+            <%}else{%>
+            <span class="arrow"></span>
+            <% }%>
           </div>
         </div>
         <p class="flight_detail">
