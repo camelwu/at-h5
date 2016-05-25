@@ -557,6 +557,30 @@
 	})
 
 	function submit_t() {
+
+    //检测人数
+    var peostr=$("#toper h3").html();
+    var peo_arr=peostr.split('/');
+    console.log(peo_arr);
+    if(peo_arr.length == 3){
+      var aduchoice=peo_arr[0].substring(3);
+      var adutot=peo_arr[1].substring(0,1);
+      var chichoice=peo_arr[1].substring(3);
+      var chitot=peo_arr[2].substring(0,1);
+      if(aduchoice != adutot || chichoice != chitot){
+        jAlert('该套餐需要添加 '+adutot+'成人  '+chitot+'儿童');
+        return;
+      }
+    }else{
+      var aduchoice=peo_arr[0].substring(3);
+      var adutot=peo_arr[1].substring(0,1);
+      if(aduchoice != adutot){
+        jAlert('该套餐需要添加 '+adutot+'成人');
+        return;
+      }
+    }
+
+
 		if(window.parent.document.getElementById("hftPage") !=null) {
 			window.parent.document.getElementById("hftPage").style.visibility = "visible";
 		}
