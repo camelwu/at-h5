@@ -50,6 +50,6 @@ module.exports.routes = {
   'POST /api/GetServiceApiResult' : 'AdapterController.api',
 
    //server api
-  'POST /apiWihtDeviceID/GetServiceApiResult' : 'AdapterController.apiWihtDeviceID'
+  'POST /apiWihtDeviceID/GetServiceApiResult' : 'WihtDeviceAdapterController.apiWihtDeviceID'
 
 };
