@@ -1,4 +1,5 @@
 var oldInfo= JSON.parse(localStorage.getItem('info'));
+console.log(oldInfo)
 var newPara = {
 	"StarRating": "",
 	"Location": "",
@@ -48,7 +49,7 @@ var hotelList = {
 
 	callBack : function(arg) {
 		console.log(arg)
-		var tpl1 = $('#hotel_list').html();
+
 		var tpl2 =
 			'<li class="s_li1"> 不限 </li>'+
 			'<% for(var i=0;i < starRatingList.length;i++){ %>'+
@@ -59,24 +60,111 @@ var hotelList = {
 			'<% for(var i=0;i < locationList.length;i++){ %>'+
 			'<li class="l-li"><%=locationList[i]%><b class="l_icon"></b></li>'+
 			'<% } %>';
+
 		var resultData = arg.data, that = hotelList;
+		console.log(resultData)
+		//筛选星级处理
+		function starChoose(resultData){
+			console.log(resultData)
+			var starArr =[];
+			var starJson = {};
+			var star = resultData.starRatingList;
+			for(var i=0;i<star.length;i++){
+				starJson = {
+					"filterText": star[i],
+					"filterValue": star[i]
+				}
+				starArr.push(starJson)
+			}
+			console.log(starArr);
+			return starArr
+		}
 		if(arg.success){
 			if (resultData.hotels.length == 0) {
 				jAlert("抱歉暂时没有数据", "提示");
 			} else {
-				console.log(resultData);
 				that.packageID = resultData.packageID;
 				that.bookingFormInfo = resultData.bookingFormInfo;
-				var hotels = resultData.hotels;
-				hotels = that.resetData(hotels);
-				console.log(resultData.hotels)
-				var tpl_GetList = ejs.render(tpl1, resultData);
+				//var hotels = resultData.hotels;
 				var tpl_getStar = ejs.render(tpl2,resultData);
 				var tpl_getLocation = ejs.render(tpl3,resultData);
 				$("#preloader").fadeOut();
-				$('#lsf_list').html(tpl_GetList);
+				list(resultData);
 				$('#h-level').html(tpl_getStar);
 				$('#l-ul').html(tpl_getLocation);
+				function list(resultData){
+					console.log(resultData.data);
+					if(resultData.data){
+						resultData = resultData.data;
+					}
+					var tpl1 = $('#hotel_list').html();
+					var tpl_GetList = ejs.render(tpl1, resultData);
+					$('#lsf_list').html(tpl_GetList);
+				}
+
+				//footer插件方法必须写
+				function tAjax(questUrl, data, Code, ForeEndType, Callback) {
+					var that = this, dataObj = {
+						Parameters : data,
+						ForeEndType : ForeEndType,
+						Code : Code
+					};
+					questUrl = questUrl || that.requestUrl;
+					vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+				};
+				//footer  begin
+				var menu_data = {
+					hotelSort : {
+						title : "推荐排序",
+						c : "foot_sort",
+						s:1,
+						type :1,
+						key : 'sortTypes',
+						listData : [{sortText:"推荐排序",sortValue:0},{sortText:"价格升序",sortValue:1},{sortText: "价格降序",sortValue:2}]
+					},
+					hotelScreen : {
+						title : "筛选",
+						c : "foot_screen",
+						s:2,
+						type : 2,
+						key : 'filters',
+						listData : [{
+							title: "星级",
+							filterType: 1,
+							item: starChoose(resultData)
+						}]
+					}
+				}, menu_call = function(data) {
+					console.log(data)
+					////位置重构
+					//var toString = [];
+					//toString= data.locationList;
+					//var locationList = toString.join(",");
+                    //
+					//筛选入参重构
+					var arrNum = data.filters[0].FilterValues,filter ="";
+					for(var i=0;i<arrNum.length;i++){
+						filter = filter + arrNum[i]+'$';
+					}
+					//排序获取当前点击事件
+					//console.log($('.foot_sort .cur').eq());
+					oldInfo.SortType = data.sortTypes[0];
+					//parametersStorage.Location = locationList;
+					oldInfo.StarRating = filter;
+					////加loading
+					//$('.status').fadeIn('fast');
+					tAjax("", oldInfo, "40100008", "3", list);
+				};
+				if (footer) {
+					footer.data = menu_data;
+					footer.callback = menu_call;
+				}
+				footer.filters.init();
+				//footer  end
+
+
+
+
 
         //  恢复上次选中的酒店星级
         if(newPara.StarRating != ''){
@@ -222,8 +310,8 @@ var hotelList = {
 		var paraObj = JSON.parse(window.localStorage.info);
 		var hotelResultData = JSON.parse(localStorage.getItem('hotelResultData')), initObj={};
 		oldInfo = JSON.parse(localStorage.getItem('info'));
-		console.log(oldInfo);
-		this.oldInfo = paraObj;
+		//console.log(oldInfo);
+		//this.oldInfo = paraObj;
 		that.hasChoosed = false;
 		console.log(hotelResultData);
 		initObj.data = hotelResultData;
