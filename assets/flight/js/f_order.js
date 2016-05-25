@@ -95,126 +95,13 @@ var fOrder = {
     var countryTrigger = document.querySelector('.country-trigger'), that = this;
     countryTrigger.onclick = function () {
       var div = document.createElement('div');
-      var searchHandler = function () {
-        var countryInputZone = document.querySelector('#country-input-zone');
-        var cityListSearched = document.querySelector('.country-list-searched-order');
-        var countryListInitShow = document.querySelector('.country-list-init-show');
-        var searchResult = [], reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr = '';
-        Array.prototype.distinct = function () {
-          var sameObj = function (a, b) {
-            var tag = true;
-            if (!a || !b)return false;
-            for (var x in a) {
-              if (!b[x])
-                return false;
-              if (typeof(a[x]) === 'object') {
-                tag = sameObj(a[x], b[x]);
-              } else {
-                if (a[x] !== b[x])
-                  return false;
-              }
-            }
-            return tag;
-          };
-          var newArr = [], obj = {};
-          for (var i = 0, len = this.length; i < len; i++) {
-            if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
-              newArr.push(this[i]);
-              obj[typeof(this[i]) + this[i]] = this[i];
-            }
-          }
-          return newArr;
-        };
 
-        if (reg.test(valueStr)) {
-          console.log(22)
-          var mb = String(valueStr).toLowerCase();
-          for (var p = 0; p < arrCountry.length; p++) {
-            var ma = String(arrCountry[p]['CountryEN']).toLowerCase();
-            if (ma.indexOf(mb) > -1 || arrCountry[p]['CountryName'].indexOf(valueStr) > -1) {
-              searchResult.push(arrCountry[p]);
-            }
-          }
-          searchResult = searchResult.distinct();
-          if (!searchResult.length) {
-            resultStr += '<li>无搜索结果</li>';
-            cityListSearched.style.display = 'none';
-          } else {
-            for (var l = 0; l < searchResult.length; l++) {
-              resultStr += '<li data-tel-code="' + searchResult[l].TelCode + '" data-Country-code="' + searchResult[l].CountryCode + '">' + searchResult[l].CountryName + '</li>'
-            }
-            cityListSearched.innerHTML = resultStr;
-            cityListSearched.style.display = 'block';
-          }
-        }
-      };
-      div.className = 'all-elements country-cho-wrap-order';
-      div.innerHTML = '<div class="header country-list-header">' +
-        '<a href="javascript:void(0)" class="icons header-back country-hidden"></a>' +
-        '<div class="cl_search">' +
-        '<input type="text" placeholder="中国/China/zhongguo" id="country-input-zone"/>' +
-        '<i></i>' +
-        '</div>' +
-        '</div>' +
-        '<ul class="country-list-searched country-list-searched-order"></ul>' +
-        '<div class="snap-content country-list country-list-init-show" style="padding-top: 45px">' +
-        '<div class="country-wrap" id="country-wrap">' +
-        '<ul class="country-list counter-list-to-order">' +
-        '</ul>' +
-        '</div>' +
-        '</div>';
-      document.body.appendChild(div);
-
-      var cityInputZone = document.querySelector('#country-input-zone');
-      var countryHidden = document.querySelector('.country-hidden');
-      var ulLi = document.querySelector('.counter-list-to-order'), liStr = '';
-      Array.prototype.distinct = function () {
-        var sameObj = function (a, b) {
-          var tag = true;
-          if (!a || !b)return false;
-          for (var x in a) {
-            if (!b[x])
-              return false;
-            if (typeof(a[x]) === 'object') {
-              tag = sameObj(a[x], b[x]);
-            } else {
-              if (a[x] !== b[x])
-                return false;
-            }
-          }
-          return tag;
-        };
-        var newArr = [], obj = {};
-        for (var i = 0, len = this.length; i < len; i++) {
-          if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
-            newArr.push(this[i]);
-            obj[typeof(this[i]) + this[i]] = this[i];
-          }
-        }
-        return newArr;
-      };
-      arrCountry = arrCountry.distinct();
-      for (var ji = 0, len = arrCountry.length; ji < len; ji++) {
-        liStr += '<li data-tel-code="' + arrCountry[ji].TelCode + '" data-code="' + arrCountry[ji].CountryCode + '">' + arrCountry[ji].CountryName + '</li>'
-      }
-      ulLi.innerHTML = liStr;
-      if (cityInputZone.addEventListener) {
-        cityInputZone.addEventListener('input', searchHandler, false)
-      } else {
-        cityInputZone.attachEvent('onpropertychange', searchHandler)
-      }
-      countryHidden.onclick = function () {
-        if (document.querySelector('.country-cho-wrap-order')) {
-          document.body.removeChild(document.querySelector('.country-cho-wrap-order'));
-        }
-      };
-      that.addCountryCodeHandler();
-    };
+    }
   },
 
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {};
+    var postPara = {}, temObject = {} , passengerOuter =  document.querySelector('.passenger_outer');
     postPara.wapOrder = {};
     postPara.travellerInfo = [];
     postPara.contactDetail = {};
@@ -425,6 +312,21 @@ var fOrder = {
         }
       }
     });
+    this.addHandler(passengerOuter, 'click', function (e){
+      var e = e || window.event, target = e.target || e.srcElement;
+        if(target.className == 'minus_person'){
+          var tem = target.parentNode.parentNode;
+          this.removeChild(tem);
+        }
+    })
+
+    this.addHandler(body, 'click', function (e){
+      var e = e || window.event, target = e.target || e.srcElement;
+      if(target.className == 'shadow'){
+
+      }
+    })
+
   },
 
   createTags: function () {
