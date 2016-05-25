@@ -22,12 +22,29 @@
 <a href="javascript:void(0);" id="hft_ori" data-bind="type:'setCityBox',data:'hft_ori',returnId:'#ret'">机+酒+景 去程</a>
 <p>
 <a href="javascript:void(0);"  id="hft_des" data-bind="type:'setCityBox',data:'hft_des',returnId:'#ret'">机+酒+景 返程</a>
-<p></p>
+<p>
   <a href="javascript:void(0);" id="hf_ori" data-bind="type:'setCityBox',data:'hf_ori',returnId:'#ret'">机+酒 去程</a>
 <p>
   <a href="javascript:void(0);"  id="hf_des" data-bind="type:'setCityBox',data:'hf_des',returnId:'#ret'">机+酒 返程</a>
-  <p>
+<p>
+  <a href="javascript:void(0);"  id="t_des" data-bind="type:'setCityBox',data:'t_des'">景 城市列表</a>
+<p>
+  <a href="javascript:void(0);"  id="ht_des" data-bind="type:'setCityBox',data:'ht_des'">酒+景 城市列表</a>
+<p>
+  <a href="javascript:void(0);"  id="f_inori" data-bind="type:'setCityBox',data:'f_inori',returnId:'#ret'">机票 国内 去程</a>
+<p>
+  <a href="javascript:void(0);"  id="f_indes" data-bind="type:'setCityBox',data:'f_indes',returnId:'#ret'">机票 国内 返程</a>
+<p>
+  <a href="javascript:void(0);"  id="f_outori" data-bind="type:'setCityBox',data:'f_outori',returnId:'#ret'">机票 国际 去程</a>
+<p>
+  <a href="javascript:void(0);"  id="f_outdes" data-bind="type:'setCityBox',data:'f_outdes',returnId:'#ret'">机票 国际 返程</a>
+<p>
+  <a href="javascript:void(0);"  id="h_in" data-bind="type:'setCityBox',data:'h_in',returnId:'#ret',returnAttr:'value',returnStrId:'#h_ret',returnStrVal:'data-value'">酒店 国内</a>
+<p>
+  <a href="javascript:void(0);"  id="h_out" data-bind="type:'setCityBox',data:'h_out',returnId:'#ret',returnAttr:'value',returnStrId:'#h_ret'">酒店 国际</a>
+<p>
   <div id="ret"></div>
+  <div id="h_ret"></div>
 <div id="preloader" style="display: none;">
   <div id="status">
   </div>
@@ -397,6 +414,7 @@
 
 <script src="../../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../../js/lib/vlm.js"></script>
+<script src="ticketCityData.js"></script>
 <script src="citybox.js"></script>
 <script src="city.js"></script>
 </body>
