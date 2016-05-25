@@ -390,32 +390,32 @@ var footer = (function() {
          }else{
            outerObj = fSingleList;
          }
-         if(outerObj.postObj.internationalOrDomestic == "international"){
+
+         if(outerObj.postObj.internationalOrDomestic == "international"){//国际
            var dls = document.querySelectorAll('footer dl'),leftUl = document.querySelector('.f_foot_sort ul');
            var middlesUls = document.querySelectorAll('.screen_rg ul'), temp1,temp2,temp3,temp4,temp5;
            var postObj = outerObj.postObj;
-           temp1 = leftUl.querySelectorAll('li');
-           temp1 = [].slice.call(temp1);
-           temp1.forEach(function(item, number){
-             if(number<3){
-               item.className =  item.getAttribute('data-val') == postObj.priorityRule?"cur":"";
-             }else{
-               item.className =  item.getAttribute('data-val').substring(7) == postObj.isDesc?"cur":"";
-             }
-           });
-           temp2 = middlesUls[0].querySelectorAll('li');
-           temp2 = [].slice.call(temp2);
-           temp2.forEach(function(item, number){
-             console.log(item.getAttribute('data-val'));
-             console.log( postObj.isDirectFlight);
-             item.className =  item.getAttribute('data-val') == postObj.isDirectFlight?"cur":"";
-           });
-           temp3 = middlesUls[1].querySelectorAll('li');
-           temp3 = [].slice.call(temp3);
-           temp3.forEach(function(item, number){
-             item.className =  item.getAttribute('data-val') == postObj.isHideSharedFlight?"cur":"";
-           });
            if(outerObj.postObj.routeType == "oneWay"){
+             temp1 = leftUl.querySelectorAll('li');
+             temp1 = [].slice.call(temp1);
+             temp1.forEach(function(item, number){
+               if(number<3){
+                 item.className =  item.getAttribute('data-val') == postObj.priorityRule?"cur":"";
+               }else{
+                 item.className =  item.getAttribute('data-val').substring(7) == postObj.isDesc?"cur":"";
+               }
+             });
+             temp2 = middlesUls[0].querySelectorAll('li');
+             temp2 = [].slice.call(temp2);
+             temp2.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isDirectFlight?"cur":"";
+             });
+             temp3 = middlesUls[1].querySelectorAll('li');
+             temp3 = [].slice.call(temp3);
+             temp3.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isHideSharedFlight?"cur":"";
+             });
+
              temp4 = middlesUls[2].querySelectorAll('li');
              temp4 = [].slice.call(temp4);
              temp4.forEach(function(item, number){
@@ -426,8 +426,35 @@ var footer = (function() {
              temp5.forEach(function(item, number){
                item.className =  item.getAttribute('data-val') == postObj.cabinClass?"cur":"";
              });
+
+             temp1.forEach(function(item, number){
+                if(item.className == 'cur'){
+                  dls[0].querySelector('dd').innerHTML = item.innerHTML;
+                }
+                  });
              dls[2].querySelector('dd').innerHTML = postObj.priorityRule=="2"?"从低到高":"价格";
            }else{
+
+             temp1 = leftUl.querySelectorAll('li');
+             temp1 = [].slice.call(temp1);
+             temp1.forEach(function(item, number){
+               if(number<3){
+                 item.className =  item.getAttribute('data-val') == postObj.priorityRule?"cur":"";
+               }else{
+                 item.className =  item.getAttribute('data-val').substring(7) == postObj.isDesc?"cur":"";
+               }
+             });
+             temp2 = middlesUls[0].querySelectorAll('li');
+             temp2 = [].slice.call(temp2);
+             temp2.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isDirectFlight?"cur":"";
+             });
+             temp3 = middlesUls[1].querySelectorAll('li');
+             temp3 = [].slice.call(temp3);
+             temp3.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isHideSharedFlight?"cur":"";
+             });
+
              temp4 = middlesUls[2].querySelectorAll('li');
              temp4 = [].slice.call(temp4);
              temp4.forEach(function(item, number){
@@ -439,8 +466,89 @@ var footer = (function() {
                item.className =  item.getAttribute('data-val') == postObj.airCorpCode?"cur":"";
              });
              dls[0].querySelector('dd').innerHTML = Number(fDoubleList.postObj.hasTax)==1?"含税费":"不含税费";
+             console.log(dls[0])
              dls[2].querySelector('dd').innerHTML = Number(fDoubleList.postObj.hasTax)==1?"含税费":"不含税费";
            }
+         }else{ //国内
+           var dls = document.querySelectorAll('footer dl'),leftUl = document.querySelector('.f_foot_sort ul');
+           var middlesUls = document.querySelectorAll('.screen_rg ul'), temp1,temp2,temp3,temp4,temp5;
+           var postObj = outerObj.postObj;
+           if(outerObj.postObj.routeType == "oneWay"){
+             temp1 = leftUl.querySelectorAll('li');
+             temp1 = [].slice.call(temp1);
+             temp1.forEach(function(item, number){
+               if(number<3){
+                 item.className =  item.getAttribute('data-val') == postObj.priorityRule?"cur":"";
+               }else{
+                 item.className =  item.getAttribute('data-val').substring(7) == postObj.isDesc?"cur":"";
+               }
+             });
+             temp2 = middlesUls[0].querySelectorAll('li');
+             temp2 = [].slice.call(temp2);
+             temp2.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isDirectFlight?"cur":"";
+             });
+             temp3 = middlesUls[1].querySelectorAll('li');
+             temp3 = [].slice.call(temp3);
+             temp3.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isHideSharedFlight?"cur":"";
+             });
+
+             temp4 = middlesUls[2].querySelectorAll('li');
+             temp4 = [].slice.call(temp4);
+             temp4.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.departStartHour+'-'+postObj.departEndHour?"cur":"";
+             });
+             temp5 = middlesUls[3].querySelectorAll('li');
+             temp5 = [].slice.call(temp5);
+             temp5.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.cabinClass?"cur":"";
+             });
+
+             temp1.forEach(function(item, number){
+               if(item.className == 'cur'){
+                 dls[0].querySelector('dd').innerHTML = item.innerHTML;
+               }
+             });
+             dls[2].querySelector('dd').innerHTML = postObj.priorityRule=="2"?"从低到高":"价格";
+           }else{
+
+             temp1 = leftUl.querySelectorAll('li');
+             temp1 = [].slice.call(temp1);
+             temp1.forEach(function(item, number){
+               if(number<3){
+                 item.className =  item.getAttribute('data-val') == postObj.priorityRule?"cur":"";
+               }else{
+                 item.className =  item.getAttribute('data-val').substring(7) == postObj.isDesc?"cur":"";
+               }
+             });
+             temp2 = middlesUls[0].querySelectorAll('li');
+             temp2 = [].slice.call(temp2);
+             temp2.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isDirectFlight?"cur":"";
+             });
+             temp3 = middlesUls[1].querySelectorAll('li');
+             temp3 = [].slice.call(temp3);
+             temp3.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.isHideSharedFlight?"cur":"";
+             });
+
+             temp4 = middlesUls[2].querySelectorAll('li');
+             temp4 = [].slice.call(temp4);
+             temp4.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.cabinClass?"cur":"";
+             });
+             temp5 = middlesUls[3].querySelectorAll('li');
+             temp5 = [].slice.call(temp5);
+             temp5.forEach(function(item, number){
+               item.className =  item.getAttribute('data-val') == postObj.airCorpCode?"cur":"";
+             });
+             dls[0].querySelector('dd').innerHTML = Number(fDoubleList.postObj.hasTax)==1?"含税费":"不含税费";
+             console.log(dls[0])
+             dls[2].querySelector('dd').innerHTML = Number(fDoubleList.postObj.hasTax)==1?"含税费":"不含税费";
+           }
+
+
          }
           },
 
@@ -457,7 +565,6 @@ var footer = (function() {
 				this.create();
         this.chooseStatus();
 			}
-			//缓存数据&导入
 		},
 
 		remove : function() {
