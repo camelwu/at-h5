@@ -142,6 +142,9 @@ i,em{
     right: 0;
     display: none;
 }
+.hotel_list li.cur .h_choose{
+    display: block;
+}
 .hotel_list .ho_pic{
     width: 1.68rem;
     height: 1.68rem;
@@ -172,7 +175,7 @@ i,em{
 .hotel_list .price{
     height: 0.8rem;
     line-height: 0.8rem;
-    color: #ff5b13;
+    color: #fb7530;
     font-size: 0.4rem;
     margin-top: -0.4rem;
     position: absolute;
@@ -405,6 +408,7 @@ a.hotel_detail_pic{
 }
 .hotel_detail_list.hdl_down{
     background: #fff;
+    margin-bottom:0.6rem;
 }
 .hotel_detail_list>li{
     list-style: none;
@@ -420,6 +424,12 @@ a.hotel_detail_pic{
 .hotel_detail_list>li.last{
     height: auto;
     padding: 0;
+    background: #f7f7f7;
+    border-bottom:0;
+}
+.hotel_detail_list>li ul{
+    margin-top: 0.32rem;
+    background: #fff;
 }
 .hotel_room_list img.choose{
     width: 0.43rem;
@@ -501,8 +511,8 @@ a.hotel_detail_pic{
 /*¶©µ¥ÌîÐ´  begin*/
 .order_fill{
     color: #333;
-    border-bottom:1px solid #dedede;
-    margin-bottom: 0.2rem;
+    border-bottom:1px solid #e6e6e6;
+    margin-bottom: 0.32rem;
 }
 .order_ticket,.hotel_detail,.tour_detail{
     background-color: #fff;
@@ -571,16 +581,13 @@ a.hotel_detail_pic{
 }
 .order_per_data span.title:before,.order_data_box .title:before {
     content: '';
-    width:0.06rem;
-    height:0.32rem;
+    width:3px;
+    height:0.26rem;
     position: absolute;
     left:0.24rem;
     top:0.24rem;
-    background: #ffb413;
+    background: #7bc300;
     display: block;
-    -moz-border-radius:0.04rem;
-    -webkit-border-radius:0.04rem;
-    border-radius:0.04rem;
 }
 .order_per_data>ul{
     padding: 0;
@@ -592,9 +599,6 @@ a.hotel_detail_pic{
     margin: 0;
     padding: 0 0.24rem 0 0;
     position: relative;
-}
-.order_per_data ul .li_section_box{
-    border-bottom: 1px solid #ddd;
 }
 .order_per_data ul .li_section_box>li,.order_per_data ul .li_section_box ul li.child{
     padding-left: 0.24rem;
@@ -649,18 +653,17 @@ a.hotel_detail_pic{
 .order_data_box{
     font-size: 0.3rem;
     background: #fff;
-    margin-bottom:0.2rem;
-    border-bottom:1px solid #ddd;
+    margin-bottom:0.32rem;
+    border-bottom:1px solid #e6e6e6;
 }
 .order_data_box .personal_data{
     overflow: hidden;
-    border-top:1px solid #ddd;
 }
 .order_data_box .title{
     font-size: 0.32rem;
     height:0.84rem;
     line-height:0.84rem;
-    border-bottom:1px solid #ddd;
+    border-bottom:1px solid #e6e6e6;
     display: block;
     padding: 0 0.24rem 0 0.48rem;
     position: relative;
@@ -724,12 +727,12 @@ a.hotel_detail_pic{
     position: absolute;
     right: 0;
     top: 0;
-    width:1.76rem;
-    height:0.84rem;
+    width:50%;
+    height:0.98rem;
     background: #7bc300;
     color: #fff;
     text-align: center;
-    line-height:0.84rem;
+    line-height:0.98rem;
     font-size:0.32rem;
 }
 .order_detail_expenses{
@@ -865,7 +868,6 @@ a.hotel_detail_pic{
     vertical-align: top;
     margin-top:0.06rem;
     color: #999;
-    font-size: 0.13rem;
 }
 /*¶©µ¥ÌîÐ´ µ¯¿ò*/
 .order_mask{

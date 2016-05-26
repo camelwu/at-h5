@@ -136,7 +136,7 @@
         <div class="ho_infor">
             <p class="name"><%= hotels[i].hotelName %></p>
             <div class="grade">
-                <span><%= hotels[i].starRating %>星级</span>
+                <span><%= hotels[i].starRating %></span>
                 <p class="h-address"><%= hotels[i].location %></p>
                 </div>
             </div>
@@ -157,6 +157,7 @@
 <script src="js/hotelList.js"></script>
 <script>
     $(function(){
+        $('.hotel_list li').eq(0).addClass('cur');
         $('.foot_sort li').eq(0).addClass('cur');
     })
 </script>
