@@ -424,16 +424,16 @@
 			frontImgStr = '';
 			frontImgStr += '<div class="d-div1 faceImg hotel_img"> <a class="goback" href="javascript:window.history.go(-1);"></a> <img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum hotel_imgBox"><div class="d-p4 hotel_imgBog_num">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
             //H5-410 点评为0时不显示该模块
-      		rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分/' + result.data[0].hotelGenInfo.hotelReviewCount + '人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
+      		rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li class = "score" onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分 ' +'<strong>'+ result.data[0].hotelGenInfo.hotelReviewCount + '<strong>'+'人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
 
 			firstUl += '<div class="maps"><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) +'</h3><div id="map"></div><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></div><ul class="d-ul1 hotel_shoulder">' + ''+rateStr+'<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
 
 			secondUl += '<ul class="d-ul2 hotel_content">' + '<li id="chooseDate"><span class="enterDate">' + hotelDetail.gdataInfo.CheckInDate + '</span>入住<span class="enterDate" style="margin-left: 5px;">' + hotelDetail.gdataInfo.CheckOutDate + '</span>离店<em>共<span id="nightNum">' + hotelDetail.sTools.getTotalNights(hotelDetail.gdataInfo.CheckOutDate, hotelDetail.gdataInfo.CheckInDate) + '</span>晚</em><b class="icons open-arg"></b></li>' + hotelDetail.showRoomList(result) + '</ul>';
 
-			footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
+			//footer += '<div class="footer"><span>版权所有@2015Asiatravel 控股有限公司.保留所有权利.</span></div>';
 
-			contentStr = '<div class="content">' + frontImgStr + firstUl + secondUl + footer + '</div>';
-
+			contentStr = '<div class="content">' + frontImgStr + firstUl + secondUl +'</div>';
+      //firstUl + secondUl +footer+'</div>'
 			//allStr += headerStr + contentStr;
       allStr +=contentStr;
 
