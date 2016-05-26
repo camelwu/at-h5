@@ -84,7 +84,7 @@ div#h-Tab .off{
   float: left;
   height: 1rem;
   line-height: 1rem;
-  margin-top: .5rem;
+  margin-top: .59rem;
 }
 .hotel_time_left > span{
   display: block;
@@ -112,10 +112,11 @@ div#h-Tab .off{
 }
 .hotel_time_center_start input,.hotel_time_center_end input{
   float: left;
-  width: 2rem;
+  width: 2.12rem;
   font-size: .4rem;
   font-weight: 600;
   margin-top: .6rem;
+  margin-right: .12rem;
 }
 .hotel_time_right{
   float: left;
@@ -124,7 +125,7 @@ div#h-Tab .off{
 }
 .hotel_week{
   display: block;
-  padding-top: .4rem;
+  padding-top: .49rem;
   font-size: .2rem;
 }
 .hotel_time_right i{
