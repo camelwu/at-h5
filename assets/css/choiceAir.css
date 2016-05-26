@@ -568,6 +568,11 @@ i, em {
   padding-left: .48rem;
 
 }
+.con_text_tips{
+  padding: .3rem .3rem;
+  color: #999;
+  margin-bottom: 0;
+}
 
 /*国籍选择结束*/
 
