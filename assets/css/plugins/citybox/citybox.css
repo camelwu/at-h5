@@ -68,9 +68,10 @@
   width: 0.8rem;
   overflow: hidden;
   display: inline-block;
-  background: url(/images/ui/icon_common.png) no-repeat;
+  background: url(../images/ui/icon_common.png) no-repeat;
   background-size: 7.9rem 5.13rem;
   background-position: -2.3rem -2.12rem;
+  z-index: 11;
 }
 
 /*content*/

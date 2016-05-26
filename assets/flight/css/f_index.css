@@ -48,8 +48,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .light-title {
-  border-bottom: 0.04rem solid rgb(255, 180, 19);
-  color: rgb(255, 180, 19);
+  border-bottom: 0.04rem solid #7bc300;
+  color: #7bc300;
 }
 
 .grey-title {
@@ -261,7 +261,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   line-height: .96rem;
   border-radius: .06rem;
   text-align: center;
-  background: rgb(255, 180, 19);
+  background: #7bc300;
   font-size: .36rem;
   outline: none;
 }
@@ -664,7 +664,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   display: inline-block;
   height: .60rem;
   width: 1.40rem;
-  background: #ffb413;
+  background: #7bc300;
   color: #FFFFFF;
   font-size: .32rem;
   position: absolute;
@@ -792,7 +792,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   line-height: .32rem;
   position: relative;
   text-align: center;
-  color: #ffb413;
+  color: #7bc300;
 }
 
 .flightDetailArrow i {
@@ -1016,6 +1016,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 input.name{
   margin-left: .168rem!important;
+  max-width: 2.2rem!important;
 }
 
 .passengers_wrap .tip_word {
@@ -1126,7 +1127,7 @@ input.name{
   display: inline-block;
   height: 100%;
   padding: 0 0;
-  background: #FFB413;
+  background: #7bc300;
   color: #FFFFFF;
   text-align: center;
   font-size: .36rem;
@@ -1246,7 +1247,7 @@ input.name{
 }
 
 .jto_letter_list li a {
-  color: #ffb413;
+  color: #7bc300;
 }
 
 .recent_title {
