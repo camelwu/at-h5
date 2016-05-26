@@ -142,6 +142,9 @@ i,em{
     right: 0;
     display: none;
 }
+.hotel_list li.cur .h_choose{
+    display: block;
+}
 .hotel_list .ho_pic{
     width: 1.68rem;
     height: 1.68rem;
