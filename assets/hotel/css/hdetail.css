@@ -167,7 +167,7 @@ strong{
   margin-top:.2rem;
 }
 .hotel_content > li{
-  padding:0  .2rem;
+  padding:.2rem;
   position: relative;
   border-bottom: 1px  solid #dfdfdd;
   min-height: .84rem;
@@ -256,7 +256,7 @@ strong{
   background-position: -2.02rem -0.68rem;
   background-size: 8rem 2.4rem;
   position: absolute;
-  top: .24rem;
+  top: .2rem;
 }
 .hotel_content_roomEvent_content{
   margin-top: 6px;
