@@ -81,20 +81,7 @@
     right: 15px;
     top: 15px;
 }
-.content2{
-    height: 93px;
-    border-top: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
-    display: -moz-box;  /* Firefox */
-    display: -ms-flexbox;    /* IE10 */
-    display: -webkit-box;    /* Safari */
-    display: -webkit-flex;    /* Chrome, WebKit */
-    display: box;
-    display: flexbox;
-    display: flex;
-    /*height: 91px;*/
-    flex-flow: row;
-}
+
 /*.nav2{*/
 /*display: -moz-box;  /!* Firefox *!/*/
 /*display: -ms-flexbox;    /!* IE10 *!/*/
@@ -106,107 +93,67 @@
 /*height: 91px;*/
 /*flex-flow: row;*/
 /*}*/
-.nav2-left{
-    width: 60px;
-    margin: 9px 15px 9px 15px;
-    font-size: 12px;
-    color: #484848;
-}
+
 .nav2-lefttop{
     display: block;
     height: 36px;
     line-height: 40px;
 }
-.nav2-leftbottom{
-    display: block;
-    height: 36px;
-    line-height: 20px;
-}
-.nav2-leftbottom span{
-    color: #FFB413
-}
-.nav2-center{
-    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-flex: 1;         /* OLD - Firefox 19- */
-    -webkit-flex: 1;          /* Chrome */
-    -ms-flex: 1;              /* IE 10 */
-    flex: 1.0;
-}
-.nav2-centertop{
-    height: 46px;
-    border-bottom: 1px solid #dedede;
-}
+
+
+
+
 .nav2-tour{
     height:auto!important;
     border-bottom: 1px solid #dedede;
 }
-.nav2-tour div:first-child{
-    margin-left: 15px;
-    margin-top: 8px;
-    margin-bottom: 10px;
-    padding-right: 10px;
-    color: #fdb330;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.nav2-tour div:nth-child(2){
-    text-align: left;
-    padding-left: 15px;
-}
+/*.nav2-tour div:first-child{*/
+    /*margin-left: 15px;*/
+    /*margin-top: 8px;*/
+    /*margin-bottom: 10px;*/
+    /*padding-right: 10px;*/
+    /*color: #fdb330;*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
+/*}*/
+
 .nav2-tour input{
     display: inline-block;
     width: 22%;
 }
-.nav2-tour i{
-    background-image: url(../images/icon-h.png);
-    background-repeat: no-repeat;
-    background-size: 402px 174px;
-    background-position: -245px 0 ;
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    right: 0;
-    bottom: 5px;
-}
+
 .nav2-center input{
-    width: 85px;
-    color: #000;
-    line-height: 45px;
-    margin-left: 10px;
-    margin-top:1px;
-    font-size: 14px;
-    font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+    /*width: 85px;*/
+    /*color: #000;*/
+    /*line-height: 45px;*/
+    /*margin-left: 10px;*/
+    /*margin-top:1px;*/
+    /*font-size: 14px;*/
+    /*font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;*/
 }
 .tourSe{
-    float: left;
+    /*float: left;*/
     padding:5px 15px;
     color: #a9a9a9;
 }
-.tourSelect{
-    float: right;
-    margin-right: 15px;
-    margin-top: 6px;
-    width:49px;
-    height:22px;
-    line-height: 22px;
-    text-align: center;
-    border-radius: 5px;
-    border:1px solid #999999;
-    color:#999999;
-}
+/*.tourSelect{*/
+    /*float: left;*/
+    /*margin-right: 15px;*/
+    /*margin-top: 6px;*/
+    /*width:49px;*/
+    /*height:22px;*/
+    /*line-height: 22px;*/
+    /*text-align: center;*/
+    /*border-radius: 5px;*/
+    /*border:1px solid #999999;*/
+    /*color:#999999;*/
+/*}*/
 .tourcho{
     border:1px solid #fdb330;
     color:#fdb330;
 }
-.nav2-center p{
-    padding-left: 14px;
-    display: inline-flex;
-    line-height: 45px;
-}
-.nav2-leftbottom{
-    height: 45px;
-}
+
 .nav2-centerright{
     width: 20px;
     margin: 9px 15px 9px 15px;
@@ -846,4 +793,304 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     color: #FFFFFF;
     margin-left: 11px;
     float: left;
+}
+
+/*------------------*/
+/*资料输入页面*/
+.zy_title{
+    height:0.94rem;
+    line-height:0.94rem;
+    position: relative;
+    background: #fff;
+}
+.zy_title h3{
+    font-size:0.32rem;
+    padding-left:0.9rem;
+}
+.zy_title h3:before{
+    height:0.54rem;
+    width:0.54rem;
+    content: '';
+    background: url(../images/ui/icon_common.png) no-repeat;
+    background-position:-1.9rem -1.42rem;
+    background-size:7.9rem 5.13rem;
+    display: block;
+    position: absolute;
+    left:0.25rem;
+    top:50%;
+    margin-top:-0.27rem
+}
+.zy_title h3.hotel:before{
+    background-position:-1.2rem -1.42rem;
+}
+.zy_select_date{
+    background: #fff;
+}
+.nav2-left{
+    width: 1.4rem;
+    height: 1.58rem;
+    line-height: 2.05rem;
+    text-align: center;
+    margin-left: -0.7rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 5;
+    color: #666;
+    font-size: 0.3rem;
+}
+.zy_content2{
+    height: 1.58rem;
+    border-top:0.01rem solid #dedede;
+    border-bottom:0.01rem solid #dedede;
+    position: relative;
+}
+.nav2-center{
+    height: 1.58rem;
+    color: #333;
+    position:relative;
+}
+.nav2-centertop{
+    width:3rem;
+    position: absolute;
+    left: 0;
+    top:0;
+}
+.nav2-centertop p{
+    padding-left: 0.25rem;
+}
+.nav2-centerbottom{
+    width:3rem;
+    position: absolute;
+    right: 0;
+    top:0;
+}
+.nav2-centerbottom p{
+    text-align: right;
+    padding-right: 0.25rem;
+}
+.nav2-centertop input,.nav2-centerbottom input{
+    font-size: 0.4rem;
+    font-weight: bold;;
+}
+.nav2-centertop i,.nav2-centerbottom i{
+    display: block;
+    color: #999;
+    padding-bottom: 0.1rem;
+    padding-top: 0.3rem;
+}
+.nav2-centertop input,.nav2-centerbottom input{
+    width: 1.80rem;
+    color: #333;
+}
+section.hotelInfo_numb_room{
+    height: 1.2rem;
+    background: #fff;
+    color: #333;
+    border-bottom: 0.01rem solid #ddd;
+    overflow: hidden;
+    position: relative;
+    padding: 0 0.25rem;
+}
+section.hotelInfo_numb_room .room_number{
+    width:1.6rem;
+    height: 0.5rem;
+    position: absolute;
+    right:0.25rem;
+    top:50%;
+    margin-top:-0.25rem;
+}
+section.hotelInfo_numb_room .room_number span{
+    width:0.5rem;
+    height:0.5rem;
+    background: url(../images/icons1.png) no-repeat 0 2px;
+    background-size: 320px auto;
+}
+section.hotelInfo_numb_room span.down_btn{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+section.hotelInfo_numb_room span.up_btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+section.hotelInfo_numb_room i.change_num{
+    height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.32rem;
+    display: block;
+    text-align: center;
+    margin: 0 0.5rem;
+}
+section.hotelInfo_numb_room .title{
+    height: 1.2rem;
+    line-height:1.2rem;
+    font-size: 0.32rem;
+    display: block;
+}
+.hotelInfo_numb_people{
+    font-size: 0.32rem;
+    background: #fff;
+    border-bottom:0.01rem solid #e6e6e6;
+    padding: 0.1rem 0 0.2rem 0.25rem;
+    position: relative;
+}
+.hotelInfo_numb_people>span.title{
+    width:1.4rem;
+    color: #333;
+    position: absolute;
+    left:0.25rem;
+    top:0.24rem;
+}
+.hotelInfo_numb_people .numbList,.hotelInfo_numb_people .extraChild{
+    margin-left: 1.4rem;
+    overflow: hidden;
+    padding: 0.2rem 0.25rem 0 0.2rem;
+}
+.hotelInfo_numb_people .extraChild{
+    border-top:1px solid #e6e6e6;
+    margin-top: 0.2rem;
+    padding: 0.24rem 0.25rem 0 0.2rem;
+}
+.hotelInfo_numb_people .numbList .n_tit,.hotelInfo_numb_people .bedList{
+    float: left;
+    display: block;
+    clear: both;
+}
+.hotelInfo_numb_people .bedList{
+    padding-bottom: 0.2rem;
+}
+.zy_price_control,.hotelInfo_numb_people .childAge{
+    float: right;
+    width: 1.6rem;
+    height: 0.5rem;
+    position: relative;
+}
+.hotelInfo_numb_people .childAge{
+    width: 20%;
+}
+.hotelInfo_numb_people .childAge input{
+    width: 60%;
+}
+.zy_price_control span,.hotelInfo_numb_people .childAge span{
+    width: 0.5rem;
+    height: 0.5rem;
+    background: url(../images/icons1.png) no-repeat 0 2px;
+    background-size: 320px auto;
+    position: absolute;
+    top: 0;
+}
+.hotelInfo_numb_people .spenumbList{
+    clear: both;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+.hotelInfo_numb_people .spenumbList b{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0.48rem;
+    height: 0.46rem;
+    background-image: url(../images/ui/icon_common.png);
+    background-repeat: no-repeat;
+    background-position: -5.08rem -0.52rem;
+    background-size:7.9rem 5.13rem;
+}
+.zy_price_control span.down_btn{
+    left: 0;
+}
+.zy_price_control span.up_btn{
+    right: 0;
+}
+.zy_price_control i.change_num{
+    display: block;
+    height: 0.5rem;
+    line-height: 0.55rem;
+    margin: 0 0.5rem;
+    text-align: center;
+}
+.zy_orderBtn{
+    margin:0.4rem 0.28rem 0;
+}
+.zy_orderBtn button{
+    display: block;
+    width: 100%;
+    background: #fdb330;
+    color: #fff;
+    text-align: center;
+    height:0.8rem;
+    line-height:0.8rem;
+    font-size:0.32rem;
+    -moz-border-radius:0.06rem;
+    -webkit-border-radius:0.06rem;
+    border-radius:0.06rem;
+}
+.zy_tourTime{
+    background: #fff;
+}
+.zy_tourTime .nav2-tour{
+    border-bottom:0.01rem solid #dedede;
+    padding: 0.2rem 0 0 0;
+    border-top:1px solid #e6e6e6;
+}
+.zy_tourTime .nav2-tour>div:nth-child(1){
+    margin-left:0.3rem;
+    margin-top:0.16rem;
+    margin-bottom:0.2rem;
+    padding-right:0.2rem;
+    color: #fdb330;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.32rem;
+    text-overflow: ellipsis;
+    border-left: 0.1rem solid;
+    padding-left: 0.2rem;
+}
+.zy_all_day{
+    padding: 0 0.25rem 0;
+    position: relative;
+    margin:0.3rem 0 0.4rem;
+}
+.zy_all_day .tourSelect{
+    font-size: 0.32rem;
+    width: 2.1rem;
+    height: 0.62rem;
+    line-height: 0.62rem;
+    text-align: center;
+    border-radius:0.1rem;
+    border:0.01rem solid #d1d1d1;
+    color:#333;
+}
+.zy_all_day div:nth-child(1),.zy_all_day div:nth-child(3){
+    position: absolute;
+    top:0;
+}
+.zy_all_day div:nth-child(1){
+    left: 0.25rem;
+}
+.zy_all_day div:nth-child(3){
+    right:0.25rem;
+}
+.zy_all_day div:nth-child(2){
+    margin: 0 auto;
+}
+.nav2-tour>div:nth-child(2){
+    text-align: left;
+    padding-left: 15px;
+    position: relative;
+}
+.nav2-tour>div:nth-child(2)>i{
+    background-image: url(../images/icon-h.png);
+    background-repeat: no-repeat;
+    background-size:8.04rem 3.48rem;
+    background-position: -4.96rem -0.26rem ;
+    position: absolute;
+    width:0.38rem;
+    height:0.38rem;
+    right:0.25rem;
+    bottom:0;
 }
