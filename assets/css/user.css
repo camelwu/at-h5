@@ -170,11 +170,10 @@ i, em {
   display: block;
   font-size: .32rem;
   border-radius: .04rem;
-  height: .96rem;
-  line-height: .96rem;
+  height: .88rem;
+  line-height: .88rem;
   text-align: center;
   color: #fff;
-  font-weight: 600;
   background-color: #7bc300;
   margin: .96rem .4rem 0;
 }
@@ -396,8 +395,8 @@ i, em {
 
 .user_top {
   width: 100%;
-  height: 3.72rem;
-  padding-top: 1.36rem;
+  height: 3.18rem;
+  padding-top: .7rem;
   background: url(../images/ui/icon_person.png) no-repeat;
   background-position: -43px -154px;
 }
@@ -438,12 +437,12 @@ i, em {
 }
 
 .order {
-  width: 1.34rem;
+  width: 1.8rem;
   height: 1.6rem;
-  background-position: 4% 51%;
+  background-position: 48% 53%;
   position: absolute;
   left: 50%;
-  margin-left: -.7rem;
+  margin-left: -.9rem;
   top: 0;
 }
 
@@ -459,12 +458,12 @@ i, em {
 
 /*关于我们*/
 .asiatravel_wrap {
-  margin-top: .4rem;
+  margin-top: .6rem;
   text-align: center;
 }
 
 .asiatravel_wrap > img {
-  width: 2rem;
+  width: 1.4rem;
 }
 
 .asiatravel_wrap h4 {
@@ -536,7 +535,7 @@ i, em {
   left: 0;
   width: auto;
   height: auto;
-  z-index: 99;
+  z-index: 50;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translate3d(0, 0, 0);
@@ -690,19 +689,18 @@ i, em {
   position: absolute;
   top: .2rem;
   right: .28rem;
+  width: 1.5rem;
   height: .66rem;
-  width: auto;
   border: 1px solid #7bc300;
   border-radius: .04rem;
   -webkit-border-radius: .04rem;
-  overflow: hidden;
   background-color: #fff;
   color: #7bc300;
 }
 
 .info_sex_tab .per_man {
   float: left;
-  width: .78rem;
+  width: .76rem;
   height: .62rem;
   line-height: .64rem;
   text-align: center;
@@ -842,7 +840,7 @@ i, em {
 
 .order_div {
   background-color: #fff;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .all_order_title {
@@ -886,7 +884,7 @@ i, em {
 .order_Amount {
   float: right;
   margin-top: .2rem;
-  color: red;
+  color: #fb7530;
 }
 
 .info_title {
@@ -909,7 +907,7 @@ i, em {
   line-height: .64rem;
   border: 1px solid #7bc300;
   color: #7bc300;
-  border-radius: .04rem;
+  border-radius: 4px;
 }
 
 .paybtn:hover {
@@ -927,7 +925,7 @@ i, em {
   color: #7bc300;
   text-align: center;
   line-height: 31px;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 1px solid #7bc300;
 }
 
@@ -1074,7 +1072,7 @@ i, em {
 .user_add {
   width: .4rem;
   height: .4rem;
-  margin: .32rem .2rem 0 0;
+  margin: .225rem .2rem 0 0;
   vertical-align: top;
   background-position: -4.28rem -.16rem;
 }
@@ -1191,6 +1189,9 @@ i, em {
 /*国籍选择结束*/
 
 /*个人信息页出生日期*/
+#common-msg >em{
+  font-size: .24rem;
+}
 .user_it {
   width: 1rem;
   height: 1rem;
@@ -1198,7 +1199,9 @@ i, em {
   border-radius: 50%;
   border: 1px solid #e6e6e6;
 }
-
+.user_person_mar{
+  padding-bottom: 1rem;
+}
 .user_info_top {
   padding: .2rem .3rem .2rem .4rem;
   border-bottom: 1px solid #e6e6e6;
@@ -1274,6 +1277,7 @@ i, em {
 #common-msg em {
   float: right;
   margin-right: .4rem;
+  color: #999;
 }
 
 .open_msg {

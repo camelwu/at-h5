@@ -212,7 +212,7 @@ body {
 }
 
 a.foot-homes, a.foot-users {
-  color: #ffb413;
+  color: #7bc300;
 }
 
 .foot-home i {
@@ -286,7 +286,7 @@ a.foot-homes, a.foot-users {
 }
 
 .menu_active {
-  color: #ffb413 !important;
+  color: #7bc300 !important;
   border-bottom: .08rem solid #ffb500 !important;
 }
 
