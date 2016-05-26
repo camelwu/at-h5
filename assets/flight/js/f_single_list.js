@@ -61,6 +61,7 @@ var fSingleList = {
         dateNum = (minusOne.getDate()) < 10 ? "0" + parseInt(minusOne.getDate()) : minusOne.getDate();
         minusOne = minusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
         if (new Date(minusOne.replace(/-/g, "/") + ' 23:59:59') >= new Date()) {
+          that.postObj.isClearAll = 1;
           that.postObj.departDate = minusOne;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
@@ -73,6 +74,7 @@ var fSingleList = {
         dateNum = (plusOne.getDate()) < 10 ? "0" + parseInt(plusOne.getDate()) : plusOne.getDate();
         plusOne = plusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
         if (new Date(plusOne.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(plusOne.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
+          that.postObj.isClearAll = 1;
           that.postObj.departDate = plusOne;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
@@ -81,7 +83,6 @@ var fSingleList = {
     });
     return this;
   },
-
   createTags: function () {
     var data = arguments[0];
     var tempString = "", outputString = "", that = fSingleList;
@@ -242,15 +243,16 @@ var fSingleList = {
     that.postObj.isClearAll = 1;
     if (that.postObj.internationalOrDomestic == "international") {
       if (arguments[1].id == "Tax") {
+        that.fadeHandler('show')
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
           dd.innerHTML = "不含税价";
           that.postObj.hasTax = 0;
-          that.renderHandler({success:1, code:200, data:that.currrentFlightList});
+          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         } else if (dd.innerHTML == "不含税价") {
           dd.innerHTML = "含税价";
           that.postObj.hasTax = 1;
-          that.renderHandler({success:1, code:200, data:that.currrentFlightList});
+          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         }
       } else {
         console.log(transferData[0])
@@ -260,7 +262,7 @@ var fSingleList = {
         that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
         that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
-        if(that.postObj.airCorpCode == undefined){
+        if (that.postObj.airCorpCode == undefined) {
           delete that.postObj.airCorpCode;
         }
         that.pageHandler();

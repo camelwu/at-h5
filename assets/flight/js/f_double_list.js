@@ -208,6 +208,7 @@ var fDoubleList = {
     that.postObj.isClearAll = 1;
     if (that.postObj.internationalOrDomestic == "international") {
       if (arguments[1].id == "Tax") {
+        that.fadeHandler('show');
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
           dd.innerHTML = "不含税价";
