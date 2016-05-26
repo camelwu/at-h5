@@ -806,6 +806,7 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 .zy_title h3{
     font-size:0.32rem;
     padding-left:0.9rem;
+    color: #333;
 }
 .zy_title h3:before{
     height:0.54rem;
@@ -948,6 +949,7 @@ section.hotelInfo_numb_room .title{
     margin-left: 1.4rem;
     overflow: hidden;
     padding: 0.2rem 0.25rem 0 0.2rem;
+    color:#333;
 }
 .hotelInfo_numb_people .extraChild{
     border-top:1px solid #e6e6e6;
@@ -1036,6 +1038,7 @@ section.hotelInfo_numb_room .title{
     border-bottom:0.01rem solid #dedede;
     padding: 0.15rem 0 0.3rem 0;
     border-top:1px solid #e6e6e6;
+    color: #333;
 }
 .zy_tourTime .nav2-tour>div:nth-child(1){
     margin-left:0.3rem;
