@@ -26,7 +26,8 @@
 		<title>输入资料页 - 亚洲旅行网</title>
         <link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
-      <link href="../styles/style.css" type="text/css" rel="stylesheet">
+      <!--<link href="../styles/style.css" type="text/css" rel="stylesheet">-->
+        <!--<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>-->
         <link href="../styles/dzh.css" rel="stylesheet">
 	</head>
 	<body>
@@ -56,7 +57,7 @@
 							<div class="nav2-centertop">
 								<p>
                                     <i>入住</i>
-									<input name="CheckInDate" id="CheckInDate" value="2016-03-11" class="CheckInDateI" readonly="readonly" >
+									<input name="CheckInDate" id="CheckInDate" value="03月11日" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span1">周四</span>
 								</p>
 
@@ -64,7 +65,7 @@
 							<div class="nav2-centerbottom">
 								<p>
                                     <i>离店</i>
-									<input name="CheckOutDate" id="CheckOutDate" value="2016-03-12" class="CheckInDateI" readonly="readonly" >
+									<input name="CheckOutDate" id="CheckOutDate" value="03月12日" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span2">周一</span>
 								</p>
 							</div>
@@ -105,11 +106,12 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
 <script src="../js/lib/custom.js"></script>
+<!--<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>-->
 <script src="js/dateFixed_.js"></script>
 <script id="tpl_GetTour" type="text/template">
 {% for(var i=0;i < tours.length;i++){ %}
 <div class="nav2-tour tour-out-div" id="content{%= i %}" data-tour-id="{%= tours[i].tourID %}">
-    <div>{%= tours[i].tourName %}</div>
+    <div><i></i>{%= tours[i].tourName %}</div>
     <!-- 日期部分-->
     <div>
         <input name="CheckInDate" id="content{%= i %}_CheckInDate" value="{%= day_start %}" class="content3_CheckInDate" readonly="readonly">
