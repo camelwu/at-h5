@@ -364,6 +364,53 @@
                         return "周" + reslut;
                     }
                 },
+              getAge:function GetAgeByBrithday(birthday,departDate){
+                var age=-1,today;
+                if(departDate==undefined){
+                  today=new Date();
+                }
+                else {
+                  today = new Date(departDate.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"));
+                }
+                var todayYear=today.getFullYear();
+                var todayMonth=today.getMonth()+1;
+                var todayDay=today.getDate();
+
+                var birthday= new Date(birthday.replace(/(\d{4})-(\d{2})-(\d{2})T(.*)?\.(.*)/, "$1/$2/$3 $4"))
+                if(birthday !=null)
+                {
+                  birthdayYear=birthday.getFullYear();
+                  birthdayMonth=birthday.getMonth();
+                  birthdayDay=birthday.getDate();
+                  if(todayYear-birthdayYear<0)
+                  {
+                    alert("出生日期选择错误!");
+                  }
+                  else
+                  {
+                    if(todayMonth*1-birthdayMonth*1<0)
+                    {
+                      age = (todayYear*1-birthdayYear*1)-1;
+                    }
+                    else
+                    {
+                      if(todayDay-birthdayDay>=0)
+                      {//alert(thisDay+'-'+brithd+"_ddd");
+                        age = (todayYear*1-birthdayYear*1);
+                      }
+                      else
+                      {
+                        age = (todayYear*1-birthdayYear*1)-1;
+                      }
+                    }
+                  }
+                  return age*1;
+                }
+                else
+                {
+                  return -1;
+                }
+              },
                 //比较时间串与当前时间的大小
                 compareTime: function (timeStr) {
                     if (timeStr == '' || timeStr == null) {
