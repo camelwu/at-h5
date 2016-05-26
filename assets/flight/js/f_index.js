@@ -26,7 +26,7 @@ var fIndexModal = {
     this.addHandler(content, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
       var temTitle = null;
-      var js_origin = "",js_destination = "";
+      var js_origin = "", js_destination = "";
       if (target.innerHTML == "单程") {
         that.type = "oneWay";
         target.className = "singleTrip light-title";
@@ -35,14 +35,14 @@ var fIndexModal = {
         doubleWrap.style.display = "none";
         document.querySelector('.dateInfo').className = "dateInfo white single_date";
         js_origin = document.querySelector(".js_origin");
-        js_origin.setAttribute("id","f_inori");
+        js_origin.setAttribute("id", "f_inori");
         js_destination = document.querySelector(".js_destination");
-        js_destination.setAttribute("id","f_indes");
+        js_destination.setAttribute("id", "f_indes");
 
-        $("#f_inori").attr("data-bind","type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
-        $("#f_indes").attr("data-bind","type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
-        $("#f_inori").bind('click',fIndexModal.f_inoriFunc);
-        $("#f_indes").bind('click',fIndexModal.f_indesFunc);
+        $("#f_inori").attr("data-bind", "type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
+        $("#f_indes").attr("data-bind", "type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
+        $("#f_inori").bind('click', fIndexModal.f_inoriFunc);
+        $("#f_indes").bind('click', fIndexModal.f_indesFunc);
 
       } else if (target.innerHTML == "往返") {
         that.type = "return";
@@ -53,14 +53,14 @@ var fIndexModal = {
         document.querySelector('.dateInfo').className = "dateInfo white";
 
         js_origin = document.querySelector(".js_origin");
-        js_origin.setAttribute("id","f_outori");
+        js_origin.setAttribute("id", "f_outori");
         js_destination = document.querySelector(".js_destination");
-        js_destination.setAttribute("id","f_outdes");
+        js_destination.setAttribute("id", "f_outdes");
 
-        $("#f_outori").attr("data-bind","type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
-        $("#f_outdes").attr("data-bind","type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
-        $("#f_outori").bind('click',fIndexModal.f_outoriFunc);
-        $("#f_outdes").bind('click',fIndexModal.f_outdesFunc);
+        $("#f_outori").attr("data-bind", "type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
+        $("#f_outdes").attr("data-bind", "type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
+        $("#f_outori").bind('click', fIndexModal.f_outoriFunc);
+        $("#f_outdes").bind('click', fIndexModal.f_outdesFunc);
       } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
         var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "";
         oSpan.style.transition = '0.7s all ease';
@@ -73,7 +73,7 @@ var fIndexModal = {
         cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[1].innerHTML = tem;
         cityName[0].setAttribute('data-code', temCode);
-      }else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
+      } else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
         var adultNumEle = document.querySelector('.adultNumber'), childNumEle = document.querySelector('.childNumber'), adultNum = Number(adultNumEle.innerHTML), childNum = Number(childNumEle.innerHTML);
         var adultIs = document.querySelectorAll(".adult i"), childIs = document.querySelectorAll(".child i");
         if (target.className == "adu plus") {
@@ -139,21 +139,21 @@ var fIndexModal = {
           }
           return cabinStr;
         };
-        var getTripType = function(){
-              var cityCodeFrom = cityEles[0].getAttribute('data-code'), cityCodeTo = cityEles[1].getAttribute('data-code'), codePool = internationalCities, tag1 = "inter", tag2 = "dome";
-              codePool.forEach(function(index){
-                        if(index.cityCode == cityCodeFrom){
-                                  tag1 = "inter";
-                                  return false;
-                          }
-               });
-                codePool.forEach(function(index){
-                  if(index.cityCode == cityCodeTo){
-                      tag2 = "inter";
-                      return false;
-                  }
-                });
-               return (tag1 == tag2)? "international":"domestic";
+        var getTripType = function () {
+          var cityCodeFrom = cityEles[0].getAttribute('data-code'), cityCodeTo = cityEles[1].getAttribute('data-code'), codePool = internationalCities, tag1 = "inter", tag2 = "dome";
+          codePool.forEach(function (index) {
+            if (index.cityCode == cityCodeFrom) {
+              tag1 = "inter";
+              return false;
+            }
+          });
+          codePool.forEach(function (index) {
+            if (index.cityCode == cityCodeTo) {
+              tag2 = "inter";
+              return false;
+            }
+          });
+          return (tag1 == tag2) ? "international" : "domestic";
         };
 
         paraObj = {
@@ -173,7 +173,7 @@ var fIndexModal = {
           "pageSize": 10,
           "internationalOrDomestic": getTripType(), /*国际或者国内*/
           "hasTax": 0,
-          "isClearAll":1,
+          "isClearAll": 1,
           "fromCity": cityEles[0].innerHTML,
           "toCity": cityEles[1].innerHTML
         };
@@ -256,17 +256,17 @@ var fIndexModal = {
     endStrDate = parseInt(r.getDate()) >= 10 ? parseInt(r.getDate()) : '0' + parseInt(r.getDate());
     startDay = s.getFullYear() + "-" + startStrMonth + "-" + startStrDate;
     endDay = r.getFullYear() + "-" + endStrMonth + "-" + endStrDate;
-    return {startDay: startDay, endDay: endDay};
+    return [startDay, endDay];
   },
 
   initShowInfo: function () {
     var data = arguments[0], tripTitles = document.querySelectorAll('.hTab div'),
       weeks = document.querySelectorAll('.weekWord'), adultValue = document.querySelector('.adultNumber'),
-      childValue = document.querySelector('.childNumber'),cityEle = document.querySelectorAll(".citySearch"),
+      childValue = document.querySelector('.childNumber'), cityEle = document.querySelectorAll(".citySearch"),
       seatValue = document.querySelector('#seats'), timeClickWrap = document.querySelector('#timeClickWrap'),
       singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'),
       doubleDateArrive = document.querySelector('#arriveDate'), singleWrap = document.querySelector('#timeSingleWrap'),
-      doubleWrap = document.querySelector('#timeDoubleWrap'), defaultDate = {},
+      doubleWrap = document.querySelector('#timeDoubleWrap'), defaultDate = [],
       reSeat = function (arg) {
         var cabinStr = "";
         switch (arg) {
@@ -294,7 +294,7 @@ var fIndexModal = {
       singleWrap.style.display = "block";
       doubleWrap.style.display = "none";
     } else {
-      defaultDate.endDay = data.returnDate;
+      defaultDate[1] = data.returnDate;
       tripTitles[0].className = "singleTrip grey-title";
       tripTitles[1].className = "doubleTrip light-title";
       singleWrap.style.display = "none";
@@ -302,18 +302,18 @@ var fIndexModal = {
     }
     cityEle[0].innerHTML = data.fromCity;
     cityEle[0].setAttribute('data-code', data.cityCodeFrom);
-    cityEle[1].innerHTML =  data.toCity;
+    cityEle[1].innerHTML = data.toCity;
     cityEle[1].setAttribute('data-code', data.cityCodeTo);
-    singleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    singleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    weeks[0].innerHTML = this.setWeekItems(defaultDate.startDay);
-    doubleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    doubleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    weeks[1].innerHTML = this.setWeekItems(defaultDate.startDay);
+    singleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    singleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    weeks[0].innerHTML = this.setWeekItems(defaultDate[0]);
+    doubleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    doubleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    weeks[1].innerHTML = this.setWeekItems(defaultDate[0]);
 
-    doubleDateArrive.innerHTML = this.returnDay(defaultDate.endDay);
-    doubleDateArrive.setAttribute('date-full-value', defaultDate.endDay);
-    weeks[2].innerHTML = this.setWeekItems(defaultDate.endDay);
+    doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
+    doubleDateArrive.setAttribute('date-full-value', defaultDate[1]);
+    weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
     adultValue.innerHTML = data.numofAdult;
     childValue.innerHTML = data.numofChild;
     seatValue.innerHTML = reSeat(data.cabinClass)
@@ -321,17 +321,17 @@ var fIndexModal = {
 
   initDate: function () {
     var singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'),
-      doubleDateArrive = document.querySelector('#arriveDate'), weeks = document.querySelectorAll('.weekWord'), defaultDate = {};
+      doubleDateArrive = document.querySelector('#arriveDate'), weeks = document.querySelectorAll('.weekWord'), defaultDate = [];
     defaultDate = this.createDefaultDate();
-    singleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    singleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    doubleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    doubleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    weeks[0].innerHTML = this.setWeekItems(defaultDate.startDay);
-    weeks[1].innerHTML = this.setWeekItems(defaultDate.startDay);
-    doubleDateArrive.setAttribute('date-full-value', defaultDate.endDay);
-    doubleDateArrive.innerHTML = this.returnDay(defaultDate.endDay);
-    weeks[2].innerHTML = this.setWeekItems(defaultDate.endDay);
+    singleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    singleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    doubleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    doubleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    weeks[0].innerHTML = this.setWeekItems(defaultDate[0]);
+    weeks[1].innerHTML = this.setWeekItems(defaultDate[0]);
+    doubleDateArrive.setAttribute('date-full-value', defaultDate[1]);
+    doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
+    weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
   },
 
   initHandler: function () {
@@ -397,43 +397,43 @@ var fIndexModal = {
     });
     return this;
   },
-  cityInit:function(){
-    var js_origin ="",js_destination = "";
-    if(this.type == 'oneWay' ){
+  cityInit: function () {
+    var js_origin = "", js_destination = "";
+    if (this.type == 'oneWay') {
       js_origin = document.querySelector(".js_origin");
-      js_origin.setAttribute("id","f_inori");
+      js_origin.setAttribute("id", "f_inori");
       js_destination = document.querySelector(".js_destination");
-      js_destination.setAttribute("id","f_indes");
-      $("#f_inori").attr("data-bind","type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
-      $("#f_indes").attr("data-bind","type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
-      $("#f_inori").bind('click',fIndexModal.f_inoriFunc);
-      $("#f_indes").bind('click',fIndexModal.f_indesFunc);
-    }else{
+      js_destination.setAttribute("id", "f_indes");
+      $("#f_inori").attr("data-bind", "type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
+      $("#f_indes").attr("data-bind", "type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
+      $("#f_inori").bind('click', fIndexModal.f_inoriFunc);
+      $("#f_indes").bind('click', fIndexModal.f_indesFunc);
+    } else {
       js_origin = document.querySelector(".js_origin");
-      js_origin.setAttribute("id","f_outori");
+      js_origin.setAttribute("id", "f_outori");
       js_destination = document.querySelector(".js_destination");
-      js_destination.setAttribute("id","f_outdes");
-      $("#f_outori").attr("data-bind","type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
-      $("#f_outdes").attr("data-bind","type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
-      $("#f_outori").bind('click',fIndexModal.f_outoriFunc);
-      $("#f_outdes").bind('click',fIndexModal.f_outdesFunc);
+      js_destination.setAttribute("id", "f_outdes");
+      $("#f_outori").attr("data-bind", "type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
+      $("#f_outdes").attr("data-bind", "type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
+      $("#f_outori").bind('click', fIndexModal.f_outoriFunc);
+      $("#f_outdes").bind('click', fIndexModal.f_outdesFunc);
     }
     return this;
   },
-  f_inoriFunc:function(){
-    if(fIndexModal.type != 'oneWay')return;
+  f_inoriFunc: function () {
+    if (fIndexModal.type != 'oneWay')return;
     VM.Load("f_inori");
   },
-  f_indesFunc:function(){
-    if(fIndexModal.type != 'oneWay')return;
+  f_indesFunc: function () {
+    if (fIndexModal.type != 'oneWay')return;
     VM.Load("f_indes");
   },
-  f_outoriFunc:function(){
-    if(fIndexModal.type == 'oneWay')return;
+  f_outoriFunc: function () {
+    if (fIndexModal.type == 'oneWay')return;
     VM.Load("f_outori");
   },
-  f_outdesFunc:function(){
-    if(fIndexModal.type == 'oneWay')return;
+  f_outdesFunc: function () {
+    if (fIndexModal.type == 'oneWay')return;
     VM.Load("f_outdes");
   },
   init: function () {

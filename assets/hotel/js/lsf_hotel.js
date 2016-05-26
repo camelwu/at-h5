@@ -138,7 +138,7 @@ function oUp(obj1, obj2, start, end) {
         obj2.style.backgroundSize = '0.5rem 3.2rem';
       }
     } else {
-      this.style.background = 'url("../images/hotelbtn.png") 0 -84px no-repeat';
+      this.style.background = 'url("../images/hotelbtn.png") -0.01rem -1.8rem no-repeat';
       this.style.backgroundSize = '0.5rem 3.2rem';
     }
   });
@@ -153,7 +153,7 @@ function oDown(obj1, obj2, start, end) {
     }
     if (parseInt(this.parentNode.children[0].value) > start) {
       if (parseInt(this.parentNode.children[0].value) < end) {
-        obj2.style.background = 'url("../images/hotelbtn.png") 0 -56px no-repeat';
+        obj2.style.background = 'url("../images/hotelbtn.png") -0.01rem -1.2rem no-repeat';
         obj2.style.backgroundSize = '0.5rem 3.2rem';
       }
     } else {
@@ -818,7 +818,11 @@ function inpChange(id, myText) {
   //    //allElements.style.visibility = 'visible';
   //  });
   //});
-
+  //function dataConvert(data){
+  //  var dateString = data;dateString = dateString.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/g,function(){
+  //    return arguments[2]+"月"+arguments[3]+"日";
+  //  });
+  //}
   var checkIn = lsf_myweb.getbyid('CheckInDate');
   var checkOut = lsf_myweb.getbyid('CheckOutDate');
   var content2 = lsf_myweb.getbyid('content2');
@@ -831,6 +835,7 @@ function inpChange(id, myText) {
   //国际城市
   var oDate1 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 2);
   var oDate2 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 3);
+
   var beginDate = oDate1.getFullYear() + '-' + toDou(oDate1.getMonth() + 1) + '-' + toDou(oDate1.getDate());
   var leaveDate = oDate2.getFullYear() + '-' + toDou(oDate2.getMonth() + 1) + '-' + toDou(oDate2.getDate());
   var jd = new Date(), js = new Date(jd.setDate(jd.getDate() + 2)), jr =new Date( jd.setDate(jd.getDate() + 1));

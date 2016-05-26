@@ -61,6 +61,7 @@
                       <span id="h_out" data-bind="type:'setCityBox',data:'h_out',returnId:'#InterCity',returnAttr:'value',returnStrId:'#h_out'">新加坡</span>
 											<input id="InterCity" type="hidden" name="InterCityName"  value="Singapore">
 											<i class="icons open-arw i_more"></i>
+                      <i class="icons open-arw i_address"></i>
 										</div>
 									</div>
 								</div>
@@ -136,7 +137,8 @@
 										<div class="choose-aim1" >
                      						<span id="h_in" data-bind="type:'setCityBox',data:'h_in',returnId:'#DomCity',returnAttr:'value',returnStrId:'#h_in'" >北京</span>
 											<input id="DomCity" type="hidden" name="DomCityName"  value="beijing">
-											<i class="position i_position"></i>
+											<i class="position i_more"></i>
+                      <i class="icons open-arw i_address"></i>
 										</div>
 									</div>
 								</div>
@@ -152,7 +154,7 @@
                       <!--<span class="nav2-lefttop">日期</span>-->
                       <span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
                     </div>
-										<div class="nav2-centerbottom hotel_time_center_end" onclick="focus3()">
+										<div class="nav2-centerbottom hotel_time_center_end">
                         <span class = "hotel_roomTime">离店</span>
 												<input name="DomCheckOutDate" id="DomCheckOutDate"  readonly="readonly" value="2015-11-06" class="fl">
 												<span id="weekSpan4" class = "hotel_week">周五</span>
@@ -1035,7 +1037,6 @@
 		</div>
     <!--整体城市列表-->
     <div id="citybox_search_container" class="citybox_search_container citybox_search_state">
-      <div id="citybox_BG" class="citybox_search_suggestBG"></div>
       <div id="citybox_header" data-bind="type:'cityboxHeader'">
         <!--默认搜索-->
         <div class="citybox_header citybox_header_fixed js_citybox_header_default">
@@ -1120,5 +1121,5 @@
 	<script src="../js/lib/template.js"></script>
   <script type="text/javascript" src="../js/plugins/citybox/citybox.js"></script>
 	<script src="js/lsf_hotel.js"></script>
-  <script src=""></script>
+  <script src="../js/lib/plugins.js"></script>
 </html>

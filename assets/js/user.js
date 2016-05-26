@@ -649,7 +649,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     //新增常旅
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
     var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
-    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu",callback:cardcallback});
+    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu"});
     //编辑常旅
     var myDate4 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"eee1"});
     var myDate5 = new Scroller({id: "time-cont-edit", type:"validity",cont:"eee2"});
@@ -687,7 +687,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                   }
                 }
               }
-
             }
             var idnumber=cardnum();
             $('.postNum').val(idnumber);
