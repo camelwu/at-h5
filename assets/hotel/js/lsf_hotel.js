@@ -831,8 +831,11 @@ function inpChange(id, myText) {
   //国际城市
   var oDate1 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 2);
   var oDate2 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 3);
-  var beginDate = oDate1.getFullYear() + '-' + toDou(oDate1.getMonth() + 1) + '-' + toDou(oDate1.getDate());
-  var leaveDate = oDate2.getFullYear() + '-' + toDou(oDate2.getMonth() + 1) + '-' + toDou(oDate2.getDate());
+
+  //var beginDate = oDate1.getFullYear() + '-' + toDou(oDate1.getMonth() + 1) + '-' + toDou(oDate1.getDate());
+  var beginDate =toDou(oDate1.getMonth() + 1) + '-' + toDou(oDate1.getDate());
+  //var leaveDate = oDate2.getFullYear() + '-' + toDou(oDate2.getMonth() + 1) + '-' + toDou(oDate2.getDate());
+  var leaveDate =toDou(oDate2.getMonth() + 1) + '-' + toDou(oDate2.getDate());
   var jd = new Date(), js = new Date(jd.setDate(jd.getDate() + 2)), jr =new Date( jd.setDate(jd.getDate() + 1));
   //H5-1008   T+2~T+3
   var smonthStr = (js.getMonth()+1)<10?'0'+(js.getMonth()+1):js.getMonth()+1;
@@ -882,8 +885,10 @@ function inpChange(id, myText) {
     lsf_myweb.getbyid('count3').value = hotelStorage.NumChild;
     //lsf_myweb.getbyid('input2').value = hotelStorage.DomDes;
     if(new Date(hotelStorage.InterBeginDate.replace(/-/g,'/'))<js){
-      checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
-      checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
+      //checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+      //checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
+      checkIn.value=smonthStr+'月'+sdayStr+'日';
+      checkOut.value=emonthStr+'月'+edayStr+'日';
       lsf_myweb.getbyid('total_day').innerHTML=1;
       //week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
       //week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
@@ -900,8 +905,10 @@ function inpChange(id, myText) {
     }
     recoverStatus("count1,count2,count3");
   }else{
-    checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
-    checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
+    //checkIn.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+    //checkOut.value=yearDS +'-'+emonthStr+'-'+edayStr;
+    checkIn.value=smonthStr+'月'+sdayStr+'日';
+    checkOut.value=emonthStr+'月'+edayStr+'日';
     lsf_myweb.getbyid('total_day').innerHTML=1;
     //week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
     //week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
@@ -939,8 +946,12 @@ function inpChange(id, myText) {
   var obj2 = {};
   if(hotelStorage){
     if(new Date(hotelStorage.DomCheckInDate.replace(/-/g,'/'))<js){
-      DomCheckInDate.value=yearDS +'-'+smonthStr+'-'+sdayStr;
-      DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
+      //DomCheckInDate.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+      DomCheckInDate.value=smonthStr+'月'+sdayStr+'日';
+
+      //DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
+      DomCheckOutDate.value=emonthStr+'月'+edayStr+'日';
+
       lsf_myweb.getbyid('domeTotalDay').innerHTML=1;
       //week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
       //week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
@@ -954,8 +965,10 @@ function inpChange(id, myText) {
     //obj2[hotelStorage.DomCheckInDate]="入住";
     //obj2[hotelStorage.DomCheckOutDate]="离店";
   }else{
-    DomCheckInDate.value.value=yearDS +'-'+smonthStr+'-'+sdayStr;
-    DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
+    //DomCheckInDate.value.value=yearDS +'-'+smonthStr+'-'+sdayStr;
+    //DomCheckOutDate.value=yearDS +'-'+emonthStr+'-'+edayStr;
+    DomCheckInDate.value=smonthStr+'月'+sdayStr+'日';
+    DomCheckOutDate.value=emonthStr+'月'+edayStr+'日';
     lsf_myweb.getbyid('domeTotalDay').innerHTML=1;
     //week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
     //week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
