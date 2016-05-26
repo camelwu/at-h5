@@ -26,7 +26,7 @@ var fDoubleList = {
       ForeEndType: ForeEndType,
       Code: Code
     };
-    questUrl = questUrl ? questUrl :"";
+    questUrl = questUrl ? questUrl : "";
     if (loadMoreSign) {
       vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
     } else {
@@ -35,12 +35,12 @@ var fDoubleList = {
   },
 
   eventHandler: function () {
-    var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage,loadMore = document.querySelector("#loadMore");;
+    var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage, loadMore = document.querySelector("#loadMore");;
     for (var i = 0, len = lis.length; i < len; i++) {
       this.addHandler(lis[i], 'click', function () {
         var setId = this.getAttribute('data-set-id');
-        that.currrentFlightList.flightInfos.forEach(function(item, index){
-          if(item.setID == setId){
+        that.currrentFlightList.flightInfos.forEach(function (item, index) {
+          if (item.setID == setId) {
             tem = item;
             return false;
           }
@@ -52,37 +52,39 @@ var fDoubleList = {
     return this;
   },
 
-  createTags:function(){
+  createTags: function () {
     var data = arguments[0];
-    var tempString="", outputString="", that = fDoubleList;
+    var tempString = "", outputString = "", that = fDoubleList;
     tempString = $("#template_flight_double_list").html();
-    outputString = this.postObj.isClearAll == 1?ejs.render(tempString, data):$(".flight_ul").eq(0).html()+ejs.render(tempString, data);
+    outputString = this.postObj.isClearAll == 1 ? ejs.render(tempString, data) : $(".flight_ul").eq(0).html() + ejs.render(tempString, data);
     $(".flight_ul").eq(0).html(outputString);
     return this;
   },
 
-  renderHandler:function(){
-    var result = arguments[0],that = fDoubleList, storage = window.sessionStorage,no_result = document.querySelector('#no_flight_data');
-    console.log(result)
-    if(result.success&&result.code == "200") {
+  renderHandler: function () {
+    var result = arguments[0], that = fDoubleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
+    if (result.success && result.code == "200") {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide()
-        that.filterHandler();
+        that.filterHandler().dateCalender();
       } else {
         that.currrentFlightList = result.data;
         that.filterHandler(result.data);
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
       }
-    }else{
+    } else {
       no_result.style.display = "block";
       $('#loadMore').hide();
-      that.filterHandler();
+      that.filterHandler().dateCalender();
     }
   },
 
-  dateCalender: function(){
-    var tem = {start:this.postObj.departDate, end:this.postObj.returnDate}, timeObj = {}, fIndexInfoObj = {}, storage = window.sessionStorage;
+  dateCalender: function () {
+    var tem = {
+      start: this.postObj.departDate,
+      end: this.postObj.returnDate
+    }, timeObj = {}, fIndexInfoObj = {}, storage = window.sessionStorage;
     fIndexInfoObj = JSON.parse(storage.getItem('fIndexInfo'));
     timeObj[tem.start] = tem.start;
     timeObj[tem.end] = tem.end;
@@ -93,13 +95,13 @@ var fDoubleList = {
       checkInTimeOptId: 'setOffDate',
       checkOutTimeOptId: 'arriveDate',
       callback: function () {
-        var  dateSource = arguments[0], that = fDoubleList;
+        var dateSource = arguments[0], that = fDoubleList;
         fIndexInfoObj.data.departDate = dateSource[0];
         fIndexInfoObj.data.returnDate = dateSource[1];
         storage.setItem('fIndexInfo', JSON.stringify(fIndexInfoObj));
         var newUrl = vlm.setUrlPara("", "departDate", dateSource[0]);
-            newUrl = vlm.setUrlPara(newUrl, "returnDate", dateSource[1]);
-            window.location.href = newUrl;
+        newUrl = vlm.setUrlPara(newUrl, "returnDate", dateSource[1]);
+        window.location.href = newUrl;
       }
     });
     dates[0].setAttribute('date-full-value', this.postObj.departDate);
@@ -139,16 +141,16 @@ var fDoubleList = {
     return week;
   },
 
-  loadMoreHandler:function(){
+  loadMoreHandler: function () {
     var loadMore = document.querySelector("#loadMore"), that = fDoubleList;
-       if(this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount){
-         $('#loadMore').html("没有更多信息了!").fadeOut(3000);
-       }else{
-         loadMore.innerHTML = "点击查看更多...";
-         this.addHandler(loadMore, 'click', function () {
-              that.loadMoreData();
-         });
-       }
+    if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
+      $('#loadMore').html("没有更多信息了!").fadeOut(3000);
+    } else {
+      loadMore.innerHTML = "点击查看更多...";
+      this.addHandler(loadMore, 'click', function () {
+        that.loadMoreData();
+      });
+    }
     return this;
   },
   loadMoreData: function () {
@@ -158,7 +160,7 @@ var fDoubleList = {
     } else {
       this.postObj.pageNo++;
       loadMore.innerHTML = "正在加载...";
-      storage.setItem('fIndexInfo', JSON.stringify({type:"return", data:this.postObj}));
+      storage.setItem('fIndexInfo', JSON.stringify({type: "return", data: this.postObj}));
       this.postObj.isClearAll = 0;
       this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
@@ -185,7 +187,7 @@ var fDoubleList = {
   },
 
   parseUrlHandler: function (url, isEncode) {
-    var isEncode = isEncode || false, reg = /([^=&?]+)=([^=&?]+)/g, obj = {}, url =url;
+    var isEncode = isEncode || false, reg = /([^=&?]+)=([^=&?]+)/g, obj = {}, url = url;
     url.replace(reg, function () {
       var arg = arguments;
       obj[arg[1]] = isEncode ? decodeURIComponent(arg[2]) : arg[2];
@@ -193,37 +195,37 @@ var fDoubleList = {
     return obj;
   },
 
-  pageHandler:function(url){
-     var newUrl = url, that = fDoubleList;
-     that.postObj.pageSize = Number(that.postObj.pageSize)>10?Number(that.postObj.pageSize):Number(that.postObj.pageNo)*10;
-     that.postObj.pageNo = 1;
-     that.postObj.isClearAll = 1;
-      newUrl = vlm.setUrlPara(newUrl, "isClearAll", that.postObj.isClearAll);
-      newUrl = vlm.setUrlPara(newUrl, "pageNo", that.postObj.pageNo);
-      newUrl = vlm.setUrlPara(newUrl, "pageSize",that.postObj.pageSize);
-     return newUrl;
+  pageHandler: function (url) {
+    var newUrl = url, that = fDoubleList;
+    that.postObj.pageSize = Number(that.postObj.pageSize) > 10 ? Number(that.postObj.pageSize) : Number(that.postObj.pageNo) * 10;
+    that.postObj.pageNo = 1;
+    that.postObj.isClearAll = 1;
+    newUrl = vlm.setUrlPara(newUrl, "isClearAll", that.postObj.isClearAll);
+    newUrl = vlm.setUrlPara(newUrl, "pageNo", that.postObj.pageNo);
+    newUrl = vlm.setUrlPara(newUrl, "pageSize", that.postObj.pageSize);
+    return newUrl;
   },
 
-  filerCallBack:function(){
+  filerCallBack: function () {
     console.log(arguments);
-    var transferData = arguments, that =fDoubleList, newUrl = window.location.href;
-    if(that.postObj.internationalOrDomestic == "international"){
-      if(arguments[1].id == "Tax"){
-        var dd =  arguments[1].querySelector('dd');
-        if(dd.innerHTML== "含税价"){
+    var transferData = arguments, that = fDoubleList, newUrl = window.location.href;
+    if (that.postObj.internationalOrDomestic == "international") {
+      if (arguments[1].id == "Tax") {
+        var dd = arguments[1].querySelector('dd');
+        if (dd.innerHTML == "含税价") {
           dd.innerHTML = "不含税价";
           that.postObj.hasTax = 0;
           newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
           newUrl = that.pageHandler(newUrl);
           window.location.href = newUrl;
-        }else if(dd.innerHTML== "不含税价"){
+        } else if (dd.innerHTML == "不含税价") {
           dd.innerHTML = "含税价";
           that.postObj.hasTax = 1;
           newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
           newUrl = that.pageHandler(newUrl);
           window.location.href = newUrl;
         }
-      }else{
+      } else {
         console.log(transferData[0])
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
         that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
@@ -231,13 +233,13 @@ var fDoubleList = {
         that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
         newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
-        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
+        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight", that.postObj.isHideSharedFlight);
         newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
         newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
         newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
-        if(that.postObj.airCorpCode!=undefined){
+        if (that.postObj.airCorpCode != undefined) {
           newUrl = vlm.setUrlPara(newUrl, "airCorpCode", that.postObj.airCorpCode);
-        }else{
+        } else {
           delete that.postObj.airCorpCode;
           newUrl = vlm.setUrlPara(newUrl, "airCorpCode", "");
         }
@@ -245,141 +247,142 @@ var fDoubleList = {
         newUrl = that.pageHandler(newUrl);
         window.location.href = newUrl;
       }
-    }else{
-      if(arguments[1].id == "Price"){
-        var dd =  arguments[1].querySelector('dd');
-        if(dd.innerHTML== "价格"){
+    } else {
+      if (arguments[1].id == "Price") {
+        var dd = arguments[1].querySelector('dd');
+        if (dd.innerHTML == "价格") {
           dd.innerHTML = "从低到高";
           that.postObj.priorityRule = 2;
           newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
           newUrl = that.pageHandler(newUrl);
           window.location.href = newUrl;
-        }else if(dd.innerHTML== "从低到高"){
+        } else if (dd.innerHTML == "从低到高") {
           dd.innerHTML = "价格";
           that.postObj.priorityRule = 0;
           newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
           newUrl = that.pageHandler(newUrl);
           window.location.href = newUrl;
         }
-      }else{
+      } else {
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
         that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
-        that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0,2);
+        that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0, 2);
         that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
         that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
-        if(transferData[0].sortTypes[0].indexOf('isDesc')> -1){
+        if (transferData[0].sortTypes[0].indexOf('isDesc') > -1) {
           that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
           that.postObj.priorityRule = 0;
-        }else{
+        } else {
           that.postObj.priorityRule = transferData[0].sortTypes[0];
           that.postObj.isDesc = "none";//或删除属性
-          newUrl = vlm.setUrlPara(newUrl, "isDesc",that.postObj.isDesc);
+          newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
         }
         newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
         newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
         newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
-        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
-        newUrl = vlm.setUrlPara(newUrl, "departStartHour",that.postObj.departStartHour);
-        newUrl = vlm.setUrlPara(newUrl, "departEndHour",that.postObj.departEndHour);
+        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight", that.postObj.isHideSharedFlight);
+        newUrl = vlm.setUrlPara(newUrl, "departStartHour", that.postObj.departStartHour);
+        newUrl = vlm.setUrlPara(newUrl, "departEndHour", that.postObj.departEndHour);
         newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
         newUrl = that.pageHandler(newUrl);
         window.location.href = newUrl;
       }
     }
   },
-  filterHandler: function(data){
+  filterHandler: function (data) {
     var dataTransfer = data || [], tempArray = [], f_data = {}, that = this;
-    if(dataTransfer.length>1){
-      dataTransfer.forEach(function(array, item){
+    if (dataTransfer.length > 1) {
+      dataTransfer.forEach(function (array, item) {
         var temObj = {}
         temObj.filterText = array.airCorpName;
         temObj.filterValue = array.airCorpCode;
         tempArray.push(temObj);
       });
     }
-    if(this.postObj.internationalOrDomestic== "international"){
+    if (this.postObj.internationalOrDomestic == "international") {
       f_data = {
-        Sort : {
-          title : "优选",
-          c : "f_foot_sort",
-          type : 1,
-          key : "sortTypes",
-          listData : [
-            {sortText: "不限", sortValue: 0},{sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+        Sort: {
+          title: "优选",
+          c: "f_foot_sort",
+          type: 1,
+          key: "sortTypes",
+          listData: [
+            {sortText: "不限", sortValue: 0}, {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
             {sortText: "耗时短优先", sortValue: 3}]
         },
-        Screen : {
-          title : "筛选", /*名字*/
-          c : "foot_screen",
-          type :2,  /*类型*/
-          key : 'filters',
-          listData : [
-            {allowMultiSelect : 0,
-              filterType : 4,
-              item : [{
-                filterText : "不限",
-                filterValue : "false"
+        Screen: {
+          title: "筛选", /*名字*/
+          c: "foot_screen",
+          type: 2, /*类型*/
+          key: 'filters',
+          listData: [
+            {
+              allowMultiSelect: 0,
+              filterType: 4,
+              item: [{
+                filterText: "不限",
+                filterValue: "false"
               }, {
-                filterText : "仅看直飞",
-                filterValue : "true"
+                filterText: "仅看直飞",
+                filterValue: "true"
               }],
-              sortNumber : 0,
-              title : "直飞"
+              sortNumber: 0,
+              title: "直飞"
             }, {
-              allowMultiSelect : 0,
-              filterType : 3,
-              item : [{
-                filterText : "不限",
-                filterValue : "false"
+              allowMultiSelect: 0,
+              filterType: 3,
+              item: [{
+                filterText: "不限",
+                filterValue: "false"
               }, {
-                filterText : "隐藏共享",
-                filterValue : "true"
+                filterText: "隐藏共享",
+                filterValue: "true"
               }],
-              sortNumber : 1,
-              title : "共享航班"
+              sortNumber: 1,
+              title: "共享航班"
             }, {
-              allowMultiSelect : 0,
-              filterType : 2,
-              item : [
+              allowMultiSelect: 0,
+              filterType: 2,
+              item: [
                 {
-                  filterText : "经济舱",
-                  filterValue : "economy"
+                  filterText: "经济舱",
+                  filterValue: "economy"
                 },
                 {
-                  filterText : "超级经济舱",
-                  filterValue : "economyPremium"
+                  filterText: "超级经济舱",
+                  filterValue: "economyPremium"
                 },
                 {
-                  filterText : "商务舱",
-                  filterValue : "business"
+                  filterText: "商务舱",
+                  filterValue: "business"
                 },
                 {
-                  filterText : "头等舱",
-                  filterValue : "first"
+                  filterText: "头等舱",
+                  filterValue: "first"
                 }
 
               ],
-              sortNumber : 3,
-              title : "舱位"
+              sortNumber: 3,
+              title: "舱位"
             },
             {
-              allowMultiSelect : 0,
-              filterType : 1,
-              item : tempArray,
-              sortNumber : 3,
-              title : "航空公司"
+              allowMultiSelect: 0,
+              filterType: 1,
+              item: tempArray,
+              sortNumber: 3,
+              title: "航空公司"
             }
           ]
         },
-        Tax : {
-          title : "不含税费",
-          c : "f_tax_sort",
-          type : 0,
-          key : 'tax',
-          listData : ["含税费", "不含税费"]
+        Tax: {
+          title: "不含税费",
+          c: "f_tax_sort",
+          type: 0,
+          key: 'tax',
+          listData: ["含税费", "不含税费"]
         }
       };
-    }else {
+    } else {
       f_data = {
         Sort: {
           title: "起飞早到晚",
@@ -484,9 +487,10 @@ var fDoubleList = {
       footer.callback = that.filerCallBack;
     }
     footer.filters.init();
+    return this
   },
 
-  titleInit:function(){
+  titleInit: function () {
     var spans = document.querySelectorAll('.header h3 span');
     spans[0].innerHTML = this.postObj.fromCity;
     spans[1].innerHTML = this.postObj.toCity;
@@ -494,7 +498,7 @@ var fDoubleList = {
   },
 
   init: function () {
-    var postObj = this.parseUrlHandler(window.location.href,true);
+    var postObj = this.parseUrlHandler(window.location.href, true);
     console.log(postObj)
     this.postObj = postObj;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
