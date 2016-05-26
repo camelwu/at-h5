@@ -203,7 +203,7 @@
                 perPrice=arr2[3].split('=')[1];
                 //totPrice=perPrice*(tAdult+totChiNUm);
                 totPrice=perPrice;
-                $('.all_num i').html(totPrice);
+                $('.all_num i').html("￥"+totPrice);
                 //roomID
                 roomID=arr2[4].split('=')[1];
             }
