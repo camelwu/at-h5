@@ -84,7 +84,6 @@
         ifrCilent.parentNode.removeChild(ifrCilent);
       };
     });
-
     submitBtn.on("click",function(){
       _replacePagerAttri();
       closeWindowBtn.click();
@@ -139,6 +138,8 @@
   //数据保存
   var _saveDb=function(){
       var modle=_ui2Modle();
+
+      //登陆
       if(memberId !=undefined) {
         var  Parameters={
           Parameters:modle,
@@ -154,11 +155,15 @@
           }
         })
       }
-    else{
+
+      //免登陆
+      else{
+
+         //编辑状态，移除数组元素，为了更数据
         if(editIDKey !=null) {
           choiceAir_AddPassagerArray.forEach(function (info) {
             if (info.traveller.travellerId == editIDKey) {
-              choiceAir_AddPassagerArray.pop() //移除当前编辑记录
+              choiceAir_AddPassagerArray.pop()
             }
           })
         }
@@ -176,6 +181,7 @@
   };
 
   var _replacePagerAttri=function(){
+    debugger;
     var htmlObj =$(ifrCilent.parentNode).find("#"+elementId);
     var elementList=htmlObj.find("[data-elementname]");
     for(var key in passagerArray)
@@ -200,12 +206,8 @@
           else{
             $(elementList[i]).html(val);
           }
-
-
         }
     }
-
-
   };
 
   //绑定选择事件
