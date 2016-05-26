@@ -92,10 +92,40 @@ var fOrder = {
   },
 
   countrySlider: function () {
-    var countryTrigger = document.querySelector('.country-trigger'), that = this;
+    var tempString1 = "", outputString1 = "",resultArray = {},that = this , outer = document.createElement('div');
+    outer.className = "country-cho-wrap all_elements";
+    arrCountry.forEach(function(itemValue){  //country-cho-wrap all_elements
+      resultArray[itemValue.CountryEN.substring(0,1).toUpperCase()] = [];
+    });
+    arrCountry.forEach(function(itemValue) {
+      for (var temp in  resultArray) {
+        if (itemValue.CountryEN.substring(0, 1).toUpperCase() == temp) {
+          resultArray[temp].push(itemValue);
+        }
+      }
+    });
+    tempString1 = $("#template_country_summary").html();
+    outputString1 = ejs.render(tempString1, {resultArray: resultArray});
+    outer.innerHTML = outputString1;
+    $(".shadow").eq(0).after(outputString1);
+    this.addCountryCodeHandler();
+    return this
+  },
+  addCountryCodeHandler:function(){
+    var countryTrigger = document.querySelector('.country-trigger'),that = this, wrapEle = document.querySelector('.country-cho-wrap');
+    wrapEle.onclick = function(e){
+     var e = e ||window.event, target = e.target || e.srcElement;
+     if(target.getAttribute('date-country-code')){
+     countryTrigger.innerHTML = target.getAttribute('date-country-code');
+       wrapEle.style.display = "none";
+     }
+     };
     countryTrigger.onclick = function () {
-      var div = document.createElement('div');
-
+      if (that.getCurrentStyle(wrapEle).display == "block") {
+        wrapEle.style.display = "none"
+      }else{
+        wrapEle.style.display = "block"
+      }
     }
   },
 
@@ -171,7 +201,7 @@ var fOrder = {
         contactInfoCache.lastName = document.querySelector('#last-name').value;
         contactInfoCache.email = document.querySelector('#email-label').value;
         contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
-        contactInfoCache.countryNumber = document.querySelector('#country-code').innerHTML;
+        contactInfoCache.countryNumber = document.querySelector('.country-code').innerHTML;
         if (contactInfoCache.firstName == "") {
           jAlert('请输入姓!', '提示');
           return;
@@ -320,7 +350,7 @@ var fOrder = {
         }
     })
 
-    this.addHandler(body, 'click', function (e){
+    this.addHandler(document.body, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.className == 'shadow'){
 
@@ -376,7 +406,7 @@ var fOrder = {
   },
 
   init: function () {
-    this.innitData().fadeHandler().eventHandler()
+    this.innitData().countrySlider().fadeHandler().eventHandler()
   }
 };
 fOrder.init();

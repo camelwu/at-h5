@@ -13,105 +13,81 @@
   <meta name="Keywords" content="亚洲旅行网">
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>机票订单填写页 - 亚洲旅行网</title>
-  <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
+  <link href="../styles/reset.css" rel="stylesheet" type="text/css"/>
   <link href="../styles/tips.css" rel="stylesheet" type="text/css">
   <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
-  <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
+  <link href="css/f_index.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-  <div id="preloader">
-    <div id="status">
-      <p class="center-text"></p>
-    </div>
+<div id="preloader">
+  <div id="status">
+    <p class="center-text"></p>
   </div>
-  <div class="all_elements">
-    <header class="header">
-      <a href="javascript:window.history.go(-1);" class="header_back">
-        <i class="icon_back"></i>
-      </a>
-      <h3>订单填写</h3>
-    </header>
-    <div class="content paddingTop">
-           <div class="date-week-port"></div>
-           <div class="seat-price-cost"></div>
-
-      <!--乘机人-->
-          <div class="passengers_wrap">
-              <h4>乘机人<i onclick=" vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate)"></i></h4>
-               <ul class="passenger_outer">
-                 <li>
-                   <p class="name_infos"><i class="minus_person"></i><span class="tip_word">姓/名</span><input class="input" placeholder="BAI LISA" /><i class="add_icon passenger"></i></p>
-                   <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567" /><span class="sex_value">女</span></p>
-                 </li>
-                 </ul>
-          </div>
-      <!--联系人-->
-          <div class="contact_wrap">
-            <h4>联系人<i class="arrow_down"></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact" onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i> </h4>
-            <p class="input_line clearfix">
-              <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)" />
-              <span class="s_line fl"></span>
-              <input class="first_name" id="last-name" placeholder="名(如：San)" />
-            </p>
-            <p class="input_line clearfix">
-              <span class="tel more_black fl">手机号<span class="mis_right">+<span class="nation_code_value country-trigger" id="country-code">86</span><i class="arrow_right"></i> </span> </span>
-              <span class="s_line fl"></span>
-              <input class="tel_number padding_has fl" id="tel-num" placeholder="用于接收通知" />
-            </p>
-            <p class="input_line email_line"><span class="more_black">E_mail</span><input class="email_value padding_has" id="email-label" placeholder="用于接收通知" /></p>
-          </div>
-      <!--价格明细-->
-              <div class="priceDetailInfo"></div>
-      <!--footer-->
-          <div class="bottomPrice">
-            <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span class="money_number"></span><i class="detail_fare open"></i></span>
-            <span class="preserve">立即预定</span>
-          </div>
-    </div>
-  </div>
-
-  <div class="shadow"></div>
-
-  <!--国籍电话区号选择-->
-
-  <div class="country-cho-wrap all_elements">
-    <div class="header country_header">
-      <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
-      <div class="cl_search">
-        <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
-        <i class="icon_common"></i>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="country-wrap">
-        <ul class="inter-list jto_area_code" id="jto_area_code">
-          <li>
-            <p name="dq" class="recent_title">当前</p>
-            <ul class="hot_code">
-              <li code="86"><i>中国</i><span>86</span></li>
-            </ul>
-          </li>
-          <li>
-            <p name="rm" class="recent_title">热门城市</p>
-            <ul class="hot_code">
-              <li code="65"><i>新加坡</i><span>65</span></li>
-              <li code="852"><i>香港</i><span>852</span></li>
-              <li code="81"><i>日本</i><span>81</span></li>
-            </ul>
-          </li>
-          <li class="country_lists"><p class="recent_title">A</p><ul><li code="244"><i>安哥拉</i><span>244</span></li><li code="93"><i>阿富汗</i><span>93</span></li><li code="355"><i>阿尔巴尼亚</i><span>355</span></li><li code="213"><i>阿尔及利亚</i><span>213</span></li><li code="376"><i>安道尔共和国</i><span>376</span></li><li code="1264"><i>安圭拉岛</i><span>1264</span></li><li code="1268"><i>安提瓜和巴布达</i><span>1268</span></li><li code="54"><i>阿根廷</i><span>54</span></li><li code="247"><i>阿森松</i><span>247</span></li><li code="61"><i>澳大利亚</i><span>61</span></li><li code="43"><i>奥地利</i><span>43</span></li><li code="994"><i>阿塞拜疆</i><span>994</span></li><li code="2"><i>埃及</i><span>2</span></li><li code="372"><i>爱沙尼亚</i><span>372</span></li><li code="251"><i>埃塞俄比亚</i><span>251</span></li><li code="353"><i>爱尔兰</i><span>353</span></li><li code="853"><i>澳门</i><span>853</span></li><li code="968"><i>阿曼</i><span>968</span></li><li code="971"><i>阿拉伯联合酋长国</i><span>971</span></li></ul></li><li class="country_lists"><p class="recent_title">B</p><ul><li code="1242"><i>巴哈马</i><span>1242</span></li><li code="973"><i>巴林</i><span>973</span></li><li code="1246"><i>巴巴多斯</i><span>1246</span></li><li code="375"><i>白俄罗斯</i><span>375</span></li><li code="32"><i>比利时</i><span>32</span></li><li code="501"><i>伯利兹</i><span>501</span></li><li code="229"><i>贝宁</i><span>229</span></li><li code="1441"><i>百慕大群岛</i><span>1441</span></li><li code="591"><i>玻利维亚</i><span>591</span></li><li code="267"><i>博茨瓦纳</i><span>267</span></li><li code="55"><i>巴西</i><span>55</span></li><li code="359"><i>保加利亚</i><span>359</span></li><li code="226"><i>布基纳法索</i><span>226</span></li><li code="257"><i>布隆迪</i><span>257</span></li><li code="354"><i>冰岛</i><span>354</span></li><li code="92"><i>巴基斯坦</i><span>92</span></li><li code="507"><i>巴拿马</i><span>507</span></li><li code="675"><i>巴布亚新几内亚</i><span>675</span></li><li code="595"><i>巴拉圭</i><span>595</span></li><li code="48"><i>波兰</i><span>48</span></li><li code="1787"><i>波多黎各</i><span>1787</span></li></ul></li><li class="country_lists"><p class="recent_title">C</p><ul><li code="85"><i>朝鲜</i><span>85</span></li></ul></li><li class="country_lists"><p class="recent_title">D</p><ul><li code="45"><i>丹麦</i><span>45</span></li><li code="189"><i>多米尼加共和国</i><span>189</span></li><li code="49"><i>德国</i><span>49</span></li><li code="684"><i>东萨摩亚(美)</i><span>684</span></li><li code="228"><i>多哥</i><span>228</span></li></ul></li><li class="country_lists"><p class="recent_title">E</p><ul><li code="593"><i>厄瓜多尔</i><span>593</span></li><li code="7"><i>俄罗斯</i><span>7</span></li></ul></li><li class="country_lists"><p class="recent_title">F</p><ul><li code="679"><i>斐济</i><span>679</span></li><li code="358"><i>芬兰</i><span>358</span></li><li code="33"><i>法国</i><span>33</span></li><li code="594"><i>法属圭亚那</i><span>594</span></li><li code="63"><i>菲律宾</i><span>63</span></li><li code="689"><i>法属玻利尼西亚</i><span>689</span></li></ul></li><li class="country_lists"><p class="recent_title">G</p><ul><li code="57"><i>哥伦比亚</i><span>57</span></li><li code="242"><i>刚果</i><span>242</span></li><li code="506"><i>哥斯达黎加</i><span>506</span></li><li code="53"><i>古巴</i><span>53</span></li><li code="22"><i>冈比亚</i><span>22</span></li><li code="995"><i>格鲁吉亚</i><span>995</span></li><li code="1809"><i>格林纳达</i><span>1809</span></li><li code="1671"><i>关岛</i><span>1671</span></li><li code="592"><i>圭亚那</i><span>592</span></li></ul></li><li class="country_lists"><p class="recent_title">H</p><ul><li code="509"><i>海地</i><span>509</span></li><li code="504"><i>洪都拉斯</i><span>504</span></li><li code="327"><i>哈萨克斯坦</i><span>327</span></li><li code="82"><i>韩国</i><span>82</span></li><li code="599"><i>荷属安的列斯</i><span>599</span></li><li code="31"><i>荷兰</i><span>31</span></li></ul></li><li class="country_lists"><p class="recent_title">J</p><ul><li code="1"><i>加拿大</i><span>1</span></li><li code="42"><i>捷克</i><span>42</span></li><li code="253"><i>吉布提</i><span>253</span></li><li code="241"><i>加蓬</i><span>241</span></li><li code="233"><i>加纳</i><span>233</span></li><li code="224"><i>几内亚</i><span>224</span></li><li code="855"><i>柬埔寨</i><span>855</span></li><li code="331"><i>吉尔吉斯坦</i><span>331</span></li><li code="263"><i>津巴布韦</i><span>263</span></li></ul></li><li class="country_lists"><p class="recent_title">K</p><ul><li code="237"><i>喀麦隆</i><span>237</span></li><li code="1345"><i>开曼群岛</i><span>1345</span></li><li code="682"><i>库克群岛</i><span>682</span></li><li code="225"><i>科特迪瓦</i><span>225</span></li><li code="254"><i>肯尼亚</i><span>254</span></li><li code="965"><i>科威特</i><span>965</span></li><li code="974"><i>卡塔尔</i><span>974</span></li></ul></li><li class="country_lists"><p class="recent_title">L</p><ul><li code="856"><i>老挝</i><span>856</span></li><li code="371"><i>拉脱维亚</i><span>371</span></li><li code="961"><i>黎巴嫩</i><span>961</span></li><li code="266"><i>莱索托</i><span>266</span></li><li code="231"><i>利比里亚</i><span>231</span></li><li code="218"><i>利比亚</i><span>218</span></li><li code="423"><i>列支敦士登</i><span>423</span></li><li code="37"><i>立陶宛</i><span>37</span></li><li code="352"><i>卢森堡</i><span>352</span></li><li code="262"><i>留尼旺</i><span>262</span></li><li code="4"><i>罗马尼亚</i><span>4</span></li></ul></li><li class="country_lists"><p class="recent_title">M</p><ul><li code="88"><i>孟加拉国</i><span>88</span></li><li code="95"><i>缅甸</i><span>95</span></li><li code="261"><i>马达加斯加</i><span>261</span></li><li code="265"><i>马拉维</i><span>265</span></li><li code="6"><i>马来西亚</i><span>6</span></li><li code="96"><i>马尔代夫</i><span>96</span></li><li code="223"><i>马里</i><span>223</span></li><li code="356"><i>马耳他</i><span>356</span></li><li code="167"><i>马里亚那群岛</i><span>167</span></li><li code="596"><i>马提尼克</i><span>596</span></li><li code="23"><i>毛里求斯</i><span>23</span></li><li code="52"><i>墨西哥</i><span>52</span></li><li code="373"><i>摩尔多瓦</i><span>373</span></li><li code="377"><i>摩纳哥</i><span>377</span></li><li code="976"><i>蒙古</i><span>976</span></li><li code="1664"><i>蒙特塞拉特岛</i><span>1664</span></li><li code="212"><i>摩洛哥</i><span>212</span></li><li code="258"><i>莫桑比克</i><span>258</span></li><li code="51"><i>秘鲁</i><span>51</span></li><li code="1"><i>美国</i><span>1</span></li></ul></li><li class="country_lists"><p class="recent_title">N</p><ul><li code="264"><i>纳米比亚</i><span>264</span></li><li code="674"><i>瑙鲁</i><span>674</span></li><li code="977"><i>尼泊尔</i><span>977</span></li><li code="505"><i>尼加拉瓜</i><span>505</span></li><li code="227"><i>尼日尔</i><span>227</span></li><li code="234"><i>尼日利亚</i><span>234</span></li><li code="47"><i>挪威</i><span>47</span></li><li code="27"><i>南非</i><span>27</span></li><li code="381"><i>南斯拉夫</i><span>381</span></li></ul></li><li class="country_lists"><p class="recent_title">P</p><ul><li code="351"><i>葡萄牙</i><span>351</span></li></ul></li><li class="country_lists"><p class="recent_title">R</p><ul><li code="81"><i>日本</i><span>81</span></li><li code="46"><i>瑞典</i><span>46</span></li><li code="41"><i>瑞士</i><span>41</span></li></ul></li><li class="country_lists"><p class="recent_title">S</p><ul><li code="357"><i>塞浦路斯</i><span>357</span></li><li code="503"><i>萨尔瓦多</i><span>503</span></li><li code="1758"><i>圣卢西亚</i><span>1758</span></li><li code="1784"><i>圣文森特岛</i><span>1784</span></li><li code="378"><i>圣马力诺</i><span>378</span></li><li code="239"><i>圣多美和普林西比</i><span>239</span></li><li code="966"><i>沙特阿拉伯</i><span>966</span></li><li code="221"><i>塞内加尔</i><span>221</span></li><li code="248"><i>塞舌尔</i><span>248</span></li><li code="232"><i>塞拉利昂</i><span>232</span></li><li code="421"><i>斯洛伐克</i><span>421</span></li><li code="386"><i>斯洛文尼亚</i><span>386</span></li><li code="677"><i>所罗门群岛</i><span>677</span></li><li code="252"><i>索马里</i><span>252</span></li><li code="94"><i>斯里兰卡</i><span>94</span></li><li code="1758"><i>圣卢西亚</i><span>1758</span></li><li code="1784"><i>圣文森特</i><span>1784</span></li><li code="249"><i>苏丹</i><span>249</span></li><li code="597"><i>苏里南</i><span>597</span></li><li code="268"><i>斯威士兰</i><span>268</span></li></ul></li><li class="country_lists"><p class="recent_title">T</p><ul><li code="886"><i>台湾省</i><span>886</span></li><li code="992"><i>塔吉克斯坦</i><span>992</span></li><li code="255"><i>坦桑尼亚</i><span>255</span></li><li code="66"><i>泰国</i><span>66</span></li><li code="676"><i>汤加</i><span>676</span></li><li code="1809"><i>特立尼达和多巴哥</i><span>1809</span></li><li code="216"><i>突尼斯</i><span>216</span></li><li code="9"><i>土耳其</i><span>9</span></li><li code="993"><i>土库曼斯坦</i><span>993</span></li></ul></li><li class="country_lists"><p class="recent_title">W</p><ul><li code="673"><i>文莱</i><span>673</span></li><li code="502"><i>危地马拉</i><span>502</span></li><li code="256"><i>乌干达</i><span>256</span></li><li code="38"><i>乌克兰</i><span>38</span></li><li code="598"><i>乌拉圭</i><span>598</span></li><li code="233"><i>乌兹别克斯坦</i><span>233</span></li><li code="58"><i>委内瑞拉</i><span>58</span></li></ul></li><li class="country_lists"><p class="recent_title">X</p><ul><li code="3"><i>希腊</i><span>3</span></li><li code="852"><i>香港</i><span>852</span></li><li code="36"><i>匈牙利</i><span>36</span></li><li code="64"><i>新西兰</i><span>64</span></li><li code="685"><i>西萨摩亚</i><span>685</span></li><li code="65"><i>新加坡</i><span>65</span></li><li code="34"><i>西班牙</i><span>34</span></li><li code="963"><i>叙利亚</i><span>963</span></li></ul></li><li class="country_lists"><p class="recent_title">Y</p><ul><li code="374"><i>亚美尼亚</i><span>374</span></li><li code="91"><i>印度</i><span>91</span></li><li code="62"><i>印度尼西亚</i><span>62</span></li><li code="98"><i>伊朗</i><span>98</span></li><li code="964"><i>伊拉克</i><span>964</span></li><li code="972"><i>以色列</i><span>972</span></li><li code="39"><i>意大利</i><span>39</span></li><li code="1876"><i>牙买加</i><span>1876</span></li><li code="962"><i>约旦</i><span>962</span></li><li code="44"><i>英国</i><span>44</span></li><li code="84"><i>越南</i><span>84</span></li><li code="967"><i>也门</i><span>967</span></li></ul></li><li class="country_lists"><p class="recent_title">Z</p><ul><li code="236"><i>中非共和国</i><span>236</span></li><li code="235"><i>乍得</i><span>235</span></li><li code="56"><i>智利</i><span>56</span></li><li code="86"><i>中国</i><span>86</span></li><li code="35"><i>直布罗陀</i><span>35</span></li><li code="243"><i>扎伊尔</i><span>243</span></li><li code="26"><i>赞比亚</i><span>26</span></li></ul></li></ul>
-      </div>
-    </div>
-    <div class="jto_letter_list">
-      <ul id="jto_letter_list">
-        <li><a href="#dq">当前</a></li>
-        <li><a href="#rm">热门</a></li>
-        <li><a href="#a">A</a></li><li><a href="#a">B</a></li><li><a href="#a">C</a></li><li><a href="#a">D</a></li><li><a href="#a">E</a></li><li><a href="#a">F</a></li><li><a href="#a">G</a></li><li><a href="#a">H</a></li><li><a href="#a">J</a></li><li><a href="#a">K</a></li><li><a href="#a">L</a></li><li><a href="#a">M</a></li><li><a href="#a">N</a></li><li><a href="#a">P</a></li><li><a href="#a">R</a></li><li><a href="#a">S</a></li><li><a href="#a">T</a></li><li><a href="#a">W</a></li><li><a href="#a">X</a></li><li><a href="#a">Y</a></li><li><a href="#a">Z</a></li></ul>
-    </div>
-    <div class="jto_seach" id="jto_seach"></div>
 </div>
+<div class="all_elements">
+  <header class="header">
+    <a href="javascript:window.history.go(-1);" class="header_back">
+      <i class="icon_back"></i>
+    </a>
 
+    <h3>订单填写</h3>
+  </header>
+  <div class="content paddingTop">
+    <div class="date-week-port"></div>
+    <div class="seat-price-cost"></div>
+
+    <!--乘机人-->
+    <div class="passengers_wrap">
+      <h4>乘机人<i
+        onclick=" vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate)"></i>
+      </h4>
+      <ul class="passenger_outer">
+        <li>
+          <p class="name_infos"><i class="minus_person"></i><span class="tip_word">姓/名</span><input class="input"
+                                                                                                    placeholder="BAI LISA"/><i
+            class="add_icon passenger"></i></p>
+
+          <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"
+                                                                         placeholder="1234567"/><span class="sex_value">女</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+    <!--联系人-->
+    <div class="contact_wrap">
+      <h4>联系人<i class="arrow_down"></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact"
+                                                                                  onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i>
+      </h4>
+
+      <p class="input_line clearfix">
+        <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)"/>
+        <span class="s_line fl"></span>
+        <input class="first_name" id="last-name" placeholder="名(如：San)"/>
+      </p>
+
+      <p class="input_line clearfix">
+        <span class="tel more_black fl">手机号<span class="mis_right">+<span class="nation_code_value country-trigger"
+                                                                          class="country-code">86</span><i
+          class="arrow_right"></i> </span> </span>
+        <span class="s_line fl"></span>
+        <input class="tel_number padding_has fl" id="tel-num" placeholder="用于接收通知"/>
+      </p>
+
+      <p class="input_line email_line"><span class="more_black">E_mail</span><input class="email_value padding_has"
+                                                                                    id="email-label"
+                                                                                    placeholder="用于接收通知"/></p>
+    </div>
+    <!--价格明细-->
+    <div class="priceDetailInfo"></div>
+    <!--footer-->
+    <div class="bottomPrice">
+      <span class="priceTotal">总额:<b class="tot_tips_rmb">￥</b><span class="money_number"></span><i
+        class="detail_fare open"></i></span>
+      <span class="preserve">立即预定</span>
+    </div>
+  </div>
+</div>
+<div class="shadow"></div>
 </body>
 <script id="template_flight_summary" type="text/template">
   <p class="trip_go_">
@@ -131,7 +107,8 @@
     <span class="week_value addUp"><%= fOrder.setWeekItems(flightInfo.flightReturnStartDate) %></span>
     <span class="cityName"><%= flightInfo.segmentsReturn[0]["airportNameFrom"] %><%=flightInfo.segmentsReturn[0]["termDepart"] %></span>
     <span class="addUp">-</span>
-    <span class="cityName"><%= flightInfo.segmentsReturn[flightInfo.segmentsReturn.length - 1]["airportNameTo"] %></span>
+    <span
+      class="cityName"><%= flightInfo.segmentsReturn[flightInfo.segmentsReturn.length - 1]["airportNameTo"] %></span>
     <span class="time_minutes"><%= parseInt(flightInfo.segmentsReturnTotalTravelTime / 60) + 'h' + flightInfo.segmentsReturnTotalTravelTime % 60 + 'm' %></span>
     <i class="clock"></i>
   </p>
@@ -139,64 +116,124 @@
 
 </script>
 <script id="template_flight_cost_seat" type="text/template">
-    <p><%= flightInfo.segmentsLeave[0]["cabinClassName"] %>
-      <%if(flightInfo.segmentsReturn){%>
-       +<%=flightInfo.segmentsReturn[0]["cabinClassName"] %>
-      <%}%>
-    </p>
-    <p>往返票价<span class="cost_value">￥<%= flightInfo.totalFareAmountADT %></span>税费<span class="cost_value">￥<%= flightInfo.totalTaxAmountADT %></span>
-      <span class="explain">退改签说明</span>
-    </p>
+  <p><%= flightInfo.segmentsLeave[0]["cabinClassName"] %>
+    <%if(flightInfo.segmentsReturn){%>
+    +<%=flightInfo.segmentsReturn[0]["cabinClassName"] %>
+    <%}%>
+  </p>
+  <p>往返票价<span class="cost_value">￥<%= flightInfo.totalFareAmountADT %></span>税费<span class="cost_value">￥<%= flightInfo.totalTaxAmountADT %></span>
+    <span class="explain">退改签说明</span>
+  </p>
 </script>
 <script id="template_flight_price" type="text/template">
-    <p>成人单价<span class="price-num-price">￥<span><%= flightInfo.totalFareAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
-    <p>成人税费<span class="price-num-price">￥<span><%= flightInfo.totalTaxAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
-    <%if(parseInt(flightInfo.numofChild)>0){ %>
-    <p>儿童单价<span class="price-num-price">￥<span><%= flightInfo.totalFareAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
-    <p>儿童税费<span class="price-num-price">￥<span><%= flightInfo.totalTaxAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
-    <%} %>
+  <p>成人单价<span
+    class="price-num-price">￥<span><%= flightInfo.totalFareAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
+  <p>成人税费<span
+    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountADT %>X<%= flightInfo.numofAdult %></span></span></p>
+  <%if(parseInt(flightInfo.numofChild)>0){ %>
+  <p>儿童单价<span
+    class="price-num-price">￥<span><%= flightInfo.totalFareAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
+  <p>儿童税费<span
+    class="price-num-price">￥<span><%= flightInfo.totalTaxAmountCHI %>X<%= flightInfo.numofChild %></span></span></p>
+  <%} %>
+</script>
+
+<script id="template_country_summary" type="text/template">
+  <div class="country-cho-wrap all_elements" style="display: block">
+    <header class="header">
+      <a href="javascript:window.history.go(-1);" class="header_back">
+        <i class="icon_back"></i>
+      </a>
+      <h3><div class="cl_search"><input type="text" placeholder="北京/beijing/bj/bjs/中国" id="city-input-zone"><i></i></div> </h3>
+    </header>
+    <div class="content">
+      <div class="country-wrap">
+        <ul class="inter-list jto_area_code" id="jto_area_code">
+          <li>
+            <a class="target" name="dq"></a>
+            <p class="recent_title">当前</p>
+            <ul class="hot_code">
+              <li date-country-code="86"><i>中国</i><span>86</span></li>
+            </ul>
+          </li>
+          <li>
+            <a class="target" name="rm"></a>
+            <p class="recent_title">热门城市</p>
+            <ul class="hot_code">
+              <li date-country-code="65"><i>新加坡</i><span>65</span></li>
+              <li date-country-code="852"><i>香港</i><span>852</span></li>
+              <li date-country-code="81"><i>日本</i><span>81</span></li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <% for(var tem in resultArray){%>
+          <li class="country_lists">
+            <a class="target" name="<%=tem%>"></a>
+            <p class="recent_title"><%=tem%></p>
+            <ul>
+              <%resultArray[tem].forEach(function(array){%>
+              <li date-country-code="<%=array.TelCode%>"><i><%=array.CountryName%></i><span><%=array.TelCode%></span></li>
+              <%})%>
+            </ul>
+          <% }%>
+        </ul>
+      </div>
+    </div>
+    <div class="jto_letter_list">
+      <ul id="jto_letter_list">
+        <li><a href="#dq">当前</a></li>
+        <li><a href="#rm">热门</a></li>
+        <% for(var tem in resultArray){%>
+        <li><a href="#<%=tem%>"><%=tem%></a></li>
+        <%}%>
+      </ul>
+    </div>
+    <div class="jto_seach" id="jto_seach"></div>
+  </div>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="../js/country_list.js"></script>
 <script type="text/javascript" src="js/f_order.js"></script>
 <script type="text/javascript">
   vlm.l_contact();
   localStorage.removeItem("travellerInfo_selected");
   localStorage.removeItem("contact_selected");
-  function callback(){
+  function callback() {
     fOrder.countrySlider();
   }
-  function delPassager(obj){
-    var ul=$(obj).parent().parent().parent();
-    if(ul.siblings().length>=1){
+  function delPassager(obj) {
+    var ul = $(obj).parent().parent().parent();
+    if (ul.siblings().length >= 1) {
       ul.remove();
-    }else{
+    } else {
       ul.hide();
     }
   }
-  function editPassager(obj){
-    var id=$(obj).find("input").eq(0).val();
-    var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
-    var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-    vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+  function editPassager(obj) {
+    var id = $(obj).find("input").eq(0).val();
+    var numofAdult = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
+    var numofChild = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
+    vlm.f_choice('passenger-list', 'f', 'traver', '', true, true, numofAdult, numofChild, id);
 
   }
 
 
-  function SelectPersonInformation(html,isContact){
-    if(html !="") {
-      if (!isContact ) {
+  function SelectPersonInformation(html, isContact) {
+    if (html != "") {
+      if (!isContact) {
         $(".passenger-list-data li").remove();
         $(".passenger-list-data").append(html);
-        $(".edit-passager").on("click",function(){
-          var id=$(this).attr("data-id");
-          var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult; //JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult
-          var numofChild=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-          vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+        $(".edit-passager").on("click", function () {
+          var id = $(this).attr("data-id");
+          var numofAdult = JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult; //JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult
+          var numofChild = JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
+          vlm.f_choice('passenger-list', 'f', 'traver', '', true, true, numofAdult, numofChild, id);
         });
-        $(".del-passager").on("click",function(){
+        $(".del-passager").on("click", function () {
           $(this).parent().parent().remove()
         })
       }
@@ -207,7 +244,7 @@
       }
     }
   }
-  $('.country-hidden').on('click',function(){
+  $('.country-hidden').on('click', function () {
     $('.country-cho-wrap').hide();
   })
 </script>

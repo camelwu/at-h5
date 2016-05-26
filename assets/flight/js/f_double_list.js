@@ -480,8 +480,7 @@ var fDoubleList = {
     var postObj = this.parseUrlHandler(window.location.href,true);
     console.log(postObj)
     this.postObj = postObj;
-    this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler); //data1
-   // this.renderHandler(data1)
+    this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler); 
 
   }
 };

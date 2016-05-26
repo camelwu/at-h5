@@ -45,7 +45,8 @@ var fSeatChoose = {
         if(target.className == "explain"){
       //退改签说明
         }else if(target.tagName == "BUTTON"){
-          that.testLogin();
+         // that.testLogin();
+          window.top.location.href='../flight/f_order.html';
         }
     })
   },
