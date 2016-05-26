@@ -700,7 +700,7 @@ a.hotel_detail_pic{
     top: 0rem;
     width: 0.86rem;
     height: 0.98rem;
-    color: #fdb330;
+    color: #7bc300;
     line-height: 0.98rem;
     font-size: 0.24rem;
 }
@@ -726,7 +726,7 @@ a.hotel_detail_pic{
     top: 0;
     width:1.76rem;
     height:0.84rem;
-    background: #fdb330;
+    background: #7bc300;
     color: #fff;
     text-align: center;
     line-height:0.84rem;
@@ -830,7 +830,7 @@ a.hotel_detail_pic{
 .order_data_box .nav2_center input{
     width: 100%;
     height:0.9rem;
-    color: #fdb330;
+    color: #7bc300;
     line-height:0.9rem;
     font-family: 'Microsoft YaHei',STHeiti,Verdana,sans-serif;
     display: inline-block;
