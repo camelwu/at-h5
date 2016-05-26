@@ -262,12 +262,17 @@ var fSingleList = {
         that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
         that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
+        if(that.postObj.airCorpCode!=undefined){
+          newUrl = vlm.setUrlPara(newUrl, "airCorpCode", that.postObj.airCorpCode);
+        }else{
+          delete that.postObj.airCorpCode;
+          newUrl = vlm.setUrlPara(newUrl, "airCorpCode", "");
+        }
         newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
         newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight",that.postObj.isHideSharedFlight);
         newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
         newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
         newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
-        newUrl = vlm.setUrlPara(newUrl, "airCorpCode", that.postObj.airCorpCode);
         newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
         newUrl = that.pageHandler(newUrl);
         window.location.href = newUrl;
@@ -326,12 +331,12 @@ var fSingleList = {
     if(this.postObj.internationalOrDomestic== "international"){
       f_data = {
         Sort : {
-          title : "低价优先",
+          title : "优选",
           c : "f_foot_sort",
           type : 1,
           key : "sortTypes",
           listData : [
-            {sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
+            {sortText: "不限", sortValue: 0},{sortText: "直飞优先", sortValue: 1}, {sortText: "低价优先", sortValue: 2},
             {sortText: "耗时短优先", sortValue: 3}]
         },
         Screen : {

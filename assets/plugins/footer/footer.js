@@ -462,7 +462,8 @@ var footer = (function() {
 
                 temp1.forEach(function(item, number){
                   if(item.className == 'cur'){
-                    dls[0].querySelector('dd').innerHTML = item.innerHTML;
+                    dls[0].querySelector('dd').innerHTML = item.innerText == "不限"?"优选":item.innerText;
+                    console.log(item.innerHTML == "不限")
                     return false
                   }
                 });
@@ -498,8 +499,9 @@ var footer = (function() {
             });
             temp1.forEach(function(item, number){
               if(item.className == 'cur'){
-                dls[0].querySelector('dd').innerHTML = item.innerHTML;
-                return false;
+                dls[0].querySelector('dd').innerHTML = item.innerText == "不限"?"优选":item.innerText;
+                console.log(item.innerHTML == "不限")
+                return false
               }
             });
             dls[2].querySelector('dd').innerHTML = postObj.hasTax=="1"?"含税价":"不含税价";
