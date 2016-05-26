@@ -939,25 +939,27 @@ color:white;
 /*}*/
 .time-arrow-time .city-time-left{
   float: left;
-  width: 40%;
+  width: 35%;
 }
 .time-arrow-time .time-arrow{
   float: left;
-  width: 20%;
+  width: 30%;
+  height: .4rem;
+  margin-top: .3rem;
+  background: url("../../images/ui/icon-t.png") no-repeat;
+  background-size: 6rem 3.2rem;
+  background-position: -.43rem -1.46rem;
 }
 .time-arrow-time .city-time-right{
   float: right;
-  width: 40%;
+  width: 35%;
   text-align: right;
 }
-.time-arrow-time .time-arrow .icon-arrow {
-  min-width: 2.2rem;
-  min-height: .4rem;
-  background: url("../../images/ui/icon-t.png") no-repeat;
-  background-size: 229.5px 116.5px;
-  background-position: 9.8% 53.3%;
-  text-align:center;
-}
+/*.time-arrow-time .time-arrow .icon-arrow {*/
+  /*/!*min-width: 2.2rem;*!/*/
+  /*/!*min-height: .4rem;*!/*/
+
+/*}*/
 .time-arrow-time .time-arrow .icon-arrow span{
   top: -5px;
 }

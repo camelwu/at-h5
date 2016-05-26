@@ -394,8 +394,7 @@ var footer = (function() {
         var middlesUls = document.querySelectorAll('.screen_rg ul'), temp1,temp2,temp3,temp4,temp5;
         var postObj = outerObj.postObj;
         if(outerObj.postObj.routeType=="return"){
-              if(outerObj.postObj.internationalOrDomestic!="international"){
-                console.log("往返国内")
+              if(outerObj.postObj.internationalOrDomestic!="international"){/*往返国内*/
                 temp1 = leftUl.querySelectorAll('li');
                 temp1 = [].slice.call(temp1);
                 temp1.forEach(function(item, number){
@@ -434,8 +433,7 @@ var footer = (function() {
                   }
                 });
                 dls[2].querySelector('dd').innerHTML = postObj.priorityRule=="2"?"从低到高":"价格";
-              }else{
-                /*往返国际*/
+              }else{/*往返国际*/
                 temp1 = leftUl.querySelectorAll('li');
                 temp1 = [].slice.call(temp1);
                 temp1.forEach(function(item, number){
@@ -464,22 +462,19 @@ var footer = (function() {
 
                 temp1.forEach(function(item, number){
                   if(item.className == 'cur'){
-                    dls[0].querySelector('dd').innerHTML = item.innerHTML;
+                    dls[0].querySelector('dd').innerHTML = item.innerText == "不限"?"优选":item.innerText;
+                    console.log(item.innerHTML == "不限")
                     return false
                   }
                 });
                 dls[2].querySelector('dd').innerHTML = postObj.hasTax=="1"?"含税价":"不含税价";
               }
         }else{
-          if(outerObj.postObj.internationalOrDomestic =="international"){
+          if(outerObj.postObj.internationalOrDomestic =="international"){/*单程国际*/
             temp1 = leftUl.querySelectorAll('li');
             temp1 = [].slice.call(temp1);
             temp1.forEach(function(item, number){
-              if(number<3){
                 item.className =  item.getAttribute('data-val') == postObj.priorityRule?"cur":"";
-              }else{
-                item.className =  item.getAttribute('data-val').substring(7) == postObj.isDesc?"cur":"";
-              }
             });
             temp2 = middlesUls[0].querySelectorAll('li');
             temp2 = [].slice.call(temp2);
@@ -495,23 +490,23 @@ var footer = (function() {
             temp4 = middlesUls[2].querySelectorAll('li');
             temp4 = [].slice.call(temp4);
             temp4.forEach(function(item, number){
-              item.className =  item.getAttribute('data-val') == postObj.departStartHour+'-'+postObj.departEndHour?"cur":"";
+              item.className =  item.getAttribute('data-val') == postObj.cabinClass?"cur":"";
             });
             temp5 = middlesUls[3].querySelectorAll('li');
             temp5 = [].slice.call(temp5);
             temp5.forEach(function(item, number){
-              item.className =  item.getAttribute('data-val') == postObj.cabinClass?"cur":"";
+              item.className =  item.getAttribute('data-val') == postObj.airCorpCode?"cur":"";
             });
-
             temp1.forEach(function(item, number){
               if(item.className == 'cur'){
-                dls[0].querySelector('dd').innerHTML = item.innerHTML;
-                return false;
+                dls[0].querySelector('dd').innerHTML = item.innerText == "不限"?"优选":item.innerText;
+                console.log(item.innerHTML == "不限")
+                return false
               }
             });
             dls[2].querySelector('dd').innerHTML = postObj.hasTax=="1"?"含税价":"不含税价";
 
-          }else {
+          }else {/*单程国内*/
             temp1 = leftUl.querySelectorAll('li');
             temp1 = [].slice.call(temp1);
             temp1.forEach(function(item, number){

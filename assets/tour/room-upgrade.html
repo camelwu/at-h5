@@ -26,6 +26,7 @@
 
     <title>房间升级 - 亚洲旅行网</title>
     <link href="../styles/reset.css" rel="stylesheet" type="text/css">
+    <link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
     <link href="../styles/swipebox.css" rel="stylesheet" type="text/css">
     <link href="css/tours.css" rel="stylesheet" type="text/css">
 </head>
@@ -44,7 +45,7 @@
     <!--</div>-->
     <!--   内容   -->
     <div class="sc-content" id="sc-content">
-        <div class="hotel_detail_banner"></div>
+        <div class="hotel_detail_banner" style="position: relative;"></div>
         <ul id="hd_list" class="hotel_detail_list hdl_up"></ul>
         <div id="map" class="hotel_detail_map"></div>
         <ul class="hotel_detail_list hdl_down"></ul>
@@ -57,34 +58,34 @@
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/ejs.js"></script>
-<script src="../js/lib/custom.js"></script>
 <script src="js/roomUpgreade.js"></script>
 <script src="../js/ATGMSMain.js"></script>
 <script src="../js/ATIcons.js"></script>
 <script src="../js/ATTransform.js"></script>
 <script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBV850tYcTCzqZbZKVWpeGYRm0yNYLt9fc&callback=initialize" type="text/javascript"></script>
 <script id="tpl1" type="text/template">
-    <% var imgs=tourInfos, htls=roomUpGrade.resetData(hotels[0]);imgl = imgs.length; if(imgl==0){ %>
+    <% var htls=roomUpGrade.resetData(hotels[0]),imgs=htls.imgages;imgl = imgs.length; if(imgl==0){ %>
         <a class="top-pic hotel_detail_pic">
             <img src="../images/hotelDetailerrorpic.png" real-src="<%= htls.hotelPictureURL%>" class="hotelPic" alt="image">
         </a>
     <% }else{ %>
-        <a href="<%= imgs[0].tourPictureURL %>" class="top-pic hotel_detail_pic swipebox" title="1/<%= (imgl) %>">
+        <a href="<%= htls.hotelPictureURL %>" class="top-pic hotel_detail_pic swipebox" title="1/<%= (imgl) %>">
             <img class="hotelPic" src="../images/hotelDetailerrorpic.png" real-src="<%= htls.hotelPictureURL %>">
         </a>
         <div style="display: none;">
             <% for(var i=1;i < imgl;i++){ %>
-            <a href="<%= imgs[i].tourPictureURL %>" class="swipebox" title="<%= (i+1) %>/<%= (imgl) %>">
-                <img src="<%= imgs[i].tourPictureURL %>" alt="image"></a>
+            <a href="<%= imgs[i].imageFileName %>" class="swipebox" title="<%= (i+1) %>/<%= (imgl) %>">
+                <img src="<%= imgs[i].imageFileName %>" alt="image"></a>
             <% } %>
         </div>
     <% } %>
     <a class="hotel_detail_back" href="javascript:history.go(-1);">
         <i></i>
     </a>
+    <div style="position:absolute;bottom:.2rem;right:15px;font-size: .32rem;color:#ffffff;"><%= (imgl)%>张</div>
 </script>
 <script id="tpl12" type="text/template">
-    <%  var imgs=tourInfos, htls=roomUpGrade.resetData(hotels[0]);imgl = imgs.length; %>
+    <%  var htls=roomUpGrade.resetData(hotels[0]); %>
     <li class="name">
         <p class="d-score score">
             <b class="d-icon4 icon4"></b>

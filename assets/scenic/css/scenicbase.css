@@ -3,6 +3,9 @@
   padding:.88rem 0 .9rem;
   background-color: #ffffff;
 }
+.content_detail{
+  background-color: #ffffff;
+}
 /*通用_content*/
 /*通用_头部*/
 .header_more {
@@ -271,3 +274,349 @@ li.scenic_detile_project_first{
   color:#FFBF4B
 }
 /*列表页*/
+/*景点详情页开始*/
+.header_scenic{
+  height: .66rem;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 1;
+}
+.icon_go_back{
+  width: .65rem;
+  height: .65rem;
+  position: absolute;
+  left: .28rem;
+  top: .28rem;
+  display: inline-block;
+  background-image: url(../../images/ui/icon_common.png);
+  background-size: 7.9rem 5.13rem;
+  background-position: -3.15rem -0.45rem;
+}
+.bar_img{
+  width: 100%;
+  height: 4.88rem;
+  overflow: hidden;
+  position: relative;
+}
+.bar_img_num{
+  font-size: .2rem;
+  color:#fff;
+  position: absolute;
+  left: .28rem;
+  bottom: .20rem;
+}
+.bar_img_theme{
+  display: block;
+  text-align: center;
+  font-size: .36rem;
+  color:#fff;
+  position: absolute;
+  left:40%;
+  top:.28rem;
+  opacity: 0.8;
+}
+.bar_img_page{
+  font-size: .2rem;
+  color:#fff;
+  position: absolute;
+  right: .28rem;
+  bottom: .20rem;
+}
+.bar_content{
+  line-height: .44rem;
+  padding:0 .3rem 0 .28rem;
+  border-bottom: 2px solid #EDECEB;
+}
+.bar_content_title{
+  font-size: .28rem;
+  margin:.4rem 0 .06rem ;
+  padding-bottom: .24rem;
+  /*border-bottom: 1px solid #EDECEB;*/
+  line-height: .44rem;
+  color: #333;
+}
+.bar_content_time{
+  display: block;
+  margin:0 0 .4rem 0 ;
+  font-size: .28rem;
+  line-height: .44rem;
+  padding:0 0 0 .72rem;
+  position: relative;
+  color:#666;
+}
+.bar_content i{
+  width: .32rem;
+  height: .32rem;
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  background-image: url(../../images/hotel_flight_tour/icon_tour.png);
+  background-size: 7.9rem 1.95rem;
+}
+.bar_content_time_schedule{
+  background-position:  -0.6rem -0.8rem;
+  top: .06rem;
+}
+.bar_content_time_travel{
+  background-position:  -1.05rem -0.8rem;
+  top: .5rem;
+}
+/*特色亮点区*/
+.scenic_content_feature{
+  margin:.4rem 0 .28rem  .28rem;
+  position: relative;
+  font-size: .28rem;
+  border-bottom: 1px solid #EDECEB;
+  padding:0 0 .2rem .6rem;
+}
+.scenic_content i{
+  width: .35rem;
+  height: .35rem;
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  background-image: url(../../images/hotel_flight_tour/icon_tour.png);
+  background-size: 7.95rem 1.95rem;
+}
+.scenic_content_feature_start{
+  background-position:  -1.87rem -0.8rem;
+  top: .06rem;
+}
+.scenic_content_feature h3{
+  margin-bottom: .32rem;
+  color:#333;
+}
+.scenic_content_feature li{
+  margin-bottom: .2rem;
+  color:#666;
+  padding-left: .26rem;
+  position: relative;
+}
+.feature{
+  margin-bottom: .2rem;
+  color: #666;
+  padding-left: .26rem;
+  position: relative;
+}
+.scenic_content_feature li i{
+  position: absolute;
+  top:.14rem;
+  width : .06rem;
+  height: .06rem;
+  border-radius: 50%;
+  background-color: #666;
+}
+/*/!*营业时间开始*!/营业地址开始*/
+.scenic_content_time,.scenic_content_address,.scenic_content_package,.scenic_content_booking,.scenic_content_scheduling,.scenic_content_notes,.scenic_content_TOS,.scenic_content_detail{
+  margin: .4rem 0 0 .28rem;
+  padding:0 .28rem .4rem 0;
+  font-size: .28rem;
+  position: relative;
+  border-bottom: 1px solid #EDECEB;
+  color:#333;
+}
+.scenic_content_time h3,.scenic_content_address h3,.scenic_content_package h3,.scenic_content_scheduling h3,.scenic_content_booking h3,.scenic_content_notes h3,.scenic_content_TOS h3,.scenic_content_detail h3{
+  padding-left: .6rem;
+  display: inline-block;
+  color:#333;
+}
+.scenic_content_time i{
+  background-position:  -2.45rem -0.8rem;
+  top: .06rem;
+}
+.scenic_content_time span ,.scenic_content_address span{
+  display: block;
+  float: right;
+  color:#FFB932;
+}
+.scenic_content_address i{
+  background-position:  -3.02rem -0.8rem;
+  top: .06rem;
+}
+/*景点套餐开始*/
+.scenic_content_package i{
+  background-position:  -3.6rem -0.8rem;
+  top: .06rem;
+}
+.scenic_content_package ul li:last-child{
+  border-bottom: 0 solid #EDECEB;
+  padding-bottom: 0;
+}
+.scenic_content_package_list{
+  margin: .24rem 0 0 .6rem;
+  padding-bottom: .4rem;
+  height: 1.44rem;
+  border-bottom: 1px solid #EDECEB;
+}
+.scenic_content_package_list div{
+  float: left;
+  width: 3.96rem;
+  font-size: .28rem;
+}
+.scenic_content_package_list p{
+  line-height: .44rem;
+  margin-bottom: .32rem;
+}
+.scenic_content_package_list_sprice{
+  font:400 .32rem/.32rem "宋体";
+  margin-right:.32rem;
+  color:#FF5B13;
+  /*display: inline-block;*/
+}
+.scenic_content_package_list_num{
+  font-size:.2rem;
+  color:#333;
+}
+.scenic_content_package_list button{
+  float: right;
+  width: 1.44rem;
+  height: .56rem;
+  color:white;
+  background-color: #FFB413;
+  font:400 .32rem/.56rem "宋体";
+  border-radius: .1rem;
+  margin-top: .44rem;
+}
+
+/*行程安排开始*/
+.scenic_content_scheduling i{
+  background-position:  -4.18rem -0.8rem;
+  top: .06rem;
+}
+.scenic_content_scheduling ul, .scenic_content_notes ul ,.scenic_content_TOS ul{
+  margin-left: .16rem;
+  position: relative;
+  margin-bottom: .1rem;
+
+}
+
+.scenic_content_scheduling li, .scenic_content_notes li, .scenic_content_TOS li{
+  margin:.1rem 0 .1rem 0;
+  line-height: .48rem;
+}
+.scenic_content_scheduling ul li:last-child, .scenic_content_notes ol li:last-child, .scenic_content_TOS ul li:last-child{
+  margin-bottom: 0;
+}
+.scenic_content_scheduling .scenic_content_scheduling_down, .scenic_content_notes .scenic_content_scheduling_down, .scenic_content_TOS .scenic_content_scheduling_down{
+  width: .32rem;
+  height: .32rem;
+  position: relative;
+  left: 50%;
+  bottom:0;
+  display: inline-block;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-size: 7.5rem 4.54rem;
+  background-position:  -3.71rem -2.26rem;
+}
+li.scenic_height1, li.scenic_height2, li.scenic_height3{
+  height: 2.4rem;
+  overflow: hidden;
+  margin-top: .4rem;
+}
+.scenic_content_notes i{
+  background-position:  -3.02rem -0.8rem;
+  top: .06rem;
+}
+.scenic_content_TOS i{
+  background-position:  -4.76rem -0.8rem;
+  top: .06rem;
+}
+.scenic_content_detail i{
+  background-position:  -5.34rem -0.8rem;
+  top: .06rem;
+}
+.scenic_content_detail p{
+  margin: .32rem 0 0 .6rem;
+  line-height: .44rem;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  position: relative;
+}
+.scenic_content_detail .scenic_content_scheduling_down{
+  width: .32rem;
+  height: .32rem;
+  position: relative;
+  left: 50%;
+  bottom:0;
+  display: inline-block;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-size: 7.5rem 4.54rem;
+  background-position:  -3.71rem -2.26rem;
+}
+
+/*预订*/
+.scenic_content_booking{
+  margin: .4rem 0 0 0.28rem;
+  padding: 0 0 0 0;
+  font-size: .28rem;
+  position: relative;
+  border-bottom: 1px solid #EDECEB;
+  color: #333333;
+}
+.scenic_content_booking i{
+  background-position: -3.6rem -0.8rem;
+  top: .06rem;
+}
+
+.scenic_content_booking_li{
+  position: relative;
+  padding: 0.32rem 0 0 0.6rem;
+}
+
+.scenic_content_booking_li:last-child div{
+  border:0;
+}
+
+.scenic_content_booking_div{
+  border-bottom: 1px solid #EDECEB;
+  padding: 0 0 0.32rem 0;
+}
+
+.scenic_content_booking_p{
+  margin: 0.32rem 0 0.08rem 0;
+}
+
+.scenic_content_booking_title{
+  width: 3.8rem;
+  line-height: 0.35rem;
+  padding: 0 0 0 0;
+  font-size: 0.28rem;
+}
+
+.scenic_content_booking_btn{
+  position: absolute;
+  width: 1.44rem;
+  height: 0.56rem;
+  font-size: 0.32rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: #ffb413;
+  line-height: 0.56rem;
+  text-align: center;
+  border-radius: 0.03rem;
+  right: 0.4rem;
+  top: 50%;
+  margin-top: -0.28rem;
+}
+
+.scenic_content_booking_pre{
+  font-size: 0.2rem;
+  margin: 0 0 0 0.32rem;
+}
+
+.scenic_content_booking_dollar{
+  font-size: 0.32rem;
+  font-weight: bold;
+  color: #FF5B13;
+}
+
+.scenic_content_booking_price{
+  font-size: 0.32rem;
+  font-weight: bold;
+  color: #FF5B13;
+}

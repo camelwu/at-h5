@@ -129,6 +129,64 @@
     }
   };
 
+  //init filter
+  var initFilter = function(data){
+    var newdata = [],tmp_data = {};
+    for(var i = 0;i < data.data.themes.length;i++){
+      tmp_data = {
+        filterText:data.data.themes[i].themeName,
+        filterValue:data.data.themes[i].themeID
+      }
+      newdata.push(tmp_data);
+    }
+    var themes = [{allowMultiSelect:0,filterType:5,item:newdata,title:"主题",sortNumber:0}];
+    //console.log(themes);
+    // 添加底部筛选
+    var f_data = {
+      sortTypes : {
+        title : "推荐排序",
+        c : "foot_sort",
+        s : 1,
+        type : 1,
+        key : 'sortTypes',
+        listData : [{sortText: "按价格从低到高",sortValue:0},{sortText: "按价格从高到低",sortValue:1}]
+      },
+      hotelScreen : {
+        title : "筛选",
+        c : "foot_screen",
+        s : 1,
+        type : 2,
+        key : 'filters',
+        listData : themes
+      }
+    },menu_call = function(obj) {
+      var Param = {};
+
+      Param.DestCityCode = val.DestCityCode;
+      Param.PriceSortType = obj.sortTypes[0] == 1?"HighToLow":"LowToHigh";
+      Param.ThemeID = obj.filters[0].FilterValues[0];
+      console.log(Param);
+      tAjax("",Param,"0087","3",Method["m_scenic_listCallback"]);
+    };
+    if (footer) {
+      footer.data = f_data;
+      footer.callback = menu_call;
+    }
+    footer.filters.init();
+  };
+
+  //ajax请求
+  var tAjax= function(questUrl, data, Code, ForeEndType, Callback) {
+    var that = this, dataObj = {
+      Parameters : data,
+      ForeEndType : ForeEndType,
+      Code : Code
+    };
+    questUrl = questUrl || that.requestUrl;
+    //vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    vlm.loadJson("",JSON.stringify(dataObj),Callback);
+  };
+
   var Method = {
     /**
      * 景 列表
@@ -159,6 +217,7 @@
             window.location.href = "../scenic/scenic_detail.html?packageID=" + packageid;
           }
         });
+        initFilter(json);
       }else{
         console.log(json);
       }
@@ -198,4 +257,5 @@
     VM.Load("t_des");
   });
   T.Load("js_scenic_list");
+
 })();

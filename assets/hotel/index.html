@@ -24,9 +24,9 @@
 		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
 		<link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="../styles/reset.css"/>
 		<link href="../styles/style.css" rel="stylesheet" type="text/css">
-		<link href="../styles/tips.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../styles/reset.css"/>
+    <link href="../styles/tips.css" rel="stylesheet" type="text/css">
     <link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>
 		<link href="css/dzh.css?ver=0505" rel="stylesheet" type="text/css">
 	</head>
@@ -61,31 +61,30 @@
                       <span id="h_out" data-bind="type:'setCityBox',data:'h_out',returnId:'#InterCity',returnAttr:'value',returnStrId:'#h_out'">新加坡</span>
 											<input id="InterCity" type="hidden" name="InterCityName"  value="Singapore">
 											<i class="icons open-arw i_more"></i>
+                      <i class="icons open-arw i_address"></i>
 										</div>
 									</div>
 								</div>
 								<div class="content2 hotel_time" id="content2">
-									<div class="nav2-left hotel_time_left">
-										<span class="nav2-lefttop">日 期</span>
-										<span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
-									</div>
 									<div class="nav2-center hotel_time_center" id="nav2-center1">
 										<div class="nav2-centertop hotel_time_center_start">
-											<p>
-												<input name="InterCheckInDate" id="CheckInDate"  readonly="readonly" class="fl"  value="2015-11-03">
-												<span id="week_span1" class="fl">周二 入住</span>
-											</p>
+                      <span class = "hotel_roomTime">入住</span>
+                      <input name="InterCheckInDate" id="CheckInDate"  readonly="readonly" class="fl"  value="2015-11-03">
+                      <span id="week_span1" class = "hotel_week">周二</span>
 										</div>
+                    <div class="nav2-left hotel_time_left">
+                          <!--<span class="nav2-lefttop">日 期</span>-->
+                          <span class="nav2-leftbottom">共 <span id="total_day">1</span> 晚</span>
+                    </div>
 										<div class="nav2-centerbottom hotel_time_center_end">
-											<p>
-												<input name="InterCheckOutDate" id="CheckOutDate"  readonly="readonly" class="fl" value="2015-11-06">
-												<span id="week_span2" class="fl">周五 离店</span>
-											</p>
+                      <span class = "hotel_roomTime">离店</span>
+                      <input name="InterCheckOutDate" id="CheckOutDate"  readonly="readonly" class="fl" value="2015-11-06">
+                      <span id="week_span2" class = "hotel_week">周五</span>
 										</div>
 									</div>
-									<div class="nav2-centerright hotel_time_right">
-										<i></i>
-									</div>
+									<!--<div class="nav2-centerright hotel_time_right">-->
+										<!--<i></i>-->
+									<!--</div>-->
 								</div>
 								<div id="room" class="content3 hotel_roomNum">
 									<div class="nav3-left hotel_roomNum_left">
@@ -99,9 +98,9 @@
 								</div>
 								<div id="people" class="content4 hotel_people">
 									<div class="nav4 nav41 hotel_people-content">
-										<div class="nav4-left hotel_people_left">
-											人数
-										</div>
+										<!--<div class="nav4-left hotel_people_left">-->
+											<!--人数-->
+										<!--</div>-->
 										<div class="nav4-center hotel_people_right">
 											<div class="nav4-centertop hotel_people_right_adult" id="nav4-centertop">
 												<p>
@@ -138,33 +137,32 @@
 										<div class="choose-aim1" >
                      						<span id="h_in" data-bind="type:'setCityBox',data:'h_in',returnId:'#DomCity',returnAttr:'value',returnStrId:'#h_in'" >北京</span>
 											<input id="DomCity" type="hidden" name="DomCityName"  value="beijing">
-											<i class="position i_position"></i>
+											<i class="position i_more"></i>
+                      <i class="icons open-arw i_address"></i>
 										</div>
 									</div>
 								</div>
 								<div class="content2 hotel_time" id="domesticCalender">
-									<div class="nav2-left hotel_time_left">
-										<span class="nav2-lefttop">日期</span>
-										<span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
-									</div>
+
 									<div class="nav2-center hotel_time_center" id="nav2-center2">
 										<div class="nav2-centertop hotel_time_center_start">
-											<p>
+                        <span class = "hotel_roomTime">入住</span>
 												<input name="DomCheckInDate" id="DomCheckInDate"  readonly="readonly"   value="2015-11-03" class="fl">
-												<span id="weekSpan3" class="fl">周二 入住</span>
-											</p>
-
+												<span id="weekSpan3" class = "hotel_week">周二</span>
 										</div>
-										<div class="nav2-centerbottom hotel_time_center_end" onclick="focus3()">
-											<p>
+                    <div class="nav2-left hotel_time_left">
+                      <!--<span class="nav2-lefttop">日期</span>-->
+                      <span class="nav2-leftbottom">共 <span id="domeTotalDay">1</span> 晚</span>
+                    </div>
+										<div class="nav2-centerbottom hotel_time_center_end">
+                        <span class = "hotel_roomTime">离店</span>
 												<input name="DomCheckOutDate" id="DomCheckOutDate"  readonly="readonly" value="2015-11-06" class="fl">
-												<span id="weekSpan4" class="fl">周五 离店</span>
-											</p>
+												<span id="weekSpan4" class = "hotel_week">周五</span>
 										</div>
 									</div>
-									<div class="nav2-centerright hotel_time_right">
-										<i></i>
-									</div>
+									<!--<div class="nav2-centerright hotel_time_right">-->
+										<!--<i></i>-->
+									<!--</div>-->
 								</div>
 								<div class="aa hotel_submit">
 									<div>
@@ -1123,4 +1121,5 @@
 	<script src="../js/lib/template.js"></script>
   <script type="text/javascript" src="../js/plugins/citybox/citybox.js"></script>
 	<script src="js/lsf_hotel.js"></script>
+  <script src="../js/lib/plugins.js"></script>
 </html>

@@ -15,6 +15,7 @@
     module.exports = {
         logRecord: function (req, res) {
             var parameter = req.query.info;
+
             fs.stat(logPath, function (err, stat) {
                 //路径存在
                 if (!err) {

@@ -92,135 +92,111 @@ var fOrder = {
   },
 
   countrySlider: function () {
-    var countryTrigger = document.querySelector('.country-trigger'), that = this;
-    countryTrigger.onclick = function () {
-      var div = document.createElement('div');
-      var searchHandler = function () {
-        var countryInputZone = document.querySelector('#country-input-zone');
-        var cityListSearched = document.querySelector('.country-list-searched-order');
-        var countryListInitShow = document.querySelector('.country-list-init-show');
-        var searchResult = [], reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr = '';
-        Array.prototype.distinct = function () {
-          var sameObj = function (a, b) {
-            var tag = true;
-            if (!a || !b)return false;
-            for (var x in a) {
-              if (!b[x])
-                return false;
-              if (typeof(a[x]) === 'object') {
-                tag = sameObj(a[x], b[x]);
-              } else {
-                if (a[x] !== b[x])
-                  return false;
-              }
-            }
-            return tag;
-          };
-          var newArr = [], obj = {};
-          for (var i = 0, len = this.length; i < len; i++) {
-            if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
-              newArr.push(this[i]);
-              obj[typeof(this[i]) + this[i]] = this[i];
-            }
-          }
-          return newArr;
-        };
-
-        if (reg.test(valueStr)) {
-          console.log(22)
-          var mb = String(valueStr).toLowerCase();
-          for (var p = 0; p < arrCountry.length; p++) {
-            var ma = String(arrCountry[p]['CountryEN']).toLowerCase();
-            if (ma.indexOf(mb) > -1 || arrCountry[p]['CountryName'].indexOf(valueStr) > -1) {
-              searchResult.push(arrCountry[p]);
-            }
-          }
-          searchResult = searchResult.distinct();
-          if (!searchResult.length) {
-            resultStr += '<li>无搜索结果</li>';
-            cityListSearched.style.display = 'none';
-          } else {
-            for (var l = 0; l < searchResult.length; l++) {
-              resultStr += '<li data-tel-code="' + searchResult[l].TelCode + '" data-Country-code="' + searchResult[l].CountryCode + '">' + searchResult[l].CountryName + '</li>'
-            }
-            cityListSearched.innerHTML = resultStr;
-            cityListSearched.style.display = 'block';
-          }
+    var tempString1 = "", outputString1 = "",resultArray = {},that = this , outer = document.createElement('div');
+    outer.className = "country-cho-wrap all_elements";
+    arrCountry.forEach(function(itemValue){  //country-cho-wrap all_elements
+      resultArray[itemValue.CountryEN.substring(0,1).toUpperCase()] = [];
+    });
+    arrCountry.forEach(function(itemValue) {
+      for (var temp in  resultArray) {
+        if (itemValue.CountryEN.substring(0, 1).toUpperCase() == temp) {
+          resultArray[temp].push(itemValue);
         }
-      };
-      div.className = 'all-elements country-cho-wrap-order';
-      div.innerHTML = '<div class="header country-list-header">' +
-        '<a href="javascript:void(0)" class="icons header-back country-hidden"></a>' +
-        '<div class="cl_search">' +
-        '<input type="text" placeholder="中国/China/zhongguo" id="country-input-zone"/>' +
-        '<i></i>' +
-        '</div>' +
-        '</div>' +
-        '<ul class="country-list-searched country-list-searched-order"></ul>' +
-        '<div class="snap-content country-list country-list-init-show" style="padding-top: 45px">' +
-        '<div class="country-wrap" id="country-wrap">' +
-        '<ul class="country-list counter-list-to-order">' +
-        '</ul>' +
-        '</div>' +
-        '</div>';
-      document.body.appendChild(div);
+      }
+    });
+    tempString1 = $("#template_country_summary").html();
+    outputString1 = ejs.render(tempString1, {resultArray: resultArray});
+    outer.innerHTML = outputString1;
+    $(".shadow").eq(0).after(outputString1);
+    this.addCountryCodeHandler();
+    return this
+  },
+  addCountryCodeHandler:function(){
+    var countryTrigger = document.querySelector('.country-trigger'),that = this, wrapEle = document.querySelector('.country-cho-wrap');
+    var  cityInputZone = document.querySelector('#country-input-zone');
+    wrapEle.onclick = function(e){
+     var e = e ||window.event, target = e.target || e.srcElement;
+     if(target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')){
+       countryTrigger.innerHTML = target.getAttribute('date-country-code')!=null?target.getAttribute('date-country-code'):target.parentNode.getAttribute('date-country-code');
+       wrapEle.style.display = "none";
+     }
+     };
+    countryTrigger.onclick = function () {
+      if (that.getCurrentStyle(wrapEle).display == "block") {
+        wrapEle.style.display = "none"
+      }else{
+        wrapEle.style.display = "block"
+      }
+    }
 
-      var cityInputZone = document.querySelector('#country-input-zone');
-      var countryHidden = document.querySelector('.country-hidden');
-      var ulLi = document.querySelector('.counter-list-to-order'), liStr = '';
-      Array.prototype.distinct = function () {
-        var sameObj = function (a, b) {
+    var searchHandler=function(){
+      var countryInputZone = document.querySelector('#country-input-zone');
+      var cityListSearched = document.querySelector('.country-list-searched-order');
+      var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+      Array.prototype.distinct=function(){
+        var sameObj=function(a,b){
           var tag = true;
-          if (!a || !b)return false;
-          for (var x in a) {
-            if (!b[x])
+          if(!a||!b)return false;
+          for(var x in a){
+            if(!b[x])
               return false;
-            if (typeof(a[x]) === 'object') {
-              tag = sameObj(a[x], b[x]);
-            } else {
-              if (a[x] !== b[x])
+            if(typeof(a[x])==='object'){
+              tag=sameObj(a[x],b[x]);
+            }else{
+              if(a[x]!==b[x])
                 return false;
             }
           }
           return tag;
         };
-        var newArr = [], obj = {};
-        for (var i = 0, len = this.length; i < len; i++) {
-          if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+        var newArr=[],obj={};
+        for(var i=0,len=this.length;i<len;i++){
+          if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
             newArr.push(this[i]);
-            obj[typeof(this[i]) + this[i]] = this[i];
+            obj[typeof(this[i])+this[i]]=this[i];
           }
         }
         return newArr;
       };
-      arrCountry = arrCountry.distinct();
-      for (var ji = 0, len = arrCountry.length; ji < len; ji++) {
-        liStr += '<li data-tel-code="' + arrCountry[ji].TelCode + '" data-code="' + arrCountry[ji].CountryCode + '">' + arrCountry[ji].CountryName + '</li>'
-      }
-      ulLi.innerHTML = liStr;
-      if (cityInputZone.addEventListener) {
-        cityInputZone.addEventListener('input', searchHandler, false)
-      } else {
-        cityInputZone.attachEvent('onpropertychange', searchHandler)
-      }
-      countryHidden.onclick = function () {
-        if (document.querySelector('.country-cho-wrap-order')) {
-          document.body.removeChild(document.querySelector('.country-cho-wrap-order'));
+      if(reg.test(valueStr)){
+        var mb = String(valueStr).toLowerCase();
+        for(var p = 0; p < arrCountry.length; p++){
+          var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
+          if(ma.indexOf(mb)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
+            searchResult.push(arrCountry[p]);
+          }
         }
-      };
-      that.addCountryCodeHandler();
+        }
+      searchResult = searchResult.distinct();
+      if(!searchResult.length){
+        resultStr +='<li>无搜索结果</li>';
+        cityListSearched.style.display = 'none';
+      }else{
+        for(var l = 0;l<searchResult.length;l++){
+          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].TelCode+'"><i>'+searchResult[l].CountryName+'</i><span>'+searchResult[l].TelCode+'</span></li>'
+        }
+        cityListSearched.innerHTML = resultStr;
+        cityListSearched.style.display = 'block';
+      }
+
     };
+    if(cityInputZone.addEventListener){
+      cityInputZone.addEventListener('input',searchHandler,false)
+    }else{
+      cityInputZone.attachEvent('onpropertychange',searchHandler)
+    }
+
   },
 
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {};
+    var postPara = {}, temObject = {} , passengerOuter =  document.querySelector('.passenger_outer');
     postPara.wapOrder = {};
     postPara.travellerInfo = [];
     postPara.contactDetail = {};
     postPara.currencyCode = "CNY";
     postPara.totalPrice = this.priceData.priceTotal;
-    postPara.track = {browserType: "", deviceID: ""/*vlm.getDeviceID()*/};
+    postPara.track = {browserType: "", deviceID: vlm.getDeviceID()};
     postPara.wapOrder.memberId = window.localStorage.memberid;
     postPara.wapOrder.setID = that.curFlightData.setID;
     postPara.wapOrder.cacheID = that.curFlightData.cacheID;
@@ -284,7 +260,7 @@ var fOrder = {
         contactInfoCache.lastName = document.querySelector('#last-name').value;
         contactInfoCache.email = document.querySelector('#email-label').value;
         contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
-        contactInfoCache.countryNumber = document.querySelector('#country-code').innerHTML;
+        contactInfoCache.countryNumber = document.querySelector('.country-code').innerHTML;
         if (contactInfoCache.firstName == "") {
           jAlert('请输入姓!', '提示');
           return;
@@ -320,18 +296,18 @@ var fOrder = {
         this.fadeHandler("show");
         this.postPara = postPara;
         console.log(postPara);
-        /* this.postPara = { 成单参数格式
+         this.postPara = {// 成单参数格式
          "WapOrder": {
-         "SetID": 30000025,
-         "CacheID": 3514054,
+         "SetID": 30000152,
+         "CacheID": 3514987,
          "CityCodeFrom": "BJS",
          "CityCodeTo": "SIN",
          "NumofAdult": "1",
          "NumofChild": "0",
-         "RouteType": "Return",
-         "CabinClass": "Economy",
+         "RouteType": "oneWay",
+         "CabinClass": "economy",
          "SourceType": "H5",
-         "MemberId": "84738"
+         "MemberId": ""
          },
          "TravellerInfo": [{
          "PassengerType": "ADULT",
@@ -361,9 +337,9 @@ var fOrder = {
          "MobilePhone": "11111111111"
          },
          "CurrencyCode": "CNY",
-         "TotalPrice": 2377,
+         "TotalPrice": 6826,
          "track": {"browserType": "", "deviceID": ""}
-         };*/
+         };
         that.tAjax("", this.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
@@ -425,6 +401,22 @@ var fOrder = {
         }
       }
     });
+    this.addHandler(passengerOuter, 'click', function (e){
+      var e = e || window.event, target = e.target || e.srcElement;
+        if(target.className == 'minus_person'){
+          var tem = target.parentNode.parentNode;
+          this.removeChild(tem);
+        }
+    })
+    this.addHandler(document.body, 'click', function (e){
+      var e = e || window.event, target = e.target || e.srcElement;
+      if(target.className == 'shadow'){
+
+       }else if(target.className.indexOf('country_header')>-1){
+             document.querySelector('.country-cho-wrap').style.display ="none";
+      }
+    })
+
   },
 
   createTags: function () {
@@ -432,9 +424,9 @@ var fOrder = {
     console.log(data);
     var tempString1 = "", outputString1 = "", tempString2 = "", outputString2 = "", that = fOrder;
     tempString1 = $("#template_flight_summary").html();
-    outputString1 = ejs.render(tempString1, data);
+    outputString1 = ejs.render(tempString1, {flightInfo: data});
     tempString2 = $("#template_flight_cost_seat").html();
-    outputString2 = ejs.render(tempString2, data);
+    outputString2 = ejs.render(tempString2,  {flightInfo: data});
     $(".date-week-port").eq(0).html(outputString1);
     $(".seat-price-cost").eq(0).html(outputString2);
     return this;
@@ -443,7 +435,7 @@ var fOrder = {
   priceTags: function () {
     var data = arguments[0], tempString1 = "", outputString1 = "", that = fOrder, moneyNumber = document.querySelector('.money_number');
     tempString1 = $("#template_flight_price").html();
-    outputString1 = ejs.render(tempString1, data);
+    outputString1 = ejs.render(tempString1, {flightInfo: data});
     $(".priceDetailInfo").eq(0).html(outputString1);
     moneyNumber.innerHTML = data.priceTotal;
     return this;
@@ -474,7 +466,7 @@ var fOrder = {
   },
 
   init: function () {
-    this.innitData().fadeHandler().eventHandler()
+    this.innitData().countrySlider().fadeHandler().eventHandler()
   }
 };
 fOrder.init();

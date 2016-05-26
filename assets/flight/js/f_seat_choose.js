@@ -53,6 +53,7 @@ var fSeatChoose = {
     var data = arguments[0];
     var tempString="", outputString="", that = fSeatChoose;
     tempString = $("#template_seat_choose").html();
+    console.log(data)
     outputString = ejs.render(tempString, data);
     $(".all_elements").eq(0).html(outputString);
     return this;
@@ -101,9 +102,7 @@ var fSeatChoose = {
   },
 
   testLogin:function(){
-    if(vlm.checkLogin('fSeatChoose.testLogin')){
-      window.top.location.href='../flight/f_order.html';
-    }
+     window.top.location.href='../flight/f_order.html'
   },
 
   returnDay: function () {

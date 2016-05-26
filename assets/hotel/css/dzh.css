@@ -6,6 +6,9 @@ div#h-Tab{
   display: flex;
   background: #fff;
 }
+.header{
+  background: #fff;
+}
 /*日历*/
 .calendar dt.title-date {
   font-size:.28rem;
@@ -26,13 +29,14 @@ div#h-Tab .off{
   border-bottom: 2px solid #fff;
 }
 .hotel_content{
-  margin-top:.1rem;
+  margin-top:.04rem;
+  background-color: #fff;
 }
 .hotel_destination{
-  height: 1rem;
-  line-height:1rem;
-  border-bottom: 1px solid #dedede;
-  padding:0 .4rem ;
+  height: .98rem;
+  line-height:.98rem;
+  border-bottom: 1px solid #E6E6E6;
+  padding:0 .26rem ;
 }
 .hotel_destination_left{
   display: inline-block;
@@ -41,6 +45,9 @@ div#h-Tab .off{
 .hotel_destination_right{
   display: inline-block;
   width: 65%;
+  font-size: .32rem;
+  font-weight: 500;
+  background-color: #fff;
 }
 .hotel_destination_right span{
   display: block;
@@ -48,57 +55,87 @@ div#h-Tab .off{
 }
 .hotel_destination_right i{
   position: absolute;
-  right: .4rem;
-  top: .38rem;
+  right: 1rem;
+  top: .3rem;
   width: .4rem;
   height: .5rem;
   background-image: url(../../images/icons.png);
   background-repeat: no-repeat;
-  background-size: 4rem 2.8rem;
+  background-size: 4.2rem 3.4rem;
   display: inline-block;
 }
 .i_more{
-  background-position: -1.6rem -0.7rem;
+  background-position: -1.7rem -0.9rem;
 }
-.i_position{
-  background-position: -1.6rem -0.7rem;
+i.i_address{
+  position: absolute;
+  right: .26rem;
+  top: .25rem;
+  width: .4rem;
+  height: .5rem;
+  background-image: url(../../images/ui/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 8rem 3.4rem;
+  background-position: -6.44rem -2.2rem;
 }
 /*第二栏*/
 .hotel_time{
-  width: 100%;
   height: 1.6rem;
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #E6E6E6;
+  color:#999999;
+  margin-left: .26rem;
+  padding-right: .26rem;
 }
 .hotel_time_left{
-  width: 1.6rem;
-  padding: .4rem 0 .4rem .4rem;
+  width: 15%;
+  /* padding: .4rem 0 .4rem .4rem; */
   float: left;
+  height: 1rem;
+  line-height: 1rem;
+  margin-top: .59rem;
+  text-align: center;
 }
 .hotel_time_left > span{
   display: block;
 }
 .hotel_time_center{
-  width: 4rem;
-  float: left;
+  /*height: 1rem;*/
+  /*width: 100%;*/
 }
-.hotel_time_center_start,.hotel_time_center_end{
+.hotel_time_center_start{
+  width: 41%;
   height: .8rem;
   line-height: .8rem;
+  float: left;
 }
-.hotel_time_center_start>p,.hotel_time_center_end >p{
+.hotel_roomTime{
+  height: .2rem;
+  font-size: .2rem;
+  display: block;
+}
+.hotel_time_center_end{
+  width: 41%;
   height: .8rem;
-  border-bottom: 1px solid #dedede;
-  padding-left:.1rem;
+  line-height: .8rem;
+  float: right;
 }
-.hotel_time_center_start>p input,.hotel_time_center_end>p input{
-  width:1.6rem;
-  margin-top: .24rem;
-  margin-left: .2rem;
+.hotel_time_center_start input,.hotel_time_center_end input{
+  float: left;
+  width: 2.12rem;
+  font-size: .4rem;
+  font-weight: 600;
+  margin-top: .6rem;
+  margin-right: .12rem;
 }
 .hotel_time_right{
   float: left;
   position: absolute;
   right:1.3rem;
+}
+.hotel_week{
+  display: block;
+  padding-top: .49rem;
+  font-size: .2rem;
 }
 .hotel_time_right i{
   background-image: url(../../images/icon-h.png);
@@ -113,11 +150,12 @@ div#h-Tab .off{
 }
 /*第三栏*/
 .hotel_roomNum{
-  width: 100%;
-  height: .4rem;
-  border-bottom: 1px solid #DEDEDE;
-  padding: .3rem .4rem;
-  /*position: relative;*/
+  height: 1rem;
+  line-height: 1rem;
+  margin-left: .26rem;
+  padding-right: .26rem;
+  border-bottom: 1px solid #E6E6E6;
+  position: relative;
 }
 .hotel_roomNum_left{
   width: 2rem;
@@ -127,7 +165,8 @@ div#h-Tab .off{
 .hotel_roomNum_right{
   width: 4rem;
   position: absolute;
-  right: -0.5rem;
+  right: -0.9rem;
+  top: .24rem;
 }
 .hotel_roomNum_right input{
   width: .36rem;
@@ -148,63 +187,81 @@ div#h-Tab .off{
 }
 /*人数*/
 .hotel_people{
-  width: 100%;
-  height: 1.8rem;
-  border-bottom: 1px solid #DEDEDE;
+  height: 2rem;
+  border-bottom: 1px solid #E6E6E6;
   position: relative;
+  margin-left: .26rem;
+  padding-right: .26rem;
 }
 .hotel_people_left{
   width: 1.6rem;
   height: .8rem;
   float: left;
   line-height: .8rem;
-  padding: .4rem 0 .4rem .4rem;
 }
 .hotel_people_right{
-  width: 5.4rem;
-  line-height: .8rem;
+  width: 100%;
+  line-height: 1rem;
   position: absolute;
   right: 0;
-  margin-right: .4rem;
+  /*margin-right: .4rem;*/
 }
 .hotel_people_right_adult{
-  border-bottom: 1px solid #dedede;
-  padding-left: .4rem;
+  border-bottom: 1px solid #E6E6E6;
 }
 .hotel_people_right_adult p{
-  line-height: .6rem;
-  padding: .2rem .4rem 0 0;
-  margin-bottom: .2em;
+  /*line-height: .6rem;*/
+  /*margin-bottom: .2em;*/
 }
 .hotel_people_right_child p{
-  line-height: .6rem;
-  padding:0 .4rem .2rem .4rem;
-  margin-top: .2rem;
+  /*line-height: .6rem;*/
+  /*margin-top: .2rem;*/
 }
-.hotel_people_right_adult input,.hotel_people_right_child input{
+.hotel_people_right_adult input{
+  width: .36rem;
+  height: .36rem;
+  position: absolute;
+  right:0.9rem;top:.25rem;
+}
+.hotel_people_right_child input{
   width: .36rem;
   height: .36rem;
   position: absolute;
   right:0.9rem;
+  top:1.25rem;
 }
-.hotel_people_right_adult_add,.hotel_people_right_child_add{
+.hotel_people_right_adult_add{
   background-position: 0 -28px;
   right: 0.2rem;
+  top: .24rem;
 }
-.hotel_people_right_adult_minus,.hotel_people_right_child_minus{
+.hotel_people_right_child_add{
+  background-position: 0 -28px;
+  right: 0.2rem;
+  top:1.25rem;
+}
+.hotel_people_right_adult_minus{
   background-position: 0 -56px;
   right: 1.7rem;
+  top: .24rem;
+}
+.hotel_people_right_child_minus{
+  background-position: 0 -56px;
+  right: 1.7rem;
+  top:1.25rem;
 }
 .hotel_submit{
+  background-color: #f7f7f7;
+}
+.hotel_submit div{
   height: .6rem;
-  margin: .4rem;
+  padding: .4rem;
 }
 .hotel_submit_refer{
   width: 100%;
   color: #fff;
   height: .88rem;
-  line-height: .6rem;
-  border-radius: .18rem;
+  border-radius: .1rem;
   text-align: center;
   font-size: .36rem;
   background-color: #FFB413;
@@ -258,7 +315,7 @@ div#h-Tab .off{
   overflow: hidden;
   font-size: .32rem;
   font-weight: 700;
-  border-top: 1px #dedede solid;
+  border-top: 1px #f7f7f7 solid;
 }
 #popup_panel .d-ok {
   display: block;

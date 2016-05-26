@@ -153,10 +153,10 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var woman = $("#woman")[0];
                 var sexCode;
                 var sexName;
-                if (man.className == "icon_h traveler_sex1") {
+                if (man.className == "per_man sex_act") {
                     sexCode = "Mr";
                     sexName = "男";
-                }else if(woman.className == "icon_h traveler_sex1") {
+                }else if(woman.className == "per_man sex_act") {
                     sexCode = "Mrs";
                     sexName = "女";
                 }else{
@@ -293,7 +293,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                 var man = $("#man2")[0];
                 var sexCode;
                 var sexName;
-                if (man.className == "icon-h traveler-sex1") {
+                if (man.className == "per_man sex_act") {
                     sexCode = "Mr";
                     sexName = "男";
                 } else {
@@ -378,16 +378,16 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     });
 
     //性别
-    var aSel = document.querySelectorAll('.sex_cho_wrap');
+    var aSel = document.querySelectorAll('.info_sex_tab');
     for (var i = 0; i < aSel.length; i++) {
         (function (index) {
-            var aSpan = aSel[index].querySelectorAll('b');
+            var aSpan = aSel[index].querySelectorAll('div');
             for (j = 0; j < aSpan.length; j++) {
                 aSpan[j].onclick = function () {
                     for (i = 0; i < aSpan.length; i++) {
-                        aSpan[i].className = 'icon_h traveler_sex2';
+                        aSpan[i].className = 'per_man';
                     }
-                    this.className = 'icon_h traveler_sex1';
+                    this.className = 'per_man sex_act';
                 }
             }
         })(i);
@@ -573,11 +573,11 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
         oldsendName=getCountryName(idCountry).CountryName;
         $('#country-name').html(oldsendName);
         if (travJson.data[index].traveller.sexCode == "Mr") {
-            man2.className = "icon_h traveler_sex1";
-            woman2.className = "icon_h traveler_sex2";
+            man2.className = "per_man sex_act";
+            woman2.className = "per_man";
         } else {
-            man2.className = "icon_h traveler_sex2";
-            woman2.className = "icon_h traveler_sex1";
+            man2.className = "per_man";
+            woman2.className = "per_man sex_act";
         }
 
         //编辑常旅取消按钮提示
@@ -649,7 +649,7 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     //新增常旅
     var myDate1 = new Scroller({id: "birth-cont", type:"birth",cont:"uuun1"});
     var myDate2 = new Scroller({id: "time-cont", type:"validity",cont:"uuun2"});
-    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu",callback:cardcallback});
+    var myDate3 = new Scroller({id: "postCard", type:"card",cont:"uuu"});
     //编辑常旅
     var myDate4 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"eee1"});
     var myDate5 = new Scroller({id: "time-cont-edit", type:"validity",cont:"eee2"});
@@ -687,7 +687,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
                   }
                 }
               }
-
             }
             var idnumber=cardnum();
             $('.postNum').val(idnumber);

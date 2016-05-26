@@ -10,7 +10,6 @@
         parameter = {},
         meta = {
             ua: navigator.userAgent,
-            ref: d.referrer,
             st: new Date().getTime(), //页面性能统计优化performance.timing
             lt: null,
             ut: null,
@@ -19,7 +18,7 @@
         dataPara = ['data-statc', 'data-statl', 'data-statm', 'data-statp'];
     //收集统计参数
     /*
-     *@desc 参数说明：
+     *@desc 参数说明：data-statp 与url/path 重复， data-statp参数可以不设置
      *
      {
          parameters:[{
@@ -31,7 +30,6 @@
          }],
          meta:{
             ua: userAgent,
-            ref: document.referrer,
             st : start load time,
             lt : load time,
             ut : unload time,

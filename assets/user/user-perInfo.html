@@ -41,7 +41,7 @@
 			<div id="content" class="content">
 				<div id="infolist" class="user_info_top clearfix">
           <span class="fl">头像</span>
-					<img id="userIcon" src="../images/ui/photo-man.png" class="user_it fr"/>
+					<img id="userIcon" src="../images/user/photo-man.png" class="user_it fr"/>
 					<b class="open_arw"></b>
 				</div>
 				<ul class="userper_lists">
@@ -54,8 +54,8 @@
 					<li>
 						性别
 						<div class="info_sex" id="sex">
-							<div class="per_man sex_act">男</div>
-							<div class="per_woman">女</div>
+							<div class="per_man sex_act" id="man">男</div>
+							<div class="per_man" id="woman">女</div>
 						</div>
 					</li>
 					<li  class="sex-alter" id="ppp">
@@ -86,7 +86,7 @@
 				<li id="changename" style="display: none;">
 					<form id="nickForm" action="user-perInfo.html" method="get">
 						<div class="u_name">
-							<input id="name" name="name" type="text" value="" maxlength="20"/>
+							<input id="name" name="name" type="text" value="" maxlength="20" autofocus="autofocus"/>
 							<b class="icon_person name_close"></b>
 						</div>
 						<div class="name_text">4-20个字符，可由中英文字母，数字、“_”组成。</div>
@@ -96,7 +96,7 @@
 				<form id="infoForm" action="user-perInfo.html" method="get">
 					<li id="fillname">
 						<div class="u_name">
-							<input id="realName" type="text" value placeholder="请填写真实姓名" maxlength="20" data-type="code">
+							<input id="realName" type="text" value placeholder="请填写真实姓名" autofocus="autofocus" maxlength="20" data-type="code">
               <b class="icon_person name_close"></b>
 						</div>
 						<div class="name_text">不超过10个汉字或者20个英文字符，支持空格和“.”</div>
@@ -104,7 +104,7 @@
 					<li id="phoneverify">
 						<ul class="f_key">
 							<li>
-								<input id="phone_num" class="fk_put  mob_cell" type="text" value placeholder="请输入手机号" data-type="tel">
+								<input id="phone_num" class="fk_put  mob_cell" type="text" autofocus="autofocus" value placeholder="请输入手机号" data-type="tel">
 							</li>
 							<li>
 								<input class="fk_put mob_code" type="text" value placeholder="请输入验证码" data-type="code">
@@ -126,7 +126,7 @@
 						<ul class="f_key mb_none">
 							<li>
 								<span>当前密码</span>
-								<input type="password" placeholder="6-20位字符" data-type="pass"/>
+								<input type="password" placeholder="6-20位字符" data-type="pass" autofocus="autofocus"/>
 							</li>
 							<li>
 								<span>新密码</span>
