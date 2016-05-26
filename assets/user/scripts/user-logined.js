@@ -65,11 +65,11 @@
       localStorage.email=myJson.data[0].emailAddress;
       if(myJson.data[0].nickName == ''){
         user_name.innerHTML='点击头像设置个人资料';
-        userIcon.src = "../images/ui/photo-man.png";
+        userIcon.src = "../images/user/photo-man.png";
       }else{
         if (myJson.data[0].salutation == "26") {
           user_sex.className = "icon open-sexm";
-          userIcon.src = "../images/ui/photo-man.png";
+          userIcon.src = "../images/user/photo-man.png";
         } else {
           user_sex.className = "icon open-sexw";
           userIcon.src = "../images/ui/photo-woman.png";
