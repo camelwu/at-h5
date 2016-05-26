@@ -97,15 +97,17 @@ var fSingleList = {
     if(result.success&&result.code == "200"){
          if(result.data.flightInfos.length<1){
            no_result.style.display = "block";
-           $('#loadMore').hide()
+           $('#loadMore').hide();
+           that.filterHandler();
          }else{
            that.currrentFlightList = result.data;
-           that.filterHandler(result.data);
+           that.filterHandler(result.data.airCorpCodeList);
            that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
          }
     }else{
            no_result.style.display = "block";
-           $('#loadMore').hide()
+           $('#loadMore').hide();
+           that.filterHandler();
     }
   },
 
@@ -319,15 +321,16 @@ var fSingleList = {
       }
     }
   },
-
   filterHandler: function(data){
-    var dataTransfer = data.airCorpCodeList, tempArray = [], f_data = {}, that = this;
-    dataTransfer.forEach(function(array, item){
-      var temObj = {}
-      temObj.filterText = array.airCorpName;
-      temObj.filterValue = array.airCorpCode;
-      tempArray.push(temObj);
-    });
+    var dataTransfer = data ||[], tempArray = [], f_data = {}, that = this;
+    if(dataTransfer.length>1){
+      dataTransfer.forEach(function(array, item){
+        var temObj = {}
+        temObj.filterText = array.airCorpName;
+        temObj.filterValue = array.airCorpCode;
+        tempArray.push(temObj);
+      });
+    }
     if(this.postObj.internationalOrDomestic== "international"){
       f_data = {
         Sort : {
