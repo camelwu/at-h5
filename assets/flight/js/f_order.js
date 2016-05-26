@@ -191,6 +191,9 @@ var fOrder = {
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
     var postPara = {}, temObject = {} , passengerOuter =  document.querySelector('.passenger_outer');
+    var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
+    priceDetailInfo.style.transition = 'all 400ms ease-in';
+    priceDetailInfo.style.webkitTransition = 'all 400ms linear';
     postPara.wapOrder = {};
     postPara.travellerInfo = [];
     postPara.contactDetail = {};
@@ -386,9 +389,6 @@ var fOrder = {
           }
         });
       } else if (target.className == "tot_tips_rmb" || target.className == "money_number" || target.className.indexOf('detail_fare') > -1) {
-        var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
-        priceDetailInfo.style.transition = 'all 400ms ease-in';
-        priceDetailInfo.style.webkitTransition = 'all 400ms linear';
         tag = that.getCurrentStyle(shadow).display;
         if (tag == "block") {
           shadow.style.display = "none";
@@ -411,7 +411,9 @@ var fOrder = {
     this.addHandler(document.body, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.className == 'shadow'){
-
+        target.style.display = "none";
+        detailFare.className = "detail_fare open";
+        priceDetailInfo.style.bottom = '-126%';
        }else if(target.className.indexOf('country_header')>-1){
              document.querySelector('.country-cho-wrap').style.display ="none";
       }
