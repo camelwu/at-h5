@@ -490,7 +490,6 @@ var flight_list = {
           }
         }
       }
->>>>>>> bugfix-20160503
         return this;
     },
     addEvent:function(){
