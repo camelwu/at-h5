@@ -158,7 +158,7 @@ section.foot_screen{
 }
 .foot_screen_btn .sure{
 	right: 0;
-	color: #ffb500;
+	color: #7bc300;
 }
 section.foot_screen .screen_box{
 	position: relative;
@@ -190,7 +190,7 @@ section.foot_screen .screen_lf li{
 	background: #f7f7f7;
 }
 section.foot_screen .screen_lf li.cur{
-	border-left: 3px solid #fdb330;
+	border-left: 3px solid #7bc300;
 	background: #fff;
 	font-weight: bold;
 }
@@ -267,7 +267,7 @@ section.foot_position ul li:first-child{
 	border-top: 0;
 }
 section.foot_position li.cur{
-	color: #ffb500;
+	color: #7bc300;
 }
 section.foot_position li.cur i{
 	background-position: -5.07rem -0.51rem;
