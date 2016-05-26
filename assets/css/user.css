@@ -529,13 +529,13 @@ i, em {
 .user_content {
   position: absolute;
   background-color: white;
-  top: .88rem;
+  top: .92rem;
   right: 0;
   bottom: 0;
   left: 0;
   width: auto;
   height: auto;
-  z-index: 50;
+  z-index: 99;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translate3d(0, 0, 0);
@@ -572,17 +572,21 @@ i, em {
 }
 
 .open-sexw {
-  width: 12px;
-  height: 12px;
-  margin-left: 5px;
-  background-position: 36% 65%;
+  width: .24rem;
+  height: .3rem;
+  display: inline-block;
+  vertical-align: top;
+  margin: .08rem 0 0 .1rem;
+  background-position: -6.62rem -.74rem;
 }
 
 .open-sexm {
-  width: 12px;
-  height: 12px;
-  margin-left: 5px;
-  background-position: 40% 65%;
+  width: .24rem;
+  height: .3rem;
+  display: inline-block;
+  vertical-align: top;
+  margin: .08rem 0 0 .1rem;
+  background-position: -6.94rem -.72rem;
 }
 
 .info-circle1 {
@@ -685,11 +689,11 @@ i, em {
   background-color: #7bc300;
 }
 
-.info_sex_tab {
+#uptra_page .info_sex_tab, #addtra_page .info_sex_tab{
   position: absolute;
   top: .2rem;
   right: .28rem;
-  width: 1.5rem;
+  width: auto;
   height: .66rem;
   border: 1px solid #7bc300;
   border-radius: .04rem;
@@ -1480,22 +1484,13 @@ a.foot-homes, a.foot-users {
   font-size: .3rem;
 }
 
-.user_edit {
-  width: .44rem;
-  height: .44rem;
-  float: right;
-  background: url(../images/ui/icon.png) no-repeat;
-  background-size: 7.4rem 2.2rem;
-  background-position: 49% 0.5%;
-}
-
 .user_edits {
   width: .44rem;
   height: .44rem;
   float: right;
-  background: url(../images/ui/icon.png) no-repeat;
-  background-size: 7.4rem 2.2rem;
-  background-position: 49% 0%;
+  background: url(../images/ui/icon_person.png) no-repeat;
+  background-size: 8.4rem 4.8rem;
+  background-position: -3.82rem -.14rem;
 }
 
 .header_quit {

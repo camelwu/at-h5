@@ -68,10 +68,10 @@
         userIcon.src = "../images/user/photo-man.png";
       }else{
         if (myJson.data[0].salutation == "26") {
-          user_sex.className = "icon open-sexm";
+          user_sex.className = "icon_person open-sexm";
           userIcon.src = "../images/user/photo-man.png";
         } else {
-          user_sex.className = "icon open-sexw";
+          user_sex.className = "icon_person open-sexw";
           userIcon.src = "../images/user/photo-man.png";
         }
       }
