@@ -818,7 +818,14 @@ function inpChange(id, myText) {
   //    //allElements.style.visibility = 'visible';
   //  });
   //});
-
+  function dataConvert(data){
+    var dateString = data;
+     dateString = dateString.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/g,function(){
+      return arguments[2]+"月"+arguments[3]+"日";
+    });
+    return dateString;
+  }
+  //console.log(dataConvert("2016-06-14"));
   var checkIn = lsf_myweb.getbyid('CheckInDate');
   var checkOut = lsf_myweb.getbyid('CheckOutDate');
   var content2 = lsf_myweb.getbyid('content2');
@@ -895,8 +902,8 @@ function inpChange(id, myText) {
       //obj[checkIn.value] = "入住";
       //obj[checkOut.value] = "离店";
     }else {
-      checkIn.value = hotelStorage.InterBeginDate;
-      checkOut.value = hotelStorage.InterLeaveDate;
+      checkIn.value = dataConvert(hotelStorage.InterBeginDate);
+      checkOut.value = dataConvert(hotelStorage.InterLeaveDate);
       lsf_myweb.getbyid('total_day').innerHTML = hotelStorage.InterTotalDay;
       week_span1.innerHTML = hotelStorage.InterBeginDateWeek;
       week_span2.innerHTML = hotelStorage.InterLeaveDateWeek;
@@ -939,8 +946,10 @@ function inpChange(id, myText) {
   var DomCheckOutDate = document.getElementById('DomCheckOutDate');
   var oDate3 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 2);
   var oDate4 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 3);
-  var DomBeginDate = oDate3.getFullYear() + '-' + toDou(oDate3.getMonth() + 1) + '-' + toDou(oDate3.getDate());
-  var DomLeaveDate = oDate4.getFullYear() + '-' + toDou(oDate4.getMonth() + 1) + '-' + toDou(oDate4.getDate());
+  //var DomBeginDate = oDate3.getFullYear() + '-' + toDou(oDate3.getMonth() + 1) + '-' + toDou(oDate3.getDate());
+  //var DomLeaveDate = oDate4.getFullYear() + '-' + toDou(oDate4.getMonth() + 1) + '-' + toDou(oDate4.getDate());
+  var DomBeginDate = toDou(oDate3.getMonth() + 1) + '月' + toDou(oDate3.getDate())+'日';
+  var DomLeaveDate =toDou(oDate4.getMonth() + 1) + '月' + toDou(oDate4.getDate())+'日';
   var week_span3 = document.getElementById('weekSpan3');
   var week_span4 = document.getElementById('weekSpan4');
   var obj2 = {};
@@ -956,8 +965,8 @@ function inpChange(id, myText) {
       //week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
       //week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
     }else{
-      DomCheckInDate.value=hotelStorage.DomCheckInDate;
-      DomCheckOutDate.value=hotelStorage.DomCheckOutDate;
+      DomCheckInDate.value=dataConvert(hotelStorage.DomCheckInDate);
+      DomCheckOutDate.value=dataConvert(hotelStorage.DomCheckOutDate);
       lsf_myweb.getbyid('domeTotalDay').innerHTML=hotelStorage.DomeTotalDay;
       week_span3.innerHTML=hotelStorage.DomBeginDateWeek;
       week_span4.innerHTML=hotelStorage.DomLeaveDateWeek;
@@ -1047,8 +1056,8 @@ function inpChange(id, myText) {
 
     var hotelStorage12345 = {
       //"InterDes" : lsf_myweb.getbyid('input1').value,
-      "InterBeginDate" : lsf_myweb.getbyid('CheckInDate').value,
-      "InterLeaveDate" : lsf_myweb.getbyid('CheckOutDate').value,
+      "InterBeginDate" :lsf_myweb.getbyid('CheckInDate').value,
+      "InterLeaveDate" :lsf_myweb.getbyid('CheckOutDate').value,
       "NumRoom" : lsf_myweb.getbyid('count1').value,
       "NumAdult" : lsf_myweb.getbyid('count2').value,
       "NumChild" : lsf_myweb.getbyid('count3').value,
