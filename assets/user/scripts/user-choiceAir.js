@@ -51,12 +51,12 @@
     '<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
     '<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
     '<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
-    '{% if (dd.traveller.travellerAge<2){ %}'+
-    '<i class="per_type">婴儿</i></li>'+'{% } %}'+
-    '{% if (dd.traveller.travellerAge<12 && dd.traveller.travellerAge>=2 ){ %}'+
-    '<i class="per_type">儿童</i></li>'+'{% } %}'+
-    '{% if (dd.traveller.travellerAge>=12){ %}'+
-    '<i class="per_type">成人</i></li>',
+    '{%  var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if(age<2){ %}'+
+    '<i class="per_type" data-id="0">婴儿</i></li>'+
+    '{% } else if(age>=2 && age<12){ %}'+
+    '<i class="per_type" data-id="1">儿童</i></li>'+
+    '{% } else if(age>=12){ %}'+
+    '<i class="per_type" data-id="2">成人</i></li>',
     '{% } for(var j=0;j<=dd.listTravellerIdInfo.length-1;j++){ %}',
     '<li class="passport-num"><span class="passport-card-type">{%=vlm.arr_t[dd.listTravellerIdInfo[j].idType]%}</span> <span class="passport-card-number">{%=dd.listTravellerIdInfo[j].idNumber%}</span></li>',
     '{% } %}',
@@ -138,7 +138,6 @@
   //数据保存
   var _saveDb=function(){
       var modle=_ui2Modle();
-
       //登陆
       if(memberId !=undefined) {
         var  Parameters={
@@ -155,22 +154,20 @@
           }
         })
       }
-
       //免登陆
       else{
-
-         //编辑状态，移除数组元素，为了更数据
-        if(editIDKey !=null) {
-          choiceAir_AddPassagerArray.forEach(function (info) {
-            if (info.traveller.travellerId == editIDKey) {
-              choiceAir_AddPassagerArray.pop()
-            }
-          })
-        }
-        choiceAir_AddPassagerArray.push(modle);
-        passagerListPage.show();
-        addOrEditPassagePage.hide();
-        _getPassagerList();
+           //编辑状态，移除数组元素，为了更数据
+          if(editIDKey !=null) {
+            choiceAir_AddPassagerArray.forEach(function (info) {
+              if (info.traveller.travellerId == editIDKey) {
+                choiceAir_AddPassagerArray.pop()
+              }
+            })
+          }
+          choiceAir_AddPassagerArray.push(modle);
+          passagerListPage.show();
+          addOrEditPassagePage.hide();
+          _getPassagerList();
       }
   }
 
