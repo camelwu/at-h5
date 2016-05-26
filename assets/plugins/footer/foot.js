@@ -243,7 +243,7 @@ var footer = (function() {
 					box.style.bottom = 0;
 					box.style.width = '100%';
 					box.style.height = '0.98rem';
-					box.style.background = '#4a4a4a';
+					box.style.background = '#4c4c4c';
 					box.style.zIndex = 130;
 					box.style.fontSize = '0.24rem';
 				}
