@@ -598,8 +598,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .spaceDay {
   position: absolute;
-  right: -.54rem;
-  top: 0;
+  right: -0.64rem;
+  top: -.04rem;
   font-size: .18rem;
 }
 
@@ -987,6 +987,10 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   font-size: .28rem;
   color: rgb(51, 51, 51);
 }
+.name_infos div {
+ display: inline-block;
+  width: 50%;
+}
 
 .passengers_wrap ul li {
   padding: .32rem .28rem;
@@ -1000,7 +1004,6 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .passengers_wrap ul p:nth-child(1) {
-  padding-top: .16rem;
   margin-bottom: .16rem;
   position: relative;
   color:rgb(51, 51, 51)
@@ -1010,6 +1013,9 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin-left: 1.2rem;
   max-width: 2.6rem;
   height: 100%;
+}
+input.name{
+  margin-left: .168rem!important;
 }
 
 .passengers_wrap .tip_word {
