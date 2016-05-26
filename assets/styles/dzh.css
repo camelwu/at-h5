@@ -803,6 +803,9 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     position: relative;
     background: #fff;
 }
+.zy_title:nth-child(2){
+    margin-top:0.32rem;
+}
 .zy_title h3{
     font-size:0.32rem;
     padding-left:0.9rem;
@@ -842,8 +845,8 @@ font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .zy_content2{
     height: 1.58rem;
-    border-top:0.01rem solid #dedede;
-    border-bottom:0.01rem solid #dedede;
+    border-top:1px solid #dedede;
+    border-bottom:1px solid #dedede;
     position: relative;
 }
 .nav2-center{
@@ -902,9 +905,9 @@ section.hotelInfo_numb_room .room_number{
     margin-top:-0.25rem;
 }
 section.hotelInfo_numb_room .room_number span{
-    width:0.5rem;
-    height:0.5rem;
-    background: url(../images/icons1.png) no-repeat 0 2px;
+    width: 0.56rem;
+    height: 0.56rem;
+    background: url(../images/ui/icons1.png) no-repeat 0 2px;
     background-size: 320px auto;
 }
 section.hotelInfo_numb_room span.down_btn{
@@ -918,8 +921,8 @@ section.hotelInfo_numb_room span.up_btn{
     top: 0;
 }
 section.hotelInfo_numb_room i.change_num{
-    height: 0.5rem;
-    line-height: 0.5rem;
+    height: 0.56rem;
+    line-height: 0.58rem;
     font-size: 0.32rem;
     display: block;
     text-align: center;
@@ -934,7 +937,7 @@ section.hotelInfo_numb_room .title{
 .hotelInfo_numb_people{
     font-size: 0.32rem;
     background: #fff;
-    border-bottom:0.01rem solid #e6e6e6;
+    border-bottom:1px solid #e6e6e6;
     padding: 0.1rem 0 0.2rem 0.25rem;
     position: relative;
 }
@@ -967,7 +970,7 @@ section.hotelInfo_numb_room .title{
 .zy_price_control,.hotelInfo_numb_people .childAge{
     float: right;
     width: 1.6rem;
-    height: 0.5rem;
+    height: 0.56rem;
     position: relative;
 }
 .hotelInfo_numb_people .childAge{
@@ -977,9 +980,9 @@ section.hotelInfo_numb_room .title{
     width: 60%;
 }
 .zy_price_control span,.hotelInfo_numb_people .childAge span{
-    width: 0.5rem;
-    height: 0.5rem;
-    background: url(../images/icons1.png) no-repeat 0 2px;
+    width: 0.56rem;
+    height: 0.56rem;
+    background: url(../images/ui/icons1.png) no-repeat 0 2px;
     background-size: 320px auto;
     position: absolute;
     top: 0;
@@ -1010,8 +1013,8 @@ section.hotelInfo_numb_room .title{
 }
 .zy_price_control i.change_num{
     display: block;
-    height: 0.5rem;
-    line-height: 0.55rem;
+    height: 0.56rem;
+    line-height: 0.58rem;
     margin: 0 0.5rem;
     text-align: center;
 }
@@ -1021,7 +1024,7 @@ section.hotelInfo_numb_room .title{
 .zy_orderBtn button{
     display: block;
     width: 100%;
-    background: #fdb330;
+    background: #7bc300;
     color: #fff;
     text-align: center;
     height:0.8rem;
@@ -1035,13 +1038,14 @@ section.hotelInfo_numb_room .title{
     background: #fff;
 }
 .zy_tourTime .nav2-tour{
-    border-bottom:0.01rem solid #dedede;
+    border-bottom:1px solid #dedede;
     padding: 0.15rem 0 0.3rem 0;
     border-top:1px solid #e6e6e6;
     color: #333;
+    margin: -1px 0 ;
 }
 .zy_tourTime .nav2-tour>div:nth-child(1){
-    margin-left:0.3rem;
+    margin-left:0.28rem;
     margin-top:0.16rem;
     margin-bottom:0.2rem;
     padding-right:0.2rem;
@@ -1049,8 +1053,13 @@ section.hotelInfo_numb_room .title{
     white-space: nowrap;
     font-size: 0.32rem;
     text-overflow: ellipsis;
-    border-left: 0.1rem solid #fdb330;
     padding-left: 0.2rem;
+}
+.zy_tourTime .nav2-tour>div:nth-child(1) i{
+    display: inline-block;
+    width:0.16rem;
+    height: 0.26rem;
+    border-left:3px solid #7bc300;
 }
 .zy_all_day{
     height: 0.7rem;
@@ -1064,8 +1073,8 @@ section.hotelInfo_numb_room .title{
     height: 0.62rem;
     line-height: 0.62rem;
     text-align: center;
-    border-radius:0.03rem;
-    border:0.01rem solid #d1d1d1;
+    border-radius:4px;
+    border:1px solid #d1d1d1;
     color:#333;
 }
 .zy_all_day div:nth-child(1),.zy_all_day div:nth-child(3){
@@ -1073,8 +1082,8 @@ section.hotelInfo_numb_room .title{
     top:0;
 }
 .zy_all_day div.tourcho{
-    border: 1px solid #fdb330;
-    color: #fdb330;
+    border: 1px solid #7bc300;
+    color: #7bc300;
     background: url(../images/icon_z.png) no-repeat right bottom;
     background-size: 0.44rem 0.38rem;
 }
@@ -1093,13 +1102,13 @@ section.hotelInfo_numb_room .title{
     position: relative;
 }
 .nav2-tour>div:nth-child(2)>i{
-    background-image: url(../images/icon-h.png);
+    background-image: url(../images/ui/icon_common.png);
     background-repeat: no-repeat;
-    background-size:8.04rem 3.48rem;
-    background-position: -4.96rem -0.26rem ;
+    background-size:7.9rem 5.13rem;
+    background-position: -6.78rem -2.37rem ;
     position: absolute;
-    width:0.38rem;
-    height:0.38rem;
+    width: 0.4rem;
+    height: 0.4rem;
     right:0.25rem;
     bottom:0;
 }
