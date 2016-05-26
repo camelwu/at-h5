@@ -22,13 +22,14 @@ ul,li{
 }
 .hotel_list{
   position: relative;
-  margin-right: 0.15rem;
-  height: 2rem;
+  margin:.2rem;
+  height: 1.9rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 .hotel_picture{
   position: absolute;
-  width: 1.7rem;
-  height: 2rem;
+  width: 1.68rem;
+  height: 1.68rem;
 }
 .hotel_picture img{
   width: 100%;
@@ -38,12 +39,8 @@ ul,li{
   background-size: 100% 100%;
 }
 .hotel_content{
-  height: 2rem;
-  display: inline-block;
-  margin-right: 0;
-  overflow: hidden;
-  margin-left: 1.88rem;
-  border-bottom: 1px solid #e6e6e6;
+  height: 1.68rem;
+  margin-left: 1.9rem;
 }
 .hotel_name{
   width:5.2rem;
@@ -60,17 +57,28 @@ ul,li{
   font-size: 0.24rem;
   margin-top: 0.08rem;
 }
+.hotel_content_score_span{
+  color:#666666;
+  font-size:.28rem;
+}
 .hotel_content_price{
   position: absolute;
   right: 0.2rem;
   text-align: right;
-  top: 50%;
+  top: 40%;
   height: 0.3rem;
   line-height: 0.3rem;
   margin-top: -0.15rem;
   color: #ff5b13;
   font-size: 0.36rem;
   font-weight: bold;
+}
+.hotel_content_price_start1{
+  font-size: .24rem;
+}
+.hotel_content_price_start{
+  font-size: .24rem;
+  color:#999999;
 }
 .hotel_content_grade{
   color: #999;
@@ -396,9 +404,11 @@ ul,li{
 .hotelConNo{
   width: 2rem;
   height: 2rem;
-  margin:auto;
+  margin:40% auto;
 }
-
+.hotelConNo p{
+  width: 4rem;
+}
 
 
 

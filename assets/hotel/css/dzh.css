@@ -55,20 +55,28 @@ div#h-Tab .off{
 }
 .hotel_destination_right i{
   position: absolute;
-  right: .4rem;
-  top: .38rem;
+  right: 1rem;
+  top: .3rem;
   width: .4rem;
   height: .5rem;
   background-image: url(../../images/icons.png);
   background-repeat: no-repeat;
-  background-size: 4rem 2.8rem;
+  background-size: 4.2rem 3.4rem;
   display: inline-block;
 }
 .i_more{
-  background-position: -1.6rem -0.7rem;
+  background-position: -1.7rem -0.9rem;
 }
-.i_position{
-  background-position: -1.6rem -0.7rem;
+i.i_address{
+  position: absolute;
+  right: .26rem;
+  top: .25rem;
+  width: .4rem;
+  height: .5rem;
+  background-image: url(../../images/ui/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 8rem 3.4rem;
+  background-position: -6.44rem -2.2rem;
 }
 /*第二栏*/
 .hotel_time{
@@ -85,6 +93,7 @@ div#h-Tab .off{
   height: 1rem;
   line-height: 1rem;
   margin-top: .59rem;
+  text-align: center;
 }
 .hotel_time_left > span{
   display: block;
@@ -94,7 +103,7 @@ div#h-Tab .off{
   /*width: 100%;*/
 }
 .hotel_time_center_start{
-  width: 40%;
+  width: 41%;
   height: .8rem;
   line-height: .8rem;
   float: left;
@@ -105,7 +114,7 @@ div#h-Tab .off{
   display: block;
 }
 .hotel_time_center_end{
-  width: 40%;
+  width: 41%;
   height: .8rem;
   line-height: .8rem;
   float: right;
