@@ -49,7 +49,6 @@
   <!--<% }%>-->
 <!--</script>-->
 <script type="text/template" id="Barimages">
-  <%=console.log(images.imageGalleries.length);%>
   <span class="bar_img_theme">景点详情</span>
   <% if(images.imageGalleries.length==0){ %>
   <img src="<%= images.pictureURL%>" alt="image"/>
@@ -72,6 +71,27 @@
     <p><i class = "bar_content_time_travel"></i>预定时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
   </div>
 </script>
+<script type="text/template" id="Booking">
+  <% console.log(data);%>
+  <% for(var i=0,len=data.prices.length;i<len;i++){ %>
+  <% var packageid = data.packageID;
+  var requiredPickupPoint=data.bookingFormInfo.requiredPickupPoint?1:0;
+  var category=data.prices[i].category=="ADULT"?1:0;
+  var Fail = 0;
+  %>
+  <li class="scenic_content_booking_li" >
+    <div class="scenic_content_booking_div">
+      <p class="scenic_content_booking_title"><%=data.packageName%></p>
+      <p class="scenic_content_booking_p">
+        <span class="scenic_content_booking_dollar">￥</span>
+        <span class="scenic_content_booking_price"><%=data.prices[i].amount%></span>
+        <span class="scenic_content_booking_pre"><%=data.minPax%>人起订</span>
+      </p>
+    </div>
+    <a class="scenic_content_booking_btn" data-packageId="<%=data.packageID%>" data-RPP="<%=requiredPickupPoint%>" data-category="<%=category%>" data-fail="<%=Fail%>">预订</a>
+  </li>
+  <% } %>
+</script>
 <script type ="text/template"  id = "Sceniccontent">
   <div class = "scenic_content_feature">
     <h3><i class = "scenic_content_feature_start"></i>特色亮点</h3>
@@ -85,33 +105,33 @@
   <!--</div>-->
   <div class="scenic_content_address">
     <h3><i></i>营业地址</h3>
-    <span><%=country%> <%= destCity%></span>
+    <span><% if(country==destCity){%> <%= destCity%> <%}else{%><%=country%> <%= destCity%><%}%></span>
   </div>
   <div class="scenic_content_booking">
     <h3><i></i>景点费用</h3>
-    <ul>
-      <li class="scenic_content_booking_li">
-        <div class="scenic_content_booking_div">
-          <p class="scenic_content_booking_title">八达岭长城一日游[周一、周五使用]</p>
-          <p class="scenic_content_booking_p">
-            <span class="scenic_content_booking_dollar">￥</span>
-            <span class="scenic_content_booking_price">1208</span>
-            <span class="scenic_content_booking_pre">2人起订</span>
-          </p>
-        </div>
-        <a class="scenic_content_booking_btn">预订</a>
-      </li>
-      <li class="scenic_content_booking_li">
-        <div class="scenic_content_booking_div">
-          <p class="scenic_content_booking_title">八达岭长城一日游[周一、周五使用]</p>
-          <p class="scenic_content_booking_p">
-            <span class="scenic_content_booking_dollar">￥</span>
-            <span class="scenic_content_booking_price">1208</span>
-            <span class="scenic_content_booking_pre">2人起订</span>
-          </p>
-        </div>
-        <a class="scenic_content_booking_btn">预订</a>
-      </li>
+    <ul id="scenic_content_booking">
+      <!--<li class="scenic_content_booking_li">-->
+        <!--<div class="scenic_content_booking_div">-->
+          <!--<p class="scenic_content_booking_title">八达岭长城一日游[周一、周五使用]</p>-->
+          <!--<p class="scenic_content_booking_p">-->
+            <!--<span class="scenic_content_booking_dollar">￥</span>-->
+            <!--<span class="scenic_content_booking_price">1208</span>-->
+            <!--<span class="scenic_content_booking_pre">2人起订</span>-->
+          <!--</p>-->
+        <!--</div>-->
+        <!--<a class="scenic_content_booking_btn">预订</a>-->
+      <!--</li>-->
+      <!--<li class="scenic_content_booking_li">-->
+        <!--<div class="scenic_content_booking_div">-->
+          <!--<p class="scenic_content_booking_title">八达岭长城一日游[周一、周五使用]</p>-->
+          <!--<p class="scenic_content_booking_p">-->
+            <!--<span class="scenic_content_booking_dollar">￥</span>-->
+            <!--<span class="scenic_content_booking_price">1208</span>-->
+            <!--<span class="scenic_content_booking_pre">2人起订</span>-->
+          <!--</p>-->
+        <!--</div>-->
+        <!--<a class="scenic_content_booking_btn">预订</a>-->
+      <!--</li>-->
     </ul>
   </div>
   <% if(tours.length){for(var i=0 ;i< tours.length;i++){ %>

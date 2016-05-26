@@ -4,6 +4,7 @@
 (function(){
   var webkit = this || (0, eval)('this');
   var val = vlm.parseUrlPara(window.location.href);
+  var themeId = "",OnlyForAdult,MinPaxType,OldMinPax, NewMinPax,MaxPax,MaxAdult,ChildAgeMax,ChildAgeMin,TourID,TravelDate,ExtendData = {};
 
 
   /**
@@ -73,6 +74,58 @@
     }
   }
 
+  /**
+   * 公用函数策略层
+   * @returns {{callCommand: callCommand, addCommand: addCommand}}
+   * @constructor
+   */
+  var Command = function(){
+    var Adapter = {
+      /**
+       * 景 详情预订
+       * @constructor
+         */
+      DetailToBooking:function(e){
+          console.log(e);
+      }
+    }
+
+    return {
+      /**
+       * 调用数据过滤方法
+       * @param type
+       * @param data
+       * @returns {string}
+       */
+      callCommand:function(type,data){
+        return Adapter[type]?Adapter[type](data):'';
+      },
+      /**
+       * 添加策略
+       * @param type
+       * @param fn
+       */
+      addCommand:function(type,fn){
+        Adapter[type] = fn;
+      },
+      /**
+       * 通信适配器Command
+       *  var titleData = {
+       *    title:'夏日',
+       *    tips:'暖暖夏日'
+       *  }
+       *  AjaxAdapter().execAjaxAdapter({
+       *    command:'display',
+       *    param:[titleData,'title']
+       *  });
+       * @returns {*}
+       */
+      execCommand:function(msg){
+        msg.param = Object.prototype.toString.call(msg.param) === "[object Array]"?msg.param : [msg.param];
+        return Adapter[msg.command].apply(Adapter,msg.param);
+      }
+    }
+  };
 
 
   /**
@@ -83,7 +136,7 @@
   var AjaxAdapter = function(){
     var Adapter = {
       /**
-       * 景 列表
+       * 景 详情
        * @param data
        * @returns {Array}
        */
@@ -97,6 +150,18 @@
           "Code": "0088"
         }
         vlm.loadJson("",JSON.stringify(parameters),Method["m_scenic_detailCallback"]);
+      },
+      /**
+       * 景 详情价格
+       * @param data
+       * @returns {Array}
+       */
+      m_scenic_detailprice:function(param){
+        var parameters=param;
+        vlm.loadJson("",JSON.stringify(parameters),Method["m_scenic_detailpriceCallback"]);
+      },
+      DetailToBooking:function(){
+
       }
     }
 
@@ -154,8 +219,12 @@
      */
     m_scenic_detailCallback:function(json){
       var tplString = "",outString = "";
-      console.log(json);
+      //console.log(json);
       if(json.success){
+        var data=json.data;
+        ExtendData = data;
+
+
         var htmlc = $("#Barcontent").html();
         var htmlC = ejs.render(htmlc,json.data);
         $("#barContent").html(htmlC);
@@ -190,12 +259,77 @@
           $(".scenic_height3").css({'height':'100%'});
           $("#Sheight3").css({'display':'none'});
         };
+
+        //price
+        ChildAgeMin = data.childAgeMin;
+        ChildAgeMax = data.childAgeMax;
+        TravelDate = data.defaultDepartStartDate;
+        TourID = data.tours;
+        NewMinPax = data.minPax;
+        MaxPax = data.maxPax;
+        MaxAdult = data.maxAdult;
+        MinPaxType = data.minPaxType;
+        OnlyForAdult = data.onlyForAdult;
+        var SearchPrice;
+        if(OnlyForAdult){//只是成人
+          SearchPrice= {"Parameters": {"PackageID": val.packageID, "Adult": NewMinPax, "Tours": []}, "ForeEndType": 3, "Code": "0091"};
+        }else{//成人和儿童
+          if(MinPaxType == 1){//成人和儿童限制
+            if(MaxPax > -1){
+              if(MaxPax == NewMinPax){
+                OldMinPax=NewMinPax;
+                NewMinPax = NewMinPax -1;
+              }
+            }
+            SearchPrice= {"Parameters": {"PackageID": val.packageID, "Adult": NewMinPax, "Child": [ChildAgeMin], "Tours": []}, "ForeEndType": 3, "Code": "0091"};
+          }else{//成人限制
+            SearchPrice= {"Parameters": {"PackageID": val.packageID, "Adult": NewMinPax, "Child": [ChildAgeMin], "Tours": []}, "ForeEndType": 3, "Code": "0091"};
+          }
+        }
+
+        for (var i = 0;i<data.tours.length;i++)
+        {
+          SearchPrice.Parameters.Tours[i] = {"TourID":data.tours[i].tourID,"TravelDate": TravelDate};
+        }
+        AjaxAdapter().callAjaxAdapter("m_scenic_detailprice",SearchPrice);
+        //console.log(ExtendData);
       }else{
         console.log(json);
       }
     },
+    /**
+     * 设置 城市列表标题
+     * @param data
+       */
     m_scenic_setHeaderMoreTitle:function(data){
       $(".header_more_title").html(data.data.destCity);
+    },
+    /**
+     * 查询价格callback
+     * @param data
+       */
+    m_scenic_detailpriceCallback:function(data){
+      var json=data;
+      //console.log(json);
+      if(json.success){
+        var data=json.data;
+        data.minPax =OldMinPax||NewMinPax;
+        var booking = $("#Booking").html();
+        var bookingResult = ejs.render(booking,{data:data});
+        $("#scenic_content_booking").html(bookingResult).click(function(e){
+          var e = e || window.event,
+            tar = e.target || e.srcElement;
+            if(tar.nodeName.toLowerCase() === 'a') {
+              var packageId = tar.getAttribute("data-packageId");
+              var RequiredPickupPoint = tar.getAttribute("data-RPP");
+              var category = tar.getAttribute("data-category");
+              var fail = tar.getAttribute("data-fail");
+              window.location.href = "../scenic/scenic_order_detail.html?PackageID="+packageId+"&RPP="+RequiredPickupPoint+"&ADU="+category+"&FAIL="+fail;
+            }
+        });
+      }else {
+        console.log(json);
+      }
     }
   };
 
@@ -219,6 +353,7 @@
   webkit.T = webkit.T || {};
   webkit.T.Load = VM;
   webkit.T.AjaxAdapter = AjaxAdapter;
+  webkit.T.Command = Command;
 
 })();
 /**
@@ -226,4 +361,5 @@
  */
 (function(){
   T.Load("js_scenic_detail");
+
 })();

@@ -282,15 +282,15 @@ li.scenic_detile_project_first{
   z-index: 1;
 }
 .icon_go_back{
-  width: .6rem;
-  height: .6rem;
-  position:absolute;
+  width: .65rem;
+  height: .65rem;
+  position: absolute;
   left: .28rem;
   top: .28rem;
   display: inline-block;
   background-image: url(../../images/ui/icon_common.png);
   background-size: 7.9rem 5.13rem;
-  background-position:  -3.2rem -0.45rem;
+  background-position: -3.15rem -0.45rem;
 }
 .bar_img{
   width: 100%;

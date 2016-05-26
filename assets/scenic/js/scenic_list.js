@@ -131,7 +131,15 @@
 
   //init filter
   var initFilter = function(data){
-    var themes = [{allowMultiSelect:0,filterType:5,item:data.data.themes,title:"主题",sortNumber:0}];
+    var newdata = [],tmp_data = {};
+    for(var i = 0;i < data.data.themes.length;i++){
+      tmp_data = {
+        filterText:data.data.themes[i].themeName,
+        filterValue:data.data.themes[i].themeID
+      }
+      newdata.push(tmp_data);
+    }
+    var themes = [{allowMultiSelect:0,filterType:5,item:newdata,title:"主题",sortNumber:0}];
     console.log(themes);
     // 添加底部筛选
     var f_data = {
