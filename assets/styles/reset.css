@@ -194,7 +194,7 @@ a {
   left: 50%;
   top: 50%;
   background-image: url(../images/loading.gif);
-  background-size: 64px 64px;
+  background-size: 32px 32px;
   background-repeat: no-repeat;
   background-position: center;
   margin: -125px 0 0 -125px;
@@ -224,7 +224,7 @@ a {
   pointer-events: all;
   z-index: 99;
   background-color: #fcfcfc;
-  opacity: .95;
+  /*opacity: .95;*/
   box-shadow: 0 1px 1px #e6e6e6;
 }
 

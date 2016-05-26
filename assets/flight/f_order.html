@@ -43,26 +43,26 @@
       </h4>
       <ul class="passenger_outer">
         <li>
-          <p class="name_infos"><i class="minus_person"></i><span class="tip_word">姓/名</span><input class="input"
-                                                                                                    placeholder="BAI LISA"/><i
-            class="add_icon passenger"></i></p>
-
+          <p class="name_infos"><i class="minus_person"></i>
+           <label>姓</label><input class="input name" placeholder="BAI" readonly="readonly"/>
+           <label>名</label><input class="input name" placeholder="LISA" readonly="readonly"/>
+            <i class="add_icon passenger"></i></p>
           <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"
-                                                                         placeholder="1234567"/><span class="sex_value">女</span>
+                                                                         placeholder="1234567" readonly="readonly"/><span class="sex_value">女</span>
           </p>
         </li>
       </ul>
     </div>
     <!--联系人-->
-    <div class="contact_wrap">
+    <div class="contact_wrap" id="contact-table">
       <h4>联系人<i class="arrow_down"></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact"
                                                                                   onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i>
       </h4>
 
       <p class="input_line clearfix">
-        <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)"/>
+        <input class="last_name fl" id="first-name" placeholder="姓(如：Zhang)" data-elementname="lastName" />
         <span class="s_line fl"></span>
-        <input class="first_name" id="last-name" placeholder="名(如：San)"/>
+        <input class="first_name" id="last-name" placeholder="名(如：San)" data-elementname="firstName" />
       </p>
 
       <p class="input_line clearfix">
@@ -70,12 +70,12 @@
                                                                           class="country-code">86</span><i
           class="arrow_right"></i> </span> </span>
         <span class="s_line fl"></span>
-        <input class="tel_number padding_has fl" id="tel-num" placeholder="用于接收通知"/>
+        <input class="tel_number padding_has fl" id="tel-num" placeholder="用于接收通知" data-elementname="mobilePhone"/>
       </p>
 
       <p class="input_line email_line"><span class="more_black">E_mail</span><input class="email_value padding_has"
                                                                                     id="email-label"
-                                                                                    placeholder="用于接收通知"/></p>
+                                                                                    placeholder="用于接收通知" data-elementname="email"/></p>
     </div>
     <!--价格明细-->
     <div class="priceDetailInfo"></div>
@@ -141,11 +141,12 @@
 <script id="template_country_summary" type="text/template">
   <div class="country-cho-wrap all_elements">
     <header class="header">
-      <a href="javascript:void(0);" class="header_back">
+      <a href="javascript:void(0);" class="header_back country_header">
         <i class="icon_back"></i>
       </a>
-      <h3><div class="cl_search"><input type="text" placeholder="新加坡/xjp/sin/" id="city-input-zone"><i></i></div> </h3>
+      <h3><div class="cl_search"><input type="text" placeholder="新加坡/xjp/sin/" id="country-input-zone"><i></i></div> </h3>
     </header>
+    <ul class="country-list-searched country-list-searched-order"></ul>
     <div class="content">
       <div class="country-wrap">
         <ul class="inter-list jto_area_code" id="jto_area_code">
@@ -153,16 +154,16 @@
             <a class="target" name="dq"></a>
             <p class="recent_title">当前</p>
             <ul class="hot_code">
-              <li date-country-code="86"><i>中国</i><span>86</span></li>
+              <li class="country_lists" date-country-code="86"><i>中国</i><span>86</span></li>
             </ul>
           </li>
           <li>
             <a class="target" name="rm"></a>
             <p class="recent_title">热门城市</p>
             <ul class="hot_code">
-              <li date-country-code="65"><i>新加坡</i><span>65</span></li>
-              <li date-country-code="852"><i>香港</i><span>852</span></li>
-              <li date-country-code="81"><i>日本</i><span>81</span></li>
+              <li class="country_lists" date-country-code="65"><i>新加坡</i><span>65</span></li>
+              <li class="country_lists" date-country-code="852"><i>香港</i><span>852</span></li>
+              <li class="country_lists" date-country-code="81"><i>日本</i><span>81</span></li>
             </ul>
           </li>
         </ul>
@@ -173,7 +174,7 @@
             <p class="recent_title"><%=tem%></p>
             <ul>
               <%resultArray[tem].forEach(function(array){%>
-              <li date-country-code="<%=array.TelCode%>"><i><%=array.CountryName%></i><span><%=array.TelCode%></span></li>
+              <li class="country_lists" date-country-code="<%=array.TelCode%>"><i><%=array.CountryName%></i><span><%=array.TelCode%></span></li>
               <%})%>
             </ul>
           <% }%>

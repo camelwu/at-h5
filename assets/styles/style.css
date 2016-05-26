@@ -833,7 +833,7 @@ a.foot-homes, a.foot-orders, a.foot-finds, a.foot-services, a.foot-users{
 	.calendar dt.title-date {
 		display: block;
 		width: 100%;
-		font-size:1.3rem;
+		font-size:0.32rem;
 		position: relative;
 	}
 	.calendar dt.date_title {

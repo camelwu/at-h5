@@ -113,10 +113,11 @@ var fOrder = {
   },
   addCountryCodeHandler:function(){
     var countryTrigger = document.querySelector('.country-trigger'),that = this, wrapEle = document.querySelector('.country-cho-wrap');
+    var  cityInputZone = document.querySelector('#country-input-zone');
     wrapEle.onclick = function(e){
      var e = e ||window.event, target = e.target || e.srcElement;
-     if(target.getAttribute('date-country-code')){
-     countryTrigger.innerHTML = target.getAttribute('date-country-code');
+     if(target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')){
+       countryTrigger.innerHTML = target.getAttribute('date-country-code')!=null?target.getAttribute('date-country-code'):target.parentNode.getAttribute('date-country-code');
        wrapEle.style.display = "none";
      }
      };
@@ -127,6 +128,64 @@ var fOrder = {
         wrapEle.style.display = "block"
       }
     }
+
+    var searchHandler=function(){
+      var countryInputZone = document.querySelector('#country-input-zone');
+      var cityListSearched = document.querySelector('.country-list-searched-order');
+      var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+      Array.prototype.distinct=function(){
+        var sameObj=function(a,b){
+          var tag = true;
+          if(!a||!b)return false;
+          for(var x in a){
+            if(!b[x])
+              return false;
+            if(typeof(a[x])==='object'){
+              tag=sameObj(a[x],b[x]);
+            }else{
+              if(a[x]!==b[x])
+                return false;
+            }
+          }
+          return tag;
+        };
+        var newArr=[],obj={};
+        for(var i=0,len=this.length;i<len;i++){
+          if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+            newArr.push(this[i]);
+            obj[typeof(this[i])+this[i]]=this[i];
+          }
+        }
+        return newArr;
+      };
+      if(reg.test(valueStr)){
+        var mb = String(valueStr).toLowerCase();
+        for(var p = 0; p < arrCountry.length; p++){
+          var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
+          if(ma.indexOf(mb)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
+            searchResult.push(arrCountry[p]);
+          }
+        }
+        }
+      searchResult = searchResult.distinct();
+      if(!searchResult.length){
+        resultStr +='<li>无搜索结果</li>';
+        cityListSearched.style.display = 'none';
+      }else{
+        for(var l = 0;l<searchResult.length;l++){
+          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].TelCode+'"><i>'+searchResult[l].CountryName+'</i><span>'+searchResult[l].TelCode+'</span></li>'
+        }
+        cityListSearched.innerHTML = resultStr;
+        cityListSearched.style.display = 'block';
+      }
+
+    };
+    if(cityInputZone.addEventListener){
+      cityInputZone.addEventListener('input',searchHandler,false)
+    }else{
+      cityInputZone.attachEvent('onpropertychange',searchHandler)
+    }
+
   },
 
   eventHandler: function () {
@@ -137,7 +196,7 @@ var fOrder = {
     postPara.contactDetail = {};
     postPara.currencyCode = "CNY";
     postPara.totalPrice = this.priceData.priceTotal;
-    postPara.track = {browserType: "", deviceID: ""/*vlm.getDeviceID()*/};
+    postPara.track = {browserType: "", deviceID: vlm.getDeviceID()};
     postPara.wapOrder.memberId = window.localStorage.memberid;
     postPara.wapOrder.setID = that.curFlightData.setID;
     postPara.wapOrder.cacheID = that.curFlightData.cacheID;
@@ -237,18 +296,18 @@ var fOrder = {
         this.fadeHandler("show");
         this.postPara = postPara;
         console.log(postPara);
-        /* this.postPara = { 成单参数格式
+         this.postPara = {// 成单参数格式
          "WapOrder": {
-         "SetID": 30000025,
-         "CacheID": 3514054,
+         "SetID": 30000152,
+         "CacheID": 3514987,
          "CityCodeFrom": "BJS",
          "CityCodeTo": "SIN",
          "NumofAdult": "1",
          "NumofChild": "0",
-         "RouteType": "Return",
-         "CabinClass": "Economy",
+         "RouteType": "oneWay",
+         "CabinClass": "economy",
          "SourceType": "H5",
-         "MemberId": "84738"
+         "MemberId": ""
          },
          "TravellerInfo": [{
          "PassengerType": "ADULT",
@@ -278,9 +337,9 @@ var fOrder = {
          "MobilePhone": "11111111111"
          },
          "CurrencyCode": "CNY",
-         "TotalPrice": 2377,
+         "TotalPrice": 6826,
          "track": {"browserType": "", "deviceID": ""}
-         };*/
+         };
         that.tAjax("", this.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
@@ -349,11 +408,12 @@ var fOrder = {
           this.removeChild(tem);
         }
     })
-
     this.addHandler(document.body, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.className == 'shadow'){
 
+       }else if(target.className.indexOf('country_header')>-1){
+             document.querySelector('.country-cho-wrap').style.display ="none";
       }
     })
 
