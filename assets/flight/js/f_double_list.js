@@ -62,12 +62,20 @@ var fDoubleList = {
   },
 
   renderHandler:function(){
-    var result = arguments[0],that = fDoubleList, storage = window.sessionStorage;
+    var result = arguments[0],that = fDoubleList, storage = window.sessionStorage,no_result = document.querySelector('#no_flight_data');
     console.log(result)
-    if(result.success&&result.code == "200"){
-      that.currrentFlightList = result.data;
+    if(result.success&&result.code == "200") {
+      if (result.data.flightInfos.length < 1) {
+        no_result.style.display = "block";
+        $('#loadMore').hide()
+      } else {
+        that.currrentFlightList = result.data;
         that.filterHandler(result.data);
-      that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+        that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+      }
+    }else{
+      no_result.style.display = "block";
+      $('#loadMore').hide()
     }
   },
 
