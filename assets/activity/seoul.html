@@ -179,7 +179,7 @@
                 "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=545"
             }
         ];
-        var  html_tj = template("tpl_seoul", data);
+        var html_tj = template("tpl_seoul", data);
         $("#seo-list").html(html_tj);
         vlm.init();
     })();
@@ -223,20 +223,19 @@
         var linkurl = {
             1:"../hotel/hotel_detail.html?productType="+ProductType+"HotelID="+ProductID+"&HotelCode="+ProductID+"&CheckInDate="+currentdate+"&CheckOutDate="+newdate+"&NumRoom=1&NumAdult=1&NumChild=1",
             2:"../flight/ticket_seat_choose.html?productType="+ProductType+"&setId="+ProductType,
-            3:"../scenic/scenic_detail.html?packageID="+ProductID,
-            'T':"../scenic/scenic_detail.html?packageID="+ProductID,
+            3:"../scenic/scenic_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,""),
+            'T':"../scenic/scenic_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,""),
             4:"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1",
             'HT':"../tour/packages_detail.html?productType="+ProductType+"&packageID="+ProductID+"&productPrice="+ProductPrice.replace(/[\u4e00-\u9fa5]/g,"")+"&status=1"
         };
         var url=linkurl[ProductType];
-
         window.location.href= url;
     }
 </script>
 <script>
     $(function(){
-        $('#seo-list li:last').remove()
-    })
+        $('#seo-list li:last').remove();
+    });
 </script>
 </body>
 </html>
