@@ -679,9 +679,10 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   font-size: .26rem;color: #000;
 }
 .package_reserve{
-  position:fixed;left:0;bottom:0;z-index:999;width:100%;background:#fcfcfc;height:.84rem;
+  position:fixed;left:0;bottom:0;z-index:999;width:100%;background:#f7f7f7;height:.84rem;
 }
 .package_reserve span{
+  color: #666;
   display: inline-block;
   overflow: hidden;
   font-size: .26rem;
