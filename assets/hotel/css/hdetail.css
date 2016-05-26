@@ -114,16 +114,18 @@ strong{
   font-weight: 700;
 }
 .hotel_shoulder_icon{
+  width: .4rem;
+  height: .4rem;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-position: -3.1rem -2.12rem;
+  background-size: 7.5rem 4.54rem;
   position: absolute;
-  width: 10px;
-  height: 20px;
+  display: inline-block;
   top:.28rem;
   right: 0;
-  background-position: 65% 3%;
-  background-image: url(../../images/ui/icons.png);
-  background-repeat: no-repeat;
-  background-size: 243px 160px;
-  display: inline-block;
+}
+.open-arg1{
+  right: .28rem;
 }
 .CrazyRate {
   display: inline-block;
@@ -165,17 +167,22 @@ strong{
 /*内容部分开始*/
 .hotel_content{
   margin-top:.2rem;
+  background: #f7f7f7;
 }
 .hotel_content > li{
   padding:.2rem;
   position: relative;
   border-bottom: 1px  solid #dfdfdd;
   min-height: .84rem;
+  background: #fff;
 }
 .hotel_content > li:first-child{
   font-size:.24rem;
-  padding:.2rem;
-  line-height: .84rem;
+  /*padding:.2rem;*/
+  /*line-height: .84rem;*/
+  padding: .1rem;
+  line-height: .44rem;
+  margin:.2rem 0;
 }
 .enterDate,.time_span{
   font-size: 0.32rem;
@@ -219,24 +226,24 @@ strong{
 .d-icon5{
   width: .4rem;
   height: .4rem;
-  background-image: url(../../images/ui/icons1.png);
-  background-position: -1.42rem -0.68rem;
-  background-size: 8rem 2.4rem;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-position: -3.7rem -2.12rem;
+  background-size: 7.5rem 4.54rem;
   transition: none!important;
   position: absolute;
   top: .5rem;
-  right: .2rem;
+  right: .18rem;
 }
 .d-icon4 {
   width: .4rem;
   height: .4rem;
-  background-image: url(../../images/ui/icons1.png);
-  background-position: -0.92rem -0.68rem;
-  background-size: 8rem 2.4rem;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-position: -4.08rem -2.12rem;
+  background-size: 7.5rem 4.54rem;
   transition: none!important;
   position: absolute;
   top: .5rem;
-  right: .2rem;
+  right: .18rem;
 }
 .hotel_content_roomEvent_name{
   display: inline-block;
@@ -252,9 +259,9 @@ strong{
   width: .4rem;
   height: .4rem;
   margin-left: .1rem;
-  background-image: url(../../images/ui/icons1.png);
-  background-position: -2.02rem -0.68rem;
-  background-size: 8rem 2.4rem;
+  background-image: url(../../images/ui/icon-hft.png);
+  background-position: -1.77rem -2.22rem;
+  background-size: 7.5rem 4.54rem;
   position: absolute;
   top: .2rem;
 }
@@ -353,6 +360,9 @@ strong{
   top: .18rem;
   right: -0.2rem;
 }
+span.money{
+  font-size: .24rem;
+}
 .moneyNum{
   font-size:.4rem;
 }
@@ -368,7 +378,7 @@ strong{
 }
 /*房间信息弹层*/
 #popup_title{
-  width: 100%;
+  /*width: 100%;*/
   padding: .2rem;
   background-color: #ffb413;
   color: #fff;
