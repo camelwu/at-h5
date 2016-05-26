@@ -166,17 +166,26 @@
   padding:0  .2rem;
   position: relative;
   border-bottom: 1px  solid #dfdfdd;
-  min-height: 50px;
+  min-height: .84rem;
 }
 .hotel_content > li:first-child{
+  font-size:.24rem;
   padding:.2rem;
+  line-height: .84rem;
+}
+.enterDate,.time_span{
+  font-size: 0.32rem;
+  color: #FFB413;
+}
+.clear_strong >strong>strong{
+  font-weight: normal;
 }
 .hotel_content > li:first-child em{
   font-style: normal;
-  float: right;
-  color: #ffb413;
+
 }
 .hotel_content > li:last-child{
+  padding:.2rem;
   border-bottom: 0px solid #dfdfdd;
   margin-bottom: 0;
 }
@@ -267,14 +276,10 @@
 }
 /*酒店详情*/
 .hotel_content_roomDetail{
-  width: 106%;
   list-style-type: none;
   position: relative;
   clear: both;
   display: none;
-  margin-left: -3%;
-  padding: 0 3%;
-  background: #F5F4F9;
   overflow: hidden;
 }
 .hotel_content_roomDetail li{
