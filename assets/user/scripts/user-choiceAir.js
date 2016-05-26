@@ -43,15 +43,15 @@
 
 
   //常旅列表
-  var tpl_traveler = ['{% for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
-    '{% if (dd.listTravellerIdInfo.length>0) %}'+
-    '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id={%=dd.traveller.travellerId%} data-age="{%=dd.traveller.travellerAge%}"></b>',
+  var tpl_traveler = ['{%  for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
+    '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
+    '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id={%=dd.traveller.travellerId%} data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
     '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
     '<ul class="often_user">',
     '<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
     '<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
     '<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
-    '{%  var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if(age<2){ %}'+
+    '{%  if(age<2){ %}'+
     '<i class="per_type" data-id="0">婴儿</i></li>'+
     '{% } else if(age>=2 && age<12){ %}'+
     '<i class="per_type" data-id="1">儿童</i></li>'+
@@ -129,6 +129,7 @@
        ]
      }
   }
+
   var _model2UI=function(model){
     $(".addAir_page .cnName").val(model.traveller.idName);
     $(".addAir_page .lastName").val(model.traveller.lastName);
@@ -177,8 +178,9 @@
 
   };
 
+  //替换页面元素
   var _replacePagerAttri=function(){
-    debugger;
+
     var htmlObj =$(ifrCilent.parentNode).find("#"+elementId);
     var elementList=htmlObj.find("[data-elementname]");
     for(var key in passagerArray)
@@ -210,6 +212,49 @@
   //绑定选择事件
   var _bindSelectChoice=function(){
       $(".user_choice").on("click",function(){
+
+        if(isMulSelect){
+          var age=$(this).attr("data-age"),step=1
+          if(age<=2){
+            jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
+            return;
+          }
+
+          //选择操作 choiced 选择下个操作取消
+          if($(this).hasClass("choiced")) {
+            step=-1 //选择加1个
+          }
+          else{
+            step=1;//取消减一个
+          }
+
+          if(selectAdultNum+step>numofAdult && numofChlid>0 ){
+              jAlert("只能选择"+numofAdult+"成人,"+numofChlid+"小孩");
+              return;
+          }
+          else if(selectAdultNum+step>numofAdult){
+              jAlert("只能选择"+numofAdult+"成人");
+              return;
+          }
+
+          if (age > 2 && age < 12) {
+            selectChildNum=selectChildNum+step;
+          }
+          else if (age >= 12) {
+            selectAdultNum=selectAdultNum+step;
+          }
+          _setSelectPessageTip();
+        }
+        else{
+
+          var len= $(".list-traveler .choiced").length;
+          if(len>=1){
+            $(this).removeClass("choiced");
+            jAlert("对不起，只能单选！");
+            return;
+          }
+        }
+
         $(this).toggleClass("choiced");
       })
 
