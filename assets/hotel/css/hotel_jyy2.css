@@ -43,7 +43,7 @@ ul,li{
   margin-left: 1.9rem;
 }
 .hotel_name{
-  width:5.2rem;
+  width:5rem;
   font-size: 0.32rem;
   font-weight: bold;
   white-space: nowrap;
@@ -89,10 +89,10 @@ ul,li{
   display: inline-block;
   width: .4rem;
   height: .4rem;
-  background-image: url(../../images/icon-h.png);
+  background-image: url(../../images/ui/icon-hft.png);
   background-repeat: no-repeat;
-  background-size: 402px 174px;
-  background-position: -77px -14px;
+  background-size: 7.5rem 4.54rem;
+  background-position: -2.76rem -2.22rem;
   vertical-align: -0.16rem;
   margin-left: .2rem;
 }
@@ -100,11 +100,12 @@ ul,li{
   display: inline-block;
   width: .4rem;
   height: .4rem;
-  background-image: url(../../images/icon-h.png);
+  background-image: url(../../images/ui/icon-hft.png);
   background-repeat: no-repeat;
-  background-size: 402px 174px;
-  background-position: -37px -14px;
+  background-size: 7.5rem 4.54rem;
+  background-position: -2.22rem -2.22rem;
   vertical-align: -0.16rem;
+  /*margin-left: .2rem;*/
 }
 .hotel_content_div1{
   height: .3rem;
