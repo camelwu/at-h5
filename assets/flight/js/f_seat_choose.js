@@ -45,9 +45,7 @@ var fSeatChoose = {
         if(target.className == "explain"){
       //退改签说明
         }else if(target.tagName == "BUTTON"){
-          alert(111)
           that.testLogin();
-        // console.log(vlm.checkLogin());
         }
     })
   },

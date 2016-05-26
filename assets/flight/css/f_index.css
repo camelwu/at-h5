@@ -1,4 +1,7 @@
-input,button,select,textarea{outline:none}
+input::-webkit-input-placeholder { color: #D1D1D1!important }
+input:-moz-placeholder { color: #D1D1D1 !important }
+input::-moz-placeholder { color: #D1D1D1 !important }
+input:-ms-input-placeholder { color: #D1D1D1 !important}
 .hTab {
   width: 100%;
   height: .88rem;
@@ -999,7 +1002,8 @@ input,button,select,textarea{outline:none}
 .passengers_wrap ul p:nth-child(1) {
   padding-top: .16rem;
   margin-bottom: .16rem;
-  position: relative
+  position: relative;
+  color:rgb(51, 51, 51)
 }
 
 .passengers_wrap ul p input {
@@ -1031,7 +1035,7 @@ input,button,select,textarea{outline:none}
 .contact_wrap p {
   height: .96rem;
   line-height: .96rem;
-  color: #D1D1D1;
+  color:rgb(51, 51, 51);
   font-size: .28rem;
   position: relative;
   padding: 0 .28rem;
@@ -1040,7 +1044,7 @@ input,button,select,textarea{outline:none}
 .contact_wrap p input {
   height: .96rem;
   line-height: .96rem;
-  color: #D1D1D1;
+  color:rgb(51, 51, 51);
   font-size: .28rem;
   width: 49%;
   font-family: "microsoft yahei", Arial, sans-serif
@@ -1260,8 +1264,19 @@ input,button,select,textarea{outline:none}
 .inter-list .hot_code > li:last-child, .country_lists ul li:last-child {
   border: none;
 }
-
-.country_lists ul li {
+.country-list-searched-order{
+  position: fixed;
+  top: .88rem;
+  left: 0;
+  right: 0;
+  bottom:0;
+  pointer-events: all;
+  background-color: #fcfcfc;
+  box-shadow: 0 1px 1px #e6e6e6;
+  z-index: 16;
+  display: none;
+}
+.country_lists ul li , .country-list-searched-order li{
   height: .96rem;
   line-height: .96rem;
   font-size: .32rem;
@@ -1322,28 +1337,6 @@ input,button,select,textarea{outline:none}
   z-index: 100;
 }
 
-/*国籍模糊搜索*/
-.country-list-searched {
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: .88rem;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9;
-  background: #f5f4f9;
-  overflow-y: scroll;
-}
-.country-list-searched li.country-list-searched-item {
-  width: 100%;
-  height: .68rem;
-  line-height: .68rem;
-  text-align: left;
-  border-bottom: 1px solid #e6e6e6;
-  padding-left: .48rem;
-}
-
 /*国籍选择结束*/
 #Tax dt, #Price dt{
   width: 0.34rem;
@@ -1393,7 +1386,7 @@ input,button,select,textarea{outline:none}
 }
 .cl_search i {
   position: absolute;
-  top: .18rem;
+  top: .21rem;
   left: .22rem;
   display: block;
   background: url("../../images/city_search.png") no-repeat;

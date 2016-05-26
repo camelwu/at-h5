@@ -44,11 +44,11 @@
       <ul class="passenger_outer">
         <li>
           <p class="name_infos"><i class="minus_person"></i><span class="tip_word">姓/名</span><input class="input"
-                                                                                                    placeholder="BAI LISA"/><i
+                                                                                                    placeholder="BAI LISA" readonly="readonly"/><i
             class="add_icon passenger"></i></p>
 
           <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"
-                                                                         placeholder="1234567"/><span class="sex_value">女</span>
+                                                                         placeholder="1234567" readonly="readonly"/><span class="sex_value">女</span>
           </p>
         </li>
       </ul>
@@ -141,11 +141,12 @@
 <script id="template_country_summary" type="text/template">
   <div class="country-cho-wrap all_elements">
     <header class="header">
-      <a href="javascript:void(0);" class="header_back">
+      <a href="javascript:void(0);" class="header_back country_header">
         <i class="icon_back"></i>
       </a>
-      <h3><div class="cl_search"><input type="text" placeholder="新加坡/xjp/sin/" id="city-input-zone"><i></i></div> </h3>
+      <h3><div class="cl_search"><input type="text" placeholder="新加坡/xjp/sin/" id="country-input-zone"><i></i></div> </h3>
     </header>
+    <ul class="country-list-searched country-list-searched-order"></ul>
     <div class="content">
       <div class="country-wrap">
         <ul class="inter-list jto_area_code" id="jto_area_code">
@@ -153,16 +154,16 @@
             <a class="target" name="dq"></a>
             <p class="recent_title">当前</p>
             <ul class="hot_code">
-              <li date-country-code="86"><i>中国</i><span>86</span></li>
+              <li class="country_lists" date-country-code="86"><i>中国</i><span>86</span></li>
             </ul>
           </li>
           <li>
             <a class="target" name="rm"></a>
             <p class="recent_title">热门城市</p>
             <ul class="hot_code">
-              <li date-country-code="65"><i>新加坡</i><span>65</span></li>
-              <li date-country-code="852"><i>香港</i><span>852</span></li>
-              <li date-country-code="81"><i>日本</i><span>81</span></li>
+              <li class="country_lists" date-country-code="65"><i>新加坡</i><span>65</span></li>
+              <li class="country_lists" date-country-code="852"><i>香港</i><span>852</span></li>
+              <li class="country_lists" date-country-code="81"><i>日本</i><span>81</span></li>
             </ul>
           </li>
         </ul>
@@ -173,7 +174,7 @@
             <p class="recent_title"><%=tem%></p>
             <ul>
               <%resultArray[tem].forEach(function(array){%>
-              <li date-country-code="<%=array.TelCode%>"><i><%=array.CountryName%></i><span><%=array.TelCode%></span></li>
+              <li class="country_lists" date-country-code="<%=array.TelCode%>"><i><%=array.CountryName%></i><span><%=array.TelCode%></span></li>
               <%})%>
             </ul>
           <% }%>
