@@ -489,11 +489,9 @@ var footer = (function() {
 				}
 			},
 			showItems : function(n, t) {
+				var that = this;
 				if (t == 0) {
-					if(box.childNodes[n].id==0){
-
-					}
-					that.request();
+					that.request(n,t);
 					return;
 				}
 				// 显示要筛选的列表内容

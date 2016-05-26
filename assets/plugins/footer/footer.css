@@ -86,7 +86,7 @@ footer.footer_three dt,footer.footer_two dt{
 dl.foot_sort dt, dl.f_foot_sort dt{
 	background-position: -0.59rem -2.32rem;
 }
-dl.foot_screen dt{
+dl.foot_screen dt, dl.foot_t_filter dt{
 	background-position: -1.87rem -2.32rem;
 }
 dl.foot_position dt{
@@ -222,7 +222,7 @@ section.foot_screen .screen_rg li.cur i{
 	background-size: 7.9rem 5.13rem;
 	background-position: -6.9rem -0.58rem;
 }
-section.foot_position{
+section.foot_position,section.foot_t_filter{
 	position: absolute;
 	bottom: -4.98rem;
 	left: 0;
@@ -232,7 +232,7 @@ section.foot_position{
 	font-size: 0.28rem;
 	transition: all 0.3s;
 }
-section.foot_position ul{
+section.foot_position ul,section.foot_t_filter ul{
 	background: #fff;
 	width: 100%;
 	position: absolute;
@@ -242,7 +242,7 @@ section.foot_position ul{
 	bottom: 0rem;
 	overflow-y: scroll;
 }
-section.foot_position li{
+section.foot_position li,section.foot_t_filter li{
 	font-size: 0.28rem;
 	padding: 0 0.12rem;
 	height: 0.96rem;
