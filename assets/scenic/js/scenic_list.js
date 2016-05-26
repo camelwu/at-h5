@@ -140,7 +140,7 @@
       newdata.push(tmp_data);
     }
     var themes = [{allowMultiSelect:0,filterType:5,item:newdata,title:"主题",sortNumber:0}];
-    console.log(themes);
+    //console.log(themes);
     // 添加底部筛选
     var f_data = {
       sortTypes : {
@@ -154,16 +154,19 @@
       hotelScreen : {
         title : "筛选",
         c : "foot_screen",
-        s : 2,
+        s : 1,
         type : 2,
         key : 'filters',
         listData : themes
       }
     },menu_call = function(obj) {
-      Para.DestCityCode = val.DestCityCode;
-      Para.priceSortType = obj.sortTypes[0] || {};
-      Para.themeID = obj.filters || {};
-      tAjax("",Para,"0087","3",Method["m_scenic_listCallback"]);
+      var Param = {};
+
+      Param.DestCityCode = val.DestCityCode;
+      Param.PriceSortType = obj.sortTypes[0] == 1?"HighToLow":"LowToHigh";
+      Param.ThemeID = obj.filters[0].FilterValues[0];
+      console.log(Param);
+      tAjax("",Param,"0087","3",Method["m_scenic_listCallback"]);
     };
     if (footer) {
       footer.data = f_data;
@@ -180,7 +183,8 @@
       Code : Code
     };
     questUrl = questUrl || that.requestUrl;
-    vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    //vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    vlm.loadJson("",JSON.stringify(dataObj),Callback);
   };
 
   var Method = {
