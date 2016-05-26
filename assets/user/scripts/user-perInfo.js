@@ -453,12 +453,12 @@
             if(infoJson.data[0].salutation == 26){
               $('#sex').children().eq(0).attr('class', 'per_man sex_act');
               $('#sex').children().eq(1).attr('class', 'per_man');
-              userIcon.src = "../images/ui/photo-man.png";
+              userIcon.src = "../images/user/photo-man.png";
 
             }else{
               $('#sex').children().eq(0).attr('class', 'per_man');
               $('#sex').children().eq(1).attr('class', 'per_man sex_act');
-              userIcon.src = "../images/ui/photo-woman.png";
+              userIcon.src = "../images/user/photo-man.png";
             }
         }
 
@@ -509,9 +509,9 @@
         {
             if(myJson.data[0].salutation == 26)
             {
-                $('#userIcon').attr('src','../images/ui/photo-man.png');
+                $('#userIcon').attr('src','../images/user/photo-man.png');
             }else{
-                $('#userIcon').attr('src','../images/ui/photo-woman.png');
+                $('#userIcon').attr('src','../images/user/photo-man.png');
             }
             jAlert('修改成功');
         }else{
