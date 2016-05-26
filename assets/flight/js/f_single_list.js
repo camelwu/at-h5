@@ -92,14 +92,20 @@ var fSingleList = {
   },
 
   renderHandler:function(){
-    var result = arguments[0],that = fSingleList, storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
+    var result = arguments[0],that = fSingleList,storage = window.sessionStorage, no_result = document.querySelector('#no_flight_data');
     console.log(result);
     if(result.success&&result.code == "200"){
-         that.currrentFlightList = result.data;
-         that.filterHandler(result.data);
-         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+         if(result.data.flightInfos.length<1){
+           no_result.style.display = "block";
+           $('#loadMore').hide()
+         }else{
+           that.currrentFlightList = result.data;
+           that.filterHandler(result.data);
+           that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
+         }
     }else{
-          no_result.display = "block";
+           no_result.style.display = "block";
+           $('#loadMore').hide()
     }
   },
 

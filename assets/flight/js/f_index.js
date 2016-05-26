@@ -256,7 +256,7 @@ var fIndexModal = {
     endStrDate = parseInt(r.getDate()) >= 10 ? parseInt(r.getDate()) : '0' + parseInt(r.getDate());
     startDay = s.getFullYear() + "-" + startStrMonth + "-" + startStrDate;
     endDay = r.getFullYear() + "-" + endStrMonth + "-" + endStrDate;
-    return {startDay: startDay, endDay: endDay};
+    return [startDay,endDay];
   },
 
   initShowInfo: function () {
@@ -266,7 +266,7 @@ var fIndexModal = {
       seatValue = document.querySelector('#seats'), timeClickWrap = document.querySelector('#timeClickWrap'),
       singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'),
       doubleDateArrive = document.querySelector('#arriveDate'), singleWrap = document.querySelector('#timeSingleWrap'),
-      doubleWrap = document.querySelector('#timeDoubleWrap'), defaultDate = {},
+      doubleWrap = document.querySelector('#timeDoubleWrap'), defaultDate = [],
       reSeat = function (arg) {
         var cabinStr = "";
         switch (arg) {
@@ -294,7 +294,7 @@ var fIndexModal = {
       singleWrap.style.display = "block";
       doubleWrap.style.display = "none";
     } else {
-      defaultDate.endDay = data.returnDate;
+      defaultDate[1] = data.returnDate;
       tripTitles[0].className = "singleTrip grey-title";
       tripTitles[1].className = "doubleTrip light-title";
       singleWrap.style.display = "none";
@@ -304,16 +304,16 @@ var fIndexModal = {
     cityEle[0].setAttribute('data-code', data.cityCodeFrom);
     cityEle[1].innerHTML =  data.toCity;
     cityEle[1].setAttribute('data-code', data.cityCodeTo);
-    singleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    singleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    weeks[0].innerHTML = this.setWeekItems(defaultDate.startDay);
-    doubleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    doubleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    weeks[1].innerHTML = this.setWeekItems(defaultDate.startDay);
+    singleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    singleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    weeks[0].innerHTML = this.setWeekItems(defaultDate[0]);
+    doubleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    doubleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    weeks[1].innerHTML = this.setWeekItems(defaultDate[0]);
 
-    doubleDateArrive.innerHTML = this.returnDay(defaultDate.endDay);
-    doubleDateArrive.setAttribute('date-full-value', defaultDate.endDay);
-    weeks[2].innerHTML = this.setWeekItems(defaultDate.endDay);
+    doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
+    doubleDateArrive.setAttribute('date-full-value', defaultDate[1]);
+    weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
     adultValue.innerHTML = data.numofAdult;
     childValue.innerHTML = data.numofChild;
     seatValue.innerHTML = reSeat(data.cabinClass)
@@ -321,17 +321,17 @@ var fIndexModal = {
 
   initDate: function () {
     var singleDateSet = document.querySelector('#setOffDateSingle'), doubleDateSet = document.querySelector('#setOffDate'),
-      doubleDateArrive = document.querySelector('#arriveDate'), weeks = document.querySelectorAll('.weekWord'), defaultDate = {};
+      doubleDateArrive = document.querySelector('#arriveDate'), weeks = document.querySelectorAll('.weekWord'), defaultDate = [];
     defaultDate = this.createDefaultDate();
-    singleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    singleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    doubleDateSet.setAttribute('date-full-value', defaultDate.startDay);
-    doubleDateSet.innerHTML = this.returnDay(defaultDate.startDay);
-    weeks[0].innerHTML = this.setWeekItems(defaultDate.startDay);
-    weeks[1].innerHTML = this.setWeekItems(defaultDate.startDay);
-    doubleDateArrive.setAttribute('date-full-value', defaultDate.endDay);
-    doubleDateArrive.innerHTML = this.returnDay(defaultDate.endDay);
-    weeks[2].innerHTML = this.setWeekItems(defaultDate.endDay);
+    singleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    singleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    doubleDateSet.setAttribute('date-full-value', defaultDate[0]);
+    doubleDateSet.innerHTML = this.returnDay(defaultDate[0]);
+    weeks[0].innerHTML = this.setWeekItems(defaultDate[0]);
+    weeks[1].innerHTML = this.setWeekItems(defaultDate[0]);
+    doubleDateArrive.setAttribute('date-full-value',defaultDate[1]);
+    doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
+    weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
   },
 
   initHandler: function () {
