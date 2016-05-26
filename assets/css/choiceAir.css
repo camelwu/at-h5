@@ -573,6 +573,48 @@ i, em {
   color: #999;
   margin-bottom: 0;
 }
+.traveler_contect {
+  background-color: #fff;
+  margin-bottom: .32rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.traveler_contect li {
+  margin-left: .28rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.traveler_contect li:last-child {
+  border-bottom: none;
+}
+
+.traveler_contect li > div {
+  width: 45%;
+  line-height: .96rem;
+  border-right: 1px solid #e6e6e6;
+  position: relative;
+}
+
+.traveler_contect li .email_code {
+  width: 1.8rem;
+  border: none;
+}
+
+.phone_pre {
+  float: right;
+  margin-right: .6rem;
+}
+
+.mobile_tip_right {
+  right: .2rem;
+  top: .34rem;
+}
+
+.traveler_contect input {
+  width: 50%;
+  height: .96rem;
+  margin-left: .32rem;
+}
 
 /*国籍选择结束*/
 
