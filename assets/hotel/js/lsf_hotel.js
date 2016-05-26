@@ -138,7 +138,7 @@ function oUp(obj1, obj2, start, end) {
         obj2.style.backgroundSize = '0.5rem 3.2rem';
       }
     } else {
-      this.style.background = 'url("../images/hotelbtn.png") 0 -84px no-repeat';
+      this.style.background = 'url("../images/hotelbtn.png") -0.01rem -1.8rem no-repeat';
       this.style.backgroundSize = '0.5rem 3.2rem';
     }
   });
@@ -153,7 +153,7 @@ function oDown(obj1, obj2, start, end) {
     }
     if (parseInt(this.parentNode.children[0].value) > start) {
       if (parseInt(this.parentNode.children[0].value) < end) {
-        obj2.style.background = 'url("../images/hotelbtn.png") 0 -56px no-repeat';
+        obj2.style.background = 'url("../images/hotelbtn.png") -0.01rem -1.2rem no-repeat';
         obj2.style.backgroundSize = '0.5rem 3.2rem';
       }
     } else {
