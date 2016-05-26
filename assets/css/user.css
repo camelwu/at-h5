@@ -661,11 +661,12 @@ i, em {
 
 .info_sex {
   position: absolute;
-  top: .2rem;
+  top: .1rem;
   right: 0;
   height: .66rem;
   border: 1px solid #7bc300;
-  overflow: hidden;
+  border-radius: .04rem;
+  -webkit-border-radius: .04rem;
   background-color: #fff;
   color: #7bc300;
 }
@@ -673,8 +674,8 @@ i, em {
 .info_sex .per_man {
   float: left;
   width: .76rem;
-  height: .66rem;
-  line-height: .66rem;
+  height: .62rem;
+  line-height: .64rem;
   text-align: center;
   color: #7bc300;
   background-color: #fff;
@@ -689,10 +690,11 @@ i, em {
   position: absolute;
   top: .2rem;
   right: .28rem;
-  height: .64rem;
+  height: .66rem;
   width: auto;
   border: 1px solid #7bc300;
   border-radius: .04rem;
+  -webkit-border-radius: .04rem;
   overflow: hidden;
   background-color: #fff;
   color: #7bc300;
@@ -701,7 +703,7 @@ i, em {
 .info_sex_tab .per_man {
   float: left;
   width: .78rem;
-  height: .64rem;
+  height: .62rem;
   line-height: .64rem;
   text-align: center;
   color: #7bc300;
