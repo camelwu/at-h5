@@ -9,65 +9,59 @@
     <meta name="x5-orientation" content="portrait">
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
-
     <meta name="Keywords" content="亚洲旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
-    <link href="../styles/style.css" rel="stylesheet" type="text/css" />
-    <link href="../styles/framework.css" rel="stylesheet" type="text/css" />
+    <link href="../styles/reset.css" rel="stylesheet" type="text/css" />
     <link href="../styles/tips.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/pay_fail.css" />
     <title>交易详情</title>
-
-
 </head>
 <body>
-<!--遮罩层-->
-<div id="preloader">
-    <div id="status">
+  <!--遮罩层-->
+  <div id="preloader">
+      <div id="status"></div>
+  </div>
 
-    </div>
-</div>
-<div class="all-elements" >
-    <div id="elements">
-        <div class="header" id="vlm-login">
-            <!--<a href="javascript:;" class="header-back" id="td_back">-->
-            <!--<i class="icons go-back"></i>-->
-            <!--</a>-->
+  <div class="all_elements" >
+      <div id="elements">
+          <div class="header" id="vlm-login">
+            <a href="javascript:;"  class="header_back"><i class="icon_back"></i></a>
             <h3>交易详情</h3>
-        </div>
-        <div class="tra_con1">
-            <div class="tra_c1_inbox">
-                <i class="payment-success"></i>
-                <span>支付成功</span>
-            </div>
-        </div>
-        <div class="tra_con2" id = "vlm_login">
-            <div class="tra_c2_inbox">
-                <h3 id="tdHoteName">订单号：</h3><span>{%=bookingRefNo%}</span>
-                <p class="tra_live">{%=productName%}</p>
-                <p class="tra_price" id="tdPrice">订单总额：<span>￥{%=totalPrice%}</span></p>
-            </div>
-        </div>
-    </div>
-    <div class="tra_btn">
-        <div>
-            <input type="button" value="返回首页" class="fl"  id="fl" />
-        </div>
-        <div class="tra_btn_div2">
-            <input type="button" value="查看订单" class="fr" id="fr2" />
-        </div>
-    </div>
+          </div>
 
-    <div class="tra_footer">
-        <p>版权所有 @ 2015 Asiatravel.com控股有限公司.保留所有权利</p>
-    </div>
-</div>
-</body>
-<!--<script src="js/lsf_tradeDetails.js"></script>-->
-<script type="text/javascript" src="../js/lib/jquery.js"></script>
-<script type="text/javascript" src="../js/lib/vlm.js"></script>
-<script src="../js/lib/template.js"></script>
-<script src="../js/lib/jquery.alert.js"></script>
-<script src="../js/lib/plugins.js"></script>
-<script type="text/javascript" src="js/pay_fail.js"></script>
+          <div class="tra_con1">
+              <div class="tra_c1_inbox">
+                  <i class="payment-success"></i>
+                  <span>支付成功</span>
+              </div>
+          </div>
+          <div class="tra_con2" id = "vlm_login">
+              <div class="tra_c2_inbox">
+                  <h3 id="tdHoteName">订单号：</h3><span>{%=bookingRefNo%}</span>
+                  <p class="tra_live">{%=productName%}</p>
+                  <p class="tra_price" id="tdPrice">订单总额：<span>￥{%=totalPrice%}</span></p>
+              </div>
+          </div>
+      </div>
+      <div class="tra_btn">
+          <div>
+              <input type="button" value="返回首页" class="fl"  id="fl" />
+          </div>
+          <div class="tra_btn_div2">
+              <input type="button" value="查看订单" class="fr" id="fr2" />
+          </div>
+      </div>
+
+      <div class="tra_footer">
+          <p>版权所有 @ 2015 Asiatravel.com控股有限公司.保留所有权利</p>
+      </div>
+  </div>
+  </body>
+  <!--<script src="js/lsf_tradeDetails.js"></script>-->
+  <script type="text/javascript" src="../js/lib/jquery.js"></script>
+  <script type="text/javascript" src="../js/lib/vlm.js"></script>
+  <script src="../js/lib/template.js"></script>
+  <script src="../js/lib/jquery.alert.js"></script>
+  <script src="../js/lib/plugins.js"></script>
+  <script type="text/javascript" src="js/pay_fail.js"></script>
 </html>

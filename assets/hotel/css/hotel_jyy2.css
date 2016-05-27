@@ -158,21 +158,20 @@ ul,li{
 .hl-icon3{
   display:block;
   margin: 0.12rem auto 0.05rem;
-  background-size: 4.68rem 2.81rem;
   width: 0.36rem;
   height: 0.37rem;
-  background: url(../../images/ui/icon_common.png);
-  background-size: 7.89rem 5.07rem;
-  background-position: -0.59rem -2.32rem;
+  background: url(../../images/ui.1.0/icon_common.png);
+  background-size: 7.9rem 7.98rem;
+  background-position: -0.59rem -2.42rem;
 
 }
 .hl-icon-4{
-  background-position: -1.87rem -2.32rem;
+  background-position: -1.86rem -2.42rem;
 }
 .hl-icon-5{
-  background: url(../../images/hotel_flight_tour/icon_hotel.png);
-  background-size: 7.89rem 2.58rem;
-  background-position: -2.19rem -0.46rem;
+  background: url(../../images/ui.1.0/icon_hotel.png);
+  background-size: 7.9rem 2.52rem;
+  background-position: -2.21rem -0.41rem;
 }
 .fo-div .red-tip{
   position: absolute;

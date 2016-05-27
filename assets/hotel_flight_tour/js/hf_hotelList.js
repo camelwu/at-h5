@@ -152,18 +152,14 @@
             initFooter(data);
             //}
         } else {
-
+            $.alerts.alert(result.message);
         }
     }
 
     function moreDataCallBack(result) {
-        if (result.success && result.code == '200') {
-            console.log(result);
-            var data = result.data;
-            hotelList.list(result, true);
-        } else {
 
-        }
+        hotelList.list(result, true);
+
     }
     var hotelList = {
         currentPage: 1,
@@ -204,6 +200,12 @@
                     $('.hotel_list').empty().append(hotels);
                 }
 
+                //TODO 图片懒加载
+                //                setTimeout(function () {
+                //                    var c = new lazyLoad('hj_jList');
+                //                }, 500);
+
+
                 $('.hotel_list li').on('click', function () {
                     $(this).addClass('cur').siblings().removeClass('cur');
                     var hotelID = $(this).attr("data-hotelId");
@@ -216,8 +218,9 @@
                 });
 
                 hotelList.updateMoreStatus(data);
+
             } else {
-                alert("error");
+                $.alerts.alert(result.message);
             }
         },
         updateMoreStatus: function (data) {
