@@ -521,6 +521,7 @@ var footer = (function() {
 						sec.childNodes[n].style.bottom = "0.98rem";
 					} else {
 						if (sec.childNodes[n].style.bottom == "0.98rem") {
+							box.childNodes[n].style.backgroundColor = "";
 							this.remove();
 						} else {
 							for (var i = 0; i < sec.childNodes.length; i++) {
