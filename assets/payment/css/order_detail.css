@@ -26,6 +26,7 @@ input {
 /*机票开始*/
 .flight_section {
   background-color: #fff;
+  border-bottom: 2px  solid #e6e6e6;
 }
 
 .fht_hd {
@@ -83,17 +84,23 @@ input {
 .fli_cont {
   height: .32rem;
   line-height: .32rem;
-  margin-bottom: .32rem;
-  padding-right: .28rem;
+  margin-bottom: .28rem;
+  padding: 0 .28rem;
 }
+
 .fli_cont1 {
   height: auto;
   width: 100%;
-  padding-right:0;
+  padding-right: 0;
 
 }
+
+.fli_infp {
+  margin-bottom: .3rem;
+}
+
 .flight_cir_wrap {
-  padding: .2rem .3rem .28rem;
+  padding: .35rem 0 .28rem;
 }
 
 .fli_cir_left > span {
@@ -103,6 +110,8 @@ input {
 
 .fli_cir_right {
   width: 1.5rem;
+  text-align: right;
+  font-size: .24rem;
 }
 
 .flight_terminal {
@@ -136,22 +145,24 @@ input {
 
 .fli_cir_right i {
   vertical-align: top;
-  margin-right: .12rem;
+  margin-right: .08rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-position: -5.2rem -2.14rem;
   background-size: 6.6rem 4.55rem;
   width: .26rem;
   height: .30rem;
+  display: inline-block;
 }
 
 .flight_cir_wrap li:nth-child(2) {
   margin-bottom: 0;
-  padding-bottom: .8rem;
-  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: .6rem;
 }
 
 .cabin_level {
-  margin-top: .3rem;
+  border-top: 1px solid #e6e6e6;
+  margin-left: .28rem;
+  padding-top: .3rem;
 }
 
 /*机票结束*/
@@ -162,8 +173,8 @@ input {
 }
 
 .hotel_wrap {
-  margin-left: .28rem;
-  padding: .4rem 0 .2rem;
+  padding: .4rem .28rem .2rem;
+  border-bottom: 2px solid #e6e6e6;
 }
 
 .hotel_wrap li {
@@ -186,6 +197,7 @@ input {
 .hotel_wrap > h3 {
   margin-bottom: .3rem;
   font-weight: bold;
+  font-size: .28rem;
 }
 
 /*酒店结束*/
@@ -206,12 +218,9 @@ input {
   background-position: -1.56rem -1.25rem;
   background-size: 6.6rem 4.55rem;
 }
-.tour_wrap{
-  padding: .2rem 0 .0rem;
-}
 
 .tour_wrap > li {
-  padding: .4rem .28rem;
+  padding: .35rem .28rem;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -235,7 +244,7 @@ input {
   margin-right: .15rem;
   vertical-align: top;
   margin-top: .05rem;
-  background-color: #ffb413;
+  background-color: #7bc300;
   display: inline-block;
 }
 
@@ -657,16 +666,21 @@ li.order_tlist2 {
 }
 
 .tot_prinum {
-  color: #fb6a22;
+  color: #fb7530;
   font-size: .32rem;
   font-weight: 700;
   margin-left: .1rem;
 }
+
 /*电话拨号结束*/
 
+#order_detail {
+  margin-bottom: .4rem;
+}
 
 .hft_pri_details {
   padding: .4rem .28rem;
+  border-bottom: 2px solid #e6e6e6;
 }
 
 .hft_pri_details li {
@@ -683,7 +697,7 @@ li.order_tlist2 {
   font-size: .32rem;
   background-color: #fff;
   text-align: center;
-  color: #ffb413;
+  color: #7bc300;
 }
 
 .hft_paid i {
@@ -729,13 +743,23 @@ li.order_tlist2 {
 }
 
 .fht_order_tab {
-  padding: .1rem .28rem 0;
+  padding: .35rem 0 0 .28rem;
   background-color: #fff;
   overflow: hidden;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.fht_order_tab.border_light {
+  border-bottom: none;
+}
+
+.fht_order_tab.border_light > li:first-child {
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .fht_order_tab > li {
-  margin-bottom: .32rem;
+  margin-bottom: .28rem;
+  padding-right: .28rem;
 }
 
 .fht_order_tab p {
@@ -743,7 +767,7 @@ li.order_tlist2 {
 }
 
 .order_cont_way {
-  border-top: 1px solid #e6e6e6;
+  border-bottom: 2px solid #e6e6e6;
   background-color: #fff;
   padding-bottom: .32rem;
 }
@@ -800,7 +824,7 @@ li.order_tlist2 {
 
 .jpop_box_tic dd a {
   float: right;
-  background: #ffb413;
+  background: #7bc300;
 }
 
 .jpop_box_tic dd span {
@@ -821,51 +845,60 @@ li.order_tlist2 {
   background-color: #f7f7f7;
 }
 
-.sure{
+.sure {
   height: 87px;
   background: #fff;
 }
-.sure1{
+
+.sure1 {
   line-height: 35px;
   text-align: center;
-  font-weight:bold;
-  color: #ffb413;
+  font-weight: bold;
+  color: #7bc300;
   margin: 0 23px;
+  font-size: .32rem;
 }
-.sure2{
+
+.sure2 {
   /* height: 52px; */
 }
-.sure21{
+
+.sure21 {
   height: 52px;
   margin: 0 18px;
 }
-.tenor{
+
+.tenor {
   margin: 10px 19px;
   height: 10px;
   overflow: visible;
 }
-.q1{
-  width:100%;
+
+.q1 {
+  width: 100%;
   overflow: visible;
 }
-.q2{
+
+.q2 {
   width: 33%;
   position: relative;
   float: left;
   overflow: visible;
 }
-.q11{
-  width:10px;
+
+.q11 {
+  width: 10px;
   height: 10px;
   border-radius: 20px;
-  background: orange;
+  background: #7bc300;
   position: absolute;
   top: 0;
   left: 0;
   overflow: visible;
 }
-.q12{
-  width:10px;
+
+.q12 {
+  width: 10px;
   height: 10px;
   border-radius: 20px;
   background: #d0d0d3;
@@ -874,19 +907,25 @@ li.order_tlist2 {
   left: 0;
   overflow: visible;
 }
-.q22{
+
+.q12.check_light p, .q111.check_light p {
+  color: #999;
+}
+
+.q22 {
   height: 1px;
-  background: #ffb413;
+  background: #7bc300;
   margin: 5px 5px 0 15px;
 }
-.q23{
+
+.q23 {
   height: 1px;
   background: #d6d6d6;
   margin: 5px 5px 0 15px;
 }
 
-.q111{
-  width:10px;
+.q111 {
+  width: 10px;
   height: 10px;
   border-radius: 20px;
   background: #d0d0d3;
@@ -895,8 +934,9 @@ li.order_tlist2 {
   right: -10px;
   overflow: visible;
 }
-.q112{
-  width:10px;
+
+.q112 {
+  width: 10px;
   height: 10px;
   border-radius: 20px;
   background: orange;
@@ -905,43 +945,55 @@ li.order_tlist2 {
   right: -10px;
   overflow: visible;
 }
-.q1 p{
+
+.q1 p {
   margin-left: 15px;
   padding: 0;
   position: absolute;
   width: 100px;
-  top:15px;
+  top: 15px;
   left: -30px;
-  color: #484848;
+  color: #333;
+  font-size: .24rem;
 }
+
 .p-but {
-  height: 0.85rem;
-  margin-top: .35rem;
+  height: 0.98rem;
   background-color: #fdb330;
   text-align: center;
   color: #fff;
-  font-size: .35rem;
-  line-height: 0.85rem;
+  font-size: .36rem;
+  line-height: 0.98rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
-.p-but a{
-color:white;
+
+.p-but a {
+  color: white;
 }
 
 /*机票详情*/
+#tpl_order_detail{
+  margin-bottom: 1.6rem;
+}
 .flight_cir_wrap1 li:nth-child(2) {
   padding-top: .3rem;
-  padding-bottom:.3rem;
+  padding-bottom: .3rem;
   border-top: 1px solid #e6e6e6;
   border-bottom: 0px solid #e6e6e6;
 }
+
 /*.time-arrow-time >div{*/
-  /*float: left;*/
+/*float: left;*/
 /*}*/
-.time-arrow-time .city-time-left{
+.time-arrow-time .city-time-left {
   float: left;
   width: 35%;
 }
-.time-arrow-time .time-arrow{
+
+.time-arrow-time .time-arrow {
   float: left;
   width: 30%;
   height: .4rem;
@@ -950,57 +1002,76 @@ color:white;
   background-size: 6rem 3.2rem;
   background-position: -.43rem -1.46rem;
 }
-.time-arrow-time .city-time-right{
+
+.time-arrow-time .city-time-right {
   float: right;
   width: 35%;
   text-align: right;
 }
+
 /*.time-arrow-time .time-arrow .icon-arrow {*/
-  /*/!*min-width: 2.2rem;*!/*/
-  /*/!*min-height: .4rem;*!/*/
+/*/!*min-width: 2.2rem;*!/*/
+/*/!*min-height: .4rem;*!/*/
 
 /*}*/
-.time-arrow-time .time-arrow .icon-arrow span{
+.time-arrow-time .time-arrow .icon-arrow span {
   top: -5px;
 }
- .port-name{
-   margin-top: 0.18rem;
-   margin-bottom: 0.18rem;
+
+.port-name {
+  margin-top: 0.18rem;
+  margin-bottom: 0.18rem;
+  font-size: .24rem;
 }
- .fli_info{
-   color: #999;
-   font-size: .26rem;
- }
-.fli-stop{
+
+.fli_info {
+  color: #999;
+  font-size: .20rem;
+}
+
+.line_four{
+  display: inline-block;
+  margin: 0 .04rem;
+}
+
+.fli-stop {
   text-align: center;
-  margin-top:0.3rem;
-  margin-bottom:0.3rem;
-  color: #ffb413;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  color: #7bc300;
 }
-.clock{
-  color:#333333;
-  font-weight: bold;
+
+.clock {
+  color: #333333;
+  font-size: .36rem;
 }
-.fli_retrun{
+
+.fli_retrun {
   margin-top: 0.3rem;
   border-top: 1px solid #ddd;
 }
-.fli_retrun .fli_infp{
- margin-top: 0.3rem;
+
+.fli_retrun .fli_infp {
+  margin-top: 0.3rem;
 }
-.flight_cir_wrap1{
+
+.flight_cir_wrap1 {
+  width: 100%;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.fli-status {
   width: 100%;
 }
-.fli-status{
-  width: 100%;
+
+.fli-status li {
+  height: 1rem;
+  line-height: 1rem;
+  vertical-align: middle;
+  background-color: #fff;
 }
-.fli-status li{
-   height: 1rem;
-   line-height: 1rem;
-   vertical-align: middle;
-   background-color: #fff;
- }
-.fli-status li:first-child{
+
+.fli-status li:first-child {
   padding-left: .3rem;
   font-size: .32rem;
   background-color: #fff;
@@ -1009,34 +1080,42 @@ color:white;
   text-align: left;
   color: #fdb330;
 }
-.fli-status li:last-child{
+
+.fli-status li:last-child {
   padding-right: .3rem;
-   width: 60%;
+  width: 60%;
   text-align: right;
   float: right;
 }
-.fli-status .lasttime{
+
+.fli-status .lasttime {
   color: #fdb330;
 }
-.tour_wrap{
-  background-color: #fff ;
+
+.tour_wrap {
+  background-color: #fff;
   position: relative;
+  border-bottom: 2px solid #e6e6e6;
 }
+
 /*景点*/
-.tour_wrap .productName{
+.tour_wrap .productName {
   font-size: .30rem;
   font-weight: bold;
 }
-.tour_wrap .productCode{
-   padding-left: .05rem;
-   color: #999999;
+
+.tour_wrap .productCode {
+  padding-left: .05rem;
+  color: #999999;
 }
-.tour_productinfo{
+
+.tour_productinfo {
   padding: 0 .5rem .2rem .2rem;
   background-color: #fff;
 
 }
-.tour_ticketinfo{
+
+.tour_ticketinfo {
   border-bottom: 1px solid #ddd;
 }
 
@@ -1044,23 +1123,25 @@ color:white;
 
 }
 
-.tour_productinfo li:first-child{
+.tour_productinfo li:first-child {
   float: left;
   width: 95%;
   background-color: #fff;
   padding-left: .3rem;
 
 }
-.tour_productinfo li:last-child{
+
+.tour_productinfo li:last-child {
   float: right;
   padding-right: .3rem;
   width: 5%;
   height: 100%
 }
 
-.tour_wrap .tourdetail_icon{
+.tour_wrap .tourdetail_icon {
   position: absolute;
-  right: .28rem;top: 50%;
+  right: .28rem;
+  top: 50%;
   background: red;
   margin-top: -.2rem;
   width: 14px;
@@ -1069,18 +1150,22 @@ color:white;
   background-position: -3.3rem -.5rem;
   background-size: 6.6rem 4.55rem;
 }
-.tour_ticketdetail{
+
+.tour_ticketdetail {
   padding: .2rem 0 .2rem;
   background-color: #fff;
 }
-.tour_ticketinfo p{
-  padding-top:.1rem
+
+.tour_ticketinfo p {
+  padding-top: .1rem
 }
-.elecheck{
+
+.elecheck {
   line-height: .7rem;
   height: .4rem;
 }
-.icon_left{
+
+.icon_left {
   display: inline-block;
   vertical-align: top;
   margin-left: .05rem;
@@ -1092,38 +1177,46 @@ color:white;
   height: .32rem;
   transition: 0.3s all ease;
 }
-.tourticket_tip{
+
+.tourticket_tip {
   color: #999999;
   font-size: .24rem;
 }
-.tour-item{
+
+.tour-item {
   overflow: hidden;
 }
-.tour_list{
+
+.tour_list {
   background-color: #fff;
 }
-.tour_list .tour-item{
+
+.tour_list .tour-item {
   margin-right: .3rem;
   margin-left: .3rem;
   padding-top: .3rem;
   padding-bottom: .3rem;
 }
-.tour_list .line{
+
+.tour_list .line {
   border-top: 1px solid #ddd;
 }
-.tour_list .tour-item i{
+
+.tour_list .tour-item i {
   width: .08rem;
   height: .3rem;
-  background-color:#ffb413;
+  background-color: #7bc300;
   display: inline-block;
   margin-right: .2rem;
 }
-.tour_list .tour-item ul{
+
+.tour_list .tour-item ul {
   width: 100%;
   overflow: hidden;
-  margin-top:.1rem;
+  margin-top: .1rem;
 }
-.tour_list .tour-item .col li{
+
+.tour_list .tour-item .col li {
   float: left;
   color: #999999;
 }

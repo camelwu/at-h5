@@ -228,7 +228,6 @@ section.foot_screen .screen_lf li {
 section.foot_screen .screen_lf li.cur {
     border-left: 3px solid #7bc300;
     background: #fff;
-    font-weight: bold;
 }
 
 section.foot_screen .screen_rg {

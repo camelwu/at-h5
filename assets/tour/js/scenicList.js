@@ -63,13 +63,14 @@
 						listData : data.themes
 					}
 				};
-				var str1 = $('#tpl_SearchAvailableToursAttractions').html();
-
+				var str1 = $('#tpl_SearchAvailableToursAttractions').html(),str2 = $('#tpl_Localtxt').html();
 				if (data.lists.length == 0) {
 					jAlert("抱歉暂时没有数据", "提示");
 				} else {
 					var tpl_SearchAvailableToursAttractions = ejs.render(str1, data);
+					var tpl_c = ejs.render(str2, data);
 					$("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
+					$("#Localtxt").html(tpl_c);
 					vlm.init();
 					if (footer) {
 						footer.data = f_data;

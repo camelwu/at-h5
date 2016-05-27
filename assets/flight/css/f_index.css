@@ -84,13 +84,13 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .origin > div {
   text-align: left;
   margin-right: .68rem;
-  border-bottom: 0.01rem solid #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 .destination > div {
   text-align: right;
   margin-left: .68rem;
-  border-bottom: 0.01rem solid #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 .iconTip {
@@ -272,8 +272,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .searchZone, .date-top {
-  height: .88rem;
-  line-height: .88rem;
+  height: .78rem;
+  line-height: .78rem;
   padding: 0 .28rem;
   font-size: .24rem;
   color: #999999;
@@ -300,7 +300,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .middle_input {
   display: block;
   border: 1px solid #e6e6e6;
-  margin: .14rem 1.22rem;
+  margin: 0rem 1.22rem;
   background: #fff;
   border-radius: .44rem;
   height: .60rem;
@@ -343,6 +343,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .flight_ul {
   background: #fff;
   padding: 0 .28rem;
+  margin-top: -3px;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -355,11 +356,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .flight_ul .starTime, .flight_ul .endTime {
-  font-size: .32rem;
+  font-size: .36rem;
 }
 
 .flight_ul .starPort, .flight_ul .endPort {
-  font-size: .28rem;
+  font-size: .24rem;
 }
 
 .flight_ul li, .time_airport, .left_info {
@@ -367,11 +368,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .left_info {
-  height: 1.54rem;
+  height: 1.32rem;
 }
 
 .flight_ul li {
-  padding: .32rem 0;
+  padding: .35rem 0 .2rem;
   height: 2.20rem;
   border-bottom: 1px solid #e6e6e6;;
 }
@@ -409,23 +410,27 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .seat_price .priceNumber {
-  font-size: .36rem;
-  color: #ff5b13;
+  font-size: .4rem;
+  color: #fd7530;
   margin-top: .16rem;
-  position: relative
+  position: relative;
 }
 
-.seat_price .priceNumber .double_tip, .seat_price .priceNumber .tax_cost, .double_tip, .seat_price .priceNumber .seat_condition {
+.seat_price .priceNumber .double_tip, .double_tip, .seat_price .priceNumber .seat_condition {
   display: block;
-  font-size: .20rem;
+  font-size: .18rem;
+  color: #999;
+}
+
+.seat_price .priceNumber .tax_cost{
+  font-size: .2rem;
   color: #999;
 }
 
 .seat_price .priceNumber .double_tip {
   display: inline-block;
   width: .20rem;
-  line-height: .26rem;
-  margin-left: .04rem
+  line-height: .22rem;
 }
 
 .seat_price .priceNumber .tax_cost, .seat_price .priceNumber .seat_condition {
@@ -447,7 +452,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .seat_price .priceNumber span.money {
-  font-size: .18rem;
+  font-size: .28rem;
 }
 
 .time_airport {
@@ -552,7 +557,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .left_info .middle {
   margin: 0 1.42rem 0 1rem;
   height: 1.74rem;
-  font-size: .18rem;
+  font-size: .2rem;
   color: #999;
   text-align: center;
   box-sizing: border-box;
@@ -586,7 +591,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .left_info .starPort, .left_info .endPort {
   display: block;
-  margin-top: .46rem;
+  margin-top: .32rem;
   width: 1.42rem;
   white-space: nowrap;
   overflow: hidden;
@@ -600,8 +605,8 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .spaceDay {
   position: absolute;
   right: -0.64rem;
-  top: -.04rem;
-  font-size: .18rem;
+  top: 0;
+  font-size: .2rem;
 }
 
 #loadMore {
@@ -794,6 +799,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   position: relative;
   text-align: center;
   color: #7bc300;
+  font-size: .24rem;
 }
 
 .flightDetailArrow i {
@@ -1448,7 +1454,7 @@ input.name{
   line-height: 0.88rem;
   height:.88rem;
   padding-left: 0.28rem;
-  border-bottom: 0.01rem solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
   font-size: 0.28rem;
   color: #333;
 }

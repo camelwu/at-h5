@@ -26,6 +26,7 @@
 			<header class="header">
 				<a href="javascript:history.go(-1);" class="header_back"><i class="icon_back"> </i></a>
 				<h3>酒+景</h3>
+				<a href="../scenic/scenic_city.html?citycode=1&amp;callback=tour/scenic_list.html" class="location-wrap"> <span id="Localtxt" class="location-txt"> 新加坡</span> <i class="location-tip"></i> </a>
 			</header>
 			<!--   内容   -->
 			<div class="content">
@@ -48,7 +49,6 @@
 				<!--</ul>-->
 			</div>
 			<!--   底部   -->
-
 		</div>
 		<script src="../js/lib/jquery.js"></script>
 		<script src="../js/lib/jquery.alert.js"></script>
@@ -56,6 +56,9 @@
 		<script src="../js/lib/ejs.js"></script>
 		<script src="../js/lib/lazyLoad.js"></script>
 		<script src="../plugins/footer/foot.js"></script>
+		<script id="tpl_Localtxt" type="text/template">
+			<%=destCity%>
+		</script>
 		<script id="tpl_SearchAvailableToursAttractions" type="text/template">
 			<% for(var i=0;i<lists.length;i++){ %>
 			<li>
