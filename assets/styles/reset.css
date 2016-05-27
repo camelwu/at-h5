@@ -194,7 +194,7 @@ a {
   left: 50%;
   top: 50%;
   background-image: url(../images/loading.gif);
-  background-size: 64px 64px;
+  background-size: 32px 32px;
   background-repeat: no-repeat;
   background-position: center;
   margin: -125px 0 0 -125px;
@@ -212,7 +212,7 @@ a {
   min-height: 100%;
   max-height: 100%;
   font-size: .28rem;
-  color: #484848;
+  color: #333;
 }
 
 .header {
@@ -224,7 +224,7 @@ a {
   pointer-events: all;
   z-index: 99;
   background-color: #fcfcfc;
-  opacity: .95;
+  /*opacity: .95;*/
   box-shadow: 0 1px 1px #e6e6e6;
 }
 
@@ -239,16 +239,16 @@ a {
   position: absolute;
   left: .48rem;
   top: 50%;
-  margin-top: -.2rem;
-  height: .5rem;
-  width: .2rem;
+  margin-top: -.24rem;
+  height: .48rem;
+  width: .25rem;
   background: url(../images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -0.55rem -0.54rem;
+  background-position: -0.55rem -0.50rem;
 }
 
 .header h3 {
-  color: #484848;
+  color: #333;
   text-align: center;
   line-height: .88rem;
 }

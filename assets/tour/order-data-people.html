@@ -26,7 +26,8 @@
 		<title>输入资料页 - 亚洲旅行网</title>
         <link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
-		<!--<link rel="stylesheet" type="text/css" href="css/tour.css">-->
+      <!--<link href="../styles/style.css" type="text/css" rel="stylesheet">-->
+        <!--<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>-->
         <link href="../styles/dzh.css" rel="stylesheet">
 	</head>
 	<body>
@@ -56,7 +57,7 @@
 							<div class="nav2-centertop">
 								<p>
                                     <i>入住</i>
-									<input name="CheckInDate" id="CheckInDate" value="2016-03-11" class="CheckInDateI" readonly="readonly" >
+									<input name="CheckInDate" id="CheckInDate" value="03月11日" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span1">周四</span>
 								</p>
 
@@ -64,7 +65,7 @@
 							<div class="nav2-centerbottom">
 								<p>
                                     <i>离店</i>
-									<input name="CheckOutDate" id="CheckOutDate" value="2016-03-12" class="CheckInDateI" readonly="readonly" >
+									<input name="CheckOutDate" id="CheckOutDate" value="03月12日" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span2">周一</span>
 								</p>
 							</div>
@@ -98,53 +99,68 @@
 			,
 		</div>
 
-		<script src="../js/lib/d_calendar1.0.2.js"></script>
-		<script src="../js/lib/jquery.js"></script>
-		<script src="../js/lib/plugins.js"></script>
-		<script src="../js/lib/jquery.alert.js"></script>
-		<script src="../js/lib/vlm.js"></script>
-		<script src="../js/lib/template.js"></script>
-		<script src="../js/lib/custom.js"></script>
-		<script src="js/dateFixed_.js"></script>
-		<script id="tpl_GetTour" type="text/template">
-			{% for(var i=0;i < tours.length;i++){ %}
-			<div class="nav2-tour tour-out-div" id="content{%=i%}" data-tour-id="{%=tours[i].tourID%}">
-			<div>{%=tours[i].tourName%}</div>
-			{% if(tours[i].travelDateMandatory){ %}
-			{% if(tours[i].tourSession.length==1){ %}
-			<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate" readonly="readonly" ><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span>{%=noon[i]%}</div>
-			<i></i>
-			{% }else if(tours[i].tourSession.length==2){ %}
-				<div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate" readonly="readonly" ><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span><i></i></div>
-              <div class="zy_all_day clearfix">
-                {% if(tours[i].tourSession[1]==0){ %}
-                    <div class="tourSelect">上午</div>
-                {% }else if(tours[i].tourSession[1]==1){ %}
-                    <div class="tourSelect">下午</div>
-                {% }else if(tours[i].tourSession[1]==2){  %}
-                    <div class="tourSelect">晚上</div>
-                {% } %}
-                {% if(tours[i].tourSession[0]==0){ %}
-                    <div class="tourSelect tourcho">上午</div>
-                {% }else if(tours[i].tourSession[0]==1){ %}
-                    <div class="tourSelect tourcho">下午</div>
-                {% }else if(tours[i].tourSession[0]==2){  %}
-                    <div class="tourSelect tourcho">晚上</div>
-                {% } %}
-
-                {% }else if(tours[i].tourSession.length==3){  %}
-                    <div><input name="CheckInDate" id="content{%=i%}_CheckInDate" value="{%=day_start%}" class="content3_CheckInDate" readonly="readonly" ><span id="content{%=i%}_week_span1" class="week-tour">{%=day_weekday%}</span><i></i></div>
-                  <div class="zy_all_day">
-                    <div class="tourSelect">晚上</div>
-                    <div class="tourSelect">下午</div>
-                    <div class="tourSelect tourcho">上午</div>
-                </div>
-                {% } %}
-              </div>
-			{% } %}
-			</div>
-			{% } %}
-		</script>
+<script src="../js/lib/d_calendar1.0.2.js"></script>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/plugins.js"></script>
+<script src="../js/lib/jquery.alert.js"></script>
+<script src="../js/lib/vlm.js"></script>
+<script src="../js/lib/template.js"></script>
+<script src="../js/lib/custom.js"></script>
+<!--<script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>-->
+<script src="js/dateFixed_.js"></script>
+<script id="tpl_GetTour" type="text/template">
+{% for(var i=0;i < tours.length;i++){ %}
+<div class="nav2-tour tour-out-div" id="content{%= i %}" data-tour-id="{%= tours[i].tourID %}">
+    <div><i></i>{%= tours[i].tourName %}</div>
+    <!-- 日期部分-->
+    <div>
+        <input name="CheckInDate" id="content{%= i %}_CheckInDate" value="{%= day_start %}" class="content3_CheckInDate" readonly="readonly">
+        <span id="content0_week_span1" class="week-tour">周一</span>
+        <i></i>
+    </div>
+    <!-- 判断时间部分-->
+    {% if(tours[i].tourSession.length == 1){ %}
+        {% if(tours[i].tourSession[0] == 0){ %}
+            <div class="zy_all_day clearfix">
+              <div class="tourSelect tourcho">上午</div>
+            </div>
+        {% } else if(tours[i].tourSession[0] == 1) { %}
+            <div class="zy_all_day clearfix">
+                <div class="tourSelect tourcho">下午</div>
+            </div>
+        {% } else if(tours[i].tourSession[0] == 2) { %}
+            <div class="zy_all_day clearfix">
+              <div class="tourSelect tourcho">晚上</div>
+            </div>
+        {% } else if(tours[i].tourSession[0] == 3) { %}
+            <div class="zy_all_day clearfix">
+              <div class="tourSelect tourcho">全天</div>
+            </div>
+        {% } %}
+    <!-- 有两个时间段-->
+    {% }else if(tours[i].tourSession.length == 2){ %}
+        {% if(tours[i].tourSession[0] == 0){ %}
+            <div class="zy_all_day clearfix">
+              <div class="tourSelect tourcho">上午</div>
+              <div class="tourSelect">下午</div>
+            </div>
+        {% } else if(tours[i].tourSession[0] == 1) { %}
+            <div class="zy_all_day clearfix">
+              <div class="tourSelect tourcho">下午</div>
+              <div class="tourSelect">晚上</div>
+            </div>
+        {% } %}
+    <!-- 有三个时间段-->
+    {% }else if(tours[i].tourSession.length == 3){ %}
+        <div class="zy_all_day clearfix">
+              <div class="tourSelect">上午</div>
+              <div class="tourSelect">下午</div>
+              <div class="tourSelect tourcho">晚上</div>
+        </div>
+    {% } %}
+</div>
+{% } %}
+</script>
     <script>
       var day_Num, day_start, calendar_end, day_weekday, day_ary = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
       var noon = [];

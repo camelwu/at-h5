@@ -61,9 +61,10 @@ var fSingleList = {
         dateNum = (minusOne.getDate()) < 10 ? "0" + parseInt(minusOne.getDate()) : minusOne.getDate();
         minusOne = minusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
         if (new Date(minusOne.replace(/-/g, "/") + ' 23:59:59') >= new Date()) {
-          newUrl = vlm.setUrlPara("", "departDate", minusOne);
-          newUrl = that.pageHandler(newUrl);
-          window.location.href = newUrl;
+          that.postObj.isClearAll = 1;
+          that.postObj.departDate = minusOne;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
       } else if (target.className == "nextDay") {
         lineMaxDate = new Date().getFullYear() + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate();
@@ -73,15 +74,15 @@ var fSingleList = {
         dateNum = (plusOne.getDate()) < 10 ? "0" + parseInt(plusOne.getDate()) : plusOne.getDate();
         plusOne = plusOne.getFullYear() + '-' + monthNum + '-' + dateNum;
         if (new Date(plusOne.replace(/-/g, "/") + ' 00:00:00') > new Date() && new Date(plusOne.replace(/-/g, "/")) < new Date(lineMaxDate + ' 00:00:00')) {
-          newUrl = vlm.setUrlPara("", "departDate", plusOne);
-          newUrl = that.pageHandler(newUrl);
-          window.location.href = newUrl;
+          that.postObj.isClearAll = 1;
+          that.postObj.departDate = plusOne;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
       }
     });
     return this;
   },
-
   createTags: function () {
     var data = arguments[0];
     var tempString = "", outputString = "", that = fSingleList;
@@ -125,8 +126,9 @@ var fSingleList = {
         var dateSource = arguments[0], that = fSingleList;
         fIndexInfoObj.data.departDate = dateSource[0];
         storage.setItem('fIndexInfo', JSON.stringify(fIndexInfoObj));
-        var newUrl = vlm.setUrlPara("", "departDate", dateSource);
-        window.location.href = newUrl;
+        that.postObj.departDate = dateSource;
+        that.pageHandler();
+        this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
       }
     });
     dates[0].setAttribute('date-full-value', this.postObj.departDate);
@@ -232,52 +234,39 @@ var fSingleList = {
     that.postObj.pageSize = Number(that.postObj.pageSize) > 10 ? Number(that.postObj.pageSize) : Number(that.postObj.pageNo) * 10;
     that.postObj.pageNo = 1;
     that.postObj.isClearAll = 1;
-    newUrl = vlm.setUrlPara(newUrl, "isClearAll", that.postObj.isClearAll);
-    newUrl = vlm.setUrlPara(newUrl, "pageNo", that.postObj.pageNo);
-    newUrl = vlm.setUrlPara(newUrl, "pageSize", that.postObj.pageSize);
     return newUrl;
   },
 
   filerCallBack: function () {
     console.log(arguments);
-    var transferData = arguments, that = fSingleList, newUrl = window.location.href;
+    var transferData = arguments, that = fSingleList;
+    that.postObj.isClearAll = 1;
     if (that.postObj.internationalOrDomestic == "international") {
       if (arguments[1].id == "Tax") {
+        that.fadeHandler('show')
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
           dd.innerHTML = "不含税价";
           that.postObj.hasTax = 0;
-          newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
-          newUrl = that.pageHandler(newUrl);
-          window.location.href = newUrl;
+          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         } else if (dd.innerHTML == "不含税价") {
           dd.innerHTML = "含税价";
           that.postObj.hasTax = 1;
-          newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
-          newUrl = that.pageHandler(newUrl);
-          window.location.href = newUrl;
+          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         }
       } else {
         console.log(transferData[0])
+        that.postObj.isClearAll = 1;
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
         that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
         that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
         that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
-        if (that.postObj.airCorpCode != undefined) {
-          newUrl = vlm.setUrlPara(newUrl, "airCorpCode", that.postObj.airCorpCode);
-        } else {
+        if (that.postObj.airCorpCode == undefined) {
           delete that.postObj.airCorpCode;
-          newUrl = vlm.setUrlPara(newUrl, "airCorpCode", "");
         }
-        newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
-        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight", that.postObj.isHideSharedFlight);
-        newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
-        newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
-        newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
-        newUrl = vlm.setUrlPara(newUrl, "hasTax", that.postObj.hasTax);
-        newUrl = that.pageHandler(newUrl);
-        window.location.href = newUrl;
+        that.pageHandler();
+        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
     } else {
       if (arguments[1].id == "Price") {
@@ -285,15 +274,12 @@ var fSingleList = {
         if (dd.innerHTML == "价格") {
           dd.innerHTML = "从低到高";
           that.postObj.priorityRule = 2;
-          newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
-          newUrl = that.pageHandler(newUrl);
-          window.location.href = newUrl;
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         } else if (dd.innerHTML == "从低到高") {
           dd.innerHTML = "价格";
           that.postObj.priorityRule = 0;
-          newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
-          newUrl = that.pageHandler(newUrl);
-          window.location.href = newUrl;
+          that.pageHandler();
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         }
       } else {
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
@@ -306,18 +292,10 @@ var fSingleList = {
           that.postObj.priorityRule = 0;
         } else {
           that.postObj.priorityRule = transferData[0].sortTypes[0];
-          that.postObj.isDesc = "none";//或删除属性
-          newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
+          delete that.postObj.isDesc
         }
-        newUrl = vlm.setUrlPara(newUrl, "priorityRule", that.postObj.priorityRule);
-        newUrl = vlm.setUrlPara(newUrl, "isDesc", that.postObj.isDesc);
-        newUrl = vlm.setUrlPara(newUrl, "isDirectFlight", that.postObj.isDirectFlight);
-        newUrl = vlm.setUrlPara(newUrl, "isHideSharedFlight", that.postObj.isHideSharedFlight);
-        newUrl = vlm.setUrlPara(newUrl, "departStartHour", that.postObj.departStartHour);
-        newUrl = vlm.setUrlPara(newUrl, "departEndHour", that.postObj.departEndHour);
-        newUrl = vlm.setUrlPara(newUrl, "cabinClass", that.postObj.cabinClass);
-        newUrl = that.pageHandler(newUrl);
-        window.location.href = newUrl;
+        that.pageHandler();
+        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
     }
   },
@@ -325,7 +303,7 @@ var fSingleList = {
     var dataTransfer = data || [], tempArray = [], f_data = {}, that = this;
     if (dataTransfer.length > 1) {
       dataTransfer.forEach(function (array, item) {
-        var temObj = {}
+        var temObj = {};
         temObj.filterText = array.airCorpName;
         temObj.filterValue = array.airCorpCode;
         tempArray.push(temObj);
@@ -526,6 +504,5 @@ var fSingleList = {
     this.postObj = postObj;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
-
 };
 fSingleList.init();

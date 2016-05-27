@@ -17,11 +17,9 @@
 
 <div class="is_box">
     <img class="is_banner" src="../images/activity/banner1.jpg" alt="">
-    <img class="is_banner"  src="../images/activity/banner2.jpg" alt="">
-    <img class="is_banner"  src="../images/activity/banner3.gif" alt="">
-    <ul class="is_list" id="act-list">
-
-    </ul>
+    <img class="is_banner" src="../images/activity/banner2.jpg" alt="">
+    <img class="is_banner" src="../images/activity/banner3.gif" alt="">
+    <ul class="is_list" id="act-list"></ul>
     <img class="is_banner" src="../images/activity/isfooter.gif" alt="">
 </div>
 
@@ -36,7 +34,6 @@
     </li>
 </script>
 <script src="../js/lib/jquery.js"></script>
-
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/template.js"></script>
@@ -220,7 +217,7 @@
                 "Remark":"http://packages.asiatravel.com/packagebooking/package.search.aspx?lan=zh-CN&scode=ACX98110SG&pid=506889"
             }
         ];
-        var  html_tj = template("tpl_seoul", data);
+        var html_tj = template("tpl_seoul", data);
         $("#act-list").html(html_tj);
         vlm.init();
     })();

@@ -68,11 +68,11 @@
         userIcon.src = "../images/user/photo-man.png";
       }else{
         if (myJson.data[0].salutation == "26") {
-          user_sex.className = "icon open-sexm";
+          user_sex.className = "icon_person open-sexm";
           userIcon.src = "../images/user/photo-man.png";
         } else {
-          user_sex.className = "icon open-sexw";
-          userIcon.src = "../images/ui/photo-woman.png";
+          user_sex.className = "icon_person open-sexw";
+          userIcon.src = "../images/user/photo-man.png";
         }
       }
     }
@@ -121,10 +121,10 @@
   //设置里的消息开关
   function ifOpen(){
     var b = window.event.srcElement;
-    if(b.className == "icon set-chose1"){
-      b.className = "icon set-chose2";
+    if(b.className == "icon set_chose1"){
+      b.className = "icon set_chose2";
     }else{
-      b.className = "icon set-chose1";
+      b.className = "icon set_chose1";
     }
   }
 
