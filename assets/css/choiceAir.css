@@ -40,7 +40,7 @@ i, em {
 
 .often_traveler {
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .eve_traveler {

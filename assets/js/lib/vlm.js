@@ -9,8 +9,8 @@
 
 (function (e, t) {
     var n = n || (function (n) { //123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111
-        var _api = "http://10.7.2.119/api/GetServiceApiResult",
-            _apiWithDeviceID = "10.7.2.119/apiWihtDeviceID/GetServiceApiResult",
+        var _api = "http://10.7.2.111/api/GetServiceApiResult",
+            _apiWithDeviceID = "http://10.7.2.111/apiWihtDeviceID/GetServiceApiResult",
             lStorage = window.localStorage,
             sStorage = window.sessionStorage,
             basePath = basePath == undefined ? "http://" + window.location.host : basePath,
@@ -1172,9 +1172,6 @@
                 //var choice = window.open('../user/user-choiceAir.html?from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + ''+ '&isMulSelect=' + isMulSelect + '&numofAdult='+numofAdult+"&numofChlid="+numofChlid+"&Id="+id, title, "fullscreen=1");
                 var choice = createIframe('../user/user-choiceAir.html?elementId=' + elementId + ' &from=' + f + '&isNeedPassport=' + isNeedPassport + '&title=' + title + '&type=' + type + '&TravellerId=' + tid + '' + '&isMulSelect=' + isMulSelect + '&numofAdult=' + numofAdult + "&numofChlid=" + numofChlid + "&Id=" + id + "&departDate=" + departDate);
                 document.body.appendChild(choice);
-                if (window.parent.document.getElementById("hftPage")) {
-                    window.parent.document.getElementById("hftPage").style.visibility = "hidden";
-                }
 
                 //choice.location = urls;
             }, createIframe = function (urlstr, id) {

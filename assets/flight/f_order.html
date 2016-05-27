@@ -41,17 +41,19 @@
       <h4>乘机人<i
         onclick=" vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate)"></i>
       </h4>
-      <ul class="passenger_outer" id="passenger-list">
-        <li>
-          <p class="name_infos"><i class="minus_person"></i>
-           <label>姓</label><input class="input name" placeholder="BAI" readonly="readonly"/>
-           <label>名</label><input class="input name" placeholder="LISA" readonly="readonly"/>
-            <i class="add_icon passenger"></i></p>
-          <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"
-                                                                         placeholder="1234567" readonly="readonly"/><span class="sex_value">女</span>
-          </p>
-        </li>
-      </ul>
+      <div id="passenger-list">
+          <ul class="passenger_outer" style="display: none" >
+            <li>
+              <p class="name_infos"><i class="minus_person"></i>
+               <label>姓</label><input class="input name" placeholder="BAI" readonly="readonly" data-elementname="lastName" />
+               <label>名</label><input class="input name" placeholder="LISA" readonly="readonly" data-elementname="firstName"/>
+                <i class="add_icon passenger"></i></p>
+              <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"  data-elementname="idNumber"
+                                                                             placeholder="1234567" readonly="readonly"/><span class="sex_value" data-elementname="sexName">女</span>
+              </p>
+            </li>
+          </ul>
+        </div>
     </div>
     <!--联系人-->
     <div class="contact_wrap" id="contact-table">
