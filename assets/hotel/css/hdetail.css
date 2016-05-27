@@ -28,16 +28,21 @@ strong{
 }
 .hotel_imgBox{
   width: 100%;
-  height: .6rem;
+  height: 40%;
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
+  background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+  background: -moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+  background: -o-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+  background: linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
   bottom: 0rem;
 }
 .hotel_imgBog_num{
   line-height: .6rem;
-  float: right;
-  margin-right: 5%;
   color: white;
+  text-align: inherit;
+  position: absolute;
+  right: .28rem;
+  bottom: .28rem;
 }
 .goback{
   width: 0.64rem;
@@ -115,10 +120,10 @@ strong{
   font-weight: 700;
 }
 .hotel_shoulder_icon{
-  width: .4rem;
+  width: .2rem;
   height: .4rem;
   background-image: url(../../images/ui.1.0/icon_common.png);
-  background-position: -3.95rem -0.6rem;
+  background-position: -1.15rem -0.6rem;
   background-size: 7.9rem 7.98rem;
   position: absolute;
   display: inline-block;
@@ -218,7 +223,7 @@ strong{
 .hotel_content_listTrigger_price{
   margin-top:.12rem;
   float: right;
-  margin-right: .4rem;
+  margin-right: .5rem;
 }
 
 .hotel_content_listTrigger_price >span{
@@ -228,9 +233,9 @@ strong{
 .d-icon5{
   width: .4rem;
   height: .4rem;
-  background-image: url(../../images/ui/icon-hft.png);
-  background-position: -3.7rem -2.12rem;
-  background-size: 7.5rem 4.54rem;
+  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-position: -2.23rem -0.6rem;
+  background-size: 7.9rem 7.98rem;
   transition: none!important;
   position: absolute;
   top: .5rem;

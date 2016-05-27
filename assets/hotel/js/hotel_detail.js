@@ -424,7 +424,7 @@
 			frontImgStr = '';
 			frontImgStr += '<a class="goback" href="javascript:window.history.go(-1);"></a> <div class="d-div1 faceImg hotel_img"><img class="hotelPic" src="' + hotelDetail.sTools.frontImage(result.data[0].hotelImagesList) + '" /> <div class="d-div2 totalNum hotel_imgBox"><div class="d-p4 hotel_imgBog_num">' + hotelDetail.sTools.imageNum(result.data[0].hotelImagesList) + '张</div></div></div>';
             //H5-410 点评为0时不显示该模块
-      		rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li class = "score" onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分 ' +'<b>'+ result.data[0].hotelGenInfo.hotelReviewCount + '</b>'+'人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
+      		rateStr =  result.data[0].hotelGenInfo.hotelReviewCount == 0 ? "" : '<li class = "score" onclick="hotelDetail.h_reviews()"><span class="rateScore hotel_shoulder_score">' + result.data[0].hotelGenInfo.hotelReviewScore.toFixed(1) + '</span>分 /' +'<b>'+ result.data[0].hotelGenInfo.hotelReviewCount + '</b>'+'人点评<b class="icons open-arg hotel_shoulder_icon"></b></li>';
 
 			firstUl += '<div class="maps"><h3>' + hotelDetail.sTools.hotelName(result.data[0].hotelGenInfo.hotelName) +'</h3><div id="map"></div><span class="address-text">' + result.data[0].hotelGenInfo.hotelAddress + '</span></div><ul class="d-ul1 hotel_shoulder">' + ''+rateStr+'<li class="toHotelDetail">' + hotelDetail.sTools.StarRatingName(result.data[0].hotelGenInfo.starRatingName) + '星级<b class="CrazyRate "></b>'+isFreeWifi+isFreeTransfer+'<b class="icons open-arg hotel_shoulder_icon"></b>'+hotelDetail.sTools.getServiceList(result.data[0].hotelRoomsList)+'</li></ul>';
 
