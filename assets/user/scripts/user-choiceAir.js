@@ -136,7 +136,6 @@
        ]
      }
   }
-
   var _model2UI=function(model){
     $(".addAir_page .cnName").val(model.traveller.idName);
     $(".addAir_page .lastName").val(model.traveller.lastName);
