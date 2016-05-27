@@ -54,7 +54,6 @@
     closeAmend(close_page);
     //  是否显示密码
     function ifShowkey(obj){
-      console.log(obj);
       obj.click(function(){
             var input;
         if(obj.find('b').attr('class') == "show_key"){

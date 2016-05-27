@@ -267,12 +267,14 @@
                     </p>
 
                     <div class="after-noon">
+                      <%if(tour["tourSessions"]){ %>
                         <% tour["tourSessions"].forEach(function(tourSession, ite){ %>
-                            <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
-                                <%=
-                        tourSession["tourSessionName"] %>
-                            </button>
-                            <% }) %>
+                        <button class="<%= tourSession['isSelected'] == 1 ? 'active' : '' %>" data-enumvalue="<%= tourSession['tourSessionEnumValue']%>">
+                          <%=
+                          tourSession["tourSessionName"] %>
+                        </button>
+                        <% }) %>
+                      <% } %>
                     </div>
                 </li>
                 <% }) %>
