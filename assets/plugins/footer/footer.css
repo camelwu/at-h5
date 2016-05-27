@@ -1,360 +1,410 @@
 body {
-	background: #f7f7f7;
+    background: #f7f7f7;
 }
+
 ol {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
+
 .jpr {
-	position: relative;
+    position: relative;
 }
+
 .jpa {
-	position: absolute;
+    position: absolute;
 }
+
+
 /*酒店列表  开始*/
 
 .footer_filter_masker {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background: rgba(0,0,0,0.3);
-	top: 0;
-	left: 0;
-	z-index: 2;
-	display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: none;
 }
-.footer_three dl.curBtn,.footer_two dl.curBtn{
-	background: #0d0d0d;
+
+.footer_three dl.curBtn,
+.footer_two dl.curBtn {
+    background: #0d0d0d;
 }
+
 .footer_two dl {
-	width: 50%;
-	float: left;
-	text-align: center;
-	height: 0.98rem;
-	color: #fff;
-	font-family: FZLTXHK;
+    width: 50%;
+    float: left;
+    text-align: center;
+    height: 0.98rem;
+    color: #fff;
+    font-family: FZLTXHK;
 }
 
 .footer_three dl {
-	width: 33.3333333%;
-	float: left;
-	text-align: center;
-	height: 0.98rem;
-	color: #fff;
-	font-family: FZLTXHK;
+    width: 33.3333333%;
+    float: left;
+    text-align: center;
+    height: 0.98rem;
+    color: #fff;
+    font-family: FZLTXHK;
 }
 
 .footer-four dl {
-	width: 25%;
-	float: left;
-	text-align: center;
-	height: 0.98rem;
-	color: #fff;
-	font-family: FZLTXHK;
+    width: 25%;
+    float: left;
+    text-align: center;
+    height: 0.98rem;
+    color: #fff;
+    font-family: FZLTXHK;
 }
 
 .footer-five dl {
-	width: 20%;
-	float: left;
-	text-align: center;
-	height: 0.98rem;
-	color: #fff;
-	font-family: FZLTXHK;
+    width: 20%;
+    float: left;
+    text-align: center;
+    height: 0.98rem;
+    color: #fff;
+    font-family: FZLTXHK;
 }
 
 .footer-six dl {
-	width: 16.666667%;
-	float: left;
-	text-align: center;
-	height: 0.98rem;
-	color: #fff;
-	font-family: FZLTXHK;
+    width: 16.666667%;
+    float: left;
+    text-align: center;
+    height: 0.98rem;
+    color: #fff;
+    font-family: FZLTXHK;
 }
+
+
 /*底部css  结束*/
 
 
-
-
 /*btn*/
-footer.footer_three dt,footer.footer_two dt{
-	width: 0.36rem;
-	height: 0.37rem;
-	background: url(../../images/ui/icon_common.png);
-	background-size: 7.89rem 5.07rem;
-	margin: 0.12rem auto 0.05rem;
+
+footer.footer_three dt,
+footer.footer_two dt {
+    width: 0.36rem;
+    height: 0.37rem;
+    background: url(/images/ui/icon_common.png);
+    background-size: 7.89rem 5.07rem;
+    margin: 0.12rem auto 0.05rem;
 }
-dl.foot_sort dt, dl.f_foot_sort dt{
-	background-position: -0.59rem -2.32rem;
+
+dl.foot_sort dt,
+dl.f_foot_sort dt {
+    background-position: -0.59rem -2.32rem;
 }
-dl.foot_screen dt, dl.foot_t_filter dt{
-	background-position: -1.87rem -2.32rem;
+
+dl.foot_screen dt,
+dl.foot_t_filter dt {
+    background-position: -1.87rem -2.32rem;
 }
-dl.foot_position dt{
-	background: url(../../images/hotel_flight_tour/icon_hotel.png);
-	background-size: 7.89rem 2.58rem;
-	background-position: -2.19rem -0.46rem;
+
+dl.foot_position dt {
+    background: url(/images/hotel_flight_tour/icon_hotel.png);
+    background-size: 7.89rem 2.58rem;
+    background-position: -2.19rem -0.46rem;
 }
-section.foot_sort,section.f_foot_sort {
-	background: #fff;
-	width: 100%;
-	position: absolute;
-	transition: all 0.3s;
-	left: 0;
-	bottom: -8.98rem;
+
+section.foot_sort,
+section.f_foot_sort {
+    background: #fff;
+    width: 100%;
+    position: absolute;
+    transition: all 0.3s;
+    left: 0;
+    bottom: -8.98rem;
 }
-section.foot_sort li, section.f_foot_sort li{
-	margin: 0 0 0 0.28rem;
-	font-size: 0.28rem;
-	padding: 0 0.12rem;
-	height: 0.96rem;
-	line-height: 0.96rem;
-	border-top: 1px solid #e6e6e6;
-	color: #333;
-	position: relative;
+
+section.foot_sort li,
+section.f_foot_sort li {
+    margin: 0 0 0 0.28rem;
+    font-size: 0.28rem;
+    padding: 0 0.12rem;
+    height: 0.96rem;
+    line-height: 0.96rem;
+    border-top: 1px solid #e6e6e6;
+    color: #333;
+    position: relative;
 }
-section.foot_sort li.cur i,section.f_foot_sort li.cur i{
-	width: 0.4rem;
-	height: 0.4rem;
-	position:absolute;
-	top:50%;
-	right: 0.18rem;
-	margin-top:-0.2rem;
+
+section.foot_sort li.cur i,
+section.f_foot_sort li.cur i {
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    top: 50%;
+    right: 0.18rem;
+    margin-top: -0.2rem;
 }
-section.foot_sort li i,section.f_foot_sort li i{
-	background:url(../../images/ui/icon_common.png);
-	background-size:7.9rem 5.13rem;
-	background-position: -6.9rem -0.58rem;
+
+section.foot_sort li i,
+section.f_foot_sort li i {
+    background: url(/images/ui/icon_common.png);
+    background-size: 7.9rem 5.13rem;
+    background-position: -6.9rem -0.58rem;
 }
-section.foot_screen{
-	height: 6.72rem;
-	width: 100%;
-	position: absolute;
-	bottom: -6.98rem;
-	left: 0;
-	background: #fff;
-	font-size: 0.28rem;
-	transition: all 0.3s;
+
+section.foot_screen {
+    height: 6.72rem;
+    width: 100%;
+    position: absolute;
+    bottom: -6.98rem;
+    left: 0;
+    background: #fff;
+    font-size: 0.28rem;
+    transition: all 0.3s;
 }
-.foot_screen_btn{
-	height: 0.89rem;
-	line-height: 0.89rem;
-	background: #f7f7f7;
-	position: relative;
+
+.foot_screen_btn {
+    height: 0.89rem;
+    line-height: 0.89rem;
+    background: #f7f7f7;
+    position: relative;
 }
-.foot_screen_btn p{
-	top: 0;
-	text-align: center;
-	color: #999;
+
+.foot_screen_btn p {
+    top: 0;
+    text-align: center;
+    color: #999;
 }
-.foot_screen_btn .cancel,.foot_screen_btn .sure{
-	position: absolute;
-	width: 1.5rem;
+
+.foot_screen_btn .cancel,
+.foot_screen_btn .sure {
+    position: absolute;
+    width: 1.5rem;
 }
-.foot_screen_btn .cancel{
-	left: 0;
+
+.foot_screen_btn .cancel {
+    left: 0;
 }
-.foot_screen_btn .clears{
-	margin: 0 1.5rem;
+
+.foot_screen_btn .clears {
+    margin: 0 1.5rem;
 }
-.foot_screen_btn .sure{
-	right: 0;
-	color: #7bc300;
+
+.foot_screen_btn .sure {
+    right: 0;
+    color: #7bc300;
 }
-section.foot_screen .screen_box{
-	position: relative;
-	height: 5.83rem;
+
+section.foot_screen .screen_box {
+    position: relative;
+    height: 5.83rem;
 }
-section.foot_screen .screen_lf{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 2rem;
-	height: 5.83rem;
-	overflow-y: scroll;
-	background: #f7f7f7;
+
+section.foot_screen .screen_lf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: 5.83rem;
+    overflow-y: scroll;
+    background: #f7f7f7;
 }
-section.foot_screen .screen_lf{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 2rem;
-	height: 5.83rem;
-	overflow-y: scroll;
+
+section.foot_screen .screen_lf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: 5.83rem;
+    overflow-y: scroll;
 }
-section.foot_screen .screen_lf li{
-	height: 0.96rem;
-	line-height: 0.96rem;
-	color: #333;
-	padding-left: 0.23rem;
-	border-left: 3px solid #f7f7f7;
-	background: #f7f7f7;
+
+section.foot_screen .screen_lf li {
+    height: 0.96rem;
+    line-height: 0.96rem;
+    color: #333;
+    padding-left: 0.23rem;
+    border-left: 3px solid #f7f7f7;
+    background: #f7f7f7;
 }
-section.foot_screen .screen_lf li.cur{
-	border-left: 3px solid #7bc300;
-	background: #fff;
-	font-weight: bold;
+
+section.foot_screen .screen_lf li.cur {
+    border-left: 3px solid #7bc300;
+    background: #fff;
+    font-weight: bold;
 }
-section.foot_screen .screen_rg{
-	background: #fff;
-	margin-left: 2.32rem;
+
+section.foot_screen .screen_rg {
+    background: #fff;
+    margin-left: 2.32rem;
 }
-section.foot_screen .screen_rg ul{
-	height: 5.83rem;
-	overflow-y: scroll;
+
+section.foot_screen .screen_rg ul {
+    height: 5.83rem;
+    overflow-y: scroll;
 }
-section.foot_screen .screen_rg li{
-	height: 0.96rem;
-	line-height: 0.96rem;
-	color: #333;
-	border-bottom: 1px solid #dedede;
-	position: relative;
+
+section.foot_screen .screen_rg li {
+    height: 0.96rem;
+    line-height: 0.96rem;
+    color: #333;
+    border-bottom: 1px solid #dedede;
+    position: relative;
 }
-section.foot_screen .screen_rg i{
-	width: 0.4rem;
-	height: 0.4rem;
-	position: absolute;
-	top: 50%;
-	right: 0.28rem;
-	margin-top: -0.2rem;
+
+section.foot_screen .screen_rg i {
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    top: 50%;
+    right: 0.28rem;
+    margin-top: -0.2rem;
 }
-section.foot_screen .screen_rg li.cur i{
-	background: url(../../images/ui/icon_common.png);
-	background-size: 7.9rem 5.13rem;
-	background-position: -6.9rem -0.58rem;
+
+section.foot_screen .screen_rg li.cur i {
+    background: url(/images/ui/icon_common.png);
+    background-size: 7.9rem 5.13rem;
+    background-position: -6.9rem -0.58rem;
 }
-section.foot_position,section.foot_t_filter{
-	position: absolute;
-	bottom: -6.98rem;
-	left: 0;
-	width: 100%;
-	height: 5.69rem;
-	background: #fff;
-	font-size: 0.28rem;
-	transition: all 0.3s;
+
+section.foot_position,
+section.foot_t_filter {
+    position: absolute;
+    bottom: -6.98rem;
+    left: 0;
+    width: 100%;
+    height: 5.69rem;
+    background: #fff;
+    font-size: 0.28rem;
+    transition: all 0.3s;
 }
-section.foot_position ul,section.foot_t_filter ul{
-	background: #fff;
-	width: 100%;
-	position: absolute;
-	transition: all 0.3s;
-	left: 0;
-	height: 4.8rem;
-	bottom: 0rem;
-	overflow-y: scroll;
+
+section.foot_position ul,
+section.foot_t_filter ul {
+    background: #fff;
+    width: 100%;
+    position: absolute;
+    transition: all 0.3s;
+    left: 0;
+    height: 4.8rem;
+    bottom: 0rem;
+    overflow-y: scroll;
 }
-section.foot_position li,section.foot_t_filter li{
-	font-size: 0.28rem;
-	padding: 0 0.12rem;
-	height: 0.96rem;
-	line-height: 0.96rem;
-	border-top: 1px solid #e6e6e6;
-	color: #333;
-	position: relative;
-	margin: 0 0 0 0.28rem;
+
+section.foot_position li,
+section.foot_t_filter li {
+    font-size: 0.28rem;
+    padding: 0 0.12rem;
+    height: 0.96rem;
+    line-height: 0.96rem;
+    border-top: 1px solid #e6e6e6;
+    color: #333;
+    position: relative;
+    margin: 0 0 0 0.28rem;
 }
-section.foot_position li i{
-	position: absolute;
-	right: 0.39rem;
-	top: 50%;
-	background:url(../../images/ui/icon_common.png);
-	background-size: 7.9rem 5.13rem;
-	background-position: -4.40rem -0.51rem;
-	width: 0.5rem;
-	height: 0.5rem;
-	margin-top: -0.25rem;
+
+section.foot_position li i {
+    position: absolute;
+    right: 0.39rem;
+    top: 50%;
+    background: url(/images/ui/icon_common.png);
+    background-size: 7.9rem 5.13rem;
+    background-position: -4.40rem -0.51rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: -0.25rem;
 }
-section.foot_position ul li:first-child{
-	border-top: 0;
+
+section.foot_position ul li:first-child {
+    border-top: 0;
 }
-section.foot_position li.cur{
-	color: #7bc300;
+
+section.foot_position li.cur {
+    color: #7bc300;
 }
-section.foot_position li.cur i{
-	background-position: -5.07rem -0.51rem;
+
+section.foot_position li.cur i {
+    background-position: -5.07rem -0.51rem;
 }
+
 
 /*景点*/
-.footer_two dl{
-	width: 50%;
+
+.footer_two dl {
+    width: 50%;
 }
+
+
 /*航空公司  开始*/
-section.flight_company{
-	width: 100%;
-	padding-bottom: 1rem;
-	overflow: hidden;
-	background: #FFFFFF;
-	height: 100%;
-	overflow-y: scroll;
-	position: fixed;
+
+section.flight_company {
+    width: 100%;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    background: #FFFFFF;
+    height: 100%;
+    overflow-y: scroll;
+    position: fixed;
 }
+
 section.flight_company li {
-	position: relative;
-	height: .68rem;
-	padding: .3rem;
-	margin-bottom: 0;
-	font-size: .28em;
-	border-bottom: 1px solid #ddd;
+    position: relative;
+    height: .68rem;
+    padding: .3rem;
+    margin-bottom: 0;
+    font-size: .28em;
+    border-bottom: 1px solid #ddd;
 }
+
 section.flight_company li div:nth-child(1) {
-	float: left;
-	width: .4rem;
-	margin-top: .15rem;
-	height: .35rem;
-	overflow: hidden;
+    float: left;
+    width: .4rem;
+    margin-top: .15rem;
+    height: .35rem;
+    overflow: hidden;
 }
+
 section.flight_company li .airway_name {
-	float: left;
-	margin-left: .1rem;
-	font-size: .28rem;
-	line-height: .68rem;
-	color: #333333;
+    float: left;
+    margin-left: .1rem;
+    font-size: .28rem;
+    line-height: .68rem;
+    color: #333333;
 }
+
 section.flight_company .aw_price {
-	float: right;
-	color: #fb6a22;
-	font-weight: bold;
-	font-size: .28rem;
-	line-height: .68rem;
+    float: right;
+    color: #fb6a22;
+    font-weight: bold;
+    font-size: .28rem;
+    line-height: .68rem;
 }
+
 section.flight_company .aw_price span:first-child {
-	font-size: .12rem;
+    font-size: .12rem;
 }
+
 section.flight_company .aw_price span:last-child {
-	font-size: .28rem;
+    font-size: .28rem;
 }
+
 section.flight_company li.cur b.hft_icon {
-	position: absolute;
-	background-image: url(../../images/ui/icon_common.png);
-	background-size: 7.5rem 4.54rem;
-	background-position:-4.47rem -1.29rem;
-	width: 0.42rem;
-	height: 0.42rem;
-	right: 0;
-	top: 0;
+    position: absolute;
+    background-image: url(/images/ui/icon_common.png);
+    background-size: 7.5rem 4.54rem;
+    background-position: -4.47rem -1.29rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    right: 0;
+    top: 0;
 }
+
 .footer_filter_btn dl.flight_company dt {
-	background-position: -2.6rem -4.33rem;
-	width: 0.5rem;
+    background-position: -2.6rem -4.33rem;
+    width: 0.5rem;
 }
-footer dl.flight_company dt{
-	background-position: -4.34rem -2.38rem;
-	width: 0.44rem;
+
+footer dl.flight_company dt {
+    background-position: -4.34rem -2.38rem;
+    width: 0.44rem;
 }
+
+
 /*航空公司 结束*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

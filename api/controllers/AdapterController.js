@@ -28,29 +28,28 @@ var iv = 'YWJjZGVmZ2hpamts';
 var cipherEncoding = 'base64';
 var clearEncoding = 'utf8';
 
-var getWithTrickParam=function(res,res,param){
-  console.log(param);
-  var orderType=apiOrderDic[param.code]==undefined?apiOrderDic[param.Code]:apiOrderDic[param.code]
-  if( orderType!=undefined){
-      if(orderType.tpye != "H"){
-        if(param.Parameters.track.deviceID==""){
-          var deviceID=uuid.v4();
-          param.Parameters.track.deviceID=deviceID;
-          res.cookie('deviceID', deviceID);
-        }
-        param.Parameters.track.browserType="Siri";
-      }
-      else{
-        if(param.Parameters.deviceID=="") {
-          var deviceID=uuid.v4();
-          param.Parameters.deviceID = deviceID;
-          res.cookie('deviceID', deviceID );
-        }
-        param.Parameters.browserType="Siri";
+var getWithTrickParam = function (res, res, param) {
+    console.log(param);
+    var orderType = apiOrderDic[param.code] == undefined ? apiOrderDic[param.Code] : apiOrderDic[param.code]
+    if (orderType != undefined) {
+        if (orderType.tpye != "H") {
+            if (param.Parameters.track.deviceID == "") {
+                var deviceID = uuid.v4();
+                param.Parameters.track.deviceID = deviceID;
+                res.cookie('deviceID', deviceID);
+            }
+            param.Parameters.track.browserType = "Siri";
+        } else {
+            if (param.Parameters.deviceID == "") {
+                var deviceID = uuid.v4();
+                param.Parameters.deviceID = deviceID;
+                res.cookie('deviceID', deviceID);
+            }
+            param.Parameters.browserType = "Siri";
 
-      }
-  }
-  return param;
+        }
+    }
+    return param;
 }
 
 module.exports = {
@@ -88,43 +87,43 @@ module.exports = {
         //headers.flag = 0;  //非加密
         headers.flag = headers.flag || 1; //加密传输
         if (headers.flag == 1) {
-            var reqeustStartTime,requestEndTime,spendTime;
+            var reqeustStartTime, requestEndTime, spendTime;
             //http://10.6.11.20:6666/api/GetServiceApiResult
             //http://123.56.190.34:8888/api/GetServiceApiResult
             //http://10.6.11.20:11111/api/GetServiceApiResult  hotel_flight
             //10.7.2.100:8888   
             //UAT domain   hapi.atrip.net
-            var _api = 'http://hapi.atrip.net:8000/api/GetServiceApiResult' + '?rnd=' + Math.random();
+            var _api = 'http://10.7.2.100:8888/api/GetServiceApiResult' + '?rnd=' + Math.random();
 
             //自定义请求header和body
             var option = {
-                    method: method,
-                    //json : true,
-                    //encoding : null,
-                    gzip: true,
-                    //headers : headers,
-                    headers: {
-                        "Content-Type": headers["content-type"],
-                        "Sign": sign,
-                        "Token": timeBase64
-                    },
-                    body: bodyAesBase64
-                }
+                method: method,
+                //json : true,
+                //encoding : null,
+                gzip: true,
+                //headers : headers,
+                headers: {
+                    "Content-Type": headers["content-type"],
+                    "Sign": sign,
+                    "Token": timeBase64
+                },
+                body: bodyAesBase64
+            }
             reqeustStartTime = new Date().getTime();
-                //接口调用
+            //接口调用
             request(_api, option, function (err, httpResponse, body) {
                 requestEndTime = new Date().getTime();
                 spendTime = requestEndTime - reqeustStartTime;
-                if(parseInt(spendTime) > 5000){
+                if (parseInt(spendTime) > 5000) {
                     console.log(bodyString);
-                    console.log(new Date() + "--api 接口访问时间：" + (requestEndTime-reqeustStartTime));
+                    console.log(new Date() + "--api 接口访问时间：" + (requestEndTime - reqeustStartTime));
                 }
 
                 if (!err && httpResponse.statusCode == 200) {
                     res.header("Access-Control-Allow-Origin", "*");
                     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-                    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-                    res.header("X-Powered-By",' 3.2.1')
+                    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+                    res.header("X-Powered-By", ' 3.2.1')
                     res.header("Content-Type", "application/json;charset=utf-8");
                     res.type('application/json'); //设置返回content-type
                     res.send(body);
