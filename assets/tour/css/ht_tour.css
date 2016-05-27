@@ -618,6 +618,10 @@ header.header .header_more i.location_tip{
   background-size: 7.90rem 5.13rem;
   background-position: -1.08rem -0.59rem;
 }
+#loadMore{
+  padding: 0.3rem 0 0.4rem;
+  text-align: center;
+}
     /**/
 /*景点列表页结束*/
 /*套餐详情页开始*/
