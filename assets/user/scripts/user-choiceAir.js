@@ -118,6 +118,53 @@
       $(this).find("b").removeClass("traveler_sex2").addClass("traveler_sex1");
     })
   };
+  var _validate=function(){
+
+    if(cnNameUL.is(':visible')){
+      if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cnName").eq(0).val())){
+        jAlert("中文姓名不能为空！","",null,"确认");
+        return false;
+      }
+      if(!vlm.Utils.validate["chiName"]($(addOrEditPassagePage).find(".cnName").eq(0).val())){
+        jAlert("请输入有效的中文名！","",null,"确认");
+        return false;
+      }
+    };
+
+    if(contactUL.is(':visible')){
+        if(!vlm.Utils.validate["mobileNo"]($(inputaddOrEditPassagePageList).find(".telNum").eq(0).val())){
+          jAlert("请输入有效的电话号码！","",null,"确认");
+          return false;
+        }
+
+        if(!vlm.Utils.validate["email"]($(addOrEditPassagePage).find(".txtEmail").eq(0).val())){
+          jAlert("请输入有效的邮箱！","",null,"确认");
+          return false;
+        }
+    }
+    if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".lastName").eq(0).val())){
+      jAlert("姓（英文）不能为空！","",null,"确认");
+      return false;
+    }
+    if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".firstName").eq(0).val())){
+      jAlert("名（英文）不能为空！","",null,"确认");
+      return false;
+    }
+    if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cardNumber").eq(0).val())){
+      jAlert("证件号不能为空！","",null,"确认");
+      return false;
+    }
+
+    if(!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".lastName").eq(0).val())){
+      jAlert("姓必须为英文！","",null,"确认");
+      return false;
+    }
+    if(!vlm.Utils.validate["engName"]($(addOrEditPassagePage).find(".firstName").eq(0).val())){
+      jAlert("名必须为英文！","",null,"确认");
+      return false;
+    }
+    return true;
+  }
 
   var _ui2Modle=function(type){
     if(type=="new") {
@@ -224,7 +271,9 @@
 
   //数据保存
   var _saveDb=function(){
-    debugger;
+      if(!_validate()){
+        return;
+      }
       var modle=_ui2Modle(currentOperationType);
       //登陆
       if(memberId !=undefined) {
@@ -429,6 +478,7 @@
     $(".add_passager .newTitle").html("新增"+titleType)
 
     $(".addAir_page .oprationType").html(operationType[currentOperationType].name);
+
     $(".addAir_page .bussinessTitle").html(titleType);
   };
 
