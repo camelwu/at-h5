@@ -85,7 +85,7 @@
     <div style="position:absolute;bottom:.2rem;right:15px;font-size: .32rem;color:#ffffff;"><%= (imgl)%>张</div>
 </script>
 <script id="tpl12" type="text/template">
-    <%  var htls=roomUpGrade.resetData(hotels[0]); %>
+    <%  var htls=roomUpGrade.resetData(hotels[0]),hgis = roomUpGrade.resetData(HotelGenInfo); %>
     <li class="name">
         <p class="d-score score">
             <b class="d-icon4 icon4"></b>
@@ -95,7 +95,7 @@
     <li>
         <p class="d-score score">
             <b class="d-icon4 icon4"></b>
-            <%= htls.location %>
+            <%= hgis.hotelAddress %><!--htls.location-->
         </p>
     </li>
 </script>
