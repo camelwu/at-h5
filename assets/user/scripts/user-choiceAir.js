@@ -411,14 +411,16 @@
 
     if(memberId==undefined){
       var data=JSON.parse(localStorage.getItem("choiceAir_AddPassagerArray"));
-      if( choiceAir_AddPassagerArray.length==0) {
+      if( data==null) {
+        passagerListPage.hide();
+        addOrEditPassagePage.show();
+      }
+      else{
         for (var key in data) {
           choiceAir_AddPassagerArray.push(data[key])
         }
       }
 
-      passagerListPage.hide();
-      addOrEditPassagePage.show();
     }
     _getPassagerList();
     _bindEvent();
