@@ -190,7 +190,7 @@ var fOrder = {
 
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {} , passengerOuter =  document.querySelector('.passenger_outer');
+    var postPara = {}, temObject = {} , passengerOuter =  document.querySelector('.passenger_outer') ,that=this;
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
@@ -293,7 +293,7 @@ var fOrder = {
         window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
         postPara.contactDetail = contactInfo;
         /*this.fadeHandler("show");*/
-        this.postPara = postPara;
+        that.postPara = postPara;
         console.log(postPara);
 /*         this.postPara = {// 成单参数格式
          "WapOrder": {
@@ -339,15 +339,16 @@ var fOrder = {
          "TotalPrice": 6826,
          "track": {"browserType": "", "deviceID": ""}
          };*/
-        that.tAjax(vlm.apiWithDeviceID, this.postPara, "3002", 3, function () {
+        console.log( that.postPara)
+        that.tAjax(vlm.apiWithDeviceID, that.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
           that.fadeHandler();
           if (result.success && result.code == 200) {
-            var orderResultInfo = {};
+            var orderResultInfo = {}, that =fOrder;
             console.log( that.postPara)
             orderResultInfo['orderTime'] = new Date();
-            orderResultInfo['totalPrice'] = that.postPara['totalPrice'];
+            orderResultInfo['totalPrice'] = that.priceData['totalPrice'];
             orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
             orderResultInfo['numofAdult'] = that.postPara['wapOrder']['numofAdult'];
             orderResultInfo['numofChild'] = that.postPara['wapOrder']['numofChild'];
@@ -357,7 +358,6 @@ var fOrder = {
             orderResultInfo['contactDetail'] = contactInfo;
             orderResultInfo['bookingID'] = result['data']['bookingID'];
             orderResultInfo['bookingRefNo'] = result['data']['bookingRefNo'];
-             that.storageUtil.set('orderResultInfo',orderResultInfo);
             window.localStorage.setItem('orderResultInfo', JSON.stringify(orderResultInfo));
             document.location.href = '../payment/payment.html?bookingRefNo=' + orderResultInfo.bookingRefNo + "&type=Flight";
           } else {
