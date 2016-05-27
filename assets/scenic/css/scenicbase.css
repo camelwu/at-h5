@@ -382,7 +382,7 @@ li.scenic_detile_project_first{
   padding:0 0 .2rem .6rem;
 }
 .scenic_content i{
-  width: .35rem;
+  width: .36rem;
   height: .35rem;
   position: absolute;
   left: 0;
@@ -401,8 +401,11 @@ li.scenic_detile_project_first{
 .scenic_content_feature li{
   margin-bottom: .2rem;
   color:#666;
-  padding-left: .26rem;
+  padding-left: 0;
   position: relative;
+}
+.scenic_content_notes li ol{
+  padding: 0;
 }
 .feature{
   margin-bottom: .2rem;
