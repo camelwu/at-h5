@@ -630,7 +630,7 @@ header.header .header_more i.location_tip{
   position:relative;
   height: 4.88rem;
 }
-.pic_box img{width:100%;height:auto;}
+.pic_box div.first,.pic_box img{width:100%;height:100%;}
 .pic_box .go_back{
   position: absolute;
   width: .68rem;
@@ -719,7 +719,7 @@ header.header .header_more i.location_tip{
 }
 .detail_box ul{margin:0;}
 .detail_box ul li{
-  line-height: .36rem;
+  line-height: 0.5rem;
   color: #000;
   list-style: disc inside;
   font-size: .26rem;
