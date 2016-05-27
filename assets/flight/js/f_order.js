@@ -299,7 +299,7 @@ var fOrder = {
         this.fadeHandler("show");
         this.postPara = postPara;
         console.log(postPara);
-         this.postPara = {// 成单参数格式
+/*         this.postPara = {// 成单参数格式
          "WapOrder": {
          "SetID": 30000152,
          "CacheID": 3514987,
@@ -342,7 +342,7 @@ var fOrder = {
          "CurrencyCode": "CNY",
          "TotalPrice": 6826,
          "track": {"browserType": "", "deviceID": ""}
-         };
+         };*/
         that.tAjax("", this.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
