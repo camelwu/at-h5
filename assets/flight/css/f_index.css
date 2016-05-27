@@ -509,38 +509,24 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   position: relative;
 }
 
-.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon {
-  display: inline-block;
+.trip_go .left span.icon, .trip_back .left span.icon，.dateWeekCity > span.icon, .trip_go_ span.icon, .trip_back_ span.icon ,.trip_go_ i,.trip_back_ i {
   width: .32rem;
   height: .32rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-size: 7.95rem auto;
+  background-size: 7.90rem auto;
   background-position: 35.564% 31.61%;
-  position: absolute;
-  left: -.42rem;
-  top: .05rem;
+  margin-top: .04rem;
 }
-
 .trip_back .left span.icon, .trip_back_ span.icon {
-  display: inline-block;
   width: .32rem;
   height: .32rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
-  background-size: 7.95rem auto;
+  background-size: 7.90rem auto;
   background-position: 44.564% 31.61%;
-  position: absolute;
-  left: -.42rem;
-  top: .05rem;
 }
-
-.trip_go_ span.icon, .trip_back_ span.icon {
-  left: 0;
-  top: .0316rem;
-}
-
-.trip_go_ span:nth-child(2), .trip_back_ span:nth-child(2) {
-  margin-left: .48rem;
-  vertical-align: 25%;
+.trip_go_ i,.trip_back_ i{
+  float: right;
+  background-position: 81.964% 49.91%;
 }
 
 .left_info .right {
@@ -880,21 +866,20 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .trip_go_, .trip_back_ {
   position: relative;
-  height: .4rem;
-  line-height: .4rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  overflow:hidden;
 }
-
-.trip_go_ .addUp, .trip_back_ .addUp {
-  vertical-align: 25%;
+.trip_go_ span, .trip_back_ span{
+  float: left;
 }
+.trip_go_ span.addUp, .trip_back_ span.addUp{margin-left: .16rem}
 
 .trip_go_ span.cityName, .trip_back_ span.cityName {
-  display: inline-block;
   width: 1.48rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: .42rem;
 }
 
 .trip_back_, .seat-price-cost p:nth-child(2) {

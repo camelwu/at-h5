@@ -541,6 +541,7 @@ var hftChoose = {
 
   returnDay: function () {
     var array = [], arg = arguments[0];
+    if(!arg){return ""}
     array = arg.split('-');
     array[1] = array[1] < 10 ? '0' + parseInt(array[1]) : parseInt(array[1]);
     array[2] = array[2] < 10 ? '0' + parseInt(array[2]) : parseInt(array[2]);
