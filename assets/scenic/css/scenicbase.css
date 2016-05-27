@@ -442,7 +442,7 @@ li.scenic_detile_project_first{
 .scenic_content_time span ,.scenic_content_address span{
   display: block;
   float: right;
-  color:#FFB932;
+  color:#7bc300;
 }
 .scenic_content_address i{
   background-position:  -3.02rem -0.8rem;
@@ -608,7 +608,6 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   width: 1.44rem;
   height: 0.56rem;
   font-size: 0.32rem;
-  font-weight: bold;
   color: #ffffff;
   background:#7bc300;
   line-height: 0.56rem;
@@ -627,13 +626,13 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .scenic_content_booking_dollar{
   font-size: 0.32rem;
   font-weight: bold;
-  color: #FF5B13;
+  color: #fb7530;
 }
 
 .scenic_content_booking_price{
   font-size: 0.32rem;
   font-weight: bold;
-  color: #FF5B13;
+  color: #fb7530;
 }
 
 

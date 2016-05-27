@@ -125,8 +125,11 @@
     <a class="target" name="rm"></a>
     <h4>热门城市</h4>
     <ul class="hot_list">
-      <li class="city_list" data-city-code="BJS">北京</li>
-      <li class="city_list" data-city-code="SIN">新加坡</li>
+      <%hotCity.forEach(function(array, index){%>
+      <%if(index<9){%>
+                <li class="city_list" data-city-code="<%=array.cityCode%>"><%=array.cityName%></li>
+      <% }%>
+      <% })%>
     </ul>
   </div>
   <!--全部列表-->
