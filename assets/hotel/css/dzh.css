@@ -176,12 +176,12 @@ i.i_address{
   top: 0;
 }
 .hotel_roomNum_add{
-  background-position: 0 -56px;
+  background-position: 0.5rem 3.2rem;
   right: 1.1rem;
   top: 0;
 }
 .hotel_roomNum_reduce{
-  background-position: 0 -28px;
+  background-position: 0rem -0.6rem;
   right: 2.6rem;
   top:0;
 }
@@ -231,22 +231,22 @@ i.i_address{
   top:1.25rem;
 }
 .hotel_people_right_adult_add{
-  background-position: 0 -28px;
+  background-position:  0.5rem 3.2rem;
   right: 0.2rem;
   top: .24rem;
 }
 .hotel_people_right_child_add{
-  background-position: 0 -28px;
+  background-position: 0.5rem 3.2rem;
   right: 0.2rem;
   top:1.25rem;
 }
 .hotel_people_right_adult_minus{
-  background-position: 0 -56px;
+  background-position: 0rem -0.6rem;
   right: 1.7rem;
   top: .24rem;
 }
 .hotel_people_right_child_minus{
-  background-position: 0 -56px;
+  background-position: 0rem -0.6rem;
   right: 1.7rem;
   top:1.25rem;
 }
