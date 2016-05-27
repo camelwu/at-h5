@@ -950,6 +950,14 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   left: -.60rem;
   top: .28rem;
 }
+.passengers_wrap em{
+  font-style: normal;
+  margin-right: 0.54rem;
+}
+.passengers_wrap b{
+  color: rgb(51, 51, 51);
+  font-weight: normal;
+}
 
 .contact_wrap .arrow_down {
   width: .328rem;
