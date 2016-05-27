@@ -339,12 +339,13 @@ var fOrder = {
          "TotalPrice": 6826,
          "track": {"browserType": "", "deviceID": ""}
          };*/
-        that.tAjax("", this.postPara, "3002", 3, function () {
+        that.tAjax(vlm.apiWithDeviceID, this.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
           that.fadeHandler();
           if (result.success && result.code == 200) {
             var orderResultInfo = {};
+            console.log( that.postPara)
             orderResultInfo['orderTime'] = new Date();
             orderResultInfo['totalPrice'] = that.postPara['totalPrice'];
             orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
@@ -356,9 +357,8 @@ var fOrder = {
             orderResultInfo['contactDetail'] = contactInfo;
             orderResultInfo['bookingID'] = result['data']['bookingID'];
             orderResultInfo['bookingRefNo'] = result['data']['bookingRefNo'];
-            /* that.storageUtil.set('orderResultInfo',orderResultInfo);*/
+             that.storageUtil.set('orderResultInfo',orderResultInfo);
             window.localStorage.setItem('orderResultInfo', JSON.stringify(orderResultInfo));
-            console.log(orderResultInfo)
             document.location.href = '../payment/payment.html?bookingRefNo=' + orderResultInfo.bookingRefNo + "&type=Flight";
           } else {
             if (result.message.indexOf('失败') > -1 && result.message.indexOf('重新') > -1) {
@@ -459,6 +459,7 @@ var fOrder = {
     this.curFlightData = flightData;
     this.fIndexInfo = fIndexInfo;
     this.priceData = priceData;
+    console.log(this.priceData)
     this.createTags(flightData).priceTags(priceData);
     return this;
   },
