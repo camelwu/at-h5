@@ -134,12 +134,12 @@ function oUp(obj1, obj2, start, end) {
     }
     if (parseInt(this.parentNode.children[0].value) < end) {
       if (parseInt(this.parentNode.children[0].value) > start) {
-        obj2.style.background = 'url("../images/hotelbtn.png") 0 0 no-repeat';
-        obj2.style.backgroundSize = '0.5rem 3.2rem';
+        obj2.style.background = ' url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
+        obj2.style.backgroundSize = '7.9rem 7.83rem';
       }
     } else {
-      this.style.background = 'url("../images/hotelbtn.png") -0.01rem -1.8rem no-repeat';
-      this.style.backgroundSize = '0.5rem 3.2rem';
+      this.style.background = 'url("../images/ui.1.0/icon_common.png") -2.17rem -3.12rem no-repeat';
+      this.style.backgroundSize = '7.9rem 7.83rem';
     }
   });
 };
@@ -153,12 +153,12 @@ function oDown(obj1, obj2, start, end) {
     }
     if (parseInt(this.parentNode.children[0].value) > start) {
       if (parseInt(this.parentNode.children[0].value) < end) {
-        obj2.style.background = 'url("../images/hotelbtn.png") -0.01rem -1.2rem no-repeat';
-        obj2.style.backgroundSize = '0.5rem 3.2rem';
+        obj2.style.background = 'url("../images/ui.1.0/icon_common.png") -3.04rem -3.12rem no-repeat';
+        obj2.style.backgroundSize = '7.9rem 7.83rem';
       }
     } else {
-      this.style.background = 'url("../images/hotelbtn.png") 0rem -0.6rem no-repeat';
-      this.style.backgroundSize = '0.5rem 3.2rem';
+      this.style.background = 'url("../images/ui.1.0/icon_common.png") -0.48rem -3.12rem no-repeat';
+      this.style.backgroundSize = '7.9rem 7.83rem';
     }
   });
 }
@@ -928,7 +928,7 @@ function inpChange(id, myText) {
       if(parseInt(itemEle.value) > itemMinNum){
         minusItem.style.backgroundPosition = "0px 0px";
       }else{
-        minusItem.style.backgroundPosition = "0px -0.6rem";
+        minusItem.style.backgroundPosition = "-0.48REM -3.12rem";
       }
     }
   }
