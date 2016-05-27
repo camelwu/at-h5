@@ -374,13 +374,7 @@ var fOrder = {
                 }
               }, '确定', '取消');
             } else {
-              orderResultTip.innerHTML = result.message;
-              orderResultTip.style.display = 'block';
-              that.timer7 = window.setTimeout(function () {
-                orderResultTip.style.display = 'none';
-                window.clearTimeout(that.timer7);
-                that.timer7 = null;
-              }, 3000);
+                 jAlert('')
             }
           }
         });
