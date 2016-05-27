@@ -18,6 +18,21 @@ var fIndexModal = {
     }
     this.addHandler(target, eventType, handle);
   },
+
+  tAjax: function (questUrl, data, Code, ForeEndType, Callback, loadMoreSign) {
+    var that = this, dataObj =
+    {
+      Parameters: data,
+      ForeEndType: ForeEndType,
+      Code: Code
+    };
+    questUrl = questUrl ? questUrl : "";
+    if (loadMoreSign) {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
+    } else {
+      vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
+    }
+  },
   getCityType: function (arg) {
     console.log(arg)
     var dataPool1 = internationalCities, dataPool2 = domesticCities,tag1 = "";
@@ -36,12 +51,17 @@ var fIndexModal = {
     console.log(tag1)
     return tag1;
   },
+  getHotCityHandler:function(){
+       this.tAjax("", {}, "50100010", 3, this.citySearchHandler);
+       return this
+  },
 
   citySearchHandler:function(){
-    var place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'),countryListSearched=document.querySelector('.country-list-searched');
-    var city_outer = document.querySelector('.city_outer');
-    var tempString1 = "", outputString1 = "",resultArray = {},that = this, internationalArray={}, domesticArray = {}, array1=[], array2=[];
+    var place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'),countryListSearched=document.querySelector('.country-list-searched'), that = fIndexModal;
+    var city_outer = document.querySelector('.city_outer'),tempString1 = "", outputString1 = "",resultArray = {}, internationalArray={}, domesticArray = {}, array1=[], array2=[];
     var internationalTitle = document.querySelector('.international_title'), domesticTitle= document.querySelector('.domestic_title');
+    that.hotInterCity = arguments[0].data.hotCitysInternational;
+    that.hotDometicCity = arguments[0].data.hotCitysCN;
     Array.prototype.distinct=function(){
       var sameObj=function(a,b){
         var tag = true;
@@ -95,16 +115,16 @@ var fIndexModal = {
         }
       }
     });
-    this.domesticArray = domesticArray;
-    this.internationalArray = internationalArray;
-    this.addHandler(place, "click", function(e){
+    that.domesticArray = domesticArray;
+    that.internationalArray = internationalArray;
+    that.addHandler(place, "click", function(e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.getAttribute('data-city-type') == "domestic"){
         internationalTitle.className = "international_title grey-title";
         domesticTitle.className = "domestic_title light-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: domesticArray});
+        outputString1 = ejs.render(tempString1, {resultArray: domesticArray, hotCity:that.hotDometicCity});
         $(".city_detail_info").eq(0).html(outputString1);
         city_outer.style.display = "block";
         that.historyInitF("domestic").citySearchEvent();
@@ -113,7 +133,7 @@ var fIndexModal = {
         domesticTitle.className = "domestic_title grey-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: internationalArray});
+        outputString1 = ejs.render(tempString1, {resultArray: internationalArray,hotCity:that.hotInterCity});
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("international").citySearchEvent();
         city_outer.style.display = "block";
@@ -122,7 +142,7 @@ var fIndexModal = {
       countryListSearched.innerHTML = "";
       countryListSearched.style.display ="none";
     });
-    return this;
+    return that;
   },
   historyInitF:function(){
     var str = arguments[0]|| "",string = "",storage = window.sessionStorage,historyList = document.querySelector('.history_list');
@@ -215,7 +235,7 @@ var fIndexModal = {
         internationalTitle.className="international_title light-title";
         domesticTitle.className="domestic_title grey-title";
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: that.internationalArray});
+        outputString1 = ejs.render(tempString1, {resultArray: that.internationalArray,hotCity:that.hotInterCity});
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("international");
       }else if(target==domesticTitle){
@@ -223,7 +243,7 @@ var fIndexModal = {
         internationalTitle.className="international_title grey-title";
         domesticTitle.className="domestic_title light-title";
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: that.domesticArray});
+        outputString1 = ejs.render(tempString1, {resultArray: that.domesticArray, hotCity:that.hotDometicCity});
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("domestic");
       }else if(target.className.indexOf('city_list')>-1){
@@ -657,7 +677,7 @@ var fIndexModal = {
   },
 
   init: function () {
-    this.fadeHandler().initHandler().eventHandler().citySearchHandler();
+    this.fadeHandler().initHandler().eventHandler().getHotCityHandler();
   }
 };
 fIndexModal.init();
