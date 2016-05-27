@@ -21,8 +21,8 @@ div#h-Tab a{
   color:rgb(153,153,153);
 }
 div#h-Tab .on{
-  color: #ffb413;
-  border-bottom: 2px solid #ffb413;
+  color: #7bc300;
+  border-bottom: 2px solid #7bc300;
 }
 div#h-Tab .off{
   color: #484848;
@@ -59,13 +59,13 @@ div#h-Tab .off{
   top: .3rem;
   width: .4rem;
   height: .5rem;
-  background-image: url(../../images/icons.png);
+  background-image: url(../../images/ui.1.0/icon_common.png);
   background-repeat: no-repeat;
-  background-size: 4.2rem 3.4rem;
+  background-size: 7.9rem 7.83rem;
   display: inline-block;
 }
 .i_more{
-  background-position: -1.7rem -0.9rem;
+  background-position: -3.98rem -0.62rem;
 }
 i.i_address{
   position: absolute;
@@ -228,12 +228,12 @@ i.i_address{
   height: .36rem;
   position: absolute;
   right:0.9rem;
-  top:1.25rem;
+  top:1.3rem;
 }
 .hotel_people_right_adult_add{
   background-position:  0.5rem 3.2rem;
   right: 0.2rem;
-  top: .24rem;
+  top: .23rem;
 }
 .hotel_people_right_child_add{
   background-position: 0.5rem 3.2rem;
@@ -243,7 +243,7 @@ i.i_address{
 .hotel_people_right_adult_minus{
   background-position: 0rem -0.6rem;
   right: 1.7rem;
-  top: .24rem;
+  top: .23rem;
 }
 .hotel_people_right_child_minus{
   background-position: 0rem -0.6rem;
@@ -264,7 +264,7 @@ i.i_address{
   border-radius: .1rem;
   text-align: center;
   font-size: .36rem;
-  background-color: #FFB413;
+  background-color: #7bc300;
 }
 /*footer部分开始*/
 .footer{
@@ -285,18 +285,18 @@ i.i_address{
 }
 /*.tubiao*/
 .add{
-  width: .48rem;
-  height: .5rem;
+  width: .55rem;
+  height: .54rem;
   position: absolute;
-  background: url("../../images/hotelbtn.png") -0.01rem -1.2rem no-repeat;
-  background-size: 0.5rem 3.2rem;
+  background: url("../../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat;
+  background-size: 7.9rem 7.83rem;
 }
 .minus{
-  width: .48rem;
-  height: .5rem;
+  width: .55rem;
+  height: .54rem;
   position: absolute;
-  background: url("../../images/hotelbtn.png") 0rem -0.6rem no-repeat;
-  background-size: 0.5rem 3.2rem;
+  background: url("../../images/ui.1.0/icon_common.png") -1.28rem -3.94rem no-repeat;
+  background-size: 7.9rem 7.83rem;
 }
 /*弹层*/
 #popup_content {

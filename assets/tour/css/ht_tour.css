@@ -591,7 +591,11 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
     /**/
 /*景点列表页结束*/
 /*套餐详情页开始*/
-.pic_box{overflow:hidden;position:relative;}
+.pic_box{
+  overflow:hidden;
+  position:relative;
+  height: 4.88rem;
+}
 .pic_box img{width:100%;height:auto;}
 .pic_box .go_back{
   position: absolute;
@@ -615,12 +619,16 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: rgba(0,0,0,0.4);
   padding: 0 .3rem;
   color: white;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  font-size: 0.2rem;
+  background: url(../../images/ui/detail_banner_bg.png);
+  background-size: 7.5rem 0.76rem;
+  background-position: left bottom;
 }
 .pd_mb div:nth-child(1){
-  font-size: .32rem;
   word-break: break-all;
   word-wrap: break-word;
   overflow: hidden;
@@ -650,10 +658,19 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .page_tag span{float:left;width:33%;height:.76rem;text-align:center;}
 .page_tag span.current{color:#7bc300;border-bottom:3px solid #7bc300;}
 
-.page_title{background:#fff;}
+.page_title{
+  background:#fff;
+}
+.page_title div{
+  padding: 0.38rem 0.28rem 0.18rem;
+  color: #333;
+}
 .page_title h3,.page_title h4{
   font-weight:normal;font-size:.26rem;
   border-bottom:1px solid #e6e6e6;color:#888;padding:.1rem .2rem;margin:0;
+}
+.page_title h3{
+  padding-bottom: 0.48rem;
 }
 .page_title h4{margin:0 .2rem;padding:0;}
 .page_title h4 i{float:right;}

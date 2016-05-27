@@ -125,7 +125,7 @@
     $(document).on('click','.add_traveller',function(){
       $("#status").show().fadeOut();
       $("#preloader").show().delay(400).fadeOut("medium");
-      vlm.f_choice('orderTraveller', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate);
+      vlm.f_choice('orderTraveller', 'f', 'traver', '', true, true, hft_peotot.adunum, hft_peotot.chinum, null, hftFlightHotelTourInfo.flightInfo.flightLeaveStartDate,false,false);
     });
 
   }

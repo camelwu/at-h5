@@ -337,7 +337,7 @@ function styleChange(id, mytext) {
 					}
 					rli[i].style.color = "#b3b2b4";
 				}
-				obj.style.color = "#fc9464";
+				obj.style.color = "#7bc300";
 				var b = document.createElement("b");
 				b.className = "hl-icon5";
 				obj.appendChild(b);
@@ -739,7 +739,7 @@ function styleChange(id, mytext) {
 						hlSortLi[j].removeChild(oB[0]);
 					}
 				}
-				hlSortLi[i].style.color = '#fc9464';
+				hlSortLi[i].style.color = '#7bc300';
 				var b = document.createElement("b");
 				b.className = "hl-icon5";
 				hlSortLi[i].appendChild(b);

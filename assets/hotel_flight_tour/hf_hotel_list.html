@@ -87,9 +87,9 @@
     <script src="../js/lib/jquery.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/ejs.js"></script>
-    <script src="../js/lib/jquery.alert.js"></script>
-    <script src="../js/lib/lazyLoad.js"></script>
-    <script src="../plugins/footer/foot.js"></script>
+    <script src="../js/plugins/jquery.alert/jqueryAlert.js"></script>
+    <script src="../js/plugins/lazyload-and-throttle/lazyLoad.js"></script>
+    <script src="../js/plugins/footer/foot.js"></script>
     <script src="js/hf_hotelList.js"></script>
     <!--title-->
     <script id="title" type="text/template">
@@ -100,7 +100,7 @@
         <% for(var i=0;i<data.hotels.length;i++) { %>
             <li data-hotelId="<%= data.hotels[i].hotelID %>">
                 <div>
-                    <img class="img" src="<%= data.hotels[i].hotelPictureURL %>" data-src="../images/hotelListNo.jpg" alt="">
+                    <img class="img" src="<%= data.hotels[i].hotelPictureURL %>" data-src="../images/loading-hotel.gif" data-noimg="../images/hotelListNo.jpg" alt="">
                     <article class="message">
                         <h3><%= data.hotels[i].hotelNameLocale %></h3>
                         <p><span class="score"><%= data.hotels[i].hotelReviewScore %></span>分&nbsp;<i>422人点评</i></p>
