@@ -408,3 +408,6 @@ footer dl.flight_company dt {
 
 
 /*航空公司 结束*/
+footer dl.classname{
+    background: #333;
+}

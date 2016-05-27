@@ -41,6 +41,7 @@ var fIndexModal = {
     var place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'),countryListSearched=document.querySelector('.country-list-searched');
     var city_outer = document.querySelector('.city_outer');
     var tempString1 = "", outputString1 = "",resultArray = {},that = this, internationalArray={}, domesticArray = {}, array1=[], array2=[];
+    var internationalTitle = document.querySelector('.international_title'), domesticTitle= document.querySelector('.domestic_title');
     Array.prototype.distinct=function(){
       var sameObj=function(a,b){
         var tag = true;
@@ -99,26 +100,109 @@ var fIndexModal = {
     this.addHandler(place, "click", function(e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.getAttribute('data-city-type') == "domestic"){
+        internationalTitle.className = "international_title grey-title";
+        domesticTitle.className = "domestic_title light-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: domesticArray});
         $(".city_detail_info").eq(0).html(outputString1);
         city_outer.style.display = "block";
+        that.historyInitF("domestic").citySearchEvent();
       }else if(target.getAttribute('data-city-type') == "international"){
+        internationalTitle.className = "international_title light-title";
+        domesticTitle.className = "domestic_title grey-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: internationalArray});
         $(".city_detail_info").eq(0).html(outputString1);
+        that.historyInitF("international").citySearchEvent();
         city_outer.style.display = "block";
       }
       cityZone.value = "";
       countryListSearched.innerHTML = "";
-      countryListSearched.style.display ="none"
+      countryListSearched.style.display ="none";
     });
-    this.citySearchEvent();
     return this;
   },
-
+  historyInitF:function(){
+    var str = arguments[0]|| "",string = "",storage = window.sessionStorage,historyList = document.querySelector('.history_list');
+    var hisData = [],that = this;
+        if(str=="international"){
+          hisData = JSON.parse(storage.getItem('internationalHistory')) || []
+      }else{
+          hisData = JSON.parse(storage.getItem('domesticHistory')) || []
+        }
+    if(hisData.length>=1){
+      for(var i=0; i<hisData.length;i++){
+        (function(i){
+          var i=i;
+          string+='<li class="city_list" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+        })(i);
+      }
+      historyList.innerHTML = string;
+    }else{
+      historyList.innerHTML = ""
+    }
+    return this
+  },
+  cityChooseHistory:function(){
+         var data = arguments[0]||[],storage = window.sessionStorage,historyList = document.querySelector('.history_list'),
+            internationalHistory = JSON.parse(storage.getItem('internationalHistory')) || [],that = this,
+                 domesticHistory = JSON.parse(storage.getItem('domesticHistory')) || [];
+    Array.prototype.distinct=function(){
+      var sameObj=function(a,b){
+        var tag = true;
+        if(!a||!b)return false;
+        for(var x in a){
+          if(!b[x])
+            return false;
+          if(typeof(a[x])==='object'){
+            tag=sameObj(a[x],b[x]);
+          }else{
+            if(a[x]!==b[x])
+              return false;
+          }
+        }
+        return tag;
+      };
+      var newArr=[],obj={};
+      for(var i=0,len=this.length;i<len;i++){
+        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+          newArr.push(this[i]);
+          obj[typeof(this[i])+this[i]]=this[i];
+        }
+      }
+      return newArr;
+    };
+        var historyTag=function(){
+                var data = arguments[0]. str="";
+                if(data.length>=1){
+                for(var i=0; i<data.length;i++){
+                  str+='<li class="city_list" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
+                  }
+                  historyList.innerHTML = str;
+                }else{
+                  historyList.innerHTML = ""
+                }
+        };
+         if(data.type == "international"){
+           internationalHistory.push(data);
+           internationalHistory = internationalHistory.distinct();
+           if(internationalHistory.length>3){
+             internationalHistory = internationalHistory.slice(1)
+           }
+           storage.setItem('internationalHistory', JSON.stringify(internationalHistory));
+           historyTag(internationalHistory)
+         }else{
+            domesticHistory.push(data);
+            domesticHistory = domesticHistory.distinct();
+           if(domesticHistory.length>3){
+              domesticHistory = domesticHistory.slice(1)
+           }
+            storage.setItem('domesticHistory', JSON.stringify(domesticHistory));
+            historyTag(domesticHistory)
+         }
+  },
   citySearchEvent:function(){
     var cityOuter = document.querySelector('.city_outer'),that = this, tempString1="", outputString1="", outputString1="";
     var cityInputZone = document.querySelector('#city-input-zone');
@@ -133,6 +217,7 @@ var fIndexModal = {
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: that.internationalArray});
         $(".city_detail_info").eq(0).html(outputString1);
+        that.historyInitF("international");
       }else if(target==domesticTitle){
         cityInputZone.value = "";
         internationalTitle.className="international_title grey-title";
@@ -140,12 +225,14 @@ var fIndexModal = {
         tempString1 = $("#template_city_summary").html();
         outputString1 = ejs.render(tempString1, {resultArray: that.domesticArray});
         $(".city_detail_info").eq(0).html(outputString1);
+        that.historyInitF("domestic");
       }else if(target.className.indexOf('city_list')>-1){
         console.log(target.getAttribute('data-city-code'))
-        var dateCode = target.getAttribute('data-city-code')
+        var dateCode = target.getAttribute('data-city-code'), type=that.getCityType(dateCode);
         that.cityEle.setAttribute("data-code", dateCode)
         that.cityEle.innerHTML = target.innerHTML;
-        that.cityEle.setAttribute("data-city-type",that.getCityType(dateCode));
+        that.cityEle.setAttribute("data-city-type",type);
+        that.cityChooseHistory({type:type, cityCode:dateCode, cityNameCN:target.innerHTML});
         this.style.display = "none";
       }else if(target.className =="header_back" || target.className =="icon_back"){
         this.style.display = "none";
@@ -224,16 +311,6 @@ var fIndexModal = {
         singleWrap.style.display = "block";
         doubleWrap.style.display = "none";
         document.querySelector('.dateInfo').className = "dateInfo white single_date";
-        js_origin = document.querySelector(".js_origin");
-        js_origin.setAttribute("id", "f_inori");
-        js_destination = document.querySelector(".js_destination");
-        js_destination.setAttribute("id", "f_indes");
-
-        $("#f_inori").attr("data-bind", "type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
-        $("#f_indes").attr("data-bind", "type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
-        $("#f_inori").bind('click', fIndexModal.f_inoriFunc);
-        $("#f_indes").bind('click', fIndexModal.f_indesFunc);
-
       } else if (target.innerHTML == "往返") {
         that.type = "return";
         target.className = "doubleTrip light-title";
@@ -241,16 +318,6 @@ var fIndexModal = {
         singleWrap.style.display = "none";
         doubleWrap.style.display = "block";
         document.querySelector('.dateInfo').className = "dateInfo white";
-
-        js_origin = document.querySelector(".js_origin");
-        js_origin.setAttribute("id", "f_outori");
-        js_destination = document.querySelector(".js_destination");
-        js_destination.setAttribute("id", "f_outdes");
-
-        $("#f_outori").attr("data-bind", "type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
-        $("#f_outdes").attr("data-bind", "type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
-        $("#f_outori").bind('click', fIndexModal.f_outoriFunc);
-        $("#f_outdes").bind('click', fIndexModal.f_outdesFunc);
       } else if (target.className == "iconTip" || target.parentNode.className == "iconTip" || target.className == "span-target") {
         var oSpan = this.querySelector('.span-target'), cityName = document.querySelectorAll('.citySearch'), tem = "", temCode = "";
         oSpan.style.transition = '0.7s all ease';
@@ -588,45 +655,7 @@ var fIndexModal = {
     });
     return this;
   },
-  cityInit: function () {
-    var js_origin = "", js_destination = "";
-    if (this.type == 'oneWay') {
-      js_origin = document.querySelector(".js_origin");
-      js_origin.setAttribute("id", "f_inori");
-      js_destination = document.querySelector(".js_destination");
-      js_destination.setAttribute("id", "f_indes");
-      $("#f_inori").attr("data-bind", "type:'setCityBox',data:'f_inori',returnId:'#f_inori'");
-      $("#f_indes").attr("data-bind", "type:'setCityBox',data:'f_indes',returnId:'#f_indes'");
-      $("#f_inori").bind('click', fIndexModal.f_inoriFunc);
-      $("#f_indes").bind('click', fIndexModal.f_indesFunc);
-    } else {
-      js_origin = document.querySelector(".js_origin");
-      js_origin.setAttribute("id", "f_outori");
-      js_destination = document.querySelector(".js_destination");
-      js_destination.setAttribute("id", "f_outdes");
-      $("#f_outori").attr("data-bind", "type:'setCityBox',data:'f_outori',returnId:'#f_outori'");
-      $("#f_outdes").attr("data-bind", "type:'setCityBox',data:'f_outdes',returnId:'#f_outdes'");
-      $("#f_outori").bind('click', fIndexModal.f_outoriFunc);
-      $("#f_outdes").bind('click', fIndexModal.f_outdesFunc);
-    }
-    return this;
-  },
-  /*f_inoriFunc: function () {
-   if (fIndexModal.type != 'oneWay')return;
-   VM.Load("f_inori");
-   },
-   f_indesFunc: function () {
-   if (fIndexModal.type != 'oneWay')return;
-   VM.Load("f_indes");
-   },
-   f_outoriFunc: function () {
-   if (fIndexModal.type == 'oneWay')return;
-   VM.Load("f_outori");
-   },
-   f_outdesFunc: function () {
-   if (fIndexModal.type == 'oneWay')return;
-   VM.Load("f_outdes");
-   },*/
+
   init: function () {
     this.fadeHandler().initHandler().eventHandler().citySearchHandler();
   }

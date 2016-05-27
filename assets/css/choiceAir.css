@@ -74,6 +74,9 @@ i, em {
 .button_grey {
   display: none;
 }
+.passport-num{
+  padding-left: .7rem;
+}
 
 .choiced {
   background-position: -4.74rem -.5rem;
