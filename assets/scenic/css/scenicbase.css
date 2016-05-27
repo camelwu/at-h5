@@ -302,6 +302,15 @@ li.scenic_detile_project_first{
   overflow: hidden;
   position: relative;
 }
+.bar_img_word{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0.7rem;
+  background:url(../../images/ui/detail_banner_bg.png);
+  background-size:7.5rem 0.76rem;
+  background-position:left bottom;
+}
 .bar_img_num{
   font-size: .2rem;
   color:#fff;
@@ -329,10 +338,10 @@ li.scenic_detile_project_first{
 .bar_content{
   line-height: .44rem;
   padding:0 .3rem 0 .28rem;
-  border-bottom: 2px solid #EDECEB;
+  border-bottom: 1px solid #E6E6E6;
 }
 .bar_content_title{
-  font-size: .28rem;
+  font-size: .32rem;
   margin:.4rem 0 .06rem ;
   padding-bottom: .24rem;
   /*border-bottom: 1px solid #EDECEB;*/
@@ -344,33 +353,32 @@ li.scenic_detile_project_first{
   margin:0 0 .4rem 0 ;
   font-size: .28rem;
   line-height: .44rem;
-  padding:0 0 0 .72rem;
   position: relative;
   color:#666;
 }
-.bar_content i{
-  width: .32rem;
-  height: .32rem;
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  background-image: url(../../images/hotel_flight_tour/icon_tour.png);
-  background-size: 7.9rem 1.95rem;
-}
-.bar_content_time_schedule{
-  background-position:  -0.6rem -0.8rem;
-  top: .06rem;
-}
-.bar_content_time_travel{
-  background-position:  -1.05rem -0.8rem;
-  top: .5rem;
-}
+/*.bar_content i{*/
+  /*width: .32rem;*/
+  /*height: .32rem;*/
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*display: inline-block;*/
+  /*background-image: url(../../images/hotel_flight_tour/icon_tour.png);*/
+  /*background-size: 7.9rem 1.95rem;*/
+/*}*/
+/*.bar_content_time_schedule{*/
+  /*background-position:  -0.6rem -0.8rem;*/
+  /*top: .06rem;*/
+/*}*/
+/*.bar_content_time_travel{*/
+  /*background-position:  -1.05rem -0.8rem;*/
+  /*top: .5rem;*/
+/*}*/
 /*特色亮点区*/
 .scenic_content_feature{
   margin:.4rem 0 .28rem  .28rem;
   position: relative;
   font-size: .28rem;
-  border-bottom: 1px solid #EDECEB;
+  border-bottom: 1px solid #E6E6E6;
   padding:0 0 .2rem .6rem;
 }
 .scenic_content i{
@@ -416,7 +424,7 @@ li.scenic_detile_project_first{
   padding:0 .28rem .4rem 0;
   font-size: .28rem;
   position: relative;
-  border-bottom: 1px solid #EDECEB;
+  border-bottom: 1px solid #e6e6e6;
   color:#333;
 }
 .scenic_content_time h3,.scenic_content_address h3,.scenic_content_package h3,.scenic_content_scheduling h3,.scenic_content_booking h3,.scenic_content_notes h3,.scenic_content_TOS h3,.scenic_content_detail h3{
@@ -559,7 +567,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   padding: 0 0 0.28rem 0;
   font-size: .28rem;
   position: relative;
-  border-bottom: 1px solid #EDECEB;
+  border-bottom: 1px solid #e6e6e6;
   color: #333333;
 }
 .scenic_content_booking i{
