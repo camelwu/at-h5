@@ -1,453 +1,79 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>景点预订明细</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link href="../styles/framework.css" type="text/css" rel="stylesheet">
-		<link href="../styles/style.css" type="text/css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/scenic.css">
-		<!--<link rel="stylesheet" type="text/css" href="css/scenic_order.css">-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Description" content="境外专业旅行服务提供机构">
+    <title>景点 - 亚洲旅行网</title>
+    <link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../styles/tips.css"	rel="stylesheet">
 		<link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="css/scenicbase.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
-	<div id="preloader">
-		<div id="status">
-			<p class="center-text">
-				<br>
-				<em></em>
-			</p>
-		</div>
-	</div>
+  <div id="preloader">
+    <div id="status">
+      <p class="center-text"></p>
+    </div>
+  </div>
 		<div class="all-elements">
-			<!--   顶部   -->
-			<div class="scenic-header">
-				<a href="javascript:history.go(-1);" class="header-back"><i class="icons go-back"></i></a>
-				<h3>景点预订</h3>
-			</div>
+      <!--   header   -->
+      <div class="header">
+        <a href="javascript:history.go(-1);" class="header_back">
+          <i class="icon_back"></i>
+        </a>
+        <h3>景点预订</h3>
+      </div>
+      <!--   header   -->
 			<!--   内容   -->
-			<div class="sc-content js-content">
-				<div class="js-childblock1"></div>
+			<div class="content">
+          <section class="booking_wrap">
+            <div class="booking_package">
+              <h3 class="booking_package_h3">八达岭长城+军事博物馆一日游[仅限12月23日-12月30日使用]<span class="booking_package_span">(产品编号 PK348758032345)</span></h3>
+              <P class="booking_package_preprice"><span>¥</span><span class="booking_package_price">56</span><span class="booking_package_preprice_span">起/人</span></P>
+            </div>
 
-				<div class="js-childblock2"></div>
+            <div class="booking_package_tours">
+              <div class="booking_package_tour">
 
-				<section class="tourist-ticket-box min320">
-					<!--<div class="contact-document">-->
-					<!--<span class="contact-doc-tit">联系人资料</span>-->
-					<!--<span class="contact-select contact-noact"><a href="javascript:;" class="sce-order-login">登陆</a>选择联系人<i class="right-select"></i></span>-->
-					<!--</div>-->
-					<!--<h3 class="free-login">免登陆下单</h3>-->
-					<div class="tourist-tic-wrap">
-						<div class="tourist-ticket-head clearFix">
-							<h3 class="ticket-take-msg fl">取票人信息</h3>
-							<a href="javascript:;" class="con-add-butto fr" onclick="vlm.f_choice('tanktick','t','traver','',false,false,null,null,null,'myCallBack');"></a>
-						</div>
-						<ul class="tourist-msg tanktick" id="tanktick">
-							<li>
-								<span class="tourist-name tour-short" style="width:30px">姓</span>
-								<input type="text" id="scenic2_name1" tabindex="1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li"  data-elementName="lastName">
-								<span class="tourist-name tour-short" style="width:30px">名</span>
-								<input type="text" id="scenic2_name2" tabindex="2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName">
-							</li>
-							<li class="countries-wrap">
-								<b class="icons open-pho-tour"></b>
-								<span class="tourist-name tour-short">国籍</span>
-								<!--<input id="scenic2_NationalityCode" readonly="readonly" style="display: inline-block;" placeholder="国籍">-->
-								<span class="country-btn CardCountryCode" id="jp_bank_country" data-code="CN" data-tel-code="86" data-elementName="lastName">中国</span>
-							</li>
-							<li>
-								<span class="tourist-name tour-short">护照</span>
-								<input type="text" id="scenic2_idcard" tabindex="3" style="width:70%;display: inline-block;" placeholder="请输入护照,如EA2359923" data-elementName="idNumber">
-							</li>
-						</ul>
-					</div>
-					<div class="tourist-ticket-wrap">
-						<div class="tourist-ticket clearFix">
-							<h3 class="ticket-take-msg fl">联系人信息</h3>
-							<a href="javascript:;" class="con-add-butto fr" onclick="vlm.f_choice('contact','t','contact','',false,false,null,null,null,'myCallBack');"></a>
-						</div>
-						<ul class="tourist-msg contact" id="contact">
-							<li>
-								<span class="tourist-name tour-short" style="width:30px">姓</span>
-								<input type="text" name="firstName" tabindex="4" id="scenic_name1" style="width:35%;display: inline-block;" placeholder="Sumame,如Li" data-elementName="lastName">
-								<span class="tourist-name tour-short" style="width:30px">名</span>
-								<input type="text" name="lastName" tabindex="5" id="scenic_name2" style="width:40%;display: inline-block;" placeholder="Given name,如Shimin" data-elementName="firstName">
-							</li>
-							<li>
-								<span class="tourist-name tour-short">手机号</span><span class="tel-btn CardCountryCode" id="jp_tel_country" data-code="CN" data-tel-code="86">+86</span><b class="icons open-phonum"></b>
-								<input type="tel" name="phone" tabindex="6" id="scenic_phone" style="width: 60%;display: inline-block;top: -1px;left: 4px;" placeholder="请输入11位手机号" data-elementName="mobilePhone" data-elementName="mobilePhone">
-							</li>
-							<li>
-								<span class="tourist-name tour-short">邮箱</span>
-								<input type="text" name="email" tabindex="7" id="scenic_email" style="width:80%;display: inline-block;"  placeholder="常用邮箱" data-elementName="email" data-elementName="email">
-							</li>
-						</ul>
-					</div>
-					<!--<div class="gray-block"></div>-->
-					<!--<section class="sce-introduce-child">-->
-					<!--<p class="sce-introduce-txt">八达岭长城一日游【仅限12-23日-12月30日使用】</p>-->
-					<!--<div class="per-price-wrap clearFix">-->
-					<!--<span class="per-price-tit fl">单价：</span>-->
-					<!--<strong class="per-price-cont fl">¥56</strong>-->
-					<!--<div class="per-price-control fr"><span class="set-sealdown-btn">-</span><i class="set-seal-cont">1</i><span class="set-sealplus-btn">+</span></div>-->
-					<!--</div>-->
-					<!--<ul class="children-wrap">-->
-					<!--<li class="clearFix">-->
-					<!--<span class="child-age fl">儿童年龄1</span>-->
-					<!--<div class="child-age-cont fr"><input type="text" placeholder="2-14"/><span>岁</span></div>-->
-					<!--</li>-->
-					<!--<li class="clearFix">-->
-					<!--<span class="child-age fl">儿童年龄2</span>-->
-					<!--<div class="child-age-cont fr"><input type="text" placeholder="2-14"/><span>岁</span></div>-->
-					<!--</li>-->
-					<!--</ul>-->
-					<!--</section>-->
+                <div class="booking_package_tourtitle">
+                  <i class="booking_package_i"></i>
+                  <h3 class="booking_package_tour_h3">八达岭长城</h3>
+                </div>
 
-					<div class="gray-block"></div>
-					<div class="add-ticket">
-						<i class="add-tic-btn"></i>
-						<span class="add-tic-txt">添加此景点其它可选</span>
-					</div>
-					<div class="gray-block" data-key="holist_page"></div>
-					<div class="clearFix hotel-choi-but" data-key="holist_page">
-						<span class="fl">提供接送</span>
-						<b class="hot-arrow-rig"></b>
-						<a id="choHotel" data-key="" class="cho-hotel">请选择酒店</a>
+                <div class="booking_package_date">
+                    <p class="booking_package_date_p">03月12日</p>
+                    <i class="booking_package_date_i"></i>
+                </div>
+                <div class="booking_package_fullday">
+                  <ul class="booking_package_fullday_ul">
+                    <li class="booking_package_fullday_li booking_package_fullday_li_current">上午</li>
+                    <li class="booking_package_fullday_li">下午</li>
+                    <li class="booking_package_fullday_li">晚上</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="booking_package_pre"></div>
+          </section>
+      </div>
+    </div>
 
-					</div>
-					<!--<div class="gray-block" data-key="flight_page"></div>-->
-					<!--<dl class="flight_info" data-key="flight_page" style="display: none">-->
-						<!--<dt>-->
-							<!--航班信息-->
-						<!--</dt>-->
-						<!--<dd>-->
-							<!--<i class="word">出发</i>-->
-							<!--<ul >-->
-								<!--<li>-->
-									<!--<input type="text" id="departFlightNo" placeholder="航班号">-->
-								<!--</li>-->
-								<!--<li id="flight1" >-->
-									<!--<span class="js-flight-ymd" id="departDateTime">年月日</span>-->
-									<!--<i class="data_icon"></i>-->
-								<!--</li>-->
-							<!--</ul>-->
-
-						<!--</dd>-->
-						<!--<dd>-->
-							<!--<i class="word">抵达</i>-->
-							<!--<ul >-->
-								<!--<li>-->
-									<!--<input type="text" id="arrivalFlightNo" placeholder="航班号">-->
-								<!--</li>-->
-								<!--<li id="flight2">-->
-									<!--<span class="js-flight-ymd" id="arrivalDateTime">年月日</span>-->
-									<!--<i class="data_icon"></i>-->
-								<!--</li>-->
-							<!--</ul>-->
-
-						<!--</dd>-->
-					<!--</dl>-->
-
-				</section>
-				<div class="order-notice">
-					<i class="order-notice-btn on"></i>
-					<span id="state_btn" class="order-notice-txt">已经阅读亚洲旅行网<label style="color: #ffb413;display: inline;">购票须知</label></span>
-				</div>
-			</div>
-
-			<!--    接送酒店列表页     -->
-			<div id="holist_page" class="all-elements" data-key="holist_page" style="display: none;">
-				<div class="header" style="z-index: 1000">
-					<!--<a id="close_list" href="javascript:void(0);" class="icons header-back"></a>-->
-					<a id="close_list" href="javascript:void(0);" class="header-back"><i class="icons go-back"></i></a>
-					<div class="sod-search">
-						<img class="sod-fdj" src="../images/1.png">
-						<input type="text" id="seach_up" value="" placeholder="搜索">
-					</div>
-				</div>
-				<div class="sc-content js-PickupPoint" style="z-index: 999">
-					<ul class="hote-list">
-						<!--<li>111</li>-->
-						<!--<li>331</li>-->
-						<!--<li>111</li>-->
-						<!--<li>331</li>-->
-						<!--<li>111</li>-->
-						<!--<li>331</li>-->
-					</ul>
-				</div>
-			</div>
-			<!--遮罩层-->
-			<div class="mask"></div>
-			<!--底部-->
-			<footer class="order-amount">
-				<!--价格明细-->
-				<div class="price-tot-box">
-					<ul class="price-tot-list">
-						<li style="border-bottom: 1px solid #ddd;margin:0px 20px;font-size: initial;">费用明细</li>
-					</ul>
-					<ul class="price-tot-list js-price-list">
-						<!--<li><span class="price-per-tit">八达岭长城一日游</span><span class="price-per-tot">¥56×2</span></li>-->
-						<!--<li><span class="price-per-tit">鸟巢水立方一日游</span><span class="price-per-tot">¥56×4</span></li>-->
-						<!--<li><span class="price-per-tit">桂林七日游</span><span class="price-per-tot">¥56×4</span></li>-->
-						<!--<li><span class="price-per-tit">香港迪士尼一日游</span><span class="price-per-tot">¥56×2</span></li>-->
-					</ul>
-				</div>
-				<div class="order-total-wrap clearFix">
-					<span class="fl">订单总额 &nbsp;</span>
-					<span class="order-total-fare fl js-order-total"></span>
-					<a href="javascript:void(0)" class="order-total-btn fr js-order-detail">预订</a>
-					<span class="order-total-tip-details fr">明细<i class="order-total-tip "></i></span>
-
-					<div class="tip_price" style="font-size: 1rem;">汇率变动，以最终支付价格为准</div>
-				</div>
-			</footer>
-			<!--添加其他套餐-->
-			<div class="add-setmeal">
-				<div class="add-setmeal-hd">
-					<span class="fl">添加此景点其它可选</span>
-					<span class="fr add-setmeal-sure">确定</span>
-				</div>
-				<ul class="add-setmeal-list js-tpl-ScenicPrices">
-					<!--<li>-->
-					<!--<div class="fl">-->
-					<!--<span class="add-setmeal-tit">八达岭长城一日游【仅限12-23日-12月30日使用】儿童票</span>-->
-					<!--<span class="setmeal-tit">单价：<strong class="setmeal-price-cont">¥56</strong></span>-->
-					<!--</div>-->
-					<!--<b class="setmeal-tr on fr"></b>-->
-					<!--</li>-->
-					<!--<li>-->
-					<!--<div class="fl">-->
-					<!--<span class="add-setmeal-tit">八达岭长城一日游【仅限12-23日-12月30日使用】儿童票</span>-->
-					<!--<span class="setmeal-tit">单价：<strong class="setmeal-price-cont">¥56</strong></span>-->
-					<!--</div>-->
-					<!--<b class="setmeal-tr fr"></b>-->
-					<!--</li>-->
-					<!--<li>-->
-					<!--<div class="fl">-->
-					<!--<span class="add-setmeal-tit">八达岭长城一日游【仅限12-23日-12月30日使用】儿童票</span>-->
-					<!--<span class="setmeal-tit">单价：<strong class="setmeal-price-cont">¥56</strong></span>-->
-					<!--</div>-->
-					<!--<b class="setmeal-tr fr"></b>-->
-					<!--</li>-->
-				</ul>
-			</div>
-
-		</div>
-	<!--   旅行须知   -->
-	<div class="tmask js-mask">
-		<div class="travelnotes-warp js-travelnotes">
-			<div class="travelnotes-header">
-				购票须知
-				<i class="travelnotes-header-icon js-travelnotes-close"></i>
-			</div>
-				<ol class="travelnotes-list">
-					<li>所有的套餐都不可转让，不可退款，不可更改。</li>
-					<li>任何未使用的套餐都不可退款，支付的款项也不可用来抵买任何其他的套餐。</li>
-					<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
-					<li>您有责任确保并遵守移民局，海关或旅游目的地国家的其他法律规定。请务必确保您持有的护照至少六个月的有效期及有效的签证。</li>
-					<li>如果有儿童或婴儿一同出行，您有责任自行携带婴/幼儿座椅以便在行程中使用。如果因此对您的行程产生影响，我们不进行退款。</li>
-					<li>请提供正确的电子邮件格式。您同意接受电子邮件作为往来沟通，接收旅游确认单和预订确认的一种途径。 您同意cn.asiatravel.com。请您自行承担您未收到旅游确认单或是您未收到确认邮件的责任。</li>
-					<li>更多规定，请您阅读www.asiatravel.com预订条款条约和用户协议。</li>
-				</ol>
-
-		</div>
-	</div>
-	<!--   旅行须知   -->
-
-		<!--国籍选择开始-->
-		<div class="all-elements country-cho-wrap">
-			<div class="header">
-				<a href="javascript:;" class="icons header-back country-hidden" style="width:40px;background-position: 13px 12px;"></a>
-				<div class="cl_search">
-					<input type="text" placeholder="北京/beijing/bj/bjs/中国" id="country-input-zone"/>
-					<i></i>
-				</div>
-			</div>
-
-			<!--国籍弹窗开始-->
-			<ul class="country-list-searched"></ul>
-			<!--国籍弹窗结束-->
-
-			<div class="snap-content" style="padding-top: 45px;">
-				<div class="country-wrap" id="country-wrap">
-					<!--<ul class="country-list">-->
-					<!--<li></li>-->
-					<!--</ul>-->
-				</div>
-			</div>
-		</div>
-		<!--国籍选择结束-->
-		<!--<span data-key="CallData" data-code="" style="display: none;">-->
-		<script src="../js/lib/jquery.js"></script>
-		<script src="../js/lib/plugins.js"></script>
-		<script src="../js/lib/jquery.alert.js"></script>
-		<script src="../js/lib/vlm.js"></script>
-		<script src="../js/lib/template.js"></script>
-		<script src="../js/lib/custom.js"></script>
-		<script src="../js/lib/d_calendar.js"></script>
-		<script src="js/dateFix.js"></script>
-		<script src="js/ModLoad.js"></script>
-		<script src="js/scenic_pub.js"></script>
-		<script src="../js/country_list.js"></script>
-		<script src="../js/countrytel_list.js"></script>
-		<script id="tpl_PickupPoint" type="text/template">
-			<ul class="hote-list">
-			{% for(var i=0,len=data.pickupInfos.length;i<len;i++){ %}
-			<li data-key="{%=data.pickupInfos[i].pickupID%}">{%=data.pickupInfos[i].pickupPoint%}<i class="pickup-icon js-pickup-icon"></i></li>
-			{% } %}
-			</ul>
-		</script>
-		<script id="tpl_ScenicView1" type="text/template">
-			<section class="js-scenicview1 sce-ticket-wrap min320">
-			<div class="js-sce-ticket1">
-
-			</div>
-
-			{% if(isAudlt==1){ %}
-			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
-			<span class="per-price-tit fl">单价&nbsp;</span>
-			<strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
-			<div class="per-price-control fr">
-			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
-			<i class="cut-up-cont js-Audlt-cont">{%=DetailData.data.minPax%}</i>
-			<span class="plus-btn js-plus-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},1)">+</span>
-			</div>
-			</div>
-			{% }else if(isAudlt==0){ %}
-			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price1">
-			<span class="per-price-tit fl">单价&nbsp;</span>
-			<strong class="per-price-cont fl js-per-price-cont1">¥0</strong>
-			<div class="per-price-control fr">
-			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
-			<i class="cut-up-cont js-Child-cont">{%=DetailData.data.minPax%}</i>
-			<span class="plus-btn js-plus-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},1)">+</span>
-			</div>
-			</div>
-
-			<ul class="children-wrap js-children-wrap">
-			{% for(var i=0,len=DetailData.data.minPax;i<len;i++){ %}
-			<li class="clearFix">
-			<span id="child_old" class="child-age fl">儿童年龄{%=i+1%}</span>
-			<div class="child-age-cont fr"><input type="text"  placeholder="{%=DetailData.data.childAgeMin%}-{%=DetailData.data.childAgeMax%}"/><span>岁</span></div>
-			</li>
-			{% } %}
-			</ul>
-			{% } %}
-			</section>
-			<div class="gray-block"></div>
-		</script>
-
-		<script id="tpl_ScenicView2" type="text/template">
-			<section class="js-scenicview2 sce-ticket-wrap min320">
-			<div class="js-sce-ticket2"></div>
-
-			{% if(isAudlt==0){ %}
-			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
-			<span class="per-price-tit fl">单价&nbsp;</span>
-			<strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
-			<div class="per-price-control fr">
-			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},0)">-</span>
-			<i class="cut-up-cont js-Audlt-cont">{%=DetailData.data.minPax%}</i>
-			<span class="plus-btn js-plus-btn" onclick="MT.PlusCount(this,1,{%=DetailData.data.minPax%},1)">+</span>
-			</div>
-			</div>
-			{% }else if(isAudlt==1){ %}
-			<div class="sce-ticket per-price-wrap clearFix" data-key="js-per-price2">
-			<span class="per-price-tit fl">单价&nbsp;</span>
-			<strong class="per-price-cont fl js-per-price-cont2">¥0</strong>
-			<div class="per-price-control fr">
-			<span class="cut-down-btn js-cut-down-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},0)">-</span>
-			<i class="cut-up-cont js-Child-cont">{%=DetailData.data.minPax%}</i>
-			<span class="plus-btn js-plus-btn" onclick="MT.PlusCount(this,0,{%=DetailData.data.minPax%},1)">+</span>
-			</div>
-			</div>
-
-			<ul class="children-wrap js-children-wrap">
-			{% for(var i=0,len=DetailData.data.minPax;i<len;i++){ %}
-			<li class="clearFix">
-			<span id="child_old" class="child-age fl">儿童年龄{%=i+1%}</span>
-			<div class="child-age-cont fr"><input type="number" placeholder="{%=DetailData.data.childAgeMin%}-{%=DetailData.data.childAgeMax%}"/><span>岁</span></div>
-			</li>
-			{% } %}
-			</ul>
-			{% } %}
-			</section>
-			<div class="gray-block"></div>
-		</script>
-
-		<script id="tpl_Adult_Child1" type="text/template">
-
-			<div class="sce-ticket js-sce">
-			<section class="travel-date clearFix">
-			<span class="travel-date-tit fl">游玩日期</span>
-			<div class="travel-date-wrap fr clearFix">
-			<div id="jdate" class="travel-date-wrap-so fl js-date">
-
-			<span class="tra-ymd js-ymd"></span>
-			<span class="tra-week js-week"></span>
-
-			<b></b>
-			</div>
-			<div class="travel-date-wrap-noon fl">
-				{%=console.log(data.DetailData.data.tours)%}
-				{% for(var i=0;i<data.DetailData.data.tours.length;i++){ %}
-					{% for(var j=0;j<data.DetailData.data.tours[i].tourSession.length;j++){ %}
-						{% if(data.DetailData.data.tours[i].tourSession[j] == 4){ %}
-							<a href="javascript:void(0);" data-key="None" style="display: none;" class="{% if(j==0){ %}fa-noon on{% }else{ %}fa-noon{% } %}" onclick="MT.HalfDay(this,{%=data.DetailData.data.tours[i].tourSession[j]%})"></a>
-						{% } %}
-						{% if(data.DetailData.data.tours[i].tourSession[j] == 3){ %}
-							<a href="javascript:void(0);" data-key="FullDayTour" style="display: none;" class="{% if(j==0){ %}fa-noon on{% }else{ %}fa-noon{% } %}" onclick="MT.HalfDay(this,{%=data.DetailData.data.tours[i].tourSession[j]%})"></a>
-						{% } %}
-						{% if(data.DetailData.data.tours[i].tourSession[j] == 2){ %}
-							<a href="javascript:void(0);" data-key="EveningTour" class="{% if(j==0){ %}fa-noon on{% }else{ %}fa-noon{% } %}" onclick="MT.HalfDay(this,{%=data.DetailData.data.tours[i].tourSession[j]%})">晚上</a>
-						{% } %}
-						{% if(data.DetailData.data.tours[i].tourSession[j] == 1){ %}
-							<a href="javascript:void(0);" data-key="AfternoonTour" class="{% if(j==0){ %}fa-noon on{% }else{ %}fa-noon{% } %}" onclick="MT.HalfDay(this,{%=data.DetailData.data.tours[i].tourSession[j]%})">下午</a>
-						{% } %}
-						{% if(data.DetailData.data.tours[i].tourSession[j] == 0){ %}
-							<a href="javascript:void(0);" data-key="MorningTour" class="{% if(j==0){ %}fa-noon on{% }else{ %}fa-noon{% } %}" onclick="MT.HalfDay(this,{%=data.DetailData.data.tours[i].tourSession[j]%})">上午</a>
-						{% } %}
-
-					{% } %}
-				{% } %}
-			</div>
-			</div>
-			</section>
-			<section class="sce-introduce">
-			<p class="sce-introduce-txt js-sce-introduce-txt"></p>
-			</section>
-			<!--<div class="gray-block"></div>-->
-			</div>
-
-		</script>
-
-		<script id="tpl_Adult_Child2" type="text/template">
-
-			<div class="sce-ticket js-sce2">
-
-			<section class="sce-introduce">
-			<p class="sce-introduce-txt js-sce-introduce-txt" data-key=""></p>
-			</section>
-
-			<!--<div class="gray-block"></div>-->
-			</div>
-
-		</script>
-
-		<script id="tpl_ScenicPrices" type="text/template">
-			<li>
-			<div class="fl">
-			<span class="add-setmeal-tit js-add-setmeal-tit"></span>
-			<span class="add-setmeal-tit ticket-type"></span>
-			<span class="setmeal-tit">单价：<strong class="setmeal-price-cont js-setmeal-price-cont">¥</strong></span>
-			</div>
-			<b class="setmeal-tr fr" data-c-id="meal" onclick="MT.MealClick(this);"></b>
-			</li>
-
-		</script>
-    <script  type="text/javascript" src="js/scenic_booking.js"></script>
-
+  <script type="text/javascript" src="../js/lib/jquery.js"></script>
+  <script type="text/javascript" src="../js/lib/plugins.js"></script>
+  <script type="text/javascript" src="../js/lib/vlm.js"></script>
+  <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
+  <script type="text/javascript" src="../js/lib/ejs.js"></script>
+  <script type="text/javascript" src="js/scenic_booking.js"></script>
 	</body>
 
 </html>
