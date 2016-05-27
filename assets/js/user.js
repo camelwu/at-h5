@@ -654,8 +654,6 @@ require(['jquery','vlm','scroller'], function($,vlm,Scroller) {
     var myDate4 = new Scroller({id: "birth-cont-edit", type:"birth",cont:"eee1"});
     var myDate5 = new Scroller({id: "time-cont-edit", type:"validity",cont:"eee2"});
     var myDate6 = new Scroller({id: "cardType", type:"card",cont:"eee3",callback:cardcallback});
-    //个人信息修改页生日
-    var myDate7 = new Scroller({id: "birth-cont-per", type:"birth",cont:"ppp"});
 
     function cardcallback(){
 

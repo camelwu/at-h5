@@ -20,7 +20,10 @@ i{font-style: normal;
 }
 .hotel_grade_num_score{
   font-size: .34rem;
-  color: #FDB330;
+  color: #7bc300;
+}
+.score{
+  font-size: .20rem;
 }
 .hotel_grade_score{
   width: 100%;
