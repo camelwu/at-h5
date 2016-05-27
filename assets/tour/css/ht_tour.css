@@ -696,6 +696,7 @@ header.header .header_more i.location_tip{
   background:#fff;
 }
 .page_title div{
+  font-size: 0.32rem;
   padding: 0.38rem 0.28rem 0.18rem;
   color: #333;
 }
