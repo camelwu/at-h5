@@ -535,6 +535,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .trip_go_ span:nth-child(2), .trip_back_ span:nth-child(2) {
   margin-left: .48rem;
+  vertical-align: 25%;
 }
 
 .left_info .right {
@@ -878,8 +879,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .trip_go_ .addUp, .trip_back_ .addUp {
-  position: relative;
-  top: -.12rem;
+  vertical-align: 25%;
 }
 
 .trip_go_ span.cityName, .trip_back_ span.cityName {
@@ -889,8 +889,6 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: .42rem;
-  position: relative;
-  top: -.02rem
 }
 
 .trip_back_, .seat-price-cost p:nth-child(2) {
