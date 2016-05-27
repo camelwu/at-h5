@@ -525,7 +525,9 @@ i, em {
 .at_declaration dt, .at_declaration dd {
   margin: .1rem 0;
 }
-
+#link_at{
+  background-color: #fff;
+}
 .user_content {
   position: absolute;
   background-color: white;
