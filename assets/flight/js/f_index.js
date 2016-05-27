@@ -137,9 +137,10 @@ var fIndexModal = {
         $(".city_detail_info").eq(0).html(outputString1);
       }else if(target.className.indexOf('city_list')>-1){
         console.log(target.getAttribute('data-city-code'))
-        that.cityEle.setAttribute('data-code', target.getAttribute('data-city-code'))
+        var dateCode = target.getAttribute('data-city-code')
+        that.cityEle.setAttribute("data-code", dateCode)
         that.cityEle.innerHTML = target.innerHTML;
-        that.cityEle.setAttribute("data-city-type",that.getCityType(target.getAttribute('data-city-code')));
+        that.cityEle.setAttribute("data-city-type",that.getCityType(dateCode));
         this.style.display = "none";
       }else if(target.className =="header_back" || target.className =="icon_back"){
         this.style.display = "none";
