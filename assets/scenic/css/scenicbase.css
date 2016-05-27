@@ -487,7 +487,7 @@ li.scenic_detile_project_first{
   width: 1.44rem;
   height: .56rem;
   color:white;
-  background-color: #FFB413;
+  background-color: #7bc300;
   font:400 .32rem/.56rem "宋体";
   border-radius: .1rem;
   margin-top: .44rem;
@@ -610,7 +610,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   font-size: 0.32rem;
   font-weight: bold;
   color: #ffffff;
-  background: #ffb413;
+  background:#7bc300;
   line-height: 0.56rem;
   text-align: center;
   border-radius: 0.03rem;
@@ -635,3 +635,155 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   font-weight: bold;
   color: #FF5B13;
 }
+
+
+/*预订页面*/
+.gray-block {
+  height: .15rem;
+  background-color: #f5f4f9;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.booking_wrap{
+
+}
+
+.booking_package{
+  padding: .4rem .28rem .4rem .28rem;
+  font-size: .28rem;
+  color: #333333;
+  border-bottom: 1px #e6e6e6 solid;
+}
+
+.booking_package_h3{
+  font-size: .32rem;
+  color: #333333;
+  line-height: .48rem;
+}
+
+.booking_package_span{
+  font-size: .24rem;
+  color: #999999;
+}
+
+.booking_package_preprice{
+  margin: .2rem 0 0 0;
+  font-size: .32rem;
+  color: #FF5B13;
+}
+
+.booking_package_preprice_span{
+  margin: .2rem 0 0 0;
+  font-size: .28rem;
+  color: #FF5B13;
+}
+
+
+
+.booking_package_tours{
+
+}
+
+.booking_package_tour{
+  padding: .4rem .28rem .4rem .28rem;
+  font-size: .28rem;
+  color: #333333;
+  border-bottom: 1px #e6e6e6 solid;
+  position: relative;
+}
+
+.booking_package_tourtitle{
+
+}
+
+.booking_package_i{
+  height: .26rem;
+  width: 3px;
+  background: #7bc300;
+  display: inline-block;
+}
+
+.booking_package_tour_h3{
+  margin: 0 0 0 .16rem;
+  font-size: .32rem;
+  color: #333333;
+  line-height: .48rem;
+  display: inline-block;
+}
+
+.booking_package_date{
+  padding: .4rem 0 0 0;
+}
+
+.booking_package_date_p{
+  display: inline-block;
+}
+
+.booking_package_date_i{
+  position: absolute;
+  margin-top: -0.16rem;
+  top: 50%;
+  right: .2rem;
+  height: .45rem;
+  width: .45rem;
+  overflow: hidden;
+  display: inline-block;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -6.8rem -2.33rem;
+}
+
+
+.booking_package_fullday{
+  padding: .4rem 0 0 0;
+}
+
+.booking_package_fullday_ul{
+  display: inline-block;
+}
+
+
+.booking_package_fullday_li{
+  float: left;
+  width: 2.12rem;
+  height: .69rem;
+  color: #d1d1d1;
+  border: 1px #d1d1d1 solid;
+  border-radius: .05rem;
+  text-align: center;
+  line-height: .69rem;
+  margin: 0 .29rem 0 0;
+}
+
+.booking_package_fullday_li:last-child{
+  margin: 0;
+}
+
+.booking_package_fullday_li_current{
+  position: relative;
+  color: #7bc300;
+  border: 1px #7bc300 solid;
+  border-radius: .05rem;
+}
+
+.booking_package_fullday_li_current:after{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: .36rem;
+  width: .5rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -6.99rem -1.43rem;
+}
+
+
+.booking_package_pre{
+
+}
+
+
+/*预订页面*/
