@@ -588,6 +588,36 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .s_active{
   display: block!important;
 }
+header.header .header_more{
+  position: absolute;
+  top: 0;
+  right: 0;    height: 0.88rem;
+  line-height: 0.88rem;
+  color: #333;
+}
+header.header .header_more span{
+  margin-right: 0.5rem;
+  font-size: .32rem;
+  display: inline-block;
+  width: 1.64rem;
+  text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+header.header .header_more i.location_tip{
+  position: absolute;
+  margin-top: -0.16rem;
+  top: 50%;
+  right: .2rem;
+  height: 0.32rem;
+  width: .29rem;
+  overflow: hidden;
+  display: inline-block;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1.08rem -0.59rem;
+}
     /**/
 /*景点列表页结束*/
 /*套餐详情页开始*/
