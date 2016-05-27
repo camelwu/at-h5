@@ -905,7 +905,7 @@ section.hotelInfo_numb_room .room_number{
     margin-top:-0.25rem;
 }
 section.hotelInfo_numb_room .room_number span{
-    width: 0.56rem;
+    width: 0.54rem;
     height: 0.56rem;
     background: url(../images/ui/icons1.png) no-repeat 0 2px;
     background-size: 320px auto;
@@ -980,7 +980,7 @@ section.hotelInfo_numb_room .title{
     width: 60%;
 }
 .zy_price_control span,.hotelInfo_numb_people .childAge span{
-    width: 0.56rem;
+    width: 0.54rem;
     height: 0.56rem;
     background: url(../images/ui/icons1.png) no-repeat 0 2px;
     background-size: 320px auto;

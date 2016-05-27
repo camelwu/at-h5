@@ -18,7 +18,135 @@ var fIndexModal = {
     }
     this.addHandler(target, eventType, handle);
   },
+  getCityType: function (arg) {
+    console.log(arg)
+    var dataPool1 = internationalCities, dataPool2 = domesticCities,tag1 = "";
+    dataPool1.forEach(function (index) {
+      if (index.cityCode == arg) {
+        tag1 = "international";//domestic
+        return false;
+      }
+    });
+    dataPool2.forEach(function (index) {
+      if (index.cityCode == arg) {
+        tag1 = "domestic";//domestic
+        return false;
+      }
+    });
+    console.log(tag1)
+    return tag1;
+  },
 
+  citySearchHandler:function(){
+    var place = document.querySelector('.place');
+    var city_outer = document.querySelector('.city_outer');
+    var tempString1 = "", outputString1 = "",resultArray = {},that = this, internationalArray={}, domesticArray = {}, array1=[], array2=[];
+    Array.prototype.distinct=function(){
+      var sameObj=function(a,b){
+        var tag = true;
+        if(!a||!b)return false;
+        for(var x in a){
+          if(!b[x])
+            return false;
+          if(typeof(a[x])==='object'){
+            tag=sameObj(a[x],b[x]);
+          }else{
+            if(a[x]!==b[x])
+              return false;
+          }
+        }
+        return tag;
+      };
+      var newArr=[],obj={};
+      for(var i=0,len=this.length;i<len;i++){
+        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+          newArr.push(this[i]);
+          obj[typeof(this[i])+this[i]]=this[i];
+        }
+      }
+      return newArr;
+    };
+    var returnRArray = function(){
+      var result={}, array1=[], data = arguments[0];
+      data.forEach(function(itemValue){
+        array1.push(itemValue.pingYin.substring(0,1).toUpperCase())
+      });
+      array1=array1.distinct();
+      array1=array1.sort();
+      array1.forEach(function(item){
+        result[item] = [];
+      });
+      return result;
+    };
+
+    internationalArray = returnRArray(internationalCities);
+    domesticArray = returnRArray(domesticCities);
+    internationalCities.forEach(function(itemValue) {
+      for (var temp in  internationalArray) {
+        if (itemValue.pingYin.substring(0, 1).toUpperCase() == temp) {
+          internationalArray[temp].push(itemValue);
+        }
+      }
+    });
+    domesticCities.forEach(function(itemValue) {
+      for (var temp in  domesticArray) {
+        if (itemValue.pingYin.substring(0, 1).toUpperCase() == temp) {
+          domesticArray[temp].push(itemValue);
+        }
+      }
+    });
+    this.domesticArray = domesticArray;
+    this.internationalArray = internationalArray;
+    this.addHandler(place, "click", function(e){
+      var e = e || window.event, target = e.target || e.srcElement;
+      if(target.getAttribute('data-city-type') == "domestic"){
+        that.cityEle = target;
+        tempString1 = $("#template_city_summary").html();
+        outputString1 = ejs.render(tempString1, {resultArray: domesticArray});
+        $(".city_detail_info").eq(0).html(outputString1);
+        city_outer.style.display = "block";
+      }else if(target.getAttribute('data-city-type') == "international"){
+        that.cityEle = target;
+        tempString1 = $("#template_city_summary").html();
+        outputString1 = ejs.render(tempString1, {resultArray: internationalArray});
+        $(".city_detail_info").eq(0).html(outputString1);
+        city_outer.style.display = "block";
+      }
+    });
+    this.citySearchEvent();
+    return this;
+  },
+
+  citySearchEvent:function(){
+    var cityOuter = document.querySelector('.city_outer'),that = this, tempString1="", outputString1="", outputString1="";
+    this.addHandler(cityOuter, "click", function(e){
+      var e = e || window.event, target = e.target || e.srcElement,
+        internationalTitle = document.querySelector('.international_title'),
+        domesticTitle= document.querySelector('.domestic_title');
+      if(target==internationalTitle){
+        internationalTitle.className="international_title light-title";
+        domesticTitle.className="domestic_title grey-title";
+        tempString1 = $("#template_city_summary").html();
+        outputString1 = ejs.render(tempString1, {resultArray: that.internationalArray});
+        $(".city_detail_info").eq(0).html(outputString1);
+      }else if(target==domesticTitle){
+        internationalTitle.className="international_title grey-title";
+        domesticTitle.className="domestic_title light-title";
+        tempString1 = $("#template_city_summary").html();
+        outputString1 = ejs.render(tempString1, {resultArray: that.domesticArray});
+        $(".city_detail_info").eq(0).html(outputString1);
+      }else if(target.className.indexOf('city_list')>-1){
+        console.log(target.getAttribute('data-city-code'))
+        that.cityEle.setAttribute('data-code', target.getAttribute('data-city-code'))
+        that.cityEle.innerHTML = target.innerHTML;
+        that.cityEle.setAttribute("data-city-type",that.getCityType(target.getAttribute('data-city-code')));
+        this.style.display = "none";
+      }else if(target.className =="header_back" || target.className =="icon_back"){
+        this.style.display = "none";
+      }
+    })
+
+  },
   eventHandler: function () {
     var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
     var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
@@ -195,6 +323,7 @@ var fIndexModal = {
         }
       }
     })
+    return this
   },
 
   setWeekItems: function () {
@@ -420,24 +549,24 @@ var fIndexModal = {
     }
     return this;
   },
-  f_inoriFunc: function () {
-    if (fIndexModal.type != 'oneWay')return;
-    VM.Load("f_inori");
-  },
-  f_indesFunc: function () {
-    if (fIndexModal.type != 'oneWay')return;
-    VM.Load("f_indes");
-  },
-  f_outoriFunc: function () {
-    if (fIndexModal.type == 'oneWay')return;
-    VM.Load("f_outori");
-  },
-  f_outdesFunc: function () {
-    if (fIndexModal.type == 'oneWay')return;
-    VM.Load("f_outdes");
-  },
+  /*f_inoriFunc: function () {
+   if (fIndexModal.type != 'oneWay')return;
+   VM.Load("f_inori");
+   },
+   f_indesFunc: function () {
+   if (fIndexModal.type != 'oneWay')return;
+   VM.Load("f_indes");
+   },
+   f_outoriFunc: function () {
+   if (fIndexModal.type == 'oneWay')return;
+   VM.Load("f_outori");
+   },
+   f_outdesFunc: function () {
+   if (fIndexModal.type == 'oneWay')return;
+   VM.Load("f_outdes");
+   },*/
   init: function () {
-    this.fadeHandler().initHandler().cityInit().eventHandler();
+    this.fadeHandler().initHandler().eventHandler().citySearchHandler();
   }
 };
 fIndexModal.init();
