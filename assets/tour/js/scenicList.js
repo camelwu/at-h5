@@ -20,26 +20,42 @@
 		initdata["Parameters"] = para;
 	}
 
+
 	(function(p) {
 		var that = arguments.callee, filerCallBack = function(obj) {
-			if (obj.sortTypes) {
-				console.log(obj.sortTypes[0]);
+			if (obj.sortTypes && obj.sortTypes.length > 0) {
 				ChgPara("PriceSortType", obj.sortTypes[0]);
 			}
-			if (obj.themes && obj.themes.length > 0) {
-				ChgPara("ThemeID", obj.themes[0]);
+			if (obj.filters && obj.filters.length > 0) {
+				ChgPara("ThemeID", obj.filters[0].FilterValues[0]);
 				ChgPara("ThemeIDSpecified", 1);
 				ChgPara("PageIndex", 1);
 			}
 			that();
 		};
 		if (p) {
-			page != p ? ChgPara("PageIndex", p) : null;
+			if (page != p) {
+				ChgPara("PageIndex", p);
+			}
 		}
 		vlm.loadJson(apiurl, JSON.stringify(initdata), function(data) {
-			var json = data;
+			var json = data, tpl_page = '<div id="loadMore">点击查看更多...</div>', tpl_end = '<div id="loadMore">没有更多...</div>';
 			if (json.success) {
-				var data = json.data, f_data = {
+				var data = json.data, items = [], themes = data.themes, fts = {
+					allowMultiSelect : 0,
+					filterType : 5,
+					sortNumber : 0,
+					item : [],
+					title : "主题"
+				};
+				for (var i = 0; i < themes.length; i++) {
+					items.push({
+						filterText : themes[i].themeName,
+						filterValue : themes[i].themeID,
+					});
+				}
+				fts.item = items;
+				var f_data = {
 					PriceSortType : {
 						title : "价格排序",
 						c : "foot_sort",
@@ -56,20 +72,28 @@
 					},
 					themes : {
 						title : "过滤",
-						c : "foot_t_filter",
-						type : 1,
+						c : "foot_screen",
 						s : 1,
-						key : 'themes', //ThemeID
-						listData : data.themes
+						type : 2,
+						key : 'filters',
+						listData : [fts]
 					}
 				};
-				var str1 = $('#tpl_SearchAvailableToursAttractions').html(),str2 = $('#tpl_Localtxt').html();
+				var str1 = $('#tpl_SearchAvailableToursAttractions').html(), str2 = $('#tpl_Localtxt').html();
 				if (data.lists.length == 0) {
-					jAlert("抱歉暂时没有数据", "提示");
+					$('#loadMore').html("没有更多……");
+					$('#loadMore').unbind("click");
 				} else {
-					var tpl_SearchAvailableToursAttractions = ejs.render(str1, data);
-					var tpl_c = ejs.render(str2, data);
-					$("#scenicListCont").html(tpl_SearchAvailableToursAttractions);
+					var tpl_l = ejs.render(str1, data), tpl_c = ejs.render(str2, data);
+					page = p;
+					if(document.getElementById("loadMore")){
+						$("#loadMore").before(tpl_l);console.log("has");
+					}else{
+						$("#scenicListCont").html(tpl_l + tpl_page);
+						$("#loadMore").click(function() {
+							that(page + 1);
+						});console.log("first");
+					}
 					$("#Localtxt").html(tpl_c);
 					vlm.init();
 					if (footer) {
@@ -82,11 +106,11 @@
 				jAlert(json.message, "提示");
 			}
 		});
-	}).call(this,1);
+	}).call(this, 1);
 })();
 
 //城市返回记录已访问过
 $('#city-back-tip').click(function() {
 	var cityvisited = window.location.search;
 	window.location.href = 'index.html' + cityvisited;
-}); 
+});
