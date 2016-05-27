@@ -1,4 +1,4 @@
-/** 
+/**
  *==============================================
  *@desc scroller 组件相关样式    依赖reset.css 中rem单位相关部分文件 使用时需要注意当前使用的版本
  *@author
@@ -124,8 +124,8 @@
     pointer-events: none;
     box-sizing: border-content;
     height: 45px;
-    border-top: 2px solid #FFB413;
-    border-bottom: 2px solid #FFB413;
+    border-top: 2px solid #7bc300;
+    border-bottom: 2px solid #7bc300;
 }
 
 #header {

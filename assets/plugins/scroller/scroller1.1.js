@@ -18,7 +18,7 @@ Scroller.prototype = {
     // 缓存
     cache: {},
     // 按钮数组
-    _btn: ['<span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span>', '<span class="fr cabin-sure" style="margin-right: 10px;color: #ffb413;">确定</span>'],
+    _btn: ['<span class="fl cabin-cancel" style="margin-left: 10px;color:#999;">取消</span>', '<span class="fr cabin-sure" style="margin-right: 10px;color: #7bc300;">确定</span>'],
     // 模板数组
     _template: {
         dateTime: ['date', 'h', 'm'],

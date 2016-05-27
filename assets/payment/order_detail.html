@@ -175,7 +175,7 @@
     </div>
     <div class="fht_order_detail">
       <div class="fht_hd">出行人信息</div>
-      <ul class="fht_order_tab">
+      <ul class="fht_order_tab border_light">
         <% if(travelers.length>0){ %>
         <% travelers.forEach(function(info){%>
         <li>
@@ -389,13 +389,13 @@
               <div class="q22"></div>
             </div>
             <div class="q2">
-              <div class="q12"><p>支付订单</p></div>
+              <div class="q12 check_light"><p>支付订单</p></div>
               <div class="q23"></div>
             </div>
             <div class="q2">
-              <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q12 check_light"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
               <div class="q23"></div>
-              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+              <div class="q111 check_light"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
             </div>
           </div>
         </div>
@@ -417,9 +417,9 @@
               <div class="q23"></div>
             </div>
             <div class="q2">
-              <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q12 check_light"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
               <div class="q23"></div>
-              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+              <div class="q111 check_light"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
             </div>
           </div>
         </div>
@@ -442,7 +442,7 @@
             <div class="q2">
               <div class="q11"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
               <div class="q23"></div>
-              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+              <div class="q111 check_light"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
             </div>
           </div>
         </div>
@@ -486,9 +486,9 @@
               <div class="q23"></div>
             </div>
             <div class="q2">
-              <div class="q12"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
+              <div class="q12 check_light"><p>&nbsp;&nbsp;&nbsp;入住</p></div>
               <div class="q23"></div>
-              <div class="q111"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
+              <div class="q111 check_light"><p>&nbsp;&nbsp;&nbsp;离店</p></div>
             </div>
           </div>
         </div>
@@ -554,7 +554,7 @@
     </div>
     <div class="fht_order_detail">
       <div class="fht_hd">入住人信息</div>
-      <ul class="fht_order_tab">
+      <ul class="fht_order_tab border_light">
         <% if(guestNameList.length>0){ %>
         <% guestNameList.forEach(function(info){%>
         <li>
@@ -614,14 +614,14 @@
         <% if(flightInfo.segmentsLeave.length>=1) {%>
             <!--去程-->
             <li class="fli_cont fli_cont1">
-              <div class="fli_infp">
-                <div class="fli_cir_left">
+              <div class="fli_infp clearfix">
+                <div class="fli_cir_left fl">
                   <i class="go_tip"></i>
                   <span class="fli_go_date"><%=vlm.Utils.format_date(flightInfo.flightLeaveStartDate)%></span>
                   <span><%=vlm.Utils.getWeek(flightInfo.flightLeaveStartDate)%></span>
                   <span><%=flightInfo.cityNameFrom%>-<%=flightInfo.cityNameTo%></span>
                 </div>
-                <div class="fli_cir_right">
+                <div class="fli_cir_right fr">
                   <i></i>
                   <span><%=flightInfo.segmentsLeaveTotalTravelTimeString%></span>
                 </div>
@@ -642,7 +642,7 @@
                   </div>
                 </div>
                 <div class="fli_info ">
-                  <span><%=flightInfo.segmentsLeave[i].airCorpName%></span><span>|</span><span><%=flightInfo.segmentsLeave[i].airCorpCode%><%=flightInfo.segmentsLeave[i].flightNo%></span><span>|</span><span><%=flightInfo.segmentsLeave[i].planeName%><span></span></span>
+                  <span><%=flightInfo.segmentsLeave[i].airCorpName%></span><span class="line_four">|</span><span><%=flightInfo.segmentsLeave[i].airCorpCode%><%=flightInfo.segmentsLeave[i].flightNo%></span><span class="line_four">|</span><span><%=flightInfo.segmentsLeave[i].planeName%><span></span></span>
                 </div>
               </div>
               <% if(flightInfo.segmentsLeave.length>=2 &&  i<flightInfo.segmentsLeave.length-1) {%>
@@ -670,7 +670,7 @@
                 </div>
                 <% for(var i=0; i<flightInfo.segmentsReturn.length; i++){ %>
                 <div class="fli_list">
-                    <div class="time-arrow-time" style="overflow: hidden">
+                    <div class="time-arrow-time clearfix">
                       <div class="city-time-left">
                         <div class="clock"> <%=vlm.Utils.format_date(flightInfo.segmentsReturn[i].departDate,'hm')%></div>
                         <p class="port-name"><%=flightInfo.segmentsReturn[i].airportNameFrom%><%=flightInfo.segmentsReturn[i].termDepart%></p>
@@ -710,7 +710,7 @@
     </div>
     <div class="fht_order_detail">
       <div class="fht_hd">出行人信息</div>
-      <ul class="fht_order_tab">
+      <ul class="fht_order_tab border_light">
         <% if(travelers.length>0){  var i=1;%>
         <% travelers.forEach(function(info){%>
         <li>
@@ -933,7 +933,7 @@
     <% } %>
     <div class="fht_order_detail">
       <div class="fht_hd">订单信息</div>
-      <ul class="fht_order_tab">
+      <ul class="fht_order_tab ">
         <li class="clearfix"><span class="fl"></span>订单号<span class="fr"><%=bookingRefNo%></span></li>
         <li class="clearfix"><span class="fl"></span>下单时间<span class="fr"><%=vlm.Utils.format_date(bookingDate,"YmdHis")%></span>
         <li class="clearfix"><span class="fl"></span>联系电话<span class="fr"><%=contactDetails.contactNo%></span>
