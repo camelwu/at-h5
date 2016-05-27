@@ -764,14 +764,14 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   margin: 0;
 }
 
-.booking_package_fullday_li_current{
+.booking_package_fullday_li.current{
   position: relative;
   color: #7bc300;
   border: 1px #7bc300 solid;
   border-radius: .05rem;
 }
 
-.booking_package_fullday_li_current:after{
+.booking_package_fullday_li.current:after{
   content: '';
   display: inline-block;
   position: absolute;
