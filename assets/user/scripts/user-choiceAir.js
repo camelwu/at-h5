@@ -132,7 +132,7 @@
     };
 
     if(contactUL.is(':visible')){
-        if(!vlm.Utils.validate["mobileNo"]($(inputaddOrEditPassagePageList).find(".telNum").eq(0).val())){
+        if(!vlm.Utils.validate["mobileNo"]($(addOrEditPassagePage).find(".telNum").eq(0).val())){
           jAlert("请输入有效的电话号码！","",null,"确认");
           return false;
         }
