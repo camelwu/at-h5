@@ -270,14 +270,14 @@ i.i_address{
 .footer{
   width: 100%;
   height: .98rem;
-  background: #18415d;
+  /*background: #18415d;*/
   position: fixed;
   bottom: 0;
   text-align: center;
   z-index: 98;
 }
 .footer span{
-  color: #f5f4f9;
+  color: #d1d1d1;
   line-height: .98rem;
 }
 .nav1,.content2,.content3,.content4,.content5 {
