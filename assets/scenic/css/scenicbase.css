@@ -199,11 +199,12 @@
 .scenic_detile_content{
   height: 1.4rem;
   margin-left: .2rem;
+  padding-top:0.18rem;
   float:left;
 }
 .scenic-detile_list{
   border-bottom: 1px solid #E6E6E6;
-  margin:.2rem 0 0;
+  padding:0.1rem  0;
 }
 .scenic-detile_list_theme{
   opacity: 0.8;
@@ -220,8 +221,8 @@
 }
 .scenic_detile_content_name{
   width: 4.9rem;
-  height: .8rem;
-  line-height: .4rem;
+  height: .44rem;
+  line-height: .44rem;
   display: block;
   font-size: .26rem;
   /*white-space: nowrap;*/
@@ -231,7 +232,7 @@
   word-wrap: break-word;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 .scenic_detile_content_price{
@@ -281,7 +282,6 @@ li.scenic_detile_project_first{
 /*景点详情页开始*/
 .header_scenic{
   height: .66rem;
-  opacity: 0.5;
   position: absolute;
   z-index: 1;
 }
@@ -309,16 +309,16 @@ li.scenic_detile_project_first{
   left: .28rem;
   bottom: .20rem;
 }
-.bar_img_theme{
-  display: block;
-  text-align: center;
-  font-size: .36rem;
-  color:#fff;
-  position: absolute;
-  left:40%;
-  top:.28rem;
-  opacity: 0.8;
-}
+/*.bar_img_theme{*/
+  /*display: block;*/
+  /*text-align: center;*/
+  /*font-size: .36rem;*/
+  /*color:#fff;*/
+  /*position: absolute;*/
+  /*left:40%;*/
+  /*top:.28rem;*/
+  /*opacity: 0.8;*/
+/*}*/
 .bar_img_page{
   font-size: .2rem;
   color:#fff;
@@ -556,7 +556,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 /*预订*/
 .scenic_content_booking{
   margin: .4rem 0 0 0.28rem;
-  padding: 0 0 0 0;
+  padding: 0 0 0.28rem 0;
   font-size: .28rem;
   position: relative;
   border-bottom: 1px solid #EDECEB;
