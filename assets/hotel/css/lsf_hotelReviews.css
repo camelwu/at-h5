@@ -20,7 +20,7 @@ i{font-style: normal;
 }
 .hotel_grade_num_score{
   font-size: .34rem;
-  color: #55bfb7;
+  color: #FDB330;
 }
 .hotel_grade_score{
   width: 100%;
@@ -79,8 +79,15 @@ i{font-style: normal;
   overflow: hidden;
   display: block;
 }
+.hotel_grade_content_box_User b{
+  max-width: 4rem;
+  min-width: .3rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 .hotel_grade_content_box_User i{
-  margin-left: 0.2rem;
+  margin-left: 0.1rem;
   color: #fff;
   background-color: rgb(85,191,183);
   padding: 0 .1rem;
@@ -98,6 +105,11 @@ i{font-style: normal;
   bottom: 1.4rem;
   right: .4rem;
   position: absolute;
+}
+.reu_span2{
+  position: absolute;
+  bottom:0.3rem;
+  right:.2rem;
 }
 
 
