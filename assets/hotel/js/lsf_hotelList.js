@@ -325,13 +325,13 @@ function styleChange(id, mytext) {
 			var rank = document.getElementById("rank");
 			var mb = document.getElementById("r-mb");
 			var color = obj.style.color;
-			if (color == "rgb(253, 179, 48)") {
+			if (color == "rgb(252, 148, 100)") {
 				mb.style.display = "none";
 				rank.style.bottom = -550 + 'px';
 				rank.style.transition = "all 350ms";
 			} else {
 				for (var i = 0; i < rli.length; i++) {
-					if (rli[i].style.color == "rgb(253, 179, 48)") {
+					if (rli[i].style.color == "rgb(252, 148, 100)") {
 						var bb = rli[i].getElementsByTagName("b")[0];
 						rli[i].removeChild(bb);
 					}
