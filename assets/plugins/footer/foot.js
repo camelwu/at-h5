@@ -117,7 +117,6 @@ var footer = (function() {
 					box.childNodes[i].style.backgroundColor = "";
 				}
 				while ( target = target.previousSibling) {
-					console.log(target.className);
 					if (target.nodeType == 1){
 						index++;
 					}
