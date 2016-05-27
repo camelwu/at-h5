@@ -13,11 +13,11 @@
   <meta name="Keywords" content="亚洲旅行网">
   <meta name="Description" content="境外专业旅行服务提供机构">
   <title>机票首页 - 亚洲旅行网</title>
-  <link href="../styles/reset.css"  rel="stylesheet" type="text/css"/>
+  <link href="../styles/reset.css" rel="stylesheet" type="text/css"/>
   <link href="../plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
   <link href="../plugins/scroller/scroller1.1.css" rel="stylesheet" type="text/css">
   <link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>
-  <link href="css/f_index.css"  rel="stylesheet" type="text/css"/>
+  <link href="css/f_index.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="preloader">
@@ -30,6 +30,7 @@
     <a href="#" class="header_back">
       <i class="icon_back"></i>
     </a>
+
     <h3>机票</h3>
   </header>
   <div class="content paddingTop">
@@ -38,42 +39,58 @@
       <div class="doubleTrip grey-title">往返</div>
     </div>
     <div class="place">
-      <div class="origin"><div class="citySearch js_origin" id="f_inori" data-bind="type:'setCityBox',data:'f_inori',returnId:'#f_inori'" data-code="BJS" data-city-type="domestic">北京</div></div>
-      <div class="iconTip"><div><span class="span-target"></span></div></div>
-      <div class="destination"><div class="citySearch js_destination" id="f_indes" data-bind="type:'setCityBox',data:'f_indes',returnId:'#f_indes'" data-code="SIN" data-city-type="international">新加坡</div></div>
+      <div class="origin">
+        <div class="citySearch js_origin" id="f_inori" data-bind="type:'setCityBox',data:'f_inori',returnId:'#f_inori'"
+             data-code="BJS" data-city-type="domestic">北京
+        </div>
+      </div>
+      <div class="iconTip">
+        <div><span class="span-target"></span></div>
+      </div>
+      <div class="destination">
+        <div class="citySearch js_destination" id="f_indes"
+             data-bind="type:'setCityBox',data:'f_indes',returnId:'#f_indes'" data-code="SIN"
+             data-city-type="international">新加坡
+        </div>
+      </div>
     </div>
     <div class="dateInfo white" id="timeSingleWrap">
-           <div class="date-word"><span class="from-word">出发日期</span></div>
-           <div class="date-value">
-               <div class="set-from"><span class="month-day" id="setOffDateSingle" date-full-value="2016-06-15">06月15日</span> <span class="weekWord">周三</span></div>
-           </div>
+      <div class="date-word"><span class="from-word">出发日期</span></div>
+      <div class="date-value">
+        <div class="set-from"><span class="month-day" id="setOffDateSingle" date-full-value="2016-06-15">06月15日</span>
+          <span class="weekWord">周三</span></div>
       </div>
+    </div>
     <div class="dateInfo white" id="timeDoubleWrap">
       <div class="date-word"><span class="from-word">出发日期</span><span class="to-word">返程日期</span></div>
       <div class="date-value">
-        <div class="set-from"><span class="month-day" id="setOffDate" date-full-value="2016-05-20">05月20日</span> <span class="weekWord">周五</span></div>
-        <div class="set-to"><span class="month-day" id="arriveDate" date-full-value="2016-05-22">05月22日</span> <span class="weekWord">周日</span></div>
+        <div class="set-from"><span class="month-day" id="setOffDate" date-full-value="2016-05-20">05月20日</span> <span
+          class="weekWord">周五</span></div>
+        <div class="set-to"><span class="month-day" id="arriveDate" date-full-value="2016-05-22">05月22日</span> <span
+          class="weekWord">周日</span></div>
       </div>
     </div>
-      <!--乘客人数开始-->
-      <div class="pas-num-wrap white">
-           <div class="adult"><span>成人</span>  <span class="float-right"><i class="adu minus minus_grey"></i><span class="adultNumber">1</span><i class="adu plus"></i></span></div>
-           <div class="child"><span>儿童</span>  <span class="float-right"><i class="chi minus minus_grey"></i><span class="childNumber">0</span><i class="chi plus"></i></span></div>
-      </div>
-      <!--乘客人数结束-->
-      <!--舱位开始-->
-      <div class="cabin-wrap white">
-        <b class="icons"></b>
-        <span class="cabin-wrap-level">舱位等级</span>
-        <i class="cabin-arrow"></i>
-        <span id="seats">经济舱</span>
-      </div>
-      <!--舱位结束-->
+    <!--乘客人数开始-->
+    <div class="pas-num-wrap white">
+      <div class="adult"><span>成人</span> <span class="float-right"><i class="adu minus minus_grey"></i><span
+        class="adultNumber">1</span><i class="adu plus"></i></span></div>
+      <div class="child"><span>儿童</span> <span class="float-right"><i class="chi minus minus_grey"></i><span
+        class="childNumber">0</span><i class="chi plus"></i></span></div>
+    </div>
+    <!--乘客人数结束-->
+    <!--舱位开始-->
+    <div class="cabin-wrap white">
+      <b class="icons"></b>
+      <span class="cabin-wrap-level">舱位等级</span>
+      <i class="cabin-arrow"></i>
+      <span id="seats">经济舱</span>
+    </div>
+    <!--舱位结束-->
     <div class="search-button">
-      <input type="button" value="查询"  id="ticket-search-button">
-    </div>
+      <input type="button" value="查询" id="ticket-search-button">
     </div>
   </div>
+</div>
 
 <!--整体城市列表-->
 <div id="citybox_search_container" class="citybox_search_container citybox_search_state">
@@ -137,7 +154,8 @@
     </div>
     <!--城市列表-->
     <!--城市字母定位-->
-    <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
+    <div id="citybox_letterindex" class="citybox_index"
+         data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
       <li class="citybox_summary_item" data-key="location">
         当前
       </li>
@@ -156,66 +174,68 @@
     <a href="#" class="header_back">
       <i class="icon_back"></i>
     </a>
-    <h3>这里是搜索框</h3>
+
+    <h3>
+      <div class="cl_search"><input type="text" placeholder="新加坡/xjp/sinjiapo/SIN" id="city-input-zone"><i></i></div>
+    </h3>
   </header>
   <div class="hTab">
     <div class="international_title light-title">国际</div>
     <div class="domestic_title grey-title">国内</div>
   </div>
   <div class="city_detail_info"></div>
-
-
+  <ul class="country-list-searched country-list-searched-order"></ul>
 </div>
 </body>
 <script id="template_city_summary" type="text/template">
-    <!--当前-->
-    <div class="current_location">
-      <a class="target" name="dq"></a>
-      <h4>当前</h4>
-      <ul class="current_list">
-        <li class="city_list" data-city-code="BJS>">北京</li>
-      </ul>
-    </div>
-    <!--历史记录-->
-    <div class="history_choose_city">
-      <a class="target" name="ls"></a>
-      <h4>历史记录</h4>
-      <ul class="history_list">
-        <li class="city_list" data-city-code="BJS>">北京</li>
-        <li class="city_list" data-city-code="SIN">新加坡</li>
-      </ul>
-    </div>
-    <!--热门城市-->
-    <div class="hot_city_outer">
-      <a class="target" name="rm"></a>
-      <h4>热门城市</h4>
-      <ul class="hot_list">
-        <li class="city_list" data-city-code="BJS>">北京</li>
-        <li class="city_list" data-city-code="SIN">新加坡</li>
-      </ul>
-    </div>
-    <!--全部列表-->
-    <div class="full_city_outer">
+  <!--当前-->
+  <div class="current_location">
+    <a class="target" name="dq"></a>
+    <h4>当前</h4>
+    <ul class="current_list">
+      <li class="city_list" data-city-code="BJS">北京</li>
+    </ul>
+  </div>
+  <!--历史记录-->
+  <div class="history_choose_city">
+    <a class="target" name="ls"></a>
+    <h4>历史记录</h4>
+    <ul class="history_list">
+      <li class="city_list" data-city-code="BJS">北京</li>
+      <li class="city_list" data-city-code="SIN">新加坡</li>
+    </ul>
+  </div>
+  <!--热门城市-->
+  <div class="hot_city_outer">
+    <a class="target" name="rm"></a>
+    <h4>热门城市</h4>
+    <ul class="hot_list">
+      <li class="city_list" data-city-code="BJS">北京</li>
+      <li class="city_list" data-city-code="SIN">新加坡</li>
+    </ul>
+  </div>
+  <!--全部列表-->
+  <div class="full_city_outer">
+    <% for(var tem in resultArray){%>
+    <a class="target" name="<%=tem%>"></a>
+    <h4><%= tem%></h4>
+    <ul class="full_city_list">
+      <%resultArray[tem].forEach(function(array){%>
+      <li class="city_list" data-city-code="<%=array.cityCode%>"><%= array.cityNameCN%></li>
+      <% })%>
+    </ul>
+    <% }%>
+  </div>
+  <div class="city_index">
+    <ul>
+      <li><a href="#dq">当前</a></li>
+      <li><a href="#ls">当前</a></li>
+      <li><a href="#rm">热门</a></li>
       <% for(var tem in resultArray){%>
-      <a class="target" name="<%=tem%>"></a>
-      <h4><%= tem%></h4>
-      <ul class="full_city_list">
-        <%resultArray[tem].forEach(function(array){%>
-        <li class="city_list" data-city-code="<%= array.cityCode%>"><%= array.cityNameCN%></li>
-        <% })%>
-      </ul>
-      <% }%>
-    </div>
-    <div class="city_index">
-      <ul>
-        <li><a href="#dq">当前</a></li>
-        <li><a href="#ls">当前</a></li>
-        <li><a href="#rm">热门</a></li>
-        <% for(var tem in resultArray){%>
-        <li><a href="#<%=tem%>"><%=tem%></a></li>
-        <%}%>
-      </ul>
-    </div>
+      <li><a href="#<%=tem%>"><%=tem%></a></li>
+      <%}%>
+    </ul>
+  </div>
 </script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>

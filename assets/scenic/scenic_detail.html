@@ -49,7 +49,6 @@
   <!--<% }%>-->
 <!--</script>-->
 <script type="text/template" id="Barimages">
-  <span class="bar_img_theme">景点详情</span>
   <% if(images.imageGalleries.length==0){ %>
   <img src="<%= images.pictureURL%>" alt="image"/>
   <% }else{ %>
@@ -59,16 +58,18 @@
   <a href="<%= images.imageGalleries[i].imageURL%>" class="swipebox" title="<%= (i+1)%>/<%=(images.imageGalleries.length)%>">
     <img src="<%= images.imageGalleries[i].imageURL%>" alt="image"/></a>
   <% }%>
+  <div class="bar_img_word">
   <span class = "bar_img_num">编号：<%= images.packageRefNo %></span>
   <% if(images.imageGalleries.length>0) %>
   <span class = "bar_img_page"><%=(images.imageGalleries.length)%>张</span>
   <% } %>
+  </div>
 </script>
 <script type ="text/template" id = "Barcontent">
   <h3 class = "bar_content_title"><%= packageName%></h3>
   <div class="bar_content_time">
-    <p><i class = "bar_content_time_schedule"></i>预定时间: <span><%= vlm.Utils.format_date(salesFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(salesTo ,"Ymd")%></span></p>
-    <p><i class = "bar_content_time_travel"></i>预定时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
+    <!--<p><i class = "bar_content_time_schedule"></i>预定时间: <span><%= vlm.Utils.format_date(salesFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(salesTo ,"Ymd")%></span></p>-->
+    <p>游玩时间: <span><%= vlm.Utils.format_date(departValidFrom ,"Ymd")%></span>至 <span><%= vlm.Utils.format_date(departValidTo ,"Ymd")%></span></p>
   </div>
 </script>
 <script type="text/template" id="Booking">
