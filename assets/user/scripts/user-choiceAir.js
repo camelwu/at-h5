@@ -53,7 +53,7 @@
   //常旅列表
   var tpl_traveler = ['{%  for(var i=0,len=data.length;i<len;i++){', 'var dd=data[i];%}',
     '{% var age=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate")); if (dd.listTravellerIdInfo.length>0) %}'+
-    '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id={%=dd.traveller.travellerId%} data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
+    '<li class="eve_traveler"  index={%=i%}>', '<b class="icon_common user_choice" data-id="{%=dd.traveller.travellerId%}"  data-age="{%=vlm.Utils.getAge(dd.traveller.dateOfBirth,vlm.getpara("departDate"))%}"></b>',
     '<b class="icon user_edit" data-id="{%=dd.traveller.travellerId%}" ></b>',
     '<ul class="often_user">',
     '<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
@@ -168,7 +168,7 @@
 
   var _ui2Modle=function(type){
     if(type=="new") {
-      return {
+        var model= {
         "traveller": {
           "idName": $(".addAir_page .cnName").val(),
           "lastName": $(".addAir_page .lastName").val(),
@@ -197,6 +197,10 @@
           }
         ]
       }
+      if(currentOperationType=="new"){
+         model.traveller.travellerId=new Date().getTime();
+      }
+      return model;
     }
     else{
 
@@ -271,9 +275,9 @@
 
   //数据保存
   var _saveDb=function(){
-      if(!_validate()){
-        return;
-      }
+      //if(!_validate()){
+      //  return;
+      //}
       var modle=_ui2Modle(currentOperationType);
       //登陆
       if(memberId !=undefined) {
