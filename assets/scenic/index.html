@@ -193,7 +193,7 @@
 <!--整体城市列表-->
 <script id="tpl_city_list" type="text/template">
       <% for(var i = 0;i<data.destCities.length;i++){ %>
-      <li class="t_city_content_item <% if(i==0){%>active<%}%>" >
+      <li class="t_city_content_item" >
         <div class="t_city_content_itemtitle" data-code="<%=data.destCities[i].cityCode%>"><%=data.destCities[i].cityName%></div>
       </li>
       <% } %>
@@ -208,7 +208,7 @@
           </div>
         </div>
         <div class="t_product_price">
-          ￥<span><%=data.hotScenicList[i].productPrice%></span>起
+          <span>￥</span><span><%=data.hotScenicList[i].productPrice%></span><i>起</i>
         </div>
         <div class="t_product_itembottom">
           <h5 class="t_product_title"><%=data.hotScenicList[i].productName%></h5>
