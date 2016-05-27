@@ -38,9 +38,9 @@
       <div class="doubleTrip grey-title">往返</div>
     </div>
     <div class="place">
-      <div class="origin"><div class="citySearch js_origin" id="f_inori" data-bind="type:'setCityBox',data:'f_inori',returnId:'#f_inori'" data-code="BJS">北京</div></div>
+      <div class="origin"><div class="citySearch js_origin" id="f_inori" data-bind="type:'setCityBox',data:'f_inori',returnId:'#f_inori'" data-code="BJS" data-city-type="domestic">北京</div></div>
       <div class="iconTip"><div><span class="span-target"></span></div></div>
-      <div class="destination"><div class="citySearch js_destination" id="f_indes" data-bind="type:'setCityBox',data:'f_indes',returnId:'#f_indes'" data-code="SIN">新加坡</div></div>
+      <div class="destination"><div class="citySearch js_destination" id="f_indes" data-bind="type:'setCityBox',data:'f_indes',returnId:'#f_indes'" data-code="SIN" data-city-type="international">新加坡</div></div>
     </div>
     <div class="dateInfo white" id="timeSingleWrap">
            <div class="date-word"><span class="from-word">出发日期</span></div>
@@ -151,14 +151,78 @@
     <!--城市字母定位-->
   </div>
 </div>
-<!--整体城市列表-->
+<div class="city_outer">
+  <header class="header clear_shadow">
+    <a href="#" class="header_back">
+      <i class="icon_back"></i>
+    </a>
+    <h3>这里是搜索框</h3>
+  </header>
+  <div class="hTab">
+    <div class="international_title light-title">国际</div>
+    <div class="domestic_title grey-title">国内</div>
+  </div>
+  <div class="city_detail_info"></div>
+
+
+</div>
 </body>
+<script id="template_city_summary" type="text/template">
+    <!--当前-->
+    <div class="current_location">
+      <a class="target" name="dq"></a>
+      <h4>当前</h4>
+      <ul class="current_list">
+        <li class="city_list" data-city-code="BJS>">北京</li>
+      </ul>
+    </div>
+    <!--历史记录-->
+    <div class="history_choose_city">
+      <a class="target" name="ls"></a>
+      <h4>历史记录</h4>
+      <ul class="history_list">
+        <li class="city_list" data-city-code="BJS>">北京</li>
+        <li class="city_list" data-city-code="SIN">新加坡</li>
+      </ul>
+    </div>
+    <!--热门城市-->
+    <div class="hot_city_outer">
+      <a class="target" name="rm"></a>
+      <h4>热门城市</h4>
+      <ul class="hot_list">
+        <li class="city_list" data-city-code="BJS>">北京</li>
+        <li class="city_list" data-city-code="SIN">新加坡</li>
+      </ul>
+    </div>
+    <!--全部列表-->
+    <div class="full_city_outer">
+      <% for(var tem in resultArray){%>
+      <a class="target" name="<%=tem%>"></a>
+      <h4><%= tem%></h4>
+      <ul class="full_city_list">
+        <%resultArray[tem].forEach(function(array){%>
+        <li class="city_list" data-city-code="<%= array.cityCode%>"><%= array.cityNameCN%></li>
+        <% })%>
+      </ul>
+      <% }%>
+    </div>
+    <div class="city_index">
+      <ul>
+        <li><a href="#dq">当前</a></li>
+        <li><a href="#ls">当前</a></li>
+        <li><a href="#rm">热门</a></li>
+        <% for(var tem in resultArray){%>
+        <li><a href="#<%=tem%>"><%=tem%></a></li>
+        <%}%>
+      </ul>
+    </div>
+</script>
 <script type="text/javascript" src="../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../js/lib/ejs.js"></script>
 <script type="text/javascript" src="../plugins/jquery.scrollevent/scrollevent.js"></script>
 <script type="text/javascript" src="../plugins/scroller/scroller1.1.js"></script>
 <script type="text/javascript" src="../plugins/calendar/d_calendar1.0.3.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/plugins/citybox/ticketCityData.js"></script>
-<script type="text/javascript" src="../js/plugins/citybox/citybox.js"></script>
 <script type="text/javascript" src="js/f_index.js"></script>
 </html>
