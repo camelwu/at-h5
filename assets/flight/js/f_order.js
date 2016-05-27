@@ -263,7 +263,7 @@ var fOrder = {
         contactInfoCache.lastName = document.querySelector('#last-name').value;
         contactInfoCache.email = document.querySelector('#email-label').value;
         contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
-        contactInfoCache.countryNumber = document.querySelector('.country-code').innerHTML;
+        contactInfoCache.countryNumber = document.querySelector('.nation_code_value').innerHTML;
         if (contactInfoCache.firstName == "") {
           jAlert('请输入姓!', '提示');
           return;
@@ -273,17 +273,13 @@ var fOrder = {
           return;
         }
 
-        if (contactInfoCache.email == "") {
-          jAlert('请输入邮箱!', '提示');
-          return;
-        }
-        if (contactInfoCache.email == "") {
+       /* if (contactInfoCache.email == "") {
           jAlert('请输入邮箱!', '提示');
           return;
         } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)) {
           jAlert('请输入正确格式邮箱!', '提示');
           return;
-        }
+        }*/
         if (contactInfoCache.mobilePhone == "") {
           jAlert('请输入手机号!', '提示');
           return;
@@ -296,7 +292,7 @@ var fOrder = {
         }
         window['localStorage']['contact_selected'] = JSON.stringify(contactInfo);
         postPara.contactDetail = contactInfo;
-        this.fadeHandler("show");
+        /*this.fadeHandler("show");*/
         this.postPara = postPara;
         console.log(postPara);
 /*         this.postPara = {// 成单参数格式
