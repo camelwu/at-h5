@@ -525,7 +525,7 @@ i, em {
 .at_declaration dt, .at_declaration dd {
   margin: .1rem 0;
 }
-#link_at{
+#link_at, #link_about_us, #link_page{
   background-color: #fff;
 }
 .user_content {
