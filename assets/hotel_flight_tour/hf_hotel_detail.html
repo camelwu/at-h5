@@ -48,10 +48,16 @@
             <!--</dl>-->
         </div>
         <!--score-->
-        <ul class="jhf-ul jhf-score">
+        <ul class="jhf-ul jhf-score jhf_score">
             <!--<li class="jpr"><span class="score">4.5</span>&nbsp;分&nbsp;/&nbsp;422人点评<i class="arrow"></i></li>-->
             <!--<li><i></i>One Orchard Road Singapore Singapore Singapore 238824</li>-->
             <!--<li>三星级<span class="wifi"></span><span class="park"></span><i class="arrow"></i></li>-->
+        </ul>
+        <ul class="hf_map">
+            <li class="hf_hotel_map" id="map"></li>
+        </ul>
+        <ul class="jhf-ul jhf-score jhf_star">
+
         </ul>
         <!--hotel detail message-->
         <ul class="jhf-ul jhf-mes">
@@ -97,6 +103,10 @@
 <script src="../js/lib/vlm.js"></script>
 <script src="../js/lib/jquery.alert.js"></script>
 <script src="../js/lib/ejs.js"></script>
+<script src="../js/ATGMSMain.js"></script>
+<script src="../js/ATIcons.js"></script>
+<script src="../js/ATTransform.js"></script>
+<script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyBV850tYcTCzqZbZKVWpeGYRm0yNYLt9fc&callback=initialize" type="text/javascript"></script>
 <script src="js/hf_hotelDetail.js"></script>
 <!--banner-->
 <script id="banner" type="text/template">
@@ -104,9 +114,11 @@
 </script>
 <!--评分、星级、wifi-->
 <script id="jhf_score" type="text/template">
-    <li class="jpr"><span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotelReviewCount %>人点评<i class="arrow"></i></li>
-    <li><i></i><%=location%></li>
-    <li><%=starRating%>星级<% if(isFreeWiFi){ %><span class="wifi"></span><% }else{ %><% } %><!--<span class="park"></span>--><i class="arrow"></i></li>
+    <li class="jpr"><span class="score"><%= hotelReviewScore %></span>&nbsp;分&nbsp;/&nbsp;<%= hotelReviewCount %>人点评<!--<i class="arrow"></i>--></li>
+    <li><%=hotelNameLocale%></li>
+</script>
+<script id="jhf_star" type="text/template">
+    <li><%=starRating%>星级<% if(isFreeWiFi){ %><span class="wifi"></span><% }else{ %><% } %><!--<span class="park"></span><i class="arrow"></i>--></li>
 </script>
 <!--房间列表页-->
 <script id="jhf_room" type="text/template">
