@@ -128,7 +128,7 @@ var fSingleList = {
         storage.setItem('fIndexInfo', JSON.stringify(fIndexInfoObj));
         that.postObj.departDate = dateSource;
         that.pageHandler();
-        this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+        that.tAjax("", this.postObj, "3001", 3, this.renderHandler);
       }
     });
     dates[0].setAttribute('date-full-value', this.postObj.departDate);

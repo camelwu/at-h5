@@ -132,7 +132,7 @@ strong{
 }
 .open-arg1{
   right: .28rem;
-  top: .5rem;
+  top: .9rem;
 }
 .CrazyRate {
   display: inline-block;
@@ -205,6 +205,13 @@ strong{
   padding:.2rem;
   border-bottom: 0px solid #dfdfdd;
   margin-bottom: 0;
+}
+.hotel_content_num{
+  font-size: .2rem;
+}
+.hotel_content_num span {
+  font-size: .28rem;
+  color: #FFB413;
 }
 .hotel_content_roomEvent{
   float: left;
