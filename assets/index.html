@@ -151,7 +151,7 @@
                 }
                 //playerRecommend
                 function PlayerRecommend() {
-                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/hotelDetailerrorpic.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
                   var tmp = {
                       "Parameters": {
                           "PageNo": 1,
@@ -163,12 +163,42 @@
                   vlm.loadJson("", JSON.stringify(tmp), function(json) {
                       console.log(json);
                       if (json.success) {
-                          var data = json.data,
-                              html_tj = template(tpl1, data.playerRecommendList);
-                          $("#tuijian").html(html_tj);
+                        var data = json.data,
+                        html_tj = template(tpl1, data.playerRecommendList);
+                        $("#tuijian").html(html_tj);
+
+
+                        //懒加载
+                        var images=$("#tuijian").find('img');
+                        var error_url='images/hotelDetailerrorpic.png';
+                        for(var i=0;i<images.length; i++){
+
+                          (function(index){
+                            var re_url=images[i].getAttribute('data-src');
+                            loadImage(re_url,error_url, function() {
+                              images[index].setAttribute('src', re_url);
+                            },function(){
+                              images[index].setAttribute('src', error_url);
+                            });
+
+                            function loadImage(url, error_url,callback,errorFunc) {
+                              var img = new Image();
+                              img.src = url;
+                              img.onload = function() {
+                                img.onload = null;
+                                callback();
+                              };
+                              img.onerror = function(){
+                                img.onerror = null;
+                                errorFunc();
+                              }
+                            }
+                          })(i);
+                        }
+
                       } else {
-                          console.log(json);
-                          jAlert("数据格式错误", "提示");
+                        console.log(json);
+                        jAlert("数据格式错误", "提示");
                       }
                   });
                 }
@@ -178,10 +208,14 @@
                     PlayerRecommend: PlayerRecommend
                 };
             }();
+
+
             //页面内容加载
 				    index.LoadBanner();
             index.PlayerRecommend();
         })();
+
+
 
     </script>
 

@@ -125,7 +125,7 @@
     <h4>热门城市</h4>
     <ul class="hot_list">
       <%hotCity.forEach(function(array, index){%>
-           <li class="city_list <%= fIndexModal.cityCode1==array.cityCode||fIndexModal.cityCode2==array.cityCode ? 'cur' : '' %>" data-city-code="<%=array.cityCode%>"><%=array.cityNormalName%></li>
+           <li class="city_list <%= fIndexModal.cityEle.getAttribute('data-code')==array.cityCode?'cur' : '' %>" data-city-code="<%=array.cityCode%>"><%=array.cityNormalName%></li>
       <% })%>
     </ul>
   </div>

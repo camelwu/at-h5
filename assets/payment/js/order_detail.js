@@ -1,7 +1,7 @@
 /**
  * Created by zhouwei on 2016/5/4.
  */
-define(['jquery',"ejs","vlm","jquery.alert"],function (){
+define(['jquery',"ejs","vlm"],function (){
 
   /*支付模块（酒店，机票，景点，酒+景，机+酒）*/
   var _bussinessType= {
