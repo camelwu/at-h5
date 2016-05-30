@@ -145,7 +145,7 @@ var fIndexModal = {
     return that;
   },
   historyInitF:function(){
-    var str = arguments[0]|| "",string = "",storage = window.sessionStorage,historyList = document.querySelector('.history_list');
+    var str = arguments[0]|| "",string = "",storage = window.sessionStorage,historyList = document.querySelector('.history_list'),historyWrap = document.querySelector('.history_choose_city') ;
     var hisData = [],that = this;
         if(str=="international"){
           hisData = JSON.parse(storage.getItem('internationalHistory')) || []
@@ -160,8 +160,10 @@ var fIndexModal = {
         })(i);
       }
       historyList.innerHTML = string;
+      historyWrap.style.display = "block";
     }else{
-      historyList.innerHTML = ""
+      historyList.innerHTML = "";
+      historyWrap.style.display = "none";
     }
     return this
   },
@@ -198,7 +200,7 @@ var fIndexModal = {
                 var data = arguments[0]. str="";
                 if(data.length>=1){
                 for(var i=0; i<data.length;i++){
-                  str+='<li class="city_list" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
+                  str+='<li class="city_list'+fIndexModal.cityCode1==data[i].cityCode||fIndexModal.cityCode1==data[i].cityCode?'cur':''+'" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
                   }
                   historyList.innerHTML = str;
                 }else{
@@ -417,22 +419,9 @@ var fIndexModal = {
           return cabinStr;
         };
         var getTripType = function () {
-          var cityCodeFrom = cityEles[0].getAttribute('data-code'), cityCodeTo = cityEles[1].getAttribute('data-code'), codePool = internationalCities, tag1 = "inter", tag2 = "dome";
-          codePool.forEach(function (index) {
-            if (index.cityCode == cityCodeFrom) {
-              tag1 = "inter";
-              return false;
-            }
-          });
-          codePool.forEach(function (index) {
-            if (index.cityCode == cityCodeTo) {
-              tag2 = "inter";
-              return false;
-            }
-          });
-          return (tag1 == tag2) ? "international" : "domestic";
+          var cityTypeFrom = cityEles[0].getAttribute('data-city-type'), cityTypeTo = cityEles[1].getAttribute('data-city-type');
+          return (cityTypeFrom == "domestic"&&cityTypeTo == "domestic" ) ? "domestic":"international";
         };
-
         paraObj = {
           "cityCodeFrom": cityEles[0].getAttribute('data-code'),
           "cityCodeTo": cityEles[1].getAttribute('data-code'),
@@ -448,7 +437,7 @@ var fIndexModal = {
           "isDesc": "false",
           "pageNo": 1,
           "pageSize": 10,
-          "internationalOrDomestic": getTripType(), /*国际或者国内*/
+          "internationalOrDomestic": getTripType(),
           "hasTax": 0,
           "isClearAll": 1,
           "fromCity": cityEles[0].innerHTML,
