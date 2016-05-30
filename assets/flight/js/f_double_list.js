@@ -66,11 +66,13 @@ var fDoubleList = {
     if (result.success && result.code == "200") {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
-        $('#loadMore').hide()
-        that.filterHandler().dateCalender();
+        $('#loadMore').hide();
+        that.first == true?that.filterHandler().dateCalender():that.dateCalender();
+        that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.filterHandler(result.data);
+        that.first == true?that.filterHandler(result.data.airCorpCodeList):"";
+        that.first = false;
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
       }
     } else {
@@ -203,7 +205,6 @@ var fDoubleList = {
     that.postObj.isClearAll = 1;
   },
   filerCallBack: function () {
-    console.log(arguments)
     var transferData = arguments, that = fDoubleList;
     that.postObj.isClearAll = 1;
     if (that.postObj.internationalOrDomestic == "international") {
@@ -260,15 +261,17 @@ var fDoubleList = {
     }
   },
   filterHandler: function (data) {
-    var dataTransfer = data || [], tempArray = [], f_data = {}, that = this;
+    var dataTransfer = data || [], tempArray = [{filterText:"不限",filterValue:"" }], f_data = {}, that = this;
     if (dataTransfer.length > 1) {
-      dataTransfer.forEach(function (array, item) {
+       dataTransfer.forEach(function (array, item) {
         var temObj = {};
         temObj.filterText = array.airCorpName;
         temObj.filterValue = array.airCorpCode;
         tempArray.push(temObj);
       });
     }
+    console.log(data)
+    console.log(tempArray)
     if (this.postObj.internationalOrDomestic == "international") {
       f_data = {
         Sort: {
@@ -470,6 +473,7 @@ var fDoubleList = {
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href, true);
     this.postObj = postObj;
+    this.first = true;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 };

@@ -57,20 +57,18 @@
                 <span class="money">￥</span><%= item["totalFareAmountExc"] %>
                 <span class="double_tip">往返</span>
                 <span class="tax_cost">含税总价</span>
-                <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
                </p>
                 <%}else{%>
                <p class="priceNumber">
                 <span class="money">￥</span><%= item["totalFareAmountADT"] %>
                 <span class="double_tip">往返</span>
                 <span class="tax_cost">税费￥<%= item["totalTaxAmountADT"] %></span>
-                <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
                 </p>
                 <% }%>
           <% }else{%>
-                <p class="priceNumber domi">
-                   <span class="money">￥</span><%= item["totalFareAmountExc"] %>
-                   <span class="seat_condition"><%= item["segmentsLeave"][0].cabinClassName %></span>
+                <p class="priceNumber">
+                  <span class="money">￥</span><%= item["totalFareAmountExc"] %>
+                  <span class="double_tip">往返</span>
                 </p>
         <% }%>
       </div>
@@ -103,8 +101,7 @@
           <span class="airCropIcon"><img  src="<%= item.segmentsLeave[0].airwayLogo %>" /></span>
           <span class="airCropName"><%= item["segmentsLeave"][0].airCorpName %></span>
           <span><%= item["segmentsLeave"][0].airCorpCode %><%= item["segmentsLeave"][0].flightNo %></span>
-          <span><%= item["segmentsLeave"][0].planeName %></span>
-          <!-- <span>经济舱</span>-->
+          <span><%= item["segmentsLeave"][0].cabinClassName %></span>
           <%if(item["isLeaveShareFlight"]){%>
           <span>共享</span>
           <%}%>
@@ -140,8 +137,7 @@
           <span class="airCropIcon"><img  src="<%= item.segmentsReturn[0].airwayLogo %>" /></span>
           <span class="airCropName"><%= item["segmentsReturn"][0].airCorpName %></span>
           <span><%= item["segmentsReturn"][0].airCorpCode %><%= item["segmentsReturn"][0].flightNo %></span>
-          <span><%= item["segmentsReturn"][0].planeName %></span>
-          <!-- <span>经济舱</span>-->
+          <span><%= item["segmentsReturn"][0].cabinClassName %></span>
           <%if(item["isLeaveShareFlight"]){%>
           <span>共享</span>
           <%}%>
