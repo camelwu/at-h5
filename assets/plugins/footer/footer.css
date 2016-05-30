@@ -96,6 +96,7 @@ footer.footer_two dt {
 
 dl.foot_sort dt,
 dl.f_foot_sort dt {
+    position: relative;
     background-position: -0.59rem -2.32rem;
 }
 

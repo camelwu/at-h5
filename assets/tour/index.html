@@ -26,6 +26,7 @@
 
 <title>酒+景首页 - 亚洲旅行网</title>
 <link href="../styles/reset.css" rel="stylesheet"/>
+<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css"/>
 <link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>
 <link href="css/tours.css" type="text/css" rel="stylesheet">
 </head>
@@ -297,7 +298,7 @@
                             jAlert("抱歉暂时没有数据","提示");
                         }
                     }else {
-                        jAlert(json.message,"提示");
+                        jAlert("数据格式错误","提示");
                     }
                 }
             };
