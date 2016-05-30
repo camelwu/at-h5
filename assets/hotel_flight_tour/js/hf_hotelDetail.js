@@ -44,6 +44,17 @@ var data2 = '',roomdata = '';
             banner();
             adress();
             room();
+            star();
+            //map begin
+            var latitude = data2.hotelInfo.latitude-0;
+            var longitude = data2.hotelInfo.longitude-0;
+            at.map.createMap(latitude,longitude);
+            at.map.markHotel(latitude,longitude,"");
+            at.map.moveCenterToHotelLocation(latitude,longitude);
+            $('#map').on('click',function(){
+                window.location.href = 'hft_hotel_detail_map.html';
+            })
+            //map end
             $('.jhf-date').show();
             vlm.init();
         }else{
@@ -60,31 +71,18 @@ var data2 = '',roomdata = '';
         var banner = ejs.render(str, data2.hotelInfo);
         $('.jhf-banner').html(banner);
     }
-    //日历部分
-    //
-    //
-    //rili();
-    //function rili(){
-    //    var dateInitObj = new Object();
-    //    var myDate2 = new Calender({
-    //        id : 'chooseDate',
-    //        num : 13,
-    //        time : dateInitObj,
-    //        sClass1 : 'enterDate',
-    //        id2 : 'nightNum',
-    //        fn : upDateContent
-    //    });
-    //    function upDateContent(){
-    //    }
-    //}
-    //地址 星级 wifi
 
+    //地址 星级 wifi
     function adress(){
         var str = $('#jhf_score').html();
         var jhf_score = ejs.render(str, data2.hotelInfo);
-        $('.jhf-score').html(jhf_score);
+        $('.jhf_score').html(jhf_score);
     }
-
+    function star(){
+        var str = $('#jhf_star').html();
+        var jhf_star = ejs.render(str, data2.hotelInfo);
+        $('.jhf_star').html(jhf_star);
+    }
     //客房部分
     function room(){
         var str = $('#jhf_room').html();
