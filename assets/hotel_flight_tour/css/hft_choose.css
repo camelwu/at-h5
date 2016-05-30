@@ -105,7 +105,7 @@ body {
 }
 
 .statusMoreFlight a, .statusMoreHotel a {
-    color: rgb(255, 180, 18);
+    color: #7bc300;
     position: absolute;
     right: .28rem
 }
@@ -240,7 +240,7 @@ body {
     line-height: .32rem;
     position: relative;
     text-align: center;
-    color: #ffb413;
+    color: #7bc300;
 }
 
 .flightDetailArrow i {
@@ -520,9 +520,9 @@ body {
     width: 1.28rem;
     height: .58rem;
     line-height: .58rem;
-    color: #fdb330;
+    color: #7bc300;
     background: white;
-    border: 1px solid #fdb330;
+    border: 1px solid #7bc300;
     border-radius: .03rem;
     font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
     font-size: .28rem;
@@ -531,8 +531,8 @@ body {
 }
 
 .roomUl .plassPrice .hasChooseButton {
-    color: #FFF;
-    background: #fdb330;
+    color: #fff;
+    background: #7bc300;
 }
 
 .letter-space {
@@ -558,8 +558,8 @@ body {
 }
 
 .months span.active, .monthsDate span.active {
-    border: 1px solid #ffb413;
-    color: #ffb413;;
+    border: 1px solid #7bc300;
+    color: #7bc300;;
 }
 
 .monthsDate span {
@@ -570,7 +570,7 @@ body {
     display: inline-block;
     font-size: .28rem;
     border-radius: .04rem;
-    background: #FFB413;
+    background: #7bc300;
     color: #FFFFFF;
     padding: .12rem .78rem;
     border: none;
@@ -603,10 +603,10 @@ body {
     content: "";
     width: 0.08rem;
     height: 0.258rem;
-    color: #FFB413;
+    color: #7bc300;
     font-size: .30rem;
     font-weight: bolder;
-    background: #ffb413;
+    background: #7bc300;
     margin-right: .10rem;
 }
 
@@ -642,8 +642,8 @@ body {
 }
 
 .after-noon button.active {
-    color: #FFB413;
-    border: 1px solid #FFB413;
+    color: #7bc300;
+    border: 1px solid #7bc300;
     position: relative;
 }
 
@@ -691,12 +691,12 @@ body {
 }
 
 .tot_tips_rmb {
-    color: #ff5b13;
+    color: #fb7530;
 }
 
 .priceTotal > span {
     font-size: .32rem;
-    color: #ff5b13;
+    color: #fb7530;
     margin-right: .2rem;
 }
 
@@ -724,7 +724,7 @@ body {
     display: inline-block;
     height: 100%;
     padding: 0 0;
-    background: #FFB413;
+    background: #7bc300;
     color: #FFFFFF;
     text-align: center;
     font-size: .36rem;
@@ -755,7 +755,7 @@ body {
 
 .chooseDate .confirm span:last-child {
     float: right;
-    color: #ffb413;
+    color: #7bc300;
 }
 
 .priceDetailInfo p {
