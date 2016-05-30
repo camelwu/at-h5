@@ -21,7 +21,7 @@
     <div id="status">
     </div>
 </div>
-<div class="all-elements">
+<div class="all_elements">
 	<!--   内容   -->
 	<div>
 		<section id="packageBox" class="pic_box">
@@ -113,7 +113,7 @@
 					'<img src="{%=pictureURL%}" alt="image">'+
 					'{% }else{ %}'+
 					'<a href="{%=imgs[0].imageURL%}" class="swipebox" title="1/{%=(imgl)%}">' +
-					'<img src="{%=imgs[0].imageURL%}" alt="image">'+
+					'<img src="../images/hotelDetailerrorpic.png" alt="image" id="tourLoad">'+
 					'{% for(var i=1;i < imgl;i++){ %}'+
 					'<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}">' +
 					'<img src="{%=imgs[i].imageURL%}" alt="image"></a>'+
@@ -160,6 +160,12 @@
 						$('#pageTag_3').html(tpl_GetTermsConditions);
 						$('#packagePrice').html(html_pp);
 						$('#packDetailHt').html(html_det);
+
+            //替换图片
+            $('#tourLoad').load(function(){
+              $(this).attr('src',data.imageGalleries[0].imageURL);
+            });
+
 						localStorage.packageID = val.packageID;
 						localStorage.productPrice = val.productPrice;
 						$('.swipebox').click(function() {

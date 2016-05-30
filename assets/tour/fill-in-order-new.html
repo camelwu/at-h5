@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>填写订单</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<link type="text/css" rel="stylesheet" href="../styles/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/date_select.css">
-<link rel="stylesheet" type="text/css" href="css/tours.css">
+    <meta charset="UTF-8">
+    <title>填写订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link type="text/css" rel="stylesheet" href="../styles/reset.css">
+<!--<link rel="stylesheet" type="text/css" href="../css/date_select.css">-->    <link rel="stylesheet" type="text/css" href="css/tours.css">
+    <link rel="stylesheet" type="text/css" href="../css/plugins/jquery.alert/jqueryAlert.css">
+    <link rel="stylesheet" type="text/css" href="../css/plugins/scroller/scroller1.1.css">
 </head>
+
 <body>
-     <div id="preloader">
+    <div id="preloader">
         <div id="status"></div>
     </div>
     <div class="all-elements">
@@ -27,8 +30,8 @@
                     <section class="sce-introduce order_introduce">
                         <p class="sce-introduce-txt fl txt"><span class="sce-introduce-span"></span></p>
                         <!--<div class="travel-noon fl">-->
-                            <!--<a href="javascript:;" class="fa-noon on">上午</a>-->
-                            <!--<a href="javascript:;" class="fa-noon">下午</a>-->
+                        <!--<a href="javascript:;" class="fa-noon on">上午</a>-->
+                        <!--<a href="javascript:;" class="fa-noon">下午</a>-->
                         <!--</div>-->
                     </section>
                     <div id="detailBox" class="order_detail_box">
@@ -39,60 +42,60 @@
                         </section>
                         <section id="tour_detail" class="sce-ticket tour_detail">
                             <!--<div>-->
-                                <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
-                                <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
-                                <!--<div class="detail-span">成人票 2张</div>-->
-                                <!--<div class="detail-span">儿童票 1张</div>-->
+                            <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
+                            <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
+                            <!--<div class="detail-span">成人票 2张</div>-->
+                            <!--<div class="detail-span">儿童票 1张</div>-->
                             <!--</div>-->
                             <!--<div>-->
-                                <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
-                                <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
-                                <!--<div class="detail-span">成人票 2张</div>-->
-                                <!--<div class="detail-span">儿童票 1张</div>-->
+                            <!--<div class="sce-introduce-txt">曼谷大皇宫门票</div>-->
+                            <!--<div class="detail-span">游玩时间 2016-03-31 周三 上午</div>-->
+                            <!--<div class="detail-span">成人票 2张</div>-->
+                            <!--<div class="detail-span">儿童票 1张</div>-->
                             <!--</div>-->
                         </section>
-                     </div>
+                    </div>
                     <div class="open-close order_toggle_btn">
                         <b></b>
                     </div>
                 </div>
             </section>
-			<section class="sce-line"></section>
+            <section class="sce-line"></section>
             <!--出行人资料-->
             <section class="personal_data_box order_data_box">
                 <div class="personal_data order_data" id="per-room-wrap">
                     <!--<div class="per_data">-->
-                        <!--<span class="title"><i>房间1</i></span>-->
-                        <!--<ul>-->
-                            <!--<section class="li_section_box">-->
-                                <!--<li>-->
-                                    <!--<span class="list_tit">成人1：</span>-->
-                                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
-                                <!--</li>-->
-                                <!--<li class="trave-li">-->
-                                    <!--<span class="list_tit2">姓：</span>-->
-                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
-                                    <!--<span class="list_tit2">名：</span>-->
-                                    <!--<span class="list_con2 name-inp"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<span class="list_tit">护照：</span>-->
-                                    <!--<span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>-->
-                                <!--</li>-->
-                            <!--</section>-->
-                            <!--<section class="li_section_box">-->
-                                <!--<li>-->
-                                    <!--<span class="list_tit">儿童1：</span>-->
-                                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
-                                <!--</li>-->
-                                <!--<li class="trave-li">-->
-                                    <!--<span class="list_tit2">姓：</span>-->
-                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
-                                    <!--<span class="list_tit2">名：</span>-->
-                                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
-                                <!--</li>-->
-                            <!--</section>-->
-                        <!--</ul>-->
+                    <!--<span class="title"><i>房间1</i></span>-->
+                    <!--<ul>-->
+                    <!--<section class="li_section_box">-->
+                    <!--<li>-->
+                    <!--<span class="list_tit">成人1：</span>-->
+                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
+                    <!--</li>-->
+                    <!--<li class="trave-li">-->
+                    <!--<span class="list_tit2">姓：</span>-->
+                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
+                    <!--<span class="list_tit2">名：</span>-->
+                    <!--<span class="list_con2 name-inp"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<span class="list_tit">护照：</span>-->
+                    <!--<span class="list_con"><input class="list_inp" type="text" placeholder="2088833" /></span>-->
+                    <!--</li>-->
+                    <!--</section>-->
+                    <!--<section class="li_section_box">-->
+                    <!--<li>-->
+                    <!--<span class="list_tit">儿童1：</span>-->
+                    <!--<b class="add_icon"><a href="javascript:;"></a></b></span>-->
+                    <!--</li>-->
+                    <!--<li class="trave-li">-->
+                    <!--<span class="list_tit2">姓：</span>-->
+                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Zhang" /></span>-->
+                    <!--<span class="list_tit2">名：</span>-->
+                    <!--<span class="list_con2"><input class="list_inp2" type="text" placeholder="Xiaohua" /></span>-->
+                    <!--</li>-->
+                    <!--</section>-->
+                    <!--</ul>-->
                     <!--</div>-->
                 </div>
             </section>
@@ -129,16 +132,16 @@
                     </ul>
                 </div>
             </section>
-			<!--航班信息-->
+            <!--航班信息-->
             <section class="personal_data_box order_data_box" id="flight-air">
                 <div class="personal_data">
                     <span class="title"><i>接送服务（选填）</i>
                         <i id="send_btn" class="send-impo send_btn"></i>
                     </span>
                     <div class="content2" id="content3">
-						<div class="nav2-left nav2_left">
-							<span class="nav2-lefttop">抵达</span>
-						</div>
+                        <div class="nav2-left nav2_left">
+                            <span class="nav2-lefttop">抵达</span>
+                        </div>
                         <div class="input_flight">
                             <input class="checkInDate" name="" value="" placeholder="航班号">
                         </div>
@@ -147,20 +150,20 @@
                                 <input name="CheckInDate" id="content3_CheckInDate" class="content3_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
                             </div>
                         </div>
-					</div>
-					<div class="content2" id="content4">
-						<div class="nav2-left nav2_left">
-							<span class="nav2-lefttop">离开</span>
-						</div>
+                    </div>
+                    <div class="content2" id="content4">
+                        <div class="nav2-left nav2_left">
+                            <span class="nav2-lefttop">离开</span>
+                        </div>
                         <div class="input_flight">
-                            <input class="" name=""value="" placeholder="航班号">
+                            <input class="" name="" value="" placeholder="航班号">
                         </div>
                         <div class="nav2-center nav2_center" id="nav2-center-arr">
                             <div class="nav2-centertop">
                                 <input name="CheckInDate" id="content4_CheckInDate" placeholder="年月日" readonly><i class="tour-scene-date"></i>
                             </div>
                         </div>
-					</div>
+                    </div>
                 </div>
             </section>
 
@@ -170,7 +173,7 @@
             </div>
         </div>
         <!--   底部预订   -->
-       <div class="package_reserve order_reserve">
+        <div class="package_reserve order_reserve">
             <span class="all_num">总额：<i class="itemized" id="show_de">明细</i></span>
 
             <a href="javascript:;" class="reserve">立即预订</a>
@@ -191,7 +194,7 @@
     <!--   明细块   -->
 
     <div class="detail_expenses order_detail_expenses" id="detail_expenses">
-        <ul id="fillDetail"class="hspd-list">
+        <ul id="fillDetail" class="hspd-list">
             <!--<li><span class="package-tit"></span></li>-->
         </ul>
     </div>
@@ -230,7 +233,7 @@
         <div class="header country_header">
             <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
             <div class="cl_search">
-                <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+                <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone" />
                 <i class="icon_common"></i>
             </div>
         </div>
@@ -250,74 +253,96 @@
 
 
     <!--同意条款-->
-    <script src="../js/scenic.js"></script>
+
     <script src="../js/lib/jquery.js"></script>
-<!--    <script src="js/dateFixed_.js"></script>-->
+    <!--    <script src="js/dateFixed_.js"></script>-->
     <script>
-        (function(){
+        (function() {
             //阻止在嵌套元素中传播
-            function cancelPropagation (event){
-                event = window.event||event;
-                if( document.all){
+            function cancelPropagation(event) {
+                event = window.event || event;
+                if (document.all) {
                     event.cancelBubble = true;
-                }else{
+                } else {
                     event.stopPropagation();
                 }
             }
-            $("#state_btn").click(function(){
+            $("#state_btn").click(function() {
                 $(".js-mask").show();
                 $('#traState').show();
-                $('#traState').css({"height":"50%"});
+                $('#traState').css({
+                    "height": "50%"
+                });
                 $('#sendState').hide();
-                $('.sc-content').css({"overflow":"hidden"})
+                $('.sc-content').css({
+                    "overflow": "hidden"
+                })
             });
-            $(".js-travelnotes-close").click(function(){
+            $(".js-travelnotes-close").click(function() {
                 $(".js-mask").hide();
-                $('.sc-content').css({"overflow":"auto"})
+                $('.sc-content').css({
+                    "overflow": "auto"
+                })
             });
-            $(".js-mask").click(function(){
+            $(".js-mask").click(function() {
                 $(".js-mask").hide();
-                $('.sc-content').css({"overflow":"auto"})
+                $('.sc-content').css({
+                    "overflow": "auto"
+                })
             });
-            $(".js-travelnotes").click(function(e){
+            $(".js-travelnotes").click(function(e) {
                 cancelPropagation(e);
             });
-            $("#send_btn").click(function(){
+            $("#send_btn").click(function() {
                 $(".js-mask").show();
                 $('#traState').hide();
                 $('#sendState').show();
-//                $('#sendState').css({"height":"35%"});
-                $('.sc-content').css({"overflow":"hidden"});
+                //                $('#sendState').css({"height":"35%"});
+                $('.sc-content').css({
+                    "overflow": "hidden"
+                });
             });
         })();
+
     </script>
     <!--填写订单-->
-    <script src="../js/lib/jquery.alert.js"></script>
+    <script src="../js/scenic.js"></script>
+    <script src="../js/plugins/jquery.alert/jqueryAlert.js"></script>
     <script src="../js/lib/vlm.js"></script>
     <script src="../js/lib/ejs.js"></script>
     <script src="../js/lib/plugins.js"></script>
-    <script src="../js/lib/scroller.js"></script>
+    <script src="../js/plugins/scroller/scroller1.1.js"></script>
     <script src="js/fill_order.js"></script>
     <script src="../js/country_list.js"></script>
     <script src="../js/countrytel_list.js"></script>
 
-<script id="tpl3" type="text/template">
-    <% var info = JSON.parse(localStorage.info);
+    <script id="tpl3" type="text/template">
+        <% var info = JSON.parse(localStorage.info);
         var playTime =localStorage.getItem('noon').substring(2,4);
         console.log(playTime);
     %>
-    <% for(var i=0;i<tourInfos.length;i++){ %>
-    <div>
-        <div class="txt"><%= tourInfos[i].tourName %></div>
-        <% if(tourInfos[i].travelDateSpecified){ %>
-        <div class="detail_span">游玩时间 <%= tourInfos[i].travelDate.substr(0,10) %> <%= weekday[i] %> <%= noon[i] %> <%= playTime  %></div>
-        <% } %>
-        <div class="detail_span">成人票<%= info.adultNum %>张</div>
-        <% if(JSON.parse(localStorage.info).childNum != 0){ %>
-        <div class="detail_span">儿童票<%= info.childNum %>张</div>
-        <% } %>
-    </div>
-    <% } %>
-</script>
+            <% for(var i=0;i<tourInfos.length;i++){ %>
+                <div>
+                    <div class="txt">
+                        <%= tourInfos[i].tourName %>
+                    </div>
+                    <% if(tourInfos[i].travelDateSpecified){ %>
+                        <div class="detail_span">游玩时间
+                            <%= tourInfos[i].travelDate.substr(0,10) %>
+                                <%= weekday[i] %>
+                                    <%= noon[i] %>
+                                        <%= playTime  %>
+                        </div>
+                        <% } %>
+                            <div class="detail_span">成人票
+                                <%= info.adultNum %>张</div>
+                            <% if(JSON.parse(localStorage.info).childNum != 0){ %>
+                                <div class="detail_span">儿童票
+                                    <%= info.childNum %>张</div>
+                                <% } %>
+                </div>
+                <% } %>
+    </script>
 </body>
+
 </html>

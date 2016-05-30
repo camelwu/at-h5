@@ -43,9 +43,18 @@
         <li class="tripGo">
           <%if(item==0){ %>
           <div class="dateWeekCity">
-            <span class="icon"></span>
-            <span><%= leaveItem["departDate"].substring(5, 10) %></span><span
-            class="<%= item>0?'fix-margin-left':''%>"><%= fSeatChoose.setWeekItems(leaveItem["departDate"]) %></span><span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span>
+            <%if(flightInfo.segmentsReturn){%>
+                <span class="icon"></span>
+            <%}%>
+            <span><%= leaveItem["departDate"].substring(0, 10) %></span>
+            <%if(flightInfo.segmentsReturn){%>
+                <span class="<%= item>0?'fix-margin-left':''%>"><%= fSeatChoose.setWeekItems(leaveItem["departDate"]) %></span>
+            <%}else{%>
+                <span class="<%= item>0?'fix-margin-left':'no-margin-left'%>"><%= fSeatChoose.setWeekItems(leaveItem["departDate"]) %></span>
+            <%}%>
+            <span><%= leaveItem["cityNameFrom"]%></span><span>-</span><span><%= leaveItem["cityNameTo"] %></span>
+            <span class="time_minutes"><%= flightInfo["segmentsLeaveTotalTravelTimeString"]%></span>
+            <i class="clock"></i>
           </div>
           <%}%>
           <div class="timeAirport fixedMargin">
@@ -68,7 +77,7 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><span><%=  leaveItem["planeName"] %></span>
+            <span class="airCropIcon"><img  src=" <%= leaveItem.airwayLogo %>" /></span><span><%=  leaveItem["operatingCarrierName"] %></span><span><%=  leaveItem["operatingCarrierCode"] %><%=  leaveItem["flightNo"] %></span><span><%=  leaveItem["planeName"] %></span>
           </p>
         </li>
         <%if(item
@@ -93,8 +102,11 @@
           <%if(item_==0){ %>
           <div class="dateWeekCity">
             <span class="icon"></span>
-            <span><%= returnItem["departDate"].substring(5, 10) %></span><span
-            class="<%= item_>0?'fix-margin-left':''%>"><%= fSeatChoose.setWeekItems(returnItem["departDate"]) %></span><span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
+            <span><%= returnItem["departDate"].substring(0, 10) %></span>
+            <span class="<%= item_>0?'fix-margin-left':''%>"><%= fSeatChoose.setWeekItems(returnItem["departDate"]) %></span>
+            <span><%= returnItem["cityNameFrom"]%></span><span>-</span><span><%= returnItem["cityNameTo"] %></span>
+            <span class="time_minutes"><%= flightInfo["segmentsReturnTotalTravelTimeString"]%></span>
+            <i class="clock"></i>
           </div>
           <%}%>
           <div class="timeAirport fixedMargin">
@@ -117,7 +129,7 @@
             </div>
           </div>
           <p class="flightDetailInfo">
-            <span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><span><%=  returnItem["planeName"] %></span>
+            <span class="airCropIcon"><img  src=" <%= returnItem.airwayLogo %>" /></span><span><%=  returnItem["operatingCarrierName"] %></span><span><%=  returnItem["operatingCarrierCode"] %><%=  returnItem["flightNo"] %></span><span><%=  returnItem["planeName"] %></span>
           </p>
         </li>
         <%if(item_

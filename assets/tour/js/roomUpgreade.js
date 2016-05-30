@@ -140,7 +140,7 @@ var roomUpGrade = {
 				at.map.createMap(latitude,longitude);
 				at.map.markHotel(latitude,longitude,"");
 				at.map.moveCenterToHotelLocation(latitude,longitude);
-				$('#map').on('click',function(){
+				$('#map, li.map_address').on('click',function(){
 					window.location.href = 'hotel_detail_map.html?latitude='+latitude+'&longitude='+longitude;
 				})
 			}

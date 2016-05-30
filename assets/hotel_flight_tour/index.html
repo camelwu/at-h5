@@ -1,289 +1,299 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚洲旅行网">
-    <meta name="Description" content="境外专业旅行服务提供机构">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="full-screen" content="yes">
-    <meta name="x5-fullscreen" content="true">
-    <title>自由行首页 - 亚洲旅行网</title>
-    <script src="/js/lib/logRecord.js"></script>
-    <link href="../styles/reset.css" rel="stylesheet" />
-    <link href="css/hft_index.css" rel="stylesheet" />
-    <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
-    <link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css">
-</head>
-<body data-statp="index">
-    <div id="preloader" style="display: none;">
-        <div id="status">
-        </div>
-    </div>
-    <div class="all_elements">
-        <div class="header" style="box-shadow: none">
-            <a href="#" class="header_back">
-                <i class="icon_back"></i>
-            </a>
-            <h3>自由行</h3>
-            <div id="indexTab" class="full_box index_tab">
-                <div class="tab">机+酒</div>
-                <div class="tab">机+酒+景</div>
-            </div>
-        </div>
-        <div style="padding-top: 1.64rem;">
-            <!--  机+酒   -->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="green">
+		<meta name="Keywords" content="亚洲旅行网">
+		<meta name="Description" content="境外专业旅行服务提供机构">
+		<meta name="screen-orientation" content="portrait">
+		<meta name="x5-orientation" content="portrait">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<title>自由行首页 - 亚洲旅行网</title>
+		<link href="../styles/reset.css" rel="stylesheet" />
+		<link href="css/hft_index.css" rel="stylesheet" />
+		<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet">
+		<link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
+		<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css">
+		<script src="/js/lib/logRecord.js"></script>
+	</head>
+	<body data-statp="index">
+		<div id="preloader">
+			<div id="status"></div>
+		</div>
+		<div class="all_elements">
+			<div class="header" style="box-shadow: none">
+				<a href="#" class="header_back"> <i class="icon_back"></i> </a>
+				<h3>自由行</h3>
+				<div id="indexTab" class="full_box index_tab">
+					<div class="tab">
+						机+酒
+					</div>
+					<div class="tab">
+						机+酒+景
+					</div>
+				</div>
+			</div>
+			<div style="padding-top: 1.64rem;">
+				<!--  机+酒   -->
+				<div id="flightHotelBox" class="content_box" style="display: none;" data-statm="fh">
+					<div class="full_box flight_info">
+						<div class="flight_place" data-statL="city">
+							<div class="origin city-search" id="hf_ori" data-bind="type:'setCityBox',data:'hf_ori',returnId:'#hf_ori'" data-code="BJS">
+								北京
+							</div>
+							<div class="iconTip">
+								<div>
+									<span class="hft_icon"></span>
+								</div>
+							</div>
+							<div class="destination city-search " id="hf_des" data-bind="type:'setCityBox',data:'hf_des',returnId:'#hf_des'" data-code="SIN">
+								新加坡
+							</div>
+						</div>
 
-            <div id="flightHotelBox" class="content_box" style="display: none;" data-statm="fh">
-                <div class="full_box flight_info">
+						<div class="date_info" id="fhCalendar" data-statl="calendar">
+							<p class="data_title">
+								<span>出发日期</span><span>返程日期</span>
+							</p>
+							<div class="ori_des_date">
+								<span class="origin_data date_box"><span class="date_number date_one js_startDay">06月22日</span><span class="js_startData" data-day="2016-06-22"></span>&nbsp;<span class="week_one">周四</span></span>
+								<span class="destination_data date_box"><span class="date_number date_two js_endDay">06月27日</span><span class="js_returnData" data-day="2016-06-27"></span>&nbsp;<span class="week_two">周六</span></span>
+							</div>
+						</div>
+					</div>
+					<!--  房间   -->
+					<div class="search_hotel">
+						<section class="hotelInfo_numb_room">
+							<span class="title">房间</span>
+							<div class="per_price_control" data-type="extraRoom">
+								<span id="hf_roomDown" class="cut_down_btn"></span><i id="hf_roomNum" class="cut_up_cont">1</i><span class="plus_btn"></span>
+							</div>
+						</section>
+						<!--<section class="hotelInfo_numb_people init_hotel_room_detail">-->
+						<!--<span class="title">房间1</span>-->
+						<!--<div class="numbList">-->
+						<!--<span class="n_tit">成人</span>-->
+						<!--<div class="per_price_control" data-type="adult">-->
+						<!--<span id="adultDown" class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
+						<!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
+						<!--<span class="plus_btn"></span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--<div class="numbList">-->
+						<!--<span class="n_tit">儿童</span>-->
+						<!--<span class="child_age">(2-12岁)</span>-->
+						<!--<b class="com_icon child_age_state"></b>-->
+						<!--<div class="age_state_box">-->
+						<!--<div></div>-->
+						<!--<div class="state_text">-->
+						<!--<span>·</span>-->
+						<!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--<div class="per_price_control" data-type="extraChild">-->
+						<!--<span class="cut_down_btn"></span>-->
+						<!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
+						<!--<span class="plus_btn"></span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--<div class="extraChild" style="display: none;">-->
+						<!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
+						<!--<div class="childAge">-->
+						<!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+						<!--</div>-->
+						<!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
+						<!--<div class="childAge">-->
+						<!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+						<!--</div>-->
+						<!--<div class="numbList spenumbList">-->
+						<!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--</section>-->
+					</div>
+					<div class="search_button">
+						<input id="hf_searchBtn" type="button" value="查询" class="button_orange" />
+					</div>
+				</div>
+				<!--  机+酒+景   -->
 
-                    <div class="flight_place" data-statL="city">
-                        <div class="origin city-search" id="hf_ori" data-bind="type:'setCityBox',data:'hf_ori',returnId:'#hf_ori'" data-code="BJS">北京</div>
-                        <div class="iconTip">
-                            <div><span class="hft_icon"></span></div>
-                        </div>
-                        <div class="destination city-search " id="hf_des" data-bind="type:'setCityBox',data:'hf_des',returnId:'#hf_des'" data-code="SIN">新加坡</div>
-                    </div>
+				<div id="flightHotelTourBox" class="content_box" style="display: none;" data-statM="fht">
+					<div class="full_box flight_info">
+						<div class="flight_place" data-statl="city">
+							<div class="origin city-search" id="hft_ori" data-bind="type:'setCityBox',data:'hft_ori',returnId:'#hft_ori'" data-code="BJS">
+								北京
+							</div>
+							<div class="iconTip">
+								<div>
+									<span class="hft_icon"></span>
+								</div>
+							</div>
+							<div class="destination city-search " id="hft_des" data-bind="type:'setCityBox',data:'hft_des',returnId:'#hft_des'" data-code="SIN">
+								新加坡
+							</div>
+						</div>
 
-                    <div class="date_info" id="fhCalendar" data-statl="calendar">
-                        <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
-                        <div class="ori_des_date">
-                            <span class="origin_data date_box"><span class="date_number date_one js_startDay">06月22日</span><span class="js_startData" data-day="2016-06-22"></span>&nbsp;<span class="week_one">周四</span></span>
-                            <span class="destination_data date_box"><span class="date_number date_two js_endDay">06月27日</span><span class="js_returnData" data-day="2016-06-27"></span>&nbsp;<span class="week_two">周六</span></span>
-                        </div>
-                    </div>
-                </div>
-                <!--  房间   -->
-                <div class="search_hotel">
-                    <section class="hotelInfo_numb_room">
-                        <span class="title">房间</span>
-                        <div class="per_price_control" data-type="extraRoom">
-                            <span id="hf_roomDown" class="cut_down_btn"></span><i id="hf_roomNum" class="cut_up_cont">1</i><span class="plus_btn"></span>
-                        </div>
-                    </section>
-                    <!--<section class="hotelInfo_numb_people init_hotel_room_detail">-->
-                    <!--<span class="title">房间1</span>-->
-                    <!--<div class="numbList">-->
-                    <!--<span class="n_tit">成人</span>-->
-                    <!--<div class="per_price_control" data-type="adult">-->
-                    <!--<span id="adultDown" class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
-                    <!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
-                    <!--<span class="plus_btn"></span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="numbList">-->
-                    <!--<span class="n_tit">儿童</span>-->
-                    <!--<span class="child_age">(2-12岁)</span>-->
-                    <!--<b class="com_icon child_age_state"></b>-->
-                    <!--<div class="age_state_box">-->
-                    <!--<div></div>-->
-                    <!--<div class="state_text">-->
-                    <!--<span>·</span>-->
-                    <!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="per_price_control" data-type="extraChild">-->
-                    <!--<span class="cut_down_btn"></span>-->
-                    <!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
-                    <!--<span class="plus_btn"></span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="extraChild" style="display: none;">-->
-                    <!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
-                    <!--<div class="childAge">-->
-                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                    <!--</div>-->
-                    <!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
-                    <!--<div class="childAge">-->
-                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                    <!--</div>-->
-                    <!--<div class="numbList spenumbList">-->
-                    <!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</section>-->
-                </div>
-                <div class="search_button">
-                    <input id="hf_searchBtn" type="button" value="查询" class="button_orange" />
-                </div>
-            </div>
-            <!--  机+酒+景   -->
+						<div class="date_info" id="fhtCalendar" data-statl="calendar">
+							<p class="data_title">
+								<span>出发日期</span><span>返程日期</span>
+							</p>
+							<div class="ori_des_date">
+								<span class="origin_data date_box"><span class="date_number date_one js_startDay">07月15日</span><span class="js_startData" data-day="2016-07-15"></span>&nbsp;<span class="week_one">周四</span></span>
+								<span class="destination_data date_box"><span class="date_number date_two js_endDay">07月20日</span><span class="js_returnData" data-day="2016-07-20"></span>&nbsp;<span class="week_two">周六</span></span>
+							</div>
+						</div>
+					</div>
+					<!--  房间   -->
+					<div class="search_hotel">
+						<section class="hotelInfo_numb_room">
+							<span class="title">房间</span>
+							<div class="per_price_control" data-type="extraRoom">
+								<span id="hft_roomDown" class="cut_down_btn"></span><i id="hft_roomNum" class="cut_up_cont">1</i><span class="plus_btn"></span>
+							</div>
+						</section>
+						<!--<section class="hotelInfo_numb_people init_hotel_room_detail">-->
+						<!--<span class="title">房间1</span>-->
+						<!--<div class="numbList">-->
+						<!--<span class="n_tit">成人</span>-->
+						<!--<div class="per_price_control" data-type="adult">-->
+						<!--<span class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
+						<!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
+						<!--<span class="plus_btn"></span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--<div class="numbList">-->
+						<!--<span class="n_tit">儿童</span>-->
+						<!--<span class="child_age">(2-12岁)</span>-->
+						<!--<b class="com_icon child_age_state"></b>-->
+						<!--<div class="age_state_box">-->
+						<!--<div></div>-->
+						<!--<div class="state_text">-->
+						<!--<span>·</span>-->
+						<!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--<div class="per_price_control" data-type="extraChild">-->
+						<!--<span class="cut_down_btn"></span>-->
+						<!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
+						<!--<span class="plus_btn"></span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--<div class="extraChild">-->
+						<!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
+						<!--<div class="childAge">-->
+						<!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+						<!--</div>-->
+						<!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
+						<!--<div class="childAge">-->
+						<!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
+						<!--</div>-->
+						<!--<div class="numbList spenumbList">-->
+						<!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
+						<!--</div>-->
+						<!--</div>-->
+						<!--</section>-->
 
-            <div id="flightHotelTourBox" class="content_box" style="display: none;" data-statM="fht">
-                <div class="full_box flight_info">
+					</div>
+					<div class="search_button">
+						<input id="hft_searchBtn" type="button" value="查询" class="button_orange" />
+					</div>
+				</div>
+				<footer class="index_fo">
+					自由配 预订快 资源全 价格低
+				</footer>
+			</div>
+			<!--<div class="site_right">版权所有@2015Asiatravel 控股有限公司.保留所有权利.</div>-->
+		</div>
+		<!--整体城市列表-->
+		<div id="citybox_search_container" class="citybox_search_container citybox_search_state">
+			<div id="citybox_BG" class="citybox_search_suggestBG"></div>
+			<div id="citybox_header" data-bind="type:'cityboxHeader'">
+				<!--默认搜索-->
+				<div class="citybox_header citybox_header_fixed js_citybox_header_default">
+					<div class="citybox_header_left">
+						<a id="js_citybox_header_goback" href="javascript:VM.Method['hideAllCityBox']();" class="citybox_header_btn"> <span class="citybox_header_return citybox_header_return_icon"></span> </a>
+					</div>
+					<div class="citybox_search_relative">
+						<span class="citybox_search_icon"></span>
+						<input type="search" class="citybox_search_input" placeholder="中文/英文" onclick="VM.Method['hideCityBox']();">
+					</div>
+				</div>
+				<!--搜索头部-->
+				<div class="citybox_header citybox_header_fixed js_citybox_header_search">
+					<div class="citybox_searchactive_relative">
+						<span class="citybox_searchactive_icon"></span>
+						<input type="search" id="js_citybox_searchactive_input" class="citybox_searchactive_input" placeholder="中文/英文">
+					</div>
+					<div class="citybox_header_right">
+						<a id="js_citybox_header_cancel" href="javascript:VM.Method['showCityBox']();" class="citybox_header_btn"> <span class="citybox_searchactive_return">取消</span> </a>
+					</div>
+				</div>
+			</div>
+			<!--搜索列表-->
+			<div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'"></div>
+			<!--搜索列表-->
+			<!--城市列表和字母定位-->
+			<div class="citybox_content">
+				<!--当前-->
+				<div id="citybox_location" data-bind="type:'cityboxLocation'">
+					<div class="citybox_content_title" id="js_location">
+						当前
+					</div>
+					<ul class="citybox_content_container">
+						<li class="citybox_content_item selected" data-code="200" data-name="北京" data-letter="bj">
+							<div class="citybox_content_itemtitle">
+								北京
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--当前-->
+				<!--历史选择-->
+				<div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
+					<div class="citybox_content_title" id="js_history">
+						历史选择
+					</div>
+				</div>
+				<!--历史选择-->
+				<!--热门城市-->
+				<div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
+					<div class="citybox_content_title" id="js_hotcity">
+						热门城市
+					</div>
+				</div>
+				<!--热门城市-->
+				<!--城市列表-->
+				<div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
 
-                    <div class="flight_place" data-statl="city">
-
-                        <div class="origin city-search" id="hft_ori" data-bind="type:'setCityBox',data:'hft_ori',returnId:'#hft_ori'" data-code="BJS">北京</div>
-                        <div class="iconTip">
-                            <div><span class="hft_icon"></span></div>
-                        </div>
-
-                        <div class="destination city-search " id="hft_des" data-bind="type:'setCityBox',data:'hft_des',returnId:'#hft_des'" data-code="SIN">新加坡</div>
-                    </div>
-
-                    <div class="date_info" id="fhtCalendar" data-statl="calendar">
-                        <p class="data_title"><span>出发日期</span><span>返程日期</span></p>
-                        <div class="ori_des_date">
-                            <span class="origin_data date_box"><span class="date_number date_one js_startDay">07月15日</span><span class="js_startData" data-day="2016-07-15"></span>&nbsp;<span class="week_one">周四</span></span>
-                            <span class="destination_data date_box"><span class="date_number date_two js_endDay">07月20日</span><span class="js_returnData" data-day="2016-07-20"></span>&nbsp;<span class="week_two">周六</span></span>
-                        </div>
-                    </div>
-                </div>
-                <!--  房间   -->
-                <div class="search_hotel">
-                    <section class="hotelInfo_numb_room">
-                        <span class="title">房间</span>
-                        <div class="per_price_control" data-type="extraRoom">
-                            <span id="hft_roomDown" class="cut_down_btn"></span><i id="hft_roomNum" class="cut_up_cont">1</i><span class="plus_btn"></span>
-                        </div>
-                    </section>
-                    <!--<section class="hotelInfo_numb_people init_hotel_room_detail">-->
-                    <!--<span class="title">房间1</span>-->
-                    <!--<div class="numbList">-->
-                    <!--<span class="n_tit">成人</span>-->
-                    <!--<div class="per_price_control" data-type="adult">-->
-                    <!--<span class="cut_down_btn" style="background-position:17.5% 68%;"></span>-->
-                    <!--<i class="cut_up_cont adult_people_number" data-type="adultNum">2</i>-->
-                    <!--<span class="plus_btn"></span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="numbList">-->
-                    <!--<span class="n_tit">儿童</span>-->
-                    <!--<span class="child_age">(2-12岁)</span>-->
-                    <!--<b class="com_icon child_age_state"></b>-->
-                    <!--<div class="age_state_box">-->
-                    <!--<div></div>-->
-                    <!--<div class="state_text">-->
-                    <!--<span>·</span>-->
-                    <!--<span>儿童年龄限制为大于等于2周岁，小于12周岁的儿童。</span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="per_price_control" data-type="extraChild">-->
-                    <!--<span class="cut_down_btn"></span>-->
-                    <!--<i class="cut_up_cont child_number" data-type="childNum">0</i>-->
-                    <!--<span class="plus_btn"></span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="extraChild">-->
-                    <!--<span class="bedList" style="float: left"><i>儿童1年龄</i></span>-->
-                    <!--<div class="childAge">-->
-                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                    <!--</div>-->
-                    <!--<span class="bedList" style="float: left"><i>儿童2年龄</i></span>-->
-                    <!--<div class="childAge">-->
-                    <!--<input class="inp_cage" type="tel" placeholder="(2-12)"><i class="child_sui">岁</i>-->
-                    <!--</div>-->
-                    <!--<div class="numbList spenumbList">-->
-                    <!--<span class="bedList" data-type="ifaddBed"><i>儿童加1床</i><b class="com_icon noselect ico_select"></b></span>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</section>-->
-
-                </div>
-                <div class="search_button">
-                    <input id="hft_searchBtn" type="button" value="查询" class="button_orange" />
-                </div>
-            </div>
-            <footer class="index_fo">
-                自由配 预订快 资源全 价格低
-            </footer>
-        </div>
-        <!--<div class="site_right">版权所有@2015Asiatravel 控股有限公司.保留所有权利.</div>-->
-    </div>
-    <!--整体城市列表-->
-    <div id="citybox_search_container" class="citybox_search_container citybox_search_state">
-      <div id="citybox_BG" class="citybox_search_suggestBG"></div>
-        <div id="citybox_header" data-bind="type:'cityboxHeader'">
-            <!--默认搜索-->
-            <div class="citybox_header citybox_header_fixed js_citybox_header_default">
-                <div class="citybox_header_left">
-                    <a id="js_citybox_header_goback" href="javascript:VM.Method['hideAllCityBox']();" class="citybox_header_btn">
-                        <span class="citybox_header_return citybox_header_return_icon"></span>
-                    </a>
-                </div>
-                <div class="citybox_search_relative">
-                    <span class="citybox_search_icon"></span>
-                    <input type="search" class="citybox_search_input" placeholder="中文/英文" onclick="VM.Method['hideCityBox']();">
-                </div>
-            </div>
-            <!--搜索头部-->
-            <div class="citybox_header citybox_header_fixed js_citybox_header_search">
-                <div class="citybox_searchactive_relative">
-                    <span class="citybox_searchactive_icon"></span>
-                    <input type="search" id="js_citybox_searchactive_input" class="citybox_searchactive_input" placeholder="中文/英文">
-                </div>
-                <div class="citybox_header_right">
-                    <a id="js_citybox_header_cancel" href="javascript:VM.Method['showCityBox']();" class="citybox_header_btn">
-                        <span class="citybox_searchactive_return">取消</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--搜索列表-->
-        <div id="citybox_suggest_list" class="citybox_search_suggest" data-bind="type:'cityboxSearchSuggest'">
-        </div>
-        <!--搜索列表-->
-        <!--城市列表和字母定位-->
-        <div class="citybox_content">
-            <!--当前-->
-            <div id="citybox_location" data-bind="type:'cityboxLocation'">
-                <div class="citybox_content_title" id="js_location">当前</div>
-                <ul class="citybox_content_container">
-                    <li class="citybox_content_item selected" data-code="200" data-name="北京" data-letter="bj">
-                        <div class="citybox_content_itemtitle">
-                            北京
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!--当前-->
-            <!--历史选择-->
-            <div id="citybox_history" data-bind="type:'cityboxHistory',data:VM.Config.HistoryData">
-                <div class="citybox_content_title" id="js_history">历史选择</div>
-            </div>
-            <!--历史选择-->
-            <!--热门城市-->
-            <div id="citybox_hotcitylist" data-bind="type:'cityboxHotCityList',data:VM.Config.HotCityListData">
-                <div class="citybox_content_title" id="js_hotcity">热门城市</div>
-            </div>
-            <!--热门城市-->
-            <!--城市列表-->
-            <div id="citybox_citylist" data-bind="type:'cityboxCityList',data:VM.Config.CityListData">
-
-            </div>
-            <!--城市列表-->
-            <!--城市字母定位-->
-            <div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
-                <li class="citybox_summary_item" data-key="location">
-                    当前
-                </li>
-                <li class="citybox_summary_item" data-key="history">
-                    历史
-                </li>
-                <li class="citybox_summary_item" data-key="hotcity">
-                    热门
-                </li>
-            </div>
-            <!--城市字母定位-->
-        </div>
-    </div>
-    <!--整体城市列表-->
-
-    <script src="../js/lib/jquery.js"></script>
-    <!--
-    <script src="../js/lib/plugins.js"></script>
-    <script src="../js/lib/jquery.alert.js"></script>
--->
-    <script src="../js/lib/vlm.js"></script>
-    <!--    <script src="../js/lib/template.js"></script>-->
-    <script src="../js/plugins/citybox/citybox.js"></script>
-    <script src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
-    <script src="js/hft_index.js"></script>
-    <script src="js/hft_citybox.js"></script>
-</body>
-
+				</div>
+				<!--城市列表-->
+				<!--城市字母定位-->
+				<div id="citybox_letterindex" class="citybox_index" data-bind="type:'cityboxLetterIndex',data:VM.Config.LetterIndexData">
+					<li class="citybox_summary_item" data-key="location">
+						当前
+					</li>
+					<li class="citybox_summary_item" data-key="history">
+						历史
+					</li>
+					<li class="citybox_summary_item" data-key="hotcity">
+						热门
+					</li>
+				</div>
+				<!--城市字母定位-->
+			</div>
+		</div>
+		<!--整体城市列表-->
+		<script src="../js/lib/jquery.js"></script>
+		<!--<script src="../js/lib/plugins.js"></script>-->
+		<script src="../plugins/jquery.alert/jqueryAlert.js"></script>
+		<script src="../js/lib/vlm.js"></script>
+		<!--<script src="../js/lib/template.js"></script>-->
+		<script src="../js/plugins/citybox/citybox.js"></script>
+		<script src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
+		<script src="js/hft_index.js"></script>
+		<script src="js/hft_citybox.js"></script>
+	</body>
 </html>

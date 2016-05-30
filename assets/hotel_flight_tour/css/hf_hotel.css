@@ -1,877 +1,942 @@
 @charset "utf-8";
 /*ji+jiu hotel-detail jyj*/
 li {
-    list-style: none;
+  list-style: none;
 }
 
 a:visited,
 a:link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .jpr {
-    position: relative;
+  position: relative;
 }
 
 .jpa {
-    position: absolute;
+  position: absolute;
 }
-.jpop_box_tic{
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(0,0,0,0.4);
-    width: 100%;
-    height: 100%;
-    z-index: 11;
-    display: none;
+
+.jpop_box_tic {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  display: none;
 }
+
 .jpop_box_tic dl {
-    position: fixed;
-    width: 64%;
-    height:1.18rem;
-    top: 50%;
-    left: 50%;
-    margin: -0.59rem 0 0 -32%;
-    z-index: 5;
-    background: #fff;
-    border-radius: 0.055rem;
-    text-align: center;
-    box-shadow: -0.01rem 0.01rem 0.03rem #c7c7c7;}
+  position: fixed;
+  width: 64%;
+  height: 1.18rem;
+  top: 50%;
+  left: 50%;
+  margin: -0.59rem 0 0 -32%;
+  z-index: 5;
+  background: #fff;
+  border-radius: 0.055rem;
+  text-align: center;
+  box-shadow: -0.01rem 0.01rem 0.03rem #c7c7c7;
+}
+
 .jpop_box_tic dt {
-    padding: 0.18rem 0 0.10rem;
-    font-size: 0.18rem;
-    color: #5abdb7;
-    border-bottom: 1px solid #e1e1e1;
-    margin-bottom: 0.12rem;}
+  padding: 0.18rem 0 0.10rem;
+  font-size: 0.18rem;
+  color: #5abdb7;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: 0.12rem;
+}
+
 .jpop_box_tic dd {
-    overflow: hidden;
-    margin: 0 10%;
-    font-size:0.12rem;
+  overflow: hidden;
+  margin: 0 10%;
+  font-size: 0.12rem;
 }
+
 .jpop_box_tic dd span {
-    float: left;
-    background: #dfdfdf;
+  float: left;
+  background: #dfdfdf;
 }
+
 .jpop_box_tic dd a, .jpop_box_tic dd span {
-    padding: 0.08rem 0.20rem;
-    color: #fff;
-    border-radius: 0.03rem;
+  padding: 0.08rem 0.20rem;
+  color: #fff;
+  border-radius: 0.03rem;
 }
+
 .jpop_box_tic dd a {
-    float: right;
-    background: #ffb413;
+  float: right;
+  background: #7bc300;
 }
+
 .jfw {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .jhf-box {
-    color: #484848;
+  color: #333;
 }
 
 .jhf-nav {
-    height: 0.44rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    overflow: hidden;
-    background-image: -webkit-linear-gradient(top, #16364f, #194361);
-    background-image: -moz-linear-gradient(top, #16364f, #194361);
-    background-image: -o-linear-gradient(top, #16364f, #194361);
-    background-image: -ms-linear-gradient(top, #16364f, #194361);
-    background-image: linear-gradient(top, #16364f, #194361);
+  height: 0.44rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  overflow: hidden;
+  background-image: -webkit-linear-gradient(top, #16364f, #194361);
+  background-image: -moz-linear-gradient(top, #16364f, #194361);
+  background-image: -o-linear-gradient(top, #16364f, #194361);
+  background-image: -ms-linear-gradient(top, #16364f, #194361);
+  background-image: linear-gradient(top, #16364f, #194361);
 }
 
 .jhf-nav a.j-back {
-    width: 3.8rem;
-    top: 0;
-    left: 0;
-    height: 100%;
+  width: 3.8rem;
+  top: 0;
+  left: 0;
+  height: 100%;
 }
 
 .jhf-nav a.j-back i {
-    background: url(../../images/ui/icons.png) no-repeat 0 0;
-    background-size: 243px 161px;
-    display: block;
-    width: 14px;
-    height: 21px;
-    margin: 12px 0 0 20px;
+  background: url(../../images/ui/icons.png) no-repeat 0 0;
+  background-size: 243px 161px;
+  display: block;
+  width: 14px;
+  height: 21px;
+  margin: 12px 0 0 20px;
 }
 
 .jhf-nav .j-lick {
-    width: 3.8rem;
-    top: 0;
-    right: 0;
-    height: 100%;
+  width: 3.8rem;
+  top: 0;
+  right: 0;
+  height: 100%;
 }
 
 .jhf-nav .j-title {
-    margin: 0 3.6rem;
+  margin: 0 3.6rem;
 }
 
 .jhf-nav .j-title p {
-    text-align: center;
-    margin-bottom: 0;
-    color: #fff;
-    overflow: hidden;
-    height: 16px;
-    line-height: 16px;
+  text-align: center;
+  margin-bottom: 0;
+  color: #fff;
+  overflow: hidden;
+  height: 16px;
+  line-height: 16px;
 }
 
 .jhf-nav .j-title p.titcn {
-    font-size: 0.14px;
-    margin-top: 7px;
+  font-size: 0.14px;
+  margin-top: 7px;
 }
 
 .jhf-nav .j-title p.titen {
-    /*margin-top: -3px;*/
+  /*margin-top: -3px;*/
 }
 
 .jhf-nav .j-title p.bigtit {
-    line-height: 44px;
-    height: 44px;
-    font-size: 0.16rem;
+  line-height: 44px;
+  height: 44px;
+  font-size: 0.16rem;
 }
 
 .j-content {
-    z-index: 1;
-    padding-top: 38px;
-    font-size: 0.3rem;
+  z-index: 1;
+  padding-top: 38px;
+  font-size: 0.3rem;
 }
 
 .j-content .more {
-    text-align: center;
-    height: 30px;
-    line-height: 30px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
 }
 
 .jhf-banner {
-    height: 200px;
-    width: 100%;
+  height: 200px;
+  width: 100%;
 }
 
 .jhf-banner img {
-    width: 100%;
-    height: 100%;
-    background: url(../../images/hotelDetailerrorpic.png) no-repeat;
-    background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  background: url(../../images/hotelDetailerrorpic.png) no-repeat;
+  background-size: 100% 100%;
 }
 
 .jhf-banner dl {
-    height: 2.6rem;
-    line-height: 2.6rem;
-    background: rgba(0, 0, 0, 0.4);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    text-align: right;
-    width: 100%;
-    margin-bottom: 0;
+  height: 2.6rem;
+  line-height: 2.6rem;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: right;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .jhf-banner dl dd {
-    padding-right: 1.5rem;
-    color: #fff;
+  padding-right: 1.5rem;
+  color: #fff;
 }
-
-.jhf-ul {
-    background: #fff;
-    margin-bottom: 0;
+.jhf_score li:nth-child(1){
+  background: #fff;
 }
-
+.jhf_score li:nth-child(2){
+  position: relative;
+  z-index: 20;
+}
+.hf_map{
+  height:2.4rem;
+  margin-top:-0.6rem;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+.hf_map li{
+  width: 100%;
+  height:4rem;
+}
+.jhf_star,.jhf-mes {
+  background: #fff;
+}
+.jhf_star{
+  padding: 0 0.3rem;
+  border-bottom: 1px solid #dfdfdd;
+  position: relative;
+  z-index: 30;
+}
+.gm-style-cc{
+  display: none;
+}
 .jhf-ul p,
 .jhf-ul ol {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .jhf-ul li {
-    border-bottom: 1px solid #dfdfdd;
-    height: 1.2rem;
-    line-height: 1.2rem;
-    margin-bottom: 0;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  margin-bottom: 0;
 }
 
 .jhf-ul li .arrow {
-    background: url(../../images/ui/icon_common.png) no-repeat;
-    width:0.2rem;
-    height:0.28rem;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    margin-top: -0.16rem;
-    background-position: -1.13rem -0.63rem;
-    background-size: 7.9rem 5.13rem;
+  background: url(../../images/ui/icon_common.png) no-repeat;
+  width: 0.2rem;
+  height: 0.28rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -0.16rem;
+  background-position: -1.13rem -0.63rem;
+  background-size: 7.9rem 5.13rem;
 }
-
 .jhf-ul li:nth-of-type(1) .arrow {
-    margin-top: -0.12rem;
+  margin-top: -0.12rem;
 }
-
-.jhf-score {
-    padding: 0 0.3rem;
-    background: #fff;
-    border-bottom: 1px solid #dfdfdd;
-    margin-bottom: 0.2rem;
+.jhf_score{
+  position: relative;
+  z-index: 100;
 }
-
+.hf_map,.jhf_score{
+  padding: 0;
+}
+.jhf_score li{
+  padding: 0 0.3rem;
+}
 .jhf-score li:last-child {
-    border-bottom: 0;
-    position: relative;
+  border-bottom: 0;
+  position: relative;
 }
 
 .jhf-score li span.score {
-    font-size: 0.44rem;
-    color: #55bfb7;
+  font-size: 0.44rem;
+  color: #55bfb7;
 }
 
 .jhf-score li:nth-child(2) {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  border: 0;
+  background: -webkit-linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  background: -moz-linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  background: -o-linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  background: linear-gradient(right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
 }
 
-.jhf-score li:nth-child(2) i,
 .jhf-score li span.wifi,
 .jhf-score li span.park {
-    background: url(../../images/ui/icon-h.png) no-repeat;
-    display: inline-block;
-    position: relative;
+  background: url(../../images/ui/icon-h.png) no-repeat;
+  display: inline-block;
+  position: relative;
 }
 
-.jhf-score li:nth-child(2) i {
-    background-position: -6.48rem -2.34rem;
-    background-size: 8.04rem 3.48rem;
-    width:0.48rem;
-    height:0.5rem;
-    top:0.1rem;
+.jhf-ul li.hf_hotel_map{
+  height: 2rem;
 }
+
+
+
+
+
+
+
+
+
+
 
 .jhf-score li span.wifi {
-    background-position: -1.95rem -0.33rem;
-    background-size: 10rem 4.33rem;
-    width:0.4rem;
-    height:0.5rem;
-    top:0.2rem;
+  background-position: -1.95rem -0.33rem;
+  background-size: 10rem 4.33rem;
+  width: 0.4rem;
+  height: 0.5rem;
+  top: 0.2rem;
 }
 
 .jhf-score li span.park {
-    background-image: -webkit-image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
-    background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
-    background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
-    background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
-    background-size: 13px 13px;
-    width: 16px;
-    height: 16px;
-    top: 5px;
-    margin-left: 3px;
+  background-image: -webkit-image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+  background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+  background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+  background-image: image-set(url(../../images/hotel_flight/p@2x.png) 1x, url(../../images/hotel_flight/p@2x.png) 2x, url(../../images/hotel_flight/p@3x.png) 3x);
+  background-size: 13px 13px;
+  width: 16px;
+  height: 16px;
+  top: 5px;
+  margin-left: 3px;
 }
 
 .jhf-mes li {
-    height: auto;
+  height: auto;
 }
 
 .jhf-mes li .arrow {
-    right: 15px;
+  right: 15px;
 }
 
 .jhf-mes li:nth-child(1) {
-    border-top: 0;
+  border-top: 0;
 }
 
-.jhf-mes>li:nth-child(1) {
-    padding: 0 15px;
-    border-bottom: 1px solid #dfdfdd;
+.jhf-mes > li:nth-child(1) {
+  padding: 0 15px;
+  border-bottom: 1px solid #dfdfdd;
 }
 
-.jhf-mes>li {
-    border-bottom: 0;
+.jhf-mes > li {
+  border-bottom: 0;
 }
 
 .jhf-mes div.slide {
-    width: 100%;
-    height:1.2rem;
-    border-bottom: 1px solid #dfdfdd;
+  width: 100%;
+  height: 1.2rem;
+  border-bottom: 1px solid #dfdfdd;
 }
 
 .jhf-mes .jhf-drg {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 90px;
-    height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 90px;
+  height: 100%;
 }
 
 .jhf-mes .jhf-drg b.cur {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: url(../../images/ui/ticket_hotel.png) no-repeat -182px -61px;
-    width: 21px;
-    height: 21px;
-    background-size: 300px 229px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(../../images/ui/ticket_hotel.png) no-repeat -182px -61px;
+  width: 21px;
+  height: 21px;
+  background-size: 300px 229px;
 }
 
 .jhf-mes .jhf-drg p {
-    font-size:0.32rem;
-    color: #fe4716;
-    text-align: right;
-    padding-right:0.3rem;
+  font-size: 0.32rem;
+  color: #fe4716;
+  text-align: right;
+  padding-right: 0.3rem;
 }
 
 .jhf-mes .jhf-drg p.reduce,
 .reduce {
-    color: #5abfb6;
+  color: #5abfb6;
 }
 
 .jhf-mes .jhf-drg p span {
-    display: inline-block;
-    line-height:0.96rem;
+  display: inline-block;
+  line-height: 0.96rem;
 }
 
 .jhf-mes .jhf-drg p i {
-    background: url(../../images/ui/icons1.png) no-repeat;
-    background-position: -73px -33px;
-    background-size: 400px 120px;
-    display: inline-block;
-    width: 18px;
-    height: 19px;
-    margin-left: 2px;
-    position: relative;
-    top: 3px;
+  background: url(../../images/ui/icons1.png) no-repeat;
+  background-position: -73px -33px;
+  background-size: 400px 120px;
+  display: inline-block;
+  width: 18px;
+  height: 19px;
+  margin-left: 2px;
+  position: relative;
+  top: 3px;
 }
 
 .jhf-mes .jhf-drg p i.cur {
-    background-position: -48px -33px;
+  background-position: -48px -33px;
 }
 
 .jhf-mes ol.show .lfword {
-    margin: 0 15px;
+  margin: 0 15px;
 }
 
 .jhf-mes .slide .lfword {
-    margin-right: 90px;
-    padding-left: 15px;
+  margin-right: 90px;
+  padding-left: 15px;
 }
-.jhf-mes .show .lfword p{
-    margin-right:80px;
+
+.jhf-mes .show .lfword p {
+  margin-right: 80px;
 }
+
 .jhf-mes .lfword p:nth-child(1) {
-    font-size: 0.14rem;
-    margin-bottom: -0.4rem;
-    padding-top: 0.06rem;
-    height: 0.62rem;
-    overflow: hidden;
+  font-size: 0.14rem;
+  margin-bottom: -0.4rem;
+  padding-top: 0.06rem;
+  height: 0.62rem;
+  overflow: hidden;
 }
 
 .jhf-mes .lfword p:nth-child(2) {
-    color: #999;
+  color: #999;
 }
 
 .jhf-mes ol.show {
-    background: #f5f4f9;
-    display: none;
+  background: #f5f4f9;
+  display: none;
 }
-.jhf-mes ol.show{
-    border-bottom: 1px solid #dfdfdd;
+
+.jhf-mes ol.show {
+  border-bottom: 1px solid #dfdfdd;
 }
-.jhf-mes ol.show li:last-child{
-    border-bottom:0 ;
+
+.jhf-mes ol.show li:last-child {
+  border-bottom: 0;
 }
+
 .jhf-mes ol.show li:nth-child(1) {
-    font-size: 0.14rem;
+  font-size: 0.14rem;
 }
 
 .jhf-mes ol.show li.lfword p:nth-child(2) {
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 /*.jhf-mes ol.show span {*/
-    /*color: #fe4716;*/
+/*color: #fe4716;*/
 /*}*/
 
 .jhf-mes .price {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 0.16rem;
-    width: 60px;
-    text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.16rem;
+  width: 60px;
+  text-align: right;
 }
 
 .jhf-mes .price span {
-    display: inline-block;
+  display: inline-block;
 }
 
 .jhf-mes .jhf-drg p span:nth-child(1) {
-    position: relative;
-    top: 1px;
+  position: relative;
+  top: 1px;
 }
 
 .jhf-mes .jhf-drg p span:nth-child(2) {
-    margin-left: -6px;
-    font-size: 0.12rem;
+  margin-left: -6px;
+  font-size: 0.12rem;
 }
 
 .jhf-mes .jhf-drg p span:nth-child(3) {
-    margin-left: -6px;
+  margin-left: -6px;
 }
 
 .jhf-mes .jhf-drg p.reduce span:nth-child(1) {
-    top: 0px;
+  top: 0px;
 }
 
 .price span:nth-child(1) {
-    position: relative;
-    top: 1px;
+  position: relative;
+  top: 1px;
 }
 
 .price span:nth-child(2) {
-    margin-left: -6px;
-    font-size: 0.12rem;
+  margin-left: -6px;
+  font-size: 0.12rem;
 }
 
 .price span:nth-child(3) {
-    margin-left: -6px;
+  margin-left: -6px;
 }
 
 .jhf-mes .lfword i.book {
-    background: url(../../images/ui/icons1.png) no-repeat;
-    background-position: -101px -33px;
-    background-size: 400px 120px;
-    display: inline-block;
-    width: 18px;
-    height: 19px;
-    margin-left: 2px;
+  background: url(../../images/ui/icons1.png) no-repeat;
+  background-position: -101px -33px;
+  background-size: 400px 120px;
+  display: inline-block;
+  width: 18px;
+  height: 19px;
+  margin-left: 2px;
 }
 
 .jhf-mes .lfword span.name,
 .jhf-mes .lfword i.book {
-    float: left;
+  float: left;
 }
 
 .jhf-mes .lfword span.name {
-    height:0.48rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 90%;
-    line-height: 0.7rem;
+  height: 0.48rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  line-height: 0.7rem;
 }
 
 /*ji+jiu hotel seach list jyj*/
 
 .jlist-nav .j-title {
-    margin-right:20px;
-    height: 44px;
-    overflow: hidden;
+  margin-right: 20px;
+  height: 44px;
+  overflow: hidden;
 }
 
 .jlist {
-    background: #fff;
-    border-top: 1px solid #dfdfdd;
+  background: #fff;
+  border-top: 1px solid #dfdfdd;
 }
 
 .jlist li {
-    border-bottom: 1px solid #dfdfdd;
-    height: 93px;
-    position: relative;
-    margin-bottom: 0;
+  border-bottom: 1px solid #dfdfdd;
+  height: 93px;
+  position: relative;
+  margin-bottom: 0;
 }
 
 .jlist li .jimg {
-    width: 82px;
-    height: 92px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: url(../../images/hotelListNo.jpg) no-repeat;
-    background-size: 100% 100%;
+  width: 82px;
+  height: 92px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url(../../images/hotelListNo.jpg) no-repeat;
+  background-size: 100% 100%;
 }
 
 .jlist .imgrt {
-    margin: 0 15px 0 92px;
+  margin: 0 15px 0 92px;
 }
 
 .jlist .imgrt dt {
-    font-size: 0.16rem;
-    font-weight: bold;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding: 8px 0 5px;
-    margin-right: 45px;
+  font-size: 0.16rem;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 8px 0 5px;
+  margin-right: 45px;
 }
 
 .jlist dd {
-    color: #999;
+  color: #999;
 }
 
 .jlist span.score {
-    font-size:0.16rem;
-    color: #5abfb6;
+  font-size: 0.16rem;
+  color: #5abfb6;
 }
 
 .jlist .price {
-    display: inline;
-    float: right;
+  display: inline;
+  float: right;
 }
 
 .jlist dd:nth-child(3) {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .jlist dd:nth-child(3) span {
-    float: left;
+  float: left;
 }
 
 .jlist .wifi {
-    background: url(../../images/ui/icons1.png) no-repeat;
-    background-position: -128px -9px;
-    background-size: 500px 150px;
-    width: 20px;
-    height: 18px;
+  background: url(../../images/ui/icons1.png) no-repeat;
+  background-position: -128px -9px;
+  background-size: 500px 150px;
+  width: 20px;
+  height: 18px;
 }
 
 .jlist .car {
-    background: url(../../images/ui/icons1.png) no-repeat;
-    background-position: -160px -9px;
-    background-size: 500px 150px;
-    width: 20px;
-    height: 18px;
+  background: url(../../images/ui/icons1.png) no-repeat;
+  background-position: -160px -9px;
+  background-size: 500px 150px;
+  width: 20px;
+  height: 18px;
 }
 
 .jlist li.cur i.active {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: url(../../images/ui/ticket_hotel.png) no-repeat -179px -53px;
-    width: 35px;
-    height: 33px;
-    background-size: 260px 199px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(../../images/ui/ticket_hotel.png) no-repeat -179px -53px;
+  width: 35px;
+  height: 33px;
+  background-size: 260px 199px;
 }
 
 .j-bottom {
-    height: 40px;
-    position: fixed;
-    width: 100%;
-    background: #2e4960;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: 10;
-    font-family: FZLTXHK;
+  height: 40px;
+  position: fixed;
+  width: 100%;
+  background: #2e4960;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 10;
+  font-family: FZLTXHK;
 }
 
 .j-bottom .fo-div {
-    width: 33.3333%;
-    float: left;
-    text-align: center;
-    color: #fff;
+  width: 33.3333%;
+  float: left;
+  text-align: center;
+  color: #fff;
 }
-.j-bottom .fo-div .red-tip{
-    position: absolute;
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    background: red;
-    border-radius: 4px;
-    right: 36%;
-    top: 15%;
+
+.j-bottom .fo-div .red-tip {
+  position: absolute;
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: red;
+  border-radius: 4px;
+  right: 36%;
+  top: 15%;
 }
+
 .j-bottom .icon3 {
-    width: 15px;
-    height: 15px;
-    margin: 5px auto -2px;
-    background: #fff;
+  width: 15px;
+  height: 15px;
+  margin: 5px auto -2px;
+  background: #fff;
 }
 
 .j-bottom .fo-sort .icon3 {
-    background: url(../../images/ui/sort.png) no-repeat;
-    background-size: 100% 100%;
+  background: url(../../images/ui/sort.png) no-repeat;
+  background-size: 100% 100%;
 }
 
 .j-bottom .fo-filter .icon3 {
-    background: url(../../images/ui/filter.png) no-repeat;
-    background-size: 100% 100%;
+  background: url(../../images/ui/filter.png) no-repeat;
+  background-size: 100% 100%;
 }
+
 .j-bottom .fo-location .icon3 {
-    background: url(../../images/ui/location.png) no-repeat;
-    background-size: 100% 100%;
+  background: url(../../images/ui/location.png) no-repeat;
+  background-size: 100% 100%;
 }
-.j-content .hotelConNo{
-    position:relative;
-    width:100%;
-    height:100%;
-    background:#f5f4f9;
-    border: none;
+
+.j-content .hotelConNo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #f5f4f9;
+  border: none;
 }
-.j-content .hotelConNo div{
-    position:fixed;
-    left:50%;
-    top:50%;
-    margin-left:-115px;
-    margin-top:-100px;
-    overflow:hidden;
-    width:235px;
-    /*height:120px;*/
+
+.j-content .hotelConNo div {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -115px;
+  margin-top: -100px;
+  overflow: hidden;
+  width: 235px;
+  /*height:120px;*/
 }
-.j-content .hotelConNo div img{
-    float:left;
-    margin-left:85px;
-    width:69px;
-    height:60px;
+
+.j-content .hotelConNo div img {
+  float: left;
+  margin-left: 85px;
+  width: 69px;
+  height: 60px;
 }
-.j-content .hotelConNo div p{
-    float:left;
-    font-size:0.16rem;
-    color:#a0a0a0;
+
+.j-content .hotelConNo div p {
+  float: left;
+  font-size: 0.16rem;
+  color: #a0a0a0;
 }
-.j-content .hotelConNo div .hotelConSorry1{
-    margin-top:16px;
-    margin-left:36px;
+
+.j-content .hotelConNo div .hotelConSorry1 {
+  margin-top: 16px;
+  margin-left: 36px;
 }
-.j-content .hotelConNo div .hotelConSorry2{
-    margin-top:6px;
-    margin-left:62px;
+
+.j-content .hotelConNo div .hotelConSorry2 {
+  margin-top: 6px;
+  margin-left: 62px;
 }
 
 /*ji+jiu sort-pop jyj*/
 
 .jpop,
 .jpop .mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .jpop {
-    z-index: 20;
-    display: none;
+  z-index: 20;
+  display: none;
 }
 
 .jpop .mask {
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 21;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 21;
 }
 
 .jpop .sort {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    z-index: 22;
-    margin-bottom: 0;
-    display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 22;
+  margin-bottom: 0;
+  display: none;
 }
 
 .jpop .sort li {
-    position: relative;
-    height: 44px;
-    line-height: 44px;
-    margin-bottom: 0;
+  position: relative;
+  height: 44px;
+  line-height: 44px;
+  margin-bottom: 0;
 }
 
 .jpop .sort li.cur i {
-    width: 50px;
-    height: 44px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: url(../../images/icon_checkmark_yellow.png) no-repeat center center;
-    background-size: 15px 10px;
+  width: 50px;
+  height: 44px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url(../../images/icon_checkmark_yellow.png) no-repeat center center;
+  background-size: 15px 10px;
 }
 
 .jpop .sort p {
-    margin: 0 0 0 50px;
-    border-bottom: 1px solid #dfdfdd;
-    line-height: 44px;
-    padding-left: 15px;
-    font-size: 0.14rem;
-}
-.jpop .location{
-    position: fixed;
-    top: 44px;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    z-index: 22;
-    margin-bottom: 0;
-    display: none;
-    overflow: auto;
+  margin: 0 0 0 50px;
+  border-bottom: 1px solid #dfdfdd;
+  line-height: 44px;
+  padding-left: 15px;
+  font-size: 0.14rem;
 }
 
-.jpop .location ul{
-    width: 94%;
-    margin-left: 3%;
-    margin-right: 3%;
-    list-style-type: none
-}
-.jpop .location .l-liFirst p{
-    color: #000;
-}
-
-.jpop .location .l-li{
-    width: 100%;
-    height: 44px;
-    border-bottom: 1px solid #d0d0d3;
-    overflow: hidden;
+.jpop .location {
+  position: fixed;
+  top: 44px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 22;
+  margin-bottom: 0;
+  display: none;
+  overflow: auto;
 }
 
-.jpop .location .l-p{
-    float: left;
-    margin-top: 15px;
-    font-size: 0.14rem;
-    color: #999999;
+.jpop .location ul {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  list-style-type: none
 }
 
-.jpop .location .l-icon1{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;
-    height: 17px;
-    background: url(../../images/ui/icons1.png) -265px -6px;
-    background-size: 400px 120px;
+.jpop .location .l-liFirst p {
+  color: #000;
 }
 
-.jpop .location .l-icon1First{
-    float: right;
-    display: block;
-    margin-top: 15px;
-    width: 17px;
-    height: 17px;
-    background: url(../../images/ui/icons1.png) -236px -6px;
-    background-size: 400px 120px;
+.jpop .location .l-li {
+  width: 100%;
+  height: 44px;
+  border-bottom: 1px solid #d0d0d3;
+  overflow: hidden;
 }
 
-.jpop .location .l-li3 .l-icon1First{
-    background: url(../../images/ui/icons1.png) -265px -6px;
-    background-size: 400px 120px;
-}
-.jpop .location .l-li2 .l-icon1{
-    background: url(../../images/ui/icons1.png) -236px -6px;
-    background-size: 400px 120px;
+.jpop .location .l-p {
+  float: left;
+  margin-top: 15px;
+  font-size: 0.14rem;
+  color: #999999;
 }
 
-.jpop .location .tempSubmit{
-    width: 94%;
-    height: 70px;
-    margin-left: 3%;
-    margin-right: 3%;
+.jpop .location .l-icon1 {
+  float: right;
+  display: block;
+  margin-top: 15px;
+  width: 17px;
+  height: 17px;
+  background: url(../../images/ui/icons1.png) -265px -6px;
+  background-size: 400px 120px;
 }
 
-.jpop .location .submitWrap{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 70px;
-    background-color: white;
-    opacity: 1;
+.jpop .location .l-icon1First {
+  float: right;
+  display: block;
+  margin-top: 15px;
+  width: 17px;
+  height: 17px;
+  background: url(../../images/ui/icons1.png) -236px -6px;
+  background-size: 400px 120px;
 }
-.jpop .location .sureBtn{
-    width: 94%;
-    height: 36px;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-    line-height: 35px;
-    font-size: 0.16rem;
-    color: white;
-    border-radius: 5px;
-    background-color: #ffb413;
+
+.jpop .location .l-li3 .l-icon1First {
+  background: url(../../images/ui/icons1.png) -265px -6px;
+  background-size: 400px 120px;
+}
+
+.jpop .location .l-li2 .l-icon1 {
+  background: url(../../images/ui/icons1.png) -236px -6px;
+  background-size: 400px 120px;
+}
+
+.jpop .location .tempSubmit {
+  width: 94%;
+  height: 70px;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.jpop .location .submitWrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  opacity: 1;
+}
+
+.jpop .location .sureBtn {
+  width: 94%;
+  height: 36px;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 0.16rem;
+  color: white;
+  border-radius: 5px;
+  background-color: #7bc300;
 }
 
 /*ji+jiu screen-pop jyj*/
 
 .jpop .sort,
 .jpop .screen {
-    display: none;
+  display: none;
 }
 
 .jpop .screen {
-    position: fixed;
-    z-index: 22;
-    background: #f5f4f9;
-    height: 220px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+  position: fixed;
+  z-index: 22;
+  background: #f5f4f9;
+  height: 220px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
 
 .jpop .screen .hl_sc_chil {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    overflow: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
 }
 
 .jpop .screen .hl_sc_chil h4 {
-    margin-top: 13px;
-    margin-left: 15px;
-    font-size: 0.14rem;
+  margin-top: 13px;
+  margin-left: 15px;
+  font-size: 0.14rem;
 }
 
 .jpop .screen .s-ul {
-    margin-top: 12px;
-    margin-left: 15px;
-    margin-right: 15px;
-    list-style-type: none;
-    overflow: hidden;
-    border-bottom: 1px solid #d0d0d3;
+  margin-top: 12px;
+  margin-left: 15px;
+  margin-right: 15px;
+  list-style-type: none;
+  overflow: hidden;
+  border-bottom: 1px solid #d0d0d3;
 }
 
 .jpop .screen .s-li {
-    float: left;
-    width: 29%;
-    height: 30px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid #d0d0d3;
-    font-size: 0.13rem;
-    color: #686869;
-    line-height: 30px;
+  float: left;
+  width: 29%;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #d0d0d3;
+  font-size: 0.13rem;
+  color: #686869;
+  line-height: 30px;
 }
 
 .jpop .screen .s-li1 {
-    float: left;
-    width: 29%;
-    height: 30px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px solid #ffb412;
-    font-size: 0.13rem;
-    color: #ffb412;
-    line-height: 30px;
+  float: left;
+  width: 29%;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #ffb412;
+  font-size: 0.13rem;
+  color: #ffb412;
+  line-height: 30px;
 }
-.jpop .screen .s-but,.jpay-c7 a{
-    width: 94%;
-    height: 36px;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-    line-height: 35px;
-    font-size: 0.16rem;
-    color: white;
-    border-radius: 5px;
-    background-color: #ffb413;
+
+.jpop .screen .s-but, .jpay-c7 a {
+  width: 94%;
+  height: 36px;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 0.16rem;
+  color: white;
+  border-radius: 5px;
+  background-color: #7bc300;
 }
 
 /*
@@ -891,523 +956,566 @@ a:link {
 .j-btn a{ display:block; margin:10px 15px 0; height:40px; line-height:40px; text-align:center; color:#fff; background:#fdb330; border-radius:5px; font-size:1.6rem;}
 */
 
-
 /*pay detai--already pay*/
 
 .jhf-nav .phone {
-    background: url(../../images/ui/icons.png) no-repeat;
-    background-size: 250px 165px;
-    background-position: -218px -66px;
+  background: url(../../images/ui/icons.png) no-repeat;
+  background-size: 250px 165px;
+  background-position: -218px -66px;
 }
 
 .j-content p,
 .j-content ul,
 .j-content ol,
 .j-content li {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .jpay-tit {
-    padding: 0 15px;
-    height: 40px;
-    background: #fff;
-    overflow: hidden;
-    font-family: FZLTXHK;
-    font-weight: bold;
+  padding: 0 15px;
+  height: 40px;
+  background: #fff;
+  overflow: hidden;
+  font-family: FZLTXHK;
+  font-weight: bold;
 }
 
 .jpay-tit p {
-    line-height: 40px;
-    font-size: 0.16rem;
+  line-height: 40px;
+  font-size: 0.16rem;
 }
 
 .jpay-tit p.hadpay {
-    color: #38b2a9;
-    text-align: center;
+  color: #38b2a9;
+  text-align: center;
 }
 
 .jpay-tit p.willpay {
-    color: #fb6a21;
-    position: absolute;
-    left: 15px;
-    top: 0;
+  color: #fb6a21;
+  position: absolute;
+  left: 15px;
+  top: 0;
 }
 
 .jpay-tit span.willpay-span {
-    color: #fdb330;
-    font-size: 0.14rem;
-    font-weight: normal;
-    height: 40px;
-    line-height: 40px;
-    text-align: right;
-    display: block;
+  color: #fdb330;
+  font-size: 0.14rem;
+  font-weight: normal;
+  height: 40px;
+  line-height: 40px;
+  text-align: right;
+  display: block;
 }
 
 .jpay-t {
-    height: 36px;
-    padding: 0 15px;
-    border-top: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
+  height: 36px;
+  padding: 0 15px;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 .jpay-t i,
 .jpay-t p {
-    float: left;
+  float: left;
 }
 
 .jpay-t a {
-    float: right;
-    color: #fdb330;
-    font-size: 0.12rem;
+  float: right;
+  color: #fdb330;
+  font-size: 0.12rem;
 }
 
 .jpay-t p {
-    font-size: 0.14rem;
+  font-size: 0.14rem;
 }
 
 .jpay-t p,
 .jpay-t a {
-    height: 36px;
-    line-height: 36px;
+  height: 36px;
+  line-height: 36px;
 }
 
 .jpay-t i {
-    background: url(../../images/ui/icons.png) no-repeat;
-    background-size: 200px 132px;
-    display: inline-block;
-    width: 25px;
-    height: 33px;
+  background: url(../../images/ui/icons.png) no-repeat;
+  background-size: 200px 132px;
+  display: inline-block;
+  width: 25px;
+  height: 33px;
 }
 
 .jpay-t.jp-fl i {
-    background-position: 0px -81px;
+  background-position: 0px -81px;
 }
 
 .jpay-t.jp-ht i {
-    background-position: -55px -81px;
+  background-position: -55px -81px;
 }
 
 .jpay-t a span {
-    background: url(../../images/ui/air-icons.png) no-repeat -154px -18px;
-    background-size: 250px 150px;
-    float: right;
-    width: 20px;
-    height: 36px;
+  background: url(../../images/ui/air-icons.png) no-repeat -154px -18px;
+  background-size: 250px 150px;
+  float: right;
+  width: 20px;
+  height: 36px;
 }
 
 .jpay-c {
-    padding: 0 15px;
-    background: #fff;
+  padding: 0 15px;
+  background: #fff;
 }
 
 .jpay-c2 dl {
-    padding-top: 8px;
+  padding-top: 8px;
 }
 
 .jpay-c2 dt i,
 .jpay-c dt span {
-    float: left;
-    margin-right: 3px;
+  float: left;
+  margin-right: 3px;
 }
 
 .jpay-c2 dt {
-    height: 30px;
-    line-height: 30px;
+  height: 30px;
+  line-height: 30px;
 }
 
 .jpay-c2 dt i {
-    background: url(../../images/ui/icon-h.png) no-repeat;
-    background-size: 402px 174px;
+  background: url(../../images/ui/icon-h.png) no-repeat;
+  background-size: 402px 174px;
 }
 
 .jpay-c2 dt i.go,
 .jpay-c dt i.back {
-    width: 15px;
-    height: 30px;
+  width: 15px;
+  height: 30px;
 }
 
 .jpay-c2 dt i.go {
-    background-position: -316px -53px;
+  background-position: -316px -53px;
 }
 
 .jpay-c2 dt i.back {
-    background-position: -341px -53px;
+  background-position: -341px -53px;
 }
 
 .jpay-c2 dt i.time {
-    width: 14px;
-    height: 30px;
-    background: url(../../images/ui/icon-t.png) no-repeat -28px -17.5px;
-    background-size: 233px 140px;
+  width: 14px;
+  height: 30px;
+  background: url(../../images/ui/icon-t.png) no-repeat -28px -17.5px;
+  background-size: 233px 140px;
 }
 
 .jpay-c2 dt .time {
-    float: right;
-    margin-right: 0px;
+  float: right;
+  margin-right: 0px;
 }
 
 .jpay-c2 dt .more {
-    max-width: 4.8rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  max-width: 4.8rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .jpay-c2 dd {
-    font-weight: bold;
-    height: 34px;
-    line-height: 34px;
-    border-top: 1px solid #dedede;
-    margin-top: 8px;
+  font-weight: bold;
+  height: 34px;
+  line-height: 34px;
+  border-top: 1px solid #dedede;
+  margin-top: 8px;
 }
 
 .jpay-c3 {
-    border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 .jpay-c3 dl {
-    padding: 12px 0;
+  padding: 12px 0;
 }
 
 .jpay-c3 dt {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .jpay-c4 {
-    margin: 10px 0;
-    height: 36px;
-    overflow: hidden;
-    border-top: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
+  margin: 10px 0;
+  height: 36px;
+  overflow: hidden;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 .jpay-c4 i,
 .jpay-c4 span {
-    float: left;
-    line-height: 36px;
-    height: 36px;
+  float: left;
+  line-height: 36px;
+  height: 36px;
 }
 
 .jpay-c4 .fr {
-    float: right;
+  float: right;
 }
 
 .jpay-c4 .money,
 .jpay-c4 .num {
-    color: #fb6a22;
+  color: #fb6a22;
 }
 
 .jpay-c4 .money {
-    font-size: 0.12rem;
+  font-size: 0.12rem;
 }
 
 .jpay-c4 .num {
-    font-size: 0.16rem;
+  font-size: 0.16rem;
 }
 
 .jpay-c4 .icon {
-    width: 11px;
-    background: url(../../images/ui/icons.png) no-repeat;
-    background-size: 200px 132px;
-    background-position: -122px 7px;
+  width: 11px;
+  background: url(../../images/ui/icons.png) no-repeat;
+  background-size: 200px 132px;
+  background-position: -122px 7px;
 }
 
 .jpay-c4 .cost {
-    color: #fdb330;
+  color: #fdb330;
 }
 
 .jpay-c5 {
-    border-top: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
-    padding: 0;
-     margin-top: -1px;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  padding: 0;
+  margin-top: -1px;
 }
 
 .jpay-c5 dl {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .jpay-c5 dt {
-    height: 36px;
-    line-height: 36px;
-    /*border-bottom: 1px solid #dedede;*/
-    margin-bottom: 10px;
-    padding: 0 15px;
-    background: #f7f7f7;
+  height: 36px;
+  line-height: 36px;
+  /*border-bottom: 1px solid #dedede;*/
+  margin-bottom: 10px;
+  padding: 0 15px;
+  background: #f7f7f7;
 }
 
 .jpay-c5 dd {
-    position: relative;
-    height: 24px;
-    line-height: 24px;
-    margin: 0 15px;
+  position: relative;
+  height: 24px;
+  line-height: 24px;
+  margin: 0 15px;
 }
 
 .jpay-c5 dd span {
-    position: absolute;
-    width: 64px;
-    top: 0;
-    left: 0;
-    color: #999;
+  position: absolute;
+  width: 64px;
+  top: 0;
+  left: 0;
+  color: #999;
 }
 
 .jpay-c5 dd p {
-    margin-left: 70px;
-    font-size: 0.14rem;
+  margin-left: 70px;
+  font-size: 0.14rem;
 }
-.jpay-c5 .contacts{
-    border-top: 1px solid #dedede;
-    margin: 0 15px;
-    padding-top:10px;
+
+.jpay-c5 .contacts {
+  border-top: 1px solid #dedede;
+  margin: 0 15px;
+  padding-top: 10px;
 }
-.jpay-c5 .contacts dd{
-    margin: 0;
+
+.jpay-c5 .contacts dd {
+  margin: 0;
 }
+
 .jpay-c6 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-.jpay-c41{
-    height: 44px;
-    line-height:44px;
+
+.jpay-c41 {
+  height: 44px;
+  line-height: 44px;
 }
-.jpay-c41 span.money,.jpay-c41 span.num{
-    color: #fb6a22
+
+.jpay-c41 span.money, .jpay-c41 span.num {
+  color: #fb6a22
 }
-.jpay-c41 span.num{
-    font-size: 0.17rem;
-    margin-left:-3px;
+
+.jpay-c41 span.num {
+  font-size: 0.17rem;
+  margin-left: -3px;
 }
-.jpay-c41 span.cost{
-    color:#999;
+
+.jpay-c41 span.cost {
+  color: #999;
 }
+
 /*.jpay-c7 {*/
-    /*margin-bottom: 30px;*/
+/*margin-bottom: 30px;*/
 /*}*/
 
 /*费用明细模块*/
 /* 费用明细块 */
-.od-mb{
-    width: 100%;height:100%;
-    position: fixed;
-    background-color:rgba(0,0,0,0.5);
-    display: none;
-    z-index: 2000;
-    top: 0px;
-}
-.pd-block{
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    bottom:-400px;
-    color: #fb4927;
-    z-index: 2000000;
-}
-.pd-list{
-    width: 94%;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-bottom: 0;
-}
-.pd-list li{
-    height: 44px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 0;
-}
-.pd-list li div:nth-child(1){
-    float: left;
-}
-.pd-list li div:nth-child(2){
-    float: right;
-}
-.pd-list li div:nth-child(3){
-    float: right;
-    margin-right: 12px;
-}
-.pd-list li:first-child{
-    border-bottom: 1px solid #d6d6d6;
-    color:#484848;
+.od-mb {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 2000;
+  top: 0px;
 }
 
-.hspd-block{
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    bottom:-300px;
-    color: #484848;
-    z-index: 2000000;
+.pd-block {
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  bottom: -400px;
+  color: #fb4927;
+  z-index: 2000000;
 }
-.hspd-list{
-    width: 94%;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-bottom: 0;
+
+.pd-list {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-bottom: 0;
 }
-.hspd-list li{
-    padding:15px 15px;
-    margin-bottom: 5px;
+
+.pd-list li {
+  height: 44px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
 }
-.hspd-list li div:nth-child(1){
-    float: left;
+
+.pd-list li div:nth-child(1) {
+  float: left;
 }
-.hspd-list li div:nth-child(2){
-    float: right;
+
+.pd-list li div:nth-child(2) {
+  float: right;
 }
-.hspd-list li:last-child{
-    border-top: 1px solid #d6d6d6;
-    color:#fb763b;
-    height: 44px;
+
+.pd-list li div:nth-child(3) {
+  float: right;
+  margin-right: 12px;
 }
+
+.pd-list li:first-child {
+  border-bottom: 1px solid #d6d6d6;
+  color: #333;
+}
+
+.hspd-block {
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  bottom: -300px;
+  color: #333;
+  z-index: 2000000;
+}
+
+.hspd-list {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-bottom: 0;
+}
+
+.hspd-list li {
+  padding: 15px 15px;
+  margin-bottom: 5px;
+}
+
+.hspd-list li div:nth-child(1) {
+  float: left;
+}
+
+.hspd-list li div:nth-child(2) {
+  float: right;
+}
+
+.hspd-list li:last-child {
+  border-top: 1px solid #d6d6d6;
+  color: #fb763b;
+  height: 44px;
+}
+
 /*机票详情页*/
 .summary-cost-shadow-two {
-    width: 100%;
-    height: 100%;
-    display: none;
-    position: fixed;
-    background: rgba(0, 0, 0, .5);
-    z-index: 11;
-    top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  background: rgba(0, 0, 0, .5);
+  z-index: 11;
+  top: 0;
 }
+
 .ticket-detail-modal {
-    width: 100%;
-    height: 100%;
-    min-height: 5.0rem;
-    position: absolute;
-    top:0;
-    left: 0;
-    z-index: 13;
-    /*max-height: 62%;*/
-    overflow-y: scroll;
-    display: none;
+  width: 100%;
+  height: 100%;
+  min-height: 5.0rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 13;
+  /*max-height: 62%;*/
+  overflow-y: scroll;
+  display: none;
 }
+
 .detail-outer {
-    width: 100%;
-    position: fixed;
-    background: white;
-    z-index: 11;
-    top: 46px;
-    padding: 1.0rem;
+  width: 100%;
+  position: fixed;
+  background: white;
+  z-index: 11;
+  top: 46px;
+  padding: 1.0rem;
 }
-.detail-start{
+
+.detail-start {
 
 }
 
-.top-line{
-    width: 100%;
-    position: relative;
-    font-size: 0.155rem;
-    height: 2.0rem;
-    line-height: 2.0rem;
-    color: #000000;
-    padding-left: 1.4rem;
+.top-line {
+  width: 100%;
+  position: relative;
+  font-size: 0.155rem;
+  height: 2.0rem;
+  line-height: 2.0rem;
+  color: #000000;
+  padding-left: 1.4rem;
 }
-.top-line span{
-font-size: 0.14rem;
-color: #45494b;
-margin-left: 6px;
+
+.top-line span {
+  font-size: 0.14rem;
+  color: #45494b;
+  margin-left: 6px;
 }
-.icon-go{
-    background-image: url(../../images/ui/icon-h.png);
-    background-repeat: no-repeat;
-    background-size: 450px 185px;
-    background-position: 82.5% 38%;
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    left: -6px;
-    top: 1px;
+
+.icon-go {
+  background-image: url(../../images/ui/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 450px 185px;
+  background-position: 82.5% 38%;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: -6px;
+  top: 1px;
 }
-.date{
+
+.date {
 
 }
-.order-week{
+
+.order-week {
 
 }
-.top-line .detail-hour{
-    float: right;
-    font-size: 0.1rem;
-    color: #000000;
+
+.top-line .detail-hour {
+  float: right;
+  font-size: 0.1rem;
+  color: #000000;
 }
-.go-trip{
-    width: 100%;
-    position: relative;
-    line-height: 2.0rem;
-    color: #000000;
-    /*padding-left: 1.4rem;*/
+
+.go-trip {
+  width: 100%;
+  position: relative;
+  line-height: 2.0rem;
+  color: #000000;
+  /*padding-left: 1.4rem;*/
 }
-.time-airport-info{
-    width: 100%;
-    height: 7.2rem;
-    overflow: hidden;
-    padding: 1.0rem 0;
+
+.time-airport-info {
+  width: 100%;
+  height: 7.2rem;
+  overflow: hidden;
+  padding: 1.0rem 0;
 }
+
 .go-trip .bottom-word {
-    line-height: 1.4rem;
-    font-size: 0.13rem;
-    color: #2C2C2C;
+  line-height: 1.4rem;
+  font-size: 0.13rem;
+  color: #2C2C2C;
 }
+
 .time-airport-info .start-time-info {
-    text-align: left;
+  text-align: left;
 }
+
 .time-airport-info .start-time-info, .time-airport-info .total-time-info, .time-airport-info .end-time-info {
-    width: 33.3%;
-    float: left;
-    overflow: visible;
-    position: static;
+  width: 33.3%;
+  float: left;
+  overflow: visible;
+  position: static;
 }
+
 .start-time-info span.air-port-word {
-    display: block;
-    font-size: 0.11rem;
-    margin-top: 4.8rem;
-    position: absolute;
-    left: 0;
-    top: 0;
+  display: block;
+  font-size: 0.11rem;
+  margin-top: 4.8rem;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
+
 .end-time-info .time-number {
-    display: inline-block;
-    font-size: 0.18rem;
-    color: #000000;
-    width: 52.55px;
-    float: right;
+  display: inline-block;
+  font-size: 0.18rem;
+  color: #000000;
+  width: 52.55px;
+  float: right;
 }
+
 .end-time-info .air-port-word-right {
-    display: block;
-    font-size: 0.11rem;
-    margin-top: 4.8rem;
-    position: absolute;
-    right: 0;
-    top: 0;
+  display: block;
+  font-size: 0.11rem;
+  margin-top: 4.8rem;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
+
 .detail-time-info .arrow-time {
-    display: block;
-    margin: 1rem auto 0;
-    width: 72px;
-    height: 0.5rem;
-    background: url(../../images/arrowslong.png) no-repeat 0 0;
-    background-size: 100% 100%;
+  display: block;
+  margin: 1rem auto 0;
+  width: 72px;
+  height: 0.5rem;
+  background: url(../../images/arrowslong.png) no-repeat 0 0;
+  background-size: 100% 100%;
 }
+
 .start-time-info span.time-number {
-    display: inline-block;
-    font-size: 0.18rem;
-    color: #000000;
-    left: 60%;}
+  display: inline-block;
+  font-size: 0.18rem;
+  color: #000000;
+  left: 60%;
+}
+
 .top-line span.icon-back {
-    background-image: url(../../images/ui/icon-h.png);
-    background-repeat: no-repeat;
-    background-size: 450px 185px;
-    background-position: 88.5% 38%;
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    left: -6px;
-    top: 1px;}
-.center-1{
-    display: block;
-    margin: 1rem auto 0;
-    width: 72px;
-    height: 0.5rem;
-    line-height: 16px;
-    text-align: center;
-    font-size: 0.12rem;
-    background-size: 100% 100%;
+  background-image: url(../../images/ui/icon-h.png);
+  background-repeat: no-repeat;
+  background-size: 450px 185px;
+  background-position: 88.5% 38%;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: -6px;
+  top: 1px;
+}
+
+.center-1 {
+  display: block;
+  margin: 1rem auto 0;
+  width: 72px;
+  height: 0.5rem;
+  line-height: 16px;
+  text-align: center;
+  font-size: 0.12rem;
+  background-size: 100% 100%;
 }

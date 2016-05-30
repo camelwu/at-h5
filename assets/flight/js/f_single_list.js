@@ -99,10 +99,12 @@ var fSingleList = {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide();
-        that.filterHandler().dateCalender();
+        that.first == true?that.filterHandler().dateCalender():that.dateCalender();
+        that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.filterHandler(result.data.airCorpCodeList);
+        that.first == true?that.filterHandler(result.data.airCorpCodeList):"";
+        that.first = false;
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
       }
     } else {
@@ -126,9 +128,9 @@ var fSingleList = {
         var dateSource = arguments[0], that = fSingleList;
         fIndexInfoObj.data.departDate = dateSource[0];
         storage.setItem('fIndexInfo', JSON.stringify(fIndexInfoObj));
-        that.postObj.departDate = dateSource;
+        that.postObj.departDate = dateSource[0];
         that.pageHandler();
-        that.tAjax("", this.postObj, "3001", 3, this.renderHandler);
+        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
     });
     dates[0].setAttribute('date-full-value', this.postObj.departDate);
@@ -161,7 +163,6 @@ var fSingleList = {
       this.tAjax("", this.postObj, "3001", 3, this.renderHandler);
     }
   },
-
 
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
@@ -254,13 +255,12 @@ var fSingleList = {
         }
       } else {
         console.log(transferData[0])
-        that.postObj.isClearAll = 1;
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
         that.postObj.isHideSharedFlight = transferData[0].filters[1].FilterValues[0];
         that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
         that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
-        if (that.postObj.airCorpCode == undefined) {
+        if (that.postObj.airCorpCode == undefined ||that.postObj.airCorpCode == "") {
           delete that.postObj.airCorpCode;
         }
         that.pageHandler();
@@ -283,6 +283,7 @@ var fSingleList = {
         that.postObj.departStartHour = transferData[0].filters[2].FilterValues[0].substring(0, 2);
         that.postObj.departEndHour = transferData[0].filters[2].FilterValues[0].substring(3);
         that.postObj.cabinClass = transferData[0].filters[3].FilterValues[0];
+        that.postObj.airCorpCode = transferData[0].filters[4].FilterValues[0];
         if (transferData[0].sortTypes[0].indexOf('isDesc') > -1) {
           that.postObj.isDesc = transferData[0].sortTypes[0].substring(7);
           that.postObj.priorityRule = 0;
@@ -290,13 +291,17 @@ var fSingleList = {
           that.postObj.priorityRule = transferData[0].sortTypes[0];
           delete that.postObj.isDesc
         }
+        if (that.postObj.airCorpCode == undefined ||that.postObj.airCorpCode == "") {
+          delete that.postObj.airCorpCode;
+        }
         that.pageHandler();
-          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
     }
   },
+
   filterHandler: function (data) {
-    var dataTransfer = data || [], tempArray = [], f_data = {}, that = this;
+    var dataTransfer = data || [], tempArray = [{filterText:"不限",filterValue:"" }], f_data = {}, that = this;
     if (dataTransfer.length > 1) {
       dataTransfer.forEach(function (array, item) {
         var temObj = {};
@@ -409,7 +414,7 @@ var fSingleList = {
           listData: [
             {
               allowMultiSelect: 0,
-              filterType: 4,
+              filterType: 5,
               item: [{
                 filterText: "不限",
                 filterValue: "false"
@@ -421,7 +426,7 @@ var fSingleList = {
               title: "直飞"
             }, {
               allowMultiSelect: 0,
-              filterType: 3,
+              filterType: 4,
               item: [{
                 filterText: "不限",
                 filterValue: "false"
@@ -433,7 +438,7 @@ var fSingleList = {
               title: "共享"
             }, {
               allowMultiSelect: 0,
-              filterType: 2,
+              filterType: 3,
               item: [{
                 filterText: "不限",
                 filterValue: "00-24"
@@ -454,7 +459,7 @@ var fSingleList = {
               title: "起飞时段"
             }, {
               allowMultiSelect: 0,
-              filterType: 1,
+              filterType: 2,
               item: [
                 {
                   filterText: "经济舱",
@@ -476,7 +481,15 @@ var fSingleList = {
               ],
               sortNumber: 3,
               title: "舱位"
-            }]
+            },
+            {
+              allowMultiSelect: 0,
+              filterType: 1,
+              item: tempArray,
+              sortNumber: 3,
+              title: "航空公司"
+            }
+          ]
         },
         Price: {
           title: "价格",
@@ -494,10 +507,45 @@ var fSingleList = {
     footer.filters.init();
     return this
   },
+
+  airCompanyHandler:function(){
+       var data = arguments[0],tag = 0, tem = [], that = fSingleList;
+      Array.prototype.distinct=function(){
+      var sameObj=function(a,b){
+        var tag = true;
+        if(!a||!b)return false;
+        for(var x in a){
+          if(!b[x])
+            return false;
+          if(typeof(a[x])==='object'){
+            tag=sameObj(a[x],b[x]);
+          }else{
+            if(a[x]!==b[x])
+              return false;
+          }
+        }
+        return tag;
+      };
+      var newArr=[],obj={};
+      for(var i=0,len=this.length;i<len;i++){
+        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+          newArr.push(this[i]);
+          obj[typeof(this[i])+this[i]]=this[i];
+        }
+      }
+      return newArr;
+    };
+       data.forEach(function(array){
+            tem.push(array.airCorpCode);
+       });
+      tem = tem.distinct();
+      return tem.length>1?1:0
+  },
+
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href, true);
-    console.log(postObj)
     this.postObj = postObj;
+    this.first = true;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }
 };

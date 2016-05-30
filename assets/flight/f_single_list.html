@@ -89,11 +89,13 @@
 		</div>
 		<p class="flight_detail">
 		 <span class="airCropIcon"><img  src=" <%= item.segmentsLeave[0].airwayLogo %>" /></span>
-		<span class="airCropName"><%= item["segmentsLeave"][0].airCorpName %></span>
+      <%if(fSingleList.airCompanyHandler(item.segmentsLeave)){%>
+      <span class="airCropName"><%= item["segmentsLeave"][0].airCorpName %>等</span>
+      <%}else{%>
+      <span class="airCropName"><%= item["segmentsLeave"][0].airCorpName %></span>
+      <% }%>
 		<span><%= item["segmentsLeave"][0].airCorpCode %><%= item["segmentsLeave"][0].flightNo %></span>
-		<span><%= item["segmentsLeave"][0].planeName %></span>
     <span><%= item["segmentsLeave"][0].cabinClassName %></span>
-		<!-- <span>经济舱</span>-->
 		<%if(item["isLeaveShareFlight"]){%>
 		<span>共享</span>
 		<%}%>

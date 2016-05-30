@@ -138,8 +138,8 @@
 }
 
 .citybox_content .citybox_content_container .citybox_content_item.selected .citybox_content_itemtitle {
-  color: #ffb413;
-  border-color: #ffb413;
+  color: #7bc300;
+  border-color: #7bc300;
 }
 
 /*index char*/
@@ -151,7 +151,7 @@
   bottom: 2rem;
   right: 0;
   width: 0.6rem;
-  color: #ffb413;
+  color: #7bc300;
   font-size: 0.2rem;
   font-weight: bold;
   display: -webkit-box;

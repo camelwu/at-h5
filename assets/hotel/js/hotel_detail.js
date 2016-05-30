@@ -659,18 +659,22 @@
 			modalStr += arg.isFreeWifi ? '<li class="ro-info-item"><span class="item-name">wifi</span><span class="item-content">有</span></li>' : '';
 			modalStr += arg.isFreeTransfer ? '<li class="ro-info-item"><span class="item-name">免费接送</span><span class="item-content">有</span></li>' : '';
 			modalStr += arg.isFreeCityTour ? '<li class="ro-info-item"><span class="item-name">免费观光</span><span class="item-content">有</span></li>' : '';
-            adultNumStr = arg.maxOccupancy ? '最多可住   ' + arg.maxOccupancy + '成人' : '';
-            childNumStr = arg.maxChildOccupancy ? arg.maxChildOccupancy + '个儿童' : '';
-            modalStr += '<li class="ro-info-item"><span class="item-name">可住</span><span class="item-content">'+adultNumStr + childNumStr +'</span></li>';
+      adultNumStr = arg.maxOccupancy ? arg.maxOccupancy + '&nbsp成人&nbsp&nbsp' : '';
+      childNumStr = arg.maxChildOccupancy ? arg.maxChildOccupancy + '&nbsp个儿童' : '';
+      modalStr  += '<li class="ro-info-item"><span class="item-name">可住</span><span class="item-content">'+adultNumStr + childNumStr +'</span></li>';
+      //modalStr += '<li class="ro-info-item"><span class="item-name">房屋面积</span><span class="item-content">'+arg.roomSize +'</span></li><li class="ro-info-item"><span class="item-name">床型</span><span class="item-content">'+arg.bedType +'</span></li><li class="ro-info-item"><span class="item-name">可住</span><span class="item-content">'+adultNumStr + childNumStr +'</span></li>';
+            //adultNumStr = arg.maxOccupancy ? '最多可住   ' + arg.maxOccupancy + '成人' : '';
+            //childNumStr = arg.maxChildOccupancy ? arg.maxChildOccupancy + '个儿童' : '';
+            //modalStr += '<li class="ro-info-item"><span class="item-name">可住</span><span class="item-content">'+adultNumStr + childNumStr +'</span></li>';
             /*
 			modalStr += arg.maxOccupancy ? '<li class="ro-info-item"><span class="item-name">最多居住人数</span><span class="item-content">' + arg.maxOccupancy + '人</span></li>' : '';
 			modalStr += arg.maxChildOccupancy ? '<li class="ro-info-item"><span class="item-name">最多孩子数</span><span class="item-content">' + arg.maxChildOccupancy + '人</span></li>' : '';
 			modalStr += arg.minNight ? '<li class="ro-info-item"><span class="item-name">最少居住晚数</span><span class="item-content">' + arg.minNight + '晚</span></li></div>' : '';
             */
-            couponStr += arg.isCashRebate ? '<p class="info-text"><span>'+arg.isCashRebateTitle+'</span>'+arg.isCashRebateDesc+'</p>' : '';
-            couponStr += arg.isFreeTransfer ? '<p class="info-text"><span>'+arg.isFreeTransferTitle+'</span>'+arg.isFreeTransferDesc+'</p>' : '';
-            couponStr += arg.isFreeCityTour ? '<p class="info-text"><span>'+arg.isFreeCityTourTitle+'</span>'+arg.isFreeCityTourDesc+'</p>' : '';
-			modalStr += '<div class="info-div-1"><div class="rate-rule">优惠政策</div>' + couponStr + '</div>';
+            //couponStr += arg.isCashRebate ? '<p class="info-text"><span>'+arg.isCashRebateTitle+'</span>'+arg.isCashRebateDesc+'</p>' : '';
+            //couponStr += arg.isFreeTransfer ? '<p class="info-text"><span>'+arg.isFreeTransferTitle+'</span>'+arg.isFreeTransferDesc+'</p>' : '';
+            //couponStr += arg.isFreeCityTour ? '<p class="info-text"><span>'+arg.isFreeCityTourTitle+'</span>'+arg.isFreeCityTourDesc+'</p>' : '';
+			//modalStr += couponStr ;
 			modalStr += arg.cancellationDesc ? '<div class="info-div-1"> <div class="rate-rule">取消说明</div><p class="info-text">'+arg.cancellationDesc+'</p></div>' : '<div class="info-div"> <div class="rate-rule">取消说明</div><p class="info-text"><span class="infoTxtCan">暂无取消说明内容</span></p></div>';
 			// modalStr += arg.isabd ? '<header class="r-top"><p class="r-p1">' + arg.roomName + '(含早)</p><b class="r-icon1 closeTag"></b></header>' : '<header class="r-top"><p class="r-p1">' + arg.roomName + '</p><b class="r-icon1 closeTag"></b></header>';          oDiv.innerHTML = modalStr;
 			//document.body.appendChild(oDiv);
