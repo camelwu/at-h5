@@ -230,9 +230,9 @@
                         "cardIssuanceCountry": model.cardCountryCode,
                         "cardSecurityCode":  model.cardSecurityCode,
                         "creditCardNumber":  model.cardNumber,
-                        "cardBillingAddress": "werty",
-                        "countryNumber": "86",
-                        "MobilePhone": "13520591255",
+                        "cardBillingAddress": model.cardAddress,
+                        "countryNumber": model.countryNumber,
+                        "MobilePhone": model.MobilePhone,
                         "cardAddressCity": "北京",
                         "cardAddressPostalCode": "122132",
                         "cardCountryCode": "CN",
@@ -326,6 +326,7 @@
 
             //$.jAlert.confirm("支付完成前，请不要关闭此支付验证窗口 </br> 支付完成后，请根据你支付的情况点击下面的按钮。","网上支付提示",null,"支付完成","支付出现问题");
             console.log(JSON.stringify(param));
+            vlm.loading();
             vlm.loadJson(url, JSON.stringify(param), function(data){
                     if (data.success) {
                         if(type.id==1){
@@ -342,6 +343,7 @@
                     }
                     else{
                         jAlert(data.message);
+                        vlm.loadend();
                     }
                 });
 
