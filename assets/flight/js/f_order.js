@@ -391,13 +391,13 @@ var fOrder = {
         }
       }
     });
-    this.addHandler(passengerOuter, 'click', function (e){
-      var e = e || window.event, target = e.target || e.srcElement;
-        if(target.className == 'minus_person'){
-          var tem = target.parentNode.parentNode;
-          this.removeChild(tem);
-        }
-    })
+    //this.addHandler(passengerOuter, 'click', function (e){
+    //  var e = e || window.event, target = e.target || e.srcElement;
+    //    if(target.className == 'minus_person'){
+    //      var tem = target.parentNode.parentNode;
+    //      this.removeChild(tem);
+    //    }
+    //})
     this.addHandler(document.body, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
       if(target.className == 'shadow'){
@@ -408,6 +408,16 @@ var fOrder = {
              document.querySelector('.country-cho-wrap').style.display ="none";
       }
     })
+
+    deletePassager=function(obj){
+      $(obj).parent().parent().remove();
+    }
+    editPassager=function(obj){
+      var id=$(obj).find("input").eq(0).val();
+      var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
+      var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
+      vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+    }
 
   },
 
