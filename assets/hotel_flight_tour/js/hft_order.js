@@ -243,7 +243,7 @@
       }
 
 
-      if( $('.order_tlist2').length != localStorage.hft_peotot){
+      if( $('.order_tlist2:visible').length != localStorage.hft_peotot){
         jAlert('请添加出行人');
         return;
       }

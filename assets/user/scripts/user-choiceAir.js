@@ -25,9 +25,9 @@
       new:{id:1,name:"新增",code:"70100012"},
       edit:{id:2,name:"编辑",code:"70100013"},
     }
+
     ,isShowChinaName=vlm.getpara("isShowChinaName").toLowerCase()=="false"?false:true
     ,isShowContact=vlm.getpara("isShowContact").toLowerCase()=="false"?false:true
-
 
      //页面Dom对象
      var saveDbBtn=$(".addFinish");
@@ -38,8 +38,8 @@
      var nameDescriptPager=$(".fillName_page ");
      var submitBtn=$("#toper .header_finish");
 
-     var cnNameUL=$(".addAir_page .cnNameUL");
-     var contactUL=$(".addAir_page .traveler_contect");
+     var uc_cnName=$(".addAir_page .cnNameUL");
+     var ul_contect=$(".addAir_page .ul_contect");
 
 
      var titleTip=$("#toper h3");
@@ -58,7 +58,8 @@
     '<ul class="often_user">',
     '<input type="hidden" class="travellerId" value="{%=dd.traveller.travellerId%}"> </input>',
     '<input type="hidden" class="sexName" value="{%=dd.traveller.sexName%}"> </input>',
-    '<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">{%=dd.traveller.firstName%}</span>',
+    '<li data-card="{%=dd.listTravellerIdInfo[0].idType%}"><spn>姓 / 名</spn><span class="lastName" style="padding-left: 6px">{%=dd.traveller.lastName%}</span>/<span class="firstName">' +
+    '{%=dd.traveller.firstName%}</span>',
     '{%  if(age<2){ %}'+
     '<i class="per_type" data-id="0">婴儿</i></li>'+
     '{% } else if(age>=2 && age<12){ %}'+
@@ -109,7 +110,9 @@
 
     //保存事件
     saveDbBtn.on("click",function(){
-        _saveDb()
+        _saveDb();
+      _getPassagerList();
+
     })
 
     $(".sex_cho_wrap span").on("click",function(){
@@ -197,14 +200,12 @@
           }
         ]
       }
-      if(currentOperationType=="new"){
-         model.traveller.travellerId=new Date().getTime();
-      }
+
       return model;
     }
     else{
 
-      return {
+       var modle= {
         "traveller": {
           "travellerId": memberId==null? new Date().getTime():editIDKey,
           "idName": $(".addAir_page .cnName").val(),
@@ -236,8 +237,7 @@
         ]
       }
 
-
-
+      return modle;
     }
   }
   var _model2UI=function(model){
@@ -254,6 +254,8 @@
     $(".addAir_page .country").html(model.traveller.countryName);
     $(".addAir_page .telephone").val(model.traveller.mobilePhone);
     $(".addAir_page .email").val(model.traveller.email);
+    $(".addAir_page .birthDay").val(model.traveller.dateOfBirth.substring(0,10).replace('-','年').replace('-','月')+'号');
+    $(".addAir_page .phone_pre").html(model.traveller.mobilePhoneAreaCode);
 
   }
 
@@ -269,6 +271,14 @@
 
     $(".addAir_page .postCard").attr("data-cache","1");
     $(".addAir_page .postCard").val("护照");
+
+
+    $(".addAir_page .cardCountry").attr("data-code","CN");
+    $(".addAir_page .cardCountry").html("中国");
+
+    $(".addAir_page .country").attr("data-code","CN");
+    $(".addAir_page .country").html("中国");
+
 
 
   }
@@ -306,6 +316,10 @@
               }
             })
           }
+
+        if(currentOperationType=="new"){
+          modle.traveller.travellerId=new Date().getTime();
+        }
           choiceAir_AddPassagerArray.push(modle);
           localStorage.setItem('choiceAir_AddPassagerArray',JSON.stringify(choiceAir_AddPassagerArray));
           passagerListPage.show();
@@ -512,7 +526,6 @@
              passagerArray[json.data[i].traveller.travellerId] = json.data[i];
            }
            console.log(passagerArray)
-
            var html = template(tpl_traveler, json);
            document.getElementById("allList").innerHTML = html;
            _bindSelectChoice();
@@ -520,6 +533,8 @@
             vlm.init();
          }
        });
+       passagerListPage.show();
+       addOrEditPassagePage.hide();
      }
 
      //如果免登陆，查询LocalStorge数据
@@ -553,12 +568,11 @@
         addOrEditPassagePage.hide();
       }
     }
-
     if(!isShowChinaName){
-      cnNameUL.hide();
+      uc_cnName.hide();
     }
     if(!isShowContact){
-      contactUL.hide();
+      ul_contect.hide();
     }
     _getPassagerList();
     _bindEvent();

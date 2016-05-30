@@ -203,7 +203,7 @@ var fDoubleList = {
     that.postObj.isClearAll = 1;
   },
   filerCallBack: function () {
-    console.log(arguments);
+    console.log(arguments)
     var transferData = arguments, that = fDoubleList;
     that.postObj.isClearAll = 1;
     if (that.postObj.internationalOrDomestic == "international") {
@@ -211,12 +211,10 @@ var fDoubleList = {
         that.fadeHandler('show');
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
-          dd.innerHTML = "不含税价";
-          that.postObj.hasTax = 0;
+          that.postObj.hasTax = 1;
           that.renderHandler({success:1, code:200, data:that.currrentFlightList});
         } else if (dd.innerHTML == "不含税价") {
-          dd.innerHTML = "含税价";
-          that.postObj.hasTax = 1;
+          that.postObj.hasTax = 0;
           that.renderHandler({success:1, code:200, data:that.currrentFlightList});
         }
       } else {
@@ -235,12 +233,10 @@ var fDoubleList = {
       if (arguments[1].id == "Price") {
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "价格") {
-          dd.innerHTML = "从低到高";
           that.postObj.priorityRule = 2;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         } else if (dd.innerHTML == "从低到高") {
-          dd.innerHTML = "价格";
           that.postObj.priorityRule = 0;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
@@ -349,11 +345,11 @@ var fDoubleList = {
           ]
         },
         Tax: {
-          title: "不含税费",
+          title: "不含税价",
           c: "f_tax_sort",
           type: 0,
           key: 'tax',
-          listData: ["含税费", "不含税费"]
+          listData: ["含税价", "不含税价"]
         }
       };
     } else {
@@ -447,11 +443,11 @@ var fDoubleList = {
             }]
         },
         Price: {
-          title: "含税价",
+          title: "价格",
           c: "f_tax_sort",
           type: 0,
           key: 'tax',
-          listData: ["含税价", "不含税价"]
+          listData: ["价格从低到高", "价格从高到低"]
         }
       }
     }
@@ -473,7 +469,6 @@ var fDoubleList = {
 
   init: function () {
     var postObj = this.parseUrlHandler(window.location.href, true);
-    console.log(postObj)
     this.postObj = postObj;
     this.titleInit().tAjax("", this.postObj, "3001", 3, this.renderHandler);
   }

@@ -42,20 +42,22 @@
         onclick=" vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate)"></i>
       </h4>
       <div id="passenger-list">
-        <ul class="passenger_outer" style="display: none" >
-          <li>
-            <p class="name_infos"><i class="minus_person"></i>
-              <em>姓/名</em><b class="input name"data-elementname="lastName"></b>/<b class="input name" data-elementname="firstName"></b><i class="add_icon passenger"></i></p>
-            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"  data-elementname="idNumber"
-                                                                           placeholder="1234567" readonly="readonly"/><span class="sex_value" data-elementname="sexName">女</span>
-            </p>
-          </li>
-        </ul>
-      </div>
+          <ul class="passenger_outer" style="display: none" >
+            <li>
+              <p class="name_infos"><i class="minus_person" onclick="javascript:delPassager(this)"></i>
+               <label>姓</label><input class="input name" placeholder="BAI" readonly="readonly" data-elementname="lastName" />
+               <label>名</label><input class="input name" placeholder="LISA" readonly="readonly" data-elementname="firstName"/>
+                <i class="add_icon passenger" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></i></p>
+              <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"  data-elementname="idNumber"
+                                                                             placeholder="1234567" readonly="readonly"/><span class="sex_value" data-elementname="sexName">女</span>
+              </p>
+            </li>
+          </ul>
+        </div>
     </div>
     <!--联系人-->
     <div class="contact_wrap" id="contact-table">
-      <h4>联系人<!--<i class="arrow_down"></i><span class="glay_word">与第一出行人相同</span> --><i class="add_icon contact"
+      <h4>联系人<i class="arrow_down"></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact"
                                                                                   onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i>
       </h4>
 

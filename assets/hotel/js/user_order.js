@@ -241,7 +241,7 @@ uoHisData();
     var uo_confirm=document.getElementById('uo_confirm');
     var downBok=true;
     var bOk2=true;
-    
+
     //android底部浮层在调用键盘时遮挡页面元素
     //ios qq浏览器 fixed 支持问题
     //总体测试效果不佳  建议后续需要用户输入的页面，统一将输入框放到页面顶部
@@ -261,7 +261,7 @@ uoHisData();
             qq:/qqbrowser/i.test(ua)
         }
     }
-    
+
     //all_elements.onclick = function(e){
     //    var browser = checkBrowser();
     //    //alert(browser.qq);
@@ -314,7 +314,7 @@ uoHisData();
         uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0px no-repeat';
         uo_c2_i1.style.backgroundSize='23px 150px';
     }
-    
+
     var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
     for(var i=0;i<parseInt(uo_c2_num.innerHTML);i++){
         if(hoPos=='inter'){
@@ -357,7 +357,7 @@ uoHisData();
                 uo_firstname[j].value=fake_data.guestName[j].GuestFirstName;
             }
         }
-        
+
         //手机号和邮箱实现历史记忆功能
         var uo_c3_tele=document.getElementById('uo_c3_tele');
         var uo_c3_email=document.getElementById('uo_c3_email');
@@ -393,13 +393,13 @@ uoHisData();
     //    document.documentElement.scrollTop='800';
     //});
     //获取判断服务器给的数据的精度
-    
+
     function getAccuracy(digit){
         var digitLen = new String(digit).length;
         var dotIndex = new String(digit).indexOf(".");
         return dotIndex > -1 ? digitLen - dotIndex - 1 : 0;
-    } 
-    
+    }
+
     function formatFloat(f, digit) {
         var m = Math.pow(10, digit);
         return parseInt(f * m, 10) / m;
@@ -425,7 +425,7 @@ uoHisData();
         }else if(parseInt(json.paymentModeID)==2){
             var oId6=document.getElementById(id6);
             var oId7=document.getElementById(id7);
-            
+
             oId2.innerHTML='SGD'+parseFloat(json.avgPrice)*parseFloat(json.NumOfRoom)*parseInt(json.dateInfo.totalNight);
             oId3.innerHTML='SGD'+(parseFloat(json.taxCharges)*1000*parseFloat(json.NumOfRoom)*parseInt(json.dateInfo.totalNight))/1000;
             oId4.innerHTML='付款方式：'+lsf_myweb.payment(json.paymentModeID);
@@ -667,10 +667,10 @@ uoHisData();
         //console.log(JSON.parse(localStorage.getItem('user_order_storage12345')));
 
         //uo_form.submit();
-        location.href = "/payment/payment.html?type=Hotle";
+        location.href = "../payment/payment.html?type=Hotle";
 
     });
-    
+
     //取消说明点击事件
     //lsf_myweb.bind(uo_c1_infoDown,'click',function(){
     //    uo_c1_info.className='';
