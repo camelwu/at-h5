@@ -110,9 +110,10 @@
 
     //保存事件
     saveDbBtn.on("click",function(){
-        _saveDb();
-      _getPassagerList();
-
+      var flag=_saveDb();
+      if(flag) {
+        _getPassagerList();
+      }
     })
 
     $(".sex_cho_wrap span").on("click",function(){
@@ -123,7 +124,7 @@
   };
   var _validate=function(){
 
-    if(cnNameUL.is(':visible')){
+    if(uc_cnName.is(':visible')){
       if(!vlm.Utils.validate["isNoEmpty"]($(addOrEditPassagePage).find(".cnName").eq(0).val())){
         jAlert("中文姓名不能为空！","",null,"确认");
         return false;
@@ -134,7 +135,7 @@
       }
     };
 
-    if(contactUL.is(':visible')){
+    if(ul_contect.is(':visible')){
         if(!vlm.Utils.validate["mobileNo"]($(addOrEditPassagePage).find(".telNum").eq(0).val())){
           jAlert("请输入有效的电话号码！","",null,"确认");
           return false;
@@ -285,9 +286,9 @@
 
   //数据保存
   var _saveDb=function(){
-      //if(!_validate()){
-      //  return;
-      //}
+      if(!_validate()){
+        return false;
+      }
       var modle=_ui2Modle(currentOperationType);
       //登陆
       if(memberId !=undefined) {
@@ -326,8 +327,8 @@
           addOrEditPassagePage.hide();
           _getPassagerList();
       }
-
        _clearDate();
+       return true;
   }
 
   //缓存数据
