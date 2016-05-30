@@ -251,6 +251,11 @@ a {
   color: #333;
   text-align: center;
   line-height: .88rem;
+  height: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 1.15rem;
+  white-space: nowrap;
 }
 
 .header h3 .arrowDouble, .header h3 .arrowSingle {
