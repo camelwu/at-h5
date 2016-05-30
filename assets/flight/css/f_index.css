@@ -1476,7 +1476,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
 }
 .current_location ul li,.history_choose_city ul li,.hot_city_outer ul li{
   box-sizing: border-box;
-  width: 28%;
+  width: 27.2%;
   height: .68rem;
   line-height: .68rem;
   float: left;
@@ -1502,13 +1502,12 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
 }
 .city_index{
   position: fixed;
-  top: 1.8rem;
-  bottom: 2rem;
-  right: 0;
+  top: 2.18rem;
+  right: .06rem;
   width: 0.6rem;
   color: #7bc300;
   font-size: 0.2rem;
-  text-align: center
+  text-align: center;
 }
-.city_index li{margin: .02rem 0}
+.city_index li{margin-bottom: .04rem;}
 .city_index li a{color: #7bc300;text-underline: none}
