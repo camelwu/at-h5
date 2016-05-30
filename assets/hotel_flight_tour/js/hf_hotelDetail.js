@@ -51,7 +51,6 @@ var data2 = '',roomdata = '';
             at.map.createMap(latitude,longitude);
             at.map.markHotel(latitude,longitude,"");
             at.map.moveCenterToHotelLocation(latitude,longitude);
-            
             sessionStorage.setItem('latitude',latitude);
             sessionStorage.setItem('longitude',longitude);
             $('#map').on('click',function(){
