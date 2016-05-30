@@ -335,7 +335,7 @@ function styleChange(id, mytext) {
 						var bb = rli[i].getElementsByTagName("b")[0];
 						rli[i].removeChild(bb);
 					}
-					rli[i].style.color = "#b3b2b4";
+					rli[i].style.color = "#333333";
 				}
 				obj.style.color = "#7bc300";
 				var b = document.createElement("b");
@@ -733,7 +733,7 @@ function styleChange(id, mytext) {
 			if (myAsiaHlHistory.hlSort.chinese && hlSortLi[i].innerHTML.indexOf(myAsiaHlHistory.hlSort.chinese) != -1) {
 				url_json.rank = myAsiaHlHistory.hlSort.english;
 				for (var j = 0; j < hlSortLi.length; j++) {
-					hlSortLi[j].style.color = '#b3b2b4';
+					hlSortLi[j].style.color = '#333333';
 					var oB = hlSortLi[j].getElementsByTagName('b');
 					if (oB.length) {
 						hlSortLi[j].removeChild(oB[0]);
@@ -886,7 +886,7 @@ function styleChange(id, mytext) {
 		var oSrc = oEvent.srcElement || oEvent.target;
 		//设置弹出框的最大高度
 		var clienH = document.documentElement.clientHeight;
-		oFilter.style.maxHeight = (clienH - 45) + 'px';
+		oFilter.style.maxHeight = 7.8 + 'rem';
 
 		//确定按钮点击事件
 		if (oSrc.getAttribute('id') == 's_but') {
@@ -1030,7 +1030,7 @@ function styleChange(id, mytext) {
 		loca_conBro.style.height = loca_con.offsetHeight + 'px';
 		//bottom:0为了实现滑动效果,如果没有bottom:0;内容就不可滑动
 		loca_con.style.bottom = '0';
-		oLocation.style.maxHeight = (clienH - 45) + 'px';
+		oLocation.style.maxHeight = 7.8 + 'rem';
 		var oSrc = oEvent.srcElement || oEvent.target;
 		var locationList = '';
 		if (oSrc.getAttribute('id') == 'l_but') {
