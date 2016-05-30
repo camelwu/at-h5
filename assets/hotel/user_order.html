@@ -39,7 +39,7 @@
 			<p>
 				取消说明：
 			</p>
-			<div>
+			<div class=" hotel_user_div">
 				<p class="uo_c1_info" id="uo_c1_info"></p>
 				<!--<i id="uo_c1_infoDown"></i>-->
 			</div>
@@ -58,9 +58,9 @@
 				<p class="fl">
 					房间数
 				</p>
-				<i class="fr uo_c2_i2 hotel_user_icon left" id="uo_c2_i2"></i>
-				<em class="fr"><b id="uo_c2_num">2</b></em>
-				<i class="fr uo_c2_i1 hotel_user_icon right" id="uo_c2_i1"></i>
+				<i class=" uo_c2_i2 hotel_user_icon left" id="uo_c2_i2"></i>
+				<em class="center"><b id="uo_c2_num">2</b></em>
+				<i class=" uo_c2_i1 hotel_user_icon right" id="uo_c2_i1"></i>
 			</div>
 		</div>
 		<form class="uo_con3 hotel_user_detail" id="uo_con3" action="../payment/payment.html?type=Hotle" method="post">
@@ -82,8 +82,9 @@
 			</div>
 			<div class="uo_c3_teBox hotel_user_detail_phone">
 				<p>
-					手机号
+					手机号 &nbsp&nbsp&nbsp&nbsp<span>+ 86</span><i></i>
 				</p>
+        <span></span>
 				<input type="text" value="用于接收短信通知" id="uo_c3_tele"  />
 			</div>
 			<div class="uo_c3_teBox hotel_user_detail_Email">
@@ -94,13 +95,13 @@
 			</div>
 		</form>
 		<div class="uo_con5 hotel_user_prompt">
-			<p>
+			<p class = "first_prompt">
 				温馨提示
 			</p>
-			<p>
+			<p class = "last_prompt">
 				如您在14：00前到店，可能需要等待方能入住，具体以酒店安排为准。
 			</p>
-			<p id="toPayExp">
+			<p id="toPayExp" class="last_prompt ">
 				您将根据付款当天的汇率以及酒店当地的货币付费给酒店。Asiatravel不提供发票，如需消费凭证，请向酒店前台索取消费清单。
 			</p>
 		</div>
@@ -134,23 +135,23 @@
 	<div class="uo_footer hotel_footer" id="uo_footer">
 		<div class="uo_or_sum hotel_footer_sum" id="uo_or_sumBox1">
 			<em class="fl uo_or_order">订单总额：</em>
-			<div class="uo_or_pr fl">
-				￥<span id="uo_or_sum"></span>
+			<div class="uo_or_pr fl hotel_footer_sum_price">
+				￥<span id="uo_or_sum" class = "hotel_footer_sum_price1"></span>
 			</div>
 		</div>
 		<div class="uo_or_sum hotel_footer_sum" id="uo_or_sumBox2">
 			<em class="fl uo_or_assure">订单总额：</em>
-			<div class="uo_or_pr uo_or_pr2 fl">
+			<div class="uo_or_pr uo_or_pr2 fl hotel_footer_sum_price">
 				<p>
-					SGD<span id="uo_or_sum2"></span>
+					SGD<span id="uo_or_sum2"class = "hotel_footer_sum_price2"></span>
 				</p>
-				<p id="uo_or_sum2CNY">
+				<p id="uo_or_sum2CNY" class="hotel_footer_sum_price3" >
 					约￥
 				</p>
 			</div>
 		</div>
 		<p class="uo_or_infor hotel_footer_detail" id="uo_or_infor">
-			<span class="fl">明细</span><i class="fl"></i>
+			<span class="fl"></span><i class="fl"></i>
 		</p>
 		<input type="button" value="确认订单" id="uo_confirm" class = "hotel_footer_button" />
 	</div>

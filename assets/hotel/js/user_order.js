@@ -109,12 +109,12 @@ function styleChange(id,mytext){
     if(oInp.value==mytext){
         oInp.style.color='#d1d1d1';
     }else{
-        oInp.style.color='#484848';
+        oInp.style.color='#d1d1d1';
     }
     oInp.onfocus=function(){
         if(this.value==mytext){
             this.value='';
-            this.style.color='#484848';
+            this.style.color='#d1d1d1';
         }
     };
     oInp.onblur=function(){
@@ -311,8 +311,8 @@ uoHisData();
     uo_c2_num.innerHTML=fake_data.NumOfRoom;
     //初始化房间数减号状态
     if(parseInt(fake_data.NumOfRoom) >1 && parseInt(fake_data.NumOfRoom) <10){
-        uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0px no-repeat';
-        uo_c2_i1.style.backgroundSize='23px 150px';
+        uo_c2_i1.style.background='url("../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat';
+        uo_c2_i1.style.backgroundSize='7.9rem 7.83rem';
     }
 
     var uo_c3_peoBox=document.getElementById('uo_c3_peoBox');
@@ -467,12 +467,12 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)<=1){
-            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 -27px no-repeat';
-            uo_c2_i1.style.backgroundSize='23px 150px';
+            uo_c2_i1.style.background='url("../images/ui.1.0/icon_common.png") -0.48rem -3.12rem no-repeat';
+            uo_c2_i1.style.backgroundSize=' 7.9rem 7.83rem';
         }
         if(parseInt(uo_c2_num.innerHTML)<10){
-            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -55px no-repeat';
-            uo_c2_i2.style.backgroundSize='23px 150px';
+            uo_c2_i2.style.background='url("../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat';
+            uo_c2_i2.style.backgroundSize=' 7.9rem 7.83rem';
         }
         //修改数据并存储数据
         fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
@@ -530,12 +530,12 @@ uoHisData();
             }
         }
         if(parseInt(uo_c2_num.innerHTML)>1){
-            uo_c2_i1.style.background='url("../images/hotelbtn.png") 0 0px no-repeat';
-            uo_c2_i1.style.backgroundSize='23px 150px';
+            uo_c2_i1.style.background='url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
+            uo_c2_i1.style.backgroundSize='7.9rem 7.83rem';
         }
         if(parseInt(uo_c2_num.innerHTML)>=10){
-            uo_c2_i2.style.background='url("../images/hotelbtn.png") 0 -84px no-repeat';
-            uo_c2_i2.style.backgroundSize='23px 150px';
+            uo_c2_i2.style.background='url("../images/ui.1.0/icon_common.png") -2.17rem -3.12rem no-repeat';
+            uo_c2_i2.style.backgroundSize='7.9rem 7.83rem';
         }
 
         //修改数据并存储数据
