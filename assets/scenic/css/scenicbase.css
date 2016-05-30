@@ -6,6 +6,10 @@
 .content_detail{
   background-color: #ffffff;
 }
+.content_booking{
+  padding:.88rem 0 .9rem;
+  background-color: #F7F7F7;
+}
 /*通用_content*/
 /*通用_头部*/
 .header_more {
@@ -636,6 +640,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 }
 
 
+
 /*预订页面*/
 .gray-block {
   height: .15rem;
@@ -645,7 +650,8 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   border-bottom: 1px solid #ddd;
 }
 .booking_wrap{
-
+  background: #FFFFFF;
+  margin: 0 0 .32rem 0;
 }
 
 .booking_package{
@@ -668,8 +674,6 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 
 .booking_package_preprice{
   margin: .2rem 0 0 0;
-  font-size: .32rem;
-  color: #FF5B13;
 }
 
 .booking_package_preprice_span{
@@ -679,21 +683,16 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 }
 
 
-
 .booking_package_tours{
 
 }
 
-.booking_package_tour{
+.booking_package{
   padding: .4rem .28rem .4rem .28rem;
   font-size: .28rem;
   color: #333333;
   border-bottom: 1px #e6e6e6 solid;
   position: relative;
-}
-
-.booking_package_tourtitle{
-
 }
 
 .booking_package_i{
@@ -703,13 +702,19 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   display: inline-block;
 }
 
-.booking_package_tour_h3{
+.booking_package_h3{
   margin: 0 0 0 .16rem;
   font-size: .32rem;
   color: #333333;
   line-height: .48rem;
   display: inline-block;
 }
+
+.booking_package_tourtitle{
+
+}
+
+
 
 .booking_package_date{
   padding: .4rem 0 0 0;
@@ -721,7 +726,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 
 .booking_package_date_i{
   position: absolute;
-  margin-top: -0.16rem;
+  margin-top: -0.45rem;
   top: 50%;
   right: .2rem;
   height: .45rem;
@@ -759,14 +764,14 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   margin: 0;
 }
 
-.booking_package_fullday_li_current{
+.booking_package_fullday_li.current{
   position: relative;
   color: #7bc300;
   border: 1px #7bc300 solid;
   border-radius: .05rem;
 }
 
-.booking_package_fullday_li_current:after{
+.booking_package_fullday_li.current:after{
   content: '';
   display: inline-block;
   position: absolute;
@@ -781,8 +786,343 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 
 
 .booking_package_pre{
+  padding: 0 .28rem 0 .28rem;
+  font-size: .28rem;
+  color: #333333;
+  border-bottom: 1px #e6e6e6 solid;
+  height: .96rem;
+  line-height: .96rem;
+}
+
+.booking_package_pre_title{
+  font-size: .28rem;
+  color: #333333;
+  display: inline-block;
+}
+
+.booking_package_pre_group{
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: .2rem;
+}
+
+.booking_package_pre_minbtn{
+  float: left;
+  height: .52rem;
+  width: .54rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -0.5rem -3.14rem;
+}
+
+.booking_package_pre_minbtn_current{
+  float: left;
+  height: .52rem;
+  width: .54rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1.29rem -3.14rem;
+}
+
+.booking_package_pre_maxbtn{
+  float: left;
+  height: .52rem;
+  width: .54rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -2.15rem -3.14rem;
+}
+
+.booking_package_pre_maxbtn_current{
+  float: left;
+  height: .52rem;
+  width: .54rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -3.05rem -3.14rem;
+}
+
+.booking_package_pre_num{
+  font-size: .28rem;
+  color: #333333;
+  display: inline-block;
+  float: left;
+  line-height: .52rem;
+  margin: 0 .16rem 0 .16rem;
+}
+
+.booking_package_pre_child{
+  padding: 0 0 0 .28rem;
+  position: relative;
+  border-bottom: 1px #e6e6e6 solid;
+}
+
+.booking_package_pre_childlist{
 
 }
 
+.booking_package_pre_childitem{
+  font-size: .28rem;
+  color: #333333;
+  border-bottom: 1px #e6e6e6 solid;
+  height: .96rem;
+  line-height: .96rem;
+}
 
+.booking_package_pre_childitem:last-child{
+  font-size: .28rem;
+  color: #333333;
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 0;
+}
+
+.booking_package_pre_childitemtitle{
+  display: inline-block;
+  font-size: .28rem;
+}
+
+.booking_package_pre_childitemnum{
+  display: inline-block;
+  margin: .01rem 0 0 .1rem;
+}
+
+.booking_package_pre_childitemright{
+  display: inline-block;
+  float: right;
+  margin: 0 .3rem 0 0;
+  font-size: .28rem;
+}
+
+.booking_package_pre_childiteminput{
+  width: .7rem;
+  height: .9rem;
+  font-size: .28rem;
+}
+
+.booking_package_addpackage{
+  font-size: .32rem;
+  color: #7bc300;
+  border-bottom: 1px #e6e6e6 solid;
+  height: .96rem;
+  line-height: 0.96rem;
+  text-align: center;
+}
+
+.booking_package_addpackage_i{
+  display: inline-block;
+  position: relative;
+  top: .11rem;
+  height: .52rem;
+  width: .54rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -3.05rem -3.14rem;
+}
+
+.booking_package_addpackage_p{
+  display: inline-block;
+}
+
+.booking_package_linkman{
+  padding: .4rem 0 0 .28rem;
+  font-size: .28rem;
+  color: #333333;
+  border-bottom: 1px #e6e6e6 solid;
+  position: relative;
+}
+
+.booking_package_linkman_title{
+  border-bottom: 1px #e6e6e6 solid;
+  padding: 0 0 .32rem 0;
+}
+
+.booking_package_addpre_i{
+  display: inline-block;
+  position: relative;
+  float: right;
+  right: .28rem;
+  top: .02rem;
+  height: .9rem;
+  width: .5rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1rem -0.3rem;
+}
+
+.booking_package_linkman_input{
+  font-size: .28rem;
+  width: 2rem;
+  height: .9rem;
+  margin-left: .6rem;
+}
+
+.booking_package_linkman_contact{
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 1px #e6e6e6 solid;
+  font-size: .28rem;
+}
+
+.booking_package_linkman_contact:last-child{
+  height: .96rem;
+  line-height: .96rem;
+  border-bottom: 0;
+  font-size: .28rem;
+}
+
+.booking_package_linkman_i{
+  display: inline-block;
+  position: relative;
+  float: right;
+  right: .28rem;
+  top: .02rem;
+  height: .9rem;
+  width: .5rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1rem -0.3rem;
+}
+
+.booking_package_addpre_i{
+  display: inline-block;
+  position: relative;
+  float: right;
+  right: .28rem;
+  top: 0;
+  height: .4rem;
+  width: .35rem;
+  background: url(/images/ui.1.0/icon_pay.png) no-repeat;
+  background-size: 7.90rem 1.58rem;
+  background-position: -5.6rem -0.5rem;
+}
+
+.booking_package_linkman_inputemail{
+  font-size: .28rem;
+  width: 5rem;
+  height: .9rem;
+  margin-left: .6rem;
+}
+
+.booking_package_linkman_max375{
+  width: 3.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.booking_package_linkman_inputphone{
+  font-size: .28rem;
+  width: 3.7rem;
+  height: .9rem;
+}
+
+.booking_package_linkman_phonetitle{
+  display: inline-block;
+}
+
+.booking_package_linkman_phoneselect{
+  display: inline-block;
+  float: right;
+}
+
+.booking_package_linkman_phone_i{
+  display: inline-block;
+  position: relative;
+  float: right;
+  top: .02rem;
+  height: .9rem;
+  width: .5rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1rem -0.3rem;
+}
+
+.booking_package_pickup{
+  position: relative;
+  display: inline-block;
+  height: .96rem;
+  line-height: .96rem;
+  width: 100%;
+  padding: 0 .28rem 0 .28rem;
+}
+
+.booking_package_pickup_i{
+  display: inline-block;
+  position: relative;
+  float: right;
+  height: .9rem;
+  width: .5rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1rem -0.3rem;
+}
+
+.booking_package_pickup_title{
+  display: inline-block;
+}
+
+.booking_package_pickup_select{
+  display: inline-block;
+  float: right;
+  color: #999999;
+}
+
+.booking_footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+  background: #FCFCFC;
+  opacity: .9;
+  height: .96rem;
+}
+
+.booking_footer_bookingbtn{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: .96rem;
+  background: #7bc300;
+  color: #fff;
+  text-align: center;
+  line-height: .96rem;
+  font-size: .32rem;
+}
+
+.booking_footer_p{
+  font-size: .28rem;
+  line-height: .96rem;
+  display: inline-block;
+  float: right;
+  margin: 0 .24rem 0 0;
+}
+
+.booking_package_price{
+  font-size: .32rem;
+  color: #FF5B13;
+}
+
+.booking_package_price.layout{
+  display: inline-block;
+  margin: 0 0 0 .28rem;
+}
+
+.booking_footer_i{
+  display: inline-block;
+  position: relative;
+  float: right;
+  height: .5rem;
+  width: .5rem;
+  margin-top: .23rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -2.1rem -0.5rem;
+}
+
+.booking_footer_i.current{
+  background-position: -2.65rem -0.5rem;
+}
 /*预订页面*/

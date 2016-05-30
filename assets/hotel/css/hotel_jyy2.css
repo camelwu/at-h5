@@ -65,7 +65,7 @@ ul,li{
   position: absolute;
   right: 0.2rem;
   text-align: right;
-  top: 40%;
+  bottom: .28rem;
   height: 0.3rem;
   line-height: 0.3rem;
   margin-top: -0.15rem;
@@ -122,6 +122,7 @@ ul,li{
 .hotel_content_address{
   font-size: 0.2rem;
   line-height: .3rem;
+  color: #999;
 }
 /*没有更多数据*/
 .load-more{
@@ -357,16 +358,18 @@ ul,li{
 .l-icon{
   float: right;
   display: block;
-  width: .4rem;height:.4rem;
-  background: url(../../images/ui.1.0/icon_common.png)  -6.34rem -.57rem;
+  width: .5rem;
+  height: .5rem;
+  background: url(../../images/ui.1.0/icon_common.png)  -4.41rem -0.54rem;
   background-size: 7.9rem 7.83rem;
   margin-top:.3rem;
 }
 .l-icon1{
   float: right;
   display: block;
-  width: .4rem;height:.4rem;
-  background: url(../../images/ui.1.0/icon_common.png)  -6.34rem -.57rem;
+  width: .5rem;
+  height: .5rem;
+  background: url(../../images/ui.1.0/icon_common.png)  -4.41rem -0.54rem;
   background-size: 7.9rem 7.83rem;
   margin-top:.3rem;
 }
@@ -374,24 +377,27 @@ ul,li{
   float: right;
   display: block;
   margin-top:.3rem;
-  width: .4rem;height:.4rem;
-  background:url(../../images/ui.1.0/icon_common.png)  -5.77rem -.57rem;
+  width: .5rem;
+  height: .5rem;
+  background:url(../../images/ui.1.0/icon_common.png)  -5.08rem -0.54rem;
   background-size:7.9rem 7.83rem;
 }
 .l-icon1First{
   float: right;
   display: block;
   margin-top:.3rem;
-  width: .4rem;height:.4rem;
-  background:url(../../images/ui.1.0/icon_common.png)  -5.77rem -.57rem;
+  width: .5rem;
+  height: .5rem;
+  background:url(../../images/ui.1.0/icon_common.png)  -5.08rem -0.54rem;
   background-size:7.9rem 7.83rem;
 }
 .l-li3 .l-icon1First{
   float: right;
   display: block;
   margin-top:.3rem;
-  width: .4rem;height:.4rem;
-  background:url(../../images/ui.1.0/icon_common.png) -6.34rem -.57rem;
+  width: .5rem;
+  height: .5rem;
+  background:url(../../images/ui.1.0/icon_common.png) -4.41rem -0.54rem;
   background-size:7.9rem 7.83rem;
 }
 

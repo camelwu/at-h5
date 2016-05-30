@@ -61,12 +61,12 @@ i,em{
     overflow: hidden;
     float: left;
 }
-.index_abroad_box li.jjin-active{
+.index_abroad_box li.cur{
     background: #fff;
     border:1px solid #7bc300;
     color: #7bc300;
 }
-.index_abroad_box li.jjin-active a{
+.index_abroad_box li.cur a{
     color: #7bc300;
 }
 .index_hotspot{

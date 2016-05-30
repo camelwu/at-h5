@@ -368,16 +368,13 @@ body {
 }
 
 .hotelRightPart > p {
-    line-height: .50rem;
+  line-height: .36rem;
+  font-size: .20rem;
 }
 
 .imgDate .right {
     display: block;
     margin: 0 0 0 1.82rem;
-}
-
-.hotelRightPart p {
-    /* margin-top: .12rem;*/
 }
 
 .hotelRightPart h3 {

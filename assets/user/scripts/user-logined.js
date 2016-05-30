@@ -1,7 +1,17 @@
 /**
  * Created by changlv on 2016/1/13.
  */
+  "use strict";
+
   function init(){
+
+    //加载动画
+
+    $("#status").fadeOut();
+    $("#preloader").delay(400).fadeOut("medium");
+
+    vlm.init();
+
     var email = localStorage.email;
     var phone = localStorage.phone;
     var password = localStorage.password;

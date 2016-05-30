@@ -8,6 +8,7 @@ div#h-Tab{
 }
 .header{
   background: #fff;
+  border-bottom: solid 1px #fff;
 }
 /*日历*/
 .calendar dt.title-date {
@@ -36,7 +37,8 @@ div#h-Tab .off{
   height: .98rem;
   line-height:.98rem;
   border-bottom: 1px solid #E6E6E6;
-  padding:0 .26rem ;
+  padding-right: .26rem ;
+  margin-left: .26rem;
 }
 .hotel_destination_left{
   display: inline-block;
@@ -92,11 +94,12 @@ i.i_address{
   float: left;
   height: 1rem;
   line-height: 1rem;
-  margin-top: .59rem;
+  margin-top: .6rem;
   text-align: center;
 }
 .hotel_time_left > span{
   display: block;
+  color:#666;
 }
 .hotel_time_center{
   /*height: 1rem;*/
@@ -104,20 +107,22 @@ i.i_address{
 }
 .hotel_time_center_start{
   width: 41%;
-  height: .8rem;
+  /*height: .8rem;*/
   line-height: .8rem;
   float: left;
+  margin-top: .1rem;
 }
 .hotel_roomTime{
-  height: .2rem;
+  height: .1rem;
   font-size: .2rem;
   display: block;
+  color:#999;
 }
 .hotel_time_center_end{
   width: 41%;
-  height: .8rem;
   line-height: .8rem;
   float: right;
+  margin-top: .1rem;
 }
 .hotel_time_center_start input,.hotel_time_center_end input{
   float: left;
@@ -136,6 +141,7 @@ i.i_address{
   display: block;
   padding-top: .49rem;
   font-size: .2rem;
+  color: #333;
 }
 .hotel_time_right i{
   background-image: url(../../images/icon-h.png);
@@ -188,9 +194,9 @@ i.i_address{
 /*人数*/
 .hotel_people{
   height: 2rem;
-  border-bottom: 1px solid #E6E6E6;
+  border-bottom: 2px solid #E6E6E6;
   position: relative;
-  margin-left: .26rem;
+  padding-left: .26rem;
   padding-right: .26rem;
 }
 .hotel_people_left{
@@ -208,14 +214,14 @@ i.i_address{
 }
 .hotel_people_right_adult{
   border-bottom: 1px solid #E6E6E6;
+  margin-left: .26rem;
 }
 .hotel_people_right_adult p{
   /*line-height: .6rem;*/
   /*margin-bottom: .2em;*/
 }
-.hotel_people_right_child p{
-  /*line-height: .6rem;*/
-  /*margin-top: .2rem;*/
+.hotel_people_right_child{
+  padding-left: .26rem;
 }
 .hotel_people_right_adult input{
   width: .36rem;

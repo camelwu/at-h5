@@ -1,12 +1,4 @@
 /*公用开始*/
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -498,21 +490,24 @@ li.order_tlist2 {
 
 /*明细结束*/
 
-/*国籍tel*/
-.country-cho-wrap {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200%;
-  z-index: 1000;
-  display: none;
+/*国籍选择开始*/
+.country_header {
+  opacity: 1;
 }
 
-.country-cho-wrap .header {
-  height: 45px;
-  max-height: 45px;
+.gj_header {
+  z-index: 9999;
+  visibility: hidden;
+}
+
+.country-cho-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: none;
 }
 
 .country-cho-wrap-order {
@@ -521,11 +516,11 @@ li.order_tlist2 {
 }
 
 .cl_search {
-  height: 30px;
+  height: .6rem;
   width: 100%;
-  padding-left: 38px;
-  padding-right: 15px;
-  margin-top: 7px;
+  padding-left: 1.04rem;
+  padding-right: .28rem;
+  margin-top: .16rem;
   position: relative;
   left: 0;
   top: 0;
@@ -535,20 +530,19 @@ li.order_tlist2 {
 .cl_search input {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
-  padding-left: 24px;
-  font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
+  border-radius: .3rem;
+  padding-left: .48rem;
+  background-color: #e6e6e6;
 }
 
 .cl_search i {
   position: absolute;
-  left: 47px;
-  top: 10px;
-  display: block;
-  background: url("../../images/city_search.png");
-  background-size: 11px 11px;
-  width: 11px;
-  height: 11px;
+  left: 1.2rem;
+  top: .13rem;
+  background-position: -2.28rem -1.64rem;
+  background-size: 5.8rem 3.6rem;
+  width: .34rem;
+  height: .34rem;
 }
 
 .country-list {
@@ -556,73 +550,41 @@ li.order_tlist2 {
 }
 
 .country-list li {
-  padding-left: 35px;
-  height: 36px;
-  line-height: 36px;
-  border-bottom: 1px solid #dfdfdd;
+  padding-left: .48rem;
+  height: .68rem;
+  line-height: .68rem;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .country-hidden {
   z-index: 100;
 }
 
-.header-back {
-  position: absolute;
-  width: 50px;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.go-back {
-  position: absolute;
-  width: 12px;
-  height: 22px;
-  left: 15px;
-  top: 50%;
-  margin-top: -11px;
-}
-
-.icons {
-  background: url(../../images/ui/icons.png) no-repeat;
-  background-size: 243px 160px;
-  display: inline-block;
-}
-
 /*国籍模糊搜索*/
 .country-list-searched {
   width: 100%;
   height: auto;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  font-size: 1.4px;
-  list-style: none;
   position: fixed;
-  top: 3.8px;
+  top: .88rem;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 9;
   background: #f5f4f9;
-  margin-bottom: 0;
   overflow-y: scroll;
-  padding-top: 1px;
 }
 
 .country-list-searched li.country-list-searched-item {
   width: 100%;
-  font-size: 1.4px;
-  list-style: none;
-  height: 3.4px;
-  line-height: 3.4px;
+  height: .68rem;
+  line-height: .68rem;
   text-align: left;
-  border-bottom: 0.1px solid #dfdfdd;
-  margin-bottom: 0;
-  padding-left: 4px;
+  border-bottom: 1px solid #e6e6e6;
+  padding-left: .48rem;
 
 }
 
-/*国籍tel结束*/
+/*国籍选择结束*/
 
 /*订单详情已支付*/
 .tel_tip {

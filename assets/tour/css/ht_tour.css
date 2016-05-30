@@ -588,6 +588,40 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 .s_active{
   display: block!important;
 }
+header.header .header_more{
+  position: absolute;
+  top: 0;
+  right: 0;    height: 0.88rem;
+  line-height: 0.88rem;
+  color: #333;
+}
+header.header .header_more span{
+  margin-right: 0.5rem;
+  font-size: .32rem;
+  display: inline-block;
+  width: 1.64rem;
+  text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+header.header .header_more i.location_tip{
+  position: absolute;
+  margin-top: -0.16rem;
+  top: 50%;
+  right: .2rem;
+  height: 0.32rem;
+  width: .29rem;
+  overflow: hidden;
+  display: inline-block;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -1.08rem -0.59rem;
+}
+#loadMore{
+  padding: 0.3rem 0 0.4rem;
+  text-align: center;
+}
     /**/
 /*景点列表页结束*/
 /*套餐详情页开始*/
@@ -596,7 +630,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   position:relative;
   height: 4.88rem;
 }
-.pic_box img{width:100%;height:auto;}
+.pic_box div.first,.pic_box img{width:100%;height:100%;}
 .pic_box .go_back{
   position: absolute;
   width: .68rem;
@@ -662,6 +696,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   background:#fff;
 }
 .page_title div{
+  font-size: 0.32rem;
   padding: 0.38rem 0.28rem 0.18rem;
   color: #333;
 }
@@ -685,7 +720,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .detail_box ul{margin:0;}
 .detail_box ul li{
-  line-height: .36rem;
+  line-height: 0.5rem;
   color: #000;
   list-style: disc inside;
   font-size: .26rem;

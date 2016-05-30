@@ -87,12 +87,12 @@
 					var tpl_l = ejs.render(str1, data), tpl_c = ejs.render(str2, data);
 					page = p;
 					if(document.getElementById("loadMore")){
-						$("#loadMore").before(tpl_l);console.log("has");
+						$("#loadMore").before(tpl_l);
 					}else{
 						$("#scenicListCont").html(tpl_l + tpl_page);
 						$("#loadMore").click(function() {
 							that(page + 1);
-						});console.log("first");
+						});
 					}
 					$("#Localtxt").html(tpl_c);
 					vlm.init();
