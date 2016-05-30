@@ -1,7 +1,7 @@
 /**
  * Created by zhouwei on 2016/5/4.
  */
-define(['jquery',"ejs","vlm"],function (){
+define(['jquery',"ejs","vlm","jquery.alert"],function (){
 
   /*支付模块（酒店，机票，景点，酒+景，机+酒）*/
   var _bussinessType= {
@@ -27,6 +27,27 @@ define(['jquery',"ejs","vlm"],function (){
       hft_pri_details.show();
       $('.all_elements').scrollTop($('.all_elements').height());
     })
+
+    $(".cancelOrder").on("click",function(){
+        var Parameters = {
+          "Parameters":{"BookingReferenceNo":bookingRefNo},
+          "Code":"0017",
+          "ForeEndType":3
+        };
+        console.log(Parameters);
+        jConfirm('是否取消订单?', '提示', function(status){
+          if(status == true){
+            vlm.loadJson("",JSON.stringify(Parameters),function(json){
+              if(json.success) {
+                window.location.reload();
+              }
+              else{
+                jAlert("取消失败！");
+              }
+            });
+          }
+        }, '确定', '取消');
+      })
 
     //拨号
     $(".tel_tip").on("click", function(){

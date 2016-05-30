@@ -799,4 +799,30 @@ i {
   background: #dfdfdf;
 }
 
+.order-price .cnyPrice{
+  color: #999;
+}
+.p-price .cnyPrice{
+  color: #999;
+  font-size: 0.28rem;
+  font-weight: 500;
+
+}
+.p-price .p-price-descript{
+  color: #7bc300;
+  padding: 0.3rem .28rem;
+}
+.p-price2{
+  width: 100%;
+  height: 1.8rem;
+  padding: 1px;
+  background-color: #F7F7F7;
+  font-weight: 500;
+}
+.p-p2 {
+  margin-left: 15px;
+  font-size: 0.36rem;
+  line-height: .8rem;
+}
+
 /*鐢佃瘽鎷ㄥ彿缁撴潫*/

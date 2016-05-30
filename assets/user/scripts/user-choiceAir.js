@@ -336,7 +336,6 @@
       param=[]
       for(var key in selectedPassagerArray) {
         var o= {
-          "PassengerType":"ADULT",
           "Id":selectedPassagerArray[key].traveller.travellerId,
           "SexCode":selectedPassagerArray[key].traveller.sexCode,
           "FirstName":selectedPassagerArray[key].traveller.firstName,
@@ -352,6 +351,13 @@
           },
           "BaggageCode":"",
           "CountryCode":selectedPassagerArray[key].traveller.countryCode
+        }
+
+        if(vlm.Utils.getAge(o.DateOfBirth,departDate)<12){
+          o.PassengerType= "CHILD";  //乘客类型
+        }
+        else{
+          o.PassengerType= "ADULT";  //乘客类型
         }
         param.push(o);
       }

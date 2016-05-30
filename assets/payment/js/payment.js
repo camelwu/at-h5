@@ -260,7 +260,8 @@
                         "roomTypeCode": json.RoomTypeCode,
                         "roomTypeName": json.RoomTypeName,
                         "sessionID": "",
-                        "totalPrice": json.totalPriceCNY*parseInt(json.NumOfRoom),
+                        "totalPrice": json.totalPrice*parseInt(json.NumOfRoom),
+                         totalPriceCNY: json.totalPriceCNY*parseInt(json.NumOfRoom),
                         "trck": "",
                         "browserType":"",
                         "deviceID":vlm.getDeviceID()
@@ -374,9 +375,11 @@
             }
             //酒店详情tpl
             else if(type.id==1) {
+              debugger;
                 //data.data.totalPrice=data.data.totalFlightPrice;
                 if (bookingRefNo == null) {
-                    data.data.totalPrice=data.data.calcuTotalPriceCNY
+                    data.data.totalPrice=data.data.calcuTotalPrice*data.data.NumOfRoom;
+                    data.data.totalPriceCNY=data.data.calcuTotalPriceCNY*data.data.NumOfRoom;
                     data.data.hotelName=data.data.HotelGenInfo.hotelNameLocale;
                     data.data.roomType=data.data.RoomTypeName;
                     data.data.noOfRooms=data.data.NumOfRoom;
@@ -454,13 +457,20 @@
               }
               data.data.numofAdult=numofAdult;
               data.data.numofChild=numofChild;
+              debugger;
               var html = template("tpl_flighthoteltour_detail", data.data);
               $(".payment-type-list").append(html);
             }
 
             //获取详情价格
-            var price=$(html).find(".order-price i").html();
-            $(".total_price").html(price);
+            var tplOrderPriee=template("order_pay_price",data.data);
+            $("#order_pay_price").html(tplOrderPriee);
+
+            //var price=$(html).find(".order-price i").html();
+            //var coin_type=$(html).find(".coin_type").html();
+            //$(".p-price .coin_type").html(coin_type);
+            //$(".p-price .total_price").html(price);
+
             _init.bindPaymentTypeEvent();
         }
 
