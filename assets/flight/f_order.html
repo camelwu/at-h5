@@ -44,10 +44,10 @@
       <div id="passenger-list">
           <ul class="passenger_outer" style="display: none" >
             <li>
-              <p class="name_infos"><i class="minus_person"></i>
+              <p class="name_infos"><i class="minus_person" onclick="javascript:delPassager(this)"></i>
                <label>姓</label><input class="input name" placeholder="BAI" readonly="readonly" data-elementname="lastName" />
                <label>名</label><input class="input name" placeholder="LISA" readonly="readonly" data-elementname="firstName"/>
-                <i class="add_icon passenger"></i></p>
+                <i class="add_icon passenger" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></i></p>
               <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"  data-elementname="idNumber"
                                                                              placeholder="1234567" readonly="readonly"/><span class="sex_value" data-elementname="sexName">女</span>
               </p>
