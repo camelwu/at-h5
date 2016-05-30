@@ -246,12 +246,10 @@ var fSingleList = {
         that.fadeHandler('show')
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
-          dd.innerHTML = "不含税价";
-          that.postObj.hasTax = 0;
+          that.postObj.hasTax = 1;
           that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         } else if (dd.innerHTML == "不含税价") {
-          dd.innerHTML = "含税价";
-          that.postObj.hasTax = 1;
+          that.postObj.hasTax = 0;
           that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         }
       } else {
@@ -272,11 +270,9 @@ var fSingleList = {
       if (arguments[1].id == "Price") {
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "价格") {
-          dd.innerHTML = "从低到高";
           that.postObj.priorityRule = 2;
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
         } else if (dd.innerHTML == "从低到高") {
-          dd.innerHTML = "价格";
           that.postObj.priorityRule = 0;
           that.pageHandler();
           that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
@@ -295,7 +291,7 @@ var fSingleList = {
           delete that.postObj.isDesc
         }
         that.pageHandler();
-        that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
+          that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
     }
   },
@@ -385,11 +381,11 @@ var fSingleList = {
           ]
         },
         Tax: {
-          title: "不含税费",
+          title: "含税价",
           c: "f_tax_sort",
           type: 0,
           key: 'tax',
-          listData: ["含税费", "不含税费"]
+          listData: ["含税价", "不含税价"]
         }
       };
     } else {
