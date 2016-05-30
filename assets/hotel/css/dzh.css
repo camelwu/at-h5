@@ -58,7 +58,7 @@ div#h-Tab .off{
 .hotel_destination_right i{
   position: absolute;
   right: 1rem;
-  top: .3rem;
+  top: .4rem;
   width: .4rem;
   height: .5rem;
   background-image: url(../../images/ui.1.0/icon_common.png);
@@ -66,6 +66,7 @@ div#h-Tab .off{
   background-size: 7.9rem 7.83rem;
   display: inline-block;
 }
+
 .i_more{
   background-position: -3.98rem -0.62rem;
 }
