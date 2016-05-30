@@ -731,7 +731,13 @@ header.header .header_more i.location_tip{
   font-size: .26rem;color: #000;
 }
 .package_reserve{
-  position:fixed;left:0;bottom:0;z-index:999;width:100%;background:#f7f7f7;height:.84rem;
+  position:fixed;
+  left:0;
+  bottom:0;
+  z-index:999;
+  width:100%;
+  background:#fff;
+  height:.98rem;
 }
 .package_reserve span{
   color: #666;
@@ -740,11 +746,15 @@ header.header .header_more i.location_tip{
   font-size: .26rem;
   width: 50%;
   text-align: center;
+  border-top: 1px solid #ddd;
 }
 .package_reserve span.all_num{
-  line-height: .84rem;
+  line-height: .98rem;
 }
-.package_reserve span.all_num i{color:#fb7530;font-size:.36rem;}
+.package_reserve span.all_num i{
+  color:#fb7530;
+  font-size:.36rem;
+}
 .package_reserve span.all_num i.frist:before{
   content:'\00A5';font-size:.36rem;
 }
@@ -756,7 +766,15 @@ header.header .header_more i.location_tip{
   content:'\00A5';
 }
 .package_reserve a.reserve{
-  position:absolute;right:0;top:0;width:50%;height:.84rem;background:#7bc300;
-  color:#fff;text-align:center;line-height:.84rem;font-size:.32rem;
+  width:50%;
+  height:.98rem;
+  line-height:.98rem;
+  background:#7bc300;
+  color:#fff;
+  text-align:center;
+  font-size:.32rem;
+  position:absolute;
+  right:0;
+  top:0;
 }
 /*套餐详情页结束*/

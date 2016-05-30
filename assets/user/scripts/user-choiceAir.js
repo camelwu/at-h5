@@ -280,8 +280,6 @@
     $(".addAir_page .country").attr("data-code","CN");
     $(".addAir_page .country").html("中国");
 
-
-
   }
 
   //数据保存
@@ -433,7 +431,7 @@
 
         if(isMulSelect){
           var age=$(this).attr("data-age"),step=1
-          if(age<=2){
+          if(age<2){
             jAlert("该乘机人为婴儿，如需购买婴儿票,请联系客服！");
             return;
           }
@@ -445,17 +443,32 @@
           else{
             step=1;//取消减一个
           }
-
-          if(selectAdultNum+step>numofAdult && numofChlid>0 ){
-              jAlert("只能选择"+numofAdult+"成人,"+numofChlid+"小孩");
+          if(age>=12){
+            if(selectAdultNum+step>numofAdult || selectChildNum>numofChlid ){
+              jAlert("只能选择"+numofAdult+"成人,"+numofChlid+"儿童");
               return;
-          }
-          else if(selectAdultNum+step>numofAdult){
+            }
+            else if(selectAdultNum+step>numofAdult){
               jAlert("只能选择"+numofAdult+"成人");
               return;
+            }
+          }
+          else
+          {
+            if(selectAdultNum>numofAdult || selectChildNum+step>numofChlid ){
+              jAlert("只能选择"+numofAdult+"成人,"+numofChlid+"儿童");
+              return;
+            }
+            else if(selectChildNum+step>numofChlid){
+              jAlert("只能选择"+numofAdult+"儿童");
+              return;
+            }
+
           }
 
-          if (age > 2 && age < 12) {
+
+
+          if (age >= 2 && age < 12) {
             selectChildNum=selectChildNum+step;
           }
           else if (age >= 12) {

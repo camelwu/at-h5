@@ -698,8 +698,16 @@ a.hotel_detail_pic{
     font-size:0.32rem;
 }
 .order_reserve .itemized,.order_reserve .itemized_d{
+    /*position: absolute;*/
+    /*right: 1.92rem;*/
+    /*top: 0rem;*/
+    /*width: 0.86rem;*/
+    /*height: 0.98rem;*/
+    /*color: #7bc300;*/
+    /*line-height: 0.98rem;*/
+    /*font-size: 0.24rem;*/
     position: absolute;
-    right: 1.92rem;
+    left: 1.2rem;
     top: 0rem;
     width: 0.86rem;
     height: 0.98rem;
@@ -708,13 +716,21 @@ a.hotel_detail_pic{
     font-size: 0.24rem;
 }
 .order_reserve .itemized:after,.order_reserve .itemized_d:after{
+    /*content: '';*/
+    /*width: 0.27rem;*/
+    /*height: 0.14rem;*/
+    /*background: url(../../images/ui/icon_common.png) no-repeat;*/
+    /*background-size:7.9rem 5.13rem;*/
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*top: 0.4rem;*/
     content: '';
     width: 0.27rem;
     height: 0.14rem;
     background: url(../../images/ui/icon_common.png) no-repeat;
-    background-size:7.9rem 5.13rem;
+    background-size: 7.9rem 5.13rem;
     position: absolute;
-    right: 0;
+    right: -0.5rem;
     top: 0.4rem;
 }
 .order_reserve .itemized:after{
@@ -741,7 +757,6 @@ a.hotel_detail_pic{
     background-color: #fff;
     position: fixed;
     bottom: -100%;
-    border-bottom:1px solid #ddd;
     transition: all 350ms;
     z-index: 90;
 }

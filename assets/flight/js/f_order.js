@@ -213,6 +213,7 @@ var fOrder = {
     this.addHandler(bottomPrice, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement, contactInfo = {}, selectTravellerList = window['localStorage']['travellerInfo_selected'];
       if (target.className == "preserve") {
+        debugger;
         if (!window['localStorage']['travellerInfo_selected']) {
           jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
