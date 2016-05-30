@@ -75,23 +75,37 @@ var footer = (function () {
   // 筛选
     filters = {
       bindEvent: function () {
-        var that = this;
+        var that = this, dls = document.querySelectorAll('footer dl');
         //底部三按钮
-        on(box, 'click', function (event) {
+        on(box, 'click', function(event) {
           event = event || window.event;
-          var target = event.target || event.srcElement, src,  returnVal,index= 0;
+          var target = event.target || event.srcElement, src, index, returnVal;
           while (target.tagName != "DL") {
             target = target.parentNode;
           }
           returnVal = target.getAttribute("data-type");
-          while (target) {
-            if (target.previousSibling&&target.nodeType == 1){
-              target=target.previousSibling;
-              index++;
+          for (var i = 0; i < dls.length; i++) {
+            if (dls[i] == target) {
+              index = i;
+              break
             }
-          };
+          }
           that.target = target;
           that.showItems(index, returnVal);
+          /*		src = target.parentNode;
+           //当前dom元素等于事件绑定的dom元素的时候，停止“冒泡”
+           while (src && src !== box) {
+           target = src;
+           src = src.parentNode;
+           }
+           index = 0;
+           returnVal = target.getAttribute("data-type");
+           while ( target = target.previousSibling) {
+           if (target.nodeType == 1)
+           index++;
+           };*/
+
+          //	that.showItems(index, returnVal);
         });
         // 容器里的各种点击：取消，确定按钮
         on(sec, 'click', function (event) {
