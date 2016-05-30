@@ -16,9 +16,9 @@ define(['jquery',"ejs","vlm"],function (){
 
   var bindEvent=function(){
     var hft_flightDetail=$(".fht_hd"),fare_tip= $('.fare_tip'),hft_pri_details=$(".hft_pri_details")
-    hft_flightDetail.on("click",function(){
-      window.location.href="hft_flightDetail.html";
-    })
+    //hft_flightDetail.on("click",function(){
+    //  window.location.href="hft_flightDetail.html";
+    //})
 
     //折叠订单价格
     fare_tip.toggle(function(){

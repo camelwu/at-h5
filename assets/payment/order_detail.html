@@ -53,7 +53,7 @@
     <div class="flight_section">
       <div class="fht_hd clearfix">
         <span class="fht_hd_tit fl"><i></i>机票</span>
-        <span class="fht_hd_det fr">详情<i></i></span>
+        <a href="../hotel_flight_tour/hft_flightDetail.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotelTour"><span class="fht_hd_det fr">详情<i></i></span></a>
       </div>
       <ul class="flight_cir_wrap">
 
@@ -227,7 +227,7 @@
     <div class="flight_section">
       <div class="fht_hd clearfix">
         <span class="fht_hd_tit fl"><i></i>机票</span>
-        <span class="fht_hd_det fr">详情<i></i></span>
+         <a href="../hotel_flight_tour/hft_flightDetail.html?bookingRefNo=<%=bookingRefNo%>&type=FlightHotle"><span class="fht_hd_det fr">详情<i></i></span></a>
       </div>
       <ul class="flight_cir_wrap">
 
@@ -581,12 +581,12 @@
     <div class="order_tot_price">
       <div class="fht_hd">订单总额</div>
       <div class="tot_prinum_wrap clearfix">
-        <span class="fl">订单总额: <i class="tot_prinum">¥<%=totalRoomRate%></i></span>
+        <span class="fl">订单总额: <i class="tot_prinum"><%=currency%><%=totalRoomRate%></i></span>
         <span class="fr fare_tip"></span>
       </div>
       <ul class="hft_pri_details">
-        <li class="clearfix"><span class="fl">房费</span><span class="fr">¥<%=totalRoomRate-totalSeriveCharge%> </span></li>
-        <li class="clearfix"><span class="fl">税和服务费</span><span class="fr">¥<%=totalSeriveCharge%></span></li>
+        <li class="clearfix"><span class="fl">房费</span><span class="fr"><%=currency%><%=totalRoomRate-totalSeriveCharge%> </span></li>
+        <li class="clearfix"><span class="fl">税和服务费</span><span class="fr"><%=currency%><%=totalSeriveCharge%></span></li>
         <li class="clearfix"><span class="fl">付款方式：</span><span class="fr1"><% if(paymentModeID==1){%>预付 <%} else{ %>到付<%}%></span></li>
       </ul>
     </div>

@@ -24,21 +24,27 @@
 
   <div class="all_elements" >
       <div id="elements">
-          <div class="header" id="vlm-login">
+          <div class="header">
             <a href="javascript:;"  class="header_back"><i class="icon_back"></i></a>
             <h3>交易详情</h3>
           </div>
           <div class="tra_con1">
               <div class="tra_c1_inbox">
                   <i class="payment_success"></i>
-                  <span>支付成功</span>
+                  {% if(vlm.getpara("type")=="Hotle" ){ if(currency=="SGD") { %}
+                      <span>担保成功</span>
+                  {% }else{ %}
+                      <span>支付成功</span>
+                  {%  } }else{ %}
+                      <span>支付成功</span>
+                  {% } %}
               </div>
           </div>
           <div class="tra_con2" id = "vlm_login">
               <ul class="tra_c2_inbox">
                   <li><h3 id="tdHoteName">订单号：</h3><span>{%=bookingRefNo%}</span></li>
                   <li class="tra_live">{%=productName%}</li>
-                  <li class="tra_price" id="tdPrice">订单总额：<span>￥{%=totalPrice%}</span></li>
+                  <li class="tra_price" id="tdPrice">订单总额：<span>{%=currency%}{%=totalPrice%}</span></li>
               </ul>
           </div>
       </div>

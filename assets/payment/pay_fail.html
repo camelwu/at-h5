@@ -31,14 +31,20 @@
           <div class="tra_con1">
               <div class="tra_c1_inbox">
                   <i class="payment_fail"></i>
-                  <span>支付失败</span>
+                {% if(vlm.getpara("type")=="Hotle" ){ if(currency=="SGD") { %}
+                <span>担保失败</span>
+                {% }else{ %}
+                <span>支付失败</span>
+                {%  } }else{ %}
+                <span>支付失败</span>
+                {% } %}
               </div>
           </div>
           <div class="tra_con2" id = "vlm_login">
               <div class="tra_c2_inbox">
                   <h3 id="tdHoteName">订单号：</h3><span>{%=bookingRefNo%}</span>
                   <p class="tra_live">{%=productName%}</p>
-                  <p class="tra_price" id="tdPrice">订单总额：<span>￥{%=totalPrice%}</span></p>
+                  <p class="tra_price" id="tdPrice">订单总额：<span>{%=currency%}{%=totalPrice%}</span></p>
               </div>
           </div>
       </div>
