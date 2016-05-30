@@ -136,12 +136,12 @@
     };
 
     if(ul_contect.is(':visible')){
-        if(!vlm.Utils.validate["mobileNo"]($(addOrEditPassagePage).find(".telNum").eq(0).val())){
+        if(!vlm.Utils.validate["mobileNo"]($(addOrEditPassagePage).find(".telephone").eq(0).val())){
           jAlert("请输入有效的电话号码！","",null,"确认");
           return false;
         }
 
-        if(!vlm.Utils.validate["email"]($(addOrEditPassagePage).find(".txtEmail").eq(0).val())){
+        if(!vlm.Utils.validate["email"]($(addOrEditPassagePage).find(".email").eq(0).val())){
           jAlert("请输入有效的邮箱！","",null,"确认");
           return false;
         }
