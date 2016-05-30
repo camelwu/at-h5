@@ -1487,6 +1487,9 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   color: #333333;
   border-radius: .32rem;
   border: 1px solid #999999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 .current_location ul li.cur,.history_choose_city ul li.cur,.hot_city_outer ul li.cur{
   color: #7bc300!important;
