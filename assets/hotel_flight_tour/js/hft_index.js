@@ -628,7 +628,6 @@ var htf_search = {
 		var endWeek = getByClass(box, 'week_two')[0].innerHTML;
 		var roomDetails = [], echChildNum = [];
 		var room = getByClass(box, 'hotelInfo_numb_people');
-		var total = 0;
 		for (var r = 0; r < room.length; r++) {
 			var temObj = {}, childWithOutBed = [], childWithBed = [];
 			var temAdultNum = parseInt(room[r].querySelector('.adult_people_number').innerHTML);
@@ -660,11 +659,6 @@ var htf_search = {
 			temObj.adult = temAdultNum;
 			echChildNum.push(temChildNum);
 			roomDetails.push(temObj);
-			total += temAdultNum + temChildNum;
-		}
-		if (total > 9) {
-			jAlert('每个机票酒店打包产品最多不能超过9人！', '');
-			return false;
 		}
 		var allNum = 0;
 		var adultNum = 0;
@@ -805,6 +799,12 @@ var htf_search = {
 			Box : type
 		};
 		localStorage.setItem('cacheSearch', JSON.stringify(cacheSearch));
+		if (allNum > 9) {
+			jAlert('每个机票酒店打包产品最多不能超过9人！', '');
+			return false;
+		}else{
+			return true;
+		}
 	},
 	init : function() {
 		vlm.init();
