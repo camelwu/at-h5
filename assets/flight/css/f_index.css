@@ -1459,6 +1459,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
 .current_location, .history_choose_city,.hot_city_outer,.full_city_outer{
   position: relative;
 }
+.history_choose_city{display: none}
 .city_detail_info{-webkit-overflow-scrolling : touch}
 .current_location h4,.history_choose_city h4,.hot_city_outer h4,.full_city_outer h4{
   line-height: 0.68rem;
