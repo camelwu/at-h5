@@ -5,6 +5,6 @@
   at.map.createMap(latitude,longitude);
   at.map.markHotel(latitude,longitude,"");
   at.map.moveCenterToHotelLocation(latitude,longitude);
-
+  vlm.init();
 
 })()
