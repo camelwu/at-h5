@@ -926,6 +926,7 @@
         }else{
           $(data.returnType).html(data.cityName);
         }
+        $(".citybox_search_suggestBG").css("display","none");
       },
       /**
        * 景

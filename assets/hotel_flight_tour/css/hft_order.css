@@ -29,7 +29,8 @@ input {
   position: relative;
   color: #333;
 }
-.fht_hd.travell_msg{
+
+.fht_hd.travell_msg {
   margin-bottom: .4rem;
 }
 
@@ -282,14 +283,17 @@ li.order_tlist2 {
   display: block;
   margin-bottom: .3rem;
 }
-.travel_sex{
+
+.travel_sex {
   margin-left: .4rem;
 }
-.card_tra_type{
+
+.card_tra_type {
   width: .8rem;
   display: inline-block;
 }
-.edit_tips{
+
+.edit_tips {
   width: .4rem;
   height: .4rem;
   background: url(../../images/ui/icons.png) no-repeat;
@@ -336,7 +340,8 @@ li.order_tlist2 {
   width: 44%;
   padding: .22rem 0;
 }
-.contact_link_wrap li  .hft_con_email{
+
+.contact_link_wrap li .hft_con_email {
   width: 80%;
 }
 
@@ -426,7 +431,7 @@ li.order_tlist2 {
 }
 
 .order_num span.num1 > i {
-  color: #ff5b13;
+  color: #fb7530;
   font-weight: 700;
 }
 

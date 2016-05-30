@@ -50,8 +50,8 @@ input{
   float: right;
 }
 .index_tab .active{
-  color:rgb(253,179,48);
-  border-bottom:4px solid rgb(253,179,48);
+  color:#7bc300;
+  border-bottom:4px solid #7bc300;
 }
 .flight_info .flight_place{
   width:100%;
@@ -369,7 +369,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   text-align: center;
 }
 .button_orange {
-  background-color: #ffb413;
+  background-color: #7bc300;
   color: #FFFFFF;
 }
 /*.button_orange:hover {*/
@@ -571,7 +571,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
   /*display: block;*/
   /*width: .4rem;*/
   /*background: #FFFFFF;*/
-  /*color: #ffb413;*/
+  /*color: #7bc300;*/
   /*margin-top: -.15rem;*/
   /*left: .65rem;*/
 /*}*/
@@ -829,7 +829,7 @@ input.inp_cage:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 .screen_box .detail .detail_title .active{
   background: #FFFFFF;
-  border-left: 5px solid #ffb413;
+  border-left: 5px solid #7bc300;
 }
 .screen_box .detail .detail_list{
   position: relative;

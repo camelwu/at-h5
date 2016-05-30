@@ -158,7 +158,7 @@ Scroller.prototype = {
                         var monthNewZero = monthNew < 10 ? "0" + monthNew : monthNew;
                         var dayNewZero = dayNew < 10 ? "0" + dayNew : dayNew;
                         var weekNew = date.getDay();
-                        Y.push("<span data-temp=" + yearNew + "-" + monthNewZero + "-" + dayNewZero + ">" + monthNew + "月" + dayNew + "日" + that.week[weekNew] + "</span>");
+                        Y.push("<span data-temp=" + yearNew + "-" + monthNewZero + "-" + dayNewZero + ">" + monthNew + "月" + dayNew + "日<i>" + that.week[weekNew] + "</i></span>");
                     }
                     break;
                 case "h":
