@@ -1484,9 +1484,13 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   margin-top: 0.4rem;
   margin-left: 0.28rem;
   text-align: center;
-  color: #7bc300;
+  color: #333333;
   border-radius: .32rem;
-  border: 1px solid #7bc300;
+  border: 1px solid #999999;
+}
+.current_location ul li.cur,.history_choose_city ul li.cur,.hot_city_outer ul li.cur{
+  color: #7bc300!important;
+  border: 1px solid #7bc300!important;
 }
 .full_city_outer ul li{
   line-height: 0.88rem;

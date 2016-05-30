@@ -34,7 +34,6 @@ var fIndexModal = {
     }
   },
   getCityType: function (arg) {
-    console.log(arg)
     var dataPool1 = internationalCities, dataPool2 = domesticCities,tag1 = "";
     dataPool1.forEach(function (index) {
       if (index.cityCode == arg) {
@@ -48,7 +47,6 @@ var fIndexModal = {
         return false;
       }
     });
-    console.log(tag1)
     return tag1;
   },
   getHotCityHandler:function(){
@@ -156,7 +154,12 @@ var fIndexModal = {
       for(var i=0; i<hisData.length;i++){
         (function(i){
           var i=i;
-          string+='<li class="city_list" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+          if(hisData[i].cityCode==fIndexModal.cityEle.getAttribute('data-code')){
+            string+='<li class="city_list cur" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+          }else{
+            string+='<li class="city_list" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+          }
+
         })(i);
       }
       historyList.innerHTML = string;
@@ -200,7 +203,9 @@ var fIndexModal = {
                 var data = arguments[0]. str="";
                 if(data.length>=1){
                 for(var i=0; i<data.length;i++){
-                  str+='<li class="city_list'+fIndexModal.cityCode1==data[i].cityCode||fIndexModal.cityCode1==data[i].cityCode?'cur':''+'" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
+                  console.log(fIndexModal.cityEle.getAttribute('data-code'))
+                  console.log(data[i].cityCode)
+                  str+='<li class="city_list'+fIndexModal.cityEle.getAttribute('data-code')==data[i].cityCode?'cur':''+'" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
                   }
                   historyList.innerHTML = str;
                 }else{
@@ -249,7 +254,6 @@ var fIndexModal = {
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("domestic");
       }else if(target.className.indexOf('city_list')>-1){
-        console.log(target.getAttribute('data-city-code'))
         var dateCode = target.getAttribute('data-city-code'), type=that.getCityType(dateCode);
         that.cityEle.setAttribute("data-code", dateCode)
         that.cityEle.innerHTML = target.innerHTML;
@@ -577,7 +581,6 @@ var fIndexModal = {
     doubleDateSet.innerHTML = this.returnDay(defaultDate[0]);
     doubleDateSet.setAttribute('date-full-value', defaultDate[0]);
     weeks[1].innerHTML = this.setWeekItems(defaultDate[0]);
-
     doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
     doubleDateArrive.setAttribute('date-full-value', defaultDate[1]);
     weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
