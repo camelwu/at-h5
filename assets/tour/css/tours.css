@@ -1059,7 +1059,28 @@ a.hotel_detail_pic{
     margin-top:-0.6rem;
     z-index: 10;
 }
+/*地图详情页  begin*/
+.hotel_detail_map_goback{
+    width: 0.64rem;
+    height: 0.64rem;
+    position: absolute;
+    left: 0.25rem;
+    top: 0.25rem;
+    z-index: 10;
+}
+.hotel_detail_map_goback a{
+    width: 0.64rem;
+    height: 0.64rem;
+    position: absolute;
+    left:0;
+    top: 0;
+    z-index: 10;
+    background: url(../../images/ui/icon_common.png);
+    background-size: 7.9rem 5.13rem;
+    background-position: -3.19rem -0.44rem;
+}
 
+/*地图详情页  end*/
 
 
 
