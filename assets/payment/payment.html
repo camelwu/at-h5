@@ -54,10 +54,32 @@
   </div>
     <!-- Page Content-->
     <div class="content">
+
         <!--   总价   -->
-        <div class="p-price">
-            <p class="p-p1" id="jp_price_sum">订单总价：<span>￥</span><span class="total_price">￥838.00</span></p>
-        </div>
+         <ul id="order_pay_price">
+
+            {% if(vlm.getpara("type")=="Hotle" ){ if(paymentModeID==2) { %}
+           <div  class="p-price p-price2">
+                <p class="p-price-descript">该产品不可变更且不可取消，如果入住，扣除全额房费</p>
+                <p class="p-p1 p-p2" id="jp_price_sum">订单总价：
+                  <span class="coin_type">{%=currency%}</span><span class="total_price">{%=totalPrice%}</span>
+                  <span class="cnyPrice">约￥{%=totalPriceCNY%}</span>
+                </p>
+           </div>
+               {% }else{ %}
+           <div  class="p-price">
+              <p class="p-p1" id="jp_price_sum">订单总价：
+                <span class="coin_type">￥</span><span class="total_price">{%=totalPrice%}</span>
+              </p>
+           </div>
+               {%  } }else{ %}
+           <div  class="p-price">
+              <p class="p-p1" id="jp_price_sum">订单总价：
+                <span class="coin_type">￥</span><span class="total_price">{%=totalPrice%}</span>
+              </p>
+           </div>
+          {% } %}
+         </ul>
         <!--   支付信息   -->
         <ul class="p-ul2">
             <li>
@@ -104,6 +126,7 @@
                   <b class="s-xiala3"></b>
 
                   <input type="tel"  value placeholder="用于接收通知" class="MobilePhone" onkeyup="setNum(this);" >
+                </div>
 
             </li>
             <li>
@@ -226,7 +249,16 @@
 
                 </div>
             </li>
-            <li class="order-price"> 订单总价：<span>￥</span><i>{%=totalPrice%}</i></li>
+          {% if(paymentModeID==2) { %}
+            <li class="order-price">
+              订单总价：<span class="coin_type">SGD</span><i>{%=totalPrice%}</i>
+              <span class="cnyPrice">约￥{%=totalPriceCNY%}</span>
+            </li>
+          {% } else { %}
+          <li class="order-price">
+             订单总价：<span class="coin_type">￥</span><i>{%=totalPrice%}</i>
+          </li>
+          {% } %}
         </ul>
     </div>
     <!-- 支付方式   -->

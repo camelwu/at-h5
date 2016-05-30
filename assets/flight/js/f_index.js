@@ -34,7 +34,6 @@ var fIndexModal = {
     }
   },
   getCityType: function (arg) {
-    console.log(arg)
     var dataPool1 = internationalCities, dataPool2 = domesticCities,tag1 = "";
     dataPool1.forEach(function (index) {
       if (index.cityCode == arg) {
@@ -48,7 +47,6 @@ var fIndexModal = {
         return false;
       }
     });
-    console.log(tag1)
     return tag1;
   },
   getHotCityHandler:function(){
@@ -145,7 +143,7 @@ var fIndexModal = {
     return that;
   },
   historyInitF:function(){
-    var str = arguments[0]|| "",string = "",storage = window.sessionStorage,historyList = document.querySelector('.history_list');
+    var str = arguments[0]|| "",string = "",storage = window.sessionStorage,historyList = document.querySelector('.history_list'),historyWrap = document.querySelector('.history_choose_city') ;
     var hisData = [],that = this;
         if(str=="international"){
           hisData = JSON.parse(storage.getItem('internationalHistory')) || []
@@ -156,12 +154,19 @@ var fIndexModal = {
       for(var i=0; i<hisData.length;i++){
         (function(i){
           var i=i;
-          string+='<li class="city_list" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+          if(hisData[i].cityCode==fIndexModal.cityEle.getAttribute('data-code')){
+            string+='<li class="city_list cur" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+          }else{
+            string+='<li class="city_list" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+          }
+
         })(i);
       }
       historyList.innerHTML = string;
+      historyWrap.style.display = "block";
     }else{
-      historyList.innerHTML = ""
+      historyList.innerHTML = "";
+      historyWrap.style.display = "none";
     }
     return this
   },
@@ -198,7 +203,9 @@ var fIndexModal = {
                 var data = arguments[0]. str="";
                 if(data.length>=1){
                 for(var i=0; i<data.length;i++){
-                  str+='<li class="city_list" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
+                  console.log(fIndexModal.cityEle.getAttribute('data-code'))
+                  console.log(data[i].cityCode)
+                  str+='<li class="city_list'+fIndexModal.cityEle.getAttribute('data-code')==data[i].cityCode?'cur':''+'" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
                   }
                   historyList.innerHTML = str;
                 }else{
@@ -247,7 +254,6 @@ var fIndexModal = {
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("domestic");
       }else if(target.className.indexOf('city_list')>-1){
-        console.log(target.getAttribute('data-city-code'))
         var dateCode = target.getAttribute('data-city-code'), type=that.getCityType(dateCode);
         that.cityEle.setAttribute("data-code", dateCode)
         that.cityEle.innerHTML = target.innerHTML;
@@ -417,22 +423,9 @@ var fIndexModal = {
           return cabinStr;
         };
         var getTripType = function () {
-          var cityCodeFrom = cityEles[0].getAttribute('data-code'), cityCodeTo = cityEles[1].getAttribute('data-code'), codePool = internationalCities, tag1 = "inter", tag2 = "dome";
-          codePool.forEach(function (index) {
-            if (index.cityCode == cityCodeFrom) {
-              tag1 = "inter";
-              return false;
-            }
-          });
-          codePool.forEach(function (index) {
-            if (index.cityCode == cityCodeTo) {
-              tag2 = "inter";
-              return false;
-            }
-          });
-          return (tag1 == tag2) ? "international" : "domestic";
+          var cityTypeFrom = cityEles[0].getAttribute('data-city-type'), cityTypeTo = cityEles[1].getAttribute('data-city-type');
+          return (cityTypeFrom == "domestic"&&cityTypeTo == "domestic" ) ? "domestic":"international";
         };
-
         paraObj = {
           "cityCodeFrom": cityEles[0].getAttribute('data-code'),
           "cityCodeTo": cityEles[1].getAttribute('data-code'),
@@ -448,7 +441,7 @@ var fIndexModal = {
           "isDesc": "false",
           "pageNo": 1,
           "pageSize": 10,
-          "internationalOrDomestic": getTripType(), /*国际或者国内*/
+          "internationalOrDomestic": getTripType(),
           "hasTax": 0,
           "isClearAll": 1,
           "fromCity": cityEles[0].innerHTML,
@@ -588,7 +581,6 @@ var fIndexModal = {
     doubleDateSet.innerHTML = this.returnDay(defaultDate[0]);
     doubleDateSet.setAttribute('date-full-value', defaultDate[0]);
     weeks[1].innerHTML = this.setWeekItems(defaultDate[0]);
-
     doubleDateArrive.innerHTML = this.returnDay(defaultDate[1]);
     doubleDateArrive.setAttribute('date-full-value', defaultDate[1]);
     weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);

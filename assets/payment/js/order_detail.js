@@ -28,6 +28,27 @@ define(['jquery',"ejs","vlm"],function (){
       $('.all_elements').scrollTop($('.all_elements').height());
     })
 
+    $(".cancelOrder").on("click",function(){
+        var Parameters = {
+          "Parameters":{"BookingReferenceNo":bookingRefNo},
+          "Code":"0017",
+          "ForeEndType":3
+        };
+        console.log(Parameters);
+        jConfirm('是否取消订单?', '提示', function(status){
+          if(status == true){
+            vlm.loadJson("",JSON.stringify(Parameters),function(json){
+              if(json.success) {
+                window.location.reload();
+              }
+              else{
+                jAlert("取消失败！");
+              }
+            });
+          }
+        }, '确定', '取消');
+      })
+
     //拨号
     $(".tel_tip").on("click", function(){
       $(".jpop_box_tic").show();

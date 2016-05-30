@@ -10,7 +10,7 @@
 (function (e, t) {
     var n = n || (function (n) { //123.56.190.34:8888 //10.6.11.20:8888 10.7.2.111
         var _api = "http://10.7.2.119/api/GetServiceApiResult",
-            _apiWithDeviceID = "http://10.7.2.119/apiWihtDeviceID/GetServiceApiResult",
+            _apiWithDeviceID = "http://10.7.2.111/apiWihtDeviceID/GetServiceApiResult",
             lStorage = window.localStorage,
             sStorage = window.sessionStorage,
             basePath = basePath == undefined ? "http://" + window.location.host : basePath,

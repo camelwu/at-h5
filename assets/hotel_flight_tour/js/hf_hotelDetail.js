@@ -51,8 +51,11 @@ var data2 = '',roomdata = '';
             at.map.createMap(latitude,longitude);
             at.map.markHotel(latitude,longitude,"");
             at.map.moveCenterToHotelLocation(latitude,longitude);
+            
+            sessionStorage.setItem('latitude',latitude);
+            sessionStorage.setItem('longitude',longitude);
             $('#map').on('click',function(){
-                window.location.href = 'hft_hotel_detail_map.html';
+                window.location.href = 'hf_hotel_detail_map.html';
             })
             //map end
             $('.jhf-date').show();
