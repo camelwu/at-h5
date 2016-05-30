@@ -85,17 +85,16 @@
     <div style="position:absolute;bottom:.2rem;right:15px;font-size: .32rem;color:#ffffff;"><%= (imgl)%>张</div>
 </script>
 <script id="tpl12" type="text/template">
-    <%  var htls=roomUpGrade.resetData(hotels[0]),hgis = roomUpGrade.resetData(HotelGenInfo); %>
     <li class="name">
         <p class="d-score score">
             <b class="d-icon4 icon4"></b>
-            <%= htls.hotelName %>
+            <%= hotels[0].hotelName %>
         </p>
     </li>
     <li>
         <p class="d-score score">
             <b class="d-icon4 icon4"></b>
-            <%= hgis.hotelAddress %><!--htls.location-->
+            <%= hotels[0].hotelGenInfo.hotelAddress %><!--htls.location-->
         </p>
     </li>
 </script>
