@@ -52,7 +52,7 @@ var data2 = '',roomdata = '';
             at.map.markHotel(latitude,longitude,"");
             at.map.moveCenterToHotelLocation(latitude,longitude);
             $('#map').on('click',function(){
-                window.location.href = 'hft_hotel_detail_map.html';
+                window.location.href = 'hf_hotel_detail_map.html';
             })
             //map end
             $('.jhf-date').show();
