@@ -343,8 +343,18 @@
       <!--国籍弹窗结束-->
 
       <div class="content">
-        <div class="country-wrap" id="country-wrap">
-        </div>
+        <div class="country-wrap" id="country-wrap"></div>
+      </div>
+      <!--国籍a-z-->
+      <div class="city_index">
+        <ul>
+          <li><a href="#dq">当前</a></li>
+          <li><a href="#ls">历史</a></li>
+          <li><a href="#rm">热门</a></li>
+          <% for(var tem in resultArray){%>
+          <li><a href="#<%=tem%>"><%=tem%></a></li>
+          <%}%>
+        </ul>
       </div>
     </div>
     <!--国籍选择结束-->

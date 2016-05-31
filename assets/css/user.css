@@ -20,7 +20,8 @@ i, em {
   z-index: 99;
   font-size: .28rem;
 }
-.login_header{
+
+.login_header {
   height: .86rem;
   position: fixed;
   top: 0;
@@ -29,6 +30,7 @@ i, em {
   pointer-events: all;
   z-index: 99;
 }
+
 .login_header h3 {
   color: #333;
   text-align: center;
@@ -143,7 +145,7 @@ i, em {
 
 .login_input .in_phone {
   display: inline-block;
-  padding-top:.06rem ;
+  padding-top: .06rem;
   width: 50%;
   font-size: .28rem;
 }
@@ -525,9 +527,11 @@ i, em {
 .at_declaration dt, .at_declaration dd {
   margin: .1rem 0;
 }
-#link_at, #link_about_us, #link_page{
+
+#link_at, #link_about_us, #link_page {
   background-color: #fff;
 }
+
 .user_content {
   position: absolute;
   background-color: white;
@@ -666,7 +670,7 @@ i, em {
 
 .info_sex {
   position: absolute;
-  top: .1rem;
+  top: .13rem;
   right: 0;
   height: .66rem;
   border: 1px solid #7bc300;
@@ -691,9 +695,9 @@ i, em {
   background-color: #7bc300;
 }
 
-#uptra_page .info_sex_tab, #addtra_page .info_sex_tab{
+#uptra_page .info_sex_tab, #addtra_page .info_sex_tab {
   position: absolute;
-  top: .2rem;
+  top: .13rem;
   right: .28rem;
   width: auto;
   height: .66rem;
@@ -1189,15 +1193,34 @@ i, em {
   text-align: left;
   border-bottom: 1px solid #e6e6e6;
   padding-left: .48rem;
+}
 
+.city_index {
+  position: fixed;
+  top: 2.18rem;
+  right: .06rem;
+  width: 0.6rem;
+  color: #7bc300;
+  font-size: 0.2rem;
+  text-align: center;
+}
+
+.city_index li {
+  margin-bottom: .04rem;
+}
+
+.city_index li a {
+  color: #7bc300;
+  text-underline: none
 }
 
 /*国籍选择结束*/
 
 /*个人信息页出生日期*/
-#common-msg >em{
+#common-msg > em {
   font-size: .24rem;
 }
+
 .user_it {
   width: 1rem;
   height: 1rem;
@@ -1205,7 +1228,8 @@ i, em {
   border-radius: 50%;
   border: 1px solid #e6e6e6;
 }
-.user_person_mar{
+
+.user_person_mar {
   padding-bottom: 1rem;
 }
 

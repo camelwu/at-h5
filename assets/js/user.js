@@ -170,7 +170,7 @@
             return;
           }
         }
-        if($('#postCard').html() != '护照' || $('#time-cont').html() != '' || $('#birth-cont').html() != '1990-01-01' || $('.country-btn').eq(0).html() != '中国' || $('.country-btn').eq(1).html() != '中国' || input[4].value !='' || input[5].value !='' || $('#woman').attr('class') == 'icon-h traveler-sex1'){
+        if($('#postCard').html() != '护照' || $('#time-cont').html() != '' || $('#birth-cont').html() != '1990-01-01' || $('.country-btn').eq(0).html() != '中国' || $('.country-btn').eq(1).html() != '中国' || input[4].value !='' || input[5].value !='' || $('#woman').attr('class') == 'per_man sex_act'){
           jConfirm("当前编辑的内容未保存，确定退出编辑?","",conAdd);
           return;
         }
@@ -190,8 +190,8 @@
           $('.country-btn').html('中国');
           $('.country-btn').attr('data-code','CN');
           $('.country-btn').attr('data-tel-code','86');
-          $('#man').attr('class','icon-h traveler-sex1');
-          $('#woman').attr('class','icon-h traveler-sex2');
+          $('#man').attr('class','per_man sex_act');
+          $('#woman').attr('class','per_man');
           addtra_page.style.display='none';
           $('#content-wrap').css('visibility','visible');
         }
@@ -564,7 +564,7 @@
         return;
       }
 
-      if(oldsex == 'Mr' && $('#woman2').attr('class') == 'icon-h traveler-sex1' || oldsex == 'Mrs' && $('#woman2').attr('class') == 'icon-h traveler-sex2')
+      if(oldsex == 'Mr' && $('#woman2').attr('class') == 'per_man sex_act' || oldsex == 'Mrs' && $('#woman2').attr('class') == 'per_man')
       {
         jConfirm("当前编辑的内容未保存，确定退出编辑?","",conEdit);
         return;

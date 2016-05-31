@@ -130,7 +130,6 @@
                     };
                     vlm.loadJson("", JSON.stringify(tmp), function(json) {
                         if (json.success) {
-console.log(json);
                             var data = json.data,
                                 html_b = template(tpl0, data.bannerList);
                             $("#banner").html(html_b);
