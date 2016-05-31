@@ -35,7 +35,8 @@ var fDoubleList = {
   },
 
   eventHandler: function () {
-    var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage, loadMore = document.querySelector("#loadMore");;
+    var lis = document.querySelectorAll('.flight_ul li'), that = this, tem = {}, storage = window.sessionStorage, loadMore = document.querySelector("#loadMore");
+    ;
     for (var i = 0, len = lis.length; i < len; i++) {
       this.addHandler(lis[i], 'click', function () {
         var setId = this.getAttribute('data-set-id');
@@ -67,11 +68,11 @@ var fDoubleList = {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide();
-        that.first == true?that.filterHandler().dateCalender():that.dateCalender();
+        that.first == true ? that.filterHandler().dateCalender() : that.dateCalender();
         that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.first == true?that.filterHandler(result.data.airCorpCodeList):"";
+        that.first == true ? that.filterHandler(result.data.airCorpCodeList) : "";
         that.first = false;
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
       }
@@ -114,6 +115,7 @@ var fDoubleList = {
     dates[1].innerHTML = this.returnDay(this.postObj.returnDate);
     weeks[1].innerHTML = this.setWeekItems(this.postObj.returnDate);
   },
+
   setWeekItems: function () {
     var arg = arguments[0].replace(/T.*/, ''), index = new Date(arg.replace(/-/g, '/')).getDay(), week = '';
     switch (index) {
@@ -156,6 +158,7 @@ var fDoubleList = {
     }
     return this;
   },
+
   loadMoreData: function () {
     var loadMore = document.querySelector("#loadMore"), storage = window.sessionStorage;
     if (this.currrentFlightList.pageNo >= this.currrentFlightList.pageCount) {
@@ -204,6 +207,7 @@ var fDoubleList = {
     that.postObj.pageNo = 1;
     that.postObj.isClearAll = 1;
   },
+
   filerCallBack: function () {
     var transferData = arguments, that = fDoubleList;
     that.postObj.isClearAll = 1;
@@ -213,10 +217,10 @@ var fDoubleList = {
         var dd = arguments[1].querySelector('dd');
         if (dd.innerHTML == "含税价") {
           that.postObj.hasTax = 1;
-          that.renderHandler({success:1, code:200, data:that.currrentFlightList});
+          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         } else if (dd.innerHTML == "不含税价") {
           that.postObj.hasTax = 0;
-          that.renderHandler({success:1, code:200, data:that.currrentFlightList});
+          that.renderHandler({success: 1, code: 200, data: that.currrentFlightList});
         }
       } else {
         that.postObj.isDirectFlight = transferData[0].filters[0].FilterValues[0];
@@ -224,7 +228,7 @@ var fDoubleList = {
         that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
         that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
-        if(that.postObj.airCorpCode == undefined){
+        if (that.postObj.airCorpCode == undefined) {
           delete that.postObj.airCorpCode;
         }
         that.pageHandler();
@@ -253,17 +257,18 @@ var fDoubleList = {
           that.postObj.priorityRule = 0;
         } else {
           that.postObj.priorityRule = transferData[0].sortTypes[0];
-          delete that.postObj.isDesc ;
+          delete that.postObj.isDesc;
         }
         that.pageHandler();
         that.tAjax("", that.postObj, "3001", 3, that.renderHandler);
       }
     }
   },
+
   filterHandler: function (data) {
-    var dataTransfer = data || [], tempArray = [{filterText:"不限",filterValue:"" }], f_data = {}, that = this;
+    var dataTransfer = data || [], tempArray = [{filterText: "不限", filterValue: ""}], f_data = {}, that = this;
     if (dataTransfer.length > 1) {
-       dataTransfer.forEach(function (array, item) {
+      dataTransfer.forEach(function (array, item) {
         var temObj = {};
         temObj.filterText = array.airCorpName;
         temObj.filterValue = array.airCorpCode;
@@ -470,38 +475,38 @@ var fDoubleList = {
     return this;
   },
 
-  airCompanyHandler:function(){
-    var data = arguments[0],tag = 0, tem = [], that = fDoubleList ;
-    Array.prototype.distinct=function(){
-      var sameObj=function(a,b){
+  airCompanyHandler: function () {
+    var data = arguments[0], tag = 0, tem = [], that = fDoubleList;
+    Array.prototype.distinct = function () {
+      var sameObj = function (a, b) {
         var tag = true;
-        if(!a||!b)return false;
-        for(var x in a){
-          if(!b[x])
+        if (!a || !b)return false;
+        for (var x in a) {
+          if (!b[x])
             return false;
-          if(typeof(a[x])==='object'){
-            tag=sameObj(a[x],b[x]);
-          }else{
-            if(a[x]!==b[x])
+          if (typeof(a[x]) === 'object') {
+            tag = sameObj(a[x], b[x]);
+          } else {
+            if (a[x] !== b[x])
               return false;
           }
         }
         return tag;
       };
-      var newArr=[],obj={};
-      for(var i=0,len=this.length;i<len;i++){
-        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+      var newArr = [], obj = {};
+      for (var i = 0, len = this.length; i < len; i++) {
+        if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
           newArr.push(this[i]);
-          obj[typeof(this[i])+this[i]]=this[i];
+          obj[typeof(this[i]) + this[i]] = this[i];
         }
       }
       return newArr;
     };
-    data.forEach(function(array){
+    data.forEach(function (array) {
       tem.push(array.airCorpCode);
     });
     tem = tem.distinct();
-    return tem.length>1?1:0
+    return tem.length > 1 ? 1 : 0
   },
 
   init: function () {

@@ -393,7 +393,7 @@ var footer = (function () {
         } else {
           outerObj = fSingleList;
         }
-        if (!arguments[0]) {
+        if (!arguments[0]){
           if (outerObj.postObj.routeType == "return") { /*往返*/
             var ele = document.querySelector('#Screen');
             if (outerObj.postObj.cabinClass == "economy") { /*国际*/
@@ -506,7 +506,7 @@ var footer = (function () {
               }
             } else if (section.className == "foot_screen") {
               te0 = section.querySelectorAll('li.cur');
-              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" || te0[3].getAttribute('data-val') != "economy") {
+              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" || te0[3].getAttribute('data-val') != "economy"||te0[4].getAttribute('data-val') != "") {
                 dt.className = "";
               } else {
                 dt.className = "clo";
@@ -526,7 +526,7 @@ var footer = (function () {
               }
             } else if (section.className == "foot_screen") {
               te0 = section.querySelectorAll('li.cur');
-              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" || te0[3].getAttribute('data-val') != "00-24" || te0[4].getAttribute('data-val') != "economy") {
+              if (te0[1].getAttribute('data-val') != "false" || te0[2].getAttribute('data-val') != "false" || te0[3].getAttribute('data-val') != "00-24" || te0[4].getAttribute('data-val') != "economy" ||te0[5].getAttribute('data-val') != "") {
                 dt.className = "";
               } else {
                 dt.className = "clo";
@@ -556,7 +556,7 @@ var footer = (function () {
         } else {
           if (!box)
             this.create();
-          this.chooseStatus();
+            this.chooseStatus();
         }
       },
 

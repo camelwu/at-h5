@@ -92,12 +92,12 @@ var fOrder = {
   },
 
   countrySlider: function () {
-    var tempString1 = "", outputString1 = "",resultArray = {},that = this , outer = document.createElement('div');
+    var tempString1 = "", outputString1 = "", resultArray = {}, that = this, outer = document.createElement('div');
     outer.className = "country-cho-wrap all_elements";
-    arrCountry.forEach(function(itemValue){  //country-cho-wrap all_elements
-      resultArray[itemValue.CountryEN.substring(0,1).toUpperCase()] = [];
+    arrCountry.forEach(function (itemValue) {  //country-cho-wrap all_elements
+      resultArray[itemValue.CountryEN.substring(0, 1).toUpperCase()] = [];
     });
-    arrCountry.forEach(function(itemValue) {
+    arrCountry.forEach(function (itemValue) {
       for (var temp in  resultArray) {
         if (itemValue.CountryEN.substring(0, 1).toUpperCase() == temp) {
           resultArray[temp].push(itemValue);
@@ -111,86 +111,87 @@ var fOrder = {
     this.addCountryCodeHandler();
     return this
   },
-  addCountryCodeHandler:function(){
-    var countryTrigger = document.querySelector('.country-trigger'),that = this, wrapEle = document.querySelector('.country-cho-wrap');
-    var  cityInputZone = document.querySelector('#country-input-zone');
-    wrapEle.onclick = function(e){
-     var e = e ||window.event, target = e.target || e.srcElement;
-     if(target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')){
-       countryTrigger.innerHTML = target.getAttribute('date-country-code')!=null?target.getAttribute('date-country-code'):target.parentNode.getAttribute('date-country-code');
-       wrapEle.style.display = "none";
-     }
-     };
+
+  addCountryCodeHandler: function () {
+    var countryTrigger = document.querySelector('.country-trigger'), that = this, wrapEle = document.querySelector('.country-cho-wrap');
+    var cityInputZone = document.querySelector('#country-input-zone');
+    wrapEle.onclick = function (e) {
+      var e = e || window.event, target = e.target || e.srcElement;
+      if (target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')) {
+        countryTrigger.innerHTML = target.getAttribute('date-country-code') != null ? target.getAttribute('date-country-code') : target.parentNode.getAttribute('date-country-code');
+        wrapEle.style.display = "none";
+      }
+    };
     countryTrigger.onclick = function () {
       if (that.getCurrentStyle(wrapEle).display == "block") {
         wrapEle.style.display = "none"
-      }else{
+      } else {
         wrapEle.style.display = "block"
       }
     }
 
-    var searchHandler=function(){
+    var searchHandler = function () {
       var countryInputZone = document.querySelector('#country-input-zone');
       var cityListSearched = document.querySelector('.country-list-searched-order');
-      var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
-      Array.prototype.distinct=function(){
-        var sameObj=function(a,b){
+      var searchResult = [], reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr = '';
+      Array.prototype.distinct = function () {
+        var sameObj = function (a, b) {
           var tag = true;
-          if(!a||!b)return false;
-          for(var x in a){
-            if(!b[x])
+          if (!a || !b)return false;
+          for (var x in a) {
+            if (!b[x])
               return false;
-            if(typeof(a[x])==='object'){
-              tag=sameObj(a[x],b[x]);
-            }else{
-              if(a[x]!==b[x])
+            if (typeof(a[x]) === 'object') {
+              tag = sameObj(a[x], b[x]);
+            } else {
+              if (a[x] !== b[x])
                 return false;
             }
           }
           return tag;
         };
-        var newArr=[],obj={};
-        for(var i=0,len=this.length;i<len;i++){
-          if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+        var newArr = [], obj = {};
+        for (var i = 0, len = this.length; i < len; i++) {
+          if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
             newArr.push(this[i]);
-            obj[typeof(this[i])+this[i]]=this[i];
+            obj[typeof(this[i]) + this[i]] = this[i];
           }
         }
         return newArr;
       };
-      if(reg.test(valueStr)){
+      if (reg.test(valueStr)) {
         var mb = String(valueStr).toLowerCase();
-        for(var p = 0; p < arrCountry.length; p++){
-          var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
-          if(ma.indexOf(mb)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
+        for (var p = 0; p < arrCountry.length; p++) {
+          var ma = String(arrCountry[p]['CountryEN']).toLowerCase();
+          if (ma.indexOf(mb) > -1 || arrCountry[p]['CountryName'].indexOf(valueStr) > -1) {
             searchResult.push(arrCountry[p]);
           }
         }
-        }
+      }
       searchResult = searchResult.distinct();
-      if(!searchResult.length){
-        resultStr +='<li>无搜索结果</li>';
+      if (!searchResult.length) {
+        resultStr += '<li>无搜索结果</li>';
         cityListSearched.style.display = 'none';
-      }else{
-        for(var l = 0;l<searchResult.length;l++){
-          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].TelCode+'"><i>'+searchResult[l].CountryName+'</i><span>'+searchResult[l].TelCode+'</span></li>'
+      } else {
+        for (var l = 0; l < searchResult.length; l++) {
+          resultStr += '<li class="country_lists" date-country-code="' + searchResult[l].TelCode + '"><i>' + searchResult[l].CountryName + '</i><span>' + searchResult[l].TelCode + '</span></li>'
         }
         cityListSearched.innerHTML = resultStr;
         cityListSearched.style.display = 'block';
       }
 
     };
-    if(cityInputZone.addEventListener){
-      cityInputZone.addEventListener('input',searchHandler,false)
-    }else{
-      cityInputZone.attachEvent('onpropertychange',searchHandler)
+    if (cityInputZone.addEventListener) {
+      cityInputZone.addEventListener('input', searchHandler, false)
+    } else {
+      cityInputZone.attachEvent('onpropertychange', searchHandler)
     }
 
   },
 
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {} , passengerOuter =  document.querySelector('.passenger_outer') ,that=this;
+    var postPara = {}, temObject = {}, passengerOuter = document.querySelector('.passenger_outer'), that = this;
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
@@ -274,13 +275,13 @@ var fOrder = {
           return;
         }
 
-       /* if (contactInfoCache.email == "") {
-          jAlert('请输入邮箱!', '提示');
-          return;
-        } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)) {
-          jAlert('请输入正确格式邮箱!', '提示');
-          return;
-        }*/
+        /* if (contactInfoCache.email == "") {
+         jAlert('请输入邮箱!', '提示');
+         return;
+         } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)) {
+         jAlert('请输入正确格式邮箱!', '提示');
+         return;
+         }*/
         if (contactInfoCache.mobilePhone == "") {
           jAlert('请输入手机号!', '提示');
           return;
@@ -296,7 +297,7 @@ var fOrder = {
         /*this.fadeHandler("show");*/
         that.postPara = postPara;
         console.log(postPara);
-/*         this.postPara = {// 成单参数格式
+        /*         this.postPara = {// 成单参数格式
          "WapOrder": {
          "SetID": 30000152,
          "CacheID": 3514987,
@@ -340,14 +341,14 @@ var fOrder = {
          "TotalPrice": 6826,
          "track": {"browserType": "", "deviceID": ""}
          };*/
-        console.log( that.postPara)
+        console.log(that.postPara)
         that.tAjax(vlm.apiWithDeviceID, that.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
           that.fadeHandler();
           if (result.success && result.code == 200) {
-            var orderResultInfo = {}, that =fOrder;
-            console.log( that.postPara)
+            var orderResultInfo = {}, that = fOrder;
+            console.log(that.postPara)
             orderResultInfo['orderTime'] = new Date();
             orderResultInfo['totalPrice'] = that.priceData['totalPrice'];
             orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
@@ -375,7 +376,7 @@ var fOrder = {
                 }
               }, '确定', '取消');
             } else {
-                 jAlert('')
+              jAlert('')
             }
           }
         });
@@ -399,25 +400,25 @@ var fOrder = {
     //      this.removeChild(tem);
     //    }
     //})
-    this.addHandler(document.body, 'click', function (e){
+    this.addHandler(document.body, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
-      if(target.className == 'shadow'){
+      if (target.className == 'shadow') {
         target.style.display = "none";
         detailFare.className = "detail_fare open";
         priceDetailInfo.style.bottom = '-126%';
-       }else if(target.className.indexOf('country_header')>-1){
-             document.querySelector('.country-cho-wrap').style.display ="none";
+      } else if (target.className.indexOf('country_header') > -1) {
+        document.querySelector('.country-cho-wrap').style.display = "none";
       }
     })
 
-    deletePassager=function(obj){
+    deletePassager = function (obj) {
       $(obj).parent().parent().remove();
     }
-    editPassager=function(obj){
-      var id=$(obj).find("input").eq(0).val();
-      var numofAdult=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
-      var numofChild=JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-      vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
+    editPassager = function (obj) {
+      var id = $(obj).find("input").eq(0).val();
+      var numofAdult = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
+      var numofChild = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
+      vlm.f_choice('passenger-list', 'f', 'traver', '', true, true, numofAdult, numofChild, id);
     }
 
   },
@@ -429,7 +430,7 @@ var fOrder = {
     tempString1 = $("#template_flight_summary").html();
     outputString1 = ejs.render(tempString1, {flightInfo: data});
     tempString2 = $("#template_flight_cost_seat").html();
-    outputString2 = ejs.render(tempString2,  {flightInfo: data});
+    outputString2 = ejs.render(tempString2, {flightInfo: data});
     $(".date-week-port").eq(0).html(outputString1);
     $(".seat-price-cost").eq(0).html(outputString2);
     return this;
