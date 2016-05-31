@@ -16,18 +16,25 @@ div#h-Tab {
 
 
 /*日历*/
-
 .calendar dt.title-date {
     font-size: .28rem;
 }
 
 div#h-Tab a {
-    font-size: .32rem;
+    /*font-size: .32rem;*/
     /*flex: 1.0;*/
-    width: 50%;
-    text-align: center;
-    line-height: 1rem;
-    color: rgb(153, 153, 153);
+    /*text-align: center;*/
+    /*line-height: 1rem;*/
+    /*color: rgb(153, 153, 153);*/
+  float: left;
+  font-size: .32rem;
+  display: block;
+  width: 50%;
+  text-align: center;
+  height: .8rem;
+  line-height: .8rem;
+  color: rgb(153,153,153);
+  background-color: #fcfcfc;
 }
 
 div#h-Tab .on {
