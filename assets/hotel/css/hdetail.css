@@ -204,7 +204,7 @@ strong{
 .hotel_content > li:last-child{
   padding:.2rem;
   border-bottom: 0px solid #dfdfdd;
-  margin-bottom: 0;
+  margin-bottom: .8rem;
 }
 .hotel_content_num{
   font-size: .2rem;

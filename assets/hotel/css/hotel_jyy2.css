@@ -199,9 +199,10 @@ ul,li{
 }
 .rank{
   width: 100%;
+  height: 7.8rem;
   background-color: white;
   position: fixed;
-  bottom:-550rem;
+  bottom: -550rem;
   z-index: 2000000;
 }
 .r-li{
@@ -260,7 +261,7 @@ ul,li{
   margin:.2rem .4rem;
   list-style-type: none;
   overflow: hidden;
-  border-bottom: 1px solid #d0d0d3;
+  /*border-bottom: 1px solid #d0d0d3;*/
   padding-bottom: .36rem;
 }
 .s-li{
@@ -290,29 +291,37 @@ ul,li{
 
 }
 .s-but{
-  width: 94%;height: 1rem;
+  /* width: 94%; */
+  height: 1rem;
   text-align: center;
-  line-height:1rem;
+  line-height: 1rem;
   color: white;
-  border-radius: .2rem;
-  background-color:#7bc300;
-  margin: .4rem .2rem;
+  /* border-radius: .2rem; */
+  background-color: #7bc300;
+
 }
 .s-submit{
-  width: 94%;
-  height: 1rem;
-  margin: .4rem .2rem;
+width: 94%;
+height: 1rem;
+margin: .4rem .2rem;
 }
 .s-but-checked{
+   width: 100%;
+  height: 1rem;
+  text-align: center;
+  line-height: 1rem;
+  color: white;
+  /* border-radius: .2rem; */
+  background-color: #7bc300;
   position: fixed;
   left:0;
   bottom:0;
 }
 .s-but1{
-  width: 100%;
-  height: 1rem;
-  background-color: white;
-  opacity: 1;
+width: 100%;
+height: 1rem;
+background-color: white;
+opacity: 1;
 }
 /*
 位置快
