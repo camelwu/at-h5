@@ -649,8 +649,8 @@ a.hotel_detail_pic{
 }
 
 .order_per_data ul.order_trave span.list_con2:nth-child(1),.order_data_box .list_con2:nth-child(1){
-    width: 49%;
-    padding-right: 1%;
+    width:50%;
+    /*padding-right: 1%;*/
     margin-right: 0.26rem;
 }
 .order_per_data ul.order_trave input.list_inp2{
@@ -958,6 +958,7 @@ a.hotel_detail_pic{
 }
 .order_per_data ul.order_trave span:nth-child(1) input,.order_data_box .list_con2:nth-child(1) input{
     border-right: 0.5px solid #DEDEDE;
+    width: 100%;
 }
 
 /*国籍选择开始*/
