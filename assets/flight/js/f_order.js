@@ -393,13 +393,12 @@ var fOrder = {
         }
       }
     });
-    //this.addHandler(passengerOuter, 'click', function (e){
-    //  var e = e || window.event, target = e.target || e.srcElement;
-    //    if(target.className == 'minus_person'){
-    //      var tem = target.parentNode.parentNode;
-    //      this.removeChild(tem);
-    //    }
-    //})
+    this.addHandler(passengerOuter, 'click', function (e){
+      var e = e || window.event, target = e.target || e.srcElement;
+        if(target.className == 'minus_person'){
+          var tem = target.parentNode.parentNode;
+          this.removeChild(tem)}
+    })
     this.addHandler(document.body, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
       if (target.className == 'shadow') {
