@@ -1208,26 +1208,6 @@ i, em {
 .user_person_mar{
   padding-bottom: 1rem;
 }
-.user_info_top {
-  padding: .2rem .3rem .2rem .4rem;
-  border-bottom: 1px solid #e6e6e6;
-  position: relative;
-}
-
-.user_info_top > span {
-  margin-top: .42rem;
-}
-
-.user_info_top .open_rg {
-  position: absolute;
-  right: .4rem;
-  top: .6rem;
-  background: url("../images/ui/icon-hft.png") no-repeat;
-  background-size: 8.4rem 4.8rem;
-  width: .24rem;
-  height: .24rem;
-  background-position: 62% 52%;
-}
 
 .userper_lists {
   padding: 0 .4rem;

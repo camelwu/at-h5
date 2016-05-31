@@ -416,7 +416,7 @@
         var name = $("#name")[0];
         var realName = $("#realName")[0];
         var user_email = $("#email")[0];
-    var user_phone = $("#phone_num")[0];
+        var user_phone = $("#phone_num")[0];
         var sex = $("#sex")[0];
         var userIcon = $("#userIcon")[0];
         var birthCont=$('#birth-cont-per')[0];
@@ -448,16 +448,12 @@
             birthCont.setAttribute('data-cache',datecache);
             $('#hostmobile')[0].innerHTML= user_phone.value= infoJson.data[0].mobileNo;
             $('#hostemail')[0].innerHTML = infoJson.data[0].emailAddress;
-
             if(infoJson.data[0].salutation == 26){
               $('#sex').children().eq(0).attr('class', 'per_man sex_act');
               $('#sex').children().eq(1).attr('class', 'per_man');
-              userIcon.src = "../images/user/photo-man.png";
-
             }else{
               $('#sex').children().eq(0).attr('class', 'per_man');
               $('#sex').children().eq(1).attr('class', 'per_man sex_act');
-              userIcon.src = "../images/user/photo-man.png";
             }
         }
 

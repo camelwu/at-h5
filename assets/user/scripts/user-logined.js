@@ -65,7 +65,7 @@
 
   function mycallback(ret) {
     var myJson = ret;
-    //console.log(myJson.data[0].nickName);
+    console.log(myJson);
     if (myJson.success) {
       var user_name = $("#user_name")[0];
       var user_sex = $("#user_sex")[0];
@@ -73,16 +73,18 @@
       user_name.innerHTML = myJson.data[0].nickName;
       localStorage.sex=myJson.data[0].salutation;
       localStorage.email=myJson.data[0].emailAddress;
+      if(myJson.data[0].bigHeadImageUrl){
+        userIcon.src = myJson.data[0].bigHeadImageUrl;
+      }else{
+        userIcon.src = "../images/user/photo-man.png";
+      }
       if(myJson.data[0].nickName == ''){
         user_name.innerHTML='点击头像设置个人资料';
-        userIcon.src = "../images/user/photo-man.png";
       }else{
         if (myJson.data[0].salutation == "26") {
           user_sex.className = "icon_person open-sexm";
-          userIcon.src = "../images/user/photo-man.png";
         } else {
           user_sex.className = "icon_person open-sexw";
-          userIcon.src = "../images/user/photo-man.png";
         }
       }
     }
