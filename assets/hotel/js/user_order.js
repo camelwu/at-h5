@@ -685,3 +685,16 @@ uoHisData();
         });
     }(jQuery));
 })();
+(function(){
+  var numHtml=document.getElementById("uo_c2_num").innerHTML;
+  var reduce = document.getElementById("uo_c2_i1");
+  var add = document.getElementById("uo_c2_i2");
+  if(parseInt(numHtml)>1){
+    reduce.style.background='url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
+    reduce.style.backgroundSize='7.9rem 7.83rem';
+  }
+  if(parseInt(numHtml)>=10){
+    add.style.background='url("../images/ui.1.0/icon_common.png") -2.17rem -3.12rem no-repeat';
+    add.style.backgroundSize='7.9rem 7.83rem';
+  }
+})();
