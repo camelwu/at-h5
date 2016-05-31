@@ -5,27 +5,19 @@ body {
 }
 
 div#h-Tab {
-    display: flex;
-    background: #fff;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
 }
-
 .header {
-    background: #fff;
     border-bottom: solid 1px #fff;
 }
-
-
 /*日历*/
 .calendar dt.title-date {
     font-size: .28rem;
 }
 
 div#h-Tab a {
-    /*font-size: .32rem;*/
-    /*flex: 1.0;*/
-    /*text-align: center;*/
-    /*line-height: 1rem;*/
-    /*color: rgb(153, 153, 153);*/
   float: left;
   font-size: .32rem;
   display: block;

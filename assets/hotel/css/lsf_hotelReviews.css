@@ -39,17 +39,15 @@ i{font-style: normal;
   margin: 0 .28rem;
 }
 .hotel_grade_score section{
-  flex: 1;
+  width: 30%;
   color: #484848;
   padding: 0 .2rem;
-  border-right: 1px dashed #dedede;
   line-height: .56rem;
   margin: .16rem 0 .22rem 0;
 }
 /*内容部分*/
 .hotel_grade_content{
   background: #fff;
-  margin-top: .2rem;
 }
 .hotel_grade_content_box{
   border-bottom: 1px solid #dedede;
