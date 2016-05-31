@@ -222,7 +222,7 @@ i {
 
 .p-ul2 li span {
   display: inline-block;
-  height: 18px;
+  height: .36rem;
   margin-right: 1px;
   font-size: 0.28rem;
 }

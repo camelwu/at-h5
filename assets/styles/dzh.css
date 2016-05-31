@@ -1002,8 +1002,14 @@ section.hotelInfo_numb_room .title{
     height: 0.46rem;
     background-image: url(../images/ui/icon_common.png);
     background-repeat: no-repeat;
-    background-position: -5.08rem -0.52rem;
     background-size:7.9rem 5.13rem;
+}
+.hotelInfo_numb_people .spenumbList b.noselect{
+    background-position: -4.4rem -0.52rem;
+}
+/*H+T 儿童加床部分修改  160531*/
+.hotelInfo_numb_people .spenumbList b.ico_select{
+    background-position: -5.08rem -0.52rem;
 }
 .zy_price_control span.down_btn{
     left: 0;

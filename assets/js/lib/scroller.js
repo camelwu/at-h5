@@ -22,7 +22,7 @@ Scroller.prototype = {
     // 模板数组
     _template: {
         dateTime : ['date', 'h', 'm'],
-        card: ['<span data-code="2">护照</span>', '<span data-code="1">身份证</span>'],
+        card: ['<span data-code="1">护照</span>', '<span data-code="2">身份证</span>'],
         date: ['年', '月', '日'],
         time: ['<span>上午</span>', '<span>下午</span>'],
         comp: ['<span>&nbsp;</span>', '<span>&nbsp;</span>'],

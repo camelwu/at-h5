@@ -572,6 +572,15 @@
        choiceAir_AddPassagerArray.forEach(function(info){
            passagerArray[info.traveller.travellerId] = info;
        })
+       var selectPassagerList=JSON.parse(sessionStorage.getItem('choiceAir_select_'+elementId));
+       if(selectPassagerList !=null){
+         for(var key in selectPassagerList){
+           if(selectPassagerList[key].PagerType==from) {
+             $(".list-traveler .user_choice[data-id=" + key + "]").click();
+           }
+
+         }
+       }
 
        document.getElementById("allList").innerHTML = html;
        _bindSelectChoice();
