@@ -42,23 +42,23 @@
         onclick=" vlm.f_choice('passenger-list','f','traver','',true,true,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild,null,JSON.parse(sessionStorage.getItem('fIndexInfo')).data.departDate)"></i>
       </h4>
       <div id="passenger-list">
-          <ul class="passenger_outer" style="display: none" >
-            <li>
-              <p class="name_infos"><i class="minus_person" onclick="javascript:delPassager(this)"></i>
-               <label>姓</label><input class="input name" placeholder="BAI" readonly="readonly" data-elementname="lastName" />
-               <label>名</label><input class="input name" placeholder="LISA" readonly="readonly" data-elementname="firstName"/>
-                <i class="add_icon passenger" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number" readonly="readonly"  data-elementName="travellerId"></i></p>
-              <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue"  data-elementname="idNumber"
-                                                                             placeholder="1234567" readonly="readonly"/><span class="sex_value" data-elementname="sexName">女</span>
-              </p>
-            </li>
-          </ul>
-        </div>
+        <ul class="passenger_outer" style="display:none;">
+          <li>
+            <p class="name_infos">
+              <i class="minus_person" onclick="javascript:deletePassager(this)"></i>
+              <span class="tip_word">姓/名</span>
+              <span class="first_name" data-elementname="lastName">张</span><b>/</b><span class="last_name" data-elementname="firstName">养浩</span>
+              <i class="add_icon passenger" javascript:editPassager(this)></i>
+            </p>
+            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567" readonly="readonly"/><span class="sex_value">女</span>
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
     <!--联系人-->
     <div class="contact_wrap" id="contact-table">
-      <h4>联系人<i class="arrow_down"></i><span class="glay_word">与第一出行人相同</span> <i class="add_icon contact"
-                                                                                  onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i>
+      <h4>联系人<i class="add_icon contact" onclick="vlm.f_choice('contact-table','f','contact','',false,false,null,null,null,'callback')"></i>
       </h4>
 
       <p class="input_line clearfix">
@@ -205,50 +205,13 @@
   vlm.l_contact();
   localStorage.removeItem("travellerInfo_selected");
   localStorage.removeItem("contact_selected");
+
+  sessionStorage.removeItem("choiceAir_select_passenger-list");
+  sessionStorage.removeItem("choiceAir_select_contact-table");
+  
   function callback() {
     fOrder.countrySlider();
   }
-  function delPassager(obj) {
-    var ul = $(obj).parent().parent().parent();
-    if (ul.siblings().length >= 1) {
-      ul.remove();
-    } else {
-      ul.hide();
-    }
-  }
-  function editPassager(obj) {
-    var id = $(obj).find("input").eq(0).val();
-    var numofAdult = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
-    var numofChild = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-    vlm.f_choice('passenger-list', 'f', 'traver', '', true, true, numofAdult, numofChild, id);
 
-  }
-
-
-  function SelectPersonInformation(html, isContact) {
-    if (html != "") {
-      if (!isContact) {
-        $(".passenger-list-data li").remove();
-        $(".passenger-list-data").append(html);
-        $(".edit-passager").on("click", function () {
-          var id = $(this).attr("data-id");
-          var numofAdult = JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult; //JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult
-          var numofChild = JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
-          vlm.f_choice('passenger-list', 'f', 'traver', '', true, true, numofAdult, numofChild, id);
-        });
-        $(".del-passager").on("click", function () {
-          $(this).parent().parent().remove()
-        })
-      }
-      else {
-        $(".contact-table div").remove();
-        $(".contact-table").append(html);
-        fOrder.countrySlider();
-      }
-    }
-  }
-  $('.country-hidden').on('click', function () {
-    $('.country-cho-wrap').hide();
-  })
 </script>
 </html>
