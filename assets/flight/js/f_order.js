@@ -411,16 +411,16 @@ var fOrder = {
 
     deletePassager=function(obj){
       $(obj).parent().parent().remove();
-      //var id=$(obj).parent().find(".itemid").val();
-      //var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
-      //var temp={};
-      //for(var key in list){
-      //  debugger;
-      //    if(key !=id){
-      //      temp.key=list[key];
-      //    }
-      //}
-      //sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
+
+      var id=$(obj).parent().find(".itemId").val();
+      var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+      var temp={};
+      for(var key in list){
+          if(key !=id){
+            temp[key]=list[key];
+          }
+      }
+      sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
     }
     editPassager=function(obj){
       var id=$(obj).find("input").eq(0).val();
