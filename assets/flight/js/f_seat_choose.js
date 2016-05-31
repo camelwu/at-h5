@@ -1,4 +1,5 @@
 var fSeatChoose = {
+
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {
       this.addHandler = function (target, eventType, handle) {
@@ -25,7 +26,7 @@ var fSeatChoose = {
       ForeEndType: ForeEndType,
       Code: Code
     };
-    questUrl = questUrl ? questUrl :"";
+    questUrl = questUrl ? questUrl : "";
     if (loadMoreSign) {
       vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback, false, false, loadMoreSign);
     } else {
@@ -33,25 +34,26 @@ var fSeatChoose = {
     }
   },
 
-  getMinutes:function (arg1, arg2) {
-    var time1 = Date.parse(arg1.replace(/-/g, "/").replace(/T/," ")), time2 = Date.parse(arg2.replace(/-/g, "/").replace(/T/," ")), dayCount;
+  getMinutes: function (arg1, arg2) {
+    var time1 = Date.parse(arg1.replace(/-/g, "/").replace(/T/, " ")), time2 = Date.parse(arg2.replace(/-/g, "/").replace(/T/, " ")), dayCount;
     return dayCount = (Math.abs(time2 - time1)) / 1000 / 60;
   },
 
-  eventHandler:function(){
-    var forBottom = document.querySelector('.for_bottom'),that = fSeatChoose;
-    this.addHandler(forBottom, "click", function(e){
+  eventHandler: function () {
+    var forBottom = document.querySelector('.for_bottom'), that = fSeatChoose;
+    this.addHandler(forBottom, "click", function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
-        if(target.className == "explain"){
-      //退改签说明
-        }else if(target.tagName == "BUTTON"){
-          that.testLogin();
-        }
+      if (target.className == "explain") {
+        //退改签说明
+      } else if (target.tagName == "BUTTON") {
+        that.testLogin();
+      }
     })
   },
-  createTags:function(){
+
+  createTags: function () {
     var data = arguments[0];
-    var tempString="", outputString="", that = fSeatChoose;
+    var tempString = "", outputString = "", that = fSeatChoose;
     tempString = $("#template_seat_choose").html();
     console.log(data)
     outputString = ejs.render(tempString, data);
@@ -101,8 +103,8 @@ var fSeatChoose = {
     return week;
   },
 
-  testLogin:function(){
-     window.top.location.href='../flight/f_order.html'
+  testLogin: function () {
+    window.top.location.href = '../flight/f_order.html'
   },
 
   returnDay: function () {
@@ -117,7 +119,7 @@ var fSeatChoose = {
     var flightData = {}, storage = window.sessionStorage;
     flightData = JSON.parse(storage.getItem('currentFlight'));
     console.log(flightData)
-    this.fadeHandler().createTags({flightInfo:flightData}).eventHandler();
+    this.fadeHandler().createTags({flightInfo: flightData}).eventHandler();
 
   }
 };

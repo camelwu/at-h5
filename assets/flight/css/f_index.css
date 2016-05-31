@@ -38,9 +38,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 .singleTrip, .doubleTrip , .international_title, .domestic_title{
   float: left;
   width: 50%;
-  height: .84rem;
+  height: 100%;
   font-size: .32rem;
   text-align: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 .doubleTrip {
@@ -107,10 +109,10 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin: 0 auto;
   width: .54rem;
   height: .54rem;
-  background-image: url(../../images/ui/air-icons.png);
+  background-image: url(../../images/ui.1.0/icon_common.png);
   background-repeat: no-repeat;
-  background-position: 38% 17.9%;
-  background-size: 4.67rem 2.81rem;
+  background-size: 7.90rem auto;
+  background-position: -3.708rem -3.12062rem;
   overflow: hidden;
 }
 
