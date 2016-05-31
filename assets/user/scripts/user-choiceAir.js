@@ -288,7 +288,6 @@
       if(!_validate()){
         return false;
       }
-    debugger;
       var modle=_ui2Modle(currentOperationType);
       //登陆
       if(memberId !=undefined) {
@@ -573,7 +572,6 @@
        choiceAir_AddPassagerArray.forEach(function(info){
            passagerArray[info.traveller.travellerId] = info;
        })
-debugger;
        var selectPassagerList=JSON.parse(sessionStorage.getItem('choiceAir_select_'+elementId));
        if(selectPassagerList !=null){
          for(var key in selectPassagerList){
