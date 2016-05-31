@@ -256,6 +256,7 @@ a {
   text-overflow: ellipsis;
   margin: 0 1.15rem;
   white-space: nowrap;
+  font-size:0.36rem;
 }
 
 .header h3 .arrowDouble, .header h3 .arrowSingle {
