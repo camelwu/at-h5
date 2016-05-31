@@ -394,6 +394,13 @@ var fOrder = {
     moneyNumber.innerHTML = data.priceTotal;
     return this;
   },
+  isInternationalTrip:function(){
+       var data = JSON.parse(window.sessionStorage.getItem('fIndexInfo'));
+       if(data.data.internationalOrDomestic == "international"){
+              return false;
+        }
+        return true;
+  },
 
   innitData: function () {
     var flightData = {}, fIndexInfo = {}, storage = window.sessionStorage, priceTotal = "", priceData = {};
