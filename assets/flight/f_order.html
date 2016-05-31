@@ -48,9 +48,9 @@
               <i class="minus_person" onclick="javascript:deletePassager(this)"></i>
               <span class="tip_word">姓/名</span>
               <span class="first_name" data-elementname="lastName">张</span><b>/</b><span class="last_name" data-elementname="firstName">养浩</span>
-              <i class="add_icon passenger" javascript:editPassager(this)></i>
+              <i class="add_icon passenger" onclick="javascript:editPassager(this)"><input type="hidden" name="input-zone" class="passport-number itemId" readonly="readonly"  data-elementName="travellerId"></i>
             </p>
-            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567" readonly="readonly"/><span class="sex_value">女</span>
+            <p class="passport_sex"><span class="tip_word">护照</span><input class="passportValue" placeholder="1234567" readonly="readonly" data-elementname="idNumber"/><span class="sex_value">女</span>
             </p>
           </li>
         </ul>
@@ -208,7 +208,7 @@
 
   sessionStorage.removeItem("choiceAir_select_passenger-list");
   sessionStorage.removeItem("choiceAir_select_contact-table");
-  
+
   function callback() {
     fOrder.countrySlider();
   }

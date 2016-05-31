@@ -332,11 +332,9 @@
 
   //缓存数据
   var _saveLocalStorge=function(){
-    debugger;
     var param;
     if(isMulSelect){
       param=[]
-      debugger;
       for(var key in selectedPassagerArray) {
         var o= {
           "Id":selectedPassagerArray[key].traveller.travellerId,
