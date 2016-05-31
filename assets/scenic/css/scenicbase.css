@@ -711,32 +711,29 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   display: inline-block;
 }
 
-.booking_package_tourtitle{
-
+.booking_package_tourtitle .booking_package_h3{
+  position: absolute;
 }
 
-
-
 .booking_package_date{
-  padding: .4rem 0 0 0;
+  margin: .4rem 0 0 0;
+  position: relative;
 }
 
 .booking_package_date_p{
-  display: inline-block;
+  font-size: 0.32rem;
+  font-weight: bold;
 }
 
 .booking_package_date_i{
   position: absolute;
-  margin-top: -0.45rem;
-  top: 50%;
+  top: 0;
   right: .2rem;
-  height: .45rem;
+  height: .42rem;
   width: .45rem;
-  overflow: hidden;
-  display: inline-block;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -6.8rem -2.33rem;
+  background-position: -6.8rem -2.36rem;
 }
 
 
@@ -777,7 +774,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   display: inline-block;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right:-0.01rem;
   height: .36rem;
   width: .5rem;
   background: url(/images/ui/icon_common.png) no-repeat;
@@ -802,6 +799,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 }
 
 .booking_package_pre_group{
+  height: 0.6rem;
   display: inline-block;
   float: right;
   position: relative;
@@ -849,7 +847,8 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   color: #333333;
   display: inline-block;
   float: left;
-  line-height: .52rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   margin: 0 .16rem 0 .16rem;
 }
 
@@ -914,12 +913,12 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .booking_package_addpackage_i{
   display: inline-block;
   position: relative;
-  top: .16rem;
+  top: 0.18rem;
   height: .6rem;
   width: .6rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -3rem -3.08rem;
+  background-position: -3.03rem -3.11rem;
 }
 
 .booking_package_addpackage_p{
@@ -955,7 +954,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .booking_package_linkman_input{
   font-size: .28rem;
   width: 2rem;
-  height: .9rem;
+  height: .8rem;
   margin-left: .6rem;
 }
 
