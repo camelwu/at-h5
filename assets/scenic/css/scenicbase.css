@@ -696,6 +696,11 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   position: relative;
 }
 
+.booking_package_tourtitle .booking_package_i{
+  position: relative;
+  top: 0.05rem;
+}
+
 .booking_package_i{
   height: .26rem;
   width: 3px;
@@ -728,7 +733,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .booking_package_date_i{
   position: absolute;
   top: 0;
-  right: .2rem;
+  right: 0rem;
   height: .42rem;
   width: .45rem;
   background: url(/images/ui/icon_common.png) no-repeat;
