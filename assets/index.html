@@ -151,7 +151,7 @@
                 }
                 //playerRecommend
                 function PlayerRecommend() {
-                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/hotelDetailerrorpic.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/loading_def_big.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
                   var tmp = {
                       "Parameters": {
                           "PageNo": 1,
@@ -177,6 +177,7 @@
                             var re_url=images[i].getAttribute('data-src');
                             loadImage(re_url,error_url, function() {
                               images[index].setAttribute('src', re_url);
+
                             },function(){
                               images[index].setAttribute('src', error_url);
                             });

@@ -1027,7 +1027,7 @@ function styleChange(id, mytext) {
         hlHis.hlLocation.list = hlHis.hlLocation.list || "";
 		//设置弹出框的最大高度
 		var clienH = document.documentElement.clientHeight;
-		loca_conBro.style.height = loca_con.offsetHeight + 'px';
+		loca_conBro.style.height =  7.8 + 'rem';
 		//bottom:0为了实现滑动效果,如果没有bottom:0;内容就不可滑动
 		loca_con.style.bottom = '0';
 		oLocation.style.maxHeight = 7.8 + 'rem';

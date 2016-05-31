@@ -204,7 +204,7 @@ strong{
 .hotel_content > li:last-child{
   padding:.2rem;
   border-bottom: 0px solid #dfdfdd;
-  margin-bottom: 0;
+  margin-bottom: .8rem;
 }
 .hotel_content_num{
   font-size: .2rem;
@@ -450,12 +450,12 @@ span.money{
 }
 .r-icon2 {
   width: .4rem;
-  height: .4rem;
-  display: block;
+  height: .36rem;
   float: left;
-  background-image: url(../../images/ui/icon-hft.png);
-  background-position: -6.21rem -2.2rem;
-  background-size: 7.5rem 4.54rem;
+  display: block;
+  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-size: 7.9rem 7.98rem;
+  background-position: -5.78rem -0.6rem;
 }
 .r-p3 {
   margin-left: .5rem;

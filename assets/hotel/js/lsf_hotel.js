@@ -13,7 +13,7 @@
 /**
  *@desc 酒店搜索页
  *@time
- *@author 
+ *@author
  **/
 (function () {
 
@@ -944,9 +944,13 @@ function inpChange(id, myText) {
             var itemMinNum = itemEle.getAttribute("data-min");
             var minusItem = itemEle.parentNode.getElementsByClassName("minus")[0];
             if (parseInt(itemEle.value) > itemMinNum) {
-                minusItem.style.backgroundPosition = "0px 0px";
+                //minusItem.style.backgroundPosition = "-1.28rem -3.12rem";
+              minusItem.style.background = ' url("../images/ui.1.0/icon_common.png") -1.28rem -3.12rem no-repeat';
+              minusItem.style.backgroundSize = '7.9rem 7.83rem';
             } else {
-                minusItem.style.backgroundPosition = "-0.48REM -3.12rem";
+                //minusItem.style.backgroundPosition = "-0.48rem -3.12rem";
+              minusItem.style.background = 'url("../images/ui.1.0/icon_common.png") -0.48rem -3.12rem no-repeat';
+              minusItem.style.backgroundSize = '7.9rem 7.83rem';
             }
         }
     }

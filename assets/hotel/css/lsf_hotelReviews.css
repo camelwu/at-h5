@@ -1,4 +1,4 @@
-em{font-style: normal;}
+b { font-weight:normal;}em{font-style: normal;}
 i{font-style: normal;
 }ol{list-style: none}
 .hotel_grade{
@@ -84,12 +84,12 @@ i{font-style: normal;
 }
 .hotel_grade_content_box_comments{
   display: block;
-  margin-right:.5rem;
 }
 .hotel_grade_content_box_User{
   color: #484848;
   overflow: hidden;
   display: block;
+  font-size: .24rem;
 }
 .hotel_grade_content_box_User b{
   max-width: 4rem;
@@ -111,15 +111,13 @@ i{font-style: normal;
 .drop_down i{
   width: .4rem;
   height: .4rem;
-  background: url(../../images/ui/icons.png) -4.2rem -3rem;
-  background-size: 6rem 3rem;
-  bottom: 1.4rem;
+  bottom: 0.8rem;
   right: .4rem;
   position: absolute;
 }
 .reu_span2{
   position: absolute;
-  bottom:0.3rem;
+  bottom:0.4rem;
   right:.2rem;
 }
 
