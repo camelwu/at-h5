@@ -130,7 +130,7 @@
                     };
                     vlm.loadJson("", JSON.stringify(tmp), function(json) {
                         if (json.success) {
-
+console.log(json);
                             var data = json.data,
                                 html_b = template(tpl0, data.bannerList);
                             $("#banner").html(html_b);
@@ -168,7 +168,7 @@
                         $("#tuijian").html(html_tj);
 
 
-                        //懒加载
+                        //默认图片
                         var images=$("#tuijian").find('img');
                         var error_url='images/hotelDetailerrorpic.png';
                         for(var i=0;i<images.length; i++){
