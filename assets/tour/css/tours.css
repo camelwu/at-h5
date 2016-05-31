@@ -959,6 +959,9 @@ a.hotel_detail_pic{
 .order_per_data ul.order_trave span:nth-child(1) input,.order_data_box .list_con2:nth-child(1) input{
     border-right: 0.5px solid #DEDEDE;
     width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /*国籍选择�?�?*/
