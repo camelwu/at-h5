@@ -253,12 +253,8 @@ var fOrder = {
         contactInfoCache.email = document.querySelector('#email-label').value;
         contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
         contactInfoCache.countryNumber = document.querySelector('.nation_code_value').innerHTML;
-        if (contactInfoCache.firstName == "") {
-          jAlert('请输入姓!', '提示');
-          return;
-        }
-        if (contactInfoCache.lastName == "") {
-          jAlert('请输入名!', '提示');
+        if (contactInfoCache.firstName == ""&&contactInfoCache.lastName == "") {
+          jAlert('请完善联系人信息!', '提示');
           return;
         }
 
