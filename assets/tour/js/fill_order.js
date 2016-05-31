@@ -66,15 +66,15 @@
                 //else
                 //{
                     oSection.innerHTML='<li class="first">'
-                        +'<span class="list_tit">成人'+(k+1)+'：</span>'
+                        +'<span class="list_tit">成人'+(k+1)+'</span>'
                         +'<b class="add_icon"><a href="javascript:;" data-c-id="'+k+'" class="add-passager'+k+'" ></a></b></span>'
                         +'</li>'
                         +'<ul class="order_trave" id="trave"+k+>'
-                        +'<li class="trave-li trave-li-adu">'
-                        +'<span class="list_tit2 ">姓：</span>'
-                        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="Zhang" data-elementName="firstName" /></span>'
-                        +'<span class="list_tit2 ">名：</span>'
-                        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                        +'<li class="trave-li trave-li-adu fillinorder_li">'
+                        //+'<span class="list_tit2 ">姓：</span>'
+                        +'<span class="list_con2"><input class="list_inp2 list-adult" type="text" placeholder="姓（如：Li）" data-elementName="firstName" /></span>'
+                        //+'<span class="list_tit2 ">名：</span>'
+                        +'<span class="list_con2 name-inp"><input class="list_inp2 list-adult" type="text" placeholder="名（如：ShiMin）" data-elementName="lastName" /></span>'
                         +'</li>'
                         +'<li class="clearFix countries-wrap"><b class="icons open-pho-tour"></b><span class="list_country fl">国籍：</span><div class="country-btn" data-code="CN" data-tel-code="86">中国</div></li>'
                         +"</ul>"
@@ -102,15 +102,15 @@
                 var oSection=document.createElement('section');
                 oSection.className='li_section_box';
                 oSection.innerHTML='<li>'
-                    +'<span class="list_tit">儿童'+(j+1)+'：</span>'
+                    +'<span class="list_tit">儿童'+(j+1)+'</span>'
                     +'<b class="add_icon"><a href="javascript:;" data-c-id="'+j+'" class="add-cpassage'+j+'"></a></b></span>'
                     +'</li>'
                     +"<ul id='traveC"+j+"'>"
                     +'<li class="trave-li trave-li-child child">'
-                    +'<span class="list_tit2 ">姓：</span>'
-                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Zhang" data-elementName="firstName"  /></span>'
-                    +'<span class="list_tit2 ">名：</span>'
-                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="Xiaohua" data-elementName="lastName" /></span>'
+                    //+'<span class="list_tit2 ">姓：</span>'
+                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="姓（如：Li）" data-elementName="firstName"  /></span>'
+                    //+'<span class="list_tit2 ">名：</span>'
+                    +'<span class="list_con2"><input class="list_inp2 list-child" type="text" placeholder="名（如：ShiMin）" data-elementName="lastName" /></span>'
                     +'</li>'
                     +"</ul>"
                     +'</section>';

@@ -636,20 +636,29 @@ a.hotel_detail_pic{
     padding-right: 0.24rem;
 }
 .order_per_data ul.order_trave{
-    padding: 0 0 0 0.24rem;
+    padding: 0;
     margin: 0;
+}
+.order_per_data ul.order_trave li,.personal_data ul.order_trave li{
+    margin:0 0 0 0.24rem
 }
 .order_per_data ul.order_trave span.list_con2,.order_data_box .list_con2{
     display: inline-block;
-    vertical-align: middle;
-    width: 25%;
+    /*vertical-align: middle;*/
+    width:45%;
+}
+
+.order_per_data ul.order_trave span.list_con2:nth-child(1),.order_data_box .list_con2:nth-child(1){
+    width: 49%;
+    padding-right: 1%;
+    margin-right: 0.26rem;
 }
 .order_per_data ul.order_trave input.list_inp2{
     border: none;
     color: #666;
     font-size:0.28rem;
-    width: 100%;
 }
+
 .order_data_box{
     font-size: 0.3rem;
     background: #fff;
@@ -668,10 +677,6 @@ a.hotel_detail_pic{
     padding: 0 0.24rem 0 0.48rem;
     position: relative;
 }
-.order_data_box ul.order_trave{
-    padding: 0 0 0 0.24rem;
-    margin: 0;
-}
 .order_data_box ul li:last-child {
     border: none;
 }
@@ -685,52 +690,35 @@ a.hotel_detail_pic{
     height:0.98rem;
 }
 .order_reserve span.all_num{
-    padding-left:0.2rem;
+    width: 50%;
     display: block;
     overflow: hidden;
-    font-size:0.26rem;
-    height:0.98rem;
-    line-height:0.98rem;
-    border-top:1px solid #ddd;
+    font-size: 0.26rem;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    border-top: 1px solid #ddd;
+    text-indent: 0.7rem;
 }
 .order_reserve span.all_num i{
     color: #fb6014;
     font-size:0.32rem;
 }
 .order_reserve .itemized,.order_reserve .itemized_d{
-    /*position: absolute;*/
-    /*right: 1.92rem;*/
-    /*top: 0rem;*/
-    /*width: 0.86rem;*/
-    /*height: 0.98rem;*/
-    /*color: #7bc300;*/
-    /*line-height: 0.98rem;*/
-    /*font-size: 0.24rem;*/
     position: absolute;
-    left: 1.2rem;
+    left: 0.9rem;
     top: 0rem;
-    width: 0.86rem;
     height: 0.98rem;
-    color: #7bc300;
     line-height: 0.98rem;
     font-size: 0.24rem;
 }
 .order_reserve .itemized:after,.order_reserve .itemized_d:after{
-    /*content: '';*/
-    /*width: 0.27rem;*/
-    /*height: 0.14rem;*/
-    /*background: url(../../images/ui/icon_common.png) no-repeat;*/
-    /*background-size:7.9rem 5.13rem;*/
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*top: 0.4rem;*/
     content: '';
     width: 0.27rem;
-    height: 0.14rem;
+    height: 0.16rem;
     background: url(../../images/ui/icon_common.png) no-repeat;
     background-size: 7.9rem 5.13rem;
     position: absolute;
-    right: -0.5rem;
+    right: -0.4rem;
     top: 0.4rem;
 }
 .order_reserve .itemized:after{
@@ -964,8 +952,13 @@ a.hotel_detail_pic{
     right: 0.2rem;
     margin-top: -0.17rem;
 }
-
-
+.fillinorder_li span{
+    width: 50%;
+    display: inline-block;
+}
+.order_per_data ul.order_trave span:nth-child(1) input,.order_data_box .list_con2:nth-child(1) input{
+    border-right: 0.5px solid #DEDEDE;
+}
 
 /*国籍选择开始*/
 .country_header{
