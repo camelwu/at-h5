@@ -374,7 +374,6 @@
             }
             //酒店详情tpl
             else if(type.id==1) {
-              debugger;
                 //data.data.totalPrice=data.data.totalFlightPrice;
                 if (bookingRefNo == null) {
                     data.data.totalPrice=data.data.calcuTotalPrice;
@@ -456,7 +455,7 @@
               }
               data.data.numofAdult=numofAdult;
               data.data.numofChild=numofChild;
-              debugger;
+
               var html = template("tpl_flighthoteltour_detail", data.data);
               $(".payment-type-list").append(html);
             }

@@ -690,8 +690,8 @@ var htf_search = {
 		var hf_searchInfo = {}, hft_searchInfo = {};
 		var hf_FromCityNameCN = getByClass(box_hf, 'origin')[0].innerHTML;
 		var hf_ToCityNameCN = getByClass(box_hf, 'destination')[0].innerHTML;
-		var hf_fromCity = getByClass(box_hf, 'origin')[0].getAttribute('data-citycode');
-		var hf_toCity = getByClass(box_hf, 'destination')[0].getAttribute('data-citycode');
+		var hf_fromCity = getByClass(box_hf, 'origin')[0].getAttribute('data-code');
+		var hf_toCity = getByClass(box_hf, 'destination')[0].getAttribute('data-code');
 		var hf_startday = getByClass(box_hf, 'js_startData')[0].getAttribute('data-day');
 		var hf_endday = getByClass(box_hf, 'js_returnData')[0].getAttribute('data-day');
 		var hf_stardWeek = getByClass(box_hf, 'week_one')[0].innerHTML;

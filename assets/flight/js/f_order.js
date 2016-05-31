@@ -190,7 +190,7 @@ var fOrder = {
 
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {} , passengerOuter =  document.querySelector('.passenger_outer') ,that=this;
+    var postPara = {}, temObject = {},that=this;
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
@@ -220,7 +220,8 @@ var fOrder = {
           var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']), contactInfoCache = {};
         }
         //乘客信息核对
-        var passengerLis = document.querySelectorAll('.passenger_outer li'), realPara = [], tempAdult = 0, tempChild = 0;
+        var passengerUl = document.querySelectorAll('.passenger_outer')[1],passengerLis = null,  realPara = [], tempAdult = 0, tempChild = 0;
+        passengerLis = passengerUl.querySelectorAll('li');
         if (passengerLis) {
           for (var li = 0; li < passengerLis.length; li++) {
             var passPortNumber = passengerLis[li].querySelector('.passportValue').value;
@@ -243,9 +244,7 @@ var fOrder = {
           jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
         }
-
         postPara.travellerInfo = realPara;
-
         if (window['localStorage']['contact_selected']) {
           contactInfo = JSON.parse(window['localStorage']['contact_selected']);
         } else {
@@ -273,18 +272,19 @@ var fOrder = {
           return;
         }
 
-       /* if (contactInfoCache.email == "") {
-          jAlert('请输入邮箱!', '提示');
-          return;
-        } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)) {
-          jAlert('请输入正确格式邮箱!', '提示');
-          return;
-        }*/
         if (contactInfoCache.mobilePhone == "") {
           jAlert('请输入手机号!', '提示');
           return;
         } else if (!/^1\d{10}$/.test(contactInfoCache.mobilePhone)) {
           jAlert('请输入正确格式手机号!', '提示');
+          return;
+        }
+
+        if (contactInfoCache.email == "") {
+          jAlert('请输入邮箱!', '提示');
+          return;
+        } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.email)) {
+          jAlert('请输入正确格式邮箱!', '提示');
           return;
         }
         for (var tv in contactInfoCache) {
@@ -295,50 +295,6 @@ var fOrder = {
         /*this.fadeHandler("show");*/
         that.postPara = postPara;
         console.log(postPara);
-/*         this.postPara = {// 成单参数格式
-         "WapOrder": {
-         "SetID": 30000152,
-         "CacheID": 3514987,
-         "CityCodeFrom": "BJS",
-         "CityCodeTo": "SIN",
-         "NumofAdult": "1",
-         "NumofChild": "0",
-         "RouteType": "oneWay",
-         "CabinClass": "economy",
-         "SourceType": "H5",
-         "MemberId": ""
-         },
-         "TravellerInfo": [{
-         "PassengerType": "ADULT",
-         "Id": 2419,
-         "SexCode": "Ms",
-         "FirstName": "Chang",
-         "LastName": "Liu",
-         "DateOfBirth": "1990-01-09T00:00:00",
-         "email": "undefined",
-         "mobile": "undefined",
-         "CertificateInfo": {
-         "IdType": 1,
-         "IdCountry": "CN",
-         "IdNumber": "111111111111111111",
-         "IdActivatedDate": "2018-01-01T00:00:00"
-         },
-         "BaggageCode": "",
-         "CountryCode": "CN"
-         }],
-         "ContactDetail": {
-         "SexCode": "Ms",
-         "FirstName": "Liu",
-         "LastName": "San",
-         "Email": "11111111111@qq.com",
-         "CountryNumber": "86",
-         "ContactNumber": "5689",
-         "MobilePhone": "11111111111"
-         },
-         "CurrencyCode": "CNY",
-         "TotalPrice": 6826,
-         "track": {"browserType": "", "deviceID": ""}
-         };*/
         console.log( that.postPara)
         that.tAjax(vlm.apiWithDeviceID, that.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
