@@ -29,7 +29,7 @@ i,em{
     height:0.32rem;
     margin-top: -0.16rem;
     background-image: url(../../images/ui/icons.png);
-    background-position: -3.0rem -0.10rem;
+    background-position: -3.0rem -0.058rem;
     background-size:4.86rem 3.21rem;
     position: absolute;
     right:-0.3rem;
@@ -124,7 +124,7 @@ i,em{
     margin: 0 0.03rem 0 -0.09rem;
 }
 /*index  end*/
-/*¾ÆµêÁĞ±í  begin*/
+/*é…’åº—åˆ—è¡¨  begin*/
 .hotel_list{
     background: #fff;
     margin-bottom:0.98rem;
@@ -191,7 +191,7 @@ i,em{
     position: relative;
     top: -0.02rem;
 }
-/*¾Æµêfooter*/
+/*é…’åº—footer*/
 .hotel_footer{
     width: 100%;
     height: 0.98rem;
@@ -370,8 +370,8 @@ i,em{
     border-radius:0.1rem;
     background-color: #ffb413;
 }
-/*¾ÆµêÁĞ±í  end*/
-/*¾ÆµêÏêÇé begin*/
+/*é…’åº—åˆ—è¡¨  end*/
+/*é…’åº—è¯¦æƒ… begin*/
 a.hotel_detail_pic{
     width: 100%;
     height: 4.4rem;
@@ -507,8 +507,8 @@ a.hotel_detail_pic{
     background-size: 7.90rem 5.13rem;
     background-position: -3.18rem -0.44rem;
 }
-/*¾ÆµêÏêÇé  end*/
-/*¶©µ¥ÌîĞ´  begin*/
+/*é…’åº—è¯¦æƒ…  end*/
+/*è®¢å•å¡«å†™  begin*/
 .order_fill{
     color: #333;
     border-bottom:1px solid #e6e6e6;
@@ -872,7 +872,7 @@ a.hotel_detail_pic{
     margin-top:0.06rem;
     color: #999;
 }
-/*¶©µ¥ÌîĞ´ µ¯¿ò*/
+/*è®¢å•å¡«å†™ å¼¹æ¡†*/
 .order_mask{
     position: fixed;
     width: 100%;
@@ -924,7 +924,7 @@ a.hotel_detail_pic{
     padding-bottom:0.1rem;
     list-style: decimal;
 }
-/*ÊÖ»úÇøºÅ*/
+/*æ‰‹æœºåŒºå·*/
 .order_data_box .phone .list_tit,.order_data_box .phone .tel-btn,.order_data_box .phone .list_con{
     float: left;
 }
@@ -960,7 +960,7 @@ a.hotel_detail_pic{
     border-right: 0.5px solid #DEDEDE;
 }
 
-/*¹ú¼®Ñ¡Ôñ¿ªÊ¼*/
+/*å›½ç±é€‰æ‹©å¼€å§‹*/
 .country_header{
     opacity: 1;
 }
@@ -1036,7 +1036,7 @@ a.hotel_detail_pic{
     z-index: 100;
 }
 
-/*¹ú¼®Ä£ºıËÑË÷*/
+/*å›½ç±æ¨¡ç³Šæœç´¢*/
 .country-list-searched {
     width: 100%;
     height: auto;
@@ -1059,15 +1059,15 @@ a.hotel_detail_pic{
     padding-left: .48rem;
 
 }
-/*¹ú¼®Ñ¡Ôñ½áÊø*/
-/*¶©µ¥ÌîĞ´  end    map¿ªÊ¼*/
+/*å›½ç±é€‰æ‹©ç»“æŸ*/
+/*è®¢å•å¡«å†™  end    mapå¼€å§‹*/
 .hotel_detail_map{
     width: 100%;
     height: 3.6rem;
     margin-top:-0.6rem;
     z-index: 10;
 }
-/*µØÍ¼ÏêÇéÒ³  begin*/
+/*åœ°å›¾è¯¦æƒ…é¡µ  begin*/
 .hotel_detail_map_goback{
     width: 0.64rem;
     height: 0.64rem;
@@ -1088,7 +1088,7 @@ a.hotel_detail_pic{
     background-position: -3.19rem -0.44rem;
 }
 
-/*µØÍ¼ÏêÇéÒ³  end*/
+/*åœ°å›¾è¯¦æƒ…é¡µ  end*/
 
 
 
