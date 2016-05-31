@@ -179,9 +179,11 @@ function styleChange(id, mytext) {
 		var l_but = _("l_but");
 		function show(obj) {
 			mb = document.getElementById("r-mb");
+      body= document.getElementsByTagName(body);
 			mb.style.display = "block";
 			obj.style.bottom = "0";
 			obj.style.transition = "all 350ms";
+      body.style.overflow="hidden"
 		}
 
 		function close(obj) {

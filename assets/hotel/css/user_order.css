@@ -67,10 +67,11 @@ em{ font-style:normal}
 i.left{
   right:.28rem;
   background-position:  -3.04rem -3.124rem;
+  overflow: hidden;
 }
 i.right{
   right:1.6rem;
-  background-position:-0.48rem -3.12rem;;
+  background-position:-0.48rem -3.12rem;
 }
 .center{
   position: absolute;
