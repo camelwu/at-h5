@@ -116,7 +116,7 @@
     margin: 3%;
     height: .9rem;
     line-height: .9rem;
-    background-color: #fdb330;
+    background-color: #7bc300;
     border-radius: 8px;
     font-size: .36rem;
     text-align: center;
@@ -279,7 +279,7 @@
     display: inline-block;
     height: .6rem;
     width: 100%;
-    background-color: #ffd271;
+    background-color: #7bc300;
     position: absolute;
     top: 50%;
     left: 0;
@@ -292,7 +292,7 @@
     display: inline-block;
     height: .6rem;
     width: 100%;
-    background-color: #ffd271;
+    background-color: #7bc300;
     position: absolute;
     top: 50%;
     left: .3rem;
@@ -307,7 +307,7 @@
     display: inline-block;
     height: .6rem;
     width: 100%;
-    background-color: #ffd271;
+    background-color: #7bc300;
     position: absolute;
     top: 50%;
     left: -.3rem;
