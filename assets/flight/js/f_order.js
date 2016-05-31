@@ -219,24 +219,13 @@ var fOrder = {
         } else {
           var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']), contactInfoCache = {};
         }
-        //乘客信息核对
-        var passengerUl = document.querySelectorAll('.passenger_outer')[1],passengerLis = null,  realPara = [], tempAdult = 0, tempChild = 0;
-        passengerLis = passengerUl.querySelectorAll('li');
-        if (passengerLis) {
-          for (var li = 0; li < passengerLis.length; li++) {
-            var passPortNumber = passengerLis[li].querySelector('.passportValue').value;
-            for (var ki = 0; ki < storageInfo.length; ki++) {
-              if (storageInfo[ki].CertificateInfo.IdNumber == passPortNumber) {
-                realPara.push(storageInfo[ki])
-              }
-            }
-          }
-        }
-        for (var dd = 0; dd < realPara.length; dd++) {
-          if (realPara[dd].PassengerType == 'ADULT') {
+        //乘客人数核对
+        var  tempAdult = 0, tempChild = 0;
+        for (var dd = 0; dd < storageInfo.length; dd++) {
+          if (storageInfo[dd].PassengerType == 'ADULT') {
             tempAdult++;
           }
-          if (realPara[dd].PassengerType == 'CHILD') {
+          if (storageInfo[dd].PassengerType == 'CHILD') {
             tempChild++;
           }
         }
@@ -244,7 +233,8 @@ var fOrder = {
           jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
         }
-        postPara.travellerInfo = realPara;
+
+        postPara.travellerInfo = storageInfo;
         if (window['localStorage']['contact_selected']) {
           contactInfo = JSON.parse(window['localStorage']['contact_selected']);
         } else {
@@ -302,7 +292,6 @@ var fOrder = {
           that.fadeHandler();
           if (result.success && result.code == 200) {
             var orderResultInfo = {}, that =fOrder;
-            console.log( that.postPara)
             orderResultInfo['orderTime'] = new Date();
             orderResultInfo['totalPrice'] = that.priceData['totalPrice'];
             orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
@@ -310,7 +299,7 @@ var fOrder = {
             orderResultInfo['numofChild'] = that.postPara['wapOrder']['numofChild'];
             orderResultInfo['routeType'] = that.postPara['wapOrder']['routeType'];
             orderResultInfo['flightInfo'] = that.curFlightData;
-            orderResultInfo['travellerInfo'] = realPara;
+            orderResultInfo['travellerInfo'] = storageInfo;
             orderResultInfo['contactDetail'] = contactInfo;
             orderResultInfo['bookingID'] = result['data']['bookingID'];
             orderResultInfo['bookingRefNo'] = result['data']['bookingRefNo'];
