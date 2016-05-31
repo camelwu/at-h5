@@ -148,7 +148,7 @@
     $('.jpop_box_tic').hide();
   })
 
-  //关于亚洲旅游
+  //关于亚程旅游
   $('#atIntroduce').click(function(){
     $('#link_at').show();
     $('#close_page_at').click(function(){

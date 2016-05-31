@@ -166,7 +166,7 @@
 
             <div class="order-notice order_notice">
                 <i class="order-notice-btn btn"></i>
-                <span class="order-notice-txt txt">已经阅读亚洲旅行网<span id="state_btn" style="color: #ffbf4b">旅行须知</span></span>
+                <span class="order-notice-txt txt">已经阅读亚程旅行网<span id="state_btn" style="color: #ffbf4b">旅行须知</span></span>
             </div>
         </div>
         <!--   底部预订   -->
@@ -189,7 +189,7 @@
 <<<<<<< HEAD
     <!--   背景块   -->
 =======
-    <!--   背景块   -->  
+    <!--   背景块   -->
 
 >>>>>>> rem
     <div class="mask" id="r-mb" style="z-index: 10"></div>
