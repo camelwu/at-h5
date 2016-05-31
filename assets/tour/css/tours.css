@@ -74,8 +74,8 @@ i,em{
 }
 .index_hotspot .img_box{
     height: 4rem;
-    background-size:cover;
-    background-position:center center;
+    background:url(../../images/loading_def_big.png);
+    background-size:100% 100%;
     overflow: hidden;
 }
 .index_hotspot .img_box img{
@@ -961,7 +961,7 @@ a.hotel_detail_pic{
     width: 100%;
 }
 
-/*国籍选择开始*/
+/*国籍选择�?�?*/
 .country_header{
     opacity: 1;
 }
@@ -1061,14 +1061,14 @@ a.hotel_detail_pic{
 
 }
 /*国籍选择结束*/
-/*订单填写  end    map开始*/
+/*订单填写  end    map�?�?*/
 .hotel_detail_map{
     width: 100%;
     height: 3.6rem;
     margin-top:-0.6rem;
     z-index: 10;
 }
-/*地图详情页  begin*/
+/*地图详情�?  begin*/
 .hotel_detail_map_goback{
     width: 0.64rem;
     height: 0.64rem;
@@ -1089,7 +1089,7 @@ a.hotel_detail_pic{
     background-position: -3.19rem -0.44rem;
 }
 
-/*地图详情页  end*/
+/*地图详情�?  end*/
 
 
 
