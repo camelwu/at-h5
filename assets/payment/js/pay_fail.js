@@ -50,7 +50,7 @@
                     if(type.id==1){
                         data.data[0].bookingRefNo=data.data[0].bookingReferenceNo;
                         data.data[0].productName=data.data[0].hotelName;
-                        data.data[0].totalPrice=parseInt(data.data[0].totalRoomRate);
+                        data.data[0].totalPrice=data.data[0].totalRoomRate;
                     }else if(type.id==2){
                         data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                         data.data.totalPrice=data.data.totalFlightPrice;
@@ -87,8 +87,8 @@
                       data.data.productName = data.data.flightInfo.cityNameFrom+"-"+data.data.flightInfo.cityNameTo;
                       data.data.totalPrice=data.data.totalFlightPrice;
                     }
-                    var html = template("vlm_login", data.data);
-                    $("#vlm_login").html(html);
+                    var html = template("elements", data.data);
+                    $("#elements").html(html);
                 }
 
             });
@@ -104,8 +104,8 @@
             _getData(type,bookingRefNo,3,function(data){
                 if (data.success) {
                     data.data.totalPrice=data.data.totalFlightPrice;
-                    var html = template("vlm_login", data.data);
-                    $("#vlm_login").html(html);
+                    var html = template("elements", data.data);
+                    $("#elements").html(html);
                     vlm.init();
                 }
                 else{

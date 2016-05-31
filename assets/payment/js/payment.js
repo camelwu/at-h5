@@ -219,7 +219,6 @@
                         guestNameList.push(guestInfo);
                     }
                     var param;
-                    debugger;
                     Parameters = {
                         "availability": true,
                         "bankName": model.bankName,
@@ -378,7 +377,7 @@
               debugger;
                 //data.data.totalPrice=data.data.totalFlightPrice;
                 if (bookingRefNo == null) {
-                    data.data.totalPrice=data.data.calcuTotalPrice*data.data.NumOfRoom;
+                    data.data.totalPrice=data.data.calcuTotalPrice;
                     data.data.totalPriceCNY=data.data.calcuTotalPriceCNY*data.data.NumOfRoom;
                     data.data.hotelName=data.data.HotelGenInfo.hotelNameLocale;
                     data.data.roomType=data.data.RoomTypeName;

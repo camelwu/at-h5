@@ -33,8 +33,9 @@ var fIndexModal = {
       vlm.loadJson(questUrl, JSON.stringify(dataObj), Callback);
     }
   },
+
   getCityType: function (arg) {
-    var dataPool1 = internationalCities, dataPool2 = domesticCities,tag1 = "";
+    var dataPool1 = internationalCities, dataPool2 = domesticCities, tag1 = "";
     dataPool1.forEach(function (index) {
       if (index.cityCode == arg) {
         tag1 = "international";//domestic
@@ -49,64 +50,65 @@ var fIndexModal = {
     });
     return tag1;
   },
-  getHotCityHandler:function(){
-       this.tAjax("", {}, "50100010", 3, this.citySearchHandler);
-       return this
+
+  getHotCityHandler: function () {
+    this.tAjax("", {}, "50100010", 3, this.citySearchHandler);
+    return this
   },
 
-  citySearchHandler:function(){
-    var place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'),countryListSearched=document.querySelector('.country-list-searched'), that = fIndexModal;
-    var city_outer = document.querySelector('.city_outer'),tempString1 = "", outputString1 = "",resultArray = {}, internationalArray={}, domesticArray = {}, array1=[], array2=[];
-    var internationalTitle = document.querySelector('.international_title'), domesticTitle= document.querySelector('.domestic_title');
+  citySearchHandler: function () {
+    var place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'), countryListSearched = document.querySelector('.country-list-searched'), that = fIndexModal;
+    var city_outer = document.querySelector('.city_outer'), tempString1 = "", outputString1 = "", resultArray = {}, internationalArray = {}, domesticArray = {}, array1 = [], array2 = [];
+    var internationalTitle = document.querySelector('.international_title'), domesticTitle = document.querySelector('.domestic_title');
     that.hotInterCity = arguments[0].data.hotCitysInternational;
     that.hotDometicCity = arguments[0].data.hotCitysCN;
-    Array.prototype.distinct=function(){
-      var sameObj=function(a,b){
+    Array.prototype.distinct = function () {
+      var sameObj = function (a, b) {
         var tag = true;
-        if(!a||!b)return false;
-        for(var x in a){
-          if(!b[x])
+        if (!a || !b)return false;
+        for (var x in a) {
+          if (!b[x])
             return false;
-          if(typeof(a[x])==='object'){
-            tag=sameObj(a[x],b[x]);
-          }else{
-            if(a[x]!==b[x])
+          if (typeof(a[x]) === 'object') {
+            tag = sameObj(a[x], b[x]);
+          } else {
+            if (a[x] !== b[x])
               return false;
           }
         }
         return tag;
       };
-      var newArr=[],obj={};
-      for(var i=0,len=this.length;i<len;i++){
-        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+      var newArr = [], obj = {};
+      for (var i = 0, len = this.length; i < len; i++) {
+        if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
           newArr.push(this[i]);
-          obj[typeof(this[i])+this[i]]=this[i];
+          obj[typeof(this[i]) + this[i]] = this[i];
         }
       }
       return newArr;
     };
-    var returnRArray = function(){
-      var result={}, array1=[], data = arguments[0];
-      data.forEach(function(itemValue){
-        array1.push(itemValue.pingYin.substring(0,1).toUpperCase())
+    var returnRArray = function () {
+      var result = {}, array1 = [], data = arguments[0];
+      data.forEach(function (itemValue) {
+        array1.push(itemValue.pingYin.substring(0, 1).toUpperCase())
       });
-      array1=array1.distinct();
-      array1=array1.sort();
-      array1.forEach(function(item){
+      array1 = array1.distinct();
+      array1 = array1.sort();
+      array1.forEach(function (item) {
         result[item] = [];
       });
       return result;
     };
     internationalArray = returnRArray(internationalCities);
     domesticArray = returnRArray(domesticCities);
-    internationalCities.forEach(function(itemValue) {
+    internationalCities.forEach(function (itemValue) {
       for (var temp in  internationalArray) {
         if (itemValue.pingYin.substring(0, 1).toUpperCase() == temp) {
           internationalArray[temp].push(itemValue);
         }
       }
     });
-    domesticCities.forEach(function(itemValue) {
+    domesticCities.forEach(function (itemValue) {
       for (var temp in  domesticArray) {
         if (itemValue.pingYin.substring(0, 1).toUpperCase() == temp) {
           domesticArray[temp].push(itemValue);
@@ -115,213 +117,215 @@ var fIndexModal = {
     });
     that.domesticArray = domesticArray;
     that.internationalArray = internationalArray;
-    that.addHandler(place, "click", function(e){
+    that.addHandler(place, "click", function (e) {
       var e = e || window.event, target = e.target || e.srcElement;
-      if(target.getAttribute('data-city-type') == "domestic"){
+      if (target.getAttribute('data-city-type') == "domestic") {
         internationalTitle.className = "international_title grey-title";
         domesticTitle.className = "domestic_title light-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: domesticArray, hotCity:that.hotDometicCity});
+        outputString1 = ejs.render(tempString1, {resultArray: domesticArray, hotCity: that.hotDometicCity});
         $(".city_detail_info").eq(0).html(outputString1);
         city_outer.style.display = "block";
         that.historyInitF("domestic").citySearchEvent();
-      }else if(target.getAttribute('data-city-type') == "international"){
+      } else if (target.getAttribute('data-city-type') == "international") {
         internationalTitle.className = "international_title light-title";
         domesticTitle.className = "domestic_title grey-title";
         that.cityEle = target;
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: internationalArray,hotCity:that.hotInterCity});
+        outputString1 = ejs.render(tempString1, {resultArray: internationalArray, hotCity: that.hotInterCity});
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("international").citySearchEvent();
         city_outer.style.display = "block";
       }
       cityZone.value = "";
       countryListSearched.innerHTML = "";
-      countryListSearched.style.display ="none";
+      countryListSearched.style.display = "none";
     });
     return that;
   },
-  historyInitF:function(){
-    var str = arguments[0]|| "",string = "",storage = window.sessionStorage,historyList = document.querySelector('.history_list'),historyWrap = document.querySelector('.history_choose_city') ;
-    var hisData = [],that = this;
-        if(str=="international"){
-          hisData = JSON.parse(storage.getItem('internationalHistory')) || []
-      }else{
-          hisData = JSON.parse(storage.getItem('domesticHistory')) || []
-        }
-    if(hisData.length>=1){
-      for(var i=0; i<hisData.length;i++){
-        (function(i){
-          var i=i;
-          if(hisData[i].cityCode==fIndexModal.cityEle.getAttribute('data-code')){
-            string+='<li class="city_list cur" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
-          }else{
-            string+='<li class="city_list" data-city-code="'+hisData[i].cityCode+'">'+hisData[i].cityNameCN+'</li>';
+
+  historyInitF: function () {
+    var str = arguments[0] || "", string = "", storage = window.sessionStorage, historyList = document.querySelector('.history_list'), historyWrap = document.querySelector('.history_choose_city');
+    var hisData = [], that = this;
+    if (str == "international") {
+      hisData = JSON.parse(storage.getItem('internationalHistory')) || []
+    } else {
+      hisData = JSON.parse(storage.getItem('domesticHistory')) || []
+    }
+    if (hisData.length >= 1) {
+      for (var i = 0; i < hisData.length; i++) {
+        (function (i) {
+          var i = i;
+          if (hisData[i].cityCode == fIndexModal.cityEle.getAttribute('data-code')) {
+            string += '<li class="city_list cur" data-city-code="' + hisData[i].cityCode + '">' + hisData[i].cityNameCN + '</li>';
+          } else {
+            string += '<li class="city_list" data-city-code="' + hisData[i].cityCode + '">' + hisData[i].cityNameCN + '</li>';
           }
 
         })(i);
       }
       historyList.innerHTML = string;
       historyWrap.style.display = "block";
-    }else{
+    } else {
       historyList.innerHTML = "";
       historyWrap.style.display = "none";
     }
     return this
   },
-  cityChooseHistory:function(){
-         var data = arguments[0]||[],storage = window.sessionStorage,historyList = document.querySelector('.history_list'),
-            internationalHistory = JSON.parse(storage.getItem('internationalHistory')) || [],that = this,
-                 domesticHistory = JSON.parse(storage.getItem('domesticHistory')) || [];
-    Array.prototype.distinct=function(){
-      var sameObj=function(a,b){
+
+  cityChooseHistory: function () {
+    var data = arguments[0] || [], storage = window.sessionStorage, historyList = document.querySelector('.history_list'),
+      internationalHistory = JSON.parse(storage.getItem('internationalHistory')) || [], that = this,
+      domesticHistory = JSON.parse(storage.getItem('domesticHistory')) || [];
+    Array.prototype.distinct = function () {
+      var sameObj = function (a, b) {
         var tag = true;
-        if(!a||!b)return false;
-        for(var x in a){
-          if(!b[x])
+        if (!a || !b)return false;
+        for (var x in a) {
+          if (!b[x])
             return false;
-          if(typeof(a[x])==='object'){
-            tag=sameObj(a[x],b[x]);
-          }else{
-            if(a[x]!==b[x])
+          if (typeof(a[x]) === 'object') {
+            tag = sameObj(a[x], b[x]);
+          } else {
+            if (a[x] !== b[x])
               return false;
           }
         }
         return tag;
       };
-      var newArr=[],obj={};
-      for(var i=0,len=this.length;i<len;i++){
-        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+      var newArr = [], obj = {};
+      for (var i = 0, len = this.length; i < len; i++) {
+        if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
           newArr.push(this[i]);
-          obj[typeof(this[i])+this[i]]=this[i];
+          obj[typeof(this[i]) + this[i]] = this[i];
         }
       }
       return newArr;
     };
-        var historyTag=function(){
-                var data = arguments[0]. str="";
-                if(data.length>=1){
-                for(var i=0; i<data.length;i++){
-                  console.log(fIndexModal.cityEle.getAttribute('data-code'))
-                  console.log(data[i].cityCode)
-                  str+='<li class="city_list'+fIndexModal.cityEle.getAttribute('data-code')==data[i].cityCode?'cur':''+'" data-city-code="'+data[i].cityCode+'">'+data[i].cityNameCN+'</li>';
-                  }
-                  historyList.innerHTML = str;
-                }else{
-                  historyList.innerHTML = ""
-                }
-        };
-         if(data.type == "international"){
-           internationalHistory.push(data);
-           internationalHistory = internationalHistory.distinct();
-           if(internationalHistory.length>3){
-             internationalHistory = internationalHistory.slice(1)
-           }
-           storage.setItem('internationalHistory', JSON.stringify(internationalHistory));
-           historyTag(internationalHistory)
-         }else{
-            domesticHistory.push(data);
-            domesticHistory = domesticHistory.distinct();
-           if(domesticHistory.length>3){
-              domesticHistory = domesticHistory.slice(1)
-           }
-            storage.setItem('domesticHistory', JSON.stringify(domesticHistory));
-            historyTag(domesticHistory)
-         }
+    var historyTag = function () {
+      var data = arguments[0].str = "";
+      if (data.length >= 1) {
+        for (var i = 0; i < data.length; i++) {
+          str += '<li class="city_list' + fIndexModal.cityEle.getAttribute('data-code') == data[i].cityCode ? 'cur' : '' + '" data-city-code="' + data[i].cityCode + '">' + data[i].cityNameCN + '</li>';
+        }
+        historyList.innerHTML = str;
+      } else {
+        historyList.innerHTML = ""
+      }
+    };
+    if (data.type == "international") {
+      internationalHistory.unshift(data);
+      internationalHistory = internationalHistory.distinct();
+      if (internationalHistory.length > 3) {
+        internationalHistory = internationalHistory.slice(0, 3)
+      }
+      storage.setItem('internationalHistory', JSON.stringify(internationalHistory));
+      historyTag(internationalHistory)
+    } else {
+      domesticHistory.unshift(data);
+      domesticHistory = domesticHistory.distinct();
+      if (domesticHistory.length > 3) {
+        domesticHistory = domesticHistory.slice(0, 3)
+      }
+      storage.setItem('domesticHistory', JSON.stringify(domesticHistory));
+      historyTag(domesticHistory)
+    }
   },
-  citySearchEvent:function(){
-    var cityOuter = document.querySelector('.city_outer'),that = this, tempString1="", outputString1="", outputString1="";
+
+  citySearchEvent: function () {
+    var cityOuter = document.querySelector('.city_outer'), that = this, tempString1 = "", outputString1 = "", outputString1 = "";
     var cityInputZone = document.querySelector('#city-input-zone');
-    this.addHandler(cityOuter, "click", function(e){
+    this.addHandler(cityOuter, "click", function (e) {
       var e = e || window.event, target = e.target || e.srcElement,
         internationalTitle = document.querySelector('.international_title'),
-        domesticTitle= document.querySelector('.domestic_title');
-      if(target==internationalTitle){
+        domesticTitle = document.querySelector('.domestic_title');
+      if (target == internationalTitle) {
         cityInputZone.value = "";
-        internationalTitle.className="international_title light-title";
-        domesticTitle.className="domestic_title grey-title";
+        internationalTitle.className = "international_title light-title";
+        domesticTitle.className = "domestic_title grey-title";
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: that.internationalArray,hotCity:that.hotInterCity});
+        outputString1 = ejs.render(tempString1, {resultArray: that.internationalArray, hotCity: that.hotInterCity});
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("international");
-      }else if(target==domesticTitle){
+      } else if (target == domesticTitle) {
         cityInputZone.value = "";
-        internationalTitle.className="international_title grey-title";
-        domesticTitle.className="domestic_title light-title";
+        internationalTitle.className = "international_title grey-title";
+        domesticTitle.className = "domestic_title light-title";
         tempString1 = $("#template_city_summary").html();
-        outputString1 = ejs.render(tempString1, {resultArray: that.domesticArray, hotCity:that.hotDometicCity});
+        outputString1 = ejs.render(tempString1, {resultArray: that.domesticArray, hotCity: that.hotDometicCity});
         $(".city_detail_info").eq(0).html(outputString1);
         that.historyInitF("domestic");
-      }else if(target.className.indexOf('city_list')>-1){
-        var dateCode = target.getAttribute('data-city-code'), type=that.getCityType(dateCode);
-        that.cityEle.setAttribute("data-code", dateCode)
+      } else if (target.className.indexOf('city_list') > -1) {
+        var dateCode = target.getAttribute('data-city-code'), type = that.getCityType(dateCode);
+        that.cityEle.setAttribute("data-code", dateCode);
         that.cityEle.innerHTML = target.innerHTML;
-        that.cityEle.setAttribute("data-city-type",type);
-        that.cityChooseHistory({type:type, cityCode:dateCode, cityNameCN:target.innerHTML});
+        that.cityEle.setAttribute("data-city-type", type);
+        that.cityChooseHistory({type: type, cityCode: dateCode, cityNameCN: target.innerHTML});
         this.style.display = "none";
-      }else if(target.className =="header_back" || target.className =="icon_back"){
+      } else if (target.className == "header_back" || target.className == "icon_back") {
         this.style.display = "none";
       }
     });
-      var searchHandler=function(){
-        var cityListSearched = document.querySelector('.country-list-searched-order');
-        var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = cityInputZone.value, resultStr='';
-        var allCityData = internationalCities.concat(domesticCities);
-        Array.prototype.distinct=function(){
-          var sameObj=function(a,b){
-            var tag = true;
-            if(!a||!b)return false;
-            for(var x in a){
-              if(!b[x])
+    var searchHandler = function () {
+      var cityListSearched = document.querySelector('.country-list-searched-order');
+      var searchResult = [], reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = cityInputZone.value, resultStr = '';
+      var allCityData = internationalCities.concat(domesticCities);
+      Array.prototype.distinct = function () {
+        var sameObj = function (a, b) {
+          var tag = true;
+          if (!a || !b)return false;
+          for (var x in a) {
+            if (!b[x])
+              return false;
+            if (typeof(a[x]) === 'object') {
+              tag = sameObj(a[x], b[x]);
+            } else {
+              if (a[x] !== b[x])
                 return false;
-              if(typeof(a[x])==='object'){
-                tag=sameObj(a[x],b[x]);
-              }else{
-                if(a[x]!==b[x])
-                  return false;
-              }
-            }
-            return tag;
-          };
-          var newArr=[],obj={};
-          for(var i=0,len=this.length;i<len;i++){
-            if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
-              newArr.push(this[i]);
-              obj[typeof(this[i])+this[i]]=this[i];
             }
           }
-          return newArr;
+          return tag;
         };
-        if(reg.test(valueStr)){
-          var mb = String(valueStr).toLowerCase();
-          allCityData.forEach(function(array){
-                if(array.cityCode){
-                  if(array.cityNameEn.toLowerCase().indexOf(valueStr)>-1||array.cityNameCN.toLowerCase().indexOf(valueStr)>-1||array.cityCode.toLowerCase().indexOf(valueStr)>-1||array.countryName.toLowerCase().indexOf(valueStr)>-1|| array.hyKeyWord.toLowerCase().indexOf(valueStr)>-1||array.pingYin.toLowerCase().indexOf(valueStr)>-1){
-                    searchResult.push(array);
-                  }
-                }
-          });
-        }
-        searchResult = searchResult.distinct();
-        if(!searchResult.length){
-          resultStr +='<li>无搜索结果</li>';
-          cityListSearched.style.display = 'none';
-        }else{
-          for(var l = 0;l<searchResult.length;l++){
-            resultStr += '<li class="city_list" data-city-code="'+searchResult[l].cityCode+'">'+searchResult[l].cityNameCN+'</li></li>'
+        var newArr = [], obj = {};
+        for (var i = 0, len = this.length; i < len; i++) {
+          if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+            newArr.push(this[i]);
+            obj[typeof(this[i]) + this[i]] = this[i];
           }
-          cityListSearched.innerHTML = resultStr;
-          cityListSearched.style.display = 'block';
         }
+        return newArr;
       };
-    if(cityInputZone.addEventListener){
-      cityInputZone.addEventListener('input',searchHandler,false)
-    }else{
-      cityInputZone.attachEvent('onpropertychange',searchHandler)
+      if (reg.test(valueStr)) {
+        var mb = String(valueStr).toLowerCase();
+        allCityData.forEach(function (array) {
+          if (array.cityCode) {
+            if (array.cityNameEn.toLowerCase().indexOf(valueStr) > -1 || array.cityNameCN.toLowerCase().indexOf(valueStr) > -1 || array.cityCode.toLowerCase().indexOf(valueStr) > -1 || array.countryName.toLowerCase().indexOf(valueStr) > -1 || array.hyKeyWord.toLowerCase().indexOf(valueStr) > -1 || array.pingYin.toLowerCase().indexOf(valueStr) > -1) {
+              searchResult.push(array);
+            }
+          }
+        });
+      }
+      searchResult = searchResult.distinct();
+      if (!searchResult.length) {
+        resultStr += '<li>无搜索结果</li>';
+        cityListSearched.style.display = 'none';
+      } else {
+        for (var l = 0; l < searchResult.length; l++) {
+          resultStr += '<li class="city_list" data-city-code="' + searchResult[l].cityCode + '">' + searchResult[l].cityNameCN + '</li></li>'
+        }
+        cityListSearched.innerHTML = resultStr;
+        cityListSearched.style.display = 'block';
+      }
+    };
+    if (cityInputZone.addEventListener) {
+      cityInputZone.addEventListener('input', searchHandler, false)
+    } else {
+      cityInputZone.attachEvent('onpropertychange', searchHandler)
     }
 
   },
+
   eventHandler: function () {
     var content = document.querySelector('.content'), that = this, paraObj = {}, storage = window.sessionStorage;
     var singleWrap = document.querySelector('#timeSingleWrap'), doubleWrap = document.querySelector('#timeDoubleWrap');
@@ -351,11 +355,18 @@ var fIndexModal = {
         that.deg += 180;
         oSpan.style.transform = 'rotate(' + that.deg + 'deg)';
         oSpan.style.webkitTransform = 'rotate(' + that.deg + 'deg)';
-        tem = cityName[0].innerHTML, temCode = cityName[0].getAttribute('data-code');
+        $(".citySearch").each(function () {
+          $(this).hide()
+        });
+        tem = cityName[0].innerHTML;
+        temCode = cityName[0].getAttribute('data-code');
         cityName[0].innerHTML = cityName[1].innerHTML;
         cityName[0].setAttribute('data-code', cityName[1].getAttribute('data-code'));
         cityName[1].innerHTML = tem;
         cityName[0].setAttribute('data-code', temCode);
+        $(".citySearch").each(function () {
+          $(this).fadeIn("700")
+        });
       } else if (target.className.indexOf("minus") > -1 || target.className.indexOf("plus") > -1) {
         var adultNumEle = document.querySelector('.adultNumber'), childNumEle = document.querySelector('.childNumber'), adultNum = Number(adultNumEle.innerHTML), childNum = Number(childNumEle.innerHTML);
         var adultIs = document.querySelectorAll(".adult i"), childIs = document.querySelectorAll(".child i");
@@ -424,7 +435,7 @@ var fIndexModal = {
         };
         var getTripType = function () {
           var cityTypeFrom = cityEles[0].getAttribute('data-city-type'), cityTypeTo = cityEles[1].getAttribute('data-city-type');
-          return (cityTypeFrom == "domestic"&&cityTypeTo == "domestic" ) ? "domestic":"international";
+          return (cityTypeFrom == "domestic" && cityTypeTo == "domestic" ) ? "domestic" : "international";
         };
         paraObj = {
           "cityCodeFrom": cityEles[0].getAttribute('data-code'),

@@ -83,6 +83,7 @@ var fSingleList = {
     });
     return this;
   },
+
   createTags: function () {
     var data = arguments[0];
     var tempString = "", outputString = "", that = fSingleList;
@@ -99,11 +100,11 @@ var fSingleList = {
       if (result.data.flightInfos.length < 1) {
         no_result.style.display = "block";
         $('#loadMore').hide();
-        that.first == true?that.filterHandler().dateCalender():that.dateCalender();
+        that.first == true ? that.filterHandler().dateCalender() : that.dateCalender();
         that.first = false;
       } else {
         that.currrentFlightList = result.data;
-        that.first == true?that.filterHandler(result.data.airCorpCodeList):"";
+        that.first == true ? that.filterHandler(result.data.airCorpCodeList) : "";
         that.first = false;
         that.createTags(that.currrentFlightList).fadeHandler().eventHandler().loadMoreHandler().dateCalender();
       }
@@ -260,7 +261,7 @@ var fSingleList = {
         that.postObj.cabinClass = transferData[0].filters[2].FilterValues[0];
         that.postObj.airCorpCode = transferData[0].filters[3].FilterValues[0];
         that.postObj.priorityRule = transferData[0].sortTypes[0];
-        if (that.postObj.airCorpCode == undefined ||that.postObj.airCorpCode == "") {
+        if (that.postObj.airCorpCode == undefined || that.postObj.airCorpCode == "") {
           delete that.postObj.airCorpCode;
         }
         that.pageHandler();
@@ -291,7 +292,7 @@ var fSingleList = {
           that.postObj.priorityRule = transferData[0].sortTypes[0];
           delete that.postObj.isDesc
         }
-        if (that.postObj.airCorpCode == undefined ||that.postObj.airCorpCode == "") {
+        if (that.postObj.airCorpCode == undefined || that.postObj.airCorpCode == "") {
           delete that.postObj.airCorpCode;
         }
         that.pageHandler();
@@ -301,7 +302,7 @@ var fSingleList = {
   },
 
   filterHandler: function (data) {
-    var dataTransfer = data || [], tempArray = [{filterText:"不限",filterValue:"" }], f_data = {}, that = this;
+    var dataTransfer = data || [], tempArray = [{filterText: "不限", filterValue: ""}], f_data = {}, that = this;
     if (dataTransfer.length > 1) {
       dataTransfer.forEach(function (array, item) {
         var temObj = {};
@@ -508,38 +509,38 @@ var fSingleList = {
     return this
   },
 
-  airCompanyHandler:function(){
-       var data = arguments[0],tag = 0, tem = [], that = fSingleList;
-      Array.prototype.distinct=function(){
-      var sameObj=function(a,b){
+  airCompanyHandler: function () {
+    var data = arguments[0], tag = 0, tem = [], that = fSingleList;
+    Array.prototype.distinct = function () {
+      var sameObj = function (a, b) {
         var tag = true;
-        if(!a||!b)return false;
-        for(var x in a){
-          if(!b[x])
+        if (!a || !b)return false;
+        for (var x in a) {
+          if (!b[x])
             return false;
-          if(typeof(a[x])==='object'){
-            tag=sameObj(a[x],b[x]);
-          }else{
-            if(a[x]!==b[x])
+          if (typeof(a[x]) === 'object') {
+            tag = sameObj(a[x], b[x]);
+          } else {
+            if (a[x] !== b[x])
               return false;
           }
         }
         return tag;
       };
-      var newArr=[],obj={};
-      for(var i=0,len=this.length;i<len;i++){
-        if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
+      var newArr = [], obj = {};
+      for (var i = 0, len = this.length; i < len; i++) {
+        if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
           newArr.push(this[i]);
-          obj[typeof(this[i])+this[i]]=this[i];
+          obj[typeof(this[i]) + this[i]] = this[i];
         }
       }
       return newArr;
     };
-       data.forEach(function(array){
-            tem.push(array.airCorpCode);
-       });
-      tem = tem.distinct();
-      return tem.length>1?1:0
+    data.forEach(function (array) {
+      tem.push(array.airCorpCode);
+    });
+    tem = tem.distinct();
+    return tem.length > 1 ? 1 : 0
   },
 
   init: function () {

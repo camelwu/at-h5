@@ -549,22 +549,22 @@ uoHisData();
     lsf_myweb.bind(uo_or_infor,'click',function(){
         var oI=this.getElementsByTagName('i')[0];
         if(bOk2){
-            oI.style.background='url(../images/ui/icons1.png) -76px -38px ';
-            oI.style.backgroundSize='400px 120px';
+            oI.style.background='url(../images/ui.1.0/icon_common.png) -5.56rem -3.33rem';
+            oI.style.backgroundSize='7.9rem 7.83rem';
             lsf_myweb.getbyid('uo_hid').style.height='100%';
-            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='38.88rem';
+            lsf_myweb.getbyid('uo_hid_con').style.marginBottom='39.78rem';
             //点击阴影区域
             var uo_hid_shadow=document.getElementById('uo_hid_shadow');
             lsf_myweb.bind(uo_hid_shadow,'click',function(){
-                oI.style.background='url(../images/ui/icons1.png) -51px -38px ';
-                oI.style.backgroundSize='400px 120px';
+                oI.style.background='url(../../images/ui.1.0/icon_common.png) -5.18rem -3.33rem';
+                oI.style.backgroundSize='7.9rem 7.83rem';
                 lsf_myweb.getbyid('uo_hid').style.height='0';
                 lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38.88rem';
                 bOk2=true;
             });
         }else{
-            oI.style.background='url(../images/ui/icons1.png) -51px -38px ';
-            oI.style.backgroundSize='400px 120px';
+            oI.style.background='url(../images/ui.1.0/icon_common.png) -5.18rem -3.33rem ';
+            oI.style.backgroundSize='7.9rem 7.83rem';
             lsf_myweb.getbyid('uo_hid').style.height='0';
             lsf_myweb.getbyid('uo_hid_con').style.marginBottom='-38.88rem';
         }

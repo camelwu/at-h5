@@ -1,3 +1,13 @@
+/*支付模块（酒店，机票，景点，酒+景，机+酒）*/
+var _bussinessType= {
+  "Hotle":{id: 1, name: "酒店", detailCode: "0013", payMentCode: "0012"},
+  "Flight":{id: 2, name: "机票", detailCode: "3006", payMentCode: "3004"},
+  "Scenic":{id: 3, name: "景点", detailCode: "0095", payMentCode: "0093"},
+  "Tour":{id: 4, name: "酒+景", detailCode: "0095", payMentCode: "0203"},
+  "FlightHotle":{id: 5, name: "机+酒", detailCode: "50100007", payMentCode: "50100005"},
+  "FlightHotelTour":{id: 6, name: "机+酒+景", detailCode: "60100013", payMentCode: "60100011"}
+};
+
 var  hftFlightDetail = {
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {
@@ -95,12 +105,31 @@ var  hftFlightDetail = {
       window.history.go(-1);
     });
   },
+
   init:function(){
-    var flightData = null, storage = window.sessionStorage;
-    flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
-    this.createTags({flightInfo:flightData.flightInfo});
-    $("#status").fadeOut();
-    $("#preloader").delay(400).fadeOut("medium");
+
+    var bookingRefNo=vlm.getpara("bookingRefNo");//订单code
+    //获取Url参数
+    var type=_bussinessType[vlm.getpara("type")];//业务类型（1酒店，2机票，3景点，4酒+景，5机+景）
+    if(bookingRefNo==undefined){
+        var flightData = null, storage = window.sessionStorage;
+        flightData = JSON.parse(storage.getItem('hftFlightHotelTourInfo'));
+        this.createTags({flightInfo:flightData.flightInfo});
+        $("#status").fadeOut();
+        $("#preloader").delay(400).fadeOut("medium");
+    }
+    else{
+       var para = {
+          "Parameters": {"BookingRefNo": bookingRefNo},
+          "ForeEndType": 3,
+          "Code": type.detailCode
+        };
+      vlm.loadJson("", JSON.stringify(para),function(data){
+        hftFlightDetail.createTags({flightInfo:data.data.flightInfo});
+        $("#status").fadeOut();
+        $("#preloader").delay(400).fadeOut("medium");
+      })
+    }
   }
 };
 
