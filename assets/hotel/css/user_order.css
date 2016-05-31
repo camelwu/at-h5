@@ -209,7 +209,7 @@ i.right{
   background-position: -5.56rem -3.33rem;
   position: absolute;
   top: .4rem;
-  left: -0.8rem;
+  right:0rem;
 }
 /*费用明细*/
 .hotel_detail{

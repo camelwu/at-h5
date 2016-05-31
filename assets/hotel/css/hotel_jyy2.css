@@ -35,7 +35,7 @@ ul,li{
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("../../images/hotelListerrorpic.png") no-repeat;
+  background: url("../../images/loading_def_small.png") no-repeat;
   background-size: 100% 100%;
 }
 .hotel_content{

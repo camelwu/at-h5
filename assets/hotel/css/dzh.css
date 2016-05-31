@@ -23,7 +23,8 @@ div#h-Tab {
 
 div#h-Tab a {
     font-size: .32rem;
-    flex: 1.0;
+    /*flex: 1.0;*/
+    width: 50%;
     text-align: center;
     line-height: 1rem;
     color: rgb(153, 153, 153);
