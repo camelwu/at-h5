@@ -127,7 +127,8 @@ var fOrder = {
       }else{
         wrapEle.style.display = "block"
       }
-    }
+
+    };
 
     var searchHandler=function(){
       var countryInputZone = document.querySelector('#country-input-zone');
@@ -280,8 +281,6 @@ var fOrder = {
         postPara.contactDetail = contactInfo;
         /*this.fadeHandler("show");*/
         that.postPara = postPara;
-        console.log(postPara);
-        console.log( that.postPara)
         that.tAjax(vlm.apiWithDeviceID, that.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
@@ -315,7 +314,7 @@ var fOrder = {
                 }
               }, '确定', '取消');
             } else {
-                 jAlert('')
+                 jAlert(result.message)
             }
           }
         });
@@ -375,7 +374,6 @@ var fOrder = {
 
   createTags: function () {
     var data = arguments[0];
-    console.log(data);
     var tempString1 = "", outputString1 = "", tempString2 = "", outputString2 = "", that = fOrder;
     tempString1 = $("#template_flight_summary").html();
     outputString1 = ejs.render(tempString1, {flightInfo: data});
@@ -422,7 +420,6 @@ var fOrder = {
     this.curFlightData = flightData;
     this.fIndexInfo = fIndexInfo;
     this.priceData = priceData;
-    console.log(this.priceData)
     this.createTags(flightData).priceTags(priceData);
     return this;
   },
