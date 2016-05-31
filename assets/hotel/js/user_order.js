@@ -468,11 +468,11 @@ uoHisData();
         }
         if(parseInt(uo_c2_num.innerHTML)<=1){
             uo_c2_i1.style.background='url("../images/ui.1.0/icon_common.png") -0.48rem -3.12rem no-repeat';
-            uo_c2_i1.style.backgroundSize=' 7.9rem 7.83rem';
+            uo_c2_i1.style.backgroundSize='7.9rem 7.83rem';
         }
-        if(parseInt(uo_c2_num.innerHTML)<10){
+        if(parseInt(uo_c2_num.innerHTML)<=10){
             uo_c2_i2.style.background='url("../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat';
-            uo_c2_i2.style.backgroundSize=' 7.9rem 7.83rem';
+            uo_c2_i2.style.backgroundSize='7.9rem 7.83rem';
         }
         //修改数据并存储数据
         fake_data.NumOfRoom=parseInt(uo_c2_num.innerHTML);
