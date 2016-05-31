@@ -1,3 +1,4 @@
+body{}
 /*通用_content*/
 .content{
   padding:.88rem 0 .9rem;
@@ -781,7 +782,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   width: .5rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -6.99rem -1.43rem;
+  background-position: -6.99rem -1.4rem;
 }
 
 
@@ -809,35 +810,35 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 
 .booking_package_pre_minbtn{
   float: left;
-  height: .52rem;
-  width: .54rem;
+  height: .6rem;
+  width: .6rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
   background-position: -0.5rem -3.14rem;
 }
 
-.booking_package_pre_minbtn_current{
+.booking_package_pre_minbtn.current{
   float: left;
-  height: .52rem;
-  width: .54rem;
+  height: .6rem;
+  width: .6rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -1.29rem -3.14rem;
+  background-position: -1.23rem -3.14rem;
 }
 
 .booking_package_pre_maxbtn{
   float: left;
-  height: .52rem;
-  width: .54rem;
+  height: .6rem;
+  width: .6rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -2.15rem -3.14rem;
+  background-position: -1.24rem -3.14rem;
 }
 
-.booking_package_pre_maxbtn_current{
+.booking_package_pre_maxbtn.current{
   float: left;
-  height: .52rem;
-  width: .54rem;
+  height: .6rem;
+  width: .6rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
   background-position: -3.05rem -3.14rem;
@@ -913,12 +914,12 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .booking_package_addpackage_i{
   display: inline-block;
   position: relative;
-  top: .11rem;
-  height: .52rem;
-  width: .54rem;
+  top: .16rem;
+  height: .6rem;
+  width: .6rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -3.05rem -3.14rem;
+  background-position: -3rem -3.08rem;
 }
 
 .booking_package_addpackage_p{
@@ -1065,7 +1066,10 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .booking_package_pickup_select{
   display: inline-block;
   float: right;
+  text-align: right;
   color: #999999;
+  text-overflow: ellipsis;
+  width: 4rem;
 }
 
 .booking_footer{
@@ -1119,10 +1123,296 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   margin-top: .23rem;
   background: url(/images/ui/icon_common.png) no-repeat;
   background-size: 7.90rem 5.13rem;
-  background-position: -2.1rem -0.5rem;
+  background-position: -2.65rem -0.5rem;
 }
 
 .booking_footer_i.current{
-  background-position: -2.65rem -0.5rem;
+  background-position: -2.1rem -0.5rem;
+}
+
+.booking_footer_pop{
+  background: #FFFFFF;
+  height: 7.8rem;
+  position: fixed;
+  bottom: -7.8rem;
+  left: 0;
+  right: 0;
+  z-index: 1010;
+  pointer-events: visible;
+}
+
+.booking_footer_pop_tool{
+  height: .96rem;
+  line-height: .96rem;
+  font-size: .28rem;
+  background: #F7F7F7;
+  padding: 0 .28rem 0 .28rem;
+}
+
+.booking_footer_pop_tool_l{
+  display: inline-block;
+  float: left;
+  color: #999999;
+  /*pointer-events: auto;*/
+}
+
+.booking_footer_pop_tool_r{
+  display: inline-block;
+  float: right;
+  color: #7bc300;
+  /*pointer-events: auto;*/
+}
+
+.booking_footer_pop_content{
+
+}
+
+.booking_footer_pop_list{
+
+}
+
+.booking_footer_pop_item{
+  border-bottom: 1px solid #e6e6e6;
+  padding: .4rem .28rem .4rem .28rem;
+  font-size: .32rem;
+  position: relative;
+}
+
+.booking_footer_pop_item_l{
+
+}
+
+.booking_footer_pop_item_r{
+  pointer-events:auto;
+}
+
+.booking_footer_pop_item_title{
+  display: block;
+  width: 5.8rem;
+  margin: 0 0 .36rem 0;
+}
+
+.booking_footer_pop_item_category{
+  color:#999999;
+  font-size: .24rem;
+}
+
+.booking_footer_pop_item_i{
+  position: absolute;
+  height: .5rem;
+  width: .5rem;
+  right: .28rem;
+  top: 50%;
+  margin-top: -0.25rem;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -4.38rem -0.5rem;
+}
+
+.booking_footer_pop_item_i.current{
+  background-position: -5.05rem -0.5rem;
+}
+
+.mask_pop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #000;
+  opacity: 0.7;
+  filter: alpha(opacity:70);
+  z-index: 999;
+  pointer-events:auto;
+  display: none;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+.stopgray {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  pointer-events: none;
+}
+
+.booking_footer_popprice{
+  background: #FFFFFF;
+  height: 7.8rem;
+  position: fixed;
+  bottom: -7.8rem;
+  left: 0;
+  right: 0;
+  z-index: 110;
+  pointer-events: visible;
+}
+
+.booking_footer_popprice_list{
+  padding: .4rem .28rem .4rem .28rem;
+  font-size: .32rem;
+  position: relative;
+}
+
+.booking_footer_popprice_item{
+  height: .96rem;
+  line-height: .96rem;
+}
+
+.booking_footer_popprice_item_l{
+  display: inline-block;
+  float: left;
+}
+
+.booking_footer_popprice_item_r{
+  display: inline-block;
+  float: right;
+}
+
+.booking_footer_popprice_itemr_price{
+
+}
+
+.booking_footer_popprice_itemr_perprice{
+
+}
+
+.booking_footer_popprice_tips{
+  display: inline-block;
+  position: absolute;
+  bottom: 1.2rem;
+  text-align: center;
+  font-size: .28rem;
+  line-height: .3rem;
+  height: .3rem;
+  color: #999999;
+  width: 100%;
+}
+
+.mask_tips {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #000;
+  opacity: 0.7;
+  filter: alpha(opacity:70);
+  z-index: 99;
+  pointer-events:auto;
+  display: none;
 }
 /*预订页面*/
+/*接送页面*/
+.pickup_pop {
+  background: #fcfcfc;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.pickup_pop_header {
+  background-color: #fcfcfc;
+  height: 0.88rem;
+  border-bottom: #d1d1d1 0.01rem solid;
+  line-height: 0.88rem;
+}
+
+.pickup_pop_header_fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+}
+
+.pickup_pop_header_left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 0.88rem;
+}
+
+.pickup_pop_header_btn {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  display: block;
+  margin-left: 0.3rem;
+}
+
+.pickup_pop_header_return {
+  height: 0.88rem;
+  width: 0.8rem;
+  overflow: hidden;
+  display: inline-block;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.90rem 5.13rem;
+  background-position: -0.35rem -0.3rem;
+}
+.pickup_pop_search_input {
+  background: #eeeeee;
+  box-sizing: border-box;
+  width: 6.2rem;
+  height: 0.6rem;
+  padding: 0.06rem 0.28rem 0.06rem 2.5rem;
+  outline: none;
+  font-size: 0.28rem;
+  color: #333;
+  -webkit-appearance: none;
+  border-radius: 0.32rem;
+  display: inline-block;
+  border: 0;
+}
+
+.pickup_pop_search_suggest{
+  background: #fcfcfc;
+  padding: .9rem .28rem 0 .28rem;
+  overflow-y: scroll;
+}
+.pickup_pop_search_icon {
+  position: absolute;
+  left: 2rem;
+  height: 0.88rem;
+  width: 0.8rem;
+  overflow: hidden;
+  display: inline-block;
+  background: url(/images/ui/icon_common.png) no-repeat;
+  background-size: 7.9rem 5.13rem;
+  background-position: -2.3rem -2.12rem;
+}
+.pickup_pop_search_relative {
+  position: relative;
+  left: 1.04rem;
+}
+
+.pickup_pop_search_suggestbg{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: #fcfcfc;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  pointer-events: visible;
+}
+
+.pickup_pop_suggest_item{
+  height: .96rem;
+  line-height: .96rem;
+  list-style: none;
+  font-size: .28rem;
+  color: #333333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.pickup_pop_search_suggest_list{
+
+}
+/*接送页面*/
