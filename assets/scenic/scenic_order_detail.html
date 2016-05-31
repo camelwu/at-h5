@@ -25,201 +25,424 @@
       <p class="center-text"></p>
     </div>
   </div>
-		<div class="all-elements">
-      <!--   header   -->
-      <div class="header">
-        <a href="javascript:history.go(-1);" class="header_back">
-          <i class="icon_back"></i>
-        </a>
-        <h3>景点预订</h3>
-      </div>
-      <!--   header   -->
-			<!--   内容   -->
-			<div class="content_booking">
-          <section class="booking_wrap">
-            <!--景点包信息-->
-            <div class="booking_package">
-              <h3 class="booking_package_h3">八达岭长城+军事博物馆一日游[仅限12月23日-12月30日使用]<span class="booking_package_span">(产品编号 PK348758032345)</span></h3>
-              <P class="booking_package_preprice"><span class="booking_package_price">¥</span><span class="booking_package_price">56</span><span class="booking_package_preprice_span">起/人</span></P>
-            </div>
-            <!--景点包信息-->
-            <!--景点列表-->
-            <div class="booking_package_tours">
-              <!--景点-->
-              <div class="booking_package">
-                <div class="booking_package_tourtitle">
-                  <i class="booking_package_i"></i>
-                  <h3 class="booking_package_h3">八达岭长城</h3>
-                </div>
-                <div class="booking_package_date">
-                    <p class="booking_package_date_p">03月12日</p>
-                    <i class="booking_package_date_i"></i>
-                </div>
-                <div class="booking_package_fullday">
-                  <ul class="booking_package_fullday_ul">
-                    <li class="booking_package_fullday_li current">上午</li>
-                    <li class="booking_package_fullday_li">下午</li>
-                    <li class="booking_package_fullday_li">晚上</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="booking_package">
-                <div class="booking_package_tourtitle">
-                  <i class="booking_package_i"></i>
-                  <h3 class="booking_package_h3">军事博物馆</h3>
-                </div>
-                <div class="booking_package_date">
-                  <p class="booking_package_date_p">03月12日</p>
-                  <i class="booking_package_date_i"></i>
-                </div>
-                <div class="booking_package_fullday">
-                  <ul class="booking_package_fullday_ul">
-                    <li class="booking_package_fullday_li current">上午</li>
-                    <li class="booking_package_fullday_li">下午</li>
-                    <li class="booking_package_fullday_li">晚上</li>
-                  </ul>
-                </div>
-              </div>
-              <!--景点-->
-            </div>
-            <!--景点列表-->
-            <!--计数-->
-            <div class="booking_package_pre">
-                <p class="booking_package_pre_title">游玩人数</p>
-                <div class="booking_package_pre_group">
-                  <i class="booking_package_pre_minbtn"></i>
-                  <span class="booking_package_pre_num">2</span>
-                  <i class="booking_package_pre_maxbtn"></i>
-                </div>
-            </div>
-            <!--计数-->
-          </section>
+  <div class="all-elements">
+    <!--   header   -->
+    <div class="header">
+      <a href="javascript:history.go(-1);" class="header_back">
+        <i class="icon_back"></i>
+      </a>
+      <h3>景点预订</h3>
+    </div>
+    <!--   header   -->
+    <!--   内容   -->
+    <div class="content_booking">
+        <section id="js_BookingPackage_first" class="booking_wrap">
+          <!--景点包信息-->
+          <!--<div class="booking_package">-->
+            <!--<h3 class="booking_package_h3">八达岭长城+军事博物馆一日游[仅限12月23日-12月30日使用]<span class="booking_package_span">(产品编号 PK348758032345)</span></h3>-->
+            <!--<P class="booking_package_preprice"><span class="booking_package_price">¥</span><span class="booking_package_price">56</span><span class="booking_package_preprice_span">起/人</span></P>-->
+          <!--</div>-->
+          <!--景点包信息-->
+          <!--景点列表-->
+          <!--<div class="booking_package_tours">-->
+            <!--&lt;!&ndash;景点&ndash;&gt;-->
+            <!--<div class="booking_package">-->
+              <!--<div class="booking_package_tourtitle">-->
+                <!--<i class="booking_package_i"></i>-->
+                <!--<h3 class="booking_package_h3">八达岭长城</h3>-->
+              <!--</div>-->
+              <!--<div class="booking_package_date">-->
+                  <!--<p class="booking_package_date_p">03月12日</p>-->
+                  <!--<i class="booking_package_date_i"></i>-->
+              <!--</div>-->
+              <!--<div class="booking_package_fullday">-->
+                <!--<ul class="booking_package_fullday_ul">-->
+                  <!--<li  class="booking_package_fullday_li current">上午</li>-->
+                  <!--<li class="booking_package_fullday_li">下午</li>-->
+                  <!--<li class="booking_package_fullday_li">晚上</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="booking_package">-->
+              <!--<div class="booking_package_tourtitle">-->
+                <!--<i class="booking_package_i"></i>-->
+                <!--<h3 class="booking_package_h3">军事博物馆</h3>-->
+              <!--</div>-->
+              <!--<div class="booking_package_date">-->
+                <!--<p class="booking_package_date_p">03月12日</p>-->
+                <!--<i class="booking_package_date_i"></i>-->
+              <!--</div>-->
+              <!--<div class="booking_package_fullday">-->
+                <!--<ul class="booking_package_fullday_ul">-->
+                  <!--<li class="booking_package_fullday_li current">上午</li>-->
+                  <!--<li class="booking_package_fullday_li">下午</li>-->
+                  <!--<li class="booking_package_fullday_li">晚上</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;景点&ndash;&gt;-->
+          <!--</div>-->
+          <!--景点列表-->
+          <!--计数-->
+          <!--<div class="booking_package_pre">-->
+              <!--<p class="booking_package_pre_title">游玩人数</p>-->
+              <!--<div class="booking_package_pre_group">-->
+                <!--<i class="booking_package_pre_minbtn"></i>-->
+                <!--<span class="booking_package_pre_num">0</span>-->
+                <!--<i class="booking_package_pre_maxbtn current"></i>-->
+              <!--</div>-->
+          <!--</div>-->
+          <!--计数-->
+        </section>
 
-          <section class="booking_wrap">
-            <!--景点包信息-->
-            <div class="booking_package">
-              <h3 class="booking_package_h3">八达岭长城+军事博物馆一日游[仅限12月23日-12月30日使用]<span class="booking_package_span">(产品编号 PK348758032345)</span></h3>
-              <P class="booking_package_preprice"><span class="booking_package_price">¥</span><span class="booking_package_price">56</span><span class="booking_package_preprice_span">起/人</span></P>
-            </div>
-            <!--景点包信息-->
-            <!--计数-->
-            <div class="booking_package_pre">
-              <p class="booking_package_pre_title">游玩人数</p>
-              <div class="booking_package_pre_group">
-                <i class="booking_package_pre_minbtn"></i>
-                <span class="booking_package_pre_num">2</span>
-                <i class="booking_package_pre_maxbtn"></i>
-              </div>
-            </div>
-            <!--计数-->
-            <!--儿童年龄数组-->
-            <div class="booking_package_pre_child">
-              <ul class="booking_package_pre_childlist">
-                <li class="booking_package_pre_childitem">
-                  <p class="booking_package_pre_childitemtitle">儿童年龄<span class="booking_package_pre_childitemnum">1</span></p>
-                  <div class="booking_package_pre_childitemright">
-                    <input type="tel" class="booking_package_pre_childiteminput" placeholder="2-12" value="">
-                    岁
-                  </div>
-                </li>
-                <li class="booking_package_pre_childitem">
-                  <p class="booking_package_pre_childitemtitle">儿童年龄<span class="booking_package_pre_childitemnum">1</span></p>
-                  <div class="booking_package_pre_childitemright">
-                    <input type="tel" class="booking_package_pre_childiteminput" placeholder="2-12" value="">
-                    岁
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!--儿童年龄数组-->
-          </section>
-
-          <section class="booking_wrap">
-            <div class="booking_package_addpackage">
-              <i class="booking_package_addpackage_i"></i>
-              <p class="booking_package_addpackage_p">添加其他套餐</p>
-            </div>
-          </section>
-
-          <section class="booking_wrap">
-            <div class="booking_package_linkman">
-              <div class="booking_package_linkman_title">
-                <i class="booking_package_i"></i>
-                <h3 class="booking_package_h3">取票人信息</h3>
-                <i class="booking_package_addpre_i"></i>
-              </div>
-              <div class="booking_package_linkman_contact">
-                <div class="booking_package_linkman_max375">
-                  <span>姓</span>
-                  <input type="text" class="booking_package_linkman_input" placeholder="Wang" value="">
-                </div>
-                <div class="booking_package_linkman_max375">
-                  <span>名</span>
-                  <input type="text" class="booking_package_linkman_input" placeholder="Baoqiang" value="">
-                </div>
-              </div>
-              <div class="booking_package_linkman_contact">
-                <span>国籍</span>
-                  <i class="booking_package_linkman_i"></i>
-              </div>
-            </div>
-            <div class="booking_package_linkman">
-              <div class="booking_package_linkman_title">
-                <i class="booking_package_i"></i>
-                <h3 class="booking_package_h3">联系人信息</h3>
-                <i class="booking_package_addpre_i"></i>
-              </div>
-              <div class="booking_package_linkman_contact">
-                <div class="booking_package_linkman_max375">
-                  <span>姓</span>
-                  <input type="text" class="booking_package_linkman_input" placeholder="Wang" value="">
-                </div>
-                <div class="booking_package_linkman_max375">
-                  <span>名</span>
-                  <input type="text" class="booking_package_linkman_input" placeholder="Baoqiang" value="">
-                </div>
-
-
-              </div>
-              <div class="booking_package_linkman_contact">
-                <div class="booking_package_linkman_max375">
-                  <span class="booking_package_linkman_phonetitle">手机号</span>
-                  <i class="booking_package_linkman_phone_i"></i>
-                  <p class="booking_package_linkman_phoneselect">+<span>86</span></p>
-
-                </div>
-                <div class="booking_package_linkman_max375">
-                  <input type="text" class="booking_package_linkman_inputphone" placeholder="用于接收短信通知" value="">
-                </div>
-              </div>
-              <div class="booking_package_linkman_contact">
-                <span>邮箱</span>
-                <input type="email" class="booking_package_linkman_inputemail" placeholder="用于接收邮件通知" value="">
-              </div>
-            </div>
-
-          </section>
+        <section id="js_BookingPackage_last" class="booking_wrap">
+          <!--景点包信息-->
+          <!--<div class="booking_package">-->
+            <!--<h3 class="booking_package_h3">八达岭长城+军事博物馆一日游[仅限12月23日-12月30日使用]<span class="booking_package_span">(产品编号 PK348758032345)</span></h3>-->
+            <!--<P class="booking_package_preprice"><span class="booking_package_price">¥</span><span class="booking_package_price">56</span><span class="booking_package_preprice_span">起/人</span></P>-->
+          <!--</div>-->
+          <!--景点包信息-->
+          <!--计数-->
+          <!--<div class="booking_package_pre">-->
+            <!--<p class="booking_package_pre_title">游玩人数</p>-->
+            <!--<div class="booking_package_pre_group">-->
+              <!--<i class="booking_package_pre_minbtn"></i>-->
+              <!--<span class="booking_package_pre_num">0</span>-->
+              <!--<i class="booking_package_pre_maxbtn current"></i>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--计数-->
+          <!--儿童年龄数组-->
+          <!--<div class="booking_package_pre_child">-->
+            <!--<ul id="js_booking_package_pre_childlist" class="booking_package_pre_childlist">-->
+              <!--<li class="booking_package_pre_childitem">-->
+                <!--<p class="booking_package_pre_childitemtitle">儿童年龄<span class="booking_package_pre_childitemnum">1</span></p>-->
+                <!--<div class="booking_package_pre_childitemright">-->
+                  <!--<input type="tel" class="booking_package_pre_childiteminput" placeholder="2-12" value="">-->
+                  <!--岁-->
+                <!--</div>-->
+              <!--</li>-->
+              <!--<li class="booking_package_pre_childitem">-->
+                <!--<p class="booking_package_pre_childitemtitle">儿童年龄<span class="booking_package_pre_childitemnum">1</span></p>-->
+                <!--<div class="booking_package_pre_childitemright">-->
+                  <!--<input type="tel" class="booking_package_pre_childiteminput" placeholder="2-12" value="">-->
+                  <!--岁-->
+                <!--</div>-->
+              <!--</li>-->
+            <!--</ul>-->
+          <!--</div>-->
+          <!--儿童年龄数组-->
+        </section>
 
         <section class="booking_wrap">
-          <div class="booking_package_pickup">
-            <p class="booking_package_pickup_title">提供接送</p>
-            <i class="booking_package_pickup_i"></i>
-            <p class="booking_package_pickup_select">请选择酒店</p>
+          <div id="js_booking_package_addpackage" class="booking_package_addpackage">
+            <i class="booking_package_addpackage_i"></i>
+            <p class="booking_package_addpackage_p">添加其他套餐</p>
           </div>
         </section>
 
-        <section class="booking_footer">
-          <div class="booking_package_linkman_max375">
-            <i class="booking_footer_i current"></i>
-            <p class="booking_footer_p">
-              总额:<span class="booking_package_price layout">¥</span><span class="booking_package_price">1056</span>
-            </p>
+        <section class="booking_wrap">
+          <div class="booking_package_linkman">
+            <div class="booking_package_linkman_title">
+              <i class="booking_package_i"></i>
+              <h3 class="booking_package_h3">取票人信息</h3>
+              <i class="booking_package_addpre_i"></i>
+            </div>
+            <div class="booking_package_linkman_contact">
+              <div class="booking_package_linkman_max375">
+                <span>姓</span>
+                <input type="text" class="booking_package_linkman_input" placeholder="Wang" value="">
+              </div>
+              <div class="booking_package_linkman_max375">
+                <span>名</span>
+                <input type="text" class="booking_package_linkman_input" placeholder="Baoqiang" value="">
+              </div>
+            </div>
+            <div class="booking_package_linkman_contact">
+              <span>国籍</span>
+                <i class="booking_package_linkman_i"></i>
+            </div>
           </div>
-          <a class="booking_footer_bookingbtn">立即预订</a>
+          <div class="booking_package_linkman">
+            <div class="booking_package_linkman_title">
+              <i class="booking_package_i"></i>
+              <h3 class="booking_package_h3">联系人信息</h3>
+              <i class="booking_package_addpre_i"></i>
+            </div>
+            <div class="booking_package_linkman_contact">
+              <div class="booking_package_linkman_max375">
+                <span>姓</span>
+                <input type="text" class="booking_package_linkman_input" placeholder="Wang" value="">
+              </div>
+              <div class="booking_package_linkman_max375">
+                <span>名</span>
+                <input type="text" class="booking_package_linkman_input" placeholder="Baoqiang" value="">
+              </div>
+
+
+            </div>
+            <div class="booking_package_linkman_contact">
+              <div class="booking_package_linkman_max375">
+                <span class="booking_package_linkman_phonetitle">手机号</span>
+                <i class="booking_package_linkman_phone_i"></i>
+                <p class="booking_package_linkman_phoneselect">+<span>86</span></p>
+
+              </div>
+              <div class="booking_package_linkman_max375">
+                <input type="text" class="booking_package_linkman_inputphone" placeholder="用于接收短信通知" value="">
+              </div>
+            </div>
+            <div class="booking_package_linkman_contact">
+              <span>邮箱</span>
+              <input type="email" class="booking_package_linkman_inputemail" placeholder="用于接收邮件通知" value="">
+            </div>
+          </div>
+
         </section>
+
+      <section id="js_booking_package_pickup" class="booking_wrap">
+        <div class="booking_package_pickup">
+          <p class="booking_package_pickup_title">提供接送</p>
+          <i class="booking_package_pickup_i"></i>
+          <p class="booking_package_pickup_select js_booking_package_pickup_select">请选择酒店</p>
+        </div>
+      </section>
+
+      <section class="booking_footer">
+        <div id="js_booking_price" class="booking_package_linkman_max375">
+          <i id="js_booking_footer_i" class="booking_footer_i"></i>
+          <p class="booking_footer_p">
+            总额:<span class="booking_package_price layout">¥</span><span class="booking_package_price js_booking_package_totalprice">0</span>
+          </p>
+        </div>
+        <a class="booking_footer_bookingbtn">立即预订</a>
+      </section>
+
+    </div>
+  </div>
+  <!--弹层 添加套餐-->
+  <section class="booking_footer_pop js_booking_footer_pop">
+    <div class="booking_footer_pop_tool">
+      <a id="js_booking_footer_pop_tool_cancel">
+        <p class="booking_footer_pop_tool_l">取消</p>
+      </a>
+      <a id="js_booking_footer_pop_tool_confirm">
+        <p class="booking_footer_pop_tool_r">确定</p>
+      </a>
+    </div>
+    <div class="booking_footer_pop_content">
+      <ul class="booking_footer_pop_list js_booking_footer_pop_list">
+        <!--<li class="booking_footer_pop_item">-->
+        <!--<p class="booking_footer_pop_item_l">-->
+        <!--<span class="booking_footer_pop_item_title">八达岭长城+军事博物馆一日游[仅限12月23日-12月30日使用]<span class="booking_footer_pop_item_category">(儿童票)</span></span>-->
+        <!--<span class="booking_package_price">¥</span><span class="booking_package_price">56</span><span class="booking_package_preprice_span">起/人</span>-->
+        <!--</p>-->
+        <!--<a id="js_booking_footer_pop_item_r" class="booking_footer_pop_item_r">-->
+        <!--<i id="js_booking_footer_pop_item_i" class="booking_footer_pop_item_i"></i>-->
+        <!--</a>-->
+        <!--</li>-->
+      </ul>
+    </div>
+  </section>
+  <div class="mask_pop"></div>
+  <!--弹层 添加套餐-->
+  <!--弹层 费用明细-->
+  <section class="booking_footer_popprice js_booking_footer_popprice">
+    <ul class="booking_footer_popprice_list js_booking_footer_popprice_list">
+      <!--<li class="booking_footer_popprice_item">-->
+        <!--<div class="booking_footer_popprice_item_l">八达岭长城一日游</div>-->
+        <!--<div class="booking_footer_popprice_item_r">-->
+          <!--¥<span class="booking_footer_popprice_itemr_price">56</span>x<span class="booking_footer_popprice_itemr_perprice">2</span>-->
+        <!--</div>-->
+      <!--</li>-->
+    </ul>
+    <div class="booking_footer_popprice_tips">
+      汇率变动,以最终支付价格为准
+    </div>
+  </section>
+  <div class="mask_tips"></div>
+  <!--弹层 费用明细-->
+  <!--弹层 接送酒店-->
+  <section class="pickup_pop">
+    <div id="pickup_pop_header">
+      <!--默认搜索-->
+      <div class="pickup_pop_header pickup_pop_header_fixed js_pickup_pop_header_default">
+        <div class="pickup_pop_header_left">
+          <a id="js_pickup_pop_header_goback" class="pickup_pop_header_btn">
+            <span class="pickup_pop_header_return pickup_pop_header_return_icon"></span>
+          </a>
+        </div>
+        <div class="pickup_pop_search_relative">
+          <span class="pickup_pop_search_icon js_pickup_pop_search_icon"></span>
+          <input type="search" class="pickup_pop_search_input js_pickup_pop_search_input" placeholder="中文/英文" >
+        </div>
       </div>
     </div>
+    <div id="js_pickup_pop_search_suggestbg" class="pickup_pop_search_suggestbg"></div>
+    <div class="pickup_pop_search_suggest_list">
+      <ul id="js_pickup_pop_suggest_list" class="pickup_pop_search_suggest">
+        <!--<li class="pickup_pop_suggest_item" data-key="2985">-->
+        <!--龙堡国际宾馆-->
+        <!--</li>-->
+        <!--<li class="pickup_pop_suggest_item" data-key="2985">-->
+        <!--龙堡国际宾馆-->
+        <!--</li>-->
+        <!--<li class="pickup_pop_suggest_item" data-key="2985">-->
+        <!--龙堡国际宾馆-->
+        <!--</li>-->
+      </ul>
 
+    </div>
+  </section>
+  <!--弹层 接送酒店-->
+  <script type="text/template" id="tpl_BookingPackage">
+    <!--景点包信息-->
+    <div class="booking_package">
+      <h3 class="booking_package_h3"><%=lists.DetailData.data.packageName%><span class="booking_package_span">(<%=lists.DetailData.data.packageRefNo%>)</span></h3>
+      <P class="booking_package_preprice">
+        <span class="booking_package_price">¥</span>
+        <span class="booking_package_price">
+          <% var perprice = 0%>
+          <% for(var i = 0;i < lists.SearchPriceData.data.prices.length;i++){ %>
+            <% if(lists.SearchPriceData.data.prices[i].category=="ADULT" && lists.isAudlt == 1){ %>
+              <% perprice = lists.SearchPriceData.data.prices[i].amount %>
+              <%=perprice %>
+            <% } %>
+            <% if(lists.SearchPriceData.data.prices[i].category=="CHILD" && lists.isAudlt == 0){ %>
+                <% perprice = lists.SearchPriceData.data.prices[i].amount %>
+                <%=perprice %>
+            <% } %>
+          <% } %>
+        </span>
+        <span class="booking_package_preprice_span">起/人</span>
+      </P>
+    </div>
+    <!--景点包信息-->
+    <% if(lists.addPackage){ %>
+    <!--景点列表-->
+    <div class="booking_package_tours">
+      <!--景点-->
+      <% for(var i = 0;i < lists.DetailData.data.tours.length;i++){ %>
+      <div class="booking_package">
+        <div class="booking_package_tourtitle">
+          <i class="booking_package_i"></i>
+          <h3 class="booking_package_h3"><%=lists.DetailData.data.tours[i].tourName %></h3>
+        </div>
+        <div class="booking_package_date">
+          <p class="booking_package_date_p">03月12日</p>
+          <i class="booking_package_date_i"></i>
+        </div>
+        <div class="booking_package_fullday">
+          <ul class="booking_package_fullday_ul">
+            <% for(var j = 0;j < lists.DetailData.data.tours.length;j++){ %>
+              <% if(lists.DetailData.data.tours[i].tourSession[j] == 4){ %>
+                <li class="booking_package_fullday_li <%if(j==0){%>current<%}%>" data-key="None" style="display: none;"></li>
+              <% } %>
+              <% if(lists.DetailData.data.tours[i].tourSession[j] == 3){ %>
+                <li class="booking_package_fullday_li <%if(j==0){%>current<%}%>" data-key="FullDayTour">全天</li>
+              <% } %>
+              <% if(lists.DetailData.data.tours[i].tourSession[j] == 2){ %>
+                <li class="booking_package_fullday_li <%if(j==0){%>current<%}%>" data-key="EveningTour">傍晚</li>
+              <% } %>
+              <% if(lists.DetailData.data.tours[i].tourSession[j] == 1){ %>
+                <li class="booking_package_fullday_li <%if(j==0){%>current<%}%>" data-key="AfternoonTour">下午</li>
+              <% } %>
+              <% if(lists.DetailData.data.tours[i].tourSession[j] == 0){ %>
+                <li class="booking_package_fullday_li <%if(j==0){%>current<%}%>" data-key="MorningTour">上午</li>
+              <% } %>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+      <% } %>
+      <!--景点-->
+    </div>
+    <!--景点列表-->
+    <% } %>
+    <% if(lists.isAudlt == 1){ %>
+    <!--计数-->
+    <div class="booking_package_pre">
+      <p class="booking_package_pre_title">游玩人数</p>
+      <div class="booking_package_pre_group">
+        <i class="booking_package_pre_minbtn js_booking_package_adult_minbtn"></i>
+        <span class="booking_package_pre_num js_booking_package_pre_adult_num" data-preprice="<%=perprice%>" data-value="0">0</span>
+        <i class="booking_package_pre_maxbtn current js_booking_package_adult_maxbtn"></i>
+      </div>
+    </div>
+    <!--计数-->
+    <% } %>
+    <% if(lists.isAudlt == 0){ %>
+    <!--计数-->
+    <div class="booking_package_pre">
+      <p class="booking_package_pre_title">游玩人数</p>
+      <div class="booking_package_pre_group">
+        <i class="booking_package_pre_minbtn js_booking_package_child_minbtn"></i>
+        <span class="booking_package_pre_num js_booking_package_pre_child_num" data-preprice="<%=perprice%>" data-value="0">0</span>
+        <i class="booking_package_pre_maxbtn current js_booking_package_child_maxbtn"></i>
+      </div>
+    </div>
+    <!--计数-->
+    <!--儿童年龄数组-->
+    <div class="booking_package_pre_child">
+      <ul class="booking_package_pre_childlist js_booking_package_pre_childlist">
+        <!--<li class="booking_package_pre_childitem">-->
+          <!--<p class="booking_package_pre_childitemtitle">儿童年龄<span class="booking_package_pre_childitemnum">1</span></p>-->
+          <!--<div class="booking_package_pre_childitemright">-->
+            <!--<input type="tel" class="booking_package_pre_childiteminput" placeholder="<%=lists.minPax%>-<%=lists.maxPax%>" value="">-->
+            <!--岁-->
+          <!--</div>-->
+        <!--</li>-->
+      </ul>
+    </div>
+    <!--儿童年龄数组-->
+    <% } %>
+  </script>
+  <script type="text/template" id="tpl_BookingPackageCount">
+    <li class="booking_package_pre_childitem">
+      <p class="booking_package_pre_childitemtitle">儿童年龄<span class="booking_package_pre_childitemnum"><%=count%></span></p>
+      <div class="booking_package_pre_childitemright">
+        <input type="tel" class="booking_package_pre_childiteminput" min="<%=lists.DetailData.data.childAgeMin%>" max="<%=lists.DetailData.data.childAgeMax%>" placeholder="<%=lists.DetailData.data.childAgeMin%>-<%=lists.DetailData.data.childAgeMax%>" value="">
+        岁
+      </div>
+    </li>
+  </script>
+  <script type="text/template" id="tpl_BookingPackageAddPackage">
+    <li class="booking_footer_pop_item">
+      <p class="booking_footer_pop_item_l">
+        <span class="booking_footer_pop_item_title"><%=lists.DetailData.data.packageName%><span class="booking_footer_pop_item_category">(<% if(lists.isAudlt != 1){ %>成人票<%}else{%>儿童票<%}%>)</span></span>
+        <span class="booking_package_price">¥</span>
+        <span class="booking_package_price">
+          <% for(var i = 0;i < lists.SearchPriceData.data.prices.length;i++){ %>
+            <% if(lists.SearchPriceData.data.prices[i].category=="ADULT" && lists.isAudlt != 1){ %>
+              <%=lists.SearchPriceData.data.prices[i].amount %>
+            <% } %>
+            <% if(lists.SearchPriceData.data.prices[i].category=="CHILD" && lists.isAudlt != 0){ %>
+                <%=lists.SearchPriceData.data.prices[i].amount %>
+            <% } %>
+          <% } %>
+        </span>
+        <span class="booking_package_preprice_span">起/人</span>
+      </p>
+      <a id="js_booking_footer_pop_item_r" class="booking_footer_pop_item_r" data-key="<% if(lists.isAudlt != 1){ %>1<%}else{%>0<%}%>">
+        <i id="js_booking_footer_pop_item_i" class="booking_footer_pop_item_i"></i>
+      </a>
+    </li>
+  </script>
+  <script type="text/template" id="tpl_BookingPackagePriceDetail">
+    <li class="booking_footer_popprice_item">
+      <div class="booking_footer_popprice_item_l"><%=tourCategory%></div>
+      <div class="booking_footer_popprice_item_r">
+        ¥<span class="booking_footer_popprice_itemr_price"><%=tourAmount%></span>x<span class="booking_footer_popprice_itemr_perprice"><%=tourNum%></span>
+      </div>
+    </li>
+  </script>
+  <script type="text/template" id="tpl_Booking_pickuppop_suggest">
+    <% for(var i=0;i<lists.length;i++){ %>
+    <li class="pickup_pop_suggest_item" data-key="<%=lists[i].pickupID%>">
+      <%=lists[i].pickupPoint%>
+    </li>
+    <% } %>
+  </script>
   <script type="text/javascript" src="../js/lib/jquery.js"></script>
   <script type="text/javascript" src="../js/lib/plugins.js"></script>
   <script type="text/javascript" src="../js/lib/vlm.js"></script>
