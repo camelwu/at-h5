@@ -359,22 +359,20 @@ i.i_address {
 /*.tubiao*/
 
 .add {
-    width: .55rem;
-    height: .54rem;
+    width: .56rem;
+    height: .56rem;
     position: absolute;
     background: url("../../images/ui.1.0/icon_common.png") -3.04rem -3.124rem no-repeat;
     background-size: 7.9rem 7.83rem;
 }
 
 .minus {
-    width: .55rem;
-    height: .54rem;
+    width: .56rem;
+    height: .56rem;
     position: absolute;
-    background: url("../../images/ui.1.0/icon_common.png") -.514rem -3.124rem no-repeat;
+    background: url("../../images/ui.1.0/icon_common.png") -0.514rem -3.124rem no-repeat;
     background-size: 7.9rem 7.83rem;
 }
-
-
 /*弹层*/
 
 #popup_content {
