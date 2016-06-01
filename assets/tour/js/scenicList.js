@@ -8,8 +8,8 @@
 			ThemeID : 0,
 			ThemeIDSpecified : 0,
 			PriceSortType : "",
-			PageIndex : 1,
-			PageSize : 10
+			//PageIndex : 1,
+			//PageSize : 10
 		},
 		ForeEndType : 3,
 		Code : "0207"
@@ -97,9 +97,12 @@
 						$("#loadMore").before(tpl_l);
 					}else{
 						$("#scenicListCont").html(tpl_l + tpl_page);
-						$("#loadMore").click(function() {
-							that(page + 1);
-						});
+						if(data.lists.length>10){
+							$("#loadMore").click(function() {
+								that(page + 1);
+							});
+						}
+
 					}
 					$("#Localtxt").html(tpl_c);
 					vlm.init();
