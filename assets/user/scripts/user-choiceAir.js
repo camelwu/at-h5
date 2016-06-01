@@ -282,7 +282,6 @@
 
   //数据保存
   var _saveDb=function(){
-      debugger;
       if(!_validate()){
         return false;
       }
@@ -528,7 +527,6 @@
 
   //获取常旅列表数据源
   var _getPassagerList=function(){
-    debugger;
      //如果正常登陆，查询数据库常旅接口
      if(memberId != null) {
        var Parameters = {
