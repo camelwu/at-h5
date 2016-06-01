@@ -8,7 +8,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   line-height: .88rem;
   background-color: #fcfcfc;
   font-size: .32rem;
-  border-bottom: 1px solid #e6e6e6;
+  /*border-bottom: 1px solid #e6e6e6;*/
   overflow: hidden;
 }
 
@@ -35,6 +35,10 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin-bottom: 1.96rem;
 }
 
+.singleTrip, .doubleTrip{
+  border-bottom: 1px solid #DEDEDE;
+}
+
 .singleTrip, .doubleTrip , .international_title, .domestic_title{
   float: left;
   width: 50%;
@@ -50,12 +54,11 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .light-title {
-  border-bottom: 0.04rem solid #7bc300;
+  border-bottom: 0.05rem solid #7bc300;
   color: #7bc300;
 }
 
 .grey-title {
-  border-bottom: none;
   color: rgb(153, 153, 153)
 }
 
