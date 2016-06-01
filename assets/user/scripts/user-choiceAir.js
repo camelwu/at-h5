@@ -45,6 +45,8 @@
      var addOrEditPassagePage=$(".addAir_page");
      var addPassagerOkBtn=$(".addAir_page .addFinish");
      var addPassagerBackBtn=$(".addAir_page .header_quit");
+     var addPassagerTitle=$(".add_passager .newTitle");
+
 
 
   //常旅列表
@@ -535,6 +537,7 @@
        vlm.loadJson("", JSON.stringify(Parameters), function (json) {
          if (json.success) {
 
+
            for (var i = 0; i <= json.data.length - 1; i++) {
              json.data[i].selected = false;//默认未选择
              passagerArray[json.data[i].traveller.travellerId] = json.data[i];
@@ -564,6 +567,9 @@
     else{
 
        var html = template(tpl_traveler, {data:choiceAir_AddPassagerArray});
+       document.getElementById("allList").innerHTML = html;
+       _bindSelectChoice();
+
        choiceAir_AddPassagerArray.forEach(function(info){
            passagerArray[info.traveller.travellerId] = info;
        })
@@ -571,20 +577,17 @@
        if(selectPassagerList !=null){
          for(var key in selectPassagerList){
            if(selectPassagerList[key].PagerType==from) {
-             $(".list-traveler .user_choice[data-id=" + key + "]").click();
+             $(".list-traveler .user_choice[data-id="+key+"]").click();
            }
 
          }
        }
 
-       document.getElementById("allList").innerHTML = html;
-       _bindSelectChoice();
      }
   };
 
   /*页面初始化方法*/
   var _initPage=function(){
-
     //免登陆，如果缓存没有数据，自己显示添加页面
     if(memberId==undefined){
       var data=JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
@@ -594,6 +597,7 @@
       }
       else{
         for (var key in data) {
+          data[key].PagerType=from;
           choiceAir_AddPassagerArray.push(data[key])
         }
         passagerListPage.show();
@@ -608,10 +612,10 @@
     }
 
     _getPassagerList();
-
-
     _bindEvent();
-    _setTitleTip();
+    titleTip.html("选择"+titleType);
+    addPassagerTitle.html("新增"+titleType)
+    //_setTitleTip();
   };
   /*接口*/
   return{
