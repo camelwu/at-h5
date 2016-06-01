@@ -733,6 +733,9 @@ header.header .header_more i.location_tip{
   margin-bottom: 0;
   font-size: .26rem;color: #000;
 }
+.note_content table,.note_content table td{
+  width: 100%!important;
+}
 .package_reserve{
   position:fixed;
   left:0;
@@ -820,8 +823,6 @@ header.header .header_more i.location_tip{
 .amy_error_box dl dd a{
   color: #fb7530;
 }
-
-
 /*
 数据错误显示页面  end
 */
