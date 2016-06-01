@@ -3,6 +3,7 @@
  *@time
  **/
 (function ($) {
+    "use strict";
     $(document).ready(function () {
         window.addEventListener('load', function () {
             FastClick.attach(document.body);
@@ -16,6 +17,7 @@
  *@author 
  **/
 (function () {
+    "use strict";
     var hotelIndex = {
         owlQuoteSlider: null,
         checkInOutDate: {},
@@ -148,6 +150,44 @@
             $("#h_out").click(function () {
                 VM.Load("h_out");
             });
+
+            //加 减按钮
+            $("#content1").on("click", ".add", function (event) {
+                var target = $(event.target);
+                var inputEle = target.siblings("input");
+                var minusEle = target.siblings(".minus");
+                var maxValue = parseInt(inputEle.attr("data-max"));
+                var inputValue = inputEle.val();
+                var atferValue = parseInt(inputValue) + 1;
+                inputEle.val(atferValue <= maxValue ? atferValue : inputValue);
+
+                if (atferValue < maxValue && !minusEle.hasClass('able')) {
+                    minusEle.addClass("able");
+                }
+                if (atferValue >= maxValue) {
+                    target.addClass("disable");
+                }
+            });
+            $("#content1").on("click", ".minus", function (event) {
+                var target = $(event.target);
+                var inputEle = target.siblings("input");
+                var addEle = target.siblings(".add");
+                var minValue = parseInt(inputEle.attr("data-min"));
+                var maxValue = parseInt(inputEle.attr("data-max"));
+                var inputValue = inputEle.val();
+                var atferValue = parseInt(inputValue) - 1;
+                inputEle.val(atferValue >= minValue ? atferValue : inputValue);
+
+                if (atferValue > minValue && !target.hasClass('able')) {
+                    minusEle.addClass("able");
+                }
+                if (atferValue <= minValue) {
+                    target.removeClass('able');
+                }
+                if (atferValue < maxValue) {
+                    addEle.removeClass('disable');
+                }
+            });
         },
         initData: function () {
             var checkIn = $('#CheckInDate'),
@@ -169,9 +209,6 @@
             var leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
 
             //默认入住离店时间
-            //默认房间数
-            //默认成人数
-            //默认儿童数
             //获取历史搜索数据
             var hotelStorage = JSON.parse(localStorage.getItem("hotelStorage12345"));
             //国际
@@ -185,13 +222,7 @@
                     checkOut.val(leaveDate);
                     week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
                     week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
-                    //                    checkIn.value = yearDS + '-' + smonthStr + '-' + sdayStr;
-                    //                    checkOut.value = yearDS + '-' + emonthStr + '-' + edayStr;
                     $("#total_day").html(1);
-                    //week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
-                    //week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
-                    //obj[checkIn.value] = "入住";
-                    //obj[checkOut.value] = "离店";
                     interInitDate[beginDate] = "入住";
                     interInitDate[leaveDate] = "离店";
 
@@ -201,84 +232,88 @@
                     $("#total_day").html(hotelStorage.InterTotalDay);
                     week_span1.html(hotelStorage.InterBeginDateWeek);
                     week_span2.html(hotelStorage.InterLeaveDateWeek);
-                    //                    lsf_myweb.getbyid('total_day').innerHTML = hotelStorage.InterTotalDay;
-                    //                    week_span1.innerHTML = hotelStorage.InterBeginDateWeek;
-                    //                    week_span2.innerHTML = hotelStorage.InterLeaveDateWeek;
-                    //obj[hotelStorage.InterBeginDate] = "入住";
-                    //obj[hotelStorage.InterLeaveDate] = "离店";
                     interInitDate[hotelStorage.InterBeginDate] = "入住";
                     interInitDate[hotelStorage.InterLeaveDate] = "离店";
                 }
                 recoverStatus("count1,count2,count3");
             } else {
+                //默认房间数
+                //默认成人数
+                //默认儿童数
                 $("#count1").val(hotelIndex.NumRoom);
                 $("#count2").val(hotelIndex.NumAdult);
                 $("#count3").val(hotelIndex.NumChild);
                 checkIn.val(beginDate);
                 checkOut.val(leaveDate);
-                //                    checkIn.value = yearDS + '-' + smonthStr + '-' + sdayStr;
-                //                    checkOut.value = yearDS + '-' + emonthStr + '-' + edayStr;
                 $("#total_day").html(1);
                 week_span1.html(vlm.Utils.getWeek(beginDate, "Ymd"));
                 week_span2.html(vlm.Utils.getWeek(leaveDate, "Ymd"));
-                //week_span1.innerHTML=returnWeek(checkIn.value)+' 入住';
-                //week_span2.innerHTML=returnWeek(checkOut.value)+' 离店';
-                //obj[checkIn.value] = "入住";
-                //obj[checkOut.value] = "离店";
                 interInitDate[beginDate] = "入住";
                 interInitDate[leaveDate] = "离店";
             }
 
-            //还原减号状态
+            //还原加减状态
+            /**
+             *@param  input id array   : 'count1,count2,count3';
+             **/
             function recoverStatus(itemIdString) {
                 var itemIdAarr = itemIdString.split(",");
                 for (var i = 0, len = itemIdAarr.length; i < len; i++) {
-                    var itemEle = document.getElementById(itemIdAarr[i]);
-                    var itemMinNum = itemEle.getAttribute("data-min");
-                    var minusItem = itemEle.parentNode.getElementsByClassName("minus")[0];
-                    if (parseInt(itemEle.value) > itemMinNum) {
-                        minusItem.style.backgroundPosition = "0px 0px";
-                    } else {
-                        minusItem.style.backgroundPosition = "-0.48rem -3.12rem";
+                    var inputEle = $("#" + itemIdAarr[i]);
+                    var minusEle = inputEle.siblings(".minus");
+                    var addEle = inputEle.siblings(".add");
+                    var inputValue = inputEle.val();
+                    var minValue = parseInt(inputEle.attr("data-min"));
+                    var maxVlaue = parseInt(inputEle.attr("data-max"));
+
+                    if (inputValue > minValue) {
+                        minusEle.addClass("able");
+                    }
+                    if (inputValue == maxVlaue) {
+                        addEle.addClass('disable');
                     }
                 }
             }
 
             //国内城市
-            //            var DomCheckInDate = document.getElementById('DomCheckInDate');
-            //            var DomCheckOutDate = document.getElementById('DomCheckOutDate');
-            //            var oDate3 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 2);
-            //            var oDate4 = new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate() + 3);
-            //            var DomBeginDate = oDate3.getFullYear() + '-' + toDou(oDate3.getMonth() + 1) + '-' + toDou(oDate3.getDate());
-            //            var DomLeaveDate = oDate4.getFullYear() + '-' + toDou(oDate4.getMonth() + 1) + '-' + toDou(oDate4.getDate());
-            //            var week_span3 = document.getElementById('weekSpan3');
-            //            var week_span4 = document.getElementById('weekSpan4');
-            //            var obj2 = {};
-            //            if (hotelStorage) {
-            //                if (new Date(hotelStorage.DomCheckInDate.replace(/-/g, '/')) < js) {
-            //                    DomCheckInDate.value = yearDS + '-' + smonthStr + '-' + sdayStr;
-            //                    DomCheckOutDate.value = yearDS + '-' + emonthStr + '-' + edayStr;
-            //                    $('#domeTotalDay').html(1);
-            //                    //week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
-            //                    //week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
-            //                } else {
-            //                    DomCheckInDate.value = hotelStorage.DomCheckInDate;
-            //                    DomCheckOutDate.value = hotelStorage.DomCheckOutDate;
-            //                    $('#domeTotalDay').html(hotelStorage.DomeTotalDay);
-            //                    week_span3.innerHTML = hotelStorage.DomBeginDateWeek;
-            //                    week_span4.innerHTML = hotelStorage.DomLeaveDateWeek;
-            //                }
-            //                //obj2[hotelStorage.DomCheckInDate]="入住";
-            //                //obj2[hotelStorage.DomCheckOutDate]="离店";
-            //            } else {
-            //                DomCheckInDate.value.value = yearDS + '-' + smonthStr + '-' + sdayStr;
-            //                DomCheckOutDate.value = yearDS + '-' + emonthStr + '-' + edayStr;
-            //                $('#domeTotalDay').html(1);
-            //                //week_span3.innerHTML=returnWeek(DomCheckInDate.value)+' 入住';
-            //                //week_span4.innerHTML=returnWeek(DomCheckOutDate.value)+' 离店';
-            //                //obj2[DomCheckInDate.value]="入住";
-            //                //obj2[DomCheckOutDate.value]="离店";
-            //            }
+            var DomCheckInDate = $('#DomCheckInDate');
+            var DomCheckOutDate = $('#DomCheckOutDate');
+            var oDate3 = new Date(year, month, day + 2);
+            var oDate4 = new Date(year, month, day + 3);
+            var DomBeginDate = vlm.Utils.format_date(oDate3.getFullYear() + '-' + (oDate3.getMonth() + 1) + '-' + oDate3.getDate(), 'Ymd');
+            var DomLeaveDate = vlm.Utils.format_date(oDate4.getFullYear() + '-' + (oDate4.getMonth() + 1) + '-' + oDate4.getDate(), 'Ymd');
+            var week_span3 = $('#weekSpan3');
+            var week_span4 = $('#weekSpan4');
+            if (hotelStorage) {
+                //如果历史搜索入住日期早于最早入住日期
+                if (new Date(hotelStorage.DomCheckInDate.replace(/-/g, '/')) < oDate3) {
+                    DomCheckInDate.val(DomBeginDate);
+                    DomCheckOutDate.val(DomLeaveDate);
+                    week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
+                    week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));
+                    $("#total_day").html(1);
+                    domInitDate[DomBeginDate] = "入住";
+                    domInitDate[DomLeaveDate] = "离店";
+
+                } else {
+                    DomCheckInDate.val(hotelStorage.DomCheckInDate);
+                    DomCheckOutDate.val(hotelStorage.DomCheckOutDate);
+                    $("#total_day").html(hotelStorage.DomeTotalDay);
+                    week_span3.html(hotelStorage.DomBeginDateWeek);
+                    week_span4.html(hotelStorage.DomLeaveDateWeek);
+                    domInitDate[hotelStorage.DomBeginDate] = "入住";
+                    domInitDate[hotelStorage.DomLeaveDate] = "离店";
+                }
+            } else {
+                DomCheckInDate.val(DomBeginDate);
+                DomCheckOutDate.val(DomLeaveDate);
+                $("#total_day").html(1);
+                week_span3.html(vlm.Utils.getWeek(DomBeginDate, "Ymd"));
+                week_span4.html(vlm.Utils.getWeek(DomLeaveDate, "Ymd"));
+                domInitDate[DomBeginDate] = "入住";
+                domInitDate[DomLeaveDate] = "离店";
+            }
+
             domInitDate[beginDate] = "入住";
             domInitDate[leaveDate] = "离店";
             //初始化日期
