@@ -310,26 +310,24 @@
 
     <script src="js/hft_order.js"></script>
     <script>
+      localStorage.removeItem("travellerInfo_selected");
+      localStorage.removeItem("contact_selected");
+      sessionStorage.removeItem("choiceAir_select_passenger-list");
+      sessionStorage.removeItem("choiceAir_select_contact-table");
+
         //删除出行人
         function delPassager(obj) {
-            var adn = $('.adu_choose').html();
-            var chn = $('.chi_choose').html();
-            if ($('#order-twrap >li').length <= 1) {
-                $(obj).parents('.order_tlist2').hide();
-            } else {
-                $(obj).parents('.order_tlist2').remove();
+          $(obj).parent().parent().remove();
+
+          var id=$(obj).parent().find(".itemId").val();
+          var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+          var temp={};
+          for(var key in list){
+            if(key !=id){
+              temp[key]=list[key];
             }
-
-            if ($(obj).parents('.order_tlist2').attr('passtype') == 'adult') {
-                adn--;
-                $('.adu_choose').html(adn);
-
-            } else {
-                $(obj).parents('.order_tlist2').remove();
-                chn--;
-                $('.chi_choose').html(chn);
-            }
-
+          }
+          sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
         }
 
         // 编辑出行人
