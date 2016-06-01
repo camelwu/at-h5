@@ -18,6 +18,12 @@ body {
   background: #F7F7F7;
   font-size: 0.28rem;
 }
+::scrollbar {
+	display: none;
+}
+::-webkit-scrollbar {
+	display: none;
+}
 
 img {
   width: 100%;
@@ -283,7 +289,7 @@ a {
 .content.no_header {
   padding-top: 0;
 }
-
+.
 .site_right {
   width: 100%;
   height: .88rem;
