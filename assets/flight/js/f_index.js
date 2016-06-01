@@ -216,7 +216,9 @@ var fIndexModal = {
     };
     if (data.type == "international") {
       internationalHistory.unshift(data);
+      console.log(internationalHistory)
       internationalHistory = internationalHistory.distinct();
+      console.log(internationalHistory)
       if (internationalHistory.length > 3) {
         internationalHistory = internationalHistory.slice(0, 3)
       }

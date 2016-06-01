@@ -5,16 +5,17 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="green">
-  <meta name="Keywords" content="亚洲旅行网">
+  <meta name="Keywords" content="亚程旅行网">
   <meta name="Description" content="境外专业旅行服务提供机构">
   <meta name="screen-orientation" content="portrait">
   <meta name="x5-orientation" content="portrait">
   <meta name="full-screen" content="yes">
   <meta name="x5-fullscreen" content="true">
-  <title>酒+景套餐详情页 - 亚洲旅行网</title>
+  <title>酒+景套餐详情页 - 亚程旅行网</title>
   <link href="../styles/reset.css" rel="stylesheet" />
   <link href="css/ht_tour.css" rel="stylesheet" />
 <link href="../styles/swipebox.css" rel="stylesheet">
+<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet">
 </head>
 <body>
 <div id="preloader" style="display: none;">
@@ -113,7 +114,7 @@
 					'<img src="{%=pictureURL%}" alt="image">'+
 					'{% }else{ %}'+
 					'<a href="{%=imgs[0].imageURL%}" class="swipebox" title="1/{%=(imgl)%}">' +
-					'<img src="../images/hotelDetailerrorpic.png" alt="image" id="tourLoad">'+
+					'<img src="../images/loading_def_big.png" alt="image" id="tourLoad">'+
 					'{% for(var i=1;i < imgl;i++){ %}'+
 					'<a style="display:none;" href="{%=imgs[i].imageURL%}" class="swipebox" title="{%=(i+1)%}/{%=(imgl)%}">' +
 					'<img src="{%=imgs[i].imageURL%}" alt="image"></a>'+

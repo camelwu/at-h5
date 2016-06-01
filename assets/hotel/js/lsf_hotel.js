@@ -80,34 +80,31 @@ var lsf_myweb = {
 var owlQuoteSlider = $(".quote-slider");
 
 owlQuoteSlider.owlCarousel({
-    items: 1
-
+  items : 1
 });
-owlQuoteSlider.on('changed.owl.carousel', function (event) {
-    countryChange();
+owlQuoteSlider.on('changed.owl.carousel', function() {
+  countryChange();
 });
-
 function countryChange() {
-    var Inter = document.getElementById('Inter');
-    var Dom = document.getElementById('Dom');
-
-    if (Dom.className == 'on') {
-        Dom.className = '';
-        Inter.className = 'on';
-    } else {
-        Dom.className = 'on';
-        Inter.className = '';
-    }
+  var Inter = document.getElementById('Inter');
+  var Dom = document.getElementById('Dom');
+  if (Dom.className === 'on'){
+    Dom.className = '';
+    Inter.className = 'on';
+  } else{
+    Dom.className = 'on';
+    Inter.className = '';
+  }
 }
 
 
-$("#Dom").click(function () {
-    owlQuoteSlider.trigger('next.owl.carousel');
-    return false;
+$("#Dom").click(function() {
+  owlQuoteSlider.trigger('next.owl.carousel');
+  return false;
 });
-$("#Inter").click(function () {
-    owlQuoteSlider.trigger('prev.owl.carousel');
-    return false;
+$("#Inter").click(function() {
+  owlQuoteSlider.trigger('prev.owl.carousel');
+  return false;
 });
 
 //董振昊代码

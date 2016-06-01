@@ -29,7 +29,7 @@ i,em{
     height:0.32rem;
     margin-top: -0.16rem;
     background-image: url(../../images/ui/icons.png);
-    background-position: -3.0rem -0.10rem;
+    background-position: -3.0rem -0.058rem;
     background-size:4.86rem 3.21rem;
     position: absolute;
     right:-0.3rem;
@@ -74,8 +74,8 @@ i,em{
 }
 .index_hotspot .img_box{
     height: 4rem;
-    background-size:cover;
-    background-position:center center;
+    background:url(../../images/loading_def_big.png);
+    background-size:100% 100%;
     overflow: hidden;
 }
 .index_hotspot .img_box img{
@@ -124,7 +124,7 @@ i,em{
     margin: 0 0.03rem 0 -0.09rem;
 }
 /*index  end*/
-/*酒店列表  begin*/
+/*閰掑簵鍒楄〃  begin*/
 .hotel_list{
     background: #fff;
     margin-bottom:0.98rem;
@@ -191,7 +191,7 @@ i,em{
     position: relative;
     top: -0.02rem;
 }
-/*酒店footer*/
+/*閰掑簵footer*/
 .hotel_footer{
     width: 100%;
     height: 0.98rem;
@@ -370,8 +370,8 @@ i,em{
     border-radius:0.1rem;
     background-color: #ffb413;
 }
-/*酒店列表  end*/
-/*酒店详情 begin*/
+/*閰掑簵鍒楄〃  end*/
+/*閰掑簵璇︽儏 begin*/
 a.hotel_detail_pic{
     width: 100%;
     height: 4.4rem;
@@ -507,8 +507,8 @@ a.hotel_detail_pic{
     background-size: 7.90rem 5.13rem;
     background-position: -3.18rem -0.44rem;
 }
-/*酒店详情  end*/
-/*订单填写  begin*/
+/*閰掑簵璇︽儏  end*/
+/*璁㈠崟濉啓  begin*/
 .order_fill{
     color: #333;
     border-bottom:1px solid #e6e6e6;
@@ -585,7 +585,7 @@ a.hotel_detail_pic{
     height:0.26rem;
     position: absolute;
     left:0.24rem;
-    top:0.24rem;
+    top:0.25rem;
     background: #7bc300;
     display: block;
 }
@@ -649,8 +649,8 @@ a.hotel_detail_pic{
 }
 
 .order_per_data ul.order_trave span.list_con2:nth-child(1),.order_data_box .list_con2:nth-child(1){
-    width: 49%;
-    padding-right: 1%;
+    width:50%;
+    /*padding-right: 1%;*/
     margin-right: 0.26rem;
 }
 .order_per_data ul.order_trave input.list_inp2{
@@ -872,7 +872,7 @@ a.hotel_detail_pic{
     margin-top:0.06rem;
     color: #999;
 }
-/*订单填写 弹框*/
+/*璁㈠崟濉啓 寮规*/
 .order_mask{
     position: fixed;
     width: 100%;
@@ -924,7 +924,7 @@ a.hotel_detail_pic{
     padding-bottom:0.1rem;
     list-style: decimal;
 }
-/*手机区号*/
+/*鎵嬫満鍖哄彿*/
 .order_data_box .phone .list_tit,.order_data_box .phone .tel-btn,.order_data_box .phone .list_con{
     float: left;
 }
@@ -958,9 +958,13 @@ a.hotel_detail_pic{
 }
 .order_per_data ul.order_trave span:nth-child(1) input,.order_data_box .list_con2:nth-child(1) input{
     border-right: 0.5px solid #DEDEDE;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-/*国籍选择开始*/
+/*鍥界睄閫夋嫨寮?濮?*/
 .country_header{
     opacity: 1;
 }
@@ -1036,7 +1040,7 @@ a.hotel_detail_pic{
     z-index: 100;
 }
 
-/*国籍模糊搜索*/
+/*鍥界睄妯＄硦鎼滅储*/
 .country-list-searched {
     width: 100%;
     height: auto;
@@ -1059,15 +1063,15 @@ a.hotel_detail_pic{
     padding-left: .48rem;
 
 }
-/*国籍选择结束*/
-/*订单填写  end    map开始*/
+/*鍥界睄閫夋嫨缁撴潫*/
+/*璁㈠崟濉啓  end    map寮?濮?*/
 .hotel_detail_map{
     width: 100%;
     height: 3.6rem;
     margin-top:-0.6rem;
     z-index: 10;
 }
-/*地图详情页  begin*/
+/*鍦板浘璇︽儏椤?  begin*/
 .hotel_detail_map_goback{
     width: 0.64rem;
     height: 0.64rem;
@@ -1088,7 +1092,7 @@ a.hotel_detail_pic{
     background-position: -3.19rem -0.44rem;
 }
 
-/*地图详情页  end*/
+/*鍦板浘璇︽儏椤?  end*/
 
 
 

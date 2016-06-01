@@ -11,7 +11,7 @@
     <meta name="x5-page-mode" content="app">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="green">
-    <meta name="Keywords" content="亚洲旅行网">
+    <meta name="Keywords" content="亚程旅行网">
     <meta name="Description" content="境外专业旅行服务提供机构">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="images/splash/splash-icon-big.png">
@@ -24,7 +24,7 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png" media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png" media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)" />
-    <title>首页 - 亚洲旅行网</title>
+    <title>首页 - 亚程旅行网</title>
     <script src="js/lib/logRecord.js"></script>
     <link href="styles/reset.css" rel="stylesheet" type="text/css">
     <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
@@ -130,7 +130,6 @@
                     };
                     vlm.loadJson("", JSON.stringify(tmp), function(json) {
                         if (json.success) {
-
                             var data = json.data,
                                 html_b = template(tpl0, data.bannerList);
                             $("#banner").html(html_b);
@@ -151,7 +150,7 @@
                 }
                 //playerRecommend
                 function PlayerRecommend() {
-                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/hotelDetailerrorpic.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
+                  var tpl1 = ['<div class="half_top"><a href="{%=linkurl[productType]%}{%=productID%}{% if(productType==4){ %}&productPrice={%=productPrice%}&status=1{% } %}"><div class="rec_price"><span class="rec_price_tit"><i>¥</i>{%=productPrice%}<i> 起</i></span></div><img src="images/loading_def_big.png" data-src="{%=productPicUrl%}" alt="img" width="100%"></a></div>', '<h5 class="to_rec_tit">{%=productName%}</h5>', '<p class="to_recommend">{%=productDesc%}</p>'].join('');
                   var tmp = {
                       "Parameters": {
                           "PageNo": 1,
@@ -168,7 +167,7 @@
                         $("#tuijian").html(html_tj);
 
 
-                        //懒加载
+                        //默认图片
                         var images=$("#tuijian").find('img');
                         var error_url='images/hotelDetailerrorpic.png';
                         for(var i=0;i<images.length; i++){
@@ -177,6 +176,7 @@
                             var re_url=images[i].getAttribute('data-src');
                             loadImage(re_url,error_url, function() {
                               images[index].setAttribute('src', re_url);
+
                             },function(){
                               images[index].setAttribute('src', error_url);
                             });

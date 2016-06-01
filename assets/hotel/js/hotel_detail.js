@@ -64,7 +64,7 @@
 				}
 				var str = "";
 				for (var i = 0; i < arg.length; i++) {
-					str += '<li class="imageLi"><img class="freeImage" data-error="../images/hotelDetailerrorpic.png" src="../images/loading-hotel.gif" real-src="' + arg[i].imageFileName + '"/></li>'
+					str += '<li class="imageLi"><img class="freeImage" data-error="../images/loading_def_big.png" src="../images/loading_def_big.png" real-src="' + arg[i].imageFileName + '"/></li>'
 				}
 
 				return str;
@@ -458,7 +458,7 @@
 			var amyImagesList = hotelDetail.sourceData.data[0].hotelImagesList.length;
 			console.log(amyImagesList);
 			if(hotelDetail.sourceData.data[0].hotelImagesList.length == 0){
-				$('img.hotelPic').attr('src','../images/hotelDetailerrorpic.png');
+				$('img.hotelPic').attr('src','../images/loading_def_big.png');
 				$('.totalNum').css({'background':'rgba(0,0,0,0)','text-align':'center'});
 				$('.totalNum .d-p4').html('该酒店暂无图片').css({'margin-right':0,'float':'none','color':'#484848'});
 			}
@@ -728,10 +728,10 @@
 			function showPic(arr) {
 				var oSrc = '';
 				if (!arr.length) {
-					oSrc = '<div class="hdItem"><img class="hotelPic2" src="../images/hotelDetailerrorpic.png"></div>';
+					oSrc = '<div class="hdItem"><img class="hotelPic2" src="../images/loading_def_big.png"></div>';
 				} else {
 					for (var i = 0; i < arr.length; i++) {
-						oSrc += '<div class="hdItem"><img class="hotelPic2" data-error="../images/hotelDetailerrorpic.png" src="../images/loading-hotel.gif" real-src="' + arr[i].imageFileName + '"></div>';
+						oSrc += '<div class="hdItem"><img class="hotelPic2" data-error="../images/loading_def_big.png" src="../images/loading-hotel.gif" real-src="' + arr[i].imageFileName + '"></div>';
 					}
 				};
 				return oSrc;
@@ -781,7 +781,7 @@
 			var hdRoomDesc = document.getElementById('hdRoomDesc');
 			for (var i = 0; i < aImg.length; i++) {
 				aImg[i].onerror = function() {
-					this.src = '../images/hotelDetailerrorpic.png';
+					this.src = '../images/loading_def_big.png';
 				};
 			}
 			//实现图片滑动

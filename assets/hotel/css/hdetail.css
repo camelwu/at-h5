@@ -19,7 +19,7 @@ strong{
 .hotel_img{
   height: 5rem;
   position: relative;
-  background: url(../../images/hotelDetailerrorpic.png) no-repeat;
+  background: url(../../images/loading_def_big.png) no-repeat;
   background-size: 100% 100%;
 }
 .hotel_img img{
@@ -416,7 +416,7 @@ span.money{
   height: .4rem;
   margin: .2rem;
   background-image: url(../../images/ui/icon-hft.png);
-  background-position: -6.64rem -2.87rem;
+  background-position: -6.58rem -2.85rem;
   background-size: 7.5rem 4.54rem;
 }
 #popup_content {

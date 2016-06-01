@@ -6,7 +6,7 @@
     ,isNeedPassport=vlm.getpara("isNeedPassport").toLowerCase()=="true"?true:false//是否需要护照
     ,titleType=vlm.getpara("title").substr(2)//是否多选title;
     ,travId=vlm.getpara("Id")//id,
-    ,elementId=vlm.getpara("elementId")//id
+    ,elementId=vlm.getpara("elementId").replace(/(^\s*)|(\s*$)/g, "")//id
     ,from=vlm.getpara("from")
 
     ,ifrCilent=window.parent.document.getElementById("choiceAir")
@@ -101,6 +101,7 @@
       var selectPassagerList= $(".list-traveler .choiced")
       for(var i=0;i<=selectPassagerList.length-1;i++){
         var key=$(selectPassagerList[i]).attr("data-id")
+        passagerArray[key].PagerType=from;
         selectedPassagerArray[key]=passagerArray[key];
       }
       _replacePagerAttri();
@@ -319,11 +320,11 @@
         if(currentOperationType=="new"){
           modle.traveller.travellerId=new Date().getTime();
         }
-          choiceAir_AddPassagerArray.push(modle);
-          localStorage.setItem('choiceAir_AddPassagerArray',JSON.stringify(choiceAir_AddPassagerArray));
-          passagerListPage.show();
-          addOrEditPassagePage.hide();
-          _getPassagerList();
+        choiceAir_AddPassagerArray.push(modle);
+        sessionStorage.setItem('choiceAir_AddPassagerArray',JSON.stringify(choiceAir_AddPassagerArray));
+        passagerListPage.show();
+        addOrEditPassagePage.hide();
+        _getPassagerList();
       }
        _clearDate();
        return true;
@@ -362,6 +363,7 @@
         param.push(o);
       }
       localStorage.setItem('travellerInfo_selected',JSON.stringify(param));
+      sessionStorage.setItem('choiceAir_select_'+elementId,JSON.stringify(selectedPassagerArray));
     }
     else{
       for(var key in selectedPassagerArray) {
@@ -376,7 +378,7 @@
           }
         }
       localStorage.setItem('contact_selected',JSON.stringify(param));
-      localStorage.setItem('selectedPassagerArray',JSON.stringify(selectedPassagerArray));
+      sessionStorage.setItem('choiceAir_select_'+elementId,JSON.stringify(selectedPassagerArray));
     }
   };
 
@@ -472,8 +474,6 @@
 
           }
 
-
-
           if (age >= 2 && age < 12) {
             selectChildNum=selectChildNum+step;
           }
@@ -519,7 +519,6 @@
 
     $(".addAir_page .bussinessTitle").html(titleType);
   };
-
   var _setSelectPessageTip=function(){
     if(numofChlid>0) {
       titleTip.html("已选：成人" + selectAdultNum + "/" + numofAdult + "  儿童" + selectChildNum + "/" + numofChlid + "")
@@ -550,6 +549,15 @@
            document.getElementById("allList").innerHTML = html;
            _bindSelectChoice();
 
+           var selectPassagerList=JSON.parse(sessionStorage.getItem('choiceAir_select_'+elementId));
+           if(selectPassagerList !=null){
+             for(var key in selectPassagerList){
+               if(selectPassagerList[key].PagerType==from) {
+                 $(".list-traveler .user_choice[data-id=" + key + "]").click();
+               }
+
+             }
+           }
             vlm.init();
          }
        });
@@ -564,6 +572,15 @@
        choiceAir_AddPassagerArray.forEach(function(info){
            passagerArray[info.traveller.travellerId] = info;
        })
+       var selectPassagerList=JSON.parse(sessionStorage.getItem('choiceAir_select_'+elementId));
+       if(selectPassagerList !=null){
+         for(var key in selectPassagerList){
+           if(selectPassagerList[key].PagerType==from) {
+             $(".list-traveler .user_choice[data-id=" + key + "]").click();
+           }
+
+         }
+       }
 
        document.getElementById("allList").innerHTML = html;
        _bindSelectChoice();
@@ -575,7 +592,7 @@
 
     //免登陆，如果缓存没有数据，自己显示添加页面
     if(memberId==undefined){
-      var data=JSON.parse(localStorage.getItem("choiceAir_AddPassagerArray"));
+      var data=JSON.parse(sessionStorage.getItem("choiceAir_AddPassagerArray"));
       if( data==null) {
         passagerListPage.hide();
         addOrEditPassagePage.show();
@@ -594,7 +611,10 @@
     if(!isShowContact){
       ul_contect.hide();
     }
+
     _getPassagerList();
+
+
     _bindEvent();
     _setTitleTip();
   };

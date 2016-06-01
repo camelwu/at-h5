@@ -57,8 +57,8 @@ em{ font-style:normal}
     text-align: center;
 }
 .hotel_user_icon{
-  width: .55rem;
-  height: .54rem;
+  width: .56rem;
+  height: .56rem;
   position: absolute;
   top:0rem;
   background: url("../../images/ui.1.0/icon_common.png");
@@ -67,10 +67,11 @@ em{ font-style:normal}
 i.left{
   right:.28rem;
   background-position:  -3.04rem -3.124rem;
+  overflow: hidden;
 }
 i.right{
   right:1.6rem;
-  background-position:-0.48rem -3.12rem;;
+  background-position:-0.48rem -3.12rem;
 }
 .center{
   position: absolute;
@@ -125,14 +126,14 @@ i.right{
 }
 .hotel_user_detail_phone input{
   position: absolute;left:3.7rem;
-  top: 0.3rem;
+  top: 0.1rem;
   font-size: .28rem;
 }
 .hotel_user_detail_Email input{
     font-size: .28rem;
     color:#d1d1d1;
     position: absolute;left:1.9rem;
-    top: 0.3rem;
+    top: 0.1rem;
 }
 .hotel_user_prompt{
     color: #999999;
@@ -209,7 +210,7 @@ i.right{
   background-position: -5.56rem -3.33rem;
   position: absolute;
   top: .4rem;
-  left: -0.8rem;
+  right:0rem;
 }
 /*费用明细*/
 .hotel_detail{
@@ -248,6 +249,7 @@ i.right{
   height: 4.72rem;
   max-height: 7.8rem;
   width: 100%;
+  color:#333;
   position: absolute;
   left: 0;
   bottom: -38.88rem;
@@ -283,8 +285,7 @@ i.right{
 .uo_hid_met{
     height: .68rem;
     line-height: .68rem;
-    margin: .28rem;
-    color:rgb(153,153,153);
+    margin: 0 .28rem;
 }
 .uo_shadow{
     position:absolute;left:0;top:0;width:100%;height:100%;

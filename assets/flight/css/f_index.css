@@ -961,24 +961,25 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .passengers_wrap h4 i, .passengers_wrap .add_icon, .contact_wrap .arrow_down, .contact_wrap h4 i, .contact_wrap .arrow_right, .passengers_wrap .minus_person {
-  display: inline-block;
-  width: .32rem;
-  height: .32rem;
-  background: url(../../images/ui/icon_hft.png) no-repeat;
-  background-size: 7.50rem auto;
-  background-position: 44.564% 51.61%;
+  width: .40rem;
+  height: .40rem;
+  background: url(../../images/ui.1.0/icon_common.png) no-repeat;
+  background-size: 7.90rem auto;
+  background-position: -6.21rem -3.26rem;
   position: absolute;
   right: 0;
   top: 50%;
-  margin-top: -.16rem;
+  margin-top: -.20rem;
 }
-
+.passengers_wrap .add_icon{
+  background-position: -3.852rem -.548rem;
+}
 .passengers_wrap .minus_person {
-  background-position: 42.1% 32.03%;
-  width: .40rem;
-  height: .40rem;
+  background-position: -1.304rem -3.14rem;
+  width: .52rem;
+  height: .52rem;
   left: -.60rem;
-  top: .28rem;
+  top: .20rem;
 }
 .passengers_wrap em{
   font-style: normal;
@@ -1004,12 +1005,15 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   top: .04rem
 }
 
-.passengers_wrap h4 i, .contact_wrap h4 i {
+.passengers_wrap h4 i{
   right: .28rem;
-  background-position: 83.564% 31.61%;
+  background-position: -6.78rem -3.22rem;
 }
-
-.passengers_wrap ul {
+ .contact_wrap h4 i{
+   right: .28rem;
+   background-position: -6.18rem -3.20rem;
+ }
+  .passengers_wrap ul {
   padding-left: .60rem;
   font-size: .28rem;
   color: rgb(51, 51, 51);
@@ -1035,11 +1039,17 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   position: relative;
   color:rgb(51, 51, 51)
 }
+.passengers_wrap ul p:nth-child(1) span,.passengers_wrap ul p:nth-child(1) b{
+  float:left
+}
 
 .passengers_wrap ul p input {
   margin-left: 1.2rem;
   max-width: 2.6rem;
   height: 100%;
+}
+p.passport_sex input{
+  margin-left: 0!important;
 }
 input.name{
   margin-left: .168rem!important;
@@ -1047,13 +1057,10 @@ input.name{
 }
 
 .passengers_wrap .tip_word {
-  display: inline-block;
   width: 1.2rem;
   height: 100%;
   letter-spacing: .08rem;
-  position: absolute;
-  left: 0;
-  top: 0;
+  float: left;
 }
 
 .contact_wrap {
@@ -1084,9 +1091,10 @@ input.name{
   font-family: "microsoft yahei", Arial, sans-serif
 }
 
-.first_name, .padding_has {
+.input_line .first_name, .padding_has {
   padding-left: .28rem;
 }
+
 
 .contact_wrap .more_black {
   display: inline-block;
@@ -1412,30 +1420,28 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   overflow: hidden;
 }
 .cl_search {
-  height: 66%;
-  line-height: .88rem;
+  height: .66rem;
   position: relative;
-  left: 1.225rem;
   border-radius: 23px;
   background-color: #f7f7f7;
-  top: .168rem;
-  width: 70%;
+  top: .11rem;
   text-align: left;
-  padding-left: .22rem;;
+  padding-left: .22rem
 }
 .cl_search input {
-  overflow: hidden;
   height: 100%;
   background-color: #f7f7f7;
   padding-left: .35rem;
   font-size: .20rem;
   top: 0;
   left: -0.8rem;
+  width: 92%;
+  overflow: hidden;
   font-family: 'Microsoft YaHei', STHeiti, Verdana, sans-serif;
 }
 .cl_search i {
   position: absolute;
-  top: .21rem;
+  top: .25rem;
   left: .22rem;
   display: block;
   background: url("../../images/city_search.png") no-repeat;
@@ -1454,6 +1460,7 @@ dl.f_foot_sort dt.clo:after, #Tax dt.clo:after,#Price dt.clo:after, #Screen dt.c
   max-height: 100%;
   font-size: .28rem;
   color: #333;
+  background: #fff;
 }
 .city_outer .hTab{
   padding-top: .88rem;

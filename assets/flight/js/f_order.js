@@ -1,5 +1,4 @@
 var fOrder = {
-
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {
       this.addHandler = function (target, eventType, handle) {
@@ -92,14 +91,24 @@ var fOrder = {
   },
 
   countrySlider: function () {
-    var tempString1 = "", outputString1 = "", resultArray = {}, that = this, outer = document.createElement('div');
-    outer.className = "country-cho-wrap all_elements";
-    arrCountry.forEach(function (itemValue) {  //country-cho-wrap all_elements
-      resultArray[itemValue.CountryEN.substring(0, 1).toUpperCase()] = [];
+    var that = this;
+    this.tAjax("", {lastUpdateTime: "2010-01-01"}, "70100008",3, function(){
+              if(arguments[0].success&&arguments[0].data.length>1){
+                        that.addCountryCodeHandler(arguments[0].data)
+                   }
     });
-    arrCountry.forEach(function (itemValue) {
+    that.addCountryCodeHandler(country.data)
+    return this
+  },
+  addCountryCodeHandler:function(){
+    var dataArray =arguments[0], tempString1 = "", outputString1 = "",resultArray = {},that = this , outer = document.createElement('div');
+    outer.className = "country-cho-wrap all_elements";
+    dataArray.forEach(function(itemValue){
+      resultArray[itemValue.firstPinYin.toUpperCase()] = [];
+    });
+    dataArray.forEach(function(itemValue) {
       for (var temp in  resultArray) {
-        if (itemValue.CountryEN.substring(0, 1).toUpperCase() == temp) {
+        if (itemValue.firstPinYin.toUpperCase() == temp) {
           resultArray[temp].push(itemValue);
         }
       }
@@ -108,90 +117,88 @@ var fOrder = {
     outputString1 = ejs.render(tempString1, {resultArray: resultArray});
     outer.innerHTML = outputString1;
     $(".shadow").eq(0).after(outputString1);
-    this.addCountryCodeHandler();
-    return this
-  },
-
-  addCountryCodeHandler: function () {
-    var countryTrigger = document.querySelector('.country-trigger'), that = this, wrapEle = document.querySelector('.country-cho-wrap');
-    var cityInputZone = document.querySelector('#country-input-zone');
-    wrapEle.onclick = function (e) {
-      var e = e || window.event, target = e.target || e.srcElement;
-      if (target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')) {
-        countryTrigger.innerHTML = target.getAttribute('date-country-code') != null ? target.getAttribute('date-country-code') : target.parentNode.getAttribute('date-country-code');
+    var countryTriggerOuter = document.querySelector('.mis_right'),countryTrigger =null, wrapEle = document.querySelector('.country-cho-wrap');
+    var  cityInputZone = document.querySelector('#country-input-zone');
+    countryTrigger = countryTriggerOuter.querySelector('.country-trigger');
+    wrapEle.onclick = function(e){
+      var e = e ||window.event, target = e.target || e.srcElement;
+      if(target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')){
+        countryTrigger.innerHTML = target.getAttribute('date-country-code')!=null?target.getAttribute('date-country-code'):target.parentNode.getAttribute('date-country-code');
         wrapEle.style.display = "none";
       }
     };
-    countryTrigger.onclick = function () {
+    countryTriggerOuter.onclick = function () {
       if (that.getCurrentStyle(wrapEle).display == "block") {
         wrapEle.style.display = "none"
-      } else {
+      }else{
         wrapEle.style.display = "block"
       }
-    }
-
-    var searchHandler = function () {
+    };
+    var searchHandler=function(){
       var countryInputZone = document.querySelector('#country-input-zone');
       var cityListSearched = document.querySelector('.country-list-searched-order');
-      var searchResult = [], reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr = '';
-      Array.prototype.distinct = function () {
-        var sameObj = function (a, b) {
+      var searchResult = [],reg = /[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}/, valueStr = countryInputZone.value, resultStr='';
+      Array.prototype.distinct=function(){
+        var sameObj=function(a,b){
           var tag = true;
-          if (!a || !b)return false;
-          for (var x in a) {
-            if (!b[x])
+          if(!a||!b)return false;
+          for(var x in a){
+            if(!b[x])
               return false;
-            if (typeof(a[x]) === 'object') {
-              tag = sameObj(a[x], b[x]);
-            } else {
-              if (a[x] !== b[x])
+            if(typeof(a[x])==='object'){
+              tag=sameObj(a[x],b[x]);
+            }else{
+              if(a[x]!==b[x])
                 return false;
             }
           }
           return tag;
         };
-        var newArr = [], obj = {};
-        for (var i = 0, len = this.length; i < len; i++) {
-          if (!sameObj(obj[typeof(this[i]) + this[i]], this[i])) {
+        var newArr=[],obj={};
+        for(var i=0,len=this.length;i<len;i++){
+          if(!sameObj(obj[typeof(this[i])+this[i]],this[i])){
             newArr.push(this[i]);
-            obj[typeof(this[i]) + this[i]] = this[i];
+            obj[typeof(this[i])+this[i]]=this[i];
           }
         }
         return newArr;
       };
-      if (reg.test(valueStr)) {
+      if(reg.test(valueStr)){
         var mb = String(valueStr).toLowerCase();
-        for (var p = 0; p < arrCountry.length; p++) {
-          var ma = String(arrCountry[p]['CountryEN']).toLowerCase();
-          if (ma.indexOf(mb) > -1 || arrCountry[p]['CountryName'].indexOf(valueStr) > -1) {
-            searchResult.push(arrCountry[p]);
-          }
+        for(var p = 0; p < dataArray.length; p++){
+              if(dataArray[p].chineseName.indexOf(mb)>-1||
+                 dataArray[p].englishName.indexOf(mb)>-1||
+                  dataArray[p].nativeName.indexOf(mb)>-1||
+             dataArray[p].nationalityCode.indexOf(mb)>-1||
+                  dataArray[p].fullPinYin.indexOf(mb)>-1||
+                dataArray[p].simplePinYin.indexOf(mb)>-1){
+                searchResult.push(dataArray[p]);
+              }
         }
       }
       searchResult = searchResult.distinct();
-      if (!searchResult.length) {
-        resultStr += '<li>无搜索结果</li>';
+      if(!searchResult.length){
+        resultStr +='<li>无搜索结果</li>';
         cityListSearched.style.display = 'none';
-      } else {
-        for (var l = 0; l < searchResult.length; l++) {
-          resultStr += '<li class="country_lists" date-country-code="' + searchResult[l].TelCode + '"><i>' + searchResult[l].CountryName + '</i><span>' + searchResult[l].TelCode + '</span></li>'
+      }else{
+        for(var l = 0;l<searchResult.length;l++){
+          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].phoneCode+'"><i>'+searchResult[l].chineseName+'</i><span>'+searchResult[l].phoneCode+'</span></li>'
         }
         cityListSearched.innerHTML = resultStr;
         cityListSearched.style.display = 'block';
       }
 
     };
-    if (cityInputZone.addEventListener) {
-      cityInputZone.addEventListener('input', searchHandler, false)
-    } else {
-      cityInputZone.attachEvent('onpropertychange', searchHandler)
+    if(cityInputZone.addEventListener){
+      cityInputZone.addEventListener('input',searchHandler,false)
+    }else{
+      cityInputZone.attachEvent('onpropertychange',searchHandler)
     }
 
   },
-
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
-    var postPara = {}, temObject = {}, passengerOuter = document.querySelector('.passenger_outer'), that = this;
+    var postPara = {}, temObject = {},that=this;
     var priceDetailInfo = document.querySelector('.priceDetailInfo'), shadow = document.querySelector('.shadow'), tag = "", detailFare = document.querySelector('.detail_fare');
     priceDetailInfo.style.transition = 'all 400ms ease-in';
     priceDetailInfo.style.webkitTransition = 'all 400ms linear';
@@ -214,30 +221,19 @@ var fOrder = {
     this.addHandler(bottomPrice, 'click', function (e) {
       var e = e || window.event, target = e.target || e.srcElement, contactInfo = {}, selectTravellerList = window['localStorage']['travellerInfo_selected'];
       if (target.className == "preserve") {
-        debugger;
         if (!window['localStorage']['travellerInfo_selected']) {
           jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
         } else {
           var storageInfo = JSON.parse(window['localStorage']['travellerInfo_selected']), contactInfoCache = {};
         }
-        //乘客信息核对
-        var passengerLis = document.querySelectorAll('.passenger_outer li'), realPara = [], tempAdult = 0, tempChild = 0;
-        if (passengerLis) {
-          for (var li = 0; li < passengerLis.length; li++) {
-            var passPortNumber = passengerLis[li].querySelector('.passportValue').value;
-            for (var ki = 0; ki < storageInfo.length; ki++) {
-              if (storageInfo[ki].CertificateInfo.IdNumber == passPortNumber) {
-                realPara.push(storageInfo[ki])
-              }
-            }
-          }
-        }
-        for (var dd = 0; dd < realPara.length; dd++) {
-          if (realPara[dd].PassengerType == 'ADULT') {
+        //乘客人数核对
+        var  tempAdult = 0, tempChild = 0;
+        for (var dd = 0; dd < storageInfo.length; dd++) {
+          if (storageInfo[dd].PassengerType == 'ADULT') {
             tempAdult++;
           }
-          if (realPara[dd].PassengerType == 'CHILD') {
+          if (storageInfo[dd].PassengerType == 'CHILD') {
             tempChild++;
           }
         }
@@ -246,8 +242,7 @@ var fOrder = {
           return;
         }
 
-        postPara.travellerInfo = realPara;
-
+        postPara.travellerInfo = storageInfo;
         if (window['localStorage']['contact_selected']) {
           contactInfo = JSON.parse(window['localStorage']['contact_selected']);
         } else {
@@ -266,27 +261,24 @@ var fOrder = {
         contactInfoCache.email = document.querySelector('#email-label').value;
         contactInfoCache.mobilePhone = document.querySelector('#tel-num').value;
         contactInfoCache.countryNumber = document.querySelector('.nation_code_value').innerHTML;
-        if (contactInfoCache.firstName == "") {
-          jAlert('请输入姓!', '提示');
-          return;
-        }
-        if (contactInfoCache.lastName == "") {
-          jAlert('请输入名!', '提示');
+        if (contactInfoCache.firstName == ""&&contactInfoCache.lastName == "") {
+          jAlert('请完善联系人信息!', '提示');
           return;
         }
 
-        /* if (contactInfoCache.email == "") {
-         jAlert('请输入邮箱!', '提示');
-         return;
-         } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.Email)) {
-         jAlert('请输入正确格式邮箱!', '提示');
-         return;
-         }*/
         if (contactInfoCache.mobilePhone == "") {
           jAlert('请输入手机号!', '提示');
           return;
         } else if (!/^1\d{10}$/.test(contactInfoCache.mobilePhone)) {
           jAlert('请输入正确格式手机号!', '提示');
+          return;
+        }
+
+        if (contactInfoCache.email == "") {
+          jAlert('请输入邮箱!', '提示');
+          return;
+        } else if (!/^(\w-*_*\.*)+@(\w-?)+(\.\w{2,})+$/.test(contactInfoCache.email)) {
+          jAlert('请输入正确格式邮箱!', '提示');
           return;
         }
         for (var tv in contactInfoCache) {
@@ -296,59 +288,12 @@ var fOrder = {
         postPara.contactDetail = contactInfo;
         /*this.fadeHandler("show");*/
         that.postPara = postPara;
-        console.log(postPara);
-        /*         this.postPara = {// 成单参数格式
-         "WapOrder": {
-         "SetID": 30000152,
-         "CacheID": 3514987,
-         "CityCodeFrom": "BJS",
-         "CityCodeTo": "SIN",
-         "NumofAdult": "1",
-         "NumofChild": "0",
-         "RouteType": "oneWay",
-         "CabinClass": "economy",
-         "SourceType": "H5",
-         "MemberId": ""
-         },
-         "TravellerInfo": [{
-         "PassengerType": "ADULT",
-         "Id": 2419,
-         "SexCode": "Ms",
-         "FirstName": "Chang",
-         "LastName": "Liu",
-         "DateOfBirth": "1990-01-09T00:00:00",
-         "email": "undefined",
-         "mobile": "undefined",
-         "CertificateInfo": {
-         "IdType": 1,
-         "IdCountry": "CN",
-         "IdNumber": "111111111111111111",
-         "IdActivatedDate": "2018-01-01T00:00:00"
-         },
-         "BaggageCode": "",
-         "CountryCode": "CN"
-         }],
-         "ContactDetail": {
-         "SexCode": "Ms",
-         "FirstName": "Liu",
-         "LastName": "San",
-         "Email": "11111111111@qq.com",
-         "CountryNumber": "86",
-         "ContactNumber": "5689",
-         "MobilePhone": "11111111111"
-         },
-         "CurrencyCode": "CNY",
-         "TotalPrice": 6826,
-         "track": {"browserType": "", "deviceID": ""}
-         };*/
-        console.log(that.postPara)
         that.tAjax(vlm.apiWithDeviceID, that.postPara, "3002", 3, function () {
           var that = fOrder, orderResultTip = document.querySelector('.order-result-tip');
           var result = arguments[0];
           that.fadeHandler();
           if (result.success && result.code == 200) {
-            var orderResultInfo = {}, that = fOrder;
-            console.log(that.postPara)
+            var orderResultInfo = {}, that =fOrder;
             orderResultInfo['orderTime'] = new Date();
             orderResultInfo['totalPrice'] = that.priceData['totalPrice'];
             orderResultInfo['currencyCode'] = that.postPara['currencyCode'];
@@ -356,7 +301,7 @@ var fOrder = {
             orderResultInfo['numofChild'] = that.postPara['wapOrder']['numofChild'];
             orderResultInfo['routeType'] = that.postPara['wapOrder']['routeType'];
             orderResultInfo['flightInfo'] = that.curFlightData;
-            orderResultInfo['travellerInfo'] = realPara;
+            orderResultInfo['travellerInfo'] = storageInfo;
             orderResultInfo['contactDetail'] = contactInfo;
             orderResultInfo['bookingID'] = result['data']['bookingID'];
             orderResultInfo['bookingRefNo'] = result['data']['bookingRefNo'];
@@ -376,7 +321,7 @@ var fOrder = {
                 }
               }, '确定', '取消');
             } else {
-              jAlert('')
+              jAlert(result.message)
             }
           }
         });
@@ -400,37 +345,47 @@ var fOrder = {
     //      this.removeChild(tem);
     //    }
     //})
-    this.addHandler(document.body, 'click', function (e) {
+    this.addHandler(document.body, 'click', function (e){
       var e = e || window.event, target = e.target || e.srcElement;
-      if (target.className == 'shadow') {
+      if(target.className == 'shadow'){
         target.style.display = "none";
         detailFare.className = "detail_fare open";
         priceDetailInfo.style.bottom = '-126%';
-      } else if (target.className.indexOf('country_header') > -1) {
-        document.querySelector('.country-cho-wrap').style.display = "none";
+      }else if(target.className.indexOf('country_header')>-1){
+        document.querySelector('.country-cho-wrap').style.display ="none";
       }
     })
 
-    deletePassager = function (obj) {
+    deletePassager=function(obj){
       $(obj).parent().parent().remove();
+
+      var id=$(obj).parent().find(".itemId").val();
+      var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+      var temp={};
+      for(var key in list){
+        if(key !=id){
+          temp[key]=list[key];
+        }
+      }
+      sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
     }
-    editPassager = function (obj) {
-      var id = $(obj).find("input").eq(0).val();
-      var numofAdult = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofAdult;
-      var numofChild = JSON.parse(localStorage.getItem('ticketSearchedInfo')).data.NumofChild;
-      vlm.f_choice('passenger-list', 'f', 'traver', '', true, true, numofAdult, numofChild, id);
+    editPassager=function(obj){
+      var id=$(obj).find("input").eq(0).val();
+
+      var numofAdult=JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofAdult;
+      var numofChild= JSON.parse(sessionStorage.getItem('fIndexInfo')).data.numofChild;
+      vlm.f_choice('passenger-list','f','traver','',true,true,numofAdult,numofChild,id);
     }
 
   },
 
   createTags: function () {
     var data = arguments[0];
-    console.log(data);
     var tempString1 = "", outputString1 = "", tempString2 = "", outputString2 = "", that = fOrder;
     tempString1 = $("#template_flight_summary").html();
     outputString1 = ejs.render(tempString1, {flightInfo: data});
     tempString2 = $("#template_flight_cost_seat").html();
-    outputString2 = ejs.render(tempString2, {flightInfo: data});
+    outputString2 = ejs.render(tempString2,  {flightInfo: data});
     $(".date-week-port").eq(0).html(outputString1);
     $(".seat-price-cost").eq(0).html(outputString2);
     return this;
@@ -443,6 +398,13 @@ var fOrder = {
     $(".priceDetailInfo").eq(0).html(outputString1);
     moneyNumber.innerHTML = data.priceTotal;
     return this;
+  },
+  isInternationalTrip:function(){
+    var data = JSON.parse(window.sessionStorage.getItem('fIndexInfo'));
+    if(data.data.internationalOrDomestic == "international"){
+      return false;
+    }
+    return true;
   },
 
   innitData: function () {
@@ -465,7 +427,6 @@ var fOrder = {
     this.curFlightData = flightData;
     this.fIndexInfo = fIndexInfo;
     this.priceData = priceData;
-    console.log(this.priceData)
     this.createTags(flightData).priceTags(priceData);
     return this;
   },

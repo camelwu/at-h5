@@ -5,7 +5,7 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta name="apple-mobile-web-app-status-bar-style" content="green">
-		<meta name="Keywords" content="亚洲旅行网">
+		<meta name="Keywords" content="亚程旅行网">
 		<meta name="Description" content="境外专业旅行服务提供机构">
 		<meta name="screen-orientation" content="portrait">
 		<meta name="x5-orientation" content="portrait">
@@ -22,19 +22,15 @@
 		<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
 		<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
 		<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
-
-		<title>输入资料页 - 亚洲旅行网</title>
-        <link href="../styles/reset.css" type="text/css" rel="stylesheet">
+		<title>输入资料页 - 亚程旅行网</title>
+    <link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
-      <!--<link href="../styles/style.css" type="text/css" rel="stylesheet">-->
-        <!--<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>-->
-        <link href="../styles/dzh.css" rel="stylesheet">
+    <!--<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>-->
+    <link href="css/tour_search.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="preloader">
-			<div id="status">
-
-			</div>
+			<div id="status"></div>
 		</div>
 		<div class="all-elements">
 			<!--   顶部   -->
@@ -56,15 +52,14 @@
 						<div class="nav2-center">
 							<div class="nav2-centertop">
 								<p>
-                                    <i>入住</i>
+                  <i>入住</i>
 									<input name="CheckInDate" id="CheckInDate" value="03月11日" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span1">周四</span>
 								</p>
-
 							</div>
 							<div class="nav2-centerbottom">
 								<p>
-                                    <i>离店</i>
+                  <i>离店</i>
 									<input name="CheckOutDate" id="CheckOutDate" value="03月12日" class="CheckInDateI" readonly="readonly" >
 									<span id="week_span2">周一</span>
 								</p>
@@ -79,8 +74,8 @@
 					<span class="title">房间</span>
 					<div class="per-price-control room_number" data-type="extraRoom">
 						<span id="room_downb" class="down_btn"></span>
-                        <i id="roomNum" class="change_num"></i>
-                        <span class="up_btn"></span>
+            <i id="roomNum" class="change_num"></i>
+            <span class="up_btn"></span>
 					</div>
 				</section>
 				<section class="all_title zy_title">
@@ -90,9 +85,7 @@
 
 				</section>
 				<section class="orderBtn zy_orderBtn">
-					<button id="order_btn">
-						预订
-					</button>
+					<button id="order_btn">预订</button>
 				</section>
 			</div>
 			<div class="city-choose-tip" id="show-result-tip"></div>
@@ -271,7 +264,7 @@
                   str = str - 1;
                   m.innerHTML = str;
                 }
-                str == 1 ? n.style.backgroundPosition = '-26px 2px' : n.style.backgroundPosition = '-51px 2px';
+                str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-51px 2px';
               } else if (n.id == 'adult-down') {
                 if (str <= 1) {
                   m.innerHTML = 1;
@@ -279,7 +272,7 @@
                   str = str - 1;
                   m.innerHTML = str;
                 }
-                str == 1 ? n.style.backgroundPosition = '-26px 2px' : n.style.backgroundPosition = '-51px 2px';
+                str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-51px 2px';
                 var parent = n.parentNode.parentNode.parentNode;
                 var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
                 changeChildTemp(parent, str, ChildNum);
@@ -290,7 +283,7 @@
                   str = str - 1;
                   m.innerHTML = str;
                 }
-                str == 0 ? n.style.backgroundPosition = '-26px 2px' : n.style.backgroundPosition = '-51px 2px';
+                str == 0 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-51px 2px';
               }
               _type == "extraChild" && extraChild(n.parentNode.parentNode, str);
               _type == "extraRoom" && extraRoom(n.parentNode.parentNode, str);
@@ -305,9 +298,9 @@
               toDown(oNum[i], _cut_down_btn[i]);
               var str = parseInt(oNum[i].innerHTML);
               if (i == 0) {
-                str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-26px 2px' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
+                str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
               } else {
-                str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-26px 2px' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
+                str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
               }
             }
             addbed();
