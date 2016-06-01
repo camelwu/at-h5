@@ -1132,12 +1132,13 @@ section.hotelInfo_numb_room .title {
 
 .hotelInfo_numb_people .spenumbList b {
   position: absolute;
-  right: 0.03rem;
+  right: 0;
   top: 0;
   width: 0.48rem;
   height: 0.46rem;
   background-image: url(../../images/ui/icon_common.png);
   background-repeat: no-repeat;
+  background-position: -5.08rem -0.52rem;
   background-size: 7.9rem 5.13rem;
 }
 
