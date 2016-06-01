@@ -731,7 +731,7 @@
 					oSrc = '<div class="hdItem"><img class="hotelPic2" src="../images/loading_def_big.png"></div>';
 				} else {
 					for (var i = 0; i < arr.length; i++) {
-						oSrc += '<div class="hdItem"><img class="hotelPic2" data-error="../images/loading_def_big.png" src="../images/loading-hotel.gif" real-src="' + arr[i].imageFileName + '"></div>';
+						oSrc += '<div class="hdItem"><img class="hotelPic2" data-error="../images/loading_def_big.png" src="../images/loading_def_big.png" real-src="' + arr[i].imageFileName + '"></div>';
 					}
 				};
 				return oSrc;

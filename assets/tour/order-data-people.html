@@ -27,6 +27,7 @@
 		<link href="../css/plugins/jquery.alert/jqueryAlert.css" rel="stylesheet" type="text/css">
     <!--<link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css"/>-->
     <link href="css/tour_search.css" rel="stylesheet">
+      <link href="css/tours.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="preloader">
@@ -471,7 +472,7 @@
               }
             } else {
               if (minPax <= 3) {
-                initStr = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax + '</i><span class="up_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
+                initStr = '<span class="title">房间1</span>' + '<div class="numbList">' + '<span class="n_tit">成人</span>' + '<div class="per-price-control zy_price_control" data-type="adult"><span class="down_btn" id="adult-down"></span><i class="change_num adult-people-number" data-type="adultNum" id="adult-people-number">' + minPax + '</i><span class="up_btn"></span></div>' + '</div>' + '<div class="numbList">' + '<span class="n_tit">儿童</span>' + '<span class="child-age">(' + childAgeMin + '-' + childAgeMax + ')</span><i class="com_icon child_age_state"></i><div class="age_state_box"><div class="state_text">儿童年龄限制为大于等于2周岁，小于12周岁的儿童</div><div></div></div>' + '<div class="per-price-control zy_price_control" data-type="extraChild"><span class="down_btn"></span><i class="change_num child-number" data-type="childNum">0</i><span class="up_btn"></span></div>' + '</div>' + '<div class="extraChild" style="display: none">' + '<span class="bedList" style="float: left"><i>儿童年龄</i></span>' + '<div class="childAge">' + '<input class="inp-cage" type="tel" placeholder="(' + childAgeMin + '-' + childAgeMax + ')" onkeyup="this.value=this.value.replace(/\D/gi,\"\")"><i class="child-sui">岁</i>' + '</div>';
                 section = document.createElement('section');
                 section.innerHTML = initStr;
                 section.className = 'hotelInfo_numb_people init-hotel-room-detail';
@@ -606,6 +607,18 @@
 
                   }
                 }
+                // 6.1添加
+                $('.child_age_state').click(function(e) {
+                  e.stopPropagation();
+                  $('.age_state_box').toggle();
+                });
+                $('body').click(function(e) {
+                  //e.stopPropagation();
+                  var age_state_box = document.getElementsByClassName('age_state_box')[0];
+                  if (age_state_box.style.display != 'none') {
+                    age_state_box.style.display = 'none';
+                  }
+                });
 
                 chooseScenicDate();
               } else {
