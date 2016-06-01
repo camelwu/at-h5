@@ -549,7 +549,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 
 .trip_go_ i,.trip_back_ i{
   float: right;
-  background-position: 81.964% 49.91%;
+  background-position: -6.236rem -2.41rem;
 }
 .dateWeekCity i{
   width: .32rem;
@@ -754,6 +754,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   position: static;
   background-position: -.488rem -4.460rem;
   margin: 0 auto;
+  float: none;
 }
 .no-margin-left{margin-left: 0!important;}
 .tripBack .dateWeekCity span.icon {
