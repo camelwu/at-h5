@@ -45,6 +45,13 @@ i{font-style: normal;
   margin: .16rem 0 .22rem 0;
   float: left;
 }
+.center p{
+  display: block;
+  text-align: center;
+}
+.hotel_grade_score section:last-child{
+  float: right;
+}
 /*内容部分*/
 .hotel_grade_content{
   background: #fff;
