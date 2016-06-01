@@ -241,7 +241,6 @@ var fOrder = {
           jAlert('请选择' + searchInfo.numofAdult + '名成人,' + searchInfo.numofChild + '名儿童!', '提示');
           return;
         }
-
         postPara.travellerInfo = storageInfo;
         if (window['localStorage']['contact_selected']) {
           contactInfo = JSON.parse(window['localStorage']['contact_selected']);

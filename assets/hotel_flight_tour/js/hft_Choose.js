@@ -242,6 +242,7 @@ var hftChoose = {
     });
     this.addHandler(changeFlight, 'click', function () {
       var tempTours = that.curData.tours, hftChangeFlightPara = {}, toursArray = [];
+      console.log(that.curData)
       hftChangeFlightPara = {
         "cityCodeFrom": that.initParaObj.cityCodeFrom,
         "cityCodeTo": that.initParaObj.cityCodeTo,
@@ -249,7 +250,8 @@ var hftChoose = {
         "returnDate": that.initParaObj.returnDate,
         "roomDetails": that.initParaObj.roomDetails,
         "flightCacheID":that.curData.flightInfo.cacheID,
-        "flightSetID":that.curData.flightInfo.setID
+        "flightSetID":that.curData.flightInfo.setID,
+        "selectedHotelID":that.curData.hotelInfo.hotelID
       };
       if (that.type == 2) {
         tempTours.forEach(function (array) {

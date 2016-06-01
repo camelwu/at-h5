@@ -214,6 +214,19 @@
   function callback() {
     fOrder.countrySlider();
   }
+  function callback2(){
+    var modle=JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
+    for(var key in modle){
+
+      $("#contact-table #first-name").val(modle[key].traveller.firstName);
+      $("#contact-table #last-name").val(modle[key].traveller.lastName);
+      $("#contact-table #tel-num").val(modle[key].traveller.mobilePhone);
+      return;
+    }
+
+
+
+  }
 
 </script>
 </html>

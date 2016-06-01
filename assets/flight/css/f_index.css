@@ -191,7 +191,10 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin: 0 .28rem;
   border-bottom: 1px solid #e6e6e6;
 }
-
+.age-range{
+  font-size: .24rem;
+  color: #D1D1D1;
+}
 .pas-num-wrap .minus, .pas-num-wrap .plus {
   display: inline-block;
   width: .54rem;
