@@ -125,7 +125,7 @@ var lsf_myweb = {
       return;
     var comments = data[0].reviewCommentsList;
     console.log(data);
-    var str1 = '<section>' + '<p>设施&nbsp&nbsp<i>' + data[0].reviewRatingsList[0].scoringScaleID + '</i>分</p>' + '<p class="lsf_gra_p2">客房&nbsp&nbsp<i>' + data[0].reviewRatingsList[1].scoringScaleID + '</i>分</p>' + '</section>' + '<section>' + '<p>地点&nbsp&nbsp<i>' + data[0].reviewRatingsList[3].scoringScaleID + '</i>分</p>' + '<p class="lsf_gra_p2">服务&nbsp&nbsp<i>' + data[0].reviewRatingsList[4].scoringScaleID + '</i>分</p>' + '</section>' + '<section class="last_sec">' + '<p>清洁度&nbsp&nbsp<i>' + data[0].reviewRatingsList[2].scoringScaleID + '</i>分</p>' + '<p class="lsf_gra_p2">物有值&nbsp&nbsp<i>' + data[0].reviewRatingsList[5].scoringScaleID + '</i>分</p>' + '</section';
+    var str1 = '<section>' + '<p>设施&nbsp&nbsp<i>' + data[0].reviewRatingsList[0].scoringScaleID + '</i>分</p>' + '<p class="lsf_gra_p2">客房&nbsp&nbsp<i>' + data[0].reviewRatingsList[1].scoringScaleID + '</i>分</p>' + '</section>' + '<section class = "center">' + '<p>地点&nbsp&nbsp<i>' + data[0].reviewRatingsList[3].scoringScaleID + '</i>分</p>' + '<p class="lsf_gra_p2">服务&nbsp&nbsp<i>' + data[0].reviewRatingsList[4].scoringScaleID + '</i>分</p>' + '</section>' + '<section class="last_sec">' + '<p>清洁度&nbsp&nbsp<i>' + data[0].reviewRatingsList[2].scoringScaleID + '</i>分</p>' + '<p class="lsf_gra_p2">物有值&nbsp&nbsp<i>' + data[0].reviewRatingsList[5].scoringScaleID + '</i>分</p>' + '</section';
     var str2 = '';
     //评论分页设置
     function num_show(start, end) {
