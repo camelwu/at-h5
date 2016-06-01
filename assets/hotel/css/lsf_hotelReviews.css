@@ -34,16 +34,16 @@ i{font-style: normal;
 .hotel_grade_score{
   width: 100%;
   height: 1.5rem;
-  display: flex;
   background: #F7F7F7;
   margin: 0 .28rem;
 }
 .hotel_grade_score section{
   width: 30%;
   color: #484848;
-  padding: 0 .2rem;
+  /*padding: 0 .2rem;*/
   line-height: .56rem;
   margin: .16rem 0 .22rem 0;
+  float: left;
 }
 /*内容部分*/
 .hotel_grade_content{
