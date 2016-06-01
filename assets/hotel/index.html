@@ -24,20 +24,20 @@
     <link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
     <link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png" media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)" />
     <link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png" media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)" />
-        <!--<link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="../owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">-->
     <!--    <link href="../styles/style.css" rel="stylesheet" type="text/css">-->
     <link rel="stylesheet" href="../styles/reset.css" />
     <link href="../styles/tips.css" rel="stylesheet" type="text/css">
     <link href="../css/plugins/citybox/citybox.css" rel="stylesheet" type="text/css" />
     <link href="css/dzh.css?ver=0505" rel="stylesheet" type="text/css" rel="stylesheet">
     <link href="../plugins/calendar/calendar1.0.2.css" type="text/css" rel="stylesheet">
-    <link href="../plugins/owlcarousel/assets/owl.carousel.css" type="text/css" rel="stylesheet">
+    <!--    <link href="../plugins/owlcarousel/assets/owl.carousel.css" type="text/css" rel="stylesheet">-->
+    <link href="../owlcarousel/assets/owl.carousel.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
     <div id="preloader">
         <div id="status">
-
         </div>
     </div>
     <div class="all_elements">
@@ -95,7 +95,7 @@
                                     房间
                                 </div>
                                 <div class="nav3-right hotel_roomNum_right">
-                                    <input type="text" id="count1" name="NumRoom" value="1" readonly data-min="1">
+                                    <input type="text" id="count1" name="NumRoom" value="1" readonly data-min="1" data-max="10">
                                     <i class="add hotel_roomNum_add" id="ho_i1"></i>
                                     <i class="minus hotel_roomNum_reduce" id="ho_i2"></i>
                                 </div>
@@ -108,7 +108,7 @@
                                     <div class="nav4-center hotel_people_right">
                                         <div class="nav4-centertop hotel_people_right_adult" id="nav4-centertop">
                                             <p>
-                                                <input type="text" value="1" name="NumAdult" id="count2" readonly data-min="1">
+                                                <input type="text" value="1" name="NumAdult" id="count2" readonly data-min="1" data-max="50">
                                                 <span>成人</span>
                                                 <i class="add hotel_people_right_adult_add" id="ho_i7"></i>
                                                 <i class="minus hotel_people_right_adult_minus" id="ho_i6"></i>
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="nav4-centerbottom hotel_people_right_child" id="nav4-centerbottom">
                                             <p>
-                                                <input type="text" value="0" name="NumChild" id="count3" readonly data-min="0">
+                                                <input type="text" value="0" name="NumChild" id="count3" readonly data-min="0" data-max="10">
                                                 <span>儿童</span>
                                                 <i class="add hotel_people_right_child_add" id="ho_i3"></i>
                                                 <i class="minus hotel_people_right_child_minus" id="ho_i4"></i>
@@ -188,12 +188,12 @@
 <!--<script src="../js/lib/jquery.js"></script>-->
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <script src="../js/lib/plugins.js"></script>
-<script src="../js/plugins/owlcarousel/owl.carousel.js"></script>
+<!--<script src="../js/plugins/owlcarousel/owl.carousel.js"></script>-->
+<script src="../owlcarousel/owl.carousel.min.js"></script>
 <script src="../js/lib/vlm.js"></script>
 <script src="../plugins/calendar/d_calendar1.0.2.js"></script>
 <script src="../js/plugins/citybox/citybox.js"></script>
-<script src="js/lsf_hotel.js"></script>
-<script src="../js/lib/plugins.js"></script>
+<!--<script src="js/lsf_hotel.js"></script>-->
 <script src="js/hotelIndex.js"></script>
 
 </html>
