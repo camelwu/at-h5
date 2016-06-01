@@ -69,6 +69,17 @@
 		<!--<span class="all_num">套餐总额：<i>7816</i>起/人（<b></b>人起订）</span>-->
 		<!--<a href="order-data-people.html" class="reserve">预订</a>-->
 	</div>
+
+	<!-- 错误的空白处理-->
+	<div class="amy_error_box">
+		<div>
+			<img class="black" src="../images/error/blank.png">
+			<dl>
+				<dt>没有找到相关信息，请重新查询</dt>
+				<dd>点击，<a href="javascript:history.go(-1);">返回上一页</a></dd>
+			</dl>
+		</div>
+	</div>
 </div>
 
 <script src="../js/scenic.js"></script>
@@ -162,10 +173,10 @@
 						$('#packagePrice').html(html_pp);
 						$('#packDetailHt').html(html_det);
 
-            //替换图片
-            $('#tourLoad').load(function(){
-              $(this).attr('src',data.imageGalleries[0].imageURL);
-            });
+						//替换图片
+						$('#tourLoad').load(function(){
+						  $(this).attr('src',data.imageGalleries[0].imageURL);
+						});
 
 						localStorage.packageID = val.packageID;
 						localStorage.productPrice = val.productPrice;
@@ -188,7 +199,9 @@
 						}
 					} else {
 						console.log(json);
-						jAlert(json.message, "提示");
+						$('.amy_error_box').show();
+//						var mess = json.message;
+//						jAlert(mess, "提示");
 					}
 				}
 			};
