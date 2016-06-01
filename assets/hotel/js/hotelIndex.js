@@ -25,10 +25,10 @@
         NumAdult: 1,
         NumChild: 0,
         init: function () {
+            console.info("init times");
             this.initSlider();
             this.initEvent();
             this.initData();
-            this.initCalendar();
         },
         initSlider: function () {
             //国际国内切换实现滑动效果
@@ -205,8 +205,8 @@
             var oDate1 = new Date(year, month, day + 2); //默认入住时间T+2
             var oDate2 = new Date(year, month, day + 3);
 
-            var beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + (oDate1.getMonth() + 1) + '-' + oDate1.getDate(), 'Ymd');
-            var leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + (oDate2.getMonth() + 1) + '-' + oDate2.getDate(), 'Ymd');
+            var beginDate = vlm.Utils.format_date(oDate1.getFullYear() + '-' + oDate1.getMonth() + '-' + oDate1.getDate(), 'Ymd');
+            var leaveDate = vlm.Utils.format_date(oDate2.getFullYear() + '-' + oDate2.getMonth() + '-' + oDate2.getDate(), 'Ymd');
 
             //默认入住离店时间
             //获取历史搜索数据
@@ -280,8 +280,8 @@
             var DomCheckOutDate = $('#DomCheckOutDate');
             var oDate3 = new Date(year, month, day + 2);
             var oDate4 = new Date(year, month, day + 3);
-            var DomBeginDate = vlm.Utils.format_date(oDate3.getFullYear() + '-' + (oDate3.getMonth() + 1) + '-' + oDate3.getDate(), 'Ymd');
-            var DomLeaveDate = vlm.Utils.format_date(oDate4.getFullYear() + '-' + (oDate4.getMonth() + 1) + '-' + oDate4.getDate(), 'Ymd');
+            var DomBeginDate = vlm.Utils.format_date(oDate3.getFullYear() + '-' + oDate3.getMonth() + '-' + oDate3.getDate(), 'Ymd');
+            var DomLeaveDate = vlm.Utils.format_date(oDate4.getFullYear() + '-' + oDate4.getMonth() + '-' + oDate4.getDate(), 'Ymd');
             var week_span3 = $('#weekSpan3');
             var week_span4 = $('#weekSpan4');
             if (hotelStorage) {
