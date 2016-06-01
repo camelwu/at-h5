@@ -218,10 +218,13 @@
                 });
 
                 hotelList.updateMoreStatus(data);
-
+                hotelList.check();
             } else {
                 $.alerts.alert(result.message);
             }
+        },
+        check:function(){
+          $("#hj_jList li:nth-child(1)") .addClass("cur");
         },
         updateMoreStatus: function (data) {
             this.currentPage = data.pageNo;

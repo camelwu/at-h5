@@ -66,7 +66,17 @@ i {
   width: 69px;
   height: 60px;
 }
-
+li.cur .h_choose {
+  display: block;
+}
+.h_choose {
+  width: 0.42rem;
+  height: 0.42rem;
+  position: absolute;
+  right: 0;
+  top:0;
+  display: none;
+}
 .hotel_list .hotelConNo div p {
   float: left;
   font-size: 0.16rem;
