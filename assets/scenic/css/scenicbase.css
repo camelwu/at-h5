@@ -1,4 +1,5 @@
 body{}
+
 .calendar_Wrap {
   position: fixed;
   z-index: 999;
@@ -7,6 +8,18 @@ body{}
   background-color: rgb(255, 255, 255);
   top: 0;
   bottom: 0;
+}
+.calendar_comfirm .btn {
+  display: block;
+  width: 94%;
+  margin: 3%;
+  height: .9rem;
+  line-height: .9rem;
+  background-color: #7bc300;
+  border-radius: 8px;
+  font-size: .36rem;
+  text-align: center;
+  color: #fff;
 }
 /*通用_content*/
 .content{
@@ -910,7 +923,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 }
 
 .booking_package_pre_childiteminput{
-  width: .7rem;
+  width: .9rem;
   height: .9rem;
   font-size: .28rem;
 }
