@@ -123,12 +123,12 @@
     text-align: center;
     border-radius: 50%;
     margin: 0 auto;
-    background: #7bc300;
+    background: #FFB413;
     color: #fff;
 }
 
 .calendar dd a span.live_txt {
-    color: #7bc300;
+    color: #FFB413;
     font-size: 12px;
     line-height: 21px;
 }
