@@ -1451,6 +1451,11 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .pickup_pop_search_suggest_list{
 
 }
+
+.booking_package_countries_title{
+  display: inline-block;
+  margin-right: 0.28rem;
+}
 /*接送页面*/
 
 /*国籍选择开始*/
@@ -1491,7 +1496,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 }
 
 .cl_search input {
-  width: 100%;
+  width: 5.6rem;
   height: 100%;
   border-radius: .3rem;
   padding-left: .48rem;

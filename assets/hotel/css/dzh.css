@@ -5,28 +5,32 @@ body {
 }
 
 div#h-Tab {
-  width: 100%;
-  overflow: hidden;
-  background: #fff;
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
 }
+
 .header {
     border-bottom: solid 1px #fff;
 }
+
+
 /*日历*/
+
 .calendar dt.title-date {
     font-size: .28rem;
 }
 
 div#h-Tab a {
-  float: left;
-  font-size: .32rem;
-  display: block;
-  width: 50%;
-  text-align: center;
-  height: .8rem;
-  line-height: .8rem;
-  color: rgb(153,153,153);
-  background-color: #fcfcfc;
+    float: left;
+    font-size: .32rem;
+    display: block;
+    width: 50%;
+    text-align: center;
+    height: .8rem;
+    line-height: .8rem;
+    color: rgb(153, 153, 153);
+    background-color: #fcfcfc;
 }
 
 div#h-Tab .on {
@@ -87,16 +91,17 @@ div#h-Tab .off {
 }
 
 i.i_address {
-  position: absolute;
-  right: .26rem;
-  top: .3rem;
-  width: .36rem;
-  height: .42rem;
-  background-image: url(../../images/ui.1.0/iv_location.png);
-  background-repeat: no-repeat;
-  background-size:0.36rem .42rem;
-  background-position: 0 0;
+    position: absolute;
+    right: .26rem;
+    top: .3rem;
+    width: .36rem;
+    height: .42rem;
+    background-image: url(../../images/ui.1.0/iv_location.png);
+    background-repeat: no-repeat;
+    background-size: 0.36rem .42rem;
+    background-position: 0 0;
 }
+
 
 /*第二栏*/
 
@@ -366,6 +371,10 @@ i.i_address {
     background-size: 7.9rem 7.83rem;
 }
 
+.add.disable {
+    background-position: -2.178rem -3.124rem;
+}
+
 .minus {
     width: .56rem;
     height: .56rem;
@@ -373,6 +382,12 @@ i.i_address {
     background: url("../../images/ui.1.0/icon_common.png") -0.514rem -3.124rem no-repeat;
     background-size: 7.9rem 7.83rem;
 }
+
+.minus.able {
+    background-position: -1.282rem -3.124rem;
+}
+
+
 /*弹层*/
 
 #popup_content {
