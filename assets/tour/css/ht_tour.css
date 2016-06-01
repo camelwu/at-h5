@@ -725,6 +725,9 @@ header.header .header_more i.location_tip{
   list-style: disc inside;
   font-size: .26rem;
 }
+.detail_box ul li table,.detail_box ul li table td{
+  width: 100%!important;
+}
 .note_content{
   text-indent: 0;
   margin-bottom: 0;
