@@ -70,7 +70,7 @@
 				parametersStorage.sortFields = data.sortTypes;
 				parametersStorage.location = data.locationList;
 				parametersStorage.filterFields = data.filters;
-				tAjax("", parametersStorage, "60100007", "2", list);
+				tAjax("", parametersStorage, "60100007", "3", list);
 			};
 			if (footer) {
 				footer.data = menu_data;
