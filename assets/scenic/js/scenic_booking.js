@@ -425,8 +425,9 @@
         $("#js_booking_price").toggle(function(e){
           Adapter.updatePriceDetail();
           $("#js_booking_footer_i").addClass("current");
+          $(".mask_tips").show();
           $(".js_booking_footer_popprice").animate({bottom: '0rem'},300,function(e){
-            $(".mask_tips").show();
+
           });
         },function(e){
           Adapter.updatePriceDetail();
@@ -806,8 +807,8 @@
    *  添加套餐 显示
    */
   $("#js_booking_package_addpackage").click(function(e){
+    $(".mask_pop").show();
     $(".booking_footer_pop").animate({bottom: '0rem'},300,function(e){
-      $(".mask_pop").show();
       $("#js_booking_footer_i").addClass("current");
     });
     T.Command().callCommand("initAddPackage",{});
