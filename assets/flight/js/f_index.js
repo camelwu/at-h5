@@ -57,11 +57,15 @@ var fIndexModal = {
   },
 
   citySearchHandler: function () {
-    var place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'), countryListSearched = document.querySelector('.country-list-searched'), that = fIndexModal;
+    var dataObj = arguments[0], place = document.querySelector('.place'), cityZone = document.querySelector('#city-input-zone'), countryListSearched = document.querySelector('.country-list-searched'), that = fIndexModal;
     var city_outer = document.querySelector('.city_outer'), tempString1 = "", outputString1 = "", resultArray = {}, internationalArray = {}, domesticArray = {}, array1 = [], array2 = [];
     var internationalTitle = document.querySelector('.international_title'), domesticTitle = document.querySelector('.domestic_title');
-    that.hotInterCity = arguments[0].data.hotCitysInternational;
-    that.hotDometicCity = arguments[0].data.hotCitysCN;
+    if(!dataObj.success){
+      jAlert(dataObj.message, '提示');
+      return false;
+    }
+    that.hotInterCity = dataObj.data.hotCitysInternational;
+    that.hotDometicCity = dataObj.data.hotCitysCN;
     Array.prototype.distinct = function () {
       var sameObj = function (a, b) {
         var tag = true;
@@ -439,6 +443,10 @@ var fIndexModal = {
           var cityTypeFrom = cityEles[0].getAttribute('data-city-type'), cityTypeTo = cityEles[1].getAttribute('data-city-type');
           return (cityTypeFrom == "domestic" && cityTypeTo == "domestic" ) ? "domestic" : "international";
         };
+        if(cityEles[0].getAttribute('data-code')==cityEles[1].getAttribute('data-code')){
+               jAlert("请选择到达城市为不同城市", '提示');
+               return false;
+        }
         paraObj = {
           "cityCodeFrom": cityEles[0].getAttribute('data-code'),
           "cityCodeTo": cityEles[1].getAttribute('data-code'),
