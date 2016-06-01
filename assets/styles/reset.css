@@ -18,6 +18,12 @@ body {
   background: #F7F7F7;
   font-size: 0.28rem;
 }
+::scrollbar {
+	display: none;
+}
+::-webkit-scrollbar {
+	display: none;
+}
 
 img {
   width: 100%;
@@ -278,10 +284,37 @@ a {
 
 .content {
   padding-top: .88rem;
+  width: auto;
+  height: auto;
+  overflow: auto;
+-webkit-overflow-scrolling: touch;
+-webkit-transform: translate3d(0, 0, 0);
+-moz-transform: translate3d(0, 0, 0);
+-ms-transform: translate3d(0, 0, 0);
+-o-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0);
 }
 
 .content.no_header {
   padding-top: 0;
+}
+
+.snap-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: auto;
+	height: auto;
+	z-index: 2;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 
 .site_right {
