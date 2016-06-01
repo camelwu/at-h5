@@ -76,6 +76,7 @@
   var _bindEvent=function(){
     addPassagerBtn.on("click",function(){
         currentOperationType="new";
+         editIDKey=null;
         _setTitleTip();
          _clearDate();
          passagerListPage.hide();
@@ -260,6 +261,7 @@
 
   var _clearDate=function(){
     currentOperationType="new";
+    editIDKey=null;
     addOrEditPassagePage.find("input").val("");
 
     $(".addAir_page .cardDateLimit").attr("data-cache","1990年-1月-1日");
