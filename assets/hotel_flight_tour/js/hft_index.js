@@ -818,7 +818,7 @@ htf_search.init();
 //儿童年龄纯数字
 function setAge(obj) {
   obj.value = obj.value.replace(/\D/ig, '');
-  if (parseInt(obj.value) >= 12) {
+  if (parseInt(obj.value)< 1 || parseInt(obj.value) >= 12) {
     obj.value = '';
   }
 }

@@ -964,7 +964,7 @@ a.hotel_detail_pic{
     box-sizing: border-box;
 }
 
-/*国籍选择�?�?*/
+/*国籍选择*/
 .country_header{
     opacity: 1;
 }
@@ -1071,7 +1071,7 @@ a.hotel_detail_pic{
     margin-top:-0.6rem;
     z-index: 10;
 }
-/*地图详情�?  begin*/
+/*地图详情 begin*/
 .hotel_detail_map_goback{
     width: 0.64rem;
     height: 0.64rem;
@@ -1136,8 +1136,14 @@ order-data-people  page   begin
 
 /*
 order-data-people  page   end
+资料输入  begin
 */
-
+.hotelInfo_numb_people .spenumbList b.noselect{
+    background-position: -4.4rem -0.52rem;
+}
+.hotelInfo_numb_people .spenumbList b.ico_select{
+    background-position: -5.08rem -0.52rem;
+}
 
 
 
