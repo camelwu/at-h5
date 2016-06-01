@@ -146,14 +146,16 @@
             <div class="booking_package_linkman_title">
               <i class="booking_package_i"></i>
               <h3 class="booking_package_h3">取票人信息</h3>
+              <a onclick="vlm.f_choice('tanktick','t','traver','',false,false,null,null,null,'myCallBack');">
               <i class="booking_package_addpre_i"></i>
+              </a>
             </div>
-            <div class="booking_package_linkman_contact">
+            <div id="tanktick" class="booking_package_linkman_contact">
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="姓:(如:Li)" value="">
+                <input type="text" class="booking_package_linkman_input" placeholder="姓:(如:Li)" data-elementName="firstName" value="">
               </div>
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" value="">
+                <input type="text" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" data-elementName="lastName" value="">
               </div>
             </div>
             <div class="countries-wrap booking_package_linkman_contact">
@@ -162,20 +164,21 @@
                 <i class="booking_package_linkman_i"></i>
             </div>
           </div>
-          <div class="booking_package_linkman">
+          <div id="contact" class="booking_package_linkman">
             <div class="booking_package_linkman_title">
               <i class="booking_package_i"></i>
               <h3 class="booking_package_h3">联系人信息</h3>
+              <a onclick="vlm.f_choice('contact','t','contact','',false,false,null,null,null,'myCallBack');">
               <i class="booking_package_addpre_i"></i>
+              </a>
             </div>
             <div class="booking_package_linkman_contact">
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="姓:(如:Li)" value="">
+                <input type="text" class="booking_package_linkman_input" placeholder="姓:(如:Li)" data-elementName="firstName" value="">
               </div>
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" value="">
+                <input type="text" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" data-elementName="lastName" value="">
               </div>
-
 
             </div>
             <div class="booking_package_linkman_contact">
@@ -185,12 +188,12 @@
                 <p id="booking_package_linkman_phoneselect" class="p_86 tel-btn" data-code="CN" data-tel-code="86"><span>+86</span></p>
               </div>
               <div class="booking_package_linkman_max375">
-                <input type="text" class="booking_package_linkman_inputphone" placeholder="用于接收短信通知" value="">
+                <input type="text" class="booking_package_linkman_inputphone" placeholder="用于接收短信通知" data-elementName="mobilePhone" value="">
               </div>
             </div>
             <div class="booking_package_linkman_contact">
               <span>邮箱</span>
-              <input type="email" class="booking_package_linkman_inputemail" placeholder="用于接收邮件通知" value="">
+              <input type="email" class="booking_package_linkman_inputemail" placeholder="用于接收邮件通知" data-elementName="email" value="">
             </div>
           </div>
 
