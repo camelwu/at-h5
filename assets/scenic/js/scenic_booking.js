@@ -379,7 +379,12 @@
                 //checkInTimeOptId: outid,
                 callback: function(result) {
                   var out_date="",out_day = "";
-
+                  var currentDay = result.toString();
+                  out_day = result.toString()+"T00:00:00";
+                  out_date = Adapter.formatDate({date:out_day,format:"MM月dd日"});
+                  $("#"+tid+"").attr("data-defaultdate",currentDay);
+                  $("#"+tid+"").attr("data-value",out_day);
+                  $("#"+outid+"").html(out_date);
                   console.info(result.toString());
                 }
               });
