@@ -86,7 +86,9 @@
         var week = "周" + "日一二三四五六".split("")[new Date(final_date).getDay()];
         return week;
       },
-      formatDate : function(date, format) {
+      formatDate : function(data) {
+        var date = data.date;
+        var format = data.format;
         if (date.indexOf('T') > -1) {
           date = date.replace("T", " ");
           if (date.indexOf("-") > -1) {
@@ -151,9 +153,9 @@
           }, ExtendData);
         }
 
-        ExtendData.DefaultDate = Adapter.formatDate(ExtendData.DetailData.data.defaultDepartStartDate,"yyyy-MM-dd");
-        ExtendData.StartDate = Adapter.formatDate(ExtendData.DetailData.data.departValidFrom,"yyyy-MM-dd");
-        ExtendData.EndDate = Adapter.formatDate(ExtendData.DetailData.data.departValidTo,"yyyy-MM-dd");
+        ExtendData.DefaultDate = Adapter.formatDate({date:ExtendData.DetailData.data.defaultDepartStartDate,format:"yyyy-MM-dd"});
+        ExtendData.StartDate = Adapter.formatDate({date:ExtendData.DetailData.data.departValidFrom,format:"yyyy-MM-dd"});
+        ExtendData.EndDate = Adapter.formatDate({date:ExtendData.DetailData.data.departValidTo,format:"yyyy-MM-dd"});
         ExtendData.maxPax = ExtendData.DetailData.data.maxPax;
         ExtendData.minPax = ExtendData.DetailData.data.minPax;
         ExtendData.minPaxType = ExtendData.DetailData.data.minPaxType;
@@ -194,10 +196,12 @@
           outString = ejs.render(tplString,{lists:ExtendData});
           $("#js_BookingPackage_first").html(outString);
           Adapter.bindAudltCount();
+          Adapter.bindDate();
         }else{
           outString = ejs.render(tplString,{lists:ExtendData});
           $("#js_BookingPackage_first").html(outString);
           Adapter.bindChildCount();
+          Adapter.bindDate();
         }
         /**
          * 时间选择 上午 下午 晚上 全天 不显示
@@ -206,7 +210,6 @@
           var e = e || window.event,
             tar = e.target || e.srcElement,
             tar = $(tar)[0];
-          console.log();
 
           if(tar.nodeName.toLowerCase() === 'li') {
             if($(tar).hasClass("current")){
@@ -357,6 +360,33 @@
           Adapter.totalPrice();
         });
       },
+      bindDate:function(){
+        $(".js_booking_package_date").click(function(e){
+          var e = e || window.event,
+            tar = e.target || e.srcElement;
+            tar = $(tar).parent()[0];
+            if(tar.nodeName.toLowerCase() === 'div'){
+              var tid = $(tar).attr("id");
+              var defaultdate= $(tar).attr("data-defaultdate");
+              var outid = $(tar).find(".js_booking_package_date_p").attr("id");
+              var obj = {};
+              obj[defaultdate] = "fristDate";
+
+              var myTime = new ATplugins.Calender({
+                id: tid,
+                selectTime: 1,
+                time: obj,
+                //checkInTimeOptId: outid,
+                callback: function(result) {
+                  var out_date="",out_day = "";
+
+                  console.info(result.toString());
+                }
+              });
+            }
+
+        });
+      },
       addChildInput:function(id,count){
         var tplString = "",outString = "";
         $(""+id+"").innerHTML = "";
@@ -442,11 +472,6 @@
 
 
 
-      },
-      bindPickupSelect:function(){
-        $(".js_booking_package_pickup_select").click(function(e){
-
-        });
       },
       bindPickupSearchInput:function(){
         var suggest = "";
