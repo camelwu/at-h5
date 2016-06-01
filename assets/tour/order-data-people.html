@@ -90,7 +90,6 @@
 				</section>
 			</div>
 			<div class="city-choose-tip" id="show-result-tip"></div>
-			,
 		</div>
 
 <script src="../js/lib/d_calendar1.0.2.js"></script>
@@ -109,7 +108,7 @@
     <!-- 日期部分-->
     <div>
         <input name="CheckInDate" id="content{%= i %}_CheckInDate" value="{%= day_start %}" class="content3_CheckInDate" readonly="readonly">
-        <span id="content0_week_span1" class="week-tour">周一</span>
+        <span id="content0_week_span1" class="week-tour"></span>
         <i></i>
     </div>
     <!-- 判断时间部分-->
@@ -194,7 +193,7 @@
                 if (temAll > roomMaxNum) {
                   jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
                   return;
-                  // n.style.backgroundPosition = '-51px 2px';
+                  // n.style.backgroundPosition = '-.48rem .04rem';
                 } else if (str > 2) {
                   jAlert('单个房间儿童数不能超过2人!', '提示');
                   return;
@@ -214,7 +213,7 @@
                 }
               } else if (_type == "adult") {
                 var adultdown = n.parentNode.getElementsByClassName('down_btn')[0];
-                adultdown.style.backgroundPosition = '-51px 2px';
+                adultdown.style.backgroundPosition = '-.48rem .04rem';
                 if (onlyForAdult) {
                   str = m.innerHTML;
                   str = Number(str);
@@ -223,7 +222,7 @@
                   if (temAll > roomMaxNum) {
                     jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
                     return;
-                    // n.style.backgroundPosition = '-51px 2px';
+                    // n.style.backgroundPosition = '-.48rem .04rem';
                   } else if (temAll > 3) {
                     jAlert('单个房间成人数不能超过3人!', '提示');
                     return;
@@ -238,7 +237,7 @@
                   if (temAll > roomMaxNum) {
                     jAlert('单个房间最多人数不能超过' + roomMaxNum + '人!', '提示');
                     return;
-                    //n.style.backgroundPosition = '-51px 2px';
+                    //n.style.backgroundPosition = '-.48rem .04rem';
                   } else if (str > 3) {
                     jAlert('单个房间成人数不能超过3人!', '提示');
                     return;
@@ -265,7 +264,7 @@
                   str = str - 1;
                   m.innerHTML = str;
                 }
-                str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-51px 2px';
+                str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
               } else if (n.id == 'adult-down') {
                 if (str <= 1) {
                   m.innerHTML = 1;
@@ -273,7 +272,7 @@
                   str = str - 1;
                   m.innerHTML = str;
                 }
-                str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-51px 2px';
+                str == 1 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
                 var parent = n.parentNode.parentNode.parentNode;
                 var ChildNum = parseInt(parent.querySelector('.child-number').innerHTML);
                 changeChildTemp(parent, str, ChildNum);
@@ -284,7 +283,7 @@
                   str = str - 1;
                   m.innerHTML = str;
                 }
-                str == 0 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-51px 2px';
+                str == 0 ? n.style.backgroundPosition = '-.48rem .04rem' : n.style.backgroundPosition = '-.48rem .04rem';
               }
               _type == "extraChild" && extraChild(n.parentNode.parentNode, str);
               _type == "extraRoom" && extraRoom(n.parentNode.parentNode, str);
@@ -299,9 +298,9 @@
               toDown(oNum[i], _cut_down_btn[i]);
               var str = parseInt(oNum[i].innerHTML);
               if (i == 0) {
-                str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
+                str == 1 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem';
               } else {
-                str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-51px 2px';
+                str == 0 ? _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem' : _cut_down_btn[i].style.backgroundPosition = '-.48rem .04rem';
               }
             }
             addbed();
@@ -582,6 +581,7 @@
                 //初始时景点时间可选
                 function chooseScenicDate() {
                   var inputs = document.querySelectorAll('.CheckInDateI');
+                  console.log(inputs.length);
                   var total_day = document.querySelector('#total_day');
                   var tourLi = document.querySelector('.tourTime'), allDivs;
                   allDivs = tourLi.querySelectorAll('.nav2-tour');
