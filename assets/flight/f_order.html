@@ -143,7 +143,7 @@
       <a href="javascript:void(0);" class="header_back country_header">
         <i class="icon_back"></i>
       </a>
-      <h3><div class="cl_search"><input type="text" placeholder="新加坡/xjp/sin/" id="country-input-zone"><i></i></div> </h3>
+      <h3><div class="cl_search"><input type="text" placeholder="新加坡/XinJiaPo/Singapore/XJP/SGP" id="country-input-zone"><i></i></div> </h3>
     </header>
     <ul class="country-list-searched country-list-searched-order"></ul>
     <div class="content">
@@ -160,9 +160,13 @@
             <a class="target" name="rm"></a>
             <p class="recent_title">热门城市</p>
             <ul class="hot_code">
-              <li class="country_lists" date-country-code="65"><i>新加坡</i><span>65</span></li>
-              <li class="country_lists" date-country-code="852"><i>香港</i><span>852</span></li>
-              <li class="country_lists" date-country-code="81"><i>日本</i><span>81</span></li>
+              <% for(var tem in resultArray){%>
+              <%resultArray[tem].forEach(function(array){%>
+              <%if(array.isHot){%>
+              <li class="country_lists" date-country-code="<%=array.phoneCode%>"><i><%=array.chineseName%></i><span><%=array.phoneCode%></span></li>
+              <% }%>
+              <%})%>
+              <% }%>
             </ul>
           </li>
         </ul>
@@ -173,7 +177,7 @@
             <p class="recent_title"><%=tem%></p>
             <ul>
               <%resultArray[tem].forEach(function(array){%>
-              <li class="country_lists" date-country-code="<%=array.TelCode%>"><i><%=array.CountryName%></i><span><%=array.TelCode%></span></li>
+              <li class="country_lists" date-country-code="<%=array.phoneCode%>"><i><%=array.chineseName%></i><span><%=array.phoneCode%></span></li>
               <%})%>
             </ul>
           <% }%>
@@ -196,6 +200,7 @@
 <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
 <script type="text/javascript" src="../js/lib/vlm.js"></script>
 <script type="text/javascript" src="../js/lib/ejs.js"></script>
+<script type="text/javascript" src="js/doubleListData.js"></script>
 <script type="text/javascript" src="../js/country_list.js"></script>
 <script type="text/javascript" src="js/f_order.js"></script>
 <script type="text/javascript">
