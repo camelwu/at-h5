@@ -594,6 +594,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   background-repeat: no-repeat;
   background-size: 7.90rem auto;
   background-position: -0.482rem -4.44rem;
+  float: none;
 }
 
 .left_info .middle .arrow_word {
