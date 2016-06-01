@@ -36,7 +36,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .singleTrip, .doubleTrip{
-  border-bottom: 1px solid #DEDEDE;
+  border-bottom: .02rem solid #DEDEDE;
 }
 
 .singleTrip, .doubleTrip , .international_title, .domestic_title{
@@ -54,7 +54,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .light-title {
-  border-bottom: 0.05rem solid #7bc300;
+  border-bottom: 0.06rem solid #7bc300;
   color: #7bc300;
 }
 
