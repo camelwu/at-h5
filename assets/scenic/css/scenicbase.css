@@ -1,4 +1,5 @@
 body{}
+
 .calendar_Wrap {
   position: fixed;
   z-index: 999;
@@ -7,6 +8,18 @@ body{}
   background-color: rgb(255, 255, 255);
   top: 0;
   bottom: 0;
+}
+.calendar_comfirm .btn {
+  display: block;
+  width: 94%;
+  margin: 3%;
+  height: .9rem;
+  line-height: .9rem;
+  background-color: #7bc300;
+  border-radius: 8px;
+  font-size: .36rem;
+  text-align: center;
+  color: #fff;
 }
 /*通用_content*/
 .content{
@@ -910,7 +923,7 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 }
 
 .booking_package_pre_childiteminput{
-  width: .7rem;
+  width: .9rem;
   height: .9rem;
   font-size: .28rem;
 }
@@ -1039,10 +1052,12 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
   display: inline-block;
 }
 
-.booking_package_linkman_phoneselect{
-  width: 60%;
+#booking_package_linkman_phoneselect{
+  width: 30%;
   text-align: center;
   float: right;
+  line-height: 1rem;
+  height: .96rem;
 }
 
 .booking_package_linkman_phone_i{
@@ -1436,4 +1451,123 @@ li.scenic_height1, li.scenic_height2, li.scenic_height3{
 .pickup_pop_search_suggest_list{
 
 }
+
+.booking_package_countries_title{
+  display: inline-block;
+  margin-right: 0.28rem;
+}
 /*接送页面*/
+
+/*国籍选择开始*/
+.country_header {
+  opacity: 1;
+}
+
+.gj_header {
+  z-index: 9999;
+  visibility: hidden;
+}
+
+.country-cho-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: none;
+}
+
+.country-cho-wrap-order {
+  position: absolute;
+  z-index: 1000;
+}
+
+.cl_search {
+  height: .6rem;
+  width: 100%;
+  padding-left: 1.04rem;
+  padding-right: .28rem;
+  margin-top: .16rem;
+  position: relative;
+  left: 0;
+  top: 0;
+  overflow: visible;
+}
+
+.cl_search input {
+  width: 100%;
+  height: 100%;
+  border-radius: .3rem;
+  padding-left: .48rem;
+  background-color: #e6e6e6;
+}
+
+.cl_search i {
+  position: absolute;
+  left: 1.2rem;
+  top: .13rem;
+  background-position: -2.28rem -1.64rem;
+  background-size: 5.8rem 3.6rem;
+  width: .34rem;
+  height: .34rem;
+}
+
+.country-list {
+  background-color: #fff;
+}
+
+.country-list li {
+  padding-left: .48rem;
+  height: .68rem;
+  line-height: .68rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.country-hidden {
+  z-index: 100;
+}
+
+/*国籍模糊搜索*/
+.country-list-searched {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: .88rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  background: #f5f4f9;
+  overflow-y: scroll;
+}
+
+.country-list-searched li.country-list-searched-item {
+  width: 100%;
+  height: .68rem;
+  line-height: .68rem;
+  text-align: left;
+  border-bottom: 1px solid #e6e6e6;
+  padding-left: .48rem;
+}
+
+.city_index {
+  position: fixed;
+  top: 2.18rem;
+  right: .06rem;
+  width: 0.6rem;
+  color: #7bc300;
+  font-size: 0.2rem;
+  text-align: center;
+}
+
+.city_index li {
+  margin-bottom: .04rem;
+}
+
+.city_index li a {
+  color: #7bc300;
+  text-underline: none
+}
+
+/*国籍选择结束*/

@@ -559,13 +559,13 @@
     <div class="fht_order_detail">
       <div class="fht_hd">入住人信息</div>
       <ul class="fht_order_tab border_light">
-        <% if(guestNameList.length>0){ %>
+        <% var i=1; if(guestNameList.length>0){ %>
         <% guestNameList.forEach(function(info){%>
         <li>
-          <p class="clearfix"><span class="fl"></span>房间人1入住人<span class="fr"><%=info.guestFirstName%>/<%=info.guestLastName%></span>
+          <p class="clearfix"><span class="fl"></span>房间<%=i%>入住人<span class="fr"><%=info.guestFirstName%>/<%=info.guestLastName%></span>
           </p>
         </li>
-        <%})%>
+        <% i++ })%>
         <% } %>
       </ul>
       <ul class="order_cont_way">
@@ -573,7 +573,7 @@
           <span class="fl"></span>联系电话<span class="fr"><%=guestContactNo%></span>
         </li>
         <li class="clearfix">
-          <span class="fl"></span>邮箱<span class="fr"><%=guestEmail%>.com</span>
+          <span class="fl"></span>邮箱<span class="fr"><%=guestEmail%></span>
         </li>
       </ul>
     </div>
