@@ -397,7 +397,7 @@ span.money{
 /*房间信息弹层*/
 #popup_title{
   /*height: .34rem;*/
-  padding: .28rem;
+  padding: .28rem .8rem .28rem .28rem;
   color: #333;
   background-color: #F7F7F7;
   border-top-left-radius: .1rem;
