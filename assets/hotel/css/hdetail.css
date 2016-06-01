@@ -132,7 +132,7 @@ strong{
 }
 .open-arg1{
   right: .28rem;
-  top: .9rem;
+  top: .6rem;
 }
 .CrazyRate {
   display: inline-block;
@@ -193,7 +193,7 @@ strong{
 }
 .enterDate,.time_span{
   font-size: 0.32rem;
-  color: #FFB413;
+  color: #7bc300;
 }
 
 
@@ -203,7 +203,7 @@ strong{
 }
 .hotel_content > li:last-child{
   padding:.2rem;
-  border-bottom: 0px solid #dfdfdd;
+  border-bottom: 2px solid #dfdfdd;
   margin-bottom: .8rem;
 }
 .hotel_content_num{
@@ -212,7 +212,7 @@ strong{
 }
 .hotel_content_num span {
   font-size: .28rem;
-  color: #FFB413;
+  color: #7bc300;
 }
 .hotel_content_roomEvent{
   float: left;
@@ -252,9 +252,9 @@ strong{
 .d-icon4 {
   width: .4rem;
   height: .4rem;
-  background-image: url(../../images/ui/icon-hft.png);
-  background-position: -4.08rem -2.12rem;
-  background-size: 7.5rem 4.54rem;
+  background-image: url(../../images/ui.1.0/icon_common.png);
+  background-position: -2.76rem  -0.6rem;
+  background-size:7.9rem 7.98rem;
   transition: none!important;
   position: absolute;
   top: .5rem;
