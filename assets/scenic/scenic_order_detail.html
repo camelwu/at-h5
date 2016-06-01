@@ -16,7 +16,7 @@
     <title>景点 - 亚程旅行网</title>
     <link href="../styles/reset.css" type="text/css" rel="stylesheet">
 		<link href="../styles/tips.css"	rel="stylesheet">
-		<link href="../css/user.css"	rel="stylesheet" type="text/css">
+    <link href="../css/plugins/calendar/calendar.css" rel="stylesheet" type="text/css">
     <link href="css/scenicbase.css" type="text/css" rel="stylesheet" media="all">
 	</head>
 	<body>
@@ -156,8 +156,9 @@
                 <input type="text" class="booking_package_linkman_input" placeholder="名:(如:Shimin)" value="">
               </div>
             </div>
-            <div class="booking_package_linkman_contact">
-              <span>国籍</span>
+            <div class="countries-wrap booking_package_linkman_contact">
+              <p class="booking_package_countries_title">国籍</p>
+              <span  class="country-btn" data-code="CN" data-tel-code="86">中国</span>
                 <i class="booking_package_linkman_i"></i>
             </div>
           </div>
@@ -181,8 +182,7 @@
               <div class="booking_package_linkman_max375 booking_package_linkman_portraitline">
                 <span class="booking_package_linkman_phonetitle">手机号</span>
                 <i class="booking_package_linkman_phone_i"></i>
-                <p class="booking_package_linkman_phoneselect">+<span>86</span></p>
-
+                <p id="booking_package_linkman_phoneselect" class="p_86 tel-btn" data-code="CN" data-tel-code="86"><span>+86</span></p>
               </div>
               <div class="booking_package_linkman_max375">
                 <input type="text" class="booking_package_linkman_inputphone" placeholder="用于接收短信通知" value="">
@@ -291,6 +291,25 @@
     </div>
   </section>
   <!--弹层 接送酒店-->
+  <!--国籍选择开始-->
+  <div class="all_elements country-cho-wrap">
+    <div class="header country_header">
+      <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
+      <div class="cl_search">
+        <input type="text" placeholder="北京/beijing/Beijing" id="country-input-zone"/>
+        <i class="icon_common"></i>
+      </div>
+    </div>
+    <!--国籍弹窗开始-->
+    <ul class="country-list-searched"></ul>
+    <!--国籍弹窗结束-->
+
+    <div class="content">
+      <div class="country-wrap" id="country-wrap">
+      </div>
+    </div>
+  </div>
+  <!--国籍选择结束-->
   <script type="text/template" id="tpl_BookingPackage">
     <!--景点包信息-->
     <div class="booking_package">
@@ -324,9 +343,9 @@
           <i class="booking_package_i"></i>
           <h3 class="booking_package_h3"><%=lists.DetailData.data.tours[i].tourName %></h3>
         </div>
-        <div class="booking_package_date">
-          <p class="booking_package_date_p">03月12日</p>
-          <i class="booking_package_date_i"></i>
+        <div id="js_booking_package_date<%=i%>" class="booking_package_date js_booking_package_date" data-defaultdate="<%=lists.DefaultDate%>" data-value="<%=lists.DetailData.data.defaultDepartStartDate%>">
+          <p id="js_booking_package_date_p<%=i%>" class="booking_package_date_p js_booking_package_date_p"><%=T.Command().callCommand("formatDate",{date:lists.DetailData.data.defaultDepartStartDate,format:"MM月dd日"})%></p>
+          <i class="booking_package_date_i js_booking_package_date_i"></i>
         </div>
         <div class="booking_package_fullday">
           <ul class="booking_package_fullday_ul">
@@ -444,6 +463,9 @@
   <script type="text/javascript" src="../js/lib/vlm.js"></script>
   <script type="text/javascript" src="../js/lib/jquery.alert.js"></script>
   <script type="text/javascript" src="../js/lib/ejs.js"></script>
+  <script type="text/javascript" src="../js/plugins/calendar/d_calendar1.0.3.js"></script>
+  <script src="../js/country_list.js"></script>
+  <script src="../js/countrytel_list.js"></script>
   <script type="text/javascript" src="js/scenic_booking.js"></script>
 	</body>
 
