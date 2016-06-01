@@ -1,5 +1,4 @@
 var fOrder = {
-
   addHandler: function (target, eventType, handle) {
     if (document.addEventListener) {
       this.addHandler = function (target, eventType, handle) {
@@ -92,14 +91,24 @@ var fOrder = {
   },
 
   countrySlider: function () {
-    var tempString1 = "", outputString1 = "",resultArray = {},that = this , outer = document.createElement('div');
-    outer.className = "country-cho-wrap all_elements";
-    arrCountry.forEach(function(itemValue){  //country-cho-wrap all_elements
-      resultArray[itemValue.CountryEN.substring(0,1).toUpperCase()] = [];
+    var that = this;
+    this.tAjax("", {lastUpdateTime: "2010-01-01"}, "70100008",3, function(){
+              if(arguments[0].success&&arguments[0].data.length>1){
+                        that.addCountryCodeHandler(arguments[0].data)
+                   }
     });
-    arrCountry.forEach(function(itemValue) {
+    that.addCountryCodeHandler(country.data)
+    return this
+  },
+  addCountryCodeHandler:function(){
+    var dataArray =arguments[0], tempString1 = "", outputString1 = "",resultArray = {},that = this , outer = document.createElement('div');
+    outer.className = "country-cho-wrap all_elements";
+    dataArray.forEach(function(itemValue){
+      resultArray[itemValue.firstPinYin.toUpperCase()] = [];
+    });
+    dataArray.forEach(function(itemValue) {
       for (var temp in  resultArray) {
-        if (itemValue.CountryEN.substring(0, 1).toUpperCase() == temp) {
+        if (itemValue.firstPinYin.toUpperCase() == temp) {
           resultArray[temp].push(itemValue);
         }
       }
@@ -108,28 +117,23 @@ var fOrder = {
     outputString1 = ejs.render(tempString1, {resultArray: resultArray});
     outer.innerHTML = outputString1;
     $(".shadow").eq(0).after(outputString1);
-    this.addCountryCodeHandler();
-    return this
-  },
-  addCountryCodeHandler:function(){
-    var countryTrigger = document.querySelector('.country-trigger'),that = this, wrapEle = document.querySelector('.country-cho-wrap');
+    var countryTriggerOuter = document.querySelector('.mis_right'),countryTrigger =null, wrapEle = document.querySelector('.country-cho-wrap');
     var  cityInputZone = document.querySelector('#country-input-zone');
+    countryTrigger = countryTriggerOuter.querySelector('.country-trigger');
     wrapEle.onclick = function(e){
-     var e = e ||window.event, target = e.target || e.srcElement;
-     if(target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')){
-       countryTrigger.innerHTML = target.getAttribute('date-country-code')!=null?target.getAttribute('date-country-code'):target.parentNode.getAttribute('date-country-code');
-       wrapEle.style.display = "none";
-     }
-     };
-    countryTrigger.onclick = function () {
+      var e = e ||window.event, target = e.target || e.srcElement;
+      if(target.getAttribute('date-country-code') || target.parentNode.getAttribute('date-country-code')){
+        countryTrigger.innerHTML = target.getAttribute('date-country-code')!=null?target.getAttribute('date-country-code'):target.parentNode.getAttribute('date-country-code');
+        wrapEle.style.display = "none";
+      }
+    };
+    countryTriggerOuter.onclick = function () {
       if (that.getCurrentStyle(wrapEle).display == "block") {
         wrapEle.style.display = "none"
       }else{
         wrapEle.style.display = "block"
       }
-
     };
-
     var searchHandler=function(){
       var countryInputZone = document.querySelector('#country-input-zone');
       var cityListSearched = document.querySelector('.country-list-searched-order');
@@ -161,20 +165,24 @@ var fOrder = {
       };
       if(reg.test(valueStr)){
         var mb = String(valueStr).toLowerCase();
-        for(var p = 0; p < arrCountry.length; p++){
-          var ma =String(arrCountry[p]['CountryEN']).toLowerCase();
-          if(ma.indexOf(mb)>-1||arrCountry[p]['CountryName'].indexOf(valueStr)>-1){
-            searchResult.push(arrCountry[p]);
-          }
+        for(var p = 0; p < dataArray.length; p++){
+              if(dataArray[p].chineseName.indexOf(mb)>-1||
+                 dataArray[p].englishName.indexOf(mb)>-1||
+                  dataArray[p].nativeName.indexOf(mb)>-1||
+             dataArray[p].nationalityCode.indexOf(mb)>-1||
+                  dataArray[p].fullPinYin.indexOf(mb)>-1||
+                dataArray[p].simplePinYin.indexOf(mb)>-1){
+                searchResult.push(dataArray[p]);
+              }
         }
-        }
+      }
       searchResult = searchResult.distinct();
       if(!searchResult.length){
         resultStr +='<li>无搜索结果</li>';
         cityListSearched.style.display = 'none';
       }else{
         for(var l = 0;l<searchResult.length;l++){
-          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].TelCode+'"><i>'+searchResult[l].CountryName+'</i><span>'+searchResult[l].TelCode+'</span></li>'
+          resultStr += '<li class="country_lists" date-country-code="'+searchResult[l].phoneCode+'"><i>'+searchResult[l].chineseName+'</i><span>'+searchResult[l].phoneCode+'</span></li>'
         }
         cityListSearched.innerHTML = resultStr;
         cityListSearched.style.display = 'block';
@@ -188,7 +196,6 @@ var fOrder = {
     }
 
   },
-
   eventHandler: function () {
     var bottomPrice = document.querySelector('.bottomPrice'), that = fOrder, searchInfo = JSON.parse(window.sessionStorage.getItem('fIndexInfo')).data;
     var postPara = {}, temObject = {},that=this;
@@ -314,7 +321,7 @@ var fOrder = {
                 }
               }, '确定', '取消');
             } else {
-                 jAlert(result.message)
+              jAlert(result.message)
             }
           }
         });
@@ -344,8 +351,8 @@ var fOrder = {
         target.style.display = "none";
         detailFare.className = "detail_fare open";
         priceDetailInfo.style.bottom = '-126%';
-       }else if(target.className.indexOf('country_header')>-1){
-             document.querySelector('.country-cho-wrap').style.display ="none";
+      }else if(target.className.indexOf('country_header')>-1){
+        document.querySelector('.country-cho-wrap').style.display ="none";
       }
     })
 
@@ -356,9 +363,9 @@ var fOrder = {
       var list= JSON.parse(sessionStorage.getItem("choiceAir_select_passenger-list"));
       var temp={};
       for(var key in list){
-          if(key !=id){
-            temp[key]=list[key];
-          }
+        if(key !=id){
+          temp[key]=list[key];
+        }
       }
       sessionStorage.setItem('choiceAir_select_passenger-list',JSON.stringify(temp));
     }
@@ -393,11 +400,11 @@ var fOrder = {
     return this;
   },
   isInternationalTrip:function(){
-       var data = JSON.parse(window.sessionStorage.getItem('fIndexInfo'));
-       if(data.data.internationalOrDomestic == "international"){
-              return false;
-        }
-        return true;
+    var data = JSON.parse(window.sessionStorage.getItem('fIndexInfo'));
+    if(data.data.internationalOrDomestic == "international"){
+      return false;
+    }
+    return true;
   },
 
   innitData: function () {
