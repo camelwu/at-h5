@@ -36,7 +36,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .singleTrip, .doubleTrip{
-  border-bottom: 1px solid #DEDEDE;
+  border-bottom: .02rem solid #DEDEDE;
 }
 
 .singleTrip, .doubleTrip , .international_title, .domestic_title{
@@ -54,7 +54,7 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
 }
 
 .light-title {
-  border-bottom: 0.05rem solid #7bc300;
+  border-bottom: 0.06rem solid #7bc300;
   color: #7bc300;
 }
 
@@ -194,9 +194,10 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   margin: 0 .28rem;
   border-bottom: 1px solid #e6e6e6;
 }
-.age-range{
-  font-size: .24rem;
+.age-range {
+  font-size: .26rem;
   color: #D1D1D1;
+  letter-spacing: .02rem;
 }
 .pas-num-wrap .minus, .pas-num-wrap .plus {
   display: inline-block;
@@ -204,21 +205,21 @@ input:-ms-input-placeholder { color: #D1D1D1 !important}
   height: .54rem;
   background: url(../../images/ui/icon_common.png) no-repeat;
   background-size: 7.9rem 5.13rem;
-  background-position: 41.2% 68%;
+  background-position: -3.05rem -3.132rem;
   position: relative;
   top: .156rem
 }
 
 .pas-num-wrap .plus_grey {
-  background-position: 29.5% 68%
+  background-position: -2.161rem -3.14rem;
 }
 
 .pas-num-wrap .minus {
-  background-position: 17.5% 68%;
+  background-position: -1.29rem -3.132rem;
 }
 
 .pas-num-wrap .minus_grey {
-  background-position: 6.7% 68%
+  background-position: -.508rem -3.132rem;
 }
 
 .adultNumber, .childNumber {

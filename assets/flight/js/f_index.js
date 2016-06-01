@@ -380,40 +380,28 @@ var fIndexModal = {
           if (adultNum + childNum < 9) {
             adultNum++;
             adultNumEle.innerHTML = adultNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
+            that.buttonStatusHandler();
           }
         } else if (target.className == "chi plus") {
           if (adultNum + childNum < 9) {
             if (adultNum / childNum > 1 / 2) {
               childNum++;
               childNumEle.innerHTML = childNum;
-              adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-              childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-              adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
-              childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
+              that.buttonStatusHandler();
             }
           }
         } else if (target.className == "adu minus") {
           if (adultNum >= 2) {
             adultNum--;
             adultNumEle.innerHTML = adultNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
+            that.buttonStatusHandler();
             childNumEle.innerHTML = adultNum / childNum < 1 / 2 ? adultNum * 2 : childNum;
           }
         } else if (target.className == "chi minus") {
           if (childNum >= 1) {
             childNum--;
             childNumEle.innerHTML = childNum;
-            adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
-            childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
-            adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
-            childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
+            that.buttonStatusHandler();
           }
         }
       } else if (target.id == "ticket-search-button") {
@@ -551,8 +539,17 @@ var fIndexModal = {
     return [startDay, endDay];
   },
 
+  buttonStatusHandler:function(){
+    var adultIs = document.querySelectorAll(".adult i"), childIs = document.querySelectorAll(".child i"), adultNum = 0, childNum = 0;
+    adultNum = parseInt(document.querySelector('.adultNumber').innerHTML), childNum = parseInt(document.querySelector('.childNumber').innerHTML);
+    adultIs[1].className = adultNum + childNum < 9 ? "adu plus" : "adu plus plus_grey";
+    childIs[1].className = adultNum / childNum > 1 / 2 && adultNum + childNum < 9 ? "chi plus" : "chi plus plus_grey";
+    adultIs[0].className = adultNum > 1 ? "adu minus" : "adu minus minus_grey";
+    childIs[0].className = childNum > 0 ? "chi minus" : "chi minus minus_grey";
+  },
+
   initShowInfo: function () {
-    var data = arguments[0], tripTitles = document.querySelectorAll('.hTab div'),
+    var data = arguments[0], tripTitles = document.querySelectorAll('.hTab div'),that = this,
       weeks = document.querySelectorAll('.weekWord'), adultValue = document.querySelector('.adultNumber'),
       childValue = document.querySelector('.childNumber'), cityEle = document.querySelectorAll(".citySearch"),
       seatValue = document.querySelector('#seats'), timeClickWrap = document.querySelector('#timeClickWrap'),
@@ -607,7 +604,8 @@ var fIndexModal = {
     weeks[2].innerHTML = this.setWeekItems(defaultDate[1]);
     adultValue.innerHTML = data.numofAdult;
     childValue.innerHTML = data.numofChild;
-    seatValue.innerHTML = reSeat(data.cabinClass)
+    seatValue.innerHTML = reSeat(data.cabinClass);
+    that.buttonStatusHandler();
   },
 
   initDate: function () {
