@@ -1102,6 +1102,10 @@ i, em {
 }
 
 /*国籍选择开始*/
+
+#country_index_wrap{
+  display: none;
+}
 .country_header {
   opacity: 1;
 }
@@ -1170,7 +1174,7 @@ i, em {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9;
+  z-index: 1010;
   background: #fff;
   overflow-y: scroll;
 }
@@ -1183,6 +1187,7 @@ i, em {
   color: #7bc300;
   font-size: 0.2rem;
   text-align: center;
+  z-index: 1000;
 }
 
 .country_index li {

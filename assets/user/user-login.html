@@ -161,65 +161,60 @@
       </div>
     </div>
 
-    <!--国籍选择开始-->
-    <div class="all_elements country-cho-wrap">
-      <div class="header country_header">
-        <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
-        <div class="cl_search">
-          <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
-          <i class="icon_common"></i>
-        </div>
+  <!--国籍选择开始-->
+  <div class="all_elements country-cho-wrap">
+    <div class="header country_header">
+      <a href="javascript:;" class="header_back country-hidden"><i class="icon_back"></i></a>
+      <div class="cl_search">
+        <input type="text" placeholder="新加坡/xinjiapo/xjp/Singapore" id="country-input-zone"/>
+        <i class="icon_common"></i>
       </div>
-      <!--国籍弹窗开始-->
-      <ul class="country-list-searched"></ul>
-      <!--国籍弹窗结束-->
-
-      <div class="content">
-        <div id="country-wrap-hot"></div>
-        <div class="country-wrap" id="country-wrap"></div>
-      </div>
-      <!--右侧a-z-->
-      <div class="country_index" id="country_index_wrap"></div>
-
-      <!--热门-->
-      <script id="countryList_hot" type="text/template">
-        <h4><a name="rm" class="target"></a>热门</h4>
-        <ul class="country_hot">
-          <% for(var i=0; i< arrCountry.length; i++){ %>
-          <% if(arrCountry[i].isHot == 1) { %>
-          <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
-          <% } %>
-          <% } %>
-        </ul>
-      </script>
-
-      <!--全部列表-->
-      <script id="countryList" type="text/template">
-        <div class="full_country_outer">
-          <% for(var tem in countryArray){ %>
-          <a class="target" name="<%=tem%>"></a>
-          <h4><%= tem%></h4>
-          <ul class="full_country_list">
-            <%countryArray[tem].forEach(function(array){ %>
-            <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
-            <% })%>
-          </ul>
-          <% }%>
-        </div>
-      </script>
-
-      <!--国籍a-z-->
-      <script id="country_index" type="text/template">
-        <ul>
-          <li><a href="#rm">热门</a></li>
-          <% for(var tem in countryArray){%>
-          <li><a href="#<%=tem%>"><%=tem%></a></li>
-          <%}%>
-        </ul>
-      </script>
-
     </div>
-    <!--国籍选择结束-->
+    <!--国籍弹窗开始-->
+    <ul class="country-list-searched"></ul>
+    <!--国籍弹窗结束-->
+    <div class="content">
+      <div id="country-wrap-hot"></div>
+      <div class="country-wrap" id="country-wrap"></div>
+    </div>
+    <!--热门-->
+    <script id="countryList_hot" type="text/template">
+      <h4><a name="rm" class="target"></a>热门</h4>
+      <ul class="country_hot">
+        <% for(var i=0; i< arrCountry.length; i++){ %>
+        <% if(arrCountry[i].isHot == 1) { %>
+        <li class="country_list_hot" data-tel-code="<%=arrCountry[i].phoneCode%>" data-code="<%=arrCountry[i].countryCode%>" ><%=arrCountry[i].chineseName%></li>
+        <% } %>
+        <% } %>
+      </ul>
+    </script>
+    <!--全部列表-->
+    <script id="countryList" type="text/template">
+      <div class="full_country_outer">
+        <% for(var tem in countryArray){ %>
+        <a class="target" name="<%=tem%>"></a>
+        <h4><%= tem%></h4>
+        <ul class="full_country_list">
+          <%countryArray[tem].forEach(function(array){ %>
+          <li class="country_list" data-tel-code="<%=array.phoneCode%>" data-code="<%=array.countryCode%>"><%=array.chineseName%></li>
+          <% })%>
+        </ul>
+        <% }%>
+      </div>
+    </script>
+    <!--国籍a-z-->
+    <script id="country_index" type="text/template">
+      <ul>
+        <li><a href="#rm">热门</a></li>
+        <% for(var tem in countryArray){%>
+        <li><a href="#<%=tem%>"><%=tem%></a></li>
+        <%}%>
+      </ul>
+    </script>
+  </div>
+  <!--右侧a-z-->
+  <div class="country_index" id="country_index_wrap"></div>
+  <!--国籍选择结束-->
 		<script src="../js/lib/jquery.js"></script>
 		<script src="../js/lib/vlm.js"></script>
 		<script src="../js/lib/ejs.js"></script>

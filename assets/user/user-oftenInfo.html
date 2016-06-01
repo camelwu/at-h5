@@ -338,17 +338,11 @@
           <i class="icon_common"></i>
         </div>
       </div>
-      <!--国籍弹窗开始-->
-      <ul class="country-list-searched"></ul>
-      <!--国籍弹窗结束-->
 
       <div class="content">
         <div id="country-wrap-hot"></div>
         <div class="country-wrap" id="country-wrap"></div>
       </div>
-      <!--右侧a-z-->
-      <div class="country_index" id="country_index_wrap"></div>
-
       <!--热门-->
       <script id="countryList_hot" type="text/template">
         <h4><a name="rm" class="target"></a>热门</h4>
@@ -360,7 +354,6 @@
           <% } %>
         </ul>
       </script>
-
       <!--全部列表-->
       <script id="countryList" type="text/template">
         <div class="full_country_outer">
@@ -375,7 +368,6 @@
           <% }%>
         </div>
       </script>
-
       <!--国籍a-z-->
       <script id="country_index" type="text/template">
         <ul>
@@ -385,8 +377,13 @@
           <%}%>
         </ul>
       </script>
-
     </div>
+    <!--右侧a-z-->
+    <div class="country_index" id="country_index_wrap"></div>
+    <!--国籍弹窗开始-->
+    <ul class="country-list-searched"></ul>
+    <!--国籍弹窗结束-->
+
     <!--国籍选择结束-->
 
     <script src="../js/lib/jquery.js"></script>

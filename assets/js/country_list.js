@@ -104,6 +104,7 @@
               setTimeout(function(){
                 oDiv.style.display='none';
                 oTc.style.display='none';
+                $('#country_index_wrap').hide();
                 if(document.querySelector("#addtra_page .user-content")  !=null) {
                   $('.gj-header').css('visibility','hidden');
                   $('.country-cho-wrap').css('visibility','hidden');
@@ -146,6 +147,7 @@
             };
 
             oDiv.style.display='block';
+            $('#country_index_wrap').show();
             $('.country-cho-wrap').css('visibility','visible');
             $('.gj-header').css('visibility','visible');
             $('#content-wrap').css('visibility','hidden');
@@ -190,6 +192,7 @@
               setTimeout(function(){
                 oDiv.style.display='none';
                 oTc.style.display='none';
+                $('#country_index_wrap').hide();
                 if(document.querySelector("#addtra_page .user-content")!=null) {
                   $('.gj-header').css('visibility','hidden');
                   $('.country-cho-wrap').css('visibility','hidden');
@@ -313,6 +316,7 @@
               setTimeout(function(){
                 oDiv.style.display='none';
                 oTc.style.display='none';
+                $('#country_index_wrap').hide();
                 if(document.querySelector("#addtra_page .user-content")  !=null) {
                   $('.gj-header').css('visibility','hidden');
                   $('.country-cho-wrap').css('visibility','hidden');
@@ -392,7 +396,7 @@
 
             //列表点击后赋值
             function addContTel(e){
-              
+
               if(_this.className == 'tel-btn coun-find'){
                 _this.children[0].innerHTML=$(e.target).html()+'+'+$(e.target).attr("data-tel-code");
               }else if(_this.className == 'p_86 tel-btn'){
@@ -404,6 +408,7 @@
               setTimeout(function(){
                 oDiv.style.display='none';
                 oTc.style.display='none';
+                $('#country_index_wrap').hide();
                 if(document.querySelector("#addtra_page .user-content")!=null) {
                   $('.gj-header').css('visibility','hidden');
                   $('.country-cho-wrap').css('visibility','hidden');
