@@ -62,11 +62,11 @@ div#h-Tab .off {
 }
 
 .hotel_destination_right {
-    display: inline-block;
-    width: 65%;
-    font-size: .32rem;
-    font-weight: 500;
-    background-color: #fff;
+  display: inline-block;
+  width: 70%;
+  font-size: .32rem;
+  font-weight: 500;
+  background-color: #fff;
 }
 
 .hotel_destination_right span {
