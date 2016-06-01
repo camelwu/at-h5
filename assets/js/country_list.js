@@ -300,9 +300,15 @@
 
             //模糊搜索赋值
             countryListSearched.onclick=function(e){
-              _this.innerHTML=e.target.innerHTML;
-              var telCode_fuzzy='+'+$(e.target).attr("data-tel-code");
-              $(oCont).eq(index).html(telCode_fuzzy);
+
+              if(_this.className == 'tel-btn coun-find'){
+                _this.children[0].innerHTML=$(e.target).html()+'+'+$(e.target).attr("data-tel-code");
+              }else if(_this.className == 'p_86 tel-btn'){
+                console.log(_this.children[0]);
+                _this.children[0].innerHTML='+'+$(e.target).attr("data-tel-code");
+              }else{
+                _this.innerHTML='+'+$(e.target).attr("data-tel-code");
+              }
               this.style.display='none';
               setTimeout(function(){
                 oDiv.style.display='none';
@@ -386,9 +392,15 @@
 
             //列表点击后赋值
             function addContTel(e){
-              oCont[index].innerHTML=e.target.innerHTML;
-              var telCode='+'+$(e.target).attr("data-tel-code");
-              $(oCont).eq(index).html(telCode);
+              
+              if(_this.className == 'tel-btn coun-find'){
+                _this.children[0].innerHTML=$(e.target).html()+'+'+$(e.target).attr("data-tel-code");
+              }else if(_this.className == 'p_86 tel-btn'){
+                console.log(_this.children[0]);
+                _this.children[0].innerHTML='+'+$(e.target).attr("data-tel-code");
+              }else{
+                _this.innerHTML='+'+$(e.target).attr("data-tel-code");
+              }
               setTimeout(function(){
                 oDiv.style.display='none';
                 oTc.style.display='none';
